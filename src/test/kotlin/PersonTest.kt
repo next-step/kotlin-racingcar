@@ -2,15 +2,14 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 
-class PersonTest{
+class PersonTest {
 
     @Test
-    fun constructor(){
-        val person = Person("박용성",30,"influxys")
+    fun constructor() {
+        val person = Person("박용성", 30, "influxys")
         assertThat(person.name).isEqualTo("박용성") // person.getName
         person.nickname = "influx"
         assertThat(person.nickname).isEqualTo("influx") // person.getName
-
     }
 
     @Test
@@ -53,5 +52,4 @@ class PersonTest{
         val person2 = Person("박재성", 29, "제이슨")
         assertThat(person1).isEqualTo(person2)
     }
-
 }
