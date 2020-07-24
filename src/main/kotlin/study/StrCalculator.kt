@@ -17,16 +17,16 @@ class StrCalculator(str: String) {
         return list.sum()
     }
 
-    fun minus(list: List<Int>): Int {
-        return list[0] - list[1]
+    fun minus(a: Int, b: Int): Int {
+        return a - b
     }
 
-    fun multiplication(list: List<Int>): Int {
-        return list[0] * list[1]
+    fun multiplication(a: Int, b: Int): Int {
+        return a * b
     }
 
-    fun division(list: List<Int>): Int {
-        return list[0] / list[1]
+    fun division(a: Int, b: Int): Int {
+        return a / b
     }
 
     fun isPlus(symbol: String): Boolean {
@@ -56,13 +56,13 @@ class StrCalculator(str: String) {
                 plus(calculateNumList)
             }
             isMinus(symbol) -> {
-                minus(calculateNumList)
+                minus(calculateNumList[0], calculateNumList[1])
             }
             isMultiplication(symbol) -> {
-                multiplication(calculateNumList)
+                multiplication(calculateNumList[0], calculateNumList[1])
             }
             isDivision(symbol) -> {
-                division(calculateNumList)
+                division(calculateNumList[0], calculateNumList[1])
             }
             else -> null
         }
