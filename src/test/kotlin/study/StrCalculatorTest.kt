@@ -73,4 +73,12 @@ class StrCalculatorTest {
         val result = starCal.play()
         assertThat(result).isEqualTo(6)
     }
+
+    @Test
+    fun example() {
+        val str = "2 + 3 * 4 / 2"
+        val starCal = StrCalculator(str)
+        val result = starCal.play()
+        assertThat(result).isEqualTo(10)
+    }
 }
