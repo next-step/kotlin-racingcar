@@ -1,27 +1,63 @@
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import java.lang.IllegalArgumentException
+import java.lang.IndexOutOfBoundsException
 
 class KotlinStudyTest {
     @Test
-    internal fun splitTest() {
-        val a = "1 + 2 * 3".split("+","-","*","/")
-        assertThat(a.size).isEqualTo(3)
-        assertThat(a[0]).isEqualTo("1 ")
-        assertThat(a[1]).isEqualTo(" 2 ")
-        assertThat(a[2]).isEqualTo(" 3")
-        val a2 = a.map{
-            it.trim()
-        }
-        assertThat(a2[0]).isEqualTo("1")
-        assertThat(a2[1]).isEqualTo("2")
-        assertThat(a2[2]).isEqualTo("3")
-        val intList = a2.map{
-            it.toInt()
-        }
-        println(intList)
-        val b = "1+2*3".split("+","-","*","/")
-        assertThat(b[0]).isEqualTo("1")
-        assertThat(b[1]).isEqualTo("2")
-        assertThat(b[2]).isEqualTo("3")
+    fun `split test`() {
+        val sampleString = "1 + 2 * 3 / 4"
+        val stringList = sampleString.split(" ")
+        assertThat(stringList).contains("1","2","3","4")
     }
+
+    @Test
+    fun `sublist test`(){
+        val list = listOf<String>("1", "2", "3", "4")
+        val actual = list.subList(1, 2)
+        assertThat(actual).isEqualTo(listOf("2"))
+        val actual2 = list.subList(1, 3)
+        assertThat(actual2).isEqualTo(listOf("2","3"))
+        val actual3 = list.subList(1, list.size)
+        assertThat(actual3).isEqualTo(listOf("2","3","4"))
+        val actual4 = list.subList(3, 4)
+        assertThat(actual4).isEqualTo(listOf("4"))
+        val actual5 = list.subList(4, 4)
+        assertThat(actual5.size).isEqualTo(0)
+        assertThatThrownBy { list.subList(4, 5) }
+            .isInstanceOf(IndexOutOfBoundsException::class.java)
+            .hasMessageContaining("toIndex = 5")
+    }
+
+    @Test
+    fun `indexof test`(){
+        val list = listOf("1 + 2 * 3")
+        val actual = list.indexOf("/")
+        assertThat(actual).isEqualTo(-1)
+    }
+
+    @Test
+    fun `divide by zero test`(){
+        assertThatThrownBy { 5 / 0 }
+            .isInstanceOf(ArithmeticException::class.java)
+            .hasMessageContaining("by zero")
+    }
+
+    @Test
+    fun `throw test`(){
+        assertThatThrownBy {throw IllegalArgumentException("test exception")}
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining("test exception")
+    }
+
+    @Test
+    fun `list set test`(){
+        val list = mutableListOf(4, 5, 6)
+        list.set(0, 1)
+        assertThat(list[0]).isEqualTo(1)
+        assertThat(list[1]).isEqualTo(5)
+    }
+
 }
