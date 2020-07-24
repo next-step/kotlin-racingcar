@@ -53,16 +53,24 @@ class StrCalculatorTest {
     }
 
     @Test
-    fun find_FPO() {
+    fun find_symbol() {
         val str = "1+2-3*4/5"
         val strCal = StrCalculator(str)
-        val plusSymbol = strCal.isPlus(0)
-        val minusSymbol = strCal.isMinus(1)
-        val multiplicationSymbol = strCal.isMultiplication(2)
-        val divisionSymbol = strCal.isDivision(3)
+        val plusSymbol = strCal.isPlus("+")
+        val minusSymbol = strCal.isMinus("-")
+        val multiplicationSymbol = strCal.isMultiplication("*")
+        val divisionSymbol = strCal.isDivision("/")
         assertThat(plusSymbol).isTrue()
         assertThat(minusSymbol).isTrue()
         assertThat(multiplicationSymbol).isTrue()
         assertThat(divisionSymbol).isTrue()
+    }
+
+    @Test
+    fun play() {
+        val str = "10+3-4/3*2"
+        val starCal = StrCalculator(str)
+        val result = starCal.play()
+        assertThat(result).isEqualTo(6)
     }
 }
