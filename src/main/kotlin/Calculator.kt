@@ -16,3 +16,13 @@ class Calculator {
         }
     }
 }
+
+fun main() {
+    val calculator = Calculator()
+
+    print("input:")
+    val input = readLine()!!.split(" ").map { it.trim() }
+    val output = calculator.calc(input)
+
+    println(output)
+}
