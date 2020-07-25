@@ -11,6 +11,7 @@ class CalculatorUtil {
 
         fun validateAndReturn(string: String): List<String> {
             val split = string.split(DELIMITER)
+            validateEmptyData(string)
             validateInputSize(split)
             checkInputOperator(split)
             checkInputNumber(split)
@@ -31,12 +32,22 @@ class CalculatorUtil {
             }
         }
 
+        fun validateEmptyData(string: String) {
+            if (string.isBlank()) throw java.lang.IllegalArgumentException("input data 가 비어있습니다.")
+        }
+
         fun validateInputSize(split: List<String>) {
-            if (split.isEmpty()) {
-                throw IllegalArgumentException("input data 가 비어있습니다.")
-            }
-            if (split.size % 2 == 0)
+            if (split.size < 2 || split.size % 2 == 0)
                 throw IllegalArgumentException("잘못된 포멧입니다")
+        }
+
+        fun parser(
+            splitString: MutableList<String>,
+            sortedString: MutableList<String>
+        ) {
+            sortedString[1] = splitString.removeAt(0)
+            sortedString[0] = splitString.removeAt(0)
+            sortedString[2] = splitString.removeAt(0)
         }
     }
 }
