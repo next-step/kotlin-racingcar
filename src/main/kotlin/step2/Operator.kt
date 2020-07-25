@@ -1,15 +1,16 @@
 package step2
 
-typealias CalculateStrategy = (leftValue: Operand, rightValue: Operand) -> Operand
-
-enum class Operator(private val symbol: String, private val strategy: CalculateStrategy) {
+enum class Operator(
+    private val symbol: String,
+    private val calculateStrategy: (leftValue: Operand, rightValue: Operand) -> Operand
+) {
     ADD("+", Operand::add),
     MINUS("-", Operand::minus),
     MULTIPLY("*", Operand::multiply),
     DIVIDE("/", Operand::divide);
 
     fun calculate(leftValue: Operand, rightValue: Operand): Operand {
-        return strategy.invoke(leftValue, rightValue)
+        return calculateStrategy.invoke(leftValue, rightValue)
     }
 
     companion object {
