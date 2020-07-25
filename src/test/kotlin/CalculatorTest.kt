@@ -17,4 +17,12 @@ class CalculatorTest {
             Calculator().calculateExpression(expression)
         }
     }
+
+    @Test
+    fun `식에 공백이 들어간 경우`() {
+        assertThatIllegalArgumentException().isThrownBy {
+            val expression = "2 + 3 * 4 / 2"
+            Calculator().calculateExpression(expression)
+        }
+    }
 }
