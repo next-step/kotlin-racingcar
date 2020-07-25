@@ -24,6 +24,25 @@ internal class CalculatorImplTest {
     }
 
     @Test
+    fun `calculate() 처음에 나눠서 0보다 작은 수로 시작하는 경우 검증`() {
+        assertThat(
+            CalculatorImpl().calculate(
+                listOf(
+                    Node.Number(2.0),
+                    Node.Operator.Divide,
+                    Node.Number(16.0),
+                    Node.Operator.Multiply,
+                    Node.Number(2.0),
+                    Node.Operator.Multiply,
+                    Node.Number(2.0),
+                    Node.Operator.Multiply,
+                    Node.Number(2.0)
+                )
+            )
+        ).isEqualTo(1)
+    }
+
+    @Test
     fun `calculate() 0으로 나누면 DivideByZeroException 발생`() {
         assertThatThrownBy {
             assertThat(
