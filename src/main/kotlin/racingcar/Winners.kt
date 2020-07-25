@@ -1,6 +1,10 @@
 package racingcar
 
-class Winners(winners: List<Car>) {
+class Winners(val winners: List<Car>) {
+    fun joinWinnersName(): String {
+        return winners.joinToString { it.name }
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
