@@ -1,5 +1,7 @@
 package calculator
 
+import java.lang.IllegalArgumentException
+
 class StringCalculator {
     companion object {
         fun calculate(value: String): Int {
@@ -15,13 +17,16 @@ class StringCalculator {
         }
 
         private fun calculate(first: Int, operator: String, second: Int): Int {
+            if (operator == "+")
+                return first + second
             if (operator == "-")
                 return first - second
             if (operator == "*")
                 return first * second
             if (operator == "/")
                 return first / second
-            return first + second
+
+            throw IllegalArgumentException("사칙 연산 기호만 입력할 수 있습니다.")
         }
     }
 }

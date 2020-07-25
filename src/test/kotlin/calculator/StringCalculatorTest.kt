@@ -1,7 +1,10 @@
 package calculator
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import java.lang.IllegalArgumentException
 
 class StringCalculatorTest {
     @Test
@@ -26,6 +29,12 @@ class StringCalculatorTest {
     fun `나눗셈`() {
         val result = StringCalculator.calculate("4 / 2")
         assertThat(result).isEqualTo(2)
+    }
+
+    @Test
+    fun `사칙연산이 아닌 경우`() {
+        assertThatThrownBy { StringCalculator.calculate("4 & 2") }
+            .isInstanceOf(IllegalArgumentException::class.java)
     }
 
     @Test
