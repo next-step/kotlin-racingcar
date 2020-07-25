@@ -24,4 +24,9 @@ class CalculatorOperatorTest {
     fun 빼기() {
         Assertions.assertThat(Calculator.calOperator(numList = numberList, operatorList = listOf('-'))).isEqualTo(66)
     }
+
+    @Test
+    fun 곱하기() {
+        Assertions.assertThat(Calculator.calOperator(numList = numberList, operatorList = listOf('*'))).isEqualTo(3267)
+    }
 }
