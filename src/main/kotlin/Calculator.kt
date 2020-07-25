@@ -4,8 +4,8 @@ import java.util.Queue
 object Calculator {
 
     fun calEquation(equation: String?): Int {
-        if (equation == null) {
-            throw IllegalArgumentException("입력 값이 null 입니다.")
+        if (equation == null || equation.isEmpty()) {
+            throw IllegalArgumentException("입력 값이 유효하지 않습니다.")
         }
 
         val numBuilder = StringBuilder()
