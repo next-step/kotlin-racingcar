@@ -41,7 +41,11 @@ class Calculator {
                 '+' -> result + numList.poll()
                 '-' -> result - numList.poll()
                 '*' -> result * numList.poll()
-                '/' -> result / numList.poll()
+                '/' -> {
+                    val operand = numList.poll()
+                    if (operand == 0) throw ArithmeticException("0으로 나눌 수 없습니다.")
+                    result / operand
+                }
                 else -> throw IllegalArgumentException("사칙 연산 기호가 아닙니다.")
             }
         }
