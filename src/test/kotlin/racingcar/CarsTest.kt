@@ -19,4 +19,13 @@ class CarsTest {
                 Car("honux", 4)
             )))
     }
+
+    @Test
+    fun race() {
+        val cars = Cars(listOf(Car("pobi"), Car("crong"), Car("honux"), Car("jk")))
+        for (x in 0..5) {
+            cars.race()
+            println(cars)
+        }
+    }
 }

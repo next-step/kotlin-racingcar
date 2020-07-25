@@ -21,4 +21,10 @@ class CarTest {
     fun stop() {
         assertThat(car.move(3)).isEqualTo(Car("javajigi", 0))
     }
+
+    @Test
+    fun toString_in_Car() {
+        val car = Car("javajigi", 5)
+        assertThat(car.toString()).isEqualTo("javajigi : -----")
+    }
 }

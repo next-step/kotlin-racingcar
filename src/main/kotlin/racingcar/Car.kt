@@ -27,4 +27,9 @@ class Car(val name: String, var position: Int = 0) {
         result = 31 * result + position
         return result
     }
+
+    override fun toString(): String {
+        val repeatBar = "-".repeat(position)
+        return "$name : $repeatBar"
+    }
 }

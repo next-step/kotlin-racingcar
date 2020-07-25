@@ -1,6 +1,6 @@
 package racingcar
 
-class Winners(val winners: List<Car>) {
+class Winners(private val winners: List<Car>) {
     fun joinWinnersName(): String {
         return winners.joinToString { it.name }
     }
