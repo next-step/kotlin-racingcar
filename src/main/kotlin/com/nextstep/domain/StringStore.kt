@@ -6,6 +6,8 @@ import java.util.Queue
 class StringStore(string: String) {
     private val stores: Queue<String>
     private fun validation(stores: List<String>) {
+        if (isEven(stores.size)) throw IllegalArgumentException("입력을 확인해주세요")
+
         for (index in stores.indices) {
             checkValid(stores[index], index)
         }
@@ -26,8 +28,6 @@ class StringStore(string: String) {
     }
 
     private fun checkValid(store: String, index: Int) {
-        if (isEven(store.length)) throw IllegalArgumentException("입력을 확인해주세요")
-
         if (isEven(index)) {
             store.toInt()
             return
