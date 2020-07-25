@@ -8,7 +8,7 @@ class PersonTest {
         val person = Person("전지은", 31, "jjin")
 
         assertThat(person.name).isEqualTo("전지은")
-        person.nickname = "jane" // setter
+        person.nickname = "jjin"
         assertThat(person.nickname).isEqualTo("jane")
     }
     @Test
