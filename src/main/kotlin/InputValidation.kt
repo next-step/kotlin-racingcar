@@ -1,0 +1,8 @@
+enum class InputValidation {
+    SUCCESS,
+    BLANK_ERROR,
+    EMPTY_STRING,
+    CALCULATOR_SYMBOL,
+    INVALID_NUMBER_SYMBOL_ORDER,
+    ZERO_AFTER_DIVIDE
+}
