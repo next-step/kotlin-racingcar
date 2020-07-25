@@ -9,8 +9,9 @@ private const val REMAINDER_ONE = 1
 
 class StringCalculator {
 
-    // TODO.02 인스턴스 변수 대신 companion object 활용하기
-    private var result: Int = 0
+    companion object {
+        private var result: Int = 0
+    }
 
     fun calculate(input: String?): Int {
         isCorrectInputFormat(input)
