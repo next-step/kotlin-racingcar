@@ -1,6 +1,7 @@
 package step2
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 class StringCalculatorTest {
@@ -12,5 +13,16 @@ class StringCalculatorTest {
         // then
         assertThat(StringCalculator.calculate(splitString))
             .isEqualTo(Operand(10.0))
+    }
+
+    @Test
+    fun `공백문자 넣을 시 Exception`() {
+        // given
+        val splitString = " ".split(" ")
+
+        // then
+        assertThatThrownBy { StringCalculator.calculate(splitString) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("입력 문자는 공백 일 수 없습니다.")
     }
 }
