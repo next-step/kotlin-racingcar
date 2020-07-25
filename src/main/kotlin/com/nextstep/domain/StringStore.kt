@@ -15,7 +15,7 @@ class StringStore(string: String) {
             store.toInt()
             return
         }
-        Operator.valueOf(store)
+        Operator.valueOfOperator(store)
     }
 
     private fun isEven(index: Int): Boolean {
