@@ -42,4 +42,12 @@ class CalculatorTest {
             Calculator.calEquation(equation)
         }
     }
+
+    @Test
+    fun `불완전한 식을 계산할 경우`() {
+        assertThatIllegalArgumentException().isThrownBy {
+            val equation = "2+3*"
+            Calculator.calEquation(equation)
+        }
+    }
 }
