@@ -20,8 +20,6 @@ class StringCalculator {
 
         separateNumsAndOperators(strList, numbers, operators)
 
-        result = numbers.removeAt(0)
-
         calculateInOrder(operators, numbers)
 
         return result
@@ -39,6 +37,8 @@ class StringCalculator {
     }
 
     private fun calculateInOrder(operators: ArrayList<String>, numbers: ArrayList<Int>) {
+        result = numbers.removeAt(0)
+        if (numbers.isEmpty()) return
         for (i in operators.indices) {
             when (operators.removeAt(0)) {
                 Operator.PLUS.sign -> plus(numbers.removeAt(0))
@@ -50,11 +50,17 @@ class StringCalculator {
         }
     }
 
-    private fun plus(num: Int) { result += num }
+    private fun plus(num: Int) {
+        result += num
+    }
 
-    private fun minus(num: Int) { result -= num }
+    private fun minus(num: Int) {
+        result -= num
+    }
 
-    private fun multiply(num: Int) { result *= num }
+    private fun multiply(num: Int) {
+        result *= num
+    }
 
     private fun divide(num: Int) {
         if (num == 0) throw ArithmeticException("0으로 나눌 수 없습니다.")
