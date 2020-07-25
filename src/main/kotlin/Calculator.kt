@@ -1,7 +1,7 @@
 import java.util.LinkedList
 import java.util.Queue
 
-class Calculator {
+object Calculator {
 
     fun calculateExpression(expression: String?): Int {
         if (expression == null) throw IllegalArgumentException("입력 값이 null 입니다.")
