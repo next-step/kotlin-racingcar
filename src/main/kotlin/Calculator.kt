@@ -4,9 +4,11 @@ import java.util.Queue
 object Calculator {
 
     fun calEquation(equation: String?): Int {
-        if (equation == null) throw IllegalArgumentException("입력 값이 null 입니다.")
+        if (equation == null) {
+            throw IllegalArgumentException("입력 값이 null 입니다.")
+        }
 
-        val num = StringBuilder()
+        val numBuilder = StringBuilder()
         val (numList: Queue<Int>, operatorList) = LinkedList<Int>() to mutableListOf<Char>()
         for (index in equation.indices) {
             when {
@@ -15,13 +17,13 @@ object Calculator {
                     if (!isNumeric(equation[index])) {
                         throw IllegalArgumentException("완전하지 않은 식입니다.")
                     }
-                    num.append(equation[index])
-                    numList.add(num.toString().toInt())
+                    numBuilder.append(equation[index])
+                    numList.add(numBuilder.toString().toInt())
                 }
-                isNumeric(equation[index]) -> num.append(equation[index])
+                isNumeric(equation[index]) -> numBuilder.append(equation[index])
                 else -> {
-                    numList.offer(num.toString().toInt())
-                    num.clear()
+                    numList.offer(numBuilder.toString().toInt())
+                    numBuilder.clear()
                     operatorList.add(equation[index])
                 }
             }
