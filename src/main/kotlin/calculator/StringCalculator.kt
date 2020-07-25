@@ -11,28 +11,34 @@ class StringCalculator {
 
             val values = value!!.split(" ")
 
-            var result = Integer.parseInt(values[0])
+            var result = toInt(values[0])
             for (x in 1 until values.size step 2) {
-                val operator = values[x]
-                val second = Integer.parseInt(values[x + 1])
-                result = calculate(result, operator, second)
+                result = calculate(result, values[x], toInt(values[x + 1]))
             }
             return result
         }
 
         private fun isBlank(value: String?) = value == null || value.isBlank()
 
-        private fun calculate(first: Int, operator: String, second: Int): Int {
-            if (operator == "+")
-                return first + second
-            if (operator == "-")
-                return first - second
-            if (operator == "*")
-                return first * second
-            if (operator == "/")
-                return first / second
+        private fun toInt(value: String) = Integer.parseInt(value)
 
-            throw IllegalArgumentException("사칙 연산 기호만 입력할 수 있습니다.")
+        private fun calculate(first: Int, operator: String, second: Int): Int {
+            val operator = Operator.valueOfSign(operator)
+            return operator.operation(first, second)
+        }
+    }
+}
+
+enum class Operator(val sign: String, val operation: (Int, Int) -> Int) {
+    PLUS("+", { x, y -> x + y }),
+    MINUS("-", { x, y -> x - y }),
+    MULTIPLY("*", { x, y -> x * y }),
+    DIVIDE("/", { x, y -> x / y });
+
+    companion object {
+        fun valueOfSign(sign: String): Operator {
+            return values().firstOrNull { it.sign == sign }
+                ?: throw IllegalArgumentException("사칙 연산 기호가 아닙니다.")
         }
     }
 }

@@ -4,8 +4,6 @@ import calculator.StringCalculator.Companion.calculate
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertAll
-import java.lang.NullPointerException
 
 class StringCalculatorTest {
     @Test
