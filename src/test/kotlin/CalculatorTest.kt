@@ -2,6 +2,8 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class CalculatorTest {
 
@@ -20,11 +22,11 @@ class CalculatorTest {
         }
     }
 
-    @Test
-    fun `식에 공백이 들어간 경우`() {
+    @ParameterizedTest
+    @ValueSource(strings = ["2 + 3 * 4 / 2", "", " "])
+    fun `식에 공백이 들어간 경우`(input: String) {
         assertThatIllegalArgumentException().isThrownBy {
-            val equation = "2 + 3 * 4 / 2"
-            Calculator.calEquation(equation)
+            Calculator.calEquation(input)
         }
     }
 
