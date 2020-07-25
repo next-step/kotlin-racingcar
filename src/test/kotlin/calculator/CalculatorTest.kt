@@ -7,7 +7,8 @@ internal class CalculatorTest {
 
     @Test
     fun execute() {
-        assertEquals(8.5, Calculator.execute(ExpressionParser.parse("3 + 4 / 2 + 5")))
-        assertEquals(Double.NaN, Calculator.execute(ExpressionParser.parse("4/0")))
+        assertEquals(8.5, Calculator.execute(ExpressionParser.parse(" 3 + 4 / 2 + 5 ")))
+        assertEquals(-7.0, Calculator.execute(ExpressionParser.parse("-3.5 * 2")))
+        assertEquals(Double.NaN, Calculator.execute(ExpressionParser.parse("4 / 0")))
     }
 }
