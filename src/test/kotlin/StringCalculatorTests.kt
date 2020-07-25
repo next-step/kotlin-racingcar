@@ -40,4 +40,41 @@ class StringCalculatorTests {
         val stringCalculator = StringCalculator()
         assertThat(stringCalculator.splitForCalculate("1234 + 5678 / 31")).isNotEmpty
     }
+
+    @Test
+    fun `plus`() {
+        val stringCalculator = StringCalculator()
+        var list = listOf("1234", "+", "4567", "+", "5678")
+        val result = stringCalculator.calculate(list)
+        assertThat(result).isEqualTo(1234 + 4567 + 5678)
+    }
+
+    @Test
+    fun `minus`() {
+        val stringCalculator = StringCalculator()
+        var list = listOf("1234", "-", "4567", "-", "5678")
+        val result = stringCalculator.calculate(list)
+        assertThat(result).isEqualTo(1234 - 4567 - 5678)
+    }
+
+    @Test
+    fun `multiply`() {
+        val stringCalculator = StringCalculator()
+        var list = listOf("1234", "*", "4567", "*", "5678")
+        val result = stringCalculator.calculate(list)
+        assertThat(result).isEqualTo(1234 * 4567 * 5678)
+    }
+
+    @Test
+    fun `divide`() {
+        val stringCalculator = StringCalculator()
+        var list = listOf("1234", "/", "4567", "/", "5678")
+        val result = stringCalculator.calculate(list)
+        assertThat(result).isEqualTo(1234 / 4567 / 5678)
+
+        var listDivideByZero = listOf("1234", "/", "0")
+        assertThrows<ArithmeticException> {
+            stringCalculator.calculate(listDivideByZero)
+        }
+    }
 }
