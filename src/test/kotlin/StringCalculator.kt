@@ -12,30 +12,29 @@ class StringCalculator {
     // TODO.02 인스턴스 변수 대신 companion object 활용하기
     private var result: Int = 0
 
-    // TODO.01 변수명, 메소드명 수정하기
-    fun calculate(inputStr: String?): Int {
-        isCorrectInput(inputStr)
+    fun calculate(input: String?): Int {
+        isCorrectInputFormat(input)
 
-        val strList = inputStr!!.trim().split(" ")
+        val inputSplit = input!!.trim().split(" ")
 
         val numbers = ArrayList<Int>()
         val operators = ArrayList<String>()
 
-        separateNumsAndOperators(strList, numbers, operators)
+        separateNumsAndOperators(inputSplit, numbers, operators)
 
         calculateInOrder(operators, numbers)
 
         return result
     }
 
-    private fun isCorrectInput(inputStr: String?) {
+    private fun isCorrectInputFormat(inputStr: String?) {
         if (inputStr.isNullOrEmpty() or (inputStr == " ")) throw IllegalArgumentException("값을 입력해주세요.")
     }
 
     private fun separateNumsAndOperators(strList: List<String>, numbers: ArrayList<Int>, operators: ArrayList<String>) {
         for (i in strList.indices) {
-            if (i % 2 == REMAINDER_ZERO) numbers.add(strList.get(i).toInt())
-            if (i % 2 == REMAINDER_ONE) operators.add(strList.get(i))
+            if (i % 2 == REMAINDER_ZERO) numbers.add(strList[i].toInt())
+            if (i % 2 == REMAINDER_ONE) operators.add(strList[i])
         }
     }
 
