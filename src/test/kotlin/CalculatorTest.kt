@@ -1,5 +1,4 @@
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -34,14 +33,6 @@ class CalculatorTest {
     fun `식이 널인 경우`() {
         assertThatIllegalArgumentException().isThrownBy {
             Calculator.calEquation(null)
-        }
-    }
-
-    @Test
-    fun `0 으로 나눌 경우`() {
-        assertThatExceptionOfType(ArithmeticException::class.java).isThrownBy {
-            val equation = "2+3*4/0"
-            Calculator.calEquation(equation)
         }
     }
 

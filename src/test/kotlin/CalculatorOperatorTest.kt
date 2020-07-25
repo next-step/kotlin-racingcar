@@ -34,4 +34,15 @@ class CalculatorOperatorTest {
     fun 나누기() {
         Assertions.assertThat(Calculator.calOperator(numList = numberList, operatorList = listOf('/'))).isEqualTo(3)
     }
+
+    @Test
+    fun `0 으로 나눌 경우`() {
+        Assertions.assertThatExceptionOfType(ArithmeticException::class.java).isThrownBy {
+            val numList = LinkedList<Int>().apply {
+                add(99)
+                add(0)
+            }
+            Calculator.calOperator(numList = numList, operatorList = listOf('/'))
+        }
+    }
 }
