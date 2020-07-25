@@ -35,17 +35,15 @@ object Calculator {
             when {
                 isEmpty(equation[index]) -> throw IllegalArgumentException("입력 값에 공백이 포함 되었습니다.")
                 index == equation.lastIndex -> {
-                    if (!isNumeric(equation[index])) {
-                        throw IllegalArgumentException("완전하지 않은 식입니다.")
-                    }
+                    if (!isNumeric(equation[index])) throw IllegalArgumentException("완전하지 않은 식입니다.")
+
                     numBuilder.append(equation[index])
                     numList.add(numBuilder.toString().toDouble())
                 }
                 isNumeric(equation[index]) -> numBuilder.append(equation[index])
                 else -> {
-                    if (numBuilder.isEmpty()) {
-                        throw IllegalArgumentException("완전하지 않은 식입니다.")
-                    }
+                    if (numBuilder.isEmpty()) throw IllegalArgumentException("완전하지 않은 식입니다.")
+
                     numList.offer(numBuilder.toString().toDouble())
                     numBuilder.clear()
                     operatorList.add(equation[index])
