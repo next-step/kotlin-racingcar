@@ -4,6 +4,8 @@ object Operation {
 
     fun of(operator: String) = operators[operator]
 
+    val none: (Double, Double) -> Double = { _, _ -> Double.NaN }
+
     private val add: (Double, Double) -> Double = { base, second -> base + second }
 
     private val sub: (Double, Double) -> Double = { base, second -> base - second }
