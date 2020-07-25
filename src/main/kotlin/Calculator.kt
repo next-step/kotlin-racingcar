@@ -32,14 +32,7 @@ object Calculator {
         return calOperator(numList, operatorList)
     }
 
-    private fun isNumeric(operator: Char): Boolean = operator.toInt() in 48..57
-
-    private fun isEmpty(value: Char): Boolean = value == ' '
-
-    private fun calOperator(
-        numList: LinkedList<Int>,
-        operatorList: MutableList<Char>
-    ): Int {
+    fun calOperator(numList: LinkedList<Int>, operatorList: List<Char>): Int {
         var result = numList.poll()
         for (operator in operatorList) {
             result = when (operator) {
@@ -56,4 +49,8 @@ object Calculator {
         }
         return result
     }
+
+    private fun isNumeric(operator: Char): Boolean = operator.toInt() in 48..57
+
+    private fun isEmpty(value: Char): Boolean = value == ' '
 }
