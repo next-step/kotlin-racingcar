@@ -1,7 +1,7 @@
 package racingcar.view
 
-import racingcar.Cars
-import racingcar.Winners
+import racingcar.domain.Cars
+import racingcar.domain.Winners
 
 object ResultView {
     fun printRaceStatus(cars: Cars) {

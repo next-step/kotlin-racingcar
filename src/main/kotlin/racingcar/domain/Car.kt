@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 const val CAR_MOVE_CRITERIA = 4
 

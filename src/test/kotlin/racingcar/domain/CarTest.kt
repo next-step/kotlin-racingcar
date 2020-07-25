@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
@@ -14,7 +14,7 @@ class CarTest {
 
     @Test
     fun move() {
-        assertThat(car.move(CAR_MOVE_CRITERIA)).isEqualTo(Car("javajigi", 1))
+        assertThat(car.move(CAR_MOVE_CRITERIA)).isEqualTo(Car("javajigi",1))
     }
 
     @Test

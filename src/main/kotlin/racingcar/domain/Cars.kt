@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class Cars(private var cars: List<Car>) {
     fun findWinners(): Winners {

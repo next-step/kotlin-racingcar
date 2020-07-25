@@ -1,7 +1,8 @@
-package racingcar
+package racingcar.domain
 
 class RacingGame(val names: String, var tryNo: Int) {
-    private val cars: Cars = Cars(names.split(",").map { Car(it) })
+    private val cars: Cars =
+        Cars(names.split(",").map { Car(it) })
 
     fun race(): Cars {
         cars.race()

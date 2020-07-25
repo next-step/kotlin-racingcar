@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class Winners(private val winners: List<Car>) {
     fun joinWinnersName(): String {
