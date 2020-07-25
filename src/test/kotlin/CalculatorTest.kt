@@ -25,4 +25,11 @@ class CalculatorTest {
             Calculator().calculateExpression(expression)
         }
     }
+
+    @Test
+    fun `식이 널인 경우`() {
+        assertThatIllegalArgumentException().isThrownBy {
+            Calculator().calculateExpression(null)
+        }
+    }
 }
