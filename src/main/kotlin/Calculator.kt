@@ -3,35 +3,35 @@ import java.util.Queue
 
 object Calculator {
 
-    fun calculateExpression(expression: String?): Int {
-        if (expression == null) throw IllegalArgumentException("입력 값이 null 입니다.")
+    fun calEquation(equation: String?): Int {
+        if (equation == null) throw IllegalArgumentException("입력 값이 null 입니다.")
 
         val num = StringBuilder()
         val (numList: Queue<Int>, operatorList) = LinkedList<Int>() to mutableListOf<Char>()
-        for (index in expression.indices) {
+        for (index in equation.indices) {
             when {
-                isEmpty(expression[index]) -> throw IllegalArgumentException("입력 값에 공백이 포함 되었습니다.")
-                index == expression.lastIndex -> {
-                    num.append(expression[index])
+                isEmpty(equation[index]) -> throw IllegalArgumentException("입력 값에 공백이 포함 되었습니다.")
+                index == equation.lastIndex -> {
+                    num.append(equation[index])
                     numList.add(num.toString().toInt())
                 }
-                isNumeric(expression[index]) -> num.append(expression[index])
+                isNumeric(equation[index]) -> num.append(equation[index])
                 else -> {
                     numList.offer(num.toString().toInt())
                     num.clear()
-                    operatorList.add(expression[index])
+                    operatorList.add(equation[index])
                 }
             }
         }
 
-        return calculate(numList, operatorList)
+        return calOperator(numList, operatorList)
     }
 
     private fun isNumeric(operator: Char): Boolean = operator.toInt() in 48..57
 
     private fun isEmpty(value: Char): Boolean = value == ' '
 
-    private fun calculate(
+    private fun calOperator(
         numList: LinkedList<Int>,
         operatorList: MutableList<Char>
     ): Int {
