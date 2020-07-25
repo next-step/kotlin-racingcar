@@ -12,7 +12,7 @@ fun main() {
     }
 
     when {
-        Calculator.execute(expression).isNaN() -> view.printImpossibleCalculate()
+        Calculator.execute(expression).isInvalid() -> view.printImpossibleCalculate()
         else -> view.printResult(Calculator.execute(expression))
     }
 }

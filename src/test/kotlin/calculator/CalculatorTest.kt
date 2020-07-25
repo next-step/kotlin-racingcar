@@ -9,6 +9,10 @@ internal class CalculatorTest {
     fun execute() {
         assertEquals(8.5, Calculator.execute(ExpressionParser.parse(" 3 + 4 / 2 + 5 ")))
         assertEquals(-7.0, Calculator.execute(ExpressionParser.parse("-3.5 * 2")))
+    }
+
+    @Test
+    fun divideZero() {
         assertEquals(Double.NaN, Calculator.execute(ExpressionParser.parse("4 / 0")))
     }
 }

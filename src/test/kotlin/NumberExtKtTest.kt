@@ -22,4 +22,10 @@ internal class NumberExtKtTest {
         assertEquals("4", 4.0.toPrintString())
         assertEquals("4.792", 4.792.toPrintString())
     }
+
+    @Test
+    fun isInvalid() {
+        assertFalse(12.0.isInvalid())
+        assertTrue((3.0 / 0.0).isInvalid())
+    }
 }
