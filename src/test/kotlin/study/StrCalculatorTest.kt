@@ -4,19 +4,24 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class StrCalculatorTest {
+
     @Test
     fun study_split() {
         val str = "1+2"
-        val list = str.split("+")
         val testList = listOf("1", "2")
+
+        val list = str.split("+")
+
         assertThat(list).isEqualTo(testList)
     }
 
     @Test
     fun study_split2() {
         val str = "1+2/3*4"
-        val list = str.split("+", "-", "*", "/")
         val testList = listOf("1", "2", "3", "4")
+
+        val list = str.split("+", "-", "*", "/")
+
         assertThat(list).isEqualTo(testList)
     }
 
@@ -24,61 +29,41 @@ class StrCalculatorTest {
     fun study_split3() {
         val str = "10+2-1/6+2"
         val list = str.split("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
-        val filter = list.filter { it != "" }
         val testList = listOf("+", "-", "/", "+")
+
+        val filter = list.filter { it != "" }
+
         assertThat(filter).isEqualTo(testList)
     }
 
     @Test
     fun string_split() {
         val str = "1+2"
-        val strCal = StrCalculator(str)
         val testList = listOf(1, 2)
+
+        val strCal = StrCalculator(str)
+
         assertThat(strCal.numList).isEqualTo(testList)
         assertThat(strCal.symbolList).isEqualTo(listOf("+"))
     }
 
     @Test
-    fun plus_minus_multiplication_division() {
-        val numList = listOf(2, 1)
-        val strCal = StrCalculator("1+2")
-        val plus = strCal.plus(numList)
-        val minus = strCal.minus(numList[0], numList[1])
-        val multiplication = strCal.multiplication(numList[0], numList[1])
-        val division = strCal.division(numList[0], numList[1])
-        assertThat(plus).isEqualTo(3)
-        assertThat(minus).isEqualTo(1)
-        assertThat(multiplication).isEqualTo(2)
-        assertThat(division).isEqualTo(2)
-    }
-
-    @Test
-    fun find_symbol() {
-        val str = "1+2-3*4/5"
-        val strCal = StrCalculator(str)
-        val plusSymbol = strCal.isPlus("+")
-        val minusSymbol = strCal.isMinus("-")
-        val multiplicationSymbol = strCal.isMultiplication("*")
-        val divisionSymbol = strCal.isDivision("/")
-        assertThat(plusSymbol).isTrue()
-        assertThat(minusSymbol).isTrue()
-        assertThat(multiplicationSymbol).isTrue()
-        assertThat(divisionSymbol).isTrue()
-    }
-
-    @Test
-    fun play() {
+    fun calculate() {
         val str = "10+3-4/3*2"
-        val starCal = StrCalculator(str)
-        val result = starCal.play()
+        val strCal = StrCalculator(str)
+
+        val result = strCal.runCalculator()
+
         assertThat(result).isEqualTo(6)
     }
 
     @Test
     fun example() {
         val str = "2 + 3 * 4 / 2"
-        val starCal = StrCalculator(str)
-        val result = starCal.play()
+        val strCal = StrCalculator(str)
+
+        val result = strCal.runCalculator()
+
         assertThat(result).isEqualTo(10)
     }
 }
