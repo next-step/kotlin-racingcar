@@ -8,7 +8,14 @@ object StringCalculator {
         HashMap()
 
     fun calculate(operator: Operator?, first: Int, second: Int): Int {
+        checkEnableCalculate(operator, first, second)
         return calculators[operator]!!.apply(first, second)
+    }
+
+    private fun checkEnableCalculate(operator: Operator?, first: Int, second: Int) {
+        if (Operator.DIVISION == operator && second == 0) {
+            throw IllegalArgumentException("0으로 나눌 수 없습니다.")
+        }
     }
 
     private fun add(): BinaryOperator<Int> {

@@ -1,8 +1,8 @@
 package com.nextstep.domain
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import java.lang.IllegalArgumentException
 
 internal class StringStoreTest {
     @Test
@@ -30,5 +30,14 @@ internal class StringStoreTest {
         Assertions.assertThrows(
             IllegalArgumentException::class.java
         ) { StringStore(string) }
+    }
+
+    @Test
+    internal fun `계산을 진행한다`() {
+        val string = "1 + 2 * 3 / 4"
+
+        val store = StringStore(string)
+
+        assertThat(store.calculate()).isEqualTo(2)
     }
 }
