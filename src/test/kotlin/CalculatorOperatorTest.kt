@@ -17,22 +17,23 @@ class CalculatorOperatorTest {
 
     @Test
     fun 더하기() {
-        Assertions.assertThat(Calculator.calOperator(numList = numberList, operatorList = listOf('+'))).isEqualTo(132)
+        Assertions.assertThat(Calculator.calOperator(numList = numberList, operatorList = listOf('+'))).isEqualTo(132.0)
     }
 
     @Test
     fun 빼기() {
-        Assertions.assertThat(Calculator.calOperator(numList = numberList, operatorList = listOf('-'))).isEqualTo(66)
+        Assertions.assertThat(Calculator.calOperator(numList = numberList, operatorList = listOf('-'))).isEqualTo(66.0)
     }
 
     @Test
     fun 곱하기() {
-        Assertions.assertThat(Calculator.calOperator(numList = numberList, operatorList = listOf('*'))).isEqualTo(3267)
+        Assertions.assertThat(Calculator.calOperator(numList = numberList, operatorList = listOf('*')))
+            .isEqualTo(3267.0)
     }
 
     @Test
     fun 나누기() {
-        Assertions.assertThat(Calculator.calOperator(numList = numberList, operatorList = listOf('/'))).isEqualTo(3)
+        Assertions.assertThat(Calculator.calOperator(numList = numberList, operatorList = listOf('/'))).isEqualTo(3.0)
     }
 
     @Test

@@ -3,7 +3,7 @@ import java.util.Queue
 
 object Calculator {
 
-    fun calEquation(equation: String?): Int {
+    fun calEquation(equation: String?): Double {
         if (equation == null || equation.isEmpty()) {
             throw IllegalArgumentException("입력 값이 유효하지 않습니다.")
         }
@@ -14,8 +14,8 @@ object Calculator {
         return calOperator(numList, operatorList)
     }
 
-    fun calOperator(numList: LinkedList<Int>, operatorList: List<Char>): Int {
-        var result = numList.poll()
+    fun calOperator(numList: LinkedList<Int>, operatorList: List<Char>): Double {
+        var result = numList.poll().toDouble()
         for (operator in operatorList) {
             result = when (operator) {
                 '+' -> result + numList.poll()

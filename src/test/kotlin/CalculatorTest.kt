@@ -10,7 +10,7 @@ class CalculatorTest {
     fun happyCase() {
         val equation = "2+3*4/2"
         val result = Calculator.calEquation(equation)
-        assertThat(result).isEqualTo(10)
+        assertThat(result).isEqualTo(10.0)
     }
 
     @Test
