@@ -12,6 +12,9 @@ object Calculator {
             when {
                 isEmpty(equation[index]) -> throw IllegalArgumentException("입력 값에 공백이 포함 되었습니다.")
                 index == equation.lastIndex -> {
+                    if (!isNumeric(equation[index])) {
+                        throw IllegalArgumentException("완전하지 않은 식입니다.")
+                    }
                     num.append(equation[index])
                     numList.add(num.toString().toInt())
                 }
