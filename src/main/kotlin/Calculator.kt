@@ -8,26 +8,8 @@ object Calculator {
             throw IllegalArgumentException("입력 값이 유효하지 않습니다.")
         }
 
-        val numBuilder = StringBuilder()
         val (numList: Queue<Int>, operatorList) = LinkedList<Int>() to mutableListOf<Char>()
-        for (index in equation.indices) {
-            when {
-                isEmpty(equation[index]) -> throw IllegalArgumentException("입력 값에 공백이 포함 되었습니다.")
-                index == equation.lastIndex -> {
-                    if (!isNumeric(equation[index])) {
-                        throw IllegalArgumentException("완전하지 않은 식입니다.")
-                    }
-                    numBuilder.append(equation[index])
-                    numList.add(numBuilder.toString().toInt())
-                }
-                isNumeric(equation[index]) -> numBuilder.append(equation[index])
-                else -> {
-                    numList.offer(numBuilder.toString().toInt())
-                    numBuilder.clear()
-                    operatorList.add(equation[index])
-                }
-            }
-        }
+        separateNumAndOpList(equation, numList, operatorList)
 
         return calOperator(numList, operatorList)
     }
@@ -48,6 +30,29 @@ object Calculator {
             }
         }
         return result
+    }
+
+    private fun separateNumAndOpList(equation: String, numList: LinkedList<Int>, operatorList: MutableList<Char>) {
+        val numBuilder = StringBuilder()
+
+        for (index in equation.indices) {
+            when {
+                isEmpty(equation[index]) -> throw IllegalArgumentException("입력 값에 공백이 포함 되었습니다.")
+                index == equation.lastIndex -> {
+                    if (!isNumeric(equation[index])) {
+                        throw IllegalArgumentException("완전하지 않은 식입니다.")
+                    }
+                    numBuilder.append(equation[index])
+                    numList.add(numBuilder.toString().toInt())
+                }
+                isNumeric(equation[index]) -> numBuilder.append(equation[index])
+                else -> {
+                    numList.offer(numBuilder.toString().toInt())
+                    numBuilder.clear()
+                    operatorList.add(equation[index])
+                }
+            }
+        }
     }
 
     private fun isNumeric(operator: Char): Boolean = operator.toInt() in 48..57
