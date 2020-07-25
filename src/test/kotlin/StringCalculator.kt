@@ -32,10 +32,11 @@ class StringCalculator {
         if (inputStr.isNullOrEmpty() or (inputStr == " ")) throw IllegalArgumentException("값을 입력해주세요.")
     }
 
-    private fun separateNumsAndOperators(strList: List<String>, numbers: ArrayList<Int>, operators: ArrayList<String>) {
-        for (i in strList.indices) {
-            if (i % 2 == REMAINDER_ZERO) numbers.add(strList[i].toInt())
-            if (i % 2 == REMAINDER_ONE) operators.add(strList[i])
+    // TODO.05 람다식 사용해보기 (람다식을 인자로 list의 원소를 filtering해보기)
+    private fun separateNumsAndOperators(inputSplit: List<String>, numbers: ArrayList<Int>, operators: ArrayList<String>) {
+        for (i in inputSplit.indices) {
+            if (i % 2 == REMAINDER_ZERO) numbers.add(inputSplit[i].toInt())
+            if (i % 2 == REMAINDER_ONE) operators.add(inputSplit[i])
         }
     }
 
