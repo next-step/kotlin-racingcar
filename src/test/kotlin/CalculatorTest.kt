@@ -38,4 +38,22 @@ class CalculatorTest {
         val testString = "2 + 3 * 4 / 2"
         assertThat(calculator.calculate(testString)).isEqualTo(10.0)
     }
+    @Test
+    fun `wrong format test`() {
+        val number = "3 + 숫자 + 1 - 7"
+
+        assertThatThrownBy { number.toDouble() }.isInstanceOf(IllegalArgumentException::class.java)
+    }
+    @Test
+    fun `kotlin number string to double test`() {
+        val number = "15"
+
+        assertThat(number.toDouble()).isEqualTo(15.0)
+    }
+    @Test
+    fun `kotlin not number string to double test`() {
+        val number = "숫자"
+
+        assertThatThrownBy { number.toDouble() }.isInstanceOf(IllegalArgumentException::class.java)
+    }
 }

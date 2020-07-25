@@ -14,15 +14,22 @@ class Calculator {
         var operator = ""
 
         for (str in 1 until values.size) {
-            val tmp = values[str]
+            val value = values[str]
 
-            if (!isOperator(tmp)) {
-                outcome = calculate(outcome, tmp.toDouble(), operator)
-            } else {
-                operator = tmp
-            }
+            if (isNumber(value)) outcome = calculate(outcome, value.toDouble(), operator)
+            if (isOperator(value)) operator = value
+            if (!isNumber(value) && !isOperator(value)) throw IllegalArgumentException("올바른 값이 아닙니다.")
         }
         return outcome
+    }
+
+    private fun isNumber(str: String): Boolean {
+        return try {
+            str.toDouble()
+            true
+        } catch (e: IllegalArgumentException) {
+            false
+        }
     }
 
     private fun isOperator(str: String): Boolean {
