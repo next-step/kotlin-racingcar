@@ -7,7 +7,7 @@ sealed class Node {
     /**
      * Number는 피연산자로 값을 가지고 있다.
      */
-    class Number(val value: Double) : Node()
+    data class Number(val value: Double) : Node()
 
     /**
      * Operator는 연산자로 피연산자의 값을 가지고 계산을 수행한다.
