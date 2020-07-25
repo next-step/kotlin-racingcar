@@ -18,14 +18,10 @@ object Calculator {
         var result = numList.poll()
         for (operator in operatorList) {
             result = when (operator) {
-                '+' -> result + numList.poll()
-                '-' -> result - numList.poll()
-                '*' -> result * numList.poll()
-                '/' -> {
-                    val operand = numList.poll()
-                    if (operand == 0.0) throw ArithmeticException("0으로 나눌 수 없습니다.")
-                    result / operand
-                }
+                Operator.PLUS.op -> Operator.PLUS.opCal(result, numList.poll())
+                Operator.MINUS.op -> Operator.MINUS.opCal(result, numList.poll())
+                Operator.MULTIPLE.op -> Operator.MULTIPLE.opCal(result, numList.poll())
+                Operator.DIVIDE.op -> Operator.DIVIDE.opCal(result, numList.poll())
                 else -> throw IllegalArgumentException("사칙 연산 기호가 아닙니다.")
             }
         }
