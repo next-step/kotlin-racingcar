@@ -29,4 +29,9 @@ class CalculatorOperatorTest {
     fun 곱하기() {
         Assertions.assertThat(Calculator.calOperator(numList = numberList, operatorList = listOf('*'))).isEqualTo(3267)
     }
+
+    @Test
+    fun 나누기() {
+        Assertions.assertThat(Calculator.calOperator(numList = numberList, operatorList = listOf('/'))).isEqualTo(3)
+    }
 }
