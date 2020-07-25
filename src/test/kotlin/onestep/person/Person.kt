@@ -1,3 +1,5 @@
+package onestep.person
+
 data class Person(
     val name: String,
     val age: Int? = null,
