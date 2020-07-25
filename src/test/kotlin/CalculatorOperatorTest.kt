@@ -5,13 +5,13 @@ import java.util.LinkedList
 
 class CalculatorOperatorTest {
 
-    private val numberList = LinkedList<Int>()
+    private val numberList = LinkedList<Double>()
 
     @BeforeEach
     fun setup() {
         numberList.run {
-            add(99)
-            add(33)
+            add(99.0)
+            add(33.0)
         }
     }
 
@@ -39,9 +39,9 @@ class CalculatorOperatorTest {
     @Test
     fun `0 으로 나눌 경우`() {
         Assertions.assertThatExceptionOfType(ArithmeticException::class.java).isThrownBy {
-            val numList = LinkedList<Int>().apply {
-                add(99)
-                add(0)
+            val numList = LinkedList<Double>().apply {
+                add(99.0)
+                add(0.0)
             }
             Calculator.calOperator(numList = numList, operatorList = listOf('/'))
         }

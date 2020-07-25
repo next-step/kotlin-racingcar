@@ -8,14 +8,14 @@ object Calculator {
             throw IllegalArgumentException("입력 값이 유효하지 않습니다.")
         }
 
-        val (numList: Queue<Int>, operatorList) = LinkedList<Int>() to mutableListOf<Char>()
+        val (numList: Queue<Double>, operatorList) = LinkedList<Double>() to mutableListOf<Char>()
         separateNumAndOpList(equation, numList, operatorList)
 
         return calOperator(numList, operatorList)
     }
 
-    fun calOperator(numList: LinkedList<Int>, operatorList: List<Char>): Double {
-        var result = numList.poll().toDouble()
+    fun calOperator(numList: LinkedList<Double>, operatorList: List<Char>): Double {
+        var result = numList.poll()
         for (operator in operatorList) {
             result = when (operator) {
                 '+' -> result + numList.poll()
@@ -23,7 +23,7 @@ object Calculator {
                 '*' -> result * numList.poll()
                 '/' -> {
                     val operand = numList.poll()
-                    if (operand == 0) throw ArithmeticException("0으로 나눌 수 없습니다.")
+                    if (operand == 0.0) throw ArithmeticException("0으로 나눌 수 없습니다.")
                     result / operand
                 }
                 else -> throw IllegalArgumentException("사칙 연산 기호가 아닙니다.")
@@ -32,7 +32,7 @@ object Calculator {
         return result
     }
 
-    private fun separateNumAndOpList(equation: String, numList: LinkedList<Int>, operatorList: MutableList<Char>) {
+    private fun separateNumAndOpList(equation: String, numList: LinkedList<Double>, operatorList: MutableList<Char>) {
         val numBuilder = StringBuilder()
 
         for (index in equation.indices) {
@@ -43,14 +43,14 @@ object Calculator {
                         throw IllegalArgumentException("완전하지 않은 식입니다.")
                     }
                     numBuilder.append(equation[index])
-                    numList.add(numBuilder.toString().toInt())
+                    numList.add(numBuilder.toString().toDouble())
                 }
                 isNumeric(equation[index]) -> numBuilder.append(equation[index])
                 else -> {
                     if (numBuilder.isEmpty()) {
                         throw IllegalArgumentException("완전하지 않은 식입니다.")
                     }
-                    numList.offer(numBuilder.toString().toInt())
+                    numList.offer(numBuilder.toString().toDouble())
                     numBuilder.clear()
                     operatorList.add(equation[index])
                 }
