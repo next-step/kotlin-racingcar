@@ -1,4 +1,6 @@
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import java.util.LinkedList
 
 class CalculatorOperatorTest {
@@ -11,5 +13,10 @@ class CalculatorOperatorTest {
             add(99)
             add(33)
         }
+    }
+
+    @Test
+    fun 더하기() {
+        Assertions.assertThat(Calculator.calOperator(numList = numberList, operatorList = listOf('+'))).isEqualTo(132)
     }
 }
