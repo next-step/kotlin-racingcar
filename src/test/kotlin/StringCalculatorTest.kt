@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test
 
 class StringCalculatorTest {
 
+    // TODO.04 test case 최소화하기 (case는 최소화하면서 모든 경우의 수를 테스트하기)
     @Test
     fun `add`() {
         val result1 = StringCalculator().calculate("3 + 4")

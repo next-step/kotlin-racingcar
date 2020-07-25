@@ -8,8 +8,11 @@ private const val REMAINDER_ZERO = 0
 private const val REMAINDER_ONE = 1
 
 class StringCalculator {
+
+    // TODO.02 인스턴스 변수 대신 companion object 활용하기
     private var result: Int = 0
 
+    // TODO.01 변수명, 메소드명 수정하기
     fun calculate(inputStr: String?): Int {
         isCorrectInput(inputStr)
 
@@ -39,6 +42,7 @@ class StringCalculator {
     private fun calculateInOrder(operators: ArrayList<String>, numbers: ArrayList<Int>) {
         result = numbers.removeAt(0)
         if (numbers.isEmpty()) return
+        // TODO.03 switch/case 구문을 피하고 Map 또는 람다 활용하기
         for (i in operators.indices) {
             when (operators.removeAt(0)) {
                 Operator.PLUS.sign -> plus(numbers.removeAt(0))
