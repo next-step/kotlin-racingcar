@@ -36,11 +36,11 @@ class CalculatorTest {
         }
     }
 
-    @Test
-    fun `불완전한 식을 계산할 경우`() {
+    @ParameterizedTest
+    @ValueSource(strings = ["2+3*", "2+3**3", "*2+3**3"])
+    fun `불완전한 식을 계산할 경우`(input: String) {
         assertThatIllegalArgumentException().isThrownBy {
-            val equation = "2+3*"
-            Calculator.calEquation(equation)
+            Calculator.calEquation(input)
         }
     }
 }
