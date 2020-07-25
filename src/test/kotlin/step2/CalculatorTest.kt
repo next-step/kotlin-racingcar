@@ -9,7 +9,7 @@ class CalculatorTest {
     @Test
     fun `정상 테스트`() {
         val calculator = Calculator()
-        val result = calculator.calculator("4 * 10 + 5 + 20 / 2 + 7 - 3")
+        val result = calculator.calculate("4 * 10 + 5 + 20 / 2 + 7 - 3")
 
         assertThat(result).isEqualTo(36)
     }
@@ -17,6 +17,6 @@ class CalculatorTest {
     @Test
     fun `비정상 테스트`() {
         val calculator = Calculator()
-        assertThatIllegalArgumentException().isThrownBy { calculator.calculator("4 * 10 + 5 + 20 / 2 + 7 - 3 *") }
+        assertThatIllegalArgumentException().isThrownBy { calculator.calculate("4 * 10 + 5 + 20 / 2 + 7 - 3 *") }
     }
 }

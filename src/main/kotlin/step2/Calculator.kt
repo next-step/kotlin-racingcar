@@ -2,7 +2,7 @@ package step2
 
 class Calculator {
 
-    fun calculator(string: String): Int {
+    fun calculate(string: String): Int {
 
         val splitString = CalculatorUtil.validateAndReturn(string)
 
