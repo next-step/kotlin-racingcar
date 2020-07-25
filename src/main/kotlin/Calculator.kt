@@ -47,6 +47,9 @@ object Calculator {
                 }
                 isNumeric(equation[index]) -> numBuilder.append(equation[index])
                 else -> {
+                    if (numBuilder.isEmpty()) {
+                        throw IllegalArgumentException("완전하지 않은 식입니다.")
+                    }
                     numList.offer(numBuilder.toString().toInt())
                     numBuilder.clear()
                     operatorList.add(equation[index])
