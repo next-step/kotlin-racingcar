@@ -14,32 +14,28 @@ sealed class Node {
      */
     sealed class Operator : Node() {
         object Plus : Operator() {
-            override fun operate(left: Number, right: Number): Number {
-                TODO("Not yet implemented")
-            }
+            override fun operate(left: Number, right: Number) = Number(left.value + right.value)
         }
 
         object Minus : Operator() {
-            override fun operate(left: Number, right: Number): Number {
-                TODO("Not yet implemented")
-            }
+            override fun operate(left: Number, right: Number) = Number(left.value - right.value)
         }
 
         object Multiply : Operator() {
-            override fun operate(left: Number, right: Number): Number {
-                TODO("Not yet implemented")
-            }
+            override fun operate(left: Number, right: Number) = Number(left.value * right.value)
         }
 
         object Divide : Operator() {
-            override fun operate(left: Number, right: Number): Number {
-                TODO("Not yet implemented")
-            }
-
             /**
              * 0으로 나눌 때 발생하는 Exception
              */
             class DivideByZeroException : Exception("Cannot divide by 0.")
+
+            override fun operate(left: Number, right: Number) = if (right.value != 0.0) {
+                Number(left.value / right.value)
+            } else {
+                throw DivideByZeroException()
+            }
         }
 
         abstract fun operate(left: Number, right: Number): Number
