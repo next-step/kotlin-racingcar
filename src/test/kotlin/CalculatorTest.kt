@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test
 
 class CalculatorTest {
     @Test
-    fun calculate() {
+    fun happyCase() {
         val expression = "2+3*4/2"
         val result = Calculator().calculateExpression(expression)
         assertThat(result).isEqualTo(10)
