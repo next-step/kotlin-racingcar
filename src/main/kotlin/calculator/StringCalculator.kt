@@ -4,8 +4,12 @@ import java.lang.IllegalArgumentException
 
 class StringCalculator {
     companion object {
-        fun calculate(value: String): Int {
-            val values = value.split(" ")
+        fun calculate(value: String?): Int {
+            if (isBlank(value)) {
+                throw IllegalArgumentException("입력 값은 null이 될 수 없습니다.")
+            }
+
+            val values = value!!.split(" ")
 
             var result = Integer.parseInt(values[0])
             for (x in 1 until values.size step 2) {
@@ -15,6 +19,8 @@ class StringCalculator {
             }
             return result
         }
+
+        private fun isBlank(value: String?) = value == null || value.isBlank()
 
         private fun calculate(first: Int, operator: String, second: Int): Int {
             if (operator == "+")
