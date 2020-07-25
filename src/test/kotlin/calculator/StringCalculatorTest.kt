@@ -1,6 +1,6 @@
 package calculator
 
-import calculator.StringCalculator.Companion.calculate
+import calculator.StringCalculator.calculate
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test

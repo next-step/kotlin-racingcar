@@ -2,30 +2,28 @@ package calculator
 
 import java.lang.IllegalArgumentException
 
-class StringCalculator {
-    companion object {
-        fun calculate(value: String?): Int {
-            if (isBlank(value)) {
-                throw IllegalArgumentException("입력 값은 null이 될 수 없습니다.")
-            }
-
-            val values = value!!.split(" ")
-
-            var result = toInt(values[0])
-            for (x in 1 until values.size step 2) {
-                result = calculate(result, values[x], toInt(values[x + 1]))
-            }
-            return result
+object StringCalculator {
+    fun calculate(value: String?): Int {
+        if (isBlank(value)) {
+            throw IllegalArgumentException("입력 값은 null이 될 수 없습니다.")
         }
 
-        private fun isBlank(value: String?) = value == null || value.isBlank()
+        val values = value!!.split(" ")
 
-        private fun toInt(value: String) = Integer.parseInt(value)
-
-        private fun calculate(first: Int, operator: String, second: Int): Int {
-            val operator = Operator.valueOfSign(operator)
-            return operator.operation(first, second)
+        var result = toInt(values[0])
+        for (x in 1 until values.size step 2) {
+            result = calculate(result, values[x], toInt(values[x + 1]))
         }
+        return result
+    }
+
+    private fun isBlank(value: String?) = value == null || value.isBlank()
+
+    private fun toInt(value: String) = Integer.parseInt(value)
+
+    private fun calculate(first: Int, operator: String, second: Int): Int {
+        val operator = Operator.valueOfSign(operator)
+        return operator.operation(first, second)
     }
 }
 
