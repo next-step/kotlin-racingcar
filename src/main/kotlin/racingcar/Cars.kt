@@ -10,7 +10,7 @@ class Cars(private var cars: List<Car>) {
         this.cars = this.cars.map { it.move(randomNumber()) }
     }
 
-    private fun randomNumber(): Int = (0..10).random()
+    private fun randomNumber(): Int = (0..9).random()
 
     override fun toString(): String {
         val sb = StringBuilder()

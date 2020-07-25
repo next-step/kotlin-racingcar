@@ -7,9 +7,5 @@ class RacingGame(val names: String, var tryNo: Int) {
         cars.race()
     }
 
-    fun isEnd(): Boolean {
-       if (tryNo == 0)
-           return true
-       return false
-    }
+    fun isEnd(): Boolean = tryNo == 0
 }
