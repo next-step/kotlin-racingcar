@@ -10,25 +10,24 @@ class Calculator {
         val (numList: Queue<Int>, operatorList) = LinkedList<Int>() to mutableListOf<Char>()
         for (index in expression.indices) {
             when {
-                isOperator(expression[index]) -> {
-                    numList.offer(num.toString().toInt())
-                    num.clear()
-                    operatorList.add(expression[index])
-                }
+                isEmpty(expression[index]) -> throw IllegalArgumentException("입력 값에 공백이 포함 되었습니다.")
                 index == expression.lastIndex -> {
                     num.append(expression[index])
                     numList.add(num.toString().toInt())
                 }
-                isEmpty(expression[index]) -> throw IllegalArgumentException("입력 값에 공백이 포함 되었습니다.")
-                else -> num.append(expression[index])
+                isNumeric(expression[index]) -> num.append(expression[index])
+                else -> {
+                    numList.offer(num.toString().toInt())
+                    num.clear()
+                    operatorList.add(expression[index])
+                }
             }
         }
 
         return calculate(numList, operatorList)
     }
 
-    private fun isOperator(operator: Char): Boolean =
-        operator == '+' || operator == '-' || operator == '*' || operator == '/'
+    private fun isNumeric(operator: Char): Boolean = operator.toInt() in 48..57
 
     private fun isEmpty(value: Char): Boolean = value == ' '
 
@@ -42,7 +41,8 @@ class Calculator {
                 '+' -> result + numList.poll()
                 '-' -> result - numList.poll()
                 '*' -> result * numList.poll()
-                else -> result / numList.poll()
+                '/' -> result / numList.poll()
+                else -> throw IllegalArgumentException("사칙 연산 기호가 아닙니다.")
             }
         }
         return result
