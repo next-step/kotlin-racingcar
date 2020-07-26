@@ -19,7 +19,7 @@ object Calculator {
             }
         }
 
-    fun operator(first: Double, opStr: String, second: Double) =
+    fun calculate(first: Double, opStr: String, second: Double) =
         getOperator(opStr).run {
             if (this == Operator.DIVISION && second.isZero()) {
                 throw IllegalArgumentException("Can not DIVISION Zero")

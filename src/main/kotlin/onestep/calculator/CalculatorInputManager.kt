@@ -15,12 +15,14 @@ fun main() {
 }
 
 object CalculatorInputManager {
+    private val regex = Regex("\\d+(\\s[+\\-*/]\\s\\d+)+")
+
     fun calculate(inputStr: String?): String {
         val list = validationCheckInput(inputStr).split(" ")
 
-        var result: Double = list[0].toDouble()
+        var result: Double = list.first().toDouble()
         for (i in 2..list.size step 2) {
-            result = Calculator.operator(result, list[i - 1], list[i].toDouble())
+            result = Calculator.calculate(result, list[i - 1], list[i].toDouble())
         }
         return result.toString()
     }
@@ -29,10 +31,8 @@ object CalculatorInputManager {
         if (inputStr.isNullOrBlank()) {
             throw IllegalArgumentException("Wrong Input")
         }
-        Regex("\\d+(\\s[+\\-*/]\\s\\d+)+").run {
-            if (matches(inputStr).not()) {
-                throw IllegalArgumentException("Wrong Expression Input ")
-            }
+        if (regex.matches(inputStr).not()) {
+            throw IllegalArgumentException("Wrong Expression Input")
         }
         return inputStr
     }
