@@ -1,3 +1,6 @@
+package calculator
+
+import toPrintString
 import java.util.Scanner
 
 class CalculatorView {
