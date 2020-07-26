@@ -39,8 +39,8 @@ class StringCalculatorTest {
     @Test
     fun `isNotCorrectOperator`() {
         assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy { StringCalculator().calculate("2 $ 3 + 4") }
-            .withMessage("올바르지 않은 연산자가 있습니다.")
+            .isThrownBy { StringCalculator().calculate("2 # 3 + 4") }
+            .withMessage("올바르지 않은 연산자 #이(가) 있습니다.")
     }
 
     @Test

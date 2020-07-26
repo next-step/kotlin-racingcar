@@ -1,7 +1,19 @@
 import java.lang.ArithmeticException
 
-enum class Operator(val sign: String) {
-    PLUS("+"), MINUS("-"), MULTIPLY("*"), DIVIDE("/")
+enum class Operator(val sign: String, val calculate : (num1: Int, num2: Int) -> Int) {
+    PLUS("+", { num1, num2 -> num1 + num2 } ),
+    MINUS("-" , { num1, num2 -> num1 - num2 }),
+    MULTIPLY("*" , { num1, num2 -> num1 * num2 }),
+    DIVIDE("/", { num1, num2 ->
+        if(num2 == 0) throw ArithmeticException("0으로 나눌 수 없습니다.")
+        num1 / num2
+    });
+
+    companion object {
+        fun findBySign(currentSign: String) : Operator =
+            values().find { operator -> operator.sign == currentSign}
+            ?: throw throw IllegalArgumentException("올바르지 않은 연산자 ${currentSign}이(가) 있습니다.")
+    }
 }
 
 private const val REMAINDER_ZERO = 0
@@ -43,32 +55,10 @@ class StringCalculator {
     private fun calculateInOrder(operators: ArrayList<String>, numbers: ArrayList<Int>) {
         result = numbers.removeAt(0)
         if (numbers.isEmpty()) return
-        // TODO.03 switch/case 구문을 피하고 Map 또는 람다 활용하기
         for (i in operators.indices) {
-            when (operators.removeAt(0)) {
-                Operator.PLUS.sign -> plus(numbers.removeAt(0))
-                Operator.MINUS.sign -> minus(numbers.removeAt(0))
-                Operator.MULTIPLY.sign -> multiply(numbers.removeAt(0))
-                Operator.DIVIDE.sign -> divide(numbers.removeAt(0))
-                else -> throw IllegalArgumentException("올바르지 않은 연산자가 있습니다.")
-            }
+            val currentSign = operators.removeAt(0)
+            result = Operator.findBySign(currentSign).calculate(result, numbers.removeAt(0))
         }
     }
-
-    private fun plus(num: Int) {
-        result += num
-    }
-
-    private fun minus(num: Int) {
-        result -= num
-    }
-
-    private fun multiply(num: Int) {
-        result *= num
-    }
-
-    private fun divide(num: Int) {
-        if (num == 0) throw ArithmeticException("0으로 나눌 수 없습니다.")
-        result /= num
-    }
 }
+
