@@ -4,15 +4,13 @@ import step3.view.InputView
 import step3.view.ResultView
 
 fun main() {
-    val carsNumber = InputView.getCarsNumber()
-    val runsNumber = InputView.getRunsNumber()
+    val numberOfCars = InputView.getNumberOfCars()
+    val numberOfTrials = InputView.getNumberOfTrials()
 
-    var cars = Race.initiate(carsNumber)
+    var cars = Race.initiate(numberOfCars)
 
-    repeat(numberOfRuns) {
+    repeat(numberOfTrials) {
         cars = Race.makeTurn(cars)
         ResultView.output(cars)
     }
 }
-
-
