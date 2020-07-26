@@ -6,34 +6,34 @@ class RacingCar {
 
     companion object {
         const val MINIMUM_RANGE_NUMBER = 0
-        const val MAXIMUN_RANGE_NUMBER = 9
+        const val MAXIMUM_RANGE_NUMBER = 9
         const val MOVE_CONDITION_NUMBER = 4
     }
 
-    fun start(inputData: InputView): MutableList<List<Car>> {
+    fun start(racingState: RacingState): List<List<Car>> {
         var result = mutableListOf<List<Car>>()
-        var carList = mutableListOf<Car>()
 
         // Car Instance List 생성
-        makeCarList(carList, inputData.number)
+        val cars = makeCarList(racingState.number!!.toInt())
 
         // 전진 시도
-        repeat(inputData.attempt) {
-            move(carList)
-            result.add(carList)
+        repeat(racingState.attempt!!.toInt()) {
+            move(cars)
+            result.add(cars)
         }
 
         return result
     }
 
-    fun makeCarList(carList: MutableList<Car>, number: Int) {
-        // Car 객체 생성
+    fun makeCarList(number: Int): List<Car> {
+        val cars = mutableListOf<Car>()
         (0 until number).forEach { i ->
-            carList.add(Car(i))
+            cars.add(Car(i))
         }
+        return cars
     }
 
-    fun move(carList: MutableList<Car>) {
+    fun move(carList: List<Car>) {
         carList.forEach { car ->
             if (canIMove()) {
                 car.distance = car.distance + "-"
@@ -42,7 +42,7 @@ class RacingCar {
     }
 
     fun canIMove(): Boolean {
-        val random = Random.nextInt(MINIMUM_RANGE_NUMBER, MAXIMUN_RANGE_NUMBER)
+        val random = Random.nextInt(MINIMUM_RANGE_NUMBER, MAXIMUM_RANGE_NUMBER)
         if (random >= MOVE_CONDITION_NUMBER) {
             return true
         }

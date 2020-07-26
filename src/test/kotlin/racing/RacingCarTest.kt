@@ -9,19 +9,17 @@ internal class RacingCarTest {
 
     @Test
     fun `start() 정상 동작 테스트`() {
-        val givenData = InputView(2, 3)
-        RacingCar().start(givenData)
+        val racingState = RacingState("2", "3")
+        RacingCar().start(racingState)
     }
 
     @Test
     fun `사용자가 입력한 자동차 수 만큼 자동차 객체가 만들어지는 테스트`() {
-        var carList = mutableListOf<Car>()
-
         // given
         val number = 4
 
         // when
-        RacingCar().makeCarList(carList, number)
+        val carList = RacingCar().makeCarList(number)
 
         // then
         assertThat(carList.size).isEqualTo(number)

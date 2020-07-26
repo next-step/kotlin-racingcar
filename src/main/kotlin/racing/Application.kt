@@ -3,8 +3,11 @@ package racing
 object Application {
     @JvmStatic
     fun main(args: Array<String>) {
-        val input = InputView().input()
-        val result = RacingCar().start(input)
+        val racingState = InputView().input()
+
+        RacingState().validate(racingState)
+
+        val result = RacingCar().start(racingState)
         ResultView().view(result)
     }
 }

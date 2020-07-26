@@ -1,7 +1,7 @@
 package racing
 
 class ResultView {
-    fun view(list: MutableList<List<Car>>) {
+    fun view(list: List<List<Car>>) {
 
         list.forEach { result ->
             result.forEach { car -> println(car.distance) }
