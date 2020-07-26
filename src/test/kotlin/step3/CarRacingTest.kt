@@ -9,7 +9,7 @@ class CarRacingTest {
     fun `initiate cars test`() {
         val cars = Race.initiate(5)
         assertThat(cars.size).isEqualTo(5)
-        for (i in 0 until cars.size) assertThat(cars[i].distance).isEqualTo(0)
+        for (element in cars) assertThat(element.distance).isEqualTo(0)
     }
 
     @Test

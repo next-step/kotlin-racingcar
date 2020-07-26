@@ -5,7 +5,7 @@ import java.util.Random
 object Race {
     private const val MIN_VALUE_TO_MOVE = 4
 
-    fun initiate(carNumber: Int): ArrayList<Car> {
+    fun initiate(carNumber: Int): List<Car> {
         val carList = ArrayList<Car>()
         for (i in 1..carNumber) {
             carList.add(Car(0))
@@ -13,7 +13,7 @@ object Race {
         return carList
     }
 
-    fun makeTurn(cars: ArrayList<Car>): ArrayList<Car> {
+    fun makeTurn(cars: List<Car>): List<Car> {
         for (car in cars) {
             car.distance = getDistanceForEachCar(car.distance)
         }
