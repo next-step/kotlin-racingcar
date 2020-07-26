@@ -1,6 +1,6 @@
 package study
 
-class Direction() {
+object Direction {
     fun plus(list: List<Int>): Int {
         return list.sum()
     }
