@@ -7,9 +7,7 @@ class Calculator {
     private val divide = "/"
 
     fun calculate(formula: String): Double {
-        if (formula.isBlank()) {
-            throw IllegalArgumentException("값을 입력해 주세요")
-        }
+        require(formula.isNotBlank()) { "값을 입력해 주세요" }
 
         val values = formula.split(" ")
         var outcome = values[0].toDouble()
