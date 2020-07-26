@@ -10,13 +10,8 @@ object StringCalculator {
         return result
     }
 
-    private fun calculate(first: Int, operator: String, second: Int): Int {
-        return when (Operator(operator)) {
-            Operator.PLUS -> first + second
-            Operator.MINUS -> first - second
-            Operator.MULTIPLY -> first * second
-            Operator.DIVIDE -> first / second
-        }
+    private fun calculate(first: Int, sign: String, second: Int): Int {
+        return Operator(sign).operation(first, second)
     }
 
     private fun isValid(values: List<String>): Boolean {
@@ -30,11 +25,11 @@ object StringCalculator {
     }
 }
 
-enum class Operator(val sign: String) {
-    PLUS("+"),
-    MINUS("-"),
-    MULTIPLY("*"),
-    DIVIDE("/");
+enum class Operator(val sign: String, val operation: (Int, Int) -> Int) {
+    PLUS("+", { x, y -> x + y }),
+    MINUS("-", { x, y -> x - y }),
+    MULTIPLY("*", { x, y -> x * y }),
+    DIVIDE("/", { x, y -> x / y });
 
     companion object {
         operator fun invoke(sign: String): Operator {
