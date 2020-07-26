@@ -1,4 +1,4 @@
-package step3
+package racing
 
 class ResultView {
     fun view(carList: MutableList<Car>) {

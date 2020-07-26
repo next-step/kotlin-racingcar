@@ -1,3 +1,3 @@
-package step3
+package racing
 
 class Car(val number: Int, var distance: String = "")
