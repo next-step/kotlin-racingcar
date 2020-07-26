@@ -6,23 +6,20 @@ import org.junit.jupiter.api.Test
 class RacingTest {
 
     @Test
-    fun `Happy Case`() {
-        Racing(3, 3).run {
-            ready()
-            race {
-                Assertions.assertThat(it).isNotEmpty
-            }
-        }
+    fun `Should be EqualTo, CarCount And racing's Result Size`() {
+        val racing = Racing(3, 3)
+        Assertions.assertThat(racing.race { }.size).isEqualTo(3)
     }
 
     @Test
-    fun `Should Exception(Before Race, Need Ready) When don't Execute ready()`() {
-        Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            Racing(3, 3).run {
-                race {
-                    Assertions.assertThat(it).isNotEmpty
-                }
-            }
-        }
+    fun `Should not be Empty, When CarCount's Input Greater than 0`() {
+        val racing = Racing(3, 3)
+        Assertions.assertThat(racing.race { }).isNotEmpty
+    }
+
+    @Test
+    fun `Should be Empty, When CarCount's Input is 0`() {
+        val racing = Racing(0, 3)
+        Assertions.assertThat(racing.race { }).isEmpty()
     }
 }

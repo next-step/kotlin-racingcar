@@ -11,17 +11,22 @@ class CarTest {
     }
 
     @Test
-    fun `Happy Case`() {
-        Car(engine = FakeCarEngine { 3 }).apply {
-            run()
-        }.also {
-            Assertions.assertThat(it.printPosition()).isEqualTo("---")
-        }
+    fun `Should position 3, When input 3 EnginePower And Just 1 Try`() {
+        // given : Car's Engine Power is 3
+        val car = Car(engine = FakeCarEngine { 3 })
+        // when : car try run 1 time
+        car.run()
+        // then : car.position is 3
+        Assertions.assertThat(car.position).isEqualTo(3)
+    }
 
-        Car(engine = FakeCarEngine { 0 }).apply {
-            run()
-        }.also {
-            Assertions.assertThat(it.printPosition()).isEqualTo("")
-        }
+    @Test
+    fun `Should position 0, When input 0 EnginePower And Just 1 Try`() {
+        // given : Car's Engine Power is 0
+        val carEngine0 = Car(engine = FakeCarEngine { 0 })
+        // when : car try run 1 time
+        carEngine0.run()
+        // then : car.position is 0
+        Assertions.assertThat(carEngine0.position).isEqualTo(0)
     }
 }
