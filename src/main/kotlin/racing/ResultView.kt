@@ -1,8 +1,11 @@
 package racing
 
 class ResultView {
-    fun view(carList: MutableList<Car>) {
-        carList.forEach { car -> println(car.distance) }
-        println()
+    fun view(list: MutableList<List<Car>>) {
+
+        list.forEach { result ->
+            result.forEach { car -> println(car.distance) }
+            println()
+        }
     }
 }

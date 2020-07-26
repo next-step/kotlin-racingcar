@@ -10,7 +10,8 @@ class RacingCar {
         const val MOVE_CONDITION_NUMBER = 4
     }
 
-    fun start(inputData: InputView) {
+    fun start(inputData: InputView): MutableList<List<Car>> {
+        var result = mutableListOf<List<Car>>()
         var carList = mutableListOf<Car>()
 
         // Car Instance List 생성
@@ -19,8 +20,10 @@ class RacingCar {
         // 전진 시도
         repeat((0 until inputData.attempt).count()) {
             move(carList)
-            ResultView().view(carList) // view
+            result.add(carList)
         }
+
+        return result
     }
 
     fun makeCarList(carList: MutableList<Car>, number: Int) {
