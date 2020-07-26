@@ -19,9 +19,13 @@ class Calculator {
 
             if (isNumber(value)) outcome = calculate(outcome, value.toDouble(), operator)
             if (isOperator(value)) operator = value
-            if (!isNumber(value) && !isOperator(value)) throw IllegalArgumentException("올바른 값이 아닙니다.")
+            if (!isValidFormula(value)) throw IllegalArgumentException("올바른 수식이 아닙니다.")
         }
         return outcome
+    }
+
+    private fun isValidFormula(str: String): Boolean {
+        return isNumber(str) || isOperator(str)
     }
 
     private fun isNumber(str: String): Boolean {
