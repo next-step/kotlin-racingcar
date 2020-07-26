@@ -18,18 +18,21 @@ class StringCalculator {
     fun calculate(list: List<String>): Int {
         val numList = list.filter { it !in OperatorSymbol.symbolList() }
         val operatorList = list.filter { it in OperatorSymbol.symbolList() }
-        var result = 0
         var numListIndex = 0
-        result = numList[numListIndex].toInt()
+        var result = numList[numListIndex].toInt()
         numListIndex++
         for (operator in operatorList) {
-            if (operator.equals(OperatorSymbol.DIVIDE.symbol) && numList[numListIndex].toInt() == 0) {
-                throw ArithmeticException("not divide by zero")
-            }
+            checkDivideZero(operator, numList, numListIndex)
             result = OperatorSymbol.findSymbolOperator(operator).apply(result, numList[numListIndex].toInt())
             numListIndex++
         }
         return result
+    }
+
+    private fun checkDivideZero(operator: String, numList: List<String>, numListIndex: Int) {
+        if (operator == OperatorSymbol.DIVIDE.symbol && numList[numListIndex].toInt() == 0) {
+            throw ArithmeticException("not divide by zero")
+        }
     }
 
     companion object {
