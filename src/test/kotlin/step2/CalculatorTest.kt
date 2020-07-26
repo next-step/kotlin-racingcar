@@ -26,6 +26,5 @@ class CalculatorTest {
     @Test
     fun `잘못된 포멧의 데이터인 경우 calculate 시 exception 발생`() {
         assertThatIllegalArgumentException().isThrownBy { calculator.calculate("4 * 10 + 5 + 20 / 2 + 7 - 3 *") }
-            .withMessage("잘못된 포멧입니다")
     }
 }
