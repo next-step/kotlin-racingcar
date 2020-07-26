@@ -67,6 +67,6 @@ class StringCalculatorTest {
     fun `invalid operator`() {
         assertThatThrownBy { StringCalculator.calculate("1 ^ 2") }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("Invalid operator")
+            .hasMessage("Invalid Operator")
     }
 }

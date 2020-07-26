@@ -10,14 +10,8 @@ object StringCalculator {
         return result
     }
 
-    private fun calculate(first: Int, operator: String, second: Int): Int {
-        return when (operator) {
-            "+" -> first + second
-            "-" -> first - second
-            "*" -> first * second
-            "/" -> first / second
-            else -> throw IllegalArgumentException("Invalid operator")
-        }
+    private fun calculate(first: Int, sign: String, second: Int): Int {
+        return Operator(sign).operation(first, second)
     }
 
     private fun isValid(values: List<String>): Boolean {
@@ -28,5 +22,19 @@ object StringCalculator {
             if (it != -1) return values[it + 1].toInt() != 0
         }
         return true
+    }
+}
+
+enum class Operator(val sign: String, val operation: (Int, Int) -> Int) {
+    PLUS("+", { x, y -> x + y }),
+    MINUS("-", { x, y -> x - y }),
+    MULTIPLY("*", { x, y -> x * y }),
+    DIVIDE("/", { x, y -> x / y });
+
+    companion object {
+        operator fun invoke(sign: String): Operator {
+            return values().find { it.sign == sign }
+                ?: throw IllegalArgumentException("Invalid Operator")
+        }
     }
 }

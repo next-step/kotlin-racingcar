@@ -4,14 +4,14 @@ import org.junit.jupiter.api.Test
 
 class KotlinStudyTest {
     @Test
-    fun `split test`() {
+    fun `split`() {
         val sampleString = "1 + 2 * 3 / 4"
         val stringList = sampleString.split(" ")
-        assertThat(stringList).containsExactly("1", "2", "3", "4")
+        assertThat(stringList).containsExactly("1", "+", "2", "*", "3", "/", "4")
     }
 
     @Test
-    fun `sublist test`() {
+    fun `sublist`() {
         val list = listOf("1", "2", "3", "4")
         val actual = list.subList(1, 2)
         assertThat(actual).isEqualTo(listOf("2"))
@@ -29,31 +29,37 @@ class KotlinStudyTest {
     }
 
     @Test
-    fun `indexof test`() {
+    fun `indexof`() {
         val list = listOf("1 + 2 * 3")
         val actual = list.indexOf("/")
         assertThat(actual).isEqualTo(-1)
     }
 
     @Test
-    fun `divide by zero test`() {
+    fun `divide by zero`() {
         assertThatThrownBy { 5 / 0 }
             .isInstanceOf(ArithmeticException::class.java)
             .hasMessageContaining("by zero")
     }
 
     @Test
-    fun `throw test`() {
+    fun `throw`() {
         assertThatThrownBy { throw IllegalArgumentException("test exception") }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageContaining("test exception")
     }
 
     @Test
-    fun `list set test`() {
+    fun `list set`() {
         val list = mutableListOf(4, 5, 6)
         list.set(0, 1)
         assertThat(list[0]).isEqualTo(1)
         assertThat(list[1]).isEqualTo(5)
+    }
+  
+    @Test
+    fun `enum`() {
+        val actual = Operator("/")
+        assertThat(actual).isEqualTo(Operator.DIVIDE)
     }
 }
