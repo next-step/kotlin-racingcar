@@ -1,7 +1,4 @@
 class StringCalculator {
-    val VALID_REGEX = Regex(pattern = "^[ 0-9+*\\-=\\/]+$")
-    val DELIMITER = " "
-
     fun validateStringForCalculate(str: String?) {
         if (str == null) {
             throw IllegalArgumentException("null is not acceptable")
@@ -50,5 +47,10 @@ class StringCalculator {
             }
         }
         return result
+    }
+
+    companion object {
+        val VALID_REGEX = Regex(pattern = "^[ 0-9+*\\-=\\/]+$")
+        val DELIMITER = " "
     }
 }

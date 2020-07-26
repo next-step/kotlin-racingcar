@@ -1,49 +1,74 @@
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertDoesNotThrow
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 class StringCalculatorTests {
+    lateinit var stringCalculator: StringCalculator
+
+    @BeforeEach
+    fun init() {
+        stringCalculator = StringCalculator()
+    }
+
     @Test
-    fun `validateStringForCalculate`() {
-        val stringCalculator = StringCalculator()
+    fun `validateStringForCalculateThrowByNull`() {
         assertThrows<IllegalArgumentException> {
             stringCalculator.validateStringForCalculate(null)
         }
+    }
+
+    @Test
+    fun `validateStringForCalculateThrowByNoSpace`() {
         assertThrows<IllegalArgumentException> {
             stringCalculator.validateStringForCalculate("")
         }
+    }
+
+    @Test
+    fun `validateStringForCalculateThrowByInvalidSymbol`() {
         assertThrows<IllegalArgumentException> {
             stringCalculator.validateStringForCalculate(" !@")
         }
         assertThrows<IllegalArgumentException> {
-            stringCalculator.validateStringForCalculate("!@  ")
+            stringCalculator.validateStringForCalculate("!@#$")
         }
+    }
+
+    @Test
+    fun `validateStringForCalculateThrowByAlphabet`() {
         assertThrows<IllegalArgumentException> {
             stringCalculator.validateStringForCalculate("abcd")
         }
-        assertThrows<IllegalArgumentException> {
-            stringCalculator.validateStringForCalculate("!@#$")
-        }
+    }
+
+    @Test
+    fun `validateStringForCalculateThrowByOnlyNumber`() {
         assertThrows<IllegalArgumentException> {
             stringCalculator.validateStringForCalculate("1234")
         }
+    }
+
+    @Test
+    fun `validateStringForCalculateThrowByNoBlank`() {
         assertThrows<IllegalArgumentException> {
             stringCalculator.validateStringForCalculate("1234+5678")
         }
+    }
 
-        assertTrue(stringCalculator.validateStringForCalculate("1234 + 5678") is Unit)
+    @Test
+    fun `validStringNotThrowException`() {
+        assertDoesNotThrow({ stringCalculator.validateStringForCalculate("1234 + 5678") })
     }
 
     @Test
     fun `splitForCalculate`() {
-        val stringCalculator = StringCalculator()
         assertThat(stringCalculator.splitForCalculate("1234 + 5678 / 31")).isNotEmpty
     }
 
     @Test
     fun `plus`() {
-        val stringCalculator = StringCalculator()
         var list = listOf("1234", "+", "4567", "+", "5678")
         val result = stringCalculator.calculate(list)
         assertThat(result).isEqualTo(1234 + 4567 + 5678)
@@ -51,7 +76,6 @@ class StringCalculatorTests {
 
     @Test
     fun `minus`() {
-        val stringCalculator = StringCalculator()
         var list = listOf("1234", "-", "4567", "-", "5678")
         val result = stringCalculator.calculate(list)
         assertThat(result).isEqualTo(1234 - 4567 - 5678)
@@ -59,7 +83,6 @@ class StringCalculatorTests {
 
     @Test
     fun `multiply`() {
-        val stringCalculator = StringCalculator()
         var list = listOf("1234", "*", "4567", "*", "5678")
         val result = stringCalculator.calculate(list)
         assertThat(result).isEqualTo(1234 * 4567 * 5678)
@@ -67,11 +90,13 @@ class StringCalculatorTests {
 
     @Test
     fun `divide`() {
-        val stringCalculator = StringCalculator()
         var list = listOf("1234", "/", "4567", "/", "5678")
         val result = stringCalculator.calculate(list)
         assertThat(result).isEqualTo(1234 / 4567 / 5678)
+    }
 
+    @Test
+    fun `divide by zero not execute`() {
         var listDivideByZero = listOf("1234", "/", "0")
         assertThrows<ArithmeticException> {
             stringCalculator.calculate(listDivideByZero)
