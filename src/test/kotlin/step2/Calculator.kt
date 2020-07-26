@@ -1,16 +1,14 @@
 package step2
 
-import org.assertj.core.internal.bytebuddy.agent.builder.AgentBuilder
-
 interface Stoi {
-    fun StringtoInt(rows: String): List
+    fun StringtoInt(rows: String): List<String>
 }
 
 interface Result {
-    fun cal(a:Int,b:Int): Int
+    fun cal(a: Int, b: Int): Int
 }
 
-enum class Operate(val sym: String):Result {
+enum class Operate(val sym: String) : Result{
     SUM("+") {
         override fun cal(a: Int, b: Int) = a + b
     },
@@ -28,18 +26,15 @@ enum class Operate(val sym: String):Result {
     }
 }
 
-
-
-
 class CalculatorforString(elements: String) {
-    val element = elements.trim().split(" ")
+    var element = elements.trim().split(" ")
+    fun OperateSymbol (element :List<String>) {
+        for (x: Int in 0 until element.size) {
+            if ((element[x] == " ") or (element[x] == null)) throw IllegalArgumentException("공백이나 null값은 혀용이 되지 않습니다.")
 
-    fun OperateSymbol(operatesymbol: String?) {
-        if (operatesymbol.isNullOrBlank())
-            throw IllegalArgumentException("공백이나 null값은 혀용이 되지 않습니다.")
+            // fun calc (sym: String,number:Int,number2:Int){
+                // return Operate.valueOf()
+        }
     }
-}
-
-fun main() {
-
+    }
 }
