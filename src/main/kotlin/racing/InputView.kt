@@ -25,7 +25,7 @@ class InputView(var number: Int = 0, var attempt: Int = 0) {
     }
 
     fun validate(number: String?, attempt: String?) {
-        if (number == null || attempt == null || number.isBlank() || attempt.isBlank()) {
+        if (number.isNullOrBlank() || attempt.isNullOrBlank()) {
             throw IllegalArgumentException(DATA_IS_BLANK)
         }
         if (NON_NUMERIC_REGEX.matcher(number).matches() || NON_NUMERIC_REGEX.matcher(attempt).matches()) {
