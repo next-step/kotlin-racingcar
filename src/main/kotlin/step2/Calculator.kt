@@ -5,11 +5,12 @@ class Calculator {
     private val minus = "-"
     private val times = "*"
     private val divide = "/"
+    private val formulaSplitDelimiter = " "
 
     fun calculate(formula: String): Double {
         require(formula.isNotBlank()) { "값을 입력해 주세요" }
 
-        val values = formula.split(" ")
+        val values = formula.split(formulaSplitDelimiter)
         var outcome = values[0].toDouble()
         var operator = ""
 
