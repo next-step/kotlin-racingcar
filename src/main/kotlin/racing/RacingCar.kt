@@ -18,7 +18,7 @@ class RacingCar {
         makeCarList(carList, inputData.number)
 
         // 전진 시도
-        repeat((0 until inputData.attempt).count()) {
+        repeat(inputData.attempt) {
             move(carList)
             result.add(carList)
         }
