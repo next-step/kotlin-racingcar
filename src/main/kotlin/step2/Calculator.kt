@@ -12,7 +12,9 @@ class Calculator {
         var result = 0
 
         for (i in 0..splitString.lastIndex step 2) {
-            if (splitString.lastIndex < 2) break
+            if (splitString.lastIndex < 2) {
+                break
+            }
             CalculatorUtil.parser(splitString, sortedString)
             result = calc(sortedString)
             splitString.add(0, result.toString())
