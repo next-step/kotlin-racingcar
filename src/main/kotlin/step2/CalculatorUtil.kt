@@ -9,13 +9,13 @@ class CalculatorUtil {
         private val OPERATOR_REGEX = Pattern.compile("[+|\\-|*|/]")
         private val NON_NUMERIC_REGEX = Pattern.compile("[^0-9]")
 
-        fun validateAndReturn(string: String): List<String> {
-            val split = string.split(DELIMITER)
-            validateEmptyData(string)
+        fun dataSplit(string: String) = string.split(DELIMITER)
+
+        fun validate(split: List<String>) {
+            validateEmptyData(split.joinToString())
             validateInputSize(split)
             checkInputOperator(split)
             checkInputNumber(split)
-            return split
         }
 
         fun checkInputOperator(split: List<String>) {
@@ -47,12 +47,10 @@ class CalculatorUtil {
         }
 
         fun parser(
-            splitString: MutableList<String>,
-            sortedString: MutableList<String>
-        ) {
-            sortedString[1] = splitString.removeAt(0)
-            sortedString[0] = splitString.removeAt(0)
-            sortedString[2] = splitString.removeAt(0)
+            index: Int,
+            splitString: List<String>
+        ): List<String> {
+            return splitString.subList(index, index + 3)
         }
     }
 }
