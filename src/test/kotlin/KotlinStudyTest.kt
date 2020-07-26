@@ -56,7 +56,7 @@ class KotlinStudyTest {
         assertThat(list[0]).isEqualTo(1)
         assertThat(list[1]).isEqualTo(5)
     }
-
+  
     @Test
     fun `enum`() {
         val actual = Operator("/")
