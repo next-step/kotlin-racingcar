@@ -1,6 +1,6 @@
 import java.lang.IllegalArgumentException
 
-class ValidationCheck() {
+object ValidationChecker {
     fun checkUserInputIsBlankOrEmpty(userInput: String) {
         if (userInput.equals("") || userInput.equals(" ")) {
             throw IllegalArgumentException("공백 또는 빈 문자열을 입력하셨습니다.")

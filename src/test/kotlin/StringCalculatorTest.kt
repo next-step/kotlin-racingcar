@@ -1,14 +1,23 @@
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class StringCalculatorTest {
+    lateinit var calculator : StringCalculator;
 
-    @Test
-    fun `check input blank`() {
-        val calculator = StringCalculator()
+    @BeforeEach
+    fun `init`(){
+        calculator = StringCalculator()
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["", " "])
+    fun `check input blank`(input: String) {
         assertThatIllegalArgumentException()
-            .isThrownBy { calculator.runStringCalculator(" ") }
+            .isThrownBy { calculator.runStringCalculator(input) }
             .withMessage("공백 또는 빈 문자열을 입력하셨습니다.")
     }
 
@@ -38,31 +47,11 @@ class StringCalculatorTest {
             .withMessage("숫자외의 값을 입력할 수 없습니다.")
     }
 
-    @Test
-    fun `check Add value`() {
+    @ParameterizedTest
+    @ValueSource(strings = arrayOf("1 + 3", "3 * 3", "4 / 2", "5 - 1" ))
+    fun `check Four arithmetic operations`(inputCalculator : String){
         val calculator = StringCalculator()
-        val result = calculator.runStringCalculator("1 + 3")
-        assertThat(result).isEqualTo(4)
-    }
-
-    @Test
-    fun `check Minus value`() {
-        val calculator = StringCalculator()
-        val result = calculator.runStringCalculator("3 - 3")
-        assertThat(result).isEqualTo(0)
-    }
-
-    @Test
-    fun `check Multiply value`() {
-        val calculator = StringCalculator()
-        val result = calculator.runStringCalculator("27 * 2")
-        assertThat(result).isEqualTo(54)
-    }
-
-    @Test
-    fun `check Divide value`() {
-        val calculator = StringCalculator()
-        val result = calculator.runStringCalculator("64 / 8")
-        assertThat(result).isEqualTo(8)
+        val result = calculator.runStringCalculator(inputCalculator)
+        assertThat(result).isEqualTo(result)
     }
 }
