@@ -21,7 +21,7 @@ class PersonTests {
     fun `nullalbe types`() {
         val person = Person("김지훈", null, null)
         assertAll(
-            {assertThat(person.name).isEqualTo("김지훈")},
+            { assertThat(person.name).isEqualTo("김지훈") },
             { assertThat(person.age).isNull() },
             { assertThat(person.nickname).isNull() }
         )
