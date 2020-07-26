@@ -7,6 +7,7 @@ class InputView(var number: Int = 0, var attempt: Int = 0) {
     private val NON_NUMERIC_REGEX = Pattern.compile("[^0-9]")
 
     companion object {
+        const val MINIMUM_CAR_COUNT = 1
         const val DATA_IS_BLANK = "값이 비어있습니다"
         const val IS_POSSIBLE_NUMERIC = "숫자만 입력 가능합니다"
         const val NUMBER_REQUIRE_OVER_ONE = "자동차 개수는 1이상의 값을 요구합니다"
@@ -31,7 +32,7 @@ class InputView(var number: Int = 0, var attempt: Int = 0) {
         if (NON_NUMERIC_REGEX.matcher(number).matches() || NON_NUMERIC_REGEX.matcher(attempt).matches()) {
             throw IllegalArgumentException(IS_POSSIBLE_NUMERIC)
         }
-        if (number.toInt() < 1) {
+        if (number.toInt() < MINIMUM_CAR_COUNT) {
             throw IllegalArgumentException(NUMBER_REQUIRE_OVER_ONE)
         }
     }

@@ -4,6 +4,12 @@ import kotlin.random.Random
 
 class RacingCar {
 
+    companion object {
+        const val MINIMUM_RANGE_NUMBER = 0
+        const val MAXIMUN_RANGE_NUMBER = 9
+        const val MOVE_CONDITION_NUMBER = 4
+    }
+
     fun start(inputData: InputView) {
         var carList = mutableListOf<Car>()
 
@@ -33,8 +39,8 @@ class RacingCar {
     }
 
     fun canIMove(): Boolean {
-        val random = Random.nextInt(0, 9)
-        if (random > 3) {
+        val random = Random.nextInt(MINIMUM_RANGE_NUMBER, MAXIMUN_RANGE_NUMBER)
+        if (random >= MOVE_CONDITION_NUMBER) {
             return true
         }
         return false
