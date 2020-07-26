@@ -1,10 +1,6 @@
 package step2
 
 class Calculator {
-    private val add = "+"
-    private val minus = "-"
-    private val times = "*"
-    private val divide = "/"
     private val formulaSplitDelimiter = " "
 
     fun calculate(formula: String): Double {
@@ -12,13 +8,13 @@ class Calculator {
 
         val values = formula.split(formulaSplitDelimiter)
         var outcome = values[0].toDouble()
-        var operator = ""
+        var operator = getOperatorType(values[1])
 
-        for (str in 1 until values.size) {
+        for (str in 2 until values.size) {
             val value = values[str]
 
             if (isNumber(value)) outcome = calculate(outcome, value.toDouble(), operator)
-            if (isOperator(value)) operator = value
+            if (isOperator(value)) operator = getOperatorType(value)
             if (!isValidFormula(value)) throw IllegalArgumentException("올바른 수식이 아닙니다.")
         }
         return outcome
@@ -38,14 +34,35 @@ class Calculator {
     }
 
     private fun isOperator(str: String): Boolean {
-        return str == add || str == minus || str == times || str == divide
+        val operatorType = getOperatorType(str)
+
+        return operatorType == OperatorType.PLUS ||
+            operatorType == OperatorType.MINUS ||
+            operatorType == OperatorType.MULTIPLE ||
+            operatorType == OperatorType.DIVIDE
     }
 
-    private fun calculate(current: Double, change: Double, operator: String): Double {
-        if (operator == add) return current + change
-        if (operator == minus) return current - change
-        if (operator == times) return current * change
-        if (operator == divide) return current / change
+    private fun calculate(current: Double, change: Double, operator: OperatorType): Double {
+        if (operator == OperatorType.PLUS) return current + change
+        if (operator == OperatorType.MINUS) return current - change
+        if (operator == OperatorType.MULTIPLE) return current * change
+        if (operator == OperatorType.DIVIDE) return current / change
         return current / change
     }
+
+    enum class OperatorType {
+        PLUS,
+        MINUS,
+        MULTIPLE,
+        DIVIDE
+    }
+
+    fun getOperatorType(s: String): OperatorType =
+        when (s) {
+            "+" -> OperatorType.PLUS
+            "-" -> OperatorType.MINUS
+            "*" -> OperatorType.MULTIPLE
+            "/" -> OperatorType.DIVIDE
+            else -> OperatorType.DIVIDE
+        }
 }
