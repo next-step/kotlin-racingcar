@@ -1,38 +1,31 @@
-import java.lang.IllegalArgumentException
-
-class StringCalculator {
-    fun calculation(question: String):String{
-        if(question.isBlank()) return ""
-        val stringList = question.trim().split(" ")
-        if(!isValid(stringList)) throw IllegalArgumentException("Invalid input. It must use like 1 + 2 * 3 / 4") // TODO
-        return listCalculation(stringList)
+object StringCalculator {
+    fun calculate(value: String): Int {
+        if (value.isBlank()) throw IllegalArgumentException("Empty value. Please input a expression. It must use like 1 + 2 * 3 / 4")
+        val values = value.trim().split(" ")
+        if (!isValid(values)) throw IllegalArgumentException("Invalid input. It must use like 1 + 2 * 3 / 4")
+        var result = values.first().toInt()
+        for (i in 1 until values.size step 2) {
+            result = calculate(result, values[i], values[i + 1].toInt())
+        }
+        return result
     }
 
-    private fun listCalculation(stringList: List<String>): String {
-        // ["1","+","2","*","3] -> ["3","*","3] -> ["9"] -> "9"
-        val newList = stringList.toMutableList()
-        if(newList.size == 1) return newList[0]
-        val cutList = newList.subList(3, newList.size)
-        return when(newList[1]){
-            "+" -> listCalculation(listOf(addition(newList[0], newList[2])) + cutList)
-            "-" -> listCalculation(listOf(subtraction(newList[0], newList[2])) + cutList)
-            "*" -> listCalculation(listOf(multiplication(newList[0], newList[2])) + cutList)
-            "/" -> listCalculation(listOf(division(newList[0], newList[2])) + cutList)
-            else -> throw IllegalArgumentException("Invalid symbol.")
+    private fun calculate(first: Int, operator: String, second: Int): Int {
+        return when (operator) {
+            "+" -> first + second
+            "-" -> first - second
+            "*" -> first * second
+            "/" -> first / second
+            else -> throw IllegalArgumentException("Invalid operator")
         }
     }
 
-    private fun addition(s1: String, s2: String) = "${s1.toDouble() + s2.toDouble()}"
-    private fun subtraction(s1: String, s2: String) = "${s1.toDouble() - s2.toDouble()}"
-    private fun multiplication(s1: String, s2: String) = "${s1.toDouble() * s2.toDouble()}"
-    private fun division(s1: String, s2: String) = "${s1.toDouble() / s2.toDouble()}"
-
-    private fun isValid(stringList: List<String>): Boolean {
-        if(stringList.size % 2 == 0) return false
-        stringList[0].toDoubleOrNull()?:return false
-        stringList.last().toDoubleOrNull()?:return false
-        stringList.indexOf("/").let{
-            if(it != -1) return stringList[it+1] != "0"
+    private fun isValid(values: List<String>): Boolean {
+        if (values.size % 2 == 0) return false
+        values.first().toDoubleOrNull() ?: return false
+        values.last().toDoubleOrNull() ?: return false
+        values.indexOf("/").let {
+            if (it != -1) return values[it + 1].toInt() != 0
         }
         return true
     }
