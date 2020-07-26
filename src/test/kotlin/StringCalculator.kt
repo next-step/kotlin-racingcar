@@ -11,12 +11,11 @@ object StringCalculator {
     }
 
     private fun calculate(first: Int, operator: String, second: Int): Int {
-        return when (operator) {
-            "+" -> first + second
-            "-" -> first - second
-            "*" -> first * second
-            "/" -> first / second
-            else -> throw IllegalArgumentException("Invalid operator")
+        return when (Operator(operator)) {
+            Operator.PLUS -> first + second
+            Operator.MINUS -> first - second
+            Operator.MULTIPLY -> first * second
+            Operator.DIVIDE -> first / second
         }
     }
 
@@ -28,5 +27,19 @@ object StringCalculator {
             if (it != -1) return values[it + 1].toInt() != 0
         }
         return true
+    }
+}
+
+enum class Operator(val sign: String) {
+    PLUS("+"),
+    MINUS("-"),
+    MULTIPLY("*"),
+    DIVIDE("/");
+
+    companion object {
+        operator fun invoke(sign: String): Operator {
+            return values().find { it.sign == sign }
+                ?: throw IllegalArgumentException("Invalid Operator")
+        }
     }
 }
