@@ -9,7 +9,7 @@ fun main() {
 
     var cars = Race.initiate(carsNumber)
 
-    for (i in 0 until runsNumber) {
+    repeat(numberOfRuns) {
         cars = Race.makeTurn(cars)
         ResultView.output(cars)
     }
