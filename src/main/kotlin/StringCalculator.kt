@@ -16,35 +16,18 @@ class StringCalculator {
     }
 
     fun calculate(list: List<String>): Int {
-        var iterator = list.listIterator()
+        val numList = list.filter { it !in OperatorSymbol.symbolList() }
+        val operatorList = list.filter { it in OperatorSymbol.symbolList() }
         var result = 0
-        var isFirst = true
-        while (iterator.hasNext()) {
-            var current = iterator.next()
-
-            if (isFirst) {
-                result = current.toInt()
-                isFirst = false
+        var numListIndex = 0
+        result = numList[numListIndex].toInt()
+        numListIndex++
+        for (operator in operatorList) {
+            if (operator.equals(OperatorSymbol.DIVIDE.symbol) && numList[numListIndex].toInt() == 0) {
+                throw ArithmeticException("not divide by zero")
             }
-
-            when (current) {
-                "+" -> {
-                    result = Operator.PLUS.apply(result, iterator.next().toInt())
-                }
-                "-" -> {
-                    result = Operator.MINUS.apply(result, iterator.next().toInt())
-                }
-                "*" -> {
-                    result = Operator.MULTIPLY.apply(result, iterator.next().toInt())
-                }
-                "/" -> {
-                    var number = iterator.next().toInt()
-                    if (number == 0) {
-                        throw ArithmeticException("not divide by zero")
-                    }
-                    result = Operator.DIVIDE.apply(result, number)
-                }
-            }
+            result = OperatorSymbol.findSymbolOperator(operator).apply(result, numList[numListIndex].toInt())
+            numListIndex++
         }
         return result
     }

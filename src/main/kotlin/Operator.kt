@@ -1,7 +1,6 @@
 import java.util.function.BinaryOperator
-import java.util.function.IntBinaryOperator
 
-enum class Operator : BinaryOperator<Int>, IntBinaryOperator {
+enum class Operator : BinaryOperator<Int> {
     PLUS {
         override fun apply(t: Int, u: Int): Int = t + u
     },
@@ -14,6 +13,4 @@ enum class Operator : BinaryOperator<Int>, IntBinaryOperator {
     DIVIDE {
         override fun apply(t: Int, u: Int): Int = t / u
     };
-
-    override fun applyAsInt(t: Int, u: Int) = apply(t, u)
 }
