@@ -7,32 +7,32 @@ import org.junit.jupiter.api.Test
 internal class OperationTest {
 
     @Test
-    fun testAdd() {
+    fun add() {
         val add = Operation.of("+")!!
         assertEquals(12.0, add(6.0, 6.0))
     }
 
     @Test
-    fun testSub() {
+    fun sub() {
         val sub = Operation.of("-")!!
         assertEquals(0.0, sub(6.0, 6.0))
     }
 
     @Test
-    fun testMulti() {
+    fun multi() {
         val multi = Operation.of("*")!!
         assertEquals(36.0, multi(6.0, 6.0))
     }
 
     @Test
-    fun testDiv() {
+    fun div() {
         val div = Operation.of("/")!!
         assertEquals(1.0, div(6.0, 6.0))
         assertEquals(Double.NaN, div(1.0, 0.0))
     }
 
     @Test
-    fun `test undefined operator`() {
+    fun `undefined operator`() {
         assertNull(Operation.of("5"))
     }
 }

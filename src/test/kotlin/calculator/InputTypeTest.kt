@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 internal class InputTypeTest {
 
     @Test
-    fun testOperator() {
+    fun operator() {
         assertEquals(InputType.OPERATOR, InputType.of("+"))
         assertEquals(InputType.OPERATOR, InputType.of("-"))
         assertEquals(InputType.OPERATOR, InputType.of("*"))
@@ -14,12 +14,12 @@ internal class InputTypeTest {
     }
 
     @Test
-    fun testNumber() {
+    fun number() {
         assertEquals(InputType.NUMBER, InputType.of("43"))
     }
 
     @Test
-    fun testNone() {
+    fun none() {
         assertEquals(InputType.NONE, InputType.of("x"))
         assertEquals(InputType.NONE, InputType.of("~"))
     }
