@@ -29,7 +29,7 @@ object ValidationChecker {
 
     private fun checkDivideByZero(operator: String, num: String) {
         if (operator.equals("/") && num.equals("0")) {
-            throw IllegalArgumentException("0으로 나눌 수 없습니다.")
+            throw ArithmeticException("0으로 나눌 수 없습니다.")
         }
     }
 }

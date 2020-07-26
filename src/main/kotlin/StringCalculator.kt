@@ -7,7 +7,7 @@ enum class CalculatorByOperator(val operator: String, var resultCalculator: (Int
     DIVIDE(
         "/",
         { num1, num2 ->
-            if (num2 == 0) throw IllegalArgumentException("0으로 나눌 수 없습니다.")
+            if (num2 == 0) throw ArithmeticException("0으로 나눌 수 없습니다.")
             num1 / num2
         }
     );

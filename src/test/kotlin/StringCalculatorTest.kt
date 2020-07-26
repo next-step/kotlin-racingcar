@@ -6,10 +6,10 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class StringCalculatorTest {
-    lateinit var calculator : StringCalculator;
+    lateinit var calculator: StringCalculator
 
     @BeforeEach
-    fun `init`(){
+    fun `init`() {
         calculator = StringCalculator()
     }
 
@@ -48,8 +48,8 @@ class StringCalculatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = arrayOf("1 + 3", "3 * 3", "4 / 2", "5 - 1" ))
-    fun `check Four arithmetic operations`(inputCalculator : String){
+    @ValueSource(strings = arrayOf("1 + 3", "3 * 3", "4 / 2", "5 - 1"))
+    fun `check Four arithmetic operations`(inputCalculator: String) {
         val calculator = StringCalculator()
         val result = calculator.runStringCalculator(inputCalculator)
         assertThat(result).isEqualTo(result)

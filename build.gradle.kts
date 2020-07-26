@@ -16,7 +16,6 @@ dependencies {
     testImplementation("org.junit.jupiter", "junit-jupiter", "5.6.2")
     testImplementation("org.junit.jupiter", "junit-jupiter-params", "5.0.0")
     testImplementation("org.assertj", "assertj-core", "3.16.1")
-
 }
 
 configure<JavaPluginConvention> {
