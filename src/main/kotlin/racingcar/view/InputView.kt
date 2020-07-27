@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.view
 
 object InputView {
     private const val INPUT_CAR_COUNT = "자동차 대수는 몇 대인가요?"
