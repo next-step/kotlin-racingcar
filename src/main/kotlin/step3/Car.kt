@@ -13,7 +13,7 @@ class Car(
 
     private fun validateNameLength(name: String) {
         if (name.length > MAX_NAME_LENGTH) {
-            throw IllegalArgumentException("자동차 이름은 ${MAX_NAME_LENGTH}자를 초과할 수 없습니다. 현재 길이 : ${name.length}")
+            throw IllegalArgumentException("자동차 이름은 ${MAX_NAME_LENGTH}자를 초과할 수 없습니다. \"${name}\"의 길이 : ${name.length}")
         }
     }
 
