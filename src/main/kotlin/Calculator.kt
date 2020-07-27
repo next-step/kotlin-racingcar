@@ -3,6 +3,9 @@ import java.util.Queue
 
 object Calculator {
 
+    private const val ASCII_ZERO = 48
+    private const val ASCII_NINE = 57
+
     fun calculateFormula(formula: String?): Double {
         if (formula.isNullOrEmpty()) {
             throw IllegalArgumentException("입력 값이 유효하지 않습니다.")
@@ -50,7 +53,7 @@ object Calculator {
         }
     }
 
-    private fun isNumeric(operator: Char): Boolean = operator.toInt() in 48..57
+    private fun isNumeric(operator: Char): Boolean = operator.toInt() in ASCII_ZERO..ASCII_NINE
 
     private fun isEmpty(value: Char): Boolean = value == ' '
 
