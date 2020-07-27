@@ -20,6 +20,7 @@ class StringCalculatorTest {
         assertThat(signCheck("*"))
         assertThat(signCheck("/"))
         assertThatThrownBy { signCheck("&") }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { signCheck("$") }.isInstanceOf(IllegalArgumentException::class.java)
     }
 
 //    @ParameterizedTest
