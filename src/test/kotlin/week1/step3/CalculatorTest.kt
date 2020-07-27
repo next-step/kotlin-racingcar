@@ -11,4 +11,13 @@ class CalculatorTest {
         car.updateForwardCount()
         assertThat(car.forwardCount).isLessThan(4)
     }
+
+    @Test
+    fun `전진 조건인 경우`() {
+        val car = Car()
+        for (i in 0..10) {
+            car.updateForwardCount()
+        }
+        assertThat(car.forwardCount).isGreaterThan(3)
+    }
 }
