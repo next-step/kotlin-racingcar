@@ -16,8 +16,8 @@ class RacingManager(
     private val racing: Racing
 
     init {
-        val (carCount, tryCount) = inputView.showInput()
-        racing = Racing(carCount, tryCount)
+        val (cars, tryCount) = inputView.getInputs()
+        racing = Racing(0, tryCount)
     }
 
     fun race() {
