@@ -1,11 +1,13 @@
 package racingcar
 
 object InputView {
-    fun setCarNumsAndChanceToMove() {
+    fun getCarNumbers(): Int {
         println("자동차 대수는 몇 대인가요?")
-        val number = readLine()!!.toInt()
+        return readLine()!!.toInt()
+    }
+
+    fun getChanceToMove(): Int {
         println("시도할 횟수는 몇 회인가요?")
-        val chanceToMove = readLine()!!.toInt()
+        return readLine()!!.toInt()
     }
 }
-
