@@ -10,8 +10,9 @@ class RacingCar {
         const val MOVE_CONDITION_NUMBER = 4
     }
 
-    fun start(racingState: RacingState): List<List<Car>> {
-        var result = mutableListOf<List<Car>>()
+    fun start(racingState: RacingState): List<Cars> {
+
+        var result = mutableListOf<Cars>()
 
         // Car Instance List 생성
         val cars = makeCarList(racingState.number!!.toInt())
