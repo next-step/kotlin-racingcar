@@ -6,9 +6,9 @@ class ResultView {
         println(PRINT_FORMAT.repeat(car.getPosition()))
     }
 
-    fun printResult(cars: List<Car>) {
-        for (car in cars) {
-            println(printResult(car))
+    fun printResult(positions: List<Int>) {
+        for (position in positions) {
+            println(PRINT_FORMAT.repeat(position))
         }
         println()
     }

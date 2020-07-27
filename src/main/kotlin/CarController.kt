@@ -1,5 +1,6 @@
 import kotlin.random.Random
 
+const val RANDOM_RANGE = 10
 class CarController {
 
     private fun makeCars(count: Int): List<Car> {
@@ -11,21 +12,13 @@ class CarController {
         return cars
     }
 
-    fun move(cars: List<Car>): List<Car> {
-        cars.forEach {
-            it.accelerate(Random.nextInt(10))
-        }
-        return cars
-    }
-
     fun play(inputView: InputView, resultView: ResultView) {
         val cars = makeCars(inputView.carCountInput())
         val playCount = inputView.playCountInput()
 
         resultView.printInit()
         repeat(playCount) {
-            move(cars)
-            resultView.printResult(cars)
+            resultView.printResult(cars.map { it.accelerate(Random.nextInt(RANDOM_RANGE)) })
         }
     }
 }
