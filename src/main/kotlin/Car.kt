@@ -1,7 +1,5 @@
 import java.lang.IllegalArgumentException
 
-const val POSITION_PRINT_FORMAT = "-"
-
 class Car {
     private var position: Int = 0
 
