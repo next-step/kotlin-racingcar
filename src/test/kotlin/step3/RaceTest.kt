@@ -4,17 +4,12 @@ import org.assertj.core.api.AssertionsForInterfaceTypes.assertThat
 import org.junit.jupiter.api.Test
 import step3.view.ResultView
 
-class CarRacingTest {
+class RaceTest {
     @Test
     fun `initiate cars test`() {
         val cars = Race.initiate(5)
         assertThat(cars.size).isEqualTo(5)
         for (element in cars) assertThat(element.distance).isEqualTo(0)
-    }
-
-    @Test
-    fun `visualize block test`() {
-        assertThat(ResultView.visualize(5)).isEqualTo("-----")
     }
 
     @Test
