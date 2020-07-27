@@ -8,21 +8,20 @@ object Calculator {
             throw IllegalArgumentException("입력 값이 유효하지 않습니다.")
         }
 
-        val (numberGroup: Queue<Double>, operatorGroup) = LinkedList<Double>() to mutableListOf<Char>()
+        val (numberGroup: Queue<Double>, operatorGroup) = LinkedList<Double>() to mutableListOf<Operator>()
         separateNumAndOpList(formula, numberGroup, operatorGroup)
 
         return calOperator(numberGroup, operatorGroup)
     }
 
-    fun calOperator(numberGroup: Queue<Double>, operatorGroup: List<Char>): Double {
+    fun calOperator(numberGroup: Queue<Double>, operatorGroup: List<Operator>): Double {
         var result = numberGroup.poll()
         for (operator in operatorGroup) {
             result = when (operator) {
-                Operator.PLUS.op -> Operator.PLUS.opCal(result, numberGroup.poll())
-                Operator.MINUS.op -> Operator.MINUS.opCal(result, numberGroup.poll())
-                Operator.MULTIPLE.op -> Operator.MULTIPLE.opCal(result, numberGroup.poll())
-                Operator.DIVIDE.op -> Operator.DIVIDE.opCal(result, numberGroup.poll())
-                else -> throw IllegalArgumentException("사칙 연산 기호가 아닙니다.")
+                Operator.PLUS -> Operator.PLUS.opCal(result, numberGroup.poll())
+                Operator.MINUS -> Operator.MINUS.opCal(result, numberGroup.poll())
+                Operator.MULTIPLE -> Operator.MULTIPLE.opCal(result, numberGroup.poll())
+                Operator.DIVIDE -> Operator.DIVIDE.opCal(result, numberGroup.poll())
             }
         }
         return result
@@ -31,7 +30,7 @@ object Calculator {
     private fun separateNumAndOpList(
         formula: String,
         numberGroup: Queue<Double>,
-        operatorGroup: MutableList<Char>
+        operatorGroup: MutableList<Operator>
     ) {
         val numBuilder = StringBuilder()
 
@@ -50,7 +49,7 @@ object Calculator {
 
                     numberGroup.offer(numBuilder.toString().toDouble())
                     numBuilder.clear()
-                    operatorGroup.add(formula[index])
+                    operatorGroup.add(convertCharToOp(formula[index]))
                 }
             }
         }
@@ -59,4 +58,14 @@ object Calculator {
     private fun isNumeric(operator: Char): Boolean = operator.toInt() in 48..57
 
     private fun isEmpty(value: Char): Boolean = value == ' '
+
+    private fun convertCharToOp(op: Char): Operator {
+        return when (op) {
+            '+' -> Operator.PLUS
+            '-' -> Operator.MINUS
+            '*' -> Operator.MULTIPLE
+            '/' -> Operator.DIVIDE
+            else -> throw IllegalArgumentException("사칙 연산 기호가 아닙니다.")
+        }
+    }
 }
