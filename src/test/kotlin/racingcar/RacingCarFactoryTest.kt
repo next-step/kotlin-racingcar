@@ -7,8 +7,7 @@ import racingcar.RacingCarFactory.makeCars
 class RacingCarFactoryTest {
 
     @Test
-    fun `makeCar test`() {
-        val carCnt = makeCars(10).size
-        assertThat(carCnt).isEqualTo(10)
+    fun `make cars`() {
+        assertThat(makeCars(10).size).isEqualTo(10)
     }
 }
