@@ -3,10 +3,10 @@ package step3.view
 import step3.Car
 
 object ResultView {
-    fun output(cars: ArrayList<Car>) {
+    fun output(cars: List<Car>) {
         print("output for turn\n")
-        for (i in 0 until cars.size) {
-            print(visualize(cars[i].distance))
+        for (element in cars) {
+            print(visualize(element.distance))
         }
     }
 
