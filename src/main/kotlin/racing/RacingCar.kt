@@ -15,10 +15,10 @@ class RacingCar {
         var result = mutableListOf<Cars>()
 
         // Car Instance List 생성
-        val cars = makeCarList(racingState.number!!.toInt())
+        val cars = makeCarList(racingState.number!!)
 
         // 전진 시도
-        repeat(racingState.attempt!!.toInt()) {
+        repeat(racingState.attempt!!) {
             val list = move(cars)
             result.add(list)
         }

@@ -9,14 +9,14 @@ internal class RacingCarTest {
 
     @Test
     fun `start() 정상 동작 테스트`() {
-        val racingState = RacingState("2", "3")
+        val racingState = RacingState(2, 3)
         val list = RacingCar().start(racingState)
         ResultView().view(list)
     }
 
     @Test
     fun `move 조건이 true 일 때, distance가 제대로 변하는지 확인`() {
-        val racingState = RacingState("2", "3")
+        val racingState = RacingState(2, 3)
 
         val racingCar = spy(RacingCar())
         whenever(racingCar.canIMove()).thenReturn(true)
