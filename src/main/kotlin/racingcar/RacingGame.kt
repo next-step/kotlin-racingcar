@@ -11,7 +11,7 @@ class RacingGame(
 ) {
     private val participants = Participants(carCount, movingStrategy)
 
-    fun execute() {
+    fun start() {
         for (i in 0 until tryCount) {
             participants.processRound()
             ResultView.printParticipantsPath(participants)

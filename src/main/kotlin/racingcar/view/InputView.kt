@@ -12,14 +12,14 @@ object InputView {
     private fun readNumber() = readLine()?.trim()?.toIntOrNull()
 
     private fun readNumber(
-        inputCondition: (value: Int) -> Boolean,
+        isValid: (value: Int) -> Boolean,
         titleMsg: String,
         errMsg: String = ERR_INVALID_NUM
     ): Int {
         println(titleMsg)
         var number = readNumber()
 
-        while (number == null || !inputCondition(number)) {
+        while (number == null || !isValid(number)) {
             println(errMsg)
             number = readNumber()
         }
