@@ -26,11 +26,9 @@ class RacingCar {
     }
 
     fun makeCarList(number: Int): List<Car> {
-        val cars = mutableListOf<Car>()
-        (0 until number).forEach { i ->
-            cars.add(Car(i))
+        return (0 until number).map {
+            Car(it)
         }
-        return cars
     }
 
     fun move(carList: List<Car>) {
