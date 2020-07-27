@@ -2,16 +2,13 @@ package racingcar
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import racingcar.RacingCarFactory.cars
-import racingcar.RacingCarFactory.makeCar
+import racingcar.RacingCarFactory.makeCars
 
 class RacingCarFactoryTest {
 
     @Test
     fun `makeCar test`() {
-        for (i in 0..9)
-            makeCar()
-        val carCnt = cars.size
+        val carCnt = makeCars(10).size
         assertThat(carCnt).isEqualTo(10)
     }
 }
