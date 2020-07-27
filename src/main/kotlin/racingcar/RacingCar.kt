@@ -13,7 +13,7 @@ fun main() {
 class RacingCar constructor(carCount: Int) {
     val cars = mutableListOf<Car>()
 
-    // Try인스턴스를 생성할때 몇개의 차를 만들것인지 정해 인스턴스 변수를 초기화 한다
+    // RacingCar 인스턴스를 생성할때 몇개의 차를 만들것인지 정해 인스턴스 변수를 초기화 한다
     init {
         for (i in 1..carCount) {
             cars.add(Car())
