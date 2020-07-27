@@ -3,4 +3,9 @@ object InputView {
         println(value)
         return readLine()!!.toInt()
     }
+
+    fun getCarNames(value: String): List<String> {
+        println(value)
+        return readLine()!!.split(",")
+    }
 }

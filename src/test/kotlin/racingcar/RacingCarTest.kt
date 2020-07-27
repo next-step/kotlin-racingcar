@@ -44,7 +44,7 @@ internal class RacingCarTest {
     @Test
     fun `distance builder`() {
         val currentPosition = 3
-        val car = Car(currentPosition)
+        val car = Car("testCar")
         val distance = ResultView.distanceBuilder(car)
         val expect = StringBuilder()
         for (i in 1..currentPosition) {

@@ -1,7 +1,7 @@
 package racingcar
 
-class Car(var currentPosition: Int = 0) {
-
+class Car(val name: String) {
+    var currentPosition = 0
     fun moveForward(): Int {
         if (canMove()) moveOneBlock()
         return currentPosition
