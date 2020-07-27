@@ -1,3 +1,5 @@
+package calculator
+
 import java.lang.ArithmeticException
 
 enum class Operator(val sign: String, val calculate: (num1: Int, num2: Int) -> Int) {
@@ -65,7 +67,9 @@ class StringCalculator {
 
         for (i in operators.indices) {
             val currentSign = operators.removeAt(0)
-            result = Operator.findBySign(currentSign).calculate(result, numbers.removeAt(0))
+            result = Operator.findBySign(
+                currentSign
+            ).calculate(result, numbers.removeAt(0))
         }
     }
 }
