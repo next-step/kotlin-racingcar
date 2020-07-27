@@ -3,7 +3,7 @@ package step3
 import kotlin.random.Random
 import kotlin.random.nextInt
 
-class CarMover : Mover {
+open class CarMover : Mover {
 
     override fun canMove(): Boolean {
         return Random.nextInt(0..MAX_RANDOM_NUM) >= CONDITION_CAN_MOVE
