@@ -2,10 +2,10 @@ package step3
 
 object CarFactory {
 
-    fun create(amount: Int): Cars {
-        validateCarAmount(amount)
-        return IntRange(1, amount)
-            .map { Car(CarMover()) }
+    fun create(carNames: List<String>): Cars {
+        validateCarAmount(carNames.size)
+        return carNames
+            .map { Car(it, CarMover()) }
             .let { Cars(it) }
     }
 

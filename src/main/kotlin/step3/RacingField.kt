@@ -20,6 +20,6 @@ class RacingField(
     }
 
     private fun getCurrentRacingResult(): RacingResult {
-        return RacingResult(cars.getCarDistances())
+        return RacingResult(cars.getCurrentRacingTracks())
     }
 }
