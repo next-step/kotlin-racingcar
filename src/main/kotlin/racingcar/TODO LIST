@@ -1,21 +1,24 @@
-// TODO LIST
+// TODO LIST (initial)
 // - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 구분한다.
 // 01. UI 기능 구현 : InputView 클래스 및 로직 생성하기
 // 02. RacingCar 클래스 생성하기 (속성 : randomNum, distance, 메소드 : run())
 // 03. RacingCarFactory 오브젝트 생성하기 (속성 : cars, 메소드 : makeCar())
-// TODO 04. Racing 클래스 생성, RacingCarFactory 이용해 입력값만큼 car 생성(초기화 작업?)
-// TODO 05. 핵심 기능 구현 : start 기능 구현
+// 04. Racing 클래스 생성, RacingCarFactory 이용해 입력값만큼 car 생성(초기화 작업?)
+// 05. 핵심 기능 구현 : start 기능 구현
 //          시도횟수만큼 반복해야 할 일들 :
 //              - 무작위(Random)로 뽑은 수에 따라 이동 가능/불가능 구분
 //              - 이동이 가능한 경우, 이동 시행
 //              - 진행상황 출력
-// TODO 06. UI 기능 구현 : ResultView 클래스 및 로직 생성하기
+// 06. UI 기능 구현 : ResultView 클래스 및 로직 생성하기
 
-// TODO LIST FOR TEST
+// TODO LIST FOR TEST (initial)
 // - 모든 로직에 단위 테스트를 구현한다. 단, UI(System.out, System.in) 로직은 제외
 // 제외) 01. 입력값이 Null or Empty인 경우 IllegalArgument 에러 메시지
 // 제외) 02. 입력한 대수, 생성된 RacingCar 대수 일치하는지 확인
 // 제외) 03. 입력한 시도횟수, 시행될 시도횟수 일치하는지 확인
-// TODO 04. Random (무작위) 수가 0~3일 때, distance 변동 없는지 확인
-// TODO 05. Random (무작위) 수가 4~9일 때, distance 증가 하는지 확인
-// TODO 06. RacingCar distance에 맞게 결과값("-")이 제대로 출력되는지 확인
+// 04. Random (무작위) 수가 0~3일 때, distance 변동 없는지 확인
+// 05. Random (무작위) 수가 4~9일 때, distance 증가 하는지 확인
+// 제외) 06. RacingCar distance에 맞게 결과값("-")이 제대로 출력되는지 확인
+
+// TODO LIST (after feedback)
+// TODO 01-07를 각각 필요한 자리에 입력해두었음
