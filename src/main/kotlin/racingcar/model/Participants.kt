@@ -2,7 +2,7 @@ package racingcar.model
 
 import racingcar.strategy.MovingStrategy
 
-class Participants(
+data class Participants(
     private val carCount: Int,
     private val movingStrategy: MovingStrategy
 ) {

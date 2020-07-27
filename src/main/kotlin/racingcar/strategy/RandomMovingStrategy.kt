@@ -1,10 +1,10 @@
 package racingcar.strategy
 
 object RandomMovingStrategy : MovingStrategy {
-    override val isMovable: Boolean
-        get() = IntRange(BOUND_MIN, BOUND_MAX).random() >= MOVABLE_BASE_VALUE
-
     private const val BOUND_MIN = 0
     private const val BOUND_MAX = 9
     private const val MOVABLE_BASE_VALUE = 4
+
+    override val isMovable: Boolean
+        get() = IntRange(BOUND_MIN, BOUND_MAX).random() >= MOVABLE_BASE_VALUE
 }
