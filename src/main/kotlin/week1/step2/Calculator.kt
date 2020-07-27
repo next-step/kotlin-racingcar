@@ -1,3 +1,5 @@
+package week1.step2
+
 import java.util.LinkedList
 import java.util.Queue
 

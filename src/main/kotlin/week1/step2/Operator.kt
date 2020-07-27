@@ -1,3 +1,5 @@
+package week1.step2
+
 enum class Operator(val op: Char, val opCal: (first: Double, second: Double) -> Double) {
     PLUS('+', { first, second ->
         first + second

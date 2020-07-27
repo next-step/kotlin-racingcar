@@ -1,3 +1,5 @@
+package week1.step2
+
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -17,13 +19,25 @@ class CalculatorOperatorTest {
 
     @Test
     fun 더하기() {
-        Assertions.assertThat(Calculator.calOperator(numberGroup = numberGroup, operatorGroup = listOf(Operator.PLUS)))
+        Assertions.assertThat(
+            Calculator.calOperator(
+                numberGroup = numberGroup, operatorGroup = listOf(
+                    Operator.PLUS
+                )
+            )
+        )
             .isEqualTo(132.0)
     }
 
     @Test
     fun 빼기() {
-        Assertions.assertThat(Calculator.calOperator(numberGroup = numberGroup, operatorGroup = listOf(Operator.MINUS)))
+        Assertions.assertThat(
+            Calculator.calOperator(
+                numberGroup = numberGroup, operatorGroup = listOf(
+                    Operator.MINUS
+                )
+            )
+        )
             .isEqualTo(66.0)
     }
 
