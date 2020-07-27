@@ -14,7 +14,7 @@ object Calculator {
         return calOperator(numberGroup, operatorGroup)
     }
 
-    fun calOperator(numberGroup: LinkedList<Double>, operatorGroup: List<Char>): Double {
+    fun calOperator(numberGroup: Queue<Double>, operatorGroup: List<Char>): Double {
         var result = numberGroup.poll()
         for (operator in operatorGroup) {
             result = when (operator) {
@@ -30,7 +30,7 @@ object Calculator {
 
     private fun separateNumAndOpList(
         formula: String,
-        numberGroup: LinkedList<Double>,
+        numberGroup: Queue<Double>,
         operatorGroup: MutableList<Char>
     ) {
         val numBuilder = StringBuilder()
