@@ -20,7 +20,7 @@ data class Car(
     }
 
     companion object {
-        private const val NAME_TITLE = "Car No."
+        private const val NAME_TITLE = "No."
         private const val MOVING_DISTANCE = 1
         private const val MOVING_SYMBOL = "-"
     }
