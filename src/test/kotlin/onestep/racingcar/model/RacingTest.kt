@@ -10,9 +10,11 @@ class RacingTest {
         // given : 3 CarName , 3 Try
         val racing = Racing(listOf("CAR1", "CAR2", "CAR3"), 3)
         // when : race
-        // then : CarNameCount = racingCar size
+        // then : CarNameCount = racingCar size ,And Winner is Not Empty
         racing.race {
             Assertions.assertThat(it).isEqualTo(3)
+        }.run {
+            Assertions.assertThat(this).isNotEmpty
         }
     }
 
@@ -38,11 +40,36 @@ class RacingTest {
         }
     }
 
-    fun `Should return Winner, When only one winner`() {
-        return
+    @Test
+    fun `Should return Winner, When Zero Car`() {
+        // given : 0 Cars , 8 Try
+        val racing = Racing(listOf(), 8)
+        // when : race
+        // then : Winner is Empty
+        racing.race { }.run {
+            Assertions.assertThat(this.size).isEqualTo(0)
+        }
     }
 
+    @Test
+    fun `Should return Winner, When only One winner`() {
+        // given : 1 Cars , 8 Try
+        val racing = Racing(listOf("CAR1"), 8)
+        // when : race
+        // then : Winner is only One
+        racing.race { }.run {
+            Assertions.assertThat(this.size).isEqualTo(1)
+        }
+    }
+
+    @Test
     fun `Should return Winners, When winners are 2 or more`() {
-        return
+        // given : 3 Cars , 0 Try
+        val racing = Racing(listOf("CAR1", "CAR2", "CAR3"), 0)
+        // when : race
+        // then : Winner is 3 Cars
+        racing.race { }.run {
+            Assertions.assertThat(this.size).isEqualTo(3)
+        }
     }
 }

@@ -23,6 +23,8 @@ class RacingManager(
     fun race() {
         racing.race { cars ->
             resultView.showResult(cars)
+        }.run {
+            resultView.showWinner(this)
         }
     }
 }
