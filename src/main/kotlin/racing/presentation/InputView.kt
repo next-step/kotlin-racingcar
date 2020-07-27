@@ -1,4 +1,4 @@
-package racing
+package racing.presentation
 
 class InputView {
     fun inputCarNumber(): String? {

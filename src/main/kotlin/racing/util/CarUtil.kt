@@ -1,4 +1,4 @@
-package racing
+package racing.util
 
 class CarUtil {
     companion object {

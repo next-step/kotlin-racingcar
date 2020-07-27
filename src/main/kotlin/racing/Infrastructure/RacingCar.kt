@@ -1,5 +1,8 @@
-package racing
+package racing.Infrastructure
 
+import racing.domain.Car
+import racing.domain.Cars
+import racing.domain.RacingState
 import kotlin.random.Random
 
 class RacingCar {
@@ -42,7 +45,10 @@ class RacingCar {
     }
 
     fun canIMove(): Boolean {
-        val random = Random.nextInt(MINIMUM_RANGE_NUMBER, MAXIMUM_RANGE_NUMBER)
+        val random = Random.nextInt(
+            MINIMUM_RANGE_NUMBER,
+            MAXIMUM_RANGE_NUMBER
+        )
         if (random >= MOVE_CONDITION_NUMBER) {
             return true
         }

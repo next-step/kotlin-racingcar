@@ -4,6 +4,10 @@ import com.nhaarman.mockitokotlin2.spy
 import com.nhaarman.mockitokotlin2.whenever
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import racing.Infrastructure.RacingCar
+import racing.domain.Car
+import racing.domain.RacingState
+import racing.presentation.ResultView
 
 internal class RacingCarTest {
 
@@ -47,7 +51,10 @@ internal class RacingCarTest {
 
     @Test
     fun `전진 조건이 3일 때 move() 호출 시 이동하지 않았음을 확인하는 테스트`() {
-        var carList = mutableListOf(Car(1, ""), Car(2, "--"))
+        var carList = mutableListOf(
+            Car(1, ""),
+            Car(2, "--")
+        )
 
         val racingCar = spy(RacingCar())
 
@@ -61,7 +68,10 @@ internal class RacingCarTest {
 
     @Test
     fun `전진 조건이 7일 때 move() 호출 시 이동하였음을 확인하는 테스트`() {
-        var carList = mutableListOf(Car(1, ""), Car(2, "--"))
+        var carList = mutableListOf(
+            Car(1, ""),
+            Car(2, "--")
+        )
 
         val racingCar = spy(RacingCar())
 

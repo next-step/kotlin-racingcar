@@ -2,6 +2,7 @@ package racing
 
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
+import racing.util.CarUtil
 
 internal class CarUtilTest {
 
