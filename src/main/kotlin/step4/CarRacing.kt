@@ -7,4 +7,8 @@ fun main() {
     val numberOfTrials = InputView.getNumberOfTrials()
 
     var cars = Race.initiate(nameListOfCars)
+
+    repeat(numberOfTrials) {
+        cars = Race.makeTurn(cars)
+    }
 }
