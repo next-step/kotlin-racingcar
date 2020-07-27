@@ -11,15 +11,11 @@ import step3.turn.TurnManagerImpl
 
 fun main() {
     println("자동차 대수는 몇 대인가요?")
-    val number = readLine()!!.toInt()
+    val totalCar = readLine()!!.toInt()
     println("시도할 횟수는 몇 회인가요?")
-    val turns = readLine()!!.toInt()
-    RacingCarFacade(number, turns).startRacing()
-}
+    val totalTurn = readLine()!!.toInt()
 
-class RacingCarFacade(carNumber: Int, totalTurn: Int) {
-
-    val cars: List<Car> = (0 until carNumber).map { CarImpl(it) }
+    val cars: List<Car> = (0 until totalCar).map { CarImpl() }
     val rule: CarMovementRule = CarMovementRuleImpl()
     val printer: CarPrinter = CarPrinterImpl()
     val turn: Turn = TurnImpl {
@@ -29,7 +25,10 @@ class RacingCarFacade(carNumber: Int, totalTurn: Int) {
         }
     }
     val turnManager: TurnManager = TurnManagerImpl(totalTurn, turn)
+    RacingCarGame(turnManager).startRacing()
+}
 
+class RacingCarGame(private val turnManager: TurnManager) {
     fun startRacing() {
         while (!turnManager.isFinishOrProceed()) {
             println()
