@@ -2,9 +2,8 @@ package racingcar
 
 object Racing {
 
-    fun start() {
-        val cars = RacingCarFactory.makeCars(InputView.getCarNumber())
-        val trials = InputView.getChanceToMove()
+    fun start(carCnt: Int, trials: Int) {
+        val cars = RacingCarFactory.makeCars(carCnt)
 
         println("\n실행 결과")
 
