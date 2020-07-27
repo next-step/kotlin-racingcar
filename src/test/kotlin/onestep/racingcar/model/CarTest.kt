@@ -30,7 +30,14 @@ class CarTest {
         Assertions.assertThat(carEngine0.position).isEqualTo(0)
     }
 
+    @Test
     fun `Should Throws Exception , When CarName's length bigger than 5`() {
-        return
+        // given : Car name is bigger than 5
+        val carName = "CARCARCARCAR"
+        // when : createCar
+        // then : Throws Exception("CarName's Length can not more than 5")
+        Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
+            Car.createCarByName(carName)
+        }
     }
 }

@@ -14,7 +14,7 @@ class InputView(
         val list = showQuestion(INPUT_NAME_OF_CAR, getNameOfCarsInput).split(SEPARATOR)
 
         return list.map {
-            require(it.length > 5) { "CarName's Length can not more than 5" }
+            require(it.length < 5) { "CarName's Length can not more than 5" }
             it
         }
     }
@@ -22,7 +22,7 @@ class InputView(
     private fun getNumberOfTry(): Int {
         val input = showQuestion(INPUT_NUMBER_OF_TRY, getNumberOfTryInput).toIntOrNull()
             ?: throw IllegalArgumentException("Wrong Input (Not Integer)")
-        require(input <= 0) { "Input Only Positive integer ( input = $input)" }
+        require(input > 0) { "Input Only Positive integer ( input = $input)" }
         return input
     }
 

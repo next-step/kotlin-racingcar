@@ -16,6 +16,9 @@ data class Car(
     }
 
     companion object {
-        fun createCarByName(name: String) = Car(name = name)
+        fun createCarByName(name: String): Car {
+            require(name.length < 5) { "CarName's Length can not more than 5" }
+            return Car(name = name)
+        }
     }
 }
