@@ -8,27 +8,31 @@ object Calculator {
             throw IllegalArgumentException("입력 값이 유효하지 않습니다.")
         }
 
-        val (numList: Queue<Double>, operatorList) = LinkedList<Double>() to mutableListOf<Char>()
-        separateNumAndOpList(formula, numList, operatorList)
+        val (numberGroup: Queue<Double>, operatorGroup) = LinkedList<Double>() to mutableListOf<Char>()
+        separateNumAndOpList(formula, numberGroup, operatorGroup)
 
-        return calOperator(numList, operatorList)
+        return calOperator(numberGroup, operatorGroup)
     }
 
-    fun calOperator(numList: LinkedList<Double>, operatorList: List<Char>): Double {
-        var result = numList.poll()
-        for (operator in operatorList) {
+    fun calOperator(numberGroup: LinkedList<Double>, operatorGroup: List<Char>): Double {
+        var result = numberGroup.poll()
+        for (operator in operatorGroup) {
             result = when (operator) {
-                Operator.PLUS.op -> Operator.PLUS.opCal(result, numList.poll())
-                Operator.MINUS.op -> Operator.MINUS.opCal(result, numList.poll())
-                Operator.MULTIPLE.op -> Operator.MULTIPLE.opCal(result, numList.poll())
-                Operator.DIVIDE.op -> Operator.DIVIDE.opCal(result, numList.poll())
+                Operator.PLUS.op -> Operator.PLUS.opCal(result, numberGroup.poll())
+                Operator.MINUS.op -> Operator.MINUS.opCal(result, numberGroup.poll())
+                Operator.MULTIPLE.op -> Operator.MULTIPLE.opCal(result, numberGroup.poll())
+                Operator.DIVIDE.op -> Operator.DIVIDE.opCal(result, numberGroup.poll())
                 else -> throw IllegalArgumentException("사칙 연산 기호가 아닙니다.")
             }
         }
         return result
     }
 
-    private fun separateNumAndOpList(formula: String, numList: LinkedList<Double>, operatorList: MutableList<Char>) {
+    private fun separateNumAndOpList(
+        formula: String,
+        numberGroup: LinkedList<Double>,
+        operatorGroup: MutableList<Char>
+    ) {
         val numBuilder = StringBuilder()
 
         for (index in formula.indices) {
@@ -38,15 +42,15 @@ object Calculator {
                     if (!isNumeric(formula[index])) throw IllegalArgumentException("완전하지 않은 식입니다.")
 
                     numBuilder.append(formula[index])
-                    numList.add(numBuilder.toString().toDouble())
+                    numberGroup.add(numBuilder.toString().toDouble())
                 }
                 isNumeric(formula[index]) -> numBuilder.append(formula[index])
                 else -> {
                     if (numBuilder.isEmpty()) throw IllegalArgumentException("완전하지 않은 식입니다.")
 
-                    numList.offer(numBuilder.toString().toDouble())
+                    numberGroup.offer(numBuilder.toString().toDouble())
                     numBuilder.clear()
-                    operatorList.add(formula[index])
+                    operatorGroup.add(formula[index])
                 }
             }
         }

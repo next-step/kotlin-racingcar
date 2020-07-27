@@ -5,11 +5,11 @@ import java.util.LinkedList
 
 class CalculatorOperatorTest {
 
-    private val numberList = LinkedList<Double>()
+    private val numberGroup = LinkedList<Double>()
 
     @BeforeEach
     fun setup() {
-        numberList.run {
+        numberGroup.run {
             add(99.0)
             add(33.0)
         }
@@ -17,33 +17,36 @@ class CalculatorOperatorTest {
 
     @Test
     fun 더하기() {
-        Assertions.assertThat(Calculator.calOperator(numList = numberList, operatorList = listOf('+'))).isEqualTo(132.0)
+        Assertions.assertThat(Calculator.calOperator(numberGroup = numberGroup, operatorGroup = listOf('+')))
+            .isEqualTo(132.0)
     }
 
     @Test
     fun 빼기() {
-        Assertions.assertThat(Calculator.calOperator(numList = numberList, operatorList = listOf('-'))).isEqualTo(66.0)
+        Assertions.assertThat(Calculator.calOperator(numberGroup = numberGroup, operatorGroup = listOf('-')))
+            .isEqualTo(66.0)
     }
 
     @Test
     fun 곱하기() {
-        Assertions.assertThat(Calculator.calOperator(numList = numberList, operatorList = listOf('*')))
+        Assertions.assertThat(Calculator.calOperator(numberGroup = numberGroup, operatorGroup = listOf('*')))
             .isEqualTo(3267.0)
     }
 
     @Test
     fun 나누기() {
-        Assertions.assertThat(Calculator.calOperator(numList = numberList, operatorList = listOf('/'))).isEqualTo(3.0)
+        Assertions.assertThat(Calculator.calOperator(numberGroup = numberGroup, operatorGroup = listOf('/')))
+            .isEqualTo(3.0)
     }
 
     @Test
     fun `0 으로 나눌 경우`() {
         Assertions.assertThatExceptionOfType(ArithmeticException::class.java).isThrownBy {
-            val numList = LinkedList<Double>().apply {
+            val numberGroup = LinkedList<Double>().apply {
                 add(99.0)
                 add(0.0)
             }
-            Calculator.calOperator(numList = numList, operatorList = listOf('/'))
+            Calculator.calOperator(numberGroup = numberGroup, operatorGroup = listOf('/'))
         }
     }
 }
