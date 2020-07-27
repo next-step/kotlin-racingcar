@@ -1,31 +1,29 @@
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 internal class NumberExtKtTest {
 
     @Test
     fun isOdd() {
-        assertTrue(3.isOdd())
-        assertFalse(4.isOdd())
+        assertThat(3.isOdd()).isTrue()
+        assertThat(4.isOdd()).isFalse()
     }
 
     @Test
     fun isInt() {
-        assertTrue(3.0.isInt())
-        assertFalse(3.5.isInt())
+        assertThat(3.0.isInt()).isTrue()
+        assertThat(3.5.isInt()).isFalse()
     }
 
     @Test
     fun toPrintString() {
-        assertEquals("4", 4.0.toPrintString())
-        assertEquals("4.792", 4.792.toPrintString())
+        assertThat(4.0.toPrintString()).isEqualTo("4")
+        assertThat(4.792.toPrintString()).isEqualTo("4.792")
     }
 
     @Test
     fun isInvalid() {
-        assertFalse(12.0.isInvalid())
-        assertTrue((3.0 / 0.0).isInvalid())
+        assertThat(12.0.isInvalid()).isFalse()
+        assertThat((3.0 / 0.0).isInvalid()).isTrue()
     }
 }

@@ -1,7 +1,6 @@
 package calculator
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNull
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 internal class OperationTest {
@@ -9,30 +8,30 @@ internal class OperationTest {
     @Test
     fun add() {
         val add = Operation.of("+")!!
-        assertEquals(12.0, add(6.0, 6.0))
+        assertThat(add(6.0, 6.0)).isEqualTo(12.0)
     }
 
     @Test
     fun sub() {
         val sub = Operation.of("-")!!
-        assertEquals(0.0, sub(6.0, 6.0))
+        assertThat(sub(6.0, 6.0)).isEqualTo(0.0)
     }
 
     @Test
     fun multi() {
         val multi = Operation.of("*")!!
-        assertEquals(36.0, multi(6.0, 6.0))
+        assertThat(multi(6.0, 6.0)).isEqualTo(36.0)
     }
 
     @Test
     fun div() {
         val div = Operation.of("/")!!
-        assertEquals(1.0, div(6.0, 6.0))
-        assertEquals(Double.NaN, div(1.0, 0.0))
+        assertThat(div(6.0, 1.0)).isEqualTo(6.0)
+        assertThat(Double.NaN.equals(div(1.0, 0.0))).isTrue()
     }
 
     @Test
     fun `undefined operator`() {
-        assertNull(Operation.of("5"))
+        assertThat(Operation.of("5")).isNull()
     }
 }
