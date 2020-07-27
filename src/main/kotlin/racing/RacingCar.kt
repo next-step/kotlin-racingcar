@@ -18,8 +18,8 @@ class RacingCar {
 
         // 전진 시도
         repeat(racingState.attempt!!.toInt()) {
-            move(cars)
-            result.add(cars)
+            val list = move(cars)
+            result.add(list)
         }
 
         return result
@@ -31,11 +31,12 @@ class RacingCar {
         }
     }
 
-    fun move(carList: List<Car>) {
-        carList.forEach { car ->
+    fun move(carList: List<Car>): List<Car> {
+        return carList.map { car ->
             if (canIMove()) {
                 car.distance = car.distance + "-"
             }
+            Car(car.number, car.distance)
         }
     }
 

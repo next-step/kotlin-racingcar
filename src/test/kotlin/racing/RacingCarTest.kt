@@ -10,7 +10,8 @@ internal class RacingCarTest {
     @Test
     fun `start() 정상 동작 테스트`() {
         val racingState = RacingState("2", "3")
-        RacingCar().start(racingState)
+        val list = RacingCar().start(racingState)
+        ResultView().view(list)
     }
 
     @Test
