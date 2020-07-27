@@ -1,7 +1,5 @@
 package racingcar
 
-import kotlin.random.Random
-
 object Racing {
     private val racingCarFactory = RacingCarFactory
     val cars = racingCarFactory.cars
@@ -17,11 +15,9 @@ object Racing {
 
         println("\n실행 결과")
 
-        // TODO 이중 반복문 수정하기?
         for (i in 1..InputView.getChanceToMove()) {
             for (j in cars.indices) {
-                // TODO 03. (0..9).random() 사용
-                cars[j].randomNum = Random.nextInt(10)
+                cars[j].randomNum = (0..9).random()
                 if (isRunnable(j))
                     cars[j].run()
             }
