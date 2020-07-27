@@ -1,19 +1,23 @@
 package racingcar
 
 object ResultView {
-    fun view(result: MutableList<List<Int>>) {
-        for (i in 0..result[0].size - 1) {
-            for (j in 0..result.size - 1) {
-                printResult(result[j][i])
-            }
-            println()
-        }
-    }
-
-    private fun printResult(value: Int) {
-        for (i in 1..value) {
-            print("-")
+    fun view(cars: List<Car>) {
+        cars.forEach {
+            printPosition(it)
         }
         println()
+    }
+
+    private fun printPosition(car: Car) {
+        var distance = distanceBuilder(car)
+        println(distance)
+    }
+
+    fun distanceBuilder(car: Car): StringBuilder {
+        var distance = StringBuilder()
+        for (i in 1..car.currentPosition) {
+            distance.append("-")
+        }
+        return distance
     }
 }

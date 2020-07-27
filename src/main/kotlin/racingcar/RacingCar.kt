@@ -1,9 +1,5 @@
 package racingcar
 
-// TODO 한번에 시도 횟수에 모든 자동차가 이동하는 방식으로 변경
-// TODO tries와 자동차 위치 정보를 가지는 배열 또는 MutableList를 인스턴스 변수로 가지는 방식으로 구현하는 것은 어떨까?
-// TODO 문자열 생성과 print를 분리하고 문자열 생성 부분에 대한 테스트 만들기
-
 const val MOVABLE_VALUE = 4
 const val FIRST_QUESTION = "자동차 대수는 몇 대인가요?"
 const val SECOND_QUESTION = "시도할 횟수는 몇 회인가요?"
@@ -11,37 +7,32 @@ const val SECOND_QUESTION = "시도할 횟수는 몇 회인가요?"
 fun main() {
     val carCount = InputView.getAnswerTo(FIRST_QUESTION)
     val tryCount = InputView.getAnswerTo(SECOND_QUESTION)
-    // carCount = 3, tryCount = 5 일때 각 자동차의 positionHistory를 기록한 리스트를 갖는 리스트를 리턴
-    // result = [[1,2,3,3,3],[0,1,2,3,3],[1,1,1,1,2]]
-    val result = RacingCar.race(carCount, tryCount)
-    ResultView.view(result)
+    RacingCar(carCount).race(tryCount)
 }
 
-object RacingCar {
-    fun race(carCount: Int, tries: Int): MutableList<List<Int>> {
-        val cars = mutableListOf<List<Int>>()
+class RacingCar constructor(carCount: Int) {
+    val cars = mutableListOf<Car>()
+
+    // Try인스턴스를 생성할때 몇개의 차를 만들것인지 정해 인스턴스 변수를 초기화 한다
+    init {
         for (i in 1..carCount) {
-            cars.add(Car().moveForward(tries))
+            cars.add(Car())
         }
-        return cars
     }
-}
 
-class Car {
-    fun moveForward(tries: Int): List<Int> {
-        val positionHistory = mutableListOf<Int>()
-        var distance = 0
-        for (i in 1..tries) {
-            if (canMove()) distance++
-            positionHistory.add(distance)
+    // n턴 경주시킨다
+    fun race(tryCount: Int) {
+        for (i in 1..tryCount) {
+            // cars를 돌면서 각 Car 객체에게 전진하라고 명령
+            moveForwardToCars()
+            // 현재 차들의 상태를 프린트한다
+            ResultView.view(cars)
         }
-        return positionHistory
     }
 
-    private fun canMove(): Boolean {
-        val randomValue = (0..9).random()
-        return canMove(randomValue)
+    private fun moveForwardToCars() {
+        cars.forEach {
+            it.moveForward()
+        }
     }
-
-    private fun canMove(randomValue: Int) = randomValue >= MOVABLE_VALUE
 }
