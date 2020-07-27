@@ -3,6 +3,8 @@ package step3.view
 import step3.Car
 
 object ResultView {
+    private const val OneBlock = "-"
+
     fun output(cars: List<Car>) {
         print("output for turn\n")
 
@@ -13,8 +15,6 @@ object ResultView {
     }
 
     fun visualize(distance: Int): String {
-        val block = "-"
-
-        return block.repeat(distance)
+        return OneBlock.repeat(distance)
     }
 }
