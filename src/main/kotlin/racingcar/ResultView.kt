@@ -1,11 +1,11 @@
 package racingcar
 
 object ResultView {
-    private const val DISTANCE_MARK ="-"
+    private const val DISTANCE_MARK = "-"
 
-    fun print(cars: MutableList<RacingCar>) {
+    fun print(cars: List<RacingCar>) {
         cars.forEach { car ->
-            repeat(car.distance){
+            repeat(car.distance) {
                 print(DISTANCE_MARK)
             }
             println()
