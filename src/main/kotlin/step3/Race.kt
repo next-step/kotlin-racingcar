@@ -1,6 +1,6 @@
 package step3
 
-import java.util.Random
+import kotlin.random.Random
 
 object Race {
     private const val MIN_VALUE_TO_MOVE = 4
@@ -29,6 +29,6 @@ object Race {
     }
 
     fun getRandomNumber(): Int {
-        return Random().nextInt(10)
+        return Random.nextInt(10)
     }
 }
