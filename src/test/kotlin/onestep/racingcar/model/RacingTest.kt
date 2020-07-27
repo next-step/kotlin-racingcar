@@ -22,4 +22,12 @@ class RacingTest {
         val racing = Racing(0, 3)
         Assertions.assertThat(racing.race { }).isEmpty()
     }
+
+    fun `Should return Winner, When only one winner`() {
+        return
+    }
+
+    fun `Should return Winners, When winners are 2 or more`() {
+        return
+    }
 }

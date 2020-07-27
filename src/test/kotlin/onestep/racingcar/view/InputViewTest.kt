@@ -57,4 +57,8 @@ class InputViewTest {
             }
         }
     }
+
+    fun `Should Exception(), When input Wrong value - CarName's Size more than 5`() {
+        return
+    }
 }

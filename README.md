@@ -3,6 +3,12 @@
 ## Step4 - RacingCar Victory 
 1. 구현할 기능 목록 정리 
 2. 기능 구현 전, Test Case 미리 작성하기 (Review 내용)
+    - ### TEST CASE 추가 항목
+        - InputView - 입력 테스트 - 자동차 이름 5글자 초과 테스트 
+        - Car - 자동차 이름 5글자 초과 테스트
+        - Racing - 우승자 테스트 ( with Custom Engine )
+            - 정상 1명 우승 
+            - 중복 우승일 경우 
 3. 자동차 입력 정보 변경 in InputView
     - 자동차 이름은 5글자를 초과하면 안된다.
     - 입력기준은 , 로 구분한다.

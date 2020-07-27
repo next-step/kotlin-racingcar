@@ -29,4 +29,8 @@ class CarTest {
         // then : car.position is 0
         Assertions.assertThat(carEngine0.position).isEqualTo(0)
     }
+
+    fun `Should Throws Exception , When CarName's length bigger than 5`() {
+        return
+    }
 }
