@@ -1,14 +1,12 @@
 package step2
 
-interface Stoi {
-    fun StringtoInt(rows: String): List<String>
-}
+// import jdk.internal.joptsimple.internal.Rows
 
 interface Result {
     fun cal(a: Int, b: Int): Int
 }
 
-enum class Operate(val sym: String) : Result{
+enum class Operate(val sym: String): Result {
     SUM("+") {
         override fun cal(a: Int, b: Int) = a + b
     },
@@ -23,18 +21,40 @@ enum class Operate(val sym: String) : Result{
             if (b == 0) throw ArithmeticException("0으로 나누면 값이 무한이 됩니다.")
             return a / b
         }
+    };
+
+    companion object {
+        fun run(sym: String): Operate {
+            return enumValues<Operate>().first {
+                it.sym == sym
+            }
+        }
     }
 }
 
-class CalculatorforString(elements: String) {
-    var element = elements.trim().split(" ")
-    fun OperateSymbol (element :List<String>) {
+object CalculatorforString {
+    fun Seperate(element: List<String>): Int {
+        var result =element[0].toInt()
         for (x: Int in 0 until element.size) {
             if ((element[x] == " ") or (element[x] == null)) throw IllegalArgumentException("공백이나 null값은 혀용이 되지 않습니다.")
-
-            // fun calc (sym: String,number:Int,number2:Int){
-                // return Operate.valueOf()
         }
+        for (i in 1 until element.size step 2) {
+            result = Operate.run(element[i]).cal(result.toInt(), element[i + 1].toInt()).toInt()
+        }
+    return result
     }
+}
+
+class StringtoList{
+    fun StoL(rows: String):List<String> {
+        return rows.trim().split(" ")
     }
+
+}
+
+fun main() {
+    val input =  StringtoList().StoL("2 + 3 * 4 / 2 ")
+    val result = CalculatorforString.Seperate(input)
+    println(result)
+
 }
