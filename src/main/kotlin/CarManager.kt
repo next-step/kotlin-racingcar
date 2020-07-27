@@ -6,9 +6,7 @@ class CarManager {
         carList.add(Car())
     }
 
-    fun move(tryCount: Int) {
-        this.tryCount = tryCount
-
+    fun move() {
         for (car in carList) {
             car.diceMove()
         }

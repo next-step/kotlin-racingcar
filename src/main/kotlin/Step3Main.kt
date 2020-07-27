@@ -1,5 +1,8 @@
 fun main(args: Array<String>) {
     val carManager = CarManager()
-    InputView(carManager)
-    ResultView(carManager)
+    val inputView = InputView(carManager)
+    inputView.inputCarCount(readLine()!!)
+    inputView.inputTryMoveCount(readLine()!!)
+    val resultView = ResultView(carManager)
+    resultView.status()
 }

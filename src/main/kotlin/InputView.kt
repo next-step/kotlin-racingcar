@@ -1,26 +1,36 @@
-import kotlin.properties.Delegates
-
 class InputView {
     val carManager: CarManager
-    var carCount by Delegates.notNull<Int>()
-    var tryCount by Delegates.notNull<Int>()
 
     constructor(carManager: CarManager) {
         this.carManager = carManager
-        println("자동차 대수는 몇 대인가요?")
-        carCount = readLine()!!.toInt()
-        carAdds()
-
-        println("시도할 횟수는 몇 회인가요?")
-        tryCount = readLine()!!.toInt()
-        tryMoving(tryCount)
     }
 
-    fun carAdds() {
+    fun inputCarCount(input: String) {
+        println("자동차 대수는 몇 대인가요?")
+        if (!VALID_REGEX.matches(input)) {
+            throw IllegalArgumentException("only input number please")
+        }
+        carsAdd(input.toInt())
+    }
+
+    fun inputTryMoveCount(input: String) {
+        println("시도할 횟수는 몇 회인가요?")
+        if (!VALID_REGEX.matches(input)) {
+            throw IllegalArgumentException("only input number please")
+        }
+        tryMoving(input.toInt())
+    }
+
+    fun carsAdd(carCount: Int) {
         repeat(carCount) { carManager.add() }
     }
 
     fun tryMoving(tryCount: Int) {
-        repeat(tryCount) { carManager.move(tryCount) }
+        carManager.tryCount = tryCount
+        repeat(tryCount) { carManager.move() }
+    }
+
+    companion object {
+        val VALID_REGEX = Regex(pattern = "^[0-9]+$")
     }
 }

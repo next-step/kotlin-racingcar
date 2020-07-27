@@ -1,9 +1,5 @@
 class ResultView(private val carManager: CarManager) {
-    init {
-        status()
-    }
-
-    private fun status() {
+    fun status() {
         println("실행 결과")
         printCarsStep()
     }
