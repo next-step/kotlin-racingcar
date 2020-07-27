@@ -10,8 +10,8 @@ class ResultView {
 
     fun showResult(list: List<Car>) {
         println(INPUT_NUMBER_OF_CAR)
-        list.forEach {
-            println(makePositionString(it.position))
+        list.forEach { car ->
+            println("${car.name} :${makePositionString(car.position)}")
         }
     }
 
