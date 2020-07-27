@@ -1,16 +1,18 @@
 import java.util.function.BinaryOperator
 
-enum class Operator : BinaryOperator<Int> {
-    PLUS {
-        override fun apply(t: Int, u: Int): Int = t + u
-    },
-    MINUS {
-        override fun apply(t: Int, u: Int): Int = t - u
-    },
-    MULTIPLY {
-        override fun apply(t: Int, u: Int): Int = t * u
-    },
-    DIVIDE {
-        override fun apply(t: Int, u: Int): Int = t / u
-    };
+enum class Operator(val symbol: String, val method: BinaryOperator<Int>) {
+    PLUS("+", BinaryOperator { t: Int, u: Int -> t + u }),
+    MINUS("-", BinaryOperator { t: Int, u: Int -> t - u }),
+    MULTIPLY("*", BinaryOperator { t: Int, u: Int -> t * u }),
+    DIVIDE("/", BinaryOperator { t: Int, u: Int -> t / u });
+
+    companion object {
+        fun findSymbolOperator(symbol: String): BinaryOperator<Int> {
+            return values().find { it.symbol == symbol }!!.method
+        }
+
+        fun symbolList(): List<String> {
+            return values().map { it.symbol }
+        }
+    }
 }
