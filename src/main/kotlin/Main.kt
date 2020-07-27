@@ -16,7 +16,7 @@ fun main() {
 
     println(
         "STEP3 자동차 경주 \n\n" +
-            "자동차 대수는 몇 대인가요?"
+            "자동차 대수는 몇 대인가요? "
     )
     val numberOfCars = readLine()!!
     println(
