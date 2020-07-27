@@ -1,9 +1,10 @@
+fun main() {
+    println(StringCalculator.calculate("1 + 2 + 3"))
+}
+
 class StringCalculator {
     companion object {
-        const val add = "+"
-        const val subtraction = "-"
-        const val multiply = "*"
-        const val divide = "/"
+        private val INVALID_PATTERN = Regex("^d+((\\s)[\\+\\-\\*\\/](\\s)d+)+?")
 
         fun calculate(numericalString: String?): Int {
 
@@ -11,31 +12,36 @@ class StringCalculator {
                 throw IllegalArgumentException("입력값이 null이거나 빈 공백 문자일 경우")
             }
 
-            val splitNumericalString = numericalString.split(" ")
+            if (INVALID_PATTERN.matches(numericalString)) {
+                throw IllegalArgumentException("잘못된 못한 수식")
+            }
 
-            var result: Int = splitNumericalString[0].toInt()
+            val splitString = numericalString.split(" ")
 
-            for (i in 1 until splitNumericalString.size step 2) {
-                result = operation(
-                    first = result,
-                    operator = splitNumericalString[i],
-                    second = splitNumericalString[i + 1].toInt()
-                )
+            var result: Int = splitString[0].toInt()
+
+            for (i in 1 until splitString.size step 2) {
+                val first = result
+                val sign = splitString[i]
+                val second = splitString[i + 1].toInt()
+
+                result = Operate.signCheck(sign).operator(first, second)
             }
 
             return result
         }
-
-        fun operation(operator: String, first: Int, second: Int): Int {
-            return when (operator) {
-                add -> first + second
-                subtraction -> first - second
-                multiply -> first * second
-                divide -> first / second
-                else -> throw throw IllegalArgumentException("사칙연산 기호가 아닌 경우")
-            }
-        }
     }
 }
 
+enum class Operate(val sign: String, val operator: (Int, Int) -> Int) {
+    ADD("+", { x, y -> x + y }),
+    SUB("-", { x, y -> x - y }),
+    MUL("*", { x, y -> x * y }),
+    DIV("/", { x, y -> x / y });
 
+    companion object {
+        fun signCheck(sign: String): Operate {
+            return values().firstOrNull { it.sign == sign } ?: throw IllegalArgumentException("사칙연산이 아닙니다.")
+        }
+    }
+}
