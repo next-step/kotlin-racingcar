@@ -33,7 +33,7 @@ enum class Operate(val sym: String) : Result {
 }
 
 object CalculatorforString {
-    fun Seperate(element: List<String>): Int {
+    fun seperate(element: List<String>): Int {
         var result = element[0].toInt()
         for (x: Int in 0 until element.size) {
             if ((element[x] == " ") or (element[x] == null)) throw IllegalArgumentException("공백이나 null값은 혀용이 되지 않습니다.")
@@ -46,13 +46,13 @@ object CalculatorforString {
 }
 
 class StringtoList {
-    fun StoL(rows: String): List<String> {
+    fun stoL(rows: String): List<String> {
         return rows.trim().split(" ")
     }
 }
 
 fun main() {
-    val input = StringtoList().StoL("2 + 3 * 4 / 2 ")
-    val result = CalculatorforString.Seperate(input)
+    val input = StringtoList().stoL("2 + 3 * 4 / 2 ")
+    val result = CalculatorforString.seperate(input)
     println(result)
 }
