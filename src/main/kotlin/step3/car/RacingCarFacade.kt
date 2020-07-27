@@ -9,7 +9,7 @@ import step3.turn.TurnImpl
 import step3.turn.TurnManager
 import step3.turn.TurnManagerImpl
 
-fun main(args: Array<String>) {
+fun main() {
     println("자동차 대수는 몇 대인가요?")
     val number = readLine()!!.toInt()
     println("시도할 횟수는 몇 회인가요?")
