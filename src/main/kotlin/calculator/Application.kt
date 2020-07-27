@@ -1,6 +1,6 @@
-import calculator.Calculator
-import calculator.ExpressionParser
-import calculator.InputValidator
+package calculator
+
+import isInvalid
 
 fun main() {
     val view = CalculatorView()

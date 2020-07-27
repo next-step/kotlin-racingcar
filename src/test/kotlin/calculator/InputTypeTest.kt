@@ -1,26 +1,26 @@
 package calculator
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 internal class InputTypeTest {
 
     @Test
-    fun testOperator() {
-        assertEquals(InputType.OPERATOR, InputType.of("+"))
-        assertEquals(InputType.OPERATOR, InputType.of("-"))
-        assertEquals(InputType.OPERATOR, InputType.of("*"))
-        assertEquals(InputType.OPERATOR, InputType.of("/"))
+    fun operator() {
+        assertThat(InputType.of("+")).isEqualTo(InputType.OPERATOR)
+        assertThat(InputType.of("-")).isEqualTo(InputType.OPERATOR)
+        assertThat(InputType.of("*")).isEqualTo(InputType.OPERATOR)
+        assertThat(InputType.of("/")).isEqualTo(InputType.OPERATOR)
     }
 
     @Test
-    fun testNumber() {
-        assertEquals(InputType.NUMBER, InputType.of("43"))
+    fun number() {
+        assertThat(InputType.of("43")).isEqualTo(InputType.NUMBER)
     }
 
     @Test
-    fun testNone() {
-        assertEquals(InputType.NONE, InputType.of("x"))
-        assertEquals(InputType.NONE, InputType.of("~"))
+    fun none() {
+        assertThat(InputType.of("x")).isEqualTo(InputType.NONE)
+        assertThat(InputType.of("~")).isEqualTo(InputType.NONE)
     }
 }
