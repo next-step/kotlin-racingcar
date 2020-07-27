@@ -3,13 +3,13 @@ import java.util.Queue
 
 object Calculator {
 
-    fun calEquation(equation: String?): Double {
-        if (equation == null || equation.isEmpty()) {
+    fun calculateFormula(formula: String?): Double {
+        if (formula == null || formula.isEmpty()) {
             throw IllegalArgumentException("입력 값이 유효하지 않습니다.")
         }
 
         val (numList: Queue<Double>, operatorList) = LinkedList<Double>() to mutableListOf<Char>()
-        separateNumAndOpList(equation, numList, operatorList)
+        separateNumAndOpList(formula, numList, operatorList)
 
         return calOperator(numList, operatorList)
     }
@@ -28,25 +28,25 @@ object Calculator {
         return result
     }
 
-    private fun separateNumAndOpList(equation: String, numList: LinkedList<Double>, operatorList: MutableList<Char>) {
+    private fun separateNumAndOpList(formula: String, numList: LinkedList<Double>, operatorList: MutableList<Char>) {
         val numBuilder = StringBuilder()
 
-        for (index in equation.indices) {
+        for (index in formula.indices) {
             when {
-                isEmpty(equation[index]) -> throw IllegalArgumentException("입력 값에 공백이 포함 되었습니다.")
-                index == equation.lastIndex -> {
-                    if (!isNumeric(equation[index])) throw IllegalArgumentException("완전하지 않은 식입니다.")
+                isEmpty(formula[index]) -> throw IllegalArgumentException("입력 값에 공백이 포함 되었습니다.")
+                index == formula.lastIndex -> {
+                    if (!isNumeric(formula[index])) throw IllegalArgumentException("완전하지 않은 식입니다.")
 
-                    numBuilder.append(equation[index])
+                    numBuilder.append(formula[index])
                     numList.add(numBuilder.toString().toDouble())
                 }
-                isNumeric(equation[index]) -> numBuilder.append(equation[index])
+                isNumeric(formula[index]) -> numBuilder.append(formula[index])
                 else -> {
                     if (numBuilder.isEmpty()) throw IllegalArgumentException("완전하지 않은 식입니다.")
 
                     numList.offer(numBuilder.toString().toDouble())
                     numBuilder.clear()
-                    operatorList.add(equation[index])
+                    operatorList.add(formula[index])
                 }
             }
         }
