@@ -4,13 +4,13 @@ import org.junit.jupiter.api.assertAll
 
 class PersonTest {
     @Test
-    internal fun constructor() {
+    fun constructor() {
         val person = Person("이영현", 27, "harry")
         assertThat(person.name).isEqualTo("이영현")
 
         person.nickname = "porter"
 
-        assertThat(person.nickname).isEqualTo("harry")
+        assertThat(person.nickname).isEqualTo("porter")
     }
 
     @Test
