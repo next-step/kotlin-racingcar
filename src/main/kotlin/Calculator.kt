@@ -1,4 +1,5 @@
 import java.lang.AssertionError
+import java.lang.NullPointerException
 import java.math.BigDecimal
 
 class Calculator {
@@ -51,7 +52,10 @@ class Calculator {
             }
         }
 
-        fun calculate(mInputs: String): String {
+        fun calculate(mInputs: String?): String {
+            if (mInputs == null) {
+                throw NullPointerException("계산식을 입력해주세요.")
+            }
             checkValidation(mInputs)
             val inputs: List<String> = mInputs.split(" ")
             var result: String = inputs[0]

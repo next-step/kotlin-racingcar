@@ -37,6 +37,12 @@ class CalculatorTest {
     }
 
     @Test
+    fun `check null`() {
+        assertThatThrownBy { Calculator.calculate(null) }
+            .isInstanceOf(CalculatorException::class.java)
+    }
+
+    @Test
     fun `check number symbol order`() {
         assertThatThrownBy { Calculator.calculate("2 3") }
             .isInstanceOf(CalculatorException::class.java)
