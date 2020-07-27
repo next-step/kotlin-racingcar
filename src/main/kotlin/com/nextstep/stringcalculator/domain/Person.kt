@@ -1,4 +1,4 @@
-package com.nextstep.domain
+package com.nextstep.stringcalculator.domain
 
 data class Person(
     val name: String,

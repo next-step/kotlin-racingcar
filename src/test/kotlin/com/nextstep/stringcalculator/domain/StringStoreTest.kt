@@ -1,4 +1,4 @@
-package com.nextstep.domain
+package com.nextstep.stringcalculator.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions
@@ -38,6 +38,6 @@ internal class StringStoreTest {
 
         val store = StringStore(string)
 
-        assertThat(store.calculate()).isEqualTo(2)
+        assertThat(store.calculate()).isEqualTo(2.25)
     }
 }
