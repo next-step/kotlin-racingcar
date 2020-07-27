@@ -2,11 +2,14 @@ package study
 
 class StrCalculator(str: String) {
     private val checkNumList = str.split("+", "-", "*", "/", " ").filter { it != "" }
-    private val checkSymbolList = str.split("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", " ").filter { it != "" }
     private val direction = Direction
     private val checkList = CheckList
     val numList = checkList.checkNumList(checkNumList)
-    val symbolList = checkList.checkSymbolList(checkSymbolList)
+    val symbolList = str.split("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", " ").filter { it != "" }
+
+    init {
+        checkList.checkSymbolList(symbolList)
+    }
 
     fun runCalculator(): Int {
         checkCouple()

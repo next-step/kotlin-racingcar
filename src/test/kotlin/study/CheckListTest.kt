@@ -12,15 +12,14 @@ class CheckListTest {
         val checkList = CheckList
         val numList = listOf("1", "2", "3")
         val symbolList = listOf("+", "-")
-        val testNumList = mutableListOf<Int>(1, 2, 3)
-        val testSymbolList = listOf("+", "-")
+        val testNumList = mutableListOf(1, 2, 3)
 
         val checkNumList = checkList.checkNumList(numList)
         val checkSymbolList = checkList.checkSymbolList(symbolList)
 
         assertThat(checkNumList).isEqualTo(testNumList)
-        assertThat(checkSymbolList).isEqualTo(testSymbolList)
-        assertThat(checkList.checkCouple(checkNumList, checkSymbolList)).isTrue()
+        assertThat(checkSymbolList).isTrue()
+        assertThat(checkList.checkCouple(checkNumList, symbolList)).isTrue()
     }
 
     @Test
