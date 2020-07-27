@@ -17,12 +17,7 @@ object Calculator {
     fun calOperator(numberGroup: Queue<Double>, operatorGroup: List<Operator>): Double {
         var result = numberGroup.poll()
         for (operator in operatorGroup) {
-            result = when (operator) {
-                Operator.PLUS -> Operator.PLUS.opCal(result, numberGroup.poll())
-                Operator.MINUS -> Operator.MINUS.opCal(result, numberGroup.poll())
-                Operator.MULTIPLE -> Operator.MULTIPLE.opCal(result, numberGroup.poll())
-                Operator.DIVIDE -> Operator.DIVIDE.opCal(result, numberGroup.poll())
-            }
+            result = operator.opCal(result, numberGroup.poll())
         }
         return result
     }
