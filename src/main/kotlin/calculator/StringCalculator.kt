@@ -1,3 +1,5 @@
+package calculator
+
 class StringCalculator {
     companion object {
         private val INVALID_PATTERN = Regex("^d+((\\s)[\\+\\-\\*\\/](\\s)d+)+?")
