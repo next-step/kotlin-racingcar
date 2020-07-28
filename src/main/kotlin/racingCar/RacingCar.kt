@@ -1,7 +1,6 @@
 package racingCar
 
-class RacingCar {
-}
+class RacingCar
 
 fun main() {
     var carCount = InputView.getCarCount()

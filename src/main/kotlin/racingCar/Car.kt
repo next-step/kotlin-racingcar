@@ -1,4 +1,3 @@
 package racingCar
 
-class Car {
-}
+class Car
