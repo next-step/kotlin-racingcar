@@ -19,6 +19,7 @@ object Application {
         val racingState = RacingState(names, attempt!!.toInt())
         val result = RacingCar().start(racingState)
 
+        val winners = RacingCar().getWinner(result)
         ResultView().view(result)
     }
 }

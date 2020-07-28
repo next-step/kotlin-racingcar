@@ -113,10 +113,54 @@ internal class RacingCarTest {
     }
 
     @Test
-    fun `자동차 경주 후, 우승자가 1명일 때 우승자 1명이 제대로 출력되는지 확인`() {
+    fun `racing 이후 결과에 대하여 sortedByDistanceDesc 호출 시 장거리 기준으로 정렬됐는지 확인`() {
+        var car1 = Car("k3", "-")
+        var car2 = Car("k5", "---")
+
+        val cars: Cars = listOf(car1, car2)
+        val sortedByDistanceDesc = RacingCar().sortedByDistanceDesc(cars)
+
+        assertThat(sortedByDistanceDesc).element(0).isEqualTo(car2)
+        assertThat(sortedByDistanceDesc).element(1).isEqualTo(car1)
     }
 
     @Test
-    fun `자동차 경주 후, 우승자가 2명일 때 우승자 2명이 제대로 출력되는지 확인`() {
+    fun `sortedByDistanceDesc로 정렬된 데이터에 대하여 longestDistance 호출 시 가장 긴 거리가 나오는지 확인`() {
+        var car1 = Car("k7", "-----")
+        var car2 = Car("k5", "---")
+        var car3 = Car("k3", "-")
+
+        val cars: Cars = listOf(car1, car2, car3)
+
+        assertThat(RacingCar().longestDistance(cars)).isEqualTo(car1.distance)
+    }
+
+    @Test
+    fun `우승자가 1명일 때 우승자 1명이 제대로 출력되는지 확인`() {
+        var car1 = Car("k5", "--")
+        var car2 = Car("k7", "-----")
+        var car3 = Car("k3", "-")
+
+        val cars: Cars = listOf(car1, car2, car3)
+
+        val winners = RacingCar().getWinner(listOf(cars))
+
+        assertThat(winners).size().isEqualTo(1)
+        assertThat(winners[0].name).isEqualTo(car2.name)
+    }
+
+    @Test
+    fun `우승자가 2명일 때 우승자 2명이 제대로 출력되는지 확인`() {
+        var car1 = Car("k5", "--")
+        var car2 = Car("k7", "-----")
+        var car3 = Car("k3", "-----")
+
+        val cars: Cars = listOf(car1, car2, car3)
+
+        val winners = RacingCar().getWinner(listOf(cars))
+
+        assertThat(winners).size().isEqualTo(2)
+        assertThat(winners[0].name).isEqualTo(car2.name)
+        assertThat(winners[1].name).isEqualTo(car3.name)
     }
 }
