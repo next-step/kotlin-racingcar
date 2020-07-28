@@ -1,4 +1,4 @@
-package step3.car
+package step3.racing.car
 
 interface Car {
     val distance: Int

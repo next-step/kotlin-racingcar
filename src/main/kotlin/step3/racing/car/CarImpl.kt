@@ -1,4 +1,4 @@
-package step3.car
+package step3.racing.car
 
 class CarImpl : Car {
     override var distance = 0

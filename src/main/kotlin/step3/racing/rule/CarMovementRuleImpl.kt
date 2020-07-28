@@ -1,4 +1,4 @@
-package step3.car.rule
+package step3.racing.rule
 
 import kotlin.random.Random
 

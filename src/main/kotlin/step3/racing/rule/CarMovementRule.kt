@@ -1,6 +1,6 @@
-package step3.car.rule
+package step3.racing.rule
 
-import step3.car.Car
+import step3.racing.car.Car
 
 interface CarMovementRule {
     val rule: () -> Boolean

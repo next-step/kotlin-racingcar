@@ -1,8 +1,8 @@
-package step3.car.rule
+package step3.racing.rule
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import step3.car.CarImpl
+import step3.racing.car.CarImpl
 
 class CarMovementRuleImplTest {
     @Test
