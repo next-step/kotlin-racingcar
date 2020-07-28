@@ -22,4 +22,14 @@ internal class RacingCarTest {
         assertThat(greaterThanOrEqualToMovableValue(4)).isTrue()
         assertThat(greaterThanOrEqualToMovableValue(3)).isTrue()
     }
+
+    @Test
+    fun `getRandom`() {
+        val randomStartNum = 0
+        val randomEndNum = 9
+        for (i in 1..100000) {
+            val actual = getRandom(randomStartNum, randomEndNum)
+            assertThat(actual).isBetween(randomStartNum, randomEndNum)
+        }
+    }
 }
