@@ -8,7 +8,7 @@ fun main() {
 }
 
 private fun showContent(tryCount: Int, racingCar: Array<Car>) {
-    for (count in 0 until tryCount) {
+    repeat(tryCount) {
         ResultView.printEachCarMovingState(racingCar)
         racingCar.forEach { it.updateForwardCount() }
         println()
