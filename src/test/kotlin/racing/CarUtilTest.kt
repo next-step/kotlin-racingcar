@@ -26,4 +26,12 @@ internal class CarUtilTest {
             CarUtil.validate("-1", "1")
         }.withMessage(CarUtil.NUMBER_REQUIRE_OVER_ONE)
     }
+
+    @Test
+    fun `자동차 이름이 5자를 초과하는 경우 validate 시 exception 발생`() {
+    }
+
+    @Test
+    fun `, , , 와 같은 자동차 이름이 입력된 경우, validate 시 exception 발생`() {
+    }
 }

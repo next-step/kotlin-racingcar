@@ -82,4 +82,20 @@ internal class RacingCarTest {
         assertThat(carList[0].distance).isEqualTo("-")
         assertThat(carList[1].distance).isEqualTo("---")
     }
+
+    @Test
+    fun `자동차 출력시 이름과 distance가 제대로 함께 나오는지 확인`() {
+    }
+
+    @Test
+    fun `자동차 이름에 ,로 구분된 빈공백이 있는 경우, 해당 데이터는 제외 후 정상 동작 확인`() {
+    }
+
+    @Test
+    fun `자동차 경주 후, 우승자가 1명일 때 우승자 1명이 제대로 출력되는지 확인`() {
+    }
+
+    @Test
+    fun `자동차 경주 후, 우승자가 2명일 때 우승자 2명이 제대로 출력되는지 확인`() {
+    }
 }
