@@ -26,12 +26,12 @@ class RacingCarGameTest {
         }
         val printer: CarPrinter = CarPrinterImpl(view)
 
-        val cars: List<Car> = (0 until 3).map { CarImpl() }
+        val cars: List<Car> = (0 until 3).map { CarImpl("$it") }
         val turn: Turn = TurnImpl.create(cars, rule, printer)
         val turnManager: TurnManager = TurnManagerImpl(3, turn)
 
-        RacingCarGame(view, turnManager).startRacing()
-        cars.forEach {
+        val result = RacingCarGame(view, turnManager).startRacing(cars)
+        result.cars.forEach {
             assertThat(it.distance).isEqualTo(TOTAL_TURN)
         }
     }
@@ -44,11 +44,11 @@ class RacingCarGameTest {
         }
         val printer: CarPrinter = CarPrinterImpl(view)
 
-        val cars: List<Car> = (0 until 3).map { CarImpl() }
+        val cars: List<Car> = (0 until 3).map { CarImpl("$it") }
         val turn: Turn = TurnImpl.create(cars, rule, printer)
         val turnManager: TurnManager = TurnManagerImpl(3, turn)
 
-        RacingCarGame(view, turnManager).startRacing()
+        RacingCarGame(view, turnManager).startRacing(cars)
 
         assertThat(turn.current).isEqualTo(TOTAL_TURN)
         assertThat(turnManager.isFinishOrProceed()).isTrue()
@@ -62,17 +62,17 @@ class RacingCarGameTest {
         }
         val printer: CarPrinter = CarPrinterImpl(view)
 
-        val cars: List<Car> = (0 until 3).map { CarImpl() }
+        val cars: List<Car> = (0 until 3).map { CarImpl("$it") }
         val turn: Turn = TurnImpl.create(cars, rule, printer)
         val turnManager: TurnManager = TurnManagerImpl(3, turn)
 
-        RacingCarGame(view, turnManager).startRacing()
+        RacingCarGame(view, turnManager).startRacing(cars)
 
         assertThat(view.toString()).isEqualTo(
             "\n$GAME_RESULT\n" +
-                "_\n_\n_\n\n" +
-                "__\n__\n__\n\n" +
-                "___\n___\n___\n\n"
+                "0 : _\n1 : _\n2 : _\n\n" +
+                "0 : __\n1 : __\n2 : __\n\n" +
+                "0 : ___\n1 : ___\n2 : ___\n\n"
         )
     }
 }

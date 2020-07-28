@@ -7,7 +7,7 @@ import step3.racing.car.CarImpl
 class CarMovementRuleImplTest {
     @Test
     fun `moveCarByRule()이 true이면 Car가 Move`() {
-        val car = CarImpl()
+        val car = CarImpl("MOCK")
         val mockUpRule = object : CarMovementRule {
             override val rule = { true }
         }
@@ -17,7 +17,7 @@ class CarMovementRuleImplTest {
 
     @Test
     fun `moveCarByRule()이 false이면 Car가 Move하지 않음`() {
-        val car = CarImpl()
+        val car = CarImpl("MOCK")
         val mockUpRule = object : CarMovementRule {
             override val rule = { false }
         }

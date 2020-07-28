@@ -8,5 +8,7 @@ class MockUpView : View {
         buffer.append("$message\n")
     }
 
+    override fun renderView() {}
+
     override fun toString() = buffer.toString()
 }
