@@ -1,15 +1,14 @@
 package racingcar.view
 
-import racingcar.model.Participants
-
 object ResultView {
     private const val RESULT = "실행 결과"
+    private const val WINNER = "가 최종 우승했습니다."
 
     fun printResultTitle() {
         println(RESULT)
     }
 
-    fun printParticipantsPath(participants: Participants) {
-        println(participants.getMovingStatus())
+    fun printMovingStatus(status: String) {
+        println(status)
     }
 }
