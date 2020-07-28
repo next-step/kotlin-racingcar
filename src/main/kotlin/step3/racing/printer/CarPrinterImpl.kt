@@ -5,5 +5,5 @@ import step3.racing.view.View
 
 class CarPrinterImpl(override val view: View) : CarPrinter {
     override fun printString(car: Car) = (0 until car.distance)
-        .joinToString(separator = "") { "_" }
+        .joinToString(prefix = "${car.name} : ", separator = "") { "_" }
 }
