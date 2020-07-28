@@ -6,13 +6,8 @@ import model.Dice
 class CarManager {
     private val carList: MutableList<Car> = mutableListOf()
     private var tryCount: Int = 0
-    private var carCount: Int = 0
 
     val dice = Dice()
-
-    fun add() {
-        carList.add(Car(dice))
-    }
 
     fun move() {
         for (car in carList) {
@@ -32,19 +27,39 @@ class CarManager {
         return this.tryCount
     }
 
-    fun setCarCount(carCount: Int) {
-        this.carCount = carCount
-    }
-
-    fun getCarCount(): Int {
-        return this.carCount
-    }
-
-    fun carsAdd() {
-        repeat(carCount) { add() }
-    }
-
     fun tryMoving() {
         repeat(tryCount) { move() }
+    }
+
+    fun addDrivers(list: List<String>) {
+        for (driverName in list) {
+            checkDriverName(driverName)
+            carList.add(Car(dice, driverName))
+        }
+    }
+
+    fun getCarWinners(): List<Car> {
+        var winnerList = mutableListOf<Car>()
+        var maxStepCar = carList.maxBy { it.getStep() }!!.getStep()
+        for (car in carList) {
+            addWinnerList(car, maxStepCar, winnerList)
+        }
+        return winnerList
+    }
+
+    private fun addWinnerList(car: Car, maxStepCar: Int, winnerList: MutableList<Car>) {
+        if (car.getStep() == maxStepCar) {
+            winnerList.add(car)
+        }
+    }
+
+    private fun checkDriverName(driverName: String) {
+        if (driverName.length >= LIMIT_DRIVER_NAME_LENGTH) {
+            throw IllegalArgumentException("Driver Name can't over $LIMIT_DRIVER_NAME_LENGTH")
+        }
+    }
+
+    companion object {
+        val LIMIT_DRIVER_NAME_LENGTH = 6
     }
 }

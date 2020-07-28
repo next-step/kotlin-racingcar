@@ -4,12 +4,11 @@ import manager.CarManager
 
 class InputView(private val carManager: CarManager) {
 
-    fun inputCarCount(inputFunction: () -> String) {
-        println("자동차 대수는 몇 대인가요?")
+    fun inputCarsWithName(inputFunction: () -> String) {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
         var input = inputFunction.invoke()
-        checkRegexNumber(input)
-        carManager.setCarCount(input.toInt())
-        carManager.carsAdd()
+        var driverList = input.split(DELIMETER)
+        carManager.addDrivers(driverList)
     }
 
     fun inputTryMoveCount(inputFunction: () -> String) {
@@ -27,6 +26,7 @@ class InputView(private val carManager: CarManager) {
     }
 
     companion object {
+        val DELIMETER = ","
         val VALID_REGEX = Regex(pattern = "^[0-9]+$")
     }
 }

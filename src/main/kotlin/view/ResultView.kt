@@ -5,24 +5,38 @@ import model.Car
 
 class ResultView(private val carManager: CarManager) {
     fun status() {
-        println("실행 결과")
-        printCarsStep()
+        run {
+            println()
+            println("실행 결과")
+            printCarsStep()
+            printCarsWinner()
+        }
     }
 
     private fun printCarsStep() {
         for (i in 0 until carManager.getTryCount()) {
-            println((i + 1).toString() + " 시도")
-            for (car in carManager.getCarList()) {
-                printStep(car, i)
-            }
+            printCar(i)
+            println()
         }
     }
 
-    private fun printStep(car: Car, tryCount: Int) {
+    private fun printCar(i: Int) {
+        for (car in carManager.getCarList()) {
+            printStep(car, i).invoke()
+        }
+    }
+
+    private fun printStep(car: Car, tryCount: Int): () -> Unit = {
+        print(car.getDriverName() + " : ")
         repeat(car.getStepList()[tryCount]) {
             print(STEP_MARKER)
         }
         println()
+    }
+
+    private fun printCarsWinner() {
+        print(carManager.getCarWinners().map { it.getDriverName() }.joinToString(", "))
+        print("가 최종 우승했습니다.")
     }
 
     companion object {
