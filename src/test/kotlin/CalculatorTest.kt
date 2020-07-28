@@ -1,3 +1,4 @@
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -8,28 +9,37 @@ class CalculatorTest {
     @Test
     fun calculate() {
         val calculator = Calculator()
-        val input = listOf<String>("4", "+", "4", "/", "2", "*", "2")
-        val calcValue = calculator.calc(input)
+        val input = listOf("4", "+", "4", "/", "2", "*", "2")
+        val calcValue = calculator.calculate(input)
 
-        assert(calcValue == 8.0)
+        assertThat(calcValue).isEqualTo(8.0)
+    }
+
+    @DisplayName("계산기 테스트(단일 숫자 입력)")
+    @Test
+    fun calculateOnlyOneParameter() {
+        val calculator = Calculator()
+        val inputOne = listOf("4")
+        val oneValue = calculator.calculate(inputOne)
+        assertThat(oneValue).isEqualTo(4.0)
+    }
+
+    @DisplayName("계산기 테스트(단일 숫자 & 단일 연산자 입력)")
+    @Test
+    fun calculateOnlyTwoParameter() {
+        val calculator = Calculator()
+        val inputTwo = listOf<String>("4", "-")
+        val twoValue = calculator.calculate(inputTwo)
+        assertThat(twoValue).isEqualTo(4.0)
     }
 
     @DisplayName("계산기 비 정상 테스트")
     @Test
     fun calculateExcept() {
         val calculator = Calculator()
-
-        val inputOne = listOf<String>("4")
-        val oneValue = calculator.calc(inputOne)
-        assert(oneValue == 4.0)
-
-        val inputOperate = listOf<String>("+")
+        val inputOperate = listOf("+")
         assertThrows<IllegalArgumentException> {
-            calculator.calc(inputOperate)
+            calculator.calculate(inputOperate)
         }
-
-        val inputTwo = listOf<String>("4", "-")
-        val twoValue = calculator.calc(inputTwo)
-        assert(twoValue == 4.0)
     }
 }

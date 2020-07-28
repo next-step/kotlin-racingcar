@@ -1,15 +1,16 @@
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class OperateTest {
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = ["*", "/", "+", "-"])
     @DisplayName("연산자 찾기")
-    fun findOperate() {
-        val plus = Operate.generate("+")
-        assert(plus == Operate.PLUS)
-        val minus = Operate.generate("-")
-        assert(minus == Operate.MINUS)
+    fun findOperate(findOperate: String) {
+        assertThat(Operate.generate(findOperate)).isNotNull()
     }
 
     @Test
@@ -22,7 +23,7 @@ class OperateTest {
 
     @Test
     @DisplayName("계산 함수 테스트")
-    fun calcMethod() {
+    fun calcMethodSuccess() {
         val sum = Operate.PLUS.calc(10.0, 5.0)
         assert(sum == 15.0)
 
@@ -31,7 +32,11 @@ class OperateTest {
 
         val div = Operate.DIVISION.calc(10.0, 5.0)
         assert(div == 2.0)
+    }
 
+    @Test
+    @DisplayName("계산 함수 테스트(예외)")
+    fun calcMethodFail() {
         assertThrows<IllegalArgumentException> {
             Operate.DIVISION.calc(10.0, 0.0)
         }
