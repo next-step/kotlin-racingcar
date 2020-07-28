@@ -7,6 +7,9 @@ object Calculator {
 
     private const val ASCII_ZERO = 48
     private const val ASCII_NINE = 57
+    private const val BLANK_CHARACTER = ' '
+
+    private val NUMBER_RANGE = ASCII_ZERO..ASCII_NINE
 
     fun calculateFormula(formula: String?): Double {
         require(!formula.isNullOrEmpty()) {
@@ -36,7 +39,7 @@ object Calculator {
 
         for (index in formula.indices) {
             when {
-                isEmpty(formula[index]) -> throw IllegalArgumentException("입력 값에 공백이 포함 되었습니다.")
+                isBlank(formula[index]) -> throw IllegalArgumentException("입력 값에 공백이 포함 되었습니다.")
                 index == formula.lastIndex -> {
                     if (!isNumeric(formula[index])) throw IllegalArgumentException("완전하지 않은 식입니다.")
 
@@ -55,9 +58,9 @@ object Calculator {
         }
     }
 
-    private fun isNumeric(operator: Char): Boolean = operator.toInt() in ASCII_ZERO..ASCII_NINE
+    private fun isNumeric(operator: Char): Boolean = operator.toInt() in NUMBER_RANGE
 
-    private fun isEmpty(value: Char): Boolean = value == ' '
+    private fun isBlank(value: Char): Boolean = value == BLANK_CHARACTER
 
     private fun convertCharToOp(op: Char): Operator {
         return when (op) {
