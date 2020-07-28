@@ -21,4 +21,22 @@ class CarTest {
 
         assertThat(result).isFalse()
     }
+
+    @Test
+    fun view_move() {
+        val car = Car()
+
+        car.goStop(car.isGo(4))
+
+        assertThat(car.viewMove).isEqualTo("-")
+    }
+
+    @Test
+    fun random_value() {
+        val car = Car()
+
+        val randomValue = car.randomValue()
+
+        assertThat(randomValue < 10).isTrue()
+    }
 }

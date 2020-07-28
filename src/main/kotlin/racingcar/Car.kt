@@ -3,8 +3,8 @@ package racingcar
 import java.util.Random
 
 class Car {
-    val move = 0
-    val viewMove = ""
+    var move = 0
+    var viewMove = ""
 
     fun randomValue(): Int {
         val random = Random()
@@ -13,5 +13,12 @@ class Car {
 
     fun isGo(randomNum: Int): Boolean {
         return randomNum >= 4
+    }
+
+    fun goStop(boolean: Boolean) {
+        if (boolean) {
+            viewMove += "-"
+            move += 1
+        }
     }
 }
