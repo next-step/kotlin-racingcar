@@ -43,6 +43,19 @@ class CarTest {
             add(Car(name = "bbb").apply { setupDistanceLimitCondition() })
             add(Car(name = "ccc").apply { setupDistanceLimitCondition() })
         }
-        assertThat(racingCar.maxBy { it.distanceCounts.last() }?.distanceCounts?.last()).isEqualTo(racingCar[0].distanceCounts.last())
+        assertThat(racingCar.maxBy { it.distanceCounts.last() }?.distanceCounts?.last())
+            .isEqualTo(racingCar[0].distanceCounts.last())
+    }
+
+    @Test
+    fun `우승자가 여러 명인 경우`() {
+        val racingCar = mutableListOf<Car>().apply {
+            add(Car(name = "aaa").apply { setupDistanceCondition() })
+            add(Car(name = "bbb").apply { setupDistanceCondition() })
+            add(Car(name = "ccc").apply { setupDistanceLimitCondition() })
+        }
+        assertThat(racingCar.maxBy { it.distanceCounts.last() }?.distanceCounts?.last())
+            .isEqualTo(racingCar[0].distanceCounts.last())
+            .isEqualTo(racingCar[1].distanceCounts.last())
     }
 }
