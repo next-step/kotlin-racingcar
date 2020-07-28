@@ -1,1 +1,1 @@
-class Car(val name: String, val position: Int)
+class Car(val name: String, var position: Int)
