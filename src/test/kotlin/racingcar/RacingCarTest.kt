@@ -10,7 +10,7 @@ class RacingCarTest {
         val car = RacingCar()
         car.run(randomNum = 4)
         car.run(randomNum = 9)
-        assertThat(car.distance).isEqualTo(2)
+        assertThat(car.getTotalDistance()).isEqualTo(2)
     }
 
     @Test
@@ -18,7 +18,7 @@ class RacingCarTest {
         val car = RacingCar()
         car.run(randomNum = 0)
         car.run(randomNum = 3)
-        assertThat(car.distance).isEqualTo(0)
+        assertThat(car.getTotalDistance()).isEqualTo(0)
     }
 }
 

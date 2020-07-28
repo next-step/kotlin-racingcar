@@ -8,7 +8,7 @@ object ResultView {
 
     fun showRace(cars: List<RacingCar>) {
         cars.forEach { car ->
-            repeat(car.distance) { print(DISTANCE_MARK) }
+            repeat(car.getTotalDistance()) { print(DISTANCE_MARK) }
             println()
         }
         println()
