@@ -1,7 +1,7 @@
 package step3.racing.printer
 
 import step3.racing.car.Car
-import step3.racing.mock.View
+import step3.racing.view.View
 
 interface CarPrinter {
     val view: View

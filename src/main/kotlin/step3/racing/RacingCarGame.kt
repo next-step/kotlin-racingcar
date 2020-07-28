@@ -1,7 +1,7 @@
 package step3.racing
 
 import step3.racing.const.GAME_RESULT
-import step3.racing.mock.View
+import step3.racing.view.View
 import step3.turn.TurnManager
 
 class RacingCarGame(

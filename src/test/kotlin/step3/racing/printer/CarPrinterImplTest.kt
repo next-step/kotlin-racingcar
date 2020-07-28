@@ -3,7 +3,7 @@ package step3.racing.printer
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import step3.racing.car.CarImpl
-import step3.racing.mock.MockUpView
+import step3.racing.view.MockUpView
 
 class CarPrinterImplTest {
     @Test

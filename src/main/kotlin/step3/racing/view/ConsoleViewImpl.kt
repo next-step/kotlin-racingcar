@@ -1,4 +1,4 @@
-package step3.racing.mock
+package step3.racing.view
 
 class ConsoleViewImpl : View {
     override fun input(message: String?): String? {

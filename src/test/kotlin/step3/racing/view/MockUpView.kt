@@ -1,4 +1,4 @@
-package step3.racing.mock
+package step3.racing.view
 
 class MockUpView : View {
     private val buffer = StringBuffer()

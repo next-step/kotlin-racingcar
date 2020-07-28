@@ -7,7 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import step3.racing.const.CAR_NUMBER_ERROR
 import step3.racing.const.TURN_NUMBER_ERROR
-import step3.racing.mock.MockTurn
+import step3.racing.view.MockTurn
 
 class GameSetupHelperTest {
 

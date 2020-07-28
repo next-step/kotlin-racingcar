@@ -7,8 +7,8 @@ import step3.racing.printer.CarPrinter
 import step3.racing.printer.CarPrinterImpl
 import step3.racing.rule.CarMovementRule
 import step3.racing.rule.CarMovementRuleImpl
-import step3.racing.mock.ConsoleViewImpl
-import step3.racing.mock.View
+import step3.racing.view.ConsoleViewImpl
+import step3.racing.view.View
 import step3.turn.Turn
 import step3.turn.TurnImpl
 import step3.turn.TurnManager

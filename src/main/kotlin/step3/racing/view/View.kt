@@ -1,4 +1,4 @@
-package step3.racing.mock
+package step3.racing.view
 
 interface View {
     fun input(message: String? = null): String?
