@@ -1,6 +1,6 @@
 package step3.racing.view
 
-class ConsoleViewImpl : View {
+abstract class ConsoleView : View {
     override fun input(message: String?): String? {
         if (message != null) {
             print(message)

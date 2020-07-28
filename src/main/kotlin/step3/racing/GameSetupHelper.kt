@@ -5,9 +5,6 @@ import step3.racing.car.CarImpl
 import step3.racing.const.CAR_NUMBER_ERROR
 import step3.racing.const.ERROR_CAR_NAME_OVERFLOW
 import step3.racing.const.TURN_NUMBER_ERROR
-import step3.turn.Turn
-import step3.turn.TurnManager
-import step3.turn.TurnManagerImpl
 
 class GameSetupHelper {
     fun askHowManyCars(input: String?): List<Car> {
@@ -21,10 +18,9 @@ class GameSetupHelper {
         }
     }
 
-    fun askHowManyTurns(input: String?, turn: Turn): TurnManager {
+    fun askHowManyTurns(input: String?): Int {
         try {
-            val totalTurn = input?.toInt()
-            return TurnManagerImpl(totalTurn!!, turn)
+            return input?.toInt()!!
         } catch (e: Exception) {
             throw RacingCarGame.SetupFailException(TURN_NUMBER_ERROR)
         }
