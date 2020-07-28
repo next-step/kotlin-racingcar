@@ -10,10 +10,10 @@ class Car {
         }
     }
 
-    private fun availableForward(): Boolean = WINNER_NUMBER_RANGE.random() > WINNER_NUMBER_CUT_LINE
+    private fun availableForward(): Boolean = FORWARD_CONDITION_RANGE.random() >= FORWARD_CONDITION_MIN_NUM
 
     companion object {
-        private val WINNER_NUMBER_RANGE = 0..9
-        private const val WINNER_NUMBER_CUT_LINE = 3
+        private val FORWARD_CONDITION_RANGE = 0..9
+        private const val FORWARD_CONDITION_MIN_NUM = 4
     }
 }
