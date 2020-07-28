@@ -1,7 +1,7 @@
 package week1.step3
 
 class Car {
-    var forwardCount = 1
+    var forwardCount = 0
         private set
 
     fun updateForwardCount() {
