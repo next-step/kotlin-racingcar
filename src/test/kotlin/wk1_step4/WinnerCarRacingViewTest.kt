@@ -28,6 +28,12 @@ class WinnerCarRacingViewTest {
             WinnerCarRacingView.parsingCars("longName,ta")
         }.isInstanceOf(WinnerCarRacingException::class.java)
     }
+    @Test
+    fun `글자 마지막에 ","가 있는 경우`() {
+        Assertions.assertThatThrownBy {
+            WinnerCarRacingView.parsingCars("longName,ta")
+        }.isInstanceOf(WinnerCarRacingException::class.java)
+    }
 
     @Test
     fun `시도 횟수가 없거나 null 인 경우`() {

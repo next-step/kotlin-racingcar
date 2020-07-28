@@ -1,5 +1,7 @@
 package wk1_step4
 
+import java.lang.IndexOutOfBoundsException
+
 object WinnerCarRacing {
 
     private fun moveOrStop(car: Car) {
@@ -14,5 +16,11 @@ object WinnerCarRacing {
         for (car in cars) {
             moveOrStop(car)
         }
+    }
+
+    @Throws(IndexOutOfBoundsException::class)
+    fun resultOfRacing(cars: List<Car>): List<Car> {
+        val maxDistance = cars.maxBy { it.position }!!.position
+        return cars.filter { it.position == maxDistance }.toList()
     }
 }
