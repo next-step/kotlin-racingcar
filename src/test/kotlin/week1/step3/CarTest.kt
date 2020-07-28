@@ -8,7 +8,7 @@ class CarTest {
 
     @Test
     fun `전진 조건이 아닐 경우`() {
-        val car = Car().apply {
+        val car = Car("test").apply {
             setupForwardLimitCondition()
         }
         assertThat(car.forwardCount).isLessThan(4)
@@ -16,7 +16,7 @@ class CarTest {
 
     @Test
     fun `전진 조건인 경우`() {
-        val car = Car().apply {
+        val car = Car("test").apply {
             setupForwardCondition()
         }
         assertThat(car.forwardCount).isGreaterThan(3)
@@ -26,6 +26,13 @@ class CarTest {
     fun `차 이름이 5글자가 넘은 경우`() {
         assertThatIllegalArgumentException().isThrownBy {
             Car("abcdef")
+        }
+    }
+
+    @Test
+    fun `차 이름이 없는 경우`() {
+        assertThatIllegalArgumentException().isThrownBy {
+            Car()
         }
     }
 }
