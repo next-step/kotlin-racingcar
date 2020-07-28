@@ -1,7 +1,10 @@
+package step1
+
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
+import step1.Person
 
 class PersonTest {
 
