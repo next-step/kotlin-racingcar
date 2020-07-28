@@ -1,3 +1,5 @@
+package calculator
+
 class StringCalculator {
     fun validateStringForCalculate(str: String?) {
         if (str == null) {

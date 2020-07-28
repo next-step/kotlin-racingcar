@@ -1,3 +1,8 @@
+package view
+
+import manager.CarManager
+import model.Car
+
 class ResultView(private val carManager: CarManager) {
     fun status() {
         println("실행 결과")

@@ -1,6 +1,10 @@
+package view
+
+import manager.CarManager
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import view.InputView
 
 class InputViewTests {
     @Test

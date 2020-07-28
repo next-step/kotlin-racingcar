@@ -1,3 +1,7 @@
+package manager
+
+import model.Car
+
 class CarManager {
     val carList: MutableList<Car> = mutableListOf()
     var tryCount: Int = 0

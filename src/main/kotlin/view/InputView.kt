@@ -1,3 +1,7 @@
+package view
+
+import manager.CarManager
+
 class InputView {
     val carManager: CarManager
 
