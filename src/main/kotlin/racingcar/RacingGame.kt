@@ -5,11 +5,11 @@ import racingcar.strategy.MovingStrategy
 import racingcar.view.ResultView
 
 class RacingGame(
-    private val carCount: Int,
+    private val carNames: String,
     private val tryCount: Int,
     private val movingStrategy: MovingStrategy
 ) {
-    private val participants = Participants(carCount, movingStrategy)
+    private val participants = Participants(carNames, movingStrategy)
 
     fun start() {
         for (i in 0 until tryCount) {

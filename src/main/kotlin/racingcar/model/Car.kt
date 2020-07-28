@@ -4,11 +4,12 @@ import racingcar.strategy.MovingStrategy
 
 data class Car(
     private val id: Int,
+    private val name: String,
     private val movingStrategy: MovingStrategy
 ) {
     private var position = 0
 
-    fun getName() = "$NAME_TITLE$id"
+    fun getName() = "$NAME_TITLE$id $name"
 
     fun getMovingPath() = PATH_SYMBOL.repeat(position)
 
