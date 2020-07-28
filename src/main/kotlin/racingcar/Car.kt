@@ -1,24 +1,19 @@
 package racingcar
 
-import java.util.Random
-
-class Car {
+class Car(private val num: Int) {
     private var move = 0
-    var viewMove = ""
 
-    fun randomValue(): Int {
-        val random = Random()
-        return random.nextInt(10)
-    }
-
-    fun isGo(randomNum: Int): Boolean {
+    private fun isGo(randomNum: Int): Boolean {
         return randomNum >= 4
     }
 
-    fun goStop(boolean: Boolean) {
-        if (boolean) {
-            viewMove += "-"
+    fun goStop(random: Int) {
+        if (isGo(random)) {
             move += 1
         }
     }
+
+    fun getMove(): Int = move
+
+    fun getNum(): Int = num
 }

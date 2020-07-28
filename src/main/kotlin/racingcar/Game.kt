@@ -1,29 +1,33 @@
 package racingcar
 
-class Game {
-    val cars = mutableListOf<Car>()
-    var moveTime = 0
+class Game(private val carNum: Int, private var moveTime: Int) {
+    private val cars = mutableListOf<Car>()
 
-    fun makeCars(number: Int) {
+    init {
+        makeCars(carNum)
+    }
+
+    private fun makeCars(number: Int) {
         for (num in 1..number) {
-            val car = Car()
+            val car = Car(num)
             cars.add(car)
         }
     }
 
-    fun readyGame(carNum: Int, moveTime: Int) {
-        makeCars(carNum)
-        this.moveTime = moveTime
-    }
-
-    fun startGame() {
-        for (x in 1..moveTime) {
-            println("${x}번째 입니다")
-            for (car in cars) {
-                car.goStop(car.isGo(car.randomValue()))
-                println(car.viewMove)
-            }
-            println()
+    fun race() {
+        moveTime -= 1
+        for (car in cars) {
+            car.goStop(randomValue())
         }
     }
+
+    fun isEndGame(): Boolean {
+        return moveTime == 0
+    }
+
+    fun getCars(): List<Car> = cars
+
+    fun getMoveTime(): Int = moveTime
+
+    private fun randomValue(): Int = (0..9).random()
 }

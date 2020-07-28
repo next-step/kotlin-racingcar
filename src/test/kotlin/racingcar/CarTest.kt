@@ -6,37 +6,19 @@ import org.junit.jupiter.api.Test
 class CarTest {
     @Test
     fun is_go() {
-        val car = Car()
+        val car = Car(1)
 
-        val result = car.isGo(4)
+        car.goStop(4)
 
-        assertThat(result).isTrue()
+        assertThat(car.getMove()).isEqualTo(1)
     }
 
     @Test
     fun is_not_go() {
-        val car = Car()
+        val car = Car(1)
 
-        val result = car.isGo(3)
+        car.goStop(3)
 
-        assertThat(result).isFalse()
-    }
-
-    @Test
-    fun view_move() {
-        val car = Car()
-
-        car.goStop(car.isGo(4))
-
-        assertThat(car.viewMove).isEqualTo("-")
-    }
-
-    @Test
-    fun random_value() {
-        val car = Car()
-
-        val randomValue = car.randomValue()
-
-        assertThat(randomValue < 10).isTrue()
+        assertThat(car.getMove()).isEqualTo(0)
     }
 }
