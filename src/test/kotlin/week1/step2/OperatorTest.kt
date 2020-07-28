@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.util.LinkedList
 
-class CalculatorOperatorTest {
+class OperatorTest {
 
     private val numberGroup = LinkedList<Double>()
 
