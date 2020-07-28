@@ -7,7 +7,8 @@ data class Car(
     private val name: String,
     private val movingStrategy: MovingStrategy
 ) {
-    private var position = 0
+    var position = 0
+        private set
 
     fun getName() = "$NAME_TITLE$id $name"
 

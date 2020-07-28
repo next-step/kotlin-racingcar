@@ -18,6 +18,11 @@ data class Participants(
 
     fun getMovingStatus() = participants.joinToString("") { "${it.getName()} ${it.getMovingPath()}\n" }
 
+    fun findWinner(): List<Car> {
+        val maxPosition = participants.maxBy { it.position }?.position ?: return emptyList()
+        return participants.filter { it.position == maxPosition }
+    }
+
     companion object {
         private const val PARTICIPANTS_DELIMITER = ","
     }

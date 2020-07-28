@@ -19,5 +19,7 @@ class RacingGame(
         return participants.getMovingStatus()
     }
 
+    fun findWinners() = participants.findWinner()
+
     fun isProgress() = tryCount > 0
 }

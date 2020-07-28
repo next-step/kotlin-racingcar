@@ -9,11 +9,11 @@ fun main() {
     val tryCount = InputView.readTryCount { InputValidator.isValidTryCount(it) }
     val gameHost = RacingGame(carCount, tryCount, RandomMovingStrategy())
 
+    ResultView.printResultTitle()
     while (gameHost.isProgress()) {
         val movingStatus = gameHost.startRound()
         ResultView.printMovingStatus(movingStatus)
     }
 
-    ResultView.printResultTitle()
-    gameHost.startRound()
+    ResultView.printWinners(gameHost.findWinners())
 }
