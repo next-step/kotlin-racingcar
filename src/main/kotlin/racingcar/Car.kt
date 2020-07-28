@@ -3,7 +3,7 @@ package racingcar
 import java.util.Random
 
 class Car {
-    var move = 0
+    private var move = 0
     var viewMove = ""
 
     fun randomValue(): Int {

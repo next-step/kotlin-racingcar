@@ -17,8 +17,20 @@ class GameTest {
     fun make_cars() {
         val game = Game()
 
-        game.makeCar(3)
+        game.makeCars(3)
 
         assertThat(game.cars.size).isEqualTo(3)
+    }
+
+    @Test
+    fun ready_game() {
+        val inputCarNum = 3
+        val inputMoveTime = 5
+        val game = Game()
+
+        game.readyGame(inputCarNum, inputMoveTime)
+
+        assertThat(game.cars.size).isEqualTo(3)
+        assertThat(game.moveTime).isEqualTo(5)
     }
 }
