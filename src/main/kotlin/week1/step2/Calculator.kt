@@ -16,10 +16,10 @@ object Calculator {
         val (numberGroup: Queue<Double>, operatorGroup) = LinkedList<Double>() to mutableListOf<Operator>()
         separateNumAndOpList(formula, numberGroup, operatorGroup)
 
-        return calOperator(numberGroup, operatorGroup)
+        return calculateOperator(numberGroup, operatorGroup)
     }
 
-    fun calOperator(numberGroup: Queue<Double>, operatorGroup: List<Operator>): Double {
+    fun calculateOperator(numberGroup: Queue<Double>, operatorGroup: List<Operator>): Double {
         var result = numberGroup.poll()
         for (operator in operatorGroup) {
             result = operator.opCal(result, numberGroup.poll())
