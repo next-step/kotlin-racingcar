@@ -9,7 +9,7 @@ object Calculator {
     private const val ASCII_NINE = 57
 
     fun calculateFormula(formula: String?): Double {
-        if (formula.isNullOrEmpty()) {
+        require(!formula.isNullOrEmpty()) {
             throw IllegalArgumentException("입력 값이 유효하지 않습니다.")
         }
 
