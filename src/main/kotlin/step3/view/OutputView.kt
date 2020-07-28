@@ -1,22 +1,27 @@
 package step3.view
 
 import step3.RacingResult
-import step3.RacingTrack
+import step3.RacingRecord
 
-fun printRacingResults(racingResults: List<RacingResult>) {
+fun printRacingResult(racingResult: RacingResult) {
     println("실행 결과")
-    racingResults.forEach { printRacingResult(it) }
-    printWinners(racingResults.last().findCurrentWinners())
+    printRacingRecords(racingResult.records)
+    printWinners(racingResult.winners)
 }
 
-private fun printRacingResult(racingResult: RacingResult) {
-    racingResult.racingTracks.forEach { printTrack(it) }
+private fun printRacingRecords(racingRecords: List<RacingRecord>) {
+    racingRecords.forEach { printRacingRecord(it) }
     println()
 }
 
-private fun printTrack(racingTrack: RacingTrack) {
-    print("${racingTrack.carName} : ")
-    repeat(racingTrack.carDistance) { print("-") }
+private fun printRacingRecord(racingRecord: RacingRecord) {
+    racingRecord.value.keys.forEach { printTrack(it, racingRecord.value[it]!!) }
+    println()
+}
+
+private fun printTrack(carName: String, distance: Int) {
+    print("$carName : ")
+    repeat(distance) { print("-") }
     println()
 }
 

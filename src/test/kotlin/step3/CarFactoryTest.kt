@@ -11,7 +11,7 @@ class CarFactoryTest {
         val cars = CarFactory.create(listOf("a", "b", "c"))
 
         // then
-        assertThat(cars.getCurrentRacingTracks()).hasSize(3)
+        assertThat(cars.getCurrentRacingRecord().value).hasSize(3)
     }
 
     @Test
