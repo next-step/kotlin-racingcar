@@ -1,7 +1,3 @@
-fun main() {
-    println(StringCalculator.calculate("1 + 2 + 3"))
-}
-
 class StringCalculator {
     companion object {
         private val INVALID_PATTERN = Regex("^d+((\\s)[\\+\\-\\*\\/](\\s)d+)+?")
