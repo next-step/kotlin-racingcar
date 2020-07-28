@@ -1,41 +1,39 @@
 import kotlin.random.Random
 
 const val RANDOM_RANGE = 10
-class CarController {
+class CarController(carCount: Int, private val playCount: Int) {
+    private var cars: List<Car>
 
-    fun makeCars(count: Int): List<Car> {
-        var cars = mutableListOf<Car>()
+    init {
+        cars = makeCars(carCount)
+    }
+
+    private fun makeCars(count: Int): List<Car> {
+        val cars = mutableListOf<Car>()
         for (i in 0 until count) {
             cars.add(Car())
         }
-
         return cars
     }
 
-    fun move(cars: List<Car>): List<Car> {
-        cars.forEach {
-            it.accelerate(Random.nextInt(RANDOM_RANGE))
-        }
-        return cars
-    }
-
-    fun play(cars: List<Car>, resultView: ResultView) {
-        move(cars)
-        resultView.printResult(cars)
-    }
-
-    fun process(inputView: InputView, resultView: ResultView) {
-        var cars = makeCars(inputView.carCountInput())
-        val playCount = inputView.playCountInput()
-
+    fun play(resultView: ResultView) {
         resultView.printInit()
         repeat(playCount) {
-            play(cars, resultView)
+            cars.forEach {
+                it.accelerate(Random.nextInt(RANDOM_RANGE))
+            }
+            resultView.printResult(cars)
         }
     }
 }
 
 fun main() {
-    val carController = CarController()
-    carController.process(InputView(), ResultView())
+    val inputView = InputView()
+    val resultView = ResultView()
+
+    val carCount = inputView.carCountInput()
+    val playCount = inputView.playCountInput()
+
+    val carController = CarController(carCount, playCount)
+    carController.play(resultView)
 }
