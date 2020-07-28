@@ -1,3 +1,5 @@
+package wk1_step3
+
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test

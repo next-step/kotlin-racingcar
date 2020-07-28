@@ -1,3 +1,5 @@
+package wk1_step4
+
 object WinnerCarRacingView {
 
     fun showFirstInstruction() {

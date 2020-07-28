@@ -1,3 +1,5 @@
+package wk1_step2
+
 import java.lang.AssertionError
 import java.lang.NullPointerException
 import java.math.BigDecimal
@@ -44,7 +46,9 @@ class Calculator {
                     try {
                         input.toBigDecimal()
                         numberCount++
-                        if (numberCount > 1 && numberCount - 1 != symbolCount) throw CalculatorException("숫자 다음에는 반드시 사칙연산 기호가 입력되어야 합니다.")
+                        if (numberCount > 1 && numberCount - 1 != symbolCount) throw CalculatorException(
+                            "숫자 다음에는 반드시 사칙연산 기호가 입력되어야 합니다."
+                        )
                     } catch (e: NumberFormatException) {
                         throw NumberFormatException("숫자와 사칙연산 기호 사이 공백이 존재하는지, 사칙연산 기호 외에 다른 기호가 들어갔는지 확인해주세요.")
                     }

@@ -1,3 +1,5 @@
+package wk1_step4
+
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 

@@ -1,3 +1,5 @@
+package wk1_step3
+
 import java.lang.NullPointerException
 import java.lang.NumberFormatException
 
