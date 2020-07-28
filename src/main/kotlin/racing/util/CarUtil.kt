@@ -30,6 +30,7 @@ class CarUtil {
             }
         }
 
-        fun splitNames(names: String) = names.split(DELIMETER).filter { name -> name.isNotBlank() }
+        fun splitNames(names: String) =
+            names.split(DELIMETER).filter { name -> name.isNotBlank() }.map { name -> name.trim() }
     }
 }

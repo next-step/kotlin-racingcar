@@ -6,6 +6,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import racing.Infrastructure.RacingCar
 import racing.domain.Car
+import racing.domain.Cars
 import racing.domain.RacingState
 import racing.presentation.ResultView
 
@@ -85,6 +86,11 @@ internal class RacingCarTest {
 
     @Test
     fun `자동차 출력시 이름과 distance가 제대로 함께 나오는지 확인`() {
+        val cars1: Cars = listOf(Car("k3", "----"), Car("k5", "--"))
+        val cars2: Cars = listOf(Car("k3", "-----"), Car("k5", "--"))
+
+        val list = listOf(cars1, cars2)
+        ResultView().view(list)
     }
 
     @Test
