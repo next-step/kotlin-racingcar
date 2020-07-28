@@ -1,6 +1,7 @@
 package week1.step3
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
 
 class CarTest {
@@ -19,5 +20,12 @@ class CarTest {
             setupForwardCondition()
         }
         assertThat(car.forwardCount).isGreaterThan(3)
+    }
+
+    @Test
+    fun `차 이름이 5글자가 넘은 경우`() {
+        assertThatIllegalArgumentException().isThrownBy {
+            Car("abcdef")
+        }
     }
 }

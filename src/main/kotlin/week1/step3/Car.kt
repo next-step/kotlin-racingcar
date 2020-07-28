@@ -3,6 +3,11 @@ package week1.step3
 import org.jetbrains.annotations.TestOnly
 
 class Car(val name: String = "") {
+
+    init {
+        if (name.length > 5) throw IllegalArgumentException("차 이름이 깁니다.")
+    }
+
     var forwardCount = 0
         private set
 
