@@ -1,5 +1,5 @@
 package racingcar.strategy
 
-object FairMovingStrategy : MovingStrategy {
+class FairMovingStrategy : MovingStrategy {
     override val isMovable = true
 }

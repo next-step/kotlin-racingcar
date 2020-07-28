@@ -2,19 +2,24 @@ package racingcar
 
 import racingcar.model.Participants
 import racingcar.strategy.MovingStrategy
-import racingcar.view.ResultView
 
 class RacingGame(
-    private val carCount: Int,
-    private val tryCount: Int,
+    private val carNames: String,
+    private var tryCount: Int,
     private val movingStrategy: MovingStrategy
 ) {
-    private val participants = Participants(carCount, movingStrategy)
+    private val participants = Participants(carNames, movingStrategy)
 
-    fun start() {
-        for (i in 0 until tryCount) {
+    fun startRound(): String {
+        if (isProgress()) {
             participants.processRound()
-            ResultView.printParticipantsPath(participants)
+            tryCount--
         }
+
+        return participants.getMovingStatus()
     }
+
+    fun findWinners() = participants.findWinner()
+
+    fun isProgress() = tryCount > 0
 }

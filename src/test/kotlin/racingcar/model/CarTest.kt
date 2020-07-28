@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test
 import racingcar.strategy.FairMovingStrategy
 
 internal class CarTest {
-    private val car = Car(0, FairMovingStrategy)
+    private val car = Car(0, "car", FairMovingStrategy())
 
     @Test
     fun getName() {
-        assertThat(car.getName()).isEqualTo("No.0")
+        assertThat(car.getName()).isEqualTo("No.0 car")
     }
 
     @Test
