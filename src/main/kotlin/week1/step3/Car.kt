@@ -9,31 +9,31 @@ class Car(val name: String = "") {
         if (name.isEmpty()) throw IllegalArgumentException("차 이름이 유효하지 않습니다.")
     }
 
-    private val _forwardCounts = mutableListOf(0)
-    val forwardCounts: List<Int> get() = _forwardCounts
+    private val _distanceCounts = mutableListOf(0)
+    val distanceCounts: List<Int> get() = _distanceCounts
 
-    fun updateForwardCount() {
-        if (availableForward()) {
-            _forwardCounts.add(_forwardCounts.last() + 1)
+    fun updateDistanceCount() {
+        if (availableMoving()) {
+            _distanceCounts.add(_distanceCounts.last() + 1)
         } else {
-            _forwardCounts.add(_forwardCounts.last())
+            _distanceCounts.add(_distanceCounts.last())
         }
     }
 
     @TestOnly
-    fun setupForwardCondition() {
-        _forwardCounts.add(FORWARD_CONDITION_MIN_NUM)
+    fun setupDistanceCondition() {
+        _distanceCounts.add(MOVING_CONDITION_MIN_NUM)
     }
 
     @TestOnly
-    fun setupForwardLimitCondition() {
-        _forwardCounts.add(FORWARD_CONDITION_MIN_NUM - 1)
+    fun setupDistanceLimitCondition() {
+        _distanceCounts.add(MOVING_CONDITION_MIN_NUM - 1)
     }
 
-    private fun availableForward(): Boolean = FORWARD_CONDITION_RANGE.random() >= FORWARD_CONDITION_MIN_NUM
+    private fun availableMoving(): Boolean = MOVING_CONDITION_RANGE.random() >= MOVING_CONDITION_MIN_NUM
 
     companion object {
-        private val FORWARD_CONDITION_RANGE = 0..9
-        private const val FORWARD_CONDITION_MIN_NUM = 4
+        private val MOVING_CONDITION_RANGE = 0..9
+        private const val MOVING_CONDITION_MIN_NUM = 4
     }
 }

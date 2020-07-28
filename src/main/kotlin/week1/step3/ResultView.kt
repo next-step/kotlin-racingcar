@@ -10,15 +10,15 @@ object ResultView {
     }
 
     private fun printWinners(racingCar: List<Car>, tryCount: Int) {
-        val finalRound = racingCar.map { it.forwardCounts[tryCount] }
+        val finalRound = racingCar.map { it.distanceCounts[tryCount] }
         val winners = mutableListOf<String>()
         for (index in finalRound.indices) {
-            setupWInner(finalRound, index, winners, racingCar)
+            setupWinners(finalRound, index, winners, racingCar)
         }
         println("${winners.joinToString()}가 최종 우승했습니다.")
     }
 
-    private fun setupWInner(finalRound: List<Int>, index: Int, winners: MutableList<String>, racingCar: List<Car>) {
+    private fun setupWinners(finalRound: List<Int>, index: Int, winners: MutableList<String>, racingCar: List<Car>) {
         if (finalRound[index] == finalRound.max()) {
             winners.add(racingCar[index].name)
         }
@@ -33,7 +33,7 @@ object ResultView {
 
     private fun printDistance(car: Car, step: Int) {
         print("${car.name} : ")
-        for (distance in 0..car.forwardCounts[step]) {
+        for (distance in 0..car.distanceCounts[step]) {
             print("-")
         }
         println()

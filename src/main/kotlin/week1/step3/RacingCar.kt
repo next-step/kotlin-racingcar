@@ -14,7 +14,7 @@ fun main() {
 
 private fun startRacing(racingCar: List<Car>, tryCount: Int) {
     repeat(tryCount) {
-        racingCar.forEach { it.updateForwardCount() }
+        racingCar.forEach { it.updateDistanceCount() }
     }
 }
 

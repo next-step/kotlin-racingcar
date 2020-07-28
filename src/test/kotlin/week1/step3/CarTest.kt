@@ -9,17 +9,17 @@ class CarTest {
     @Test
     fun `전진 조건이 아닐 경우`() {
         val car = Car("test").apply {
-            setupForwardLimitCondition()
+            setupDistanceLimitCondition()
         }
-        assertThat(car.forwardCount).isLessThan(4)
+        assertThat(car.distanceCounts.last()).isLessThan(4)
     }
 
     @Test
     fun `전진 조건인 경우`() {
         val car = Car("test").apply {
-            setupForwardCondition()
+            setupDistanceCondition()
         }
-        assertThat(car.forwardCount).isGreaterThan(3)
+        assertThat(car.distanceCounts.last()).isGreaterThan(3)
     }
 
     @Test
