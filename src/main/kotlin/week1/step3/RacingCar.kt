@@ -8,12 +8,12 @@ fun main() {
         }
     }
 
-    // val racingStep = startRacing(racingCar, tryCount)
+    val racingStep = startRacing(racingCar, tryCount)
 
-    // showRacingStep(carCount, racingStep)
+    showRacingStep(racingCar.map { it.name }, racingStep)
 }
 
-private fun startRacing(racingCar: Array<Car>, tryCount: Int): List<Int> {
+private fun startRacing(racingCar: List<Car>, tryCount: Int): List<Int> {
     val racingStep = mutableListOf<Int>()
 
     repeat(tryCount) {
@@ -25,6 +25,6 @@ private fun startRacing(racingCar: Array<Car>, tryCount: Int): List<Int> {
     return racingStep
 }
 
-private fun showRacingStep(carCount: Int, racingStep: List<Int>) {
-    ResultView.printRacingStep(carCount, racingStep)
+private fun showRacingStep(carNames: List<String>, racingStep: List<Int>) {
+    ResultView.printRacingStep(carNames, racingStep)
 }
