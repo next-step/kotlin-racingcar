@@ -18,8 +18,8 @@ internal class RacingCarTest {
     }
 
     @Test
-    fun `internal can move test`() {
-        assertThat(Car().canMove(4)).isTrue()
-        assertThat(Car().canMove(3)).isTrue()
+    fun `greaterThanOrEqualToMovableValue`() {
+        assertThat(greaterThanOrEqualToMovableValue(4)).isTrue()
+        assertThat(greaterThanOrEqualToMovableValue(3)).isTrue()
     }
 }
