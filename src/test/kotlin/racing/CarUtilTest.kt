@@ -1,5 +1,6 @@
 package racing
 
+import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
 import racing.util.CarUtil
@@ -33,5 +34,13 @@ internal class CarUtilTest {
 
     @Test
     fun `, , , 와 같은 자동차 이름이 입력된 경우, validate 시 exception 발생`() {
+        assertThatIllegalArgumentException().isThrownBy {
+            CarUtil.validate(" , , , ", "10")
+        }.withMessage(CarUtil.DATA_FORMMAT_IS_BAD)
+    }
+
+    @Test
+    fun `자동차 이름에 "k3, k5, , "와 같이 , 로 구분된 빈공백이 있는 경우, 2개의 name만 인정되는지 확인`() {
+        assertThat(CarUtil.splitNames("k3, k5,  , ").size).isEqualTo(2)
     }
 }
