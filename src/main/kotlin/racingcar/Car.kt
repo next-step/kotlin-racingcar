@@ -24,4 +24,6 @@ class Car(val name: String) {
     }
 
     private fun canMove(randomValue: Int) = randomValue >= MOVABLE_VALUE
+
+    fun isWinner(max: Int) = currentPosition == max
 }

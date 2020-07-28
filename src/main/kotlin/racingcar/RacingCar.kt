@@ -32,7 +32,7 @@ class RacingCar(carNames: List<String>) {
     private fun getWinner(cars: List<Car>): List<Car> {
         val max = cars.maxBy { it.currentPosition }!!.currentPosition
         cars.forEach {
-            if (max == it.currentPosition) winnerCars.add(it)
+            if (it.isWinner(max)) winnerCars.add(it)
         }
         return winnerCars
     }
