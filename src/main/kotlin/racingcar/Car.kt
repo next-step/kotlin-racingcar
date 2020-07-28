@@ -1,7 +1,11 @@
 package racingcar
 
 class Car(val name: String) {
-    var currentPosition = 0
+    companion object {
+        const val MOVABLE_VALUE = 4
+    }
+
+    private var currentPosition = 0
     fun moveForward(): Int {
         if (canMove()) moveOneBlock()
         return currentPosition
