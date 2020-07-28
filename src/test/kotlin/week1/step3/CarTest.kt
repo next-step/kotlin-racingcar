@@ -7,16 +7,16 @@ class CarTest {
 
     @Test
     fun `전진 조건이 아닐 경우`() {
-        val car = Car()
-        car.updateForwardCount()
+        val car = Car().apply {
+            setupForwardLimitCondition()
+        }
         assertThat(car.forwardCount).isLessThan(4)
     }
 
     @Test
     fun `전진 조건인 경우`() {
-        val car = Car()
-        for (i in 0..10) {
-            car.updateForwardCount()
+        val car = Car().apply {
+            setupForwardCondition()
         }
         assertThat(car.forwardCount).isGreaterThan(3)
     }

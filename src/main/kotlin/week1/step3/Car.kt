@@ -1,5 +1,7 @@
 package week1.step3
 
+import org.jetbrains.annotations.TestOnly
+
 class Car {
     var forwardCount = 0
         private set
@@ -8,6 +10,16 @@ class Car {
         if (availableForward()) {
             forwardCount++
         }
+    }
+
+    @TestOnly
+    fun setupForwardCondition() {
+        forwardCount = FORWARD_CONDITION_MIN_NUM
+    }
+
+    @TestOnly
+    fun setupForwardLimitCondition() {
+        forwardCount = FORWARD_CONDITION_MIN_NUM - 1
     }
 
     private fun availableForward(): Boolean = FORWARD_CONDITION_RANGE.random() >= FORWARD_CONDITION_MIN_NUM
