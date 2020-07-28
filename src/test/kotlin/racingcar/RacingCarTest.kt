@@ -17,25 +17,9 @@ internal class RacingCarTest {
         assertThat(position in 0..1).isTrue()
     }
 
-    // private 메서드를 테스트하는 방법을 검색해서 java의 reflection을 사용했는데...
-    // 배보다 배꼽이 커진느낌을 지울 수 없습니다. 더 좋은 방법이 있는지 궁금합니다!
     @Test
-    fun `can move false`() {
-        val car = Car("a")
-        val canMoveMethod = car.javaClass.getDeclaredMethod("canMove", Int::class.java)
-        canMoveMethod.trySetAccessible()
-        assertThat(canMoveMethod.canAccess(car)).isTrue()
-        val actual = canMoveMethod.invoke(car, 3) as Boolean
-        assertThat(actual).isFalse()
-    }
-
-    @Test
-    fun `can move true`() {
-        val car = Car("a")
-        val canMoveMethod = car.javaClass.getDeclaredMethod("canMove", Int::class.java)
-        canMoveMethod.trySetAccessible()
-        assertThat(canMoveMethod.canAccess(car)).isTrue()
-        val actual = canMoveMethod.invoke(car, 4) as Boolean
-        assertThat(actual).isTrue()
+    fun `internal can move test`() {
+        assertThat(Car().canMove(4)).isTrue()
+        assertThat(Car().canMove(3)).isTrue()
     }
 }
