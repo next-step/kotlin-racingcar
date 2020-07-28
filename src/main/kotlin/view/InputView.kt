@@ -2,36 +2,28 @@ package view
 
 import manager.CarManager
 
-class InputView {
-    val carManager: CarManager
+class InputView(private val carManager: CarManager) {
 
-    constructor(carManager: CarManager) {
-        this.carManager = carManager
-    }
-
-    fun inputCarCount(input: String) {
+    fun inputCarCount(inputFunction: () -> String) {
         println("자동차 대수는 몇 대인가요?")
-        if (!VALID_REGEX.matches(input)) {
-            throw IllegalArgumentException("only input number please")
-        }
-        carsAdd(input.toInt())
+        var input = inputFunction.invoke()
+        checkRegexNumber(input)
+        carManager.setCarCount(input.toInt())
+        carManager.carsAdd()
     }
 
-    fun inputTryMoveCount(input: String) {
+    fun inputTryMoveCount(inputFunction: () -> String) {
         println("시도할 횟수는 몇 회인가요?")
+        var input = inputFunction.invoke()
+        checkRegexNumber(input)
+        carManager.setTryCount(input.toInt())
+        carManager.tryMoving()
+    }
+
+    private fun checkRegexNumber(input: String) {
         if (!VALID_REGEX.matches(input)) {
             throw IllegalArgumentException("only input number please")
         }
-        tryMoving(input.toInt())
-    }
-
-    fun carsAdd(carCount: Int) {
-        repeat(carCount) { carManager.add() }
-    }
-
-    fun tryMoving(tryCount: Int) {
-        carManager.tryCount = tryCount
-        repeat(tryCount) { carManager.move() }
     }
 
     companion object {

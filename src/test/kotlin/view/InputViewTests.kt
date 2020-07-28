@@ -4,36 +4,56 @@ import manager.CarManager
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import view.InputView
 
 class InputViewTests {
     @Test
-    fun `carsAdd`() {
+    fun `carsAddAndThenCreateCarListEqualsInputValue`() {
+        // given
         val carManager = CarManager()
         val inputView = InputView(carManager)
-        inputView.carsAdd(5)
-        assertThat(5).isEqualTo(carManager.carList.size)
+
+        // when
+        inputView.inputCarCount { "5" }
+
+        // then
+        assertThat(5).isEqualTo(carManager.getCarList().size)
     }
 
     @Test
-    fun `tryMoving`() {
+    fun `tryMovingIncrementTryMoveCount`() {
+        // given
         val carManager = CarManager()
         val inputView = InputView(carManager)
-        inputView.tryMoving(5)
-        assertThat(5).isEqualTo(carManager.tryCount)
+
+        // when
+        inputView.inputTryMoveCount { "5" }
+
+        // then
+        assertThat(5).isEqualTo(carManager.getTryCount())
     }
 
     @Test
     fun `inputNotNumberThrowExceptionCarCount`() {
+        // given
         val carManager = CarManager()
         val inputView = InputView(carManager)
-        assertThrows<IllegalArgumentException> { inputView.inputCarCount("abcd") }
+        // then
+        assertThrows<IllegalArgumentException> {
+            // when invalid character
+            inputView.inputCarCount { "abcd" }
+        }
     }
 
     @Test
     fun `inputNotNumberThrowExceptionTryMoveCount`() {
         val carManager = CarManager()
         val inputView = InputView(carManager)
-        assertThrows<IllegalArgumentException> { inputView.inputTryMoveCount("abcd") }
+        // then
+        assertThrows<IllegalArgumentException> {
+            // when invalid character
+            inputView.inputTryMoveCount {
+                "abcd"
+            }
+        }
     }
 }

@@ -25,7 +25,7 @@ class StringCalculator {
         numListIndex++
         for (operator in operatorList) {
             checkDivideZero(operator, numList, numListIndex)
-            result = Operator.findSymbolOperator(operator).apply(result, numList[numListIndex].toInt())
+            result = Operator.findSymbolOperator(operator).invoke(result, numList[numListIndex].toInt())
             numListIndex++
         }
         return result

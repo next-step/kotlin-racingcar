@@ -1,15 +1,13 @@
 package calculator
 
-import java.util.function.BinaryOperator
-
-enum class Operator(val symbol: String, val method: BinaryOperator<Int>) {
-    PLUS("+", BinaryOperator { t: Int, u: Int -> t + u }),
-    MINUS("-", BinaryOperator { t: Int, u: Int -> t - u }),
-    MULTIPLY("*", BinaryOperator { t: Int, u: Int -> t * u }),
-    DIVIDE("/", BinaryOperator { t: Int, u: Int -> t / u });
+enum class Operator(val symbol: String, val method: (Int, Int) -> Int) {
+    PLUS("+", { t: Int, u: Int -> t + u }),
+    MINUS("-", { t: Int, u: Int -> t - u }),
+    MULTIPLY("*", { t: Int, u: Int -> t * u }),
+    DIVIDE("/", { t: Int, u: Int -> t / u });
 
     companion object {
-        fun findSymbolOperator(symbol: String): BinaryOperator<Int> {
+        fun findSymbolOperator(symbol: String): (Int, Int) -> Int {
             return values().find { it.symbol == symbol }!!.method
         }
 

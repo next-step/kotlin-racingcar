@@ -1,21 +1,20 @@
 package model
 
-import kotlin.random.Random
+class Car(val diceStatus: DiceStatus) {
+    private var step: Int = 0
+    private var stepList: MutableList<Int> = mutableListOf()
 
-class Car {
-    var step: Int = 0
-    var stepList: MutableList<Int> = mutableListOf()
+    fun getStep(): Int {
+        return step
+    }
+    fun getStepList(): MutableList<Int> {
+        return stepList
+    }
 
     fun diceMove() {
-        if (availableMove(dice())) {
+        if (diceStatus.availableMove(diceStatus.dice())) {
             step++
         }
         stepList.add(step)
     }
-
-    private fun dice(): Int {
-        return Random.nextInt(0, 9)
-    }
-
-    private fun availableMove(diceNum: Int) = diceNum > 4
 }
