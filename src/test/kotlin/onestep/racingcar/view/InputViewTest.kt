@@ -7,54 +7,66 @@ class InputViewTest {
 
     @Test
     fun `Happy Case`() {
-        InputView {
-            return@InputView "3"
-        }.run {
-            Assertions.assertThat(this.showInput()).isEqualTo(Pair(3, 3))
-        }
+        // given : "CAR1,CAR2,CAR3" ,"3"
+        val input = InputView(getNameOfCarsInput = { "CAR1,CAR2,CAR3" }, getNumberOfTryInput = { "3" })
+        // when : getInputs
+        // then : result is  3 SizeList , 3
+        Assertions.assertThat(input.getInputs().first.size).isEqualTo(3)
+        Assertions.assertThat(input.getInputs().second).isEqualTo(3)
     }
 
     @Test
-    fun `Should Exception(Wrong Input) When text is entered`() {
-        InputView {
-            return@InputView "Test"
-        }.run {
-            Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-                this.showInput()
-            }
+    fun `Should Exception(Wrong Input) When getNumberOfTryInput is not Integer`() {
+        // given : getNumberOfTryInput is Not Integer
+        val input = InputView(getNameOfCarsInput = { "CAR1,CAR2,CAR3" }, getNumberOfTryInput = { "" })
+        // when : getInputs
+        // then : IllegalArgumentException
+        Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
+            input.getInputs()
         }
     }
 
     @Test
     fun `Should Exception(Input Only Positive integer) When negativeNumBer is entered`() {
-        InputView {
-            return@InputView "-3"
-        }.run {
-            Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-                this.showInput()
-            }
+        // given : getNumberOfTryInput is negativeNumBer
+        val input = InputView(getNameOfCarsInput = { "CAR1,CAR2,CAR3" }, getNumberOfTryInput = { "-3" })
+        // when : getInputs
+        // then : IllegalArgumentException(Input Only Positive integer)
+        Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
+            input.getInputs()
         }
     }
 
     @Test
     fun `Should Exception(Input Only Positive integer) When Zero(0) is entered`() {
-        InputView {
-            return@InputView "0"
-        }.run {
-            Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-                this.showInput()
-            }
+        // given : getNumberOfTryInput is negativeNumBer
+        val input = InputView(getNameOfCarsInput = { "CAR1,CAR2,CAR3" }, getNumberOfTryInput = { "0" })
+        // when : getInputs
+        // then : IllegalArgumentException(Input Only Positive integer)
+        Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
+            input.getInputs()
         }
     }
 
     @Test
-    fun `Should Exception(Input Only Positive integer) When Null is entered`() {
-        InputView {
-            return@InputView null
-        }.run {
-            Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-                this.showInput()
-            }
+    fun `Should Exception(Wrong Input( null )) When Null is entered`() {
+        // given : getNumberOfTryInput is Null
+        val input = InputView(getNameOfCarsInput = { "CAR1,CAR2,CAR3" }, getNumberOfTryInput = { null })
+        // when : getInputs
+        // then : IllegalArgumentException(Wrong Input( null ))
+        Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
+            input.getInputs()
+        }
+    }
+
+    @Test
+    fun `Should Exception(), When input Wrong value - CarName's Size more than 5`() {
+        // given : input more than 5 Size CarName in getNameOfCarsInput
+        val input = InputView(getNameOfCarsInput = { "CARCARCAR1,CAR2,CAR3" }, getNumberOfTryInput = { "3" })
+        // when : getInputs
+        // then : IllegalArgumentException( CarName's Length can not more than 5 )
+        Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
+            input.getInputs()
         }
     }
 }

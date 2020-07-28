@@ -1,30 +1,23 @@
 package onestep.racingcar.model
 
 class Racing(
-    private val carCount: Int,
+    private val carNames: List<String>,
     private val tryCount: Int
 ) {
-    lateinit var cars: List<Car>
-
-    fun ready() {
-        cars = readyCars()
-    }
+    private val cars: List<Car> by lazy { readyCars() }
 
     fun race(show: (List<Car>) -> Unit): List<Car> {
-        if (::cars.isInitialized.not()) {
-            throw IllegalArgumentException("Before Race, Need Ready")
-        }
-
-        for (i in 0 until tryCount) {
+        repeat(tryCount) {
             cars.map(Car::run)
             show(cars)
         }
-        return cars
+        return findWinner(cars)
     }
 
-    private fun readyCars() = mutableListOf<Car>().apply {
-        for (i in 0 until carCount) {
-            add(Car())
-        }
+    private fun findWinner(cars: List<Car>): List<Car> {
+        val list = cars.sortedByDescending { it.position }
+        return if (list.isEmpty()) list else list.filter { it.position == list[0].position }
     }
+
+    private fun readyCars() = carNames.map { Car.createCarByName(it) }
 }

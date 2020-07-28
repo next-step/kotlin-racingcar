@@ -4,18 +4,21 @@ import onestep.racingcar.model.engine.CarEngine
 import onestep.racingcar.model.engine.RandomCarEngine
 
 data class Car(
-    private var position: Int = 0,
+    val name: String = "",
+    private var _position: Int = 0,
     private val engine: CarEngine = RandomCarEngine
 ) {
+    val position: Int
+        get() = _position
+
     fun run() {
-        position += engine.run()
+        _position += engine.run()
     }
 
-    fun printPosition(): String {
-        var result = ""
-        for (i in 0 until position) {
-            result += "-"
+    companion object {
+        fun createCarByName(name: String): Car {
+            require(name.length < 5) { "CarName's Length can not more than 5" }
+            return Car(name = name)
         }
-        return result
     }
 }
