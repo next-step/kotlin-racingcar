@@ -22,14 +22,10 @@ internal class CarUtilTest {
     }
 
     @Test
-    fun `자동차 수가 1보다 작을 경우 validate 시 exception 발생`() {
-        assertThatIllegalArgumentException().isThrownBy {
-            CarUtil.validate("-1", "1")
-        }.withMessage(CarUtil.NUMBER_REQUIRE_OVER_ONE)
-    }
-
-    @Test
     fun `자동차 이름이 5자를 초과하는 경우 validate 시 exception 발생`() {
+        assertThatIllegalArgumentException().isThrownBy {
+            CarUtil.validate("k3, sonata", "5")
+        }.withMessage(CarUtil.EXCEED_FIVE_CHARACTERS)
     }
 
     @Test
