@@ -52,7 +52,7 @@ object Calculator {
 
                     numberGroup.offer(numBuilder.toString().toDouble())
                     numBuilder.clear()
-                    operatorGroup.add(convertCharToOp(formula[index]))
+                    operatorGroup.add(convertOperator(formula[index]))
                 }
             }
         }
@@ -62,13 +62,6 @@ object Calculator {
 
     private fun isBlank(value: Char): Boolean = value == BLANK_CHARACTER
 
-    private fun convertCharToOp(op: Char): Operator {
-        return when (op) {
-            '+' -> Operator.PLUS
-            '-' -> Operator.MINUS
-            '*' -> Operator.MULTIPLE
-            '/' -> Operator.DIVIDE
-            else -> throw IllegalArgumentException("사칙 연산 기호가 아닙니다.")
-        }
-    }
+    private fun convertOperator(op: Char): Operator =
+        Operator.values().firstOrNull { it.op == op } ?: throw IllegalArgumentException("사칙 연산 기호가 아닙니다.")
 }
