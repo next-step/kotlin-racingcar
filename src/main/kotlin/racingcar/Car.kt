@@ -5,7 +5,10 @@ class Car(val name: String) {
         const val MOVABLE_VALUE = 4
     }
 
-    private var currentPosition = 0
+    // private setter 이 클래스 밖에서 이 프로퍼티의 값을 바꿀 수 없다.
+    var currentPosition = 0
+        private set
+
     fun moveForward(): Int {
         if (canMove()) moveOneBlock()
         return currentPosition
