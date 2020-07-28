@@ -14,17 +14,20 @@ fun main() {
     //     println(e.message)
     // }
 
-    println(
-        "STEP3 자동차 경주 \n\n" +
-            "자동차 대수는 몇 대인가요? "
-    )
-    val numberOfCars = readLine()!!
-    println(
-        "시도할 횟수는 몇 회인가요?"
-    )
-    val numberOfTrial = readLine()!!
     try {
-        CarRacing.execute(numberOfCars, numberOfTrial)
+
+        CarRacingView.showFirstInstruction()
+        val numberOfCars = CarRacingView.checkInput(readLine()!!)
+        CarRacingView.showSecondInstruction()
+        val numberOfTrial = CarRacingView.checkInput(readLine()!!)
+
+        println()
+        for (i in 1..numberOfTrial) {
+            for (j: Int in 1..numberOfCars) {
+                CarRacingView.showMovement(CarRacing.countOfMovement(numberOfCars))
+            }
+            println()
+        }
     } catch (e: Exception) {
         println(e.message)
     }
