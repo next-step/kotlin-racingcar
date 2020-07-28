@@ -21,5 +21,6 @@ object Application {
 
         val winners = RacingCar().getWinner(result)
         ResultView().view(result)
+        ResultView().viewWinner(winners)
     }
 }
