@@ -12,12 +12,14 @@ class RacingCarTest {
     @Test
     fun `check input randomNumber`(randomNumber: Int) { // 0보다 작은 값, 9보다 큰 값 입력시  => 예외처리
 
+        // racingcar에서 check(randomNumber)
         assertTrue { randomNumber >= 0 }
         assertTrue { randomNumber < 10 }
     }
 
     @Test
     fun `check car running state`() { // 4이상이면 전진하는 모습 => 경주를 하는 메소드
+        // car객체에서 check(randomNumber)
     }
 
     @Test
