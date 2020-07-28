@@ -9,13 +9,14 @@ import racing.presentation.ResultView
 object Application {
     @JvmStatic
     fun main(args: Array<String>) {
-        // val racingState = InputView().input()
-        val carNumber = InputView().inputCarNumber()
+        val inputNames = InputView().inputNames()
         val attempt = InputView().inputAttempt()
 
-        CarUtil.validate(carNumber, attempt)
+        CarUtil.validate(inputNames, attempt)
 
-        val racingState = RacingState(carNumber!!.toInt(), attempt!!.toInt())
+        val names = CarUtil.splitNames(inputNames!!)
+
+        val racingState = RacingState(names, attempt!!.toInt())
         val result = RacingCar().start(racingState)
 
         ResultView().view(result)

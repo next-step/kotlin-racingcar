@@ -18,7 +18,7 @@ class RacingCar {
         var result = mutableListOf<Cars>()
 
         // Car Instance List 생성
-        val cars = makeCarList(racingState.number!!)
+        val cars = makeCarList(racingState)
 
         // 전진 시도
         repeat(racingState.attempt!!) {
@@ -29,10 +29,8 @@ class RacingCar {
         return result
     }
 
-    fun makeCarList(number: Int): List<Car> {
-        return (0 until number).map {
-            Car(it)
-        }
+    fun makeCarList(racingState: RacingState): List<Car> {
+        return racingState.names.map { name -> Car(name) }
     }
 
     fun move(carList: List<Car>): List<Car> {
@@ -40,7 +38,7 @@ class RacingCar {
             if (canIMove()) {
                 car.distance = car.distance + "-"
             }
-            Car(car.number, car.distance)
+            Car(car.name, car.distance)
         }
     }
 

@@ -13,14 +13,14 @@ internal class RacingCarTest {
 
     @Test
     fun `start() 정상 동작 테스트`() {
-        val racingState = RacingState(2, 3)
+        val racingState = RacingState(listOf("k3", "k5"), 3)
         val list = RacingCar().start(racingState)
         ResultView().view(list)
     }
 
     @Test
     fun `move 조건이 true 일 때, distance가 제대로 변하는지 확인`() {
-        val racingState = RacingState(2, 3)
+        val racingState = RacingState(listOf("k3", "k5"), 3)
 
         val racingCar = spy(RacingCar())
         whenever(racingCar.canIMove()).thenReturn(true)
@@ -43,17 +43,17 @@ internal class RacingCarTest {
         val number = 4
 
         // when
-        val carList = RacingCar().makeCarList(number)
+        val carList = RacingCar().makeCarList(RacingState(listOf("k3", "k5", "k7", "kona")))
 
         // then
         assertThat(carList.size).isEqualTo(number)
     }
 
     @Test
-    fun `전진 조건이 3일 때 move() 호출 시 이동하지 않았음을 확인하는 테스트`() {
+    fun `전진 조건이 false일 때 move() 호출 시 이동하지 않았음을 확인하는 테스트`() {
         var carList = mutableListOf(
-            Car(1, ""),
-            Car(2, "--")
+            Car("k5", ""),
+            Car("k7", "--")
         )
 
         val racingCar = spy(RacingCar())
@@ -67,10 +67,10 @@ internal class RacingCarTest {
     }
 
     @Test
-    fun `전진 조건이 7일 때 move() 호출 시 이동하였음을 확인하는 테스트`() {
+    fun `전진 조건이 true일 때 move() 호출 시 이동하였음을 확인하는 테스트`() {
         var carList = mutableListOf(
-            Car(1, ""),
-            Car(2, "--")
+            Car("k5", ""),
+            Car("k7", "--")
         )
 
         val racingCar = spy(RacingCar())
@@ -88,7 +88,22 @@ internal class RacingCarTest {
     }
 
     @Test
-    fun `자동차 이름에 ,로 구분된 빈공백이 있는 경우, 해당 데이터는 제외 후 정상 동작 확인`() {
+    fun `전진 조건이 true이고 자동차가 k3, k5가 주어질 때, 각 자동차 이름별 이동거리 정상 측정`() {
+        var carList = mutableListOf(
+            Car("k5", "-"),
+            Car("k7", "")
+        )
+
+        val racingCar = spy(RacingCar())
+
+        whenever(racingCar.canIMove()).thenReturn(true)
+
+        racingCar.move(carList)
+
+        assertThat(carList[0].name).isEqualTo("k5")
+        assertThat(carList[0].distance).isEqualTo("--")
+        assertThat(carList[1].name).isEqualTo("k7")
+        assertThat(carList[1].distance).isEqualTo("-")
     }
 
     @Test
