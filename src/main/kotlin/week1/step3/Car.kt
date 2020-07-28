@@ -2,7 +2,7 @@ package week1.step3
 
 import org.jetbrains.annotations.TestOnly
 
-class Car(val name: String) {
+class Car(val name: String = "") {
     var forwardCount = 0
         private set
 
