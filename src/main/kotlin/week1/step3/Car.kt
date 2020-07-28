@@ -9,23 +9,25 @@ class Car(val name: String = "") {
         if (name.isEmpty()) throw IllegalArgumentException("차 이름이 유효하지 않습니다.")
     }
 
-    var forwardCount = 0
-        private set
+    private val _forwardCounts = mutableListOf(0)
+    val forwardCounts: List<Int> get() = _forwardCounts
 
     fun updateForwardCount() {
         if (availableForward()) {
-            forwardCount++
+            _forwardCounts.add(_forwardCounts.last() + 1)
+        } else {
+            _forwardCounts.add(_forwardCounts.last())
         }
     }
 
     @TestOnly
     fun setupForwardCondition() {
-        forwardCount = FORWARD_CONDITION_MIN_NUM
+        _forwardCounts.add(FORWARD_CONDITION_MIN_NUM)
     }
 
     @TestOnly
     fun setupForwardLimitCondition() {
-        forwardCount = FORWARD_CONDITION_MIN_NUM - 1
+        _forwardCounts.add(FORWARD_CONDITION_MIN_NUM - 1)
     }
 
     private fun availableForward(): Boolean = FORWARD_CONDITION_RANGE.random() >= FORWARD_CONDITION_MIN_NUM

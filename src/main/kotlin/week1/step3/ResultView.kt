@@ -2,40 +2,40 @@ package week1.step3
 
 object ResultView {
 
-    fun printRacingStep(carNames: List<String>, racingStep: List<Int>) {
-        for (position in racingStep.indices) {
-            printCarName(carNames, position)
-            printCarForwardState(racingStep, position)
-            printNewline(position, carNames)
+    fun printRacingStep(racingCar: List<Car>, tryCount: Int) {
+        for (step in 0 until tryCount) {
+            printStep(racingCar, step)
         }
-        printWinner(racingStep, carNames)
+        printWinners(racingCar, tryCount)
     }
 
-    private fun printWinner(racingStep: List<Int>, carNames: List<String>) {
-        val finalRound = racingStep.subList(racingStep.lastIndex - carNames.lastIndex, racingStep.size)
+    private fun printWinners(racingCar: List<Car>, tryCount: Int) {
+        val finalRound = racingCar.map { it.forwardCounts[tryCount] }
         val winners = mutableListOf<String>()
         for (index in finalRound.indices) {
-            if (finalRound[index] == finalRound.max()) {
-                winners.add(carNames[index])
-            }
+            setupWInner(finalRound, index, winners, racingCar)
         }
         println("${winners.joinToString()}가 최종 우승했습니다.")
     }
 
-    private fun printNewline(index: Int, carNames: List<String>) {
-        if ((index + 1) % carNames.size == 0) {
-            println()
+    private fun setupWInner(finalRound: List<Int>, index: Int, winners: MutableList<String>, racingCar: List<Car>) {
+        if (finalRound[index] == finalRound.max()) {
+            winners.add(racingCar[index].name)
         }
     }
 
-    private fun printCarForwardState(racingStep: List<Int>, position: Int) {
-        repeat(racingStep[position]) {
-            print("-")
+    private fun printStep(racingCar: List<Car>, step: Int) {
+        for (car in racingCar) {
+            printDistance(car, step)
         }
         println()
     }
 
-    private fun printCarName(carNames: List<String>, position: Int) {
-        print("${carNames[position % carNames.size]} : ")
+    private fun printDistance(car: Car, step: Int) {
+        print("${car.name} : ")
+        for (distance in 0..car.forwardCounts[step]) {
+            print("-")
+        }
+        println()
     }
 }
