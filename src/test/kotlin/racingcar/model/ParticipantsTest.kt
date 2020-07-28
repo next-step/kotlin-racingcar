@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import racingcar.strategy.FairMovingStrategy
 
 internal class ParticipantsTest {
-    private val participants = Participants(2, FairMovingStrategy)
+    private val participants = Participants("car1, car2", FairMovingStrategy())
 
     @BeforeEach
     fun setUp() {
@@ -17,6 +17,6 @@ internal class ParticipantsTest {
 
     @Test
     fun getMovingStatus() {
-        assertThat(participants.getMovingStatus()).isEqualTo("No.1 -----\nNo.2 -----\n")
+        assertThat(participants.getMovingStatus()).isEqualTo("No.1 car1 -----\nNo.2 car2 -----\n")
     }
 }
