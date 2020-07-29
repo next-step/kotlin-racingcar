@@ -1,4 +1,4 @@
-package onestep.racingcar.model
+package onestep.racingcar.domain
 
 class Racing(
     private val carNames: List<String>,

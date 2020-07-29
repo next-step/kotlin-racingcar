@@ -1,7 +1,7 @@
-package onestep.racingcar.model
+package onestep.racingcar.domain
 
-import onestep.racingcar.model.engine.CarEngine
-import onestep.racingcar.model.engine.RandomCarEngine
+import onestep.racingcar.domain.engine.CarEngine
+import onestep.racingcar.domain.engine.RandomCarEngine
 
 data class Car(
     val name: String = "",

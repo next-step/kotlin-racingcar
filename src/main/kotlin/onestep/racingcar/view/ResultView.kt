@@ -1,6 +1,6 @@
 package onestep.racingcar.view
 
-import onestep.racingcar.model.Car
+import onestep.racingcar.domain.Car
 
 class ResultView {
     companion object {

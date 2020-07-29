@@ -1,6 +1,6 @@
 package onestep.racingcar
 
-import onestep.racingcar.model.Racing
+import onestep.racingcar.domain.Racing
 import onestep.racingcar.view.InputView
 import onestep.racingcar.view.ResultView
 

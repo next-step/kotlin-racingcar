@@ -1,4 +1,4 @@
-package onestep.racingcar.model.engine
+package onestep.racingcar.domain.engine
 
 interface CarEngine {
     fun run(): Int

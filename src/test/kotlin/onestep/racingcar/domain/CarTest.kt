@@ -1,6 +1,6 @@
-package onestep.racingcar.model
+package onestep.racingcar.domain
 
-import onestep.racingcar.model.engine.CarEngine
+import onestep.racingcar.domain.engine.CarEngine
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 

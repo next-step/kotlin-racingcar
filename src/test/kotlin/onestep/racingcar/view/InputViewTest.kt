@@ -7,32 +7,31 @@ class InputViewTest {
 
     @Test
     fun `Happy Case`() {
-        // given : "CAR1,CAR2,CAR3" ,"3"
+        // given
         val input = InputView(getNameOfCarsInput = { "CAR1,CAR2,CAR3" }, getNumberOfTryInput = { "3" })
-        // when : getInputs
         // then : result is  3 SizeList , 3
         Assertions.assertThat(input.getInputs().first.size).isEqualTo(3)
         Assertions.assertThat(input.getInputs().second).isEqualTo(3)
     }
 
     @Test
-    fun `Should Exception(Wrong Input) When getNumberOfTryInput is not Integer`() {
-        // given : getNumberOfTryInput is Not Integer
+    fun `Should Exception(Wrong Input) When Input is not Integer Type`() {
+        // given
         val input = InputView(getNameOfCarsInput = { "CAR1,CAR2,CAR3" }, getNumberOfTryInput = { "" })
-        // when : getInputs
-        // then : IllegalArgumentException
-        Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
+        // when
+        // then
+        Assertions.catchThrowable {
             input.getInputs()
         }
     }
 
     @Test
     fun `Should Exception(Input Only Positive integer) When negativeNumBer is entered`() {
-        // given : getNumberOfTryInput is negativeNumBer
+        // given
         val input = InputView(getNameOfCarsInput = { "CAR1,CAR2,CAR3" }, getNumberOfTryInput = { "-3" })
-        // when : getInputs
+        // when
         // then : IllegalArgumentException(Input Only Positive integer)
-        Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
+        Assertions.catchThrowable {
             input.getInputs()
         }
     }
@@ -41,9 +40,9 @@ class InputViewTest {
     fun `Should Exception(Input Only Positive integer) When Zero(0) is entered`() {
         // given : getNumberOfTryInput is negativeNumBer
         val input = InputView(getNameOfCarsInput = { "CAR1,CAR2,CAR3" }, getNumberOfTryInput = { "0" })
-        // when : getInputs
+        // when
         // then : IllegalArgumentException(Input Only Positive integer)
-        Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
+        Assertions.catchThrowable {
             input.getInputs()
         }
     }
@@ -52,9 +51,9 @@ class InputViewTest {
     fun `Should Exception(Wrong Input( null )) When Null is entered`() {
         // given : getNumberOfTryInput is Null
         val input = InputView(getNameOfCarsInput = { "CAR1,CAR2,CAR3" }, getNumberOfTryInput = { null })
-        // when : getInputs
+        // when
         // then : IllegalArgumentException(Wrong Input( null ))
-        Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
+        Assertions.catchThrowable {
             input.getInputs()
         }
     }
@@ -63,9 +62,9 @@ class InputViewTest {
     fun `Should Exception(), When input Wrong value - CarName's Size more than 5`() {
         // given : input more than 5 Size CarName in getNameOfCarsInput
         val input = InputView(getNameOfCarsInput = { "CARCARCAR1,CAR2,CAR3" }, getNumberOfTryInput = { "3" })
-        // when : getInputs
+        // when
         // then : IllegalArgumentException( CarName's Length can not more than 5 )
-        Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
+        Assertions.catchThrowable {
             input.getInputs()
         }
     }

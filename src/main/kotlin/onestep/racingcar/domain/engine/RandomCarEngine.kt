@@ -1,4 +1,4 @@
-package onestep.racingcar.model.engine
+package onestep.racingcar.domain.engine
 
 object RandomCarEngine : CarEngine {
     private const val GO_LIMIT = 4
