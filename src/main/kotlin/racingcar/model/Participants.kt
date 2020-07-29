@@ -16,9 +16,9 @@ data class Participants(
         participants.forEach { it.moveForward() }
     }
 
-    fun getMovingStatus() = participants.joinToString("") { "${it.getName()} ${it.getMovingPath()}\n" }
-
     fun findWinner(): List<Car> = participants.filter { it.isWinner(findMaxPosition()) }
+
+    override fun toString() = participants.joinToString("") { "${it.getName()} ${it.getMovingPath()}\n" }
 
     private fun findMaxPosition(): Int = participants.max()?.position ?: 0
 

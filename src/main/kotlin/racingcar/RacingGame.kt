@@ -16,7 +16,7 @@ class RacingGame(
             tryCount--
         }
 
-        return participants.getMovingStatus()
+        return participants.toString()
     }
 
     fun findWinners() = participants.findWinner()
