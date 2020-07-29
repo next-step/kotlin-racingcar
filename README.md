@@ -1,5 +1,5 @@
 # Racing Car Game
-### Consists of ...
+### Consists of ..
 
 ### 1. Game 
 * RacingGame : 게임의 Host
@@ -15,6 +15,7 @@
 ---
 ### 4. View 
 * InputView : 자동차의 이름, 게임의 시행 횟수(턴수)을 입력 받는다
+* InputInspector : 입력받은 값이 유효한지 검사한다 
 * ResultView : 레이스 상황과 최종 우승자를 보여준다
 
 ---
