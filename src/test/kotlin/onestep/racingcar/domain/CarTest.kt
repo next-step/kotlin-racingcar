@@ -36,8 +36,8 @@ class CarTest {
         val carName = "CARCARCARCAR"
         // when : createCar
         // then : Throws Exception("CarName's Length can not more than 5")
-        Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            Car.createCarByName(carName)
+        Assertions.catchThrowable {
+            Car.newInstance(carName)
         }
     }
 }

@@ -15,9 +15,9 @@ class Racing(
     }
 
     private fun findWinner(cars: List<Car>): List<Car> {
-        val list = cars.sortedByDescending { it.position }
-        return if (list.isEmpty()) list else list.filter { it.position == list[0].position }
+        val sortedList = cars.sortedByDescending { it.position }
+        return sortedList.filter { it.position == sortedList.first().position }
     }
 
-    private fun readyCars() = carNames.map { Car.createCarByName(it) }
+    private fun readyCars() = carNames.map { Car.newInstance(it) }
 }
