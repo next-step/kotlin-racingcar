@@ -3,7 +3,7 @@ package wk1_step4
 import java.lang.IndexOutOfBoundsException
 import java.lang.NullPointerException
 
-class WinnerCarRacing(private val input: String) {
+class WinnerCarRacing(input: String) {
 
     init {
         parsingCars(input)
