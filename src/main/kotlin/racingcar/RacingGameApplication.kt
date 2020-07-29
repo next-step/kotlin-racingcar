@@ -11,10 +11,10 @@ fun main(args: Array<String>) {
 
     ResultView.showResultTitle()
 
-    while(!game.isOver()){
+    while (!game.isOver()) {
         game.start()
         ResultView.showRace(tracks)
         tracks.clear()
     }
-    // ResultView.showWinner(findWinners())
+    ResultView.showWinner(game.findWinners())
 }
