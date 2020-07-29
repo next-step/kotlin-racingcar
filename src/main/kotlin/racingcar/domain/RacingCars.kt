@@ -26,11 +26,11 @@ class RacingCars(
         }
     }
 
-    private fun findMax(cars: List<Car>): Int {
-        return cars.maxBy { it.currentPosition }?.currentPosition ?: 0
-    }
-
     override fun toString(): String {
         return cars.joinToString("") { "${it.getName()} : ${it.getDistance()}\n" }
+    }
+
+    private fun findMax(cars: List<Car>): Int {
+        return cars.maxBy { it.currentPosition }?.currentPosition ?: 0
     }
 }

@@ -3,7 +3,7 @@ package racingcar.domain
 import racingcar.strategy.Strategy
 
 class Car(
-    private val name: String = "car",
+    private val name: String,
     private val strategy: Strategy
 ) {
     companion object {
