@@ -34,6 +34,6 @@ object InputView {
             println(ENTER_CAR_NAMES_AGAIN)
             names = readLine()
         }
-        return names.trim().split(DELIMITER)
+        return names.trim().split(DELIMITER).filter { it.isNotBlank() }
     }
 }

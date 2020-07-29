@@ -18,7 +18,7 @@ object InputInspector {
         validateNumberOfCar(names) // need more than two names of cars
         validateLengthOfEachName(names) // check whether the length of each car fits length condition
 
-        validNames = names
+        validNames = names.map { it.trim() }
     }
 
     private fun validateNumberOfCar(carNames: List<String>): List<String> {
