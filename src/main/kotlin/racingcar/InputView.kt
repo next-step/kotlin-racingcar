@@ -1,5 +1,9 @@
 package racingcar
 
+import racingcar.InputInspector.validNames
+import racingcar.InputInspector.validate
+import racingcar.InputInspector.validateTrials
+
 object InputView {
     private const val ENTER_CAR_NAMES = "경주할 자동차 이름을 입력하세요 (쉼표(,)를 기준으로 이름을 구분합니다)"
     private const val ENTER_TRIALS = "시도할 횟수는 몇 회인가요?"
@@ -8,27 +12,21 @@ object InputView {
     private const val DELIMITER = ","
 
     // TODO InputView 테스트
-
     fun getCarNames(): List<String> {
         println(ENTER_CAR_NAMES)
 
-        val names = readCarNames(readLine())
-        InputInspector.validate(names)
+        validate(readCarNames(readLine()))
 
-        return InputInspector.validNames
+        return validNames
     }
 
     fun getTryChance(): Int {
         println(ENTER_TRIALS)
 
-        var trials = readLine()?.trim()?.toIntOrNull()
-
-        while (trials == null) {
-            println(ENTER_TRIALS_AGAIN)
-            trials = readLine()?.trim()?.toIntOrNull()
-        }
-        return trials
+        return validateTrials(readTrials())
     }
+
+    fun readTrials() = readLine()?.trim()?.toIntOrNull()
 
     fun readCarNames(line: String?): List<String> {
         var names = line
