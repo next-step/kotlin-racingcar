@@ -13,11 +13,13 @@ class Car(
     var currentPosition = 0
         private set
 
-    fun isWinner(max: Int) = currentPosition == max
+    internal fun getName() = name
 
-    fun getDistance() = PRINT_CHARACTER.repeat(currentPosition)
+    internal fun isWinner(max: Int) = currentPosition == max
 
-    fun moveForward(): Int {
+    internal fun getDistance() = PRINT_CHARACTER.repeat(currentPosition)
+
+    internal fun moveForward(): Int {
         if (strategy.canMove) currentPosition++
         return currentPosition
     }
