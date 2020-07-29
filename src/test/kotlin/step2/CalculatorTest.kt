@@ -47,16 +47,6 @@ class CalculatorTest {
     }
 
     @Test
-    fun `getOperatorType test`() {
-        val calculator = Calculator()
-
-        assertThat(calculator.getOperatorType("+")).isEqualTo(Calculator.OperatorType.PLUS)
-        assertThat(calculator.getOperatorType("-")).isEqualTo(Calculator.OperatorType.MINUS)
-        assertThat(calculator.getOperatorType("*")).isEqualTo(Calculator.OperatorType.MULTIPLE)
-        assertThat(calculator.getOperatorType("/")).isEqualTo(Calculator.OperatorType.DIVIDE)
-    }
-
-    @Test
     fun `wrong format test`() {
         val number = "3 + 숫자 + 1 - 7"
 
