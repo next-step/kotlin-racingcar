@@ -63,7 +63,7 @@ class NodeParserImplTest {
     @Test
     fun `exceptEmpty() 공백 문자열은 리스트에서 제외 테스트`() {
         NodeParserImpl().apply {
-            assertThat(listOf("", " ", "! ", "", "", "hello").trimAll())
+            assertThat(listOf("", " ", "! ", "", "", "hello").exceptEmpty())
                 .isEqualTo(listOf(" ", "! ", "hello"))
         }
     }

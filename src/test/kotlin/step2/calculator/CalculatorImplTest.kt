@@ -3,6 +3,8 @@ package step2.calculator
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 internal class CalculatorImplTest {
 
@@ -145,18 +147,14 @@ internal class CalculatorImplTest {
         }
     }
 
-    @Test
-    fun `getNumber() 해당 인덱스가 list의 범위안에 없을 때 NumberIsMissing`() {
+    @ParameterizedTest
+    @ValueSource(ints = [1, 2, 3, 4, 5])
+    fun `getNumber() 해당 인덱스가 list의 범위안에 없을 때 NumberIsMissing`(number: Int) {
         val empty = listOf<Node>()
         val list = listOf<Node>(Node.Number(1.0))
         assertThatThrownBy {
             CalculatorImpl().apply {
-                assertThat(empty.getNumber(0))
-            }
-        }.isInstanceOf(Calculator.Error.NumberIsMissing::class.java)
-        assertThatThrownBy {
-            CalculatorImpl().apply {
-                assertThat(list.getNumber(1))
+                assertThat(empty.getNumber(number))
             }
         }.isInstanceOf(Calculator.Error.NumberIsMissing::class.java)
     }

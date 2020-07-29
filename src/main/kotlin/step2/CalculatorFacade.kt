@@ -2,30 +2,24 @@ package step2
 
 import step2.calculator.Calculator
 import step2.calculator.CalculatorImpl
-import step2.calculator.Node
 import step2.parser.NodeParser
 import step2.parser.NodeParserImpl
 
-fun main(args: Array<String>) {
-    CalculatorFacade().execute()
-}
-
-class CalculatorFacade {
+fun main() {
     val parser: NodeParser = NodeParserImpl()
     val calculator: Calculator = CalculatorImpl()
+
+    CalculatorFacade(parser, calculator).execute()
+}
+
+class CalculatorFacade(private val parser: NodeParser, private val calculator: Calculator) {
 
     fun execute() {
         val text = readLine()
         println(
             try {
                 calculator.calculate(parser.parse(text!!))
-            } catch (e: NodeParser.Error.InvalidCharacter) {
-                e.localizedMessage
-            } catch (e: Calculator.Error.NumberIsMissing) {
-                e.localizedMessage
-            } catch (e: Calculator.Error.OperatorIsMissing) {
-                e.localizedMessage
-            } catch (e: Node.Operator.Divide.DivideByZeroException) {
+            } catch (e: Exception) {
                 e.localizedMessage
             }
         )
