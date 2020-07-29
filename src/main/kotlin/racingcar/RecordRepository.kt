@@ -10,13 +10,10 @@ object RecordRepository {
         recordDataSet.add(nth, nthRecord)
     }
 
-    fun findWinners() : List<String> {
-        val winners = mutableListOf<String>()
+    fun findWinners(): List<String> {
         val finalRecord = recordDataSet.last().carNamesAndDistances
 
-        winners.addAll( finalRecord.filter { it.value == findMaxDistance() }.map { it.key })
-
-        return winners.toList()
+        return finalRecord.filter { it.value == findMaxDistance() }.map { it.key }
     }
 
     private fun findMaxDistance() =
