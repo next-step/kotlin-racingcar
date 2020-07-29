@@ -1,27 +1,16 @@
-package racingcar
+package racingcar.view
+
+import racingcar.domain.Car
 
 object ResultView {
-    fun view(cars: List<Car>) {
-        cars.forEach {
-            printPosition(it)
-        }
+    const val WINNER_MSG = "이/가 최종 우승했습니다."
+
+    fun viewDistances(round: String) {
+        round.forEach { print(it) }
         println()
     }
 
     fun viewWinner(winner: List<Car>) {
-        println("${winner.joinToString { it.name }}가 최종 우승했습니다.")
-    }
-
-    private fun printPosition(car: Car) {
-        println(distanceBuilder(car))
-    }
-
-    private fun distanceBuilder(car: Car): StringBuilder {
-        val distance = StringBuilder()
-        distance.append("${car.name} : ")
-        for (i in 1..car.currentPosition) {
-            distance.append("-")
-        }
-        return distance
+        println("${winner.joinToString { it.getName() }} $WINNER_MSG")
     }
 }
