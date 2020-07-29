@@ -3,10 +3,10 @@ package step2
 object TypeExtractor {
 
     fun extractNumber(input: String) =
-        Regex(pattern = """\d+""").findAll(input).map { it.groupValues[0].toInt() }.toList()
+        Regex("""\d+""").findAll(input).map { it.groupValues[0].toInt() }.toList()
 
     fun extractOperator(input: String) =
-        Regex(pattern = """[\-+/*]""").findAll(input).map { it.groupValues[0] }.toList()
+        Regex("""[\-+/*]""").findAll(input).map { it.groupValues[0] }.toList()
 
     fun extract(replaceInput: String): Pair<List<Int>, List<Operator>> {
         val number = extractNumber(replaceInput)
@@ -30,5 +30,4 @@ object TypeExtractor {
             }
         }
     }
-
 }

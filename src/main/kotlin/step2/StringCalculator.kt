@@ -17,5 +17,4 @@ object StringCalculator {
             throw IllegalArgumentException("Null or blank string expression")
         result(TypeExtractor.extract(stringExpression.replace(" ", "")))
     }
-
 }
