@@ -1,5 +1,6 @@
 package com.nextstep.racingcar.domain
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 
@@ -11,5 +12,12 @@ internal class CarsTest {
         ) {
             Cars(-1)
         }
+    }
+
+    @Test
+    fun `입력한 수만큼 자동차를 생성한다`() {
+        val cars = Cars(5)
+
+        assertThat(cars.cars.size).isEqualTo(5)
     }
 }

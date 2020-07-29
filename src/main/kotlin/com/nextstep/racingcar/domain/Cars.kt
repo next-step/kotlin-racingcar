@@ -3,13 +3,13 @@ package com.nextstep.racingcar.domain
 import kotlin.random.Random
 
 class Cars(numberOfCar: Int) {
-    private val cars: List<Car>
+    val cars: List<Car>
 
     init {
         validation(numberOfCar)
         val cars = mutableListOf<Car>()
 
-        for (index in 0..numberOfCar) {
+        for (index in 1..numberOfCar) {
             cars.add(Car())
         }
 
