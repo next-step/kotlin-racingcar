@@ -14,22 +14,19 @@ class RacingCar(val carCount: Int) {
         for (car in 0 until carCount) {
             carsInRacing.add(Car())
         }
-        print(carsInRacing.size)
     }
 
-    fun carMove(trialCount: Int): List<Car> {
+    fun carMove(trialCount: Int) {
         var randomNum: Int
         for (i in 0 until trialCount) {
             println("--------------------------")
-            println("trial count - ${i + 1}")
-            for (j in 0 until carCount) {
+            println("${i + 1}번째 시도!")
+            for (car in carsInRacing) {
                 randomNum = RandomGenerator.getRandomNumber()
-                println("car $j 의 number - $randomNum")
-                carsInRacing[j].changeStateRacingCar(randomNum)
+                car.changeStateRacingCar(randomNum)
             }
+            OutputView.getCarRacingResult(carsInRacing)
         }
-
-        return carsInRacing
     }
 }
 
@@ -46,7 +43,5 @@ fun main() {
     val trialCount = InputView.getTrialCount()
 
     val racing = RacingCar(carCount)
-    val racingCarResult = racing.run { racing.carMove(trialCount) }
-
-    // OutputView.getCarRacingResult(racingCarResult)
+    racing.run { racing.carMove(trialCount) }
 }
