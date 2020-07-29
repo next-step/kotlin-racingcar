@@ -3,7 +3,7 @@ package racingcar
 fun getRandom(randomStartNum: Int, randomEndNum: Int) = (randomStartNum..randomEndNum).random()
 fun greaterThanOrEqualToMovableValue(randomValue: Int) = randomValue >= Car.MOVABLE_VALUE
 
-class Car(val name: String = "default car") {
+class Car(val name: String = "car") {
     companion object {
         const val MOVABLE_VALUE = 4
         const val RANDOM_START_NUM = 0

@@ -13,12 +13,11 @@ object ResultView {
     }
 
     private fun printPosition(car: Car) {
-        var distance = distanceBuilder(car)
-        println(distance)
+        println(distanceBuilder(car))
     }
 
     private fun distanceBuilder(car: Car): StringBuilder {
-        var distance = StringBuilder()
+        val distance = StringBuilder()
         distance.append("${car.name} : ")
         for (i in 1..car.currentPosition) {
             distance.append("-")

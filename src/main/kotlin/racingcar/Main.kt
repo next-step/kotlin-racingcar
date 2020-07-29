@@ -6,5 +6,6 @@ const val SECOND_QUESTION = "시도할 횟수는 몇 회인가요?"
 fun main() {
     val carNames = InputView.getCarNames(FIRST_QUESTION)
     val tryCount = InputView.getAnswerTo(SECOND_QUESTION)
-    RacingCar(carNames).race(tryCount)
+    val winners = RacingCar(carNames).race(tryCount)
+    ResultView.viewWinner(winners)
 }
