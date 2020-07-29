@@ -3,7 +3,7 @@ package racingcar.strategy
 class RandomMovingStrategy : MovingStrategy {
 
     override val isMovable: Boolean
-        get() = IntRange(BOUND_MIN, BOUND_MAX).random() >= MOVABLE_BASE_VALUE
+        get() = (BOUND_MIN..BOUND_MAX).random() >= MOVABLE_BASE_VALUE
 
     companion object {
         private const val BOUND_MIN = 0
