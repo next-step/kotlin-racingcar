@@ -9,5 +9,5 @@ fun main(args: Array<String>) {
     racing.start()
 
     ResultView.showRace(RecordRepository.gameRecords)
-    ResultView.notifyWinner(RecordRepository.findWinners())
+    ResultView.showWinner(RecordRepository.findWinners())
 }

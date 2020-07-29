@@ -29,7 +29,7 @@ object ResultView {
         println()
     }
 
-    fun notifyWinner(winners: List<String>) {
+    fun showWinner(winners: List<String>) {
         if (winners.size == 1) print(winners[0])
         if (winners.size > 1) {
             printWinnerUntilBeforeLastOne(winners)
