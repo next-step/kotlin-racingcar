@@ -8,7 +8,7 @@ object OutputView {
         }
     }
 
-    fun convertDistance(count: Int): String {
+    private fun convertDistance(count: Int): String {
         var returnString = StringBuffer("")
         for (distance in 1..count) {
             returnString.append("-")
