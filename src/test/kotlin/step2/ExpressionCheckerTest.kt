@@ -25,5 +25,4 @@ class ExpressionCheckerTest {
         assertThat(ExpressionChecker.isValidExpressionSize(listOf(1, 2, 4, 5), listOf(Operator.MUL)))
             .isEqualTo(false)
     }
-
 }

@@ -62,6 +62,4 @@ class OperatorTest {
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageContaining("Can't be divided by zero.")
     }
-
-
 }

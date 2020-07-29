@@ -129,5 +129,4 @@ class TypeExtractorTest {
             .isInstanceOf(IllegalStateException::class.java)
             .hasMessageContaining("Invalid operator type")
     }
-
 }
