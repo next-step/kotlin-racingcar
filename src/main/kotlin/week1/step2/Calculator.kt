@@ -1,7 +1,6 @@
 package week1.step2
 
-import java.util.LinkedList
-import java.util.Queue
+import java.util.*
 
 object Calculator {
 
@@ -52,7 +51,7 @@ object Calculator {
 
                     numberGroup.offer(numBuilder.toString().toDouble())
                     numBuilder.clear()
-                    operatorGroup.add(convertOperator(formula[index]))
+                    operatorGroup.add(Operator.findByOpCode(formula[index]))
                 }
             }
         }
@@ -61,7 +60,4 @@ object Calculator {
     private fun isNumeric(operator: Char): Boolean = operator.toInt() in NUMBER_RANGE
 
     private fun isBlank(value: Char): Boolean = value == BLANK_CHARACTER
-
-    private fun convertOperator(op: Char): Operator =
-        Operator.values().firstOrNull { it.op == op } ?: throw IllegalArgumentException("사칙 연산 기호가 아닙니다.")
 }
