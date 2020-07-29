@@ -1,8 +1,8 @@
 package racingcar
 
-class OutputView(private val carList: ArrayList<RacingCar.CarInformation>) {
-    init {
-        println("실행 결과...")
+object OutputView {
+    fun printCurrentLocation(carList: ArrayList<RacingCar>) {
+        println("-----------------------------------")
         carList.forEach {
             println("${it.carName}번 차 : ${it.carDistance}")
         }

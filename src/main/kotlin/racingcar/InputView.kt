@@ -1,16 +1,14 @@
 package racingcar
 
-import java.util.Scanner
+object InputView {
 
-class InputView {
-    private val scanner = Scanner(System.`in`)
-    val carCount: Int
-    val playCount: Int
-
-    init {
+    fun getCarNumber(): Int {
         print("자동차 대수는 몇대인가요? ")
-        carCount = scanner.nextInt()
+        return readLine()!!.toInt()
+    }
+
+    fun getPlayTime(): Int {
         print("시도할 횟수는 몇회인가요? ")
-        playCount = scanner.nextInt()
+        return readLine()!!.toInt()
     }
 }

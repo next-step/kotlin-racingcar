@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
-class RacingCarTest {
+class GameTest {
     @ParameterizedTest
     @CsvSource(
         "1,0",
@@ -14,7 +14,7 @@ class RacingCarTest {
         "5,0"
     )
     fun `차량 생성 테스트`(carCount: Int, playCount: Int) {
-        Assertions.assertEquals(carCount, RacingCar(carCount, playCount).carList.size)
+        Assertions.assertEquals(carCount, Game(carCount).playGameOnce().size)
     }
 
     @ParameterizedTest
@@ -26,6 +26,11 @@ class RacingCarTest {
         "1,5"
     )
     fun `랜덤 이동 횟수 테스트`(carCount: Int, playCount: Int) {
-        Assertions.assertEquals(playCount, RacingCar(carCount, playCount).carList[carCount - 1].randomMovingCount)
+        val game = Game(carCount)
+        var playCounting = 0
+        for (count in 1..playCount) {
+            playCounting = game.playGameOnce()[0].randomMovingCount
+        }
+        Assertions.assertEquals(playCount, playCounting)
     }
 }

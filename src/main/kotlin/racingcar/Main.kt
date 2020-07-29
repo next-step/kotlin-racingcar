@@ -1,9 +1,15 @@
 package racingcar
 
 fun main() {
-    val inputView = InputView()
 
-    val racingCar = RacingCar(inputView.carCount, inputView.playCount)
+    val carNumber = InputView.getCarNumber()
 
-    OutputView(racingCar.carList)
+    val playTime = InputView.getPlayTime()
+
+    val game = Game(carNumber)
+
+    for (time in 1..playTime) {
+        val updatedCarList = game.playGameOnce()
+        OutputView.printCurrentLocation(updatedCarList)
+    }
 }
