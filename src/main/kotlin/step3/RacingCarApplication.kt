@@ -1,11 +1,13 @@
 package step3
 
-import step3.view.getCarAmounts
+import step3.view.getCarNames
 import step3.view.getTryCount
-import step3.view.printRacingResults
+import step3.view.printRacingResult
+import step3.view.printWinners
 
 fun main() {
-    val racingField = RacingField(CarFactory.create(getCarAmounts()))
+    val racingField = RacingField(CarFactory.create(getCarNames()))
     val racingResults = racingField.startRace(getTryCount())
-    printRacingResults(racingResults)
+    printRacingResult(racingResults)
+    printWinners(racingField.getWinners())
 }

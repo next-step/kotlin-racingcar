@@ -8,7 +8,7 @@ class RacingFieldTest {
     @Test
     fun `시도횟수가 0미만인 경우 Exception`() {
         // given
-        val cars = Cars(listOf(Car(CarMover())))
+        val cars = Cars(listOf(Car("car", CarMover())))
         val racingField = RacingField(cars)
 
         // then
@@ -20,19 +20,25 @@ class RacingFieldTest {
     @Test
     fun `무조건 전진하는 자동차경주시 그 결과가 제대로 나오는지 확인`() {
         // given
-        val car = Car(object : Mover {
-            override fun canMove(): Boolean {
-                return true
+        val car = Car(
+            "car",
+            object : Mover {
+                override fun canMove(): Boolean {
+                    return true
+                }
             }
-        })
+        )
         val cars = Cars(listOf(car))
         val racingField = RacingField(cars)
-        val expectedRacingResult = RacingResult(listOf(5))
+        val expectedRacingResults = listOf(
+            RacingResult(listOf(RacingRecord("car", 1))),
+            RacingResult(listOf(RacingRecord("car", 2)))
+        )
 
         // when
-        val racingResult = racingField.startRace(5)
+        val racingResult = racingField.startRace(2)
 
         // then
-        assertThat(racingResult.last()).isEqualTo(expectedRacingResult)
+        assertThat(racingResult).isEqualTo(expectedRacingResults)
     }
 }

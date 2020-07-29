@@ -13,13 +13,15 @@ class RacingField(
         return racingResults
     }
 
+    private fun getCurrentRacingResult(): RacingResult {
+        return RacingResult(cars.getCurrentRacingRecords())
+    }
+
+    fun getWinners() = cars.findCurrentWinners()
+
     private fun validateTryCount(tryCount: Int) {
         if (tryCount <= 0) {
             throw IllegalArgumentException("시도 횟수는 0이상이어야 합니다. 입력 값 : $tryCount")
         }
-    }
-
-    private fun getCurrentRacingResult(): RacingResult {
-        return RacingResult(cars.getCarDistances())
     }
 }
