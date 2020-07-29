@@ -7,6 +7,7 @@ import racingcar.InputView.readRunCnt
 
 object InputInspector {
     private const val MIN_COUNT_OF_CAR_NAMES = 2
+    private const val MIN_COUNT_OF_RUN = 1
     private const val MIN_LENGTH_OF_CAR_NAME = 1
     private const val MAX_LENGTH_OF_CAR_NAME = 5
 
@@ -64,7 +65,7 @@ object InputInspector {
 
     fun validateRunCnt(RunCnt: Int?): Int {
         var runCnt = RunCnt
-        while (runCnt == null) {
+        while (runCnt == null || runCnt < MIN_COUNT_OF_RUN) {
             println(ENTER_RUN_COUNT_AGAIN)
             runCnt = readRunCnt()
         }
