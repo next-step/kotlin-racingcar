@@ -23,21 +23,6 @@ object WinnerCarRacingView {
         }
     }
 
-    fun parsingCars(input: String): List<Car> {
-        checkCarsValidation(input)
-        val names = input.split(",")
-        var nameLength: Int = 0
-        val cars = mutableListOf<Car>()
-        for (name: String in names) {
-            nameLength = name.length.coerceAtLeast(nameLength)
-            cars.add(Car(name, 0))
-        }
-        if (nameLength > 5) {
-            throw WinnerCarRacingException("자동차 이름은 5자를 넘어갈 수 없습니다.")
-        }
-        return cars
-    }
-
     fun getCount(): String {
         println("시도할 횟수는 몇 회인가요?")
         return readLine()!!

@@ -1,24 +1,22 @@
-import wk1_step4.Car
 import wk1_step4.WinnerCarRacing
 import wk1_step4.WinnerCarRacingView
-import java.lang.Exception
 
 fun main() {
 
     try {
         val firstInput = WinnerCarRacingView.getCarNames()
-        val cars: List<Car> = WinnerCarRacingView.parsingCars(firstInput)
+        WinnerCarRacingView.checkCarsValidation(firstInput)
 
         val secondInput = WinnerCarRacingView.getCount()
         val count: Int = WinnerCarRacingView.checkCountValidation(secondInput)
 
+        val winnerCarRacing = WinnerCarRacing(firstInput)
+
         for (i in 1..count) {
-            WinnerCarRacing.updateCarRacing(cars)
-            WinnerCarRacingView.showCarMovement(cars)
+            WinnerCarRacingView.showCarMovement(winnerCarRacing.updateCarRacing())
         }
 
-        val winners: List<Car> = WinnerCarRacing.resultOfRacing(cars)
-        WinnerCarRacingView.showResult(winners)
+        WinnerCarRacingView.showResult(winnerCarRacing.findWinners())
     } catch (e: Exception) {
         println(e.message)
     }
