@@ -3,7 +3,7 @@ package racingcar
 class Game(private val carNumber: Int) {
     private val carList = createCarList(carNumber)
 
-    private fun createCarList(carNUmber: Int): ArrayList<RacingCar> {
+    private fun createCarList(carNUmber: Int): List<RacingCar> {
         val returnList = arrayListOf<RacingCar>()
         for (number in 1..carNUmber) {
             returnList.add(RacingCar(number.toString()))
@@ -11,10 +11,9 @@ class Game(private val carNumber: Int) {
         return returnList
     }
 
-    fun playGameOnce(): ArrayList<RacingCar> {
-        carList.forEach {
+    fun playGameOnce(): List<RacingCar> {
+        return carList.onEach {
             it.randomMoving()
         }
-        return carList
     }
 }
