@@ -1,4 +1,4 @@
-package com.nextstep.domain
+package com.nextstep.stringcalculator.domain
 
 enum class Operator(private val operator: String) {
     ADD("+"), SUBTRACT("-"), MULTIPLY("*"), DIVISION("/");
