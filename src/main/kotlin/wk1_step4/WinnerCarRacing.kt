@@ -22,8 +22,12 @@ object WinnerCarRacing {
     }
 
     @Throws(IndexOutOfBoundsException::class)
+    fun getMaxDistance(cars: List<Car>): Int {
+        return cars.maxBy { it.position }!!.position
+    }
+
+    @Throws(IndexOutOfBoundsException::class)
     fun resultOfRacing(cars: List<Car>): List<Car> {
-        val maxDistance = cars.maxBy { it.position }!!.position
-        return cars.filter { it.position == maxDistance }.toList()
+        return cars.filter { it.position == getMaxDistance(cars) }.toList()
     }
 }
