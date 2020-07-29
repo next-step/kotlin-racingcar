@@ -26,10 +26,4 @@ class RaceTest {
             assertThat(car.raceHistory[0]).isLessThanOrEqualTo(1)
         }
     }
-
-    @Test
-    fun `random number area test`() {
-        assertThat(Race.getRandomNumber()).isGreaterThan(-1)
-        assertThat(Race.getRandomNumber()).isLessThan(10)
-    }
 }

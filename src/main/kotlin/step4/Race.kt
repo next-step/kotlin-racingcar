@@ -32,7 +32,7 @@ object Race {
         return if (random >= MIN_VALUE_TO_MOVE) SUCCESS_TO_MOVE else FAIL_TO_MOVE
     }
 
-    fun getRandomNumber(): Int {
+    private fun getRandomNumber(): Int {
         return Random.nextInt(10)
     }
 }

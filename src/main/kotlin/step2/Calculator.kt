@@ -1,12 +1,14 @@
 package step2
 
 class Calculator {
+    companion object {
+        private const val FORMULA_SPLIT_DELIMITER = " "
+    }
 
     fun calculate(formula: String): Double {
         require(formula.isNotBlank()) { "값을 입력해 주세요" }
 
-        val formulaSplitDelimiter = " "
-        val values = formula.split(formulaSplitDelimiter)
+        val values = formula.split(FORMULA_SPLIT_DELIMITER)
         var outcome = values[0].toDouble()
 
         for (index in 1 until values.size step 2) {
