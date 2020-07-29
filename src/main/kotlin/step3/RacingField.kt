@@ -3,15 +3,21 @@ package step3
 class RacingField(
     private val cars: Cars
 ) {
-    fun startRace(tryCount: Int): RacingResult {
+    fun startRace(tryCount: Int): List<RacingResult> {
         validateTryCount(tryCount)
-        val racingRecords = mutableListOf<RacingRecord>()
+        val racingResults = mutableListOf<RacingResult>()
         repeat(tryCount) {
             cars.race()
-            racingRecords.add(cars.getCurrentRacingRecord())
+            racingResults.add(getCurrentRacingResult())
         }
-        return RacingResult(racingRecords, cars.findCurrentWinners())
+        return racingResults
     }
+
+    private fun getCurrentRacingResult(): RacingResult {
+        return RacingResult(cars.getCurrentRacingRecords())
+    }
+
+    fun getWinners() = cars.findCurrentWinners()
 
     private fun validateTryCount(tryCount: Int) {
         if (tryCount <= 0) {

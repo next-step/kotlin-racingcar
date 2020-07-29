@@ -30,13 +30,15 @@ class RacingFieldTest {
         )
         val cars = Cars(listOf(car))
         val racingField = RacingField(cars)
-        val racingRecords = listOf(RacingRecord(mapOf("car" to 1)), RacingRecord(mapOf("car" to 2)))
-        val expectedRacingResult = RacingResult(racingRecords, listOf("car"))
+        val expectedRacingResults = listOf(
+            RacingResult(listOf(RacingRecord("car", 1))),
+            RacingResult(listOf(RacingRecord("car", 2)))
+        )
 
         // when
         val racingResult = racingField.startRace(2)
 
         // then
-        assertThat(racingResult).isEqualTo(expectedRacingResult)
+        assertThat(racingResult).isEqualTo(expectedRacingResults)
     }
 }

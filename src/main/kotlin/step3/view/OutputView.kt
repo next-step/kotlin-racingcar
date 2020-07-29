@@ -3,28 +3,22 @@ package step3.view
 import step3.RacingResult
 import step3.RacingRecord
 
-fun printRacingResult(racingResult: RacingResult) {
+fun printRacingResult(racingResults: List<RacingResult>) {
     println("실행 결과")
-    printRacingRecords(racingResult.records)
-    printWinners(racingResult.winners)
+    racingResults.forEach { printRacingRecords(it.records) }
 }
 
 private fun printRacingRecords(racingRecords: List<RacingRecord>) {
-    racingRecords.forEach { printRacingRecord(it) }
+    racingRecords.forEach { printTrack(it) }
     println()
 }
 
-private fun printRacingRecord(racingRecord: RacingRecord) {
-    racingRecord.value.keys.forEach { printTrack(it, racingRecord.value[it]!!) }
+private fun printTrack(racingRecord: RacingRecord) {
+    print("${racingRecord.carName} : ")
+    repeat(racingRecord.carDistance) { print("-") }
     println()
 }
 
-private fun printTrack(carName: String, distance: Int) {
-    print("$carName : ")
-    repeat(distance) { print("-") }
-    println()
-}
-
-private fun printWinners(winners: List<String>) {
+fun printWinners(winners: List<String>) {
     println("${winners.joinToString(", ")}가 최종 우승했습니다.")
 }

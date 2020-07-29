@@ -1,5 +1,6 @@
 package step3
 
 data class RacingRecord(
-    val value: Map<String, Int>
+    val carName: String,
+    val carDistance: Int
 )

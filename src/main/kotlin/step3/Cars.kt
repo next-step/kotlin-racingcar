@@ -7,10 +7,8 @@ class Cars(
         cars.forEach { it.race() }
     }
 
-    fun getCurrentRacingRecord(): RacingRecord {
-        val recordMap = mutableMapOf<String, Int>()
-        cars.forEach { recordMap[it.name] = it.distance }
-        return RacingRecord(recordMap)
+    fun getCurrentRacingRecords(): List<RacingRecord> {
+        return cars.map { RacingRecord(it.name, it.distance) }
     }
 
     fun findCurrentWinners(): List<String> {
