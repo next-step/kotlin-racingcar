@@ -7,7 +7,7 @@ fun main(args: Array<String>) {
         val game = Game(inputCarNum, inputMoveTime)
         while (!game.isEndGame()) {
             game.race()
-            val result = ResultView(inputMoveTime - game.moveTime, game.getCars())
+            val result = ResultView(inputMoveTime - game.moveTime, game.cars)
             result.view()
         }
     } catch (e: Exception) {

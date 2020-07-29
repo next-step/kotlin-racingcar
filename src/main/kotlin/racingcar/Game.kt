@@ -1,19 +1,22 @@
 package racingcar
 
 class Game(carNum: Int, moveTime: Int) {
-    private val cars = mutableListOf<Car>()
+    var cars = listOf<Car>()
+        private set
     var moveTime = moveTime
         private set
 
     init {
-        makeCars(carNum)
+        cars = makeCars(carNum)
     }
 
-    private fun makeCars(number: Int) {
+    private fun makeCars(number: Int): List<Car> {
+        val carList = mutableListOf<Car>()
         for (num in 1..number) {
             val car = Car(num)
-            cars.add(car)
+            carList.add(car)
         }
+        return carList
     }
 
     fun race() {
@@ -24,8 +27,6 @@ class Game(carNum: Int, moveTime: Int) {
     }
 
     fun isEndGame(): Boolean = moveTime == 0
-
-    fun getCars(): List<Car> = cars
 
     private fun randomValue(): Int = (0..9).random()
 }
