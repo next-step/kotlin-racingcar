@@ -23,5 +23,5 @@ class RacingGame(carNames: List<String>, private var runCnt: Int) {
 
     fun findWinners(): List<String> = cars.filter { it.distance == findMaxDistance() }.map { it.name }
 
-    private fun findMaxDistance() = cars.map { it.distance }.maxBy { it }
+    private fun findMaxDistance() = cars.maxBy { it.distance }?.distance ?: runCnt
 }
