@@ -1,6 +1,7 @@
 package week1.step2
 
-import java.util.*
+import java.util.LinkedList
+import java.util.Queue
 
 object Calculator {
 
