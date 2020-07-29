@@ -5,27 +5,12 @@ object ResultView {
     private const val TEXT_NOTIFY_WINNER = "이(가) 최종 우승했습니다 !!!"
     private const val DISTANCE_MARK = "-"
 
-    private fun showResultTitle() = println(TEXT_RACING_RESULT)
+    fun showResultTitle() = println("\n${TEXT_RACING_RESULT}")
 
-    fun showRace(gameRecords: List<LinkedHashMap<String, Int>>) {
-        println()
-        showResultTitle()
-
-        gameRecords.forEach { nthRun ->
-            printRecords(nthRun)
-            println()
+    fun showRace(tracks: MutableList<Pair<String, Int>>) {
+        tracks.forEach { eachCar ->
+            println("${eachCar.first}: " + DISTANCE_MARK.repeat(eachCar.second))
         }
-    }
-
-    private fun printRecords(nthRun: HashMap<String, Int>) {
-        nthRun.forEach { eachCar ->
-            showCarNamesAndDistancesMoved(eachCar)
-        }
-    }
-
-    private fun showCarNamesAndDistancesMoved(eachCar: Map.Entry<String, Int>) {
-        // print each car's name and distance
-        print("${eachCar.key}: " + DISTANCE_MARK.repeat(eachCar.value))
         println()
     }
 

@@ -2,14 +2,19 @@ package racingcar
 
 import racingcar.InputView.getCarNames
 import racingcar.InputView.getRunCnt
-import racingcar.RecordRepository.findWinners
-import racingcar.RecordRepository.gameRecords
+import racingcar.RacingGame.Companion.tracks
 
 fun main(args: Array<String>) {
-    val racing = RacingGame(getCarNames(), getRunCnt())
+    var carNames = getCarNames()
+    var runCnt = getRunCnt()
+    val game = RacingGame(carNames, runCnt)
 
-    racing.start()
+    ResultView.showResultTitle()
 
-    ResultView.showRace(gameRecords)
-    ResultView.showWinner(findWinners())
+    while(!game.isOver()){
+        game.start()
+        ResultView.showRace(tracks)
+        tracks.clear()
+    }
+    // ResultView.showWinner(findWinners())
 }
