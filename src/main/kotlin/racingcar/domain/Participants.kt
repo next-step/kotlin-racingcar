@@ -1,4 +1,4 @@
-package racingcar.model
+package racingcar.domain
 
 import racingcar.strategy.MovingStrategy
 
@@ -16,12 +16,11 @@ data class Participants(
         participants.forEach { it.moveForward() }
     }
 
-    fun getMovingStatus() = participants.joinToString("") { "${it.getName()} ${it.getMovingPath()}\n" }
+    fun findWinner(): List<Car> = participants.filter { it.isWinner(findMaxPosition()) }
 
-    fun findWinner(): List<Car> {
-        val maxPosition = participants.maxBy { it.position }?.position ?: return emptyList()
-        return participants.filter { it.position == maxPosition }
-    }
+    override fun toString() = participants.joinToString("") { "${it.getName()} ${it.getMovingPath()}\n" }
+
+    private fun findMaxPosition(): Int = participants.max()?.position ?: 0
 
     companion object {
         private const val PARTICIPANTS_DELIMITER = ","

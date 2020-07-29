@@ -1,6 +1,6 @@
 package racingcar
 
-import racingcar.model.Participants
+import racingcar.domain.Participants
 import racingcar.strategy.MovingStrategy
 
 class RacingGame(
@@ -16,7 +16,7 @@ class RacingGame(
             tryCount--
         }
 
-        return participants.getMovingStatus()
+        return participants.toString()
     }
 
     fun findWinners() = participants.findWinner()

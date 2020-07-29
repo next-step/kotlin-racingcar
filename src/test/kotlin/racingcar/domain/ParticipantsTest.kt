@@ -1,4 +1,4 @@
-package racingcar.model
+package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
@@ -17,8 +17,8 @@ internal class ParticipantsTest {
     }
 
     @Test
-    fun getMovingStatus() {
-        assertThat(participants.getMovingStatus()).isEqualTo("No.1 car1 -----\nNo.2 car2 -----\n")
+    fun participantsToString() {
+        assertThat(participants.toString()).isEqualTo("No.1 car1 -----\nNo.2 car2 -----\n")
     }
 
     @Test
