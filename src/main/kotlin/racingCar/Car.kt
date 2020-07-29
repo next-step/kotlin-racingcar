@@ -1,14 +1,18 @@
 package racingCar
 
+const val STANDARD_VALUE_TO_MOVE = 4
+
 class Car {
 
     var distance: Int = 0
-    private val standardValueToMove = 4
 
     fun changeStateRacingCar(inputRandomNum: Int) {
-        println("randomNumber $inputRandomNum")
-        if (inputRandomNum >= standardValueToMove) {
-            distance += 1
+        if (inputRandomNum >= STANDARD_VALUE_TO_MOVE) {
+            return move(true)
         }
+    }
+
+    fun move(isMove: Boolean) {
+        if (isMove) distance += 1
     }
 }

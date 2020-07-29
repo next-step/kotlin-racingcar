@@ -7,6 +7,6 @@ object OutputView {
     }
 
     fun makeRacingMap(distance: Int): String {
-        return "=".repeat(distance)
+        return if (distance == 0) " " else "=".repeat(distance)
     }
 }

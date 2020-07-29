@@ -1,3 +1,5 @@
+package stringCaculator
+
 import java.lang.IllegalArgumentException
 
 enum class CalculatorByOperator(val operator: String, val resultCalculator: (Int, Int) -> Int) {
@@ -31,7 +33,9 @@ class StringCalculator {
                 val resultOperator = calculatorValueLists[value]
                 val nextNum = calculatorValueLists[value + 1].toInt()
 
-                result = CalculatorByOperator.invokeCalculatorByOperator(resultOperator)
+                result = CalculatorByOperator.invokeCalculatorByOperator(
+                    resultOperator
+                )
                     .resultCalculator(result, nextNum)
             }
         } catch (e: NumberFormatException) {
