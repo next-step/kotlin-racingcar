@@ -6,7 +6,7 @@ data class Car(
     private val id: Int,
     private val name: String,
     private val movingStrategy: MovingStrategy
-) {
+) : Comparable<Car> {
     var position = 0
         private set
 
@@ -19,6 +19,10 @@ data class Car(
             position += MOVING_DISTANCE
         }
     }
+
+    fun isWinner(maxPosition: Int): Boolean = position >= maxPosition
+
+    override fun compareTo(other: Car): Int = position.compareTo(other.position)
 
     companion object {
         private const val NAME_TITLE = "No."
