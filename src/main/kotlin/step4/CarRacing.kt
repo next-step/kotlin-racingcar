@@ -13,9 +13,6 @@ fun main() {
         cars = Race.makeTurn(cars)
     }
 
-    for (i in 0 until numberOfTrials) {
-        val actualTrial = i + 1
-
-        ResultView.output(actualTrial, cars)
-    }
+    ResultView.output(numberOfTrials, cars)
+    ResultView.noticeWinner(cars)
 }

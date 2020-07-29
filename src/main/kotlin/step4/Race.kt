@@ -14,7 +14,7 @@ object Race {
         val carList = ArrayList<Car>()
 
         for (carName in carNames) {
-            carList.add(Car(carName, ArrayList()))
+            carList.add(Car(carName, 0, mutableListOf()))
         }
         return carList
     }
@@ -28,7 +28,7 @@ object Race {
         return cars
     }
 
-    fun successToMove(random: Int): Int {
+    private fun successToMove(random: Int): Int {
         return if (random >= MIN_VALUE_TO_MOVE) SUCCESS_TO_MOVE else FAIL_TO_MOVE
     }
 
