@@ -1,16 +1,41 @@
 package racingcar
 
 object InputView {
-    private const val ENTER_CAR_COUNT = "자동차 대수는 몇 대인가요?"
-    private const val ENTER_CHANCE_TO_RUN = "시도할 횟수는 몇 회인가요?"
+    private const val ENTER_CAR_NAMES = "경주할 자동차 이름을 입력하세요 (쉼표(,)를 기준으로 이름을 구분합니다)"
+    private const val ENTER_TRIALS = "시도할 횟수는 몇 회인가요?"
+    const val ENTER_CAR_NAMES_AGAIN = "2개 이상의 이름을 입력해주세요 (이름은 5자까지 허용됩니다)"
+    const val ENTER_TRIALS_AGAIN = "1 이상의 숫자를 입력해주세요"
+    private const val DELIMITER = ","
 
-    fun getCarCnt(): Int {
-        println(ENTER_CAR_COUNT)
-        return readLine()!!.toInt()
+    // TODO InputView 테스트
+
+    fun getCarNames(): List<String> {
+        println(ENTER_CAR_NAMES)
+
+        val names = readCarNames(readLine())
+        InputInspector.validate(names)
+
+        return InputInspector.validNames
     }
 
-    fun getChanceToRun(): Int {
-        println(ENTER_CHANCE_TO_RUN)
-        return readLine()!!.toInt()
+    fun getTryChance(): Int {
+        println(ENTER_TRIALS)
+
+        var trials = readLine()?.trim()?.toIntOrNull()
+
+        while (trials == null) {
+            println(ENTER_TRIALS_AGAIN)
+            trials = readLine()?.trim()?.toIntOrNull()
+        }
+        return trials
+    }
+
+    fun readCarNames(line: String?): List<String> {
+        var names = line
+        while (names.isNullOrBlank()) {
+            println(ENTER_CAR_NAMES_AGAIN)
+            names = readLine()
+        }
+        return names.trim().split(DELIMITER)
     }
 }
