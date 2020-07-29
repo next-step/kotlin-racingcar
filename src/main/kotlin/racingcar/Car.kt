@@ -9,9 +9,9 @@ class Car(val name: String) {
         if (isRunnable(flag)) _distance++
     }
 
-    private fun isRunnable(flag: Int) = flag >= MAKE_RUNNABLE_VALUE
+    private fun isRunnable(flag: Int) = flag >= MAKE_RUN_VALUE
 
     companion object {
-        private const val MAKE_RUNNABLE_VALUE = 4
+        private const val MAKE_RUN_VALUE = 4
     }
 }

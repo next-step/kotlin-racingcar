@@ -1,9 +1,9 @@
 package racingcar
 
 import racingcar.InputView.ENTER_CAR_NAMES_AGAIN
-import racingcar.InputView.ENTER_TRIALS_AGAIN
+import racingcar.InputView.ENTER_RUN_COUNT_AGAIN
 import racingcar.InputView.readCarNames
-import racingcar.InputView.readTrials
+import racingcar.InputView.readRunCnt
 
 object InputInspector {
     private const val MIN_COUNT_OF_CAR_NAMES = 2
@@ -63,11 +63,11 @@ object InputInspector {
 
     private fun isLessThanTwo(names: List<String>) = names.size < MIN_COUNT_OF_CAR_NAMES
 
-    fun validateTrials(trials: Int?): Int {
+    fun validateRunCnt(trials: Int?): Int {
         var trials = trials
         while (trials == null) {
-            println(ENTER_TRIALS_AGAIN)
-            trials = readTrials()
+            println(ENTER_RUN_COUNT_AGAIN)
+            trials = readRunCnt()
         }
         return trials
     }

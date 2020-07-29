@@ -1,13 +1,15 @@
 package racingcar
 
-fun main(args: Array<String>) {
-    val carNames = InputView.getCarNames()
-    val trials = InputView.getTryChance()
+import racingcar.InputView.getCarNames
+import racingcar.InputView.getRunCnt
+import racingcar.RecordRepository.findWinners
+import racingcar.RecordRepository.gameRecords
 
-    val racing = RacingGame(carNames, trials)
+fun main(args: Array<String>) {
+    val racing = RacingGame(getCarNames(), getRunCnt())
 
     racing.start()
 
-    ResultView.showRace(RecordRepository.gameRecords)
-    ResultView.showWinner(RecordRepository.findWinners())
+    ResultView.showRace(gameRecords)
+    ResultView.showWinner(findWinners())
 }
