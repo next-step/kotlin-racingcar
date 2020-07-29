@@ -1,6 +1,4 @@
-import java.lang.NumberFormatException
-
-const val SPLIT_FORMAT = " "
+private const val SPLIT_FORMAT = " "
 
 class Calculator {
     fun calculate(arr: List<String>): Double {

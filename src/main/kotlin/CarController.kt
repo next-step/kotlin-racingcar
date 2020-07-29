@@ -1,29 +1,42 @@
 import kotlin.random.Random
 
-const val RANDOM_RANGE = 10
-class CarController(carCount: Int, private val playCount: Int) {
-    private var cars: List<Car>
+private const val RANDOM_RANGE = 10
 
-    init {
-        cars = makeCars(carCount)
-    }
+class CarController(private val carNames: List<String>, private val playCount: Int) {
 
-    private fun makeCars(count: Int): List<Car> {
+    private fun makeCars(names: List<String>): List<Car> {
         val cars = mutableListOf<Car>()
-        for (i in 0 until count) {
-            cars.add(Car())
+        for (name in names) {
+            cars.add(Car(name))
         }
         return cars
     }
 
-    fun play(resultView: ResultView) {
-        resultView.printInit()
-        repeat(playCount) {
-            cars.forEach {
-                it.accelerate(Random.nextInt(RANDOM_RANGE))
-            }
-            resultView.printResult(cars)
+    private fun play(cars: List<Car>) {
+        cars.forEach {
+            it.accelerate(Random.nextInt(RANDOM_RANGE))
         }
+    }
+
+    private fun getWinner(cars: List<Car>): List<Car> {
+        val maxValue = cars.maxBy { it.position }?.position ?: 0
+        return cars.filter { car -> car.position == maxValue }
+    }
+
+    fun startGame(): List<Car> {
+        val cars = makeCars(carNames)
+        repeat(playCount) {
+            play(cars)
+        }
+        return cars
+    }
+
+    fun endGame(cars: List<Car>, resultView: ResultView) {
+        resultView.printInit()
+        for (i in 0 until playCount) {
+            resultView.printResult(cars, i)
+        }
+        resultView.printWinner(getWinner(cars))
     }
 }
 
@@ -31,9 +44,6 @@ fun main() {
     val inputView = InputView()
     val resultView = ResultView()
 
-    val carCount = inputView.carCountInput()
-    val playCount = inputView.playCountInput()
-
-    val carController = CarController(carCount, playCount)
-    carController.play(resultView)
+    val carController = CarController(inputView.carNamesInput(), inputView.playCountInput())
+    carController.endGame(carController.startGame(), resultView)
 }

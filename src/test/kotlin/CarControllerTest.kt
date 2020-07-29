@@ -6,7 +6,7 @@ class CarControllerTest {
     @DisplayName("게임 플레이 테스트")
     @Test
     fun play() {
-        val controller = CarController(4, 10)
-        controller.play(ResultView())
+        val controller = CarController(listOf("cat", "dog", "lion"), 10)
+        controller.startGame()
     }
 }

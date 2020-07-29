@@ -28,7 +28,7 @@ class CalculatorTest {
     @Test
     fun calculateOnlyTwoParameter() {
         val calculator = Calculator()
-        val inputTwo = listOf<String>("4", "-")
+        val inputTwo = listOf("4", "-")
         val twoValue = calculator.calculate(inputTwo)
         assertThat(twoValue).isEqualTo(4.0)
     }
