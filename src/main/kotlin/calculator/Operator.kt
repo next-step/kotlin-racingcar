@@ -1,21 +1,23 @@
 package calculator
 
-import java.util.function.BinaryOperator
-import java.util.function.IntBinaryOperator
+enum class Operator(private val operator: String, val calculation: (a: Int, b: Int) -> Int) {
+    ADD("+", { a, b -> a + b }),
+    MINUS("-", { a, b -> a - b }),
+    TIMES("*", { a, b -> a * b }),
+    DIVIDE(
+        "/",
+        { a, b ->
+            if (b == 0) {
+                throw java.lang.ArithmeticException("0으로 나눌 수 없습니다.")
+            }
+            a / b
+        }
+    );
 
-enum class Operator(val operator: String) : BinaryOperator<Int>, IntBinaryOperator {
-    ADD("+") {
-        override fun apply(t: Int, u: Int): Int = t + u
-    },
-    MINUS("-") {
-        override fun apply(t: Int, u: Int): Int = t - u
-    },
-    TIMES("*") {
-        override fun apply(t: Int, u: Int): Int = t * u
-    },
-    DIVIDE("/") {
-        override fun apply(t: Int, u: Int): Int = t / u
-    };
-
-    override fun applyAsInt(t: Int, u: Int) = apply(t, u)
+    companion object {
+        fun selectOperator(operator: String): Operator {
+            return values().find { operator == it.operator }
+                ?: throw IllegalArgumentException("사칙연산 부호가 아닙니다.")
+        }
+    }
 }
