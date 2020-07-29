@@ -1,8 +1,6 @@
 package racingcar
 
-class Car(
-    val name: String
-) {
+class Car(val name: String) {
     private var _distance: Int = 0
     val distance: Int
         get() = _distance
@@ -11,10 +9,9 @@ class Car(
         if (isRunnable(flag)) _distance++
     }
 
-    private fun isRunnable(flag: Int) = flag in CAN_RUN_FROM..CAN_RUN_TO
+    private fun isRunnable(flag: Int) = flag >= MAKE_RUNNABLE_VALUE
 
     companion object {
-        private const val CAN_RUN_FROM = 4
-        private const val CAN_RUN_TO = 9
+        private const val MAKE_RUNNABLE_VALUE = 4
     }
 }
