@@ -34,7 +34,7 @@ object WinnerCarRacingView {
         if (nameLength > 5) {
             throw WinnerCarRacingException("자동차 이름은 5자를 넘어갈 수 없습니다.")
         }
-        return cars.toList()
+        return cars
     }
 
     fun showSecondInstruction() {
