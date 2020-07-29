@@ -1,16 +1,12 @@
-package step4
+package step4.model
 
 import kotlin.random.Random
 
-object Race {
-    private const val CAR_NAME_DELIMITER = ","
-    private const val MIN_VALUE_TO_MOVE = 4
+data class Race(val names: String) {
+    private val cars = getCars(names)
 
-    private const val SUCCESS_TO_MOVE = 1
-    private const val FAIL_TO_MOVE = 0
-
-    fun initiate(carNameList: String): List<Car> {
-        val carNames = carNameList.split(CAR_NAME_DELIMITER)
+    private fun getCars(names: String): MutableList<Car> {
+        val carNames = names.split(CAR_NAME_DELIMITER)
         val carList = ArrayList<Car>()
 
         for (carName in carNames) {
@@ -19,12 +15,14 @@ object Race {
         return carList
     }
 
-    fun makeTurn(cars: List<Car>): List<Car> {
+    fun makeTurn() {
         for (car in cars) {
             val resultOfTurn = successToMove(getRandomNumber())
-
             car.saveResult(resultOfTurn)
         }
+    }
+
+    fun getCars(): List<Car> {
         return cars
     }
 
@@ -34,5 +32,13 @@ object Race {
 
     private fun getRandomNumber(): Int {
         return Random.nextInt(10)
+    }
+
+    companion object {
+        private const val CAR_NAME_DELIMITER = ","
+        private const val MIN_VALUE_TO_MOVE = 4
+
+        private const val SUCCESS_TO_MOVE = 1
+        private const val FAIL_TO_MOVE = 0
     }
 }

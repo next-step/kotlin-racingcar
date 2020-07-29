@@ -2,17 +2,9 @@ package step4.view
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import step4.Car
+import step4.model.Car
 
 class ResultViewTest {
-    @Test
-    fun `visualize block test`() {
-        val raceResult = listOf(0, 1, 1, 1, 0, 1)
-
-        assertThat(ResultView.visualize(3, raceResult)).isEqualTo("--")
-        assertThat(ResultView.visualize(6, raceResult)).isEqualTo("----")
-    }
-
     @Test
     fun `sortedDescending test`() {
         val raceResult = listOf(5, 8, 32, 6)

@@ -1,6 +1,6 @@
 package step4.view
 
-import step4.Car
+import step4.model.Car
 
 object ResultView {
     private const val CAR_NAME_SEPARATOR = " : "
@@ -37,7 +37,7 @@ object ResultView {
         }
     }
 
-    fun visualize(numberOfTrials: Int, raceResult: List<Int>): String {
+    private fun visualize(numberOfTrials: Int, raceResult: List<Int>): String {
         var distance = 0
 
         for (i in 0 until numberOfTrials) {
