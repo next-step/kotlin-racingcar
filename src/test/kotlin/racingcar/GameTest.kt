@@ -28,7 +28,7 @@ class GameTest {
         val game = Game(inputCarNum, inputMoveTime)
 
         assertThat(game.getCars().size).isEqualTo(3)
-        assertThat(game.getMoveTime()).isEqualTo(5)
+        assertThat(game.moveTime).isEqualTo(5)
     }
 
     @Test
@@ -39,7 +39,7 @@ class GameTest {
 
         game.race()
 
-        assertThat(game.getMoveTime()).isEqualTo(moveTime - 1)
+        assertThat(game.moveTime).isEqualTo(moveTime - 1)
     }
 
     @Test

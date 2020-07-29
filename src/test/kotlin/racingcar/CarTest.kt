@@ -10,7 +10,7 @@ class CarTest {
 
         car.goStop(4)
 
-        assertThat(car.getMove()).isEqualTo(1)
+        assertThat(car.position).isEqualTo(1)
     }
 
     @Test
@@ -19,6 +19,6 @@ class CarTest {
 
         car.goStop(3)
 
-        assertThat(car.getMove()).isEqualTo(0)
+        assertThat(car.position).isEqualTo(0)
     }
 }

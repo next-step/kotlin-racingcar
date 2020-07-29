@@ -1,7 +1,11 @@
 package racingcar
 
-class Car(private val num: Int) {
-    private var move = 0
+class Car(num: Int) {
+    var num = num
+        private set
+
+    var position = 0
+        private set
 
     private fun isGo(randomNum: Int): Boolean {
         return randomNum >= 4
@@ -9,11 +13,7 @@ class Car(private val num: Int) {
 
     fun goStop(random: Int) {
         if (isGo(random)) {
-            move += 1
+            position += 1
         }
     }
-
-    fun getMove(): Int = move
-
-    fun getNum(): Int = num
 }
