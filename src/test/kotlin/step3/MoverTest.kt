@@ -3,6 +3,7 @@ package step3
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import step3.domain.Mover
 
 internal class MoverTest {
 

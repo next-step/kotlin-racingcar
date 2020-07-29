@@ -5,6 +5,9 @@ import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import step3.domain.Car
+import step3.domain.CarMover
+import step3.domain.Mover
 
 class CarTest {
 

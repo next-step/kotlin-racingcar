@@ -1,5 +1,7 @@
 package step3
 
+import step3.domain.CarFactory
+import step3.domain.RacingField
 import step3.view.getCarNames
 import step3.view.getTryCount
 import step3.view.printRacingResult

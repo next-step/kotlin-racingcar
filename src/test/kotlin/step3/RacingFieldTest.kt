@@ -3,6 +3,13 @@ package step3
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import step3.domain.Car
+import step3.domain.CarMover
+import step3.domain.Cars
+import step3.domain.Mover
+import step3.domain.RacingField
+import step3.domain.RacingRecord
+import step3.domain.RacingResult
 
 class RacingFieldTest {
     @Test

@@ -2,6 +2,10 @@ package step3
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import step3.domain.Car
+import step3.domain.CarMover
+import step3.domain.Cars
+import step3.domain.RacingRecord
 
 class CarsTest {
     @Test

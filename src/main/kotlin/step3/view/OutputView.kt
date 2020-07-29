@@ -1,7 +1,7 @@
 package step3.view
 
-import step3.RacingResult
-import step3.RacingRecord
+import step3.domain.RacingRecord
+import step3.domain.RacingResult
 
 fun printRacingResult(racingResults: List<RacingResult>) {
     println("실행 결과")
