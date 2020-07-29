@@ -6,12 +6,11 @@ import java.lang.Exception
 fun main() {
 
     try {
-        WinnerCarRacingView.showFirstInstruction()
-        val firstInput = readLine()!!
+        val firstInput = WinnerCarRacingView.getCarNames()
         val cars: List<Car> = WinnerCarRacingView.parsingCars(firstInput)
 
-        WinnerCarRacingView.showSecondInstruction()
-        val count: Int = WinnerCarRacingView.checkCountValidation(readLine()!!)
+        val secondInput = WinnerCarRacingView.getCount()
+        val count: Int = WinnerCarRacingView.checkCountValidation(secondInput)
 
         for (i in 1..count) {
             WinnerCarRacing.updateCarRacing(cars)
