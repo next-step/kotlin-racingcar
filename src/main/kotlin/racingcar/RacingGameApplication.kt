@@ -12,7 +12,7 @@ fun main(args: Array<String>) {
     ResultView.showResultTitle()
 
     while (!game.isOver()) {
-        game.start()
+        game.runOnce()
         ResultView.showRace(tracks)
         tracks.clear()
     }

@@ -7,7 +7,7 @@ class RacingGame(carNames: List<String>, private var runCnt: Int) {
 
     private val cars = CarFactory.makeCars(carNames)
 
-    fun start() {
+    fun runOnce() {
         cars.forEach { car ->
             car.run(flag = (0..9).random())
             saveCurrentTrack(car.name, car.distance)
@@ -23,5 +23,5 @@ class RacingGame(carNames: List<String>, private var runCnt: Int) {
 
     fun findWinners(): List<String> = cars.filter { it.distance == findMaxDistance() }.map { it.name }
 
-    private fun findMaxDistance() = cars.maxBy { it.distance }?.distance ?: runCnt
+    private fun findMaxDistance() = cars.map { it.distance }.maxBy { it }
 }
