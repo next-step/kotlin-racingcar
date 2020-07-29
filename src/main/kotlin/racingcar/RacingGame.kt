@@ -1,6 +1,6 @@
 package racingcar
 
-import racingcar.model.Participants
+import racingcar.domain.Participants
 import racingcar.strategy.MovingStrategy
 
 class RacingGame(
