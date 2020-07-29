@@ -2,6 +2,7 @@ package racingcar.strategy
 
 class RandomStrategy : Strategy {
     override val canMove get() = greaterThanOrEqualToMovableValue(getRandom(RANDOM_START_NUM, RANDOM_END_NUM))
+
     companion object {
         const val RANDOM_START_NUM = 0
         const val RANDOM_END_NUM = 9
