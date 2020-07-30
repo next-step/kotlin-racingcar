@@ -11,9 +11,7 @@ class WinnerCarRacing(input: String) {
 
     private lateinit var cars: List<Car>
 
-    private fun generateRandomNumber(): Int {
-        return (Math.random() * 10).toInt()
-    }
+    private fun generateRandomNumber(): Int = (0..9).random()
 
     @Throws(NullPointerException::class)
     private fun moveOrStop(car: Car) {
