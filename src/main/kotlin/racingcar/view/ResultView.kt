@@ -17,16 +17,9 @@ object ResultView {
     }
 
     fun showWinner(winners: List<String>) {
-        if (winners.size == 1) print(winners[0])
-        if (winners.size > 1) {
-            printWinnerUntilBeforeLastOne(winners)
-            print(winners.last())
+        winners.filter { it != winners.last() }.forEach { winner ->
+            "${winner}, ".also(::print)
         }
-        TEXT_NOTIFY_WINNER.also(::println)
-    }
-
-    private fun printWinnerUntilBeforeLastOne(winners: List<String>) {
-        for (i in 0 until winners.size - 1)
-            print("${winners[i]}, ")
+        "${winners.last()}${TEXT_NOTIFY_WINNER}".also(::print)
     }
 }
