@@ -2,7 +2,7 @@ package racingcar.domain
 
 class RacingGame(val names: String, var tryNo: Int) {
     private val cars: Cars =
-        Cars(names.split(",").map { Car(it) })
+        Cars(names.split(",").map { Car(it.trim()) })
 
     fun race(): Cars {
         cars.race()
