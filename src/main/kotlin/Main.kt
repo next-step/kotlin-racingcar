@@ -4,13 +4,13 @@ import wk1_step4.WinnerCarRacingView
 fun main() {
 
     try {
-        val firstInput = WinnerCarRacingView.getCarNames()
-        WinnerCarRacingView.checkCarsValidation(firstInput)
+        val carNamesInput = WinnerCarRacingView.getCarNames()
+        WinnerCarRacingView.checkCarsValidation(carNamesInput)
 
-        val secondInput = WinnerCarRacingView.getCount()
-        val count: Int = WinnerCarRacingView.checkCountValidation(secondInput)
+        val countInput = WinnerCarRacingView.getCount()
+        val count: Int = WinnerCarRacingView.checkCountValidation(countInput)
 
-        val winnerCarRacing = WinnerCarRacing(firstInput)
+        val winnerCarRacing = WinnerCarRacing(carNamesInput)
 
         for (i in 1..count) {
             WinnerCarRacingView.showCarMovement(winnerCarRacing.updateCarRacing())

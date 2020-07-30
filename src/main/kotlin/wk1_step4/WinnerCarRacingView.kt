@@ -9,16 +9,16 @@ object WinnerCarRacingView {
         return readLine()!!
     }
 
-    fun checkCarsValidation(input: String?) {
-        if (input == null || input.isEmpty()) {
+    fun checkCarsValidation(carNames: String?) {
+        if (carNames == null || carNames.isEmpty()) {
             throw NullPointerException("자동차 이름을 입력해주세요.")
         }
-        if (input.contains(" ")) {
+        if (carNames.contains(" ")) {
             throw WinnerCarRacingException("공백 없이 자동차이름과 쉼표만 입력해주세요")
         }
-        if (!input.matches(Regex("[a-z|A-Z|,]*")))
+        if (!carNames.matches(Regex("[a-z|A-Z|,]*")))
             throw WinnerCarRacingException("자동차 이름 입력란에는 영문과 `,` 만 포함될 수 있습니다.")
-        if (input.endsWith(",")) {
+        if (carNames.endsWith(",")) {
             throw WinnerCarRacingException("`,`는 자동차 이름 사이에만 올 수 있습니다.")
         }
     }
