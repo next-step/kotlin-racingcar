@@ -1,8 +1,10 @@
+package calculator
+
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
-class CalculatorTest {
+class Test {
 
     @Test
     fun `check add`() {
