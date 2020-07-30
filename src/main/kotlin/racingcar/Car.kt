@@ -4,13 +4,13 @@ import org.jetbrains.annotations.TestOnly
 
 class Car(val name: String = "") {
 
+    private val _distanceCounts = mutableListOf(0)
+    val distanceCounts: List<Int> get() = _distanceCounts
+
     init {
         if (name.length > 5) throw IllegalArgumentException("차 이름이 최대 5글자까지 입력 가능합니다.")
         if (name.isEmpty()) throw IllegalArgumentException("차 이름이 유효하지 않습니다.")
     }
-
-    private val _distanceCounts = mutableListOf(0)
-    val distanceCounts: List<Int> get() = _distanceCounts
 
     fun updateDistanceCount() {
         if (availableMoving()) {
