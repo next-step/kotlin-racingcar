@@ -22,15 +22,8 @@ object TypeExtractor {
     }
 
     fun List<String>.mappingOperator(): List<Operator> {
-        return map {
-            // it 이 객체면 composition 으로 처리해서 when 제거할 수 있을 것 같은데.. & 대수타입이면 else 문도 제거 가능
-            when (it) {
-                Operator.ADD.symbol -> Operator.ADD
-                Operator.SUB.symbol -> Operator.SUB
-                Operator.MUL.symbol -> Operator.MUL
-                Operator.DIV.symbol -> Operator.DIV
-                else -> error("Invalid operator type")
-            }
+        return map { operator ->
+            Operator.values().find { it.symbol == operator } ?: error("Invalid operator type")
         }
     }
 }
