@@ -6,10 +6,6 @@ class Car(
     private val name: String,
     private val strategy: Strategy
 ) {
-    companion object {
-        const val PRINT_CHARACTER = "-"
-    }
-
     var currentPosition = 0
         private set
 
@@ -17,10 +13,14 @@ class Car(
 
     internal fun isWinner(max: Int) = currentPosition == max
 
-    internal fun getDistance() = PRINT_CHARACTER.repeat(currentPosition)
+    override fun toString() = "$name : ${PRINT_CHARACTER.repeat(currentPosition)}\n"
 
     internal fun moveForward(): Int {
         if (strategy.canMove) currentPosition++
         return currentPosition
+    }
+
+    companion object {
+        const val PRINT_CHARACTER = "-"
     }
 }
