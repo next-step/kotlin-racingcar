@@ -14,21 +14,27 @@ class CarController(private val carNames: List<String>, private val playCount: I
         return cars
     }
 
-    private fun play(cars: List<Car>) {
-        cars.forEach {
-            it.accelerate(Random.nextInt(RANDOM_RANGE))
+    private fun play(cars: List<Car>, accelerateNumbers: List<Int>) {
+        cars.forEachIndexed { index, car -> car.accelerate(accelerateNumbers[index]) }
+    }
+
+    private fun getRandoms(size: Int): List<Int> {
+        val randoms = mutableListOf<Int>()
+        repeat(size) {
+            randoms.add(Random.nextInt(RANDOM_RANGE))
         }
+        return randoms
     }
 
     private fun getWinner(cars: List<Car>): List<Car> {
         val maxValue = cars.maxBy { it.position }?.position ?: 0
-        return cars.filter { car -> car.position == maxValue }
+        return cars.filter { car -> car.equalsCurrentPosition(maxValue) }
     }
 
     fun startGame(): List<Car> {
         val cars = makeCars(carNames)
         repeat(playCount) {
-            play(cars)
+            play(cars, getRandoms(cars.size))
         }
         return cars
     }
