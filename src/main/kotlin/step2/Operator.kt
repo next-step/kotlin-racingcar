@@ -10,8 +10,7 @@ enum class Operator(
     DIV(
         "/",
         { target: Int, input: Int ->
-            if (input == 0)
-                throw IllegalArgumentException("Can't be divided by zero.")
+            require(input != 0) { "Can't be divided by zero." }
             target / input
         }
     )
