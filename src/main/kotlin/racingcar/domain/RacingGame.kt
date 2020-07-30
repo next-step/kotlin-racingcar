@@ -1,6 +1,6 @@
 package racingcar.domain
 
-class RacingGame(val names: String, var tryNo: Int) {
+class RacingGame(private val names: String, private var tryNo: Int) {
     private val cars: Cars =
         Cars(names.split(",").map { Car(it.trim()) })
 
