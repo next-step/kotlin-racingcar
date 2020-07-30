@@ -2,7 +2,7 @@ package racingcar.domain
 
 const val CAR_MOVE_CRITERIA = 4
 
-class Car(val name: String, var position: Int = 0) {
+class Car(val name: String, private var position: Int = 0) {
     fun move(randomValue: Int): Car {
         if (randomValue >= CAR_MOVE_CRITERIA) {
             position += 1
@@ -11,6 +11,8 @@ class Car(val name: String, var position: Int = 0) {
     }
 
     fun isWinner(maxPosition: Int): Boolean = maxPosition == this.position
+
+    fun movedPosition(): Int = this.position
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

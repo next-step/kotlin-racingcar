@@ -1,14 +1,12 @@
 package racingcar.domain
 
-import kotlin.math.max
-
 class Cars(private var cars: List<Car>) {
     fun findWinners(): Winners {
         val maxPosition = getMaxPosition()
         return Winners(cars.filter { it.isWinner(maxPosition) })
     }
 
-    private fun getMaxPosition(): Int = cars.maxBy { it.position }!!.position
+    private fun getMaxPosition(): Int = cars.maxBy { it.movedPosition() }!!.movedPosition()
 
     fun race() {
         this.cars = this.cars.map { it.move(randomNumber()) }
