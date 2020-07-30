@@ -1,3 +1,3 @@
-package wk1_step1
+package person
 
 data class Person(val name: String, val age: Int? = null, var nickname: String? = null)

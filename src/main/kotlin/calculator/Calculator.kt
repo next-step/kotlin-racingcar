@@ -1,4 +1,4 @@
-package wk1_step2
+package calculator
 
 import java.lang.AssertionError
 import java.lang.NullPointerException

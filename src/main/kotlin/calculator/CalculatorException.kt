@@ -1,3 +1,3 @@
-package wk1_step2
+package calculator
 
 class CalculatorException(message: String) : Exception(message)
