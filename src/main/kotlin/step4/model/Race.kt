@@ -1,6 +1,6 @@
 package step4.model
 
-import kotlin.random.Random
+import step4.strategy.MoveStrategy
 
 data class Race(val names: String) {
     private val cars = getCars(names)
@@ -15,9 +15,9 @@ data class Race(val names: String) {
         return carList
     }
 
-    fun makeTurn() {
+    fun makeTurn(strategy: MoveStrategy) {
         for (car in cars) {
-            val resultOfTurn = successToMove(getRandomNumber())
+            val resultOfTurn = strategy.resultOfTurn
             car.saveResult(resultOfTurn)
         }
     }
@@ -26,19 +26,7 @@ data class Race(val names: String) {
         return cars
     }
 
-    private fun successToMove(random: Int): Int {
-        return if (random >= MIN_VALUE_TO_MOVE) SUCCESS_TO_MOVE else FAIL_TO_MOVE
-    }
-
-    private fun getRandomNumber(): Int {
-        return Random.nextInt(10)
-    }
-
     companion object {
         private const val CAR_NAME_DELIMITER = ","
-        private const val MIN_VALUE_TO_MOVE = 4
-
-        private const val SUCCESS_TO_MOVE = 1
-        private const val FAIL_TO_MOVE = 0
     }
 }
