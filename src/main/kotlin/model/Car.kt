@@ -1,15 +1,11 @@
 package model
 
-class Car(val diceStatus: DiceStatus, private val driverName: String) : Comparable<Car> {
+class Car(val diceStatus: DiceStatus, val driverName: String) : Comparable<Car> {
     private var step: Int = 0
     private var stepList: MutableList<Int> = mutableListOf()
 
     fun getStep(): Int {
         return step
-    }
-
-    fun getDriverName(): String {
-        return driverName
     }
 
     fun getStepList(): MutableList<Int> {
