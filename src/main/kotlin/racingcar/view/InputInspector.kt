@@ -25,7 +25,7 @@ object InputInspector {
     private fun validateNumberOfCar(carNames: List<String>): List<String> {
         var names = carNames
         while (isLessThanTwo(names)) {
-            println(ENTER_CAR_NAMES_AGAIN)
+            ENTER_CAR_NAMES_AGAIN.also(::println)
             names = readCarNames(readLine())
         }
         return names
@@ -42,7 +42,7 @@ object InputInspector {
     private fun validateMaxLengthOfName(name: String, carNames: List<String>): List<String> {
         var names = carNames
         while (isMoreThanMaxLength(name)) {
-            println(ENTER_CAR_NAMES_AGAIN)
+            ENTER_CAR_NAMES_AGAIN.also(::println)
             names = readCarNames(readLine())
         }
         return names
@@ -51,7 +51,7 @@ object InputInspector {
     private fun validateMinLengthOfName(name: String, carNames: List<String>): List<String> {
         var names = carNames
         while (isLessThanMinLength(name)) {
-            println(ENTER_CAR_NAMES_AGAIN)
+            ENTER_CAR_NAMES_AGAIN.also(::println)
             names = readCarNames(readLine())
         }
         return names
@@ -66,7 +66,7 @@ object InputInspector {
     fun validateRunCnt(RunCnt: Int?): Int {
         var runCnt = RunCnt
         while (runCnt == null || runCnt < MIN_COUNT_OF_RUN) {
-            println(ENTER_RUN_COUNT_AGAIN)
+            ENTER_RUN_COUNT_AGAIN.also(::println)
             runCnt = readRunCnt()
         }
         return runCnt

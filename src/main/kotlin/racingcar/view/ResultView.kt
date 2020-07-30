@@ -7,11 +7,11 @@ object ResultView {
     private const val TEXT_NOTIFY_WINNER = "이(가) 최종 우승했습니다 !!!"
     private const val DISTANCE_MARK = "-"
 
-    fun showResultTitle() = println("\n$TEXT_RACING_RESULT")
+    fun showResultTitle() = "\n$TEXT_RACING_RESULT".also(::println)
 
     fun showRace(carsOnTrack: List<Car>) {
         carsOnTrack.forEach { eachCar ->
-            println("${eachCar.name}: ${DISTANCE_MARK.repeat(eachCar.distance)}")
+            "${eachCar.name}: ${DISTANCE_MARK.repeat(eachCar.distance)}".also(::println)
         }
         println()
     }
@@ -22,7 +22,7 @@ object ResultView {
             printWinnerUntilBeforeLastOne(winners)
             print(winners.last())
         }
-        print(TEXT_NOTIFY_WINNER)
+        TEXT_NOTIFY_WINNER.also(::println)
     }
 
     private fun printWinnerUntilBeforeLastOne(winners: List<String>) {
