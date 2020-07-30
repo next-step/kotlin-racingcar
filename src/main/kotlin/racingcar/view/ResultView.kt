@@ -18,8 +18,8 @@ object ResultView {
 
     fun showWinner(winners: List<String>) {
         winners.filter { it != winners.last() }.forEach { winner ->
-            "${winner}, ".also(::print)
+            "$winner, ".also(::print)
         }
-        "${winners.last()}${TEXT_NOTIFY_WINNER}".also(::print)
+        "${winners.last()}$TEXT_NOTIFY_WINNER".also(::print)
     }
 }
