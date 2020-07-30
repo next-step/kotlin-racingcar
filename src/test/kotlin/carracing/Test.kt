@@ -41,10 +41,15 @@ class Test {
                 Car("qoo", 3)
             )
         )
-
         assertThat(carRacing.findWinners()).containsExactlyInAnyOrder(
             Car("pooh", 3),
             Car("qoo", 3)
         )
+    }
+
+    @Test
+    fun `move or stop`() {
+        val carRacing = CarRacing("pooh,tiger,ryan")
+        carRacing.execute()
     }
 }

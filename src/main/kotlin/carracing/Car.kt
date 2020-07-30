@@ -1,10 +1,15 @@
 package carracing
 
-class Car(val name: String, var position: Int = 0) {
+private const val STANDARD_COUNT: Int = 3
 
+class Car(val name: String, var position: Int = 0) {
     fun move() {
-        this.position++
+        if (generateRandomNumber() > STANDARD_COUNT) this.position++
     }
+
+    fun isLocated(requiredPosition: Int): Boolean = position == requiredPosition
+
+    private fun generateRandomNumber(): Int = (0..9).random()
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
