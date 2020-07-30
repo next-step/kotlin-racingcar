@@ -1,3 +1,5 @@
+package racingcar
+
 const val PRINT_FORMAT = "-"
 
 class ResultView {

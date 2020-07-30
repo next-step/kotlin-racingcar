@@ -1,3 +1,5 @@
+package racingcar
+
 const val NAME_SPLIT_FORMAT = ","
 class InputView {
 

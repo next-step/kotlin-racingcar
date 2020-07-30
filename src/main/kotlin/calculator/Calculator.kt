@@ -1,3 +1,5 @@
+package calculator
+
 private const val SPLIT_FORMAT = " "
 
 class Calculator {

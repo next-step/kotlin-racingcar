@@ -1,3 +1,5 @@
+package racingcar
+
 private const val NAME_LENGTH_MAX = 5
 private const val ACCELERATE_MIN_VALUE = 0
 private const val ACCELERATE_MAX_VALUE = 9

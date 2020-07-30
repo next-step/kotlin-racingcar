@@ -1,3 +1,5 @@
+package racingcar
+
 import kotlin.random.Random
 
 private const val RANDOM_RANGE = 10
@@ -44,6 +46,7 @@ fun main() {
     val inputView = InputView()
     val resultView = ResultView()
 
-    val carController = CarController(inputView.carNamesInput(), inputView.playCountInput())
+    val carController =
+        CarController(inputView.carNamesInput(), inputView.playCountInput())
     carController.endGame(carController.startGame(), resultView)
 }
