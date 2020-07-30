@@ -1,4 +1,8 @@
-package racingcar
+package racingcar.controller
+
+import racingcar.model.Car
+import racingcar.view.InputView
+import racingcar.view.ResultView
 
 fun main() {
     val (carNames, tryCount) = InputView.getCarNamesAndTryCount()

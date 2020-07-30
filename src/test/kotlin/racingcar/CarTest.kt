@@ -3,6 +3,7 @@ package racingcar
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
+import racingcar.model.Car
 
 class CarTest {
 
