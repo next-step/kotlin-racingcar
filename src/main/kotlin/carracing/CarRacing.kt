@@ -5,8 +5,12 @@ import java.lang.NullPointerException
 class CarRacing(carNames: String?) {
     private var cars: MutableList<Car> = mutableListOf()
 
-    init {
-        parsingCarNames(carNames)
+    // init {
+    //     parsingCarNames(carNames)
+    // }
+    //
+    constructor(listOf: List<Car>) : this("test") {
+        cars = listOf.toMutableList()
     }
 
     private fun generateRandomNumber(): Int = (0..9).random()

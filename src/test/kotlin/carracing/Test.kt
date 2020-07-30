@@ -1,5 +1,6 @@
 package carracing
 
+import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
@@ -7,7 +8,7 @@ class Test {
 
     @Test
     fun `parsing car name`() {
-        val carRacing = CarRacing("pooh,tiger,ryan")
+        CarRacing("pooh,tiger,ryan")
     }
 
     @Test
@@ -29,5 +30,21 @@ class Test {
     @Test
     fun `check max length for car name`() {
         assertThatThrownBy { CarRacing("tigger") }.isInstanceOf(CarRacingException::class.java)
+    }
+
+    @Test
+    fun `find winners`() {
+        val carRacing = CarRacing(
+            listOf(
+                Car("pooh", 3),
+                Car("hello", 1),
+                Car("qoo", 3)
+            )
+        )
+
+        assertThat(carRacing.findWinners()).containsExactlyInAnyOrder(
+            Car("pooh", 3),
+            Car("qoo", 3)
+        )
     }
 }
