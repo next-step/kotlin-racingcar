@@ -1,4 +1,4 @@
-package week1.step2
+package calculator
 
 import java.util.LinkedList
 import java.util.Queue

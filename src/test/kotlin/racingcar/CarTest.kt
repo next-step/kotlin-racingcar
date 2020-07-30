@@ -1,4 +1,4 @@
-package week1.step3
+package racingcar
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException

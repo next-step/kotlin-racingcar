@@ -1,4 +1,4 @@
-package week1.step3
+package racingcar
 
 fun main() {
     val (carNames, tryCount) = InputView.getCarNamesAndTryCount()

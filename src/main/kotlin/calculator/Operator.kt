@@ -1,4 +1,4 @@
-package week1.step2
+package calculator
 
 enum class Operator(val op: Char, val opCal: (first: Double, second: Double) -> Double) {
     PLUS('+', { first, second ->

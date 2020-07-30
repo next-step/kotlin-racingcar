@@ -1,4 +1,4 @@
-package week1.step3
+package racingcar
 
 object ResultView {
 
