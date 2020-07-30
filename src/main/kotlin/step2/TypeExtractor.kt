@@ -2,11 +2,14 @@ package step2
 
 object TypeExtractor {
 
+    private val numberRegex by lazy { Regex("""\d+""") }
+    private val operatorRegex by lazy { Regex("""[\-+/*]""") }
+
     fun extractNumber(input: String) =
-        Regex("""\d+""").findAll(input).map { it.groupValues[0].toInt() }.toList()
+        numberRegex.findAll(input).map { it.groupValues[0].toInt() }.toList()
 
     fun extractOperator(input: String) =
-        Regex("""[\-+/*]""").findAll(input).map { it.groupValues[0] }.toList()
+        operatorRegex.findAll(input).map { it.groupValues[0] }.toList()
 
     fun extract(replaceInput: String): Pair<List<Int>, List<Operator>> {
         val number = extractNumber(replaceInput)
