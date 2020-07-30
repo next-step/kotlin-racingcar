@@ -3,18 +3,17 @@ package step3.racing
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import step3.racing.car.Car
-import step3.racing.car.CarImpl
 import step3.racing.const.GAME_RESULT
+import step3.racing.printer.CarNamePrinter
 import step3.racing.printer.CarPrinter
-import step3.racing.printer.CarPrinterImpl
+import step3.racing.printer.ResultPrinter
 import step3.racing.rule.CarMovementRule
 import step3.racing.view.MockUpView
 import step3.turn.Turn
-import step3.turn.TurnImpl
 import step3.turn.TurnManager
-import step3.turn.TurnManagerImpl
+import step3.turn.SimpleTurnManager
 
-const val TOTOAL_CAR = 3
+const val TOTAL_CAR = 3
 const val TOTAL_TURN = 3
 
 class RacingCarGameTest {
@@ -24,14 +23,13 @@ class RacingCarGameTest {
         val rule: CarMovementRule = object : CarMovementRule {
             override val rule = { true }
         }
-        val printer: CarPrinter = CarPrinterImpl(view)
+        val cars: List<Car> = (0 until TOTAL_CAR).map { Car("$it") }
+        val turn: Turn = Turn(cars = cars, rule = rule)
+        val turnManager: TurnManager = SimpleTurnManager(TOTAL_TURN, turn)
 
-        val cars: List<Car> = (0 until 3).map { CarImpl("$it") }
-        val turn: Turn = TurnImpl.create(cars, rule, printer)
-        val turnManager: TurnManager = TurnManagerImpl(3, turn)
-
-        val result = RacingCarGame(view, turnManager).startRacing(cars)
-        result.cars.forEach {
+        val result = RacingCarGame(turnManager).startRacing()
+        println(view.toString())
+        result.turns.last().cars.forEach {
             assertThat(it.distance).isEqualTo(TOTAL_TURN)
         }
     }
@@ -42,16 +40,14 @@ class RacingCarGameTest {
         val rule: CarMovementRule = object : CarMovementRule {
             override val rule = { true }
         }
-        val printer: CarPrinter = CarPrinterImpl(view)
+        val cars: List<Car> = (0 until TOTAL_CAR).map { Car("$it") }
+        val turn: Turn = Turn(cars = cars, rule = rule)
+        val turnManager = SimpleTurnManager(TOTAL_TURN, turn)
 
-        val cars: List<Car> = (0 until 3).map { CarImpl("$it") }
-        val turn: Turn = TurnImpl.create(cars, rule, printer)
-        val turnManager: TurnManager = TurnManagerImpl(3, turn)
+        RacingCarGame(turnManager).startRacing()
 
-        RacingCarGame(view, turnManager).startRacing(cars)
-
-        assertThat(turn.current).isEqualTo(TOTAL_TURN)
-        assertThat(turnManager.isFinishOrProceed()).isTrue()
+        assertThat(turnManager.lastResult.current).isEqualTo(TOTAL_TURN)
+        assertThat(turnManager.isFinishOrProceed()).isNull()
     }
 
     @Test
@@ -60,13 +56,14 @@ class RacingCarGameTest {
         val rule: CarMovementRule = object : CarMovementRule {
             override val rule = { true }
         }
-        val printer: CarPrinter = CarPrinterImpl(view)
+        val printer: CarPrinter = CarNamePrinter(view)
 
-        val cars: List<Car> = (0 until 3).map { CarImpl("$it") }
-        val turn: Turn = TurnImpl.create(cars, rule, printer)
-        val turnManager: TurnManager = TurnManagerImpl(3, turn)
+        val cars: List<Car> = (0 until TOTAL_CAR).map { Car("$it") }
+        val turn: Turn = Turn(cars = cars, rule = rule)
+        val turnManager: TurnManager = SimpleTurnManager(TOTAL_TURN, turn)
 
-        RacingCarGame(view, turnManager).startRacing(cars)
+        val result = RacingCarGame(turnManager).startRacing()
+        ResultPrinter(printer, result.turns, view).print()
 
         assertThat(view.toString()).isEqualTo(
             "\n$GAME_RESULT\n" +

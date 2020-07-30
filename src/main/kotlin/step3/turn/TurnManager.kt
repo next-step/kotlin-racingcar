@@ -4,5 +4,5 @@ interface TurnManager {
     val totalSteps: Int
 
     val turn: Turn
-    fun isFinishOrProceed(): Boolean
+    fun isFinishOrProceed(): Turn?
 }

@@ -1,5 +1,5 @@
 package step3.racing.result
 
-import step3.racing.car.Car
+import step3.turn.Turn
 
-class RacingResult(val cars: List<Car>)
+class RacingResult(val turns: List<Turn>)
