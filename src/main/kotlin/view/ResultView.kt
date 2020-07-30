@@ -27,7 +27,7 @@ class ResultView(private val carManager: CarManager) {
     }
 
     private fun printStep(car: Car, tryCount: Int): () -> Unit = {
-        print(car.getDriverName() + " : ")
+        print(car.driverName + " : ")
         repeat(car.getStepList()[tryCount]) {
             print(STEP_MARKER)
         }
@@ -35,7 +35,7 @@ class ResultView(private val carManager: CarManager) {
     }
 
     private fun printCarsWinner() {
-        print(carManager.getCarWinners().map { it.getDriverName() }.joinToString(", "))
+        print(carManager.getCarWinners().map { it.driverName }.joinToString(", "))
         print("가 최종 우승했습니다.")
     }
 

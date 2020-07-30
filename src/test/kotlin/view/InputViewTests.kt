@@ -13,10 +13,10 @@ class InputViewTests {
         val inputView = InputView(carManager)
 
         // when
-        inputView.inputCarCount { "5" }
+        inputView.inputCarsWithName { "name" }
 
         // then
-        assertThat(5).isEqualTo(carManager.getCarList().size)
+        assertThat(1).isEqualTo(carManager.getCarList().size)
     }
 
     @Test
@@ -30,18 +30,6 @@ class InputViewTests {
 
         // then
         assertThat(5).isEqualTo(carManager.getTryCount())
-    }
-
-    @Test
-    fun `inputNotNumberThrowExceptionCarCount`() {
-        // given
-        val carManager = CarManager()
-        val inputView = InputView(carManager)
-        // then
-        assertThrows<IllegalArgumentException> {
-            // when invalid character
-            inputView.inputCarCount { "abcd" }
-        }
     }
 
     @Test

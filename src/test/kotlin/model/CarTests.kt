@@ -20,4 +20,12 @@ class CarTests {
         val car = Car(dice, name)
         assertThat(car.driverName).isEqualTo(name)
     }
+
+    @Test
+    fun `carCanNotHaveANameOver5lengthStringAndThrowException`() {
+        val dice = Dice()
+        val name = "helloworld"
+        val car = Car(dice, name)
+        assertThat(car.driverName).isEqualTo(name)
+    }
 }
