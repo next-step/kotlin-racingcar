@@ -7,9 +7,9 @@ object ResultView {
 
     fun showResultTitle() = println("\n$TEXT_RACING_RESULT")
 
-    fun showRace(tracks: MutableList<Pair<String, Int>>) {
-        tracks.forEach { eachCar ->
-            println("${eachCar.first}: " + DISTANCE_MARK.repeat(eachCar.second))
+    fun showRace(carsOnTrack: List<Car>) {
+        carsOnTrack.forEach { eachCar ->
+            println("${eachCar.name}: ${DISTANCE_MARK.repeat(eachCar.distance)}")
         }
         println()
     }
