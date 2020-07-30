@@ -2,7 +2,7 @@ package racingcar
 
 fun main(args: Array<String>) {
     try {
-        val inputCarNum = InputView.readCarNum()
+        val inputCarNum = InputView.readCarName()
         val inputMoveTime = InputView.readMoveTime()
         val game = Game(inputCarNum, inputMoveTime)
         while (!game.isEndGame()) {
