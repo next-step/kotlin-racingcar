@@ -1,8 +1,9 @@
 package racingcar
 
-import racingcar.InputView.getCarNames
-import racingcar.InputView.getRunCnt
-import racingcar.RacingGame.Companion.tracks
+import racingcar.domain.RacingGame
+import racingcar.view.InputView.getCarNames
+import racingcar.view.InputView.getRunCnt
+import racingcar.view.ResultView
 
 fun main(args: Array<String>) {
     var carNames = getCarNames()
@@ -13,8 +14,8 @@ fun main(args: Array<String>) {
 
     while (!game.isOver()) {
         game.runOnce()
-        ResultView.showRace(tracks)
-        tracks.clear()
+        ResultView.showRace(game.carsOnTrack)
+        game.clearTrack()
     }
     ResultView.showWinner(game.findWinners())
 }

@@ -1,4 +1,6 @@
-package racingcar
+package racingcar.domain
+
+import racingcar.domain.Car
 
 object CarFactory {
     fun makeCars(carNames: List<String>): List<Car> =

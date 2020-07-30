@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class Car(val name: String) {
     private var _distance: Int = 0
@@ -10,6 +10,8 @@ class Car(val name: String) {
     }
 
     private fun isRunnable(flag: Int) = flag >= MAKE_RUN_VALUE
+
+    fun isWinner(findMaxDistance: Int) = distance == findMaxDistance
 
     companion object {
         private const val MAKE_RUN_VALUE = 4
