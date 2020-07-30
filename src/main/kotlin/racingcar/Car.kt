@@ -8,8 +8,8 @@ class Car(val name: String = "") {
     val distanceCounts: List<Int> get() = _distanceCounts
 
     init {
-        if (name.length > 5) throw IllegalArgumentException("차 이름이 최대 5글자까지 입력 가능합니다.")
-        if (name.isEmpty()) throw IllegalArgumentException("차 이름이 유효하지 않습니다.")
+        require(name.length <= 5) { "차 이름은 최대 5글자까지 입력 가능합니다." }
+        require(name.isNotEmpty()) { "차 이름이 유효하지 않습니다." }
     }
 
     fun updateDistanceCount() {
