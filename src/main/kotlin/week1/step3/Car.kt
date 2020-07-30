@@ -1,19 +1,39 @@
 package week1.step3
 
-class Car {
-    var forwardCount = 1
-        private set
+import org.jetbrains.annotations.TestOnly
 
-    fun updateForwardCount() {
-        if (availableForward()) {
-            forwardCount++
+class Car(val name: String = "") {
+
+    init {
+        if (name.length > 5) throw IllegalArgumentException("차 이름이 최대 5글자까지 입력 가능합니다.")
+        if (name.isEmpty()) throw IllegalArgumentException("차 이름이 유효하지 않습니다.")
+    }
+
+    private val _distanceCounts = mutableListOf(0)
+    val distanceCounts: List<Int> get() = _distanceCounts
+
+    fun updateDistanceCount() {
+        if (availableMoving()) {
+            _distanceCounts.add(_distanceCounts.last() + 1)
+        } else {
+            _distanceCounts.add(_distanceCounts.last())
         }
     }
 
-    private fun availableForward(): Boolean = WINNER_NUMBER_RANGE.random() > WINNER_NUMBER_CUT_LINE
+    @TestOnly
+    fun setupDistanceCondition() {
+        _distanceCounts.add(MOVING_CONDITION_MIN_NUM)
+    }
+
+    @TestOnly
+    fun setupDistanceLimitCondition() {
+        _distanceCounts.add(MOVING_CONDITION_MIN_NUM - 1)
+    }
+
+    private fun availableMoving(): Boolean = MOVING_CONDITION_RANGE.random() >= MOVING_CONDITION_MIN_NUM
 
     companion object {
-        private val WINNER_NUMBER_RANGE = 0..9
-        private const val WINNER_NUMBER_CUT_LINE = 3
+        private val MOVING_CONDITION_RANGE = 0..9
+        private const val MOVING_CONDITION_MIN_NUM = 4
     }
 }

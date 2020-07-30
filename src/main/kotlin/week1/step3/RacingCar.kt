@@ -1,16 +1,23 @@
 package week1.step3
 
 fun main() {
-    val (carCount, tryCount) = InputView.getCarAndTryCount()
-    val racingCar = Array(carCount) { Car() }
+    val (carNames, tryCount) = InputView.getCarNamesAndTryCount()
+    val racingCar = mutableListOf<Car>().apply {
+        for (name in carNames) {
+            add(Car(name))
+        }
+    }
 
-    showContent(tryCount, racingCar)
+    startRacing(racingCar, tryCount)
+    showRacingStep(racingCar, tryCount)
 }
 
-private fun showContent(tryCount: Int, racingCar: Array<Car>) {
-    for (count in 0 until tryCount) {
-        ResultView.printEachCarMovingState(racingCar)
-        racingCar.forEach { it.updateForwardCount() }
-        println()
+private fun startRacing(racingCar: List<Car>, tryCount: Int) {
+    repeat(tryCount) {
+        racingCar.forEach { it.updateDistanceCount() }
     }
+}
+
+private fun showRacingStep(racingCar: List<Car>, tryCount: Int) {
+    ResultView.printRacingStep(racingCar, tryCount)
 }
