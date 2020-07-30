@@ -10,6 +10,8 @@ class Car(val name: String, var position: Int = 0) {
         return this
     }
 
+    fun isWinner(maxPosition: Int): Boolean = maxPosition == this.position
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
