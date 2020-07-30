@@ -1,72 +1,53 @@
 package racingcar.view
 
-import racingcar.view.InputView.ENTER_CAR_NAMES_AGAIN
-import racingcar.view.InputView.ENTER_RUN_COUNT_AGAIN
-import racingcar.view.InputView.readCarNames
+import racingcar.view.InputView.RE_ENTER_CAR_NAMES
+import racingcar.view.InputView.RE_ENTER_NAMES_WITHIN_FIVE_LEN
+import racingcar.view.InputView.RE_ENTER_RUN_COUNT
 import racingcar.view.InputView.readRunCnt
+import racingcar.view.InputView.splitIntoNames
 
 object InputInspector {
     private const val MIN_COUNT_OF_CAR_NAMES = 2
     private const val MIN_COUNT_OF_RUN = 1
-    private const val MIN_LENGTH_OF_CAR_NAME = 1
     private const val MAX_LENGTH_OF_CAR_NAME = 5
 
     var validNames = listOf<String>()
 
-    fun validate(names: List<String>) {
-        var names = names
+    fun validateNames(names: List<String>): List<String> {
+        validNames = validateNameCnt(names) // need more than two names of cars
+        validNames = validateNameLength(validNames) // check whether the length of each car fits length condition
 
-        validateNumberOfCar(names) // need more than two names of cars
-        validateLengthOfEachName(names) // check whether the length of each car fits length condition
-
-        validNames = names.map { it.trim() }
+        return validNames.map { it.trim() }
     }
 
-    private fun validateNumberOfCar(carNames: List<String>): List<String> {
+    private fun validateNameCnt(carNames: List<String>): List<String> {
         var names = carNames
         while (isLessThanTwo(names)) {
-            ENTER_CAR_NAMES_AGAIN.also(::println)
-            names = readCarNames(readLine())
+            RE_ENTER_CAR_NAMES.also(::println)
+            names = splitIntoNames(readLine())
         }
         return names
     }
 
-    private fun validateLengthOfEachName(carNames: List<String>) {
+    private fun validateNameLength(carNames: List<String>): List<String> {
         var names = carNames
         names.forEach { name ->
-            names = validateMinLengthOfName(name, names)
-            names = validateMaxLengthOfName(name, names)
-        }
-    }
-
-    private fun validateMaxLengthOfName(name: String, carNames: List<String>): List<String> {
-        var names = carNames
-        while (isMoreThanMaxLength(name)) {
-            ENTER_CAR_NAMES_AGAIN.also(::println)
-            names = readCarNames(readLine())
+            if (isOverMaxLength(name.trim())) {
+                RE_ENTER_NAMES_WITHIN_FIVE_LEN.also(::println)
+                return validateNames(splitIntoNames(readLine()))
+            }
         }
         return names
     }
 
-    private fun validateMinLengthOfName(name: String, carNames: List<String>): List<String> {
-        var names = carNames
-        while (isLessThanMinLength(name)) {
-            ENTER_CAR_NAMES_AGAIN.also(::println)
-            names = readCarNames(readLine())
-        }
-        return names
-    }
-
-    private fun isMoreThanMaxLength(name: String) = name.length > MAX_LENGTH_OF_CAR_NAME
-
-    private fun isLessThanMinLength(name: String) = name.length < MIN_LENGTH_OF_CAR_NAME
+    private fun isOverMaxLength(name: String) = name.length > MAX_LENGTH_OF_CAR_NAME
 
     private fun isLessThanTwo(names: List<String>) = names.size < MIN_COUNT_OF_CAR_NAMES
 
     fun validateRunCnt(RunCnt: Int?): Int {
         var runCnt = RunCnt
         while (runCnt == null || runCnt < MIN_COUNT_OF_RUN) {
-            ENTER_RUN_COUNT_AGAIN.also(::println)
+            RE_ENTER_RUN_COUNT.also(::println)
             runCnt = readRunCnt()
         }
         return runCnt
