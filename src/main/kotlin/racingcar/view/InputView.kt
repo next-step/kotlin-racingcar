@@ -1,8 +1,8 @@
-package racingcar
+package racingcar.view
 
-import racingcar.InputInspector.validNames
-import racingcar.InputInspector.validate
-import racingcar.InputInspector.validateRunCnt
+import racingcar.view.InputInspector.validNames
+import racingcar.view.InputInspector.validate
+import racingcar.view.InputInspector.validateRunCnt
 
 object InputView {
     private const val ENTER_CAR_NAMES = "경주할 자동차 이름을 입력하세요 (쉼표(,)를 기준으로 이름을 구분합니다)"

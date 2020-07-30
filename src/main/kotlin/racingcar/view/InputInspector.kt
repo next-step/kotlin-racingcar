@@ -1,9 +1,9 @@
-package racingcar
+package racingcar.view
 
-import racingcar.InputView.ENTER_CAR_NAMES_AGAIN
-import racingcar.InputView.ENTER_RUN_COUNT_AGAIN
-import racingcar.InputView.readCarNames
-import racingcar.InputView.readRunCnt
+import racingcar.view.InputView.ENTER_CAR_NAMES_AGAIN
+import racingcar.view.InputView.ENTER_RUN_COUNT_AGAIN
+import racingcar.view.InputView.readCarNames
+import racingcar.view.InputView.readRunCnt
 
 object InputInspector {
     private const val MIN_COUNT_OF_CAR_NAMES = 2

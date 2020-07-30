@@ -1,4 +1,6 @@
-package racingcar
+package racingcar.view
+
+import racingcar.domain.Car
 
 object ResultView {
     private const val TEXT_RACING_RESULT = "실행 결과"

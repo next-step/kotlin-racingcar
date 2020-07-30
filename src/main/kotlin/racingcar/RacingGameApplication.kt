@@ -1,7 +1,9 @@
 package racingcar
 
-import racingcar.InputView.getCarNames
-import racingcar.InputView.getRunCnt
+import racingcar.domain.RacingGame
+import racingcar.view.InputView.getCarNames
+import racingcar.view.InputView.getRunCnt
+import racingcar.view.ResultView
 
 fun main(args: Array<String>) {
     var carNames = getCarNames()

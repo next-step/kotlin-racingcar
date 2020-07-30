@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class RacingGame(carNames: List<String>, private var runCnt: Int) {
 

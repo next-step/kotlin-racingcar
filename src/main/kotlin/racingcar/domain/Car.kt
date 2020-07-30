@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class Car(val name: String) {
     private var _distance: Int = 0
