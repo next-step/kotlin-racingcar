@@ -17,7 +17,7 @@ object CarRacingView {
         if (inputCount.isBlank()) {
             throw NullPointerException("숫자로 입력해주세요.")
         }
-        var count: Int = 0
+        var count: Int
         try {
             count = inputCount.toInt()
         } catch (e: NumberFormatException) {

@@ -2,7 +2,7 @@ package carracing
 
 private const val MAX_NAME_LENGTH: Int = 5
 
-class CarRacing(carNames: String?) {
+class CarRacing(carNames: String) {
     var cars: MutableList<Car> = mutableListOf()
 
     init {

@@ -13,7 +13,6 @@ class Test {
 
     @Test
     fun `check null and blank for parsing`() {
-        assertThatThrownBy { CarRacing(null) }.isInstanceOf(NullPointerException::class.java)
         assertThatThrownBy { CarRacing("") }.isInstanceOf(NullPointerException::class.java)
     }
 
