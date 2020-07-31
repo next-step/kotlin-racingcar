@@ -11,12 +11,11 @@ class Participant(
             cars[0].movingDistance
         }
     }
-    private var currentTriedCount = 0
 
-    fun play() {
+    fun play(tryCount: Int) {
         cars.forEachIndexed { index, car ->
             car.move(MOVING_CONDITION_RANGE.random())
-            movingDistanceHistory[index][currentTriedCount++] = car.movingDistance
+            movingDistanceHistory[index][tryCount] = car.movingDistance
         }
     }
 
