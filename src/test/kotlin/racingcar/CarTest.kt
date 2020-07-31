@@ -20,4 +20,11 @@ class CarTest {
         car.move(4)
         assertThat(car.movingDistance).isEqualTo(1)
     }
+
+    @Test
+    fun `차가 전진하지 못한 경우`() {
+        val car = Car("12345")
+        car.move(3)
+        assertThat(car.movingDistance).isEqualTo(0)
+    }
 }
