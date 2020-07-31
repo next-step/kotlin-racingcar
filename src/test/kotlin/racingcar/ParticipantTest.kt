@@ -12,6 +12,6 @@ class ParticipantTest {
         val cars = listOf(Car("1st"), Car("2nd"), Car("3rd"))
         val participant = Participant(racingCars = cars, tryCount = 1)
         cars[0].move(4)
-        assertThat(participant.findWinner()).isEqualTo(cars[0])
+        assertThat(participant.findWinner()[0].name).isEqualTo(cars[0].name)
     }
 }
