@@ -1,9 +1,6 @@
 package racingcar.model
 
-class Participant(
-    racingCarNames: List<String>,
-    tryCount: Int
-) {
+class Participant(racingCarNames: List<String>, tryCount: Int) {
 
     private val cars = racingCarNames.map(::Car)
     val movingDistanceHistory = Array(cars.size) {
