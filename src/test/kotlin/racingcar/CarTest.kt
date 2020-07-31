@@ -12,4 +12,8 @@ class CarTest {
             Car("abcdef")
         }
     }
+
+    @Test
+    fun `차가 전진한 경우`() {
+    }
 }
