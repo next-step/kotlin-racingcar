@@ -5,6 +5,14 @@ import step4.strategy.MoveStrategy
 data class Race(val names: String) {
     private val cars = getCars(names)
 
+    fun makeTurn(strategy: MoveStrategy) {
+        for (car in cars) {
+            val move = strategy.resultOfTurn
+
+            car.save(move)
+        }
+    }
+
     private fun getCars(names: String): MutableList<Car> {
         val carNames = names.split(CAR_NAME_DELIMITER)
         val carList = ArrayList<Car>()
@@ -13,13 +21,6 @@ data class Race(val names: String) {
             carList.add(Car(carName, 0, mutableListOf()))
         }
         return carList
-    }
-
-    fun makeTurn(strategy: MoveStrategy) {
-        for (car in cars) {
-            val resultOfTurn = strategy.resultOfTurn
-            car.saveResult(resultOfTurn)
-        }
     }
 
     fun getCars(): List<Car> {

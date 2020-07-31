@@ -1,6 +1,7 @@
 package step4
 
 import step4.model.Race
+import step4.model.Referee
 import step4.strategy.ConditionalMoveStrategy
 import step4.view.InputView
 import step4.view.ResultView
@@ -16,7 +17,8 @@ fun main() {
     }
 
     val carsAfterRace = race.getCars()
+    val winner = Referee().getWinner(carsAfterRace)
 
     ResultView.output(numberOfTrials, carsAfterRace)
-    ResultView.noticeWinner(carsAfterRace)
+    ResultView.noticeWinner(winner)
 }

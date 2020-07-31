@@ -15,20 +15,8 @@ object ResultView {
         }
     }
 
-    fun noticeWinner(cars: List<Car>): String {
-        val arrangeCars = cars.sortedByDescending { car -> car.raceResult }
-
-        var winner = arrangeCars[0].name
-
-        for (i in 1 until arrangeCars.size) {
-            if (arrangeCars[i].raceResult == arrangeCars[0].raceResult) {
-                winner += ","
-                winner += arrangeCars[i].name
-            }
-        }
+    fun noticeWinner(winner: String) {
         println("${winner}가 최종 우승했습니다.")
-
-        return winner
     }
 
     private fun outputForTrials(actualTrial: Int, cars: List<Car>) {

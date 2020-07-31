@@ -1,4 +1,4 @@
-package step4
+package step4.model
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -6,7 +6,7 @@ import step4.model.Car
 import step4.model.Race
 import step4.strategy.UnconditionalMoveStrategy
 
-class CarRacingTest {
+class RaceTest {
     @Test
     fun `Car Race Test`() {
         val race = Race("car1,car2,car3")
