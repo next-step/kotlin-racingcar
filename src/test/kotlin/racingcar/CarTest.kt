@@ -1,5 +1,6 @@
 package racingcar
 
+import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
 import racingcar.model.Car
@@ -15,5 +16,8 @@ class CarTest {
 
     @Test
     fun `차가 전진한 경우`() {
+        val car = Car("12345")
+        car.move(4)
+        assertThat(car.movingDistance).isEqualTo(1)
     }
 }
