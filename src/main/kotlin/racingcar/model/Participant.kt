@@ -16,6 +16,10 @@ class Participant(racingCarNames: List<String>, tryCount: Int) {
         }
     }
 
+    fun findWinner(): List<Car> = cars.filter { it.movingDistance == findFarthestCar().movingDistance }
+
+    private fun findFarthestCar() = cars.maxBy { it.movingDistance } ?: cars[0]
+
     companion object {
         private val MOVING_CONDITION_RANGE = 0..9
     }
