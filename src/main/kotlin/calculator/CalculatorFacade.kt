@@ -1,9 +1,9 @@
-package step2
+package calculator
 
-import step2.calculator.Calculator
-import step2.calculator.CalculatorImpl
-import step2.parser.NodeParser
-import step2.parser.NodeParserImpl
+import calculator.calculator.Calculator
+import calculator.calculator.CalculatorImpl
+import calculator.parser.NodeParser
+import calculator.parser.NodeParserImpl
 
 fun main() {
     val parser: NodeParser = NodeParserImpl()

@@ -1,4 +1,4 @@
-package step2.calculator
+package calculator.calculator
 
 /**
  * 노드는 피연산자 Number와 연산자 Operator로 구성 되어 있다.

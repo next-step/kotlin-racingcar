@@ -1,9 +1,9 @@
-package step2.parser
+package calculator.parser
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
-import step2.calculator.Node
+import calculator.calculator.Node
 
 class NodeParserImplTest {
     @Test

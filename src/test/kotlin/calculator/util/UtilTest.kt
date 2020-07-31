@@ -1,8 +1,8 @@
-package step2.util
+package calculator.util
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import step2.calculator.CalculatorImpl
+import calculator.calculator.CalculatorImpl
 
 class UtilTest {
     @Test

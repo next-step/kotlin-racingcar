@@ -1,4 +1,4 @@
-package step2.calculator
+package calculator.calculator
 
 const val PLUS = "+"
 const val MINUS = "-"

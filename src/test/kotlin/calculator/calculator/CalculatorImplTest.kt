@@ -1,4 +1,4 @@
-package step2.calculator
+package calculator.calculator
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy

@@ -1,6 +1,6 @@
-package step2.calculator
+package calculator.calculator
 
-import step2.util.isOdd
+import calculator.util.isOdd
 
 class CalculatorImpl : Calculator {
     /**

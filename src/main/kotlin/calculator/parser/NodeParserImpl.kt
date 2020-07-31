@@ -1,7 +1,7 @@
-package step2.parser
+package calculator.parser
 
-import step2.calculator.Node
-import step2.calculator.OperatorString
+import calculator.calculator.Node
+import calculator.calculator.OperatorString
 import java.util.regex.Pattern
 
 class NodeParserImpl : NodeParser {
