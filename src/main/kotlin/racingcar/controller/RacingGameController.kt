@@ -13,8 +13,10 @@ fun main() {
     showContents(racingCarNames, participant)
 }
 
-private fun showContents(racingCarNames: List<String>, participant: Participant) =
+private fun showContents(racingCarNames: List<String>, participant: Participant) {
     ResultView.printRacingProcess(racingCarNames, participant.movingDistanceHistory)
+    ResultView.printRacingWinner(participant)
+}
 
 private fun startRacing(tryCounts: Int, participant: Participant) {
     repeat(tryCounts) {
