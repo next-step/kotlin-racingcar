@@ -10,6 +10,8 @@ class Participant(racingCarNames: List<String>) {
         }
     }
 
+    fun getDistanceOfEachCar(): List<Int> = cars.map { it.movingDistance }
+
     companion object {
         private val MOVING_CONDITION_RANGE = 0..9
     }
