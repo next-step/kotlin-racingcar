@@ -6,7 +6,7 @@ data class Car(val name: String) {
         private set
 
     init {
-        require(name.length <= 5) { "차 이름은 최대 5글자까지 가능합니다." }
+        require(name.length <= MAX_CAR_NAME) { "차 이름은 최대 5글자까지 가능합니다." }
     }
 
     fun move(number: Int) {
