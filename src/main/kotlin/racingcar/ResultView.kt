@@ -5,7 +5,7 @@ const val PRINT_FORMAT = "-"
 class ResultView {
 
     fun printResult(car: Car) {
-        println("${car.getName()}: ${PRINT_FORMAT.repeat(car.position)}")
+        println("${car.name}: ${PRINT_FORMAT.repeat(car.position)}")
     }
 
     fun printResult(cars: List<Car>) {
@@ -17,7 +17,7 @@ class ResultView {
 
     fun printResult(cars: List<Car>, historyIndex: Int) {
         for (car in cars) {
-            println("${car.getName()}: ${PRINT_FORMAT.repeat(car.positionHistory[historyIndex])}")
+            println("${car.name}: ${PRINT_FORMAT.repeat(car.positionHistory[historyIndex])}")
         }
         println()
     }
@@ -27,6 +27,6 @@ class ResultView {
     }
 
     fun printWinner(cars: List<Car>) {
-        println("${cars.joinToString(NAME_SPLIT_FORMAT) { it.getName() }}가 최종 우승했습니다.")
+        println("${cars.joinToString(NAME_SPLIT_FORMAT) { it.name }}가 최종 우승했습니다.")
     }
 }
