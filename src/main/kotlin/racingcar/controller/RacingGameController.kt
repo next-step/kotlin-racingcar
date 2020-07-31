@@ -1,12 +1,13 @@
 package racingcar.controller
 
+import racingcar.model.Car
 import racingcar.model.Participant
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
 fun main() {
     val (racingCarNames, tryCounts) = InputView.requestRacingCarNames() to InputView.requestTryCount()
-    val participant = Participant(racingCarNames, tryCounts)
+    val participant = Participant(racingCarNames.map(::Car), tryCounts)
 
     startRacing(tryCounts, participant)
     showContents(racingCarNames, participant)

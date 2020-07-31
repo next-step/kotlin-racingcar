@@ -1,24 +1,23 @@
 package racingcar.model
 
-class Participant(racingCarNames: List<String>, tryCount: Int) {
+class Participant(private val racingCars: List<Car>, tryCount: Int) {
 
-    private val cars = racingCarNames.map(::Car)
-    val movingDistanceHistory = Array(cars.size) {
+    val movingDistanceHistory = Array(racingCars.size) {
         Array(tryCount) {
-            cars[0].movingDistance
+            racingCars[0].movingDistance
         }
     }
 
     fun play(tryCount: Int) {
-        cars.forEachIndexed { index, car ->
+        racingCars.forEachIndexed { index, car ->
             car.move(MOVING_CONDITION_RANGE.random())
             movingDistanceHistory[index][tryCount] = car.movingDistance
         }
     }
 
-    fun findWinner(): List<Car> = cars.filter { it.movingDistance == findFarthestCar().movingDistance }
+    fun findWinner(): List<Car> = racingCars.filter { it.movingDistance == findFarthestCar().movingDistance }
 
-    private fun findFarthestCar() = cars.maxBy { it.movingDistance } ?: cars[0]
+    private fun findFarthestCar() = racingCars.maxBy { it.movingDistance } ?: racingCars[0]
 
     companion object {
         private val MOVING_CONDITION_RANGE = 0..9
