@@ -1,22 +1,13 @@
 package racingcar
 
 class Game(carNames: List<String>, moveTime: Int) {
-    var cars = listOf<Car>()
+    var cars = makeCars(carNames)
         private set
     var moveTime = moveTime
         private set
 
-    init {
-        cars = makeCars(carNames)
-    }
-
     private fun makeCars(carNames: List<String>): List<Car> {
-        val carList = mutableListOf<Car>()
-        carNames.forEach {
-            val car = Car(it.trim())
-            carList.add(car)
-        }
-        return carList
+        return carNames.map { Car(it.trim()) }
     }
 
     fun race() {

@@ -31,11 +31,10 @@ object InputView {
     }
 
     private fun checkCarName(carNameList: List<String>): List<String> {
-        carNameList.forEach {
+        return carNameList.onEach {
             checkBlank(it)
             checkLengthFive(it)
         }
-        return carNameList
     }
 
     private fun checkBlank(str: String) {
