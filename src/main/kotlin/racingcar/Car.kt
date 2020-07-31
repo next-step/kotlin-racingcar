@@ -1,7 +1,7 @@
 package racingcar
 
-class Car(num: Int) {
-    var num = num
+class Car(name: String) {
+    var name = name
         private set
 
     var position = 0

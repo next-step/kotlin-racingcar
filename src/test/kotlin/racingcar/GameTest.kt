@@ -15,17 +15,17 @@ class GameTest {
 
     @Test
     fun make_cars() {
-        val game = Game(3, 1)
+        val game = Game(listOf("name", "test", "test1"), 1)
 
         assertThat(game.cars.size).isEqualTo(3)
     }
 
     @Test
     fun ready_game() {
-        val inputCarNum = 3
+        val carName = listOf("name", "test", "test1")
         val inputMoveTime = 5
 
-        val game = Game(inputCarNum, inputMoveTime)
+        val game = Game(carName, inputMoveTime)
 
         assertThat(game.cars.size).isEqualTo(3)
         assertThat(game.moveTime).isEqualTo(5)
@@ -33,9 +33,9 @@ class GameTest {
 
     @Test
     fun race() {
-        val carNum = 3
+        val carName = listOf("name")
         val moveTime = 5
-        val game = Game(carNum, moveTime)
+        val game = Game(carName, moveTime)
 
         game.race()
 
@@ -44,9 +44,9 @@ class GameTest {
 
     @Test
     fun game_is_end() {
-        val carNum = 3
+        val carName = listOf("name")
         val moveTime = 0
-        val game = Game(carNum, moveTime)
+        val game = Game(carName, moveTime)
 
         val result = game.isEndGame()
 

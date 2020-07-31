@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 class CarTest {
     @Test
     fun is_go() {
-        val car = Car(1)
+        val car = Car("1")
 
         car.goStop(4)
 
@@ -15,7 +15,7 @@ class CarTest {
 
     @Test
     fun is_not_go() {
-        val car = Car(1)
+        val car = Car("1")
 
         car.goStop(3)
 
