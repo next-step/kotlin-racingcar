@@ -2,85 +2,70 @@ package step2
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.EmptySource
+import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.NullSource
 import java.util.LinkedList
+import java.util.stream.Stream
 
 class StringCalculatorTest {
 
-    @Test
-    fun `Parsing null or blank`() {
+    @ParameterizedTest
+    @NullSource
+    @EmptySource
+    fun `Parsing null or blank`(input: String?) {
         assertThatThrownBy {
             StringCalculator.parsing(
-                stringExpression = null,
-                result = {}
-            )
-        }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining("Null or blank string expression")
-
-        assertThatThrownBy {
-            StringCalculator.parsing(
-                stringExpression = "   ",
+                stringExpression = input,
                 result = {}
             )
         }.isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageContaining("Null or blank string expression")
     }
 
-    @Test
-    fun `Parsing include regular spacing`() {
+    @ParameterizedTest
+    @MethodSource(value = ["provideExpression"])
+    fun `Parsing expression`(string: String, number: List<Int>, expression: List<Operator>) {
         StringCalculator.parsing(
-            stringExpression = " 23 + 3 * 4 / 2 ",
+            stringExpression = string,
             result = {
-                assertThat(it.first).isEqualTo(listOf(23, 3, 4, 2))
-                assertThat(it.second).isEqualTo(listOf(Operator.ADD, Operator.MUL, Operator.DIV))
+                assertThat(it.first).isEqualTo(number)
+                assertThat(it.second).isEqualTo(expression)
             }
         )
     }
 
-    @Test
-    fun `Parsing exclude indentation`() {
-        StringCalculator.parsing(
-            stringExpression = "23+3*4/2",
-            result = {
-                assertThat(it.first).isEqualTo(listOf(23, 3, 4, 2))
-                assertThat(it.second).isEqualTo(listOf(Operator.ADD, Operator.MUL, Operator.DIV))
-            }
-        )
+    @ParameterizedTest
+    @MethodSource(value = ["provideExpressionAndResult"])
+    fun `StringCalculator - evaluate test`(number: List<Int>, expression: List<Operator>, result: Int) {
+        StringCalculator.evaluate(LinkedList(number), LinkedList(expression)).also {
+            assertThat(it).isEqualTo(result)
+        }
     }
 
-    @Test
-    fun `Parsing include irregular spacing`() {
-        StringCalculator.parsing(
-            stringExpression = "23 +3 *4/ 2",
-            result = {
-                assertThat(it.first).isEqualTo(listOf(23, 3, 4, 2))
-                assertThat(it.second).isEqualTo(listOf(Operator.ADD, Operator.MUL, Operator.DIV))
-            }
-        )
-
-        StringCalculator.parsing(
-            stringExpression = "23     +    3   *4/  2",
-            result = {
-                assertThat(it.first).isEqualTo(listOf(23, 3, 4, 2))
-                assertThat(it.second).isEqualTo(listOf(Operator.ADD, Operator.MUL, Operator.DIV))
-            }
-        )
-    }
-
-    @Test
-    fun `StringCalculator - evaluate test`() {
-        StringCalculator.evaluate(
-            LinkedList(listOf(2, 3, 4, 2)),
-            LinkedList(listOf(Operator.ADD, Operator.ADD, Operator.ADD))
-        ).also {
-            assertThat(it).isEqualTo(11)
+    companion object {
+        @JvmStatic
+        fun provideExpression(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of(" 23 + 3 * 4 / 2 ", listOf(23, 3, 4, 2), listOf(Operator.ADD, Operator.MUL, Operator.DIV)),
+                Arguments.of("23+3*4/2", listOf(23, 3, 4, 2), listOf(Operator.ADD, Operator.MUL, Operator.DIV)),
+                Arguments.of("23 +3 *4/ 2", listOf(23, 3, 4, 2), listOf(Operator.ADD, Operator.MUL, Operator.DIV)),
+                Arguments.of(
+                    "23     +    3   *4/  2",
+                    listOf(23, 3, 4, 2),
+                    listOf(Operator.ADD, Operator.MUL, Operator.DIV)
+                )
+            )
         }
 
-        StringCalculator.evaluate(
-            LinkedList(listOf(1, 2, 3, 4, 5)),
-            LinkedList(listOf(Operator.MUL, Operator.MUL, Operator.MUL, Operator.MUL))
-        ).also {
-            assertThat(it).isEqualTo(120)
+        @JvmStatic
+        fun provideExpressionAndResult(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of(listOf(2, 3, 4, 2), listOf(Operator.ADD, Operator.ADD, Operator.ADD), 11),
+                Arguments.of(listOf(1, 2, 3, 4, 5), listOf(Operator.MUL, Operator.MUL, Operator.MUL, Operator.MUL), 120)
+            )
         }
     }
 }

@@ -3,31 +3,34 @@ package step2
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.ValueSource
 
 class OperatorTest {
 
-    @Test
-    fun `Symbol addiction test`() {
+    @ParameterizedTest
+    @ValueSource(strings = ["+"])
+    fun `Symbol addiction test`(operator: String) {
         assertThat(Operator.ADD.symbol).isEqualTo("+")
-        assertThat(Operator.ADD.symbol).isNotEqualTo('+')
     }
 
-    @Test
-    fun `Symbol subtraction test`() {
+    @ParameterizedTest
+    @ValueSource(strings = ["-"])
+    fun `Symbol subtraction test`(operator: String) {
         assertThat(Operator.SUB.symbol).isEqualTo("-")
-        assertThat(Operator.SUB.symbol).isNotEqualTo('-')
     }
 
-    @Test
-    fun `Symbol multiply test`() {
+    @ParameterizedTest
+    @ValueSource(strings = ["*"])
+    fun `Symbol multiply test`(operator: String) {
         assertThat(Operator.MUL.symbol).isEqualTo("*")
-        assertThat(Operator.MUL.symbol).isNotEqualTo('*')
     }
 
-    @Test
-    fun `Symbol divide test`() {
-        assertThat(Operator.DIV.symbol).isEqualTo("/")
-        assertThat(Operator.DIV.symbol).isNotEqualTo('/')
+    @ParameterizedTest
+    @ValueSource(strings = ["/"])
+    fun `Symbol divide test`(operator: String) {
+        assertThat(Operator.DIV.symbol).isEqualTo(operator)
     }
 
     @Test
@@ -35,30 +38,22 @@ class OperatorTest {
         assertThat(Operator.ADD.invoke(3, 36)).isEqualTo(39)
     }
 
-    @Test
-    fun `Subtraction test`() {
-        assertThat(Operator.SUB.invoke(10, 3)).isEqualTo(7)
-        assertThat(Operator.SUB.invoke(3, 3)).isEqualTo(0)
-        assertThat(Operator.SUB.invoke(3, -10)).isEqualTo(13)
-        assertThat(Operator.SUB.invoke(3, 10)).isEqualTo(-7)
+    @ParameterizedTest
+    @CsvSource("10, 3, 7", "3, 3, 0", "3, -10, 13", "3, 10, -7")
+    fun `Subtraction test`(target: Int, input: Int, result: Int) {
+        assertThat(Operator.SUB.invoke(target, input)).isEqualTo(result)
     }
 
-    @Test
-    fun `Multiply test`() {
-        assertThat(Operator.MUL.invoke(10, 3)).isEqualTo(30)
-        assertThat(Operator.MUL.invoke(-10, 3)).isEqualTo(-30)
-        assertThat(Operator.MUL.invoke(10, -3)).isEqualTo(-30)
-        assertThat(Operator.MUL.invoke(10, 0)).isEqualTo(0)
-        assertThat(Operator.MUL.invoke(0, 0)).isEqualTo(0)
+    @ParameterizedTest
+    @CsvSource("10, 3, 30,", "1, 2, 2")
+    fun `Multiply test`(target: Int, input: Int, result: Int) {
+        assertThat(Operator.MUL.invoke(target, input)).isEqualTo(result)
     }
 
-    @Test
-    fun `Divide test`() {
-        assertThatThrownBy { Operator.DIV.invoke(10, 0) }
-            .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining("Can't be divided by zero.")
-
-        assertThatThrownBy { Operator.DIV.invoke(0, 0) }
+    @ParameterizedTest
+    @CsvSource("10, 0", "0, 0")
+    fun `Divide test`(target: Int, input: Int) {
+        assertThatThrownBy { Operator.DIV.invoke(target, input) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageContaining("Can't be divided by zero.")
     }
