@@ -40,7 +40,6 @@ class CarRacing(carNames: String?) {
         }
     }
 
-    private fun getMaxPosition(): Int = cars.maxBy { it.position }?.position ?: 0
-
-    fun findWinners(): List<Car> = cars.filter { it.isLocated(getMaxPosition()) }
+    private val maxPosition: Int = cars.maxBy { it.position }?.position ?: 0
+    fun findWinners(): List<Car> = cars.filter { it.isLocated(maxPosition) }
 }
