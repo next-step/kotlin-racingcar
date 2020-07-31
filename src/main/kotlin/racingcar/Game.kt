@@ -1,19 +1,19 @@
 package racingcar
 
-class Game(private val carNumber: Int) {
-    private val carList = createCarList(carNumber)
+import java.util.Random
 
-    private fun createCarList(carNUmber: Int): List<RacingCar> {
-        val returnList = arrayListOf<RacingCar>()
-        for (number in 1..carNUmber) {
-            returnList.add(RacingCar(number.toString()))
-        }
-        return returnList
+class Game(racingCars: RacingCars) {
+    private val carList: List<RacingCar> = racingCars.carList
+
+    fun playGameOnce(): List<RacingCar> = carList.onEach {
+        it.move(Random().nextInt(10))
     }
 
-    fun playGameOnce(): List<RacingCar> {
-        return carList.onEach {
-            it.randomMoving()
-        }
+    fun winner(): List<RacingCar> {
+        return carList.filter { it.carDistance == findMaxDistance() }
+    }
+
+    private fun findMaxDistance(): Int {
+        return carList.maxBy { it.carDistance }!!.carDistance
     }
 }
