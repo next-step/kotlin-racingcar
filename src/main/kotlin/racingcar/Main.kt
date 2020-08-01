@@ -2,14 +2,13 @@ package racingcar
 
 fun main() {
 
-    val carNumber = InputView.getCarNumber()
+    val playTime = getPlayTime()
 
-    val playTime = InputView.getPlayTime()
+    val racingCars = RacingCars(getCarName())
 
-    val game = Game(carNumber)
-
-    for (time in 1..playTime) {
-        val updatedCarList = game.playGameOnce()
-        OutputView.printCurrentLocation(updatedCarList)
+    repeat(playTime) {
+        printCurrentLocation(racingCars.playGameOnce())
     }
+
+    printWinner(racingCars.getWinner())
 }

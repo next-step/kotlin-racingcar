@@ -1,18 +1,16 @@
 package racingcar
 
-object OutputView {
-    fun printCurrentLocation(carList: List<RacingCar>) {
-        println("-----------------------------------")
-        carList.forEach {
-            println("${it.carName}번 차 : ${convertDistance(it.carDistance)}")
-        }
-    }
+fun printWinner(carList: List<RacingCar>) {
+    println("${carList.joinToString { it.carName }}가 우승입니다.")
+}
 
-    private fun convertDistance(count: Int): String {
-        var returnString = StringBuffer("")
-        for (distance in 1..count) {
-            returnString.append("-")
-        }
-        return returnString.toString()
+fun printCurrentLocation(carList: List<RacingCar>) {
+    println("-----------------------------------")
+    carList.forEach {
+        println("${it.carName}번 차 : ${convertDistance(it.carDistance)}")
     }
+}
+
+private fun convertDistance(count: Int): String {
+    return "-".repeat(count)
 }
