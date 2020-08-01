@@ -6,7 +6,7 @@ object OutputView {
         racingCarResult.forEach { println(makeRacingMap(it.distance)) }
     }
 
-    fun makeRacingMap(distance: Int): String {
+    private fun makeRacingMap(distance: Int): String {
         return if (distance == 0) " " else "=".repeat(distance)
     }
 }
