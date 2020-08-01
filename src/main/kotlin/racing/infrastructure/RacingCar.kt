@@ -22,7 +22,7 @@ class RacingCar {
         val cars = makeCarList(racingState)
 
         // 전진 시도
-        repeat(racingState.attempt!!) {
+        repeat(racingState.attempt) {
             val list = move(cars)
             result.add(list)
         }

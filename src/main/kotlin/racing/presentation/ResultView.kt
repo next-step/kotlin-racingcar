@@ -4,10 +4,14 @@ import racing.domain.Cars
 import racing.domain.Winner
 
 class ResultView {
-    fun show(list: List<Cars>) {
 
+    companion object {
+        const val CHARACTER = "-"
+    }
+
+    fun show(list: List<Cars>) {
         list.forEach { result ->
-            result.forEach { car -> println("${car.name} " + "-".repeat(car.distance)) }
+            result.forEach { car -> println("${car.name} " + CHARACTER.repeat(car.distance)) }
             println()
         }
     }
