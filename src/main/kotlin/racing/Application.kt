@@ -1,7 +1,6 @@
 package racing
 
 import racing.domain.RacingState
-import racing.domain.Winner
 import racing.infrastructure.RacingGame
 import racing.presentation.InputView
 import racing.presentation.ResultView
@@ -17,7 +16,7 @@ object Application {
         val racingState = RacingState(names, attempt.toInt())
         val result = RacingGame().start(racingState)
 
-        val winners = Winner().get(result)
+        val winners = RacingGame().getWinners(result)
         ResultView().show(result)
         ResultView().showWinner(winners)
     }
