@@ -3,7 +3,7 @@ package racingcar
 import java.util.Random
 
 class RacingCars {
-    val carList: List<RacingCar>
+    private val carList: List<RacingCar>
 
     constructor(carNameList: List<String>) {
         carList = carNameList.map { RacingCar(it) }
