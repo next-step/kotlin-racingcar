@@ -1,3 +1,5 @@
+package step1
+
 import org.assertj.core.api.AssertionsForInterfaceTypes.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
@@ -10,6 +12,7 @@ class PersonTest {
         person.nickname = "jane"
         assertThat(person.nickname).isEqualTo("jane")
     }
+
     @Test
     fun `named arguments`() {
         val people = listOf(
@@ -23,6 +26,7 @@ class PersonTest {
             assertThat(it.nickname).isEqualTo("제이슨")
         }
     }
+
     @Test
     fun `nullable types`() {
         val person = Person("박재성", null, null)
@@ -32,6 +36,7 @@ class PersonTest {
             { assertThat(person.nickname).isNull() }
         )
     }
+
     @Test
     fun `default arguments`() {
         val person = Person("박재성")
@@ -41,6 +46,7 @@ class PersonTest {
             { assertThat(person.nickname).isNull() }
         )
     }
+
     @Test
     fun `data classes`() {
         val person1 = Person("박재성", 29, "제이슨")
