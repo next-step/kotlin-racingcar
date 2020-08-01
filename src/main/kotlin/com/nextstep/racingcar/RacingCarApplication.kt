@@ -11,6 +11,7 @@ object RacingCarApplication {
         val racingGame = generateRacingGame()
         OutputView.showResult()
         racingGame.runGame()
+        racingGame.findWinners()
     }
 
     private tailrec fun generateRacingGame(): RacingGame {

@@ -50,4 +50,22 @@ internal class CarTest {
         assertThat(car.getName()).isEqualTo(name)
         assertThat(car.position).isEqualTo(0)
     }
+
+    @Test
+    internal fun `포지션이 일치하느지 테스트`() {
+        val car = Car("van")
+
+        car.move(5)
+        car.move(7)
+        car.move(9)
+
+        assertThat(car.isMatchedPosition(3)).isTrue()
+    }
+
+    @Test
+    internal fun `position을 입력하여 Car를 만들 수 있다`() {
+        val car = Car("van", 10)
+
+        assertThat(car.position).isEqualTo(10)
+    }
 }

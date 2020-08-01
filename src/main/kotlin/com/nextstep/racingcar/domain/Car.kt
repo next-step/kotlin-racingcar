@@ -4,6 +4,10 @@ class Car(private val name: String) {
     var position: Int = 0
         private set
 
+    constructor(name: String, position: Int) : this(name) {
+        this.position = position
+    }
+
     init {
         validation(name)
     }
@@ -24,6 +28,28 @@ class Car(private val name: String) {
 
     private fun Int.movable(): Boolean {
         return this >= MIN_MOVABLE_NUMBER
+    }
+
+    fun isMatchedPosition(maxPosition: Int): Boolean {
+        return position == maxPosition
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Car
+
+        if (name != other.name) return false
+        if (position != other.position) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = name.hashCode()
+        result = 31 * result + position
+        return result
     }
 
     companion object {

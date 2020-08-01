@@ -30,6 +30,12 @@ class RacingGame(carName: String, round: Int?) {
         }
     }
 
+    fun findWinners() {
+        val winners = cars.findWinner()
+
+        OutputView.showWinner(winners)
+    }
+
     companion object {
         fun isInvalidRound(round: Int?): Boolean = round == null || !round.isNatural()
     }
