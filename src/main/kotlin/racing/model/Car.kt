@@ -5,4 +5,6 @@ data class Car(val name: String, var raceResult: Int, val raceHistory: MutableLi
         raceResult += resultOfTurn
         raceHistory.add(resultOfTurn)
     }
+
+    fun isIn(position: Int) = this.raceResult == position
 }

@@ -10,7 +10,7 @@ class RaceTest {
         val race = Race()
 
         race.initiate(5, "car1,car2,car3")
-        race.start(UnconditionalMoveStrategy())
+        race.run(UnconditionalMoveStrategy())
 
         assertThat(race.getCars()).allSatisfy { car: Car ->
             assertThat(car.raceResult).isEqualTo(5)

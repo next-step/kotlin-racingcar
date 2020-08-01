@@ -7,11 +7,9 @@ object ResultView {
     private const val ONE_BLOCK = "-"
 
     fun output(numberOfTrials: Int, cars: List<Car>) {
-        for (i in 0 until numberOfTrials) {
-            val actualTrial = i + 1
-
-            println("trial$CAR_NAME_SEPARATOR$actualTrial")
-            outputForTrials(actualTrial, cars)
+        (1..numberOfTrials).forEach {
+            println("trial$CAR_NAME_SEPARATOR$it")
+            outputForTrials(it, cars)
         }
     }
 
@@ -26,8 +24,8 @@ object ResultView {
     }
 
     private fun outputForTrials(actualTrial: Int, cars: List<Car>) {
-        for (element in cars) {
-            println("${element.name}$CAR_NAME_SEPARATOR" + visualize(actualTrial, element.raceHistory))
+        cars.forEach {
+            println("${it.name}$CAR_NAME_SEPARATOR${visualize(actualTrial, it.raceHistory)}")
         }
     }
 

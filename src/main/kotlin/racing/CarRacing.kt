@@ -13,7 +13,7 @@ fun main() {
     val race = Race()
 
     race.initiate(numberOfTrials, nameListOfCars)
-    race.start(ConditionalMoveStrategy())
+    race.run(ConditionalMoveStrategy())
 
     val carsAfterRace = race.getCars()
     val winner = Referee().getWinner(carsAfterRace)

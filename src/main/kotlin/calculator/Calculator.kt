@@ -1,10 +1,6 @@
 package calculator
 
 class Calculator {
-    companion object {
-        private const val FORMULA_SPLIT_DELIMITER = " "
-    }
-
     fun calculate(formula: String): Double {
         require(formula.isNotBlank()) { "값을 입력해 주세요" }
 
@@ -12,11 +8,15 @@ class Calculator {
         var outcome = values[0].toDouble()
 
         for (index in 1 until values.size step 2) {
-            val operator = Operator(values[index])
+            val operator = Operator.valueOf(values[index])
             val number = values[index + 1].toDouble()
 
-            outcome = operator.calculate(outcome, number)
+            outcome = operator.operation(outcome, number)
         }
         return outcome
+    }
+
+    companion object {
+        private const val FORMULA_SPLIT_DELIMITER = " "
     }
 }

@@ -4,7 +4,7 @@ import racing.strategy.MoveStrategy
 
 class Race {
     private var numberOfTrials = 0
-    private var cars = mutableListOf<Car>()
+    private var cars = listOf<Car>()
 
     fun initiate(trials: Int, names: String) {
         numberOfTrials = trials
@@ -15,20 +15,16 @@ class Race {
         return cars
     }
 
-    fun start(moveStrategy: MoveStrategy) {
+    fun run(moveStrategy: MoveStrategy) {
         repeat(numberOfTrials) {
             makeTurn(moveStrategy)
         }
     }
 
-    private fun getCars(names: String): MutableList<Car> {
+    private fun getCars(names: String): List<Car> {
         val carNames = names.split(CAR_NAME_DELIMITER)
-        val carList = ArrayList<Car>()
 
-        for (carName in carNames) {
-            carList.add(Car(carName, 0, mutableListOf()))
-        }
-        return carList
+        return carNames.map { Car(it, 0, mutableListOf()) }
     }
 
     private fun makeTurn(strategy: MoveStrategy) {
