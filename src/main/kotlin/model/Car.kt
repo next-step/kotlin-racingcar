@@ -1,7 +1,12 @@
 package model
 
 class Car(val driverName: String) : Comparable<Car> {
-    val stepList: MutableList<Int> = mutableListOf()
+    private val stepListMutable = mutableListOf<Int>()
+    val stepList: List<Int>
+        get() {
+            return stepListMutable.toList()
+        }
+
     var step: Int = 0
         private set
 
@@ -9,7 +14,7 @@ class Car(val driverName: String) : Comparable<Car> {
         if (availableMove) {
             step++
         }
-        stepList.add(step)
+        stepListMutable.add(step)
     }
 
     override fun compareTo(other: Car): Int {
