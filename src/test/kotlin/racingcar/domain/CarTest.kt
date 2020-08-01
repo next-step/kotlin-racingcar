@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test
 import racingcar.strategy.FairStrategy
 
 internal class CarTest {
-    // FairStrategy 주입해서 테스트
     private val car = Car("car", FairStrategy())
 
     companion object {
@@ -32,7 +31,7 @@ internal class CarTest {
 
     @Test
     fun getDistance() {
-        assertThat(car.getDistance()).isEqualTo("-".repeat(DISTANCE))
+        assertThat(car.toString()).isEqualTo("car : ${"-".repeat(DISTANCE)}\n")
     }
 
     @Test
