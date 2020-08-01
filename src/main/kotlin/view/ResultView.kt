@@ -19,17 +19,22 @@ class ResultView(private val carManager: CarManager) {
     }
 
     private fun printCar(i: Int) {
-        for (car in carManager.getCarList()) {
+        for (car in carManager.carList) {
             printStep(car, i).invoke()
         }
     }
 
     private fun printStep(car: Car, tryCount: Int): () -> Unit = {
-        print(car.driverName + " : ")
+        print(stepToString(car, tryCount) + "\n")
+    }
+
+    fun stepToString(car: Car, tryCount: Int): String {
+        val sb = StringBuilder()
+        sb.append(car.driverName + " : ")
         repeat(car.stepList[tryCount]) {
-            print(STEP_MARKER)
+            sb.append(STEP_MARKER)
         }
-        println()
+        return sb.toString()
     }
 
     private fun printCarsWinner() {

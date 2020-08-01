@@ -13,6 +13,7 @@ fun main(args: Array<String>) {
 
     val tryMoveCount = inputView.inputTryMoveCount(inputFunction)
     carManager.tryCount = tryMoveCount
+    carManager.tryMoving()
 
     val resultView = ResultView(carManager)
     resultView.status()

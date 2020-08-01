@@ -4,7 +4,8 @@ import model.Car
 import model.DiceStatus
 
 class CarManager(private val dice: DiceStatus) {
-    private val carList: MutableList<Car> = mutableListOf()
+    private val carListMutable: MutableList<Car> = mutableListOf()
+    val carList: List<Car> = carListMutable.toList()
     var tryCount: Int = 0
 
     private fun move() {
@@ -12,19 +13,19 @@ class CarManager(private val dice: DiceStatus) {
             car.move(dice.availableMove(dice.dice()))
         }
     }
-
-    fun getCarList(): List<Car> {
-        return carList
-    }
-
     fun tryMoving() {
         repeat(tryCount) { move() }
+    }
+
+    fun addCar(car: Car) {
+        carListMutable.add(car)
     }
 
     fun addDrivers(list: List<String>) {
         for (driverName in list) {
             checkDriverName(driverName)
-            carList.add(Car(driverName))
+            val car = Car(driverName)
+            addCar(car)
         }
     }
 
@@ -34,7 +35,7 @@ class CarManager(private val dice: DiceStatus) {
         for (car in carList) {
             addWinnerList(car, maxStepCar, winnerList)
         }
-        return winnerList
+        return winnerList.toList()
     }
 
     private fun addWinnerList(car: Car, maxStepCar: Int, winnerList: MutableList<Car>) {

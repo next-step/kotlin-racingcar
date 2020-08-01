@@ -10,7 +10,6 @@ class InputViewTests {
     @Test
     fun `InputCarsWithNameAndReturnList`() {
         // given
-        val carManager = CarManager(Dice())
         val inputView = InputView()
 
         // when
@@ -21,9 +20,20 @@ class InputViewTests {
     }
 
     @Test
+    fun `InputCarsWithNameSplitBySymbol`() {
+        // given
+        val inputView = InputView()
+
+        // when
+        val list = inputView.inputCarsWithName { "name, name2, name3" }
+
+        // then
+        assertThat(3).isEqualTo(list.size)
+    }
+
+    @Test
     fun `tryMovingIncrementTryMoveCount`() {
         // given
-        val carManager = CarManager(Dice())
         val inputView = InputView()
 
         // when
