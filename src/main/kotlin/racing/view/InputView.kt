@@ -1,4 +1,4 @@
-package step4.view
+package racing.view
 
 object InputView {
     fun getNameListOfCars(): String {

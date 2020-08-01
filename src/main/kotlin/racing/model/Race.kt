@@ -1,6 +1,6 @@
-package step4.model
+package racing.model
 
-import step4.strategy.MoveStrategy
+import racing.strategy.MoveStrategy
 
 class Race {
     private var numberOfTrials = 0

@@ -1,10 +1,10 @@
-package step4
+package racing
 
-import step4.model.Race
-import step4.model.Referee
-import step4.strategy.ConditionalMoveStrategy
-import step4.view.InputView
-import step4.view.ResultView
+import racing.model.Race
+import racing.model.Referee
+import racing.strategy.ConditionalMoveStrategy
+import racing.view.InputView
+import racing.view.ResultView
 
 fun main() {
     val nameListOfCars = InputView.getNameListOfCars()

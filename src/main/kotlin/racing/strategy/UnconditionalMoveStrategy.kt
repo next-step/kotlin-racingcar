@@ -1,4 +1,4 @@
-package step4.strategy
+package racing.strategy
 
 class UnconditionalMoveStrategy : MoveStrategy {
     override fun getResultOfTurn(): Int {

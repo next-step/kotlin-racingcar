@@ -1,4 +1,4 @@
-package step2
+package calculator
 
 class Operator(type: String) {
     private val operatorType = getType(type)

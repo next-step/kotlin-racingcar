@@ -1,8 +1,8 @@
-package step4.model
+package racing.model
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import step4.strategy.UnconditionalMoveStrategy
+import racing.strategy.UnconditionalMoveStrategy
 
 class RaceTest {
     @Test

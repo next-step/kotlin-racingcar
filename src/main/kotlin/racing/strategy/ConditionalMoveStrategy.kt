@@ -1,4 +1,4 @@
-package step4.strategy
+package racing.strategy
 
 import kotlin.random.Random
 

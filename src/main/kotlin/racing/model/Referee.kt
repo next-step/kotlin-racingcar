@@ -1,4 +1,4 @@
-package step4.model
+package racing.model
 
 class Referee {
     fun getWinner(cars: List<Car>): List<Car> {

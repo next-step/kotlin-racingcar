@@ -1,4 +1,4 @@
-package step4.strategy
+package racing.strategy
 
 interface MoveStrategy {
     fun getResultOfTurn(): Int

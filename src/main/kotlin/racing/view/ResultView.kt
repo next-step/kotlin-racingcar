@@ -1,6 +1,6 @@
-package step4.view
+package racing.view
 
-import step4.model.Car
+import racing.model.Car
 
 object ResultView {
     private const val CAR_NAME_SEPARATOR = " : "
