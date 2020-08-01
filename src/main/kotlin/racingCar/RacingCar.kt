@@ -6,7 +6,7 @@ const val RANDOM_LIMIT_NUM = 10
 
 class RacingCar(private val carCount: Int) {
 
-    private val carsInRacing = ArrayList<Car>()
+    private val carsInRacing = mutableListOf<Car>()
 
     init {
         generateCar(carCount)
