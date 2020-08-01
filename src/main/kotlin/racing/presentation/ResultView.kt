@@ -7,7 +7,7 @@ class ResultView {
     fun show(list: List<Cars>) {
 
         list.forEach { result ->
-            result.forEach { car -> println("${car.name} : ${car.distance}") }
+            result.forEach { car -> println("${car.name} " + "-".repeat(car.distance)) }
             println()
         }
     }

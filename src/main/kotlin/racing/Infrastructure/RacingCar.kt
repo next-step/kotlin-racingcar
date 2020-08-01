@@ -37,7 +37,7 @@ class RacingCar {
     fun move(carList: List<Car>): List<Car> {
         return carList.map { car ->
             if (canIMove()) {
-                car.distance = car.distance + "-"
+                car.distance++
             }
             Car(car.name, car.distance)
         }
@@ -62,7 +62,7 @@ class RacingCar {
     }
 
     fun sortedByDistanceDesc(finalDistanceCars: Cars): List<Car> {
-        return finalDistanceCars.sortedByDescending { it.distance.length }
+        return finalDistanceCars.sortedByDescending { it.distance }
     }
 
     fun longestDistance(sortedBy: List<Car>) = sortedBy.first().distance
