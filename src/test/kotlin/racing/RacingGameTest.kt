@@ -6,6 +6,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.MethodSource
 import racing.domain.Car
 import racing.domain.Cars
@@ -14,7 +15,7 @@ import racing.domain.Winner
 import racing.infrastructure.RacingGame
 import racing.presentation.ResultView
 
-internal class RacingGameTest {
+class RacingGameTest {
 
     @ParameterizedTest
     @MethodSource("generateStartTestData")
@@ -24,23 +25,15 @@ internal class RacingGameTest {
         ResultView().show(list)
     }
 
-    @Test
-    fun `move 조건이 true 일 때, distance가 제대로 변하는지 확인`() {
-        val racingState = RacingState(listOf("k3", "k5"), 3)
+    @ParameterizedTest
+    @CsvSource("k3, 0, 1", "k5, 10, 11")
+    fun `move 조건이 true 일 때, distance가 제대로 변하는지 확인`(name: String, nowDistance: Int, expected: Int) {
+        val car = spy(Car(name, nowDistance))
 
-        val racingCar = spy(RacingGame())
-        whenever(racingCar.canIMove()).thenReturn(true)
+        whenever(car.canIMove()).thenReturn(true)
+        car.move()
 
-        val list = racingCar.start(racingState)
-
-        assertThat(list.get(0).get(0).distance).isEqualTo(1)
-        assertThat(list.get(0).get(1).distance).isEqualTo(1)
-
-        assertThat(list.get(1).get(0).distance).isEqualTo(2)
-        assertThat(list.get(1).get(1).distance).isEqualTo(2)
-
-        assertThat(list.get(2).get(0).distance).isEqualTo(3)
-        assertThat(list.get(2).get(1).distance).isEqualTo(3)
+        assertThat(car.distance).isEqualTo(expected)
     }
 
     @Test
@@ -55,38 +48,15 @@ internal class RacingGameTest {
         assertThat(carList.size).isEqualTo(number)
     }
 
-    @Test
-    fun `전진 조건이 false일 때 move() 호출 시 이동하지 않았음을 확인하는 테스트`() {
-        var carList = mutableListOf(
-            Car("k5", 0),
-            Car("k7", 2)
-        )
+    @ParameterizedTest
+    @CsvSource("k5, 0, 0", "k7, 2, 2")
+    fun `전진 조건이 false일 때 move() 호출 시 이동하지 않았음을 확인하는 테스트`(name: String, nowDistance: Int, expected: Int) {
+        val car = spy(Car(name, nowDistance))
 
-        val racingCar = spy(RacingGame())
+        whenever(car.canIMove()).thenReturn(false)
+        car.move()
 
-        whenever(racingCar.canIMove()).thenReturn(false)
-
-        racingCar.move(carList)
-
-        assertThat(carList[0].distance).isEqualTo(0)
-        assertThat(carList[1].distance).isEqualTo(2)
-    }
-
-    @Test
-    fun `전진 조건이 true일 때 move() 호출 시 이동하였음을 확인하는 테스트`() {
-        var carList = mutableListOf(
-            Car("k5", 0),
-            Car("k7", 2)
-        )
-
-        val racingCar = spy(RacingGame())
-
-        whenever(racingCar.canIMove()).thenReturn(true)
-
-        racingCar.move(carList)
-
-        assertThat(carList[0].distance).isEqualTo(1)
-        assertThat(carList[1].distance).isEqualTo(3)
+        assertThat(car.distance).isEqualTo(expected)
     }
 
     @Test
@@ -96,25 +66,6 @@ internal class RacingGameTest {
 
         val list = listOf(cars1, cars2)
         ResultView().show(list)
-    }
-
-    @Test
-    fun `전진 조건이 true이고 자동차가 k3, k5가 주어질 때, 각 자동차 이름별 이동거리 정상 측정`() {
-        var carList = mutableListOf(
-            Car("k5", 1),
-            Car("k7", 0)
-        )
-
-        val racingCar = spy(RacingGame())
-
-        whenever(racingCar.canIMove()).thenReturn(true)
-
-        racingCar.move(carList)
-
-        assertThat(carList[0].name).isEqualTo("k5")
-        assertThat(carList[0].distance).isEqualTo(2)
-        assertThat(carList[1].name).isEqualTo("k7")
-        assertThat(carList[1].distance).isEqualTo(1)
     }
 
     @Test

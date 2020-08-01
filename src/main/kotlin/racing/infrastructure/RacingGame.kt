@@ -3,7 +3,6 @@ package racing.infrastructure
 import racing.domain.Car
 import racing.domain.Cars
 import racing.domain.RacingState
-import kotlin.random.Random
 
 class RacingGame {
 
@@ -22,31 +21,14 @@ class RacingGame {
 
         // 전진 시도
         repeat(racingState.attempt) {
-            val list = move(cars)
-            result.add(list)
+            val cars = cars.map {
+                it.move()
+                Car(it.name, it.distance)
+            }
+            result.add(cars)
         }
 
         return result
-    }
-
-    fun move(carList: Cars): Cars {
-        return carList.map {
-            if (canIMove()) {
-                it.distance++
-            }
-            Car(it.name, it.distance)
-        }
-    }
-
-    fun canIMove(): Boolean {
-        val random = Random.nextInt(
-            MINIMUM_RANGE_NUMBER,
-            MAXIMUM_RANGE_NUMBER
-        )
-        if (random >= MOVE_CONDITION_NUMBER) {
-            return true
-        }
-        return false
     }
 
     fun longestDistance(cars: Cars): Int? {
