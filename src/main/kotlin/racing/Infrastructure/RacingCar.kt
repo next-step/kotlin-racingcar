@@ -30,11 +30,11 @@ class RacingCar {
         return result
     }
 
-    fun makeCarList(racingState: RacingState): List<Car> {
+    fun makeCarList(racingState: RacingState): Cars {
         return racingState.names.map { name -> Car(name) }
     }
 
-    fun move(carList: List<Car>): List<Car> {
+    fun move(carList: Cars): Cars {
         return carList.map { car ->
             if (canIMove()) {
                 car.distance++
@@ -63,9 +63,9 @@ class RacingCar {
             .map { car -> Winner(car.name) }
     }
 
-    fun sortedByDistanceDesc(finalDistanceCars: Cars): List<Car> {
+    fun sortedByDistanceDesc(finalDistanceCars: Cars): Cars {
         return finalDistanceCars.sortedByDescending { it.distance }
     }
 
-    fun longestDistance(sortedBy: List<Car>) = sortedBy.first().distance
+    fun longestDistance(sortedBy: Cars) = sortedBy.first().distance
 }
