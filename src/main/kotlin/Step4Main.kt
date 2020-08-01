@@ -5,9 +5,15 @@ import view.ResultView
 
 fun main(args: Array<String>) {
     val carManager = CarManager(Dice())
-    val inputView = InputView(carManager)
-    inputView.inputCarsWithName { readLine()!! }
-    inputView.inputTryMoveCount { readLine()!! }
+    val inputView = InputView()
+    val inputFunction = { readLine()!! }
+
+    val driverList = inputView.inputCarsWithName(inputFunction)
+    carManager.addDrivers(driverList)
+
+    val tryMoveCount = inputView.inputTryMoveCount(inputFunction)
+    carManager.tryCount = tryMoveCount
+
     val resultView = ResultView(carManager)
     resultView.status()
 }

@@ -5,12 +5,10 @@ import model.Car
 
 class ResultView(private val carManager: CarManager) {
     fun status() {
-        run {
-            println()
-            println("실행 결과")
-            printCarsStep()
-            printCarsWinner()
-        }
+        println()
+        println("실행 결과")
+        printCarsStep()
+        printCarsWinner()
     }
 
     private fun printCarsStep() {

@@ -8,35 +8,35 @@ import org.junit.jupiter.api.assertThrows
 
 class InputViewTests {
     @Test
-    fun `carsAddAndThenCreateCarListEqualsInputValue`() {
+    fun `InputCarsWithNameAndReturnList`() {
         // given
         val carManager = CarManager(Dice())
-        val inputView = InputView(carManager)
+        val inputView = InputView()
 
         // when
-        inputView.inputCarsWithName { "name" }
+        val list = inputView.inputCarsWithName { "name" }
 
         // then
-        assertThat(1).isEqualTo(carManager.getCarList().size)
+        assertThat(1).isEqualTo(list.size)
     }
 
     @Test
     fun `tryMovingIncrementTryMoveCount`() {
         // given
         val carManager = CarManager(Dice())
-        val inputView = InputView(carManager)
+        val inputView = InputView()
 
         // when
-        inputView.inputTryMoveCount { "5" }
+        val result = inputView.inputTryMoveCount { "5" }
 
         // then
-        assertThat(5).isEqualTo(carManager.tryCount)
+        assertThat(5).isEqualTo(result)
     }
 
     @Test
     fun `inputNotNumberThrowExceptionTryMoveCount`() {
         val carManager = CarManager(Dice())
-        val inputView = InputView(carManager)
+        val inputView = InputView()
         // then
         assertThrows<IllegalArgumentException> {
             // when invalid character
