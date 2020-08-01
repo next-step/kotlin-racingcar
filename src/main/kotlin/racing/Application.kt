@@ -1,6 +1,6 @@
 package racing
 
-import racing.Infrastructure.RacingCar
+import racing.infrastructure.RacingCar
 import racing.domain.RacingState
 import racing.util.CarUtil
 import racing.presentation.InputView

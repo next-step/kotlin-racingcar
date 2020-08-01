@@ -1,4 +1,4 @@
-package racing.Infrastructure
+package racing.infrastructure
 
 import racing.domain.Car
 import racing.domain.Cars
