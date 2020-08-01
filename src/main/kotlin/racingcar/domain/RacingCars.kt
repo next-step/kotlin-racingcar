@@ -6,13 +6,7 @@ class RacingCars(
     private val carNames: List<String>,
     private val strategy: Strategy
 ) {
-    private val cars = carNames.let {
-        val list = mutableListOf<Car>()
-        it.forEach { name ->
-            list.add(Car(name, strategy))
-        }
-        list.toList()
-    }
+    private val cars = carNames.map { Car(it, strategy) }
 
     internal fun moveForwardAll() {
         cars.forEach {
@@ -20,17 +14,11 @@ class RacingCars(
         }
     }
 
-    internal fun getWinner(): List<Car> {
-        return cars.filter {
-            it.isWinner(findMax(cars))
-        }
+    internal fun getWinner() = cars.filter {
+        it.isWinner(findMax(cars))
     }
 
-    override fun toString(): String {
-        return cars.joinToString("") { "${it.getName()} : ${it.getDistance()}\n" }
-    }
+    override fun toString() = cars.joinToString("")
 
-    private fun findMax(cars: List<Car>): Int {
-        return cars.maxBy { it.currentPosition }?.currentPosition ?: 0
-    }
+    private fun findMax(cars: List<Car>) = cars.maxBy { it.currentPosition }?.currentPosition ?: 0
 }

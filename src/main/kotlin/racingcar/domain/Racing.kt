@@ -14,7 +14,6 @@ class Racing(
             racingCars.moveForwardAll()
             tryCount--
         }
-        // 모든 차들의 현재 상태를 리턴
         return racingCars.toString()
     }
 
