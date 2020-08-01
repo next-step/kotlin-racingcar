@@ -58,7 +58,9 @@ class RacingCar {
         val sortedBy = sortedByDistanceDesc(result.last())
         val longestDistance = longestDistance(sortedBy)
 
-        return sortedBy.filter { car -> car.distance.equals(longestDistance) }.map { car -> Winner(car.name) }
+        return sortedBy
+            .filter { car -> car.distance == longestDistance }
+            .map { car -> Winner(car.name) }
     }
 
     fun sortedByDistanceDesc(finalDistanceCars: Cars): List<Car> {
