@@ -9,7 +9,7 @@ internal class RacingGameTest {
         assertThrows(
             IllegalArgumentException::class.java
         ) {
-            RacingGame(5, 0)
+            RacingGame("abc", 0)
         }
     }
 }

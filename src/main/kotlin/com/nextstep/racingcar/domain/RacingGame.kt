@@ -3,13 +3,13 @@ package com.nextstep.racingcar.domain
 import com.nextstep.racingcar.util.isNatural
 import com.nextstep.racingcar.view.OutputView
 
-class RacingGame(numberOfCar: Int, round: Int) {
+class RacingGame(carName: String, round: Int) {
     private val cars: Cars
     private val round: Int
 
     init {
         validation(round)
-        val cars = Cars(numberOfCar)
+        val cars = Cars(carName)
         this.cars = cars
         this.round = round
     }
