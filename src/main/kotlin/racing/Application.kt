@@ -20,7 +20,7 @@ object Application {
         val result = RacingCar().start(racingState)
 
         val winners = RacingCar().getWinner(result)
-        ResultView().view(result)
-        ResultView().viewWinner(winners)
+        ResultView().show(result)
+        ResultView().showWinner(winners)
     }
 }

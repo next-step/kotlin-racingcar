@@ -20,7 +20,7 @@ internal class RacingCarTest {
     fun `start() 정상 동작 테스트`(list: List<String>, expected: Int) {
         val racingState = RacingState(list, 3)
         val list = RacingCar().start(racingState)
-        ResultView().view(list)
+        ResultView().show(list)
     }
 
     @Test
@@ -94,7 +94,7 @@ internal class RacingCarTest {
         val cars2: Cars = listOf(Car("k3", "-----"), Car("k5", "--"))
 
         val list = listOf(cars1, cars2)
-        ResultView().view(list)
+        ResultView().show(list)
     }
 
     @Test
