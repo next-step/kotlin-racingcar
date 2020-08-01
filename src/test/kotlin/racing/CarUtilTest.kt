@@ -7,14 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import racing.util.CarUtil
 
-internal class CarUtilTest {
-
-    @Test
-    fun `자동차 수가 null이거나 비어있는 경우 validate시 exception 발생`() {
-        assertThatIllegalArgumentException().isThrownBy {
-            CarUtil.validate("", "3")
-        }.withMessage(CarUtil.DATA_IS_BLANK)
-    }
+class CarUtilTest {
 
     @Test
     fun `문자가 입력된 경우 validate시 exception 발생`() {

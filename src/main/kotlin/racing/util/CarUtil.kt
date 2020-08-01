@@ -4,15 +4,11 @@ object CarUtil {
     val NON_NUMERIC_REGEX = Regex("[^0-9]")
     val DELIMETER = ","
 
-    const val DATA_IS_BLANK = "값이 비어있습니다"
     const val IS_POSSIBLE_NUMERIC = "숫자만 입력 가능합니다"
     const val DATA_FORMMAT_IS_BAD = "데이터 입력 포멧이 이상합니다"
     const val EXCEED_FIVE_CHARACTERS = "자동차 이름은 5자를 초과 할 수 없습니다"
 
-    fun validate(names: String?, attempt: String?) {
-        if (names.isNullOrBlank() || attempt.isNullOrBlank()) {
-            throw IllegalArgumentException(DATA_IS_BLANK)
-        }
+    fun validate(names: String, attempt: String) {
         var carNames = splitNames(names)
         if (carNames.isNullOrEmpty()) {
             throw IllegalArgumentException(DATA_FORMMAT_IS_BAD)

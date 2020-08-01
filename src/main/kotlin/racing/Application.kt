@@ -14,9 +14,9 @@ object Application {
 
         CarUtil.validate(inputNames, attempt)
 
-        val names = CarUtil.splitNames(inputNames!!)
+        val names = CarUtil.splitNames(inputNames)
 
-        val racingState = RacingState(names, attempt!!.toInt())
+        val racingState = RacingState(names, attempt.toInt())
         val result = RacingCar().start(racingState)
 
         val winners = RacingCar().getWinner(result)
