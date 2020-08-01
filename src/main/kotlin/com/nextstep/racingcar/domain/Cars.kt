@@ -1,5 +1,6 @@
 package com.nextstep.racingcar.domain
 
+import com.nextstep.racingcar.util.isNatural
 import kotlin.random.Random
 
 class Cars(numberOfCar: Int) {
@@ -26,10 +27,6 @@ class Cars(numberOfCar: Int) {
         if (!numberOfCar.isNatural()) {
             throw IllegalArgumentException("자동차의 수량은 0보다 커야합니다.")
         }
-    }
-
-    private fun Int.isNatural(): Boolean {
-        return this > 0
     }
 
     companion object {

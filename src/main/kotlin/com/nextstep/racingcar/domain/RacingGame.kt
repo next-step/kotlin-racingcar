@@ -1,5 +1,6 @@
 package com.nextstep.racingcar.domain
 
+import com.nextstep.racingcar.util.isNatural
 import com.nextstep.racingcar.view.OutputView
 
 class RacingGame(numberOfCar: Int, round: Int) {
@@ -24,9 +25,5 @@ class RacingGame(numberOfCar: Int, round: Int) {
         if (!round.isNatural()) {
             throw IllegalArgumentException("시도할 횟수는 0보다 커야합니다.")
         }
-    }
-
-    private fun Int.isNatural(): Boolean {
-        return this > 0
     }
 }
