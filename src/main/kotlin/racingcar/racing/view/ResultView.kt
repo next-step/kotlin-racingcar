@@ -15,6 +15,6 @@ class ResultView(
         // 레이싱 결과 출력
         ResultPrinter(printer, result.turns, this).print()
         // 시상식
-        winnerChecker.rewardWinner(result.turns.last().cars, this)
+        winnerChecker.rewardWinner(result.winners, this)
     }
 }

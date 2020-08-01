@@ -16,6 +16,8 @@ class InputView(val setup: GameSetupHelper) : ConsoleView() {
     }
 
     private fun navigateToRaceView(cars: List<Car>, turns: Int) {
-        RacingView(cars, turns).renderView()
+        navigateTo(
+            RacingView(cars, turns)
+        )
     }
 }

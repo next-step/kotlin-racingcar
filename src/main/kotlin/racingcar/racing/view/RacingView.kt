@@ -26,6 +26,6 @@ class RacingView(
     }
 
     private fun navigateToResult(result: RacingResult) {
-        ResultView(result).renderView()
+        navigateTo(ResultView(result))
     }
 }

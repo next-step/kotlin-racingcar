@@ -11,5 +11,5 @@ class SimpleTurnManager(override val totalSteps: Int, override val turn: Turn) :
         return lastResult
     }
 
-    fun isFinish() = lastResult.current >= totalSteps
+    fun isFinish() = lastResult.isFinish(totalSteps)
 }

@@ -19,4 +19,6 @@ data class Turn(
     fun nextTurn(): Turn {
         return doEachTurn()
     }
+
+    fun isFinish(limit: Int) = current >= limit
 }
