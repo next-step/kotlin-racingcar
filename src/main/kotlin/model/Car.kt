@@ -1,13 +1,9 @@
 package model
 
 class Car(val driverName: String) : Comparable<Car> {
+    val stepList: MutableList<Int> = mutableListOf()
     var step: Int = 0
         private set
-    private var stepList: MutableList<Int> = mutableListOf()
-
-    fun getStepList(): MutableList<Int> {
-        return stepList
-    }
 
     fun move(availableMove: Boolean) {
         if (availableMove) {

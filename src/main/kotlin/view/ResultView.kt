@@ -28,7 +28,7 @@ class ResultView(private val carManager: CarManager) {
 
     private fun printStep(car: Car, tryCount: Int): () -> Unit = {
         print(car.driverName + " : ")
-        repeat(car.getStepList()[tryCount]) {
+        repeat(car.stepList[tryCount]) {
             print(STEP_MARKER)
         }
         println()

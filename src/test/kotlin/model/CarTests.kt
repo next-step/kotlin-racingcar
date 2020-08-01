@@ -6,16 +6,14 @@ import org.junit.jupiter.api.Test
 class CarTests {
     @Test
     fun `diceMoveAddStep`() {
-        val dice = Dice()
         val car = Car("test")
-        var previousStepCount = car.getStepList().size
+        var previousStepCount = car.stepList.size
         car.move(true)
-        assertThat(previousStepCount + 1).isEqualTo(car.getStepList().size)
+        assertThat(previousStepCount + 1).isEqualTo(car.stepList.size)
     }
 
     @Test
     fun `carCanHaveANameIn5lengthString`() {
-        val dice = Dice()
         val name = "hello"
         val car = Car(name)
         assertThat(car.driverName).isEqualTo(name)
@@ -23,7 +21,6 @@ class CarTests {
 
     @Test
     fun `carCanNotHaveANameOver5lengthStringAndThrowException`() {
-        val dice = Dice()
         val name = "helloworld"
         val car = Car(name)
         assertThat(car.driverName).isEqualTo(name)
