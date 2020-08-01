@@ -7,9 +7,9 @@ class CarTests {
     @Test
     fun `diceMoveAddStep`() {
         val dice = Dice()
-        val car = Car(dice, "test")
+        val car = Car("test")
         var previousStepCount = car.getStepList().size
-        car.diceMove()
+        car.move(true)
         assertThat(previousStepCount + 1).isEqualTo(car.getStepList().size)
     }
 
@@ -17,7 +17,7 @@ class CarTests {
     fun `carCanHaveANameIn5lengthString`() {
         val dice = Dice()
         val name = "hello"
-        val car = Car(dice, name)
+        val car = Car(name)
         assertThat(car.driverName).isEqualTo(name)
     }
 
@@ -25,7 +25,7 @@ class CarTests {
     fun `carCanNotHaveANameOver5lengthStringAndThrowException`() {
         val dice = Dice()
         val name = "helloworld"
-        val car = Car(dice, name)
+        val car = Car(name)
         assertThat(car.driverName).isEqualTo(name)
     }
 }

@@ -14,7 +14,7 @@ class ResultView(private val carManager: CarManager) {
     }
 
     private fun printCarsStep() {
-        for (i in 0 until carManager.getTryCount()) {
+        for (i in 0 until carManager.tryCount) {
             printCar(i)
             println()
         }

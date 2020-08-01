@@ -15,7 +15,7 @@ class InputView(private val carManager: CarManager) {
         println("시도할 횟수는 몇 회인가요?")
         var input = inputFunction.invoke()
         checkRegexNumber(input)
-        carManager.setTryCount(input.toInt())
+        carManager.tryCount = input.toInt()
         carManager.tryMoving()
     }
 
