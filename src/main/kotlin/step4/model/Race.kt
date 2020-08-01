@@ -2,14 +2,22 @@ package step4.model
 
 import step4.strategy.MoveStrategy
 
-data class Race(val names: String) {
-    private val cars = getCars(names)
+class Race {
+    private var numberOfTrials = 0
+    private var cars = mutableListOf<Car>()
 
-    fun makeTurn(strategy: MoveStrategy) {
-        for (car in cars) {
-            val move = strategy.resultOfTurn
+    fun initiate(trials: Int, names: String) {
+        numberOfTrials = trials
+        cars = getCars(names)
+    }
 
-            car.save(move)
+    fun getCars(): List<Car> {
+        return cars
+    }
+
+    fun start(moveStrategy: MoveStrategy) {
+        repeat(numberOfTrials) {
+            makeTurn(moveStrategy)
         }
     }
 
@@ -23,8 +31,10 @@ data class Race(val names: String) {
         return carList
     }
 
-    fun getCars(): List<Car> {
-        return cars
+    private fun makeTurn(strategy: MoveStrategy) {
+        for (car in cars) {
+            car.save(strategy.getResultOfTurn())
+        }
     }
 
     companion object {

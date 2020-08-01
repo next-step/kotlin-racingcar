@@ -15,8 +15,14 @@ object ResultView {
         }
     }
 
-    fun noticeWinner(winner: String) {
-        println("${winner}가 최종 우승했습니다.")
+    fun noticeWinner(winners: List<Car>) {
+        var winnersName = winners[0].name
+
+        for (i in 1 until winners.size) {
+            winnersName += ","
+            winnersName += winners[i].name
+        }
+        println("${winnersName}가 최종 우승했습니다.")
     }
 
     private fun outputForTrials(actualTrial: Int, cars: List<Car>) {

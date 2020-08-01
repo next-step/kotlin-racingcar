@@ -2,8 +2,6 @@ package step4.model
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import step4.model.Car
-import step4.model.Referee
 
 class RefereeTest {
     @Test
@@ -15,6 +13,11 @@ class RefereeTest {
             Car("d", 7, mutableListOf()),
             Car("e", 5, mutableListOf())
         )
-        assertThat(Referee().getWinner(raceCars) == "c,d")
+        assertThat(
+            Referee().getWinner(raceCars) == mutableListOf(
+                Car("c", 7, mutableListOf()),
+                Car("d", 7, mutableListOf())
+            )
+        )
     }
 }

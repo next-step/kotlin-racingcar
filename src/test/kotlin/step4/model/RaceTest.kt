@@ -2,18 +2,15 @@ package step4.model
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import step4.model.Car
-import step4.model.Race
 import step4.strategy.UnconditionalMoveStrategy
 
 class RaceTest {
     @Test
     fun `Car Race Test`() {
-        val race = Race("car1,car2,car3")
+        val race = Race()
 
-        repeat(5) {
-            race.makeTurn(UnconditionalMoveStrategy())
-        }
+        race.initiate(5, "car1,car2,car3")
+        race.start(UnconditionalMoveStrategy())
 
         assertThat(race.getCars()).allSatisfy { car: Car ->
             assertThat(car.raceResult).isEqualTo(5)

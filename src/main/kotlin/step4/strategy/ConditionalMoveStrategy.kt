@@ -3,7 +3,9 @@ package step4.strategy
 import kotlin.random.Random
 
 class ConditionalMoveStrategy : MoveStrategy {
-    override val resultOfTurn = successToMove()
+    override fun getResultOfTurn(): Int {
+        return successToMove()
+    }
 
     private fun successToMove(): Int {
         val random = getRandomNumber()
@@ -18,7 +20,7 @@ class ConditionalMoveStrategy : MoveStrategy {
     companion object {
         private const val MIN_VALUE_TO_MOVE = 4
 
-        private const val SUCCESS_TO_MOVE = 1
+        const val SUCCESS_TO_MOVE = 1
         private const val FAIL_TO_MOVE = 0
     }
 }
