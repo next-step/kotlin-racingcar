@@ -3,18 +3,14 @@ package com.nextstep.racingcar.domain
 import com.nextstep.racingcar.util.isNatural
 import kotlin.random.Random
 
-class Cars(numberOfCar: Int) {
+class Cars(carName: String) {
     val cars: List<Car>
 
     init {
-        validation(numberOfCar)
-        val cars = mutableListOf<Car>()
+        val carNames = carName.split(",")
+        validation(carNames)
 
-        for (index in 1..numberOfCar) {
-            cars.add(Car())
-        }
-
-        this.cars = cars
+        this.cars = carNames.map { Car(it) }
     }
 
     fun moveCars() {
@@ -23,8 +19,8 @@ class Cars(numberOfCar: Int) {
         }
     }
 
-    private fun validation(numberOfCar: Int) {
-        if (!numberOfCar.isNatural()) {
+    private fun validation(carNames: List<String>) {
+        if (!carNames.size.isNatural()) {
             throw IllegalArgumentException("자동차의 수량은 0보다 커야합니다.")
         }
     }
