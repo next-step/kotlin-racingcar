@@ -4,6 +4,9 @@ import com.nhaarman.mockitokotlin2.spy
 import com.nhaarman.mockitokotlin2.whenever
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
 import racing.Infrastructure.RacingCar
 import racing.domain.Car
 import racing.domain.Cars
@@ -12,9 +15,10 @@ import racing.presentation.ResultView
 
 internal class RacingCarTest {
 
-    @Test
-    fun `start() 정상 동작 테스트`() {
-        val racingState = RacingState(listOf("k3", "k5"), 3)
+    @ParameterizedTest
+    @MethodSource("generateStartTestData")
+    fun `start() 정상 동작 테스트`(list: List<String>, expected: Int) {
+        val racingState = RacingState(list, 3)
         val list = RacingCar().start(racingState)
         ResultView().view(list)
     }
@@ -162,5 +166,14 @@ internal class RacingCarTest {
         assertThat(winners).size().isEqualTo(2)
         assertThat(winners[0].name).isEqualTo(car2.name)
         assertThat(winners[1].name).isEqualTo(car3.name)
+    }
+
+    companion object {
+        @JvmStatic
+        fun generateStartTestData(): List<Arguments> {
+            return listOf(
+                Arguments.of(listOf("k3", "k5"), 3)
+            )
+        }
     }
 }

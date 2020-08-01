@@ -3,6 +3,8 @@ package racing
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 import racing.util.CarUtil
 
 internal class CarUtilTest {
@@ -35,8 +37,12 @@ internal class CarUtilTest {
         }.withMessage(CarUtil.DATA_FORMMAT_IS_BAD)
     }
 
-    @Test
-    fun `자동차 이름에 "k3, k5, , "와 같이 , 로 구분된 빈공백이 있는 경우, 2개의 name만 인정되는지 확인`() {
-        assertThat(CarUtil.splitNames("k3, k5,  , ").size).isEqualTo(2)
+    @ParameterizedTest
+    @CsvSource(
+        value = ["k3, k5,  , > 2"],
+        delimiterString = ">"
+    )
+    fun `자동차 이름에 "k3, k5, , "와 같이 , 로 구분된 빈공백이 있는 경우, 2개의 name만 인정되는지 확인`(string: String, expected: Int) {
+        assertThat(CarUtil.splitNames(string).size).isEqualTo(expected)
     }
 }
