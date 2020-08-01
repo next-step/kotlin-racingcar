@@ -136,7 +136,7 @@ internal class RacingCarTest {
     }
 
     @Test
-    fun `우승자가 1명일 때 우승자 1명이 제대로 출력되는지 확인`() {
+    fun `가장 많이 움직인 차가 1대 일 때 우승자 목록을 가져오면 우승자가 한명이어야 한다`() {
         var car1 = Car("k5", "--")
         var car2 = Car("k7", "-----")
         var car3 = Car("k3", "-")
@@ -150,7 +150,7 @@ internal class RacingCarTest {
     }
 
     @Test
-    fun `우승자가 2명일 때 우승자 2명이 제대로 출력되는지 확인`() {
+    fun `가장 많이 움직인 차가 2대 일 때 우승자 목록을 가져오면 우승자가 2명이어야 한다`() {
         var car1 = Car("k5", "--")
         var car2 = Car("k7", "-----")
         var car3 = Car("k3", "-----")
