@@ -5,7 +5,7 @@ import racing.domain.Cars
 import racing.domain.RacingState
 import kotlin.random.Random
 
-class RacingCar {
+class RacingGame {
 
     companion object {
         const val MINIMUM_RANGE_NUMBER = 0

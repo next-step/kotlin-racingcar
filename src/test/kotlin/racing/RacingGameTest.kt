@@ -11,16 +11,16 @@ import racing.domain.Car
 import racing.domain.Cars
 import racing.domain.RacingState
 import racing.domain.Winner
-import racing.infrastructure.RacingCar
+import racing.infrastructure.RacingGame
 import racing.presentation.ResultView
 
-internal class RacingCarTest {
+internal class RacingGameTest {
 
     @ParameterizedTest
     @MethodSource("generateStartTestData")
     fun `start() 정상 동작 테스트`(list: List<String>, expected: Int) {
         val racingState = RacingState(list, 3)
-        val list = RacingCar().start(racingState)
+        val list = RacingGame().start(racingState)
         ResultView().show(list)
     }
 
@@ -28,7 +28,7 @@ internal class RacingCarTest {
     fun `move 조건이 true 일 때, distance가 제대로 변하는지 확인`() {
         val racingState = RacingState(listOf("k3", "k5"), 3)
 
-        val racingCar = spy(RacingCar())
+        val racingCar = spy(RacingGame())
         whenever(racingCar.canIMove()).thenReturn(true)
 
         val list = racingCar.start(racingState)
@@ -62,7 +62,7 @@ internal class RacingCarTest {
             Car("k7", 2)
         )
 
-        val racingCar = spy(RacingCar())
+        val racingCar = spy(RacingGame())
 
         whenever(racingCar.canIMove()).thenReturn(false)
 
@@ -79,7 +79,7 @@ internal class RacingCarTest {
             Car("k7", 2)
         )
 
-        val racingCar = spy(RacingCar())
+        val racingCar = spy(RacingGame())
 
         whenever(racingCar.canIMove()).thenReturn(true)
 
@@ -105,7 +105,7 @@ internal class RacingCarTest {
             Car("k7", 0)
         )
 
-        val racingCar = spy(RacingCar())
+        val racingCar = spy(RacingGame())
 
         whenever(racingCar.canIMove()).thenReturn(true)
 
@@ -125,7 +125,7 @@ internal class RacingCarTest {
 
         val cars: Cars = listOf(car1, car2, car3)
 
-        assertThat(RacingCar().longestDistance(cars)).isEqualTo(car1.distance)
+        assertThat(RacingGame().longestDistance(cars)).isEqualTo(car1.distance)
     }
 
     @Test
