@@ -25,4 +25,13 @@ internal class RacingGameTest {
         val round: Int? = -1
         assertThat(RacingGame.isInvalidRound(round)).isTrue()
     }
+
+    @Test
+    fun `자동차의 이름의 개수가 0보다 작거나 같으면 에러가 발생한다`() {
+        assertThrows(
+            IllegalArgumentException::class.java
+        ) {
+            RacingGame("", 1)
+        }
+    }
 }

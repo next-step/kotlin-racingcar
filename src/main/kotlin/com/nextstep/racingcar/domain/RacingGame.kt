@@ -8,22 +8,25 @@ class RacingGame(carName: String, round: Int?) {
     private val round: Int
 
     init {
-        validation(round)
-        val cars = Cars(carName)
-        this.cars = cars
+        val carNames = carName.split(",")
+        validation(carNames, round)
+        this.cars = Cars(carNames.map { Car(it) })
         this.round = round ?: throw IllegalArgumentException("round가 잘못됨.")
+    }
+
+    private fun validation(carNames: List<String>, round: Int?) {
+        if (!carNames.size.isNatural()) {
+            throw IllegalArgumentException("자동차의 수량은 0보다 커야합니다.")
+        }
+        if (isInvalidRound(round)) {
+            throw IllegalArgumentException("시도할 횟수는 0보다 커야합니다.")
+        }
     }
 
     fun runGame() {
         for (i in 1..round) {
             cars.moveCars()
             OutputView.showStatus(cars)
-        }
-    }
-
-    private fun validation(round: Int?) {
-        if (isInvalidRound(round)) {
-            throw IllegalArgumentException("시도할 횟수는 0보다 커야합니다.")
         }
     }
 
