@@ -52,17 +52,4 @@ class RacingGame {
     fun longestDistance(cars: Cars): Int? {
         return cars.map { it.distance }.max()
     }
-
-//    fun getWinner(result: List<Cars>): List<Winner> {
-//        val cars = result.last()
-//        val longestDistance = longestDistance(cars)
-//
-//        return cars
-//            .filter { it.distance == longestDistance }
-//            .map { Winner(it.name) }
-//    }
-//
-//    fun longestDistance(cars: Cars): Int? {
-//        return cars.map { it.distance }.max()
-//    }
 }
