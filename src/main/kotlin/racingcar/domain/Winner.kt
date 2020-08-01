@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class Winner(cars: List<Car>) {
     var winnerList = makeWinnerList(cars)

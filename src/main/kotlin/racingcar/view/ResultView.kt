@@ -1,4 +1,7 @@
-package racingcar
+package racingcar.view
+
+import racingcar.domain.Car
+import racingcar.domain.Winner
 
 class ResultView(private val time: Int, private val cars: List<Car>) {
     fun view() {
