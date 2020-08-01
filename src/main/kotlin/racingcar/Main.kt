@@ -2,15 +2,13 @@ package racingcar
 
 fun main() {
 
-    val cars = RacingCars(getCarName())
-
     val playTime = getPlayTime()
 
-    val game = Game(cars)
+    val racingCars = RacingCars(getCarName())
 
     repeat(playTime) {
-        printCurrentLocation(game.playGameOnce())
+        printCurrentLocation(racingCars.playGameOnce())
     }
 
-    printWinner(game.winner())
+    printWinner(racingCars.getWinner())
 }
