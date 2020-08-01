@@ -1,7 +1,6 @@
 package racing.presentation
 
 import racing.domain.Cars
-import racing.domain.Winner
 
 class ResultView {
 
@@ -16,7 +15,7 @@ class ResultView {
         }
     }
 
-    fun showWinner(winners: List<Winner>) {
+    fun showWinner(winners: Cars) {
         val joinToString = winners.joinToString { winner -> winner.name }
         println(joinToString + "가 최종 우승했습니다.")
     }

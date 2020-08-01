@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource
 import racing.domain.Car
 import racing.domain.Cars
 import racing.domain.RacingState
+import racing.domain.Winner
 import racing.infrastructure.RacingCar
 import racing.presentation.ResultView
 
@@ -48,7 +49,7 @@ internal class RacingCarTest {
         val number = 4
 
         // when
-        val carList = RacingCar().makeCarList(RacingState(listOf("k3", "k5", "k7", "kona")))
+        val carList = Car().makeCars(listOf("k3", "k5", "k7", "kona"))
 
         // then
         assertThat(carList.size).isEqualTo(number)
@@ -135,7 +136,7 @@ internal class RacingCarTest {
 
         val cars: Cars = listOf(car1, car2, car3)
 
-        val winners = RacingCar().getWinner(listOf(cars))
+        val winners = Winner().get(listOf(cars))
 
         assertThat(winners).size().isEqualTo(1)
         assertThat(winners[0].name).isEqualTo(car2.name)
@@ -149,7 +150,7 @@ internal class RacingCarTest {
 
         val cars: Cars = listOf(car1, car2, car3)
 
-        val winners = RacingCar().getWinner(listOf(cars))
+        val winners = Winner().get(listOf(cars))
 
         assertThat(winners).size().isEqualTo(2)
         assertThat(winners[0].name).isEqualTo(car2.name)

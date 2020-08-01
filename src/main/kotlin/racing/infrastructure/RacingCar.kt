@@ -3,7 +3,6 @@ package racing.infrastructure
 import racing.domain.Car
 import racing.domain.Cars
 import racing.domain.RacingState
-import racing.domain.Winner
 import kotlin.random.Random
 
 class RacingCar {
@@ -19,7 +18,7 @@ class RacingCar {
         var result = mutableListOf<Cars>()
 
         // Car Instance List 생성
-        val cars = makeCarList(racingState)
+        val cars = Car().makeCars(racingState.names)
 
         // 전진 시도
         repeat(racingState.attempt) {
@@ -28,10 +27,6 @@ class RacingCar {
         }
 
         return result
-    }
-
-    fun makeCarList(racingState: RacingState): Cars {
-        return racingState.names.map { name -> Car(name) }
     }
 
     fun move(carList: Cars): Cars {
@@ -54,16 +49,20 @@ class RacingCar {
         return false
     }
 
-    fun getWinner(result: List<Cars>): List<Winner> {
-        val cars = result.last()
-        val longestDistance = longestDistance(cars)
-
-        return cars
-            .filter { it.distance == longestDistance }
-            .map { Winner(it.name) }
-    }
-
     fun longestDistance(cars: Cars): Int? {
         return cars.map { it.distance }.max()
     }
+
+//    fun getWinner(result: List<Cars>): List<Winner> {
+//        val cars = result.last()
+//        val longestDistance = longestDistance(cars)
+//
+//        return cars
+//            .filter { it.distance == longestDistance }
+//            .map { Winner(it.name) }
+//    }
+//
+//    fun longestDistance(cars: Cars): Int? {
+//        return cars.map { it.distance }.max()
+//    }
 }
