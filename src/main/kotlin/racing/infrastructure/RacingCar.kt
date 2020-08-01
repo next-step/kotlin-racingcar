@@ -35,11 +35,11 @@ class RacingCar {
     }
 
     fun move(carList: Cars): Cars {
-        return carList.map { car ->
+        return carList.map {
             if (canIMove()) {
-                car.distance++
+                it.distance++
             }
-            Car(car.name, car.distance)
+            Car(it.name, it.distance)
         }
     }
 
@@ -55,17 +55,15 @@ class RacingCar {
     }
 
     fun getWinner(result: List<Cars>): List<Winner> {
-        val sortedBy = sortedByDistanceDesc(result.last())
-        val longestDistance = longestDistance(sortedBy)
+        val cars = result.last()
+        val longestDistance = longestDistance(cars)
 
-        return sortedBy
-            .filter { car -> car.distance == longestDistance }
-            .map { car -> Winner(car.name) }
+        return cars
+            .filter { it.distance == longestDistance }
+            .map { Winner(it.name) }
     }
 
-    fun sortedByDistanceDesc(finalDistanceCars: Cars): Cars {
-        return finalDistanceCars.sortedByDescending { it.distance }
+    fun longestDistance(cars: Cars): Int? {
+        return cars.map { it.distance }.max()
     }
-
-    fun longestDistance(sortedBy: Cars) = sortedBy.first().distance
 }

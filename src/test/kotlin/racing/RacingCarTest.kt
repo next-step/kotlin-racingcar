@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import racing.infrastructure.RacingCar
 import racing.domain.Car
 import racing.domain.Cars
 import racing.domain.RacingState
+import racing.infrastructure.RacingCar
 import racing.presentation.ResultView
 
 internal class RacingCarTest {
@@ -114,18 +114,6 @@ internal class RacingCarTest {
         assertThat(carList[0].distance).isEqualTo(2)
         assertThat(carList[1].name).isEqualTo("k7")
         assertThat(carList[1].distance).isEqualTo(1)
-    }
-
-    @Test
-    fun `racing 이후 결과에 대하여 sortedByDistanceDesc 호출 시 장거리 기준으로 정렬됐는지 확인`() {
-        var car1 = Car("k3", 0)
-        var car2 = Car("k5", 3)
-
-        val cars: Cars = listOf(car1, car2)
-        val sortedByDistanceDesc = RacingCar().sortedByDistanceDesc(cars)
-
-        assertThat(sortedByDistanceDesc).element(0).isEqualTo(car2)
-        assertThat(sortedByDistanceDesc).element(1).isEqualTo(car1)
     }
 
     @Test
