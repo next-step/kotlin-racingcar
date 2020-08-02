@@ -1,18 +1,21 @@
 package racing.presentation
 
 import racing.domain.Cars
-import racing.domain.Winner
 
 class ResultView {
-    fun view(list: List<Cars>) {
 
+    companion object {
+        const val CHARACTER = "-"
+    }
+
+    fun show(list: List<Cars>) {
         list.forEach { result ->
-            result.forEach { car -> println("${car.name} : ${car.distance}") }
+            result.forEach { car -> println("${car.name} " + CHARACTER.repeat(car.distance)) }
             println()
         }
     }
 
-    fun viewWinner(winners: List<Winner>) {
+    fun showWinner(winners: Cars) {
         val joinToString = winners.joinToString { winner -> winner.name }
         println(joinToString + "가 최종 우승했습니다.")
     }
