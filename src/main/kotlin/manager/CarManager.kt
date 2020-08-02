@@ -10,9 +10,10 @@ class CarManager(private val dice: DiceStatus) {
     var tryCount: Int = 0
     val winnerList: List<Car>
         get() {
-            val maxStepCar = carList.maxBy { it.step }?.step ?: 0
-            return carList.filter { it.isWinner(maxStepCar) }.toList()
+            val maxStepCar = carList.maxBy { it.step } ?: return emptyList()
+            return carList.filter { it.isWinner(maxStepCar.step) }
         }
+
     fun tryMoving() {
         repeat(tryCount) { move() }
     }
