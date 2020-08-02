@@ -1,17 +1,16 @@
 package racingcar.model
 
-class Participant(private val racingCars: List<Car>, tryCount: Int) {
+class Participant(private val racingCars: List<Car>) {
 
-    val movingDistanceHistory = Array(racingCars.size) {
-        Array(tryCount) {
-            racingCars[0].movingDistance
-        }
-    }
+    private val _movingDistanceHistory = mutableListOf<Int>()
+    val movingDistanceHistory: List<Int> get() = _movingDistanceHistory
 
     fun play(tryCount: Int) {
-        racingCars.forEachIndexed { index, car ->
-            car.move(MOVING_CONDITION_RANGE.random())
-            movingDistanceHistory[index][tryCount] = car.movingDistance
+        repeat(tryCount) {
+            racingCars.forEach { car ->
+                car.move(MOVING_CONDITION_RANGE.random())
+                _movingDistanceHistory.add(car.movingDistance)
+            }
         }
     }
 

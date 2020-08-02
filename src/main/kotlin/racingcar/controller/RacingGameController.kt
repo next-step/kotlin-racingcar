@@ -7,7 +7,7 @@ import racingcar.view.ResultView
 
 fun main() {
     val (racingCarNames, tryCounts) = InputView.requestRacingCarNames() to InputView.requestTryCount()
-    val participant = Participant(racingCarNames.map(::Car), tryCounts)
+    val participant = Participant(racingCarNames.map(::Car))
 
     startRacing(tryCounts, participant)
     showContents(racingCarNames, participant)
@@ -19,7 +19,5 @@ private fun showContents(racingCarNames: List<String>, participant: Participant)
 }
 
 private fun startRacing(tryCounts: Int, participant: Participant) {
-    repeat(tryCounts) {
-        participant.play(it)
-    }
+    participant.play(tryCounts)
 }
