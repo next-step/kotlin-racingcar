@@ -1,6 +1,6 @@
 package racingcar.model
 
-class Participant(private val racingCars: List<Car>) {
+class RacingGame(private val racingCars: List<Car>) {
 
     private val _movingDistanceHistory = mutableListOf<Int>()
     val movingDistanceHistory: List<Int> get() = _movingDistanceHistory

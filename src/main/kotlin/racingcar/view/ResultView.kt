@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.model.Participant
+import racingcar.model.RacingGame
 
 object ResultView {
 
@@ -11,8 +11,8 @@ object ResultView {
         printRacingStep(racingCarNames, chunkedRacingHistory)
     }
 
-    fun printRacingWinner(participant: Participant) {
-        println("${participant.findWinner()}가 최종 우승했습니다.")
+    fun printRacingWinner(racingGame: RacingGame) {
+        println("${racingGame.findWinner()}가 최종 우승했습니다.")
     }
 
     private fun printRacingStep(racingCarNames: List<String>, chunkedRacingHistory: List<List<Int>>) {
