@@ -14,6 +14,10 @@ class InputView() {
         return input.toInt()
     }
 
+    fun printErrorMessage() {
+        println("잘못된 값을 입력하였습니다.")
+    }
+
     private fun checkRegexNumber(input: String) {
         if (!VALID_REGEX.matches(input)) {
             throw IllegalArgumentException("only input number please")
