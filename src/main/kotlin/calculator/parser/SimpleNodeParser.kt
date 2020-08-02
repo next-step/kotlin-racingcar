@@ -4,12 +4,10 @@ import calculator.calculator.Node
 import calculator.calculator.OperatorString
 import java.util.regex.Pattern
 
-class NodeParserImpl : NodeParser {
-    private val REGEX_FOR_NODE = Regex("((?<=([-*/+\\s]))|(?=([-*/+\\s])))")
-    private val PATTERN_FOR_NUMBER = Pattern.compile("^[0-9]+$")
+class SimpleNodeParser : NodeParser {
     override fun parse(text: String): List<Node> {
         return text
-            .split(REGEX_FOR_NODE)
+            .split(Regex(REGEX_FOR_NODE))
             .trimAll()
             .exceptEmpty()
             .convertAllToNode()
@@ -20,7 +18,10 @@ class NodeParserImpl : NodeParser {
     fun List<String>.exceptEmpty() = filter { it.isNotEmpty() }
 
     fun String.convertToNode(): Node {
-        this.takeIf { PATTERN_FOR_NUMBER.matcher(it).matches() }?.let {
+        takeIf {
+            Pattern.compile(PATTERN_FOR_NUMBER)
+                .matcher(it).matches()
+        }?.let {
             return Node.Number(it.toDouble())
         }
 
@@ -36,4 +37,9 @@ class NodeParserImpl : NodeParser {
     }
 
     fun List<String>.convertAllToNode() = map { it.convertToNode() }
+
+    companion object {
+        private const val REGEX_FOR_NODE = "((?<=([-*/+\\s]))|(?=([-*/+\\s])))"
+        private const val PATTERN_FOR_NUMBER = "^[0-9]+$"
+    }
 }

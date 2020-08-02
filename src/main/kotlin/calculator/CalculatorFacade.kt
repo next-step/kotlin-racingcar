@@ -3,10 +3,10 @@ package calculator
 import calculator.calculator.Calculator
 import calculator.calculator.CalculatorImpl
 import calculator.parser.NodeParser
-import calculator.parser.NodeParserImpl
+import calculator.parser.SimpleNodeParser
 
 fun main() {
-    val parser: NodeParser = NodeParserImpl()
+    val parser: NodeParser = SimpleNodeParser()
     val calculator: Calculator = CalculatorImpl()
 
     CalculatorFacade(parser, calculator).execute()
