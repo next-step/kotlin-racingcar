@@ -10,7 +10,7 @@ class CarManager(private val dice: DiceStatus) {
     var tryCount: Int = 0
     val winnerList: List<Car>
         get() {
-            val maxStepCar = carList.maxBy { it.step }!!.step
+            val maxStepCar = carList.maxBy { it.step }?.step ?: 0
             return carList.filter { it.isWinner(maxStepCar) }.toList()
         }
     fun tryMoving() {
@@ -20,7 +20,7 @@ class CarManager(private val dice: DiceStatus) {
     fun addCarByDrivers(list: List<String>) {
         for (driverName in list) {
             checkDriverName(driverName)
-            val car = Car(driverName, 0, dice)
+            val car = Car(driverName, DEFAULT_STEP, dice)
             add(car)
         }
     }
@@ -42,6 +42,7 @@ class CarManager(private val dice: DiceStatus) {
     }
 
     companion object {
-        val LIMIT_DRIVER_NAME_LENGTH = 6
+        const val LIMIT_DRIVER_NAME_LENGTH = 6
+        const val DEFAULT_STEP = 0
     }
 }

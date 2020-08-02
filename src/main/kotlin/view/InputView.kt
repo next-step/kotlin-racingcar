@@ -21,7 +21,7 @@ class InputView() {
     }
 
     companion object {
-        val DELIMETER = ","
+        const val DELIMETER = ","
         val VALID_REGEX = Regex(pattern = "^[0-9]+$")
     }
 }

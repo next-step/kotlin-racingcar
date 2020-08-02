@@ -43,6 +43,6 @@ class ResultView(private val carManager: CarManager) {
     }
 
     companion object {
-        val STEP_MARKER = "-"
+        const val STEP_MARKER = "-"
     }
 }
