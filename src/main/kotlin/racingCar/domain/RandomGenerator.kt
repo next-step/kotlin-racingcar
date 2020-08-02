@@ -1,5 +1,6 @@
-package racingCar
+package racingCar.domain
 
+import racingCar.domain.RANDOM_LIMIT_NUM
 import kotlin.random.Random
 
 object RandomGenerator {

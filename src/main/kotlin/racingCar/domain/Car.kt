@@ -1,4 +1,4 @@
-package racingCar
+package racingCar.domain
 
 const val STANDARD_VALUE_TO_MOVE = 4
 

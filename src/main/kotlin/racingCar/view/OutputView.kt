@@ -1,4 +1,6 @@
-package racingCar
+package racingCar.view
+
+import racingCar.domain.Car
 
 object OutputView {
 
@@ -6,7 +8,10 @@ object OutputView {
     private const val PARTICIPANT_NAME_DELIMITER = ","
 
     fun getCarRacingResult(racingCarResult: List<Car>) {
-        racingCarResult.forEach { println("${it.name} " + PARTICIPANT_NAME_DELIMITER + makeRacingMap(it.distance)) }
+        racingCarResult.forEach { println("${it.name} " + PARTICIPANT_NAME_DELIMITER + makeRacingMap(
+            it.distance
+        )
+        ) }
     }
 
     private fun makeRacingMap(distance: Int): String {
