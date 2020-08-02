@@ -29,9 +29,10 @@ class WinnerTest {
 
     @Test
     fun `우승자가 여러 명인 경우`() {
-        cars[0].move(4)
-        cars[2].move(4)
+        repeat(2) {
+            cars[it].move(4)
+        }
 
-        assertThat(winner.find()).isEqualTo(listOf(cars[0].name, cars[2].name).joinToString())
+        assertThat(winner.find().split(",").size).isEqualTo(2)
     }
 }
