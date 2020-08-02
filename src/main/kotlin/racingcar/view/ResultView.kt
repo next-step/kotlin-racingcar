@@ -23,9 +23,7 @@ object ResultView {
         tryCnt: Int
     ) {
         repeat(racingCarNames.size) { racingCnt ->
-            print("${racingCarNames[racingCnt]} : ")
-            print("-".repeat(racingHistory[racingCnt][tryCnt]))
-            println()
+            println("${racingCarNames[racingCnt]} : ${"-".repeat(racingHistory[racingCnt][tryCnt])}")
         }
         println()
     }
