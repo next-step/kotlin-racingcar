@@ -12,6 +12,11 @@ fun main() {
     val winner = Winner(racingGame)
 
     racingGame.play(tryCounts)
+
+    showContents(racingGame, winner)
+}
+
+private fun showContents(racingGame: RacingGame, winner: Winner) {
     ResultView.printRacingProcess(racingGame)
     ResultView.printRacingWinner(winner)
 }
