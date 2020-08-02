@@ -1,18 +1,19 @@
 package racingcar.view
 
 import racingcar.model.RacingGame
+import racingcar.model.Winner
 
 object ResultView {
 
-    fun printRacingProcess(racingCarNames: List<String>, racingHistory: List<Int>) {
+    fun printRacingProcess(racingGame: RacingGame) {
         println("실행 결과")
 
-        val chunkedRacingHistory = racingHistory.chunked(racingCarNames.size)
-        printRacingStep(racingCarNames, chunkedRacingHistory)
+        val chunkedRacingHistory = racingGame.movingDistanceHistory.chunked(racingGame.racingCars.size)
+        printRacingStep(racingGame.racingCars.map { it.name }, chunkedRacingHistory)
     }
 
-    fun printRacingWinner(racingGame: RacingGame) {
-        println("${racingGame.findWinner()}가 최종 우승했습니다.")
+    fun printRacingWinner(winner: Winner) {
+        println("${winner.find()}가 최종 우승했습니다.")
     }
 
     private fun printRacingStep(racingCarNames: List<String>, chunkedRacingHistory: List<List<Int>>) {
