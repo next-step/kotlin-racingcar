@@ -11,9 +11,9 @@ class GameSetupHelper {
             val names = input!!.split(",").map { it.trim() }
             return names.map { Car(it) }
         } catch (e: Car.NameLengthOverflowException) {
-            throw RacingCarGame.SetupFailException(ERROR_CAR_NAME_OVERFLOW)
+            throw SetupFailException(ERROR_CAR_NAME_OVERFLOW)
         } catch (e: Exception) {
-            throw RacingCarGame.SetupFailException(CAR_NUMBER_ERROR)
+            throw SetupFailException(CAR_NUMBER_ERROR)
         }
     }
 
@@ -21,7 +21,9 @@ class GameSetupHelper {
         try {
             return input?.toInt()!!
         } catch (e: Exception) {
-            throw RacingCarGame.SetupFailException(TURN_NUMBER_ERROR)
+            throw SetupFailException(TURN_NUMBER_ERROR)
         }
     }
+
+    class SetupFailException(override val message: String) : Exception()
 }

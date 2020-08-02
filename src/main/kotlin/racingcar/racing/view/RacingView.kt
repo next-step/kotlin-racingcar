@@ -1,13 +1,11 @@
 package racingcar.racing.view
 
-import racingcar.racing.RacingCarGame
 import racingcar.racing.car.Car
 import racingcar.racing.result.RacingResult
 import racingcar.racing.rule.CarMovementRule
 import racingcar.racing.rule.CarRandomMovementRule
-import racingcar.turn.Turn
-import racingcar.turn.TurnManager
 import racingcar.turn.SimpleTurnManager
+import racingcar.turn.TurnManager
 
 class RacingView(
     private val cars: List<Car>,
@@ -16,16 +14,15 @@ class RacingView(
     private val rule: CarMovementRule = CarRandomMovementRule()
 
     override fun renderView() {
-        val turn = Turn(cars = cars, rule = rule)
-        val turnManager: TurnManager = SimpleTurnManager(turns, turn)
+        val turnManager: TurnManager = SimpleTurnManager(turns, cars, rule)
         // 게임 시작
-        val result = RacingCarGame(turnManager).startRacing()
+        val result = turnManager.startRaceUntilFinish()
 
         // 경기 결과로 이동
         navigateToResult(result)
     }
 
-    private fun navigateToResult(result: RacingResult) {
+    private fun navigateToResult(result: List<RacingResult>) {
         navigateTo(ResultView(result))
     }
 }

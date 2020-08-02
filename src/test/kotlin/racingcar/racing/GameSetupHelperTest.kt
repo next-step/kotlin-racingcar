@@ -33,13 +33,13 @@ class GameSetupHelperTest {
         Assertions.assertThatThrownBy {
             GameSetupHelper().askHowManyCars("123123123")
         }
-            .isInstanceOf(RacingCarGame.SetupFailException::class.java)
+            .isInstanceOf(GameSetupHelper.SetupFailException::class.java)
             .hasMessage(ERROR_CAR_NAME_OVERFLOW)
 
         Assertions.assertThatThrownBy {
             GameSetupHelper().askHowManyCars(null)
         }
-            .isInstanceOf(RacingCarGame.SetupFailException::class.java)
+            .isInstanceOf(GameSetupHelper.SetupFailException::class.java)
             .hasMessage(CAR_NUMBER_ERROR)
     }
 
@@ -56,13 +56,13 @@ class GameSetupHelperTest {
         Assertions.assertThatThrownBy {
             GameSetupHelper().askHowManyTurns("a")
         }
-            .isInstanceOf(RacingCarGame.SetupFailException::class.java)
+            .isInstanceOf(GameSetupHelper.SetupFailException::class.java)
             .hasMessage(TURN_NUMBER_ERROR)
 
         Assertions.assertThatThrownBy {
             GameSetupHelper().askHowManyTurns(null)
         }
-            .isInstanceOf(RacingCarGame.SetupFailException::class.java)
+            .isInstanceOf(GameSetupHelper.SetupFailException::class.java)
             .hasMessage(TURN_NUMBER_ERROR)
     }
 }

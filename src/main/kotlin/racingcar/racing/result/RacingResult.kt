@@ -1,7 +1,5 @@
 package racingcar.racing.result
 
-import racingcar.turn.Turn
+import racingcar.racing.car.Car
 
-class RacingResult(val turns: List<Turn>) {
-    val winners get() = turns.last().cars
-}
+class RacingResult(val cars: List<Car>)

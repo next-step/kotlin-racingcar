@@ -1,8 +1,10 @@
 package racingcar.turn
 
+import racingcar.racing.result.RacingResult
+
 interface TurnManager {
     val totalSteps: Int
-
-    val turn: Turn
-    fun isFinishOrProceed(): Turn?
+    fun isFinish(): Boolean
+    fun nextTurn(): List<RacingResult>
+    fun startRaceUntilFinish(): List<RacingResult>
 }

@@ -1,10 +1,10 @@
 package racingcar.racing.printer
 
 import racingcar.racing.const.GAME_RESULT
+import racingcar.racing.result.RacingResult
 import racingcar.racing.view.View
-import racingcar.turn.Turn
 
-class ResultPrinter(val printer: CarPrinter, val results: List<Turn>, val view: View) {
+class ResultPrinter(val printer: CarPrinter, val results: List<RacingResult>, val view: View) {
     fun print() {
         view.print(toPrintable())
     }
