@@ -35,4 +35,25 @@ class CarManagerTests {
         carManager.addCarByDrivers(list)
         assertThat(list.size).isEqualTo(carManager.carList.size)
     }
+
+    @Test
+    fun `winnerListReturn`() {
+        val dice = object : DiceStatus {
+            override fun dice(): Int {
+                return Dice.DICE_CHECK_SUCCESS_CONDITION + 1
+            }
+
+            override fun isSuccess(): Boolean {
+                return true
+            }
+        }
+        val list = listOf("test", "hello", "world")
+        val carManager = CarManager(dice)
+        carManager.addCarByDrivers(list)
+        carManager.tryCount = 1
+        carManager.carList[0].move()
+        carManager.carList[0].move()
+        carManager.carList[0].move()
+        assertThat(carManager.winnerList.size).isEqualTo(1)
+    }
 }
