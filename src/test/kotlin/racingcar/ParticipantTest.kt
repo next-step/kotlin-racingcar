@@ -12,7 +12,7 @@ class ParticipantTest {
         val cars = listOf(Car("1st"), Car("2nd"), Car("3rd"))
         val participant = Participant(racingCars = cars)
         cars[0].move(4)
-        assertThat(participant.findWinner()[0].name).isEqualTo(cars[0].name)
+        assertThat(participant.findWinner()).isEqualTo(cars[0].name)
     }
 
     @Test
@@ -21,6 +21,6 @@ class ParticipantTest {
         val participant = Participant(racingCars = cars)
         cars[0].move(4)
         cars[2].move(4)
-        assertThat(participant.findWinner().map { it.name }).isEqualTo(listOf(cars[0].name, cars[2].name))
+        assertThat(participant.findWinner()).isEqualTo(listOf(cars[0].name, cars[2].name).joinToString())
     }
 }

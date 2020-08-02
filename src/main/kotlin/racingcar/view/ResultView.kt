@@ -12,7 +12,7 @@ object ResultView {
     }
 
     fun printRacingWinner(participant: Participant) {
-        println("${participant.findWinner().joinToString { it.name }}가 최종 우승했습니다.")
+        println("${participant.findWinner()}가 최종 우승했습니다.")
     }
 
     private fun printRacingStep(racingCarNames: List<String>, chunkedRacingHistory: List<List<Int>>) {

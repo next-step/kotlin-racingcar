@@ -14,9 +14,9 @@ class Participant(private val racingCars: List<Car>) {
         }
     }
 
-    fun findWinner(): List<Car> {
+    fun findWinner(): String {
         val farthestDistance = findFarthestCar().movingDistance
-        return racingCars.filter { it.movingDistance == farthestDistance }
+        return racingCars.filter { it.movingDistance == farthestDistance }.joinToString { it.name }
     }
 
     private fun findFarthestCar() = racingCars.maxBy { it.movingDistance } ?: racingCars[0]
