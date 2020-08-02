@@ -4,23 +4,30 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import racingcar.model.Car
 import racingcar.model.RacingGame
+import racingcar.model.Winner
 
-class RacingGameTest {
+class WinnerTest {
 
     @Test
     fun `우승자가 한 명인 경우`() {
         val cars = listOf(Car("1st"), Car("2nd"), Car("3rd"))
-        val participant = RacingGame(racingCars = cars)
+        val racingGame = RacingGame(racingCars = cars)
+        val winner = Winner(racingGame)
+
         cars[0].move(4)
-        assertThat(participant.findWinner()).isEqualTo(cars[0].name)
+
+        assertThat(winner.find()).isEqualTo(cars[0].name)
     }
 
     @Test
     fun `우승자가 여러 명인 경우`() {
         val cars = listOf(Car("1st"), Car("2nd"), Car("best"))
-        val participant = RacingGame(racingCars = cars)
+        val racingGame = RacingGame(racingCars = cars)
+        val winner = Winner(racingGame)
+
         cars[0].move(4)
         cars[2].move(4)
-        assertThat(participant.findWinner()).isEqualTo(listOf(cars[0].name, cars[2].name).joinToString())
+
+        assertThat(winner.find()).isEqualTo(listOf(cars[0].name, cars[2].name).joinToString())
     }
 }
