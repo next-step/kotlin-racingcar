@@ -13,16 +13,14 @@ class RacingCar(private val carCount: Int) {
     }
 
     private fun generateCar(carCount: Int) {
-        for (car in 0 until carCount) {
+        repeat(carCount) {
             carsInRacing.add(Car())
         }
     }
 
     fun carMove(trialCount: Int) {
         var randomNum: Int
-        for (i in 0 until trialCount) {
-            println("--------------------------")
-            println("${i + 1}번째 시도!")
+        repeat(trialCount) {
             for (car in carsInRacing) {
                 randomNum = RandomGenerator.getRandomNumber()
                 car.changeStateRacingCar(randomNum)

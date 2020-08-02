@@ -8,21 +8,12 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class RacingCarTest {
 
-    lateinit var car: Car
-
-    /*
-    [질문]
-    테스트함수는 아니지만 테스트에 공통적으로 car 객체가 필요하기때문에 @BeforeEach를 통해
-    테스트 전 호출되도록 했는데 그냥 일반 메소드를 호출하는게 더 좋은 방법인가요 ??
-     */
-    fun init() {
-        car = Car()
-    }
+    private val car = Car()
 
     @ParameterizedTest
     @ValueSource(strings = arrayOf(" ", ""))
     fun `is inputCount empty`(inputCount: String) {
-        init()
+
         Assertions.assertThatIllegalArgumentException()
             .isThrownBy { InputView.checkUserInput(inputCount) }
             .withMessage("값을 입력해주세요.")
@@ -56,26 +47,22 @@ class RacingCarTest {
 
     @Test
     fun `check input randomNumber over 4`() {
-        init()
         assertTrue(car.changeStateRacingCar(8) == car.move(true))
     }
 
     @Test
     fun `check input randomNumber below 4`() {
-        init()
         assertTrue(car.changeStateRacingCar(2) == car.move(false))
     }
 
     @Test
     fun `check car running state`() {
-        init()
         car.changeStateRacingCar(8)
         assertTrue(car.distance == 1)
     }
 
     @Test
     fun `check car stop state`() {
-        init()
         car.changeStateRacingCar(3)
         assertTrue(car.distance == 0)
     }
