@@ -7,10 +7,14 @@ class RacingGame(val racingCars: List<Car>) {
 
     fun play(tryCount: Int) {
         repeat(tryCount) {
-            racingCars.forEach { car ->
-                car.move(MOVING_CONDITION_RANGE.random())
-                _movingDistanceHistory.add(car.movingDistance)
-            }
+            tryMove()
+        }
+    }
+
+    private fun tryMove() {
+        racingCars.forEach { car ->
+            car.move(MOVING_CONDITION_RANGE.random())
+            _movingDistanceHistory.add(car.movingDistance)
         }
     }
 
