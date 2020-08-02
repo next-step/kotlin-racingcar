@@ -1,26 +1,28 @@
 package model
 
-class Car(val diceStatus: DiceStatus, private val driverName: String) : Comparable<Car> {
-    private var step: Int = 0
-    private var stepList: MutableList<Int> = mutableListOf()
+class Car(val driverName: String, step: Int = 0, val diceStatus: DiceStatus) : Comparable<Car> {
+    private val stepListMutable = mutableListOf<Int>()
+    val stepList: List<Int>
+        get() {
+            return stepListMutable.toList()
+        }
 
-    fun getStep(): Int {
-        return step
-    }
+    var step: Int = step
+        private set
 
-    fun getDriverName(): String {
-        return driverName
-    }
-
-    fun getStepList(): MutableList<Int> {
-        return stepList
-    }
-
-    fun diceMove() {
-        if (diceStatus.availableMove(diceStatus.dice())) {
+    fun move() {
+        if (availableMove()) {
             step++
         }
-        stepList.add(step)
+        stepListMutable.add(step)
+    }
+
+    fun isWinner(value: Int): Boolean {
+        return step == value
+    }
+
+    private fun availableMove(): Boolean {
+        return diceStatus.isSuccess()
     }
 
     override fun compareTo(other: Car): Int {

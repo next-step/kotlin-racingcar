@@ -1,56 +1,38 @@
 package manager
 
 import model.Car
-import model.Dice
+import model.DiceStatus
 
-class CarManager {
-    private val carList: MutableList<Car> = mutableListOf()
-    private var tryCount: Int = 0
-
-    val dice = Dice()
-
-    fun move() {
-        for (car in carList) {
-            car.diceMove()
+class CarManager(private val dice: DiceStatus) {
+    private val carListMutable: MutableList<Car> = mutableListOf()
+    val carList: List<Car>
+        get() = carListMutable.toList()
+    var tryCount: Int = 0
+    val winnerList: List<Car>
+        get() {
+            val maxStepCar = carList.maxBy { it.step }?.step ?: 0
+            return carList.filter { it.isWinner(maxStepCar) }.toList()
         }
-    }
-
-    fun getCarList(): List<Car> {
-        return carList
-    }
-
-    fun setTryCount(tryCount: Int) {
-        this.tryCount = tryCount
-    }
-
-    fun getTryCount(): Int {
-        return this.tryCount
-    }
-
     fun tryMoving() {
         repeat(tryCount) { move() }
     }
 
-    fun addDrivers(list: List<String>) {
+    fun addCarByDrivers(list: List<String>) {
         for (driverName in list) {
             checkDriverName(driverName)
-            carList.add(Car(dice, driverName))
+            val car = Car(driverName, DEFAULT_STEP, dice)
+            add(car)
         }
     }
 
-    fun getCarWinners(): List<Car> {
-        var winnerList = mutableListOf<Car>()
-        var maxStepCar = carList.maxBy { it.getStep() }!!.getStep()
+    private fun move() {
         for (car in carList) {
-            addWinnerList(car, maxStepCar, winnerList)
+            car.move()
         }
-        return winnerList
     }
 
-    private fun addWinnerList(car: Car, maxStepCar: Int, winnerList: MutableList<Car>) {
-        if (car.getStep() == maxStepCar) {
-            winnerList.add(car)
-        }
+    private fun add(car: Car) {
+        carListMutable.add(car)
     }
 
     private fun checkDriverName(driverName: String) {
@@ -60,6 +42,7 @@ class CarManager {
     }
 
     companion object {
-        val LIMIT_DRIVER_NAME_LENGTH = 6
+        const val LIMIT_DRIVER_NAME_LENGTH = 6
+        const val DEFAULT_STEP = 0
     }
 }
