@@ -1,6 +1,6 @@
 package racingcar.model
 
-class RacingGame(private val racingCars: List<Car>) {
+class RacingGame(val racingCars: List<Car>) {
 
     private val _movingDistanceHistory = mutableListOf<Int>()
     val movingDistanceHistory: List<Int> get() = _movingDistanceHistory
@@ -13,13 +13,6 @@ class RacingGame(private val racingCars: List<Car>) {
             }
         }
     }
-
-    fun findWinner(): String {
-        val farthestDistance = findFarthestCar().movingDistance
-        return racingCars.filter { it.movingDistance == farthestDistance }.joinToString { it.name }
-    }
-
-    private fun findFarthestCar() = racingCars.maxBy { it.movingDistance } ?: racingCars[0]
 
     companion object {
         private val MOVING_CONDITION_RANGE = 0..9
