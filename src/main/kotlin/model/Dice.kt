@@ -7,8 +7,8 @@ class Dice : DiceStatus {
         return Random.nextInt(DICE_MIN_VALUE, DICE_MAX_VALUE)
     }
 
-    override fun availableMove(diceValue: Int): Boolean {
-        return diceValue > DICE_CHECK_SUCCESS_CONDITION
+    override fun isSuccess(): Boolean {
+        return dice() > DICE_CHECK_SUCCESS_CONDITION
     }
 
     companion object {

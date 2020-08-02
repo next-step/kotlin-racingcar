@@ -1,6 +1,7 @@
 package manager
 
 import model.Car
+import model.Dice
 import model.DiceStatus
 
 class CarManager(private val dice: DiceStatus) {
@@ -11,7 +12,7 @@ class CarManager(private val dice: DiceStatus) {
 
     private fun move() {
         for (car in carList) {
-            car.move(dice.availableMove(dice.dice()))
+            car.move()
         }
     }
 
@@ -22,7 +23,7 @@ class CarManager(private val dice: DiceStatus) {
     fun addCarByDrivers(list: List<String>) {
         for (driverName in list) {
             checkDriverName(driverName)
-            val car = Car(driverName)
+            val car = Car(driverName, 0, Dice())
             add(car)
         }
     }
