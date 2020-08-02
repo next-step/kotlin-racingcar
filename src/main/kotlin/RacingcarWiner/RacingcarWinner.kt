@@ -74,7 +74,3 @@ fun main() {
     val winner = carlist.maxBy { it.position ?: 0 }
     if (winner != null) println("${winner.name}가 최종 우승했습니다.")
 }
-
-
-
-
