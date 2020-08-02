@@ -10,14 +10,14 @@ class Calculator {
             validateBlank(value)
             val str = value.split(" ")
 
+            validatePairOfValue(str)
+
             val numberList = str.filter {
                 it.matches(NUMBER_REGEX)
             }.map(String::toInt)
             val operatorList = str.filter {
                 !it.matches(NUMBER_REGEX)
             }
-
-            validatePairOfValue(numberList, operatorList)
 
             return operate(numberList, operatorList)
         } catch (e: NumberFormatException) {
@@ -44,12 +44,17 @@ class Calculator {
         }
     }
 
-    private fun validatePairOfValue(
-        numberList: List<Int>,
-        operatorList: List<String>
-    ) {
-        if (numberList.size - 1 != operatorList.size) {
-            throw MatchException("숫자와 연산자의 수가 맞지않습니다.")
+    private fun validatePairOfValue(str: List<String>) {
+        for (s in str.indices) {
+            checkOrderInputValues(s, str)
+        }
+    }
+
+    private fun checkOrderInputValues(s: Int, str: List<String>) {
+        when (s % 2 == 0) {
+            !str[s].matches(NUMBER_REGEX) -> {
+                throw MatchException("입력된 값이 숫자와 연산자의 쌍이 맞지 않거나 순서가 맞지 않습니다.")
+            }
         }
     }
 }

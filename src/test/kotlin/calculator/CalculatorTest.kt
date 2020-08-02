@@ -38,10 +38,10 @@ class CalculatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["2 + 3 + 4 + 1 3 2", "2 + 3 * 4 + + +"])
-    fun `when the  pairs of numbers and operators do not match then throw exception`(input: String) {
+    @ValueSource(strings = ["2 + 3 + 4 + 1 3 2", "2 + 3 * 4 + + +", "1 2 * 3 +", "1 * + 2 3"])
+    fun `when the input value do not match then throw exception`(input: String) {
         assertThatThrownBy { calculator.calculate(input) }
             .isInstanceOf(MatchException::class.java)
-            .hasMessage("숫자와 연산자의 수가 맞지않습니다.")
+            .hasMessage("입력된 값이 숫자와 연산자의 쌍이 맞지 않거나 순서가 맞지 않습니다.")
     }
 }
