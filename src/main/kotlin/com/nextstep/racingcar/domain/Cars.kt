@@ -2,34 +2,21 @@ package com.nextstep.racingcar.domain
 
 import kotlin.random.Random
 
-class Cars(numberOfCar: Int) {
-    val cars: List<Car>
-
-    init {
-        validation(numberOfCar)
-        val cars = mutableListOf<Car>()
-
-        for (index in 1..numberOfCar) {
-            cars.add(Car())
-        }
-
-        this.cars = cars
-    }
-
+class Cars(val cars: List<Car>) {
     fun moveCars() {
         for (car in cars) {
             car.move(Random.nextInt(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER))
         }
     }
 
-    private fun validation(numberOfCar: Int) {
-        if (!numberOfCar.isNatural()) {
-            throw IllegalArgumentException("자동차의 수량은 0보다 커야합니다.")
-        }
-    }
+    fun findWinner(): Cars {
+        val maxPosition = cars.map { it.position }.max()
 
-    private fun Int.isNatural(): Boolean {
-        return this > 0
+        if (maxPosition != null) {
+            return Cars(cars.filter { it.isMatchedPosition(maxPosition) })
+        }
+
+        return Cars(listOf())
     }
 
     companion object {

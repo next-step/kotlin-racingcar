@@ -11,16 +11,17 @@ object RacingCarApplication {
         val racingGame = generateRacingGame()
         OutputView.showResult()
         racingGame.runGame()
+        racingGame.findWinners()
     }
 
-    private fun generateRacingGame(): RacingGame {
-        return try {
-            val numberOfCar = InputView.inputNumberOfCar()
-            val round = InputView.inputRound()
-            RacingGame(Integer.valueOf(numberOfCar), Integer.valueOf(round))
-        } catch (e: IllegalArgumentException) {
-            println(String.format("게임을 생성하지 못하였습니다. 다시 입력해 주세요. %s", e.message))
+    private tailrec fun generateRacingGame(): RacingGame {
+        val carNames = InputView.inputCarNames()
+        val round = InputView.inputRound().toIntOrNull()
+        return if (carNames.isBlank() || RacingGame.isInvalidRound(round)) {
+            println("입력값이 잘못되었습니다. 다시한번 확인해주세요.")
             generateRacingGame()
+        } else {
+            RacingGame(carNames, round)
         }
     }
 }
