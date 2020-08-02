@@ -22,4 +22,13 @@ class RacingGameTest {
 
         assertThat(racingGame.movingDistanceHistory.size).isEqualTo(5 * cars.size)
     }
+
+    @Test
+    fun `최대 이동 거리 구하기`() {
+        repeat(5) {
+            cars[0].move(4)
+        }
+
+        assertThat(racingGame.getFarthestCarDistance()).isEqualTo(5)
+    }
 }
