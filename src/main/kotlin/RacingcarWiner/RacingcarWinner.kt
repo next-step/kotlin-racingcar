@@ -7,9 +7,9 @@ object InputView {
         return readLine()!!.toInt()
     }
 
-    fun inputcarname(): List<String> {
+    fun inputcarname(): RacingGame {
         println("자동차 이름을 등록해주세요 : (이름은 (,) 쉼표를 기준으로 구분)")
-        return readLine()!!.trim().split(",")
+        return RacingGame(readLine()!!.toString())
     }
 }
 
@@ -20,6 +20,10 @@ class OutputView() {
 
     fun distinctprint() {
         println(distinct)
+    }
+
+    fun printwinner(winners: List<Car>) {
+        winners.map({ winner -> print("최종 우승은 ${winner.name} 입니다.") })
     }
 
     companion object {
@@ -33,7 +37,7 @@ class Car(name: String, position: Int = DEFAULT_POSITION) {
     var position: Int = position
         private set
 
-    val cars = listOf<Car>()
+    var cars: MutableList<Car> = mutableListOf()
 
     val name: String = name
 
@@ -42,10 +46,10 @@ class Car(name: String, position: Int = DEFAULT_POSITION) {
         if ((0..9).random() >= FORWARD_Number) position++
     }
 
-    fun findWinner(): List<Car> {
-        val max = cars.map { it.position }.max()
-        return cars.filter { it.position == max }
-    }
+    fun isIn(position: Int): Boolean = this.position == position
+
+    private fun maxPosition(): Int? = cars.map { it.position }.max()
+        ?: 0    //엘비스 프레슬리???
 
     // 상수 컴패니언 오프젝트 반영 했습니다.
     companion object {
@@ -55,22 +59,45 @@ class Car(name: String, position: Int = DEFAULT_POSITION) {
     }
 }
 
+class RacingGame(carNames: String) {
+
+
+
+    init {
+        // 이름을 split해 자동차 초기화
+        val carlist = carNames.trim().split(",")
+        for (car in carlist) {
+            cars.add(Car(car))
+        }
+    }
+
+    fun race() {
+
+        for (i in 0 until InputView.inputcircuitnumber()) {
+            cars.forEach { carlist -> carlist.move() }
+            OutputView().printcircuit(cars)
+            OutputView().distinctprint()
+        }
+    }
+
+    fun findWinners(): List<Car> {
+
+        val max = maxPosition()
+        val winners = cars.filter { it.isIn(max!!) }
+        OutputView().printwinner(winners)
+        return winners
+    }
+
+    companion object {
+        private var cars = mutableListOf<Car>()
+    }
+
+    private fun maxPosition(): Int? = cars.map { it.position }.max()
+        ?: 0    //엘비스 프레슬리???
+}
+
 fun main() {
     val cars = InputView.inputcarname()
-    val circuit = InputView.inputcircuitnumber()
-    var carlist = mutableListOf<Car>()
-    for (car in cars) {
-        carlist.add(Car(car))
-    }
-
-    for (i in 0 until circuit) {
-        carlist.forEach { carlist -> carlist.move() }
-        OutputView().printcircuit(carlist)
-        OutputView().distinctprint()
-    }
-    // 저번 수업때 알려주신대로 findwinner를 사용하려고 했습니다만 결국 해내지 못하여 하단과 같이 구현을 했습니다. 힌트를 주시면 반영 하겠습니다.
-    // println(carlist.forEach{carlist -> carlist.findWinner()})
-
-    val winner = carlist.maxBy { it.position ?: 0 }
-    if (winner != null) println("${winner.name}가 최종 우승했습니다.")
+    cars.race()
+    cars.findWinners()
 }
