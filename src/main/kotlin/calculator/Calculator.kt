@@ -8,7 +8,7 @@ class Calculator {
         var outcome = values[0].toDouble()
 
         for (index in 1 until values.size step 2) {
-            val operator = Operator.valueOf(values[index])
+            val operator = getOperator(values[index])
             val number = values[index + 1].toDouble()
 
             outcome = operator.operation(outcome, number)
