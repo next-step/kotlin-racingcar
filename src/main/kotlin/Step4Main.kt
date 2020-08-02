@@ -9,7 +9,7 @@ fun main(args: Array<String>) {
     val inputFunction = { readLine()!! }
 
     val driverList = inputView.inputCarsWithName(inputFunction)
-    carManager.addDrivers(driverList)
+    carManager.addCarByDrivers(driverList)
 
     val tryMoveCount = inputView.inputTryMoveCount(inputFunction)
     carManager.tryCount = tryMoveCount

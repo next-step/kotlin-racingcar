@@ -11,7 +11,6 @@ class ResultViewTests {
     fun `printCarStringHasANameAndStep`() {
         val car = Car("hello", 0)
         val carManager = CarManager(Dice())
-        carManager.addCar(car)
         car.move(true)
         val resultView = ResultView(carManager)
         assertThat(resultView.stepToString(car, 0)).isEqualTo("hello : -")
