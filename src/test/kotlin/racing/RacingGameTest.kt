@@ -41,7 +41,7 @@ class RacingGameTest {
         val number = 4
 
         // when
-        val carList = Car().makeCars(listOf("k3", "k5", "k7", "kona"))
+        val carList = Cars.of(listOf("k3", "k5", "k7", "kona"))
 
         // then
         assertThat(carList.size).isEqualTo(number)
@@ -60,8 +60,8 @@ class RacingGameTest {
 
     @Test
     fun `자동차 출력시 이름과 distance가 제대로 함께 나오는지 확인`() {
-        val cars1: Cars = listOf(Car("k3", 4), Car("k5", 2))
-        val cars2: Cars = listOf(Car("k3", 5), Car("k5", 2))
+        val cars1: Cars = Cars(listOf(Car("k3", 4), Car("k5", 2)))
+        val cars2: Cars = Cars(listOf(Car("k3", 5), Car("k5", 2)))
 
         val list = listOf(cars1, cars2)
         ResultView().show(list)
@@ -73,7 +73,7 @@ class RacingGameTest {
         var car2 = Car("k5", 3)
         var car3 = Car("k3", 1)
 
-        val cars: Cars = listOf(car1, car2, car3)
+        val cars: Cars = Cars(listOf(car1, car2, car3))
 
         assertThat(RacingGame().longestDistance(cars)).isEqualTo(car1.distance)
     }
@@ -84,7 +84,7 @@ class RacingGameTest {
         var car2 = Car("k7", 5)
         var car3 = Car("k3", 1)
 
-        val cars: Cars = listOf(car1, car2, car3)
+        val cars: Cars = Cars(listOf(car1, car2, car3))
 
         val winners = RacingGame().getWinners(listOf(cars))
 
@@ -98,7 +98,7 @@ class RacingGameTest {
         var car2 = Car("k7", 5)
         var car3 = Car("k3", 5)
 
-        val cars: Cars = listOf(car1, car2, car3)
+        val cars: Cars = Cars(listOf(car1, car2, car3))
 
         val winners = RacingGame().getWinners(listOf(cars))
 

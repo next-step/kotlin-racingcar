@@ -17,14 +17,17 @@ class RacingGame {
         var result = mutableListOf<Cars>()
 
         // Car Instance List 생성
-        val cars = Car().makeCars(racingState.names)
+
+        val cars = Cars.of(racingState.names)
 
         // 전진 시도
         repeat(racingState.attempt) {
-            val cars = cars.map {
-                it.move()
-                Car(it.name, it.distance)
-            }
+            val cars = Cars(
+                cars.map {
+                    it.move()
+                    Car(it.name, it.distance)
+                }
+            )
             result.add(cars)
         }
 
@@ -39,7 +42,8 @@ class RacingGame {
         val cars = result.last()
         val longestDistance = RacingGame().longestDistance(cars)
 
-        return cars
-            .filter { it.distance == longestDistance }
+        return Cars(
+            cars.filter { it.distance == longestDistance }
+        )
     }
 }
