@@ -18,10 +18,14 @@ object ResultView {
 
     private fun printRacingStep(racingCarNames: List<String>, chunkedRacingHistory: List<List<Int>>) {
         repeat(chunkedRacingHistory.size) { tryCnt ->
-            repeat(racingCarNames.size) { racingCnt ->
-                println("${racingCarNames[racingCnt]} : ${"-".repeat(chunkedRacingHistory[tryCnt][racingCnt])}")
-            }
+            printRacingCycle(racingCarNames, chunkedRacingHistory, tryCnt)
             println()
+        }
+    }
+
+    private fun printRacingCycle(racingCarNames: List<String>, chunkedRacingHistory: List<List<Int>>, tryCnt: Int) {
+        repeat(racingCarNames.size) { racingCnt ->
+            println("${racingCarNames[racingCnt]} : ${"-".repeat(chunkedRacingHistory[tryCnt][racingCnt])}")
         }
     }
 }
