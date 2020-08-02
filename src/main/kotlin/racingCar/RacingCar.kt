@@ -1,44 +1,43 @@
 package racingCar
 
-import kotlin.random.Random
-
 const val RANDOM_LIMIT_NUM = 10
 
-class RacingCar(private val carCount: Int) {
+class RacingCar(private val carNames: List<String>) {
 
-    private val carsInRacing = mutableListOf<Car>()
-
-    init {
-        generateCar(carCount)
+    companion object {
+        val carsInRacing = mutableListOf<Car>()
     }
 
-    private fun generateCar(carCount: Int) {
-        repeat(carCount) {
-            carsInRacing.add(Car())
+    init {
+        generateCar(carNames)
+    }
+
+    private fun generateCar(carNames: List<String>) {
+        repeat(carNames.size) { index ->
+            carsInRacing.add(Car(carNames[index]))
         }
     }
 
-    fun carMove(trialCount: Int) {
+    fun carMove(trialCount: Int): List<Car> {
         var randomNum: Int
-        repeat(trialCount) {
+        repeat(trialCount) { index ->
+            println("${index + 1} 번째 경주")
             for (car in carsInRacing) {
+
                 randomNum = RandomGenerator.getRandomNumber()
                 car.changeStateRacingCar(randomNum)
             }
             OutputView.getCarRacingResult(carsInRacing)
         }
-    }
-}
-
-object RandomGenerator {
-    fun getRandomNumber(): Int {
-        return Random.nextInt(RANDOM_LIMIT_NUM)
+        return carsInRacing
     }
 }
 
 fun main() {
-    val carCount = InputView.getCarCount()
+    val carNames = InputView.getCarName()
     val trialCount = InputView.getTrialCount()
-    val racing = RacingCar(carCount)
-    racing.run { racing.carMove(trialCount) }
+    val racing = RacingCar(carNames)
+    val resultRacingCar = racing.run { racing.carMove(trialCount) }
+    val returnWinner = Winner.getRacingWinner(resultRacingCar)
+    OutputView.getCarRacingWinners(returnWinner)
 }
