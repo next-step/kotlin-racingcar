@@ -8,12 +8,22 @@ fun main(args: Array<String>) {
     val inputView = InputView()
     val inputFunction = { readLine()!! }
 
-    val driverList = inputView.inputCarsWithName(inputFunction)
-    carManager.addCarByDrivers(driverList)
+    try {
+        val driverList = inputView.inputCarsWithName(inputFunction)
+        carManager.addCarByDrivers(driverList)
+    } catch (ex: IllegalArgumentException) {
+        print("잘못된 값을 입력하였습니다.")
+        return
+    }
 
-    val tryMoveCount = inputView.inputTryMoveCount(inputFunction)
-    carManager.tryCount = tryMoveCount
-    carManager.tryMoving()
+    try {
+        val tryMoveCount = inputView.inputTryMoveCount(inputFunction)
+        carManager.tryCount = tryMoveCount
+        carManager.tryMoving()
+    } catch (ex: IllegalArgumentException) {
+        print("잘못된 값을 입력하였습니다.")
+        return
+    }
 
     val resultView = ResultView(carManager)
     resultView.status()
