@@ -8,7 +8,11 @@ class CarManager(private val dice: DiceStatus) {
     val carList: List<Car>
         get() = carListMutable.toList()
     var tryCount: Int = 0
-
+    val winnerList: List<Car>
+        get() {
+            val maxStepCar = carList.maxBy { it.step }!!.step
+            return carList.filter { it.isWinner(maxStepCar) }.toList()
+        }
     fun tryMoving() {
         repeat(tryCount) { move() }
     }
@@ -21,15 +25,6 @@ class CarManager(private val dice: DiceStatus) {
         }
     }
 
-    fun getCarWinners(): List<Car> {
-        var winnerList = mutableListOf<Car>()
-        var maxStepCar = carList.maxBy { it.step }!!.step
-        for (car in carList) {
-            addWinnerList(car, maxStepCar, winnerList)
-        }
-        return winnerList.toList()
-    }
-
     private fun move() {
         for (car in carList) {
             car.move()
@@ -38,12 +33,6 @@ class CarManager(private val dice: DiceStatus) {
 
     private fun add(car: Car) {
         carListMutable.add(car)
-    }
-
-    private fun addWinnerList(car: Car, maxStepCar: Int, winnerList: MutableList<Car>) {
-        if (car.step == maxStepCar) {
-            winnerList.add(car)
-        }
     }
 
     private fun checkDriverName(driverName: String) {

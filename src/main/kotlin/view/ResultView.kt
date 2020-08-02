@@ -38,7 +38,7 @@ class ResultView(private val carManager: CarManager) {
     }
 
     private fun printCarsWinner() {
-        print(carManager.getCarWinners().map { it.driverName }.joinToString(", "))
+        print(carManager.winnerList.map { it.driverName }.joinToString(", "))
         print("가 최종 우승했습니다.")
     }
 

@@ -17,6 +17,10 @@ class Car(val driverName: String, step: Int = 0, val diceStatus: DiceStatus) : C
         stepListMutable.add(step)
     }
 
+    fun isWinner(value: Int): Boolean {
+        return step == value
+    }
+
     private fun availableMove(): Boolean {
         return diceStatus.isSuccess()
     }
