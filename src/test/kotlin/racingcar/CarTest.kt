@@ -13,7 +13,7 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(ints = [4, 5, 6, 7, 8, 9])
     fun forward(number: Int) {
-        val car = Car("Tester")
+        val car = Car("cook")
         assertThat(car.accelerate(number)).isEqualTo(1)
     }
 
@@ -21,14 +21,14 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3])
     fun notForward(number: Int) {
-        val car = Car("Tester")
+        val car = Car("cook")
         assertThat(car.accelerate(number)).isEqualTo(0)
     }
 
     @DisplayName("자동차 전진 테스트(예외)")
     @Test
     fun accelateException() {
-        val car = Car("Tester")
+        val car = Car("cook")
         assertThrows<IllegalArgumentException> {
             car.accelerate(10)
         }
