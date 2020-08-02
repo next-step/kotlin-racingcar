@@ -8,7 +8,7 @@ import racingcar.model.Car
 class CarTest {
 
     @Test
-    fun `자동차에 5글자 이상 이름 입력`() {
+    fun `자동차 이름이 5글자 이상인 경우`() {
         assertThatIllegalArgumentException().isThrownBy {
             Car("abcdef")
         }
