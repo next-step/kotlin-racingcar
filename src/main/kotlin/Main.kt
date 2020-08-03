@@ -6,17 +6,18 @@ fun main() {
 
     try {
         val carNames: String = InputView.getCarNames()
-        val carRacing = CarRacing(carNames, 0)
-
         val count: Int = InputView.getCount()
 
-        println()
-        for (i in 1..count) {
-            carRacing.execute()
-            ResultView.showCarMovement(carRacing.cars)
-            println()
+        val carRacing = CarRacing(carNames, count)
+
+        while (carRacing.isRacing()){
+            val cars = carRacing.race()
+            ResultView.showCarMovement(cars)
         }
-        ResultView.showWinners(carRacing.findWinners())
+
+        val winners = carRacing.findWinners()
+        ResultView.showWinners(winners)
+
     } catch (e: Exception) {
         println(e.message)
     }

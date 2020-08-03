@@ -49,6 +49,6 @@ class Test {
     @Test
     fun `move or stop`() {
         val carRacing = CarRacing("pooh,tiger,ryan", 0)
-        carRacing.execute()
+        carRacing.race()
     }
 }

@@ -2,10 +2,12 @@ package carracing
 
 object ResultView {
 
-    fun showCarMovement(cars: MutableList<Car>) {
+    fun showCarMovement(cars: List<Car>) {
         cars.forEach {
-            print(it.name + " : " + "-".repeat(it.position) + "\n")
+            println(it.name + " : " + "-".repeat(it.position))
         }
+        println()
+
     }
 
     fun showWinners(winners: List<Car>) {
@@ -13,7 +15,7 @@ object ResultView {
         winners.forEach {
             result.append(it.name).append(", ")
         }
-        result.delete(result.length - 2, result.length)
+        result.deleteCharAt(result.lastIndexOf(","))
 
         print(result.toString() + "가 최종 우승했습니다.")
     }

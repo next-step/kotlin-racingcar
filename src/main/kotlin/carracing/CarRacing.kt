@@ -2,8 +2,9 @@ package carracing
 
 private const val MAX_NAME_LENGTH: Int = 5
 
-class CarRacing(carNames: String, val count: Int) {
-    var cars: MutableList<Car> = mutableListOf()
+class CarRacing(carNames: String, private val count: Int) {
+    private var cars: MutableList<Car> = mutableListOf()
+    private var racingCount = 0;
 
     init {
         parsingCarNames(carNames)
@@ -18,9 +19,13 @@ class CarRacing(carNames: String, val count: Int) {
         car.move()
     }
 
-    fun execute() {
+    fun race(): MutableList<Car> {
         cars.forEach { moveOrStop(it) }
+        racingCount++
+        return cars
     }
+
+    fun isRacing(): Boolean = count >= racingCount
 
     private fun parsingCarNames(carNames: String?) {
         if (carNames.isNullOrBlank()) {
@@ -40,6 +45,10 @@ class CarRacing(carNames: String, val count: Int) {
         }
     }
 
-    private val maxPosition: Int = cars.maxBy { it.position }?.position ?: 0
-    fun findWinners(): List<Car> = cars.filter { it.isLocated(maxPosition) }
+    fun getMaxPosition(): Int = cars.maxBy { it.position }?.position ?: 0
+
+    fun findWinners(): List<Car> {
+        val maxPosition = getMaxPosition()
+        return cars.filter { it.isLocated(maxPosition) }
+    }
 }
