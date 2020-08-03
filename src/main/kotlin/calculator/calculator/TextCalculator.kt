@@ -1,24 +1,15 @@
 package calculator.calculator
 
-import calculator.util.isOdd
-
-class CalculatorImpl : Calculator {
+class TextCalculator : Calculator {
     /**
      * Node List를 순차적으로 계산한다.
      */
     override fun calculate(input: List<Node>): Int {
-        var indexOperator = 1
-        var indexRight = 2
         var sum = input.getNumber(0)
-
-        while (indexRight != input.size + 1) {
-            val left = sum
-            val operator = input.getOperator(indexOperator)
-            val right = input.getNumber(indexRight)
-            sum = operator.operate(left, right)
-
-            indexRight += 2
-            indexOperator += 2
+        for (index in 1 until input.size step 2) {
+            val operator = input.getOperator(index)
+            val number = input.getNumber(index + 1)
+            sum = operator.operate(sum, number)
         }
         return sum.value.toInt()
     }
@@ -46,7 +37,4 @@ class CalculatorImpl : Calculator {
         }
         return node
     }
-
-    fun List<Node>.filterOnlyOdd() = filterIndexed { index, _ -> index.isOdd() }
-    fun List<Node>.filterOnlyEven() = filterIndexed { index, _ -> !index.isOdd() }
 }

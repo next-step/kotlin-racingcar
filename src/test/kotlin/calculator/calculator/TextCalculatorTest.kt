@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
-internal class CalculatorImplTest {
+internal class TextCalculatorTest {
 
     @Test
     fun `calculate() 예제 실행 테스트`() {
         assertThat(
-            CalculatorImpl().calculate(
+            TextCalculator().calculate(
                 listOf(
                     Node.Number(2.0),
                     Node.Operator.Plus,
@@ -28,7 +28,7 @@ internal class CalculatorImplTest {
     @Test
     fun `calculate() 처음에 나눠서 0보다 작은 수로 시작하는 경우 검증`() {
         assertThat(
-            CalculatorImpl().calculate(
+            TextCalculator().calculate(
                 listOf(
                     Node.Number(2.0),
                     Node.Operator.Divide,
@@ -48,7 +48,7 @@ internal class CalculatorImplTest {
     fun `calculate() 0으로 나누면 DivideByZeroException 발생`() {
         assertThatThrownBy {
             assertThat(
-                CalculatorImpl().calculate(
+                TextCalculator().calculate(
                     listOf(
                         Node.Number(1.0),
                         Node.Operator.Divide,
@@ -63,7 +63,7 @@ internal class CalculatorImplTest {
     fun `calculate() 숫자만 연속으로 있으면 OperatorIsMissing 발생`() {
         assertThatThrownBy {
             assertThat(
-                CalculatorImpl().calculate(
+                TextCalculator().calculate(
                     listOf(
                         Node.Number(1.0),
                         Node.Number(0.0),
@@ -79,7 +79,7 @@ internal class CalculatorImplTest {
     fun `calculate() 연산자로 시작하면 NumberIsMissing 발생`() {
         assertThatThrownBy {
             assertThat(
-                CalculatorImpl().calculate(
+                TextCalculator().calculate(
                     listOf(
                         Node.Operator.Plus,
                         Node.Number(0.0),
@@ -94,7 +94,7 @@ internal class CalculatorImplTest {
     fun `calculate() 비어있는 리스트라면 NumberIsMissing 발생`() {
         assertThatThrownBy {
             assertThat(
-                CalculatorImpl().calculate(listOf())
+                TextCalculator().calculate(listOf())
             )
         }.isInstanceOf(Calculator.Error.NumberIsMissing::class.java)
     }
@@ -103,7 +103,7 @@ internal class CalculatorImplTest {
     fun `calculate() 연산자로 끝나면 NumberIsMissing 발생`() {
         assertThatThrownBy {
             assertThat(
-                CalculatorImpl().calculate(
+                TextCalculator().calculate(
                     listOf(
                         Node.Number(1.0),
                         Node.Operator.Plus,
@@ -119,7 +119,7 @@ internal class CalculatorImplTest {
     fun `calculate() 연산자가 연속으로 나오면 NumberIsMissing 발생`() {
         assertThatThrownBy {
             assertThat(
-                CalculatorImpl().calculate(
+                TextCalculator().calculate(
                     listOf(
                         Node.Number(1.0),
                         Node.Operator.Plus,
@@ -139,7 +139,7 @@ internal class CalculatorImplTest {
             Node.Number(2.0),
             Node.Number(3.0)
         )
-        CalculatorImpl().apply {
+        TextCalculator().apply {
             assertThat(list.getNumber(0)).isEqualTo(Node.Number(0.0))
             assertThat(list.getNumber(1)).isEqualTo(Node.Number(1.0))
             assertThat(list.getNumber(2)).isEqualTo(Node.Number(2.0))
@@ -153,7 +153,7 @@ internal class CalculatorImplTest {
         val empty = listOf<Node>()
         val list = listOf<Node>(Node.Number(1.0))
         assertThatThrownBy {
-            CalculatorImpl().apply {
+            TextCalculator().apply {
                 assertThat(empty.getNumber(number))
             }
         }.isInstanceOf(Calculator.Error.NumberIsMissing::class.java)
@@ -165,7 +165,7 @@ internal class CalculatorImplTest {
             Node.Operator.Plus
         )
         assertThatThrownBy {
-            CalculatorImpl().apply {
+            TextCalculator().apply {
                 assertThat(list.getNumber(0))
             }
         }.isInstanceOf(Calculator.Error.NumberIsMissing::class.java)
@@ -179,7 +179,7 @@ internal class CalculatorImplTest {
             Node.Operator.Multiply,
             Node.Operator.Divide
         )
-        CalculatorImpl().apply {
+        TextCalculator().apply {
             assertThat(list.getOperator(0)).isEqualTo(Node.Operator.Plus)
             assertThat(list.getOperator(1)).isEqualTo(Node.Operator.Minus)
             assertThat(list.getOperator(2)).isEqualTo(Node.Operator.Multiply)
@@ -191,7 +191,7 @@ internal class CalculatorImplTest {
     fun `getOperator() 해당 인덱스가 list의 범위안에 없을 때 OperatorIsMissing`() {
         val empty = listOf<Node>()
         assertThatThrownBy {
-            CalculatorImpl().apply {
+            TextCalculator().apply {
                 assertThat(empty.getOperator(0))
             }
         }.isInstanceOf(Calculator.Error.OperatorIsMissing::class.java)
@@ -203,7 +203,7 @@ internal class CalculatorImplTest {
             Node.Number(0.0)
         )
         assertThatThrownBy {
-            CalculatorImpl().apply {
+            TextCalculator().apply {
                 assertThat(list.getOperator(0))
             }
         }.isInstanceOf(Calculator.Error.OperatorIsMissing::class.java)

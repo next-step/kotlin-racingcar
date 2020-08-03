@@ -1,7 +1,6 @@
 package calculator.parser
 
 import calculator.calculator.Node
-import calculator.calculator.OperatorString
 import java.util.regex.Pattern
 
 class SimpleNodeParser : NodeParser {
@@ -25,13 +24,10 @@ class SimpleNodeParser : NodeParser {
             return Node.Number(it.toDouble())
         }
 
-        this.takeIf {
-            OperatorString.values().any { enum ->
-                enum.string == this
+        Node.Operators.find { it.char == this }
+            ?.let {
+                return it
             }
-        }?.let {
-            return OperatorString.values().find { op -> op.string == it }!!.operator
-        }
 
         throw NodeParser.Error.InvalidCharacter(this)
     }

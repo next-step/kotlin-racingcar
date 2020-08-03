@@ -2,7 +2,7 @@ package racingcar.racing.winner
 
 import racingcar.racing.car.Car
 import racingcar.racing.const.WINNER_IS
-import racingcar.racing.const.WINNER_SEPERATOR
+import racingcar.racing.const.WINNER_SEPARATOR
 import racingcar.racing.view.View
 
 class WinnerChecker {
@@ -12,7 +12,7 @@ class WinnerChecker {
 
     fun winnerToString(winners: List<Car>): String {
         return winners
-            .joinToString(separator = WINNER_SEPERATOR, postfix = WINNER_IS) { it.name }
+            .joinToString(separator = WINNER_SEPARATOR, postfix = WINNER_IS) { it.name }
     }
 
     fun rewardWinner(cars: List<Car>, view: View) {

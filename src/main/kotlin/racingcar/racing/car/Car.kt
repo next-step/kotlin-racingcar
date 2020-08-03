@@ -11,8 +11,8 @@ data class Car(val name: String, val distance: Int = 0) {
         return copy(name = name, distance = distance + 1)
     }
 
-    fun moveIf(preidcate: () -> Boolean): Car {
-        return if (preidcate()) {
+    fun moveIf(predicate: () -> Boolean): Car {
+        return if (predicate()) {
             move()
         } else {
             copy()
