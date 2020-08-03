@@ -1,5 +1,7 @@
 package carracing
 
+import carracing.domain.CarRacing
+import carracing.view.ResultView
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
@@ -43,16 +45,11 @@ class Test {
 
     @Test
     fun `find winners`() {
-        val carRacing = CarRacing(
-            listOf(
-                Car("pooh", 3),
-                Car("hello", 1),
-                Car("qoo", 3)
-            )
-        )
+        val carRacing = CarRacing("pooh,tiger,ryan", 5)
         assertThat(carRacing.findWinners()).containsExactlyInAnyOrder(
-            Car("pooh", 3),
-            Car("qoo", 3)
+            Car("pooh",0),
+            Car("tiger",0),
+            Car("ryan",0)
         )
     }
 

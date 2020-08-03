@@ -1,6 +1,6 @@
-import carracing.CarRacing
-import carracing.InputView
-import carracing.ResultView
+import carracing.domain.CarRacing
+import carracing.view.InputView
+import carracing.view.ResultView
 
 fun main() {
 

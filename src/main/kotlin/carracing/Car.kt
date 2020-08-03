@@ -2,7 +2,7 @@ package carracing
 
 private const val STANDARD_COUNT: Int = 3
 
-class Car(val name: String, var position: Int = 0) {
+class Car(val name: String = "test", var position: Int = 0) {
     fun move() {
         if (generateRandomNumber() > STANDARD_COUNT) this.position++
     }

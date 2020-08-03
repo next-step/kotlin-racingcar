@@ -1,10 +1,13 @@
-package carracing
+package carracing.domain
 
+import carracing.Car
+import carracing.CarRacingException
 import java.util.regex.Pattern
 
 private const val MAX_NAME_LENGTH: Int = 5
 
-class CarRacing(carNames: String, private val count: Int) {
+class CarRacing(carNames: String = "test", private val count: Int) {
+
     private var cars: MutableList<Car> = mutableListOf()
     private var racingCount = 0;
 
@@ -12,16 +15,12 @@ class CarRacing(carNames: String, private val count: Int) {
         parsingCarNames(carNames)
     }
 
-    constructor(listOf: List<Car>) : this("test", 0) {
-        cars = listOf.toMutableList()
-    }
-
     private fun moveOrStop(car: Car?) {
         if (car == null) throw NullPointerException("자동차 이름을 입력해주세요.")
         car.move()
     }
 
-    fun race(): MutableList<Car> {
+    fun race(): List<Car> {
         cars.forEach { moveOrStop(it) }
         racingCount++
         return cars
@@ -29,8 +28,8 @@ class CarRacing(carNames: String, private val count: Int) {
 
     fun isRacing(): Boolean = count >= racingCount
 
-    private fun parsingCarNames(carNames: String?) {
-        if (carNames.isNullOrBlank()) {
+    private fun parsingCarNames(carNames: String) {
+        if (carNames.isBlank()) {
             throw NullPointerException("자동차 이름을 입력해주세요.")
         }
         val pattern = Pattern.compile("^[a-z|A-Z][a-z|A-Z|,]*[a-z|A-Z]$")

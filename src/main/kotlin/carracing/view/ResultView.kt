@@ -1,4 +1,6 @@
-package carracing
+package carracing.view
+
+import carracing.Car
 
 object ResultView {
 
