@@ -7,13 +7,12 @@ import racing.strategy.UnconditionalMoveStrategy
 class RaceTest {
     @Test
     fun `Car Race Test`() {
-        val race = Race()
+        val race = Race(5, "car1,car2,car3")
+        val strategy = UnconditionalMoveStrategy()
+        race.run(strategy)
 
-        race.initiate(5, "car1,car2,car3")
-        race.run(UnconditionalMoveStrategy())
-
-        assertThat(race.getCars()).allSatisfy { car: Car ->
-            assertThat(car.raceResult).isEqualTo(5)
+        assertThat(race.cars).allSatisfy { car: Car ->
+            assertThat(car.raceHistory.sum()).isEqualTo(5)
         }
     }
 }

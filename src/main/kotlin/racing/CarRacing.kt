@@ -10,12 +10,12 @@ fun main() {
     val nameListOfCars = InputView.getNameListOfCars()
     val numberOfTrials = InputView.getNumberOfTrials()
 
-    val race = Race()
+    val race = Race(numberOfTrials, nameListOfCars)
+    val strategy = ConditionalMoveStrategy()
 
-    race.initiate(numberOfTrials, nameListOfCars)
-    race.run(ConditionalMoveStrategy())
+    race.run(strategy)
 
-    val carsAfterRace = race.getCars()
+    val carsAfterRace = race.cars
     val winner = Referee().getWinner(carsAfterRace)
 
     ResultView.output(numberOfTrials, carsAfterRace)

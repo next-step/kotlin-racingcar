@@ -2,18 +2,17 @@ package racing.model
 
 import racing.strategy.MoveStrategy
 
-class Race {
-    private var numberOfTrials = 0
-    private var cars = listOf<Car>()
+class Race(private val numberOfTrials: Int, cars: List<Car>) {
+    private val _cars: List<Car> = cars.deepCopy()
+    val cars: List<Car>
+        get() = _cars.deepCopy()
 
-    fun initiate(trials: Int, names: String) {
-        numberOfTrials = trials
-        cars = getCars(names)
-    }
+    constructor(numberOfTrials: Int, carNames: String) : this(
+        numberOfTrials,
+        carNames.split(CAR_NAME_DELIMITER).map { Car(it, mutableListOf()) }
+    )
 
-    fun getCars(): List<Car> {
-        return cars
-    }
+    private fun List<Car>.deepCopy(): List<Car> = map { it.copy() }
 
     fun run(moveStrategy: MoveStrategy) {
         repeat(numberOfTrials) {
@@ -21,15 +20,9 @@ class Race {
         }
     }
 
-    private fun getCars(names: String): List<Car> {
-        val carNames = names.split(CAR_NAME_DELIMITER)
-
-        return carNames.map { Car(it, 0, mutableListOf()) }
-    }
-
     private fun makeTurn(strategy: MoveStrategy) {
         for (car in cars) {
-            car.save(strategy.getResultOfTurn())
+            car.saveResultOfTurn(strategy.getResultOfTurn())
         }
     }
 

@@ -14,13 +14,9 @@ object ResultView {
     }
 
     fun noticeWinner(winners: List<Car>) {
-        var winnersName = winners[0].name
+        val winnerNames = winners.joinToString(separator = ",") { it.name }
 
-        for (i in 1 until winners.size) {
-            winnersName += ","
-            winnersName += winners[i].name
-        }
-        println("${winnersName}가 최종 우승했습니다.")
+        println("${winnerNames}가 최종 우승했습니다.")
     }
 
     private fun outputForTrials(actualTrial: Int, cars: List<Car>) {
@@ -30,11 +26,8 @@ object ResultView {
     }
 
     private fun visualize(numberOfTrials: Int, raceResult: List<Int>): String {
-        var distance = 0
+        val distance = raceResult.take(numberOfTrials).sum()
 
-        for (i in 0 until numberOfTrials) {
-            distance += raceResult[i]
-        }
         return ONE_BLOCK.repeat(distance)
     }
 }

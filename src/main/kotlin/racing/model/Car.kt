@@ -1,10 +1,9 @@
 package racing.model
 
-data class Car(val name: String, var raceResult: Int, val raceHistory: MutableList<Int>) {
-    fun save(resultOfTurn: Int) {
-        raceResult += resultOfTurn
+data class Car(val name: String, val raceHistory: MutableList<Int>) {
+    fun saveResultOfTurn(resultOfTurn: Int) {
         raceHistory.add(resultOfTurn)
     }
 
-    fun isIn(position: Int) = this.raceResult == position
+    fun isIn(position: Int) = this.raceHistory.sum() == position
 }

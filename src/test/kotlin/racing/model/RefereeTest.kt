@@ -7,16 +7,17 @@ class RefereeTest {
     @Test
     fun `우승자 판별 test`() {
         val raceCars = listOf(
-            Car("a", 5, mutableListOf()),
-            Car("b", 6, mutableListOf()),
-            Car("c", 7, mutableListOf()),
-            Car("d", 7, mutableListOf()),
-            Car("e", 5, mutableListOf())
+            Car("a", mutableListOf(0, 1, 1, 1, 1)),
+            Car("b", mutableListOf(1, 0, 0, 0, 1)),
+            Car("c", mutableListOf(1, 1, 1, 1, 1)),
+            Car("d", mutableListOf(1, 1, 1, 1, 1)),
+            Car("e", mutableListOf(1, 1, 1, 0, 1))
         )
-        assertThat(
-            Referee().getWinner(raceCars) == mutableListOf(
-                Car("c", 7, mutableListOf()),
-                Car("d", 7, mutableListOf())
+
+        assertThat(Referee().getWinner(raceCars)).containsExactlyInAnyOrderElementsOf(
+            mutableListOf(
+                Car("c", mutableListOf(1, 1, 1, 1, 1)),
+                Car("d", mutableListOf(1, 1, 1, 1, 1))
             )
         )
     }
