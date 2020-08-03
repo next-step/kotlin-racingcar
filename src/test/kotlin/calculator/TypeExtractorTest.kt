@@ -1,4 +1,4 @@
-package step2
+package calculator
 
 import com.sun.xml.internal.fastinfoset.util.StringArray
 import org.assertj.core.api.Assertions.assertThat
@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
-import step2.TypeExtractor.mappingOperator
+import calculator.TypeExtractor.mappingOperator
 import java.util.stream.Stream
 
 class TypeExtractorTest {
