@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 class CarTest {
 
     @Test
-    fun `자동차 이름이 5글자 이상인 경우`() {
+    fun `자동차 이름이 5글자를 초과한 경우`() {
         assertThatIllegalArgumentException().isThrownBy {
             Car("abcdef")
         }
