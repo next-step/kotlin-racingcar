@@ -1,3 +1,5 @@
+package calculator
+
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -28,7 +30,7 @@ class CalculatorTest {
     @Test
     fun calculateOnlyTwoParameter() {
         val calculator = Calculator()
-        val inputTwo = listOf<String>("4", "-")
+        val inputTwo = listOf("4", "-")
         val twoValue = calculator.calculate(inputTwo)
         assertThat(twoValue).isEqualTo(4.0)
     }
