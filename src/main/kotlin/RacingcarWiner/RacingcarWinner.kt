@@ -7,23 +7,21 @@ object InputView {
         return readLine()!!.toInt()
     }
 
-    fun inputcarname(): RacingGame {
+    fun inputcarname(): String {
         println("자동차 이름을 등록해주세요 : (이름은 (,) 쉼표를 기준으로 구분)")
-        return RacingGame(readLine()!!.toString())
+        return readLine()!!.toString()
     }
 }
 
 class OutputView() {
     fun printcircuit(cars: MutableList<Car>) {
-        cars.forEach({ cars -> println("${cars.name} :${result.repeat(cars.position)}") })
-    }
-
-    fun distinctprint() {
+        cars.forEach({ println("${it.name} :${result.repeat(it.position)}") })
         println(distinct)
     }
 
     fun printwinner(winners: List<Car>) {
-        winners.map({ winner -> print("최종 우승은 ${winner.name} 입니다.") })
+        val winnerslist = winners.map { it.name }.toString().replace("[", "").replace("]", "")
+        println("${winnerslist}가 최종 우승 했습니다.")
     }
 
     companion object {
@@ -48,8 +46,12 @@ class Car(name: String, position: Int = DEFAULT_POSITION) {
 
     fun isIn(position: Int): Boolean = this.position == position
 
+    fun isRacing() {
+        InputView.inputcircuitnumber()
+    }
+
     private fun maxPosition(): Int? = cars.map { it.position }.max()
-        ?: 0    //엘비스 프레슬리???
+        ?: 0 // 엘비스 프레슬리???
 
     // 상수 컴패니언 오프젝트 반영 했습니다.
     companion object {
@@ -59,9 +61,8 @@ class Car(name: String, position: Int = DEFAULT_POSITION) {
     }
 }
 
-class RacingGame(carNames: String) {
-
-
+class RacingGame(carNames: String, circuitNo: Int) {
+    val circuitNo = circuitNo
 
     init {
         // 이름을 split해 자동차 초기화
@@ -71,33 +72,39 @@ class RacingGame(carNames: String) {
         }
     }
 
-    fun race() {
+    fun isRacing(): Boolean {
+        DEFAULT_CIRCUIT++
+        return DEFAULT_CIRCUIT < circuitNo + 1
+    }
 
-        for (i in 0 until InputView.inputcircuitnumber()) {
-            cars.forEach { carlist -> carlist.move() }
-            OutputView().printcircuit(cars)
-            OutputView().distinctprint()
-        }
+    fun race(): MutableList<Car> {
+        cars.forEach { carlist -> carlist.move() }
+        return cars
     }
 
     fun findWinners(): List<Car> {
 
         val max = maxPosition()
-        val winners = cars.filter { it.isIn(max!!) }
-        OutputView().printwinner(winners)
-        return winners
+        return cars.filter { it.isIn(max!!) }
     }
 
     companion object {
         private var cars = mutableListOf<Car>()
+        private var DEFAULT_CIRCUIT = 0
     }
 
-    private fun maxPosition(): Int? = cars.map { it.position }.max()
-        ?: 0    //엘비스 프레슬리???
+    // 엘비스 프레슬리???
+    private fun maxPosition(): Int? = cars.map { it.position }.max() ?: 0
 }
 
 fun main() {
-    val cars = InputView.inputcarname()
-    cars.race()
-    cars.findWinners()
+    val carsName = InputView.inputcarname()
+    val tryNo = InputView.inputcircuitnumber()
+    val racinggame = RacingGame(carsName, tryNo)
+    while (racinggame.isRacing()) {
+        val cars = racinggame.race()
+        OutputView().printcircuit(cars)
+    }
+    val winners = racinggame.findWinners()
+    OutputView().printwinner(winners)
 }
