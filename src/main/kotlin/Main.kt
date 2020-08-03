@@ -1,21 +1,23 @@
-import carracing.CarRacing
-import carracing.CarRacingView
+import carracing.domain.CarRacing
+import carracing.view.InputView
+import carracing.view.ResultView
 
 fun main() {
 
     try {
-        val carNames: String = CarRacingView.getCarNames()
-        val carRacing = CarRacing(carNames)
+        val carNames: String = InputView.getCarNames()
+        val count: Int = InputView.getCount()
 
-        val count: Int = CarRacingView.getCount()
+        val carRacing = CarRacing(carNames, count)
 
-        println()
-        for (i in 1..count) {
-            carRacing.execute()
-            CarRacingView.showCarMovement(carRacing.cars)
-            println()
+        while (carRacing.isRacing()){
+            val cars = carRacing.race()
+            ResultView.showCarMovement(cars)
         }
-        CarRacingView.showWinners(carRacing.findWinners())
+
+        val winners = carRacing.findWinners()
+        ResultView.showWinners(winners)
+
     } catch (e: Exception) {
         println(e.message)
     }
