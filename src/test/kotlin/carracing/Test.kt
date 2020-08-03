@@ -51,4 +51,13 @@ class Test {
         val carRacing = CarRacing("pooh,tiger,ryan", 0)
         carRacing.race()
     }
+
+    @Test
+    fun `move`() {
+        val carRacing = CarRacing("pooh,tiger,ryan", 0)
+        val car = carRacing.race()[0]
+        val position = car.position
+        car.move()
+        assertThat( car.position ).isGreaterThanOrEqualTo(position)
+    }
 }
