@@ -13,6 +13,8 @@ data class Car(val name: String) {
         if (number >= MOVING_MIN_CONDITION) movingDistance++
     }
 
+    fun isEqualDistance(distance: Int) = this.movingDistance == distance
+
     companion object {
         private const val MAX_CAR_NAME = 5
         private const val MOVING_MIN_CONDITION = 4
