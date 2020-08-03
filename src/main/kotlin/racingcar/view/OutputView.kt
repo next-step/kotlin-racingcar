@@ -1,4 +1,6 @@
-package racingcar
+package racingcar.view
+
+import racingcar.domain.RacingCar
 
 fun printWinner(carList: List<RacingCar>) {
     println("${carList.joinToString { it.carName }}가 우승입니다.")
