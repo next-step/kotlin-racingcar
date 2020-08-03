@@ -24,7 +24,7 @@ class WinnerTest {
     fun `우승자가 한 명인 경우`() {
         cars[0].move(4)
 
-        assertThat(winner.find()).isEqualTo(cars[0].name)
+        assertThat(winner.find().joinToString()).isEqualTo(cars[0].name)
     }
 
     @Test
@@ -33,6 +33,6 @@ class WinnerTest {
             cars[it].move(4)
         }
 
-        assertThat(winner.find().split(",").size).isEqualTo(2)
+        assertThat(winner.find().size).isEqualTo(2)
     }
 }

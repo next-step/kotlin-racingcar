@@ -13,10 +13,10 @@ fun main() {
 
     racingGame.play(tryCounts)
 
-    showContents(racingGame, winner)
+    showContents(racingGame, winner.find())
 }
 
-private fun showContents(racingGame: RacingGame, winner: Winner) {
+private fun showContents(racingGame: RacingGame, winners: List<String>) {
     ResultView.printRacingProcess(racingGame)
-    ResultView.printRacingWinner(winner)
+    ResultView.printRacingWinner(winners)
 }
