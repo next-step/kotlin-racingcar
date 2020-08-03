@@ -8,8 +8,10 @@ import racingCar.view.OutputView
 fun main() {
     val carNames = InputView.getCarName()
     val trialCount = InputView.getTrialCount()
-    val racing = RacingCar(carNames)
-    val resultRacingCar = racing.run { racing.carMove(trialCount) }
-    val returnWinner = Winner.getRacingWinner(resultRacingCar)
+
+    val racingCars = RacingCar(carNames)
+    val resultRacing = racingCars.run { racingCars.startRacing(trialCount) }
+
+    val returnWinner = Winner.getRacingWinner(resultRacing)
     OutputView.getCarRacingWinners(returnWinner)
 }

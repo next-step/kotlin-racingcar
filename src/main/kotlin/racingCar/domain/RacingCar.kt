@@ -1,37 +1,37 @@
 package racingCar.domain
 
-import racingCar.view.InputView
 import racingCar.view.OutputView
 
-const val RANDOM_LIMIT_NUM = 10
-
 class RacingCar(private val carNames: List<String>) {
-
-    companion object {
-        val carsInRacing = mutableListOf<Car>()
-    }
 
     init {
         generateCar(carNames)
     }
 
     private fun generateCar(carNames: List<String>) {
-        repeat(carNames.size) { index ->
-            carsInRacing.add(Car(carNames[index]))
-        }
+        racingCars = carNames.map { Car(it) } as MutableList<Car>
     }
 
-    fun carMove(trialCount: Int): List<Car> {
-        var randomNum: Int
+    fun startRacing(trialCount: Int): List<Car> {
+
         repeat(trialCount) { index ->
             println("${index + 1} 번째 경주")
-            for (car in carsInRacing) {
-
-                randomNum = RandomGenerator.getRandomNumber()
-                car.changeStateRacingCar(randomNum)
-            }
-            OutputView.getCarRacingResult(carsInRacing)
+            tryMove()
         }
-        return carsInRacing
+        return racingCars
+    }
+
+    private fun tryMove() {
+        var randomNum: Int
+
+        racingCars.forEach {
+            randomNum = RandomGenerator.getRandomNumber()
+            it.changeStateRacingCar(randomNum)
+        }
+        OutputView.getCarRacingResult(racingCars)
+    }
+
+    companion object {
+        var racingCars = mutableListOf<Car>()
     }
 }

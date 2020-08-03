@@ -1,10 +1,9 @@
 package racingCar.view
 
-import java.lang.IllegalArgumentException
-
 object InputView {
 
     private const val PARTICIPANT_NAME_DELIMITER = ","
+    private const val MAX_CAR_NAME = 5
 
     fun getCarName(): List<String> {
         println("경주에 참여할 자동차의 이름은?")
@@ -22,7 +21,6 @@ object InputView {
     }
 
     private fun splitNames(names: String): List<String> {
-
         return names.split(PARTICIPANT_NAME_DELIMITER)
             .filter { !it.isNullOrBlank() }
             .map { it }

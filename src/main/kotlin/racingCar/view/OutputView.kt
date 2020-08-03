@@ -5,13 +5,12 @@ import racingCar.domain.Car
 object OutputView {
 
     private const val TRACK_MARKER = "="
-    private const val PARTICIPANT_NAME_DELIMITER = ","
+    private const val PARTICIPANT_NAME_DELIMITER = ":"
 
     fun getCarRacingResult(racingCarResult: List<Car>) {
-        racingCarResult.forEach { println("${it.name} " + PARTICIPANT_NAME_DELIMITER + makeRacingMap(
-            it.distance
-        )
-        ) }
+        racingCarResult.forEach {
+            println("${it.name}" + PARTICIPANT_NAME_DELIMITER + makeRacingMap(it.distance))
+        }
     }
 
     private fun makeRacingMap(distance: Int): String {
