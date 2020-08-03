@@ -2,14 +2,14 @@ package carracing
 
 private const val MAX_NAME_LENGTH: Int = 5
 
-class CarRacing(carNames: String) {
+class CarRacing(carNames: String, val count: Int) {
     var cars: MutableList<Car> = mutableListOf()
 
     init {
         parsingCarNames(carNames)
     }
 
-    constructor(listOf: List<Car>) : this("test") {
+    constructor(listOf: List<Car>) : this("test", 0) {
         cars = listOf.toMutableList()
     }
 

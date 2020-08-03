@@ -5,7 +5,7 @@ fun main() {
 
     try {
         val carNames: String = CarRacingView.getCarNames()
-        val carRacing = CarRacing(carNames)
+        val carRacing = CarRacing(carNames, 0)
 
         val count: Int = CarRacingView.getCount()
 
