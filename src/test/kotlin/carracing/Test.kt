@@ -3,12 +3,22 @@ package carracing
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
+import java.lang.IllegalArgumentException
 
 class Test {
 
+    @ParameterizedTest
+    @ValueSource(strings = ["pooh,tiger,ryan,", ",pooh,tiger,ryan", "1,2"])
+    fun `parsing car name error`(carNames: String) {
+        assertThatThrownBy { CarRacing(carNames, 0) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+    }
+
     @Test
     fun `parsing car name`() {
-        CarRacing("pooh,tiger,ryan", 0)
+        CarRacing("test,a,b", 0)
     }
 
     @Test
@@ -58,6 +68,6 @@ class Test {
         val car = carRacing.race()[0]
         val position = car.position
         car.move()
-        assertThat( car.position ).isGreaterThanOrEqualTo(position)
+        assertThat(car.position).isGreaterThanOrEqualTo(position)
     }
 }

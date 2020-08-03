@@ -1,5 +1,7 @@
 package carracing
 
+import java.util.regex.Pattern
+
 private const val MAX_NAME_LENGTH: Int = 5
 
 class CarRacing(carNames: String, private val count: Int) {
@@ -31,11 +33,9 @@ class CarRacing(carNames: String, private val count: Int) {
         if (carNames.isNullOrBlank()) {
             throw NullPointerException("자동차 이름을 입력해주세요.")
         }
-        require(carNames.matches(Regex("[a-z|A-Z|,]*"))) {
+        val pattern = Pattern.compile("^[a-z|A-Z][a-z|A-Z|,]*[a-z|A-Z]$")
+        require(pattern.matcher(carNames).matches()) {
             "영문명과 구분자 쉼표 이외의 값은 입력할 수 없습니다."
-        }
-        require(!carNames.endsWith(",")) {
-            "쉼표는 자동차 이름 사이에만 위치할 수 있습니다."
         }
         carNames.split(",").forEach {
             cars.add(Car(it))
@@ -45,7 +45,7 @@ class CarRacing(carNames: String, private val count: Int) {
         }
     }
 
-    fun getMaxPosition(): Int = cars.maxBy { it.position }?.position ?: 0
+    private fun getMaxPosition(): Int = cars.maxBy { it.position }?.position ?: 0
 
     fun findWinners(): List<Car> {
         val maxPosition = getMaxPosition()
