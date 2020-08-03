@@ -1,8 +1,8 @@
 package racingcar.model
 
-data class Car(val name: String) {
+data class Car(val name: String, private val distance: Int) {
 
-    var movingDistance: Int = 0
+    var movingDistance: Int = distance
         private set
 
     init {

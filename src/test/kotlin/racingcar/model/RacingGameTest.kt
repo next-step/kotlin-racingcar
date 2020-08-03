@@ -10,7 +10,11 @@ class RacingGameTest {
 
     @BeforeEach
     fun setup() {
-        cars = listOf(Car("one"), Car("two"), Car("three"))
+        cars = listOf(
+            Car(name = "one", distance = 1),
+            Car(name = "two", distance = 2),
+            Car(name = "three", distance = 3)
+        )
         racingGame = RacingGame(racingCars = cars)
     }
 
@@ -23,10 +27,6 @@ class RacingGameTest {
 
     @Test
     fun `최대 이동 거리 구하기`() {
-        repeat(5) {
-            cars[0].move(4)
-        }
-
-        assertThat(racingGame.getFarthestCarDistance()).isEqualTo(5)
+        assertThat(racingGame.getFarthestCarDistance()).isEqualTo(3)
     }
 }
