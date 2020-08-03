@@ -8,12 +8,12 @@ import racingcar.view.ResultView
 
 fun main() {
     val (racingCarNames, tryCounts) = InputView.requestRacingCarNames() to InputView.requestTryCount()
-    val racingGame = RacingGame(racingCarNames.map { Car(name = it, distance = 0) })
-    val winner = Winner(racingGame)
+    val racingCars = racingCarNames.map { Car(name = it, distance = 0) }
+    val racingGame = RacingGame(racingCars)
 
     racingGame.play(tryCounts)
 
-    showContents(racingGame, winner.find())
+    showContents(racingGame, Winner.find(racingCars))
 }
 
 private fun showContents(racingGame: RacingGame, winners: List<String>) {

@@ -1,9 +1,11 @@
 package racingcar.model
 
-class Winner(private val racingGame: RacingGame) {
+object Winner {
 
-    fun find(): List<String> {
-        val farthestDistance = racingGame.getFarthestCarDistance()
-        return racingGame.racingCars.filter { it.isEqualDistance(farthestDistance) }.map { it.name }
+    fun find(racingCars: List<Car>): List<String> {
+        val farthestDistance = getFarthestCarDistance(racingCars)
+        return racingCars.filter { it.isEqualDistance(farthestDistance) }.map { it.name }
     }
+
+    fun getFarthestCarDistance(racingCars: List<Car>) = racingCars.maxBy { it.movingDistance }?.movingDistance ?: 0
 }

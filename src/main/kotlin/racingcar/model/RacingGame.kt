@@ -18,8 +18,6 @@ class RacingGame(val racingCars: List<Car>) {
         }
     }
 
-    fun getFarthestCarDistance() = racingCars.maxBy { it.movingDistance }?.movingDistance ?: 0
-
     companion object {
         private val MOVING_CONDITION_RANGE = 0..9
     }

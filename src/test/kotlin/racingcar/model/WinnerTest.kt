@@ -6,15 +6,25 @@ import org.junit.jupiter.api.Test
 class WinnerTest {
 
     @Test
+    fun `최대 이동 거리 구하기`() {
+        val cars = listOf(
+            Car(name = "one", distance = 2),
+            Car(name = "two", distance = 1),
+            Car(name = "three", distance = 1)
+        )
+
+        assertThat(Winner.getFarthestCarDistance(cars)).isEqualTo(2)
+    }
+
+    @Test
     fun `우승자가 한 명인 경우`() {
         val cars = listOf(
             Car(name = "one", distance = 2),
             Car(name = "two", distance = 1),
             Car(name = "three", distance = 1)
         )
-        val winner = Winner(RacingGame(cars))
 
-        assertThat(winner.find().joinToString()).isEqualTo(cars[0].name)
+        assertThat(Winner.find(cars).joinToString()).isEqualTo(cars[0].name)
     }
 
     @Test
@@ -24,8 +34,7 @@ class WinnerTest {
             Car(name = "two", distance = 2),
             Car(name = "three", distance = 1)
         )
-        val winner = Winner(RacingGame(cars))
 
-        assertThat(winner.find().size).isEqualTo(2)
+        assertThat(Winner.find(cars).size).isEqualTo(2)
     }
 }
