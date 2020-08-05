@@ -1,6 +1,6 @@
 package racingcar.model
 
-data class Car(val name: String, private val distance: Int) {
+class Car(val name: String, distance: Int) {
 
     var movingDistance: Int = distance
         private set
