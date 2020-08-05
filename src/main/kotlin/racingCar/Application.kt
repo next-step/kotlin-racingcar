@@ -1,6 +1,9 @@
 package racingCar
 
 fun main() {
-    InputView.inputAmountOfPlayer()
-    InputView.inputAmountOfRound()
+    val amountOfPlayer = InputView.inputAmountOfPlayer()
+    val amountOfRound = InputView.inputAmountOfRound()
+    val cars = Cars(amountOfPlayer)
+
+    RacingGame.playGame(amountOfRound, cars)
 }
