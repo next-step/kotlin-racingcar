@@ -6,15 +6,15 @@ object OutputView {
     }
 
     fun showResult(cars: Cars) {
-        for (car in cars.cars) {
-            printCarDistance(car)
+        cars.cars.forEach {
+            printCarDistance(it.distance)
             println()
         }
         println()
     }
 
-    private fun printCarDistance(car: Car) {
-        repeat(car.distance) {
+    private fun printCarDistance(distance: Int) {
+        repeat(distance) {
             print("-")
         }
     }
