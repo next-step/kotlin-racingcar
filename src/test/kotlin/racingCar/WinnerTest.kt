@@ -2,19 +2,15 @@ package racingCar
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import racingCar.domain.Car
-import racingCar.domain.Winner
+import racingCar.domain.RacingCars
 
 class WinnerTest {
-    private lateinit var cars: List<Car>
-
-    private fun setup() {
-        cars = listOf(Car("A", 3), Car("B", 2), Car("C", 2))
-    }
 
     @Test
     fun `get winner`() {
-        setup()
-        assertThat(Winner.getRacingWinner(cars)).isEqualTo(cars[0].name)
+        val carNames = listOf<String>("A", "B", "C")
+        val racing = RacingCars(carNames)
+        RacingCars.participant[0].distance = 3
+        assertThat(racing.getRacingWinner(RacingCars.participant)).isEqualTo(RacingCars.participant[0].name)
     }
 }

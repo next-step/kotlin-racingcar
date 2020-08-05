@@ -31,6 +31,11 @@ class RacingCars(private val carNames: List<String>) {
         OutputView.getCarRacingResult(participant)
     }
 
+    fun getRacingWinner(racingCars: List<Car>): String {
+        val maxDistance = racingCars.map { it.distance }.max()
+        return racingCars.filter { it.distance == maxDistance }.joinToString { it.name }
+    }
+
     companion object {
         var participant = listOf<Car>()
     }
