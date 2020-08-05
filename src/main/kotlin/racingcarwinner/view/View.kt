@@ -1,6 +1,6 @@
-package RacingcarWinner.View
+package racingcarwinner.view
 
-import RacingcarWinner.Domain.Car
+import racingcarwinner.domain.Car
 
 object InputView {
 
