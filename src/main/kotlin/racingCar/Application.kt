@@ -5,5 +5,10 @@ fun main() {
     val amountOfRound = InputView.inputAmountOfRound()
     val cars = Cars(amountOfPlayer)
 
-    RacingGame.playGame(amountOfRound, cars)
+    OutputView.showResultMessage()
+
+    for (round in 0 until amountOfRound) {
+        RacingGame.playGame(cars)
+        OutputView.showResult(cars)
+    }
 }
