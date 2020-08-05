@@ -2,6 +2,7 @@ package racingCar
 
 class Car {
     var distance = DEFAULT_DISTANCE
+        private set
 
     fun move(number: Int) {
         if (number >= FORWARD_NUMBER) {
