@@ -3,7 +3,6 @@ package racingCar.view
 object InputView {
 
     private const val PARTICIPANT_NAME_DELIMITER = ","
-    private const val MAX_CAR_NAME = 5
 
     fun getCarName(): List<String> {
         println("경주에 참여할 자동차의 이름은?")
