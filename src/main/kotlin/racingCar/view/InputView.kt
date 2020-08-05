@@ -21,7 +21,7 @@ object InputView {
 
     private fun splitNames(names: String): List<String> {
         return names.split(PARTICIPANT_NAME_DELIMITER)
-            .filter { !it.isNullOrBlank() }
+            .filter { !it.isBlank() }
             .map { it }
     }
 

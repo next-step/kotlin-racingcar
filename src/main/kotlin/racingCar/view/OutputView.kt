@@ -9,7 +9,7 @@ object OutputView {
 
     fun getCarRacingResult(racingCarResult: List<Car>) {
         racingCarResult.forEach {
-            println("${it.name}" + PARTICIPANT_NAME_DELIMITER + makeRacingMap(it.distance))
+            println(it.name + PARTICIPANT_NAME_DELIMITER + makeRacingMap(it.distance))
         }
     }
 
