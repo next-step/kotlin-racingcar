@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 import racingcar.racing.car.Car
-import racingcar.racing.view.MockUpView
+import racingcar.racing.result.RacingResult
 
 class WinnerCheckerTest {
 
@@ -76,7 +76,11 @@ class WinnerCheckerTest {
     fun `winnerToString() 우승자 한명인 경우`() {
         assertThat(
             WinnerChecker().winnerToString(
-                winners = listOf(Car("1", 0))
+                listOf(
+                    RacingResult(
+                        listOf(Car("1", 0))
+                    )
+                )
             )
         ).isEqualTo("1가 최종 우승했습니다.")
     }
@@ -85,9 +89,13 @@ class WinnerCheckerTest {
     fun `winnerToString() 우승자 여러명인 경우`() {
         assertThat(
             WinnerChecker().winnerToString(
-                winners = listOf(
-                    Car("1", 0),
-                    Car("2", 0)
+                listOf(
+                    RacingResult(
+                        listOf(
+                            Car("1", 0),
+                            Car("2", 0)
+                        )
+                    )
                 )
             )
         ).isEqualTo("1, 2가 최종 우승했습니다.")
@@ -95,16 +103,18 @@ class WinnerCheckerTest {
 
     @Test
     fun `rewardWinner() 우승 결과 View에서 출력하기`() {
-        val view = MockUpView()
-        WinnerChecker().rewardWinner(
-            listOf(
-                Car("1", 0),
-                Car("2", 0)
-            ),
-            view
-        )
-
-        assertThat(view.toString()).isEqualTo("1, 2가 최종 우승했습니다.\n")
+        assertThat(
+            WinnerChecker().winnerToString(
+                listOf(
+                    RacingResult(
+                        listOf(
+                            Car("1", 0),
+                            Car("2", 0)
+                        )
+                    )
+                )
+            )
+        ).isEqualTo("1, 2가 최종 우승했습니다.")
     }
 
     @Test

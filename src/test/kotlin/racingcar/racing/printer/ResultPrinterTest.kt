@@ -4,16 +4,13 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import racingcar.racing.car.Car
 import racingcar.racing.result.RacingResult
-import racingcar.racing.view.MockUpView
 
 internal class ResultPrinterTest {
 
     @Test
     fun toPrintable1() {
-        val view = MockUpView()
         assertThat(
-            ResultPrinter(
-                CarNamePrinter(view),
+            ResultPrinter().resultToString(
                 listOf(
                     RacingResult(
                         cars = listOf(
@@ -29,9 +26,8 @@ internal class ResultPrinterTest {
                             Car("aaba", 1)
                         )
                     )
-                ),
-                view
-            ).toPrintable()
+                )
+            )
         ).isEqualTo(
             "\n실행 결과\n" +
                 "a : ___\n" +
@@ -44,36 +40,17 @@ internal class ResultPrinterTest {
     }
 
     @Test
-    fun `print() 결과 출력 테스트`() {
-        val view = MockUpView()
-        ResultPrinter(
-            CarNamePrinter(view),
-            listOf(
-                RacingResult(
-                    cars = listOf(
-                        Car("a", 3),
-                        Car("bc", 4),
-                        Car("aaba", 5)
-                    )
-                ),
-                RacingResult(
-                    cars = listOf(
-                        Car("a", 1),
-                        Car("bc", 1),
-                        Car("aaba", 1)
-                    )
-                )
-            ),
-            view
-        ).print()
-        assertThat(view.toString()).isEqualTo(
-            "\n실행 결과\n" +
-                "a : ___\n" +
-                "bc : ____\n" +
-                "aaba : _____\n\n" +
-                "a : _\n" +
-                "bc : _\n" +
-                "aaba : _\n\n"
-        )
+    fun `printString() 자동차 이동거리에 따른 출력 테스트`() {
+        assertThat(
+            ResultPrinter().carName(Car("MOCK", distance = 0))
+        ).isEqualTo("MOCK : ")
+
+        assertThat(
+            ResultPrinter().carName(Car("MOCK", distance = 3))
+        ).isEqualTo("MOCK : ___")
+
+        assertThat(
+            ResultPrinter().carName(Car("MOCK", distance = 5))
+        ).isEqualTo("MOCK : _____")
     }
 }

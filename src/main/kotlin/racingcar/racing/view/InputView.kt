@@ -1,23 +1,40 @@
 package racingcar.racing.view
 
-import racingcar.racing.GameSetupHelper
 import racingcar.racing.car.Car
+import racingcar.racing.const.CAR_NUMBER_ERROR
+import racingcar.racing.const.ERROR_CAR_NAME_OVERFLOW
 import racingcar.racing.const.HOW_MANY_CAR
 import racingcar.racing.const.HOW_MANY_TURN
+import racingcar.racing.const.TURN_NUMBER_ERROR
 
-class InputView(val setup: GameSetupHelper) : ConsoleView() {
-    override fun renderView() {
-        // 게임 조건 입력
-        val cars: List<Car> = setup.askHowManyCars(input(HOW_MANY_CAR))
-        val turns = setup.askHowManyTurns(input(HOW_MANY_TURN))
-
-        // 경기 시작
-        navigateToRaceView(cars, turns)
+class InputView {
+    fun askHowManyCars(): List<Car> {
+        val cars = input(HOW_MANY_CAR)
+        try {
+            val names = cars!!.split(",").map { it.trim() }
+            return names.map { Car(it) }
+        } catch (e: Car.NameLengthOverflowException) {
+            throw SetupFailException(ERROR_CAR_NAME_OVERFLOW)
+        } catch (e: Exception) {
+            throw SetupFailException(CAR_NUMBER_ERROR)
+        }
     }
 
-    private fun navigateToRaceView(cars: List<Car>, turns: Int) {
-        navigateTo(
-            RacingView(cars, turns)
-        )
+    fun askHowManyTurns(): Int {
+        val turns = input(HOW_MANY_TURN)
+        try {
+            return turns?.toInt()!!
+        } catch (e: Exception) {
+            throw SetupFailException(TURN_NUMBER_ERROR)
+        }
     }
+
+    fun input(message: String?): String? {
+        if (message != null) {
+            println(message)
+        }
+        return readLine()
+    }
+
+    class SetupFailException(override val message: String) : Exception()
 }
