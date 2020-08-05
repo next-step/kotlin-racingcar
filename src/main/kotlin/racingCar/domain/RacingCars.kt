@@ -2,14 +2,14 @@ package racingCar.domain
 
 import racingCar.view.OutputView
 
-class RacingCar(private val carNames: List<String>) {
+class RacingCars(private val carNames: List<String>) {
 
     init {
         generateCar(carNames)
     }
 
     private fun generateCar(carNames: List<String>) {
-        racingCars = carNames.map { Car(it) }
+        participant = carNames.map { Car(it) }
     }
 
     fun startRacing(trialCount: Int): List<Car> {
@@ -18,20 +18,20 @@ class RacingCar(private val carNames: List<String>) {
             println("${index + 1} 번째 경주")
             tryMove()
         }
-        return racingCars
+        return participant
     }
 
     private fun tryMove() {
         var randomNum: Int
 
-        racingCars.forEach {
+        participant.forEach {
             randomNum = RandomGenerator.getRandomNumber()
             it.changeStateRacingCar(randomNum)
         }
-        OutputView.getCarRacingResult(racingCars)
+        OutputView.getCarRacingResult(participant)
     }
 
     companion object {
-        var racingCars = listOf<Car>()
+        var participant = listOf<Car>()
     }
 }
