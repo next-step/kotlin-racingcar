@@ -4,9 +4,10 @@ object InputView {
 
     private const val PARTICIPANT_NAME_DELIMITER = ","
 
-    fun getCarName(): String {
+    fun getCarName(): List<String> {
         println("경주에 참여할 자동차의 이름은?")
-        return checkUserInputNames(readLine())
+        val carNames = checkUserInputNames(readLine())
+        return splitNames(carNames)
     }
 
     fun getTrialCount(): Int {
