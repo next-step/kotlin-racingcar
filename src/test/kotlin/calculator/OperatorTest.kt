@@ -1,4 +1,4 @@
-package week1.step2
+package calculator
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach

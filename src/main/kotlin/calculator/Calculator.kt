@@ -1,4 +1,4 @@
-package week1.step2
+package calculator
 
 import java.util.LinkedList
 import java.util.Queue
@@ -13,7 +13,7 @@ object Calculator {
 
     fun calculateFormula(formula: String?): Double {
         require(!formula.isNullOrEmpty()) {
-            throw IllegalArgumentException("입력 값이 유효하지 않습니다.")
+            "입력 값이 유효하지 않습니다."
         }
 
         val (numberGroup: Queue<Double>, operatorGroup) = LinkedList<Double>() to mutableListOf<Operator>()
