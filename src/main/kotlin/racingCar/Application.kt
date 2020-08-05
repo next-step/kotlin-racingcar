@@ -7,7 +7,7 @@ fun main() {
 
     OutputView.showResultMessage()
 
-    for (round in 0 until amountOfRound) {
+    repeat(amountOfRound) {
         RacingGame.playGame(cars)
         OutputView.showResult(cars)
     }
