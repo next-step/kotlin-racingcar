@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import racingCar.domain.Car
 
-class CarTest {
+class RacingCarTest {
 
     @Test
     fun `check car name over 5 length`() {
