@@ -9,7 +9,7 @@ class RacingCar(private val carNames: List<String>) {
     }
 
     private fun generateCar(carNames: List<String>) {
-        racingCars = carNames.map { Car(it) } as MutableList<Car>
+        racingCars = carNames.map { Car(it) }
     }
 
     fun startRacing(trialCount: Int): List<Car> {
@@ -32,6 +32,6 @@ class RacingCar(private val carNames: List<String>) {
     }
 
     companion object {
-        var racingCars = mutableListOf<Car>()
+        var racingCars = listOf<Car>()
     }
 }
