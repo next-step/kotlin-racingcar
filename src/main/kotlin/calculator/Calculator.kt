@@ -13,7 +13,7 @@ object Calculator {
 
     fun calculateFormula(formula: String?): Double {
         require(!formula.isNullOrEmpty()) {
-            throw IllegalArgumentException("입력 값이 유효하지 않습니다.")
+            "입력 값이 유효하지 않습니다."
         }
 
         val (numberGroup: Queue<Double>, operatorGroup) = LinkedList<Double>() to mutableListOf<Operator>()
