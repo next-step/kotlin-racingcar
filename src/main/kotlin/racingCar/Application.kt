@@ -11,4 +11,7 @@ fun main() {
         RacingGame.playGame(cars)
         OutputView.showResult(cars)
     }
+
+    val winner = cars.findWinners()
+    OutputView.showWinners(winner)
 }
