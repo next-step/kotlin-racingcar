@@ -17,6 +17,11 @@ object InputView {
         return number.toInt()
     }
 
+    fun inputCarNames(): String {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
+        return readLine().orEmpty()
+    }
+
     private fun validateInteger(number: String) {
         if (!number.matches(NUMBER_REGEX)) {
             throw NotSupportedTypeException("숫자나 정수만 입력해주세요.")
