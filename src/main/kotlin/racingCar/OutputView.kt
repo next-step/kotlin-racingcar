@@ -7,13 +7,14 @@ object OutputView {
 
     fun showResult(cars: Cars) {
         cars.cars.forEach {
-            printCarDistance(it.distance)
+            printCarDistance(it.distance, it.getName())
             println()
         }
         println()
     }
 
-    private fun printCarDistance(distance: Int) {
+    private fun printCarDistance(distance: Int, name: String) {
+        print("$name : ")
         repeat(distance) {
             print("-")
         }

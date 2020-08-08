@@ -1,6 +1,6 @@
 package racingCar
 
-class Car {
+data class Car(private val name: String) {
     var distance = DEFAULT_DISTANCE
         private set
 
@@ -9,6 +9,8 @@ class Car {
             distance++
         }
     }
+
+    fun getName(): String = name
 
     companion object {
         const val FORWARD_NUMBER = 4
