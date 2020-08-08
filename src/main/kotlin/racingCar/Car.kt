@@ -1,6 +1,6 @@
 package racingCar
 
-class Car {
+data class Car(private val name: String) {
     var distance = DEFAULT_DISTANCE
         private set
 
@@ -8,6 +8,12 @@ class Car {
         if (number >= FORWARD_NUMBER) {
             distance++
         }
+    }
+
+    fun getName(): String = name
+
+    fun isEqualDistance(number: Int): Boolean {
+        return distance == number
     }
 
     companion object {

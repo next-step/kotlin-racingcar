@@ -8,7 +8,7 @@ class CarsTest {
     @DisplayName(value = "입력된 자동차 대수 만큼 자동차를 가진 리스트 생성")
     @Test
     fun `create car list`() {
-        val cars = Cars(4)
-        assertThat(cars.cars.size).isEqualTo(4)
+        val cars = Cars(listOf("harry", "van"))
+        assertThat(cars.cars.size).isEqualTo(2)
     }
 }
