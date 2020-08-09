@@ -1,8 +1,8 @@
 package racingcar.view
 
-import racingcar.domain.car.Car
-import racingcar.domain.const.WINNER_IS
-import racingcar.domain.const.WINNER_SEPARATOR
+import racingcar.domain.Car
+import racingcar.domain.WINNER_IS
+import racingcar.domain.WINNER_SEPARATOR
 
 class ResultView {
     fun showResult(racingResult: String, winnerResult: List<Car>) {

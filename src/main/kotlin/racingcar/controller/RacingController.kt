@@ -1,11 +1,11 @@
 package racingcar.controller
 
-import racingcar.domain.car.Car
-import racingcar.domain.printer.ResultPrinter
-import racingcar.domain.result.RacingResult
-import racingcar.domain.rule.CarRandomMovementRule
-import racingcar.domain.turn.TurnManager
-import racingcar.domain.winner.WinnerChecker
+import racingcar.domain.Car
+import racingcar.domain.CarRandomMovementRule
+import racingcar.domain.RacingResult
+import racingcar.domain.ResultPrinter
+import racingcar.domain.TurnManager
+import racingcar.domain.WinnerChecker
 import racingcar.view.InputView
 import racingcar.view.ResultView
 

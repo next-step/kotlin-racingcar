@@ -1,10 +1,10 @@
-package racingcar.domain.car
+package racingcar.domain
 
 const val CAR_NAME_MAX_LENGTH = 5
 
 data class Car(val name: String, val distance: Int = 0) {
     init {
-        if (name.length > CAR_NAME_MAX_LENGTH) throw Car.NameLengthOverflowException()
+        if (name.length > CAR_NAME_MAX_LENGTH) throw NameLengthOverflowException()
     }
 
     fun move(): Car {

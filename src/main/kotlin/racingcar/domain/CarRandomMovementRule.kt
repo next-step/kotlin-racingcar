@@ -1,4 +1,4 @@
-package racingcar.domain.rule
+package racingcar.domain
 
 import kotlin.random.Random
 

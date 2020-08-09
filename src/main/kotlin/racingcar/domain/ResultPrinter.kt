@@ -1,10 +1,4 @@
-package racingcar.domain.printer
-
-import racingcar.domain.car.Car
-import racingcar.domain.const.CAR_NAME_FORMAT
-import racingcar.domain.const.GAME_RESULT
-import racingcar.domain.const.UNDER_BAR
-import racingcar.domain.result.RacingResult
+package racingcar.domain
 
 class ResultPrinter {
     fun resultToString(results: List<RacingResult>): String {

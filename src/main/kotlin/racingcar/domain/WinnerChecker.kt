@@ -1,6 +1,4 @@
-package racingcar.domain.winner
-
-import racingcar.domain.car.Car
+package racingcar.domain
 
 class WinnerChecker {
     fun findWinners(cars: List<Car>): List<Car> {

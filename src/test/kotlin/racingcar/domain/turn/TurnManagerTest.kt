@@ -3,8 +3,9 @@ package racingcar.domain.turn
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import racingcar.domain.car.Car
-import racingcar.domain.result.RacingResult
+import racingcar.domain.Car
+import racingcar.domain.RacingResult
+import racingcar.domain.TurnManager
 import racingcar.domain.rule.MockUpRule
 
 class TurnManagerTest {

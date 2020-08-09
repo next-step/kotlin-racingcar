@@ -1,8 +1,4 @@
-package racingcar.domain.turn
-
-import racingcar.domain.car.Car
-import racingcar.domain.result.RacingResult
-import racingcar.domain.rule.CarMovementRule
+package racingcar.domain
 
 class TurnManager(
     val totalSteps: Int,

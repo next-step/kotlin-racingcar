@@ -1,4 +1,4 @@
-package racingcar.domain.const
+package racingcar.domain
 
 const val UNDER_BAR = "_"
 const val CAR_NAME_FORMAT = "%s : %s"

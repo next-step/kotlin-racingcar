@@ -1,6 +1,4 @@
-package racingcar.domain.rule
-
-import racingcar.domain.car.Car
+package racingcar.domain
 
 interface CarMovementRule {
     val rule: () -> Boolean
