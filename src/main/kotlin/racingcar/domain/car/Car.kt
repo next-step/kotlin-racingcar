@@ -15,7 +15,7 @@ data class Car(val name: String, val distance: Int = 0) {
         return if (predicate()) {
             move()
         } else {
-            copy()
+            this
         }
     }
 

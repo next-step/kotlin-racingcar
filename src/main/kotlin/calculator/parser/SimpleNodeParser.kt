@@ -1,6 +1,8 @@
 package calculator.parser
 
 import calculator.calculator.Node
+import calculator.calculator.Number
+import calculator.calculator.Operator
 import java.util.regex.Pattern
 
 class SimpleNodeParser : NodeParser {
@@ -21,10 +23,10 @@ class SimpleNodeParser : NodeParser {
             Pattern.compile(PATTERN_FOR_NUMBER)
                 .matcher(it).matches()
         }?.let {
-            return Node.Number(it.toDouble())
+            return Number(it.toDouble())
         }
 
-        Node.Operators.find { it.char == this }
+        Operator.values().find { it.char == this }
             ?.let {
                 return it
             }

@@ -13,13 +13,13 @@ internal class TextCalculatorTest {
         assertThat(
             TextCalculator().calculate(
                 listOf(
-                    Node.Number(2.0),
-                    Node.Operator.Plus,
-                    Node.Number(3.0),
-                    Node.Operator.Multiply,
-                    Node.Number(4.0),
-                    Node.Operator.Divide,
-                    Node.Number(2.0)
+                    Number(2.0),
+                    Operator.PLUS,
+                    Number(3.0),
+                    Operator.MULTIPLY,
+                    Number(4.0),
+                    Operator.DIVIDE,
+                    Number(2.0)
                 )
             )
         ).isEqualTo(10)
@@ -30,15 +30,15 @@ internal class TextCalculatorTest {
         assertThat(
             TextCalculator().calculate(
                 listOf(
-                    Node.Number(2.0),
-                    Node.Operator.Divide,
-                    Node.Number(16.0),
-                    Node.Operator.Multiply,
-                    Node.Number(2.0),
-                    Node.Operator.Multiply,
-                    Node.Number(2.0),
-                    Node.Operator.Multiply,
-                    Node.Number(2.0)
+                    Number(2.0),
+                    Operator.DIVIDE,
+                    Number(16.0),
+                    Operator.MULTIPLY,
+                    Number(2.0),
+                    Operator.MULTIPLY,
+                    Number(2.0),
+                    Operator.MULTIPLY,
+                    Number(2.0)
                 )
             )
         ).isEqualTo(1)
@@ -50,13 +50,13 @@ internal class TextCalculatorTest {
             assertThat(
                 TextCalculator().calculate(
                     listOf(
-                        Node.Number(1.0),
-                        Node.Operator.Divide,
-                        Node.Number(0.0)
+                        Number(1.0),
+                        Operator.DIVIDE,
+                        Number(0.0)
                     )
                 )
             )
-        }.isInstanceOf(Node.Operator.Divide.DivideByZeroException::class.java)
+        }.isInstanceOf(Operator.DivideByZeroException::class.java)
     }
 
     @Test
@@ -65,10 +65,10 @@ internal class TextCalculatorTest {
             assertThat(
                 TextCalculator().calculate(
                     listOf(
-                        Node.Number(1.0),
-                        Node.Number(0.0),
-                        Node.Operator.Plus,
-                        Node.Number(0.0)
+                        Number(1.0),
+                        Number(0.0),
+                        Operator.PLUS,
+                        Number(0.0)
                     )
                 )
             )
@@ -81,9 +81,9 @@ internal class TextCalculatorTest {
             assertThat(
                 TextCalculator().calculate(
                     listOf(
-                        Node.Operator.Plus,
-                        Node.Number(0.0),
-                        Node.Number(1.0)
+                        Operator.PLUS,
+                        Number(0.0),
+                        Number(1.0)
                     )
                 )
             )
@@ -105,10 +105,10 @@ internal class TextCalculatorTest {
             assertThat(
                 TextCalculator().calculate(
                     listOf(
-                        Node.Number(1.0),
-                        Node.Operator.Plus,
-                        Node.Number(1.0),
-                        Node.Operator.Multiply
+                        Number(1.0),
+                        Operator.PLUS,
+                        Number(1.0),
+                        Operator.MULTIPLY
                     )
                 )
             )
@@ -121,10 +121,10 @@ internal class TextCalculatorTest {
             assertThat(
                 TextCalculator().calculate(
                     listOf(
-                        Node.Number(1.0),
-                        Node.Operator.Plus,
-                        Node.Operator.Multiply,
-                        Node.Number(1.0)
+                        Number(1.0),
+                        Operator.PLUS,
+                        Operator.MULTIPLY,
+                        Number(1.0)
                     )
                 )
             )
@@ -134,16 +134,16 @@ internal class TextCalculatorTest {
     @Test
     fun `getNumber() 해당 인덱스에 Number가 있을 때`() {
         val list = listOf<Node>(
-            Node.Number(0.0),
-            Node.Number(1.0),
-            Node.Number(2.0),
-            Node.Number(3.0)
+            Number(0.0),
+            Number(1.0),
+            Number(2.0),
+            Number(3.0)
         )
         TextCalculator().apply {
-            assertThat(list.getNumber(0)).isEqualTo(Node.Number(0.0))
-            assertThat(list.getNumber(1)).isEqualTo(Node.Number(1.0))
-            assertThat(list.getNumber(2)).isEqualTo(Node.Number(2.0))
-            assertThat(list.getNumber(3)).isEqualTo(Node.Number(3.0))
+            assertThat(list.getNumber(0)).isEqualTo(Number(0.0))
+            assertThat(list.getNumber(1)).isEqualTo(Number(1.0))
+            assertThat(list.getNumber(2)).isEqualTo(Number(2.0))
+            assertThat(list.getNumber(3)).isEqualTo(Number(3.0))
         }
     }
 
@@ -151,7 +151,7 @@ internal class TextCalculatorTest {
     @ValueSource(ints = [1, 2, 3, 4, 5])
     fun `getNumber() 해당 인덱스가 list의 범위안에 없을 때 NumberIsMissing`(number: Int) {
         val empty = listOf<Node>()
-        val list = listOf<Node>(Node.Number(1.0))
+        val list = listOf<Node>(Number(1.0))
         assertThatThrownBy {
             TextCalculator().apply {
                 assertThat(empty.getNumber(number))
@@ -162,7 +162,7 @@ internal class TextCalculatorTest {
     @Test
     fun `getNumber() 해당 인덱스에 Operator가 들어있을 때 NumberIsMissing`() {
         val list = listOf<Node>(
-            Node.Operator.Plus
+            Operator.PLUS
         )
         assertThatThrownBy {
             TextCalculator().apply {
@@ -174,16 +174,16 @@ internal class TextCalculatorTest {
     @Test
     fun `getOperator() 해당 인덱스에 Operator가 있을 때`() {
         val list = listOf<Node>(
-            Node.Operator.Plus,
-            Node.Operator.Minus,
-            Node.Operator.Multiply,
-            Node.Operator.Divide
+            Operator.PLUS,
+            Operator.MINUS,
+            Operator.MULTIPLY,
+            Operator.DIVIDE
         )
         TextCalculator().apply {
-            assertThat(list.getOperator(0)).isEqualTo(Node.Operator.Plus)
-            assertThat(list.getOperator(1)).isEqualTo(Node.Operator.Minus)
-            assertThat(list.getOperator(2)).isEqualTo(Node.Operator.Multiply)
-            assertThat(list.getOperator(3)).isEqualTo(Node.Operator.Divide)
+            assertThat(list.getOperator(0)).isEqualTo(Operator.PLUS)
+            assertThat(list.getOperator(1)).isEqualTo(Operator.MINUS)
+            assertThat(list.getOperator(2)).isEqualTo(Operator.MULTIPLY)
+            assertThat(list.getOperator(3)).isEqualTo(Operator.DIVIDE)
         }
     }
 
@@ -200,7 +200,7 @@ internal class TextCalculatorTest {
     @Test
     fun `getOperator() 해당 인덱스에 Number가 들어있을 때 OperatorIsMissing`() {
         val list = listOf<Node>(
-            Node.Number(0.0)
+            Number(0.0)
         )
         assertThatThrownBy {
             TextCalculator().apply {

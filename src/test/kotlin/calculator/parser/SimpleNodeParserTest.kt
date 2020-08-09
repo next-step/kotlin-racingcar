@@ -1,9 +1,10 @@
 package calculator.parser
 
+import calculator.calculator.Number
+import calculator.calculator.Operator
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
-import calculator.calculator.Node
 
 class SimpleNodeParserTest {
     @Test
@@ -11,13 +12,13 @@ class SimpleNodeParserTest {
         assertThat(SimpleNodeParser().parse("2 + 3 * 4 / 2"))
             .isEqualTo(
                 listOf(
-                    Node.Number(2.0),
-                    Node.Operator.Plus,
-                    Node.Number(3.0),
-                    Node.Operator.Multiply,
-                    Node.Number(4.0),
-                    Node.Operator.Divide,
-                    Node.Number(2.0)
+                    Number(2.0),
+                    Operator.PLUS,
+                    Number(3.0),
+                    Operator.MULTIPLY,
+                    Number(4.0),
+                    Operator.DIVIDE,
+                    Number(2.0)
                 )
             )
     }
@@ -27,19 +28,19 @@ class SimpleNodeParserTest {
         assertThat(SimpleNodeParser().parse("123456 +++   0 *- 4 4 444 // 2    "))
             .isEqualTo(
                 listOf(
-                    Node.Number(123456.0),
-                    Node.Operator.Plus,
-                    Node.Operator.Plus,
-                    Node.Operator.Plus,
-                    Node.Number(0.0),
-                    Node.Operator.Multiply,
-                    Node.Operator.Minus,
-                    Node.Number(4.0),
-                    Node.Number(4.0),
-                    Node.Number(444.0),
-                    Node.Operator.Divide,
-                    Node.Operator.Divide,
-                    Node.Number(2.0)
+                    Number(123456.0),
+                    Operator.PLUS,
+                    Operator.PLUS,
+                    Operator.PLUS,
+                    Number(0.0),
+                    Operator.MULTIPLY,
+                    Operator.MINUS,
+                    Number(4.0),
+                    Number(4.0),
+                    Number(444.0),
+                    Operator.DIVIDE,
+                    Operator.DIVIDE,
+                    Number(2.0)
                 )
             )
     }
@@ -71,13 +72,13 @@ class SimpleNodeParserTest {
     @Test
     fun `convertToNode() 문자열을 Node로 변환`() {
         SimpleNodeParser().apply {
-            assertThat("123".convertToNode()).isEqualTo(Node.Number(123.0))
-            assertThat("0".convertToNode()).isEqualTo(Node.Number(0.0))
-            assertThat("123".convertToNode()).isEqualTo(Node.Number(123.0))
-            assertThat("+".convertToNode()).isEqualTo(Node.Operator.Plus)
-            assertThat("-".convertToNode()).isEqualTo(Node.Operator.Minus)
-            assertThat("*".convertToNode()).isEqualTo(Node.Operator.Multiply)
-            assertThat("/".convertToNode()).isEqualTo(Node.Operator.Divide)
+            assertThat("123".convertToNode()).isEqualTo(Number(123.0))
+            assertThat("0".convertToNode()).isEqualTo(Number(0.0))
+            assertThat("123".convertToNode()).isEqualTo(Number(123.0))
+            assertThat("+".convertToNode()).isEqualTo(Operator.PLUS)
+            assertThat("-".convertToNode()).isEqualTo(Operator.MINUS)
+            assertThat("*".convertToNode()).isEqualTo(Operator.MULTIPLY)
+            assertThat("/".convertToNode()).isEqualTo(Operator.DIVIDE)
         }
     }
 
@@ -105,13 +106,13 @@ class SimpleNodeParserTest {
                 listOf("123", "0", "123", "+", "-", "*", "/").convertAllToNode()
             ).isEqualTo(
                 listOf(
-                    Node.Number(123.0),
-                    Node.Number(0.0),
-                    Node.Number(123.0),
-                    Node.Operator.Plus,
-                    Node.Operator.Minus,
-                    Node.Operator.Multiply,
-                    Node.Operator.Divide
+                    Number(123.0),
+                    Number(0.0),
+                    Number(123.0),
+                    Operator.PLUS,
+                    Operator.MINUS,
+                    Operator.MULTIPLY,
+                    Operator.DIVIDE
                 )
             )
         }

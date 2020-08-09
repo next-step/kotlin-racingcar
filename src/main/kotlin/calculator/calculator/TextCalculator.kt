@@ -15,24 +15,24 @@ class TextCalculator : Calculator {
     }
 
     /**
-     * Node.Number를 추출한다.
+     * Number를 추출한다.
      * 인덱스가 잘못되었거나 Operator가 들어있다면 NumberIsMissing 을 던진다.
      */
-    fun List<Node>.getNumber(index: Int): Node.Number {
+    fun List<Node>.getNumber(index: Int): Number {
         val node = getOrNull(index)
-        if (node !is Node.Number) {
+        if (node !is Number) {
             throw Calculator.Error.NumberIsMissing
         }
         return node
     }
 
     /**
-     * Node.Operator를 추출한다.
+     * Operator를 추출한다.
      * 인덱스가 잘못되었거나 Number가 들어있다면 NumberIsMissing 을 던진다.
      */
-    fun List<Node>.getOperator(index: Int): Node.Operator {
+    fun List<Node>.getOperator(index: Int): Operator {
         val node = getOrNull(index)
-        if (node !is Node.Operator) {
+        if (node !is Operator) {
             throw Calculator.Error.OperatorIsMissing
         }
         return node
