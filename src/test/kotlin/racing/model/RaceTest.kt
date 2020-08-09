@@ -12,7 +12,7 @@ class RaceTest {
         race.run(strategy)
 
         assertThat(race.cars).allSatisfy { car: Car ->
-            assertThat(car.raceHistory.sum()).isEqualTo(5)
+            assertThat(car.takeRaceHistory(5)).isEqualTo(5)
         }
     }
 }

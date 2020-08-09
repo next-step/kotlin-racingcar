@@ -21,12 +21,12 @@ object ResultView {
 
     private fun outputForTrials(actualTrial: Int, cars: List<Car>) {
         cars.forEach {
-            println("${it.name}$CAR_NAME_SEPARATOR${visualize(actualTrial, it.raceHistory)}")
+            println("${it.name}$CAR_NAME_SEPARATOR${visualize(actualTrial, it)}")
         }
     }
 
-    private fun visualize(numberOfTrials: Int, raceResult: List<Int>): String {
-        val distance = raceResult.take(numberOfTrials).sum()
+    private fun visualize(numberOfTrials: Int, car: Car): String {
+        val distance = car.takeRaceHistory(numberOfTrials)
 
         return ONE_BLOCK.repeat(distance)
     }

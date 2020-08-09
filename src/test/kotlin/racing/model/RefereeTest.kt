@@ -14,7 +14,7 @@ class RefereeTest {
             Car("e", mutableListOf(1, 1, 1, 0, 1))
         )
 
-        assertThat(Referee().getWinner(raceCars)).containsExactlyInAnyOrderElementsOf(
+        assertThat(Referee().getWinner(5, raceCars)).containsExactlyInAnyOrderElementsOf(
             mutableListOf(
                 Car("c", mutableListOf(1, 1, 1, 1, 1)),
                 Car("d", mutableListOf(1, 1, 1, 1, 1))

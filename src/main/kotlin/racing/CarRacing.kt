@@ -16,7 +16,7 @@ fun main() {
     race.run(strategy)
 
     val carsAfterRace = race.cars
-    val winner = Referee().getWinner(carsAfterRace)
+    val winner = Referee().getWinner(numberOfTrials, carsAfterRace)
 
     ResultView.output(numberOfTrials, carsAfterRace)
     ResultView.noticeWinner(winner)
