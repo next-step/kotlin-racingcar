@@ -20,16 +20,13 @@ class RacingController(
     fun start() {
         val cars = inputView.askHowManyCars()
         val turns = inputView.askHowManyTurns()
-        // 게임 시작
         startRacing(cars, turns)
     }
 
-    fun startRacing(cars: List<Car>, turns: Int) { //
+    fun startRacing(cars: List<Car>, turns: Int) {
         val rule = CarRandomMovementRule()
         val turnManager = TurnManager(turns, cars, rule)
-        // 레이싱 시작
         val results = turnManager.startRaceUntilFinish()
-        // 결과 출력
         showResult(results)
     }
 
