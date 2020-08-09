@@ -8,7 +8,9 @@ interface Node
 /**
  * Number는 피연산자로 값을 가지고 있다.
  */
-data class Number(val value: Double) : Node
+data class Number(val value: Double) : Node {
+    constructor(string: String) : this(string.toDouble())
+}
 
 private const val PLUS_CHAR = "+"
 private const val MINUS_CHAR = "-"
