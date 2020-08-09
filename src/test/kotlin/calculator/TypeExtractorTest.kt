@@ -1,6 +1,6 @@
 package calculator
 
-import com.sun.xml.internal.fastinfoset.util.StringArray
+import calculator.TypeExtractor.mappingOperator
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
@@ -9,7 +9,6 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
-import calculator.TypeExtractor.mappingOperator
 import java.util.stream.Stream
 
 class TypeExtractorTest {
@@ -54,7 +53,7 @@ class TypeExtractorTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = ["??????", "####"])
+    @ValueSource(strings = ["??????", "####"])
     fun `Extract Operator test - invalid multiple operator`(input: String) {
         assertThat(TypeExtractor.extractOperator(input)).isEqualTo(emptyList<String>())
     }
@@ -98,7 +97,7 @@ class TypeExtractorTest {
     }
 
     @Test
-    fun `Mapping Operator enum class`(stringArray: StringArray) {
+    fun `Mapping Operator enum class`() {
         assertThat(listOf("+", "-", "*", "/").mappingOperator())
             .isEqualTo(listOf(Operator.ADD, Operator.SUB, Operator.MUL, Operator.DIV))
 
