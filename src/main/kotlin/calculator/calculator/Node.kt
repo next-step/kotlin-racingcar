@@ -33,4 +33,11 @@ enum class Operator(val char: String, val operate: (Number, Number) -> Number) :
     );
 
     class DivideByZeroException : Exception("Cannot divide by 0.")
+    class InvalidCharacter(char: String) : Error("Invalid character $char has found in text.")
+
+    companion object {
+        fun of(string: String): Operator {
+            return Operator.values().find { it.char == string } ?: throw InvalidCharacter(string)
+        }
+    }
 }

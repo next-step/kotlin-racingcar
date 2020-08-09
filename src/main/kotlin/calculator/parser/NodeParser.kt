@@ -1,14 +1,38 @@
 package calculator.parser
 
 import calculator.calculator.Node
+import calculator.calculator.Number
+import calculator.calculator.Operator
+import java.util.regex.Pattern
 
-/**
- * 문자열을 계산하기 위한 Node로 변환하는 인터페이스
- */
-interface NodeParser {
-    fun parse(text: String): List<Node>
+class NodeParser {
+    fun parse(text: String): List<Node> {
+        return text
+            .split(Regex(REGEX_FOR_NODE))
+            .trimAll()
+            .exceptEmpty()
+            .convertAllToNode()
+    }
 
-    sealed class Error(message: String) : Exception(message) {
-        class InvalidCharacter(char: String) : Error("Invalid character $char has found in text.")
+    fun List<String>.trimAll() = map { it.trim() }
+
+    fun List<String>.exceptEmpty() = filter { it.isNotEmpty() }
+
+    fun String.convertToNode(): Node {
+        takeIf {
+            Pattern.compile(PATTERN_FOR_NUMBER)
+                .matcher(it).matches()
+        }?.let {
+            return Number(it.toDouble())
+        }
+
+        return Operator.of(this)
+    }
+
+    fun List<String>.convertAllToNode() = map { it.convertToNode() }
+
+    companion object {
+        private const val REGEX_FOR_NODE = "((?<=([-*/+\\s]))|(?=([-*/+\\s])))"
+        private const val PATTERN_FOR_NUMBER = "^[0-9]+$"
     }
 }
