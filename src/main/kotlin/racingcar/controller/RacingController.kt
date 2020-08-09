@@ -4,10 +4,10 @@ import racingcar.domain.car.Car
 import racingcar.domain.printer.ResultPrinter
 import racingcar.domain.result.RacingResult
 import racingcar.domain.rule.CarRandomMovementRule
+import racingcar.domain.turn.TurnManager
+import racingcar.domain.winner.WinnerChecker
 import racingcar.view.InputView
 import racingcar.view.ResultView
-import racingcar.domain.winner.WinnerChecker
-import racingcar.domain.turn.TurnManager
 
 fun main() {
     RacingController(InputView(), ResultView()).start()
@@ -32,7 +32,7 @@ class RacingController(
 
     fun showResult(results: List<RacingResult>) {
         val racingResult = ResultPrinter().resultToString(results)
-        val winnerResult = WinnerChecker().winnerToString(results)
+        val winnerResult = WinnerChecker().findWinners(results.last().cars)
         resultView.showResult(racingResult, winnerResult)
     }
 }

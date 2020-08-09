@@ -2,9 +2,7 @@ package racingcar.domain.winner
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-
 import racingcar.domain.car.Car
-import racingcar.domain.result.RacingResult
 
 class WinnerCheckerTest {
 
@@ -70,51 +68,6 @@ class WinnerCheckerTest {
         ).isEqualTo(
             listOf<Car>()
         )
-    }
-
-    @Test
-    fun `winnerToString() 우승자 한명인 경우`() {
-        assertThat(
-            WinnerChecker().winnerToString(
-                listOf(
-                    RacingResult(
-                        listOf(Car("1", 0))
-                    )
-                )
-            )
-        ).isEqualTo("1가 최종 우승했습니다.")
-    }
-
-    @Test
-    fun `winnerToString() 우승자 여러명인 경우`() {
-        assertThat(
-            WinnerChecker().winnerToString(
-                listOf(
-                    RacingResult(
-                        listOf(
-                            Car("1", 0),
-                            Car("2", 0)
-                        )
-                    )
-                )
-            )
-        ).isEqualTo("1, 2가 최종 우승했습니다.")
-    }
-
-    @Test
-    fun `rewardWinner() 우승 결과 View에서 출력하기`() {
-        assertThat(
-            WinnerChecker().winnerToString(
-                listOf(
-                    RacingResult(
-                        listOf(
-                            Car("1", 0),
-                            Car("2", 0)
-                        )
-                    )
-                )
-            )
-        ).isEqualTo("1, 2가 최종 우승했습니다.")
     }
 
     @Test

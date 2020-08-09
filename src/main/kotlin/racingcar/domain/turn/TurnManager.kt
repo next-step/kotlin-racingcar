@@ -11,15 +11,13 @@ class TurnManager(
 ) {
 
     private var currentTurn = 0
-    private val racingResult = arrayListOf<RacingResult>()
+    private val racingResult = mutableListOf<RacingResult>()
 
     fun nextTurn(): List<RacingResult> {
         return racingResult.also {
-            if (!isFinish()) {
-                it.add(
-                    getLastCars(it).race(rule)
-                )
-            }
+            it.add(
+                getLastCars(it).race(rule)
+            )
         }
     }
 
@@ -38,13 +36,9 @@ class TurnManager(
         return racingResults.lastOrNull()?.cars ?: cars
     }
 
-    fun isFinish() = currentTurn >= totalSteps
-
     fun startRaceUntilFinish(): List<RacingResult> {
         var last = listOf<RacingResult>()
-        while (!isFinish()) {
-            last = nextTurn()
-        }
+        repeat(totalSteps) { last = nextTurn() }
         return last
     }
 }
