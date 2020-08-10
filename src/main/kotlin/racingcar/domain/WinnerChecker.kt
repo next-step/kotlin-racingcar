@@ -5,7 +5,7 @@ class WinnerChecker {
         return cars.sortByDistance().filterAllFirst()
     }
 
-    fun List<Car>.sortByDistance(): List<Car> = sortedByDescending { it.distance }
+    private fun List<Car>.sortByDistance(): List<Car> = sortedByDescending { it.distance }
 
-    fun List<Car>.filterAllFirst(): List<Car> = takeWhile { it.distance == this.first().distance }
+    private fun List<Car>.filterAllFirst(): List<Car> = takeWhile { it.distance == this.first().distance }
 }

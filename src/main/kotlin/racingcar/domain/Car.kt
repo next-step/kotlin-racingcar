@@ -1,7 +1,5 @@
 package racingcar.domain
 
-const val CAR_NAME_MAX_LENGTH = 5
-
 data class Car(val name: String, val distance: Int = 0) {
     init {
         if (name.length > CAR_NAME_MAX_LENGTH) throw NameLengthOverflowException()
@@ -20,4 +18,8 @@ data class Car(val name: String, val distance: Int = 0) {
     }
 
     class NameLengthOverflowException : Exception("A car's name must be shorter.")
+
+    companion object {
+        private const val CAR_NAME_MAX_LENGTH = 5
+    }
 }

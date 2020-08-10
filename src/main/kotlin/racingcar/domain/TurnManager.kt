@@ -1,7 +1,7 @@
 package racingcar.domain
 
 class TurnManager(
-    val totalSteps: Int,
+    private val totalSteps: Int,
     private val cars: List<Car>,
     private val rule: CarMovementRule
 ) {
@@ -9,7 +9,7 @@ class TurnManager(
     private var currentTurn = 0
     private val racingResult = mutableListOf<RacingResult>()
 
-    fun nextTurn(): List<RacingResult> {
+    private fun nextTurn(): List<RacingResult> {
         return racingResult.also {
             it.add(
                 getLastCars(it).race(rule)
@@ -17,18 +17,18 @@ class TurnManager(
         }
     }
 
-    fun List<Car>.race(rule: CarMovementRule): RacingResult {
+    private fun List<Car>.race(rule: CarMovementRule): RacingResult {
         currentTurn++
         return RacingResult(moveEach(rule))
     }
 
-    fun List<Car>.moveEach(rule: CarMovementRule): List<Car> {
+    private fun List<Car>.moveEach(rule: CarMovementRule): List<Car> {
         return map { car ->
             car.moveIf { rule.rule() }
         }
     }
 
-    fun getLastCars(racingResults: List<RacingResult>): List<Car> {
+    private fun getLastCars(racingResults: List<RacingResult>): List<Car> {
         return racingResults.lastOrNull()?.cars ?: cars
     }
 

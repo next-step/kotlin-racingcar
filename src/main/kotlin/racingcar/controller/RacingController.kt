@@ -23,14 +23,14 @@ class RacingController(
         startRacing(cars, turns)
     }
 
-    fun startRacing(cars: List<Car>, turns: Int) {
+    private fun startRacing(cars: List<Car>, turns: Int) {
         val rule = CarRandomMovementRule()
         val turnManager = TurnManager(turns, cars, rule)
         val results = turnManager.startRaceUntilFinish()
         showResult(results)
     }
 
-    fun showResult(results: List<RacingResult>) {
+    private fun showResult(results: List<RacingResult>) {
         val racingResult = ResultPrinter().resultToString(results)
         val winnerResult = WinnerChecker().findWinners(results.last().cars)
         resultView.showResult(racingResult, winnerResult)

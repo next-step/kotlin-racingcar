@@ -29,7 +29,7 @@ class InputView {
         }
     }
 
-    fun input(message: String?): String? {
+    private fun input(message: String?): String? {
         if (message != null) {
             println(message)
         }

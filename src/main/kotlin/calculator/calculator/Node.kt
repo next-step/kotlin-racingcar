@@ -17,7 +17,7 @@ private const val MINUS_CHAR = "-"
 private const val MULTIPLY_CHAR = "*"
 private const val DIVIDE_CHAR = "/"
 
-enum class Operator(val char: String, val operate: (Number, Number) -> Number) : Node {
+enum class Operator(private val char: String, private val op: (Number, Number) -> Number) : Node {
     PLUS(PLUS_CHAR, { left, right -> Number(left.value + right.value) }),
     MINUS(MINUS_CHAR, { left, right -> Number(left.value - right.value) }),
     MULTIPLY(MULTIPLY_CHAR, { left, right -> Number(left.value * right.value) }),
@@ -31,6 +31,8 @@ enum class Operator(val char: String, val operate: (Number, Number) -> Number) :
             }
         }
     );
+
+    fun operate(left: Number, right: Number) = op(left, right)
 
     class DivideByZeroException : Exception("Cannot divide by 0.")
     class InvalidCharacter(char: String) : Error("Invalid character $char has found in text.")
