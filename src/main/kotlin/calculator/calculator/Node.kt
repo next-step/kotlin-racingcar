@@ -39,7 +39,7 @@ enum class Operator(private val char: String, private val op: (Number, Number) -
 
     companion object {
         fun of(string: String): Operator {
-            return Operator.values().find { it.char == string } ?: throw InvalidCharacter(string)
+            return values().find { it.char == string } ?: throw InvalidCharacter(string)
         }
     }
 }

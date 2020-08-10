@@ -2,10 +2,11 @@ package racingcar.domain
 
 class WinnerChecker {
     fun findWinners(cars: List<Car>): List<Car> {
-        return cars.sortByDistance().filterAllFirst()
+        val longest = cars.longestDistance()
+        return cars.filter { it.isIn(longest) }
     }
 
-    private fun List<Car>.sortByDistance(): List<Car> = sortedByDescending { it.distance }
-
-    private fun List<Car>.filterAllFirst(): List<Car> = takeWhile { it.distance == this.first().distance }
+    private fun List<Car>.longestDistance(): Int? {
+        return maxBy { it.distance }?.distance
+    }
 }

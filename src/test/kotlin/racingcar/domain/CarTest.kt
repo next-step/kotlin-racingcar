@@ -1,11 +1,10 @@
-package racingcar.domain.car
+package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import racingcar.domain.Car
 
 class CarTest {
 
@@ -18,7 +17,7 @@ class CarTest {
     @ValueSource(ints = [0, 1, 2, 3, 4, 5, 6])
     fun `move() 횟수 만큼 distance 증가`(number: Int) {
         var car = Car("a")
-        repeat(number) { car = car.move() }
+        repeat(number) { car = car.moveIf { true } }
         assertThat(car.distance).isEqualTo(number)
     }
 

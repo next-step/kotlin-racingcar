@@ -5,7 +5,7 @@ data class Car(val name: String, val distance: Int = 0) {
         if (name.length > CAR_NAME_MAX_LENGTH) throw NameLengthOverflowException()
     }
 
-    fun move(): Car {
+    private fun move(): Car {
         return copy(name = name, distance = distance + 1)
     }
 
@@ -15,6 +15,10 @@ data class Car(val name: String, val distance: Int = 0) {
         } else {
             this
         }
+    }
+
+    fun isIn(distance: Int?): Boolean {
+        return this.distance == distance
     }
 
     class NameLengthOverflowException : Exception("A car's name must be shorter.")

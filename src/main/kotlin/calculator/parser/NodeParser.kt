@@ -7,32 +7,32 @@ import java.util.regex.Pattern
 
 class NodeParser {
     fun parse(text: String): List<Node> {
-        return text
-            .split(Regex(REGEX_FOR_NODE))
+        return MATCHER.split(text)
             .trimAll()
             .exceptEmpty()
             .convertAllToNode()
     }
 
-    fun List<String>.trimAll() = map { it.trim() }
+    private fun Array<String>.trimAll() = map { it.trim() }
 
-    fun List<String>.exceptEmpty() = filter { it.isNotEmpty() }
+    private fun List<String>.exceptEmpty() = filter { it.isNotEmpty() }
 
-    fun String.convertToNode(): Node {
+    private fun String.convertToNode(): Node {
         takeIf {
             Pattern.compile(PATTERN_FOR_NUMBER)
                 .matcher(it).matches()
         }?.let {
-            return Number(it.toDouble())
+            return Number(it)
         }
 
         return Operator.of(this)
     }
 
-    fun List<String>.convertAllToNode() = map { it.convertToNode() }
+    private fun List<String>.convertAllToNode() = map { it.convertToNode() }
 
     companion object {
         private const val REGEX_FOR_NODE = "((?<=([-*/+\\s]))|(?=([-*/+\\s])))"
+        private val MATCHER = Pattern.compile(REGEX_FOR_NODE)
         private const val PATTERN_FOR_NUMBER = "^[0-9]+$"
     }
 }

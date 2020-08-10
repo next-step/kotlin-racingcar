@@ -1,11 +1,8 @@
-package racingcar.domain.turn
+package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import racingcar.domain.Car
-import racingcar.domain.TurnManager
-import racingcar.domain.rule.MockUpRule
 
 class TurnManagerTest {
     @ParameterizedTest
@@ -27,8 +24,9 @@ class TurnManagerTest {
             cars = listOf(Car("MOCK")), rule = MockUpRule()
         )
         var results = manager.startRaceUntilFinish()
-        results.last().cars.forEach {
-            assertThat(it.distance).isEqualTo(number)
+
+        assertThat(results.last().cars).allSatisfy { car ->
+            assertThat(car.distance).isEqualTo(number)
         }
     }
 }

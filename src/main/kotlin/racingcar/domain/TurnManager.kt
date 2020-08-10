@@ -6,7 +6,6 @@ class TurnManager(
     private val rule: CarMovementRule
 ) {
 
-    private var currentTurn = 0
     private val racingResult = mutableListOf<RacingResult>()
 
     private fun nextTurn(): List<RacingResult> {
@@ -18,7 +17,6 @@ class TurnManager(
     }
 
     private fun List<Car>.race(rule: CarMovementRule): RacingResult {
-        currentTurn++
         return RacingResult(moveEach(rule))
     }
 

@@ -1,9 +1,7 @@
-package racingcar.domain.winner
+package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import racingcar.domain.WinnerChecker
-import racingcar.domain.Car
 
 class WinnerCheckerTest {
 

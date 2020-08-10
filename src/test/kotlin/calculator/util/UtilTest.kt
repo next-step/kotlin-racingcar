@@ -1,8 +1,8 @@
 package calculator.util
 
+import calculator.calculator.TextCalculator
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import calculator.calculator.TextCalculator
 
 class UtilTest {
     @Test

@@ -3,8 +3,6 @@ package calculator.calculator
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.ValueSource
 
 internal class TextCalculatorTest {
 
@@ -72,7 +70,7 @@ internal class TextCalculatorTest {
                     )
                 )
             )
-        }.isInstanceOf(Calculator.Error.OperatorIsMissing::class.java)
+        }.isInstanceOf(TextCalculator.OperatorIsMissing::class.java)
     }
 
     @Test
@@ -87,7 +85,7 @@ internal class TextCalculatorTest {
                     )
                 )
             )
-        }.isInstanceOf(Calculator.Error.NumberIsMissing::class.java)
+        }.isInstanceOf(TextCalculator.NumberIsMissing::class.java)
     }
 
     @Test
@@ -96,7 +94,7 @@ internal class TextCalculatorTest {
             assertThat(
                 TextCalculator().calculate(listOf())
             )
-        }.isInstanceOf(Calculator.Error.NumberIsMissing::class.java)
+        }.isInstanceOf(TextCalculator.NumberIsMissing::class.java)
     }
 
     @Test
@@ -112,7 +110,7 @@ internal class TextCalculatorTest {
                     )
                 )
             )
-        }.isInstanceOf(Calculator.Error.NumberIsMissing::class.java)
+        }.isInstanceOf(TextCalculator.NumberIsMissing::class.java)
     }
 
     @Test
@@ -128,84 +126,6 @@ internal class TextCalculatorTest {
                     )
                 )
             )
-        }.isInstanceOf(Calculator.Error.NumberIsMissing::class.java)
-    }
-
-    @Test
-    fun `getNumber() 해당 인덱스에 Number가 있을 때`() {
-        val list = listOf<Node>(
-            Number(0.0),
-            Number(1.0),
-            Number(2.0),
-            Number(3.0)
-        )
-        TextCalculator().apply {
-            assertThat(list.getNumber(0)).isEqualTo(Number(0.0))
-            assertThat(list.getNumber(1)).isEqualTo(Number(1.0))
-            assertThat(list.getNumber(2)).isEqualTo(Number(2.0))
-            assertThat(list.getNumber(3)).isEqualTo(Number(3.0))
-        }
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = [1, 2, 3, 4, 5])
-    fun `getNumber() 해당 인덱스가 list의 범위안에 없을 때 NumberIsMissing`(number: Int) {
-        val empty = listOf<Node>()
-        val list = listOf<Node>(Number(1.0))
-        assertThatThrownBy {
-            TextCalculator().apply {
-                assertThat(empty.getNumber(number))
-            }
-        }.isInstanceOf(Calculator.Error.NumberIsMissing::class.java)
-    }
-
-    @Test
-    fun `getNumber() 해당 인덱스에 Operator가 들어있을 때 NumberIsMissing`() {
-        val list = listOf<Node>(
-            Operator.PLUS
-        )
-        assertThatThrownBy {
-            TextCalculator().apply {
-                assertThat(list.getNumber(0))
-            }
-        }.isInstanceOf(Calculator.Error.NumberIsMissing::class.java)
-    }
-
-    @Test
-    fun `getOperator() 해당 인덱스에 Operator가 있을 때`() {
-        val list = listOf<Node>(
-            Operator.PLUS,
-            Operator.MINUS,
-            Operator.MULTIPLY,
-            Operator.DIVIDE
-        )
-        TextCalculator().apply {
-            assertThat(list.getOperator(0)).isEqualTo(Operator.PLUS)
-            assertThat(list.getOperator(1)).isEqualTo(Operator.MINUS)
-            assertThat(list.getOperator(2)).isEqualTo(Operator.MULTIPLY)
-            assertThat(list.getOperator(3)).isEqualTo(Operator.DIVIDE)
-        }
-    }
-
-    @Test
-    fun `getOperator() 해당 인덱스가 list의 범위안에 없을 때 OperatorIsMissing`() {
-        val empty = listOf<Node>()
-        assertThatThrownBy {
-            TextCalculator().apply {
-                assertThat(empty.getOperator(0))
-            }
-        }.isInstanceOf(Calculator.Error.OperatorIsMissing::class.java)
-    }
-
-    @Test
-    fun `getOperator() 해당 인덱스에 Number가 들어있을 때 OperatorIsMissing`() {
-        val list = listOf<Node>(
-            Number(0.0)
-        )
-        assertThatThrownBy {
-            TextCalculator().apply {
-                assertThat(list.getOperator(0))
-            }
-        }.isInstanceOf(Calculator.Error.OperatorIsMissing::class.java)
+        }.isInstanceOf(TextCalculator.NumberIsMissing::class.java)
     }
 }

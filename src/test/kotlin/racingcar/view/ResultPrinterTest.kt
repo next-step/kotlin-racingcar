@@ -1,9 +1,8 @@
-package racingcar.domain.printer
+package racingcar.view
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import racingcar.domain.Car
-import racingcar.domain.ResultPrinter
 import racingcar.domain.RacingResult
 
 internal class ResultPrinterTest {
