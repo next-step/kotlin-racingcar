@@ -1,10 +1,7 @@
 package racingcar.view
 
-import racingcar.domain.CAR_NAME_FORMAT
 import racingcar.domain.Car
-import racingcar.domain.GAME_RESULT
 import racingcar.domain.RacingResult
-import racingcar.domain.UNDER_BAR
 
 class ResultPrinter {
     fun resultToString(results: List<RacingResult>): String {

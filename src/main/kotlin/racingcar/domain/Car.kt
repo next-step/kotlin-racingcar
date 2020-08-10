@@ -17,7 +17,7 @@ data class Car(val name: String, val distance: Int = 0) {
         }
     }
 
-    fun isIn(distance: Int?): Boolean {
+    fun isIn(distance: Int): Boolean {
         return this.distance == distance
     }
 

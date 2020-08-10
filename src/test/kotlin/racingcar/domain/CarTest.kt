@@ -25,7 +25,7 @@ class CarTest {
     @ValueSource(strings = ["000000", "111111", "asdasdasd"])
     fun `자동차 이름이 5글자 이상이면 Exception`(name: String) {
         assertThatThrownBy {
-            Car("$name")
+            Car(name)
         }.isInstanceOf(Car.NameLengthOverflowException::class.java)
     }
 }

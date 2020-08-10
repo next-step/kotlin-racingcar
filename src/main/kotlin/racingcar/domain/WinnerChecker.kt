@@ -6,7 +6,7 @@ class WinnerChecker {
         return cars.filter { it.isIn(longest) }
     }
 
-    private fun List<Car>.longestDistance(): Int? {
-        return maxBy { it.distance }?.distance
+    private fun List<Car>.longestDistance(): Int {
+        return maxBy { it.distance }?.distance ?: 0
     }
 }

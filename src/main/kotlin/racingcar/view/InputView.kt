@@ -1,11 +1,6 @@
 package racingcar.view
 
-import racingcar.domain.CAR_NUMBER_ERROR
 import racingcar.domain.Car
-import racingcar.domain.ERROR_CAR_NAME_OVERFLOW
-import racingcar.domain.HOW_MANY_CAR
-import racingcar.domain.HOW_MANY_TURN
-import racingcar.domain.TURN_NUMBER_ERROR
 
 class InputView {
     fun askHowManyCars(): List<Car> {
