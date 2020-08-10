@@ -12,7 +12,15 @@ object InputView {
 
     fun inputCarNames(): String {
         println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
-        return readLine().orEmpty()
+        val carNames = readLine()!!
+        validateNullOrEmpty(carNames)
+        return carNames
+    }
+
+    private fun validateNullOrEmpty(value: String) {
+        if (value.isEmpty()) {
+            throw IllegalArgumentException("빈 값이나 null은 입력할 수 없습니다.")
+        }
     }
 
     private fun validateInteger(number: String) {
