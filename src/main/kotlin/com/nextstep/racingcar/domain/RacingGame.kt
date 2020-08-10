@@ -1,11 +1,10 @@
 package com.nextstep.racingcar.domain
 
 import com.nextstep.racingcar.util.isNatural
-import com.nextstep.racingcar.view.OutputView
 
 class RacingGame(carName: String, round: Int?) {
-    private val cars: Cars
-    private val round: Int
+    val cars: Cars
+    val round: Int
 
     init {
         val carNames = carName.split(",")
@@ -23,17 +22,12 @@ class RacingGame(carName: String, round: Int?) {
         }
     }
 
-    fun runGame() {
-        for (i in 1..round) {
-            cars.moveCars()
-            OutputView.showStatus(cars)
-        }
+    fun runRound() {
+        cars.moveCars()
     }
 
-    fun findWinners() {
-        val winners = cars.findWinner()
-
-        OutputView.showWinner(winners)
+    fun findWinners(): Cars {
+        return cars.findWinner()
     }
 
     companion object {
