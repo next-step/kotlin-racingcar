@@ -3,13 +3,6 @@ package racingCar
 object InputView {
     private val NUMBER_REGEX = Regex("\\d+")
 
-    fun inputAmountOfPlayer(): Int {
-        println("자동차 대수는 몇 대인가요?")
-        val number = readLine()!!
-        validateInteger(number)
-        return number.toInt()
-    }
-
     fun inputAmountOfRound(): Int {
         println("시도할 횟수는 몇 회인가요?")
         val number = readLine()!!
