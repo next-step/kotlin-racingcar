@@ -3,41 +3,43 @@ package calculator.calculator
 /**
  * 노드는 피연산자 Number와 연산자 Operator로 구성 되어 있다.
  */
-sealed class Node {
-    /**
-     * Number는 피연산자로 값을 가지고 있다.
-     */
-    data class Number(val value: Double) : Node()
+interface Node
 
-    /**
-     * Operator는 연산자로 피연산자의 값을 가지고 계산을 수행한다.
-     */
-    sealed class Operator : Node() {
-        object Plus : Operator() {
-            override fun operate(left: Number, right: Number) = Number(left.value + right.value)
-        }
+/**
+ * Number는 피연산자로 값을 가지고 있다.
+ */
+data class Number(val value: Double) : Node {
+    constructor(string: String) : this(string.toDouble())
+}
 
-        object Minus : Operator() {
-            override fun operate(left: Number, right: Number) = Number(left.value - right.value)
-        }
+private const val PLUS_CHAR = "+"
+private const val MINUS_CHAR = "-"
+private const val MULTIPLY_CHAR = "*"
+private const val DIVIDE_CHAR = "/"
 
-        object Multiply : Operator() {
-            override fun operate(left: Number, right: Number) = Number(left.value * right.value)
-        }
-
-        object Divide : Operator() {
-            /**
-             * 0으로 나눌 때 발생하는 Exception
-             */
-            class DivideByZeroException : Exception("Cannot divide by 0.")
-
-            override fun operate(left: Number, right: Number) = if (right.value != 0.0) {
+enum class Operator(private val char: String, private val op: (Number, Number) -> Number) : Node {
+    PLUS(PLUS_CHAR, { left, right -> Number(left.value + right.value) }),
+    MINUS(MINUS_CHAR, { left, right -> Number(left.value - right.value) }),
+    MULTIPLY(MULTIPLY_CHAR, { left, right -> Number(left.value * right.value) }),
+    DIVIDE(
+        DIVIDE_CHAR,
+        { left, right ->
+            if (right.value != 0.0) {
                 Number(left.value / right.value)
             } else {
                 throw DivideByZeroException()
             }
         }
+    );
 
-        abstract fun operate(left: Number, right: Number): Number
+    fun operate(left: Number, right: Number) = op(left, right)
+
+    class DivideByZeroException : Exception("Cannot divide by 0.")
+    class InvalidCharacter(char: String) : Error("Invalid character $char has found in text.")
+
+    companion object {
+        fun of(string: String): Operator {
+            return values().find { it.char == string } ?: throw InvalidCharacter(string)
+        }
     }
 }

@@ -1,18 +1,16 @@
 package calculator
 
-import calculator.calculator.Calculator
-import calculator.calculator.CalculatorImpl
+import calculator.calculator.TextCalculator
 import calculator.parser.NodeParser
-import calculator.parser.SimpleNodeParser
 
 fun main() {
-    val parser: NodeParser = SimpleNodeParser()
-    val calculator: Calculator = CalculatorImpl()
+    val parser = NodeParser()
+    val calculator = TextCalculator()
 
     CalculatorFacade(parser, calculator).execute()
 }
 
-class CalculatorFacade(private val parser: NodeParser, private val calculator: Calculator) {
+class CalculatorFacade(private val parser: NodeParser, private val calculator: TextCalculator) {
 
     fun execute() {
         val text = readLine()

@@ -1,0 +1,9 @@
+package racingcar.domain
+
+interface CarMovementRule {
+    val rule: () -> Boolean
+
+    fun moveCarByRule(car: Car): Car {
+        return car.moveIf(rule)
+    }
+}
