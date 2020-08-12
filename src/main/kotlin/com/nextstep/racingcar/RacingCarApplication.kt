@@ -8,35 +8,41 @@ object RacingCarApplication {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val racingGame = generateRacingGame()
-        OutputView.showResult()
+        val carNames = getCarNames()
+        val round = getRound()
+        try {
+            val racingGame = RacingGame.createGame(carNames, round)
+            OutputView.showResult()
 
-        for (i in 1..racingGame.round) {
-            racingGame.runRound()
-            OutputView.showStatus(racingGame.cars)
-        }
+            repeat(racingGame.round) {
+                racingGame.runRound()
+                OutputView.showStatus(racingGame.cars)
+            }
 
-        val winners = racingGame.findWinners()
-        OutputView.showWinner(winners)
-    }
-
-    private tailrec fun generateRacingGame(): RacingGame {
-        val carNames = InputView.inputCarNames()
-        val round = InputView.inputRound().toIntOrNull()
-        return if (carNames.isBlank() || RacingGame.isInvalidRound(round)) {
-            OutputView.inputError("입력값이 잘못되었습니다. 다시한번 확인해주세요.")
-            generateRacingGame()
-        } else {
-            createGame(carNames, round)
-        }
-    }
-
-    private fun createGame(carNames: String, round: Int?): RacingGame {
-        return try {
-            RacingGame(carNames, round)
+            val winners = racingGame.findWinners()
+            OutputView.showWinner(winners)
         } catch (e: Exception) {
             OutputView.inputError(e.message)
-            generateRacingGame()
+        }
+    }
+
+    private tailrec fun getCarNames(): String {
+        val carNames = InputView.inputCarNames()
+        return if (carNames.isBlank()) {
+            OutputView.inputError("자동차 이름은 공백일 수 없습니다.")
+            getCarNames()
+        } else {
+            carNames
+        }
+    }
+
+    private tailrec fun getRound(): Int {
+        val round = InputView.inputRound().toIntOrNull()
+        return if (RacingGame.isInvalidRound(round)) {
+            OutputView.inputError("라운드는 0보다 큰 숫자여야합니다.")
+            getRound()
+        } else {
+            round ?: throw IllegalArgumentException("round가 잘못됨.")
         }
     }
 }
