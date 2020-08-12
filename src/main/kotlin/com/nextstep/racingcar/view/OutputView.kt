@@ -20,4 +20,8 @@ object OutputView {
 
         println("${winnerNames.joinToString(", ")}가 최종 우승했습니다.")
     }
+
+    fun inputError(message: String?) {
+        println("입력 값이 잘못되었습니다 $message")
+    }
 }

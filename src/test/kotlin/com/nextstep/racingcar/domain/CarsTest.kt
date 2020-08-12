@@ -19,4 +19,13 @@ internal class CarsTest {
         assertThat(winners.cars).contains(Car("done", 3))
         assertThat(winners.cars).contains(Car("bedi", 3))
     }
+
+    @Test
+    internal fun `자동차가 없다면 우승자가 없다`() {
+        val cars = Cars(listOf<Car>())
+
+        val winners = cars.findWinner()
+
+        assertThat(winners.cars).isEmpty()
+    }
 }

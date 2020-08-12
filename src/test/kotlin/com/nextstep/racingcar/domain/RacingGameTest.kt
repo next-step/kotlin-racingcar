@@ -10,7 +10,7 @@ internal class RacingGameTest {
         assertThrows(
             IllegalArgumentException::class.java
         ) {
-            RacingGame("abc", 0)
+            RacingGame.createGame("abc", 0)
         }
     }
 
@@ -31,7 +31,7 @@ internal class RacingGameTest {
         assertThrows(
             IllegalArgumentException::class.java
         ) {
-            RacingGame("", 1)
+            RacingGame.createGame("", 1)
         }
     }
 }

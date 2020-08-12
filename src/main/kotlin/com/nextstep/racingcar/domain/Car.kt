@@ -1,6 +1,6 @@
 package com.nextstep.racingcar.domain
 
-class Car(private val name: String) {
+data class Car(private val name: String) {
     var position: Int = 0
         private set
 
@@ -14,7 +14,7 @@ class Car(private val name: String) {
 
     private fun validation(name: String) {
         if (name.isEmpty() || name.length > MAX_NAME_LENGTH) {
-            throw IllegalArgumentException("이름은 1자 이상 5지 이하여야합니다.")
+            throw IllegalArgumentException("이름은 1자 이상 5자 이하여야합니다.")
         }
     }
 
@@ -32,24 +32,6 @@ class Car(private val name: String) {
 
     fun isMatchedPosition(maxPosition: Int): Boolean {
         return position == maxPosition
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Car
-
-        if (name != other.name) return false
-        if (position != other.position) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = name.hashCode()
-        result = 31 * result + position
-        return result
     }
 
     companion object {

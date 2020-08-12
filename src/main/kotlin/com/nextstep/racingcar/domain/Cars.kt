@@ -11,12 +11,9 @@ class Cars(val cars: List<Car>) {
 
     fun findWinner(): Cars {
         val maxPosition = cars.map { it.position }.max()
+            ?: return Cars(emptyList())
 
-        if (maxPosition != null) {
-            return Cars(cars.filter { it.isMatchedPosition(maxPosition) })
-        }
-
-        return Cars(listOf())
+        return Cars(cars.filter { it.isMatchedPosition(maxPosition) })
     }
 
     companion object {
