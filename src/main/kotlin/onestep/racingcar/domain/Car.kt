@@ -5,7 +5,7 @@ import onestep.racingcar.domain.engine.RandomCarEngine
 
 data class Car(
     val name: String = "",
-    private var _position: Int = 0,
+    private var _position: Int = DEFAULT_POSITION,
     private val engine: CarEngine = RandomCarEngine
 ) {
     val position: Int
@@ -16,6 +16,7 @@ data class Car(
     }
 
     companion object {
+        private const val DEFAULT_POSITION = 0
         fun newInstance(name: String): Car {
             require(name.length < 5) { "CarName's Length can not more than 5" }
             return Car(name = name)

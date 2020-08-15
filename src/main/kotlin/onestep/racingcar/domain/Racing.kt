@@ -1,10 +1,10 @@
 package onestep.racingcar.domain
 
 class Racing(
-    private val carNames: List<String>,
-    private val tryCount: Int
+    carNames: List<String>,
+    private val tryCount: Int,
+    private val cars: List<Car> = carNames.map { Car.newInstance(it) }
 ) {
-    private val cars: List<Car> by lazy { readyCars() }
 
     fun race(show: (List<Car>) -> Unit): List<Car> {
         repeat(tryCount) {
@@ -18,6 +18,4 @@ class Racing(
         val sortedList = cars.sortedByDescending { it.position }
         return sortedList.filter { it.position == sortedList.first().position }
     }
-
-    private fun readyCars() = carNames.map { Car.newInstance(it) }
 }
