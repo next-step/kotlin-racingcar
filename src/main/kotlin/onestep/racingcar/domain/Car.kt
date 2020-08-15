@@ -15,8 +15,13 @@ data class Car(
         _position += engine.run()
     }
 
+    override fun toString() = "$name :${makePositionString()}"
+
+    private fun makePositionString() = (1..position).joinToString("") { CAR_POSITION }
+
     companion object {
         private const val DEFAULT_POSITION = 0
+        private const val CAR_POSITION = "-"
         fun newInstance(name: String): Car {
             require(name.length < 5) { "CarName's Length can not more than 5" }
             return Car(name = name)

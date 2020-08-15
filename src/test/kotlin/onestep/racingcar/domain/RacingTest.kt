@@ -1,6 +1,6 @@
 package onestep.racingcar.domain
 
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class RacingTest {
@@ -11,11 +11,9 @@ class RacingTest {
         val racing = Racing(listOf("CAR1", "CAR2", "CAR3"), 3)
         // when : race
         // then : CarNameCount = racingCar size ,And Winner is Not Empty
-        racing.race {
-            Assertions.assertThat(it.size).isEqualTo(3)
-        }.run {
-            Assertions.assertThat(this).isNotEmpty
-        }
+        val race = racing.race {}
+        assertThat(race.toCarNameList().size).isEqualTo(3)
+        assertThat(race.toCarNameList()).isNotEmpty
     }
 
     @Test
@@ -24,9 +22,8 @@ class RacingTest {
         val racing = Racing(listOf("CAR1", "CAR2", "CAR3"), 3)
         // when
         // then
-        racing.race {
-            Assertions.assertThat(it).isNotEmpty
-        }
+        val race = racing.race {}
+        assertThat(race.toCarNameList()).isNotEmpty
     }
 
     @Test
@@ -35,9 +32,8 @@ class RacingTest {
         val racing = Racing(listOf(), 3)
         // when
         // then
-        racing.race {
-            Assertions.assertThat(it).isEmpty()
-        }
+        val race = racing.race {}
+        assertThat(race.toCarNameList()).isEmpty()
     }
 
     @Test
@@ -46,9 +42,8 @@ class RacingTest {
         val racing = Racing(listOf(), 8)
         // when
         // then : Winner is Empty
-        racing.race { }.run {
-            Assertions.assertThat(this.size).isEqualTo(0)
-        }
+        val race = racing.race {}
+        assertThat(race.toCarNameList().size).isEqualTo(0)
     }
 
     @Test
@@ -57,9 +52,8 @@ class RacingTest {
         val racing = Racing(listOf("CAR1"), 8)
         // when
         // then : Winner is only One
-        racing.race { }.run {
-            Assertions.assertThat(this.size).isEqualTo(1)
-        }
+        val race = racing.race {}
+        assertThat(race.toCarNameList().size).isEqualTo(1)
     }
 
     @Test
@@ -68,8 +62,7 @@ class RacingTest {
         val racing = Racing(listOf("CAR1", "CAR2", "CAR3"), 0)
         // when
         // then : Winner is 3 Cars
-        racing.race { }.run {
-            Assertions.assertThat(this.size).isEqualTo(3)
-        }
+        val race = racing.race {}
+        assertThat(race.toCarNameList().size).isEqualTo(3)
     }
 }

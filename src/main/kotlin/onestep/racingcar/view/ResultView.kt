@@ -1,25 +1,20 @@
 package onestep.racingcar.view
 
-import onestep.racingcar.domain.Car
+import onestep.racingcar.domain.Cars
 
 class ResultView {
-    fun showResult(list: List<Car>) {
+    fun showResult(cars: Cars) {
         println(INPUT_NUMBER_OF_CAR)
-        list.forEach { car ->
-            println("${car.name} :${makePositionString(car.position)}")
-        }
+        println(cars)
     }
 
-    fun showWinner(list: List<Car>) {
+    fun showWinner(cars: Cars) {
         println(WINNER_OF_RACING)
-        println(list.joinToString { it.name })
+        println(cars.toCarNameList().joinToString(","))
     }
-
-    private fun makePositionString(position: Int) = (1..position).joinToString("") { CAR_POSITION }
 
     companion object {
         private const val INPUT_NUMBER_OF_CAR = "##레이싱##"
-        private const val CAR_POSITION = "-"
         private const val WINNER_OF_RACING = "--WinneR--"
     }
 }

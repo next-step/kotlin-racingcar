@@ -1,8 +1,11 @@
 package onestep.racingcar.domain
 
 import onestep.racingcar.domain.engine.CarEngine
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.catchThrowable
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class CarTest {
 
@@ -10,14 +13,15 @@ class CarTest {
         override fun run() = input()
     }
 
-    @Test
-    fun `Should position 3, When input 3 EnginePower And Just 1 Try`() {
+    @ParameterizedTest
+    @ValueSource(ints = [5, 4, 3, 2, 1])
+    fun `Should position inputCount, When input inputCount EnginePower `(input: Int) {
         // given : Car's Engine Power is 3
-        val car = Car(engine = FakeCarEngine { 3 })
+        val car = Car(engine = FakeCarEngine { input })
         // when : car try run 1 time
         car.run()
         // then : car.position is 3
-        Assertions.assertThat(car.position).isEqualTo(3)
+        assertThat(car.position).isEqualTo(input)
     }
 
     @Test
@@ -27,7 +31,7 @@ class CarTest {
         // when : car try run 1 time
         carEngine0.run()
         // then : car.position is 0
-        Assertions.assertThat(carEngine0.position).isEqualTo(0)
+        assertThat(carEngine0.position).isEqualTo(0)
     }
 
     @Test
@@ -36,7 +40,7 @@ class CarTest {
         val carName = "CARCARCARCAR"
         // when : createCar
         // then : Throws Exception("CarName's Length can not more than 5")
-        Assertions.catchThrowable {
+        catchThrowable {
             Car.newInstance(carName)
         }
     }
