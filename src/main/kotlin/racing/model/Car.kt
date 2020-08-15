@@ -1,6 +1,6 @@
 package racing.model
 
-data class Car(val name: String, private val raceHistory: MutableList<Int>) {
+data class Car(val name: String, val raceHistory: MutableList<Int> = mutableListOf()) {
     fun saveResultOfTurn(resultOfTurn: Int) {
         raceHistory.add(resultOfTurn)
     }

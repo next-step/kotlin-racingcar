@@ -9,7 +9,7 @@ class Race(private val numberOfTrials: Int, cars: List<Car>) {
 
     constructor(numberOfTrials: Int, carNames: String) : this(
         numberOfTrials,
-        carNames.split(CAR_NAME_DELIMITER).map { Car(it, mutableListOf()) }
+        carNames.split(CAR_NAME_DELIMITER).map { Car(it) }
     )
 
     private fun List<Car>.deepCopy(): List<Car> = map { it.copy() }
