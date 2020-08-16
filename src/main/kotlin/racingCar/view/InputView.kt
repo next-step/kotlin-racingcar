@@ -1,4 +1,4 @@
-package racingCar
+package racingCar.view
 
 object InputView {
     private val NUMBER_REGEX = Regex("\\d+")

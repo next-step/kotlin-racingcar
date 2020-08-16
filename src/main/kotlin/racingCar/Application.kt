@@ -1,5 +1,10 @@
 package racingCar
 
+import racingCar.controller.RacingGame
+import racingCar.model.Cars
+import racingCar.view.InputView
+import racingCar.view.OutputView
+
 fun main() {
     val carName = InputView.inputCarNames().split(",")
     val amountOfRound = InputView.inputAmountOfRound()

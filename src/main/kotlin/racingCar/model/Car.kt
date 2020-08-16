@@ -1,4 +1,4 @@
-package racingCar
+package racingCar.model
 
 data class Car(private val name: String) {
     var distance = DEFAULT_DISTANCE

@@ -1,4 +1,4 @@
-package racingCar
+package racingCar.view
 
 class NotSupportedTypeException : RuntimeException {
     constructor(message: String) : super(message)
