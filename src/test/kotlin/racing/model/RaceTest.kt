@@ -11,8 +11,10 @@ class RaceTest {
         val strategy = UnconditionalMoveStrategy()
         race.run(strategy)
 
+        race.cars[0].saveResultOfTurn(4)
+
         assertThat(race.cars).allSatisfy { car: Car ->
-            assertThat(car.takeRaceHistory(5)).isEqualTo(5)
+            assertThat(car.takeRaceHistory(6)).isEqualTo(5)
         }
     }
 }

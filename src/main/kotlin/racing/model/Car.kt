@@ -1,13 +1,19 @@
 package racing.model
 
-data class Car(val name: String, val raceHistory: MutableList<Int> = mutableListOf()) {
+class Car(val name: String, raceHistory: List<Int> = emptyList()) {
+    private val _raceHistory: MutableList<Int> = raceHistory.toMutableList()
+    val raceHistory: List<Int>
+        get() {
+            return _raceHistory.toMutableList()
+        }
+
     fun saveResultOfTurn(resultOfTurn: Int) {
-        raceHistory.add(resultOfTurn)
+        _raceHistory.add(resultOfTurn)
     }
 
     fun takeRaceHistory(numberOfTrials: Int): Int {
-        return raceHistory.take(numberOfTrials).sum()
+        return _raceHistory.take(numberOfTrials).sum()
     }
 
-    fun isIn(position: Int) = this.raceHistory.sum() == position
+    fun isIn(position: Int) = this._raceHistory.sum() == position
 }

@@ -12,7 +12,7 @@ class Race(private val numberOfTrials: Int, cars: List<Car>) {
         carNames.split(CAR_NAME_DELIMITER).map { Car(it) }
     )
 
-    private fun List<Car>.deepCopy(): List<Car> = map { it.copy() }
+    private fun List<Car>.deepCopy(): List<Car> = map { Car(it.name, it.raceHistory) }
 
     fun run(moveStrategy: MoveStrategy) {
         repeat(numberOfTrials) {
@@ -21,7 +21,7 @@ class Race(private val numberOfTrials: Int, cars: List<Car>) {
     }
 
     private fun makeTurn(strategy: MoveStrategy) {
-        for (car in cars) {
+        for (car in _cars) {
             car.saveResultOfTurn(strategy.getResultOfTurn())
         }
     }
