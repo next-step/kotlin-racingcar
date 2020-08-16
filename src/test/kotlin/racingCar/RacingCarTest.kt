@@ -1,30 +1,25 @@
 package racingCar
 
 import org.assertj.core.api.Assertions
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import racingCar.domain.Car
 
 class RacingCarTest {
 
     @Test
-    fun `check car name over 5 length`() {
+    fun `자동차 이름은 5글자를 초과할 수 없다`() {
         Assertions.assertThatIllegalArgumentException().isThrownBy {
             Car("chanheeee")
         }
     }
 
     @Test
-    fun `check car running state`() {
+    fun `자동차는 각 이동마다 전진 혹은 멈출 수 있다`() {
         val car = Car("찬희")
         car.changeStateRacingCar(8)
-        assertTrue(car.distance == 1)
-    }
-
-    @Test
-    fun `check car stop state`() {
-        val car = Car("찬희")
         car.changeStateRacingCar(3)
-        assertTrue(car.distance == 0)
+        car.changeStateRacingCar(5)
+        assertThat(car.distance).isEqualTo(2)
     }
 }

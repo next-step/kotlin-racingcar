@@ -10,8 +10,9 @@ fun main() {
     val trialCount = InputView.getTrialCount()
 
     // 경주
-    val racing = RacingCars(carParticipant)
-    val resultRacing = racing.run { racing.startRacing(trialCount) }
+    val racing = RacingCars()
+    racing.generateCar(carParticipant)
+    val resultRacing = racing.startRacing(trialCount)
 
     val returnWinner = racing.getRacingWinner(resultRacing)
     OutputView.getCarRacingWinners(returnWinner)
