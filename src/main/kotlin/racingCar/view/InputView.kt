@@ -20,7 +20,7 @@ object InputView {
         return names
     }
 
-    fun splitNames(names: String): List<String> {
+    private fun splitNames(names: String): List<String> {
         return names.split(PARTICIPANT_NAME_DELIMITER)
             .filter { !it.isBlank() }
             .map { it }

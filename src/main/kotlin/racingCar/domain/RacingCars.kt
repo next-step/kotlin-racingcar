@@ -1,8 +1,10 @@
 package racingCar.domain
 
+import racingCar.strategy.MoveStrategy.Companion.getMoveStrategy
 import racingCar.view.OutputView
 
 class RacingCars(private val carNames: List<String>) {
+    var participant = listOf<Car>()
 
     init {
         generateCar(carNames)
@@ -22,11 +24,10 @@ class RacingCars(private val carNames: List<String>) {
     }
 
     private fun tryMove() {
-        var randomNum: Int
-
         participant.forEach {
-            randomNum = RandomGenerator.getRandomNumber()
-            it.changeStateRacingCar(randomNum)
+            val resultStrategy = getMoveStrategy()
+            val randomMoveValue = resultStrategy.moveCar()
+            it.changeStateRacingCar(randomMoveValue)
         }
         OutputView.getCarRacingResult(participant)
     }
@@ -34,9 +35,5 @@ class RacingCars(private val carNames: List<String>) {
     fun getRacingWinner(racingCars: List<Car>): String {
         val maxDistance = racingCars.map { it.distance }.max()
         return racingCars.filter { it.distance == maxDistance }.joinToString { it.name }
-    }
-
-    companion object {
-        var participant = listOf<Car>()
     }
 }
