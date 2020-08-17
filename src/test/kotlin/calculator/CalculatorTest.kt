@@ -1,4 +1,4 @@
-package step2
+package calculator
 
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.assertj.core.api.AssertionsForInterfaceTypes.assertThat

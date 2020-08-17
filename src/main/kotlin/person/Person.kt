@@ -1,4 +1,4 @@
-package step1
+package person
 
 data class Person(
     val name: String,

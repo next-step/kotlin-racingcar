@@ -1,4 +1,4 @@
-package step1
+package person
 
 import org.assertj.core.api.AssertionsForInterfaceTypes.assertThat
 import org.junit.jupiter.api.Test
