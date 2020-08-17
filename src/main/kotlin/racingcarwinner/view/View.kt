@@ -15,19 +15,14 @@ object InputView {
     }
 }
 
-class OutputView() {
+object OutputView {
     fun printcircuit(cars: MutableList<Car>) {
-        cars.forEach({ println("${it.name} :${result.repeat(it.position)}") })
-        println(distinct)
+        cars.forEach({ println("${it.name} :${"-".repeat(it.position)}") })
+        println(" ")
     }
 
     fun printwinner(winners: List<Car>) {
         val winnerslist = winners.map { it.name }.toString().replace("[", "").replace("]", "")
         println("${winnerslist}가 최종 우승 했습니다.")
-    }
-
-    companion object {
-        private val result = "-"
-        private val distinct = " "
     }
 }
