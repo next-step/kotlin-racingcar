@@ -1,4 +1,4 @@
-package racingCar
+package racingCar.model
 
 import kotlin.random.Random
 
@@ -15,7 +15,10 @@ class Cars(carNames: List<String>) {
     }
 
     private fun getRandomNumbers(): Int {
-        return Random.nextInt(MIN_NUMBER, MAX_NUMBER)
+        return Random.nextInt(
+            MIN_NUMBER,
+            MAX_NUMBER
+        )
     }
 
     companion object {
