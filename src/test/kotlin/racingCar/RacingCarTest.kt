@@ -17,9 +17,9 @@ class RacingCarTest {
     @Test
     fun `자동차는 각 이동마다 전진 혹은 멈출 수 있다`() {
         val car = Car("찬희")
-        car.changeStateRacingCar(8)
-        car.changeStateRacingCar(3)
-        car.changeStateRacingCar(5)
+        car.changeStateRacingCar(true)
+        car.changeStateRacingCar(false)
+        car.changeStateRacingCar(true)
         assertThat(car.distance).isEqualTo(2)
     }
 }

@@ -1,7 +1,7 @@
 package racingCar.strategy
 
 interface MoveStrategy {
-    fun moveCar(): Int
+    fun isMove(): Boolean
 
     companion object {
         fun getMoveStrategy(): MoveStrategy {
