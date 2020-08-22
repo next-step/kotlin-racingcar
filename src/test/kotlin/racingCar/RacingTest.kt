@@ -1,24 +1,32 @@
 package racingCar
 
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
-import racingCar.domain.RacingCars
-import racingCar.domain.RacingCars.Companion.participant
+import racingCar.domain.Car
+import racingCar.domain.Winner
 
 class RacingTest {
 
-    private var racingCarNames = mutableListOf("찬희", "코틀린")
-    private var racingCarResult = RacingCars(racingCarNames)
-
     @Test
-    fun `check input randomNumber over 4`() {
-        participant[0].changeStateRacingCar(8)
-        assertTrue(participant[0].distance == 1)
+    fun `우승자가 없을 경우`() {
+        val participants = listOf<Car>(Car("A", 0))
+        val winner = Winner.getRacingWinner(participants)
+
+        Assertions.assertThat(winner).isEqualTo("")
     }
 
     @Test
-    fun `check input randomNumber below 4`() {
-        participant[0].changeStateRacingCar(3)
-        assertTrue(participant[0].distance == 0)
+    fun `우승자가 1명인 경우`() {
+        val participants = listOf<Car>(Car("A", 3), Car("B", 1))
+        val winner = Winner.getRacingWinner(participants)
+
+        Assertions.assertThat(winner).isEqualTo("A")
+    }
+
+    @Test
+    fun `우승자가 2명이상인 경우`() {
+        val participants = listOf<Car>(Car("A", 5), Car("B", 5))
+        val winner = Winner.getRacingWinner(participants)
+        Assertions.assertThat(winner).isEqualTo("A, B")
     }
 }

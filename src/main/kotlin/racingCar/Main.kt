@@ -1,16 +1,20 @@
 package racingCar
 
 import racingCar.domain.RacingCars
+import racingCar.domain.Winner
 import racingCar.view.InputView
 import racingCar.view.OutputView
 
 fun main() {
-    val carParticipant = InputView.getCarName()
+    // 자동차 경주 참여자 및 경주횟수 입력
+    val carParticipants = InputView.getCarName()
     val trialCount = InputView.getTrialCount()
 
-    val racing = RacingCars(carParticipant)
-    val resultRacing = racing.run { racing.startRacing(trialCount) }
+    // 경주
+    val racing = RacingCars(carParticipants)
+    val resultRacing = racing.startRacing(trialCount)
 
-    val returnWinner = racing.getRacingWinner(resultRacing)
+    // 결과
+    val returnWinner = Winner.getRacingWinner(resultRacing)
     OutputView.getCarRacingWinners(returnWinner)
 }
