@@ -40,8 +40,8 @@ class MathTest {
         assertThrows<IllegalArgumentException> { Calculation("1 1").toInt() }
     }
 
-    class Calculation(private val expression: String) : Number() {
-        private val value: Number
+    class Calculation(private val expression: String) : MathNumber() {
+        override val value: Number
             get() {
                 if (expression.isEmpty()) {
                     throw IllegalArgumentException()
@@ -55,6 +55,10 @@ class MathTest {
                     else -> throw IllegalArgumentException()
                 }
             }
+    }
+
+    abstract class MathNumber : Number() {
+        protected abstract val value: Number
 
         override fun toByte() = value.toByte()
 
