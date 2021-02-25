@@ -64,4 +64,12 @@ internal class CalculatorTest {
         assertThatThrownBy { calculate(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
     }
+
+    @Test
+    fun validate_rightNumberIsNotZeroWhenDivide() {
+        val input = "1 / 0"
+
+        assertThatThrownBy { calculate(input) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+    }
 }
