@@ -51,7 +51,7 @@ class MathTest {
                     "+" -> Sum(token[0], token[2])
                     "-" -> Difference(token[0], token[2])
                     "*" -> Product(token[0], token[2])
-                    "/" -> token[0].toInt() / token[2].toInt()
+                    "/" -> Quotient(token[0], token[2])
                     else -> throw IllegalArgumentException()
                 }
             }
@@ -62,6 +62,8 @@ class MathTest {
     class Difference(lhs: String, rhs: String, override val value: Number = lhs.toInt() - rhs.toInt()) : MathNumber()
 
     class Product(lhs: String, rhs: String, override val value: Number = lhs.toInt() * rhs.toInt()) : MathNumber()
+
+    class Quotient(lhs: String, rhs: String, override val value: Number = lhs.toInt() / rhs.toInt()) : MathNumber()
 
     abstract class MathNumber : Number() {
         protected abstract val value: Number
