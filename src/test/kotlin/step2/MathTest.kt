@@ -30,6 +30,11 @@ class MathTest {
         assertThrows<IllegalArgumentException> { Calculation("4 $ 2").toInt() }
     }
 
+    @Test
+    fun `계산식이 없는 경우`() {
+        assertThrows<IllegalArgumentException> { Calculation("").toInt() }
+    }
+
     class Calculation(private val expression: String) : Number() {
         private val value: Number
             get() {
