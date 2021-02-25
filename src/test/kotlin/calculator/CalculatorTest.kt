@@ -21,4 +21,13 @@ internal class CalculatorTest {
 
         assertThat(result).isEqualTo(2)
     }
+
+    @Test
+    fun multiply_simple() {
+        var input = "1 / 3"
+
+        var result = calculate(input)
+
+        assertThat(result).isEqualTo(0)
+    }
 }
