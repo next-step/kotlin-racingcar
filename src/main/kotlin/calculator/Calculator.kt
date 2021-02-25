@@ -14,7 +14,8 @@ fun calculate(input: String): Int {
     val left = elements[0]
     val right = elements[2]
     val operator = elements[1]
-    validateStringNumbers(left, right, operator)
+    validateStringNumbers(left, right)
+    validateOperatorSymbol(operator)
 
     val leftNumber = Integer.parseInt(left)
     val rightNumber = Integer.parseInt(right)
@@ -22,7 +23,20 @@ fun calculate(input: String): Int {
     return operate(leftNumber, rightNumber, operator)
 }
 
-private fun validateStringNumbers(left: String, right: String, operator: String) {
+private fun validateOperatorSymbol(operator: String) {
+    if (!isOperator(operator)) {
+        throw java.lang.IllegalArgumentException()
+    }
+}
+
+private fun isOperator(operator: String): Boolean {
+    return operator == ADD ||
+        operator == SUBTRACT ||
+        operator == DIVIDE ||
+        operator == MULTIPLY
+}
+
+private fun validateStringNumbers(left: String, right: String) {
     if (isNullOrBlank(left) || isNullOrBlank(right)) {
         throw IllegalArgumentException()
     }
