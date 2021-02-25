@@ -6,43 +6,43 @@ import org.junit.jupiter.api.assertAll
 
 class Step1Test {
     @Test
-    fun `named arguments`() {
+    fun `이름 붙인 인자`() {
         val people = listOf(
-            Person("박재성", 29, "제이슨"),
-            Person("박재성", 29, nickname = "제이슨"),
-            Person(name = "박재성", nickname = "제이슨", age = 29)
+            Person("김광수", 29, "킷"),
+            Person("김광수", 29, nickname = "킷"),
+            Person(name = "김광수", nickname = "킷", age = 29)
         )
         assertThat(people).allSatisfy {
-            assertThat(it.name).isEqualTo("박재성")
+            assertThat(it.name).isEqualTo("김광수")
             assertThat(it.age).isEqualTo(29)
-            assertThat(it.nickname).isEqualTo("제이슨")
+            assertThat(it.nickname).isEqualTo("킷")
         }
     }
 
     @Test
-    fun `nullable types`() {
-        val person = Person("박재성", null, null)
+    fun `널 타입`() {
+        val person = Person("김광수", null, null)
         assertAll(
-            { assertThat(person.name).isEqualTo("박재성") },
+            { assertThat(person.name).isEqualTo("김광수") },
             { assertThat(person.age).isNull() },
             { assertThat(person.nickname).isNull() }
         )
     }
 
     @Test
-    fun `default arguments`() {
-        val person = Person("박재성")
+    fun `기본인자`() {
+        val person = Person("김광수")
         assertAll(
-            { assertThat(person.name).isEqualTo("박재성") },
+            { assertThat(person.name).isEqualTo("김광수") },
             { assertThat(person.age).isNull() },
             { assertThat(person.nickname).isNull() }
         )
     }
 
     @Test
-    fun `data classes`() {
-        val person1 = Person("박재성", 29, "제이슨")
-        val person2 = Person("박재성", 29, "제이슨")
+    fun `데이터 클래스`() {
+        val person1 = Person("김광수", 29, "킷")
+        val person2 = Person("김광수", 29, "킷")
         assertThat(person1).isEqualTo(person2)
     }
 }
