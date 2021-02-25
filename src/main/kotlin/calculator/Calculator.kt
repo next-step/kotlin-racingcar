@@ -50,7 +50,7 @@ private fun validateStringNumbers(left: String, right: String) {
 }
 
 private fun isNullOrBlank(stringNumber: String): Boolean {
-    return stringNumber.equals(null) || " ".equals(stringNumber)
+    return stringNumber.equals(null) || " " == stringNumber
 }
 
 private fun operate(leftNumber: Int, rightNumber: Int, operator: String): Int {
