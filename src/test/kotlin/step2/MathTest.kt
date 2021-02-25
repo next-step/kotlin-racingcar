@@ -68,7 +68,15 @@ class MathTest {
 
     class Product(lhs: String, rhs: String, override val value: Number = lhs.toInt() * rhs.toInt()) : MathNumber()
 
-    class Quotient(lhs: String, rhs: String, override val value: Number = lhs.toInt() / rhs.toInt()) : MathNumber()
+    class Quotient(lhs: String, rhs: String) : MathNumber() {
+        override val value: Number
+        init {
+            if (rhs.toInt() == 0) {
+                throw IllegalArgumentException()
+            }
+            this.value = lhs.toInt() / rhs.toInt()
+        }
+    }
 
     abstract class MathNumber : Number() {
         protected abstract val value: Number
