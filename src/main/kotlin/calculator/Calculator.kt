@@ -9,7 +9,7 @@ const val SUBTRACT = "-"
 const val MULTIPLY = "*"
 const val DIVIDE = "/"
 
-fun calculate(input: String): Int {
+fun calculate(input: String): org.assertj.core.api.ThrowableAssert.ThrowingCallable? {
     val elements = splitInput(input)
 
     val left = elements[0]
