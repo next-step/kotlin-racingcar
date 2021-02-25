@@ -14,9 +14,16 @@ class MathTest {
         assertThat(Calculation("4 - 1")).isEqualTo(3)
     }
 
-    class Calculation(expression: String) : Number() {
+    class Calculation(private val expression: String) : Number() {
         private val value: Number
-            get() = 7
+            get() {
+                val token = expression.split(" ")
+                return when (token[1]) {
+                    "+" -> token[0].toInt() + token[2].toInt()
+                    "-" -> token[0].toInt() - token[2].toInt()
+                    else -> throw IllegalArgumentException()
+                }
+            }
 
         override fun toByte() = value.toByte()
 
