@@ -49,7 +49,7 @@ class MathTest {
                 val token = expression.split(" ")
                 return when (token[1]) {
                     "+" -> Sum(token[0], token[2])
-                    "-" -> token[0].toInt() - token[2].toInt()
+                    "-" -> Difference(token[0], token[2])
                     "*" -> token[0].toInt() * token[2].toInt()
                     "/" -> token[0].toInt() / token[2].toInt()
                     else -> throw IllegalArgumentException()
@@ -58,6 +58,8 @@ class MathTest {
     }
 
     class Sum(lhs: String, rhs: String, override val value: Number = lhs.toInt() + rhs.toInt()) : MathNumber()
+
+    class Difference(lhs: String, rhs: String, override val value: Number = lhs.toInt() - rhs.toInt()) : MathNumber()
 
     abstract class MathNumber : Number() {
         protected abstract val value: Number
