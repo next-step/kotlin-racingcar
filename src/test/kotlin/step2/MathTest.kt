@@ -26,6 +26,7 @@ class MathTest {
                 return when (token[1]) {
                     "+" -> token[0].toInt() + token[2].toInt()
                     "-" -> token[0].toInt() - token[2].toInt()
+                    "*" -> token[0].toInt() * token[2].toInt()
                     else -> throw IllegalArgumentException()
                 }
             }
