@@ -45,6 +45,11 @@ class MathTest {
         assertThrows<IllegalArgumentException> { Calculation("1 / 0").toInt() }
     }
 
+    @Test
+    fun `세 수의 합`() {
+        assertThat(Calculation("3 + 4 + 5")).isEqualTo(12)
+    }
+
     class Calculation(private val expression: String) : MathNumber() {
         override val value: Number
             get() {
