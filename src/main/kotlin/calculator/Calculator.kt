@@ -2,27 +2,37 @@ package calculator
 
 import java.util.stream.Collectors.toList
 
-const val DELIMITER = " "
+const val BLANK = " "
 const val ADD = "+"
 const val SUBTRACT = "-"
 const val MULTIPLY = "*"
 const val DIVIDE = "/"
 
+const val INDEX_FIRST = 0
+const val INDEX_SECOND = 1
+const val INDEX_THIRD = 2
+const val TWO_STEP = 2
+const val ZERO = 0
+
 fun calculate(input: String): Int {
     val elements = splitInput(input)
+    var leftSum = getInitLeftSum(elements)
 
-    var left = elements[0]
-    var right = elements[2]
-    var operator = elements[1]
-    var initLeftSum = calculateInitLeftSum(left, right, operator)
-    var leftSum = initLeftSum
-    for (i in 3..(elements.size - 2) step (2)) {
+    for (i in 3..(elements.size - TWO_STEP) step (TWO_STEP)) {
         val operator = elements[i]
         val right = elements[i + 1]
         leftSum = calculateSum(leftSum, right, operator)
     }
 
     return leftSum
+}
+
+private fun getInitLeftSum(elements: List<String>): Int {
+    val left = elements[INDEX_FIRST]
+    val right = elements[INDEX_THIRD]
+    val operator = elements[INDEX_SECOND]
+
+    return calculateInitLeftSum(left, right, operator)
 }
 
 private fun calculateSum(leftNumber: Int, right: String, operator: String): Int {
@@ -47,7 +57,7 @@ private fun calculateInitLeftSum(left: String, right: String, operator: String):
 }
 
 private fun validateRightNumberToDivide(operator: String, rightNumber: Int) {
-    if (operator == DIVIDE && rightNumber == 0) {
+    if (operator == DIVIDE && rightNumber == ZERO) {
         throw IllegalArgumentException()
     }
 }
@@ -59,20 +69,17 @@ private fun validateOperatorSymbol(operator: String) {
 }
 
 private fun isOperator(operator: String): Boolean {
-    return operator == ADD ||
-        operator == SUBTRACT ||
-        operator == DIVIDE ||
-        operator == MULTIPLY
+    return operator == ADD || operator == SUBTRACT || operator == DIVIDE || operator == MULTIPLY
 }
 
 private fun validateNullOrBlank(stringNumber: String) {
-    if (isNullOrBlank(stringNumber)) {
+    if (isEmptyOrBlank(stringNumber)) {
         throw IllegalArgumentException()
     }
 }
 
-private fun isNullOrBlank(stringNumber: String): Boolean {
-    return stringNumber.equals(null) || " " == stringNumber
+private fun isEmptyOrBlank(stringNumber: String): Boolean {
+    return stringNumber.isEmpty() || BLANK == stringNumber
 }
 
 private fun operate(leftNumber: Int, rightNumber: Int, operator: String): Int {
@@ -86,7 +93,7 @@ private fun operate(leftNumber: Int, rightNumber: Int, operator: String): Int {
 }
 
 private fun splitInput(input: String): List<String> {
-    return input.split(DELIMITER)
+    return input.split(BLANK)
         .stream()
         .map { element -> element.trim() }
         .collect(toList())
