@@ -38,6 +38,9 @@ class MathTest {
     class Calculation(private val expression: String) : Number() {
         private val value: Number
             get() {
+                if (expression.isEmpty()) {
+                    throw IllegalArgumentException()
+                }
                 val token = expression.split(" ")
                 return when (token[1]) {
                     "+" -> token[0].toInt() + token[2].toInt()
