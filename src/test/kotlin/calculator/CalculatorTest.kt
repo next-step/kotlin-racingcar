@@ -45,8 +45,21 @@ internal class CalculatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["2 / ", " + 1", "2   1"])
-    fun whenInputIsNullOrBlank(input: String) {
+    fun validate_InputIsNotNullOrNotBlank(input: String) {
         var input = input
+
+        assertThatThrownBy { calculate(input) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["1", "a", "ㅁ", "~", ">"])
+    fun validate_OperatorSymbol(invalidOperator: String) {
+        val input = StringBuilder()
+            .append("1 ")
+            .append(invalidOperator)
+            .append(" 2")
+            .toString()
 
         assertThatThrownBy { calculate(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
