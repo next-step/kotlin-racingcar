@@ -50,6 +50,11 @@ class MathTest {
         assertThat(Calculation("3 + 4 + 5")).isEqualTo(12)
     }
 
+    @Test
+    fun `합 차 곱 몫 조합`() {
+        assertThat(Calculation("2 + 3 * 4 / 2")).isEqualTo(10)
+    }
+
     class Calculation(expression: String) : MathNumber() {
         private constructor(
             number: Number,
