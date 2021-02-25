@@ -32,6 +32,7 @@ class MathTest {
                     "+" -> token[0].toInt() + token[2].toInt()
                     "-" -> token[0].toInt() - token[2].toInt()
                     "*" -> token[0].toInt() * token[2].toInt()
+                    "/" -> token[0].toInt() / token[2].toInt()
                     else -> throw IllegalArgumentException()
                 }
             }
