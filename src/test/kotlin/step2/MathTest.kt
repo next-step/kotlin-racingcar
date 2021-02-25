@@ -40,6 +40,11 @@ class MathTest {
         assertThrows<IllegalArgumentException> { Calculation("1 1").toInt() }
     }
 
+    @Test
+    fun `0으로 나누는 경우`() {
+        assertThrows<IllegalArgumentException> { Calculation("1 / 0").toInt() }
+    }
+
     class Calculation(private val expression: String) : MathNumber() {
         override val value: Number
             get() {
