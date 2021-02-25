@@ -9,6 +9,11 @@ class MathTest {
         assertThat(Calculation("3 + 4")).isEqualTo(7)
     }
 
+    @Test
+    fun `두 수의 차`() {
+        assertThat(Calculation("4 - 1")).isEqualTo(3)
+    }
+
     class Calculation(expression: String) : Number() {
         private val value: Number
             get() = 7
