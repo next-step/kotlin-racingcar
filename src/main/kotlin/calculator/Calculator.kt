@@ -19,8 +19,15 @@ fun calculate(input: String): Int {
 
     val leftNumber = Integer.parseInt(left)
     val rightNumber = Integer.parseInt(right)
+    validateRightNumberToDivide(operator, rightNumber = rightNumber)
 
     return operate(leftNumber, rightNumber, operator)
+}
+
+private fun validateRightNumberToDivide(operator: String, rightNumber: Int) {
+    if (operator == DIVIDE && rightNumber == 0) {
+        throw IllegalArgumentException()
+    }
 }
 
 private fun validateOperatorSymbol(operator: String) {
