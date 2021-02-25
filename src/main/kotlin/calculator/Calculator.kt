@@ -11,14 +11,36 @@ const val DIVIDE = "/"
 fun calculate(input: String): Int {
     val elements = splitInput(input)
 
-    val left = elements[0]
-    val right = elements[2]
-    val operator = elements[1]
-    validateStringNumbers(left, right)
+    var left = elements[0]
+    var right = elements[2]
+    var operator = elements[1]
+    var initLeftSum = calculateInitLeftSum(left, right, operator)
+    var leftSum = initLeftSum
+    for (i in 3..(elements.size - 2) step (2)) {
+        val operator = elements[i]
+        val right = elements[i + 1]
+        leftSum = calculateSum(leftSum, right, operator)
+    }
+
+    return leftSum
+}
+
+private fun calculateSum(leftNumber: Int, right: String, operator: String): Int {
+    validateNullOrBlank(right)
+    validateOperatorSymbol(operator)
+    val rightNumber = Integer.parseInt(right)
+    validateRightNumberToDivide(operator, rightNumber)
+
+    return operate(leftNumber, rightNumber, operator)
+}
+
+private fun calculateInitLeftSum(left: String, right: String, operator: String): Int {
+    validateNullOrBlank(left)
+    validateNullOrBlank(right)
     validateOperatorSymbol(operator)
 
-    val leftNumber = Integer.parseInt(left)
-    val rightNumber = Integer.parseInt(right)
+    var leftNumber = Integer.parseInt(left)
+    var rightNumber = Integer.parseInt(right)
     validateRightNumberToDivide(operator, rightNumber = rightNumber)
 
     return operate(leftNumber, rightNumber, operator)
@@ -43,8 +65,8 @@ private fun isOperator(operator: String): Boolean {
         operator == MULTIPLY
 }
 
-private fun validateStringNumbers(left: String, right: String) {
-    if (isNullOrBlank(left) || isNullOrBlank(right)) {
+private fun validateNullOrBlank(stringNumber: String) {
+    if (isNullOrBlank(stringNumber)) {
         throw IllegalArgumentException()
     }
 }

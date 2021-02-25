@@ -76,7 +76,7 @@ internal class CalculatorTest {
 
     @ParameterizedTest
     @CsvSource(value = ["2 + 3 - 1 * 6 / 2:12", "13 + 1 / 2:7", "-2 + 2 / 23:0"], delimiter = ':')
-    internal fun complicatedCalculate(input: String, expected: Int) {
+    fun complicatedCalculate(input: String, expected: Int) {
         val actual = calculate(input)
 
         assertThat(actual).isEqualTo(expected)
