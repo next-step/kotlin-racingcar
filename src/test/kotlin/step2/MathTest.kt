@@ -2,6 +2,7 @@ package step2
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class MathTest {
     @Test
@@ -22,6 +23,11 @@ class MathTest {
     @Test
     fun `두 수의 몫`() {
         assertThat(Calculation("4 / 2")).isEqualTo(2)
+    }
+
+    @Test
+    fun `예약되지 않은 연산자`() {
+        assertThrows<IllegalArgumentException> { Calculation("4 $ 2").toInt() }
     }
 
     class Calculation(private val expression: String) : Number() {
