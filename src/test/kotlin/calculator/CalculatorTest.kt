@@ -14,7 +14,7 @@ internal class CalculatorTest {
     }
 
     @Test
-    internal fun subtract_simple() {
+    fun subtract_simple() {
         var input = "4 - 2"
 
         val result = calculate(input)
