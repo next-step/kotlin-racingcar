@@ -74,7 +74,7 @@ class MathTest {
             get() {
                 val result = with(tokens) { binaryOperation() }
 
-                return if (tokens.emptyNext) result else Calculation(result, tokens.nextExpression)
+                return if (tokens.exhausted) result else Calculation(result, tokens.nextExpression)
             }
 
         private fun Tokens.binaryOperation() = when (operator) {
@@ -93,7 +93,7 @@ class MathTest {
             get() = tokens[1]
         val rightHandSide: String
             get() = tokens[2]
-        val emptyNext: Boolean
+        val exhausted: Boolean
             get() = tokens.size == 3
         val nextExpression: String
             get() = tokens.slice(3 until tokens.size).joinToString(" ")
