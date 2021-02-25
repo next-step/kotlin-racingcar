@@ -5,11 +5,20 @@ import org.junit.jupiter.api.Test
 
 internal class CalculatorTest {
     @Test
-    fun add() {
+    fun add_simple() {
         var input = "2 + 4"
 
-        val result = add(input)
+        val result = calculate(input)
 
         assertThat(result).isEqualTo(6)
+    }
+
+    @Test
+    internal fun subtract_simple() {
+        var input = "4 - 2"
+
+        val result = calculate(input)
+
+        assertThat(result).isEqualTo(2)
     }
 }

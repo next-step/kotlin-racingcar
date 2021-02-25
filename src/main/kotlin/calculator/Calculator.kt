@@ -4,7 +4,7 @@ import java.util.stream.Collectors.toList
 
 const val DELIMITER = " "
 
-fun add(input: String): Int {
+fun calculate(input: String): Int {
     val elements = input.split(DELIMITER)
         .stream()
         .map { element -> element.trim() }
