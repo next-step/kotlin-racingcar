@@ -3,11 +3,6 @@ package calculator
 import java.util.stream.Collectors.toList
 
 const val BLANK = " "
-const val ADD = "+"
-const val SUBTRACT = "-"
-const val MULTIPLY = "*"
-const val DIVIDE = "/"
-
 const val INDEX_FIRST = 0
 const val INDEX_SECOND = 1
 const val INDEX_THIRD = 2
@@ -57,19 +52,13 @@ private fun calculateInitLeftSum(left: String, right: String, operator: String):
 }
 
 private fun validateRightNumberToDivide(operator: String, rightNumber: Int) {
-    if (operator == DIVIDE && rightNumber == ZERO) {
+    if (operator == SYMBOL_DIVIDE && rightNumber == ZERO) {
         throw IllegalArgumentException()
     }
 }
 
 private fun validateOperatorSymbol(operator: String) {
-    if (!isOperator(operator)) {
-        throw java.lang.IllegalArgumentException()
-    }
-}
-
-private fun isOperator(operator: String): Boolean {
-    return operator == ADD || operator == SUBTRACT || operator == DIVIDE || operator == MULTIPLY
+    findOperator(operator)
 }
 
 private fun validateNullOrBlank(stringNumber: String) {
@@ -80,16 +69,6 @@ private fun validateNullOrBlank(stringNumber: String) {
 
 private fun isEmptyOrBlank(stringNumber: String): Boolean {
     return stringNumber.isEmpty() || BLANK == stringNumber
-}
-
-private fun operate(leftNumber: Int, rightNumber: Int, operator: String): Int {
-    return when (operator) {
-        ADD -> leftNumber + rightNumber
-        SUBTRACT -> leftNumber - rightNumber
-        MULTIPLY -> leftNumber * rightNumber
-        DIVIDE -> leftNumber / rightNumber
-        else -> throw IllegalArgumentException()
-    }
 }
 
 private fun splitInput(input: String): List<String> {
