@@ -1,7 +1,6 @@
 package calculator
 
 import java.util.stream.Collectors.toList
-import kotlin.IllegalArgumentException
 
 const val DELIMITER = " "
 const val ADD = "+"
@@ -9,17 +8,28 @@ const val SUBTRACT = "-"
 const val MULTIPLY = "*"
 const val DIVIDE = "/"
 
-fun calculate(input: String): org.assertj.core.api.ThrowableAssert.ThrowingCallable? {
+fun calculate(input: String): Int {
     val elements = splitInput(input)
 
     val left = elements[0]
     val right = elements[2]
     val operator = elements[1]
+    validateStringNumbers(left, right, operator)
 
     val leftNumber = Integer.parseInt(left)
     val rightNumber = Integer.parseInt(right)
 
     return operate(leftNumber, rightNumber, operator)
+}
+
+private fun validateStringNumbers(left: String, right: String, operator: String) {
+    if (isNullOrBlank(left) || isNullOrBlank(right)) {
+        throw IllegalArgumentException()
+    }
+}
+
+private fun isNullOrBlank(stringNumber: String): Boolean {
+    return stringNumber.equals(null) || " ".equals(stringNumber)
 }
 
 private fun operate(leftNumber: Int, rightNumber: Int, operator: String): Int {
