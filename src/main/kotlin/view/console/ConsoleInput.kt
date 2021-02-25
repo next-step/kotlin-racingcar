@@ -1,3 +1,5 @@
 package calculator.view.console
 
-class ConsoleInput
+class ConsoleInput {
+    fun read(): String = readLine()!!
+}
