@@ -64,7 +64,7 @@ class MathTest {
         private val tokens: Tokens
 
         init {
-            if (expression.isEmpty()) {
+            if (expression.empty()) {
                 throw IllegalArgumentException()
             }
             this.tokens = Tokens(expression)
@@ -150,3 +150,5 @@ class MathTest {
         }
     }
 }
+
+private fun String.empty() = isEmpty()
