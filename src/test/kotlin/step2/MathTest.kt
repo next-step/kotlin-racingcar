@@ -19,6 +19,11 @@ class MathTest {
         assertThat(Calculation("4 * 3")).isEqualTo(12)
     }
 
+    @Test
+    fun `두 수의 몫`() {
+        assertThat(Calculation("4 / 2")).isEqualTo(2)
+    }
+
     class Calculation(private val expression: String) : Number() {
         private val value: Number
             get() {
