@@ -50,21 +50,48 @@ class MathTest {
         assertThat(Calculation("3 + 4 + 5")).isEqualTo(12)
     }
 
-    class Calculation(private val expression: String) : MathNumber() {
+    class Calculation(expression: String) : MathNumber() {
+        private constructor(
+            number: Number,
+            nextExpression: String
+        ) : this("$number $nextExpression")
+
+        private val tokens: Tokens
+
+        init {
+            if (expression.isEmpty()) {
+                throw IllegalArgumentException()
+            }
+            this.tokens = Tokens(expression)
+        }
+
         override val value: Number
             get() {
-                if (expression.isEmpty()) {
-                    throw IllegalArgumentException()
-                }
-                val token = expression.split(" ")
-                return when (token[1]) {
-                    "+" -> Sum(token[0], token[2])
-                    "-" -> Difference(token[0], token[2])
-                    "*" -> Product(token[0], token[2])
-                    "/" -> Quotient(token[0], token[2])
-                    else -> throw IllegalArgumentException()
-                }
+                val result = with(tokens) { binaryOperation() }
+
+                return if (tokens.emptyNext) result else Calculation(result, tokens.nextExpression)
             }
+
+        private fun Tokens.binaryOperation() = when (operator) {
+            "+" -> Sum(leftHandSide, rightHandSide)
+            "-" -> Difference(leftHandSide, rightHandSide)
+            "*" -> Product(leftHandSide, rightHandSide)
+            "/" -> Quotient(leftHandSide, rightHandSide)
+            else -> throw IllegalArgumentException()
+        }
+    }
+
+    class Tokens(expression: String, private val tokens: List<String> = expression.split(" ")) {
+        val leftHandSide: String
+            get() = tokens[0]
+        val operator: String
+            get() = tokens[1]
+        val rightHandSide: String
+            get() = tokens[2]
+        val emptyNext: Boolean
+            get() = tokens.size == 3
+        val nextExpression: String
+            get() = tokens.slice(3 until tokens.size).joinToString(" ")
     }
 
     class Sum(lhs: String, rhs: String, override val value: Number = lhs.toInt() + rhs.toInt()) : MathNumber()
@@ -75,6 +102,7 @@ class MathTest {
 
     class Quotient(lhs: String, rhs: String) : MathNumber() {
         override val value: Number
+
         init {
             if (rhs.toInt() == 0) {
                 throw IllegalArgumentException()
