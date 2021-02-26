@@ -1,12 +1,14 @@
 package calculation
 
 class Calculation(expression: String) : MathNumber() {
-    private constructor(
-        number: Number,
-        nextExpression: String
-    ) : this("$number $nextExpression")
-
     private val tokens: Tokens
+
+    override val value: Number
+        get() {
+            val result = with(tokens) { BinaryOperation(operator)(leftHandSide, rightHandSide) }
+
+            return if (tokens.exhausted) result else Calculation(result, tokens.nextExpression)
+        }
 
     init {
         if (expression.empty()) {
@@ -15,12 +17,10 @@ class Calculation(expression: String) : MathNumber() {
         this.tokens = Tokens(expression)
     }
 
-    override val value: Number
-        get() {
-            val result = with(tokens) { BinaryOperation(operator)(leftHandSide, rightHandSide) }
-
-            return if (tokens.exhausted) result else Calculation(result, tokens.nextExpression)
-        }
+    private constructor(
+        number: Number,
+        nextExpression: String
+    ) : this("$number $nextExpression")
 
     private fun String.empty() = isEmpty()
 }
