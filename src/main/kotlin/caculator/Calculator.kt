@@ -2,12 +2,12 @@ package caculator
 
 class Calculator {
 
-    fun calculate(text: String): Double {
+    fun calculate(text: String): Number {
         val tokens = text.split(" ")
-        var operand1: Double = tokens[0].toDouble()
+        var operand1 = Number(tokens[0])
 
         (1 until tokens.size - 1 step 2).forEach { i ->
-            var operand2: Double = tokens[i + 1].toDouble()
+            var operand2 = Number(tokens[i + 1])
             val operator = tokens[i]
 
             when (operator) {

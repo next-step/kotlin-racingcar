@@ -52,7 +52,7 @@ internal class CalculatorTest {
         val calculator = Calculator()
         val result = calculator.calculate(input)
 
-        assertThat(result).isEqualTo(expect)
+        assertThat(result).isEqualTo(Number(expect))
     }
 
     @ParameterizedTest
@@ -61,7 +61,7 @@ internal class CalculatorTest {
         val calculator = Calculator()
         val result = calculator.calculate(input)
 
-        assertThat(result).isEqualTo(expect)
+        assertThat(result).isEqualTo(Number(expect))
     }
 
     @ParameterizedTest
@@ -70,7 +70,7 @@ internal class CalculatorTest {
         val calculator = Calculator()
         val result = calculator.calculate(input)
 
-        assertThat(result).isEqualTo(expect)
+        assertThat(result).isEqualTo(Number(expect))
     }
 
     @ParameterizedTest
@@ -79,6 +79,6 @@ internal class CalculatorTest {
         val calculator = Calculator()
         val result = calculator.calculate(input)
 
-        assertThat(result).isEqualTo(expect)
+        assertThat(result).isEqualTo(Number(expect))
     }
 }
