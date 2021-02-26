@@ -9,6 +9,15 @@ class CarsTest {
         assertThat(Cars(3)).isEqualTo(Cars(3))
     }
 
+    @Test
+    fun `이동후 위치목록을 제공한다`() {
+        val cars = Cars(3)
+        cars.drive()
+        cars.drive()
+        val positions: Positions = cars.positions()
+        assertThat(positions).contains(Positions(2, 2))
+    }
+
     class Cars(private val cars: Int) {
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
