@@ -15,8 +15,8 @@ interface Moveable {
         override fun moving() = intRandom.next().moreThen(MOVING_MIN)
 
         companion object {
-            const val BOUND_MAX = 10
-            const val MOVING_MIN = 4
+            private const val BOUND_MAX = 10
+            private const val MOVING_MIN = 4
         }
     }
 }
