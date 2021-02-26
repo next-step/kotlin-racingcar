@@ -2,7 +2,12 @@ package study.step2
 
 class InputConsole {
 
-    fun readExpression(): String? {
-        return readLine()
+    fun readExpression(): List<String> {
+        return splitExpression(readLine())
+    }
+
+    fun splitExpression(expression: String?): List<String> {
+        if (expression.isNullOrBlank()) throw IllegalArgumentException("IllegalArgumentException")
+        return expression.split(" ")
     }
 }
