@@ -11,11 +11,13 @@ class CarsTest {
 
     @Test
     fun `이동후 위치목록을 제공한다`() {
-        val cars = testCars(3)
+        val cars = cars(3)
         cars.drive()
         cars.drive()
         assertThat(cars.positions).containsExactly(Position(2), Position(2), Position(2))
     }
 
-    private fun testCars(count: Int) = Cars((0 until count).map { Car(moveable = Moveable.Always()) })
+    companion object {
+        fun cars(count: Int) = Cars((0 until count).map { Car(moveable = Moveable.Always()) })
+    }
 }
