@@ -1,9 +1,10 @@
 package racingcar
 
-class MoveStrategy() {
+class MoveStrategy {
     companion object {
+        private const val MIN_NUMBER_TO_MOVE = 4
         fun canMove(randomNumber: Int): Boolean {
-            return true
+            return randomNumber >= MIN_NUMBER_TO_MOVE
         }
     }
 }
