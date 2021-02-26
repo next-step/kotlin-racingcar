@@ -1,11 +1,6 @@
 package calculator
 
-import java.util.stream.Collectors.toList
-
 const val BLANK = " "
-const val INDEX_FIRST = 0
-const val INDEX_SECOND = 1
-const val INDEX_THIRD = 2
 const val TWO_STEP = 2
 const val ZERO = 0
 
@@ -23,57 +18,51 @@ fun calculate(input: String): Int {
 }
 
 private fun getInitLeftSum(elements: List<String>): Int {
-    val left = elements[INDEX_FIRST]
-    val right = elements[INDEX_THIRD]
-    val operator = elements[INDEX_SECOND]
+    val (left, operator, right) = elements
 
     return calculateInitLeftSum(left, right, operator)
 }
 
 private fun calculateSum(leftNumber: Int, right: String, operator: String): Int {
-    validateNullOrBlank(right)
+    validateBlank(right)
     validateOperatorSymbol(operator)
     val rightNumber = Integer.parseInt(right)
     validateRightNumberToDivide(operator, rightNumber)
 
-    return operate(leftNumber, rightNumber, operator)
+    return Operator.operate(leftNumber, rightNumber, operator)
 }
 
 private fun calculateInitLeftSum(left: String, right: String, operator: String): Int {
-    validateNullOrBlank(left)
-    validateNullOrBlank(right)
+    validateBlank(left)
+    validateBlank(right)
     validateOperatorSymbol(operator)
 
-    var leftNumber = Integer.parseInt(left)
-    var rightNumber = Integer.parseInt(right)
+    val leftNumber = Integer.parseInt(left)
+    val rightNumber = Integer.parseInt(right)
     validateRightNumberToDivide(operator, rightNumber = rightNumber)
 
-    return operate(leftNumber, rightNumber, operator)
+    return Operator.operate(leftNumber, rightNumber, operator)
 }
 
 private fun validateRightNumberToDivide(operator: String, rightNumber: Int) {
     if (operator == SYMBOL_DIVIDE && rightNumber == ZERO) {
-        throw IllegalArgumentException()
+        throw IllegalArgumentException("Failed validateRightNumberToDivide. operator:$operator, rightNumber:$rightNumber")
     }
 }
 
 private fun validateOperatorSymbol(operator: String) {
-    findOperator(operator)
+    Operator.findOperator(operator)
 }
 
-private fun validateNullOrBlank(stringNumber: String) {
-    if (isEmptyOrBlank(stringNumber)) {
-        throw IllegalArgumentException()
+private fun validateBlank(stringNumber: String) {
+    if (stringNumber.isBlank()) {
+        throw IllegalArgumentException("Failed validateBlank")
     }
-}
-
-private fun isEmptyOrBlank(stringNumber: String): Boolean {
-    return stringNumber.isEmpty() || BLANK == stringNumber
 }
 
 private fun splitInput(input: String): List<String> {
     return input.split(BLANK)
-        .stream()
+        .asSequence()
         .map { element -> element.trim() }
-        .collect(toList())
+        .toList()
 }
