@@ -1,13 +1,13 @@
-/*
- * Copyright (c) 2021. LINE Corporation. All rights reserved.
- * LINE Corporation PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
- 
 package study
 
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 
-/**
-  * @author tae-heon.song<taeheon.song@linecorp.com>
-  * @since 2021. 02. 26.
-  */class StudyTest {
+class StudyTest {
+    @Test
+    fun `string isBlank test`() {
+        assertThat("".isBlank()).isTrue()
+        assertThat(null?.isBlank()).isNull()
+        assertThat(" ".isBlank()).isTrue()
+    }
 }
