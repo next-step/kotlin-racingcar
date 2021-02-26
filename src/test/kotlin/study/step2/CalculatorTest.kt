@@ -1,6 +1,7 @@
 package study.step2
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 internal class CalculatorTest {
@@ -23,5 +24,29 @@ internal class CalculatorTest {
     @Test
     fun `나누기`() {
         assertThat(Calculator().division(4, 2)).isEqualTo(2)
+    }
+
+    @Test
+    fun `사칙 연산이 아닌 기호가 들어왔을때`() {
+        val expression = listOf("2", "@", "3")
+        assertThatThrownBy {
+            Calculator().calculateExpression(expression)
+        }.isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    @Test
+    fun `처음 문자가 숫자가 아닐때`() {
+        val expression = listOf("@", "2", "3")
+        assertThatThrownBy {
+            Calculator().calculateExpression(expression)
+        }.isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    @Test
+    fun `세번째 문자가 숫자가 아닐때`() {
+        val expression = listOf("3", "3", "@")
+        assertThatThrownBy {
+            Calculator().calculateExpression(expression)
+        }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
