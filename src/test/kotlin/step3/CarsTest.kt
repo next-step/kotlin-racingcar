@@ -17,26 +17,5 @@ class CarsTest {
         assertThat(cars.positions).containsExactly(Position(2), Position(2), Position(2))
     }
 
-    data class Positions(private val positions: List<Position>) : List<Position> by positions {
-        constructor(vararg positions: Int) : this(positions.map(::Position))
-
-        fun add(position: Position): Positions {
-            return Positions(positions + position)
-        }
-
-        operator fun plus(position: Position) = Positions(positions + position)
-    }
-
-    data class Cars(private val cars: List<Car>) {
-        constructor(cars: Int) : this((0 until cars).map { Car() })
-
-        var positions = Positions()
-
-        fun drive() {
-            positions = cars.map { it.driving() }
-                .fold(Positions(), Positions::plus)
-        }
-    }
-
     private fun testCars(count: Int) = Cars((0 until count).map { Car(moveable = Moveable.Always()) })
 }
