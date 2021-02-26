@@ -1,4 +1,4 @@
-package step2
+package calculation
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
