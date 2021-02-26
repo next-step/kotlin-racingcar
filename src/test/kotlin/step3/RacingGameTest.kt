@@ -10,22 +10,24 @@ class RacingGameTest {
     }
 
     @Test
-    internal fun `이동결과를 제공한다`() {
+    fun `이동결과를 제공한다`() {
         val racingGame = RacingGame(5, 3)
+
         racingGame.play()
+
         assertThat(racingGame.positions().size).isEqualTo(5)
         for (positions in racingGame.positions()) {
             assertThat(positions).contains(Position(5), Position(5), Position(5))
         }
     }
 
-    @Test
-    internal fun `이동결과를 제공한다`() {
-        val racingGame = RacingGame(5, 3)
-        racingGame.play()
-        assertThat(racingGame.positions.size).isEqualTo(3)
-        for (position in racingGame.positions) {
-            assertThat(position).isEqualTo(Position(5))
+    class RacingGame(private val playCount: Int, private val carCount: Int) {
+        fun play() {
+        }
+
+        fun positions(): List<Positions> {
+            return (0 until playCount)
+                .map { Positions(5, 5, 5) }
         }
     }
 }
