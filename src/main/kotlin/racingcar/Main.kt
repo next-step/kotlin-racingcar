@@ -1,14 +1,13 @@
 package racingcar
 
-fun main() {
-    val numberOfCars = 3
-    val count = 5
+import racingcar.utils.InputUtils
 
-    val racingCar = RacingCar.ready(numberOfCars)
-    for (i in 1..count) {
-        racingCar.runOnce()
-        racingCar.writeScores()
-        println("-----------")
+fun main() {
+    val inputView = InputUtils.askQuestions()
+
+    val racingCar = RacingCar.ready(inputView)
+    for (i in 1..inputView.gameCount) {
+        val resultViews = racingCar.runOnce()
+        resultViews.printResultS()
     }
-    println("end")
 }

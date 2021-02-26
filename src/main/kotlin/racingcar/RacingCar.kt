@@ -1,26 +1,28 @@
 package racingcar
 
+import racingcar.view.InputView
+import racingcar.view.ResultView
+import racingcar.view.ResultViews
+
 class RacingCar(private val cars: Cars) {
     companion object {
-        fun ready(numberOfCars: Int): RacingCar {
-            var cars = Cars.makeCars(numberOfCars)
+        fun ready(inputView: InputView): RacingCar {
+            var cars = Cars.makeCars(inputView.carCount)
             return RacingCar(cars)
         }
     }
 
-    fun runOnce() {
-        cars.getCars()
-            .forEach { car: Car ->
+    fun runOnce(): ResultViews {
+        val resultViews = cars.getCars()
+            .asSequence()
+            .map { car: Car ->
                 val randomNumber = RandomNumber.getBetweenZeroAnd(10)
                 val canMove = MoveStrategy.canMove(randomNumber)
                 car.move(canMove)
+                return@map ResultView(car.score)
             }
-    }
+            .toList()
 
-    fun writeScores() {
-        cars.getCars()
-            .forEach { car: Car ->
-                println(car.score)
-            }
+        return ResultViews(resultViews)
     }
 }
