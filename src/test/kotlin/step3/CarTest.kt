@@ -14,6 +14,11 @@ class CarTest {
         assertThat(Car(0).move()).isEqualTo(Car(1))
     }
 
+    @Test
+    internal fun `자동차 객체는 Moveable을 받는다`() {
+        Car(Moveable.Smart())
+    }
+
     class Car(position: Int) {
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
