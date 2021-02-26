@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource
 internal class CarTest {
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4, 5])
-    fun runOneCarTest(prevScore: Int) {
+    fun runOneCarWhenCanMove(prevScore: Int) {
         // given
         val car = Car()
         car.score = prevScore
