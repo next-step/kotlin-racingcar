@@ -5,11 +5,6 @@ import org.junit.jupiter.api.Test
 
 class RacingGameTest {
     @Test
-    internal fun `레이싱게임 객체를 플레이수와 함께 생성한다`() {
-        RacingGame(3)
-    }
-
-    @Test
     fun `이동결과를 제공한다`() {
         val racingGame = RacingGame(CarsTest.cars(3))
 
