@@ -14,8 +14,12 @@ class CarsTest {
         val cars = Cars(3)
         cars.drive()
         cars.drive()
-        val positions: Positions = cars.positions()
-        assertThat(positions).contains(Positions(2, 2))
+        val positions = cars.positions()
+        assertThat(positions).containsExactly(Position(2), Position(2))
+    }
+
+    class Positions(private val positions: List<Position>) : List<Position> by positions {
+        constructor(vararg positions: Int) : this(positions.map { Position(it) })
     }
 
     class Cars(private val cars: Int) {
@@ -33,5 +37,10 @@ class CarsTest {
         override fun hashCode(): Int {
             return cars
         }
+
+        fun drive() {
+        }
+
+        fun positions() = Positions(2, 2)
     }
 }
