@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.model
 
 class Cars private constructor(private val allCars: ArrayList<Car>) {
     companion object {

@@ -1,8 +1,11 @@
-package racingcar
+package racingcar.model
 
+import racingcar.utils.RandomNumber
 import racingcar.view.InputView
 import racingcar.view.ResultView
 import racingcar.view.ResultViews
+
+private const val MAX_NUMBER = 10
 
 class RacingCar(private val cars: Cars) {
     companion object {
@@ -16,7 +19,7 @@ class RacingCar(private val cars: Cars) {
         val resultViews = cars.getCars()
             .asSequence()
             .map { car: Car ->
-                val randomNumber = RandomNumber.getBetweenZeroAnd(10)
+                val randomNumber = RandomNumber.getBetweenZeroAnd(MAX_NUMBER)
                 val canMove = MoveStrategy.canMove(randomNumber)
                 car.move(canMove)
                 return@map ResultView(car.score)
