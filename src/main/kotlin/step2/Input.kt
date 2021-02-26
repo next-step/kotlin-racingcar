@@ -3,6 +3,7 @@ package step2
 import java.lang.IllegalArgumentException
 
 class Input {
+
     fun inputFormula(): String {
 
         val formula = readLine()
