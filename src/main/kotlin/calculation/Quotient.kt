@@ -4,9 +4,7 @@ class Quotient(lhs: String, rhs: String) : MathNumber() {
     override val value: Number
 
     init {
-        if (rhs.toInt() == 0) {
-            throw IllegalArgumentException()
-        }
+        require(rhs.toInt() != 0)
         this.value = lhs.toInt() / rhs.toInt()
     }
 }

@@ -11,9 +11,7 @@ class Calculation(expression: String) : MathNumber() {
         }
 
     init {
-        if (expression.empty()) {
-            throw IllegalArgumentException()
-        }
+        require(!expression.empty())
         this.tokens = Tokens(expression)
     }
 
