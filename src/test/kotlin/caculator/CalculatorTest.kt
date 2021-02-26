@@ -14,16 +14,17 @@ internal class CalculatorTest {
             return Stream.of(
                 arguments("1 + 1", 2),
                 arguments("1 + 3", 4),
-                arguments("1 + 2 + 3", 6)
+                arguments("1 + 2 + 3", 6),
+                arguments("1.1 + 2.1", 3.2)
             )
         }
 
         @JvmStatic
         fun minusSource(): Stream<Arguments> {
             return Stream.of(
-                arguments("1 - 1", 0),
+                arguments("1 - 1", 0.0),
                 arguments("1 - 3", -2),
-                arguments("3 - 1", 2)
+                arguments("3 - 1", 2.0)
             )
         }
 
@@ -47,7 +48,7 @@ internal class CalculatorTest {
 
     @ParameterizedTest
     @MethodSource("addSource")
-    fun `덧셈`(input: String, expect: Int) {
+    fun `덧셈`(input: String, expect: Double) {
         val calculator = Calculator()
         val result = calculator.calculate(input)
 
@@ -56,7 +57,7 @@ internal class CalculatorTest {
 
     @ParameterizedTest
     @MethodSource("minusSource")
-    fun `뺄샘`(input: String, expect: Int) {
+    fun `뺄샘`(input: String, expect: Double) {
         val calculator = Calculator()
         val result = calculator.calculate(input)
 
@@ -65,7 +66,7 @@ internal class CalculatorTest {
 
     @ParameterizedTest
     @MethodSource("multipleSource")
-    fun `곱셈`(input: String, expect: Int) {
+    fun `곱셈`(input: String, expect: Double) {
         val calculator = Calculator()
         val result = calculator.calculate(input)
 
@@ -74,7 +75,7 @@ internal class CalculatorTest {
 
     @ParameterizedTest
     @MethodSource("divideSource")
-    fun `나눗셈`(input: String, expect: Int) {
+    fun `나눗셈`(input: String, expect: Double) {
         val calculator = Calculator()
         val result = calculator.calculate(input)
 
