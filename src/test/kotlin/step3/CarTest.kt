@@ -2,6 +2,8 @@ package step3
 
 import org.assertj.core.api.Java6Assertions.assertThat
 import org.junit.jupiter.api.Test
+import java.util.Random
+import java.util.concurrent.ThreadLocalRandom
 
 class CarTest {
     @Test
@@ -11,18 +13,37 @@ class CarTest {
 
     @Test
     fun `자동차 객체는 움직인다`() {
-        assertThat(Car().driving()).isEqualTo(Position(1))
-    }
-
-    @Test
-    fun `자동차 객체는 Moveable을 받는다`() {
-        Car()
+        assertThat(Car(moveable = Moveable.Always()).driving()).isEqualTo(Position(1))
     }
 
     interface Moveable {
         fun moving(): Boolean
+
         class Always : Moveable {
             override fun moving() = true
+        }
+
+        class Random : Moveable {
+            private val intRandom = IntRandom.Smart(ThreadLocalRandom.current(), BOUND_MAX)
+
+            override fun moving(): Boolean {
+                return intRandom.next() >= MOVING_MIN
+            }
+
+            companion object {
+                const val BOUND_MAX = 10
+                const val MOVING_MIN = 4
+            }
+        }
+    }
+
+    interface IntRandom {
+        fun next(): Int
+        class Smart(private val random: Random, private val bound: Int = Int.MAX_VALUE) :
+            IntRandom {
+            override fun next(): Int {
+                return random.nextInt(bound)
+            }
         }
     }
 
@@ -30,7 +51,7 @@ class CarTest {
         fun increase() = copy(position = position + 1)
     }
 
-    class Car(private var position: Position = Position(0), private val moveable: Moveable = Moveable.Always()) {
+    class Car(private var position: Position = Position(0), private val moveable: Moveable = Moveable.Random()) {
         fun driving(): Position {
             if (moveable.moving()) {
                 position = position.increase()
