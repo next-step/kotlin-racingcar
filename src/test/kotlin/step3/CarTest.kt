@@ -9,6 +9,11 @@ class CarTest {
         assertThat(Car(0)).isEqualTo(Car(0))
     }
 
+    @Test
+    fun `자동차 객체는 움직인다`() {
+        assertThat(Car(0).move()).isEqualTo(Car(1))
+    }
+
     class Car(position: Int) {
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
