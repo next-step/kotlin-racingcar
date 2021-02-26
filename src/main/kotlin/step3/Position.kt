@@ -6,4 +6,6 @@ data class Position(private val position: Int) {
     }
 
     fun increase() = copy(position = position + 1)
+
+    fun intValue() = position
 }
