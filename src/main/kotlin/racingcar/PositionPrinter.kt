@@ -4,7 +4,7 @@ import java.io.OutputStream
 import java.io.PrintWriter
 
 class PositionPrinter(private val positions: List<Positions>, outputStream: OutputStream) {
-    private val printWriter: PrintWriter = PrintWriter(outputStream, true)
+    private val printWriter = PrintWriter(outputStream, true)
 
     constructor(positions: List<Positions>) : this(positions, System.out)
 
