@@ -26,14 +26,16 @@ class CarTest {
         }
     }
 
-    data class Position(private val position: Int)
+    data class Position(private val position: Int) {
+        fun increase() = copy(position = position + 1)
+    }
 
-    class Car(private var position: Int = 0, private val moveable: Moveable = Moveable.Always()) {
+    class Car(private var position: Position = Position(0), private val moveable: Moveable = Moveable.Always()) {
         fun driving(): Position {
             if (moveable.moving()) {
-                position += 1
+                position = position.increase()
             }
-            return Position(position)
+            return position
         }
 
         override fun equals(other: Any?): Boolean {
