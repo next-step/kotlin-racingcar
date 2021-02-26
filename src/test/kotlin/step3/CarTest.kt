@@ -24,5 +24,7 @@ class CarTest {
         override fun hashCode(): Int {
             return javaClass.hashCode()
         }
+
+        fun move() = Car(1)
     }
 }
