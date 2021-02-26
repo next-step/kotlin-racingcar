@@ -12,7 +12,7 @@ internal class RandomNumberTest {
         val randomNumber = RandomNumber.getBetweenZeroAnd(maxNumber)
 
         // then
-        assertThat(randomNumber).isGreaterThan(0)
+        assertThat(randomNumber).isGreaterThanOrEqualTo(0)
         assertThat(randomNumber).isLessThan(maxNumber)
     }
 }
