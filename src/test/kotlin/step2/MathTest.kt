@@ -72,18 +72,30 @@ class MathTest {
 
         override val value: Number
             get() {
-                val result = with(tokens) { binaryOperation() }
+                val result = with(tokens) { BinaryOperation(operator)(leftHandSide, rightHandSide) }
 
                 return if (tokens.exhausted) result else Calculation(result, tokens.nextExpression)
             }
+    }
 
-        private fun Tokens.binaryOperation() = when (operator) {
-            "+" -> Sum(leftHandSide, rightHandSide)
-            "-" -> Difference(leftHandSide, rightHandSide)
-            "*" -> Product(leftHandSide, rightHandSide)
-            "/" -> Quotient(leftHandSide, rightHandSide)
-            else -> throw IllegalArgumentException()
+    class BinaryOperation(private val operator: String) {
+        companion object {
+            val operators: Map<String, (String, String) -> Number> = mapOf(
+                "+" to ::Sum,
+                "-" to ::Difference,
+                "*" to ::Product,
+                "/" to ::Quotient
+            )
         }
+
+        init {
+            if (operator !in operators.keys) {
+                throw IllegalArgumentException()
+            }
+        }
+
+        operator fun invoke(leftHandSide: String, rightHandSide: String) =
+            operators[operator]!!(leftHandSide, rightHandSide)
     }
 
     class Tokens(expression: String, private val tokens: List<String> = expression.split(" ")) {
@@ -99,11 +111,29 @@ class MathTest {
             get() = tokens.slice(3 until tokens.size).joinToString(" ")
     }
 
-    class Sum(lhs: String, rhs: String, override val value: Number = lhs.toInt() + rhs.toInt()) : MathNumber()
+    class Sum(lhs: String, rhs: String) : MathNumber() {
+        override val value: Number
 
-    class Difference(lhs: String, rhs: String, override val value: Number = lhs.toInt() - rhs.toInt()) : MathNumber()
+        init {
+            value = lhs.toInt() + rhs.toInt()
+        }
+    }
 
-    class Product(lhs: String, rhs: String, override val value: Number = lhs.toInt() * rhs.toInt()) : MathNumber()
+    class Difference(lhs: String, rhs: String) : MathNumber() {
+        override val value: Number
+
+        init {
+            value = lhs.toInt() - rhs.toInt()
+        }
+    }
+
+    class Product(lhs: String, rhs: String) : MathNumber() {
+        override val value: Number
+
+        init {
+            value = lhs.toInt() * rhs.toInt()
+        }
+    }
 
     class Quotient(lhs: String, rhs: String) : MathNumber() {
         override val value: Number
