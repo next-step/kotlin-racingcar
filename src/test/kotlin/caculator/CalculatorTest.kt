@@ -11,6 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource
 import java.util.stream.Stream
 
 internal class CalculatorTest {
+
     companion object {
         @JvmStatic
         fun source(): Stream<Arguments> {
