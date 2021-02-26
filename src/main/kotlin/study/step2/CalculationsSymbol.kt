@@ -1,6 +1,6 @@
 package study.step2
 
-enum class CalculationsSymbol(symbol: String) {
+enum class CalculationsSymbol(val symbol: String) {
     ADD("+"),
     SUB("-"),
     MULTIPLY("*"),
