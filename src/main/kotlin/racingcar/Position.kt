@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 data class Position(private val position: Int) {
     init {

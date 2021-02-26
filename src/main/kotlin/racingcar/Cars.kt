@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 data class Cars(private val cars: List<Car>) {
     var positions = Positions()

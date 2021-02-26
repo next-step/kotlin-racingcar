@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 import java.io.InputStream
 import java.util.Scanner

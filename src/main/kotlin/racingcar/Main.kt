@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 fun main() {
     val carCount = UserInput.Int("자동차 대수는 몇 대 인가요?").answer()

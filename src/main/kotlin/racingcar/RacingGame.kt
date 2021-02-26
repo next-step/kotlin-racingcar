@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 class RacingGame(private val cars: Cars) {
     private val positions: MutableList<Positions> = arrayListOf()

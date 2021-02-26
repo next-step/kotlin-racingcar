@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 import org.assertj.core.api.Java6Assertions.assertThat
 import org.junit.jupiter.api.Test
