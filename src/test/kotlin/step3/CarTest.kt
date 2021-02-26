@@ -6,30 +6,35 @@ import org.junit.jupiter.api.Test
 class CarTest {
     @Test
     fun `자동차 객체를 생성한다`() {
-        assertThat(Car(0)).isEqualTo(Car(0))
+        assertThat(Car()).isEqualTo(Car())
     }
 
     @Test
     fun `자동차 객체는 움직인다`() {
-        assertThat(Car(0).driving()).isEqualTo(Position(1))
+        assertThat(Car().driving()).isEqualTo(Position(1))
     }
 
     @Test
     fun `자동차 객체는 Moveable을 받는다`() {
-        Car(0, Moveable.Always())
+        Car()
     }
 
     interface Moveable {
-        fun move(): Boolean
+        fun moving(): Boolean
         class Always : Moveable {
-            override fun move() = true
+            override fun moving() = true
         }
     }
 
     data class Position(private val position: Int)
 
-    class Car(private val position: Int, private val moveable: Moveable = Moveable.Always()) {
-        fun driving() = Position(1)
+    class Car(private var position: Int = 0, private val moveable: Moveable = Moveable.Always()) {
+        fun driving(): Position {
+            if (moveable.moving()) {
+                position += 1
+            }
+            return Position(position)
+        }
 
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
