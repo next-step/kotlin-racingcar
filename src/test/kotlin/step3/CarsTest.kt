@@ -11,36 +11,32 @@ class CarsTest {
 
     @Test
     fun `이동후 위치목록을 제공한다`() {
-        val cars = Cars(3)
+        val cars = testCars(3)
         cars.drive()
         cars.drive()
-        val positions = cars.positions()
-        assertThat(positions).containsExactly(Position(2), Position(2))
+        assertThat(cars.positions).containsExactly(Position(2), Position(2), Position(2))
     }
 
-    class Positions(private val positions: List<Position>) : List<Position> by positions {
-        constructor(vararg positions: Int) : this(positions.map { Position(it) })
+    data class Positions(private val positions: List<Position>) : List<Position> by positions {
+        constructor(vararg positions: Int) : this(positions.map(::Position))
+
+        fun add(position: Position): Positions {
+            return Positions(positions + position)
+        }
+
+        operator fun plus(position: Position) = Positions(positions + position)
     }
 
-    class Cars(private val cars: Int) {
-        override fun equals(other: Any?): Boolean {
-            if (this === other) return true
-            if (javaClass != other?.javaClass) return false
+    data class Cars(private val cars: List<Car>) {
+        constructor(cars: Int) : this((0 until cars).map { Car() })
 
-            other as Cars
-
-            if (cars != other.cars) return false
-
-            return true
-        }
-
-        override fun hashCode(): Int {
-            return cars
-        }
+        var positions = Positions()
 
         fun drive() {
+            positions = cars.map { it.driving() }
+                .fold(Positions(), Positions::plus)
         }
-
-        fun positions() = Positions(2, 2)
     }
+
+    private fun testCars(count: Int) = Cars((0 until count).map { Car(moveable = Moveable.Always()) })
 }
