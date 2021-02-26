@@ -16,10 +16,19 @@ class CarTest {
 
     @Test
     internal fun `자동차 객체는 Moveable을 받는다`() {
-        Car(Moveable.Smart())
+        Car(0, Moveable.Always())
     }
 
-    class Car(position: Int) {
+    interface Moveable {
+        fun move(): Boolean
+        class Always : Moveable {
+            override fun move() = true
+        }
+    }
+
+    class Car(private val position: Int, private val moveable: Moveable = Moveable.Always()) {
+        fun move() = Car(position, moveable)
+
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
             if (javaClass != other?.javaClass) return false
@@ -29,7 +38,5 @@ class CarTest {
         override fun hashCode(): Int {
             return javaClass.hashCode()
         }
-
-        fun move() = Car(1)
     }
 }
