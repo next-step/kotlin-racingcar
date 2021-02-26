@@ -12,7 +12,7 @@ interface Moveable {
     class Random : Moveable {
         private val intRandom = IntRandom.Smart(ThreadLocalRandom.current(), BOUND_MAX)
 
-        override fun moving() = intRandom.next() >= MOVING_MIN
+        override fun moving() = intRandom.next().moreThen(MOVING_MIN)
 
         companion object {
             const val BOUND_MAX = 10
@@ -20,3 +20,5 @@ interface Moveable {
         }
     }
 }
+
+private fun Int.moreThen(min: Int) = this >= min
