@@ -15,4 +15,8 @@ class Cars private constructor(private val allCars: ArrayList<Car>) {
     fun getNumberOfCars(): Int {
         return allCars.size
     }
+
+    fun getCars(): List<Car> {
+        return allCars
+    }
 }
