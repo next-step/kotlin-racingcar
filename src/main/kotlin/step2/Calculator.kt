@@ -1,7 +1,13 @@
 package step2
 
+const val BLANK = " "
+
 fun main() {
-    val inputManager = InputManager()
-    val fomulaList = inputManager.convertFormulaToList(readLine())
-    println(fomulaList.toString())
+    val input = Input()
+    val strFormula = input.inputFormula()
+    val listFormula = input.convertFormulaToList(strFormula)
+
+    println(listFormula.toString())
+
 }
+
