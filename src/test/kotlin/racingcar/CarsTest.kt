@@ -1,18 +1,17 @@
 package racingcar
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 internal class CarsTest {
-    @Test
-    fun makeCars() {
-        // given
-        val numberOfCars = 5
-
+    @ParameterizedTest
+    @ValueSource(ints = [0, 1, 2, 3, 10])
+    fun makeCars(numberOfCars: Int) {
         // when
         val cars = Cars.makeCars(numberOfCars)
 
         // then
-        assertThat(cars).hasSize(5)
+        assertThat(cars.getNumberOfCars()).isEqualTo(numberOfCars)
     }
 }
