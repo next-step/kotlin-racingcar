@@ -11,11 +11,11 @@ class CarTest {
 
     @Test
     fun `자동차 객체는 움직인다`() {
-        assertThat(Car(0).move()).isEqualTo(Car(1))
+        assertThat(Car(0).driving()).isEqualTo(Position(1))
     }
 
     @Test
-    internal fun `자동차 객체는 Moveable을 받는다`() {
+    fun `자동차 객체는 Moveable을 받는다`() {
         Car(0, Moveable.Always())
     }
 
@@ -26,8 +26,10 @@ class CarTest {
         }
     }
 
+    data class Position(private val position: Int)
+
     class Car(private val position: Int, private val moveable: Moveable = Moveable.Always()) {
-        fun move() = Car(position, moveable)
+        fun driving() = Position(1)
 
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
