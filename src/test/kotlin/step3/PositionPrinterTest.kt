@@ -3,8 +3,6 @@ package step3
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import java.io.ByteArrayOutputStream
-import java.io.OutputStream
-import java.io.PrintWriter
 
 class PositionPrinterTest {
     @Test
@@ -22,18 +20,5 @@ class PositionPrinterTest {
             
             """.trimIndent()
         )
-    }
-
-    class PositionPrinter(private val positions: List<Positions>, outputStream: OutputStream) {
-        private val printWriter: PrintWriter = PrintWriter(outputStream, true)
-
-        fun print() {
-            for (positions in positions) {
-                positions.map { "-".repeat(it.intValue()) }
-                    .forEach(printWriter::println)
-
-                printWriter.println()
-            }
-        }
     }
 }
