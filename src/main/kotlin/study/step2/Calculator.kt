@@ -27,7 +27,7 @@ class Calculator {
         return acc
     }
 
-    fun calculate(from: Int, operator: String, to: Int): Int {
+    private fun calculate(from: Int, operator: String, to: Int): Int {
         return when (operator) {
             CalculationsSymbol.ADD.symbol -> add(from, to)
             CalculationsSymbol.SUB.symbol -> subtraction(from, to)
@@ -37,7 +37,7 @@ class Calculator {
         }
     }
 
-    fun getNumber(token: String): Int {
+    private fun getNumber(token: String): Int {
         return token.toIntOrNull() ?: throw IllegalArgumentException()
     }
 }
