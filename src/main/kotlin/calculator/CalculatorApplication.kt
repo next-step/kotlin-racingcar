@@ -21,6 +21,6 @@ class CalculatorApplication(private val userInterface: UserInterface) {
         val calculator = Calculator(operands, operators)
         val result = calculator.calculate()
 
-        userInterface.showResult(result)
+        userInterface.showResult(result.value)
     }
 }
