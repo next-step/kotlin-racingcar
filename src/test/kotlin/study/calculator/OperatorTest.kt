@@ -1,15 +1,9 @@
 package study.calculator
 
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-/**
- * @author tae-heon.song<taeheon.song></taeheon.song>@linecorp.com>
- * @since 2021. 02. 27.
- */
 internal class OperatorTest {
     @Test
     fun findBySymbol() {

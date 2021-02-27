@@ -1,14 +1,5 @@
-/*
- * Copyright (c) 2021. LINE Corporation. All rights reserved.
- * LINE Corporation PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
-
 package study.calculator
 
-/**
- * @author tae-heon.song<taeheon.song@linecorp.com>
- * @since 2021. 02. 27.
- */
 enum class Operator(
     val symbol: String
 ) {
@@ -25,7 +16,6 @@ enum class Operator(
     };
 
     abstract fun calculate(preNum: Int, nextNum: Int): Int
-
 
     companion object {
         fun findBySymbol(symbol: String): Operator {

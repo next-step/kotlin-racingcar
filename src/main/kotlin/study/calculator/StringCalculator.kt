@@ -48,7 +48,7 @@ object StringCalculator {
     }
 
     private fun convertStringToNum(strNumber: String): Int {
-        if(!isNumber(strNumber)) {
+        if (!isNumber(strNumber)) {
             throw IllegalArgumentException("잘못된 문자열이 피연산자로 입력되었습니다.")
         }
         return Integer.valueOf(strNumber)

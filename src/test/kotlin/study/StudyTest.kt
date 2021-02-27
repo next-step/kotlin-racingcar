@@ -14,7 +14,7 @@ class StudyTest {
     @Test
     fun test() {
         val list = listOf("a", "b", "c", "d")
-        for(i in 1 until list.size) {
+        for (i in 1 until list.size) {
             println(list[i])
         }
     }
