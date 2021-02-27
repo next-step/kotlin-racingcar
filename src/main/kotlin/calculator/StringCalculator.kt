@@ -12,6 +12,10 @@ class StringCalculator {
             return leftNumber + rightNumber
         }
 
+        if (operator == "*") {
+            return leftNumber * rightNumber
+        }
+
         return leftNumber - rightNumber
     }
 

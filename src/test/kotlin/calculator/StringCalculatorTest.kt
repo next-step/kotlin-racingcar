@@ -16,4 +16,10 @@ internal class StringCalculatorTest {
         val stringCalculator = StringCalculator()
         assertThat(stringCalculator.calculate("2-1")).isEqualTo(1)
     }
+
+    @Test
+    fun `곱셈`() {
+        val stringCalculator = StringCalculator()
+        assertThat(stringCalculator.calculate("2*1")).isEqualTo(2)
+    }
 }
