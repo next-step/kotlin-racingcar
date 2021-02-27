@@ -2,6 +2,7 @@ package racingcar.model
 
 import racingcar.strategy.MoveStrategy
 import racingcar.view.ResultViews
+import racingcar.view.WinnerView
 
 class RacingCarGame(private val cars: Cars, private val moveStrategy: MoveStrategy) {
     companion object {
@@ -14,6 +15,11 @@ class RacingCarGame(private val cars: Cars, private val moveStrategy: MoveStrate
     fun moveOnce(): ResultViews {
         val resultViews = cars.moveOnce(moveStrategy)
         return ResultViews(resultViews)
+    }
+
+    fun finish(): WinnerView {
+        val winners = getWinners()
+        return WinnerView(winners)
     }
 
     fun getCarCount(): Int {

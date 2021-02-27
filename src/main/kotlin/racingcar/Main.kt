@@ -14,4 +14,7 @@ fun main() {
         val resultViews = racingCarGame.moveOnce()
         resultViews.printResults()
     }
+
+    val finalResultView = racingCarGame.finish()
+    finalResultView.printResult()
 }
