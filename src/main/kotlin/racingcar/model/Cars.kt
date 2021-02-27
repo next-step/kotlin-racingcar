@@ -43,6 +43,10 @@ class Cars private constructor(private val allCars: ArrayList<Car>) {
     }
 
     fun findWinners(): List<String> {
-        TODO("Not yet implemented")
+        val maxScore = findMaxScore()
+        return allCars.asSequence()
+            .filter { car -> car.score == maxScore }
+            .map(Car::name)
+            .toList()
     }
 }

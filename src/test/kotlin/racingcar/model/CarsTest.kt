@@ -50,7 +50,7 @@ internal class CarsTest {
 
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4, 5])
-    internal fun findWinners(gameCount: Int) {
+    fun findWinners(gameCount: Int) {
         // given
         val carNames = listOf("Tesla", "Waymo", "Zoox")
         val cars = Cars.makeCars(carNames)
@@ -60,7 +60,7 @@ internal class CarsTest {
         val winners: List<String> = cars.findWinners()
 
         // then
-        assertThat(winners).containsAll(carNames)
+        assertThat(winners.size).isEqualTo(3)
     }
 
     private fun runGames(gameCount: Int, cars: Cars, canMove: Boolean) {
