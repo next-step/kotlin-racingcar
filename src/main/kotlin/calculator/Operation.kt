@@ -1,15 +1,16 @@
 package calculator
 
 import java.lang.IllegalArgumentException
+import java.util.function.BiFunction
 
-enum class Operation(val char: String, val operate: (Int, Int) -> Int) {
-    PLUS("+", { first: Int, second: Int -> first + second }),
-    MINUS("-", { first: Int, second: Int -> first - second }),
-    MULTIPLE("*", { first: Int, second: Int -> first * second }),
-    DIVIDE("/", { first: Int, second: Int -> first / second });
+enum class Operation(val char: String, val operate: BiFunction<Int, Int, Int>) {
+    PLUS("+", BiFunction { first: Int, second: Int -> first + second }),
+    MINUS("-", BiFunction { first: Int, second: Int -> first - second }),
+    MULTIPLE("*", BiFunction { first: Int, second: Int -> first * second }),
+    DIVIDE("/", BiFunction { first: Int, second: Int -> first / second });
 
     fun calc(first: Int, second: Int): Int {
-        return operate(first, second)
+        return operate.apply(first, second)
     }
 
     companion object {
