@@ -13,7 +13,7 @@ internal class CalculatorTest {
 
     @Test
     fun `빼기`() {
-        assertThat(Calculator().subtraction(3, 2)).isEqualTo(1)
+        assertThat(Calculator().subtract(3, 2)).isEqualTo(1)
     }
 
     @Test
@@ -23,7 +23,7 @@ internal class CalculatorTest {
 
     @Test
     fun `나누기`() {
-        assertThat(Calculator().division(4, 2)).isEqualTo(2)
+        assertThat(Calculator().divide(4, 2)).isEqualTo(2)
     }
 
     @Test
