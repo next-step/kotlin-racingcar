@@ -10,4 +10,10 @@ internal class StringCalculatorTest {
         val stringCalculator = StringCalculator()
         assertThat(stringCalculator.calculate("1+2")).isEqualTo(3)
     }
+
+    @Test
+    fun `뺄셈`() {
+        val stringCalculator = StringCalculator()
+        assertThat(stringCalculator.calculate("2-1")).isEqualTo(1)
+    }
 }
