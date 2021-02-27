@@ -8,15 +8,25 @@ class StringCalculator {
         val rightNumber = formula[2].toInt()
         val operator = formula[1]
 
+        return calculate(leftNumber, operator, rightNumber)
+    }
+
+    private fun replace(s: String) = s.replace(FORMULA_REGEX, EMPTY)
+
+    private fun calculate(leftNumber: Int, operator: String, rightNumber: Int): Int {
         return when (operator) {
             "+" -> leftNumber + rightNumber
             "-" -> leftNumber - rightNumber
             "*" -> leftNumber * rightNumber
+            "/" -> {
+                if (rightNumber == 0) {
+                    throw IllegalArgumentException()
+                }
+                leftNumber / rightNumber
+            }
             else -> throw IllegalArgumentException()
         }
     }
-
-    private fun replace(s: String) = s.replace(FORMULA_REGEX, EMPTY)
 
     companion object {
         private val FORMULA_REGEX = "[^\\d+\\-*/]".toRegex()

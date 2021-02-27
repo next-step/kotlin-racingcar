@@ -2,6 +2,7 @@ package calculator
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 internal class StringCalculatorTest {
 
@@ -21,5 +22,17 @@ internal class StringCalculatorTest {
     fun `곱셈`() {
         val stringCalculator = StringCalculator()
         assertThat(stringCalculator.calculate("2*1")).isEqualTo(2)
+    }
+
+    @Test
+    fun `나눗셈`() {
+        val stringCalculator = StringCalculator()
+        assertThat(stringCalculator.calculate("2/2")).isEqualTo(1)
+    }
+
+    @Test
+    fun `나눗셈 0으로 나누는 경우`() {
+        val stringCalculator = StringCalculator()
+        assertThrows<IllegalArgumentException> { stringCalculator.calculate("2/0") }
     }
 }
