@@ -1,7 +1,6 @@
 package calculator
 
 import java.lang.IllegalArgumentException
-import java.util.stream.Stream
 
 enum class Operation(val char: String, val operate: (Int, Int) -> Int) {
     PLUS("+", { first: Int, second: Int -> first + second }),
@@ -9,8 +8,8 @@ enum class Operation(val char: String, val operate: (Int, Int) -> Int) {
     MULTIPLE("*", { first: Int, second: Int -> first * second }),
     DIVIDE("/", { first: Int, second: Int -> first / second });
 
-    fun calc(first: Int, second: Int) : Int {
-        return operate(first, second);
+    fun calc(first: Int, second: Int): Int {
+        return operate(first, second)
     }
 
     companion object {
