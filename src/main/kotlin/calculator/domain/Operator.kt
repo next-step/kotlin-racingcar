@@ -1,10 +1,10 @@
 package calculator.domain
 
 enum class Operator(val code: String, val operate: (Number, Number) -> Number) {
-    PLUS("+", { x, y -> x.plus(y) }),
-    MINUS("-", { x, y -> x.minus(y) }),
-    MULTIPLE("*", { x, y -> x.multiple(y) }),
-    DIVIDE("/", { x, y -> x.divide(y) });
+    PLUS("+", { x, y -> x + y }),
+    MINUS("-", { x, y -> x - y }),
+    MULTIPLE("*", { x, y -> x * y }),
+    DIVIDE("/", { x, y -> x / y });
 
     companion object {
         @JvmStatic

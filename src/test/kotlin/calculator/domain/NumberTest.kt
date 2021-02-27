@@ -16,7 +16,7 @@ internal class NumberTest {
         "-2, -5, -7"
     )
     fun `덧셈`(firstNumber: Number, secondNumber: Number, expected: Number) {
-        val result = firstNumber.plus(secondNumber)
+        val result = firstNumber + secondNumber
         assertThat(result).isEqualTo(expected)
     }
 
@@ -28,7 +28,7 @@ internal class NumberTest {
         "-2, -5, 3"
     )
     fun `뺄셈`(firstNumber: Number, secondNumber: Number, expected: Number) {
-        val result = firstNumber.minus(secondNumber)
+        val result = firstNumber - secondNumber
         assertThat(result).isEqualTo(expected)
     }
 
@@ -41,7 +41,7 @@ internal class NumberTest {
         "-2, -5, 10"
     )
     fun `곱셈`(firstNumber: Number, secondNumber: Number, expected: Number) {
-        val result = firstNumber.multiple(secondNumber)
+        val result = firstNumber * secondNumber
         assertThat(result).isEqualTo(expected)
     }
 
@@ -53,7 +53,7 @@ internal class NumberTest {
         "-5, -2, 2"
     )
     fun `나눗셈`(firstNumber: Number, secondNumber: Number, expected: Number) {
-        val result = firstNumber.divide(secondNumber)
+        val result = firstNumber / secondNumber
         assertThat(result).isEqualTo(expected)
     }
 
@@ -63,7 +63,7 @@ internal class NumberTest {
         val secondNumber = Number(0)
         val expectedMessage = "0으로 나눌 수 없음"
 
-        val result = assertThrows<IllegalArgumentException> { firstNumber.divide(secondNumber) }
+        val result = assertThrows<IllegalArgumentException> { firstNumber / secondNumber }
         assertThat(result.message).isEqualTo(expectedMessage)
     }
 }
