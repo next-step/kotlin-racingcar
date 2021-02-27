@@ -28,7 +28,7 @@ class CalculatorApplication(private val userInterface: UserInterface) {
 
             val operators = input.split(mathExpressionDelimiter)
                 .filterIndexed { idx, _ -> idx.isOdd() }
-                .map { Operator.of(it) }
+                .map { Operator.from(it) }
                 .toList()
 
             val calculator = Calculator(operands, operators)

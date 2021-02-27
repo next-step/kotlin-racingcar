@@ -9,7 +9,7 @@ internal class OperatorTest {
     @Test
     fun `사칙연산 연산자 문자를 정상적으로 변환한다`() {
         val operatorCodes = listOf("+", "-", "*", "/")
-        val result = operatorCodes.map { Operator.of(it) }
+        val result = operatorCodes.map { Operator.from(it) }
         assertThat(result).isEqualTo(listOf(Operator.PLUS, Operator.MINUS, Operator.MULTIPLE, Operator.DIVIDE))
     }
 
@@ -18,7 +18,7 @@ internal class OperatorTest {
         val illegalOperatorCode = "|"
         val expectedMessage = "허용하지 않는 연산자"
 
-        val result = assertThrows<IllegalArgumentException> { Operator.of(illegalOperatorCode) }
+        val result = assertThrows<IllegalArgumentException> { Operator.from(illegalOperatorCode) }
         assertThat(result.message).isEqualTo(expectedMessage)
     }
 }
