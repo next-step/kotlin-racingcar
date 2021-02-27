@@ -10,4 +10,12 @@ class StudyTest {
         assertThat(null?.isBlank()).isNull()
         assertThat(" ".isBlank()).isTrue()
     }
+
+    @Test
+    fun test() {
+        val list = listOf("a", "b", "c", "d")
+        for(i in 1 until list.size) {
+            println(list[i])
+        }
+    }
 }
