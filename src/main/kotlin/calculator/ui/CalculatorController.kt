@@ -1,7 +1,7 @@
 package calculator.calculator.ui
 
-class CalculatorController() {
-    fun run(input: String = ""): Double {
-        return input.toDouble()
-    }
+import calculator.calculator.domain.Expression
+
+class CalculatorController {
+    fun run(input: String = "") = Expression(input).getResult()
 }
