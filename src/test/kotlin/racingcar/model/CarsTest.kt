@@ -48,6 +48,21 @@ internal class CarsTest {
         assertThat(winners).isEqualTo(gameCount)
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = [1, 2, 3, 4, 5])
+    internal fun findWinners(gameCount: Int) {
+        // given
+        val carNames = listOf("Tesla", "Waymo", "Zoox")
+        val cars = Cars.makeCars(carNames)
+        runGames(gameCount, cars, true)
+
+        // when
+        val winners: List<String> = cars.findWinners()
+
+        // then
+        assertThat(winners).containsAll(carNames)
+    }
+
     private fun runGames(gameCount: Int, cars: Cars, canMove: Boolean) {
         for (i in 1..gameCount) {
             cars.moveOnce(object : MoveStrategy {

@@ -41,4 +41,8 @@ class Cars private constructor(private val allCars: ArrayList<Car>) {
             .max()
             ?.toInt()
     }
+
+    fun findWinners(): List<String> {
+        TODO("Not yet implemented")
+    }
 }
