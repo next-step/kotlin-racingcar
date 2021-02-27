@@ -7,7 +7,7 @@ class InputUtilsTest {
     @Test
     fun convertStringLineToNames() {
         // given
-        val readLine = "elon, zuckerberg, Sergey, Larry"
+        val readLine = "Elon, Zuckerberg, Sergey, Larry"
 
         // when
         val names: List<String> = InputUtils.convertToNames(readLine)

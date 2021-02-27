@@ -4,6 +4,7 @@ import racingcar.dto.InputDto
 
 private const val QUESTION_FOR_CAR_COUNT = "자동차 대수는 몇 대인가요?"
 private const val QUESTION_FOR_GAME_COUNT = "시도할 횟수는 몇 회인가요?"
+private const val DELIMITER = ","
 
 class InputUtils {
     companion object {
@@ -18,7 +19,10 @@ class InputUtils {
         }
 
         fun convertToNames(readLine: String): List<String> {
-            TODO("Not yet implemented")
+            return readLine.split(DELIMITER)
+                .asSequence()
+                .map { name: String -> name.trim() }
+                .toList()
         }
     }
 }
