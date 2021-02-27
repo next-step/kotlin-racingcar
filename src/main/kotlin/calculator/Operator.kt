@@ -9,25 +9,27 @@ enum class Operator {
     ADD,
     SUBTRACT,
     MULTIPLY,
-    DIVIDE
-}
+    DIVIDE;
 
-fun findOperator(input: String): Operator {
-    return when (input) {
-        SYMBOL_ADD -> Operator.ADD
-        SYMBOL_SUBTRACT -> Operator.SUBTRACT
-        SYMBOL_MULTIPLY -> Operator.MULTIPLY
-        SYMBOL_DIVIDE -> Operator.DIVIDE
-        else -> throw IllegalArgumentException()
-    }
-}
+    companion object {
+        fun findOperator(input: String): Operator {
+            return when (input) {
+                SYMBOL_ADD -> ADD
+                SYMBOL_SUBTRACT -> SUBTRACT
+                SYMBOL_MULTIPLY -> MULTIPLY
+                SYMBOL_DIVIDE -> DIVIDE
+                else -> throw IllegalArgumentException("Invalid operator for Operator.findOperator()")
+            }
+        }
 
-fun operate(leftNumber: Int, rightNumber: Int, operator: String): Int {
-    return when (operator) {
-        SYMBOL_ADD -> leftNumber + rightNumber
-        SYMBOL_SUBTRACT -> leftNumber - rightNumber
-        SYMBOL_MULTIPLY -> leftNumber * rightNumber
-        SYMBOL_DIVIDE -> leftNumber / rightNumber
-        else -> throw IllegalArgumentException()
+        fun operate(leftNumber: Int, rightNumber: Int, operator: String): Int {
+            return when (operator) {
+                SYMBOL_ADD -> leftNumber + rightNumber
+                SYMBOL_SUBTRACT -> leftNumber - rightNumber
+                SYMBOL_MULTIPLY -> leftNumber * rightNumber
+                SYMBOL_DIVIDE -> leftNumber / rightNumber
+                else -> throw IllegalArgumentException("Invalid operator for Operator.operate()")
+            }
+        }
     }
 }
