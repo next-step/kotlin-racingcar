@@ -40,4 +40,22 @@ internal class RacingCarGameTest {
         val countWithScoreGreaterThanOne = cars.getCarCountWithScoreEqualOrGreaterThan(1)
         assertThat(countWithScoreGreaterThanOne).isEqualTo(expectedCarCount)
     }
+
+    @Test
+    fun findWinners() {
+        // given
+        val moveStrategy = object : MoveStrategy {
+            override fun canMove() = true
+        }
+        val carNames = listOf("Tesla", "Waymo", "Zoox")
+        val racingCarGame = RacingCarGame.ready(carNames, moveStrategy)
+        racingCarGame.moveOnce()
+
+        // when
+        val winners: List<String> = racingCarGame.getWinners()
+
+        // then
+        assertThat(winners).hasSize(3)
+        assertThat(winners).containsAll(carNames)
+    }
 }

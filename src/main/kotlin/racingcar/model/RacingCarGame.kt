@@ -23,4 +23,8 @@ class RacingCarGame(private val cars: Cars, private val moveStrategy: MoveStrate
     fun getCars(): Cars {
         return cars
     }
+
+    fun getWinners(): List<String> {
+        TODO("Not yet implemented")
+    }
 }
