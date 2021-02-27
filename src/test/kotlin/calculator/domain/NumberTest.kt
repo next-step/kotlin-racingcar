@@ -1,6 +1,6 @@
 package calculator.domain
 
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -17,7 +17,7 @@ internal class NumberTest {
     )
     fun `덧셈`(firstNumber: Number, secondNumber: Number, expected: Number) {
         val result = firstNumber.plus(secondNumber)
-        Assertions.assertThat(result).isEqualTo(expected)
+        assertThat(result).isEqualTo(expected)
     }
 
     @ParameterizedTest(name = "{0} - {1} = {2}")
@@ -29,7 +29,7 @@ internal class NumberTest {
     )
     fun `뺄셈`(firstNumber: Number, secondNumber: Number, expected: Number) {
         val result = firstNumber.minus(secondNumber)
-        Assertions.assertThat(result).isEqualTo(expected)
+        assertThat(result).isEqualTo(expected)
     }
 
     @ParameterizedTest(name = "{0} * {1} = {2}")
@@ -42,7 +42,7 @@ internal class NumberTest {
     )
     fun `곱셈`(firstNumber: Number, secondNumber: Number, expected: Number) {
         val result = firstNumber.multiple(secondNumber)
-        Assertions.assertThat(result).isEqualTo(expected)
+        assertThat(result).isEqualTo(expected)
     }
 
     @ParameterizedTest(name = "{0} / {1} = {2}")
@@ -54,7 +54,7 @@ internal class NumberTest {
     )
     fun `나눗셈`(firstNumber: Number, secondNumber: Number, expected: Number) {
         val result = firstNumber.divide(secondNumber)
-        Assertions.assertThat(result).isEqualTo(expected)
+        assertThat(result).isEqualTo(expected)
     }
 
     @Test
@@ -64,6 +64,6 @@ internal class NumberTest {
         val expectedMessage = "0으로 나눌 수 없음"
 
         val result = assertThrows<IllegalArgumentException> { firstNumber.divide(secondNumber) }
-        Assertions.assertThat(result.message).isEqualTo(expectedMessage)
+        assertThat(result.message).isEqualTo(expectedMessage)
     }
 }
