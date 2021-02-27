@@ -19,8 +19,16 @@ class CalculatorApplication(private val userInterface: UserInterface) {
     fun run() {
         userInterface.showInput()
         val input = userInterface.inputMathExpression()
-        val operands = input.split(mathExpressionDelimiter).filterIndexed { idx, _ -> idx % 2 == 0 }.map { Number(it) }.toList()
-        val operators = input.split(mathExpressionDelimiter).filterIndexed { idx, _ -> idx % 2 == 1 }.map { Operator.of(it) }.toList()
+
+        val operands = input.split(mathExpressionDelimiter)
+            .filterIndexed { idx, _ -> idx.isEven() }
+            .map { Number(it) }
+            .toList()
+
+        val operators = input.split(mathExpressionDelimiter)
+            .filterIndexed { idx, _ -> idx.isOdd() }
+            .map { Operator.of(it) }
+            .toList()
 
         val calculator = Calculator(operands, operators)
         val result = calculator.calculate()
