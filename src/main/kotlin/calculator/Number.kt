@@ -22,6 +22,10 @@ class Number private constructor(private val value: Int) : Word {
         return Objects.hash(value)
     }
 
+    override fun toString(): String {
+        return value.toString()
+    }
+
     companion object {
         fun of(value: String): Number {
             val v = value.trim()
