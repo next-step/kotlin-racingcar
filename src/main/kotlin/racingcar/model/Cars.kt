@@ -34,4 +34,8 @@ class Cars private constructor(private val allCars: ArrayList<Car>) {
             .filter { car -> car.score >= score }
             .count()
     }
+
+    fun findMaxScore(): List<Car> {
+        TODO()
+    }
 }

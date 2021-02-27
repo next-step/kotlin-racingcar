@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.ValueSource
 import racingcar.strategy.MoveStrategy
 
 internal class CarsTest {
@@ -32,5 +33,28 @@ internal class CarsTest {
 
         // then
         assertThat(actualCarCount).isEqualTo(expectedCarCount)
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [1, 2, 3, 4, 5])
+    fun findMaxScore(gameCount: Int) {
+        // given
+        val carNames = listOf("Tesla", "Waymo", "Zoox")
+        val cars = Cars.makeCars(carNames)
+        runGames(gameCount, cars)
+
+        // when
+        val winners = cars.findMaxScore()
+
+        // then
+        assertThat(winners).hasSize(gameCount)
+    }
+
+    private fun runGames(gameCount: Int, cars: Cars) {
+        for (i in 1..gameCount) {
+            cars.moveOnce(object : MoveStrategy {
+                override fun canMove() = true
+            })
+        }
     }
 }
