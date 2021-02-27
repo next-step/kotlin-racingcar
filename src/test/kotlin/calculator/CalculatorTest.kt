@@ -34,7 +34,10 @@ class CalculatorTest {
                 AbstractMap.SimpleEntry("3 + 5 - 2 * 7", 42),
                 AbstractMap.SimpleEntry("3 - 5 * 3 / 2", -3),
                 AbstractMap.SimpleEntry("3 * 5 + 2 - 10", 7),
-                AbstractMap.SimpleEntry("15 / 3 - 5 + 100", 100)
+                AbstractMap.SimpleEntry("15 / 3 - 5 + 100", 100),
+
+
+                AbstractMap.SimpleEntry("15 / 3 - 5 + 100 * 5", 500)
 
 
             );
