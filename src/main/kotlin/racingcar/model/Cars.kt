@@ -35,7 +35,10 @@ class Cars private constructor(private val allCars: ArrayList<Car>) {
             .count()
     }
 
-    fun findMaxScore(): List<Car> {
-        TODO()
+    fun findMaxScore(): Int? {
+        return allCars.asSequence()
+            .map { car -> car.score }
+            .max()
+            ?.toInt()
     }
 }

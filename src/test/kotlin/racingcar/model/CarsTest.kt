@@ -47,7 +47,7 @@ internal class CarsTest {
         val winners = cars.findMaxScore()
 
         // then
-        assertThat(winners).hasSize(gameCount)
+        assertThat(winners).isEqualTo(gameCount)
     }
 
     private fun runGames(gameCount: Int, cars: Cars) {
