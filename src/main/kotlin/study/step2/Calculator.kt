@@ -30,7 +30,7 @@ class Calculator {
     private fun calculate(from: Int, operator: String, to: Int): Int {
         return when (operator) {
             CalculationsSymbol.ADD.symbol -> add(from, to)
-            CalculationsSymbol.SUB.symbol -> subtraction(from, to)
+            CalculationsSymbol.SUBTRACT.symbol -> subtraction(from, to)
             CalculationsSymbol.MULTIPLY.symbol -> multiply(from, to)
             CalculationsSymbol.DIVISION.symbol -> division(from, to)
             else -> throw IllegalArgumentException()
