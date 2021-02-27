@@ -58,7 +58,7 @@ internal class NumberTest {
     }
 
     @Test
-    fun `0으로 나누기를 하는 경우 ArithmeticException 예외 발생`() {
+    fun `0으로 나누기를 하는 경우 예외 발생`() {
         val firstNumber = Number(3)
         val secondNumber = Number(0)
         val expectedMessage = "0으로 나눌 수 없음"
