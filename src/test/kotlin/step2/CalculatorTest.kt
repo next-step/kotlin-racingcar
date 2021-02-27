@@ -1,6 +1,7 @@
 package step2
 
-import org.assertj.core.api.Assertions.*
+import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -11,8 +12,8 @@ internal class CalculatorTest {
     companion object {
         @JvmStatic
         fun complexCalculationProvider() = listOf(
-                Arguments { arrayOf("1 + 3 * 5", 20) },
-                Arguments { arrayOf("2 - 8 / 3", -2) }
+            Arguments { arrayOf("1 + 3 * 5", 20) },
+            Arguments { arrayOf("2 - 8 / 3 - 3", -5) }
         )
     }
 
