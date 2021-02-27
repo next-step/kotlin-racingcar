@@ -20,19 +20,24 @@ class CalculatorApplication(private val userInterface: UserInterface) {
         userInterface.showInput()
         val input = userInterface.inputMathExpression()
 
-        val operands = input.split(mathExpressionDelimiter)
-            .filterIndexed { idx, _ -> idx.isEven() }
-            .map { Number(it) }
-            .toList()
+        try {
+            val operands = input.split(mathExpressionDelimiter)
+                .filterIndexed { idx, _ -> idx.isEven() }
+                .map { Number(it) }
+                .toList()
 
-        val operators = input.split(mathExpressionDelimiter)
-            .filterIndexed { idx, _ -> idx.isOdd() }
-            .map { Operator.of(it) }
-            .toList()
+            val operators = input.split(mathExpressionDelimiter)
+                .filterIndexed { idx, _ -> idx.isOdd() }
+                .map { Operator.of(it) }
+                .toList()
 
-        val calculator = Calculator(operands, operators)
-        val result = calculator.calculate()
+            val calculator = Calculator(operands, operators)
+            val result = calculator.calculate()
 
-        userInterface.showResult(result.value)
+            userInterface.showResult(result.value)
+        } catch (e: Exception) {
+            userInterface.showErrorMessage(e.localizedMessage)
+            run()
+        }
     }
 }

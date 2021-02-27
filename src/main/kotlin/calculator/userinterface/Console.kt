@@ -13,4 +13,8 @@ class Console : UserInterface {
     override fun showResult(result: Int) {
         println("결과: $result")
     }
+
+    override fun showErrorMessage(errorMessage: String) {
+        println("예외발생: $errorMessage")
+    }
 }
