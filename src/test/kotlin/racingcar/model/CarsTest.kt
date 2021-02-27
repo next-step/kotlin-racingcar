@@ -24,9 +24,7 @@ internal class CarsTest {
         // given
         val carNames = listOf("Tesla", "Waymo", "Zoox")
         val cars = Cars.makeCars(carNames)
-        cars.moveOnce(object : MoveStrategy {
-            override fun canMove() = canMove
-        })
+        runGames(1, cars, canMove)
 
         // when
         val actualCarCount = cars.getCarCountWithScoreEqualOrGreaterThan(1)
@@ -41,7 +39,7 @@ internal class CarsTest {
         // given
         val carNames = listOf("Tesla", "Waymo", "Zoox")
         val cars = Cars.makeCars(carNames)
-        runGames(gameCount, cars)
+        runGames(gameCount, cars, true)
 
         // when
         val winners = cars.findMaxScore()
@@ -50,10 +48,10 @@ internal class CarsTest {
         assertThat(winners).isEqualTo(gameCount)
     }
 
-    private fun runGames(gameCount: Int, cars: Cars) {
+    private fun runGames(gameCount: Int, cars: Cars, canMove: Boolean) {
         for (i in 1..gameCount) {
             cars.moveOnce(object : MoveStrategy {
-                override fun canMove() = true
+                override fun canMove() = canMove
             })
         }
     }
