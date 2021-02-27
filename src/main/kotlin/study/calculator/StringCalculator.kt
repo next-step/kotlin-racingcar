@@ -37,7 +37,7 @@ object StringCalculator {
     }
 
     private fun getOperator(elements: List<String>, operatorIndex: Int): Operator {
-        return Operator.findBySymbol(elements[operatorIndex])
+        return Operator.findBySymbol(elements[operatorIndex]) ?: throw IllegalArgumentException("${elements[operatorIndex]}는 존재하지 않는 연산자입니다.")
     }
 
     private fun getNextNum(elements: List<String>, nextNumIndex: Int): Int {

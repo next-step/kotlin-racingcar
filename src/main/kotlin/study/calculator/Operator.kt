@@ -18,8 +18,8 @@ enum class Operator(
     abstract fun calculate(preNum: Int, nextNum: Int): Int
 
     companion object {
-        fun findBySymbol(symbol: String): Operator {
-            return values().find { it.symbol == symbol } ?: throw IllegalArgumentException("${symbol}는 존재하지 않는 연산자입니다.")
+        fun findBySymbol(symbol: String): Operator? {
+            return values().find { it.symbol == symbol }
         }
     }
 }
