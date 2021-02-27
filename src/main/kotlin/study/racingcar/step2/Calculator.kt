@@ -7,11 +7,9 @@ import study.racingcar.step2.operation.MultiplicationCalculation
 import study.racingcar.step2.operation.PlusCalculation
 import java.util.HashMap
 
-class Calculator {
+class Calculator(private val expression: String) {
     private val COMMON_SPACE = " "
     private val calculationMap: MutableMap<String, AbstractCalculation>
-    private var expression: String? = null
-    private lateinit var expressionValues: Array<String>
 
     init {
         calculationMap = HashMap()
@@ -21,38 +19,30 @@ class Calculator {
         calculationMap["*"] = MultiplicationCalculation()
     }
 
-    fun expression(expression: String): Calculator {
-        this.expression = expression
-        checkEmptyExpression()
-        return this
-    }
-
     fun calculation(): Int {
         checkEmptyExpression()
-        expressionValues = expression!!.split(COMMON_SPACE.toRegex()).toTypedArray()
-        return calculation(0)
+        var expressionValues = expression.split(COMMON_SPACE.toRegex()) as MutableList<String>
+        return calculation(expressionValues, 0)
     }
 
     private fun checkEmptyExpression() {
-        require(!(expression == null || expression!!.length == 0)) {
-            throw IllegalArgumentException("expression is empty")
-        }
+        require(expression.trim().isNotEmpty()) { "expression is empty" }
     }
 
-    private fun calculation(index: Int): Int {
-        var index = index
-        val leftValue = expressionValues[index]
-        val symbol = expressionValues[++index]
-        val rightValue = expressionValues[++index]
+    private fun calculation(expressionValues: MutableList<String>, index: Int): Int {
+        var idx = index
+        val leftValue = expressionValues[idx]
+        val symbol = expressionValues[++idx]
+        val rightValue = expressionValues[++idx]
         val abstractCalculation = calculationMap[symbol]
             ?: throw IllegalArgumentException("Symbol is fault -> $symbol")
 
         val result = abstractCalculation.calculate(leftValue, rightValue)
-        if (expressionValues.size == index + 1) {
+        if (expressionValues.size == idx + 1) {
             return result
         }
 
-        expressionValues[index] = result.toString()
-        return calculation(index)
+        expressionValues[idx] = result.toString()
+        return calculation(expressionValues, idx)
     }
 }
