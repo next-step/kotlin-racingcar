@@ -1,11 +1,17 @@
 package step2.util.extension
 
-fun String.splitBy(delimiter: String): List<String> {
+import step2.util.Const.Companion.NOTICE_NOT_BLANK
+import step2.util.Const.Companion.NOTICE_NOT_NULL
+import step2.util.Const.Companion.NOTICE_NOT_OPERAND_SYMBOL
+
+fun String.splitNotBlank(delimiter: String): List<String> {
+    require(isNotBlank()) { NOTICE_NOT_BLANK }
     return split(delimiter)
 }
 
-fun String?.splitBy(delimiter: String, message: String): List<String> {
-    return requireNotNull(this?.splitBy(delimiter), { message })
+fun String?.splitToCalculate(delimiter: String): List<String> {
+    if (this?.length == 1) toDouble(NOTICE_NOT_OPERAND_SYMBOL)
+    return requireNotNull(this?.splitNotBlank(delimiter), { NOTICE_NOT_NULL })
 }
 
 fun String.toDouble(message: String): Double {

@@ -2,18 +2,17 @@ package step2.tasks
 
 import step2.data.Operand
 import step2.data.Operator
-import step2.util.extension.splitBy
 import step2.util.extension.toDouble
 import step2.util.Const.Companion.DELIMITERS_BLANK
-import step2.util.Const.Companion.NOTICE_NOTNULL
 import step2.util.Const.Companion.NOTICE_NOT_OPERAND_SYMBOL
+import step2.util.extension.splitToCalculate
 
 class Calculator {
-    fun run() {
-        println(calculate(readLine().splitBy(DELIMITERS_BLANK, NOTICE_NOTNULL)))
+    fun splitReadLine(): List<String> {
+        return readLine().splitToCalculate(DELIMITERS_BLANK)
     }
 
-    private fun calculate(anyOfCollection: List<String>): String {
+    fun calculate(anyOfCollection: List<String>): String {
         return anyOfCollection.reduceIndexed { index, acc, element ->
             if (index % 2 != 1 && index > 0) {
                 val operator =
