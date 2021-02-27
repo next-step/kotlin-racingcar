@@ -11,15 +11,11 @@ class Calculator {
     fun division(number: Int, number2: Int): Int = number / number2
 
     fun calculateExpression(expression: List<String>): Int {
-        var acc: Int
-        var to: Int
-        var operator: String
-
-        acc = getNumber(expression[0])
+        var acc = getNumber(expression[0])
 
         for (i in 1 until expression.size step 2) {
-            operator = expression[i]
-            to = getNumber(expression[i + 1])
+            val operator = expression[i]
+            val to = getNumber(expression[i + 1])
 
             acc = calculate(acc, operator, to)
         }
