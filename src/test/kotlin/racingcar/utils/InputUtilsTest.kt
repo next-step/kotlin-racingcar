@@ -8,13 +8,13 @@ class InputUtilsTest {
     @Test
     fun convertStringLineToNames() {
         // given
-        val readLine = "Elon, Zuckerberg, Sergey, Larry"
+        val readLine = "Tesla, Waymo, ZOOX"
 
         // when
         val names: List<String> = InputUtils.convertToNames(readLine)
 
         // then
-        assertThat(names).hasSize(4)
+        assertThat(names).hasSize(3)
     }
 
     @Test
