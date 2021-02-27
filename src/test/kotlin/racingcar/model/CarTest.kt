@@ -1,25 +1,23 @@
-package racingcar
+package racingcar.model
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import org.junit.jupiter.params.provider.ValueSource
-import racingcar.model.Car
 
 internal class CarTest {
-    @ParameterizedTest
-    @ValueSource(ints = [1, 2, 3, 4, 5])
-    fun runOneCarWhenCanMove(prevScore: Int) {
+    @Test
+    fun runOneCarWhenCanMove() {
         // given
         val car = Car()
-        car.score = prevScore
+        assertThat(car.getScore()).isEqualTo(0)
         val canMove = true
 
         // when
         car.move(canMove)
 
         // then
-        assertThat(car.score).isEqualTo(prevScore + 1)
+        assertThat(car.getScore()).isEqualTo(1)
     }
 
     @ParameterizedTest
@@ -32,6 +30,6 @@ internal class CarTest {
         car.move(canMove)
 
         // then
-        assertThat(car.score).isEqualTo(score)
+        assertThat(car.getScore()).isEqualTo(score)
     }
 }

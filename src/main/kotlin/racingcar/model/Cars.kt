@@ -1,5 +1,8 @@
 package racingcar.model
 
+import racingcar.model.strategy.Strategy
+import racingcar.view.ResultView
+
 class Cars private constructor(private val allCars: ArrayList<Car>) {
     companion object {
         fun makeCars(numOfCars: Int): Cars {
@@ -12,11 +15,22 @@ class Cars private constructor(private val allCars: ArrayList<Car>) {
         }
     }
 
+    fun moveOnce(strategy: Strategy): List<ResultView> {
+        return allCars.asSequence()
+            .map { car: Car ->
+                car.move(strategy.canMove())
+                return@map ResultView(car.getScore())
+            }
+            .toList()
+    }
+
     fun getNumberOfCars(): Int {
         return allCars.size
     }
 
-    fun getCars(): List<Car> {
-        return allCars
+    fun getCarCountWithScoreEqualOrGreaterThan(score: Int): Int {
+        return allCars.asSequence()
+            .filter { car -> car.getScore() >= score }
+            .count()
     }
 }
