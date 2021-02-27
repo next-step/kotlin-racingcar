@@ -2,15 +2,11 @@ package calculator
 
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
-import org.junit.jupiter.params.provider.ValueSource
 import java.util.*
 import java.util.stream.Stream
-import kotlin.collections.AbstractCollection
 import kotlin.collections.Map.Entry
-import kotlin.math.exp
 
 class CalculatorTest {
 
@@ -51,7 +47,7 @@ class CalculatorTest {
         val calculator = Calculator(input);
 
         Assertions.assertThatIllegalArgumentException()
-            .isThrownBy { calculator.calc(); }
+            .isThrownBy { calculator.calculate(); }
     }
 
     @ParameterizedTest
@@ -61,7 +57,7 @@ class CalculatorTest {
         val except = entry.value;
         val calculator = Calculator(expression);
 
-        assertThat(calculator.calc())
+        assertThat(calculator.calculate())
             .isEqualTo(except)
     }
 }

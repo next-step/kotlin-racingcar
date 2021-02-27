@@ -1,23 +1,23 @@
 package calculator
 
-import java.lang.IllegalArgumentException
-
 class Calculator(private val expression : String?) {
-    fun calc(): Int {
+    fun calculate(): Int {
         require(!expression.isNullOrBlank());
 
-        val split = expression.split(" ").iterator();
+        val separateExpression = expression.split(" ").iterator();
 
-        var result = Integer.parseInt(split.next());
+        var calculated = Integer.parseInt(separateExpression.next());
 
-        while(split.hasNext()) {
-            var operation = split.next();
-            var targetNumber = Integer.parseInt(split.next());
-
-            result = Operation.operationOf(operation)
-                .calc(result, targetNumber);
+        while(separateExpression.hasNext()) {
+            calculated = calculateNextStep(calculated, separateExpression);
         }
 
-        return result;
+        return calculated;
+    }
+    private fun calculateNextStep(calculated: Int, separateExpression: Iterator<String>): Int {
+        val operation = Operation.operationOf(separateExpression.next());
+        val number = Integer.parseInt(separateExpression.next());
+
+        return operation.calc(calculated, number);
     }
 }
