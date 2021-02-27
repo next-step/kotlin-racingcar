@@ -6,7 +6,7 @@ class Calculator(private val expression: String?) {
 
         val separateExpression = expression.split(" ").iterator()
 
-        var calculated = Integer.parseInt(separateExpression.next())
+        var calculated = separateExpression.next().toInt();
 
         while (separateExpression.hasNext()) {
             calculated = calculateNextStep(calculated, separateExpression)
@@ -16,7 +16,7 @@ class Calculator(private val expression: String?) {
     }
     private fun calculateNextStep(calculated: Int, separateExpression: Iterator<String>): Int {
         val operation = Operation.operationOf(separateExpression.next())
-        val number = Integer.parseInt(separateExpression.next())
+        val number = separateExpression.next().toInt();
 
         return operation.calc(calculated, number)
     }
