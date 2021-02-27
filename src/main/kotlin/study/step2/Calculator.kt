@@ -29,7 +29,7 @@ class Calculator {
             FourRuleCalculations.SUBTRACT.symbol -> subtract(from, to)
             FourRuleCalculations.MULTIPLY.symbol -> multiply(from, to)
             FourRuleCalculations.DIVISION.symbol -> divide(from, to)
-            else -> throw IllegalArgumentException()
+            else -> throw IllegalArgumentException("Invalid Symbol")
         }
     }
 
