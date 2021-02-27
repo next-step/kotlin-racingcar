@@ -12,10 +12,10 @@ class StudyTest {
     }
 
     @Test
-    fun test() {
+    fun `for loop until test`() {
         val list = listOf("a", "b", "c", "d")
         for (i in 1 until list.size) {
-            println(list[i])
+            assertThat(i).isLessThan(list.size)
         }
     }
 }
