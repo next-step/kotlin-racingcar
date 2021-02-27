@@ -41,4 +41,18 @@ internal class StringCalculatorTest {
         val stringCalculator = StringCalculator()
         assertThat(stringCalculator.calculate("2/2+1")).isEqualTo(2)
     }
+
+    @Test
+    fun `입력값이 null인 경우`() {
+        val stringCalculator = StringCalculator()
+        assertThrows<IllegalArgumentException> { stringCalculator.calculate(null) }
+    }
+
+    @Test
+    fun `입력값이 공백인 경우`() {
+        val stringCalculator = StringCalculator()
+        assertThrows<IllegalArgumentException> { stringCalculator.calculate("") }
+        assertThrows<IllegalArgumentException> { stringCalculator.calculate(" ") }
+        assertThrows<IllegalArgumentException> { stringCalculator.calculate("\n") }
+    }
 }
