@@ -10,14 +10,14 @@ internal class CarTest {
     fun runOneCarWhenCanMove() {
         // given
         val car = Car()
-        assertThat(car.getScore()).isEqualTo(0)
+        assertThat(car.score).isEqualTo(0)
         val canMove = true
 
         // when
         car.move(canMove)
 
         // then
-        assertThat(car.getScore()).isEqualTo(1)
+        assertThat(car.score).isEqualTo(1)
     }
 
     @ParameterizedTest
@@ -30,6 +30,6 @@ internal class CarTest {
         car.move(canMove)
 
         // then
-        assertThat(car.getScore()).isEqualTo(score)
+        assertThat(car.score).isEqualTo(score)
     }
 }

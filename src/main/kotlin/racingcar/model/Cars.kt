@@ -19,7 +19,7 @@ class Cars private constructor(private val allCars: ArrayList<Car>) {
         return allCars.asSequence()
             .map { car: Car ->
                 car.move(moveStrategy.canMove())
-                return@map ResultView(car.getScore())
+                return@map ResultView(car.score)
             }
             .toList()
     }
@@ -30,7 +30,7 @@ class Cars private constructor(private val allCars: ArrayList<Car>) {
 
     fun getCarCountWithScoreEqualOrGreaterThan(score: Int): Int {
         return allCars.asSequence()
-            .filter { car -> car.getScore() >= score }
+            .filter { car -> car.score >= score }
             .count()
     }
 }

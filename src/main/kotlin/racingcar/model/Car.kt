@@ -1,15 +1,12 @@
 package racingcar.model
 
 class Car {
-    private var score: Int = 0
+    var score: Int = 0
+        private set
 
     fun move(canMove: Boolean) {
         if (canMove) {
             score++
         }
-    }
-
-    fun getScore(): Int {
-        return this.score
     }
 }

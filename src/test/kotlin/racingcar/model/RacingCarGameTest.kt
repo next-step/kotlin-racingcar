@@ -11,9 +11,12 @@ internal class RacingCarGameTest {
     fun ready() {
         // given
         val inputCarCount = 4
+        val moveStrategy = object : MoveStrategy {
+            override fun canMove() = true
+        }
 
         // when
-        val racingCarGame = RacingCarGame.ready(inputCarCount)
+        val racingCarGame = RacingCarGame.ready(inputCarCount, moveStrategy)
 
         // then
         assertThat(racingCarGame.getCarCount()).isEqualTo(inputCarCount)
@@ -23,12 +26,13 @@ internal class RacingCarGameTest {
     @CsvSource(value = ["false:0", "true:4"], delimiter = ':')
     fun moveOnce(canMove: Boolean, expectedCarCount: Int) {
         // given
-        val racingCarGame = RacingCarGame.ready(4)
+        val moveStrategy = object : MoveStrategy {
+            override fun canMove() = canMove
+        }
+        val racingCarGame = RacingCarGame.ready(4, moveStrategy)
 
         // when
-        racingCarGame.moveOnce(object : MoveStrategy {
-            override fun canMove() = canMove
-        })
+        racingCarGame.moveOnce()
 
         // then
         val cars = racingCarGame.getCars()
