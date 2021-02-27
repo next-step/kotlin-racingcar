@@ -35,4 +35,10 @@ internal class StringCalculatorTest {
         val stringCalculator = StringCalculator()
         assertThrows<IllegalArgumentException> { stringCalculator.calculate("2/0") }
     }
+
+    @Test
+    fun `계산을 여러번 하는 경우`() {
+        val stringCalculator = StringCalculator()
+        assertThat(stringCalculator.calculate("2/2+1")).isEqualTo(2)
+    }
 }

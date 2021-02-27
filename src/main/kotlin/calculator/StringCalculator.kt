@@ -4,11 +4,22 @@ class StringCalculator {
 
     fun calculate(input: String): Int {
         val formula = replace(input).toMutableList().map { it.toString() }
-        val leftNumber = formula[0].toInt()
-        val rightNumber = formula[2].toInt()
-        val operator = formula[1]
 
-        return calculate(leftNumber, operator, rightNumber)
+        val operators = IntRange(1, formula.size - 1)
+            .step(2)
+            .map { formula[it] }
+
+        val numbers = IntRange(0, formula.size - 1)
+            .step(2)
+            .map { formula[it].toInt() }
+
+        var result = numbers[0]
+
+        for (i in operators.indices) {
+            result = calculate(result, operators[i], numbers[i + 1])
+        }
+
+        return result
     }
 
     private fun replace(s: String) = s.replace(FORMULA_REGEX, EMPTY)
