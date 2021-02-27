@@ -10,26 +10,27 @@ internal class RacingCarGameTest {
     @Test
     fun ready() {
         // given
-        val inputCarCount = 4
+        val carNames = listOf("Tesla", "Waymo", "Zoox")
         val moveStrategy = object : MoveStrategy {
             override fun canMove() = true
         }
 
         // when
-        val racingCarGame = RacingCarGame.ready(inputCarCount, moveStrategy)
+        val racingCarGame = RacingCarGame.ready(carNames, moveStrategy)
 
         // then
-        assertThat(racingCarGame.getCarCount()).isEqualTo(inputCarCount)
+        assertThat(racingCarGame.getCarCount()).isEqualTo(3)
     }
 
     @ParameterizedTest
-    @CsvSource(value = ["false:0", "true:4"], delimiter = ':')
+    @CsvSource(value = ["false:0", "true:3"], delimiter = ':')
     fun moveOnce(canMove: Boolean, expectedCarCount: Int) {
         // given
         val moveStrategy = object : MoveStrategy {
             override fun canMove() = canMove
         }
-        val racingCarGame = RacingCarGame.ready(4, moveStrategy)
+        val carNames = listOf("Tesla", "Waymo", "Zoox")
+        val racingCarGame = RacingCarGame.ready(carNames, moveStrategy)
 
         // when
         racingCarGame.moveOnce()

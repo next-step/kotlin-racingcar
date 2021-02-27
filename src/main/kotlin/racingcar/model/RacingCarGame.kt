@@ -5,8 +5,8 @@ import racingcar.view.ResultViews
 
 class RacingCarGame(private val cars: Cars, private val moveStrategy: MoveStrategy) {
     companion object {
-        fun ready(carCount: Int, moveStrategy: MoveStrategy): RacingCarGame {
-            val cars = Cars.makeCars(carCount)
+        fun ready(carNames: List<String>, moveStrategy: MoveStrategy): RacingCarGame {
+            val cars = Cars.makeCars(carNames)
             return RacingCarGame(cars, moveStrategy)
         }
     }

@@ -8,7 +8,7 @@ fun main() {
     val inputDto = InputUtils.askQuestions()
 
     val moveStrategy = RandomMoveStrategy()
-    val racingCarGame = RacingCarGame.ready(inputDto.carCount, moveStrategy)
+    val racingCarGame = RacingCarGame.ready(inputDto.carNames, moveStrategy)
 
     for (i in 1..inputDto.gameCount) {
         val resultViews = racingCarGame.moveOnce()

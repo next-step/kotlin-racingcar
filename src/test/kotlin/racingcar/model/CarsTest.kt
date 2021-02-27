@@ -1,27 +1,28 @@
 package racingcar.model
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import org.junit.jupiter.params.provider.ValueSource
 import racingcar.strategy.MoveStrategy
 
 internal class CarsTest {
-    @ParameterizedTest
-    @ValueSource(ints = [0, 1, 2, 3, 10])
-    fun makeCars(numberOfCars: Int) {
+    @Test
+    fun makeCars() {
         // when
-        val cars = Cars.makeCars(numberOfCars)
+        val carNames = listOf("Tesla", "Waymo", "Zoox")
+        val cars = Cars.makeCars(carNames)
 
         // then
-        assertThat(cars.getNumberOfCars()).isEqualTo(numberOfCars)
+        assertThat(cars.getNumberOfCars()).isEqualTo(carNames.size)
     }
 
     @ParameterizedTest
     @CsvSource(value = ["true:3", "false:0"], delimiter = ':')
     fun getCarCountWithScoreEqualOrGreaterThan(canMove: Boolean, expectedCarCount: Int) {
         // given
-        val cars = Cars.makeCars(3)
+        val carNames = listOf("Tesla", "Waymo", "Zoox")
+        val cars = Cars.makeCars(carNames)
         cars.moveOnce(object : MoveStrategy {
             override fun canMove() = canMove
         })

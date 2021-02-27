@@ -1,6 +1,7 @@
 package racingcar.utils
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 class InputUtilsTest {
@@ -14,5 +15,15 @@ class InputUtilsTest {
 
         // then
         assertThat(names).hasSize(4)
+    }
+
+    @Test
+    internal fun convertToNamesWhenNull() {
+        // given
+        val readLine = null
+
+        // when
+        assertThatThrownBy { InputUtils.convertToNames(readLine) }
+            .isInstanceOf(NullPointerException::class.java)
     }
 }

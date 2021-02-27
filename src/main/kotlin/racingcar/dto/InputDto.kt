@@ -1,3 +1,3 @@
 package racingcar.dto
 
-class InputDto(val carCount: Int, val gameCount: Int)
+class InputDto(val carNames: List<String>, val gameCount: Int)
