@@ -1,6 +1,6 @@
 package racingcar.model
 
-import racingcar.model.strategy.Strategy
+import racingcar.strategy.MoveStrategy
 import racingcar.view.ResultViews
 
 class RacingCarGame(private val cars: Cars) {
@@ -11,8 +11,8 @@ class RacingCarGame(private val cars: Cars) {
         }
     }
 
-    fun moveOnce(strategy: Strategy): ResultViews {
-        val resultViews = cars.moveOnce(strategy)
+    fun moveOnce(moveStrategy: MoveStrategy): ResultViews {
+        val resultViews = cars.moveOnce(moveStrategy)
         return ResultViews(resultViews)
     }
 

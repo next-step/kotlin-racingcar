@@ -1,6 +1,6 @@
 package racingcar.model
 
-import racingcar.model.strategy.Strategy
+import racingcar.strategy.MoveStrategy
 import racingcar.view.ResultView
 
 class Cars private constructor(private val allCars: ArrayList<Car>) {
@@ -15,10 +15,10 @@ class Cars private constructor(private val allCars: ArrayList<Car>) {
         }
     }
 
-    fun moveOnce(strategy: Strategy): List<ResultView> {
+    fun moveOnce(moveStrategy: MoveStrategy): List<ResultView> {
         return allCars.asSequence()
             .map { car: Car ->
-                car.move(strategy.canMove())
+                car.move(moveStrategy.canMove())
                 return@map ResultView(car.getScore())
             }
             .toList()

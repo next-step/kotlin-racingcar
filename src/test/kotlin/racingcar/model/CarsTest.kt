@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
-import racingcar.model.strategy.Strategy
+import racingcar.strategy.MoveStrategy
 
 internal class CarsTest {
     @ParameterizedTest
@@ -22,7 +22,7 @@ internal class CarsTest {
     fun getCarCountWithScoreEqualOrGreaterThan(canMove: Boolean, expectedCarCount: Int) {
         // given
         val cars = Cars.makeCars(3)
-        cars.moveOnce(object : Strategy {
+        cars.moveOnce(object : MoveStrategy {
             override fun canMove() = canMove
         })
 

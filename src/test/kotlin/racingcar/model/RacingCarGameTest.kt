@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import racingcar.model.strategy.Strategy
+import racingcar.strategy.MoveStrategy
 
 internal class RacingCarGameTest {
     @Test
@@ -26,7 +26,7 @@ internal class RacingCarGameTest {
         val racingCarGame = RacingCarGame.ready(4)
 
         // when
-        racingCarGame.moveOnce(object : Strategy {
+        racingCarGame.moveOnce(object : MoveStrategy {
             override fun canMove() = canMove
         })
 
