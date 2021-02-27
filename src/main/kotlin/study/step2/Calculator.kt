@@ -4,11 +4,11 @@ class Calculator {
 
     fun add(number: Int, number2: Int): Int = number + number2
 
-    fun subtraction(number: Int, number2: Int): Int = number - number2
+    fun subtract(number: Int, number2: Int): Int = number - number2
 
     fun multiply(number: Int, number2: Int): Int = number * number2
 
-    fun division(number: Int, number2: Int): Int = number / number2
+    fun divide(number: Int, number2: Int): Int = number / number2
 
     fun calculateExpression(expression: List<String>): Int {
         var acc = getNumber(expression[0])
@@ -26,9 +26,9 @@ class Calculator {
     private fun calculate(from: Int, operator: String, to: Int): Int {
         return when (operator) {
             FourRuleCalculations.ADD.symbol -> add(from, to)
-            FourRuleCalculations.SUBTRACT.symbol -> subtraction(from, to)
+            FourRuleCalculations.SUBTRACT.symbol -> subtract(from, to)
             FourRuleCalculations.MULTIPLY.symbol -> multiply(from, to)
-            FourRuleCalculations.DIVISION.symbol -> division(from, to)
+            FourRuleCalculations.DIVISION.symbol -> divide(from, to)
             else -> throw IllegalArgumentException()
         }
     }
