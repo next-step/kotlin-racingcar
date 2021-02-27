@@ -25,6 +25,6 @@ class RacingCarGame(private val cars: Cars, private val moveStrategy: MoveStrate
     }
 
     fun getWinners(): List<String> {
-        TODO("Not yet implemented")
+        return cars.findWinners()
     }
 }
