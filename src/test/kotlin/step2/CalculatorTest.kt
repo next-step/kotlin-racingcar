@@ -1,6 +1,7 @@
 package step2
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatIllegalStateException
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -9,14 +10,6 @@ import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
 
 internal class CalculatorTest {
-    companion object {
-        @JvmStatic
-        fun complexCalculationProvider() = listOf(
-            Arguments { arrayOf("1 + 3 * 5", 20) },
-            Arguments { arrayOf("2 - 8 / 3 - 3", -5) }
-        )
-    }
-
     private val calculator = Calculator()
 
     @Test
@@ -47,6 +40,13 @@ internal class CalculatorTest {
         assertThat(result).isEqualTo(5)
     }
 
+    @Test
+    fun `0으로 나누는 경우 IllegalStateException throw`() {
+        assertThatIllegalStateException().isThrownBy {
+            calculator.calculate("1 / 0")
+        }
+    }
+
     @ParameterizedTest
     @MethodSource("complexCalculationProvider")
     fun `사칙 연산을 모두 포함하는 기능 구현`(expression: String, answer: Int) {
@@ -69,5 +69,13 @@ internal class CalculatorTest {
         assertThatIllegalArgumentException().isThrownBy {
             calculator.calculate(input)
         }
+    }
+
+    companion object {
+        @JvmStatic
+        fun complexCalculationProvider() = listOf(
+            Arguments { arrayOf("1 + 3 * 5", 20) },
+            Arguments { arrayOf("2 - 8 / 3 - 3", -5) }
+        )
     }
 }
