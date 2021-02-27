@@ -16,5 +16,9 @@ class InputUtils {
 
             return InputDto(carCount, gameCount)
         }
+
+        fun convertToNames(readLine: String): List<String> {
+            TODO("Not yet implemented")
+        }
     }
 }
