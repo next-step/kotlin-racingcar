@@ -1,7 +1,9 @@
 package car.business
 
 class Car {
-    protected var position: Int = 0
+    internal var position: Int = 0
+    private set
+
     fun move(rand: Int): Boolean {
         if(!isMovable(rand)) return false
 
