@@ -4,7 +4,7 @@ class Car {
     private val MOVE_BIGGER_THAN = 4
 
     internal var position: Int = 0
-    private set
+        private set
 
     fun move(rand: Int): Boolean {
         if(!isMovable(rand)) return false
