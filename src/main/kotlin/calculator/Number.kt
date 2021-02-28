@@ -1,6 +1,5 @@
 package calculator
 
-import java.lang.NumberFormatException
 import java.util.Objects
 import java.util.Stack
 
@@ -33,16 +32,7 @@ class Number private constructor(private val value: Int) : Word {
 
     companion object {
         fun of(value: String): Number {
-            val v = value.trim()
-            if (v.isEmpty()) {
-                throw IllegalArgumentException("the value must not empty")
-            }
-
-            try {
-                return Number(v.toInt())
-            } catch (e: NumberFormatException) {
-                throw IllegalArgumentException("the value must number")
-            }
+            return Number(value.toIntOrNull() ?: throw IllegalArgumentException())
         }
     }
 }

@@ -11,7 +11,6 @@ internal class NumberTest {
         assertThatThrownBy {
             Number.of("")
         }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining("the value must not empty")
     }
 
     @Test
@@ -19,7 +18,6 @@ internal class NumberTest {
         assertThatThrownBy {
             Number.of("+ ")
         }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining("the value must number")
     }
 
     @Test
