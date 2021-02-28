@@ -3,8 +3,8 @@ package calculator
 import calculator.ExpressionParser.Companion.parse
 
 class Expressions(input: String) {
-    private val operands: List<Operand>
-    private val operators: List<Operator>
+    val operands: List<Operand>
+    val operators: List<Operator>
 
     init {
         val splittedInput = input.split(DELIMITER)
