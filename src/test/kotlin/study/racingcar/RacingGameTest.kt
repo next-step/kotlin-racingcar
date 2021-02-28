@@ -7,7 +7,7 @@ internal class RacingGameTest {
 
     @Test
     fun `게임 준비가 완료되었는지 확인`() {
-        val racingGame = RacingGame(MoveCarStrategy())
+        val racingGame = RacingGame(RandomMoveCarStrategy())
         assertThat(racingGame.readyGame(3)).isEqualTo(true)
     }
 }

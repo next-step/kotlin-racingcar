@@ -1,6 +1,6 @@
 package study.racingcar
 
-class MoveCarStrategy : MoveStrategy {
+class RandomMoveCarStrategy : MoveStrategy {
     override fun isMoveCar(location: Int): Boolean {
         return location >= MOVE_ALLOWABLE_VALUE
     }
