@@ -1,7 +1,6 @@
 package car.business
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import kotlin.random.Random
@@ -20,9 +19,8 @@ class CarsTest() {
         assertThat(count).isEqualTo(0)
     }
 
-
     @ParameterizedTest
-    @ValueSource(ints = [4,5,6,7,8,9])
+    @ValueSource(ints = [4, 5, 6, 7, 8, 9])
     fun `랜덤값이 4 이상일경우 움직이면 된다`(rand: Int) {
         // given
         val amount = 5
@@ -35,7 +33,7 @@ class CarsTest() {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = [1,2,3,4,5])
+    @ValueSource(ints = [1, 2, 3, 4, 5])
     fun `움직인 만큼 position이 변경이 되어야 한다`(tryCount: Int) {
         // given
         val amount = 5
@@ -45,19 +43,17 @@ class CarsTest() {
         val cars = Cars(amount, random)
 
         // when
-        for(i in 0 until tryCount) {
+        for (i in 0 until tryCount) {
             cars.move()
         }
 
         // then
         assertThat(cars.getPositions())
             .allMatch { it == tryCount }
-
-
     }
 
     private fun createMockNextIntRandom(nextInt: Int): Random {
-        return object:Random() {
+        return object : Random() {
             override fun nextBits(bitCount: Int): Int {
                 return nextInt
             }
@@ -67,6 +63,4 @@ class CarsTest() {
             }
         }
     }
-
-
 }

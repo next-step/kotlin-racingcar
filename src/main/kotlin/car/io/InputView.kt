@@ -8,6 +8,6 @@ class InputView {
         println("시도할 횟수는 몇 회인가요?")
         val tryCount = readLine()!!.toInt()
 
-        return Input(amount, tryCount);
+        return Input(amount, tryCount)
     }
 }

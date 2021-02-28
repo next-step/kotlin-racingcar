@@ -11,9 +11,8 @@ fun main() {
     val cars = Cars(input.amount)
     val resultView = ResultView(cars)
 
-    for(i in 0 until input.tryCount) {
+    for (i in 0 until input.tryCount) {
         cars.move()
         resultView.print()
     }
-
 }

@@ -11,7 +11,7 @@ class Cars(amount: Int, random: Random = Random) {
 
     init {
         cars = ArrayList(amount)
-        for(i in 0 until amount) {
+        for (i in 0 until amount) {
             cars.add(Car())
         }
         this.random = random

@@ -7,10 +7,10 @@ class Car {
         private set
 
     fun move(rand: Int): Boolean {
-        if(!isMovable(rand)) return false
+        if (!isMovable(rand)) return false
 
         position++
-        return true;
+        return true
     }
     private fun isMovable(rand: Int): Boolean {
 
