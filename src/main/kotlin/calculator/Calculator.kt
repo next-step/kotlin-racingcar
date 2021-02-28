@@ -1,10 +1,11 @@
 package calculator
 
-class Calculator(private val expression: String?) {
+class Calculator(private val expression: String) {
+    val EXPRESSION_SEPARATOR = " ";
     fun calculate(): Int {
         require(!expression.isNullOrBlank())
 
-        val separateExpression = expression.split(" ").iterator()
+        val separateExpression = expression.split(EXPRESSION_SEPARATOR).iterator()
 
         var calculated = separateExpression.next().toInt()
 
