@@ -5,8 +5,8 @@ import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import calculator.tasks.Calculator
-import calculator.util.Const.Companion.DELIMITERS_BLANK
-import calculator.util.Const.Companion.NOTICE_NOT_BLANK
+import calculator.util.Message.Companion.DELIMITERS_BLANK
+import calculator.util.Message.Companion.NOTICE_NOT_OPERAND_SYMBOL
 import calculator.util.extension.splitToCalculate
 
 class CalculatorTest {
@@ -26,6 +26,6 @@ class CalculatorTest {
     fun `split 공백문자`() {
         assertThatThrownBy { DELIMITERS_BLANK.splitToCalculate(DELIMITERS_BLANK) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(NOTICE_NOT_BLANK)
+            .hasMessage(DELIMITERS_BLANK.plus(NOTICE_NOT_OPERAND_SYMBOL))
     }
 }

@@ -1,6 +1,7 @@
 package calculator.data
 
-import calculator.util.Const.Companion.NOTICE_NOT_DIVIDE_ZERO
+import calculator.util.Message.Companion.INDIVISIBLE_NUMBER
+import calculator.util.Message.Companion.NOTICE_NOT_DIVIDE_ZERO
 
 data class Operand(private val value: Double) {
 
@@ -16,7 +17,7 @@ data class Operand(private val value: Double) {
     }
 
     private fun validateToDivide(input: Operand) {
-        if (input.value == 0.0) {
+        if (input.value == INDIVISIBLE_NUMBER) {
             throw IllegalArgumentException(NOTICE_NOT_DIVIDE_ZERO)
         }
     }

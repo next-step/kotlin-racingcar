@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import calculator.data.Operand
-import calculator.util.Const.Companion.NOTICE_NOT_DIVIDE_ZERO
+import calculator.util.Message.Companion.NOTICE_NOT_DIVIDE_ZERO
 
 class OperandTest {
 
