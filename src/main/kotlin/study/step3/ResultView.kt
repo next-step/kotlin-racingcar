@@ -1,6 +1,6 @@
 package study.step3
 
-class ResultView {
+object ResultView {
 
     fun outputResultString() {
         println("실행 결과")

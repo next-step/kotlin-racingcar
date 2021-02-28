@@ -4,13 +4,12 @@ fun main() {
     val carCount = InputView.inputCarCount()
     val tryCount = InputView.inputTryCount()
 
-    val resultView = ResultView()
-    resultView.outputResultString()
+    ResultView.outputResultString()
 
     val racingGame = RacingGame()
     racingGame.readyGame(carCount)
 
     for (i in 0 until tryCount) {
-        resultView.outputResult(racingGame.raceCars())
+        ResultView.outputResult(racingGame.raceCars())
     }
 }
