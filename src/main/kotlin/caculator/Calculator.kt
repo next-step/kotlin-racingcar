@@ -1,13 +1,8 @@
 package caculator
 
-class Calculator(private val delimiter: String) {
-
-    constructor() : this(" ")
-
+class Calculator(private val delimiter: String = " ") {
     fun calculate(text: String): Number {
-        if (text.trim().isEmpty()) {
-            throw IllegalArgumentException("text must be not empty")
-        }
+        require(text.isNotBlank()) { "text must be not empty" }
 
         val tokens = text.split(this.delimiter)
         var operand1 = Number(tokens[0])
