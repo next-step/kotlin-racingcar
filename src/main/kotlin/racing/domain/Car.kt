@@ -1,4 +1,4 @@
-package racing
+package racing.domain
 
 internal class Car constructor(position: Int = 0) {
 

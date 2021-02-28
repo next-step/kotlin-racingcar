@@ -1,4 +1,4 @@
-package racing
+package racing.domain
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
@@ -9,7 +9,6 @@ internal class CarTest {
     fun `자동차 움직임 테스트`() {
         val car = Car()
         car.tryMove(object : Movable { override fun isMovable(): Boolean = true })
-
         Assertions.assertThat(car.position).isEqualTo(1)
     }
 
