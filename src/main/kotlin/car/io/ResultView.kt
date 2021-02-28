@@ -5,15 +5,15 @@ import car.business.Cars
 class ResultView(val cars: Cars) {
     fun print() {
         for(i in cars.getPositions()) {
-            printDash(i)
-            println()
+            printCarPosition(i)
         }
         println()
     }
 
-    private fun printDash(count: Int) {
+    private fun printCarPosition(count: Int) {
         for(i in 0 .. count) {
             print("-")
         }
+        println()
     }
 }
