@@ -18,7 +18,7 @@ class SequenceCalculator(
     override fun calculate() {
         val resultStack = Stack<Number>()
         for (w in words) {
-            w.calc(resultStack)
+            w.calculate(resultStack)
         }
 
         this.result = resultStack.pop()

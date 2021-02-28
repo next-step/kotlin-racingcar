@@ -9,7 +9,7 @@ enum class Operator(val operate: (n1: Number, n2: Number) -> Number) : Word {
     DIVIDE({ n1, n2 -> n1 / n2 }),
     ;
 
-    override fun calc(resultStack: Stack<Number>) {
+    override fun calculate(resultStack: Stack<Number>) {
         val n1 = resultStack.pop()
         val n2 = resultStack.pop()
         val result = operate(n2, n1)
