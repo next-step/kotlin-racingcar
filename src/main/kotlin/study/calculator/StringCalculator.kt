@@ -1,7 +1,5 @@
 package study.calculator
 
-import kotlin.IllegalArgumentException
-
 object StringCalculator {
 
     private const val STRING_DELIMETER = " "
@@ -26,7 +24,7 @@ object StringCalculator {
 
     private fun splitInput(targetStr: String?): List<String> {
 
-        require(!targetStr.isNullOrBlank()) {"문자열이 null 또는 빈 값입니다."}
+        require(!targetStr.isNullOrBlank()) { "문자열이 null 또는 빈 값입니다." }
 
         return targetStr.split(STRING_DELIMETER)
     }
@@ -41,7 +39,7 @@ object StringCalculator {
 
     private fun getOperandNum(elements: List<String>, operandIndex: Int): Int {
 
-        require(operandIndex < elements.size) {"피연산자가 존재하지 않습니다."}
+        require(operandIndex < elements.size) { "피연산자가 존재하지 않습니다." }
 
         return convertStringToNum(elements[operandIndex])
     }
