@@ -21,7 +21,7 @@ object ResultView {
     }
 
     private fun printSinglePosition(position: Int) {
-        for (i in 1..position) {
+        repeat(position) {
             print(SYMBOL_ONE_STEP)
         }
         println()

@@ -2,12 +2,21 @@ package racing.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 import racing.components.MovementChecker
 import racing.components.RacingGame
 import racing.components.RandomWrapper
 import kotlin.random.Random
 
 class RacingGameTest {
+
+    @ParameterizedTest
+    @ValueSource(ints = [1, 2, 3, 4])
+    fun `constructor test`(carCount: Int) {
+        val racingGame = RacingGame(carCount, MovementChecker())
+        assertThat(racingGame.carList.size).isEqualTo(carCount)
+    }
 
     @Test
     fun `항상 전진하는 경우 moveAllCar 테스트 (랜덤 넘버가 항상 4이상 9이하인 경우)`() {

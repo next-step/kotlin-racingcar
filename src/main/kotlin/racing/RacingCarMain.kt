@@ -12,7 +12,7 @@ object RacingCarMain {
 
         ResultView.printResultNotice()
 
-        for (i in 1..racingGameData.tryCount) {
+        repeat(racingGameData.tryCount) {
 
             racingGame.moveAllCar()
             val carPositions = racingGame.getCarPositions()

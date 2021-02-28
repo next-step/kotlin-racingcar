@@ -5,7 +5,7 @@ class RacingGame(carCount: Int, var movementChecker: MovementChecker) {
     var carList: MutableList<Car> = mutableListOf()
 
     init {
-        for (i in 1..carCount) {
+        repeat(carCount) {
             carList.add(Car())
         }
     }
