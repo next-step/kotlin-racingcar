@@ -13,19 +13,8 @@ class RacingGame {
 
     fun raceCars(): List<Car> {
         for (car in _cars) {
-            val randomValue = Random.nextInt(9)
-            moveCarOrNot(randomValue, car)
+            car.moveCar(Random.nextInt(9))
         }
         return _cars.toList()
-    }
-
-    fun moveCarOrNot(randomValue: Int, car: Car) {
-        if (randomValue >= MOVE_ALLOWABLE_VALUE) {
-            car.moveCar()
-        }
-    }
-
-    companion object {
-        private const val MOVE_ALLOWABLE_VALUE = 4
     }
 }

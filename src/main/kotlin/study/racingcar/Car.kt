@@ -2,14 +2,16 @@ package study.racingcar
 
 class Car {
 
-    private val _distance: StringBuilder = StringBuilder()
-    val distance: String get() = _distance.toString()
+    private var _distance: Int = 0
+    val distance: Int get() = _distance
 
-    fun moveCar() {
-        _distance.append(MOVE_CHARACTER)
+    fun moveCar(random: Int) {
+        if (random >= MOVE_ALLOWABLE_VALUE) {
+            _distance++
+        }
     }
 
     companion object {
-        private const val MOVE_CHARACTER = "-"
+        private const val MOVE_ALLOWABLE_VALUE = 4
     }
 }

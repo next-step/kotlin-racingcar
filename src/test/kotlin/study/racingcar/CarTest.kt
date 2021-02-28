@@ -9,7 +9,7 @@ internal class CarTest {
     fun `자동차를 움직인다`() {
         val car = Car()
         val oldDistance = car.distance
-        car.moveCar()
+        car.moveCar(9)
         assertThat(oldDistance).isNotEqualTo(car.distance)
     }
 }
