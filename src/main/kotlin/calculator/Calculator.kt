@@ -1,6 +1,6 @@
 package calculator
 
-class Calculator(private val expression: String?) {
+class Calculator(private val expression: String) {
     fun calculate(): Int {
         require(!expression.isNullOrBlank())
 
