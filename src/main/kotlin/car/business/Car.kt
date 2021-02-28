@@ -6,7 +6,7 @@ class Car {
         if(!isMovable(rand)) return false
 
         position++
-        return false;
+        return true;
     }
     private fun isMovable(rand: Int): Boolean {
         return rand >= 4
