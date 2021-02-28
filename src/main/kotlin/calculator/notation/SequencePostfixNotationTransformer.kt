@@ -9,7 +9,7 @@ import java.util.Stack
 class SequencePostfixNotationTransformer : NotationTransformer {
 
     override fun transform(line: String): List<Word> {
-        val tokens = line.split(" ")
+        val tokens = line.split(DELIMITER)
         val operators = Stack<Word>()
         val words = mutableListOf<Word>()
 
@@ -41,6 +41,7 @@ class SequencePostfixNotationTransformer : NotationTransformer {
     }
 
     companion object {
+        private const val DELIMITER = " "
         private val REGEX_NUMBER = "^\\d+$".toRegex()
     }
 }
