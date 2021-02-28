@@ -1,6 +1,6 @@
 package calculator.domain
 
-class Number(val value: Int) {
+data class Number(val value: Int) {
 
     constructor(value: String) : this(value.toIntOrNull() ?: throw IllegalArgumentException("숫자가 아님"))
 
@@ -16,20 +16,5 @@ class Number(val value: Int) {
         }
 
         return Number(this.value / number.value)
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Number
-
-        if (value != other.value) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        return value
     }
 }
