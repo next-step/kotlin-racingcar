@@ -1,4 +1,6 @@
-package racing.domain
+package racing.domain.car
+
+import racing.domain.movement.MoveStrategy
 
 private const val MOVE_CONDITION = 4
 

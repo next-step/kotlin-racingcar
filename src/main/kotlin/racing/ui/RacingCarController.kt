@@ -1,7 +1,7 @@
 package racing.ui
 
-import racing.domain.MoveStrategy
-import racing.domain.RacingCars
+import racing.domain.movement.MoveStrategy
+import racing.domain.car.RacingCars
 
 class RacingCarController(private val moveStrategy: MoveStrategy) {
     fun run(carCount: Int, tryCount: Int): List<RacingCarDtos> {

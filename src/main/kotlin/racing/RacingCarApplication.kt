@@ -1,6 +1,6 @@
 package racing
 
-import racing.domain.RandomMoveStrategy
+import racing.domain.movement.RandomMoveStrategy
 import racing.ui.RacingCarController
 import view.console.ConsoleInput
 import view.console.ConsoleOutput

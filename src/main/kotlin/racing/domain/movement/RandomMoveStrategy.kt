@@ -1,4 +1,4 @@
-package racing.domain
+package racing.domain.movement
 
 class RandomMoveStrategy : MoveStrategy {
     override val decisionNumber: Int
