@@ -16,10 +16,8 @@ object Calculator {
         return splitByWhiteSpace(value)
     }
 
-    fun validInputIsEmpty(input: String?) {
-        if (input == "") {
-            throw IllegalArgumentException("입력 값이 존재하지 않습니다.")
-        }
+    private fun validInputIsEmpty(input: String) {
+        require(!input.isBlank()) { "입력 값이 존재하지 않습니다." }
     }
 
     fun splitByWhiteSpace(input: String): List<String> {
@@ -31,10 +29,14 @@ object Calculator {
 
         for (index in START_INDEX until splitInput.size - SIZE_TO_LAST_OPERAND step OPERAND_INDEX) {
             val operator = Operator.operatorOf(splitInput[index + OPERATOR_INDEX])
-            operand = applyOperator(operand.toInt(), splitInput[index + OPERAND_INDEX].toInt(), operator).toString()
+            operand = applyOperator(toInt(operand), toInt(splitInput[index + OPERAND_INDEX]), operator).toString()
         }
 
-        return operand.toInt()
+        return toInt(operand)
+    }
+
+    private fun toInt(value: String): Int {
+        return value.toIntOrNull() ?: throw IllegalArgumentException("value는 숫자여야 합니다. value : $value")
     }
 
     fun applyOperator(leftOperand: Int, rightOperand: Int, operator: Operator): Int {
@@ -59,9 +61,7 @@ object Calculator {
     }
 
     fun division(left: Int, right: Int): Int {
-        if (right == 0) {
-            throw IllegalArgumentException("0은 분모가 될 수 없습니다.")
-        }
+        require(right != 0) { "0은 분모가 될 수 없습니다." }
 
         return left / right
     }
