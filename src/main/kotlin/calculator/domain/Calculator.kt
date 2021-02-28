@@ -15,8 +15,8 @@ class Calculator(private val operands: List<Number>, private val operators: List
         var result = mutableOperands.removeAt(0)
 
         while (mutableOperands.isNotEmpty()) {
-            val operator = mutableOperators.removeAt(0)
-            result = operator.operate(result, mutableOperands.removeAt(0))
+            val oprtr = mutableOperators.removeAt(0)
+            result = oprtr.operate(result, mutableOperands.removeAt(0))
         }
 
         return result
