@@ -14,27 +14,27 @@ class SequencePostfixNotationTransformer : NotationTransformer {
         val words = mutableListOf<Word>()
 
         for (token in tokens) {
-            addNumberIf(words, operators, token)
-            addOperatorIf(operators, token)
+            addWordWhenNumber(words, operators, token)
+            addWordWhenOperator(operators, token)
         }
         return words
     }
 
-    private fun addNumberIf(words: MutableList<Word>, operators: Stack<Word>, token: String) {
+    private fun addWordWhenNumber(words: MutableList<Word>, operators: Stack<Word>, token: String) {
         if (token.matches(REGEX_NUMBER)) {
             words.add(Number.of(token))
-            popOperator(words, operators)
+            popOperatorIfNotEmpty(words, operators)
         }
     }
 
-    private fun popOperator(words: MutableList<Word>, operators: Stack<Word>) {
+    private fun popOperatorIfNotEmpty(words: MutableList<Word>, operators: Stack<Word>) {
         if (operators.isEmpty()) {
             return
         }
         words.add(operators.pop())
     }
 
-    private fun addOperatorIf(operators: Stack<Word>, token: String) {
+    private fun addWordWhenOperator(operators: Stack<Word>, token: String) {
         if (token.matches(REGEX_NUMBER).not()) {
             operators.add(Operator.of(token))
         }
