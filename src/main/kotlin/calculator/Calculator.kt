@@ -2,7 +2,14 @@ package calculator
 
 import java.lang.IllegalArgumentException
 
-class Calculator {
+object Calculator {
+    private const val FIRST_OPERAND = 0
+    private const val START_INDEX = 0
+    private const val OPERAND_INDEX = 2
+    private const val OPERATOR_INDEX = 1
+    private const val CALCULATOR_SEPARATOR = " "
+    private const val SIZE_TO_LAST_OPERAND = 2
+
     fun input(value: String): List<String> {
         validInputIsEmpty(value)
 
@@ -16,27 +23,26 @@ class Calculator {
     }
 
     fun splitByWhiteSpace(input: String): List<String> {
-        return input.split(" ")
+        return input.split(CALCULATOR_SEPARATOR)
     }
 
     fun calculate(splitInput: List<String>): Int {
-        var operand = splitInput[0]
+        var operand = splitInput[FIRST_OPERAND]
 
-        for (index in 0 until splitInput.size - 2 step 2) {
-            operand = applyOperator(operand.toInt(), splitInput[index + 2].toInt(), splitInput[index + 1]).toString()
+        for (index in START_INDEX until splitInput.size - SIZE_TO_LAST_OPERAND step OPERAND_INDEX) {
+            val operator = Operator.operatorOf(splitInput[index + OPERATOR_INDEX])
+            operand = applyOperator(operand.toInt(), splitInput[index + OPERAND_INDEX].toInt(), operator).toString()
         }
 
         return operand.toInt()
     }
 
-    fun applyOperator(leftOperand: Int, rightOperand: Int, operator: String): Int {
+    fun applyOperator(leftOperand: Int, rightOperand: Int, operator: Operator): Int {
         return when (operator) {
-            Operator.PLUS.operator -> add(leftOperand, rightOperand)
-            Operator.MINUS.operator -> minus(leftOperand, rightOperand)
-            Operator.MULTIPLY.operator -> multiply(leftOperand, rightOperand)
-            Operator.DIVISION.operator -> division(leftOperand, rightOperand)
-
-            else -> throw IllegalArgumentException("잘못된 연산자입니다.")
+            Operator.PLUS -> add(leftOperand, rightOperand)
+            Operator.MINUS -> minus(leftOperand, rightOperand)
+            Operator.MULTIPLY -> multiply(leftOperand, rightOperand)
+            Operator.DIVISION -> division(leftOperand, rightOperand)
         }
     }
 
