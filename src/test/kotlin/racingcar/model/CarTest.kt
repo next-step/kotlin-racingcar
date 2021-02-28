@@ -9,27 +9,27 @@ internal class CarTest {
     @Test
     fun runOneCarWhenCanMove() {
         // given
-        val car = Car()
-        assertThat(car.getScore()).isEqualTo(0)
+        val car = Car("Elon")
+        assertThat(car.score).isEqualTo(0)
         val canMove = true
 
         // when
         car.move(canMove)
 
         // then
-        assertThat(car.getScore()).isEqualTo(1)
+        assertThat(car.score).isEqualTo(1)
     }
 
     @ParameterizedTest
     @CsvSource(value = ["true:1", "false:0"], delimiter = ':')
     fun onlyIncreaseScoreWhenCanMove(canMove: Boolean, score: Int) {
         // given
-        val car = Car()
+        val car = Car("Elon")
 
         // when
         car.move(canMove)
 
         // then
-        assertThat(car.getScore()).isEqualTo(score)
+        assertThat(car.score).isEqualTo(score)
     }
 }

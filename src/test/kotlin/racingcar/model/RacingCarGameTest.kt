@@ -10,29 +10,52 @@ internal class RacingCarGameTest {
     @Test
     fun ready() {
         // given
-        val inputCarCount = 4
+        val carNames = listOf("Tesla", "Waymo", "Zoox")
+        val moveStrategy = object : MoveStrategy {
+            override fun canMove() = true
+        }
 
         // when
-        val racingCarGame = RacingCarGame.ready(inputCarCount)
+        val racingCarGame = RacingCarGame.ready(carNames, moveStrategy)
 
         // then
-        assertThat(racingCarGame.getCarCount()).isEqualTo(inputCarCount)
+        assertThat(racingCarGame.getCarCount()).isEqualTo(3)
     }
 
     @ParameterizedTest
-    @CsvSource(value = ["false:0", "true:4"], delimiter = ':')
+    @CsvSource(value = ["false:0", "true:3"], delimiter = ':')
     fun moveOnce(canMove: Boolean, expectedCarCount: Int) {
         // given
-        val racingCarGame = RacingCarGame.ready(4)
+        val moveStrategy = object : MoveStrategy {
+            override fun canMove() = canMove
+        }
+        val carNames = listOf("Tesla", "Waymo", "Zoox")
+        val racingCarGame = RacingCarGame.ready(carNames, moveStrategy)
 
         // when
-        racingCarGame.moveOnce(object : MoveStrategy {
-            override fun canMove() = canMove
-        })
+        racingCarGame.moveOnce()
 
         // then
         val cars = racingCarGame.getCars()
         val countWithScoreGreaterThanOne = cars.getCarCountWithScoreEqualOrGreaterThan(1)
         assertThat(countWithScoreGreaterThanOne).isEqualTo(expectedCarCount)
+    }
+
+    @Test
+    fun findWinners() {
+        // given
+        val moveStrategy = object : MoveStrategy {
+            override fun canMove() = true
+        }
+        val carNames = listOf("Tesla", "Waymo", "Zoox")
+        val racingCarGame = RacingCarGame.ready(carNames, moveStrategy)
+        racingCarGame.moveOnce()
+
+        // when
+        val winners: List<String> = racingCarGame.getWinners()
+
+        // then
+        assertThat(winners).hasSize(3)
+        assertThat(winners).containsAll(carNames)
     }
 }

@@ -5,13 +5,14 @@ import racingcar.view.ResultView
 
 class Cars private constructor(private val allCars: ArrayList<Car>) {
     companion object {
-        fun makeCars(numOfCars: Int): Cars {
-            var cars = ArrayList<Car>()
-            for (i in 1..numOfCars) {
-                cars.add(Car())
-            }
+        fun makeCars(carNames: List<String>): Cars {
 
-            return Cars(cars)
+            val cars = carNames
+                .asSequence()
+                .map { carName: String -> Car(carName) }
+                .toList()
+
+            return Cars(cars as ArrayList<Car>)
         }
     }
 
@@ -19,7 +20,7 @@ class Cars private constructor(private val allCars: ArrayList<Car>) {
         return allCars.asSequence()
             .map { car: Car ->
                 car.move(moveStrategy.canMove())
-                return@map ResultView(car.getScore())
+                return@map ResultView(car.name, car.score)
             }
             .toList()
     }
@@ -30,7 +31,22 @@ class Cars private constructor(private val allCars: ArrayList<Car>) {
 
     fun getCarCountWithScoreEqualOrGreaterThan(score: Int): Int {
         return allCars.asSequence()
-            .filter { car -> car.getScore() >= score }
+            .filter { car -> car.score >= score }
             .count()
+    }
+
+    fun findMaxScore(): Int? {
+        return allCars.asSequence()
+            .map { car -> car.score }
+            .max()
+            ?.toInt()
+    }
+
+    fun findWinners(): List<String> {
+        val maxScore = findMaxScore()
+        return allCars.asSequence()
+            .filter { car -> car.score == maxScore }
+            .map(Car::name)
+            .toList()
     }
 }
