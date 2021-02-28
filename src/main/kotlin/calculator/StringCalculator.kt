@@ -3,9 +3,7 @@ package calculator
 class StringCalculator {
 
     fun calculate(input: String): Int {
-        if (input.isBlank()) {
-            throw IllegalArgumentException()
-        }
+        validate(input)
 
         val formula = replace(input).toMutableList().map { it.toString() }
 
@@ -42,6 +40,14 @@ class StringCalculator {
             else -> throw IllegalArgumentException()
         }
     }
+
+    private fun validate(input: String) {
+        if (input.isBlank() || hasNotFormulaSymbol(input)) {
+            throw IllegalArgumentException()
+        }
+    }
+
+    private fun hasNotFormulaSymbol(input: String) = FORMULA_REGEX.containsMatchIn(input)
 
     companion object {
         private val FORMULA_REGEX = "[^\\d+\\-*/]".toRegex()

@@ -49,4 +49,20 @@ internal class StringCalculatorTest {
         assertThrows<IllegalArgumentException> { stringCalculator.calculate(" ") }
         assertThrows<IllegalArgumentException> { stringCalculator.calculate("\n") }
     }
+
+    @Test
+    fun `사칙연산 기호가 아닌 경우`() {
+        val stringCalculator = StringCalculator()
+        assertThrows<IllegalArgumentException> { stringCalculator.calculate("1+2$") }
+        assertThrows<IllegalArgumentException> { stringCalculator.calculate("1!2") }
+        assertThrows<IllegalArgumentException> { stringCalculator.calculate("@") }
+    }
+
+    @Test
+    fun `계산식이 유효하지 않는 경우`() {
+        val stringCalculator = StringCalculator()
+        assertThrows<IllegalArgumentException> { stringCalculator.calculate("1++21+2/") }
+        assertThrows<IllegalArgumentException> { stringCalculator.calculate("0 + 2 + 2 / / 1") }
+        assertThrows<IllegalArgumentException> { stringCalculator.calculate("") }
+    }
 }
