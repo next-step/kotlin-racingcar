@@ -2,10 +2,7 @@ package calculator
 
 class StringCalculator {
 
-    fun calculate(input: String?): Int {
-        if (input.isNullOrBlank()) {
-            throw IllegalArgumentException()
-        }
+    fun calculate(input: String): Int {
 
         val formula = replace(input).toMutableList().map { it.toString() }
 

@@ -43,12 +43,6 @@ internal class StringCalculatorTest {
     }
 
     @Test
-    fun `입력값이 null인 경우`() {
-        val stringCalculator = StringCalculator()
-        assertThrows<IllegalArgumentException> { stringCalculator.calculate(null) }
-    }
-
-    @Test
     fun `입력값이 공백인 경우`() {
         val stringCalculator = StringCalculator()
         assertThrows<IllegalArgumentException> { stringCalculator.calculate("") }
