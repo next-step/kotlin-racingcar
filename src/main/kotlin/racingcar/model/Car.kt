@@ -1,13 +1,20 @@
 package racingcar.model
 
+import racingcar.Constants.CRITERIA_NUMBER
+import racingcar.`interface`.CarBehavior
+
 class Car(
     private var currentProgress: Int = 0
-) {
-    fun moveForward() {
+) : CarBehavior {
+    fun getProgress(): Int {
+        return currentProgress
+    }
+
+    override fun moveForward() {
         currentProgress += 1
     }
 
-    fun getProgress(): Int {
-        return currentProgress
+    override fun checkPossibleToMove(randomNumber: Int): Boolean {
+        return randomNumber >= CRITERIA_NUMBER
     }
 }

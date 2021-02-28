@@ -9,10 +9,11 @@ fun main() {
     val numberOfCar = inputView.inputNumberOfCar()
     val numberOfTimes = inputView.inputNumberOfTimes()
 
-    val game = Game(numberOfCar)
+    val game = Game()
+    game.createCar(numberOfCar)
+
     println("\n[실행 결과]")
     repeat(numberOfTimes) {
-        game.executeOneCycle()
-        game.printOneCycle()
+        game.playOneRound()
     }
 }
