@@ -6,7 +6,7 @@ fun main() {
 
     ResultView.outputResultString()
 
-    val racingGame = RacingGame()
+    val racingGame = RacingGame(MoveCarStrategy())
     racingGame.readyGame(carCount)
 
     for (i in 0 until tryCount) {

@@ -2,7 +2,7 @@ package study.racingcar
 
 import kotlin.random.Random
 
-class RacingGame {
+class RacingGame(private val moveStrategy: MoveStrategy) {
 
     private lateinit var _cars: Array<Car>
     val cars: Array<Car> get() = _cars
@@ -13,8 +13,14 @@ class RacingGame {
 
     fun raceCars(): List<Car> {
         for (car in _cars) {
-            car.moveCar(Random.nextInt(9))
+            moveCarOrNot(car)
         }
         return _cars.toList()
+    }
+
+    fun moveCarOrNot(car: Car) {
+        if (moveStrategy.isMoveCar(Random.nextInt(9))) {
+            car.moveCar()
+        }
     }
 }
