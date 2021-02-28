@@ -1,6 +1,6 @@
 package step2
 
-import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class OperatorTest {
@@ -8,37 +8,30 @@ class OperatorTest {
     private val operator = Operator()
 
     @Test
-    fun 더하기() {
-        assertThat(operator.plus(3, 5)).isEqualTo(8)
-        assertThat(operator.plus(999, 2)).isEqualTo(1001)
-        assertThat(operator.plus(10000000, 100000000)).isEqualTo(110000000)
+    fun `더하기`() {
+        assertEquals(operator.operate(3, 5, "+"), 8)
+        assertEquals(operator.operate(15, 44, "+"), 59)
+        assertEquals(operator.operate(18, 42, "+"), 60)
     }
 
     @Test
-    fun 빼기() {
-        assertThat(operator.minus(5, 5)).isEqualTo(0)
-        assertThat(operator.minus(5, 10)).isEqualTo(-5)
-        assertThat(operator.minus(1000, 300000)).isEqualTo(-299000)
+    fun `빼기`() {
+        assertEquals(operator.operate(3, 5, "-"), -2)
+        assertEquals(operator.operate(60, 44, "-"), 16)
+        assertEquals(operator.operate(18, 42, "-"), -24)
     }
 
     @Test
-    fun 곱하기() {
-        assertThat(operator.multiply(5, 5)).isEqualTo(25)
-        assertThat(operator.multiply(1000000, 5)).isEqualTo(5000000)
+    fun `곱하기`() {
+        assertEquals(operator.operate(3, 5, "*"), 15)
+        assertEquals(operator.operate(15, 44, "*"), 660)
+        assertEquals(operator.operate(18, 42, "*"), 756)
     }
 
     @Test
-    fun 나누기() {
-        assertThat(operator.divide(5, 5)).isEqualTo(1)
-        assertThat(operator.divide(10, 5)).isEqualTo(2)
-        assertThat(operator.divide(1, 5)).isEqualTo(0)
-    }
-
-    @Test
-    fun 계산하기() {
-        assertThat(operator.operate(5, 5, "+")).isEqualTo(10)
-        assertThat(operator.operate(5, 5, "*")).isEqualTo(25)
-        assertThat(operator.operate(5, 5, "-")).isEqualTo(0)
-        assertThat(operator.operate(5, 5, "/")).isEqualTo(1)
+    fun `나누기`() {
+        assertEquals(operator.operate(3, 5, "/"), 0)
+        assertEquals(operator.operate(15, 3, "/"), 5)
+        assertEquals(operator.operate(60, 30, "/"), 2)
     }
 }
