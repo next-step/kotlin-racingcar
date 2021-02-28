@@ -10,5 +10,5 @@ val consoleInput: ConsoleInput = ConsoleInput()
 fun main() {
     consoleOutput.printExpressionInputMessage()
     val result = CalculatorController().run(consoleInput.read())
-    consoleOutput.printResultMessage(result)
+    consoleOutput.printCalculatorResultMessage(result)
 }

@@ -15,5 +15,8 @@ fun main() {
     consoleOutput.printTryCountInputMessage()
     val tryCount = consoleInput.read()
 
-    RacingCarController(RandomMoveStrategy()).run(carCount.toInt(), tryCount.toInt())
+    val racingCarDto = RacingCarController(RandomMoveStrategy()).run(carCount.toInt(), tryCount.toInt())
+
+    consoleOutput.printRacingGameResultMessage()
+    consoleOutput.printRacingGameRecord(racingCarDto)
 }

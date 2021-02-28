@@ -6,5 +6,5 @@ class RacingCars private constructor(private val racingCars: List<RacingCar>) {
     }
 
     fun race(tryCount: Int, moveStrategy: MoveStrategy) =
-        (1..tryCount).forEach { _ -> racingCars.forEach { it.move(moveStrategy) } }
+        (1..tryCount).map { _ -> racingCars.map { it.move(moveStrategy) } }
 }

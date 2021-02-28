@@ -4,8 +4,12 @@ import racing.domain.MoveStrategy
 import racing.domain.RacingCars
 
 class RacingCarController(private val moveStrategy: MoveStrategy) {
-    fun run(carCount: Int, tryCount: Int) {
+    fun run(carCount: Int, tryCount: Int): List<RacingCarDtos> {
         val racingCars = RacingCars.create(carCount)
-        racingCars.race(tryCount, moveStrategy)
+        val racingRecords = racingCars.race(tryCount, moveStrategy)
+        return toDto(racingRecords)
     }
+
+    private fun toDto(racingRecords: List<List<Int>>) =
+        racingRecords.map { it -> RacingCarDtos(it.map { RacingCarDto(it) }) }
 }
