@@ -9,7 +9,7 @@ class Calculator(private val delimiter: String = " ") {
 
         (1 until tokens.size - 1 step 2).forEach { i ->
             val operand2 = Number(tokens[i + 1])
-            val operator = Operator.find(tokens[i])
+            val operator = Operator.findOrNull(tokens[i])
 
             operand1 = operator?.operate(operand1, operand2)
                 ?: throw IllegalArgumentException("invalid operator token ${tokens[i]}")
