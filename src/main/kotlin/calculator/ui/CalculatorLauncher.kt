@@ -4,5 +4,5 @@ import input.SystemInputStrategy
 import calculator.ui.UserInput
 
 fun main() {
-    Calculator(UserInput(SystemInputStrategy()).operate())
+    println(Calculator(UserInput(SystemInputStrategy()).operate()).calculate())
 }
