@@ -5,6 +5,6 @@ import calculator.Output
 
 class ConsoleOutput : Output {
     override fun write(number: Number) {
-        println(number.toString())
+        println(number)
     }
 }
