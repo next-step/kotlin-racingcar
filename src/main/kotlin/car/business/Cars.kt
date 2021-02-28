@@ -4,6 +4,8 @@ import kotlin.random.Random
 import kotlin.streams.toList
 
 class Cars(amount: Int, random: Random = Random) {
+    private val RANDOM_MAX_SIZE = 10
+
     private val cars: List<Car>
     private val random: Random
 
@@ -17,7 +19,7 @@ class Cars(amount: Int, random: Random = Random) {
 
     fun move(): Int {
         return cars.stream()
-            .map { it.move(random.nextInt(10)) }
+            .map { it.move(random.nextInt(RANDOM_MAX_SIZE)) }
             .filter { it }
             .count()
             .toInt()
