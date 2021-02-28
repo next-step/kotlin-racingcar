@@ -2,8 +2,11 @@ package calculator
 
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.internal.bytebuddy.implementation.bind.annotation.Empty
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.EmptySource
 import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.NullAndEmptySource
 import java.util.AbstractMap
 import java.util.stream.Stream
 import kotlin.collections.Map.Entry
@@ -11,10 +14,6 @@ import kotlin.collections.Map.Entry
 class CalculatorTest {
 
     companion object {
-        @JvmStatic
-        fun createBlankStrings(): Stream<String> {
-            return Stream.of(null, "", "   ")
-        }
 
         @JvmStatic
         fun createCalculation(): Stream<AbstractMap.SimpleEntry<String, Int>> {
@@ -41,8 +40,8 @@ class CalculatorTest {
     }
 
     @ParameterizedTest
-    @MethodSource("createBlankStrings")
-    fun `계산시 계산식이 공백 또는 null이면 Exception`(input: String?) {
+    @EmptySource
+    fun `계산시 계산식이 공백이면 Exception`(input: String) {
         val calculator = Calculator(input)
 
         Assertions.assertThatIllegalArgumentException()
