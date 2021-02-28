@@ -3,6 +3,9 @@ package calculator
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
 
 internal class OperatorTest {
 
@@ -17,27 +20,22 @@ internal class OperatorTest {
             .hasMessageContaining("the value not Operator")
     }
 
-    @Test
-    fun `PLUS 의 operation 을 실행하면 9 를 반환한다`() {
-        val result = Operator.PLUS.operate(num1, num2)
-        assertThat(result).isEqualTo(Number.of("9"))
+    @ParameterizedTest
+    @MethodSource("provideOperatorArguments")
+    fun `operate 를 실행하면 기대값을 반환한다`(operator: Operator, expected: Number) {
+        val result = operator.operate(num1, num2)
+        assertThat(result).isEqualTo(expected)
     }
 
-    @Test
-    fun `MINUS 의 operation 을 실행하면 3 을 반환한다`() {
-        val result = Operator.MINUS.operate(num1, num2)
-        assertThat(result).isEqualTo(Number.of("3"))
-    }
-
-    @Test
-    fun `TIMES 의 operation 을 실행하면 18 을 반환한다`() {
-        val result = Operator.TIMES.operate(num1, num2)
-        assertThat(result).isEqualTo(Number.of("18"))
-    }
-
-    @Test
-    fun `DIVIDE 의 operation 을 실행하면 2 를 반환한다`() {
-        val result = Operator.DIVIDE.operate(num1, num2)
-        assertThat(result).isEqualTo(Number.of("2"))
+    companion object {
+        @JvmStatic
+        fun provideOperatorArguments(): List<Arguments> {
+            return listOf(
+                Arguments.of(Operator.PLUS, Number.of("9")),
+                Arguments.of(Operator.MINUS, Number.of("3")),
+                Arguments.of(Operator.TIMES, Number.of("18")),
+                Arguments.of(Operator.DIVIDE, Number.of("2"))
+            )
+        }
     }
 }
