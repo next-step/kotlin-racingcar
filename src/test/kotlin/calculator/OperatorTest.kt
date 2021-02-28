@@ -19,25 +19,25 @@ internal class OperatorTest {
 
     @Test
     fun `PLUS 의 operation 을 실행하면 9 를 반환한다`() {
-        val result = Operator.PLUS.operation(num1, num2)
+        val result = Operator.PLUS.operate(num1, num2)
         assertThat(result).isEqualTo(Number.of("9"))
     }
 
     @Test
     fun `MINUS 의 operation 을 실행하면 3 을 반환한다`() {
-        val result = Operator.MINUS.operation(num1, num2)
+        val result = Operator.MINUS.operate(num1, num2)
         assertThat(result).isEqualTo(Number.of("3"))
     }
 
     @Test
     fun `TIMES 의 operation 을 실행하면 18 을 반환한다`() {
-        val result = Operator.TIMES.operation(num1, num2)
+        val result = Operator.TIMES.operate(num1, num2)
         assertThat(result).isEqualTo(Number.of("18"))
     }
 
     @Test
     fun `DIVIDE 의 operation 을 실행하면 2 를 반환한다`() {
-        val result = Operator.DIVIDE.operation(num1, num2)
+        val result = Operator.DIVIDE.operate(num1, num2)
         assertThat(result).isEqualTo(Number.of("2"))
     }
 }
