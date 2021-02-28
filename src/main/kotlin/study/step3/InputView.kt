@@ -1,6 +1,6 @@
 package study.step3
 
-class InputView {
+object InputView {
 
     fun inputCarCount(): Int {
         println("자동차 대수는 몇 대인가요?")

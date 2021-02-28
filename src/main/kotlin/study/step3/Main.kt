@@ -1,9 +1,8 @@
 package study.step3
 
 fun main() {
-    val inputView = InputView()
-    val carCount = inputView.inputCarCount()
-    val tryCount = inputView.inputTryCount()
+    val carCount = InputView.inputCarCount()
+    val tryCount = InputView.inputTryCount()
 
     val resultView = ResultView()
     resultView.outputResultString()
