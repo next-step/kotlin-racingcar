@@ -50,5 +50,33 @@ class CarsTest() {
         assertThat(count).isEqualTo(amount)
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = [1,2,3,4,5])
+    fun `움직인 만큼 position이 변경이 되어야 한다`(tryCount: Int) {
+        // given
+        val amount = 5
+        val random = object:Random() {
+            override fun nextBits(bitCount: Int): Int {
+                return 9
+            }
+
+            override fun nextInt(from: Int, until: Int): Int {
+                return 9
+            }
+        }
+        val cars = Cars(amount, random)
+
+        // when
+        for(i in 0 until tryCount) {
+            cars.move()
+        }
+
+        // then
+        assertThat(cars.getPositions())
+            .allMatch { it == tryCount }
+
+
+    }
+
 
 }
