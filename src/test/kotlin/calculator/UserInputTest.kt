@@ -1,5 +1,7 @@
 package calculator
 
+import calculator.ui.InputStrategy
+import calculator.ui.UserInput
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.NullAndEmptySource

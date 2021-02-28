@@ -1,3 +1,3 @@
 package calculator
 
-class Calculator
+class Calculator(inputString: String)
