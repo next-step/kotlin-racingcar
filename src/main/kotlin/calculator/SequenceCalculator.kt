@@ -1,37 +1,27 @@
 package calculator
 
-class SequenceCalculator : Calculator {
-    private val numbers = mutableListOf<Number>()
-    private val operators = mutableListOf<Operator>()
+import java.util.Stack
+
+class SequenceCalculator(
+    private val notationTransformer: NotationTransformer
+) : Calculator {
+
     private var result = Number.of("0")
 
-    override fun parse(line: String) {
-        line.split(" ")
-            .map {
-                add(it)
-            }
-    }
+    private val words = mutableListOf<Word>()
 
-    private fun add(value: String) {
-        if (value in Operator.operators) {
-            operators.add(Operator.of(value))
-            return
-        }
-        numbers.add(Number.of(value))
+    override fun parse(line: String) {
+        words.clear()
+        words.addAll(notationTransformer.transform(line))
     }
 
     override fun calculate() {
-        var result = numbers.removeAt(0)
-        var op = operators.removeAt(0)
-
-        while (numbers.isNotEmpty()) {
-            val num = numbers.removeAt(0)
-            result = op.operation(result, num)
-            if (operators.isNotEmpty()) {
-                op = operators.removeAt(0)
-            }
+        val resultStack = Stack<Number>()
+        for (w in words) {
+            w.calc(resultStack)
         }
-        this.result = result
+
+        this.result = resultStack.pop()
     }
 
     override fun result(): Number {

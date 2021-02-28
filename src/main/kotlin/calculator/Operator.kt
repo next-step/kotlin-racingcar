@@ -1,5 +1,7 @@
 package calculator
 
+import java.util.Stack
+
 enum class Operator : Word {
     PLUS {
         override val operation: (n1: Number, n2: Number) -> Number
@@ -21,9 +23,14 @@ enum class Operator : Word {
 
     abstract val operation: (n1: Number, n2: Number) -> Number
 
-    companion object {
-        val operators = arrayOf("+", "-", "*", "/")
+    override fun calc(resultStack: Stack<Number>) {
+        val n1 = resultStack.pop()
+        val n2 = resultStack.pop()
+        val result = operation(n2, n1)
+        resultStack.add(result)
+    }
 
+    companion object {
         fun of(value: String): Operator {
             return when (value.trim()) {
                 "+" -> PLUS

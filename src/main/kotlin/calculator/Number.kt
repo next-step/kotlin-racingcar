@@ -2,6 +2,7 @@ package calculator
 
 import java.lang.NumberFormatException
 import java.util.Objects
+import java.util.Stack
 
 class Number private constructor(private val value: Int) : Word {
 
@@ -24,6 +25,10 @@ class Number private constructor(private val value: Int) : Word {
 
     override fun toString(): String {
         return value.toString()
+    }
+
+    override fun calc(resultStack: Stack<Number>) {
+        resultStack.add(this)
     }
 
     companion object {

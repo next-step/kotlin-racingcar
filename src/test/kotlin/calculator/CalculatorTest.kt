@@ -1,5 +1,6 @@
 package calculator
 
+import calculator.notation.SequencePostfixNotationTransformer
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -10,7 +11,7 @@ class CalculatorTest {
 
     @BeforeEach
     fun setUp() {
-        calculator = SequenceCalculator()
+        calculator = SequenceCalculator(SequencePostfixNotationTransformer())
     }
 
     @Test
