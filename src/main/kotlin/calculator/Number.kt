@@ -26,8 +26,8 @@ class Number private constructor(private val value: Int) : Word {
         return value.toString()
     }
 
-    override fun calculate(resultStack: Stack<Number>) {
-        resultStack.add(this)
+    override fun calculate(acc: Stack<Number>) {
+        acc.add(this)
     }
 
     companion object {

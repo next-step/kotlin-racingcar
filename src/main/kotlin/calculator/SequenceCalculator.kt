@@ -16,12 +16,12 @@ class SequenceCalculator(
     }
 
     override fun calculate() {
-        val resultStack = Stack<Number>()
+        val acc = Stack<Number>()
         for (w in words) {
-            w.calculate(resultStack)
+            w.calculate(acc)
         }
 
-        this.result = resultStack.pop()
+        this.result = acc.pop()
     }
 
     override fun result(): Number {
