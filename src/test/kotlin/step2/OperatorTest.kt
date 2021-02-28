@@ -1,37 +1,31 @@
 package step2
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.Arguments.arguments
+import org.junit.jupiter.params.provider.MethodSource
+import java.util.stream.Stream
 
 class OperatorTest {
 
     private val operator = Operator()
 
-    @Test
-    fun `더하기`() {
-        assertEquals(operator.operate(3, 5, "+"), 8)
-        assertEquals(operator.operate(15, 44, "+"), 59)
-        assertEquals(operator.operate(18, 42, "+"), 60)
+    @ParameterizedTest
+    @MethodSource("parameterProvider")
+    fun `사칙연산`(number1: Int, number2: Int, operatorString: String, result: Int) {
+        assertThat(operator.operate(number1, number2, operatorString)).isEqualTo(result)
     }
 
-    @Test
-    fun `빼기`() {
-        assertEquals(operator.operate(3, 5, "-"), -2)
-        assertEquals(operator.operate(60, 44, "-"), 16)
-        assertEquals(operator.operate(18, 42, "-"), -24)
-    }
-
-    @Test
-    fun `곱하기`() {
-        assertEquals(operator.operate(3, 5, "*"), 15)
-        assertEquals(operator.operate(15, 44, "*"), 660)
-        assertEquals(operator.operate(18, 42, "*"), 756)
-    }
-
-    @Test
-    fun `나누기`() {
-        assertEquals(operator.operate(3, 5, "/"), 0)
-        assertEquals(operator.operate(15, 3, "/"), 5)
-        assertEquals(operator.operate(60, 30, "/"), 2)
+    companion object {
+        @JvmStatic
+        fun parameterProvider(): Stream<Arguments> {
+            return Stream.of(
+                arguments(40, 20, "+", 60),
+                arguments(40, 20, "-", 20),
+                arguments(40, 20, "*", 800),
+                arguments(40, 20, "/", 2)
+            )
+        }
     }
 }
