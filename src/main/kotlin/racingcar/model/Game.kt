@@ -14,10 +14,6 @@ class Game {
         }
     }
 
-    fun getListOfCar(): ArrayList<Car> {
-        return listOfCar
-    }
-
      fun executeOneCycle() {
         repeat(listOfCar.size) {
             val randomNumber = generateRandomNumber()
