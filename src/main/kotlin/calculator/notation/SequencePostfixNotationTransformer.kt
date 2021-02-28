@@ -8,8 +8,6 @@ import java.util.Stack
 
 class SequencePostfixNotationTransformer : NotationTransformer {
 
-    private val regex = "^\\d+$".toRegex()
-
     override fun transform(line: String): List<Word> {
         val tokens = line.split(" ")
         val operators = Stack<Word>()
@@ -23,7 +21,7 @@ class SequencePostfixNotationTransformer : NotationTransformer {
     }
 
     private fun addNumberIf(words: MutableList<Word>, operators: Stack<Word>, token: String) {
-        if (token.matches(regex)) {
+        if (token.matches(REGEX_NUMBER)) {
             words.add(Number.of(token))
             popOperator(words, operators)
         }
@@ -37,8 +35,12 @@ class SequencePostfixNotationTransformer : NotationTransformer {
     }
 
     private fun addOperatorIf(operators: Stack<Word>, token: String) {
-        if (token.matches(regex).not()) {
+        if (token.matches(REGEX_NUMBER).not()) {
             operators.add(Operator.of(token))
         }
+    }
+
+    companion object {
+        private val REGEX_NUMBER = "^\\d+$".toRegex()
     }
 }
