@@ -2,7 +2,6 @@ package calculator
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
-import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.params.ParameterizedTest
@@ -12,7 +11,7 @@ class CalculatorTest {
     @Test
     fun `파라미터 값이 empty인 경우 예외처리한다`() {
         assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            Calculator.validInputIsEmpty("")
+            Calculator.input("")
         }.withMessageMatching("입력 값이 존재하지 않습니다.")
     }
 
@@ -39,21 +38,21 @@ class CalculatorTest {
     }
 
     @ParameterizedTest
-    @CsvSource("3 * 10 / 5, 6", "5 + 3 * 2 / 4", "4")
+    @CsvSource("3 * 10 / 5, 6", "5 + 3 * 2 / 4, 4")
     fun `입력받은 문자열을 calculate로 순차적으로 계산하여 결과를 리턴한다`(input: String, expectedResult: Int) {
-        val splitedInput = Calculator.input("3 * 10 / 5")
+        val splitedInput = Calculator.input(input)
         val result = Calculator.calculate(splitedInput)
 
-        assertThat(result).isEqualTo(6)
+        assertThat(result).isEqualTo(expectedResult)
     }
 
     @Test
-    @DisplayName("5 + 3 * 2 / 4 을 연산하여 6을 리턴한다")
-    fun `calculate_second_test`() {
-        val splitedInput = Calculator.input("5 + 3 * 2 / 4")
-        val result = Calculator.calculate(splitedInput)
+    fun `입력받은 문자열에서 operand가 숫자가 아닌경우 예외처리를 한다`() {
+        val splitedInput = Calculator.input("3 * 값")
 
-        assertThat(result).isEqualTo(4)
+        assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
+            Calculator.calculate(splitedInput)
+        }.withMessageMatching("value는 숫자여야 합니다. value : 값")
     }
 
     @Test
@@ -65,52 +64,41 @@ class CalculatorTest {
 
     @Test
     fun `덧셈 연산이 처리되어 결과를 리턴한다`() {
-        // when
         val answer = Calculator.add(2, 3)
 
-        // then
         assertThat(answer).isEqualTo(5)
     }
 
     @Test
     fun `뺄셈의 결과가 양수인 경우 양수의 값을 리턴한다`() {
-        // when
         val answer = Calculator.minus(10, 5)
 
-        // then
         assertThat(answer).isEqualTo(5)
     }
 
     @Test
     fun `뺄셈의 결과가 음수인 경우 음수의 값을 리턴한다`() {
-        // when
         val answer = Calculator.minus(5, 6)
 
-        // then
         assertThat(answer).isEqualTo(-1)
     }
 
     @Test
     fun `곱셈 연산 처리되어 결과를 리턴한다`() {
-        // when
         val answer = Calculator.multiply(2, 3)
 
-        // then
         assertThat(answer).isEqualTo(6)
     }
 
     @Test
     fun `나눗셈을 처리하여 결과를 리턴한다`() {
-        // when
         val answer = Calculator.division(10, 5)
 
-        // then
         assertThat(answer).isEqualTo(2)
     }
 
     @Test
     fun `나눗셈을 처리 시 분모가 0인경우 예외처리한다`() {
-        // then
         assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
             Calculator.division(10, 0)
         }.withMessage("0은 분모가 될 수 없습니다.")
