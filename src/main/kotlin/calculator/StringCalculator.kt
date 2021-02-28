@@ -3,6 +3,9 @@ package calculator
 class StringCalculator {
 
     fun calculate(input: String): Int {
+        if (input.isBlank()) {
+            throw IllegalArgumentException()
+        }
 
         val formula = replace(input).toMutableList().map { it.toString() }
 
