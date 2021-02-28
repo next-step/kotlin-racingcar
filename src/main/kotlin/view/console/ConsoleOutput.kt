@@ -1,4 +1,4 @@
-package calculator.view.console
+package view.console
 
 class ConsoleOutput {
     fun printExpressionInputMessage() {
