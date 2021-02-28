@@ -10,8 +10,8 @@ class OutputViewTest {
 
     @Test
     fun `자동차 진행현황 출력`() {
-        assertEquals(outputView.printCurrentPosition(0), "")
-        assertEquals(outputView.printCurrentPosition(1), "-")
-        assertEquals(outputView.printCurrentPosition(2), "--")
+        assertEquals(outputView.getCurrentProgress(0), "")
+        assertEquals(outputView.getCurrentProgress(1), "-")
+        assertEquals(outputView.getCurrentProgress(2), "--")
     }
 }

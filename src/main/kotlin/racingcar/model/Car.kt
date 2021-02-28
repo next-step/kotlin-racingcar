@@ -1,13 +1,13 @@
 package racingcar.model
 
 class Car(
-    private var currentPosition: Int = 0
+    private var currentProgress: Int = 0
 ) {
     fun moveForward() {
-        currentPosition += 1
+        currentProgress += 1
     }
 
     fun getPosition(): Int {
-        return currentPosition
+        return currentProgress
     }
 }

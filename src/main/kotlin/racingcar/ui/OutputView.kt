@@ -2,9 +2,9 @@ package racingcar.ui
 
 class OutputView {
 
-    fun getCurrentProgress(currentPosition: Int): String {
+    fun getCurrentProgress(currentProgress: Int): String {
         var stringProgress = ""
-        repeat(currentPosition) { stringProgress += "-" }
+        repeat(currentProgress) { stringProgress += "-" }
 
         return stringProgress
     }

@@ -1,8 +1,8 @@
 package racingcar
 
-import racingcar.ui.InputView
+import racingcar.model.Game
 
 fun main() {
-    val inputView = InputView()
-    print(inputView.inputNumberOfCar())
+    val game = Game()
+    game.gameStart()
 }
