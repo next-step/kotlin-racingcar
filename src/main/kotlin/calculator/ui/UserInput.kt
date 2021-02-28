@@ -1,4 +1,4 @@
-package calculator
+package calculator.ui
 
 class UserInput(private val inputStrategy: InputStrategy) {
 

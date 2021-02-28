@@ -1,4 +1,4 @@
-package calculator
+package calculator.ui
 
 class SystemInputStrategy : InputStrategy {
     override fun enter(): String? {
