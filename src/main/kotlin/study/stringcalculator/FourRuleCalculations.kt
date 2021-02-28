@@ -1,4 +1,4 @@
-package study.step2
+package study.stringcalculator
 
 enum class FourRuleCalculations(val symbol: String) {
     ADD("+"),

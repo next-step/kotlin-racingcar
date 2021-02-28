@@ -1,4 +1,4 @@
-package study.step2
+package study.stringcalculator
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy

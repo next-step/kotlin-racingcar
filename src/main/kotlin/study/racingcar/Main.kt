@@ -1,4 +1,4 @@
-package study.step3
+package study.racingcar
 
 fun main() {
     val carCount = InputView.inputCarCount()
