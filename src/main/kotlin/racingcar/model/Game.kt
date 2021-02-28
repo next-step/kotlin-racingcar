@@ -32,12 +32,18 @@ class Game(numberOfCar: Int) {
     }
 
     private fun checkCarPossibleToMove(randomNumber: Int, car: Car) {
-        if (randomNumber >= 4) {
+        if (randomNumber >= CRITERIA_NUMBER) {
             car.moveForward()
         }
     }
 
     private fun generateRandomNumber(): Int {
-        return Random.nextInt(1, 10)
+        return Random.nextInt(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER)
+    }
+
+    companion object {
+        const val MIN_RANDOM_NUMBER = 0
+        const val MAX_RANDOM_NUMBER = 9
+        const val CRITERIA_NUMBER = 4
     }
 }

@@ -3,7 +3,6 @@ package racingcar
 import racingcar.model.Game
 import racingcar.ui.InputView
 
-
 private val inputView = InputView()
 
 fun main() {
