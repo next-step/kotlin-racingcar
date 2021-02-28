@@ -1,20 +1,19 @@
 package racingcar.model
 
-import racingcar.ui.InputView
 import racingcar.ui.OutputView
 import kotlin.random.Random
 
-class Game {
+class Game(numberOfCar: Int) {
     private val listOfCar: ArrayList<Car> = arrayListOf()
     private val outputView: OutputView = OutputView()
 
-     fun createCar(numberOfCar: Int) {
+    init {
         for (times in 1..numberOfCar) {
             listOfCar.add(Car())
         }
     }
 
-     fun executeOneCycle() {
+    fun executeOneCycle() {
         repeat(listOfCar.size) {
             val randomNumber = generateRandomNumber()
             val currentCar = listOfCar[it]
@@ -26,8 +25,7 @@ class Game {
         var oneCycleProgress = ""
         repeat(listOfCar.size) {
             val currentCarProgress = listOfCar[it].getProgress()
-            oneCycleProgress += outputView.getStringProgress(currentCarProgress)
-            oneCycleProgress += "\n"
+            oneCycleProgress += "${outputView.getStringProgress(currentCarProgress)}\n"
         }
 
         println(oneCycleProgress)
