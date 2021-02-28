@@ -3,6 +3,7 @@ package calculator
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
@@ -33,11 +34,11 @@ internal class ExpressionTest {
         //중간 결과
         expression.execute()
 
-        //when
         //추가연산
         expression.addExpToken("*")
         expression.addExpToken("3")
 
+        //when
         //then
         assertThat(expression.execute()).isEqualTo(9)
     }
@@ -50,8 +51,7 @@ internal class ExpressionTest {
 
         //when
         //then
-        assertThatThrownBy { expression.addExpToken("|") }
-            .isInstanceOf(IllegalArgumentException::class.java)
+        assertThrows<IllegalArgumentException> { expression.addExpToken("|") }
     }
 
     @Test
@@ -60,6 +60,6 @@ internal class ExpressionTest {
         val expression = Expression()
         //when
         //then
-        expression.execute()
+        assertThat(expression.execute()).isEqualTo(0)
     }
 }

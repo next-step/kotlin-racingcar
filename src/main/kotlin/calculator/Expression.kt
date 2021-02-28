@@ -18,8 +18,8 @@ class Expression {
         }
 
         var result = numbers[0]
-        for (x in 1 until numbers.size) {
-            result = operators[x - 1].operation(result, numbers[x])
+        for (numberIndex in 1 until numbers.size) {
+            result = operators[numberIndex - 1].operation(result, numbers[numberIndex])
         }
         return result
     }
