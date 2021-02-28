@@ -27,7 +27,7 @@ internal class CalculatorTest {
         val operands = listOf(Number(1), Number(2), Number(4))
         val operators = listOf(Operator.PLUS, Operator.MINUS, Operator.MULTIPLE)
 
-        val result = assertThrows<IllegalArgumentException> { Calculator(operands, operators) }
+        val result = assertThrows<IllegalStateException> { Calculator(operands, operators) }
         assertThat(result.message).isEqualTo("숫자는 연산자보다 갯수가 1개 더 많아야 합니다")
     }
 }
