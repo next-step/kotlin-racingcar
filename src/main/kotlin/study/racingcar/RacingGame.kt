@@ -5,7 +5,7 @@ import kotlin.random.Random
 class RacingGame(private val moveStrategy: MoveStrategy) {
 
     private lateinit var _cars: Array<Car>
-    val cars: Array<Car> get() = _cars
+    val cars: Array<Car> get() = _cars.copyOf()
 
     fun readyGame(carCount: Int) {
         _cars = Array(carCount) { Car() }
@@ -18,7 +18,7 @@ class RacingGame(private val moveStrategy: MoveStrategy) {
         return _cars.toList()
     }
 
-    fun moveCarOrNot(car: Car) {
+    private fun moveCarOrNot(car: Car) {
         if (moveStrategy.isMoveCar(Random.nextInt(9))) {
             car.moveCar()
         }
