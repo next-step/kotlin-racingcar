@@ -5,10 +5,10 @@ import kotlin.random.Random
 class RacingGame(private val moveStrategy: MoveStrategy) {
 
     private lateinit var _cars: Array<Car>
-    val cars: Array<Car> get() = _cars.copyOf()
 
-    fun readyGame(carCount: Int) {
+    fun readyGame(carCount: Int): Boolean {
         _cars = Array(carCount) { Car() }
+        return true
     }
 
     fun raceCars(): List<Car> {
