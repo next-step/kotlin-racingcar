@@ -12,15 +12,7 @@ class CarsTest() {
     fun `랜덤값이 4 미만일경우 움직이면은 안된다`(rand: Int) {
         // given
         val amount = 5
-        val random = object:Random() {
-            override fun nextBits(bitCount: Int): Int {
-                return rand
-            }
-
-            override fun nextInt(from: Int, until: Int): Int {
-                return rand
-            }
-        }
+        val random = createMockNextIntRandom(rand)
         val cars = Cars(amount, random)
         // when
         val count = cars.move()
@@ -34,15 +26,7 @@ class CarsTest() {
     fun `랜덤값이 4 이상일경우 움직이면 된다`(rand: Int) {
         // given
         val amount = 5
-        val random = object:Random() {
-            override fun nextBits(bitCount: Int): Int {
-                return rand
-            }
-
-            override fun nextInt(from: Int, until: Int): Int {
-                return rand
-            }
-        }
+        val random = createMockNextIntRandom(rand)
         val cars = Cars(amount, random)
         // when
         val count = cars.move()
@@ -55,15 +39,9 @@ class CarsTest() {
     fun `움직인 만큼 position이 변경이 되어야 한다`(tryCount: Int) {
         // given
         val amount = 5
-        val random = object:Random() {
-            override fun nextBits(bitCount: Int): Int {
-                return 9
-            }
+        val maxRand = 9
 
-            override fun nextInt(from: Int, until: Int): Int {
-                return 9
-            }
-        }
+        val random = createMockNextIntRandom(maxRand)
         val cars = Cars(amount, random)
 
         // when
@@ -76,6 +54,18 @@ class CarsTest() {
             .allMatch { it == tryCount }
 
 
+    }
+
+    private fun createMockNextIntRandom(nextInt: Int): Random {
+        return object:Random() {
+            override fun nextBits(bitCount: Int): Int {
+                return nextInt
+            }
+
+            override fun nextInt(from: Int, until: Int): Int {
+                return nextInt
+            }
+        }
     }
 
 
