@@ -6,7 +6,7 @@ class SequenceCalculator(
     private val notationTransformer: NotationTransformer
 ) : Calculator {
 
-    private var result = Number.of("0")
+    private var result = Number.ZERO
 
     private val words = mutableListOf<Word>()
 

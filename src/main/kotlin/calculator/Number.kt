@@ -31,6 +31,8 @@ class Number private constructor(private val value: Int) : Word {
     }
 
     companion object {
+        val ZERO = of("0")
+
         fun of(value: String): Number {
             return Number(value.toIntOrNull() ?: throw IllegalArgumentException())
         }
