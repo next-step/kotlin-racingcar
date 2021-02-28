@@ -7,7 +7,7 @@ class Car(
         currentProgress += 1
     }
 
-    fun getPosition(): Int {
+    fun getProgress(): Int {
         return currentProgress
     }
 }
