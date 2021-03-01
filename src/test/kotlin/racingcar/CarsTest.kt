@@ -22,6 +22,6 @@ class CarsTest {
     }
 
     companion object {
-        fun cars(count: Int) = Cars((0 until count).map { Name(it) to Car(moveable = Moveable.Always()) }.toMap())
+        fun cars(count: Int) = Cars((0 until count).map { Car(position = NamedPosition.Smart(Name(it)), moveable = Moveable.Always()) })
     }
 }

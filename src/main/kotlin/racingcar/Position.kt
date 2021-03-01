@@ -4,5 +4,5 @@ data class Position(private val namedPosition: NamedPosition) : NamedPosition by
 
     constructor(position: Int) : this(NamedPosition.Smart("", position))
 
-    operator fun inc() = Position(namedPosition.intValue() + 1)
+    override operator fun inc() = Position(namedPosition.intValue() + 1)
 }
