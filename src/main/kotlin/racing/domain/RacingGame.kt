@@ -1,16 +1,29 @@
 package racing.domain
 
-class RacingGame(carNames: List<String>, var movementChecker: MovementChecker) {
+import racing.data.RacingGameData
+import racing.data.RacingHistory
+import racing.data.RacingState
+
+class RacingGame(private val racingGameData: RacingGameData, var movementChecker: MovementChecker) {
 
     val cars = mutableListOf<Car>()
 
     init {
-        for (name in carNames) {
+        for (name in racingGameData.carNames) {
             cars.add(Car(name))
         }
     }
 
-    fun moveAllCar() {
+    fun run(): RacingHistory {
+        val racingHistory = RacingHistory()
+        repeat(racingGameData.tryCount) {
+            moveAllCar()
+            racingHistory.add(RacingState.of(cars))
+        }
+        return racingHistory
+    }
+
+    private fun moveAllCar() {
         cars.forEach { moveCarIfPossible(it) }
     }
 

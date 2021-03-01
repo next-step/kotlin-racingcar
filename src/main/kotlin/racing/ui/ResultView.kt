@@ -1,5 +1,7 @@
 package racing.ui
 
+import racing.data.RacingHistory
+import racing.data.RacingState
 import racing.domain.Car
 
 /**
@@ -17,16 +19,22 @@ object ResultView {
         println(NOTICE_RESULT_START)
     }
 
-    fun printAllPosition(cars: List<Car>) {
-        for (car in cars) {
-            printCarStates(car)
+    fun printRacingHistory(racingHistory: RacingHistory) {
+        val racingStates = racingHistory.racingStates
+        racingStates.forEach { printRacingState(it) }
+    }
+
+    private fun printRacingState(racingState: RacingState) {
+        val carPositions = racingState.carPositions
+        carPositions.forEach { carName, position ->
+            printCarStates(carName, position)
         }
         println()
     }
 
-    private fun printCarStates(car: Car) {
-        print("${car.name} : ")
-        repeat(car.position) {
+    private fun printCarStates(carName: String, position: Int) {
+        print("$carName : ")
+        repeat(position) {
             print(SYMBOL_ONE_STEP)
         }
         println()
