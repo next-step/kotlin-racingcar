@@ -39,4 +39,46 @@ class RacingGameTest {
         racingGame.moveAllCar()
         assertThat(racingGame.cars).extracting("position").containsOnly(0)
     }
+
+    @Test
+    fun `get winner 테스트(winner가 하나)`() {
+
+        val racingGame = RacingGame(testCarNames, MovementChecker())
+        val cars = racingGame.cars
+
+        repeat(2) {
+            cars[0].moveCar()
+        }
+
+        repeat(3) {
+            cars[1].moveCar()
+        }
+
+        repeat(1) {
+            cars[2].moveCar()
+        }
+
+        assertThat(racingGame.getWinners()).containsOnly(cars[1])
+    }
+
+    @Test
+    fun `get winner 테스트(winner가 둘)`() {
+
+        val racingGame = RacingGame(testCarNames, MovementChecker())
+        val cars = racingGame.cars
+
+        repeat(2) {
+            cars[0].moveCar()
+        }
+
+        repeat(2) {
+            cars[1].moveCar()
+        }
+
+        repeat(1) {
+            cars[2].moveCar()
+        }
+
+        assertThat(racingGame.getWinners()).containsOnly(cars[0], cars[1])
+    }
 }

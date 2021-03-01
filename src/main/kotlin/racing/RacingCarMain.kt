@@ -19,6 +19,8 @@ object RacingCarMain {
 
             ResultView.printAllPosition(cars)
         }
+
+        ResultView.printWinners(racingGame.getWinners())
     }
 }
 

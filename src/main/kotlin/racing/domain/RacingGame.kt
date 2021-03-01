@@ -19,4 +19,14 @@ class RacingGame(carNames: List<String>, var movementChecker: MovementChecker) {
             car.moveCar()
         }
     }
+
+    fun getWinners(): List<Car> {
+        val maxPosition = getMaxPosition()
+        return cars.filter { it.position == maxPosition }
+    }
+
+    private fun getMaxPosition(): Int {
+        val maxPosition = cars.maxBy { it.position }?.position
+        return maxPosition ?: 0
+    }
 }
