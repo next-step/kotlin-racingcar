@@ -1,25 +1,24 @@
 package racingcar.tasks
 
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectIndexed
 import kotlinx.coroutines.runBlocking
 import racingcar.model.Car
-import racingcar.ui.getResult
+import racingcar.ui.OutputView.getResult
 import racingcar.viewmodel.GameViewModel
 
 class Game {
 
-    private val gameViewModel = GameViewModel()
-
     fun run(listOfCar: ArrayList<Car>) = runBlocking {
-        gameViewModel.tryGo(listOfCar)
-            .collect { getResult(it) }
+        GameViewModel.tryGo(listOfCar)
+            .collectIndexed { index, value ->
+                getResult(index == listOfCar.lastIndex, value)
+            }
     }
 
-    fun setting(countOfCar: Int): ArrayList<Car> {
-        val carFactory = CarFactory()
+    fun settingRacingCar(countOfCar: Int): ArrayList<Car> {
         val listOfCar = arrayListOf<Car>()
         repeat(countOfCar) {
-            listOfCar.add(carFactory.createCar())
+            listOfCar.add(CarFactory.createCar())
         }
         return listOfCar
     }

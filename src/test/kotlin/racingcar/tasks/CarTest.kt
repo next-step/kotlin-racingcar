@@ -12,7 +12,7 @@ class CarTest {
     @Test
     fun `자동차 1번 전진`() {
         val car = Car().apply {
-            go()
+            tryMove(true)
         }
 
         Assertions.assertThat(car.whereIs())

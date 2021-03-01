@@ -2,6 +2,6 @@ package racingcar.tasks
 
 import racingcar.model.Car
 
-class CarFactory {
+object CarFactory {
     fun createCar() = Car()
 }
