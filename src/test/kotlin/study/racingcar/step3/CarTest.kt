@@ -13,7 +13,7 @@ internal class CarTest {
     fun `차 동작 확인 Test`(ableNumber: Int, runValue: Int, expectationResult: String) {
         val car = Car(ableNumber, 0)
         car.run(runValue)
-        assertThat(car.show()).isEqualTo(expectationResult)
+        assertThat(car.render()).isEqualTo(expectationResult)
     }
 
     companion object {
