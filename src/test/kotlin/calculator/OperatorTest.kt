@@ -39,4 +39,12 @@ class OperatorTest {
             Operator.operatorOf("&")
         }.withMessageMatching("잘못된 연산자입니다.")
     }
+
+    @ParameterizedTest
+    @CsvSource("0, 10, 10, PLUS", "10, 5, 5, MINUS", "2, 3, 6, MULTIPLY", "10, 2, 5, DIVISION")
+    fun `연산자에 해당하는 기능을 실행하여 연산 결과를 리턴한다`(leftOperand: Int, rightOperand: Int, expectedResult: Int, operator: Operator) {
+        val result = operator.operate(leftOperand, rightOperand)
+
+        assertThat(result).isEqualTo(expectedResult)
+    }
 }
