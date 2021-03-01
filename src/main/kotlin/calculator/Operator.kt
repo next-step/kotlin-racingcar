@@ -1,17 +1,17 @@
 package calculator
 
-enum class Operator(val remark: String, val compute: (Int, Int) -> Int) {
-    PLUS("+", fun(number1: Int, number2: Int) = number1 + number2),
-    MINUS("-", fun(number1: Int, number2: Int) = number1 - number2),
-    MULTIPLIED("*", fun(number1: Int, number2: Int) = number1 * number2),
-    DIVIDED("/", fun(number1: Int, number2: Int) = number1 / number2);
+enum class Operator(val remark: String, val compute: (Operand, Operand) -> Operand) {
+    PLUS("+", { left, right -> left + right }),
+    MINUS("-", { left, right -> left - right }),
+    MULTIPLIED("*", { left, right -> left * right }),
+    DIVIDED("/", { left, right -> left / right });
 
     companion object {
-        fun findBy(remark: String): Operator = values()
+        fun getBy(remark: String): Operator = values()
             .find { operator -> operator.remark == remark }
             ?: throw IllegalArgumentException("알맞은 연산자가 없습니다: $remark")
 
         val isOrderOf: (Int) -> Boolean = fun(order: Int): Boolean { return order % 2 != 0 }
-        val convertToOperator: (String) -> Operator = fun(input: String): Operator { return findBy(input) }
+        val convertToOperator: (String) -> Operator = fun(input: String): Operator { return getBy(input) }
     }
 }

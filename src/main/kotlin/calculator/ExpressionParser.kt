@@ -4,7 +4,7 @@ class ExpressionParser {
     companion object {
         fun <T> Iterable<String>.parse(filterByIndex: (Int) -> Boolean, convertByType: (String) -> T): List<T> {
             return this.withIndex()
-                .filter { filterByIndex(it.index) }
+                .filterIndexed { index, _ -> filterByIndex(index) }
                 .map { convertByType(it.value) }
                 .toList()
         }

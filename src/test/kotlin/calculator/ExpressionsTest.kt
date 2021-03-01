@@ -7,14 +7,17 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.lang.NumberFormatException
 import java.util.Collections
 import java.util.stream.Stream
 
-internal class ExpressionParserTest {
+internal class ExpressionsTest {
+    private fun parseOperand(input: Iterable<String>): List<Operand> =
+        input.parse(Operand.isOrderOf, Operand.CONVERT_TO_OPERAND)
+
+    private fun parseOperator(input: Iterable<String>): List<Operator> =
+        input.parse(Operator.isOrderOf, Operator.convertToOperator)
+
     companion object {
-        private fun parseOperand(input: Iterable<String>): List<Operand> = input.parse(Operand.isOrderOf, Operand.CONVERT_TO_OPERAND)
-        private fun parseOperator(input: Iterable<String>): List<Operator> = input.parse(Operator.isOrderOf, Operator.convertToOperator)
         @JvmStatic
         fun expressionsProvider(): Stream<Arguments> {
             return Stream.of(
