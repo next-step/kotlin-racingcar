@@ -5,9 +5,7 @@ object Calculator {
     private const val DELIMITER = " "
 
     fun execute(expression: String?): Double {
-        if (expression == null || expression.isEmpty()) {
-            throw IllegalArgumentException()
-        }
+        require(expression != null && expression.isNotEmpty())
         val terms = expression.split(DELIMITER)
         return calculate(
             numbers = parseNumbers(terms),
@@ -34,9 +32,7 @@ object Calculator {
     }
 
     private fun calculate(numbers: List<Double>, operators: List<Operator>): Double {
-        if (numbers.size - operators.size == 1) {
-            throw IllegalArgumentException()
-        }
+        require(numbers.size - operators.size == 1)
         var sum = numbers[0]
         operators.forEachIndexed { index, operator ->
             sum = operator.operation()(sum, numbers[index + 1])

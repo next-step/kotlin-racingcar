@@ -38,7 +38,7 @@ internal class CalculatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["2 * 2 * ", "1 / -", "+ 2", "5"])
+    @ValueSource(strings = ["2 * 2 * ", "1 / -", "+ 2", "5 4"])
     fun `입력 식이 형식에 맞지 않은 경우`(input: String) {
         assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
             Calculator.execute(input)
