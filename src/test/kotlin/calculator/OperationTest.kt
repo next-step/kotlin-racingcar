@@ -12,8 +12,9 @@ internal class OperationTest {
     @Test
     fun `operator없이 계산하면 에러 발생`() {
         val operation = Operation(Scalar(1))
-        assertThatExceptionOfType(UninitializedPropertyAccessException::class.java)
+        assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy { operation.with(Scalar(2)) }
+            .withMessage("The operator does not exist.")
     }
 
     @Test
