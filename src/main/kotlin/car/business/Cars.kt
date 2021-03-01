@@ -1,21 +1,18 @@
 package car.business
 
-import kotlin.random.Random
+import car.energy.EnergyProvider
+import car.energy.RandomEnergyProvider
 
-class Cars(amount: Int, random: Random = Random) {
+class Cars(amount: Int, energyProvider: EnergyProvider = RandomEnergyProvider()) {
 
     private val cars: List<Car> = (1..amount).map { Car() }
-    private val random: Random = random
+    private val energyProvider: EnergyProvider = energyProvider
 
     fun move(): Int {
-        return cars.count { it.move(random.nextInt(RANDOM_MAX_SIZE)) }
+        return cars.count { it.move(energyProvider.getEnergy()) }
     }
 
     fun getPositions(): List<Int> {
         return cars.map { it.currentPosition }
-    }
-
-    companion object {
-        val RANDOM_MAX_SIZE = 10
     }
 }
