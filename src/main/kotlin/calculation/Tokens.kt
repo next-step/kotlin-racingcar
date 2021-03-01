@@ -1,6 +1,12 @@
 package calculation
 
-class Tokens(expression: String, private val tokens: List<String> = expression.split(" ")) {
+class Tokens(expression: String) {
+    private val tokens = expression.split(" ")
+
+    init {
+        require(BinaryOperation.reserved(operator))
+    }
+
     val leftHandSide: String
         get() = tokens[0]
     val operator: String
