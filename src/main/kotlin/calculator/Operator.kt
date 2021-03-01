@@ -2,29 +2,11 @@ package calculator
 
 import java.lang.IllegalArgumentException
 
-enum class Operator(val operator: String) {
-    PLUS("+") {
-        override fun operate(leftOperand: Int, rightOperand: Int): Int {
-            return Calculator.add(leftOperand, rightOperand)
-        }
-    },
-    MINUS("-") {
-        override fun operate(leftOperand: Int, rightOperand: Int): Int {
-            return Calculator.minus(leftOperand, rightOperand)
-        }
-    },
-    MULTIPLY("*") {
-        override fun operate(leftOperand: Int, rightOperand: Int): Int {
-            return Calculator.multiply(leftOperand, rightOperand)
-        }
-    },
-    DIVISION("/") {
-        override fun operate(leftOperand: Int, rightOperand: Int): Int {
-            return Calculator.division(leftOperand, rightOperand)
-        }
-    };
-
-    abstract fun operate(leftOperand: Int, rightOperand: Int): Int
+enum class Operator(val operator: String, val operate: (leftOperand: Int, rightOperand: Int) -> Int) {
+    PLUS("+", { leftOperand, rightOperand -> Calculator.add(leftOperand, rightOperand) }),
+    MINUS("-", { leftOperand, rightOperand -> Calculator.minus(leftOperand, rightOperand) }),
+    MULTIPLY("*", { leftOperand, rightOperand -> Calculator.multiply(leftOperand, rightOperand) }),
+    DIVISION("/", { leftOperand, rightOperand -> Calculator.division(leftOperand, rightOperand) });
 
     companion object {
         fun operatorOf(operator: String): Operator {
