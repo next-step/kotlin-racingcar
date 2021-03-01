@@ -11,10 +11,14 @@ class CarsTest() {
     fun `랜덤값이 4 미만일경우 움직이면은 안된다`(rand: Int) {
         // given
         val cars = Cars(amount = 5, energyProvider = createEnergyProvider(rand))
+
         // when
-        val count = cars.move()
+        cars.move(times = 5)
+
         // then
-        assertThat(count).isEqualTo(0)
+        val lastHistory = cars.allHistories.last()
+        assertThat(lastHistory)
+            .allMatch { it.position == 0 }
     }
 
     @ParameterizedTest
@@ -22,29 +26,33 @@ class CarsTest() {
     fun `랜덤값이 4 이상일경우 움직이면 된다`(rand: Int) {
         // given
         val amount = 5
+        var times = 5
         val cars = Cars(amount, energyProvider = createEnergyProvider(rand))
+
         // when
-        val count = cars.move()
+        cars.move(times)
+
         // then
-        assertThat(count).isEqualTo(amount)
+        val lastHistory = cars.allHistories.last()
+        assertThat(lastHistory)
+            .allMatch { it.position == times }
     }
 
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4, 5])
-    fun `움직인 만큼 position이 변경이 되어야 한다`(tryCount: Int) {
+    fun `움직인 만큼 position이 변경이 되어야 한다`(times: Int) {
         // given
         val maxRand = 9
 
         val cars = Cars(amount = 5, energyProvider = createEnergyProvider(maxRand))
 
         // when
-        for (i in 0 until tryCount) {
-            cars.move()
-        }
+        cars.move(times)
 
         // then
-        assertThat(cars.getPositions())
-            .allMatch { it == tryCount }
+        val lastHistory = cars.allHistories.last()
+        assertThat(lastHistory)
+            .allMatch { it.position == times }
     }
 
     private fun createEnergyProvider(nextInt: Int): EnergyProvider {
