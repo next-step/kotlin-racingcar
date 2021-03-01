@@ -8,6 +8,6 @@ data class Cars(private val cars: List<Car>) {
 
     fun drive() {
         positions = cars.map { it.driving() }
-            .fold(Positions(), Positions::plus)
+            .fold(Positions(), Positions::append)
     }
 }
