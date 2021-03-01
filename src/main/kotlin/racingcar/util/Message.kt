@@ -8,6 +8,7 @@ class Message {
         const val NOTICE_RESULT = "실행 결과"
         const val ONE_DISTANCE = "-"
         const val NOTICE_CANNOT_CAST_TO_INT = "을(를) Int형으로 변환할 수 없습니다."
+        const val ONE_DISTANCE_INT = 1
         const val DEFAULT_DISTANCE = 0
         const val MAX_CONDITION = 10
         const val MIN_CONDITION_FOR_GOING = 4

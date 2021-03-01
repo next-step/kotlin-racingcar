@@ -7,7 +7,7 @@ data class Car(private val gps: Gps = Gps()) {
     }
 
     fun tryMove(canGo: Boolean) {
-        if (canGo) gps.update()
+        if (canGo) gps.update(1)
     }
 
     fun whereIs() = gps.getCurrentState()

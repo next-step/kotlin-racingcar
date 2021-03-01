@@ -7,7 +7,7 @@ data class Gps(private var distance: Int = DEFAULT_DISTANCE) {
 
     fun getCurrentState() = Message.ONE_DISTANCE.repeat(distance)
 
-    fun update() {
-        distance++
+    fun update(distance: Int) {
+        this.distance += distance
     }
 }
