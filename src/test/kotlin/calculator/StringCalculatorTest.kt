@@ -23,10 +23,4 @@ internal class StringCalculatorTest {
             .isThrownBy { calculator.calculate(expression) }
             .withMessage("The expression is null or blank. expression='$expression'")
     }
-
-    @ParameterizedTest
-    @ValueSource(ints = [-1, 0, 1, 154])
-    fun `입력값이 단일 숫자면 해당 숫자를 반환`(integer: Int) {
-        assertThat(calculator.calculate(integer.toString())).isEqualTo(integer)
-    }
 }
