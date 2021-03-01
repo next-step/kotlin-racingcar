@@ -2,7 +2,7 @@ package printer
 
 object InputView {
     fun printInputNumberOfCar() {
-        println("자동자 댗수는 몇 대인가요?")
+        println("자동자 대수는 몇 대인가요?")
     }
 
     fun printInputNumberOfAttempts() {
