@@ -10,9 +10,11 @@ class Car {
         currentPosition++
         return true
     }
+
     private fun isMovable(energy: Int): Boolean {
         return energy >= MOVE_CONDITION_ENERGY
     }
+
     companion object {
         val MOVE_CONDITION_ENERGY = 4
     }

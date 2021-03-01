@@ -14,6 +14,7 @@ class Calculator(private val expression: String) {
 
         return calculated
     }
+
     private fun calculateNextStep(calculated: Int, separateExpression: Iterator<String>): Int {
         val operation = Operation.operationOf(separateExpression.next())
         val number = separateExpression.next().toInt()

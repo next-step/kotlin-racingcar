@@ -42,6 +42,7 @@ class OperationTest {
         assertThat(result)
             .isEqualTo(except)
     }
+
     @Test
     fun `Divide Args끼리 나눠져야 한다`() {
         val first = 10
@@ -62,6 +63,7 @@ class OperationTest {
         assertThat(operation)
             .isNotNull()
     }
+
     @Test
     fun `없는 연산자는 Exception이 나와야 한다`() {
         assertThatIllegalArgumentException()
