@@ -1,6 +1,8 @@
 package racing.data
 
 data class RacingGameData(
-    val carCount: Int,
+    val carNames: List<String>,
     val tryCount: Int
-)
+) {
+    val carCount: Int = carNames.size
+}
