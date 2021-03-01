@@ -1,16 +1,20 @@
 package car.io
 
+import car.business.CarMoveHistories
 import car.business.Cars
 
 class ResultView(val cars: Cars) {
     fun print() {
-        for (currentPosition in cars.getPositions()) {
-            printCarPosition(currentPosition)
+        val allHistories = cars.allHistories
+        for (carMoveHistory in allHistories) {
+            printCarPositionHistory(carMoveHistory)
+            println()
         }
-        println()
     }
 
-    private fun printCarPosition(currentPosition: Int) {
-        println("-".repeat(currentPosition))
+    private fun printCarPositionHistory(carMoveHistories: CarMoveHistories) {
+        for (history in carMoveHistories) {
+            println("-".repeat(history.position))
+        }
     }
 }
