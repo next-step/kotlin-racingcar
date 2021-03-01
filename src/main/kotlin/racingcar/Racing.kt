@@ -1,6 +1,7 @@
 package racingcar
 
 import printer.ResultView
+import printer.ResultView.printRacing
 
 fun main() {
     val numberOfCars = Reception.receiveNumberOfCar()
@@ -10,5 +11,6 @@ fun main() {
     val racingCar = RacingCars(cars)
 
     ResultView.printInt()
-    racingCar.racing(numberOfAttempts)
+    val carPositions = racingCar.racing(numberOfAttempts)
+    printRacing(numberOfAttempts, carPositions)
 }
