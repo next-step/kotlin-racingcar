@@ -1,7 +1,6 @@
 package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.AssertionsForClassTypes
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
@@ -27,6 +26,6 @@ internal class RoundCountTest {
     fun `자연수가 아닌 문자열의 경우 예외가 발생한다`(value: String) {
         val expectedMessage = "라운드 수는 자연수이어야 합니다"
         val result = assertThrows<IllegalArgumentException> { RoundCount(value) }
-        AssertionsForClassTypes.assertThat(result.message).isEqualTo(expectedMessage)
+        assertThat(result.message).isEqualTo(expectedMessage)
     }
 }
