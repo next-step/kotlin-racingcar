@@ -10,7 +10,7 @@ class PositionString(private val name: String, private val position: Int) {
             if (name.isEmpty()) {
                 return positionToString()
             }
-            return name + " : " + positionToString()
+            return "$name : ${positionToString()}"
         }
 
     private fun positionToString() = "-".repeat(position)
