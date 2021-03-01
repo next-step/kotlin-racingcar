@@ -13,8 +13,9 @@ internal class CarsTest {
     @CsvSource("4, 1", "1, 0")
     fun `4이상인 경우에만 전진을한다`(condition: Int, expectedCardPosition: Int) {
         val cars = Cars(ArrayList())
+        val car = Car()
 
-        val car = cars.forwardByCondition(Car(), condition)
+        cars.forwardByCondition(car, condition)
 
         assertThat(car.position).isEqualTo(expectedCardPosition)
     }
@@ -23,12 +24,12 @@ internal class CarsTest {
     fun `RacingCar 에 등록된 모든 자동차가 조건에 맞는 경우 전진한다`() {
         val cars = Cars(listOf(Car(), Car(), Car()))
 
-        val forwardedCars = cars.forwardAllByCondition(listOf(1, 5, 9))
+        cars.forwardAllByCondition(listOf(1, 5, 9))
 
         assertAll(
-            { assertThat(forwardedCars.getPositionByIndex(0)).isEqualTo(0) },
-            { assertThat(forwardedCars.getPositionByIndex(1)).isEqualTo(1) },
-            { assertThat(forwardedCars.getPositionByIndex(2)).isEqualTo(1) }
+            { assertThat(cars.getPositionByIndex(0)).isEqualTo(0) },
+            { assertThat(cars.getPositionByIndex(1)).isEqualTo(1) },
+            { assertThat(cars.getPositionByIndex(2)).isEqualTo(1) }
         )
     }
 
