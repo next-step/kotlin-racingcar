@@ -1,6 +1,8 @@
 package printer
 
+import number.Numbers.START_INDEX
 import racingcar.Car
+import java.util.stream.IntStream
 
 object ResultView {
     fun printInt() {
@@ -12,9 +14,10 @@ object ResultView {
     }
 
     private fun printCarPath(car: Car) {
-        for (count in 0..car.retrievePosition()) {
-            print("-")
-        }
+        IntStream.range(START_INDEX, car.retrievePosition())
+            .forEach {
+                print("-")
+            }
 
         println()
     }
