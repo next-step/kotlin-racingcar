@@ -1,12 +1,11 @@
 package racingcar.domain
 
-class Car(private val moveDepth: Int = 1) {
+class Car(private val moveStrategy: MoveStrategy, private val moveDepth: Int = 1) {
 
     private var distance: Int = 0
 
     fun moveIfMoveable() {
-        val random = java.util.Random()
-        if (random.nextInt(10) >= 4) {
+        if (moveStrategy.isMoveable()) {
             move()
         }
     }
