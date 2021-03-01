@@ -2,7 +2,6 @@ package calculator
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -14,10 +13,11 @@ internal class OperatorTest {
         assertThat(Operator(input).operation()).isNotNull
     }
 
-    @Test
-    fun `사칙연산 기호가 아닌 경우`() {
+    @ParameterizedTest
+    @ValueSource(strings = ["a", " ", "1", "%"])
+    fun `사칙연산 기호가 아닌 경우`(input: String) {
         assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            Operator("123").operation()
+            Operator(input).operation()
         }
     }
 }
