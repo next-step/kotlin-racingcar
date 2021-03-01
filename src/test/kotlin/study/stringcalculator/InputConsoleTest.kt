@@ -1,4 +1,4 @@
-package study.step2
+package study.stringcalculator
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Assertions.assertTrue
