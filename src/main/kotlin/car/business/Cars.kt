@@ -1,20 +1,11 @@
 package car.business
 
 import kotlin.random.Random
-import kotlin.streams.toList
 
 class Cars(amount: Int, random: Random = Random) {
 
-    private val cars: List<Car>
-    private val random: Random
-
-    init {
-        cars = ArrayList(amount)
-        for (i in 0 until amount) {
-            cars.add(Car())
-        }
-        this.random = random
-    }
+    private val cars: List<Car> = (1..amount).map { Car() }
+    private val random: Random = random
 
     fun move(): Int {
         return cars.stream()
@@ -25,9 +16,7 @@ class Cars(amount: Int, random: Random = Random) {
     }
 
     fun getPositions(): List<Int> {
-        return cars.stream()
-            .map { it.position }
-            .toList()
+        return cars.map { it.position }
     }
 
     companion object {
