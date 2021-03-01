@@ -4,15 +4,12 @@ class RacingCar(
     val name: String,
     private val engine: Engine
 ) {
-    private var distance = 0
+    var distance = 0
+        private set
 
     fun move() {
         if (engine.enoughPower()) {
             distance++
         }
-    }
-
-    fun distance(): Int {
-        return this.distance
     }
 }

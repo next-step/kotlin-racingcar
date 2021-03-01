@@ -24,6 +24,6 @@ internal class RacingCarTest {
         racingCar.move()
 
         // then
-        assertThat(racingCar.distance()).isEqualTo(expect)
+        assertThat(racingCar.distance).isEqualTo(expect)
     }
 }
