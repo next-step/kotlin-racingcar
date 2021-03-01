@@ -19,14 +19,9 @@ object OutputView {
         println()
     }
 
-    private fun printPosition(racingHistory: RacingHistory) = with(StringBuilder()) {
-        append(racingHistory.name)
-        append(" : ")
-        (1..racingHistory.position).forEach { _ -> append(POSITION_MARK) }
-        println(toString())
-    }
+    private fun printPosition(racingHistory: RacingHistory) =
+        println("${racingHistory.name} : ${POSITION_MARK.repeat(racingHistory.position)}")
 
-    private fun printWinner(winners: List<Winner>) {
+    private fun printWinner(winners: List<Winner>) =
         print("${winners.joinToString { it.name }}가 최종 우승했습니다")
-    }
 }

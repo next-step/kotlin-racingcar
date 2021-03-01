@@ -1,6 +1,5 @@
 package racing.application
 
-import racing.participant.Racer
 import racing.participant.RacingCar
 import racing.participant.RacingGroup
 import racing.participant.RandomPowEngine
@@ -12,7 +11,7 @@ object RacingCarFactory {
         return applicationForm.participants
             .map { name ->
                 RacingCar(
-                    racer = Racer(name),
+                    name = name,
                     engine = RandomPowEngine()
                 )
             }

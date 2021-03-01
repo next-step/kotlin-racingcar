@@ -33,9 +33,8 @@ internal class RacingCarTest {
     }
 
     private fun racingCar(): RacingCar {
-        val racer = Racer(name = name)
         return RacingCar(
-            racer = racer,
+            name = name,
             engine = InfinitePowerEngine()
         )
     }
