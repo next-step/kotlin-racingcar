@@ -5,7 +5,7 @@ data class Position(private val position: Int) {
         require(position >= 0)
     }
 
-    fun increase() = copy(position = position + 1)
+    operator fun inc() = copy(position = position + 1)
 
     fun intValue() = position
 }
