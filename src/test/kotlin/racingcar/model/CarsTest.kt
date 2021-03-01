@@ -57,7 +57,7 @@ internal class CarsTest {
         runGames(gameCount, cars, true)
 
         // when
-        val winners: List<String> = cars.findWinners()
+        val winners: List<Car> = cars.findWinners()
 
         // then
         assertThat(winners.size).isEqualTo(3)

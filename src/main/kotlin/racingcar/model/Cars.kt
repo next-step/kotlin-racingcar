@@ -3,7 +3,7 @@ package racingcar.model
 import racingcar.strategy.MoveStrategy
 import racingcar.view.ResultView
 
-class Cars private constructor(private val allCars: ArrayList<Car>) {
+class Cars private constructor(private val allCars: List<Car>) {
     companion object {
         fun makeCars(carNames: List<String>): Cars {
 
@@ -42,11 +42,10 @@ class Cars private constructor(private val allCars: ArrayList<Car>) {
             ?.toInt()
     }
 
-    fun findWinners(): List<String> {
+    fun findWinners(): List<Car> {
         val maxScore = findMaxScore()
         return allCars.asSequence()
             .filter { car -> car.score == maxScore }
-            .map(Car::name)
             .toList()
     }
 }

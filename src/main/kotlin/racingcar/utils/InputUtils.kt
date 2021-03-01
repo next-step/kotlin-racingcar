@@ -21,8 +21,7 @@ class InputUtils {
 
         fun convertToNames(readLine: String?): List<String> {
             return readLine!!.split(DELIMITER)
-                .asSequence()
-                .map { name: String -> name.trim() }
+                .map { name -> name.trim() }
                 .toList()
         }
     }

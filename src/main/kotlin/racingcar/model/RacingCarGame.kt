@@ -30,7 +30,7 @@ class RacingCarGame(private val cars: Cars, private val moveStrategy: MoveStrate
         return cars
     }
 
-    fun getWinners(): List<String> {
+    fun getWinners(): List<Car> {
         return cars.findWinners()
     }
 }

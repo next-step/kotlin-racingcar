@@ -52,10 +52,10 @@ internal class RacingCarGameTest {
         racingCarGame.moveOnce()
 
         // when
-        val winners: List<String> = racingCarGame.getWinners()
+        val winners: List<Car> = racingCarGame.getWinners()
 
         // then
         assertThat(winners).hasSize(3)
-        assertThat(winners).containsAll(carNames)
+        assertThat(winners.map { car -> car.name }.toList()).containsAll(carNames)
     }
 }
