@@ -2,6 +2,7 @@ package racingcar
 
 data class Cars(private val cars: List<Car>) {
     var positions = Positions()
+        private set
 
     constructor(cars: Int) : this((0 until cars).map { Car() })
 
