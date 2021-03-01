@@ -13,6 +13,6 @@ class Winner(private val positions: List<Positions>) {
     private fun winnerNames(
         positions: List<NamedPosition>,
         mostPosition: Int
-    ) = positions.takeWhile { it.moreThen(mostPosition) }
+    ) = positions.takeWhile { it >= mostPosition }
         .map { it.name.stringValue() }
 }

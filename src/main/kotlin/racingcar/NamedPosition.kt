@@ -3,7 +3,7 @@ package racingcar
 interface NamedPosition {
     val name: Name
     fun intValue(): Int
-    fun moreThen(min: Int): Boolean
+    operator fun compareTo(other: Int): Int
 
     data class Smart(override val name: Name, private val position: Int) : NamedPosition {
         init {
@@ -20,6 +20,6 @@ interface NamedPosition {
             return position
         }
 
-        override fun moreThen(min: Int) = position >= min
+        override operator fun compareTo(other: Int) = position - other
     }
 }
