@@ -20,19 +20,13 @@ class Cars private constructor(private val allCars: List<Car>) {
         return allCars.asSequence()
             .map { car: Car ->
                 car.move(moveStrategy.canMove())
-                return@map ResultView(car.name, car.score)
+                return@map ResultView(car)
             }
             .toList()
     }
 
     fun getNumberOfCars(): Int {
         return allCars.size
-    }
-
-    fun getCarCountWithScoreEqualOrGreaterThan(score: Int): Int {
-        return allCars.asSequence()
-            .filter { car -> car.score >= score }
-            .count()
     }
 
     fun findMaxScore(): Int? {

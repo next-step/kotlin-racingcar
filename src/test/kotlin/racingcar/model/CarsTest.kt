@@ -2,9 +2,6 @@ package racingcar.model
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.CsvSource
-import org.junit.jupiter.params.provider.ValueSource
 import racingcar.strategy.MoveStrategy
 
 internal class CarsTest {
@@ -18,56 +15,50 @@ internal class CarsTest {
         assertThat(cars.getNumberOfCars()).isEqualTo(carNames.size)
     }
 
-    @ParameterizedTest
-    @CsvSource(value = ["true:3", "false:0"], delimiter = ':')
-    fun getCarCountWithScoreEqualOrGreaterThan(canMove: Boolean, expectedCarCount: Int) {
+    @Test
+    fun findMaxScore() {
         // given
         val carNames = listOf("Tesla", "Waymo", "Zoox")
         val cars = Cars.makeCars(carNames)
-        runGames(1, cars, canMove)
-
-        // when
-        val actualCarCount = cars.getCarCountWithScoreEqualOrGreaterThan(1)
-
-        // then
-        assertThat(actualCarCount).isEqualTo(expectedCarCount)
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = [1, 2, 3, 4, 5])
-    fun findMaxScore(gameCount: Int) {
-        // given
-        val carNames = listOf("Tesla", "Waymo", "Zoox")
-        val cars = Cars.makeCars(carNames)
-        runGames(gameCount, cars, true)
+        runGames(75, cars)
 
         // when
         val winners = cars.findMaxScore()
 
         // then
-        assertThat(winners).isEqualTo(gameCount)
+        assertThat(winners).isEqualTo(38)
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = [1, 2, 3, 4, 5])
-    fun findWinners(gameCount: Int) {
+    @Test
+    fun findWinners() {
         // given
         val carNames = listOf("Tesla", "Waymo", "Zoox")
         val cars = Cars.makeCars(carNames)
-        runGames(gameCount, cars, true)
+        runGames(50, cars)
 
         // when
         val winners: List<Car> = cars.findWinners()
 
         // then
         assertThat(winners.size).isEqualTo(3)
+        assertThat(winners[0].score).isEqualTo(25)
     }
 
-    private fun runGames(gameCount: Int, cars: Cars, canMove: Boolean) {
-        for (i in 1..gameCount) {
-            cars.moveOnce(object : MoveStrategy {
-                override fun canMove() = canMove
-            })
+    private fun runGames(gameCount: Int, cars: Cars) {
+        for (i in 1..gameCount step 2) {
+            cars.moveOnce(GoMoveStrategy)
+        }
+
+        for (i in 2..gameCount step 2) {
+            cars.moveOnce(StayMoveStrategy)
         }
     }
+}
+
+private object GoMoveStrategy : MoveStrategy {
+    override fun canMove() = true
+}
+
+private object StayMoveStrategy : MoveStrategy {
+    override fun canMove() = false
 }

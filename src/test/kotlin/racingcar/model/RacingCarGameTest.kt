@@ -37,8 +37,6 @@ internal class RacingCarGameTest {
 
         // then
         val cars = racingCarGame.getCars()
-        val countWithScoreGreaterThanOne = cars.getCarCountWithScoreEqualOrGreaterThan(1)
-        assertThat(countWithScoreGreaterThanOne).isEqualTo(expectedCarCount)
     }
 
     @Test
