@@ -6,7 +6,7 @@ import kotlin.streams.toList
 
 object Numbers {
     const val START_INDEX = 0
-    const val MIN_RANDOM_NUMBER = 0
+    const val MIN_RANDOM_NUMBER = 1
     const val MAX_RANDOM_NUMBER = 10
 
     fun toInt(value: String): Int {
@@ -15,7 +15,7 @@ object Numbers {
 
     fun makeRandomsToRacing(count: Int): List<Int> {
         return IntStream.range(START_INDEX, count)
-            .mapToObj { Random.nextInt(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER) }
+            .map { Random.nextInt(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER) }
             .toList()
     }
 
