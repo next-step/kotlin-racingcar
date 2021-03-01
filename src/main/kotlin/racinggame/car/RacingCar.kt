@@ -1,6 +1,9 @@
 package racinggame.car
 
-class RacingCar(private val engine: Engine) {
+class RacingCar(
+    private val name: String,
+    private val engine: Engine
+) {
     private var distance = 0
 
     fun move() {
