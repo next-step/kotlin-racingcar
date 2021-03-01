@@ -8,11 +8,24 @@ class Cars(amount: Int, energyProvider: EnergyProvider = RandomEnergyProvider())
     private val cars: List<Car> = (1..amount).map { Car() }
     private val energyProvider: EnergyProvider = energyProvider
 
-    fun move(): Int {
-        return cars.count { it.move(energyProvider.getEnergy()) }
+    internal var allHistories: MutableList<CarMoveHistories> = ArrayList()
+        private set
+
+    fun move(times: Int) {
+        repeat(times) {
+            moveAllCar()
+        }
     }
 
-    fun getPositions(): List<Int> {
-        return cars.map { it.currentPosition }
+    private fun moveAllCar() {
+        val histories = CarMoveHistories()
+        cars.forEach {
+            it.move(energyProvider.getEnergy())
+
+            var carMoveHistory = CarMoveHistory(it, it.currentPosition)
+            histories.add(carMoveHistory)
+        }
+
+        allHistories.add(histories)
     }
 }
