@@ -8,15 +8,11 @@ class Cars(amount: Int, random: Random = Random) {
     private val random: Random = random
 
     fun move(): Int {
-        return cars.stream()
-            .map { it.move(random.nextInt(RANDOM_MAX_SIZE)) }
-            .filter { it }
-            .count()
-            .toInt()
+        return cars.count { it.move(random.nextInt(RANDOM_MAX_SIZE)) }
     }
 
     fun getPositions(): List<Int> {
-        return cars.map { it.position }
+        return cars.map { it.currentPosition }
     }
 
     companion object {
