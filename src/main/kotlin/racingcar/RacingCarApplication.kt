@@ -3,24 +3,27 @@ package racingcar
 import racingcar.domain.CarCount
 import racingcar.domain.RacingCarGame
 import racingcar.domain.RoundCount
+import racingcar.userinterface.Console
+import racingcar.userinterface.UserInterface
 
 fun main() {
-    RacingCarApplication().run()
+    val ui: UserInterface = Console()
+    RacingCarApplication(ui).run()
 }
 
-class RacingCarApplication {
+class RacingCarApplication(private val userInterface: UserInterface) {
 
     fun run() {
-        println("자동차 대수는 몇 대인가요?")
-        val carCount = CarCount(readLine() ?: "")
+        val carCountValue = userInterface.inputCarCount()
+        val carCount = CarCount(carCountValue)
 
-        println("시도할 횟수는 몇 회인가요?")
-        val roundCount = RoundCount(readLine() ?: "")
+        val roundCountValue = userInterface.inputRoundCount()
+        val roundCount = RoundCount(roundCountValue)
 
         val racingCarGame = RacingCarGame(carCount, roundCount)
         racingCarGame.start()
 
-        println("실행 결과")
-        println(racingCarGame.result())
+        val results = racingCarGame.result()
+        userInterface.outputResult(results)
     }
 }
