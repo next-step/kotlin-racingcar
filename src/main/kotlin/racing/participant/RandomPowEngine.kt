@@ -9,7 +9,7 @@ class RandomPowEngine : Engine {
     }
 
     companion object {
-        private const val MAX_ENERGY = 9
+        private const val MAX_ENERGY = 10
         private const val MINIMUM_ENERGY = 4
     }
 }

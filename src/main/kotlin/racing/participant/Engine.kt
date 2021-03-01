@@ -2,5 +2,5 @@ package racing.participant
 
 interface Engine {
 
-    fun enoughEnergy():Boolean
+    fun enoughEnergy(): Boolean
 }
