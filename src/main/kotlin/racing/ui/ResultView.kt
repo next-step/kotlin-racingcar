@@ -1,5 +1,7 @@
 package racing.ui
 
+import racing.domain.Car
+
 /**
  * @author tae-heon.song<taeheon.song@linecorp.com>
  * @since 2021. 02. 28.
@@ -13,15 +15,16 @@ object ResultView {
         println(NOTICE_RESULT_START)
     }
 
-    fun printAllPosition(positions: List<Int>) {
-        for (position in positions) {
-            printSinglePosition(position)
+    fun printAllPosition(cars: List<Car>) {
+        for (car in cars) {
+            printCarStates(car)
         }
         println()
     }
 
-    private fun printSinglePosition(position: Int) {
-        repeat(position) {
+    private fun printCarStates(car: Car) {
+        print("${car.name} : ")
+        repeat(car.position) {
             print(SYMBOL_ONE_STEP)
         }
         println()

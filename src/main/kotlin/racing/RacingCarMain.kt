@@ -8,16 +8,16 @@ import racing.ui.ResultView
 object RacingCarMain {
     fun run() {
         val racingGameData = InputView.askQuestion()
-        val racingGame = RacingGame(racingGameData.carCount, MovementChecker())
+        val racingGame = RacingGame(racingGameData.carNames, MovementChecker())
 
         ResultView.printResultNotice()
 
         repeat(racingGameData.tryCount) {
 
             racingGame.moveAllCar()
-            val carPositions = racingGame.getCarPositions()
+            val cars = racingGame.cars
 
-            ResultView.printAllPosition(carPositions)
+            ResultView.printAllPosition(cars)
         }
     }
 }

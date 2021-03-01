@@ -7,7 +7,7 @@ internal class CarTest {
 
     @Test
     fun moveCar() {
-        val car = Car()
+        val car = Car("name")
         assertThat(car.position).isEqualTo(0)
 
         car.moveCar()

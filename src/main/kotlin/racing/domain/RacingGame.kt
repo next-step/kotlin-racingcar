@@ -1,12 +1,12 @@
 package racing.domain
 
-class RacingGame(carCount: Int, var movementChecker: MovementChecker) {
+class RacingGame(carNames: List<String>, var movementChecker: MovementChecker) {
 
     val cars = mutableListOf<Car>()
 
     init {
-        repeat(carCount) {
-            cars.add(Car())
+        for (name in carNames) {
+            cars.add(Car(name))
         }
     }
 
@@ -18,9 +18,5 @@ class RacingGame(carCount: Int, var movementChecker: MovementChecker) {
         if (movementChecker.isMovable()) {
             car.moveCar()
         }
-    }
-
-    fun getCarPositions(): List<Int> {
-        return cars.map { it.position }
     }
 }
