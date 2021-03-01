@@ -14,4 +14,14 @@ interface UserInput<T> {
             return scanner.nextInt()
         }
     }
+
+    class StringArray(private val question: String, inputStream: InputStream = System.`in`) : UserInput<List<String>> {
+        private val scanner = Scanner(inputStream)
+
+        override fun answer(): List<String> {
+            println(question)
+            return scanner.nextLine()
+                .split(",")
+        }
+    }
 }
