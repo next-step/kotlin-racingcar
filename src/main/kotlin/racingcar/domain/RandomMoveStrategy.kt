@@ -1,10 +1,9 @@
 package racingcar.domain
 
-class RandomMoveStrategy(private val threshold: Int) : MoveStrategy {
+class RandomMoveStrategy(private val randomGenerator: RandomGenerator, private val threshold: Int) : MoveStrategy {
 
     override fun isMoveable(): Boolean {
-        val random = java.util.Random()
-        val randomValue = random.nextInt(10)
+        val randomValue = randomGenerator.makeRandomValue()
         return threshold >= randomValue
     }
 }
