@@ -11,6 +11,6 @@ internal class CarTest {
 
         car.forward()
 
-        assertThat(car.retrievePosition()).isEqualTo(1)
+        assertThat(car.position).isEqualTo(1)
     }
 }
