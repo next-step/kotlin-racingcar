@@ -1,6 +1,7 @@
 package racing.result
 
-class RacingHistory(
+class Winner(
+    val round: Int,
     val name: String,
     val position: Int
 )

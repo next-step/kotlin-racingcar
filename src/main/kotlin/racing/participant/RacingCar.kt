@@ -13,7 +13,7 @@ class RacingCar(
         }
 
         return RacingHistory(
-            sequence = racer.sequence,
+            name = racer.name,
             position = racer.position
         )
     }

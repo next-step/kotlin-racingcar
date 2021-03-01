@@ -1,7 +1,7 @@
 package racing.participant
 
 class Racer(
-    val sequence: Int
+    val name: String
 ) {
     var position: Int = 0
         private set

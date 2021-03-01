@@ -4,10 +4,10 @@ import racing.application.ApplicationForm
 
 object InputView {
     fun writeApplicationForm(): ApplicationForm {
-        print("자동차 대수는 몇 대인가요?")
-        val participantSize = readLine()!!.toInt()
+        print("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
+        val participants = readLine()!!
 
-        return ApplicationForm(participantCount = participantSize)
+        return ApplicationForm.write(participants)
     }
 
     fun inputRunCount(): Int {

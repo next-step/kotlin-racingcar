@@ -10,8 +10,7 @@ internal class RacingGameTest {
     @Test
     fun `라운드 수를 0으로 입력하면 전체 결과는 0이다`() {
         //given
-        val participantCount = 2
-        val form = ApplicationForm(participantCount)
+        val form = ApplicationForm(listOf("cys", "qwe"))
         val group = RacingCarFactory.generate(form)
 
         //when
@@ -24,8 +23,7 @@ internal class RacingGameTest {
     @Test
     fun `총 라운드 횟수만큼 결과가 생성된다`() {
         //given
-        val participantCount = 2
-        val form = ApplicationForm(participantCount)
+        val form = ApplicationForm(listOf("cys", "qwe"))
         val group = RacingCarFactory.generate(form)
 
         //when
