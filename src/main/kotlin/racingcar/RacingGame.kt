@@ -8,7 +8,7 @@ class RacingGame(private val cars: Cars) {
     constructor(cars: Int) : this(Cars(cars))
 
     fun play(playCount: Int) {
-        for (i in 0 until playCount) {
+        repeat(playCount) {
             cars.drive()
             _positions.add(cars.positions)
         }
