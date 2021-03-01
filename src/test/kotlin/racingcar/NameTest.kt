@@ -8,4 +8,10 @@ class NameTest {
     fun `이름은 5자를 초과할 수 없다`() {
         assertThrows<IllegalArgumentException> { Name("abcedf") }
     }
+
+    class Name(private val name: String) {
+        init {
+            require(name.length <= 5)
+        }
+    }
 }
