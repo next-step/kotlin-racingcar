@@ -5,7 +5,7 @@ class RacingGame(private val cars: Cars) {
     val positions: List<Positions>
         get() = _positions
 
-    constructor(cars: Int) : this(Cars(cars))
+    constructor(names: List<Name>) : this(Cars(names))
 
     fun play(playCount: Int) {
         repeat(playCount) {
