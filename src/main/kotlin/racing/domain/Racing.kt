@@ -1,7 +1,5 @@
 package racing.domain
 
-import java.util.function.Consumer
-
 internal class Racing(
     private val cars: List<Car>,
     private val movable: Movable
@@ -10,6 +8,6 @@ internal class Racing(
         get() = this.cars.map { it.position }
 
     fun tryMove() {
-        this.cars.forEach(Consumer { it.tryMove(movable) })
+        this.cars.forEach { it.tryMove(movable) }
     }
 }

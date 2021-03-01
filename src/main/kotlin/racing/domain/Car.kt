@@ -1,6 +1,8 @@
 package racing.domain
 
-internal class Car constructor(position: Int = 0) {
+private const val DEFAULT_POSITION = 0
+
+internal class Car(position: Int = DEFAULT_POSITION) {
 
     var position: Int = position
         private set

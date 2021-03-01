@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test
 internal class RacingTest {
 
     @Test
-    fun `test`() {
+    fun `자동차 이동 성공 하면 위치가 증가 한다`() {
         // given
-        val cars = arrayListOf<Car>(Car(), Car())
+        val cars = listOf<Car>(Car(), Car())
         val movable = object : Movable { override fun isMovable(): Boolean = true }
         val racing = Racing(cars, movable)
 
@@ -16,6 +16,6 @@ internal class RacingTest {
         racing.tryMove()
 
         // then
-        assertThat(racing.positions).isEqualTo(arrayListOf(1, 1))
+        assertThat(racing.positions).isEqualTo(listOf(1, 1))
     }
 }

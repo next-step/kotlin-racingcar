@@ -1,5 +1,7 @@
 package racing.view
 
+private const val POSITION_CHAR = "-"
+
 class OutputView {
 
     fun renderStartMessage() {
@@ -9,11 +11,7 @@ class OutputView {
     fun renderPositions(positions: List<Int>) {
         println()
         positions.forEach {
-            val builder = StringBuilder()
-            for (i in 0 until it) {
-                builder.append('-')
-            }
-            println(builder.toString())
+            println(POSITION_CHAR.repeat(it))
         }
     }
 }
