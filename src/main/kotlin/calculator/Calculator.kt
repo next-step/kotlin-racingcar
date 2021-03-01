@@ -1,6 +1,6 @@
 package calculator
 
-import java.lang.IllegalArgumentException
+import number.Numbers.toInt
 
 object Calculator {
     private const val FIRST_OPERAND = 0
@@ -33,10 +33,6 @@ object Calculator {
         }
 
         return toInt(operand)
-    }
-
-    private fun toInt(value: String): Int {
-        return value.toIntOrNull() ?: throw IllegalArgumentException("value는 숫자여야 합니다. value : $value")
     }
 
     fun add(left: Int, right: Int): Int {
