@@ -2,15 +2,18 @@ package step3
 
 class OutputView {
     companion object {
-        @JvmStatic
         fun handleOutput(raceCount: Int, results: List<Result>) {
             println("실행 결과")
-            for (i in 0 until raceCount) {
-                for (result in results) {
-                    println("-".repeat(result.records[i]))
-                }
-                println()
+            repeat(raceCount) {
+                printRace(results, it)
             }
+        }
+
+        private fun printRace(results: List<Result>, lap: Int) {
+            for (result in results) {
+                println("-".repeat(result.records[lap]))
+            }
+            println()
         }
     }
 }
