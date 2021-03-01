@@ -18,4 +18,14 @@ class StudyTest {
             assertThat(i).isLessThan(list.size)
         }
     }
+
+    @Test
+    fun `assertion isBetween`() {
+        assertThat(1).isBetween(1, 1)
+    }
+
+    @Test
+    fun `nullable test`() {
+        assertThat(null?.toInt()).isNull()
+    }
 }
