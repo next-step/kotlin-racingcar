@@ -3,18 +3,19 @@ package racingcar
 import racingcar.model.RacingCarGame
 import racingcar.strategy.RandomMoveStrategy
 import racingcar.utils.InputUtils
+import racingcar.view.ResultViews
+import racingcar.view.WinnerView
 
 fun main() {
     val inputDto = InputUtils.askQuestions()
 
-    val moveStrategy = RandomMoveStrategy()
-    val racingCarGame = RacingCarGame.ready(inputDto.carNames, moveStrategy)
+    val racingCarGame = RacingCarGame.ready(inputDto.carNames, RandomMoveStrategy())
 
     for (i in 1..inputDto.gameCount) {
-        val resultViews = racingCarGame.moveOnce()
+        val resultViews: ResultViews = racingCarGame.moveOnce()
         resultViews.printResults()
     }
 
-    val finalResultView = racingCarGame.finish()
+    val finalResultView: WinnerView = racingCarGame.finish()
     finalResultView.printResult()
 }

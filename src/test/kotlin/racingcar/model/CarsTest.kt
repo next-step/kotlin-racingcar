@@ -2,6 +2,8 @@ package racingcar.model
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 import racingcar.strategy.MoveStrategy
 
 internal class CarsTest {
@@ -15,50 +17,51 @@ internal class CarsTest {
         assertThat(cars.getNumberOfCars()).isEqualTo(carNames.size)
     }
 
-    @Test
-    fun findMaxScore() {
+    @ParameterizedTest
+    @ValueSource(ints = [4, 25, 122, 777])
+    fun findMaxScore(gameCount: Int) {
         // given
         val carNames = listOf("Tesla", "Waymo", "Zoox")
         val cars = Cars.makeCars(carNames)
-        runGames(75, cars)
+        runGames(gameCount, cars)
 
         // when
-        val winners = cars.findMaxScore()
+        val maxScore = cars.findMaxScore()
 
         // then
-        assertThat(winners).isEqualTo(38)
+        assertThat(maxScore).isEqualTo(gameCount)
     }
 
-    @Test
-    fun findWinners() {
+    @ParameterizedTest
+    @ValueSource(ints = [10, 20, 30, 100])
+    fun findWinners(gameCount: Int) {
         // given
         val carNames = listOf("Tesla", "Waymo", "Zoox")
         val cars = Cars.makeCars(carNames)
-        runGames(50, cars)
+        runGames(gameCount, cars)
 
         // when
         val winners: List<Car> = cars.findWinners()
 
         // then
-        assertThat(winners.size).isEqualTo(3)
-        assertThat(winners[0].score).isEqualTo(25)
+        assertThat(winners.size).isEqualTo(1)
+        assertThat(winners[0].name).isEqualTo("Zoox")
+        assertThat(winners[0].score).isEqualTo(gameCount)
     }
 
     private fun runGames(gameCount: Int, cars: Cars) {
-        for (i in 1..gameCount step 2) {
-            cars.moveOnce(GoMoveStrategy)
-        }
-
-        for (i in 2..gameCount step 2) {
-            cars.moveOnce(StayMoveStrategy)
+        for (i in 1..gameCount) {
+            cars.moveOnce(LastPlayerWinFakeMoveStrategy(cars))
         }
     }
 }
 
-private object GoMoveStrategy : MoveStrategy {
-    override fun canMove() = true
-}
-
-private object StayMoveStrategy : MoveStrategy {
-    override fun canMove() = false
+private class LastPlayerWinFakeMoveStrategy(private var cars: Cars) : MoveStrategy {
+    private var count = 1
+    override fun canMove(): Boolean {
+        val carCount = cars.getNumberOfCars()
+        val ret = (count % carCount == 0)
+        count++
+        return ret
+    }
 }

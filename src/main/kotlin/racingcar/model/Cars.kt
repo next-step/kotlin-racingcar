@@ -6,7 +6,6 @@ import racingcar.view.ResultView
 class Cars private constructor(private val allCars: List<Car>) {
     companion object {
         fun makeCars(carNames: List<String>): Cars {
-
             val cars = carNames
                 .asSequence()
                 .map { carName: String -> Car(carName) }
@@ -18,7 +17,7 @@ class Cars private constructor(private val allCars: List<Car>) {
 
     fun moveOnce(moveStrategy: MoveStrategy): List<ResultView> {
         return allCars.asSequence()
-            .map { car: Car ->
+            .map { car ->
                 car.move(moveStrategy.canMove())
                 return@map ResultView(car)
             }
