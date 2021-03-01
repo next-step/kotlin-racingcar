@@ -5,40 +5,20 @@ class StringCalculator {
     fun calculate(input: String): Int {
         validate(input)
 
-        val formula = replace(input).toMutableList().map { it.toString() }
+        val numbers = input.split(OPERATOR_REGEX).map { it.toInt() }
+        val symbols = input.split(NUMBER_REGEX).filter { it.isNotBlank() }
 
-        val operators = IntRange(1, formula.size - 1)
-            .step(2)
-            .map { formula[it] }
-
-        val numbers = IntRange(0, formula.size - 1)
-            .step(2)
-            .map { formula[it].toInt() }
+        if (numbers.size != symbols.size + 1) {
+            throw IllegalArgumentException()
+        }
 
         var result = numbers[0]
 
-        for (i in operators.indices) {
-            result = calculate(result, operators[i], numbers[i + 1])
+        for (i in symbols.indices) {
+            result = calculate(result, symbols[i], numbers[i + 1])
         }
 
         return result
-    }
-
-    private fun replace(s: String) = s.replace(FORMULA_REGEX, EMPTY)
-
-    private fun calculate(leftNumber: Int, operator: String, rightNumber: Int): Int {
-        return when (operator) {
-            "+" -> leftNumber + rightNumber
-            "-" -> leftNumber - rightNumber
-            "*" -> leftNumber * rightNumber
-            "/" -> {
-                if (rightNumber == 0) {
-                    throw IllegalArgumentException()
-                }
-                leftNumber / rightNumber
-            }
-            else -> throw IllegalArgumentException()
-        }
     }
 
     private fun validate(input: String) {
@@ -49,8 +29,14 @@ class StringCalculator {
 
     private fun hasNotFormulaSymbol(input: String) = FORMULA_REGEX.containsMatchIn(input)
 
+    private fun calculate(leftNumber: Int, symbol: String, rightNumber: Int): Int {
+        val operator = Operator.find(symbol)
+        return operator.apply(leftNumber, rightNumber)
+    }
+
     companion object {
         private val FORMULA_REGEX = "[^\\d+\\-*/]".toRegex()
-        private const val EMPTY = ""
+        private val OPERATOR_REGEX = "[+\\-*/]".toRegex()
+        private val NUMBER_REGEX = "[0-9]+".toRegex()
     }
 }
