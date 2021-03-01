@@ -13,4 +13,6 @@ class RacingGame(private val cars: Cars) {
             _positions.add(cars.positions)
         }
     }
+
+    fun winner() = Winner(positions)
 }

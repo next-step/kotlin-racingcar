@@ -8,4 +8,5 @@ fun main() {
     val racingGame = RacingGame(names)
     racingGame.play(playCount)
     PositionPrinter(racingGame.positions).print()
+    WinnerPrinter(racingGame.winner().names()).print()
 }
