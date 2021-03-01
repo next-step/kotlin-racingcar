@@ -1,11 +1,8 @@
 package racingcar
 
-data class Position(private val position: Int) {
-    init {
-        require(position >= 0)
-    }
+data class Position(private val namedPosition: NamedPosition) : NamedPosition by namedPosition {
 
-    operator fun inc() = copy(position = position + 1)
+    constructor(position: Int) : this(NamedPosition.Smart("", position))
 
-    fun intValue() = position
+    operator fun inc() = Position(namedPosition.intValue() + 1)
 }

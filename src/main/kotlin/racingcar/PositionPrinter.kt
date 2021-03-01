@@ -8,7 +8,7 @@ class PositionPrinter(private val positions: List<Positions>, outputStream: Outp
 
     fun print() {
         positions.forEach {
-            it.map { position -> "-".repeat(position.intValue()) }
+            it.map { positions -> PositionString(positions) }
                 .forEach(printWriter::println)
 
             printWriter.println()
