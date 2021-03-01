@@ -1,4 +1,4 @@
-package calculator.calculator.domain
+package calculator.domain
 
 private const val DELIMITER = " "
 

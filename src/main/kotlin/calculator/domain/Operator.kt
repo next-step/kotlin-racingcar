@@ -1,4 +1,4 @@
-package calculator.calculator.domain
+package calculator.domain
 
 enum class Operator(private val symbol: String, private val operate: (Double, Double) -> Double) {
     ADD("+", { prev, next -> prev + next }),
