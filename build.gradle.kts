@@ -1,6 +1,6 @@
 plugins {
     java
-    kotlin("jvm") version "1.3.72"
+    kotlin("jvm") version "1.4.30"
     id("org.jlleitschuh.gradle.ktlint") version "9.3.0"
 }
 
@@ -15,6 +15,7 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
     testImplementation("org.junit.jupiter", "junit-jupiter", "5.6.2")
     testImplementation("org.assertj", "assertj-core", "3.16.1")
+    testImplementation("io.mockk:mockk:1.10.6")
 }
 
 configure<JavaPluginConvention> {
