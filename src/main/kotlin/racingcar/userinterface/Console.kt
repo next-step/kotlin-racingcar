@@ -2,6 +2,8 @@ package racingcar.userinterface
 
 import racingcar.domain.Results
 
+private const val DISTANCE_SIGN = "-"
+
 class Console : UserInterface {
 
     override fun inputCarCount(): String {
@@ -16,6 +18,13 @@ class Console : UserInterface {
 
     override fun outputResult(results: Results) {
         println("실행 결과")
-        println(results)
+
+        results.results.forEach { result ->
+            result.distances.forEach { distance ->
+                (1..distance).map { DISTANCE_SIGN }.forEach { print(it) }
+                println()
+            }
+            println()
+        }
     }
 }
