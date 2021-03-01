@@ -42,7 +42,7 @@ class CalculatorTest {
                 Arguments.of(MinusCalculation(), "5", "2", 3),
                 Arguments.of(DivisionCalculation(), "4", "2", 2),
                 Arguments.of(MultiplicationCalculation(), "4", "2", 8)
-            );
+            )
         }
 
         @JvmStatic private fun argumentsByExpressionAndResult(): Stream<Arguments> {
@@ -52,8 +52,7 @@ class CalculatorTest {
                 Arguments.of("10 / 2", 5),
                 Arguments.of("5 * 2", 10),
                 Arguments.of("2 + 3 * 4 / 2", 10)
-            );
+            )
         }
     }
-
 }
