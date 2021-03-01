@@ -1,10 +1,11 @@
 package racingcar
 
 import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
 import java.io.ByteArrayOutputStream
 
-class PositionPrinterTest {
+class PrinterTest {
     @Test
     fun `이름과 위치를 출력한다`() {
         val outputStream = ByteArrayOutputStream()
@@ -20,7 +21,7 @@ class PositionPrinterTest {
 
         positionPrinter.print()
 
-        Assertions.assertThat(outputStream.toString()).isEqualTo(
+        assertThat(outputStream.toString()).isEqualTo(
             """
             pobi : ---
             crong : --
@@ -28,5 +29,12 @@ class PositionPrinterTest {
             
             """.trimIndent()
         )
+    }
+
+    @Test
+    fun `우승자를 출력한다`() {
+        val outputStream = ByteArrayOutputStream()
+        WinnerPrinter(listOf("pobi", "crong"), outputStream).print()
+        assertThat(outputStream.toString()).isEqualTo("pobi, honux가 최종 우승했습니다.")
     }
 }
