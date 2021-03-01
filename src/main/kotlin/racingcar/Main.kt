@@ -16,6 +16,6 @@ fun main() {
         resultViews.printResults()
     }
 
-    val finalResultView: WinnerView = racingCarGame.finish()
-    finalResultView.printResult()
+    val winnerView: WinnerView = racingCarGame.finish()
+    winnerView.printWinner()
 }

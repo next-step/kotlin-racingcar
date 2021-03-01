@@ -11,7 +11,7 @@ class Cars private constructor(private val allCars: List<Car>) {
                 .map { carName: String -> Car(carName) }
                 .toList()
 
-            return Cars(cars as ArrayList<Car>)
+            return Cars(cars)
         }
     }
 
