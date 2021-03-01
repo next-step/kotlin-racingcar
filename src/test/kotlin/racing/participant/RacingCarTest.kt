@@ -8,27 +8,27 @@ internal class RacingCarTest {
 
     @Test
     fun `레이싱카가 움직이면 움직인 순간을 기록한다`() {
-        //given
+        // given
         val racingCar = racingCar()
 
-        //when
+        // when
         val history = racingCar.run()
 
-        //then
+        // then
         assertThat(history.name).isEqualTo(name)
         assertThat(history.position).isEqualTo(1)
     }
 
     @Test
     internal fun `레이싱카는 한칸씩 움직인다`() {
-        //given
+        // given
         val racingCar = racingCar()
         racingCar.run()
 
-        //when
+        // when
         val history = racingCar.run()
 
-        //then
+        // then
         assertThat(history.position).isEqualTo(2)
     }
 
@@ -46,4 +46,3 @@ internal class RacingCarTest {
         }
     }
 }
-

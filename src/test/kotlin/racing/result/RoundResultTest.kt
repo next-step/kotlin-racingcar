@@ -7,7 +7,7 @@ internal class RoundResultTest {
 
     @Test
     fun `라운드의 승자는 여러명이 될 수 있다`() {
-        //given
+        // given
         val racingHistories = listOf(
             RacingHistory("qqq", 2),
             RacingHistory("cys", 3),
@@ -15,10 +15,10 @@ internal class RoundResultTest {
         )
         val roundResult = RoundResult(1, racingHistories)
 
-        //when
+        // when
         val winners = roundResult.getRoundWinners()
 
-        //then
+        // then
         assertThat(winners.size).isEqualTo(2)
         assertWinner(winners, ExpectedWinner("cys", 3))
         assertWinner(winners, ExpectedWinner("www", 3))
@@ -26,13 +26,13 @@ internal class RoundResultTest {
 
     @Test
     fun `레이싱 이력이 없으면 승자도 없다`() {
-        //given
+        // given
         val roundResult = RoundResult(1, listOf())
 
-        //when
+        // when
         val winners = roundResult.getRoundWinners()
 
-        //then
+        // then
         assertThat(winners.size).isEqualTo(0)
     }
 

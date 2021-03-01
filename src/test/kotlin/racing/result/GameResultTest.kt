@@ -7,9 +7,10 @@ internal class GameResultTest {
 
     @Test
     fun `게임 결과에서 최종 라운드의 승자를 찾을 수 있다`() {
-        //given
+        // given
         val roundOneResult = RoundResult(
-            1, listOf(
+            1,
+            listOf(
                 RacingHistory("qqq", 2),
                 RacingHistory("cys", 1),
                 RacingHistory("www", 3)
@@ -17,7 +18,8 @@ internal class GameResultTest {
         )
 
         val roundTwoResult = RoundResult(
-            2, listOf(
+            2,
+            listOf(
                 RacingHistory("qqq", 3),
                 RacingHistory("cys", 5),
                 RacingHistory("www", 4)
@@ -26,10 +28,10 @@ internal class GameResultTest {
 
         val gameResult = GameResult(listOf(roundOneResult, roundTwoResult))
 
-        //when
+        // when
         val winners = gameResult.getWinners()
 
-        //then
+        // then
         assertThat(winners.size).isEqualTo(1)
         assertThat(winners[0].round).isEqualTo(2)
         assertThat(winners[0].name).isEqualTo("cys")
@@ -38,13 +40,13 @@ internal class GameResultTest {
 
     @Test
     fun `라운드 결과가 없을 시 최종 승자도 없다`() {
-        //given
+        // given
         val gameResult = GameResult(listOf())
 
-        //when
+        // when
         val winners = gameResult.getWinners()
 
-        //then
+        // then
         assertThat(winners.size).isEqualTo(0)
     }
 }

@@ -9,27 +9,27 @@ internal class RacingGameTest {
 
     @Test
     fun `라운드 수를 0으로 입력하면 전체 결과는 0이다`() {
-        //given
+        // given
         val form = ApplicationForm(listOf("cys", "qwe"))
         val group = RacingCarFactory.generate(form)
 
-        //when
+        // when
         val result = RacingGame(group).start(0)
 
-        //then
+        // then
         assertThat(result.roundResults.size).isEqualTo(0)
     }
 
     @Test
     fun `총 라운드 횟수만큼 결과가 생성된다`() {
-        //given
+        // given
         val form = ApplicationForm(listOf("cys", "qwe"))
         val group = RacingCarFactory.generate(form)
 
-        //when
+        // when
         val result = RacingGame(group).start(3)
 
-        //then
+        // then
         assertThat(result.roundResults.size).isEqualTo(3)
         assertThat(result.roundResults[0].round).isEqualTo(1)
         assertThat(result.roundResults[1].round).isEqualTo(2)
