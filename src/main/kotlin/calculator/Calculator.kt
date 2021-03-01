@@ -1,7 +1,9 @@
 package calculator
 
-const val EXPRESSION_SEPARATOR = " "
 class Calculator(private val expression: String) {
+    companion object {
+        val EXPRESSION_SEPARATOR = " "
+    }
     fun calculate(): Int {
         require(!expression.isNullOrBlank())
 
