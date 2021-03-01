@@ -28,7 +28,7 @@ object Calculator {
     private fun calculate(numbers: List<Double>, operators: List<Operator>): Double {
         var sum = numbers[0]
         operators.forEachIndexed { index, operator ->
-            sum = operator.operation().invoke(sum, numbers[index + 1])
+            sum = operator.operation()(sum, numbers[index + 1])
         }
         return sum
     }
