@@ -10,9 +10,9 @@ class RacingGameTest {
 
         racingGame.play(5)
 
-        assertThat(racingGame.positions().size).isEqualTo(5)
+        assertThat(racingGame.positions.size).isEqualTo(5)
 
-        for ((index, positions) in racingGame.positions().withIndex()) {
+        for ((index, positions) in racingGame.positions.withIndex()) {
             assertThat(positions).contains(
                 Position(position = index + 1),
                 Position(position = index + 1),

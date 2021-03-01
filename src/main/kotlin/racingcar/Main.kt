@@ -6,5 +6,5 @@ fun main() {
 
     val racingGame = RacingGame(carCount)
     racingGame.play(playCount)
-    PositionPrinter(racingGame.positions()).print()
+    PositionPrinter(racingGame.positions).print()
 }
