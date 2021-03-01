@@ -29,7 +29,7 @@ object Calculator {
 
         for (index in START_INDEX until splitInput.size - SIZE_TO_LAST_OPERAND step OPERAND_INDEX) {
             val operator = Operator.operatorOf(splitInput[index + OPERATOR_INDEX])
-            operand = applyOperator(toInt(operand), toInt(splitInput[index + OPERAND_INDEX]), operator).toString()
+            operand = operator.operate(toInt(operand), toInt(splitInput[index + OPERAND_INDEX])).toString()
         }
 
         return toInt(operand)
@@ -37,15 +37,6 @@ object Calculator {
 
     private fun toInt(value: String): Int {
         return value.toIntOrNull() ?: throw IllegalArgumentException("value는 숫자여야 합니다. value : $value")
-    }
-
-    fun applyOperator(leftOperand: Int, rightOperand: Int, operator: Operator): Int {
-        return when (operator) {
-            Operator.PLUS -> add(leftOperand, rightOperand)
-            Operator.MINUS -> minus(leftOperand, rightOperand)
-            Operator.MULTIPLY -> multiply(leftOperand, rightOperand)
-            Operator.DIVISION -> division(leftOperand, rightOperand)
-        }
     }
 
     fun add(left: Int, right: Int): Int {

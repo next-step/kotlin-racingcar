@@ -56,13 +56,6 @@ class CalculatorTest {
     }
 
     @Test
-    fun `덧셈 연산자를 입력했을 때 더하기 연산을 한다`() {
-        val result = Calculator.applyOperator(0, 10, Operator.PLUS)
-
-        assertThat(result).isEqualTo(10)
-    }
-
-    @Test
     fun `덧셈 연산이 처리되어 결과를 리턴한다`() {
         val answer = Calculator.add(2, 3)
 
