@@ -3,6 +3,10 @@ package calculator
 class Operation(
     private val operandA: Operand
 ) {
+    companion object {
+        val Empty = Operation(Scalar(0)).with(AddOperator)
+    }
+
     private lateinit var operator: Operator
 
     fun with(operator: Operator): Operation {
@@ -11,7 +15,7 @@ class Operation(
         return this
     }
 
-    fun calculate(operandB: Operand): Operation {
+    fun with(operandB: Operand): Operation {
         return Operation(operator.operate(operandA, operandB))
     }
 
