@@ -1,7 +1,7 @@
-package racing.components
+package racing.domain.random
 
 import kotlin.random.Random
 
-class RandomWrapperImpl : RandomWrapper {
+class DefaultRandomWrapper : RandomWrapper {
     override fun nextInt(until: Int) = Random.nextInt(until)
 }

@@ -1,13 +1,12 @@
 package racing.ui
 
 import racing.data.RacingGameData
-import racing.exception.ExceptionMessageConstants
-import java.lang.IllegalArgumentException
 
 object InputView {
 
     private const val QUESTION_CAR_NUM = "자동차 대수는 몇 대인가요?"
     private const val QUESTION_TRY_NUM = "시도할 횟수는 몇 회인가요?"
+    private const val EXCEPTION_MESSAGE_INPUT_IS_NOT_NUMBER = "숫자가 아닌 입력값이 들어왔습니다."
 
     fun askQuestion(): RacingGameData {
 
@@ -30,7 +29,8 @@ object InputView {
     }
 
     private fun readNumber(): Int {
-        return readLine()?.toIntOrNull() ?: throw IllegalArgumentException(ExceptionMessageConstants.INPUT_IS_NOT_NUMBER)
+        val inputNum = readLine()?.toIntOrNull()
+        return inputNum ?: throw IllegalArgumentException(EXCEPTION_MESSAGE_INPUT_IS_NOT_NUMBER)
     }
 
     private fun printNewLine() {

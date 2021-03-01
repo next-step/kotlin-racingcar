@@ -1,7 +1,7 @@
 package racing
 
-import racing.components.MovementChecker
-import racing.components.RacingGame
+import racing.domain.MovementChecker
+import racing.domain.RacingGame
 import racing.ui.InputView
 import racing.ui.ResultView
 

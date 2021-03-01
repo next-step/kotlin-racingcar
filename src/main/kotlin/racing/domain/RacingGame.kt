@@ -1,26 +1,26 @@
-package racing.components
+package racing.domain
 
 class RacingGame(carCount: Int, var movementChecker: MovementChecker) {
 
-    var carList: MutableList<Car> = mutableListOf()
+    val cars = mutableListOf<Car>()
 
     init {
         repeat(carCount) {
-            carList.add(Car())
+            cars.add(Car())
         }
     }
 
     fun moveAllCar() {
-        carList.forEach { moveCarIfPossible(it) }
+        cars.forEach { moveCarIfPossible(it) }
     }
 
     private fun moveCarIfPossible(car: Car) {
-        if (movementChecker.goodToMove()) {
+        if (movementChecker.isMovable()) {
             car.moveCar()
         }
     }
 
     fun getCarPositions(): List<Int> {
-        return carList.map { it.position }
+        return cars.map { it.position }
     }
 }
