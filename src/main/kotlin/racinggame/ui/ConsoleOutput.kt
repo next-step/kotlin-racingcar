@@ -19,6 +19,7 @@ fun Records.toView() {
 }
 
 fun Record.toView() = with(StringBuilder()) {
+    append("$name : ")
     repeat(distance) { append("-") }
     toString()
 }

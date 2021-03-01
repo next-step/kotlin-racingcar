@@ -1,7 +1,7 @@
 package racinggame.car
 
 class RacingCar(
-    private val name: String,
+    val name: String,
     private val engine: Engine
 ) {
     private var distance = 0
