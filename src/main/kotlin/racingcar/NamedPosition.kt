@@ -14,7 +14,7 @@ interface NamedPosition {
         constructor(name: String, position: Int) : this(Name(name), position)
 
         override operator fun inc(): Smart {
-            return Smart(position = position + 1, name = name)
+            return copy(position = position + 1)
         }
 
         override fun intValue(): Int {
