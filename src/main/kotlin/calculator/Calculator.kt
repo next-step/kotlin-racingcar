@@ -1,9 +1,6 @@
 package calculator
 
 class Calculator(private val expression: String) {
-    companion object {
-        val EXPRESSION_SEPARATOR = " "
-    }
     fun calculate(): Int {
         require(!expression.isNullOrBlank())
 
@@ -22,5 +19,9 @@ class Calculator(private val expression: String) {
         val number = separateExpression.next().toInt()
 
         return operation.calc(calculated, number)
+    }
+
+    companion object {
+        val EXPRESSION_SEPARATOR = " "
     }
 }
