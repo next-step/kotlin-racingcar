@@ -4,16 +4,13 @@ import car.business.Cars
 
 class ResultView(val cars: Cars) {
     fun print() {
-        for (i in cars.getPositions()) {
-            printCarPosition(i)
+        for (currentPosition in cars.getPositions()) {
+            printCarPosition(currentPosition)
         }
         println()
     }
 
-    private fun printCarPosition(count: Int) {
-        for (i in 0..count) {
-            print("-")
-        }
-        println()
+    private fun printCarPosition(currentPosition: Int) {
+        println("-".repeat(currentPosition))
     }
 }
