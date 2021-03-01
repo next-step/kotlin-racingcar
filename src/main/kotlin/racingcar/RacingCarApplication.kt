@@ -1,6 +1,8 @@
 package racingcar
 
+import racingcar.domain.CarCount
 import racingcar.domain.RacingCarGame
+import racingcar.domain.RoundCount
 
 fun main() {
     RacingCarApplication().run()
@@ -10,12 +12,10 @@ class RacingCarApplication {
 
     fun run() {
         println("자동차 대수는 몇 대인가요?")
-        val carCount: Int = readLine()?.toInt() ?: throw IllegalArgumentException("자동차 대수는 자연수이어야 합니다")
-        require(carCount > 0) { throw IllegalArgumentException("자동차 대수는 자연수이어야 합니다") }
+        val carCount = CarCount(readLine() ?: "")
 
         println("시도할 횟수는 몇 회인가요?")
-        val roundCount = readLine()?.toInt() ?: throw IllegalArgumentException("라운드 수는 자연수이어야 합니다")
-        require(roundCount > 0) { "라운드 수는 자연수이어야 합니다" }
+        val roundCount = RoundCount(readLine() ?: "")
 
         val racingCarGame = RacingCarGame(carCount, roundCount)
         racingCarGame.start()
