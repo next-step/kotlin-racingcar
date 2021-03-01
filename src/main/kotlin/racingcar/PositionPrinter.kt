@@ -3,10 +3,8 @@ package racingcar
 import java.io.OutputStream
 import java.io.PrintWriter
 
-class PositionPrinter(private val positions: List<Positions>, outputStream: OutputStream) {
+class PositionPrinter(private val positions: List<Positions>, outputStream: OutputStream = System.out) {
     private val printWriter = PrintWriter(outputStream, true)
-
-    constructor(positions: List<Positions>) : this(positions, System.out)
 
     fun print() {
         for (positions in positions) {
