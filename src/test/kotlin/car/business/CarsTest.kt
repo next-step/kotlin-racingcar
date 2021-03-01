@@ -1,16 +1,16 @@
 package car.business
 
+import car.energy.EnergyProvider
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import kotlin.random.Random
 
 class CarsTest() {
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3])
     fun `랜덤값이 4 미만일경우 움직이면은 안된다`(rand: Int) {
         // given
-        val cars = Cars(amount = 5, random = createMockNextIntRandom(rand))
+        val cars = Cars(amount = 5, energyProvider = createEnergyProvider(rand))
         // when
         val count = cars.move()
         // then
@@ -22,7 +22,7 @@ class CarsTest() {
     fun `랜덤값이 4 이상일경우 움직이면 된다`(rand: Int) {
         // given
         val amount = 5
-        val cars = Cars(amount, random = createMockNextIntRandom(rand))
+        val cars = Cars(amount, energyProvider = createEnergyProvider(rand))
         // when
         val count = cars.move()
         // then
@@ -35,7 +35,7 @@ class CarsTest() {
         // given
         val maxRand = 9
 
-        val cars = Cars(amount = 5, random = createMockNextIntRandom(maxRand))
+        val cars = Cars(amount = 5, energyProvider = createEnergyProvider(maxRand))
 
         // when
         for (i in 0 until tryCount) {
@@ -47,13 +47,9 @@ class CarsTest() {
             .allMatch { it == tryCount }
     }
 
-    private fun createMockNextIntRandom(nextInt: Int): Random {
-        return object : Random() {
-            override fun nextBits(bitCount: Int): Int {
-                return nextInt
-            }
-
-            override fun nextInt(from: Int, until: Int): Int {
+    private fun createEnergyProvider(nextInt: Int): EnergyProvider {
+        return object : EnergyProvider {
+            override fun getEnergy(): Int {
                 return nextInt
             }
         }
