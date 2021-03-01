@@ -1,5 +1,6 @@
 package racingcar
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -14,7 +15,9 @@ class NameTest {
         assertThat(Name("pobi").stringValue()).isEqualTo("pobi")
     }
 
-    class Name(private val name: String) {
+    data class Name(private val name: String) {
+        fun stringValue() = name
+
         init {
             require(name.length <= 5)
         }
