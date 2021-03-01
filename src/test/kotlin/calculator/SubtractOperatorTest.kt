@@ -8,6 +8,8 @@ internal class SubtractOperatorTest {
     @ParameterizedTest
     @CsvSource("0,0,0", "1,2,-1", "-1,-3,2", "4,-6,10", "-5,8,-13")
     fun `빼기`(a: Int, b: Int, result: Int) {
-        assertThat(SubtractOperator.operate(a, b)).isEqualTo(result)
+        assertThat(
+            SubtractOperator.operate(Scalar(a), Scalar(b))
+        ).isEqualTo(Scalar(result))
     }
 }

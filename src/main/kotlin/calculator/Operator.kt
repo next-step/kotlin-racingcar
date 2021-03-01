@@ -3,6 +3,8 @@ package calculator
 interface Operator {
     val value: String
 
+    fun operate(a: Operand, b: Operand): Scalar
+
     companion object {
         fun parse(value: String): Operator {
             return when (value) {

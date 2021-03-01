@@ -8,6 +8,8 @@ internal class MultiplyOperatorTest {
     @ParameterizedTest
     @CsvSource("0,0,0", "1,2,2", "-1,-3,3", "4,-6,-24", "-5,8,-40")
     fun `곱하기`(a: Int, b: Int, result: Int) {
-        assertThat(MultiplyOperator.operate(a, b)).isEqualTo(result)
+        assertThat(
+            MultiplyOperator.operate(Scalar(a), Scalar(b))
+        ).isEqualTo(Scalar(result))
     }
 }

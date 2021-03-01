@@ -3,7 +3,7 @@ package calculator
 object SubtractOperator : Operator {
     override val value = "-"
 
-    fun operate(a: Int, b: Int): Int {
-        return a - b
+    override fun operate(a: Operand, b: Operand): Scalar {
+        return Scalar(a.value - b.value)
     }
 }
