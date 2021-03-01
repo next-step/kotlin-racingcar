@@ -9,7 +9,7 @@ fun main() {
 }
 
 private fun run(game: Game) {
-    val listOfCar = game.settingRacingCar(InputView.getCountOfCar())
+    val listOfCar = game.setRacingCar(InputView.getCountOfCar())
     val countOfGame = InputView.getCountOfGame()
     OutputView.noticeResult()
     repeat(countOfGame) {

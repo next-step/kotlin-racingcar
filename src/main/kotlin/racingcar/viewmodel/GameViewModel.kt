@@ -1,13 +1,15 @@
 package racingcar.viewmodel
 
-import kotlinx.coroutines.flow.flow
 import racingcar.model.Car
+import racingcar.util.RacingRandom
 
 object GameViewModel {
-    fun tryGo(listOfCar: ArrayList<Car>) = flow {
-        listOfCar.map { car ->
-            car.tryMove()
-            emit(car)
-        }
+    fun tryGo(listOfCar: List<Car>): List<Car> {
+        return listOfCar.asSequence()
+            .map { car ->
+                car.apply {
+                    tryMove(RacingRandom.canGo())
+                }
+            }.toList()
     }
 }

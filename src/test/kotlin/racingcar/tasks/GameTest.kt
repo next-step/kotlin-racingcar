@@ -11,7 +11,7 @@ internal class GameTest {
     fun setting() {
         val game = Game()
         val carOfCount = 5
-        val listOfCar = game.settingRacingCar(carOfCount)
+        val listOfCar = game.setRacingCar(carOfCount)
 
         assertThat(listOfCar.size).isEqualTo(carOfCount)
     }

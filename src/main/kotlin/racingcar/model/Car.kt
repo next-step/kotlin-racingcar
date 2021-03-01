@@ -1,9 +1,13 @@
 package racingcar.model
 
-data class Car(private val gps: Gps = Gps(), private val powerEngine: PowerEngine = PowerEngine()) {
+data class Car(private val gps: Gps = Gps()) {
 
-    fun tryMove(isForce: Boolean = false) {
-        if (powerEngine.canGo() || isForce) gps.update()
+    companion object {
+        fun createCar() = Car()
+    }
+
+    fun tryMove(canGo: Boolean) {
+        if (canGo) gps.update()
     }
 
     fun whereIs() = gps.getCurrentState()
