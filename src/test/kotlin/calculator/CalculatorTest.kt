@@ -3,6 +3,8 @@ package calculator
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 internal class CalculatorTest {
 
@@ -33,6 +35,14 @@ internal class CalculatorTest {
     @Test
     fun `혼합된 연산`() {
         assertThat(Calculator.execute("2 + 3 * 4 / 2")).isEqualTo(10.0)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["2 * 2 * ", "1 / -", "+ 2", "5"])
+    fun `입력 식이 형식에 맞지 않은 경우`(input: String) {
+        assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
+            Calculator.execute(input)
+        }
     }
 
     @Test
