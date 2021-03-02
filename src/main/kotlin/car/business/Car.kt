@@ -12,7 +12,7 @@ class Car(val name: String) {
     }
 
     fun isMovable(energy: Int): Boolean {
-        return energy >= Companion.MOVE_CONDITION_ENERGY
+        return energy >= MOVE_CONDITION_ENERGY
     }
 
     companion object {
