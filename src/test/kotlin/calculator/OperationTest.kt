@@ -22,7 +22,7 @@ internal class OperationTest {
             {
                 assertThat(
                     Operation(Scalar(10))
-                        .with(AddOperator)
+                        .with(Operator.ADD)
                         .with(Scalar(2))
                         .result
                 ).isEqualTo(Scalar(12))
@@ -30,7 +30,7 @@ internal class OperationTest {
             {
                 assertThat(
                     Operation(Scalar(10))
-                        .with(SubtractOperator)
+                        .with(Operator.SUBTRACT)
                         .with(Scalar(2))
                         .result
                 ).isEqualTo(Scalar(8))
@@ -38,7 +38,7 @@ internal class OperationTest {
             {
                 assertThat(
                     Operation(Scalar(10))
-                        .with(MultiplyOperator)
+                        .with(Operator.MULTIPLY)
                         .with(Scalar(2))
                         .result
                 ).isEqualTo(Scalar(20))
@@ -46,7 +46,7 @@ internal class OperationTest {
             {
                 assertThat(
                     Operation(Scalar(10))
-                        .with(DivideOperator)
+                        .with(Operator.DIVIDE)
                         .with(Scalar(2))
                         .result
                 ).isEqualTo(Scalar(5))
@@ -59,8 +59,8 @@ internal class OperationTest {
         assertThatExceptionOfType(IllegalStateException::class.java)
             .isThrownBy {
                 Operation(Scalar(10))
-                    .with(AddOperator)
-                    .with(MultiplyOperator)
+                    .with(Operator.ADD)
+                    .with(Operator.MULTIPLY)
             }
     }
 

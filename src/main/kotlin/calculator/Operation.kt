@@ -31,6 +31,6 @@ class Operation(
     }
 
     companion object {
-        val EMPTY = Operation(Scalar(0)).with(AddOperator)
+        val EMPTY = Operation(Scalar(0)).with(Operator.ADD)
     }
 }

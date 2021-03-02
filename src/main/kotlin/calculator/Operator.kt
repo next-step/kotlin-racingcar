@@ -1,19 +1,26 @@
 package calculator
 
-interface Operator {
-    val value: String
+enum class Operator(val value: String) {
+    ADD("+") {
+        override fun operate(a: Operand, b: Operand) = Scalar(a.value + b.value)
+    },
+    SUBTRACT("-") {
+        override fun operate(a: Operand, b: Operand) = Scalar(a.value - b.value)
+    },
+    MULTIPLY("*") {
+        override fun operate(a: Operand, b: Operand) = Scalar(a.value * b.value)
+    },
+    DIVIDE("/") {
+        override fun operate(a: Operand, b: Operand) = Scalar(a.value / b.value)
+    };
 
-    fun operate(a: Operand, b: Operand): Scalar
+    abstract fun operate(a: Operand, b: Operand): Scalar
 
     companion object {
+        private val operators = values().associateBy { it.value }
+
         fun parse(value: String): Operator {
-            return when (value) {
-                AddOperator.value -> AddOperator
-                SubtractOperator.value -> SubtractOperator
-                MultiplyOperator.value -> MultiplyOperator
-                DivideOperator.value -> DivideOperator
-                else -> throw IllegalArgumentException("The value is not operator, value='$value'")
-            }
+            return operators[value] ?: throw IllegalArgumentException("The value is not operator, value='$value'")
         }
     }
 }
