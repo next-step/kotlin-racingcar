@@ -2,11 +2,22 @@ package step3
 
 class InputView {
     companion object {
-        fun handleInput(): Pair<Int, Int> {
-            val carCount = readCount("자동차 대수는 몇 대인가요?")
+        fun handleInput(): Pair<String, Int> {
+            val carNames = readNames("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
             val raceCount = readCount("시도할 횟수는 몇 회인가요?")
 
-            return kotlin.Pair(carCount, raceCount)
+            return Pair(carNames, raceCount)
+        }
+
+        private fun readNames(message: String): String {
+            var names: String? = null
+
+            while (names.isNullOrBlank()) {
+                println(message)
+                names = readLine()
+            }
+
+            return names
         }
 
         private fun readCount(message: String): Int {

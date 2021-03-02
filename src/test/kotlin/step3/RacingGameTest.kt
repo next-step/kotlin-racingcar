@@ -23,7 +23,7 @@ internal class RacingGameTest {
     }
 
     private fun buildRacingGame(carNames: String, rule: Rule): RacingGame {
-        val cars = Car.makeCars(carNames)
+        val cars = Cars.fromNames(carNames)
         return RacingGame(cars, rule)
     }
 

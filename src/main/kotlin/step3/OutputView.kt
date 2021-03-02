@@ -4,6 +4,7 @@ class OutputView {
     companion object {
         fun handleOutput(raceCount: Int, results: List<Result>) {
             println("실행 결과")
+            println(results)
             repeat(raceCount) {
                 printRace(results, it)
             }

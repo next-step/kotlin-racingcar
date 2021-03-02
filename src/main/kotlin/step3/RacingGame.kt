@@ -1,6 +1,6 @@
 package step3
 
-class RacingGame(private val cars: List<Car>, private val rule: Rule) {
+class RacingGame(private val cars: Cars, private val rule: Rule) {
 
     fun play(raceCount: Int): List<Result> {
         val results = mutableListOf<Result>()
@@ -14,7 +14,7 @@ class RacingGame(private val cars: List<Car>, private val rule: Rule) {
     }
 
     private fun race() {
-        cars.filter {
+        cars.cars.filter {
             rule.isSatisfied()
         }.forEach {
             it.move()

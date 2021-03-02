@@ -20,9 +20,9 @@ internal class CarTest {
     fun `makeCars 의 인자로 이름을 ,로 나누어 전달한다`() {
         val carNameString = "pobi,crong,honux"
 
-        val cars = Car.makeCars(carNameString)
+        val cars = Cars.fromNames(carNameString)
 
-        assertThat(cars.size).isEqualTo(3)
+        assertThat(cars.size()).isEqualTo(3)
         assertThat(cars[0].name).isEqualTo("pobi")
     }
 

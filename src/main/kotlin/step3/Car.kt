@@ -8,10 +8,4 @@ class Car(val name: String, var position: Int = 0) {
     fun move() {
         position++
     }
-
-    companion object {
-        fun makeCars(carNameString: String): List<Car> {
-            return carNameString.split(",").map { Car(it) }
-        }
-    }
 }
