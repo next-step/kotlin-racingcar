@@ -41,11 +41,6 @@ object ResultView {
     }
 
     fun printWinners(cars: List<Car>) {
-
-        if (cars.isEmpty()) {
-            throw IllegalArgumentException(EXCEPTION_MESSAGE_EMPTY_LIST)
-        }
-
         val winnerNames = cars.joinToString(NAME_DELIMETER_FOR_DISPLAY) { it.name.name }
         println("${winnerNames}가 최종 우승했습니다.")
     }
