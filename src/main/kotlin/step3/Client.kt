@@ -1,12 +1,12 @@
 package step3
 
 fun main() {
-    val (carNames, raceCount) = InputView.handleInput()
+    val (carNames, lapCount) = InputView.handleInput()
 
     val cars = Cars.fromNames(carNames)
     val racingGame = RacingGame(cars, RandomRule())
 
-    val results = racingGame.play(raceCount)
+    val results = racingGame.play(lapCount)
 
-    OutputView.handleOutput(raceCount, results)
+    OutputView.handleOutput(lapCount, results)
 }

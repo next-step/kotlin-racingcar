@@ -4,9 +4,9 @@ class InputView {
     companion object {
         fun handleInput(): Pair<String, Int> {
             val carNames = readNames("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
-            val raceCount = readCount("시도할 횟수는 몇 회인가요?")
+            val lapCount = readCount("시도할 횟수는 몇 회인가요?")
 
-            return Pair(carNames, raceCount)
+            return Pair(carNames, lapCount)
         }
 
         private fun readNames(message: String): String {
