@@ -10,10 +10,15 @@ class Outputview {
         println()
     }
 
+    fun printWinner(winners: List<String>) {
+        println(winners.joinToString(", "))
+    }
+
     private fun renderNumberToString(progress: Int): String {
         var stringProgress = ""
         repeat(progress) { stringProgress += "-"}
 
         return stringProgress
     }
+
 }

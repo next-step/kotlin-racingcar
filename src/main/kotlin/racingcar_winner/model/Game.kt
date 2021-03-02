@@ -9,6 +9,7 @@ class Game(
     private val numberOfCars: Int = cars.getNumberOfCars()
     private val randomNumberFactory = RandomNumberFactory()
     private val outputView = Outputview()
+    private val referee = Referee()
 
     fun playGame() {
         // 모든 차들은 한번씩 랜덤 값을 발생시킨다
@@ -18,6 +19,8 @@ class Game(
             playOneRound()
             printOneRound()
         }
+
+        printWinner()
     }
 
     private fun playOneRound() {
@@ -27,5 +30,10 @@ class Game(
     private fun printOneRound() {
         val progressOfCars: Map<String, Int> = cars.getProgressOfCars()
         outputView.printOneRound(progressOfCars)
+    }
+
+    private fun printWinner() {
+        val winners = referee.getWinners(cars)
+        outputView.printWinner(winners)
     }
 }
