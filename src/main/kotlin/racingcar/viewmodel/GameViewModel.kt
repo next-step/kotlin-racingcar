@@ -1,15 +1,16 @@
 package racingcar.viewmodel
 
 import racingcar.model.Car
+import racingcar.ui.OutputView
 import racingcar.util.RacingRandom
 
 object GameViewModel {
-    fun tryGo(listOfCar: List<Car>): List<Car> {
-        return listOfCar.asSequence()
-            .map { car ->
-                car.apply {
-                    tryMove(RacingRandom.canGo())
-                }
-            }.toList()
+    fun tryGo(listOfCar: List<Car>) {
+        listOfCar.mapIndexed { index, car ->
+            with(car) {
+                tryMove(RacingRandom.canGo())
+                OutputView.getResult(index == listOfCar.lastIndex, this)
+            }
+        }
     }
 }
