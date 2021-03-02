@@ -16,12 +16,16 @@ class Calculator {
     }
 
     private fun calculate(formula: String): Double {
-        val parsedFormular = formula.split(" ")
+        val parsedFormular = formula.split(FORMULA_DELIMITERS)
         var result = parsedFormular[0].toDouble()
 
         for (i in 1 until parsedFormular.size step 2) {
             result = Operator.calculate(parsedFormular[i], result, parsedFormular[i + 1].toDouble())
         }
         return result
+    }
+
+    companion object {
+        const val FORMULA_DELIMITERS = " "
     }
 }
