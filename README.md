@@ -5,4 +5,4 @@
 3. [x] CarHistory는 스스로의 히스토리 내역 (toString) 을 표시할줄 알아야 한다.
 4. [x] CarHistories는 최고점수를 가진 Car를 리턴할 줄 알아야 한다. 
 5. [x] ResultView 에서는 이름과 같이 표출이 되어야 한다.
-6. [ ] ResultView 에서는 최종 히스토리에서 최고점수를 가져와 표출해줘야 한다.
+6. [x] ResultView 에서는 최종 히스토리에서 최고점수를 가져와 표출해줘야 한다.

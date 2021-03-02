@@ -10,11 +10,21 @@ class ResultView(val cars: Cars) {
             printCarPositionHistory(carMoveHistory)
             println()
         }
+        printFrontCars(allHistories.last())
     }
 
     private fun printCarPositionHistory(carMoveHistories: CarMoveHistories) {
         for (history in carMoveHistories) {
             println(history)
         }
+    }
+
+    private fun printFrontCars(carMoveHistories: CarMoveHistories) {
+        val frontHistories = carMoveHistories.getFrontHistories()
+
+        val winnerNames = frontHistories.map { it.car.name }
+            .joinToString()
+
+        print("${winnerNames} 가 최종 우승했습니다.")
     }
 }
