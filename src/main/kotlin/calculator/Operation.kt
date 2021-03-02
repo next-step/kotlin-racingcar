@@ -1,7 +1,7 @@
 package calculator
 
 class Operation(
-    private val operandA: Operand
+    private val base: Operand
 ) {
     companion object {
         val Empty = Operation(Scalar(0)).with(AddOperator)
@@ -15,16 +15,16 @@ class Operation(
         return this
     }
 
-    fun with(operandB: Operand): Operation {
+    fun with(operand: Operand): Operation {
         val operator = this.operator.orThrow()
-        return Operation(operator.operate(operandA, operandB))
+        return Operation(operator.operate(base, operand))
     }
 
     val result: Scalar get() {
         if (operator != null) {
             throw IllegalArgumentException("The operation is invalid")
         }
-        return Scalar(operandA)
+        return Scalar(base)
     }
 
     private fun Operator?.orThrow(): Operator {
