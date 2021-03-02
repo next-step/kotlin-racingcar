@@ -4,8 +4,8 @@ import racingcar.Car
 
 object CarFixture {
     const val KIM_NAME = "kim"
-    private const val PACK_NAME = "pack"
-    private const val LEE_NAME = "lee"
+    const val PACK_NAME = "pack"
+    const val LEE_NAME = "lee"
 
     val KIM_CAR = Car(KIM_NAME)
     private val PACK_CAR = Car(PACK_NAME)
