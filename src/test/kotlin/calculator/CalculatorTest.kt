@@ -11,6 +11,12 @@ import java.util.stream.Stream
 class CalculatorTest {
 
     @Test
+    fun `숫자가 아닌 값을 전달하면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> { Calculator().execute("1 + a - 2") }
+        assertThrows<IllegalArgumentException> { Calculator().execute("1 + 5 - hello") }
+    }
+
+    @Test
     fun `null을 전달하면 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> { Calculator().execute(null) }
     }
