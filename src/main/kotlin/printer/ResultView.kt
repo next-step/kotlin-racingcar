@@ -1,8 +1,5 @@
 package printer
 
-import number.Numbers.START_INDEX
-import java.util.stream.IntStream
-
 object ResultView {
     fun printInt() {
         println("실행 결과")
@@ -20,11 +17,6 @@ object ResultView {
     }
 
     private fun printCarPath(position: Int) {
-        IntStream.range(START_INDEX, position)
-            .forEach {
-                print("-")
-            }
-
-        println()
+        println("-".repeat(position))
     }
 }
