@@ -1,4 +1,4 @@
-package racingcar_winner
+package racingcar_winner.ui
 
 class InputView {
     fun inputCarNames(): List<String> {

@@ -1,4 +1,4 @@
-package racingcar_winner
+package racingcar_winner.model
 
 class Car(
     var name: String

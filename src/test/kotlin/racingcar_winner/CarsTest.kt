@@ -2,11 +2,16 @@ package racingcar_winner
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.params.ParameterizedTest
+import racingcar_winner.model.Car
+import racingcar_winner.model.Cars
 
 class CarsTest {
 
-    private val listOfCars = listOf<Car>(Car("Phobi"), Car("John"), Car("James"))
+    private val listOfCars = listOf<Car>(
+        Car(
+            "Phobi"
+        ), Car("John"), Car("James")
+    )
 
     @Test
     fun `차들의 Progress 확인`() {
@@ -15,7 +20,8 @@ class CarsTest {
         listOfCars[2].tryToMoveForward(4)
 
         val cars = Cars(listOfCars)
+        val progressList = cars.getProgressOfCars().values.toList()
 
-        assertThat(cars.getProgressOfCars()).isEqualTo(listOf(1,1,0))
+        assertThat(progressList).isEqualTo(listOf(1,1,0))
     }
 }

@@ -1,4 +1,4 @@
-package racingcar_winner
+package racingcar_winner.model
 
 class CarFactory {
 
@@ -7,6 +7,7 @@ class CarFactory {
             carNames.map { name ->
                 createCar(name)
             })
+
     }
 
     private fun checkNameLength(name: String) {

@@ -1,4 +1,4 @@
-package racingcar_winner
+package racingcar_winner.model
 
 import racingcar_winner.`interface`.RandomNumberBehavior
 import kotlin.random.Random

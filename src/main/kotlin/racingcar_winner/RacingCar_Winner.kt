@@ -1,5 +1,9 @@
 package racingcar_winner
 
+import racingcar_winner.model.CarFactory
+import racingcar_winner.model.Game
+import racingcar_winner.ui.InputView
+
 private val inputView = InputView()
 private val carFactory = CarFactory()
 
@@ -8,5 +12,7 @@ fun main() {
     val numberOfRound = inputView.inputNumberOfRound()
 
     val cars = carFactory.orderMakingCars(carNames)
-    println(cars.toString())
+
+    val game = Game(numberOfRound, cars)
+    game.playGame()
 }

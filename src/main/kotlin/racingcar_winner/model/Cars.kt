@@ -1,4 +1,4 @@
-package racingcar_winner
+package racingcar_winner.model
 
 class Cars(
     private val cars: List<Car>
@@ -13,10 +13,10 @@ class Cars(
         }
     }
 
-    fun getProgressOfCars(): List<Int> {
+    fun getProgressOfCars(): Map<String, Int> {
         return cars.map { car ->
-            car.progress
-        }
+            car.name to car.progress
+        }.toMap()
     }
 
     override fun toString(): String {

@@ -1,4 +1,6 @@
-package racingcar_winner
+package racingcar_winner.model
+
+import racingcar_winner.ui.Outputview
 
 class Game(
     private val numberOfRound: Int,
@@ -6,6 +8,7 @@ class Game(
 ) {
     private val numberOfCars: Int = cars.getNumberOfCars()
     private val randomNumberFactory = RandomNumberFactory()
+    private val outputView = Outputview()
 
     fun playGame() {
         // 모든 차들은 한번씩 랜덤 값을 발생시킨다
@@ -22,7 +25,7 @@ class Game(
     }
 
     private fun printOneRound() {
-        val progressOfCars = cars.getProgressOfCars()
-        // OutPutView의 기능 사용
+        val progressOfCars: Map<String, Int> = cars.getProgressOfCars()
+        outputView.printOneRound(progressOfCars)
     }
 }

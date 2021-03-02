@@ -7,6 +7,9 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.Arguments.arguments
 import org.junit.jupiter.params.provider.MethodSource
+import racingcar_winner.model.Car
+import racingcar_winner.model.CarFactory
+import racingcar_winner.model.Cars
 import java.lang.IllegalArgumentException
 import java.util.stream.Stream
 
@@ -30,7 +33,14 @@ class CarFactoryTest {
         @JvmStatic
         fun orderCarParameters(): Stream<Arguments> {
             return Stream.of(
-                arguments(listOf("Kim","Jeong","eun"), Cars(listOf(Car("Kim"), Car("Jeong"),Car("eun"))))
+                arguments(listOf("Kim","Jeong","eun"), Cars(
+                    listOf(
+                        Car("Kim"),
+                        Car("Jeong"),
+                        Car("eun")
+                    )
+                )
+                )
             )
         }
     }
