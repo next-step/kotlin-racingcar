@@ -1,10 +1,10 @@
-package step2
+package calculator
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
-import step2.data.Operand
-import step2.util.Const.Companion.NOTICE_NOT_DIVIDE_ZERO
+import calculator.data.Operand
+import calculator.util.Message.Companion.NOTICE_NOT_DIVIDE_ZERO
 
 class OperandTest {
 

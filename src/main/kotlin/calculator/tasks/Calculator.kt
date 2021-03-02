@@ -1,16 +1,11 @@
-package step2.tasks
+package calculator.tasks
 
-import step2.data.Operand
-import step2.data.Operator
-import step2.util.extension.toDouble
-import step2.util.Const.Companion.DELIMITERS_BLANK
-import step2.util.Const.Companion.NOTICE_NOT_OPERAND_SYMBOL
-import step2.util.extension.splitToCalculate
+import calculator.data.Operand
+import calculator.data.Operator
+import calculator.util.extension.toDouble
+import calculator.util.Message.Companion.NOTICE_NOT_OPERAND_SYMBOL
 
 class Calculator {
-    fun splitReadLine(): List<String> {
-        return readLine().splitToCalculate(DELIMITERS_BLANK)
-    }
 
     fun calculate(anyOfCollection: List<String>): String {
         return anyOfCollection.reduceIndexed { index, acc, element ->

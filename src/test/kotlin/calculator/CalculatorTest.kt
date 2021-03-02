@@ -1,13 +1,13 @@
-package step2
+package calculator
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import step2.tasks.Calculator
-import step2.util.Const.Companion.DELIMITERS_BLANK
-import step2.util.Const.Companion.NOTICE_NOT_BLANK
-import step2.util.extension.splitToCalculate
+import calculator.tasks.Calculator
+import calculator.util.Message.Companion.DELIMITERS_BLANK
+import calculator.util.Message.Companion.NOTICE_NOT_OPERAND_SYMBOL
+import calculator.util.extension.splitToCalculate
 
 class CalculatorTest {
 
@@ -26,6 +26,6 @@ class CalculatorTest {
     fun `split 공백문자`() {
         assertThatThrownBy { DELIMITERS_BLANK.splitToCalculate(DELIMITERS_BLANK) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(NOTICE_NOT_BLANK)
+            .hasMessage(DELIMITERS_BLANK.plus(NOTICE_NOT_OPERAND_SYMBOL))
     }
 }

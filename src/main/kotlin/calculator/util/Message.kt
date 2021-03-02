@@ -1,7 +1,7 @@
-package step2.util
+package calculator.util
 
 @Suppress("SpellCheckingInspection")
-class Const {
+class Message {
     companion object {
         const val NOTICE_INPUT = "사칙연산 문자열을 입력해주세요 (띄어쓰기로 구분)"
         const val NOTICE_NOT_NULL = "문자열은 null이 될 수 없습니다."
@@ -10,5 +10,6 @@ class Const {
         const val NOTICE_NOT_OPERAND_SYMBOL = "를 double형으로 변환할 수 없습니다."
         const val NOTICE_NOT_DIVIDE_ZERO = "0으로는 나눌 수 없습니다."
         const val DELIMITERS_BLANK = " "
+        const val INDIVISIBLE_NUMBER = 0.0
     }
 }

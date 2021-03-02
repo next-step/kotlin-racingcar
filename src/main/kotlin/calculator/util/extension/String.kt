@@ -1,8 +1,8 @@
-package step2.util.extension
+package calculator.util.extension
 
-import step2.util.Const.Companion.NOTICE_NOT_BLANK
-import step2.util.Const.Companion.NOTICE_NOT_NULL
-import step2.util.Const.Companion.NOTICE_NOT_OPERAND_SYMBOL
+import calculator.util.Message.Companion.NOTICE_NOT_BLANK
+import calculator.util.Message.Companion.NOTICE_NOT_NULL
+import calculator.util.Message.Companion.NOTICE_NOT_OPERAND_SYMBOL
 
 fun String.splitNotBlank(delimiter: String): List<String> {
     require(isNotBlank()) { NOTICE_NOT_BLANK }
@@ -10,7 +10,7 @@ fun String.splitNotBlank(delimiter: String): List<String> {
 }
 
 fun String?.splitToCalculate(delimiter: String): List<String> {
-    if (this?.length == 1) toDouble(NOTICE_NOT_OPERAND_SYMBOL)
+    if (this?.length ?: 0 < 2) this?.toDouble(NOTICE_NOT_OPERAND_SYMBOL)
     return requireNotNull(this?.splitNotBlank(delimiter), { NOTICE_NOT_NULL })
 }
 

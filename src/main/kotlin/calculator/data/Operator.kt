@@ -1,6 +1,6 @@
-package step2.data
+package calculator.data
 
-import step2.util.Const.Companion.NOTICE_NOT_OPERATOR_SYMBOL
+import calculator.util.Message.Companion.NOTICE_NOT_OPERATOR_SYMBOL
 
 @Suppress("unused")
 enum class Operator(

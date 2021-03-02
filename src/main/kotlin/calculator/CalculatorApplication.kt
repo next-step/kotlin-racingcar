@@ -1,10 +1,9 @@
-package step2
+package calculator
 
-import step2.tasks.Calculator
-import step2.util.Const.Companion.NOTICE_INPUT
+import calculator.tasks.Calculator
+import calculator.ui.splitReadLine
 
 fun main() {
-    println(NOTICE_INPUT)
     with(Calculator()) {
         val anyOfCollection = splitReadLine()
         println(calculate(anyOfCollection))
