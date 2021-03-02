@@ -1,9 +1,10 @@
 package racingcar
 
+import racingcar.model.Car
 import racingcar.model.RacingCarGame
 import racingcar.strategy.RandomMoveStrategy
 import racingcar.utils.InputUtils
-import racingcar.view.ResultViews
+import racingcar.view.ResultView
 import racingcar.view.WinnerView
 
 fun main() {
@@ -12,10 +13,10 @@ fun main() {
     val racingCarGame = RacingCarGame.ready(inputDto.carNames, RandomMoveStrategy())
 
     for (i in 1..inputDto.gameCount) {
-        val resultViews: ResultViews = racingCarGame.moveOnce()
-        resultViews.printResults()
+        val cars: List<Car> = racingCarGame.moveOnce()
+        ResultView.printResults(cars)
     }
 
-    val winnerView: WinnerView = racingCarGame.finish()
-    winnerView.printWinner()
+    val winners: List<Car> = racingCarGame.findWinners()
+    WinnerView.printWinner(winners)
 }

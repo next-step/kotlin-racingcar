@@ -1,7 +1,6 @@
 package racingcar.model
 
 import racingcar.strategy.MoveStrategy
-import racingcar.view.ResultView
 
 class Cars private constructor(private val allCars: List<Car>) {
     companion object {
@@ -13,12 +12,9 @@ class Cars private constructor(private val allCars: List<Car>) {
         }
     }
 
-    fun moveOnce(moveStrategy: MoveStrategy): List<ResultView> {
+    fun moveOnce(moveStrategy: MoveStrategy): List<Car> {
+        allCars.forEach { it.move(moveStrategy.canMove()) }
         return allCars
-            .map { car ->
-                car.move(moveStrategy.canMove())
-                return@map ResultView(car)
-            }
     }
 
     fun getNumberOfCars(): Int {
