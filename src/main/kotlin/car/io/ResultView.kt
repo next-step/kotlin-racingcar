@@ -14,7 +14,7 @@ class ResultView(val cars: Cars) {
 
     private fun printCarPositionHistory(carMoveHistories: CarMoveHistories) {
         for (history in carMoveHistories) {
-            println("-".repeat(history.position))
+            println(history)
         }
     }
 }
