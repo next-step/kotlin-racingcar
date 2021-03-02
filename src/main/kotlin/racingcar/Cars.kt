@@ -1,8 +1,5 @@
 package racingcar
 
-import java.util.stream.IntStream
-import kotlin.streams.toList
-
 class Cars(private val cars: List<Car>) {
     fun forwardAllByCondition(conditions: List<Int>) {
         cars.mapIndexed { index, car ->
@@ -34,12 +31,13 @@ class Cars(private val cars: List<Car>) {
     companion object {
         private const val MAX_FORWARD_CONDITION = 4
         private const val MIN_CAN_CREATE_CARS = 0
+        private const val CREAT_CAR_START_INDEX = 1
 
         fun createCars(numberOfCar: Int): Cars {
             require(numberOfCar > MIN_CAN_CREATE_CARS) { "0미만의 개수는 생성할 수 없습니다." }
 
-            val newCars = IntStream.range(MIN_CAN_CREATE_CARS, numberOfCar)
-                .mapToObj { Car() }
+            val newCars = (CREAT_CAR_START_INDEX..numberOfCar)
+                .map { Car() }
                 .toList()
 
             return Cars(newCars)
