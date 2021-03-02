@@ -1,6 +1,7 @@
 package car.business
 
 class Car(val name: String) {
+
     internal var currentPosition: Int = 0
         private set
 
@@ -11,10 +12,10 @@ class Car(val name: String) {
     }
 
     fun isMovable(energy: Int): Boolean {
-        return energy >= MOVE_CONDITION_ENERGY
+        return energy >= Companion.MOVE_CONDITION_ENERGY
     }
 
     companion object {
-        val MOVE_CONDITION_ENERGY = 4
+        const val MOVE_CONDITION_ENERGY = 4
     }
 }

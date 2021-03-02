@@ -4,6 +4,6 @@ interface EnergyProvider {
     fun getEnergy(): Int
 
     companion object {
-        val MAX_ENERGY_SIZE = 10
+        const val MAX_ENERGY_SIZE = 10
     }
 }
