@@ -3,9 +3,9 @@ package car.business
 import car.energy.EnergyProvider
 import car.energy.RandomEnergyProvider
 
-class Cars(amount: Int, energyProvider: EnergyProvider = RandomEnergyProvider()) {
+class Cars(names: List<String>, energyProvider: EnergyProvider = RandomEnergyProvider()) {
 
-    private val cars: List<Car> = (1..amount).map { Car() }
+    private val cars: List<Car> = names.map { Car(it) }
     private val energyProvider: EnergyProvider = energyProvider
 
     internal var allHistories: MutableList<CarMoveHistories> = ArrayList()

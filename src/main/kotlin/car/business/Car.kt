@@ -1,6 +1,6 @@
 package car.business
 
-class Car {
+class Car(val name: String) {
     internal var currentPosition: Int = 0
         private set
 
