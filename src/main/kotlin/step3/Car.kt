@@ -1,13 +1,17 @@
 package step3
 
-class Car(var position: Int = 0) {
+class Car(val name: String, var position: Int = 0) {
+    init {
+        require(name.length <= 5) { "Car.name 은 5자를 초과할 수 없습니다!" }
+    }
+
     fun move() {
         position++
     }
 
     companion object {
-        fun makeCars(carCount: Int): List<Car> {
-            return (0 until carCount).map { Car() }
+        fun makeCars(carNameString: String): List<Car> {
+            return carNameString.split(",").map { Car(it) }
         }
     }
 }
