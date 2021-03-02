@@ -8,9 +8,9 @@ object ResultView {
         println("실행 결과")
     }
 
-    fun printRacing(attempts: Int, carPositions: List<Int>) {
-        repeat(attempts) {
-            printCarsPath(carPositions)
+    fun printRacing(carPositions: List<List<Int>>) {
+        carPositions.map { carPosition ->
+            printCarsPath(carPosition)
             println()
         }
     }
