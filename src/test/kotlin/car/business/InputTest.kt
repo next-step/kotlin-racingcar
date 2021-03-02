@@ -11,6 +11,6 @@ class InputTest {
 
         val names = input.nameSplitByComma()
 
-        assertThat(names).containsExactly("오","길","환")
+        assertThat(names).containsExactly("오", "길", "환")
     }
 }

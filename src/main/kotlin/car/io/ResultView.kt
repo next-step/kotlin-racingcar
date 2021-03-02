@@ -25,6 +25,6 @@ class ResultView(val cars: Cars) {
         val winnerNames = frontHistories.map { it.car.name }
             .joinToString()
 
-        print("${winnerNames} 가 최종 우승했습니다.")
+        print("$winnerNames 가 최종 우승했습니다.")
     }
 }
