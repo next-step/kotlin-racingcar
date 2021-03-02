@@ -12,5 +12,5 @@ fun main() {
 
     ResultView.printInt()
     val carPositions = racingCar.racing(numberOfAttempts)
-    printRacing(numberOfAttempts, carPositions)
+    printRacing(carPositions)
 }
