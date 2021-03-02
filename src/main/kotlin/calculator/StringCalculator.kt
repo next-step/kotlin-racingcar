@@ -6,7 +6,7 @@ class StringCalculator {
     }
 
     fun calculate(stringExpression: String?): Scalar {
-        if (stringExpression == null || stringExpression.isBlank()) {
+        if (stringExpression.isNullOrBlank()) {
             throw IllegalArgumentException("The expression is null or blank. expression='$stringExpression'")
         }
 
