@@ -3,6 +3,10 @@ package calculator
 class Operation(
     private val base: Operand
 ) {
+    constructor(base: Operand, operator: Operator) : this(base) {
+        this.operator = operator
+    }
+
     val result: Scalar
         get() {
             if (operator != null) {
@@ -11,15 +15,13 @@ class Operation(
             return Scalar(base)
         }
 
-    private var operator: Operator? = null
+    var operator: Operator? = null
+        set(value) {
+            assertOperatorIsNull()
+            field = value
+        }
 
-    fun with(operator: Operator): Operation {
-        assertOperatorIsNull()
-        this.operator = operator
-        return this
-    }
-
-    fun with(operand: Operand): Operation {
+    fun operate(operand: Operand): Operation {
         val operator = this.operator ?: throw IllegalStateException("The operator does not exist.")
         return Operation(operator.operate(base, operand))
     }
@@ -31,6 +33,6 @@ class Operation(
     }
 
     companion object {
-        val EMPTY = Operation(Scalar(0)).with(Operator.ADD)
+        val EMPTY = Operation(Scalar(0), Operator.ADD)
     }
 }

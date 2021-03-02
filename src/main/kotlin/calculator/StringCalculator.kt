@@ -21,10 +21,11 @@ class StringCalculator {
 
     private fun operateExpression(index: Int, operation: Operation, value: String): Operation {
         if (isOdd(index)) {
-            return operation.with(parseOperator(index, value))
+            operation.operator = parseOperator(index, value)
+            return operation
         }
 
-        return operation.with(parseOperand(index, value))
+        return operation.operate(parseOperand(index, value))
     }
 
     private fun isOdd(integer: Int) = integer % 2 == 1
