@@ -13,6 +13,17 @@ class Cars(private val cars: List<Car>) {
         }
     }
 
+    fun findWinner(): List<String> {
+        val positions = getPositions()
+        val maxPosition = positions.max()
+
+        return cars.filter { car ->
+            car.position == maxPosition
+        }.map { car ->
+            car.name
+        }.toList()
+    }
+
     private fun canForward(condition: Int) = condition >= MAX_FORWARD_CONDITION
 
     fun getSize(): Int {
@@ -33,7 +44,7 @@ class Cars(private val cars: List<Car>) {
         private const val MIN_CAN_CREATE_CARS = 0
 
         fun createCars(names: List<String>): Cars {
-            require(names.size > MIN_CAN_CREATE_CARS) { "0 미만의 개수는 생성할 수 없습니다." }
+            checkNameSize(names.size)
 
             val newCars = names
                 .map { name ->
@@ -42,6 +53,10 @@ class Cars(private val cars: List<Car>) {
                 .toList()
 
             return Cars(newCars)
+        }
+
+        private fun checkNameSize(nameSize: Int) {
+            require(nameSize > MIN_CAN_CREATE_CARS) { "0 미만의 개수는 생성할 수 없습니다." }
         }
     }
 }
