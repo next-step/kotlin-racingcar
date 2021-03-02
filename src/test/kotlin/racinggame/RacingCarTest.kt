@@ -11,16 +11,19 @@ internal class RacingCarTest {
     @ParameterizedTest
     fun `움직이기 테스트`(movable: Boolean, expect: Int) {
         // given
-        val racingCar = RacingCar(object : Engine {
-            override fun enoughPower(): Boolean {
-                return movable
+        val racingCar = RacingCar(
+            "testName",
+            object : Engine {
+                override fun enoughPower(): Boolean {
+                    return movable
+                }
             }
-        })
+        )
 
         // when
         racingCar.move()
 
         // then
-        assertThat(racingCar.distance()).isEqualTo(expect)
+        assertThat(racingCar.distance).isEqualTo(expect)
     }
 }

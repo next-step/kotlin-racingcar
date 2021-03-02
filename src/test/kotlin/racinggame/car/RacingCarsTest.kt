@@ -8,12 +8,18 @@ internal class RacingCarsTest {
     @Test
     fun `전체 자동차를 움직인다`() {
         // given
-        val racingCar1 = RacingCar(object : Engine {
-            override fun enoughPower() = true
-        })
-        val racingCar2 = RacingCar(object : Engine {
-            override fun enoughPower() = true
-        })
+        val racingCar1 = RacingCar(
+            "testName1",
+            object : Engine {
+                override fun enoughPower() = true
+            }
+        )
+        val racingCar2 = RacingCar(
+            "testName2",
+            object : Engine {
+                override fun enoughPower() = true
+            }
+        )
         val racingCars = RacingCars(listOf(racingCar1, racingCar2))
 
         // when

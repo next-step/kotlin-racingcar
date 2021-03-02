@@ -24,7 +24,7 @@ private fun Iterable<RacingCar>.move() {
 }
 
 private fun Iterable<RacingCar>.toRecords(time: Int): Records {
-    val list = map { Record(time, it.distance()) }
+    val list = map { Record(time, it.name, it.distance) }
         .toList()
     return Records(list)
 }

@@ -1,15 +1,15 @@
 package racinggame.car
 
-class RacingCar(private val engine: Engine) {
-    private var distance = 0
+class RacingCar(
+    val name: String,
+    private val engine: Engine
+) {
+    var distance = 0
+        private set
 
     fun move() {
         if (engine.enoughPower()) {
             distance++
         }
-    }
-
-    fun distance(): Int {
-        return this.distance
     }
 }
