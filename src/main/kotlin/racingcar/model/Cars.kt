@@ -7,21 +7,18 @@ class Cars private constructor(private val allCars: List<Car>) {
     companion object {
         fun makeCars(carNames: List<String>): Cars {
             val cars = carNames
-                .asSequence()
-                .map { carName: String -> Car(carName) }
-                .toList()
+                .map { carName -> Car(carName) }
 
             return Cars(cars)
         }
     }
 
     fun moveOnce(moveStrategy: MoveStrategy): List<ResultView> {
-        return allCars.asSequence()
+        return allCars
             .map { car ->
                 car.move(moveStrategy.canMove())
                 return@map ResultView(car)
             }
-            .toList()
     }
 
     fun getNumberOfCars(): Int {
@@ -29,16 +26,15 @@ class Cars private constructor(private val allCars: List<Car>) {
     }
 
     fun findMaxScore(): Int? {
-        return allCars.asSequence()
-            .map { car -> car.score }
+        return allCars
+            .map { it.score }
             .max()
             ?.toInt()
     }
 
     fun findWinners(): List<Car> {
         val maxScore = findMaxScore()
-        return allCars.asSequence()
-            .filter { car -> car.score == maxScore }
-            .toList()
+        return allCars
+            .filter { it.score == maxScore }
     }
 }

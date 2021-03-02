@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import racingcar.strategy.MoveStrategy
+import racingcar.FakeMoveStrategy
 
 internal class RacingCarGameTest {
     @Test
@@ -48,10 +48,6 @@ internal class RacingCarGameTest {
 
         // then
         assertThat(winners).hasSize(3)
-        assertThat(winners.map { car -> car.name }.toList()).containsAll(carNames)
+        assertThat(winners.map { it.name }).containsAll(carNames)
     }
-}
-
-private class FakeMoveStrategy : MoveStrategy {
-    override fun canMove(): Boolean = true
 }

@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import racingcar.strategy.MoveStrategy
+import racingcar.LastPlayerWinFakeMoveStrategy
 
 internal class CarsTest {
     @Test
@@ -53,15 +53,5 @@ internal class CarsTest {
         for (i in 1..gameCount) {
             cars.moveOnce(LastPlayerWinFakeMoveStrategy(cars))
         }
-    }
-}
-
-private class LastPlayerWinFakeMoveStrategy(private var cars: Cars) : MoveStrategy {
-    private var count = 1
-    override fun canMove(): Boolean {
-        val carCount = cars.getNumberOfCars()
-        val ret = (count % carCount == 0)
-        count++
-        return ret
     }
 }
