@@ -1,8 +1,8 @@
 package calculator
 
-import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -12,20 +12,14 @@ class CalculatorTest {
 
     @Test
     fun `null을 전달하면 예외가 발생한다`() {
-        assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy { Calculator().execute(null) }
+        assertThrows<IllegalArgumentException> { Calculator().execute(null) }
     }
 
     @Test
     fun `빈 값을 전달하면 예외가 발생한다`() {
-        assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy { Calculator().execute("") }
-
-        assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy { Calculator().execute(" ") }
-
-        assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy { Calculator().execute("      ") }
+        assertThrows<IllegalArgumentException> { Calculator().execute("") }
+        assertThrows<IllegalArgumentException> { Calculator().execute(" ") }
+        assertThrows<IllegalArgumentException> { Calculator().execute("      ") }
     }
 
     @ParameterizedTest

@@ -1,8 +1,8 @@
 package calculator
 
-import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
@@ -24,10 +24,8 @@ class OperatorTest {
         val oldNum = 4.0
         val newNum = 2.0
 
-        Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy { Operator.calculate("a", oldNum, newNum) }
-        Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy { Operator.calculate("&", oldNum, newNum) }
+        assertThrows<IllegalArgumentException> { Operator.calculate("a", oldNum, newNum) }
+        assertThrows<IllegalArgumentException> { Operator.calculate("&", oldNum, newNum) }
     }
 
     @ParameterizedTest
