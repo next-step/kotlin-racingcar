@@ -70,7 +70,7 @@ internal class OperationTest {
     fun `입력값이 단일 숫자면 해당 숫자를 반환`(value: Int) {
         assertAll(
             { assertThat(Operation(Scalar(value)).result).isEqualTo(Scalar(value)) },
-            { assertThat(Operation.Empty.with(Scalar(value)).result).isEqualTo(Scalar(value)) }
+            { assertThat(Operation.EMPTY.with(Scalar(value)).result).isEqualTo(Scalar(value)) }
         )
     }
 }

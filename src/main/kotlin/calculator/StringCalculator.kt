@@ -16,7 +16,7 @@ class StringCalculator {
     private fun calculate(stringExpression: String): Operation {
         return stringExpression.trim()
             .split(DELIMITER)
-            .foldIndexed(Operation.Empty, ::operateExpression)
+            .foldIndexed(Operation.EMPTY, ::operateExpression)
     }
 
     private fun operateExpression(index: Int, operation: Operation, value: String): Operation {

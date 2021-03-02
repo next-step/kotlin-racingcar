@@ -3,9 +3,13 @@ package calculator
 class Operation(
     private val base: Operand
 ) {
-    companion object {
-        val Empty = Operation(Scalar(0)).with(AddOperator)
-    }
+    val result: Scalar
+        get() {
+            if (operator != null) {
+                throw IllegalArgumentException("The operation is invalid")
+            }
+            return Scalar(base)
+        }
 
     private var operator: Operator? = null
 
@@ -20,13 +24,6 @@ class Operation(
         return Operation(operator.operate(base, operand))
     }
 
-    val result: Scalar get() {
-        if (operator != null) {
-            throw IllegalArgumentException("The operation is invalid")
-        }
-        return Scalar(base)
-    }
-
     private fun Operator?.orThrow(): Operator {
         if (this == null) {
             throw IllegalArgumentException("The operator does not exist.")
@@ -38,5 +35,9 @@ class Operation(
         if (operator != null) {
             throw IllegalArgumentException("The operator already exists.")
         }
+    }
+
+    companion object {
+        val EMPTY = Operation(Scalar(0)).with(AddOperator)
     }
 }
