@@ -10,12 +10,17 @@ object ResultView {
 
     fun outputResult(result: List<Car>) {
         result.forEach {
-            distanceToString(it.distance)
+            distanceToString(it.name, it.distance)
         }
         println()
     }
 
-    private fun distanceToString(distance: Int) {
+    fun outputWinner(winners: List<String>) {
+        println("${winners.joinToString(", ")} 가 최종 우승 했습니다.")
+    }
+
+    private fun distanceToString(carName: String, distance: Int) {
+        print("$carName : ")
         for (i in 0 until distance) {
             print(MOVE_CHARACTER)
         }
