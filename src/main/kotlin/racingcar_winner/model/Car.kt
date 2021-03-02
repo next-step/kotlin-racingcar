@@ -1,5 +1,7 @@
 package racingcar_winner.model
 
+const val CRITERIA_NUMBER = 4
+
 class Car(
     var name: String
 ) {
@@ -15,6 +17,6 @@ class Car(
     }
 
     private fun checkPossibleToMove(randomNumber: Int): Boolean {
-        return randomNumber > 4
+        return randomNumber > CRITERIA_NUMBER
     }
 }
