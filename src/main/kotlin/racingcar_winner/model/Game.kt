@@ -12,9 +12,6 @@ class Game(
     private val referee = Referee()
 
     fun playGame() {
-        // 모든 차들은 한번씩 랜덤 값을 발생시킨다
-        // 랜덤값이 4이상이면 전진한다.
-        // 이 행동을 총 numberOfRound 만큼 반복한다.
         repeat(numberOfRound) {
             playOneRound()
             printOneRound()
