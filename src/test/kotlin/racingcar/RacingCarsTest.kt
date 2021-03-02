@@ -12,10 +12,13 @@ class RacingCarsTest {
 
         val carPositions = racingCars.racing(5)
 
+        val firstRound = carPositions[0]
+
         assertAll(
-            { assertThat(carPositions[0]).isGreaterThanOrEqualTo(0) },
-            { assertThat(carPositions[1]).isGreaterThanOrEqualTo(0) },
-            { assertThat(carPositions[2]).isGreaterThanOrEqualTo(0) }
+            { assertThat(carPositions.size).isEqualTo(5) },
+            { assertThat(firstRound[0]).isGreaterThanOrEqualTo(0) },
+            { assertThat(firstRound[1]).isGreaterThanOrEqualTo(0) },
+            { assertThat(firstRound[2]).isGreaterThanOrEqualTo(0) }
         )
     }
 }
