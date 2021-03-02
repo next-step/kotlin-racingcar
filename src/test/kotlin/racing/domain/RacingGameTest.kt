@@ -27,13 +27,13 @@ class RacingGameTest {
 
         val racingHistory = racingGame.run()
 
-        val racingStateOfFirstRound = racingHistory.racingStates[0]
-        val racingStateOfSecondRound = racingHistory.racingStates[1]
+        val firstRoundResult = racingHistory.roundResults[0]
+        val secondRoundResult = racingHistory.roundResults[1]
 
-        assertThat(racingStateOfFirstRound.carPositions).contains(
+        assertThat(firstRoundResult.carPositions).contains(
             entry(testCarNames[0], 1), entry(testCarNames[1], 1), entry(testCarNames[2], 1)
         )
-        assertThat(racingStateOfSecondRound.carPositions).contains(
+        assertThat(secondRoundResult.carPositions).contains(
             entry(testCarNames[0], 2), entry(testCarNames[1], 2), entry(testCarNames[2], 2)
         )
     }
@@ -45,13 +45,13 @@ class RacingGameTest {
 
         val racingHistory = racingGame.run()
 
-        val racingStateOfFirstRound = racingHistory.racingStates[0]
-        val racingStateOfSecondRound = racingHistory.racingStates[1]
+        val firstRoundResult = racingHistory.roundResults[0]
+        val secondRoundResult = racingHistory.roundResults[1]
 
-        assertThat(racingStateOfFirstRound.carPositions).contains(
+        assertThat(firstRoundResult.carPositions).contains(
             entry(testCarNames[0], 0), entry(testCarNames[1], 0), entry(testCarNames[2], 0)
         )
-        assertThat(racingStateOfSecondRound.carPositions).contains(
+        assertThat(secondRoundResult.carPositions).contains(
             entry(testCarNames[0], 0), entry(testCarNames[1], 0), entry(testCarNames[2], 0)
         )
     }

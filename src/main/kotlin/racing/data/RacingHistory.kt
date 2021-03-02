@@ -1,9 +1,9 @@
 package racing.data
 
 class RacingHistory {
-    val racingStates = mutableListOf<RacingState>()
+    val roundResults = mutableListOf<RoundResult>()
 
-    fun add(racingState: RacingState) {
-        racingStates.add(racingState)
+    fun recordRoundResult(roundResult: RoundResult) {
+        roundResults.add(roundResult)
     }
 }

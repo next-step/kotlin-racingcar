@@ -2,9 +2,9 @@ package racing.domain
 
 import racing.data.RacingGameData
 import racing.data.RacingHistory
-import racing.data.RacingState
+import racing.data.RoundResult
 
-class RacingGame(private val racingGameData: RacingGameData, var movementChecker: MovementChecker) {
+class RacingGame(private val racingGameData: RacingGameData, private val movementChecker: MovementChecker) {
 
     val cars = mutableListOf<Car>()
 
@@ -18,7 +18,7 @@ class RacingGame(private val racingGameData: RacingGameData, var movementChecker
         val racingHistory = RacingHistory()
         repeat(racingGameData.tryCount) {
             moveAllCar()
-            racingHistory.add(RacingState.of(cars))
+            racingHistory.recordRoundResult(RoundResult.of(cars))
         }
         return racingHistory
     }
