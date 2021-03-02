@@ -6,9 +6,9 @@ data class RoundResultDTO(
     val carStateDTOs: List<CarStateDTO>
 ) {
     companion object {
-        fun of(roundResult: RoundResult): RoundResultDTO {
+        fun from(roundResult: RoundResult): RoundResultDTO {
             val carStates = roundResult.carStates
-            val carStateDTOs = carStates.map { CarStateDTO.of(it) }.toList()
+            val carStateDTOs = carStates.map { CarStateDTO.from(it) }.toList()
             return RoundResultDTO(carStateDTOs)
         }
     }

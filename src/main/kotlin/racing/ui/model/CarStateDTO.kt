@@ -7,7 +7,7 @@ data class CarStateDTO(
     val position: Int
 ) {
     companion object {
-        fun of(carState: CarState): CarStateDTO {
+        fun from(carState: CarState): CarStateDTO {
             return CarStateDTO(carState.name.name, carState.position.position)
         }
     }

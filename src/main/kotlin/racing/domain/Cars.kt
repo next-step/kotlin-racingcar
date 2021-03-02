@@ -29,7 +29,7 @@ class Cars(private val movementChecker: MovementChecker) {
     }
 
     fun getCarStates(): List<CarState> {
-        return cars.map { CarState.of(it) }.toList()
+        return cars.map { CarState.from(it) }.toList()
     }
 
     fun size() = cars.size

@@ -9,7 +9,7 @@ data class CarState(
     val position: CarPosition
 ) {
     companion object {
-        fun of(car: Car): CarState {
+        fun from(car: Car): CarState {
             return CarState(car.name.copy(), car.position.copy())
         }
     }
