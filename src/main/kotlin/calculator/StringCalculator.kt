@@ -8,9 +8,7 @@ class StringCalculator {
         val numbers = input.split(OPERATOR_REGEX).map { it.toInt() }
         val symbols = input.split(NUMBER_REGEX).filter { it.isNotBlank() }
 
-        if (numbers.size != symbols.size + 1) {
-            throw IllegalArgumentException()
-        }
+        require(numbers.size != symbols.size + 1)
 
         var result = numbers[0]
 
@@ -27,7 +25,7 @@ class StringCalculator {
         }
     }
 
-    private fun hasNotFormulaSymbol(input: String) = FORMULA_REGEX.containsMatchIn(input)
+    private fun hasNotFormulaSymbol(input: String) = FORMULA_REGEX.containsMatchIn(input).not()
 
     private fun calculate(leftNumber: Int, symbol: String, rightNumber: Int): Int {
         val operator = Operator.find(symbol)
@@ -35,7 +33,7 @@ class StringCalculator {
     }
 
     companion object {
-        private val FORMULA_REGEX = "[^\\d+\\-*/]".toRegex()
+        private val FORMULA_REGEX = "[\\d+\\-*/]".toRegex()
         private val OPERATOR_REGEX = "[+\\-*/]".toRegex()
         private val NUMBER_REGEX = "[0-9]+".toRegex()
     }
