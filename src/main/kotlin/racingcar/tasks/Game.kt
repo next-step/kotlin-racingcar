@@ -1,12 +1,18 @@
 package racingcar.tasks
 
 import racingcar.model.Car
-import racingcar.viewmodel.GameViewModel
+import racingcar.ui.OutputView
+import racingcar.util.RacingRandom
 
 class Game {
 
     fun run(listOfCar: List<Car>) {
-        GameViewModel.tryGo(listOfCar)
+        listOfCar.mapIndexed { index, car ->
+            with(car) {
+                tryMove(RacingRandom.canGo())
+                OutputView.getResult(index == listOfCar.lastIndex, this)
+            }
+        }
     }
 
     fun setRacingCar(countOfCar: Int): List<Car> {
