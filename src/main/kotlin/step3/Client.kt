@@ -6,7 +6,7 @@ fun main() {
     val cars = Cars.fromNames(carNames)
     val racingGame = RacingGame(cars, RandomRule())
 
-    val results = racingGame.play(lapCount)
+    val lapResults = racingGame.play(lapCount)
 
-    OutputView.handleOutput(lapCount, results)
+    OutputView.handleOutput(lapCount, lapResults)
 }

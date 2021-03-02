@@ -2,17 +2,17 @@ package step3
 
 class OutputView {
     companion object {
-        fun handleOutput(lapCount: Int, results: List<Result>) {
+        fun handleOutput(lapCount: Int, lapResults: List<LapResult>) {
             println("실행 결과")
-            println(results)
+            println(lapResults)
             repeat(lapCount) {
-                printRace(results, it)
+                printRace(lapResults, it)
             }
         }
 
-        private fun printRace(results: List<Result>, lap: Int) {
-            for (result in results) {
-                println("-".repeat(result.records[lap]))
+        private fun printRace(lapResults: List<LapResult>, lap: Int) {
+            for (lapResult in lapResults) {
+                println("-".repeat(lapResult.records[lap]))
             }
             println()
         }

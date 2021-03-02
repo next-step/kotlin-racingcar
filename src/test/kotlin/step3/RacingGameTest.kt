@@ -10,15 +10,15 @@ import org.mockito.Mockito.mock
 internal class RacingGameTest {
     @ParameterizedTest
     @ValueSource(ints = [0, 5])
-    fun `play() 결과값으로 race 횟수와 일치하는 개수의 Result 반환한다`(lapCount: Int) {
+    fun `play() 결과값으로 race 횟수와 일치하는 개수의 LapResult 반환한다`(lapCount: Int) {
         val carNames = "test1,test2"
         val racingGame = buildRacingGame(carNames, RandomRule())
 
-        val results = racingGame.play(lapCount)
+        val lapResults = racingGame.play(lapCount)
 
-        assertThat(results.size).isEqualTo(lapCount)
+        assertThat(lapResults.size).isEqualTo(lapCount)
         if (lapCount > 0) {
-            assertThat(results[0].records.size).isEqualTo(2)
+            assertThat(lapResults[0].records.size).isEqualTo(2)
         }
     }
 
@@ -28,7 +28,7 @@ internal class RacingGameTest {
     }
 
     @Test
-    fun `Rule 을 만족시키는 회수 만큼 Result 의 position 이 증가한다`() {
+    fun `Rule 을 만족시키는 회수 만큼 LapResult 의 position 이 증가한다`() {
         val carCount = "test"
         val lapCount = 3
 
@@ -36,8 +36,8 @@ internal class RacingGameTest {
         `when`(mock.isSatisfied()).thenReturn(true)
         val racingGame = buildRacingGame(carCount, mock)
 
-        val result = racingGame.play(lapCount)
+        val lapResults = racingGame.play(lapCount)
 
-        assertThat(result[lapCount - 1].records[0]).isEqualTo(lapCount)
+        assertThat(lapResults[lapCount - 1].records[0]).isEqualTo(lapCount)
     }
 }

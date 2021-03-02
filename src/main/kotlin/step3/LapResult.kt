@@ -1,5 +1,5 @@
 package step3
 
-class Result(cars: Cars) {
+class LapResult(cars: Cars) {
     val records = cars.cars.map { it.position }
 }
