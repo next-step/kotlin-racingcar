@@ -5,6 +5,7 @@ import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 
 internal class OperationTest {
@@ -16,42 +17,15 @@ internal class OperationTest {
             .withMessage("The operator does not exist.")
     }
 
-    @Test
-    fun `operator를 넣고 계산하면 정상 동작`() {
-        assertAll(
-            {
-                assertThat(
-                    Operation(Scalar(10))
-                        .with(Operator.ADD)
-                        .with(Scalar(2))
-                        .result
-                ).isEqualTo(Scalar(12))
-            },
-            {
-                assertThat(
-                    Operation(Scalar(10))
-                        .with(Operator.SUBTRACT)
-                        .with(Scalar(2))
-                        .result
-                ).isEqualTo(Scalar(8))
-            },
-            {
-                assertThat(
-                    Operation(Scalar(10))
-                        .with(Operator.MULTIPLY)
-                        .with(Scalar(2))
-                        .result
-                ).isEqualTo(Scalar(20))
-            },
-            {
-                assertThat(
-                    Operation(Scalar(10))
-                        .with(Operator.DIVIDE)
-                        .with(Scalar(2))
-                        .result
-                ).isEqualTo(Scalar(5))
-            }
-        )
+    @ParameterizedTest
+    @CsvSource("ADD, 12", "SUBTRACT, 8", "MULTIPLY, 20", "DIVIDE, 5")
+    fun `operator를 넣고 계산하면 정상 동작`(operator: Operator, expectedResult: Int) {
+        assertThat(
+            Operation(Scalar(10))
+                .with(operator)
+                .with(Scalar(2))
+                .result
+        ).isEqualTo(Scalar(expectedResult))
     }
 
     @Test
