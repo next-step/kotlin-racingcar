@@ -1,8 +1,8 @@
 package racing.ui
 
-import racing.data.RacingHistory
-import racing.data.RoundResult
 import racing.domain.Car
+import racing.ui.model.RacingHistoryDTO
+import racing.ui.model.RoundResultDTO
 
 /**
  * @author tae-heon.song<taeheon.song@linecorp.com>
@@ -19,14 +19,14 @@ object ResultView {
         println(NOTICE_RESULT_START)
     }
 
-    fun printRacingHistory(racingHistory: RacingHistory) {
-        val racingResults = racingHistory.roundResults
+    fun printRacingHistory(racingHistory: RacingHistoryDTO) {
+        val racingResults = racingHistory.roundResultDTOs
         racingResults.forEach { printRoundResult(it) }
     }
 
-    private fun printRoundResult(roundResult: RoundResult) {
-        val carPositions = roundResult.carPositions
-        carPositions.forEach { (carName, position) ->
+    private fun printRoundResult(roundResult: RoundResultDTO) {
+        val carStates = roundResult.carStateDTOs
+        carStates.forEach { (carName, position) ->
             printCarStates(carName, position)
         }
         println()
@@ -46,7 +46,7 @@ object ResultView {
             throw IllegalArgumentException(EXCEPTION_MESSAGE_EMPTY_LIST)
         }
 
-        val winnerNames = cars.joinToString(NAME_DELIMETER_FOR_DISPLAY) { it.name }
+        val winnerNames = cars.joinToString(NAME_DELIMETER_FOR_DISPLAY) { it.name.name }
         println("${winnerNames}가 최종 우승했습니다.")
     }
 }

@@ -4,6 +4,7 @@ import racing.domain.MovementChecker
 import racing.domain.RacingGame
 import racing.ui.InputView
 import racing.ui.ResultView
+import racing.ui.model.RacingHistoryDTO
 
 object RacingCarMain {
     fun run() {
@@ -14,7 +15,7 @@ object RacingCarMain {
 
         val racingHistory = racingGame.run()
 
-        ResultView.printRacingHistory(racingHistory)
+        ResultView.printRacingHistory(RacingHistoryDTO.of(racingHistory))
         ResultView.printWinners(racingGame.getWinners())
     }
 }
