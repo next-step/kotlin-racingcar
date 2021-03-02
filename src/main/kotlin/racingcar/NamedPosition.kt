@@ -11,8 +11,6 @@ interface NamedPosition {
             require(position >= 0)
         }
 
-        constructor(name: String, position: Int) : this(Name(name), position)
-
         override operator fun inc(): Smart {
             return copy(position = position + 1)
         }
