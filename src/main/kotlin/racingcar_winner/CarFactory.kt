@@ -5,8 +5,8 @@ class CarFactory {
     fun orderMakingCars(carNames: List<String>): Cars {
         return Cars(
             carNames.map { name ->
-            createCar(name)
-        })
+                createCar(name)
+            })
     }
 
     private fun checkNameLength(name: String) {
