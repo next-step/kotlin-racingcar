@@ -8,21 +8,21 @@ internal class RoundTest {
     @Test
     fun `라운드는 실행될 수 있다`() {
         val dummyCars = emptyList<Car>()
-        val round = Round(dummyCars)
-        round.play()
+        val round = Round()
+        round.play(dummyCars)
     }
 
     @Test
     fun `라운드는 두번 이상 실행될 수 없다`() {
         // given
         val dummyCars = emptyList<Car>()
-        val round = Round(dummyCars)
+        val round = Round()
         val expectedMessage = "이미 진행된 라운드입니다"
 
         // when
         val result = assertThrows<IllegalStateException> {
-            round.play()
-            round.play()
+            round.play(dummyCars)
+            round.play(dummyCars)
         }
 
         // then
