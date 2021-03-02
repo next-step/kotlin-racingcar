@@ -5,9 +5,7 @@ import java.lang.IllegalArgumentException
 data class Input(val name: String, val tryCount: Int) {
     init {
         val maxLengthName = splitNameBySplitter().maxBy { it.length } ?: throw IllegalArgumentException()
-        if (maxLengthName.length > 5) {
-            throw IllegalArgumentException()
-        }
+        require(maxLengthName.length <= 5)
     }
 
     fun splitNameBySplitter(): List<String> {
