@@ -2,7 +2,6 @@ package calculator
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
-import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.params.ParameterizedTest
@@ -12,7 +11,7 @@ internal class OperationTest {
     @Test
     fun `operator없이 계산하면 에러 발생`() {
         val operation = Operation(Scalar(1))
-        assertThatExceptionOfType(IllegalArgumentException::class.java)
+        assertThatExceptionOfType(IllegalStateException::class.java)
             .isThrownBy { operation.with(Scalar(2)) }
             .withMessage("The operator does not exist.")
     }
@@ -57,7 +56,7 @@ internal class OperationTest {
 
     @Test
     fun `Operator를 두 번 연속으로 넣으면 IllegalArgumentException throw`() {
-        assertThatIllegalArgumentException()
+        assertThatExceptionOfType(IllegalStateException::class.java)
             .isThrownBy {
                 Operation(Scalar(10))
                     .with(AddOperator)

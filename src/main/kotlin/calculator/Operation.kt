@@ -20,13 +20,13 @@ class Operation(
     }
 
     fun with(operand: Operand): Operation {
-        val operator = this.operator ?: throw IllegalArgumentException("The operator does not exist.")
+        val operator = this.operator ?: throw IllegalStateException("The operator does not exist.")
         return Operation(operator.operate(base, operand))
     }
 
     private fun assertOperatorIsNull() {
         if (operator != null) {
-            throw IllegalArgumentException("The operator already exists.")
+            throw IllegalStateException("The operator already exists.")
         }
     }
 
