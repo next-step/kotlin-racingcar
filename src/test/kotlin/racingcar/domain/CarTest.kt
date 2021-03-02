@@ -5,10 +5,12 @@ import org.junit.jupiter.api.Test
 
 internal class CarTest {
 
+    private val dummyCarName = "dummy"
+    
     @Test
     fun `자동차의 초기 거리는 0이다`() {
         val dummyMoveStrategy = DummyMoveStrategy()
-        val car = Car(moveStrategy = dummyMoveStrategy)
+        val car = Car(name = dummyCarName, moveStrategy = dummyMoveStrategy)
         val expected = 0
 
         assertThat(car.currentDistance()).isEqualTo(expected)
@@ -19,7 +21,7 @@ internal class CarTest {
         // given
         val moveableMoveStrategy = MoveableMoveStrategy()
         val moveDepth = 1
-        val car = Car(moveStrategy = moveableMoveStrategy, moveDepth = moveDepth)
+        val car = Car(name = dummyCarName, moveStrategy = moveableMoveStrategy, moveDepth = moveDepth)
 
         // when
         car.moveIfMoveable()
@@ -32,7 +34,7 @@ internal class CarTest {
     fun `자동차가 이동할 수 없는 경우 움직이지 않는다`() {
         // given
         val unmoveableMoveStrategy = UnmoveableMoveStrategy()
-        val car = Car(moveStrategy = unmoveableMoveStrategy)
+        val car = Car(name = dummyCarName, moveStrategy = unmoveableMoveStrategy)
         val expected = 0
 
         // when

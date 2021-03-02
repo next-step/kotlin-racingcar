@@ -1,6 +1,6 @@
 package racingcar.domain
 
-class Car(private val moveStrategy: MoveStrategy, private val moveDepth: Int = 1) {
+class Car(private val name: String, private val moveStrategy: MoveStrategy, private val moveDepth: Int = 1) {
 
     private var distance: Int = 0
 
@@ -16,5 +16,9 @@ class Car(private val moveStrategy: MoveStrategy, private val moveDepth: Int = 1
 
     fun currentDistance(): Int {
         return distance
+    }
+
+    fun displayName(): String {
+        return name
     }
 }

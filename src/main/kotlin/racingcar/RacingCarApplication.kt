@@ -13,13 +13,12 @@ fun main() {
 class RacingCarApplication(private val userInterface: UserInterface) {
 
     fun run() {
-        val carCountValue = userInterface.inputCarCount()
-        val carCount = PositiveCount(carCountValue)
+        val carNames = listOf("pobi", "crong", "honux")
 
         val roundCountValue = userInterface.inputRoundCount()
         val roundCount = PositiveCount(roundCountValue)
 
-        val racingCarGame = RacingCarGame(carCount, roundCount)
+        val racingCarGame = RacingCarGame(carNames, roundCount)
         racingCarGame.start()
 
         val results = racingCarGame.result()
