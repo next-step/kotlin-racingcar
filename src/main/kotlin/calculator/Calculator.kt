@@ -12,8 +12,7 @@ class Calculator {
     }
 
     private fun validate(formula: String) {
-        if (formula.isBlank())
-            throw IllegalArgumentException("수식이 빈 값입니다.")
+        require(formula.isNotBlank()) { "수식이 빈 값입니다." }
     }
 
     private fun calculate(formula: String): Double {
