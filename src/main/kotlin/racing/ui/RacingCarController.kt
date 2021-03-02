@@ -1,11 +1,11 @@
 package racing.ui
 
+import racing.domain.car.RacingCarFactory
 import racing.domain.movement.MoveStrategy
-import racing.domain.car.RacingCars
 
 class RacingCarController(private val moveStrategy: MoveStrategy) {
-    fun run(carCount: Int, tryCount: Int): List<RacingCarDtos> {
-        val racingCars = RacingCars.create(carCount)
+    fun run(carNames: String, tryCount: Int): List<RacingCarDtos> {
+        val racingCars = RacingCarFactory.createRacingCars(carNames)
         val racingRecords = racingCars.race(tryCount, moveStrategy)
         return toDto(racingRecords)
     }

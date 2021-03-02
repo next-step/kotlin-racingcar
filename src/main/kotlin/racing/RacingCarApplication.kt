@@ -9,13 +9,13 @@ val consoleOutput: ConsoleOutput = ConsoleOutput()
 val consoleInput: ConsoleInput = ConsoleInput()
 
 fun main() {
-    consoleOutput.printCarCountInputMessage()
-    val carCount = consoleInput.read()
+    consoleOutput.printCarNameInputMessage()
+    val carNames = consoleInput.read()
 
     consoleOutput.printTryCountInputMessage()
     val tryCount = consoleInput.read()
 
-    val racingCarDto = RacingCarController(RandomMoveStrategy()).run(carCount.toInt(), tryCount.toInt())
+    val racingCarDto = RacingCarController(RandomMoveStrategy()).run(carNames, tryCount.toInt())
 
     consoleOutput.printRacingGameResultMessage()
     consoleOutput.printRacingGameRecord(racingCarDto)
