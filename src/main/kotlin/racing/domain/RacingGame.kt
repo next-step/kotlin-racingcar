@@ -9,9 +9,7 @@ class RacingGame(private val racingGameData: RacingGameData, movementChecker: Mo
     val cars = Cars(movementChecker)
 
     init {
-        for (name in racingGameData.carNames) {
-            cars.createNewCar(name)
-        }
+        cars.createNewCars(racingGameData.carNames)
     }
 
     fun run(): RacingHistory {

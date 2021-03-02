@@ -4,10 +4,10 @@ import racing.data.CarState
 
 class Cars(private val movementChecker: MovementChecker) {
 
-    private val cars = mutableListOf<Car>()
+    private var cars = listOf<Car>()
 
-    fun createNewCar(name: String) {
-        cars.add(Car(name))
+    fun createNewCars(names: List<String>) {
+        cars = names.map { Car(it) }.toList()
     }
 
     fun getFarthestCars(): List<Car> {
