@@ -19,8 +19,9 @@ class Calculator {
         val parsedFormular = formula.split(FORMULA_DELIMITERS)
         var result = parsedFormular[0].toDouble()
 
-        for (i in 1 until parsedFormular.size step 2) {
-            result = Operator.calculate(parsedFormular[i], result, parsedFormular[i + 1].toDouble())
+        for (numIndex in 1 until parsedFormular.size step 2) {
+            val signIndex = numIndex + 1
+            result = Operator.calculate(parsedFormular[numIndex], result, parsedFormular[signIndex].toDouble())
         }
         return result
     }
