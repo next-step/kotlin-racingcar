@@ -1,6 +1,6 @@
 package racingcar
 
-class Car(name: String) {
+class Car(val name: String) {
     init {
         require(name.length < MAX_NAME_LENGTH) { throw IllegalArgumentException("이름은 5글자를 초과할 수 없습니다.") }
     }
