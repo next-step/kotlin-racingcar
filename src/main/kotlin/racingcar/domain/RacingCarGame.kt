@@ -17,7 +17,13 @@ class RacingCarGame(positiveCount: PositiveCount, roundCount: PositiveCount) {
     }
 
     fun start() {
-        rounds.forEach { it.play(cars) }
+        rounds.forEach { play(it) }
+    }
+
+    private fun play(round: Round) {
+        cars.forEach { it.moveIfMoveable() }
+        val result = Result(cars.map { it.currentDistance() })
+        round.recordResult(result)
     }
 
     fun result(): Results {

@@ -4,11 +4,9 @@ class Round() {
 
     private lateinit var gameResult: Result
 
-    fun play(cars: List<Car>) {
+    fun recordResult(result: Result) {
         check(!this::gameResult.isInitialized) { "이미 진행된 라운드입니다" }
-
-        cars.forEach { it.moveIfMoveable() }
-        gameResult = Result(cars.map { it.currentDistance() })
+        gameResult = result
     }
 
     fun result(): Result {
