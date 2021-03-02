@@ -3,7 +3,7 @@ package fixture
 import racingcar.Car
 
 object CarFixture {
-    private const val KIM_NAME = "kim"
+    const val KIM_NAME = "kim"
     private const val PACK_NAME = "pack"
     private const val LEE_NAME = "lee"
 
