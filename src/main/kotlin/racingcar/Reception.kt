@@ -4,7 +4,7 @@ import number.Numbers
 import printer.InputView
 
 object Reception {
-    private const val CAR_NAME_DELIMITERS = ","
+    const val CAR_NAME_DELIMITERS = ","
 
     fun receiveNumberOfAttempts(): Int {
         InputView.printInputNumberOfAttempts()
