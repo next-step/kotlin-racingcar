@@ -1,5 +1,8 @@
 package racingcar
 
+import fixture.CarFixture.CARS
+import fixture.CarFixture.CAR_NAMES
+import fixture.CarFixture.KIM_CAR
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
@@ -13,7 +16,7 @@ internal class CarsTest {
     @CsvSource("4, 1", "1, 0")
     fun `4이상인 경우에만 전진을한다`(condition: Int, expectedCardPosition: Int) {
         val cars = Cars(ArrayList())
-        val car = Car()
+        val car = KIM_CAR
 
         cars.forwardByCondition(car, condition)
 
@@ -22,7 +25,7 @@ internal class CarsTest {
 
     @Test
     fun `RacingCar 에 등록된 모든 자동차가 조건에 맞는 경우 전진한다`() {
-        val cars = Cars(listOf(Car(), Car(), Car()))
+        val cars = Cars(CARS)
 
         cars.forwardAllByCondition(listOf(1, 5, 9))
 
@@ -35,7 +38,7 @@ internal class CarsTest {
 
     @Test
     fun `필요한 자동차 개수만큼 자동차들이 만들어진다`() {
-        val cars = Cars.createCars(3)
+        val cars = Cars.createCars(CAR_NAMES)
 
         assertAll(
             { assertThat(cars.getSize()).isEqualTo(3) },
@@ -49,7 +52,7 @@ internal class CarsTest {
     @ValueSource(ints = [0, -5])
     fun `만들어야하는 자동차 개수가 0미만인 경우 예외처리한다`(numberOfCar: Int) {
         assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            Cars.createCars(numberOfCar)
+            Cars.createCars(CAR_NAMES)
         }.withMessageMatching("0미만의 개수는 생성할 수 없습니다.")
     }
 }

@@ -1,5 +1,6 @@
 package racingcar
 
+import fixture.CarFixture.CARS
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
@@ -7,7 +8,7 @@ import org.junit.jupiter.api.assertAll
 class RacingCarsTest {
     @Test
     fun `자동차 경주가 진행하여 자동차들의 위치들을 리턴한다`() {
-        val cars = Cars(listOf(Car(), Car(), Car()))
+        val cars = Cars(CARS)
         val racingCars = RacingCars(cars)
 
         val carPositions = racingCars.racing(5)
