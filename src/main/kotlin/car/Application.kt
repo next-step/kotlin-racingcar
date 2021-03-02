@@ -8,7 +8,7 @@ fun main() {
     val inputView = InputView()
     val input = inputView.input()
 
-    val cars = Cars(input.nameSplitByComma())
+    val cars = Cars(input.splitNameBySplitter())
     val resultView = ResultView(cars)
 
     cars.move(input.tryCount)
