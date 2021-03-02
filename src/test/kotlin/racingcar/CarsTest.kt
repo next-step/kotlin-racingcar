@@ -2,21 +2,20 @@ package racingcar
 
 import fixture.CarFixture.CARS
 import fixture.CarFixture.CAR_NAMES
-import fixture.CarFixture.KIM_CAR
+import fixture.CarFixture.KIM_NAME
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import org.junit.jupiter.params.provider.ValueSource
 
 internal class CarsTest {
     @ParameterizedTest
     @CsvSource("4, 1", "1, 0")
     fun `4이상인 경우에만 전진을한다`(condition: Int, expectedCardPosition: Int) {
         val cars = Cars(ArrayList())
-        val car = KIM_CAR
+        val car = Car(KIM_NAME)
 
         cars.forwardByCondition(car, condition)
 
@@ -48,11 +47,10 @@ internal class CarsTest {
         )
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = [0, -5])
-    fun `만들어야하는 자동차 개수가 0미만인 경우 예외처리한다`(numberOfCar: Int) {
+    @Test
+    fun `만들어야하는 자동차 개수가 0미만인 경우 예외처리한다`() {
         assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            Cars.createCars(CAR_NAMES)
-        }.withMessageMatching("0미만의 개수는 생성할 수 없습니다.")
+            Cars.createCars(listOf())
+        }.withMessageMatching("0 미만의 개수는 생성할 수 없습니다.")
     }
 }
