@@ -1,8 +1,9 @@
 package racingcar
 
-import fixture.CarFixture.CARS
 import fixture.CarFixture.CAR_NAMES
 import fixture.CarFixture.KIM_NAME
+import fixture.CarFixture.LEE_NAME
+import fixture.CarFixture.PACK_NAME
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
@@ -24,7 +25,7 @@ internal class CarsTest {
 
     @Test
     fun `RacingCar 에 등록된 모든 자동차가 조건에 맞는 경우 전진한다`() {
-        val cars = Cars(CARS)
+        val cars = Cars(listOf(Car(KIM_NAME), Car(PACK_NAME), Car(LEE_NAME)))
 
         cars.forwardAllByCondition(listOf(1, 5, 9))
 
@@ -52,5 +53,18 @@ internal class CarsTest {
         assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
             Cars.createCars(listOf())
         }.withMessageMatching("0 미만의 개수는 생성할 수 없습니다.")
+    }
+
+    @Test
+    fun `경주가 끝난 후 우승자를 찾는다`() {
+        val cars = Cars(listOf(Car(KIM_NAME), Car(PACK_NAME), Car(LEE_NAME)))
+
+        cars.forwardAllByCondition(listOf(3, 5, 5))
+
+        val winners = cars.findWinner()
+
+        assertThat(winners.size).isEqualTo(2)
+        assertThat(winners[0]).isEqualTo(PACK_NAME)
+        assertThat(winners[1]).isEqualTo(LEE_NAME)
     }
 }
