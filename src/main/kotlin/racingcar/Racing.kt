@@ -11,8 +11,8 @@ fun main() {
     val racingCar = RacingCars(cars)
 
     ResultView.printInt()
-    val carPositions = racingCar.racing(numberOfAttempts)
-    printRacing(carNames, carPositions)
+    val rounds = racingCar.racing(numberOfAttempts)
+    printRacing(rounds)
 
     val winners = cars.findWinner()
     ResultView.printWinners(winners)
