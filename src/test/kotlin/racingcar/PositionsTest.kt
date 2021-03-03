@@ -10,6 +10,6 @@ class PositionsTest {
 
         val maxPosition = positions.max()
 
-        assertThat(maxPosition.position).isEqualTo(9)
+        assertThat(maxPosition).isEqualTo(Position(9))
     }
 }
