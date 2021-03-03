@@ -1,7 +1,7 @@
 package racingcar.util
 
-import java.util.Random
+import kotlin.random.Random
 
-object RacingRandom : Random() {
-    fun canGo() = nextInt(Message.MAX_CONDITION) > Message.MIN_CONDITION_FOR_GOING
+object RacingRandom {
+    fun canGo() = Random(Message.MAX_CONDITION).nextInt() > Message.MIN_CONDITION_FOR_GOING
 }

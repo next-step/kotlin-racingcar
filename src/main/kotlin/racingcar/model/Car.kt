@@ -1,14 +1,14 @@
 package racingcar.model
 
-data class Car(private val gps: Gps = Gps()) {
-
-    companion object {
-        fun createCar() = Car()
-    }
+data class Car(private val locationTracker: LocationTracker = LocationTracker()) {
 
     fun tryMove(canGo: Boolean) {
-        if (canGo) gps.update(1)
+        if (canGo) locationTracker.update(1)
     }
 
-    fun whereIs() = gps.getCurrentState()
+    fun whereIs() = locationTracker.getCurrentState()
+
+    companion object {
+        fun create() = Car()
+    }
 }

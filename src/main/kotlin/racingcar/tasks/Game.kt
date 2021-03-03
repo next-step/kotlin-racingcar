@@ -16,6 +16,6 @@ class Game {
     }
 
     fun setRacingCar(countOfCar: Int): List<Car> {
-        return (0 until countOfCar).map { Car.createCar() }
+        return (0 until countOfCar).map { Car.create() }
     }
 }
