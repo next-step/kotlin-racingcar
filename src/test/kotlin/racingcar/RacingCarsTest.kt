@@ -17,9 +17,9 @@ class RacingCarsTest {
 
         assertAll(
             { assertThat(carPositions.size).isEqualTo(5) },
-            { assertThat(firstRound[0]).isGreaterThanOrEqualTo(0) },
-            { assertThat(firstRound[1]).isGreaterThanOrEqualTo(0) },
-            { assertThat(firstRound[2]).isGreaterThanOrEqualTo(0) }
+            { assertThat(firstRound.getByIndex(0)).isNotNull() },
+            { assertThat(firstRound.getByIndex(1)).isNotNull() },
+            { assertThat(firstRound.getByIndex(2)).isNotNull() }
         )
     }
 }
