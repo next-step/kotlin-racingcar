@@ -10,48 +10,44 @@ internal class CarsTest {
 
     @Test
     fun createNewCar() {
-        val cars = Cars(movementChecker)
-        cars.createNewCars(listOf("song"))
+        val cars = Cars(listOf("song"), movementChecker)
 
-        assertThat(cars.names()).containsOnly(CarName("song"))
+        assertThat(cars.cars.map { it.name }).containsOnly(CarName("song"))
     }
 
     @Test
     fun getFarthestCars() {
-        val cars = Cars(movementChecker)
-        cars.createNewCars(listOf("song", "kim", "chang"))
+        val cars = Cars(listOf("song", "kim", "chang"), movementChecker)
 
         repeat(2) {
-            cars[0].moveCar()
+            cars.cars[0].moveCar()
         }
 
         repeat(2) {
-            cars[1].moveCar()
+            cars.cars[1].moveCar()
         }
 
         repeat(1) {
-            cars[2].moveCar()
+            cars.cars[2].moveCar()
         }
 
-        assertThat(cars.getFarthestCars()).containsOnly(cars[0], cars[1])
+        assertThat(cars.getFarthestCars()).containsOnly(cars.cars[0], cars.cars[1])
     }
 
     @Test
     fun moveAllCar() {
-        val cars = Cars(movementChecker)
-        cars.createNewCars(listOf("song", "kim"))
+        val cars = Cars(listOf("song", "kim"), movementChecker)
 
         repeat(3) {
             cars.moveAllCar()
         }
 
-        assertThat(cars.positions()).containsOnly(CarPosition(3))
+        assertThat(cars.cars.map { it.position }).containsOnly(CarPosition(3))
     }
 
     @Test
     fun getCarStates() {
-        val cars = Cars(movementChecker)
-        cars.createNewCars(listOf("song"))
+        val cars = Cars(listOf("song"), movementChecker)
 
         cars.getCarStates()
     }
@@ -59,9 +55,8 @@ internal class CarsTest {
     @Test
     fun size() {
         val names = listOf("a", "b", "c")
-        val cars = Cars(movementChecker)
-        cars.createNewCars(names)
+        val cars = Cars(names, movementChecker)
 
-        assertThat(cars.size()).isEqualTo(names.size)
+        assertThat(cars.cars.size).isEqualTo(names.size)
     }
 }

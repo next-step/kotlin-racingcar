@@ -21,7 +21,8 @@ data class CarName(val name: String) {
 
 data class CarPosition(private var _position: Int = INIT_POSITION_NUMBER) : Comparable<CarPosition> {
 
-    val position: Int get() = _position
+    val position: Int
+        get() = _position
 
     fun increase() {
         _position += 1

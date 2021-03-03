@@ -6,11 +6,7 @@ import racing.data.RoundResult
 
 class RacingGame(private val racingGameData: RacingGameData, movementChecker: MovementChecker) {
 
-    val cars = Cars(movementChecker)
-
-    init {
-        cars.createNewCars(racingGameData.carNames)
-    }
+    val cars = Cars(racingGameData.carNames, movementChecker)
 
     fun run(): RacingHistory {
         val racingHistory = RacingHistory()

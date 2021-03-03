@@ -2,13 +2,9 @@ package racing.domain
 
 import racing.data.CarState
 
-class Cars(private val movementChecker: MovementChecker) {
+class Cars(names: List<String>, private val movementChecker: MovementChecker) {
 
-    private var cars = listOf<Car>()
-
-    fun createNewCars(names: List<String>) {
-        cars = names.map { Car(it) }.toList()
-    }
+    val cars: List<Car> = names.map { Car(it) }
 
     fun getFarthestCars(): List<Car> {
         val maxPosition = getMaxPosition()
@@ -31,11 +27,4 @@ class Cars(private val movementChecker: MovementChecker) {
     fun getCarStates(): List<CarState> {
         return cars.map { CarState.from(it) }.toList()
     }
-
-    fun size() = cars.size
-
-    fun names() = cars.map { it.name }.toList()
-    fun positions() = cars.map { it.position }.toList()
-
-    operator fun get(index: Int) = cars[index]
 }

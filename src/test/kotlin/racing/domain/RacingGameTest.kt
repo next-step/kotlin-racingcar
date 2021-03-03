@@ -17,8 +17,8 @@ class RacingGameTest {
     @Test
     fun `constructor test`() {
         val racingGame = RacingGame(testRacingGameData, MovementChecker())
-        assertThat(racingGame.cars.size()).isEqualTo(testInputCarNames.size)
-        assertThat(racingGame.cars.names()).containsAll(testCarNames)
+        assertThat(racingGame.cars.cars.size).isEqualTo(testInputCarNames.size)
+        assertThat(racingGame.cars.cars.map { it.name }).containsAll(testCarNames)
     }
 
     @Test
@@ -73,18 +73,18 @@ class RacingGameTest {
         val cars = racingGame.cars
 
         repeat(2) {
-            cars[0].moveCar()
+            cars.cars[0].moveCar()
         }
 
         repeat(3) {
-            cars[1].moveCar()
+            cars.cars[1].moveCar()
         }
 
         repeat(1) {
-            cars[2].moveCar()
+            cars.cars[2].moveCar()
         }
 
-        assertThat(racingGame.getWinnerNames()).containsOnly(cars[1].name.name)
+        assertThat(racingGame.getWinnerNames()).containsOnly(cars.cars[1].name.name)
     }
 
     @Test
@@ -94,17 +94,17 @@ class RacingGameTest {
         val cars = racingGame.cars
 
         repeat(2) {
-            cars[0].moveCar()
+            cars.cars[0].moveCar()
         }
 
         repeat(2) {
-            cars[1].moveCar()
+            cars.cars[1].moveCar()
         }
 
         repeat(1) {
-            cars[2].moveCar()
+            cars.cars[2].moveCar()
         }
 
-        assertThat(racingGame.getWinnerNames()).containsOnly(cars[0].name.name, cars[1].name.name)
+        assertThat(racingGame.getWinnerNames()).containsOnly(cars.cars[0].name.name, cars.cars[1].name.name)
     }
 }
