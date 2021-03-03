@@ -8,5 +8,5 @@ fun main() {
 
     val lapResults = racingGame.play(lapCount)
 
-    OutputView.handleOutput(lapCount, lapResults)
+    OutputView.handleOutput(lapResults)
 }
