@@ -3,7 +3,11 @@ package racingcar.ui
 import input.InputStrategy
 
 class InputView(question: String, private val inputStrategy: InputStrategy) {
-    val value: Int = tryUserInput(question)
+    val value: Int
+
+    init {
+        value = tryUserInput(question)
+    }
 
     private fun tryUserInput(question: String): Int {
         println(question)

@@ -1,3 +1,3 @@
 package racingcar
 
-class GameConfiguration(val numberOfCars: Int, val numberOfAttempts: Int)
+class GameConfiguration(val numberOfAttempts: Int, val numberOfCars: Int)
