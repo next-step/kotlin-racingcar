@@ -6,7 +6,8 @@ class Game(
     private val numberOfRound: Int,
     private val cars: Cars
 ) {
-    private val numberOfCars: Int = cars.getNumberOfCars()
+    private val gameManager = GameManager(cars)
+    private val numberOfCars: Int = gameManager.getNumberOfCars()
     private val randomNumberFactory = RandomNumberManager()
     private val outputView = Outputview()
 
@@ -24,12 +25,13 @@ class Game(
     }
 
     private fun printOneRound() {
-        val progressOfCars = cars.getProgressOfCars()
+        val progressOfCars = gameManager.getProgressOfCars()
         outputView.printOneRound(progressOfCars)
     }
 
     private fun printWinner() {
-        val winners = cars.getWinners()
+        val highScore = gameManager.getHighScore()
+        val winners = gameManager.getWinners(highScore)
         outputView.printWinner(winners)
     }
 }
