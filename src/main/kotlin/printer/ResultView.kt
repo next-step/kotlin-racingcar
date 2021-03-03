@@ -1,6 +1,8 @@
 package printer
 
+import racingcar.Position
 import racingcar.Reception
+import racingcar.Round
 import racingcar.Winners
 
 object ResultView {
@@ -12,22 +14,22 @@ object ResultView {
         print(winners.joinToWinners(Reception.CAR_NAME_DELIMITERS) + "가 최종 우승했습니다")
     }
 
-    fun printRacing(carNames: List<String>, carPositions: List<List<Int>>) {
-        carPositions.map { carPosition ->
-            printCarsPath(carNames, carPosition)
+    fun printRacing(rounds: List<Round>) {
+        rounds.map {
+            printCarsPath(it)
             println()
         }
     }
 
-    private fun printCarsPath(carNames: List<String>, positions: List<Int>) {
-        positions.mapIndexed { index, position ->
-            printName(carNames[index])
-            printCarPath(position)
+    private fun printCarsPath(round: Round) {
+        round.forEach {
+            printName(it.name)
+            printCarPath(it.position)
         }
     }
 
-    private fun printCarPath(position: Int) {
-        println("-".repeat(position))
+    private fun printCarPath(position: Position) {
+        println("-".repeat(position.position))
     }
 
     private fun printName(name: String) {
