@@ -1,6 +1,5 @@
 package car.io
 
-import car.io.Input
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
