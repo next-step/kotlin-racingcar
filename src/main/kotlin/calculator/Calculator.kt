@@ -8,8 +8,8 @@ object Calculator {
         require(!expression.isNullOrBlank())
         val terms = expression.split(DELIMITER)
         return calculate(
-            numbers = parseNumbers(terms),
-            operators = parseOperators(terms)
+            numbers = getNumbers(terms),
+            operators = getOperators(terms)
         )
     }
 
@@ -17,12 +17,12 @@ object Calculator {
 
     private fun isOperator(index: Int) = index % 2 == 1
 
-    private fun parseNumbers(list: List<String>) =
+    private fun getNumbers(list: List<String>) =
         list
             .filterIndexed { i, _ -> isNumber(i) }
             .map { it.toDoubleOrThrowIllegalArgumentException() }
 
-    private fun parseOperators(list: List<String>) =
+    private fun getOperators(list: List<String>) =
         list
             .filterIndexed { i, _ -> isOperator(i) }
             .map { Operator(it) }
