@@ -1,7 +1,6 @@
 package racing
 
-import racing.domain.PlatformRandomGenerator
-import racing.domain.RandomMovable
+import racing.domain.RacingFactory
 import racing.view.InputView
 import racing.view.OutputView
 
@@ -11,17 +10,18 @@ internal class RacingLauncher {
     private val racingFactory = RacingFactory()
 
     fun play() {
-        val numberOfCar = inputView.queryNumberOfCar()
+        val carNames = inputView.queryCarNames()
         val numberOfRound = inputView.queryNumberOfRound()
-        val movable = RandomMovable(randomGenerator = PlatformRandomGenerator(), max = 9, threshold = 4)
-        val racing = racingFactory.createRacing(numberOfCar = numberOfCar, movable = movable)
+        val racing = racingFactory.createRandomRacing(carNames = carNames)
 
         outputView.renderStartMessage()
 
         repeat(numberOfRound) {
-            racing.tryMove()
-            outputView.renderPositions(racing.positions)
+            racing.nextRound()
+            outputView.renderRound(racing.cars)
         }
+
+        outputView.renderWinners(racing.winners)
     }
 }
 

@@ -1,15 +1,15 @@
 package racing.domain
 
-import java.util.function.Consumer
-
 internal class Racing(
-    private val cars: List<Car>,
-    private val movable: Movable
+    private val racingCars: RacingCars
 ) {
-    val positions: List<Int>
-        get() = this.cars.map { it.position }
+    val cars: List<Car>
+        get() = this.racingCars.cars
 
-    fun tryMove() {
-        this.cars.forEach(Consumer { it.tryMove(movable) })
+    val winners: List<Car>
+        get() = this.racingCars.winners
+
+    fun nextRound() {
+        racingCars.nextRound()
     }
 }

@@ -17,7 +17,7 @@ enum class Operator(private val operator: String) {
     abstract fun operate(num1: Number, num2: Number): Number
 
     companion object {
-        fun find(operator: String): Operator? {
+        fun findOrNull(operator: String): Operator? {
             return values().firstOrNull {
                 it.operator == operator
             }
