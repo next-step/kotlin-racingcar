@@ -1,5 +1,6 @@
 package racingcar
 
+import racingcar.domain.CarName
 import racingcar.domain.PositiveCount
 import racingcar.domain.RacingCarGame
 import racingcar.userinterface.Console
@@ -13,8 +14,8 @@ fun main() {
 class RacingCarApplication(private val userInterface: UserInterface) {
 
     fun run() {
-        val carNames = userInterface.inputCarNames()
-        carNames.forEach { require(it.isNotBlank()) { "자동차 이름은 공백이 될 수 없습니다" } }
+        val carNameValues = userInterface.inputCarNames()
+        val carNames = carNameValues.map { CarName(it) }
 
         val roundCountValue = userInterface.inputRoundCount()
         val roundCount = PositiveCount(roundCountValue)

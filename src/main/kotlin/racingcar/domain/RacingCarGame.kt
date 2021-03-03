@@ -4,7 +4,7 @@ private const val MIN_RANDOM_VALUE = 0
 private const val MAX_RANDOM_VALUE = 9
 private const val THRESHOLD = 4
 
-class RacingCarGame(carNames: List<String>, roundCount: PositiveCount) {
+class RacingCarGame(carNames: List<CarName>, roundCount: PositiveCount) {
 
     private val cars: List<Car>
     private val rounds: List<Round>
@@ -12,7 +12,7 @@ class RacingCarGame(carNames: List<String>, roundCount: PositiveCount) {
     init {
         val zeroToNineRandomGenerator = RandomGenerator(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE)
         val fortyPercentMoveableStrategy = RandomMoveStrategy(zeroToNineRandomGenerator, THRESHOLD)
-        cars = carNames.map { Car(it.trim(), fortyPercentMoveableStrategy) }
+        cars = carNames.map { Car(it.value, fortyPercentMoveableStrategy) }
         rounds = (1..roundCount.value).map { Round() }
     }
 
