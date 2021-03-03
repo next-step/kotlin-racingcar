@@ -3,11 +3,11 @@ package study.racingcar
 class RacingGame(private val moveStrategy: MoveStrategy) {
 
     fun raceCars(cars: List<Car>): List<Car> {
-        val mutableCars = cars.toMutableList()
-        for (car in mutableCars) {
+        val movableCars = cars.toMutableList()
+        for (car in movableCars) {
             moveCarOrNot(car, moveStrategy.isMoveCar())
         }
-        return mutableCars.toList()
+        return movableCars.toList()
     }
 
     fun moveCarOrNot(car: Car, isMove: Boolean) {
