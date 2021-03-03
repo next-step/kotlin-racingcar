@@ -2,6 +2,7 @@ package view.console
 
 import racing.ui.RacingCarDto
 import racing.ui.RacingCarDtos
+import racing.ui.RankingDto
 
 class ConsoleOutput {
     fun printExpressionInputMessage() = println("계산식을 입력해주세요.")
@@ -27,5 +28,5 @@ class ConsoleOutput {
             .apply { repeat(dto.position) { print("-") } }
             .apply { println() }
 
-    fun printRacingGameWinner(winners: List<String>) = println("${winners.joinToString(", ")}가 최종 우승했습니다.")
+    fun printRacingGameWinner(winners: RankingDto) = println("${winners.winners.joinToString(", ")}가 최종 우승했습니다.")
 }
