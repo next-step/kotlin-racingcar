@@ -1,10 +1,13 @@
 package study.calculation
 
 class CalculateTokenizer {
+    companion object {
+        private const val TOKEN_SEPERATOR = " "
+    }
 
-    fun tokenize(stringExpression: String?): ExpressionToken {
+    fun tokenize(stringExpression: String): ExpressionToken {
         validate(stringExpression)
-        val stringTokens = stringExpression!!.split(" ")
+        val stringTokens = stringExpression.split(TOKEN_SEPERATOR)
         val token = ExpressionToken()
         token.addOperand(stringTokens[0].toInt())
 
@@ -15,11 +18,11 @@ class CalculateTokenizer {
         return token
     }
 
-    private fun validate(expression: String?) {
-        require(!expression.isNullOrBlank()) {
-            "입력 값이 null 이거나 빈 공백 문자열 입니다."
+    private fun validate(expression: String) {
+        require(!expression.isBlank()) {
+            "입력 값이 빈 공백 문자열 입니다."
         }
-        require(expression.split(" ").size >= 3 && expression.split(" ").size % 2 != 0) {
+        require(expression.split(TOKEN_SEPERATOR).size >= 3 && expression.split(TOKEN_SEPERATOR).size % 2 != 0) {
             "올바른 식이 아닙니다."
         }
     }
