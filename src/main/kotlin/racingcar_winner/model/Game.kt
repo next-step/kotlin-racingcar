@@ -7,7 +7,7 @@ class Game(
     private val cars: Cars
 ) {
     private val numberOfCars: Int = cars.getNumberOfCars()
-    private val randomNumberFactory = RandomNumberFactory()
+    private val randomNumberFactory = RandomNumberManager()
     private val outputView = Outputview()
     private val referee = Referee()
 
@@ -21,7 +21,7 @@ class Game(
     }
 
     private fun playOneRound() {
-        cars.playOneRound(randomNumberFactory)
+        cars.moveAll(randomNumberFactory)
     }
 
     private fun printOneRound() {

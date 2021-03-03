@@ -3,7 +3,7 @@ package racingcar_winner.model
 const val CRITERIA_NUMBER = 4
 
 class Car(
-    var name: String
+    val name: String
 ) {
     var progress: Int = 0
         private set

@@ -6,7 +6,7 @@ class Cars(
 
     fun getNumberOfCars(): Int = cars.size
 
-    fun playOneRound(randomNumberFactory: RandomNumberFactory) {
+    fun moveAll(randomNumberFactory: RandomNumberManager) {
         for (car in cars) {
             val randomNumber = randomNumberFactory.generateRandomNumber()
             car.tryToMoveForward(randomNumber)

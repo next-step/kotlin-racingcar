@@ -1,6 +1,6 @@
 package racingcar_winner.model
 
-class CarFactory {
+class CarManager {
 
     fun orderMakingCars(carNames: List<String>): Cars {
         return Cars(
