@@ -16,7 +16,7 @@ internal class RacingGameTest {
 
         val lapResults = racingGame.play(lapCount)
 
-        assertThat(lapResults.size).isEqualTo(lapCount)
+        assertThat(lapResults.size()).isEqualTo(lapCount)
         if (lapCount > 0) {
             assertThat(lapResults[0].records.size).isEqualTo(2)
         }
