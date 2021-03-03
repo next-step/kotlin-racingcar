@@ -13,8 +13,8 @@ class StartRacing {
 
         (1..runCount).forEach {
             racingRun.nextRun()
-            resultView.render(racingRun.racingCarStatusList())
+            resultView.render(racingRun.racingRecords())
         }
-        resultView.renderResult(racingRun.racingCarStatusList())
+        resultView.renderResult(racingRun.getWinnerCarNamesAsString())
     }
 }

@@ -1,6 +1,6 @@
 package study.racingcar.step4
 
-class Car(private val ableNumber: Int, val name: String) : Racing {
+class Car(private val ableNumber: Int, private val name: String) : Racing {
 
     private var position: Int = 0
 
@@ -8,11 +8,11 @@ class Car(private val ableNumber: Int, val name: String) : Racing {
         goAndPause(ableNumber <= runValue)
     }
 
-    override fun position(): Int {
+    override fun getPosition(): Int {
         return position
     }
 
-    override fun name(): String {
+    override fun getName(): String {
         return name
     }
 
