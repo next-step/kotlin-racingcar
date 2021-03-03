@@ -63,8 +63,8 @@ internal class CarsTest {
 
         val winners = cars.findWinner()
 
-        assertThat(winners.size).isEqualTo(2)
-        assertThat(winners[0]).isEqualTo(PACK_NAME)
-        assertThat(winners[1]).isEqualTo(LEE_NAME)
+        assertThat(winners.getSize()).isEqualTo(2)
+        assertThat(winners.getByIndex(0)).isEqualTo(PACK_NAME)
+        assertThat(winners.getByIndex(1)).isEqualTo(LEE_NAME)
     }
 }
