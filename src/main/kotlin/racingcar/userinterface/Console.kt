@@ -1,5 +1,6 @@
 package racingcar.userinterface
 
+import racingcar.domain.CarResult
 import racingcar.domain.Results
 
 private const val CAR_NAME_DELIMITER = ","
@@ -21,11 +22,17 @@ class Console : UserInterface {
         println("실행 결과")
 
         results.results.forEach { result ->
-            result.distances.forEach { distance ->
-                (1..distance).map { DISTANCE_SIGN }.forEach { print(it) }
-                println()
+            result.carResults.forEach { carResult ->
+                val carResultOutput = parseCarResultOutput(carResult)
+                println(carResultOutput)
             }
             println()
         }
+    }
+
+    private fun parseCarResultOutput(carResult: CarResult): String {
+        val name = carResult.name
+        val distance = (1..carResult.distance).joinToString("") { DISTANCE_SIGN }
+        return "$name : $distance"
     }
 }

@@ -22,7 +22,7 @@ class RacingCarGame(carNames: List<CarName>, roundCount: PositiveCount) {
 
     private fun play(round: Round) {
         cars.forEach { it.moveIfMoveable() }
-        val result = Result(cars.map { it.currentDistance() })
+        val result = Result(cars.map { CarResult(it.displayName(), it.currentDistance()) })
         round.recordResult(result)
     }
 
