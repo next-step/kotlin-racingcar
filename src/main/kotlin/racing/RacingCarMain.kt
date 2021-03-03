@@ -15,7 +15,7 @@ object RacingCarMain {
         val racingHistory = racingGame.run()
 
         ResultView.printRacingHistory(racingHistory)
-        ResultView.printWinners(racingGame.getWinnerNames())
+        ResultView.printWinners(racingGame.getWinners())
     }
 }
 

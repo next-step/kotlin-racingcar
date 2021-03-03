@@ -2,6 +2,7 @@ package racing.ui
 
 import racing.data.RacingHistory
 import racing.data.RoundResult
+import racing.data.Winners
 
 /**
  * @author tae-heon.song<taeheon.song@linecorp.com>
@@ -12,7 +13,6 @@ object ResultView {
     private const val SYMBOL_ONE_STEP = "-"
     private const val NOTICE_RESULT_START = "실행결과"
     private const val NAME_DELIMETER_FOR_DISPLAY = ", "
-    private const val EXCEPTION_MESSAGE_EMPTY_LIST = "리스트의 값이 존재하지 않습니다."
 
     fun printResultNotice() {
         println(NOTICE_RESULT_START)
@@ -39,8 +39,8 @@ object ResultView {
         println()
     }
 
-    fun printWinners(names: List<String>) {
-        val winnerNames = names.joinToString(NAME_DELIMETER_FOR_DISPLAY)
+    fun printWinners(winners: Winners) {
+        val winnerNames = winners.winners.joinToString(NAME_DELIMETER_FOR_DISPLAY)
         println("${winnerNames}가 최종 우승했습니다.")
     }
 }

@@ -3,6 +3,7 @@ package racing.domain
 import racing.data.RacingGameData
 import racing.data.RacingHistory
 import racing.data.RoundResult
+import racing.data.Winners
 
 class RacingGame(private val racingGameData: RacingGameData, movementChecker: MovementChecker) {
 
@@ -18,11 +19,7 @@ class RacingGame(private val racingGameData: RacingGameData, movementChecker: Mo
         return racingHistory
     }
 
-    fun getWinnerNames(): List<String> {
-        return getWinners().map { it.name.name }
-    }
-
-    private fun getWinners(): List<Car> {
-        return cars.getFarthestCars()
+    fun getWinners(): Winners {
+        return Winners.of(cars.getFarthestCars())
     }
 }
