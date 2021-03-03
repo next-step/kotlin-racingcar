@@ -18,14 +18,12 @@ class ConsoleOutput {
 
     fun printRacingGameRecord(dtos: List<RacingCarDtos>) = dtos.forEach { printOneTryRecord(it) }
 
-    private fun printOneTryRecord(it: RacingCarDtos) {
+    private fun printOneTryRecord(it: RacingCarDtos) =
         it.racingCarDtos.forEach { printEachCarRecord(it) }
-        println()
-    }
+            .apply { println() }
 
-    private fun printEachCarRecord(dto: RacingCarDto) {
+    private fun printEachCarRecord(dto: RacingCarDto) =
         print("${dto.name} : ")
-        repeat(dto.position) { print("-") }
-        println()
-    }
+            .apply { repeat(dto.position) { print("-") } }
+            .apply { println() }
 }
