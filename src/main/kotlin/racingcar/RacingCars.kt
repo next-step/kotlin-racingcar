@@ -3,7 +3,7 @@ package racingcar
 import number.Numbers.makeRandomsToRacing
 
 class RacingCars(private var cars: Cars) {
-    fun racing(attempts: Int): List<Round> {
+    fun racing(attempts: Int): Rounds {
         val allRound = mutableListOf<Round>()
 
         repeat(attempts) {
@@ -11,6 +11,6 @@ class RacingCars(private var cars: Cars) {
             allRound.add(cars.finishRound())
         }
 
-        return allRound
+        return Rounds(allRound)
     }
 }

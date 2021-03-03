@@ -3,6 +3,7 @@ package printer
 import racingcar.Position
 import racingcar.Reception
 import racingcar.Round
+import racingcar.Rounds
 import racingcar.Winners
 
 object ResultView {
@@ -14,8 +15,8 @@ object ResultView {
         print(winners.joinToWinners(Reception.CAR_NAME_DELIMITERS) + "가 최종 우승했습니다")
     }
 
-    fun printRacing(rounds: List<Round>) {
-        rounds.map {
+    fun printRacing(rounds: Rounds) {
+        rounds.forEach {
             printCarsPath(it)
             println()
         }

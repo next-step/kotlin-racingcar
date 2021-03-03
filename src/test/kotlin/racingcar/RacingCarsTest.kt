@@ -11,12 +11,12 @@ class RacingCarsTest {
         val cars = Cars(CARS)
         val racingCars = RacingCars(cars)
 
-        val carPositions = racingCars.racing(5)
+        val rounds = racingCars.racing(5)
 
-        val firstRound = carPositions[0]
+        val firstRound = rounds.getByIndex(0)
 
         assertAll(
-            { assertThat(carPositions.size).isEqualTo(5) },
+            { assertThat(rounds.getSize()).isEqualTo(5) },
             { assertThat(firstRound.getByIndex(0)).isNotNull() },
             { assertThat(firstRound.getByIndex(1)).isNotNull() },
             { assertThat(firstRound.getByIndex(2)).isNotNull() }
