@@ -13,10 +13,10 @@ class OperatorTest {
         val oldNum = 4.0
         val newNum = 2.0
 
-        assertEquals(6.0, Operator.calculate("+", oldNum, newNum))
-        assertEquals(2.0, Operator.calculate("-", oldNum, newNum))
-        assertEquals(8.0, Operator.calculate("*", oldNum, newNum))
-        assertEquals(2.0, Operator.calculate("/", oldNum, newNum))
+        assertEquals(6.0, Operator.of("+").execute(oldNum, newNum))
+        assertEquals(2.0, Operator.of("-").execute(oldNum, newNum))
+        assertEquals(8.0, Operator.of("*").execute(oldNum, newNum))
+        assertEquals(2.0, Operator.of("/").execute(oldNum, newNum))
     }
 
     @Test
@@ -24,8 +24,8 @@ class OperatorTest {
         val oldNum = 4.0
         val newNum = 2.0
 
-        assertThrows<IllegalArgumentException> { Operator.calculate("a", oldNum, newNum) }
-        assertThrows<IllegalArgumentException> { Operator.calculate("&", oldNum, newNum) }
+        assertThrows<IllegalArgumentException> { Operator.of("a").execute(oldNum, newNum) }
+        assertThrows<IllegalArgumentException> { Operator.of("&").execute(oldNum, newNum) }
     }
 
     @ParameterizedTest
@@ -35,7 +35,7 @@ class OperatorTest {
         "1, 5, 6"
     )
     fun `더하기 테스트`(oldNum: Double, newNum: Double, result: Double) {
-        assertEquals(result, AddOperator.operate(oldNum, newNum))
+        assertEquals(result, Operator.PLUS.execute(oldNum, newNum))
     }
 
     @ParameterizedTest
@@ -45,7 +45,7 @@ class OperatorTest {
         "5, 1, 4"
     )
     fun `빼기 테스트`(oldNum: Double, newNum: Double, result: Double) {
-        assertEquals(result, MinusOperator.operate(oldNum, newNum))
+        assertEquals(result, Operator.MINUS.execute(oldNum, newNum))
     }
 
     @ParameterizedTest
@@ -55,7 +55,7 @@ class OperatorTest {
         "1, 5, 5"
     )
     fun `곱하기 테스트`(oldNum: Double, newNum: Double, result: Double) {
-        assertEquals(result, MultipleOperator.operate(oldNum, newNum))
+        assertEquals(result, Operator.MULTIPLY.execute(oldNum, newNum))
     }
 
     @ParameterizedTest
@@ -65,6 +65,6 @@ class OperatorTest {
         "10, 8, 1.25"
     )
     fun `나누기 테스트`(oldNum: Double, newNum: Double, result: Double) {
-        assertEquals(result, DivideOperator.operate(oldNum, newNum))
+        assertEquals(result, Operator.DIVIDE.execute(oldNum, newNum))
     }
 }

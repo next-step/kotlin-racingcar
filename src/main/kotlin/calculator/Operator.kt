@@ -2,55 +2,19 @@ package calculator
 
 import java.lang.IllegalArgumentException
 
-interface Operator {
-    val sign: String
-    fun operate(oldNum: Double, newNum: Double): Double
+enum class Operator(private val sign: String, val execute: (Double, Double) -> Double) {
+    PLUS("+", { oldNum, newNum -> oldNum + newNum }),
+    MINUS("-", { oldNum, newNum -> oldNum - newNum }),
+    MULTIPLY("*", { oldNum, newNum -> oldNum * newNum }),
+    DIVIDE("/", { oldNum, newNum -> oldNum / newNum });
 
     companion object {
-        fun calculate(sign: String, oldNum: Double, newNum: Double): Double {
-            return when (sign) {
-                AddOperator.sign -> AddOperator.operate(oldNum, newNum)
-                MinusOperator.sign -> MinusOperator.operate(oldNum, newNum)
-                MultipleOperator.sign -> MultipleOperator.operate(oldNum, newNum)
-                DivideOperator.sign -> DivideOperator.operate(oldNum, newNum)
-                else -> throw IllegalArgumentException("사칙연산 기호가 아닌 잘못된 값이 전달되었습니다.")
+        fun of(sign: String): Operator {
+            try {
+                return values().first { it.sign == sign }
+            } catch (e: NoSuchElementException) {
+                throw IllegalArgumentException("사칙연산 기호가 아닌 잘못된 값이 전달되었습니다.")
             }
         }
-    }
-}
-
-object AddOperator : Operator {
-    override val sign: String
-        get() = "+"
-
-    override fun operate(oldNum: Double, newNum: Double): Double {
-        return oldNum + newNum
-    }
-}
-
-object MinusOperator : Operator {
-    override val sign: String
-        get() = "-"
-
-    override fun operate(oldNum: Double, newNum: Double): Double {
-        return oldNum - newNum
-    }
-}
-
-object MultipleOperator : Operator {
-    override val sign: String
-        get() = "*"
-
-    override fun operate(oldNum: Double, newNum: Double): Double {
-        return oldNum * newNum
-    }
-}
-
-object DivideOperator : Operator {
-    override val sign: String
-        get() = "/"
-
-    override fun operate(oldNum: Double, newNum: Double): Double {
-        return oldNum / newNum
     }
 }
