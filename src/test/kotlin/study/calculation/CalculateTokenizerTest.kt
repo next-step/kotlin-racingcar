@@ -1,4 +1,4 @@
-package study.step2
+package study.calculation
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -17,11 +17,11 @@ internal class CalculateTokenizerTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["  ", "", "null", "2 2 3 + 4"])
-    fun `토크나이즈 null 혹은 빈 문자열 잘못된 식 테스트`(input: String) {
+    @ValueSource(strings = ["  ", "", "2 2 3 + 4"])
+    fun `토크나이즈 빈 문자열 혹은 잘못된 식 테스트`(input: String) {
         val calculateTokenizer = CalculateTokenizer()
         assertThrows<IllegalArgumentException> {
-            calculateTokenizer.tokenize(if (input == "null") null else input)
+            calculateTokenizer.tokenize(input)
         }
     }
 }
