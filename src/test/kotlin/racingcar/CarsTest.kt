@@ -20,7 +20,7 @@ internal class CarsTest {
 
         cars.forwardByCondition(car, condition)
 
-        assertThat(car.position).isEqualTo(expectedCardPosition)
+        assertThat(car.position).isEqualTo(Position(expectedCardPosition))
     }
 
     @Test
@@ -30,9 +30,9 @@ internal class CarsTest {
         cars.forwardAllByCondition(listOf(1, 5, 9))
 
         assertAll(
-            { assertThat(cars.getPositionByIndex(0)).isEqualTo(0) },
-            { assertThat(cars.getPositionByIndex(1)).isEqualTo(1) },
-            { assertThat(cars.getPositionByIndex(2)).isEqualTo(1) }
+            { assertThat(cars.getPositionByIndex(0)).isEqualTo(Position(0)) },
+            { assertThat(cars.getPositionByIndex(1)).isEqualTo(Position(1)) },
+            { assertThat(cars.getPositionByIndex(2)).isEqualTo(Position(1)) }
         )
     }
 
@@ -42,9 +42,9 @@ internal class CarsTest {
 
         assertAll(
             { assertThat(cars.getSize()).isEqualTo(3) },
-            { assertThat(cars.getPositionByIndex(0)).isEqualTo(0) },
-            { assertThat(cars.getPositionByIndex(1)).isEqualTo(0) },
-            { assertThat(cars.getPositionByIndex(2)).isEqualTo(0) }
+            { assertThat(cars.getPositionByIndex(0)).isEqualTo(Position(0)) },
+            { assertThat(cars.getPositionByIndex(1)).isEqualTo(Position(0)) },
+            { assertThat(cars.getPositionByIndex(2)).isEqualTo(Position(0)) }
         )
     }
 

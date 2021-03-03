@@ -13,7 +13,7 @@ internal class CarTest {
 
         car.forward()
 
-        assertThat(car.position).isEqualTo(1)
+        assertThat(car.position).isEqualTo(Position(1))
     }
 
     @Test
