@@ -17,11 +17,9 @@ class Cars(private val cars: List<Car>) {
         val positions = getPositions()
         val maxPosition = positions.max()
 
-        val winners = cars.filter { car ->
-            car.position == maxPosition
-        }.map { car ->
-            car.name
-        }.toList()
+        val winners = cars
+            .filter { it.position == maxPosition }
+            .map { it.name }
 
         return Winners(winners)
     }
@@ -36,11 +34,12 @@ class Cars(private val cars: List<Car>) {
         return cars[index].position
     }
 
-    fun getPositions(): Positions {
-        val positions = cars.map { car -> car.position }
-            .toList()
+    private fun getPositions(): Positions {
+        return Positions(cars.map { it.position })
+    }
 
-        return Positions(positions)
+    fun finishRound(): Round {
+        return Round(cars.map { Record(it.name, it.position) })
     }
 
     companion object {
@@ -50,13 +49,7 @@ class Cars(private val cars: List<Car>) {
         fun createCars(names: List<String>): Cars {
             checkNameSize(names.size)
 
-            val newCars = names
-                .map { name ->
-                    Car(name)
-                }
-                .toList()
-
-            return Cars(newCars)
+            return Cars(names.map { Car(it) })
         }
 
         private fun checkNameSize(nameSize: Int) {
