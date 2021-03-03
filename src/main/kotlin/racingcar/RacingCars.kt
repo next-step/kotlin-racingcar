@@ -3,14 +3,14 @@ package racingcar
 import number.Numbers.makeRandomsToRacing
 
 class RacingCars(private var cars: Cars) {
-    fun racing(attempts: Int): List<Positions> {
-        val allRoundPositions = ArrayList<Positions>()
+    fun racing(attempts: Int): List<Round> {
+        val allRound = mutableListOf<Round>()
 
         repeat(attempts) {
             cars.forwardAllByCondition(makeRandomsToRacing(cars.getSize()))
-            allRoundPositions.add(cars.getPositions())
+            allRound.add(cars.finishRound())
         }
 
-        return allRoundPositions
+        return allRound
     }
 }
