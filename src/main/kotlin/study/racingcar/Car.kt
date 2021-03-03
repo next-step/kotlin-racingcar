@@ -12,7 +12,7 @@ class Car(val name: String) {
     companion object {
         private const val MAX_CAR_NAME_LENGTH = 5
 
-        fun makeCar(carName: String): Car {
+        fun newCar(carName: String): Car {
             if (isExcessCarNameLength(carName)) {
                 throw IllegalArgumentException("$carName is excess $MAX_CAR_NAME_LENGTH")
             }
@@ -20,7 +20,7 @@ class Car(val name: String) {
             return Car(carName)
         }
 
-        fun isExcessCarNameLength(carName: String): Boolean {
+        private fun isExcessCarNameLength(carName: String): Boolean {
             return carName.length > MAX_CAR_NAME_LENGTH
         }
     }

@@ -4,6 +4,6 @@ object CarNameParser {
 
     fun requestParseCarNames(carNames: String): List<Car> {
         return carNames.split(",")
-            .map { Car.makeCar(it) }
+            .map { Car.newCar(it) }
     }
 }
