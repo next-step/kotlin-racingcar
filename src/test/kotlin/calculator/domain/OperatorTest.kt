@@ -1,6 +1,5 @@
 package calculator.domain
 
-import calculator.calculator.domain.Operator
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.DisplayName

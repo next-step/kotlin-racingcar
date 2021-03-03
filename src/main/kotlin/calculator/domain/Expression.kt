@@ -24,7 +24,7 @@ class Expression(input: String) {
 
     private fun toNumbers(tokens: List<String>): List<Double> {
         try {
-            return tokens.filterIndexed { index, token -> isNumber(index) }
+            return tokens.filterIndexed { index, _ -> isNumber(index) }
                 .map { token -> token.toDouble() }
                 .toList()
         } catch (e: NumberFormatException) {
@@ -32,7 +32,7 @@ class Expression(input: String) {
         }
     }
 
-    private fun toOperators(tokens: List<String>) = tokens.filterIndexed { index, token -> isOperator(index) }
+    private fun toOperators(tokens: List<String>) = tokens.filterIndexed { index, _ -> isOperator(index) }
         .map { token -> Operator.from(token) }
         .toList()
 
