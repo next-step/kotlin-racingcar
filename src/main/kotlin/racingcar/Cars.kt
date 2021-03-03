@@ -13,15 +13,17 @@ class Cars(private val cars: List<Car>) {
         }
     }
 
-    fun findWinner(): List<String> {
+    fun findWinner(): Winners {
         val positions = getPositions()
         val maxPosition = positions.max()
 
-        return cars.filter { car ->
+        val winners = cars.filter { car ->
             car.position == maxPosition
         }.map { car ->
             car.name
         }.toList()
+
+        return Winners(winners)
     }
 
     private fun canForward(condition: Int) = condition >= MAX_FORWARD_CONDITION
@@ -30,13 +32,15 @@ class Cars(private val cars: List<Car>) {
         return cars.size
     }
 
-    fun getPositionByIndex(index: Int): Int {
+    fun getPositionByIndex(index: Int): Position {
         return cars[index].position
     }
 
-    fun getPositions(): List<Int> {
-        return cars.map { car -> car.position }
+    fun getPositions(): Positions {
+        val positions = cars.map { car -> car.position }
             .toList()
+
+        return Positions(positions)
     }
 
     companion object {
