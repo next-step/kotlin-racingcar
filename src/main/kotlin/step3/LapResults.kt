@@ -6,9 +6,9 @@ class LapResults(val lapResults: List<LapResult>) {
     operator fun get(i: Int) = lapResults[i]
 
     fun findWinners(): Winners {
-        val lastRecords = lapResults.last().records.records
-        val winnersPosition = lastRecords.maxBy { it.position }?.position
+        val finalRecords = lapResults.last().records
+        val winnersPosition = finalRecords.records.maxBy { it.position }?.position
 
-        return Winners(lastRecords.filter { it.position == winnersPosition })
+        return Winners(finalRecords.records.filter { it.position == winnersPosition })
     }
 }
