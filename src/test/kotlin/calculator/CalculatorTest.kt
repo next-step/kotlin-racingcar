@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
 
 internal class CalculatorTest {
@@ -45,13 +46,11 @@ internal class CalculatorTest {
         }
     }
 
-    @Test
-    fun `입력값이 null이거나 빈 공백 문자일 경우`() {
+    @ParameterizedTest
+    @NullAndEmptySource
+    fun `입력값이 null이거나 빈 공백 문자일 경우`(input: String?) {
         assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            Calculator.execute(null)
-        }
-        assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            Calculator.execute("")
+            Calculator.execute(input)
         }
     }
 }
