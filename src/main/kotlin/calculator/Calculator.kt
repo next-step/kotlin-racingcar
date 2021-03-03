@@ -1,8 +1,6 @@
 package calculator
 
-object Calculator {
-
-    private const val DELIMITER = " "
+class Calculator {
 
     fun execute(expression: String?): Double {
         require(!expression.isNullOrBlank())
@@ -41,5 +39,9 @@ object Calculator {
             sum = operation(sum, numbers[index + 1])
         }
         return sum
+    }
+
+    companion object {
+        private const val DELIMITER = " "
     }
 }
