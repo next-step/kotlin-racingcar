@@ -13,8 +13,8 @@ fun main() {
 class RacingCarApplication(private val userInterface: UserInterface) {
 
     fun run() {
-        val carNamesStr = "pobi,crong,honux"
-        val carNames = carNamesStr.split(",").map { it.trim() }
+        val carNames = userInterface.inputCarNames()
+        carNames.forEach { require(it.isNotBlank()) { "자동차 이름은 공백이 될 수 없습니다" } }
 
         val roundCountValue = userInterface.inputRoundCount()
         val roundCount = PositiveCount(roundCountValue)

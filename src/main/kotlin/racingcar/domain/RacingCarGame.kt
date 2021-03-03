@@ -12,7 +12,7 @@ class RacingCarGame(carNames: List<String>, roundCount: PositiveCount) {
     init {
         val zeroToNineRandomGenerator = RandomGenerator(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE)
         val fortyPercentMoveableStrategy = RandomMoveStrategy(zeroToNineRandomGenerator, THRESHOLD)
-        cars = carNames.map { Car(it, fortyPercentMoveableStrategy) }
+        cars = carNames.map { Car(it.trim(), fortyPercentMoveableStrategy) }
         rounds = (1..roundCount.value).map { Round() }
     }
 
