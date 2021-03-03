@@ -18,9 +18,13 @@ class Cars(names: List<String>, private val movementChecker: MovementChecker) {
 
     fun moveAllCar() {
         cars.forEach {
-            if (movementChecker.isMovable()) {
-                it.moveCar()
-            }
+            moveCarIfPossible(it)
+        }
+    }
+
+    private fun moveCarIfPossible(it: Car) {
+        if (movementChecker.isMovable()) {
+            it.moveCar()
         }
     }
 

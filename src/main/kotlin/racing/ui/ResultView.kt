@@ -32,11 +32,7 @@ object ResultView {
     }
 
     private fun printCarStates(name: String, position: Int) {
-        print("$name : ")
-        repeat(position) {
-            print(SYMBOL_ONE_STEP)
-        }
-        println()
+        println("$name : ${SYMBOL_ONE_STEP.repeat(position)}")
     }
 
     fun printWinners(winners: Winners) {
