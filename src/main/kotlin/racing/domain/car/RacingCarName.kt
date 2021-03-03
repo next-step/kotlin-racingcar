@@ -4,7 +4,7 @@ private const val BLANK = " "
 private const val MAX_LENGTH = 8
 
 class RacingCarName(name: String) {
-    private val name: String
+    val name: String
 
     init {
         validateLength(name)

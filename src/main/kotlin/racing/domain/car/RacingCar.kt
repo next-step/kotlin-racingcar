@@ -5,15 +5,15 @@ import racing.domain.movement.MoveStrategy
 private const val MOVE_CONDITION = 4
 
 class RacingCar(
-    private val racingCarName: RacingCarName,
-    private var position: Int = 0
+    val racingCarName: RacingCarName,
+    var position: Int = 0
 ) {
-    fun move(moveStrategy: MoveStrategy): Int {
-        if (canMove(moveStrategy.decisionNumber)) {
+    fun move(moveStrategy: MoveStrategy): RacingCar {
+        if (canMove(moveStrategy)) {
             position++
         }
-        return position
+        return this
     }
 
-    private fun canMove(decisionNumber: Int) = decisionNumber >= MOVE_CONDITION
+    private fun canMove(moveStrategy: MoveStrategy) = moveStrategy.decisionNumber >= MOVE_CONDITION
 }

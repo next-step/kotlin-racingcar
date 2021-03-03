@@ -1,5 +1,14 @@
 package racing.ui
 
-data class RacingCarDto(val position: Int)
+import racing.domain.car.RacingCar
 
-data class RacingCarDtos(val dtos: List<RacingCarDto>)
+data class RacingCarDto(
+    val name: String,
+    val position: Int
+) {
+    companion object {
+        fun of(racingCar: RacingCar) = RacingCarDto(racingCar.racingCarName.name, racingCar.position)
+    }
+}
+
+data class RacingCarDtos(val racingCarDtos: List<RacingCarDto>)
