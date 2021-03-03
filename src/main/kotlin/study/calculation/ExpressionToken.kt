@@ -2,7 +2,7 @@ package study.calculation
 
 import java.lang.IllegalArgumentException
 
-data class ExpressionToken(
+class ExpressionToken(
     var operators: MutableList<String> = mutableListOf(),
     val operands: MutableList<Int> = mutableListOf()
 ) {
