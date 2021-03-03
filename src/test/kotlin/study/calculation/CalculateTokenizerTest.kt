@@ -1,4 +1,4 @@
-package study.step2
+package study.calculation
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test

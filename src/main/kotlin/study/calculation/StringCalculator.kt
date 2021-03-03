@@ -1,4 +1,4 @@
-package study.step2
+package study.calculation
 
 class StringCalculator(private val calculateTokenizer: CalculateTokenizer) {
     fun calculate(stringExpression: String): Int {
