@@ -4,12 +4,6 @@ import java.lang.IllegalArgumentException
 
 class CalculationFactory {
     companion object {
-        fun create(operator: String): Calculation = when (operator) {
-            "+" -> Addition()
-            "-" -> Subtraction()
-            "*" -> Multiplication()
-            "/" -> Division()
-            else -> throw IllegalArgumentException("지원하는 연산자가 아닙니다.")
-        }
+        fun create(oper: String): Calculation = Operator.select(oper).calculation
     }
 }
