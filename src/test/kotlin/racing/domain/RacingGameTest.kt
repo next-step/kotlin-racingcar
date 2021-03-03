@@ -18,13 +18,13 @@ class RacingGameTest {
     fun `constructor test`() {
         val racingGame = RacingGame(testRacingGameData, MovementChecker())
         assertThat(racingGame.cars.cars.size).isEqualTo(testInputCarNames.size)
-        assertThat(racingGame.cars.cars.map { it.name }).containsAll(testCarNames)
+        assertThat(racingGame.cars.cars.map { it.name.name }).containsAll(testInputCarNames)
     }
 
     @Test
     fun `run test(항상 전진하는 경우)`() {
         val randomWrapper = TestRandomWrapper(Random.nextInt(4, 10))
-        val testRacingGameData: RacingGameData = RacingGameData(testInputCarNames, testTryCount)
+        val testRacingGameData = RacingGameData(testInputCarNames, testTryCount)
         val racingGame = RacingGame(testRacingGameData, MovementChecker(randomWrapper))
 
         val racingHistory = racingGame.run()
@@ -32,15 +32,17 @@ class RacingGameTest {
         val firstRoundResult = racingHistory.roundResults[0]
         val secondRoundResult = racingHistory.roundResults[1]
 
+        val cars = racingGame.cars
+
         assertThat(firstRoundResult.carStates).contains(
-            CarState(testCarNames[0], CarPosition(1)),
-            CarState(testCarNames[1], CarPosition(1)),
-            CarState(testCarNames[2], CarPosition(1))
+            CarState(cars.cars[0].name, CarPosition(1)),
+            CarState(cars.cars[1].name, CarPosition(1)),
+            CarState(cars.cars[2].name, CarPosition(1))
         )
         assertThat(secondRoundResult.carStates).contains(
-            CarState(testCarNames[0], CarPosition(2)),
-            CarState(testCarNames[1], CarPosition(2)),
-            CarState(testCarNames[2], CarPosition(2))
+            CarState(cars.cars[0].name, CarPosition(2)),
+            CarState(cars.cars[1].name, CarPosition(2)),
+            CarState(cars.cars[2].name, CarPosition(2))
         )
     }
 
@@ -54,15 +56,17 @@ class RacingGameTest {
         val firstRoundResult = racingHistory.roundResults[0]
         val secondRoundResult = racingHistory.roundResults[1]
 
+        val cars = racingGame.cars
+
         assertThat(firstRoundResult.carStates).contains(
-            CarState(testCarNames[0], CarPosition.INIT_POSITION),
-            CarState(testCarNames[1], CarPosition.INIT_POSITION),
-            CarState(testCarNames[2], CarPosition.INIT_POSITION)
+            CarState(cars.cars[0].name, CarPosition.INIT_POSITION),
+            CarState(cars.cars[1].name, CarPosition.INIT_POSITION),
+            CarState(cars.cars[2].name, CarPosition.INIT_POSITION)
         )
         assertThat(secondRoundResult.carStates).contains(
-            CarState(testCarNames[0], CarPosition.INIT_POSITION),
-            CarState(testCarNames[1], CarPosition.INIT_POSITION),
-            CarState(testCarNames[2], CarPosition.INIT_POSITION)
+            CarState(cars.cars[0].name, CarPosition.INIT_POSITION),
+            CarState(cars.cars[1].name, CarPosition.INIT_POSITION),
+            CarState(cars.cars[2].name, CarPosition.INIT_POSITION)
         )
     }
 

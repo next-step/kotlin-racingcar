@@ -10,7 +10,7 @@ data class CarState(
 ) {
     companion object {
         fun from(car: Car): CarState {
-            return CarState(car.name.copy(), car.position.copy())
+            return CarState(car.name, car.position.copy())
         }
     }
 }
