@@ -1,8 +1,7 @@
 package racing.ui
 
-import racing.domain.Car
-import racing.ui.model.RacingHistoryDTO
-import racing.ui.model.RoundResultDTO
+import racing.data.RacingHistory
+import racing.data.RoundResult
 
 /**
  * @author tae-heon.song<taeheon.song@linecorp.com>
@@ -19,29 +18,29 @@ object ResultView {
         println(NOTICE_RESULT_START)
     }
 
-    fun printRacingHistory(racingHistory: RacingHistoryDTO) {
-        val racingResults = racingHistory.roundResultDTOs
+    fun printRacingHistory(racingHistory: RacingHistory) {
+        val racingResults = racingHistory.roundResults
         racingResults.forEach { printRoundResult(it) }
     }
 
-    private fun printRoundResult(roundResult: RoundResultDTO) {
-        val carStates = roundResult.carStateDTOs
-        carStates.forEach { (carName, position) ->
-            printCarStates(carName, position)
+    private fun printRoundResult(roundResult: RoundResult) {
+        val carStates = roundResult.carStates
+        carStates.forEach { (carName, carPosition) ->
+            printCarStates(carName.name, carPosition.position)
         }
         println()
     }
 
-    private fun printCarStates(carName: String, position: Int) {
-        print("$carName : ")
+    private fun printCarStates(name: String, position: Int) {
+        print("$name : ")
         repeat(position) {
             print(SYMBOL_ONE_STEP)
         }
         println()
     }
 
-    fun printWinners(cars: List<Car>) {
-        val winnerNames = cars.joinToString(NAME_DELIMETER_FOR_DISPLAY) { it.name.name }
+    fun printWinners(names: List<String>) {
+        val winnerNames = names.joinToString(NAME_DELIMETER_FOR_DISPLAY)
         println("${winnerNames}가 최종 우승했습니다.")
     }
 }

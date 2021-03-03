@@ -22,7 +22,11 @@ class RacingGame(private val racingGameData: RacingGameData, movementChecker: Mo
         return racingHistory
     }
 
-    fun getWinners(): List<Car> {
+    fun getWinnerNames(): List<String> {
+        return getWinners().map { it.name.name }.toList()
+    }
+
+    private fun getWinners(): List<Car> {
         return cars.getFarthestCars()
     }
 }

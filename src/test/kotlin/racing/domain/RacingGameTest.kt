@@ -84,7 +84,7 @@ class RacingGameTest {
             cars[2].moveCar()
         }
 
-        assertThat(racingGame.getWinners()).containsOnly(cars[1])
+        assertThat(racingGame.getWinnerNames()).containsOnly(cars[1].name.name)
     }
 
     @Test
@@ -105,6 +105,6 @@ class RacingGameTest {
             cars[2].moveCar()
         }
 
-        assertThat(racingGame.getWinners()).containsOnly(cars[0], cars[1])
+        assertThat(racingGame.getWinnerNames()).containsOnly(cars[0].name.name, cars[1].name.name)
     }
 }
