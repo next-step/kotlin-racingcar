@@ -8,11 +8,11 @@ class Game(private val configuration: GameConfiguration, movingStrategy: MovingS
     fun start() {
         repeat(configuration.numberOfAttempts) {
             proceedOneTurn()
-            ResultView().printResult(
+            ResultView(
                 cars.map { car ->
                     car.position
                 }.toList()
-            )
+            ).printResult()
         }
     }
 

@@ -1,7 +1,7 @@
 package racingcar.ui
 
-class ResultView {
-    fun printResult(positions: List<Int>) {
+class ResultView(private val positions: List<Int>) {
+    fun printResult() {
         positions.map { position ->
             println(POSITION_DISPLAY_BAR.repeat(position))
         }
