@@ -1,8 +1,11 @@
 package racingcar_winner.model
 
+import racingcar_winner.util.progressNumberToBar
+
 class Cars(
-    private val cars: List<Car>
+    cars: List<Car>
 ) {
+    private val cars: List<Car> = cars.toList()
 
     fun getNumberOfCars(): Int = cars.size
 
@@ -13,10 +16,29 @@ class Cars(
         }
     }
 
-    fun getProgressOfCars(): Map<String, Int> {
+    fun getProgressOfCars(): List<String> {
+        val cars = cars.toList()
         return cars.map { car ->
-            car.name to car.progress
-        }.toMap()
+            "${car.name} : ${car.progress.progressNumberToBar()}"
+        }
+    }
+
+    fun getWinners(): List<String> {
+        val cars = cars.toList()
+        val highScore = getHighScore()
+
+        return cars.filter { car ->
+            car.progress == highScore
+        }.map {
+            it.name
+        }
+    }
+
+    private fun getHighScore(): Int {
+        val cars = cars.toList()
+        return cars.map { car ->
+            car.progress
+        }.max()!!
     }
 
     override fun toString(): String {

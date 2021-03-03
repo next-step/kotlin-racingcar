@@ -2,23 +2,14 @@ package racingcar_winner.ui
 
 class Outputview {
 
-    fun printOneRound(progressCars: Map<String, Int>) {
+    fun printOneRound(progressCars: List<String>) {
         for (car in progressCars) {
-            val progress = renderNumberToString(car.value)
-            println("${car.key} : $progress")
+            println(car)
         }
         println()
     }
 
     fun printWinner(winners: List<String>) {
-        println(winners.joinToString(", "))
+        println("우승자 : ${winners.joinToString(", " )}")
     }
-
-    private fun renderNumberToString(progress: Int): String {
-        var stringProgress = ""
-        repeat(progress) { stringProgress += "-"}
-
-        return stringProgress
-    }
-
 }

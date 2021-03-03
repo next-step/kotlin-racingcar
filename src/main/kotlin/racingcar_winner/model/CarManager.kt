@@ -6,7 +6,8 @@ class CarManager {
         return Cars(
             carNames.map { name ->
                 createCar(name)
-            })
+            }
+        )
 
     }
 

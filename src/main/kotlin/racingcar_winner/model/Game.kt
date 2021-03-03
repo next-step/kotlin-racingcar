@@ -9,7 +9,6 @@ class Game(
     private val numberOfCars: Int = cars.getNumberOfCars()
     private val randomNumberFactory = RandomNumberManager()
     private val outputView = Outputview()
-    private val referee = Referee()
 
     fun playGame() {
         repeat(numberOfRound) {
@@ -25,12 +24,12 @@ class Game(
     }
 
     private fun printOneRound() {
-        val progressOfCars: Map<String, Int> = cars.getProgressOfCars()
+        val progressOfCars = cars.getProgressOfCars()
         outputView.printOneRound(progressOfCars)
     }
 
     private fun printWinner() {
-        val winners = referee.getWinners(cars)
+        val winners = cars.getWinners()
         outputView.printWinner(winners)
     }
 }

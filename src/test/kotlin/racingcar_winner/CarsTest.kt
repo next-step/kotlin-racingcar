@@ -18,9 +18,9 @@ class CarsTest {
         listOfCars[2].tryToMoveForward(7)
 
         val cars = Cars(listOfCars)
-        val progressList = cars.getProgressOfCars().values.toList()
+        val progressList = cars.getProgressOfCars()
 
-        assertThat(progressList).isEqualTo(listOf(1, 1, 1))
+        assertThat(progressList).isEqualTo(listOf("Phobi : -", "John : -", "James : -"))
     }
 
     @Test
@@ -30,8 +30,8 @@ class CarsTest {
         listOfCars[2].tryToMoveForward(3)
 
         val cars = Cars(listOfCars)
-        val progressList = cars.getProgressOfCars().values.toList()
+        val progressList = cars.getProgressOfCars()
 
-        assertThat(progressList).isEqualTo(listOf(0, 0, 0))
+        assertThat(progressList).isEqualTo(listOf("Phobi : ", "John : ", "James : "))
     }
 }
