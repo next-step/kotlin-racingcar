@@ -3,6 +3,11 @@ package study.racingcar.step4
 class Car(private val ableNumber: Int, private val name: String) : Racing {
 
     private var position: Int = 0
+    private val carValidation = CarValidation()
+
+    init {
+        carValidation.validationCarNameLength(name)
+    }
 
     override fun run(runValue: Int) {
         goAndPause(ableNumber <= runValue)
