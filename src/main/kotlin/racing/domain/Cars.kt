@@ -25,6 +25,6 @@ class Cars(names: List<String>, private val movementChecker: MovementChecker) {
     }
 
     fun getCarStates(): List<CarState> {
-        return cars.map { CarState.from(it) }.toList()
+        return cars.map { CarState.from(it) }
     }
 }

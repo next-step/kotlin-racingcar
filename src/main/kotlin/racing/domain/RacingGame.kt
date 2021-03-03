@@ -19,7 +19,7 @@ class RacingGame(private val racingGameData: RacingGameData, movementChecker: Mo
     }
 
     fun getWinnerNames(): List<String> {
-        return getWinners().map { it.name.name }.toList()
+        return getWinners().map { it.name.name }
     }
 
     private fun getWinners(): List<Car> {
