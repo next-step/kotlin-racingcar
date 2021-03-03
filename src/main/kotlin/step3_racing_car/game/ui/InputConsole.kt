@@ -1,11 +1,21 @@
 package step3_racing_car.game.ui
 
-class InputConsole {
+interface InputReceiver {
+    fun receive(): String?
+}
+
+class CommandLineReceiver : InputReceiver {
+    override fun receive(): String? {
+        return readLine()
+    }
+}
+
+class InputConsole(private val receiver: InputReceiver) {
     fun run(): Pair<Int, Int> {
         print("자동차 대수는 몇 대인가요?")
-        val numOfCar = receive()
+        val numOfCar = receiver.receive()
         print("시도할 횟수는 몇 회인가요?")
-        val numOfGame: String? = receive()
+        val numOfGame: String? = receiver.receive()
 
         if (!isValid(numOfCar) or !isValid(numOfGame)) {
             throw java.lang.IllegalArgumentException("입력이 실패했습니다.")
