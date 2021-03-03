@@ -20,9 +20,9 @@ class Calculator {
         try {
             var result = parsedFormular[0].toDouble()
 
-            for (numIndex in 1 until parsedFormular.size step 2) {
-                val signIndex = numIndex + 1
-                result = Operator.calculate(parsedFormular[numIndex], result, parsedFormular[signIndex].toDouble())
+            for (signIndex in 1 until parsedFormular.size step 2) {
+                val numIndex = signIndex + 1
+                result = Operator.calculate(parsedFormular[signIndex], result, parsedFormular[numIndex].toDouble())
             }
             return result
         } catch (e: NumberFormatException) {
