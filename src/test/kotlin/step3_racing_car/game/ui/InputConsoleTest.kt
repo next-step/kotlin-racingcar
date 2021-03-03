@@ -4,8 +4,8 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.NullAndEmptySource
+import org.junit.jupiter.params.provider.ValueSource
 
 class MockReceiver : InputReceiver {
     var answer: String? = "0"
@@ -19,14 +19,14 @@ internal class InputConsoleTest {
 
     @Test
     fun runTest() {
-        assertThat(InputConsole(mockReceiver).run()).isEqualTo(Pair(0, 0))
+        // given
+        mockReceiver.answer = "1"
+        assertThat(InputConsole(mockReceiver).run()).isEqualTo(Pair(1, 1))
     }
 
     @ParameterizedTest
     @NullAndEmptySource
-    @CsvSource(
-        "0, -1, a, b ,$"
-    )
+    @ValueSource(strings = ["0", "-1", "#", "$"])
     fun exceptionTest(input: String?) {
         assertThatThrownBy {
             // given
