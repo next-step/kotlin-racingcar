@@ -1,12 +1,21 @@
 package calculator
 
-class Operator(private val symbol: String) {
+enum class Operator(
+    private val symbol: String,
+    private val operation: (Double, Double) -> Double
+) {
 
-    fun operation(): ((Double, Double) -> Double) = when (symbol) {
-        "+" -> { a, b -> a + b }
-        "-" -> { a, b -> a - b }
-        "*" -> { a, b -> a * b }
-        "/" -> { a, b -> a / b }
-        else -> throw IllegalArgumentException()
+    ADD("+", { a, b -> a + b }),
+    SUBTRACT("-", { a, b -> a - b }),
+    MULTIPLY("*", { a, b -> a * b }),
+    DIVIDE("/", { a, b -> a / b });
+
+    companion object {
+        fun operation(operator: String): (Double, Double) -> Double {
+            return values()
+                .find { it.symbol == operator }
+                ?.operation
+                ?: throw IllegalArgumentException()
+        }
     }
 }
