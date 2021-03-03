@@ -23,7 +23,7 @@ class CarManagerTest {
     }
 
     @Test
-    fun `이름중에 5글자 이상인 글자가 존재할 때`() {
+    fun `이름중에 5글자 이상인 글자가 존재할 때 Exception 발생`() {
         val list = listOf("Johnson", "dfdf", "dffff")
         assertThatThrownBy { carManager.orderMakingCars(list) }.isInstanceOf(IllegalArgumentException::class.java)
     }
