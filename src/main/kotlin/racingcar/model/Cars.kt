@@ -1,52 +1,36 @@
 package racingcar.model
 
 import racingcar.strategy.MoveStrategy
-import racingcar.view.ResultView
 
-class Cars private constructor(private val allCars: ArrayList<Car>) {
+class Cars private constructor(private val allCars: List<Car>) {
     companion object {
         fun makeCars(carNames: List<String>): Cars {
-
             val cars = carNames
-                .asSequence()
-                .map { carName: String -> Car(carName) }
-                .toList()
+                .map { carName -> Car(carName) }
 
-            return Cars(cars as ArrayList<Car>)
+            return Cars(cars)
         }
     }
 
-    fun moveOnce(moveStrategy: MoveStrategy): List<ResultView> {
-        return allCars.asSequence()
-            .map { car: Car ->
-                car.move(moveStrategy.canMove())
-                return@map ResultView(car.name, car.score)
-            }
-            .toList()
+    fun moveOnce(moveStrategy: MoveStrategy): List<Car> {
+        allCars.forEach { it.move(moveStrategy.canMove()) }
+        return allCars
     }
 
     fun getNumberOfCars(): Int {
         return allCars.size
     }
 
-    fun getCarCountWithScoreEqualOrGreaterThan(score: Int): Int {
-        return allCars.asSequence()
-            .filter { car -> car.score >= score }
-            .count()
-    }
-
     fun findMaxScore(): Int? {
-        return allCars.asSequence()
-            .map { car -> car.score }
+        return allCars
+            .map { it.score }
             .max()
             ?.toInt()
     }
 
-    fun findWinners(): List<String> {
+    fun findWinners(): List<Car> {
         val maxScore = findMaxScore()
-        return allCars.asSequence()
-            .filter { car -> car.score == maxScore }
-            .map(Car::name)
-            .toList()
+        return allCars
+            .filter { it.score == maxScore }
     }
 }

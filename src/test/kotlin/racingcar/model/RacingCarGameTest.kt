@@ -3,59 +3,51 @@ package racingcar.model
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.CsvSource
-import racingcar.strategy.MoveStrategy
+import org.junit.jupiter.params.provider.ValueSource
+import racingcar.FakeMoveStrategy
 
 internal class RacingCarGameTest {
     @Test
     fun ready() {
         // given
         val carNames = listOf("Tesla", "Waymo", "Zoox")
-        val moveStrategy = object : MoveStrategy {
-            override fun canMove() = true
-        }
 
         // when
-        val racingCarGame = RacingCarGame.ready(carNames, moveStrategy)
+        val racingCarGame = RacingCarGame.ready(carNames, FakeMoveStrategy())
 
         // then
         assertThat(racingCarGame.getCarCount()).isEqualTo(3)
     }
 
     @ParameterizedTest
-    @CsvSource(value = ["false:0", "true:3"], delimiter = ':')
-    fun moveOnce(canMove: Boolean, expectedCarCount: Int) {
+    @ValueSource(ints = [1, 3, 26, 100])
+    fun moveOnce(gameCount: Int) {
         // given
-        val moveStrategy = object : MoveStrategy {
-            override fun canMove() = canMove
-        }
         val carNames = listOf("Tesla", "Waymo", "Zoox")
-        val racingCarGame = RacingCarGame.ready(carNames, moveStrategy)
+        val racingCarGame = RacingCarGame.ready(carNames, FakeMoveStrategy())
 
         // when
-        racingCarGame.moveOnce()
+        for (i in 1..gameCount) {
+            racingCarGame.moveOnce()
+        }
 
         // then
         val cars = racingCarGame.getCars()
-        val countWithScoreGreaterThanOne = cars.getCarCountWithScoreEqualOrGreaterThan(1)
-        assertThat(countWithScoreGreaterThanOne).isEqualTo(expectedCarCount)
+        assertThat(cars.findMaxScore()).isEqualTo(gameCount)
     }
 
     @Test
     fun findWinners() {
         // given
-        val moveStrategy = object : MoveStrategy {
-            override fun canMove() = true
-        }
         val carNames = listOf("Tesla", "Waymo", "Zoox")
-        val racingCarGame = RacingCarGame.ready(carNames, moveStrategy)
+        val racingCarGame = RacingCarGame.ready(carNames, FakeMoveStrategy())
         racingCarGame.moveOnce()
 
         // when
-        val winners: List<String> = racingCarGame.getWinners()
+        val winners: List<Car> = racingCarGame.getWinners()
 
         // then
         assertThat(winners).hasSize(3)
-        assertThat(winners).containsAll(carNames)
+        assertThat(winners.map { it.name }).containsAll(carNames)
     }
 }

@@ -3,9 +3,8 @@ package racingcar.model
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
-import racingcar.strategy.MoveStrategy
+import racingcar.LastPlayerWinFakeMoveStrategy
 
 internal class CarsTest {
     @Test
@@ -19,55 +18,40 @@ internal class CarsTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = ["true:3", "false:0"], delimiter = ':')
-    fun getCarCountWithScoreEqualOrGreaterThan(canMove: Boolean, expectedCarCount: Int) {
-        // given
-        val carNames = listOf("Tesla", "Waymo", "Zoox")
-        val cars = Cars.makeCars(carNames)
-        runGames(1, cars, canMove)
-
-        // when
-        val actualCarCount = cars.getCarCountWithScoreEqualOrGreaterThan(1)
-
-        // then
-        assertThat(actualCarCount).isEqualTo(expectedCarCount)
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = [1, 2, 3, 4, 5])
+    @ValueSource(ints = [4, 25, 122, 777])
     fun findMaxScore(gameCount: Int) {
         // given
         val carNames = listOf("Tesla", "Waymo", "Zoox")
         val cars = Cars.makeCars(carNames)
-        runGames(gameCount, cars, true)
+        runGames(gameCount, cars)
 
         // when
-        val winners = cars.findMaxScore()
+        val maxScore = cars.findMaxScore()
 
         // then
-        assertThat(winners).isEqualTo(gameCount)
+        assertThat(maxScore).isEqualTo(gameCount)
     }
 
     @ParameterizedTest
-    @ValueSource(ints = [1, 2, 3, 4, 5])
+    @ValueSource(ints = [10, 20, 30, 100])
     fun findWinners(gameCount: Int) {
         // given
         val carNames = listOf("Tesla", "Waymo", "Zoox")
         val cars = Cars.makeCars(carNames)
-        runGames(gameCount, cars, true)
+        runGames(gameCount, cars)
 
         // when
-        val winners: List<String> = cars.findWinners()
+        val winners: List<Car> = cars.findWinners()
 
         // then
-        assertThat(winners.size).isEqualTo(3)
+        assertThat(winners.size).isEqualTo(1)
+        assertThat(winners[0].name).isEqualTo("Zoox")
+        assertThat(winners[0].score).isEqualTo(gameCount)
     }
 
-    private fun runGames(gameCount: Int, cars: Cars, canMove: Boolean) {
+    private fun runGames(gameCount: Int, cars: Cars) {
         for (i in 1..gameCount) {
-            cars.moveOnce(object : MoveStrategy {
-                override fun canMove() = canMove
-            })
+            cars.moveOnce(LastPlayerWinFakeMoveStrategy(cars))
         }
     }
 }
