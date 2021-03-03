@@ -1,30 +1,35 @@
 package calculator.domain
 
+import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.DisplayName
+import org.assertj.core.util.Lists
 import org.junit.jupiter.api.Test
+
+import org.junit.jupiter.api.DisplayName
 
 internal class CalculatorTest {
 
     @Test
-    @DisplayName("Calculator를 생성하고, 연산을 수행하면 올바른 결과를 낸다")
-    fun spaceCalculator() {
-        val calculator = Calculator()
-
-        val result1 = calculator.calculate("1 + 3")
-        val result2 = calculator.calculate("1 * 3")
-
-        assertThat(result1).isEqualTo(4.0)
-        assertThat(result2).isEqualTo(3.0)
+    @DisplayName("올바르지 않은 식의 tokenList를 넣으면 Exception")
+    fun invalidExpression() {
+        Assertions.assertThatIllegalArgumentException()
+            .isThrownBy { Calculator(Lists.newArrayList("1", "+")) }
     }
 
     @Test
-    @DisplayName("#을 delimeter로 한 Caculator를 생성해 연산을 수행할 수 있다.")
-    fun poundCalculator() {
-        val calculator = Calculator("#")
+    @DisplayName("연산자나 피연산자를 올바른 순서로 넣지 않고 식을 계산하면 Exception")
+    fun invalidOperatorAndOperand() {
+        Assertions.assertThatIllegalArgumentException()
+            .isThrownBy { Calculator(Lists.newArrayList("+", "1", "-")).execute() }
+        Assertions.assertThatIllegalArgumentException()
+            .isThrownBy { Calculator(Lists.newArrayList("1", "1", "-")).execute() }
+    }
 
-        val result = calculator.calculate("1#+#3")
-
-        assertThat(result).isEqualTo(4.0)
+    @Test
+    @DisplayName("올바른 순서의 expressionList를 넣었을 때 계산에 성공한다")
+    fun calculateExpression() {
+        val expression = Calculator(Lists.newArrayList("1", "+", "1"))
+        val execute = expression.execute()
+        assertThat(execute).isEqualTo(Operand(2.0))
     }
 }

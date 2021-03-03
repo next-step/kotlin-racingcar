@@ -21,4 +21,21 @@ internal class OperandTest {
         Assertions.assertThatIllegalArgumentException()
             .isThrownBy { Operand.of("=") }
     }
+
+    @Test
+    @DisplayName("연산자 오버라이딩을 이용해 Operand 산술 연산이 가능하다.")
+    fun operatorExecute() {
+        val operand1 = Operand(6.0)
+        val operand2 = Operand(2.0)
+
+        val plus = operand1 + operand2
+        val minus = operand1 - operand2
+        val multiple = operand1 * operand2
+        val divide = operand1 / operand2
+
+        assertThat(plus.number).isEqualTo(8.0)
+        assertThat(minus.number).isEqualTo(4.0)
+        assertThat(multiple.number).isEqualTo(12.0)
+        assertThat(divide.number).isEqualTo(3.0)
+    }
 }

@@ -1,10 +1,18 @@
 package calculator.domain
 
-const val SPACE_DELIMITER = " "
+class Calculator(private val tokens: List<String>) {
 
-class Calculator(private val delimiter: String = SPACE_DELIMITER) {
-    fun calculate(input: String): Double {
-        val tokens = input.split(delimiter)
-        return Expression(tokens).execute().number
+    init {
+        require(tokens.size % 2 == 1) { "올바르지 않은 식입니다" }
+    }
+
+    fun execute(): Operand {
+        var operand1 = Operand.of(tokens[0])
+        for (i in 1 until tokens.size step 2) {
+            val calculatorOperator = Operator.of(tokens[i])
+            val operand2 = Operand.of(tokens[i + 1])
+            operand1 = calculatorOperator.operation(operand1, operand2)
+        }
+        return operand1
     }
 }
