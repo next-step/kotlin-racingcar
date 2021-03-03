@@ -39,8 +39,10 @@ class Cars(private val cars: List<Car>) {
     }
 
     fun finishRound(): Round {
-        return Round(cars.map { Record(it.name, it.position) })
+        return Round(cars.map { Record(it.name, newPosition(it.position)) })
     }
+
+    private fun newPosition(position: Position) = Position(position.position)
 
     companion object {
         private const val MAX_FORWARD_CONDITION = 4
