@@ -13,7 +13,8 @@ fun main() {
 class RacingCarApplication(private val userInterface: UserInterface) {
 
     fun run() {
-        val carNames = listOf("pobi", "crong", "honux")
+        val carNamesStr = "pobi,crong,honux"
+        val carNames = carNamesStr.split(",").map { it.trim() }
 
         val roundCountValue = userInterface.inputRoundCount()
         val roundCount = PositiveCount(roundCountValue)
