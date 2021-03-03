@@ -5,7 +5,7 @@ object Calculator {
     private const val DELIMITER = " "
 
     fun execute(expression: String?): Double {
-        require(expression != null && expression.isNotEmpty())
+        require(!expression.isNullOrBlank())
         val terms = expression.split(DELIMITER)
         return calculate(
             numbers = parseNumbers(terms),
