@@ -1,14 +1,15 @@
 package printer
 
-import racingcar.Reception.CAR_NAME_DELIMITERS
+import racingcar.Reception
+import racingcar.Winners
 
 object ResultView {
     fun printInt() {
         println("실행 결과")
     }
 
-    fun printWinners(winners: List<String>) {
-        print(winners.joinToString("$CAR_NAME_DELIMITERS ") + "가 최종 우승했습니다")
+    fun printWinners(winners: Winners) {
+        print(winners.joinToWinners(Reception.CAR_NAME_DELIMITERS) + "가 최종 우승했습니다")
     }
 
     fun printRacing(carNames: List<String>, carPositions: List<List<Int>>) {
