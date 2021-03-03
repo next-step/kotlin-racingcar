@@ -8,6 +8,8 @@ class OutputView {
             for (lapResult in lapResults.lapResults) {
                 printLapResult(lapResult)
             }
+
+            println("${lapResults.findWinners()}가 최종 우승했습니다.")
         }
 
         private fun printLapResult(lapResult: LapResult) {
