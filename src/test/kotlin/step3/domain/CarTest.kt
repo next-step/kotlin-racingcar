@@ -1,8 +1,10 @@
-package step3
+package step3.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
+import step3.domain.Car
+import step3.domain.Cars
 
 internal class CarTest {
     private val car = Car("test")
@@ -14,16 +16,6 @@ internal class CarTest {
         car.move()
 
         assertThat(car.position).isEqualTo(1)
-    }
-
-    @Test
-    fun `makeCars 의 인자로 이름을 ,로 나누어 전달한다`() {
-        val carNameString = "pobi,crong,honux"
-
-        val cars = Cars.fromNames(carNameString)
-
-        assertThat(cars.size).isEqualTo(3)
-        assertThat(cars[0].name).isEqualTo("pobi")
     }
 
     @Test

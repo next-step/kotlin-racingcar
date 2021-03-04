@@ -1,4 +1,7 @@
-package step3
+package step3.view
+
+import step3.domain.LapResult
+import step3.domain.LapResults
 
 class OutputView {
     companion object {

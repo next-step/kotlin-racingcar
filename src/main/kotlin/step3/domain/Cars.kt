@@ -1,4 +1,4 @@
-package step3
+package step3.domain
 
 class Cars(val cars: List<Car>) : List<Car> by cars {
     companion object {

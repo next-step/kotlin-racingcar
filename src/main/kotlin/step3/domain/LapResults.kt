@@ -1,4 +1,4 @@
-package step3
+package step3.domain
 
 class LapResults(val lapResults: List<LapResult>) : List<LapResult> by lapResults {
     fun getWinners(): Winners {

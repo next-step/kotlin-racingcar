@@ -1,4 +1,4 @@
-package step3
+package step3.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -6,6 +6,10 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
+import step3.domain.Cars
+import step3.domain.RacingGame
+import step3.domain.RandomRule
+import step3.domain.Rule
 
 internal class RacingGameTest {
     @ParameterizedTest
