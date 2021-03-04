@@ -14,7 +14,7 @@ class RacingGame(private val cars: Cars, private val rule: Rule) {
     }
 
     private fun race() {
-        cars.cars.filter {
+        cars.filter {
             rule.isSatisfied()
         }.forEach {
             it.move()

@@ -22,7 +22,7 @@ internal class CarTest {
 
         val cars = Cars.fromNames(carNameString)
 
-        assertThat(cars.size()).isEqualTo(3)
+        assertThat(cars.size).isEqualTo(3)
         assertThat(cars[0].name).isEqualTo("pobi")
     }
 

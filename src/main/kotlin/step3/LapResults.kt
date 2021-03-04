@@ -1,14 +1,10 @@
 package step3
 
-class LapResults(val lapResults: List<LapResult>) {
-    fun size() = lapResults.size
-
-    operator fun get(i: Int) = lapResults[i]
-
-    fun findWinners(): Winners {
+class LapResults(val lapResults: List<LapResult>) : List<LapResult> by lapResults {
+    fun getWinners(): Winners {
         val finalRecords = lapResults.last().records
-        val winnersPosition = finalRecords.records.maxBy { it.position }?.position
+        val winnersPosition = finalRecords.maxBy { it.position }?.position
 
-        return Winners(finalRecords.records.filter { it.position == winnersPosition })
+        return Winners(finalRecords.filter { it.position == winnersPosition })
     }
 }

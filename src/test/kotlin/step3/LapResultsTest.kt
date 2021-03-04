@@ -8,8 +8,8 @@ import org.junit.jupiter.params.provider.MethodSource
 internal class LapResultsTest {
     @ParameterizedTest
     @MethodSource("findWinnerTestSourceProvider")
-    fun `findWinners 는 가장 최종 position 값이 큰 record 들을 알려준다`(lapResults: LapResults, winnersSize: Int, winnersPosition: Int) {
-        val result = lapResults.findWinners()
+    fun `getWinners() 는 가장 최종 position 값이 큰 record 들을 알려준다`(lapResults: LapResults, winnersSize: Int, winnersPosition: Int) {
+        val result = lapResults.getWinners()
 
         assertThat(result.winners.size).isEqualTo(winnersSize)
         assertThat(result.winners[0].position).isEqualTo(winnersPosition)
