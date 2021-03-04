@@ -13,11 +13,9 @@ class RacingGameTest {
         assertThat(racingGame.positions.size).isEqualTo(5)
 
         for ((index, positions) in racingGame.positions.withIndex()) {
-            assertThat(positions).contains(
-                NamedPosition.Nameless(index + 1),
-                NamedPosition.Nameless(index + 1),
-                NamedPosition.Nameless(index + 1)
-            )
+            assertThat(positions).allSatisfy {
+                assertThat(it).isEqualTo(NamedPosition.Nameless(index + 1))
+            }
         }
     }
 }
