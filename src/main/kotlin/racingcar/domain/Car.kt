@@ -4,12 +4,13 @@ data class Car(val distance: Distance = Distance()) {
 
     fun move(number: Number): Car {
         if (number.isOver(MOVE_POINT)) {
-            return copy(distance = distance.sum(Distance(1)))
+            return copy(distance = distance.sum(MOVE_DISTANCE))
         }
         return this
     }
 
     companion object {
-        val MOVE_POINT = Number(4)
+        private val MOVE_POINT = Number(4)
+        private val MOVE_DISTANCE = Distance(1)
     }
 }
