@@ -1,5 +1,7 @@
 package racingcar.domain
 
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -17,5 +19,17 @@ internal class NumberTest {
     @ValueSource(ints = [-1, 10])
     fun `생성 정상 범위 이외에 0보다 작을 경우, 9보다 클 경우`(value: Int) {
         assertThrows<IllegalArgumentException> { Number(value) }
+    }
+
+    @Test
+    fun name() {
+        val four = Number(4)
+        val three = Number(3)
+        assertThat(three.isOver(four))
+            .isFalse()
+        assertThat(four.isOver(four))
+            .isTrue()
+        assertThat(four.isOver(three))
+            .isTrue()
     }
 }
