@@ -23,7 +23,14 @@ interface NamedPosition {
     }
 
     data class Nameless(private val position: Int = 0) : NamedPosition {
-        override val name: Name = throw NotImplementedError()
+        override val name: Name
+            get() {
+                throw NotImplementedError()
+            }
+
+        init {
+            require(position >= 0)
+        }
 
         override fun intValue(): Int = position
 
