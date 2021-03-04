@@ -1,5 +1,7 @@
 package calculator.ui
 
+import input.InputStrategy
+
 class UserInput(private val inputStrategy: InputStrategy) {
 
     fun operate(): String {

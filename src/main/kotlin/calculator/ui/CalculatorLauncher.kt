@@ -1,6 +1,6 @@
 package calculator
 
-import calculator.ui.SystemInputStrategy
+import input.SystemInputStrategy
 import calculator.ui.UserInput
 
 fun main() {

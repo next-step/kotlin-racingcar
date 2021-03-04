@@ -1,6 +1,6 @@
 package calculator
 
-import calculator.ExpressionParser.Companion.parse
+import calculator.ExpressionParser.parse
 
 class Expressions(input: String) {
     val operands: List<Operand>
