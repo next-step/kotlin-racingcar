@@ -3,6 +3,9 @@ package racinggame.record
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import racinggame.record.domain.Recorder
+import racinggame.record.domain.Records
+import racinggame.record.dto.Record
 
 internal class RecorderTest {
     @Test

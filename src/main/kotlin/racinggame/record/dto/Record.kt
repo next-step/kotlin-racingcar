@@ -1,4 +1,4 @@
-package racinggame.record
+package racinggame.record.dto
 
 data class Record(
     val time: Int,
