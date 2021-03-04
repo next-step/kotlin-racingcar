@@ -1,13 +1,16 @@
 package racingcar_winner
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import racingcar_winner.model.Car
+import racingcar_winner.model.Cars
 
 class CarTest {
 
-    val car = Car("Test")
+    val car = Car.makeCar("Test")
 
     @ParameterizedTest
     @ValueSource(ints = [5, 6, 7, 8, 9])
