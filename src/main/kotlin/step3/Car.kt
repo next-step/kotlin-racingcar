@@ -1,13 +1,15 @@
 package step3
 
-class Car(var position: Int = 0) {
+class Car(val name: String, var position: Int = 0) {
+    init {
+        require(name.length <= NAME_MAXIMUM_LIMIT) { "Car.name 은 ${NAME_MAXIMUM_LIMIT}자를 초과할 수 없습니다!" }
+    }
+
     fun move() {
         position++
     }
 
     companion object {
-        fun makeCars(carCount: Int): List<Car> {
-            return (0 until carCount).map { Car() }
-        }
+        const val NAME_MAXIMUM_LIMIT = 5
     }
 }

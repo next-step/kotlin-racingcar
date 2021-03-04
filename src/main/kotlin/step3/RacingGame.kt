@@ -1,16 +1,16 @@
 package step3
 
-class RacingGame(private val cars: List<Car>, private val rule: Rule) {
+class RacingGame(private val cars: Cars, private val rule: Rule) {
 
-    fun play(raceCount: Int): List<Result> {
-        val results = mutableListOf<Result>()
+    fun play(lapCount: Int): LapResults {
+        val lapResults = mutableListOf<LapResult>()
 
-        repeat(raceCount) {
+        repeat(lapCount) {
             race()
-            results.add(Result(cars))
+            lapResults.add(LapResult(cars))
         }
 
-        return results
+        return LapResults(lapResults)
     }
 
     private fun race() {
