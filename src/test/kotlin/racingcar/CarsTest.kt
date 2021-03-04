@@ -15,13 +15,13 @@ class CarsTest {
         cars.drive()
         cars.drive()
         assertThat(cars.positions).containsExactly(
-            Position(2),
-            Position(2),
-            Position(2)
+            NamedPosition.Nameless(2),
+            NamedPosition.Nameless(2),
+            NamedPosition.Nameless(2)
         )
     }
 
     companion object {
-        fun cars(count: Int) = Cars((0 until count).map { Car(position = Position(), moveable = Moveable.Always()) })
+        fun cars(count: Int) = Cars((0 until count).map { Car(position = NamedPosition.Nameless(), moveable = Moveable.Always()) })
     }
 }

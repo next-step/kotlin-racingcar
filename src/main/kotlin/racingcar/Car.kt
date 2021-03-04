@@ -1,7 +1,7 @@
 package racingcar
 
 class Car(
-    private var position: NamedPosition = Position(),
+    private var position: NamedPosition = NamedPosition.Nameless(),
     private val moveable: Moveable = Moveable.Random()
 ) {
     fun driving(): NamedPosition {

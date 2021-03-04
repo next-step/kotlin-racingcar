@@ -14,9 +14,9 @@ class RacingGameTest {
 
         for ((index, positions) in racingGame.positions.withIndex()) {
             assertThat(positions).contains(
-                Position(index + 1),
-                Position(index + 1),
-                Position(index + 1)
+                NamedPosition.Nameless(index + 1),
+                NamedPosition.Nameless(index + 1),
+                NamedPosition.Nameless(index + 1)
             )
         }
     }

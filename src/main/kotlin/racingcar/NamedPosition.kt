@@ -21,4 +21,14 @@ interface NamedPosition {
 
         override operator fun compareTo(other: Int) = position - other
     }
+
+    data class Nameless(private val position: Int = 0) : NamedPosition {
+        override val name: Name = throw NotImplementedError()
+
+        override fun intValue(): Int = position
+
+        override fun compareTo(other: Int): Int = position.compareTo(other)
+
+        override operator fun inc(): Nameless = Nameless(position + 1)
+    }
 }

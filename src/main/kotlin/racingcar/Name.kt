@@ -8,8 +8,4 @@ inline class Name(private val name: String) {
     constructor(index: Int) : this(index.toString())
 
     fun stringValue() = name
-
-    companion object {
-        val ANONYMOUS = Name("")
-    }
 }
