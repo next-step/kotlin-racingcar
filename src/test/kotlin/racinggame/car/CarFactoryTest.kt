@@ -1,9 +1,10 @@
-package racinggame.spec
+package racinggame.car
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
-import racinggame.car.V8Engine
+import racinggame.car.domain.V8Engine
+import racinggame.car.domain.CarFactory
 
 internal class CarFactoryTest {
 

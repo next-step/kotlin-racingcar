@@ -3,27 +3,11 @@ package racinggame.record
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import racinggame.record.domain.Records
+import racinggame.record.dto.Record
 import java.lang.IllegalArgumentException
 
 internal class RecordsTest {
-
-    @Test
-    fun `기록들의 크기를 구한다`() {
-        // given
-        val records = Records(
-            listOf(
-                Record(1, "test1", 1),
-                Record(1, "test2", 1),
-                Record(1, "test3", 1)
-            )
-        )
-
-        // when
-        val size = records.size()
-
-        // then
-        assertThat(size).isEqualTo(3)
-    }
 
     @Test
     fun `현재 기록된 시간을 구한다`() {

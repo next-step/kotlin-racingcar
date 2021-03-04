@@ -1,7 +1,4 @@
-package racinggame.spec
-
-import racinggame.car.Engine
-import racinggame.car.RacingCar
+package racinggame.car.domain
 
 class CarFactory(request: String) {
     private val names: List<String> = parseName(request)

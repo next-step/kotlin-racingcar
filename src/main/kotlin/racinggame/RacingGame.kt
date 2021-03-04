@@ -1,8 +1,9 @@
 package racinggame
 
-import racinggame.car.V8Engine
-import racinggame.car.toRacingCars
-import racinggame.spec.CarFactory
+import racinggame.car.domain.V8Engine
+import racinggame.car.domain.toRacingCars
+import racinggame.car.domain.CarFactory
+import racinggame.record.domain.Recorder
 import racinggame.ui.inputCarAmount
 import racinggame.ui.inputTrialAmount
 import racinggame.ui.showResult
@@ -14,8 +15,9 @@ class RacingGame {
 
         val racingCars = carRequest.toRacingCar(V8Engine())
             .toRacingCars()
-        racingCars.move(trialAmount)
+        val recorder = Recorder.create()
+        racingCars.move(trialAmount, recorder)
 
-        showResult(racingCars.recorder)
+        showResult(recorder)
     }
 }

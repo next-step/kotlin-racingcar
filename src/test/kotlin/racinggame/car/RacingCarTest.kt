@@ -1,10 +1,10 @@
-package racinggame
+package racinggame.car
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import racinggame.car.Engine
-import racinggame.car.RacingCar
+import racinggame.car.domain.Engine
+import racinggame.car.domain.RacingCar
 
 internal class RacingCarTest {
     @CsvSource(value = ["true,1", "false,0"])

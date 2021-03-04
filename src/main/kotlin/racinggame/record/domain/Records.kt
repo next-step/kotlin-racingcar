@@ -1,4 +1,6 @@
-package racinggame.record
+package racinggame.record.domain
+
+import racinggame.record.dto.Record
 
 class Records(val records: List<Record>) {
     init {
@@ -6,8 +8,6 @@ class Records(val records: List<Record>) {
             throw IllegalArgumentException("기록이 존재하지 않습니다.")
         }
     }
-
-    fun size() = records.size
 
     fun getTime(): Int {
         return records[0].time

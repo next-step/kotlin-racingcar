@@ -2,6 +2,10 @@ package racinggame.car
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import racinggame.car.domain.Engine
+import racinggame.car.domain.RacingCar
+import racinggame.car.domain.RacingCars
+import racinggame.record.domain.Recorder
 
 internal class RacingCarsTest {
 
@@ -23,9 +27,8 @@ internal class RacingCarsTest {
         val racingCars = RacingCars(listOf(racingCar1, racingCar2))
 
         // when
-        racingCars.move(1)
-
-        val recorder = racingCars.recorder
+        val recorder = Recorder.create()
+        racingCars.move(1, recorder)
 
         // then
         assertThat(recorder.records).hasSize(1)

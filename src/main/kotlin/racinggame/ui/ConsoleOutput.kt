@@ -1,18 +1,18 @@
 package racinggame.ui
 
-import racinggame.record.Record
-import racinggame.record.Recorder
-import racinggame.record.Records
+import racinggame.record.dto.Record
+import racinggame.record.domain.Recorder
+import racinggame.record.domain.Records
 
 fun showResult(recorder: Recorder) {
     println("실행 결과")
     for (records in recorder.records) {
         records.toView()
     }
-    printWinner(recorder.getWinners())
+    showWinner(recorder.getWinners())
 }
 
-private fun printWinner(records: List<Record>) {
+private fun showWinner(records: List<Record>) {
     records.joinToString { it.name }
         .run { println(toString() + "가 최종 우승했습니다.") }
 }
