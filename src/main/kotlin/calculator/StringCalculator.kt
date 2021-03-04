@@ -8,7 +8,7 @@ class StringCalculator {
         val numbers = input.split(OPERATOR_REGEX).map { it.toInt() }
         val symbols = input.split(NUMBER_REGEX).filter { it.isNotBlank() }
 
-        require(numbers.size != symbols.size + 1)
+        require(numbers.size == symbols.size + 1)
 
         var result = numbers[0]
 

@@ -10,7 +10,7 @@ enum class Operator(
     SUBTRACT(
         "/",
         { left, right ->
-            require(right == 0)
+            require(right != 0)
             left / right
         }
     );
