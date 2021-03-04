@@ -17,12 +17,20 @@ object Game {
             move(Player.cars)
             Screen.show(Player.cars, count = numOfGame - num)
         }
+
+        val winners = checkWinner(Player.cars)
+        Screen.announcement(winners)
     }
 
-    fun move(cars: List<Car>) {
+    private fun move(cars: List<Car>) {
         for (car in cars) {
             val rand: Int = Random.nextInt(0, 10)
             if (rand >= 4) car.position++
         }
+    }
+
+    private fun checkWinner(cars: List<Car>): List<Car> {
+        val max = cars.maxByOrNull { it.position }!!.position
+        return cars.filter { it.position == max }
     }
 }
