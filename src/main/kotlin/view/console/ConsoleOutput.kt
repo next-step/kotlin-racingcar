@@ -2,6 +2,7 @@ package view.console
 
 import racing.ui.RacingCarDto
 import racing.ui.RacingCarDtos
+import racing.ui.RankingDto
 
 class ConsoleOutput {
     fun printExpressionInputMessage() = println("계산식을 입력해주세요.")
@@ -10,12 +11,22 @@ class ConsoleOutput {
 
     fun printCarCountInputMessage() = println("자동차 대수는 몇 대인가요?")
 
+    fun printCarNameInputMessage() = println("경주할 자동차 이름을 입력하세요. (이름은 쉼표(,)를 기준으로 구분)")
+
     fun printTryCountInputMessage() = println("시도할 횟수는 몇 회인가요?")
 
     fun printRacingGameResultMessage() = println("실행 결과")
 
-    fun printRacingGameRecord(dtos: List<RacingCarDtos>) =
-        dtos.forEach { it -> it.dtos.forEach { printCarRecord(it); println() }; println() }
+    fun printRacingGameRecord(dtos: List<RacingCarDtos>) = dtos.forEach { printOneTryRecord(it) }
 
-    private fun printCarRecord(dto: RacingCarDto) = repeat(dto.position) { print("-") }
+    private fun printOneTryRecord(it: RacingCarDtos) =
+        it.racingCarDtos.forEach { printEachCarRecord(it) }
+            .apply { println() }
+
+    private fun printEachCarRecord(dto: RacingCarDto) =
+        print("${dto.name} : ")
+            .apply { repeat(dto.position) { print("-") } }
+            .apply { println() }
+
+    fun printRacingGameWinner(winners: RankingDto) = println("${winners.winners.joinToString(", ")}가 최종 우승했습니다.")
 }

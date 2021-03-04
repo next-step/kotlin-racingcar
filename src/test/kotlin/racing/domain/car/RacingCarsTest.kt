@@ -3,21 +3,26 @@ package racing.domain.car
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertAll
 import racing.domain.movement.GoForwardMoveStrategy
 
 internal class RacingCarsTest {
-    @DisplayName("자동차를 전진시킨 경우 전진한 포지션의 리스트 반환")
+
+    @DisplayName("자동차를 전진시킨 경우 전진한 RacingCar의 리스트들을 반환")
     @Test
     fun race() {
-        val racingCars = RacingCars.create(3)
+        val racingCars = RacingCarFactory.createRacingCars("pobi,crong")
         val expected = listOf(
-            listOf(1, 1, 1),
-            listOf(2, 2, 2),
-            listOf(3, 3, 3),
+            listOf(createRacingCar("pobi", 1), createRacingCar("crong", 1)),
+            listOf(createRacingCar("pobi", 2), createRacingCar("crong", 2)),
         )
 
-        val actual = racingCars.race(3, GoForwardMoveStrategy())
+        val actual = racingCars.race(2, GoForwardMoveStrategy())
 
-        assertThat(actual).isEqualTo(expected)
+        assertAll(
+            { assertThat(actual.size).isEqualTo(expected.size) },
+            { assertThat(actual[0].size).isEqualTo(expected[0].size) },
+            { assertThat(actual[1].size).isEqualTo(expected[1].size) }
+        )
     }
 }
