@@ -42,8 +42,4 @@ class InputConsole(private val receiver: InputReceiver) {
 
         return true
     }
-
-    private fun receive(): String? {
-        return readLine()
-    }
 }
