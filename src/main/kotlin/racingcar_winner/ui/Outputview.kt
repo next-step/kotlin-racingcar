@@ -7,16 +7,16 @@ import racingcar_winner.util.progressNumberToBar
 class Outputview {
     private val winner = Winner()
 
-    fun printProgressOfCars(cars: Cars){
+    fun printProgressOfCars(cars: Cars) {
         val progressOfCars = getProgressOfCars(cars)
-        for(progressCar in progressOfCars) {
+        for (progressCar in progressOfCars) {
             println(progressCar)
         }
     }
 
     fun printWinner(cars: Cars) {
         val winners = winner.getWinner(cars)
-        println("우승자 : ${winners.joinToString(", " )}")
+        println("우승자 : ${winners.joinToString(", ")}")
     }
 
     private fun getProgressOfCars(cars: Cars): List<String> {
