@@ -53,13 +53,7 @@ class Calculator(private val receiver: Receiver = Receiver(), private val printe
 
     private fun calculate(token: Int) {
         if (!stack.isEmpty()) {
-            result = when (stack.pop()) {
-                Operator.PLUS -> result + token
-                Operator.MINUS -> result - token
-                Operator.MULTIPLY -> result * token
-                Operator.DIVIDE -> result / token
-                else -> result
-            }
+            result = stack.pop().run(result, token)
         } else {
             result = token
         }
