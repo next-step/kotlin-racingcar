@@ -7,9 +7,9 @@ import kotlin.random.Random
 
 object Game {
     fun start(receiver: InputReceiver) {
-        val (numOfCar, numOfGame) = InputConsole(receiver).run()
+        val (nameOfCars, numOfGame) = InputConsole(receiver).run()
 
-        Player.register(numOfCar)
+        Player.register(nameOfCars)
 
         var num = numOfGame
 
