@@ -13,5 +13,9 @@ class PositionString(private val name: String, private val position: Int) {
 
     override fun toString() = value
 
-    private fun positionToString() = "-".repeat(position)
+    private fun positionToString(): String = POSITION_UNIT.repeat(position)
+
+    companion object {
+        const val POSITION_UNIT: String = "-"
+    }
 }
