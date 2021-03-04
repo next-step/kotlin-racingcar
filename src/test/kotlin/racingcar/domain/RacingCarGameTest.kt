@@ -11,11 +11,12 @@ internal class RacingCarGameTest {
     @ParameterizedTest
     @MethodSource("provideCarCountAndAttemptCount")
     internal fun `자동차 수, 총 시도 횟수 테스트`(carCount: Int, attemptCount: Int) {
-        val result = RacingCarGame(carCount = 3).play(attemptCount = 4, shouldMove = true)
-        assertThat(result.size).isEqualTo(3)
+        val result = RacingCarGame(carCount = carCount)
+            .play(attemptCount = attemptCount, shouldMove = true)
+        assertThat(result.size).isEqualTo(carCount)
         result.forEach {
-            assertThat(it.history.size).isEqualTo(4)
-            assertThat(it.history).isEqualTo(List(4) { CarAction.MOVE })
+            assertThat(it.history.size).isEqualTo(attemptCount)
+            assertThat(it.history).isEqualTo(List(attemptCount) { CarAction.MOVE })
         }
     }
 
