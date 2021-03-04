@@ -12,7 +12,6 @@ object Game {
         Player.register(nameOfCars)
 
         var num = numOfGame
-
         while (num-- > 0) {
             move(Player.cars)
             Screen.show(Player.cars, count = numOfGame - num)
