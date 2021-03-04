@@ -19,8 +19,7 @@ class RoundResult(
     }
 
     private fun findWinnerHistory(): RacingHistory? {
-        return racingHistories.sortedByDescending { it.position }
-            .maxBy { it.position }
+        return racingHistories.maxBy { it.position }
     }
 }
 

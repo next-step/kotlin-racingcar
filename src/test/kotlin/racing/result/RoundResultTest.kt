@@ -37,7 +37,7 @@ internal class RoundResultTest {
     }
 
     private fun assertWinner(actualList: List<Winner>, expected: ExpectedWinner) {
-        val actual = actualList.find { it.name === expected.name }!!
+        val actual = actualList.find { it.name == expected.name }!!
         assertThat(actual.position).isEqualTo(expected.position)
     }
 
