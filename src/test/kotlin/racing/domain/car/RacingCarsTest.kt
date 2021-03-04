@@ -12,10 +12,7 @@ internal class RacingCarsTest {
     @Test
     fun race() {
         val racingCars = RacingCarFactory.createRacingCars("pobi,crong")
-        val expected = listOf(
-            listOf(createRacingCar("pobi", 1), createRacingCar("crong", 1)),
-            listOf(createRacingCar("pobi", 2), createRacingCar("crong", 2)),
-        )
+        val expected = createRacingRecord()
 
         val actual = racingCars.race(2, GoForwardMoveStrategy())
 
@@ -25,4 +22,9 @@ internal class RacingCarsTest {
             { assertThat(actual[1].size).isEqualTo(expected[1].size) }
         )
     }
+
+    private fun createRacingRecord(): List<List<RacingCar>> = listOf(
+        listOf(createRacingCar("pobi", 1), createRacingCar("crong", 1)),
+        listOf(createRacingCar("pobi", 2), createRacingCar("crong", 2)),
+    )
 }
