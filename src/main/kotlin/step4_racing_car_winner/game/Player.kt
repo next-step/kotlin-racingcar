@@ -6,7 +6,7 @@ object Player {
     fun register(nameOfCars: String) {
         val carList = nameOfCars.split(",")
         for (name in carList) {
-            require(!isValidName(name)) { "자동차 이름은 5자를 초과할 수 없습니다." }
+            require(isValidName(name)) { "자동차 이름은 5자를 초과할 수 없습니다." }
             cars.add(Car(name))
         }
     }

@@ -6,7 +6,7 @@ object Screen {
     fun show(cars: List<Car>, count: Int) {
         println("${count}회차")
         for (car in cars) {
-            println("-".repeat(car.position))
+            println("${car.name} :" + "-".repeat(car.position))
         }
     }
 }
