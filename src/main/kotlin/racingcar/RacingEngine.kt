@@ -5,7 +5,7 @@ class RacingEngine(
     private val forceGenerator: ForceGenerator = DEFAULT_GENERATOR
 ) : Engine {
     init {
-        if (threshold <= Force.ZERO) {
+        if (threshold < Force.ZERO) {
             throw IllegalArgumentException("Threshold must be positive or zero.")
         }
     }
