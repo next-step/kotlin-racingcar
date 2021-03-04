@@ -4,13 +4,16 @@ import printer.ResultView
 import printer.ResultView.printRacing
 
 fun main() {
-    val numberOfCars = Reception.receiveNumberOfCar()
+    val carNames = Reception.receiveCarNames()
     val numberOfAttempts = Reception.receiveNumberOfAttempts()
 
-    val cars = Cars.createCars(numberOfCars)
+    val cars = Cars.createCars(carNames)
     val racingCar = RacingCars(cars)
 
     ResultView.printInt()
-    val carPositions = racingCar.racing(numberOfAttempts)
-    printRacing(numberOfAttempts, carPositions)
+    val rounds = racingCar.racing(numberOfAttempts)
+    printRacing(rounds)
+
+    val winners = cars.findWinner()
+    ResultView.printWinners(winners)
 }

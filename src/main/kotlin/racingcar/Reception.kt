@@ -4,13 +4,16 @@ import number.Numbers
 import printer.InputView
 
 object Reception {
-    fun receiveNumberOfCar(): Int {
-        InputView.printInputNumberOfCar()
-        return Numbers.toInt(readLine()!!)
-    }
+    const val CAR_NAME_DELIMITERS = ","
 
     fun receiveNumberOfAttempts(): Int {
         InputView.printInputNumberOfAttempts()
         return Numbers.toInt(readLine()!!)
+    }
+
+    fun receiveCarNames(): List<String> {
+        InputView.printInputCarNames()
+
+        return readLine()!!.split(CAR_NAME_DELIMITERS)
     }
 }

@@ -5,7 +5,7 @@ import kotlin.random.Random
 import kotlin.streams.toList
 
 object Numbers {
-    const val START_INDEX = 0
+    private const val START_INDEX = 0
     const val MIN_RANDOM_NUMBER = 1
     const val MAX_RANDOM_NUMBER = 10
 
