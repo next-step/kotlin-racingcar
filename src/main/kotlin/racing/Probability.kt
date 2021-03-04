@@ -1,0 +1,13 @@
+package racing
+
+open class Probability {
+
+    open fun getProbability(): Int {
+        return (MIN_VALUE..MAX_VALUE).random()
+    }
+
+    companion object {
+        private const val MIN_VALUE = 0
+        private const val MAX_VALUE = 9
+    }
+}
