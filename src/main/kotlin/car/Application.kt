@@ -8,11 +8,9 @@ fun main() {
     val inputView = InputView()
     val input = inputView.input()
 
-    val cars = Cars(input.amount)
+    val cars = Cars(input.splitNameBySplitter())
     val resultView = ResultView(cars)
 
-    for (i in 0 until input.tryCount) {
-        cars.move()
-        resultView.print()
-    }
+    cars.move(input.tryCount)
+    resultView.print()
 }

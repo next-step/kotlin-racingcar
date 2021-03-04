@@ -1,19 +1,21 @@
 package car.business
 
-class Car {
-    private val MOVE_BIGGER_THAN = 4
+class Car(val name: String) {
 
-    internal var position: Int = 0
+    internal var currentPosition: Int = 0
         private set
 
-    fun move(rand: Int): Boolean {
-        if (!isMovable(rand)) return false
+    fun move(energy: Int) {
+        if (!isMovable(energy)) return
 
-        position++
-        return true
+        currentPosition++
     }
-    private fun isMovable(rand: Int): Boolean {
 
-        return rand >= MOVE_BIGGER_THAN
+    fun isMovable(energy: Int): Boolean {
+        return energy >= MOVE_CONDITION_ENERGY
+    }
+
+    companion object {
+        const val MOVE_CONDITION_ENERGY = 4
     }
 }

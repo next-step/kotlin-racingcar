@@ -1,33 +1,31 @@
 package car.business
 
-import kotlin.random.Random
-import kotlin.streams.toList
+import car.energy.EnergyProvider
+import car.energy.RandomEnergyProvider
 
-class Cars(amount: Int, random: Random = Random) {
-    private val RANDOM_MAX_SIZE = 10
+class Cars(names: List<String>, energyProvider: EnergyProvider = RandomEnergyProvider()) {
 
-    private val cars: List<Car>
-    private val random: Random
+    private val cars: List<Car> = names.map { Car(it) }
+    private val energyProvider: EnergyProvider = energyProvider
 
-    init {
-        cars = ArrayList(amount)
-        for (i in 0 until amount) {
-            cars.add(Car())
+    internal var allHistories: MutableList<CarMoveHistories> = ArrayList()
+        private set
+
+    fun move(times: Int) {
+        repeat(times) {
+            moveAllCar()
         }
-        this.random = random
     }
 
-    fun move(): Int {
-        return cars.stream()
-            .map { it.move(random.nextInt(RANDOM_MAX_SIZE)) }
-            .filter { it }
-            .count()
-            .toInt()
-    }
+    private fun moveAllCar() {
+        val histories = CarMoveHistories()
+        cars.forEach {
+            it.move(energyProvider.getEnergy())
 
-    fun getPositions(): List<Int> {
-        return cars.stream()
-            .map { it.position }
-            .toList()
+            var carMoveHistory = CarMoveHistory(it, it.currentPosition)
+            histories.add(carMoveHistory)
+        }
+
+        allHistories.add(histories)
     }
 }

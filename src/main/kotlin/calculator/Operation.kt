@@ -7,7 +7,7 @@ enum class Operation(val char: String, val operate: (first: Int, second: Int) ->
     DIVIDE("/", { first: Int, second: Int -> first / second });
 
     fun calc(first: Int, second: Int): Int {
-        return operate.invoke(first, second)
+        return operate(first, second)
     }
 
     companion object {

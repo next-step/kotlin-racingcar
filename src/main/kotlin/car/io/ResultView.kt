@@ -1,19 +1,29 @@
 package car.io
 
+import car.business.CarMoveHistories
 import car.business.Cars
 
-class ResultView(val cars: Cars) {
+class ResultView(private val cars: Cars) {
     fun print() {
-        for (i in cars.getPositions()) {
-            printCarPosition(i)
+        val allHistories = cars.allHistories
+        for (carMoveHistory in allHistories) {
+            printCarPositionHistory(carMoveHistory)
+            println()
         }
-        println()
+        printFrontCars(allHistories.last())
     }
 
-    private fun printCarPosition(count: Int) {
-        for (i in 0..count) {
-            print("-")
+    private fun printCarPositionHistory(carMoveHistories: CarMoveHistories) {
+        for (history in carMoveHistories) {
+            println(history)
         }
-        println()
+    }
+
+    private fun printFrontCars(carMoveHistories: CarMoveHistories) {
+        val frontHistories = carMoveHistories.getFrontHistories()
+
+        val winnerNames = frontHistories.joinToString { it.car.name }
+
+        print("$winnerNames 가 최종 우승했습니다.")
     }
 }
