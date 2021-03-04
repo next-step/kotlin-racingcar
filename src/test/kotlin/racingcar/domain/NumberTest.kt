@@ -22,7 +22,7 @@ internal class NumberTest {
     }
 
     @Test
-    fun name() {
+    fun `비교`() {
         val four = Number(4)
         val three = Number(3)
         assertThat(three.isOver(four))
