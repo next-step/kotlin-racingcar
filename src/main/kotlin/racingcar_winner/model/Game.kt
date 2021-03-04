@@ -4,34 +4,18 @@ import racingcar_winner.ui.Outputview
 
 class Game(
     private val numberOfRound: Int,
-    private val cars: Cars
+    private val carNames: List<String>
 ) {
-    private val gameManager = GameManager(cars)
-    private val numberOfCars: Int = gameManager.getNumberOfCars()
+    private val cars: Cars = Cars.makeCars(carNames)
     private val randomNumberFactory = RandomNumberManager()
     private val outputView = Outputview()
 
     fun playGame() {
         repeat(numberOfRound) {
-            playOneRound()
-            printOneRound()
+            cars.moveAll(randomNumberFactory)
+            outputView.printProgressOfCars(cars)
+            println()
         }
-
-        printWinner()
-    }
-
-    private fun playOneRound() {
-        cars.moveAll(randomNumberFactory)
-    }
-
-    private fun printOneRound() {
-        val progressOfCars = gameManager.getProgressOfCars()
-        outputView.printOneRound(progressOfCars)
-    }
-
-    private fun printWinner() {
-        val highScore = gameManager.getHighScore()
-        val winners = gameManager.getWinners(highScore)
-        outputView.printWinner(winners)
+        outputView.printWinner(cars)
     }
 }
