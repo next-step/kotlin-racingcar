@@ -3,6 +3,7 @@ package study.racingcar
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import study.racingcar.domain.Car
 
 internal class CarTest {
 
