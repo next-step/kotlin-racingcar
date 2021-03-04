@@ -3,6 +3,9 @@ package study.racingcar
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import study.racingcar.domain.Car
+import study.racingcar.domain.RacingGame
+import study.racingcar.domain.RandomMoveCarStrategy
 
 internal class RacingGameTest {
 
