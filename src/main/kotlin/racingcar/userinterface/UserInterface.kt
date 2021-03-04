@@ -5,5 +5,5 @@ import racingcar.domain.Results
 interface UserInterface {
     fun inputCarNames(): List<String>
     fun inputRoundCount(): String
-    fun outputResult(result: Results)
+    fun outputResult(results: Results)
 }
