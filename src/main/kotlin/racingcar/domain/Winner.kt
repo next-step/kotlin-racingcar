@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class Winner(private val positions: List<Positions>) {
     fun names(): List<String> {

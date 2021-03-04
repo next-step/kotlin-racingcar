@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 inline class Name(private val name: String) {
     init {

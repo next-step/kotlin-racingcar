@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 data class Positions(private val positions: List<NamedPosition>) : List<NamedPosition> by positions {
     constructor(vararg positions: Pair<String, Int>) :

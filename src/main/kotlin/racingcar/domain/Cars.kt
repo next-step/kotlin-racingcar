@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 data class Cars(private val cars: List<Car>) {
     var positions = Positions()

@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class Car(
     private var position: NamedPosition = NamedPosition.Nameless(),

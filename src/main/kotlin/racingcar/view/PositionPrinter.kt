@@ -1,5 +1,6 @@
-package racingcar
+package racingcar.view
 
+import racingcar.domain.Positions
 import java.io.OutputStream
 import java.io.PrintWriter
 

@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 interface NamedPosition {
     val name: Name

@@ -1,4 +1,6 @@
-package racingcar
+package racingcar.view
+
+import racingcar.domain.NamedPosition
 
 class PositionString(private val name: String, private val position: Int) {
     constructor(position: NamedPosition) : this(position.name.stringValue(), position.intValue())
