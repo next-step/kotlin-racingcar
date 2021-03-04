@@ -1,16 +1,18 @@
 package racingcar
 
 class RacingGame(private val cars: Cars) {
-    private val positions: MutableList<Positions> = arrayListOf()
+    private val _positions: MutableList<Positions> = arrayListOf()
+    val positions: List<Positions>
+        get() = _positions
 
-    constructor(cars: Int) : this(Cars(cars))
+    constructor(names: List<Name>) : this(Cars(names.toTypedArray()))
 
     fun play(playCount: Int) {
-        for (i in 0 until playCount) {
+        repeat(playCount) {
             cars.drive()
-            positions.add(cars.positions)
+            _positions.add(cars.positions)
         }
     }
 
-    fun positions(): List<Positions> = positions
+    fun winner() = Winner(positions)
 }

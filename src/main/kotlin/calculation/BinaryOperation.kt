@@ -15,5 +15,7 @@ class BinaryOperation(private val operator: String) {
             "*" to ::Product,
             "/" to ::Quotient
         )
+
+        fun reserved(operator: String) = operator in operators.keys
     }
 }

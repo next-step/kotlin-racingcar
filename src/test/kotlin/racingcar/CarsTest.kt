@@ -14,10 +14,14 @@ class CarsTest {
         val cars = cars(3)
         cars.drive()
         cars.drive()
-        assertThat(cars.positions).containsExactly(Position(2), Position(2), Position(2))
+        assertThat(cars.positions).containsExactly(
+            Position(2),
+            Position(2),
+            Position(2)
+        )
     }
 
     companion object {
-        fun cars(count: Int) = Cars((0 until count).map { Car(moveable = Moveable.Always()) })
+        fun cars(count: Int) = Cars((0 until count).map { Car(position = Position(), moveable = Moveable.Always()) })
     }
 }

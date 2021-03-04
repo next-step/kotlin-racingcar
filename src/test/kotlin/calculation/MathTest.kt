@@ -27,17 +27,17 @@ class MathTest {
 
     @Test
     fun `예약되지 않은 연산자`() {
-        assertThrows<IllegalArgumentException> { Calculation("4 $ 2").toInt() }
+        assertThrows<IllegalArgumentException> { Calculation("4 $ 2") }
     }
 
     @Test
     fun `계산식이 없는 경우`() {
-        assertThrows<IllegalArgumentException> { Calculation("").toInt() }
+        assertThrows<IllegalArgumentException> { Calculation("") }
     }
 
     @Test
     fun `계산식이 비정상인 경우`() {
-        assertThrows<IllegalArgumentException> { Calculation("1 1").toInt() }
+        assertThrows<IllegalArgumentException> { Calculation("1 1") }
     }
 
     @Test

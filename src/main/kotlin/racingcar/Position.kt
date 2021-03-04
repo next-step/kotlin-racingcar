@@ -1,11 +1,10 @@
 package racingcar
 
-data class Position(private val position: Int) {
-    init {
-        require(position >= 0)
-    }
+import racingcar.Name.Companion.ANONYMOUS
 
-    fun increase() = copy(position = position + 1)
+data class Position(private val namedPosition: NamedPosition) : NamedPosition by namedPosition {
 
-    fun intValue() = position
+    constructor(position: Int = 0) : this(NamedPosition.Smart(ANONYMOUS, position))
+
+    override operator fun inc() = Position(namedPosition.intValue() + 1)
 }

@@ -1,9 +1,12 @@
 package racingcar
 
-class Car(private var position: Position = Position(0), private val moveable: Moveable = Moveable.Random()) {
-    fun driving(): Position {
+class Car(
+    private var position: NamedPosition = Position(),
+    private val moveable: Moveable = Moveable.Random()
+) {
+    fun driving(): NamedPosition {
         if (moveable.moving()) {
-            position = position.increase()
+            position++
         }
         return position
     }
