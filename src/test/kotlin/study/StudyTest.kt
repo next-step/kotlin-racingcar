@@ -2,6 +2,7 @@ package study
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import racing.domain.Car
 
 class StudyTest {
     @Test
@@ -27,5 +28,11 @@ class StudyTest {
     @Test
     fun `nullable test`() {
         assertThat(null?.toInt()).isNull()
+    }
+
+    @Test
+    fun `empty list joinToString`() {
+        val list = emptyList<Car>()
+        assertThat(list.joinToString(", ") { it.name.name }).isEqualTo("")
     }
 }

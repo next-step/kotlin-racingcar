@@ -1,26 +1,25 @@
 package racing.domain
 
-class RacingGame(carCount: Int, var movementChecker: MovementChecker) {
+import racing.data.RacingGameData
+import racing.data.RacingHistory
+import racing.data.RoundResult
+import racing.data.Winners
 
-    val cars = mutableListOf<Car>()
+class RacingGame(private val racingGameData: RacingGameData, movementChecker: MovementChecker) {
 
-    init {
-        repeat(carCount) {
-            cars.add(Car())
+    val cars = Cars(racingGameData.carNames, movementChecker)
+
+    fun run(): RacingHistory {
+        val racingHistory = RacingHistory()
+        repeat(racingGameData.tryCount) {
+            cars.moveAllCar()
+            val roundResult = RoundResult(cars.getCarStates())
+            racingHistory.recordRoundResult(roundResult)
         }
+        return racingHistory
     }
 
-    fun moveAllCar() {
-        cars.forEach { moveCarIfPossible(it) }
-    }
-
-    private fun moveCarIfPossible(car: Car) {
-        if (movementChecker.isMovable()) {
-            car.moveCar()
-        }
-    }
-
-    fun getCarPositions(): List<Int> {
-        return cars.map { it.position }
+    fun getWinners(): Winners {
+        return Winners.of(cars.getFarthestCars())
     }
 }
