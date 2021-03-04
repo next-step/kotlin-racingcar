@@ -3,6 +3,7 @@ package racingcar
 class Winner(private val positions: List<Positions>) {
     fun names(): List<String> {
         return positions.last()
+            .sortedByDescending { it.intValue() }
             .takeIf { it.isNotEmpty() }
             ?.run {
                 winnerNames(this, first().intValue())
@@ -10,10 +11,9 @@ class Winner(private val positions: List<Positions>) {
     }
 
     private fun winnerNames(
-        positions: List<NamedPosition>,
+        sortedPositions: List<NamedPosition>,
         mostPosition: Int
-    ): List<String> = positions
-        .sortedByDescending { it.intValue() }
+    ): List<String> = sortedPositions
         .takeWhile { it >= mostPosition }
         .map { it.name.stringValue() }
 }
