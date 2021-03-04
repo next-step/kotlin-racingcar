@@ -1,9 +1,9 @@
 package racing.domain.car
 
-private const val MIN_PARTICIPANT = 2
-
 class RacingCarFactory {
     companion object {
+        private const val MIN_PARTICIPANT = 2
+
         fun createRacingCars(carNames: String): RacingCars {
             return RacingCars(createRacingCar(carNames))
         }

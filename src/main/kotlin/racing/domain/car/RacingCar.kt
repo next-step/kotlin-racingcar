@@ -2,8 +2,6 @@ package racing.domain.car
 
 import racing.domain.movement.MoveStrategy
 
-private const val MOVE_CONDITION = 4
-
 class RacingCar(
     val racingCarName: RacingCarName,
     var position: Int = 0
@@ -16,4 +14,8 @@ class RacingCar(
     }
 
     private fun canMove(moveStrategy: MoveStrategy) = moveStrategy.decisionNumber >= MOVE_CONDITION
+
+    companion object {
+        private const val MOVE_CONDITION = 4
+    }
 }
