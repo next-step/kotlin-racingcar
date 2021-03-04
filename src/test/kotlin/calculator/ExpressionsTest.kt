@@ -1,6 +1,6 @@
 package calculator
 
-import calculator.ExpressionParser.Companion.parse
+import calculator.ExpressionParser.parse
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
