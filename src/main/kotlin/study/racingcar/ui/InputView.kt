@@ -6,11 +6,11 @@ object InputView {
 
     fun inputCarCount(): Int {
         println(INPUT_CAR_COUNT_COMMENT)
-        return readLine()?.toInt()!!
+        return readLine()?.toInt() ?: throw IllegalArgumentException("잘못된 입력값 입니다.")
     }
 
     fun inputTryCount(): Int {
         println(INPUT_TRY_COUNT_COMMENT)
-        return readLine()?.toInt()!!
+        return readLine()?.toInt() ?: throw IllegalArgumentException("잘못된 입력값 입니다.")
     }
 }
