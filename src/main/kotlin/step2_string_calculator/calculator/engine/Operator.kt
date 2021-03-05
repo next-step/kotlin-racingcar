@@ -1,26 +1,8 @@
 package step2_string_calculator.calculator.engine
 
-enum class Operator(val value: String) {
-    PLUS("+") {
-        override fun run(left: Int, right: Int): Int {
-            return left + right
-        }
-    },
-    MINUS("-") {
-        override fun run(left: Int, right: Int): Int {
-            return left - right
-        }
-    },
-    MULTIPLY("*") {
-        override fun run(left: Int, right: Int): Int {
-            return left * right
-        }
-    },
-    DIVIDE("/") {
-        override fun run(left: Int, right: Int): Int {
-            return left / right
-        }
-    };
-
-    abstract fun run(left: Int, right: Int): Int
+enum class Operator(val value: String, val method: (left: Int, right: Int) -> Int) {
+    PLUS("+", { left, right -> left + right }),
+    MINUS("-", { left, right -> left - right }),
+    MULTIPLY("*", { left, right -> left * right }),
+    DIVIDE("/", { left, right -> left / right })
 }

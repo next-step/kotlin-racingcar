@@ -53,7 +53,7 @@ class Calculator(private val receiver: Receiver = Receiver(), private val printe
 
     private fun calculate(token: Int) {
         if (!stack.isEmpty()) {
-            result = stack.pop().run(result, token)
+            result = stack.pop().method(result, token)
         } else {
             result = token
         }
