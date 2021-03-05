@@ -1,6 +1,6 @@
-package racingcar
+package domain.racingcar
 
-class Round(private val records: List<Record>) {
+class Records(private val records: List<Record>) {
     fun forEach(action: (Record) -> Unit) {
         records.forEach(action)
     }
