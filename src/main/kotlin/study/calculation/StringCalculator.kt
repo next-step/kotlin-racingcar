@@ -7,8 +7,8 @@ class StringCalculator(private val calculateTokenizer: CalculateTokenizer) {
 
         token.operators.forEachIndexed { i, oper ->
             val right = token.operands[i + 1]
-            val calculation = CalculationFactory.create(oper)
-            left = calculation.calculate(left, right)
+            val calculation = Operator.select(oper).calculation
+            left = calculation(left, right)
         }
 
         return left
