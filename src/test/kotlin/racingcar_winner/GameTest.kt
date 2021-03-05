@@ -4,7 +4,6 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import racingcar.ui.OutputView
 import racingcar_winner.model.Car
-import racingcar_winner.model.Winner
 
 class RefereeTest {
 

@@ -1,7 +1,5 @@
 package racingcar_winner.model
 
-import racingcar_winner.ui.Outputview
-
 class Game(
     private val numberOfRound: Int,
     private val carNames: List<String>

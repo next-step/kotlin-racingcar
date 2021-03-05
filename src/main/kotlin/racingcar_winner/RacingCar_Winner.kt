@@ -15,5 +15,4 @@ fun main() {
     game.playGame()
     outputView.printProgressOfCars(game.getGameRecord())
     outputView.printWinner(game.getGameWinner())
-
 }

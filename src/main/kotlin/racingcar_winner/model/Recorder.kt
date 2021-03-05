@@ -14,7 +14,7 @@ class Recorder {
         record += "\n"
     }
 
-    private fun convertCarToProgress(car : Car): String {
+    private fun convertCarToProgress(car: Car): String {
         return "${car.name} : ${car.progress.progressNumberToBar()}\n"
     }
 }

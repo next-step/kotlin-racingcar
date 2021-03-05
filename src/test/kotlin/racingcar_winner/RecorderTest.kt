@@ -14,7 +14,7 @@ class RecorderTest {
     val JAMES = 2
 
     val recorder = Recorder()
-    val carNames = listOf("Phobi", "John","James")
+    val carNames = listOf("Phobi", "John", "James")
     val listOfCars = Cars.convertNamesToCar(carNames)
 
     @Test
