@@ -1,4 +1,4 @@
-package step3
+package step3.domain
 
 class RacingGame(private val cars: Cars, private val rule: Rule) {
 

@@ -1,9 +1,13 @@
-package step3
+package step3.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
+import step3.domain.Car
+import step3.domain.Cars
+import step3.domain.LapResult
+import step3.domain.LapResults
 
 internal class LapResultsTest {
     @ParameterizedTest
