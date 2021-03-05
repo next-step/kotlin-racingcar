@@ -1,4 +1,4 @@
-package racing_car.game
+package racingcar.game
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test

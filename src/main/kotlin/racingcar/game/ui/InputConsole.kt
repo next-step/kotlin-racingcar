@@ -1,4 +1,4 @@
-package racing_car.game.ui
+package racingcar.game.ui
 
 interface InputReceiver {
     fun receive(): String?

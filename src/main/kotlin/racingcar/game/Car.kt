@@ -1,4 +1,4 @@
-package racing_car.game
+package racingcar.game
 
 const val FORWARD_CRITERIA_NUMBER = 4
 

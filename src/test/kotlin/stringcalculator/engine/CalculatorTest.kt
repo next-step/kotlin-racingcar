@@ -1,4 +1,4 @@
-package step2_string_calculator.calculator.engine
+package stringcalculator.engine
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
-import step2_string_calculator.calculator.ui.Receiver
+import stringcalculator.ui.Receiver
 
 class MockReceiver : Receiver() {
     var answer: String? = ""

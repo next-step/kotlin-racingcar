@@ -1,4 +1,4 @@
-package step2_string_calculator.calculator.engine
+package stringcalculator.engine
 
 enum class Operator(val value: String, val method: (left: Int, right: Int) -> Int) {
     PLUS("+", { left, right -> left + right }),

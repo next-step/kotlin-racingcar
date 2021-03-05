@@ -1,7 +1,7 @@
-package step2_string_calculator.calculator.engine
+package stringcalculator.engine
 
-import step2_string_calculator.calculator.ui.Printer
-import step2_string_calculator.calculator.ui.Receiver
+import stringcalculator.ui.Printer
+import stringcalculator.ui.Receiver
 import java.util.Stack
 
 const val DELIMITER = " "

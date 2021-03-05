@@ -1,4 +1,4 @@
-package step2_string_calculator.calculator.ui
+package stringcalculator.ui
 
 open class Receiver {
     fun run(): String {

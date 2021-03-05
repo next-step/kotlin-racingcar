@@ -1,6 +1,6 @@
-package racing_car.game.ui
+package racingcar.game.ui
 
-import racing_car.game.Car
+import racingcar.game.Car
 
 object Screen {
     fun show(cars: List<Car>) {

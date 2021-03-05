@@ -1,8 +1,8 @@
-package racing_car.game
+package racingcar.game
 
-import racing_car.game.ui.InputConsole
-import racing_car.game.ui.InputReceiver
-import racing_car.game.ui.Screen
+import racingcar.game.ui.InputConsole
+import racingcar.game.ui.InputReceiver
+import racingcar.game.ui.Screen
 
 class Game(private val receiver: InputReceiver) {
     fun start() {

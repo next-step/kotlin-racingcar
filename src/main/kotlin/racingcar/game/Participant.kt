@@ -1,4 +1,4 @@
-package racing_car.game
+package racingcar.game
 
 class Participant(numOfCar: Int) {
     val cars = emptyList<Car>().toMutableList()
