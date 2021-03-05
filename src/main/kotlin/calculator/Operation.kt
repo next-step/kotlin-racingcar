@@ -1,42 +1,38 @@
 package calculator
 
 class Operation(
-    private val operandA: Operand
+    private val base: Operand
 ) {
-    companion object {
-        val Empty = Operation(Scalar(0)).with(AddOperator)
-    }
-
-    private var operator: Operator? = null
-
-    fun with(operator: Operator): Operation {
-        assertOperatorIsNull()
+    constructor(base: Operand, operator: Operator) : this(base) {
         this.operator = operator
-        return this
     }
 
-    fun with(operandB: Operand): Operation {
-        val operator = this.operator.orThrow()
-        return Operation(operator.operate(operandA, operandB))
-    }
-
-    val result: Scalar get() {
-        if (operator != null) {
-            throw IllegalArgumentException("The operation is invalid")
+    val result: Scalar
+        get() {
+            if (operator != null) {
+                throw IllegalArgumentException("The operation is invalid")
+            }
+            return Scalar(base)
         }
-        return Scalar(operandA)
-    }
 
-    private fun Operator?.orThrow(): Operator {
-        if (this == null) {
-            throw IllegalArgumentException("The operator does not exist.")
+    var operator: Operator? = null
+        set(value) {
+            assertOperatorIsNull()
+            field = value
         }
-        return this
+
+    fun operate(operand: Operand): Operation {
+        val operator = this.operator ?: throw IllegalStateException("The operator does not exist.")
+        return Operation(operator.operate(base, operand))
     }
 
     private fun assertOperatorIsNull() {
         if (operator != null) {
-            throw IllegalArgumentException("The operator already exists.")
+            throw IllegalStateException("The operator already exists.")
         }
+    }
+
+    companion object {
+        val EMPTY = Operation(Scalar(0), Operator.ADD)
     }
 }

@@ -6,7 +6,7 @@ class StringCalculator {
     }
 
     fun calculate(stringExpression: String?): Scalar {
-        if (stringExpression == null || stringExpression.isBlank()) {
+        if (stringExpression.isNullOrBlank()) {
             throw IllegalArgumentException("The expression is null or blank. expression='$stringExpression'")
         }
 
@@ -16,15 +16,16 @@ class StringCalculator {
     private fun calculate(stringExpression: String): Operation {
         return stringExpression.trim()
             .split(DELIMITER)
-            .foldIndexed(Operation.Empty, ::operateExpression)
+            .foldIndexed(Operation.EMPTY, ::operateExpression)
     }
 
     private fun operateExpression(index: Int, operation: Operation, value: String): Operation {
         if (isOdd(index)) {
-            return operation.with(parseOperator(index, value))
+            operation.operator = parseOperator(index, value)
+            return operation
         }
 
-        return operation.with(parseOperand(index, value))
+        return operation.operate(parseOperand(index, value))
     }
 
     private fun isOdd(integer: Int) = integer % 2 == 1
