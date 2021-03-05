@@ -2,7 +2,7 @@ package study.racingcar.domain
 
 import study.racingcar.common.GameConfig
 
-class RaceResult(private val cars: List<Car>) {
+class RaceResult(cars: List<Car>) {
     val resultSymbols: List<String> = cars.map { toRaceSymbol(it) }
 
     private fun toRaceSymbol(car: Car): String {
