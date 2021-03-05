@@ -17,10 +17,14 @@ fun getInputValue(): Int {
     try {
         val intValue = value.toInt()
 
-        require(intValue > 0) { "입력값은 0보다 큰 자연수이어야 합니다." }
+        require(mustBiggerThanZero(intValue)) { "입력값은 0보다 큰 자연수이어야 합니다." }
 
         return intValue
     } catch (e: NumberFormatException) {
         throw IllegalArgumentException("자연수를 입력해주세요.")
     }
+}
+
+fun mustBiggerThanZero(value: Int): Boolean {
+    return value > 0
 }
