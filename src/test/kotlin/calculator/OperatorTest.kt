@@ -13,10 +13,10 @@ class OperatorTest {
         val oldNum = 4.0
         val newNum = 2.0
 
-        assertEquals(6.0, Operator.of("+").execute(oldNum, newNum))
-        assertEquals(2.0, Operator.of("-").execute(oldNum, newNum))
-        assertEquals(8.0, Operator.of("*").execute(oldNum, newNum))
-        assertEquals(2.0, Operator.of("/").execute(oldNum, newNum))
+        assertEquals(6.0, Operator.ofOperator("+").execute(oldNum, newNum))
+        assertEquals(2.0, Operator.ofOperator("-").execute(oldNum, newNum))
+        assertEquals(8.0, Operator.ofOperator("*").execute(oldNum, newNum))
+        assertEquals(2.0, Operator.ofOperator("/").execute(oldNum, newNum))
     }
 
     @Test
@@ -24,8 +24,8 @@ class OperatorTest {
         val oldNum = 4.0
         val newNum = 2.0
 
-        assertThrows<IllegalArgumentException> { Operator.of("a").execute(oldNum, newNum) }
-        assertThrows<IllegalArgumentException> { Operator.of("&").execute(oldNum, newNum) }
+        assertThrows<IllegalArgumentException> { Operator.ofOperator("a").execute(oldNum, newNum) }
+        assertThrows<IllegalArgumentException> { Operator.ofOperator("&").execute(oldNum, newNum) }
     }
 
     @ParameterizedTest
