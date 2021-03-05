@@ -31,5 +31,6 @@ internal class CalculationTest {
     fun 나눗셈(a: Int, b: Int, expected: Int) {
         val calculation: (Int, Int) -> Int = Operator.select("/").calculation
         assertThat(calculation(a, b)).isEqualTo(expected)
+        val calculation: Calculation = CalculationFactory.create("/")
     }
 }
