@@ -6,23 +6,28 @@ class CalculateTokenizer {
     }
 
     fun tokenize(stringExpression: String): ExpressionToken {
-        validate(stringExpression)
+        blankValidate(stringExpression)
         val stringTokens = stringExpression.split(TOKEN_SEPERATOR)
-        val token = ExpressionToken()
-        token.addOperand(stringTokens[0].toInt())
-
-        for (i in 2..stringTokens.size step 2) {
-            token.addOperator(stringTokens[i - 1])
-            token.addOperand(stringTokens[i].toInt())
-        }
-        return token
+        invalidExpressionValidate(stringTokens)
+        val operators: List<String> = stringTokens.filter { Operator.isOperator(it) }
+        val operands: List<Int> = stringTokens.filterNot { Operator.isOperator(it) }.map { it.toInt() }
+        invalidExpressionValidate(operators, operands)
+        return ExpressionToken(operators, operands)
     }
 
-    private fun validate(expression: String) {
+    private fun blankValidate(expression: String) {
         require(!expression.isBlank()) {
             "입력 값이 빈 공백 문자열 입니다."
         }
-        require(expression.split(TOKEN_SEPERATOR).size >= 3 && expression.split(TOKEN_SEPERATOR).size % 2 != 0) {
+    }
+    private fun invalidExpressionValidate(stringTokens: List<String>) {
+        require(stringTokens.size >= 3 && stringTokens.size % 2 != 0 && !Operator.isOperator(stringTokens[0])) {
+            "올바른 식이 아닙니다."
+        }
+    }
+
+    private fun invalidExpressionValidate(operators: List<String>, operands: List<Int>) {
+        require(operands.size - operators.size == 1) {
             "올바른 식이 아닙니다."
         }
     }
