@@ -13,7 +13,6 @@ class WinnerTest {
     private val JOHN = 1
     private val JAMES = 2
 
-    private val winner = Winner()
     private val outputView = OutputView()
     private val listOfCars = listOf<Car>(
         Car.makeCar("Phobi"), Car.makeCar("John"), Car.makeCar("James")
@@ -28,7 +27,7 @@ class WinnerTest {
 
         // [현재 Progress] Phobi: 2, John: 2, James: 0
         val cars = Cars.makeCars(listOfCars)
-        val winners = winner.getWinner(cars)
+        val winners = Winner(cars).getWinner()
 
         Assertions.assertThat(winners).isEqualTo(listOf("Phobi", "John"))
     }
@@ -40,7 +39,7 @@ class WinnerTest {
 
         // [현재 Progress] Phobi: 2, John: 0, James: 0
         val cars = Cars.makeCars(listOfCars)
-        val winners = winner.getWinner(cars)
+        val winners = Winner(cars).getWinner()
 
         Assertions.assertThat(winners).isEqualTo(listOf("Phobi"))
     }

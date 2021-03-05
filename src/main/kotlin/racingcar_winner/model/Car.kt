@@ -1,6 +1,6 @@
 package racingcar_winner.model
 
-public class Car private constructor(
+class Car private constructor(
     val name: String
 ) {
     var progress: Int = 0

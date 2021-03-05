@@ -12,7 +12,6 @@ class RefereeTest {
     private val JOHN = 1
     private val JAMES = 2
 
-    private val winner = Winner()
     private val outputView = OutputView()
     private val listOfCars = listOf<Car>(
         Car.makeCar("Phobi"), Car.makeCar("John"), Car.makeCar("James")

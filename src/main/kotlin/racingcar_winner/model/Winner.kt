@@ -1,8 +1,10 @@
 package racingcar_winner.model
 
-class Winner {
-    fun getWinner(cars: Cars): List<String> {
-        val highScore = getHighScore(cars)
+class Winner(
+    private val cars: Cars
+) {
+    fun getWinner(): List<String> {
+        val highScore = getHighScore()
         return cars.toList().filter { car ->
             car.progress == highScore
         }.map { car ->
@@ -10,7 +12,7 @@ class Winner {
         }
     }
 
-    private fun getHighScore(cars: Cars): Int {
+    private fun getHighScore(): Int {
         return cars.toList().map {
             it.progress
         }.max()!!

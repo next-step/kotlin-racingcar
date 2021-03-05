@@ -1,6 +1,6 @@
 package racingcar_winner.model
 
-public class Cars private constructor(
+class Cars private constructor(
     private val cars: List<Car>
 ) {
     fun moveAll(randomNumberFactory: RandomNumberManager) {
@@ -16,7 +16,7 @@ public class Cars private constructor(
 
     companion object {
         fun makeCars(cars: List<Car>): Cars {
-            return Cars(cars)
+            return Cars(cars.toList())
         }
 
         fun convertNamesToCar(carNames: List<String>): List<Car> {
