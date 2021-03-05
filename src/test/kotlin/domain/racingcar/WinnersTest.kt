@@ -1,9 +1,9 @@
-package racingcar
+package domain.racingcar
 
 import fixture.CarFixture.CAR_NAMES
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import racingcar.Reception.CAR_NAME_DELIMITERS
+import domain.racingcar.Reception.CAR_NAME_DELIMITERS
 
 class WinnersTest {
     @Test

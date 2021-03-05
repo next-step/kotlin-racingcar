@@ -1,4 +1,4 @@
-package racingcar
+package domain.racingcar
 
 class Cars(private val cars: List<Car>) {
     fun forwardAllByCondition(conditions: List<Int>) {
@@ -38,8 +38,8 @@ class Cars(private val cars: List<Car>) {
         return Positions(cars.map { it.position })
     }
 
-    fun finishRound(): Round {
-        return Round(cars.map { Record(it.name, newPosition(it.position)) })
+    fun finishRound(): Records {
+        return Records(cars.map { Record(it.name, newPosition(it.position)) })
     }
 
     private fun newPosition(position: Position) = Position(position.position)
@@ -49,12 +49,12 @@ class Cars(private val cars: List<Car>) {
         private const val MIN_CAN_CREATE_CARS = 0
 
         fun createCars(names: List<String>): Cars {
-            checkNameSize(names.size)
+            validNameSize(names.size)
 
             return Cars(names.map { Car(it) })
         }
 
-        private fun checkNameSize(nameSize: Int) {
+        private fun validNameSize(nameSize: Int) {
             require(nameSize > MIN_CAN_CREATE_CARS) { "0 미만의 개수는 생성할 수 없습니다." }
         }
     }

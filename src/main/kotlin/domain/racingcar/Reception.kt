@@ -1,7 +1,7 @@
-package racingcar
+package domain.racingcar
 
-import number.Numbers
-import printer.InputView
+import domain.number.Numbers
+import view.InputView
 
 object Reception {
     const val CAR_NAME_DELIMITERS = ","

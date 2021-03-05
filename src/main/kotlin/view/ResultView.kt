@@ -1,10 +1,10 @@
-package printer
+package view
 
-import racingcar.Position
-import racingcar.Reception
-import racingcar.Round
-import racingcar.Rounds
-import racingcar.Winners
+import domain.racingcar.Position
+import domain.racingcar.Reception
+import domain.racingcar.Records
+import domain.racingcar.OverallResult
+import domain.racingcar.Winners
 
 object ResultView {
     fun printInt() {
@@ -15,15 +15,15 @@ object ResultView {
         print(winners.joinToWinners(Reception.CAR_NAME_DELIMITERS) + "가 최종 우승했습니다")
     }
 
-    fun printRacing(rounds: Rounds) {
-        rounds.forEach {
+    fun printRacing(overallResult: OverallResult) {
+        overallResult.forEach {
             printCarsPath(it)
             println()
         }
     }
 
-    private fun printCarsPath(round: Round) {
-        round.forEach {
+    private fun printCarsPath(records: Records) {
+        records.forEach {
             printName(it.name)
             printCarPath(it.position)
         }

@@ -1,6 +1,6 @@
-package racingcar
+package domain.racingcar
 
-class Winners(private val names: List<String>) {
+class Winners(val names: List<String>) {
     fun joinToWinners(delimiter: String): String {
         return names.joinToString("$delimiter ")
     }

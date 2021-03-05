@@ -1,4 +1,4 @@
-package racingcar
+package domain.racingcar
 
 class Position(var position: Int = START_POSITION) {
     fun forward() {

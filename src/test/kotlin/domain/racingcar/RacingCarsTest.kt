@@ -1,4 +1,4 @@
-package racingcar
+package domain.racingcar
 
 import fixture.CarFixture.CARS
 import org.assertj.core.api.Assertions.assertThat
@@ -11,12 +11,12 @@ class RacingCarsTest {
         val cars = Cars(CARS)
         val racingCars = RacingCars(cars)
 
-        val rounds = racingCars.racing(5)
+        val overallResult = racingCars.racing(5)
 
-        val firstRound = rounds.getByIndex(0)
+        val firstRound = overallResult.getByIndex(0)
 
         assertAll(
-            { assertThat(rounds.getSize()).isEqualTo(5) },
+            { assertThat(overallResult.getSize()).isEqualTo(5) },
             { assertThat(firstRound.getByIndex(0)).isNotNull() },
             { assertThat(firstRound.getByIndex(1)).isNotNull() },
             { assertThat(firstRound.getByIndex(2)).isNotNull() }

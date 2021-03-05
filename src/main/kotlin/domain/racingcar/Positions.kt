@@ -1,4 +1,4 @@
-package racingcar
+package domain.racingcar
 
 class Positions(private val positions: List<Position>) {
     fun max(): Position {

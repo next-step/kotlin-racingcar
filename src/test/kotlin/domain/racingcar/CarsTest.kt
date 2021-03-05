@@ -1,4 +1,4 @@
-package racingcar
+package domain.racingcar
 
 import fixture.CarFixture.CAR_NAMES
 import fixture.CarFixture.KIM_NAME

@@ -1,4 +1,4 @@
-package number
+package domain.number
 
 import java.util.stream.IntStream
 import kotlin.random.Random

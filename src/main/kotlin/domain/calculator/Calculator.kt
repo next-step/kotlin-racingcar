@@ -1,6 +1,6 @@
-package calculator
+package domain.calculator
 
-import number.Numbers.toInt
+import domain.number.Numbers.toInt
 
 object Calculator {
     private const val FIRST_OPERAND = 0

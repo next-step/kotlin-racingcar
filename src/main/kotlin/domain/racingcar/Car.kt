@@ -1,4 +1,4 @@
-package racingcar
+package domain.racingcar
 
 class Car(val name: String) {
     init {

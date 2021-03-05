@@ -1,4 +1,4 @@
-package printer
+package view
 
 object InputView {
     fun printInputNumberOfAttempts() {

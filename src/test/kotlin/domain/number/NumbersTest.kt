@@ -1,7 +1,7 @@
-package number
+package domain.number
 
-import number.Numbers.MAX_RANDOM_NUMBER
-import number.Numbers.MIN_RANDOM_NUMBER
+import domain.number.Numbers.MAX_RANDOM_NUMBER
+import domain.number.Numbers.MIN_RANDOM_NUMBER
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test

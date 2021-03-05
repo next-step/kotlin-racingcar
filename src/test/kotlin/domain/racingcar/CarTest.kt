@@ -1,4 +1,4 @@
-package racingcar
+package domain.racingcar
 
 import fixture.CarFixture.KIM_CAR
 import org.assertj.core.api.Assertions
