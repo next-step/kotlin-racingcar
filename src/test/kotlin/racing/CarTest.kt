@@ -28,16 +28,4 @@ class CarTest {
             assertTrue(car.position == 2)
         }
     }
-
-    class LowProbabilityProxy : Probability() {
-        override fun getProbability(): Int {
-            return 3
-        }
-    }
-
-    class HighProbabilityProxy : Probability() {
-        override fun getProbability(): Int {
-            return 7
-        }
-    }
 }
