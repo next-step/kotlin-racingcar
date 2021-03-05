@@ -1,11 +1,12 @@
-package step3_racing_car.game.ui
+package racing_car.game.ui
 
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
+import java.lang.IllegalArgumentException
 
 class MockReceiver : InputReceiver {
     var answer: String? = "0"
@@ -28,12 +29,9 @@ internal class InputConsoleTest {
     @NullAndEmptySource
     @ValueSource(strings = ["0", "-1", "#", "$"])
     fun exceptionTest(input: String?) {
-        assertThatThrownBy {
-            // given
+        assertThrows<IllegalArgumentException> {
             mockReceiver.answer = input
-            // when
             InputConsole(mockReceiver).run()
-        } // then
-            .isInstanceOf(java.lang.IllegalArgumentException::class.java)
+        }
     }
 }

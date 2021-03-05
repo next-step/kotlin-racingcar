@@ -1,6 +1,6 @@
-package step3_racing_car.game.ui
+package racing_car.game.ui
 
-import step3_racing_car.game.Car
+import racing_car.game.Car
 
 object Screen {
     fun show(cars: List<Car>) {

@@ -1,4 +1,4 @@
-package step3_racing_car.game.ui
+package racing_car.game.ui
 
 interface InputReceiver {
     fun receive(): String?
@@ -25,14 +25,11 @@ class InputConsole(private val receiver: InputReceiver) {
 
     private fun isValid(num: String?) {
         require(!num.isNullOrBlank()) { "입력값은 null 혹은 blank 값이 될 수 없습니다." }
-
-        var numToInt = 0
         try {
-            numToInt = num.toInt()
+            val numToInt = num.toInt()
+            require(numToInt > 0) { "입력값은 1 이상이어야만 합니다." }
         } catch (e: NumberFormatException) {
             throw IllegalArgumentException("입력값 : $num, 정수형을 입력해 주세요.")
         }
-
-        require(numToInt > 0) { "입력값은 1 이상이어야만 합니다." }
     }
 }

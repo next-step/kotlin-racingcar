@@ -1,4 +1,4 @@
-package step3_racing_car.game
+package racing_car.game
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -11,33 +11,31 @@ internal class CarsTest {
         // given
         val numOfCar = 5
         // when
-        Cars.register(numOfCar)
+        val participant = Participant(numOfCar)
+
         // then
-        assertThat(Cars.list.size).isEqualTo(numOfCar)
+        assertThat(participant.cars.size).isEqualTo(numOfCar)
     }
 
     @Test
     fun moveFailTest() {
         // given
-        val position = 0
-        val car = Car(position)
+        val car = Car()
         // when
         val condition = 1
         car.move(condition)
         // then
-        assertThat(car.position).isEqualTo(position)
+        assertThat(car.position).isEqualTo(0)
     }
 
     @ParameterizedTest
     @ValueSource(ints = [4, 5, 9])
-    fun moveSuccessTest(input: Int?) {
+    fun moveSuccessTest(input: Int) {
         // given
-        val position = 0
-        val car = Car(position)
+        val car = Car()
         // when
-        val condition = input
-        condition?.let { car.move(it) }
+        car.move(input)
         // then
-        assertThat(car.position).isEqualTo(position + 1)
+        assertThat(car.position).isEqualTo(1)
     }
 }
