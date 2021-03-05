@@ -7,7 +7,7 @@ import study.racingcar.util.RacingCarRandomGenerator
 class RacingCarGame(
     private val carCount: Int,
     private val tryCount: Int,
-    private val cars: List<Car> = (1..carCount).toList().map { Car() },
+    private val cars: List<Car> = (1..carCount).map { Car() },
     private var raceResults: List<RaceResult> = ArrayList()
 ) {
     fun start() {
