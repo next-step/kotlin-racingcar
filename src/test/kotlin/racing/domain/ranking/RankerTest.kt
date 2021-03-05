@@ -15,7 +15,7 @@ internal class RankerTest {
             RacingCarDtos(listOf(RacingCarDto("pobi", 1), RacingCarDto("crong", 0)))
         )
 
-        val winners = Ranker().getWinners(record)
+        val winners = Ranker(record).winners
 
         assertThat(winners).isEqualTo(listOf("pobi"))
     }

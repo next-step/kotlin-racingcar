@@ -1,8 +1,5 @@
 package racing.domain.car
 
-private const val BLANK = " "
-private const val MAX_LENGTH = 8
-
 class RacingCarName(name: String) {
     val name: String
 
@@ -17,7 +14,11 @@ class RacingCarName(name: String) {
     }
 
     private fun validateLength(name: String) {
-        require(name.length <= MAX_LENGTH) { "이름의 길이는 최대 8글자입니다." }
+        require(name.length <= MAX_LENGTH) { "이름의 길이는 최대 ${MAX_LENGTH}글자입니다." }
     }
 
+    companion object {
+        private const val BLANK = " "
+        private const val MAX_LENGTH = 8
+    }
 }

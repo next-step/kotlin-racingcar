@@ -1,9 +1,9 @@
 package racing.domain.car
 
-private const val MIN_PARTICIPANT = 2
-
 class RacingCarFactory {
     companion object {
+        private const val MIN_PARTICIPANT = 2
+
         fun createRacingCars(carNames: String): RacingCars {
             return RacingCars(createRacingCar(carNames))
         }
@@ -18,7 +18,7 @@ class RacingCarFactory {
         }
 
         private fun validateParticipant(tokens: List<String>) {
-            require(tokens.size >= MIN_PARTICIPANT) { "참가자는 2명 이상이어야 합니다." }
+            require(tokens.size >= MIN_PARTICIPANT) { "참가자는 ${MIN_PARTICIPANT}명 이상이어야 합니다." }
         }
     }
 }
