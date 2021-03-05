@@ -3,10 +3,10 @@ package racing
 fun main() {
     val carCount = inputCarCount()
     val tryCount = inputTryCount()
-    val carList = (0 until carCount).map { Car(Probability()) }.toList()
+    val cars = (1..carCount).map { Car(Probability()) }
 
     repeat(tryCount) {
-        carList.forEach { it.tryGo() }
-        printResult(carList)
+        cars.forEach { it.tryGo() }
+        printResult(cars)
     }
 }
