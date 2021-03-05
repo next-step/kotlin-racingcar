@@ -1,4 +1,4 @@
-package study.racingcar
+package study.racingcar.domain
 
 class RacingGame(private val moveStrategy: MoveStrategy) {
 

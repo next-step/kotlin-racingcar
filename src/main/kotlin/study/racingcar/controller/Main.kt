@@ -1,4 +1,12 @@
-package study.racingcar
+package study.racingcar.controller
+
+import study.racingcar.domain.Car
+import study.racingcar.domain.CarNameParser
+import study.racingcar.domain.RacingGame
+import study.racingcar.domain.RandomMoveCarStrategy
+import study.racingcar.domain.Winner
+import study.racingcar.view.InputView
+import study.racingcar.view.ResultView
 
 fun main() {
     val carNames: String = InputView.inputCarNames()
