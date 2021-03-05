@@ -12,7 +12,7 @@ fun inputTryCount(): Int {
 
 fun getInputValue(): Int {
     val value = readLine()
-    require(value != null) { "입력값이 빈 값이면 안됩니다." }
+    require(value != null) { "입력값을 반드시 입력해야합니다." }
 
     try {
         val intValue = value.toInt()
