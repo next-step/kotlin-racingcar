@@ -13,7 +13,7 @@ class Game(
     fun playGame() {
         repeat(numberOfRound) {
             cars.moveAll(randomNumberFactory)
-            recorder.writeRecord(cars)
+            recorder.recordCurrentState(cars)
         }
     }
 

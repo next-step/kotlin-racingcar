@@ -7,7 +7,7 @@ class Recorder {
     var record: String = ""
         private set
 
-    fun writeRecord(cars: Cars) {
+    fun recordCurrentState(cars: Cars) {
         cars.toList().forEach { car ->
             record += convertCarToProgress(car)
         }
