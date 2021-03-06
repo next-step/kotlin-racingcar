@@ -9,14 +9,18 @@ internal class CarTest {
     @Test
     fun `자동차 움직임 테스트`() {
         val car = Car()
-        car.tryMove(object : Movable { override fun isMovable(): Boolean = true })
+        car.tryMove(object : Movable {
+            override fun isMovable(): Boolean = true
+        })
         assertThat(car.position).isEqualTo(1)
     }
 
     @Test
     fun `자동차 움직 이지 않음 테스트`() {
         val car = Car()
-        car.tryMove(object : Movable { override fun isMovable(): Boolean = false })
+        car.tryMove(object : Movable {
+            override fun isMovable(): Boolean = false
+        })
         assertThat(car.position).isEqualTo(0)
     }
 

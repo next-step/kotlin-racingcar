@@ -1,7 +1,8 @@
 package racing.domain
 
 internal class Racing(
-    private val racingCars: RacingCars
+    private val racingCars: RacingCars,
+    private val randomMovable: RandomMovable
 ) {
     val cars: List<Car>
         get() = this.racingCars.cars
@@ -10,6 +11,6 @@ internal class Racing(
         get() = this.racingCars.winners
 
     fun nextRound() {
-        racingCars.nextRound()
+        racingCars.nextRound(this.randomMovable)
     }
 }

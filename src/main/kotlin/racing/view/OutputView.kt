@@ -2,8 +2,6 @@ package racing.view
 
 import racing.domain.Car
 
-private const val POSITION_CHAR = "-"
-
 internal class OutputView {
 
     fun renderStartMessage() {
@@ -18,7 +16,11 @@ internal class OutputView {
     }
 
     fun renderWinners(winners: List<Car>) {
-        val winnerNames = winners.joinToString(separator = ", ") { car -> car.name }
+        val winnerNames = winners.joinToString() { it.name }
         println("${winnerNames}가 최종 우승했습니다.")
+    }
+
+    companion object {
+        private const val POSITION_CHAR = "-"
     }
 }
