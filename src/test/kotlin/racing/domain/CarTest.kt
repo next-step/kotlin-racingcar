@@ -6,7 +6,6 @@ import racing.domain.random.TestRandomWrapper
 
 internal class CarTest {
 
-
     @Test
     fun moveCar_move() {
         val car = Car("name")
