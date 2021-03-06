@@ -25,7 +25,7 @@ interface NamedPosition {
     data class Nameless(private val position: Int = 0) : NamedPosition {
         override val name: Name
             get() {
-                throw NotImplementedError()
+                throw UnsupportedOperationException()
             }
 
         init {
