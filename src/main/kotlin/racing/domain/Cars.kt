@@ -17,11 +17,6 @@ class Cars(names: List<String>) {
     }
 
     fun moveAllCar(movementChecker: MovementChecker): List<CarState> {
-        return cars.filter { movementChecker.isMovable() }
-            .map { it.moveCar() }
-    }
-
-    fun getCarStates(): List<CarState> {
-        return cars.map { CarState.from(it) }
+        return cars.map { it.moveCarIfPossible(movementChecker) }
     }
 }

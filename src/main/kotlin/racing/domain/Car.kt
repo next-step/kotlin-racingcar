@@ -8,9 +8,15 @@ class Car(
     val name = CarName(name)
     val position = CarPosition()
 
-    fun moveCar(): CarState {
-        position.increase()
+    fun moveCarIfPossible(movementChecker: MovementChecker): CarState {
+        if (movementChecker.isMovable()) {
+            moveCar()
+        }
         return CarState.from(this)
+    }
+
+    private fun moveCar() {
+        position.increase()
     }
 }
 

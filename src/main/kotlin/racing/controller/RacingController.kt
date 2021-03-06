@@ -10,8 +10,8 @@ object RacingController {
         val racingGameData = InputView.askQuestion()
 
         val racingGame = RacingGame(racingGameData, MovementChecker())
-        racingGame.run()
+        val racingGameResult = racingGame.run()
 
-        ResultView.printRacingResult(racingGame)
+        ResultView.printRacingResult(racingGameResult)
     }
 }

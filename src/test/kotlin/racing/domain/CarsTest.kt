@@ -20,36 +20,43 @@ internal class CarsTest {
         val cars = Cars(listOf("song", "kim", "chang"))
 
         repeat(2) {
-            cars.cars[0].moveCar()
+            cars.cars[0].moveCarIfPossible(movementChecker)
         }
 
         repeat(2) {
-            cars.cars[1].moveCar()
+            cars.cars[1].moveCarIfPossible(movementChecker)
         }
 
         repeat(1) {
-            cars.cars[2].moveCar()
+            cars.cars[2].moveCarIfPossible(movementChecker)
         }
 
         assertThat(cars.getFarthestCars()).containsOnly(cars.cars[0], cars.cars[1])
     }
 
     @Test
-    fun moveAllCar() {
+    fun `moveAllCar all time move`() {
         val cars = Cars(listOf("song", "kim"))
 
         repeat(3) {
-            cars.moveAllCar(movementChecker)
+            val carStates = cars.moveAllCar(movementChecker)
+            assertThat(carStates).extracting(("position")).containsOnly(CarPosition(it + 1))
         }
 
         assertThat(cars.cars.map { it.position }).containsOnly(CarPosition(3))
     }
 
     @Test
-    fun getCarStates() {
-        val cars = Cars(listOf("song"))
+    fun `moveAllCar not move`() {
+        val cars = Cars(listOf("song", "kim"))
+        val movementChecker = MovementChecker(TestRandomWrapper(0))
 
-        cars.getCarStates()
+        repeat(3) {
+            val carStates = cars.moveAllCar(movementChecker)
+            assertThat(carStates).extracting(("position")).containsOnly(CarPosition())
+        }
+
+        assertThat(cars.cars.map { it.position }).containsOnly(CarPosition(0))
     }
 
     @Test

@@ -1,9 +1,9 @@
 package racing.ui
 
+import racing.data.RacingGameResult
 import racing.data.RacingHistory
 import racing.data.RoundResult
 import racing.data.Winners
-import racing.domain.RacingGame
 
 object ResultView {
 
@@ -11,10 +11,10 @@ object ResultView {
     private const val NOTICE_RESULT_START = "실행결과"
     private const val NAME_DELIMETER_FOR_DISPLAY = ", "
 
-    fun printRacingResult(racingGame: RacingGame) {
+    fun printRacingResult(racingGameResult: RacingGameResult) {
         printResultNotice()
-        printRacingHistory(racingGame.racingHistory)
-        printWinners(racingGame.winners)
+        printRacingHistory(racingGameResult.racingHistory)
+        printWinners(racingGameResult.winners)
     }
 
     private fun printResultNotice() {
