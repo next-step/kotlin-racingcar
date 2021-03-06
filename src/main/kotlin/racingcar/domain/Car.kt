@@ -1,8 +1,9 @@
 package racingcar.domain
 
-class Car(private val name: String, private val moveStrategy: MoveStrategy, private val moveDepth: Int = 1) {
+class Car(val name: String, private val moveStrategy: MoveStrategy, private val moveDepth: Int = 1) {
 
-    private var distance: Int = 0
+    var distance: Int = 0
+        private set
 
     fun moveIfMoveable() {
         if (moveStrategy.isMoveable()) {
@@ -12,13 +13,5 @@ class Car(private val name: String, private val moveStrategy: MoveStrategy, priv
 
     private fun move() {
         distance += moveDepth
-    }
-
-    fun currentDistance(): Int {
-        return distance
-    }
-
-    fun displayName(): String {
-        return name
     }
 }
