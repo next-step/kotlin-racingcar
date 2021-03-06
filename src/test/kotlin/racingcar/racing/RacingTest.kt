@@ -1,9 +1,12 @@
-package racingcar
+package racingcar.racing
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import racingcar.racing.car.Car
+import racingcar.racing.car.engine.Engine
+import racingcar.racing.car.engine.Torque
 
 internal class RacingTest {
     private val dummyEngine = object : Engine {

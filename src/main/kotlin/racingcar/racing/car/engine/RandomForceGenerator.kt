@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.racing.car.engine
 
 class RandomForceGenerator : ForceGenerator {
     override fun generate(): Force {

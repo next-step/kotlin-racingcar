@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.racing.car.engine
 
 data class Force(val value: Int) {
     init {

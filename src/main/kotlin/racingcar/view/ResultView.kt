@@ -1,4 +1,8 @@
-package racingcar
+package racingcar.view
+
+import racingcar.racing.car.CarLocation
+import racingcar.racing.RacingResults
+import racingcar.racing.RacingTrial
 
 class ResultView {
     fun print(results: RacingResults) {

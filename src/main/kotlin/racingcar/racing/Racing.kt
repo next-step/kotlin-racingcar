@@ -1,4 +1,6 @@
-package racingcar
+package racingcar.racing
+
+import racingcar.racing.car.Car
 
 class Racing(
     private val trials: Int,

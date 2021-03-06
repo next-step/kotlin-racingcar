@@ -1,4 +1,6 @@
-package racingcar
+package racingcar.racing.car
+
+import racingcar.racing.car.engine.Engine
 
 class Car(
     private val engine: Engine

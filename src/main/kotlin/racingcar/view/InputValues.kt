@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.view
 
 data class InputValues(
     val numberOfCars: Int,
