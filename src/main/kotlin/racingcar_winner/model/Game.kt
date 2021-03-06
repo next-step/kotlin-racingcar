@@ -1,21 +1,15 @@
 package racingcar_winner.model
 
 class Game(
-    private val numberOfRound: Int,
     private val carNames: List<String>
 ) {
     private val cars: Cars = Cars.makeCars(Cars.convertNamesToCar(carNames))
     private val randomNumberFactory = RandomNumberManager()
-    private val recorder = Recorder()
 
-    fun playGame() {
-        repeat(numberOfRound) {
-            cars.moveAll(randomNumberFactory)
-            recorder.recordCurrentState(cars)
-        }
+    fun playOneRound(): Cars {
+        cars.moveAll(randomNumberFactory)
+        return cars
     }
-
-    fun getGameRecord(): String = recorder.record
 
     fun getGameWinner(): List<String> = Winner(cars).getWinner()
 }
