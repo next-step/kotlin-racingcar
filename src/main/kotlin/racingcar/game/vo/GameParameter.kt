@@ -4,7 +4,7 @@ import java.lang.IllegalArgumentException
 
 const val MAX_CAR_NAME = 5
 
-class GameParameter(val nameOfCar: List<String>, val numOfGame: Int) {
+data class GameParameter(val nameOfCar: List<String>, val numOfGame: Int) {
     init {
         nameOfCar.forEach {
             if (it.isBlank()) throw IllegalArgumentException("자동차 이름은 blank 값이 될 수 없습니다.")
