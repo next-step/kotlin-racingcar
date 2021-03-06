@@ -3,22 +3,25 @@ package racing.ui
 import racing.data.RacingHistory
 import racing.data.RoundResult
 import racing.data.Winners
+import racing.domain.RacingGame
 
-/**
- * @author tae-heon.song<taeheon.song@linecorp.com>
- * @since 2021. 02. 28.
- */
 object ResultView {
 
     private const val SYMBOL_ONE_STEP = "-"
     private const val NOTICE_RESULT_START = "실행결과"
     private const val NAME_DELIMETER_FOR_DISPLAY = ", "
 
-    fun printResultNotice() {
+    fun printRacingResult(racingGame: RacingGame) {
+        printResultNotice()
+        printRacingHistory(racingGame.racingHistory)
+        printWinners(racingGame.winners)
+    }
+
+    private fun printResultNotice() {
         println(NOTICE_RESULT_START)
     }
 
-    fun printRacingHistory(racingHistory: RacingHistory) {
+    private fun printRacingHistory(racingHistory: RacingHistory) {
         val racingResults = racingHistory.roundResults
         racingResults.forEach { printRoundResult(it) }
     }
@@ -35,7 +38,7 @@ object ResultView {
         println("$name : ${SYMBOL_ONE_STEP.repeat(position)}")
     }
 
-    fun printWinners(winners: Winners) {
+    private fun printWinners(winners: Winners) {
         val winnerNames = winners.winners.joinToString(NAME_DELIMETER_FOR_DISPLAY)
         println("${winnerNames}가 최종 우승했습니다.")
     }

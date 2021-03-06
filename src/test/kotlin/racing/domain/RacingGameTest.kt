@@ -11,7 +11,6 @@ class RacingGameTest {
 
     private val testTryCount = 2
     private val testInputCarNames = listOf("pobi", "crong", "honux")
-    private val testCarNames = listOf(CarName("pobi"), CarName("crong"), CarName("honux"))
     private val testRacingGameData: RacingGameData = RacingGameData(testInputCarNames, testTryCount)
 
     @Test
@@ -27,8 +26,9 @@ class RacingGameTest {
         val testRacingGameData = RacingGameData(testInputCarNames, testTryCount)
         val racingGame = RacingGame(testRacingGameData, MovementChecker(randomWrapper))
 
-        val racingHistory = racingGame.run()
+        racingGame.run()
 
+        val racingHistory = racingGame.racingHistory
         val firstRoundResult = racingHistory.roundResults[0]
         val secondRoundResult = racingHistory.roundResults[1]
 
@@ -51,8 +51,9 @@ class RacingGameTest {
         val randomWrapper = TestRandomWrapper(Random.nextInt(0, 4))
         val racingGame = RacingGame(testRacingGameData, MovementChecker(randomWrapper))
 
-        val racingHistory = racingGame.run()
+        racingGame.run()
 
+        val racingHistory = racingGame.racingHistory
         val firstRoundResult = racingHistory.roundResults[0]
         val secondRoundResult = racingHistory.roundResults[1]
 
@@ -88,7 +89,7 @@ class RacingGameTest {
             cars.cars[2].moveCar()
         }
 
-        assertThat(racingGame.getWinners().winners).containsOnly(cars.cars[1].name.name)
+        assertThat(racingGame.winners.winners).containsOnly(cars.cars[1].name.name)
     }
 
     @Test
@@ -109,6 +110,6 @@ class RacingGameTest {
             cars.cars[2].moveCar()
         }
 
-        assertThat(racingGame.getWinners().winners).containsOnly(cars.cars[0].name.name, cars.cars[1].name.name)
+        assertThat(racingGame.winners.winners).containsOnly(cars.cars[0].name.name, cars.cars[1].name.name)
     }
 }

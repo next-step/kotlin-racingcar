@@ -7,18 +7,16 @@ import racing.data.Winners
 
 class RacingGame(private val racingGameData: RacingGameData, private val movementChecker: MovementChecker) {
 
-    val cars = Cars(racingGameData.carNames)
-    val racingHistory = RacingHistory()
+    val cars: Cars = Cars(racingGameData.carNames)
+    val racingHistory: RacingHistory = RacingHistory()
+    val winners: Winners
+        get() = Winners.from(cars.getFarthestCars())
 
     fun run() {
         repeat(racingGameData.tryCount) {
             cars.moveAllCar(movementChecker)
             recordCurrentState()
         }
-    }
-
-    fun getWinners(): Winners {
-        return Winners.from(cars.getFarthestCars())
     }
 
     private fun recordCurrentState() {
