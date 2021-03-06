@@ -11,6 +11,6 @@ class Car(
     }
 
     private fun goForward() {
-        this.location += engine.run()
+        location = location.moveBy(engine.run())
     }
 }

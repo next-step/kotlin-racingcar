@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource
 
 internal class RacingTest {
     private val dummyEngine = object : Engine {
-        override fun run() = Torque.ZERO
+        override fun run() = Torque.STOP
     }
 
     @ParameterizedTest

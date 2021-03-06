@@ -5,9 +5,8 @@ package racingcar
  *
  * 차를 움직여 차의 위치를 변경시킨다.
  */
-data class Torque(val value: Int) {
-    companion object {
-        val ZERO = Torque(0)
-        val ONE = Torque(1)
-    }
+enum class Torque(val value: Int) {
+    STOP(0),
+    MOVE(1)
+    ;
 }

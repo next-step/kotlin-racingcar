@@ -12,10 +12,10 @@ class RacingEngine(
 
     override fun run(): Torque {
         if (exceedThreshold(forceGenerator.generate())) {
-            return Torque.ONE
+            return Torque.MOVE
         }
 
-        return Torque.ZERO
+        return Torque.STOP
     }
 
     private fun exceedThreshold(force: Force): Boolean {
