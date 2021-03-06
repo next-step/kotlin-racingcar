@@ -5,21 +5,24 @@ import racing.data.RacingHistory
 import racing.data.RoundResult
 import racing.data.Winners
 
-class RacingGame(private val racingGameData: RacingGameData, movementChecker: MovementChecker) {
+class RacingGame(private val racingGameData: RacingGameData, private val movementChecker: MovementChecker) {
 
-    val cars = Cars(racingGameData.carNames, movementChecker)
+    val cars = Cars(racingGameData.carNames)
+    val racingHistory = RacingHistory()
 
-    fun run(): RacingHistory {
-        val racingHistory = RacingHistory()
+    fun run() {
         repeat(racingGameData.tryCount) {
-            cars.moveAllCar()
-            val roundResult = RoundResult(cars.getCarStates())
-            racingHistory.recordRoundResult(roundResult)
+            cars.moveAllCar(movementChecker)
+            recordCurrentState()
         }
-        return racingHistory
     }
 
     fun getWinners(): Winners {
-        return Winners.of(cars.getFarthestCars())
+        return Winners.from(cars.getFarthestCars())
+    }
+
+    private fun recordCurrentState() {
+        val roundResult = RoundResult(cars.getCarStates())
+        racingHistory.recordRoundResult(roundResult)
     }
 }

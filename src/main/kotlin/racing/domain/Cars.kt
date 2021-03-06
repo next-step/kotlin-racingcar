@@ -2,7 +2,7 @@ package racing.domain
 
 import racing.data.CarState
 
-class Cars(names: List<String>, private val movementChecker: MovementChecker) {
+class Cars(names: List<String>) {
 
     val cars: List<Car> = names.map { Car(it) }
 
@@ -16,16 +16,9 @@ class Cars(names: List<String>, private val movementChecker: MovementChecker) {
         return maxPosition ?: CarPosition.INIT_POSITION
     }
 
-    fun moveAllCar() {
-        cars.forEach {
-            moveCarIfPossible(it)
-        }
-    }
-
-    private fun moveCarIfPossible(it: Car) {
-        if (movementChecker.isMovable()) {
-            it.moveCar()
-        }
+    fun moveAllCar(movementChecker: MovementChecker) {
+        cars.filter { movementChecker.isMovable() }
+            .forEach { it.moveCar() }
     }
 
     fun getCarStates(): List<CarState> {

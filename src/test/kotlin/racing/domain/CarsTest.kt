@@ -10,14 +10,14 @@ internal class CarsTest {
 
     @Test
     fun createNewCar() {
-        val cars = Cars(listOf("song"), movementChecker)
+        val cars = Cars(listOf("song"))
 
         assertThat(cars.cars.map { it.name.name }).containsOnly("song")
     }
 
     @Test
     fun getFarthestCars() {
-        val cars = Cars(listOf("song", "kim", "chang"), movementChecker)
+        val cars = Cars(listOf("song", "kim", "chang"))
 
         repeat(2) {
             cars.cars[0].moveCar()
@@ -36,10 +36,10 @@ internal class CarsTest {
 
     @Test
     fun moveAllCar() {
-        val cars = Cars(listOf("song", "kim"), movementChecker)
+        val cars = Cars(listOf("song", "kim"))
 
         repeat(3) {
-            cars.moveAllCar()
+            cars.moveAllCar(movementChecker)
         }
 
         assertThat(cars.cars.map { it.position }).containsOnly(CarPosition(3))
@@ -47,7 +47,7 @@ internal class CarsTest {
 
     @Test
     fun getCarStates() {
-        val cars = Cars(listOf("song"), movementChecker)
+        val cars = Cars(listOf("song"))
 
         cars.getCarStates()
     }
@@ -55,7 +55,7 @@ internal class CarsTest {
     @Test
     fun size() {
         val names = listOf("a", "b", "c")
-        val cars = Cars(names, movementChecker)
+        val cars = Cars(names)
 
         assertThat(cars.cars.size).isEqualTo(names.size)
     }
