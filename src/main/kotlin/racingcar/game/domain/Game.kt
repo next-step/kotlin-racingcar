@@ -9,23 +9,16 @@ const val MAX_MOVE_CONDITION = 9
 
 class Game(private val inputParameter: GameParameter) {
     fun start(): GameResult {
-        val participant = Participant(inputParameter.numOfCar!!.toInt())
-        val result = arrayListOf<GameRoundResult>()
+        val participant = Participant(inputParameter.nameOfCar)
+        val result = mutableListOf<GameRoundResult>()
 
-        repeat(inputParameter.numOfGame!!.toInt()) {
+        repeat(inputParameter.numOfGame) {
             participant.cars.forEach { it.move(generateMoveCondition()) }
-            addResult(result, participant)
+            result.add(participant.getRoundResult())
         }
 
         return GameResult(result)
     }
 
     private fun generateMoveCondition(): Int = (MIN_MOVE_CONDITION..MAX_MOVE_CONDITION).random()
-
-    private fun addResult(
-        result: ArrayList<GameRoundResult>,
-        participant: Participant
-    ) {
-        result.add(GameRoundResult(participant.cars.map { it.position.copy() }.toList()))
-    }
 }
