@@ -1,9 +1,8 @@
 package racingcar
 
-import racingcar.racing.car.Car
 import racingcar.racing.Racing
+import racingcar.racing.RacingCarGenerator
 import racingcar.racing.car.CarName
-import racingcar.racing.car.engine.RacingEngine
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
@@ -12,14 +11,11 @@ fun main() {
 
     val racing = Racing(
         trials = inputValues.trials,
-        cars = generateCars(inputValues.carNames)
+        carNames = inputValues.carNames.map { CarName(it) },
+        carGenerator = RacingCarGenerator.STANDARD
     )
 
     val results = racing.start()
 
     ResultView().print(results)
-}
-
-private fun generateCars(carNames: List<String>): List<Car> {
-    return carNames.map { Car(CarName(it), RacingEngine()) }
 }

@@ -1,6 +1,7 @@
 package racingcar.racing
 
 import racingcar.racing.car.Car
+import racingcar.racing.car.CarName
 
 class Racing(
     private val trials: Int,
@@ -14,6 +15,15 @@ class Racing(
             "The value of trials must be positive value."
         }
     }
+
+    constructor(
+        trials: Int,
+        carNames: Collection<CarName>,
+        carGenerator: RacingCarGenerator
+    ) : this(
+        trials = trials,
+        cars = carNames.map { carGenerator.generate(it) }
+    )
 
     fun start(): RacingResults {
         val trials = (1..trials).map { raceAll(it) }
