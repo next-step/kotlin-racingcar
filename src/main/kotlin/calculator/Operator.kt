@@ -10,7 +10,9 @@ enum class Operator(val value: String, val operate: (a: Operand, b: Operand) -> 
         private val operators = values().associateBy { it.value }
 
         fun parse(value: String): Operator {
-            return operators[value] ?: throw IllegalArgumentException("The value is not operator, value='$value'")
+            return requireNotNull(operators[value]) {
+                "The value is not operator, value='$value'"
+            }
         }
     }
 }

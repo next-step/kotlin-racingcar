@@ -5,12 +5,11 @@ class Racing(
     private val cars: Collection<Car>
 ) {
     init {
-        if (cars.size < 2) {
-            throw IllegalArgumentException("At least two cars must be participated. count='${cars.size}'")
+        require(cars.size >= 2) {
+            "At least two cars must be participated. count='${cars.size}'"
         }
-
-        if (trials < 1) {
-            throw IllegalArgumentException("The value of trials must be positive value.")
+        require(trials >= 1) {
+            "The value of trials must be positive value."
         }
     }
 
