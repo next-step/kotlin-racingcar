@@ -10,7 +10,11 @@ class StringCalculator {
             throw IllegalArgumentException("The expression is null or blank. expression='$stringExpression'")
         }
 
-        return calculate(stringExpression).result
+        return try {
+            calculate(stringExpression).result
+        } catch (e: IllegalStateException) {
+            throw IllegalArgumentException("The expression is end with operator. expression='$stringExpression'")
+        }
     }
 
     private fun calculate(stringExpression: String): Operation {
