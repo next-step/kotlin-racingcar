@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 import racingcar.ui.OutputView
 import racingcar_winner.model.Car
 
-class RefereeTest {
+class GameTest {
 
     private val PHOBI = 0
     private val JOHN = 1
