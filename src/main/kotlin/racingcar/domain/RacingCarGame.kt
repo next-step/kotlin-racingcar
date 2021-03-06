@@ -6,6 +6,8 @@ class RacingCarGame(carNames: List<CarName>, roundCount: PositiveCount) {
     private val rounds: List<Round>
 
     init {
+        require(carNames.isNotEmpty()) { "자동차 이름이 존재하지 않습니다." }
+
         val zeroToNineRandomGenerator = RandomGenerator(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE)
         val fortyPercentMoveableStrategy = RandomMoveStrategy(zeroToNineRandomGenerator, THRESHOLD)
         cars = carNames.map { Car(it.value, fortyPercentMoveableStrategy) }
