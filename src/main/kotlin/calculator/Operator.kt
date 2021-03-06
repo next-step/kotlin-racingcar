@@ -1,20 +1,10 @@
 package calculator
 
-enum class Operator(val value: String) {
-    ADD("+") {
-        override fun operate(a: Operand, b: Operand) = Scalar(a.value + b.value)
-    },
-    SUBTRACT("-") {
-        override fun operate(a: Operand, b: Operand) = Scalar(a.value - b.value)
-    },
-    MULTIPLY("*") {
-        override fun operate(a: Operand, b: Operand) = Scalar(a.value * b.value)
-    },
-    DIVIDE("/") {
-        override fun operate(a: Operand, b: Operand) = Scalar(a.value / b.value)
-    };
-
-    abstract fun operate(a: Operand, b: Operand): Scalar
+enum class Operator(val value: String, val operate: (a: Operand, b: Operand) -> Scalar) {
+    ADD("+", { a, b -> Scalar(a.value + b.value) }),
+    SUBTRACT("-", { a, b -> Scalar(a.value - b.value) }),
+    MULTIPLY("*", { a, b -> Scalar(a.value * b.value) }),
+    DIVIDE("/", { a, b -> Scalar(a.value / b.value) });
 
     companion object {
         private val operators = values().associateBy { it.value }
