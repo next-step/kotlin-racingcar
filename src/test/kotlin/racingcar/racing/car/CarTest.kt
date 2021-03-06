@@ -32,6 +32,7 @@ internal class CarTest {
                 override fun run() = torque
             }
         )
-        assertThat(car.race()).isEqualTo(CarLocation(torque.value))
+        car.race()
+        assertThat(car.location).isEqualTo(CarLocation(torque.value))
     }
 }

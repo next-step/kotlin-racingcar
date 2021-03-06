@@ -6,4 +6,6 @@ data class CarName(val name: String) {
             "The length of name must be less than 6. name='$name'"
         }
     }
+
+    override fun toString() = name
 }

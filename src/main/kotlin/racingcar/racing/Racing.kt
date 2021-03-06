@@ -21,6 +21,7 @@ class Racing(
     }
 
     private fun raceAll(): RacingTrial {
-        return RacingTrial(cars.map { it.race() })
+        cars.forEach { it.race() }
+        return RacingTrial.of(cars)
     }
 }

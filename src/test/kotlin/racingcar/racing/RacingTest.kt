@@ -39,11 +39,11 @@ internal class RacingTest {
 
     @ParameterizedTest
     @ValueSource(ints = [2, 5, 12])
-    fun `차량 대수만큼 RacingTrial 내 CarLocation이 생긴다`(numberOfCars: Int) {
+    fun `차량 대수만큼 RacingTrial 내 record가 생긴다`(numberOfCars: Int) {
         val cars = generateCars(numberOfCars)
 
         val results = Racing(1, cars).start()
-        assertThat(results.trials).allMatch { it.locations.size == numberOfCars }
+        assertThat(results.trials).allMatch { it.records.size == numberOfCars }
     }
 
     private fun generateCars(numberOfCars: Int) = (1..numberOfCars).map { Car(CarName("슈마허"), dummyEngine) }

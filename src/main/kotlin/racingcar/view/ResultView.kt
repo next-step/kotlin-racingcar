@@ -1,8 +1,8 @@
 package racingcar.view
 
-import racingcar.racing.car.CarLocation
 import racingcar.racing.RacingResults
 import racingcar.racing.RacingTrial
+import racingcar.racing.Record
 
 class ResultView {
     fun print(results: RacingResults) {
@@ -11,12 +11,12 @@ class ResultView {
     }
 
     private fun printTrial(trial: RacingTrial) {
-        trial.locations.forEach(this::printCarLocation)
+        trial.records.forEach(this::printCarRecord)
         println()
     }
 
-    private fun printCarLocation(location: CarLocation) {
-        println("-".repeat(START_LINE + location.value.toInt()))
+    private fun printCarRecord(record: Record) {
+        println("${record.name} : ${"-".repeat(START_LINE + record.location.value)}")
     }
 
     companion object {
