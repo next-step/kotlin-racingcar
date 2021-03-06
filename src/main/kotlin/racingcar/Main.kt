@@ -12,7 +12,7 @@ fun main() {
 
     val racing = Racing(
         trials = inputValues.trials,
-        cars = generateCars(inputValues.numberOfCars)
+        cars = generateCars(inputValues.carNames)
     )
 
     val results = racing.start()
@@ -20,6 +20,6 @@ fun main() {
     ResultView().print(results)
 }
 
-private fun generateCars(numberOfCars: Int): List<Car> {
-    return (1..numberOfCars).map { Car(CarName("none"), RacingEngine()) }
+private fun generateCars(carNames: List<String>): List<Car> {
+    return carNames.map { Car(CarName(it), RacingEngine()) }
 }
