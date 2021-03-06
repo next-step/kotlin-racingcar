@@ -8,24 +8,24 @@ internal class RaceResultTest {
     @Test
     fun `자동차 경주 결과 상태 값 심볼 테스트`() {
         val cars = listOf(
-            Car().apply {
+            Car("test1").apply {
                 this.move(5)
                 this.move(5)
                 this.move(7)
                 this.move(9)
             },
-            Car().apply {
+            Car("test2").apply {
                 this.move(5)
             },
-            Car().apply {
+            Car("test3").apply {
                 this.move(5)
                 this.move(5)
             }
         )
-        val mockSymbols = listOf("-----", "--", "---")
+        val mockSymbols = listOf("test1 : -----", "test2 : --", "test3 : ---")
 
-        RaceResult(cars).resultSymbols.forEachIndexed { index, s ->
-            assertThat(s).isEqualTo(mockSymbols[index])
+        RaceResult(cars).racedCars.forEachIndexed { index, s ->
+            assertThat(s.toString()).isEqualTo(mockSymbols[index])
         }
     }
 }
