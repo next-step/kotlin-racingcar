@@ -12,9 +12,9 @@ class RacingGameTest {
 
         assertThat(racingGame.positions.size).isEqualTo(5)
 
-        for ((index, positions) in racingGame.positions.withIndex()) {
+        for ((playStep, positions) in racingGame.positions.withIndex()) {
             assertThat(positions).allSatisfy {
-                assertThat(it).isEqualTo(NamedPosition.Nameless(index + 1))
+                assertThat(it).isEqualTo(NamedPosition.Nameless(playStep + 1))
             }
         }
     }
