@@ -11,9 +11,9 @@ class Winner(private val positions: List<Positions>) {
     }
 
     private fun winnerNames(
-        sortedPositions: List<NamedPosition>,
+        positions: List<NamedPosition>,
         mostPosition: Int
-    ): List<String> = sortedPositions
-        .takeWhile { it >= mostPosition }
+    ): List<String> = positions
+        .filter { it >= mostPosition }
         .map { it.name.stringValue() }
 }
