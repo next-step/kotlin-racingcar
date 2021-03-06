@@ -2,15 +2,19 @@ package study.racingcar.service
 
 import study.racingcar.domain.Car
 import study.racingcar.domain.RaceResult
+import study.racingcar.domain.Winners
 import study.racingcar.util.RacingCarRandomGenerator
 
 class RacingCarGame(
-    private val carCount: Int,
-    private val tryCount: Int,
-    private val cars: List<Car> = (1..carCount).map { Car() },
-    private var raceResults: List<RaceResult> = ArrayList()
     private val carNames: List<String> = listOf(),
+    private val tryCount: Int = 0,
+    private val cars: List<Car> = carNames.map { Car(it) }
 ) {
+    var raceResults: List<RaceResult> = ArrayList()
+        private set
+    var winners: Winners = Winners(listOf())
+        private set
+
     fun start() {
         val initialResults = mutableListOf<RaceResult>()
         for (i in 1..this.tryCount) {
@@ -18,12 +22,11 @@ class RacingCarGame(
         }
 
         this.raceResults = initialResults.toList()
+        this.winners = Winners(racedCars = this.cars)
     }
 
     private fun race(cars: List<Car>): RaceResult {
         cars.forEach { it.move(RacingCarRandomGenerator.random()) }
-        return RaceResult(cars)
+        return RaceResult(racedCars = cars)
     }
-
-    fun getRaceResults(): List<RaceResult> = this.raceResults
 }
