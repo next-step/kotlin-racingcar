@@ -1,8 +1,8 @@
 package racingcar.game.ui
 
+import racingcar.game.domain.Car
 import racingcar.game.vo.GameResult
 import racingcar.game.vo.GameRoundResult
-import racingcar.game.vo.Position
 
 object Screen {
     fun show(result: GameResult) {
@@ -12,12 +12,12 @@ object Screen {
     }
 
     private fun showRoundGame(roundResult: GameRoundResult) {
-        roundResult.roundHistory.forEach { position ->
-            printResult(position)
+        roundResult.roundHistory.forEach { car ->
+            printResult(car)
         }
     }
 
-    private fun printResult(pos: Position) {
-        println("-".repeat(pos.num))
+    private fun printResult(car: Car) {
+        println("${car.name} :" + "-".repeat(car.position))
     }
 }
