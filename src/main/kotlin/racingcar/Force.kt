@@ -2,7 +2,7 @@ package racingcar
 
 data class Force(val value: Int) {
     operator fun compareTo(other: Force): Int {
-        return this.value - other.value
+        return this.value.compareTo(other.value)
     }
 
     companion object {
