@@ -16,9 +16,9 @@ class Cars(names: List<String>) {
         return maxPosition ?: CarPosition.INIT_POSITION
     }
 
-    fun moveAllCar(movementChecker: MovementChecker) {
-        cars.filter { movementChecker.isMovable() }
-            .forEach { it.moveCar() }
+    fun moveAllCar(movementChecker: MovementChecker): List<CarState> {
+        return cars.filter { movementChecker.isMovable() }
+            .map { it.moveCar() }
     }
 
     fun getCarStates(): List<CarState> {

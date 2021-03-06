@@ -1,13 +1,16 @@
 package racing.domain
 
+import racing.data.CarState
+
 class Car(
     name: String
 ) {
     val name = CarName(name)
     val position = CarPosition()
 
-    fun moveCar() {
+    fun moveCar(): CarState {
         position.increase()
+        return CarState.from(this)
     }
 }
 

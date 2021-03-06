@@ -1,5 +1,6 @@
 package racing.domain
 
+import racing.data.CarState
 import racing.data.RacingGameData
 import racing.data.RacingHistory
 import racing.data.RoundResult
@@ -14,13 +15,13 @@ class RacingGame(private val racingGameData: RacingGameData, private val movemen
 
     fun run() {
         repeat(racingGameData.tryCount) {
-            cars.moveAllCar(movementChecker)
-            recordCurrentState()
+            val carStates = cars.moveAllCar(movementChecker)
+            recordRoundResult(carStates)
         }
     }
 
-    private fun recordCurrentState() {
-        val roundResult = RoundResult(cars.getCarStates())
+    private fun recordRoundResult(carStates: List<CarState>) {
+        val roundResult = RoundResult(carStates)
         racingHistory.recordRoundResult(roundResult)
     }
 }
