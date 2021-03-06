@@ -1,6 +1,7 @@
 package racingcar.game.ui
 
 import racingcar.game.vo.GameParameter
+import racingcar.game.vo.MAX_CAR_NAME
 
 const val MIN_PARAM = 0
 const val DELIMITER = ","
@@ -13,9 +14,17 @@ class InputConsole(val carNameReader: () -> String?, val numOfGameReader: () -> 
         println("시도할 횟수는 몇 회인가요?")
         val numOfGame: String? = numOfGameReader()
 
-        require(!nameOfCar.isNullOrEmpty()) { "입력값은 null 혹은 blank 값이 될 수 없습니다." }
+        return GameParameter(checkNameOfCar(nameOfCar), checkNumOfGame(numOfGame))
+    }
 
-        return GameParameter(nameOfCar.split(DELIMITER), checkNumOfGame(numOfGame))
+    private fun checkNameOfCar(nameOfCar: String?): List<String> {
+        require(!nameOfCar.isNullOrEmpty()) { "입력값은 null 혹은 blank 값이 될 수 없습니다." }
+        val nameOfCars = nameOfCar.split(DELIMITER)
+        nameOfCars.forEach {
+            require(!it.isBlank()) { "자동차 이름은 blank 값이 될 수 없습니다." }
+            require(it.length <= MAX_CAR_NAME) { "자동차 이름은 5자를 초과할 수 없습니다." }
+        }
+        return nameOfCars
     }
 
     private fun checkNumOfGame(numOfGame: String?): Int {

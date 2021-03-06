@@ -17,7 +17,7 @@ internal class GameTest {
         // when
         val param = InputConsole(carNameReader, numOfGameReader).run()
         val moveCondition = { 1 }
-        val result = Game(param, moveCondition).start()
+        val result = Game.start(param, moveCondition)
 
         // then
         val lastRoundHistory: List<Car> = result.history.last().roundHistory
@@ -36,7 +36,7 @@ internal class GameTest {
         // when
         val param = InputConsole(carNameReader, numOfGameReader).run()
         val moveCondition = { 6 }
-        val result = Game(param, moveCondition).start()
+        val result = Game.start(param, moveCondition)
 
         // then
         val lastRoundHistory: List<Car> = result.history.last().roundHistory

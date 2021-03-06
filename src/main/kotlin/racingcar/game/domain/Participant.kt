@@ -3,9 +3,15 @@ package racingcar.game.domain
 import racingcar.game.vo.GameRoundResult
 
 class Participant(nameOfCar: List<String>) {
-    val cars = nameOfCar.map { Car(name = it) }
+    val gameResult = mutableListOf<GameRoundResult>()
 
-    fun getRoundResult(): GameRoundResult {
-        return GameRoundResult(cars.map { it.copy(it.name, it.position) }) // for deep copy
+    private val cars = nameOfCar.map { Car(name = it) }
+
+    fun moveCars(condition: () -> Int) {
+        cars.forEach { it.move(condition()) }
+    }
+
+    fun setRoundResult() {
+        gameResult.add(GameRoundResult(cars.map { Car(it.name, it.position) }))
     }
 }
