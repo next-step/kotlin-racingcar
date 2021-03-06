@@ -5,6 +5,7 @@ import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import racingcar.racing.car.Car
+import racingcar.racing.car.CarName
 import racingcar.racing.car.engine.Engine
 import racingcar.racing.car.engine.Torque
 
@@ -45,5 +46,5 @@ internal class RacingTest {
         assertThat(results.trials).allMatch { it.locations.size == numberOfCars }
     }
 
-    private fun generateCars(numberOfCars: Int) = (1..numberOfCars).map { Car(dummyEngine) }
+    private fun generateCars(numberOfCars: Int) = (1..numberOfCars).map { Car(CarName("슈마허"), dummyEngine) }
 }

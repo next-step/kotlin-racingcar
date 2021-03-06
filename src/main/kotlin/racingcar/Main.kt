@@ -2,6 +2,7 @@ package racingcar
 
 import racingcar.racing.car.Car
 import racingcar.racing.Racing
+import racingcar.racing.car.CarName
 import racingcar.racing.car.engine.RacingEngine
 import racingcar.view.InputView
 import racingcar.view.ResultView
@@ -20,5 +21,5 @@ fun main() {
 }
 
 private fun generateCars(numberOfCars: Int): List<Car> {
-    return (1..numberOfCars).map { Car(RacingEngine()) }
+    return (1..numberOfCars).map { Car(CarName("none"), RacingEngine()) }
 }

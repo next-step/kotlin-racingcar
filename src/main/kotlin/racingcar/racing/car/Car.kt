@@ -3,6 +3,7 @@ package racingcar.racing.car
 import racingcar.racing.car.engine.Engine
 
 class Car(
+    val name: CarName,
     private val engine: Engine
 ) {
     var location: CarLocation = CarLocation.ZERO
