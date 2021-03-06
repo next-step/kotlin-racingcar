@@ -13,7 +13,7 @@ class Operation(
     val result: Scalar
         get() {
             if (operator != null) {
-                throw IllegalArgumentException("The operation is invalid")
+                throw IllegalStateException("The operation is invalid. expression='$base $operator'")
             }
             return Scalar(base)
         }
