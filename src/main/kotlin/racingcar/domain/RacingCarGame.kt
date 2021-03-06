@@ -1,9 +1,5 @@
 package racingcar.domain
 
-private const val MIN_RANDOM_VALUE = 0
-private const val MAX_RANDOM_VALUE = 9
-private const val THRESHOLD = 4
-
 class RacingCarGame(carNames: List<CarName>, roundCount: PositiveCount) {
 
     private val cars: List<Car>
@@ -28,5 +24,11 @@ class RacingCarGame(carNames: List<CarName>, roundCount: PositiveCount) {
 
     fun result(): Results {
         return Results(rounds.map { it.result() })
+    }
+
+    companion object {
+        private const val MIN_RANDOM_VALUE = 0
+        private const val MAX_RANDOM_VALUE = 9
+        private const val THRESHOLD = 4
     }
 }
