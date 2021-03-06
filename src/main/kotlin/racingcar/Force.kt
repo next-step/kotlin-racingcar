@@ -1,11 +1,16 @@
 package racingcar
 
 data class Force(val value: Int) {
+    init {
+        require(value >= ZERO_VALUE) { "Force must be positive or zero." }
+    }
+
     operator fun compareTo(other: Force): Int {
         return this.value.compareTo(other.value)
     }
 
     companion object {
-        val ZERO = Force(0)
+        private const val ZERO_VALUE = 0
+        val ZERO = Force(ZERO_VALUE)
     }
 }

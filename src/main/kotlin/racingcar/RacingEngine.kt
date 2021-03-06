@@ -4,10 +4,6 @@ class RacingEngine(
     private val threshold: Force = DEFAULT_THRESHOLD,
     private val forceGenerator: ForceGenerator = DEFAULT_GENERATOR
 ) : Engine {
-    init {
-        require(threshold >= Force.ZERO) { "Threshold must be positive or zero." }
-    }
-
     override fun run(): Torque {
         if (exceedThreshold(forceGenerator.generate())) {
             return Torque.MOVE

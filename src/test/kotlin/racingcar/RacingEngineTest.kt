@@ -1,10 +1,8 @@
 package racingcar
 
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import org.junit.jupiter.params.provider.ValueSource
 
 internal class RacingEngineTest {
     @ParameterizedTest
@@ -30,13 +28,5 @@ internal class RacingEngineTest {
         )
 
         assertThat(engine.run()).isEqualTo(torque)
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = [-1, -4824, Int.MIN_VALUE])
-    fun `threshold는 0보다 커야 한다`(threshold: Int) {
-        assertThatIllegalArgumentException()
-            .isThrownBy { RacingEngine(Force(threshold)) }
-            .withMessage("Threshold must be positive or zero.")
     }
 }
