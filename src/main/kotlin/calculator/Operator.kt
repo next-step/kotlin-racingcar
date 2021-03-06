@@ -10,9 +10,7 @@ enum class Operator(
     SUBTRACT(
         "/",
         { left, right ->
-            if (right == 0) {
-                throw IllegalArgumentException()
-            }
+            require(right != 0)
             left / right
         }
     );
