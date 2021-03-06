@@ -1,7 +1,7 @@
 package racingcar
 
 class RacingEngine(
-    private val threshold: Force = Force(4),
+    private val threshold: Force = DEFAULT_THRESHOLD,
     private val forceGenerator: ForceGenerator = DEFAULT_GENERATOR
 ) : Engine {
     init {
@@ -21,6 +21,7 @@ class RacingEngine(
     }
 
     companion object {
+        private val DEFAULT_THRESHOLD = Force(4)
         private val DEFAULT_GENERATOR = RandomForceGenerator()
     }
 }
