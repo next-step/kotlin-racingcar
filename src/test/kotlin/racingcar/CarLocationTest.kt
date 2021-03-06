@@ -1,11 +1,17 @@
 package racingcar
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 
 internal class CarLocationTest {
+    @Test
+    fun `CarLocation_ZERO는 0이다`() {
+        assertThat(CarLocation.ZERO.value).isEqualTo(0)
+    }
+
     @ParameterizedTest
     @ValueSource(ints = [0, 234, Int.MAX_VALUE])
     fun `CarLocation은 객체가 달라도 값이 같으면 동일하다`(location: Int) {
