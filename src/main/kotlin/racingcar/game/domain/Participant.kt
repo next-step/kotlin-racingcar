@@ -1,11 +1,17 @@
 package racingcar.game.domain
 
-class Participant(numOfCar: Int) {
-    val cars = arrayListOf<Car>()
+import racingcar.game.vo.GameRoundResult
 
-    init {
-        for (idx in 1..numOfCar) {
-            cars.add(Car())
-        }
+class Participant(nameOfCar: List<String>) {
+    val gameResult = mutableListOf<GameRoundResult>()
+
+    private val cars = nameOfCar.map { Car(name = it) }
+
+    fun moveCars(condition: () -> Int) {
+        cars.forEach { it.move(condition()) }
+    }
+
+    fun setRoundResult() {
+        gameResult.add(GameRoundResult(cars.map { Car(it.name, it.position) }))
     }
 }

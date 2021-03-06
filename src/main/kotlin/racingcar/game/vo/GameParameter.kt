@@ -1,20 +1,12 @@
 package racingcar.game.vo
 
-const val MIN_PARAM = 0
+const val MAX_CAR_NAME = 5
 
-class GameParameter(val numOfCar: String?, val numOfGame: String?) {
+data class GameParameter(val nameOfCars: List<String>, val numOfGame: Int) {
     init {
-        require(
-            !numOfCar.isNullOrBlank() &&
-                !numOfGame.isNullOrBlank()
-        ) { "입력값은 null 혹은 blank 값이 될 수 없습니다." }
-        try {
-            require(
-                numOfCar.toInt() > MIN_PARAM &&
-                    numOfGame.toInt() > MIN_PARAM
-            ) { "입력값은 1 이상이어야만 합니다." }
-        } catch (e: NumberFormatException) {
-            throw IllegalArgumentException("입력 파라미터는 모두 정수형만 허용됩니다.")
+        nameOfCars.forEach {
+            require(!it.isBlank()) { "자동차 이름은 blank 값이 될 수 없습니다." }
+            require(it.length <= MAX_CAR_NAME) { "자동차 이름은 5자를 초과할 수 없습니다." }
         }
     }
 }

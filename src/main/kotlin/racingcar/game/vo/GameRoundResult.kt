@@ -1,3 +1,5 @@
 package racingcar.game.vo
 
-data class GameRoundResult(val roundHistory: List<Position>)
+import racingcar.game.domain.Car
+
+data class GameRoundResult(val roundHistory: List<Car>)

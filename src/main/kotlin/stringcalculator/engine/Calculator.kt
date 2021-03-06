@@ -13,16 +13,15 @@ class Calculator(private val receiver: Receiver = Receiver(), private val printe
 
     fun run(): Int {
         val expr = receiver.run().split(DELIMITER)
-
-        for (token in expr) {
-            if (!parseOperator(token)) {
-                calculate(convertToken2Int(token))
-            }
-        }
-
+        expr.forEach { parse(it) }
         printer.print(result)
-
         return result
+    }
+
+    private fun parse(it: String) {
+        if (!isOperator(it)) {
+            result = calculate(convertToken2Int(it))
+        }
     }
 
     private fun convertToken2Int(token: String): Int {
@@ -33,7 +32,14 @@ class Calculator(private val receiver: Receiver = Receiver(), private val printe
         }
     }
 
-    private fun parseOperator(token: String): Boolean {
+    private fun calculate(token: Int): Int {
+        if (!stack.isEmpty()) {
+            return stack.pop().method(result, token)
+        }
+        return token
+    }
+
+    private fun isOperator(token: String): Boolean {
         when (token) {
             "+" -> {
                 stack.push(Operator.PLUS); return true
@@ -49,13 +55,5 @@ class Calculator(private val receiver: Receiver = Receiver(), private val printe
             }
         }
         return false
-    }
-
-    private fun calculate(token: Int) {
-        if (!stack.isEmpty()) {
-            result = stack.pop().method(result, token)
-        } else {
-            result = token
-        }
     }
 }
