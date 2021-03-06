@@ -39,7 +39,7 @@ object ResultView {
     }
 
     private fun printWinners(winners: Winners) {
-        val winnerNames = winners.winners.joinToString(NAME_DELIMETER_FOR_DISPLAY)
+        val winnerNames = winners.joinWinnerNamesToString(NAME_DELIMETER_FOR_DISPLAY)
         println("${winnerNames}가 최종 우승했습니다.")
     }
 }

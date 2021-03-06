@@ -27,9 +27,9 @@ class RacingGameTest {
         val testRacingGameData = RacingGameData(testInputCarNames, testTryCount)
         val racingGame = RacingGame(testRacingGameData, MovementChecker(randomWrapper))
 
-        racingGame.run()
+        val racingGameResult = racingGame.run()
 
-        val racingHistory = racingGame.racingHistory
+        val racingHistory = racingGameResult.racingHistory
         val firstRoundResult = racingHistory.roundResults[0]
         val secondRoundResult = racingHistory.roundResults[1]
 
@@ -45,6 +45,8 @@ class RacingGameTest {
             CarState(cars.cars[1].name, CarPosition(2)),
             CarState(cars.cars[2].name, CarPosition(2))
         )
+
+        assertThat(racingGameResult.winners.winners).extracting("name").contains("pobi", "crong", "honux")
     }
 
     @Test
@@ -70,47 +72,6 @@ class RacingGameTest {
             CarState(cars.cars[1].name, CarPosition.INIT_POSITION),
             CarState(cars.cars[2].name, CarPosition.INIT_POSITION)
         )
-    }
-
-    @Test
-    fun `get winner 테스트(winner가 하나)`() {
-
-        val racingGame = RacingGame(testRacingGameData, MovementChecker())
-        val cars = racingGame.cars
-
-        repeat(2) {
-            cars.cars[0].moveCarIfPossible(movementChecker)
-        }
-
-        repeat(3) {
-            cars.cars[1].moveCarIfPossible(movementChecker)
-        }
-
-        repeat(1) {
-            cars.cars[2].moveCarIfPossible(movementChecker)
-        }
-
-        assertThat(racingGame.winners.winners).containsOnly(cars.cars[1].name.name)
-    }
-
-    @Test
-    fun `get winner 테스트(winner가 둘)`() {
-
-        val racingGame = RacingGame(testRacingGameData, MovementChecker())
-        val cars = racingGame.cars
-
-        repeat(2) {
-            cars.cars[0].moveCarIfPossible(movementChecker)
-        }
-
-        repeat(2) {
-            cars.cars[1].moveCarIfPossible(movementChecker)
-        }
-
-        repeat(1) {
-            cars.cars[2].moveCarIfPossible(movementChecker)
-        }
-
-        assertThat(racingGame.winners.winners).containsOnly(cars.cars[0].name.name, cars.cars[1].name.name)
+        assertThat(racingGameResult.winners.winners).extracting("name").contains("pobi", "crong", "honux")
     }
 }

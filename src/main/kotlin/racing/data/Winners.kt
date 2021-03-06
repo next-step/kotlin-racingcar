@@ -1,13 +1,18 @@
 package racing.data
 
 import racing.domain.Car
+import racing.domain.CarName
 
 data class Winners(
-    val winners: List<String>
+    val winners: List<CarName>
 ) {
+    fun joinWinnerNamesToString(delimeter: String): String {
+        return winners.joinToString(delimeter) { it.name }
+    }
+
     companion object {
         fun from(winnerCars: List<Car>): Winners {
-            return Winners(winnerCars.map { it.name.name })
+            return Winners(winnerCars.map { it.name })
         }
     }
 }
