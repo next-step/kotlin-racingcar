@@ -12,10 +12,12 @@ internal class Car(name: String = "", position: Int = DEFAULT_POSITION) {
         }
     }
 
-    fun tryMove(movable: Movable) {
+    fun tryMove(movable: Movable): Car {
         if (movable.isMovable()) {
             this.position++
         }
+
+        return Car(this.name, this.position)
     }
 
     fun equalPosition(car: Car): Boolean {

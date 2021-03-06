@@ -10,7 +10,7 @@ internal class RacingCars(val cars: List<Car>) {
             return this.cars.filter { it.equalPosition(maxCar) }
         }
 
-    fun nextRound(movable: Movable) {
-        this.cars.forEach { it.tryMove(movable) }
+    fun nextRound(movable: Movable): RacingCars {
+        return RacingCars(this.cars.map { it.tryMove(movable) })
     }
 }

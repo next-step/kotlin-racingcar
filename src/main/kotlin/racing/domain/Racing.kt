@@ -4,13 +4,10 @@ internal class Racing(
     private val racingCars: RacingCars,
     private val randomMovable: RandomMovable
 ) {
-    val cars: List<Car>
-        get() = this.racingCars.cars
-
     val winners: List<Car>
         get() = this.racingCars.winners
 
-    fun nextRound() {
-        racingCars.nextRound(this.randomMovable)
+    fun race(numberOfRound: Int): List<RacingCars> {
+        return (0..numberOfRound).map { racingCars.nextRound(randomMovable) }
     }
 }

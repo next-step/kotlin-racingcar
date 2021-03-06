@@ -1,21 +1,28 @@
 package racing.view
 
 import racing.domain.Car
+import racing.domain.RacingCars
 
 internal class OutputView {
 
-    fun renderStartMessage() {
+    fun renderResult(racingCarsResult: List<RacingCars>, winners: List<Car>) {
         println("\n실행 결과")
+
+        racingCarsResult.forEach() {
+            renderRound(it.cars)
+            println()
+        }
+
+        renderWinners(winners)
     }
 
-    fun renderRound(cars: List<Car>) {
-        cars.forEach {
+    private fun renderRound(cars: List<Car>) {
+        cars.forEach() {
             println("${it.name} : ${POSITION_CHAR.repeat(it.position)}")
         }
-        println()
     }
 
-    fun renderWinners(winners: List<Car>) {
+    private fun renderWinners(winners: List<Car>) {
         val winnerNames = winners.joinToString() { it.name }
         println("${winnerNames}가 최종 우승했습니다.")
     }
