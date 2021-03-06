@@ -16,12 +16,12 @@ class Racing(
     }
 
     fun start(): RacingResults {
-        val results = (1..trials).map { raceAll() }
-        return RacingResults(results)
+        val trials = (1..trials).map { raceAll(it) }
+        return RacingResults(trials)
     }
 
-    private fun raceAll(): RacingTrial {
+    private fun raceAll(order: Int): RacingTrial {
         cars.forEach { it.race() }
-        return RacingTrial.of(cars)
+        return RacingTrial.of(order, cars)
     }
 }

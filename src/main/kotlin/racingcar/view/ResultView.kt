@@ -6,7 +6,13 @@ import racingcar.racing.Record
 
 class ResultView {
     fun print(results: RacingResults) {
+        println()
         println("실행 결과")
+        printTrials(results)
+        printWinners(results)
+    }
+
+    private fun printTrials(results: RacingResults) {
         results.trials.forEach(this::printTrial)
     }
 
@@ -16,10 +22,21 @@ class ResultView {
     }
 
     private fun printCarRecord(record: Record) {
-        println("${record.name} : ${"-".repeat(START_LINE + record.location.value)}")
+        println(makeCarRecordString(record))
     }
+
+    private fun makeCarRecordString(record: Record) =
+        "${record.name} : ${"-".repeat(START_LINE + record.location.value)}"
+
+    private fun printWinners(results: RacingResults) {
+        println(makeWinnerNoticeSentence(results.winnerRecords))
+    }
+
+    private fun makeWinnerNoticeSentence(winnerRecords: Collection<Record>): String =
+        winnerRecords.joinToString { it.name.toString() } + WINNER_NOTICE_SUFFIX
 
     companion object {
         const val START_LINE = 1
+        const val WINNER_NOTICE_SUFFIX = "가 최종 우승했습니다."
     }
 }
