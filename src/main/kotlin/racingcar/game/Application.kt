@@ -1,7 +1,10 @@
 package racingcar.game
 
-import racingcar.game.ui.CommandLineReceiver
+import racingcar.game.ui.InputConsole
+import racingcar.game.ui.Screen
 
 fun main() {
-    Game(CommandLineReceiver()).start()
+    val game = InputConsole().run()
+    val result = game.start()
+    Screen.show(result)
 }

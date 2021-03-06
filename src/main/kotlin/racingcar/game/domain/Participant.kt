@@ -1,7 +1,7 @@
-package racingcar.game
+package racingcar.game.domain
 
 class Participant(numOfCar: Int) {
-    val cars = emptyList<Car>().toMutableList()
+    val cars = arrayListOf<Car>()
 
     init {
         for (idx in 1..numOfCar) {
