@@ -9,6 +9,7 @@ class RacingCarGame(
     private val tryCount: Int,
     private val cars: List<Car> = (1..carCount).map { Car() },
     private var raceResults: List<RaceResult> = ArrayList()
+    private val carNames: List<String> = listOf(),
 ) {
     fun start() {
         val initialResults = mutableListOf<RaceResult>()
