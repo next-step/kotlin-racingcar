@@ -1,84 +1,84 @@
-package step2_string_calculator.calculator.engine
+package stringcalculator.engine
 
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.verify
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
-import step2_string_calculator.calculator.ui.Receiver
+import stringcalculator.ui.Receiver
+
+class MockReceiver : Receiver() {
+    var answer: String? = ""
+    override fun receive(): String? {
+        print("수식을 입력해 주세요 : ")
+        return answer
+    }
+}
 
 internal class CalculatorTest {
     @Test
     fun addTest() {
         // given
-        val mockReceiver = mockk<Receiver>()
-        every { mockReceiver.run() } returns "2 + 3"
+        val mockReceiver = MockReceiver()
+        mockReceiver.answer = "2 + 3"
 
         // when
         val result = Calculator(receiver = mockReceiver).run()
 
         // then
-        verify { mockReceiver.run() }
         assertThat(result).isEqualTo(5)
     }
 
     @Test
     fun minusTest() {
         // given
-        val mockReceiver = mockk<Receiver>()
-        every { mockReceiver.run() } returns "5 - 3"
+        val mockReceiver = MockReceiver()
+        mockReceiver.answer = "5 - 3"
 
         // when
         val result = Calculator(receiver = mockReceiver).run()
 
         // then
-        verify { mockReceiver.run() }
         assertThat(result).isEqualTo(2)
     }
 
     @Test
     fun multiplyTest() {
         // given
-        val mockReceiver = mockk<Receiver>()
-        every { mockReceiver.run() } returns "5 * 3"
+        val mockReceiver = MockReceiver()
+        mockReceiver.answer = "5 * 3"
 
         // when
         val result = Calculator(receiver = mockReceiver).run()
 
         // then
-        verify { mockReceiver.run() }
         assertThat(result).isEqualTo(15)
     }
 
     @Test
     fun divideTest() {
         // given
-        val mockReceiver = mockk<Receiver>()
-        every { mockReceiver.run() } returns "10 / 2"
+        val mockReceiver = MockReceiver()
+        mockReceiver.answer = "10 / 2"
 
         // when
         val result = Calculator(receiver = mockReceiver).run()
 
         // then
-        verify { mockReceiver.run() }
         assertThat(result).isEqualTo(5)
     }
 
     @Test
     fun complexExpressionTest() {
         // given
-        val mockReceiver = mockk<Receiver>()
-        every { mockReceiver.run() } returns "2 + 3 * 10 / 5"
+        val mockReceiver = MockReceiver()
+        mockReceiver.answer = "2 + 3 * 10 / 5"
 
         // when
         val result = Calculator(receiver = mockReceiver).run()
 
         // then
-        verify { mockReceiver.run() }
         assertThat(result).isEqualTo(10)
     }
 
@@ -87,9 +87,8 @@ internal class CalculatorTest {
     fun nullOrBlankTest(input: String?) {
         assertThatThrownBy {
             // given
-            val mockReceiver = mockk<Receiver>()
-            every { mockReceiver.receive() } returns input
-            every { mockReceiver.run() } returns Receiver().run()
+            val mockReceiver = MockReceiver()
+            mockReceiver.answer = input
             // when
             Calculator(receiver = mockReceiver).run()
         } // then
@@ -102,8 +101,8 @@ internal class CalculatorTest {
     fun operatorValidationTest(input: String?) {
         assertThatThrownBy {
             // given
-            val mockReceiver = mockk<Receiver>()
-            every { mockReceiver.run() } returns "5 $input 3"
+            val mockReceiver = MockReceiver()
+            mockReceiver.answer = "5 $input 3"
             // when
             Calculator(receiver = mockReceiver).run()
         } // then

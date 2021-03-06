@@ -1,7 +1,7 @@
-package step2_string_calculator.calculator.engine
+package stringcalculator.engine
 
-import step2_string_calculator.calculator.ui.Printer
-import step2_string_calculator.calculator.ui.Receiver
+import stringcalculator.ui.Printer
+import stringcalculator.ui.Receiver
 import java.util.Stack
 
 const val DELIMITER = " "
@@ -53,13 +53,7 @@ class Calculator(private val receiver: Receiver = Receiver(), private val printe
 
     private fun calculate(token: Int) {
         if (!stack.isEmpty()) {
-            result = when (stack.pop()) {
-                Operator.PLUS -> result + token
-                Operator.MINUS -> result - token
-                Operator.MULTIPLY -> result * token
-                Operator.DIVIDE -> result / token
-                else -> result
-            }
+            result = stack.pop().method(result, token)
         } else {
             result = token
         }

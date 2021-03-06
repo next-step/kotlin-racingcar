@@ -1,6 +1,6 @@
-package step2_string_calculator.calculator
+package stringcalculator
 
-import step2_string_calculator.calculator.engine.Calculator
+import stringcalculator.engine.Calculator
 
 fun main() {
     val calculator = Calculator()
