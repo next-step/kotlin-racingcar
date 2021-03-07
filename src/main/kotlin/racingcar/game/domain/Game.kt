@@ -9,17 +9,19 @@ const val MAX_MOVE_CONDITION = 9
 object Game {
     fun start(
         inputParameter: GameParameter,
-        moveCondition: () -> Int = { generateMoveCondition() }
+        moveCondition: () -> Int = { defaultMoveCondition() }
     ): GameResult {
+
         val participant = Participant(inputParameter.nameOfCars)
+        val dashboard = Dashboard()
 
         repeat(inputParameter.numOfGame) {
-            participant.moveCars(moveCondition)
-            participant.setRoundResult()
+            val gameRoundResult = participant.moveCars(moveCondition)
+            dashboard.recordGameRoundHistory(gameRoundResult)
         }
 
-        return GameResult(participant.gameResult)
+        return dashboard.gameResult
     }
 
-    fun generateMoveCondition(): Int = (MIN_MOVE_CONDITION..MAX_MOVE_CONDITION).random()
+    private fun defaultMoveCondition(): Int = (MIN_MOVE_CONDITION..MAX_MOVE_CONDITION).random()
 }

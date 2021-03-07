@@ -1,4 +1,4 @@
-package racingcar.game.ui
+package racingcar.game.view
 
 import racingcar.game.domain.Car
 import racingcar.game.vo.GameResult

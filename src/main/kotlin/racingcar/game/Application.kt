@@ -1,13 +1,11 @@
 package racingcar.game
 
 import racingcar.game.domain.Game
-import racingcar.game.ui.InputConsole
-import racingcar.game.ui.Screen
+import racingcar.game.view.InputConsole
+import racingcar.game.view.Screen
 
 fun main() {
-    val carNameReader = { readLine() }
-    val numOfGameReader = { readLine() }
-    val gameParameter = InputConsole(carNameReader, numOfGameReader).run()
+    val gameParameter = InputConsole().run()
     val result = Game.start(gameParameter)
     Screen.show(result)
 }
