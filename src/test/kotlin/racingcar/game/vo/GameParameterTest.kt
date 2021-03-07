@@ -21,7 +21,7 @@ internal class GameParameterTest {
     @ParameterizedTest
     @CsvSource("-1", "0")
     fun `numOfGame 입력 파라미터는 모두 1 이상이어야 한다`(numOfGame: String) {
-        assertThrows<java.lang.IllegalArgumentException> {
+        assertThrows<IllegalArgumentException> {
             val carNameReader = "test"
             GameParameter.initParameter(carNameReader, numOfGame)
         }
@@ -30,16 +30,7 @@ internal class GameParameterTest {
     @ParameterizedTest
     @MethodSource("provideStringForIsBlank")
     fun `모든 입력 파라미터는 모두 not null, not blank이어야 한다`(nameOfCar: String?, numOfGame: String?) {
-        assertThrows<java.lang.IllegalArgumentException> {
-            GameParameter.initParameter(nameOfCar, numOfGame)
-        }
-    }
-
-    @ParameterizedTest
-    @CsvSource("asdfqwer", "a,b,asdfgh", delimiter = ';')
-    fun `자동차 이름 파라미터는 5자를 초과할 수 없다`(nameOfCar: String) {
-        assertThrows<java.lang.IllegalArgumentException> {
-            val numOfGame = "1"
+        assertThrows<IllegalArgumentException> {
             GameParameter.initParameter(nameOfCar, numOfGame)
         }
     }

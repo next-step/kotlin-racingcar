@@ -2,6 +2,7 @@ package racingcar.game.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import racingcar.game.vo.CarHistory
 import racingcar.game.vo.GameParameter
 
 internal class GameTest {
@@ -18,7 +19,7 @@ internal class GameTest {
         val result = Game.start(param, moveCondition)
 
         // then
-        val lastRoundHistory: List<Car> = result.history.last().roundHistory
+        val lastRoundHistory: List<CarHistory> = result.history.last().roundHistory
         assertThat(result.history.size).isEqualTo(3)
         assertThat(lastRoundHistory)
             .extracting("position")
@@ -37,7 +38,7 @@ internal class GameTest {
         val result = Game.start(param, moveCondition)
 
         // then
-        val lastRoundHistory: List<Car> = result.history.last().roundHistory
+        val lastRoundHistory: List<CarHistory> = result.history.last().roundHistory
         assertThat(result.history.size).isEqualTo(3)
         assertThat(lastRoundHistory)
             .extracting("position")
