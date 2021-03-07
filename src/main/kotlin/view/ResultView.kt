@@ -12,7 +12,11 @@ object ResultView {
     }
 
     fun printWinners(winners: Winners) {
-        print(winners.joinToWinners(Reception.CAR_NAME_DELIMITERS) + "가 최종 우승했습니다")
+        print(joinToWinners(winners.names, Reception.CAR_NAME_DELIMITERS) + "가 최종 우승했습니다")
+    }
+
+    fun joinToWinners(names: List<String>, delimiter: String): String {
+        return names.joinToString("$delimiter ")
     }
 
     fun printRacing(overallResult: OverallResult) {
