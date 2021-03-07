@@ -2,43 +2,39 @@ package racingcar_winner
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import racingcar.ui.OutputView
 import racingcar_winner.model.Car
-import racingcar_winner.model.Cars
 
-private val PHOBI = 0
-private val JOHN = 1
-private val JAMES = 2
+class GameTest {
 
+    private val PHOBI = 0
+    private val JOHN = 1
+    private val JAMES = 2
 
-class RefereeTest {
-
+    private val outputView = OutputView()
     private val listOfCars = listOf<Car>(
-        Car("Phobi"), Car("John"), Car("James")
+        Car.makeCar("Phobi"), Car.makeCar("John"), Car.makeCar("James")
     )
 
     @Test
-    fun `게임의 승자 확인(동점자가 있는경우)`() {
+    fun `차들이 움직였을 때의 Progress 확인`() {
         listOfCars[PHOBI].tryToMoveForward(5)
-        listOfCars[PHOBI].tryToMoveForward(5)
-        listOfCars[JOHN].tryToMoveForward(5)
-        listOfCars[JOHN].tryToMoveForward(5)
+        listOfCars[JOHN].tryToMoveForward(6)
+        listOfCars[JAMES].tryToMoveForward(7)
 
-        // [현재 Progress] Phobi: 2, John: 2, James: 0
-        val cars = Cars(listOfCars)
-        val winners = cars.getWinners()
+        val progressCars = listOfCars.map { car -> car.progress }
 
-        assertThat(winners).isEqualTo(listOf("Phobi", "John"))
+        assertThat(progressCars).isEqualTo(listOf(1, 1, 1))
     }
 
     @Test
-    fun `게임의 승자 확인(동점자가 없는경우)`() {
-        listOfCars[PHOBI].tryToMoveForward(5)
-        listOfCars[PHOBI].tryToMoveForward(5)
+    fun `차들이 움직이지 않았을 때의 Progress 확인`() {
+        listOfCars[PHOBI].tryToMoveForward(1)
+        listOfCars[JOHN].tryToMoveForward(2)
+        listOfCars[JAMES].tryToMoveForward(3)
 
-        // [현재 Progress] Phobi: 2, John: 0, James: 0
-        val cars = Cars(listOfCars)
-        val winners = cars.getWinners()
+        val progressCars = listOfCars.map { car -> car.progress }
 
-        assertThat(winners).isEqualTo(listOf("Phobi"))
+        assertThat(progressCars).isEqualTo(listOf(0, 0, 0))
     }
 }
