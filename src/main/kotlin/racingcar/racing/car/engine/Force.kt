@@ -11,6 +11,5 @@ data class Force(val value: Int) {
 
     companion object {
         private const val ZERO_VALUE = 0
-        val ZERO = Force(ZERO_VALUE)
     }
 }
