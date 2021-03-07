@@ -12,7 +12,8 @@ fun main() {
             attemptToGetInput("자동차의 이름을 알려주세요(ex. 철수, 영희, 영진, 상우).", NameInputParser())
                 .map {
                     Car(it, RandomMovingStrategy())
-                }),
+                }
+        ),
         attemptToGetInput("시도할 횟수는 몇 회인가요?", IntegerInputParser())
     ).start()
 }
