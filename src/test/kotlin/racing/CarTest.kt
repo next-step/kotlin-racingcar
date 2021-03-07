@@ -14,7 +14,7 @@ class CarTest {
     @Test
     fun `4보다 작은 확률 값은 position이 증가하지 않는다`() {
         repeat(100) {
-            val car = Car(LowProbabilityProxy())
+            val car = Car(CAR_NAME, LowProbabilityProxy())
             car.tryGo()
             assertTrue(car.position == 1)
         }
@@ -23,9 +23,13 @@ class CarTest {
     @Test
     fun `4보다 큰 확률 값은 position이 증가한다`() {
         repeat(100) {
-            val car = Car(HighProbabilityProxy())
+            val car = Car(CAR_NAME, HighProbabilityProxy())
             car.tryGo()
             assertTrue(car.position == 2)
         }
+    }
+
+    companion object {
+        const val CAR_NAME = "Tesla"
     }
 }

@@ -1,8 +1,10 @@
 package racing
 
-fun printResult(record: Record) {
-    record.records.forEach {
-        println("-".repeat(it))
+fun printResult(cars: List<Car>, tryCount: Int) {
+    repeat(tryCount) { index ->
+        cars.forEach { car ->
+            println("-".repeat(car.records[index]))
+        }
+        println()
     }
-    println()
 }
