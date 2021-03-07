@@ -23,7 +23,7 @@ internal class DistanceTest {
 
     @Test
     fun `거리 합`() {
-        val distance = Distance(2).plus(Distance(1))
-        assertThat(distance).isEqualTo(Distance(3))
+        val distance = Distance(2) + Distance(9)
+        assertThat(distance).isEqualTo(Distance(11))
     }
 }

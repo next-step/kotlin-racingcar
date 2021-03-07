@@ -4,7 +4,7 @@ data class Car(val distance: Distance = Distance()) {
 
     fun move(number: Number): Car {
         if (number.isOver(MOVE_POINT)) {
-            return copy(distance = distance.plus(MOVE_DISTANCE))
+            return copy(distance = distance + MOVE_DISTANCE)
         }
         return this
     }
