@@ -11,7 +11,7 @@ internal class RacingCarsTest {
         val racingCars = createRacingCars(listOf(Car(), Car()))
 
         // when
-        racingCars.nextRound(movable)
+        racingCars.nextRound(StaticMovable(true))
 
         // then
         assertThat(racingCars.cars.map(Car::position)).isEqualTo(listOf(1, 1))
@@ -29,11 +29,6 @@ internal class RacingCarsTest {
     }
 
     private fun createRacingCars(cars: List<Car>): RacingCars {
-
         return RacingCars(cars)
-    }
-
-    companion object {
-        private val movable = object : Movable { override fun isMovable(): Boolean = true }
     }
 }

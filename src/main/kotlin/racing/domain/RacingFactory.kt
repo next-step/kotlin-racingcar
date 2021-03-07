@@ -6,7 +6,7 @@ internal class RacingFactory {
         val cars = carNames.map { Car(it) }
         return Racing(
             racingCars = RacingCars(cars = cars),
-            randomMovable = RandomMovable()
+            movable = RandomMovable()
         )
     }
 }
