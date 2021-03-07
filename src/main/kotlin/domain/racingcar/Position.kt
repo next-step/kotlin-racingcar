@@ -1,6 +1,9 @@
 package domain.racingcar
 
-class Position(var position: Int = START_POSITION) {
+class Position(position: Int = START_POSITION) {
+    var position = position
+        private set
+
     fun forward() {
         position++
     }
