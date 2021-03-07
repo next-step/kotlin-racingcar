@@ -4,7 +4,7 @@ data class Cars(private val cars: List<Car>) {
     var positions = Positions()
         private set
 
-    constructor(names: Array<Name>) : this(names.map { Car(NamedPosition.Smart(it)) })
+    constructor(names: Array<Name>) : this(names.map { Car(Position(it)) })
     constructor(cars: Int) : this((0 until cars).map { Name(it) }.toTypedArray())
 
     fun drive() {

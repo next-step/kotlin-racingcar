@@ -1,9 +1,9 @@
 package racingcar.view
 
-import racingcar.domain.NamedPosition
+import racingcar.domain.Position
 
 class PositionString(private val name: String, private val position: Int) {
-    constructor(position: NamedPosition) : this(position.name.stringValue(), position.intValue())
+    constructor(position: Position) : this(position.name.stringValue(), position.intValue())
 
     private val value: String
         get() {

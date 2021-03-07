@@ -14,7 +14,7 @@ class RacingGameTest {
 
         for ((playStep, positions) in racingGame.positions.withIndex()) {
             assertThat(positions).allSatisfy {
-                assertThat(it).isEqualTo(NamedPosition.Smart(position = playStep + 1))
+                assertThat(it).isEqualTo(Position(position = playStep + 1))
             }
         }
     }

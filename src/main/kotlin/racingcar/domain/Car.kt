@@ -1,10 +1,10 @@
 package racingcar.domain
 
 class Car(
-    private var position: NamedPosition = NamedPosition.Smart(),
+    private var position: Position = Position(),
     private val moveable: Moveable = Moveable.Random()
 ) {
-    fun driving(): NamedPosition {
+    fun driving(): Position {
         if (moveable.moving()) {
             position++
         }
