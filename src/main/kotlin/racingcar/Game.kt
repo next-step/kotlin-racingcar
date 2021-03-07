@@ -4,13 +4,14 @@ import racingcar.ui.ResultView
 
 class Game(val cars: Cars, private val numberOfAttempts: Int) {
     fun start() {
+        val resultView = ResultView()
         repeat(numberOfAttempts) {
             proceedOneTurn()
-            ResultView().printCurrent(
+            resultView.printCurrent(
                 cars
             )
         }
-        // ResultView().printWinner(cars.winner())
+        resultView.printWinner(cars.winner())
     }
 
     private fun proceedOneTurn() {

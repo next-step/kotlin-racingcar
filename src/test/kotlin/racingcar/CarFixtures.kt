@@ -21,7 +21,7 @@ object CarFixtures {
         )
     }
 
-    fun canNotMovingStrategy() = object : MovingStrategy {
+    private fun canNotMovingStrategy() = object : MovingStrategy {
         override fun movable(): Boolean {
             return false
         }
