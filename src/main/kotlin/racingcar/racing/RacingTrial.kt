@@ -7,7 +7,7 @@ data class RacingTrial(
     val records: List<Record>
 ) {
     val leadRecords: List<Record>
-        get() = records.filter { it.location == oneOfLeadRecord.location }
+        get() = records.filter { it.isSameLocationAs(oneOfLeadRecord) }
 
     private val oneOfLeadRecord: Record
         get() = records.maxBy { it.location } ?: throw IllegalStateException("records is empty!")
