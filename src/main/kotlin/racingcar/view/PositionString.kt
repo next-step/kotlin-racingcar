@@ -3,7 +3,7 @@ package racingcar.view
 import racingcar.domain.Position
 
 class PositionString(private val name: String, private val position: Int) {
-    constructor(position: Position) : this(position.name.stringValue(), position.intValue())
+    constructor(position: Position) : this(position.name.stringValue(), position.int)
 
     private val value: String
         get() {
