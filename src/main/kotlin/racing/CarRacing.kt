@@ -13,12 +13,10 @@ fun main() {
     }
 }
 
-class CarRacing {
+class CarRacing(private val cars: List<Car>, private val tryCount: Int) {
     val records = ArrayList<Record>()
 
-    fun execute(carCount: Int, tryCount: Int) {
-        val cars = (1..carCount).map { Car(Probability()) }
-
+    fun execute() {
         repeat(tryCount) {
             val record = Record(
                 cars.map {
