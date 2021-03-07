@@ -9,7 +9,8 @@ class Controller {
         fun gameStart() {
             val gameParameter = InputConsole.run()
             val result = Game.start(gameParameter)
-            Screen.show(result)
+            val winners = Game.findWinners(result)
+            Screen.show(result, winners)
         }
     }
 }

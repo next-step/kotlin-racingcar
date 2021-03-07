@@ -5,23 +5,16 @@ import racingcar.game.vo.CarHistory
 import racingcar.game.vo.GameRoundResult
 
 object Screen {
-    fun show(result: GameResult) {
+    fun show(result: GameResult, winners: List<String>) {
         println("실행 결과")
         result.history.forEach { roundResult ->
             showRoundGame(roundResult)
         }
-        printWinners(result)
+        printWinners(winners)
     }
 
-    private fun printWinners(result: GameResult) {
-        val lastRoundHistory: List<CarHistory> = result.history.last().roundHistory
-        val maxPosition: Int? = lastRoundHistory.maxOfOrNull { it.position }
-        val maxPositionCars: List<String> = lastRoundHistory.filter {
-            it.position == maxPosition
-        }.map { it.name }
-
-        val winners = maxPositionCars.joinToString(",")
-        print("${winners}가 최종 우승했습니다.")
+    private fun printWinners(winners: List<String>) {
+        print("${winners.joinToString(",")}가 최종 우승했습니다.")
     }
 
     private fun showRoundGame(roundResult: GameRoundResult) {
