@@ -5,7 +5,7 @@ import racingcar.racing.car.CarName
 
 class Racing(
     private val trials: Int,
-    private val cars: Collection<Car>
+    private val cars: List<Car>
 ) {
     init {
         require(cars.size >= 2) {
@@ -32,7 +32,7 @@ class Racing(
 
     private fun raceAll(order: Int): RacingTrial {
         cars.forEach { it.race() }
-        return RacingTrial.of(order, cars)
+        return RacingTrial(order, cars)
     }
 
     companion object {

@@ -16,15 +16,16 @@ data class RacingTrial(
         require(records.isNotEmpty()) { EMPTY_RECORDS_MESSAGE }
     }
 
+    constructor(order: Int, cars: List<Car>) : this(
+        order = TrialOrder(order),
+        records = cars.map { Record(it.name, it.location) }
+    )
+
     fun checkOrder(index: Int) {
         order.check(index)
     }
 
     companion object {
         private const val EMPTY_RECORDS_MESSAGE = "records is empty!"
-
-        fun of(order: Int, cars: Collection<Car>): RacingTrial {
-            return RacingTrial(TrialOrder(order), cars.map { Record(it.name, it.location) })
-        }
     }
 }
