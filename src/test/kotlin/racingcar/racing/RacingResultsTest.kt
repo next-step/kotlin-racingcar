@@ -34,17 +34,12 @@ internal class RacingResultsTest {
             .containsExactly(Record(CarName("최종우승"), CarLocation(3)))
     }
 
-    private fun makeDummy(order: Int, 초반우세: Int, 중반우세: Int, 최종우승: Int) = makeTrial(
-        order = order,
-        records = listOf(
-            "초반우세" to 초반우세,
-            "중반우세" to 중반우세,
-            "최종우승" to 최종우승
-        )
-    )
-
-    private fun makeTrial(order: Int, records: List<Pair<String, Int>>) = RacingTrial(
+    private fun makeDummy(order: Int, 초반우세: Int, 중반우세: Int, 최종우승: Int) = RacingTrial(
         TrialOrder(order),
-        records.map { (name, location) -> Record(CarName(name), CarLocation(location)) }
+        listOf(
+            Record(CarName("초반우세"), CarLocation(초반우세)),
+            Record(CarName("중반우세"), CarLocation(중반우세)),
+            Record(CarName("최종우승"), CarLocation(최종우승))
+        )
     )
 }
