@@ -10,6 +10,7 @@ fun main() {
 
     println("실행 결과")
     printResult(cars, tryCount)
+    printWinner(carRacing)
 }
 
 class CarRacing(private val cars: List<Car>, private val tryCount: Int) {
