@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import racing.data.CarState
 import racing.data.RacingGameData
+import racing.data.Winners
 import racing.domain.random.TestRandomWrapper
 import kotlin.random.Random
 
@@ -45,8 +46,8 @@ class RacingGameTest {
             CarState(cars.cars[2].name, CarPosition(2))
         )
 
-        val winners = racingGameResult.winners
-        assertThat(winners.winners).extracting("name").contains("pobi", "crong", "honux")
+        val expectedWinners = Winners(cars.cars.map { it.name })
+        assertThat(racingGameResult.winners).isEqualTo(expectedWinners)
     }
 
     @Test
@@ -73,7 +74,7 @@ class RacingGameTest {
             CarState(cars.cars[2].name, CarPosition.INIT_POSITION)
         )
 
-        val winners = racingGameResult.winners
-        assertThat(winners.winners).extracting("name").contains("pobi", "crong", "honux")
+        val expectedWinners = Winners(cars.cars.map { it.name })
+        assertThat(racingGameResult.winners).isEqualTo(expectedWinners)
     }
 }
