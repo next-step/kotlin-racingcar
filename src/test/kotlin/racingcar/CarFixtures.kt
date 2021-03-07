@@ -1,9 +1,11 @@
 package racingcar
 
+import java.util.UUID
+
 object CarFixtures {
     fun createAlwaysMovingCar(): Car {
         return Car(
-            "",
+            UUID.randomUUID().toString(),
             alwaysMovingStrategy()
         )
     }
@@ -16,7 +18,7 @@ object CarFixtures {
 
     fun createCanNotMovingCar(): Car {
         return Car(
-            "",
+            UUID.randomUUID().toString(),
             canNotMovingStrategy()
         )
     }

@@ -6,17 +6,11 @@ class Game(val cars: Cars, private val numberOfAttempts: Int) {
     fun start() {
         val resultView = ResultView()
         repeat(numberOfAttempts) {
-            proceedOneTurn()
+            cars.proceedOneTurn()
             resultView.printCurrent(
                 cars
             )
         }
         resultView.printWinner(cars.winner())
-    }
-
-    private fun proceedOneTurn() {
-        cars.cars.forEach { car ->
-            car.attemptsMoveForward()
-        }
     }
 }

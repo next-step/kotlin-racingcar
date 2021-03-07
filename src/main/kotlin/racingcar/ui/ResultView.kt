@@ -1,6 +1,5 @@
 package racingcar.ui
 
-import jdk.internal.joptsimple.internal.Strings
 import racingcar.Car
 import racingcar.Cars
 
@@ -13,7 +12,7 @@ class ResultView {
     }
 
     private fun createPositionBar(it: Car): String {
-        var positionBar = Strings.EMPTY
+        var positionBar = ""
         repeat(it.position) {
             positionBar += POSITION_DISPLAY_BAR
         }
