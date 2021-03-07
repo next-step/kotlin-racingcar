@@ -2,11 +2,7 @@ package racingcar.racing
 
 class RacingResults(val trials: List<RacingTrial>) {
     init {
-        trials.forEachIndexed { index, trial ->
-            require(trial.order == TrialOrder(index + 1)) {
-                "The results of racing is not ordered. trial orders=${trials.map { it.order }}"
-            }
-        }
+        trials.forEachIndexed { index, trial -> trial.checkOrder(index) }
     }
 
     val winnerRecords: List<Record>

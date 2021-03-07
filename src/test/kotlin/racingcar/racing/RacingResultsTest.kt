@@ -35,7 +35,6 @@ internal class RacingResultsTest {
         }
         assertThatIllegalArgumentException()
             .isThrownBy { RacingResults(trialsWithRandomOrder) }
-            .withMessage("The results of racing is not ordered. trial orders=${trialsWithRandomOrder.map { it.order }}")
     }
 
     private fun getRandomNumberWithoutOrderNumber(numberOfTrials: Int, exception: Int): Int {

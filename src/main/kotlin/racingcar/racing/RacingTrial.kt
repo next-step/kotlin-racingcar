@@ -12,6 +12,10 @@ data class RacingTrial(
     private val oneOfLeadRecord: Record
         get() = records.maxBy { it.location } ?: throw IllegalStateException("records is empty!")
 
+    fun checkOrder(index: Int) {
+        order.check(index)
+    }
+
     companion object {
         fun of(order: Int, cars: Collection<Car>): RacingTrial {
             return RacingTrial(TrialOrder(order), cars.map { Record(it.name, it.location) })

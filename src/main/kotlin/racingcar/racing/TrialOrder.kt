@@ -7,6 +7,12 @@ data class TrialOrder(val value: Int) : Comparable<TrialOrder> {
         }
     }
 
+    fun check(index: Int) {
+        require(value == index + 1) {
+            "The results of racing is not ordered. trialOrder='$value', givenIndex=$index"
+        }
+    }
+
     override fun compareTo(other: TrialOrder): Int {
         return this.value.compareTo(other.value)
     }

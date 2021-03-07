@@ -19,4 +19,21 @@ internal class TrialOrderTest {
             .isThrownBy { TrialOrder(value) }
             .withMessage("The number must be positive.")
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = [1, 48, 203802, Int.MAX_VALUE])
+    fun `check(index)는 'order == index + 1'을 만족하지 않으면 IllegalArgumentException throw`(orderValue: Int) {
+        val randomIndex = getRandomIndex(exception = orderValue - 1)
+        assertThatIllegalArgumentException()
+            .isThrownBy { TrialOrder(orderValue).check(randomIndex) }
+            .withMessage("The results of racing is not ordered. trialOrder='$orderValue', givenIndex=$randomIndex")
+    }
+
+    private fun getRandomIndex(exception: Int): Int {
+        val randomValue = (0..Int.MAX_VALUE).random()
+        if (randomValue == exception) {
+            return getRandomIndex(exception)
+        }
+        return randomValue
+    }
 }
