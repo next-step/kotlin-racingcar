@@ -5,7 +5,7 @@ data class Distance(val value: Int = DEFAULT_VALUE) {
         require(value >= DEFAULT_VALUE)
     }
 
-    fun sum(distance: Distance): Distance {
+    operator fun plus(distance: Distance): Distance {
         return copy(value = value + distance.value)
     }
 

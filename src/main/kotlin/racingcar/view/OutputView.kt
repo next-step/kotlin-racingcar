@@ -11,9 +11,5 @@ fun printCars(cars: Cars) {
 }
 
 private fun printCar(car: Car) {
-    val value = car.distance.value
-    val stringBuilder = StringBuilder()
-    (0 until value).map { stringBuilder.append("-") }
-
-    println(stringBuilder.toString())
+    println("-".repeat(car.distance.value))
 }
