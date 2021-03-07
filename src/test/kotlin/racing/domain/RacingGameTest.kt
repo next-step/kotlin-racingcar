@@ -12,7 +12,6 @@ class RacingGameTest {
     private val testTryCount = 2
     private val testInputCarNames = listOf("pobi", "crong", "honux")
     private val testRacingGameData: RacingGameData = RacingGameData(testInputCarNames, testTryCount)
-    private val movementChecker = MovementChecker(TestRandomWrapper(9))
 
     @Test
     fun `constructor test`() {
@@ -46,7 +45,8 @@ class RacingGameTest {
             CarState(cars.cars[2].name, CarPosition(2))
         )
 
-        assertThat(racingGameResult.winners.winners).extracting("name").contains("pobi", "crong", "honux")
+        val winners = racingGameResult.winners
+        assertThat(winners.winners).extracting("name").contains("pobi", "crong", "honux")
     }
 
     @Test
@@ -72,6 +72,8 @@ class RacingGameTest {
             CarState(cars.cars[1].name, CarPosition.INIT_POSITION),
             CarState(cars.cars[2].name, CarPosition.INIT_POSITION)
         )
-        assertThat(racingGameResult.winners.winners).extracting("name").contains("pobi", "crong", "honux")
+
+        val winners = racingGameResult.winners
+        assertThat(winners.winners).extracting("name").contains("pobi", "crong", "honux")
     }
 }
