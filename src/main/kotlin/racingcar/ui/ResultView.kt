@@ -1,11 +1,22 @@
 package racingcar.ui
 
+import racingcar.Car
+import racingcar.Cars
+
 class ResultView {
-    fun printResult(positions: List<Int>) {
-        positions.map { position ->
-            println(POSITION_DISPLAY_BAR.repeat(position))
+    fun printCurrent(cars: Cars) {
+        cars.cars.map {
+            println(it.name + ":  " + createPositionBar(it))
         }
         println()
+    }
+
+    private fun createPositionBar(it: Car): String {
+        var positionBar = ""
+        repeat(it.position) {
+            positionBar += POSITION_DISPLAY_BAR
+        }
+        return positionBar
     }
 
     companion object {

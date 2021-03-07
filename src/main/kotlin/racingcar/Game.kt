@@ -2,22 +2,19 @@ package racingcar
 
 import racingcar.ui.ResultView
 
-class Game(private val configuration: GameConfiguration, movingStrategy: MovingStrategy) {
-    val cars: List<Car> = (1..configuration.numberOfCars).map { Car(movingStrategy) }
-
+class Game(val cars: Cars, private val numberOfAttempts: Int) {
     fun start() {
-        repeat(configuration.numberOfAttempts) {
+        repeat(numberOfAttempts) {
             proceedOneTurn()
-            ResultView().printResult(
-                cars.map { car ->
-                    car.position
-                }.toList()
+            ResultView().printCurrent(
+                cars
             )
         }
+        // ResultView().printWinner(cars.winner())
     }
 
     private fun proceedOneTurn() {
-        cars.forEach { car ->
+        cars.cars.forEach { car ->
             car.attemptsMoveForward()
         }
     }
