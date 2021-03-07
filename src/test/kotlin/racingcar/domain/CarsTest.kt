@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -15,9 +15,9 @@ class CarsTest {
         cars.drive()
         cars.drive()
         assertThat(cars.positions).containsExactly(
-            Position(2),
-            Position(2),
-            Position(2)
+            Position(position = 2),
+            Position(position = 2),
+            Position(position = 2)
         )
     }
 

@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.view
 
 import java.io.OutputStream
 import java.io.PrintWriter

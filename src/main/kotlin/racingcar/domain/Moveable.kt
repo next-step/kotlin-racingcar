@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 interface Moveable {
     fun moving(): Boolean
@@ -8,7 +8,7 @@ interface Moveable {
     }
 
     class Random : Moveable {
-        private val intRandom = IntRandom.Smart(0 until 10)
+        private val intRandom = IntRandom.Smart(0..9)
 
         override fun moving() = intRandom.next().moreThen(MOVING_MIN)
 
