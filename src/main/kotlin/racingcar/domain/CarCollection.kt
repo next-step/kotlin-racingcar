@@ -2,7 +2,7 @@ package racingcar.domain
 
 class CarCollection(carCount: Int) {
 
-    private val cars: List<Car> = MutableList(carCount) { Car() }
+    private val cars: List<Car> = List(carCount) { Car() }
 
     fun tryMoveCars(conditionNumbers: List<Int>) {
         cars.zip(conditionNumbers).forEach { (car, number) ->

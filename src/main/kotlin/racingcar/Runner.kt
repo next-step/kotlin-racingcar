@@ -7,5 +7,5 @@ fun main(args: Array<String>) {
     val numberOfCars = InputView.getNumberOfCars()
     val tryCount = InputView.getTryCounts()
 
-    RacingGame(numberOfCars, tryCount).runRace()
+    RacingGame(tryCount = tryCount, numberOfCar = numberOfCars).runRace()
 }

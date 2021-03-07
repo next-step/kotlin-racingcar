@@ -9,7 +9,7 @@ class RacingGame(private val tryCount: Int, private val numberOfCar: Int) {
 
     fun runRace() {
         OutputView.printOutputLetter()
-        for (i in 1..tryCount) {
+        repeat(tryCount) {
             carCollection.tryMoveCars(randomNumberGenerator(numberOfCar))
             OutputView.printCarCollection(carCollection.getCarsPosition())
         }
