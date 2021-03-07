@@ -1,8 +1,10 @@
 package racingcar.racing
 
-class RacingResults(val trials: List<RacingTrial>) {
+class RacingResults(trials: List<RacingTrial>) {
+    val trials: List<RacingTrial> = trials.sortedBy { it.order }
+
     init {
-        trials.forEachIndexed { index, trial -> trial.checkOrder(index) }
+        this.trials.forEachIndexed { index, trial -> trial.checkOrder(index) }
     }
 
     val winnerRecords: List<Record>

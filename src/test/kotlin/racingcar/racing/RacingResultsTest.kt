@@ -1,7 +1,6 @@
 package racingcar.racing
 
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
@@ -13,29 +12,11 @@ internal class RacingResultsTest {
 
     @ParameterizedTest
     @ValueSource(ints = [1, 10, 50])
-    fun `순서대로 결과가 들어온다면 순서대로 trial을 반환`(numberOfTrials: Int) {
+    fun `들어온 trial의 순서와 상관없이 order 순서대로 trial을 반환`(numberOfTrials: Int) {
         val orderedTrials = (1..numberOfTrials).map { RacingTrial(TrialOrder(it), dummyRecords) }
 
-        assertThat(RacingResults(orderedTrials).trials)
+        assertThat(RacingResults(orderedTrials.shuffled()).trials)
             .containsExactlyElementsOf((1..numberOfTrials).map { RacingTrial(TrialOrder(it), dummyRecords) })
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = [2, 10, 50])
-    fun `trials의 order 값들이 1부터 순서대로 있지 않다면 IllegalArgumentException throw`(numberOfTrials: Int) {
-        val trialsWithRandomOrder = (1..numberOfTrials).map { order ->
-            RacingTrial(TrialOrder(getRandomNumberWithoutOrderNumber(numberOfTrials, order)), dummyRecords)
-        }
-        assertThatIllegalArgumentException()
-            .isThrownBy { RacingResults(trialsWithRandomOrder) }
-    }
-
-    private fun getRandomNumberWithoutOrderNumber(numberOfTrials: Int, exception: Int): Int {
-        val randomNumber = (1..numberOfTrials).random()
-        if (randomNumber == exception) {
-            return getRandomNumberWithoutOrderNumber(numberOfTrials, exception)
-        }
-        return randomNumber
     }
 
     @Test
