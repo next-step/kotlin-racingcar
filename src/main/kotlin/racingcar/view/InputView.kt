@@ -24,6 +24,6 @@ class InputView(
     }
 
     companion object {
-        const val NAME_DELIMITER = ","
+        private const val NAME_DELIMITER = ","
     }
 }
