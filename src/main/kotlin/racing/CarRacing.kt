@@ -25,4 +25,9 @@ class CarRacing(private val cars: List<Car>, private val tryCount: Int) {
             it.tryGo()
         }
     }
+
+    fun getWinner(): List<Car> {
+        val maxPosition = cars.map { it.position }.max()
+        return cars.filter { it.position == maxPosition }
+    }
 }
