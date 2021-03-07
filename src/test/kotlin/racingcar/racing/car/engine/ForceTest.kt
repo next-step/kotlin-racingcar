@@ -1,6 +1,7 @@
-package racingcar
+package racingcar.racing.car.engine
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
@@ -31,5 +32,13 @@ internal class ForceTest {
             { assertThat(Force(one) == Force(other)).isEqualTo(equalToOther) },
             { assertThat(Force(one) > Force(other)).isEqualTo(moreThanOther) }
         )
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [-1, -4824, Int.MIN_VALUE])
+    fun `force value는 0보다 커야 한다`(threshold: Int) {
+        assertThatIllegalArgumentException()
+            .isThrownBy { Force(threshold) }
+            .withMessage("Force must be positive or zero.")
     }
 }

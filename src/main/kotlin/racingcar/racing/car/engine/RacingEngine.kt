@@ -1,21 +1,15 @@
-package racingcar
+package racingcar.racing.car.engine
 
 class RacingEngine(
-    private val threshold: Force = Force(4),
+    private val threshold: Force = DEFAULT_THRESHOLD,
     private val forceGenerator: ForceGenerator = DEFAULT_GENERATOR
 ) : Engine {
-    init {
-        if (threshold < Force.ZERO) {
-            throw IllegalArgumentException("Threshold must be positive or zero.")
-        }
-    }
-
     override fun run(): Torque {
         if (exceedThreshold(forceGenerator.generate())) {
-            return Torque.ONE
+            return Torque.MOVE
         }
 
-        return Torque.ZERO
+        return Torque.STOP
     }
 
     private fun exceedThreshold(force: Force): Boolean {
@@ -23,6 +17,7 @@ class RacingEngine(
     }
 
     companion object {
+        private val DEFAULT_THRESHOLD = Force(4)
         private val DEFAULT_GENERATOR = RandomForceGenerator()
     }
 }

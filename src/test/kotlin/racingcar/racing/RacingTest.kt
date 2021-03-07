@@ -1,13 +1,17 @@
-package racingcar
+package racingcar.racing
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import racingcar.racing.car.Car
+import racingcar.racing.car.CarName
+import racingcar.racing.car.engine.Engine
+import racingcar.racing.car.engine.Torque
 
 internal class RacingTest {
     private val dummyEngine = object : Engine {
-        override fun run() = Torque.ZERO
+        override fun run() = Torque.STOP
     }
 
     @ParameterizedTest
@@ -35,12 +39,12 @@ internal class RacingTest {
 
     @ParameterizedTest
     @ValueSource(ints = [2, 5, 12])
-    fun `차량 대수만큼 RacingTrial 내 CarLocation이 생긴다`(numberOfCars: Int) {
+    fun `차량 대수만큼 RacingTrial 내 record가 생긴다`(numberOfCars: Int) {
         val cars = generateCars(numberOfCars)
 
         val results = Racing(1, cars).start()
-        assertThat(results.trials).allMatch { it.locations.size == numberOfCars }
+        assertThat(results.trials).allMatch { it.records.size == numberOfCars }
     }
 
-    private fun generateCars(numberOfCars: Int) = (1..numberOfCars).map { Car(dummyEngine) }
+    private fun generateCars(numberOfCars: Int) = (1..numberOfCars).map { Car(CarName("슈마허"), dummyEngine) }
 }

@@ -1,24 +1,21 @@
 package calculator
 
 class Operation(
-    private val base: Operand
+    private val base: Operand,
+    operator: Operator? = null
 ) {
-    constructor(base: Operand, operator: Operator) : this(base) {
-        this.operator = operator
-    }
+    var operator: Operator? = operator
+        set(value) {
+            assertOperatorIsNull()
+            field = value
+        }
 
     val result: Scalar
         get() {
             if (operator != null) {
-                throw IllegalArgumentException("The operation is invalid")
+                throw IllegalStateException("The operation is invalid. expression='$base $operator'")
             }
             return Scalar(base)
-        }
-
-    var operator: Operator? = null
-        set(value) {
-            assertOperatorIsNull()
-            field = value
         }
 
     fun operate(operand: Operand): Operation {

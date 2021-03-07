@@ -1,6 +1,9 @@
-package racingcar
+package racingcar.racing.car
+
+import racingcar.racing.car.engine.Engine
 
 class Car(
+    val name: CarName,
     private val engine: Engine
 ) {
     var location: CarLocation = CarLocation.ZERO
@@ -11,6 +14,6 @@ class Car(
     }
 
     private fun goForward() {
-        this.location += engine.run()
+        location = location.moveBy(engine.run())
     }
 }

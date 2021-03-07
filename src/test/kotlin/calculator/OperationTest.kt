@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.EnumSource
 import org.junit.jupiter.params.provider.ValueSource
 
 internal class OperationTest {
@@ -15,6 +16,17 @@ internal class OperationTest {
         assertThatExceptionOfType(IllegalStateException::class.java)
             .isThrownBy { operation.operate(Scalar(2)) }
             .withMessage("The operator does not exist.")
+    }
+
+    @ParameterizedTest
+    @EnumSource(Operator::class)
+    fun `operator가 존재할 때, 두 번째 operand가 없이 result를 받고자 하면 에러 발생`(operator: Operator) {
+        val baseOperand = Scalar(1)
+        assertThatExceptionOfType(IllegalStateException::class.java)
+            .isThrownBy {
+                Operation(baseOperand, operator).result
+            }
+            .withMessage("The operation is invalid. expression='$baseOperand $operator'")
     }
 
     @ParameterizedTest
