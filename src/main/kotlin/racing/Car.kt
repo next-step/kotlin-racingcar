@@ -1,6 +1,6 @@
 package racing
 
-class Car(val probability: Probability) {
+class Car(private val probability: Probability) {
     var position = START_POSITION
         private set
 

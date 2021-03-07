@@ -1,10 +1,8 @@
 package racing
 
-fun printResult(carList: List<Car>) {
-    println("실행 결과")
-
-    carList.forEach {
-        println("-".repeat(it.position))
+fun printResult(record: Record) {
+    record.records.forEach {
+        println("-".repeat(it))
     }
     println()
 }
