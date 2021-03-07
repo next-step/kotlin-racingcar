@@ -16,9 +16,13 @@ class CarRacing(private val cars: List<Car>, private val tryCount: Int) {
 
     fun execute() {
         repeat(tryCount) {
-            cars.forEach {
-                it.tryGo()
-            }
+            executeCarGo()
+        }
+    }
+
+    private fun executeCarGo() {
+        cars.forEach {
+            it.tryGo()
         }
     }
 }
