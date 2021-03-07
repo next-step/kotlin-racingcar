@@ -10,13 +10,19 @@ data class RacingTrial(
         get() = records.filter { it.isSameLocationAs(oneOfLeadRecord) }
 
     private val oneOfLeadRecord: Record
-        get() = records.maxBy { it.location } ?: throw IllegalStateException("records is empty!")
+        get() = records.maxBy { it.location } ?: throw IllegalStateException(EMPTY_RECORDS_MESSAGE)
+
+    init {
+        require(records.isNotEmpty()) { EMPTY_RECORDS_MESSAGE }
+    }
 
     fun checkOrder(index: Int) {
         order.check(index)
     }
 
     companion object {
+        private const val EMPTY_RECORDS_MESSAGE = "records is empty!"
+
         fun of(order: Int, cars: Collection<Car>): RacingTrial {
             return RacingTrial(TrialOrder(order), cars.map { Record(it.name, it.location) })
         }
