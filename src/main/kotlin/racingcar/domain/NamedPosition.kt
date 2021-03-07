@@ -6,7 +6,7 @@ interface NamedPosition {
     operator fun compareTo(other: Int): Int
     operator fun inc(): NamedPosition
 
-    data class Smart(override val name: Name, private val position: Int = 0) : NamedPosition {
+    data class Smart(override val name: Name = Nameless(), private val position: Int = 0) : NamedPosition {
         init {
             require(position >= 0)
         }
@@ -20,22 +20,7 @@ interface NamedPosition {
         }
 
         override operator fun compareTo(other: Int): Int = position.compareTo(other)
-    }
 
-    data class Nameless(private val position: Int = 0) : NamedPosition {
-        override val name: Name
-            get() {
-                throw UnsupportedOperationException()
-            }
-
-        init {
-            require(position >= 0)
-        }
-
-        override fun intValue(): Int = position
-
-        override fun compareTo(other: Int): Int = position.compareTo(other)
-
-        override operator fun inc(): Nameless = Nameless(position + 1)
+        class Nameless : Name("")
     }
 }
