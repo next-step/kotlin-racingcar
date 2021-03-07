@@ -1,7 +1,7 @@
 package racingcar.game.domain
 
+import racingcar.game.vo.CarHistory
 import racingcar.game.vo.GameParameter
-import racingcar.game.vo.GameResult
 
 const val MIN_MOVE_CONDITION = 0
 const val MAX_MOVE_CONDITION = 9
@@ -9,17 +9,27 @@ const val MAX_MOVE_CONDITION = 9
 object Game {
     fun start(
         inputParameter: GameParameter,
-        moveCondition: () -> Int = { generateMoveCondition() }
+        moveCondition: () -> Int = { defaultMoveCondition() }
     ): GameResult {
+
         val participant = Participant(inputParameter.nameOfCars)
+        val result = GameResult()
 
         repeat(inputParameter.numOfGame) {
-            participant.moveCars(moveCondition)
-            participant.setRoundResult()
+            val gameRoundResult = participant.moveCars(moveCondition)
+            result.recordGameRoundHistory(gameRoundResult)
         }
 
-        return GameResult(participant.gameResult)
+        return result
     }
 
-    fun generateMoveCondition(): Int = (MIN_MOVE_CONDITION..MAX_MOVE_CONDITION).random()
+    fun findWinners(result: GameResult): List<String> {
+        val lastRoundHistory: List<CarHistory> = result.history.last().roundHistory
+        val maxPosition: Int? = lastRoundHistory.maxOfOrNull { it.position }
+        return lastRoundHistory.filter {
+            it.position == maxPosition
+        }.map { it.name }
+    }
+
+    private fun defaultMoveCondition(): Int = (MIN_MOVE_CONDITION..MAX_MOVE_CONDITION).random()
 }
