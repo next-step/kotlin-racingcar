@@ -7,7 +7,7 @@ import racingcar.game.view.Screen
 class Controller {
     companion object {
         fun gameStart() {
-            val gameParameter = InputConsole().run()
+            val gameParameter = InputConsole.run()
             val result = Game.start(gameParameter)
             Screen.show(result)
         }

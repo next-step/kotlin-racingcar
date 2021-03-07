@@ -1,7 +1,7 @@
 package racingcar.game.view
 
-import racingcar.game.domain.Car
-import racingcar.game.vo.GameResult
+import racingcar.game.domain.GameResult
+import racingcar.game.vo.CarHistory
 import racingcar.game.vo.GameRoundResult
 
 object Screen {
@@ -14,7 +14,7 @@ object Screen {
     }
 
     private fun printWinners(result: GameResult) {
-        val lastRoundHistory: List<Car> = result.history.last().roundHistory
+        val lastRoundHistory: List<CarHistory> = result.history.last().roundHistory
         val maxPosition: Int? = lastRoundHistory.maxOfOrNull { it.position }
         val maxPositionCars: List<String> = lastRoundHistory.filter {
             it.position == maxPosition
@@ -31,7 +31,7 @@ object Screen {
         println()
     }
 
-    private fun printResult(car: Car) {
+    private fun printResult(car: CarHistory) {
         println("${car.name} :" + "-".repeat(car.position))
     }
 }
