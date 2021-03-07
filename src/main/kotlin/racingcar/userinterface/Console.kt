@@ -3,7 +3,6 @@ package racingcar.userinterface
 import racingcar.domain.CarResult
 import racingcar.domain.Result
 import racingcar.domain.Results
-import racingcar.domain.Winner
 
 private const val CAR_NAME_DELIMITER = ","
 private const val DISTANCE_SIGN = "-"
@@ -42,8 +41,8 @@ class Console : UserInterface {
         return "$name : $distance"
     }
 
-    private fun printWinners(winners: List<Winner>) {
-        val winnerMessage = winners.joinToString(separator = ", ", postfix = "가 최종 우승했습니다.") { it.name }
+    private fun printWinners(winners: List<String>) {
+        val winnerMessage = winners.joinToString(separator = ", ", postfix = "가 최종 우승했습니다.")
         println(winnerMessage)
     }
 }
