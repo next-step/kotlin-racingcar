@@ -1,5 +1,6 @@
 package racingcar
 
+import racingcar.domain.CarName
 import racingcar.domain.PositiveCount
 import racingcar.domain.RacingCarGame
 import racingcar.userinterface.Console
@@ -13,13 +14,13 @@ fun main() {
 class RacingCarApplication(private val userInterface: UserInterface) {
 
     fun run() {
-        val carCountValue = userInterface.inputCarCount()
-        val carCount = PositiveCount(carCountValue)
+        val carNameValues = userInterface.inputCarNames()
+        val carNames = carNameValues.map { CarName(it) }
 
         val roundCountValue = userInterface.inputRoundCount()
         val roundCount = PositiveCount(roundCountValue)
 
-        val racingCarGame = RacingCarGame(carCount, roundCount)
+        val racingCarGame = RacingCarGame(carNames, roundCount)
         racingCarGame.start()
 
         val results = racingCarGame.result()
