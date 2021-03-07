@@ -19,7 +19,7 @@ class Racing(
     constructor(
         trials: Int,
         carNames: Collection<CarName>,
-        carGenerator: RacingCarGenerator
+        carGenerator: RacingCarGenerator = STANDARD_CAR_GENERATOR
     ) : this(
         trials = trials,
         cars = carNames.map { carGenerator.generate(it) }
@@ -33,5 +33,9 @@ class Racing(
     private fun raceAll(order: Int): RacingTrial {
         cars.forEach { it.race() }
         return RacingTrial.of(order, cars)
+    }
+
+    companion object {
+        private val STANDARD_CAR_GENERATOR = StandardRacingCarGenerator()
     }
 }
