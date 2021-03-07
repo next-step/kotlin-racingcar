@@ -62,9 +62,10 @@ internal class CarsTest {
         cars.forwardAllByCondition(listOf(3, 5, 5))
 
         val winners = cars.findWinner()
+        val winnersName = winners.names
 
-        assertThat(winners.getSize()).isEqualTo(2)
-        assertThat(winners.getByIndex(0)).isEqualTo(PACK_NAME)
-        assertThat(winners.getByIndex(1)).isEqualTo(LEE_NAME)
+        assertThat(winnersName.size).isEqualTo(2)
+        assertThat(winnersName[0]).isEqualTo(PACK_NAME)
+        assertThat(winnersName[1]).isEqualTo(LEE_NAME)
     }
 }
