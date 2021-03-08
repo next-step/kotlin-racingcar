@@ -12,7 +12,7 @@ fun inputTryCount(): Int {
 
 fun getParsingCarName(): List<String> {
     val value = readLine()
-    require(value != null) { "입력값을 반드시 입력해야합니다." }
+    require(!value.isNullOrBlank()) { "입력값을 반드시 입력해야합니다." }
 
     val names = value.split(",")
     names.forEach {
