@@ -1,7 +1,8 @@
 package racing
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.Matchers.`is`
+import org.hamcrest.Matchers.greaterThan
 import org.junit.jupiter.api.Test
 
 class CarRacingTest {
@@ -12,9 +13,9 @@ class CarRacingTest {
     fun `차량 댓수와 repeat 횟수가 동일한지 확인한다`() {
         carRacing.execute()
 
-        assertEquals(CAR_COUNT, cars.size)
+        assertThat(cars.size, `is`(CAR_COUNT))
         cars.forEach {
-            assertEquals(TRY_COUNT, it.getRecords().size)
+            assertThat(it.getRecords().size, `is`(TRY_COUNT))
         }
     }
 
@@ -23,7 +24,7 @@ class CarRacingTest {
         val winners = carRacing.getWinners()
         val positions = cars.filter { winners.contains(it) }.map { it.position }
 
-        assertTrue(positions.max() == positions.min())
+        assertThat(positions.min(), `is`(positions.max()))
     }
 
     @Test
@@ -34,7 +35,7 @@ class CarRacingTest {
         val winnerPosition = winners.map { it.position }.first()
         val losersMaxPosition = losers.map { it.position }.max() ?: 0
 
-        assertTrue(losersMaxPosition < winnerPosition)
+        assertThat(winnerPosition, greaterThan(losersMaxPosition))
     }
 
     companion object {
