@@ -16,12 +16,7 @@ class RacingCarGame(
         private set
 
     fun start() {
-        val initialResults = mutableListOf<RaceResult>()
-        for (i in 1..this.tryCount) {
-            initialResults.add(race(this.cars))
-        }
-
-        this.raceResults = initialResults.toList()
+        this.raceResults = (0 until tryCount).map { race(this.cars) }
         this.winners = Winners(racedCars = this.cars)
     }
 
