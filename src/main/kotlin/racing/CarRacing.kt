@@ -1,8 +1,9 @@
 package racing
 
 fun main() {
-    val carNames = inputCarName()
+    val carNameLine = inputCarName()
     val tryCount = inputTryCount()
+    val carNames = CarNameParser().parse(carNameLine)
 
     val cars = carNames.map { Car(it) }
     val carRacing = CarRacing(cars, tryCount)
