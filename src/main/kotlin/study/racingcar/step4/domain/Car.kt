@@ -1,6 +1,8 @@
-package study.racingcar.step4
+package study.racingcar.step4.domain
 
-class Car(private val ableNumber: Int, private val name: String) : Racing {
+import study.racingcar.step4.Racing
+
+class Car(private val name: String) : Racing {
 
     private var position: Int = 0
     private val carValidation = CarValidation()
@@ -9,8 +11,8 @@ class Car(private val ableNumber: Int, private val name: String) : Racing {
         carValidation.validationCarNameLength(name)
     }
 
-    override fun run(runValue: Int) {
-        goAndPause(ableNumber <= runValue)
+    override fun run(runnable: Boolean) {
+        goAndPause(runnable)
     }
 
     override fun getPosition(): Int {

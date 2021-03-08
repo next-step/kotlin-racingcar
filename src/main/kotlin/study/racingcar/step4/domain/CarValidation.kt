@@ -1,4 +1,4 @@
-package study.racingcar.step4
+package study.racingcar.step4.domain
 
 class CarValidation {
 

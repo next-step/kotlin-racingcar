@@ -1,14 +1,9 @@
 package study.racingcar.step4
 
-import kotlin.random.Random
+class RacingRunner(private val racingCars: List<Racing>) {
 
-class RacingRun(private val racingCars: List<Racing>) {
-
-    private val fromValue: Int = 0
-    private val toValue: Int = 9
-
-    fun nextRun() {
-        for (racingCar in racingCars) racingCar.run(randomRunValue())
+    fun nextRun(runnable: Runnable) {
+        for (racingCar in racingCars) racingCar.run(runnable.canRun())
     }
 
     fun racingRecords(): List<RacingRecord> {
@@ -19,9 +14,5 @@ class RacingRun(private val racingCars: List<Racing>) {
         val maxPosition = racingCars.maxBy { car -> car.getPosition() }!!.getPosition()
         return racingCars.filter { car -> car.getPosition() == maxPosition }
             .joinToString { car -> car.getName() }
-    }
-
-    private fun randomRunValue(): Int {
-        return Random.nextInt(fromValue, toValue)
     }
 }

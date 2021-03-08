@@ -1,4 +1,6 @@
-package study.racingcar.step4
+package study.racingcar.step4.view
+
+import study.racingcar.step4.RacingRecord
 
 class ResultView {
 
