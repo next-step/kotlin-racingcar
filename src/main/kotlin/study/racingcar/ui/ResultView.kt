@@ -10,6 +10,6 @@ object ResultView {
     fun doResult(raceResults: List<RaceResult>, winners: Winners) {
         println(RESULT_COMMENT)
         raceResults.forEach { println("${it}\n") }
-        println("${winners}${WINNER_COMMENT}")
+        println("$winners$WINNER_COMMENT")
     }
 }

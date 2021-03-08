@@ -11,6 +11,6 @@ enum class Operator(val oper: String, val calculation: (Int, Int) -> Int) {
             return values().find { it.oper == oper } ?: throw IllegalArgumentException("지원하는 연사자가 아닙니다.")
         }
 
-        fun isOperator(oper: String): Boolean = values().any{ it.oper == oper }
+        fun isOperator(oper: String): Boolean = values().any { it.oper == oper }
     }
 }
