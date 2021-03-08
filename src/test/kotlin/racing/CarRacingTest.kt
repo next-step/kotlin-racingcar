@@ -20,7 +20,7 @@ class CarRacingTest {
 
     @Test
     fun `승자끼리는 position이 항상 같아야한다`() {
-        val winners = carRacing.getWinner()
+        val winners = carRacing.getWinners()
         val positions = cars.filter { winners.contains(it) }.map { it.position }
 
         assertTrue(positions.max() == positions.min())
@@ -28,7 +28,7 @@ class CarRacingTest {
 
     @Test
     fun `승자는 다른 사람보다 position 값이 커야한다`() {
-        val winners = carRacing.getWinner()
+        val winners = carRacing.getWinners()
         val losers = cars.filter { !winners.contains(it) }
 
         val winnerPosition = winners.map { it.position }.first()

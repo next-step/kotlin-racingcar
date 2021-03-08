@@ -12,7 +12,7 @@ fun main() {
     println("실행 결과")
     val recordsPerCarName = cars.associateBy({ it.name }, { it.getRecords() })
     printResult(recordsPerCarName, tryCount)
-    printWinner(carRacing.getWinner())
+    printWinner(carRacing.getWinners())
 }
 
 class CarRacing(private val cars: List<Car>, private val tryCount: Int) {
@@ -29,7 +29,7 @@ class CarRacing(private val cars: List<Car>, private val tryCount: Int) {
         }
     }
 
-    fun getWinner(): List<Car> {
+    fun getWinners(): List<Car> {
         val maxPosition = cars.map { it.position }.max()
         require(maxPosition != null) { "car name이 입력되었다면, maxPosition은 null이 될수 없습니다." }
 
