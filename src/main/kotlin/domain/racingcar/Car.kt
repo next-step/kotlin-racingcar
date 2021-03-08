@@ -1,12 +1,9 @@
 package domain.racingcar
 
-class Car(val name: String) {
+class Car(val name: String, val position: Position = Position()) {
     init {
         require(name.length < MAX_NAME_LENGTH) { throw IllegalArgumentException("이름은 5글자를 초과할 수 없습니다.") }
     }
-
-    var position: Position = Position()
-        private set
 
     fun forward() {
         position.forward()
