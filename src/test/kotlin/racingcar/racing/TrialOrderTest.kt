@@ -2,6 +2,8 @@ package racingcar.racing
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
+import org.junit.jupiter.api.assertAll
+import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -28,18 +30,19 @@ internal class TrialOrderTest {
 
     @ParameterizedTest
     @ValueSource(ints = [1, 48, 203802, Int.MAX_VALUE])
-    fun `check(index)는 'order == index + 1'을 만족하지 않으면 IllegalArgumentException throw`(orderValue: Int) {
-        val randomIndex = getRandomIndex(exception = orderValue - 1)
-        assertThatIllegalArgumentException()
-            .isThrownBy { TrialOrder(orderValue).check(randomIndex) }
-            .withMessage("The results of racing is not ordered. trialOrder='$orderValue', givenIndex=$randomIndex")
-    }
+    fun `check(index)는 'index = order - 1'을 만족하지 않으면 IllegalArgumentException throw`(checkingIndex: Int) {
+        val orderValue = 10
+        val order = TrialOrder(orderValue)
 
-    private fun getRandomIndex(exception: Int): Int {
-        val randomValue = (0..Int.MAX_VALUE).random()
-        if (randomValue == exception) {
-            return getRandomIndex(exception)
-        }
-        return randomValue
+        assertAll(
+            {
+                assertDoesNotThrow { order.check(orderValue - 1) }
+            },
+            {
+                assertThatIllegalArgumentException()
+                    .isThrownBy { TrialOrder(orderValue).check(checkingIndex) }
+                    .withMessage("The results of racing is not ordered. trialOrder='${order.value}', givenIndex=$checkingIndex")
+            }
+        )
     }
 }
