@@ -2,6 +2,7 @@ package study.racingcar.step4
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import study.racingcar.step4.domain.CarValidation
 
 class CarValidationTest {
 

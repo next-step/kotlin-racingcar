@@ -1,6 +1,8 @@
 package study.racingcar.step4
 
-class ParticipationCars(participationNameList: List<String>, ableRunNumber: Int) {
+import study.racingcar.step4.domain.Car
 
-    val cars: List<Car> = participationNameList.map { name -> Car(ableRunNumber, name) }
+class ParticipationCars(participationNameList: List<String>) {
+
+    val cars: List<Car> = participationNameList.map { name -> Car(name) }
 }
