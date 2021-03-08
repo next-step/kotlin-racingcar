@@ -9,7 +9,7 @@ fun printResult(cars: List<Car>, tryCount: Int) {
 
 fun printRecord(cars: List<Car>, index: Int) {
     cars.forEach { car ->
-        println("${car.name} : " + "-".repeat(car.records[index]))
+        println("${car.name} : " + "-".repeat(car.getRecordByIndex(index)))
     }
 }
 
