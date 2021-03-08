@@ -14,7 +14,7 @@ fun getParsingCarName(): List<String> {
     val value = readLine()
     require(!value.isNullOrBlank()) { "입력값을 반드시 입력해야합니다." }
 
-    val names = value.split(",")
+    val names = value.split(CAR_NAME_DELIMITER)
     names.forEach {
         require(it.length <= CAR_NAME_LENGTH_LIMIT)
     }
@@ -42,3 +42,4 @@ fun mustBiggerThanZero(value: Int): Boolean {
 }
 
 const val CAR_NAME_LENGTH_LIMIT = 5
+const val CAR_NAME_DELIMITER = ","
