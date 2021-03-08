@@ -25,7 +25,10 @@ class CarTest {
         val car = Car(CAR_NAME, LowProbabilityProxy())
         repeat(100) {
             car.tryGo()
-            assertTrue(car.getRecordByIndex(it) == 1)
+        }
+        val records = car.getRecords()
+        repeat(100) {
+            assertTrue(records[it] == 1)
         }
     }
 
@@ -43,7 +46,10 @@ class CarTest {
         val car = Car(CAR_NAME, HighProbabilityProxy())
         repeat(100) {
             car.tryGo()
-            assertTrue(car.getRecordByIndex(it) == it + 2)
+        }
+        val records = car.getRecords()
+        repeat(100) {
+            assertTrue(records[it] == it + 2)
         }
     }
 

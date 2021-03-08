@@ -1,19 +1,18 @@
 package racing
 
-fun printResult(cars: List<Car>, tryCount: Int) {
+fun printResult(recordsPerCarName: Map<String, List<Int>>, tryCount: Int) {
     repeat(tryCount) { index ->
-        printRecord(cars, index)
+        printRecord(recordsPerCarName, index)
         println()
     }
 }
 
-fun printRecord(cars: List<Car>, index: Int) {
-    cars.forEach { car ->
-        println("${car.name} : " + "-".repeat(car.getRecordByIndex(index)))
+fun printRecord(recordsPerCarName: Map<String, List<Int>>, index: Int) {
+    recordsPerCarName.forEach { recordOfCar ->
+        println("${recordOfCar.key} : " + "-".repeat(recordOfCar.value[index]))
     }
 }
 
-fun printWinner(carRacing: CarRacing) {
-    val winners = carRacing.getWinner().joinToString(", ") { it.name }
-    println("${winners}가 최종 우승했습니다.")
+fun printWinner(winners: List<Car>) {
+    println("${winners.joinToString(", ") { it.name }}가 최종 우승했습니다.")
 }

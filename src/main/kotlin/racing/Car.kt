@@ -1,5 +1,7 @@
 package racing
 
+import java.util.Collections
+
 class Car(val name: String, private val probability: Probability = Probability()) {
     var position = START_POSITION
         private set
@@ -11,12 +13,8 @@ class Car(val name: String, private val probability: Probability = Probability()
         records.add(position)
     }
 
-    fun getRecordByIndex(index: Int): Int {
-        return records[index]
-    }
-
-    fun getRecordSize(): Int {
-        return records.size
+    fun getRecords(): List<Int> {
+        return Collections.unmodifiableList(records)
     }
 
     companion object {
