@@ -1,24 +1,27 @@
 package racingcar.ui
 
 import input.SystemInputStrategy
+import racingcar.Car
+import racingcar.Cars
 import racingcar.Game
-import racingcar.GameConfiguration
 import racingcar.RandomMovingStrategy
 
 fun main() {
     Game(
-        GameConfiguration(
-            attemptToGetInput("자동차 대수는 몇 대인가요?").value,
-            attemptToGetInput("시도할 횟수는 몇 회인가요?").value
+        Cars(
+            attemptToGetInput("자동차의 이름을 알려주세요(ex. 철수, 영희, 영진, 상우).", NameInputParser())
+                .map {
+                    Car(it, RandomMovingStrategy())
+                }
         ),
-        RandomMovingStrategy()
+        attemptToGetInput("시도할 횟수는 몇 회인가요?", IntegerInputParser())
     ).start()
 }
 
-private fun attemptToGetInput(question: String): InputView {
+private fun <T> attemptToGetInput(question: String, parser: InputParser<T>): T {
     return try {
-        InputView(question, SystemInputStrategy())
+        parser.parse(InputView(question, SystemInputStrategy()).value)
     } catch (e: Exception) {
-        attemptToGetInput(question)
+        attemptToGetInput(question, parser)
     }
 }

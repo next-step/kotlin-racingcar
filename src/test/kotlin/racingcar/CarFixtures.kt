@@ -1,19 +1,29 @@
 package racingcar
 
+import java.util.UUID
+
 object CarFixtures {
     fun createAlwaysMovingCar(): Car {
         return Car(
+            UUID.randomUUID().toString(),
             alwaysMovingStrategy()
         )
     }
 
-    fun alwaysMovingStrategy() = object : MovingStrategy {
+    private fun alwaysMovingStrategy() = object : MovingStrategy {
         override fun movable(): Boolean {
             return true
         }
     }
 
-    fun canNotMovingStrategy() = object : MovingStrategy {
+    fun createCanNotMovingCar(): Car {
+        return Car(
+            UUID.randomUUID().toString(),
+            canNotMovingStrategy()
+        )
+    }
+
+    private fun canNotMovingStrategy() = object : MovingStrategy {
         override fun movable(): Boolean {
             return false
         }
