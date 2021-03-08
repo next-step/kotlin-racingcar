@@ -32,18 +32,10 @@ internal class RecordTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = [0, 1, 3, 138938, Int.MAX_VALUE])
-    fun `두 location이 다르면 isSameAsLocation(other)은 false`(location: Int) {
-        val one = Record(CarName("one"), CarLocation(location))
-        val other = Record(CarName("other"), CarLocation(getRandomIndex(location)))
+    @CsvSource("2, 1", "1, 0", "138, 784", "47438, 42")
+    fun `두 location이 다르면 isSameAsLocation(other)은 false`(oneLocation: Int, otherLocation: Int) {
+        val one = Record(CarName("one"), CarLocation(oneLocation))
+        val other = Record(CarName("other"), CarLocation(otherLocation))
         assertThat(one.isSameLocationAs(other)).isFalse()
-    }
-
-    private fun getRandomIndex(exception: Int): Int {
-        val randomValue = (0..Int.MAX_VALUE).random()
-        if (randomValue == exception) {
-            return getRandomIndex(exception)
-        }
-        return randomValue
     }
 }
