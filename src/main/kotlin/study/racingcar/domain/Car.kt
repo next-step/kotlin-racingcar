@@ -4,7 +4,8 @@ import study.racingcar.common.GameConfig
 
 class Car {
     companion object {
-        private val MAXIMUM_CAR_NAME_LENGTH = 5
+        private const val DEFAULT_CAR_MOVE_COUNT = 0
+        private const val MAXIMUM_CAR_NAME_LENGTH = 5
     }
 
     constructor(carName: String) {
@@ -22,7 +23,7 @@ class Car {
             }
             field = value
         }
-    var moveCount: Int = 1
+    var moveCount: Int = DEFAULT_CAR_MOVE_COUNT
         private set
 
     fun move(randomValue: Int) {
