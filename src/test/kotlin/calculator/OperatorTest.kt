@@ -42,22 +42,22 @@ class OperatorTest {
 
     @Test
     fun `plus apply test`() {
-        assertThat(Operator.PLUS.apply(3, 2)).isEqualTo(5)
+        assertThat(Operator.PLUS.operator(3, 2)).isEqualTo(5)
     }
 
     @Test
     fun `minus apply test`() {
-        assertThat(Operator.MINUS.apply(3, 2)).isEqualTo(1)
+        assertThat(Operator.MINUS.operator(3, 2)).isEqualTo(1)
     }
 
     @Test
     fun `times apply test`() {
-        assertThat(Operator.TIMES.apply(3, 2)).isEqualTo(6)
+        assertThat(Operator.TIMES.operator(3, 2)).isEqualTo(6)
     }
 
     @Test
     fun `divide apply test`() {
-        assertThat(Operator.DIVIDE.apply(6, 2)).isEqualTo(3)
+        assertThat(Operator.DIVIDE.operator(6, 2)).isEqualTo(3)
     }
 
     @Test

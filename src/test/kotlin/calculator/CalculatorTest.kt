@@ -10,25 +10,39 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class CalculatorTest {
 
-    @Test
-    fun `illegal operator test`() {
-        assertThatThrownBy { calculate("3 % 2") }
-            .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageMatching("% is not operator.")
-    }
-
     @ParameterizedTest
     @NullAndEmptySource
     fun `null and empty string test`(input: String?) {
-        assertThatThrownBy { calculate(input) }
+        assertThatThrownBy { Calculator(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageMatching("input value is null or blank.")
+    }
+
+    @Test
+    fun `illegal operator test`() {
+        assertThatThrownBy { Calculator("3 % 2").getResult() }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageMatching("% is illegal value.")
+    }
+
+    @ParameterizedTest
+    @CsvSource(
+        value = [
+            "+ 2 + 1:start element is not number.",
+            "2 + 1 *:end element is not number."
+        ],
+        delimiter = ':'
+    )
+    fun `illegal input string test`(input: String, exception: String) {
+        assertThatThrownBy { Calculator(input).getResult() }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageMatching(exception)
     }
 
     @ParameterizedTest
     @ValueSource(strings = [" ", "    "])
     fun `blank string test`(input: String?) {
-        assertThatThrownBy { calculate(input) }
+        assertThatThrownBy { Calculator(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageMatching("input value is null or blank.")
     }
@@ -45,6 +59,6 @@ class CalculatorTest {
         delimiter = ':'
     )
     fun `simple calculate test`(input: String, calculateResult: Int) {
-        assertThat(calculate(input)).isEqualTo(calculateResult)
+        assertThat(Calculator(input).getResult()).isEqualTo(calculateResult)
     }
 }
