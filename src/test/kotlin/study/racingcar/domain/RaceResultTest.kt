@@ -22,7 +22,7 @@ internal class RaceResultTest {
                 this.move(5)
             }
         )
-        val mockSymbols = listOf("test1 : -----", "test2 : --", "test3 : ---")
+        val mockSymbols = listOf("test1 : ----", "test2 : -", "test3 : --")
 
         RaceResult(cars).racedCars.forEachIndexed { index, s ->
             assertThat(s.toString()).isEqualTo(mockSymbols[index])
