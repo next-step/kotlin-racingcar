@@ -1,8 +1,8 @@
 package racingcar.view
 
-import racingcar.racing.RacingResults
-import racingcar.racing.RacingTrial
-import racingcar.racing.Record
+import racingcar.domain.RacingResults
+import racingcar.domain.RacingTrial
+import racingcar.domain.Record
 
 class ResultView {
     fun print(results: RacingResults) {
