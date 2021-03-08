@@ -3,16 +3,13 @@ package racing
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.greaterThan
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 
 class CarRacingTest {
-    private val cars = listOf(Car("서진혁"), Car("카샤"), Car("nextstep"))
-    private val carRacing = CarRacing(cars, TRY_COUNT)
 
     @Test
     fun `차량 댓수와 repeat 횟수가 동일한지 확인한다`() {
-        carRacing.execute()
-
         assertThat(cars.size, `is`(CAR_COUNT))
         cars.forEach {
             assertThat(it.getRecords().size, `is`(TRY_COUNT))
@@ -39,7 +36,15 @@ class CarRacingTest {
     }
 
     companion object {
-        const val CAR_COUNT = 3
-        const val TRY_COUNT = 7
+        private const val CAR_COUNT = 3
+        private const val TRY_COUNT = 7
+        private val cars = listOf(Car("서진혁"), Car("카샤"), Car("nextstep"))
+        private val carRacing = CarRacing(cars, TRY_COUNT)
+
+        @BeforeAll
+        @JvmStatic
+        fun setUp() {
+            carRacing.execute()
+        }
     }
 }
