@@ -9,7 +9,7 @@ enum class Operator(private val sign: String, val execute: (Double, Double) -> D
     DIVIDE("/", { oldNum, newNum -> oldNum / newNum });
 
     companion object {
-        fun of(sign: String): Operator {
+        fun ofOperator(sign: String): Operator {
             try {
                 return values().first { it.sign == sign }
             } catch (e: NoSuchElementException) {

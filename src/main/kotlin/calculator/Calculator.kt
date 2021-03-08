@@ -22,7 +22,7 @@ class Calculator {
 
             for (signIndex in 1 until parsedFormular.size step 2) {
                 val numIndex = signIndex + 1
-                val operator = Operator.of(parsedFormular[signIndex])
+                val operator = Operator.ofOperator(parsedFormular[signIndex])
                 result = operator.execute(result, parsedFormular[numIndex].toDouble())
             }
             return result
