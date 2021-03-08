@@ -49,12 +49,12 @@ class Cars(private val cars: List<Car>) {
         private const val MIN_CAN_CREATE_CARS = 0
 
         fun createCars(names: List<String>): Cars {
-            validNameSize(names.size)
+            validateNameSize(names.size)
 
             return Cars(names.map { Car(it) })
         }
 
-        private fun validNameSize(nameSize: Int) {
+        private fun validateNameSize(nameSize: Int) {
             require(nameSize > MIN_CAN_CREATE_CARS) { "0 미만의 개수는 생성할 수 없습니다." }
         }
     }
