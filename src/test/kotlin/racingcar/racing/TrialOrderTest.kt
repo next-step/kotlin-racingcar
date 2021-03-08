@@ -8,6 +8,12 @@ import org.junit.jupiter.params.provider.ValueSource
 internal class TrialOrderTest {
     @ParameterizedTest
     @ValueSource(ints = [1, 48, 203802, Int.MAX_VALUE])
+    fun `생성자에 넣어준 value를 조회할 때 그대로 리턴한다`(value: Int) {
+        assertThat(TrialOrder(value).value).isEqualTo(value)
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [1, 48, 203802, Int.MAX_VALUE])
     fun `인스턴스가 달라도 value가 같으면 동일하다`(value: Int) {
         assertThat(TrialOrder(value)).isEqualTo(TrialOrder(value))
     }
