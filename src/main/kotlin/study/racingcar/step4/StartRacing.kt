@@ -1,5 +1,6 @@
 package study.racingcar.step4
 
+import study.racingcar.step4.domain.ParticipationCars
 import study.racingcar.step4.view.InputView
 import study.racingcar.step4.view.ResultView
 
@@ -11,9 +12,9 @@ class StartRacing {
 
     fun start() {
         val carNameList = inputView.inputCarNameList()
-        var runnable = RandomRunnable(ableRunNumber, randomMaxNumber)
+        val runnable = RandomRunnable(ableRunNumber, randomMaxNumber)
 
-        val racingRun = RacingRun(ParticipationCars(carNameList).cars)
+        val racingRun = RacingRunner(ParticipationCars(carNameList).cars)
 
         (1..inputView.inputRunCount()).forEach {
             racingRun.nextRun(runnable)

@@ -7,5 +7,4 @@ class RandomRunnable(private val ableValue: Int, private val randomMaxNumber: In
     override fun canRun(): Boolean {
         return ableValue <= RandomUtil.getRandomNumberByZeroToMax(randomMaxNumber)
     }
-
 }

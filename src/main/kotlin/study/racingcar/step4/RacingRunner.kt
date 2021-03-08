@@ -1,6 +1,6 @@
 package study.racingcar.step4
 
-class RacingRun(private val racingCars: List<Racing>) {
+class RacingRunner(private val racingCars: List<Racing>) {
 
     fun nextRun(runnable: Runnable) {
         for (racingCar in racingCars) racingCar.run(runnable.canRun())
@@ -15,5 +15,4 @@ class RacingRun(private val racingCars: List<Racing>) {
         return racingCars.filter { car -> car.getPosition() == maxPosition }
             .joinToString { car -> car.getName() }
     }
-
 }

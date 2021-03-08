@@ -1,6 +1,4 @@
-package study.racingcar.step4
-
-import study.racingcar.step4.domain.Car
+package study.racingcar.step4.domain
 
 class ParticipationCars(participationNameList: List<String>) {
 

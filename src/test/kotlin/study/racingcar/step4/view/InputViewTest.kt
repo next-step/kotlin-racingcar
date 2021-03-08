@@ -1,6 +1,5 @@
 package study.racingcar.step4.view
 
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 class InputViewTest {
@@ -11,5 +10,4 @@ class InputViewTest {
 
         inputView.inputCarNameList()
     }
-
 }

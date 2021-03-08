@@ -7,5 +7,4 @@ class IntUtil {
             return value?.toInt() ?: throw IllegalArgumentException("빈 값을 입력하셨습니다.")
         }
     }
-
 }

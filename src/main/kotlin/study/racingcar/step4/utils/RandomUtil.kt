@@ -9,5 +9,4 @@ class RandomUtil {
             return Random.nextInt(maxNumber)
         }
     }
-
 }
