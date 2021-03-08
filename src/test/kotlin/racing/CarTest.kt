@@ -21,11 +21,29 @@ class CarTest {
     }
 
     @Test
+    fun `4보다 작은 확률 값은 record 기록이 증가하지 않는다`() {
+        val car = Car(CAR_NAME, LowProbabilityProxy())
+        repeat(100) {
+            car.tryGo()
+            assertTrue(car.getRecordByIndex(it) == 1)
+        }
+    }
+
+    @Test
     fun `4보다 큰 확률 값은 position이 증가한다`() {
         repeat(100) {
             val car = Car(CAR_NAME, HighProbabilityProxy())
             car.tryGo()
             assertTrue(car.position == 2)
+        }
+    }
+
+    @Test
+    fun `4보다 큰 확률 값은 record 기록이 증가한다`() {
+        val car = Car(CAR_NAME, HighProbabilityProxy())
+        repeat(100) {
+            car.tryGo()
+            assertTrue(car.getRecordByIndex(it) == it + 2)
         }
     }
 

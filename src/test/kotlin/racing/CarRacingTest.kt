@@ -14,7 +14,7 @@ class CarRacingTest {
 
         assertEquals(CAR_COUNT, cars.size)
         cars.forEach {
-            assertEquals(TRY_COUNT, it.records.size)
+            assertEquals(TRY_COUNT, it.getRecordSize())
         }
     }
 

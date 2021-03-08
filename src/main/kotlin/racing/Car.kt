@@ -15,6 +15,10 @@ class Car(val name: String, private val probability: Probability = Probability()
         return records[index]
     }
 
+    fun getRecordSize(): Int {
+        return records.size
+    }
+
     companion object {
         private const val START_POSITION = 1
     }
