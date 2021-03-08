@@ -5,7 +5,7 @@ internal class Racing(
     private val movable: Movable
 ) {
     fun race(numberOfRound: Int): RacingResult {
-        val history: ArrayList<List<Car>> = arrayListOf()
+        val history = mutableListOf<List<Car>>()
         repeat(numberOfRound) {
             racingCars.nextRound(movable)
             history.add(racingCars.copyCars())
