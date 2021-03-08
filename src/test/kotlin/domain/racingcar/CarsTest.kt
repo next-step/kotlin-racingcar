@@ -37,6 +37,15 @@ internal class CarsTest {
     }
 
     @Test
+    fun `RacingCar 에 등록된 자동차 개수와 조건의 개수가 다를 때 예외처리한다`() {
+        val cars = Cars(listOf(Car(KIM_NAME), Car(PACK_NAME), Car(LEE_NAME)))
+
+        assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
+            cars.forwardAllByCondition(listOf(1, 5))
+        }.withMessageMatching("전진 조건의 개수와 자동차의 개수가 같지 않습니다.")
+    }
+
+    @Test
     fun `필요한 자동차 개수만큼 자동차들이 만들어진다`() {
         val cars = Cars.createCars(CAR_NAMES)
 
