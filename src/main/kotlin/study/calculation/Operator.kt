@@ -8,15 +8,9 @@ enum class Operator(val oper: String, val calculation: (Int, Int) -> Int) {
 
     companion object {
         fun select(oper: String): Operator {
-            require(isOperator(oper)) {
-                "지원하지 않는 연산자입니다."
-            }
-
-            return find(oper)!!
+            return values().find { it.oper == oper } ?: throw IllegalArgumentException("지원하는 연사자가 아닙니다.")
         }
 
-        fun isOperator(oper: String): Boolean = find(oper) != null
-
-        fun find(oper: String): Operator? = values().find { oper == it.oper }
+        fun isOperator(oper: String): Boolean = values().any { it.oper == oper }
     }
 }
