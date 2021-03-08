@@ -17,7 +17,7 @@ internal class CarTest {
     }
 
     @Test
-    fun `자동차 생성 시 이름이 5글자이상인 경우 예외처리한다`() {
+    fun `자동차 생성 시 이름이 5글자초과인 경우 예외처리한다`() {
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
             Car("Alistart")
         }.withMessageMatching("이름은 5글자를 초과할 수 없습니다.")
