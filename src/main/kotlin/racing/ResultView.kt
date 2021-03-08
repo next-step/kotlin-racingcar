@@ -9,7 +9,7 @@ fun printResult(recordsPerCarName: Map<String, List<Int>>, tryCount: Int) {
 
 fun printRecord(recordsPerCarName: Map<String, List<Int>>, index: Int) {
     recordsPerCarName.forEach { recordOfCar ->
-        println("${recordOfCar.key} : " + "-".repeat(recordOfCar.value[index]))
+        println("${recordOfCar.key} : ${"-".repeat(recordOfCar.value[index])}")
     }
 }
 
