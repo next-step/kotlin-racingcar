@@ -14,14 +14,7 @@ internal class RacingLauncher {
         val numberOfRound = inputView.queryNumberOfRound()
         val racing = racingFactory.createRandomRacing(carNames = carNames)
 
-        outputView.renderStartMessage()
-
-        repeat(numberOfRound) {
-            racing.nextRound()
-            outputView.renderRound(racing.cars)
-        }
-
-        outputView.renderWinners(racing.winners)
+        outputView.renderResult(racing.race(numberOfRound))
     }
 }
 

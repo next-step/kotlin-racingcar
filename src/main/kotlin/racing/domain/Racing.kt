@@ -1,15 +1,16 @@
 package racing.domain
 
 internal class Racing(
-    private val racingCars: RacingCars
+    private val racingCars: RacingCars,
+    private val movable: Movable
 ) {
-    val cars: List<Car>
-        get() = this.racingCars.cars
+    fun race(numberOfRound: Int): RacingResult {
+        val history = mutableListOf<List<Car>>()
+        repeat(numberOfRound) {
+            racingCars.nextRound(movable)
+            history.add(racingCars.copyCars())
+        }
 
-    val winners: List<Car>
-        get() = this.racingCars.winners
-
-    fun nextRound() {
-        racingCars.nextRound()
+        return RacingResult(carsHistories = history, winners = this.racingCars.winners)
     }
 }

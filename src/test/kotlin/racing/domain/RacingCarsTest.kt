@@ -11,24 +11,24 @@ internal class RacingCarsTest {
         val racingCars = createRacingCars(listOf(Car(), Car()))
 
         // when
-        racingCars.nextRound()
+        racingCars.nextRound(StaticMovable(true))
 
         // then
         assertThat(racingCars.cars.map(Car::position)).isEqualTo(listOf(1, 1))
     }
 
     @Test
-    fun `우승자를 조회 할수 있다`() {
+    fun `우승자는 한 명 이상일 수 있다`() {
         // given
-        val winner = Car(position = 3)
-        val racingCars = createRacingCars(listOf(winner, Car(position = 0)))
+        val winner1 = Car("우승자1", position = 3)
+        val winner2 = Car("우승자2", position = 3)
+        val racingCars = createRacingCars(listOf(winner1, winner2, Car(position = 0)))
 
         // when, then
-        assertThat(racingCars.winners).containsAll(listOf(winner))
+        assertThat(racingCars.winners).containsExactlyInAnyOrderElementsOf(listOf(winner1, winner2))
     }
 
     private fun createRacingCars(cars: List<Car>): RacingCars {
-        val movable = object : Movable { override fun isMovable(): Boolean = true }
-        return RacingCars(cars, movable)
+        return RacingCars(cars)
     }
 }

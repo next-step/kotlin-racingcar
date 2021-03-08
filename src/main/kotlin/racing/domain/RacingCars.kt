@@ -1,14 +1,18 @@
 package racing.domain
 
-internal class RacingCars(val cars: List<Car>, private val movable: Movable) {
+internal class RacingCars(val cars: List<Car>) {
 
     val winners: List<Car>
         get() {
-            val maxCar = this.cars.maxBy(Car::position)
-            return this.cars.filter { it.position == maxCar!!.position }
+            val maxCar: Car = this.cars.maxBy(Car::position) ?: return emptyList()
+            return this.cars.filter { it.equalPosition(maxCar) }
         }
 
-    fun nextRound() {
-        this.cars.forEach { it.tryMove(this.movable) }
+    fun nextRound(movable: Movable) {
+        this.cars.forEach { it.tryMove(movable) }
+    }
+
+    fun copyCars(): List<Car> {
+        return this.cars.map(Car::copy)
     }
 }
