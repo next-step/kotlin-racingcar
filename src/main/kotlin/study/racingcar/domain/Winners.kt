@@ -1,14 +1,13 @@
 package study.racingcar.domain
 
 class Winners(
-    racedCars: List<Car>
-) {
-    var winners: List<Car>? = racedCars
+    racedCars: List<Car>,
+    val winners: List<Car> = racedCars
         .groupBy { it.moveCount }
-        .maxBy { it.key }?.value
-        private set
+        .maxBy { it.key }?.value!!
+) {
 
     override fun toString(): String {
-        return winners?.map { it.carName }?.joinToString(", ") ?: throw IllegalAccessException()
+        return winners.joinToString(", "){ it.carName }
     }
 }
