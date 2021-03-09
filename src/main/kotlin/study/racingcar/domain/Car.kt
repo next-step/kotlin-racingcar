@@ -2,20 +2,11 @@ package study.racingcar.domain
 
 import study.racingcar.common.GameConfig
 
-class Car {
-    var carName: String = ""
-        private set(value) {
-            require(value.length <= MAXIMUM_CAR_NAME_LENGTH) {
-                "차량의 이름은 최대 ${MAXIMUM_CAR_NAME_LENGTH}자 까지만 가능합니다."
-            }
-            field = value
-        }
+class Car(
+    val carName: String
+) {
     var moveCount: Int = DEFAULT_CAR_MOVE_COUNT
         private set
-
-    constructor(carName: String) {
-        this.carName = carName
-    }
 
     constructor(carName: String, moveCount: Int) : this(carName) {
         this.moveCount = moveCount
@@ -33,6 +24,5 @@ class Car {
 
     companion object {
         private const val DEFAULT_CAR_MOVE_COUNT = 0
-        private const val MAXIMUM_CAR_NAME_LENGTH = 5
     }
 }
