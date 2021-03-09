@@ -1,4 +1,4 @@
-package domain.racingcar
+package controller
 
 import domain.number.Numbers
 import view.InputView

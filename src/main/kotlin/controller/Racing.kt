@@ -2,7 +2,6 @@ package controller
 
 import domain.racingcar.Cars
 import domain.racingcar.RacingCars
-import domain.racingcar.Reception
 import view.ResultView
 import view.ResultView.printRacing
 

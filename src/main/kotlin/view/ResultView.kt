@@ -1,5 +1,6 @@
 package view
 
+import controller.Reception
 import domain.racingcar.*
 
 object ResultView {

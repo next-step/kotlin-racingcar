@@ -1,6 +1,6 @@
 package view
 
-import domain.racingcar.Reception
+import controller.Reception
 import fixture.CarFixture
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
