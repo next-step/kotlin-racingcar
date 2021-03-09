@@ -1,7 +1,7 @@
 package study.racingcar.service
 
 import study.racingcar.domain.Car
-import study.racingcar.domain.RaceResult
+import study.racingcar.domain.Cars
 import study.racingcar.domain.Winners
 import study.racingcar.util.RacingCarRandomGenerator
 
@@ -10,9 +10,9 @@ class RacingCarGame(
     private val tryCount: Int = 0,
     private val cars: List<Car> = carNames.map { Car(it) }
 ) {
-    var raceResults: List<RaceResult> = ArrayList()
+    var raceResults: List<Cars> = ArrayList()
         private set
-    var winners: Winners = Winners(listOf())
+    var winners: Winners = Winners(cars)
         private set
 
     fun start() {
@@ -20,8 +20,8 @@ class RacingCarGame(
         this.winners = Winners(racedCars = this.cars)
     }
 
-    private fun race(cars: List<Car>): RaceResult {
+    private fun race(cars: List<Car>): Cars {
         cars.forEach { it.move(RacingCarRandomGenerator.random()) }
-        return RaceResult(racedCars = cars)
+        return Cars(racedCars = cars)
     }
 }
