@@ -5,7 +5,7 @@ import racingcar.util.Message.Companion.NOTICE_RESULT
 
 object OutputView {
     fun getResult(isLast: Boolean, car: Car) {
-        println(car.whereIs())
+        println("$car : ${car.whereIs()}")
         if (isLast) println()
     }
 
