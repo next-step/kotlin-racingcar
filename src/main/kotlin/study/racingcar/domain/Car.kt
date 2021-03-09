@@ -19,7 +19,7 @@ class Car(
     private fun isMovable(randomValue: Int): Boolean = randomValue >= GameConfig.MOVABLE_VALUE
 
     override fun toString(): String {
-        return "$carName : ${(1..moveCount).map { GameConfig.RACE_SYMBOL }.joinToString("")}"
+        return "$carName : ${(1..moveCount).joinToString("") { GameConfig.RACE_SYMBOL }}"
     }
 
     companion object {
