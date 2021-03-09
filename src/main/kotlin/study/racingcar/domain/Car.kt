@@ -3,19 +3,6 @@ package study.racingcar.domain
 import study.racingcar.common.GameConfig
 
 class Car {
-    companion object {
-        private const val DEFAULT_CAR_MOVE_COUNT = 0
-        private const val MAXIMUM_CAR_NAME_LENGTH = 5
-    }
-
-    constructor(carName: String) {
-        this.carName = carName
-    }
-
-    constructor(carName: String, moveCount: Int) : this(carName) {
-        this.moveCount = moveCount
-    }
-
     var carName: String = ""
         private set(value) {
             require(value.length <= MAXIMUM_CAR_NAME_LENGTH) {
@@ -26,6 +13,14 @@ class Car {
     var moveCount: Int = DEFAULT_CAR_MOVE_COUNT
         private set
 
+    constructor(carName: String) {
+        this.carName = carName
+    }
+
+    constructor(carName: String, moveCount: Int) : this(carName) {
+        this.moveCount = moveCount
+    }
+
     fun move(randomValue: Int) {
         if (isMovable(randomValue)) moveCount++
     }
@@ -34,5 +29,10 @@ class Car {
 
     override fun toString(): String {
         return "$carName : ${(1..moveCount).map { GameConfig.RACE_SYMBOL }.joinToString("")}"
+    }
+
+    companion object {
+        private const val DEFAULT_CAR_MOVE_COUNT = 0
+        private const val MAXIMUM_CAR_NAME_LENGTH = 5
     }
 }
