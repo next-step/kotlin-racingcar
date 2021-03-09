@@ -1,20 +1,10 @@
 package calculator
 
-import java.util.function.BinaryOperator
-
-enum class Operator(val sign: String) : BinaryOperator<Int> {
-    PLUS("+") {
-        override fun apply(t: Int, u: Int): Int = t + u
-    },
-    MINUS("-") {
-        override fun apply(t: Int, u: Int): Int = t - u
-    },
-    TIMES("*") {
-        override fun apply(t: Int, u: Int): Int = t * u
-    },
-    DIVIDE("/") {
-        override fun apply(t: Int, u: Int): Int = t / u
-    };
+enum class Operator(val sign: String, val operator: (Int, Int) -> Int) {
+    PLUS("+", { first, second -> first + second }),
+    MINUS("-", { first, second -> first - second }),
+    TIMES("*", { first, second -> first * second }),
+    DIVIDE("/", { first, second -> first / second });
 
     companion object {
         fun contain(sign: String): Boolean {
@@ -22,7 +12,7 @@ enum class Operator(val sign: String) : BinaryOperator<Int> {
         }
 
         fun bySign(sign: String): Operator {
-            return values().firstOrNull { it.sign == sign } ?: throw IllegalArgumentException("$sign is not operator.")
+            return values().find { it.sign == sign } ?: throw IllegalArgumentException("$sign is not operator.")
         }
     }
 }
