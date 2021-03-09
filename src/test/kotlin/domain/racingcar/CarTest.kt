@@ -19,7 +19,7 @@ internal class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings= ["Alistart", "fiive"])
+    @ValueSource(strings = ["Alistart", "fiive"])
     fun `자동차 생성 시 이름이 5글자초과인 경우 예외처리한다`(name: String) {
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
             Car(name)
@@ -27,7 +27,7 @@ internal class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings= ["four", "two", "o"])
+    @ValueSource(strings = ["four", "two", "o"])
     fun `자동차 생성 시 이름이 5글자이하인 경우 예외가 발생하지 않는다`(name: String) {
         val car = Car(name)
 
