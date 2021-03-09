@@ -1,7 +1,9 @@
-package racing
+package racing.domain
 
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import racing.HighProbabilityProxy
+import racing.LowProbabilityProxy
 
 class CarTest {
     @Test

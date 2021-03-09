@@ -1,4 +1,6 @@
-package racing
+package racing.domain
+
+import racing.CAR_NAME_LENGTH_LIMIT
 
 class CarNameParser {
     fun parse(carNameLine: String): List<String> {

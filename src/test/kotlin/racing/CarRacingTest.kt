@@ -5,6 +5,7 @@ import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.greaterThan
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
+import racing.domain.Car
 
 class CarRacingTest {
 

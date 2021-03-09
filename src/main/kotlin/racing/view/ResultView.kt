@@ -1,5 +1,7 @@
 package racing
 
+import racing.domain.Car
+
 fun printResult(recordsPerCarName: Map<String, List<Int>>, tryCount: Int) {
     repeat(tryCount) { index ->
         printRecord(recordsPerCarName, index)

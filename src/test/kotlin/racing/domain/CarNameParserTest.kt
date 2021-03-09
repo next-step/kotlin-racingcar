@@ -1,8 +1,9 @@
-package racing
+package racing.domain
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import racing.domain.CarNameParser
 
 class CarNameParserTest {
     private val parser = CarNameParser()

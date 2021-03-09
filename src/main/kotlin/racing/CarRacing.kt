@@ -1,5 +1,8 @@
 package racing
 
+import racing.domain.Car
+import racing.domain.CarNameParser
+
 fun main() {
     val carNameLine = inputCarName()
     val tryCount = inputTryCount()
