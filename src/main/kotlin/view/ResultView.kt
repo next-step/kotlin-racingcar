@@ -1,7 +1,11 @@
 package view
 
 import controller.Reception
-import domain.racingcar.*
+import domain.racingcar.Cars
+import domain.racingcar.OverallResult
+import domain.racingcar.Records
+import domain.racingcar.Winners
+import domain.racingcar.Position
 
 object ResultView {
     fun printInt() {
