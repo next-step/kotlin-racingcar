@@ -1,10 +1,10 @@
 package controller
 
-import view.ResultView
-import view.ResultView.printRacing
 import domain.racingcar.Cars
 import domain.racingcar.RacingCars
 import domain.racingcar.Reception
+import view.ResultView
+import view.ResultView.printRacing
 
 fun main() {
     val carNames = Reception.receiveCarNames()
@@ -15,8 +15,6 @@ fun main() {
 
     ResultView.printInt()
     val overallResult = racingCar.racing(numberOfAttempts)
-    printRacing(overallResult)
 
-    val winners = cars.findWinner()
-    ResultView.printWinners(winners)
+    printRacing(overallResult, cars)
 }
