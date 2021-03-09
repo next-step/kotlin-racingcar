@@ -10,6 +10,6 @@ class Car(val name: String, val position: Position = Position()) {
     }
 
     companion object {
-        private const val MAX_NAME_LENGTH = 6
+        private const val MAX_NAME_LENGTH = 5
     }
 }
