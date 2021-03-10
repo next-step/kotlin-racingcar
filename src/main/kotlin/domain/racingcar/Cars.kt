@@ -1,11 +1,10 @@
 package domain.racingcar
 
 class Cars(private val cars: List<Car>) {
-    fun forwardAllByCondition(conditions: List<Int>) {
-        require(cars.size == conditions.size) { "전진 조건의 개수와 자동차의 개수가 같지 않습니다." }
+    fun forwardAllByCondition(randomConditions: Conditions) {
 
         cars.mapIndexed { index, car ->
-            forwardByCondition(car, conditions[index])
+            forwardByCondition(car, randomConditions[index])
         }
     }
 
