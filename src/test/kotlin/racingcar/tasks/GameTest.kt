@@ -2,17 +2,31 @@ package racingcar.tasks
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.DisplayName
+import racingcar.model.Car
 
 internal class GameTest {
 
     @Test
-    @DisplayName("카운트 만큼 Car 생성")
-    fun setting() {
-        val game = Game()
-        val carOfCount = 5
-        val listOfCar = game.setRacingCar(carOfCount)
+    fun `자동차 경주 결과 상태 값 테스트`() {
+        val cars = listOf(
+            Car(name = "김대겸").apply {
+                tryMove(true)
+            },
+            Car(name = "이영현").apply {
+                tryMove(true)
+                tryMove(true)
+            },
+            Car(name = "박재성").apply {
+                tryMove(true)
+                tryMove(true)
+                tryMove(true)
+            }
+        )
 
-        assertThat(listOfCar.size).isEqualTo(carOfCount)
+        val mockSymbols = listOf("김대겸 : -", "이영현 : --", "박재성 : ---")
+
+        cars.forEachIndexed { index, car ->
+            assertThat("$car : ${car.whereIs()}").isEqualTo(mockSymbols[index])
+        }
     }
 }
