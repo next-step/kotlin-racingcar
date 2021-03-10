@@ -3,7 +3,7 @@ package study.racingcar.domain
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-internal class RaceResultTest {
+internal class CarsTest {
 
     @Test
     fun `자동차 경주 결과 상태 값 심볼 테스트`() {
@@ -24,7 +24,7 @@ internal class RaceResultTest {
         )
         val mockSymbols = listOf("test1 : ----", "test2 : -", "test3 : --")
 
-        RaceResult(cars).racedCars.forEachIndexed { index, s ->
+        Cars(cars).racedCars.forEachIndexed { index, s ->
             assertThat(s.toString()).isEqualTo(mockSymbols[index])
         }
     }

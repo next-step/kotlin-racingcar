@@ -7,7 +7,7 @@ import study.racingcar.ui.ResultView
 fun main() {
     val carNames = InputView.inputCarNames()
     val tryCount = InputView.inputTryCount()
-    val game = RacingCarGame(carNames, tryCount)
-    game.start()
-    ResultView.doResult(game.raceResults, game.winners)
+    val game = RacingCarGame(carNames)
+    val raceResults = game.start(tryCount)
+    ResultView.doResults(raceResults)
 }

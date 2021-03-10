@@ -1,27 +1,27 @@
 package study.racingcar.service
 
 import study.racingcar.domain.Car
-import study.racingcar.domain.RaceResult
+import study.racingcar.domain.Cars
+import study.racingcar.domain.RaceResults
 import study.racingcar.domain.Winners
 import study.racingcar.util.RacingCarRandomGenerator
 
 class RacingCarGame(
-    private val carNames: List<String> = listOf(),
-    private val tryCount: Int = 0,
-    private val cars: List<Car> = carNames.map { Car(it) }
+    private val carNames: List<String>
 ) {
-    var raceResults: List<RaceResult> = ArrayList()
-        private set
-    var winners: Winners = Winners(listOf())
-        private set
-
-    fun start() {
-        this.raceResults = (0 until tryCount).map { race(this.cars) }
-        this.winners = Winners(racedCars = this.cars)
+    fun start(tryCount: Int): RaceResults {
+        val carList: List<Car> = carNames.map { Car(it) }
+        var cars = Cars(carList)
+        val raceResults: MutableList<Cars> = mutableListOf()
+        (0 until tryCount).forEach { _ ->
+            cars.moveCars()
+            raceResults.add(Cars(cars.racedCars))
+        }
+        return RaceResults(raceResultCars = raceResults.toList())
     }
 
-    private fun race(cars: List<Car>): RaceResult {
+    private fun race(cars: List<Car>): Cars {
         cars.forEach { it.move(RacingCarRandomGenerator.random()) }
-        return RaceResult(racedCars = cars)
+        return Cars(racedCars = cars)
     }
 }
