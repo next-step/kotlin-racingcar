@@ -7,10 +7,13 @@ data class RacingTrial(
     val records: List<Record>
 ) {
     val leadRecords: List<Record>
-        get() = records.filter { it.isSameLocationAs(oneOfLeadRecord) }
+        get() {
+            val sampleLeadRecord = findOneOfLeadRecord()
+            return records.filter { it.isSameLocationAs(sampleLeadRecord) }
+        }
 
-    private val oneOfLeadRecord: Record
-        get() = records.maxBy { it.location } ?: throw IllegalStateException(EMPTY_RECORDS_MESSAGE)
+    private fun findOneOfLeadRecord(): Record = records.maxBy { it.location }
+        ?: throw IllegalStateException(EMPTY_RECORDS_MESSAGE)
 
     init {
         require(records.isNotEmpty()) { EMPTY_RECORDS_MESSAGE }
