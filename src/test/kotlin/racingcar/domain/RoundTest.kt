@@ -30,4 +30,16 @@ internal class RoundTest {
         // then
         assertThat(result.message).isEqualTo(expectedMessage)
     }
+
+    @Test
+    fun `라운드_결과가_없는_상태에서_결과를_요청하는_경우_예외를_반환한다`() {
+        val round = Round()
+        val expectedMessage = "라운드가 진행되지 않았습니다."
+
+        // when
+        val result = assertThrows<IllegalStateException> { round.result() }
+
+        // then
+        assertThat(result.message).isEqualTo(expectedMessage)
+    }
 }
