@@ -1,6 +1,8 @@
 package car.business
 
+import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -27,5 +29,11 @@ class CarTest {
         // then
         assertThat(success)
             .isTrue()
+    }
+
+    @Test
+    fun `이름이 5글자 초과이면 Exception이 발생해야 한다`() {
+        Assertions.assertThatIllegalArgumentException()
+            .isThrownBy { Car("5글자가넘는이룸") }
     }
 }

@@ -5,6 +5,10 @@ class Car(val name: String) {
     internal var currentPosition: Int = 0
         private set
 
+    init {
+        require(name.length <= 5)
+    }
+
     fun move(energy: Int) {
         if (!isMovable(energy)) return
 
