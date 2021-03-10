@@ -5,8 +5,7 @@ class RacingCars(private var cars: Cars, private val conditions: Conditions) {
         val allRound = mutableListOf<Records>()
 
         repeat(attempts) {
-            cars.forwardAllByCondition(conditions)
-            allRound.add(cars.finishRound())
+            allRound.add(cars.forwardAllByCondition(conditions))
         }
 
         return OverallResult(allRound)

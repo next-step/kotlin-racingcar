@@ -1,9 +1,16 @@
 package domain.racingcar
 
 class Cars(private val cars: List<Car>) {
-    fun forwardAllByCondition(randomConditions: Conditions) {
+    fun forwardAllByCondition(randomConditions: Conditions): Records {
         cars.map { forwardByCondition(it, randomConditions.makeCondition()) }
+        return finishRound()
     }
+
+    private fun finishRound(): Records {
+        return Records(cars.map { Record(it.name, newPosition(it.position)) })
+    }
+
+    private fun newPosition(position: Position) = Position(position.position)
 
     fun forwardByCondition(car: Car, condition: Int) {
         if (canForward(condition)) {
@@ -35,12 +42,6 @@ class Cars(private val cars: List<Car>) {
     private fun getPositions(): Positions {
         return Positions(cars.map { it.position })
     }
-
-    fun finishRound(): Records {
-        return Records(cars.map { Record(it.name, newPosition(it.position)) })
-    }
-
-    private fun newPosition(position: Position) = Position(position.position)
 
     companion object {
         private const val MAX_FORWARD_CONDITION = 4
