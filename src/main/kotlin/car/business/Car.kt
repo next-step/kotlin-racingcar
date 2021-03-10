@@ -6,13 +6,13 @@ class Car(val name: String) {
         private set
 
     init {
-        require(name.length <= 5)
+        require(name.length <= MAXIMUM_NAME_LENGTH)
     }
 
     fun move(energy: Int) {
-        if (!isMovable(energy)) return
-
-        currentPosition++
+        if (isMovable(energy)) {
+            currentPosition++
+        }
     }
 
     fun isMovable(energy: Int): Boolean {
@@ -20,6 +20,7 @@ class Car(val name: String) {
     }
 
     companion object {
-        const val MOVE_CONDITION_ENERGY = 4
+        private const val MOVE_CONDITION_ENERGY = 4
+        private const val MAXIMUM_NAME_LENGTH = 5
     }
 }
