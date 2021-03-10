@@ -2,7 +2,7 @@ package car.business
 
 class Car(val name: String) {
 
-    internal var currentPosition: Int = 0
+    internal var currentPosition: Int = INIT_POSITION
         private set
 
     init {
@@ -15,12 +15,13 @@ class Car(val name: String) {
         }
     }
 
-    fun isMovable(energy: Int): Boolean {
+    private fun isMovable(energy: Int): Boolean {
         return energy >= MOVE_CONDITION_ENERGY
     }
 
     companion object {
         private const val MOVE_CONDITION_ENERGY = 4
         private const val MAXIMUM_NAME_LENGTH = 5
+        const val INIT_POSITION = 0
     }
 }

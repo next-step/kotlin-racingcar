@@ -9,26 +9,26 @@ import org.junit.jupiter.params.provider.ValueSource
 class CarTest {
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3])
-    fun `랜덤이 4 미만일경우 움직임일 수 있는지 확인할 경우 결과는 실패이다`(rand: Int) {
+    fun `랜덤이 4 미만이고 움직일 경우 포지션은 0이여야 한다`(rand: Int) {
         // given
         val car: Car = Car("오길환")
         // when
-        val success = car.isMovable(rand)
+        car.move(rand)
         // then
-        assertThat(success)
-            .isFalse()
+        assertThat(car.currentPosition)
+            .isEqualTo(Car.INIT_POSITION)
     }
 
     @ParameterizedTest
     @ValueSource(ints = [4, 5, 6, 7, 8, 9])
-    fun `랜덤이 4 이상일경우 움직임일 수 있는지 확인할 경우 결과는 성공이다`(rand: Int) {
+    fun `랜덤이 4 이상이고 움직일 경우 포지션은 1이여야 한다`(rand: Int) {
         // given
         val car: Car = Car("오길환")
         // when
-        val success = car.isMovable(rand)
+        car.move(rand)
         // then
-        assertThat(success)
-            .isTrue()
+        assertThat(car.currentPosition)
+            .isEqualTo(Car.INIT_POSITION + 1)
     }
 
     @Test
