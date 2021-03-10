@@ -1,10 +1,6 @@
 package domain.racingcar
 
-class OverallResult(private val overallResult: List<Records>) {
-    fun forEach(action: (Records) -> Unit) {
-        overallResult.forEach(action)
-    }
-
+class OverallResult(val overallResult: List<Records>) {
     fun getByIndex(index: Int): Records {
         return overallResult[index]
     }

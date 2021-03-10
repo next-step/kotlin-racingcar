@@ -13,11 +13,11 @@ object ResultView {
     }
 
     fun printRacing(overallResult: OverallResult, cars: Cars) {
-        printAllCarsPath(overallResult)
+        printAllCarsPath(overallResult.overallResult)
         printWinners(cars.findWinner())
     }
 
-    private fun printAllCarsPath(overallResult: OverallResult) {
+    private fun printAllCarsPath(overallResult: List<Records>) {
         overallResult.forEach {
             printCarsPath(it)
             println()
