@@ -9,7 +9,7 @@ class RacingCarsTest {
     @Test
     fun `자동차 경주가 진행하여 자동차들의 위치들을 리턴한다`() {
         val cars = Cars(CARS)
-        val racingCars = RacingCars(cars)
+        val racingCars = RacingCars(cars, RandomConditions())
 
         val overallResult = racingCars.racing(5)
 
