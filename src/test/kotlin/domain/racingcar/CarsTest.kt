@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import java.util.LinkedList
 
 internal class CarsTest {
     @ParameterizedTest
@@ -27,22 +28,13 @@ internal class CarsTest {
     fun `RacingCar 에 등록된 모든 자동차가 조건에 맞는 경우 전진한다`() {
         val cars = Cars(listOf(Car(KIM_NAME), Car(PACK_NAME), Car(LEE_NAME)))
 
-        cars.forwardAllByCondition(listOf(1, 5, 9))
+        cars.forwardAllByCondition(makeMockConditions(listOf(1, 5, 9)))
 
         assertAll(
             { assertThat(cars.getPositionByIndex(0)).isEqualTo(Position(0)) },
             { assertThat(cars.getPositionByIndex(1)).isEqualTo(Position(1)) },
             { assertThat(cars.getPositionByIndex(2)).isEqualTo(Position(1)) }
         )
-    }
-
-    @Test
-    fun `RacingCar 에 등록된 자동차 개수와 조건의 개수가 다를 때 예외처리한다`() {
-        val cars = Cars(listOf(Car(KIM_NAME), Car(PACK_NAME), Car(LEE_NAME)))
-
-        assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            cars.forwardAllByCondition(listOf(1, 5))
-        }.withMessageMatching("전진 조건의 개수와 자동차의 개수가 같지 않습니다.")
     }
 
     @Test
@@ -68,7 +60,7 @@ internal class CarsTest {
     fun `경주가 끝난 후 우승자를 찾는다`() {
         val cars = Cars(listOf(Car(KIM_NAME), Car(PACK_NAME), Car(LEE_NAME)))
 
-        cars.forwardAllByCondition(listOf(3, 5, 5))
+        cars.forwardAllByCondition(makeMockConditions(listOf(3, 5, 5)))
 
         val winners = cars.findWinner()
         val winnersName = winners.names
@@ -76,5 +68,9 @@ internal class CarsTest {
         assertThat(winnersName.size).isEqualTo(2)
         assertThat(winnersName[0]).isEqualTo(PACK_NAME)
         assertThat(winnersName[1]).isEqualTo(LEE_NAME)
+    }
+
+    private fun makeMockConditions(data: List<Int>): MockConditions {
+        return MockConditions(LinkedList(data))
     }
 }
