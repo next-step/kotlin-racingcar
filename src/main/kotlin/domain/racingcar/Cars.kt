@@ -2,10 +2,7 @@ package domain.racingcar
 
 class Cars(private val cars: List<Car>) {
     fun forwardAllByCondition(randomConditions: Conditions) {
-
-        cars.mapIndexed { index, car ->
-            forwardByCondition(car, randomConditions[index])
-        }
+        cars.map { forwardByCondition(it, randomConditions.makeCondition()) }
     }
 
     fun forwardByCondition(car: Car, condition: Int) {
