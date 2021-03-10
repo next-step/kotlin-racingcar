@@ -2,7 +2,6 @@ package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
-import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
@@ -30,19 +29,17 @@ internal class TrialOrderTest {
 
     @ParameterizedTest
     @ValueSource(ints = [1, 48, 203802, Int.MAX_VALUE])
+    fun `check(index)는 'index = order - 1'을 만족하면 정상적으로 작동한다`(checkingIndex: Int) {
+        val orderValue = 10
+        assertDoesNotThrow { TrialOrder(orderValue).checkOrder(orderValue - 1) }
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [1, 48, 203802, Int.MAX_VALUE])
     fun `check(index)는 'index = order - 1'을 만족하지 않으면 IllegalArgumentException throw`(checkingIndex: Int) {
         val orderValue = 10
-        val order = TrialOrder(orderValue)
-
-        assertAll(
-            {
-                assertDoesNotThrow { order.checkOrder(orderValue - 1) }
-            },
-            {
-                assertThatIllegalArgumentException()
-                    .isThrownBy { TrialOrder(orderValue).checkOrder(checkingIndex) }
-                    .withMessage("The results of racing is not ordered. trialOrder='${order.value}', givenIndex=$checkingIndex")
-            }
-        )
+        assertThatIllegalArgumentException()
+            .isThrownBy { TrialOrder(orderValue).checkOrder(checkingIndex) }
+            .withMessage("The results of racing is not ordered. trialOrder='$orderValue', givenIndex=$checkingIndex")
     }
 }
