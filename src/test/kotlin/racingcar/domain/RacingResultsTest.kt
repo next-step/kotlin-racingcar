@@ -12,10 +12,12 @@ internal class RacingResultsTest {
 
     @ParameterizedTest
     @ValueSource(ints = [1, 10, 50])
-    fun `들어온 trial의 순서와 상관없이 order 순서대로 trial을 반환`(numberOfTrials: Int) {
-        val orderedTrials = (1..numberOfTrials).map { RacingTrial(TrialOrder(it), dummyRecords) }
+    fun `trials는 TrialOrder의 오름차순으로 정렬된다`(numberOfTrials: Int) {
+        val shuffledTrials = (1..numberOfTrials)
+            .map { RacingTrial(TrialOrder(it), dummyRecords) }
+            .shuffled()
 
-        assertThat(RacingResults(orderedTrials.shuffled()).trials)
+        assertThat(RacingResults(shuffledTrials).trials)
             .containsExactlyElementsOf((1..numberOfTrials).map { RacingTrial(TrialOrder(it), dummyRecords) })
     }
 
