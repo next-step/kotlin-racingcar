@@ -36,11 +36,11 @@ internal class TrialOrderTest {
 
         assertAll(
             {
-                assertDoesNotThrow { order.check(orderValue - 1) }
+                assertDoesNotThrow { order.checkOrder(orderValue - 1) }
             },
             {
                 assertThatIllegalArgumentException()
-                    .isThrownBy { TrialOrder(orderValue).check(checkingIndex) }
+                    .isThrownBy { TrialOrder(orderValue).checkOrder(checkingIndex) }
                     .withMessage("The results of racing is not ordered. trialOrder='${order.value}', givenIndex=$checkingIndex")
             }
         )

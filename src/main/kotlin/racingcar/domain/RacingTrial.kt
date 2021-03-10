@@ -22,7 +22,7 @@ data class RacingTrial(
     )
 
     fun checkOrder(index: Int) {
-        order.check(index)
+        this.order.checkOrder(index)
     }
 
     companion object {
