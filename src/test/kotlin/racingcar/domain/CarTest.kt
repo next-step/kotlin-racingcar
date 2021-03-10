@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 
 internal class CarTest {
 
-    private val dummyCarName = "dummy"
+    private val dummyCarName = CarName("dummy")
 
     @Test
     fun `자동차의 초기 거리는 0이다`() {

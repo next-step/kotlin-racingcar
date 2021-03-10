@@ -10,7 +10,7 @@ class RacingCarGame(carNames: List<CarName>, roundCount: PositiveCount) {
 
         val zeroToNineRandomGenerator = RandomGenerator(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE)
         val fortyPercentMoveableStrategy = RandomMoveStrategy(zeroToNineRandomGenerator, THRESHOLD)
-        cars = carNames.map { Car(it.value, fortyPercentMoveableStrategy) }
+        cars = carNames.map { Car(it, fortyPercentMoveableStrategy) }
         rounds = (1..roundCount.value).map { Round() }
     }
 
@@ -20,7 +20,7 @@ class RacingCarGame(carNames: List<CarName>, roundCount: PositiveCount) {
 
     private fun play(round: Round) {
         cars.forEach { it.moveIfMoveable() }
-        val result = Result(cars.map { CarResult(it.name, it.distance) })
+        val result = Result(cars.map { CarResult(it.name.value, it.distance) })
         round.recordResult(result)
     }
 
@@ -33,7 +33,7 @@ class RacingCarGame(carNames: List<CarName>, roundCount: PositiveCount) {
 
     private fun findWinners(): List<String> {
         val maxValue = cars.map { it.distance }.max() ?: throw IllegalArgumentException("distance가 존재하지 않습니다")
-        return cars.filter { it.distance == maxValue }.map { it.name }
+        return cars.filter { it.distance == maxValue }.map { it.name.value }
     }
 
     companion object {
