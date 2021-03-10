@@ -1,5 +1,6 @@
 package racingcar
 
+import racingcar.model.WinnersReader
 import racingcar.tasks.Game
 import racingcar.ui.InputView
 import racingcar.ui.OutputView
@@ -15,4 +16,5 @@ private fun run(game: Game) {
     repeat(countOfGame) {
         game.run(listOfCar)
     }
+    OutputView.noticeWinners(WinnersReader(listOfCar).findWinners())
 }

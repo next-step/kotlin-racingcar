@@ -8,6 +8,8 @@ data class Car(private val locationTracker: LocationTracker = LocationTracker(),
 
     fun whereIs() = locationTracker.getCurrentState()
 
+    fun getPosition() = locationTracker.currentPosition
+
     companion object {
         fun create(name: String) = Car(name = name)
     }
