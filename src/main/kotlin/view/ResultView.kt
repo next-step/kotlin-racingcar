@@ -1,11 +1,7 @@
 package view
 
 import controller.Reception
-import domain.racingcar.Cars
-import domain.racingcar.OverallResult
-import domain.racingcar.Records
-import domain.racingcar.Winners
-import domain.racingcar.Position
+import domain.racingcar.*
 
 object ResultView {
     fun printInt() {
@@ -19,7 +15,7 @@ object ResultView {
 
     private fun printAllCarsPath(overallResult: List<Records>) {
         overallResult.forEach {
-            printCarsPath(it)
+            printCarsPath(it.records)
             println()
         }
     }
@@ -32,7 +28,7 @@ object ResultView {
         return names.joinToString("$delimiter ")
     }
 
-    private fun printCarsPath(records: Records) {
+    private fun printCarsPath(records: List<Record>) {
         records.forEach {
             printName(it.name)
             printCarPath(it.position)
