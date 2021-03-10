@@ -31,15 +31,15 @@ internal class RacingResultsTest {
             )
         )
         assertThat(results.winnerRecords)
-            .containsExactly(Record(CarName("최종우승"), CarLocation(3)))
+            .containsExactly(Record("최종우승", 3))
     }
 
     private fun makeDummy(order: Int, 초반우세: Int, 중반우세: Int, 최종우승: Int) = RacingTrial(
         TrialOrder(order),
         listOf(
-            Record(CarName("초반우세"), CarLocation(초반우세)),
-            Record(CarName("중반우세"), CarLocation(중반우세)),
-            Record(CarName("최종우승"), CarLocation(최종우승))
+            Record("초반우세", 초반우세),
+            Record("중반우세", 중반우세),
+            Record("최종우승", 최종우승)
         )
     )
 }

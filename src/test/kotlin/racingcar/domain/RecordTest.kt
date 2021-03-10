@@ -26,16 +26,26 @@ internal class RecordTest {
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 3, 138938, Int.MAX_VALUE])
     fun `두 location이 같으면 isSameAsLocation(other)은 true`(location: Int) {
-        val one = Record(CarName("one"), CarLocation(location))
-        val other = Record(CarName("other"), CarLocation(location))
+        val one = Record("one", location)
+        val other = Record("other", location)
         assertThat(one.isSameLocationAs(other)).isTrue()
+    }
+
+    @ParameterizedTest
+    @CsvSource(
+        "Benz, 0",
+        "BMW, 3",
+        "제네시스, 2"
+    )
+    fun `primitive value를 통해서 생성해도, 객체를 통해 생성한 결과와 동일하다`(name: String, location: Int) {
+        assertThat(Record(name, location)).isEqualTo(Record(CarName(name), CarLocation(location)))
     }
 
     @ParameterizedTest
     @CsvSource("2, 1", "1, 0", "138, 784", "47438, 42")
     fun `두 location이 다르면 isSameAsLocation(other)은 false`(oneLocation: Int, otherLocation: Int) {
-        val one = Record(CarName("one"), CarLocation(oneLocation))
-        val other = Record(CarName("other"), CarLocation(otherLocation))
+        val one = Record("one", oneLocation)
+        val other = Record("other", otherLocation)
         assertThat(one.isSameLocationAs(other)).isFalse()
     }
 }

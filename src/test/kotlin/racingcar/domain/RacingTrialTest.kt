@@ -28,19 +28,19 @@ internal class RacingTrialTest {
     @Test
     fun `가장 높은 위치 값을 가진 기록들을 반환한다`() {
         val records = listOf(
-            Record(CarName("그외1"), CarLocation(6)),
-            Record(CarName("그외2"), CarLocation(7)),
-            Record(CarName("최선두2"), CarLocation(8)),
-            Record(CarName("그외3"), CarLocation(6)),
-            Record(CarName("그외4"), CarLocation(0)),
-            Record(CarName("그외5"), CarLocation(1)),
-            Record(CarName("최선두1"), CarLocation(8)),
-            Record(CarName("그외6"), CarLocation(4))
+            Record("그외1", location = 6),
+            Record("그외2", location = 7),
+            Record("최선두2", location = 8),
+            Record("그외3", location = 6),
+            Record("그외4", location = 0),
+            Record("그외5", location = 1),
+            Record("최선두1", location = 8),
+            Record("그외6", location = 4)
         )
         val trial = RacingTrial(TrialOrder(1), records)
         assertThat(trial.leadRecords).containsAnyOf(
-            Record(CarName("최선두1"), CarLocation(8)),
-            Record(CarName("최선두2"), CarLocation(8))
+            Record("최선두1", location = 8),
+            Record("최선두2", location = 8)
         )
     }
 }

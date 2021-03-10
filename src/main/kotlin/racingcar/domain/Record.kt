@@ -7,6 +7,8 @@ data class Record(
     val name: CarName,
     val location: CarLocation
 ) {
+    constructor(name: String, location: Int) : this(CarName(name), CarLocation(location))
+
     fun isSameLocationAs(other: Record): Boolean {
         return this.location == other.location
     }
