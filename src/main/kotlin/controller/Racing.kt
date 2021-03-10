@@ -11,7 +11,7 @@ fun main() {
     val numberOfAttempts = Reception.receiveNumberOfAttempts()
 
     val cars = Cars.createCars(carNames)
-    val racingCar = RacingCars(cars, RandomConditions(numberOfAttempts))
+    val racingCar = RacingCars(cars, RandomConditions())
 
     ResultView.printInt()
     val overallResult = racingCar.racing(numberOfAttempts)
