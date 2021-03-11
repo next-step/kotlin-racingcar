@@ -9,7 +9,6 @@ class Cars(names: List<String>, energyProvider: EnergyProvider = RandomEnergyPro
     private val energyProvider: EnergyProvider = energyProvider
 
     private val _histories: MutableList<CarMoveHistoryCollection> = ArrayList()
-
     val histories: List<CarMoveHistoryCollection>
         get() = _histories
 
