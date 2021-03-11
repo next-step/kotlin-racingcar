@@ -22,7 +22,7 @@ class ResultView(private val cars: Cars) {
     private fun printFrontCars(carMoveHistoryCollection: CarMoveHistoryCollection) {
         val frontHistories = carMoveHistoryCollection.getFrontHistories()
 
-        val winnerNames = frontHistories.joinToString { it.car.name }
+        val winnerNames = frontHistories.joinToString { it.carName }
 
         print("$winnerNames 가 최종 우승했습니다.")
     }

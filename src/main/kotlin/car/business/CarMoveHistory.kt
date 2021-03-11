@@ -1,8 +1,8 @@
 package car.business
 
-data class CarMoveHistory(val car: Car, val position: Int) {
+data class CarMoveHistory(val carName: String, val position: Int) {
     override fun toString(): String {
-        return "${car.name} : ${POSITION_EXPRESSION.repeat(position)}"
+        return "$carName : ${POSITION_EXPRESSION.repeat(position)}"
     }
 
     companion object {

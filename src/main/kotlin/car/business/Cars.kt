@@ -22,7 +22,7 @@ class Cars(names: List<String>, energyProvider: EnergyProvider = RandomEnergyPro
         cars.forEach {
             it.move(energyProvider.getEnergy())
 
-            var carMoveHistory = CarMoveHistory(it, it.currentPosition)
+            var carMoveHistory = CarMoveHistory(it.name, it.currentPosition)
             histories.add(carMoveHistory)
         }
 
