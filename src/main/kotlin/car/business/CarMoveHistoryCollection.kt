@@ -1,6 +1,6 @@
 package car.business
 
-class CarMoveHistories : ArrayList<CarMoveHistory>() {
+class CarMoveHistoryCollection : ArrayList<CarMoveHistory>() {
     fun getFrontHistories(): List<CarMoveHistory> {
         val maxPosition = this.map { it.position }
             .max()

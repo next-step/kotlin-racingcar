@@ -3,10 +3,10 @@ package car.business
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class CarMoveHistoriesTest {
+class CarMoveHistoryCollectionTest {
     @Test
     fun `최고점수를 가진 Car를 리턴할 줄 알아야 한다`() {
-        val histories = CarMoveHistories()
+        val histories = CarMoveHistoryCollection()
         histories.add(CarMoveHistory(Car("오"), 1))
         histories.add(CarMoveHistory(Car("길"), 2))
         histories.add(CarMoveHistory(Car("환"), 3))

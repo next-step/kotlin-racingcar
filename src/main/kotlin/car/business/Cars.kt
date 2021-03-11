@@ -8,7 +8,7 @@ class Cars(names: List<String>, energyProvider: EnergyProvider = RandomEnergyPro
     private val cars: List<Car> = names.map { Car(it) }
     private val energyProvider: EnergyProvider = energyProvider
 
-    internal var allHistories: MutableList<CarMoveHistories> = ArrayList()
+    internal var allHistories: MutableList<CarMoveHistoryCollection> = ArrayList()
         private set
 
     fun move(times: Int) {
@@ -18,7 +18,7 @@ class Cars(names: List<String>, energyProvider: EnergyProvider = RandomEnergyPro
     }
 
     private fun moveAllCar() {
-        val histories = CarMoveHistories()
+        val histories = CarMoveHistoryCollection()
         cars.forEach {
             it.move(energyProvider.getEnergy())
 
