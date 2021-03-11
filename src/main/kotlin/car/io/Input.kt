@@ -6,6 +6,6 @@ data class Input(val name: String, val tryCount: Int) {
     }
 
     companion object {
-        const val NAME_SPLITTER = ","
+        private const val NAME_SPLITTER = ","
     }
 }
