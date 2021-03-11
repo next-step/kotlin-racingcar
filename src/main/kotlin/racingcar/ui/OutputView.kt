@@ -19,7 +19,7 @@ object OutputView {
         println(
             findWinners.joinToString(
                 separator = SEPARATOR_OUTPUT_WINNERS,
-                transform = { i -> i.toString() }
+                transform = { it.toString() }
             ).plus(NOTICE_OUTPUT_WINNERS)
         )
     }

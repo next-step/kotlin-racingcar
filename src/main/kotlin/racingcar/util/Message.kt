@@ -10,6 +10,7 @@ class Message {
         const val ONE_DISTANCE = "-"
         const val NOTICE_CANNOT_CAST_TO_INT = "을(를) Int형으로 변환할 수 없습니다."
         const val NOTICE_NOT_NULL = "문자열은 null이 될 수 없습니다."
+        const val NOTICE_NOT_NULL_WINNER = "우숭자는 null 이 될 수 없습니다."
         const val NOTICE_NOT_BLANK = "문자열은 공백이 될 수 없습니다."
         const val DEFAULT_DISTANCE = 0
         const val MAX_CONDITION = 10

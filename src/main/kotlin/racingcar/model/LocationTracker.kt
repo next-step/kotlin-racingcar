@@ -3,7 +3,7 @@ package racingcar.model
 import racingcar.util.Message
 import racingcar.util.Message.Companion.DEFAULT_DISTANCE
 
-data class LocationTracker(var distance: Int = DEFAULT_DISTANCE) {
+data class LocationTracker(private var distance: Int = DEFAULT_DISTANCE) {
     var currentPosition: Int = distance
         private set
 

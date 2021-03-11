@@ -1,6 +1,6 @@
 package racingcar
 
-import racingcar.model.WinnersReader
+import racingcar.tasks.WinnersReader
 import racingcar.tasks.Game
 import racingcar.ui.InputView
 import racingcar.ui.OutputView

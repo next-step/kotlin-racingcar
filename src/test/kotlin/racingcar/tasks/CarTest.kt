@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import racingcar.model.Car
-import racingcar.model.LocationTracker
 import racingcar.util.Message.Companion.MIN_CONDITION_FOR_GOING
 import racingcar.util.Message.Companion.ONE_DISTANCE
 
@@ -14,9 +13,8 @@ class CarTest {
 
     @Test
     fun `자동차 1회 전진`() {
-        val locationTracker = LocationTracker(1)
 
-        val car = Car(locationTracker, "김대겸").apply {
+        val car = Car(name = "김대겸").apply {
             tryMove(true)
         }
 
