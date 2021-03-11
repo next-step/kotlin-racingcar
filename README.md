@@ -8,3 +8,4 @@
 6. [x] ResultView 에서는 최종 히스토리에서 최고점수를 가져와 표출해줘야 한다. 
 
 7. [X] CarMoveHistory는 Car가 아닌 name을 갖고 있어야한다. 
+8. [ ] CarMoveHistoryCollection 를 일급컬렉션으로 바꿔보자 
