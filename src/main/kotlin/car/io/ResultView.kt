@@ -10,7 +10,7 @@ class ResultView(private val cars: Cars) {
             printCarPositionHistory(carMoveHistory)
             println()
         }
-        printFrontCars(allHistories.last())
+        printWinners(allHistories.last())
     }
 
     private fun printCarPositionHistory(carMoveHistoryCollection: CarMoveHistoryCollection) {
@@ -19,8 +19,8 @@ class ResultView(private val cars: Cars) {
         }
     }
 
-    private fun printFrontCars(carMoveHistoryCollection: CarMoveHistoryCollection) {
-        val frontHistories = carMoveHistoryCollection.getFrontHistories()
+    private fun printWinners(carMoveHistoryCollection: CarMoveHistoryCollection) {
+        val frontHistories = carMoveHistoryCollection.getWinners()
 
         val winnerNames = frontHistories.joinToString { it.carName }
 
