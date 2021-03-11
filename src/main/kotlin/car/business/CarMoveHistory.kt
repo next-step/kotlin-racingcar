@@ -1,6 +1,10 @@
 package car.business
 
 data class CarMoveHistory(val carName: String, val position: Int) {
+    fun isWinner(winnerPosition: Int): Boolean {
+        return position == winnerPosition
+    }
+
     override fun toString(): String {
         return "$carName : ${POSITION_EXPRESSION.repeat(position)}"
     }
