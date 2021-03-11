@@ -16,8 +16,8 @@ class CarsTest() {
         cars.move(times = 5)
 
         // then
-        val lastHistory = cars.allHistories.last()
-        assertThat(lastHistory)
+        val lastHistory = cars.histories.last()
+        assertThat(lastHistory.moveHistories)
             .allMatch { it.position == 0 }
     }
 
@@ -32,8 +32,8 @@ class CarsTest() {
         cars.move(times)
 
         // then
-        val lastHistory = cars.allHistories.last()
-        assertThat(lastHistory)
+        val lastHistory = cars.histories.last()
+        assertThat(lastHistory.moveHistories)
             .allMatch { it.position == times }
     }
 
@@ -49,8 +49,8 @@ class CarsTest() {
         cars.move(times)
 
         // then
-        val lastHistory = cars.allHistories.last()
-        assertThat(lastHistory)
+        val lastHistory = cars.histories.last()
+        assertThat(lastHistory.moveHistories)
             .allMatch { it.position == times }
     }
 

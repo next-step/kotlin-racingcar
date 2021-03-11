@@ -5,7 +5,7 @@ import car.business.Cars
 
 class ResultView(private val cars: Cars) {
     fun print() {
-        val allHistories = cars.allHistories
+        val allHistories = cars.histories
         for (carMoveHistory in allHistories) {
             printCarPositionHistory(carMoveHistory)
             println()
@@ -14,7 +14,7 @@ class ResultView(private val cars: Cars) {
     }
 
     private fun printCarPositionHistory(carMoveHistoryCollection: CarMoveHistoryCollection) {
-        for (history in carMoveHistoryCollection) {
+        for (history in carMoveHistoryCollection.moveHistories) {
             println(history)
         }
     }
