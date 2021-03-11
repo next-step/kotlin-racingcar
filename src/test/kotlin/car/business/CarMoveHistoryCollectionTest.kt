@@ -16,7 +16,7 @@ class CarMoveHistoryCollectionTest {
 
         val historyCollection = CarMoveHistoryCollection(histories)
 
-        val frontHistories = historyCollection.getFrontHistories()
+        val frontHistories = historyCollection.getWinners()
 
         assertThat(frontHistories.map { it.carName })
             .containsExactly("이", "다")
