@@ -1,6 +1,6 @@
 package fixture
 
-import racingcar.Car
+import domain.racingcar.Car
 
 object CarFixture {
     const val KIM_NAME = "kim"

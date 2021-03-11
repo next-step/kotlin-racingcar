@@ -1,4 +1,4 @@
-# kotlin-racingcar
+# kotlin-domain.racingcar
 # 기능 명세서
 
 4단계 - 자동차 경주(우승자)
