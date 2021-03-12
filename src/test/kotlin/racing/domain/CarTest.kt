@@ -14,9 +14,9 @@ internal class CarTest {
         assertThat(car.position).isEqualTo(CarPosition.INIT_POSITION)
 
         val carState = car.moveCarIfPossible(movementChecker)
-        assertThat(car.position.position).isEqualTo(1)
+        assertThat(car.position.value).isEqualTo(1)
         assertThat(carState.position).isEqualTo(CarPosition(1))
-        assertThat(carState.name.name).isEqualTo("name")
+        assertThat(carState.name.value).isEqualTo("name")
     }
 
     @Test
@@ -27,15 +27,15 @@ internal class CarTest {
         assertThat(car.position).isEqualTo(CarPosition.INIT_POSITION)
 
         val carState = car.moveCarIfPossible(movementChecker)
-        assertThat(car.position.position).isEqualTo(0)
+        assertThat(car.position.value).isEqualTo(0)
         assertThat(carState.position).isEqualTo(CarPosition(0))
-        assertThat(carState.name.name).isEqualTo("name")
+        assertThat(carState.name.value).isEqualTo("name")
     }
 
     @Test
     fun getName() {
         val car = Car("name")
-        assertThat(car.name.name).isEqualTo("name")
+        assertThat(car.name.value).isEqualTo("name")
     }
 
     @Test
@@ -43,6 +43,6 @@ internal class CarTest {
         val movementChecker = MovementChecker(TestRandomWrapper(9))
 
         val car = Car("name").apply { moveCarIfPossible(movementChecker) }
-        assertThat(car.position.position).isEqualTo(1)
+        assertThat(car.position.value).isEqualTo(1)
     }
 }

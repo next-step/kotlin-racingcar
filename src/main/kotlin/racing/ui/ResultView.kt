@@ -28,8 +28,8 @@ object ResultView {
 
     private fun printRoundResult(roundResult: RoundResult) {
         val carStates = roundResult.carStates
-        carStates.forEach { (carName, carPosition) ->
-            printCarStates(carName.name, carPosition.position)
+        carStates.forEach {
+            printCarStates(it.name.value, it.position.value)
         }
         println()
     }

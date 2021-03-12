@@ -33,6 +33,6 @@ class StudyTest {
     @Test
     fun `empty list joinToString`() {
         val list = emptyList<Car>()
-        assertThat(list.joinToString(", ") { it.name.name }).isEqualTo("")
+        assertThat(list.joinToString(", ") { it.name.value }).isEqualTo("")
     }
 }

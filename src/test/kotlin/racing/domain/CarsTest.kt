@@ -12,7 +12,7 @@ internal class CarsTest {
     fun createNewCar() {
         val cars = Cars(listOf("song"))
 
-        assertThat(cars.cars.map { it.name.name }).containsOnly("song")
+        assertThat(cars.cars.map { it.name.value }).containsOnly("song")
     }
 
     @Test

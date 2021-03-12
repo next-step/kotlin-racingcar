@@ -20,9 +20,9 @@ class Car(
     }
 }
 
-class CarName(val name: String) {
+class CarName(val value: String) {
     init {
-        require(name.length <= NAME_LENGTH_MAX) { "자동차 이름은 5자를 초과할 수 없습니다." }
+        require(value.length <= NAME_LENGTH_MAX) { "자동차 이름은 5자를 초과할 수 없습니다." }
     }
 
     companion object {
@@ -32,7 +32,7 @@ class CarName(val name: String) {
 
 data class CarPosition(private var _position: Int = INIT_POSITION_NUMBER) : Comparable<CarPosition> {
 
-    val position: Int
+    val value: Int
         get() = _position
 
     fun increase() {
@@ -40,7 +40,7 @@ data class CarPosition(private var _position: Int = INIT_POSITION_NUMBER) : Comp
     }
 
     override fun compareTo(other: CarPosition): Int {
-        return this.position.compareTo(other.position)
+        return this.value.compareTo(other.value)
     }
 
     companion object {

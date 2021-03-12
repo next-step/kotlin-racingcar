@@ -18,7 +18,7 @@ class RacingGameTest {
     fun `constructor test`() {
         val racingGame = RacingGame(testRacingGameData, MovementChecker())
         assertThat(racingGame.cars.cars.size).isEqualTo(testInputCarNames.size)
-        assertThat(racingGame.cars.cars.map { it.name.name }).containsAll(testInputCarNames)
+        assertThat(racingGame.cars.cars.map { it.name.value }).containsAll(testInputCarNames)
     }
 
     @Test
