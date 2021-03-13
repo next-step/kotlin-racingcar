@@ -2,6 +2,7 @@ package car.view
 
 import car.domain.CarMoveHistoryCollection
 import car.domain.Cars
+import car.domain.Winners
 
 class ResultView(private val cars: Cars) {
     fun print() {
@@ -10,7 +11,7 @@ class ResultView(private val cars: Cars) {
             printCarPositionHistory(carMoveHistory)
             println()
         }
-        printWinners(allHistories.last())
+        printWinners(cars.winners)
     }
 
     private fun printCarPositionHistory(carMoveHistoryCollection: CarMoveHistoryCollection) {
@@ -19,11 +20,7 @@ class ResultView(private val cars: Cars) {
         }
     }
 
-    private fun printWinners(carMoveHistoryCollection: CarMoveHistoryCollection) {
-        val frontHistories = carMoveHistoryCollection.getWinners()
-
-        val winnerNames = frontHistories.joinToString { it.carName.name }
-
-        print("$winnerNames 가 최종 우승했습니다.")
+    private fun printWinners(winners: Winners) {
+        print("$winners 가 최종 우승했습니다.")
     }
 }

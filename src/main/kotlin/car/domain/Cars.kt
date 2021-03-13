@@ -10,6 +10,8 @@ class Cars(private val cars: List<Car>, private val energyProvider: EnergyProvid
     private val _histories: MutableList<CarMoveHistoryCollection> = ArrayList()
     val histories: List<CarMoveHistoryCollection>
         get() = _histories
+    val winners: Winners
+        get() = Winners(_histories.last())
 
     fun move(times: Int) {
         repeat(times) {

@@ -17,9 +17,9 @@
    1. [X] 이름s을 만들때는 String array를 받을 수 있다.
    2. [X] 이름s를 만들때는 Name List를 받을 수 있다.
 11. [X] 자동차는 String의 이름이 아닌 CarName의 이름을 가져야 한다.
-12. [ ] Winners가 있어야 한다.
-   1. [ ] Winner는 Winner의 1급 컬렉션이다
-   2. [ ] Winners는 History 기반으로 승리자를 얻어낼 수 있다.
+12. [X] Winners가 있어야 한다.
+   1. [X] Winner는 Winner의 1급 컬렉션이다
+   2. [X] Winners는 History 기반으로 승리자를 얻어낼 수 있다.
 13. [X] Winner는 승리자 이다.
    1. [X] 이름만 있다. 
-14. [ ] Cars에서 winners를 구해올 수 있어야 한다. 
+14. [X] Cars에서 winners를 구해올 수 있어야 한다. 
