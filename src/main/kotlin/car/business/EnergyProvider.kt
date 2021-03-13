@@ -1,4 +1,4 @@
-package car.energy
+package car.business
 
 interface EnergyProvider {
     fun getEnergy(): Int

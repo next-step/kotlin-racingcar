@@ -1,8 +1,5 @@
 package car.business
 
-import car.energy.EnergyProvider
-import car.energy.RandomEnergyProvider
-
 class Cars(names: List<String>, energyProvider: EnergyProvider = RandomEnergyProvider()) {
 
     private val cars: List<Car> = names.map { Car(it) }

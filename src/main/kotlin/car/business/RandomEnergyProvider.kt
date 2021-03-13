@@ -1,6 +1,6 @@
-package car.energy
+package car.business
 
-import car.energy.EnergyProvider.Companion.MAX_ENERGY_SIZE
+import car.business.EnergyProvider.Companion.MAX_ENERGY_SIZE
 import kotlin.random.Random
 
 class RandomEnergyProvider : EnergyProvider {
