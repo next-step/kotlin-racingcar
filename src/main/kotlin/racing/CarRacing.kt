@@ -2,6 +2,10 @@ package racing
 
 import racing.domain.Car
 import racing.domain.CarNameParser
+import racing.view.inputCarName
+import racing.view.inputTryCount
+import racing.view.printResult
+import racing.view.printWinner
 
 fun main() {
     val carNameLine = inputCarName()

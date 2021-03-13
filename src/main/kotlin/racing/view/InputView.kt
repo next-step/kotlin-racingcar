@@ -1,4 +1,4 @@
-package racing
+package racing.view
 
 fun inputCarName(): String {
     println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
@@ -32,5 +32,3 @@ fun getInputValue(): Int {
 fun mustBiggerThanZero(value: Int): Boolean {
     return value > 0
 }
-
-const val CAR_NAME_LENGTH_LIMIT = 5
