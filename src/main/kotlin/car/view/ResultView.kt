@@ -1,7 +1,7 @@
-package car.io
+package car.view
 
-import car.business.CarMoveHistoryCollection
-import car.business.Cars
+import car.domain.CarMoveHistoryCollection
+import car.domain.Cars
 
 class ResultView(private val cars: Cars) {
     fun print() {

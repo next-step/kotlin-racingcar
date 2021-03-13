@@ -1,4 +1,4 @@
-package car.io
+package car.view
 
 class InputView {
     fun input(): Input {

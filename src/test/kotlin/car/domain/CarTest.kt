@@ -1,4 +1,4 @@
-package car.business
+package car.domain
 
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat

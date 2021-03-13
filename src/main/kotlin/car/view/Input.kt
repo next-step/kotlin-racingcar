@@ -1,4 +1,4 @@
-package car.io
+package car.view
 
 data class Input(val name: String, val tryCount: Int) {
     fun splitNameBySplitter(): Array<String> {

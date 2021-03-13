@@ -1,9 +1,9 @@
 package car
 
-import car.business.CarNameCollection
-import car.business.Cars
-import car.io.InputView
-import car.io.ResultView
+import car.domain.CarNameCollection
+import car.domain.Cars
+import car.view.InputView
+import car.view.ResultView
 
 fun main() {
     val inputView = InputView()

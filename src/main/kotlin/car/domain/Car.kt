@@ -1,4 +1,4 @@
-package car.business
+package car.domain
 
 class Car(val name: CarName) {
 

@@ -1,4 +1,4 @@
-package car.business
+package car.domain
 
 data class CarMoveHistory(val carName: CarName, val position: Int) {
     fun isWinner(winnerPosition: Int): Boolean {
