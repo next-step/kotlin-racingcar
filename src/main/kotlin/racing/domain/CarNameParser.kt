@@ -1,6 +1,6 @@
 package racing.domain
 
-class CarNameParser {
+object CarNameParser {
     fun parse(carNameLine: String): List<String> {
         val names = carNameLine.split(CAR_NAME_DELIMITER)
         names.forEach {
@@ -10,8 +10,6 @@ class CarNameParser {
         return names
     }
 
-    companion object {
-        const val CAR_NAME_DELIMITER = ","
-        const val CAR_NAME_LENGTH_LIMIT = 5
-    }
+    private const val CAR_NAME_DELIMITER = ","
+    private const val CAR_NAME_LENGTH_LIMIT = 5
 }

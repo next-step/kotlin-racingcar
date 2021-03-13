@@ -10,7 +10,7 @@ import racing.view.printWinner
 fun main() {
     val carNameLine = inputCarName()
     val tryCount = inputTryCount()
-    val carNames = CarNameParser().parse(carNameLine)
+    val carNames = CarNameParser.parse(carNameLine)
 
     val cars = carNames.map { Car(it) }
     val carRacing = CarRacing(cars, tryCount)
