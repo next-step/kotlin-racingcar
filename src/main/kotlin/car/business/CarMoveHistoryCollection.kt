@@ -8,6 +8,7 @@ class CarMoveHistoryCollection(moveHistories: List<CarMoveHistory>) {
     fun getWinners(): List<CarMoveHistory> {
         return moveHistories.filter { it.isWinner(maxPosition) }
     }
+
     private fun getMaxPositionOfMoveHistories(): Int {
         return moveHistories.map { it.position }.max()!!
     }
