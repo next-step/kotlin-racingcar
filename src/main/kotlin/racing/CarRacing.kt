@@ -19,7 +19,7 @@ fun main() {
     println("실행 결과")
     val recordsPerCarName = cars.associateBy({ it.name }, { it.getRecords() })
     printResult(recordsPerCarName, tryCount)
-    printWinner(carRacing.getWinners())
+    printWinner(carRacing.getWinners().joinToString(", ") { it.name })
 }
 
 class CarRacing(private val cars: List<Car>, private val tryCount: Int) {
