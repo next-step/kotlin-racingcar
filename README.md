@@ -16,4 +16,4 @@
 10. [X] 이름s을 1급컬렉션을 만들자
    1. [X] 이름s을 만들때는 String array를 받을 수 있다.
    2. [X] 이름s를 만들때는 Name List를 받을 수 있다.
-11. [ ] 자동차는 String의 이름이 아닌 CarName의 이름을 가져야 한다.
+11. [X] 자동차는 String의 이름이 아닌 CarName의 이름을 가져야 한다.

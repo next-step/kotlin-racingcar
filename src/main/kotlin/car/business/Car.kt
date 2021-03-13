@@ -1,13 +1,9 @@
 package car.business
 
-class Car(val name: String) {
+class Car(val name: CarName) {
 
     internal var currentPosition: Int = INIT_POSITION
         private set
-
-    init {
-        require(name.length <= MAXIMUM_NAME_LENGTH)
-    }
 
     fun move(energy: Int) {
         if (isMovable(energy)) {
