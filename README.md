@@ -13,7 +13,7 @@
 9. [X] 이름을 Wrappingclass로 만들자  -> Name
    1. [X] 이름은 String만을 갖는다
    2. [X] 생성시 길이가 5가 넘으면 Exception을 발생시킨다
-10. [ ] 이름s을 1급컬렉션을 만들자
-   1. [ ] 이름s을 만들때는 String array를 받을 수 있다.
-   2. [ ] 이름s를 만들때는 Name List를 받을 수 있다.
+10. [X] 이름s을 1급컬렉션을 만들자
+   1. [X] 이름s을 만들때는 String array를 받을 수 있다.
+   2. [X] 이름s를 만들때는 Name List를 받을 수 있다.
 11. [ ] 자동차는 String의 이름이 아닌 CarName의 이름을 가져야 한다.
