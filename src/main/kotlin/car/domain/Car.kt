@@ -17,7 +17,6 @@ class Car(val name: CarName) {
 
     companion object {
         private const val MOVE_CONDITION_ENERGY = 4
-        private const val MAXIMUM_NAME_LENGTH = 5
         const val INIT_POSITION = 0
     }
 }
