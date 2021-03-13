@@ -4,14 +4,14 @@ import racing.domain.Car
 
 fun printResult(recordsPerCarName: Map<String, List<Int>>, tryCount: Int) {
     repeat(tryCount) { index ->
-        printRecord(recordsPerCarName, index)
+        printRecord(recordsPerCarName.map { Pair(it.key, it.value[index]) })
         println()
     }
 }
 
-fun printRecord(recordsPerCarName: Map<String, List<Int>>, index: Int) {
-    recordsPerCarName.forEach { recordOfCar ->
-        println("${recordOfCar.key} : ${"-".repeat(recordOfCar.value[index])}")
+fun printRecord(recordPerCarName: List<Pair<String, Int>>) {
+    recordPerCarName.forEach {
+        println("${it.first} : ${"-".repeat(it.second)}")
     }
 }
 
