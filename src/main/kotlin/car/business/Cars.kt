@@ -1,9 +1,8 @@
 package car.business
 
-class Cars(names: List<String>, energyProvider: EnergyProvider = RandomEnergyProvider()) {
+class Cars(private val cars: List<Car>, private val energyProvider: EnergyProvider = RandomEnergyProvider()) {
 
-    private val cars: List<Car> = names.map { Car(it) }
-    private val energyProvider: EnergyProvider = energyProvider
+    constructor(names: Array<String>, energyProvider: EnergyProvider = RandomEnergyProvider()) : this(names.map { Car(it) }, energyProvider)
 
     private val _histories: MutableList<CarMoveHistoryCollection> = ArrayList()
     val histories: List<CarMoveHistoryCollection>

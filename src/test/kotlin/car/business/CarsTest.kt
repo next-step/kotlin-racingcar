@@ -9,7 +9,7 @@ class CarsTest() {
     @ValueSource(ints = [0, 1, 2, 3])
     fun `랜덤값이 4 미만일경우 움직이면은 안된다`(rand: Int) {
         // given
-        val cars = Cars(names = listOf("오", "길", "환"), energyProvider = createEnergyProvider(rand))
+        val cars = Cars(names = arrayOf("오", "길", "환"), energyProvider = createEnergyProvider(rand))
 
         // when
         cars.move(times = 5)
@@ -25,7 +25,7 @@ class CarsTest() {
     fun `랜덤값이 4 이상일경우 움직이면 된다`(rand: Int) {
         // given
         var times = 5
-        val cars = Cars(names = listOf("오", "길", "환"), energyProvider = createEnergyProvider(rand))
+        val cars = Cars(names = arrayOf("오", "길", "환"), energyProvider = createEnergyProvider(rand))
 
         // when
         cars.move(times)
@@ -42,7 +42,7 @@ class CarsTest() {
         // given
         val maxRand = 9
 
-        val cars = Cars(names = listOf("오", "길", "환"), energyProvider = createEnergyProvider(maxRand))
+        val cars = Cars(names = arrayOf("오", "길", "환"), energyProvider = createEnergyProvider(maxRand))
 
         // when
         cars.move(times)

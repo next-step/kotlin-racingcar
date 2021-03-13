@@ -1,8 +1,8 @@
 package car.io
 
 data class Input(val name: String, val tryCount: Int) {
-    fun splitNameBySplitter(): List<String> {
-        return name.split(NAME_SPLITTER)
+    fun splitNameBySplitter(): Array<String> {
+        return name.split(NAME_SPLITTER).toTypedArray()
     }
 
     companion object {
