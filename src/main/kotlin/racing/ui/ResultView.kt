@@ -1,32 +1,35 @@
 package racing.ui
 
+import racing.data.RacingGameResult
 import racing.data.RacingHistory
 import racing.data.RoundResult
 import racing.data.Winners
 
-/**
- * @author tae-heon.song<taeheon.song@linecorp.com>
- * @since 2021. 02. 28.
- */
 object ResultView {
 
     private const val SYMBOL_ONE_STEP = "-"
     private const val NOTICE_RESULT_START = "실행결과"
     private const val NAME_DELIMETER_FOR_DISPLAY = ", "
 
-    fun printResultNotice() {
+    fun printRacingResult(racingGameResult: RacingGameResult) {
+        printResultNotice()
+        printRacingHistory(racingGameResult.racingHistory)
+        printWinners(racingGameResult.winners)
+    }
+
+    private fun printResultNotice() {
         println(NOTICE_RESULT_START)
     }
 
-    fun printRacingHistory(racingHistory: RacingHistory) {
+    private fun printRacingHistory(racingHistory: RacingHistory) {
         val racingResults = racingHistory.roundResults
         racingResults.forEach { printRoundResult(it) }
     }
 
     private fun printRoundResult(roundResult: RoundResult) {
         val carStates = roundResult.carStates
-        carStates.forEach { (carName, carPosition) ->
-            printCarStates(carName.name, carPosition.position)
+        carStates.forEach {
+            printCarStates(it.name.value, it.position.value)
         }
         println()
     }
@@ -35,8 +38,8 @@ object ResultView {
         println("$name : ${SYMBOL_ONE_STEP.repeat(position)}")
     }
 
-    fun printWinners(winners: Winners) {
-        val winnerNames = winners.winners.joinToString(NAME_DELIMETER_FOR_DISPLAY)
+    private fun printWinners(winners: Winners) {
+        val winnerNames = winners.joinWinnerNamesToString(NAME_DELIMETER_FOR_DISPLAY)
         println("${winnerNames}가 최종 우승했습니다.")
     }
 }

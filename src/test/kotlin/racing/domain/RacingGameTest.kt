@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import racing.data.CarState
 import racing.data.RacingGameData
+import racing.data.Winners
 import racing.domain.random.TestRandomWrapper
 import kotlin.random.Random
 
@@ -11,14 +12,13 @@ class RacingGameTest {
 
     private val testTryCount = 2
     private val testInputCarNames = listOf("pobi", "crong", "honux")
-    private val testCarNames = listOf(CarName("pobi"), CarName("crong"), CarName("honux"))
     private val testRacingGameData: RacingGameData = RacingGameData(testInputCarNames, testTryCount)
 
     @Test
     fun `constructor test`() {
         val racingGame = RacingGame(testRacingGameData, MovementChecker())
         assertThat(racingGame.cars.cars.size).isEqualTo(testInputCarNames.size)
-        assertThat(racingGame.cars.cars.map { it.name.name }).containsAll(testInputCarNames)
+        assertThat(racingGame.cars.cars.map { it.name.value }).containsAll(testInputCarNames)
     }
 
     @Test
@@ -27,8 +27,9 @@ class RacingGameTest {
         val testRacingGameData = RacingGameData(testInputCarNames, testTryCount)
         val racingGame = RacingGame(testRacingGameData, MovementChecker(randomWrapper))
 
-        val racingHistory = racingGame.run()
+        val racingGameResult = racingGame.run()
 
+        val racingHistory = racingGameResult.racingHistory
         val firstRoundResult = racingHistory.roundResults[0]
         val secondRoundResult = racingHistory.roundResults[1]
 
@@ -44,6 +45,9 @@ class RacingGameTest {
             CarState(cars.cars[1].name, CarPosition(2)),
             CarState(cars.cars[2].name, CarPosition(2))
         )
+
+        val expectedWinners = Winners(cars.cars.map { it.name })
+        assertThat(racingGameResult.winners).isEqualTo(expectedWinners)
     }
 
     @Test
@@ -51,8 +55,9 @@ class RacingGameTest {
         val randomWrapper = TestRandomWrapper(Random.nextInt(0, 4))
         val racingGame = RacingGame(testRacingGameData, MovementChecker(randomWrapper))
 
-        val racingHistory = racingGame.run()
+        val racingGameResult = racingGame.run()
 
+        val racingHistory = racingGameResult.racingHistory
         val firstRoundResult = racingHistory.roundResults[0]
         val secondRoundResult = racingHistory.roundResults[1]
 
@@ -68,47 +73,8 @@ class RacingGameTest {
             CarState(cars.cars[1].name, CarPosition.INIT_POSITION),
             CarState(cars.cars[2].name, CarPosition.INIT_POSITION)
         )
-    }
 
-    @Test
-    fun `get winner 테스트(winner가 하나)`() {
-
-        val racingGame = RacingGame(testRacingGameData, MovementChecker())
-        val cars = racingGame.cars
-
-        repeat(2) {
-            cars.cars[0].moveCar()
-        }
-
-        repeat(3) {
-            cars.cars[1].moveCar()
-        }
-
-        repeat(1) {
-            cars.cars[2].moveCar()
-        }
-
-        assertThat(racingGame.getWinners().winners).containsOnly(cars.cars[1].name.name)
-    }
-
-    @Test
-    fun `get winner 테스트(winner가 둘)`() {
-
-        val racingGame = RacingGame(testRacingGameData, MovementChecker())
-        val cars = racingGame.cars
-
-        repeat(2) {
-            cars.cars[0].moveCar()
-        }
-
-        repeat(2) {
-            cars.cars[1].moveCar()
-        }
-
-        repeat(1) {
-            cars.cars[2].moveCar()
-        }
-
-        assertThat(racingGame.getWinners().winners).containsOnly(cars.cars[0].name.name, cars.cars[1].name.name)
+        val expectedWinners = Winners(cars.cars.map { it.name })
+        assertThat(racingGameResult.winners).isEqualTo(expectedWinners)
     }
 }

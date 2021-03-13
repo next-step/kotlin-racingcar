@@ -4,7 +4,7 @@ import racing.domain.Car
 import racing.domain.CarName
 import racing.domain.CarPosition
 
-data class CarState(
+class CarState(
     val name: CarName,
     val position: CarPosition
 ) {
