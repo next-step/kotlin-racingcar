@@ -20,6 +20,6 @@
 12. [ ] Winners가 있어야 한다.
    1. [ ] Winner는 Winner의 1급 컬렉션이다
    2. [ ] Winners는 History 기반으로 승리자를 얻어낼 수 있다.
-13. [ ] Winner는 승리자 이다.
-   1. [ ] 이름만 있다. 
+13. [X] Winner는 승리자 이다.
+   1. [X] 이름만 있다. 
 14. [ ] Cars에서 winners를 구해올 수 있어야 한다. 
