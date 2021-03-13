@@ -12,7 +12,7 @@ fun main() {
     val tryCount = inputTryCount()
     val carNames = CarNameParser.parse(carNameLine)
 
-    val cars = carNames.map { Car(it) }
+    val cars = carNames.names.map { Car(it) }
     val carRacing = CarRacing(cars, tryCount)
     carRacing.execute()
 
