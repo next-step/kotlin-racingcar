@@ -1,7 +1,5 @@
 package racing.domain
 
-import java.util.Collections
-
 class Car(val name: String, private val probability: Probability = Probability()) {
     var position = START_POSITION
         private set
@@ -14,7 +12,7 @@ class Car(val name: String, private val probability: Probability = Probability()
     }
 
     fun getRecords(): List<Int> {
-        return Collections.unmodifiableList(records)
+        return records.toList()
     }
 
     companion object {

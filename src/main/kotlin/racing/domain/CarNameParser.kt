@@ -3,9 +3,7 @@ package racing.domain
 object CarNameParser {
     fun parse(carNameLine: String): List<String> {
         val names = carNameLine.split(CAR_NAME_DELIMITER)
-        names.forEach {
-            require(it.length <= CAR_NAME_LENGTH_LIMIT)
-        }
+        require(names.all { it.length <= CAR_NAME_LENGTH_LIMIT })
 
         return names
     }
