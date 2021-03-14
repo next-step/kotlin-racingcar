@@ -5,6 +5,8 @@ class Car(val name: CarName) {
     internal var currentPosition: Int = INIT_POSITION
         private set
 
+    constructor(name: String) : this(CarName(name))
+
     fun move(energy: Int) {
         if (isMovable(energy)) {
             currentPosition++
