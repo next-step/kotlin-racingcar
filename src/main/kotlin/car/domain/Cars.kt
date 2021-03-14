@@ -2,7 +2,7 @@ package car.domain
 
 class Cars(private val cars: List<Car>, private val energyProvider: EnergyProvider = RandomEnergyProvider()) {
 
-    private val _histories: MutableList<CarMoveHistoryCollection> = ArrayList()
+    private val _histories: MutableList<CarMoveHistoryCollection> = mutableListOf()
     val histories: List<CarMoveHistoryCollection>
         get() = _histories
     val winners: Winners
