@@ -9,34 +9,34 @@ import race.domain.Race
 
 class RaceTest {
 
-    @ParameterizedTest
-    @CsvSource(
-        value = [
-            "-1:5:car count is positive.",
-            "2:-5:lap count is positive."
-        ],
-        delimiter = ':'
-    )
-    fun `illegal argument test`(carCount: Int, lapCount: Int, exception: String) {
-        Assertions.assertThatThrownBy { Race(carCount, lapCount) }
+    @Test
+    fun `illegal argument test`() {
+
+        // GIVEN
+        val carNames = "pobi,crong"
+        val lapCount = -5
+
+        // WHEN
+        Assertions.assertThatThrownBy { Race(carNames, lapCount) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageMatching(exception)
+            .hasMessageMatching("lap count is positive.")
     }
 
     @Test
     fun `create race test`() {
 
         // GIVEN
-        val carCount = 2
+        val carNames = "pobi,crong"
         val lapCount = 5
 
         // WHEN
-        val race = Race(carCount, lapCount)
+        val race = Race(carNames, lapCount)
 
         // THEN
         assertThat(race).isNotNull
-        assertThat(race.cars.size).isEqualTo(carCount)
+
         race.cars.forEach {
+            assertThat(it.name).isIn(carNames.split(Race.delimeter))
             assertThat(it.position).isBetween(0, lapCount)
         }
     }
