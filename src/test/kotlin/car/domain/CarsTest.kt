@@ -59,9 +59,8 @@ class CarsTest() {
 
     private fun createEnergyProvider(nextInt: Int): EnergyProvider {
         return object : EnergyProvider {
-            override fun createNewEnergy(): Int {
-                return nextInt
-            }
+            override val energy: Int
+                get() = nextInt
         }
     }
 }
