@@ -1,7 +1,6 @@
-package racingcar.domain
+package racingcar.domain.racing
 
-import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
@@ -15,12 +14,12 @@ internal class RacingTrialTest {
     @ValueSource(ints = [1, 3, 100, Int.MAX_VALUE])
     fun `경주 시도(RacingTrial)의 순서를 조회하면 생성 시 입력한 순서 값을 그대로 가지고 있다`(order: Int) {
         val trial = RacingTrial(TrialOrder(order), listOf(dummyRecord))
-        assertThat(trial.order).isEqualTo(TrialOrder(order))
+        Assertions.assertThat(trial.order).isEqualTo(TrialOrder(order))
     }
 
     @Test
     fun `생성할 때, 빈 레코드를 주면 IllegalArgumentException을 던진다`() {
-        assertThatIllegalArgumentException()
+        Assertions.assertThatIllegalArgumentException()
             .isThrownBy { RacingTrial(TrialOrder(1), listOf()) }
             .withMessage("records is empty!")
     }
@@ -38,7 +37,7 @@ internal class RacingTrialTest {
             Record("그외6", location = 4)
         )
         val trial = RacingTrial(TrialOrder(1), records)
-        assertThat(trial.leadRecords).containsAnyOf(
+        Assertions.assertThat(trial.leadRecords).containsAnyOf(
             Record("최선두1", location = 8),
             Record("최선두2", location = 8)
         )

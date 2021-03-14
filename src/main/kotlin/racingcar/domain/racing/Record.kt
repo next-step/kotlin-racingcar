@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.racing
 
 import racingcar.domain.car.CarLocation
 import racingcar.domain.car.CarName

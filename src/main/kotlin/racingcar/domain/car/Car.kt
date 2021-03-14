@@ -1,6 +1,6 @@
 package racingcar.domain.car
 
-import racingcar.domain.car.engine.Engine
+import racingcar.domain.engine.Engine
 
 class Car(
     val name: CarName,

@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.racing
 
 data class TrialOrder(val value: Int) : Comparable<TrialOrder> {
     init {

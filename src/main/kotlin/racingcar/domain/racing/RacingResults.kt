@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.racing
 
 class RacingResults(trials: List<RacingTrial>) {
     val trials: List<RacingTrial> = trials.sortedBy { it.order }

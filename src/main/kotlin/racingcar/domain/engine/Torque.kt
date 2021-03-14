@@ -1,4 +1,4 @@
-package racingcar.domain.car.engine
+package racingcar.domain.engine
 
 /**
  * [Engine]이 발생시키는 돌림힘.

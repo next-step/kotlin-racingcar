@@ -1,4 +1,4 @@
-package racingcar.domain.car.engine
+package racingcar.domain.engine
 
 class RacingEngine(
     private val threshold: Force = DEFAULT_THRESHOLD,

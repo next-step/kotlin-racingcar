@@ -1,6 +1,6 @@
 package racingcar.domain.car
 
-import racingcar.domain.car.engine.Torque
+import racingcar.domain.engine.Torque
 
 data class CarLocation(val value: Int) : Comparable<CarLocation> {
     fun moveBy(torque: Torque): CarLocation {

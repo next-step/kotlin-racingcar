@@ -1,4 +1,4 @@
-package racingcar.domain.car.engine
+package racingcar.domain.engine
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest

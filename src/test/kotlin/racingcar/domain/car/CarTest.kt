@@ -5,8 +5,8 @@ import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.EnumSource
 import org.junit.jupiter.params.provider.ValueSource
-import racingcar.domain.car.engine.Engine
-import racingcar.domain.car.engine.Torque
+import racingcar.domain.engine.Engine
+import racingcar.domain.engine.Torque
 
 internal class CarTest {
     private val dummyEngine = object : Engine {

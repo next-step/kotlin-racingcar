@@ -1,6 +1,6 @@
-package racingcar.domain
+package racingcar.domain.racing
 
-import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
@@ -17,7 +17,7 @@ internal class RacingResultsTest {
             .map { RacingTrial(TrialOrder(it), dummyRecords) }
             .shuffled()
 
-        assertThat(RacingResults(shuffledTrials).trials)
+        Assertions.assertThat(RacingResults(shuffledTrials).trials)
             .containsExactlyElementsOf((1..numberOfTrials).map { RacingTrial(TrialOrder(it), dummyRecords) })
     }
 
@@ -32,7 +32,7 @@ internal class RacingResultsTest {
                 makeDummy(order = 5, 초반우세 = 1, 중반우세 = 2, 최종우승 = 3)
             )
         )
-        assertThat(results.winnerRecords)
+        Assertions.assertThat(results.winnerRecords)
             .containsExactly(Record("최종우승", 3))
     }
 
