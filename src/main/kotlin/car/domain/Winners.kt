@@ -6,7 +6,7 @@ class Winners(carMoveHistoryCollection: CarMoveHistoryCollection) {
     init {
         val maxPosition = carMoveHistoryCollection.moveHistories
             .map { it.position }
-            .max()!!
+            .max() ?: 0
 
         winners = carMoveHistoryCollection.moveHistories
             .filter { it.isWinner(maxPosition) }
@@ -14,6 +14,6 @@ class Winners(carMoveHistoryCollection: CarMoveHistoryCollection) {
     }
 
     override fun toString(): String {
-        return winners.joinToString(",") { toString() }
+        return winners.joinToString(",")
     }
 }
