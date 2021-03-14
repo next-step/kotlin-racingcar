@@ -24,7 +24,7 @@ class Cars(private val cars: List<Car>, private val energyProvider: EnergyProvid
             it.move(energyProvider.getEnergy())
 
             CarMoveHistory(it.name, it.currentPosition)
-        }.toList()
+        }
 
         _histories.add(CarMoveHistoryCollection(histories))
     }
