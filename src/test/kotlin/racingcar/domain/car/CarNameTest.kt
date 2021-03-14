@@ -14,13 +14,13 @@ internal class CarNameTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["남동민", "ABCDE", "한글다섯자", "12 45", "", "1"])
-    fun `각 인스턴스는 이름이 같으면 동일하다`(name: String) {
+    fun `차의 이름은 객체가 달라도 값이 같으면 동일하다`(name: String) {
         assertThat(CarName(name)).isEqualTo(CarName(name))
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["Mercedes Benz", "6자이상이름", "중간을 띄움", " 왼쪽보세요", "see->\t"])
-    fun `이름은 여백 포함 6자 이상을 넘으면 IllegalArgumentException throw`(name: String) {
+    fun `이름은 여백 포함 6자 이상을 넘으면 IllegalArgumentException을 던진다`(name: String) {
         assertThatIllegalArgumentException()
             .isThrownBy { CarName(name) }
             .withMessage("The length of name must be less than 6. name='$name'")

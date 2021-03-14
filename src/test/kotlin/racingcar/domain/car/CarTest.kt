@@ -25,7 +25,7 @@ internal class CarTest {
 
     @ParameterizedTest
     @EnumSource
-    fun `차는 race할 때마다, 엔진이 주는 값만큼 위치가 바뀐다`(torque: Torque) {
+    fun `차는 레이싱할 때마다, 엔진이 주는 회전력(Torque)의 값만큼 차의 위치가 바뀐다`(torque: Torque) {
         val car = Car(
             CarName("슈마허"),
             engine = object : Engine {

@@ -13,13 +13,13 @@ internal class RacingTrialTest {
 
     @ParameterizedTest
     @ValueSource(ints = [1, 3, 100, Int.MAX_VALUE])
-    fun `order를 넣어 생성한 대로, order를 반환`(order: Int) {
+    fun `경주 시도(RacingTrial)의 순서를 조회하면 생성 시 입력한 순서 값을 그대로 가지고 있다`(order: Int) {
         val trial = RacingTrial(TrialOrder(order), listOf(dummyRecord))
         assertThat(trial.order).isEqualTo(TrialOrder(order))
     }
 
     @Test
-    fun `생성할 때, 빈 레코드를 주면 IllegalArgumentException throw`() {
+    fun `생성할 때, 빈 레코드를 주면 IllegalArgumentException을 던진다`() {
         assertThatIllegalArgumentException()
             .isThrownBy { RacingTrial(TrialOrder(1), listOf()) }
             .withMessage("records is empty!")

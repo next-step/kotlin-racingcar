@@ -20,7 +20,7 @@ internal class ForceTest {
         "2, 2, false, true, false",
         "3, 2, false, false, true"
     )
-    fun `Force의 비교는 Int의 비교와 동일해야 한다`(
+    fun `Force는 대소 비교가 가능하다`(
         one: Int,
         other: Int,
         lessThanOther: Boolean,
@@ -36,7 +36,7 @@ internal class ForceTest {
 
     @ParameterizedTest
     @ValueSource(ints = [-1, -4824, Int.MIN_VALUE])
-    fun `force value는 0보다 커야 한다`(threshold: Int) {
+    fun `force 값은 0보다 커야 한다`(threshold: Int) {
         assertThatIllegalArgumentException()
             .isThrownBy { Force(threshold) }
             .withMessage("Force must be positive or zero.")

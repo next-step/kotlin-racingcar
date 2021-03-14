@@ -9,19 +9,19 @@ import racingcar.domain.car.engine.Torque
 
 internal class CarLocationTest {
     @Test
-    fun `CarLocation_ZERO는 0이다`() {
+    fun `ZERO는 정수 0값을 가진다`() {
         assertThat(CarLocation.ZERO.value).isEqualTo(0)
     }
 
     @ParameterizedTest
     @ValueSource(ints = [0, 234, Int.MAX_VALUE])
-    fun `CarLocation은 객체가 달라도 값이 같으면 동일하다`(location: Int) {
+    fun `차의 위치(CarLocation)는 객체가 달라도 값이 같으면 동일하다`(location: Int) {
         assertThat(CarLocation(location)).isEqualTo(CarLocation(location))
     }
 
     @ParameterizedTest
     @CsvSource("STOP, 0", "MOVE, 1")
-    fun `차의 위치는 Torque를 받으면 그 값만큼 증가한다`(torque: Torque, result: Int) {
+    fun `차의 위치는 STOP을 받으면 변하지 않고, MOVE를 받으면 위치가 1 증가한다`(torque: Torque, result: Int) {
         val startLocation = CarLocation.ZERO
 
         assertThat(startLocation.moveBy(torque)).isEqualTo(CarLocation(result))

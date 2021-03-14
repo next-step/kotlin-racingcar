@@ -12,7 +12,7 @@ internal class RacingResultsTest {
 
     @ParameterizedTest
     @ValueSource(ints = [1, 10, 50])
-    fun `trials는 TrialOrder의 오름차순으로 정렬된다`(numberOfTrials: Int) {
+    fun `결과는 시도 순서(TrialOrder) 기준으로 오름차순으로 정렬된다`(numberOfTrials: Int) {
         val shuffledTrials = (1..numberOfTrials)
             .map { RacingTrial(TrialOrder(it), dummyRecords) }
             .shuffled()
@@ -22,7 +22,7 @@ internal class RacingResultsTest {
     }
 
     @Test
-    fun `마지막 trial의 leadRecords를 가져온다`() {
+    fun `우승기록은 마지막 시도(trial)의 선두 기록을 가져온다`() {
         val results = RacingResults(
             listOf(
                 makeDummy(order = 1, 초반우세 = 1, 중반우세 = 0, 최종우승 = 0),
