@@ -1,13 +1,12 @@
 package racingcar.view
 
-import racingcar.racing.RacingResults
-import racingcar.racing.RacingTrial
-import racingcar.racing.Record
+import racingcar.domain.racing.RacingResults
+import racingcar.domain.racing.RacingTrial
+import racingcar.domain.racing.Record
 
 class ResultView {
     fun print(results: RacingResults) {
-        println()
-        println("실행 결과")
+        println("\n실행 결과")
         printTrials(results)
         printWinners(results)
     }
@@ -26,7 +25,7 @@ class ResultView {
     }
 
     private fun makeCarRecordString(record: Record) =
-        "${record.name} : ${"-".repeat(START_LINE + record.location.value)}"
+        "${record.name} : ${"-".repeat(record.location.value)}"
 
     private fun printWinners(results: RacingResults) {
         println(makeWinnerNoticeSentence(results.winnerRecords))
@@ -36,7 +35,6 @@ class ResultView {
         winnerRecords.joinToString { it.name.toString() } + WINNER_NOTICE_SUFFIX
 
     companion object {
-        const val START_LINE = 1
         const val WINNER_NOTICE_SUFFIX = "가 최종 우승했습니다."
     }
 }
