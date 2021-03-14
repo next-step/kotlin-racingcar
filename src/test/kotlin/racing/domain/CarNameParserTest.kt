@@ -9,8 +9,9 @@ class CarNameParserTest {
     @Test
     fun `입력받은 이름이 ,기준으로 잘 스플릿된다`() {
         val carNames = CarNameParser.parse("서진혁,카샤,next,step")
+        val cars = listOf("서진혁", "카샤", "next", "step").map { Car(it) }
 
-        assertEquals(CarNames(listOf("서진혁", "카샤", "next", "step")), carNames)
+        assertEquals(CarCollection(cars).getNames(), carNames.getNames())
     }
 
     @Test

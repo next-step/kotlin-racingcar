@@ -6,6 +6,7 @@ import org.hamcrest.Matchers.greaterThan
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import racing.domain.Car
+import racing.domain.CarCollection
 
 class CarRacingTest {
 
@@ -40,7 +41,8 @@ class CarRacingTest {
         private const val CAR_COUNT = 3
         private const val TRY_COUNT = 7
         private val cars = listOf(Car("서진혁"), Car("카샤"), Car("nextstep"))
-        private val carRacing = CarRacing(cars, TRY_COUNT)
+        private val carCollection = CarCollection(cars)
+        private val carRacing = CarRacing(carCollection, TRY_COUNT)
 
         @BeforeAll
         @JvmStatic
