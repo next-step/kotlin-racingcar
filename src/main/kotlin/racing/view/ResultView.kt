@@ -1,5 +1,7 @@
 package racing.view
 
+import racing.domain.Car
+
 fun printResult(recordsPerCarName: Map<String, List<Int>>, tryCount: Int) {
     repeat(tryCount) { index ->
         printRecord(recordsPerCarName.map { CarRecord(it.key, it.value[index]) })
@@ -13,6 +15,6 @@ fun printRecord(recordPerCarName: List<CarRecord>) {
     }
 }
 
-fun printWinner(winners: String) {
-    println("${winners}가 최종 우승했습니다.")
+fun printWinner(winners: List<Car>) {
+    println("${winners.joinToString(", ") { it.name }}가 최종 우승했습니다.")
 }
