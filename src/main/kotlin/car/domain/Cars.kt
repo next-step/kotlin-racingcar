@@ -21,7 +21,7 @@ class Cars(private val cars: List<Car>, private val energyProvider: EnergyProvid
 
     private fun moveAllCar() {
         val histories: List<CarMoveHistory> = cars.map {
-            it.move(energyProvider.getEnergy())
+            it.move(energyProvider.energy)
 
             CarMoveHistory(it.name, it.currentPosition)
         }

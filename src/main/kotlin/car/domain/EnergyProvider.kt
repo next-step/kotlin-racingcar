@@ -1,7 +1,10 @@
 package car.domain
 
 interface EnergyProvider {
-    fun getEnergy(): Int
+    val energy: Int
+        get() = createNewEnergy()
+
+    fun createNewEnergy(): Int
 
     companion object {
         const val MAX_ENERGY_SIZE = 10

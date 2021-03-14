@@ -59,7 +59,7 @@ class CarsTest() {
 
     private fun createEnergyProvider(nextInt: Int): EnergyProvider {
         return object : EnergyProvider {
-            override fun getEnergy(): Int {
+            override fun createNewEnergy(): Int {
                 return nextInt
             }
         }
