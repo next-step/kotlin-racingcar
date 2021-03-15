@@ -12,6 +12,7 @@ abstract class MovableCar(val carName: CarName, var _position: Int = INIT_POSITI
 
     fun move() {
         moveCar()
+
         _histories.add(CarMoveHistory(carName, _position))
     }
 

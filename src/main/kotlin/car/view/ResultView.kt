@@ -15,6 +15,7 @@ class ResultView(private val carCollection: CarCollection, private val times: In
             printCarPositionHistory(list, index)
             println()
         }
+
         printWinners(WinnerCollection(carCollection))
     }
 
