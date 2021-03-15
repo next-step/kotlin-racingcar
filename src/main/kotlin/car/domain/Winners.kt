@@ -1,17 +1,9 @@
 package car.domain
 
-class Winners(carMoveHistoryCollection: CarMoveHistoryCollection) {
-    val winners: List<Winner>
-
-    init {
-        val maxPosition = carMoveHistoryCollection.moveHistories
-            .map { it.position }
-            .max() ?: 0
-
-        winners = carMoveHistoryCollection.moveHistories
-            .filter { it.isWinner(maxPosition) }
-            .map { Winner(it.carName) }
-    }
+class Winners(carCollection: CarCollection) {
+    val winners: List<Winner> = carCollection.cars
+        .filter { it.isWinner(carCollection.maxPosition) }
+        .map { Winner(it.carName) }
 
     override fun toString(): String {
         return winners.joinToString(",")

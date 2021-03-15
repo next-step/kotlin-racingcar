@@ -1,11 +1,16 @@
 package car.domain
 
-class Car(val name: CarName, private val energyProvider: EnergyProvider) : MovableCar {
+class Car(val _name: CarName, private val energyProvider: EnergyProvider) : MovableCar {
 
     private var _position: Int = INIT_POSITION
+    private val _histories: MutableList<CarMoveHistory> = mutableListOf()
 
     override val currentPosition: Int
         get() = _position
+    override val historyCollection: CarMoveHistoryCollection
+        get() = CarMoveHistoryCollection(_histories)
+    override val carName: CarName
+        get() = _name
 
     constructor(name: String, energyProvider: EnergyProvider) : this(CarName(name), energyProvider)
 
@@ -13,6 +18,8 @@ class Car(val name: CarName, private val energyProvider: EnergyProvider) : Movab
         if (isMovable()) {
             _position++
         }
+
+        _histories.add(CarMoveHistory(_name, _position))
     }
 
     private fun isMovable(): Boolean {

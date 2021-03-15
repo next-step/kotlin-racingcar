@@ -4,14 +4,14 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
-class CarsTest() {
+class CarCollectionTest() {
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3])
     fun `랜덤값이 4 미만일경우 움직이면은 안된다`(rand: Int) {
         // given
 
         val carNames = CarNameCollection(arrayOf("오", "길", "환"))
-        val cars = Cars(carNameCollection = carNames, energyProvider = createEnergyProvider(rand))
+        val cars = CarCollection(carNameCollection = carNames, energyProvider = createEnergyProvider(rand))
 
         // when
         cars.move(times = 5)
@@ -29,7 +29,7 @@ class CarsTest() {
         // given
         var times = 5
         val carNames = CarNameCollection(arrayOf("오", "길", "환"))
-        val cars = Cars(carNameCollection = carNames, energyProvider = createEnergyProvider(rand))
+        val cars = CarCollection(carNameCollection = carNames, energyProvider = createEnergyProvider(rand))
 
         // when
         cars.move(times)
@@ -48,7 +48,7 @@ class CarsTest() {
         val maxRand = 9
         val carNames = CarNameCollection(arrayOf("오", "길", "환"))
 
-        val cars = Cars(carNameCollection = carNames, energyProvider = createEnergyProvider(maxRand))
+        val cars = CarCollection(carNameCollection = carNames, energyProvider = createEnergyProvider(maxRand))
 
         // when
         cars.move(times)

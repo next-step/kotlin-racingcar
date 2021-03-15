@@ -1,22 +1,27 @@
 package car.view
 
 import car.domain.CarMoveHistoryCollection
-import car.domain.Cars
+import car.domain.CarCollection
 import car.domain.Winners
 
-class ResultView(private val cars: Cars) {
+class ResultView(private val carCollection: CarCollection, private val times: Int) {
     fun print() {
-        val allHistories = cars.histories
-        for (carMoveHistory in allHistories) {
-            printCarPositionHistory(carMoveHistory)
+        var allCars = carCollection.cars
+
+        val list: List<CarMoveHistoryCollection> = allCars
+            .map { it.historyCollection }
+
+        repeat(times) { index ->
+            printCarPositionHistory(list, index)
             println()
         }
-        printWinners(cars.winners)
+        printWinners(Winners(carCollection))
     }
 
-    private fun printCarPositionHistory(carMoveHistoryCollection: CarMoveHistoryCollection) {
-        for (history in carMoveHistoryCollection.moveHistories) {
-            println(history)
+    private fun printCarPositionHistory(carMoveHistoryCollectionList: List<CarMoveHistoryCollection>, index: Int) {
+        for (carMoveHistoryCollection in carMoveHistoryCollectionList) {
+            print(carMoveHistoryCollection.moveHistories[index])
+            println()
         }
     }
 

@@ -1,7 +1,7 @@
 package car
 
 import car.domain.CarNameCollection
-import car.domain.Cars
+import car.domain.CarCollection
 import car.view.InputView
 import car.view.ResultView
 
@@ -9,8 +9,8 @@ fun main() {
     val inputView = InputView()
     val input = inputView.input()
 
-    val cars = Cars(CarNameCollection(input.splitNameBySplitter()))
-    val resultView = ResultView(cars)
+    val cars = CarCollection(CarNameCollection(input.splitNameBySplitter()))
+    val resultView = ResultView(cars, input.tryCount)
 
     cars.move(input.tryCount)
     resultView.print()

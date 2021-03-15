@@ -1,12 +1,8 @@
 package car.domain
 
-class Cars(val cars: List<MovableCar>) {
-
-    private val _histories: MutableList<CarMoveHistoryCollection> = mutableListOf()
-    val histories: List<CarMoveHistoryCollection>
-        get() = _histories
-    val winners: Winners
-        get() = Winners(_histories.last())
+class CarCollection(val cars: List<MovableCar>) {
+    val maxPosition: Int
+        get() = cars.map { it.currentPosition }.max() ?: 0
 
     constructor(
         carNameCollection: CarNameCollection,
