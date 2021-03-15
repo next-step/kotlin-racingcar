@@ -12,7 +12,7 @@ class Car(val _name: CarName, private val energyProvider: EnergyProvider) : Mova
     override val carName: CarName
         get() = _name
 
-    constructor(name: String, energyProvider: EnergyProvider) : this(CarName(name), energyProvider)
+    constructor(_name: String, energyProvider: EnergyProvider) : this(CarName(_name), energyProvider)
 
     override fun move() {
         if (isMovable()) {
