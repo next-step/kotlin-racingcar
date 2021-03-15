@@ -1,6 +1,6 @@
 package car.domain
 
-class Car(val _name: CarName, private val energyProvider: EnergyProvider) : MovableCar {
+class Car(private val _name: CarName, private val energyProvider: EnergyProvider) : MovableCar {
 
     private var _position: Int = INIT_POSITION
     private val _histories: MutableList<CarMoveHistory> = mutableListOf()
