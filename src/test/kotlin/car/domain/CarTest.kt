@@ -16,7 +16,7 @@ class CarTest {
         car.move()
         // then
         assertThat(car.currentPosition)
-            .isEqualTo(Car.INIT_POSITION)
+            .isEqualTo(MovableCar.INIT_POSITION)
     }
 
     @ParameterizedTest
@@ -28,7 +28,7 @@ class CarTest {
         car.move()
         // then
         assertThat(car.currentPosition)
-            .isEqualTo(Car.INIT_POSITION + 1)
+            .isEqualTo(MovableCar.INIT_POSITION + 1)
     }
 
     @Test

@@ -25,15 +25,9 @@ class WinnerCollectionTests {
     }
 
     private fun createMockMovableCar(carName: String, currentPosition: Int): MovableCar {
-        return object : MovableCar {
-            override val currentPosition: Int
-                get() = currentPosition
-            override val carName: CarName
-                get() = CarName(carName)
-            override val historyCollection: CarMoveHistoryCollection
-                get() = CarMoveHistoryCollection(listOf())
-
-            override fun move() {}
+        return object : MovableCar(CarName(carName), currentPosition) {
+            override fun moveCar() {
+            }
         }
     }
 }
