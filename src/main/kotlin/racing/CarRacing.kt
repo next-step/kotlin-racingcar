@@ -1,19 +1,28 @@
 package racing
 
+import racing.domain.Car
+import racing.domain.CarNameParser
+import racing.domain.CarCollection
+import racing.view.inputCarName
+import racing.view.inputTryCount
+import racing.view.printResult
+import racing.view.printWinner
+
 fun main() {
-    val carNames = inputCarName()
+    val carNameLine = inputCarName()
     val tryCount = inputTryCount()
 
-    val cars = carNames.map { Car(it) }
-    val carRacing = CarRacing(cars, tryCount)
+    val carCollection = CarNameParser.parse(carNameLine)
+    val carRacing = CarRacing(carCollection, tryCount)
     carRacing.execute()
 
     println("실행 결과")
-    printResult(cars, tryCount)
-    printWinner(carRacing)
+    val recordsPerCarName = carCollection.cars.associateBy({ it.name }, { it.getRecords() })
+    printResult(recordsPerCarName, tryCount)
+    printWinner(carRacing.getWinners())
 }
 
-class CarRacing(private val cars: List<Car>, private val tryCount: Int) {
+class CarRacing(private val carCollection: CarCollection, private val tryCount: Int) {
 
     fun execute() {
         repeat(tryCount) {
@@ -22,13 +31,15 @@ class CarRacing(private val cars: List<Car>, private val tryCount: Int) {
     }
 
     private fun executeCarGo() {
-        cars.forEach {
+        carCollection.cars.forEach {
             it.tryGo()
         }
     }
 
-    fun getWinner(): List<Car> {
-        val maxPosition = cars.map { it.position }.max()
-        return cars.filter { it.position == maxPosition }
+    fun getWinners(): List<Car> {
+        val maxPosition = carCollection.cars.map { it.position }.max()
+        require(maxPosition != null) { "car name이 입력되었다면, maxPosition은 null이 될수 없습니다." }
+
+        return carCollection.cars.filter { it.position == maxPosition }
     }
 }
