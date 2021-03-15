@@ -26,6 +26,36 @@ class CarTest {
         assertThat(car.name).isEqualTo(name)
     }
 
+    @Test
+    fun `create cars test`() {
+
+        // GIVEN
+        val carNames = "pobi,crong"
+
+        // WHEN
+        val cars = Car.create(carNames)
+
+        // THEN
+        assertThat(cars.size).isEqualTo(2)
+        assertThat(cars.map { it.name }).containsAll(carNames.split(Car.NAME_DELIMETER))
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["", " ", "  "])
+    fun `create cars names empty and blank test`(carNames: String) {
+        Assertions.assertThatThrownBy { Car.create(carNames) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageMatching("carNames is not blank.")
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["  , ", " , ", "  ,  , "])
+    fun `create cars names illegal test`(carNames: String) {
+        Assertions.assertThatThrownBy { Car.create(carNames) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageMatching("name is not blank.")
+    }
+
     @ParameterizedTest
     @CsvSource(
         value = ["-1:pobi", "10:crong"],
