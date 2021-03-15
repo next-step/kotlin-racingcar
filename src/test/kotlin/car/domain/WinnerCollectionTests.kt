@@ -24,10 +24,11 @@ class WinnerCollectionTests {
             )
     }
 
-    private fun createMockMovableCar(carName: String, currentPosition: Int): MovableCar {
-        return object : MovableCar(CarName(carName), currentPosition) {
-            override fun moveCar() {
-            }
-        }
+    private fun createMockMovableCar(carName: String, currentPosition: Int): Car {
+//        val car = Car(carName, )
+//        repeat(currentPosition) {
+//            car.move()
+//        }
+        return Car(carName, RandomEnergyProvider())
     }
 }

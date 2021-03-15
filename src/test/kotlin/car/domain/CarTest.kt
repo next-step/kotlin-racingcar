@@ -1,5 +1,6 @@
 package car.domain
 
+import car.domain.Car.Companion.INIT_POSITION
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -16,7 +17,7 @@ class CarTest {
         car.move()
         // then
         assertThat(car.currentPosition)
-            .isEqualTo(MovableCar.INIT_POSITION)
+            .isEqualTo(INIT_POSITION)
     }
 
     @ParameterizedTest
@@ -28,7 +29,7 @@ class CarTest {
         car.move()
         // then
         assertThat(car.currentPosition)
-            .isEqualTo(MovableCar.INIT_POSITION + 1)
+            .isEqualTo(INIT_POSITION + 1)
     }
 
     @Test

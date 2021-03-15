@@ -1,6 +1,6 @@
 package car.domain
 
-class CarCollection(val cars: List<MovableCar>) {
+class CarCollection(val cars: List<Car>) {
     val maxPosition: Int
         get() = cars.map { it.currentPosition }.max() ?: 0
 
