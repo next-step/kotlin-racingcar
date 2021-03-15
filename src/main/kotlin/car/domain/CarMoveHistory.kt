@@ -6,6 +6,6 @@ data class CarMoveHistory(val carName: CarName, val position: Int) {
     }
 
     companion object {
-        private const val POSITION_EXPRESSION = "-"
+        const val POSITION_EXPRESSION = "-"
     }
 }

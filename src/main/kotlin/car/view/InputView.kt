@@ -8,6 +8,9 @@ class InputView {
         println("시도할 횟수는 몇 회인가요?")
         val tryCount = readLine()!!.toInt()
 
-        return Input(name, tryCount)
+        println("어떤 문자로 이쁘게 표기할까요?")
+        val prettyPositionString = readLine()!!
+
+        return Input(name, tryCount, prettyPositionString)
     }
 }

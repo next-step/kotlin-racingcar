@@ -2,9 +2,14 @@ package car.view
 
 import car.domain.CarMoveHistoryCollection
 import car.domain.CarCollection
+import car.domain.CarMoveHistoryPrettyPrinter
 import car.domain.WinnerCollection
 
-class ResultView(private val carCollection: CarCollection, private val times: Int) {
+class ResultView(
+    private val carCollection: CarCollection,
+    private val times: Int,
+    private val prettyPositionString: String
+) {
     fun print() {
         var allCars = carCollection.cars
 
@@ -21,7 +26,9 @@ class ResultView(private val carCollection: CarCollection, private val times: In
 
     private fun printCarPositionHistory(carMoveHistoryCollectionList: List<CarMoveHistoryCollection>, index: Int) {
         for (carMoveHistoryCollection in carMoveHistoryCollectionList) {
-            print(carMoveHistoryCollection.moveHistories[index])
+            val pretty =
+                CarMoveHistoryPrettyPrinter(carMoveHistoryCollection.moveHistories[index], prettyPositionString)
+            print(pretty)
             println()
         }
     }
