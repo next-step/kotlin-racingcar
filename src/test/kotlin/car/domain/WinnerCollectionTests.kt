@@ -3,7 +3,7 @@ package car.domain
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class WinnersTests {
+class WinnerCollectionTests {
     @Test
     fun `승리자 목록은 History 기반으로 스스로 승리인지 파악할 수 있어야 한다`() {
         val cars = CarCollection(
@@ -15,7 +15,7 @@ class WinnersTests {
                 createMockMovableCar("5번차", 1)
             )
         )
-        val winners = Winners(cars)
+        val winners = WinnerCollection(cars)
 
         assertThat(winners.winners)
             .containsExactlyInAnyOrder(

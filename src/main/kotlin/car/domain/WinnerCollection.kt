@@ -1,6 +1,6 @@
 package car.domain
 
-class Winners(carCollection: CarCollection) {
+class WinnerCollection(carCollection: CarCollection) {
     val winners: List<Winner> = carCollection.cars
         .filter { it.isWinner(carCollection.maxPosition) }
         .map { Winner(it.carName) }
