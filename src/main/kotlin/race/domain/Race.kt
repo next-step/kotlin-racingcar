@@ -1,24 +1,29 @@
 package race.domain
 
 import race.ui.ResultView
-import kotlin.random.Random
 
-class Race(carCount: Int, private val lapCount: Int) {
-    val cars: List<Car> = IntRange(1, carCount).map { Car() }
+class Race(val cars: List<Car>) {
 
     init {
-        require(carCount > 0) { "car count is positive." }
-        require(lapCount > 0) { "lap count is positive." }
+        require(cars.isNotEmpty()) { "car is not empty."}
     }
 
-    private fun turnAround() {
-        cars.map { it.move(Random.nextInt(0, 9)) }
+    private fun turnAround(randomNumber: () -> Int) {
+        cars.map { it.move(randomNumber()) }
         ResultView.printNow(cars)
         println()
     }
 
-    fun start() {
+    fun start(lapCount: Int, randomNumber: () -> Int): Race {
+        require(lapCount > 0) { "lap count is positive." }
+
         ResultView.printTitle()
-        IntRange(1, lapCount).forEach { _ -> turnAround() }
+        IntRange(1, lapCount).forEach { _ -> turnAround(randomNumber) }
+        return this
+    }
+
+    fun takeWinners(): List<Car> {
+        val winnerPosition = cars.map { it.position }.max()
+        return cars.filter { it.position == winnerPosition }
     }
 }
