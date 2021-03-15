@@ -25,10 +25,11 @@ class WinnerCollectionTests {
     }
 
     private fun createMockMovableCar(carName: String, currentPosition: Int): Car {
-//        val car = Car(carName, )
-//        repeat(currentPosition) {
-//            car.move()
-//        }
-        return Car(carName, RandomEnergyProvider())
+        val car = Car(carName, AlwaysMovableStrategy())
+        repeat(currentPosition) {
+            car.move()
+        }
+
+        return car
     }
 }

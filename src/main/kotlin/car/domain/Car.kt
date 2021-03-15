@@ -1,6 +1,6 @@
 package car.domain
 
-class Car(val carName: CarName, private val energyProvider: EnergyProvider) {
+class Car(val carName: CarName, private val movableStrategy: MovableStrategy) {
     private val _histories: MutableList<CarMoveHistory> = mutableListOf()
 
     private var _position: Int = INIT_POSITION
@@ -10,18 +10,13 @@ class Car(val carName: CarName, private val energyProvider: EnergyProvider) {
     val historyCollection: CarMoveHistoryCollection
         get() = CarMoveHistoryCollection(_histories)
 
-    constructor(carName: String, energyProvider: EnergyProvider) : this(CarName(carName), energyProvider)
+    constructor(carName: String, movableStrategy: MovableStrategy) : this(CarName(carName), movableStrategy)
 
     fun move() {
-        if (isMovable()) {
+        if (movableStrategy.isMovable()) {
             _position++
         }
-
         _histories.add(CarMoveHistory(carName, _position))
-    }
-
-    private fun isMovable(): Boolean {
-        return energyProvider.energy >= MOVE_CONDITION_ENERGY
     }
 
     fun isWinner(winnerPosition: Int): Boolean {
@@ -29,7 +24,6 @@ class Car(val carName: CarName, private val energyProvider: EnergyProvider) {
     }
 
     companion object {
-        private const val MOVE_CONDITION_ENERGY = 4
         const val INIT_POSITION = 0
     }
 }

@@ -12,7 +12,7 @@ class CarTest {
     @ValueSource(ints = [0, 1, 2, 3])
     fun `랜덤이 4 미만이고 움직일 경우 포지션은 0이여야 한다`(rand: Int) {
         // given
-        val car: Car = Car("오길환", createEnergyProvider(rand))
+        val car: Car = Car("오길환", crateEnergyMovableStrategy(rand))
         // when
         car.move()
         // then
@@ -24,7 +24,7 @@ class CarTest {
     @ValueSource(ints = [4, 5, 6, 7, 8, 9])
     fun `랜덤이 4 이상이고 움직일 경우 포지션은 1이여야 한다`(rand: Int) {
         // given
-        val car: Car = Car("오길환", createEnergyProvider(rand))
+        val car: Car = Car("오길환", crateEnergyMovableStrategy(rand))
         // when
         car.move()
         // then
@@ -35,13 +35,14 @@ class CarTest {
     @Test
     fun `이름이 5글자 초과이면 Exception이 발생해야 한다`() {
         Assertions.assertThatIllegalArgumentException()
-            .isThrownBy { Car("5글자가넘는이룸", createEnergyProvider(nextInt = 9)) }
+            .isThrownBy { Car("5글자가넘는이룸", crateEnergyMovableStrategy(nextInt = 9)) }
     }
 
-    private fun createEnergyProvider(nextInt: Int): EnergyProvider {
-        return object : EnergyProvider {
+    private fun crateEnergyMovableStrategy(nextInt: Int): MovableStrategy {
+        val energyProvider = object : EnergyProvider {
             override val energy: Int
                 get() = nextInt
         }
+        return EnergyMovableStrategy(energyProvider)
     }
 }

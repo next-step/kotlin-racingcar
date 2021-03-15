@@ -11,7 +11,7 @@ class CarCollectionTest() {
         // given
 
         val carNames = CarNameCollection(arrayOf("오", "길", "환"))
-        val cars = CarCollection(carNameCollection = carNames, energyProvider = createEnergyProvider(rand))
+        val cars = CarCollection(carNameCollection = carNames, movableStrategy = crateEnergyMovableStrategy(rand))
 
         // when
         cars.move(times = 5)
@@ -29,7 +29,7 @@ class CarCollectionTest() {
         // given
         var times = 5
         val carNames = CarNameCollection(arrayOf("오", "길", "환"))
-        val cars = CarCollection(carNameCollection = carNames, energyProvider = createEnergyProvider(rand))
+        val cars = CarCollection(carNameCollection = carNames, movableStrategy = crateEnergyMovableStrategy(rand))
 
         // when
         cars.move(times)
@@ -48,7 +48,7 @@ class CarCollectionTest() {
         val maxRand = 9
         val carNames = CarNameCollection(arrayOf("오", "길", "환"))
 
-        val cars = CarCollection(carNameCollection = carNames, energyProvider = createEnergyProvider(maxRand))
+        val cars = CarCollection(carNameCollection = carNames, movableStrategy = crateEnergyMovableStrategy(maxRand))
 
         // when
         cars.move(times)
@@ -60,10 +60,11 @@ class CarCollectionTest() {
             .allMatch { it.currentPosition == times }
     }
 
-    private fun createEnergyProvider(nextInt: Int): EnergyProvider {
-        return object : EnergyProvider {
+    private fun crateEnergyMovableStrategy(nextInt: Int): MovableStrategy {
+        val energyProvider = object : EnergyProvider {
             override val energy: Int
                 get() = nextInt
         }
+        return EnergyMovableStrategy(energyProvider)
     }
 }
