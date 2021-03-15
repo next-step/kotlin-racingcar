@@ -8,8 +8,6 @@ abstract class MovableCar(val carName: CarName, var _position: Int = INIT_POSITI
     val historyCollection: CarMoveHistoryCollection
         get() = CarMoveHistoryCollection(_histories)
 
-    protected abstract fun moveCar()
-
     fun move() {
         moveCar()
 
@@ -19,6 +17,8 @@ abstract class MovableCar(val carName: CarName, var _position: Int = INIT_POSITI
     fun isWinner(winnerPosition: Int): Boolean {
         return currentPosition == winnerPosition
     }
+
+    protected abstract fun moveCar()
 
     companion object {
         const val INIT_POSITION = 0
