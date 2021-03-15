@@ -22,4 +22,8 @@
    2. [X] Winners는 History 기반으로 승리자를 얻어낼 수 있다.
 13. [X] Winner는 승리자 이다.
    1. [X] 이름만 있다. 
-14. [X] Cars에서 winners를 구해올 수 있어야 한다. 
+14. [X] Cars에서 winners를 구해올 수 있어야 한다.
+
+
+https://github.com/next-step/kotlin-racingcar/pull/231#pullrequestreview-611676110
+Car가 책임을 갖게 하도록 하자.

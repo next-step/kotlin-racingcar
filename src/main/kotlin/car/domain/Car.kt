@@ -1,20 +1,22 @@
 package car.domain
 
-class Car(val name: CarName) {
+class Car(val name: CarName, private val energyProvider: EnergyProvider) : MovableCar {
 
-    internal var currentPosition: Int = INIT_POSITION
-        private set
+    private var _position: Int = INIT_POSITION
 
-    constructor(name: String) : this(CarName(name))
+    override val currentPosition: Int
+        get() = _position
 
-    fun move(energy: Int) {
-        if (isMovable(energy)) {
-            currentPosition++
+    constructor(name: String, energyProvider: EnergyProvider) : this(CarName(name), energyProvider)
+
+    override fun move() {
+        if (isMovable()) {
+            _position++
         }
     }
 
-    private fun isMovable(energy: Int): Boolean {
-        return energy >= MOVE_CONDITION_ENERGY
+    private fun isMovable(): Boolean {
+        return energyProvider.energy >= MOVE_CONDITION_ENERGY
     }
 
     companion object {

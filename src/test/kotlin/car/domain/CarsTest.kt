@@ -17,9 +17,10 @@ class CarsTest() {
         cars.move(times = 5)
 
         // then
-        val lastHistory = cars.histories.last()
-        assertThat(lastHistory.moveHistories)
-            .allMatch { it.position == 0 }
+        val carList = cars.cars
+
+        assertThat(carList)
+            .allMatch { it.currentPosition == 0 }
     }
 
     @ParameterizedTest
@@ -34,9 +35,10 @@ class CarsTest() {
         cars.move(times)
 
         // then
-        val lastHistory = cars.histories.last()
-        assertThat(lastHistory.moveHistories)
-            .allMatch { it.position == times }
+        val carList = cars.cars
+
+        assertThat(carList)
+            .allMatch { it.currentPosition == times }
     }
 
     @ParameterizedTest
@@ -52,9 +54,10 @@ class CarsTest() {
         cars.move(times)
 
         // then
-        val lastHistory = cars.histories.last()
-        assertThat(lastHistory.moveHistories)
-            .allMatch { it.position == times }
+        val carList = cars.cars
+
+        assertThat(carList)
+            .allMatch { it.currentPosition == times }
     }
 
     private fun createEnergyProvider(nextInt: Int): EnergyProvider {

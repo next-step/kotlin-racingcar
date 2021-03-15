@@ -1,6 +1,6 @@
 package car.domain
 
-class Cars(private val cars: List<Car>, private val energyProvider: EnergyProvider = RandomEnergyProvider()) {
+class Cars(val cars: List<MovableCar>) {
 
     private val _histories: MutableList<CarMoveHistoryCollection> = mutableListOf()
     val histories: List<CarMoveHistoryCollection>
@@ -11,7 +11,7 @@ class Cars(private val cars: List<Car>, private val energyProvider: EnergyProvid
     constructor(
         carNameCollection: CarNameCollection,
         energyProvider: EnergyProvider = RandomEnergyProvider()
-    ) : this(carNameCollection.names.map { Car(it) }, energyProvider)
+    ) : this(carNameCollection.names.map { Car(it, energyProvider) })
 
     fun move(times: Int) {
         repeat(times) {
@@ -20,12 +20,8 @@ class Cars(private val cars: List<Car>, private val energyProvider: EnergyProvid
     }
 
     private fun moveAllCar() {
-        val histories: List<CarMoveHistory> = cars.map {
-            it.move(energyProvider.energy)
-
-            CarMoveHistory(it.name, it.currentPosition)
+        cars.forEach {
+            it.move()
         }
-
-        _histories.add(CarMoveHistoryCollection(histories))
     }
 }
