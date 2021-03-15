@@ -7,8 +7,7 @@ import car.domain.WinnerCollection
 
 class ResultView(
     private val carCollection: CarCollection,
-    private val times: Int,
-    private val prettyPositionString: String
+    private val input: Input
 ) {
     fun print() {
         var allCars = carCollection.cars
@@ -16,7 +15,7 @@ class ResultView(
         val list: List<CarMoveHistoryCollection> = allCars
             .map { it.historyCollection }
 
-        repeat(times) { index ->
+        repeat(input.tryCount) { index ->
             printCarPositionHistory(list, index)
             println()
         }
@@ -27,7 +26,7 @@ class ResultView(
     private fun printCarPositionHistory(carMoveHistoryCollectionList: List<CarMoveHistoryCollection>, index: Int) {
         for (carMoveHistoryCollection in carMoveHistoryCollectionList) {
             val pretty =
-                CarMoveHistoryPrettyPrinter(carMoveHistoryCollection.moveHistories[index], prettyPositionString)
+                CarMoveHistoryPrettyPrinter(carMoveHistoryCollection.moveHistories[index], input.prettyPositionString)
             print(pretty)
             println()
         }

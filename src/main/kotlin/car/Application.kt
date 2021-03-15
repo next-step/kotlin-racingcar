@@ -10,7 +10,7 @@ fun main() {
     val input = inputView.input()
 
     val cars = CarCollection(CarNameCollection(input.splitNameBySplitter()))
-    val resultView = ResultView(cars, input.tryCount, input.prettyPositionString)
+    val resultView = ResultView(cars, input)
 
     cars.move(input.tryCount)
     resultView.print()
