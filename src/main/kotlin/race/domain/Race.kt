@@ -1,25 +1,22 @@
 package race.domain
 
-import race.ui.ResultView
-
-class Race(val cars: List<Car>) {
+class Race(val cars: List<Car>, val randomNumber: () -> Int) {
 
     init {
         require(cars.isNotEmpty()) { "car is not empty."}
     }
 
-    private fun turnAround(randomNumber: () -> Int) {
+    private fun turnAround() {
         cars.map { it.move(randomNumber()) }
-        ResultView.printNow(cars)
-        println()
     }
 
-    fun start(lapCount: Int, randomNumber: () -> Int): Race {
+    fun start(lapCount: Int, printNow: (List<Car>) -> Unit) {
         require(lapCount > 0) { "lap count is positive." }
 
-        ResultView.printTitle()
-        IntRange(1, lapCount).forEach { _ -> turnAround(randomNumber) }
-        return this
+        repeat(lapCount) {
+            turnAround()
+            printNow(cars)
+        }
     }
 
     fun takeWinners(): List<Car> {
