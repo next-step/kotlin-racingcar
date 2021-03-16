@@ -11,7 +11,7 @@ internal class RacingActionHistoryTest {
     @Test
     @DisplayName("현재 차의 위치를 RacingAction 으로 저장한다.")
     fun getPosition() {
-        val car = Car()
+        val car = Car("jyami")
 
         val action1 = RacingActionHistory.of(car)
         car.tryMove(10)
@@ -19,5 +19,7 @@ internal class RacingActionHistoryTest {
 
         assertThat(action1.position).isEqualTo(0)
         assertThat(action2.position).isEqualTo(1)
+        assertThat(action1.userName).isEqualTo("jyami")
+        assertThat(action2.userName).isEqualTo("jyami")
     }
 }

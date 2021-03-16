@@ -8,9 +8,7 @@ class RacingRoundHistory(
 ) {
     companion object {
         fun of(round: Int, cars: List<Car>): RacingRoundHistory {
-            val actions = cars
-                .map { RacingActionHistory(it.position) }
-
+            val actions = cars.map { RacingActionHistory.of(it) }
             return RacingRoundHistory(round, actions)
         }
     }
