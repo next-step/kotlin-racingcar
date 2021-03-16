@@ -3,8 +3,6 @@ package race
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.CsvSource
 import race.domain.Car
 import race.domain.Race
 import kotlin.random.Random
@@ -19,10 +17,12 @@ class RaceTest {
         val lapCount = -5
 
         // WHEN
-        val race = Race(cars)
+        val race = Race(cars) {
+            Random.nextInt(Car.MOVE_START_RANGE, Car.MOVE_END_RANGE)
+        }
         Assertions
             .assertThatThrownBy {
-                race.start(lapCount) { Random.nextInt(Car.MOVE_START_RANGE, Car.MOVE_END_RANGE) }
+                race.start(lapCount) { println(it) }
             }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageMatching("lap count is positive.")
@@ -36,8 +36,8 @@ class RaceTest {
         val lapCount = 5
 
         // WHEN
-        val race = Race(Car.create(carNames))
-            .start(lapCount) { 2 }
+        val race = Race(Car.create(carNames)) { 2 }
+        race.start(lapCount) { println(it) }
 
         // THEN
         assertThat(race).isNotNull
@@ -56,8 +56,8 @@ class RaceTest {
         val lapCount = 5
 
         // WHEN
-        val race = Race(Car.create(carNames))
-            .start(lapCount) { 7 }
+        val race = Race(Car.create(carNames)) { 7 }
+        race.start(lapCount) { println(it) }
 
         // THEN
         assertThat(race).isNotNull
@@ -77,9 +77,10 @@ class RaceTest {
         val lapCount = 3
 
         // WHEN
-        val winners = Race(Car.create(carNames))
-            .start(lapCount) { 7 }
-            .takeWinners()
+        val race = Race(Car.create(carNames)) { 7 }
+        race.start(lapCount) { println(it) }
+
+        val winners = race.takeWinners()
 
         // THEN
         assertThat(winners.size).isEqualTo(2)
@@ -103,8 +104,8 @@ class RaceTest {
 
 
         // WHEN
-        val winners = Race(listOf(pobi, crong))
-            .takeWinners()
+        val race = Race(listOf(pobi, crong)) { 1 }
+        val winners = race.takeWinners()
 
         // THEN
         assertThat(winners.size).isEqualTo(1)

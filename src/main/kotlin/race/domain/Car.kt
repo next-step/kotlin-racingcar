@@ -9,7 +9,7 @@ class Car(val name: String) {
         require(name.length <= NAME_LENGTH) { "name's length is lesser than or equals to $NAME_LENGTH."}
     }
 
-    fun move(condition: Int): Car {
+    fun move(condition: Int) {
         if (condition !in MOVE_START_RANGE..MOVE_END_RANGE) {
             throw IllegalArgumentException("condition is between 0 and 9.")
         }
@@ -17,8 +17,6 @@ class Car(val name: String) {
         if (isMove(condition)) {
             position++
         }
-
-        return this
     }
 
     private fun isMove(condition: Int) = condition >= MOVE_CONDITION

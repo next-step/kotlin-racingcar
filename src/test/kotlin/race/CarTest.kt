@@ -102,12 +102,14 @@ class CarTest {
     )
     fun `move by condition test`(input: Int, position: Int, name: String) {
 
+        // GIVEN
+        val car = Car(name)
+
         // WHEN
-        val movedCar = Car(name).move(input)
+        car.move(input)
 
         // THEN
-        assertThat(movedCar).isNotNull
-        assertThat(movedCar.position).isEqualTo(position)
-        assertThat(movedCar.name).isEqualTo(name)
+        assertThat(car.position).isEqualTo(position)
+        assertThat(car.name).isEqualTo(name)
     }
 }
