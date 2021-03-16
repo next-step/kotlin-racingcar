@@ -14,4 +14,6 @@ class RacingGame(private val tryCount: Int, private val userNameInfo: UserNameIn
         }
         return carCollection.getRacingHistories()
     }
+
+    fun getWinner() = carCollection.getWinner()
 }

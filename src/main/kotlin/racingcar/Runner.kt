@@ -14,4 +14,5 @@ fun main(args: Array<String>) {
 
     OutputView.printOutputLetter()
     OutputView.printRacingGame(raceHistory)
+    OutputView.printRacingWinner(racingGame.getWinner())
 }
