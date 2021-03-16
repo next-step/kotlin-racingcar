@@ -6,7 +6,7 @@ class CarCollection(val cars: List<Car>) {
 
     constructor(
         carNameCollection: CarNameCollection,
-        movableStrategy: MovableStrategy = EnergyMovableStrategy()
+        movableStrategy: MovableStrategy = EnergyRandomMovableStrategy()
     ) : this(carNameCollection.names.map { Car(it, movableStrategy) })
 
     fun move(times: Int) {

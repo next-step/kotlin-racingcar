@@ -65,6 +65,6 @@ class CarCollectionTest() {
             override val energy: Int
                 get() = nextInt
         }
-        return EnergyMovableStrategy(energyProvider)
+        return EnergyRandomMovableStrategy(energyProvider)
     }
 }
