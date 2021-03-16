@@ -7,7 +7,6 @@ object OutputView {
 
     fun printCarCollection(positions: List<Int>) = positions.forEach {
         printCarLine(it)
-        println()
     }
 
     private fun printCarLine(position: Int) = println(DASH_LINE.repeat(position))

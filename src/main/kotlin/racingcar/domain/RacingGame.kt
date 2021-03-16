@@ -13,5 +13,6 @@ class RacingGame(private val tryCount: Int, private val numberOfCar: Int) {
             carCollection.tryMoveCars(randomNumberGenerator(numberOfCar))
             OutputView.printCarCollection(carCollection.getCarsPosition())
         }
+        println()
     }
 }
