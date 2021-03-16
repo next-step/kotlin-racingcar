@@ -3,12 +3,13 @@ package racingcar
 import racingcar.domain.RacingGame
 import racingcar.ui.InputView
 import racingcar.ui.OutputView
+import racingcar.userInput.UserNameInfo
 
 fun main(args: Array<String>) {
-    val numberOfCars = InputView.getNumberOfCars()
+    val userNameInfo = UserNameInfo(InputView.getCarsUserName())
     val tryCount = InputView.getTryCounts()
 
-    val racingGame = RacingGame(tryCount = tryCount, numberOfCar = numberOfCars)
+    val racingGame = RacingGame(tryCount = tryCount, userNameInfo = userNameInfo)
     val raceHistory = racingGame.runRace()
 
     OutputView.printOutputLetter()

@@ -2,9 +2,9 @@ package racingcar.domain
 
 import racingcar.history.RacingResultHistory
 
-class CarCollection(carCount: Int) {
+class CarCollection(userNames: List<String>) {
 
-    private val cars: List<Car> = List(carCount) { Car() }
+    private val cars: List<Car> = userNames.map { Car(it) }
     private val racingResultHistory = RacingResultHistory()
 
     fun tryMoveCars(round: Int, conditionNumbers: List<Int>) {
@@ -14,4 +14,6 @@ class CarCollection(carCount: Int) {
     }
 
     fun getRacingHistories() = racingResultHistory.getResults()
+
+    fun size(): Int = cars.size
 }
