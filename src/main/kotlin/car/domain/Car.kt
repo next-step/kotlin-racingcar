@@ -13,7 +13,7 @@ class Car(val carName: CarName, private val movableStrategy: MovableStrategy) {
     constructor(carName: String, movableStrategy: MovableStrategy) : this(CarName(carName), movableStrategy)
 
     fun move() {
-        if (movableStrategy.isMovable()) {
+        if (movableStrategy.movable) {
             _position++
         }
         _histories.add(CarMoveHistory(carName, _position))

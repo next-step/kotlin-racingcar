@@ -1,5 +1,5 @@
 package car.domain
 
 interface MovableStrategy {
-    fun isMovable(): Boolean
+    val movable: Boolean
 }
