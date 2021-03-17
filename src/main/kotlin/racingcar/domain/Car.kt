@@ -1,4 +1,4 @@
-package racingcar.model
+package racingcar.domain
 
 data class Car(private val locationTracker: LocationTracker = LocationTracker(), private val name: String) {
 

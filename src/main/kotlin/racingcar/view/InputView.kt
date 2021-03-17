@@ -1,4 +1,4 @@
-package racingcar.ui
+package racingcar.view
 
 import racingcar.util.Message.Companion.DELIMITERS_COMMA
 import racingcar.util.Message.Companion.NOTICE_INPUT_CAR_NAME

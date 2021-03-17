@@ -1,6 +1,6 @@
-package racingcar.ui
+package racingcar.view
 
-import racingcar.model.Car
+import racingcar.domain.Car
 import racingcar.util.Message.Companion.NOTICE_OUTPUT_WINNERS
 import racingcar.util.Message.Companion.NOTICE_RESULT
 import racingcar.util.Message.Companion.SEPARATOR_OUTPUT_WINNERS
@@ -19,7 +19,7 @@ object OutputView {
         println(
             findWinners.joinToString(
                 separator = SEPARATOR_OUTPUT_WINNERS,
-                transform = { i -> i.toString() }
+                transform = { it.toString() }
             ).plus(NOTICE_OUTPUT_WINNERS)
         )
     }
