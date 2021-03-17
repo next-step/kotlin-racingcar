@@ -1,4 +1,6 @@
-package car.domain
+package car.view
+
+import car.domain.CarMoveHistory
 
 class CarMoveHistoryPrettyPrinter(
     private val carMoveHistory: CarMoveHistory,

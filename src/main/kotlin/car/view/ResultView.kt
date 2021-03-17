@@ -2,7 +2,6 @@ package car.view
 
 import car.domain.CarMoveHistoryCollection
 import car.domain.CarCollection
-import car.domain.CarMoveHistoryPrettyPrinter
 import car.domain.WinnerCollection
 
 class ResultView(
