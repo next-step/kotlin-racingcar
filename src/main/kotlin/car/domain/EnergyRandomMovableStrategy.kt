@@ -1,12 +1,13 @@
 package car.domain
 
-class EnergyRandomMovableStrategy(
-    private val energyProvider: EnergyProvider = RandomEnergyProvider()
-) : MovableStrategy {
+import kotlin.random.Random
+
+class EnergyRandomMovableStrategy() : MovableStrategy {
     override val movable: Boolean
-        get() = energyProvider.energy >= MOVE_CONDITION_ENERGY
+        get() = Random.nextInt(MAXIMUM_MOVE_CONDITION) >= MINIMUM_REQUIRED_CONDITION
 
     companion object {
-        private const val MOVE_CONDITION_ENERGY = 4
+        private const val MINIMUM_REQUIRED_CONDITION = 4
+        private const val MAXIMUM_MOVE_CONDITION = 10
     }
 }
