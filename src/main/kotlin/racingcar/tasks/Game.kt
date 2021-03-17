@@ -1,7 +1,7 @@
 package racingcar.tasks
 
-import racingcar.model.Car
-import racingcar.ui.OutputView
+import racingcar.domain.Car
+import racingcar.view.OutputView
 import racingcar.util.RacingRandom
 
 class Game {

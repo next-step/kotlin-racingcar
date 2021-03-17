@@ -1,4 +1,4 @@
-package racingcar.model
+package racingcar.domain
 
 import racingcar.util.Message
 import racingcar.util.Message.Companion.DEFAULT_DISTANCE

@@ -1,6 +1,6 @@
-package racingcar.ui
+package racingcar.view
 
-import racingcar.model.Car
+import racingcar.domain.Car
 import racingcar.util.Message.Companion.NOTICE_OUTPUT_WINNERS
 import racingcar.util.Message.Companion.NOTICE_RESULT
 import racingcar.util.Message.Companion.SEPARATOR_OUTPUT_WINNERS

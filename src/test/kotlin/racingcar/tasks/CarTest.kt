@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import racingcar.model.Car
+import racingcar.domain.Car
 import racingcar.util.Message.Companion.MIN_CONDITION_FOR_GOING
 import racingcar.util.Message.Companion.ONE_DISTANCE
 

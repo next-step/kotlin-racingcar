@@ -1,6 +1,6 @@
 package racingcar.tasks
 
-import racingcar.model.Car
+import racingcar.domain.Car
 import racingcar.util.Message.Companion.NOTICE_NOT_NULL_WINNER
 
 class WinnersReader(private val cars: List<Car>) {
