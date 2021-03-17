@@ -1,5 +1,7 @@
 package car.domain
 
+import car.domain.move.AlwaysMovableStrategy
+import car.domain.move.AlwaysNotMovableStrategy
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest

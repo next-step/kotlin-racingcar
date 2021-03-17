@@ -1,6 +1,6 @@
 package car.view
 
-import car.domain.CarMoveHistory
+import car.domain.history.CarMoveHistory
 import car.domain.CarName
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test

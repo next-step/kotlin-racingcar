@@ -1,5 +1,8 @@
 package car.domain
 
+import car.domain.move.EnergyRandomMovableStrategy
+import car.domain.move.MovableStrategy
+
 class CarCollection(val cars: List<Car>) {
     val maxPosition: Int
         get() = cars.map { it.currentPosition }.max() ?: 0

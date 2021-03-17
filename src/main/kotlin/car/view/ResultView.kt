@@ -1,8 +1,8 @@
 package car.view
 
-import car.domain.CarMoveHistoryCollection
+import car.domain.history.CarMoveHistoryCollection
 import car.domain.CarCollection
-import car.domain.WinnerCollection
+import car.domain.winner.WinnerCollection
 
 class ResultView(
     private val carCollection: CarCollection,

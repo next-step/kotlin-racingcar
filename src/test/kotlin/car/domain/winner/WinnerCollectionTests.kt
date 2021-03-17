@@ -1,5 +1,8 @@
-package car.domain
+package car.domain.winner
 
+import car.domain.move.AlwaysMovableStrategy
+import car.domain.Car
+import car.domain.CarCollection
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 

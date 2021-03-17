@@ -1,5 +1,9 @@
 package car.domain
 
+import car.domain.history.CarMoveHistory
+import car.domain.history.CarMoveHistoryCollection
+import car.domain.move.MovableStrategy
+
 class Car(val carName: CarName, private val movableStrategy: MovableStrategy) {
     private val _histories: MutableList<CarMoveHistory> = mutableListOf()
 

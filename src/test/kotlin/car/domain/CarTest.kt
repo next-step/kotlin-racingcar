@@ -1,6 +1,8 @@
 package car.domain
 
 import car.domain.Car.Companion.INIT_POSITION
+import car.domain.move.AlwaysMovableStrategy
+import car.domain.move.AlwaysNotMovableStrategy
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test

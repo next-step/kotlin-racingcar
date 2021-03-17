@@ -1,4 +1,4 @@
-package car.domain
+package car.domain.move
 
 interface MovableStrategy {
     val movable: Boolean

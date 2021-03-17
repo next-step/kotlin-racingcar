@@ -1,4 +1,4 @@
-package car.domain
+package car.domain.move
 
 import kotlin.random.Random
 
