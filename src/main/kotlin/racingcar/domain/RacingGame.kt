@@ -1,17 +1,19 @@
 package racingcar.domain
 
 import racingcar.domain.CarConfig.randomNumberGenerator
-import racingcar.ui.OutputView
+import racingcar.history.RacingRoundHistory
+import racingcar.userInput.UserNameInfo
 
-class RacingGame(private val tryCount: Int, private val numberOfCar: Int) {
+class RacingGame(private val tryCount: Int, private val userNameInfo: UserNameInfo) {
 
-    private val carCollection = CarCollection(numberOfCar)
+    private val carCollection = CarCollection(userNameInfo.usernames)
 
-    fun runRace() {
-        OutputView.printOutputLetter()
+    fun runRace(): List<RacingRoundHistory> {
         repeat(tryCount) {
-            carCollection.tryMoveCars(randomNumberGenerator(numberOfCar))
-            OutputView.printCarCollection(carCollection.getCarsPosition())
+            carCollection.tryMoveCars(round = it, conditionNumbers = randomNumberGenerator(carCollection.size()))
         }
+        return carCollection.getRacingHistories()
     }
+
+    fun getWinner() = carCollection.getWinner()
 }
