@@ -22,24 +22,9 @@ class CarCollectionTest {
             .allMatch { it.currentPosition == 0 }
     }
 
-    @Test
-    fun `movable이 true면은 자동차들은 움직여도 된다`() {
-        // given
-        var times = 5
-        val carNames = CarNameCollection(arrayOf("오", "길", "환"))
-        val cars = CarCollection(carNames, AlwaysMovableStrategy())
-
-        // when
-        cars.move(times)
-
-        // then
-        assertThat(cars)
-            .allMatch { it.currentPosition == times }
-    }
-
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4, 5])
-    fun `움직인 만큼 자동차들의 position이 변경이 되어야 한다`(times: Int) {
+    fun `movable이 true이고, 차가 움직인 만큼 자동차들의 position이 변경이 되어야 한다`(times: Int) {
         // given
         val carNames = CarNameCollection(arrayOf("오", "길", "환"))
         val cars = CarCollection(carNames, AlwaysMovableStrategy())
