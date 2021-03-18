@@ -11,7 +11,7 @@ internal class RacingCarGameTest {
     @ParameterizedTest
     @MethodSource("provideCarCountAndAttemptCount")
     internal fun `자동차 수, 총 시도 횟수 테스트`(carCount: Int, attemptCount: Int) {
-        val result = RacingCarGame(carCount = carCount)
+        val result = RacingCarGame(Cars(List(carCount) { "test" }))
             .play(attemptCount = attemptCount, shouldMove = { true })
         assertThat(result.size).isEqualTo(carCount)
         result.forEach {
