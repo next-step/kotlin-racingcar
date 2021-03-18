@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 
 class WinnerCollectionTests {
     @Test
-    fun `승리자 목록은 History 기반으로 스스로 승리인지 파악할 수 있어야 한다`() {
+    fun `승리자 목록은 자동차 중 최고 위치에 있는 애들로 뽑아야 한다`() {
         val cars = CarCollection(
             listOf(
                 createMockMovableCar("1번차", 3),
