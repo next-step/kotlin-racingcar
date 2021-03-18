@@ -5,7 +5,7 @@ class RacingCarGame(private val cars: Cars) {
     private fun shouldMove() =
         (MOVE_CONDITION_START..MOVE_CONDITION_END).random() >= MOVE_CONDITION_STANDARD
 
-    fun play(attemptCount: Int, shouldMove: () -> Boolean = ::shouldMove): List<Car> {
+    fun play(attemptCount: Int, shouldMove: () -> Boolean = ::shouldMove): Cars {
         repeat(attemptCount) {
             cars.forEach { car -> car.moveOrStop(shouldMove()) }
         }
