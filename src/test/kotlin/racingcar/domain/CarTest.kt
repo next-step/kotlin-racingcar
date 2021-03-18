@@ -25,4 +25,15 @@ internal class CarTest {
     internal fun `이름은 5글자를 초과할 수 없다`() {
         assertThrows<IllegalArgumentException> { Car("가나다라마바") }
     }
+
+    @Test
+    internal fun `자동차는 포지션이 있어야한다`() {
+        val car = Car("test")
+        car.move()
+        car.stop()
+        car.move()
+        assertThat(car.currentPosition(1)).isEqualTo(1)
+        assertThat(car.currentPosition(2)).isEqualTo(1)
+        assertThat(car.currentPosition(3)).isEqualTo(2)
+    }
 }

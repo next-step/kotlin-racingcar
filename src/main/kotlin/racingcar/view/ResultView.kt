@@ -1,7 +1,6 @@
 package racingcar.view
 
 import racingcar.domain.Car
-import racingcar.domain.CarAction
 
 class ResultView(private val cars: List<Car>) {
 
@@ -13,21 +12,14 @@ class ResultView(private val cars: List<Car>) {
     private fun attemptCount() = cars[0].history.size
 
     private fun printEachTurn() {
-        val currentTurn = MutableList(cars.size) { 0 }
-        for (i in 0 until attemptCount()) {
-            val history = cars.map { it.currentHistory(i) }
-            currentTurn.forEachIndexed { index, it ->
-                val moveCount = if (history[index] == CarAction.MOVE) 1 else 0
-                currentTurn[index] = it + moveCount
-            }
-            printHistory(currentTurn)
+        for (i in 1..attemptCount()) {
+            cars.forEach { printCar(it, i) }
+            println()
         }
     }
 
-    private fun printHistory(history: List<Int>) {
-        history.forEach {
-            println("-".repeat(it))
-        }
-        println()
+    private fun printCar(car: Car, attempt: Int) {
+        print("${car.name} : ")
+        println("-".repeat(car.currentPosition(attempt)))
     }
 }

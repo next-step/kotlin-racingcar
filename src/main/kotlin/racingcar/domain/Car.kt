@@ -1,6 +1,6 @@
 package racingcar.domain
 
-class Car(val name: String) {
+data class Car(val name: String) {
 
     init {
         require(name.length <= 5)
@@ -26,7 +26,9 @@ class Car(val name: String) {
         }
     }
 
-    fun currentHistory(index: Int): CarAction {
-        return _history[index]
+    fun currentPosition(attempt: Int): Int {
+        return _history.take(attempt).sumBy {
+            if (it == CarAction.MOVE) 1 else 0
+        }
     }
 }
