@@ -11,13 +11,7 @@ class CarNameCollectionTests {
         val carNameCollection = CarNameCollection(nameArray)
 
         assertThat(carNameCollection)
-            .containsExactlyInAnyOrder(
-                CarName(nameArray[0]),
-                CarName(nameArray[1]),
-                CarName(nameArray[2]),
-                CarName(nameArray[3]),
-                CarName(nameArray[4])
-            )
+            .containsExactlyInAnyOrderElementsOf(nameArray.map(::CarName))
     }
 
     @Test
@@ -31,10 +25,6 @@ class CarNameCollectionTests {
         val carNameCollection = CarNameCollection(names)
 
         assertThat(carNameCollection)
-            .containsExactlyInAnyOrder(
-                CarName(names[0].name),
-                CarName(names[1].name),
-                CarName(names[2].name)
-            )
+            .containsExactlyInAnyOrderElementsOf(names)
     }
 }
