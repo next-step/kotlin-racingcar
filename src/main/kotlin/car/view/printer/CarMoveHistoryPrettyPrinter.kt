@@ -7,6 +7,6 @@ class CarMoveHistoryPrettyPrinter(
     private val positionExpression: String = CarMoveHistory.DEFAULT_POSITION_EXPRESSION
 ) {
     override fun toString(): String {
-        return "${carMoveHistory.carName.name} : ${positionExpression.repeat(carMoveHistory.position)}"
+        return "${carMoveHistory.carName} : ${positionExpression.repeat(carMoveHistory.position)}"
     }
 }
