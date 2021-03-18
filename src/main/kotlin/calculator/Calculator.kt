@@ -6,8 +6,8 @@ class Calculator {
         require(!expression.isNullOrBlank())
         val terms = expression.split(DELIMITER)
         return calculate(
-            numbers = getNumbers(terms),
-            operations = getOperations(terms)
+            numbers = numbersFromTerms(terms),
+            operators = operatorsFromTerms(terms)
         )
     }
 
@@ -15,15 +15,15 @@ class Calculator {
 
     private fun isOperator(index: Int) = index % 2 == 1
 
-    private fun getNumbers(list: List<String>) =
-        list
+    private fun numbersFromTerms(terms: List<String>) =
+        terms
             .filterIndexed { i, _ -> isNumber(i) }
             .map { it.toDoubleOrThrowIllegalArgumentException() }
 
-    private fun getOperations(list: List<String>) =
-        list
+    private fun operatorsFromTerms(terms: List<String>) =
+        terms
             .filterIndexed { i, _ -> isOperator(i) }
-            .map { Operator.operation(it) }
+            .map { Operator.of(it) }
 
     private fun String.toDoubleOrThrowIllegalArgumentException(): Double {
         return toDoubleOrNull() ?: throw IllegalArgumentException()
@@ -31,12 +31,12 @@ class Calculator {
 
     private fun calculate(
         numbers: List<Double>,
-        operations: List<(Double, Double) -> Double>
+        operators: List<Operator>
     ): Double {
-        require(numbers.size - operations.size == 1)
+        require(numbers.size - operators.size == 1)
         var sum = numbers[0]
-        operations.forEachIndexed { index, operation ->
-            sum = operation(sum, numbers[index + 1])
+        operators.forEachIndexed { index, operator ->
+            sum = operator.operate(sum, numbers[index + 1])
         }
         return sum
     }
