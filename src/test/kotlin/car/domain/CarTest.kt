@@ -5,7 +5,6 @@ import car.domain.move.AlwaysMovableStrategy
 import car.domain.move.AlwaysNotMovableStrategy
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 
 class CarTest {
     @Test
@@ -32,10 +31,5 @@ class CarTest {
         // then
         assertThat(car.currentPosition)
             .isEqualTo(INIT_POSITION + 1)
-    }
-
-    @Test
-    fun `이름이 5글자 초과이면 Exception이 발생해야 한다`() {
-        assertThrows<IllegalArgumentException> { Car("5글자가넘는이룸", AlwaysMovableStrategy()) }
     }
 }
