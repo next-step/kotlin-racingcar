@@ -1,6 +1,6 @@
 package car.domain
 
-import car.domain.move.EnergyRandomMovableStrategy
+import car.domain.move.RandomMovableStrategy
 import car.domain.move.MovableStrategy
 
 class CarCollection(val cars: List<Car>) {
@@ -9,7 +9,7 @@ class CarCollection(val cars: List<Car>) {
 
     constructor(
         carNameCollection: CarNameCollection,
-        movableStrategy: MovableStrategy = EnergyRandomMovableStrategy()
+        movableStrategy: MovableStrategy = RandomMovableStrategy()
     ) : this(carNameCollection.names.map { Car(it, movableStrategy) })
 
     fun move(times: Int) {
