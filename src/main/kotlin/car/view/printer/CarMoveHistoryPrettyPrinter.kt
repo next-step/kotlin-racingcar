@@ -1,4 +1,4 @@
-package car.view
+package car.view.printer
 
 import car.domain.history.CarMoveHistory
 

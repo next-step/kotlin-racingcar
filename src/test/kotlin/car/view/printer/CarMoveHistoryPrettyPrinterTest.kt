@@ -1,7 +1,8 @@
-package car.view
+package car.view.printer
 
 import car.domain.history.CarMoveHistory
 import car.domain.CarName
+import car.view.printer.CarMoveHistoryPrettyPrinter
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 

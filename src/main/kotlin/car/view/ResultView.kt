@@ -3,6 +3,7 @@ package car.view
 import car.domain.history.CarMoveHistoryCollection
 import car.domain.CarCollection
 import car.domain.winner.WinnerCollection
+import car.view.printer.CarMoveHistoryPrettyPrinter
 
 class ResultView(
     private val carCollection: CarCollection,
