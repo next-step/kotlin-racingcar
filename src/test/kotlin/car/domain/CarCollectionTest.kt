@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
-class CarCollectionTest() {
+class CarCollectionTest {
     @Test
     fun `movable이 false면은 자동차들은 움직이면 안된다`() {
         // given
