@@ -6,7 +6,7 @@ class RacingCarGame(private val carCount: Int) {
         (MOVE_CONDITION_START..MOVE_CONDITION_END).random() >= MOVE_CONDITION_STANDARD
 
     fun play(attemptCount: Int, shouldMove: () -> Boolean = ::shouldMove): List<Car> {
-        val cars = List(carCount) { Car() }
+        val cars = List(carCount) { Car("test") }
         repeat(attemptCount) {
             cars.forEach { car -> car.moveOrStop(shouldMove()) }
         }

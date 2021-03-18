@@ -1,6 +1,6 @@
 package racingcar.domain
 
-class Car {
+class Car(val name: String) {
 
     private val _history = mutableListOf<CarAction>()
     val history
