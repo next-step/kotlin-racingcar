@@ -24,7 +24,7 @@ class CarCollectionTest {
 
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4, 5])
-    fun `movable이 true이고, 차가 움직인 만큼 자동차들의 position이 변경이 되어야 한다`(times: Int) {
+    fun `movable이 true면, 차가 움직인 만큼 자동차들의 position이 변경이 되어야 한다`(times: Int) {
         // given
         val carNames = CarNameCollection(arrayOf("오", "길", "환"))
         val cars = CarCollection(carNames, AlwaysMovableStrategy())
