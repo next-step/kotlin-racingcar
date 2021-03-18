@@ -2,6 +2,10 @@ package racingcar.domain
 
 class Car(val name: String) {
 
+    init {
+        require(name.length <= 5)
+    }
+
     private val _history = mutableListOf<CarAction>()
     val history
         get() = _history.toList()

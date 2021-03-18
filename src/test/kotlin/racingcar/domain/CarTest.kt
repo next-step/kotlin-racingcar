@@ -2,6 +2,7 @@ package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 internal class CarTest {
 
@@ -18,5 +19,10 @@ internal class CarTest {
     internal fun `각 자동차에 이름을 부여할 수 있다`() {
         val car = Car("김수현")
         assertThat(car.name).isEqualTo("김수현")
+    }
+
+    @Test
+    internal fun `이름은 5글자를 초과할 수 없다`() {
+        assertThrows<IllegalArgumentException> { Car("가나다라마바") }
     }
 }
