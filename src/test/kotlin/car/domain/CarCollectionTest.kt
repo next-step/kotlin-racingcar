@@ -11,17 +11,14 @@ class CarCollectionTest() {
     @Test
     fun `movable이 false면은 자동차들은 움직이면 안된다`() {
         // given
-
         val carNames = CarNameCollection(arrayOf("오", "길", "환"))
         val cars = CarCollection(carNameCollection = carNames, movableStrategy = AlwaysNotMovableStrategy())
 
         // when
-        cars.move(times = 5)
+        cars.move(5)
 
         // then
-        val carList = cars.cars
-
-        assertThat(carList)
+        assertThat(cars)
             .allMatch { it.currentPosition == 0 }
     }
 
@@ -36,9 +33,7 @@ class CarCollectionTest() {
         cars.move(times)
 
         // then
-        val carList = cars.cars
-
-        assertThat(carList)
+        assertThat(cars)
             .allMatch { it.currentPosition == times }
     }
 
@@ -47,16 +42,13 @@ class CarCollectionTest() {
     fun `움직인 만큼 자동차들의 position이 변경이 되어야 한다`(times: Int) {
         // given
         val carNames = CarNameCollection(arrayOf("오", "길", "환"))
-
         val cars = CarCollection(carNameCollection = carNames, movableStrategy = AlwaysMovableStrategy())
 
         // when
         cars.move(times)
 
         // then
-        val carList = cars.cars
-
-        assertThat(carList)
+        assertThat(cars)
             .allMatch { it.currentPosition == times }
     }
 }

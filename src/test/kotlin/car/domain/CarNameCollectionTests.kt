@@ -10,7 +10,7 @@ class CarNameCollectionTests {
 
         val carNameCollection = CarNameCollection(nameArray)
 
-        assertThat(carNameCollection.names)
+        assertThat(carNameCollection)
             .containsExactlyInAnyOrder(
                 CarName(nameArray[0]),
                 CarName(nameArray[1]),
@@ -30,7 +30,7 @@ class CarNameCollectionTests {
 
         val carNameCollection = CarNameCollection(names)
 
-        assertThat(carNameCollection.names)
+        assertThat(carNameCollection)
             .containsExactlyInAnyOrder(
                 CarName(names[0].name),
                 CarName(names[1].name),

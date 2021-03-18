@@ -1,3 +1,3 @@
 package car.domain.history
 
-class CarMoveHistoryCollection(val moveHistories: List<CarMoveHistory>)
+class CarMoveHistoryCollection(private val moveHistories: List<CarMoveHistory>) : List<CarMoveHistory> by moveHistories
