@@ -15,7 +15,7 @@ class ResultView(private val cars: List<Car>) {
     private fun printEachTurn() {
         val currentTurn = MutableList(cars.size) { 0 }
         for (i in 0 until attemptCount()) {
-            val history = cars.map { it.history[i] }
+            val history = cars.map { it.currentHistory(i) }
             currentTurn.forEachIndexed { index, it ->
                 val moveCount = if (history[index] == CarAction.MOVE) 1 else 0
                 currentTurn[index] = it + moveCount
@@ -26,8 +26,7 @@ class ResultView(private val cars: List<Car>) {
 
     private fun printHistory(history: List<Int>) {
         history.forEach {
-            for (i in 0 until it) print("-")
-            println()
+            println("-".repeat(it))
         }
         println()
     }

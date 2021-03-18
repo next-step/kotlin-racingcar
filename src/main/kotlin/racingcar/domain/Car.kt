@@ -2,13 +2,27 @@ package racingcar.domain
 
 class Car {
 
-    val history = mutableListOf<CarAction>()
+    private val _history = mutableListOf<CarAction>()
+    val history
+        get() = _history.toList()
 
     fun move() {
-        history.add(CarAction.MOVE)
+        _history.add(CarAction.MOVE)
     }
 
     fun stop() {
-        history.add(CarAction.STOP)
+        _history.add(CarAction.STOP)
+    }
+
+    fun moveOrStop(shouldMove: Boolean) {
+        if (shouldMove) {
+            move()
+        } else {
+            stop()
+        }
+    }
+
+    fun currentHistory(index: Int): CarAction {
+        return _history[index]
     }
 }
