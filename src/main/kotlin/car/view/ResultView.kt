@@ -14,14 +14,14 @@ class ResultView(
             .map { it.historyCollection }
 
         repeat(input.tryCount) { index ->
-            printCarPositionHistory(allMovedHistories, index)
+            printHistory(allMovedHistories, index)
             println()
         }
 
         printWinners(WinnerCollection(carCollection))
     }
 
-    private fun printCarPositionHistory(allMovedHistories: List<CarMoveHistoryCollection>, index: Int) {
+    private fun printHistory(allMovedHistories: List<CarMoveHistoryCollection>, index: Int) {
         for (eachMoveHistoryCollection in allMovedHistories) {
             val printer = CarMoveHistoryPrettyPrinter(eachMoveHistoryCollection[index], input.prettyPositionString)
             println(printer)
