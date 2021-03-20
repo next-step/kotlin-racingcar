@@ -13,11 +13,11 @@ class Car(val carName: CarName, position: Int = INIT_POSITION, private val movab
     val historyCollection: CarMoveHistoryCollection
         get() = CarMoveHistoryCollection(_histories)
 
-    constructor(carName: String, position: Int, movableStrategy: MovableStrategy) : this(
-        CarName(carName),
-        position,
-        movableStrategy
-    )
+    constructor(
+        carName: String,
+        position: Int,
+        movableStrategy: MovableStrategy
+    ) : this(CarName(carName), position, movableStrategy)
 
     constructor(
         carName: String,
