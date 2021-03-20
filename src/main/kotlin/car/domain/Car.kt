@@ -30,10 +30,6 @@ class Car(
         _histories.add(CarMoveHistory(carName, currentPosition))
     }
 
-    fun isWinner(winnerPosition: Int): Boolean {
-        return currentPosition == winnerPosition
-    }
-
     companion object {
         const val INIT_POSITION = 0
     }

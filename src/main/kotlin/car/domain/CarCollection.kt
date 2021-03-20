@@ -4,6 +4,11 @@ import car.domain.move.RandomMovableStrategy
 import car.domain.move.MovableStrategy
 
 class CarCollection(private val cars: List<Car>) : List<Car> by cars {
+    val winners: List<Car>
+        get() = this.filter {
+            it.currentPosition == maxPosition
+        }
+
     var maxPosition = findMaxPositionInCars(cars)
         private set
 
