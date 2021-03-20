@@ -23,8 +23,8 @@ class ResultView(
 
     private fun printCarPositionHistory(allMovedHistories: List<CarMoveHistoryCollection>, index: Int) {
         for (eachMoveHistoryCollection in allMovedHistories) {
-            val pretty = CarMoveHistoryPrettyPrinter(eachMoveHistoryCollection[index], input.prettyPositionString)
-            println(pretty)
+            val printer = CarMoveHistoryPrettyPrinter(eachMoveHistoryCollection[index], input.prettyPositionString)
+            println(printer)
         }
     }
 
