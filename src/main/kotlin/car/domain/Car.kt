@@ -1,7 +1,7 @@
 package car.domain
 
 import car.domain.history.CarMoveHistory
-import car.domain.history.CarMoveHistoryCollection
+import car.domain.history.CarMoveHistories
 import car.domain.move.MovableStrategy
 
 class Car(
@@ -9,9 +9,9 @@ class Car(
     position: Int = INIT_POSITION,
     private val movableStrategy: MovableStrategy
 ) {
-    private val _historyCollection: MutableList<CarMoveHistory> = mutableListOf()
-    val historyCollection: CarMoveHistoryCollection
-        get() = CarMoveHistoryCollection(_historyCollection)
+    private val _histories: MutableList<CarMoveHistory> = mutableListOf()
+    val histories: CarMoveHistories
+        get() = CarMoveHistories(_histories)
 
     var position: Int = position
         private set
@@ -26,7 +26,7 @@ class Car(
         if (movableStrategy.movable) {
             position++
         }
-        _historyCollection.add(CarMoveHistory(carName, position))
+        _histories.add(CarMoveHistory(carName, position))
     }
 
     companion object {

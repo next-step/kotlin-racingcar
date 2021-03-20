@@ -3,28 +3,28 @@ package car.domain
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class CarNameCollectionTests {
+class CarNamesTests {
     @Test
-    fun `CarNameCollection 만들때는 String array를 받을 수 있다`() {
+    fun `CarNames 만들때는 String array를 받을 수 있다`() {
         val nameArray = "오,오길,오길환,오길환이,오길환이다".split(",").toTypedArray()
 
-        val carNameCollection = CarNameCollection(nameArray)
+        val carNames = CarNames(nameArray)
 
-        assertThat(carNameCollection)
+        assertThat(carNames)
             .containsExactlyInAnyOrderElementsOf(nameArray.map(::CarName))
     }
 
     @Test
-    fun `CarNameCollection 만들때는 CarName List를 받을 수 있다`() {
+    fun `CarNames 만들때는 CarName List를 받을 수 있다`() {
         val names = listOf(
             CarName("오"),
             CarName("길"),
             CarName("환")
         )
 
-        val carNameCollection = CarNameCollection(names)
+        val carNames = CarNames(names)
 
-        assertThat(carNameCollection)
+        assertThat(carNames)
             .containsExactlyInAnyOrderElementsOf(names)
     }
 }
