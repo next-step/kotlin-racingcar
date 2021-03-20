@@ -4,9 +4,9 @@ import car.domain.CarCollection
 
 class WinnerCollection(private val carCollection: CarCollection) {
     val winners: List<Winner>
-        get() = winners()
+        get() = getWinnersInCarCollection()
 
-    private fun winners(): List<Winner> {
+    private fun getWinnersInCarCollection(): List<Winner> {
         val maxPosition = carCollection.maxPosition
 
         return carCollection.filter {
