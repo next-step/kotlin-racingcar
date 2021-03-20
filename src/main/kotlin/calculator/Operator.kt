@@ -10,11 +10,12 @@ enum class Operator(
     MULTIPLY("*", { a, b -> a * b }),
     DIVIDE("/", { a, b -> a / b });
 
+    fun operate(a: Double, b: Double) = operation(a, b)
+
     companion object {
-        fun operation(operator: String): (Double, Double) -> Double {
+        fun of(symbol: String): Operator {
             return values()
-                .find { it.symbol == operator }
-                ?.operation
+                .find { it.symbol == symbol }
                 ?: throw IllegalArgumentException()
         }
     }
