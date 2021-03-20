@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 
 class CarMoveHistoryPrettyPrinterTest {
     @Test
-    fun `이쁘게 나오는지 확인해보자`() {
+    fun `CarMoveHistory가 원하는 문자로 나오도록 테스트한다`() {
         val history = CarMoveHistory(CarName("Soora"), 5)
         val pretty = CarMoveHistoryPrettyPrinter(history, "@")
 
