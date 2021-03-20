@@ -10,22 +10,21 @@ class ResultView(
     private val input: Input
 ) {
     fun print() {
-        val list: List<CarMoveHistoryCollection> = carCollection
+        val carHistoryCollections: List<CarMoveHistoryCollection> = carCollection
             .map { it.historyCollection }
 
         repeat(input.tryCount) { index ->
-            printCarPositionHistory(list, index)
+            printCarPositionHistory(carHistoryCollections, index)
             println()
         }
 
         printWinners(WinnerCollection(carCollection))
     }
 
-    private fun printCarPositionHistory(carMoveHistoryCollectionList: List<CarMoveHistoryCollection>, index: Int) {
-        for (carMoveHistoryCollection in carMoveHistoryCollectionList) {
+    private fun printCarPositionHistory(allHistories: List<CarMoveHistoryCollection>, index: Int) {
+        for (carMoveHistoryCollection in allHistories) {
             val pretty = CarMoveHistoryPrettyPrinter(carMoveHistoryCollection[index], input.prettyPositionString)
-            print(pretty)
-            println()
+            println(pretty)
         }
     }
 
