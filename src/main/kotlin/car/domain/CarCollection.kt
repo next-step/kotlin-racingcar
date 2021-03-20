@@ -4,8 +4,8 @@ import car.domain.move.RandomMovableStrategy
 import car.domain.move.MovableStrategy
 
 class CarCollection(private val cars: List<Car>) : List<Car> by cars {
-    val maxPosition: Int
-        get() = cars.map { it.currentPosition }.max() ?: 0
+    var maxPosition = findMaxPositionInCars(cars)
+        private set
 
     constructor(
         carNameCollection: CarNameCollection,
@@ -16,11 +16,16 @@ class CarCollection(private val cars: List<Car>) : List<Car> by cars {
         repeat(times) {
             moveAllCar()
         }
+        maxPosition = findMaxPositionInCars(cars)
     }
 
     private fun moveAllCar() {
         cars.forEach {
             it.move()
         }
+    }
+
+    companion object {
+        private fun findMaxPositionInCars(cars: List<Car>): Int = cars.map { it.currentPosition }.max() ?: 0
     }
 }
