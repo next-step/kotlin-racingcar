@@ -27,7 +27,7 @@ class WinnerCollectionTests {
             )
     }
 
-    private fun Car(carName: String, currentPosition: Int): Car {
-        return Car(carName, currentPosition, AlwaysMovableStrategy())
+    private fun Car(carName: String, position: Int): Car {
+        return Car(carName, position, AlwaysMovableStrategy())
     }
 }
