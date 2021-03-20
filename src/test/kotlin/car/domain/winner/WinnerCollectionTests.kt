@@ -11,11 +11,11 @@ class WinnerCollectionTests {
     fun `승리자 목록은 자동차 중 최고 위치에 있는 애들로 뽑아야 한다`() {
         val cars = CarCollection(
             listOf(
-                createMockMovableCar("1번차", 3),
-                createMockMovableCar("2번차", 5),
-                createMockMovableCar("3번차", 2),
-                createMockMovableCar("4번차", 5),
-                createMockMovableCar("5번차", 1)
+                Car("1번차", 3),
+                Car("2번차", 5),
+                Car("3번차", 2),
+                Car("4번차", 5),
+                Car("5번차", 1)
             )
         )
         val winners = WinnerCollection(cars)
@@ -27,9 +27,7 @@ class WinnerCollectionTests {
             )
     }
 
-    private fun createMockMovableCar(carName: String, currentPosition: Int): Car {
-        val car = Car(carName, currentPosition, AlwaysMovableStrategy())
-
-        return car
+    private fun Car(carName: String, currentPosition: Int): Car {
+        return Car(carName, currentPosition, AlwaysMovableStrategy())
     }
 }
