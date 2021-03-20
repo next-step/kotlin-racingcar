@@ -4,7 +4,11 @@ import car.domain.history.CarMoveHistory
 import car.domain.history.CarMoveHistoryCollection
 import car.domain.move.MovableStrategy
 
-class Car(val carName: CarName, position: Int = INIT_POSITION, private val movableStrategy: MovableStrategy) {
+class Car(
+    val carName: CarName,
+    position: Int = INIT_POSITION,
+    private val movableStrategy: MovableStrategy
+) {
     private val _histories: MutableList<CarMoveHistory> = mutableListOf()
 
     var currentPosition: Int = position
