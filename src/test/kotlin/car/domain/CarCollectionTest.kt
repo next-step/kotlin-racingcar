@@ -19,7 +19,7 @@ class CarCollectionTest {
 
         // then
         assertThat(cars)
-            .allMatch { it.currentPosition == 0 }
+            .allMatch { it.position == 0 }
     }
 
     @ParameterizedTest
@@ -34,6 +34,6 @@ class CarCollectionTest {
 
         // then
         assertThat(cars)
-            .allMatch { it.currentPosition == times }
+            .allMatch { it.position == times }
     }
 }

@@ -16,7 +16,7 @@ class CarTest {
         car.move()
 
         // then
-        assertThat(car.currentPosition)
+        assertThat(car.position)
             .isEqualTo(INIT_POSITION)
     }
 
@@ -29,7 +29,7 @@ class CarTest {
         car.move()
 
         // then
-        assertThat(car.currentPosition)
+        assertThat(car.position)
             .isEqualTo(INIT_POSITION + 1)
     }
 }

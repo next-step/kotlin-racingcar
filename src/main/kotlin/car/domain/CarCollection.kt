@@ -6,7 +6,7 @@ import car.domain.move.MovableStrategy
 class CarCollection(private val cars: List<Car>) : List<Car> by cars {
     val winners: List<Car>
         get() = this.filter {
-            it.currentPosition == maxPosition
+            it.position == maxPosition
         }
 
     var maxPosition = findMaxPositionInCars(cars)
@@ -31,6 +31,6 @@ class CarCollection(private val cars: List<Car>) : List<Car> by cars {
     }
 
     companion object {
-        private fun findMaxPositionInCars(cars: List<Car>): Int = cars.map { it.currentPosition }.max() ?: 0
+        private fun findMaxPositionInCars(cars: List<Car>): Int = cars.map { it.position }.max() ?: 0
     }
 }

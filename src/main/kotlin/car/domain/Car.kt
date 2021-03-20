@@ -11,7 +11,7 @@ class Car(
 ) {
     private val _histories: MutableList<CarMoveHistory> = mutableListOf()
 
-    var currentPosition: Int = position
+    var position: Int = position
         private set
 
     val historyCollection: CarMoveHistoryCollection
@@ -25,9 +25,9 @@ class Car(
 
     fun move() {
         if (movableStrategy.movable) {
-            currentPosition++
+            position++
         }
-        _histories.add(CarMoveHistory(carName, currentPosition))
+        _histories.add(CarMoveHistory(carName, position))
     }
 
     companion object {
