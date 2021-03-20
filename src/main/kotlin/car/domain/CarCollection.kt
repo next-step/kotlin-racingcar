@@ -10,7 +10,7 @@ class CarCollection(private val cars: List<Car>) : List<Car> by cars {
     constructor(
         carNameCollection: CarNameCollection,
         movableStrategy: MovableStrategy = RandomMovableStrategy()
-    ) : this(carNameCollection.map { Car(it, movableStrategy) })
+    ) : this(carNameCollection.map { Car(carName = it, movableStrategy = movableStrategy) })
 
     fun move(times: Int) {
         repeat(times) {

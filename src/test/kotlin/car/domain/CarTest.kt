@@ -10,7 +10,7 @@ class CarTest {
     @Test
     fun `moveable 이 false면은 자동차는 움직이면 안된다`() {
         // given
-        val car = Car("오길환", AlwaysNotMovableStrategy())
+        val car = Car(carName = "오길환", movableStrategy = AlwaysNotMovableStrategy())
 
         // when
         car.move()
@@ -23,7 +23,7 @@ class CarTest {
     @Test
     fun `moveable 이 true면은 자동차는 움직여도 된다`() {
         // given
-        val car = Car("오길환", AlwaysMovableStrategy())
+        val car = Car(carName = "오길환", movableStrategy = AlwaysMovableStrategy())
 
         // when
         car.move()

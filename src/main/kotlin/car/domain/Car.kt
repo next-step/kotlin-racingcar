@@ -19,19 +19,9 @@ class Car(
 
     constructor(
         carName: String,
-        position: Int,
+        position: Int = INIT_POSITION,
         movableStrategy: MovableStrategy
     ) : this(CarName(carName), position, movableStrategy)
-
-    constructor(
-        carName: String,
-        movableStrategy: MovableStrategy
-    ) : this(CarName(carName), INIT_POSITION, movableStrategy)
-
-    constructor(
-        carName: CarName,
-        movableStrategy: MovableStrategy
-    ) : this(carName, INIT_POSITION, movableStrategy)
 
     fun move() {
         if (movableStrategy.movable) {
