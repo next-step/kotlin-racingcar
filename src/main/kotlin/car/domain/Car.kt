@@ -10,12 +10,11 @@ class Car(
     private val movableStrategy: MovableStrategy
 ) {
     private val _histories: MutableList<CarMoveHistory> = mutableListOf()
+    val historyCollection: CarMoveHistoryCollection
+        get() = CarMoveHistoryCollection(_histories)
 
     var position: Int = position
         private set
-
-    val historyCollection: CarMoveHistoryCollection
-        get() = CarMoveHistoryCollection(_histories)
 
     constructor(
         carName: String,
