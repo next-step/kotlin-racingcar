@@ -1,5 +1,6 @@
 package racingcar.view
 
+import racingcar.domain.CarPositionDto
 import racingcar.domain.Cars
 
 class ResultView(private val cars: Cars) {
@@ -19,9 +20,9 @@ class ResultView(private val cars: Cars) {
         }
     }
 
-    private fun printCar(car: CarDto) {
-        print("${car.name} : ")
-        println("-".repeat(car.position))
+    private fun printCar(carPosition: CarPositionDto) {
+        print("${carPosition.name} : ")
+        println("-".repeat(carPosition.position))
     }
 
     private fun printWinner() {

@@ -1,7 +1,5 @@
 package racingcar.domain
 
-import racingcar.view.CarDto
-
 class Cars(carNames: List<String>) : List<Car> by (carNames.map { name -> Car(name) }) {
 
     fun winners(attemptCount: Int): List<Car> {
@@ -13,7 +11,7 @@ class Cars(carNames: List<String>) : List<Car> by (carNames.map { name -> Car(na
         forEach { car -> car.moveOrStop(shouldMove()) }
     }
 
-    fun results(attempt: Int): List<CarDto> {
-        return map { car -> CarDto(car.name, car.currentPosition(attempt)) }
+    fun results(attempt: Int): List<CarPositionDto> {
+        return map { car -> CarPositionDto(car.name, car.currentPosition(attempt)) }
     }
 }
