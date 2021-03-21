@@ -7,10 +7,10 @@ class Winners(private val cars: Cars) {
         get() = getWinnersInCars()
 
     private fun getWinnersInCars(): List<Winner> {
-        val maxPosition = cars.maxPosition
+        val winnersPosition = cars.maxPosition
 
         return cars.filter {
-            it.position == maxPosition
+            it.isPositionMoreThan(winnersPosition)
         }.map {
             Winner(it.carName)
         }

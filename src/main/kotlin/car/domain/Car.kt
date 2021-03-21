@@ -29,6 +29,8 @@ class Car(
         _histories.add(CarMoveHistory(carName, position))
     }
 
+    fun isPositionMoreThan(position: Int) = this.position == position
+
     companion object {
         const val INIT_POSITION = 0
     }
