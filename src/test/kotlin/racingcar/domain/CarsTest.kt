@@ -14,9 +14,9 @@ internal class CarsTest {
     @Test
     internal fun `가장 멀리 간 자동차가 우승자고 우승자는 한 명 이상일 수 있다`() {
         val cars = Cars(listOf("가", "나", "다"))
-        cars[0].move()
-        cars[1].move()
-        cars[2].stop()
+        cars[0].moveOrStop(shouldMove = true)
+        cars[1].moveOrStop(shouldMove = true)
+        cars[2].moveOrStop(shouldMove = false)
         assertThat(cars.winners(1))
             .containsExactly(Car("가"), Car("나"))
     }

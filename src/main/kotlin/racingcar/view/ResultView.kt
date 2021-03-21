@@ -1,6 +1,5 @@
 package racingcar.view
 
-import racingcar.domain.Car
 import racingcar.domain.Cars
 
 class ResultView(private val cars: Cars) {
@@ -14,15 +13,15 @@ class ResultView(private val cars: Cars) {
     private fun attemptCount() = cars[0].history.size
 
     private fun printEachTurn() {
-        for (i in 1..attemptCount()) {
-            cars.forEach { printCar(it, i) }
+        for (attempt in 1..attemptCount()) {
+            cars.results(attempt).forEach { printCar(it) }
             println()
         }
     }
 
-    private fun printCar(car: Car, attempt: Int) {
+    private fun printCar(car: CarDto) {
         print("${car.name} : ")
-        println("-".repeat(car.currentPosition(attempt)))
+        println("-".repeat(car.position))
     }
 
     private fun printWinner() {

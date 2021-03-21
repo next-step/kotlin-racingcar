@@ -3,18 +3,18 @@ package racingcar.domain
 data class Car(val name: String) {
 
     init {
-        require(name.length <= 5)
+        require(name.length <= MAX_NAME_LENGTH)
     }
 
     private val _history = mutableListOf<CarAction>()
-    val history
-        get() = _history.toList()
+    val history: List<CarAction>
+        get() = _history
 
-    fun move() {
+    private fun move() {
         _history.add(CarAction.MOVE)
     }
 
-    fun stop() {
+    private fun stop() {
         _history.add(CarAction.STOP)
     }
 
@@ -30,5 +30,9 @@ data class Car(val name: String) {
         return _history.take(attempt).sumBy {
             if (it == CarAction.MOVE) 1 else 0
         }
+    }
+
+    companion object {
+        private const val MAX_NAME_LENGTH = 5
     }
 }

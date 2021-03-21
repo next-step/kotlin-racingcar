@@ -9,9 +9,9 @@ internal class CarTest {
     @Test
     internal fun `history에 CarAction이 잘 쌓이는지 테스트`() {
         val car = Car("test")
-        car.move()
+        car.moveOrStop(shouldMove = true)
         assertThat(car.history).isEqualTo(listOf(CarAction.MOVE))
-        car.stop()
+        car.moveOrStop(shouldMove = false)
         assertThat(car.history).isEqualTo(listOf(CarAction.MOVE, CarAction.STOP))
     }
 
@@ -29,9 +29,9 @@ internal class CarTest {
     @Test
     internal fun `자동차는 포지션이 있어야한다`() {
         val car = Car("test")
-        car.move()
-        car.stop()
-        car.move()
+        car.moveOrStop(shouldMove = true)
+        car.moveOrStop(shouldMove = false)
+        car.moveOrStop(shouldMove = true)
         assertThat(car.currentPosition(1)).isEqualTo(1)
         assertThat(car.currentPosition(2)).isEqualTo(1)
         assertThat(car.currentPosition(3)).isEqualTo(2)
