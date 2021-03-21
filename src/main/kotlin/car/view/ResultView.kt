@@ -7,6 +7,7 @@ import car.view.printer.CarMoveHistoryPrettyPrinter
 
 class ResultView(
     private val cars: Cars,
+    private val winners: Winners,
     private val input: Input
 ) {
     fun print() {
@@ -18,7 +19,7 @@ class ResultView(
             println()
         }
 
-        printWinners(Winners(cars))
+        printWinners(winners)
     }
 
     private fun printHistory(allMovedHistories: List<CarMoveHistories>, index: Int) {
