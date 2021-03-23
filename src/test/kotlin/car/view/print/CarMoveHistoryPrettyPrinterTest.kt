@@ -11,7 +11,7 @@ class CarMoveHistoryPrettyPrinterTest {
     @Test
     fun `CarMoveHistory가 원하는 문자로 나오도록 테스트한다`() {
         val history = CarMoveHistory(CarName("Soora"), Position(5))
-        val pretty = CarMoveHistoryPrettyPrinter(history, PrettyPrinterInput("@"))
+        val pretty = CarMoveHistoryPrettyPrinter(history, "@")
 
         assertThat(pretty.toString())
             .isEqualTo("Soora : @@@@@")
