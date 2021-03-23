@@ -5,31 +5,25 @@ import car.domain.Cars
 import car.domain.winner.Winners
 import car.view.print.CarMoveHistoryPrettyPrinter
 
-class ResultView(
-    private val cars: Cars,
-    private val winners: Winners,
-    private val input: Input
-) {
-    fun print() {
+class ResultView() {
+    fun print(cars: Cars, input: Input) {
         val allMovedHistories: List<CarMoveHistories> = cars
             .map { it.histories }
 
         repeat(input.tryCount) { index ->
-            printHistory(allMovedHistories, index)
+            printHistory(allMovedHistories, index, input.prettyPositionString)
             println()
         }
-
-        printWinners(winners)
     }
 
-    private fun printHistory(allMovedHistories: List<CarMoveHistories>, index: Int) {
+    private fun printHistory(allMovedHistories: List<CarMoveHistories>, index: Int, prettyPrinter: String) {
         for (eachMoveHistories in allMovedHistories) {
-            val printer = CarMoveHistoryPrettyPrinter(eachMoveHistories[index], input.prettyPositionString)
+            val printer = CarMoveHistoryPrettyPrinter(eachMoveHistories[index], prettyPrinter)
             println(printer)
         }
     }
 
-    private fun printWinners(winners: Winners) {
+    fun printWinners(winners: Winners) {
         print("$winners 가 최종 우승했습니다.")
     }
 }

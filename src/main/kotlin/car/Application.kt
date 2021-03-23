@@ -21,7 +21,8 @@ fun main() {
 
     val winners: Winners = Winners(cars)
 
-    val resultView = ResultView(cars, winners, input)
+    val resultView = ResultView()
 
-    resultView.print()
+    resultView.print(cars, input)
+    resultView.printWinners(winners)
 }
