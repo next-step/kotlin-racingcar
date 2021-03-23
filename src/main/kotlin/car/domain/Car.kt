@@ -9,9 +9,8 @@ class Car(
     position: Int = INIT_POSITION,
     private val movableStrategy: MovableStrategy
 ) {
-    private val _histories: MutableList<CarMoveHistory> = mutableListOf()
-    val histories: CarMoveHistories
-        get() = CarMoveHistories(_histories)
+    var histories: CarMoveHistories = CarMoveHistories()
+        private set
 
     var position: Int = position
         private set
@@ -26,7 +25,8 @@ class Car(
         if (movableStrategy.movable) {
             position++
         }
-        _histories.add(CarMoveHistory(carName, position))
+
+        histories = histories.add(CarMoveHistory(carName, position))
     }
 
     fun isPositionMoreThan(position: Int) = this.position >= position
