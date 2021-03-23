@@ -14,6 +14,10 @@ data class Winners(private val carMoveHistories: CarMoveHistories) {
     }
 
     override fun toString(): String {
-        return winners.joinToString(",")
+        return winners.joinToString(WINNERS_JOIN_STRING)
+    }
+
+    companion object {
+        private const val WINNERS_JOIN_STRING = ","
     }
 }
