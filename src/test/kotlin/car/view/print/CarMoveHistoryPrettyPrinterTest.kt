@@ -3,7 +3,6 @@ package car.view.print
 import car.domain.history.CarMoveHistory
 import car.domain.CarName
 import car.domain.Position
-import car.view.input.PrettyPrinterInput
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
