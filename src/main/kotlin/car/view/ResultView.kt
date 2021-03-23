@@ -18,14 +18,14 @@ class ResultView() {
         }
     }
 
+    fun printWinners(winners: Winners) {
+        print("$winners 가 최종 우승했습니다.")
+    }
+
     private fun printHistory(allMovedHistories: List<CarMoveHistories>, index: Int, prettyPrinter: String) {
         for (eachMoveHistories in allMovedHistories) {
             val printer = CarMoveHistoryPrettyPrinter(eachMoveHistories[index], prettyPrinter)
             println(printer)
         }
-    }
-
-    fun printWinners(winners: Winners) {
-        print("$winners 가 최종 우승했습니다.")
     }
 }
