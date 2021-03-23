@@ -11,7 +11,7 @@ class CarMoveHistoryPrettyPrinter(
     }
 
     override fun toString(): String {
-        return "${carMoveHistory.carName} : ${positionExpression.repeat(carMoveHistory.position)}"
+        return "${carMoveHistory.carName} : ${positionExpression.repeat(carMoveHistory.position.value)}"
     }
 
     companion object {

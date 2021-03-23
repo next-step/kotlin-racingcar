@@ -6,32 +6,30 @@ import car.domain.move.MovableStrategy
 
 class Car(
     val carName: CarName,
-    position: Int = INIT_POSITION,
+    position: Position = Position(),
     private val movableStrategy: MovableStrategy
 ) {
     var histories: CarMoveHistories = CarMoveHistories()
         private set
 
-    var position: Int = position
-        private set
+    private var _position: Position = position
+
+    val position: Int
+        get() = _position.value
 
     constructor(
         carName: String,
-        position: Int = INIT_POSITION,
+        position: Int = Position.INIT_POSITION,
         movableStrategy: MovableStrategy
-    ) : this(CarName(carName), position, movableStrategy)
+    ) : this(CarName(carName), Position(position), movableStrategy)
 
     fun move() {
         if (movableStrategy.movable) {
-            position++
+            _position++
         }
 
-        histories = histories.add(CarMoveHistory(carName, position))
+        histories = histories.add(CarMoveHistory(carName, _position))
     }
 
     fun isPositionMoreThan(position: Int) = this.position >= position
-
-    companion object {
-        const val INIT_POSITION = 0
-    }
 }

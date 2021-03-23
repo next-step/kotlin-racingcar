@@ -1,6 +1,5 @@
 package car.domain
 
-import car.domain.Car.Companion.INIT_POSITION
 import car.domain.move.AlwaysMovableStrategy
 import car.domain.move.AlwaysNotMovableStrategy
 import org.assertj.core.api.Assertions.assertThat
@@ -17,7 +16,7 @@ class CarTest {
 
         // then
         assertThat(car.position)
-            .isEqualTo(INIT_POSITION)
+            .isEqualTo(Position.INIT_POSITION)
     }
 
     @Test
@@ -30,6 +29,6 @@ class CarTest {
 
         // then
         assertThat(car.position)
-            .isEqualTo(INIT_POSITION + 1)
+            .isEqualTo(Position.INIT_POSITION + 1)
     }
 }
