@@ -3,15 +3,17 @@ package car.view
 import car.domain.history.CarMoveHistories
 import car.domain.Cars
 import car.domain.winner.Winners
+import car.view.input.PrettyPrinterInput
+import car.view.input.TryCountInput
 import car.view.print.CarMoveHistoryPrettyPrinter
 
 class ResultView() {
-    fun print(cars: Cars, input: Input) {
+    fun print(cars: Cars, tryCount: TryCountInput, prettyPrinter: PrettyPrinterInput) {
         val allMovedHistories: List<CarMoveHistories> = cars
             .map { it.histories }
 
-        repeat(input.tryCount) { index ->
-            printHistory(allMovedHistories, index, input.prettyPositionString)
+        repeat(tryCount.count) { index ->
+            printHistory(allMovedHistories, index, prettyPrinter.printer)
             println()
         }
     }
