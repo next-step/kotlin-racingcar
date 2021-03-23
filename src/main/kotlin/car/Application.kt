@@ -22,6 +22,6 @@ fun main() {
 
     val resultView = ResultView()
 
-    resultView.print(game.allCarMoveHistories, prettyString)
+    resultView.print(game.allCarMoveHistories, prettyString.printer)
     resultView.printWinners(game.winners)
 }

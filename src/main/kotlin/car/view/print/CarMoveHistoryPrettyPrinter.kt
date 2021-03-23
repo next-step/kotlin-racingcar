@@ -12,10 +12,10 @@ data class CarMoveHistoryPrettyPrinter(
 
     constructor(
         carMoveHistory: CarMoveHistory,
-        prettyPrinterInput: PrettyPrinterInput = PrettyPrinterInput()
+        expression: String
     ) : this(
         carMoveHistory.carName,
-        prettyPrinterInput.printer,
+        expression,
         carMoveHistory.position.value
     )
 
