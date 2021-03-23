@@ -18,7 +18,7 @@ class WinnersTests {
                 Car("5번차", 1)
             )
         )
-        val winners = Winners(cars)
+        val winners = Winners(cars.currentMoveHistories)
 
         assertThat(winners.winners)
             .containsExactlyInAnyOrder(

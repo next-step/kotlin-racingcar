@@ -3,12 +3,11 @@ package car.view
 import car.domain.history.CarMoveHistories
 import car.domain.winner.Winners
 import car.view.input.PrettyPrinterInput
-import car.view.input.TryCountInput
 import car.view.print.CarMoveHistoryPrettyPrinter
 
 class ResultView {
-    fun print(allMovedHistories: List<CarMoveHistories>, tryCount: TryCountInput, prettyPrinter: PrettyPrinterInput) {
-        repeat(tryCount.count) { index ->
+    fun print(allMovedHistories: List<CarMoveHistories>, prettyPrinter: PrettyPrinterInput) {
+        repeat(allMovedHistories.size) { index ->
             printHistory(allMovedHistories[index], prettyPrinter)
             println()
         }

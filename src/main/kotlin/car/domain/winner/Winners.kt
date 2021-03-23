@@ -1,16 +1,18 @@
 package car.domain.winner
 
-import car.domain.Cars
 import car.domain.Position
+import car.domain.history.CarMoveHistories
 
-class Winners(private val cars: Cars) {
+data class Winners(private val carMoveHistories: CarMoveHistories) {
     val winners: List<Winner>
-        get() = getWinnersInCars()
+        get() = winners()
 
-    private fun getWinnersInCars(): List<Winner> {
-        val winnersPosition = cars.maxPosition
+    private fun winners(): List<Winner> {
+        val winnersPosition = carMoveHistories.map {
+            it.position.value
+        }.max() ?: 0
 
-        return cars.filter {
+        return carMoveHistories.filter {
             it.position >= Position(winnersPosition)
         }.map {
             Winner(it.carName)

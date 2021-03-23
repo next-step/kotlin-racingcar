@@ -2,8 +2,7 @@ package car
 
 import car.domain.CarNames
 import car.domain.Cars
-import car.domain.history.CarMoveHistories
-import car.domain.winner.Winners
+import car.domain.Game
 import car.view.InputView
 import car.view.ResultView
 
@@ -17,16 +16,12 @@ fun main() {
     val carNames = CarNames(names.splitNameBySplitter())
     val cars = Cars(carNames)
 
-    val allCarMoveHistories = mutableListOf<CarMoveHistories>()
-    repeat(tryCount.count) {
-        cars.move()
-        allCarMoveHistories.add(cars.currentMoveHistories)
-    }
+    val game: Game = Game(cars)
 
-    val winners: Winners = Winners(cars)
+    game.move(tryCount.count)
 
     val resultView = ResultView()
 
-    resultView.print(allCarMoveHistories, tryCount, prettyString)
-    resultView.printWinners(winners)
+    resultView.print(game.allCarMoveHistories, prettyString)
+    resultView.printWinners(game.winners)
 }
