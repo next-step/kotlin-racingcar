@@ -5,7 +5,7 @@ import car.domain.history.CarMoveHistory
 import car.domain.move.RandomMovableStrategy
 import car.domain.move.MovableStrategy
 
-class Cars(private val cars: List<Car>) : List<Car> by cars {
+data class Cars(private val cars: List<Car>) : List<Car> by cars {
     val currentMoveHistories
         get() = CarMoveHistories(
             cars.map {
