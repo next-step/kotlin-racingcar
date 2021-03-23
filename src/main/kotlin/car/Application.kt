@@ -13,7 +13,8 @@ fun main() {
     val tryCount = inputView.inputTryCount()
     val prettyString = inputView.inputPrettyString()
 
-    val cars = Cars(CarNames(names.splitNameBySplitter()))
+    val carNames = CarNames(names.splitNameBySplitter())
+    val cars = Cars(carNames)
     cars.move(tryCount.count)
 
     val winners: Winners = Winners(cars)
