@@ -6,9 +6,6 @@ import car.domain.move.RandomMovableStrategy
 import car.domain.move.MovableStrategy
 
 class Cars(private val cars: List<Car>) : List<Car> by cars {
-    val maxPosition
-        get() = cars.map { it.position.value }.max() ?: 0
-
     val currentMoveHistories
         get() = CarMoveHistories(
             cars.map {
