@@ -13,6 +13,21 @@ class CarNamesInput(names: String?) {
         return names.split(NAMES_SPLITTER).toTypedArray()
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as CarNamesInput
+
+        if (names != other.names) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return names.hashCode()
+    }
+
     companion object {
         const val NAMES_SPLITTER = ","
     }

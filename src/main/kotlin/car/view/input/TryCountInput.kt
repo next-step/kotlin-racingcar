@@ -1,6 +1,6 @@
 package car.view.input
 
-class TryCountInput(val count: Int) {
+data class TryCountInput(val count: Int) {
     init {
         require(this.count >= MINIMUM_TRY_COUNT) { "최소 실행 횟수는 $MINIMUM_TRY_COUNT 회 이상입니다." }
     }
