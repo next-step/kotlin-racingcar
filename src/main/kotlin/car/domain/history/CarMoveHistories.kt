@@ -1,7 +1,10 @@
 package car.domain.history
 
+import car.domain.Position
+
 class CarMoveHistories(
     private val moveHistories: List<CarMoveHistory> = listOf()
 ) : List<CarMoveHistory> by moveHistories {
-    fun add(carMoveHistory: CarMoveHistory) = CarMoveHistories(moveHistories + carMoveHistory)
+    val maxPosition: Position
+        get() = Position(moveHistories.map { it.position.value }.max() ?: 0)
 }
