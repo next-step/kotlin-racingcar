@@ -16,7 +16,7 @@ class CarTest {
 
         // then
         assertThat(car.position)
-            .isEqualTo(Position.INIT_POSITION)
+            .isEqualTo(Position(Position.INIT_POSITION))
     }
 
     @Test
@@ -29,6 +29,6 @@ class CarTest {
 
         // then
         assertThat(car.position)
-            .isEqualTo(Position.INIT_POSITION + 1)
+            .isEqualTo(Position(Position.INIT_POSITION + 1))
     }
 }

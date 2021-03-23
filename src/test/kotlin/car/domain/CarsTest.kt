@@ -15,11 +15,13 @@ class CarsTest {
         val cars = Cars(carNames, AlwaysNotMovableStrategy())
 
         // when
-        cars.move(5)
+        repeat(5) {
+            cars.move()
+        }
 
         // then
         assertThat(cars)
-            .allMatch { it.position == 0 }
+            .allMatch { it.position == Position(0) }
     }
 
     @ParameterizedTest
@@ -30,10 +32,12 @@ class CarsTest {
         val cars = Cars(carNames, AlwaysMovableStrategy())
 
         // when
-        cars.move(times)
+        repeat(times) {
+            cars.move()
+        }
 
         // then
         assertThat(cars)
-            .allMatch { it.position == times }
+            .allMatch { it.position == Position(times) }
     }
 }
