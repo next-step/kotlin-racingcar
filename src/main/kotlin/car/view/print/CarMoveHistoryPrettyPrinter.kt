@@ -1,20 +1,17 @@
 package car.view.print
 
 import car.domain.history.CarMoveHistory
+import car.view.input.PrettyPrinterInput
 
 class CarMoveHistoryPrettyPrinter(
-    private val carMoveHistory: CarMoveHistory,
-    private val positionExpression: String = DEFAULT_POSITION_EXPRESSION
+    carMoveHistory: CarMoveHistory,
+    prettyPrinterInput: PrettyPrinterInput = PrettyPrinterInput()
 ) {
-    init {
-        require(!positionExpression.isNullOrBlank()) { "표시할 문자는 공백이면 안됩니다." }
-    }
+    private val carName = carMoveHistory.carName
+    private val expression = prettyPrinterInput.printer
+    private val position = carMoveHistory.position.value
 
     override fun toString(): String {
-        return "${carMoveHistory.carName} : ${positionExpression.repeat(carMoveHistory.position.value)}"
-    }
-
-    companion object {
-        const val DEFAULT_POSITION_EXPRESSION = "-"
+        return "$carName : ${expression.repeat(position)}"
     }
 }

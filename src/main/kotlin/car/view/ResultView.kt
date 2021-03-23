@@ -13,7 +13,7 @@ class ResultView() {
             .map { it.histories }
 
         repeat(tryCount.count) { index ->
-            printHistory(allMovedHistories, index, prettyPrinter.printer)
+            printHistory(allMovedHistories, index, prettyPrinter)
             println()
         }
     }
@@ -22,7 +22,7 @@ class ResultView() {
         print("$winners 가 최종 우승했습니다.")
     }
 
-    private fun printHistory(allMovedHistories: List<CarMoveHistories>, index: Int, prettyPrinter: String) {
+    private fun printHistory(allMovedHistories: List<CarMoveHistories>, index: Int, prettyPrinter: PrettyPrinterInput) {
         for (eachMoveHistories in allMovedHistories) {
             val printer = CarMoveHistoryPrettyPrinter(eachMoveHistories[index], prettyPrinter)
             println(printer)
