@@ -13,7 +13,6 @@ class Car(
         private set
 
     private var _position: Position = position
-
     val position: Int
         get() = _position.value
 
