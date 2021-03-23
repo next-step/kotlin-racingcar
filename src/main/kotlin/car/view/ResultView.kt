@@ -3,7 +3,7 @@ package car.view
 import car.domain.history.CarMoveHistories
 import car.domain.Cars
 import car.domain.winner.Winners
-import car.view.printer.CarMoveHistoryPrettyPrinter
+import car.view.print.CarMoveHistoryPrettyPrinter
 
 class ResultView(
     private val cars: Cars,

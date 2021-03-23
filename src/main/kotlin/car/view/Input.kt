@@ -1,8 +1,16 @@
 package car.view
 
-data class Input(val name: String, val tryCount: Int, val prettyPositionString: String) {
+import car.view.input.CarNamesInput
+import car.view.input.PrettyPrinterInput
+import car.view.input.TryCountInput
+
+class Input(name: CarNamesInput, tryCount: TryCountInput, prettyPositionString: PrettyPrinterInput) {
+    val names: String = name.names
+    val tryCount: Int = tryCount.count
+    val prettyPositionString: String = prettyPositionString.printer
+
     fun splitNameBySplitter(): Array<String> {
-        return name.split(NAME_SPLITTER).toTypedArray()
+        return names.split(NAME_SPLITTER).toTypedArray()
     }
 
     companion object {
