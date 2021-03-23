@@ -7,7 +7,7 @@ import car.view.input.PrettyPrinterInput
 import car.view.input.TryCountInput
 import car.view.print.CarMoveHistoryPrettyPrinter
 
-class ResultView() {
+class ResultView {
     fun print(cars: Cars, tryCount: TryCountInput, prettyPrinter: PrettyPrinterInput) {
         val allMovedHistories: List<CarMoveHistories> = cars
             .map { it.histories }
