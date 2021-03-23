@@ -1,6 +1,6 @@
 package car.domain
 
-class Position(val value: Int = INIT_POSITION) {
+data class Position(val value: Int = INIT_POSITION) {
     init {
         require(value >= 0) { "시작 위치는 $INIT_POSITION 보다 앞서 있어야 합니다." }
     }
