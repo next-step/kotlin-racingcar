@@ -1,7 +1,5 @@
 package car.view.input
 
-import java.lang.IllegalArgumentException
-
 class TryCountInput(count: String?) {
     val count: Int
     init {
