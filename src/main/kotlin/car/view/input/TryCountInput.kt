@@ -13,7 +13,7 @@ data class TryCountInput(val count: Int) {
         private fun String?.toInt(): Int {
             require(!this.isNullOrEmpty()) { "실행 횟수는 필수로 입력이 되어야 합니다. " }
 
-            return toIntOrNull() ?: throw IllegalArgumentException("실행 횟수는 숫자여야 합니다.")
+            return this?.toIntOrNull() ?: throw IllegalArgumentException("실행 횟수는 숫자여야 합니다.")
         }
     }
 }
