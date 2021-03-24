@@ -29,6 +29,6 @@ class CarNamesInput(names: String?) {
     }
 
     companion object {
-        const val NAMES_SPLITTER = ","
+        private const val NAMES_SPLITTER = ","
     }
 }
