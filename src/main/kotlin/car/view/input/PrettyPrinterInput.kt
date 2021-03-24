@@ -25,6 +25,6 @@ class PrettyPrinterInput(printer: String? = DEFAULT_POSITION_EXPRESSION) {
     }
 
     companion object {
-        const val DEFAULT_POSITION_EXPRESSION = "-"
+        private const val DEFAULT_POSITION_EXPRESSION = "-"
     }
 }
