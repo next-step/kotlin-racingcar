@@ -1,16 +1,24 @@
 package car
 
-import car.business.Cars
-import car.io.InputView
-import car.io.ResultView
+import car.domain.CarNames
+import car.domain.Cars
+import car.domain.Game
+import car.view.InputView
+import car.view.ResultView
 
 fun main() {
     val inputView = InputView()
-    val input = inputView.input()
 
-    val cars = Cars(input.splitNameBySplitter())
-    val resultView = ResultView(cars)
+    val names = inputView.inputNames()
+    val tryCount = inputView.inputTryCount()
+    val prettyString = inputView.inputPrettyString()
 
-    cars.move(input.tryCount)
-    resultView.print()
+    val game: Game = Game(Cars(CarNames(names.splitNameBySplitter())))
+
+    game.move(tryCount.count)
+
+    val resultView = ResultView()
+
+    resultView.print(game.allCarMoveHistories, prettyString.printer)
+    resultView.printWinners(game.winners)
 }

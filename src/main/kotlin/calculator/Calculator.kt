@@ -23,6 +23,6 @@ class Calculator(private val expression: String) {
     }
 
     companion object {
-        val EXPRESSION_SEPARATOR = " "
+        private const val EXPRESSION_SEPARATOR = " "
     }
 }
