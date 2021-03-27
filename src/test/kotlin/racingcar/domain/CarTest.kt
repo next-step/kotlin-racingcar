@@ -10,7 +10,7 @@ internal class CarTest {
     @ParameterizedTest(name = "{0}일 경우")
     @MethodSource("overFour")
     fun `이동 4보다 크거나 같을 때`(value: Number) {
-        val car = Car()
+        val car = Car(Name("test"))
         val movedCar = car.move(value)
         assertThat(car.distance).isNotEqualTo(movedCar.distance)
     }
@@ -18,7 +18,7 @@ internal class CarTest {
     @ParameterizedTest(name = "{0}일 경우")
     @MethodSource("underFour")
     fun `이동 숫자가 4보다 작을 때`(value: Number) {
-        val car = Car()
+        val car = Car(Name("test"))
         val movedCar = car.move(value)
         assertThat(car.distance).isEqualTo(movedCar.distance)
     }

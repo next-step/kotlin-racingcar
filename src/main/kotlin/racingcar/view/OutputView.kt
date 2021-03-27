@@ -4,6 +4,7 @@ import racingcar.domain.Car
 import racingcar.domain.Cars
 
 fun printResultMessage() = println("실행결과")
+
 fun printCars(cars: Cars) {
     cars.elements
         .forEach { printCar(it) }
@@ -11,5 +12,5 @@ fun printCars(cars: Cars) {
 }
 
 private fun printCar(car: Car) {
-    println("-".repeat(car.distance.value))
+    println(car.name.value + " : " + "-".repeat(car.distance.value))
 }

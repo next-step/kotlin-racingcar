@@ -1,12 +1,32 @@
 package racingcar.domain
 
-data class Car(val distance: Distance = Distance()) {
+class Car(
+    val name: Name,
+    val distance: Distance = Distance()
+) {
 
     fun move(number: Number): Car {
-        if (number.isOver(MOVE_POINT)) {
-            return copy(distance = distance + MOVE_DISTANCE)
+        if (number >= MOVE_POINT) {
+            return Car(name = name, distance = distance + MOVE_DISTANCE)
         }
         return this
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is Car) return false
+
+        if (name != other.name) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return name.hashCode()
+    }
+
+    override fun toString(): String {
+        return "Car(name=$name, distance=$distance)"
     }
 
     companion object {
