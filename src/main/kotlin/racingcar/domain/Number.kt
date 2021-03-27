@@ -1,12 +1,14 @@
 package racingcar.domain
 
-data class Number(val value: Int = MINIMUM_VALUE) {
+data class Number(val value: Int = MINIMUM_VALUE) : Comparable<Number> {
 
     init {
         require(value in MINIMUM_VALUE..MAXIMUM_VALUE)
     }
 
-    fun isOver(number: Number) = value >= number.value
+    override fun compareTo(other: Number): Int {
+        return this.value.compareTo(other.value)
+    }
 
     companion object {
         const val MINIMUM_VALUE = 0
