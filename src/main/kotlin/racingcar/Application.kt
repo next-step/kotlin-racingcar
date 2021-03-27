@@ -14,10 +14,11 @@ fun main() {
 
     var cars = Cars(carRange.map { Car() })
 
-    val round = Round(inputCountOfRace())
+    val round = inputCountOfRace()
+
     printResultMessage()
-    for (i in round) {
-        val numbers = carRange.map { RandomNumberGenerator().generate() }
+    for (i in (0..round)) {
+        val numbers = carsRange.map { RandomNumberGenerator().generate() }
         val movedCar = cars.move(numbers)
         printCars(movedCar)
         cars = movedCar
