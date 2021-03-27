@@ -38,4 +38,21 @@ internal class CarsTest {
         val movedCars = cars.move(listOf(Number(4), Number(4)))
         assertThat(cars).isNotEqualTo(movedCars)
     }
+
+    @Test
+    fun `최대 거리 계산`() {
+        val car = Car(Name("test"))
+        val movedCar = car.move(Number(4))
+        assertThat(Cars(listOf(movedCar, car)).maxDistance).isEqualTo(Distance(1))
+    }
+
+    @Test
+    fun `거리로 car 찾기`() {
+        val car = Car(Name("test"))
+        val movedCar = car.move(Number(4))
+        val cars = Cars(listOf(movedCar, car))
+
+        assertThat(cars.findAllByDistance(Distance())).contains(car)
+        assertThat(cars.findAllByDistance(Distance(1))).contains(movedCar)
+    }
 }
