@@ -5,6 +5,8 @@ import racingcar.domain.Cars
 import racingcar.domain.RacingResult
 import racingcar.domain.Winner
 
+private const val DISTANCE_SYMBOL = "-"
+
 fun printResult(result: RacingResult) {
     println("실행결과")
     result.elements
@@ -18,7 +20,7 @@ private fun printCars(cars: Cars) {
 }
 
 private fun printCar(car: Car) {
-    println(car.name.value + " : " + "-".repeat(car.distance.value))
+    println(car.name.value + " : " + DISTANCE_SYMBOL.repeat(car.distance.value))
 }
 
 fun printWinner(winner: Winner) {
