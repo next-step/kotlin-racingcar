@@ -19,7 +19,7 @@ fun main() {
     val round = inputCountOfRace()
 
     val result = RacingResult()
-    for (i in (0..round)) {
+    repeat(round) {
         val numbers = carsRange.map { RandomNumberGenerator().generate() }
         val movedCar = cars.move(numbers)
         result.add(movedCar)
