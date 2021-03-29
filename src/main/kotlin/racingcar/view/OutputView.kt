@@ -20,7 +20,7 @@ private fun printCars(cars: Cars) {
 }
 
 private fun printCar(car: Car) {
-    println(car.name.value + " : " + DISTANCE_SYMBOL.repeat(car.distance.value))
+    println("${car.name.value} : ${DISTANCE_SYMBOL.repeat(car.distance.value)}")
 }
 
 fun printWinner(winner: Winner) {
