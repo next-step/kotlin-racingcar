@@ -2,24 +2,32 @@ package racingcar
 
 import racingcar.domain.Car
 import racingcar.domain.Cars
+import racingcar.domain.Name
+import racingcar.domain.RacingResult
 import racingcar.domain.RandomNumberGenerator
-import racingcar.domain.Round
-import racingcar.view.inputCountOfCar
+import racingcar.view.inputCarNameValues
 import racingcar.view.inputCountOfRace
-import racingcar.view.printCars
-import racingcar.view.printResultMessage
+import racingcar.view.printResult
+import racingcar.view.printWinner
 
 fun main() {
-    val carRange = (0 until inputCountOfCar())
+    val names = inputCarNameValues().map { Name(it) }
 
-    var cars = Cars(carRange.map { Car() })
+    var cars = Cars(names.map { Car(it) })
+    val carsRange = (cars.elements.indices)
 
-    val round = Round(inputCountOfRace())
-    printResultMessage()
-    for (i in round) {
-        val numbers = carRange.map { RandomNumberGenerator().generate() }
+    val round = inputCountOfRace()
+
+    val result = RacingResult()
+    for (i in (0..round)) {
+        val numbers = carsRange.map { RandomNumberGenerator().generate() }
         val movedCar = cars.move(numbers)
-        printCars(movedCar)
+        result.add(movedCar)
         cars = movedCar
     }
+
+    printResult(result)
+
+    val winner = result.winner
+    printWinner(winner)
 }

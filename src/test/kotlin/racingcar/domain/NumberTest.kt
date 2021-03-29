@@ -25,11 +25,8 @@ internal class NumberTest {
     fun `비교`() {
         val four = Number(4)
         val three = Number(3)
-        assertThat(three.isOver(four))
-            .isFalse()
-        assertThat(four.isOver(four))
-            .isTrue()
-        assertThat(four.isOver(three))
-            .isTrue()
+        assertThat(three >= four).isFalse()
+        assertThat(four >= four).isTrue()
+        assertThat(four >= three).isTrue()
     }
 }
