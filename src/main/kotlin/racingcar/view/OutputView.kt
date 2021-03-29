@@ -3,7 +3,7 @@ package racingcar.view
 import racingcar.domain.Car
 import racingcar.domain.Cars
 import racingcar.domain.RacingResult
-import racingcar.domain.Winner
+import racingcar.domain.Winners
 
 private const val DISTANCE_SYMBOL = "-"
 
@@ -23,6 +23,6 @@ private fun printCar(car: Car) {
     println("${car.name.value} : ${DISTANCE_SYMBOL.repeat(car.distance.value)}")
 }
 
-fun printWinner(winner: Winner) {
-    println(winner.elements.joinToString { it.name.value } + "가 최종 우승했습니다.")
+fun printWinner(winners: Winners) {
+    println("${winners.elements.joinToString { it.name.value }} 가 최종 우승했습니다.")
 }

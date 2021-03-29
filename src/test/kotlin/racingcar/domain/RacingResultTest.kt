@@ -14,6 +14,7 @@ class RacingResultTest {
 
         result.add(cars)
 
-        assertThat(result.winner).isEqualTo(Winner(listOf(movedCar)))
+        val winners = result.winners()
+        assertThat(winners).isEqualTo(Winners(listOf(movedCar)))
     }
 }

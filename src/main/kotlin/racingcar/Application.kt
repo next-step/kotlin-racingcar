@@ -28,6 +28,6 @@ fun main() {
 
     printResult(result)
 
-    val winner = result.winner
-    printWinner(winner)
+    val winners = result.winners()
+    printWinner(winners)
 }

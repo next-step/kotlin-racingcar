@@ -6,16 +6,15 @@ class RacingResult {
     val elements
         get() = _elements.toList()
 
-    val winner: Winner
-        get() {
-            val maxDistance = _elements.last()
-                .maxDistance
+    fun winners(): Winners {
+        val maxDistance = _elements.last()
+            .maxDistance
 
-            return Winner(
-                _elements.last()
-                    .findAllByDistance(maxDistance)
-            )
-        }
+        return Winners(
+            _elements.last()
+                .findAllByDistance(maxDistance)
+        )
+    }
 
     fun add(cars: Cars) {
         _elements.add(cars)
