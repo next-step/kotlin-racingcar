@@ -33,8 +33,7 @@ internal class CarTest {
 
     @Test
     fun `같은 거리인지 체크 다른 거리일 경우`() {
-        val car = Car(Name("test"))
-        val movedCar = car.move(Number(4))
+        val car = Car(Name("test"), Distance((1)))
 
         assertThat(car.isSameDistance(Distance(2))).isFalse()
     }
