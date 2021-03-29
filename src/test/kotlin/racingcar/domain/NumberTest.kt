@@ -2,6 +2,7 @@ package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -25,8 +26,10 @@ internal class NumberTest {
     fun `비교`() {
         val four = Number(4)
         val three = Number(3)
-        assertThat(three >= four).isFalse()
-        assertThat(four >= four).isTrue()
-        assertThat(four >= three).isTrue()
+        assertAll(
+            { assertThat(three >= four).isFalse() },
+            { assertThat(four >= four).isTrue() },
+            { assertThat(four >= three).isTrue() }
+        )
     }
 }
