@@ -9,12 +9,27 @@ class RacingResultTest {
     fun `결과에서 winner 찾기`() {
         val result = RacingResult()
         val car = Car(Name("test"))
-        val movedCar = car.move(Number(4))
+        val movedCar = Car(Name("test2"), Distance(1))
         val cars = Cars(listOf(movedCar, car))
 
         result.add(cars)
 
         val winners = result.winners()
         assertThat(winners).isEqualTo(Winners(listOf(movedCar)))
+    }
+
+    @Test
+    fun `우승자는 한 명 이상일 수 있다`() {
+        val result = RacingResult()
+        val car1 = Car(Name("car1"))
+        val car2 = Car(Name("car2"), Distance(1))
+        val car3 = Car(Name("car3"), Distance(1))
+
+        val cars = Cars(listOf(car1, car2, car3))
+        result.add(cars)
+
+        val winners = result.winners()
+
+        assertThat(winners.elements.size).isGreaterThanOrEqualTo(2)
     }
 }
