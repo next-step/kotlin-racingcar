@@ -32,8 +32,8 @@ class RacingCarGame(carNames: List<CarName>, roundCount: PositiveCount) {
     }
 
     private fun findWinners(): List<String> {
-        val maxValue = cars.map { it.distance }.max() ?: throw IllegalArgumentException("distance가 존재하지 않습니다")
-        return cars.filter { it.distance == maxValue }.map { it.name.value }
+        val winnerDistance = cars.map { it.distance }.max() ?: throw IllegalArgumentException("distance가 존재하지 않습니다")
+        return cars.filter { it.distance == winnerDistance }.map { it.name.value }
     }
 
     companion object {
