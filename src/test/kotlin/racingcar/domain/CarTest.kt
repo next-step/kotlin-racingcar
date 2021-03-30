@@ -24,10 +24,10 @@ internal class CarTest {
         val car = Car(name = dummyCarName, moveStrategy = moveableMoveStrategy, moveDepth = moveDepth)
 
         // when
-        car.moveIfMoveable()
+        val result = car.moveIfMoveable()
 
         // then
-        assertThat(car.distance).isEqualTo(moveDepth)
+        assertThat(result.distance).isEqualTo(moveDepth)
     }
 
     @Test

@@ -2,7 +2,7 @@ package racingcar.domain
 
 class RacingCarGame(carNames: List<CarName>, roundCount: PositiveCount) {
 
-    private val cars: List<Car>
+    private var cars: List<Car>
     private val rounds: List<Round>
 
     init {
@@ -19,8 +19,8 @@ class RacingCarGame(carNames: List<CarName>, roundCount: PositiveCount) {
     }
 
     private fun play(round: Round) {
-        cars.forEach { it.moveIfMoveable() }
-        val result = Result(cars.map { CarResult(it.name.value, it.distance) })
+        cars = cars.map { it.moveIfMoveable() }
+        val result = Result.from(cars)
         round.recordResult(result)
     }
 
