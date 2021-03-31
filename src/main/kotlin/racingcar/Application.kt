@@ -3,7 +3,7 @@ package racingcar
 import racingcar.domain.Car
 import racingcar.domain.Cars
 import racingcar.domain.Name
-import racingcar.domain.RacingResult
+import racingcar.domain.RacingGame
 import racingcar.domain.RandomNumberGenerator
 import racingcar.view.inputCarNameValues
 import racingcar.view.inputCountOfRace
@@ -13,18 +13,11 @@ import racingcar.view.printWinner
 fun main() {
     val names = inputCarNameValues().map { Name(it) }
 
-    var cars = Cars(names.map { Car(it) })
-    val carsRange = (cars.elements.indices)
-
+    val cars = Cars(names.map { Car(it) })
     val round = inputCountOfRace()
 
-    val result = RacingResult()
-    repeat(round) {
-        val numbers = carsRange.map { RandomNumberGenerator().generate() }
-        val movedCar = cars.move(numbers)
-        result.add(movedCar)
-        cars = movedCar
-    }
+    val racingGame = RacingGame(round, cars)
+    val result = racingGame.race(RandomNumberGenerator())
 
     printResult(result)
 
