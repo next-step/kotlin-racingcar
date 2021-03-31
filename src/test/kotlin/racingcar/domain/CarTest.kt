@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 
 internal class CarTest {
 
-    private val dummyCarName = "dummy"
+    private val dummyCarName = CarName("dummy")
 
     @Test
     fun `자동차의 초기 거리는 0이다`() {
@@ -24,10 +24,10 @@ internal class CarTest {
         val car = Car(name = dummyCarName, moveStrategy = moveableMoveStrategy, moveDepth = moveDepth)
 
         // when
-        car.moveIfMoveable()
+        val result = car.moveIfMoveable()
 
         // then
-        assertThat(car.distance).isEqualTo(moveDepth)
+        assertThat(result.distance).isEqualTo(moveDepth)
     }
 
     @Test
