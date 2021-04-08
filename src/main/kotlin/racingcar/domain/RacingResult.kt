@@ -1,22 +1,14 @@
 package racingcar.domain
 
-class RacingResult {
-    private var _elements = mutableListOf<Cars>()
-
-    val elements
-        get() = _elements.toList()
+class RacingResult(val elements: List<Cars>) {
 
     fun winners(): Winners {
-        val maxDistance = _elements.last()
+        val maxDistance = elements.last()
             .maxDistance
 
         return Winners(
-            _elements.last()
+            elements.last()
                 .findAllByDistance(maxDistance)
         )
-    }
-
-    fun add(cars: Cars) {
-        _elements.add(cars)
     }
 }

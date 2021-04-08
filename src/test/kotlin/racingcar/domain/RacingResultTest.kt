@@ -12,8 +12,7 @@ class RacingResultTest {
 
     @Test
     fun `결과에서 winners 찾기`() {
-        val result = RacingResult()
-        result.add(cars)
+        val result = RacingResult(listOf(cars))
 
         val winners = result.winners()
         assertThat(winners).isEqualTo(Winners(listOf(car2, car3)))
@@ -21,8 +20,7 @@ class RacingResultTest {
 
     @Test
     fun `우승자는 한 명 이상일 수 있다`() {
-        val result = RacingResult()
-        result.add(cars)
+        val result = RacingResult(listOf(cars))
 
         val winners = result.winners()
 
