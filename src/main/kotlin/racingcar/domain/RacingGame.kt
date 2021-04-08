@@ -9,7 +9,7 @@ class RacingGame(
         require(round > 0) { "시도할 횟수는 0보다 커야한다. round: $round" }
     }
 
-    fun race(numberGenerator: RandomNumberGenerator): RacingResult {
+    fun race(numberGenerator: NumberGenerator): RacingResult {
         val carsRange = (cars.elements.indices)
 
         val resultElements = mutableListOf(cars)

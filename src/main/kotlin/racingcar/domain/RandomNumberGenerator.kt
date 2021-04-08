@@ -1,8 +1,8 @@
 package racingcar.domain
 
-class RandomNumberGenerator {
+class RandomNumberGenerator : NumberGenerator {
 
-    fun generate() = Number(numberRange.random())
+    override fun generate() = Number(numberRange.random())
 
     companion object {
         private val numberRange = (Number.MINIMUM_VALUE..Number.MAXIMUM_VALUE)
