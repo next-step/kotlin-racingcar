@@ -1,5 +1,7 @@
 package racingcar.domain
 
+import racingcar.domain.movestrategy.MoveStrategy
+
 data class Car(
     val name: Name,
     val distance: Distance = Distance()

@@ -1,4 +1,6 @@
-package racingcar.domain
+package racingcar.domain.movestrategy
+
+import racingcar.domain.Number
 
 class RandomMoveStrategy : MoveStrategy {
 

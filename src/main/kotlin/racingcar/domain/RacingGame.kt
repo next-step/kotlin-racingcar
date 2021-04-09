@@ -1,5 +1,7 @@
 package racingcar.domain
 
+import racingcar.domain.movestrategy.RandomMoveStrategy
+
 class RacingGame(
     private val round: Int,
     private var cars: Cars

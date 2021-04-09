@@ -1,5 +1,7 @@
 package racingcar.domain
 
+import racingcar.domain.movestrategy.MoveStrategy
+
 data class Cars(val elements: List<Car>) {
 
     val maxDistance

@@ -4,6 +4,8 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
+import racingcar.domain.movestrategy.MoveStrategy
+import racingcar.domain.movestrategy.RandomMoveStrategy
 
 internal class CarsTest {
 
