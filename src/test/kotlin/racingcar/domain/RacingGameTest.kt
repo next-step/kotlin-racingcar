@@ -28,7 +28,7 @@ internal class RacingGameTest {
     @ParameterizedTest(name = "{0}일 경우")
     @ValueSource(ints = [1, 2, 3, 4, 5])
     fun `round 만큼 시도 한다`(round: Int) {
-        val result = RacingGame(round, cars).race(RandomNumberGenerator())
+        val result = RacingGame(round, cars).race()
 
         assertThat(result.elements.size).isEqualTo(round)
     }

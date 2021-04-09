@@ -4,7 +4,6 @@ import racingcar.domain.Car
 import racingcar.domain.Cars
 import racingcar.domain.Name
 import racingcar.domain.RacingGame
-import racingcar.domain.RandomNumberGenerator
 import racingcar.view.inputCarNameValues
 import racingcar.view.inputCountOfRace
 import racingcar.view.printResult
@@ -17,7 +16,7 @@ fun main() {
     val round = inputCountOfRace()
 
     val racingGame = RacingGame(round, cars)
-    val result = racingGame.race(RandomNumberGenerator())
+    val result = racingGame.race()
 
     printResult(result)
 
