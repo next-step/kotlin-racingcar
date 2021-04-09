@@ -1,11 +1,5 @@
 package racingcar.domain
 
-fun ClosedRange<Number>.random(): Number {
-
-    val intRange = this.start.value..this.endInclusive.value
-    return Number.from((intRange).random())
-}
-
 class Number private constructor(val value: Int = MINIMUM_VALUE) : Comparable<Number> {
 
     init {
@@ -41,5 +35,7 @@ class Number private constructor(val value: Int = MINIMUM_VALUE) : Comparable<Nu
             .map { Number() }
 
         fun from(value: Int) = NUMBERS[value]
+
+        fun random() = NUMBERS[VALUE_RANGE.random()]
     }
 }

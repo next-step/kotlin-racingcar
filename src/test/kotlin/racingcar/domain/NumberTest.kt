@@ -32,12 +32,4 @@ internal class NumberTest {
             { assertThat(four >= three).isTrue() }
         )
     }
-
-    @Test
-    fun `랜덤 범위 테스트`() {
-        repeat(10000) {
-            val randomNumber = (Number.from(0)..Number.from(9)).random()
-            assertThat(randomNumber).isBetween(Number.from(0), Number.from(9))
-        }
-    }
 }
