@@ -1,6 +1,8 @@
 package racingcar.domain
 
-class Number private constructor(val value: Int = MINIMUM_VALUE) : Comparable<Number> {
+class Number private constructor(
+    val value: Int = MINIMUM_VALUE
+) : Comparable<Number> {
 
     init {
         require(value in VALUE_RANGE)
@@ -32,9 +34,12 @@ class Number private constructor(val value: Int = MINIMUM_VALUE) : Comparable<Nu
         private const val MAXIMUM_VALUE = 9
         private val VALUE_RANGE = (MINIMUM_VALUE..MAXIMUM_VALUE)
         private val NUMBERS = VALUE_RANGE
-            .map { Number() }
+            .map { Number(it) }
 
-        fun from(value: Int) = NUMBERS[value]
+        fun from(value: Int): Number {
+            require(value in VALUE_RANGE) { "지원하지 않는 숫자" }
+            return NUMBERS[value]
+        }
 
         fun random() = NUMBERS[VALUE_RANGE.random()]
     }
