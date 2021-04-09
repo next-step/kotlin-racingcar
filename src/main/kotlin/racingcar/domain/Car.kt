@@ -5,6 +5,13 @@ data class Car(
     val distance: Distance = Distance()
 ) : Comparable<Car> {
 
+    fun move(moveStrategy: MoveStrategy): Car {
+        if (moveStrategy.movable()) {
+            return Car(name = name, distance = distance + MOVE_DISTANCE)
+        }
+        return this
+    }
+
     fun move(number: Number): Car {
         if (number >= MOVE_POINT) {
             return Car(name = name, distance = distance + MOVE_DISTANCE)
