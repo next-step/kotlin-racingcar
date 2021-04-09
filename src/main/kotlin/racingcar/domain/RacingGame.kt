@@ -12,7 +12,7 @@ class RacingGame(
     fun race(numberGenerator: NumberGenerator): RacingResult {
         val carsRange = (cars.elements.indices)
 
-        val resultElements = mutableListOf(cars)
+        val resultElements = mutableListOf<Cars>()
         repeat(round) {
             val numbers = carsRange.map { numberGenerator.generate() }
             cars = cars.move(numbers)
