@@ -6,9 +6,9 @@ data class Cars(val elements: List<Car>) {
         get() = (elements.max() ?: throw IllegalStateException())
             .distance
 
-    fun move(numbers: List<Number>): Cars {
-        require(elements.size == numbers.size)
-        return copy(elements = elements.mapIndexed { index, car -> car.move(numbers[index]) })
+    fun move(moveStrategies: List<MoveStrategy>): Cars {
+        require(elements.size == moveStrategies.size)
+        return copy(elements = elements.mapIndexed { index, car -> car.move(moveStrategies[index]) })
     }
 
     fun findAllByDistance(distance: Distance) = elements.filter { it.isSameDistance(distance) }

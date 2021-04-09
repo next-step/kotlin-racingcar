@@ -7,6 +7,14 @@ import org.junit.jupiter.api.assertThrows
 
 internal class CarsTest {
 
+    private val moveStrategy = object : MoveStrategy {
+        override fun movable() = true
+    }
+
+    private val notMoveStrategy = object : MoveStrategy {
+        override fun movable() = false
+    }
+
     @Test
     fun `elements numbers 사이즈가 다를 경우`() {
         val car1 = Car(Name("test"))
@@ -18,7 +26,7 @@ internal class CarsTest {
     fun `elements numbers 사이즈가 같을 경우`() {
         val car1 = Car(Name("test"))
         val car2 = Car(Name("test"))
-        assertDoesNotThrow { Cars(listOf(car1, car2)).move(listOf(Number(), Number())) }
+        assertDoesNotThrow { Cars(listOf(car1, car2)).move(listOf(RandomMoveStrategy(), RandomMoveStrategy())) }
     }
 
     @Test
@@ -26,7 +34,8 @@ internal class CarsTest {
         val car1 = Car(Name("test"))
         val car2 = Car(Name("test"))
         val cars = Cars(listOf(car1, car2))
-        val movedCars = cars.move(listOf(Number(3), Number(3)))
+        val movedCars = cars.move(listOf(notMoveStrategy, notMoveStrategy))
+
         assertThat(cars).isEqualTo(movedCars)
     }
 
@@ -35,8 +44,12 @@ internal class CarsTest {
         val car1 = Car(Name("test"))
         val car2 = Car(Name("test"))
         val cars = Cars(listOf(car1, car2))
-        val movedCars = cars.move(listOf(Number(4), Number(4)))
+        val movedCars = cars.move(listOf(moveStrategy, moveStrategy))
+
         assertThat(cars).isNotEqualTo(movedCars)
+        val movedCarDistance = movedCars.elements
+            .map { it.distance }
+        assertThat(movedCarDistance).contains(Distance(1))
     }
 
     @Test
