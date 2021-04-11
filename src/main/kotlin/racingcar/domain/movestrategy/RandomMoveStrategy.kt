@@ -1,14 +1,13 @@
 package racingcar.domain.movestrategy
 
-import racingcar.domain.Number
-
 class RandomMoveStrategy : MoveStrategy {
 
     override fun movable(): Boolean {
-        return Number.random() >= MOVE_POINT
+        return NUMBER_RANGE.random() >= MOVE_POINT
     }
 
     companion object {
-        private val MOVE_POINT = Number.from(4)
+        private const val MOVE_POINT = 4
+        private val NUMBER_RANGE = 0..9
     }
 }
