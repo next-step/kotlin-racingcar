@@ -2,10 +2,7 @@ package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertDoesNotThrow
-import org.junit.jupiter.api.assertThrows
 import racingcar.domain.movestrategy.MoveStrategy
-import racingcar.domain.movestrategy.RandomMoveStrategy
 
 internal class CarsTest {
 
@@ -18,27 +15,13 @@ internal class CarsTest {
     }
 
     @Test
-    fun `elements numbers 사이즈가 다를 경우`() {
-        val car1 = Car(Name("test"))
-        val car2 = Car(Name("test"))
-        assertThrows<IllegalArgumentException> { Cars(listOf(car1, car2)).move(listOf()) }
-    }
-
-    @Test
-    fun `elements numbers 사이즈가 같을 경우`() {
-        val car1 = Car(Name("test"))
-        val car2 = Car(Name("test"))
-        assertDoesNotThrow { Cars(listOf(car1, car2)).move(listOf(RandomMoveStrategy(), RandomMoveStrategy())) }
-    }
-
-    @Test
     fun `움직이지 않는 경우`() {
         val car1 = Car(Name("test"))
         val car2 = Car(Name("test"))
         val cars = Cars(listOf(car1, car2))
-        val movedCars = cars.move(listOf(notMoveStrategy, notMoveStrategy))
+        val notMovedCars = cars.move(notMoveStrategy)
 
-        assertThat(cars).isEqualTo(movedCars)
+        assertThat(cars).isEqualTo(notMovedCars)
     }
 
     @Test
@@ -46,7 +29,7 @@ internal class CarsTest {
         val car1 = Car(Name("test"))
         val car2 = Car(Name("test"))
         val cars = Cars(listOf(car1, car2))
-        val movedCars = cars.move(listOf(moveStrategy, moveStrategy))
+        val movedCars = cars.move(moveStrategy)
 
         assertThat(cars).isNotEqualTo(movedCars)
         val movedCarDistance = movedCars.elements

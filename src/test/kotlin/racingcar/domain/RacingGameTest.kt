@@ -5,6 +5,7 @@ import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import racingcar.domain.movestrategy.RandomMoveStrategy
 
 internal class RacingGameTest {
 
@@ -28,7 +29,7 @@ internal class RacingGameTest {
     @ParameterizedTest(name = "{0}일 경우")
     @ValueSource(ints = [1, 2, 3, 4, 5])
     fun `round 만큼 시도 한다`(round: Int) {
-        val result = RacingGame(round, cars).race()
+        val result = RacingGame(round, cars).race(RandomMoveStrategy())
 
         assertThat(result.elements.size).isEqualTo(round)
     }

@@ -1,6 +1,6 @@
 package racingcar.domain
 
-import racingcar.domain.movestrategy.RandomMoveStrategy
+import racingcar.domain.movestrategy.MoveStrategy
 
 class RacingGame(
     private val round: Int,
@@ -11,13 +11,11 @@ class RacingGame(
         require(round > 0) { "시도할 횟수는 0보다 커야한다. round: $round" }
     }
 
-    fun race(): RacingResult {
-        val carsRange = (cars.elements.indices)
+    fun race(moveStrategy: MoveStrategy): RacingResult {
 
         val resultElements = mutableListOf<Cars>()
         repeat(round) {
-            val moveStrategies = carsRange.map { RandomMoveStrategy() }
-            cars = cars.move(moveStrategies)
+            cars = cars.move(moveStrategy)
             resultElements.add(cars)
         }
 
