@@ -8,19 +8,17 @@ import racingcar.domain.movestrategy.RandomMoveStrategy
 import racingcar.view.inputCarNameValues
 import racingcar.view.inputCountOfRace
 import racingcar.view.printResult
-import racingcar.view.printWinner
 
 fun main() {
     val names = inputCarNameValues().map { Name(it) }
-
     val cars = Cars(names.map { Car(it) })
+
     val round = inputCountOfRace()
 
     val racingGame = RacingGame(round, cars)
     val result = racingGame.race(RandomMoveStrategy())
 
-    printResult(result)
-
     val winners = result.winners()
-    printWinner(winners)
+
+    printResult(result, winners)
 }
