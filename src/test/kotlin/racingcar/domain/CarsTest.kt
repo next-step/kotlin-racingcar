@@ -8,8 +8,8 @@ import racingcar.domain.movestrategy.FakeNotMoveStrategy
 internal class CarsTest {
 
     private val car1 = Car(Name("test"))
-    private val car2 = Car(Name("test"), Distance((1)))
-    private val cars = Cars(listOf(car1, car2))
+    private val car2 = Car(Name("test"), Distance(1))
+    private val cars = Cars(listOf(car1))
 
     @Test
     fun `움직이지 않는 경우`() {
@@ -22,10 +22,7 @@ internal class CarsTest {
     fun `움직이는 경우`() {
         val movedCars = cars.move(FakeMoveStrategy())
 
-        assertThat(cars).isNotEqualTo(movedCars)
-        val movedCarDistance = movedCars.elements
-            .map { it.distance }
-        assertThat(movedCarDistance).contains(Distance(1))
+        assertThat(movedCars.elements).allMatch { it.distance == Distance(1) }
     }
 
     @Test
@@ -35,6 +32,7 @@ internal class CarsTest {
 
     @Test
     fun `거리로 car 찾기`() {
+        val cars = Cars(listOf(car2, car1))
         assertThat(cars.findAllByDistance(Distance())).contains(car1)
         assertThat(cars.findAllByDistance(Distance(1))).contains(car2)
     }
