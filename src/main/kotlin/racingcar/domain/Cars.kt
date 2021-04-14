@@ -4,6 +4,8 @@ import racingcar.domain.movestrategy.MoveStrategy
 
 data class Cars(val elements: List<Car>) {
 
+    constructor(vararg elements: Car) : this(elements.toList())
+
     val maxDistance
         get() = (elements.max() ?: throw IllegalStateException())
             .distance

@@ -7,7 +7,7 @@ class RacingResultTest {
 
     private val winner1 = Car("car2", 1)
     private val winner2 = Car("car3", 1)
-    private val cars = Cars(listOf(Car(Name("car1")), winner1, winner2))
+    private val cars = Cars(Car(Name("car1")), winner1, winner2)
     private val result = RacingResult(listOf(cars))
     private val winners = result.winners()
 

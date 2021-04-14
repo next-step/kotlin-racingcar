@@ -9,7 +9,7 @@ internal class CarsTest {
 
     private val car1 = Car("test")
     private val car2 = Car("test", 1)
-    private val cars = Cars(listOf(car1))
+    private val cars = Cars(car1)
 
     @Test
     fun `움직이지 않는 경우`() {
@@ -27,12 +27,12 @@ internal class CarsTest {
 
     @Test
     fun `최대 거리 계산`() {
-        assertThat(Cars(listOf(car2, car1)).maxDistance).isEqualTo(Distance(1))
+        assertThat(Cars(car2, car1).maxDistance).isEqualTo(Distance(1))
     }
 
     @Test
     fun `거리로 car 찾기`() {
-        val cars = Cars(listOf(car2, car1))
+        val cars = Cars(car2, car1)
         assertThat(cars.findAllByDistance(Distance())).contains(car1)
         assertThat(cars.findAllByDistance(Distance(1))).contains(car2)
     }
