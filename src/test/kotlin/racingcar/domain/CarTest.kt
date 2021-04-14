@@ -8,7 +8,7 @@ import racingcar.domain.movestrategy.FakeNotMoveStrategy
 internal class CarTest {
 
     private val distance = Distance(1)
-    private val car = Car(Name("test"), distance)
+    private val car = Car("test", distance)
 
     @Test
     fun `같은 거리인지 체크 같은 거리일 경우`() {

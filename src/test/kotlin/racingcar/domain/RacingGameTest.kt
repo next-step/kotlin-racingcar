@@ -9,9 +9,9 @@ import racingcar.domain.movestrategy.RandomMoveStrategy
 
 internal class RacingGameTest {
 
-    private val car1 = Car(Name("car1"))
-    private val car2 = Car(Name("car2"), Distance(1))
-    private val car3 = Car(Name("car3"), Distance(1))
+    private val car1 = Car("car1")
+    private val car2 = Car("car2", 1)
+    private val car3 = Car("car3", 1)
     private val cars = Cars(listOf(car1, car2, car3))
 
     @ParameterizedTest(name = "{0}일 경우")

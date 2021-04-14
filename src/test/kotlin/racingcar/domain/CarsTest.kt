@@ -7,8 +7,8 @@ import racingcar.domain.movestrategy.FakeNotMoveStrategy
 
 internal class CarsTest {
 
-    private val car1 = Car(Name("test"))
-    private val car2 = Car(Name("test"), Distance(1))
+    private val car1 = Car("test")
+    private val car2 = Car("test", 1)
     private val cars = Cars(listOf(car1))
 
     @Test

@@ -7,6 +7,12 @@ data class Car(
     val distance: Distance = Distance()
 ) : Comparable<Car> {
 
+    constructor(name: String, distance: Distance) : this(Name(name), distance)
+
+    constructor(name: String) : this(Name(name))
+
+    constructor(name: String, distance: Int) : this(Name(name), Distance(distance))
+
     fun move(moveStrategy: MoveStrategy): Car {
         if (moveStrategy.movable()) {
             return Car(name = name, distance = distance + MOVE_DISTANCE)
