@@ -5,15 +5,19 @@ import org.junit.jupiter.api.Test
 
 class RacingResultTest {
 
+    private val winner1 = Car("car2", 1)
+    private val winner2 = Car("car3", 1)
+    private val cars = Cars(Car(Name("car1")), winner1, winner2)
+    private val result = RacingResult(listOf(cars))
+    private val winners = result.winners()
+
     @Test
-    fun `결과에서 winner 찾기`() {
-        val result = RacingResult()
-        val car = Car(Name("test"))
-        val movedCar = car.move(Number(4))
-        val cars = Cars(listOf(movedCar, car))
+    fun `결과에서 winners 찾기`() {
+        assertThat(winners).isEqualTo(Winners(listOf(winner1, winner2)))
+    }
 
-        result.add(cars)
-
-        assertThat(result.winner).isEqualTo(Winner(listOf(movedCar)))
+    @Test
+    fun `우승자는 한 명 이상일 수 있다`() {
+        assertThat(winners.elements.size).isGreaterThanOrEqualTo(2)
     }
 }
