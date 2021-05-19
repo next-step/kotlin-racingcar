@@ -9,7 +9,8 @@ class View {
     }
 
     fun inputNumMatch(): String? {
-        println("시도할 횟수는 몇 회인가요?")
+        val message = "시도할 횟수는 몇 회인가요?"
+        println(message)
         return readLine()
     }
 

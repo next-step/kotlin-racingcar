@@ -10,22 +10,16 @@ import kotlin.collections.ArrayList
 class GameController(val view: View) {
     fun gameStart() {
         val validator = ViewValidator()
-        try {
-            val carNames = validator.validCarNames(view.inputNumCar())
-            val numMatch = validator.validNumMatch(view.inputNumMatch())
-            val cars = createCars(carNames)
+        val carNames = validator.validCarNames(view.inputNumCar())
+        val numMatch = validator.validNumMatch(view.inputNumMatch())
+        val cars = createCars(carNames)
 
-            println("실행 결과")
-            for (i in 0 until numMatch) {
-                moveCars(cars);
-                view.printCarScore(cars, numMatch)
-            }
-            view.printWinner(Winner(cars).findWinnerNames())
-
-        } catch (e: IllegalArgumentException) {
-            view.printInvalidGameInfo();
-            gameStart()
+        println("실행 결과")
+        for (i in 0 until numMatch) {
+            moveCars(cars);
+            view.printCarScore(cars, numMatch)
         }
+        view.printWinner(Winner(cars).findWinnerNames())
 
 
     }
