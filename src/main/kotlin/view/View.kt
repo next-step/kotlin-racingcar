@@ -24,7 +24,7 @@ class View {
         println()
     }
 
-    fun printWinner(winners: ArrayList<String>) {
+    fun printWinner(winners: List<String>) {
 
         print(winners.joinToString(", ") + "가 최종 우승했습니다.")
     }

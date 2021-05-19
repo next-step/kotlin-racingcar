@@ -32,12 +32,8 @@ class GameController(val view: View) {
 
     private fun moveCars(cars: Cars) {
         val random = Random();
-        for (car in cars.cars) {
-            val randomNumber = random.nextInt(10)
-            if (randomNumber > 4) {
-                car.move();
-            }
-        }
+        val expectedMoveCars = cars.cars.filter { random.nextInt(10) > 4 }
+        expectedMoveCars.map { it.move() }
     }
 
     private fun createCars(carNames: String): Cars {
