@@ -1,7 +1,6 @@
 package view
 
-import domain.Car
-import java.util.*
+import domain.Cars
 
 class View {
     fun inputNumCar(): String? {
@@ -18,19 +17,15 @@ class View {
         println("잘못된 게임 정보입니다.")
     }
 
-    fun printCarScore(cars: ArrayList<Car>, numMatch: Int) {
-        println("실행 결과")
-        val random = Random();
-        for (i in 0 until numMatch) {
-            for (car in cars) {
-                val randomNumber = random.nextInt(10)
-                if (randomNumber > 4) {
-                    car.move();
-                }
-                println(car.name + " : " + " - ".repeat(car.distance))
-            }
-            println()
+    fun printCarScore(cars: Cars, numMatch: Int) {
+        for (car in cars.cars) {
+            println(car.name + " : " + "-".repeat(car.distance))
         }
+        println()
     }
 
+    fun printWinner(winners: ArrayList<String>) {
+
+        print(winners.joinToString(", ") + "가 최종 우승했습니다.")
+    }
 }
