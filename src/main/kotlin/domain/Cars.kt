@@ -1,5 +1,5 @@
 package domain
 
-class Cars(val cars: ArrayList<Car>) {
+class Cars(val cars: List<Car>) {
 
 }

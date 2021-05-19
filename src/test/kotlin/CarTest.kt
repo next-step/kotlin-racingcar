@@ -1,4 +1,6 @@
+import controller.Winner
 import domain.Car
+import domain.Cars
 import exception.InvalidCarNameException
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertThrows
@@ -57,5 +59,18 @@ class CarTest {
                 Car(carName, 0)
             }
         }
+    }
+
+    @DisplayName("우승자가 여러명인 경우")
+    @Test
+    fun printWinners() {
+
+        val car1 = Car("winner1", 10)
+        val car2 = Car("winner2", 10)
+        val car3 = Car("winner3", 5)
+
+
+        val cars = Cars(listOf<Car>(car1, car2, car3))
+        print(assertThat(Winner(cars).findWinnerNames()).hasSize(2))
     }
 }
