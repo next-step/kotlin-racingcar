@@ -46,4 +46,16 @@ class CarTest {
         var car = Car("car1", null)
         assertThat(car.distance).isEqualTo(0);
     }
+
+    @DisplayName("자동차 이름이 여러개가 오고 올바르지 않은 값인 경우")
+    @Test
+    fun invalidNames() {
+        val inputNames = "test1, test2, test3 ,tes tt"
+
+        assertThrows(InvalidCarNameException::class.java) {
+            for (carName in inputNames.split(",")) {
+                Car(carName, 0)
+            }
+        }
+    }
 }
