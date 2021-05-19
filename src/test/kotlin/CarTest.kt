@@ -24,14 +24,6 @@ class CarTest {
         }
     }
 
-    @DisplayName("자동차의 거리가 Null 인 경우")
-    @Test
-    fun noCarDistance() {
-        val car = Car("car1", null)
-
-        assertThat(car.distance).isEqualTo(0);
-    }
-
     @DisplayName("자동차의 거리를 입력하지 않은 경우")
     @Test
     fun noCarDistanceParameter() {
@@ -44,7 +36,14 @@ class CarTest {
     @Test
     fun carMove() {
         var car = Car("car1")
-        car = car.move();
+        car.move()
         assertThat(car.distance).isEqualTo(1);
+    }
+
+    @DisplayName("자동차의 거리값으로 null이 오는 경우")
+    @Test
+    fun nullCarDistance() {
+        var car = Car("car1", null)
+        assertThat(car.distance).isEqualTo(0);
     }
 }

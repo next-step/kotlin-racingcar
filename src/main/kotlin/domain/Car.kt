@@ -2,20 +2,13 @@ package domain
 
 import exception.InvalidCarNameException
 
-class Car(name: String, distance: Int?) {
-    val name: String
-    val distance: Int
+class Car(val name: String, var distance: Int) {
 
     constructor(name: String) : this(name, 0)
-
+    constructor(name: String, distance: Int?) : this(name, 0)
 
     init {
         validCarName(name)
-        this.name = name
-        when (distance) {
-            null -> this.distance = 0
-            else -> this.distance = distance
-        }
     }
 
     private fun validCarName(name: String) {
@@ -27,9 +20,7 @@ class Car(name: String, distance: Int?) {
         }
     }
 
-    fun move(): Car {
-        return Car(name, distance + 1)
+    fun move() {
+        this.distance++
     }
-
-
 }
