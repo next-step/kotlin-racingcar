@@ -1,7 +1,7 @@
 plugins {
     java
-    kotlin("jvm") version "1.3.72"
-    id("org.jlleitschuh.gradle.ktlint") version "9.3.0"
+    kotlin("jvm") version "1.5.31"
+    id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
 }
 
 group = "camp.nextstep.edu"
@@ -12,9 +12,8 @@ repositories {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
-    testImplementation("org.junit.jupiter", "junit-jupiter", "5.6.2")
-    testImplementation("org.assertj", "assertj-core", "3.16.1")
+    testImplementation("org.junit.jupiter", "junit-jupiter", "5.8.1")
+    testImplementation("org.assertj", "assertj-core", "3.21.0")
 }
 
 configure<JavaPluginConvention> {
