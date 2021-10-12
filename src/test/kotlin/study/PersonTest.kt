@@ -1,9 +1,37 @@
 package study
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class PersonTest {
+    companion object {
+        @JvmStatic
+        @BeforeAll
+        fun setupClass() {
+            println("Test class is setup")
+        }
+
+        @JvmStatic
+        @AfterAll
+        fun tearDownClass() {
+            println("Test class is torn down")
+        }
+    }
+
+    @BeforeEach
+    fun setupMethod() {
+        println("Test is setup")
+    }
+
+    @AfterEach
+    fun tearDownMethod() {
+        println("Test is torn down")
+    }
+
     @Test
     fun `이름 붙은 인자`() {
         val personOne = Person("나채원", 31, "Che1")
