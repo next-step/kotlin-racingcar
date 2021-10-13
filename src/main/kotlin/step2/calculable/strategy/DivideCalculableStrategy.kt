@@ -7,5 +7,6 @@ class DivideCalculableStrategy : Calculable {
     companion object {
         const val DIVISION_SIGN = "/"
     }
-    override fun calculate(x: Int, y: Int) = floorDiv(x, y)
+
+    override fun calculate(x: Int, y: Int) = if (y != 0) floorDiv(x, y) else throw IllegalArgumentException()
 }
