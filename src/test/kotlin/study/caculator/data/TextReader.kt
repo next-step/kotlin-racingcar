@@ -7,7 +7,7 @@ class TextReader(text: String?) {
         private const val DELIMITER = " "
     }
 
-    var result: List<String>
+    private val result: List<String>
 
     init {
         if (text.isNullOrBlank()) {
@@ -34,5 +34,9 @@ class TextReader(text: String?) {
         if (!operators.contains(operator)) {
             throw IllegalArgumentException(NOT_OPERATOR)
         }
+    }
+
+    fun getTexts(): List<String> {
+        return result
     }
 }

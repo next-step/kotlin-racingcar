@@ -15,7 +15,7 @@ internal class TextReaderTest {
 
         val textReader = TextReader(givenText)
 
-        assertThat(textReader.result).containsExactly("2", "+", "3")
+        assertThat(textReader.getTexts()).containsExactly("2", "+", "3")
     }
 
     @ParameterizedTest

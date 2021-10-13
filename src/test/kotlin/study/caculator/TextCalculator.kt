@@ -7,14 +7,14 @@ import study.caculator.mathcalculator.MultiplyCalculator
 import study.caculator.mathcalculator.PlusCalculator
 
 class TextCalculator(text: String?) {
-    var result = 0
-    val calculators = mapOf(
+    private var result = 0
+    private val calculators = mapOf(
         "+" to PlusCalculator(), "-" to MinusCalculator(),
         "*" to MultiplyCalculator(), "/" to DivideCalculator()
     )
 
     init {
-        val parsedText = TextReader(text).result
+        val parsedText = TextReader(text).getTexts()
         calculate(parsedText)
     }
 
