@@ -34,4 +34,14 @@ internal class CalculatorTest {
         // then
         assertThat(calculator.result()).isEqualTo(answer)
     }
+
+    @ParameterizedTest
+    @CsvSource(value = ["3 * 2, 6", "5 * 3 * 2, 30"])
+    fun `주어진 문자의 수를 곱할 수 있다`(givenText: String?, answer: Int) {
+        // when
+        val calculator = Calculator(givenText)
+
+        // then
+        assertThat(calculator.result()).isEqualTo(answer)
+    }
 }
