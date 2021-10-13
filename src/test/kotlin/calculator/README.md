@@ -10,5 +10,5 @@
 - [X] 뺄셈
 - [X] 곱셈
 - [X] 나눗셈
-- [X] 입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException throw
+- [X] 입력값이 null 이거나 빈 공백 문자일 경우 IllegalArgumentException throw
 - [X] 사칙연산 기호가 아닌 경우 IllegalArgumentException throw 
