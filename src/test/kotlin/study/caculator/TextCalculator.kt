@@ -1,10 +1,10 @@
-package study.calculator
+package study.caculator
 
-import study.calculator.data.TextReader
-import study.calculator.mathcalculator.DivideCalculator
-import study.calculator.mathcalculator.MinusCalculator
-import study.calculator.mathcalculator.MultiplyCalculator
-import study.calculator.mathcalculator.PlusCalculator
+import study.caculator.data.TextReader
+import study.caculator.mathcalculator.DivideCalculator
+import study.caculator.mathcalculator.MinusCalculator
+import study.caculator.mathcalculator.MultiplyCalculator
+import study.caculator.mathcalculator.PlusCalculator
 
 class TextCalculator(text: String?) {
     var result = 0
