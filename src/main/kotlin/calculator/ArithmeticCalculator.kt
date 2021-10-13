@@ -4,7 +4,7 @@ class ArithmeticCalculator : Calculator(OPERATORS) {
 
     override fun calculate(input: String?): Int {
         if (input.isNullOrEmpty()) {
-            throw IllegalArgumentException("input must not be null or empty")
+            throw InputNullOrEmptyException()
         }
         return input
             .trim()
@@ -19,17 +19,15 @@ class ArithmeticCalculator : Calculator(OPERATORS) {
         val operator = findOperatorOrThrow(input[0])
         val operand = input.getOrNull(1)
             ?.toIntOrThrow()
-            ?: throw IllegalArgumentException("operand not found")
+            ?: throw OperandNotFoundException()
 
         return calculate(operator.operate(acc, operand), input.drop(2))
     }
 
     private fun findOperatorOrThrow(symbol: String): Operator =
-        findOperator(Symbol(symbol)) ?: throw IllegalArgumentException("\"$symbol\" is not arithmetic operator")
+        findOperator(Symbol(symbol)) ?: throw NotArithmeticOperatorException(symbol)
 
-    private fun String.toIntOrThrow(): Int = requireNotNull(toIntOrNull()) {
-        "can't convert from \"$this\" to Int"
-    }
+    private fun String.toIntOrThrow(): Int = toIntOrNull() ?: throw StringToIntCastException(this)
 
     companion object {
         private const val DELIMITERS = " "

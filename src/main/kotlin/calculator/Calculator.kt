@@ -12,7 +12,7 @@ abstract class Calculator(operators: List<Operator>) {
         operators.forEach { operator ->
             val symbol = operator.symbol
             if (containsKey(symbol)) {
-                throw IllegalArgumentException("$symbol is already added")
+                throw OperatorAlreadyExistException(operator)
             }
             put(symbol, operator)
         }
