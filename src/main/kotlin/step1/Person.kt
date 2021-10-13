@@ -1,4 +1,4 @@
-package study
+package step1
 
 /**
  * 1. Person.java -> Person.kt
