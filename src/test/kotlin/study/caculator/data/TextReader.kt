@@ -1,28 +1,26 @@
 package study.caculator.data
 
-class TextReader(text: String?) {
+class TextReader() {
     companion object {
         private const val BLANK_NOT_ALLOWED = "빈값이 들어갈 수 없습니다"
         private const val NOT_OPERATOR = "연산자가 입력되지 않았습니다"
         private const val DELIMITER = " "
     }
 
-    private val result: List<String>
-
-    init {
+    fun parseText(text: String?): List<String> {
         if (text.isNullOrBlank()) {
             throw IllegalArgumentException(BLANK_NOT_ALLOWED)
         }
-        result = text.split(DELIMITER)
-
-        for (i in result.indices) {
-            checkMathOperators(i)
+        val parsedText = text.split(DELIMITER)
+        for (i in parsedText.indices) {
+            checkMathOperators(parsedText, i)
         }
+        return parsedText
     }
 
-    private fun checkMathOperators(i: Int) {
+    private fun checkMathOperators(parsedText: List<String>, i: Int) {
         if (isOperator(i)) {
-            checkMathOperator(result[i])
+            checkMathOperator(parsedText[i])
         }
     }
 
@@ -34,9 +32,5 @@ class TextReader(text: String?) {
         if (!operators.contains(operator)) {
             throw IllegalArgumentException(NOT_OPERATOR)
         }
-    }
-
-    fun getTexts(): List<String> {
-        return result
     }
 }

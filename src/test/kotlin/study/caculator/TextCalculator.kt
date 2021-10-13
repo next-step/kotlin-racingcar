@@ -6,23 +6,21 @@ import study.caculator.mathcalculator.MinusCalculator
 import study.caculator.mathcalculator.MultiplyCalculator
 import study.caculator.mathcalculator.PlusCalculator
 
-class TextCalculator(text: String?) {
+class TextCalculator {
     private var result = 0
     private val calculators = mapOf(
         "+" to PlusCalculator(), "-" to MinusCalculator(),
         "*" to MultiplyCalculator(), "/" to DivideCalculator()
     )
 
-    init {
-        val parsedText = TextReader(text).getTexts()
-        calculate(parsedText)
-    }
+    fun calculate(text: String?): Int {
+        val parsedText = TextReader().parseText(text)
 
-    private fun calculate(parsedText: List<String>) {
         result = startNumber(parsedText)
         for (i in parsedText.indices) {
             calculateWithMatchedOperator(i, parsedText)
         }
+        return result
     }
 
     private fun calculateWithMatchedOperator(i: Int, parsedText: List<String>) {
@@ -34,8 +32,4 @@ class TextCalculator(text: String?) {
     }
 
     private fun startNumber(parsedText: List<String>) = parsedText[0].toInt()
-
-    fun result(): Int {
-        return result
-    }
 }
