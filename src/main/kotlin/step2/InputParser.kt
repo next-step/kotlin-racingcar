@@ -2,6 +2,10 @@ package step2
 
 class InputParser {
 
+    companion object {
+        val ARITHMETIC_SYMBOLS = listOf("+", "-", "*", "/")
+    }
+
     fun parse(input: String?): List<String> {
         if (input.isNullOrBlank()) {
             throw IllegalArgumentException("인자로는 null 또는 빈값이 올 수 없습니다. $input")
@@ -22,21 +26,9 @@ class InputParser {
         }
     }
 
-    private fun toArithmeticSymbolOrNull(str: String): Boolean? {
-        if (str == "-") {
-            return true
-        }
-
-        if (str == "+") {
-            return true
-        }
-
-        if (str == "*") {
-            return true
-        }
-
-        if (str == "/") {
-            return true
+    private fun toArithmeticSymbolOrNull(str: String): String? {
+        if (ARITHMETIC_SYMBOLS.contains(str)) {
+            return str
         }
 
         return null
