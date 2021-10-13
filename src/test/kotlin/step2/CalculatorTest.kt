@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 import java.lang.IllegalArgumentException
 
@@ -42,12 +43,14 @@ class CalculatorTest {
             .isExactlyInstanceOf(IllegalArgumentException::class.java)
     }
 
-    // @DisplayName("Calculator 인스턴스 덧셈 기능 테스트")
-    // @ParameterizedTest(name = "연산식 : {0} = {1}")
-    // @CsvSource(value = ["2 + 3:5", "-1 + 1:0", "10 + -3:7", "10 + 5:15", "0 + 0:0"], delimiter = ':')
-    // fun plus_test(expression: String, result: Int) {
-    //     println("expression = ${expression}")
-    //     println("result = ${result}")
-    // }
+    @DisplayName("Calculator 인스턴스 덧셈 연산 기능 테스트")
+    @ParameterizedTest(name = "연산식 : {0}, 결과 : {1}")
+    @CsvSource(value = ["2 + 3:5", "-1 + 1:0", "10 + -3:7", "10 + 5:15", "0 + 0:0"], delimiter = ':')
+    fun plus_test(expression: String, expected: Int) {
+        // given and when
+        val actual = calculator.calculate(expression)
 
+        // then
+        assertThat(actual).isEqualTo(expected)
+    }
 }
