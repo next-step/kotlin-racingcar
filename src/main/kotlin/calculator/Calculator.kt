@@ -1,15 +1,26 @@
 package calculator
 
+private typealias OperatorPair = Pair<IntArithmetics, Int>
+
 class Calculator(private val input: String) {
     fun calculate(): Int {
         val list = input.split(" ")
+        val identity = list[0].toInt()
         return list.subList(1, list.size)
             .chunked(2)
-            .map { Pair(IntArithmetics.from(it[0]), it[1].toInt()) }
-            .fold(list[0].toInt()) { acc, curr -> curr.first.apply(acc, curr.second) }
-        /*
-        FIXME: Pair 의 first 와 second 로 하다보니깐 가독성이 떨어진다.
-        first 를 number 로 명명하고, second 를 arithmetic 으로 명명해서 가독성을 더 좋게 할 수는 없을까?
-         */
+            .map { chunk2Pair(it) }
+            .fold(identity) { acc, curr -> accumulate(acc, curr) }
+    }
+
+    private fun chunk2Pair(it: List<String>): OperatorPair {
+        val arithmetic = IntArithmetics.from(it[0])
+        val number = it[1].toInt()
+        return Pair(arithmetic, number)
+    }
+
+    private fun accumulate(acc: Int, curr: OperatorPair): Int {
+        val arithmetic = curr.first
+        val number = curr.second
+        return arithmetic.apply(acc, number)
     }
 }
