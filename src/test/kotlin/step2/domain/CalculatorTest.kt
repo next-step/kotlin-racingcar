@@ -1,4 +1,4 @@
-package step2
+package step2.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
