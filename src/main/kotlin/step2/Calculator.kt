@@ -11,18 +11,8 @@ class Calculator {
         while (stringTokenizer.hasMoreTokens()) {
             val operator = stringTokenizer.nextToken()
             val y = stringTokenizer.nextToken()
-            if (operator.equals("+")) {
-                x = Math.addExact(x, Integer.valueOf(y))
-            }
-            if (operator.equals("-")) {
-                x = Math.subtractExact(x, Integer.valueOf(y))
-            }
-            if (operator.equals("*")) {
-                x = Math.multiplyExact(x, Integer.valueOf(y))
-            }
-            if (operator.equals("/")) {
-                x = Math.floorDiv(x, Integer.valueOf(y))
-            }
+            val operation = Operator.values(operator)
+            x = operation.calculate(x, y)
         }
         return x
     }
