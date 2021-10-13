@@ -97,6 +97,17 @@ class CalculatorTest {
         assertThat(actual).isEqualTo(expected)
     }
 
+    @DisplayName("Calculator 인스턴스 나머지 연산 기능 테스트")
+    @ParameterizedTest(name = "연산식 : {0}, 결과 : {1}")
+    @CsvSource(value = ["10 % 5:0", "100 % 9:1", "32 % 3:2", "1 % 1:0"], delimiter = ':')
+    fun mod_test(expression: String, expected: Int) {
+        // given and when
+        val actual = calculator.calculate(expression)
+
+        // then
+        assertThat(actual).isEqualTo(expected)
+    }
+
     @DisplayName("Calculator 인스턴스 복합 연산 기능 테스트")
     @ParameterizedTest(name = "연산식 : {0}, 결과 : {1}")
     @CsvSource(
