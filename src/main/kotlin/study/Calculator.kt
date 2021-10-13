@@ -1,24 +1,21 @@
 package study
 
 class Calculator(text: String?) {
-    var result = 0
-
     init {
         val parsedText = TextReader(text).result
         calculate(parsedText)
     }
 
-    private fun calculate(chars: List<String>) {
-        for (i in chars.indices) {
-            if (chars[i] == "+") {
-                val beforeNumber = chars[i - 1].toInt()
-                val afterNumber = chars[i + 1].toInt()
-                result += beforeNumber + afterNumber
+    var result = 0
+
+    private fun calculate(parsedText: List<String>) {
+        result = parsedText[0].toInt()
+        for (i in parsedText.indices) {
+            if (parsedText[i] == "+") {
+                result += parsedText[i + 1].toInt()
             }
-            if (chars[i] == "-") {
-                val beforeNumber = chars[i - 1].toInt()
-                val afterNumber = chars[i + 1].toInt()
-                result += beforeNumber - afterNumber
+            if (parsedText[i] == "-") {
+                result -= parsedText[i + 1].toInt()
             }
         }
     }

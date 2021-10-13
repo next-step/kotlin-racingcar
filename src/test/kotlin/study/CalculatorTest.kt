@@ -2,22 +2,20 @@ package study
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatCode
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.NullAndEmptySource
 
 internal class CalculatorTest {
 
-    @Test
-    fun `주어진 문자의 두 수를 더할 수 있다`() {
-        // given
-        val givenText = "2 + 3"
-
+    @ParameterizedTest
+    @CsvSource(value = ["1 + 2, 3", "1 + 2 + 3, 6"])
+    fun `주어진 문자의 수를 더할 수 있다`(givenText: String?, answer: Int) {
         // when
         val calculator = Calculator(givenText)
 
         // then
-        assertThat(calculator.result()).isEqualTo(5)
+        assertThat(calculator.result()).isEqualTo(answer)
     }
 
     @ParameterizedTest
@@ -27,15 +25,13 @@ internal class CalculatorTest {
             .isInstanceOf(IllegalArgumentException::class.java)
     }
 
-    @Test
-    fun `주어진 문자의 두 수를 뺄 수 있다`() {
-        // given
-        val givenText = "3 - 2"
-
+    @ParameterizedTest
+    @CsvSource(value = ["3 - 2, 1", "5 - 3 - 1, 1"])
+    fun `주어진 문자의 수를 뺄 수 있다`(givenText: String?, answer: Int) {
         // when
         val calculator = Calculator(givenText)
 
         // then
-        assertThat(calculator.result()).isEqualTo(1)
+        assertThat(calculator.result()).isEqualTo(answer)
     }
 }
