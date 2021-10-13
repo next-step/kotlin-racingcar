@@ -65,4 +65,12 @@ internal class CalculatorTest {
         // then
         assertThat(calculator.result()).isEqualTo(10)
     }
+
+    @Test
+    fun `수식이 아닌 문자가 들어가면 예외를 던진다`() {
+        val givenText = "2 ? 3"
+        // when
+        assertThatCode { Calculator(givenText) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+    }
 }
