@@ -41,4 +41,28 @@ class OperatorTest {
         val result = Operator.findBy("/")
         assertEquals(Operator.DIVISION, result)
     }
+
+    @Test
+    fun `ADD operation 결과 검증`() {
+        val result = Operator.ADD.operation(1.0, 2.0)
+        assertEquals(3.0, result)
+    }
+
+    @Test
+    fun `SUBTRACT operation 결과 검증`() {
+        val result = Operator.SUBTRACT.operation(2.0, 1.0)
+        assertEquals(1.0, result)
+    }
+
+    @Test
+    fun `MULTIPLY operation 결과 검증`() {
+        val result = Operator.MULTIPLY.operation(2.0, 3.0)
+        assertEquals(6.0, result)
+    }
+
+    @Test
+    fun `DIVISION operation 결과 검증`() {
+        val result = Operator.DIVISION.operation(4.0, 2.0)
+        assertEquals(2.0, result)
+    }
 }
