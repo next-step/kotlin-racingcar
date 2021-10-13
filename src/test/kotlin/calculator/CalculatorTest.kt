@@ -10,11 +10,6 @@ internal class CalculatorTest {
     @ParameterizedTest
     @CsvSource("2 + 3 * 4 / 2,10", "15 - 3 / 3,4")
     fun `계산 성공`(input: String, result: Int) {
-        val list = input.split(" ")
-        println(
-            list.subList(1, list.size)
-                .zipWithNext()
-        )
         assertThat(Calculator(input).calculate())
             .isEqualTo(result)
     }
