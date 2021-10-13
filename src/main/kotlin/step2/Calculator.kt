@@ -14,6 +14,9 @@ class Calculator {
             if (operator.equals("+")) {
                 x = Math.addExact(x, Integer.valueOf(y))
             }
+            if (operator.equals("-")) {
+                x = Math.subtractExact(x, Integer.valueOf(y))
+            }
         }
         return x
     }
