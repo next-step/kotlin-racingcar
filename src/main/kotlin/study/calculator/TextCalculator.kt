@@ -1,5 +1,11 @@
 package study.calculator
 
+import study.calculator.data.TextReader
+import study.calculator.mathcalculator.DivideCalculator
+import study.calculator.mathcalculator.MinusCalculator
+import study.calculator.mathcalculator.MultiplyCalculator
+import study.calculator.mathcalculator.PlusCalculator
+
 class TextCalculator(text: String?) {
     var result = 0
     val calculators = mapOf(

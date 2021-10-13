@@ -1,4 +1,4 @@
-package study.calculator
+package study.calculator.mathcalculator
 
 class MultiplyCalculator : Calculator {
     override fun calculate(x: Int, y: Int): Int {
