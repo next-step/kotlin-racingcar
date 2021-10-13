@@ -96,4 +96,18 @@ class CalculatorTest {
         // then
         assertThat(actual).isEqualTo(expected)
     }
+
+    @DisplayName("Calculator 인스턴스 복합 연산 기능 테스트")
+    @ParameterizedTest(name = "연산식 : {0}, 결과 : {1}")
+    @CsvSource(
+        value = ["10 / 5 * 2 + 5 - 1:8", "12 + 10 - 2 / 4 * 10:50", "-1 - -10 * 5 + 5 / 10:5", "0 - 0 + 0 * 0 / 1:0"],
+        delimiter = ':'
+    )
+    fun calculatorTest(expression: String?, expect: Int) {
+        // given and when
+        val result = calculator.calculate(expression!!)
+
+        // then
+        assertThat(result).isEqualTo(expect)
+    }
 }
