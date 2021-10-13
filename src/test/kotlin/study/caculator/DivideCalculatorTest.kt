@@ -1,7 +1,8 @@
-package study.calculator
+package study.caculator
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
+import study.calculator.DivideCalculator
 
 internal class DivideCalculatorTest {
 

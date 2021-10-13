@@ -1,7 +1,5 @@
 package study.calculator
 
-import study.TextReader
-
 class TextCalculator(text: String?) {
     var result = 0
     val calculators = mapOf(

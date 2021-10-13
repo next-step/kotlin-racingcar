@@ -1,4 +1,4 @@
-package study
+package study.calculator
 
 class TextReader(text: String?) {
     companion object {
