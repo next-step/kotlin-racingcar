@@ -1,7 +1,7 @@
-package calculator
+package calculator.domain
 
-import calculator.operator.Operator
-import calculator.operator.Operators
+import calculator.domain.operator.Operator
+import calculator.domain.operator.Operators
 
 class AdditionCalculator : Calculator {
     override val operator: Operator = Operators.ADDITION

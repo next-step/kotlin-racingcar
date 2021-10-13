@@ -1,6 +1,6 @@
-package calculator
+package calculator.domain
 
-import calculator.operator.Operator
+import calculator.domain.operator.Operator
 
 interface Calculator {
     val operator: Operator
