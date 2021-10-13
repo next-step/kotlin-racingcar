@@ -10,7 +10,7 @@ class TextReader(text: String?) {
     var result: List<String>
 
     init {
-        if (text == null || text.isBlank()) {
+        if (text.isNullOrBlank()) {
             throw IllegalArgumentException(BLANK_NOT_ALLOWED)
         }
         result = text.split(DELIMITER)
