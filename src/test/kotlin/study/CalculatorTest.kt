@@ -2,6 +2,7 @@ package study
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatCode
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.NullAndEmptySource
@@ -43,5 +44,25 @@ internal class CalculatorTest {
 
         // then
         assertThat(calculator.result()).isEqualTo(answer)
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = ["6 / 2, 3", "10 / 2 / 5, 1"])
+    fun `주어진 문자의 수를 나눌 수 있다`(givenText: String?, answer: Int) {
+        // when
+        val calculator = Calculator(givenText)
+
+        // then
+        assertThat(calculator.result()).isEqualTo(answer)
+    }
+
+    @Test
+    fun `주어진 문자의 수를 계산할 수 있다`() {
+        val givenText = "2 + 3 * 4 / 2"
+        // when
+        val calculator = Calculator(givenText)
+
+        // then
+        assertThat(calculator.result()).isEqualTo(10)
     }
 }

@@ -20,6 +20,9 @@ class Calculator(text: String?) {
             if (parsedText[i] == "*") {
                 result *= parsedText[i + 1].toInt()
             }
+            if (parsedText[i] == "/") {
+                result /= parsedText[i + 1].toInt()
+            }
         }
     }
 
