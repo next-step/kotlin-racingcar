@@ -17,6 +17,9 @@ class Calculator {
             if (operator.equals("-")) {
                 x = Math.subtractExact(x, Integer.valueOf(y))
             }
+            if (operator.equals("*")) {
+                x = Math.multiplyExact(x, Integer.valueOf(y))
+            }
         }
         return x
     }
