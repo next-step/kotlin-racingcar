@@ -74,4 +74,15 @@ class CalculatorTest {
         // then
         assertThat(actual).isEqualTo(expected)
     }
+
+    @DisplayName("Calculator 인스턴스 나눗셈 연산 기능 테스트")
+    @ParameterizedTest(name = "연산식 : {0}, 결과 : {1}")
+    @CsvSource(value = ["10 / 5:2", "100 / 10:10", "10 / -10:-1", "32 / 4:8", "-1 / -1:1"], delimiter = ':')
+    fun divide_test(expression: String, expected: Int) {
+        // given and when
+        val actual = calculator.calculate(expression)
+
+        // then
+        assertThat(actual).isEqualTo(expected)
+    }
 }
