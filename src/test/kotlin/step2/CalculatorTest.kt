@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class CalculatorTest {
 
-    lateinit var calculator: Calculator
+    private lateinit var calculator: Calculator
 
     @BeforeEach
     internal fun setUp() {
@@ -40,6 +40,17 @@ class CalculatorTest {
         // when and then
         assertThatThrownBy { calculator.calculate(expression) }
             .isExactlyInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    @DisplayName("Calculator 인스턴스 단일 값 연산 기능 테스트")
+    @ParameterizedTest(name = "연산식 : {0}")
+    @CsvSource(value = ["-1:-1", "0:0", "1:1"], delimiter = ':')
+    fun single_value_test(expression: String, expected: Int) {
+        // given and when
+        val actual = calculator.calculate(expression)
+
+        // then
+        assertThat(actual).isEqualTo(expected)
     }
 
     @DisplayName("Calculator 인스턴스 덧셈 연산 기능 테스트")
