@@ -40,6 +40,7 @@ class CalculatorTest {
         // when and then
         assertThatThrownBy { calculator.calculate(expression) }
             .isExactlyInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage(Calculator.EXPRESSION_NULL_MESSAGE)
     }
 
     @DisplayName("Calculator 인스턴스 단일 값 연산 기능 테스트")

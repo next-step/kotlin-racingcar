@@ -4,9 +4,14 @@ import java.util.StringTokenizer
 
 class Calculator {
 
+    companion object {
+        private const val DELIMITER = " "
+        const val EXPRESSION_NULL_MESSAGE = "연산식이 null 또는 공백입니다."
+    }
+
     fun calculate(expression: String): Int {
         validateNull(expression)
-        val stringTokenizer = StringTokenizer(expression, " ")
+        val stringTokenizer = StringTokenizer(expression, DELIMITER)
         var x = Integer.valueOf(stringTokenizer.nextToken())
         while (stringTokenizer.hasMoreTokens()) {
             val operator = stringTokenizer.nextToken()
@@ -18,6 +23,6 @@ class Calculator {
     }
 
     private fun validateNull(expression: String) {
-        if (expression.isNullOrBlank()) throw IllegalArgumentException()
+        if (expression.isNullOrBlank()) throw IllegalArgumentException(EXPRESSION_NULL_MESSAGE)
     }
 }

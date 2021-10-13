@@ -1,7 +1,9 @@
 package step2.domain
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -28,6 +30,15 @@ class OperatorTest {
 
         // then
         assertThat(actual).isEqualTo(expected)
+    }
+
+    @DisplayName("Operator calculate() 기능 실패 테스트")
+    @Test
+    fun calculate_fail_test() {
+        // given and when and then
+        assertThatThrownBy { Operator.values(" ") }
+            .isExactlyInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage(Operator.NOT_FOUND_OPERATOR_MESSAGE)
     }
 
     companion object {

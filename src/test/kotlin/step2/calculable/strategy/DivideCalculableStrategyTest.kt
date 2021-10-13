@@ -1,6 +1,7 @@
 package step2.calculable.strategy
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Assertions.assertAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -34,5 +35,19 @@ class DivideCalculableStrategyTest {
 
         // then
         assertThat(actual).isEqualTo(expected)
+    }
+
+    @DisplayName("DivideCalculableStrategy 인스턴스 calculate() 기능 실패 테스트")
+    @Test
+    fun calculate_fail_test() {
+        // given
+        val calculable = DivideCalculableStrategy()
+        val x = 1
+        val y = 0
+
+        // when
+        assertThatThrownBy { calculable.calculate(x, y) }
+            .isExactlyInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage(DivideCalculableStrategy.DIVIDE_ZERO_MESSAGE)
     }
 }

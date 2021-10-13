@@ -21,9 +21,11 @@ enum class Operator(private val operator: String, private val calculable: Calcul
     ;
 
     companion object {
+        const val NOT_FOUND_OPERATOR_MESSAGE = "연산자를 찾을 수 없습니다."
+
         fun values(operator: String): Operator = values().asSequence()
             .find { it.operator == operator }
-            ?: throw IllegalArgumentException()
+            ?: throw IllegalArgumentException(NOT_FOUND_OPERATOR_MESSAGE)
     }
 
     fun calculate(x: Int, y: String) = calculate(x, Integer.valueOf(y))
