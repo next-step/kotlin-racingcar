@@ -9,13 +9,17 @@ class InputParser {
 
         val inputs = input.split(" ")
 
+        inputValidate(inputs, input)
+
+        return inputs
+    }
+
+    private fun inputValidate(inputs: List<String>, input: String?) {
         inputs.forEach {
             it.toDoubleOrNull()
                 ?: toArithmeticSymbolOrNull(it)
                 ?: throw IllegalArgumentException("입력문자에는 숫자 또는 사칙연산 기호만 올 수 있습니다. $input")
         }
-
-        return inputs
     }
 
     private fun toArithmeticSymbolOrNull(str: String): Boolean? {
