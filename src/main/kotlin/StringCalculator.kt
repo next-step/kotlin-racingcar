@@ -15,7 +15,7 @@ class StringCalculator {
         var result: Int? = null
         for (i in 1..totalCalculateCount) {
             result = CalculateSymbol.convertSymbol(list[i * 2 - 1])
-                .calculator(result ?: list[0].toIntOrException(), list[i * 2].toIntOrException())
+                .operator(result ?: list[0].toIntOrException(), list[i * 2].toIntOrException())
         }
         return result
     }

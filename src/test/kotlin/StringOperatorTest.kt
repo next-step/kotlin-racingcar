@@ -12,27 +12,27 @@ import org.junit.jupiter.params.provider.EmptySource
 import org.junit.jupiter.params.provider.NullSource
 import org.junit.jupiter.params.provider.ValueSource
 
-class StringCalculatorTest {
+class StringOperatorTest {
     private val stringCalculator = StringCalculator()
 
     @Test
     @DisplayName("덧셈 계산")
     fun calculate_correct_when_plus() {
-        val result = CalculateSymbol.PLUS.calculator(first = 3, second = 1)
+        val result = CalculateSymbol.PLUS.operator(first = 3, second = 1)
         assertThat(result).isEqualTo(4)
     }
 
     @Test
     @DisplayName("뺄셈 계산")
     fun calculate_correct_when_minus() {
-        val result = CalculateSymbol.MINUS.calculator(first = 3, second = 1)
+        val result = CalculateSymbol.MINUS.operator(first = 3, second = 1)
         assertThat(result).isEqualTo(2)
     }
 
     @Test
     @DisplayName("나눗셈 계산")
     fun calculate_correct_when_division() {
-        val result = CalculateSymbol.DiVISION.calculator(first = 15, second = 5)
+        val result = CalculateSymbol.DiVISION.operator(first = 15, second = 5)
         assertThat(result).isEqualTo(3)
     }
 
@@ -40,14 +40,14 @@ class StringCalculatorTest {
     @DisplayName("0이 들어간 나눗셈")
     fun calculate_incorrect_when_division() {
         assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy { CalculateSymbol.DiVISION.calculator(first = 15, second = 0) }
+            .isThrownBy { CalculateSymbol.DiVISION.operator(first = 15, second = 0) }
             .withMessage(CASE_DIVISION_NUMBER_ZERO)
     }
 
     @Test
     @DisplayName("곱셈 계산")
     fun calculate_correct_when_multiply() {
-        val result = CalculateSymbol.MULTIPLY.calculator(first = 3, second = 5)
+        val result = CalculateSymbol.MULTIPLY.operator(first = 3, second = 5)
         assertThat(result).isEqualTo(15)
     }
 
