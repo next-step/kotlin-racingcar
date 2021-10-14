@@ -65,4 +65,13 @@ class OperatorTest {
         val result = Operator.DIVISION.operation(4.0, 2.0)
         assertEquals(2.0, result)
     }
+
+    @Test
+    fun `0으로 나눌 때 exception`() {
+        val exception = assertThrows<IllegalArgumentException> {
+            val result = Operator.DIVISION.operation(4.0, 0.0)
+        }
+
+        assertEquals("0으로 나눌 수 없습니다.", exception.message)
+    }
 }

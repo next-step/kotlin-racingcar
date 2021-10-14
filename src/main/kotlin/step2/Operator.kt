@@ -8,7 +8,13 @@ enum class Operator(
     ADD("+", { a, b -> a + b }),
     SUBTRACT("-", { a, b -> a - b }),
     MULTIPLY("*", { a, b -> a * b }),
-    DIVISION("/", { a, b -> a / b });
+    DIVISION("/", { a, b ->
+        if (b == 0.0) {
+            throw IllegalArgumentException("0으로 나눌 수 없습니다.")
+        }
+
+        a / b
+    });
 
     companion object {
         private val map = values()
