@@ -1,0 +1,4 @@
+package stringArithmeticCalculator
+
+class Calculator {
+}
