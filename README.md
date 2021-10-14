@@ -13,5 +13,5 @@
 - [X] 곱셈
 - [X] 나눗셈
 - [X] 입력값 Validation
-- [ ] 사칙연산 기호 Validation
+- [X] 사칙연산 기호 Validation
 - [ ] 문자열 사칙 연산 계산기 기능 구현 
