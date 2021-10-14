@@ -7,7 +7,7 @@ import ExceptionCase.Companion.CASE_INT_FORMAT_OR_NULL
  * */
 class StringCalculator {
     fun calculate(input: String?): Int? {
-        if (input.isNullOrBlank()) throw IllegalArgumentException(CASE_INPUT_NULL_OR_EMPTY)
+        require(!input.isNullOrBlank()) { CASE_INPUT_NULL_OR_EMPTY }
         val list = input.split(" ")
         if (list.size % 2 == 0) throw IllegalArgumentException(CASE_INCORRECT_INPUT)
 
