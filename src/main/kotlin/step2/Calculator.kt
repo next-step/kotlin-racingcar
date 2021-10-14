@@ -1,16 +1,13 @@
 package step2
 
-import java.io.BufferedReader
-import java.io.InputStreamReader
+import java.util.Queue
 
 class Calculator {
-    private lateinit var data: String
 
-    companion object {
-        private val br = BufferedReader(InputStreamReader(System.`in`))
-    }
+    private val parser = Parser()
 
-    fun read() {
-        data = br.readLine()
+    fun calculate(input: String) {
+        val dataQueue: Queue<String> = parser.parse(input)
+        var sum: Double = dataQueue.poll().toDouble()
     }
 }
