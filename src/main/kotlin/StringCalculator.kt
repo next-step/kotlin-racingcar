@@ -6,9 +6,11 @@ import ExceptionCase.Companion.CASE_INT_FORMAT_OR_NULL
  * 사측연산 계산 class
  * */
 class StringCalculator {
+    private val delimiter = " "
+
     fun calculate(input: String?): Int? {
         require(!input.isNullOrBlank()) { CASE_INPUT_NULL_OR_EMPTY }
-        val list = input.split(" ")
+        val list = input.split(delimiter)
         if (list.size % 2 == 0) throw IllegalArgumentException(CASE_INCORRECT_INPUT)
 
         val totalCalculateCount = list.size / 2
