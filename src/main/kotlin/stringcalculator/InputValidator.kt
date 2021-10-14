@@ -1,6 +1,5 @@
 package stringcalculator
 
-
 class InputValidator {
     fun validate(input: String?): List<String> {
         val validString = validateInputIsNotEmpty(input)
@@ -31,8 +30,8 @@ class InputValidator {
     }
 
     private fun validateStructure(input: List<String>): Boolean {
-        val controlList = input.map {it.toIntOrNull() is Int}
-        val comparisonList = input.mapIndexed {index, _ -> index % 2 == 0}
+        val controlList = input.map { it.toIntOrNull() is Int }
+        val comparisonList = input.mapIndexed { index, _ -> index % 2 == 0 }
         return controlList != comparisonList
     }
 }
