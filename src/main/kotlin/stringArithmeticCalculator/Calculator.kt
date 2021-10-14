@@ -1,11 +1,14 @@
 package stringArithmeticCalculator
 
+import java.util.regex.Pattern
+
 class Calculator(private val input: String) {
+    private val NUMBER_REGEX = Pattern.compile("[0-9]+")
+    private var result = 0;
+
     init {
         if (input.isBlank()) throw IllegalArgumentException("공백 문자는 올 수 없습니다.")
     }
-
-    var result = 0
 
     fun result(): Int {
         calculate()
@@ -14,18 +17,16 @@ class Calculator(private val input: String) {
 
     private fun calculate() {
         val list = input.split(" ")
-        result = list[0].toInt()
+        var result = list[0].toInt()
         for (i in 1 until list.size) {
-            operation(list, i)
+            if (!NUMBER_REGEX.matcher(list[i]).matches()) {
+                result = StringArithmetic.from(
+                    arithmetic = list[i],
+                    currentNumber = result,
+                    nextNumber = list[i + 1].toInt()
+                )
+            }
         }
-    }
-
-    private fun operation(list: List<String>, i: Int) {
-        when (list[i]) {
-            "+" -> result += list[i + 1].toInt()
-            "-" -> result -= list[i + 1].toInt()
-            "/" -> result /= list[i + 1].toInt()
-            "*" -> result *= list[i + 1].toInt()
-        }
+        this.result = result
     }
 }

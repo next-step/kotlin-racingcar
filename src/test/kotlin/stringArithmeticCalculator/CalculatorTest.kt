@@ -29,6 +29,23 @@ class CalculatorTest {
     }
 
     @ParameterizedTest
+    @ValueSource(strings = ["2 $ 2", "2 ( 2", "2 ! 3"])
+    fun `사칙 연산이 아닌 기호`(input : String) {
+        assertThatExceptionOfType(IllegalArgumentException::class.java)
+            .isThrownBy{ Calculator(input).result() }
+            .withMessage("잘못 된 사칙연산입니다.")
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["0 / 2", "1 / 0", "0 / 0"])
+    fun `나누기에 0이 들어가는 경우`(input : String) {
+        assertThatExceptionOfType(ArithmeticException::class.java)
+            .isThrownBy{ Calculator(input).result() }
+            .withMessage("0으로는 나눠지지가 않습니다.")
+    }
+
+
+    @ParameterizedTest
     @ValueSource(strings = ["", " "])
     fun `입력값이 빈 공백 문자일 경우`(input : String) {
         assertThatExceptionOfType(IllegalArgumentException::class.java)
