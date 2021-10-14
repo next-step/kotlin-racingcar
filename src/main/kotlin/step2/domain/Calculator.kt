@@ -10,7 +10,7 @@ class Calculator {
     }
 
     fun calculate(expression: String): Int {
-        validateNull(expression)
+        require(!expression.isNullOrBlank()) { EXPRESSION_NULL_MESSAGE }
         val stringTokenizer = StringTokenizer(expression, DELIMITER)
         var x = Integer.valueOf(stringTokenizer.nextToken())
         while (stringTokenizer.hasMoreTokens()) {
@@ -20,9 +20,5 @@ class Calculator {
             x = operation.calculate(x, y)
         }
         return x
-    }
-
-    private fun validateNull(expression: String) {
-        if (expression.isNullOrBlank()) throw IllegalArgumentException(EXPRESSION_NULL_MESSAGE)
     }
 }
