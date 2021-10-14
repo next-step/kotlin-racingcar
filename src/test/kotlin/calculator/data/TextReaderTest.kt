@@ -1,4 +1,4 @@
-package study.caculator.data
+package calculator.data
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatCode

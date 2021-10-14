@@ -1,4 +1,4 @@
-package study.caculator.mathcalculator
+package calculator.mathcalculator
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
