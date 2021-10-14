@@ -1,3 +1,4 @@
+import ExceptionCase.Companion.CASE_DIVISION_NUMBER_ZERO
 import ExceptionCase.Companion.CASE_INCORRECT_INPUT
 import ExceptionCase.Companion.CASE_INCORRECT_SYMBOL
 import ExceptionCase.Companion.CASE_INPUT_NULL_OR_EMPTY
@@ -33,6 +34,14 @@ class StringCalculatorTest {
     fun calculate_correct_when_division() {
         val result = CalculateSymbol.DiVISION.calculator(first = 15, second = 5)
         assertThat(result).isEqualTo(3)
+    }
+
+    @Test
+    @DisplayName("0이 들어간 나눗셈")
+    fun calculate_incorrect_when_division() {
+        assertThatExceptionOfType(IllegalArgumentException::class.java)
+            .isThrownBy { CalculateSymbol.DiVISION.calculator(first = 15, second = 0) }
+            .withMessage(CASE_DIVISION_NUMBER_ZERO)
     }
 
     @Test
