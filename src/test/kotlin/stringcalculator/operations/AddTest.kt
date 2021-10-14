@@ -11,9 +11,7 @@ class AddTest {
 
         Add().execute(deque)
 
-        assertThat(deque)
-            .hasSize(2)
-            .isEqualTo(ArrayDeque(listOf(1 + 2, 3)))
+        assertThat(deque).isEqualTo(ArrayDeque(listOf(1 + 2, 3)))
     }
 
     @Test

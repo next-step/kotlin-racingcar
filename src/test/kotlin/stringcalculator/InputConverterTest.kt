@@ -11,14 +11,14 @@ class InputConverterTest {
     fun `extractInts 실행 시 Int 덱을 반환한다`() {
         val intDeque = InputConverter().extractInts("1 - 2 + 3 * 4".split(" "))
 
-        assertThat(intDeque).hasSize(4).allMatch { it is Int }
+        assertThat(intDeque).isEqualTo(ArrayDeque(listOf(1, 2, 3, 4)))
     }
 
     @Test
     fun `convertToOperations 실행 시 Operation 리스트를 반환한다`() {
-        val operations = InputConverter().convertToOperations("2 + 3 * 4 / 2".split(" "))
+        val operations = InputConverter().convertToOperations("1 + 2 - 3 * 4 / 5".split(" "))
 
-        assertThat(operations).hasSize(3).allMatch { it is Operation }
+        assertThat(operations).hasSize(4).allMatch { it is Operation }
     }
 
     @Test

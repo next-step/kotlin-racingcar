@@ -13,9 +13,7 @@ class SubtractTest {
 
         Subtract().execute(deque)
 
-        assertThat(deque)
-            .hasSize(2)
-            .isEqualTo(ArrayDeque(listOf(1, 3)))
+        assertThat(deque).isEqualTo(ArrayDeque(listOf(1, 3)))
     }
 
     @ParameterizedTest

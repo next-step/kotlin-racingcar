@@ -13,9 +13,7 @@ class DivideTest {
 
         Divide().execute(deque)
 
-        assertThat(deque)
-            .hasSize(2)
-            .isEqualTo(ArrayDeque(listOf(2 / 2, 3)))
+        assertThat(deque).isEqualTo(ArrayDeque(listOf(2 / 2, 3)))
     }
 
     @ParameterizedTest
