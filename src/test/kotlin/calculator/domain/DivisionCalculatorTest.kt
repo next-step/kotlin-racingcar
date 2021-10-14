@@ -1,7 +1,9 @@
 package calculator.domain
 
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
@@ -21,6 +23,20 @@ class DivisionCalculatorTest {
         val result = sut.calculate(first, second)
 
         // Assert
-        Assertions.assertThat(result).isEqualTo(expected)
+        assertThat(result).isEqualTo(expected)
+    }
+
+    @Test
+    fun `sut throw IllegalArgumentException when second number is zero`() {
+        // Arrange
+        val first = 3
+        val second = 0
+
+        // Act, Assert
+        val sut = DivisionCalculator()
+        assertThatExceptionOfType(IllegalArgumentException::class.java)
+            .isThrownBy {
+                sut.calculate(first, second)
+            }
     }
 }
