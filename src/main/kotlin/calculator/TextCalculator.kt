@@ -7,7 +7,6 @@ import calculator.mathcalculator.MultiplyCalculator
 import calculator.mathcalculator.PlusCalculator
 
 class TextCalculator {
-    private var result = 0
     private val calculators = mapOf(
         "+" to PlusCalculator(), "-" to MinusCalculator(),
         "*" to MultiplyCalculator(), "/" to DivideCalculator()
@@ -15,20 +14,20 @@ class TextCalculator {
 
     fun calculate(text: String?): Int {
         val parsedText = TextReader().parseText(text)
-
-        result = startNumber(parsedText)
+        var result = startNumber(parsedText)
         for (i in parsedText.indices) {
-            calculateWithMatchedOperator(i, parsedText)
+            result = calculateWithMatchedOperator(i, result, parsedText)
         }
         return result
     }
 
-    private fun calculateWithMatchedOperator(i: Int, parsedText: List<String>) {
+    private fun calculateWithMatchedOperator(i: Int, result: Int, parsedText: List<String>): Int {
         val calculator = calculators[parsedText[i]]
-
         if (calculator != null) {
-            result = calculator.calculate(result, parsedText[i + 1].toInt())
+            val nextNumber = parsedText[i + 1].toInt()
+            return calculator.calculate(result, nextNumber)
         }
+        return result
     }
 
     private fun startNumber(parsedText: List<String>) = parsedText[0].toInt()
