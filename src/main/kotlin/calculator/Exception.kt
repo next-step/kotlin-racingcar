@@ -1,7 +1,7 @@
 package calculator
 
 class OperatorAlreadyExistException(operator: Operator) : Exception(
-    "${operator.symbol} is already exists"
+    "${operator.symbol.symbol} is already exists"
 )
 
 class InputNullOrEmptyException : Exception(

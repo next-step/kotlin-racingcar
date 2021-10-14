@@ -10,7 +10,7 @@ class OperatorTest {
     @Test
     fun `PlusOperator 테스트`() {
         // Given
-        val operator = PlusOperator()
+        val operator = ArithmeticOperator.PLUS
 
         // When
         val expected = 2 + 3
@@ -23,7 +23,7 @@ class OperatorTest {
     @Test
     fun `SubtractOperator 테스트`() {
         // Given
-        val operator = SubtractOperator()
+        val operator = ArithmeticOperator.SUBTRACT
 
         // When
         val expected = 5 - 5
@@ -36,7 +36,7 @@ class OperatorTest {
     @Test
     fun `MultiplyOperator 테스트`() {
         // Given
-        val operator = MultiplyOperator()
+        val operator = ArithmeticOperator.MULTIPLY
 
         // When
         val expected = 4 * 5
@@ -49,7 +49,7 @@ class OperatorTest {
     @Test
     fun `DivideOperator 테스트`() {
         // Given
-        val operator = DivideOperator()
+        val operator = ArithmeticOperator.DIVIDE
 
         // When
         val expected = 10 / 2
@@ -62,7 +62,7 @@ class OperatorTest {
     @Test
     fun `DivideOperator는 0으로 나눌 수 없음`() {
         // Given
-        val operator = DivideOperator()
+        val operator = ArithmeticOperator.DIVIDE
 
         // When
         val executable = Executable { operator.operate(10, 0) }

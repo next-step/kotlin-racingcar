@@ -11,35 +11,23 @@ interface Operator {
     fun operate(left: Int, right: Int): Int
 }
 
-class PlusOperator : Operator {
+enum class ArithmeticOperator(override val symbol: Symbol) : Operator {
 
-    override val symbol: Symbol = Symbol("+")
-
-    override fun operate(left: Int, right: Int): Int = left.plus(right)
-}
-
-class SubtractOperator : Operator {
-
-    override val symbol: Symbol = Symbol("-")
-
-    override fun operate(left: Int, right: Int): Int = left.minus(right)
-}
-
-class MultiplyOperator : Operator {
-
-    override val symbol: Symbol = Symbol("*")
-
-    override fun operate(left: Int, right: Int): Int = left.times(right)
-}
-
-class DivideOperator : Operator {
-
-    override val symbol: Symbol = Symbol("/")
-
-    override fun operate(left: Int, right: Int): Int {
-        if (right == 0) {
-            throw ArithmeticException("divide by zero ($left / $right)")
+    PLUS(Symbol("+")) {
+        override fun operate(left: Int, right: Int): Int = left.plus(right)
+    },
+    SUBTRACT(Symbol("-")) {
+        override fun operate(left: Int, right: Int): Int = left.minus(right)
+    },
+    MULTIPLY(Symbol("*")) {
+        override fun operate(left: Int, right: Int): Int = left.times(right)
+    },
+    DIVIDE(Symbol("/")) {
+        override fun operate(left: Int, right: Int): Int {
+            if (right == 0) {
+                throw ArithmeticException("divide by zero ($left / $right)")
+            }
+            return left.div(right)
         }
-        return left.div(right)
     }
 }

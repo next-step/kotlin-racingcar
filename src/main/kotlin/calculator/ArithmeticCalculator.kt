@@ -34,10 +34,10 @@ class ArithmeticCalculator(
     companion object {
         private const val DELIMITER_DEFAULT = " "
         private val OPERATORS = listOf(
-            PlusOperator(),
-            SubtractOperator(),
-            MultiplyOperator(),
-            DivideOperator()
+            ArithmeticOperator.PLUS,
+            ArithmeticOperator.SUBTRACT,
+            ArithmeticOperator.MULTIPLY,
+            ArithmeticOperator.DIVIDE
         )
     }
 }
