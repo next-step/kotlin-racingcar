@@ -78,7 +78,7 @@ class StringOperatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["g + 3 = 4", "ㅇ & 3 / ㄴ"])
+    @ValueSource(strings = ["g + 3 = 4", "ㅇ * 3 / ㄴ"])
     @DisplayName("계산할 수 없는 문자가 들어있는 경우")
     fun calculate_when_incorrect_input_type(input: String) {
         assertThatExceptionOfType(IllegalArgumentException::class.java)
