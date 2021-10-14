@@ -29,13 +29,9 @@ enum class CalculateSymbol(val symbol: String) : Operator {
 
     companion object {
         fun convertSymbol(string: String): CalculateSymbol {
-            return when (string) {
-                PLUS.symbol -> PLUS
-                MINUS.symbol -> MINUS
-                MULTIPLY.symbol -> MULTIPLY
-                DiVISION.symbol -> DiVISION
-                else -> throw IllegalArgumentException(CASE_INCORRECT_SYMBOL)
-            }
+            return values().find {
+                it.symbol == string
+            } ?: throw IllegalArgumentException(CASE_INCORRECT_SYMBOL)
         }
     }
 }
