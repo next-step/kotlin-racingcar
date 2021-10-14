@@ -13,6 +13,21 @@ class CalculatorTest {
         assertThat(Calculator("2 + 3").result()).isEqualTo(5)
     }
 
+    @Test
+    fun `뺄셈`() {
+        assertThat(Calculator("2 - 3").result()).isEqualTo(-1)
+    }
+
+    @Test
+    fun `곱셈`() {
+        assertThat(Calculator("2 * 3").result()).isEqualTo(6)
+    }
+
+    @Test
+    fun `나눗셈`() {
+        assertThat(Calculator("2 / 3").result()).isEqualTo(0)
+    }
+
     @ParameterizedTest
     @ValueSource(strings = ["", " "])
     fun `입력값이 빈 공백 문자일 경우`(input : String) {

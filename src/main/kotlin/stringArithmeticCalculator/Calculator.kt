@@ -1,13 +1,13 @@
 package stringArithmeticCalculator
 
-class Calculator(private val input : String) {
+class Calculator(private val input: String) {
     init {
-        if(input.isBlank()) throw IllegalArgumentException("공백 문자는 올 수 없습니다.")
+        if (input.isBlank()) throw IllegalArgumentException("공백 문자는 올 수 없습니다.")
     }
 
     var result = 0
 
-    fun result() : Int{
+    fun result(): Int {
         calculate()
         return result
     }
@@ -15,14 +15,17 @@ class Calculator(private val input : String) {
     private fun calculate() {
         val list = input.split(" ")
         result = list[0].toInt()
-        for(i in 1 until list.size) {
+        for (i in 1 until list.size) {
             operation(list, i)
         }
     }
 
     private fun operation(list: List<String>, i: Int) {
-        if (list[i] == "+") {
-            result += list[i+1].toInt()
+        when (list[i]) {
+            "+" -> result += list[i + 1].toInt()
+            "-" -> result -= list[i + 1].toInt()
+            "/" -> result /= list[i + 1].toInt()
+            "*" -> result *= list[i + 1].toInt()
         }
     }
 }
