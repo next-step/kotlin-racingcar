@@ -1,5 +1,7 @@
 package calculator
 
+import java.math.BigDecimal
+
 interface Operation {
-    fun calculate(firstOperand: Int, secondOperand: Int): Double
+    fun perform(firstOperand: Operand, secondOperand: Operand): Operand
 }
