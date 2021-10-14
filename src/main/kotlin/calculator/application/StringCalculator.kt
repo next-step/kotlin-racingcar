@@ -9,6 +9,12 @@ class StringCalculator(
     private val calculators: List<Calculator>,
 ) {
 
+    companion object {
+        private const val START = 1
+        private const val NUMBER_ONE = 1
+        private const val INCREASE = 2
+    }
+
     private val calculatorMap: Map<Operator, Calculator> by lazy {
         calculators.associateBy {
             it.operator
@@ -23,9 +29,9 @@ class StringCalculator(
         val segregatedExpressions = Expression(expression).segregateExpressions()
         var result = segregatedExpressions.first().toInt()
 
-        for (i in 1 until segregatedExpressions.size step (2)) {
+        for (i in START until segregatedExpressions.size step (INCREASE)) {
             val operator: String = segregatedExpressions[i]
-            val second = segregatedExpressions[i + 1].toInt()
+            val second = segregatedExpressions[i + NUMBER_ONE].toInt()
 
             result = calculate(operator, result, second)
         }

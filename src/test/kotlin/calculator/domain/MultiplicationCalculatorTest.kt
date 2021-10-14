@@ -1,6 +1,6 @@
 package calculator.domain
 
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
@@ -21,6 +21,6 @@ class MultiplicationCalculatorTest {
         val result = sut.calculate(first, second)
 
         // Assert
-        Assertions.assertThat(result).isEqualTo(expected)
+        assertThat(result).isEqualTo(expected)
     }
 }
