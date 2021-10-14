@@ -18,21 +18,12 @@ class Parser {
                 queue.add(data)
                 continue
             }
-            if (isOperand(data)) {
+            if (Operator.isIn(data)) {
                 queue.add(data)
             }
         }
 
         return queue
-    }
-
-    private fun isOperand(data: String): Boolean {
-        for (character in data.toCharArray()) {
-            if (character != '+' && character != '-' && character != '*' && character != '/') {
-                throw IllegalArgumentException("입력값이 옳지 않습니다. $character")
-            }
-        }
-        return true
     }
 
     private fun isDigit(data: String): Boolean {
