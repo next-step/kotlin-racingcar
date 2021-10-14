@@ -1,5 +1,8 @@
 package step2
 
+import java.io.BufferedReader
+import java.io.InputStreamReader
+
 class Monitor {
     companion object {
         fun print(value: Double) {
@@ -10,4 +13,11 @@ class Monitor {
             println(value)
         }
     }
+}
+
+fun main() {
+    val br = BufferedReader(InputStreamReader(System.`in`))
+    val calculator = Calculator()
+    val result = calculator.calculate(br.readLine())
+    Monitor.print(result)
 }
