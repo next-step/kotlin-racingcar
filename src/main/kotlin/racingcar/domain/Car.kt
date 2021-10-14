@@ -1,7 +1,7 @@
 package racingcar.domain
 
-class Car(val name: String = "Anonymous", position: Int = DEFAULT_POSITION) {
-    var position = position
+class Car(val name: String = "Anonymous") {
+    var position = DEFAULT_POSITION
         private set
 
     fun move(number: Int) {
