@@ -1,6 +1,7 @@
 package calculator.application
 
 import calculator.domain.Calculator
+import calculator.domain.Expression
 import calculator.domain.operator.Operator
 import calculator.exception.OperatorNotFoundException
 
@@ -18,7 +19,21 @@ class StringCalculator(
         }
     }
 
-    private fun findOperator(operator: Operator): Calculator {
-        return calculatorMap[operator] ?: throw OperatorNotFoundException()
+    fun execute(expression: String?): Int {
+        val segregatedExpressions = Expression(expression).segregateExpressions()
+        var result = segregatedExpressions.first().toInt()
+
+        for (i in 1 until segregatedExpressions.size step (2)) {
+            val operator: String = segregatedExpressions[i]
+            val second = segregatedExpressions[i + 1].toInt()
+
+            result = calculate(operator, result, second)
+        }
+        return result
+    }
+
+    private fun calculate(operator: Operator, first: Int, second: Int): Int {
+        val calculator = calculatorMap[operator] ?: throw OperatorNotFoundException()
+        return calculator.calculate(first, second)
     }
 }
