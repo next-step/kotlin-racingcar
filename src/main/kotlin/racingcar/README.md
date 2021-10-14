@@ -1,4 +1,4 @@
-# kotlin-racingcar
+# 자동차 경주
 
 ## 기능 요구사항
 
