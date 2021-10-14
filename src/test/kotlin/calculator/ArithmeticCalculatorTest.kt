@@ -67,4 +67,21 @@ class ArithmeticCalculatorTest {
         // then
         assertEquals(expected, actual.toInt())
     }
+
+    @Test
+    fun `서로 다른 Delimiter에 대한 기능 테스트`() {
+        // given
+        val calculator1 = ArithmeticCalculator()
+        val calculator2 = ArithmeticCalculator("$")
+
+        // when
+        val expected1 = 2 * 5
+        val expected2 = 2 * 5
+        val actual1 = calculator1.calculate("2 * 5")
+        val actual2 = calculator2.calculate("2$*$5")
+
+        // then
+        assertEquals(expected1, actual1)
+        assertEquals(expected2, actual2)
+    }
 }

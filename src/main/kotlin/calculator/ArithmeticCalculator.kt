@@ -1,6 +1,8 @@
 package calculator
 
-class ArithmeticCalculator : Calculator(OPERATORS) {
+class ArithmeticCalculator(
+    private val delimiter: String = DELIMITER_DEFAULT
+) : Calculator(OPERATORS) {
 
     override fun calculate(input: String?): Int {
         if (input.isNullOrEmpty()) {
@@ -8,7 +10,7 @@ class ArithmeticCalculator : Calculator(OPERATORS) {
         }
         return input
             .trim()
-            .split(DELIMITERS)
+            .split(delimiter)
             .let { calculate(it[0].toIntOrThrow(), it.drop(1)) }
     }
 
@@ -30,7 +32,7 @@ class ArithmeticCalculator : Calculator(OPERATORS) {
     private fun String.toIntOrThrow(): Int = toIntOrNull() ?: throw StringToIntCastException(this)
 
     companion object {
-        private const val DELIMITERS = " "
+        private const val DELIMITER_DEFAULT = " "
         private val OPERATORS = listOf(
             PlusOperator(),
             SubtractOperator(),
