@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.function.Executable
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.ValueSource
+import org.junit.jupiter.params.provider.CsvSource
 
 class ArithmeticCalculatorTest {
 
@@ -52,19 +52,19 @@ class ArithmeticCalculatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(
-        strings = [
+    @CsvSource(
+        value = [
             "2 + 3 * 4 / 2:10",
             "5 / 5 + 1 - 2 * 3 + 4:4",
             "10 * 200 / 10 + 50 - 25 * 3:675"
-        ]
+        ],
+        delimiter = ':'
     )
-    fun `사칙연산 테스트`(input: String) {
+    fun `사칙연산 테스트`(input: String, actual: String) {
         // when
-        val actual = input.split(":")[1].toInt()
-        val expected = calculator.calculate(input.split(":")[0])
+        val expected = calculator.calculate(input)
 
         // then
-        assertEquals(expected, actual)
+        assertEquals(expected, actual.toInt())
     }
 }
