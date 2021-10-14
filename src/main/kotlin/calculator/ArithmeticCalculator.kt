@@ -14,16 +14,16 @@ class ArithmeticCalculator(
             .let { calculate(it[0].toIntOrThrow(), it.drop(1)) }
     }
 
-    private tailrec fun calculate(acc: Int, input: List<String>): Int {
-        if (input.isEmpty()) {
+    private tailrec fun calculate(acc: Int, subList: List<String>): Int {
+        if (subList.isEmpty()) {
             return acc
         }
-        val operator = findOperatorOrThrow(input[0])
-        val operand = input.getOrNull(1)
+        val operator = findOperatorOrThrow(subList[0])
+        val operand = subList.getOrNull(1)
             ?.toIntOrThrow()
             ?: throw OperandNotFoundException()
 
-        return calculate(operator.operate(acc, operand), input.drop(2))
+        return calculate(operator.operate(acc, operand), subList.drop(2))
     }
 
     private fun findOperatorOrThrow(symbol: String): Operator =
