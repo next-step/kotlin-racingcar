@@ -1,8 +1,10 @@
 package step2.domain.expression
 
+import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -24,5 +26,18 @@ class ExpressionTest {
         assertThatThrownBy { Expression(nullString) }
             .isExactlyInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("연산식이 null 또는 공백입니다.")
+    }
+
+    @DisplayName("Expression 인스턴스 hashCode 및 equals 검증 테스트")
+    @ParameterizedTest(name = "연산자 : {0}")
+    @ValueSource(strings = ["1 + 1", "1 - 1", "1 * 1", "1 / 1", "1 % 1"])
+    fun hash_and_equals_test(lawExpression: String) {
+        val one = Expression(lawExpression)
+        val other = Expression(lawExpression)
+
+        assertAll(
+            { assertThat(one).hasSameHashCodeAs(other) },
+            { assertThat(one).isEqualTo(other) }
+        )
     }
 }
