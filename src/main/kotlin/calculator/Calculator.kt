@@ -7,8 +7,8 @@ class Calculator {
         const val WRONG_NUMBER_OF_OPERANDS = "잘못된 피연산자 개수입니다."
     }
 
-    fun calculate(input: String?) {
-        require(!input.isNullOrBlank()) { NULL_OR_EMPTY_INPUT }
+    fun calculate(input: String?) : Operand {
+        require(input != null && input.isNotBlank()) { NULL_OR_EMPTY_INPUT }
         val inputs = input.split(INPUT_DELIMITER)
 
         if (inputs.size % 2 == 0) {
@@ -17,12 +17,14 @@ class Calculator {
 
         var result = Operand(inputs[0].toBigDecimal())
 
-        inputs.drop(0)
+        inputs.drop(1)
             .chunked(2)
             .forEach { (operatorSymbol, value) ->
                 run {
                     result = Operator.findOperation(operatorSymbol).perform(result, Operand.from(value))
                 }
             }
+
+        return result
     }
 }
