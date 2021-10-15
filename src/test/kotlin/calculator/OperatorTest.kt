@@ -2,11 +2,11 @@ package calculator
 
 import calculator.Operator.Companion.CANNOT_BE_DIVIDED_BY_ZERO
 import calculator.Operator.Companion.WRONG_OPERATOR_SYMBOL
-import org.assertj.core.api.Assertions.*
+import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -89,8 +89,8 @@ class OperatorTest {
         assertThatThrownBy {
             Operator.findOperation("/").perform(firstOperand, secondOperand)
         }
-        .isInstanceOf(IllegalArgumentException::class.java)
-        .hasMessageContaining(CANNOT_BE_DIVIDED_BY_ZERO)
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining(CANNOT_BE_DIVIDED_BY_ZERO)
     }
 
     @ParameterizedTest
@@ -99,9 +99,7 @@ class OperatorTest {
         assertThatThrownBy {
             Operator.findOperation(operatorSymbol)
         }
-        .isInstanceOf(IllegalArgumentException::class.java)
-        .hasMessageContaining(WRONG_OPERATOR_SYMBOL)
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining(WRONG_OPERATOR_SYMBOL)
     }
-
-
 }
