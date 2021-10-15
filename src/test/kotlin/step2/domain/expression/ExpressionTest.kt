@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import step2.strategy.split.SplitStrategy
 
 class ExpressionTest {
 
@@ -40,4 +41,19 @@ class ExpressionTest {
             { assertThat(one).isEqualTo(other) }
         )
     }
+
+    @DisplayName("Expression 인스턴스 split() 테스트")
+    @ParameterizedTest(name = "연산자 : {0}")
+    @ValueSource(strings = ["1 + 1", "1 - 1", "1 * 1", "1 / 1", "1 % 1"])
+    fun split_test(lawExpression: String) {
+        val expected = lawExpression.split(" ")
+        val expression = Expression(lawExpression)
+        val actual = expression.split { target -> target.split(" ") }
+
+        assertAll(
+            { assertThat(actual).isEqualTo(expected) },
+            { assertThat(actual).containsExactlyElementsOf(expected) },
+        )
+    }
+
 }
