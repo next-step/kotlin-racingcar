@@ -1,10 +1,11 @@
 package calculator
 
-import calculator.CalculatorResources.Companion.DELIMITER
-import calculator.CalculatorResources.Companion.IS_NOT_OR_BLANK
-import calculator.CalculatorResources.Companion.SYMBOL_NOT_RIGHT
-
 class Calculator {
+
+    companion object {
+        const val IS_NOT_OR_BLANK: String = "입력값이 null 이거나 빈 공백 문자입니다."
+        const val DELIMITER: String = " "
+    }
 
     fun calculate(input: String?): Int {
 
@@ -16,15 +17,8 @@ class Calculator {
         splitStrings.forEachIndexed { i, _ ->
             if (i % 2 == 1) {
                 val param = splitStrings[i + 1].toInt()
-                result = when (splitStrings[i]) {
-                    CalculatorResources.PLUS -> doPlus(result, param)
-                    CalculatorResources.MINUS -> doMinus(result, param)
-                    CalculatorResources.MULTIPLY -> doMultiply(result, param)
-                    CalculatorResources.DIVISION -> doDivision(result, param)
-                    else -> {
-                        throw IllegalArgumentException(SYMBOL_NOT_RIGHT)
-                    }
-                }
+                val operator = Operator.operationEnum(splitStrings[i])
+                result = operator.execute(result, param)
             }
         }
         return result
@@ -37,9 +31,4 @@ class Calculator {
     }
 
     private fun splitInputStr(input: String): List<String> = input.split(DELIMITER)
-
-    private fun doPlus(a: Int, b: Int) = a + b
-    private fun doMinus(a: Int, b: Int) = a - b
-    private fun doMultiply(a: Int, b: Int) = a * b
-    private fun doDivision(a: Int, b: Int) = a / b
 }

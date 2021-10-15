@@ -1,6 +1,6 @@
 package calculator
 
-import org.assertj.core.api.Assertions
+import calculator.Calculator.Companion.IS_NOT_OR_BLANK
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -19,7 +19,7 @@ class CalculatorTest {
             calculator.calculate(input)
         }
 
-        assertEquals(CalculatorResources.IS_NOT_OR_BLANK, exception.message)
+        assertEquals(IS_NOT_OR_BLANK, exception.message)
     }
 
     @Test
@@ -28,7 +28,7 @@ class CalculatorTest {
             calculator.calculate(null)
         }
 
-        assertEquals(CalculatorResources.IS_NOT_OR_BLANK, exception.message)
+        assertEquals(IS_NOT_OR_BLANK, exception.message)
     }
 
     @ParameterizedTest
@@ -42,7 +42,6 @@ class CalculatorTest {
     }
     @ParameterizedTest
     @ValueSource(strings = ["2 + 1"])
-    @Test
     fun `인자가 정상일경우 더하기 연산한 결과를 반환`(input: String) {
         val result = calculator.calculate(input)
 
@@ -51,7 +50,6 @@ class CalculatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["3 - 5"])
-    @Test
     fun `인자가 정상일경우 빼기 연산한 결과를 반환`(input: String) {
         val result = calculator.calculate(input)
 
@@ -60,7 +58,6 @@ class CalculatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["2 / 2"])
-    @Test
     fun `인자가 정상일경우 나누기 곱하기 결과를 반환`(input: String) {
         val result = calculator.calculate(input)
 
@@ -69,7 +66,6 @@ class CalculatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["8 * 2"])
-    @Test
     fun `인자가 정상일경우 곱하기 연산한 결과를 반환`(input: String) {
         val result = calculator.calculate(input)
 
@@ -78,7 +74,6 @@ class CalculatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["8 * 2 - 1 + 3 / 4"])
-    @Test
     fun `인자가 정상일경우 종합 연산한 결과를 반환`(input: String) {
         val result = calculator.calculate(input)
 
