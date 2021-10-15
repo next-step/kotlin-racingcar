@@ -35,7 +35,7 @@ enum class Operator(val operatorSymbol: String) : Operation {
 
     companion object {
         const val CANNOT_BE_DIVIDED_BY_ZERO = "0으로 나눌 수 없습니다."
-        private const val WRONG_OPERATOR_SYMBOL = "잘못된 연산자 기호입니다."
+        const val WRONG_OPERATOR_SYMBOL = "잘못된 연산자 기호입니다."
         fun findOperation(operatorSymbol: String): Operator {
             return when (operatorSymbol) {
                 "+" -> ADD

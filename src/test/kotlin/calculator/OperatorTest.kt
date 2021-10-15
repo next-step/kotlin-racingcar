@@ -1,6 +1,8 @@
 package calculator
 
-import org.assertj.core.api.Assertions.assertThat
+import calculator.Operator.Companion.CANNOT_BE_DIVIDED_BY_ZERO
+import calculator.Operator.Companion.WRONG_OPERATOR_SYMBOL
+import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS
@@ -26,6 +28,15 @@ class OperatorTest {
         )
     }
 
+    private fun wrongOperatorSymbolProvider(): Stream<Arguments> {
+        return Stream.of(
+            Arguments.of("123"),
+            Arguments.of("abc"),
+            Arguments.of("!"),
+            Arguments.of("?")
+        )
+    }
+
     @ParameterizedTest
     @MethodSource("operandStringArrayProvider")
     fun `덧셈 테스트`(operand1: String, operand2: String) {
@@ -33,7 +44,6 @@ class OperatorTest {
         val secondOperand = Operand.from(operand2)
 
         val result = Operator.findOperation("+").perform(firstOperand, secondOperand)
-        println("result: " + result)
 
         assertThat(result).isEqualTo(Operand(firstOperand.value + secondOperand.value))
     }
@@ -45,7 +55,6 @@ class OperatorTest {
         val secondOperand = Operand.from(operand2)
 
         val result = Operator.findOperation("-").perform(firstOperand, secondOperand)
-        println("result: " + result)
 
         assertThat(result).isEqualTo(Operand(firstOperand.value - secondOperand.value))
     }
@@ -57,7 +66,6 @@ class OperatorTest {
         val secondOperand = Operand.from(operand2)
 
         val result = Operator.findOperation("*").perform(Operand.from(operand1), Operand.from(operand2))
-        println("result: " + result)
 
         assertThat(result).isEqualTo(Operand(firstOperand.value * secondOperand.value))
     }
@@ -69,7 +77,6 @@ class OperatorTest {
         val secondOperand = Operand.from(operand2)
 
         val result = Operator.findOperation("/").perform(firstOperand, secondOperand)
-        println("result: " + result)
 
         assertThat(result).isEqualTo(Operand(firstOperand.value.divide(secondOperand.value, MathContext.DECIMAL32)))
     }
@@ -79,8 +86,22 @@ class OperatorTest {
         val firstOperand = Operand(BigDecimal.TEN)
         val secondOperand = Operand(BigDecimal.ZERO)
 
-        assertThrows<IllegalArgumentException> {
+        assertThatThrownBy {
             Operator.findOperation("/").perform(firstOperand, secondOperand)
         }
+        .isInstanceOf(IllegalArgumentException::class.java)
+        .hasMessageContaining(CANNOT_BE_DIVIDED_BY_ZERO)
     }
+
+    @ParameterizedTest
+    @MethodSource("wrongOperatorSymbolProvider")
+    fun `잘못된 연산기호 테스트`(operatorSymbol: String) {
+        assertThatThrownBy {
+            Operator.findOperation(operatorSymbol)
+        }
+        .isInstanceOf(IllegalArgumentException::class.java)
+        .hasMessageContaining(WRONG_OPERATOR_SYMBOL)
+    }
+
+
 }
