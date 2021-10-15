@@ -1,11 +1,9 @@
 package step2.domain.expression
 
-import java.lang.IllegalArgumentException
-
-data class Operand(val word: String) {
-    init {
-        require(word.isNotBlank()) { throw IllegalArgumentException(NOT_PARSING_OPERAND_MESSAGE) }
-    }
+data class Operand(val operand: Int) {
+    constructor(operand: String) : this(
+        operand.toIntOrNull() ?: throw IllegalArgumentException(NOT_PARSING_OPERAND_MESSAGE)
+    )
 
     companion object {
         const val NOT_PARSING_OPERAND_MESSAGE = "해당 문자열은 피연산자가 될 수 없습니다."
