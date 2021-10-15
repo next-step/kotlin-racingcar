@@ -37,7 +37,7 @@ class CalculatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["0 / 2", "1 / 0", "0 / 0"])
+    @ValueSource(strings = ["2 / 0", "1 / 0", "0 / 0"])
     fun `나누기에 0이 들어가는 경우`(input : String) {
         assertThatExceptionOfType(ArithmeticException::class.java)
             .isThrownBy{ Calculator(input).result() }
