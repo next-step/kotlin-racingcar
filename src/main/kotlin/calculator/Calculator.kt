@@ -4,7 +4,7 @@ object Calculator {
     fun calculate(input: String): String {
         require(input.isBlank()) { throw IllegalArgumentException(Message.INPUT_EMPTY) }
         val list = InputParser.splitSpace(input)
-        var result = list[0].toDouble()
+        var result = list[Constant.FIRST_ITEM].toDouble()
 
         list.drop(0)
             .forEachIndexed { index, s ->
