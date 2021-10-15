@@ -3,7 +3,6 @@ package stringArithmeticCalculator
 import java.util.regex.Pattern
 
 class Calculator(private val input: String) {
-    private val NUMBER_REGEX = Pattern.compile("[0-9]+")
     private var result = 0;
 
     init {
@@ -28,5 +27,9 @@ class Calculator(private val input: String) {
             }
         }
         this.result = result
+    }
+
+    companion object {
+        private val NUMBER_REGEX = Pattern.compile("[0-9]+")
     }
 }
