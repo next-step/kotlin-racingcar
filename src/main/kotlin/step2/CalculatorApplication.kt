@@ -13,7 +13,6 @@ import step2.ui.CalculatorOutputView
 class CalculatorApplication(private val inputView: CalculatorInputView, private val outputView: CalculatorOutputView) {
     fun run() {
         val lawExpression = inputView.inputExpression()
-
     }
 }
 
