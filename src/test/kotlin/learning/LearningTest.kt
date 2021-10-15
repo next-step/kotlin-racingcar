@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 import java.util.function.Consumer
 
-
 internal class LearningTest {
     @Test
     internal fun `named arguments`() {
@@ -16,11 +15,13 @@ internal class LearningTest {
             Person(name = "안운장", age = 28, nickname = "호돌"),
             Person("안운장", nickname = "호돌", age = 28),
         )
-        assertThat(people).allSatisfy(Consumer {
-            assertThat(it.name).isEqualTo("안운장")
-            assertThat(it.age).isEqualTo(28)
-            assertThat(it.nickname).isEqualTo("호돌")
-        })
+        assertThat(people).allSatisfy(
+            Consumer {
+                assertThat(it.name).isEqualTo("안운장")
+                assertThat(it.age).isEqualTo(28)
+                assertThat(it.nickname).isEqualTo("호돌")
+            }
+        )
     }
 
     @Test
@@ -29,7 +30,7 @@ internal class LearningTest {
         assertAll(
             { assertThat(person.name).isEqualTo("안운장") },
             { assertThat(person.age).isEqualTo(28) },
-            { assertThat(person.nickname).isNull() }
+            { assertThat(person.nickname).isNull() },
         )
     }
 
@@ -39,7 +40,7 @@ internal class LearningTest {
         assertAll(
             { assertThat(person.name).isEqualTo("안운장") },
             { assertThat(person.age).isEqualTo(28) },
-            { assertThat(person.nickname).isNull() }
+            { assertThat(person.nickname).isNull() },
         )
     }
 
@@ -53,7 +54,7 @@ internal class LearningTest {
         assertAll(
             { assertThat(animal1).isNotEqualTo(animal2) },
             { assertThat(person1).isEqualTo(person2) },
-            { assertThat(person1).isNotEqualTo(person3)}
+            { assertThat(person1).isNotEqualTo(person3) },
         )
     }
 }
