@@ -1,15 +1,10 @@
 package step2.domain
 
-class Calculator {
-
-    companion object {
-        private const val DELIMITER = " "
-        const val EXPRESSION_NULL_MESSAGE = "연산식이 null 또는 공백입니다."
-    }
+object Calculator {
 
     fun calculate(expression: String): Int {
-        require(!expression.isNullOrBlank()) { EXPRESSION_NULL_MESSAGE }
-        val expressionWords = expression.split(DELIMITER)
+        require(!expression.isNullOrBlank()) { "연산식이 null 또는 공백입니다." }
+        val expressionWords = expression.split(" ")
         return expressionWords.subList(1, expressionWords.size)
             .asSequence()
             .chunked(2)
