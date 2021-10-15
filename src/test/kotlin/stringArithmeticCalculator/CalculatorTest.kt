@@ -37,35 +37,33 @@ class CalculatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["2 $ 2", "2 ( 2", "2 ! 3"])
-    fun `사칙 연산이 아닌 기호`(input : String) {
+    fun `사칙 연산이 아닌 기호`(input: String) {
         assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy{ Calculator(input).result() }
+            .isThrownBy { Calculator(input).result() }
             .withMessageContaining("번째 문자는 기호(+,-,*,/)가 와야합니다.")
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["2 / 0", "1 / 0", "0 / 0"])
-    fun `나누기에 0이 들어가는 경우`(input : String) {
+    fun `나누기에 0이 들어가는 경우`(input: String) {
         assertThatExceptionOfType(ArithmeticException::class.java)
-            .isThrownBy{ Calculator(input).result() }
+            .isThrownBy { Calculator(input).result() }
             .withMessage("0으로는 나눠지지가 않습니다.")
     }
 
-
     @ParameterizedTest
     @ValueSource(strings = ["", " "])
-    fun `입력값이 빈 공백 문자일 경우`(input : String) {
+    fun `입력값이 빈 공백 문자일 경우`(input: String) {
         assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy{ Calculator(input) }
+            .isThrownBy { Calculator(input) }
             .withMessage("공백 문자는 올 수 없습니다.")
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["/ / 2", "/ / /"])
-    fun `숫자 값이 아닌 경우`(input : String) {
+    fun `숫자 값이 아닌 경우`(input: String) {
         assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy{ Calculator(input) }
+            .isThrownBy { Calculator(input) }
             .withMessageContaining("번째 문자는 숫자가 와야합니다.")
     }
-
 }

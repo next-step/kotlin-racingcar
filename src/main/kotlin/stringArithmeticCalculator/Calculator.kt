@@ -23,11 +23,11 @@ class Calculator(input: String) {
         }
     }
 
-    private fun checkString(it: List<String>){
+    private fun checkString(it: List<String>) {
         for (i in it.indices) {
             when (i % 2) {
-                0 -> if(addFlag) operationCheck(it, i) else numberCheck(it, i)
-                1 -> if(addFlag) numberCheck(it, i) else operationCheck(it, i)
+                0 -> if (addFlag) operationCheck(it, i) else numberCheck(it, i)
+                1 -> if (addFlag) numberCheck(it, i) else operationCheck(it, i)
             }
         }
     }
