@@ -2,7 +2,7 @@ package racingcar.domain
 
 import java.util.stream.Collectors
 
-class Cars(private val cars: List<Car>) {
+class Cars(val cars: List<Car>) {
     constructor() : this(mutableListOf<Car>())
 
     fun move(): Cars {
