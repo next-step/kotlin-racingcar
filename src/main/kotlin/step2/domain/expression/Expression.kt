@@ -1,8 +1,8 @@
 package step2.domain.expression
 
-data class Expression(private val expression: String) {
+data class Expression(private val expression: String?) {
     init {
-        require(expression.isNotBlank()) { IllegalArgumentException(NULL_OR_BLANK_MESSAGE) }
+        require(!expression.isNullOrBlank()) { IllegalArgumentException(NULL_OR_BLANK_MESSAGE) }
     }
 
     companion object {
