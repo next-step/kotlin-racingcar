@@ -1,8 +1,16 @@
 package racingcar.domain
 
-class Car {
+class Car(
+    val position: Position = Position()
+) {
+    fun drive(): Car {
+        if (canDrive()) {
+            return Car(position.change())
+        }
+        return this
+    }
 
-    fun isDrive(): Boolean {
+    fun canDrive(): Boolean {
         return true
     }
 }
