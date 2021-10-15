@@ -1,4 +1,4 @@
-package step2.calculable.strategy
+package step2.strategy.calculable.strategy
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy

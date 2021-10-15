@@ -1,16 +1,16 @@
 package step2.domain
 
-import step2.calculable.Calculable
-import step2.calculable.strategy.AddCalculableStrategy
-import step2.calculable.strategy.AddCalculableStrategy.Companion.PLUS_SIGN
-import step2.calculable.strategy.DivideCalculableStrategy
-import step2.calculable.strategy.DivideCalculableStrategy.Companion.DIVISION_SIGN
-import step2.calculable.strategy.ModCalculableStrategy
-import step2.calculable.strategy.ModCalculableStrategy.Companion.REMAINDER_SIGN
-import step2.calculable.strategy.MultiplyCalculableStrategy
-import step2.calculable.strategy.MultiplyCalculableStrategy.Companion.MULTIPLICATION_SIGN
-import step2.calculable.strategy.SubtractCalculableStrategy
-import step2.calculable.strategy.SubtractCalculableStrategy.Companion.MINUS_SIGN
+import step2.strategy.calculable.Calculable
+import step2.strategy.calculable.strategy.AddCalculableStrategy
+import step2.strategy.calculable.strategy.AddCalculableStrategy.Companion.PLUS_SIGN
+import step2.strategy.calculable.strategy.DivideCalculableStrategy
+import step2.strategy.calculable.strategy.DivideCalculableStrategy.Companion.DIVISION_SIGN
+import step2.strategy.calculable.strategy.ModCalculableStrategy
+import step2.strategy.calculable.strategy.ModCalculableStrategy.Companion.REMAINDER_SIGN
+import step2.strategy.calculable.strategy.MultiplyCalculableStrategy
+import step2.strategy.calculable.strategy.MultiplyCalculableStrategy.Companion.MULTIPLICATION_SIGN
+import step2.strategy.calculable.strategy.SubtractCalculableStrategy
+import step2.strategy.calculable.strategy.SubtractCalculableStrategy.Companion.MINUS_SIGN
 
 enum class Operator(private val operator: String, private val calculable: Calculable) {
     PLUS(PLUS_SIGN, AddCalculableStrategy()),

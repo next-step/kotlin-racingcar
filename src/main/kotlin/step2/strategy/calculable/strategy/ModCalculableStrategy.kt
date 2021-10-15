@@ -1,6 +1,6 @@
-package step2.calculable.strategy
+package step2.strategy.calculable.strategy
 
-import step2.calculable.Calculable
+import step2.strategy.calculable.Calculable
 import java.lang.Math.floorMod
 
 class ModCalculableStrategy : Calculable {
