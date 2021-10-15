@@ -1,6 +1,5 @@
 package calculator
 
-import calculator.StringExtension.checkNullOrEmpty
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -42,7 +41,7 @@ class CalculatorTest {
     @ParameterizedTest
     @ValueSource(strings = ["", "  "])
     fun `입력값이 null 이거나 빈 공백 문자`(input: String) {
-        assertTrue(input.checkNullOrEmpty())
+        assertTrue(input.isBlank())
     }
 
     @ParameterizedTest
