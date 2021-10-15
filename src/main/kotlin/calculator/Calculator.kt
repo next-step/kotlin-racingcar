@@ -1,6 +1,6 @@
 package calculator
 
-class Calculator {
+object Calculator {
     fun calculate(input: String): String {
         require(input.isBlank()) { throw IllegalArgumentException(Message.INPUT_EMPTY) }
         val list = InputParser.splitSpace(input)
