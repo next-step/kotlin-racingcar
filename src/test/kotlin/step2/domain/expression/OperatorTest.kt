@@ -1,4 +1,4 @@
-package step2.domain
+package step2.domain.expression
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
@@ -38,7 +38,7 @@ class OperatorTest {
         // given and when and then
         assertThatThrownBy { Operator.values(" ") }
             .isExactlyInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(Operator.NOT_FOUND_OPERATOR_MESSAGE)
+            .hasMessage("연산자를 찾을 수 없습니다.")
     }
 
     companion object {

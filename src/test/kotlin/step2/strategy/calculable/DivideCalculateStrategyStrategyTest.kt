@@ -1,4 +1,4 @@
-package step2.strategy.calculable.strategy
+package step2.strategy.calculable
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
@@ -8,18 +8,18 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
-class DivideCalculableStrategyTest {
+class DivideCalculateStrategyStrategyTest {
 
     @DisplayName("DivideCalculableStrategy 인스턴스 생성 여부 테스트")
     @Test
     fun constructor_test() {
         // given and when
-        val calculable = DivideCalculableStrategy()
+        val calculable = DivideCalculateStrategyStrategy()
 
         // then
         assertAll(
             { assertThat(calculable).isNotNull },
-            { assertThat(calculable).isExactlyInstanceOf(DivideCalculableStrategy::class.java) },
+            { assertThat(calculable).isExactlyInstanceOf(DivideCalculateStrategyStrategy::class.java) },
         )
     }
 
@@ -28,7 +28,7 @@ class DivideCalculableStrategyTest {
     @CsvSource(value = ["1:1:1", "-2:2:-1", "-1:-1:1"], delimiter = ':')
     fun calculate_test(x: Int, y: Int, expected: Int) {
         // given
-        val calculable = DivideCalculableStrategy()
+        val calculable = DivideCalculateStrategyStrategy()
 
         // when
         val actual = calculable.calculate(x, y)
@@ -41,13 +41,13 @@ class DivideCalculableStrategyTest {
     @Test
     fun calculate_fail_test() {
         // given
-        val calculable = DivideCalculableStrategy()
+        val calculable = DivideCalculateStrategyStrategy()
         val x = 1
         val y = 0
 
         // when
         assertThatThrownBy { calculable.calculate(x, y) }
             .isExactlyInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(DivideCalculableStrategy.DIVIDE_ZERO_MESSAGE)
+            .hasMessage(DivideCalculateStrategyStrategy.DIVIDE_ZERO_MESSAGE)
     }
 }

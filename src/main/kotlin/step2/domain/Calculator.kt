@@ -1,5 +1,7 @@
 package step2.domain
 
+import step2.domain.expression.Operator
+
 object Calculator {
 
     fun calculate(expression: String): Int {
