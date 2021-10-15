@@ -3,7 +3,7 @@ package calculator
 import calculator.StringExtension.checkNullOrEmpty
 
 class Calculator {
-    fun calculate(input: String) : String {
+    fun calculate(input: String): String {
         if (input.checkNullOrEmpty()) throw IllegalArgumentException()
         val list = InputParser.splitSpace(input)
         var result = list[0].toDouble()
