@@ -1,0 +1,25 @@
+package calculator
+
+class Calculator {
+    companion object {
+        fun calculate(formula: String?): Int {
+            if (formula.isNullOrBlank()) {
+                throw IllegalArgumentException("null 또는 공백을 입력할 수 없습니다.")
+            }
+            val split = formula.split(" ")
+            var result = split[0].toInt()
+            for (i: Int in 1 until split.size step (2)) {
+                val operation = split[i]
+                val target = split[i + 1].toInt()
+                when (operation) {
+                    "+" -> result += target
+                    "-" -> result -= target
+                    "*" -> result *= target
+                    "/" -> result /= target
+                    else -> throw IllegalArgumentException("잘못된 사칙연산입니다.")
+                }
+            }
+            return result
+        }
+    }
+}
