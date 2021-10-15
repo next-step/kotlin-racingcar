@@ -22,12 +22,21 @@ internal class CarTest {
     @Test
     fun `자동차의 초기 위치는 0이다`() {
         val car = Car(1)
-
         assertThat(car.position).isEqualTo(0)
     }
 
     @Test
     fun `자동차의 위치가 0보다 작으면 예외를 던진다`() {
         assertThatCode { Car(1, -1) }.isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    @Test
+    fun `자동차를 앞으로 이동할 수 있다`() {
+        // given
+        val car = Car(carNumber = 1, position = 0, FixMoveStrategy())
+        // when
+        val actual = car.moveForward()
+        // then
+        assertThat(actual.position).isEqualTo(1)
     }
 }
