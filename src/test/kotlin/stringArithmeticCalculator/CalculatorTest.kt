@@ -5,6 +5,7 @@ import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import stringArithmeticCalculator.Calculator.Companion.add
 
 class CalculatorTest {
 
@@ -28,12 +29,18 @@ class CalculatorTest {
         assertThat(Calculator("2 / 3").result()).isEqualTo(0)
     }
 
+    @Test
+    fun `문자열을 추가하여 계산하기`() {
+        assertThat(Calculator("2 + 3").add("+ 3").result()).isEqualTo(8)
+        assertThat(Calculator("2 + 3").add("+ 3").add("* 2").result()).isEqualTo(16)
+    }
+
     @ParameterizedTest
     @ValueSource(strings = ["2 $ 2", "2 ( 2", "2 ! 3"])
     fun `사칙 연산이 아닌 기호`(input : String) {
         assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy{ Calculator(input).result() }
-            .withMessage("잘못 된 사칙연산입니다.")
+            .withMessageContaining("번째 문자는 기호(+,-,*,/)가 와야합니다.")
     }
 
     @ParameterizedTest
@@ -52,4 +59,13 @@ class CalculatorTest {
             .isThrownBy{ Calculator(input) }
             .withMessage("공백 문자는 올 수 없습니다.")
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["/ / 2", "/ / /"])
+    fun `숫자 값이 아닌 경우`(input : String) {
+        assertThatExceptionOfType(IllegalArgumentException::class.java)
+            .isThrownBy{ Calculator(input) }
+            .withMessageContaining("번째 문자는 숫자가 와야합니다.")
+    }
+
 }
