@@ -12,12 +12,11 @@ class Cars(val cars: List<Car>) {
      * 자동차를 이동하고 변경된 자동차 목록을 리턴한다.
      */
     fun move(): Cars {
-        val carsRecords: MutableList<Car> = ArrayList()
-        for (car in cars) {
-            val movedCar: Car = car.moveForward()
-            carsRecords.add(movedCar)
-        }
-        return Cars(carsRecords)
+        return Cars(
+            cars.stream()
+                .map { it.moveForward() }
+                .collect(Collectors.toList())
+        )
     }
 
     /**
