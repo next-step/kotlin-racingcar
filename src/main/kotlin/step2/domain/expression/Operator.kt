@@ -30,5 +30,4 @@ enum class Operator(private val operator: String, private val calculateStrategy:
             .find { it.operator == operator }
             ?: throw IllegalArgumentException(NOT_FOUND_OPERATOR_MESSAGE)
     }
-
 }

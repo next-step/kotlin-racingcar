@@ -48,6 +48,6 @@ class DivideCalculateStrategyStrategyTest {
         // when
         assertThatThrownBy { calculable.calculate(x, y) }
             .isExactlyInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(DivideCalculateStrategyStrategy.DIVIDE_ZERO_MESSAGE)
+            .hasMessage("0 으로 나눌수 없습니다.")
     }
 }

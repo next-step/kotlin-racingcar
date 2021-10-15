@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource
 class OperandTest {
 
     @DisplayName("Operand 인스턴스 생성시 공백 검증 테스트")
-    @ParameterizedTest(name = "연산자 : {0}")
+    @ParameterizedTest(name = "연산자 : `{0}`")
     @ValueSource(strings = ["", " ", "     "])
     fun constructor_blank_fail_test(word: String) {
         assertThatThrownBy { Operand(word) }
