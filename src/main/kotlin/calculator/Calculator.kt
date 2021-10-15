@@ -4,7 +4,7 @@ import calculator.StringExtension.checkNullOrEmpty
 
 class Calculator {
     fun calculate(input: String): String {
-        if (input.checkNullOrEmpty()) throw IllegalArgumentException()
+        if (input.checkNullOrEmpty()) throw IllegalArgumentException(Message.INPUT_EMPTY)
         val list = InputParser.splitSpace(input)
         var result = list[0].toDouble()
 

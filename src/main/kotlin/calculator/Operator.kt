@@ -29,7 +29,7 @@ enum class Operator : Execute {
                 "-" -> MINUS
                 "*" -> MULTIPLY
                 "/" -> DIVISION
-                else -> throw IllegalArgumentException()
+                else -> throw IllegalArgumentException(Message.INVALID_OPERATOR)
             }
         }
     }
