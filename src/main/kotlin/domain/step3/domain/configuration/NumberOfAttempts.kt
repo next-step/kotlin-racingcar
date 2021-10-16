@@ -1,6 +1,6 @@
 package domain.step3.domain.configuration
 
-class NumberOfAttempts(val numberOfAttempts: Int) {
+data class NumberOfAttempts(val numberOfAttempts: Int) {
     init {
         require(numberOfAttempts >= MINIMUM) { OUT_OF_RANGE_MESSAGE }
     }
