@@ -6,7 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class ParserTest {
-    private val parser = Parser()
+    private val parser = Parser(" ")
 
     @ParameterizedTest
     @ValueSource(strings = ["1.1 + 2", "2 * 5", "1 * 10 - 100"])

@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 internal class CalculatorTest {
-    private val calculator = Calculator()
+    private val calculator = Calculator(Parser(" "))
 
     @Test
     fun `계산 정상 테스트`() {

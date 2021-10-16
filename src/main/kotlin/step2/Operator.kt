@@ -9,6 +9,11 @@ enum class Operator(val value: String, val function: BinaryOperator<Double>) {
     DIVIDE("/", { sum, operand -> sum / operand });
 
     companion object {
+        fun validate(value: String): Boolean {
+            require(isIn(value)) { "사칙연산 기호가 아닙니다." }
+            return true
+        }
+
         fun isIn(value: String): Boolean = values()
             .map { v -> v.value }
             .contains(value)
