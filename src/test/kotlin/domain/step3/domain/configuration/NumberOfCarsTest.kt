@@ -36,8 +36,25 @@ class NumberOfCarsTest {
 
         // when and then
         assertAll(
-            { assertThat(one).hasSameHashCodeAs(other)},
-            { assertThat(one).isEqualTo(other)},
+            { assertThat(one).hasSameHashCodeAs(other) },
+            { assertThat(one).isEqualTo(other) },
+        )
+    }
+
+    @DisplayName("NumberOfCars 인스턴스 getter 테스트")
+    @ParameterizedTest(name = "주입 값 : {0}")
+    @ValueSource(strings = ["0", "1", "10", "100"])
+    fun constructor_getter_test(numberOfCarsString: String) {
+        // given
+        val expected = numberOfCarsString.toInt()
+        val numberOfCars = NumberOfCars(numberOfCarsString)
+
+        // when
+        val actual = numberOfCars.numberOfCars
+
+        assertAll(
+            { assertThat(actual).isNotNull() },
+            { assertThat(actual).isEqualTo(expected) },
         )
     }
 }
