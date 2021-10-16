@@ -8,37 +8,23 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.ValueSource
 import java.math.BigDecimal
 import java.math.MathContext
-import java.util.stream.Stream
 
 @TestInstance(PER_CLASS)
 class OperatorTest {
 
-    private fun operandStringArrayProvider(): Stream<Arguments> {
-        return Stream.of(
-            Arguments.of("1", "2"),
-            Arguments.of("5", "-7"),
-            Arguments.of("-150", "478"),
-            Arguments.of("10.123", "20.987"),
-            Arguments.of("-123.456", "786.983"),
-            Arguments.of("4567.1234", "-5837.1266"),
-        )
-    }
-
-    private fun wrongOperatorSymbolProvider(): Stream<Arguments> {
-        return Stream.of(
-            Arguments.of("123"),
-            Arguments.of("abc"),
-            Arguments.of("!"),
-            Arguments.of("?")
-        )
-    }
-
     @ParameterizedTest
-    @MethodSource("operandStringArrayProvider")
+    @CsvSource(
+        "'1', '2'",
+        "'5', '-7'",
+        "'-150', '478'",
+        "'10.123', '20.987'",
+        "'-123.456', '786.983'",
+        "'4567.1234', '-5837.1266'",
+    )
     fun `덧셈 테스트`(operand1: String, operand2: String) {
         val firstOperand = Operand.from(operand1)
         val secondOperand = Operand.from(operand2)
@@ -49,7 +35,14 @@ class OperatorTest {
     }
 
     @ParameterizedTest
-    @MethodSource("operandStringArrayProvider")
+    @CsvSource(
+        "'1', '2'",
+        "'5', '-7'",
+        "'-150', '478'",
+        "'10.123', '20.987'",
+        "'-123.456', '786.983'",
+        "'4567.1234', '-5837.1266'",
+    )
     fun `뺄셈 테스트`(operand1: String, operand2: String) {
         val firstOperand = Operand.from(operand1)
         val secondOperand = Operand.from(operand2)
@@ -60,7 +53,14 @@ class OperatorTest {
     }
 
     @ParameterizedTest
-    @MethodSource("operandStringArrayProvider")
+    @CsvSource(
+        "'1', '2'",
+        "'5', '-7'",
+        "'-150', '478'",
+        "'10.123', '20.987'",
+        "'-123.456', '786.983'",
+        "'4567.1234', '-5837.1266'",
+    )
     fun `곱셈 테스트`(operand1: String, operand2: String) {
         val firstOperand = Operand.from(operand1)
         val secondOperand = Operand.from(operand2)
@@ -71,7 +71,14 @@ class OperatorTest {
     }
 
     @ParameterizedTest
-    @MethodSource("operandStringArrayProvider")
+    @CsvSource(
+        "'1', '2'",
+        "'5', '-7'",
+        "'-150', '478'",
+        "'10.123', '20.987'",
+        "'-123.456', '786.983'",
+        "'4567.1234', '-5837.1266'",
+    )
     fun `나눗셈 테스트`(operand1: String, operand2: String) {
         val firstOperand = Operand.from(operand1)
         val secondOperand = Operand.from(operand2)
@@ -94,7 +101,7 @@ class OperatorTest {
     }
 
     @ParameterizedTest
-    @MethodSource("wrongOperatorSymbolProvider")
+    @ValueSource(strings = ["123", "abc", "!", "?"])
     fun `잘못된 연산기호 테스트`(operatorSymbol: String) {
         assertThatThrownBy {
             Operator.findOperation(operatorSymbol)
