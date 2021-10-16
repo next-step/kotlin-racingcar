@@ -2,6 +2,8 @@ package racingcar
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import racingcar.mock.AddCountWhenCallIsForwardRacingCarCondition
+import racingcar.mock.NoOutputView
 import racingcar.model.CarCount
 import racingcar.model.GameCount
 import racingcar.view.InputView

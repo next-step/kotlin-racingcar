@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.mock
 
 import racingcar.model.Cars
 import racingcar.model.RacingCarGameResult

@@ -1,4 +1,6 @@
-package racingcar
+package racingcar.mock
+
+import racingcar.RacingCarForwardCondition
 
 class AddCountWhenCallIsForwardRacingCarCondition : RacingCarForwardCondition {
 
