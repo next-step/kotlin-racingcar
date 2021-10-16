@@ -20,9 +20,7 @@ class Calculator {
         inputs.drop(1)
             .chunked(2)
             .forEach { (operatorSymbol, value) ->
-                run {
-                    result = Operator.findOperation(operatorSymbol).perform(result, Operand.from(value))
-                }
+                result = Operator.findOperation(operatorSymbol).perform(result, Operand.from(value))
             }
 
         return result
