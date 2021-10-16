@@ -66,7 +66,7 @@ class DistanceDrivenTest {
         // then
         assertAll(
             { assertThat(movedDistanceDriven).isNotNull() },
-            { assertThat(distanceDriven.distanceDriven).isEqualTo(1)},
+            { assertThat(movedDistanceDriven.distanceDriven).isEqualTo(1)},
         )
     }
 }

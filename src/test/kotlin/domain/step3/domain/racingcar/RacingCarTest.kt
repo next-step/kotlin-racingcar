@@ -14,6 +14,6 @@ class RacingCarTest {
         val movedRacingCar = racingCar.move()
 
         // then
-        assertThat(movedRacingCar.distanceDriven).isEqualTo(1);
+        assertThat(movedRacingCar).isEqualTo(1);
     }
 }

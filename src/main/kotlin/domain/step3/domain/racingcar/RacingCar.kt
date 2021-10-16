@@ -4,13 +4,13 @@ import domain.step3.domain.strategy.MovingStrategy
 
 class RacingCar(
     private val _distanceDriven: DistanceDriven = DistanceDriven(),
-    private val movingStrategy: MovingStrategy) {
+    private val movingStrategy: MovingStrategy
+) {
 
     fun move(): RacingCar {
-        if(movingStrategy.movable()) {
+        if (movingStrategy.movable()) {
             return RacingCar(DistanceDriven(), movingStrategy)
         }
         return this
     }
 }
-
