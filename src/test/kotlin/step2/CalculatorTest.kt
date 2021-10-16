@@ -8,8 +8,9 @@ import org.junit.jupiter.params.provider.NullSource
 import org.junit.jupiter.params.provider.ValueSource
 import step2.Step2Exception.CANT_PLACE_NUMBER_EXCEPTION
 import step2.Step2Exception.FIRST_VALUE_INVALID_EXCEPTION
+import step2.Step2Exception.INVALID_INPUT_EXCEPTION
+import step2.Step2Exception.IS_NOT_ARITHMETIC_SYMBOL_EXCEPTION
 import step2.Step2Exception.IS_NOT_NULL_OR_BLANK_EXCEPTION
-import step2.Step2Exception.STRING_NEXT_NOT_NUM_EXCEPTION
 
 class CalculatorTest {
 
@@ -33,18 +34,17 @@ class CalculatorTest {
     @Test
     fun `Calculator Exception 테스트`() {
         assertThatThrownBy { Calculator.calculate("1 2 3") }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining(CANT_PLACE_NUMBER_EXCEPTION)
+            .hasMessageContaining(IS_NOT_ARITHMETIC_SYMBOL_EXCEPTION)
     }
 
     @Test
     fun `Calculator 연산자 반복입력 Exception 테스트`() {
-        assertThatThrownBy { Calculator.calculate("1 + +") }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining(STRING_NEXT_NOT_NUM_EXCEPTION)
+        assertThatThrownBy { Calculator.calculate("1 + +") }.isInstanceOf(NumberFormatException::class.java)
     }
 
     @Test
     fun `Calculator 첫번째 값 잘못 입력 Exception 테스트`() {
         assertThatThrownBy { Calculator.calculate("1+ 2 + 3") }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining(FIRST_VALUE_INVALID_EXCEPTION)
+            .hasMessageContaining(INVALID_INPUT_EXCEPTION)
     }
 }
