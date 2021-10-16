@@ -39,4 +39,22 @@ class NumberOfAttemptsTest {
             { Assertions.assertThat(one).isEqualTo(other) },
         )
     }
+
+    @DisplayName("NumberOfAttempts 인스턴스 getter 테스트")
+    @ParameterizedTest(name = "주입 값 : {0}")
+    @ValueSource(strings = ["0", "1", "10", "100"])
+    fun constructor_getter_test(numberOfAttemptsString: String) {
+        // given
+        val expected = numberOfAttemptsString.toInt()
+        val numberOfAttempts = NumberOfAttempts(numberOfAttemptsString)
+
+        // when
+        val actual = numberOfAttempts.numberOfAttempts
+
+        // then
+        assertAll(
+            { Assertions.assertThat(actual).isNotNull() },
+            { Assertions.assertThat(actual).isEqualTo(expected) },
+        )
+    }
 }
