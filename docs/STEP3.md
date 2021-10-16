@@ -23,11 +23,11 @@
 * [ ] NumberOfCars
     * [ ] data class
     * [ ] 숫자로 변환 불가능한지 체크
-    * [ ] 0이하의 숫자가 입력되면 예외처리
+    * [ ] 0미만의 숫자가 입력되면 예외처리
 * [ ] NumberOfAttempts
     * [ ] data class
     * [ ] 숫자로 변환 불가능한지 체크
-    * [ ] 0이하의 숫자가 입력되면 예외처리
+    * [ ] 0미만의 숫자가 입력되면 예외처리
 * [ ] RacingCarApplication
     * [ ] View 로 부터 넘겨 받은 데이터를 넘겨 받는다.    
     * [ ] RacingCarGame 을 실행하는 주체  
