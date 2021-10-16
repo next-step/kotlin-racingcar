@@ -1,6 +1,6 @@
 package racingcar
 
-class ConsoleOutputView : ResultView {
+class ConsoleResultView : ResultView {
     companion object {
         private const val CAR_POSITION_CHARACTER = "-"
         private const val RESULT_TITLE = "실행 결과"
