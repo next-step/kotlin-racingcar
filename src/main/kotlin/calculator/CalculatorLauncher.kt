@@ -9,7 +9,7 @@ class CalculatorLauncher {
             var inputExpression = receiveInputExpression()
 
             while (!EXIT_KEY.equals(inputExpression, true)) {
-                println("결과: " + Calculator.calculate(inputExpression).value)
+                println("결과: " + Calculator().calculate(inputExpression).value)
                 inputExpression = receiveInputExpression()
             }
         }
