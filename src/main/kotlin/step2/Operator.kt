@@ -1,5 +1,8 @@
 package step2
 
+import step2.exception.CalculatorMessage
+import step2.exception.CustomException
+
 enum class Operator(private val operator: String, val expression: (firstNum: Double, secondNum: Double) -> Double) {
 
     SUM("+", { firstNum, secondNum -> firstNum + secondNum }),
@@ -13,8 +16,8 @@ enum class Operator(private val operator: String, val expression: (firstNum: Dou
                 SUM.operator -> SUM.expression(firstNum, secondNum)
                 SUBTRACTION.operator -> SUBTRACTION.expression(firstNum, secondNum)
                 MULTIPLY.operator -> MULTIPLY.expression(firstNum, secondNum)
-                DIVIDE.operator -> if (secondNum == 0.0) throw IllegalArgumentException(Message.CAN_NOT_DIVIDED_BY_ZERO.message) else DIVIDE.expression(firstNum, secondNum)
-                else -> throw IllegalArgumentException(Message.NOT_OPERATOR.message)
+                DIVIDE.operator -> if (secondNum == 0.0) throw CustomException(CalculatorMessage.CAN_NOT_DIVIDED_BY_ZERO) else DIVIDE.expression(firstNum, secondNum)
+                else -> throw IllegalArgumentException(CalculatorMessage.NOT_OPERATOR.message)
             }
         }
     }

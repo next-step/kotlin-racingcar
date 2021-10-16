@@ -1,13 +1,14 @@
 package step2.module
 
-import step2.Message
+import step2.exception.CalculatorMessage
+import step2.exception.CustomException
 import java.util.LinkedList
 import java.util.Queue
 
 class CalculatorParser : ParserModule {
 
     private fun String.isNullOrEmpty() {
-        if (this.isEmpty()) throw IllegalArgumentException(Message.NULL_AND_EMPTY.message)
+        if (this.isEmpty()) throw CustomException(CalculatorMessage.NULL_AND_EMPTY)
     }
 
     private fun String.isDigit(): Boolean =
@@ -24,7 +25,7 @@ class CalculatorParser : ParserModule {
             "-" -> true
             "*" -> true
             "/" -> true
-            else -> throw IllegalArgumentException(Message.NOT_OPERATOR.message)
+            else -> throw CustomException(CalculatorMessage.NOT_OPERATOR)
         }
     }
 
