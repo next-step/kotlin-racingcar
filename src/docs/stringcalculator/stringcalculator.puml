@@ -1,0 +1,43 @@
+@startuml
+class Calculator {
++ calculate(input: String?): Int
+}
+
+class InputValidator {
++ validate(input: String?): List<String>
+}
+
+class InputConverter {
++ extractInts(splitString: List<String>): ArrayDeque<Int>
++ convertToOperations(splitString: List<String>): List<Operation>
+}
+
+interface Operation {
++ execute(deque: ArrayDeque<Int>)
+}
+
+class Add implements Operation {
++ execute(deque: ArrayDeque<Int>)
+}
+
+class Subtract implements Operation {
++ execute(deque: ArrayDeque<Int>)
+}
+
+class Multiply implements Operation {
++ execute(deque: ArrayDeque<Int>)
+}
+
+class Divide implements Operation {
++ execute(deque: ArrayDeque<Int>)
+}
+
+Calculator --> InputValidator
+Calculator --> InputConverter
+Calculator --> "*" Operation
+InputConverter -> "*" Operation
+InputConverter -> Add
+InputConverter -> Subtract
+InputConverter -> Multiply
+InputConverter -> Divide
+@enduml
