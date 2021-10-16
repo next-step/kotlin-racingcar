@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.NullSource
 import org.junit.jupiter.params.provider.ValueSource
 
 class StringOperatorTest {
-    private val stringCalculator = StringCalculator()
+    private val stringCalculator = StringCalculator(" ")
 
     @Test
     @DisplayName("덧셈 계산")
