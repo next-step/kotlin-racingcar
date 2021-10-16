@@ -8,17 +8,19 @@ object Calculator {
         val tokens = expression.filter { !it.isWhitespace() }
             .split(operatorRegex)
 
-        var result = tokens[0].toDoubleOrNull() ?: throw IllegalArgumentException()
+        return evaluate(tokens)
+    }
 
-        for (i in tokens.indices) {
-            if (i % 2 == 0) {
-                continue
-            }
-            val right = tokens[i + 1].toDoubleOrNull() ?: throw IllegalArgumentException()
-            result = evaluate(result, tokens[i], right)
+    private fun evaluate(tokens: List<String>): Double {
+        if (tokens.size == 1) {
+            return tokens[0].toDoubleOrNull() ?: throw IllegalArgumentException()
         }
 
-        return result
+        val left = tokens[0].toDoubleOrNull() ?: throw IllegalArgumentException()
+        val right = tokens[2].toDoubleOrNull() ?: throw IllegalArgumentException()
+        val result = evaluate(left, tokens[1], right)
+        val newTokens = listOf(result.toString()).plus(tokens.subList(3, tokens.size))
+        return evaluate(newTokens)
     }
 
     private fun evaluate(left: Double, operator: String, right: Double): Double {
