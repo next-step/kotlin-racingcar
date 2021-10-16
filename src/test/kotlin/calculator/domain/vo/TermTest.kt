@@ -25,7 +25,7 @@ class TermTest {
 
     @Test
     fun `생성자에 잘못된 문자열이 들어온 경우 예외를 발생시킨다`() {
-        assertThatThrownBy { Term("a").value }
+        assertThatThrownBy { Term("a") }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("잘못된 숫자가 입력되었습니다.")
     }

@@ -27,7 +27,7 @@ class OperatorTest {
 
     @Test
     fun `0으로 나누는 경우 예외를 발생시킨다`() {
-        assertThatThrownBy { Operator.DIVIDE.lambda(1.0, 0.0) }
+        assertThatThrownBy { Operator.DIVIDE.calculate(1.0, 0.0) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("0으로 나눌 수 없습니다.")
     }

@@ -2,7 +2,7 @@ package calculator.domain.vo
 
 enum class Operator(
     private val symbol: String,
-    val lambda: (Double, Double) -> Double,
+    val calculate: (Double, Double) -> Double,
 ) {
     PLUS("+", { left, right -> left + right }),
     MINUS("-", { left, right -> left - right }),

@@ -5,5 +5,5 @@ data class Expression(
     private val right: Term,
     private val operator: Operator,
 ) {
-    fun calculate() = Term(operator.lambda(left.value, right.value))
+    fun calculate() = Term(operator.calculate(left.value, right.value))
 }
