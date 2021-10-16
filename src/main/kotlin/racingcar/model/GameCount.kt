@@ -1,3 +1,8 @@
 package racingcar.model
 
-data class GameCount(val count: Int)
+data class GameCount(val count: Int) {
+
+    init {
+        require(count > 0) { "at least 1 count required" }
+    }
+}

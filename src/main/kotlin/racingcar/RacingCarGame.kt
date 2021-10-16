@@ -29,11 +29,7 @@ class RacingCarGame(
 
     fun startGame() {
         val carCount: CarCount = inputView.getCarCount()
-        checkCarCount(carCount)
-
         val gameCount: GameCount = inputView.getGameCount()
-        checkGameCount(gameCount)
-
         startGame(carCount, gameCount)
     }
 
@@ -53,20 +49,6 @@ class RacingCarGame(
             cars = cars
         )
         resultView.showGameResult(gameResult)
-    }
-
-    private fun checkCarCount(carCount: CarCount) {
-        val count = carCount.count
-        require(count > 0) {
-            "게임을 진행하기 위한 자동차 대수는 최소 1대 이상이 필요합니다. 입력값: $count"
-        }
-    }
-
-    private fun checkGameCount(gameCount: GameCount) {
-        val count = gameCount.count
-        require(count > 0) {
-            "게임을 진행하기 위한 시도 횟수는 최소 1회 이상이 필요합니다. 입력값: $count"
-        }
     }
 
     companion object {
