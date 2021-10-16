@@ -29,7 +29,7 @@ class NumberOfCarsTest {
     @DisplayName("NumberOfCars 인스턴스 hashCode and equals 일치 테스트")
     @ParameterizedTest(name = "주입 값 : {0}")
     @ValueSource(strings = ["0", "1", "10", "100"])
-    fun constructor_hashCode_and_equals_test(numberOfCarsString: String) {
+    fun hashCode_and_equals_test(numberOfCarsString: String) {
         // given
         val one = NumberOfCars(numberOfCarsString)
         val other = NumberOfCars(numberOfCarsString)
@@ -44,7 +44,7 @@ class NumberOfCarsTest {
     @DisplayName("NumberOfCars 인스턴스 getter 테스트")
     @ParameterizedTest(name = "주입 값 : {0}")
     @ValueSource(strings = ["0", "1", "10", "100"])
-    fun constructor_getter_test(numberOfCarsString: String) {
+    fun getter_test(numberOfCarsString: String) {
         // given
         val expected = numberOfCarsString.toInt()
         val numberOfCars = NumberOfCars(numberOfCarsString)

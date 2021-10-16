@@ -28,7 +28,7 @@ class NumberOfAttemptsTest {
     @DisplayName("NumberOfAttempts 인스턴스 hashCode and equals 일치 테스트")
     @ParameterizedTest(name = "주입 값 : {0}")
     @ValueSource(strings = ["0", "1", "10", "100"])
-    fun constructor_hashCode_and_equals_test(numberOfAttemptsString: String) {
+    fun hashCode_and_equals_test(numberOfAttemptsString: String) {
         // given
         val one = NumberOfAttempts(numberOfAttemptsString)
         val other = NumberOfAttempts(numberOfAttemptsString)
@@ -43,7 +43,7 @@ class NumberOfAttemptsTest {
     @DisplayName("NumberOfAttempts 인스턴스 getter 테스트")
     @ParameterizedTest(name = "주입 값 : {0}")
     @ValueSource(strings = ["0", "1", "10", "100"])
-    fun constructor_getter_test(numberOfAttemptsString: String) {
+    fun getter_test(numberOfAttemptsString: String) {
         // given
         val expected = numberOfAttemptsString.toInt()
         val numberOfAttempts = NumberOfAttempts(numberOfAttemptsString)
