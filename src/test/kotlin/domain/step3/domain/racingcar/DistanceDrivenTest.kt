@@ -53,4 +53,20 @@ class DistanceDrivenTest {
             { assertThat(distanceDriven.distanceDriven).isEqualTo(0)},
         )
     }
+
+    @DisplayName("Distance 인스턴스 움직임 테스트")
+    @Test
+    fun `주행거리 1칸 이동 테스트`() {
+        // given
+        val distanceDriven = DistanceDriven()
+
+        // when
+        val movedDistanceDriven = distanceDriven.move();
+
+        // then
+        assertAll(
+            { assertThat(movedDistanceDriven).isNotNull() },
+            { assertThat(distanceDriven.distanceDriven).isEqualTo(1)},
+        )
+    }
 }
