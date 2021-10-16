@@ -14,7 +14,7 @@ internal class CarsTest {
         val numberGenerator = object : NumberGenerator {
             override fun getNumber() = number
         }
-        val cars = Cars(numberGenerator, listOf(Car("pyro"), Car("jason"), Car("nath")))
+        val cars = Cars(numberGenerator, listOf(Car(Name("pyro")), Car(Name("jason")), Car(Name("nath"))))
 
         val moveNumber = 5
         repeat(moveNumber) { cars.move() }
@@ -29,7 +29,7 @@ internal class CarsTest {
         val numberGenerator = object : NumberGenerator {
             override fun getNumber() = number
         }
-        val cars = Cars(numberGenerator, listOf(Car("pyro"), Car("jason"), Car("nath")))
+        val cars = Cars(numberGenerator, listOf(Car(Name("pyro")), Car(Name("jason")), Car(Name("nath"))))
 
         val moveNumber = 5
         repeat(moveNumber) { cars.move() }
@@ -45,9 +45,9 @@ internal class CarsTest {
         }
         val cars = Cars(
             numberGenerator, listOf(
-                Car("pyro", 3),
-                Car("jason", 5),
-                Car("nath", 4)
+                Car(Name("pyro"), 3),
+                Car(Name("jason"), 5),
+                Car(Name("nath"), 4)
             )
         )
 
@@ -63,9 +63,9 @@ internal class CarsTest {
         }
         val cars = Cars(
             numberGenerator, listOf(
-                Car("pyro", 5),
-                Car("jason", 4),
-                Car("nath", 5)
+                Car(Name("pyro"), 5),
+                Car(Name("jason"), 4),
+                Car(Name("nath"), 5)
             )
         )
 
