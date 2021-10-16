@@ -26,7 +26,7 @@ class InputValidator {
     }
 
     private fun validateSize(input: List<String>): Boolean {
-        return input.size % 2 == 0
+        return input.size % 2 != 1
     }
 
     private fun validateStructure(input: List<String>): Boolean {
