@@ -18,21 +18,21 @@ class StringOperatorTest {
     @Test
     @DisplayName("덧셈 계산")
     fun calculate_correct_when_plus() {
-        val result = CalculateSymbol.PLUS.operator(first = 3, second = 1)
+        val result = OperatorSymbol.PLUS.operator(first = 3, second = 1)
         assertThat(result).isEqualTo(4)
     }
 
     @Test
     @DisplayName("뺄셈 계산")
     fun calculate_correct_when_minus() {
-        val result = CalculateSymbol.MINUS.operator(first = 3, second = 1)
+        val result = OperatorSymbol.MINUS.operator(first = 3, second = 1)
         assertThat(result).isEqualTo(2)
     }
 
     @Test
     @DisplayName("나눗셈 계산")
     fun calculate_correct_when_division() {
-        val result = CalculateSymbol.DiVISION.operator(first = 15, second = 5)
+        val result = OperatorSymbol.DiVISION.operator(first = 15, second = 5)
         assertThat(result).isEqualTo(3)
     }
 
@@ -40,14 +40,14 @@ class StringOperatorTest {
     @DisplayName("0이 들어간 나눗셈")
     fun calculate_incorrect_when_division() {
         assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy { CalculateSymbol.DiVISION.operator(first = 15, second = 0) }
+            .isThrownBy { OperatorSymbol.DiVISION.operator(first = 15, second = 0) }
             .withMessage(CASE_DIVISION_NUMBER_ZERO)
     }
 
     @Test
     @DisplayName("곱셈 계산")
     fun calculate_correct_when_multiply() {
-        val result = CalculateSymbol.MULTIPLY.operator(first = 3, second = 5)
+        val result = OperatorSymbol.MULTIPLY.operator(first = 3, second = 5)
         assertThat(result).isEqualTo(15)
     }
 

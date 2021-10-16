@@ -16,7 +16,7 @@ class StringCalculator {
         val totalCalculateCount = list.size / 2
         var result: Int? = null
         for (i in 1..totalCalculateCount) {
-            result = CalculateSymbol.convertSymbol(list[i * 2 - 1])
+            result = OperatorSymbol.convertSymbol(list[i * 2 - 1])
                 .operator(result ?: list[0].toIntOrException(), list[i * 2].toIntOrException())
         }
         return result
