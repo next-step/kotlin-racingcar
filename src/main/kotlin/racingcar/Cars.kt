@@ -1,6 +1,6 @@
 package racingcar
 
-class Cars(numberOfCars: NumberOfCars) {
+class Cars(numberOfCars: NumberOfCars, private val carMoveForwardDecider: CarMoveForwardDecider) {
     private var racingCars: List<Car> = ArrayList()
 
     init {
@@ -9,7 +9,7 @@ class Cars(numberOfCars: NumberOfCars) {
             .toList()
     }
 
-    fun goForward(carMoveForwardDecider: CarMoveForwardDecider) {
+    fun goForward() {
         racingCars
             .forEach { car -> car.moveForward(carMoveForwardDecider) }
     }
