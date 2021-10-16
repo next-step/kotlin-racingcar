@@ -1,8 +1,10 @@
-import ExceptionCase.Companion.CASE_DIVISION_NUMBER_ZERO
-import ExceptionCase.Companion.CASE_INCORRECT_INPUT
-import ExceptionCase.Companion.CASE_INCORRECT_SYMBOL
-import ExceptionCase.Companion.CASE_INPUT_NULL_OR_EMPTY
-import ExceptionCase.Companion.CASE_INT_FORMAT_OR_NULL
+package calculator
+
+import calculator.ExceptionCase.Companion.CASE_DIVISION_NUMBER_ZERO
+import calculator.ExceptionCase.Companion.CASE_INCORRECT_INPUT
+import calculator.ExceptionCase.Companion.CASE_INCORRECT_SYMBOL
+import calculator.ExceptionCase.Companion.CASE_INPUT_NULL_OR_EMPTY
+import calculator.ExceptionCase.Companion.CASE_INT_FORMAT_OR_NULL
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.DisplayName
@@ -18,21 +20,21 @@ class StringOperatorTest {
     @Test
     @DisplayName("덧셈 계산")
     fun calculate_correct_when_plus() {
-        val result = CalculateSymbol.PLUS.operator(first = 3, second = 1)
+        val result = OperatorSymbol.PLUS.operator(first = 3, second = 1)
         assertThat(result).isEqualTo(4)
     }
 
     @Test
     @DisplayName("뺄셈 계산")
     fun calculate_correct_when_minus() {
-        val result = CalculateSymbol.MINUS.operator(first = 3, second = 1)
+        val result = OperatorSymbol.MINUS.operator(first = 3, second = 1)
         assertThat(result).isEqualTo(2)
     }
 
     @Test
     @DisplayName("나눗셈 계산")
     fun calculate_correct_when_division() {
-        val result = CalculateSymbol.DiVISION.operator(first = 15, second = 5)
+        val result = OperatorSymbol.DiVISION.operator(first = 15, second = 5)
         assertThat(result).isEqualTo(3)
     }
 
@@ -40,14 +42,14 @@ class StringOperatorTest {
     @DisplayName("0이 들어간 나눗셈")
     fun calculate_incorrect_when_division() {
         assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy { CalculateSymbol.DiVISION.operator(first = 15, second = 0) }
+            .isThrownBy { OperatorSymbol.DiVISION.operator(first = 15, second = 0) }
             .withMessage(CASE_DIVISION_NUMBER_ZERO)
     }
 
     @Test
     @DisplayName("곱셈 계산")
     fun calculate_correct_when_multiply() {
-        val result = CalculateSymbol.MULTIPLY.operator(first = 3, second = 5)
+        val result = OperatorSymbol.MULTIPLY.operator(first = 3, second = 5)
         assertThat(result).isEqualTo(15)
     }
 

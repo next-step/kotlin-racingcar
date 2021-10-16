@@ -1,3 +1,5 @@
+package calculator
+
 class ExceptionCase {
     companion object {
         const val CASE_INT_FORMAT_OR_NULL = "숫자 포멧이 아니거나 null 값입니다."
