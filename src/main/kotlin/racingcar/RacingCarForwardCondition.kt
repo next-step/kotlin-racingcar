@@ -7,5 +7,5 @@ package racingcar
  */
 fun interface RacingCarForwardCondition {
 
-    fun isForward(): Boolean
+    fun canForward(): Boolean
 }

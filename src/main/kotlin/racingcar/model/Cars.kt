@@ -18,7 +18,7 @@ class Cars(
     }
 
     private fun Car.tryMove(condition: RacingCarForwardCondition): Car =
-        if (condition.isForward()) {
+        if (condition.canForward()) {
             forward()
         } else {
             backward()

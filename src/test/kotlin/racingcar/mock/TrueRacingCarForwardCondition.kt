@@ -4,5 +4,5 @@ import racingcar.RacingCarForwardCondition
 
 class TrueRacingCarForwardCondition : RacingCarForwardCondition {
 
-    override fun isForward(): Boolean = true
+    override fun canForward(): Boolean = true
 }
