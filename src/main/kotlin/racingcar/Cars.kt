@@ -1,4 +1,6 @@
-import model.Car
+package racingcar
+
+import racingcar.model.Car
 
 /**
  * 자동차들의 객체 관리

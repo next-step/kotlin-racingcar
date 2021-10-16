@@ -1,4 +1,4 @@
-package exception
+package racingcar.exception
 
 class Exception {
     companion object {
