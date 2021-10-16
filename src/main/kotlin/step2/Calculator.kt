@@ -1,5 +1,12 @@
 package step2
 
+import step2.ExceptionType.Companion.INPUT_MUST_END_WITH_NUMBER
+import step2.ExceptionType.Companion.INPUT_MUST_NOT_BLANK
+import step2.ExceptionType.Companion.INPUT_MUST_NOT_NULL
+import step2.ExceptionType.Companion.INPUT_MUST_START_WITH_NUMBER
+import step2.ExceptionType.Companion.NUMBER_NEXT_IS_MUST_OPERATOR
+import step2.ExceptionType.Companion.OPERATOR_NEXT_IS_MUST_NUMBER
+
 object Calculator {
     private fun String.isNumeric() = matches("-?\\d+(\\.\\d+)?".toRegex())
     private fun String.isNotNumeric() = !isNumeric()
@@ -15,23 +22,22 @@ object Calculator {
 
         while (idx < dividedList.size) {
             val divided = dividedList[idx++]
-            if (divided.isNotNumeric()) {
-                val newValue = dividedList[idx++]
-                require(newValue.isNumeric()) { "연산자 다음은 숫자가 와야합니다." }
-                accumulator = divided.getOperator().execute(accumulator, newValue.toDouble())
-            }
+            require(divided.isNotNumeric()) { NUMBER_NEXT_IS_MUST_OPERATOR }
+            val newValue = dividedList[idx++]
+            require(newValue.isNumeric()) { OPERATOR_NEXT_IS_MUST_NUMBER }
+            accumulator = divided.getOperator().execute(accumulator, newValue.toDouble())
         }
         return accumulator
     }
 
     private fun checkElementValidation(list: List<String>) {
-        require(list.first().isNumeric()) { "숫자 부터 입력 되어야합니다." }
-        require(list.last().isNumeric()) { "식의 마지막에는 숫자가 입력되어야 합니다." }
+        require(list.first().isNumeric()) { INPUT_MUST_START_WITH_NUMBER }
+        require(list.last().isNumeric()) { INPUT_MUST_END_WITH_NUMBER }
     }
 
     private fun checkInputValidation(input: String?) = run {
-        requireNotNull(input) { "입력이 비어서는 안됩니다." }
-        require(input.isNotBlank()) { "입력이 공백 이여서는 안됩니다." }
+        requireNotNull(input) { INPUT_MUST_NOT_NULL }
+        require(input.isNotBlank()) { INPUT_MUST_NOT_BLANK }
         input
     }
 }

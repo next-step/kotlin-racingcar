@@ -38,6 +38,7 @@ class CalculatorTest {
     @Test
     fun `예외 발생 잘못된 입력`() {
         assertThatIllegalArgumentException().isThrownBy { Calculator.calculate("1 +") }
+        assertThatIllegalArgumentException().isThrownBy { Calculator.calculate("2 2") }
         assertThatIllegalArgumentException().isThrownBy { Calculator.calculate("+") }
         assertThatIllegalArgumentException().isThrownBy { Calculator.calculate("+ 1") }
         assertThatIllegalArgumentException().isThrownBy { Calculator.calculate("2 & 3 & 4 & 2") }
