@@ -30,4 +30,16 @@ class DistanceDrivenTest {
             { assertThat(one).isEqualTo(other) },
         )
     }
+
+    @DisplayName("Distance 인스턴스 getter 테스트")
+    @ParameterizedTest(name = "주입 값 : {0}")
+    @ValueSource(ints = [0, 1, 10, 100])
+    fun getter_test(distanceDrivenInt: Int) {
+        val distanceDriven = DistanceDriven(distanceDrivenInt)
+
+        assertAll(
+            { assertThat(distanceDriven.distanceDriven).hasSameHashCodeAs(distanceDrivenInt) },
+            { assertThat(distanceDriven.distanceDriven).isEqualTo(distanceDrivenInt) },
+        )
+    }
 }
