@@ -10,6 +10,6 @@ class ExceptionType {
         const val NUMBER_NEXT_IS_MUST_OPERATOR = "숫자 다음은 연산자가 와야합니다."
 
         const val NOT_OPERATOR_SYMBOL = "잘못된 계산 연산자 입력입니다."
-        const val CAN_NOT_DIVIDED_BY_ZERO = "잘못된 계산 연산자 입력입니다."
+        const val CAN_NOT_DIVIDED_BY_ZERO = "0으로 나눌수 없습니다."
     }
 }
