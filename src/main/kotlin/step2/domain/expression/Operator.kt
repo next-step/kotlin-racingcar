@@ -20,7 +20,7 @@ enum class Operator(private val operator: String, private val calculateStrategy:
     REMAINDER(REMAINDER_OPERATOR, ModCalculateStrategyStrategy())
     ;
 
-    fun calculate(x: Int, y:Int) = calculate(Operand(x), Operand(y))
+    fun calculate(x: Int, y: Int) = calculate(Operand(x), Operand(y))
     fun calculate(x: Operand, y: Operand) = Operand(calculateStrategy.calculate(x.operand, y.operand))
 
     companion object {

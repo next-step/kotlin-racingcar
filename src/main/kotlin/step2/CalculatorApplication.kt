@@ -9,7 +9,7 @@ import step2.ui.CalculatorInputView
 import step2.ui.CalculatorOutputView
 
 class CalculatorApplication(private val inputView: CalculatorInputView, private val outputView: CalculatorOutputView) {
-    fun run() {
+    tailrec fun run() {
         try {
             val lawExpression = inputView.inputExpression() ?: throw IllegalArgumentException(NULL_EXCEPTION_MESSAGE)
             val expression = Expression(lawExpression)
