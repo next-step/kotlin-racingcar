@@ -2,6 +2,7 @@ package domain.step3.domain.configuration
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -22,5 +23,20 @@ class NumberOfAttemptsTest {
     fun constructor_format_fail_test(numberOfAttemptsString: String) {
         Assertions.assertThatThrownBy { NumberOfAttempts(numberOfAttemptsString) }
             .isExactlyInstanceOf(NumberFormatException::class.java)
+    }
+
+    @DisplayName("NumberOfAttempts 인스턴스 hashCode and equals 일치 테스트")
+    @ParameterizedTest(name = "주입 값 : {0}")
+    @ValueSource(strings = ["0", "1", "10", "100"])
+    fun constructor_hashCode_and_equals_test(numberOfAttemptsString: String) {
+        // given
+        val one = NumberOfAttempts(numberOfAttemptsString)
+        val other = NumberOfAttempts(numberOfAttemptsString)
+
+        // when and then
+        assertAll(
+            { Assertions.assertThat(one).hasSameHashCodeAs(other) },
+            { Assertions.assertThat(one).isEqualTo(other) },
+        )
     }
 }
