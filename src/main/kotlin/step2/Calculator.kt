@@ -1,12 +1,17 @@
 package step2
 
+import step2.Step2Exception.CANT_PLACE_NUMBER_EXCEPTION
+import step2.Step2Exception.FIRST_VALUE_INVALID_EXCEPTION
+import step2.Step2Exception.IS_NOT_NULL_OR_BLANK_EXCEPTION
+import step2.Step2Exception.STRING_NEXT_NOT_NUM_EXCEPTION
+
 object Calculator {
 
     fun calculate(value: String?): Int {
-        require(!value.isNullOrBlank()) { "입력값이 null 혹은 공백일 수 없습니다." }
+        require(!value.isNullOrBlank()) { IS_NOT_NULL_OR_BLANK_EXCEPTION }
         val valueSplitList = value.trim().split(" ")
 
-        var result = valueSplitList[0].toIntOrNull() ?: throw NumberFormatException("첫번째 입력값이 정수가 아니므로 변환할 수 없습니다.")
+        var result = valueSplitList[0].toIntOrNull() ?: throw NumberFormatException(FIRST_VALUE_INVALID_EXCEPTION)
         for (i in 1 until valueSplitList.size - 1) {
             if (checkStringNextNum(valueSplitList[i], valueSplitList[i + 1])) {
                 result = calculate(result, valueSplitList[i], valueSplitList[i + 1].toInt())
@@ -19,9 +24,9 @@ object Calculator {
         return if (maybeOperator.toIntOrNull() == null && maybeIntValue.toIntOrNull() != null) {
             true
         } else if (maybeOperator.toIntOrNull() == null && maybeIntValue.toIntOrNull() == null) {
-            throw IllegalArgumentException("연산자 다음에는 정수가 입력 되어야 합니다.")
+            throw IllegalArgumentException(STRING_NEXT_NOT_NUM_EXCEPTION)
         } else if (maybeOperator.toIntOrNull() != null && maybeIntValue.toIntOrNull() != null) {
-            throw IllegalArgumentException("정수가 올 자리가 아닙니다.")
+            throw IllegalArgumentException(CANT_PLACE_NUMBER_EXCEPTION)
         } else {
             return false
         }

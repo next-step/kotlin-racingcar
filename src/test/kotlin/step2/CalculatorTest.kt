@@ -6,6 +6,10 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.NullSource
 import org.junit.jupiter.params.provider.ValueSource
+import step2.Step2Exception.CANT_PLACE_NUMBER_EXCEPTION
+import step2.Step2Exception.FIRST_VALUE_INVALID_EXCEPTION
+import step2.Step2Exception.IS_NOT_NULL_OR_BLANK_EXCEPTION
+import step2.Step2Exception.STRING_NEXT_NOT_NUM_EXCEPTION
 
 class CalculatorTest {
 
@@ -14,7 +18,7 @@ class CalculatorTest {
     @ValueSource(strings = ["", " ", "  "])
     fun `null or Blank 입력 테스트`(value: String?) {
         assertThatThrownBy { Calculator.calculate(value) }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining("입력값이 null 혹은 공백일 수 없습니다.")
+            .hasMessageContaining(IS_NOT_NULL_OR_BLANK_EXCEPTION)
     }
 
     @Test
@@ -29,18 +33,18 @@ class CalculatorTest {
     @Test
     fun `Calculator Exception 테스트`() {
         assertThatThrownBy { Calculator.calculate("1 2 3") }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining("정수가 올 자리가 아닙니다.")
+            .hasMessageContaining(CANT_PLACE_NUMBER_EXCEPTION)
     }
 
     @Test
     fun `Calculator 연산자 반복입력 Exception 테스트`() {
         assertThatThrownBy { Calculator.calculate("1 + +") }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining("연산자 다음에는 정수가 입력 되어야 합니다.")
+            .hasMessageContaining(STRING_NEXT_NOT_NUM_EXCEPTION)
     }
 
     @Test
     fun `Calculator 첫번째 값 잘못 입력 Exception 테스트`() {
         assertThatThrownBy { Calculator.calculate("1+ 2 + 3") }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining("첫번째 입력값이 정수가 아니므로 변환할 수 없습니다.")
+            .hasMessageContaining(FIRST_VALUE_INVALID_EXCEPTION)
     }
 }

@@ -2,12 +2,12 @@ package step2
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
-import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 import step2.Operator.Companion.convertToOperator
+import step2.Step2Exception.IS_NOT_ARITHMETIC_SYMBOL_EXCEPTION
 
 class OperatorTest {
 
@@ -20,7 +20,7 @@ class OperatorTest {
     @ParameterizedTest
     @ValueSource(strings = ["%", "^", "&"])
     fun `지원하지 않는 기호 테스트`(op: String) {
-        assertThatThrownBy { convertToOperator(op) }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { convertToOperator(op) }.isInstanceOf(IllegalArgumentException::class.java).hasMessageContaining(IS_NOT_ARITHMETIC_SYMBOL_EXCEPTION)
     }
 
     @Test
@@ -58,6 +58,9 @@ class OperatorTest {
     @ParameterizedTest(name = "Test {index}: {0} / {1}")
     @CsvSource(value = ["2, 0", "40, 0", "100, 0"])
     fun `0으로 나누기 테스트`(value: Int, zero: Int) {
-        assertThatThrownBy { convertToOperator("/").calculate(value, zero) }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { convertToOperator("/").calculate(value, zero) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining(Step2Exception.CANT_DIVIDE_ZERO_EXCEPTION
+        )
     }
 }
