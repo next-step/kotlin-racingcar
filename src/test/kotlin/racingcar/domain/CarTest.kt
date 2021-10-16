@@ -1,6 +1,7 @@
 package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -19,7 +20,7 @@ internal class CarTest {
     @Test
     fun `최초 포지션`() {
         assertThat(car.position)
-            .isEqualTo(0);
+            .isEqualTo(0)
     }
 
     @DisplayName("숫자가 4 이상인 경우, 전진한다.")
@@ -28,7 +29,7 @@ internal class CarTest {
     fun `전진 가능`(number: Int) {
         car.move(number)
         assertThat(car.position)
-            .isEqualTo(1);
+            .isEqualTo(1)
     }
 
     @DisplayName("숫자가 4 미만인 경우, 전진하지 않는다.")
@@ -37,6 +38,23 @@ internal class CarTest {
     fun `전진 불가능`(number: Int) {
         car.move(number)
         assertThat(car.position)
-            .isEqualTo(0);
+            .isEqualTo(0)
+    }
+
+    @DisplayName("자동차의 이름은 필수값이라서 비워둘 수 없다.")
+    @ParameterizedTest
+    @ValueSource(strings = ["", " ", "  "])
+    fun `빈 이름`(name: String) {
+        assertThatExceptionOfType(IllegalArgumentException::class.java)
+            .isThrownBy { Car(name) }
+    }
+
+    @DisplayName("자동차 이름은 5자를 초과할 수 없다.")
+    @ParameterizedTest
+    @ValueSource(strings = ["123456", "abcdefg", "Anonymous"])
+    fun `긴 이름`(name: String) {
+        assertThatExceptionOfType(IllegalArgumentException::class.java)
+            .isThrownBy { Car(name) }
+            .withMessage("자동차 이름은 5자를 초과할 수 없다.")
     }
 }
