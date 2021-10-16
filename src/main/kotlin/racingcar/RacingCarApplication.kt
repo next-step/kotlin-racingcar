@@ -1,7 +1,7 @@
-import exception.Exception.Companion.CASE_INPUT_DATA_WRONG
-import view.InputView
-import view.ResultView
-import view.ResultView.Companion.RESULT_TITLE
+import racingcar.exception.Exception.Companion.CASE_INPUT_DATA_WRONG
+import racingcar.view.InputView
+import racingcar.view.ResultView
+import racingcar.view.ResultView.Companion.RESULT_TITLE
 
 /**
  * 자동차 경주 게임의 메인 class

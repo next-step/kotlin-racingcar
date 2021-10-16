@@ -1,6 +1,6 @@
-package view
+package racingcar.view
 
-import Cars
+import racingcar.Cars
 
 /**
  * 자동차 경주에서 게임 중 혹은 결과를 출력 모음 class

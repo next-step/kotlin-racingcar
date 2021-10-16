@@ -1,6 +1,6 @@
-package model
+package racingcar.model
 
-import exception.Exception.Companion.CASE_WRONG_RANDOM_VALUE
+import racingcar.exception.Exception.Companion.CASE_WRONG_RANDOM_VALUE
 import java.util.Random
 
 data class Car(
