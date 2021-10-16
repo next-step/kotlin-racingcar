@@ -6,18 +6,12 @@ interface Expression {
 
 class BinaryExpression(
     private val left: Expression,
-    private val operator: String,
-    private val right: Expression
+    private val operator: BinaryOperator,
+    private val right: Expression,
 ) : Expression {
 
     override fun evaluate(): Double {
-        return when (operator) {
-            "+" -> left.evaluate() + right.evaluate()
-            "-" -> left.evaluate() - right.evaluate()
-            "*" -> left.evaluate() * right.evaluate()
-            "/" -> left.evaluate() / right.evaluate()
-            else -> throw IllegalArgumentException()
-        }
+        return operator.evaluate(left, right)
     }
 }
 

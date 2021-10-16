@@ -12,9 +12,9 @@ class Parser(private val tokens: List<Token>) {
         var result = number()
 
         while (currentIsOperator()) {
-            val operator = pop()
+            val operator = OperatorFactory.getBinaryFor(pop().literal)
             val right = number()
-            result = BinaryExpression(result, operator.literal, right)
+            result = BinaryExpression(result, operator, right)
         }
 
         return result

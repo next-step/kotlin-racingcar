@@ -5,7 +5,6 @@ import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-@Suppress("NonAsciiCharacters")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CalculatorTest {
 
