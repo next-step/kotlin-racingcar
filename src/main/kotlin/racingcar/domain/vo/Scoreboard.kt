@@ -19,4 +19,10 @@ value class Scoreboard(
     fun snapshotOf(lap: Lap): RacingCars {
         return value[lap] ?: throw IllegalArgumentException("존재하지 않는 Lap 입니다.")
     }
+
+    companion object {
+        fun initialize(racingCars: RacingCars): Scoreboard {
+            return Scoreboard(mapOf(Lap.initialize() to racingCars))
+        }
+    }
 }
