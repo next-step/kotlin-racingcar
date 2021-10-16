@@ -23,3 +23,7 @@ class NumberExpression(private val value: Double) : Expression {
         return value
     }
 }
+
+private fun String.toDouble(): Double {
+    return toDoubleOrNull() ?: throw IllegalArgumentException("${this}는 실수가 아닙니다.")
+}
