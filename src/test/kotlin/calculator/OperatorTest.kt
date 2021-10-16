@@ -1,7 +1,5 @@
 package calculator
 
-import calculator.Operator.Companion.CANNOT_BE_DIVIDED_BY_ZERO
-import calculator.Operator.Companion.WRONG_OPERATOR_SYMBOL
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
@@ -97,7 +95,6 @@ class OperatorTest {
             Operator.findOperation("/").perform(firstOperand, secondOperand)
         }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining(CANNOT_BE_DIVIDED_BY_ZERO)
     }
 
     @ParameterizedTest
@@ -107,6 +104,5 @@ class OperatorTest {
             Operator.findOperation(operatorSymbol)
         }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining(WRONG_OPERATOR_SYMBOL)
     }
 }
