@@ -4,6 +4,8 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class NumberTest {
 
@@ -21,11 +23,9 @@ class NumberTest {
     }
 
     @DisplayName("input이 2보다 작을 경우")
-    @Test
-    fun `sut throw IllegalArgumentException when input is less than 2`() {
-        // Arrange
-        val input = 1
-
+    @ParameterizedTest
+    @ValueSource(ints = [1, 0, -1])
+    fun `sut throw IllegalArgumentException when input is less than 2`(input: Int) {
         // Act, Assert
         assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy { Number(input) }
