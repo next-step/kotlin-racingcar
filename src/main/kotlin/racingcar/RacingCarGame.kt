@@ -24,14 +24,14 @@ import racingcar.view.OutputView
 class RacingCarGame(
     private val inputView: InputView,
     private val outputView: OutputView,
-    private val condition: RacingCarForwardCondition
+    private val racingCarsFactory: RacingCarsFactory
 ) {
 
     fun startGame() {
         val carCount: CarCount = inputView.getCarCount()
         val gameCount: GameCount = inputView.getGameCount()
 
-        val cars = Cars(carCount, condition)
+        val cars = racingCarsFactory.createCars(carCount)
         startGame(gameCount, cars)
     }
 
@@ -54,11 +54,12 @@ class RacingCarGame(
 
         @JvmStatic
         fun main(args: Array<String>) {
-            val racingCarMoveMethod = { (0..9).random() >= 4 }
+            val racingCarForwardCondition = RacingCarForwardCondition { (0..9).random() >= 4 }
+            val racingCarsFactory = RacingCarsFactory { carCount -> Cars(carCount, racingCarForwardCondition) }
             val racingCarGame = RacingCarGame(
                 inputView = ConsoleInputView(),
                 outputView = ConsoleOutputView("\uD83D\uDE97"),
-                condition = racingCarMoveMethod
+                racingCarsFactory = racingCarsFactory,
             )
             racingCarGame.startGame()
         }
