@@ -6,14 +6,10 @@ import org.junit.jupiter.api.Test
 class RacingCarTest {
 
     @Test
-    fun `RacingCar getter 테스트`() {
-        // given
+    fun `RacingCar 조건 만족시 이동 테스트`() {
         val racingCar = RacingCar { true }
-
-        // when
         val movedRacingCar = racingCar.move()
 
-        // then
         assertThat(movedRacingCar).isEqualTo(1);
     }
 }

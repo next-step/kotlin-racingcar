@@ -50,7 +50,7 @@ class DistanceDrivenTest {
         val distanceDriven = DistanceDriven()
         assertAll(
             { assertThat(distanceDriven.distanceDriven).isNotNull() },
-            { assertThat(distanceDriven.distanceDriven).isEqualTo(0)},
+            { assertThat(distanceDriven.distanceDriven).isEqualTo(0) },
         )
     }
 
@@ -61,12 +61,12 @@ class DistanceDrivenTest {
         val distanceDriven = DistanceDriven()
 
         // when
-        val movedDistanceDriven = distanceDriven.move();
+        val movedDistanceDriven = distanceDriven.move()
 
         // then
         assertAll(
             { assertThat(movedDistanceDriven).isNotNull() },
-            { assertThat(movedDistanceDriven.distanceDriven).isEqualTo(1)},
+            { assertThat(movedDistanceDriven.distanceDriven).isEqualTo(1) },
         )
     }
 }
