@@ -7,16 +7,23 @@ class RacingCarsTest {
 
     @Test
     fun `RacingCars 조건 만족시 이동 테스트`() {
-        val racingCars = RacingCars(listOf(RacingCar { true }, RacingCar { true }))
+        val movingStrategy = { true }
+
+        val racingCars = RacingCars(
+            listOf(
+                RacingCar(movingStrategy = movingStrategy),
+                RacingCar(movingStrategy = movingStrategy)
+            )
+        )
+
         val expected = RacingCars(
             listOf(
-                RacingCar(DistanceDriven(1)) { true },
-                RacingCar(DistanceDriven(1)) { true }
+                RacingCar(DistanceDriven(1), movingStrategy),
+                RacingCar(DistanceDriven(1), movingStrategy)
             )
         )
 
         val movedRacingCars = racingCars.moveForward()
-
         assertThat(movedRacingCars).isEqualTo(expected)
     }
 }

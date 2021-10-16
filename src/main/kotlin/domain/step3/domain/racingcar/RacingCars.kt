@@ -1,3 +1,6 @@
 package domain.step3.domain.racingcar
 
-class RacingCars(private val racingCars: List<RacingCar>)
+@JvmInline
+value class RacingCars(private val racingCars: List<RacingCar>) {
+    fun moveForward() = RacingCars(racingCars.map { it.moveForward() })
+}
