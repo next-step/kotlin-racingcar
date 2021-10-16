@@ -5,7 +5,7 @@ import java.util.stream.Collectors
 /**
  * 자동차 목록.
  */
-class Cars(val cars: List<Car>) {
+data class Cars(val cars: List<Car>) {
     constructor() : this(mutableListOf<Car>())
 
     /**

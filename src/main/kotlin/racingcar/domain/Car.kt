@@ -3,7 +3,7 @@ package racingcar.domain
 /**
  * 자동차.
  */
-class Car(
+data class Car(
     val position: Position = Position(0),
     private val movingStrategy: MovingStrategy = RandomMoveStrategy()
 ) {
