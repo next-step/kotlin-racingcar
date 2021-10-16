@@ -19,7 +19,7 @@ import racingcar.view.OutputView
  * 1. 게임을 진행하기 위한 자동차를 준비한다. (InputView)
  * 2. 몇 번의 게임을 진행할지 호스트로부터 받아서 게임을 준비한다. (InputView)
  * 3. 자동차가 전진 혹은 후진하기 위한 방법을 제시한다. (RacingCarMoveMethod)
- * 4. 게임 진행상황에 대해 어떻게 그릴지 요청한다. (ResultView)
+ * 4. 게임 진행상황에 대해 어떻게 그릴지 요청한다. (OutputView)
  */
 class RacingCarGame(
     private val inputView: InputView,
