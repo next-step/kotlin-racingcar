@@ -58,3 +58,5 @@ class NumberOfAttemptsTest {
         )
     }
 }
+
+fun createTestNumberOfAttempts() = NumberOfAttempts(1)

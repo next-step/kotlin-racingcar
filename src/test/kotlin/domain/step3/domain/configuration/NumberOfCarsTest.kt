@@ -59,3 +59,5 @@ class NumberOfCarsTest {
         )
     }
 }
+
+fun createTestNumberOfCars() = NumberOfCars(1)
