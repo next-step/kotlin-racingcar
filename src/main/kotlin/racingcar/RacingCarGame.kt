@@ -1,7 +1,7 @@
 package racingcar
 
-import racingcar.model.Car
 import racingcar.model.CarCount
+import racingcar.model.Cars
 import racingcar.model.GameCount
 import racingcar.model.RacingCarGameResult
 import racingcar.view.ConsoleInputView
@@ -39,11 +39,11 @@ class RacingCarGame(
 
     private fun startGame(carCount: CarCount, gameCount: GameCount) {
         resultView.showGameStart()
-        var cars: List<Car> = List(carCount.count) { Car() }
+        val cars = Cars(carCount, racingCarMoveMethod)
 
         repeat(gameCount.count) { round ->
             resultView.showGameRoundStart(round + 1, cars)
-            cars = cars.map { car -> car.tryMove(racingCarMoveMethod) }
+            cars.move()
             resultView.showGameRoundEnd(round + 1, cars)
         }
 
@@ -54,13 +54,6 @@ class RacingCarGame(
         )
         resultView.showGameResult(gameResult)
     }
-
-    private fun Car.tryMove(method: RacingCarMoveMethod): Car =
-        if (method.isForward()) {
-            forward()
-        } else {
-            backward()
-        }
 
     private fun checkCarCount(carCount: CarCount) {
         val count = carCount.count

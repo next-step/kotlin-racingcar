@@ -1,15 +1,18 @@
 package racingcar.model
 
-data class Car(val position: Int = DEFAULT_CAR_POSITION) {
+data class Car(
+    val id: Int,
+    val position: Int = DEFAULT_CAR_POSITION
+) {
 
     fun forward(): Car {
         val nextPosition = position + 1
-        return Car(position = nextPosition)
+        return Car(id = id, position = nextPosition)
     }
 
     fun backward(): Car {
         val nextPosition = (position - 1).coerceAtLeast(0)
-        return Car(position = nextPosition)
+        return Car(id = id, position = nextPosition)
     }
 
     companion object {
