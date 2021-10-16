@@ -10,8 +10,8 @@ import racingcar.domain.SimpleRacingFixture
 class ScoreboardTest {
     @Test
     fun `현황판의 Lap들을 가져올 수 있다`() {
-        val lap1 = Lap(1)
-        val lap2 = Lap(2)
+        val lap1 = Lap.of(1)
+        val lap2 = Lap.of(2)
         val racingCars = SimpleRacingCars(listOf(SimpleRacingFixture.MOVING_CAR))
         val scoreboard = Scoreboard(mapOf(lap1 to racingCars, lap2 to racingCars.race()))
         assertThat(scoreboard.laps()).isEqualTo(Laps.of(2))
@@ -20,7 +20,7 @@ class ScoreboardTest {
 
     @Test
     fun `Lap별 현황을 가져올 수 있다`() {
-        val lap = Lap(1)
+        val lap = Lap.of(1)
         val racingCars = SimpleRacingCars(listOf(SimpleRacingFixture.MOVING_CAR))
         val scoreboard = Scoreboard(mapOf(lap to racingCars))
         assertThat(scoreboard.snapshotOf(lap)).isEqualTo(racingCars)
@@ -31,8 +31,8 @@ class ScoreboardTest {
         // given
         val car1 = SimpleRacingFixture.MOVING_CAR
         val car2 = SimpleRacingFixture.STATIC_CAR
-        val lap1 = Lap(1)
-        val lap2 = Lap(2)
+        val lap1 = Lap.of(1)
+        val lap2 = Lap.of(2)
 
         val racingCars = SimpleRacingCars(listOf(car1, car2))
         val expected = racingCars.race()

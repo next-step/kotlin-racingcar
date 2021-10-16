@@ -1,5 +1,7 @@
 package racingcar.domain.vo
 
+private const val FIRST_ROUND = 1
+
 @JvmInline
 value class Laps private constructor(val values: List<Lap>) {
     init {
@@ -12,7 +14,7 @@ value class Laps private constructor(val values: List<Lap>) {
             require(rounds.toIntOrNull() != null) {}
             return of(rounds.toInt())
         }
-        fun of(rounds: Int): Laps = Laps((1..rounds).map { Lap(it) })
+        fun of(rounds: Int): Laps = Laps((FIRST_ROUND..rounds).map { Lap.of(it) })
         fun of(laps: Set<Lap>): Laps {
             return Laps(laps.sortedBy { it.round })
         }

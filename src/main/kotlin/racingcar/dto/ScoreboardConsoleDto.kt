@@ -5,7 +5,7 @@ import racingcar.domain.RacingCars
 import racingcar.domain.vo.Lap
 import racingcar.domain.vo.Scoreboard
 
-const val POSITION_CHARACTER = "-"
+private const val POSITION_CHARACTER = "-"
 
 data class ScoreboardConsoleDto(
     private val scoreboard: Scoreboard,

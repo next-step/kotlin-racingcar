@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 class LapsTest {
     @Test
     fun `라운드만큼 레이스를 생성한다`() {
-        val expected = arrayOf(Lap(1), Lap(2), Lap(3))
+        val expected = arrayOf(Lap.of(1), Lap.of(2), Lap.of(3))
         assertAll(
             { assertThat(Laps.of("3").values).containsExactly(*expected) },
             { assertThat(Laps.of(3).values).containsExactly(*expected) }
@@ -26,10 +26,10 @@ class LapsTest {
 
     @Test
     fun `레이스 Set으로 생성하는 경우 오름차순으로 조정된다`() {
-        val expected = arrayOf(Lap(1), Lap(2), Lap(3))
+        val expected = arrayOf(Lap.of(1), Lap.of(2), Lap.of(3))
         assertThat(
             Laps.of(
-                setOf(Lap(2), Lap(3), Lap(1))
+                setOf(Lap.of(2), Lap.of(3), Lap.of(1))
             ).values
         ).containsExactly(*expected)
     }
