@@ -1,4 +1,4 @@
-package step2.strategy.calculable
+package step2.strategy.calculate
 
 import java.lang.Math.subtractExact
 

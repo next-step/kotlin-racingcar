@@ -1,4 +1,4 @@
-package step2.strategy.calculable
+package step2.strategy.calculate
 
 @FunctionalInterface
 fun interface CalculateStrategy {

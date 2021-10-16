@@ -24,8 +24,11 @@ class OperatorTest {
     @DisplayName("Operator calculate() 기능 테스트")
     @ParameterizedTest(name = "x 피연산자 : {0}, y 피연산자 : {1}, 결과 : {2}, 연산 enum : {3}")
     @MethodSource("operateArgument")
-    fun calculate_test(x: Int, y: String, expected: Int, operator: Operator) {
-        // given and when
+    fun calculate_test(x: Int, y: Int, lawExpected: Int, operator: Operator) {
+        // given
+        val expected = Operand(lawExpected)
+
+        // when
         val actual = operator.calculate(x, y)
 
         // then
@@ -53,11 +56,11 @@ class OperatorTest {
 
         @JvmStatic
         fun operateArgument() = listOf(
-            Arguments.of(1, "1", 2, Operator.PLUS),
-            Arguments.of(1, "1", 0, Operator.MINUS),
-            Arguments.of(1, "1", 1, Operator.MULTIPLICATION),
-            Arguments.of(1, "1", 1, Operator.DIVISION),
-            Arguments.of(1, "1", 0, Operator.REMAINDER)
+            Arguments.of(1, 1, 2, Operator.PLUS),
+            Arguments.of(1, 1, 0, Operator.MINUS),
+            Arguments.of(1, 1, 1, Operator.MULTIPLICATION),
+            Arguments.of(1, 1, 1, Operator.DIVISION),
+            Arguments.of(1, 1, 0, Operator.REMAINDER)
         )
     }
 }
