@@ -10,7 +10,7 @@ import racingcar.view.InputView
 import racingcar.view.OutputView
 
 /**
- * 게임에 대한 시작과 끝. 진행 상황 등을 알 수 있는 객체
+ * 자동차 경주에 대한 개념
  *
  * [RacingCarGame]의 행동 (method)
  * 1. 게임을 시작한다.
@@ -18,7 +18,7 @@ import racingcar.view.OutputView
  * 협력 관계 (communication)
  * 1. 게임을 진행하기 위한 자동차를 준비한다. (InputView)
  * 2. 몇 번의 게임을 진행할지 호스트로부터 받아서 게임을 준비한다. (InputView)
- * 3. 자동차가 전진 혹은 후진하기 위한 방법을 제시한다. (RacingCarForwardCondition)
+ * 3. 자동차를 호스트로부터 건네받아 게임을 준비한다. (RacingCarsFactory)
  * 4. 게임 진행상황에 대해 어떻게 그릴지 요청한다. (OutputView)
  */
 class RacingCarGame(
