@@ -9,9 +9,9 @@ class Cars(numberOfCars: NumberOfCars) {
             .toList()
     }
 
-    fun goForward(carMoveForwardStrategy: CarMoveForwardStrategy) {
+    fun goForward(carMoveForwardDecider: CarMoveForwardDecider) {
         racingCars
-            .forEach { car -> car.goForward(carMoveForwardStrategy) }
+            .forEach { car -> car.moveForward(carMoveForwardDecider) }
     }
 
     fun getCars(): List<Car> {

@@ -3,7 +3,7 @@ package racingcar
 class RacingGame(
     inputView: InputView,
     private val resultView: ResultView,
-    private val carMoveForwardStrategy: CarMoveForwardStrategy
+    private val carMoveForwardStrategy: CarMoveForwardDecider
 ) {
     private val numberOfCars: NumberOfCars = inputView.getNumberOfCars()
     private val numberOfTrials: NumberOfTrials = inputView.getNumberOfTrials()
