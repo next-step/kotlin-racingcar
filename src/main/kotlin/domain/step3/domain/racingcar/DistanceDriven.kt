@@ -3,7 +3,7 @@ package domain.step3.domain.racingcar
 @JvmInline
 value class DistanceDriven(val distance: Int) {
     init {
-        require(distance >= 0) { OUT_OF_RANGE_MESSAGE }
+        require(distance >= MINIMUM) { OUT_OF_RANGE_MESSAGE }
     }
 
     companion object {
