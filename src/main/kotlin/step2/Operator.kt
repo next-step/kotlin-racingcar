@@ -16,7 +16,7 @@ enum class Operator(val value: String, val function: BinaryOperator<Double>) {
 
         fun apply(value: String, sum: Double, operand: Double): Double {
             isIn(value)
-            return values().first { v -> v.value.equals(value) }
+            return values().first { v -> v.value == value }
                 .function
                 .apply(sum, operand)
         }
