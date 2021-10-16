@@ -1,6 +1,7 @@
 package domain.step3.domain.configuration
 
-data class NumberOfCars(val numberOfCars: Int) {
+@JvmInline
+value class NumberOfCars(val numberOfCars: Int) {
     init {
         require(numberOfCars >= MINIMUM) { OUT_OF_RANGE_MESSAGE }
     }

@@ -1,6 +1,7 @@
 package domain.step3.domain.configuration
 
-data class NumberOfAttempts(val numberOfAttempts: Int) {
+@JvmInline
+value class NumberOfAttempts(val numberOfAttempts: Int) {
     init {
         require(numberOfAttempts >= MINIMUM) { OUT_OF_RANGE_MESSAGE }
     }

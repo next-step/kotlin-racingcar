@@ -1,3 +1,5 @@
 package domain.step3.ui
 
-class RacingCarResultView
+import global.strategy.output.OutputStrategy
+
+class RacingCarResultView(private val outputStrategy: OutputStrategy)
