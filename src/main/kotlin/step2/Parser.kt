@@ -3,14 +3,14 @@ package step2
 import java.util.LinkedList
 import java.util.Queue
 
-class Parser {
+class Parser(val delimiter: String) {
 
     fun parse(input: String): Queue<String> {
         if (input.isNullOrBlank()) {
             throw IllegalArgumentException("입력값이 null이거나 빈 공백 문자는 안됩니다.")
         }
 
-        val dataList = input.split(" ")
+        val dataList = input.split(delimiter)
         val queue: Queue<String> = LinkedList()
 
         for (data in dataList) {
