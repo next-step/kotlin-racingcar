@@ -30,12 +30,13 @@ class RacingCarGame(
     fun startGame() {
         val carCount: CarCount = inputView.getCarCount()
         val gameCount: GameCount = inputView.getGameCount()
-        startGame(carCount, gameCount)
+
+        val cars = Cars(carCount, racingCarMoveMethod)
+        startGame(gameCount, cars)
     }
 
-    private fun startGame(carCount: CarCount, gameCount: GameCount) {
+    private fun startGame(gameCount: GameCount, cars: Cars) {
         resultView.showGameStart()
-        val cars = Cars(carCount, racingCarMoveMethod)
 
         repeat(gameCount.count) { round ->
             resultView.showGameRoundStart(round + 1, cars)
@@ -44,7 +45,6 @@ class RacingCarGame(
         }
 
         val gameResult = RacingCarGameResult(
-            carCount = carCount,
             gameCount = gameCount,
             cars = cars
         )

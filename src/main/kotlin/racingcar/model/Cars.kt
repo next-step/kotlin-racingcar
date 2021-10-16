@@ -3,7 +3,7 @@ package racingcar.model
 import racingcar.RacingCarMoveMethod
 
 class Cars(
-    carCount: CarCount,
+    val carCount: CarCount,
     private val racingCarMoveMethod: RacingCarMoveMethod
 ) {
 

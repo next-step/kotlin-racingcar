@@ -20,7 +20,7 @@ class ConsoleResultView(
 
     override fun showGameResult(result: RacingCarGameResult) {
         println("자동차 경주를 종료합니다.")
-        println("총 자동차 대수: ${result.carCount.count}")
+        println("총 자동차 대수: ${result.cars.carCount.count}")
         println("총 시도한 횟수: ${result.gameCount.count}")
         printCarPositions(result.cars)
         printDivider()
