@@ -38,17 +38,16 @@ class RacingCarGame(
     private fun startGame(gameCount: GameCount, cars: Cars) {
         outputView.showGameStart()
 
-        repeat(gameCount.count) { round ->
-            outputView.showGameRoundStart(round + 1, cars)
-            cars.move()
-            outputView.showGameRoundEnd(round + 1, cars)
-        }
+        repeat(gameCount.count) { round -> race(round + 1, cars) }
 
-        val gameResult = RacingCarGameResult(
-            gameCount = gameCount,
-            cars = cars
-        )
+        val gameResult = RacingCarGameResult(gameCount = gameCount, cars = cars)
         outputView.showGameResult(gameResult)
+    }
+
+    private fun race(round: Int, cars: Cars) {
+        outputView.showGameRoundStart(round, cars)
+        cars.move()
+        outputView.showGameRoundEnd(round, cars)
     }
 
     companion object {
