@@ -49,7 +49,6 @@ class CalculatorTest {
             Calculator().calculate(input)
         }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining(Calculator.NULL_OR_EMPTY_INPUT)
     }
 
     @ParameterizedTest
@@ -59,6 +58,5 @@ class CalculatorTest {
             Calculator().calculate(input)
         }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining(Calculator.WRONG_NUMBER_OF_OPERANDS)
     }
 }

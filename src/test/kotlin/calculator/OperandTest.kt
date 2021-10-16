@@ -16,7 +16,6 @@ class OperandTest {
             Operand.from(input)
         }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining(Operand.WRONG_OPERAND_INPUT)
     }
 
     @ParameterizedTest

@@ -3,8 +3,8 @@ package calculator
 class Calculator {
     companion object {
         private const val INPUT_DELIMITER = " "
-        const val NULL_OR_EMPTY_INPUT = "입력값이 존재하지 않습니다."
-        const val WRONG_NUMBER_OF_OPERANDS = "잘못된 피연산자 개수입니다."
+        private const val NULL_OR_EMPTY_INPUT = "입력값이 존재하지 않습니다."
+        private const val WRONG_NUMBER_OF_OPERANDS = "잘못된 피연산자 개수입니다."
     }
 
     fun calculate(input: String?): Operand {

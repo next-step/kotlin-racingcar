@@ -2,7 +2,7 @@ package calculator
 
 class CalculatorLauncher {
     companion object {
-        const val EXIT_KEY = "x"
+        private const val EXIT_KEY = "x"
 
         @JvmStatic
         fun main(args: Array<String>) {
