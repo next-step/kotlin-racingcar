@@ -20,7 +20,7 @@ private fun playRacingCar() {
 
 private fun race(count: Count, cars: Cars) {
     println(OutputView.GAME_RESULT_MESSAGE)
-    for (i in 0 until count.value) {
+    repeat(count.value) {
         val raceResults = cars.race()
         printRaceResults(raceResults)
     }
