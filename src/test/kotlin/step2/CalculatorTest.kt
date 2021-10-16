@@ -26,6 +26,10 @@ class CalculatorTest {
     }
 
     @Test
+    fun `예외 발생 0으로 나눔`() {
+        assertThatIllegalArgumentException().isThrownBy { Calculator.calculate("1 / 0") }
+    }
+    @Test
     fun `예외 발생 빈칸, 공백`() {
         assertThatIllegalArgumentException().isThrownBy { Calculator.calculate("") }
         assertThatIllegalArgumentException().isThrownBy { Calculator.calculate(" ") }
