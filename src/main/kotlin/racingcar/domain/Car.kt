@@ -1,7 +1,6 @@
 package racingcar.domain
 
 import racingcar.domain.strategy.DrivingRuleStrategy
-import java.util.concurrent.ThreadLocalRandom
 
 class Car(
     private val drivingRuleStrategy: DrivingRuleStrategy,
@@ -12,9 +11,5 @@ class Car(
             return position.change()
         }
         return position
-    }
-
-    fun speedUp(): Int {
-        return ThreadLocalRandom.current().nextInt(0, 9)
     }
 }

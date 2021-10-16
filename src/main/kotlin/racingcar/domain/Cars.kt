@@ -16,7 +16,7 @@ class Cars(
     fun race(): List<Car> {
         val raceResults = mutableListOf<Car>()
         for (car in cars) {
-            val speed = car.speedUp()
+            val speed = RacingRuleStrategy.speedUp()
             car.drive(speed)
             raceResults.add(car)
         }
