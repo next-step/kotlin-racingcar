@@ -12,7 +12,6 @@ enum class Operator(val value: String, val function: BinaryOperator<Double>) {
         fun isIn(value: String): Boolean = values()
             .map { v -> v.value }
             .contains(value)
-            .also { exist -> require(exist) { "사칙연산 기호가 아닙니다. $value" } }
 
         fun apply(value: String, sum: Double, operand: Double): Double {
             isIn(value)
