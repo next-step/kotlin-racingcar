@@ -1,3 +1,3 @@
 package racingcar.dto
 
-class ResultDto(val positions: List<Int>)
+data class ResultDto(val result: Map<String, Int>)
