@@ -1,6 +1,6 @@
 package racingcar.model
 
-import racingcar.RacingCarMoveMethod
+import racingcar.RacingCarForwardCondition
 
 /**
  * 현재는 자동차를 index 기반으로 생성하고 있지만
@@ -8,16 +8,16 @@ import racingcar.RacingCarMoveMethod
  */
 class Cars(
     val carCount: CarCount,
-    private val racingCarMoveMethod: RacingCarMoveMethod
+    private val condition: RacingCarForwardCondition
 ) {
 
     private var cars: List<Car> = List(carCount.count) { index -> Car(id = index + 1) }
 
     fun move() {
-        this.cars = cars.map { car -> car.tryMove(racingCarMoveMethod) }
+        this.cars = cars.map { car -> car.tryMove(condition) }
     }
 
-    private fun Car.tryMove(method: RacingCarMoveMethod): Car =
+    private fun Car.tryMove(method: RacingCarForwardCondition): Car =
         if (method.isForward()) {
             forward()
         } else {
