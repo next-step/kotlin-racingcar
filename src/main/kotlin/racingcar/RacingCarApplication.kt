@@ -1,19 +1,23 @@
-import racingcar.exception.Exception.Companion.CASE_INPUT_DATA_WRONG
+import racingcar.Cars
 import racingcar.view.InputView
 import racingcar.view.ResultView
-import racingcar.view.ResultView.Companion.RESULT_TITLE
 
 /**
  * 자동차 경주 게임의 메인 class
  * */
-fun main() {
-    val carCount = InputView().requestNumberOfCar()
-    val tryCount = InputView().requestTryCount()
-    require(carCount > 0 && tryCount > 0) { CASE_INPUT_DATA_WRONG }
+private val inputView = InputView()
+private val resultView = ResultView()
 
-    ResultView().run {
-        printResultTitle(RESULT_TITLE)
-        printRace(carCount, tryCount)
-        printEndRound()
+fun main() {
+    val condition = inputView.inputRaceCondition()
+    val carList = Cars(condition)
+
+    resultView.run {
+        printResultTitle(ResultView.RESULT_TITLE)
+        repeat(condition.tryCount) {
+            printStartRound(it)
+            printResult(carList.race())
+            printEndRound()
+        }
     }
 }

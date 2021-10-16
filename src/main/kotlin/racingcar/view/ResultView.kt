@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.Cars
+import racingcar.model.Car
 
 /**
  * 자동차 경주에서 게임 중 혹은 결과를 출력 모음 class
@@ -16,7 +16,7 @@ class ResultView {
         println(title)
     }
 
-    private fun printStartRound(round: Int) {
+    fun printStartRound(round: Int) {
         println("ROUND: $round")
     }
 
@@ -24,25 +24,13 @@ class ResultView {
         println("")
     }
 
-    private fun printMovement(id: Int, move: Int) {
-        val step = StringBuffer("$id: ")
-        for (i in 1..move) {
-            step.append(ICON)
-        }
-        println(step)
-    }
-
-    /**
-     * 경주 시작 메소드
-     * */
-    fun printRace(carCount: Int, tryCount: Int) {
-        val list = Cars(carCount).carList
-        for (i in 1..tryCount) {
-            printStartRound(i)
-            list.forEachIndexed { index, car ->
-                car.move(car.random())
-                printMovement(index + 1, car.movement)
+    fun printResult(list: List<Car>) {
+        list.forEachIndexed { index, car ->
+            val step = StringBuffer("$index: ")
+            for (i in 1..car.movement) {
+                step.append(ICON)
             }
+            println(step)
         }
     }
 }
