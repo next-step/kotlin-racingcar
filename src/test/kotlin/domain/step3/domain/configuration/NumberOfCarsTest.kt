@@ -52,6 +52,7 @@ class NumberOfCarsTest {
         // when
         val actual = numberOfCars.numberOfCars
 
+        // then
         assertAll(
             { assertThat(actual).isNotNull() },
             { assertThat(actual).isEqualTo(expected) },
