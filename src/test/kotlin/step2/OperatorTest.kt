@@ -1,37 +1,36 @@
 package step2
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class OperatorTest {
-    @Test
-    fun `더하기 테스트`() {
-        assertThat(Operator.PLUS.function.apply(0.0, 1.5)).isEqualTo(1.5)
-        assertThat(Operator.PLUS.function.apply(1.5, 1.5)).isEqualTo(3.0)
-        assertThat(Operator.PLUS.function.apply(111.0, 111.0)).isEqualTo(222.0)
+    @ParameterizedTest
+    @ValueSource(strings = ["0.0,1.5,1.5", "1.5,1.5,3.0", "111.0,111.0,222.0"])
+    fun `더하기 테스트`(input: String) {
+        val map: List<Double> = input.split(",").map { i -> i.toDouble() }
+        assertThat(Operator.PLUS.function.apply(map[0], map[1])).isEqualTo(map[2])
     }
 
-    @Test
-    fun `빼기 테스트`() {
-        assertThat(Operator.MINUS.function.apply(0.0, 1.5)).isEqualTo(-1.5)
-        assertThat(Operator.MINUS.function.apply(1.5, 1.5)).isEqualTo(0.0)
-        assertThat(Operator.MINUS.function.apply(999.0, 111.0)).isEqualTo(888.0)
+    @ParameterizedTest
+    @ValueSource(strings = ["0.0,1.5,-1.5", "1.5,1.5,0.0", "999.0,111.0,888.0"])
+    fun `빼기 테스트`(input: String) {
+        val map: List<Double> = input.split(",").map { i -> i.toDouble() }
+        assertThat(Operator.MINUS.function.apply(map[0], map[1])).isEqualTo(map[2])
     }
 
-    @Test
-    fun `곱하기 테스트`() {
-        assertThat(Operator.MULTIPLY.function.apply(0.0, 1.5)).isEqualTo(0.0)
-        assertThat(Operator.MULTIPLY.function.apply(10.0, 1.5)).isEqualTo(15.0)
-        assertThat(Operator.MULTIPLY.function.apply(9.0, -9.0)).isEqualTo(-81.0)
+    @ParameterizedTest
+    @ValueSource(strings = ["0.0,1.5,0.0", "10.0,1.5,15.0", "9.0,-9.0,-81.0"])
+    fun `곱하기 테스트`(input: String) {
+        val map: List<Double> = input.split(",").map { i -> i.toDouble() }
+        assertThat(Operator.MULTIPLY.function.apply(map[0], map[1])).isEqualTo(map[2])
     }
 
-    @Test
-    fun `나누기 테스트`() {
-        assertThat(Operator.DIVIDE.function.apply(0.0, 1.5)).isEqualTo(0.0)
-        assertThat(Operator.DIVIDE.function.apply(1.5, 1.5)).isEqualTo(1.0)
-        assertThat(Operator.DIVIDE.function.apply(111.0, 222.0)).isEqualTo(0.5)
+    @ParameterizedTest
+    @ValueSource(strings = ["0.0,1.5,0.0", "1.5,1.5,1.0", "111.0,222.0,0.5"])
+    fun `나누기 테스트`(input: String) {
+        val map: List<Double> = input.split(",").map { i -> i.toDouble() }
+        assertThat(Operator.DIVIDE.function.apply(map[0], map[1])).isEqualTo(map[2])
     }
 
     @ParameterizedTest
