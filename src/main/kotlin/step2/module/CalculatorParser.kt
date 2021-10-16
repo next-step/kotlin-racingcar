@@ -40,14 +40,14 @@ class CalculatorParser : ParserModule {
 
             if (text.isDigit()) {
                 queue.add(text)
+                continue
             }
 
-            if(text.operatorCheck()) {
+            if (text.operatorCheck()) {
                 queue.add(text)
             }
         }
 
         return queue
     }
-
 }

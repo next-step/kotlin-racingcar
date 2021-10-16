@@ -1,21 +1,22 @@
 package step2
 
-enum class Calculator(private val operator: String, val expression: (firstNum: Double, secondNum: Double) -> Double) {
+import step2.module.ParserModule
+import java.util.Queue
 
-    SUM("+", { firstNum, secondNum -> firstNum + secondNum }),
-    SUBTRACTION("-", { firstNum, secondNum -> firstNum - secondNum }),
-    MULTIPLY("*", { firstNum, secondNum -> firstNum * secondNum }),
-    DIVIDE("/", { firstNum, secondNum -> firstNum / secondNum });
+class Calculator(private val parser: ParserModule) {
 
-    companion object {
-        fun execute(paramOperator: String, firstNum: Double, secondNum: Double): Double {
-            return when (paramOperator) {
-                SUM.operator -> SUM.expression(firstNum, secondNum)
-                SUBTRACTION.operator -> SUBTRACTION.expression(firstNum, secondNum)
-                MULTIPLY.operator -> MULTIPLY.expression(firstNum, secondNum)
-                DIVIDE.operator -> DIVIDE.expression(firstNum, secondNum)
-                else -> throw IllegalArgumentException(Message.NOT_OPERATOR.message)
-            }
+    fun running(input: String): Double {
+        val queue: Queue<String> = parser.parse(input)
+
+        var result: Double = queue.poll().toDouble()
+
+        while (!queue.isEmpty()) {
+
+            val operator: String = queue.poll()
+            val num = queue.poll().toDouble()
+
+            result = Operator.execute(operator, result, num)
         }
+        return result
     }
 }
