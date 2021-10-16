@@ -1,8 +1,10 @@
-import ExceptionCase.Companion.CASE_DIVISION_NUMBER_ZERO
-import ExceptionCase.Companion.CASE_INCORRECT_INPUT
-import ExceptionCase.Companion.CASE_INCORRECT_SYMBOL
-import ExceptionCase.Companion.CASE_INPUT_NULL_OR_EMPTY
-import ExceptionCase.Companion.CASE_INT_FORMAT_OR_NULL
+package calculator
+
+import calculator.ExceptionCase.Companion.CASE_DIVISION_NUMBER_ZERO
+import calculator.ExceptionCase.Companion.CASE_INCORRECT_INPUT
+import calculator.ExceptionCase.Companion.CASE_INCORRECT_SYMBOL
+import calculator.ExceptionCase.Companion.CASE_INPUT_NULL_OR_EMPTY
+import calculator.ExceptionCase.Companion.CASE_INT_FORMAT_OR_NULL
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.DisplayName

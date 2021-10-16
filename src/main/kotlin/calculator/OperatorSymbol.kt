@@ -1,5 +1,7 @@
-import ExceptionCase.Companion.CASE_DIVISION_NUMBER_ZERO
-import ExceptionCase.Companion.CASE_INCORRECT_SYMBOL
+package calculator
+
+import calculator.ExceptionCase.Companion.CASE_DIVISION_NUMBER_ZERO
+import calculator.ExceptionCase.Companion.CASE_INCORRECT_SYMBOL
 
 /**
  * 사측연산 기호 정의하는 class

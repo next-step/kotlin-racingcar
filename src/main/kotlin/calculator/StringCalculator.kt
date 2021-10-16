@@ -1,6 +1,8 @@
-import ExceptionCase.Companion.CASE_INCORRECT_INPUT
-import ExceptionCase.Companion.CASE_INPUT_NULL_OR_EMPTY
-import ExceptionCase.Companion.CASE_INT_FORMAT_OR_NULL
+package calculator
+
+import calculator.ExceptionCase.Companion.CASE_INCORRECT_INPUT
+import calculator.ExceptionCase.Companion.CASE_INPUT_NULL_OR_EMPTY
+import calculator.ExceptionCase.Companion.CASE_INT_FORMAT_OR_NULL
 
 /**
  * 사측연산 계산 class
