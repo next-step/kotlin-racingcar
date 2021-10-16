@@ -83,7 +83,7 @@ class RacingCarGame(
             val racingCarMoveMethod = { (0..9).random() >= 4 }
             val racingCarGame = RacingCarGame(
                 inputView = ConsoleInputView(),
-                resultView = ConsoleResultView(),
+                resultView = ConsoleResultView("\uD83D\uDE97"),
                 racingCarMoveMethod = racingCarMoveMethod
             )
             racingCarGame.startGame()
