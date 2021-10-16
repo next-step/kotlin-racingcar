@@ -8,6 +8,7 @@ import racingcar.Cars
 class ResultView {
     companion object {
         const val RESULT_TITLE = "실행 결과"
+        const val ICON = "\uD83D\uDE80"
     }
 
     fun printResultTitle(title: String) {
@@ -26,7 +27,7 @@ class ResultView {
     private fun printMovement(id: Int, move: Int) {
         val step = StringBuffer("$id: ")
         for (i in 1..move) {
-            step.append("\uD83D\uDE80")
+            step.append(ICON)
         }
         println(step)
     }
