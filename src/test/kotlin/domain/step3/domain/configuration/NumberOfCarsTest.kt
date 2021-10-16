@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource
 class NumberOfCarsTest {
 
     @DisplayName("NumberOfCars 인스턴스 생성 실패 테스트")
-    @ParameterizedTest
+    @ParameterizedTest(name = "실패될 주입 값 : {0}")
     @ValueSource(strings = ["-100", "-10", "-1"])
     fun constructor_fail_test(numberOfCarsString: String) {
         assertThatThrownBy { NumberOfCars(numberOfCarsString) }
