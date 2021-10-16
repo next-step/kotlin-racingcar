@@ -13,7 +13,7 @@ class Cars(raceCondition: RaceCondition) {
 
     fun race(): List<Car> {
         _carList = _carList.map { car ->
-            car.move()
+            car.move(DriveRule.random())
         }
         return _carList
     }

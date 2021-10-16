@@ -8,8 +8,8 @@ import racingcar.DriveRule
 data class Car(
     var movement: Int = 0
 ) {
-    fun move(): Car {
-        return when (DriveRule().isForward()) {
+    fun move(random: Int): Car {
+        return when (DriveRule().isForward(random)) {
             true -> forward()
             false -> stop()
         }

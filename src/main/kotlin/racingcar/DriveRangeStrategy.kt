@@ -1,5 +1,5 @@
 package racingcar
 
 interface DriveRangeStrategy {
-    fun isForward(): Boolean
+    fun isForward(number: Int): Boolean
 }
