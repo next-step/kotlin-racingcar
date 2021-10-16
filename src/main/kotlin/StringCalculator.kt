@@ -11,7 +11,7 @@ class StringCalculator {
     fun calculate(input: String?): Int? {
         require(!input.isNullOrBlank()) { CASE_INPUT_NULL_OR_EMPTY }
         val list = input.split(delimiter)
-        if (list.size % 2 == 0) throw IllegalArgumentException(CASE_INCORRECT_INPUT)
+        require(list.size % 2 != 0) { CASE_INCORRECT_INPUT }
 
         val totalCalculateCount = list.size / 2
         var result: Int? = null
