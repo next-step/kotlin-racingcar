@@ -4,10 +4,9 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.NullSource
 import org.junit.jupiter.params.provider.ValueSource
-import step2.Step2Exception.CANT_PLACE_NUMBER_EXCEPTION
-import step2.Step2Exception.FIRST_VALUE_INVALID_EXCEPTION
 import step2.Step2Exception.INVALID_INPUT_EXCEPTION
 import step2.Step2Exception.IS_NOT_ARITHMETIC_SYMBOL_EXCEPTION
 import step2.Step2Exception.IS_NOT_NULL_OR_BLANK_EXCEPTION
@@ -22,13 +21,10 @@ class CalculatorTest {
             .hasMessageContaining(IS_NOT_NULL_OR_BLANK_EXCEPTION)
     }
 
-    @Test
-    fun `Calculator 올바른 입력 테스트`() {
-        assertThat(Calculator.calculate("1 + 4 + 3")).isEqualTo(8)
-        assertThat(Calculator.calculate("4 + 6 / 3")).isEqualTo(3)
-        assertThat(Calculator.calculate("1 + 4 * 4")).isEqualTo(20)
-        assertThat(Calculator.calculate("3 + 21 / 3")).isEqualTo(8)
-        assertThat(Calculator.calculate("3 + 21 / 3 * 10")).isEqualTo(80)
+    @ParameterizedTest(name = "Test {index}: value == {0}, result == {1}")
+    @CsvSource(value = ["1 + 4 + 3, 8", "4 + 6 / 3, 3", "1 + 4 * 4, 20", "3 + 21 / 3, 8", "3 + 21 / 3 * 10, 80"])
+    fun `Calculator 올바른 입력 테스트`(value: String?, result: Int) {
+        assertThat(Calculator.calculate(value)).isEqualTo(result)
     }
 
     @Test
