@@ -5,15 +5,9 @@ data class Car(
     val position: Int = DEFAULT_CAR_POSITION
 ) {
 
-    fun forward(): Car {
-        val nextPosition = position + 1
-        return Car(id = id, position = nextPosition)
-    }
+    fun forward(): Car = copy(position = position + 1)
 
-    fun backward(): Car {
-        val nextPosition = (position - 1).coerceAtLeast(0)
-        return Car(id = id, position = nextPosition)
-    }
+    fun backward(): Car = copy(position = (position - 1).coerceAtLeast(0))
 
     companion object {
         private const val DEFAULT_CAR_POSITION = 0
