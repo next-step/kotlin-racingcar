@@ -6,7 +6,7 @@ value class DistanceDriven(val distanceDriven: Int = MINIMUM) {
         require(distanceDriven >= MINIMUM) { OUT_OF_RANGE_MESSAGE }
     }
 
-    fun move() = DistanceDriven(distanceDriven + INCREASE)
+    fun moveForward() = DistanceDriven(distanceDriven + INCREASE)
 
     companion object {
         private const val MINIMUM = 0

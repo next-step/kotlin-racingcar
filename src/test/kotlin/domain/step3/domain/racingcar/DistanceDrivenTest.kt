@@ -61,7 +61,7 @@ class DistanceDrivenTest {
         val distanceDriven = DistanceDriven()
 
         // when
-        val movedDistanceDriven = distanceDriven.move()
+        val movedDistanceDriven = distanceDriven.moveForward()
 
         // then
         assertAll(

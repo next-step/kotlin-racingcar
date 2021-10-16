@@ -10,7 +10,7 @@ class RacingCarTest {
     @Test
     fun `RacingCar 조건 만족시 주행거리 테스트`() {
         val racingCar = RacingCar { true }
-        val movedRacingCar = racingCar.move()
+        val movedRacingCar = racingCar.moveForward()
 
         assertThat(movedRacingCar.distance).isEqualTo(1)
     }
@@ -18,7 +18,7 @@ class RacingCarTest {
     @Test
     fun `RacingCar 조건 불만족시 주행거리 테스트`() {
         val racingCar = RacingCar { false }
-        val movedRacingCar = racingCar.move()
+        val movedRacingCar = racingCar.moveForward()
 
         assertThat(movedRacingCar.distance).isEqualTo(0)
     }

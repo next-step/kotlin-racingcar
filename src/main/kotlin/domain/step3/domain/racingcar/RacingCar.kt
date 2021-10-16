@@ -10,9 +10,9 @@ data class RacingCar(
     val distance: Int
         get() = _distanceDriven.distanceDriven
 
-    fun move(): RacingCar {
+    fun moveForward(): RacingCar {
         if (movingStrategy.movable()) {
-            return RacingCar(_distanceDriven.move(), movingStrategy)
+            return RacingCar(_distanceDriven.moveForward(), movingStrategy)
         }
         return this
     }
