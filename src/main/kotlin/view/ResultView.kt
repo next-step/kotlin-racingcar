@@ -19,7 +19,7 @@ class ResultView {
         println("ROUND: $round")
     }
 
-    private fun printEndRound() {
+    fun printEndRound() {
         println("")
     }
 
@@ -35,14 +35,13 @@ class ResultView {
      * 경주 시작 메소드
      * */
     fun printRace(carCount: Int, tryCount: Int) {
-        val list = Cars(carCount).createCars()
+        val list = Cars(carCount).carList
         for (i in 1..tryCount) {
             printStartRound(i)
             list.forEachIndexed { index, car ->
-                car.move()
+                car.move(car.random())
                 printMovement(index + 1, car.movement)
             }
-            printEndRound()
         }
     }
 }
