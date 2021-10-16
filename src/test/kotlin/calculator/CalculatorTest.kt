@@ -36,7 +36,7 @@ class CalculatorTest {
     @ParameterizedTest
     @MethodSource("inputStringArrayProvider")
     fun `계산기 테스트`(input: String, expected: String) {
-        val result = Calculator().calculate(input)
+        val result = Calculator.calculate(input)
 
         assertThat(result.value).isEqualTo(expected)
     }
@@ -46,7 +46,7 @@ class CalculatorTest {
     @NullAndEmptySource
     fun `계산기 null이나 공백 문자열 입력 테스트`(input: String?) {
         Assertions.assertThatThrownBy {
-            Calculator().calculate(input)
+            Calculator.calculate(input)
         }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageContaining(Calculator.NULL_OR_EMPTY_INPUT)
@@ -56,7 +56,7 @@ class CalculatorTest {
     @MethodSource("wrongInputStringArrayProvider")
     fun `인자 개수가 잘못 입력된 테스트`(input: String) {
         Assertions.assertThatThrownBy {
-            Calculator().calculate(input)
+            Calculator.calculate(input)
         }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageContaining(Calculator.WRONG_NUMBER_OF_OPERANDS)
