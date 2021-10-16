@@ -2,9 +2,7 @@ package step2
 
 import java.util.Queue
 
-class Calculator {
-
-    private val parser = Parser(" ")
+class Calculator(private val parser: Parser) {
 
     fun calculate(input: String): Double {
         val dataQueue: Queue<String> = parser.parse(input)

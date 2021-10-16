@@ -17,7 +17,8 @@ class Monitor {
 
 fun main() {
     val br = BufferedReader(InputStreamReader(System.`in`))
-    val calculator = Calculator()
+    val parser = Parser(" ")
+    val calculator = Calculator(parser)
     val result = calculator.calculate(br.readLine())
     Monitor.print(result)
 }
