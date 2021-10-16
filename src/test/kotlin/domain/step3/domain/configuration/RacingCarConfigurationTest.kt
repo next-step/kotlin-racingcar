@@ -23,4 +23,21 @@ class RacingCarConfigurationTest {
             { assertThat(racingCarConfiguration).isExactlyInstanceOf(RacingCarConfiguration::class.java) }
         )
     }
+
+    @DisplayName("RacingCarConfiguration getter 테스트")
+    @Test
+    fun getter_test() {
+        // given
+        val numberOfCars = createTestNumberOfCars()
+        val numberOfAttempts = createTestNumberOfAttempts()
+
+        // when
+        val racingCarConfiguration = RacingCarConfiguration(numberOfCars, numberOfAttempts)
+
+        // then
+        assertAll(
+            { assertThat(racingCarConfiguration.numberOfCars).isEqualTo(numberOfCars) },
+            { assertThat(racingCarConfiguration.numberOfAttempts).isEqualTo(numberOfAttempts) }
+        )
+    }
 }
