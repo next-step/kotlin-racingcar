@@ -31,9 +31,9 @@ class CarTest {
         val originalPosition = sut.position
 
         // Act
-        val droveCar = sut.drive(3)
+        sut.drive(3)
 
         // Assert
-        assertThat(droveCar.position.value).isEqualTo(originalPosition.value)
+        assertThat(sut.position.value).isEqualTo(originalPosition.value)
     }
 }

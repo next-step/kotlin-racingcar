@@ -7,11 +7,11 @@ class Car(
     private val drivingRuleStrategy: DrivingRuleStrategy,
     val position: Position = Position(),
 ) {
-    fun drive(carSpeed: Int): Car {
+    fun drive(carSpeed: Int): Position {
         if (drivingRuleStrategy.canDrive(carSpeed)) {
-            return Car(drivingRuleStrategy, position.change())
+            return position.change()
         }
-        return this
+        return position
     }
 
     fun speedUp(): Int {
