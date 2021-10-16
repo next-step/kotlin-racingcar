@@ -3,9 +3,9 @@ package racingcar.view
 import racingcar.model.Cars
 import racingcar.model.RacingCarGameResult
 
-class ConsoleResultView(
+class ConsoleOutputView(
     private val carSymbol: String = DEFAULT_CAR_SYMBOL
-) : ResultView {
+) : OutputView {
 
     override fun showGameStart() {
         printDivider()

@@ -3,7 +3,7 @@ package racingcar.view
 import racingcar.model.Cars
 import racingcar.model.RacingCarGameResult
 
-interface ResultView {
+interface OutputView {
 
     fun showGameStart()
 

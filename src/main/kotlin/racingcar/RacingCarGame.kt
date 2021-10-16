@@ -5,9 +5,9 @@ import racingcar.model.Cars
 import racingcar.model.GameCount
 import racingcar.model.RacingCarGameResult
 import racingcar.view.ConsoleInputView
-import racingcar.view.ConsoleResultView
+import racingcar.view.ConsoleOutputView
 import racingcar.view.InputView
-import racingcar.view.ResultView
+import racingcar.view.OutputView
 
 /**
  * 게임에 대한 시작과 끝. 진행 상황 등을 알 수 있는 객체
@@ -23,7 +23,7 @@ import racingcar.view.ResultView
  */
 class RacingCarGame(
     private val inputView: InputView,
-    private val resultView: ResultView,
+    private val outputView: OutputView,
     private val racingCarMoveMethod: RacingCarMoveMethod
 ) {
 
@@ -36,19 +36,19 @@ class RacingCarGame(
     }
 
     private fun startGame(gameCount: GameCount, cars: Cars) {
-        resultView.showGameStart()
+        outputView.showGameStart()
 
         repeat(gameCount.count) { round ->
-            resultView.showGameRoundStart(round + 1, cars)
+            outputView.showGameRoundStart(round + 1, cars)
             cars.move()
-            resultView.showGameRoundEnd(round + 1, cars)
+            outputView.showGameRoundEnd(round + 1, cars)
         }
 
         val gameResult = RacingCarGameResult(
             gameCount = gameCount,
             cars = cars
         )
-        resultView.showGameResult(gameResult)
+        outputView.showGameResult(gameResult)
     }
 
     companion object {
@@ -58,7 +58,7 @@ class RacingCarGame(
             val racingCarMoveMethod = { (0..9).random() >= 4 }
             val racingCarGame = RacingCarGame(
                 inputView = ConsoleInputView(),
-                resultView = ConsoleResultView("\uD83D\uDE97"),
+                outputView = ConsoleOutputView("\uD83D\uDE97"),
                 racingCarMoveMethod = racingCarMoveMethod
             )
             racingCarGame.startGame()
