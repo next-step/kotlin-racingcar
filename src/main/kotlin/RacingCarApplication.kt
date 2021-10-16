@@ -1,3 +1,4 @@
+import exception.Exception.Companion.CASE_INPUT_DATA_WRONG
 import view.InputView
 import view.ResultView
 import view.ResultView.Companion.RESULT_TITLE
@@ -8,8 +9,11 @@ import view.ResultView.Companion.RESULT_TITLE
 fun main() {
     val carCount = InputView().requestNumberOfCar()
     val tryCount = InputView().requestTryCount()
-    require(carCount > 0 && tryCount > 0) { "1이상의 값을 입력주새셔야 게임을 진행할 수 있습니다." }
+    require(carCount > 0 && tryCount > 0) { CASE_INPUT_DATA_WRONG }
 
-    ResultView().printResultTitle(RESULT_TITLE)
-    ResultView().printRace(carCount, tryCount)
+    ResultView().run {
+        printResultTitle(RESULT_TITLE)
+        printRace(carCount, tryCount)
+        printEndRound()
+    }
 }
