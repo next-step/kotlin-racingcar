@@ -1,7 +1,9 @@
 package domain.step3.domain.configuration
 
+import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -22,5 +24,20 @@ class NumberOfCarsTest {
     fun constructor_format_fail_test(numberOfCarsString: String) {
         assertThatThrownBy { NumberOfCars(numberOfCarsString) }
             .isExactlyInstanceOf(NumberFormatException::class.java)
+    }
+
+    @DisplayName("NumberOfCars 인스턴스 hashCode and equals 일치 테스트")
+    @ParameterizedTest(name = "주입 값 : {0}")
+    @ValueSource(strings = ["0", "1", "10", "100"])
+    fun constructor_hashCode_and_equals_test(numberOfCarsString: String) {
+        // given
+        val one = NumberOfCars(numberOfCarsString)
+        val other = NumberOfCars(numberOfCarsString)
+
+        // when and then
+        assertAll(
+            { assertThat(one).hasSameHashCodeAs(other)},
+            { assertThat(one).isEqualTo(other)},
+        )
     }
 }

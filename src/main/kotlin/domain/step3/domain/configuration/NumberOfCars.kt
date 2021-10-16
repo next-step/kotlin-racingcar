@@ -1,6 +1,6 @@
 package domain.step3.domain.configuration
 
-class NumberOfCars(val numberOfCars: Int) {
+data class NumberOfCars(val numberOfCars: Int) {
     init {
         require(numberOfCars >= MINIMUM) { OUT_OF_RANGE_MESSAGE }
     }
