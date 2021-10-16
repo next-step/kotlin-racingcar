@@ -1,7 +1,5 @@
-package racingcar
+package racingcar.domain
 
-import racingcar.domain.Car
-import racingcar.domain.Number
 import racingcar.domain.strategy.RacingRuleStrategy
 
 class Cars(
@@ -16,4 +14,14 @@ class Cars(
         .toList()
 
     val cars = _cars
+
+    fun race(): List<Car> {
+        val list = mutableListOf<Car>()
+        for (car in _cars) {
+            val speed = car.speedUp()
+            car.drive(speed)
+            list.add(car)
+        }
+        return list.toList()
+    }
 }

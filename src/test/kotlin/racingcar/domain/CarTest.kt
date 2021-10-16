@@ -16,10 +16,10 @@ class CarTest {
         val originalPosition = sut.position.value
 
         // Act
-        val droveCar = sut.drive(4)
+        sut.drive(4)
 
         // Assert
-        assertThat(droveCar.position.value).isGreaterThan(originalPosition)
+        assertThat(sut.position.value).isGreaterThan(originalPosition)
     }
 
     @DisplayName("자동차가 전진하지 못할 경우 위치가 변경되지 않는다")

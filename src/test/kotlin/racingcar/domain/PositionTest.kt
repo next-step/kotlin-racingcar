@@ -13,9 +13,9 @@ class PositionTest {
         val sut = Position()
 
         // Act
-        val newPosition = sut.change()
+        sut.change()
 
         // Assert
-        assertThat(newPosition.value).isEqualTo(1)
+        assertThat(sut.value).isEqualTo(1)
     }
 }
