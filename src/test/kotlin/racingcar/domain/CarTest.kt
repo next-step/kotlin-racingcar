@@ -3,34 +3,37 @@ package racingcar.domain
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import racingcar.domain.strategy.RacingRuleStrategy
 
 class CarTest {
 
-    @DisplayName("자동차는 전진할 수 있다")
+    @DisplayName("자동차 전진할 경우 위치가 변경된다")
     @Test
     fun `sut returns true when can drive`() {
         // Arrange
-        val sut = Car()
+        val ruleStrategy = RacingRuleStrategy()
+        val sut = Car(ruleStrategy)
+        val originalPosition = sut.position.value
 
         // Act
-        val result = sut.canDrive()
+        val droveCar = sut.drive(4)
 
         // Assert
-        assertThat(result).isTrue
+        assertThat(droveCar.position.value).isGreaterThan(originalPosition)
     }
 
-    @DisplayName("자동차가 전진하면 위치가 변경된다")
+    @DisplayName("자동차가 전진하지 못할 경우 위치가 변경되지 않는다")
     @Test
     fun `sut returns increase position when can drive`() {
         // Arrange
-        val sut = Car()
+        val ruleStrategy = RacingRuleStrategy()
+        val sut = Car(ruleStrategy)
         val originalPosition = sut.position
 
         // Act
-        val droveCar = sut.drive()
+        val droveCar = sut.drive(3)
 
         // Assert
-        assertThat(droveCar.position.value).isGreaterThan(originalPosition.value)
-        assertThat(droveCar.position.value).isEqualTo(1)
+        assertThat(droveCar.position.value).isEqualTo(originalPosition.value)
     }
 }

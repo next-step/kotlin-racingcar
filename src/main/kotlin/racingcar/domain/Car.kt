@@ -1,16 +1,20 @@
 package racingcar.domain
 
+import racingcar.domain.strategy.DrivingRuleStrategy
+import java.util.concurrent.ThreadLocalRandom
+
 class Car(
-    val position: Position = Position()
+    private val drivingRuleStrategy: DrivingRuleStrategy,
+    val position: Position = Position(),
 ) {
-    fun drive(): Car {
-        if (canDrive()) {
-            return Car(position.change())
+    fun drive(carSpeed: Int): Car {
+        if (drivingRuleStrategy.canDrive(carSpeed)) {
+            return Car(drivingRuleStrategy, position.change())
         }
         return this
     }
 
-    fun canDrive(): Boolean {
-        return true
+    fun speedUp(): Int {
+        return ThreadLocalRandom.current().nextInt(0, 9)
     }
 }
