@@ -17,8 +17,8 @@ class Cars(
         this.cars = cars.map { car -> car.tryMove(condition) }
     }
 
-    private fun Car.tryMove(method: RacingCarForwardCondition): Car =
-        if (method.isForward()) {
+    private fun Car.tryMove(condition: RacingCarForwardCondition): Car =
+        if (condition.isForward()) {
             forward()
         } else {
             backward()
