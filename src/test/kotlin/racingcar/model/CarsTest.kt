@@ -29,9 +29,10 @@ class CarsTest {
         repeat(5) { cars.move() }
 
         // then
-        cars.forEach { car ->
-            assertEquals(expected, car.position)
-        }
+        cars.snapshot(0)
+            .forEach { car ->
+                assertEquals(expected, car.position)
+            }
     }
 
     @Test
@@ -49,12 +50,10 @@ class CarsTest {
                     condition = condition
                 )
             }
-            .let(::Cars)
         repeat(5) { cars.move() }
 
         // then
         val actual = cars.filterWinners()
-
         assertEquals(expected, actual)
     }
 
