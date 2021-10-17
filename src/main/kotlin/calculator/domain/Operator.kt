@@ -10,7 +10,7 @@ enum class Operator(val symbol: String, val apply: (Double, Double) -> Double) {
     });
 
     companion object {
-        fun isOperator(symbol: String) = values().any() { it.symbol == symbol}
+        fun isOperator(symbol: String) = values().any() { it.symbol == symbol }
 
         fun of(symbol: String): Operator {
             return values().find { it.symbol == symbol }.let {
