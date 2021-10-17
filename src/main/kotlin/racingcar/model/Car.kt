@@ -15,6 +15,6 @@ data class Car(
         }
     }
 
-    private fun forward(): Car = copy(movement = movement + 1)
-    private fun stop(): Car = copy(movement = movement)
+    fun forward(): Car = copy(movement = movement + 1)
+    fun stop(): Car = copy(movement = movement)
 }

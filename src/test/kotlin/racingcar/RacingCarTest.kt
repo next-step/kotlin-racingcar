@@ -11,21 +11,22 @@ class RacingCarTest {
     @Test
     @DisplayName("자동차 객체 생성 테스트")
     fun `check car list count`() {
-        val list = Cars(RaceCondition(3, 5)).carList
+        val list = Cars.createCars(RaceCondition(3, 5)).carList
         assertThat(list.size).isEqualTo(3)
+        assertThat(list.size).isNotNull
     }
 
     @Test
     @DisplayName("전진 테스트")
     fun `check move forward`() {
-        val car = Car(movement = 0).move(5)
+        val car = Car(movement = 0).forward()
         assertThat(car.movement).isEqualTo(1)
     }
 
     @Test
     @DisplayName("정지 테스트")
     fun `check move stop`() {
-        val car = Car(movement = 0).move(2)
+        val car = Car(movement = 0).stop()
         assertThat(car.movement).isEqualTo(0)
     }
 
