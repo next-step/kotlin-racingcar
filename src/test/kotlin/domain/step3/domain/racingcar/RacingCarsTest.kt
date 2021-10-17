@@ -2,8 +2,20 @@ package domain.step3.domain.racingcar
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertAll
 
 class RacingCarsTest {
+
+    @Test
+    fun `자동차 경주 참가 수가 들어오면 RacingCars 가 생성 된다`() {
+        val movingStrategy = { true }
+        val racingCars = RacingCars(10, movingStrategy)
+
+        assertAll(
+            { assertThat(racingCars).isNotNull },
+            { assertThat(racingCars).isExactlyInstanceOf(RacingCars::class.java) }
+        )
+    }
 
     @Test
     fun `RacingCars 가 조건을 만족한다면 이동한다`() {
