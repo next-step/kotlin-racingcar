@@ -3,9 +3,11 @@ package calculator
 import common.ErrorMessage
 
 class Value(val variable: String) {
+    val value: List<String>
+        get() = valueSplit()
 
     companion object {
-        private val NUMBER_AND_FOUR_ARITHMETIC = "[0-9+\\-*/]".toRegex()
+        private val NUMBER_AND_FOUR_ARITHMETIC = "[-]?[0-9+\\-*/]".toRegex()
         private const val SPACING = " "
     }
 
@@ -19,8 +21,9 @@ class Value(val variable: String) {
     }
 
     private fun valueSplit() = variable.split(SPACING)
+
     private fun confirmRegularExpression(): Boolean {
-        return valueSplit().stream().filter {
+        return value.stream().filter {
             !it.matches(NUMBER_AND_FOUR_ARITHMETIC)
         }.noneMatch {
             return@noneMatch true

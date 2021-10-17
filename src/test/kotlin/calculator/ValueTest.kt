@@ -29,4 +29,11 @@ class ValueTest {
         val actual = Value(inputValue)
         assertThat(actual.variable).isEqualTo(inputValue)
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["1 + -2 / 3 * 3", "-4 - 2 * 5 / 2"])
+    fun `음수 그린 케이스`(inputValue: String) {
+        val actual = Value(inputValue)
+        assertThat(actual.variable).isEqualTo(inputValue)
+    }
 }
