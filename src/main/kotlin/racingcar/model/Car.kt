@@ -1,13 +1,22 @@
 package racingcar.model
 
+import racingcar.RacingCarForwardCondition
+
 data class Car(
-    val id: Int,
-    val position: Int = DEFAULT_CAR_POSITION
+    val carName: CarName,
+    val position: Int = DEFAULT_CAR_POSITION,
+    private val condition: RacingCarForwardCondition
 ) {
 
-    fun forward(): Car = copy(position = position + 1)
+    fun tryMove() = if (condition.canForward()) {
+        forward()
+    } else {
+        backward()
+    }
 
-    fun backward(): Car = copy(position = (position - 1).coerceAtLeast(0))
+    private fun forward(): Car = copy(position = position + 1)
+
+    private fun backward(): Car = copy(position = (position - 1).coerceAtLeast(0))
 
     companion object {
         private const val DEFAULT_CAR_POSITION = 0

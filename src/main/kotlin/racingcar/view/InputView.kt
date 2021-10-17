@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.model.CarCount
+import racingcar.model.CarName
 import racingcar.model.GameCount
 
 /**
@@ -8,7 +8,7 @@ import racingcar.model.GameCount
  */
 interface InputView {
 
-    fun getCarCount(): CarCount
+    fun getCarNames(): List<CarName>
 
     fun getGameCount(): GameCount
 }
