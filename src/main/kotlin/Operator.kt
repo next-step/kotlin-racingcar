@@ -2,10 +2,16 @@ enum class Operator(private val symbol: String, private val operate: (left: Int,
     PLUS("+", { left, right -> left + right }),
     MINUS("-", { left, right -> left - right }),
     MULTIPLE("*", { left, right -> left * right }),
-    DIVISION("/", { left, right -> left / right });
+    DIVISION("/", { left, right ->
+        try {
+            left / right
+        } catch (e: Exception) {
+            throw IllegalArgumentException(Error.NO_DIVISION_ZERO)
+        }
+    });
 
-    fun excute(left: Int, right: Int): Int {
-        return operate(left, right)
+    fun execute(left: Int, right: Int): Int {
+        return operate.invoke(left, right)
     }
 
     companion object {
