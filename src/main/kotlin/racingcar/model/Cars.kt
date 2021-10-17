@@ -11,7 +11,7 @@ class Cars(
     private val condition: RacingCarForwardCondition
 ) {
 
-    private var cars: List<Car> = List(carCount.count) { index -> Car(id = index + 1) }
+    private var cars: List<Car> = List(carCount.count) { index -> Car(name = (index + 1).toString()) }
 
     fun move() {
         this.cars = cars.map { car -> car.tryMove(condition) }

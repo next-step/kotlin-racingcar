@@ -28,7 +28,7 @@ class ConsoleOutputView(
 
     private fun printCarPositions(cars: Cars) {
         cars.forEach { car ->
-            print("${car.id}: ")
+            print("${car.name} : ")
             repeat(car.position) { print(carSymbol) }
             println()
         }
