@@ -17,7 +17,7 @@ enum class Operator(private val operator: String, val expression: (firstNum: Dou
                 SUBTRACTION.operator -> SUBTRACTION.expression(firstNum, secondNum)
                 MULTIPLY.operator -> MULTIPLY.expression(firstNum, secondNum)
                 DIVIDE.operator -> if (secondNum == 0.0) throw CustomException(CalculatorMessage.CAN_NOT_DIVIDED_BY_ZERO) else DIVIDE.expression(firstNum, secondNum)
-                else -> throw IllegalArgumentException(CalculatorMessage.NOT_OPERATOR.message)
+                else -> throw CustomException(CalculatorMessage.NOT_OPERATOR)
             }
         }
     }
