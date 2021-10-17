@@ -2,7 +2,6 @@ package racingcar
 
 import racingcar.domain.Cars
 import racingcar.domain.Count
-import racingcar.domain.Number
 import racingcar.view.InputView
 import racingcar.view.OutputView
 import racingcar.view.OutputView.Companion.printRaceResults
@@ -12,8 +11,8 @@ fun main() {
 }
 
 private fun playRacingCar() {
-    val number = Number(InputView.inputCars())
-    val cars = Cars(number)
+    val names = InputView.inputCarNames()
+    val cars = Cars.register(names)
     val count = Count(InputView.inputCounts())
     race(count, cars)
 }
