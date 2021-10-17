@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource
 class DistanceDrivenTest {
 
     @ParameterizedTest(name = "이동 거리 값 : {0}")
-    @ValueSource(ints = [-100, -10, -1])
+    @ValueSource(ints = [-100, -10, -1, 0])
     fun `음수가 입력되면 주행거리 생성이 실패한다`(distanceDrivenInt: Int) {
         assertThatThrownBy { DistanceDriven(distanceDrivenInt) }
             .isInstanceOf(IllegalArgumentException::class.java)
@@ -18,7 +18,7 @@ class DistanceDrivenTest {
     }
 
     @ParameterizedTest(name = "주입 값 : {0}")
-    @ValueSource(ints = [0, 1, 10, 100])
+    @ValueSource(ints = [1, 10, 100])
     fun `주행거리가 동일하다면 같은 객체이다`(distanceDrivenInt: Int) {
         val one = DistanceDriven(distanceDrivenInt)
         val other = DistanceDriven(distanceDrivenInt)
@@ -30,7 +30,7 @@ class DistanceDrivenTest {
     }
 
     @ParameterizedTest(name = "주입 값 : {0}")
-    @ValueSource(ints = [0, 1, 10, 100])
+    @ValueSource(ints = [1, 10, 100])
     fun `주행거리에 대한 정수형 값을 반환한다`(distanceDrivenInt: Int) {
         val distanceDriven = DistanceDriven(distanceDrivenInt)
 
@@ -41,11 +41,11 @@ class DistanceDrivenTest {
     }
 
     @Test
-    fun `기본 주행거리 값은 0으로 시작된다`() {
+    fun `기본 주행거리 값은 1로 시작된다`() {
         val distanceDriven = DistanceDriven()
         assertAll(
             { assertThat(distanceDriven.distanceDriven).isNotNull() },
-            { assertThat(distanceDriven.distanceDriven).isEqualTo(0) },
+            { assertThat(distanceDriven.distanceDriven).isEqualTo(1) },
         )
     }
 
@@ -60,7 +60,7 @@ class DistanceDrivenTest {
         // then
         assertAll(
             { assertThat(movedDistanceDriven).isNotNull() },
-            { assertThat(movedDistanceDriven.distanceDriven).isEqualTo(1) },
+            { assertThat(movedDistanceDriven.distanceDriven).isEqualTo(2) },
         )
     }
 }

@@ -24,7 +24,7 @@ class NumberOfCarsTest {
     }
 
     @ParameterizedTest(name = "주입 값 : {0}")
-    @ValueSource(strings = ["0", "1", "10", "100"])
+    @ValueSource(strings = ["1", "10", "100"])
     fun `동일한 값을 포함하고 있으면 동일한 객체이다`(numberOfCarsString: String) {
         // given
         val one = NumberOfCars(numberOfCarsString)
@@ -38,7 +38,7 @@ class NumberOfCarsTest {
     }
 
     @ParameterizedTest(name = "주입 값 : {0}")
-    @ValueSource(strings = ["0", "1", "10", "100"])
+    @ValueSource(strings = ["1", "10", "100"])
     fun `가지고 있는 값을 반환한다`(numberOfCarsString: String) {
         // given
         val expected = numberOfCarsString.toInt()

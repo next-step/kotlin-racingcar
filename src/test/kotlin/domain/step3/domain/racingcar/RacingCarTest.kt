@@ -12,7 +12,7 @@ class RacingCarTest {
         val racingCar = RacingCar { true }
         val movedRacingCar = racingCar.moveForward()
 
-        assertThat(movedRacingCar.distance).isEqualTo(1)
+        assertThat(movedRacingCar.distance).isEqualTo(2)
     }
 
     @Test
@@ -20,7 +20,7 @@ class RacingCarTest {
         val racingCar = RacingCar { false }
         val movedRacingCar = racingCar.moveForward()
 
-        assertThat(movedRacingCar.distance).isEqualTo(0)
+        assertThat(movedRacingCar.distance).isEqualTo(1)
     }
 
     @Test
