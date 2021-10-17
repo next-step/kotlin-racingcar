@@ -10,48 +10,52 @@
 
 # todolist 
 
-* [ ] InputView
-    * [ ] Null 체킹을 여기서 하자 -> 도메인에서 굳이 nullable 만들필요는..
-    * [ ] 자동차 대수는 몇 대인가요?
-        * [ ] readLine() 으로 입력받기
-    * [ ] 시도할 횟수는 몇 회인가요?
-        * [ ] readLine() 으로 입력받기
-* [ ] ResultView
-    * [ ] 첫 시작은 `실행 결과`
-    * [ ] 현재 이동 위치는 숫자 기반 -> View 에서 변환 작업
-    * [ ] 루프마다 처리하는 방식으로 진행 예정  
-* [ ] NumberOfCars
-    * [ ] data class
-    * [ ] 숫자로 변환 불가능한지 체크
-    * [ ] 0미만의 숫자가 입력되면 예외처리
-* [ ] NumberOfAttempts
-    * [ ] data class
-    * [ ] 숫자로 변환 불가능한지 체크
-    * [ ] 0미만의 숫자가 입력되면 예외처리
-* [ ] RacingCarApplication
-    * [ ] View 로 부터 넘겨 받은 데이터를 넘겨 받는다.    
-    * [ ] RacingCarGame 을 실행하는 주체  
-* [ ] RacingCarGame
-    * [ ] run() 또는 execute() 또는 enter()로 게임 시작 
-    * [ ] 최상단이므로 디자인패턴 구현체들을 여기서 내려주는 방식으로 코드 작성 
-* [ ] Car 
-    * [ ] 현재 위치를 상태로 가지고 있디. and 디폴트값 0
-    * [ ] 무작위 값이 4 이상일 경우 움직인다. -> 조건 변경 가능성 있음 -> 전략 패턴
-    * [ ] 현재 위치가 증가하면, 기존 상태값 변경이 아닌 불변 객체로 새 객체 생성 
-    * [ ] View 를 위해서라도 현재 위치를 반환할 수 있는 getter() 필요 
-* [ ] DistanceDriven
-    * [ ] 0미만의 숫자가 입력되면 예외처리
-    * [ ] 디폴트 값을 사용하기 위한 팩토리 메서드 default() 생성
-* [ ] Cars
-    * [ ] List<Car> 를 상태로 가지고 있는 일급 컬렉션  
-    * [ ] 현재 단계에서는 View 사용 용도로만 정의
-* [ ] RandomNumber 
-    * [ ] 0에서 9 사이에서 무작위 값만 가질 수 있다.  
-    * [ ] `isOverThan(int: Int): Boolean {}` 메서드를 만들어서 들어온 값보다 큰 값인지 체크  
-    * [ ] 단, Int 확장 함수에 비교 메서드가 있던 것 같은데 Integer.valueOf()로 사용 여부 판단 
-* [ ] MovingStrategy
-    * [ ] Boolean 을 반환하여 움직일 수 있는지 판단
-* [ ] RandomNumberMovingStrategy   
-    * [ ] 객체 생성시 특정 값을 입력 받는다. 
-    * [ ] 랜덤값을 생성한다.    
-    * [ ] 랜덤값이 그 값 이상이면 Boolean 을 반환하여 움직일 수 있는지 판단한다.  
+* [x] InputView
+    * [x] Null 체킹을 여기서 하자 -> 도메인에서 굳이 nullable 만들필요는..
+    * [x] 자동차 대수는 몇 대인가요?
+        * [x] readLine() 으로 입력받기
+    * [x] 시도할 횟수는 몇 회인가요?
+        * [x] readLine() 으로 입력받기
+* [x] ResultView
+    * [x] 첫 시작은 `실행 결과`
+    * [x] 현재 이동 위치는 숫자 기반 -> View 에서 변환 작업
+    * [x] 루프마다 처리하는 방식으로 진행 예정 -> 배치 처리로 변경   
+* [x] NumberOfCars
+    * [x] value class
+    * [x] 숫자로 변환 불가능한지 체크 -> 따로 로직 안 만들고 NumberFormatException 이용 
+    * [x] 0미만의 숫자가 입력되면 예외처리
+* [x] NumberOfAttempts
+    * [x] value class
+    * [x] 숫자로 변환 불가능한지 체크 -> 따로 로직 안 만들고 NumberFormatException 이용
+    * [x] 0미만의 숫자가 입력되면 예외처리
+* [x] RacingCarApplication
+    * [x] View 로 부터 넘겨 받은 데이터를 넘겨 받는다.    
+    * [x] RacingCarGame 을 실행하는 주체  
+* [x] RacingCarGame
+    * [x] run() 또는 execute() 또는 enter()로 게임 시작 
+    * [x] 최상단이므로 디자인패턴 구현체들을 여기서 내려주는 방식으로 코드 작성 
+* [x] RacingCar 
+    * [x] 현재 위치를 상태로 가지고 있디. and 디폴트값 0
+    * [x] 무작위 값이 4 이상일 경우 움직인다. -> 조건 변경 가능성 있음 -> 전략 패턴
+    * [x] 현재 위치가 증가하면, 기존 상태값 변경이 아닌 불변 객체로 새 객체 생성 
+    * [x] View 를 위해서라도 현재 위치를 반환할 수 있는 getter() 필요 
+* [x] DistanceDriven
+    * [x] 0미만의 숫자가 입력되면 예외처리
+    * [x] 디폴트 값을 사용하기 위한 팩토리 메서드 default() 생성 -> 기본 생성자에 디폴트 프로퍼티 사용 
+* [x] RacingCars
+    * [x] List<RacingCar> 를 상태로 가지고 있는 일급 컬렉션  
+    * [x] 현재 단계에서는 View 사용 용도로만 정의
+    * [x] 숫자 입력시 해당 숫자만큼 List<RacingCars> 생성하여 객체 만듬 
+* [x] MovingStrategy
+    * [x] Boolean 을 반환하여 움직일 수 있는지 판단
+* [x] RandomNumberMovingStrategy   
+    * [x] 객체 생성시 특정 값을 입력 받는다. 
+    * [x] 랜덤값을 생성한다.    
+    * [x] 랜덤값이 그 값 이상이면 Boolean 을 반환하여 움직일 수 있는지 판단한다.  
+  
+---
+추가사항)  
+
+* [x] RacingCarGameRecord 
+    * [x] 배치 처리를 위해 List<RacingCars> 를 저장하는 일급 컬렉션
+    * [x] value 클래스 사용
