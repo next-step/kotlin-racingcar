@@ -7,7 +7,7 @@ class ResultView {
     fun show(cars: List<Car>, turnCount: Int) {
         println("실행결과")
 
-        (0 until turnCount).forEach { turn ->
+        (1..turnCount).forEach { turn ->
             cars.forEach { car ->
                 val moveDistance = car.getMoveDistanceUntilTurn(turn)
                 println(moveDistance)

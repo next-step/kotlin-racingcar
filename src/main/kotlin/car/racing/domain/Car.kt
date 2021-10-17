@@ -4,7 +4,7 @@ class Car(
     turnCount: Int,
 ) {
 
-    private val conditionsOfTurn = Array(turnCount) { "" }
+    private val conditionsOfTurn = Array(turnCount + 1) { "" }
 
     fun getMoveDistanceUntilTurn(turn: Int): String {
         return conditionsOfTurn.slice(IntRange(0, turn))
