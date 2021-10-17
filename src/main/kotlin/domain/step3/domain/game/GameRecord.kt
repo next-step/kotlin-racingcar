@@ -10,5 +10,7 @@ value class GameRecord(private val gameRecord: List<RacingCars>) {
 
     companion object {
         const val EMPTY_MESSAGE = "비어있는 값은 들어올 수 없습니다."
+
+        fun initialize(racingCars: RacingCars) = GameRecord(listOf(racingCars))
     }
 }
