@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.function.Executable
-import racingcar.mock.TrueRacingCarForwardCondition
+import racingcar.RacingCarForwardCondition
+import racingcar.mock.AlwaysForwardRacingCarForwardCondition
 
 class CarsTest {
 
@@ -12,7 +13,7 @@ class CarsTest {
     fun `Cars는 최소 1대 이상이어야 한다`() {
         // given & when
         val executable = Executable {
-            Cars(listOf(), TrueRacingCarForwardCondition())
+            Cars(listOf())
         }
 
         // then
@@ -22,14 +23,7 @@ class CarsTest {
     @Test
     fun `Cars move() 기능 테스트`() {
         // given
-        val cars = Cars(
-            carNames = listOf(
-                CarName("pobi"),
-                CarName("crong"),
-                CarName("honux")
-            ),
-            condition = TrueRacingCarForwardCondition()
-        )
+        val cars = createMockCars()
 
         // when
         val expected = 5
@@ -44,22 +38,35 @@ class CarsTest {
     @Test
     fun `position이 가장 앞서있는 자동차들이 우승자가 된다`() {
         // given
-        val carNames = listOf(
-            CarName("pobi"),
-            CarName("crong"),
-            CarName("honux")
-        )
-        val cars = Cars(
-            carNames = carNames,
-            condition = TrueRacingCarForwardCondition()
-        )
+        val condition = AlwaysForwardRacingCarForwardCondition()
+        val cars = createMockCars(condition)
 
         // when
-        val expected = carNames.toList()
+        val expected = listOf("pobi", "crong", "honux")
+            .map { name ->
+                Car(
+                    carName = CarName(name),
+                    position = 5,
+                    condition = condition
+                )
+            }
+            .let(::Cars)
         repeat(5) { cars.move() }
 
         // then
-        val actual = cars.getWinners().map { it.carName }
+        val actual = cars.filterWinners()
+
         assertEquals(expected, actual)
     }
+
+    private fun createMockCars(
+        condition: RacingCarForwardCondition = AlwaysForwardRacingCarForwardCondition()
+    ): Cars = listOf("pobi", "crong", "honux")
+        .map { name ->
+            Car(
+                carName = CarName(name),
+                condition = condition
+            )
+        }
+        .let(::Cars)
 }

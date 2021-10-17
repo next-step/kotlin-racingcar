@@ -20,7 +20,7 @@ class ConsoleOutputView(
 
     override fun showGameResult(result: RacingCarGameResult) {
         println("자동차 경주를 종료합니다.")
-        println("총 자동차 대수: ${result.cars.carCount}")
+        println("총 자동차 대수: ${result.cars.size}")
         println("총 시도한 횟수: ${result.gameCount}")
         printCarPositions(result.cars)
         printWinnerCars(result.cars)
@@ -39,8 +39,8 @@ class ConsoleOutputView(
     private fun printCarSymbols(repeatTimes: Int) = repeat(repeatTimes) { print(carSymbol) }
 
     private fun printWinnerCars(cars: Cars) = cars
-        .getWinners()
-        .joinToString(", ") { it.carName.toString() }
+        .filterWinners()
+        .joinToString { car -> car.carName.toString() }
         .let { winnerCars -> println("${winnerCars}가 최종 우승했습니다.") }
 
     private fun printDivider() = println("---------------------------------------------")

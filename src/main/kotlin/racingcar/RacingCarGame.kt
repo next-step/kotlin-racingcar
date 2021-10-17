@@ -1,5 +1,6 @@
 package racingcar
 
+import racingcar.model.Car
 import racingcar.model.CarName
 import racingcar.model.Cars
 import racingcar.model.GameCount
@@ -55,7 +56,14 @@ class RacingCarGame(
         @JvmStatic
         fun main(args: Array<String>) {
             val racingCarForwardCondition = RacingCarForwardCondition { (0..9).random() >= 4 }
-            val racingCarsFactory = RacingCarsFactory { carNames -> Cars(carNames, racingCarForwardCondition) }
+            val racingCarsFactory = RacingCarsFactory { carNames ->
+                carNames.map { carName ->
+                    Car(
+                        carName = carName,
+                        condition = racingCarForwardCondition
+                    )
+                }.let(::Cars)
+            }
             val racingCarGame = RacingCarGame(
                 inputView = ConsoleInputView(),
                 outputView = ConsoleOutputView("\uD83D\uDE97"),
