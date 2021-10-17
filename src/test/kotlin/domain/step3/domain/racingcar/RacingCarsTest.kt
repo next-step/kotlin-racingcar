@@ -8,8 +8,8 @@ class RacingCarsTest {
 
     @Test
     fun `자동차 경주 참가 수가 들어오면 RacingCars 가 생성 된다`() {
-        // given
         val movingStrategy = { true }
+
         val expected = RacingCars(
             listOf(
                 RacingCar(movingStrategy = movingStrategy),
@@ -17,10 +17,8 @@ class RacingCarsTest {
             )
         )
 
-        // when
         val racingCars = RacingCars.from(2, movingStrategy)
 
-        // then
         assertAll(
             { assertThat(racingCars).isNotNull },
             { assertThat(racingCars).isExactlyInstanceOf(RacingCars::class.java) },

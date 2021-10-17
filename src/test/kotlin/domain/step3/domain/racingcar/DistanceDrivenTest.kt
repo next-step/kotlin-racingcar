@@ -43,6 +43,7 @@ class DistanceDrivenTest {
     @Test
     fun `기본 주행거리 값은 1로 시작된다`() {
         val distanceDriven = DistanceDriven()
+
         assertAll(
             { assertThat(distanceDriven.distanceDriven).isNotNull() },
             { assertThat(distanceDriven.distanceDriven).isEqualTo(1) },
@@ -51,13 +52,9 @@ class DistanceDrivenTest {
 
     @Test
     fun `주행거리는 1칸 이동한다`() {
-        // given
         val distanceDriven = DistanceDriven()
-
-        // when
         val movedDistanceDriven = distanceDriven.moveForward()
 
-        // then
         assertAll(
             { assertThat(movedDistanceDriven).isNotNull() },
             { assertThat(movedDistanceDriven.distanceDriven).isEqualTo(2) },

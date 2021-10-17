@@ -9,8 +9,8 @@ class RacingCarConfigurationTest {
     @Test
     fun `자동차 수와, 라운드를 기반으로 설정을 만든다`() {
         // given
-        val numberOfCars = createTestNumberOfCars()
-        val numberOfAttempts = createTestNumberOfAttempts()
+        val numberOfCars = NumberOfCars(1)
+        val numberOfAttempts = NumberOfAttempts(1)
 
         // when
         val racingCarConfiguration = RacingCarConfiguration(numberOfCars, numberOfAttempts)
@@ -25,8 +25,8 @@ class RacingCarConfigurationTest {
     @Test
     fun `설정이 가지고 있는 값을 반환한다`() {
         // given
-        val numberOfCars = createTestNumberOfCars()
-        val numberOfAttempts = createTestNumberOfAttempts()
+        val numberOfCars = NumberOfCars(1)
+        val numberOfAttempts = NumberOfAttempts(1)
 
         // when
         val racingCarConfiguration = RacingCarConfiguration(numberOfCars, numberOfAttempts)
