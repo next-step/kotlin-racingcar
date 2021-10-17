@@ -7,6 +7,8 @@ import racingcar.model.RacingCarGame
 import racingcar.model.RacingCarsFactory
 import racingcar.view.ConsoleInputView
 import racingcar.view.ConsoleOutputView
+import racingcar.view.InputView
+import racingcar.view.OutputView
 
 fun main() {
     val racingCarForwardCondition = RacingCarForwardCondition { (0..9).random() >= 4 }
@@ -18,10 +20,12 @@ fun main() {
             )
         }.let(::Cars)
     }
+    val inputView: InputView = ConsoleInputView()
+    val outputView: OutputView = ConsoleOutputView()
+    val carNames = inputView.getCarNames()
     val racingCarGame = RacingCarGame(
-        inputView = ConsoleInputView(),
-        outputView = ConsoleOutputView("\uD83D\uDE97"),
-        racingCarsFactory = racingCarsFactory,
+        gameCount = inputView.getGameCount(),
+        cars = racingCarsFactory.createCars(carNames)
     )
     racingCarGame.startGame()
 }

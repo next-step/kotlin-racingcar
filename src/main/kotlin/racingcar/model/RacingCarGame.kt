@@ -1,8 +1,5 @@
 package racingcar.model
 
-import racingcar.view.InputView
-import racingcar.view.OutputView
-
 /**
  * 자동차 경주에 대한 개념
  *
@@ -16,31 +13,17 @@ import racingcar.view.OutputView
  * 4. 게임 진행상황에 대해 어떻게 그릴지 요청한다. (OutputView)
  */
 class RacingCarGame(
-    private val inputView: InputView,
-    private val outputView: OutputView,
-    private val racingCarsFactory: RacingCarsFactory
+    private val gameCount: GameCount,
+    private val cars: Cars
 ) {
 
-    fun startGame() {
-        val carNames: List<CarName> = inputView.getCarNames()
-        val gameCount: GameCount = inputView.getGameCount()
-
-        val cars = racingCarsFactory.createCars(carNames)
-        startGame(gameCount, cars)
-    }
+    fun startGame() = startGame(gameCount, cars)
 
     private fun startGame(gameCount: GameCount, cars: Cars) {
-        outputView.showGameStart()
-
         repeat(gameCount.count) { round -> race(round + 1, cars) }
-
-        val gameResult = RacingCarGameResult(gameCount = gameCount, cars = cars)
-        outputView.showGameResult(gameResult)
     }
 
     private fun race(round: Int, cars: Cars) {
-        outputView.showGameRoundStart(round, cars)
         cars.move()
-        outputView.showGameRoundEnd(round, cars)
     }
 }
