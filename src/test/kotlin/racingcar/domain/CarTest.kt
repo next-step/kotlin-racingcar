@@ -13,7 +13,7 @@ internal class CarTest {
 
     @BeforeEach
     fun setUp() {
-        car = Car()
+        car = Car(Name("pyro"))
     }
 
     @DisplayName("자동차의 최초 포지션은 0 이다.")
@@ -39,22 +39,5 @@ internal class CarTest {
         car.move(number)
         assertThat(car.position)
             .isEqualTo(0)
-    }
-
-    @DisplayName("자동차의 이름은 필수값이라서 비워둘 수 없다.")
-    @ParameterizedTest
-    @ValueSource(strings = ["", " ", "  "])
-    fun `빈 이름`(name: String) {
-        assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy { Car(name) }
-    }
-
-    @DisplayName("자동차 이름은 5자를 초과할 수 없다.")
-    @ParameterizedTest
-    @ValueSource(strings = ["123456", "abcdefg", "Anonymous"])
-    fun `긴 이름`(name: String) {
-        assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy { Car(name) }
-            .withMessage("자동차 이름은 5자를 초과할 수 없다.")
     }
 }
