@@ -11,4 +11,8 @@ data class Name(val name: String?) {
         const val NAME_LENGTH_EXCEED = "이름이 5자보다 클 수 없습니다"
         const val MAXIMUM_NAME_LENGTH = 5
     }
+
+    override fun toString(): String {
+        return name.toString()
+    }
 }

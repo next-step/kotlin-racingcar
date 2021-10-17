@@ -20,8 +20,9 @@ class OutputView(private val record: Record) {
 
     private fun showCarPositions(cars: Cars) {
         for (car in cars.cars) {
+            val carName = car.name
             val position = showGraph(car.getPosition())
-            println(position)
+            println("$carName : $position")
         }
     }
 

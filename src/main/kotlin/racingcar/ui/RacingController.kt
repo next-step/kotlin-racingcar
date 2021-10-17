@@ -1,6 +1,7 @@
 package racingcar.ui
 
 import racingcar.domain.Cars
+import racingcar.domain.Names
 import racingcar.domain.Record
 import racingcar.view.InputView
 import racingcar.view.OutputView
@@ -16,8 +17,8 @@ class RacingController(private val inputView: InputView, private var record: Rec
     }
 
     private fun creatCars(): Cars {
-        val carCount = inputView.askNumberOfCars()
-        return Cars.createCars(carCount)
+        val carNames = Names.generateNames(inputView.askNamesOfCars())
+        return Cars.createCars(carNames)
     }
 
     private fun moveCars(cars: Cars) {

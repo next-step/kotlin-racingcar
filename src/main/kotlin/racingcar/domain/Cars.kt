@@ -19,6 +19,6 @@ data class Cars(val cars: List<Car>) {
         /**
          * 입력받은 대수만큼 자동차 목록을 생성하여 리턴한다.
          */
-        fun createCars(count: Int): Cars = Cars((1..count).map { Car() })
+        fun createCars(carNames: Names): Cars = Cars(carNames.names.map { Car(it) })
     }
 }
