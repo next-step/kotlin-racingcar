@@ -12,7 +12,7 @@ class OutputView(private val record: Record) {
 
     private fun showRecords() {
         for (count in FIRST_GAME..record.getSize()) {
-            val recordedCars: Cars? = record.getRecord(count)
+            val recordedCars: Cars? = record[count]
             recordedCars?.let { showCarPositions(it) }
             println()
         }

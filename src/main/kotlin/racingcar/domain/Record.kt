@@ -10,9 +10,7 @@ data class Record(private val record: MutableMap<Int, Cars>) {
         record[count] = cars
     }
 
-    fun getRecord(key: Int): Cars? {
-        return record[key]
-    }
+    operator fun get(key: Int): Cars? = record[key]
 
     fun getSize(): Int {
         return record.size
