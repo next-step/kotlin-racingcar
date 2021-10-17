@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 class RacingCarsTest {
 
     @Test
-    fun `RacingCars 조건 만족시 이동 테스트`() {
+    fun `RacingCars 가 조건을 만족한다면 이동한다`() {
         val movingStrategy = { true }
 
         val racingCars = RacingCars(

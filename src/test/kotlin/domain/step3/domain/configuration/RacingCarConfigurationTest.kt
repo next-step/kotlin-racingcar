@@ -1,15 +1,13 @@
 package domain.step3.domain.configuration
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 
 class RacingCarConfigurationTest {
 
-    @DisplayName("RacingCarConfiguration 생성 테스트")
     @Test
-    fun constructor_test() {
+    fun `자동차 수와, 라운드를 기반으로 설정을 만든다`() {
         // given
         val numberOfCars = createTestNumberOfCars()
         val numberOfAttempts = createTestNumberOfAttempts()
@@ -24,9 +22,8 @@ class RacingCarConfigurationTest {
         )
     }
 
-    @DisplayName("RacingCarConfiguration getter 테스트")
     @Test
-    fun getter_test() {
+    fun `설정이 가지고 있는 값을 반환한다`() {
         // given
         val numberOfCars = createTestNumberOfCars()
         val numberOfAttempts = createTestNumberOfAttempts()

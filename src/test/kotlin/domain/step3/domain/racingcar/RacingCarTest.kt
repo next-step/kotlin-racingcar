@@ -8,7 +8,7 @@ import org.junit.jupiter.api.assertAll
 class RacingCarTest {
 
     @Test
-    fun `RacingCar 조건 만족시 주행거리 테스트`() {
+    fun `RacingCar 가 조건을 만족한다면 1칸 이동한다`() {
         val racingCar = RacingCar { true }
         val movedRacingCar = racingCar.moveForward()
 
@@ -16,7 +16,7 @@ class RacingCarTest {
     }
 
     @Test
-    fun `RacingCar 조건 불만족시 주행거리 테스트`() {
+    fun `RacingCar 가 조건을 불만족시한다면 이동하지 않는다`() {
         val racingCar = RacingCar { false }
         val movedRacingCar = racingCar.moveForward()
 
@@ -24,7 +24,7 @@ class RacingCarTest {
     }
 
     @Test
-    fun `RacingCar hashCode 및 equals 테스트`() {
+    fun `동일한 주행거리와 움직임 전략을 갖고 있다면 동일한 객체이다`() {
         val movingStrategy = MovingStrategy { true }
         val one = RacingCar(movingStrategy = movingStrategy)
         val other = RacingCar(movingStrategy = movingStrategy)
