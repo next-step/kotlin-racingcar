@@ -1,13 +1,13 @@
 package racingcar
 
-import java.util.concurrent.ThreadLocalRandom
+import kotlin.random.Random
 
 class DriveRule : DriveRangeStrategy {
     companion object {
         private const val FORWARD_NUMBER = 4
 
         fun random(): Int {
-            return ThreadLocalRandom.current().nextInt(0, 9)
+            return Random.nextInt(9)
         }
     }
 
