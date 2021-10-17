@@ -1,9 +1,5 @@
-package racingcar
+package racingcar.model
 
-import racingcar.model.CarName
-import racingcar.model.Cars
-import racingcar.model.GameCount
-import racingcar.model.RacingCarGameResult
 import racingcar.view.InputView
 import racingcar.view.OutputView
 

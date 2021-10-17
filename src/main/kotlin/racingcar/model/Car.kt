@@ -1,7 +1,5 @@
 package racingcar.model
 
-import racingcar.RacingCarForwardCondition
-
 data class Car(
     val carName: CarName,
     val position: Int = DEFAULT_CAR_POSITION,

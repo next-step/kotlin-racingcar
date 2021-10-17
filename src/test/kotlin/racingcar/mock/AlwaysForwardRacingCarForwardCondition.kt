@@ -1,6 +1,6 @@
 package racingcar.mock
 
-import racingcar.RacingCarForwardCondition
+import racingcar.model.RacingCarForwardCondition
 
 class AlwaysForwardRacingCarForwardCondition : RacingCarForwardCondition {
 

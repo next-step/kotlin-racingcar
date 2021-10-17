@@ -1,7 +1,4 @@
-package racingcar
-
-import racingcar.model.CarName
-import racingcar.model.Cars
+package racingcar.model
 
 fun interface RacingCarsFactory {
 
