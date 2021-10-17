@@ -3,6 +3,8 @@ package domain.step3
 import domain.step3.domain.configuration.NumberOfAttempts
 import domain.step3.domain.configuration.NumberOfCars
 import domain.step3.domain.configuration.RacingCarConfiguration
+import domain.step3.domain.game.RacingCarGame
+import domain.step3.domain.strategy.RandomNumberMovingStrategy
 import domain.step3.ui.RacingCarInputView
 import domain.step3.ui.RacingCarResultView
 import global.strategy.input.ConsoleInputStrategy
@@ -10,11 +12,13 @@ import global.strategy.output.ConsoleOutputStrategy
 
 class RacingCarGameApplication(
     private val inputView: RacingCarInputView,
-    private val resultView: RacingCarResultView
+    private val resultView: RacingCarResultView,
 ) {
 
     fun run() {
         val racingCarConfiguration = RacingCarConfiguration(numberOfCars(), numberOfAttempts())
+        val racingCarGameRecord = RacingCarGame(racingCarConfiguration, RandomNumberMovingStrategy).run()
+        resultView.print(racingCarGameRecord)
     }
 
     private tailrec fun numberOfAttempts(): NumberOfAttempts {

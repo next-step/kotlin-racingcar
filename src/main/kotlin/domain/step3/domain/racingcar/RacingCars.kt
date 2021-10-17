@@ -4,11 +4,20 @@ import domain.step3.domain.configuration.NumberOfCars
 import domain.step3.domain.strategy.MovingStrategy
 
 @JvmInline
-value class RacingCars(private val racingCars: List<RacingCar>) {
-    fun moveForward() = RacingCars(racingCars.map { it.moveForward() })
+value class RacingCars(private val _racingCars: List<RacingCar>) {
+
+    init {
+        require(_racingCars.isNotEmpty()) { EMPTY_MESSAGE }
+    }
+
+    val racingCars: List<RacingCar>
+        get() = _racingCars.toList()
+
+    fun moveForward() = RacingCars(_racingCars.map { it.moveForward() })
 
     companion object {
         private const val START = 1
+        private const val EMPTY_MESSAGE = "비어있는 값은 들어올 수 없습니다."
 
         fun from(numberOfCars: NumberOfCars, movingStrategy: MovingStrategy) =
             from(numberOfCars.numberOfCars, movingStrategy)

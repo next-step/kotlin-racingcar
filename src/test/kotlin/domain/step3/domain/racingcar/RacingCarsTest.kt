@@ -39,8 +39,8 @@ class RacingCarsTest {
 
         val expected = RacingCars(
             listOf(
-                RacingCar(DistanceDriven(2), movingStrategy),
-                RacingCar(DistanceDriven(2), movingStrategy)
+                RacingCar(DistanceDriven(1), movingStrategy),
+                RacingCar(DistanceDriven(1), movingStrategy)
             )
         )
 
@@ -61,8 +61,8 @@ class RacingCarsTest {
 
         val expected = RacingCars(
             listOf(
-                RacingCar(DistanceDriven(1), movingStrategy),
-                RacingCar(DistanceDriven(1), movingStrategy)
+                RacingCar(DistanceDriven(0), movingStrategy),
+                RacingCar(DistanceDriven(0), movingStrategy)
             )
         )
 
@@ -84,8 +84,8 @@ class RacingCarsTest {
 
         val expected = RacingCars(
             listOf(
-                RacingCar(DistanceDriven(1), falseMovingStrategy),
-                RacingCar(DistanceDriven(2), trueMovingStrategy)
+                RacingCar(DistanceDriven(0), falseMovingStrategy),
+                RacingCar(DistanceDriven(1), trueMovingStrategy)
             )
         )
 

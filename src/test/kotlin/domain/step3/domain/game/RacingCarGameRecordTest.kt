@@ -8,27 +8,19 @@ import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 
-class GameRecordTest {
-
-    @Test
-    fun `GameRecord 생성시 빈 콜렉션이 들어오면 안 된다`() {
-        assertThatThrownBy { GameRecord(listOf()) }
-            .isExactlyInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("비어있는 값은 들어올 수 없습니다.")
-    }
+class RacingCarGameRecordTest {
 
     @Test
     fun `자동차들의 현재 상태 정보가 들어온다`() {
         val movingStrategy = { true }
         val numberOfCars = 1
-        val expected = GameRecord(listOf(
+        val expected = RacingCarGameRecord(listOf(
             RacingCars((listOf(RacingCar(DistanceDriven(1), movingStrategy)))),
             RacingCars((listOf(RacingCar(DistanceDriven(2), movingStrategy)))),
-            RacingCars((listOf(RacingCar(DistanceDriven(3), movingStrategy)))),
         ))
 
         var racingCars = RacingCars.from(numberOfCars, movingStrategy)
-        var gameRecord = GameRecord.initialize(racingCars)
+        var gameRecord = RacingCarGameRecord.initialize()
 
         racingCars =  racingCars.moveForward()
         gameRecord = gameRecord.add(racingCars)
