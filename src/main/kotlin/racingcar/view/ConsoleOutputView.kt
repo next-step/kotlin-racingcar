@@ -23,6 +23,7 @@ class ConsoleOutputView(
         println("총 자동차 대수: ${result.cars.carCount}")
         println("총 시도한 횟수: ${result.gameCount}")
         printCarPositions(result.cars)
+        printWinnerCars(result.cars)
         printDivider()
     }
 
@@ -34,6 +35,11 @@ class ConsoleOutputView(
         }
         println()
     }
+
+    private fun printWinnerCars(cars: Cars) = cars
+        .getWinners()
+        .joinToString(", ") { it.carName.toString() }
+        .let { winnerCars -> println("${winnerCars}가 최종 우승했습니다.") }
 
     private fun printDivider() = println("---------------------------------------------")
 

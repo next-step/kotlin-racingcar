@@ -40,4 +40,26 @@ class CarsTest {
             assertEquals(expected, car.position)
         }
     }
+
+    @Test
+    fun `position이 가장 앞서있는 자동차들이 우승자가 된다`() {
+        // given
+        val carNames = listOf(
+            CarName("pobi"),
+            CarName("crong"),
+            CarName("honux")
+        )
+        val cars = Cars(
+            carNames = carNames,
+            condition = TrueRacingCarForwardCondition()
+        )
+
+        // when
+        val expected = carNames.toList()
+        repeat(5) { cars.move() }
+
+        // then
+        val actual = cars.getWinners().map { it.carName }
+        assertEquals(expected, actual)
+    }
 }

@@ -18,6 +18,11 @@ class Cars(
         this.cars = cars.map { car -> car.tryMove(condition) }
     }
 
+    fun getWinners(): List<Car> {
+        val maxPosition = cars.maxOf { it.position }
+        return cars.filter { it.position == maxPosition }
+    }
+
     private fun Car.tryMove(condition: RacingCarForwardCondition): Car =
         if (condition.canForward()) {
             forward()
