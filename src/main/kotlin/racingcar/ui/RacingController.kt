@@ -5,7 +5,7 @@ import racingcar.domain.Record
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
-class RacingController(private val inputView: InputView, private val record: Record) {
+class RacingController(private val inputView: InputView, private var record: Record) {
     fun start() {
         moveCars(creatCars())
         showResult()
@@ -22,10 +22,10 @@ class RacingController(private val inputView: InputView, private val record: Rec
 
     private fun moveCars(cars: Cars) {
         val triesCount = inputView.askTryCount()
-        var recordCars = cars
+        var recordCars = cars.copy()
         for (count in FIRST_GAME..triesCount) {
             recordCars = recordCars.move()
-            record.add(count, recordCars)
+            record = record.add(Pair(count, recordCars))
         }
     }
 
