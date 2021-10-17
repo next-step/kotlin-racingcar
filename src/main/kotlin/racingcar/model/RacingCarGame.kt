@@ -8,7 +8,7 @@ class RacingCarGame(
     fun startGame() = startGame(gameCount, cars)
 
     private fun startGame(gameCount: GameCount, cars: Cars): RacingCarGameResult {
-        val snapshots = mutableListOf<RacingCarSnapshot>()
+        val snapshots = mutableListOf<RacingCarGameSnapshot>()
         repeat(gameCount) { round ->
             val snapshot = race(round + 1, cars)
             snapshots.add(snapshot)
@@ -21,7 +21,7 @@ class RacingCarGame(
         )
     }
 
-    private fun race(round: Int, cars: Cars): RacingCarSnapshot {
+    private fun race(round: Int, cars: Cars): RacingCarGameSnapshot {
         cars.move()
         return cars.snapshot(round)
     }

@@ -21,5 +21,5 @@ data class Cars(private var cars: List<Car>) {
         return cars.filter { it.position == maxPosition }
     }
 
-    fun snapshot(round: Int): RacingCarSnapshot = RacingCarSnapshot(round, cars.toList())
+    fun snapshot(round: Int): RacingCarGameSnapshot = RacingCarGameSnapshot(round, cars.toList())
 }

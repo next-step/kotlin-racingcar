@@ -1,6 +1,6 @@
 package racingcar.model
 
-data class RacingCarSnapshot(
+data class RacingCarGameSnapshot(
     val round: Int,
     private val cars: List<Car>
 ) {

@@ -2,7 +2,7 @@ package racingcar.view
 
 import racingcar.model.Car
 import racingcar.model.RacingCarGameResult
-import racingcar.model.RacingCarSnapshot
+import racingcar.model.RacingCarGameSnapshot
 
 class ConsoleOutputView(
     private val carSymbol: String = DEFAULT_CAR_SYMBOL
@@ -14,7 +14,7 @@ class ConsoleOutputView(
         printWinnerCars(result.winnerCars)
     }
 
-    private fun printSnapshot(snapshot: RacingCarSnapshot) {
+    private fun printSnapshot(snapshot: RacingCarGameSnapshot) {
         snapshot.forEach { car ->
             print("${car.carName} : ")
             printCarSymbols(car.position)

@@ -26,7 +26,7 @@ class RacingCarGameTest {
         val actual = RacingCarGameResult(
             gameCount = gameCount,
             snapshots = List(gameCount.count) { round ->
-                RacingCarSnapshot(
+                RacingCarGameSnapshot(
                     round = round + 1,
                     cars = carList.map { it.copy(position = round + 1) }
                 )
