@@ -1,12 +1,9 @@
 package racingcar
 
-import racingcar.model.Car
 import racingcar.model.CarName
 import racingcar.model.Cars
 import racingcar.model.GameCount
 import racingcar.model.RacingCarGameResult
-import racingcar.view.ConsoleInputView
-import racingcar.view.ConsoleOutputView
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -49,27 +46,5 @@ class RacingCarGame(
         outputView.showGameRoundStart(round, cars)
         cars.move()
         outputView.showGameRoundEnd(round, cars)
-    }
-
-    companion object {
-
-        @JvmStatic
-        fun main(args: Array<String>) {
-            val racingCarForwardCondition = RacingCarForwardCondition { (0..9).random() >= 4 }
-            val racingCarsFactory = RacingCarsFactory { carNames ->
-                carNames.map { carName ->
-                    Car(
-                        carName = carName,
-                        condition = racingCarForwardCondition
-                    )
-                }.let(::Cars)
-            }
-            val racingCarGame = RacingCarGame(
-                inputView = ConsoleInputView(),
-                outputView = ConsoleOutputView("\uD83D\uDE97"),
-                racingCarsFactory = racingCarsFactory,
-            )
-            racingCarGame.startGame()
-        }
     }
 }
