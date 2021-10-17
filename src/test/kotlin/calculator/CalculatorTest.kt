@@ -1,5 +1,7 @@
-package step2
+package calculator
 
+import calculator.CalculatorException.FIRST_VALUE_INVALID_EXCEPTION
+import calculator.CalculatorException.INTEGER_IS_NOT_LOCATED_EXCEPTION
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
@@ -7,9 +9,8 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.NullSource
 import org.junit.jupiter.params.provider.ValueSource
-import step2.Step2Exception.INVALID_INPUT_EXCEPTION
-import step2.Step2Exception.IS_NOT_ARITHMETIC_SYMBOL_EXCEPTION
-import step2.Step2Exception.IS_NOT_NULL_OR_BLANK_EXCEPTION
+import calculator.CalculatorException.IS_NOT_ARITHMETIC_SYMBOL_EXCEPTION
+import calculator.CalculatorException.IS_NOT_NULL_OR_BLANK_EXCEPTION
 
 class CalculatorTest {
 
@@ -36,11 +37,12 @@ class CalculatorTest {
     @Test
     fun `Calculator 연산자 반복입력 Exception 테스트`() {
         assertThatThrownBy { Calculator.calculate("1 + +") }.isInstanceOf(NumberFormatException::class.java)
+            .hasMessageContaining(INTEGER_IS_NOT_LOCATED_EXCEPTION)
     }
 
     @Test
     fun `Calculator 첫번째 값 잘못 입력 Exception 테스트`() {
         assertThatThrownBy { Calculator.calculate("1+ 2 + 3") }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining(INVALID_INPUT_EXCEPTION)
+            .hasMessageContaining(FIRST_VALUE_INVALID_EXCEPTION)
     }
 }
