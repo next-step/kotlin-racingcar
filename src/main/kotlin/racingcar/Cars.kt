@@ -18,9 +18,7 @@ class Cars private constructor(var _carList: List<Car>) {
         get() = this._carList
 
     fun race(): List<Car> {
-        _carList = _carList.map { car ->
-            car.move(DriveRule.random())
-        }
+        _carList = _carList.map { car -> car.move() }
         return _carList
     }
 }
