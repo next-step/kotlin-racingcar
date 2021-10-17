@@ -10,7 +10,7 @@ private val resultView = ResultView()
 
 fun main() {
     val condition = inputView.inputRaceCondition()
-    val carList = Cars(condition)
+    val carList = Cars.createCars(condition)
 
     resultView.run {
         printResultTitle(ResultView.RESULT_TITLE)

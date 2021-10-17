@@ -6,8 +6,14 @@ import racingcar.model.RaceCondition
 /**
  * 자동차들의 객체 관리
  * */
-class Cars(raceCondition: RaceCondition) {
-    private var _carList = (0 until raceCondition.carCount).map { Car() }.toList()
+class Cars private constructor(var _carList: List<Car>) {
+    companion object {
+        fun createCars(raceCondition: RaceCondition): Cars {
+            val carList = (0 until raceCondition.carCount).map { Car() }.toList()
+            return Cars(carList)
+        }
+    }
+
     val carList: List<Car>
         get() = this._carList
 
