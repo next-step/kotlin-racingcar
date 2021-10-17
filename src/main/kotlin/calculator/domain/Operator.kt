@@ -8,4 +8,15 @@ enum class Operator(val symbol: String, val apply: (Double, Double) -> Double) {
         require(right != 0.0) { "0으로 나눌 수 없습니다." }
         left / right
     });
+
+    companion object {
+        fun isOperator(symbol: String) = values().any() { it.symbol == symbol}
+
+        fun of(symbol: String): Operator {
+            return values().find { it.symbol == symbol }.let {
+                require(it != null && isOperator(symbol)) { "잘못된 연산자 입니다." }
+                it
+            }
+        }
+    }
 }
