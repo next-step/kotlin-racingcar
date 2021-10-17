@@ -12,7 +12,7 @@ class CarsTest {
     fun `Cars는 최소 1대 이상이어야 한다`() {
         // given & when
         val executable = Executable {
-            Cars(CarCount(-1), TrueRacingCarForwardCondition())
+            Cars(listOf(), TrueRacingCarForwardCondition())
         }
 
         // then
@@ -23,7 +23,11 @@ class CarsTest {
     fun `Cars move() 기능 테스트`() {
         // given
         val cars = Cars(
-            carCount = CarCount(3),
+            carNames = listOf(
+                CarName("pobi"),
+                CarName("crong"),
+                CarName("honux")
+            ),
             condition = TrueRacingCarForwardCondition()
         )
 

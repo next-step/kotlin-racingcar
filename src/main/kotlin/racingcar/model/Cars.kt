@@ -11,9 +11,8 @@ class Cars(
     private val condition: RacingCarForwardCondition
 ) {
 
-    private var cars: List<Car> = carNames.map { carName -> Car(carName = carName) }
-
     val carCount: CarCount = CarCount(carNames.size)
+    private var cars: List<Car> = carNames.map { carName -> Car(carName = carName) }
 
     fun move() {
         this.cars = cars.map { car -> car.tryMove(condition) }

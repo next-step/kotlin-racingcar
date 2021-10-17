@@ -1,6 +1,5 @@
 package racingcar
 
-import racingcar.model.CarCount
 import racingcar.model.CarName
 import racingcar.model.Cars
 import racingcar.model.GameCount
@@ -29,11 +28,10 @@ class RacingCarGame(
 ) {
 
     fun startGame() {
-        val carCount: CarCount = inputView.getCarCount()
+        val carNames: List<CarName> = inputView.getCarNames()
         val gameCount: GameCount = inputView.getGameCount()
 
-        // TODO: Input View로부터 CarNames 입력받기
-        val cars = racingCarsFactory.createCars(List(carCount.count) { CarName("${it + 1}") })
+        val cars = racingCarsFactory.createCars(carNames)
         startGame(gameCount, cars)
     }
 

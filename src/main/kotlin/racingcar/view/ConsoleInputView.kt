@@ -1,16 +1,23 @@
 package racingcar.view
 
-import racingcar.model.CarCount
+import racingcar.model.CarName
 import racingcar.model.GameCount
 import util.toIntOrThrow
 
-class ConsoleInputView : InputView {
+class ConsoleInputView(
+    private val carNameDelimiter: String = ","
+) : InputView {
 
-    override fun getCarCount(): CarCount {
-        println("자동차 대수는 몇 대인가요?")
-        val count = readLine().toIntOrThrow()
+    override fun getCarNames(): List<CarName> {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
 
-        return CarCount(count)
+        val carNames = readLine() ?: return emptyList()
+        return carNames
+            .split(carNameDelimiter)
+            .asSequence()
+            .filter { it.isNotBlank() }
+            .map { name -> CarName(name.trim()) }
+            .toList()
     }
 
     override fun getGameCount(): GameCount {
