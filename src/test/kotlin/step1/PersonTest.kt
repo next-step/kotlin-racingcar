@@ -1,7 +1,8 @@
-package study
+package study.step1
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import step1.Person
 
 class PersonTest {
     @Test
