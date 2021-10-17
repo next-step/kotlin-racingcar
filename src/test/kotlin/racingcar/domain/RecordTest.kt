@@ -15,8 +15,8 @@ internal class RecordTest {
 
     @Test
     fun `자동차 목록을 기록하고 크기를 리턴한다`() {
-        record.add(1, Cars())
-        record.add(2, Cars())
+        record.add(1, Cars.EMPTY)
+        record.add(2, Cars.EMPTY)
 
         assertThat(record.getSize()).isEqualTo(2)
     }
@@ -24,11 +24,11 @@ internal class RecordTest {
     @Test
     fun `자동차 목록의 데이터를 리턴한다`() {
         // given
-        val givenCars = Cars()
+        val givenCars = Cars.EMPTY
         record.add(1, givenCars)
 
         // when
-        val actual = record.getRecord(1)
+        val actual = record.get(1)
 
         // then
         assertThat(actual).isEqualTo(givenCars)

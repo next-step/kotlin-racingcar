@@ -17,7 +17,7 @@ class RacingController(private val inputView: InputView, private val record: Rec
 
     private fun creatCars(): Cars {
         val carCount = inputView.askNumberOfCars()
-        return Cars().createCars(carCount)
+        return Cars.createCars(carCount)
     }
 
     private fun moveCars(cars: Cars) {

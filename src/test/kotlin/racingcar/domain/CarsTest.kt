@@ -7,10 +7,9 @@ internal class CarsTest {
 
     @Test
     fun `요청한 갯수만큼 자동차를 생성한다`() {
-        val cars = Cars()
         val givenCount = 5
 
-        val actual = cars.createCars(givenCount)
+        val actual = Cars.createCars(givenCount)
 
         assertThat(actual.size()).isEqualTo(givenCount)
     }
