@@ -2,7 +2,7 @@ package calculator
 
 object Calculator {
     fun calculate(input: String): String {
-        require(input.isBlank()) { throw IllegalArgumentException(Message.INPUT_EMPTY) }
+        require(input.isNotBlank()) { throw IllegalArgumentException(Message.INPUT_EMPTY) }
         val dividedInput = InputParser.splitSpace(input)
         var result = dividedInput[Constant.FIRST_ITEM].toDouble()
 
