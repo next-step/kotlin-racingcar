@@ -29,10 +29,8 @@ class CarsTest {
         repeat(5) { cars.move() }
 
         // then
-        cars.snapshot(0)
-            .forEach { car ->
-                assertEquals(expected, car.position)
-            }
+        cars.toList()
+            .forEach { car -> assertEquals(expected, car.position) }
     }
 
     @Test

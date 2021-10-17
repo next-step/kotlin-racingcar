@@ -23,6 +23,6 @@ class RacingCarGame(
 
     private fun race(round: Int, cars: Cars): RacingCarGameSnapshot {
         cars.move()
-        return cars.snapshot(round)
+        return RacingCarGameSnapshot(round, cars.toList())
     }
 }
