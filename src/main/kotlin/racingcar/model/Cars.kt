@@ -7,11 +7,13 @@ import racingcar.RacingCarForwardCondition
  * 자동차들을 외부에서 주입받아 처리하려면 추상화를 통해 여러개의 Cars 구현체로 가능할 듯
  */
 class Cars(
-    val carCount: CarCount,
+    carNames: List<CarName>,
     private val condition: RacingCarForwardCondition
 ) {
 
-    private var cars: List<Car> = List(carCount.count) { index -> Car(name = (index + 1).toString()) }
+    private var cars: List<Car> = carNames.map { carName -> Car(carName = carName) }
+
+    val carCount: CarCount = CarCount(carNames.size)
 
     fun move() {
         this.cars = cars.map { car -> car.tryMove(condition) }

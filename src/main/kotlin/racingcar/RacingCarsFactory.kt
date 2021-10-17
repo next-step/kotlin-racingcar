@@ -1,9 +1,9 @@
 package racingcar
 
-import racingcar.model.CarCount
+import racingcar.model.CarName
 import racingcar.model.Cars
 
 fun interface RacingCarsFactory {
 
-    fun createCars(carCount: CarCount): Cars
+    fun createCars(carNames: List<CarName>): Cars
 }

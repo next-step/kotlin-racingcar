@@ -8,7 +8,7 @@ class CarTest {
     @Test
     fun `자동차 전진 기능 테스트`() {
         // given
-        var car = Car(name = "", position = 0)
+        var car = Car(carName = CarName(""), position = 0)
 
         // when
         val expected = 3
@@ -24,7 +24,7 @@ class CarTest {
     @Test
     fun `자동차 후진 기능 테스트`() {
         // given
-        var car = Car(name = "", position = 5)
+        var car = Car(carName = CarName(""), position = 5)
 
         // when
         val expected = 0
@@ -40,7 +40,7 @@ class CarTest {
     @Test
     fun `자동차는 음수 위치로 후진할 수 없다`() {
         // given
-        var car = Car(name = "", position = 5)
+        var car = Car(carName = CarName(""), position = 5)
 
         // when
         val expected = 0

@@ -1,7 +1,7 @@
 package racingcar.model
 
 data class Car(
-    val name: String,
+    val carName: CarName,
     val position: Int = DEFAULT_CAR_POSITION
 ) {
 
