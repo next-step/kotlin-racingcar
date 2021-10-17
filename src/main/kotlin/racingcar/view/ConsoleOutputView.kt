@@ -30,11 +30,13 @@ class ConsoleOutputView(
     private fun printCarPositions(cars: Cars) {
         cars.forEach { car ->
             print("${car.carName} : ")
-            repeat(car.position) { print(carSymbol) }
+            printCarSymbols(car.position)
             println()
         }
         println()
     }
+
+    private fun printCarSymbols(repeatTimes: Int) = repeat(repeatTimes) { print(carSymbol) }
 
     private fun printWinnerCars(cars: Cars) = cars
         .getWinners()
