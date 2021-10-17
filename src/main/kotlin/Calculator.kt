@@ -4,7 +4,7 @@ class Calculator(private val inputLine: String?) {
     private val operators = mutableListOf<String>()
     private var result: Int = 0
 
-    fun excute(): Int {
+    fun execute(): Int {
         checkValidInput()
         return calculate()
     }
