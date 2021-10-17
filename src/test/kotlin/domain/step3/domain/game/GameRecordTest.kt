@@ -21,12 +21,20 @@ class GameRecordTest {
     fun `자동차들의 현재 상태 정보가 들어온다`() {
         val movingStrategy = { true }
         val numberOfCars = 1
-        val expected = GameRecord(listOf(RacingCars((listOf(RacingCar(DistanceDriven(3), movingStrategy))))))
+        val expected = GameRecord(listOf(
+            RacingCars((listOf(RacingCar(DistanceDriven(1), movingStrategy)))),
+            RacingCars((listOf(RacingCar(DistanceDriven(2), movingStrategy)))),
+            RacingCars((listOf(RacingCar(DistanceDriven(3), movingStrategy)))),
+        ))
 
-        val racingCars = RacingCars.from(numberOfCars, movingStrategy)
+        var racingCars = RacingCars.from(numberOfCars, movingStrategy)
         var gameRecord = GameRecord.initialize(racingCars)
-        gameRecord = gameRecord.add(racingCars.moveForward())
-        gameRecord = gameRecord.add(racingCars.moveForward())
+
+        racingCars =  racingCars.moveForward()
+        gameRecord = gameRecord.add(racingCars)
+
+        racingCars =  racingCars.moveForward()
+        gameRecord = gameRecord.add(racingCars)
 
         assertAll(
             { assertThat(gameRecord).hasSameHashCodeAs(expected) },
