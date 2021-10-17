@@ -6,7 +6,7 @@ object Calculator {
         val dividedInput = InputParser.splitSpace(input)
         var result = dividedInput[Constant.FIRST_ITEM].toDouble()
 
-        dividedInput.drop(0)
+        dividedInput.drop(Constant.FIRST_ITEM)
             .forEachIndexed { index, item ->
                 if (index % 2 != 0) {
                     val operator = Operator.getOperatorEnum(item)
