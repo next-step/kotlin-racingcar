@@ -22,27 +22,23 @@ class Calculator(private val inputLine: String?) {
     private fun classifyInput() {
         inputLine?.split(DECIMAL)?.forEach {
             when {
-                it.isNumber() -> numbers.add(it.toInt())
+                it.matches(NUMBER_REGEX) -> numbers.add(it.toInt())
                 it.matches(OPERATOR_REGEX) -> operators.add(it)
-                else -> throw IllegalArgumentException("사칙 연산 기호가 아닙니다.")
+                else -> throw IllegalArgumentException(ErrorMessage.NO_ARITHMETIC_OPERATION)
             }
         }
     }
 
     private fun checkValidInput() {
         if (inputLine.isNullOrBlank()) {
-            throw IllegalArgumentException("올바르지 않는 입력 값입니다.")
+            throw IllegalArgumentException(ErrorMessage.INVALID_ERROR)
         }
     }
 
     private fun calculate(left: Int, operator: String, right: Int): Int {
         val currentOperator = Operator.getOperator(operator)
-        return currentOperator.excute(left, right)
+        return currentOperator.execute(left, right)
     }
-}
-
-fun String.isNumber(): Boolean {
-    return this.isNotEmpty() && this.matches(Regex("\\d+"))
 }
 
 private const val DECIMAL = " "

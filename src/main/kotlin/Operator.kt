@@ -6,7 +6,7 @@ enum class Operator(private val symbol: String, private val operate: (left: Int,
         try {
             left / right
         } catch (e: Exception) {
-            throw IllegalArgumentException(Error.NO_DIVISION_ZERO)
+            throw IllegalArgumentException(ErrorMessage.NO_DIVISION_ZERO)
         }
     });
 
