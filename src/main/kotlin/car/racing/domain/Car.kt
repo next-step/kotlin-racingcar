@@ -4,10 +4,10 @@ class Car(
     turnCount: Int,
 ) {
 
-    private val moveInfo = Array(turnCount) { "" }
+    private val conditionsOfTurn = Array(turnCount) { "" }
 
     fun getMoveDistanceUntilTurn(turn: Int): String {
-        return moveInfo.slice(IntRange(0, turn))
+        return conditionsOfTurn.slice(IntRange(0, turn))
             .filter { it.isNotBlank() }
             .joinToString(SEPARATOR)
     }
@@ -15,7 +15,7 @@ class Car(
     fun move(turn: Int, condition: Int): String {
         val status = getStatus(condition)
 
-        moveInfo[turn] = status
+        conditionsOfTurn[turn] = status
 
         return status
     }
