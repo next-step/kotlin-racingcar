@@ -10,7 +10,7 @@ class Expression(
     fun calculate() = operator.apply(left.value(), right.value())
 
     companion object {
-        private val REGEX = Pattern.compile("[\\d */+-]")
+        private val REGEX = Pattern.compile("[\\d */+-]+")
 
         fun validate(expression: String?): String {
             require(!expression.isNullOrBlank()) { "입력값은 null 또는 빈문자열일 수 없습니다."}
