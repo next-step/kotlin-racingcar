@@ -1,4 +1,4 @@
-package calculator
+package calculator.domain
 
 enum class Operator(val symbol: String, val apply: (Double, Double) -> Double) {
     PLUS("+", { left, right -> left + right }),
