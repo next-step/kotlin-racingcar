@@ -1,6 +1,6 @@
 package calculator
 
-enum class Operator : Execute {
+enum class Operator {
     PLUS {
         override fun execute(first: Double, second: Double): Double {
             return first + second
@@ -21,6 +21,8 @@ enum class Operator : Execute {
             return first / second
         }
     };
+
+    abstract fun execute(first: Double, second: Double): Double
 
     companion object {
         fun getOperatorEnum(operator: String): Operator {
