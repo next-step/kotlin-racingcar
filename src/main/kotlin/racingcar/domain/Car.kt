@@ -22,4 +22,12 @@ data class Car(
     fun getPosition(): Int {
         return position.value
     }
+
+    fun findMaxPosition(comparePosition: Int): Int {
+        return position.getMaxPosition(comparePosition)
+    }
+
+    fun isMaxPosition(maxPosition: Int): Boolean {
+        return position.isMaxPosition(maxPosition)
+    }
 }

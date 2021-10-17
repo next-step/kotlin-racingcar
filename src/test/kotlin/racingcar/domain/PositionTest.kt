@@ -26,4 +26,11 @@ internal class PositionTest {
 
         assertThat(position.getMaxPosition(2)).isEqualTo(2)
     }
+
+    @Test
+    fun `주어진 위치와 최대값이 같으면 true를 리턴한다`() {
+        val position = Position(5)
+
+        assertThat(position.isMaxPosition(5)).isTrue
+    }
 }

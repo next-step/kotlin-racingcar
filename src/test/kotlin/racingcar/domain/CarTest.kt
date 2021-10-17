@@ -34,4 +34,18 @@ internal class CarTest {
         // then
         assertThat(actual.getPosition()).isEqualTo(1)
     }
+
+    @Test
+    fun `자동차 위치와 비교할 위치값을 비교하여 최대값을 리턴한다`() {
+        val car = Car(Name("test"), Position(1))
+
+        assertThat(car.findMaxPosition(2)).isEqualTo(2)
+    }
+
+    @Test
+    fun `자동차 위치와 최대값이 같으면 true를 리턴한다`() {
+        val car = Car(Name("test"), Position(5))
+
+        assertThat(car.isMaxPosition(5)).isTrue
+    }
 }
