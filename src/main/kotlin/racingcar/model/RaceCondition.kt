@@ -1,6 +1,6 @@
 package racingcar.model
 
 data class RaceCondition(
-    val carCount: Int,
+    val carsName: String,
     val tryCount: Int
 )

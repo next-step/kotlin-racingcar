@@ -9,15 +9,15 @@ import racingcar.model.RaceCondition
  * */
 class InputView {
     fun inputRaceCondition(): RaceCondition {
-        val carCount = requestNumberOfCar()
+        val nameCars = requestNameOfCars()
         val tryCount = requestTryCount()
-        require(carCount > 0 && tryCount > 0) { Exception.CASE_INPUT_DATA_WRONG }
-        return RaceCondition(carCount, tryCount)
+        require(tryCount > 0) { Exception.CASE_INPUT_DATA_WRONG }
+        return RaceCondition(nameCars, tryCount)
     }
 
-    private fun requestNumberOfCar(): Int {
-        println("자동차 대수는 몇 대인가요?")
-        return readLine()!!.toIntOrNull() ?: throw IllegalArgumentException(CASE_INPUT_DATA_NOT_INT)
+    private fun requestNameOfCars(): String {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)")
+        return readLine()!!.toString()
     }
 
     private fun requestTryCount(): Int {
