@@ -2,7 +2,9 @@ package racingCar.model
 
 import racingCar.conditionOfMove
 
-data class Car(var mileage: Int = 0) {
+class Car {
+    var mileage: Int = 0
+        private set
 
     fun move(move: () -> Int) = when (conditionOfMove(move.invoke())) {
         true -> forward()
