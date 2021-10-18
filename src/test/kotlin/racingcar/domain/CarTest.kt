@@ -1,8 +1,10 @@
-package racingcar
+package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import racingcar.service.CarMoveForwardDecider
+import racingcar.service.CarMoveForwardFixedValueGetter
 
 class CarTest {
 
@@ -12,7 +14,7 @@ class CarTest {
         val car = Car(1)
         var originalPosition = car.position
 
-        car.moveForward(CarMoveForwardDecider(FixedValueCarMoveForwardInputGetter(value)))
+        car.moveForward(CarMoveForwardDecider(CarMoveForwardFixedValueGetter(value)))
 
         assertThat(car.position).isEqualTo(originalPosition + 1)
     }
@@ -23,7 +25,7 @@ class CarTest {
         val car = Car(1)
         val originalPosition = car.position
 
-        car.moveForward(CarMoveForwardDecider(FixedValueCarMoveForwardInputGetter(value)))
+        car.moveForward(CarMoveForwardDecider(CarMoveForwardFixedValueGetter(value)))
 
         assertThat(car.position).isEqualTo(originalPosition)
     }

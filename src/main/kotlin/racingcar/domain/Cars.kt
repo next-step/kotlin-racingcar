@@ -1,4 +1,7 @@
-package racingcar
+package racingcar.domain
+
+import racingcar.NumberOfCars
+import racingcar.service.CarMoveForwardDecider
 
 class Cars private constructor(private val racingCars: List<Car>) {
 

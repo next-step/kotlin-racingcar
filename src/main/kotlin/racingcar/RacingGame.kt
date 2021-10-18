@@ -1,5 +1,8 @@
 package racingcar
 
+import racingcar.domain.Cars
+import racingcar.service.CarMoveForwardDecider
+
 class RacingGame(
     inputView: InputView,
     private val resultView: ResultView,

@@ -1,5 +1,8 @@
 package racingcar
 
+import racingcar.service.CarMoveForwardDecider
+import racingcar.service.CarMoveForwardRandomValueGetter
+
 class GameLauncher {
     companion object {
         @JvmStatic
@@ -7,7 +10,7 @@ class GameLauncher {
             RacingGame(
                 ConsoleInputView(),
                 ConsoleResultView(),
-                CarMoveForwardDecider(RandomCarMoveForwardInputGetter())
+                CarMoveForwardDecider(CarMoveForwardRandomValueGetter())
             ).proceed()
         }
     }

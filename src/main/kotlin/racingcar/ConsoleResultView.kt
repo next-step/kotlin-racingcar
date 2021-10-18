@@ -1,5 +1,7 @@
 package racingcar
 
+import racingcar.domain.Cars
+
 class ConsoleResultView : ResultView {
     companion object {
         private const val CAR_POSITION_CHARACTER = "-"
