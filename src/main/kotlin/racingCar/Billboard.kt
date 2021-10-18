@@ -16,12 +16,12 @@ class Billboard(
     private val resultView: ResultView,
     private val endView: EndView
 ) {
-    private var numberOfCars = 0
+    private var numberOfCars = emptyList<String>()
     private var numberOfTrial = 0
 
     init {
         val (numberOfCars, numberOfTrial) = inputView.inputData()
-        this.numberOfCars = numberOfCars
+        this.numberOfCars = numberOfCars.split(",")
         this.numberOfTrial = numberOfTrial
     }
 

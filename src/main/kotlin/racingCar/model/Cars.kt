@@ -1,8 +1,8 @@
 package racingCar.model
 
-class Cars(numberOfCars: Int) {
+class Cars(numberOfCars: List<String>) {
 
-    var list = List(numberOfCars) { Car() }
+    var list = List(numberOfCars.size) { Car() }
 
     fun move(distanceOfDrive: () -> Int) {
         list.map { moveCar(it, distanceOfDrive) }
