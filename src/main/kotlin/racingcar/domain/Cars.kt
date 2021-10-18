@@ -2,7 +2,7 @@ package racingcar.domain
 
 import racingcar.domain.strategy.RacingRuleStrategy
 
-class Cars(
+class Cars private constructor(
     val cars: List<Car>,
 ) {
     fun race(): List<Car> {
@@ -13,6 +13,18 @@ class Cars(
             raceResults.add(car)
         }
         return raceResults.toList()
+    }
+
+    fun findRacingWinners(): List<Name> {
+        val maxPosition = findMaxPosition()
+        return cars.filter { it.position.value == maxPosition }
+            .map { it.name }
+            .toList()
+    }
+
+    private fun findMaxPosition(): Int {
+        val positions = cars.map { it.position.value }.toList()
+        return positions.maxOrNull() ?: 0
     }
 
     companion object {

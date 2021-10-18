@@ -23,4 +23,5 @@ private fun race(count: Count, cars: Cars) {
         val raceResults = cars.race()
         printRaceResults(raceResults)
     }
+    val racingWinners = cars.findRacingWinners()
 }
