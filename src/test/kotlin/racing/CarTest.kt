@@ -8,14 +8,6 @@ import org.junit.jupiter.params.provider.ValueSource
 @Suppress("NonAsciiCharacters")
 class CarTest {
 
-    private val goEngine = object : Engine {
-        override fun canMove() = true
-    }
-
-    private val stopEngine = object : Engine {
-        override fun canMove() = false
-    }
-
     @Test
     fun `처음 생성된 차의 위치는 0이다`() {
         assertThat(Car(goEngine).position).isEqualTo(Position(0))
