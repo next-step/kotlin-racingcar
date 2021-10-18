@@ -9,7 +9,7 @@ import racingcar.model.RaceCondition
 class Cars private constructor(var _carList: List<Car>) {
     companion object {
         fun createCars(raceCondition: RaceCondition): Cars {
-            val carList = (0 until raceCondition.carCount).map { Car() }.toList()
+            val carList = (0 until raceCondition.carCount).map { Car() }
             return Cars(carList)
         }
     }
