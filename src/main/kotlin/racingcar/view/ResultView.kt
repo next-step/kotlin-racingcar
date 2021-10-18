@@ -26,7 +26,7 @@ class ResultView {
 
     fun printResult(list: List<Car>) {
         list.forEachIndexed { index, car ->
-            val step = StringBuffer("$index: ")
+            val step = StringBuffer("${car.name}: ")
             for (i in 1..car.movement) {
                 step.append(ICON)
             }
