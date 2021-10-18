@@ -1,22 +1,13 @@
 package racingcar.model
 
-import racingcar.exception.Exception.Companion.CASE_INCORRECT_FORMAT_NAME_OF_CAR
-
 /**
  * 자동차들의 객체 관리
  * */
 class Cars private constructor(private var _carList: List<Car>) {
     companion object {
-        private const val MAX_NAME_OF_CAR = 5
         private const val DELIMITER = ","
-        private fun checkValidationOfName(name: String?): String {
-            if (name.isNullOrBlank()) throw IllegalArgumentException(CASE_INCORRECT_FORMAT_NAME_OF_CAR)
-            if (name.length > MAX_NAME_OF_CAR) throw IllegalArgumentException(CASE_INCORRECT_FORMAT_NAME_OF_CAR)
-            return name
-        }
-
         fun splitNameOfCars(names: String): List<String> =
-            names.split(DELIMITER).map { checkValidationOfName(it) }
+            names.split(DELIMITER)
 
         fun createCars(raceCondition: RaceCondition): Cars {
             val carList = splitNameOfCars(raceCondition.carsName).map { Car(name = it) }
