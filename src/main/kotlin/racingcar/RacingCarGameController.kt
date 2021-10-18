@@ -21,12 +21,13 @@ class RacingCarGameController {
     fun start() {
         val carNames = inputView.getCarNames()
         val cars = carNames
-            .map { carName -> Car(carName = carName, condition = randomForwardCondition) }
+            .map { carName -> Car(carName = carName) }
             .let(::Cars)
 
         val racingCarGame = RacingCarGame(
             gameCount = inputView.getGameCount(),
-            cars = cars
+            cars = cars,
+            condition = randomForwardCondition
         )
         val result = racingCarGame.startGame()
         outputView.showGameResult(result)

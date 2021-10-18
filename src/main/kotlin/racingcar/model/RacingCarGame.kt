@@ -2,7 +2,8 @@ package racingcar.model
 
 class RacingCarGame(
     private val gameCount: GameCount,
-    private val cars: Cars
+    private val cars: Cars,
+    private val condition: RacingCarForwardCondition
 ) {
 
     fun startGame() = startGame(gameCount, cars)
@@ -22,7 +23,7 @@ class RacingCarGame(
     }
 
     private fun race(round: Int, cars: Cars): RacingCarGameSnapshot {
-        cars.move()
+        cars.move(condition)
         return RacingCarGameSnapshot(round, cars.toList())
     }
 }

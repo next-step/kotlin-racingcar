@@ -12,8 +12,8 @@ data class Cars(private var cars: List<Car>) {
         }
     }
 
-    fun move() {
-        this.cars = cars.map { car -> car.tryMove() }
+    fun move(condition: RacingCarForwardCondition) {
+        this.cars = cars.map { car -> car.tryMove(condition) }
     }
 
     fun filterWinners(): List<Car> {

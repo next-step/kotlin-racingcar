@@ -22,11 +22,12 @@ class CarsTest {
     @Test
     fun `Cars move() 기능 테스트`() {
         // given
+        val condition = AlwaysForwardRacingCarForwardCondition()
         val cars = createMockCars()
 
         // when
         val expected = 5
-        repeat(5) { cars.move() }
+        repeat(5) { cars.move(condition) }
 
         // then
         cars.toList()
@@ -37,32 +38,20 @@ class CarsTest {
     fun `position이 가장 앞서있는 자동차들이 우승자가 된다`() {
         // given
         val condition = AlwaysForwardRacingCarForwardCondition()
-        val cars = createMockCars(condition)
+        val cars = createMockCars()
 
         // when
         val expected = listOf("pobi", "crong", "honux")
-            .map { name ->
-                Car(
-                    carName = CarName(name),
-                    position = 5,
-                    condition = condition
-                )
-            }
-        repeat(5) { cars.move() }
+            .map { name -> Car(carName = CarName(name), position = 5) }
+
+        repeat(5) { cars.move(condition) }
 
         // then
         val actual = cars.filterWinners()
         assertEquals(expected, actual)
     }
 
-    private fun createMockCars(
-        condition: RacingCarForwardCondition = AlwaysForwardRacingCarForwardCondition()
-    ): Cars = listOf("pobi", "crong", "honux")
-        .map { name ->
-            Car(
-                carName = CarName(name),
-                condition = condition
-            )
-        }
+    private fun createMockCars(): Cars = listOf("pobi", "crong", "honux")
+        .map { name -> Car(carName = CarName(name)) }
         .let(::Cars)
 }

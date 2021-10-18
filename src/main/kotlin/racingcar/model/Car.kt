@@ -2,11 +2,10 @@ package racingcar.model
 
 data class Car(
     val carName: CarName,
-    val position: Int = DEFAULT_CAR_POSITION,
-    private val condition: RacingCarForwardCondition
+    val position: Int = DEFAULT_CAR_POSITION
 ) {
 
-    fun tryMove() = if (condition.canForward()) {
+    fun tryMove(condition: RacingCarForwardCondition) = if (condition.canForward()) {
         forward()
     } else {
         backward()

@@ -12,12 +12,12 @@ class RacingCarGameTest {
         val gameCount = GameCount(5)
         val condition = AlwaysForwardRacingCarForwardCondition()
         val carList = listOf(
-            Car(carName = CarName("pobi"), condition = condition),
-            Car(carName = CarName("crong"), condition = condition),
-            Car(carName = CarName("honux"), condition = condition)
+            Car(carName = CarName("pobi")),
+            Car(carName = CarName("crong")),
+            Car(carName = CarName("honux"))
         )
         val cars = Cars(carList)
-        val game = RacingCarGame(gameCount = gameCount, cars = cars)
+        val game = RacingCarGame(gameCount = gameCount, cars = cars, condition = condition)
 
         // when
         val expected = game.startGame()
