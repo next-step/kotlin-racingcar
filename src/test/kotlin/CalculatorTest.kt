@@ -1,13 +1,22 @@
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.api.Assertions.assertEquals
 
 class CalculatorTest {
 
-    @Test
-    fun `덧셈 테스트`() {
-        Assertions.assertThat(Calculator("3 + 5").execute()).isEqualTo(8)
-        Assertions.assertThat(Calculator("9 + 0 + 1").execute()).isEqualTo(10)
-        Assertions.assertThat(Calculator("9 - 10").execute()).isEqualTo(-1)
+    @ParameterizedTest
+    @CsvSource(
+        value = [
+            "3 + 5=8",
+            "9 + 0 + 1=10"
+        ],
+        delimiter = '='
+    )
+    fun `덧셈 테스트`(input: String, actual: String) {
+        val expected = Calculator(input).execute()
+        assertEquals(expected, actual.toInt())
     }
 
     @Test
