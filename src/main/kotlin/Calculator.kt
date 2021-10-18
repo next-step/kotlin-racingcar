@@ -5,11 +5,11 @@ class Calculator(private val inputLine: String?) {
     private var result: Int = 0
 
     fun execute(): Int {
-        checkValidInput()
         return calculate()
     }
 
     private fun calculate(): Int {
+        checkValidInput()
         classifyInput()
 
         result = numbers[0]
