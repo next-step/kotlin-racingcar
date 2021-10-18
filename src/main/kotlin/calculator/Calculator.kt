@@ -8,6 +8,7 @@ object Calculator {
 
         dividedInput.drop(Constant.FIRST_ITEM)
             .forEachIndexed { index, item ->
+                // TODO: 매직넘버를 명시적으로 표현할수 있도록 수정 필요
                 if (index % 2 != 0) {
                     val operator = Operator.getOperatorEnum(item)
                     result = operator.execute(result, dividedInput[index + 1].toDouble())
