@@ -35,7 +35,7 @@ class ResultView {
     }
 
     fun printRaceResult(list: List<Car>) {
-        val names = list.map { it.name }.joinToString { it }
+        val names = list.joinToString { it.name }
         println("${names}가 최종 우승했습니다.")
     }
 }
