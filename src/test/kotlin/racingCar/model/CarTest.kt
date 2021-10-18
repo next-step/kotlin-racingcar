@@ -7,11 +7,21 @@ class CarTest {
 
     @Test
     fun `4 이상 움직이면 차가 움직인다`() {
-        assertThat(Car().move(4).mileage).isEqualTo(1)
+        // given
+        val car = Car()
+        // when
+        car.move { 4 }
+        // then
+        assertThat(car.mileage).isEqualTo(1)
     }
 
     @Test
     fun `4 아래로 움직이면 차는 움직이지 않는다`() {
-        assertThat(Car().move(3).mileage).isEqualTo(0)
+        // given
+        val car = Car()
+        // when
+        car.move { 3 }
+        // then
+        assertThat(Car().mileage).isEqualTo(0)
     }
 }

@@ -2,14 +2,18 @@ package racingCar.model
 
 import racingCar.conditionOfMove
 
-data class Car(val mileage: Int = 0) {
+data class Car(var mileage: Int = 0) {
 
-    fun move(move: Int) = when (conditionOfMove(move)) {
+    fun move(move: () -> Int) = when (conditionOfMove(move.invoke())) {
         true -> forward()
         false -> stop()
     }
 
-    private fun forward() = copy(mileage = this.mileage + 1)
-    private fun stop() = copy(mileage = this.mileage)
+    private fun forward() {
+        mileage = ForwardMovement().forward(mileage)
+    }
 
+    private fun stop() {
+        mileage = StopMovement().stop(mileage)
+    }
 }
