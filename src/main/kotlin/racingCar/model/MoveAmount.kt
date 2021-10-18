@@ -1,5 +1,7 @@
 package racingCar.model
 
-open class MoveAmount {
-    protected val moveAmount = 1
+class MoveAmount {
+    companion object {
+        const val FORWARD_AMOUNT = 1
+    }
 }

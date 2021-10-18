@@ -1,5 +1,5 @@
 package racingCar.model
 
-class ForwardStrategy : MoveStrategy, MoveAmount() {
-    override fun move(mileage: Int) = mileage + moveAmount
+class ForwardStrategy : MoveStrategy {
+    override fun move(mileage: Int) = mileage + MoveAmount.FORWARD_AMOUNT
 }
