@@ -25,7 +25,7 @@ class ResultView {
     }
 
     fun printRace(list: List<Car>) {
-        list.forEachIndexed { index, car ->
+        list.forEach { car ->
             val step = StringBuffer("${car.name}: ")
             for (i in 1..car.movement) {
                 step.append(ICON)
