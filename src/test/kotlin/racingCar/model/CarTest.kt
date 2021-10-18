@@ -10,7 +10,7 @@ class CarTest {
         // given
         val car = Car()
         // when
-        car.move { 4 }
+        car.move(4)
         // then
         assertThat(car.mileage).isEqualTo(1)
     }
@@ -20,7 +20,7 @@ class CarTest {
         // given
         val car = Car()
         // when
-        car.move { 3 }
+        car.move(3)
         // then
         assertThat(Car().mileage).isEqualTo(0)
     }

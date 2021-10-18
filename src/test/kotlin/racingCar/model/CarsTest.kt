@@ -14,8 +14,8 @@ class CarsTest {
     @ParameterizedTest
     @ValueSource(ints = [3, 4, 5])
     fun `모든 차가 자동차 룰에 맞추어 움직이는지 테스트`(input: Int) {
-        val cars = Cars(input) { 4 }
-        cars.move()
+        val cars = Cars(input)
+        cars.move { 4 }
         cars.list.forEach {
             assertThat(it.mileage).isEqualTo(1)
         }

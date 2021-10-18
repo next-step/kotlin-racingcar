@@ -1,7 +1,5 @@
 package racingCar.model
 
-import racingCar.conditionOfMove
-
 class Car {
 
     var mileage: Int = 0
