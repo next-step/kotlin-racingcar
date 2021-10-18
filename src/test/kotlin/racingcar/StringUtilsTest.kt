@@ -1,4 +1,4 @@
-package racingcar.util
+package racingcar
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -10,7 +10,7 @@ internal class StringUtilsTest {
         val givenText = "a,b,c"
         val delimiter = ","
 
-        val actual = StringUtils.splitText(givenText, delimiter)
+        val actual = splitText(givenText, delimiter)
 
         assertThat(actual).containsExactly("a", "b", "c")
     }
@@ -20,7 +20,7 @@ internal class StringUtilsTest {
         val givenText = ""
         val delimiter = ","
 
-        val actual = StringUtils.splitText(givenText, delimiter)
+        val actual = splitText(givenText, delimiter)
 
         assertThat(actual).containsExactly("")
     }

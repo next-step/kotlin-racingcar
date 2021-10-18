@@ -1,6 +1,7 @@
 package racingcar.domain
 
-data class Name(val name: String?) {
+@JvmInline
+value class Name(val name: String?) {
     init {
         require(!name.isNullOrBlank()) { BLANK_NOT_ALLOWED }
         require(name.length <= MAXIMUM_NAME_LENGTH) { NAME_LENGTH_EXCEED }

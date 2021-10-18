@@ -13,6 +13,21 @@ data class Cars(val cars: List<Car>) {
         return cars.size
     }
 
+    fun findWinners(): Cars {
+        return filterWinners(getMaxPosition())
+    }
+
+    private fun filterWinners(maxPosition: Int): Cars {
+        val winners = cars.filter { it.isMaxPosition(maxPosition) }
+        return Cars(winners)
+    }
+
+    private fun getMaxPosition(): Int {
+        return cars.fold(0) { acc, car ->
+            car.findMaxPosition(acc)
+        }
+    }
+
     companion object {
         val EMPTY = Cars(emptyList())
 

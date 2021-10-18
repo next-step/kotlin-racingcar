@@ -15,6 +15,6 @@ data class Record(private val record: Map<Int, Cars>) {
     }
 
     companion object {
-        var EMPTY = Record(emptyMap<Int, Cars>())
+        var EMPTY = Record(emptyMap())
     }
 }

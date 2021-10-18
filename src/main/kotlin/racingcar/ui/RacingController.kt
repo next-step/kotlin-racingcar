@@ -3,7 +3,6 @@ package racingcar.ui
 import racingcar.domain.Cars
 import racingcar.domain.Names
 import racingcar.domain.Record
-import racingcar.domain.Winners
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -15,7 +14,8 @@ class RacingController(private val inputView: InputView, private var record: Rec
 
     private fun showResult() {
         val lastResult = record[record.getSize()]
-        val winners = lastResult?.let { Winners.findWinners(it) }
+        val winners = lastResult?.findWinners()
+
         OutputView(record, winners).showResult()
     }
 

@@ -28,22 +28,24 @@ class OutputView(private val record: Record, private val winners: Cars?) {
     }
 
     private fun showGraph(position: Int): String {
-        val sb = StringBuilder()
-        for (i in 0..position) {
-            sb.append(DASH)
+        return buildString {
+            for (i in 0..position) {
+                append(DASH)
+            }
         }
-        return sb.toString()
     }
 
     private fun showWinner() {
         if (this.winners?.cars == null) {
             return
         }
-        val sb = StringBuilder()
-        for (car in this.winners.cars) {
-            sb.append("${car.name}$COMMA")
+        val result = buildString {
+            for (car in winners.cars) {
+                append("${car.name}$COMMA")
+            }
         }
-        val winners = sb.substring(0, sb.length - MARGIN)
+
+        val winners = result.substring(0, result.length - MARGIN)
         println(winners + WINNER_MESSAGE)
     }
 
