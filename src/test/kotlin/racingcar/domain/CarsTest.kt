@@ -9,7 +9,7 @@ class CarsTest {
 
     @Test
     fun `2대 중 우승자가 1대인 경주 테스트`() {
-        val cars = Cars(CarNames(listOf(CarName.from("a"), CarName.from("b"))))
+        val cars = Cars.from(CarNames(listOf(CarName.from("a"), CarName.from("b"))))
 
         val car1 = cars.getCar(0)
         moveForward(car1)
@@ -22,7 +22,7 @@ class CarsTest {
 
     @Test
     fun `2대 중 우승자가 2대인 경주 테스트`() {
-        val cars = Cars(CarNames(listOf(CarName.from("a"), CarName.from("b"))))
+        val cars = Cars.from(CarNames(listOf(CarName.from("a"), CarName.from("b"))))
 
         val car1 = cars.getCar(0)
         moveForward(car1)
@@ -40,7 +40,7 @@ class CarsTest {
 
     @Test
     fun `3대 중 우승자가 1대인 경주 테스트`() {
-        val cars = Cars(CarNames(listOf(CarName.from("a"), CarName.from("b"), CarName.from("c"))))
+        val cars = Cars.from(CarNames(listOf(CarName.from("a"), CarName.from("b"), CarName.from("c"))))
 
         val car1 = cars.getCar(0)
         moveForward(car1)
@@ -57,7 +57,7 @@ class CarsTest {
 
     @Test
     fun `3대 중 우승자가 2대인 경주 테스트`() {
-        val cars = Cars(CarNames(listOf(CarName.from("a"), CarName.from("b"), CarName.from("c"))))
+        val cars = Cars.from(CarNames(listOf(CarName.from("a"), CarName.from("b"), CarName.from("c"))))
 
         val car1 = cars.getCar(0)
         moveForward(car1)
@@ -75,7 +75,7 @@ class CarsTest {
 
     @Test
     fun `3대 중 우승자가 3대인 경주 테스트`() {
-        val cars = Cars(CarNames(listOf(CarName.from("a"), CarName.from("b"), CarName.from("c"))))
+        val cars = Cars.from(CarNames(listOf(CarName.from("a"), CarName.from("b"), CarName.from("c"))))
 
         val car1 = cars.getCar(0)
         moveForward(car1)

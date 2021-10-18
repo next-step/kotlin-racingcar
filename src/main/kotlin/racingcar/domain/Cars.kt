@@ -2,23 +2,25 @@ package racingcar.domain
 
 import racingcar.service.CarMoveForwardDecider
 
-class Cars(carNames: CarNames) {
-    private var racingCars: List<Car> = ArrayList()
+class Cars private constructor(private val racingCars: List<Car>) {
+    companion object {
+        fun from(carNames: CarNames): Cars {
+            val racingCars = carNames
+                .getCarNames()
+                .map { name -> Car(name) }
+                .toList()
 
-    init {
-        racingCars = carNames
-            .getCarNames()
-            .map { name -> Car(name) }
-            .toList()
+            return Cars(racingCars)
+        }
     }
 
     fun moveForward(carMoveForwardDecider: CarMoveForwardDecider) {
-        racingCars
+        this.racingCars
             .forEach { car -> car.moveForward(carMoveForwardDecider) }
     }
 
     fun getCars(): List<Car> {
-        return this.racingCars
+        return this.racingCars.toList()
     }
 
     fun getCar(index: Int): Car {
@@ -26,7 +28,7 @@ class Cars(carNames: CarNames) {
             throw ArrayIndexOutOfBoundsException()
         }
 
-        return this.racingCars[index]
+        return this.getCars()[index]
     }
 
     fun getWinners(): List<Car> {

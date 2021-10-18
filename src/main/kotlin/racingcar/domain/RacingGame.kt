@@ -11,7 +11,7 @@ class RacingGame(
 ) {
     private val carNames: CarNames = inputView.getCarNames()
     private val numberOfTrials: NumberOfTrials = inputView.getNumberOfTrials()
-    private val cars = Cars(carNames)
+    private val cars = Cars.from(carNames)
 
     fun proceed() {
         resultView.showTitle()
