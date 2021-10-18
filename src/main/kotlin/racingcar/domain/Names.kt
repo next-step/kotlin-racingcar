@@ -1,6 +1,6 @@
 package racingcar.domain
 
-import racingcar.splitText
+import racingcar.utils.StringUtils
 
 data class Names(val names: Set<Name>) {
 
@@ -8,7 +8,7 @@ data class Names(val names: Set<Name>) {
         private const val DELIMITER = ","
 
         fun generateNames(text: String): Names {
-            val splitText = splitText(text, DELIMITER)
+            val splitText = StringUtils.splitText(text, DELIMITER)
             return Names(splitText.map { Name(it) }.toSet())
         }
     }
