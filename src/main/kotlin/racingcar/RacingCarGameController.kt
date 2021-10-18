@@ -31,13 +31,4 @@ class RacingCarGameController {
         val result = racingCarGame.startGame()
         outputView.showGameResult(result)
     }
-
-    companion object {
-
-        @JvmStatic
-        fun main(args: Array<String>) {
-            val controller = RacingCarGameController()
-            controller.start()
-        }
-    }
 }
