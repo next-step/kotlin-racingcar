@@ -18,11 +18,13 @@ class Cars private constructor(private var _carList: List<Car>) {
     val carList: List<Car>
         get() = this._carList
 
+    val maxMovement = _carList.sortedByDescending { it.movement }[0].movement
+
     fun race(): List<Car> {
         _carList = _carList.map { car -> car.tryMove() }
         return _carList
     }
 
     fun getWinner(): List<Car> =
-        _carList.filter { car -> car.movement == _carList.sortedByDescending { it.movement }[0].movement }
+        _carList.filter { car -> car.movement == maxMovement }
 }
