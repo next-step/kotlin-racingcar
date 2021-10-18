@@ -1,22 +1,24 @@
-package racingcar
+package racingcar.domain
 
-import racingcar.domain.Cars
 import racingcar.service.CarMoveForwardDecider
+import racingcar.view.input.InputView
+import racingcar.view.result.ResultView
 
 class RacingGame(
     inputView: InputView,
     private val resultView: ResultView,
-    private val carMoveForwardDecider: CarMoveForwardDecider
+    private val carMoveForwardStrategy: CarMoveForwardDecider
 ) {
-    private val numberOfCars: NumberOfCars = inputView.getNumberOfCars()
+    private val carNames: CarNames = inputView.getCarNames()
     private val numberOfTrials: NumberOfTrials = inputView.getNumberOfTrials()
-    private val cars = Cars.from(numberOfCars)
+    private val cars = Cars(carNames)
 
     fun proceed() {
         resultView.showTitle()
         repeat(numberOfTrials.value) {
-            cars.goForward(carMoveForwardDecider)
+            cars.moveForward(carMoveForwardStrategy)
             resultView.showStatuses(cars)
         }
+        resultView.showWinners(cars)
     }
 }
