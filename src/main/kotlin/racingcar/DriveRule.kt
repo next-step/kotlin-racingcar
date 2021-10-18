@@ -1,7 +1,5 @@
 package racingcar
 
-import kotlin.random.Random
-
 class DriveRule : DriveRangeStrategy {
     companion object {
         private const val NUMBER_RANDOM_MAX = 9
@@ -9,7 +7,7 @@ class DriveRule : DriveRangeStrategy {
     }
 
     fun random(): Int {
-        return Random.nextInt(NUMBER_RANDOM_MAX)
+        return (0..NUMBER_RANDOM_MAX).random()
     }
 
     override fun isForward(): Boolean {
