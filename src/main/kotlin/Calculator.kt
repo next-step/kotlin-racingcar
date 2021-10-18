@@ -46,4 +46,3 @@ class Calculator(private val inputLine: String?) {
 
 private const val BLANK = " "
 private val NUMBER_REGEX = "[0-9]+".toRegex()
-private val OPERATOR_REGEX = "([+-/*])".toRegex()
