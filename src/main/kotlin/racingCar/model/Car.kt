@@ -1,6 +1,6 @@
 package racingCar.model
 
-class Car {
+class Car(private val name: String) {
 
     var mileage: Int = 0
         private set
