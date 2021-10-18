@@ -1,12 +1,12 @@
 package racingCar.model
 
-class Cars(numberOfCars: Int, private val distanceOfDrive: () -> Int = { 0 }) {
+class Cars(numberOfCars: Int) {
 
     var list = List(numberOfCars) { Car() }
 
-    fun move() {
-        list.map { moveCar(it) }
+    fun move(distanceOfDrive: () -> Int) {
+        list.map { moveCar(it, distanceOfDrive) }
     }
 
-    private fun moveCar(car: Car) = car.move(distanceOfDrive)
+    private fun moveCar(car: Car, distanceOfDrive: () -> Int) = car.move(distanceOfDrive.invoke())
 }

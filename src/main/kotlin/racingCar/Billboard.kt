@@ -10,7 +10,12 @@ fun main() {
     Billboard(StartView(), InputView(), ResultView(), EndView()).proceed()
 }
 
-class Billboard(private val startView: StartView, inputView: InputView, private val resultView: ResultView, private val endView: EndView) {
+class Billboard(
+    private val startView: StartView,
+    inputView: InputView,
+    private val resultView: ResultView,
+    private val endView: EndView
+) {
     private var numberOfCars = 0
     private var numberOfTrial = 0
 
@@ -22,9 +27,9 @@ class Billboard(private val startView: StartView, inputView: InputView, private 
 
     fun proceed() {
         startView.show()
-        val cars = Cars(numberOfCars) { distanceOfDrive() }
+        val cars = Cars(numberOfCars)
         repeat(numberOfTrial) {
-            cars.move()
+            cars.move() { distanceOfDrive() }
             resultView.show(cars, numberOfTrial)
         }
         endView.show()
