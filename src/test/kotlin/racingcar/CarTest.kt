@@ -10,7 +10,7 @@ class CarTest {
     @ValueSource(ints = [4, 5, 6, 7, 8, 9])
     fun `자동차 전진 테스트`(value: Int) {
         val car = Car(1)
-        val originalPosition = car.position
+        var originalPosition = car.position
 
         car.moveForward(CarMoveForwardDecider(FixedValueCarMoveForwardInputGetter(value)))
 

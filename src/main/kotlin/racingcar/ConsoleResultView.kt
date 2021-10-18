@@ -11,7 +11,7 @@ class ConsoleResultView : ResultView {
     }
 
     override fun showStatuses(cars: Cars) {
-        cars.getCars()
+        cars.racingCars
             .forEach { car ->
                 print("%02d: ".format(car.number))
                 for (index in (1..car.position)) {

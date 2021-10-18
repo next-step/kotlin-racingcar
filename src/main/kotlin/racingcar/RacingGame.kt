@@ -3,16 +3,16 @@ package racingcar
 class RacingGame(
     inputView: InputView,
     private val resultView: ResultView,
-    carMoveForwardStrategy: CarMoveForwardDecider
+    private val carMoveForwardDecider: CarMoveForwardDecider
 ) {
     private val numberOfCars: NumberOfCars = inputView.getNumberOfCars()
     private val numberOfTrials: NumberOfTrials = inputView.getNumberOfTrials()
-    private val cars = Cars(numberOfCars, carMoveForwardStrategy)
+    private val cars = Cars.from(numberOfCars)
 
     fun proceed() {
         resultView.showTitle()
         repeat(numberOfTrials.value) {
-            cars.goForward()
+            cars.goForward(carMoveForwardDecider)
             resultView.showStatuses(cars)
         }
     }
