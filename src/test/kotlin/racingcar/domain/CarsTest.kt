@@ -11,7 +11,7 @@ internal class CarsTest {
 
         val actual = Cars.createCars(Names.generateNames(names))
 
-        assertThat(actual.size()).isEqualTo(5)
+        assertThat(actual.cars).hasSize(5)
     }
 
     @Test
