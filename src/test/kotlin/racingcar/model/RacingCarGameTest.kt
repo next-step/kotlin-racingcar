@@ -28,10 +28,10 @@ class RacingCarGameTest {
             snapshots = List(gameCount.count) { round ->
                 RacingCarGameSnapshot(
                     round = round + 1,
-                    cars = carList.map { it.copy(position = round + 1) }
+                    cars = Cars(carList.map { it.copy(position = round + 1) })
                 )
             },
-            winnerCars = cars.filterWinners()
+            winnerCars = Cars(carList.map { it.copy(position = gameCount.count) }),
         )
         assertEquals(expected, actual)
     }

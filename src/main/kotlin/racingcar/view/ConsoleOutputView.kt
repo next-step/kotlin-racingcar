@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.model.Car
+import racingcar.model.Cars
 import racingcar.model.RacingCarGameResult
 import racingcar.model.RacingCarGameSnapshot
 
@@ -25,8 +25,9 @@ class ConsoleOutputView(
 
     private fun printCarSymbols(repeatTimes: Int) = repeat(repeatTimes) { print(carSymbol) }
 
-    private fun printWinnerCars(cars: List<Car>) = cars
-        .joinToString { car -> car.carName.toString() }
+    private fun printWinnerCars(cars: Cars) = cars
+        .getCarNames()
+        .joinToString { it.toString() }
         .let { winnerCars -> print("${winnerCars}가 최종 우승했습니다.") }
 
     companion object {

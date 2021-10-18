@@ -1,6 +1,6 @@
 package racingcar.model
 
-data class Cars(private var cars: List<Car>) {
+data class Cars(private val cars: List<Car>) {
 
     init {
         checkCarsMinimumSize(cars.size)
@@ -12,14 +12,16 @@ data class Cars(private var cars: List<Car>) {
         }
     }
 
-    fun move(condition: RacingCarForwardCondition) {
-        this.cars = cars.map { car -> car.tryMove(condition) }
+    fun move(condition: RacingCarForwardCondition): Cars = Cars(cars.map { car -> car.tryMove(condition) })
+
+    fun filterWinners(): Cars {
+        val maxPosition = getMaxPosition()
+        return Cars(cars = cars.filter { it.position == maxPosition })
     }
 
-    fun filterWinners(): List<Car> {
-        val maxPosition = cars.maxOf { it.position }
-        return cars.filter { it.position == maxPosition }
-    }
+    private fun getMaxPosition(): Int = cars.maxOf { it.position }
 
-    fun toList(): List<Car> = cars.toList()
+    fun forEach(action: (Car) -> Unit) = cars.forEach(action)
+
+    fun getCarNames(): List<CarName> = cars.map { it.carName }
 }

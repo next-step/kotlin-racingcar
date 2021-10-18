@@ -2,16 +2,16 @@ package racingcar.model
 
 class RacingCarGame(
     private val gameCount: GameCount,
-    private val cars: Cars,
+    private var cars: Cars,
     private val condition: RacingCarForwardCondition
 ) {
 
-    fun startGame() = startGame(gameCount, cars)
+    fun startGame() = startGame(gameCount)
 
-    private fun startGame(gameCount: GameCount, cars: Cars): RacingCarGameResult {
+    private fun startGame(gameCount: GameCount): RacingCarGameResult {
         val snapshots = mutableListOf<RacingCarGameSnapshot>()
         repeat(gameCount) { round ->
-            val snapshot = race(round + 1, cars)
+            val snapshot = race(round + 1)
             snapshots.add(snapshot)
         }
 
@@ -22,8 +22,8 @@ class RacingCarGame(
         )
     }
 
-    private fun race(round: Int, cars: Cars): RacingCarGameSnapshot {
-        cars.move(condition)
-        return RacingCarGameSnapshot(round, cars.toList())
+    private fun race(round: Int): RacingCarGameSnapshot {
+        this.cars = cars.move(condition)
+        return RacingCarGameSnapshot(round, cars)
     }
 }
