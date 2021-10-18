@@ -12,8 +12,10 @@ data class Token(
     }
 }
 
+private const val SPACE = " "
+
 fun getTokens(expression: String): List<Token> {
-    val literals = expression.trim().split(" ")
+    val literals = expression.trim().split(SPACE)
     return literals.map(::toToken)
 }
 
