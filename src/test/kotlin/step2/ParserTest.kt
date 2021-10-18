@@ -2,21 +2,21 @@ package step2
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.EmptySource
+import org.junit.jupiter.params.provider.NullSource
 import org.junit.jupiter.params.provider.ValueSource
 
 class ParserTest {
     private val parser = Parser(" ")
+    private val expected = listOf("1.1", "+", "2")
 
     @ParameterizedTest
-    @ValueSource(strings = ["1.1 + 2", "2 * 5", "1 * 10 - 100"])
+    @ValueSource(strings = ["1.1 + 2"])
     fun `입력값 파싱 정상 케이스`(input: String) {
-        val expected = parser.parse(input)
-        val result = input.split(" ")
-
-        assertThat(expected.size).isEqualTo(result.size)
-        result.forEachIndexed { index, value -> assertThat(value).isEqualTo(result[index]) }
+        val result = parser.parse(input)
+        assertThat(result.size).isEqualTo(expected.size)
+        result.forEachIndexed { index, value -> assertThat(value).isEqualTo(expected[index]) }
     }
 
     @ParameterizedTest
@@ -27,15 +27,15 @@ class ParserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["", " "])
+    @EmptySource
     fun `빈값인 케이스`(input: String) {
         assertThatIllegalArgumentException().isThrownBy { parser.parse(input) }
             .withMessage("입력값이 빈 공백 문자이면 안됩니다.")
     }
 
-    @Test
-    fun `널값인 케이스`() {
-        val input = null
+    @ParameterizedTest
+    @NullSource
+    fun `널값인 케이스`(input: String?) {
         assertThatIllegalArgumentException().isThrownBy { parser.parse(input) }
             .withMessage("입력값이 null이면 안됩니다.")
     }

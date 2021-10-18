@@ -9,15 +9,15 @@ class Parser(private val delimiter: String) {
         requireNotNull(input) {
             "입력값이 null이면 안됩니다."
         }
-        if (input.isBlank()) {
-            throw IllegalArgumentException("입력값이 빈 공백 문자이면 안됩니다.")
+        require(input.isNotBlank()) {
+            "입력값이 빈 공백 문자이면 안됩니다."
         }
 
         val dataList = input.split(delimiter)
         val queue: Queue<String> = LinkedList()
 
         for (data in dataList) {
-            if (isDigit(data)) {
+            if (isNumber(data)) {
                 queue.add(data)
                 continue
             }
@@ -29,12 +29,10 @@ class Parser(private val delimiter: String) {
         return queue
     }
 
-    private fun isDigit(data: String): Boolean {
-        for (character in data.toCharArray()) {
-            if (!character.isDigit() && character != '.') {
-                return false
-            }
+    private fun isNumber(data: String): Boolean {
+        if (data.toDoubleOrNull() is Double) {
+            return true
         }
-        return true
+        return false
     }
 }
