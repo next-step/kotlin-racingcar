@@ -1,7 +1,5 @@
 package racingcar.model
 
-import racingcar.DriveRule
-
 /**
  * 자동차 객체
  * */

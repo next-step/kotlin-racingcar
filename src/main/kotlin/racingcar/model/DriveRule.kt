@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.model
 
 class DriveRule : DriveRangeStrategy {
     companion object {

@@ -1,4 +1,4 @@
-import racingcar.Cars
+import racingcar.model.Cars
 import racingcar.view.InputView
 import racingcar.view.ResultView
 

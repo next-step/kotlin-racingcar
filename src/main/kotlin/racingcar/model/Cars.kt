@@ -1,8 +1,6 @@
-package racingcar
+package racingcar.model
 
 import racingcar.exception.Exception.Companion.CASE_INCORRECT_FORMAT_NAME_OF_CAR
-import racingcar.model.Car
-import racingcar.model.RaceCondition
 
 /**
  * 자동차들의 객체 관리
