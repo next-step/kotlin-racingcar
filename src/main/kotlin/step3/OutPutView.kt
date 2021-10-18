@@ -2,7 +2,7 @@ package step3
 
 object OutPutView {
     fun printStart() {
-        println("실행 결과")
+        println("\n실행 결과")
     }
 
     fun printRound(cars: List<Car>) {

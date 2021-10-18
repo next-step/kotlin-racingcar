@@ -8,7 +8,7 @@ class Game(
 ) {
     companion object {
         fun isPositive(value: Int) {
-            require(value < 0) { "양수만 가능합니다." }
+            require(value > 0) { "양수만 가능합니다." }
         }
     }
 
