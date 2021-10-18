@@ -26,7 +26,7 @@ class Calculator(private val inputLine: String?) {
         inputLine?.split(BLANK)?.forEach {
             when {
                 it.matches(NUMBER_REGEX) -> numbers.add(it.toInt())
-                it.matches(OPERATOR_REGEX) -> operators.add(it)
+                Operator.hasOperator(it) -> operators.add(it)
                 else -> throw IllegalArgumentException(ErrorMessage.NO_ARITHMETIC_OPERATION)
             }
         }
