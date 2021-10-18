@@ -16,8 +16,9 @@ fun main() {
         printResultTitle(ResultView.RESULT_TITLE)
         repeat(condition.tryCount) {
             printStartRound(it)
-            printResult(carList.race())
+            printRace(carList.race())
             printEndRound()
         }
+        printRaceResult(carList.getWinner())
     }
 }

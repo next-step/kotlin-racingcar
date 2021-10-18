@@ -24,7 +24,7 @@ class ResultView {
         println("")
     }
 
-    fun printResult(list: List<Car>) {
+    fun printRace(list: List<Car>) {
         list.forEachIndexed { index, car ->
             val step = StringBuffer("${car.name}: ")
             for (i in 1..car.movement) {
@@ -32,5 +32,10 @@ class ResultView {
             }
             println(step)
         }
+    }
+
+    fun printRaceResult(list: List<Car>) {
+        val names = list.map { it.name }.joinToString { it }
+        println("${names}가 최종 우승했습니다.")
     }
 }
