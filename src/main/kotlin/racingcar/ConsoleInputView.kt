@@ -8,11 +8,11 @@ class ConsoleInputView : InputView {
 
     override fun getNumberOfCars(): NumberOfCars {
         println(RECEIVE_NUMBER_OF_CARS_MESSAGE)
-        return NumberOfCars(readLine()?.toIntOrNull())
+        return NumberOfCars.from(readLine()?.toIntOrNull())
     }
 
     override fun getNumberOfTrials(): NumberOfTrials {
         println(RECEIVE_NUMBER_OF_TRIALS_MESSAGE)
-        return NumberOfTrials(readLine()?.toIntOrNull())
+        return NumberOfTrials.from(readLine()?.toIntOrNull())
     }
 }
