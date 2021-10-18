@@ -12,27 +12,23 @@ class OutputView(private val record: Record, private val winners: Cars?) {
     }
 
     private fun showRecords() {
-        for (count in FIRST_GAME..record.getSize()) {
-            val recordedCars: Cars? = record[count]
+        (1..record.getSize()).forEach { it ->
+            val recordedCars: Cars? = record[it]
             recordedCars?.let { showCarPositions(it) }
             println()
         }
     }
 
-    private fun showCarPositions(cars: Cars) {
-        for (car in cars.cars) {
-            val carName = car.name
-            val position = showGraph(car.getPosition())
+    private fun showCarPositions(recordedCars: Cars) {
+        recordedCars.cars.forEach {
+            val carName = it.name
+            val position = showGraph(it.getPosition())
             println("$carName : $position")
         }
     }
 
     private fun showGraph(position: Int): String {
-        return buildString {
-            for (i in 0..position) {
-                append(DASH)
-            }
-        }
+        return DASH.repeat(position)
     }
 
     private fun showWinner() {
@@ -40,7 +36,7 @@ class OutputView(private val record: Record, private val winners: Cars?) {
             return
         }
         val result = buildString {
-            for (car in winners.cars) {
+            winners.cars.forEach { car ->
                 append("${car.name}$COMMA")
             }
         }

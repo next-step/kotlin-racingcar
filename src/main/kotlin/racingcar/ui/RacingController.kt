@@ -27,7 +27,7 @@ class RacingController(private val inputView: InputView, private var record: Rec
     private fun moveCars(cars: Cars) {
         val triesCount = inputView.askTryCount()
         var recordCars = cars.copy()
-        for (count in FIRST_GAME..triesCount) {
+        (FIRST_GAME..triesCount).forEach { count ->
             recordCars = recordCars.move()
             record = record.add(Pair(count, recordCars))
         }
