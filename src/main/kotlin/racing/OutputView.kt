@@ -1,6 +1,6 @@
 package racing
 
-class OutputView {
+object OutputView {
 
     fun printStartResult() {
         println("실행 결과")
@@ -8,6 +8,7 @@ class OutputView {
 
     fun printResult(cars: Cars) {
         cars.cars.forEach(::printCar)
+        println()
     }
 
     private fun printCar(car: Car) {
