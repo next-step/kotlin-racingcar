@@ -1,6 +1,6 @@
 package racingcar
 
-class Cars private constructor(val racingCars: List<Car>) {
+class Cars private constructor(private val racingCars: List<Car>) {
 
     companion object {
         fun from(numberOfCars: NumberOfCars): Cars {
@@ -15,5 +15,9 @@ class Cars private constructor(val racingCars: List<Car>) {
     fun goForward(carMoveForwardDecider: CarMoveForwardDecider) {
         racingCars
             .forEach { car -> car.moveForward(carMoveForwardDecider) }
+    }
+
+    fun getCars(): List<Car> {
+        return racingCars.toList()
     }
 }
