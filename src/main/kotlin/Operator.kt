@@ -15,5 +15,9 @@ enum class Operator(private val symbol: String, val operate: (left: Int, right: 
             return values().find { it.symbol == symbol }
                 ?: throw UnsupportedOperationException("${ErrorMessage.UN_SUPPORT_OPERATION}: $symbol")
         }
+
+        fun hasOperator(input: String): Boolean {
+            return values().any { it.symbol == input }
+        }
     }
 }
