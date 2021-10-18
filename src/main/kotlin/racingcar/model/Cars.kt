@@ -15,7 +15,7 @@ class Cars private constructor(private var _carList: List<Car>) {
             return name
         }
 
-        private fun splitNameOfCars(names: String): List<String> =
+        fun splitNameOfCars(names: String): List<String> =
             names.split(DELIMITER).map { checkValidationOfName(it) }
 
         fun createCars(raceCondition: RaceCondition): Cars {
