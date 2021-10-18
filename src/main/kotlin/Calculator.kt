@@ -11,7 +11,10 @@ class Calculator(private val inputLine: String?) {
     private fun calculate(): Int {
         checkValidInput()
         classifyInput()
+        return getResult()
+    }
 
+    private fun getResult(): Int {
         result = numbers[0]
         operators.forEachIndexed { index, operator ->
             result = calculate(result, operator, numbers[index + 1])
