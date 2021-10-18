@@ -9,13 +9,25 @@ import org.junit.jupiter.params.provider.ValueSource
 class CarTest {
 
     @Test
+    fun `자동차를 만들어본다`() {
+        // given
+        val car = Car("flamm")
+        // when
+        val (carName, mileage) = car.info()
+        // then
+        assertThat(carName).isEqualTo("flamm")
+        assertThat(mileage).isEqualTo(0)
+    }
+
+    @Test
     fun `4 이상 움직이면 차가 움직인다`() {
         // given
         val car = Car("flamm")
         // when
         car.move(4)
+        val mileage = car.info().second
         // then
-        assertThat(car.mileage).isEqualTo(1)
+        assertThat(mileage).isEqualTo(1)
     }
 
     @Test
@@ -24,8 +36,9 @@ class CarTest {
         val car = Car("flamm")
         // when
         car.move(3)
+        val mileage = car.info().second
         // then
-        assertThat(car.mileage).isEqualTo(0)
+        assertThat(mileage).isEqualTo(0)
     }
 
     @ParameterizedTest

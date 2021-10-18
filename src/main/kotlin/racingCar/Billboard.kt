@@ -32,6 +32,8 @@ class Billboard(
             cars.move() { distanceOfDrive() }
             resultView.show(cars, numberOfTrial)
         }
+        resultView.victoryPlayer(cars)
+
         endView.show()
     }
 }

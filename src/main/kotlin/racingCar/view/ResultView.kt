@@ -15,6 +15,10 @@ class ResultView {
         }
     }
 
+    fun victoryPlayer(cars: Cars) {
+        println("우승자는 ${cars.victoryPlayer().joinToString()} 입니다!!")
+    }
+
     companion object {
         private const val RESULT = "실행 결과"
         private const val TRIAL = "회차"
