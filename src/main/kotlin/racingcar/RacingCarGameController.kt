@@ -26,8 +26,8 @@ class RacingCarGameController {
 
         val racingCarGame = RacingCarGame(
             gameCount = inputView.getGameCount(),
-            cars = cars,
-            condition = randomForwardCondition
+            condition = randomForwardCondition,
+            initialCars = cars
         )
         val result = racingCarGame.startGame()
         outputView.showGameResult(result)

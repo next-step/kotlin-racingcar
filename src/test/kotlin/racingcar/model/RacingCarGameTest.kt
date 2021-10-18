@@ -17,7 +17,7 @@ class RacingCarGameTest {
             Car(carName = CarName("honux"))
         )
         val cars = Cars(carList)
-        val game = RacingCarGame(gameCount = gameCount, cars = cars, condition = condition)
+        val game = RacingCarGame(gameCount = gameCount, initialCars = cars, condition = condition)
 
         // when
         val expected = game.startGame()
