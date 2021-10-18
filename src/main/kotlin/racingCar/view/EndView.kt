@@ -2,10 +2,10 @@ package racingCar.view
 
 class EndView {
     fun show() {
-        println(START)
+        println(END)
     }
 
     companion object {
-        private const val START = "자동차 경주 끝"
+        private const val END = "자동차 경주 끝"
     }
 }

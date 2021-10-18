@@ -3,9 +3,20 @@ package racingCar.view
 class InputView {
     fun inputData() = Pair(inputCarNames(), inputNumberOfTrial())
 
-    private fun inputCarNames(): String {
-        println(ANSWER_CAR)
-        return readLine()!!.toString()
+    private fun inputCarNames(): List<String> {
+        var flag = true
+        var result = emptyList<String>()
+        while (flag) {
+            println(ANSWER_CAR)
+            val inputValue = readLine()!!.toString()
+            result = inputValue.split(",")
+
+            if (CheckInputValue().isCarNameValid(result)) {
+                flag = false
+            }
+        }
+
+        return result
     }
 
     private fun inputNumberOfTrial(): Int {

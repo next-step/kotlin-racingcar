@@ -21,7 +21,7 @@ class Billboard(
 
     init {
         val (numberOfCars, numberOfTrial) = inputView.inputData()
-        this.numberOfCars = numberOfCars.split(",")
+        this.numberOfCars = numberOfCars
         this.numberOfTrial = numberOfTrial
     }
 
