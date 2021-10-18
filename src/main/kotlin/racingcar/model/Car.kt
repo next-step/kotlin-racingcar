@@ -8,7 +8,7 @@ import racingcar.DriveRule
 data class Car(
     var movement: Int = 0
 ) {
-    fun move(): Car {
+    fun tryMove(): Car {
         return when (DriveRule().isForward()) {
             true -> forward()
             false -> stop()
