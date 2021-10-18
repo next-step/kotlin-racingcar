@@ -17,7 +17,7 @@ class RacingCarGame(
 
         return RacingCarGameResult(
             gameCount = gameCount,
-            snapshots = snapshots.toList(),
+            snapshots = snapshots,
             winnerCars = cars.filterWinners()
         )
     }
