@@ -6,7 +6,7 @@ class Cars(val cars: List<Car>) {
         require(cars.isNotEmpty()) { "Car는 하나 이상 존재해야합니다" }
     }
 
-    fun go() {
+    fun goAll() {
         cars.forEach(Car::go)
     }
 }

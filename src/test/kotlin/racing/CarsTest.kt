@@ -20,7 +20,7 @@ class CarsTest {
     fun `차들을 이동시키면 이동에 성공한 차는 이동하고, 실패한 차는 이동하지 않는다`() {
         val cars = Cars(listOf(Car(goEngine), Car(stopEngine)))
 
-        cars.go()
+        cars.goAll()
 
         assertAll(
             { assertThat(cars.cars[0].position).isEqualTo(Position(1)) },
