@@ -11,7 +11,7 @@ class InputView {
     fun inputRaceCondition(): RaceCondition {
         val nameCars = requestNameOfCars()
         val tryCount = requestTryCount()
-        require(tryCount > 0) { Exception.CASE_INPUT_DATA_WRONG }
+        require(nameCars.isNotEmpty() && tryCount > 0) { Exception.CASE_INPUT_DATA_WRONG }
         return RaceCondition(nameCars, tryCount)
     }
 
