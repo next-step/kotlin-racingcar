@@ -12,7 +12,7 @@ class CarTest {
     fun `sut returns true when can drive`() {
         // Arrange
         val ruleStrategy = RacingRuleStrategy()
-        val sut = Car(ruleStrategy)
+        val sut = Car(ruleStrategy, Name("tommy"))
         val originalPosition = sut.position.value
 
         // Act
@@ -27,7 +27,7 @@ class CarTest {
     fun `sut returns increase position when can drive`() {
         // Arrange
         val ruleStrategy = RacingRuleStrategy()
-        val sut = Car(ruleStrategy)
+        val sut = Car(ruleStrategy, Name("tommy"))
         val originalPosition = sut.position
 
         // Act
