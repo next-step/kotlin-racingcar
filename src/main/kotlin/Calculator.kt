@@ -23,7 +23,7 @@ class Calculator(private val inputLine: String?) {
     }
 
     private fun classifyInput() {
-        inputLine?.split(DECIMAL)?.forEach {
+        inputLine?.split(BLANK)?.forEach {
             when {
                 it.matches(NUMBER_REGEX) -> numbers.add(it.toInt())
                 it.matches(OPERATOR_REGEX) -> operators.add(it)
@@ -44,6 +44,6 @@ class Calculator(private val inputLine: String?) {
     }
 }
 
-private const val DECIMAL = " "
+private const val BLANK = " "
 private val NUMBER_REGEX = "[0-9]+".toRegex()
 private val OPERATOR_REGEX = "([+-/*])".toRegex()
