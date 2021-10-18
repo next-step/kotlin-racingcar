@@ -37,7 +37,7 @@ class Calculator(private val inputLine: String?) {
 
     private fun calculate(left: Int, operator: String, right: Int): Int {
         val currentOperator = Operator.getOperator(operator)
-        return currentOperator.execute(left, right)
+        return currentOperator.operate.invoke(left, right)
     }
 }
 
