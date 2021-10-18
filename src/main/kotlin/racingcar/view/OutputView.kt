@@ -12,7 +12,7 @@ class OutputView(private val record: Record, private val winners: Cars?) {
     }
 
     private fun showRecords() {
-        (1..record.getSize()).forEach { it ->
+        (FIRST_GAME..record.getSize()).forEach { it ->
             val recordedCars: Cars? = record[it]
             recordedCars?.let { showCarPositions(it) }
             println()
@@ -35,14 +35,9 @@ class OutputView(private val record: Record, private val winners: Cars?) {
         if (this.winners?.cars == null) {
             return
         }
-        val result = buildString {
-            winners.cars.forEach { car ->
-                append("${car.name}$COMMA")
-            }
-        }
-
-        val winners = result.substring(0, result.length - MARGIN)
-        println(winners + WINNER_MESSAGE)
+        val winnerNames = winners.cars
+            .joinToString(separator = COMMA) { it.name.toString() }
+        println(winnerNames + WINNER_MESSAGE)
     }
 
     companion object {
@@ -51,6 +46,5 @@ class OutputView(private val record: Record, private val winners: Cars?) {
         private const val COMMA = ","
         private const val DASH = "-"
         private const val FIRST_GAME = 1
-        private const val MARGIN = 1
     }
 }
