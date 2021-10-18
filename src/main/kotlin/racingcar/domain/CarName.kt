@@ -1,7 +1,7 @@
 package racingcar.domain
 
 @JvmInline
-value class CarName(private val value: String) {
+value class CarName private constructor(private val value: String) {
 
     companion object {
         private const val MAXIMUM_CAR_NAME_LEGNTH = 5

@@ -20,7 +20,7 @@ class CarNameTest {
     @ParameterizedTest
     @ValueSource(strings = ["a", "ab", "abc", "abcd", "abcde"])
     fun `정상적인 자동차 이름 입력 테스트`(input: String) {
-        val carName = CarName(input)
+        val carName = CarName.from(input)
 
         assertThat(carName.getValue()).isEqualTo(input)
     }

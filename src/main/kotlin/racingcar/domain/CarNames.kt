@@ -15,7 +15,7 @@ class CarNames(private val carNames: List<CarName>) {
 
         private fun collectCarNames(input: String) = input.split(CAR_NAME_DELIMITER)
             .stream()
-            .map { CarName(it.trim()) }
+            .map { CarName.from(it.trim()) }
             .collect(toList())
     }
 

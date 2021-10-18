@@ -11,8 +11,8 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(ints = [4, 5, 6, 7, 8, 9])
     fun `자동차 전진 테스트`(value: Int) {
-        val car = Car(1)
-        var originalPosition = car.position
+        val car = Car(CarName.from("ninja"))
+        val originalPosition = car.position
 
         car.moveForward(CarMoveForwardDecider(CarMoveForwardFixedValueGetter(value)))
 
@@ -22,7 +22,7 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3])
     fun `자동차 전진 불가 테스트`(value: Int) {
-        val car = Car(1)
+        val car = Car(CarName.from("ninja"))
         val originalPosition = car.position
 
         car.moveForward(CarMoveForwardDecider(CarMoveForwardFixedValueGetter(value)))

@@ -1,26 +1,40 @@
 package racingcar.domain
 
-import racingcar.NumberOfCars
 import racingcar.service.CarMoveForwardDecider
 
-class Cars private constructor(private val racingCars: List<Car>) {
+class Cars(carNames: CarNames) {
+    private var racingCars: List<Car> = ArrayList()
 
-    companion object {
-        fun from(numberOfCars: NumberOfCars): Cars {
-            val racingCars = (1..numberOfCars.value)
-                .map { carNumber -> Car(carNumber) }
-                .toList()
-
-            return Cars(racingCars)
-        }
+    init {
+        racingCars = carNames
+            .getCarNames()
+            .map { name -> Car(name) }
+            .toList()
     }
 
-    fun goForward(carMoveForwardDecider: CarMoveForwardDecider) {
+    fun moveForward(carMoveForwardDecider: CarMoveForwardDecider) {
         racingCars
             .forEach { car -> car.moveForward(carMoveForwardDecider) }
     }
 
     fun getCars(): List<Car> {
-        return racingCars.toList()
+        return this.racingCars
+    }
+
+    fun getCar(index: Int): Car {
+        if (index < 0 || index >= racingCars.size) {
+            throw ArrayIndexOutOfBoundsException()
+        }
+
+        return this.racingCars[index]
+    }
+
+    fun getWinners(): List<Car> {
+        val maximumPosition = this.racingCars
+            .map { it.position }
+            .maxOrNull() ?: 0
+
+        val (winners, _) = racingCars.partition { it.position == maximumPosition }
+        return winners
     }
 }
