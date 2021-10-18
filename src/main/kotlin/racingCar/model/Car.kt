@@ -10,10 +10,10 @@ data class Car(var mileage: Int = 0) {
     }
 
     private fun forward() {
-        mileage = ForwardMovement().forward(mileage)
+        mileage = ForwardStrategy().move(mileage)
     }
 
     private fun stop() {
-        mileage = StopMovement().stop(mileage)
+        mileage = StopStrategy().move(mileage)
     }
 }
