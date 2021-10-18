@@ -24,8 +24,9 @@ class Calculator(private val inputLine: String?) {
 
     private fun classifyInput() {
         inputLine?.split(BLANK)?.forEach {
+            val isNumber = it.toIntOrNull() != null
             when {
-                it.matches(NUMBER_REGEX) -> numbers.add(it.toInt())
+                isNumber -> numbers.add(it.toInt())
                 Operator.hasOperator(it) -> operators.add(it)
                 else -> throw IllegalArgumentException(ErrorMessage.NO_ARITHMETIC_OPERATION)
             }
@@ -45,4 +46,3 @@ class Calculator(private val inputLine: String?) {
 }
 
 private const val BLANK = " "
-private val NUMBER_REGEX = "[0-9]+".toRegex()
