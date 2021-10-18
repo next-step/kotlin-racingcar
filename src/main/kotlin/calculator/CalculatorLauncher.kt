@@ -2,14 +2,14 @@ package calculator
 
 class CalculatorLauncher {
     companion object {
-        const val EXIT_KEY = "x"
+        private const val EXIT_KEY = "x"
 
         @JvmStatic
         fun main(args: Array<String>) {
             var inputExpression = receiveInputExpression()
 
             while (!EXIT_KEY.equals(inputExpression, true)) {
-                println("결과: " + Calculator.calculate(inputExpression).value)
+                println("결과: " + Calculator().calculate(inputExpression).value)
                 inputExpression = receiveInputExpression()
             }
         }
