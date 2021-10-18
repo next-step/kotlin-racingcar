@@ -4,15 +4,23 @@ import car.racing.domain.Car
 
 class ResultView {
 
-    fun show(cars: List<Car>, turnCount: Int) {
+    fun show(cars: List<Car<*>>, turnCount: Int) {
         println("실행결과")
 
-        (1..turnCount).forEach { turn ->
+        repeat(turnCount) { turn ->
             cars.forEach { car ->
-                val moveDistance = car.getMoveDistanceUntilTurn(turn)
+                val moveDistance = car
+                    .getMoveDistanceUntilTurn(turn)
+                    .filter { it }
+                    .joinToString(SEPARATOR) { "-" }
+
                 println(moveDistance)
             }
             println()
         }
+    }
+
+    companion object {
+        private const val SEPARATOR = ""
     }
 }

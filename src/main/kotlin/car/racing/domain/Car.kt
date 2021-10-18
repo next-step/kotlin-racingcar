@@ -1,38 +1,31 @@
 package car.racing.domain
 
-class Car(
-    turnCount: Int,
+import car.racing.exception.OutOfRangeException
+import car.racing.usecase.Generator
+import car.racing.usecase.MovingStrategy
+
+class Car<T>(
+    private val turnCount: Int,
+    private val movingStrategy: MovingStrategy<T>,
+    private val generator: Generator<T>,
 ) {
 
-    private val conditionsOfTurn = Array(turnCount + 1) { "" }
+    private var currentTurn = 0
+    private val conditionsOfTurn = Array(turnCount) { false }
 
-    fun getMoveDistanceUntilTurn(turn: Int): String {
+    fun getMoveDistanceUntilTurn(turn: Int): List<Boolean> {
         return conditionsOfTurn.slice(IntRange(0, turn))
-            .filter { it.isNotBlank() }
-            .joinToString(SEPARATOR)
     }
 
-    fun move(turn: Int, condition: Int): String {
-        val status = getStatus(condition)
-
-        conditionsOfTurn[turn] = status
-
-        return status
-    }
-
-    private fun getStatus(condition: Int): String {
-        return if (isMoveable(condition)) {
-            MOVE
-        } else {
-            STAY
+    fun move(): Boolean {
+        if (currentTurn >= turnCount) {
+            throw OutOfRangeException("move 메소드는 turnCount 보다 많이 실행될 수 없습니다. turnCount: $turnCount, move method call count: ${currentTurn + 1}")
         }
-    }
 
-    private fun isMoveable(condition: Int) = condition >= 4
+        val condition = generator.generate()
+        val isMove = movingStrategy.isMoveable(condition)
+        conditionsOfTurn[currentTurn++] = isMove
 
-    companion object {
-        private const val MOVE = "-"
-        private const val STAY = ""
-        private const val SEPARATOR = ""
+        return isMove
     }
 }
