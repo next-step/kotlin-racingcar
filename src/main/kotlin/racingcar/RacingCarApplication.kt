@@ -5,6 +5,7 @@ import racingcar.domain.Count
 import racingcar.view.InputView
 import racingcar.view.OutputView
 import racingcar.view.OutputView.Companion.printRaceResults
+import racingcar.view.OutputView.Companion.printRacingWinners
 
 fun main() {
     playRacingCar()
@@ -24,4 +25,5 @@ private fun race(count: Count, cars: Cars) {
         printRaceResults(raceResults)
     }
     val racingWinners = cars.findRacingWinners()
+    printRacingWinners(racingWinners)
 }
