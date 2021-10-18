@@ -1,5 +1,6 @@
 package racingcar
 
+import racingcar.exception.Exception.Companion.CASE_INCORRECT_FORMAT_NAME_OF_CAR
 import racingcar.model.Car
 import racingcar.model.RaceCondition
 
@@ -8,8 +9,19 @@ import racingcar.model.RaceCondition
  * */
 class Cars private constructor(private var _carList: List<Car>) {
     companion object {
+        private const val MAX_NAME_OF_CAR = 5
+        private const val DELIMITER = ","
+        private fun checkValidationOfName(name: String?): String {
+            if (name.isNullOrBlank()) throw IllegalArgumentException(CASE_INCORRECT_FORMAT_NAME_OF_CAR)
+            if (name.length > MAX_NAME_OF_CAR) throw IllegalArgumentException(CASE_INCORRECT_FORMAT_NAME_OF_CAR)
+            return name
+        }
+
+        private fun splitNameOfCars(names: String): List<String> =
+            names.split(DELIMITER).map { checkValidationOfName(it) }
+
         fun createCars(raceCondition: RaceCondition): Cars {
-            val carList = (0 until raceCondition.carCount).map { Car() }
+            val carList = splitNameOfCars(raceCondition.carsName).map { Car(name = it) }
             return Cars(carList)
         }
     }

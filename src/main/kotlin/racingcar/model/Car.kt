@@ -6,6 +6,7 @@ import racingcar.DriveRule
  * 자동차 객체
  * */
 data class Car(
+    val name: String = "",
     var movement: Int = 0
 ) {
     fun tryMove(): Car {
