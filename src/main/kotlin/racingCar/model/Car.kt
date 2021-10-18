@@ -1,6 +1,9 @@
 package racingCar.model
 
-class Car(private val name: String) {
+data class Car(private val name: String) {
+    init {
+        CarNameCheck.isValid(name)
+    }
 
     var mileage: Int = 0
         private set
