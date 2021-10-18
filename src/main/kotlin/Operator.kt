@@ -12,12 +12,8 @@ enum class Operator(private val symbol: String, val operate: (left: Int, right: 
 
     companion object {
         fun getOperator(symbol: String): Operator {
-            return when (symbol) {
-                PLUS.symbol -> PLUS
-                MINUS.symbol -> MINUS
-                MULTIPLE.symbol -> MULTIPLE
-                else -> DIVISION
-            }
+            return values().find { it.symbol == symbol }
+                ?: throw UnsupportedOperationException("${ErrorMessage.UN_SUPPORT_OPERATION}: $symbol")
         }
     }
 }
