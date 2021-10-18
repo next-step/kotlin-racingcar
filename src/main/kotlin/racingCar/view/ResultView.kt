@@ -10,8 +10,8 @@ class ResultView {
     }
 
     private fun result(cars: Cars) {
-        cars.list.forEach {
-            println(EMOTICON_CAR.repeat(it.mileage))
+        cars.result().forEach {
+            println("${it.first} : ${EMOTICON_CAR.repeat(it.second)}")
         }
     }
 

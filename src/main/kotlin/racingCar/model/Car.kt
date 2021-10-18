@@ -2,11 +2,10 @@ package racingCar.model
 
 data class Car(private val name: String) {
     init {
-        CarNameCheck.isValid(name)
+        CarName.isValid(name)
     }
 
-    var mileage: Int = 0
-        private set
+    private var mileage: Int = 0
 
     fun move(move: Int) = when (conditionOfMove(move)) {
         true -> forward()
@@ -20,4 +19,6 @@ data class Car(private val name: String) {
     private fun stop() {
         mileage = StopStrategy().move(mileage)
     }
+
+    fun info() = Pair(name, mileage)
 }
