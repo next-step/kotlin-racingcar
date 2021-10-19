@@ -1,6 +1,5 @@
 package racingcar.view
 
-import calculator.ExceptionCase.Companion.CASE_NULL_CAR_NAME
 import racingcar.model.Car
 
 /**
@@ -33,8 +32,8 @@ class ResultView {
         }
     }
 
-    fun printRaceResult(list: List<Car>) {
-        val names = list.joinToString { it.name ?: throw IllegalArgumentException(CASE_NULL_CAR_NAME) }
+    fun printRaceResult(list: List<String>) {
+        val names = list.joinToString { it }
         println("${names}가 최종 우승했습니다.")
     }
 }
