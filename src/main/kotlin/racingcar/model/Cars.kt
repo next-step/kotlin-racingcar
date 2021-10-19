@@ -3,19 +3,16 @@ package racingcar.model
 /**
  * 자동차들의 객체 관리
  * */
-class Cars private constructor(private var _carList: List<Car>) {
-    val carList: List<Car>
-        get() = this._carList
-
-    private val maxMovement = _carList.maxByOrNull { it.movement }?.movement
+class Cars private constructor(var carList: List<Car>) {
+    private val maxMovement = carList.maxByOrNull { it.movement }?.movement
 
     fun race(): List<Car> {
-        _carList = _carList.map { car -> car.tryMove() }
-        return _carList
+        carList = carList.map { car -> car.tryMove() }
+        return carList
     }
 
     fun getWinner(): List<String> =
-        _carList.filter { car -> car.movement == maxMovement }.mapNotNull { it.name }
+        carList.filter { car -> car.movement == maxMovement }.mapNotNull { it.name }
 
     companion object {
         fun createCars(raceCondition: RaceCondition): Cars {
