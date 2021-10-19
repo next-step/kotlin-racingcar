@@ -9,19 +9,25 @@ import racingcar.model.RaceCondition
  * */
 class InputView {
     fun inputRaceCondition(): RaceCondition {
-        val carCount = requestNumberOfCar()
+        val nameCars = requestNameOfCars()
         val tryCount = requestTryCount()
-        require(carCount > 0 && tryCount > 0) { Exception.CASE_INPUT_DATA_WRONG }
-        return RaceCondition(carCount, tryCount)
+        require(nameCars.isNotEmpty() && tryCount > 0) { Exception.CASE_INPUT_DATA_WRONG }
+        return RaceCondition(splitNameOfCars(nameCars), tryCount)
     }
 
-    private fun requestNumberOfCar(): Int {
-        println("자동차 대수는 몇 대인가요?")
-        return readLine()!!.toIntOrNull() ?: throw IllegalArgumentException(CASE_INPUT_DATA_NOT_INT)
+    private fun requestNameOfCars(): String {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)")
+        return readLine()!!
     }
 
     private fun requestTryCount(): Int {
         println("시도할 횟수는 몇 회인가요?")
         return readLine()!!.toIntOrNull() ?: throw IllegalArgumentException(CASE_INPUT_DATA_NOT_INT)
+    }
+
+    companion object {
+        private const val DELIMITER = ","
+        fun splitNameOfCars(names: String): List<String> =
+            names.split(DELIMITER)
     }
 }
