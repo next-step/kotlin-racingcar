@@ -1,7 +1,5 @@
 package racingcar.domain
 
-import java.util.stream.Collectors.toList
-
 class CarNames(private val carNames: List<CarName>) {
     fun getCarNames(): List<CarName> {
         return carNames.toList()
