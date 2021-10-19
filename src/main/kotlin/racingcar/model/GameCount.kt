@@ -8,3 +8,5 @@ data class GameCount(val count: Int) {
 
     override fun toString(): String = count.toString()
 }
+
+inline fun repeat(count: GameCount, action: (Int) -> Unit) = repeat(count.count, action)
