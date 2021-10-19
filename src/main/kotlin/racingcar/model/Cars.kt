@@ -18,10 +18,6 @@ class Cars private constructor(private var _carList: List<Car>) {
         _carList.filter { car -> car.movement == maxMovement }.mapNotNull { it.name }
 
     companion object {
-        private const val DELIMITER = ","
-        fun splitNameOfCars(names: String): List<String> =
-            names.split(DELIMITER)
-
         fun createCars(raceCondition: RaceCondition): Cars {
             val carList = raceCondition.carsName.map { Car(name = it) }
             return Cars(carList)

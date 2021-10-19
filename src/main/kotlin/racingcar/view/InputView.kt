@@ -12,7 +12,7 @@ class InputView {
         val nameCars = requestNameOfCars()
         val tryCount = requestTryCount()
         require(nameCars.isNotEmpty() && tryCount > 0) { Exception.CASE_INPUT_DATA_WRONG }
-        return RaceCondition(nameCars, tryCount)
+        return RaceCondition(splitNameOfCars(nameCars), tryCount)
     }
 
     private fun requestNameOfCars(): String {
@@ -23,5 +23,11 @@ class InputView {
     private fun requestTryCount(): Int {
         println("시도할 횟수는 몇 회인가요?")
         return readLine()!!.toIntOrNull() ?: throw IllegalArgumentException(CASE_INPUT_DATA_NOT_INT)
+    }
+
+    companion object {
+        private const val DELIMITER = ","
+        fun splitNameOfCars(names: String): List<String> =
+            names.split(DELIMITER)
     }
 }
