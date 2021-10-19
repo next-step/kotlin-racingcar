@@ -17,13 +17,13 @@ class Cars private constructor(
 
     fun findRacingWinners(): List<Name> {
         val maxPosition = findMaxPosition()
-        return cars.filter { it.position.value == maxPosition }
+        return cars.filter { it.position() == maxPosition }
             .map { it.name }
             .toList()
     }
 
     private fun findMaxPosition(): Int {
-        val positions = cars.map { it.position.value }.toList()
+        val positions = cars.map { it.position() }.toList()
         return positions.maxOrNull() ?: 0
     }
 
@@ -31,8 +31,8 @@ class Cars private constructor(
         private const val START_NUMBER = 0
 
         fun register(names: Names): Cars {
-            val cars = (START_NUMBER until names.names.size)
-                .map { Car(RacingRuleStrategy(), names.names[it]) }
+            val cars = (START_NUMBER until names.size())
+                .map { Car(RacingRuleStrategy(), names.getName(it)) }
             return Cars(cars)
         }
     }

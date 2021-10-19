@@ -13,4 +13,6 @@ class Car(
         }
         return position
     }
+
+    fun position(): Int = position.value
 }
