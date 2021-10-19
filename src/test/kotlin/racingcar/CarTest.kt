@@ -11,9 +11,8 @@ class CarTest {
     fun `check car data class`() {
         val item = Car(name = "사람")
 
-        Assertions.assertThat(item.name).isNotNull
+        Assertions.assertThat(item).isEqualTo(Car(name = "사람", movement = 0))
         Assertions.assertThat(item.name).isEqualTo("사람")
-        Assertions.assertThat(item.movement).isNotNull
         Assertions.assertThat(item.movement).isEqualTo(0)
     }
 }
