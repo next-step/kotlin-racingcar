@@ -1,6 +1,6 @@
 package racingcar.model
 
-import racingcar.exception.Exception
+import racingcar.exception.Exception.Companion.CASE_INCORRECT_FORMAT_NAME_OF_CAR
 
 /**
  * 자동차 객체
@@ -16,8 +16,8 @@ data class Car(
     }
 
     init {
-        if (name.isNullOrBlank()) throw IllegalArgumentException(Exception.CASE_INCORRECT_FORMAT_NAME_OF_CAR)
-        if (name.length > MAX_NAME_OF_CAR) throw IllegalArgumentException(Exception.CASE_INCORRECT_FORMAT_NAME_OF_CAR)
+        require(!name.isNullOrBlank()) { CASE_INCORRECT_FORMAT_NAME_OF_CAR }
+        require(name.length <= MAX_NAME_OF_CAR) { CASE_INCORRECT_FORMAT_NAME_OF_CAR }
     }
 
     fun tryMove(): Car {
