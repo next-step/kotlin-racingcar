@@ -1,6 +1,8 @@
 package racingcar
 
-class Car(val carId: Int, private val minFuelThreshold: Int = 4) {
+const val DefaultMinFuelThreshold = 4
+
+class Car(val carId: Int, private val minFuelThreshold: Int = DefaultMinFuelThreshold) {
     var currentPosition: Int = 0
 
     fun accelerate(fuel: Int) {
