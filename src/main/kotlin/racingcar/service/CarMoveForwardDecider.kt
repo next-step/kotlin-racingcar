@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.service
 
 class CarMoveForwardDecider(private val carMoveForwardValueGetter: CarMoveForwardValueGetter) {
     companion object {
