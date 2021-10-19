@@ -7,11 +7,12 @@ import racingcar.exception.Exception
  * */
 data class Car(
     val name: String?,
-    var movement: Int = 0
+    var movement: Int = DEFAULT_MOVEMENT
 ) {
     companion object {
         private const val MAX_NAME_OF_CAR = 5
         private const val MOVEMENT_FORWARD = 1
+        private const val DEFAULT_MOVEMENT = 0
     }
 
     init {
