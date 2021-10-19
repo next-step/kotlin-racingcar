@@ -1,10 +1,10 @@
 package racingcar.domain
 
-import java.util.concurrent.ThreadLocalRandom
+import kotlin.random.Random
 
 class RandomMoveStrategy : MovingStrategy {
     override fun canMove(): Boolean {
-        val randomNumber = ThreadLocalRandom.current().nextInt(0, 9)
+        val randomNumber = Random.nextInt(10)
         return randomNumber > MINIMUM_MOVE_NUMBER
     }
 

@@ -1,6 +1,6 @@
 package racingcar.domain
 
-import racingcar.util.StringUtils
+import racingcar.utils.StringUtils
 
 data class Names(val names: Set<Name>) {
 
