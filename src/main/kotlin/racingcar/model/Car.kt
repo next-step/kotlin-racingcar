@@ -8,7 +8,7 @@ import racingcar.exception.Exception.Companion.CASE_INCORRECT_FORMAT_NAME_OF_CAR
 data class Car(
     val name: String?,
     var movement: Int = DEFAULT_MOVEMENT
-) {
+) : DriveRule() {
     companion object {
         private const val MAX_NAME_OF_CAR = 5
         private const val MOVEMENT_FORWARD = 1
@@ -20,8 +20,8 @@ data class Car(
         require(name.length <= MAX_NAME_OF_CAR) { CASE_INCORRECT_FORMAT_NAME_OF_CAR }
     }
 
-    fun tryMove(): Car {
-        return when (DriveRule().isForward()) {
+    fun tryMove(isForward: Boolean): Car {
+        return when (isForward) {
             true -> forward()
             false -> stop()
         }

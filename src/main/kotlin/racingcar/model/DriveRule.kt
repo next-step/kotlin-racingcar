@@ -1,6 +1,6 @@
 package racingcar.model
 
-class DriveRule : DriveRangeStrategy {
+open class DriveRule : DriveRangeStrategy {
     companion object {
         private const val NUMBER_RANDOM_MAX = 9
         const val FORWARD_NUMBER = 4
