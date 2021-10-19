@@ -3,6 +3,13 @@ package racingcar.domain
 import java.util.stream.Collectors.toList
 
 class CarNames(private val carNames: List<CarName>) {
+    fun getCarNames(): List<CarName> {
+        return carNames.toList()
+    }
+
+    fun size(): Int {
+        return carNames.size
+    }
 
     companion object {
         private const val CAR_NAME_DELIMITER = ","
@@ -17,13 +24,5 @@ class CarNames(private val carNames: List<CarName>) {
             .stream()
             .map { CarName.from(it.trim()) }
             .collect(toList())
-    }
-
-    fun getCarNames(): List<CarName> {
-        return carNames.toList()
-    }
-
-    fun size(): Int {
-        return carNames.size
     }
 }

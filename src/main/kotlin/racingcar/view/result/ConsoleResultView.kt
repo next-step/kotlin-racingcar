@@ -5,12 +5,6 @@ import racingcar.domain.Cars
 import java.util.stream.Collectors.joining
 
 class ConsoleResultView : ResultView {
-    companion object {
-        private const val CAR_POSITION_CHARACTER = "-"
-        private const val RESULT_TITLE = "실행 결과"
-        private const val WINNERS_JOINING_DELIMITER = ", "
-    }
-
     override fun showTitle() {
         println("\n" + RESULT_TITLE)
     }
@@ -35,5 +29,11 @@ class ConsoleResultView : ResultView {
             .collect(joining(WINNERS_JOINING_DELIMITER))
 
         println("$winners 가 최종 우승하였습니다.")
+    }
+
+    companion object {
+        private const val CAR_POSITION_CHARACTER = "-"
+        private const val RESULT_TITLE = "실행 결과"
+        private const val WINNERS_JOINING_DELIMITER = ", "
     }
 }

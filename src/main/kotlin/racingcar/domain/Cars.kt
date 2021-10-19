@@ -3,17 +3,6 @@ package racingcar.domain
 import racingcar.service.CarMoveForwardDecider
 
 class Cars private constructor(private val racingCars: List<Car>) {
-    companion object {
-        fun from(carNames: CarNames): Cars {
-            val racingCars = carNames
-                .getCarNames()
-                .map { name -> Car(name) }
-                .toList()
-
-            return Cars(racingCars)
-        }
-    }
-
     fun moveForward(carMoveForwardDecider: CarMoveForwardDecider) {
         this.racingCars
             .forEach { car -> car.moveForward(carMoveForwardDecider) }
@@ -38,5 +27,16 @@ class Cars private constructor(private val racingCars: List<Car>) {
 
         val (winners, _) = racingCars.partition { it.position == maximumPosition }
         return winners
+    }
+
+    companion object {
+        fun from(carNames: CarNames): Cars {
+            val racingCars = carNames
+                .getCarNames()
+                .map { name -> Car(name) }
+                .toList()
+
+            return Cars(racingCars)
+        }
     }
 }

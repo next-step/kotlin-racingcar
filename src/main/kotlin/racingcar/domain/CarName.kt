@@ -1,7 +1,10 @@
 package racingcar.domain
 
 @JvmInline
-value class CarName private constructor(private val value: String) {
+value class CarName private constructor(val value: String) {
+    fun getValue(): String {
+        return value
+    }
 
     companion object {
         private const val MAXIMUM_CAR_NAME_LEGNTH = 5
@@ -11,9 +14,5 @@ value class CarName private constructor(private val value: String) {
             require(value != null && value.isNotBlank() && value.length <= MAXIMUM_CAR_NAME_LEGNTH) { ENTERED_WRONG_CAR_NAME }
             return CarName(value)
         }
-    }
-
-    fun getValue(): String {
-        return value
     }
 }
