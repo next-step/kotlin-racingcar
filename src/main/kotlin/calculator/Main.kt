@@ -1,7 +1,7 @@
 package calculator
 
 fun main() {
-    val expression = IO.getExpression()
+    val expression = ConsoleInputView.getExpression()
     val result = Calculator.evaluate(expression)
-    IO.printResult(result)
+    ConsoleOutputView.printResult(result)
 }
