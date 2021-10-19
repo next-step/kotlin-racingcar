@@ -1,6 +1,5 @@
 package racingcar.inputviews
 
-
 class RacingGameInputView : InputView {
     override fun receiveInput(): GameInput {
         val numberOfCars = receiveNumberOfCars()
