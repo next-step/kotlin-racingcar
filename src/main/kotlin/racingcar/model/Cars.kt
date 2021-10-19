@@ -4,15 +4,12 @@ package racingcar.model
  * 자동차들의 객체 관리
  * */
 class Cars private constructor(var carList: List<Car>) : DriveRule() {
-    private val maxMovement = carList.maxByOrNull { it.movement }?.movement
-
     fun race(): List<Car> {
-        carList = carList.map { car -> car.tryMove(isForward()) }
-        return carList
+        return carList.map { car -> car.tryMove(isForward()) }.apply { carList = this }
     }
 
     fun getWinner(): List<String> =
-        carList.filter { car -> car.movement == maxMovement }.mapNotNull { it.name }
+        carList.filter { car -> car.movement == carList.maxOf { it.movement } }.mapNotNull { it.name }
 
     companion object {
         fun createCars(raceCondition: RaceCondition): Cars {
