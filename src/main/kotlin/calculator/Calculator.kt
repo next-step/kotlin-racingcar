@@ -9,17 +9,21 @@ class Calculator {
             val split = formula.split(" ")
             var result = split[0].toInt()
             for (i: Int in 1 until split.size step (2)) {
-                val operation = split[i]
+                val operator = split[i]
                 val target = split[i + 1].toInt()
-                when (operation) {
-                    "+" -> result += target
-                    "-" -> result -= target
-                    "*" -> result *= target
-                    "/" -> result /= target
-                    else -> throw IllegalArgumentException("잘못된 사칙연산입니다.")
-                }
+                result = calculate(result, target, operator)
             }
             return result
+        }
+
+        private fun calculate(first: Int, second: Int, operator: String): Int {
+            return when (operator) {
+                "+" -> first + second
+                "-" -> first - second
+                "*" -> first * second
+                "/" -> first / second
+                else -> throw IllegalArgumentException("잘못된 사칙연산입니다.")
+            }
         }
     }
 }
