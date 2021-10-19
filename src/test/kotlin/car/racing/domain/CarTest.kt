@@ -1,7 +1,8 @@
 package car.racing.domain
 
 import car.racing.exception.OutOfRangeException
-import car.racing.usecase.Generator
+import car.racing.helper.AboveStandardGenerator
+import car.racing.helper.BelowStandardGenerator
 import car.racing.usecase.NumberMovingStrategy
 import car.racing.usecase.NumberRandomGenerator
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -63,17 +64,5 @@ class CarTest {
         val moveDistanceSize = car.getMoveDistanceUntilTurn(size - 1).size
 
         assertEquals(size, moveDistanceSize)
-    }
-
-    class AboveStandardGenerator : Generator<Int> {
-        override fun generate(): Int {
-            return 6
-        }
-    }
-
-    class BelowStandardGenerator : Generator<Int> {
-        override fun generate(): Int {
-            return 0
-        }
     }
 }

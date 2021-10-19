@@ -1,25 +1,24 @@
 package car.racing.usecase
 
+import car.racing.helper.AboveStandardGenerator
+import car.racing.helper.BelowStandardGenerator
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.ValueSource
+import org.junit.jupiter.api.Test
 
 class NumberMovingStrategyTest {
 
-    @ParameterizedTest
-    @ValueSource(ints = [0, 1, 2, 3])
-    fun `4 미만은 false`(condition: Int) {
-        val movingStrategy = NumberMovingStrategy(NumberRandomGenerator())
+    @Test
+    fun `조건 미만은 false`() {
+        val movingStrategy = NumberMovingStrategy(BelowStandardGenerator())
         val result = movingStrategy.isMoveable()
 
         assertFalse(result)
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = [4, 5, 6, 7, 8, 9])
-    fun `4 이상은 true`(condition: Int) {
-        val movingStrategy = NumberMovingStrategy(NumberRandomGenerator())
+    @Test
+    fun `조건 이상은 true`() {
+        val movingStrategy = NumberMovingStrategy(AboveStandardGenerator())
         val result = movingStrategy.isMoveable()
 
         assertTrue(result)
