@@ -24,9 +24,7 @@ class ConsoleResultView : ResultView {
 
     override fun showWinners(cars: Cars) {
         val winners = cars.getWinners()
-            .stream()
-            .map { it.name.value }
-            .collect(joining(WINNERS_JOINING_DELIMITER))
+            .joinToString { it.name.value }
 
         println("$winners 가 최종 우승하였습니다.")
     }
@@ -34,6 +32,5 @@ class ConsoleResultView : ResultView {
     companion object {
         private const val CAR_POSITION_CHARACTER = "-"
         private const val RESULT_TITLE = "실행 결과"
-        private const val WINNERS_JOINING_DELIMITER = ", "
     }
 }

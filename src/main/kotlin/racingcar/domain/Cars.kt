@@ -19,8 +19,7 @@ class Cars private constructor(private val racingCars: List<Car>) {
             .map { it.position }
             .maxOrNull() ?: 0
 
-        val (winners, _) = racingCars.partition { it.position == maximumPosition }
-        return winners
+        return racingCars.filter { it.position == maximumPosition }
     }
 
     companion object {
