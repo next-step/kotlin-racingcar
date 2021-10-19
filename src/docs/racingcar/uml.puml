@@ -1,0 +1,52 @@
+@startuml
+
+interface InputView {
++ receiveInput(): GameInput
+}
+
+class RacingGameInputView {
++ receiveInput(): GameInput
+}
+
+class GameInput {
++ numberOfCars: Int
++ numberOfRounds: Int
+}
+
+interface ResultView {
++ printResult(gameResult: GameResult)
+}
+
+class RacingGameResultView implements ResultView {
++ printResult(gameResult: GameResult)
+}
+
+class GameResult {
++ cars: List<Car>
+}
+
+interface FuelProvider {
++ getFuel(): Int
+}
+
+class RandomFuelProvider implements FuelProvider {
++ getFuel(): Int
+}
+
+class Car {
++ accelerate(fuel: Int)
+}
+
+class RacingGame {
++ run(input: GameInput): GameResult
+}
+
+RacingGame *-left-> "*" Car
+RacingGame -> FuelProvider
+RacingGame -up-> GameInput
+RacingGameInputView ..|> InputView
+InputView -down-> GameInput
+RacingGame -down-> GameResult
+ResultView -up-> GameResult
+
+@enduml
