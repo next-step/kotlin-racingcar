@@ -11,7 +11,7 @@ class CarsTest {
     fun `2대 중 우승자가 1대인 경주 테스트`() {
         val cars = Cars.from(CarNames(listOf(CarName.from("a"), CarName.from("b"))))
 
-        val car1 = cars.getCar(0)
+        val car1 = cars[0]
         moveForward(car1)
 
         assertThat(cars.getWinners()).isNotNull
@@ -24,10 +24,10 @@ class CarsTest {
     fun `2대 중 우승자가 2대인 경주 테스트`() {
         val cars = Cars.from(CarNames(listOf(CarName.from("a"), CarName.from("b"))))
 
-        val car1 = cars.getCar(0)
+        val car1 = cars[0]
         moveForward(car1)
 
-        val car2 = cars.getCar(1)
+        val car2 = cars[1]
         moveForward(car2)
 
         assertThat(cars.getWinners()).isNotNull
@@ -42,11 +42,11 @@ class CarsTest {
     fun `3대 중 우승자가 1대인 경주 테스트`() {
         val cars = Cars.from(CarNames(listOf(CarName.from("a"), CarName.from("b"), CarName.from("c"))))
 
-        val car1 = cars.getCar(0)
+        val car1 = cars[0]
         moveForward(car1)
         moveForward(car1)
 
-        val car2 = cars.getCar(1)
+        val car2 = cars[1]
         moveForward(car2)
 
         assertThat(cars.getWinners()).isNotNull
@@ -59,10 +59,10 @@ class CarsTest {
     fun `3대 중 우승자가 2대인 경주 테스트`() {
         val cars = Cars.from(CarNames(listOf(CarName.from("a"), CarName.from("b"), CarName.from("c"))))
 
-        val car1 = cars.getCar(0)
+        val car1 = cars[0]
         moveForward(car1)
 
-        val car2 = cars.getCar(1)
+        val car2 = cars[1]
         moveForward(car2)
 
         assertThat(cars.getWinners()).isNotNull
@@ -77,13 +77,13 @@ class CarsTest {
     fun `3대 중 우승자가 3대인 경주 테스트`() {
         val cars = Cars.from(CarNames(listOf(CarName.from("a"), CarName.from("b"), CarName.from("c"))))
 
-        val car1 = cars.getCar(0)
+        val car1 = cars[0]
         moveForward(car1)
 
-        val car2 = cars.getCar(1)
+        val car2 = cars[1]
         moveForward(car2)
 
-        val car3 = cars.getCar(2)
+        val car3 = cars[2]
         moveForward(car3)
 
         assertThat(cars.getWinners()).isNotNull

@@ -12,13 +12,7 @@ class Cars private constructor(private val racingCars: List<Car>) {
         return this.racingCars.toList()
     }
 
-    fun getCar(index: Int): Car {
-        if (index < 0 || index >= racingCars.size) {
-            throw ArrayIndexOutOfBoundsException()
-        }
-
-        return this.getCars()[index]
-    }
+    operator fun get(index: Int): Car = racingCars[index]
 
     fun getWinners(): List<Car> {
         val maximumPosition = this.racingCars
