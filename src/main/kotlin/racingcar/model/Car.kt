@@ -11,6 +11,7 @@ data class Car(
 ) {
     companion object {
         private const val MAX_NAME_OF_CAR = 5
+        private const val MOVEMENT_FORWARD = 1
     }
 
     init {
@@ -25,6 +26,6 @@ data class Car(
         }
     }
 
-    fun forward(): Car = copy(movement = movement + 1)
+    fun forward(): Car = copy(movement = movement + MOVEMENT_FORWARD)
     fun stop(): Car = copy(movement = movement)
 }
