@@ -1,6 +1,7 @@
 package racingcar.domain
 
-class Position(val value: Int = 0) {
+@JvmInline
+value class Position(val value: Int = 0) {
     init {
         verify(value)
     }
