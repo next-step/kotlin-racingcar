@@ -11,7 +11,9 @@ class Car(private var position: Int = 0, private var carEngine: CarEngine = Raci
         }
     }
 
-    private fun move() = position++
+    fun move(num: Int = 1) {
+        position += num
+    }
 
     fun getPosition() = position
 
