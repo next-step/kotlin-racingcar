@@ -15,7 +15,7 @@ class ConsoleResultView : ResultView {
     }
 
     private fun showStatus(car: Car) {
-        print("%5s : ".format(car.name.getValue()))
+        print("%5s : ".format(car.name.value))
         for (index in (1..car.position)) {
             print(CAR_POSITION_CHARACTER)
         }
@@ -25,7 +25,7 @@ class ConsoleResultView : ResultView {
     override fun showWinners(cars: Cars) {
         val winners = cars.getWinners()
             .stream()
-            .map { it.name.getValue() }
+            .map { it.name.value }
             .collect(joining(WINNERS_JOINING_DELIMITER))
 
         println("$winners 가 최종 우승하였습니다.")
