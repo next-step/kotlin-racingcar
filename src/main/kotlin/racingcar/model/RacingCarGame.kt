@@ -6,9 +6,7 @@ class RacingCarGame(
     private val condition: RacingCarForwardCondition
 ) {
 
-    fun startGame() = startGame(gameCount, initialCars)
-
-    private fun startGame(gameCount: GameCount, initialCars: Cars): RacingCarGameResult {
+    fun startGame(): RacingCarGameResult {
         val snapshots = mutableListOf<RacingCarGameSnapshot>()
         var cars = initialCars
 
