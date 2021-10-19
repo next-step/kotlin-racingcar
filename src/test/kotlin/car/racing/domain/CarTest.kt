@@ -1,9 +1,12 @@
 package car.racing.domain
 
 import car.racing.exception.OutOfRangeException
+import car.racing.usecase.Generator
 import car.racing.usecase.NumberMovingStrategy
 import car.racing.usecase.NumberRandomGenerator
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -13,7 +16,7 @@ class CarTest {
 
     @Test
     fun `Move 의 결과가 잘 반영됐는지 테스트`() {
-        val car = Car(5, NumberMovingStrategy(), NumberRandomGenerator())
+        val car = Car(5, NumberMovingStrategy(NumberRandomGenerator()))
 
         repeat(5) { turn ->
             val isMove = car.move()
@@ -24,10 +27,26 @@ class CarTest {
     }
 
     @Test
+    fun `조건이 맞으면 true`() {
+        val car = Car(5, NumberMovingStrategy(AboveStandardGenerator()))
+        val result = car.move()
+
+        assertTrue(result)
+    }
+
+    @Test
+    fun `조건이 충족 안되면 false`() {
+        val car = Car(5, NumberMovingStrategy(BelowStandardGenerator()))
+        val result = car.move()
+
+        assertFalse(result)
+    }
+
+    @Test
     fun `TurnCount 보다 많이 Move 했을경우 OutOfRangeException`() {
         val size = 1
         val exception = assertThrows<OutOfRangeException> {
-            val car = Car(size, NumberMovingStrategy(), NumberRandomGenerator())
+            val car = Car(size, NumberMovingStrategy(NumberRandomGenerator()))
             repeat(size + 1) {
                 car.move()
             }
@@ -40,9 +59,21 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4, 5])
     fun `getMoveDistanceUntilTurn(N) 일때 size ( N + 1 )`(size: Int) {
-        val car = Car(size, NumberMovingStrategy(), NumberRandomGenerator())
+        val car = Car(size, NumberMovingStrategy(NumberRandomGenerator()))
         val moveDistanceSize = car.getMoveDistanceUntilTurn(size - 1).size
 
         assertEquals(size, moveDistanceSize)
+    }
+
+    class AboveStandardGenerator : Generator<Int> {
+        override fun generate(): Int {
+            return 6
+        }
+    }
+
+    class BelowStandardGenerator : Generator<Int> {
+        override fun generate(): Int {
+            return 0
+        }
     }
 }

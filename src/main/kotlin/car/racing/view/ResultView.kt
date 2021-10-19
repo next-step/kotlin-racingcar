@@ -4,7 +4,7 @@ import car.racing.domain.Car
 
 class ResultView {
 
-    fun show(cars: List<Car<*>>, turnCount: Int) {
+    fun show(cars: List<Car>, turnCount: Int) {
         println("실행결과")
 
         repeat(turnCount) { turn ->

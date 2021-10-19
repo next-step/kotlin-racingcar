@@ -7,7 +7,9 @@ import car.racing.usecase.Racing
 import car.racing.view.InputView
 import car.racing.view.ResultView
 
-fun main() = RacingGame().start()
+fun main() {
+    RacingGame().start()
+}
 
 class RacingGame {
 
@@ -20,7 +22,7 @@ class RacingGame {
         val turnCount = inputView.inputTurnCount()
 
         val cars = List(carCount) {
-            Car(turnCount, NumberMovingStrategy(), NumberRandomGenerator())
+            Car(turnCount, NumberMovingStrategy(NumberRandomGenerator()))
         }
 
         racing.race(cars, turnCount)

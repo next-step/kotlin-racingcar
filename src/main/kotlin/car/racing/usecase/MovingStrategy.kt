@@ -1,11 +1,14 @@
 package car.racing.usecase
 
-interface MovingStrategy<T> {
-    fun isMoveable(condition: T): Boolean
+interface MovingStrategy {
+    fun isMoveable(): Boolean
 }
 
-class NumberMovingStrategy : MovingStrategy<Int> {
-    override fun isMoveable(condition: Int): Boolean {
+class NumberMovingStrategy(
+    private val generator: Generator<Int>,
+) : MovingStrategy {
+    override fun isMoveable(): Boolean {
+        val condition = generator.generate()
         return condition >= DATUM_POINT
     }
 
