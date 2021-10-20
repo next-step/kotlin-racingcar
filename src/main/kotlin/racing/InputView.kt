@@ -1,4 +1,4 @@
-package step3
+package racing
 
 object InputView {
     fun getCar(): Int {

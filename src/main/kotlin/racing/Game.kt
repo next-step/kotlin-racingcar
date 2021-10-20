@@ -1,4 +1,4 @@
-package step3
+package racing
 
 class Game(
     private val roundCount: Int,

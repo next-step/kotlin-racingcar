@@ -1,4 +1,4 @@
-package step3
+package racing
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest

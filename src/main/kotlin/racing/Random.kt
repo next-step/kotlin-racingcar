@@ -1,4 +1,4 @@
-package step3
+package racing
 
 typealias Random = (Int) -> Boolean
 
