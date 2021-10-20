@@ -12,7 +12,9 @@ class Cars(stringOfCars: List<String>) {
 
     fun result() = list.map { it.info() }
 
-    fun victoryPlayer() = list.map { it.info() }.filter { it.second == maxResult() }.map { it.first }
+    fun victoryPlayer() = list.map { it.info() }
+        .filter { it.second == maxResult() }
+        .map { it.first }
 
     private fun maxResult() = list.maxOf { it.info().second }
 }
