@@ -12,7 +12,7 @@ import racingcar.model.RaceCondition
 
 class RaceConditionTest {
     @Test
-    @DisplayName("자동차 객체 생성 테스트")
+    @DisplayName("레이스 조건 객체 생성 테스트")
     fun `check race condition data class`() {
         val item = RaceCondition(listOf(CarName("1")), 2)
 
