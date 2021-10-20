@@ -1,6 +1,7 @@
 package step2
 
 object NumericChecker {
-    fun checkIsNumeric(s: String) = s.matches("-?\\d+(\\.\\d+)?".toRegex())
+    private val numericRegex = "-?\\d+(\\.\\d+)?".toRegex()
+    fun checkIsNumeric(s: String) = s.matches(numericRegex)
     fun checkIsNotNumeric(s: String) = !checkIsNumeric(s)
 }
