@@ -18,14 +18,18 @@ class CarTest {
     @ParameterizedTest(name = "Test {index}: value == {0} result == {1}")
     @CsvSource(value = ["1, 1", "2, 2", "3, 3"])
     fun `Car move() 후에 position 테스트`(move: Int, expected: Int) {
-        car.move(move)
+        repeat(move) {
+            car.move()
+        }
         assertThat(car.getPosition()).isEqualTo(expected)
     }
 
     @ParameterizedTest(name = "Test {index}: value == {0} result == {1}")
     @CsvSource(value = ["1, -", "2, --", "3, ---"])
     fun `Car move() 후에 toString() 테스트`(move: Int, expected: String) {
-        car.move(move)
+        repeat(move) {
+            car.move()
+        }
         assertThat(car.toString()).isEqualTo(expected)
     }
 }
