@@ -17,14 +17,7 @@ class RacingGameController {
         val condition = inputView.inputRaceCondition()
         val carList = Cars.createCars(condition, driveRule)
 
-        resultView.run {
-            printResultTitle(ResultView.RESULT_TITLE)
-            repeat(condition.tryCount) {
-                printStartRound(it)
-                printRace(carList.race())
-                printEndRound()
-            }
-            printRaceResult(carList.getWinner())
-        }
+        val result = carList.getResult()
+        resultView.printRacing(result)
     }
 }
