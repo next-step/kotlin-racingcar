@@ -37,4 +37,5 @@
     * [x] 숫자 입력시 해당 숫자만큼 List<RacingCars> 생성하여 객체 만듬   
     * [] 아마 Names를 stream() 순회하면서 값과 이름을 가지고 RacingCar를 생성한다.
 * [x] RacingCarGameRecord 
-    * [x] 출력 구조가 변경되면서 List<라운드, Map<사람, 현재 포지션>>이 될 것 같다.   
+    * [x] 출력 구조가 변경되면서 List<라운드, Map<사람, 현재 포지션>>이 될 것 같다.    
+    * 이건 코틀린에서 제공해주는 groupBy 를 사용하면 될것 같다. (객체 하나 더 만들어야하나?)     
