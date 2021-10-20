@@ -2,15 +2,18 @@ package step3
 
 object ResultView {
     private const val PROCESS_RESULT = "실행결과"
+    private const val DIVIDER = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-    fun printResult(carList: List<Car>) {
-        carList.forEach {
+    fun printResult(distanceList: List<Int>) {
+        println(DIVIDER)
+        distanceList.forEach {
             printMovedDistance(it)
         }
+        println(DIVIDER)
     }
 
-    private fun printMovedDistance(car: Car) {
-        println("-".repeat(car.movedDistance))
+    private fun printMovedDistance(distance: Int) {
+        println("-".repeat(distance))
     }
 
     fun printProcessResultTitle() {
