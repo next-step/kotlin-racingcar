@@ -1,5 +1,7 @@
 package step2.exception
 
-sealed class ErrorMessage(message: String) : IllegalArgumentException(message) {
-    class CustomException(calculatorMessage: CalculatorMessage) : ErrorMessage(calculatorMessage.message)
+import step2.exception.message.Message
+
+sealed class BizException(message: String) : IllegalArgumentException(message) {
+    class CustomException(calculatorMessage: Message) : BizException(calculatorMessage.message)
 }
