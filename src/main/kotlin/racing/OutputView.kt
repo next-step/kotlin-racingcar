@@ -12,7 +12,8 @@ object OutputView {
     }
 
     private fun printCar(car: Car) {
-        (1..car.position.value).joinToString("") { "-" }
-            .let(::println)
+        val nameFormat = "${car.name.value} : "
+        val positionFormat = (1..car.position.value).joinToString("") { "-" }
+        println("$nameFormat$positionFormat")
     }
 }
