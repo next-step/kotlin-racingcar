@@ -2,7 +2,7 @@ package racingcar.domain
 
 import java.util.stream.Collectors
 
-class Cars(private val cars: List<Car> = mutableListOf()) {
+class Cars(val cars: List<Car> = mutableListOf()) {
 
     fun size(): Int {
         return cars.size
@@ -20,7 +20,7 @@ class Cars(private val cars: List<Car> = mutableListOf()) {
         return generateCar(inputCar)
     }
 
-    private fun generateCar(count: Int): Cars {
+    fun generateCar(count: Int): Cars {
         return Cars(
             (0 until count)
                 .map { Car() }
