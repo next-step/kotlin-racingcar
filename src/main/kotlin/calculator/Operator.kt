@@ -1,4 +1,4 @@
-package step2
+package calculator
 
 import java.util.function.BinaryOperator
 
@@ -14,7 +14,7 @@ enum class Operator(val value: String, val function: BinaryOperator<Double>) {
             return true
         }
 
-        fun isIn(value: String): Boolean = values()
+        private fun isIn(value: String): Boolean = values()
             .map { v -> v.value }
             .contains(value)
 
