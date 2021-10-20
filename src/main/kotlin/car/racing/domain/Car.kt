@@ -4,12 +4,17 @@ import car.racing.exception.OutOfRangeException
 import car.racing.usecase.MovingStrategy
 
 class Car(
+    private val name: String,
     private val turnCount: Int,
     private val movingStrategy: MovingStrategy,
 ) {
 
     private var currentTurn = 0
     private val conditionsOfTurn = Array(turnCount) { false }
+
+    init {
+        require(name.length < NAME_MAX_LENGTH) { "이름의 길이는 $NAME_MAX_LENGTH 보다 작아야합니다." }
+    }
 
     fun getMoveDistanceUntilTurn(turn: Int): List<Boolean> {
         return conditionsOfTurn.slice(IntRange(0, turn))
@@ -24,5 +29,9 @@ class Car(
         conditionsOfTurn[currentTurn++] = isMove
 
         return isMove
+    }
+
+    companion object {
+        private const val NAME_MAX_LENGTH = 5
     }
 }

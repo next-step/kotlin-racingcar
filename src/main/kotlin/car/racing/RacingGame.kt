@@ -21,8 +21,13 @@ class RacingGame {
         val carCount = inputView.inputCarCount()
         val turnCount = inputView.inputTurnCount()
 
-        val cars = List(carCount) {
-            Car(turnCount, NumberMovingStrategy(NumberRandomGenerator()))
+        val carNames = carCount.split(",")
+        val cars = carNames.map { name ->
+            Car(
+                name = name,
+                turnCount = turnCount,
+                movingStrategy = NumberMovingStrategy(NumberRandomGenerator()),
+            )
         }
 
         racing.race(cars, turnCount)
