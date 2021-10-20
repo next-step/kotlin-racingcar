@@ -29,6 +29,12 @@ class NameTest {
     }
 
     // "이름 문자열은 비어있서는 안됩니다."
-
+    @ParameterizedTest(name = "이름 : {0}")
+    @ValueSource(strings = ["", " ", "   ", "     ", "          "])
+    fun `공백만 있는 이름은 생성이 불가능하다`(nameString: String) {
+        assertThatThrownBy { Name(nameString) }
+            .isExactlyInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("이름은 비어있서는 안 됩니다.")
+    }
 
 }
