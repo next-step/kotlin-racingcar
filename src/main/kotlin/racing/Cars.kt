@@ -10,11 +10,11 @@ class Cars(val cars: List<Car>) {
         cars.forEach(Car::go)
     }
 
-    fun getWinner(): List<Car> {
+    fun getWinner(): Cars {
         val winner = cars.reduce { acc, car ->
             getWinningCar(acc, car)
         }
-        return cars.filter { it.isDrawWith(winner) }
+        return Cars(cars.filter { it.isDrawWith(winner) })
     }
 
     private fun getWinningCar(car: Car, other: Car): Car {

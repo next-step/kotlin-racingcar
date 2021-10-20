@@ -33,7 +33,7 @@ class CarsTest {
         val winnerName = CarName("win")
         val cars = Cars(listOf(Car(winnerName, 5), Car("lose1", 4), Car("lose2", 2)))
 
-        val result = cars.getWinner()
+        val result = cars.getWinner().cars
 
         assertAll(
             { assertThat(result).hasSize(1) },
@@ -47,7 +47,7 @@ class CarsTest {
         val winningPosition = 5
         val cars = Cars(listOf(Car(winnerNames[0], winningPosition), Car(winnerNames[1], winningPosition), Car(winnerNames[2], winningPosition), Car("loser", 3)))
 
-        val result = cars.getWinner()
+        val result = cars.getWinner().cars
 
         assertAll(
             { assertThat(result).hasSize(3) },

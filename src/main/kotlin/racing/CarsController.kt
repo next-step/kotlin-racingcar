@@ -14,7 +14,7 @@ object CarsController {
         return CarsFactory.create(names)
     }
 
-    fun play(cars: Cars) {
+    fun play(cars: Cars): Cars {
         val round = Round(InputView.getRound())
 
         OutputView.printStartResult()
@@ -22,5 +22,10 @@ object CarsController {
             cars.goAll()
             OutputView.printResult(cars)
         }
+        return cars
+    }
+
+    fun announceWinner(cars: Cars) {
+        OutputView.printWinner(cars.getWinner())
     }
 }
