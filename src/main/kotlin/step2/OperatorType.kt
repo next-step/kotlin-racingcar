@@ -3,17 +3,17 @@ package step2
 import step2.ExceptionType.CAN_NOT_DIVIDED_BY_ZERO
 import step2.ExceptionType.NOT_OPERATOR_SYMBOL
 
-enum class OperatorType(val symbol: String, val operatorBlock: (newValue: Operand, oldValue: Operand) -> Operand) {
-    MINUS("-", { newValue, oldValue -> newValue.apply { value -= oldValue.value } }),
-    PLUS("+", { newValue, oldValue -> newValue.apply { value += oldValue.value } }),
+enum class OperatorType(val symbol: String, val operatorBlock: (oldValue: Operand, newValue: Operand) -> Operand) {
+    MINUS("-", { oldValue, newValue -> oldValue.apply { value -= newValue.value } }),
+    PLUS("+", { oldValue, newValue -> oldValue.apply { value += newValue.value } }),
     DIVIDE(
         "/",
-        { newValue, oldValue ->
-            require(oldValue.value != 0.0) { CAN_NOT_DIVIDED_BY_ZERO }
-            newValue.apply { value /= oldValue.value }
+        { oldValue, newValue ->
+            require(newValue.value != 0.0) { CAN_NOT_DIVIDED_BY_ZERO }
+            oldValue.apply { value /= newValue.value }
         }
     ),
-    MULTIPLY("*", { newValue, oldValue -> newValue.apply { value *= oldValue.value } });
+    MULTIPLY("*", { oldValue, newValue -> oldValue.apply { value *= newValue.value } });
 
     companion object {
         fun findOperator(symbol: String): (Operand, Operand) -> Operand {
