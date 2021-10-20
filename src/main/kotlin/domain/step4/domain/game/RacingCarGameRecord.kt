@@ -7,9 +7,7 @@ data class RacingCarGameRecord private constructor(private val _racingCarGameRec
         get() = _racingCarGameRecord.toList()
 
     fun add(racingCars: RacingCars): RacingCarGameRecord {
-        val mutableRecord = _racingCarGameRecord.toMutableList()
-        mutableRecord.add(racingCars)
-        return RacingCarGameRecord(mutableRecord)
+        return RacingCarGameRecord(_racingCarGameRecord + racingCars)
     }
 
     companion object {

@@ -13,17 +13,25 @@ class RacingCarResultView(private val outputStrategy: OutputStrategy) {
             .map(this::stringPerRound)
             .joinToString(lineSeparator() + lineSeparator())
 
-        outputStrategy.execute(StringBuilder()
-            .append("실행 결과")
-            .append(lineSeparator())
-            .append(result)
-            .toString())
+        outputStrategy.execute(
+            StringBuilder()
+                .append("실행 결과")
+                .append(lineSeparator())
+                .append(result)
+                .toString()
+        )
     }
 
-    private fun stringPerRound(racingCars: RacingCars) = racingCars.racingCars.asSequence()
-        .map(RacingCar::distance)
-        .map(this::mapToOutputModel)
-        .joinToString(lineSeparator())
+    private fun stringPerRound(racingCars: RacingCars): String {
+        return racingCars.racingCars.asSequence()
+            .map(this::resultPerPerson)
+            .joinToString(lineSeparator())
+    }
+
+    private fun resultPerPerson(racingCar: RacingCar): String {
+        val name = racingCar.name
+        return name.name + CONTOUR + mapToOutputModel(racingCar.distance)
+    }
 
     private fun mapToOutputModel(count: Int) = (START..count).joinToString(BLANK) { OUTPUT_MODEL }
 
@@ -31,5 +39,6 @@ class RacingCarResultView(private val outputStrategy: OutputStrategy) {
         private const val START = 1
         private const val BLANK = ""
         private const val OUTPUT_MODEL = "-"
+        private const val CONTOUR = " : "
     }
 }
