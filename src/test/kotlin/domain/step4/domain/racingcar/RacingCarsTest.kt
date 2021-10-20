@@ -9,6 +9,8 @@ class RacingCarsTest {
     @Test
     fun `자동차 경주 참가 수가 들어오면 RacingCars 가 생성 된다`() {
         val movingStrategy = { true }
+        val splitStrategy = { target: String -> target.split(",") }
+
         val name = Name("test")
 
         val expected = RacingCars(
@@ -18,7 +20,7 @@ class RacingCarsTest {
             )
         )
 
-        val racingCars = RacingCars.from(2, movingStrategy)
+        val racingCars = RacingCars.from("test,test", splitStrategy, movingStrategy)
 
         assertAll(
             { assertThat(racingCars).isNotNull },

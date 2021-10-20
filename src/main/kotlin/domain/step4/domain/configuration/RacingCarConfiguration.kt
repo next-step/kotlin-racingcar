@@ -1,3 +1,5 @@
 package domain.step4.domain.configuration
 
-class RacingCarConfiguration(val numberOfCars: NumberOfCars, val numberOfAttempts: NumberOfAttempts)
+import domain.step4.domain.racingcar.Names
+
+class RacingCarConfiguration(val names: Names, val numberOfAttempts: NumberOfAttempts)

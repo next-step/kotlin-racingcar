@@ -1,14 +1,15 @@
 package domain.step4
 
 import domain.step4.domain.configuration.NumberOfAttempts
-import domain.step4.domain.configuration.NumberOfCars
 import domain.step4.domain.configuration.RacingCarConfiguration
 import domain.step4.domain.game.RacingCarGame
+import domain.step4.domain.racingcar.Names
 import domain.step4.domain.strategy.RandomNumberMovingStrategy
 import domain.step4.ui.RacingCarInputView
 import domain.step4.ui.RacingCarResultView
 import global.strategy.input.ConsoleInputStrategy
 import global.strategy.output.ConsoleOutputStrategy
+import global.strategy.split.CommaSplitStrategy
 
 class RacingCarGameApplication(
     private val inputView: RacingCarInputView,
@@ -16,9 +17,18 @@ class RacingCarGameApplication(
 ) {
 
     fun run() {
-        val racingCarConfiguration = RacingCarConfiguration(numberOfCars(), numberOfAttempts())
-        val racingCarGameRecord = RacingCarGame(racingCarConfiguration, RandomNumberMovingStrategy).run()
+        val names = RacingCarConfiguration(names(), numberOfAttempts())
+        val racingCarGameRecord = RacingCarGame(names, RandomNumberMovingStrategy).run()
         resultView.print(racingCarGameRecord)
+    }
+
+    private tailrec fun names(): Names {
+        return try {
+            Names.ofStringWithSplitStrategy(inputView.numberOfCars(), CommaSplitStrategy)
+        } catch (e: Exception) {
+            println(e.message)
+            names()
+        }
     }
 
     private tailrec fun numberOfAttempts(): NumberOfAttempts {
@@ -30,14 +40,6 @@ class RacingCarGameApplication(
         }
     }
 
-    private tailrec fun numberOfCars(): NumberOfCars {
-        return try {
-            NumberOfCars(inputView.numberOfCars())
-        } catch (e: Exception) {
-            println(e.message)
-            numberOfCars()
-        }
-    }
 }
 
 fun main() {

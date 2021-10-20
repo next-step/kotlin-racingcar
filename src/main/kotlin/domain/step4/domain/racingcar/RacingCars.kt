@@ -1,7 +1,8 @@
 package domain.step4.domain.racingcar
 
-import domain.step4.domain.configuration.NumberOfCars
 import domain.step4.domain.strategy.MovingStrategy
+import global.strategy.split.SplitStrategy
+import kotlin.streams.toList
 
 @JvmInline
 value class RacingCars(private val _racingCars: List<RacingCar>) {
@@ -16,13 +17,15 @@ value class RacingCars(private val _racingCars: List<RacingCar>) {
     fun moveForward() = RacingCars(_racingCars.map { it.moveForward() })
 
     companion object {
-        private const val START = 1
         private const val EMPTY_MESSAGE = "비어있는 값은 들어올 수 없습니다."
 
-        fun from(numberOfCars: NumberOfCars, movingStrategy: MovingStrategy) =
-            from(numberOfCars.numberOfCars, movingStrategy)
+        fun from(names: String, splitStrategy: SplitStrategy, movingStrategy: MovingStrategy): RacingCars =
+            from(Names.ofStringWithSplitStrategy(names, splitStrategy), movingStrategy)
 
-        fun from(numberOfCars: Int, movingStrategy: MovingStrategy) =
-            RacingCars((START..numberOfCars).map { RacingCar(movingStrategy = movingStrategy) })
+        fun from(names: Names, movingStrategy: MovingStrategy) =
+            RacingCars(names.names.stream()
+                .map { RacingCar(it, movingStrategy = movingStrategy) }
+                .toList())
     }
 }
+
