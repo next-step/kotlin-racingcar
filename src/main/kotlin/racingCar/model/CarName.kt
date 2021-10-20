@@ -6,9 +6,7 @@ data class CarName(val name: String) {
     }
 
     private fun isValid(name: String) {
-        if (name.length > LIMIT_NAME_LENGTH) {
-            throw IllegalArgumentException(CAR_NAME_INPUT_WARNING)
-        }
+        require(name.length > LIMIT_NAME_LENGTH) { throw IllegalArgumentException(CAR_NAME_INPUT_WARNING) }
     }
 
     companion object {
