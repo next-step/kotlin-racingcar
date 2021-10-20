@@ -7,3 +7,9 @@ val goEngine = object : Engine {
 val stopEngine = object : Engine {
     override fun canMove() = false
 }
+
+fun Car(name: CarName, position: Int): Car {
+    return Car(goEngine, name).apply {
+        repeat(position) { go() }
+    }
+}

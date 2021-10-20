@@ -2,6 +2,7 @@ package racing
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -9,6 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource
 class CarTest {
 
     private val name = CarName("name")
+    private val otherName = CarName("other")
 
     @Test
     fun `처음 생성된 차의 위치는 0이다`() {
@@ -37,5 +39,27 @@ class CarTest {
         }
 
         assertThat(car.position).isEqualTo(INITIAL_POSITION)
+    }
+
+    @Test
+    fun `포지션 값이 다른 차보다 크면 앞서있다`() {
+        val ahead = Car(name, 3)
+        val behind = Car(otherName, 2)
+
+        assertAll(
+            { assertThat(ahead.isAheadOf(behind)).isTrue },
+            { assertThat(behind.isAheadOf(ahead)).isFalse },
+        )
+    }
+
+    @Test
+    fun `포지션 값이 다른 차와 같으면 비긴다`() {
+        val car = Car(name, 2)
+        val other = Car(otherName, 2)
+
+        assertAll(
+            { assertThat(car.isDrawWith(other)).isTrue },
+            { assertThat(other.isDrawWith(car)).isTrue },
+        )
     }
 }

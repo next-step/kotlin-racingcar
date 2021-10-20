@@ -10,4 +10,12 @@ class Car(private val engine: Engine, val name: CarName) {
             position = position.forward()
         }
     }
+
+    fun isAheadOf(other: Car): Boolean {
+        return position > other.position
+    }
+
+    fun isDrawWith(other: Car): Boolean {
+        return position == other.position
+    }
 }
