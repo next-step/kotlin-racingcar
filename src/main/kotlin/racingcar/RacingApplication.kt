@@ -4,17 +4,19 @@ import racingcar.manager.RacingManager
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
-object RacingApplication {
-
-    private const val RACING_RESULT = "실행 결과"
+class RacingApplication(private val inputView: InputView = InputView()) {
 
     fun start() {
-        val carNum = InputView.getNumberOfCars()
-        val attempts = InputView.getNumberOfAttempts()
+        val carNum = inputView.getNumberOfCars()
+        val attempts = inputView.getNumberOfAttempts()
         println()
         println(RACING_RESULT)
         RacingManager(carNum, attempts).run {
             race(ResultView::printCarPositions)
         }
+    }
+
+    companion object {
+        private const val RACING_RESULT = "실행 결과"
     }
 }

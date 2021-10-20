@@ -1,5 +1,5 @@
 package racingcar
 
 fun main() {
-    RacingApplication.start()
+    RacingApplication().start()
 }
