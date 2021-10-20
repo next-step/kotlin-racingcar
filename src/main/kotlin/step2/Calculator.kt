@@ -4,35 +4,28 @@ import step2.ExceptionType.Companion.INPUT_MUST_END_WITH_NUMBER
 import step2.ExceptionType.Companion.INPUT_MUST_NOT_BLANK
 import step2.ExceptionType.Companion.INPUT_MUST_NOT_NULL
 import step2.ExceptionType.Companion.INPUT_MUST_START_WITH_NUMBER
-import step2.ExceptionType.Companion.NUMBER_NEXT_IS_MUST_OPERATOR
-import step2.ExceptionType.Companion.OPERATOR_NEXT_IS_MUST_NUMBER
+import step2.NumericChecker.checkIsNumeric
 
 object Calculator {
-    private fun String.isNumeric() = matches("-?\\d+(\\.\\d+)?".toRegex())
-    private fun String.isNotNumeric() = !isNumeric()
-    private fun String.getOperator() = OperatorType.getOperator(this)
 
     fun calculate(input: String?): Double {
         val checkedInput = checkInputValidation(input)
         val dividedList = checkedInput.split(" ")
         checkElementValidation(dividedList)
-
         var idx = 0
-        var accumulator = dividedList.first().toDouble()
-
+        val accumulator = Operand(dividedList[idx++])
         while (idx < dividedList.size) {
-            val divided = dividedList[idx++]
-            require(divided.isNotNumeric()) { NUMBER_NEXT_IS_MUST_OPERATOR }
-            val newValue = dividedList[idx++]
-            require(newValue.isNumeric()) { OPERATOR_NEXT_IS_MUST_NUMBER }
-            accumulator = divided.getOperator().execute(accumulator, newValue.toDouble())
+            val operator = Operator(dividedList[idx++])
+            val newValue = Operand(dividedList[idx++])
+            operator.execute(accumulator, newValue)
         }
-        return accumulator
+        return accumulator.value
     }
 
-    private fun checkElementValidation(list: List<String>) {
-        require(list.first().isNumeric()) { INPUT_MUST_START_WITH_NUMBER }
-        require(list.last().isNumeric()) { INPUT_MUST_END_WITH_NUMBER }
+    private fun checkElementValidation(list: List<String>) = run {
+        require(checkIsNumeric(list.first())) { INPUT_MUST_START_WITH_NUMBER }
+        require(checkIsNumeric(list.last())) { INPUT_MUST_END_WITH_NUMBER }
+        list
     }
 
     private fun checkInputValidation(input: String?) = run {
