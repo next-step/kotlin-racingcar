@@ -1,6 +1,7 @@
 package car.racing
 
 import car.racing.domain.Car
+import car.racing.usecase.FindRaceWinner
 import car.racing.usecase.NumberMovingStrategy
 import car.racing.usecase.NumberRandomGenerator
 import car.racing.usecase.Racing
@@ -14,7 +15,7 @@ fun main() {
 class RacingGame {
 
     private val inputView = InputView()
-    private val resultView = ResultView()
+    private val resultView = ResultView(FindRaceWinner())
     private val racing = Racing()
 
     fun start() {

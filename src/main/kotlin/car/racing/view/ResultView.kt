@@ -1,8 +1,11 @@
 package car.racing.view
 
 import car.racing.domain.Car
+import car.racing.usecase.FindRaceWinner
 
-class ResultView {
+class ResultView(
+    private val findRaceWinner: FindRaceWinner,
+) {
 
     fun show(cars: List<Car>, turnCount: Int) {
         println("실행결과")
@@ -12,7 +15,9 @@ class ResultView {
             println()
         }
 
-        val winners = getWinners(cars, turnCount).joinToString(",")
+        val winners = findRaceWinner.findByCars(cars, turnCount)
+            .joinToString { winner -> winner.name }
+
         println("$winners 가 최종 우승했습니다.")
     }
 
@@ -28,21 +33,6 @@ class ResultView {
 
             println("${car.name} : $moveDistance")
         }
-    }
-
-    private fun getWinners(
-        cars: List<Car>,
-        turnCount: Int,
-    ): List<String> {
-        val turn = turnCount - 1
-        val maxMoveDistance = cars
-            .map { car -> car.getMoveDistanceUntilTurn(turn).filter { it }.size }
-            .maxOrNull() ?: 0
-
-        return cars.filter { car ->
-            val moveDistance = car.getMoveDistanceUntilTurn(turn).filter { it }.size
-            moveDistance == maxMoveDistance
-        }.map { car -> car.name }
     }
 
     companion object {
