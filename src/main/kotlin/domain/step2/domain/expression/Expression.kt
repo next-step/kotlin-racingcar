@@ -1,6 +1,6 @@
 package domain.step2.domain.expression
 
-import domain.step2.strategy.split.SplitStrategy
+import global.strategy.split.SplitStrategy
 
 data class Expression(private val expression: String) {
     init {

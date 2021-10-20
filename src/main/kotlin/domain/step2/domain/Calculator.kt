@@ -3,7 +3,7 @@ package domain.step2.domain
 import domain.step2.domain.expression.Expression
 import domain.step2.domain.expression.Operand
 import domain.step2.domain.expression.Operator
-import domain.step2.strategy.split.SplitStrategy
+import global.strategy.split.SplitStrategy
 
 object Calculator {
 
