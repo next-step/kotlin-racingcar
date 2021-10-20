@@ -30,7 +30,7 @@ class CarTest {
         val car = Car("flamm")
 
         // when
-        car.move(4)
+        car.move(CarMoveAmount(5))
         val mileage = car.info().second
 
         // then
@@ -42,7 +42,7 @@ class CarTest {
         // given
         val car = Car("flamm")
         // when
-        car.move(3)
+        car.move(CarMoveAmount(3))
         val mileage = car.info().second
         // then
         assertThat(mileage).isEqualTo(0)

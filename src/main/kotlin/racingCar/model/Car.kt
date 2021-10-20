@@ -5,17 +5,8 @@ data class Car(private val carName: CarName) {
 
     private var mileage: Int = 0
 
-    fun move(move: Int) = when (ForwardRuleOfGo.isValid(move)) {
-        true -> forward()
-        false -> stop()
-    }
-
-    private fun forward() {
-        mileage = ForwardStrategy().move(mileage)
-    }
-
-    private fun stop() {
-        mileage = StopStrategy().move(mileage)
+    fun move(move: MoveAmount) {
+        mileage += move.amount()
     }
 
     fun info() = Pair(carName.name, mileage)

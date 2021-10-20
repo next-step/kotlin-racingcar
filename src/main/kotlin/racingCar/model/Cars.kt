@@ -8,7 +8,7 @@ class Cars(stringOfCars: List<String>) {
         list.forEach { moveCar(it, distanceOfDrive) }
     }
 
-    private fun moveCar(car: Car, distanceOfDrive: () -> Int) = car.move(distanceOfDrive.invoke())
+    private fun moveCar(car: Car, distanceOfDrive: () -> Int) = car.move(CarMoveAmount(distanceOfDrive.invoke()))
 
     fun result() = list.map { it.info() }
 
