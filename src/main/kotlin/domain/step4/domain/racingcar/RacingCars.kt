@@ -4,9 +4,7 @@ import domain.step4.domain.strategy.MovingStrategy
 import global.strategy.split.SplitStrategy
 import kotlin.streams.toList
 
-@JvmInline
-value class RacingCars (private val _racingCars: List<RacingCar>) {
-
+data class RacingCars private constructor(private val _racingCars: List<RacingCar>) {
     init {
         require(_racingCars.isNotEmpty()) { EMPTY_MESSAGE }
     }

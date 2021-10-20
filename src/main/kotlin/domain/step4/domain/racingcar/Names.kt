@@ -2,8 +2,10 @@ package domain.step4.domain.racingcar
 
 import global.strategy.split.SplitStrategy
 
-@JvmInline
-value class Names (private val _names: List<Name>) {
+data class Names private constructor(private val _names: List<Name>) {
+    init {
+        require(_names.isNotEmpty()) { EMPTY_MESSAGE }
+    }
 
     val names: List<Name>
     get() {
@@ -13,6 +15,8 @@ value class Names (private val _names: List<Name>) {
     fun size(): Int = _names.size
 
     companion object {
+        private const val EMPTY_MESSAGE = "비어있는 값은 들어올 수 없습니다."
+
         fun ofList(names: List<Name>): Names = Names(names.toList())
 
         fun ofStringWithSplitStrategy(target: String, splitStrategy: SplitStrategy): Names =

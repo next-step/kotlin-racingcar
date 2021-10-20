@@ -2,8 +2,7 @@ package domain.step4.domain.game
 
 import domain.step4.domain.racingcar.RacingCars
 
-@JvmInline
-value class RacingCarGameRecord (private val _racingCarGameRecord: List<RacingCars>) {
+data class RacingCarGameRecord private constructor(private val _racingCarGameRecord: List<RacingCars>) {
     val racingCarGameRecord: List<RacingCars>
         get() = _racingCarGameRecord.toList()
 
