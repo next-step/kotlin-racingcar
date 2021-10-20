@@ -29,7 +29,7 @@ class Billboard(
         startView.show()
         val cars = Cars(numberOfCars)
         repeat(numberOfTrial) {
-            cars.move() { distanceOfDrive() }
+            cars.move() { DistanceOfDrive.distance() }
             resultView.show(cars, numberOfTrial)
         }
         resultView.victoryPlayer(cars)

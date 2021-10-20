@@ -1,3 +1,7 @@
 package racingCar
 
-fun distanceOfDrive() = (0..9).random()
+class DistanceOfDrive {
+    companion object {
+        fun distance() = (0..9).random()
+    }
+}
