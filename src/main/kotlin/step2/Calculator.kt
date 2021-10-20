@@ -1,12 +1,14 @@
 package step2
 
+import java.lang.ArithmeticException
+
 fun main() {
     println(Calculator(readLine().toString()).caculate())
 }
 
 class Calculator(private var inputText: String) {
     fun caculate(): Int {
-
+        checkNullOrWhitespace(inputText)
         val splitedStringList = removeWhiteSpace(inputText)
 
         var result = splitedStringList[0].toInt()
@@ -15,6 +17,12 @@ class Calculator(private var inputText: String) {
             result = calculateWithOperator(result, splitedStringList[i + 2].toInt(), splitedStringList[i + 1])
         }
         return result
+    }
+
+    private fun checkNullOrWhitespace(inputString: String) {
+        if (inputString.isNullOrBlank()) {
+            throw IllegalArgumentException("입력값이 null이거나 빈 공백 문자임.")
+        }
     }
 
     private fun removeWhiteSpace(inputString: String): List<String> {
@@ -29,9 +37,12 @@ class Calculator(private var inputText: String) {
         } else if (operator == "*") {
             x * y
         } else if (operator == "/") {
+            if (y == 0) {
+                throw ArithmeticException("0으로 나눌 수 없음.")
+            }
             x / y
         } else {
-            throw RuntimeException()
+            throw IllegalArgumentException("사칙연산 기호가 아님.")
         }
     }
 }
