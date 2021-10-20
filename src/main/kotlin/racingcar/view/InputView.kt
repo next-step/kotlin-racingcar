@@ -2,6 +2,7 @@ package racingcar.view
 
 import racingcar.exception.Exception
 import racingcar.exception.Exception.Companion.CASE_INPUT_DATA_NOT_INT
+import racingcar.model.CarName
 import racingcar.model.RaceCondition
 
 /**
@@ -27,7 +28,7 @@ class InputView {
 
     companion object {
         private const val DELIMITER = ","
-        fun splitNameOfCars(names: String): List<String> =
-            names.split(DELIMITER)
+        fun splitNameOfCars(names: String): List<CarName> =
+            names.split(DELIMITER).map { CarName(it) }
     }
 }

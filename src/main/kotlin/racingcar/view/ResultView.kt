@@ -1,6 +1,7 @@
 package racingcar.view
 
 import racingcar.model.Car
+import racingcar.model.CarName
 
 /**
  * 자동차 경주에서 게임 중 혹은 결과를 출력 모음 class
@@ -26,14 +27,14 @@ class ResultView {
 
     fun printRace(list: List<Car>) {
         list.forEach { car ->
-            val step = StringBuffer("${car.name}: ")
+            val step = StringBuffer("${car.name.carName}: ")
             repeat(car.movement) { step.append(ICON) }
             println(step)
         }
     }
 
-    fun printRaceResult(list: List<String>) {
-        val names = list.joinToString { it }
+    fun printRaceResult(list: List<CarName>) {
+        val names = list.joinToString { it.carName }
         println("${names}가 최종 우승했습니다.")
     }
 }

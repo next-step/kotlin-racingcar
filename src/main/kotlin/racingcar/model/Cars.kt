@@ -8,8 +8,8 @@ class Cars private constructor(var carList: List<Car>, private val rule: DriveRu
         return carList.map { car -> car.tryMove(rule.isForward()) }.apply { carList = this }
     }
 
-    fun getWinner(): List<String> =
-        carList.filter { car -> car.movement == carList.maxOf { it.movement } }.mapNotNull { it.name }
+    fun getWinner(): List<CarName> =
+        carList.filter { car -> car.movement == carList.maxOf { it.movement } }.map { it.name }
 
     companion object {
         fun createCars(raceCondition: RaceCondition, rule: DriveRule): Cars {
