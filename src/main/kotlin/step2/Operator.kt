@@ -10,5 +10,5 @@ class Operator(private val symbol: String) {
         OperatorType.getOperator(this)
     }
 
-    fun execute(a: Operand, b: Operand) = calculateBlock(a, b)
+    fun execute(oldValue: Operand, newValue: Operand) = calculateBlock(oldValue, newValue)
 }
