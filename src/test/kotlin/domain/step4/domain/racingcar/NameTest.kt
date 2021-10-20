@@ -37,4 +37,14 @@ class NameTest {
             .hasMessage("이름은 비어있서는 안 됩니다.")
     }
 
+    @ParameterizedTest(name = "이름 : {0}")
+    @ValueSource(strings = ["a", "ab", "abc", "abcd", "abcde"])
+    fun `자신의 이름을 반환할 수 있다`(nameString: String) {
+        val name = Name(nameString)
+
+        assertAll(
+            { assertThat(name.name).isNotNull },
+            { assertThat(name.name).isEqualTo(nameString) }
+        )
+    }
 }
