@@ -9,11 +9,12 @@ class RacingCarsTest {
     @Test
     fun `자동차 경주 참가 수가 들어오면 RacingCars 가 생성 된다`() {
         val movingStrategy = { true }
+        val name = Name("test")
 
         val expected = RacingCars(
             listOf(
-                RacingCar(movingStrategy = movingStrategy),
-                RacingCar(movingStrategy = movingStrategy)
+                RacingCar(name, movingStrategy = movingStrategy),
+                RacingCar(name, movingStrategy = movingStrategy)
             )
         )
 
@@ -29,18 +30,19 @@ class RacingCarsTest {
     @Test
     fun `RacingCars 가 조건을 만족한다면 이동한다`() {
         val movingStrategy = { true }
+        val name = Name("test")
 
         val racingCars = RacingCars(
             listOf(
-                RacingCar(movingStrategy = movingStrategy),
-                RacingCar(movingStrategy = movingStrategy)
+                RacingCar(name, movingStrategy = movingStrategy),
+                RacingCar(name, movingStrategy = movingStrategy)
             )
         )
 
         val expected = RacingCars(
             listOf(
-                RacingCar(DistanceDriven(1), movingStrategy),
-                RacingCar(DistanceDriven(1), movingStrategy)
+                RacingCar(name, DistanceDriven(1), movingStrategy),
+                RacingCar(name, DistanceDriven(1), movingStrategy)
             )
         )
 
@@ -51,18 +53,19 @@ class RacingCarsTest {
     @Test
     fun `RacingCars 가 조건을 만족하지 않는다면 이동하지 않는다`() {
         val movingStrategy = { false }
+        val name = Name("test")
 
         val racingCars = RacingCars(
             listOf(
-                RacingCar(movingStrategy = movingStrategy),
-                RacingCar(movingStrategy = movingStrategy)
+                RacingCar(name, movingStrategy = movingStrategy),
+                RacingCar(name, movingStrategy = movingStrategy)
             )
         )
 
         val expected = RacingCars(
             listOf(
-                RacingCar(DistanceDriven(0), movingStrategy),
-                RacingCar(DistanceDriven(0), movingStrategy)
+                RacingCar(name, DistanceDriven(0), movingStrategy),
+                RacingCar(name, DistanceDriven(0), movingStrategy)
             )
         )
 
@@ -74,18 +77,19 @@ class RacingCarsTest {
     fun `RacingCars 중에 조건을 만족는 자동차만 이동한다`() {
         val falseMovingStrategy = { false }
         val trueMovingStrategy = { true }
+        val name = Name("test")
 
         val racingCars = RacingCars(
             listOf(
-                RacingCar(movingStrategy = falseMovingStrategy),
-                RacingCar(movingStrategy = trueMovingStrategy)
+                RacingCar(name, movingStrategy = falseMovingStrategy),
+                RacingCar(name, movingStrategy = trueMovingStrategy)
             )
         )
 
         val expected = RacingCars(
             listOf(
-                RacingCar(DistanceDriven(0), falseMovingStrategy),
-                RacingCar(DistanceDriven(1), trueMovingStrategy)
+                RacingCar(name, DistanceDriven(0), falseMovingStrategy),
+                RacingCar(name, DistanceDriven(1), trueMovingStrategy)
             )
         )
 
