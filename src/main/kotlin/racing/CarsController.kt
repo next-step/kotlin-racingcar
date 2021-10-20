@@ -11,7 +11,7 @@ object CarsController {
 
     fun createCars(): Cars {
         val count = CarCount(InputView.getCarCount())
-        return CarsFactory.getCars(count)
+        return CarsFactory.create(count)
     }
 
     fun play(cars: Cars) {

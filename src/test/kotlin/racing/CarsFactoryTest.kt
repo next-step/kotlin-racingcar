@@ -10,7 +10,7 @@ class CarsFactoryTest {
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 10])
     fun `갯수만큼 car를 생성한다`(count: Int) {
-        val cars = CarsFactory.getCars(CarCount(count))
+        val cars = CarsFactory.create(CarCount(count))
 
         assertThat(cars.cars.count()).isEqualTo(count)
     }
