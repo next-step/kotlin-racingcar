@@ -9,4 +9,19 @@ class Cars(val cars: List<Car>) {
     fun goAll() {
         cars.forEach(Car::go)
     }
+
+    fun getWinner(): List<Car> {
+        val winner = cars.reduce { acc, car ->
+            getWinningCar(acc, car)
+        }
+        return cars.filter { it.isDrawWith(winner) }
+    }
+
+    private fun getWinningCar(car: Car, other: Car): Car {
+        return if (car.isAheadOf(other)) {
+            car
+        } else {
+            other
+        }
+    }
 }

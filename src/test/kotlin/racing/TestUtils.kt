@@ -13,3 +13,5 @@ fun Car(name: CarName, position: Int): Car {
         repeat(position) { go() }
     }
 }
+
+fun Car(name: String, position: Int) = Car(CarName(name), position)
