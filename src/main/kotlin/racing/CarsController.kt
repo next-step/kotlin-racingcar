@@ -10,8 +10,8 @@ value class Round(val value: Int) {
 object CarsController {
 
     fun createCars(): Cars {
-        val count = CarCount(InputView.getCarCount())
-        return CarsFactory.create(count)
+        val names = CarName.from(InputView.getCarsName())
+        return CarsFactory.create(names)
     }
 
     fun play(cars: Cars) {
