@@ -5,7 +5,7 @@ import global.strategy.split.SplitStrategy
 import kotlin.streams.toList
 
 @JvmInline
-value class RacingCars(private val _racingCars: List<RacingCar>) {
+value class RacingCars (private val _racingCars: List<RacingCar>) {
 
     init {
         require(_racingCars.isNotEmpty()) { EMPTY_MESSAGE }
@@ -23,9 +23,11 @@ value class RacingCars(private val _racingCars: List<RacingCar>) {
             from(Names.ofStringWithSplitStrategy(names, splitStrategy), movingStrategy)
 
         fun from(names: Names, movingStrategy: MovingStrategy) =
-            RacingCars(names.names.stream()
+            of(names.names.stream()
                 .map { RacingCar(it, movingStrategy = movingStrategy) }
                 .toList())
+
+        fun of(racingCars: List<RacingCar>) = RacingCars(racingCars)
     }
 }
 

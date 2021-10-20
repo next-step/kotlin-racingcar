@@ -2,7 +2,8 @@ package domain.step4.domain.racingcar
 
 import global.strategy.split.SplitStrategy
 
-class Names private constructor(private val _names: List<Name>) {
+@JvmInline
+value class Names (private val _names: List<Name>) {
 
     val names: List<Name>
     get() {

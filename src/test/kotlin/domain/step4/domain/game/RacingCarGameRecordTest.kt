@@ -11,10 +11,9 @@ class RacingCarGameRecordTest {
     fun `자동차들의 현재 상태 정보가 들어온다`() {
         val movingStrategy = { true }
         val name = Name("name")
-        val numberOfCars = 1
-        val expected = RacingCarGameRecord(listOf(
-            RacingCars((listOf(RacingCar(name, DistanceDriven(1), movingStrategy)))),
-            RacingCars((listOf(RacingCar(name, DistanceDriven(2), movingStrategy)))),
+        val expected = RacingCarGameRecord.of(listOf(
+            RacingCars.of((listOf(RacingCar(name, DistanceDriven(1), movingStrategy)))),
+            RacingCars.of((listOf(RacingCar(name, DistanceDriven(2), movingStrategy)))),
         ))
 
         var racingCars = RacingCars.from(Names.ofList(listOf(name)), movingStrategy)

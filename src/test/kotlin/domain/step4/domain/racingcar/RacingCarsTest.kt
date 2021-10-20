@@ -13,7 +13,7 @@ class RacingCarsTest {
 
         val name = Name("test")
 
-        val expected = RacingCars(
+        val expected = RacingCars.of(
             listOf(
                 RacingCar(name, movingStrategy = movingStrategy),
                 RacingCar(name, movingStrategy = movingStrategy)
@@ -34,14 +34,14 @@ class RacingCarsTest {
         val movingStrategy = { true }
         val name = Name("test")
 
-        val racingCars = RacingCars(
+        val racingCars = RacingCars.of(
             listOf(
                 RacingCar(name, movingStrategy = movingStrategy),
                 RacingCar(name, movingStrategy = movingStrategy)
             )
         )
 
-        val expected = RacingCars(
+        val expected = RacingCars.of(
             listOf(
                 RacingCar(name, DistanceDriven(1), movingStrategy),
                 RacingCar(name, DistanceDriven(1), movingStrategy)
@@ -57,14 +57,14 @@ class RacingCarsTest {
         val movingStrategy = { false }
         val name = Name("test")
 
-        val racingCars = RacingCars(
+        val racingCars = RacingCars.of(
             listOf(
                 RacingCar(name, movingStrategy = movingStrategy),
                 RacingCar(name, movingStrategy = movingStrategy)
             )
         )
 
-        val expected = RacingCars(
+        val expected = RacingCars.of(
             listOf(
                 RacingCar(name, DistanceDriven(0), movingStrategy),
                 RacingCar(name, DistanceDriven(0), movingStrategy)
@@ -81,14 +81,14 @@ class RacingCarsTest {
         val trueMovingStrategy = { true }
         val name = Name("test")
 
-        val racingCars = RacingCars(
+        val racingCars = RacingCars.of(
             listOf(
                 RacingCar(name, movingStrategy = falseMovingStrategy),
                 RacingCar(name, movingStrategy = trueMovingStrategy)
             )
         )
 
-        val expected = RacingCars(
+        val expected = RacingCars.of(
             listOf(
                 RacingCar(name, DistanceDriven(0), falseMovingStrategy),
                 RacingCar(name, DistanceDriven(1), trueMovingStrategy)
