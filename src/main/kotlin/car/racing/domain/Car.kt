@@ -4,7 +4,7 @@ import car.racing.exception.OutOfRangeException
 import car.racing.usecase.MovingStrategy
 
 class Car(
-    private val name: String,
+    val name: String,
     private val turnCount: Int,
     private val movingStrategy: MovingStrategy,
 ) {

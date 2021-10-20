@@ -14,7 +14,7 @@ class ResultView {
                     .filter { it }
                     .joinToString(SEPARATOR) { "-" }
 
-                println(moveDistance)
+                println("${car.name} : $moveDistance")
             }
             println()
         }
