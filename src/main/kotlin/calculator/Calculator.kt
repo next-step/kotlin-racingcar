@@ -1,12 +1,6 @@
 package calculator
 
 class Calculator {
-    companion object {
-        private const val INPUT_DELIMITER = " "
-        private const val NULL_OR_EMPTY_INPUT = "입력값이 존재하지 않습니다."
-        private const val WRONG_NUMBER_OF_OPERANDS = "잘못된 피연산자 개수입니다."
-    }
-
     fun calculate(input: String?): Operand {
         require(input != null && input.isNotBlank()) { NULL_OR_EMPTY_INPUT }
         val inputs = input.split(INPUT_DELIMITER)
@@ -26,4 +20,9 @@ class Calculator {
         return result
     }
 
+    companion object {
+        private const val INPUT_DELIMITER = " "
+        private const val NULL_OR_EMPTY_INPUT = "입력값이 존재하지 않습니다."
+        private const val WRONG_NUMBER_OF_OPERANDS = "잘못된 피연산자 개수입니다."
+    }
 }
