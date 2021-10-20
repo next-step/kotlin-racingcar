@@ -16,10 +16,6 @@ class Cars(val cars: List<Car> = mutableListOf()) {
         )
     }
 
-    fun makeCars(inputCar: Int): Cars {
-        return generateCar(inputCar)
-    }
-
     fun generateCar(count: Int): Cars {
         return Cars(
             (0 until count)

@@ -3,7 +3,9 @@ package racingcar.view
 import racingcar.domain.Cars
 import racingcar.domain.Record
 
-class ResultView(private val record: Record) {
+class ResultView(
+    private val record: Record
+) {
 
     companion object {
         private const val EXECUTE_RESULT = "실행 결과"
