@@ -3,8 +3,7 @@ package racing
 class Game(
     private val roundCount: Int,
     private val carCount: Int,
-    private val canMoveForward: Random,
-    private val movingCondition: Int
+    private val pedal: Pedal
 ) {
     companion object {
         fun isPositive(value: Int) {
@@ -18,7 +17,7 @@ class Game(
     }
 
     fun start() {
-        val cars = List(carCount) { Car(canMoveForward, movingCondition) }
+        val cars = List(carCount) { Car(pedal) }
 
         OutPutView.printStart()
         for (i in 0..roundCount) {
