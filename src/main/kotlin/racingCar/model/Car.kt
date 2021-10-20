@@ -5,7 +5,7 @@ data class Car(private val carName: CarName) {
 
     private var mileage: Int = 0
 
-    fun move(move: Int) = when (conditionOfMove(move)) {
+    fun move(move: Int) = when (ForwardRuleOfGo.isValid(move)) {
         true -> forward()
         false -> stop()
     }
