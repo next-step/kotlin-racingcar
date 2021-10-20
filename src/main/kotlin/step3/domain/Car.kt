@@ -4,7 +4,7 @@ import java.util.Random
 
 class Car {
     private val random = Random()
-    private var distance = 0
+    var distance = 0
 
     fun forward() {
         if (random.nextInt(MAX_RANDOM) >= 4) distance++

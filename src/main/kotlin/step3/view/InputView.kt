@@ -3,19 +3,19 @@ package step3.view
 import step3.exception.BizException
 import step3.exception.message.input.InputErrorMessage
 
-class InputView(private val value: String = readLine()!!) {
+class InputView {
 
     fun inputNumberOfCars(): Int {
         println(NUMBER_OF_CARS)
 
-        val inputValue: Int = numberCheck(value)
+        val inputValue: Int = numberCheck(readLine()!!)
 
         return valueRangeCheck(inputValue)
     }
 
     fun inputNumberOfAttempts(): Int {
         println(NUMBER_OF_ATTEMPTS)
-        val inputValue: Int = numberCheck(value)
+        val inputValue: Int = numberCheck(readLine()!!)
 
         return valueRangeCheck(inputValue)
     }
