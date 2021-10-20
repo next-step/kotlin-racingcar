@@ -1,9 +1,7 @@
 package racingCar.model
 
-data class Car(private val name: String) {
-    init {
-        CarName.isValid(name)
-    }
+data class Car(private val carName: CarName) {
+    constructor(name: String) : this(CarName(name))
 
     private var mileage: Int = 0
 
@@ -20,5 +18,5 @@ data class Car(private val name: String) {
         mileage = StopStrategy().move(mileage)
     }
 
-    fun info() = Pair(name, mileage)
+    fun info() = Pair(carName.name, mileage)
 }
