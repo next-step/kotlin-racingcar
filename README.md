@@ -19,7 +19,7 @@
 
 ### 구현 체크 리스트
 
--[ ] Car class 구현
+-[X] Car class 구현
 -[ ] Race class 구현
 -[ ] main.kt 구현
 -[ ] InputView class 구현
