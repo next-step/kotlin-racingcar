@@ -1,6 +1,6 @@
 package step2
 
-import step2.ExceptionType.Companion.OPERATOR_IS_MUST_FIXED_SYMBOL
+import step2.ExceptionType.OPERATOR_IS_MUST_FIXED_SYMBOL
 import step2.NumericChecker.checkIsNotNumeric
 
 class Operator(private val symbol: String) {

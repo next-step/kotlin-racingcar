@@ -1,9 +1,9 @@
 package step2
 
-import step2.ExceptionType.Companion.INPUT_MUST_END_WITH_NUMBER
-import step2.ExceptionType.Companion.INPUT_MUST_NOT_BLANK
-import step2.ExceptionType.Companion.INPUT_MUST_NOT_NULL
-import step2.ExceptionType.Companion.INPUT_MUST_START_WITH_NUMBER
+import step2.ExceptionType.INPUT_MUST_END_WITH_NUMBER
+import step2.ExceptionType.INPUT_MUST_NOT_BLANK
+import step2.ExceptionType.INPUT_MUST_NOT_NULL
+import step2.ExceptionType.INPUT_MUST_START_WITH_NUMBER
 import step2.NumericChecker.checkIsNumeric
 import java.util.LinkedList
 import java.util.Queue

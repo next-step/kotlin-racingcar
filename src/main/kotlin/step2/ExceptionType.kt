@@ -1,7 +1,6 @@
 package step2
 
-class ExceptionType {
-    companion object {
+object ExceptionType {
         const val INPUT_MUST_NOT_NULL = "입력이 비어서는 안됩니다."
         const val INPUT_MUST_NOT_BLANK = "입력이 공백 이여서는 안됩니다."
         const val INPUT_MUST_START_WITH_NUMBER = "숫자 부터 입력 되어야합니다."
@@ -11,5 +10,4 @@ class ExceptionType {
 
         const val NOT_OPERATOR_SYMBOL = "잘못된 계산 연산자 입력입니다."
         const val CAN_NOT_DIVIDED_BY_ZERO = "0으로 나눌수 없습니다."
-    }
 }

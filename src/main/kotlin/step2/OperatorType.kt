@@ -1,7 +1,7 @@
 package step2
 
-import step2.ExceptionType.Companion.CAN_NOT_DIVIDED_BY_ZERO
-import step2.ExceptionType.Companion.NOT_OPERATOR_SYMBOL
+import step2.ExceptionType.CAN_NOT_DIVIDED_BY_ZERO
+import step2.ExceptionType.NOT_OPERATOR_SYMBOL
 
 enum class OperatorType(val symbol: String, val operatorBlock: (a: Operand, b: Operand) -> Operand) {
     MINUS("-", { a, b -> a.apply { value -= b.value } }),
