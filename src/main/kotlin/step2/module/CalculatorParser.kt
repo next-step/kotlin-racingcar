@@ -7,6 +7,8 @@ import java.util.Queue
 
 class CalculatorParser : ParserModule {
 
+    private val queue: Queue<String> = LinkedList()
+
     private fun String.isNullOrEmpty() {
         if (this.isEmpty()) throw CustomException(CalculatorMessage.NULL_AND_EMPTY)
     }
@@ -29,8 +31,6 @@ class CalculatorParser : ParserModule {
         }
     }
 
-    private val queue: Queue<String> = LinkedList()
-
     override fun parse(input: String): Queue<String> {
 
         input.isNullOrEmpty()
@@ -48,7 +48,6 @@ class CalculatorParser : ParserModule {
                 queue.add(text)
             }
         }
-
         return queue
     }
 }

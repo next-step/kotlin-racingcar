@@ -15,3 +15,9 @@
 - 입력값이 null 이거나 빈 공백 문자일 경우  IllegalArgumentException throw 에러 발생
 - 사칙 연산 기호가 아닌 경우  IllegalArgumentException throw 에러 발생
 - 사칙 연산을 모두 포함하는 기능 구현
+
+## 🚀 개선 사항
+
+- sealed class 클래스 활용
+- Operator Enum Class 계산 하는 일과 연산자를 찾는 일을 분리
+- ETC
