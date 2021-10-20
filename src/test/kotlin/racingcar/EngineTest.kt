@@ -36,8 +36,8 @@ class EngineTest {
 
     @ParameterizedTest(name = "Test {index}: value == {0} result == {1}")
     @CsvSource(value = ["0, false", "1, false", "2, false", "3, false", "4, true", "5, true", "6, true"])
-    fun `randomNumber 4 이상일 경우 Engine 작동하는지 테스트`(value: Int, result: Boolean) {
+    fun `randomNumber 4 이상일 경우 Engine 작동하는지 테스트`(value: Int, expected: Boolean) {
         mockCarEngine.setRandomNum(value)
-        assertThat(mockCarEngine.execute()).isEqualTo(result)
+        assertThat(mockCarEngine.execute()).isEqualTo(expected)
     }
 }
