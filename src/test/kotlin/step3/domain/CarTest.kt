@@ -1,12 +1,16 @@
 package step3.domain
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import step3.view.InputView
 
 class CarTest {
 
     @Test
-    fun `실행`() {
-        val inputView: InputView = InputView()
+    fun `이동거리가 증가했는지 테스트 한다`() {
+        val car = Car()
+
+        val distance = car.distance
+        car.distanceIncrease()
+        assertThat(distance + 1).isEqualTo(car.distance)
     }
 }

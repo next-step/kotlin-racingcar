@@ -7,7 +7,11 @@ class Car {
     var distance = 0
 
     fun forward() {
-        if (random.nextInt(MAX_RANDOM) >= 4) distance++
+        if (random.nextInt(MAX_RANDOM) >= MOVE_SUCCESS) distanceIncrease()
+    }
+
+    fun distanceIncrease() {
+        distance++
     }
 
     companion object {
