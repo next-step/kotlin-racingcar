@@ -5,22 +5,12 @@ class Game(
     private val carCount: Int,
     private val pedal: Pedal
 ) {
-    companion object {
-        fun isPositive(value: Int) {
-            require(value > 0) { "양수만 가능합니다." }
-        }
-    }
-
-    init {
-        isPositive(roundCount)
-        isPositive(carCount)
-    }
-
     fun start() {
-        val cars = List(carCount) { Car(pedal) }
+        val cars = Cars.make(count = carCount, pedal = pedal).cars
+        val round = Round.make(count = roundCount).round
 
         OutPutView.printStart()
-        for (i in 0..roundCount) {
+        for (i in 0..round) {
             cars.forEach(Car::moveForward)
             OutPutView.printRound(cars)
         }
