@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class NameTest {
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "이름 : {0}")
     @ValueSource(strings = ["a", "ab", "abc", "abcd", "abcd"])
     fun `길이가 5이하인 이름이 들어오면 생성 가능하다`(nameString: String) {
         val name = Name(nameString)
