@@ -1,4 +1,4 @@
-package domain.step2.strategy.split
+package global.strategy.split
 
 @FunctionalInterface
 fun interface SplitStrategy {
