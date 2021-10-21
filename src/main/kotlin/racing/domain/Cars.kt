@@ -3,11 +3,11 @@ package racing.domain
 @JvmInline
 value class Cars private constructor(val cars: List<Car>) {
     companion object {
-        fun make(count: Int, pedal: Pedal): Cars {
-            require(count > 0) {
-                "양수만 가능합니다."
+        fun make(carNames: List<String>, pedal: Pedal): Cars {
+            require(carNames.isNotEmpty()) {
+                "1개 이상 이름이 필요합니다."
             }
-            return Cars(List(count) { Car(pedal) })
+            return Cars(carNames.map { name -> Car(name = name, pedal = pedal) })
         }
     }
 
