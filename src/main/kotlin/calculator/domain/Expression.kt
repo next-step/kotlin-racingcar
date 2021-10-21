@@ -7,7 +7,7 @@ class Expression(
     private val right: Operand,
     private val operator: Operator
 ) {
-    fun calculate() = operator.apply(left.value(), right.value())
+    fun calculate() = operator.apply(left.value, right.value)
 
     companion object {
         private val REGEX = Pattern.compile("[\\d */+-]+")

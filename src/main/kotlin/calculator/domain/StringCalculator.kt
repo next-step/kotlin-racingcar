@@ -15,7 +15,7 @@ class StringCalculator {
         val operators = _operators.toOperators()
         val operands = _operands.toOperands()
 
-        var result = operands.first().value()
+        var result = operands.first().value
         for (index in 1 until operands.size) {
             result = Expression(result.toOperand(), operands[index], operators[index - 1]).calculate()
         }

@@ -10,13 +10,11 @@ enum class Operator(val symbol: String, val apply: (Double, Double) -> Double) {
     });
 
     companion object {
-        fun isOperator(symbol: String) = values().any() { it.symbol == symbol }
+        fun isOperator(symbol: String) = values().any { it.symbol == symbol }
 
         fun of(symbol: String): Operator {
-            return values().find { it.symbol == symbol }.let {
-                require(it != null && isOperator(symbol)) { "잘못된 연산자 입니다." }
-                it
-            }
+            return values().find { it.symbol == symbol }
+                ?: throw UnsupportedOperationException("잘못된 연산자 입니다.")
         }
     }
 }

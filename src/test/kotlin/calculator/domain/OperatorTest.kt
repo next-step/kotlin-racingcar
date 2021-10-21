@@ -8,27 +8,27 @@ import org.junit.jupiter.params.provider.ValueSource
 class OperatorTest {
 
     @ParameterizedTest
-    @CsvSource("1, 2", "3, 4", "5, 6")
-    fun `덧셈을 할 수 있다`(left: Double, right: Double) {
-        assertThat(Operator.PLUS.apply(left, right)).isEqualTo(left + right)
+    @CsvSource("1, 2, 3", "3, 4, 7", "5, 6, 11")
+    fun `덧셈을 할 수 있다`(left: Double, right: Double, result: Double) {
+        assertThat(Operator.PLUS.apply(left, right)).isEqualTo(result)
     }
 
     @ParameterizedTest
-    @CsvSource("1, 2", "3, 4", "5, 6")
-    fun `뺼샘을 할 수 있다`(left: Double, right: Double) {
-        assertThat(Operator.MINUS.apply(left, right)).isEqualTo(left - right)
+    @CsvSource("1, 2, -1", "3, 4, -1", "5, 6, -1")
+    fun `뺼샘을 할 수 있다`(left: Double, right: Double, result: Double) {
+        assertThat(Operator.MINUS.apply(left, right)).isEqualTo(result)
     }
 
     @ParameterizedTest
-    @CsvSource("1, 2", "3, 4", "5, 6")
-    fun `곱셈을 할 수 있다`(left: Double, right: Double) {
-        assertThat(Operator.TIMES.apply(left, right)).isEqualTo(left * right)
+    @CsvSource("1, 2, 2", "3, 4, 12", "5, 6, 30")
+    fun `곱셈을 할 수 있다`(left: Double, right: Double, result: Double) {
+        assertThat(Operator.TIMES.apply(left, right)).isEqualTo(result)
     }
 
     @ParameterizedTest
-    @CsvSource("1, 2", "3, 4", "5, 6")
-    fun `나눗셈을 할 수 있다`(left: Double, right: Double) {
-        assertThat(Operator.DIVIDE.apply(left, right)).isEqualTo(left / right)
+    @CsvSource("1, 2, 0.5", "3, 4, 0.75", "5, 5, 1.0")
+    fun `나눗셈을 할 수 있다`(left: Double, right: Double, result: Double) {
+        assertThat(Operator.DIVIDE.apply(left, right)).isEqualTo(result)
     }
 
     @ParameterizedTest
@@ -47,7 +47,7 @@ class OperatorTest {
     @ParameterizedTest
     @ValueSource(strings = ["&", "$", "#", "!"])
     fun `사칙연산 기호가 아닌 문자열을 연산자로 변환할 경우 예외를 발생시킨다`(symbol: String) {
-        assertThatExceptionOfType(IllegalArgumentException::class.java)
+        assertThatExceptionOfType(UnsupportedOperationException::class.java)
             .isThrownBy { Operator.of(symbol) }
     }
 }
