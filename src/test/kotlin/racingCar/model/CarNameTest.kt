@@ -8,8 +8,9 @@ class CarNameTest {
     @ParameterizedTest
     @ValueSource(strings = ["ffffffff", "flammmmeeeee", "eeeeeeeeeee"])
     fun `자동차 이름이 지정 된 글자가 넘으면 에러처리`(input: String) {
-        Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy { CarName(input) }
-            .withMessageContaining("자를 초과할 수 없습니다.")
+        // when
+        val nameException = kotlin.runCatching { CarName(input) }.exceptionOrNull()
+        // then
+        Assertions.assertThat(nameException).hasMessage("자동차 이름은 5 자를 초과할 수 없습니다.")
     }
 }

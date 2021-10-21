@@ -1,6 +1,5 @@
 package racingCar.model
 
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
@@ -51,8 +50,9 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(strings = ["ffffffff", "flammmmeeeee", "eeeeeeeeeee"])
     fun `자동차 이름이 지정 된 글자가 넘으면 에러처리`(input: String) {
-        Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy { Car(input) }
-            .withMessageContaining("자를 초과할 수 없습니다.")
+        // when
+        val nameException = kotlin.runCatching { Car(input) }.exceptionOrNull()
+        // then
+        assertThat(nameException).hasMessage("자동차 이름은 5 자를 초과할 수 없습니다.")
     }
 }
