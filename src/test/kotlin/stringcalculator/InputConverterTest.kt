@@ -3,7 +3,6 @@ package stringcalculator
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import stringcalculator.operations.Operation
 
 class InputConverterTest {
 
@@ -18,7 +17,14 @@ class InputConverterTest {
     fun `convertToOperations 실행 시 Operation 리스트를 반환한다`() {
         val operations = InputConverter().convertToOperations("1 + 2 - 3 * 4 / 5".split(" "))
 
-        assertThat(operations).hasSize(4).allMatch { it is Operation }
+        assertThat(operations).isEqualTo(
+            listOf(
+                Operator.ADD.operation,
+                Operator.SUBTRACT.operation,
+                Operator.MULTIPLY.operation,
+                Operator.DIVIDE.operation
+            )
+        )
     }
 
     @Test
