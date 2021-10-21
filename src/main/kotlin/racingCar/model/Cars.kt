@@ -8,7 +8,7 @@ class Cars(stringOfCars: List<String>) {
         list.forEach { moveCar(it) }
     }
 
-    private fun moveCar(car: Car) = car.move(CarMove())
+    private fun moveCar(car: Car) = car.move(CarMovement())
 
     fun result() = list.map { it.info() }
 

@@ -1,7 +1,6 @@
 package racingCar.model
 
-class CarMove : Movement {
-
+class CarMovement : Movement {
     override fun amount() = when (moveCondition()) {
         true -> FORWARD_AMOUNT
         false -> STOP_AMOUNT
