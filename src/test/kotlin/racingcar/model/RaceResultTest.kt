@@ -1,14 +1,9 @@
-package racingcar
+package racingcar.model
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import racingcar.exception.Exception
-import racingcar.model.Car
-import racingcar.model.CarName
-import racingcar.model.RaceResult
-import racingcar.model.RacingCars
-import racingcar.model.Round
 
 class RaceResultTest {
     @Test
