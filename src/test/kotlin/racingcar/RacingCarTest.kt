@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource
 import racingcar.constant.Constant
 import racingcar.model.Car
 import racingcar.util.Engine
-import racingcar.util.RacingUtil
+import racingcar.util.Cars
 
 class RacingCarTest {
     @Test
@@ -18,7 +18,8 @@ class RacingCarTest {
     @ParameterizedTest
     @CsvSource("1, 1", "2, 2", "3, 3")
     fun `입력받은 자동차 개수 만큼 리스트에 자동차가 생기는가`(input: Int, expected: Int) {
-        val carListSize = RacingUtil.getCarList(input).size
+        val cars = Cars.create(input)
+        val carListSize = cars.getCarList().size
         assertEquals(carListSize, expected)
     }
 }

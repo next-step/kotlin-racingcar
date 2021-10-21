@@ -13,10 +13,10 @@ object Validation {
     fun isPositiveNumber(number: Int) = number > ZERO
 
     fun getCarCountToInt(carCount: String): Int {
-       return if (carCount.isIntType() && isPositiveNumber(carCount.toInt())) {
-           carCount.toInt()
+        return if (carCount.isIntType() && isPositiveNumber(carCount.toInt())) {
+            carCount.toInt()
         } else {
-           InputView.retryGetCarCount()
+            InputView.retryGetCarCount()
         }
     }
 
