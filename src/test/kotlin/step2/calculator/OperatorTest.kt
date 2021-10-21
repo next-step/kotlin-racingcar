@@ -115,8 +115,43 @@ internal class OperatorTest {
         assertThat(resultValue).isNotEqualTo(expectedResultValue)
     }
 
+    @DisplayName("주어진 피연산자가 올바른 경우 나눗셈 테스트")
+    @ParameterizedTest
+    @MethodSource("validParameterForDivide")
+    fun divideWhenGivenValidOperand(firstOperand: Int, secondOperand: Int, expectedResultValue: Int) {
+        // Arrange
+        val divideOperator = Operator.getOperator("/")
+
+        // Act
+        val resultValue = divideOperator.calculate(firstOperand, secondOperand)
+
+        // Assert
+        assertThat(resultValue).isEqualTo(expectedResultValue)
+    }
+
+    @DisplayName("주어진 피연산자가 올바르지 않은 경우 나눗셈 테스트")
+    @ParameterizedTest
+    @MethodSource("invalidParameterForDivide")
+    fun divideWhenGivenInvalidOperand(
+        firstOperand: Int,
+        secondOperand: Int,
+        expectedException: Exception,
+        containErrorMessage: String
+    ) {
+        // Arrange
+        val divideOperator = Operator.getOperator("/")
+
+        // Act & Assert
+        assertThatThrownBy() {
+            divideOperator.calculate(firstOperand, secondOperand)
+        }.isInstanceOf(expectedException::class.java)
+            .hasMessageContaining(containErrorMessage)
+    }
+
     companion object {
+        private const val arithmeticExceptionErrorMessage = "by zero"
         private val illegalArgumentException = IllegalArgumentException()
+        private val arithmeticException = ArithmeticException()
 
         @JvmStatic
         fun validOperator(): Stream<Arguments> {
@@ -213,6 +248,28 @@ internal class OperatorTest {
                 Arguments.of(100_000, 100_000, 10_000_000_000),
                 Arguments.of(-100_000, 200_000, -20_000_000_000),
                 Arguments.of(-100_000, -200_000, 20_000_000_000),
+            )
+        }
+
+        @JvmStatic
+        fun validParameterForDivide(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of(2, 1, 2),
+                Arguments.of(4, 2, 2),
+                Arguments.of(-1, -1, 1),
+                Arguments.of(10_000, 5, 2_000),
+                Arguments.of(777_777_777, 7, 111_111_111),
+                Arguments.of(880_000, 10_000, 88),
+                Arguments.of(-200_000, 10_000, -20),
+                Arguments.of(0, 10_000, 0),
+            )
+        }
+
+        @JvmStatic
+        fun invalidParameterForDivide(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of(0, 0, arithmeticException, arithmeticExceptionErrorMessage),
+                Arguments.of(100_000, 0, arithmeticException, arithmeticExceptionErrorMessage),
             )
         }
     }
