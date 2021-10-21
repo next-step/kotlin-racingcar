@@ -87,6 +87,34 @@ internal class OperatorTest {
         assertThat(resultValue).isNotEqualTo(expectedResultValue)
     }
 
+    @DisplayName("주어진 피연산자가 올바른 경우 곱셈 테스트")
+    @ParameterizedTest
+    @MethodSource("validParameterForMulti")
+    fun multiWhenGivenValidOperand(firstOperand: Int, secondOperand: Int, expectedResultValue: Int) {
+        // Arrange
+        val multiOperator = Operator.getOperator("*")
+
+        // Act
+        val resultValue = multiOperator.calculate(firstOperand, secondOperand)
+
+        // Assert
+        assertThat(resultValue).isEqualTo(expectedResultValue)
+    }
+
+    @DisplayName("주어진 피연산자가 올바르지 않은 경우 곱셈 테스트")
+    @ParameterizedTest
+    @MethodSource("invalidParameterForMulti")
+    fun multiWhenGivenInvalidOperand(firstOperand: Int, secondOperand: Int, expectedResultValue: Long) {
+        // Arrange
+        val multiOperator = Operator.getOperator("*")
+
+        // Act
+        val resultValue = multiOperator.calculate(firstOperand, secondOperand).toLong()
+
+        // Assert
+        assertThat(resultValue).isNotEqualTo(expectedResultValue)
+    }
+
     companion object {
         private val illegalArgumentException = IllegalArgumentException()
 
@@ -161,6 +189,30 @@ internal class OperatorTest {
             return Stream.of(
                 Arguments.of(2_000_000_000, -2_000_000_000, 4_000_000_000),
                 Arguments.of(-2_000_000_000, 2_000_000_000, -4_000_000_000),
+            )
+        }
+
+        @JvmStatic
+        fun validParameterForMulti(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of(1, 2, 2),
+                Arguments.of(797, 111, 88_467),
+                Arguments.of(-1, 2, -2),
+                Arguments.of(-3, 8, -24),
+                Arguments.of(0, 0, 0),
+                Arguments.of(10_000, 10_000, 100_000_000),
+                Arguments.of(200_000, 10_000, 2_000_000_000),
+                Arguments.of(-200_000, 10_000, -2_000_000_000),
+                Arguments.of(-1, -1, 1),
+            )
+        }
+
+        @JvmStatic
+        fun invalidParameterForMulti(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of(100_000, 100_000, 10_000_000_000),
+                Arguments.of(-100_000, 200_000, -20_000_000_000),
+                Arguments.of(-100_000, -200_000, 20_000_000_000),
             )
         }
     }
