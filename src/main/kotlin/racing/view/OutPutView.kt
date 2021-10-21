@@ -1,5 +1,6 @@
 package racing.view
 
+import racing.domain.Car
 import racing.domain.Cars
 
 object OutPutView {
@@ -18,5 +19,10 @@ object OutPutView {
             sb.append("-")
         }
         return sb.toString()
+    }
+
+    fun printResult(cars: Cars) {
+        val winners = cars.getWinners().joinToString(separator = ", ", transform = Car::name)
+        println("${winners}가 우승했습니다.")
     }
 }

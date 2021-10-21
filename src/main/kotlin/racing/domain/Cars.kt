@@ -14,4 +14,10 @@ value class Cars private constructor(val cars: List<Car>) {
     fun goForward() {
         cars.forEach(Car::moveForward)
     }
+
+    fun getWinners(): List<Car> {
+        val max = cars.maxOf(Car::position)
+        return cars.filter { car -> car.position == max }
+            .toList()
+    }
 }

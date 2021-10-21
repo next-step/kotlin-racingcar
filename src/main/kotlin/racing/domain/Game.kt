@@ -11,9 +11,10 @@ class Game(
         val cars = Cars.make(carNames = carNames, pedal = pedal)
 
         OutPutView.printStart()
-        for (i in 0..round.round) {
+        for (i in 1..round.round) {
             cars.goForward()
             OutPutView.printRound(cars)
         }
+        OutPutView.printResult(cars)
     }
 }
