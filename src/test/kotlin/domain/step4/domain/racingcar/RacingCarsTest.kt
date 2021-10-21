@@ -104,19 +104,28 @@ class RacingCarsTest {
     fun `현재 상태의 우승자를 반환한다`() {
         val falseMovingStrategy = MovingStrategy { false }
         val trueMovingStrategy = MovingStrategy { true }
+        val oneName = Name("one")
+        val twoName = Name("two")
+        val threeName = Name("three")
 
-        val firstCar = RacingCar(Name("first"), movingStrategy = falseMovingStrategy)
-        val secondCar = RacingCar(Name("second"), movingStrategy = trueMovingStrategy)
-        val thirdCar = RacingCar(Name("third"), movingStrategy = trueMovingStrategy)
+        val racingCars = RacingCars.of(
+            listOf(
+                RacingCar(oneName, movingStrategy = falseMovingStrategy),
+                RacingCar(twoName, movingStrategy = trueMovingStrategy),
+                RacingCar(threeName, movingStrategy = trueMovingStrategy)
+            )
+        )
 
-        val racingCars = RacingCars.of(listOf(firstCar, secondCar, thirdCar))
+        val two = RacingCar(twoName, DistanceDriven(1), trueMovingStrategy)
+        val three = RacingCar(threeName, DistanceDriven(1), trueMovingStrategy)
+
         val movedRacingCars = racingCars.moveForward()
         val winningRacingCars: List<RacingCar> = movedRacingCars.winningRacingCars()
 
         assertAll(
             { assertThat(winningRacingCars).isNotNull },
             { assertThat(winningRacingCars.size).isEqualTo(2) },
-            { assertThat(winningRacingCars).containsExactly(secondCar, thirdCar) },
+            { assertThat(winningRacingCars).containsExactly(two, three) },
         )
     }
 }
