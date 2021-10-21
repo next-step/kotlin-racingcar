@@ -1,24 +1,24 @@
 package step2
 
-import step2.ExceptionType.Companion.CAN_NOT_DIVIDED_BY_ZERO
-import step2.ExceptionType.Companion.NOT_OPERATOR_SYMBOL
+import step2.ExceptionType.CAN_NOT_DIVIDED_BY_ZERO
+import step2.ExceptionType.NOT_OPERATOR_SYMBOL
 
-enum class OperatorType(val symbol: String, val operator: Operator) {
-    MINUS("-", Operator { a, b -> a - b }),
-    PLUS("+", Operator { a, b -> a + b }),
+enum class OperatorType(val symbol: String, val operatorBlock: (oldValue: Operand, newValue: Operand) -> Operand) {
+    MINUS("-", { oldValue, newValue -> oldValue.apply { value -= newValue.value } }),
+    PLUS("+", { oldValue, newValue -> oldValue.apply { value += newValue.value } }),
     DIVIDE(
         "/",
-        Operator { a, b ->
-            require(b != 0.0) { CAN_NOT_DIVIDED_BY_ZERO }
-            a / b
+        { oldValue, newValue ->
+            require(newValue.value != 0.0) { CAN_NOT_DIVIDED_BY_ZERO }
+            oldValue.apply { value /= newValue.value }
         }
     ),
-    MULTIPLY("*", Operator { a, b -> a * b });
+    MULTIPLY("*", { oldValue, newValue -> oldValue.apply { value *= newValue.value } });
 
     companion object {
-        fun getOperator(symbol: String): Operator {
+        fun findOperator(symbol: String): (Operand, Operand) -> Operand {
             val type = values().find { it.symbol == symbol } ?: throw IllegalArgumentException(NOT_OPERATOR_SYMBOL)
-            return type.operator
+            return type.operatorBlock
         }
     }
 }

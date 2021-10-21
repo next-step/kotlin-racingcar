@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 
 class CalculatorTest {
     @Test
-    fun `단순 계산 테스트`() {
+    fun `연산자가 하나인 경우의 수식 계산`() {
         assertThat(Calculator.calculate("2 - 2")).isEqualTo(0.0)
         assertThat(Calculator.calculate("2.0 - 2")).isEqualTo(0.0)
         assertThat(Calculator.calculate("2 - 0.2")).isEqualTo(1.8)
@@ -17,7 +17,7 @@ class CalculatorTest {
     }
 
     @Test
-    fun `복수 계산 테스트`() {
+    fun `연산자가 두개 이상인 경우의 수식 계산`() {
         assertThat(Calculator.calculate("2 + 3 * 4 / 2")).isEqualTo(10.0)
         assertThat(Calculator.calculate("2 + 3 - 4 / 2")).isEqualTo(0.5)
         assertThat(Calculator.calculate("2 + 3 * 4 / 2")).isEqualTo(10.0)
@@ -26,17 +26,22 @@ class CalculatorTest {
     }
 
     @Test
-    fun `예외 발생 0으로 나눔`() {
+    fun `계산중 0으로 나누려고 하는 경우의 예외 발생`() {
         assertThatIllegalArgumentException().isThrownBy { Calculator.calculate("1 / 0") }
     }
+
     @Test
-    fun `예외 발생 빈칸, 공백`() {
-        assertThatIllegalArgumentException().isThrownBy { Calculator.calculate("") }
+    fun `공백이 입력 되었을 경우의 예외 발생`() {
         assertThatIllegalArgumentException().isThrownBy { Calculator.calculate(" ") }
     }
 
     @Test
-    fun `예외 발생 잘못된 입력`() {
+    fun `빈칸이 입력 되었을 경우의 예외 발생`() {
+        assertThatIllegalArgumentException().isThrownBy { Calculator.calculate("") }
+    }
+
+    @Test
+    fun `잘못된 계산식이 입력 되었을 경우의 예외 발생`() {
         assertThatIllegalArgumentException().isThrownBy { Calculator.calculate("1 +") }
         assertThatIllegalArgumentException().isThrownBy { Calculator.calculate("2 2") }
         assertThatIllegalArgumentException().isThrownBy { Calculator.calculate("+") }
