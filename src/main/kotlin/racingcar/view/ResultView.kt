@@ -17,7 +17,7 @@ class ResultView {
         printResultTitle(RESULT_TITLE)
         repeat(result.roundList.size) {
             printStartRound(result.roundList[it].round)
-            printRace(result.roundList[it].roundResult)
+            printRace(result.roundList[it].roundResult.racingCars)
             printEndRound()
         }
         printRaceResult(result.winners)

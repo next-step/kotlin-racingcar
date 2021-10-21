@@ -8,10 +8,10 @@ import racingcar.exception.Exception.Companion.CASE_ZERO_WINNER
  * */
 data class Round(
     val round: Int,
-    val roundResult: List<Car>
+    val roundResult: RacingCars
 ) {
     init {
         require(round >= 0) { CASE_ZERO_RACING_ROUND }
-        require(roundResult.isNotEmpty()) { CASE_ZERO_WINNER }
+        require(roundResult.racingCars.isNotEmpty()) { CASE_ZERO_WINNER }
     }
 }
