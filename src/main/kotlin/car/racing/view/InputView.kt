@@ -2,10 +2,11 @@ package car.racing.view
 
 class InputView {
 
-    fun inputCarCount(): String {
+    fun inputCarCount(): List<String> {
         println(INPUT_CAR_NAME)
+        val inputValue = readLine() ?: ""
 
-        return readLine() ?: ""
+        return inputValue.split(",")
     }
 
     fun inputTurnCount(): Int {

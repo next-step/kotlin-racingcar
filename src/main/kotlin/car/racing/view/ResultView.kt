@@ -1,13 +1,14 @@
 package car.racing.view
 
 import car.racing.domain.Car
-import car.racing.usecase.FindRaceWinner
 
-class ResultView(
-    private val findRaceWinner: FindRaceWinner,
-) {
+class ResultView {
 
-    fun show(cars: List<Car>, turnCount: Int) {
+    fun show(
+        cars: List<Car>,
+        turnCount: Int,
+        winners: List<Car>,
+    ) {
         println("실행결과")
 
         repeat(turnCount) { turn ->
@@ -15,10 +16,9 @@ class ResultView(
             println()
         }
 
-        val winners = findRaceWinner.findByCars(cars, turnCount)
-            .joinToString { winner -> winner.name }
+        val winnersName = winners.joinToString { winner -> winner.name }
 
-        println("$winners 가 최종 우승했습니다.")
+        println("$winnersName 가 최종 우승했습니다.")
     }
 
     private fun printEachTurn(

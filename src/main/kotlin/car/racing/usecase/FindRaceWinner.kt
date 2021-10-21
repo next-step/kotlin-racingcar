@@ -8,14 +8,19 @@ class FindRaceWinner {
         cars: List<Car>,
         turnCount: Int,
     ): List<Car> {
-        val turn = turnCount - 1
         val maxMoveDistance = cars
-            .map { car -> car.getMoveDistanceUntilTurn(turn).filter { it }.size }
+            .map { car -> getMoveDistance(car, turnCount) }
             .maxOrNull() ?: 0
 
         return cars.filter { car ->
-            val moveDistance = car.getMoveDistanceUntilTurn(turn).filter { it }.size
+            val moveDistance = getMoveDistance(car, turnCount)
             moveDistance == maxMoveDistance
         }
+    }
+
+    private fun getMoveDistance(car: Car, turnCount: Int): Int {
+        val turn = turnCount - 1
+
+        return car.getMoveDistanceUntilTurn(turn).filter { it }.size
     }
 }

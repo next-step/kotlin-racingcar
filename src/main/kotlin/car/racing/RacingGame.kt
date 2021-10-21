@@ -15,14 +15,14 @@ fun main() {
 class RacingGame {
 
     private val inputView = InputView()
-    private val resultView = ResultView(FindRaceWinner())
+    private val resultView = ResultView()
     private val racing = Racing()
+    private val findRaceWinner = FindRaceWinner()
 
     fun start() {
-        val carCount = inputView.inputCarCount()
+        val carNames = inputView.inputCarCount()
         val turnCount = inputView.inputTurnCount()
 
-        val carNames = carCount.split(",")
         val cars = carNames.map { name ->
             Car(
                 name = name,
@@ -32,7 +32,8 @@ class RacingGame {
         }
 
         racing.race(cars, turnCount)
+        val winners = findRaceWinner.findByCars(cars, turnCount)
 
-        resultView.show(cars, turnCount)
+        resultView.show(cars, turnCount, winners)
     }
 }
