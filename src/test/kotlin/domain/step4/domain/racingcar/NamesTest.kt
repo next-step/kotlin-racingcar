@@ -22,7 +22,7 @@ class NamesTest {
     @ParameterizedTest(name = "이름들 : {0}, 예상 사이즈값 : {1}")
     @MethodSource("nameArguments")
     fun `여러 이름들이 들어오면 조건을 통해 각각의 이름으로 나눌 수 있다`(nameStrings: String, expected: Int) {
-        val names = Names.ofStringWithSplitStrategy(nameStrings) { target -> target.split(",")}
+        val names = Names.ofStringWithSplitStrategy(nameStrings) { target -> target.split(",") }
         assertThat(names.size()).isEqualTo(expected)
     }
 
@@ -36,5 +36,4 @@ class NamesTest {
             Arguments.of("a,ab,abc,abcd,abcde", 5)
         )
     }
-
 }

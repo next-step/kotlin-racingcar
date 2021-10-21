@@ -39,7 +39,6 @@ class RacingCarGameApplication(
             numberOfAttempts()
         }
     }
-
 }
 
 fun main() {

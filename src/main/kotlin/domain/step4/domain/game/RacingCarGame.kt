@@ -14,14 +14,10 @@ class RacingCarGame(
         var racingCars = RacingCars.from(racingCarConfiguration.names, movingStrategy)
         var racingCarGameRecord = RacingCarGameRecord.initialize()
 
-        (START..numberOfAttemptsInt).map {
+        repeat(numberOfAttemptsInt) {
             racingCars = racingCars.moveForward()
             racingCarGameRecord = racingCarGameRecord.add(racingCars)
         }
         return racingCarGameRecord
-    }
-
-    companion object {
-        private const val START = 1
     }
 }

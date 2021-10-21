@@ -21,9 +21,11 @@ class RacingCarGameTest {
         val movingStrategy = MovingStrategy { true }
 
         var expected = RacingCarGameRecord.initialize()
-        var racingCars = RacingCars((1..numberOfCars)
-            .map { RacingCar(DistanceDriven(), movingStrategy) }
-            .toList())
+        var racingCars = RacingCars(
+            (1..numberOfCars).map { RacingCar(DistanceDriven(), movingStrategy) }
+                .toList()
+        )
+
         (1..numberOfAttempts).map {
             racingCars = racingCars.moveForward()
             expected = expected.add(racingCars)

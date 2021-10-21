@@ -13,11 +13,13 @@ class RacingCarResultView(private val outputStrategy: OutputStrategy) {
             .map(this::stringPerRound)
             .joinToString(lineSeparator() + lineSeparator())
 
-        outputStrategy.execute(StringBuilder()
-            .append("실행 결과")
-            .append(lineSeparator())
-            .append(result)
-            .toString())
+        outputStrategy.execute(
+            StringBuilder()
+                .append("실행 결과")
+                .append(lineSeparator())
+                .append(result)
+                .toString()
+        )
     }
 
     private fun stringPerRound(racingCars: RacingCars) = racingCars.racingCars.asSequence()

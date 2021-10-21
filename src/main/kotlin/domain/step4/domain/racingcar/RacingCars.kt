@@ -9,6 +9,7 @@ data class RacingCars private constructor(private val _racingCars: List<RacingCa
     init {
         require(_racingCars.isNotEmpty()) { EMPTY_MESSAGE }
     }
+
     val racingCars: List<RacingCar>
         get() = _racingCars.toList()
 

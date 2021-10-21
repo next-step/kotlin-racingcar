@@ -10,8 +10,7 @@ data class RacingCarGameRecord private constructor(private val _racingCarGameRec
         RacingCarGameRecord(_racingCarGameRecord + racingCars)
 
     companion object {
-        fun initialize(): RacingCarGameRecord =
-            RacingCarGameRecord(listOf())
+        fun initialize(): RacingCarGameRecord = RacingCarGameRecord(listOf())
 
         fun of(racingCarGameRecord: List<RacingCars>): RacingCarGameRecord =
             RacingCarGameRecord(racingCarGameRecord.toList())
