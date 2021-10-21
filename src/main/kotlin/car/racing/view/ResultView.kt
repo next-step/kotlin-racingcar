@@ -27,7 +27,7 @@ class ResultView {
     ) {
         cars.forEach { car ->
             val moveDistance = car
-                .getMoveDistanceUntilTurn(turn)
+                .getMovesUntilTurn(turn)
                 .filter { it }
                 .joinToString(SEPARATOR) { "-" }
 

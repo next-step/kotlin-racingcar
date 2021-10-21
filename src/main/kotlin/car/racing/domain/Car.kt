@@ -16,7 +16,7 @@ class Car(
         require(name.length < NAME_MAX_LENGTH) { "이름의 길이는 $NAME_MAX_LENGTH 보다 작아야합니다." }
     }
 
-    fun getMoveDistanceUntilTurn(turn: Int): List<Boolean> {
+    fun getMovesUntilTurn(turn: Int): List<Boolean> {
         return conditionsOfTurn.slice(IntRange(0, turn))
     }
 

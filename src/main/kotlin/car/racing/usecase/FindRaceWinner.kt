@@ -20,7 +20,8 @@ class FindRaceWinner {
 
     private fun getMoveDistance(car: Car, turnCount: Int): Int {
         val turn = turnCount - 1
+        val moveDistance = car.getMovesUntilTurn(turn)
 
-        return car.getMoveDistanceUntilTurn(turn).filter { it }.size
+        return moveDistance.filter { it }.size
     }
 }

@@ -35,7 +35,7 @@ class CarTest {
 
         repeat(5) { turn ->
             val isMove = car.move()
-            val moveDistance = car.getMoveDistanceUntilTurn(turn)
+            val moveDistance = car.getMovesUntilTurn(turn)
 
             assertEquals(isMove, moveDistance[turn])
         }
@@ -75,7 +75,7 @@ class CarTest {
     @ValueSource(ints = [1, 2, 3, 4, 5])
     fun `getMoveDistanceUntilTurn(N) 일때 size ( N + 1 )`(size: Int) {
         val car = Car("csy", size, NumberMovingStrategy(NumberRandomGenerator()))
-        val moveDistanceSize = car.getMoveDistanceUntilTurn(size - 1).size
+        val moveDistanceSize = car.getMovesUntilTurn(size - 1).size
 
         assertEquals(size, moveDistanceSize)
     }
