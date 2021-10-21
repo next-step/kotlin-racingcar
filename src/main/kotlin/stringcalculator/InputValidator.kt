@@ -4,7 +4,9 @@ class InputValidator {
     fun validate(input: String?): List<String> {
         val validString = validateInputIsNotEmpty(input)
         val splitString = validString.split(" ")
-        return validateSplitStringIsCorrectlyStructured(splitString)
+
+        validateSplitString(splitString)
+        return splitString
     }
 
     @Throws(IllegalArgumentException::class)
@@ -16,22 +18,25 @@ class InputValidator {
     }
 
     @Throws(IllegalArgumentException::class)
-    private fun validateSplitStringIsCorrectlyStructured(splitString: List<String>): List<String> {
+    private fun validateSplitString(splitString: List<String>) {
         when {
-            validateSize(splitString) -> throw IllegalArgumentException("잘못된 구성의 입력 입니다.")
-            validateStructure(splitString) -> throw IllegalArgumentException("잘못된 구성의 입력 입니다.")
+            validateSizeIsNotOdd(splitString) || validateStructure(splitString)
+            -> throw IllegalArgumentException("잘못된 구성의 입력 입니다.")
         }
-
-        return splitString
     }
 
-    private fun validateSize(input: List<String>): Boolean {
-        return input.size % 2 != 1
+    private fun validateSizeIsNotOdd(input: List<String>): Boolean {
+        return input.size % EvenDivider != OddRemainder
     }
 
     private fun validateStructure(input: List<String>): Boolean {
         val controlList = input.map { it.toIntOrNull() is Int }
         val comparisonList = input.mapIndexed { index, _ -> index % 2 == 0 }
         return controlList != comparisonList
+    }
+
+    companion object {
+        const val EvenDivider = 2
+        const val OddRemainder = 1
     }
 }
