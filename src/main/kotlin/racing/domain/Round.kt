@@ -1,4 +1,4 @@
-package racing
+package racing.domain
 
 @JvmInline
 value class Round private constructor(val round: Int) {

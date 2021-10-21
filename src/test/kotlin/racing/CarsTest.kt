@@ -2,6 +2,8 @@ package racing
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
+import racing.domain.Cars
+import racing.domain.Pedal
 
 class CarsTest {
     @Test

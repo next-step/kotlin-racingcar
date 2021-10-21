@@ -1,4 +1,4 @@
-package racing
+package racing.domain
 
 const val START_POSITION = 0
 

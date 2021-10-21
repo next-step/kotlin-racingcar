@@ -1,12 +1,14 @@
-package racing
+package racing.view
+
+import racing.domain.Cars
 
 object OutPutView {
     fun printStart() {
         println("\n실행 결과")
     }
 
-    fun printRound(cars: List<Car>) {
-        cars.forEach { car -> println(makeBar(car.position)) }
+    fun printRound(cars: Cars) {
+        cars.cars.forEach { car -> println(makeBar(car.position)) }
         println()
     }
 

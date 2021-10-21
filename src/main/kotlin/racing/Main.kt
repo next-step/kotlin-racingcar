@@ -1,5 +1,9 @@
 package racing
 
+import racing.domain.Game
+import racing.domain.Pedal
+import racing.view.InputView
+
 fun main() {
     val car = InputView.getCar()
     val round = InputView.getRound()
