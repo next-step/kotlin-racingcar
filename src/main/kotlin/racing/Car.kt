@@ -1,6 +1,6 @@
 package racing
 
-class Car(private val engine: Engine) {
+class Car(private val engine: Engine, val name: CarName) {
 
     var position: Position = INITIAL_POSITION
         private set
@@ -9,5 +9,13 @@ class Car(private val engine: Engine) {
         if (engine.canMove()) {
             position = position.forward()
         }
+    }
+
+    fun isAheadOf(other: Car): Boolean {
+        return position > other.position
+    }
+
+    fun isDrawWith(other: Car): Boolean {
+        return position == other.position
     }
 }

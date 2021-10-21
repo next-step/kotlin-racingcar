@@ -10,11 +10,11 @@ value class Round(val value: Int) {
 object CarsController {
 
     fun createCars(): Cars {
-        val count = CarCount(InputView.getCarCount())
-        return CarsFactory.getCars(count)
+        val names = CarName.from(InputView.getCarsName())
+        return CarsFactory.create(names)
     }
 
-    fun play(cars: Cars) {
+    fun play(cars: Cars): Cars {
         val round = Round(InputView.getRound())
 
         OutputView.printStartResult()
@@ -22,5 +22,10 @@ object CarsController {
             cars.goAll()
             OutputView.printResult(cars)
         }
+        return cars
+    }
+
+    fun announceWinner(cars: Cars) {
+        OutputView.printWinner(cars.getWinner())
     }
 }
