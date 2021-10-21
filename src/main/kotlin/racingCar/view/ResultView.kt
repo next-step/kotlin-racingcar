@@ -10,9 +10,13 @@ class ResultView {
     }
 
     private fun result(cars: Cars) {
-        cars.list.forEach {
-            println(EMOTICON_CAR.repeat(it.mileage))
+        cars.result().forEach {
+            println("${it.first} : ${EMOTICON_CAR.repeat(it.second)}")
         }
+    }
+
+    fun victoryPlayer(cars: Cars) {
+        println("우승자는 ${cars.victoryPlayer().joinToString()} 입니다!!")
     }
 
     companion object {

@@ -1,15 +1,13 @@
 package racingCar.model
 
-import racingCar.conditionOfMove
+data class Car(private val carName: CarName) {
+    constructor(name: String) : this(CarName(name))
 
-data class Car(val mileage: Int = 0) {
+    private var mileage: Int = 0
 
-    fun move(move: Int) = when (conditionOfMove(move)) {
-        true -> forward()
-        false -> stop()
+    fun move(move: MoveAmount) {
+        mileage += move.amount()
     }
 
-    private fun forward() = copy(mileage = this.mileage + 1)
-    private fun stop() = copy(mileage = this.mileage)
-
+    fun info() = Pair(carName.name, mileage)
 }
