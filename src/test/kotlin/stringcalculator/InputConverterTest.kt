@@ -22,8 +22,8 @@ class InputConverterTest {
     }
 
     @Test
-    fun `정의되지 않은 연산자를 받으면 IllegalArgumentException 을 일으킨다`() {
-        assertThrows<IllegalArgumentException> {
+    fun `정의 되지 않은 연산자를 받으면 NoSuchElementException 을 일으킨다`() {
+        assertThrows<NoSuchElementException> {
             InputConverter().convertToOperations("?".split(" "))
         }
     }

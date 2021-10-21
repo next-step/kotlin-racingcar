@@ -26,7 +26,7 @@ class CalculatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["", "1 2", "1+2", "1 + 2 +", "1 % 2"])
+    @ValueSource(strings = ["", "1 2", "1+2", "1 + 2 +"])
     fun `잘못된 입력을 받으면 IllegalArgumentException 을 일으킨다`(input: String) {
         assertThrows<IllegalArgumentException> {
             Calculator(InputValidator(), InputConverter()).calculate(input)
