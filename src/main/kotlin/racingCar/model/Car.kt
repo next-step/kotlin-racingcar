@@ -5,7 +5,7 @@ data class Car(private val carName: CarName) {
 
     private var mileage: Int = 0
 
-    fun move(move: MoveAmount) {
+    fun move(move: Movement) {
         mileage += move.amount()
     }
 

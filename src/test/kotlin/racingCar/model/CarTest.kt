@@ -29,11 +29,11 @@ class CarTest {
         val car = Car("flamm")
 
         // when
-        car.move(CarMoveAmount(5))
+        car.move(TestCarMovement() { FORWARD_MOVE })
         val mileage = car.info().second
 
         // then
-        assertThat(mileage).isEqualTo(1)
+        assertThat(mileage).isEqualTo(FORWARD_SUCCESS)
     }
 
     @Test
@@ -41,18 +41,25 @@ class CarTest {
         // given
         val car = Car("flamm")
         // when
-        car.move(CarMoveAmount(3))
+        car.move(TestCarMovement() { STOP })
         val mileage = car.info().second
         // then
-        assertThat(mileage).isEqualTo(0)
+        assertThat(mileage).isEqualTo(STOP_SUCCESS)
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["ffffffff", "flammmmeeeee", "eeeeeeeeeee"])
     fun `자동차 이름이 지정 된 글자가 넘으면 에러처리`(input: String) {
         // when
-        val nameException = kotlin.runCatching { Car(input) }.exceptionOrNull()
+        val nameException = runCatching { Car(input) }.exceptionOrNull()
         // then
         assertThat(nameException).hasMessage("자동차 이름은 5 자를 초과할 수 없습니다.")
+    }
+
+    companion object {
+        private const val FORWARD_MOVE = 4
+        private const val STOP = 1
+        private const val FORWARD_SUCCESS = 1
+        private const val STOP_SUCCESS = 0
     }
 }
