@@ -24,7 +24,7 @@ class NameTest {
     fun `길이가 5 초과인 이름인 들어오면 생성 불가능하다`(nameString: String) {
         assertThatThrownBy { Name(nameString) }
             .isExactlyInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("이름의 길이는 5를 초과해서는 안 됩니다.")
+            .hasMessage(String.format("이름의 길이는 5를 초과한 %s가 입력되었습니다.", nameString.length))
     }
 
     // "이름 문자열은 비어있서는 안됩니다."

@@ -13,7 +13,7 @@ class NumberOfCarsTest {
     fun `허용하는 범위 밖의 값이 들어오면 객체 생성에 실패한다`(numberOfCarsString: String) {
         assertThatThrownBy { NumberOfCars(numberOfCarsString) }
             .isExactlyInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("NumberOfCars 가 허용하는 범위 밖의 숫자가 입력 되었습니다.")
+            .hasMessage(String.format("NumberOfCars 가 허용하는 범위 밖의 숫자 %s가 입력 되었습니다.", numberOfCarsString))
     }
 
     @ParameterizedTest(name = "실패될 주입 값 : {0}")

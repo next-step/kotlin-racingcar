@@ -14,7 +14,7 @@ class DistanceDrivenTest {
     fun `음수가 입력되면 주행거리 생성이 실패한다`(distanceDrivenInt: Int) {
         assertThatThrownBy { DistanceDriven(distanceDrivenInt) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("DistanceDriven 가 허용하는 범위 밖의 숫자가 입력 되었습니다.")
+            .hasMessage(String.format("DistanceDriven 가 허용하는 범위 밖의 숫자 %s가 입력 되었습니다.", distanceDrivenInt))
     }
 
     @ParameterizedTest(name = "주입 값 : {0}")
