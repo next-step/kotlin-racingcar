@@ -59,6 +59,34 @@ internal class OperatorTest {
         assertThat(resultValue).isNotEqualTo(expectedResultValue)
     }
 
+    @DisplayName("주어진 피연산자가 올바른 경우 뺄셈 테스트")
+    @ParameterizedTest
+    @MethodSource("validParameterForMinus")
+    fun minusWhenGivenValidOperand(firstOperand: Int, secondOperand: Int, expectedResultValue: Int) {
+        // Arrange
+        val minusOperator = Operator.getOperator("-")
+
+        // Act
+        val resultValue = minusOperator.calculate(firstOperand, secondOperand)
+
+        // Assert
+        assertThat(resultValue).isEqualTo(expectedResultValue)
+    }
+
+    @DisplayName("주어진 피연산자가 올바르지 않은 경우 뺄셈 테스트")
+    @ParameterizedTest
+    @MethodSource("invalidParameterForMinus")
+    fun minusWhenGivenInvalidOperand(firstOperand: Int, secondOperand: Int, expectedResultValue: Long) {
+        // Arrange
+        val minusOperator = Operator.getOperator("-")
+
+        // Act
+        val resultValue = minusOperator.calculate(firstOperand, secondOperand).toLong()
+
+        // Assert
+        assertThat(resultValue).isNotEqualTo(expectedResultValue)
+    }
+
     companion object {
         private val illegalArgumentException = IllegalArgumentException()
 
@@ -110,6 +138,29 @@ internal class OperatorTest {
             return Stream.of(
                 Arguments.of(2_000_000_000, 2_000_000_000, 4_000_000_000),
                 Arguments.of(-2_000_000_000, -2_000_000_000, -4_000_000_000),
+            )
+        }
+
+        @JvmStatic
+        fun validParameterForMinus(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of(1, 2, -1),
+                Arguments.of(797, 111, 686),
+                Arguments.of(-1, 2, -3),
+                Arguments.of(-3, 8, -11),
+                Arguments.of(0, 0, 0),
+                Arguments.of(100_000_000, 2_000_000, 98_000_000),
+                Arguments.of(-123_123_123, -123_123_123, 0),
+                Arguments.of(1_000_000_000, -1_000_000_000, 2_000_000_000),
+                Arguments.of(-1_000_000_000, 1_000_000_000, -2_000_000_000),
+            )
+        }
+
+        @JvmStatic
+        fun invalidParameterForMinus(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of(2_000_000_000, -2_000_000_000, 4_000_000_000),
+                Arguments.of(-2_000_000_000, 2_000_000_000, -4_000_000_000),
             )
         }
     }
