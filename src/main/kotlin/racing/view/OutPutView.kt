@@ -8,7 +8,7 @@ object OutPutView {
     }
 
     fun printRound(cars: Cars) {
-        cars.cars.forEach { car -> println(makeBar(car.position)) }
+        cars.cars.forEach { car -> println("${car.name} : ${makeBar(car.position)}") }
         println()
     }
 
