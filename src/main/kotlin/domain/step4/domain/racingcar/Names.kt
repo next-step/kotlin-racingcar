@@ -8,9 +8,9 @@ data class Names private constructor(private val _names: List<Name>) {
     }
 
     val names: List<Name>
-    get() {
-        return _names.toList()
-    }
+        get() {
+            return _names.toList()
+        }
 
     fun size(): Int = _names.size
 

@@ -6,12 +6,14 @@ data class RacingCarGameRecord private constructor(private val _racingCarGameRec
     val racingCarGameRecord: List<RacingCars>
         get() = _racingCarGameRecord.toList()
 
-    fun add(racingCars: RacingCars): RacingCarGameRecord {
-        return RacingCarGameRecord(_racingCarGameRecord + racingCars)
-    }
+    fun add(racingCars: RacingCars): RacingCarGameRecord =
+        RacingCarGameRecord(_racingCarGameRecord + racingCars)
 
     companion object {
-        fun initialize() = RacingCarGameRecord(listOf())
-        fun of(racingCarGameRecord: List<RacingCars>) = RacingCarGameRecord(racingCarGameRecord.toList())
+        fun initialize(): RacingCarGameRecord =
+            RacingCarGameRecord(listOf())
+
+        fun of(racingCarGameRecord: List<RacingCars>): RacingCarGameRecord =
+            RacingCarGameRecord(racingCarGameRecord.toList())
     }
 }

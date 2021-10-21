@@ -9,12 +9,12 @@ class RacingCarGame(
     private val movingStrategy: MovingStrategy,
 ) {
     fun run(): RacingCarGameRecord {
-        val names = racingCarConfiguration.names
         val numberOfAttempts = racingCarConfiguration.numberOfAttempts
-        var racingCars = RacingCars.from(names, movingStrategy)
+        val numberOfAttemptsInt = numberOfAttempts.numberOfAttempts
+        var racingCars = RacingCars.from(racingCarConfiguration.names, movingStrategy)
         var racingCarGameRecord = RacingCarGameRecord.initialize()
 
-        (START..numberOfAttempts.numberOfAttempts).map {
+        (START..numberOfAttemptsInt).map {
             racingCars = racingCars.moveForward()
             racingCarGameRecord = racingCarGameRecord.add(racingCars)
         }
