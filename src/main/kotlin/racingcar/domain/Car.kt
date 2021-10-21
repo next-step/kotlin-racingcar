@@ -10,12 +10,8 @@ class Car(
     }
 
     fun dashOver(): Car {
-        if (ableCheckMove(movingStrategy.ableMove())) return newCar(1)
+        if (movingStrategy.ableMove()) return newCar(1)
         return this
-    }
-
-    private fun ableCheckMove(able: Boolean = false): Boolean {
-        return able
     }
 
     private fun newCar(movePos: Int): Car {

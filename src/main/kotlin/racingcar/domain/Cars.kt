@@ -3,7 +3,7 @@ package racingcar.domain
 import java.util.stream.Collectors
 
 class Cars(val cars: List<Car> = mutableListOf()) {
-
+    
     fun size(): Int {
         return cars.size
     }
