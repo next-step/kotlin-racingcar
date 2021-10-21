@@ -3,7 +3,7 @@ package domain.step4.domain.racingcar
 import domain.step4.domain.strategy.MovingStrategy
 
 data class RacingCar(
-    val _name: Name,
+    private val _name: Name,
     private val _distanceDriven: DistanceDriven = DistanceDriven(),
     private val movingStrategy: MovingStrategy
 ) {
@@ -22,5 +22,4 @@ data class RacingCar(
     }
 
     fun isWinner(otherDistance: Int): Boolean = distance >= otherDistance
-
 }
