@@ -18,6 +18,6 @@ data class RacingCar(
         return this
     }
 
-    fun isWinner(otherDistance: Int) = distance >= otherDistance
+    fun isWinner(otherDistance: Int): Boolean = distance >= otherDistance
 
 }

@@ -4,6 +4,8 @@ import domain.step4.domain.strategy.MovingStrategy
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 
 class RacingCarTest {
 
@@ -36,5 +38,14 @@ class RacingCarTest {
             { assertThat(one).hasSameHashCodeAs(other) },
             { assertThat(one).isEqualTo(other) }
         )
+    }
+
+    @ParameterizedTest(name = "내 주행거리 : {0}, 다른이의 주행거리 : {1}, 예상 결과값 : {2}")
+    @CsvSource(value = ["0:0:true", "1:0:true", "1:2:false", "99:100:false"], delimiter = ':')
+    fun `다른 자동차의 주행거리보다 현 자동차의 주행거리가 같거나 큰지 비교한다`(myDistance: Int, otherDistance: Int, expected: Boolean) {
+        val movingStrategy = MovingStrategy { true }
+        val me = RacingCar(Name("me"), DistanceDriven(myDistance), movingStrategy)
+
+        assertThat(me.isWinner(otherDistance)).isEqualTo(expected)
     }
 }

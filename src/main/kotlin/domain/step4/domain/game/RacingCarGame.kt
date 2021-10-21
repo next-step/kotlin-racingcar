@@ -22,6 +22,6 @@ class RacingCarGame(
     }
 
     companion object {
-        const val START = 1
+        private const val START = 1
     }
 }
