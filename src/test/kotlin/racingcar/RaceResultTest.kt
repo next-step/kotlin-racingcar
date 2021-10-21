@@ -7,6 +7,7 @@ import racingcar.exception.Exception
 import racingcar.model.Car
 import racingcar.model.CarName
 import racingcar.model.RaceResult
+import racingcar.model.RacingCars
 import racingcar.model.Round
 
 class RaceResultTest {
@@ -14,7 +15,7 @@ class RaceResultTest {
     @DisplayName("레이스 결과 객체 생성 테스트")
     fun `check race result data class`() {
         val item = RaceResult(
-            listOf(Round(0, listOf(Car(CarName("바람"), 0)))),
+            listOf(Round(0, RacingCars(listOf(Car(CarName("밤"), 3))))),
             listOf(CarName("이름"))
         )
 

@@ -8,7 +8,7 @@ class Cars private constructor(
     private val raceCondition: RaceCondition,
     private val rule: DriveRule
 ) {
-    private fun race(): RacingCars =
+    fun race(): RacingCars =
         carList.racingCars.map { car -> car.tryMove(rule.isForward()) }.run {
             carList.racingCars = this
             RacingCars(carList.racingCars)
@@ -18,7 +18,7 @@ class Cars private constructor(
         Round(index, race())
     }
 
-    private fun getWinner(): List<CarName> =
+    fun getWinner(): List<CarName> =
         carList.racingCars.filter { car -> car.movement == carList.racingCars.maxOf { it.movement } }.map { it.name }
 
     fun getResult(): RaceResult = RaceResult(rounds(), getWinner())

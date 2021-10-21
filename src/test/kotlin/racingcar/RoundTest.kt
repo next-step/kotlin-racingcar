@@ -8,13 +8,14 @@ import org.junit.jupiter.params.provider.ValueSource
 import racingcar.exception.Exception
 import racingcar.model.Car
 import racingcar.model.CarName
+import racingcar.model.RacingCars
 import racingcar.model.Round
 
 class RoundTest {
     @Test
     @DisplayName("라운드 객체 생성 테스트")
     fun `check round data class`() {
-        val item = Round(3, listOf(Car(CarName("밤"), 3)))
+        val item = Round(3, RacingCars(listOf(Car(CarName("밤"), 3))))
 
         Assertions.assertThat(item.roundResult).isEqualTo(listOf(Car(CarName("밤"), 3)))
         Assertions.assertThat(item.round).isEqualTo(3)
@@ -24,7 +25,7 @@ class RoundTest {
     @DisplayName("라운드 숫자가 옳바르지 않은 경우")
     fun `check validation of round condition of round`() {
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy { Round(-1, listOf(Car(CarName("밤"), 3))) }
+            .isThrownBy { Round(-1, RacingCars(listOf(Car(CarName("밤"), 3)))) }
             .withMessage(Exception.CASE_ZERO_RACING_ROUND)
     }
 
@@ -33,7 +34,7 @@ class RoundTest {
     @DisplayName("라운드 결과가 옳바르지 않은 경우")
     fun `check validation of round condition of result`(tryCount: Int) {
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy { Round(4, listOf()) }
+            .isThrownBy { Round(4, RacingCars(listOf())) }
             .withMessage(Exception.CASE_ZERO_WINNER)
     }
 }

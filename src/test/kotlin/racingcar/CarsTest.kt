@@ -19,8 +19,8 @@ class CarsTest {
     @DisplayName("자동차 객체 생성 테스트")
     fun `check car list count`() {
         val list = Cars.createCars(RaceCondition(listOf(CarName("11"), CarName("22"), CarName("33")), 5), rule).carList
-        Assertions.assertThat(list.size).isEqualTo(3)
-        Assertions.assertThat(list.size).isNotNull
+        Assertions.assertThat(list.racingCars.size).isEqualTo(3)
+        Assertions.assertThat(list.racingCars.size).isNotNull
     }
 
     @Test
@@ -31,8 +31,8 @@ class CarsTest {
             .isEqualTo(listOf(CarName("사람"), CarName("사람3"), CarName("사람5")))
         Assertions.assertThat(cars.carList).isNotNull
         cars.race()
-        Assertions.assertThat(cars.carList[0].movement).isLessThan(5)
-        Assertions.assertThat(cars.carList[0].movement).isNotNull
+        Assertions.assertThat(cars.carList.racingCars[0].movement).isLessThan(5)
+        Assertions.assertThat(cars.carList.racingCars[0].movement).isNotNull
     }
 
     @ParameterizedTest
