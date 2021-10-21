@@ -1,5 +1,6 @@
 package domain.step4.domain.racingcar
 
+import domain.step4.domain.strategy.MovingStrategy
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
@@ -97,5 +98,25 @@ class RacingCarsTest {
 
         val movedRacingCars = racingCars.moveForward()
         assertThat(movedRacingCars).isEqualTo(expected)
+    }
+
+    @Test
+    fun `현재 상태의 우승자를 반환한다`() {
+        val falseMovingStrategy = MovingStrategy { false }
+        val trueMovingStrategy = MovingStrategy { true }
+
+        val firstCar = RacingCar(Name("first"), movingStrategy = falseMovingStrategy)
+        val secondCar = RacingCar(Name("second"), movingStrategy = trueMovingStrategy)
+        val thirdCar = RacingCar(Name("third"), movingStrategy = trueMovingStrategy)
+
+        val racingCars = RacingCars.of(listOf(firstCar, secondCar, thirdCar))
+        val movedRacingCars = racingCars.moveForward()
+        val winningRacingCars: List<RacingCar> = movedRacingCars.winningRacingCars()
+
+        assertAll(
+            { assertThat(winningRacingCars).isNotNull },
+            { assertThat(winningRacingCars.size).isEqualTo(2) },
+            { assertThat(winningRacingCars).containsExactly(secondCar, thirdCar) },
+        )
     }
 }
