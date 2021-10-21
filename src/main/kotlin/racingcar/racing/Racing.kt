@@ -1,16 +1,16 @@
 package racingcar.racing
 
+import racingcar.car.CarFactory
 import racingcar.constant.Constant
 import racingcar.ui.ResultView
-import racingcar.util.Cars
 
 class Racing(carCount: Int, private val attemptCount: Int) {
-    private val cars = Cars.create(carCount)
+    private val cars = CarFactory.create(carCount)
 
     fun start() {
         for (i in Constant.START..attemptCount) {
-            cars.getResultCarList().forEach {
-                ResultView.printRacingResult(it.distance)
+            cars.getResultCarList().forEach { car ->
+                ResultView.printRacingResult(car.getLocation())
             }
             println()
         }
