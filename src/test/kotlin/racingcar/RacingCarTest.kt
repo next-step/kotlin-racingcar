@@ -38,17 +38,15 @@ class RacingCarTest {
     @ParameterizedTest
     @ValueSource(ints = [4])
     fun `요청한 갯수만큼 자동차를 생성한다`(givenCount: Int) {
-        val cars = Cars()
+        val cars = Cars(givenCount)
 
-        val actual = cars.generateCar(givenCount)
-
-        assertThat(actual.size()).isEqualTo(givenCount)
+        assertThat(cars.size()).isEqualTo(givenCount)
     }
 
     @Test
     fun `자동차 목록을 이동하면 변경된 자동차 목록을 리턴한다`() {
         // given
-        val cars = Cars(listOf(Car(), Car()))
+        val cars = Cars(0, listOf(Car(), Car()))
 
         val actual = cars.dashOver()
 
@@ -63,8 +61,8 @@ class RacingCarTest {
 
     @Test
     fun `자동차 목록을 기록하고 크기를 리턴한다`() {
-        record.add(1, Cars())
-        record.add(2, Cars())
+        record.add(1, Cars(0))
+        record.add(2, Cars(0))
 
         assertThat(record.getSize()).isEqualTo(2)
     }
@@ -72,7 +70,7 @@ class RacingCarTest {
     @Test
     fun `자동차 목록의 데이터를 리턴한다`() {
         // given
-        val givenCars = Cars()
+        val givenCars = Cars(0)
         record.add(1, givenCars)
         // when
         val actual = record.getRecord(1)
