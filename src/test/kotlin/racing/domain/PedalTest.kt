@@ -1,8 +1,7 @@
-package racing
+package racing.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import racing.domain.Pedal
 
 class PedalTest {
     @Test
