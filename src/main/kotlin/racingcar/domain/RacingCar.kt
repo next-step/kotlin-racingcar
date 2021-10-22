@@ -4,7 +4,7 @@ import racingcar.domain.strategy.MovingStrategy
 
 data class RacingCar(
     val movingStrategy: MovingStrategy,
-    val position: Position = Position()
+    val position: Position = Position.of()
 ) {
 
     fun move() = when {

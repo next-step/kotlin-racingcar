@@ -7,7 +7,7 @@ class BulletinBoard {
     private val board: MutableMap<Lap, Records> = LinkedHashMap()
 
     fun record(participants: RacingCars, lap: Lap) {
-        board[lap] = Records(participants)
+        board[lap] = Records.of(participants)
     }
 
     fun display(): String {
