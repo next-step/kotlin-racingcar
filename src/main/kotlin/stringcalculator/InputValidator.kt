@@ -24,7 +24,7 @@ class InputValidator {
 
     @Throws(IllegalArgumentException::class)
     private fun checkInputSizeIsOdd(input: List<String>) {
-        if (input.size % EvenDivider != OddRemainder) {
+        if (input.size % EVEN_DIVIDER != ODD_REMAINDER) {
             throw IllegalArgumentException("입력 항의 갯수가 올바르지 않습니다.")
         }
     }
@@ -32,15 +32,15 @@ class InputValidator {
     @Throws(IllegalArgumentException::class)
     private fun checkInputStructure(input: List<String>) {
         val controlList = input.map { it.toIntOrNull() is Int }
-        val comparisonList = input.mapIndexed { index, _ -> index % EvenDivider == EvenRemainder }
+        val comparisonList = input.mapIndexed { index, _ -> index % EVEN_DIVIDER == EVEN_REMAINDER }
         if (controlList != comparisonList) {
             throw IllegalArgumentException("입력된 식의 구성이 올바르지 않습니다.")
         }
     }
 
     companion object {
-        const val EvenDivider = 2
-        const val OddRemainder = 1
-        const val EvenRemainder = 0
+        const val EVEN_DIVIDER = 2
+        const val ODD_REMAINDER = 1
+        const val EVEN_REMAINDER = 0
     }
 }
