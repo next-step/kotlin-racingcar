@@ -1,3 +1,5 @@
 package step3.domain
 
-class CarFactory(carCount: Int, val carList: List<Car> = ((0 until carCount).map { Car() }).toList())
+class CarFactory {
+    fun createCars(createCarNumber: Int): List<Car> = (0 until createCarNumber).map { Car() }
+}

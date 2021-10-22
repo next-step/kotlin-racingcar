@@ -1,32 +1,17 @@
 package step3.view
 
-import step3.exception.BizException
-import step3.exception.message.input.InputErrorMessage
+import step3.filter.ValueFilter
 
 class InputView {
 
     fun inputNumberOfCars(): Int {
         println(NUMBER_OF_CARS)
-
-        val inputValue: Int = numberCheck(readLine()!!)
-
-        return valueRangeCheck(inputValue)
+        return ValueFilter.verify(readLine()!!)
     }
 
     fun inputNumberOfAttempts(): Int {
         println(NUMBER_OF_ATTEMPTS)
-        val inputValue: Int = numberCheck(readLine()!!)
-
-        return valueRangeCheck(inputValue)
-    }
-
-    private fun valueRangeCheck(value: Int): Int {
-        require(value > 0) { BizException.InputException(InputErrorMessage.OUT_OF_RANGE) }
-        return value
-    }
-
-    private fun numberCheck(inputValue: String): Int {
-        return inputValue.toIntOrNull() ?: throw BizException.InputException(InputErrorMessage.NOT_NUMBER)
+        return ValueFilter.verify(readLine()!!)
     }
 
     companion object {
