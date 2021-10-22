@@ -14,8 +14,8 @@ data class Car(
         }
     }
 
-    fun forward(): Car = copy(movement = movement + MOVEMENT_FORWARD)
-    fun stop(): Car = copy(movement = movement)
+    private fun forward(): Car = copy(movement = movement + MOVEMENT_FORWARD)
+    private fun stop(): Car = copy(movement = movement)
 
     companion object {
         private const val MOVEMENT_FORWARD = 1
