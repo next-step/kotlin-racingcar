@@ -32,7 +32,7 @@ class InputValidator {
     @Throws(IllegalArgumentException::class)
     private fun checkInputStructure(input: List<String>) {
         val controlList = input.map { it.toIntOrNull() is Int }
-        val comparisonList = input.mapIndexed { index, _ -> index % 2 == 0 }
+        val comparisonList = input.mapIndexed { index, _ -> index % EvenDivider == EvenRemainder }
         if (controlList != comparisonList) {
             throw IllegalArgumentException("입력된 식의 구성이 올바르지 않습니다.")
         }
@@ -41,5 +41,6 @@ class InputValidator {
     companion object {
         const val EvenDivider = 2
         const val OddRemainder = 1
+        const val EvenRemainder = 0
     }
 }
