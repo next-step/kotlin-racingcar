@@ -17,8 +17,8 @@ value class RacingCars(val list: List<RacingCar>) {
     fun race() = RacingCars(list.map { it.move() })
 
     companion object {
-        fun of(cars: Int, strategy: MovingStrategy): RacingCars {
-            return RacingCars((1..cars).map { RacingCar(strategy) })
+        fun of(names: Names, strategy: MovingStrategy): RacingCars {
+            return RacingCars(names.list.map { RacingCar(it, strategy) })
         }
     }
 }
