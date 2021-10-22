@@ -11,7 +11,8 @@ class ResultView {
 
     private fun result(cars: Cars) {
         cars.result().forEach {
-            println("${it.first} : ${EMOTICON_CAR.repeat(it.second)}")
+            val (name, mileage) = it
+            println("$name : ${EMOTICON_CAR.repeat(mileage)}")
         }
     }
 

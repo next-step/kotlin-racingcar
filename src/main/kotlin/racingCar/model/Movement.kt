@@ -1,5 +1,5 @@
 package racingCar.model
 
-interface MoveAmount {
+interface Movement {
     fun amount(): Int
 }

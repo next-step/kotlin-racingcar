@@ -2,13 +2,13 @@ package racingCar.model
 
 class Cars(stringOfCars: List<String>) {
 
-    private val list = stringOfCars.map { Car(it) }
+    private val list = stringOfCars.map { Car(it, CarMovement()) }
 
-    fun move(distanceOfDrive: () -> Int) {
-        list.forEach { moveCar(it, distanceOfDrive) }
+    fun move() {
+        list.forEach { moveCar(it) }
     }
 
-    private fun moveCar(car: Car, distanceOfDrive: () -> Int) = car.move(CarMoveAmount(distanceOfDrive.invoke()))
+    private fun moveCar(car: Car) = car.move()
 
     fun result() = list.map { it.info() }
 

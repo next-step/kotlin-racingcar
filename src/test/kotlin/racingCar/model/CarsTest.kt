@@ -18,26 +18,12 @@ class CarsTest {
     }
 
     @Test
-    fun `모든 차가 자동차 룰에 맞추어 움직이는지 테스트`() {
-        // given
-        val cars = Cars(listOf("flamm", "형준", "야호"))
-
-        // when
-        cars.move { 4 }
-
-        // then
-        cars.result().forEach {
-            assertThat(it.second).isEqualTo(1)
-        }
-    }
-
-    @Test
     fun `우승자가 중복되는지 테스트`() {
         // given
         val cars = Cars(listOf("flamm", "형준", "야호"))
 
         // when
-        cars.move { 4 }
+        cars.move()
         val victoryPlayer = cars.victoryPlayer()
 
         // then
@@ -50,7 +36,7 @@ class CarsTest {
         val cars = Cars(listOf("flamm", "형준", "야호"))
 
         // when
-        cars.move { 3 }
+        cars.move()
         val victoryPlayer = cars.victoryPlayer()
 
         // then

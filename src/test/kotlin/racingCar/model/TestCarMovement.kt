@@ -1,8 +1,7 @@
 package racingCar.model
 
-class CarMoveAmount(private val move: Int) : MoveAmount {
-
-    override fun amount() = when (CarMoveCondition(move).isValid()) {
+class TestCarMovement(private val distance: () -> Int) : Movement {
+    override fun amount(): Int = when (distance.invoke() >= 4) {
         true -> FORWARD_AMOUNT
         false -> STOP_AMOUNT
     }

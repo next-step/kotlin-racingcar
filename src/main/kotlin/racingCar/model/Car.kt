@@ -1,12 +1,12 @@
 package racingCar.model
 
-data class Car(private val carName: CarName) {
-    constructor(name: String) : this(CarName(name))
+data class Car(private val carName: CarName, private val movement: Movement) {
+    constructor(name: String, movement: Movement) : this(CarName(name), movement)
 
     private var mileage: Int = 0
 
-    fun move(move: MoveAmount) {
-        mileage += move.amount()
+    fun move() {
+        mileage += movement.amount()
     }
 
     fun info() = Pair(carName.name, mileage)
