@@ -17,22 +17,25 @@ class InputValidator {
         return input
     }
 
-    @Throws(IllegalArgumentException::class)
     private fun validateSplitString(splitString: List<String>) {
-        when {
-            validateSizeIsNotOdd(splitString) || validateStructure(splitString)
-            -> throw IllegalArgumentException("잘못된 구성의 입력 입니다.")
+        checkInputSizeIsOdd(splitString)
+        checkInputStructure(splitString)
+    }
+
+    @Throws(IllegalArgumentException::class)
+    private fun checkInputSizeIsOdd(input: List<String>) {
+        if (input.size % EvenDivider != OddRemainder) {
+            throw IllegalArgumentException("입력 항의 갯수가 올바르지 않습니다.")
         }
     }
 
-    private fun validateSizeIsNotOdd(input: List<String>): Boolean {
-        return input.size % EvenDivider != OddRemainder
-    }
-
-    private fun validateStructure(input: List<String>): Boolean {
+    @Throws(IllegalArgumentException::class)
+    private fun checkInputStructure(input: List<String>) {
         val controlList = input.map { it.toIntOrNull() is Int }
         val comparisonList = input.mapIndexed { index, _ -> index % 2 == 0 }
-        return controlList != comparisonList
+        if (controlList != comparisonList) {
+            throw IllegalArgumentException("입력된 식의 구성이 올바르지 않습니다.")
+        }
     }
 
     companion object {
