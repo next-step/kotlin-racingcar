@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import racingcar.exception.Exception
+import racingcar.model.Car
 import racingcar.model.CarName
 import racingcar.model.Cars
 import racingcar.model.DriveRule
@@ -27,8 +28,14 @@ class CarsTest {
     @DisplayName("Cars 클래스 테스트; 객체 생성 테스트 및 움직임 테스트")
     fun `check Cars class`() {
         val cars = Cars.createCars(RaceCondition(listOf(CarName("사람"), CarName("사람3"), CarName("사람5")), 5), rule)
-        Assertions.assertThat(cars.carList)
-            .isEqualTo(listOf(CarName("사람"), CarName("사람3"), CarName("사람5")))
+        Assertions.assertThat(cars.carList.racingCars)
+            .isEqualTo(
+                listOf(
+                    Car(name = CarName(name = "사람"), movement = 0),
+                    Car(name = CarName(name = "사람3"), movement = 0),
+                    Car(name = CarName(name = "사람5"), movement = 0)
+                )
+            )
         Assertions.assertThat(cars.carList).isNotNull
         cars.getResult()
         Assertions.assertThat(cars.carList.racingCars[0].movement).isLessThan(5)
@@ -52,7 +59,7 @@ class CarsTest {
 
         Assertions.assertThat(list.size).isNotNull
         Assertions.assertThat(list.size).isEqualTo(4)
-        Assertions.assertThat(list).isEqualTo(listOf("바람", "사탕", "별", "나부"))
+        Assertions.assertThat(list).isEqualTo(listOf(CarName("바람"), CarName("사탕"), CarName("별"), CarName("나부")))
     }
 
     @Test
