@@ -30,7 +30,7 @@ class CarsTest {
         Assertions.assertThat(cars.carList)
             .isEqualTo(listOf(CarName("사람"), CarName("사람3"), CarName("사람5")))
         Assertions.assertThat(cars.carList).isNotNull
-        cars.race()
+        cars.getResult()
         Assertions.assertThat(cars.carList.racingCars[0].movement).isLessThan(5)
         Assertions.assertThat(cars.carList.racingCars[0].movement).isNotNull
     }
@@ -59,10 +59,6 @@ class CarsTest {
     @DisplayName("우승자는 1명 이상일 수 있다.")
     fun `check number of race winner`() {
         val cars = Cars.createCars(RaceCondition(listOf(CarName("바람"), CarName("구름"), CarName("사달")), 3), rule)
-
-        repeat(5) {
-            cars.race()
-        }
 
         Assertions.assertThat(cars.getResult().winners.size).isGreaterThanOrEqualTo(1)
     }

@@ -8,7 +8,7 @@ class Cars private constructor(
     private val raceCondition: RaceCondition,
     private val rule: DriveRule
 ) {
-    fun race(): RacingCars =
+    private fun race(): RacingCars =
         carList.racingCars.map { car -> car.tryMove(rule.isForward()) }.run {
             carList.racingCars = this
             RacingCars(carList.racingCars)
