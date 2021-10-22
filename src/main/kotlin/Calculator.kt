@@ -1,7 +1,7 @@
 import jdk.jshell.spi.ExecutionControl
 
 class Calculator {
-    fun calculate(input : String) : Int{
+    fun calculate(input : String?) : Int{
         throw ExecutionControl.NotImplementedException(Exception().stackTrace[0].methodName);
     }
 
