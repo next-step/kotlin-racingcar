@@ -9,12 +9,12 @@ import stringcalculator.operations.Subtract
 enum class Operator(val operatorString: String, val operation: Operation) {
     ADD("+", Add()),
     SUBTRACT("-", Subtract()),
-    MULTIPLY( "*", Multiply()),
-    DIVIDE( "/", Divide());
+    MULTIPLY("*", Multiply()),
+    DIVIDE("/", Divide());
 
     companion object {
         fun fromOperatorString(operatorString: String): Operator {
-            return values().first { it.operatorString == operatorString}
+            return values().first { it.operatorString == operatorString }
         }
     }
 }
