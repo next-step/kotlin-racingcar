@@ -1,7 +1,5 @@
 package StringCalculator
 
-import jdk.jshell.spi.ExecutionControl
-
 class Calculator {
     fun calculate(input : String?) : Int{
         if (input == null) throw IllegalArgumentException()
@@ -12,7 +10,7 @@ class Calculator {
             if (isValidOperator(parameter)) return@forEach
             throw IllegalArgumentException()
         }
-        throw ExecutionControl.NotImplementedException(Exception().stackTrace[0].methodName);
+        throw NotImplementedError(Exception().stackTrace[0].methodName);
     }
 
     private fun isValidOperator(operation: String?) : Boolean{
