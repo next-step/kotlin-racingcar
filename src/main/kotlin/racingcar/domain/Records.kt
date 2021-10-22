@@ -6,14 +6,12 @@ import racingcar.ui.LINE_FEED
 value class Records private constructor(private val records: List<Record>) {
 
     fun display(): String {
-        val result = StringBuilder()
-        records.forEach { result.append(it.score).append(LINE_FEED) }
-        return result.toString()
+        return records.joinToString(LINE_FEED) { it.score }
     }
 
     companion object {
         fun of(participants: RacingCars): Records {
-            val values = participants.list.map { Record(it.position) }
+            val values = participants.list.map { Record(it) }
             return Records(values)
         }
     }
