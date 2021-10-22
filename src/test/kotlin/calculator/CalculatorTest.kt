@@ -79,5 +79,4 @@ class CalculatorTest {
 
         assertThat(4).isEqualTo(result)
     }
-    
 }
