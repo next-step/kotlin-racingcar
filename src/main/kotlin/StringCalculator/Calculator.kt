@@ -1,3 +1,5 @@
+package StringCalculator
+
 import jdk.jshell.spi.ExecutionControl
 
 class Calculator {
