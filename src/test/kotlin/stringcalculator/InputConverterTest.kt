@@ -3,6 +3,8 @@ package stringcalculator
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class InputConverterTest {
 
@@ -15,22 +17,23 @@ class InputConverterTest {
 
     @Test
     fun `convertToOperations 실행 시 Operation 리스트를 반환한다`() {
-        val operations = InputConverter().convertToOperations("1 + 2 - 3 * 4 / 5".split(" "))
+        val operations = InputConverter().convertToOperators("1 + 2 - 3 * 4 / 5".split(" "))
 
         assertThat(operations).isEqualTo(
             listOf(
-                Operator.ADD.operation,
-                Operator.SUBTRACT.operation,
-                Operator.MULTIPLY.operation,
-                Operator.DIVIDE.operation
+                Operator.ADD,
+                Operator.SUBTRACT,
+                Operator.MULTIPLY,
+                Operator.DIVIDE
             )
         )
     }
 
-    @Test
-    fun `정의 되지 않은 연산자를 받으면 NoSuchElementException 을 일으킨다`() {
+    @ParameterizedTest
+    @ValueSource(strings = ["=", "%"])
+    fun `정의 되지 않은 연산자를 받으면 NoSuchElementException 을 일으킨다`(input: String) {
         assertThrows<NoSuchElementException> {
-            InputConverter().convertToOperations("?".split(" "))
+            InputConverter().convertToOperators(input.split(" "))
         }
     }
 }

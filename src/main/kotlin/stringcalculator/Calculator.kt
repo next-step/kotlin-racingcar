@@ -1,12 +1,12 @@
 package stringcalculator
 
-import stringcalculator.operations.Operation
+data class Operational(val leftNum: Int, val rightNum: Int)
 
 class Calculator(private val inputValidator: InputValidator, private val inputConverter: InputConverter) {
     fun calculate(input: String?): Int {
         val validatedInput = validateInput(input)
         val inputDeque = extractNumbers(validatedInput)
-        val operations = convertToOperations(validatedInput)
+        val operations = convertToOperators(validatedInput)
         return executeOperations(inputDeque, operations)
     }
 
@@ -18,15 +18,24 @@ class Calculator(private val inputValidator: InputValidator, private val inputCo
         return inputConverter.extractInts(splitString)
     }
 
-    private fun convertToOperations(splitString: List<String>): List<Operation> {
-        return inputConverter.convertToOperations(splitString)
+    private fun convertToOperators(splitString: List<String>): List<Operator> {
+        return inputConverter.convertToOperators(splitString)
     }
 
-    private fun executeOperations(inputDeque: ArrayDeque<Int>, operations: List<Operation>): Int {
-        for (operation in operations) {
-            operation.execute(inputDeque)
+    private fun executeOperations(inputDeque: ArrayDeque<Int>, operators: List<Operator>): Int {
+        for (operator in operators) {
+            val operational = popFirstTwo(inputDeque)
+            val result = operator.execute(operational)
+            inputDeque.addFirst(result)
         }
 
         return inputDeque.first()
+    }
+
+    @Throws(NoSuchElementException::class)
+    fun popFirstTwo(inputDeque: ArrayDeque<Int>): Operational {
+        val leftNum = inputDeque.removeFirst()
+        val rightNum = inputDeque.removeFirst()
+        return Operational(leftNum, rightNum)
     }
 }
