@@ -64,6 +64,6 @@ class CarsTest {
             cars.race()
         }
 
-        Assertions.assertThat(cars.getWinner().size).isGreaterThanOrEqualTo(1)
+        Assertions.assertThat(cars.getResult().winners.size).isGreaterThanOrEqualTo(1)
     }
 }

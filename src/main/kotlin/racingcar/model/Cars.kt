@@ -18,7 +18,7 @@ class Cars private constructor(
         Round(index, race())
     }
 
-    fun getWinner(): List<CarName> =
+    private fun getWinner(): List<CarName> =
         carList.racingCars.filter { car -> car.movement == carList.racingCars.maxOf { it.movement } }.map { it.name }
 
     fun getResult(): RaceResult = RaceResult(rounds(), getWinner())
