@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 fun main() {
     val numberOfCars = InputView.readInputForNumbersOfCars()

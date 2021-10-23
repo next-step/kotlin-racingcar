@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 object ResultView {
     private const val ASK_HOW_MANY_CARS = "자동타 대수는 몇 대인가요?"

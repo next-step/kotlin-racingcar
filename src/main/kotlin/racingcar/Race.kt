@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 object Race {
     fun startLap(circuit: Circuit) {

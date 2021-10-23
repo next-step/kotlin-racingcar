@@ -1,6 +1,6 @@
-package step3
+package racingcar
 
-import step3.RandomGenerator.getRandomValue
+import racingcar.RandomGenerator.getRandomValue
 
 class Circuit {
     private val circuit = ArrayList<Car>()

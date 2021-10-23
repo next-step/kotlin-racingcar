@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 class Car(private val minimumValueForMove: Int) {
     private var movedDistance = 0
