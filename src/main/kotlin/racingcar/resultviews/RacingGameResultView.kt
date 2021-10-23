@@ -1,21 +1,16 @@
 package racingcar.resultviews
 
-import racingcar.Car
-
 class RacingGameResultView : ResultView {
-    override fun printResult(cars: List<Car>) {
-        for (car in cars) {
-            val resultStr = buildResultStr(car)
-            println(resultStr)
+    override fun printResult(gameResult: GameResult) {
+        for (roundResult in gameResult.roundResults) {
+            printRoundResult(roundResult)
         }
-        println("")
     }
 
-    private fun buildResultStr(car: Car): String {
-        var resultStr = ""
-        for (i in 0..car.currentPosition) {
-            resultStr += "-"
+    private fun printRoundResult(roundResult: RoundResult) {
+        for (position in roundResult.positions) {
+            println("-".repeat(position))
         }
-        return resultStr
+        println("")
     }
 }

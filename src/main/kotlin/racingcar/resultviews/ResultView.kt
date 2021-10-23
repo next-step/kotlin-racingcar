@@ -1,7 +1,5 @@
 package racingcar.resultviews
 
-import racingcar.Car
-
 interface ResultView {
-    fun printResult(cars: List<Car>)
+    fun printResult(gameResult: GameResult)
 }

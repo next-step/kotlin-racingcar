@@ -8,8 +8,17 @@ class RacingGameInputView {
 + receiveInput(): GameInput
 }
 
+class GameInput {
++ numberOfCars: Int
++ numberOfRounds: Int
+}
+
 interface ResultView {
 + printResult(gameResult: GameResult)
+}
+
+class GameResult {
++ roundResults: List<RoundResult>
 }
 
 class RacingGameResultView implements ResultView {
@@ -20,13 +29,12 @@ interface FuelProvider {
 + getFuel(): Int
 }
 
-class RandomFuelProvider implements FuelProvider {
+class RandomFuelProvider {
 + getFuel(): Int
 }
 
 class Car {
 + carId: Int
-- val minFuelThreshold: Int
 + accelerate(fuel: Int)
 }
 
@@ -36,8 +44,13 @@ class RacingGame {
 
 RacingGame *-left-> "*" Car
 RacingGame -> FuelProvider
-RacingGame -up-> InputView
+RandomFuelProvider .left.|> FuelProvider
+
+RacingGame -up-> GameInput
+InputView -down-> GameInput
 RacingGameInputView ..|> InputView
-RacingGame -down-> ResultView
+
+RacingGame -down-> GameResult
+ResultView -up-> GameResult
 
 @enduml
