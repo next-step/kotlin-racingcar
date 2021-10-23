@@ -7,7 +7,7 @@ value class Lap(private val value: Int) {
     }
 
     private fun verify() {
-        require(value >= MIN_LAPS) { "각 라운드는 1보다 작을 수 없습니다." }
+        require(value >= MIN_LAPS) { "각 라운드는 ${MIN_LAPS}보다 작을 수 없습니다." }
     }
 
     companion object {

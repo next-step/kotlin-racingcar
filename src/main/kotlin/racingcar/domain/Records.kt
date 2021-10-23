@@ -1,18 +1,18 @@
 package racingcar.domain
 
 import racingcar.ui.LINE_FEED
-import java.lang.StringBuilder
 
-class Records {
-    private val records = mutableListOf<Record>()
-
-    constructor(participants: RacingCars) {
-        participants.list.forEach { records.add(Record(it.position)) }
-    }
+@JvmInline
+value class Records private constructor(private val records: List<Record>) {
 
     fun display(): String {
-        val result = StringBuilder()
-        records.forEach { result.append(it.score).append(LINE_FEED) }
-        return result.toString()
+        return records.joinToString(LINE_FEED) { it.score }
+    }
+
+    companion object {
+        fun of(participants: RacingCars): Records {
+            val values = participants.list.map { Record(it) }
+            return Records(values)
+        }
     }
 }

@@ -1,6 +1,8 @@
 package racingcar
 
+import racingcar.domain.BulletinBoard
 import racingcar.domain.Lap
+import racingcar.domain.Names
 import racingcar.domain.RacingCars
 import racingcar.domain.RacingController
 import racingcar.domain.strategy.RandomMovingStrategy
@@ -18,12 +20,16 @@ class RacingCarApplication(
     private val controller: RacingController
 ) {
     fun run() {
-        val cars = view.cars()
+        val names = Names.of(view.names())
         val laps = view.laps()
-        var participants = RacingCars.of(cars, RandomMovingStrategy())
+        var participants = RacingCars.of(names, RandomMovingStrategy())
+        var board = BulletinBoard()
 
-        (1..laps).forEach { participants = controller.race(participants, Lap(it)) }
+        (1..laps).forEach {
+            participants = controller.race(participants)
+            board = controller.record(board, participants, Lap(it))
+        }
 
-        view.output(laps, controller.board)
+        view.output(board)
     }
 }
