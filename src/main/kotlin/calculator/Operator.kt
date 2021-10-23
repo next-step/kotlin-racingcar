@@ -1,7 +1,7 @@
-package step2
+package calculator
 
-import step2.Step2Exception.CANT_DIVIDE_ZERO_EXCEPTION
-import step2.Step2Exception.IS_NOT_ARITHMETIC_SYMBOL_EXCEPTION
+import calculator.CalculatorException.CANT_DIVIDE_ZERO_EXCEPTION
+import calculator.CalculatorException.IS_NOT_ARITHMETIC_SYMBOL_EXCEPTION
 
 enum class Operator(val op: String, val calculate: (first: Int, second: Int) -> Int) {
     PLUS("+", { first, second ->

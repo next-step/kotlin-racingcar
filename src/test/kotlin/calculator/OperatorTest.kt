@@ -1,12 +1,12 @@
-package step2
+package calculator
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
-import step2.Operator.Companion.convertToOperator
-import step2.Step2Exception.IS_NOT_ARITHMETIC_SYMBOL_EXCEPTION
+import calculator.Operator.Companion.convertToOperator
+import calculator.CalculatorException.IS_NOT_ARITHMETIC_SYMBOL_EXCEPTION
 
 class OperatorTest {
 
@@ -53,7 +53,7 @@ class OperatorTest {
         assertThatThrownBy { convertToOperator("/").calculate(value, zero) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageContaining(
-                Step2Exception.CANT_DIVIDE_ZERO_EXCEPTION
+                CalculatorException.CANT_DIVIDE_ZERO_EXCEPTION
             )
     }
 }
