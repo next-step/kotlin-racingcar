@@ -12,8 +12,7 @@ class CarsTest {
     fun `비어있는 Cars는 생성될 수 없다`() {
         assertThatThrownBy {
             Cars(emptyList())
-        }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("Car는 하나 이상 존재해야합니다")
+        }.isInstanceOf(CarsException::class.java)
     }
 
     @Test

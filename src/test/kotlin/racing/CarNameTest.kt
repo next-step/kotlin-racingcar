@@ -22,24 +22,21 @@ class CarNameTest {
     fun `차 이름은 공백이 될 수 없다`() {
         assertThatThrownBy {
             CarName(" ")
-        }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("자동차 이름은 공백이 될 수 없습니다")
+        }.isInstanceOf(CarNameException::class.java)
     }
 
     @Test
     fun `차 이름은 빈 문자열이 될 수 없다`() {
         assertThatThrownBy {
             CarName("")
-        }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("자동차 이름은 공백이 될 수 없습니다")
+        }.isInstanceOf(CarNameException::class.java)
     }
 
     @Test
     fun `차 이름은 5자를 초과할 수 없다`() {
         assertThatThrownBy {
             CarName("가나다라마바")
-        }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("자동차 이름은 5자를 초과할 수 없습니다")
+        }.isInstanceOf(CarNameException::class.java)
     }
 
     @Test

@@ -21,7 +21,6 @@ class PositionTest {
     fun `Position은 음수가 될 수 없다`() {
         assertThatThrownBy {
             Position(-1)
-        }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("Position은 0보다 크거나 같아야합니다.")
+        }.isInstanceOf(PositionException::class.java)
     }
 }

@@ -1,31 +1,17 @@
 package racing
 
-@JvmInline
-value class Round(val value: Int) {
-    init {
-        require(value > 0) { "라운드는 양의 정수입니다." }
-    }
-}
-
 object CarsController {
 
-    fun createCars(): Cars {
+    fun play() {
         val names = CarName.from(InputView.getCarsName())
-        return CarsFactory.create(names)
-    }
-
-    fun play(cars: Cars): Cars {
+        val cars = CarsFactory.create(names)
         val round = Round(InputView.getRound())
 
         OutputView.printStartResult()
         repeat(round.value) {
             cars.goAll()
-            OutputView.printResult(cars)
+            OutputView.printResult(CarsDto(cars))
         }
-        return cars
-    }
-
-    fun announceWinner(cars: Cars) {
-        OutputView.printWinner(cars.getWinner())
+        OutputView.printWinner(CarsDto(cars.getWinner()))
     }
 }
