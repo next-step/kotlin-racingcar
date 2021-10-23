@@ -4,7 +4,8 @@ class Calculator {
     fun calculate(input : String?) : Int{
         if (input == null) throw IllegalArgumentException()
         if (input.isBlank()) throw IllegalArgumentException()
-        val array = input.split(" ");
+        val array = input.split(" ").toMutableList()
+        array.removeIf { element -> element.isEmpty()}
         array.forEach { parameter ->
             if (parameter.toIntOrNull() != null) return@forEach
             if (isValidOperator(parameter)) return@forEach
