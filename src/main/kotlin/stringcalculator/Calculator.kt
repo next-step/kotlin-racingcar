@@ -31,7 +31,7 @@ class Calculator(private val inputValidator: InputValidator, private val inputCo
     }
 
     @Throws(NoSuchElementException::class)
-    fun popFirstTwo(inputDeque: ArrayDeque<Int>): Operational {
+    private fun popFirstTwo(inputDeque: ArrayDeque<Int>): Operational {
         val leftNum = inputDeque.removeFirst()
         val rightNum = inputDeque.removeFirst()
         return Operational(leftNum, rightNum)
