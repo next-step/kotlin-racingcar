@@ -1,7 +1,9 @@
 package racingcar
 
 class Car(val carId: Int) {
-    var currentPosition: Int = 0
+    private var _currentPosition: Int = 0
+    val currentPosition: Int
+        get() = _currentPosition
 
     fun accelerate(fuel: Int) {
         if (canAccelerate(fuel)) {
@@ -14,7 +16,7 @@ class Car(val carId: Int) {
     }
 
     private fun increaseCurrentPosition() {
-        currentPosition += 1
+        _currentPosition += 1
     }
 
     companion object {
