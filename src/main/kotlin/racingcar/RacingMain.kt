@@ -1,15 +1,15 @@
 package racingcar
 
 fun main() {
-    val numberOfCars = InputView.readInputForNumbersOfCars()
+    val carsNameList = InputView.readInputForCarsNameList()
     val numberOfTry = InputView.readInputForNumberOfTry()
-    val circuit = createCircuit(numberOfCars)
+    val circuit = createCircuit(carsNameList)
     printResult(numberOfTry, circuit)
 }
 
-fun createCircuit(numberOfCars: Int) = Circuit().apply {
-    repeat(numberOfCars) {
-        addCarToCircuit(Car(4))
+fun createCircuit(carsNameList: List<String>) = Circuit().apply {
+    carsNameList.forEach {
+        addCarToCircuit(Car(4, it))
     }
 }
 
