@@ -3,7 +3,6 @@ package racingcar
 import racingcar.fuelproviders.FuelProvider
 import racingcar.inputviews.GameInput
 import racingcar.inputviews.InputView
-import racingcar.resultviews.RacingGameResultView
 import racingcar.resultviews.ResultView
 
 class RacingGame(
