@@ -9,13 +9,13 @@ class RacingGame(
     private val fuelProvider: FuelProvider,
 ) {
     fun run(input: GameInput): GameResult {
-        val cars = initCars(input)
+        val cars = createCars(input.numberOfCars)
         val roundResults = (1..input.numberOfRounds).map { runRound(it, cars) }
         return GameResult(roundResults)
     }
 
-    private fun initCars(input: GameInput): List<Car> {
-        return (1..input.numberOfCars).map { Car(it) }
+    private fun createCars(numberOfCars: Int): List<Car> {
+        return (1..numberOfCars).map { Car(it) }
     }
 
     private fun runRound(round: Int, cars: List<Car>): RoundResult{

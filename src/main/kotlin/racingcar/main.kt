@@ -14,5 +14,4 @@ fun main() {
     val gameInput = inputView.receiveInput()
     val gameResult = game.run(gameInput)
     resultView.printResult(gameResult)
-
 }
