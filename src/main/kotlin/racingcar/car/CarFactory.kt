@@ -1,5 +1,6 @@
 package racingcar.car
 
+import racingcar.constant.Constant
 import racingcar.engine.DefaultEngine
 
 class CarFactory(private val carList: List<Car>) {
@@ -20,12 +21,6 @@ class CarFactory(private val carList: List<Car>) {
             return CarFactory(initCarList(carCount))
         }
 
-        private fun initCarList(carCount: Int): List<Car> {
-            val firstList = mutableListOf<Car>()
-            repeat(carCount) {
-                firstList.add(Car(engine))
-            }
-            return firstList.toList()
-        }
+        private fun initCarList(carCount: Int) = (Constant.START..carCount).map { Car(engine) }
     }
 }
