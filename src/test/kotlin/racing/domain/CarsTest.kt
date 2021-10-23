@@ -8,13 +8,13 @@ class CarsTest {
     @Test
     fun `차량 갯수가 0인 테스트`() {
         Assertions.assertThatIllegalArgumentException()
-            .isThrownBy { Cars.make(listOf(), Pedal(0)) }
+            .isThrownBy { Cars.make(listOf()) }
             .withMessage("1개 이상 이름이 필요합니다.")
     }
 
     @Test
     fun `최대 값 테스트`() {
-        val cars = Cars.make(carNames = listOf("a", "b", "c"), pedal = Pedal(0))
+        val cars = Cars.make(carNames = listOf("a", "b", "c"))
         val winners = cars.getWinners()
 
         assertThat(winners.size).isEqualTo(cars.cars.size)
