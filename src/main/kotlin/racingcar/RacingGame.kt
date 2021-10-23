@@ -2,16 +2,23 @@ package racingcar
 
 import racingcar.fuelproviders.FuelProvider
 import racingcar.inputviews.GameInput
+import racingcar.inputviews.InputView
+import racingcar.resultviews.RacingGameResultView
+import racingcar.resultviews.ResultView
 
-data class GameResult(val cars: List<Car>)
-
-class RacingGame(private val fuelProvider: FuelProvider) {
-    fun run(input: GameInput): GameResult {
+class RacingGame(
+    private val fuelProvider: FuelProvider,
+    private val inputView: InputView,
+    private val resultView: ResultView
+) {
+    fun run() {
+        val input = inputView.receiveInput()
         val cars = initCars(input)
         for (round in 1..input.numberOfRounds) {
             accelCars(cars)
+            resultView.printResult(cars)
         }
-        return GameResult(cars = cars)
+
     }
 
     private fun initCars(input: GameInput): List<Car> {
