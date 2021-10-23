@@ -12,8 +12,6 @@ object Race {
         }
     }
 
-    private fun startLap(circuit: Circuit) = circuit.tryToMoveAllCar()
-
     fun getWinnerNameList(circuit: Circuit): List<String> {
         val lapResultList = circuit.getAllCarsLapResult()
         lapResultList.forEach {
@@ -22,6 +20,8 @@ object Race {
         setLongestMovedDistance(0)
         return winnerNameList.toList()
     }
+
+    private fun startLap(circuit: Circuit) = circuit.tryToMoveAllCar()
 
     private fun addToWinnerList(lapResult: LapResult) {
         if (lapResult.isNotWinner(longestMovedDistance))
