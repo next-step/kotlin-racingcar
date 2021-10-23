@@ -6,18 +6,18 @@ import org.junit.jupiter.api.Test
 class RaceTest {
 
     @Test
-    fun `Circuit에 차가 1개 이상 있을 시 startLap 정상작동 확인`() {
+    fun `Circuit에 차가 1개 이상 있을 시 startRace 실행 후 예외가 발생하는지 확인 한다`() {
         val circuit = Circuit().apply {
             addCarToCircuit(Car(4))
         }
-        assertThat(Race.startLap(circuit)).isEqualTo(Unit)
+        assertThat(Race.startRace(circuit, 1)).isEqualTo(Unit)
         circuit.addCarToCircuit(Car(4))
-        assertThat(Race.startLap(circuit)).isEqualTo(Unit)
+        assertThat(Race.startRace(circuit, 1)).isEqualTo(Unit)
     }
 
     @Test
-    fun `Circuit에 차가 없을 시 startLap 정상작동 확인`() {
-        assertThat(Race.startLap(Circuit())).isEqualTo(Unit)
+    fun `Circuit에 차가 없을 시 startRace 실행 후 예외가 발생하지 않는지 확인한다`() {
+        assertThat(Race.startRace(Circuit(), 1)).isEqualTo(Unit)
     }
 
     @Test

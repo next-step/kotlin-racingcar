@@ -1,6 +1,6 @@
 package racingcar
 
 object ValidationChecker {
-    private val intRegex = "\\d".toRegex()
-    fun isUnsignedInt(s: String) = s.matches(intRegex)
+    private val unsignedNumberRegex = "\\d".toRegex()
+    fun isUnsignedInt(s: String) = s.matches(unsignedNumberRegex)
 }

@@ -3,21 +3,23 @@ package racingcar
 import racingcar.ExceptionType.CAR_NAME_LIMIT_LENGTH_OVER
 
 class Car(private val minimumValueForMove: Int, val carName: String = "NONE") {
-    private val nameLengthLimit = 5
+    var movedDistance = 0
+        private set
 
     init {
-        require(carName.length <= nameLengthLimit) { "$CAR_NAME_LIMIT_LENGTH_OVER ($carName)" }
+        require(carName.length <= NAME_LENGTH_LIMIT) { "$CAR_NAME_LIMIT_LENGTH_OVER ($carName)" }
     }
-
-    private var movedDistance = 0
 
     fun isMoveAble(valueToCheck: Int) =
         minimumValueForMove <= valueToCheck
 
     fun move(randomValue: Int) {
-        if (isMoveAble(randomValue))
-            movedDistance++
+        if (!isMoveAble(randomValue))
+            return
+        movedDistance++
     }
 
-    fun getMovedDistance() = movedDistance
+    companion object {
+        private const val NAME_LENGTH_LIMIT = 5
+    }
 }

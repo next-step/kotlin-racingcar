@@ -6,11 +6,11 @@ class Circuit {
     private val circuit = ArrayList<Car>()
 
     fun addCarToCircuit(car: Car) = circuit.add(car)
+
     fun tryToMoveAllCar() =
         circuit.forEach {
-            val randomValue = getRandomValue()
-            it.move(randomValue)
+            it.move(getRandomValue())
         }
 
-    fun getAllCarsLapResult() = circuit.map { LapResult(it.carName, it.getMovedDistance()) }
+    fun getAllCarsLapResult() = circuit.map { LapResult(it.carName, it.movedDistance) }
 }
