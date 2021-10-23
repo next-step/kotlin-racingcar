@@ -1,14 +1,17 @@
 package step2.module
 
-import step2.exception.CalculatorMessage
-import step2.exception.CustomException
+import step2.exception.BizException
+import step2.exception.message.calculator.CalculatorMessage
+import step2.exception.message.operator.OperatorMessage
 import java.util.LinkedList
 import java.util.Queue
 
 class CalculatorParser : ParserModule {
 
+    private val queue: Queue<String> = LinkedList()
+
     private fun String.isNullOrEmpty() {
-        if (this.isEmpty()) throw CustomException(CalculatorMessage.NULL_AND_EMPTY)
+        if (this.isEmpty()) throw BizException.CustomException(CalculatorMessage.NULL_AND_EMPTY)
     }
 
     private fun String.isDigit(): Boolean =
@@ -25,11 +28,9 @@ class CalculatorParser : ParserModule {
             "-" -> true
             "*" -> true
             "/" -> true
-            else -> throw CustomException(CalculatorMessage.NOT_OPERATOR)
+            else -> throw BizException.CustomException(OperatorMessage.NOT_OPERATOR)
         }
     }
-
-    private val queue: Queue<String> = LinkedList()
 
     override fun parse(input: String): Queue<String> {
 
@@ -48,7 +49,6 @@ class CalculatorParser : ParserModule {
                 queue.add(text)
             }
         }
-
         return queue
     }
 }
