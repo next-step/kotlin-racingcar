@@ -1,28 +1,19 @@
 package racingcar.manager
 
 import racingcar.car.Car
+import racingcar.engine.CarEngine
 
-class RacingManager(
-    private var carNum: Int,
-    private var attempts: Int
+class RacingManager constructor(
+    private var cars: List<Car>,
+    private var engine: CarEngine
 ) {
 
-    private var cars: List<Car> = listOf()
-
-    init {
-        init()
-    }
-
-    private fun init() {
-        cars = (0 until carNum).map { Car() }
-    }
-
     fun race(show: ((List<Car>) -> Unit)? = null) {
-        repeat(attempts) {
-            cars.forEach {
-                it.movePosition()
-            }
-            show?.invoke(cars)
+        cars.forEach {
+            it.movePosition(engine)
         }
+        show?.invoke(cars)
     }
+
+    fun getPositions(): List<Int> = cars.map { it.getPosition() }
 }
