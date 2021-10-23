@@ -1,7 +1,7 @@
 package racingcar.car
 
 import racingcar.constant.Constant
-import racingcar.engine.DefaultEngine
+import racingcar.engine.RandomEngine
 
 class CarFactory(private val carList: List<Car>) {
     fun getResultCarList(): List<Car> {
@@ -15,7 +15,7 @@ class CarFactory(private val carList: List<Car>) {
     }
 
     companion object {
-        private val engine = DefaultEngine()
+        private val engine = RandomEngine()
 
         fun create(carCount: Int): CarFactory {
             return CarFactory(initCarList(carCount))
