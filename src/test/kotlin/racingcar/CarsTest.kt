@@ -7,29 +7,39 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import racingcar.exception.Exception
 import racingcar.model.Car
+import racingcar.model.CarName
 import racingcar.model.Cars
+import racingcar.model.DriveRule
 import racingcar.model.RaceCondition
 import racingcar.view.InputView.Companion.splitNameOfCars
 
 class CarsTest {
+    private val rule = DriveRule()
+
     @Test
     @DisplayName("자동차 객체 생성 테스트")
     fun `check car list count`() {
-        val list = Cars.createCars(RaceCondition(listOf("아", "안", "앙"), 5)).carList
-        Assertions.assertThat(list.size).isEqualTo(3)
-        Assertions.assertThat(list.size).isNotNull
+        val list = Cars.createCars(RaceCondition(listOf(CarName("11"), CarName("22"), CarName("33")), 5), rule).carList
+        Assertions.assertThat(list.racingCars.size).isEqualTo(3)
+        Assertions.assertThat(list.racingCars.size).isNotNull
     }
 
     @Test
     @DisplayName("Cars 클래스 테스트; 객체 생성 테스트 및 움직임 테스트")
     fun `check Cars class`() {
-        val cars = Cars.createCars(RaceCondition(listOf("아", "안", "앙"), 5))
-        Assertions.assertThat(cars.carList)
-            .isEqualTo(listOf(Car(name = "아"), Car(name = "하"), Car(name = "다")))
+        val cars = Cars.createCars(RaceCondition(listOf(CarName("사람"), CarName("사람3"), CarName("사람5")), 5), rule)
+        Assertions.assertThat(cars.carList.racingCars)
+            .isEqualTo(
+                listOf(
+                    Car(name = CarName(name = "사람"), movement = 0),
+                    Car(name = CarName(name = "사람3"), movement = 0),
+                    Car(name = CarName(name = "사람5"), movement = 0)
+                )
+            )
         Assertions.assertThat(cars.carList).isNotNull
-        cars.race()
-        Assertions.assertThat(cars.carList[0].movement).isLessThan(5)
-        Assertions.assertThat(cars.carList[0].movement).isNotNull
+        cars.getResult()
+        Assertions.assertThat(cars.carList.racingCars[0].movement).isLessThan(5)
+        Assertions.assertThat(cars.carList.racingCars[0].movement).isNotNull
     }
 
     @ParameterizedTest
@@ -49,18 +59,14 @@ class CarsTest {
 
         Assertions.assertThat(list.size).isNotNull
         Assertions.assertThat(list.size).isEqualTo(4)
-        Assertions.assertThat(list).isEqualTo(listOf("바람", "사탕", "별", "나부"))
+        Assertions.assertThat(list).isEqualTo(listOf(CarName("바람"), CarName("사탕"), CarName("별"), CarName("나부")))
     }
 
     @Test
     @DisplayName("우승자는 1명 이상일 수 있다.")
     fun `check number of race winner`() {
-        val cars = Cars.createCars(RaceCondition(listOf("바람", "구름", "달"), 3))
+        val cars = Cars.createCars(RaceCondition(listOf(CarName("바람"), CarName("구름"), CarName("사달")), 3), rule)
 
-        repeat(5) {
-            cars.race()
-        }
-
-        Assertions.assertThat(cars.getWinner().size).isGreaterThanOrEqualTo(1)
+        Assertions.assertThat(cars.getResult().winners.size).isGreaterThanOrEqualTo(1)
     }
 }

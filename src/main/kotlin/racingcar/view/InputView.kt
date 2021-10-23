@@ -1,7 +1,7 @@
 package racingcar.view
 
-import racingcar.exception.Exception
 import racingcar.exception.Exception.Companion.CASE_INPUT_DATA_NOT_INT
+import racingcar.model.CarName
 import racingcar.model.RaceCondition
 
 /**
@@ -11,7 +11,6 @@ class InputView {
     fun inputRaceCondition(): RaceCondition {
         val nameCars = requestNameOfCars()
         val tryCount = requestTryCount()
-        require(nameCars.isNotEmpty() && tryCount > 0) { Exception.CASE_INPUT_DATA_WRONG }
         return RaceCondition(splitNameOfCars(nameCars), tryCount)
     }
 
@@ -27,7 +26,7 @@ class InputView {
 
     companion object {
         private const val DELIMITER = ","
-        fun splitNameOfCars(names: String): List<String> =
-            names.split(DELIMITER)
+        fun splitNameOfCars(names: String): List<CarName> =
+            names.split(DELIMITER).map { CarName(it) }
     }
 }
