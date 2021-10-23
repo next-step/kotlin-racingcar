@@ -3,12 +3,11 @@ package racingcar.domain
 object Race {
     private var longestMovedDistance = 0
     private val winnerNameList = mutableListOf<String>()
-
-    fun startRace(circuit: Circuit, numberOfTry: Int, resultPrinter: (lapResultList: List<LapResult>) -> Unit = {}) {
+    fun startRace(circuit: Circuit, numberOfTry: Int, resultPrinter: (lapResultList: List<String>) -> Unit = {}) {
         repeat(numberOfTry) {
             startLap(circuit)
-            val lapResult = circuit.getAllCarsLapResult()
-            resultPrinter.invoke(lapResult)
+            val lapResultStringList = lapResultListToStringList(circuit.getAllCarsLapResult())
+            resultPrinter.invoke(lapResultStringList)
         }
     }
 
@@ -20,6 +19,9 @@ object Race {
         setLongestMovedDistance(0)
         return winnerNameList.toList()
     }
+
+    private fun lapResultListToStringList(lapResultList: List<LapResult>) =
+        lapResultList.map { it.toString() }
 
     private fun startLap(circuit: Circuit) = circuit.tryToMoveAllCar()
 
