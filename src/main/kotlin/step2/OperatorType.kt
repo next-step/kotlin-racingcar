@@ -16,7 +16,7 @@ enum class OperatorType(val symbol: String, val operatorBlock: (oldValue: Operan
     MULTIPLY("*", { oldValue, newValue -> oldValue.apply { value *= newValue.value } });
 
     companion object {
-        fun findOperator(symbol: String): (Operand, Operand) -> Operand {
+        fun findOperatorBySymbol(symbol: String): (Operand, Operand) -> Operand {
             val type = values().find { it.symbol == symbol } ?: throw IllegalArgumentException(NOT_OPERATOR_SYMBOL)
             return type.operatorBlock
         }
