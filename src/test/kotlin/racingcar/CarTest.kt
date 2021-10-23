@@ -16,8 +16,9 @@ class CarTest {
 
     @Test
     fun `길이 제한 초과 길이의 이름 입력시 오류 발생 확인`() {
-        assertThatIllegalArgumentException().isThrownBy { Car(4, "lengthOver") }
-            .withMessage(ExceptionType.CAR_NAME_LIMIT_LENGTH_OVER)
+        val carName = "lengthOver"
+        assertThatIllegalArgumentException().isThrownBy { Car(4, carName) }
+            .withMessage("${ExceptionType.CAR_NAME_LIMIT_LENGTH_OVER} ($carName)")
     }
 
     @Test

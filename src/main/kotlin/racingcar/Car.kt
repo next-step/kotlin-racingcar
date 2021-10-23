@@ -6,7 +6,7 @@ class Car(private val minimumValueForMove: Int, val carName: String = "NONE") {
     private val nameLengthLimit = 5
 
     init {
-        require(carName.length <= nameLengthLimit) { CAR_NAME_LIMIT_LENGTH_OVER }
+        require(carName.length <= nameLengthLimit) { "$CAR_NAME_LIMIT_LENGTH_OVER ($carName)" }
     }
 
     private var movedDistance = 0
