@@ -1,12 +1,15 @@
 package racingcar.engine
 
-class RacingCarEngineImpl : CarEngine {
+import racingcar.random.RacingRandomGenerator
+import racingcar.random.RandomGenerator
+
+class RacingCarEngineImpl(
+    private var randomGenerator: RandomGenerator = RacingRandomGenerator()
+) : CarEngine {
 
     override fun execute(): Boolean {
-        return randomNumber() >= RACING_CAR_MOVE_CRITERIA
+        return randomGenerator.randomNum(MAX) >= RACING_CAR_MOVE_CRITERIA
     }
-
-    private fun randomNumber(): Int = (0..MAX).random()
 
     companion object {
         const val RACING_CAR_MOVE_CRITERIA = 4
