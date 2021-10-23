@@ -1,5 +1,5 @@
 package racingcar.racing
 
-class Racing {
+class RacingTest {
 
 }
