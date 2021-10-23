@@ -5,15 +5,15 @@ import racingcar.domain.BulletinBoard
 const val LINE_FEED = "\n"
 const val DELIMITER = ","
 
-class RacingCarView {
+class RacingCarView(private val view: RacingCarScoreView = RacingCarScoreView()) {
     fun names() = nameInput("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
 
     fun laps() = lapInput("시도할 횟수는 몇 회인가요?")
 
     fun output(result: BulletinBoard) {
         println("실행 결과")
-        println(result.display())
-        println("${result.winners.display()}가 최종 우승했습니다.")
+        println(view.display(result))
+        println("${view.showWinner(result.winners)}가 최종 우승했습니다.")
     }
 
     private fun verifyNameInput(input: String?): List<String> {
