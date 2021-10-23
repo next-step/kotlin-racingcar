@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -12,8 +12,8 @@ class CircuitTest {
     }
 
     @Test
-    fun `차량 추가시 정상 작동 확인`() {
-        assertThat(circuit.addCarToCircuit(Car(4))).isEqualTo(true)
+    fun `새차량을 추가시 결과값으로 True를 반환한다`() {
+        assertThat(circuit.addCarToCircuit(Car(4))).isTrue
     }
 
     @Test
@@ -22,7 +22,7 @@ class CircuitTest {
     }
 
     @Test
-    fun `전체 차량 이동거리 받기 정상 작동 확인`() {
-        assertThat(circuit.getAllCarsMoveDistance().size).isEqualTo(numberOfCar)
+    fun `전체 차량의 LapResult를 요청시의 갯수가 전체 차량수와 동일 한지 확인한다`() {
+        assertThat(circuit.getAllCarsLapResult().size).isEqualTo(numberOfCar)
     }
 }

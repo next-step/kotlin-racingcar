@@ -11,27 +11,27 @@ import java.util.Queue
 object Calculator {
 
     fun calculate(input: String?): Double {
-        val checkedInput = checkInputValidation(input)
-        val calculateQueue = LinkedList(checkedInput.split(" ")) as Queue<String>
+        checkInputValidation(input)
+        val calculateQueue = LinkedList(input!!.split(" ")) as Queue<String>
         checkElementValidation(calculateQueue)
-        val accumulator = Operand(calculateQueue.poll())
+        var accumulator = Operand(calculateQueue.poll())
         while (calculateQueue.isNotEmpty()) {
             val operator = Operator(calculateQueue.poll())
             val newValue = Operand(calculateQueue.poll())
-            operator.execute(accumulator, newValue)
+            accumulator = operator.execute(accumulator, newValue)
         }
         return accumulator.value
     }
 
-    private fun checkElementValidation(queue: Queue<String>) = run {
-        require(checkIsNumeric(queue.first())) { INPUT_MUST_START_WITH_NUMBER }
-        require(checkIsNumeric(queue.last())) { INPUT_MUST_END_WITH_NUMBER }
-        queue
+    private fun checkElementValidation(queue: Queue<String>): Boolean {
+        require(checkIsNumeric(queue.firstOrNull())) { INPUT_MUST_START_WITH_NUMBER }
+        require(checkIsNumeric(queue.lastOrNull())) { INPUT_MUST_END_WITH_NUMBER }
+        return true
     }
 
-    private fun checkInputValidation(input: String?) = run {
+    private fun checkInputValidation(input: String?): Boolean {
         requireNotNull(input) { INPUT_MUST_NOT_NULL }
         require(input.isNotBlank()) { INPUT_MUST_NOT_BLANK }
-        input
+        return true
     }
 }

@@ -1,13 +1,13 @@
 package step2
 
 import step2.ExceptionType.OPERATOR_IS_MUST_FIXED_SYMBOL
-import step2.NumericChecker.checkIsNotNumeric
+import step2.NumericChecker.checkIsNumeric
 
 class Operator(private val symbol: String) {
 
-    val calculateBlock = symbol.run {
-        require(checkIsNotNumeric(symbol)) { OPERATOR_IS_MUST_FIXED_SYMBOL }
-        OperatorType.findOperator(this)
+    private val calculateBlock = symbol.run {
+        require(!checkIsNumeric(symbol)) { OPERATOR_IS_MUST_FIXED_SYMBOL }
+        OperatorType.findBySymbol(this)
     }
 
     fun execute(oldValue: Operand, newValue: Operand) = calculateBlock(oldValue, newValue)
