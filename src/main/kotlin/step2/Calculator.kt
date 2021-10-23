@@ -1,3 +1,5 @@
+package step2
+
 class Calculator(private val inputLine: String?) {
 
     private val numbers = mutableListOf<Int>()

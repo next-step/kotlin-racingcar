@@ -1,3 +1,5 @@
+package step2
+
 enum class Operator(private val symbol: String, val operate: (left: Int, right: Int) -> Int) {
     PLUS("+", { left, right -> left + right }),
     MINUS("-", { left, right -> left - right }),
