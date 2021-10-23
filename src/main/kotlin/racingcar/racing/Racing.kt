@@ -5,8 +5,6 @@ import racingcar.car.Car
 object Racing {
     fun racingStart(carCount: Int, tryCount: Int) {
         val cars = initCars(carCount)
-        println(cars)
-        println(tryCount)
     }
 
     private fun initCars(carCount: Int): List<Car> {

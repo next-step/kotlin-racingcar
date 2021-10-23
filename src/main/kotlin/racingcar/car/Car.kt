@@ -1,5 +1,9 @@
 package racingcar.car
 
-class Car(val status: Int = 1) {
+import racingcar.random.Random.randomForward
 
+class Car(var status: Int = 1) {
+    fun move() {
+        status += randomForward()
+    }
 }
