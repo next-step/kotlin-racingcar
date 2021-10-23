@@ -13,7 +13,7 @@ class CircuitTest {
 
     @Test
     fun `차량 추가시 정상 작동 확인`() {
-        assertThat(circuit.addCarToCircuit(Car(4))).isEqualTo(true)
+        assertThat(circuit.addCarToCircuit(Car(4))).isTrue
     }
 
     @Test

@@ -7,9 +7,11 @@ import step2.ExceptionType.INPUT_MUST_START_WITH_NUMBER
 import step2.NumericChecker.checkIsNumeric
 import java.util.LinkedList
 import java.util.Queue
-fun main(){
+
+fun main() {
     Calculator.calculate("1 + 1 + 1")
 }
+
 object Calculator {
 
     fun calculate(input: String?): Double {
