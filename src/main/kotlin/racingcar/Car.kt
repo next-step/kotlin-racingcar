@@ -1,8 +1,6 @@
 package racingcar
 
-const val DefaultMinFuelThreshold = 4
-
-class Car(val carId: Int, private val minFuelThreshold: Int = DefaultMinFuelThreshold) {
+class Car(val carId: Int) {
     var currentPosition: Int = 0
 
     fun accelerate(fuel: Int) {
@@ -12,10 +10,14 @@ class Car(val carId: Int, private val minFuelThreshold: Int = DefaultMinFuelThre
     }
 
     private fun canAccelerate(fuel: Int): Boolean {
-        return fuel > minFuelThreshold
+        return fuel >= MIN_FUEL_THRESHOLD
     }
 
     private fun increaseCurrentPosition() {
         currentPosition += 1
+    }
+
+    companion object {
+        const val MIN_FUEL_THRESHOLD = 4
     }
 }

@@ -1,23 +1,26 @@
 package racingcar
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class CarTest {
-    @Test
-    fun `minFuelThreshold 이상의 fuel 을 받으면 currentPosition 이 1 증가 한다`() {
-        val car = Car(0, minFuelThreshold = 4)
+    @ParameterizedTest
+    @ValueSource(ints = [4, 5, 6, 7, 8, 9])
+    fun `accelerate 실행 시 4 이상의 fuel 을 받으면 currentPosition 이 1 증가 한다`(input: Int) {
+        val car = Car(0)
 
-        car.accelerate(5)
+        car.accelerate(input)
 
         assertThat(car.currentPosition).isEqualTo(1)
     }
 
-    @Test
-    fun `minFuelThreshold 이하의 fuel 을 받으면 currentPosition 이 증가 하지 않는다`() {
-        val car = Car(0, minFuelThreshold = 4)
+    @ParameterizedTest
+    @ValueSource(ints = [0, 1, 2, 3])
+    fun `accelerate 실행 시 4 미만의 fuel 을 받으면 currentPosition 이 증가하지 않는다`(input: Int) {
+        val car = Car(0)
 
-        car.accelerate(3)
+        car.accelerate(input)
 
         assertThat(car.currentPosition).isEqualTo(0)
     }
