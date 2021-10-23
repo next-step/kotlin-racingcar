@@ -1,8 +1,8 @@
 package calculator
 
-class Operator(private val base: Int, private val target: Int, private val operator: String) {
+class Operator(private val operator: String) {
 
-    fun operate(): Int {
+    fun operate(base: Int, target: Int): Int {
         return when (operator) {
             "+" -> base + target
             "-" -> base - target
