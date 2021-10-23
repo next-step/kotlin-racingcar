@@ -1,7 +1,6 @@
 package racingcar.controller
 
 import racingcar.domain.Race.startRace
-import racingcar.domain.Car
 import racingcar.domain.Circuit
 import racingcar.domain.Race
 import racingcar.view.InputView
@@ -13,7 +12,7 @@ fun main() {
     ResultView.printAskHowManyTry()
     val numberOfTry = InputView.readInputForNumberOfTry()
 
-    val circuit = createCircuit(carsNameList)
+    val circuit = Circuit(carsNameList)
     ResultView.printProcessResultTitle()
     startRace(circuit, numberOfTry) {
         ResultView.printResult(it)
@@ -21,10 +20,4 @@ fun main() {
 
     val winnerNameList = Race.getWinnerNameList(circuit)
     ResultView.printWinners(winnerNameList)
-}
-
-fun createCircuit(carsNameList: List<String>) = Circuit().apply {
-    carsNameList.forEach {
-        addCarToCircuit(Car(4, it))
-    }
 }
