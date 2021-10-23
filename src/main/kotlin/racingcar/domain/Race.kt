@@ -4,7 +4,7 @@ object Race {
     private var longestMovedDistance = 0
     private val winnerNameList = mutableListOf<String>()
 
-    fun startRace(circuit: Circuit, numberOfTry: Int, resultPrinter: (lapResultList: List<LapResult>) -> Unit) {
+    fun startRace(circuit: Circuit, numberOfTry: Int, resultPrinter: (lapResultList: List<LapResult>) -> Unit = {}) {
         repeat(numberOfTry) {
             startLap(circuit)
             val lapResult = circuit.getAllCarsLapResult()
