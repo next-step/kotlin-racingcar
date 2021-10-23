@@ -3,10 +3,17 @@ package step3
 fun main() {
     val numberOfCars = InputView.readInputForNumbersOfCars()
     val numberOfTry = InputView.readInputForNumberOfTry()
-    val circuit = Circuit()
+    val circuit = createCircuit(numberOfCars)
+    printResult(numberOfTry, circuit)
+}
+
+fun createCircuit(numberOfCars: Int) = Circuit().apply {
     repeat(numberOfCars) {
-        circuit.addCarToCircuit(Car(4))
+        addCarToCircuit(Car(4))
     }
+}
+
+fun printResult(numberOfTry: Int, circuit: Circuit) {
     ResultView.printProcessResultTitle()
     repeat(numberOfTry) {
         Race.startLap(circuit)
