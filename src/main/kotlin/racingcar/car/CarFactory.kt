@@ -1,7 +1,6 @@
 package racingcar.car
 
 import racingcar.engine.DefaultEngine
-import racingcar.constant.Constant
 
 class CarFactory(private val carList: List<Car>) {
     companion object {
@@ -13,7 +12,7 @@ class CarFactory(private val carList: List<Car>) {
 
         private fun initCarList(carCount: Int): List<Car> {
             val tempList = mutableListOf<Car>()
-            for (i in Constant.START..carCount) {
+            repeat(carCount) {
                 tempList.add(Car(engine))
             }
             return tempList.toList()
