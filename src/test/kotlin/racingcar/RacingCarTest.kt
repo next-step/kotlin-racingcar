@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import racingcar.car.Car
 import racingcar.car.CarFactory
 import racingcar.constant.Constant
 import racingcar.engine.RandomEngine
@@ -12,7 +13,7 @@ class RacingCarTest {
     @Test
     fun `전진하면 거리가 한칸 늘어나는가`() {
         val engine = RandomEngine()
-        assertEquals(engine.forward(Constant.READY_STATUS), Constant.ONE_SPACE)
+        assertEquals(engine.forward(Car.READY_STATUS), Constant.ONE_SPACE)
     }
 
     @ParameterizedTest
