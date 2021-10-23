@@ -11,11 +11,11 @@ class CarFactory(private val carList: List<Car>) {
         }
 
         private fun initCarList(carCount: Int): List<Car> {
-            val tempList = mutableListOf<Car>()
+            val firstList = mutableListOf<Car>()
             repeat(carCount) {
-                tempList.add(Car(engine))
+                firstList.add(Car(engine))
             }
-            return tempList.toList()
+            return firstList.toList()
         }
     }
 
