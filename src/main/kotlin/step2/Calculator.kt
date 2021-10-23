@@ -8,21 +8,17 @@ import step2.NumericChecker.checkIsNumeric
 import java.util.LinkedList
 import java.util.Queue
 
-fun main() {
-    Calculator.calculate("1 + 1 + 1")
-}
-
 object Calculator {
 
     fun calculate(input: String?): Double {
         checkInputValidation(input)
         val calculateQueue = LinkedList(input!!.split(" ")) as Queue<String>
         checkElementValidation(calculateQueue)
-        val accumulator = Operand(calculateQueue.poll())
+        var accumulator = Operand(calculateQueue.poll())
         while (calculateQueue.isNotEmpty()) {
             val operator = Operator(calculateQueue.poll())
             val newValue = Operand(calculateQueue.poll())
-            operator.execute(accumulator, newValue)
+            accumulator = operator.execute(accumulator, newValue)
         }
         return accumulator.value
     }

@@ -7,7 +7,7 @@ class Operator(private val symbol: String) {
 
     private val calculateBlock = symbol.run {
         require(!checkIsNumeric(symbol)) { OPERATOR_IS_MUST_FIXED_SYMBOL }
-        OperatorType.findOperatorBySymbol(this)
+        OperatorType.findBySymbol(this)
     }
 
     fun execute(oldValue: Operand, newValue: Operand) = calculateBlock(oldValue, newValue)
