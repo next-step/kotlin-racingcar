@@ -1,4 +1,4 @@
-package racing
+package racing.domain
 
 class Pedal(private val movingCondition: Int) {
 
