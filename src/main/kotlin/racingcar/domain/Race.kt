@@ -1,4 +1,6 @@
-package racingcar
+package racingcar.domain
+
+import racingcar.view.ResultView
 
 object Race {
     private var longestMovedDistance = 0

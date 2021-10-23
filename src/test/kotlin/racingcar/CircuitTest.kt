@@ -2,6 +2,8 @@ package racingcar
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import racingcar.domain.Car
+import racingcar.domain.Circuit
 
 class CircuitTest {
     private val numberOfCar = 5

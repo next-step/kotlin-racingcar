@@ -1,5 +1,6 @@
-package racingcar
+package racingcar.view
 
+import racingcar.domain.LapResult
 import java.util.LinkedList
 import java.util.Queue
 

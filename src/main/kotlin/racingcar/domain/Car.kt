@@ -1,6 +1,6 @@
-package racingcar
+package racingcar.domain
 
-import racingcar.ExceptionType.CAR_NAME_LIMIT_LENGTH_OVER
+import racingcar.domain.ExceptionType.CAR_NAME_LIMIT_LENGTH_OVER
 
 class Car(private val minimumValueForMove: Int, val carName: String = "NONE") {
     var movedDistance = 0

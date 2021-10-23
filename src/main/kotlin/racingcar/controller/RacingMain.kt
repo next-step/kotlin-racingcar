@@ -1,6 +1,11 @@
 package racingcar
 
-import racingcar.Race.startRace
+import racingcar.domain.Race.startRace
+import racingcar.domain.Car
+import racingcar.domain.Circuit
+import racingcar.domain.Race
+import racingcar.view.InputView
+import racingcar.view.ResultView
 
 fun main() {
     ResultView.printAskHowManyCars()
