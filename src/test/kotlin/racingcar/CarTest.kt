@@ -23,12 +23,11 @@ class CarTest {
     @Test
     fun `Car 이동시 거리값 변경 확인`() {
         val testCar = Car(4)
-        assertThat(
-            testCar.run {
-                move(4)
-                getMovedDistance()
-            }
-        ).isEqualTo(1)
+        val movedDistance = testCar.run {
+            move(4)
+            getMovedDistance()
+        }
+        assertThat(movedDistance).isEqualTo(1)
     }
 
     @ParameterizedTest
