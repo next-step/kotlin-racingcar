@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.controller
 
 import racingcar.domain.Race.startRace
 import racingcar.domain.Car
@@ -15,7 +15,9 @@ fun main() {
 
     val circuit = createCircuit(carsNameList)
     ResultView.printProcessResultTitle()
-    startRace(circuit, numberOfTry)
+    startRace(circuit, numberOfTry) {
+        ResultView.printResult(it)
+    }
 
     val winnerNameList = Race.getWinnerNameList(circuit)
     ResultView.printWinners(winnerNameList)

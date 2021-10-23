@@ -1,16 +1,14 @@
 package racingcar.domain
 
-import racingcar.view.ResultView
-
 object Race {
     private var longestMovedDistance = 0
     private val winnerNameList = mutableListOf<String>()
 
-    fun startRace(circuit: Circuit, numberOfTry: Int) {
+    fun startRace(circuit: Circuit, numberOfTry: Int, resultPrinter: (lapResultList: List<LapResult>) -> Unit) {
         repeat(numberOfTry) {
             startLap(circuit)
             val lapResult = circuit.getAllCarsLapResult()
-            ResultView.printResult(lapResult)
+            resultPrinter.invoke(lapResult)
         }
     }
 
