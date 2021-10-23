@@ -6,17 +6,25 @@ object ResultView {
     private const val PROCESS_RESULT = "실행결과"
     private const val DIVIDER = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-    fun printResult(distanceList: List<Int>) {
+    fun printResult(lapResultList: List<LapResult>) {
         println(DIVIDER)
-        distanceList.forEach {
-            printMovedDistance(it)
-        }
+        printLapResultList(lapResultList)
         println(DIVIDER)
     }
 
-    private fun printMovedDistance(distance: Int) {
-        println("-".repeat(distance))
+    private fun printLapResultList(lapResultList: List<LapResult>) {
+        lapResultList.forEach {
+            printLapResult(it)
+        }
     }
+
+    private fun printLapResult(lapResult: LapResult) {
+        with(lapResult) {
+            println("$carName : ${getMovedDistanceExpression(movedDistance)}")
+        }
+    }
+
+    private fun getMovedDistanceExpression(distance: Int) = ("-".repeat(distance))
 
     fun printProcessResultTitle() {
         println(PROCESS_RESULT)

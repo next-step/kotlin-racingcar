@@ -22,7 +22,7 @@ class CircuitTest {
     }
 
     @Test
-    fun `전체 차량 이동거리 받기 정상 작동 확인`() {
-        assertThat(circuit.getAllCarsMoveDistance().size).isEqualTo(numberOfCar)
+    fun `전체 차량 LapResult 받기 정상 작동 확인`() {
+        assertThat(circuit.getAllCarsLapResult().size).isEqualTo(numberOfCar)
     }
 }

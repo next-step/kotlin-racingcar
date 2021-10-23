@@ -17,7 +17,7 @@ fun printResult(numberOfTry: Int, circuit: Circuit) {
     ResultView.printProcessResultTitle()
     repeat(numberOfTry) {
         Race.startLap(circuit)
-        val lapResult = circuit.getAllCarsMoveDistance()
+        val lapResult = circuit.getAllCarsLapResult()
         ResultView.printResult(lapResult)
     }
 }
