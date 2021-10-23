@@ -1,7 +1,5 @@
 package stringcalculator
 
-data class Operational(val leftNum: Int, val rightNum: Int)
-
 class Calculator(private val inputValidator: InputValidator, private val inputConverter: InputConverter) {
     fun calculate(input: String?): Int {
         val validatedInput = validateInput(input)
