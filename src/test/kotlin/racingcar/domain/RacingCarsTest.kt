@@ -19,7 +19,7 @@ class RacingCarsTest {
         val movedParticipants = participants.race()
 
         assertThat(participants).isNotEqualTo(movedParticipants)
-        assertThat(participants.list).contains(RacingCarFixture.MOVABLE_RACING_CAR, RacingCarFixture.IMMOVABLE_RACING_CAR)
-        assertThat(movedParticipants.list).contains(RacingCarFixture.MOVABLE_RACING_CAR.move(), RacingCarFixture.IMMOVABLE_RACING_CAR.move())
+        assertThat(participants.values).contains(RacingCarFixture.MOVABLE_RACING_CAR, RacingCarFixture.IMMOVABLE_RACING_CAR)
+        assertThat(movedParticipants.values).contains(RacingCarFixture.MOVABLE_RACING_CAR.move(), RacingCarFixture.IMMOVABLE_RACING_CAR.move())
     }
 }
