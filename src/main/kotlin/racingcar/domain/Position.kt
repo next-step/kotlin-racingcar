@@ -1,7 +1,7 @@
 package racingcar.domain
 
 @JvmInline
-value class Position private constructor(val value: Int = 0) {
+value class Position private constructor(val value: Int = MIN_VALUE) {
     init {
         verify(value)
     }
@@ -16,11 +16,7 @@ value class Position private constructor(val value: Int = 0) {
         private val ZERO = Position(0)
         private const val MIN_VALUE = 0
 
-        fun of(): Position {
-            return of(MIN_VALUE)
-        }
-
-        fun of(value: Int): Position {
+        fun of(value: Int = MIN_VALUE): Position {
             if (value == MIN_VALUE) return ZERO
             return Position(value)
         }
