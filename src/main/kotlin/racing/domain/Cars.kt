@@ -1,4 +1,7 @@
-package racing
+package racing.domain
+
+import racing.CarsException
+import racing.require
 
 class Cars(val cars: List<Car>) {
 

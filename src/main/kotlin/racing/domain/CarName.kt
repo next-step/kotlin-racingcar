@@ -1,4 +1,7 @@
-package racing
+package racing.domain
+
+import racing.CarNameException
+import racing.require
 
 private const val MAX_CAR_NAME_LENGTH = 5
 

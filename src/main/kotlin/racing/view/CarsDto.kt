@@ -1,4 +1,7 @@
-package racing
+package racing.view
+
+import racing.domain.Car
+import racing.domain.Cars
 
 data class CarsDto(val cars: List<CarDto>) {
     constructor(cars: Cars) : this(cars.cars.map(::CarDto))

@@ -1,4 +1,4 @@
-package racing
+package racing.view
 
 object OutputView {
 
@@ -7,7 +7,7 @@ object OutputView {
     }
 
     fun printResult(cars: CarsDto) {
-        cars.cars.forEach(::printCar)
+        cars.cars.forEach(OutputView::printCar)
         println()
     }
 

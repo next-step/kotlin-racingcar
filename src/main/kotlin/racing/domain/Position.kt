@@ -1,4 +1,7 @@
-package racing
+package racing.domain
+
+import racing.PositionException
+import racing.require
 
 private const val INITIAL_POSITION_VALUE = 0
 private const val STEP = 1

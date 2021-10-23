@@ -1,4 +1,7 @@
-package racing
+package racing.domain
+
+import racing.RoundException
+import racing.require
 
 private const val MIN_ROUND = 0
 

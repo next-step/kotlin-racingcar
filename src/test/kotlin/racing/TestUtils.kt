@@ -1,5 +1,9 @@
 package racing
 
+import racing.domain.Car
+import racing.domain.CarName
+import racing.domain.Engine
+
 val goEngine = object : Engine {
     override fun canMove() = true
 }
