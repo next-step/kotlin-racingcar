@@ -1,21 +1,14 @@
 package racingcar.car
 
 import racingcar.engine.CarEngine
-import racingcar.engine.RacingCarEngineImpl
 
-class Car(private var position: Int = 0, private var carEngine: CarEngine = RacingCarEngineImpl()) {
+class Car(private var position: Int = 0) {
 
-    fun movePosition() {
+    fun movePosition(carEngine: CarEngine) {
         if (carEngine.execute()) {
-            move()
+            position++
         }
     }
 
-    fun move() = position++
-
     fun getPosition() = position
-
-    override fun toString(): String {
-        return "-".repeat(position)
-    }
 }
