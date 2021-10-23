@@ -3,6 +3,16 @@ package racingcar.car
 import racingcar.engine.DefaultEngine
 
 class CarFactory(private val carList: List<Car>) {
+    fun getResultCarList(): List<Car> {
+        return carList.map { car ->
+            car.start()
+        }
+    }
+
+    fun getCarList(): List<Car> {
+        return carList
+    }
+
     companion object {
         private val engine = DefaultEngine()
 
@@ -17,15 +27,5 @@ class CarFactory(private val carList: List<Car>) {
             }
             return firstList.toList()
         }
-    }
-
-    fun getResultCarList(): List<Car> {
-        return carList.map { car ->
-            car.start()
-        }
-    }
-
-    fun getCarList(): List<Car> {
-        return carList
     }
 }
