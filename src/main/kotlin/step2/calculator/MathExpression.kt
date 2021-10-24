@@ -19,4 +19,9 @@ data class MathExpression(
         get() = _operands.toList()
     val operators: List<Operator>
         get() = _operators.toList()
+
+    // val operandsSize: Int
+    //     get() = _operands.size
+    val operatorsSize: Int
+        get() = _operators.size
 }
