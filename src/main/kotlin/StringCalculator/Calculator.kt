@@ -1,5 +1,8 @@
 package StringCalculator
 
+import java.util.LinkedList
+import java.util.Queue
+
 class Calculator private constructor() {
     companion object {
         fun calculate(input: String?): Int {
@@ -15,23 +18,38 @@ class Calculator private constructor() {
             val list = input.split(" ").toMutableList()
             // 빈 문자열 제거
             list.removeIf { element -> element.isEmpty() }
+            val queue = input.toSequence()
             // 연산과 수식의 합은 홀수여야 한다.
-            if (list.size % 2 == 0) throw IllegalArgumentException()
+            if (queue.size % 2 == 0) throw IllegalArgumentException()
+
             // 수식은 숫자와 연산자가 번갈아 와야 한다.
             var mustBeNumber = false
-            list.forEach { parameter ->
+            while (queue.isNotEmpty()) {
+                val parameter = queue.poll()
                 mustBeNumber = !mustBeNumber
-                if (mustBeNumber && parameter.toIntOrNull() != null) return@forEach
-                if (!mustBeNumber && isValidOperator(parameter)) return@forEach
+                if (mustBeNumber && parameter.toIntOrNull() != null) continue
+                if (!mustBeNumber && parameter.isValidOperator()) continue
                 throw IllegalArgumentException()
             }
         }
 
-        private fun isValidOperator(operation: String?): Boolean {
-            if (operation == "+") return true
-            if (operation == "-") return true
-            if (operation == "*") return true
-            if (operation == "/") return true
+        private fun String.toSequence(): Queue<String> {
+            return LinkedList(this.split(" ").filter { element -> element.isNotEmpty() })
+        }
+
+        private fun String.toOperator(): (Int, Int) -> Int {
+            if (this == "+") return Companion::add
+            if (this == "-") return Companion::subtract
+            if (this == "*") return Companion::multiply
+            if (this == "/") return Companion::divide
+            throw IllegalArgumentException()
+        }
+
+        private fun String.isValidOperator(): Boolean {
+            if (this == "-") return true
+            if (this == "+") return true
+            if (this == "*") return true
+            if (this == "/") return true
             return false
         }
 
