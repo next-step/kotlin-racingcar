@@ -5,8 +5,8 @@ import racingcar.engine.CarEngine
 import racingcar.manager.RacingManager
 
 class RacingManagerFactory {
-    fun createRacingManager(numberOfCars: Int, engine: CarEngine): RacingManager {
-        val cars = (0 until numberOfCars).map { Car() }
+    fun createRacingManager(carNameList: List<String>, engine: CarEngine): RacingManager {
+        val cars = carNameList.map { Car(it) }
         return RacingManager(cars, engine)
     }
 }
