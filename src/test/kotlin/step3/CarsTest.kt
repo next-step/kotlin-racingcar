@@ -26,4 +26,21 @@ class CarsTest {
         org.junit.jupiter.api.Assertions.assertTrue(isSuccess)
         org.junit.jupiter.api.Assertions.assertFalse(isFail)
     }
+
+    @Test
+    fun `전진하는 조건 테스트#2 - distance 가 4이상일 경우만 전진하는지`() {
+        val car = Car()
+        car.move()
+        val isForward = car.distance.calculate() > 4
+        when {
+            isForward -> {
+                org.junit.jupiter.api.Assertions.assertTrue(isForward)
+                org.assertj.core.api.Assertions.assertThat(car.forward).isEqualTo(car.forward.plus(1))
+            }
+            else -> {
+                org.junit.jupiter.api.Assertions.assertFalse(isForward)
+                org.assertj.core.api.Assertions.assertThat(car.forward).isEqualTo(car.forward)
+            }
+        }
+    }
 }
