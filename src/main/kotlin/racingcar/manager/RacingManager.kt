@@ -1,16 +1,14 @@
 package racingcar.manager
 
 import racingcar.car.Car
-import racingcar.engine.CarEngine
 
 class RacingManager(
-    private var cars: List<Car>,
-    private var engine: CarEngine
+    private var cars: List<Car>
 ) {
 
     fun race(show: ((List<Car>) -> Unit)? = null) {
         cars.forEach {
-            it.movePosition(engine)
+            it.movePosition()
         }
         show?.invoke(cars)
     }

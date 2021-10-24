@@ -12,33 +12,25 @@ class CarTest {
 
     private lateinit var car: Car
 
-    @BeforeEach
-    fun setUpCar() {
-        car = Car()
-    }
-
     @ParameterizedTest(name = "Test {index}: value == {0} result == {1}")
     @CsvSource(value = ["1, 1", "2, 2", "3, 3"])
     fun `Car move() 후에 position 테스트`(move: Int, expected: Int) {
+        car = Car(carEngine = object : CarEngine { override fun execute(): Boolean = true })
         repeat(move) {
-            car.movePosition(object : CarEngine { override fun execute(): Boolean = true })
+            car.movePosition()
         }
         assertThat(car.getPosition()).isEqualTo(expected)
     }
 
     @Test
     fun `Car 움직임 테스트`() {
-        car.movePosition(object : CarEngine {
-            override fun execute(): Boolean = true
-        })
+        car = Car(carEngine = object : CarEngine { override fun execute(): Boolean = true })
         assertThat(car.getPosition()).isEqualTo(1)
     }
 
     @Test
     fun `Car 움직이지 않음 테스트`() {
-        car.movePosition(object : CarEngine {
-            override fun execute(): Boolean = false
-        })
+        car = Car(carEngine = object : CarEngine { override fun execute(): Boolean = false })
         assertThat(car.getPosition()).isEqualTo(0)
     }
 }
