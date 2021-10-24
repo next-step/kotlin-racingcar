@@ -15,7 +15,7 @@ class RacingGame(
     }
 
     private fun createCars(numberOfCars: Int): List<Car> {
-        return (1..numberOfCars).map { Car(it) }
+        return (1..numberOfCars).map { Car() }
     }
 
     private fun runRound(round: Int, cars: List<Car>): RoundResult{

@@ -1,6 +1,6 @@
 package racingcar
 
-class Car(val carId: Int) {
+class Car() {
     private var _currentPosition: Int = 0
     val currentPosition: Int
         get() = _currentPosition
