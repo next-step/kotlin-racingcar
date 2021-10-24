@@ -8,20 +8,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class PersonTest {
-    companion object {
-        @JvmStatic
-        @BeforeAll
-        fun setupClass() {
-            println("Test class is setup")
-        }
-
-        @JvmStatic
-        @AfterAll
-        fun tearDownClass() {
-            println("Test class is torn down")
-        }
-    }
-
     @BeforeEach
     fun setupMethod() {
         println("Test is setup")
@@ -70,5 +56,19 @@ class PersonTest {
         val personTwo = personOne.copy()
 
         assertThat(personOne).isEqualTo(personTwo)
+    }
+
+    companion object {
+        @JvmStatic
+        @BeforeAll
+        fun setupClass() {
+            println("Test class is setup")
+        }
+
+        @JvmStatic
+        @AfterAll
+        fun tearDownClass() {
+            println("Test class is torn down")
+        }
     }
 }

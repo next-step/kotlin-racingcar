@@ -2,36 +2,46 @@ package stringcalculator
 
 class InputValidator {
     fun validate(input: String?): List<String> {
-        val validString = validateInputIsNotEmpty(input)
-        val splitString = validString.split(" ")
-        return validateSplitStringIsCorrectlyStructured(splitString)
-    }
-
-    @Throws(IllegalArgumentException::class)
-    private fun validateInputIsNotEmpty(input: String?): String {
-        if (input.isNullOrBlank()) {
-            throw IllegalArgumentException("입력이 비어있습니다.")
-        }
-        return input
-    }
-
-    @Throws(IllegalArgumentException::class)
-    private fun validateSplitStringIsCorrectlyStructured(splitString: List<String>): List<String> {
-        when {
-            validateSize(splitString) -> throw IllegalArgumentException("잘못된 구성의 입력 입니다.")
-            validateStructure(splitString) -> throw IllegalArgumentException("잘못된 구성의 입력 입니다.")
-        }
-
+        val splitString = trySplit(input)
+        checkSizeIsOdd(splitString)
+        checkFormulaIsCorrect(splitString)
         return splitString
     }
 
-    private fun validateSize(input: List<String>): Boolean {
-        return input.size % 2 != 1
+    @Throws(IllegalArgumentException::class)
+    private fun trySplit(input: String?): List<String> {
+        if (input.isNullOrBlank()) {
+            throw IllegalArgumentException(EMPTY_INPUT_ERROR_MESSAGE)
+        }
+
+        return input.split(SPLIT_DELIMITER)
     }
 
-    private fun validateStructure(input: List<String>): Boolean {
+    @Throws(IllegalArgumentException::class)
+    private fun checkSizeIsOdd(input: List<String>) {
+        if (input.size % EVEN_DIVIDER != ODD_REMAINDER) {
+            throw IllegalArgumentException(INVALID_SIZE_ERROR_MESSAGE)
+        }
+    }
+
+    @Throws(IllegalArgumentException::class)
+    private fun checkFormulaIsCorrect(input: List<String>) {
         val controlList = input.map { it.toIntOrNull() is Int }
-        val comparisonList = input.mapIndexed { index, _ -> index % 2 == 0 }
-        return controlList != comparisonList
+        val comparisonList = input.mapIndexed { index, _ -> index % EVEN_DIVIDER == EVEN_REMAINDER }
+        if (controlList != comparisonList) {
+            throw IllegalArgumentException(INVALID_FORMULA_ERROR_MESSAGE)
+        }
+    }
+
+    companion object {
+        const val EVEN_DIVIDER = 2
+        const val ODD_REMAINDER = 1
+        const val EVEN_REMAINDER = 0
+
+        const val SPLIT_DELIMITER = " "
+
+        const val EMPTY_INPUT_ERROR_MESSAGE = "입력이 비어있습니다."
+        const val INVALID_SIZE_ERROR_MESSAGE = "입력 항의 갯수가 올바르지 않습니다."
+        const val INVALID_FORMULA_ERROR_MESSAGE = "입력된 식의 구성이 올바르지 않습니다."
     }
 }
