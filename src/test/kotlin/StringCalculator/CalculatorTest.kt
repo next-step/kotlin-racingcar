@@ -35,18 +35,12 @@ class CalculatorTest {
         }.isInstanceOf(IllegalArgumentException::class.java)
 
         // 유효값들
-        assertThatThrownBy {
-            Calculator.calculate("123")
-        }.isInstanceOf(NotImplementedError::class.java)
-        assertThatThrownBy {
-            Calculator.calculate("+123")
-        }.isInstanceOf(NotImplementedError::class.java)
-        assertThatThrownBy {
-            Calculator.calculate("-123")
-        }.isInstanceOf(NotImplementedError::class.java)
-        assertThatThrownBy {
-            Calculator.calculate("123 + 12")
-        }.isInstanceOf(NotImplementedError::class.java)
+
+        assertThat(Calculator.calculate("123")).isEqualTo(123)
+        assertThat(Calculator.calculate("+123")).isEqualTo(123)
+        assertThat(Calculator.calculate("-123")).isEqualTo(-123)
+        assertThat(Calculator.calculate("123 + 12")).isEqualTo(135)
+        assertThat(Calculator.calculate("2 + 3 * 4 / 2")).isEqualTo(10)
     }
 
     @Test

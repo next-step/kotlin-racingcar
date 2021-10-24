@@ -7,8 +7,18 @@ class Calculator private constructor() {
     companion object {
         fun calculate(input: String?): Int {
             checkIsValidExpression(input)
+            if (input == null) throw IllegalArgumentException()
 
-            throw NotImplementedError(Exception().stackTrace[0].methodName)
+            val queue = input.toSequence()
+            var result = queue.poll().toInt()
+
+            while (queue.isNotEmpty()) {
+                val operator = queue.poll().toOperator()
+                val operand = queue.poll().toInt()
+                result = operator(result, operand)
+            }
+
+            return result
         }
 
         private fun checkIsValidExpression(input: String?) {
