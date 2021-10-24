@@ -6,12 +6,13 @@ import racingcar.resultviews.RacingGameResultView
 
 fun main() {
     val inputView = RacingGameInputView()
-    val resultView = RacingGameResultView()
+    val gameInput = inputView.receiveInput()
+
     val game = RacingGame(
         fuelProvider = RandomFuelProvider(minFuel = 0, maxFuel = 9),
     )
-
-    val gameInput = inputView.receiveInput()
     val gameResult = game.run(gameInput)
+
+    val resultView = RacingGameResultView()
     resultView.printResult(gameResult)
 }
