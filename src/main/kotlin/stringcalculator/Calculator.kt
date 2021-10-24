@@ -3,16 +3,16 @@ package stringcalculator
 class Calculator(private val inputValidator: InputValidator, private val inputConverter: InputConverter) {
     fun calculate(input: String?): Int {
         val validatedInput = validateInput(input)
-        val inputDeque = extractNumbers(validatedInput)
+        val numbers = extractNumbers(validatedInput)
         val operations = convertToOperators(validatedInput)
-        return executeOperations(inputDeque, operations)
+        return executeOperations(numbers, operations)
     }
 
     private fun validateInput(input: String?): List<String> {
         return inputValidator.validate(input)
     }
 
-    private fun extractNumbers(splitString: List<String>): ArrayDeque<Int> {
+    private fun extractNumbers(splitString: List<String>): MutableList<Int> {
         return inputConverter.extractInts(splitString)
     }
 
@@ -20,20 +20,20 @@ class Calculator(private val inputValidator: InputValidator, private val inputCo
         return inputConverter.convertToOperators(splitString)
     }
 
-    private fun executeOperations(inputDeque: ArrayDeque<Int>, operators: List<Operator>): Int {
+    private fun executeOperations(numbers: MutableList<Int>, operators: List<Operator>): Int {
         for (operator in operators) {
-            val operational = popFirstTwo(inputDeque)
+            val operational = popLastTwo(numbers)
             val result = operator.execute(operational)
-            inputDeque.addFirst(result)
+            numbers.add(result)
         }
 
-        return inputDeque.first()
+        return numbers.first()
     }
 
     @Throws(NoSuchElementException::class)
-    private fun popFirstTwo(inputDeque: ArrayDeque<Int>): Operational {
-        val leftNum = inputDeque.removeFirst()
-        val rightNum = inputDeque.removeFirst()
+    private fun popLastTwo(numbers: MutableList<Int>): Operational {
+        val leftNum = numbers.removeLast()
+        val rightNum = numbers.removeLast()
         return Operational(leftNum, rightNum)
     }
 }

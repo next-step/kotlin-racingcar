@@ -1,8 +1,12 @@
 package stringcalculator
 
 class InputConverter {
-    fun extractInts(splitString: List<String>): ArrayDeque<Int> {
-        return ArrayDeque(splitString.filter { isNumeric(it) }.map { it.toInt() })
+    fun extractInts(splitString: List<String>): MutableList<Int> {
+        return splitString
+            .filter { isNumeric(it) }
+            .map { it.toInt() }
+            .toMutableList()
+            .asReversed()
     }
 
     fun convertToOperators(splitString: List<String>): List<Operator> {

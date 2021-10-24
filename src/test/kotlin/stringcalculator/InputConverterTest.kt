@@ -9,10 +9,10 @@ import org.junit.jupiter.params.provider.ValueSource
 class InputConverterTest {
 
     @Test
-    fun `extractInts 실행 시 Int 덱을 반환한다`() {
+    fun `extractInts 실행 시 뒤집힌 int List를 반환한다`() {
         val intDeque = InputConverter().extractInts("1 - 2 + 3 * 4".split(" "))
 
-        assertThat(intDeque).isEqualTo(ArrayDeque(listOf(1, 2, 3, 4)))
+        assertThat(intDeque).isEqualTo(ArrayDeque(listOf(4, 3, 2, 1)))
     }
 
     @Test
