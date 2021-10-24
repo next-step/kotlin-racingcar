@@ -7,12 +7,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 
 internal class PersonTest {
-    companion object {
-        private const val name: String = "김재녕"
-        private const val age: Int = 10
-        private const val nickName: String = "jaenyeong"
-    }
-
     @DisplayName("이름 붙인 인자")
     @Test
     fun `named arguments`() {
@@ -62,5 +56,11 @@ internal class PersonTest {
         val person2 = Person(name, age, nickName)
 
         assertThat(person1).isEqualTo(person2)
+    }
+
+    companion object {
+        private const val name: String = "김재녕"
+        private const val age: Int = 10
+        private const val nickName: String = "jaenyeong"
     }
 }
