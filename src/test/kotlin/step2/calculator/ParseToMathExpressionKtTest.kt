@@ -25,6 +25,22 @@ internal class ParseToMathExpressionKtTest {
             .hasMessageContaining(stringExpression)
     }
 
+    @DisplayName("주어진 문자열 수식이 올바르지 않은 경우 예외 테스트")
+    @ParameterizedTest
+    @MethodSource("invalidStringExpression")
+    fun invalidStringExpressionTest(
+        stringExpression: String,
+        expectedException: Exception,
+    ) {
+        // Arrange
+        // Act
+        // Assert
+        assertThatThrownBy() {
+            parseToMathExpression(stringExpression)
+        }.isInstanceOf(expectedException::class.java)
+            .hasMessageContaining(stringExpression)
+    }
+
     companion object {
         private val illegalArgumentException = IllegalArgumentException()
 
@@ -34,6 +50,17 @@ internal class ParseToMathExpressionKtTest {
                 Arguments.of("", illegalArgumentException),
                 Arguments.of("  ", illegalArgumentException),
                 Arguments.of("                          ", illegalArgumentException),
+            )
+        }
+
+        @JvmStatic
+        fun invalidStringExpression(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of("1+2", illegalArgumentException),
+                Arguments.of("1 + 2 + +", illegalArgumentException),
+                Arguments.of("1 2 3", illegalArgumentException),
+                Arguments.of("* / -", illegalArgumentException),
+                Arguments.of("* 1 / 2 -", illegalArgumentException),
             )
         }
     }
