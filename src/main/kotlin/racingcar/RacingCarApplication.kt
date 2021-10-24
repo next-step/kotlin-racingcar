@@ -23,7 +23,7 @@ class RacingCarApplication(
         val names = Names.of(view.names())
         val laps = view.laps()
         var participants = RacingCars.of(names, RandomMovingStrategy())
-        var board = BulletinBoard()
+        var board = BulletinBoard.EMPTY_BULLETIN_BOARD
 
         (1..laps).forEach {
             participants = controller.race(participants)

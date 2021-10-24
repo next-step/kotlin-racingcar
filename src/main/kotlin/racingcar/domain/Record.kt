@@ -1,11 +1,6 @@
 package racingcar.domain
 
-@JvmInline
-value class Record private constructor(val score: String) {
+data class Record(val name: Name, val score: Int)  {
 
-    constructor(car: RacingCar) : this("${car.name.value} : ${RACING_CAR_EMOJI.repeat(car.position.value)}")
-
-    companion object {
-        private const val RACING_CAR_EMOJI = "🚘"
-    }
+    constructor(car: RacingCar) : this(car.name, car.position.value)
 }
