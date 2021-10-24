@@ -6,13 +6,15 @@ data class Car(val distance: Distance = Distance()) {
         move()
     }
 
-    var forward = 0
+    var forward = DEFAULT_NUMBER_OF_COUNT
 
     fun move() {
         val currentDrive = distance.calculate()
         when {
-            currentDrive > 4 -> forward += 1
+            currentDrive > FORWARD_CONDITION -> forward += 1
             else -> forward
         }
     }
 }
+
+const val FORWARD_CONDITION = 4
