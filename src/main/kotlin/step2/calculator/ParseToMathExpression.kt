@@ -1,11 +1,11 @@
 package step2.calculator
 
 private const val SEPARATOR = " "
-private const val NUMBER_REGEX = "^[+-]?\\d+$"
 private const val INVALID_EXPRESSION_ERROR_MESSAGE = " is not valid expression"
 private const val ELEMENT_MIN_SIZE = 1
 private const val CHECK_EVEN = 2
 private const val IS_EVEN = 0
+private val NUMBER_REGEX = Regex("^[+-]?\\d+$")
 
 fun parseToMathExpression(stringExpression: String): MathExpression {
     try {
@@ -35,5 +35,24 @@ private fun assertExpressionPieces(expressionPieces: List<String>) {
 }
 
 private fun createMathExpression(expressionPieces: List<String>): MathExpression {
-    return MathExpression(listOf(), listOf())
+    val operands = mutableListOf<Operand>()
+    val operators = mutableListOf<Operator>()
+
+    for (piece in expressionPieces) {
+        extractElement(piece, operands, operators)
+    }
+
+    return MathExpression(
+        _operands = operands,
+        _operators = operators
+    )
+}
+
+private fun extractElement(element: String, operands: MutableList<Operand>, operators: MutableList<Operator>) {
+    if (element.matches(NUMBER_REGEX)) {
+        operands.add(Operand(element.toInt()))
+        return
+    }
+
+    operators.add(Operator.getOperator(element))
 }
