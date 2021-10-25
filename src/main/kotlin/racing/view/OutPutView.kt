@@ -8,9 +8,11 @@ object OutPutView {
         println("\n실행 결과")
     }
 
-    fun printRound(cars: Cars) {
-        cars.cars.forEach { car -> println("${car.name} : ${makeBar(car.position)}") }
-        println()
+    fun printRound(roundData: Array<List<Pair<String, Int>>>) {
+        roundData.forEach { round ->
+            round.forEach { println("${it.first} : ${makeBar(it.second)}") }
+            println()
+        }
     }
 
     private fun makeBar(position: Int): String {

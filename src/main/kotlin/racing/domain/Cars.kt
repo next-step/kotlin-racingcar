@@ -2,8 +2,8 @@ package racing.domain
 
 @JvmInline
 value class Cars private constructor(val cars: List<Car>) {
-    fun goForward(pedal: Pedal) {
-        cars.forEach { car -> car.moveForward(pedal) }
+    fun goForward(pedal: Pedal): List<Pair<String, Int>> {
+        return cars.map { car -> car.moveForward(pedal) }
     }
 
     fun getWinners(): List<Car> {
