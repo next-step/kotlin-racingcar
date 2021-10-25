@@ -17,4 +17,4 @@ data class Car(val distance: Distance = Distance()) {
     }
 }
 
-const val FORWARD_CONDITION = 4
+private const val FORWARD_CONDITION = 4
