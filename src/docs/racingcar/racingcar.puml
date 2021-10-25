@@ -8,8 +8,8 @@ class RacingGameInputView {
 + receiveInput(): GameInput
 }
 
-class GameInput {
-+ numberOfCars: Int
+class GameInput <<Data Class>> {
++ carNames: List<String>
 + numberOfRounds: Int
 }
 
@@ -17,13 +17,19 @@ interface ResultView {
 + printResult(gameResult: GameResult)
 }
 
-class GameResult {
+class GameResult <<Data Class>> {
 + roundResults: List<RoundResult>
++ winners: List<CarDto>
 }
 
-class RoundResult {
+class RoundResult <<Data Class>> {
 + round: Int
-+ positions: List<Int>
++ results: List<CarDto>
+}
+
+class CarDto <<Data Class>> {
++ name: String
++ position: Int
 }
 
 class RacingGameResultView implements ResultView {
@@ -31,12 +37,14 @@ class RacingGameResultView implements ResultView {
 }
 
 class Car {
-+ carId: Int
++ name: String
++ currentPosition: Int
 + accelerate(fuel: Int)
 }
 
 class RacingGame {
-+ run(input: GameInput): GameResult
++ input: GameInput
++ run(): GameResult
 }
 
 RacingGame *-left-> "*" Car
@@ -47,6 +55,8 @@ RacingGameInputView ..|> InputView
 
 RacingGame -down-> GameResult
 GameResult -left-> "*" RoundResult
+RoundResult --> "*" CarDto
+GameResult --> "*" CarDto
 ResultView -up-> GameResult
 
 @enduml
