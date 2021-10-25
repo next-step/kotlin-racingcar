@@ -3,6 +3,8 @@ package step2
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.NullAndEmptySource
 
 class CalculatorTest {
 
@@ -40,4 +42,11 @@ class CalculatorTest {
         }.isExactlyInstanceOf(IllegalArgumentException::class.java)
     }
 
+    @ParameterizedTest
+    @NullAndEmptySource
+    fun `EXPRESSION_NULL_OR_빈문자` (input: String) {
+        assertThatThrownBy {
+            calculator.calculate(input)
+        }.isExactlyInstanceOf(IllegalArgumentException::class.java)
+    }
 }

@@ -14,13 +14,14 @@ class Calculator {
 
     fun calculate(expression: String): Int {
         this.expression = expression
+        verifyExpression()
         classify()
         progress()
         return result
     }
 
     private fun verifyExpression() {
-        if (expression.isNullOrBlank()) {
+        if (expression.isNullOrEmpty()) {
             throw IllegalArgumentException("널이거나 빈공백문자입니다.")
         }
     }
