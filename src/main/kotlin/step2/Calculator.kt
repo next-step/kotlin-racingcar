@@ -19,6 +19,12 @@ class Calculator {
         return result
     }
 
+    private fun verifyExpression() {
+        if (expression.isNullOrBlank()) {
+            throw IllegalArgumentException("널이거나 빈공백문자입니다.")
+        }
+    }
+
     private fun classify() {
         expression.split(BLANK).forEach {
             when (it.toIntOrNull() != null) {
