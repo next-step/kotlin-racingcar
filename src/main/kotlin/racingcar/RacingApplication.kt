@@ -15,9 +15,7 @@ class RacingApplication(private val inputView: InputView = InputView()) {
         ResultView.printResult()
 
         racingManager.run {
-            repeat(attempts) {
-                race(ResultView::printCarPositions)
-            }
+            race(ResultView::printCarPositions, attempts)
 
             ResultView.printWinners(findWinners())
         }

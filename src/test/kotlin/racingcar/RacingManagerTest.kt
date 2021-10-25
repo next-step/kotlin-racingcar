@@ -22,7 +22,7 @@ class RacingManagerTest {
         racingManager = RacingManagerFactory().createRacingManager(value, engine)
 
         // when
-        racingManager.race()
+        racingManager.race(attempts = 1)
 
         // then
         assertThat(racingManager.getPositions()).isEqualTo(listOf(1, 1, 1))
@@ -37,7 +37,7 @@ class RacingManagerTest {
         racingManager = RacingManager(cars)
 
         // when
-        racingManager.race()
+        racingManager.race(attempts = 1)
 
         // then
         assertThat(racingManager.findWinners()).isEqualTo(listOf(Car(position = 1, carEngine = goEngine), Car(position = 1, carEngine = goEngine)))

@@ -6,11 +6,13 @@ class RacingManager(
     private var cars: List<Car>
 ) {
 
-    fun race(show: ((List<Car>) -> Unit)? = null) {
-        cars.forEach {
-            it.movePosition()
+    fun race(show: ((List<Car>) -> Unit)? = null, attempts: Int) {
+        repeat(attempts) {
+            cars.forEach {
+                it.movePosition()
+            }
+            show?.invoke(cars)
         }
-        show?.invoke(cars)
     }
 
     private fun findMaxPosition(): Int? = cars.maxByOrNull { it.position }?.position
