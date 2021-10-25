@@ -36,6 +36,6 @@ class Calculator {
     }
 
     private fun compute(operator: String, number: Int) {
-        result = Operator.PLUS.operator.invoke(result, number)
+        result = Operator.getOperator(operator).operator.invoke(result, number)
     }
 }

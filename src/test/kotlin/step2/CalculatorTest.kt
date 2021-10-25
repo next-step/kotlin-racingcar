@@ -16,7 +16,7 @@ class CalculatorTest {
     @Test
     fun `뺄셈` () {
         val str = "1 + 2 + 5 - 6"
-        assertThat(calculator.calculate(str)).isEqualTo(5)
+        assertThat(calculator.calculate(str)).isEqualTo(2)
     }
 
     @Test
