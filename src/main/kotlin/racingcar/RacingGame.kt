@@ -1,26 +1,27 @@
 package racingcar
 
-import racingcar.inputviews.GameInput
-import racingcar.resultviews.GameResult
-import racingcar.resultviews.RoundResult
+import racingcar.dtos.GameInput
+import racingcar.dtos.GameResult
+import racingcar.dtos.CarDto
+import racingcar.dtos.RoundResult
 
 class RacingGame(input: GameInput) {
-    private val numberOfCars = input.numberOfCars
+    private val carNames = input.carNames
     private val numberOfRounds = input.numberOfRounds
 
     fun run(): GameResult {
-        val cars = createCars(numberOfCars)
+        val cars = createCars(carNames)
         val roundResults = (1..numberOfRounds).map { runRound(it, cars) }
         return GameResult(roundResults)
     }
 
-    private fun createCars(numberOfCars: Int): List<Car> {
-        return (1..numberOfCars).map { Car() }
+    private fun createCars(carNames: List<String>): List<Car> {
+        return carNames.map { Car(it) }
     }
 
     private fun runRound(round: Int, cars: List<Car>): RoundResult {
         accelCars(cars)
-        return RoundResult(round, cars.map { it.currentPosition })
+        return RoundResult(round, cars.map { CarDto(it.name, it.currentPosition) })
     }
 
     private fun accelCars(cars: List<Car>) {

@@ -1,5 +1,8 @@
 package racingcar.resultviews
 
+import racingcar.dtos.GameResult
+import racingcar.dtos.RoundResult
+
 class RacingGameResultView : ResultView {
     override fun printResult(gameResult: GameResult) {
         for (roundResult in gameResult.roundResults) {
@@ -8,8 +11,9 @@ class RacingGameResultView : ResultView {
     }
 
     private fun printRoundResult(roundResult: RoundResult) {
-        for (position in roundResult.positions) {
-            println("-".repeat(position))
+        for (carDto in roundResult.results) {
+            print("${carDto.name}: ")
+            println("-".repeat(carDto.position))
         }
         println("")
     }
