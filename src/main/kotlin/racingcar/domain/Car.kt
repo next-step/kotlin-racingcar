@@ -1,6 +1,8 @@
 package racingcar.domain
 
-class Car(val carName: String) {
+class Car(
+    val carName: String
+) {
     var distance = 0
 
     fun forward(randomNumber: Int) {
