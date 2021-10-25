@@ -9,7 +9,7 @@ import racingcar.domain.Race
 class RaceTest {
 
     @Test
-    fun `Circuit에 차가 1개 이상 있을 시 startRace 실행 후 예외가 발생하는지 확인 한다`() {
+    fun `Circuit에 차가 1개 이상 있을 시, startRace 함수를 호출하면 Race 결과를 리턴한다`() {
         val circuit = Circuit().apply {
             addCarToCircuit(Car(0))
         }
@@ -17,8 +17,9 @@ class RaceTest {
     }
 
     @Test
-    fun `Circuit에 차가 없을 시 startRace 실행 후 "" 포함한 리스트가 생성되는지 확인한다`() {
-        assertThat(Race.startRace(Circuit(), 1)).containsExactly("")
+    fun `Circuit에 차가 없을 시, startRace 함수를 호출하면 빈 문자열 리스트로 반환 된다`() {
+        val expectedElement = ""
+        assertThat(Race.startRace(Circuit(), 1)).containsExactly(expectedElement)
     }
 
     @Test

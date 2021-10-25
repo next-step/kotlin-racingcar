@@ -1,6 +1,7 @@
 package racingcar
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
@@ -15,10 +16,10 @@ class LapResultTest {
         assertThat(lapResult.isNotWinner(longestMovedDistance)).isTrue
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = [10, 11, 12, 13])
-    fun `이동거리가 가장멀리 이동한 거리가 아닌경우 isNotWinner가 False 반환`(movedDistance: Int) {
+    @Test
+    fun `이동거리가 가장멀리 이동한 거리가 아닌경우 isNotWinner가 False 반환`() {
         val longestMovedDistance = 10
+        val movedDistance = 8
         val lapResult = LapResult("TEST", movedDistance)
         assertThat(lapResult.isNotWinner(longestMovedDistance)).isFalse
     }
