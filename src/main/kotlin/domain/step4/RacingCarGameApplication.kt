@@ -22,7 +22,7 @@ class RacingCarGameApplication(
         resultView.print(racingCarGameRecord)
     }
 
-    private tailrec fun names(): Names {
+    private fun names(): Names {
         return try {
             Names.ofStringWithSplitStrategy(inputView.numberOfCars(), CommaSplitStrategy)
         } catch (e: Exception) {
@@ -31,7 +31,7 @@ class RacingCarGameApplication(
         }
     }
 
-    private tailrec fun numberOfAttempts(): NumberOfAttempts {
+    private fun numberOfAttempts(): NumberOfAttempts {
         return try {
             NumberOfAttempts(inputView.numberOfAttempts())
         } catch (e: Exception) {

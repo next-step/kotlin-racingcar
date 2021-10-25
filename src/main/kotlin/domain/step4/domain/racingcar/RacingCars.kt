@@ -2,8 +2,6 @@ package domain.step4.domain.racingcar
 
 import domain.step4.domain.strategy.MovingStrategy
 import global.strategy.split.SplitStrategy
-import kotlin.streams.asSequence
-import kotlin.streams.toList
 
 data class RacingCars private constructor(private val _racingCars: List<RacingCar>) {
     init {
@@ -17,12 +15,12 @@ data class RacingCars private constructor(private val _racingCars: List<RacingCa
 
     fun winningRacingCars(): List<RacingCar> {
         val maxValue = maxDistance()
-        return _racingCars.stream().asSequence()
+        return _racingCars.asSequence()
             .filter { racingCar -> racingCar.isWinner(maxValue) }
             .toList()
     }
 
-    private fun maxDistance(): Int = _racingCars.stream().asSequence()
+    private fun maxDistance(): Int = _racingCars.asSequence()
         .map(RacingCar::distance)
         .maxOrNull() ?: DistanceDriven.DEFAULT
 
@@ -33,7 +31,7 @@ data class RacingCars private constructor(private val _racingCars: List<RacingCa
             from(Names.ofStringWithSplitStrategy(names, splitStrategy), movingStrategy)
 
         fun from(names: Names, movingStrategy: MovingStrategy): RacingCars =
-            of(names.names.stream()
+            of(names.names.asSequence()
                 .map { RacingCar(it, movingStrategy = movingStrategy) }
                 .toList())
 

@@ -18,9 +18,11 @@ data class Names private constructor(private val _names: List<Name>) {
         private const val EMPTY_MESSAGE = "비어있는 값은 들어올 수 없습니다."
 
         fun ofStringWithSplitStrategy(target: String, splitStrategy: SplitStrategy): Names =
-            ofList(splitStrategy.split(target)
-                .map { name -> Name(name) }
-                .toList())
+            ofList(
+                splitStrategy.split(target)
+                    .map { name -> Name(name) }
+                    .toList()
+            )
 
         fun ofList(names: List<Name>): Names = Names(names.toList())
     }
