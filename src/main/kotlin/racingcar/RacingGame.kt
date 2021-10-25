@@ -12,7 +12,8 @@ class RacingGame(input: GameInput) {
     fun run(): GameResult {
         val cars = createCars(carNames)
         val roundResults = (1..numberOfRounds).map { runRound(it, cars) }
-        return GameResult(roundResults)
+        val winners = getWinners(roundResults)
+        return GameResult(roundResults, winners)
     }
 
     private fun createCars(carNames: List<String>): List<Car> {
@@ -32,6 +33,12 @@ class RacingGame(input: GameInput) {
 
     private fun getFuel(): Int {
         return (MIN_FUEL..MAX_FUEL).random()
+    }
+
+    private fun getWinners(roundResults: List<RoundResult>): List<CarDto>{
+        val lastRoundResult = roundResults.last()
+        val maxPosition = lastRoundResult.results.maxOf { it.position }
+        return lastRoundResult.results.filter { it.position == maxPosition }
     }
 
     companion object {
