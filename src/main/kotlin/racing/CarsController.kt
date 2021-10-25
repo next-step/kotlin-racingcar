@@ -7,11 +7,11 @@ import racing.view.CarsDto
 import racing.view.InputView
 import racing.view.OutputView
 
-object CarsController {
+class CarsController(private val carsFactory: CarsFactory) {
 
     fun play() {
         val names = CarName.from(InputView.getCarsName())
-        val cars = CarsFactory.create(names)
+        val cars = carsFactory.create(names)
         val round = Round(InputView.getRound())
 
         OutputView.printStartResult()
