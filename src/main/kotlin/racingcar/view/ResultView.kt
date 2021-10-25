@@ -10,12 +10,6 @@ object ResultView {
     private const val SUFFIX_WINNER_ANNOUNCE = "가 최종 우승했습니다."
     private const val DIVIDER = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-    fun printResult(lapResultList: List<String>) {
-        println(DIVIDER)
-        printLapResultList(lapResultList)
-        println(DIVIDER)
-    }
-
     fun printWinners(winnerList: List<String>) =
         println(createWinnerAnnounceMessage(winnerList))
 
@@ -25,7 +19,13 @@ object ResultView {
 
     fun printAskHowManyTry() = println(ASK_HOW_MANY_TRY)
 
-    private fun printLapResultList(lapResultList: List<String>) = lapResultList.forEach { println(it) }
+    fun printRaceResult(raceResult: List<String>) = raceResult.forEach { printResult(it) }
+
+    private fun printResult(lapResultList: String) {
+        println(DIVIDER)
+        println(lapResultList)
+        println(DIVIDER)
+    }
 
     private fun createWinnerAnnounceMessage(winnerList: List<String>): String {
         val sb = StringBuffer()

@@ -5,6 +5,7 @@ import racingcar.domain.Circuit
 import racingcar.domain.Race
 import racingcar.view.InputView
 import racingcar.view.ResultView
+import racingcar.view.ResultView.printRaceResult
 
 fun main() {
     ResultView.printAskHowManyCars()
@@ -14,10 +15,9 @@ fun main() {
 
     val circuit = Circuit(carsNameList)
     ResultView.printProcessResultTitle()
-    startRace(circuit, numberOfTry) {
-        ResultView.printResult(it)
-    }
+    val raceResult = startRace(circuit, numberOfTry)
 
+    printRaceResult(raceResult)
     val winnerNameList = Race.getWinnerNameList(circuit)
     ResultView.printWinners(winnerNameList)
 }

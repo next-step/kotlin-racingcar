@@ -28,7 +28,7 @@ class CarTest {
     fun `Car 무작위로 입력된 값이 4이상일 경우 전진한다`(randomSelectedValue: Int) {
         val testCar = Car(4)
         val movedDistance = testCar.run {
-            move(randomSelectedValue)
+            moveToForward(randomSelectedValue)
             movedDistance
         }
         assertThat(movedDistance).isEqualTo(1)

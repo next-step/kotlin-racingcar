@@ -11,21 +11,19 @@ class RaceTest {
     @Test
     fun `Circuit에 차가 1개 이상 있을 시 startRace 실행 후 예외가 발생하는지 확인 한다`() {
         val circuit = Circuit().apply {
-            addCarToCircuit(Car(4))
+            addCarToCircuit(Car(0))
         }
-        assertThat(Race.startRace(circuit, 1)).isEqualTo(Unit)
-        circuit.addCarToCircuit(Car(4))
-        assertThat(Race.startRace(circuit, 1)).isEqualTo(Unit)
+        assertThat(Race.startRace(circuit, 1)).containsAnyOf("NONE : -")
     }
 
     @Test
-    fun `Circuit에 차가 없을 시 startRace 실행 후 예외가 발생하지 않는지 확인한다`() {
-        assertThat(Race.startRace(Circuit(), 1)).isEqualTo(Unit)
+    fun `Circuit에 차가 없을 시 startRace 실행 후 "" 포함한 리스트가 생성되는지 확인한다`() {
+        assertThat(Race.startRace(Circuit(), 1)).containsExactly("")
     }
 
     @Test
     fun `getWinnerNameList winner 하나 일시 정상작동 확인`() {
-        val winnerCar = Car(4, "Win").apply { move(4) }
+        val winnerCar = Car(4, "Win").apply { moveToForward(4) }
         val car = Car(4, "car")
         val circuit = Circuit().apply {
             addCarToCircuit(winnerCar)
@@ -36,8 +34,8 @@ class RaceTest {
 
     @Test
     fun `getWinnerNameList winner 둘 이상일시 정상작동 확인`() {
-        val winnerCar = Car(4, "Win").apply { move(4) }
-        val winnerCar2 = Car(4, "Win2").apply { move(4) }
+        val winnerCar = Car(4, "Win").apply { moveToForward(4) }
+        val winnerCar2 = Car(4, "Win2").apply { moveToForward(4) }
         val car = Car(4, "car")
         val circuit = Circuit().apply {
             addCarToCircuit(winnerCar)

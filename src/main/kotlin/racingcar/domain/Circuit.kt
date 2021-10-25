@@ -2,18 +2,18 @@ package racingcar.domain
 
 import racingcar.domain.RandomGenerator.getRandomValue
 
-class Circuit(carsNameList: List<String>? = null) {
+class Circuit(carsNameList: List<String> = emptyList()) {
     private val circuit = ArrayList<Car>()
 
     init {
-        carsNameList?.let { addCarNameListToCircuit(it) }
+        addCarNameListToCircuit(carsNameList)
     }
 
     fun addCarToCircuit(car: Car) = circuit.add(car)
 
     fun tryToMoveAllCar() =
         circuit.forEach {
-            it.move(getRandomValue())
+            it.moveToForward(getRandomValue())
         }
 
     fun getAllCarsLapResult() = circuit.map { LapResult(it.carName, it.movedDistance) }
