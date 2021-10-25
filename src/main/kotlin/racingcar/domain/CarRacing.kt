@@ -12,7 +12,7 @@ class CarRacing(
 
     fun start() {
 
-        val createCarNumber = inputView.inputCarName()
+        val createCarNumber: List<String> = inputView.inputCarName()
         val racingCount = inputView.inputNumberOfAttempts()
 
         val carList = CarFactory.createCars(createCarNumber)
