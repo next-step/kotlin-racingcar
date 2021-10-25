@@ -12,7 +12,7 @@ class ResultView {
         val victoryCarNameBuilder = StringBuilder()
 
         for (index in 0 until victoryCarList.lastIndex) {
-            victoryCarNameBuilder.append("${victoryCarList[index]},")
+            victoryCarNameBuilder.append("${victoryCarList[index].carName},")
         }
         victoryCarNameBuilder.append(victoryCarList.last().carName)
 
