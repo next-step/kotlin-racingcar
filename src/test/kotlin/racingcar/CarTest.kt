@@ -19,18 +19,20 @@ class CarTest {
         repeat(move) {
             car.movePosition()
         }
-        assertThat(car.getPosition()).isEqualTo(expected)
+        assertThat(car.position).isEqualTo(expected)
     }
 
     @Test
     fun `Car 움직임 테스트`() {
         car = Car(carEngine = object : CarEngine { override fun execute(): Boolean = true })
-        assertThat(car.getPosition()).isEqualTo(1)
+        car.movePosition()
+        assertThat(car.position).isEqualTo(1)
     }
 
     @Test
     fun `Car 움직이지 않음 테스트`() {
         car = Car(carEngine = object : CarEngine { override fun execute(): Boolean = false })
-        assertThat(car.getPosition()).isEqualTo(0)
+        car.movePosition()
+        assertThat(car.position).isEqualTo(0)
     }
 }

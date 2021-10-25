@@ -14,8 +14,8 @@ object ResultView {
 
     fun printCarPositions(cars: List<Car>) {
         cars.forEach { car ->
-            print("${car.getName()} : ")
-            repeat(car.getPosition()) {
+            print("${car.name} : ")
+            repeat(car.position) {
                 print("-")
             }
             println()
@@ -24,6 +24,6 @@ object ResultView {
     }
 
     fun printWinners(cars: List<Car>) {
-        println("최종 우승자는 ${cars.joinToString { it.getName() }}")
+        println("최종 우승자는 ${cars.joinToString { it.name }}")
     }
 }

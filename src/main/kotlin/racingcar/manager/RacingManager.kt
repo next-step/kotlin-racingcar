@@ -13,11 +13,11 @@ class RacingManager(
         show?.invoke(cars)
     }
 
-    private fun findMaxPosition(): Int? = cars.maxByOrNull { it.getPosition() }?.getPosition()
+    private fun findMaxPosition(): Int? = cars.maxByOrNull { it.position }?.position
 
     fun findWinners(): List<Car> {
-        return cars.filter { it.getPosition() == findMaxPosition() }
+        return cars.filter { it.position == findMaxPosition() }
     }
 
-    fun getPositions(): List<Int> = cars.map { it.getPosition() }
+    fun getPositions(): List<Int> = cars.map { it.position }
 }
