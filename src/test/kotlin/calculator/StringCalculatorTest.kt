@@ -9,6 +9,6 @@ class StringCalculatorTest {
     @ParameterizedTest
     @CsvSource("2 + 3 + 5=10", "-1 + 5 - 4=0", "-3 + -5 + 8=0", delimiter = '=')
     fun 계산기(value: String, result: Int) {
-        Assertions.assertThat(StringCalculator().calculation(value)).isEqualTo(result)
+        Assertions.assertThat(StringCalculator.calculation(value)).isEqualTo(result)
     }
 }

@@ -1,23 +1,25 @@
 package calculator
 
-class StringCalculator {
+import common.Constant.SPACING
 
-    companion object {
-        private const val FOREACH_STEP_NUMBER = 2
-        private const val FOREACH_START_NUMBER = 1
-        private const val ADD_NUMBER = 1
-        private const val COLLECTION_FIRST_NUMBER = 0
-    }
+object StringCalculator {
+
+    private const val FOREACH_STEP_NUMBER: Int = 2
+    private const val FOREACH_START_NUMBER = 1
+    private const val ADD_NUMBER = 1
+    private const val COLLECTION_FIRST_NUMBER = 0
 
     fun calculation(inputValue: String): Int {
-        val splitList = Value(inputValue).value
+        val operatorAndNumberList = CalculatorInputValue(inputValue).value.split(SPACING)
 
-        var result = valueToInt(splitList[COLLECTION_FIRST_NUMBER])
-        for (i in FOREACH_START_NUMBER until splitList.count() step (FOREACH_STEP_NUMBER)) {
-            result = confirmFourArithmetic(splitList[i], Pair(result, valueToInt(splitList[i + ADD_NUMBER])))
+        var operatorResult = valueToInt(operatorAndNumberList[COLLECTION_FIRST_NUMBER])
+        for (i in FOREACH_START_NUMBER until operatorAndNumberList.count() step (FOREACH_STEP_NUMBER)) {
+            val operator = operatorAndNumberList[i]
+            operatorResult = FourArithmetic.confirmFourArithmetic(operator,
+                OperationNumbers(operatorResult, valueToInt(operatorAndNumberList[i + ADD_NUMBER])))
         }
 
-        return result
+        return operatorResult
     }
 
     private fun valueToInt(inputValue: String) = inputValue.toInt()

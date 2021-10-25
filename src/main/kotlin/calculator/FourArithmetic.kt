@@ -2,33 +2,38 @@ package calculator
 
 import common.Constant
 import common.ErrorMessage
-import java.util.function.BinaryOperator
 
-enum class FourArithmetic : BinaryOperator<Int> {
-    PLUS {
-        override fun apply(firstValue: Int, secondValue: Int) = firstValue.plus(secondValue)
-    },
-    MINUS {
-        override fun apply(firstValue: Int, secondValue: Int) = firstValue.minus(secondValue)
-    },
-    MULTIPLY {
-        override fun apply(firstValue: Int, secondValue: Int) = firstValue.times(secondValue)
-    },
-    DIVISION {
-        override fun apply(firstValue: Int, secondValue: Int) = firstValue.div(secondValue)
-    };
-}
+object FourArithmetic {
 
-fun confirmFourArithmetic(arithmetic: String, operationNumbers: Pair<Int, Int>): Int {
-    return when (arithmetic) {
-        "+" -> FourArithmetic.PLUS.apply(operationNumbers.first, operationNumbers.second)
-        "-" -> FourArithmetic.MINUS.apply(operationNumbers.first, operationNumbers.second)
-        "*" -> FourArithmetic.MULTIPLY.apply(operationNumbers.first, operationNumbers.second)
-        "/" -> if (confirmFirstNumberZero(operationNumbers)) throw ArithmeticException(ErrorMessage.NOT_ZERO_NUMBER_DIVISION)
-        else FourArithmetic.DIVISION.apply(operationNumbers.first, operationNumbers.second)
-        else -> throw IllegalArgumentException(ErrorMessage.NOT_FOUR_ARITHMETIC)
+    private val execute: ((operationNumbers: OperationNumbers) -> Int)? = null
+
+    fun confirmFourArithmetic(arithmetic: String, operationNumbers: OperationNumbers): Int {
+        return when (arithmetic) {
+            "+" -> plus(operationNumbers)
+            "-" -> minus(operationNumbers)
+            "*" -> multiply(operationNumbers)
+            "/" -> if (confirmSecondNumberZero(operationNumbers)) throw ArithmeticException(ErrorMessage.NOT_ZERO_NUMBER_DIVISION)
+            else div(operationNumbers)
+            else -> throw IllegalArgumentException(ErrorMessage.NOT_FOUR_ARITHMETIC)
+        }
     }
-}
 
-private fun confirmFirstNumberZero(operationNumbers: Pair<Int, Int>) =
-    operationNumbers.toList().contains(Constant.DIVISION_FIRST_VALUE_ZERO)
+    fun plus(operationNumbers: OperationNumbers): Int {
+        execute.apply { return operationNumbers.firstNumber.plus(operationNumbers.secondNumber) }
+    }
+
+    fun minus(operationNumbers: OperationNumbers): Int {
+        execute.apply { return operationNumbers.firstNumber.minus(operationNumbers.secondNumber) }
+    }
+
+    fun multiply(operationNumbers: OperationNumbers): Int {
+        execute.apply { return operationNumbers.firstNumber.times(operationNumbers.secondNumber) }
+    }
+
+    fun div(operationNumbers: OperationNumbers): Int {
+        execute.apply { return operationNumbers.firstNumber.div(operationNumbers.secondNumber) }
+    }
+
+    private fun confirmSecondNumberZero(operationNumbers: OperationNumbers) =
+        operationNumbers.secondNumber == Constant.DIVISION_FIRST_VALUE_ZERO
+}
