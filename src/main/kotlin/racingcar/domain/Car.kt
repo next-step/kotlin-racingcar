@@ -1,4 +1,4 @@
-package step3.domain
+package racingcar.domain
 
 class Car {
     var distance = 0

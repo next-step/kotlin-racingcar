@@ -1,4 +1,4 @@
-package step3.filter
+package racingcar.filter
 
 interface Filter {
 

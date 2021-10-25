@@ -1,4 +1,4 @@
-package step3.exception.message
+package racingcar.exception.message
 
 interface Message {
     val message: String

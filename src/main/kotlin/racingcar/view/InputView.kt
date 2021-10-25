@@ -1,6 +1,6 @@
-package step3.view
+package racingcar.view
 
-import step3.filter.ValueFilter
+import racingcar.filter.ValueFilter
 
 class InputView {
 

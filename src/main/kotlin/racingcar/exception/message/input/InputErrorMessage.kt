@@ -1,6 +1,6 @@
-package step3.exception.message.input
+package racingcar.exception.message.input
 
-import step3.exception.message.Message
+import racingcar.exception.message.Message
 
 enum class InputErrorMessage(override val message: String) : Message {
     NOT_NUMBER("숫자만 입력 할 수 있습니다."),

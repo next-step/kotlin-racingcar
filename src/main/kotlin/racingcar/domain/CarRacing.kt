@@ -1,8 +1,8 @@
-package step3.domain
+package racingcar.domain
 
-import step3.domain.random.RandomGenerator
-import step3.view.InputView
-import step3.view.ResultView
+import racingcar.domain.random.RandomGenerator
+import racingcar.view.InputView
+import racingcar.view.ResultView
 
 class CarRacing(
     private val inputView: InputView = InputView(),
