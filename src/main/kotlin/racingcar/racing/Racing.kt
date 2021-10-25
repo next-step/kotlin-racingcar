@@ -10,13 +10,8 @@ object Racing {
         resultView(cars, tryCount)
     }
 
-    fun initCars(carCount: Int): List<Car> {
-        var cars = mutableListOf<Car>()
-        for (i: Int in 0 until carCount) {
-            cars.add(Car())
-        }
-        return cars
-    }
+    fun initCars(carCount: Int): List<Car> =
+        (1..carCount).map(::Car)
 
     fun moveCarForward(cars: List<Car>): List<Car> {
         return cars.stream().peek(Car::move).collect(Collectors.toList())
