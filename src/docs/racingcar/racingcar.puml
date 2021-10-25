@@ -21,16 +21,13 @@ class GameResult {
 + roundResults: List<RoundResult>
 }
 
+class RoundResult {
++ round: Int
++ positions: List<Int>
+}
+
 class RacingGameResultView implements ResultView {
 + printResult(gameResult: GameResult)
-}
-
-interface FuelProvider {
-+ getFuel(): Int
-}
-
-class RandomFuelProvider {
-+ getFuel(): Int
 }
 
 class Car {
@@ -43,14 +40,13 @@ class RacingGame {
 }
 
 RacingGame *-left-> "*" Car
-RacingGame -> FuelProvider
-RandomFuelProvider .left.|> FuelProvider
 
 RacingGame -up-> GameInput
 InputView -down-> GameInput
 RacingGameInputView ..|> InputView
 
 RacingGame -down-> GameResult
+GameResult -left-> "*" RoundResult
 ResultView -up-> GameResult
 
 @enduml
