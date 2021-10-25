@@ -1,12 +1,13 @@
 package racingcar.view
 
 import racingcar.filter.ValueFilter
+import racingcar.parser.StringParser
 
 class InputView {
 
-    fun inputCarName(): Int {
+    fun inputCarName(): List<String> {
         println(CAR_NAME)
-        return ValueFilter.verify(readLine()!!)
+        return StringParser.parse(readLine()!!)
     }
 
     fun inputNumberOfAttempts(): Int {
