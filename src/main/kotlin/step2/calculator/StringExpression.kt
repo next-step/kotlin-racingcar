@@ -39,25 +39,26 @@ object StringExpression {
     }
 
     private fun createMathExpression(expressionPieces: List<String>): MathExpression {
-        val operands = mutableListOf<Operand>()
-        val operators = mutableListOf<Operator>()
-
-        for (piece in expressionPieces) {
-            extractElement(piece, operands, operators)
-        }
+        val operandPieces = extractOperandPieces(expressionPieces)
 
         return MathExpression(
-            _operands = operands.toList(),
-            _operators = operators.toList()
+            _operands = generateOperands(operandPieces),
+            _operators = generateOperators(expressionPieces, operandPieces)
         )
     }
 
-    private fun extractElement(element: String, operands: MutableList<Operand>, operators: MutableList<Operator>) {
-        if (element.matches(NUMBER_REGEX)) {
-            operands.add(Operand(element.toInt()))
-            return
-        }
+    private fun extractOperandPieces(expressionPieces: List<String>) = expressionPieces.filter { piece ->
+        piece.matches(NUMBER_REGEX)
+    }.toList()
 
-        operators.add(Operator.getOperator(element))
-    }
+    private fun generateOperands(operandPieces: List<String>) =
+        operandPieces.map {
+            Operand(it.toInt())
+        }.toList()
+
+    private fun generateOperators(expressionPieces: List<String>, operandPieces: List<String>) =
+        expressionPieces.minus(operandPieces)
+            .map {
+                Operator.getOperator(it)
+            }.toList()
 }
