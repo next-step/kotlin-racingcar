@@ -8,7 +8,7 @@ class CalculatorTest {
     @Test
     fun `덧셈` () {
         val calculator = Calculator()
-        val str = "1 + 2"
-        assertThat(calculator.calculate(str)).isEqualTo(3)
+        val str = "1 + 2 + 3 + 6"
+        assertThat(calculator.calculate(str)).isEqualTo(12)
     }
 }
