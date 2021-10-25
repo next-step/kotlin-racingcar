@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 object ExceptionType {
     const val INPUT_MUST_NOT_NULL = "입력이 비어서는 안됩니다."

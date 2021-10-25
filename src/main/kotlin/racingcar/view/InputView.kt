@@ -1,8 +1,8 @@
-package racingcar
+package racingcar.view
 
-import racingcar.ExceptionType.INPUT_MUST_NOT_NULL
-import racingcar.ExceptionType.TRY_INPUT_MUST_UNSIGNED_INT
-import racingcar.ValidationChecker.isUnsignedInt
+import racingcar.domain.ExceptionType.INPUT_MUST_NOT_NULL
+import racingcar.domain.ExceptionType.TRY_INPUT_MUST_UNSIGNED_INT
+import racingcar.domain.ValidationChecker.isUnsignedInt
 
 object InputView {
 

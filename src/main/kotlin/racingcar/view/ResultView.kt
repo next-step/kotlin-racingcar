@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.view
 
 import java.util.LinkedList
 import java.util.Queue
@@ -10,12 +10,6 @@ object ResultView {
     private const val SUFFIX_WINNER_ANNOUNCE = "가 최종 우승했습니다."
     private const val DIVIDER = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-    fun printResult(lapResultList: List<LapResult>) {
-        println(DIVIDER)
-        printLapResultList(lapResultList)
-        println(DIVIDER)
-    }
-
     fun printWinners(winnerList: List<String>) =
         println(createWinnerAnnounceMessage(winnerList))
 
@@ -24,6 +18,14 @@ object ResultView {
     fun printAskHowManyCars() = println(ASK_CAR_NAMES)
 
     fun printAskHowManyTry() = println(ASK_HOW_MANY_TRY)
+
+    fun printRaceResult(raceResult: List<String>) = raceResult.forEach { printResult(it) }
+
+    private fun printResult(lapResultList: String) {
+        println(DIVIDER)
+        println(lapResultList)
+        println(DIVIDER)
+    }
 
     private fun createWinnerAnnounceMessage(winnerList: List<String>): String {
         val sb = StringBuffer()
@@ -36,18 +38,4 @@ object ResultView {
         sb.append(SUFFIX_WINNER_ANNOUNCE)
         return sb.toString()
     }
-
-    private fun printLapResultList(lapResultList: List<LapResult>) {
-        lapResultList.forEach {
-            printLapResult(it)
-        }
-    }
-
-    private fun printLapResult(lapResult: LapResult) {
-        with(lapResult) {
-            println("$carName : ${getMovedDistanceExpression(movedDistance)}")
-        }
-    }
-
-    private fun getMovedDistanceExpression(distance: Int) = "-".repeat(distance)
 }
