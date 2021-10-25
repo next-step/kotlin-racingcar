@@ -6,11 +6,7 @@ class Calculator(private val inputLine: String?) {
     private val operators = mutableListOf<String>()
     private var result: Int = 0
 
-    fun execute(): Int {
-        return calculate()
-    }
-
-    private fun calculate(): Int {
+    fun calculate(): Int {
         checkValidInput()
         classifyInput()
         return getResult()
