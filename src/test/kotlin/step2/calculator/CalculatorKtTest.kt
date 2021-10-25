@@ -5,10 +5,11 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
+import step2.calculator.Calculator.calculate
 import java.util.stream.Stream
 
 @DisplayName("계산을 담당하는 calculate 함수 테스트")
-internal class CalculateKtTest {
+internal class CalculatorKtTest {
     @DisplayName("주어진 문자열 수식이 올바른 경우 계산값 반환 테스트")
     @ParameterizedTest
     @MethodSource("validStringExpression")
