@@ -1,5 +1,7 @@
 package step2.calculator
 
+import step2.calculator.StringExpression.parseToMathExpression
+
 object Calculator {
     private const val ARITHMETIC_EXCEPTION_ERROR_MESSAGE = "Error occurred during calculate"
 

@@ -7,10 +7,11 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import step2.calculator.Operator.Companion.getOperator
+import step2.calculator.StringExpression.parseToMathExpression
 import java.util.stream.Stream
 
 @DisplayName("문자열 수식을 계산 가능한 수식(MathExpression)으로 변경하는 함수 테스트")
-internal class ParseToMathExpressionKtTest {
+internal class StringExpressionKtTest {
     @DisplayName("주어진 문자열 수식이 비어있는 경우 예외 테스트")
     @ParameterizedTest
     @MethodSource("blankStringExpression")
