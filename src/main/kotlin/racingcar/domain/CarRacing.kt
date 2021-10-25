@@ -18,13 +18,15 @@ class CarRacing(
         val carList = CarFactory.createCars(createCarNumber)
 
         for (i in 0 until racingCount) {
-            for (car in carList) {
-                car.forward(randomGenerator.getIntRandom())
-            }
-            resultView.action(carList)
-            println()
+            carAction(carList)
         }
 
         resultView.victoryCar(Victory.victoryCar(carList))
+    }
+
+    private fun carAction(carList: List<Car>) {
+        carList.forEach { it.forward(randomGenerator.getIntRandom()) }
+        resultView.action(carList)
+        println()
     }
 }

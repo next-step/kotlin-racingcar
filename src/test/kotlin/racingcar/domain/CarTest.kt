@@ -13,6 +13,13 @@ class CarTest {
         assertThat(Car("pobi")).isNotNull
     }
 
+    @Test
+    fun `자동차가 앞으로 전진하는지 확인한다`() {
+        val car = Car("Car")
+        car.forward(8)
+        assertThat(car.distance).isEqualTo(1)
+    }
+
     @ParameterizedTest
     @ValueSource(strings = ["car1", "car2", "car3"])
     fun `올바른 자동차 이름 입력 테스트 길이 5이하`(name: String) {
