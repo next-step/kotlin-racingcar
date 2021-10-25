@@ -29,7 +29,22 @@ class RacingManagerTest {
     }
 
     @Test
-    fun `race() 후 findWinners() 테스트`() {
+    fun `race() 후 findWinners() 우승자 이름 테스트`() {
+        // given
+        val goEngine = object : CarEngine { override fun execute(): Boolean = true }
+        val stopEngine = object : CarEngine { override fun execute(): Boolean = false }
+        val cars = listOf(Car(name = "1번", carEngine = goEngine), Car(name = "2번", carEngine = stopEngine), Car(name = "3번", carEngine = goEngine))
+        racingManager = RacingManager(cars)
+
+        // when
+        racingManager.race(attempts = 1)
+
+        // then
+        assertThat(racingManager.findWinners().map { it.name }).isEqualTo(listOf("1번", "3번"))
+    }
+
+    @Test
+    fun `race() 후 findWinners() equals() 테스트`() {
         // given
         val goEngine = object : CarEngine { override fun execute(): Boolean = true }
         val stopEngine = object : CarEngine { override fun execute(): Boolean = false }
