@@ -47,8 +47,8 @@ object StringExpression {
         }
 
         return MathExpression(
-            _operands = operands,
-            _operators = operators
+            _operands = operands.toList(),
+            _operators = operators.toList()
         )
     }
 
