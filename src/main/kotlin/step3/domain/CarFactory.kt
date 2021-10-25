@@ -1,5 +1,5 @@
 package step3.domain
 
-class CarFactory {
+object CarFactory {
     fun createCars(createCarNumber: Int): List<Car> = (0 until createCarNumber).map { Car() }
 }

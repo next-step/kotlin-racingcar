@@ -7,7 +7,7 @@ class Car {
         if (randomNumber >= MOVE_SUCCESS) distanceIncrease()
     }
 
-    fun distanceIncrease() {
+    private fun distanceIncrease() {
         distance++
     }
 
