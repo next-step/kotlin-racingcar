@@ -1,16 +1,16 @@
 package racingcar
 
-import racingcar.fuelproviders.FuelProvider
 import racingcar.inputviews.GameInput
 import racingcar.resultviews.GameResult
 import racingcar.resultviews.RoundResult
 
-class RacingGame(
-    private val fuelProvider: FuelProvider,
-) {
-    fun run(input: GameInput): GameResult {
-        val cars = createCars(input.numberOfCars)
-        val roundResults = (1..input.numberOfRounds).map { runRound(it, cars) }
+class RacingGame(input: GameInput) {
+    private val numberOfCars = input.numberOfCars
+    private val numberOfRounds = input.numberOfRounds
+
+    fun run(): GameResult {
+        val cars = createCars(numberOfCars)
+        val roundResults = (1..numberOfRounds).map { runRound(it, cars) }
         return GameResult(roundResults)
     }
 
@@ -18,15 +18,23 @@ class RacingGame(
         return (1..numberOfCars).map { Car() }
     }
 
-    private fun runRound(round: Int, cars: List<Car>): RoundResult{
+    private fun runRound(round: Int, cars: List<Car>): RoundResult {
         accelCars(cars)
         return RoundResult(round, cars.map { it.currentPosition })
     }
 
     private fun accelCars(cars: List<Car>) {
         for (car in cars) {
-            val fuel = fuelProvider.getFuel()
-            car.accelerate(fuel)
+            car.accelerate(getFuel())
         }
+    }
+
+    private fun getFuel(): Int {
+        return (MIN_FUEL..MAX_FUEL).random()
+    }
+
+    companion object {
+        const val MIN_FUEL = 0
+        const val MAX_FUEL = 9
     }
 }
