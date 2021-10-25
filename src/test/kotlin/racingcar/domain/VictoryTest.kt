@@ -7,16 +7,20 @@ import org.junit.jupiter.params.provider.ValueSource
 class VictoryTest {
 
     @ParameterizedTest
-    @ValueSource(strings = ["pobi,kazuma"])
-    fun `Victory 차량이 올바르게 나오는지 테스트 한다`(string: String) {
+    @ValueSource(strings = ["pobi,kazu"])
+    fun `우승자 차량이 올바르게 나오는지 테스트 한다`(string: String) {
+
+        val resultName = "kazu"
+
         val carList: List<Car> = CarFactory.createCars(string.split(","))
 
         for (car in carList) {
-            if (car.carName == "kazuma") {
+            if (car.carName == resultName) {
                 car.distance += 1
             }
         }
+
         val victoryCarList: List<Car> = Victory.victoryCar(carList)
-        assertThat(victoryCarList[0].carName).isEqualTo("kazuma")
+        assertThat(victoryCarList[0].carName).isEqualTo(resultName)
     }
 }

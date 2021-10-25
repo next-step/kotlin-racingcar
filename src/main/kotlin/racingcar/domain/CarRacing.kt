@@ -24,5 +24,7 @@ class CarRacing(
             resultView.action(carList)
             println()
         }
+
+        resultView.victoryCar(Victory.victoryCar(carList))
     }
 }
