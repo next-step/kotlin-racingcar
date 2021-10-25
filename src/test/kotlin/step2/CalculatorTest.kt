@@ -1,6 +1,7 @@
 package step2
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 class CalculatorTest {
@@ -30,4 +31,13 @@ class CalculatorTest {
         val str = "1 + 2 / 3 + 6"
         assertThat(calculator.calculate(str)).isEqualTo(7)
     }
+
+    @Test
+    fun `사칙연산이 아닐 경우` () {
+        assertThatThrownBy {
+            val str = "1 + 2 & 3 + 6"
+            calculator.calculate(str)
+        }.isExactlyInstanceOf(IllegalArgumentException::class.java)
+    }
+
 }
