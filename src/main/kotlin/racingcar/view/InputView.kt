@@ -1,7 +1,7 @@
 package racingcar.view
 
 object InputView {
-    fun getReadLine(message: String): Int {
+    fun getSystemInputByQuestion(message: String): Int {
         println(message)
         return readLine()!!.toInt()
     }
