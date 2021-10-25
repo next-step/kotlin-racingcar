@@ -39,9 +39,7 @@ class InputView(
 
     private fun checkStringLength(list: List<String>): List<String> {
         list.forEach {
-            if (it.length > 5) {
-                throw IllegalArgumentException(READ_LINE_IS_EXCEEDED_FIVE_CHAR_EXCEPTION)
-            }
+            require(it.length <= 5) { READ_LINE_IS_EXCEEDED_FIVE_CHAR_EXCEPTION }
         }
         return list
     }
