@@ -2,6 +2,7 @@ package step2.calculator
 
 import java.util.Arrays
 import java.util.function.IntBinaryOperator
+import kotlin.streams.toList
 
 enum class Operator(
     private val operator: String,
@@ -40,13 +41,10 @@ enum class Operator(
 
         fun getOperator(operator: String): Operator {
             return Arrays.stream(values())
-                .filter { op ->
-                    op.operator == operator
-                }
-                .findFirst()
-                .orElseThrow {
-                    IllegalArgumentException(INVALID_OPERATOR_ERROR_MESSAGE)
-                }
+                .toList()
+                .firstOrNull { enumOp ->
+                    enumOp.operator == operator
+                } ?: throw IllegalArgumentException(INVALID_OPERATOR_ERROR_MESSAGE)
         }
     }
 }
