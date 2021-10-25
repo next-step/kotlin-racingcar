@@ -9,7 +9,7 @@ import racingcar.domain.LapResult
 
 class LapResultTest {
     @ParameterizedTest
-    @ValueSource(ints = [1, 2, 3, 4, 5])
+    @ValueSource(ints = [1, 2, 3, 4, 5, 6, 7, 8, 9])
     fun `이동거리가 가장멀리 이동한 거리가 아닌경우 isNotWinner가 True 반환`(movedDistance: Int) {
         val longestMovedDistance = 10
         val lapResult = LapResult("TEST", movedDistance)
@@ -17,9 +17,9 @@ class LapResultTest {
     }
 
     @Test
-    fun `이동거리가 가장멀리 이동한 거리가 아닌경우 isNotWinner가 False 반환`() {
+    fun `이동거리가 가장멀리 이동한 거리인 경우 isNotWinner가 False 반환`() {
         val longestMovedDistance = 10
-        val movedDistance = 8
+        val movedDistance = 10
         val lapResult = LapResult("TEST", movedDistance)
         assertThat(lapResult.isNotWinner(longestMovedDistance)).isFalse
     }
