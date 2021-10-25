@@ -38,7 +38,6 @@ enum class Operator(
     companion object {
         const val INVALID_OPERATOR_ERROR_MESSAGE = "Given operator is not valid"
 
-        @JvmStatic
         fun getOperator(operator: String): Operator {
             return Arrays.stream(values())
                 .filter { op ->
