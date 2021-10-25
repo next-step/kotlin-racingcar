@@ -1,4 +1,4 @@
-package racing
+package racing.domain
 
 class Car(private val engine: Engine, val name: CarName) {
 

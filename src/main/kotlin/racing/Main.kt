@@ -1,7 +1,9 @@
 package racing
 
+import racing.domain.CarsFactory
+import racing.domain.RandomEngine
+
 fun main() {
-    val cars = CarsController.createCars()
-    val played = CarsController.play(cars)
-    CarsController.announceWinner(played)
+    val controller = CarsController(CarsFactory(RandomEngine))
+    controller.play()
 }

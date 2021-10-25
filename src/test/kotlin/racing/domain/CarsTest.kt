@@ -1,9 +1,13 @@
-package racing
+package racing.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
+import racing.Car
+import racing.CarsException
+import racing.goEngine
+import racing.stopEngine
 
 @Suppress("NonAsciiCharacters")
 class CarsTest {
@@ -12,13 +16,17 @@ class CarsTest {
     fun `비어있는 Cars는 생성될 수 없다`() {
         assertThatThrownBy {
             Cars(emptyList())
-        }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("Car는 하나 이상 존재해야합니다")
+        }.isInstanceOf(CarsException::class.java)
     }
 
     @Test
     fun `차들을 이동시키면 이동에 성공한 차는 이동하고, 실패한 차는 이동하지 않는다`() {
-        val cars = Cars(listOf(Car(goEngine, CarName("name1")), Car(stopEngine, CarName("name2"))))
+        val cars = Cars(
+            listOf(
+                Car(goEngine, CarName("name1")),
+                Car(stopEngine, CarName("name2"))
+            )
+        )
 
         cars.goAll()
 

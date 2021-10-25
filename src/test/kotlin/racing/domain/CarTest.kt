@@ -1,10 +1,13 @@
-package racing
+package racing.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import racing.Car
+import racing.goEngine
+import racing.stopEngine
 
 @Suppress("NonAsciiCharacters")
 class CarTest {

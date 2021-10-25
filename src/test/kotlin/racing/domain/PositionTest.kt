@@ -1,10 +1,11 @@
-package racing
+package racing.domain
 
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Assertions.assertDoesNotThrow
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import racing.PositionException
 
 @Suppress("NonAsciiCharacters")
 class PositionTest {
@@ -21,7 +22,6 @@ class PositionTest {
     fun `Position은 음수가 될 수 없다`() {
         assertThatThrownBy {
             Position(-1)
-        }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("Position은 0보다 크거나 같아야합니다.")
+        }.isInstanceOf(PositionException::class.java)
     }
 }
