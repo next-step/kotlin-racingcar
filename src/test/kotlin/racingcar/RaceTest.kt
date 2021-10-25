@@ -13,13 +13,15 @@ class RaceTest {
         val circuit = Circuit().apply {
             addCarToCircuit(Car(0))
         }
-        assertThat(Race.startRace(circuit, 1)).containsAnyOf("NONE : -")
+        val actual = Race.startRace(circuit, 1)
+        assertThat(actual).containsAnyOf("NONE : -")
     }
 
     @Test
     fun `Circuit에 차가 없을 시, startRace 함수를 호출하면 빈 문자열 리스트로 반환 된다`() {
         val expectedElement = ""
-        assertThat(Race.startRace(Circuit(), 1)).containsExactly(expectedElement)
+        val actual = Race.startRace(Circuit(), 1)
+        assertThat(actual).containsExactly(expectedElement)
     }
 
     @Test
