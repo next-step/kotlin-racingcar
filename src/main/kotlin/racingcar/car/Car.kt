@@ -2,8 +2,16 @@ package racingcar.car
 
 import racingcar.engine.CarEngine
 
-class Car(private var name: String = "", private var position: Int = 0, private var carEngine: CarEngine) {
+class Car(name: String = "", position: Int = 0, private var carEngine: CarEngine) {
 
+    var name: String = name
+        set(value) {
+            field = value.trim()
+        }
+
+    var position: Int = position
+        private set
+    
     fun movePosition() {
         if (carEngine.execute()) {
             position++
@@ -28,8 +36,4 @@ class Car(private var name: String = "", private var position: Int = 0, private 
         result = 31 * result + position
         return result
     }
-
-    fun getName() = name
-
-    fun getPosition() = position
 }
