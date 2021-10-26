@@ -5,7 +5,6 @@ import domain.step4.domain.racingcar.RacingCar
 import domain.step4.domain.racingcar.RacingCars
 import global.strategy.output.OutputStrategy
 import java.lang.System.lineSeparator
-import kotlin.streams.asSequence
 
 class RacingCarResultView(private val outputStrategy: OutputStrategy) {
 
@@ -13,12 +12,12 @@ class RacingCarResultView(private val outputStrategy: OutputStrategy) {
         outputStrategy.execute(
             StringBuilder()
                 .append(lineSeparator())
-                .append("실행 결과")
+                .append(RACING_RESULT_MESSAGE)
                 .append(lineSeparator())
                 .append(resultAllRound(racingCarGameRecord))
                 .append(lineSeparator() + lineSeparator())
                 .append(showWinners(racingCarGameRecord))
-                .append("가 최종 우승했습니다.")
+                .append(RACING_WINNER_MESSAGE)
                 .toString()
         )
     }
@@ -26,9 +25,9 @@ class RacingCarResultView(private val outputStrategy: OutputStrategy) {
     private fun showWinners(racingCarGameRecord: RacingCarGameRecord): String {
         val last = racingCarGameRecord.racingCarGameRecord.last()
         val winningRacingCars = last.winningRacingCars()
-        return winningRacingCars.stream().asSequence()
+        return winningRacingCars.asSequence()
             .map { racingCar -> racingCar.name }
-            .joinToString(", ")
+            .joinToString(WINNERS_SEPARATOR)
     }
 
     private fun resultAllRound(racingCarGameRecord: RacingCarGameRecord) =
@@ -50,9 +49,12 @@ class RacingCarResultView(private val outputStrategy: OutputStrategy) {
     private fun mapToOutputModel(count: Int) = (START..count).joinToString(BLANK) { OUTPUT_MODEL }
 
     companion object {
-        private const val START = 1
+        private const val RACING_RESULT_MESSAGE = "실행 결과"
+        private const val RACING_WINNER_MESSAGE = "가 최종 우승했습니다."
         private const val BLANK = ""
         private const val OUTPUT_MODEL = "-"
         private const val CONTOUR = " : "
+        private const val WINNERS_SEPARATOR = ", "
+        private const val START = 1
     }
 }

@@ -15,10 +15,10 @@ data class RacingCar(
         get() = _distanceDriven.distanceDriven
 
     fun moveForward(): RacingCar {
-        if (movingStrategy.movable()) {
-            return RacingCar(_name, _distanceDriven.moveForward(), movingStrategy)
+        return when (movingStrategy.movable()) {
+            true -> RacingCar(_name, _distanceDriven.moveForward(), movingStrategy)
+            false -> this
         }
-        return this
     }
 
     fun isWinner(otherDistance: Int): Boolean = distance >= otherDistance
