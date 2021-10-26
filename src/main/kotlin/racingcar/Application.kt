@@ -1,6 +1,6 @@
-package step3
+package racingcar
 
-import step3.domain.CarRacing
+import racingcar.domain.CarRacing
 
 fun main() {
 
