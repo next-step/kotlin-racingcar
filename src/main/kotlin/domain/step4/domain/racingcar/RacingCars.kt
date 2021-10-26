@@ -17,7 +17,7 @@ data class RacingCars private constructor(private val _racingCars: List<RacingCa
 
     fun winningRacingCars(): List<RacingCar> {
         val maxValue = maxDistance()
-        return _racingCars.stream().asSequence()
+        return _racingCars.asSequence()
             .filter { racingCar -> racingCar.isWinner(maxValue) }
             .toList()
     }
@@ -33,9 +33,10 @@ data class RacingCars private constructor(private val _racingCars: List<RacingCa
             from(Names.ofStringWithSplitStrategy(names, splitStrategy), movingStrategy)
 
         fun from(names: Names, movingStrategy: MovingStrategy): RacingCars =
-            of(names.names.stream()
+            names.names.asSequence()
                 .map { RacingCar(it, movingStrategy = movingStrategy) }
-                .toList())
+                .toList()
+                .let { of(it) }
 
         fun of(racingCars: List<RacingCar>): RacingCars = RacingCars(racingCars)
     }
