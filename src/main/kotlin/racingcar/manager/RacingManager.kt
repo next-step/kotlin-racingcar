@@ -1,19 +1,25 @@
 package racingcar.manager
 
 import racingcar.car.Car
-import racingcar.engine.CarEngine
 
-class RacingManager constructor(
-    private var cars: List<Car>,
-    private var engine: CarEngine
+class RacingManager(
+    private var cars: List<Car>
 ) {
 
-    fun race(show: ((List<Car>) -> Unit)? = null) {
-        cars.forEach {
-            it.movePosition(engine)
+    fun race(show: ((List<Car>) -> Unit)? = null, attempts: Int) {
+        repeat(attempts) {
+            cars.forEach {
+                it.movePosition()
+            }
+            show?.invoke(cars)
         }
-        show?.invoke(cars)
     }
 
-    fun getPositions(): List<Int> = cars.map { it.getPosition() }
+    private fun findMaxPosition(): Int? = cars.maxByOrNull { it.position }?.position
+
+    fun findWinners(): List<Car> {
+        return cars.filter { it.position == findMaxPosition() }
+    }
+
+    fun getPositions(): List<Int> = cars.map { it.position }
 }

@@ -7,17 +7,17 @@ import racingcar.view.ResultView
 class RacingApplication(private val inputView: InputView = InputView()) {
 
     fun start() {
-        val carNum = inputView.getNumberOfCars()
+        val carNames = inputView.getCarNames()
         val attempts = inputView.getNumberOfAttempts()
         val racingCarEngine = RacingCarEngineImpl()
-        val racingManager = RacingManagerFactory().createRacingManager(carNum, racingCarEngine)
+        val racingManager = RacingManagerFactory().createRacingManager(carNames, racingCarEngine)
 
         ResultView.printResult()
 
         racingManager.run {
-            repeat(attempts) {
-                race(ResultView::printCarPositions)
-            }
+            race(ResultView::printCarPositions, attempts)
+
+            ResultView.printWinners(findWinners())
         }
     }
 }
