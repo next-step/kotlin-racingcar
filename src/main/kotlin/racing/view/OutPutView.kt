@@ -2,15 +2,16 @@ package racing.view
 
 import racing.domain.Car
 import racing.domain.Cars
+import racing.domain.RoundResult
 
 object OutPutView {
     fun printStart() {
         println("\n실행 결과")
     }
 
-    fun printRound(roundData: Array<List<Pair<String, Int>>>) {
-        roundData.forEach { round ->
-            round.forEach { println("${it.first} : ${makeBar(it.second)}") }
+    fun printRound(roundResults: Array<RoundResult>) {
+        roundResults.forEach { roundResult ->
+            roundResult.carNamePositions.forEach { println("${it.first} : ${makeBar(it.second)}") }
             println()
         }
     }
