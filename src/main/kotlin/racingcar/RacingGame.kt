@@ -2,7 +2,6 @@ package racingcar
 
 import racingcar.dtos.GameInput
 import racingcar.dtos.GameResult
-import racingcar.dtos.CarDto
 import racingcar.dtos.RoundResult
 
 class RacingGame(input: GameInput) {
@@ -11,18 +10,17 @@ class RacingGame(input: GameInput) {
 
     fun run(): GameResult {
         val cars = createCars(carNames)
-        val roundResults = (1..numberOfRounds).map { runRound(it, cars) }
-        val winners = getWinners(roundResults)
-        return GameResult(roundResults, winners)
+        val roundResults = (1..numberOfRounds).map { runRound(cars) }
+        return GameResult(roundResults)
     }
 
     private fun createCars(carNames: List<String>): List<Car> {
         return carNames.map { Car(it) }
     }
 
-    private fun runRound(round: Int, cars: List<Car>): RoundResult {
+    private fun runRound(cars: List<Car>): RoundResult {
         accelCars(cars)
-        return RoundResult(round, cars.map { CarDto(it.name, it.currentPosition) })
+        return RoundResult(cars.map { Car(it.name, it.position) })
     }
 
     private fun accelCars(cars: List<Car>) {
@@ -35,14 +33,8 @@ class RacingGame(input: GameInput) {
         return (MIN_FUEL..MAX_FUEL).random()
     }
 
-    private fun getWinners(roundResults: List<RoundResult>): List<CarDto>{
-        val lastRoundResult = roundResults.last()
-        val maxPosition = lastRoundResult.results.maxOf { it.position }
-        return lastRoundResult.results.filter { it.position == maxPosition }
-    }
-
     companion object {
-        const val MIN_FUEL = 0
-        const val MAX_FUEL = 9
+        private const val MIN_FUEL = 0
+        private const val MAX_FUEL = 9
     }
 }

@@ -1,3 +1,5 @@
 package racingcar.dtos
 
-data class RoundResult(val round: Int, val results: List<CarDto>)
+import racingcar.Car
+
+data class RoundResult(val cars: List<Car>)
