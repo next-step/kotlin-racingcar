@@ -3,7 +3,7 @@ package racingcar.util
 import racingcar.extension.StringExtension.isIntType
 import racingcar.ui.InputView
 
-object CarValidation {
+object Validation {
     private const val ZERO = 0
     private const val MIN_CONDITION = 4
     const val MAX_CONDITION = 9
