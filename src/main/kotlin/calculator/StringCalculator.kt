@@ -4,7 +4,7 @@ import common.Constant.SPACING
 
 object StringCalculator {
 
-    private const val FOREACH_STEP_NUMBER: Int = 2
+    private const val FOREACH_STEP_NUMBER = 2
     private const val FOREACH_START_NUMBER = 1
     private const val ADD_NUMBER = 1
     private const val COLLECTION_FIRST_NUMBER = 0

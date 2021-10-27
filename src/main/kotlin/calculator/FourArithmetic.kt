@@ -12,7 +12,7 @@ object FourArithmetic {
             "+" -> plus(operationNumbers)
             "-" -> minus(operationNumbers)
             "*" -> multiply(operationNumbers)
-            "/" -> div(operationNumbers)
+            "/" -> division(operationNumbers)
             else -> throw IllegalArgumentException(ErrorMessage.NOT_FOUR_ARITHMETIC)
         }
     }
@@ -29,7 +29,7 @@ object FourArithmetic {
         execute.apply { return operationNumbers.firstNumber.times(operationNumbers.secondNumber) }
     }
 
-    fun div(operationNumbers: OperationNumbers): Int {
+    fun division(operationNumbers: OperationNumbers): Int {
         if (confirmSecondNumberZero(operationNumbers)) throw ArithmeticException(ErrorMessage.NOT_ZERO_NUMBER_DIVISION)
         execute.apply { return operationNumbers.firstNumber.div(operationNumbers.secondNumber) }
     }
