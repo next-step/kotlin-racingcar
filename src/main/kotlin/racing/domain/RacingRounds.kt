@@ -2,8 +2,8 @@ package racing.domain
 
 @JvmInline
 value class RacingRounds private constructor(private val count: Int) {
-    fun raceDuringCountGivenByUser(cars: Cars, pedal: Pedal): Array<RoundResult> {
-        return Array(count) { cars.goForward(pedal) }
+    fun raceDuringCountGivenByUser(cars: Cars, pedal: Pedal): GameResult {
+        return GameResult(List(count) { cars.goForward(pedal) }, cars.getWinners())
     }
 
     companion object {

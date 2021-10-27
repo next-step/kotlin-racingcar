@@ -1,9 +1,9 @@
 package racing.controller
 
 import racing.domain.Cars
+import racing.domain.GameResult
 import racing.domain.Pedal
 import racing.domain.RacingRounds
-import racing.domain.RoundResult
 import racing.view.InputView
 import racing.view.OutPutView
 
@@ -14,9 +14,12 @@ object RacingController {
         val pedal = Pedal(4)
 
         printStart()
-        val roundResults = racingRounds.raceDuringCountGivenByUser(cars = cars, pedal = pedal)
-        printRound(roundResults)
-        printResult(cars)
+        val gameResult = racingRounds.raceDuringCountGivenByUser(cars = cars, pedal = pedal)
+        printGameResult(gameResult)
+    }
+
+    private fun printGameResult(gameResult: GameResult) {
+        OutPutView.printGameResult(gameResult)
     }
 
     private fun getDataForRacing(): Pair<List<String>, RacingRounds> {
@@ -25,13 +28,5 @@ object RacingController {
 
     private fun printStart() {
         OutPutView.printStart()
-    }
-
-    private fun printRound(roundData: Array<RoundResult>) {
-        OutPutView.printRound(roundData)
-    }
-
-    private fun printResult(cars: Cars) {
-        OutPutView.printResult(cars)
     }
 }

@@ -1,3 +1,4 @@
 package racing.domain
 
-data class RoundResult(val carNamePositions: List<Pair<String, Int>>)
+@JvmInline
+value class RoundResult(val value: List<Car>)

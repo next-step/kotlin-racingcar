@@ -13,7 +13,7 @@ class CarTest {
         val car = Car(name = "부부")
         val pedal = Pedal(0)
         for (i in 1..input) {
-            assertThat(car.moveForward(pedal)).isEqualTo(Pair("부부", i))
+            assertThat(car.apply { car.moveForward(pedal) }).isEqualTo(Car("부부", i))
         }
     }
 
