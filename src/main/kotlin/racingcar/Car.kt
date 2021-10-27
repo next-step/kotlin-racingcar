@@ -5,7 +5,7 @@ class Car(val name: String) {
         private set
 
     init {
-        validateName(name)
+        require(name.length <= MAX_NAME_LENGTH) { "자동차 이름은 5자를 초과할 수 없습니다." }
     }
 
     fun accelerate(fuel: Int) {
@@ -14,21 +14,16 @@ class Car(val name: String) {
         }
     }
 
-    private fun validateName(name: String) {
-        if (name.length > 5) {
-            throw IllegalArgumentException("자동차 이름은 5자를 초과할 수 없습니다.")
-        }
-    }
-
     private fun canAccelerate(fuel: Int): Boolean {
         return fuel >= MIN_FUEL_THRESHOLD
     }
 
     private fun increaseCurrentPosition() {
-        currentPosition += 1
+        currentPosition++
     }
 
     companion object {
-        const val MIN_FUEL_THRESHOLD = 4
+        private const val MAX_NAME_LENGTH = 5
+        private const val MIN_FUEL_THRESHOLD = 4
     }
 }
