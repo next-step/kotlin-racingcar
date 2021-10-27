@@ -15,8 +15,9 @@ object StringCalculator {
         var operatorResult = valueToInt(operatorAndNumberList[COLLECTION_FIRST_NUMBER])
         for (i in FOREACH_START_NUMBER until operatorAndNumberList.count() step (FOREACH_STEP_NUMBER)) {
             val operator = operatorAndNumberList[i]
+            val secondaryNumberIndex = i + ADD_NUMBER
             operatorResult = FourArithmetic.confirmFourArithmetic(operator,
-                OperationNumbers(operatorResult, valueToInt(operatorAndNumberList[i + ADD_NUMBER])))
+                OperationNumbers(operatorResult, valueToInt(operatorAndNumberList[secondaryNumberIndex])))
         }
 
         return operatorResult
