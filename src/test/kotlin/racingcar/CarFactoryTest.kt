@@ -10,7 +10,7 @@ class CarFactoryTest {
     @CsvSource("1, 1", "2, 2", "3, 3")
     fun `입력받은 자동차 개수 만큼 자동차가 생성된다`(input: Int, expected: Int) {
         val cars = Cars(input)
-        val carListSize = cars.getCarList().size
+        val carListSize = cars.carList.size
         Assertions.assertEquals(carListSize, expected)
     }
 }
