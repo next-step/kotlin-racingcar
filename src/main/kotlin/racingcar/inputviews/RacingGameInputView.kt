@@ -22,7 +22,7 @@ class RacingGameInputView : InputView {
     private fun receiveNumberOfRounds(): Int {
         println(GET_NUMBER_OF_ROUNDS_MESSAGE)
         val input = readLine()?.toIntOrNull() ?: 0
-        require(input < 0) { INVALID_INT_ERROR_MESSAGE }
+        require(input >= 0) { INVALID_INT_ERROR_MESSAGE }
         return input
     }
 
