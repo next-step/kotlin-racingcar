@@ -7,11 +7,12 @@ class Car(
     val carName: String
 ) {
 
+    var distance = 0
+        private set // setter 를 감추는 방법
+
     init {
         require(carName.length <= NAME_LENGTH_LIMIT) { BizException.InputException(InputErrorMessage.CAR_NAME_LENGTH_OVER) }
     }
-
-    var distance = 0
 
     fun forward(randomNumber: Int) {
         if (randomNumber >= MOVE_SUCCESS) distanceIncrease()
