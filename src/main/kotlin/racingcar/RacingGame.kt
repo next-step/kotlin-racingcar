@@ -8,7 +8,7 @@ class RacingGame(input: GameInput) {
     private val carNames = input.carNames
     private val numberOfRounds = input.numberOfRounds
 
-    fun run(): GameResult {
+    fun play(): GameResult {
         val cars = createCars(carNames)
         val roundResults = (1..numberOfRounds).map { runRound(cars) }
         return GameResult(roundResults)

@@ -8,7 +8,7 @@ fun main() {
     val gameInput = inputView.receiveInput()
 
     val game = RacingGame(gameInput)
-    val gameResult = game.run()
+    val gameResult = game.play()
 
     val winnerFinder = WinnerFinder()
     val resultView = RacingGameResultView(winnerFinder)

@@ -10,7 +10,7 @@ class RacingGameTest {
         val carNames = listOf("car1", "car2", "car3")
         val gameInput = GameInput(carNames, 5)
 
-        val gameResult = RacingGame(gameInput).run()
+        val gameResult = RacingGame(gameInput).play()
 
         assertThat(gameResult.roundResults).hasSize(5).allMatch { it.cars.size == carNames.size }
     }
