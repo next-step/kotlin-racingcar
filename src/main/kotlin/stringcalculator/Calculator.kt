@@ -12,7 +12,7 @@ class Calculator(private val inputValidator: InputValidator, private val inputCo
         return inputValidator.validate(input)
     }
 
-    private fun extractNumbers(splitString: List<String>): MutableList<Int> {
+    private fun extractNumbers(splitString: List<String>): List<Int> {
         return inputConverter.extractInts(splitString)
     }
 
@@ -20,20 +20,12 @@ class Calculator(private val inputValidator: InputValidator, private val inputCo
         return inputConverter.convertToOperators(splitString)
     }
 
-    private fun executeOperations(numbers: MutableList<Int>, operators: List<Operator>): Int {
-        for (operator in operators) {
-            val operational = popLastTwo(numbers)
-            val result = operator.execute(operational)
-            numbers.add(result)
+    private fun executeOperations(numbers: List<Int>, operators: List<Operator>): Int {
+        var calculated = numbers.first()
+        val rest = numbers.slice(1 until numbers.size)
+        for (i in operators.indices) {
+            calculated = operators[i].execute(calculated, rest[i])
         }
-
-        return numbers.first()
-    }
-
-    @Throws(NoSuchElementException::class)
-    private fun popLastTwo(numbers: MutableList<Int>): Operational {
-        val leftNum = numbers.removeLast()
-        val rightNum = numbers.removeLast()
-        return Operational(leftNum, rightNum)
+        return calculated
     }
 }
