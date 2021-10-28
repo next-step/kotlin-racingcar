@@ -1,5 +1,6 @@
-package step2
+package calculator
 
+import caculator.Calculator
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.params.ParameterizedTest

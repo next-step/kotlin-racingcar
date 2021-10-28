@@ -1,4 +1,4 @@
-package step2
+package caculator
 
 class Calculator {
     fun calculate(inputText: String): Int {

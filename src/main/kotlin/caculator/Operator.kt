@@ -1,4 +1,4 @@
-package step2
+package caculator
 
 enum class Operator(val operator: String, val calculate: (Int, Int) -> Int) {
     ADDITION("+", { x, y -> x + y }),
