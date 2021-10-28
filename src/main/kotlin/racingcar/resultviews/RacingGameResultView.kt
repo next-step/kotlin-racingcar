@@ -21,7 +21,9 @@ class RacingGameResultView(private val winnerFinder: WinnerFinder) : ResultView 
     }
 
     private fun printWinners(gameResult: GameResult) {
-        val winners = winnerFinder.find(gameResult).joinToString { it.name }
+        val winners = winnerFinder
+            .find(gameResult)
+            .joinToString { it.name }
         println("$winners 가 최종 우승했습니다.")
     }
 }
