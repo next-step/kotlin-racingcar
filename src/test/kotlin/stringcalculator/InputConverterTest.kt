@@ -9,14 +9,14 @@ import org.junit.jupiter.params.provider.ValueSource
 class InputConverterTest {
 
     @Test
-    fun `extractInts 실행 시 뒤집힌 int List를 반환한다`() {
+    fun `수식에 포함된 숫자들의 리스트를 뒤집어서 반환합니다`() {
         val intDeque = InputConverter().extractInts("1 - 2 + 3 * 4".split(" "))
 
         assertThat(intDeque).isEqualTo(ArrayDeque(listOf(4, 3, 2, 1)))
     }
 
     @Test
-    fun `convertToOperations 실행 시 Operation 리스트를 반환한다`() {
+    fun `수삭에 포함된 연산자들의 리스트를 반환합니다`() {
         val operations = InputConverter().convertToOperators("1 + 2 - 3 * 4 / 5".split(" "))
 
         assertThat(operations).isEqualTo(
