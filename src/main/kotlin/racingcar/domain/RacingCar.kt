@@ -3,9 +3,7 @@ package racingcar.domain
 import racingcar.domain.random.RandomGenerator
 import racingcar.view.ResultView
 
-class CarList (
-    private val carList: List<Car>
-) {
+class RacingCar(private val carList: List<Car>) {
 
     fun carAction(randomGenerator: RandomGenerator, resultView: ResultView) {
         carList.forEach { it.forward(randomGenerator.getIntRandom()) }
@@ -17,5 +15,4 @@ class CarList (
         val max = carList.maxOf { it.distance }.or(0)
         return carList.filter { it.distance == max }.toList()
     }
-
 }

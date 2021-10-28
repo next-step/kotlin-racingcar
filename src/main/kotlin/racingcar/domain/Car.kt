@@ -1,17 +1,12 @@
 package racingcar.domain
 
-import racingcar.exception.BizException
-import racingcar.exception.message.input.InputErrorMessage
-
 class Car(
-    val carName: String
+    val carName: String,
+    var distance: Int = 0
 ) {
 
-    var distance = 0
-        private set // setter 를 감추는 방법
-
     init {
-        require(carName.length <= NAME_LENGTH_LIMIT) { BizException.InputException(InputErrorMessage.CAR_NAME_LENGTH_OVER) }
+        require(carName.length <= NAME_LENGTH_LIMIT) { CAR_NAME_LENGTH_OVER }
     }
 
     fun forward(randomNumber: Int) {
@@ -25,5 +20,6 @@ class Car(
     companion object {
         private const val MOVE_SUCCESS = 4
         private const val NAME_LENGTH_LIMIT = 5
+        private const val CAR_NAME_LENGTH_OVER = "자동차 이름의 길이는 5자를 초과할 수 없습니다."
     }
 }

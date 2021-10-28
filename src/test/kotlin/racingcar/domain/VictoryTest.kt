@@ -8,29 +8,30 @@ class VictoryTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["pobi,kazu"])
-    fun `우승자 차량이 올바르게 나오는지 테스트 한다`(string: String) {
+    fun `우승자 차량이 올바르게 나오는지 테스트 한다`(carName: String) {
+        val victoryName = "kazu"
 
-        val resultName = "kazu"
+        var distance = 0
 
-        val carList: List<Car> = CarFactory.createCars(string.split(","))
-
-        for (car in carList) {
-            if (car.carName == resultName) {
-                car.distance += 1
-            }
+        val carList: List<Car> = carName.split(",").map {
+            distance++
+            Car(it, distance)
         }
+        val racingCar: RacingCar = RacingCar(carList)
 
-        val victoryCarList: List<Car> = Victory.victoryCar(carList)
-        assertThat(victoryCarList[0].carName).isEqualTo(resultName)
+        val victoryCarList: List<Car> = racingCar.victoryCar()
+
+        assertThat(victoryCarList.size).isEqualTo(1)
+        assertThat(victoryCarList[0].carName).isEqualTo(victoryName)
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["pobi,kazu"])
     fun `공동 우승자가 나오는지 테스트 한다`(string: String) {
 
-        val carList: List<Car> = CarFactory.createCars(string.split(","))
+        val racingCar: RacingCar = RacingCar(string.split(",").map { Car(it) })
 
-        val victoryCarList: List<Car> = Victory.victoryCar(carList)
-        assertThat(victoryCarList.size).isEqualTo(carList.size)
+        val victoryCarList: List<Car> = racingCar.victoryCar()
+        assertThat(victoryCarList.size).isEqualTo(string.split(",").size)
     }
 }
