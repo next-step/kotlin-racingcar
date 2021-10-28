@@ -1,28 +1,28 @@
 package racing.view
 
 import racing.domain.Car
-import racing.domain.Cars
+import racing.domain.GameResult
+import racing.domain.RoundResult
 
 object OutPutView {
     fun printStart() {
         println("\n실행 결과")
     }
 
-    fun printRound(cars: Cars) {
-        cars.cars.forEach { car -> println("${car.name} : ${makeBar(car.position)}") }
-        println()
-    }
-
-    private fun makeBar(position: Int): String {
-        var sb = StringBuilder()
-        repeat(position) {
-            sb.append("-")
+    fun printRound(roundResults: List<RoundResult>) {
+        roundResults.forEach { roundResult ->
+            roundResult.value.forEach { println("${it.name} : ${"-".repeat(it.position)}") }
+            println()
         }
-        return sb.toString()
     }
 
-    fun printResult(cars: Cars) {
-        val winners = cars.getWinners().joinToString(separator = ", ", transform = Car::name)
+    fun printResult(cars: List<Car>) {
+        val winners = cars.joinToString(separator = ", ", transform = Car::name)
         println("${winners}가 우승했습니다.")
+    }
+
+    fun printGameResult(gameResult: GameResult) {
+        printRound(gameResult.roundResults)
+        printResult(gameResult.winners)
     }
 }
