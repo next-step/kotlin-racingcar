@@ -19,32 +19,30 @@ interface ResultView {
 
 class GameResult <<Data Class>> {
 + roundResults: List<RoundResult>
-+ winners: List<CarDto>
 }
 
 class RoundResult <<Data Class>> {
-+ round: Int
-+ results: List<CarDto>
-}
-
-class CarDto <<Data Class>> {
-+ name: String
-+ position: Int
++ results: List<Car>
 }
 
 class RacingGameResultView implements ResultView {
+- winnerFinder: WinnerFinder
 + printResult(gameResult: GameResult)
+}
+
+class WinnerFinder {
++ find(gameResult: GameResult): List<Car>
 }
 
 class Car {
 + name: String
-+ currentPosition: Int
++ position: Int
 + accelerate(fuel: Int)
 }
 
 class RacingGame {
 + input: GameInput
-+ run(): GameResult
++ play(): GameResult
 }
 
 RacingGame *-left-> "*" Car
@@ -55,8 +53,8 @@ RacingGameInputView ..|> InputView
 
 RacingGame -down-> GameResult
 GameResult -left-> "*" RoundResult
-RoundResult --> "*" CarDto
-GameResult --> "*" CarDto
+RoundResult -left-> "*" Car
 ResultView -up-> GameResult
 
+RacingGameResultView -> WinnerFinder
 @enduml
