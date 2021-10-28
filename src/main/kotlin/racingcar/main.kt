@@ -10,7 +10,6 @@ fun main() {
     val game = RacingGame(gameInput)
     val gameResult = game.play()
 
-    val winnerFinder = WinnerFinder()
-    val resultView = RacingGameResultView(winnerFinder)
+    val resultView = RacingGameResultView(WinnerFinder())
     resultView.printResult(gameResult)
 }
