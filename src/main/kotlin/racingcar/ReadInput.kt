@@ -1,7 +1,7 @@
 package racingcar
 
-const val LIMIT_CARS = 1
-const val LIMIT_GAMES = 0
+const val MINIMUM_CARS = 1
+const val MINIMUM_GAMES = 0
 
 fun readNumberOfCars(): Int {
     println("자동차 대수는 몇 대인가요?")
@@ -22,9 +22,9 @@ fun readNumberOfGames(): Int {
 }
 
 fun validateNumberOfCars(input: Int) {
-    require(input > LIMIT_CARS) { "자동차 대수는 2대 이상이어야 합니다." }
+    require(input > MINIMUM_CARS) { "자동차 대수는 2대 이상이어야 합니다." }
 }
 
 fun validateNumberOfGames(input: Int) {
-    require(input > LIMIT_GAMES) { "게임 횟수는 1회 이상이어야 합니다." }
+    require(input > MINIMUM_GAMES) { "게임 횟수는 1회 이상이어야 합니다." }
 }

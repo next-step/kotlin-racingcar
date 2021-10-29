@@ -20,4 +20,12 @@ class CarTest {
         car.move(input)
         assertThat(car.position).isEqualTo(1)
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = [-1, 11, 10])
+    fun `전진 시도 숫자가 0과 9사이의 값이 아니면 validateAttemptNumber 에 실패한다`(input: Int) {
+        val car = Car()
+        org.assertj.core.api.Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java)
+            .isThrownBy { car.validateAttemptNumber(input) }
+    }
 }

@@ -7,8 +7,6 @@ fun printDefaultPosition() {
 }
 
 fun printCurrentPosition(position: Int) {
-    repeat(position) {
-        print(CAR_CHARACTER)
-    }
+    println("-".repeat(position))
     println()
 }

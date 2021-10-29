@@ -1,12 +1,12 @@
 package racingcar
 
-val RANDOM_RANGE = 0..9
+val ATTEMPT_NUMBER_RANGE = 0..9
 
 fun main() {
     val numberOfCars = readNumberOfCars()
     val numberOfGames = readNumberOfGames()
 
-    val carList: ArrayList<Car> = ArrayList()
+    val carList: MutableList<Car> = ArrayList()
 
     repeat(numberOfCars) {
         carList.add(Car())
@@ -17,7 +17,7 @@ fun main() {
 
     repeat(numberOfGames) {
         carList.forEach {
-            it.move(RANDOM_RANGE.random())
+            it.move(ATTEMPT_NUMBER_RANGE.random())
             printCurrentPosition(it.position)
         }
         println()
