@@ -11,17 +11,18 @@ object StringCalculator {
 
     fun calculation(inputValue: String): Int {
         val operatorAndNumberList = CalculatorInputValue(inputValue).value.split(SPACING)
-
-        var operatorResult = valueToInt(operatorAndNumberList[COLLECTION_FIRST_NUMBER])
+        var operatorResult = operatorAndNumberList[COLLECTION_FIRST_NUMBER].valueToInt()
         for (i in FOREACH_START_NUMBER until operatorAndNumberList.count() step (FOREACH_STEP_NUMBER)) {
             val operator = operatorAndNumberList[i]
             val secondaryNumberIndex = i + ADD_NUMBER
             operatorResult = FourArithmetic.confirmFourArithmetic(operator,
-                OperationNumbers(operatorResult, valueToInt(operatorAndNumberList[secondaryNumberIndex])))
+                OperationNumbers(operatorResult, operatorAndNumberList[secondaryNumberIndex].valueToInt()))
         }
-
         return operatorResult
     }
 
-    private fun valueToInt(inputValue: String) = inputValue.toInt()
+    private fun String.valueToInt(): Int {
+        return this.toInt()
+    }
 }
+
