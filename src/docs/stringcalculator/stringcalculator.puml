@@ -12,32 +12,14 @@ class InputConverter {
 + convertToOperations(splitString: List<String>): List<Operation>
 }
 
-interface Operation {
-+ execute(deque: ArrayDeque<Int>)
-}
-
-class Add implements Operation {
-+ execute(deque: ArrayDeque<Int>)
-}
-
-class Subtract implements Operation {
-+ execute(deque: ArrayDeque<Int>)
-}
-
-class Multiply implements Operation {
-+ execute(deque: ArrayDeque<Int>)
-}
-
-class Divide implements Operation {
-+ execute(deque: ArrayDeque<Int>)
+enum Operator {
++ value: String
++ execute: (Int, Int) -> Int
 }
 
 Calculator --> InputValidator
 Calculator --> InputConverter
-Calculator --> "*" Operation
-InputConverter -> "*" Operation
-InputConverter -> Add
-InputConverter -> Subtract
-InputConverter -> Multiply
-InputConverter -> Divide
+Calculator --> "*" Operator
+InputConverter ->"*" Operator
+
 @enduml
