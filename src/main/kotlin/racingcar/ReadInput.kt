@@ -7,11 +7,12 @@ const val MINIMUM_GAMES = 0
 
 fun readCarNames(): List<String> {
     println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
-    val carList = readLine()!!.split(',')
-    carList.forEach {
+    val carNames = readLine()!!.split(',')
+    carNames.forEach {
         validateNameOfCar(it)
     }
-    return carList
+    validateNumberOfCars(carNames.count())
+    return carNames
 }
 
 fun readNumberOfCars(): Int {
