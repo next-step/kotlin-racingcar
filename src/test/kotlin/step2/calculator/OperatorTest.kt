@@ -12,29 +12,39 @@ import step2.calculator.Operator.Companion.INVALID_OPERATOR_ERROR_MESSAGE
 import java.util.stream.Stream
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@DisplayName("계산을 담당하는 Operator 테스트")
+@DisplayName("계산을 담당하는 연산자 객체인 Operator 테스트")
 internal class OperatorTest {
-    @DisplayName("주어진 연산자가 올바른 경우 연산자 매핑 테스트")
+    @DisplayName("주어진 연산자가 올바른 경우 getOperator 함수를 호출하면 올바른 Operator 반환")
     @ParameterizedTest
-    @MethodSource("validOperator")
-    fun getOperatorWhenGivenValidOperator(givenOperator: String, expectedOperator: Operator) {
+    @MethodSource("correctOperatorValues")
+    fun given_CorrectOperatorValue_when_GetOperator_then_ReturnCorrectOperator(
+        givenOperator: String,
+        expectedOperator: Operator
+    ) {
         assertThat(Operator.getOperator(givenOperator)).isEqualTo(expectedOperator)
     }
 
-    @DisplayName("주어진 연산자가 올바르지 않은 경우 연산자 매핑 테스트")
+    @DisplayName("주어진 연산자가 올바르지 않은 경우 getOperator 함수를 호출하면 IllegalArgumentException 예외 발생")
     @ParameterizedTest
-    @MethodSource("invalidOperator")
-    fun getOperatorWhenGivenInvalidOperator(givenOperator: String, expectedException: Exception) {
+    @MethodSource("incorrectOperatorValues")
+    fun given_IncorrectOperatorValue_when_GetOperator_then_ThrowIllegalArgumentException(
+        givenOperator: String,
+        expectedException: Exception
+    ) {
         assertThatThrownBy() {
             Operator.getOperator(givenOperator)
         }.isInstanceOf(expectedException::class.java)
             .hasMessageContaining(INVALID_OPERATOR_ERROR_MESSAGE)
     }
 
-    @DisplayName("주어진 피연산자가 올바른 경우 덧셈 테스트")
+    @DisplayName("주어진 피연산자가 올바른 경우 덧셈 연산 성공")
     @ParameterizedTest
-    @MethodSource("validParameterForPlus")
-    fun plusWhenGivenValidOperand(firstOperand: Int, secondOperand: Int, expectedResultValue: Int) {
+    @MethodSource("correctOperandValuesForPlus")
+    fun given_CorrectOperandValues_when_Plus_then_Success(
+        firstOperand: Int,
+        secondOperand: Int,
+        expectedResultValue: Int
+    ) {
         // Arrange
         val plusOperator = Operator.getOperator("+")
 
@@ -45,10 +55,14 @@ internal class OperatorTest {
         assertThat(resultValue).isEqualTo(expectedResultValue)
     }
 
-    @DisplayName("주어진 피연산자가 올바르지 않은 경우 덧셈 테스트")
+    @DisplayName("주어진 피연산자가 올바르지 않은 경우 덧셈 연산 실패")
     @ParameterizedTest
-    @MethodSource("invalidParameterForPlus")
-    fun plusWhenGivenInvalidOperand(firstOperand: Int, secondOperand: Int, expectedResultValue: Long) {
+    @MethodSource("incorrectOperandValuesForPlus")
+    fun given_IncorrectOperandValues_when_Plus_then_Fail(
+        firstOperand: Int,
+        secondOperand: Int,
+        expectedResultValue: Long
+    ) {
         // Arrange
         val plusOperator = Operator.getOperator("+")
 
@@ -59,10 +73,14 @@ internal class OperatorTest {
         assertThat(resultValue).isNotEqualTo(expectedResultValue)
     }
 
-    @DisplayName("주어진 피연산자가 올바른 경우 뺄셈 테스트")
+    @DisplayName("주어진 피연산자가 올바른 경우 뺄셈 연산 성공")
     @ParameterizedTest
-    @MethodSource("validParameterForMinus")
-    fun minusWhenGivenValidOperand(firstOperand: Int, secondOperand: Int, expectedResultValue: Int) {
+    @MethodSource("correctOperandValuesForMinus")
+    fun given_CorrectOperandValues_when_Minus_then_Success(
+        firstOperand: Int,
+        secondOperand: Int,
+        expectedResultValue: Int
+    ) {
         // Arrange
         val minusOperator = Operator.getOperator("-")
 
@@ -73,10 +91,14 @@ internal class OperatorTest {
         assertThat(resultValue).isEqualTo(expectedResultValue)
     }
 
-    @DisplayName("주어진 피연산자가 올바르지 않은 경우 뺄셈 테스트")
+    @DisplayName("주어진 피연산자가 올바르지 않은 경우 뺄셈 연산 실패")
     @ParameterizedTest
-    @MethodSource("invalidParameterForMinus")
-    fun minusWhenGivenInvalidOperand(firstOperand: Int, secondOperand: Int, expectedResultValue: Long) {
+    @MethodSource("incorrectOperandValuesForMinus")
+    fun given_CorrectOperandValues_when_Minus_then_Fail(
+        firstOperand: Int,
+        secondOperand: Int,
+        expectedResultValue: Long
+    ) {
         // Arrange
         val minusOperator = Operator.getOperator("-")
 
@@ -87,10 +109,14 @@ internal class OperatorTest {
         assertThat(resultValue).isNotEqualTo(expectedResultValue)
     }
 
-    @DisplayName("주어진 피연산자가 올바른 경우 곱셈 테스트")
+    @DisplayName("주어진 피연산자가 올바른 경우 곱셈 연산 성공")
     @ParameterizedTest
-    @MethodSource("validParameterForMulti")
-    fun multiWhenGivenValidOperand(firstOperand: Int, secondOperand: Int, expectedResultValue: Int) {
+    @MethodSource("correctOperandValuesForMulti")
+    fun given_CorrectOperandValues_when_Multi_then_Success(
+        firstOperand: Int,
+        secondOperand: Int,
+        expectedResultValue: Int
+    ) {
         // Arrange
         val multiOperator = Operator.getOperator("*")
 
@@ -101,10 +127,14 @@ internal class OperatorTest {
         assertThat(resultValue).isEqualTo(expectedResultValue)
     }
 
-    @DisplayName("주어진 피연산자가 올바르지 않은 경우 곱셈 테스트")
+    @DisplayName("주어진 피연산자가 올바르지 않은 경우 곱셈 연산 실패")
     @ParameterizedTest
-    @MethodSource("invalidParameterForMulti")
-    fun multiWhenGivenInvalidOperand(firstOperand: Int, secondOperand: Int, expectedResultValue: Long) {
+    @MethodSource("incorrectOperandValuesForMulti")
+    fun given_IncorrectOperandValues_when_Multi_then_Fail(
+        firstOperand: Int,
+        secondOperand: Int,
+        expectedResultValue: Long
+    ) {
         // Arrange
         val multiOperator = Operator.getOperator("*")
 
@@ -115,10 +145,14 @@ internal class OperatorTest {
         assertThat(resultValue).isNotEqualTo(expectedResultValue)
     }
 
-    @DisplayName("주어진 피연산자가 올바른 경우 나눗셈 테스트")
+    @DisplayName("주어진 피연산자가 올바른 경우 나눗셈 연산 성공")
     @ParameterizedTest
-    @MethodSource("validParameterForDivide")
-    fun divideWhenGivenValidOperand(firstOperand: Int, secondOperand: Int, expectedResultValue: Int) {
+    @MethodSource("correctOperandValuesForDivide")
+    fun given_CorrectOperandValues_when_Divide_then_Success(
+        firstOperand: Int,
+        secondOperand: Int,
+        expectedResultValue: Int
+    ) {
         // Arrange
         val divideOperator = Operator.getOperator("/")
 
@@ -129,10 +163,10 @@ internal class OperatorTest {
         assertThat(resultValue).isEqualTo(expectedResultValue)
     }
 
-    @DisplayName("주어진 피연산자가 올바르지 않은 경우 나눗셈 테스트")
+    @DisplayName("주어진 피연산자가 올바르지 않은 경우 나눗셈 연산 실패")
     @ParameterizedTest
-    @MethodSource("invalidParameterForDivide")
-    fun divideWhenGivenInvalidOperand(
+    @MethodSource("incorrectOperandValuesForDivide")
+    fun given_IncorrectOperandValues_when_Divide_then_Fail(
         firstOperand: Int,
         secondOperand: Int,
         expectedException: Exception,
@@ -154,7 +188,7 @@ internal class OperatorTest {
         private val arithmeticException = ArithmeticException()
 
         @JvmStatic
-        fun validOperator(): Stream<Arguments> {
+        fun correctOperatorValues(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of("+", Operator.ADDITION),
                 Arguments.of("-", Operator.SUBTRACTION),
@@ -164,7 +198,7 @@ internal class OperatorTest {
         }
 
         @JvmStatic
-        fun invalidOperator(): Stream<Arguments> {
+        fun incorrectOperatorValues(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of("!", illegalArgumentException),
                 Arguments.of("@", illegalArgumentException),
@@ -182,7 +216,7 @@ internal class OperatorTest {
         }
 
         @JvmStatic
-        fun validParameterForPlus(): Stream<Arguments> {
+        fun correctOperandValuesForPlus(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(1, 2, 3),
                 Arguments.of(10, 22, 32),
@@ -197,7 +231,7 @@ internal class OperatorTest {
         }
 
         @JvmStatic
-        fun invalidParameterForPlus(): Stream<Arguments> {
+        fun incorrectOperandValuesForPlus(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(2_000_000_000, 2_000_000_000, 4_000_000_000),
                 Arguments.of(-2_000_000_000, -2_000_000_000, -4_000_000_000),
@@ -205,7 +239,7 @@ internal class OperatorTest {
         }
 
         @JvmStatic
-        fun validParameterForMinus(): Stream<Arguments> {
+        fun correctOperandValuesForMinus(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(1, 2, -1),
                 Arguments.of(797, 111, 686),
@@ -220,7 +254,7 @@ internal class OperatorTest {
         }
 
         @JvmStatic
-        fun invalidParameterForMinus(): Stream<Arguments> {
+        fun incorrectOperandValuesForMinus(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(2_000_000_000, -2_000_000_000, 4_000_000_000),
                 Arguments.of(-2_000_000_000, 2_000_000_000, -4_000_000_000),
@@ -228,7 +262,7 @@ internal class OperatorTest {
         }
 
         @JvmStatic
-        fun validParameterForMulti(): Stream<Arguments> {
+        fun correctOperandValuesForMulti(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(1, 2, 2),
                 Arguments.of(797, 111, 88_467),
@@ -243,7 +277,7 @@ internal class OperatorTest {
         }
 
         @JvmStatic
-        fun invalidParameterForMulti(): Stream<Arguments> {
+        fun incorrectOperandValuesForMulti(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(100_000, 100_000, 10_000_000_000),
                 Arguments.of(-100_000, 200_000, -20_000_000_000),
@@ -252,7 +286,7 @@ internal class OperatorTest {
         }
 
         @JvmStatic
-        fun validParameterForDivide(): Stream<Arguments> {
+        fun correctOperandValuesForDivide(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(2, 1, 2),
                 Arguments.of(4, 2, 2),
@@ -266,7 +300,7 @@ internal class OperatorTest {
         }
 
         @JvmStatic
-        fun invalidParameterForDivide(): Stream<Arguments> {
+        fun incorrectOperandValuesForDivide(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(0, 0, arithmeticException, arithmeticExceptionErrorMessage),
                 Arguments.of(100_000, 0, arithmeticException, arithmeticExceptionErrorMessage),
