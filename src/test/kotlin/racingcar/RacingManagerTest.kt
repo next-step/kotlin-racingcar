@@ -55,7 +55,7 @@ class RacingManagerTest {
         racingManager.race(attempts = 1)
 
         // then
-        assertThat(racingManager.findWinners()).isEqualTo(listOf(Car(position = 1, carEngine = goEngine), Car(position = 1, carEngine = goEngine)))
+        assertThat(racingManager.findWinners()).isEqualTo(listOf(Car(_position = 1, carEngine = goEngine), Car(_position = 1, carEngine = goEngine)))
     }
 
     companion object {
