@@ -1,12 +1,7 @@
 package racingcar
 
-const val CAR_CHARACTER = '-'
+const val CAR_CHARACTER = "-"
 
-fun printDefaultPosition() {
-    println(CAR_CHARACTER)
-}
-
-fun printCurrentPosition(position: Int) {
-    println("-".repeat(position))
-    println()
+fun printCurrentPosition(name: String, position: Int) {
+    println("$name : ${CAR_CHARACTER.repeat(position)}")
 }
