@@ -13,9 +13,6 @@ import racingcar.exception.RacingCarException.READ_LINE_IS_NOT_POSITIVE_NUM_EXCE
 import racingcar.view.InputView
 import java.util.stream.Stream
 
-
-
-
 class InputViewTest {
 
     private lateinit var inputView: InputView
@@ -65,8 +62,8 @@ class InputViewTest {
         @JvmStatic
         fun carNamesTest(): Stream<Arguments> {
             return Stream.of(
-                Arguments.of("pobi,crong,honux",listOf("pobi", "crong", "honux")),
-                Arguments.of("ab,cd,ef",listOf("ab", "cd", "ef")),
+                Arguments.of("pobi,crong,honux", listOf("pobi", "crong", "honux")),
+                Arguments.of("ab,cd,ef", listOf("ab", "cd", "ef")),
             )
         }
     }
