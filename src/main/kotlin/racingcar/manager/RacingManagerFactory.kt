@@ -1,12 +1,11 @@
-package racingcar
+package racingcar.manager
 
-import racingcar.car.Car
+import racingcar.car.Cars
 import racingcar.engine.CarEngine
-import racingcar.manager.RacingManager
 
 class RacingManagerFactory {
     fun createRacingManager(carNameList: List<String>, engine: CarEngine): RacingManager {
-        val cars = carNameList.map { Car(it, carEngine = engine) }
+        val cars = Cars.newInstance(carNameList, engine = engine)
         return RacingManager(cars)
     }
 }

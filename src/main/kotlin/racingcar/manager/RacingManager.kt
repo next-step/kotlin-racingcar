@@ -1,25 +1,21 @@
 package racingcar.manager
 
 import racingcar.car.Car
+import racingcar.car.Cars
+import racingcar.car.Winners
 
 class RacingManager(
-    private var cars: List<Car>
+    private val _cars: Cars
 ) {
 
-    fun race(show: ((List<Car>) -> Unit)? = null, attempts: Int) {
+    val cars: Cars
+        get() = _cars
+
+    fun race(show: ((List<Car>) -> Unit)? = null, attempts: Int): Winners {
         repeat(attempts) {
-            cars.forEach {
-                it.movePosition()
-            }
-            show?.invoke(cars)
+            _cars.movePositions()
+            show?.invoke(_cars.cars)
         }
+        return Winners(_cars.findWinners())
     }
-
-    private fun findMaxPosition(): Int? = cars.maxByOrNull { it.position }?.position
-
-    fun findWinners(): List<Car> {
-        return cars.filter { it.position == findMaxPosition() }
-    }
-
-    fun getPositions(): List<Int> = cars.map { it.position }
 }

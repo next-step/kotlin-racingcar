@@ -1,6 +1,7 @@
 package racingcar
 
 import racingcar.engine.RacingCarEngineImpl
+import racingcar.manager.RacingManagerFactory
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
@@ -15,9 +16,7 @@ class RacingApplication(private val inputView: InputView = InputView()) {
         ResultView.printResult()
 
         racingManager.run {
-            race(ResultView::printCarPositions, attempts)
-
-            ResultView.printWinners(findWinners())
+            ResultView.printWinners(race(ResultView::printCarPositions, attempts))
         }
     }
 }
