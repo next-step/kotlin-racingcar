@@ -4,10 +4,11 @@ const val MAXIMUM_CHARACTERS_NAME = 5
 const val MINIMUM_CHARACTERS_NAME = 1
 const val MINIMUM_CARS = 1
 const val MINIMUM_GAMES = 0
+const val DELIMITER = ','
 
 fun readCarNames(): List<String> {
     println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
-    val carNames = readLine()!!.split(',')
+    val carNames = readLine()!!.split(DELIMITER)
     carNames.forEach {
         validateNameOfCar(it)
     }

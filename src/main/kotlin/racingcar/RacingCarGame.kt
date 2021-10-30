@@ -1,6 +1,7 @@
 package racingcar
 
 val ATTEMPT_NUMBER_RANGE = 0..9
+const val SEPARATOR = ", "
 
 fun main() {
     val carNames = readCarNames()
@@ -45,7 +46,7 @@ private fun getWinners(carList: MutableList<Car>): List<Car> {
 }
 
 private fun showWinners(winners: List<Car>) {
-    print("${winners.joinToString(", ") { it.name }}가 최종 우승했습니다.")
+    print("${winners.joinToString(SEPARATOR) { it.name }}가 최종 우승했습니다.")
 }
 
 fun validateWinnersCount(numberOfWinners: Int) {
