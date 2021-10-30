@@ -1,7 +1,9 @@
 package racingcar
 
-import racingcar.inputviews.RacingGameInputView
-import racingcar.resultviews.RacingGameResultView
+import racingcar.domain.RacingGame
+import racingcar.domain.WinnerFinder
+import racingcar.views.inputviews.RacingGameInputView
+import racingcar.views.resultviews.RacingGameResultView
 
 fun main() {
     val inputView = RacingGameInputView()

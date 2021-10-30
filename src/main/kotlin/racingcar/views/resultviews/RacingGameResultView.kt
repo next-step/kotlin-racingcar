@@ -1,8 +1,8 @@
-package racingcar.resultviews
+package racingcar.views.resultviews
 
-import racingcar.WinnerFinder
-import racingcar.dtos.GameResult
-import racingcar.dtos.RoundResult
+import racingcar.domain.WinnerFinder
+import racingcar.domain.dtos.GameResult
+import racingcar.domain.dtos.RoundResult
 
 class RacingGameResultView(private val winnerFinder: WinnerFinder) : ResultView {
     override fun printResult(gameResult: GameResult) {
