@@ -1,9 +1,11 @@
-package racingcar
+package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import racingcar.dtos.GameResult
-import racingcar.dtos.RoundResult
+import racingcar.domain.Car
+import racingcar.domain.dtos.GameResult
+import racingcar.domain.dtos.RoundResult
+import racingcar.domain.WinnerFinder
 
 class WinnerFinderTest {
     @Test

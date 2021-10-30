@@ -1,8 +1,8 @@
-package racingcar
+package racingcar.domain
 
-import racingcar.dtos.GameInput
-import racingcar.dtos.GameResult
-import racingcar.dtos.RoundResult
+import racingcar.domain.dtos.GameInput
+import racingcar.domain.dtos.GameResult
+import racingcar.domain.dtos.RoundResult
 
 class RacingGame(input: GameInput) {
     private val carNames = input.carNames

@@ -1,6 +1,6 @@
-package racingcar
+package racingcar.domain
 
-import racingcar.dtos.GameResult
+import racingcar.domain.dtos.GameResult
 
 class WinnerFinder {
 

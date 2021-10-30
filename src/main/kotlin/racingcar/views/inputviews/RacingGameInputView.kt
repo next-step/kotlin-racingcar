@@ -1,6 +1,6 @@
-package racingcar.inputviews
+package racingcar.views.inputviews
 
-import racingcar.dtos.GameInput
+import racingcar.domain.dtos.GameInput
 
 class RacingGameInputView : InputView {
     override fun receiveInput(): GameInput {
