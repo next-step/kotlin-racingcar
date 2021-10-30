@@ -23,3 +23,5 @@
   * 차량 상태를 관리하는 객체
 * MoveDistance
   * 차량 이동거리를 관리하는 객체
+* CarMovingStrategy
+  * 랜덤값 생성하여 차량이 이동할지 판별
