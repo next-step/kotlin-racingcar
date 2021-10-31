@@ -9,19 +9,15 @@ object StringExpression {
     private val NUMBER_REGEX = Regex("^[+-]?\\d+$")
 
     fun parseToMathExpression(stringExpression: String): MathExpression {
-        val result = runCatching {
+        return runCatching {
             assertIsNotBlank(stringExpression)
             val expressionPieces = stringExpression.trim().split(SEPARATOR)
             assertExpressionPieces(expressionPieces)
 
             createMathExpression(expressionPieces)
-        }.onSuccess {
-            return it
         }.onFailure {
             throw IllegalArgumentException(stringExpression + INVALID_EXPRESSION_ERROR_MESSAGE)
-        }
-
-        return result.getOrThrow()
+        }.getOrThrow()
     }
 
     private fun assertIsNotBlank(stringExpression: String) {

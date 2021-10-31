@@ -8,11 +8,11 @@ object Calculator {
     fun calculate(expression: String): Int {
         val mathExpression = parseToMathExpression(expression)
 
-        try {
-            return calculate(mathExpression)
-        } catch (exception: Exception) {
+        return kotlin.runCatching {
+            calculate(mathExpression)
+        }.onFailure {
             throw ArithmeticException(ARITHMETIC_EXCEPTION_ERROR_MESSAGE)
-        }
+        }.getOrThrow()
     }
 
     private fun calculate(mathExpression: MathExpression): Int {
