@@ -2,10 +2,15 @@ package racingcar
 
 import racingcar.racing.Racing
 import racingcar.ui.InputView
+import racingcar.util.Validation
 
 fun main() {
-    val carCount = InputView.getCarCount()
-    val attemptCount = InputView.getAttemptCount()
+    val carsName = InputView.getCarsName().also {
+        Validation.checkNameCountCondition(it)
+    }
+    val attemptCount = InputView.getAttemptCount().also {
+        Validation.checkTryCountCondition(it)
+    }
 
-    Racing(carCount, attemptCount).start()
+    Racing(carsName, attemptCount.toInt()).start()
 }

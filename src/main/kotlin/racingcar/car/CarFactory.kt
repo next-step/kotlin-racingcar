@@ -1,11 +1,11 @@
 package racingcar.car
 
-import racingcar.constant.Constant
 import racingcar.engine.Engine
+import racingcar.util.Validation
 
 object CarFactory {
     fun initCarList(
-        carCount: Int,
+        carsName: String,
         engine: Engine
-    ) = (Constant.START..carCount).map { Car(engine) }
+    ) = carsName.split(Validation.DELIMITER).map { Car(engine, it) }
 }

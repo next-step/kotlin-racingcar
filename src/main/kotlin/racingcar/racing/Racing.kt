@@ -3,15 +3,17 @@ package racingcar.racing
 import racingcar.car.Cars
 import racingcar.ui.ResultView
 
-class Racing(carCount: Int, private val attemptCount: Int) {
-    private val cars = Cars(carCount)
+class Racing(carsName: String, private val attemptCount: Int) {
+    private val cars = Cars(carsName)
 
     fun start() {
         repeat(attemptCount) {
-            cars.getRacingResult().forEach { car ->
-                ResultView.printRacingResult(car.getLocation())
+            cars.startRound().forEach { car ->
+                ResultView.printRacingResult(car)
             }
             println()
         }
+
+        ResultView.printRacingWinner(cars.getWinner())
     }
 }
