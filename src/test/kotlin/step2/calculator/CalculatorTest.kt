@@ -8,12 +8,15 @@ import org.junit.jupiter.params.provider.MethodSource
 import step2.calculator.Calculator.calculate
 import java.util.stream.Stream
 
-@DisplayName("계산을 담당하는 calculate 함수 테스트")
-internal class CalculatorKtTest {
-    @DisplayName("주어진 문자열 수식이 올바른 경우 계산값 반환 테스트")
+@DisplayName("계산을 담당하는 함수인 calculate 테스트")
+internal class CalculatorTest {
+    @DisplayName("주어진 문자열 수식이 올바른 경우 수식 계산 시 올바른 값 반환")
     @ParameterizedTest
-    @MethodSource("validStringExpression")
-    fun validStringExpressionTest(stringExpression: String, expectedValue: Int) {
+    @MethodSource("correctStringExpression")
+    fun given_CorrectStringExpression_when_Calculate_then_ReturnCorrectResult(
+        stringExpression: String,
+        expectedValue: Int
+    ) {
         // Arrange
         // Act
         val result = calculate(stringExpression)
@@ -22,10 +25,10 @@ internal class CalculatorKtTest {
         Assertions.assertThat(result).isEqualTo(expectedValue)
     }
 
-    @DisplayName("주어진 문자열 수식이 올바르지 않은 경우 계산값 반환 테스트")
+    @DisplayName("주어진 문자열 수식이 올바르지 않은 경우 수식 계산 시 ArithmeticException 예외 발생")
     @ParameterizedTest
-    @MethodSource("invalidStringExpression")
-    fun invalidStringExpressionTest(
+    @MethodSource("incorrectStringExpression")
+    fun given_IncorrectStringExpression_when_Calculate_then_ThrowArithmeticException(
         stringExpression: String,
         expectedException: Exception,
         containErrorMessages: String
@@ -46,7 +49,7 @@ internal class CalculatorKtTest {
         private val illegalArgumentException = IllegalArgumentException()
 
         @JvmStatic
-        fun validStringExpression(): Stream<Arguments> {
+        fun correctStringExpression(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of("1 + 2", 3),
                 Arguments.of("1 + 2 + 3 + 4 + 5", 15),
@@ -58,7 +61,7 @@ internal class CalculatorKtTest {
         }
 
         @JvmStatic
-        fun invalidStringExpression(): Stream<Arguments> {
+        fun incorrectStringExpression(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of("2 / 0", arithmeticException, arithmeticExceptionErrorMessage),
                 Arguments.of("1 + 2 3", illegalArgumentException, invalidExpressionErrorMessage),
