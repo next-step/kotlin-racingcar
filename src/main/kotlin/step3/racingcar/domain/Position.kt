@@ -1,6 +1,6 @@
 package step3.racingcar.domain
 
-data class Distance(val value: Int) {
+data class Position(val value: Int) {
     init {
         require(STOP <= value)
     }
