@@ -8,12 +8,15 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
-@DisplayName("수식을 표현하는 MathExpression 테스트")
+@DisplayName("수식을 표현하는 객체인 MathExpression 테스트")
 internal class MathExpressionTest {
-    @DisplayName("주어진 연산자와 피연산자가 올바른 경우 표현식 생성 테스트")
+    @DisplayName("주어진 연산자와 피연산자가 올바른 경우 MathExpression 객체 생성 성공")
     @ParameterizedTest
-    @MethodSource("validOperandsAndOperators")
-    fun createOperandWhenGivenValidOperand(operands: List<Operand>, operators: List<Operator>) {
+    @MethodSource("correctOperandsAndOperators")
+    fun given_CorrectOperandsAndOperators_when_CreateMathExpression_then_Success(
+        operands: List<Operand>,
+        operators: List<Operator>
+    ) {
         // Arrange
         // Act
         val mathExpression = MathExpression(
@@ -26,10 +29,10 @@ internal class MathExpressionTest {
         assertThat(mathExpression.operators).isEqualTo(operators)
     }
 
-    @DisplayName("주어진 연산자와 피연산자가 올바르지 않은 경우 표현식 생성 테스트")
+    @DisplayName("주어진 연산자와 피연산자가 올바르지 않은 경우 MathExpression 객체 생성 실패")
     @ParameterizedTest
-    @MethodSource("invalidOperandsAndOperators")
-    fun createOperandWhenGivenInvalidOperand(
+    @MethodSource("incorrectOperandsAndOperators")
+    fun given_IncorrectOperandsAndOperators_when_CreateMathExpression_then_Fail(
         operands: List<Operand>,
         operators: List<Operator>,
         expectedException: Exception,
@@ -52,7 +55,7 @@ internal class MathExpressionTest {
         private val illegalArgumentException = IllegalArgumentException()
 
         @JvmStatic
-        fun validOperandsAndOperators(): Stream<Arguments> {
+        fun correctOperandsAndOperators(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(
                     listOf(Operand(1), Operand(2)),
@@ -90,7 +93,7 @@ internal class MathExpressionTest {
         }
 
         @JvmStatic
-        fun invalidOperandsAndOperators(): Stream<Arguments> {
+        fun incorrectOperandsAndOperators(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(
                     listOf(Operand(1), Operand(2)),
