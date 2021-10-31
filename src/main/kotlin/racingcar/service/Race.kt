@@ -1,4 +1,7 @@
-package racingcar.domain
+package racingcar.service
+
+import racingcar.domain.Cars
+import racingcar.domain.MovingStrategy
 
 class Race(registerCarNumber: Int, private val moveCarNumber: Int) {
 
