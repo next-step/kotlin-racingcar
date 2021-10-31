@@ -1,28 +1,27 @@
 package racingcar.domain
 
-import racingcar.exception.BizException
-import racingcar.exception.message.input.InputErrorMessage
-
 class Car(
-    val carName: String
+    val carName: String,
+    private var _distance: Int = 0
 ) {
 
-    init {
-        require(carName.length <= NAME_LENGTH_LIMIT) { BizException.InputException(InputErrorMessage.CAR_NAME_LENGTH_OVER) }
-    }
+    val distance get() = _distance
 
-    var distance = 0
+    init {
+        require(carName.length <= NAME_LENGTH_LIMIT) { CAR_NAME_LENGTH_OVER }
+    }
 
     fun forward(randomNumber: Int) {
         if (randomNumber >= MOVE_SUCCESS) distanceIncrease()
     }
 
     private fun distanceIncrease() {
-        distance++
+        _distance++
     }
 
     companion object {
         private const val MOVE_SUCCESS = 4
         private const val NAME_LENGTH_LIMIT = 5
+        private const val CAR_NAME_LENGTH_OVER = "자동차 이름의 길이는 5자를 초과할 수 없습니다."
     }
 }

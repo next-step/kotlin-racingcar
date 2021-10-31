@@ -12,21 +12,15 @@ class CarRacing(
 
     fun start() {
 
-        val createCarNumber: List<String> = inputView.inputCarName()
+        val carNameList: List<String> = inputView.inputCarName()
         val racingCount = inputView.inputNumberOfAttempts()
 
-        val carList = CarFactory.createCars(createCarNumber)
+        val racingCar = RacingCar(carNameList.map { Car(it) })
 
         for (i in 0 until racingCount) {
-            carAction(carList)
+            racingCar.carAction(randomGenerator, resultView)
         }
 
-        resultView.victoryCar(Victory.victoryCar(carList))
-    }
-
-    private fun carAction(carList: List<Car>) {
-        carList.forEach { it.forward(randomGenerator.getIntRandom()) }
-        resultView.action(carList)
-        println()
+        resultView.victoryCar(racingCar.victoryCar())
     }
 }
