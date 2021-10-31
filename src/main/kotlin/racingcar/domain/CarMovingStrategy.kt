@@ -1,6 +1,6 @@
 package racingcar.domain
 
-class CarMovingStrategy: MovingStrategy {
+class CarMovingStrategy : MovingStrategy {
 
     override fun movable(): Boolean {
         return MOVE_CONDITION_NUMBER <= randomNumber()

@@ -4,7 +4,7 @@ class Car {
     private var moveDistance: MoveDistance = MoveDistance()
 
     fun moveCar(movingStrategy: MovingStrategy) {
-        if(movingStrategy.movable()) {
+        if (movingStrategy.movable()) {
             moveDistance.move()
         }
     }
