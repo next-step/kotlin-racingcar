@@ -2,8 +2,10 @@ package racingcar.domain
 
 class Car(
     val carName: String,
-    var distance: Int = 0
+    private var _distance: Int = 0
 ) {
+
+    val distance get() = _distance
 
     init {
         require(carName.length <= NAME_LENGTH_LIMIT) { CAR_NAME_LENGTH_OVER }
@@ -14,7 +16,7 @@ class Car(
     }
 
     private fun distanceIncrease() {
-        distance++
+        _distance++
     }
 
     companion object {

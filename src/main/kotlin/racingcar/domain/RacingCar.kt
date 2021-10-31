@@ -12,7 +12,7 @@ class RacingCar(private val carList: List<Car>) {
     }
 
     fun victoryCar(): List<Car> {
-        val max = carList.maxOf { it.distance }.or(0)
+        val max = carList.maxOf { it.distance }
         return carList.filter { it.distance == max }.toList()
     }
 }

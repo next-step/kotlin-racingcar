@@ -1,28 +1,43 @@
 package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class VictoryTest {
 
-    @ParameterizedTest
-    @ValueSource(strings = ["pobi,kazu"])
-    fun `우승자 차량이 올바르게 나오는지 테스트 한다`(carName: String) {
-        val victoryName = "kazu"
+    @Test
+    fun `우승자가 한명이 나오는지 테스트한다`() {
 
-        var distance = 0
-
-        val carList: List<Car> = carName.split(",").map {
-            distance++
-            Car(it, distance)
-        }
+        val carList: List<Car> = listOf(Car("car1", 1), Car("car2", 2))
         val racingCar: RacingCar = RacingCar(carList)
 
         val victoryCarList: List<Car> = racingCar.victoryCar()
 
         assertThat(victoryCarList.size).isEqualTo(1)
-        assertThat(victoryCarList[0].carName).isEqualTo(victoryName)
+    }
+
+    @Test
+    fun `우승자가 두명이 나오는지 테스트한다`() {
+
+        val carList: List<Car> = listOf(Car("car1", 2), Car("car2", 2), Car("car4", 1), Car("car3", 0))
+        val racingCar: RacingCar = RacingCar(carList)
+
+        val victoryCarList: List<Car> = racingCar.victoryCar()
+
+        assertThat(victoryCarList.size).isEqualTo(2)
+    }
+
+    @Test
+    fun `우승자가 세명이 나오는지 테스트한다`() {
+
+        val carList: List<Car> = listOf(Car("car1", 2), Car("car2", 2), Car("car3", 1), Car("car4", 2))
+        val racingCar: RacingCar = RacingCar(carList)
+
+        val victoryCarList: List<Car> = racingCar.victoryCar()
+
+        assertThat(victoryCarList.size).isEqualTo(3)
     }
 
     @ParameterizedTest
