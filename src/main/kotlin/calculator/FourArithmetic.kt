@@ -30,7 +30,9 @@ object FourArithmetic {
     }
 
     fun division(operationNumbers: OperationNumbers): Int {
-        if (confirmSecondNumberZero(operationNumbers)) throw ArithmeticException(ErrorMessage.NOT_ZERO_NUMBER_DIVISION)
+        if (confirmSecondNumberZero(operationNumbers)) {
+            throw ArithmeticException(ErrorMessage.NOT_ZERO_NUMBER_DIVISION)
+        }
         execute.apply { return operationNumbers.firstNumber.div(operationNumbers.secondNumber) }
     }
 
