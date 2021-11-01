@@ -25,7 +25,4 @@ class Cars(carsName: String) {
             it.name
         }
     }
-
-    companion object {
-    }
 }
