@@ -11,16 +11,16 @@ class Cars(carsName: String) {
         }
     }
 
-    private fun getHighScore(): Int? {
-        return carList.map {
-            it.getLocation().length
-        }.maxOrNull()
+    private fun getHighScore(): Int {
+        return carList.maxOf {
+            it.distance
+        }
     }
 
     fun getWinner(): List<String> {
         val highScore = getHighScore()
         return carList.filter {
-            it.getLocation().length == highScore
+            it.distance == highScore
         }.map {
             it.name
         }
