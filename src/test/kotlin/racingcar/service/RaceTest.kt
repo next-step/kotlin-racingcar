@@ -10,7 +10,7 @@ class RaceTest {
     @Test
     fun `차량들 이동 확인`() {
         // given
-        race = Race(5,5)
+        race = Race(5, 5)
 
         // when
         race.confirmMoveOfCars { true }
