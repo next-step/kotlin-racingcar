@@ -12,7 +12,7 @@ class Cars(registerCarNumber: Int) {
         return (REGISTER_CAR_START_NUMBER..registerCarNumber).map { Car() }
     }
 
-    fun moveOfCars(carMovingStrategy: MovingStrategy) {
+    fun moveOfCars(carMovingStrategy: Boolean) {
         cars.forEach { it.moveCar(carMovingStrategy) }
     }
 
