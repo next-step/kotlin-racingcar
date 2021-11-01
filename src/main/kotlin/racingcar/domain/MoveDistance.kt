@@ -1,6 +1,8 @@
 package racingcar.domain
 
-data class MoveDistance(var distance: Int = 0) {
+data class MoveDistance(private var _distance: Int = 0) {
+    var distance = _distance
+        private set
 
     fun move() {
         distance = distance.plus(ADD_MOVE_DISTANCE)
