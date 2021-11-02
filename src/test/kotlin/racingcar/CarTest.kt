@@ -3,20 +3,15 @@ package racingcar
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class CarTest {
-    @ParameterizedTest
-    @ValueSource(ints = [2, 1, 3])
-    fun `우승자가 1명 이상이면 validateWinnersCount 에 성공한다`(input: Int) {
-        Assertions.assertDoesNotThrow { validateWinnersCount(input) }
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = [0, -1])
-    fun `우승자가 1명 미만이면 validateWinnersCount 에 실패한다`(input: Int) {
-        assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy { validateWinnersCount(input) }
+    @Test
+    fun `우승자가 1명 이상이면 validateWinnersCount 에 성공한다`() {
+        val winners = listOf(Car("car1"), Car("car2"))
+        Assertions.assertDoesNotThrow { validateWinnersCount(winners) }
     }
 
     @ParameterizedTest
