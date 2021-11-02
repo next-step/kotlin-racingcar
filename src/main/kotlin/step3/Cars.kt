@@ -1,10 +1,8 @@
 package step3
 
-data class Cars(private val numberOfCount: Int = DEFAULT_NUMBER_OF_COUNT) {
+class Cars constructor(private val numberOfCount: Int = DEFAULT_NUMBER_OF_COUNT) {
 
-    val carList: List<Car> by lazy { makeCar() }
-
-    private fun makeCar(): List<Car> {
+    fun makeCar(): List<Car> {
         val carList = mutableListOf<Car>()
         for (i in DEFAULT_NUMBER_OF_COUNT until numberOfCount) {
             carList.add(Car(Distance()))
@@ -12,7 +10,7 @@ data class Cars(private val numberOfCount: Int = DEFAULT_NUMBER_OF_COUNT) {
         return carList
     }
 
-    fun moveCars() {
+    fun moveCars(carList: List<Car>) {
         carList.forEach {
             it.move()
         }
