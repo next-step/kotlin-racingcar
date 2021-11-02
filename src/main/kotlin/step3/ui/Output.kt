@@ -11,12 +11,14 @@ object Output {
     }
 
     private fun printCars(cars: Cars, round: Round) {
+        val carList = cars.makeCar()
+        cars.moveCars()
+
         repeat(round.number) {
-            val carList = cars.makeCar()
             carList.forEach {
                 printCar(it)
             }
-            cars.moveCars(carList)
+            cars.moveCars()
             println(END_OF_LINE)
         }
     }
