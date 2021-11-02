@@ -8,7 +8,7 @@ fun main() {
     val carNames = readCarNames()
     val numberOfGames = readNumberOfGames()
 
-    val carList: MutableList<Car> = ArrayList()
+    val carList: MutableList<Car> = mutableListOf()
 
     println("\n실행 결과")
 
