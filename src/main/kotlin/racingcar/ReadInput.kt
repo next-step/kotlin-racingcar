@@ -1,14 +1,14 @@
 package racingcar
 
-const val MAXIMUM_CHARACTERS_NAME = 5
-const val MINIMUM_CHARACTERS_NAME = 1
+const val MAXIMUM_CAR_NAME_LENGTH = 5
+const val MINIMUM_CAR_NAME_LENGTH = 1
 const val MINIMUM_CARS = 1
 const val MINIMUM_GAMES = 0
-const val DELIMITER = ','
+const val CAR_NAME_DELIMITER = ','
 
 fun readCarNames(): List<String> {
     println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
-    val carNames = readLine()!!.split(DELIMITER)
+    val carNames = readLine()!!.split(CAR_NAME_DELIMITER)
     carNames.forEach { carName ->
         validateNameOfCarIsNotBlank(carName)
         validateNameOfCarLength(carName)
@@ -40,7 +40,7 @@ fun validateNameOfCarIsNotBlank(input: String) {
 }
 
 fun validateNameOfCarLength(input: String) {
-    require(input.length in MINIMUM_CHARACTERS_NAME..MAXIMUM_CHARACTERS_NAME) { "자동차 이름은 1자 이상 5자 이하여야 합니다." }
+    require(input.length in MINIMUM_CAR_NAME_LENGTH..MAXIMUM_CAR_NAME_LENGTH) { "자동차 이름은 1자 이상 5자 이하여야 합니다." }
 }
 
 fun validateNumberOfCars(input: Int) {
