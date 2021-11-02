@@ -1,15 +1,28 @@
 package racingcar.car
 
-class Cars(carCount: Int) {
-    private val carList: List<Car> = CarFactory.initCarList(carCount)
+import racingcar.engine.RandomEngine
 
-    fun getCarList(): List<Car> {
-        return carList
-    }
+class Cars(carsName: String) {
+    val carList: List<Car> = CarFactory.initCarList(carsName, RandomEngine())
 
-    fun getRacingResult(): List<Car> {
+    fun startRound(): List<Car> {
         return carList.map { car ->
             car.start()
+        }
+    }
+
+    private fun getHighScore(): Int {
+        return carList.maxOf {
+            it.distance
+        }
+    }
+
+    fun getWinner(): List<String> {
+        val highScore = getHighScore()
+        return carList.filter {
+            it.distance == highScore
+        }.map {
+            it.name
         }
     }
 }

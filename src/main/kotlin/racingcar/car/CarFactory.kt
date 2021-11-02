@@ -1,10 +1,11 @@
 package racingcar.car
 
-import racingcar.constant.Constant
-import racingcar.engine.RandomEngine
+import racingcar.engine.Engine
+import racingcar.util.Validation
 
 object CarFactory {
-    private val engine = RandomEngine()
-
-    fun initCarList(carCount: Int) = (Constant.START..carCount).map { Car(engine) }
+    fun initCarList(
+        carsName: String,
+        engine: Engine
+    ) = carsName.split(Validation.DELIMITER).map { Car(engine, it) }
 }

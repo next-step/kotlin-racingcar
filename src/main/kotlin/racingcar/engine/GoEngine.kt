@@ -1,9 +1,9 @@
 package racingcar.engine
 
-import racingcar.constant.Constant
+import racingcar.car.Car
 
 class GoEngine : Engine {
-    override fun forward(distance: String): String {
-        return distance.plus(Constant.ONE_SPACE)
+    override fun forward(distance: Int): Int {
+        return distance + Car.ONE_SPACE
     }
 }

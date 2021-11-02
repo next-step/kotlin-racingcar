@@ -1,16 +1,16 @@
 package racingcar.engine
 
-import racingcar.constant.Constant
+import racingcar.car.Car
 import racingcar.util.Validation
 import java.util.Random
 
 class RandomEngine : Engine {
     private val random = Random()
 
-    override fun forward(distance: String): String {
+    override fun forward(distance: Int): Int {
         val num = random.nextInt(Validation.MAX_CONDITION)
-        return if (Validation.isMatchCondition(num)) {
-            distance.plus(Constant.ONE_SPACE)
+        return if (Validation.isMatchStartCondition(num)) {
+            distance + Car.ONE_SPACE
         } else {
             distance
         }
