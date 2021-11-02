@@ -24,7 +24,7 @@ class CarsTest {
         val cars = Cars(registerCarNumber)
 
         // when
-        cars.moveOfCars(true)
+        cars.moveOfCars { true }
 
         // then
         cars.cars.forEach {

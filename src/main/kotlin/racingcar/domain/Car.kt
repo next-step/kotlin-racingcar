@@ -3,8 +3,8 @@ package racingcar.domain
 class Car {
     private var moveDistance: MoveDistance = MoveDistance()
 
-    fun moveCar(movingStrategy: Boolean) {
-        if (movingStrategy) {
+    fun moveCar(movingStrategy: MovingStrategy) {
+        if (movingStrategy.movable()) {
             moveDistance.move()
         }
     }

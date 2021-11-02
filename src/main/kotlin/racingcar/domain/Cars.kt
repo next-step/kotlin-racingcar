@@ -8,7 +8,7 @@ class Cars(registerCarNumber: Int) {
         return List(registerCarNumber) { Car() }
     }
 
-    fun moveOfCars(carMovingStrategy: Boolean) {
-        cars.forEach { it.moveCar(carMovingStrategy) }
+    fun moveOfCars(movingStrategy: MovingStrategy) {
+        cars.forEach { it.moveCar(movingStrategy) }
     }
 }

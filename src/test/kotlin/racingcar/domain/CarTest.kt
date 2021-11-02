@@ -15,13 +15,13 @@ class CarTest {
 
     @Test
     fun `랜덤값이 4이하일 경우 정지`() {
-        car.moveCar(false)
+        car.moveCar { false }
         assertThat(car.carPosition()).isEqualTo(0)
     }
 
     @Test
     fun `랜덤값이  4이상일 경우 이동`() {
-        car.moveCar(true)
+        car.moveCar { true }
         assertThat(car.carPosition()).isEqualTo(1)
     }
 }

@@ -13,7 +13,7 @@ class RaceTest {
         race = Race(5, 5)
 
         // when
-        race.confirmMoveOfCars(true)
+        race.confirmMoveOfCars { true }
 
         // then
         race.cars.cars.forEach {

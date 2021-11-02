@@ -7,6 +7,6 @@ import racingcar.view.ResultView
 
 fun main() {
     val racing = Race(InputView.numberOfNewCars(), InputView.numberOfMoves())
-    racing.confirmMoveOfCars(RandomCarMovingStrategy.movable())
+    racing.confirmMoveOfCars(RandomCarMovingStrategy)
     ResultView.carPositionPrints(racing.cars.cars)
 }
