@@ -8,12 +8,13 @@ class Car constructor(val distance: Distance = Distance()) {
 
     var forward = DEFAULT_NUMBER_OF_COUNT
 
-    fun move() {
+    fun move(): Car {
         val currentDrive = Distance().calculate()
         when {
             currentDrive > FORWARD_CONDITION -> forward += 1
             else -> forward
         }
+        return this
     }
 }
 
