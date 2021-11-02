@@ -2,6 +2,7 @@ package racingcar
 
 val ATTEMPT_NUMBER_RANGE = 0..9
 const val SEPARATOR = ", "
+const val MINIMUM_WINNER_COUNT = 1
 
 fun main() {
     val carNames = readCarNames()
@@ -48,5 +49,5 @@ private fun showWinners(winners: List<Car>) {
 }
 
 fun validateWinnersCount(numberOfWinners: Int) {
-    require(numberOfWinners >= 1) { "우승자는 1명 이상이어야 합니다." }
+    require(numberOfWinners >= MINIMUM_WINNER_COUNT) { "우승자는 ${MINIMUM_WINNER_COUNT}명 이상이어야 합니다." }
 }
