@@ -49,10 +49,21 @@ class CarsTest {
     }
 
     @Test
+    fun `전진하는 조건 테스트#3 - 랜덤값이 4이상일 경우만 전진하는지`() {
+        val car = Car().move(4)
+        assertThat(car.forward).isEqualTo(1)
+    }
+
+    @Test
+    fun `정지 조건 테스트#1 - 랜덤값이 4미만일 경우 정지 하는지`() {
+        val car = Car().move(2)
+        assertThat(car.forward).isEqualTo(0)
+    }
+
+    @Test
     fun `전진한만큼 원하는 outPut이 출력되었는지`() {
         val car = Car()
         car.move()
-
         val isForward = car.distance.calculate() > 4
         when {
             isForward -> {
