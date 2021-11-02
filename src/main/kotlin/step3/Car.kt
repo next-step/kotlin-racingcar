@@ -1,17 +1,10 @@
 package step3
 
-class Car constructor(val distance: Distance = Distance()) {
+class Car constructor(val distance: Distance = Distance(), var forward: Int = DEFAULT_NUMBER_OF_COUNT) {
 
-    init {
-        move()
-    }
-
-    var forward = DEFAULT_NUMBER_OF_COUNT
-
-    fun move(): Car {
-        val currentDrive = Distance().calculate()
+    fun move(currentForward: Int = distance.calculate()): Car {
         when {
-            currentDrive > FORWARD_CONDITION -> forward += 1
+            currentForward >= FORWARD_CONDITION -> forward += 1
             else -> forward
         }
         return this
