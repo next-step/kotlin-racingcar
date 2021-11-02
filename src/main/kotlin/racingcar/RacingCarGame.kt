@@ -11,7 +11,7 @@ fun main() {
 
     println("\n실행 결과")
 
-    carNames.forEach { initCarList(it, carList) }
+    carNames.forEach { carName -> initCarList(carName, carList) }
 
     println()
 
@@ -22,10 +22,8 @@ fun main() {
     showWinners(winners)
 }
 
-private fun initCarList(it: String, carList: MutableList<Car>) {
-    val car = Car()
-    car.name = it
-
+private fun initCarList(carName: String, carList: MutableList<Car>) {
+    val car = Car(carName)
     carList.add(car)
     printCurrentPosition(car.name, car.position)
 }

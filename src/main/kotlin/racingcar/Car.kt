@@ -1,8 +1,6 @@
 package racingcar
 
-class Car {
-    lateinit var name: String
-
+class Car(val name: String) {
     var position: Int = DEFAULT_POSITION
         private set
 
