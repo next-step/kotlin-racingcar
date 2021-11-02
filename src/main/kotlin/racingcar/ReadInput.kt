@@ -9,8 +9,9 @@ const val DELIMITER = ','
 fun readCarNames(): List<String> {
     println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
     val carNames = readLine()!!.split(DELIMITER)
-    carNames.forEach {
-        validateNameOfCar(it)
+    carNames.forEach { carName ->
+        validateNameOfCarIsNotBlank(carName)
+        validateNameOfCarLength(carName)
     }
     validateNumberOfCars(carNames.count())
     return carNames
@@ -34,8 +35,12 @@ fun readNumberOfGames(): Int {
     return numberOfGames
 }
 
-fun validateNameOfCar(input: String) {
-    require(input.isNotBlank() && input.length in MINIMUM_CHARACTERS_NAME..MAXIMUM_CHARACTERS_NAME) { "자동차 이름은 1자 이상 5자 이하여야 합니다." }
+fun validateNameOfCarIsNotBlank(input: String) {
+    require(input.isNotBlank()) { "자동차 이름은 공백이어선 안됩니다." }
+}
+
+fun validateNameOfCarLength(input: String) {
+    require(input.length in MINIMUM_CHARACTERS_NAME..MAXIMUM_CHARACTERS_NAME) { "자동차 이름은 1자 이상 5자 이하여야 합니다." }
 }
 
 fun validateNumberOfCars(input: Int) {
