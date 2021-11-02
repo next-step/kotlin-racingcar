@@ -38,7 +38,7 @@ private fun playGame(carList: MutableList<Car>) {
 }
 
 private fun getWinners(carList: MutableList<Car>): List<Car> {
-    val winnerPosition = carList.maxByOrNull { it.position }!!.position
+    val winnerPosition = carList.maxOf { it.position }
     val winners = carList.filter { it.position == winnerPosition }
     validateWinnersCount(winners)
     return winners
