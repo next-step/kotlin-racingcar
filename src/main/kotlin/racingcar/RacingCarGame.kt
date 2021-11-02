@@ -44,10 +44,6 @@ private fun getWinners(carList: MutableList<Car>): List<Car> {
     return winners
 }
 
-private fun showWinners(winners: List<Car>) {
-    print("${winners.joinToString(SEPARATOR) { it.name }}가 최종 우승했습니다.")
-}
-
 fun validateWinnersCount(winners: List<Car>) {
     require(winners.count() >= MINIMUM_WINNER_COUNT) { "우승자는 ${MINIMUM_WINNER_COUNT}명 이상이어야 합니다." }
 }

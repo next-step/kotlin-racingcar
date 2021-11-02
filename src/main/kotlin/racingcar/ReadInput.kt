@@ -17,15 +17,6 @@ fun readCarNames(): List<String> {
     return carNames
 }
 
-fun readNumberOfCars(): Int {
-    println("자동차 대수는 몇 대인가요?")
-    val numberOfCars = readLine()!!.toInt()
-
-    validateNumberOfCars(numberOfCars)
-
-    return numberOfCars
-}
-
 fun readNumberOfGames(): Int {
     println("시도할 횟수는 몇 회인가요?")
     val numberOfGames = readLine()!!.toInt()
