@@ -29,7 +29,7 @@ class FourArithmeticTest {
     @ParameterizedTest
     @CsvSource("0 2 0", "8 -2 -4", "5 1 5", delimiter = ' ')
     fun 나누기(firstValue: Int, secondValue: Int, result: Int) {
-        assertThat(FourArithmetic.div(OperationNumbers(firstValue, secondValue))).isEqualTo(result)
+        assertThat(FourArithmetic.division(OperationNumbers(firstValue, secondValue))).isEqualTo(result)
     }
 
     @ParameterizedTest
