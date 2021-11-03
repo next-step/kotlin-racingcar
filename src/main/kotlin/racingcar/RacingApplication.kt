@@ -1,7 +1,7 @@
 package racingcar
 
-import racingcar.engine.RacingCarEngineImpl
-import racingcar.manager.RacingManagerFactory
+import racingcar.domain.engine.RacingCarEngineImpl
+import racingcar.domain.manager.RacingManagerFactory
 import racingcar.view.InputView
 import racingcar.view.ResultView
 

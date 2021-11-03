@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import racingcar.car.Car
-import racingcar.car.CarName
-import racingcar.car.Cars
-import racingcar.car.Winners
-import racingcar.engine.CarEngine
-import racingcar.manager.RacingManager
-import racingcar.manager.RacingManagerFactory
+import racingcar.domain.car.Car
+import racingcar.domain.car.CarName
+import racingcar.domain.car.Cars
+import racingcar.domain.car.Winners
+import racingcar.domain.engine.CarEngine
+import racingcar.domain.manager.RacingManager
+import racingcar.domain.manager.RacingManagerFactory
 import java.util.stream.Stream
 
 class RacingManagerTest {

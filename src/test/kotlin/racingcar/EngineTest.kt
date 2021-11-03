@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import racingcar.engine.CarEngine
+import racingcar.domain.engine.CarEngine
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class EngineTest {

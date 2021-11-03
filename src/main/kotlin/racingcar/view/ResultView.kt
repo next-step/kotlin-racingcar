@@ -1,7 +1,7 @@
 package racingcar.view
 
-import racingcar.car.Car
-import racingcar.car.Winners
+import racingcar.domain.car.Car
+import racingcar.domain.car.Winners
 
 object ResultView {
 

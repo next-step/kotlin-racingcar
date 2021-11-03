@@ -1,6 +1,6 @@
-package racingcar.car
+package racingcar.domain.car
 
-import racingcar.engine.CarEngine
+import racingcar.domain.engine.CarEngine
 
 data class Car(val name: CarName = CarName(""), private var _position: Int = 0, private var carEngine: CarEngine) {
 

@@ -1,8 +1,8 @@
-package racingcar.manager
+package racingcar.domain.manager
 
-import racingcar.car.Car
-import racingcar.car.Cars
-import racingcar.car.Winners
+import racingcar.domain.car.Car
+import racingcar.domain.car.Cars
+import racingcar.domain.car.Winners
 
 class RacingManager(
     val cars: Cars

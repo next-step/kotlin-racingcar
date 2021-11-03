@@ -1,12 +1,11 @@
 package racingcar
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import racingcar.car.Car
-import racingcar.engine.CarEngine
+import racingcar.domain.car.Car
+import racingcar.domain.engine.CarEngine
 
 class CarTest {
 

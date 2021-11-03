@@ -1,7 +1,7 @@
-package racingcar.manager
+package racingcar.domain.manager
 
-import racingcar.car.Cars
-import racingcar.engine.CarEngine
+import racingcar.domain.car.Cars
+import racingcar.domain.engine.CarEngine
 
 class RacingManagerFactory {
     fun createRacingManager(carNameList: List<String>, engine: CarEngine): RacingManager {

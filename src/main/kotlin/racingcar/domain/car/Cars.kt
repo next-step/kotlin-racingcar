@@ -1,6 +1,6 @@
-package racingcar.car
+package racingcar.domain.car
 
-import racingcar.engine.CarEngine
+import racingcar.domain.engine.CarEngine
 
 @JvmInline
 value class Cars(private val _cars: List<Car>) {

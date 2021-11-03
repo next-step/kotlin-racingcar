@@ -1,7 +1,7 @@
-package racingcar.engine
+package racingcar.domain.engine
 
-import racingcar.random.RacingRandomGenerator
-import racingcar.random.RandomGenerator
+import racingcar.domain.random.RacingRandomGenerator
+import racingcar.domain.random.RandomGenerator
 
 class RacingCarEngineImpl(
     private var randomGenerator: RandomGenerator = RacingRandomGenerator()
