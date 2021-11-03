@@ -3,7 +3,7 @@ package racingcar.domain.car
 import racingcar.domain.engine.CarEngine
 
 @JvmInline
-value class Cars(private val cars: List<Car>) {
+value class Cars(val cars: List<Car>) {
 
     private fun findMaxPosition(): Int? = cars.maxByOrNull { it.position }?.position
 
