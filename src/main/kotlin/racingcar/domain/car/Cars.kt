@@ -3,14 +3,11 @@ package racingcar.domain.car
 import racingcar.domain.engine.CarEngine
 
 @JvmInline
-value class Cars(private val _cars: List<Car>) {
-
-    val cars: List<Car>
-        get() = _cars.toList()
+value class Cars(private val cars: List<Car>) {
 
     private fun findMaxPosition(): Int? = cars.maxByOrNull { it.position }?.position
 
-    fun movePositions() = _cars.map { it.movePosition() }
+    fun movePositions() = cars.map { it.movePosition() }
 
     fun findWinners(): List<Car> {
         return cars.filter { it.position == findMaxPosition() }.toList()
