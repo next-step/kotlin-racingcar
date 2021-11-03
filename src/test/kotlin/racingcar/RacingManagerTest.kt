@@ -53,7 +53,7 @@ class RacingManagerTest {
         racingManager.race(attempts = 1)
 
         // then
-        assertThat(racingManager.cars.findWinners().map { it.name }).isEqualTo(listOf("1번", "3번"))
+        assertThat(racingManager.cars.findWinners().map { it.name.name }).isEqualTo(listOf("1번", "3번"))
     }
 
     @Test

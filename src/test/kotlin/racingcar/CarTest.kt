@@ -39,6 +39,6 @@ class CarTest {
     fun `Car Name`() {
         car = Car(carEngine = object : CarEngine { override fun execute(): Boolean = false })
         car.movePosition()
-        assertThat(car.name).isEqualTo("")
+        assertThat(car.name.name).isEqualTo("")
     }
 }
