@@ -7,6 +7,24 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class InputTest {
     @ParameterizedTest
+    @ValueSource(strings = ["pobi", "crong", "honux"])
+    fun `자동차 이름이 1자 이상 5자 이하이면 validateNameOfCarLength 에 성공한다`(input: String) {
+        Assertions.assertDoesNotThrow { validateNameOfCarLength(input) }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["", "honuxx"])
+    fun `자동차 이름이 1자 미만이거나 5자 초과이면 validateNameOfCarLength 에 실패한다`(input: String) {
+        assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy { validateNameOfCarLength(input) }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["", " "])
+    fun `자동차 이름이 blank 이면 validateNameOfCarIsNotBlank 에 실패한다`(input: String) {
+        assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy { validateNameOfCarIsNotBlank(input) }
+    }
+
+    @ParameterizedTest
     @ValueSource(ints = [2, 3, 4, 5])
     fun `자동차 대수가 2 이상이면 validateNumberOfCars 에 성공한다`(input: Int) {
         Assertions.assertDoesNotThrow { validateNumberOfCars(input) }
