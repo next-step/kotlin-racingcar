@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 class CarNameTest {
+
     @Test
     fun `자동차 이름 길이 체크`() {
         assertThrows<IllegalArgumentException> {
