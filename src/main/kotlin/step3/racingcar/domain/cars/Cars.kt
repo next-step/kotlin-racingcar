@@ -1,4 +1,7 @@
-package step3.racingcar.domain
+package step3.racingcar.domain.cars
+
+import step3.racingcar.domain.engine.DefaultEngine
+import step3.racingcar.domain.engine.Engine
 
 data class Cars(
     private val engine: Engine = DefaultEngine(),

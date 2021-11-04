@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
+import step3.racingcar.domain.cars.Position
 import java.util.stream.Stream
 
 @DisplayName("위치를 표현하는 객체인 Position 테스트")

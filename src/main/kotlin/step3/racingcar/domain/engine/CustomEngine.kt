@@ -1,4 +1,4 @@
-package step3.racingcar.domain
+package step3.racingcar.domain.engine
 
 data class CustomEngine(private val criterion: Int) : Engine {
     init {

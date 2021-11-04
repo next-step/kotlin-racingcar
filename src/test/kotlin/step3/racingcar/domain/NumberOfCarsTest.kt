@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
+import step3.racingcar.domain.cars.NumberOfCars
 import java.util.stream.Stream
 
 @DisplayName("Cars 객체의 자동차 수를 담당하는 객체인 NumberOfCars 테스트")

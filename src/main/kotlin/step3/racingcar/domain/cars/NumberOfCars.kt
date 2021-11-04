@@ -1,4 +1,4 @@
-package step3.racingcar.domain
+package step3.racingcar.domain.cars
 
 data class NumberOfCars(val value: Int) {
     init {

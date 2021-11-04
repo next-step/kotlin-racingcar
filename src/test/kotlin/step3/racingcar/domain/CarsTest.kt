@@ -5,6 +5,11 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
+import step3.racingcar.domain.cars.Cars
+import step3.racingcar.domain.cars.NumberOfCars
+import step3.racingcar.domain.engine.CustomEngine
+import step3.racingcar.domain.engine.Engine
+import step3.racingcar.domain.cars.Position
 import java.util.stream.Stream
 
 @DisplayName("Car 객체의 복수 형태의 객체인 Cars 테스트")

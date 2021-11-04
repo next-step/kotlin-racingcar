@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
+import step3.racingcar.domain.engine.DefaultEngine
+import step3.racingcar.domain.engine.Engine
 import java.util.stream.Stream
 
 @DisplayName("전진 여부를 결정할 기준 값을 랜덤 값으로 생성하는 객체인 DefaultEngine 테스트")

@@ -1,4 +1,4 @@
-package step3.racingcar.domain
+package step3.racingcar.domain.status
 
 object MovingStatus {
     const val STOP = 0

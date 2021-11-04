@@ -7,6 +7,8 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
+import step3.racingcar.domain.engine.CustomEngine
+import step3.racingcar.domain.engine.Engine
 import java.util.stream.Stream
 
 @DisplayName("전진 여부를 결정할 기준 값을 파라미터 값으로 생성하는 객체인 CustomEngine 테스트")

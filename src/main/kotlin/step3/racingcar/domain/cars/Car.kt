@@ -1,4 +1,6 @@
-package step3.racingcar.domain
+package step3.racingcar.domain.cars
+
+import step3.racingcar.domain.engine.Engine
 
 data class Car(
     private var position: Position,

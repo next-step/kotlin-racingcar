@@ -1,4 +1,4 @@
-package step3.racingcar.domain
+package step3.racingcar.domain.engine
 
 class DefaultEngine : Engine {
     override fun generateCriterionValueToRace(): Int = (START_RANGE..END_RANGE).random()

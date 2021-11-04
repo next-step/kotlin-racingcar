@@ -5,8 +5,11 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import step3.racingcar.domain.MovingStatus.MOVE_ONE_STEP_FORWARD
-import step3.racingcar.domain.MovingStatus.STOP
+import step3.racingcar.domain.cars.Racing
+import step3.racingcar.domain.status.MovingStatus.MOVE_ONE_STEP_FORWARD
+import step3.racingcar.domain.status.MovingStatus.STOP
+import step3.racingcar.domain.engine.CustomEngine
+import step3.racingcar.domain.cars.Position
 import java.util.stream.Stream
 
 @DisplayName("경주를 위해 자동차의 전진과 정지를 담당하는 객체인 Racing 테스트")

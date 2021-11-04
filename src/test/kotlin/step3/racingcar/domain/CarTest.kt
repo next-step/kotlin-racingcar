@@ -5,6 +5,10 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
+import step3.racingcar.domain.cars.Car
+import step3.racingcar.domain.engine.CustomEngine
+import step3.racingcar.domain.engine.Engine
+import step3.racingcar.domain.cars.Position
 import java.util.stream.Stream
 
 @DisplayName("Position, Engine을 생성자 파라미터로 받는 자동차 객체인 Car 테스트")
