@@ -1,4 +1,6 @@
-package racingcar
+package racingcar.domain
+
+val ATTEMPT_NUMBER_RANGE = 0..9
 
 class Car(val name: String) {
     var position: Int = DEFAULT_POSITION

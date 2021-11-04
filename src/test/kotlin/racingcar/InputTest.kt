@@ -4,6 +4,10 @@ import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import racingcar.view.validateNameOfCarIsNotBlank
+import racingcar.view.validateNameOfCarLength
+import racingcar.view.validateNumberOfCars
+import racingcar.view.validateNumberOfGames
 
 class InputTest {
     @ParameterizedTest

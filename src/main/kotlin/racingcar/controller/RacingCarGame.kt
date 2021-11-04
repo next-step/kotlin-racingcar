@@ -1,7 +1,12 @@
-package racingcar
+package racingcar.controller
 
-val ATTEMPT_NUMBER_RANGE = 0..9
-const val SEPARATOR = ", "
+import racingcar.domain.ATTEMPT_NUMBER_RANGE
+import racingcar.domain.Car
+import racingcar.view.printCurrentPosition
+import racingcar.view.readCarNames
+import racingcar.view.readNumberOfGames
+import racingcar.view.showWinners
+
 const val MINIMUM_WINNER_COUNT = 1
 
 fun main() {
@@ -37,11 +42,11 @@ private fun playGame(carList: MutableList<Car>) {
     println()
 }
 
-private fun getWinners(carList: MutableList<Car>): List<Car> {
+private fun getWinners(carList: MutableList<Car>): List<String> {
     val winnerPosition = carList.maxOf { it.position }
     val winners = carList.filter { it.position == winnerPosition }
     validateWinnersCount(winners)
-    return winners
+    return winners.map { it.name }
 }
 
 fun validateWinnersCount(winners: List<Car>) {
