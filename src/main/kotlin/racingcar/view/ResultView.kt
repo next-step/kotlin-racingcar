@@ -1,6 +1,7 @@
 package racingcar.view
 
-import racingcar.car.Car
+import racingcar.domain.car.Car
+import racingcar.domain.car.Winners
 
 object ResultView {
 
@@ -14,7 +15,7 @@ object ResultView {
 
     fun printCarPositions(cars: List<Car>) {
         cars.forEach { car ->
-            print("${car.name} : ")
+            print("${car.name.name} : ")
             repeat(car.position) {
                 print("-")
             }
@@ -23,7 +24,7 @@ object ResultView {
         println()
     }
 
-    fun printWinners(cars: List<Car>) {
-        println("최종 우승자는 ${cars.joinToString { it.name }}")
+    fun printWinners(winners: Winners) {
+        println("최종 우승자는 ${winners.winners.joinToString { it.name.name }}")
     }
 }

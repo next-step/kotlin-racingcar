@@ -1,13 +1,10 @@
 package racingcar
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import racingcar.engine.CarEngine
-import racingcar.engine.RacingCarEngineImpl
-import racingcar.random.RacingRandomGenerator
+import racingcar.domain.engine.CarEngine
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class EngineTest {

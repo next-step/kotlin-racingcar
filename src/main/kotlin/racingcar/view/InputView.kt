@@ -37,11 +37,11 @@ class InputView(
         )
     }
 
-    private fun checkStringLength(list: List<String>): List<String> {
-        list.forEach {
-            require(it.length <= 5) { READ_LINE_IS_EXCEEDED_FIVE_CHAR_EXCEPTION }
+    private fun checkStringLength(names: List<String>): List<String> {
+        names.forEach {
+            require(it.trim().length <= 5) { READ_LINE_IS_EXCEEDED_FIVE_CHAR_EXCEPTION }
         }
-        return list
+        return names.toList()
     }
 
     companion object {
