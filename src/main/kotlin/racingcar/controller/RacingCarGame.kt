@@ -11,7 +11,7 @@ class RacingCarGame {
     fun start() {
         val carNames = readCarNames()
         val numberOfGames = readNumberOfGames()
-        val cars = Cars(carNames, RandomNumberNumberGenerator())
+        val cars = Cars(carNames, RandomNumberGenerator())
 
         showInitialOutputs(cars)
 
