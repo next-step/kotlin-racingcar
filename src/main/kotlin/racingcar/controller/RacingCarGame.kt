@@ -4,6 +4,7 @@ import racingcar.domain.Cars
 import racingcar.view.printCurrentPosition
 import racingcar.view.readCarNames
 import racingcar.view.readNumberOfGames
+import racingcar.view.showInitialOutputs
 import racingcar.view.showWinners
 
 class RacingCarGame {
@@ -17,12 +18,6 @@ class RacingCarGame {
         playGames(numberOfGames, cars)
 
         showWinners(cars.getWinners())
-    }
-
-    private fun showInitialOutputs(cars: Cars) {
-        println("\n실행 결과")
-        printCurrentPosition(cars.getCarsNameWithPosition())
-        println()
     }
 
     private fun playGames(numberOfGames: Int, cars: Cars) {
