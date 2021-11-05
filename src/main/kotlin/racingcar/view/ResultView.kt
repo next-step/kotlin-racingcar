@@ -3,8 +3,10 @@ package racingcar.view
 const val SEPARATOR = ", "
 const val CAR_CHARACTER = "-"
 
-fun printCurrentPosition(name: String, position: Int) {
-    println("$name : ${CAR_CHARACTER.repeat(position)}")
+fun printCurrentPosition(carMap: Map<String, Int>) {
+    carMap.forEach {
+        println("${it.key} : ${CAR_CHARACTER.repeat(it.value)}")
+    }
 }
 
 fun showWinners(winners: List<String>) {
