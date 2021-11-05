@@ -3,11 +3,7 @@ package racingcar.domain
 import racingcar.controller.validateWinnersCount
 
 class Cars(carNames: List<String>) {
-    private val cars: List<Car>
-
-    init {
-        cars = carNames.map { carName -> Car(carName) }
-    }
+    private val cars = carNames.map { carName -> Car(carName) }
 
     fun move() {
         cars.forEach { car -> car.move(ATTEMPT_NUMBER_RANGE.random()) }
