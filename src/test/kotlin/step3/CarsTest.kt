@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.assertj.core.api.Assertions.assertThat
 import step3.ui.Input
-import step3.ui.Output
 import java.util.InputMismatchException
 
 class CarsTest {
@@ -57,24 +56,5 @@ class CarsTest {
     fun `정지 조건 테스트#1 - 랜덤값이 4미만일 경우 정지 하는지`() {
         val car = Car().move(2)
         assertThat(car.forward).isEqualTo(0)
-    }
-
-    @Test
-    fun `전진한만큼 원하는 outPut이 출력되었는지`() {
-        val car = Car()
-        car.move()
-        val isForward = car.distance.calculate() > 4
-        when {
-            isForward -> {
-                assertThat(
-                    Output.printForward(car)
-                ).isEqualTo("-")
-            }
-            else -> {
-                org.assertj.core.api.Assertions.assertThat(
-                    Output.printCar(car)
-                ).isEqualTo("")
-            }
-        }
     }
 }
