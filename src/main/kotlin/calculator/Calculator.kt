@@ -5,13 +5,13 @@ class Calculator {
     private val numbers = mutableListOf<Int>()
     private val operators = mutableListOf<String>()
 
-    private var result: Int = INIT_NUMBER
+    private var result: Int = NUMBER_ZERO
     private lateinit var expression: String
 
     fun calculate(input: String?): Int {
         verifyExpression(input)
         classify()
-        progress()
+        calculatorByOperator()
         return result
     }
 
@@ -33,8 +33,8 @@ class Calculator {
         }
     }
 
-    private fun progress() {
-        result = numbers[INIT_NUMBER]
+    private fun calculatorByOperator() {
+        result = numbers[NUMBER_ZERO]
         operators
             .forEachIndexed { index, operator ->
             compute(operator, numbers[index + PLUS_NUMBER])
@@ -47,7 +47,7 @@ class Calculator {
 
     companion object {
         const val BLANK = " "
-        const val INIT_NUMBER = 0
+        const val NUMBER_ZERO = 0
         const val PLUS_NUMBER = 1
     }
 }
