@@ -1,9 +1,9 @@
 package step3
 
-import org.assertj.core.api.Assertions.assertThatThrownBy
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Test
 import step3.ui.Input
 import java.util.InputMismatchException
 
@@ -29,7 +29,7 @@ class CarsTest {
     }
 
     @Test
-    fun `전진하는 조건 테스트#3 - 랜덤값이 4이상일 경우만 전진하는지`() {
+    fun `전진하는 조건 테스트#2 - 랜덤값이 4이상일 경우만 전진하는지`() {
         val car = Car().move(4)
         assertThat(car.forward).isEqualTo(1)
     }
