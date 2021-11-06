@@ -28,7 +28,6 @@ class CarsTest {
         val distance = Car().distance.calculate()
         val isSuccess = distance in 0..9
         assertTrue(isSuccess)
-        assertFalse(!isSuccess)
     }
 
     @Test
