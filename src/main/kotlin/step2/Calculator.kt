@@ -1,9 +1,5 @@
 package step2
 
-const val BLANK = " "
-const val INIT_NUMBER = 0
-const val PLUS_NUMBER = 1
-
 class Calculator {
 
     private val numbers = mutableListOf<Int>()
@@ -44,5 +40,11 @@ class Calculator {
 
     private fun compute(operator: String, number: Int) {
         result = Operator.getOperator(operator).operator.invoke(result, number)
+    }
+
+    companion object {
+        const val BLANK = " "
+        const val INIT_NUMBER = 0
+        const val PLUS_NUMBER = 1
     }
 }
