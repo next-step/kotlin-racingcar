@@ -13,7 +13,7 @@ class CarsTest {
 
     @Test
     fun `자동차 대수 Input Test`() {
-        assertThatThrownBy { Cars(Input.getCountOfCar()) }
+        assertThatThrownBy { Cars().makeCar(Input.getCountOfCar()) }
             .isInstanceOf(InputMismatchException::class.java)
     }
 
