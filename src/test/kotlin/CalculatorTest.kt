@@ -19,16 +19,30 @@ class CalculatorTest {
         assertEquals(expected, actual.toInt())
     }
 
-    @Test
-    fun `곱셈 테스트`() {
-        Assertions.assertThat(Calculator("2 * 10").execute()).isEqualTo(20)
-        Assertions.assertThat(Calculator("9 * 9").execute()).isEqualTo(81)
+    @ParameterizedTest
+    @CsvSource(
+        value = [
+            "2 * 10=20",
+            "9 * 9=81"
+        ],
+        delimiter = '='
+    )
+    fun `곱셈 테스트`(input: String, actual: String) {
+        val expected = Calculator(input).execute()
+        assertEquals(expected, actual.toInt())
     }
 
-    @Test
-    fun `나눗셈 테스트`() {
-        Assertions.assertThat(Calculator("10 / 2").execute()).isEqualTo(5)
-        Assertions.assertThat(Calculator("9 / 1").execute()).isEqualTo(9)
+    @ParameterizedTest
+    @CsvSource(
+        value = [
+            "10 / 2=5",
+            "9 / 1=9"
+        ],
+        delimiter = '='
+    )
+    fun `나눗셈 테스트`(input: String, actual: String) {
+        val expected = Calculator(input).execute()
+        assertEquals(expected, actual.toInt())
     }
 
     @Test
@@ -53,8 +67,17 @@ class CalculatorTest {
         }
     }
 
-    @Test
-    fun `사칙 연산을 모두 포함하는 경우`() {
-        Assertions.assertThat(Calculator("2 + 3 * 4 / 2").execute()).isEqualTo(10)
+    @ParameterizedTest
+    @CsvSource(
+        value = [
+            "2 + 3 * 4 / 2=10",
+            "1 * 2 / 2 - 2=-1",
+            "3 * 3 / 3 =3"
+        ],
+        delimiter = '='
+    )
+    fun `사칙 연산을 모두 포함하는 경우`(input: String, actual: String) {
+        val expected = Calculator(input).execute()
+        assertEquals(expected, actual.toInt())
     }
 }
