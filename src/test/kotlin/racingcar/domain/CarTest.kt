@@ -19,6 +19,13 @@ class CarTest {
         assertThat(moveResult).isEqualTo(0)
     }
 
+    @Test
+    fun `Cars_크기_테스트` () {
+        val cars = Cars()
+        cars.addCar(Car())
+        assertThat(cars.cars.size).isEqualTo(1)
+    }
+
     companion object {
         const val MOVE_NUMBER = 4
     }
