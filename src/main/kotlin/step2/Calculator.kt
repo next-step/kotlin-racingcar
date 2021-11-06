@@ -12,18 +12,18 @@ class Calculator {
     private var result: Int = INIT_NUMBER
     private lateinit var expression: String
 
-    fun calculate(expression: String): Int {
-        this.expression = expression
-        verifyExpression()
+    fun calculate(input: String?): Int {
+        verifyExpression(input)
         classify()
         progress()
         return result
     }
 
-    private fun verifyExpression() {
-        if (expression.isNullOrEmpty()) {
+    private fun verifyExpression(input: String?) {
+        if (input.isNullOrEmpty()) {
             throw IllegalArgumentException("널이거나 빈공백문자입니다.")
         }
+        this.expression = input
     }
 
     private fun classify() {

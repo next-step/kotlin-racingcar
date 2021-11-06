@@ -44,7 +44,7 @@ class CalculatorTest {
 
     @ParameterizedTest
     @NullAndEmptySource
-    fun `EXPRESSION_NULL_OR_빈문자` (input: String) {
+    fun `EXPRESSION_NULL_OR_빈문자` (input: String?) {
         assertThatThrownBy {
             calculator.calculate(input)
         }.isExactlyInstanceOf(IllegalArgumentException::class.java)
