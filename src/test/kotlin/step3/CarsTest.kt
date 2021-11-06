@@ -23,7 +23,7 @@ class CarsTest {
 
     @Test
     fun `전진하는 조건 테스트#1 - 0~9 사이의 distance 값인지`() {
-        val distance = Car().distance.calculate()
+        val distance = Car().distance
         val isSuccess = distance in 0..9
         assertTrue(isSuccess)
     }
