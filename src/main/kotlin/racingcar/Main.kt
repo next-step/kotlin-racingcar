@@ -14,11 +14,11 @@ fun main(args: Array<String>) {
     val carCount: Int = input.setCars()
     val trialCount: Int = input.setTrial()
 
-    for (i in 1 .. carCount) {
+    for (i in 1..carCount) {
         cars.addCar(Car())
     }
 
-    for (i in 1 .. trialCount) {
+    for (i in 1..trialCount) {
         cars.race(RandomNumberStrategy())
         result.displayCarsResult(cars)
     }

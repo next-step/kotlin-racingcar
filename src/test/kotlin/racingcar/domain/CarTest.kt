@@ -20,7 +20,7 @@ class CarTest {
     }
 
     @Test
-    fun `Cars_크기_테스트` () {
+    fun `Cars_크기_테스트`() {
         val cars = Cars()
         cars.addCar(Car())
         assertThat(cars.cars.size).isEqualTo(1)
