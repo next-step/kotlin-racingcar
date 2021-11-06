@@ -1,6 +1,6 @@
 package racingcar.domain
 
-class RandomNumber: NumberStrategy {
+class RandomNumberStrategy: NumberStrategy {
     override fun getNumber(): Int {
         return (0..9).random()
     }
