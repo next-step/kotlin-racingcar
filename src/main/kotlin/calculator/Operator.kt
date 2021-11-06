@@ -9,7 +9,8 @@ enum class Operator (val symbol: String, val operator: (left: Int, right: Int) -
 
     companion object {
         fun getOperator(symbol: String): Operator {
-            return values().find { it.symbol == symbol }
+            return values()
+                .find { it.symbol == symbol }
                 ?: throw IllegalArgumentException("사칙연산이 아닙니다.")
         }
     }

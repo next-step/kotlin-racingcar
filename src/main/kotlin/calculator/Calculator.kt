@@ -23,7 +23,9 @@ class Calculator {
     }
 
     private fun classify() {
-        expression.split(BLANK).forEach {
+        expression
+            .split(BLANK)
+            .forEach {
             when (it.toIntOrNull() != null) {
                 true -> numbers.add(it.toInt())
                 false -> operators.add(it)
@@ -33,7 +35,8 @@ class Calculator {
 
     private fun progress() {
         result = numbers[INIT_NUMBER]
-        operators.forEachIndexed { index, operator ->
+        operators
+            .forEachIndexed { index, operator ->
             compute(operator, numbers[index + PLUS_NUMBER])
         }
     }
