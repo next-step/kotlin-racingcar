@@ -4,7 +4,7 @@ import racingcar.domain.RacingCars
 
 @JvmInline
 value class Scoreboard(
-    val value: Map<Lap, RacingCars> = mapOf()
+    private val value: Map<Lap, RacingCars> = mapOf()
 ) {
     fun record(lap: Lap, racingCars: RacingCars): Scoreboard {
         val scoreboard = value.toMutableMap()

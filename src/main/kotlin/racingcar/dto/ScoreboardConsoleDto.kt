@@ -11,13 +11,14 @@ data class ScoreboardConsoleDto(
     private val scoreboard: Scoreboard,
 ) {
     val result: String = showSnapshots()
-        .map { it.value }
+        .map { it.toList() }
         .joinToString(
             separator = System.lineSeparator().repeat(2)
         ) { it.stringifyPosition() }
 
     private fun showSnapshots(): List<RacingCars> = scoreboard.laps()
-        .values.map { showSnapshotOf(it) }
+        .toList()
+        .map { showSnapshotOf(it) }
 
     private fun showSnapshotOf(lap: Lap): RacingCars = scoreboard.snapshotOf(lap)
 

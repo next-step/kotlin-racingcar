@@ -3,10 +3,12 @@ package racingcar.domain.vo
 private const val FIRST_ROUND = 1
 
 @JvmInline
-value class Laps private constructor(val values: List<Lap>) {
+value class Laps private constructor(private val values: List<Lap>) {
     init {
         require(values.isNotEmpty()) { "한 바퀴 이상 경주해야 합니다." }
     }
+
+    fun toList(): List<Lap> = values.toList()
 
     companion object {
         fun of(rounds: String?): Laps {
