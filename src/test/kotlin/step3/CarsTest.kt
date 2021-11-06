@@ -30,13 +30,13 @@ class CarsTest {
 
     @Test
     fun `전진하는 조건 테스트#2 - 랜덤값이 4이상일 경우만 전진하는지`() {
-        val car = Car().move(4)
+        val car = Car(4, 0).move()
         assertThat(car.forward).isEqualTo(1)
     }
 
     @Test
     fun `정지 조건 테스트#1 - 랜덤값이 4미만일 경우 정지 하는지`() {
-        val car = Car().move(2)
+        val car = Car(1, 0).move()
         assertThat(car.forward).isEqualTo(0)
     }
 }
