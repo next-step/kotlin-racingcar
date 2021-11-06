@@ -11,11 +11,9 @@ object Output {
     }
 
     private fun printCars(cars: Cars, round: Round) {
-        cars.moveCars()
-
         repeat(round.number) {
             cars.carList.forEach {
-                printCar(it)
+                printCar(it.move())
             }
             cars.moveCars()
             println(END_OF_LINE)
