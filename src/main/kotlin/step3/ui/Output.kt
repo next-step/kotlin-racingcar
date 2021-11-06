@@ -22,11 +22,11 @@ object Output {
         }
     }
 
-    fun printCar(car: Car) {
+    private fun printCar(car: Car) {
         println(printForward(car))
     }
 
-    fun printForward(car: Car): String {
+    private fun printForward(car: Car): String {
         val stringBuilder = StringBuilder()
         (0 until car.forward).map {
             stringBuilder.append(FORWARD_MARK)
