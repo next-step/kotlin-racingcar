@@ -1,4 +1,4 @@
-package step2
+package calculator
 
 enum class Operator (val symbol: String, val operator: (left: Int, right: Int) -> Int) {
 
