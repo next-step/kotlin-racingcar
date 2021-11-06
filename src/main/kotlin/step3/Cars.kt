@@ -1,8 +1,8 @@
 package step3
 
-class Cars constructor(private val numberOfCount: Int = DEFAULT_NUMBER_OF_COUNT, val carList: MutableList<Car> = mutableListOf()) {
+data class Cars(val carList: MutableList<Car> = mutableListOf()) {
 
-    fun makeCar(): List<Car> {
+    fun makeCar(numberOfCount: Int): List<Car> {
         for (i in DEFAULT_NUMBER_OF_COUNT until numberOfCount) {
             carList.add(Car(Distance()))
         }
