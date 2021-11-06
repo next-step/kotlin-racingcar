@@ -10,8 +10,8 @@ data class Cars(val carList: MutableList<Car> = mutableListOf()) {
     }
 
     fun moveCars() {
-        carList.forEach {
-            it.move()
+        carList.forEachIndexed { index, car ->
+            carList[index] = car.move()
         }
     }
 }
