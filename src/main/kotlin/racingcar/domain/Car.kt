@@ -2,7 +2,8 @@ package racingcar.domain
 
 class Car {
 
-    private var distance: Int = 0
+    var distance: Int = 0
+        private set
 
     fun move(number: Int): Int {
         if (number >= MOVE_NUMBER ) {
