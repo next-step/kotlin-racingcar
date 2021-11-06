@@ -3,7 +3,6 @@ package step3
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Assertions.assertFalse
 import org.assertj.core.api.Assertions.assertThat
 import step3.ui.Input
 import java.util.InputMismatchException
@@ -27,23 +26,6 @@ class CarsTest {
         val distance = Car().distance.calculate()
         val isSuccess = distance in 0..9
         assertTrue(isSuccess)
-    }
-
-    @Test
-    fun `전진하는 조건 테스트#2 - distance 가 4이상일 경우만 전진하는지`() {
-        val car = Car()
-        car.move()
-        val isForward = car.distance.calculate() > 4
-        when {
-            isForward -> {
-                assertTrue(isForward)
-                assertThat(car.forward).isEqualTo(car.forward.plus(1))
-            }
-            else -> {
-                assertFalse(isForward)
-                assertThat(car.forward).isEqualTo(car.forward)
-            }
-        }
     }
 
     @Test
