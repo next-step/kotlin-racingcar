@@ -1,6 +1,6 @@
-package racingcar.ui
+package racingcar.view
 
-import racingcar.car.Car
+import racingcar.domain.car.Car
 import racingcar.constant.Constant
 import racingcar.constant.Message
 import racingcar.util.Validation
