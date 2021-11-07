@@ -5,7 +5,7 @@ import step3.racingcar.domain.engine.Engine
 
 data class Cars(
     private val engine: Engine = DefaultEngine(),
-    private val startPosition: Position,
+    private val startPosition: Position = Position(0),
     private val numberOfCars: NumberOfCars
 ) {
     private val cars: List<Car> = List(numberOfCars.value) {
