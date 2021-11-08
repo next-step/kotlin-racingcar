@@ -4,8 +4,6 @@ import racingcar.domain.Car
 import racingcar.domain.Cars
 import racingcar.domain.RandomNumberStrategy
 
-class Main
-
 fun main(args: Array<String>) {
     val input = Input()
     val result = Result()
