@@ -18,7 +18,7 @@ class CarTest {
     }
 
     @Test
-    fun `자동차_멈춤`() {
+    fun `자동차_4이하일 경우_멈춤`() {
         val car = Car()
         val moveResult = car.move(MOVE_NUMBER - 1)
         assertThat(moveResult).isEqualTo(0)
