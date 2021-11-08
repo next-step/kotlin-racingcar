@@ -1,11 +1,11 @@
 package racingcar
 
-import racingcar.domain.Cars
+import racingcar.domain.RaceGame
 
 class Result {
 
-    fun displayCarsResult(cars: Cars) {
-        cars.cars
+    fun displayCarsResult(raceGame: RaceGame) {
+        raceGame.cars
             .forEach {
                 car -> draw(car.distance)
             }

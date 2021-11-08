@@ -1,7 +1,6 @@
 package racingcar.domain
 
-class Cars {
-
+class RaceGame {
     var cars = mutableListOf<Car>()
         private set
 

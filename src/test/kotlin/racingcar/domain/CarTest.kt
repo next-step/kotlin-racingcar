@@ -21,12 +21,12 @@ class CarTest {
 
     @Test
     fun `Cars_크기_테스트`() {
-        val cars = Cars()
-        cars.addCar(Car())
-        assertThat(cars.cars.size).isEqualTo(1)
+        val raceGame = RaceGame()
+        raceGame.addCar(Car())
+        assertThat(raceGame.cars.size).isEqualTo(1)
     }
 
-    companion object {
+    private companion object {
         const val MOVE_NUMBER = 4
     }
 }
