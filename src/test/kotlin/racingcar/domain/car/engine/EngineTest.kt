@@ -1,9 +1,8 @@
-package racingcar
+package racingcar.domain.car.engine
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import racingcar.domain.car.Car
-import racingcar.domain.car.engine.GoEngine
 
 class EngineTest {
     @Test
