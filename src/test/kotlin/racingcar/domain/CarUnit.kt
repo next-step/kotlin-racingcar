@@ -3,7 +3,7 @@ package racingcar.domain
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class CarTest {
+class CarUnit {
     
     @Test
     fun `자동차_4이상일 때_전진`() {
@@ -22,13 +22,6 @@ class CarTest {
         val car = Car()
         val moveResult = car.move(MOVE_NUMBER - 1)
         assertThat(moveResult).isEqualTo(0)
-    }
-
-    @Test
-    fun `Cars_크기_테스트`() {
-        val raceGame = RaceGame()
-        raceGame.addCar(Car())
-        assertThat(raceGame.cars.size).isEqualTo(1)
     }
 
     private companion object {
