@@ -24,4 +24,10 @@ class CarTest {
         car.moveCar { true }
         assertThat(car.carPosition()).isEqualTo(1)
     }
+
+    @Test
+    fun 차량_이름_등록_확인() {
+        val actual = Car(CarName("차량이름"))
+        assertThat(actual.carName.name).isEqualTo("차량이름")
+    }
 }

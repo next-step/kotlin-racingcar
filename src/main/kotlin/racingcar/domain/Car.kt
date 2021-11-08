@@ -1,6 +1,6 @@
 package racingcar.domain
 
-class Car(carName: CarName) {
+class Car(val carName: CarName) {
     private var moveDistance = MoveDistance()
 
     fun moveCar(movingStrategy: MovingStrategy) {
