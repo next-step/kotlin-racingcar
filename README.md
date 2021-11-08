@@ -49,3 +49,5 @@
   * Type 체크 및 5글자 이상인지 판별
 * RaceWinner
   * Cars 객체를 받아서 우승자 체크
+* Winners
+  * 우승자를 구하는 도메인

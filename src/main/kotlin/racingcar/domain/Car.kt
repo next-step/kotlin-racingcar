@@ -1,7 +1,8 @@
 package racingcar.domain
 
-class Car(val carName: CarName) {
-    private var moveDistance = MoveDistance()
+class Car(val carName: CarName, private val moveDistance: MoveDistance) {
+
+    constructor(carName: CarName): this(carName,MoveDistance())
 
     fun moveCar(movingStrategy: MovingStrategy) {
         if (movingStrategy.movable()) {
