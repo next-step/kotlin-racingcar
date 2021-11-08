@@ -11,8 +11,8 @@ fun main(args: Array<String>) {
     val result = Result()
     val cars = Cars()
 
-    val carCount: Int = input.setCars()
-    val trialCount: Int = input.setTrial()
+    val carCount: Int = input.carCount()
+    val trialCount: Int = input.trialCount()
 
     for (i in 1..carCount) {
         cars.addCar(Car())
