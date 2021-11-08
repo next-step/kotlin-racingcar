@@ -19,7 +19,7 @@ class Result {
         println()
     }
 
-    companion object {
+    private companion object {
         const val MINUS_ICON = "-"
     }
 }

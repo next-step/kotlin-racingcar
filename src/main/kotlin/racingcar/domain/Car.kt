@@ -12,7 +12,7 @@ class Car {
         return distance
     }
 
-    companion object {
+    private companion object {
         const val MOVE_NUMBER = 4
     }
 }
