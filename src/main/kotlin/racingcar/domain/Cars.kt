@@ -1,10 +1,14 @@
 package racingcar.domain
 
-class Cars(registerCarNumber: Int) {
+class Cars(registerCarName: String) {
 
-    val cars = List(registerCarNumber) { Car() }
+    val cars = registerCarName.split(COMMA).map { Car(CarName(it)) }
 
     fun moveOfCars(movingStrategy: MovingStrategy) {
         cars.forEach { it.moveCar(movingStrategy) }
+    }
+
+    companion object {
+        private const val COMMA = ","
     }
 }

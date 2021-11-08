@@ -12,7 +12,7 @@ class InputViewTest {
     @ValueSource(strings = ["", " "])
     fun `빈 문자열 입력 예외`(inputString: String) {
         assertThrows<IllegalArgumentException> {
-            InputView.inputNumberOfNewCars(inputString)
+            InputView.inputCarsName(inputString)
         }
     }
 
@@ -20,15 +20,15 @@ class InputViewTest {
     @ValueSource(strings = ["가나다라", "@#!", "11 가나다라"])
     fun `숫자가 아닌 값 입력 예외`(inputString: String) {
         assertThrows<IllegalArgumentException> {
-            InputView.inputNumberOfNewCars(inputString)
+            InputView.inputNumberOfMoves(inputString)
         }
     }
 
     @Test
-    fun `차량수 입력`() {
-        val numberOfCars = "3"
-        val actual = InputView.inputNumberOfNewCars(numberOfCars)
-        assertThat(actual).isEqualTo(numberOfCars.toInt())
+    fun `차량 이름 입력`() {
+        val carsName = "자동차1,자동차2,자동차3,자동차4,자동차5"
+        val actual = InputView.inputCarsName(carsName)
+        assertThat(actual).isEqualTo(carsName)
     }
 
     @Test
