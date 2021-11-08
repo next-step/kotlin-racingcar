@@ -3,18 +3,18 @@ package racingcar.view
 import common.ErrorMessage.FORWARD_ATTEMPTS_NUMBERS
 import common.ErrorMessage.NOT_NULL_AND_EMPTY
 import common.ErrorMessage.ONLY_NUMBERS
-import common.ErrorMessage.REGISTER_CARS_COUNT
+import common.ErrorMessage.REGISTER_CAR_NAMES
 
 object InputView {
     private val VERIFY_NUMBERS = "^[0-9]*$".toRegex()
 
     fun numberOfMoves(): Int {
-        println(REGISTER_CARS_COUNT)
+        println(FORWARD_ATTEMPTS_NUMBERS)
         return inputNumberOfMoves()
     }
 
     fun nameOfNewCars(): String {
-        println(FORWARD_ATTEMPTS_NUMBERS)
+        println(REGISTER_CAR_NAMES)
         return inputCarsName()
     }
 
