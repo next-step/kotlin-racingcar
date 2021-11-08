@@ -21,4 +21,8 @@ object ResultView {
     fun printRacingWinner(winnerList: List<String>) {
         print(String.format(Message.RESULT_WINNER, winnerList.joinToString(Validation.DELIMITER)))
     }
+
+    fun printEmptyView() {
+        println()
+    }
 }

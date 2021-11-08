@@ -1,19 +1,11 @@
 package racingcar.domain.racing
 
-import racingcar.domain.car.Car
 import racingcar.domain.car.CarsFactory
 
-class Racing(carsName: String, private val attemptCount: Int) {
+class Racing(carsName: String) {
     private val cars = CarsFactory.create(carsName)
 
-    fun start(showRacingResult: (Car) -> Unit, showRacingWinner: (List<String>) -> Unit) {
-        repeat(attemptCount) {
-            cars.startRound().forEach { car ->
-                showRacingResult(car)
-            }
-            println()
-        }
+    fun start() = cars.startRound()
 
-        showRacingWinner(cars.getWinner())
-    }
+    fun getWinner() = cars.getWinner()
 }

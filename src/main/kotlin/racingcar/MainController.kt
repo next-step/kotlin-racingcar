@@ -1,9 +1,8 @@
 package racingcar
 
-import racingcar.domain.car.Car
 import racingcar.domain.racing.Racing
-import racingcar.view.InputView
 import racingcar.util.Validation
+import racingcar.view.InputView
 import racingcar.view.ResultView
 
 fun main() {
@@ -13,11 +12,16 @@ fun main() {
     val attemptCount = InputView.getAttemptCount().also {
         Validation.checkTryCountCondition(it)
     }
-    val showRacingResult = { car: Car ->
+    val racing = Racing(carsName)
+    repeat(attemptCount.toInt()) {
+        startRacing(racing)
+    }
+    ResultView.printRacingWinner(racing.getWinner())
+}
+
+fun startRacing(racing: Racing) {
+    racing.start().forEach { car ->
         ResultView.printRacingResult(car)
     }
-    val showRacingWinner = { winners: List<String> ->
-        ResultView.printRacingWinner(winners)
-    }
-    Racing(carsName, attemptCount.toInt()).start(showRacingResult, showRacingWinner)
+    ResultView.printEmptyView()
 }
