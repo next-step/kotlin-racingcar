@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.MethodSource
 import racingcar.domain.cars.Position
 import racingcar.domain.cars.Racing
 import racingcar.domain.engine.CustomEngine
-import racingcar.domain.status.MovingStatus.STOP
 import java.util.stream.Stream
 
 @DisplayName("경주를 위해 자동차의 전진과 정지를 담당하는 객체인 Racing 테스트")
@@ -52,6 +51,7 @@ internal class RacingTest {
     }
 
     companion object {
+        private const val STOP = 0
         private const val MOVE_ONE_STEP_FORWARD = 1
 
         @JvmStatic
