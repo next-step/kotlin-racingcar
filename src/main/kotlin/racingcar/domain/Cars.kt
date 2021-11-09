@@ -8,6 +8,10 @@ class Cars(registerCarName: String) {
         cars.forEach { it.moveCar(movingStrategy) }
     }
 
+    fun winners(): String {
+        return Winners.winnerNames(cars)
+    }
+
     companion object {
         private const val COMMA = ","
     }
