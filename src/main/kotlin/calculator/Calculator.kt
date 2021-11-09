@@ -19,8 +19,8 @@ object Calculator {
         var result: Int = mathExpression.operands[0].value
 
         repeat(mathExpression.operatorsSize) {
-            val operator: Operator = mathExpression.operators[it]
-            val operand: Operand = mathExpression.operands[it + 1]
+            val operator = mathExpression.operators[it]
+            val operand = mathExpression.operands[it + 1]
 
             result = elementCalculate(operator, result, operand.value)
         }
