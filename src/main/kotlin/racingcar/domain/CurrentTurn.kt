@@ -1,17 +1,15 @@
 package racingcar.domain
 
-class CurrentTurn(var _currentTurn: Int = 0) {
-    val value: Int
-        get() = _currentTurn
+class CurrentTurn(currentTurn: Int = START_TURN) {
+    var value: Int = currentTurn
+        private set
 
     init {
-        require(
-            START_TURN <= _currentTurn
-        )
+        require(START_TURN <= value)
     }
 
     fun increaseTurn() {
-        _currentTurn++
+        value++
     }
 
     companion object {
