@@ -15,9 +15,9 @@ object StringExpression {
             assertExpressionPieces(expressionPieces)
 
             createMathExpression(expressionPieces)
-        }.onFailure {
+        }.getOrElse {
             throw IllegalArgumentException(stringExpression + INVALID_EXPRESSION_ERROR_MESSAGE)
-        }.getOrThrow()
+        }
     }
 
     private fun assertIsNotBlank(stringExpression: String) {

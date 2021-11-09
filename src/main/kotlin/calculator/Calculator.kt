@@ -10,9 +10,9 @@ object Calculator {
 
         return kotlin.runCatching {
             calculate(mathExpression)
-        }.onFailure {
+        }.getOrElse {
             throw ArithmeticException(ARITHMETIC_EXCEPTION_ERROR_MESSAGE)
-        }.getOrThrow()
+        }
     }
 
     private fun calculate(mathExpression: MathExpression): Int {
