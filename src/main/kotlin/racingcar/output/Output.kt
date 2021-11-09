@@ -5,4 +5,5 @@ interface Output {
     fun tryTimesOfRace()
     fun positionOfCar(currentPosition: Int)
     fun emptyLine()
+    fun errorMessage(message: String)
 }

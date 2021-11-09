@@ -9,8 +9,13 @@ class OutputConsole : Output {
         }
         println()
     }
+
     override fun emptyLine() {
         println()
+    }
+
+    override fun errorMessage(message: String) {
+        println(message)
     }
 
     companion object {

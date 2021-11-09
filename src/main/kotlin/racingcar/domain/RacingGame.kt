@@ -13,9 +13,9 @@ class RacingGame(
 
     fun start(): Unit = runCatching {
         racing(prepareRacingCars(), prepareTryTimesOfRace())
-    }.onFailure {
-        println(it.message)
-    }.getOrThrow()
+    }.getOrElse {
+        output.errorMessage(it.message ?: "ERROR : unknown error occurred while the racing game")
+    }
 
     private fun prepareRacingCars(): Cars {
         output.numberOfCarsMessage()
