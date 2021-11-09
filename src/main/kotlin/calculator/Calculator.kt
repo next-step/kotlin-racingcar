@@ -18,9 +18,9 @@ object Calculator {
     private fun calculate(mathExpression: MathExpression): Int {
         var result: Int = mathExpression.operands[0].value
 
-        for (i in 0 until mathExpression.operatorsSize) {
-            val operator: Operator = mathExpression.operators[i]
-            val operand: Operand = mathExpression.operands[i + 1]
+        repeat(mathExpression.operatorsSize) {
+            val operator: Operator = mathExpression.operators[it]
+            val operand: Operand = mathExpression.operands[it + 1]
 
             result = elementCalculate(operator, result, operand.value)
         }
