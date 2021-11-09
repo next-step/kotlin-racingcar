@@ -3,12 +3,12 @@ package racingcar.domain.cars
 import racingcar.domain.engine.Engine
 
 data class Racing(private val engine: Engine) {
-    fun race(position: Position): Position {
+    fun race(racingLab: RacingLab): RacingLab {
         if (isEnableMove()) {
-            return Position(position.value + MOVE_ONE_STEP_FORWARD)
+            return RacingLab(racingLab.value + MOVE_ONE_STEP_FORWARD)
         }
 
-        return position
+        return racingLab
     }
 
     private fun isEnableMove() = MOVE_CRITERION <= engine.generateCriterionValueToRace()

@@ -7,21 +7,21 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
-import racingcar.domain.cars.Position
+import racingcar.domain.cars.RacingLab
 import java.util.stream.Stream
 
-@DisplayName("위치를 표현하는 객체인 Position 테스트")
-internal class PositionTest {
+@DisplayName("위치를 표현하는 객체인 RacingLab 테스트")
+internal class RacingLabTest {
     @DisplayName("주어진 거리 값이 올바른 경우 Position 객체 생성 시 성공")
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 100, 3_824, 58_102, 1_000_000, 2_000_000_000])
     fun given_CorrectPositionValue_when_CreatePosition_then_Success(correctIntValue: Int) {
         // Arrange
         // Act
-        val position = Position(correctIntValue)
+        val racingLab = RacingLab(correctIntValue)
 
         // Assert
-        assertThat(position.value).isEqualTo(correctIntValue)
+        assertThat(racingLab.value).isEqualTo(correctIntValue)
     }
 
     @DisplayName("주어진 거리 값이 음수인 경우 Position 객체 생성 시 예외 발생")
@@ -36,7 +36,7 @@ internal class PositionTest {
         // Act
         // Assert
         Assertions.assertThatThrownBy() {
-            Position(negativeIntValue)
+            RacingLab(negativeIntValue)
         }.isInstanceOf(expectedException::class.java)
             .hasMessageContaining(containErrorMessages)
     }

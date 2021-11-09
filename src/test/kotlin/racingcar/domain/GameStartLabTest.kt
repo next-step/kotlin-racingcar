@@ -7,20 +7,21 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
+import racingcar.domain.cars.GameStartLab
 import java.util.stream.Stream
 
-@DisplayName("자동차 경주에서 현재 턴을 담당하는 객체인 CurrentTurn 테스트")
-internal class CurrentTurnTest {
+@DisplayName("자동차 경주에서 현재 주행 바퀴를 담당하는 객체인 RacingLabs 테스트")
+internal class GameStartLabTest {
     @DisplayName("주어진 숫자가 올바른 경우 CurrentTurn 생성 성공")
     @ParameterizedTest
     @ValueSource(ints = [1, 100_000, 1_000_000_000])
     fun given_CorrectValues_when_createCurrentTurn_then_Success(givenValue: Int) {
         // Arrange
         // Act
-        val currentTurn = CurrentTurn(givenValue)
+        val gameStartLab = GameStartLab(givenValue)
 
         // Assert
-        assertThat(currentTurn.value).isEqualTo(givenValue)
+        assertThat(gameStartLab.value).isEqualTo(givenValue)
     }
 
     @DisplayName("주어진 숫자가 올바르지 않은 경우 CurrentTurn 생성 실패")
@@ -35,7 +36,7 @@ internal class CurrentTurnTest {
         // Act
         // Assert
         Assertions.assertThatThrownBy() {
-            val currentTurn = CurrentTurn(givenValue)
+            val gameStartLab = GameStartLab(givenValue)
         }.isInstanceOf(expectedException::class.java)
             .hasMessageContaining(containErrorMessages)
     }
@@ -45,15 +46,15 @@ internal class CurrentTurnTest {
     @ValueSource(ints = [1, 100_000, 1_000_000_000])
     fun given_CorrectValues_when_IncreaseTurn_then_Success(givenValue: Int) {
         // Arrange
-        val currentTurn = CurrentTurn(0)
+        val gameStartLab = GameStartLab(0)
 
         // Act
         repeat((START..givenValue).count()) {
-            currentTurn.increaseTurn()
+            gameStartLab.increase()
         }
 
         // Assert
-        assertThat(currentTurn.value).isEqualTo(givenValue)
+        assertThat(gameStartLab.value).isEqualTo(givenValue)
     }
 
     companion object {

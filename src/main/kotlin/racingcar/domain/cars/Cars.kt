@@ -5,12 +5,12 @@ import racingcar.domain.engine.Engine
 
 data class Cars(
     private val engine: Engine = DefaultEngine(),
-    private val startPosition: Position = Position(0),
+    private val racingLab: RacingLab = RacingLab(0),
     private val numberOfCars: NumberOfCars
 ) {
     private val cars: List<Car> = List(numberOfCars.value) {
         Car(
-            position = startPosition,
+            racingLab = racingLab,
             engine = engine
         )
     }
@@ -18,9 +18,9 @@ data class Cars(
     val numberOfExistCars: Int
         get() = numberOfCars.value
 
-    val carsCurrentPosition: List<Int>
+    val racingLabs: List<Int>
         get() = cars.map { car ->
-            car.currentPosition()
+            car.racingLab()
         }.toList()
 
     fun race() = cars.forEach { car ->

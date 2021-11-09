@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import racingcar.domain.cars.Position
+import racingcar.domain.cars.RacingLab
 import racingcar.domain.cars.Racing
 import racingcar.domain.engine.CustomEngine
 import java.util.stream.Stream
@@ -20,12 +20,12 @@ internal class RacingTest {
         raceCriteria: Int
     ) {
         // Arrange
-        val startPosition = Position(startPositionValue)
+        val startRacingLab = RacingLab(startPositionValue)
         val engine = CustomEngine(raceCriteria)
         val racing = Racing(engine)
 
         // Act
-        val nextPosition = racing.race(startPosition)
+        val nextPosition = racing.race(startRacingLab)
 
         // Assert
         assertThat(nextPosition.value).isEqualTo(startPositionValue + MOVE_ONE_STEP_FORWARD)
@@ -39,12 +39,12 @@ internal class RacingTest {
         raceCriteria: Int
     ) {
         // Arrange
-        val startPosition = Position(startPositionValue)
+        val startRacingLab = RacingLab(startPositionValue)
         val engine = CustomEngine(raceCriteria)
         val racing = Racing(engine)
 
         // Act
-        val nextPosition = racing.race(startPosition)
+        val nextPosition = racing.race(startRacingLab)
 
         // Assert
         assertThat(nextPosition.value).isEqualTo(startPositionValue + STOP)

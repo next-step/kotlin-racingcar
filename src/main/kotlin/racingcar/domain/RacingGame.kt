@@ -1,52 +1,33 @@
 package racingcar.domain
 
 import racingcar.domain.cars.Cars
-import racingcar.domain.cars.NumberOfCars
+import racingcar.domain.cars.GameStartLab
 import racingcar.input.InputConsole
 import racingcar.output.OutputConsole
 
 class RacingGame(
     private val input: InputConsole,
-    private val output: OutputConsole
+    private val output: OutputConsole,
 ) {
-    private val currentTurn = CurrentTurn()
+    fun start(gameStartLab: GameStartLab = GameStartLab()): Unit = runCatching {
+        val racingCars = Pit.courseInRacingCars(input, output)
+        val finalLab = ControlTower.decideRacingLabs(input, output)
 
-    fun start(): Unit = runCatching {
-        racing(prepareRacingCars(), prepareTryTimesOfRace())
+        racing(racingCars, finalLab, gameStartLab)
     }.getOrElse {
-        output.errorMessage(it.message ?: "ERROR : unknown error occurred while the racing game")
+        output.errorMessage(it.message ?: UNKNOWN_ERROR_MESSAGE)
     }
 
-    private fun prepareRacingCars(): Cars {
-        output.numberOfCarsMessage()
-        val numberOfCars = input.numberOfCars()
-
-        return Cars(
-            numberOfCars = NumberOfCars(numberOfCars)
-        )
-    }
-
-    private fun prepareTryTimesOfRace(): Int {
-        output.tryTimesOfRace()
-        return input.tryTimesOfRace()
-    }
-
-    private fun racing(cars: Cars, tryTimesOfRace: Int) {
-        repeat((START_TRY_TIMES_OF_RACE..tryTimesOfRace).count()) {
-            currentTurn.increaseTurn()
+    private fun racing(cars: Cars, finalLab: Int, gameStartLabs: GameStartLab = GameStartLab()) {
+        repeat((START_LAB..finalLab).count()) {
+            gameStartLabs.increase()
             cars.race()
-            outputRacingDistance(cars)
+            output.labsOfRacingCars(cars.racingLabs)
         }
-    }
-
-    private fun outputRacingDistance(cars: Cars) {
-        for (carPosition in cars.carsCurrentPosition) {
-            output.positionOfCar(carPosition)
-        }
-        output.emptyLine()
     }
 
     companion object {
-        private const val START_TRY_TIMES_OF_RACE = 1
+        private const val START_LAB = 1
+        private const val UNKNOWN_ERROR_MESSAGE = "[ERROR] : unknown error occurred while the racing game"
     }
 }

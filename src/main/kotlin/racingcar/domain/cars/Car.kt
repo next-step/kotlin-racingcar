@@ -3,18 +3,18 @@ package racingcar.domain.cars
 import racingcar.domain.engine.Engine
 
 data class Car(
-    private var position: Position,
+    private var racingLab: RacingLab,
     private val engine: Engine
 ) {
     private val racing = Racing(engine)
 
     fun race() {
-        position = racing.race(position)
+        racingLab = racing.race(racingLab)
     }
 
     fun race(numberOfRace: Int): Unit = repeat(numberOfRace) {
         race()
     }
 
-    fun currentPosition(): Int = position.value
+    fun racingLab(): Int = racingLab.value
 }

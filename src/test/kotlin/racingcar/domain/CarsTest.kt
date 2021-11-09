@@ -9,12 +9,12 @@ import racingcar.domain.cars.Cars
 import racingcar.domain.cars.NumberOfCars
 import racingcar.domain.engine.CustomEngine
 import racingcar.domain.engine.Engine
-import racingcar.domain.cars.Position
+import racingcar.domain.cars.RacingLab
 import java.util.stream.Stream
 
 @DisplayName("Car 객체의 복수 형태의 객체인 Cars 테스트")
 internal class CarsTest {
-    @DisplayName("주어진 Position, NumberOfCar 파라미터 값이 올바른 경우 Cars 생성 성공")
+    @DisplayName("주어진 RacingLab, NumberOfCar 파라미터 값이 올바른 경우 Cars 생성 성공")
     @ParameterizedTest
     @MethodSource("correctPositionsAndNumberOfCars")
     fun given_CorrectPositionAndNumberOfCars_when_CreateCars_then_Success(
@@ -24,7 +24,7 @@ internal class CarsTest {
         // Arrange
         // Act
         val racingCars = Cars(
-            startPosition = Position(givenPosition),
+            racingLab = RacingLab(givenPosition),
             numberOfCars = NumberOfCars(givenNumberOfCars)
         )
 
@@ -37,23 +37,23 @@ internal class CarsTest {
     @MethodSource("correctCustomEngineAndPositionsAndNumberOfCars")
     fun given_CorrectCustomEngineAndCorrectPositionAndNumberOfCars_when_CreateCars_then_Success(
         engine: Engine,
-        startPosition: Position,
+        startRacingLab: RacingLab,
         numberOfCars: NumberOfCars
     ) {
         // Arrange
         // Act
         val racingCars = Cars(
             engine = engine,
-            startPosition = startPosition,
+            racingLab = startRacingLab,
             numberOfCars = numberOfCars
         )
 
         // Assert
         assertThat(racingCars.numberOfExistCars).isEqualTo(numberOfCars.value)
 
-        val currentPositions = racingCars.carsCurrentPosition
+        val currentPositions = racingCars.racingLabs
         currentPositions.forEach { distance ->
-            assertThat(distance).isEqualTo(startPosition.value)
+            assertThat(distance).isEqualTo(startRacingLab.value)
         }
     }
 
@@ -62,13 +62,13 @@ internal class CarsTest {
     @MethodSource("correctCustomEngineAndPositionsAndNumberOfCars")
     fun given_CorrectCustomEngineAndCorrectPosition_when_CreateCars_then_MoveOneStep(
         engine: Engine,
-        startPosition: Position,
+        startRacingLab: RacingLab,
         numberOfCars: NumberOfCars
     ) {
         // Arrange
         val racingCars = Cars(
             engine = engine,
-            startPosition = startPosition,
+            racingLab = startRacingLab,
             numberOfCars = numberOfCars
         )
 
@@ -76,9 +76,9 @@ internal class CarsTest {
         racingCars.race()
 
         // Assert
-        val currentPositions = racingCars.carsCurrentPosition
+        val currentPositions = racingCars.racingLabs
         currentPositions.forEach { distance ->
-            assertThat(distance).isEqualTo(startPosition.value + MOVE_ONE_STEP)
+            assertThat(distance).isEqualTo(startRacingLab.value + MOVE_ONE_STEP)
         }
     }
 
@@ -101,12 +101,12 @@ internal class CarsTest {
         @JvmStatic
         fun correctCustomEngineAndPositionsAndNumberOfCars(): Stream<Arguments> =
             Stream.of(
-                Arguments.of(CustomEngine(4), Position(START_POSITION), NumberOfCars(NUMBER_OF_CARS)),
-                Arguments.of(CustomEngine(5), Position(START_POSITION), NumberOfCars(NUMBER_OF_CARS)),
-                Arguments.of(CustomEngine(6), Position(START_POSITION), NumberOfCars(NUMBER_OF_CARS)),
-                Arguments.of(CustomEngine(7), Position(START_POSITION), NumberOfCars(NUMBER_OF_CARS)),
-                Arguments.of(CustomEngine(8), Position(START_POSITION), NumberOfCars(NUMBER_OF_CARS)),
-                Arguments.of(CustomEngine(9), Position(START_POSITION), NumberOfCars(NUMBER_OF_CARS)),
+                Arguments.of(CustomEngine(4), RacingLab(START_POSITION), NumberOfCars(NUMBER_OF_CARS)),
+                Arguments.of(CustomEngine(5), RacingLab(START_POSITION), NumberOfCars(NUMBER_OF_CARS)),
+                Arguments.of(CustomEngine(6), RacingLab(START_POSITION), NumberOfCars(NUMBER_OF_CARS)),
+                Arguments.of(CustomEngine(7), RacingLab(START_POSITION), NumberOfCars(NUMBER_OF_CARS)),
+                Arguments.of(CustomEngine(8), RacingLab(START_POSITION), NumberOfCars(NUMBER_OF_CARS)),
+                Arguments.of(CustomEngine(9), RacingLab(START_POSITION), NumberOfCars(NUMBER_OF_CARS)),
             )
     }
 }

@@ -6,7 +6,7 @@ class InputConsole : Input {
     private val scan: Scanner = Scanner(System.`in`)
 
     override fun numberOfCars(): Int = inputToCorrectIntValue()
-    override fun tryTimesOfRace(): Int = inputToCorrectIntValue()
+    override fun endLab(): Int = inputToCorrectIntValue()
 
     private fun inputToCorrectIntValue(): Int {
         var inputValue = 0

@@ -5,7 +5,5 @@ import racingcar.input.InputConsole
 import racingcar.output.OutputConsole
 
 fun main() {
-    val racingGame = RacingGame(InputConsole(), OutputConsole())
-
-    racingGame.start()
+    RacingGame(InputConsole(), OutputConsole()).start()
 }

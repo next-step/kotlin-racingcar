@@ -2,8 +2,7 @@ package racingcar.output
 
 interface Output {
     fun numberOfCarsMessage()
-    fun tryTimesOfRace()
-    fun positionOfCar(currentPosition: Int)
-    fun emptyLine()
+    fun finalLab()
+    fun labsOfRacingCars(racingLabs: List<Int>)
     fun errorMessage(message: String)
 }

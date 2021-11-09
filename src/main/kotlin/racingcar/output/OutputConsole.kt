@@ -2,15 +2,18 @@ package racingcar.output
 
 class OutputConsole : Output {
     override fun numberOfCarsMessage(): Unit = println(NUMBER_OF_CARS_INPUT_MESSAGE)
-    override fun tryTimesOfRace(): Unit = println(TRY_TIMES_OF_RACE_INPUT_MESSAGE)
-    override fun positionOfCar(currentPosition: Int) {
-        repeat((START_POSITION..currentPosition).count()) {
-            print(CAR_POSITION_MARK)
+    override fun finalLab(): Unit = println(TRY_TIMES_OF_RACE_INPUT_MESSAGE)
+    override fun labsOfRacingCars(racingLabs: List<Int>) {
+        for (lab in racingLabs) {
+            labOfRacingCar(lab)
         }
         println()
     }
 
-    override fun emptyLine() {
+    private fun labOfRacingCar(racingLab: Int) {
+        repeat((START_POSITION..racingLab).count()) {
+            print(CAR_POSITION_MARK)
+        }
         println()
     }
 
