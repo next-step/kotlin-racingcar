@@ -1,33 +1,31 @@
-package step2
-
-const val BLANK = " "
-const val INIT_NUMBER = 0
-const val PLUS_NUMBER = 1
+package calculator
 
 class Calculator {
 
     private val numbers = mutableListOf<Int>()
     private val operators = mutableListOf<String>()
 
-    private var result: Int = INIT_NUMBER
+    private var result: Int = NUMBER_ZERO
     private lateinit var expression: String
 
-    fun calculate(expression: String): Int {
-        this.expression = expression
-        verifyExpression()
+    fun calculate(input: String?): Int {
+        verifyExpression(input)
         classify()
-        progress()
+        calculatorByOperator()
         return result
     }
 
-    private fun verifyExpression() {
-        if (expression.isNullOrEmpty()) {
+    private fun verifyExpression(input: String?) {
+        if (input.isNullOrEmpty()) {
             throw IllegalArgumentException("널이거나 빈공백문자입니다.")
         }
+        this.expression = input
     }
 
     private fun classify() {
-        expression.split(BLANK).forEach {
+        expression
+            .split(BLANK)
+            .forEach {
             when (it.toIntOrNull() != null) {
                 true -> numbers.add(it.toInt())
                 false -> operators.add(it)
@@ -35,14 +33,21 @@ class Calculator {
         }
     }
 
-    private fun progress() {
-        result = numbers[INIT_NUMBER]
-        operators.forEachIndexed { index, operator ->
+    private fun calculatorByOperator() {
+        result = numbers[NUMBER_ZERO]
+        operators
+            .forEachIndexed { index, operator ->
             compute(operator, numbers[index + PLUS_NUMBER])
         }
     }
 
     private fun compute(operator: String, number: Int) {
         result = Operator.getOperator(operator).operator.invoke(result, number)
+    }
+
+    companion object {
+        const val BLANK = " "
+        const val NUMBER_ZERO = 0
+        const val PLUS_NUMBER = 1
     }
 }
