@@ -14,14 +14,7 @@ fun main() {
     }
     val racing = Racing(carsName)
     repeat(attemptCount.toInt()) {
-        startRacing(racing)
+        ResultView.printRacingResult(racing.start())
     }
     ResultView.printRacingWinner(racing.getWinner())
-}
-
-fun startRacing(racing: Racing) {
-    racing.start().forEach { car ->
-        ResultView.printRacingResult(car)
-    }
-    ResultView.printEmptyView()
 }
