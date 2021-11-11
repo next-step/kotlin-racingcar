@@ -13,14 +13,16 @@ value class RacingCars(private val value: List<RacingCar>) {
     fun toList(): List<RacingCar> = value.toList()
 
     companion object {
-        fun of(count: Int, movingStrategy: MovingStrategy): RacingCars {
-            return RacingCars((1..count).map { RacingCar(movingStrategy) })
+        fun of(input: String?, movingStrategy: MovingStrategy): RacingCars {
+            require(!input.isNullOrBlank()) {}
+            val names = input.split(DEFAULT_SEPARATOR).map { it.trim() }
+            return of(names, movingStrategy)
         }
 
-        fun of(count: String?, movingStrategy: MovingStrategy): RacingCars {
-            require(!count.isNullOrBlank()) {}
-            require(count.toIntOrNull() != null) {}
-            return of(count.toInt(), movingStrategy)
+        private fun of(names: List<String>, movingStrategy: MovingStrategy): RacingCars {
+            return RacingCars(names.map { RacingCar(it, movingStrategy) })
         }
+
+        private const val DEFAULT_SEPARATOR = ","
     }
 }

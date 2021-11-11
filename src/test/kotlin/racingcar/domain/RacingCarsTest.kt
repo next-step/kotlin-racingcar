@@ -5,6 +5,7 @@ import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
+import racingcar.domain.strategy.TestMovingStrategy
 
 @DisplayName("간단한 자동차 콜렉션(SimpleRacingCars)")
 class RacingCarsTest {
@@ -32,6 +33,19 @@ class RacingCarsTest {
             { assertThat(racingCars).isNotEqualTo(racingCarsMoved) },
             { assertThat(racingCars.toList()).containsExactly(car1, car2) },
             { assertThat(racingCarsMoved.toList()).containsExactly(car1.moved(), car2.moved()) }
+        )
+    }
+
+    @Test
+    fun `쉼표로 구분되는 이름들을 가지고 자동차들을 생성한다`() {
+        val racingCars = RacingCars.of("pobi,hodol", TestMovingStrategy(0))
+        assertAll(
+            {
+                assertThat(racingCars.toList()).containsExactly(
+                    RacingCar("pobi", TestMovingStrategy(0)),
+                    RacingCar("hodol", TestMovingStrategy(0)),
+                )
+            }
         )
     }
 }
