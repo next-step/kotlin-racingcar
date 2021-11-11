@@ -9,6 +9,7 @@ value class Laps private constructor(private val values: List<Lap>) {
     }
 
     fun toList(): List<Lap> = values.toList()
+    fun last() = values.last()
 
     companion object {
         fun of(rounds: String?): Laps {

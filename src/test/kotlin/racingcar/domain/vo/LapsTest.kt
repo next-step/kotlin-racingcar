@@ -33,4 +33,11 @@ class LapsTest {
             ).toList()
         ).containsExactly(*expected)
     }
+
+    @Test
+    fun `마지막 레이스를 가져온다`() {
+        val lastLap = Laps.of(3).last()
+        val expected = Lap.of(3)
+        assertThat(lastLap).isEqualTo(expected)
+    }
 }
