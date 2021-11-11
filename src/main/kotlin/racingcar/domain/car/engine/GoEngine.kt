@@ -1,6 +1,6 @@
-package racingcar.engine
+package racingcar.domain.car.engine
 
-import racingcar.car.Car
+import racingcar.domain.car.Car
 
 class GoEngine : Engine {
     override fun forward(distance: Int): Int {

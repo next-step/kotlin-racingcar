@@ -1,6 +1,6 @@
-package racingcar.engine
+package racingcar.domain.car.engine
 
-import racingcar.car.Car
+import racingcar.domain.car.Car
 import racingcar.util.Validation
 import java.util.Random
 

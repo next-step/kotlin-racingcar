@@ -1,14 +1,16 @@
-package racingcar.car
+package racingcar.domain.car
 
-import racingcar.engine.RandomEngine
+import racingcar.domain.car.engine.RandomEngine
+import racingcar.domain.dto.Record
 
 class Cars(carsName: String) {
     val carList: List<Car> = CarFactory.initCarList(carsName, RandomEngine())
 
-    fun startRound(): List<Car> {
-        return carList.map { car ->
+    fun startRound(): Record {
+        carList.forEach { car ->
             car.start()
         }
+        return Record(carList)
     }
 
     private fun getHighScore(): Int {

@@ -1,12 +1,11 @@
-package racingcar
+package racingcar.domain.car
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import racingcar.car.Cars
 import racingcar.util.Validation
 
-class CarFactoryTest {
+class CarsTest {
     @ParameterizedTest
     @ValueSource(strings = ["jung"])
     fun `자동차에 이름을 입력할 수 있다`(input: String) {

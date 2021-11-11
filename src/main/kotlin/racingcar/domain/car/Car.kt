@@ -1,6 +1,6 @@
-package racingcar.car
+package racingcar.domain.car
 
-import racingcar.engine.Engine
+import racingcar.domain.car.engine.Engine
 
 class Car(private val engine: Engine, val name: String = DEFAULT_NAME) {
     var distance = READY_STATUS
