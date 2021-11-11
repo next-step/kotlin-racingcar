@@ -3,8 +3,8 @@ package racingcar.ui
 import racingcar.dto.ScoreboardConsoleDto
 
 object SimpleRacingCarView : RacingCarView {
-    override fun carCount() = requireInput {
-        println("자동차 대수는 몇 대인가요?")
+    override fun carNames() = requireInput {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉽표(,)를 기준으로 구분")
     }
 
     override fun lapCount() = requireInput {
@@ -14,5 +14,6 @@ object SimpleRacingCarView : RacingCarView {
     override fun showResult(dto: ScoreboardConsoleDto) {
         println("실행 결과")
         println(dto.result)
+        println("${System.lineSeparator()}${dto.winners}가 최종 우승했습니다.")
     }
 }

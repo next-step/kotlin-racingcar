@@ -21,10 +21,10 @@ class RacingCarApplication(
     private val racingCarService: RacingCarService
 ) {
     fun run() {
-        val carCount = racingCarView.carCount()
+        val carNames = racingCarView.carNames()
         val lapCount = racingCarView.lapCount()
         val scoreboard = racingCarService.race(
-            RacingCars.of(carCount, RandomMovingStrategy),
+            RacingCars.of(carNames, RandomMovingStrategy),
             Laps.of(lapCount)
         )
         racingCarView.showResult(ScoreboardConsoleDto(scoreboard))
