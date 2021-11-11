@@ -20,6 +20,10 @@ value class Scoreboard(
         return value[lap] ?: throw IllegalArgumentException("존재하지 않는 Lap 입니다.")
     }
 
+    fun winnerPositionOf(lap: Lap): Position {
+        return snapshotOf(lap).toList().maxOf { it.position }
+    }
+
     companion object {
         fun initialize(racingCars: RacingCars): Scoreboard {
             return Scoreboard(mapOf(Lap.initialize() to racingCars))

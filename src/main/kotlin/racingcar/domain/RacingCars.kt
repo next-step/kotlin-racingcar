@@ -1,6 +1,7 @@
 package racingcar.domain
 
 import racingcar.domain.strategy.MovingStrategy
+import racingcar.domain.vo.Position
 
 @JvmInline
 value class RacingCars(private val value: List<RacingCar>) {
@@ -11,6 +12,8 @@ value class RacingCars(private val value: List<RacingCar>) {
     fun race(): RacingCars = RacingCars(value.map { it.moved() })
 
     fun toList(): List<RacingCar> = value.toList()
+
+    fun withPositionsOf(position: Position) = RacingCars(value.filter { it.position == position })
 
     companion object {
         fun of(input: String?, movingStrategy: MovingStrategy): RacingCars {

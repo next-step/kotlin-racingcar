@@ -3,8 +3,9 @@ package racingcar.domain.vo
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import racingcar.domain.RacingCars
+import org.junit.jupiter.api.assertAll
 import racingcar.domain.RacingCarFixture
+import racingcar.domain.RacingCars
 
 @DisplayName("현황판(Scoreboard)")
 class ScoreboardTest {
@@ -44,5 +45,33 @@ class ScoreboardTest {
         // then
         assertThat(updatedScoreboard.snapshotOf(lap1)).isEqualTo(racingCars)
         assertThat(updatedScoreboard.snapshotOf(lap2)).isEqualTo(expected)
+    }
+
+    @Test
+    fun `우승자를 결정한다`() {
+        // given
+        val movingCar = RacingCarFixture.MOVING_CAR
+        val staticCar = RacingCarFixture.STATIC_CAR
+        val racingCars = RacingCars(listOf(movingCar, staticCar))
+        val lap1 = Lap.of(1)
+        val lap2 = Lap.of(2)
+
+        // when
+        val scoreboard = Scoreboard(mapOf(lap1 to racingCars, lap2 to racingCars.race()))
+
+        // then
+        assertAll(
+            {
+                assertThat(scoreboard.winnerPositionOf(lap1))
+                    .isEqualTo(staticCar.position)
+                    .isEqualTo(movingCar.position)
+            },
+            {
+                assertThat(scoreboard.winnerPositionOf(lap2))
+                    .isEqualTo(Position(2))
+                    .isEqualTo(movingCar.moved().position)
+                    .isNotEqualTo(staticCar.moved().position)
+            }
+        )
     }
 }
