@@ -6,7 +6,8 @@ import racingcar.view.InputView
 import racingcar.view.ResultView
 
 fun main() {
-    val racing = Race(InputView.numberOfNewCars(), InputView.numberOfMoves())
+    val racing = Race(InputView.nameOfNewCars(), InputView.numberOfMoves())
     racing.confirmMoveOfCars(RandomCarMovingStrategy)
     ResultView.carPositionPrints(racing.cars.cars)
+    ResultView.winnerPrints(racing.cars.winners())
 }
