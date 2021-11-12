@@ -1,33 +1,32 @@
 package racingcar.domain
 
 import racingcar.domain.cars.Cars
-import racingcar.domain.cars.GameStartLab
-import racingcar.input.InputConsole
-import racingcar.output.OutputConsole
+import racingcar.domain.racing.FinalLab
+import racingcar.domain.cars.NumberOfRacingCars
+import racingcar.communication.output.Output
+import racingcar.communication.output.OutputConsole
 
 class RacingGame(
-    private val input: InputConsole,
-    private val output: OutputConsole,
+    private val output: Output = OutputConsole(),
 ) {
-    fun start(gameStartLab: GameStartLab = GameStartLab()): Unit = runCatching {
-        val racingCars = Pit.courseInRacingCars(input, output)
-        val finalLab = ControlTower.decideRacingLabs(input, output)
-
-        racing(racingCars, finalLab, gameStartLab)
+    fun start(
+        racingCars: Cars = Cars(numberOfRacingCars = NumberOfRacingCars(STARTING_NUMBER_OF_RACING_CARS)),
+        finalLab: FinalLab = FinalLab(value = 1)
+    ): Unit = runCatching {
+        racing(racingCars, finalLab)
     }.getOrElse {
-        output.errorMessage(it.message ?: UNKNOWN_ERROR_MESSAGE)
+        output.errorMessage(it.message ?: RACING_GAME_ERROR_MESSAGE)
     }
 
-    private fun racing(cars: Cars, finalLab: Int, gameStartLabs: GameStartLab = GameStartLab()) {
-        repeat((START_LAB..finalLab).count()) {
-            gameStartLabs.increase()
-            cars.race()
-            output.labsOfRacingCars(cars.racingLabs)
+    fun racing(cars: Cars, finalLab: FinalLab) {
+        repeat((finalLab.value)) {
+            cars.races()
+            output.labsOfRacingCars(cars.currentRacingLabs)
         }
     }
 
     companion object {
-        private const val START_LAB = 1
-        private const val UNKNOWN_ERROR_MESSAGE = "[ERROR] : unknown error occurred while the racing game"
+        private const val STARTING_NUMBER_OF_RACING_CARS = 1
+        private const val RACING_GAME_ERROR_MESSAGE = "[ERROR] : error occurred while the racing game"
     }
 }

@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.racing
 
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
@@ -7,28 +7,27 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
-import racingcar.domain.cars.NumberOfCars
 import java.util.stream.Stream
 
-@DisplayName("Cars 객체의 자동차 수를 담당하는 객체인 NumberOfCars 테스트")
-internal class NumberOfCarsTest {
-    @DisplayName("주어진 자동차 수가 올바른 경우 NumberOfCar 객체 생성 성공")
+@DisplayName("주행 거리(현재 위치)를 표현하는 객체인 `RacingDistance` 테스트")
+internal class RacingDistanceTest {
+    @DisplayName("0 이상의 값이 주어지면 `RacingDistance` 객체 생성 시 성공")
     @ParameterizedTest
-    @ValueSource(ints = [1, 189, 100_000, 200_442, 32_092_122, 1_000_000_000])
-    fun given_CorrectNumberOfCars_when_CreateNumberOfCars_then_Success(givenNumberOfCars: Int) {
+    @ValueSource(ints = [0, 1, 2, 100, 3_824, 58_102, 1_000_000, 2_000_000_000])
+    fun createRacingDistanceIsSuccessIfGivenNumberIsPositiveValue(startingPoint: Int) {
         // Arrange
         // Act
-        val numberOfCars = NumberOfCars(givenNumberOfCars)
+        val racingDistance = RacingDistance(value = startingPoint)
 
         // Assert
-        assertThat(numberOfCars.value).isEqualTo(givenNumberOfCars)
+        assertThat(racingDistance.value).isEqualTo(startingPoint)
     }
 
-    @DisplayName("주어진 자동차 수가 올바르지 않은 경우 NumberOfCar 객체 생성 실패")
+    @DisplayName("음수의 값이 주어지면 `RacingDistance` 객체 생성 시 실패")
     @ParameterizedTest
-    @MethodSource("inCorrectNumberOfCarsValues")
-    fun given_inCorrectNumberOfCars_when_CreateNumberOfCars_then_Success(
-        givenNumberOfCars: Int,
+    @MethodSource("negativeValues")
+    fun createRacingDistanceIsFailIfGivenNumberIsNegativeValue(
+        negativeIntValue: Int,
         expectedException: Exception,
         containErrorMessages: String
     ) {
@@ -36,7 +35,7 @@ internal class NumberOfCarsTest {
         // Act
         // Assert
         Assertions.assertThatThrownBy() {
-            NumberOfCars(givenNumberOfCars)
+            RacingDistance(value = negativeIntValue)
         }.isInstanceOf(expectedException::class.java)
             .hasMessageContaining(containErrorMessages)
     }
@@ -46,7 +45,7 @@ internal class NumberOfCarsTest {
         private const val illegalArgumentErrorMessage = "Failed requirement"
 
         @JvmStatic
-        fun inCorrectNumberOfCarsValues(): Stream<Arguments> {
+        fun negativeValues(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(-1, illegalArgumentException, illegalArgumentErrorMessage),
                 Arguments.of(-231, illegalArgumentException, illegalArgumentErrorMessage),

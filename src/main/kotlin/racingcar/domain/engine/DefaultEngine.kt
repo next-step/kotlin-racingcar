@@ -1,7 +1,7 @@
 package racingcar.domain.engine
 
 class DefaultEngine : Engine {
-    override fun generateCriterionValueToRace(): Int = (START_RANGE..END_RANGE).random()
+    override fun cylinder(): Int = (START_RANGE..END_RANGE).random()
 
     companion object {
         private const val START_RANGE = 0

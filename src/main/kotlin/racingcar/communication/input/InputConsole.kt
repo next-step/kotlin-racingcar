@@ -1,15 +1,15 @@
-package racingcar.input
+package racingcar.communication.input
 
 import java.util.Scanner
 
 class InputConsole : Input {
     private val scan: Scanner = Scanner(System.`in`)
 
-    override fun numberOfCars(): Int = inputToCorrectIntValue()
-    override fun endLab(): Int = inputToCorrectIntValue()
+    override fun numberOfRacingCars(): Int = inputToCorrectIntValue()
+    override fun finalLab(): Int = inputToCorrectIntValue()
 
     private fun inputToCorrectIntValue(): Int {
-        var inputValue = 0
+        var inputValue: Int
 
         do {
             inputValue = scanIntValue()

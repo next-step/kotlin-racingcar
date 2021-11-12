@@ -1,6 +1,6 @@
 package racingcar.domain.cars
 
-data class NumberOfCars(val value: Int) {
+data class NumberOfRacingCars(val value: Int) {
     init {
         require(MINIMUM_NUMBER_OF_CAR <= value)
     }

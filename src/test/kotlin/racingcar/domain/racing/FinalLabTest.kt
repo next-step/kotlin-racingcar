@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.racing
 
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
@@ -7,28 +7,27 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
-import racingcar.domain.cars.RacingLab
 import java.util.stream.Stream
 
-@DisplayName("위치를 표현하는 객체인 RacingLab 테스트")
-internal class RacingLabTest {
-    @DisplayName("주어진 거리 값이 올바른 경우 Position 객체 생성 시 성공")
+@DisplayName("총 몇바퀴를 진행할지 담당하는 객체인 FinalLab 테스트")
+internal class FinalLabTest {
+    @DisplayName("0보다 큰 수가 주어지면 `FinalLab` 생성 시 성공")
     @ParameterizedTest
-    @ValueSource(ints = [0, 1, 2, 100, 3_824, 58_102, 1_000_000, 2_000_000_000])
-    fun given_CorrectPositionValue_when_CreatePosition_then_Success(correctIntValue: Int) {
+    @ValueSource(ints = [1, 17, 88, 100, 28_385, 2_218_356, 1_000_000_000])
+    fun createFinalLabIsSuccessIfGivenNumberIsGreaterThanZero(givenFinalLab: Int) {
         // Arrange
         // Act
-        val racingLab = RacingLab(correctIntValue)
+        val finalLab = FinalLab(givenFinalLab)
 
         // Assert
-        assertThat(racingLab.value).isEqualTo(correctIntValue)
+        assertThat(finalLab.value).isEqualTo(givenFinalLab)
     }
 
-    @DisplayName("주어진 거리 값이 음수인 경우 Position 객체 생성 시 예외 발생")
+    @DisplayName("0과 같거나 작은 수가 주어지면 `FinalLab` 생성 시 실패")
     @ParameterizedTest
-    @MethodSource("negativeValues")
-    fun given_IncorrectPositionValue_when_CreatePosition_then_ThrowIllegalArgumentException(
-        negativeIntValue: Int,
+    @MethodSource("zeroOrNegativeValues")
+    fun createFinalLabIsFailIfGivenNumberIsZeroOrSmallerThanZero(
+        givenFinalLab: Int,
         expectedException: Exception,
         containErrorMessages: String
     ) {
@@ -36,7 +35,7 @@ internal class RacingLabTest {
         // Act
         // Assert
         Assertions.assertThatThrownBy() {
-            RacingLab(negativeIntValue)
+            FinalLab(givenFinalLab)
         }.isInstanceOf(expectedException::class.java)
             .hasMessageContaining(containErrorMessages)
     }
@@ -46,7 +45,7 @@ internal class RacingLabTest {
         private const val illegalArgumentErrorMessage = "Failed requirement"
 
         @JvmStatic
-        fun negativeValues(): Stream<Arguments> {
+        fun zeroOrNegativeValues(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(-1, illegalArgumentException, illegalArgumentErrorMessage),
                 Arguments.of(-231, illegalArgumentException, illegalArgumentErrorMessage),

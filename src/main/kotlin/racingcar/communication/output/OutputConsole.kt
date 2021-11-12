@@ -1,4 +1,4 @@
-package racingcar.output
+package racingcar.communication.output
 
 class OutputConsole : Output {
     override fun numberOfCarsMessage(): Unit = println(NUMBER_OF_CARS_INPUT_MESSAGE)

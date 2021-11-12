@@ -1,12 +1,12 @@
 package racingcar.domain.engine
 
-data class CustomEngine(private val criterion: Int) : Engine {
+data class CustomEngine(private val cylinder: Int) : Engine {
     init {
-        require(criterion in START_RANGE..END_RANGE)
+        require(cylinder in START_RANGE..END_RANGE)
     }
 
-    override fun generateCriterionValueToRace(): Int {
-        return criterion
+    override fun cylinder(): Int {
+        return cylinder
     }
 
     companion object {

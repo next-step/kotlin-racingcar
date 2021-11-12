@@ -1,53 +1,51 @@
-package racingcar.domain
+package racingcar.domain.racing
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import racingcar.domain.cars.RacingLab
-import racingcar.domain.cars.Racing
 import racingcar.domain.engine.CustomEngine
 import java.util.stream.Stream
 
-@DisplayName("경주를 위해 자동차의 전진과 정지를 담당하는 객체인 Racing 테스트")
+@DisplayName("경주를 위해 자동차의 전진과 정지를 담당하는 객체인 `Racing` 테스트")
 internal class RacingTest {
-    @DisplayName("3보다 큰 값으로 생성된 CustomEngine 객체가 주어진 경우 한 칸 전진")
+    @DisplayName("실린더가 3보다 큰 값으로 생성된 `CustomEngine`이 주어지면 한 칸 전진")
     @ParameterizedTest
     @MethodSource("intValuesGreaterThanThree")
-    fun given_CustomEngineAndIntValueGreaterThanThree_when_Race_then_Move(
-        startPositionValue: Int,
-        raceCriteria: Int
+    fun moveOneStepIsSuccessIfGivenCustomEngineWhatCylinderIsGreaterThanThree(
+        startingPoint: Int,
+        cylinder: Int
     ) {
         // Arrange
-        val startRacingLab = RacingLab(startPositionValue)
-        val engine = CustomEngine(raceCriteria)
+        val racingDistance = RacingDistance(value = startingPoint)
+        val engine = CustomEngine(cylinder)
         val racing = Racing(engine)
 
         // Act
-        val nextPosition = racing.race(startRacingLab)
+        val moveOneStep = racing.race(racingDistance)
 
         // Assert
-        assertThat(nextPosition.value).isEqualTo(startPositionValue + MOVE_ONE_STEP_FORWARD)
+        assertThat(moveOneStep.value).isEqualTo(startingPoint + MOVE_ONE_STEP_FORWARD)
     }
 
-    @DisplayName("4보다 작은 값으로 생성된 CustomEngine 객체가 주어진 경우 전진하지 않고 정지")
+    @DisplayName("실린더가 4보다 작은 값으로 생성된 `CustomEngine`이 주어지면 전진하지 않고 정지")
     @ParameterizedTest
     @MethodSource("intValuesLessThanFour")
-    fun given_CustomEngineAndIntValueLessThanFour_when_Race_then_Stop(
-        startPositionValue: Int,
-        raceCriteria: Int
+    fun moveOneStepIsFailIfGivenCustomEngineWhatCylinderIsSmallerThanFour(
+        startingPoint: Int,
+        cylinder: Int
     ) {
         // Arrange
-        val startRacingLab = RacingLab(startPositionValue)
-        val engine = CustomEngine(raceCriteria)
+        val racingDistance = RacingDistance(value = startingPoint)
+        val engine = CustomEngine(cylinder)
         val racing = Racing(engine)
 
         // Act
-        val nextPosition = racing.race(startRacingLab)
+        val stop = racing.race(racingDistance)
 
         // Assert
-        assertThat(nextPosition.value).isEqualTo(startPositionValue + STOP)
+        assertThat(stop.value).isEqualTo(startingPoint + STOP)
     }
 
     companion object {

@@ -2,28 +2,39 @@ package racingcar.domain.cars
 
 import racingcar.domain.engine.DefaultEngine
 import racingcar.domain.engine.Engine
+import racingcar.domain.racing.RacingDistance
 
 data class Cars(
     private val engine: Engine = DefaultEngine(),
-    private val racingLab: RacingLab = RacingLab(0),
-    private val numberOfCars: NumberOfCars
+    private val racingDistance: RacingDistance = RacingDistance(),
+    private val numberOfRacingCars: NumberOfRacingCars = NumberOfRacingCars(NUMBER_OF_DEFAULT_START_RACING_CARS)
 ) {
-    private val cars: List<Car> = List(numberOfCars.value) {
-        Car(
-            racingLab = racingLab,
-            engine = engine
-        )
-    }
+    private val cars: List<Car> = courseInRacingCars(numberOfRacingCars.value)
 
     val numberOfExistCars: Int
-        get() = numberOfCars.value
+        get() = numberOfRacingCars.value
 
-    val racingLabs: List<Int>
+    val currentRacingLabs: List<Int>
         get() = cars.map { car ->
-            car.racingLab()
+            car.racingDistance()
         }.toList()
 
-    fun race() = cars.forEach { car ->
+    fun courseInRacingCars(
+        numberOfRacingCars: Int
+    ): List<Car> {
+        return List(numberOfRacingCars) {
+            Car(
+                engine = engine,
+                racingDistance = racingDistance
+            )
+        }
+    }
+
+    fun races() = cars.forEach { car ->
         car.race()
+    }
+
+    companion object {
+        private const val NUMBER_OF_DEFAULT_START_RACING_CARS = 1
     }
 }

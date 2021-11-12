@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.engine
 
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
@@ -7,33 +7,31 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
-import racingcar.domain.engine.CustomEngine
-import racingcar.domain.engine.Engine
 import java.util.stream.Stream
 
-@DisplayName("전진 여부를 결정할 기준 값을 파라미터 값으로 생성하는 객체인 CustomEngine 테스트")
+@DisplayName("전진 여부를 주입할 수 있는 객체인 CustomEngine 테스트")
 internal class CustomEngineTest {
-    @DisplayName("주어진 기준 값이 올바른 경우 생성한 CustomEngine의 값과 기준 값이 동일")
+    @DisplayName("주어진 실린더 값의 범위가 `0 ~ 9` 라면 생성한 `CustomEngine`의 실린더 값과 기준 값이 동일")
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-    fun given_CorrectCriterionValue_when_CustomEngineCriterionValue_then_SameGivenCriterionValue(
-        givenCriterion: Int
+    fun isSameCylinderIfGivenCylinderBetweenOneAndZero(
+        givenCylinder: Int
     ) {
         // Arrange
-        val engine: Engine = CustomEngine(givenCriterion)
+        val engine: Engine = CustomEngine(givenCylinder)
 
         // Act
-        val resultCriterion = engine.generateCriterionValueToRace()
+        val resultCylinder = engine.cylinder()
 
         // Assert
-        assertThat(resultCriterion).isEqualTo(givenCriterion)
+        assertThat(resultCylinder).isEqualTo(givenCylinder)
     }
 
-    @DisplayName("주어진 기준 값이 올바르지 않은 경우 CustomEngine 생성 시 실패")
+    @DisplayName("주어진 기준 값이 값의 범위가 `0 ~ 9` 아니라면 CustomEngine 생성 시 실패")
     @ParameterizedTest
-    @MethodSource("incorrectCriterionValues")
-    fun given_inCorrectCriterionValue_when_CreateCustomEngine_then_Fail(
-        givenCriterion: Int,
+    @MethodSource("cylindersThatIsNotBetweenOneAndZero")
+    fun createCustomEngineIsFailIfGivenCylinderNotBetweenOneAndZero(
+        givenCylinder: Int,
         expectedException: Exception,
         containErrorMessage: String
     ) {
@@ -41,7 +39,7 @@ internal class CustomEngineTest {
         // Act
         // Assert
         Assertions.assertThatThrownBy() {
-            CustomEngine(givenCriterion)
+            CustomEngine(givenCylinder)
         }.isInstanceOf(expectedException::class.java)
             .hasMessageContaining(containErrorMessage)
     }
@@ -51,7 +49,7 @@ internal class CustomEngineTest {
         private val illegalArgumentException = IllegalArgumentException()
 
         @JvmStatic
-        fun incorrectCriterionValues(): Stream<Arguments> =
+        fun cylindersThatIsNotBetweenOneAndZero(): Stream<Arguments> =
             Stream.of(
                 Arguments.of(-1, illegalArgumentException, illegalArgumentErrorMessage),
                 Arguments.of(-123_456, illegalArgumentException, illegalArgumentErrorMessage),

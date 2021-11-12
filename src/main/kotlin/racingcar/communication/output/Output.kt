@@ -1,4 +1,4 @@
-package racingcar.output
+package racingcar.communication.output
 
 interface Output {
     fun numberOfCarsMessage()
