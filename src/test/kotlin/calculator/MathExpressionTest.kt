@@ -8,12 +8,12 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
-@DisplayName("수식을 표현하는 객체인 MathExpression 테스트")
+@DisplayName("수식을 표현하는 객체인 `MathExpression` 테스트")
 internal class MathExpressionTest {
-    @DisplayName("주어진 연산자와 피연산자가 올바른 경우 MathExpression 객체 생성 성공")
+    @DisplayName("주어진 연산자 수가 피연산자 수보다 1개 많으면 `MathExpression` 객체 생성 시 성공")
     @ParameterizedTest
-    @MethodSource("correctOperandsAndOperators")
-    fun given_CorrectOperandsAndOperators_when_CreateMathExpression_then_Success(
+    @MethodSource("numberOfOperandIsOneGreaterThanNumberOfOperator")
+    fun createMathExpressionIsSuccessIfGivenNumberOfOperandIsOneGreaterThanNumberOfOperator(
         operands: List<Operand>,
         operators: List<Operator>
     ) {
@@ -29,10 +29,10 @@ internal class MathExpressionTest {
         assertThat(mathExpression.operators).isEqualTo(operators)
     }
 
-    @DisplayName("주어진 연산자와 피연산자가 올바르지 않은 경우 MathExpression 객체 생성 실패")
+    @DisplayName("주어진 연산자 수가 피연산자 수보다 1개 많지 않으면 `MathExpression` 객체 생성 시 실패")
     @ParameterizedTest
-    @MethodSource("incorrectOperandsAndOperators")
-    fun given_IncorrectOperandsAndOperators_when_CreateMathExpression_then_Fail(
+    @MethodSource("numberOfOperandIsNotOneGreaterThanNumberOfOperator")
+    fun createMathExpressionIsFailIfGivenNumberOfOperandIsNotOneGreaterThanNumberOfOperator(
         operands: List<Operand>,
         operators: List<Operator>,
         expectedException: Exception,
@@ -55,7 +55,7 @@ internal class MathExpressionTest {
         private val illegalArgumentException = IllegalArgumentException()
 
         @JvmStatic
-        fun correctOperandsAndOperators(): Stream<Arguments> {
+        fun numberOfOperandIsOneGreaterThanNumberOfOperator(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(
                     listOf(Operand(1), Operand(2)),
@@ -93,7 +93,7 @@ internal class MathExpressionTest {
         }
 
         @JvmStatic
-        fun incorrectOperandsAndOperators(): Stream<Arguments> {
+        fun numberOfOperandIsNotOneGreaterThanNumberOfOperator(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(
                     listOf(Operand(1), Operand(2)),

@@ -10,7 +10,7 @@ import calculator.Operator.Companion.getOperator
 import calculator.StringExpression.parseToMathExpression
 import java.util.stream.Stream
 
-@DisplayName("문자열 수식을 계산 가능한 수식(MathExpression)으로 변경하는 함수 테스트")
+@DisplayName("문자열 수식을 계산 가능한 수식(`MathExpression`)으로 변경하는 함수 테스트")
 internal class StringExpressionKtTest {
     @DisplayName("주어진 문자열 수식이 비어있는 경우 예외 테스트")
     @ParameterizedTest
@@ -44,7 +44,7 @@ internal class StringExpressionKtTest {
             .hasMessageContaining(stringExpression)
     }
 
-    @DisplayName("주어진 문자열 수식이 올바른 경우 MathExpression 반환 테스트")
+    @DisplayName("주어진 문자열 수식이 올바른 경우 `MathExpression` 반환 테스트")
     @ParameterizedTest
     @MethodSource("validStringExpression")
     fun validStringExpressionTest(stringExpression: String) {

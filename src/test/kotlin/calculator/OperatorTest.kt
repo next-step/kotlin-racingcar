@@ -1,5 +1,6 @@
 package calculator
 
+import calculator.Operator.Companion.INVALID_OPERATOR_ERROR_MESSAGE
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.DisplayName
@@ -7,16 +8,14 @@ import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import calculator.Operator.Companion.INVALID_OPERATOR_ERROR_MESSAGE
-
 import java.util.stream.Stream
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@DisplayName("계산을 담당하는 연산자 객체인 Operator 테스트")
+@DisplayName("계산을 담당하는 연산자 객체인 `Operator` 테스트")
 internal class OperatorTest {
-    @DisplayName("주어진 연산자가 올바른 경우 getOperator 함수를 호출하면 올바른 Operator 반환")
+    @DisplayName("주어진 연산자가 `Operator Enum class`에 존재하면 `getOperator` 함수를 호출 시 해당 `Operator` 반환")
     @ParameterizedTest
-    @MethodSource("correctOperatorValues")
+    @MethodSource("existOperators")
     fun given_CorrectOperatorValue_when_GetOperator_then_ReturnCorrectOperator(
         givenOperator: String,
         expectedOperator: Operator
@@ -24,9 +23,9 @@ internal class OperatorTest {
         assertThat(Operator.getOperator(givenOperator)).isEqualTo(expectedOperator)
     }
 
-    @DisplayName("주어진 연산자가 올바르지 않은 경우 getOperator 함수를 호출하면 IllegalArgumentException 예외 발생")
+    @DisplayName("주어진 연산자가 `Operator Enum class`에 존재하지 않으면 `getOperator` 함수 호출 시 실패")
     @ParameterizedTest
-    @MethodSource("incorrectOperatorValues")
+    @MethodSource("notExistOperators")
     fun given_IncorrectOperatorValue_when_GetOperator_then_ThrowIllegalArgumentException(
         givenOperator: String,
         expectedException: Exception
@@ -37,10 +36,10 @@ internal class OperatorTest {
             .hasMessageContaining(INVALID_OPERATOR_ERROR_MESSAGE)
     }
 
-    @DisplayName("주어진 피연산자가 올바른 경우 덧셈 연산 성공")
+    @DisplayName("주어진 피연산자 값이 덧셈 연산 후에 `Int` 범위 내라면 덧셈 시 성공")
     @ParameterizedTest
-    @MethodSource("correctOperandValuesForPlus")
-    fun given_CorrectOperandValues_when_Plus_then_Success(
+    @MethodSource("canBePlusOperands")
+    fun plusSuccessIfGivenCanBePlusOperands(
         firstOperand: Int,
         secondOperand: Int,
         expectedResultValue: Int
@@ -55,10 +54,10 @@ internal class OperatorTest {
         assertThat(resultValue).isEqualTo(expectedResultValue)
     }
 
-    @DisplayName("주어진 피연산자가 올바르지 않은 경우 덧셈 연산 실패")
+    @DisplayName("주어진 피연산자 값이 덧셈 연산 후에 `Int` 범위 내가 아니라면 덧셈 시 틀린 값 반환")
     @ParameterizedTest
-    @MethodSource("incorrectOperandValuesForPlus")
-    fun given_IncorrectOperandValues_when_Plus_then_Fail(
+    @MethodSource("canNotBePlusOperands")
+    fun plusFailIfGivenCanNotBePlusOperands(
         firstOperand: Int,
         secondOperand: Int,
         expectedResultValue: Long
@@ -73,10 +72,10 @@ internal class OperatorTest {
         assertThat(resultValue).isNotEqualTo(expectedResultValue)
     }
 
-    @DisplayName("주어진 피연산자가 올바른 경우 뺄셈 연산 성공")
+    @DisplayName("주어진 피연산자 값이 뺄셈 연산 후에 `Int` 범위 내라면 뺄셈 시 성공")
     @ParameterizedTest
-    @MethodSource("correctOperandValuesForMinus")
-    fun given_CorrectOperandValues_when_Minus_then_Success(
+    @MethodSource("canBeMinusOperands")
+    fun minusSuccessIfGivenCanBeMinusOperands(
         firstOperand: Int,
         secondOperand: Int,
         expectedResultValue: Int
@@ -91,10 +90,10 @@ internal class OperatorTest {
         assertThat(resultValue).isEqualTo(expectedResultValue)
     }
 
-    @DisplayName("주어진 피연산자가 올바르지 않은 경우 뺄셈 연산 실패")
+    @DisplayName("주어진 피연산자 값이 뺄셈 연산 후에 `Int` 범위 내가 아니라면 뺄셈 시 틀린 값 반환")
     @ParameterizedTest
-    @MethodSource("incorrectOperandValuesForMinus")
-    fun given_CorrectOperandValues_when_Minus_then_Fail(
+    @MethodSource("canNotBeMinusOperands")
+    fun minusFailIfGivenCanNotBeMinusOperands(
         firstOperand: Int,
         secondOperand: Int,
         expectedResultValue: Long
@@ -109,10 +108,10 @@ internal class OperatorTest {
         assertThat(resultValue).isNotEqualTo(expectedResultValue)
     }
 
-    @DisplayName("주어진 피연산자가 올바른 경우 곱셈 연산 성공")
+    @DisplayName("주어진 피연산자 값이 곱셈 연산 후에 `Int` 범위 내라면 곱셈 시 성공")
     @ParameterizedTest
-    @MethodSource("correctOperandValuesForMulti")
-    fun given_CorrectOperandValues_when_Multi_then_Success(
+    @MethodSource("canBeMultiOperands")
+    fun multiSuccessIfGivenCanBeMultiOperands(
         firstOperand: Int,
         secondOperand: Int,
         expectedResultValue: Int
@@ -127,10 +126,10 @@ internal class OperatorTest {
         assertThat(resultValue).isEqualTo(expectedResultValue)
     }
 
-    @DisplayName("주어진 피연산자가 올바르지 않은 경우 곱셈 연산 실패")
+    @DisplayName("주어진 피연산자 값이 곱셈 연산 후에 `Int` 범위 내가 아니라면 곱셈 시 틀린 값 반환")
     @ParameterizedTest
-    @MethodSource("incorrectOperandValuesForMulti")
-    fun given_IncorrectOperandValues_when_Multi_then_Fail(
+    @MethodSource("canNotBeMultiOperands")
+    fun multiFailIfGivenCanNotBeMultiOperands(
         firstOperand: Int,
         secondOperand: Int,
         expectedResultValue: Long
@@ -145,10 +144,10 @@ internal class OperatorTest {
         assertThat(resultValue).isNotEqualTo(expectedResultValue)
     }
 
-    @DisplayName("주어진 피연산자가 올바른 경우 나눗셈 연산 성공")
+    @DisplayName("주어진 피연산자 값이 나눗셈 연산 후에 `Int` 범위 내라면 나눗셈 시 성공")
     @ParameterizedTest
-    @MethodSource("correctOperandValuesForDivide")
-    fun given_CorrectOperandValues_when_Divide_then_Success(
+    @MethodSource("canBeDivideOperands")
+    fun divideSuccessIfGivenCanBeDivideOperands(
         firstOperand: Int,
         secondOperand: Int,
         expectedResultValue: Int
@@ -163,10 +162,10 @@ internal class OperatorTest {
         assertThat(resultValue).isEqualTo(expectedResultValue)
     }
 
-    @DisplayName("주어진 피연산자가 올바르지 않은 경우 나눗셈 연산 실패")
+    @DisplayName("`0`으로 나누면 나눗셈 연산 실패")
     @ParameterizedTest
-    @MethodSource("incorrectOperandValuesForDivide")
-    fun given_IncorrectOperandValues_when_Divide_then_Fail(
+    @MethodSource("canNotBeDivideOperands")
+    fun divideFailIfGivenCanNotBeDivideOperands(
         firstOperand: Int,
         secondOperand: Int,
         expectedException: Exception,
@@ -188,7 +187,7 @@ internal class OperatorTest {
         private val arithmeticException = ArithmeticException()
 
         @JvmStatic
-        fun correctOperatorValues(): Stream<Arguments> {
+        fun existOperators(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of("+", Operator.ADDITION),
                 Arguments.of("-", Operator.SUBTRACTION),
@@ -198,7 +197,7 @@ internal class OperatorTest {
         }
 
         @JvmStatic
-        fun incorrectOperatorValues(): Stream<Arguments> {
+        fun notExistOperators(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of("!", illegalArgumentException),
                 Arguments.of("@", illegalArgumentException),
@@ -216,7 +215,7 @@ internal class OperatorTest {
         }
 
         @JvmStatic
-        fun correctOperandValuesForPlus(): Stream<Arguments> {
+        fun canBePlusOperands(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(1, 2, 3),
                 Arguments.of(10, 22, 32),
@@ -231,7 +230,8 @@ internal class OperatorTest {
         }
 
         @JvmStatic
-        fun incorrectOperandValuesForPlus(): Stream<Arguments> {
+        // operandsWhatEnablePlus
+        fun canNotBePlusOperands(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(2_000_000_000, 2_000_000_000, 4_000_000_000),
                 Arguments.of(-2_000_000_000, -2_000_000_000, -4_000_000_000),
@@ -239,7 +239,7 @@ internal class OperatorTest {
         }
 
         @JvmStatic
-        fun correctOperandValuesForMinus(): Stream<Arguments> {
+        fun canBeMinusOperands(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(1, 2, -1),
                 Arguments.of(797, 111, 686),
@@ -254,7 +254,7 @@ internal class OperatorTest {
         }
 
         @JvmStatic
-        fun incorrectOperandValuesForMinus(): Stream<Arguments> {
+        fun canNotBeMinusOperands(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(2_000_000_000, -2_000_000_000, 4_000_000_000),
                 Arguments.of(-2_000_000_000, 2_000_000_000, -4_000_000_000),
@@ -262,7 +262,7 @@ internal class OperatorTest {
         }
 
         @JvmStatic
-        fun correctOperandValuesForMulti(): Stream<Arguments> {
+        fun canBeMultiOperands(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(1, 2, 2),
                 Arguments.of(797, 111, 88_467),
@@ -277,7 +277,7 @@ internal class OperatorTest {
         }
 
         @JvmStatic
-        fun incorrectOperandValuesForMulti(): Stream<Arguments> {
+        fun canNotBeMultiOperands(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(100_000, 100_000, 10_000_000_000),
                 Arguments.of(-100_000, 200_000, -20_000_000_000),
@@ -286,7 +286,7 @@ internal class OperatorTest {
         }
 
         @JvmStatic
-        fun correctOperandValuesForDivide(): Stream<Arguments> {
+        fun canBeDivideOperands(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(2, 1, 2),
                 Arguments.of(4, 2, 2),
@@ -300,7 +300,7 @@ internal class OperatorTest {
         }
 
         @JvmStatic
-        fun incorrectOperandValuesForDivide(): Stream<Arguments> {
+        fun canNotBeDivideOperands(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(0, 0, arithmeticException, arithmeticExceptionErrorMessage),
                 Arguments.of(100_000, 0, arithmeticException, arithmeticExceptionErrorMessage),

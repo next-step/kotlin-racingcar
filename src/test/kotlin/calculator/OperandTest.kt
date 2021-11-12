@@ -7,11 +7,11 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
-@DisplayName("피연산자 값 객체인 Operand 테스트")
+@DisplayName("피연산자 값 객체인 `Operand` 테스트")
 internal class OperandTest {
-    @DisplayName("주어진 피연산자가 올바른 경우 Operand 객체 생성 성공")
+    @DisplayName("주어진 피연산자 값이 `Int`로 표현 가능하면 `Operand` 객체 생성 시 성공")
     @ParameterizedTest
-    @MethodSource("correctOperandValues")
+    @MethodSource("normalIntValue")
     fun given_CorrectOperandValue_when_CreateOperand_then_CreateSuccess(givenOperand: Int) {
         // Arrange
         // Act
@@ -23,7 +23,7 @@ internal class OperandTest {
 
     companion object {
         @JvmStatic
-        fun correctOperandValues(): Stream<Arguments> {
+        fun normalIntValue(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(1),
                 Arguments.of(0),

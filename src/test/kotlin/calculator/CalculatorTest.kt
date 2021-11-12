@@ -1,19 +1,19 @@
 package calculator
 
+import calculator.Calculator.calculate
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import calculator.Calculator.calculate
 import java.util.stream.Stream
 
-@DisplayName("계산을 담당하는 함수인 calculate 테스트")
+@DisplayName("계산을 담당하는 함수인 `calculate` 테스트")
 internal class CalculatorTest {
-    @DisplayName("주어진 문자열 수식이 올바른 경우 수식 계산 시 올바른 값 반환")
+    @DisplayName("주어진 문자열 수식이 올바르면 수식 계산 시 올바른 값 반환")
     @ParameterizedTest
     @MethodSource("correctStringExpression")
-    fun given_CorrectStringExpression_when_Calculate_then_ReturnCorrectResult(
+    fun returnResultValueIsSuccessIfGivenCorrectStringExpression(
         stringExpression: String,
         expectedValue: Int
     ) {
@@ -25,10 +25,10 @@ internal class CalculatorTest {
         Assertions.assertThat(result).isEqualTo(expectedValue)
     }
 
-    @DisplayName("주어진 문자열 수식이 올바르지 않은 경우 수식 계산 시 ArithmeticException 예외 발생")
+    @DisplayName("주어진 문자열 수식이 올바르지 않으면 수식 계산 시 실패")
     @ParameterizedTest
     @MethodSource("incorrectStringExpression")
-    fun given_IncorrectStringExpression_when_Calculate_then_ThrowArithmeticException(
+    fun returnResultValueIsFailIfGivenInCorrectStringExpression(
         stringExpression: String,
         expectedException: Exception,
         containErrorMessages: String
