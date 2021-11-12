@@ -10,7 +10,7 @@ class CalculatorInputValue(val value: String) {
             throw IllegalArgumentException(ErrorMessage.EMPTY_VALUE)
         }
         require(confirmRegularExpression()) {
-            throw IllegalArgumentException(ErrorMessage.NOT_NUMBER_OR_FOUR_ARITHMETIC)
+            throw IllegalArgumentException(NOT_NUMBER_OR_FOUR_ARITHMETIC)
         }
     }
 
@@ -24,5 +24,6 @@ class CalculatorInputValue(val value: String) {
 
     companion object {
         private val NUMBER_AND_FOUR_ARITHMETIC = "[-]?[0-9+\\-*/]".toRegex()
+        private const val NOT_NUMBER_OR_FOUR_ARITHMETIC = "숫자 또는 사칙연산 기호가 아닙니다."
     }
 }
