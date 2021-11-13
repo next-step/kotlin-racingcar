@@ -14,7 +14,7 @@ class WinnersTest {
             Car(CarName("자동차4"), MoveDistance(10000))
         )
 
-        assertThat(Winners.winnerNames(cars)).isEqualTo("자동차4")
+        assertThat(Winners.winnerNames(cars).size).isEqualTo(1)
     }
 
     @Test
@@ -26,6 +26,6 @@ class WinnersTest {
             Car(CarName("자동차4"), MoveDistance(10000))
         )
 
-        assertThat(Winners.winnerNames(cars)).isEqualTo("자동차3, 자동차4")
+        assertThat(Winners.winnerNames(cars).size).isEqualTo(2)
     }
 }

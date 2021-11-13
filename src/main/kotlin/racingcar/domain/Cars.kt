@@ -8,7 +8,7 @@ class Cars(registerCarName: String) {
         cars.forEach { it.moveCar(movingStrategy) }
     }
 
-    fun winners(): String {
+    fun winners(): List<Car> {
         return Winners.winnerNames(cars)
     }
 
