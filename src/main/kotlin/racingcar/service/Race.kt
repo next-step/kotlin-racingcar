@@ -4,9 +4,9 @@ import racingcar.domain.Car
 import racingcar.domain.Cars
 import racingcar.domain.MovingStrategy
 
-class Race(registerCarName: String, private val moveCarNumber: Int) {
+class Race(registerCarNames: String, private val moveCarNumber: Int) {
 
-    val cars = Cars(registerCarName)
+    val cars = Cars(registerCarNames)
 
     fun findWinner(): List<Car> {
         return cars.winners()
