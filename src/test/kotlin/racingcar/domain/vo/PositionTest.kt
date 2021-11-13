@@ -25,4 +25,10 @@ class PositionTest {
         val expected = initial + 1
         assertThat(Position(initial).moved()).isEqualTo(Position(expected))
     }
+
+    @Test
+    fun `Comparable을 구현한다`() {
+        val position = Position()
+        assertThat(position < position.moved()).isTrue
+    }
 }

@@ -1,6 +1,6 @@
 package racingcar
 
-import racingcar.domain.SimpleRacingCars
+import racingcar.domain.RacingCars
 import racingcar.domain.strategy.RandomMovingStrategy
 import racingcar.domain.vo.Laps
 import racingcar.dto.ScoreboardConsoleDto
@@ -21,10 +21,10 @@ class RacingCarApplication(
     private val racingCarService: RacingCarService
 ) {
     fun run() {
-        val carCount = racingCarView.carCount()
+        val carNames = racingCarView.carNames()
         val lapCount = racingCarView.lapCount()
         val scoreboard = racingCarService.race(
-            SimpleRacingCars.of(carCount, RandomMovingStrategy),
+            RacingCars.of(carNames, RandomMovingStrategy),
             Laps.of(lapCount)
         )
         racingCarView.showResult(ScoreboardConsoleDto(scoreboard))

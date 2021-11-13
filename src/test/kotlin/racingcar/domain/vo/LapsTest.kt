@@ -12,8 +12,8 @@ class LapsTest {
     fun `라운드만큼 레이스를 생성한다`() {
         val expected = arrayOf(Lap.of(1), Lap.of(2), Lap.of(3))
         assertAll(
-            { assertThat(Laps.of("3").values).containsExactly(*expected) },
-            { assertThat(Laps.of(3).values).containsExactly(*expected) }
+            { assertThat(Laps.of("3").toList()).containsExactly(*expected) },
+            { assertThat(Laps.of(3).toList()).containsExactly(*expected) }
         )
     }
 
@@ -30,7 +30,14 @@ class LapsTest {
         assertThat(
             Laps.of(
                 setOf(Lap.of(2), Lap.of(3), Lap.of(1))
-            ).values
+            ).toList()
         ).containsExactly(*expected)
+    }
+
+    @Test
+    fun `마지막 레이스를 가져온다`() {
+        val lastLap = Laps.of(3).last()
+        val expected = Lap.of(3)
+        assertThat(lastLap).isEqualTo(expected)
     }
 }

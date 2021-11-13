@@ -7,7 +7,7 @@ interface RacingCarView {
         method()
         return readLine()
     }
-    fun carCount(): String?
+    fun carNames(): String?
     fun lapCount(): String?
     fun showResult(dto: ScoreboardConsoleDto)
 }

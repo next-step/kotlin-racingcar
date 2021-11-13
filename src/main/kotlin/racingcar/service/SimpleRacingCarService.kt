@@ -13,9 +13,11 @@ class SimpleRacingCarService : RacingCarService {
     ): Scoreboard {
         val scoreboard = Scoreboard.initialize(racingCars)
         var racingCarsPerLap: RacingCars = racingCars
-        return laps.values.fold(scoreboard) { previous: Scoreboard, lap: Lap ->
-            racingCarsPerLap = racingCarsPerLap.race()
-            previous.record(lap, racingCarsPerLap)
-        }
+        return laps
+            .toList()
+            .fold(scoreboard) { previous: Scoreboard, lap: Lap ->
+                racingCarsPerLap = racingCarsPerLap.race()
+                previous.record(lap, racingCarsPerLap)
+            }
     }
 }

@@ -4,7 +4,7 @@ import racingcar.domain.RacingCars
 
 @JvmInline
 value class Scoreboard(
-    val value: Map<Lap, RacingCars> = mapOf()
+    private val value: Map<Lap, RacingCars> = mapOf()
 ) {
     fun record(lap: Lap, racingCars: RacingCars): Scoreboard {
         val scoreboard = value.toMutableMap()
@@ -18,6 +18,10 @@ value class Scoreboard(
 
     fun snapshotOf(lap: Lap): RacingCars {
         return value[lap] ?: throw IllegalArgumentException("존재하지 않는 Lap 입니다.")
+    }
+
+    fun winnerPositionOf(lap: Lap): Position {
+        return snapshotOf(lap).toList().maxOf { it.position }
     }
 
     companion object {
