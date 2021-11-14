@@ -1,5 +1,7 @@
 package racingcar.domain
 
+private const val COMMA = ","
+
 class Cars(registerCarNames: String) {
 
     val cars = registerCarNames.split(COMMA).map { Car(CarName(it)) }
@@ -10,9 +12,5 @@ class Cars(registerCarNames: String) {
 
     fun winners(): List<Car> {
         return Winners.winnerNames(cars)
-    }
-
-    companion object {
-        private const val COMMA = ","
     }
 }
