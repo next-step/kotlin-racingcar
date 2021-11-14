@@ -2,7 +2,7 @@ package racingcar.domain
 
 object Winners {
 
-    fun winnerNames(cars: List<Car>): List<Car> {
+    fun winnerNames(cars: List<Car>): List<String> {
         val maxPosition = maxPosition(cars)
         return searchRaceWinnerNames(cars, maxPosition)
     }
@@ -10,7 +10,9 @@ object Winners {
     private fun searchRaceWinnerNames(
         cars: List<Car>,
         maxPosition: Int,
-    ) = cars.filter { it.carPosition() == maxPosition }
+    ) = cars.filter { it.isSameCarMaxPositionMessage(maxPosition) }.map {
+        it.carName.name
+    }
 
     private fun maxPosition(cars: List<Car>) = cars.maxOf {
         it.carPosition()

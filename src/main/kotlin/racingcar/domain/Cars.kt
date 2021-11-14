@@ -10,7 +10,7 @@ class Cars(registerCarNames: String) {
         cars.forEach { it.moveCar(movingStrategy) }
     }
 
-    fun winners(): List<Car> {
+    fun winners(): List<String> {
         return Winners.winnerNames(cars)
     }
 }

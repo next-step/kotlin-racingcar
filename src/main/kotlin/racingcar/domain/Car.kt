@@ -11,4 +11,8 @@ class Car(val carName: CarName, private val moveDistance: MoveDistance = MoveDis
     fun carPosition(): Int {
         return moveDistance.distance
     }
+
+    fun isSameCarMaxPositionMessage(maxPosition: Int): Boolean {
+        return moveDistance.isSameCarPosition(maxPosition)
+    }
 }

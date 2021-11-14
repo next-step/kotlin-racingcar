@@ -8,7 +8,7 @@ class Race(registerCarNames: String, private val moveCarNumber: Int) {
 
     val cars = Cars(registerCarNames)
 
-    fun findWinner(): List<Car> {
+    fun findWinner(): List<String> {
         return cars.winners()
     }
 
