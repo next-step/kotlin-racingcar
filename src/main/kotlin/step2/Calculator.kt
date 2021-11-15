@@ -35,7 +35,7 @@ class Calculator {
         return result
     }
 
-    private fun classifyParams(expression: String): Pair<MutableList<Long>, MutableList<Operation>> {
+    fun classifyParams(expression: String): Pair<MutableList<Long>, MutableList<Operation>> {
         val numbers = mutableListOf<Long>()
         val operations = mutableListOf<Operation>()
 
