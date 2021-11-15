@@ -1,6 +1,7 @@
 package step2
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
@@ -30,7 +31,14 @@ internal class CalculatorTest {
         "21 * 2 - 2 / 4,10",
     )
     fun `연산 검증`(expression: String, expected: Long) {
-        val result = calculator.calculate(expression)
-        assertThat(result).isEqualTo(expected)
+
+        // given
+        val input = expression
+
+        // when
+        val result = calculator.calculate(input)
+
+        // then
+        assertEquals(result, expected)
     }
 }
