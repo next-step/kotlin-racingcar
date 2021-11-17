@@ -3,20 +3,16 @@ package racingcar.domain
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class CarNameTest {
 
-    @Test
-    fun `자동차 이름 길이 체크`() {
+    @ParameterizedTest
+    @ValueSource(strings = ["가나다라마바사", ""])
+    fun `자동차 이름 길이 및 빈값 체크`(inputValue: String) {
         assertThrows<IllegalArgumentException> {
-            CarName("가나다라마바사")
-        }
-    }
-
-    @Test
-    fun `자동차 이름이 빈값으로 들어오는지 체크`() {
-        assertThrows<IllegalArgumentException> {
-            CarName("")
+            CarName(inputValue)
         }
     }
 

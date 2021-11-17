@@ -1,11 +1,12 @@
 package calculator
 
 import common.Constant
-import common.ErrorMessage
 
 object FourArithmetic {
 
     private val execute: ((operationNumbers: OperationNumbers) -> Int)? = null
+    private const val NOT_FOUR_ARITHMETIC = "사칙연산 기호가 아닙니다."
+    private const val NOT_ZERO_NUMBER_DIVISION = "0으로는 나눌 수 없습니다."
 
     fun confirmFourArithmetic(arithmetic: String, operationNumbers: OperationNumbers): Int {
         return when (arithmetic) {
@@ -13,7 +14,7 @@ object FourArithmetic {
             "-" -> minus(operationNumbers)
             "*" -> multiply(operationNumbers)
             "/" -> division(operationNumbers)
-            else -> throw IllegalArgumentException(ErrorMessage.NOT_FOUR_ARITHMETIC)
+            else -> throw IllegalArgumentException(NOT_FOUR_ARITHMETIC)
         }
     }
 
@@ -31,7 +32,7 @@ object FourArithmetic {
 
     fun division(operationNumbers: OperationNumbers): Int {
         if (confirmSecondNumberZero(operationNumbers)) {
-            throw ArithmeticException(ErrorMessage.NOT_ZERO_NUMBER_DIVISION)
+            throw ArithmeticException(NOT_ZERO_NUMBER_DIVISION)
         }
         execute.apply { return operationNumbers.firstNumber.div(operationNumbers.secondNumber) }
     }

@@ -1,5 +1,7 @@
 package racingcar.domain
 
+private const val CAR_NAME_MAX_LENGTH = 5
+
 class CarName(val name: String) {
 
     init {
@@ -10,9 +12,5 @@ class CarName(val name: String) {
         require(name.length < CAR_NAME_MAX_LENGTH) {
             throw IllegalArgumentException("자동차 이름은 5글자를 초과할 수 없습니다.")
         }
-    }
-
-    companion object {
-        private const val CAR_NAME_MAX_LENGTH = 5
     }
 }

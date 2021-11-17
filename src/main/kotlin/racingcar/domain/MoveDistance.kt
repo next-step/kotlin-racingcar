@@ -1,5 +1,7 @@
 package racingcar.domain
 
+private const val ADD_MOVE_DISTANCE = 1
+
 data class MoveDistance(private var _distance: Int = 0) {
     var distance = _distance
         private set
@@ -8,7 +10,7 @@ data class MoveDistance(private var _distance: Int = 0) {
         distance = distance.plus(ADD_MOVE_DISTANCE)
     }
 
-    companion object {
-        private const val ADD_MOVE_DISTANCE = 1
+    fun isSameCarPosition(maxPosition: Int): Boolean {
+        return maxPosition == distance
     }
 }

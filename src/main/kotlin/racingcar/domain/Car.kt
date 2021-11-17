@@ -1,8 +1,6 @@
 package racingcar.domain
 
-class Car(val carName: CarName, private val moveDistance: MoveDistance) {
-
-    constructor(carName: CarName) : this(carName, MoveDistance())
+class Car(val carName: CarName, private val moveDistance: MoveDistance = MoveDistance()) {
 
     fun moveCar(movingStrategy: MovingStrategy) {
         if (movingStrategy.movable()) {
@@ -12,5 +10,9 @@ class Car(val carName: CarName, private val moveDistance: MoveDistance) {
 
     fun carPosition(): Int {
         return moveDistance.distance
+    }
+
+    fun isSameCarMaxPositionMessage(maxPosition: Int): Boolean {
+        return moveDistance.isSameCarPosition(maxPosition)
     }
 }
