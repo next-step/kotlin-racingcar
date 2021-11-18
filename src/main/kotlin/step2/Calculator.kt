@@ -6,48 +6,31 @@ package step2
  */
 class Calculator {
 
-    companion object {
-        val PLUS = "+"
-        val MINUS = "-"
-        val MULTIPLE = "*"
-        val DIVIDE = "/"
-        val SPACE = " "
-        val EMPTY = ""
-    }
-
     fun calculate(expression: String): Long {
         val classifiedParams = classifyParams(expression = expression)
         val numbers = classifiedParams.first
         val operations = classifiedParams.second
         var result = 0L
 
-        numbers
-            .withIndex()
-            .forEach { (index, number) ->
-                if (index == 0) {
-                    result = numbers[0]
-                    return@forEach
-                }
-
-                result = operations[index - 1].calculation.apply(result, number)
-            }
+        numbers.forEach { number ->
+            result = operations.removeFirst().calculation(result, number)
+        }
 
         return result
     }
 
     fun classifyParams(expression: String): Pair<MutableList<Long>, MutableList<Operation>> {
         val numbers = mutableListOf<Long>()
-        val operations = mutableListOf<Operation>()
+        val operations = mutableListOf(Operation.PLUS)
 
-        expression.split(SPACE)
-            .withIndex()
-            .forEach { (index, param) ->
-                if (index % 2 == 0) {
-                    numbers.add(param.toLong())
+        expression.split(OperationConstant.SPACE)
+            .forEach { param ->
+                if (OperationConstant.SYMBOLS.contains(param)) {
+                    operations.add(Operation.findCalculation(param))
                     return@forEach
                 }
 
-                operations.add(Operation.findCalculation(param))
+                numbers.add(param.toLong())
             }
 
         return Pair(numbers, operations)
