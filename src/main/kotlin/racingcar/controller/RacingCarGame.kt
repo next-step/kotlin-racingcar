@@ -7,13 +7,13 @@ import racingcar.view.readNumberOfGames
 import racingcar.view.showInitialOutputs
 import racingcar.view.showWinners
 
-class RacingCarGame {
+object RacingCarGame {
     fun start() {
         val carNames = readCarNames()
         val numberOfGames = readNumberOfGames()
         val cars = Cars(carNames, RandomNumberGenerator())
 
-        showInitialOutputs(cars)
+        showInitialOutputs(cars.getCarsNameWithPosition())
 
         playGames(numberOfGames, cars)
 
