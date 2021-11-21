@@ -1,13 +1,13 @@
-package step3.domain
+package step4.domain
 
 /**
  *
  * @author Leo
  */
-class Car(private val forwardStrategy: Forward) {
+class Car(private val carName: CarName, private val forwardStrategy: Forward) {
 
     fun finishRace(totalCount: Int): MovingHistory {
-        val movingHistory = MovingHistory()
+        val movingHistory = MovingHistory(carName)
         val logMovingHistory: (Int) -> Unit = { movingHistory.log(forwardStrategy.moved()) }
         repeat(totalCount, logMovingHistory)
 

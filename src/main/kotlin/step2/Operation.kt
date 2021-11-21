@@ -1,7 +1,5 @@
 package step2
 
-import java.util.function.BiFunction
-
 /**
  *
  * @author Leo

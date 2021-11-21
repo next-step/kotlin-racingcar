@@ -8,12 +8,10 @@ class RaceManager {
 
     fun getParticipants(participantCount: Int): List<Car> {
         val forwardStrategy = ForwardImpl()
-        val cars = mutableListOf<Car>()
-        for (num in 1..participantCount) {
-            cars.add(Car(forwardStrategy))
-        }
 
-        return cars
+        return MutableList(participantCount) {
+            Car(forwardStrategy)
+        }
     }
 
     fun startRace(totalCount: Int, cars: List<Car>): List<MovingHistory> {
@@ -24,5 +22,4 @@ class RaceManager {
 
         return movingHistories
     }
-
 }

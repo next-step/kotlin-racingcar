@@ -1,10 +1,18 @@
-package step3.domain
+package step4.domain
 
 /**
  *
  * @author Leo
  */
-class MovingHistory {
+class MovingHistory(val owner: CarName) {
+
+    companion object {
+        val EMPTY = ""
+        val COLON = ":"
+        val SPACE = " "
+        val BAR = "-"
+        val SEPERATOR = "$SPACE$COLON$SPACE"
+    }
 
     private val history = mutableListOf<Boolean>()
 
@@ -22,13 +30,15 @@ class MovingHistory {
         return progressBars
     }
 
+    fun getForwardCount() = this.history.count { it }
+
     private fun convertLogToProgressBar(count: Int): String {
-        var bar = ""
+        var bar = EMPTY
         for (index in 0 until count) {
-            val moved = if (history[index]) "-" else ""
+            val moved = if (history[index]) BAR else EMPTY
             bar = bar.plus(moved)
         }
 
-        return bar
+        return "${owner.name}$SEPERATOR$bar"
     }
 }

@@ -20,5 +20,4 @@ fun main() {
 
     val resultView = ResultView()
     resultView.showRaceResult(totalCount = totalCount, movingHistories = movingHistories)
-
 }
