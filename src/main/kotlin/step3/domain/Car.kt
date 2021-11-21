@@ -8,11 +8,9 @@ class Car(private val forwardStrategy: Forward) {
 
     fun finishRace(totalCount: Int): MovingHistory {
         val movingHistory = MovingHistory()
-        for (num in 1..totalCount) {
-            movingHistory.log(forwardStrategy.moved())
-        }
+        val logMovingHistory: (Int) -> Unit = { movingHistory.log(forwardStrategy.moved()) }
+        repeat(totalCount, logMovingHistory)
 
         return movingHistory
     }
-
 }

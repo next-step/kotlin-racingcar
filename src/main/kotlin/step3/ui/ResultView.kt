@@ -21,5 +21,4 @@ class ResultView {
             println(it.getProgressBars()[index])
         }
     }
-
 }

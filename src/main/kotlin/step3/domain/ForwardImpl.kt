@@ -9,5 +9,4 @@ import kotlin.random.Random
 class ForwardImpl : Forward {
 
     override fun moved() = Random.nextInt(10) >= 4
-
 }

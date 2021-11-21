@@ -1,6 +1,6 @@
 package step3.ui
 
-import java.util.*
+import java.util.Scanner
 
 /**
  *
@@ -19,5 +19,4 @@ class InputView {
         println("시도할 횟수는 몇 회인가요?")
         return scanner.nextInt()
     }
-
 }

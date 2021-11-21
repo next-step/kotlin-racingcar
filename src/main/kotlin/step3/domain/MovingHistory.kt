@@ -31,5 +31,4 @@ class MovingHistory {
 
         return bar
     }
-
 }
