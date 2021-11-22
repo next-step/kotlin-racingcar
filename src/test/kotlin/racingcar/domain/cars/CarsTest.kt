@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
 import racingcar.domain.engine.CustomEngine
 import racingcar.domain.engine.DefaultEngine
-import racingcar.domain.engine.Engine
+import racingcar.domain.racing.Racing
 import racingcar.domain.racing.RacingDistance
 import java.util.stream.Stream
 
@@ -46,14 +46,14 @@ internal class CarsTest {
     @ParameterizedTest
     @MethodSource("defaultEnginesAndStartingPointAndNumberOfCars")
     fun createCarsIsSuccessIfGivenEngineAndStartingPointAndNumberOfRacingCars(
-        engine: Engine,
+        defaultRacing: Racing,
         startingPoint: Int,
         numberOfRacingCars: Int
     ) {
         // Arrange
         // Act
         val racingCars = Cars(
-            engine = engine,
+            racing = defaultRacing,
             racingDistance = RacingDistance(value = startingPoint),
             numberOfRacingCars = NumberOfRacingCars(numberOfRacingCars)
         )
@@ -69,13 +69,13 @@ internal class CarsTest {
     @ParameterizedTest
     @MethodSource("customEnginesAndRacingDistancesAndNumberOfRacingCars")
     fun carsRaceAreSuccessIfGivenCustomEngineAndRacingDistanceAndNumberOfRacingCars(
-        engine: Engine,
+        customRacing: Racing,
         startRacingDistance: RacingDistance,
         numberOfRacingCars: NumberOfRacingCars
     ) {
         // Arrange
         val racingCars = Cars(
-            engine = engine,
+            racing = customRacing,
             racingDistance = startRacingDistance,
             numberOfRacingCars = numberOfRacingCars
         )
@@ -93,51 +93,51 @@ internal class CarsTest {
     companion object {
         private const val MOVE_ONE_STEP = 1
         private const val NUMBER_OF_CARS = 10
-        private val defaultEngine = DefaultEngine()
+        private val defaultRacing = Racing(engine = DefaultEngine())
         private val racingDistance = RacingDistance()
         private val numberOfRacingCars = NumberOfRacingCars(NUMBER_OF_CARS)
 
         @JvmStatic
         fun defaultEnginesAndStartingPointAndNumberOfCars(): Stream<Arguments> = Stream.of(
-            Arguments.of(defaultEngine, 0, 1),
-            Arguments.of(defaultEngine, 1, 100),
-            Arguments.of(defaultEngine, 2, 100_000),
-            Arguments.of(defaultEngine, 100, 18_292),
-            Arguments.of(defaultEngine, 100_000, 291_11),
-            Arguments.of(defaultEngine, 1_000_000_000, 192_111),
-            Arguments.of(defaultEngine, 28_792_181, 1_000_000),
+            Arguments.of(defaultRacing, 0, 1),
+            Arguments.of(defaultRacing, 1, 100),
+            Arguments.of(defaultRacing, 2, 100_000),
+            Arguments.of(defaultRacing, 100, 18_292),
+            Arguments.of(defaultRacing, 100_000, 291_11),
+            Arguments.of(defaultRacing, 1_000_000_000, 192_111),
+            Arguments.of(defaultRacing, 28_792_181, 1_000_000),
         )
 
         @JvmStatic
         fun customEnginesAndRacingDistancesAndNumberOfRacingCars(): Stream<Arguments> =
             Stream.of(
                 Arguments.of(
-                    CustomEngine(4),
+                    Racing(CustomEngine(4)),
                     racingDistance,
                     numberOfRacingCars
                 ),
                 Arguments.of(
-                    CustomEngine(5),
+                    Racing(CustomEngine(5)),
                     racingDistance,
                     numberOfRacingCars
                 ),
                 Arguments.of(
-                    CustomEngine(6),
+                    Racing(CustomEngine(6)),
                     racingDistance,
                     numberOfRacingCars
                 ),
                 Arguments.of(
-                    CustomEngine(7),
+                    Racing(CustomEngine(7)),
                     racingDistance,
                     numberOfRacingCars
                 ),
                 Arguments.of(
-                    CustomEngine(8),
+                    Racing(CustomEngine(8)),
                     racingDistance,
                     numberOfRacingCars
                 ),
                 Arguments.of(
-                    CustomEngine(9),
+                    Racing(CustomEngine(9)),
                     racingDistance,
                     numberOfRacingCars
                 )

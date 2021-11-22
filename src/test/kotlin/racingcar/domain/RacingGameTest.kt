@@ -7,6 +7,7 @@ import racingcar.communication.output.OutputConsole
 import racingcar.domain.cars.Cars
 import racingcar.domain.engine.CustomEngine
 import racingcar.domain.racing.FinalLab
+import racingcar.domain.racing.Racing
 
 @DisplayName("자동차 경주 게임을 담당하는 객체인 `RacingGame` 테스트")
 internal class RacingGameTest {
@@ -28,7 +29,7 @@ internal class RacingGameTest {
     fun moveOneStepIsSuccessIfGivenCarsWhatDependencyCustomEngine() {
         // Arrange
         val output = OutputConsole()
-        val cars = Cars(engine = CustomEngine(4))
+        val cars = Cars(racing = Racing(CustomEngine(4)))
         val finalLab = FinalLab(value = 1)
         val racingGame = RacingGame(output)
 

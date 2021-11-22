@@ -1,12 +1,11 @@
 package racingcar.domain.cars
 
 import racingcar.domain.engine.DefaultEngine
-import racingcar.domain.engine.Engine
 import racingcar.domain.racing.Racing
 import racingcar.domain.racing.RacingDistance
 
 data class Cars(
-    private val engine: Engine = DefaultEngine(),
+    private val racing: Racing = Racing(DefaultEngine()),
     private val racingDistance: RacingDistance = RacingDistance(),
     private val numberOfRacingCars: NumberOfRacingCars = NumberOfRacingCars(NUMBER_OF_DEFAULT_START_RACING_CARS)
 ) {
@@ -20,12 +19,10 @@ data class Cars(
             car.racingDistance()
         }.toList()
 
-    fun courseInRacingCars(
-        numberOfRacingCars: Int
-    ): List<Car> {
+    fun courseInRacingCars(numberOfRacingCars: Int): List<Car> {
         return List(numberOfRacingCars) {
             Car(
-                racing = Racing(engine),
+                racing = racing,
                 racingDistance = racingDistance
             )
         }
