@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import racingcar.domain.engine.CustomEngine
 import racingcar.domain.engine.Engine
+import racingcar.domain.racing.Racing
 import racingcar.domain.racing.RacingDistance
 import java.util.stream.Stream
 
@@ -17,7 +18,7 @@ internal class CarTest {
     @Test
     fun carIsSuccessToMoveOneStepIfGivenNothing() {
         // Arrange
-        val racingCar = Car(engine = CustomEngine(NUMBER_OF_MOVABLE_CYLINDER))
+        val racingCar = Car(racing = Racing(engine = CustomEngine(NUMBER_OF_MOVABLE_CYLINDER)))
 
         // Act
         racingCar.race()
@@ -35,7 +36,7 @@ internal class CarTest {
         racingDistance: RacingDistance
     ) {
         // Arrange
-        val racingCar = Car(engine = engine, racingDistance = racingDistance)
+        val racingCar = Car(racing = Racing(engine = engine), racingDistance = racingDistance)
 
         // Act
         racingCar.race()

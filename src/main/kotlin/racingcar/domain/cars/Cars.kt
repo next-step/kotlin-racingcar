@@ -2,6 +2,7 @@ package racingcar.domain.cars
 
 import racingcar.domain.engine.DefaultEngine
 import racingcar.domain.engine.Engine
+import racingcar.domain.racing.Racing
 import racingcar.domain.racing.RacingDistance
 
 data class Cars(
@@ -24,7 +25,7 @@ data class Cars(
     ): List<Car> {
         return List(numberOfRacingCars) {
             Car(
-                engine = engine,
+                racing = Racing(engine),
                 racingDistance = racingDistance
             )
         }
