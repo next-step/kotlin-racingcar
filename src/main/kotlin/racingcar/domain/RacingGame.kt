@@ -1,10 +1,10 @@
 package racingcar.domain
 
-import racingcar.domain.cars.Cars
-import racingcar.domain.racing.FinalLab
-import racingcar.domain.cars.NumberOfRacingCars
 import racingcar.communication.output.Output
 import racingcar.communication.output.OutputConsole
+import racingcar.domain.cars.Cars
+import racingcar.domain.cars.NumberOfRacingCars
+import racingcar.domain.racing.FinalLab
 
 class RacingGame(
     private val output: Output = OutputConsole(),
@@ -12,9 +12,9 @@ class RacingGame(
     fun start(
         racingCars: Cars = Cars(numberOfRacingCars = NumberOfRacingCars(STARTING_NUMBER_OF_RACING_CARS)),
         finalLab: FinalLab = FinalLab(value = 1)
-    ): Unit = runCatching {
+    ) = runCatching {
         racing(racingCars, finalLab)
-    }.getOrElse {
+    }.onFailure {
         output.errorMessage(it.message ?: RACING_GAME_ERROR_MESSAGE)
     }
 
