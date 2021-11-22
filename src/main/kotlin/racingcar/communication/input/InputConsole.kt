@@ -21,10 +21,8 @@ class InputConsole : Input {
     private fun scanIntValue(): Int {
         kotlin.runCatching {
             return scan.nextInt()
-        }.onFailure {
-            println(it.message)
-            scan.next()
         }.getOrElse {
+            scan.next()
             return COULD_NOT_READ
         }
     }
