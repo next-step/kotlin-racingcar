@@ -3,6 +3,8 @@ package racingcar.communication.output
 class OutputConsole : Output {
     override fun numberOfCarsMessage(): Unit = println(NUMBER_OF_CARS_INPUT_MESSAGE)
     override fun finalLab(): Unit = println(TRY_TIMES_OF_RACE_INPUT_MESSAGE)
+    override fun errorMessage(message: String) = println(message)
+
     override fun labsOfRacingCars(racingLabs: List<Int>) {
         for (lab in racingLabs) {
             labOfRacingCar(lab)
@@ -15,10 +17,6 @@ class OutputConsole : Output {
             print(CAR_POSITION_MARK)
         }
         println()
-    }
-
-    override fun errorMessage(message: String) {
-        println(message)
     }
 
     companion object {
