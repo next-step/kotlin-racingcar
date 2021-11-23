@@ -2,12 +2,13 @@ package racingcar
 
 import racingcar.communication.ControlTower
 import racingcar.communication.Pit
-import racingcar.domain.RacingGame
-import racingcar.domain.cars.Cars
 import racingcar.communication.input.Input
 import racingcar.communication.input.InputConsole
 import racingcar.communication.output.Output
 import racingcar.communication.output.OutputConsole
+import racingcar.domain.RacingGame
+import racingcar.domain.cars.Cars
+import racingcar.domain.engine.Engine
 
 fun main() {
     val input: Input = InputConsole()
@@ -16,5 +17,5 @@ fun main() {
     val racingCars = Cars(numberOfRacingCars = Pit.readyToCourseInRacingCars(input, output))
     val finalLab = ControlTower.decideRacingLabs(input, output)
 
-    RacingGame(output).start(racingCars, finalLab)
+    RacingGame(output).start(racingCars, finalLab, Engine::defaultCylinder)
 }

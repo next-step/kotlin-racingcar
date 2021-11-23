@@ -5,7 +5,7 @@ import racingcar.domain.racing.Racing
 import racingcar.domain.racing.RacingDistance
 
 data class Cars(
-    private val racing: Racing = Racing(engine = Engine::defaultCylinder),
+    private val racing: Racing = Racing(),
     private val racingDistance: RacingDistance = RacingDistance(),
     private val numberOfRacingCars: NumberOfRacingCars = NumberOfRacingCars(NUMBER_OF_DEFAULT_START_RACING_CARS)
 ) {
@@ -28,8 +28,8 @@ data class Cars(
         }
     }
 
-    fun races() = cars.forEach { car ->
-        car.race()
+    fun races(engine: Engine) = cars.forEach { car ->
+        car.race(engine)
     }
 
     companion object {

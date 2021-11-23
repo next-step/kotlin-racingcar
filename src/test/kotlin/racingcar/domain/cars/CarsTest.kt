@@ -69,6 +69,7 @@ internal class CarsTest {
     @ParameterizedTest
     @MethodSource("customEnginesAndRacingDistancesAndNumberOfRacingCars")
     fun carsRaceAreSuccessIfGivenCustomEngineAndRacingDistanceAndNumberOfRacingCars(
+        customEngine: Engine,
         customRacing: Racing,
         startRacingDistance: RacingDistance,
         numberOfRacingCars: NumberOfRacingCars
@@ -81,7 +82,7 @@ internal class CarsTest {
         )
 
         // Act
-        racingCars.races()
+        racingCars.races(customEngine)
 
         // Assert
         val currentRacingLabs = racingCars.currentRacingLabs
@@ -93,7 +94,7 @@ internal class CarsTest {
     companion object {
         private const val MOVE_ONE_STEP = 1
         private const val NUMBER_OF_CARS = 10
-        private val defaultRacing = Racing(engine = Engine::defaultCylinder)
+        private val defaultRacing = Racing()
         private val racingDistance = RacingDistance()
         private val numberOfRacingCars = NumberOfRacingCars(NUMBER_OF_CARS)
 
@@ -108,36 +109,43 @@ internal class CarsTest {
             Arguments.of(defaultRacing, 28_792_181, 1_000_000),
         )
 
+        // engine = Engine::defaultCylinder
         @JvmStatic
         fun customEnginesAndRacingDistancesAndNumberOfRacingCars(): Stream<Arguments> =
             Stream.of(
                 Arguments.of(
-                    Racing(CustomEngine(4)),
+                    CustomEngine(4),
+                    Racing(),
                     racingDistance,
                     numberOfRacingCars
                 ),
                 Arguments.of(
-                    Racing(CustomEngine(5)),
+                    CustomEngine(5),
+                    Racing(),
                     racingDistance,
                     numberOfRacingCars
                 ),
                 Arguments.of(
-                    Racing(CustomEngine(6)),
+                    CustomEngine(6),
+                    Racing(),
                     racingDistance,
                     numberOfRacingCars
                 ),
                 Arguments.of(
-                    Racing(CustomEngine(7)),
+                    CustomEngine(7),
+                    Racing(),
                     racingDistance,
                     numberOfRacingCars
                 ),
                 Arguments.of(
-                    Racing(CustomEngine(8)),
+                    CustomEngine(8),
+                    Racing(),
                     racingDistance,
                     numberOfRacingCars
                 ),
                 Arguments.of(
-                    Racing(CustomEngine(9)),
+                    CustomEngine(9),
+                    Racing(),
                     racingDistance,
                     numberOfRacingCars
                 )

@@ -18,10 +18,10 @@ internal class CarTest {
     @Test
     fun carIsSuccessToMoveOneStepIfGivenNothing() {
         // Arrange
-        val racingCar = Car(racing = Racing(engine = CustomEngine(NUMBER_OF_MOVABLE_CYLINDER)))
+        val racingCar = Car(racing = Racing())
 
         // Act
-        racingCar.race()
+        racingCar.race(CustomEngine(NUMBER_OF_MOVABLE_CYLINDER))
         val nextRacingDistance = racingCar.racingDistance()
 
         // Assert
@@ -36,10 +36,10 @@ internal class CarTest {
         racingDistance: RacingDistance
     ) {
         // Arrange
-        val racingCar = Car(racing = Racing(engine = engine), racingDistance = racingDistance)
+        val racingCar = Car(racing = Racing(), racingDistance = racingDistance)
 
         // Act
-        racingCar.race()
+        racingCar.race(engine = engine)
         val nextRacingDistance = racingCar.racingDistance()
 
         // Assert

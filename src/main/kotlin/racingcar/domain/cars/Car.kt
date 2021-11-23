@@ -5,11 +5,14 @@ import racingcar.domain.racing.Racing
 import racingcar.domain.racing.RacingDistance
 
 data class Car(
-    private val racing: Racing = Racing(engine = Engine::defaultCylinder),
+    private val racing: Racing = Racing(),
     private var racingDistance: RacingDistance = RacingDistance()
 ) {
-    fun race() {
-        racingDistance = racing.race(racingDistance)
+    fun race(engine: Engine) {
+        racingDistance = racing.race(
+            engine = engine,
+            racingDistance = racingDistance
+        )
     }
 
     fun racingDistance(): Int = racingDistance.value

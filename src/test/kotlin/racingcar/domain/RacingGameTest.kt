@@ -29,12 +29,12 @@ internal class RacingGameTest {
     fun moveOneStepIsSuccessIfGivenCarsWhatDependencyCustomEngine() {
         // Arrange
         val output = OutputConsole()
-        val cars = Cars(racing = Racing(CustomEngine(4)))
+        val cars = Cars(racing = Racing())
         val finalLab = FinalLab(value = 1)
         val racingGame = RacingGame(output)
 
         // Act
-        racingGame.racing(cars = cars, finalLab = finalLab)
+        racingGame.racing(cars = cars, finalLab = finalLab, engine = CustomEngine(4))
         val racingLabs = cars.currentRacingLabs
 
         racingLabs.forEach { racingLab ->

@@ -19,11 +19,10 @@ internal class RacingTest {
     ) {
         // Arrange
         val racingDistance = RacingDistance(value = startingPoint)
-        val engine = CustomEngine(cylinder)
-        val racing = Racing(engine)
+        val racing = Racing()
 
         // Act
-        val moveOneStep = racing.race(racingDistance)
+        val moveOneStep = racing.race(racingDistance = racingDistance, engine = CustomEngine(cylinder))
 
         // Assert
         assertThat(moveOneStep.value).isEqualTo(startingPoint + MOVE_ONE_STEP_FORWARD)
@@ -38,11 +37,10 @@ internal class RacingTest {
     ) {
         // Arrange
         val racingDistance = RacingDistance(value = startingPoint)
-        val engine = CustomEngine(cylinder)
-        val racing = Racing(engine)
+        val racing = Racing()
 
         // Act
-        val stop = racing.race(racingDistance)
+        val stop = racing.race(racingDistance = racingDistance, engine = CustomEngine(cylinder))
 
         // Assert
         assertThat(stop.value).isEqualTo(startingPoint + STOP)
