@@ -11,7 +11,7 @@ object RacingCarGame {
     fun start() {
         val carNames = readCarNames()
         val numberOfGames = readNumberOfGames()
-        val cars = Cars(carNames, RandomNumberGenerator())
+        val cars = Cars.of(carNames, RandomNumberGenerator())
 
         showInitialOutputs(cars.getCarsNameWithPosition())
 

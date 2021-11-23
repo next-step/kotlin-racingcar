@@ -2,9 +2,7 @@ package racingcar.domain
 
 const val MINIMUM_WINNER_COUNT = 1
 
-class Cars(carNames: List<String>, private val randomNumberGenerator: IRandomNumberGenerator) {
-    private val cars = carNames.map { carName -> Car(carName) }
-
+class Cars(private val cars: List<Car>, private val randomNumberGenerator: NumberGenerator) {
     fun move() {
         cars.forEach { car -> car.move(randomNumberGenerator.getGeneratedNumber()) }
     }
@@ -22,5 +20,10 @@ class Cars(carNames: List<String>, private val randomNumberGenerator: IRandomNum
 
     private fun validateWinnersCount(winners: List<Car>) {
         require(winners.count() >= MINIMUM_WINNER_COUNT) { "우승자는 ${MINIMUM_WINNER_COUNT}명 이상이어야 합니다." }
+    }
+
+    companion object {
+        fun of(carNames: List<String>, randomNumberGenerator: NumberGenerator): Cars =
+            Cars(carNames.map { carName -> Car(carName) }, randomNumberGenerator)
     }
 }

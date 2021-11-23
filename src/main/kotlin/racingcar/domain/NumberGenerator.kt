@@ -1,5 +1,5 @@
 package racingcar.domain
 
-interface IRandomNumberGenerator {
+interface NumberGenerator {
     fun getGeneratedNumber(): Int
 }
