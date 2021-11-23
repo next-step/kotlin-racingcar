@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.view
 
 const val MAXIMUM_CAR_NAME_LENGTH = 5
 const val MINIMUM_CAR_NAME_LENGTH = 1

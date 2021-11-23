@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.view
 
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Assertions
