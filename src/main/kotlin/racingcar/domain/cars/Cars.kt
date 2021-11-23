@@ -1,11 +1,11 @@
 package racingcar.domain.cars
 
-import racingcar.domain.engine.DefaultEngine
+import racingcar.domain.engine.Engine
 import racingcar.domain.racing.Racing
 import racingcar.domain.racing.RacingDistance
 
 data class Cars(
-    private val racing: Racing = Racing(DefaultEngine()),
+    private val racing: Racing = Racing(engine = Engine::defaultCylinder),
     private val racingDistance: RacingDistance = RacingDistance(),
     private val numberOfRacingCars: NumberOfRacingCars = NumberOfRacingCars(NUMBER_OF_DEFAULT_START_RACING_CARS)
 ) {

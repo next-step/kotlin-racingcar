@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
 import racingcar.domain.engine.CustomEngine
-import racingcar.domain.engine.DefaultEngine
+import racingcar.domain.engine.Engine
 import racingcar.domain.racing.Racing
 import racingcar.domain.racing.RacingDistance
 import java.util.stream.Stream
@@ -93,7 +93,7 @@ internal class CarsTest {
     companion object {
         private const val MOVE_ONE_STEP = 1
         private const val NUMBER_OF_CARS = 10
-        private val defaultRacing = Racing(engine = DefaultEngine())
+        private val defaultRacing = Racing(engine = Engine::defaultCylinder)
         private val racingDistance = RacingDistance()
         private val numberOfRacingCars = NumberOfRacingCars(NUMBER_OF_CARS)
 
