@@ -5,9 +5,14 @@ import racingcar.domain.racing.Racing
 import racingcar.domain.racing.RacingDistance
 
 data class Car(
+    val name: String = "No Name",
     private val racing: Racing = Racing(),
     private var racingDistance: RacingDistance = RacingDistance()
 ) {
+    init {
+        require(name.isNotBlank())
+    }
+
     fun race(engine: Engine) {
         racingDistance = racing.race(
             engine = engine,
