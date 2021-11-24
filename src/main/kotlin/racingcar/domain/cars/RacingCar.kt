@@ -1,24 +1,23 @@
 package racingcar.domain.cars
 
 import racingcar.domain.engine.Engine
-import racingcar.domain.racing.Racing
 import racingcar.domain.racing.RacingDistance
 
 data class RacingCar(
-    val name: String = "No Name",
-    private val racing: Racing = Racing(),
+    val name: String = "Anonymous",
     private var racingDistance: RacingDistance = RacingDistance()
 ) {
     init {
         require(name.isNotBlank())
     }
 
+    fun racingDistance(): Int = racingDistance.value
+
     fun race(engine: Engine) {
-        racingDistance = racing.race(
-            engine = engine,
-            racingDistance = racingDistance
-        )
+        racingDistance = racingDistance.race(engine = engine)
     }
 
-    fun racingDistance(): Int = racingDistance.value
+    fun copyRacingCar(): RacingCar {
+        return RacingCar(name = name, racingDistance = RacingDistance(racingDistance.value))
+    }
 }

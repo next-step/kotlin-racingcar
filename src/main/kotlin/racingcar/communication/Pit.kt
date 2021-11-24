@@ -2,10 +2,12 @@ package racingcar.communication
 
 import racingcar.communication.input.Input
 import racingcar.communication.output.Output
+import racingcar.domain.cars.RacingCar
 
 object Pit {
-    fun submitToCourseInRacingCarsNames(input: Input, output: Output): List<String> {
+    fun courseInRacingCarsNames(input: Input, output: Output): List<RacingCar> {
         output.numberOfCarsNames()
-        return input.racingCarsNames().map { it.trim() }
+        val racingCarsNames = input.racingCarsNames().map { it.trim() }
+        return racingCarsNames.map { RacingCar(name = it) }
     }
 }
