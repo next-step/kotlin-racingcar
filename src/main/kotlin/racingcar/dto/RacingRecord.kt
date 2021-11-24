@@ -1,9 +1,9 @@
 package racingcar.dto
 
-import racingcar.domain.cars.Car
+import racingcar.domain.cars.RacingCar
 
 class RacingRecord(
-    car: Car,
-    val name: String = car.name,
-    val racingDistance: Int = car.racingDistance()
+    racingCar: RacingCar,
+    val name: String = racingCar.name,
+    val racingDistance: Int = racingCar.racingDistance()
 )

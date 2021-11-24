@@ -14,36 +14,36 @@ import racingcar.domain.racing.Racing
 import racingcar.domain.racing.RacingDistance
 import java.util.stream.Stream
 
-@DisplayName("자동차 객체인 Car 테스트")
-internal class CarTest {
-    @DisplayName("경주차 이름이 주어지면 Car 생성 시 성공")
+@DisplayName("자동차 객체인 `RacingCar` 테스트")
+internal class RacingCarTest {
+    @DisplayName("차 이름이 주어지면 RacingCar 생성 시 성공")
     @ParameterizedTest
     @ValueSource(strings = ["소나타", "아반떼", "그랜저", "제네시스"])
-    fun createCarIsSuccessIfGivenCorrectCarName(givenCarName: String) {
+    fun createRacingCarIsSuccessIfGivenCorrectCarName(givenCarName: String) {
         // Arrange
         // Act
-        val racingCar = Car(name = givenCarName)
+        val racingCar = RacingCar(name = givenCarName)
 
         // Assert
         assertThat(racingCar.name).isEqualTo(givenCarName)
     }
 
-    @DisplayName("경주차 이름이 공백 또는 빈 값이 주어지면 Car 생성 시 실패")
+    @DisplayName("경주차 이름이 공백 또는 빈 값이 주어지면 RacingCar 생성 시 실패")
     @ParameterizedTest
     @ValueSource(strings = ["", "   ", "               "])
-    fun createCarIsFailIfGivenIncorrectCarName(givenCarName: String) {
+    fun createRacingCarIsFailIfGivenIncorrectCarName(givenCarName: String) {
         // Arrange
         // Act
         Assertions.assertThatThrownBy() {
-            val racingCar = Car(name = givenCarName)
+            val racingCar = RacingCar(name = givenCarName)
         }.isInstanceOf(IllegalArgumentException::class.java)
     }
 
     @DisplayName("`CustomEngine`이 주어지면 경주차가 한 칸 전진 시 성공")
     @Test
-    fun carIsSuccessToMoveOneStepIfGivenNothing() {
+    fun racingCarMoveOneStepIsSuccessToIfGivenNothing() {
         // Arrange
-        val racingCar = Car(name = "소나타", racing = Racing())
+        val racingCar = RacingCar(name = "소나타", racing = Racing())
 
         // Act
         racingCar.race(CustomEngine(NUMBER_OF_MOVABLE_CYLINDER))
@@ -56,12 +56,12 @@ internal class CarTest {
     @DisplayName("`RacingDistance`와 `CustomEngine`이 주어지면 한 칸 전진 시 성공")
     @ParameterizedTest
     @MethodSource("correctRacingDistancesAndCustomEngines")
-    fun carIsSuccessToMoveOneStepIfRacingDistanceAndCustomEngine(
+    fun racingCarMoveOneStepIsSuccessIfRacingDistanceAndCustomEngine(
         engine: Engine,
         racingDistance: RacingDistance
     ) {
         // Arrange
-        val racingCar = Car(name = "소나타", racing = Racing(), racingDistance = racingDistance)
+        val racingCar = RacingCar(name = "소나타", racing = Racing(), racingDistance = racingDistance)
 
         // Act
         racingCar.race(engine = engine)

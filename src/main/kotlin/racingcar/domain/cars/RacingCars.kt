@@ -4,38 +4,38 @@ import racingcar.domain.engine.Engine
 import racingcar.domain.racing.Racing
 import racingcar.domain.racing.RacingDistance
 
-data class Cars(
+data class RacingCars(
     private val carsNames: List<String>,
     private val racing: Racing = Racing(),
     private val racingDistance: RacingDistance = RacingDistance()
 ) {
-    private var cars: List<Car> = courseInRacingCars(carNames = carsNames)
+    private var racingCars: List<RacingCar> = courseInRacingCars(carNames = carsNames)
 
     init {
         require(carsNames.size > MINIMUM_CAR_NAME_SIZE)
     }
 
     val numberOfExistCars: Int
-        get() = cars.size
+        get() = racingCars.size
 
     val currentRacingLabs: List<Int>
-        get() = cars.map { car ->
+        get() = racingCars.map { car ->
             car.racingDistance()
         }.toList()
 
-    fun courseInRacingCars(carNames: List<String>): List<Car> {
+    fun courseInRacingCars(carNames: List<String>): List<RacingCar> {
         return carNames.map {
-            Car(name = it, racing = racing, racingDistance = racingDistance)
+            RacingCar(name = it, racing = racing, racingDistance = racingDistance)
         }
     }
 
-    fun races(engine: Engine) = cars.forEach { car ->
+    fun races(engine: Engine) = racingCars.forEach { car ->
         car.race(engine)
     }
 
-    fun mapCarList(): List<Car> {
-        return cars.map {
-            Car(
+    fun mapCarList(): List<RacingCar> {
+        return racingCars.map {
+            RacingCar(
                 name = it.name,
                 racing = racing,
                 racingDistance = RacingDistance(it.racingDistance())

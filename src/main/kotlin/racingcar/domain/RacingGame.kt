@@ -2,7 +2,7 @@ package racingcar.domain
 
 import racingcar.communication.output.Output
 import racingcar.communication.output.OutputConsole
-import racingcar.domain.cars.Cars
+import racingcar.domain.cars.RacingCars
 import racingcar.domain.engine.Engine
 import racingcar.domain.racing.FinalLab
 import racingcar.dto.RacingRecord
@@ -11,7 +11,7 @@ class RacingGame(
     private val output: Output = OutputConsole(),
 ) {
     fun start(
-        racingCars: Cars,
+        racingCars: RacingCars,
         finalLab: FinalLab = FinalLab(value = 1),
         engine: Engine
     ) = runCatching {
@@ -20,10 +20,10 @@ class RacingGame(
         output.errorMessage(it.message ?: RACING_GAME_ERROR_MESSAGE)
     }
 
-    fun race(cars: Cars, finalLab: FinalLab, engine: Engine) {
+    fun race(racingCars: RacingCars, finalLab: FinalLab, engine: Engine) {
         repeat((finalLab.value)) {
-            cars.races(engine)
-            output.racingCarNameAndRecord(cars.mapCarList().map { RacingRecord(it) })
+            racingCars.races(engine)
+            output.racingCarNameAndRecord(racingCars.mapCarList().map { RacingRecord(it) })
         }
     }
 

@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource
 import java.util.stream.Stream
 
 @DisplayName("Cars 객체의 자동차 수를 담당하는 객체인 NumberOfRacingCars 테스트")
-internal class NumberOfRacingCarsTest {
+internal class NumberOfRacingRacingCarsTest {
     @DisplayName("주어진 자동차 수가 양수이면 NumberOfRacingCar 객체 생성 시 성공")
     @ParameterizedTest
     @ValueSource(ints = [1, 189, 100_000, 200_442, 3_092_122])

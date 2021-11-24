@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import racingcar.communication.output.OutputConsole
-import racingcar.domain.cars.Cars
+import racingcar.domain.cars.RacingCars
 import racingcar.domain.engine.CustomEngine
 import racingcar.domain.racing.FinalLab
 import racingcar.domain.racing.Racing
@@ -29,13 +29,13 @@ internal class RacingGameTest {
     fun moveOneStepIsSuccessIfGivenCarsWhatDependencyCustomEngine() {
         // Arrange
         val output = OutputConsole()
-        val cars = Cars(carsNames = listOf("첫번째 테스트 카"), racing = Racing())
+        val racingCars = RacingCars(carsNames = listOf("첫번째 테스트 카"), racing = Racing())
         val finalLab = FinalLab(value = 1)
         val racingGame = RacingGame(output)
 
         // Act
-        racingGame.race(cars = cars, finalLab = finalLab, engine = CustomEngine(4))
-        val racingLabs = cars.currentRacingLabs
+        racingGame.race(racingCars = racingCars, finalLab = finalLab, engine = CustomEngine(4))
+        val racingLabs = racingCars.currentRacingLabs
 
         racingLabs.forEach { racingLab ->
             assertThat(racingLab).isEqualTo(1)

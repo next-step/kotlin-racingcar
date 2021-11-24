@@ -4,7 +4,7 @@ import racingcar.domain.engine.Engine
 import racingcar.domain.racing.Racing
 import racingcar.domain.racing.RacingDistance
 
-data class Car(
+data class RacingCar(
     val name: String = "No Name",
     private val racing: Racing = Racing(),
     private var racingDistance: RacingDistance = RacingDistance()
