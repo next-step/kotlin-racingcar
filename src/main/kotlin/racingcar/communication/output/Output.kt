@@ -9,4 +9,5 @@ interface Output {
     fun errorMessage(message: String)
     fun racingCarNameAndRecord(racingCars: List<RacingRecord>)
     fun labsOfRacingCars(racingLabs: List<Int>)
+    fun winnersNames(gameWinnersNames: List<String>)
 }

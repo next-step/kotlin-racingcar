@@ -25,6 +25,10 @@ class OutputConsole : Output {
         println()
     }
 
+    override fun winnersNames(gameWinnersNames: List<String>) {
+        println("'${gameWinnersNames.joinToString(", ")}' 우승했습니다.")
+    }
+
     private fun labOfRacingCar(racingLab: Int) {
         repeat((START_POSITION..racingLab).count()) {
             print(CAR_POSITION_MARK)
