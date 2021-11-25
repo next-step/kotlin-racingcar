@@ -14,7 +14,7 @@ fun main() {
     val input: Input = InputConsole()
     val output: Output = OutputConsole()
 
-    val racingCars = RacingCars(racingCarList = Pit.courseInRacingCarsNames(input, output))
+    val racingCars = RacingCars(racingCarList = Pit.courseInRacingCars(input, output))
     val finalLab = ControlTower.decideRacingLabs(input, output)
 
     RacingGame(output).start(racingCars, finalLab, Engine::defaultCylinder)
