@@ -7,7 +7,6 @@ interface Output {
     fun numberOfCarsMessage()
     fun finalLab()
     fun errorMessage(message: String)
-    fun racingCarNameAndRecord(racingCars: List<RacingRecord>)
-    fun labsOfRacingCars(racingLabs: List<Int>)
+    fun racingRecords(racingRecords: List<RacingRecord>)
     fun winnersNames(gameWinnersNames: List<String>)
 }

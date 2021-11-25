@@ -7,20 +7,10 @@ class OutputConsole : Output {
     override fun numberOfCarsMessage(): Unit = println(NUMBER_OF_CARS_INPUT_MESSAGE)
     override fun finalLab(): Unit = println(TRY_TIMES_OF_RACE_INPUT_MESSAGE)
     override fun errorMessage(message: String) = println(message)
-    override fun racingCarNameAndRecord(racingCars: List<RacingRecord>) {
-        racingCars.forEach { racingRecord ->
+    override fun racingRecords(racingRecords: List<RacingRecord>) {
+        racingRecords.forEach { racingRecord ->
             print("${racingRecord.name} : ")
-            repeat((START_POSITION..racingRecord.racingDistance).count()) {
-                print(CAR_POSITION_MARK)
-            }
-            println()
-        }
-        println()
-    }
-
-    override fun labsOfRacingCars(racingLabs: List<Int>) {
-        for (lab in racingLabs) {
-            labOfRacingCar(lab)
+            racingDistance(racingRecord.racingDistance)
         }
         println()
     }
@@ -29,8 +19,8 @@ class OutputConsole : Output {
         println("'${gameWinnersNames.joinToString(", ")}' 우승했습니다.")
     }
 
-    private fun labOfRacingCar(racingLab: Int) {
-        repeat((START_POSITION..racingLab).count()) {
+    private fun racingDistance(racingDistance: Int) {
+        repeat((START_POSITION..racingDistance).count()) {
             print(CAR_POSITION_MARK)
         }
         println()

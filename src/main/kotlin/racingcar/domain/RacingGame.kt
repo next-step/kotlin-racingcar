@@ -27,7 +27,7 @@ class RacingGame(
     fun race(racingCars: RacingCars, finalLab: FinalLab, engine: Engine) {
         repeat((finalLab.value)) {
             racingCars.races(engine)
-            output.racingCarNameAndRecord(racingCars.copyRacingCars().map { RacingRecord(it) })
+            output.racingRecords(racingCars.copyRacingCars().map { RacingRecord(it) })
         }
     }
 
