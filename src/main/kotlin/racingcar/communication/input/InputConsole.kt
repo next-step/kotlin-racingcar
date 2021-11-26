@@ -1,12 +1,36 @@
 package racingcar.communication.input
 
+import racingcar.util.Parser.separateBySeparator
+import racingcar.util.Validation.assertCarsNames
 import java.util.Scanner
 
 class InputConsole : Input {
     private val scan: Scanner = Scanner(System.`in`)
 
+    override fun racingCarsNames(): List<String> = inputToCorrectStringValue()
     override fun numberOfRacingCars(): Int = inputToCorrectIntValue()
     override fun finalLab(): Int = inputToCorrectIntValue()
+
+    private fun inputToCorrectStringValue(): List<String> {
+        var carNames: List<String>
+
+        do {
+            carNames = inputNamesOfCars()
+        } while (carNames.isEmpty())
+
+        return carNames
+    }
+
+    private fun inputNamesOfCars(): List<String> {
+        runCatching {
+            val carsNames = separateBySeparator(scan.nextLine())
+
+            return assertCarsNames(carsNames)
+        }.getOrElse {
+            scan.next()
+            return listOf()
+        }
+    }
 
     private fun inputToCorrectIntValue(): Int {
         var inputValue: Int
@@ -19,12 +43,10 @@ class InputConsole : Input {
     }
 
     private fun scanIntValue(): Int {
-        kotlin.runCatching {
+        runCatching {
             return scan.nextInt()
-        }.onFailure {
-            println(it.message)
-            scan.next()
         }.getOrElse {
+            scan.next()
             return COULD_NOT_READ
         }
     }
