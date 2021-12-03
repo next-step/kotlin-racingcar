@@ -11,7 +11,7 @@ class RacingCars(racingCarList: List<RacingCar>) {
     val currentRacingDistances: List<Int>
         get() = courseInRacingCarList.map { car ->
             car.racingDistance()
-        }.toList()
+        }
 
     init {
         require(racingCarList.size > MINIMUM_CAR_NAME_SIZE)
