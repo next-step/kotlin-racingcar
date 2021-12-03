@@ -12,7 +12,7 @@ object ControlTower {
     }
 
     fun judgeTheWinningRecord(racingCarsList: List<RacingCar>): Int =
-        racingCarsList.maxOf { it.racingDistance() }
+        racingCarsList.maxOf(RacingCar::racingDistance)
 
     fun judgeTheWinnersNames(
         racingCarsList: List<RacingCar>,
