@@ -1,4 +1,4 @@
-package racingcar.communication.input
+package racingcar.view.input
 
 import racingcar.util.Parser.separateBySeparator
 import racingcar.util.Validation.assertCarsNames

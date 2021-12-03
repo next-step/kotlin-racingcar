@@ -1,4 +1,4 @@
-package racingcar.communication.output
+package racingcar.view.output
 
 import racingcar.dto.RacingRecord
 
