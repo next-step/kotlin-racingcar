@@ -17,9 +17,10 @@ object ControlTower {
     fun judgeTheWinnersNames(
         racingCarsList: List<RacingCar>,
         winningRecord: Int
-    ) = racingCarsList.filter {
-        it.racingDistance() == winningRecord
-    }.map {
-        it.name
-    }
+    ) = racingCarsList
+        .filter {
+            it.racingDistance() == winningRecord
+        }.map {
+            it.name
+        }
 }
