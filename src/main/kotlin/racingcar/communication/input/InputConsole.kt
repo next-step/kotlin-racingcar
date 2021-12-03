@@ -12,10 +12,10 @@ class InputConsole : Input {
     override fun finalLab(): Int = inputToCorrectIntValue()
 
     private fun inputToCorrectStringValue(): List<String> {
-        var carNames: List<String>
+        val carNames: MutableList<String> = mutableListOf()
 
         do {
-            carNames = inputNamesOfCars()
+            carNames.addAll(inputNamesOfCars())
         } while (carNames.isEmpty())
 
         return carNames
