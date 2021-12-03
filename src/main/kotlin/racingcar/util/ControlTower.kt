@@ -1,7 +1,7 @@
-package racingcar.communication
+package racingcar.util
 
-import racingcar.communication.input.Input
-import racingcar.communication.output.Output
+import racingcar.view.input.Input
+import racingcar.view.output.Output
 import racingcar.domain.cars.RacingCar
 import racingcar.domain.racing.FinalLab
 
@@ -12,14 +12,15 @@ object ControlTower {
     }
 
     fun judgeTheWinningRecord(racingCarsList: List<RacingCar>): Int =
-        racingCarsList.maxOf { it.racingDistance() }
+        racingCarsList.maxOf(RacingCar::racingDistance)
 
     fun judgeTheWinnersNames(
         racingCarsList: List<RacingCar>,
         winningRecord: Int
-    ) = racingCarsList.filter {
-        it.racingDistance() == winningRecord
-    }.map {
-        it.name
-    }
+    ) = racingCarsList
+        .filter {
+            it.racingDistance() == winningRecord
+        }.map {
+            it.name
+        }
 }

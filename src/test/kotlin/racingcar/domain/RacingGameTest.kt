@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import racingcar.communication.output.OutputConsole
+import racingcar.controller.RacingGame
+import racingcar.view.output.OutputConsole
 import racingcar.domain.cars.RacingCar
 import racingcar.domain.cars.RacingCars
 import racingcar.domain.engine.CustomEngine

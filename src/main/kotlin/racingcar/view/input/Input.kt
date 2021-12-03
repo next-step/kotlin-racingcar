@@ -1,4 +1,4 @@
-package racingcar.communication.input
+package racingcar.view.input
 
 interface Input {
     fun racingCarsNames(): List<String>

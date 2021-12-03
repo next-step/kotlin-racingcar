@@ -4,7 +4,7 @@ import racingcar.domain.engine.Engine
 import racingcar.domain.racing.RacingDistance
 
 data class RacingCar(
-    val name: String = "Anonymous",
+    val name: String = DEFAULT_RACING_CAR_NAME,
     private var racingDistance: RacingDistance = RacingDistance()
 ) {
     init {
@@ -19,5 +19,9 @@ data class RacingCar(
 
     fun copyRacingCar(): RacingCar {
         return RacingCar(name = name, racingDistance = RacingDistance(racingDistance.value))
+    }
+
+    companion object {
+        private const val DEFAULT_RACING_CAR_NAME = "Anonymous"
     }
 }

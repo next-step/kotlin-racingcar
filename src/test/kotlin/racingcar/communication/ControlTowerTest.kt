@@ -5,8 +5,8 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import racingcar.communication.ControlTower.judgeTheWinnersNames
-import racingcar.communication.ControlTower.judgeTheWinningRecord
+import racingcar.util.ControlTower.judgeTheWinnersNames
+import racingcar.util.ControlTower.judgeTheWinningRecord
 import racingcar.domain.cars.RacingCar
 import racingcar.domain.racing.RacingDistance
 import java.util.stream.Stream

@@ -1,9 +1,9 @@
-package racingcar.domain
+package racingcar.controller
 
-import racingcar.communication.ControlTower.judgeTheWinnersNames
-import racingcar.communication.ControlTower.judgeTheWinningRecord
-import racingcar.communication.output.Output
-import racingcar.communication.output.OutputConsole
+import racingcar.util.ControlTower.judgeTheWinnersNames
+import racingcar.util.ControlTower.judgeTheWinningRecord
+import racingcar.view.output.Output
+import racingcar.view.output.OutputConsole
 import racingcar.domain.cars.RacingCar
 import racingcar.domain.cars.RacingCars
 import racingcar.domain.engine.Engine

@@ -8,8 +8,10 @@ object Validation {
             throw IllegalArgumentException(INVALID_CAR_NAME_ERROR_MESSAGE)
         }
 
-        val correctCarsNames = carsNames.asSequence()
-            .filter { name -> name.trim().isNotEmpty() }
+        val correctCarsNames = carsNames
+            .filter { name ->
+                name.trim().isNotEmpty()
+            }
             .toList()
 
         if (correctCarsNames.size != carsNames.size) {
