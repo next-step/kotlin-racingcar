@@ -7,7 +7,10 @@ import racingcar.domain.cars.RacingCar
 object Pit {
     fun courseInRacingCars(input: Input, output: Output): List<RacingCar> {
         output.numberOfCarsNames()
-        val racingCarsNames = input.racingCarsNames().map { it.trim() }
-        return racingCarsNames.map { RacingCar(name = it) }
+        return input.racingCarsNames()
+            .asSequence()
+            .map { it.trim() }
+            .map { RacingCar(name = it) }
+            .toList()
     }
 }
