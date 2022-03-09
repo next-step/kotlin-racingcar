@@ -3,15 +3,15 @@ package racingcar.domain
 class Cars(carNames: List<String>) : List<Car> by (carNames.map { name -> Car(name) }) {
 
     fun winners(attemptCount: Int): List<Car> {
-        val maxPosition = map { car -> car.currentPosition(attemptCount) }.maxOrNull()
-        return filter { car -> car.currentPosition(attemptCount) == maxPosition }
+        val maxPosition = maxOfOrNull { it.currentPosition(attemptCount) }
+        return filter { it.currentPosition(attemptCount) == maxPosition }
     }
 
     fun moveOrStopAll(shouldMove: () -> Boolean) {
-        forEach { car -> car.moveOrStop(shouldMove()) }
+        forEach { it.moveOrStop(shouldMove()) }
     }
 
     fun results(attempt: Int): List<CarPositionDto> {
-        return map { car -> CarPositionDto(car.name, car.currentPosition(attempt)) }
+        return map { CarPositionDto(it.name, it.currentPosition(attempt)) }
     }
 }
