@@ -1,10 +1,13 @@
 package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Assertions.assertAll
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+import java.util.stream.Stream
 
 internal class CarTest {
 
@@ -28,16 +31,21 @@ internal class CarTest {
         assertThrows<IllegalArgumentException> { Car("가나다라마바") }
     }
 
-    @Test
-    internal fun `자동차는 포지션이 있어야한다`() {
+    @ParameterizedTest
+    @MethodSource("provideCarPosition")
+    internal fun `자동차는 포지션이 있어야한다`(shouldMove: Boolean, expectedPosition: Int) {
         val car = Car("test")
-        car.moveOrStop(shouldMove = true)
-        car.moveOrStop(shouldMove = false)
-        car.moveOrStop(shouldMove = true)
-        assertAll(
-            { assertEquals(1, car.currentPosition(1)) },
-            { assertEquals(1, car.currentPosition(2)) },
-            { assertEquals(2, car.currentPosition(3)) },
-        )
+        car.moveOrStop(shouldMove = shouldMove)
+        assertEquals(expectedPosition, car.currentPosition(attempt = 1))
+    }
+
+    companion object {
+        @JvmStatic
+        private fun provideCarPosition(): Stream<Arguments?>? {
+            return Stream.of(
+                Arguments.of(true, 1),
+                Arguments.of(false, 0),
+            )
+        }
     }
 }
