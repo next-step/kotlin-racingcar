@@ -1,6 +1,8 @@
 package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions.assertAll
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -32,8 +34,10 @@ internal class CarTest {
         car.moveOrStop(shouldMove = true)
         car.moveOrStop(shouldMove = false)
         car.moveOrStop(shouldMove = true)
-        assertThat(car.currentPosition(1)).isEqualTo(1)
-        assertThat(car.currentPosition(2)).isEqualTo(1)
-        assertThat(car.currentPosition(3)).isEqualTo(2)
+        assertAll(
+            { assertEquals(1, car.currentPosition(1)) },
+            { assertEquals(1, car.currentPosition(2)) },
+            { assertEquals(2, car.currentPosition(3)) },
+        )
     }
 }
