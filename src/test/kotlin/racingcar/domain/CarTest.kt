@@ -36,7 +36,7 @@ internal class CarTest {
     internal fun `자동차는 포지션이 있어야한다`(shouldMove: Boolean, expectedPosition: Int) {
         val car = Car("test")
         car.moveOrStop(shouldMove = shouldMove)
-        assertEquals(expectedPosition, car.currentPosition(attempt = 1))
+        assertEquals(expectedPosition, car.position(attempt = 1))
     }
 
     companion object {

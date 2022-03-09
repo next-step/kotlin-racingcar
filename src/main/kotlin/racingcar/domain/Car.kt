@@ -26,11 +26,13 @@ data class Car(val name: String) {
         }
     }
 
-    fun currentPosition(attempt: Int): Int {
+    fun position(attempt: Int): Int {
         return _history.take(attempt).sumBy {
             if (it == CarAction.MOVE) 1 else 0
         }
     }
+
+    fun currentPosition(): Int = position(_history.size)
 
     companion object {
         private const val MAX_NAME_LENGTH = 5

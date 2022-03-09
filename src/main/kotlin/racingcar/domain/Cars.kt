@@ -2,9 +2,9 @@ package racingcar.domain
 
 class Cars(carNames: List<String>) : List<Car> by (carNames.map { name -> Car(name) }) {
 
-    fun winners(attemptCount: Int): List<Car> {
-        val maxPosition = maxOfOrNull { it.currentPosition(attemptCount) }
-        return filter { it.currentPosition(attemptCount) == maxPosition }
+    fun winners(): List<Car> {
+        val maxPosition = maxOfOrNull { it.currentPosition() }
+        return filter { it.currentPosition() == maxPosition }
     }
 
     fun moveOrStopAll(shouldMove: () -> Boolean) {
@@ -12,6 +12,6 @@ class Cars(carNames: List<String>) : List<Car> by (carNames.map { name -> Car(na
     }
 
     fun results(attempt: Int): List<CarPositionDto> {
-        return map { CarPositionDto(it.name, it.currentPosition(attempt)) }
+        return map { CarPositionDto(it.name, it.position(attempt)) }
     }
 }

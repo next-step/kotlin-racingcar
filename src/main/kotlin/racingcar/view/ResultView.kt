@@ -26,7 +26,7 @@ class ResultView(private val cars: Cars) {
     }
 
     private fun printWinner() {
-        val winners = cars.winners(attemptCount())
+        val winners = cars.winners()
         println("${winners.joinToString(", ") { it.name }}가 최종 우승했습니다.")
     }
 }

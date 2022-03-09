@@ -17,7 +17,7 @@ internal class CarsTest {
         cars[0].moveOrStop(shouldMove = true)
         cars[1].moveOrStop(shouldMove = true)
         cars[2].moveOrStop(shouldMove = false)
-        assertThat(cars.winners(1))
+        assertThat(cars.winners())
             .containsExactly(Car("가"), Car("나"))
     }
 
@@ -26,11 +26,11 @@ internal class CarsTest {
         val cars = Cars(listOf("가", "나", "다"))
         assertThat(cars.apply { moveOrStopAll { false } })
             .allSatisfy {
-                assertThat(it.currentPosition(1)).isEqualTo(0)
+                assertThat(it.position(1)).isEqualTo(0)
             }
         assertThat(cars.apply { moveOrStopAll { true } })
             .allSatisfy {
-                assertThat(it.currentPosition(2)).isEqualTo(1)
+                assertThat(it.position(2)).isEqualTo(1)
             }
     }
 
