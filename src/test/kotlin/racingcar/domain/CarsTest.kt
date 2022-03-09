@@ -24,14 +24,14 @@ internal class CarsTest {
     @Test
     internal fun `moveOrStopAll 테스트`() {
         val cars = Cars(listOf("가", "나", "다"))
-        cars.moveOrStopAll { false }
-        cars.forEach { car ->
-            assertThat(car.currentPosition(1)).isEqualTo(0)
-        }
-        cars.moveOrStopAll { true }
-        cars.forEach { car ->
-            assertThat(car.currentPosition(2)).isEqualTo(1)
-        }
+        assertThat(cars.apply { moveOrStopAll { false } })
+            .allSatisfy {
+                assertThat(it.currentPosition(1)).isEqualTo(0)
+            }
+        assertThat(cars.apply { moveOrStopAll { true } })
+            .allSatisfy {
+                assertThat(it.currentPosition(2)).isEqualTo(1)
+            }
     }
 
     @Test
