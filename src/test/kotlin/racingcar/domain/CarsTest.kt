@@ -33,21 +33,4 @@ internal class CarsTest {
                 assertThat(it.position(2)).isEqualTo(1)
             }
     }
-
-    @Test
-    internal fun `results 테스트`() {
-        val cars = Cars(listOf("가", "나", "다"))
-        cars.moveOrStopAll { false }
-        assertThat(cars.results(1)).containsExactly(
-            CarPositionDto(name = "가", position = 0),
-            CarPositionDto(name = "나", position = 0),
-            CarPositionDto(name = "다", position = 0)
-        )
-        cars.moveOrStopAll { true }
-        assertThat(cars.results(2)).containsExactly(
-            CarPositionDto(name = "가", position = 1),
-            CarPositionDto(name = "나", position = 1),
-            CarPositionDto(name = "다", position = 1)
-        )
-    }
 }

@@ -10,8 +10,4 @@ class Cars(carNames: List<String>) : List<Car> by (carNames.map { name -> Car(na
     fun moveOrStopAll(shouldMove: () -> Boolean) {
         forEach { it.moveOrStop(shouldMove()) }
     }
-
-    fun results(attempt: Int): List<CarPositionDto> {
-        return map { CarPositionDto(it.name, it.position(attempt)) }
-    }
 }
