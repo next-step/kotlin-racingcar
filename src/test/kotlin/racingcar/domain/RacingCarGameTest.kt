@@ -10,23 +10,47 @@ internal class RacingCarGameTest {
 
     @ParameterizedTest
     @MethodSource("provideCarCountAndAttemptCount")
-    internal fun `자동차 수, 총 시도 횟수 테스트`(carCount: Int, attemptCount: Int) {
-        val result = RacingCarGame(Cars(List(carCount) { "test" }))
-            .play(attemptCount = attemptCount, shouldMove = { true })
-        assertThat(result.size).isEqualTo(carCount)
-        result.forEach {
-            assertThat(it.history.size).isEqualTo(attemptCount)
-            assertThat(it.history).isEqualTo(List(attemptCount) { CarAction.MOVE })
+    internal fun `경주 게임은 attemptCount만큼 진행된다`(attemptCount: Int) {
+        val cars = Cars(
+            cars = listOf(
+                Car(name = "가", accelerator = MoveCarAccelerator),
+                Car(name = "나", accelerator = MoveCarAccelerator),
+            )
+        )
+        RacingCarGame(
+            cars = cars,
+            attemptCount = attemptCount,
+            onEachRace = {}
+        ).play()
+        assertThat(cars).allSatisfy {
+            assertThat(it.movedDistance()).isEqualTo(attemptCount)
         }
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideCarCountAndAttemptCount")
+    internal fun `경주 게임이 진행될때마다 car가 움직인 거리를 계산할 수 있다`(attemptCount: Int) {
+        val cars = Cars(listOf(Car(name = "가", accelerator = MoveCarAccelerator)))
+        var attemptCounter = 0
+        RacingCarGame(
+            cars = cars,
+            attemptCount = attemptCount,
+            onEachRace = {
+                attemptCounter += 1
+                assertThat(it).allSatisfy { car ->
+                    assertThat(car.movedDistance()).isEqualTo(attemptCounter)
+                }
+            }
+        ).play()
     }
 
     companion object {
         @JvmStatic
         private fun provideCarCountAndAttemptCount(): Stream<Arguments?>? {
             return Stream.of(
-                Arguments.of(0, 0),
-                Arguments.of(3, 5),
-                Arguments.of(10, 20)
+                Arguments.of(1),
+                Arguments.of(3),
+                Arguments.of(10)
             )
         }
     }
