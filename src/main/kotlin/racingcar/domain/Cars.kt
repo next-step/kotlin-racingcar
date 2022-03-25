@@ -1,13 +1,14 @@
 package racingcar.domain
 
-class Cars(carNames: List<String>) : List<Car> by (carNames.map { name -> Car(name) }) {
+class Cars(private val cars: List<Car>) : List<Car> by cars {
+
+    constructor(carNames: CarNames) : this(carNames.mapToCar())
 
     fun winners(): List<Car> {
-        val maxPosition = maxOfOrNull { it.currentPosition() }
-        return filter { it.currentPosition() == maxPosition }
+        return listOf()
     }
 
-    fun moveOrStopAll(shouldMove: () -> Boolean) {
-        forEach { it.moveOrStop(shouldMove()) }
+    fun race() {
+        
     }
 }
