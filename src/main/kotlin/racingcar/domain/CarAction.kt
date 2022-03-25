@@ -1,6 +1,6 @@
 package racingcar.domain
 
-enum class CarAction {
+enum class CarAction(val distance: Int) {
 
-    MOVE, STOP
+    MOVE(distance = 1), STOP(distance = 0);
 }
