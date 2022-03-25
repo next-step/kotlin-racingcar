@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.car
 
 data class CarPosition(private var position: Int = 0) {
 

@@ -1,4 +1,6 @@
-package racingcar.domain
+package racingcar.domain.car
+
+import racingcar.domain.racing.RacingCarAccelerator
 
 data class Car(
     val name: String,

@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.car
 
 data class CarNames(private val names: List<String>) {
 

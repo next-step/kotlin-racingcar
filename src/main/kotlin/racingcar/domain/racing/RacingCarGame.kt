@@ -1,4 +1,7 @@
-package racingcar.domain
+package racingcar.domain.racing
+
+import racingcar.domain.car.CarNames
+import racingcar.domain.car.Cars
 
 class RacingCarGame(
     private val cars: Cars,

@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.domain.CarNames
+import racingcar.domain.car.CarNames
 
 class InputView {
 
