@@ -1,40 +1,15 @@
 package racingcar.domain
 
-data class Car(val name: String) {
+data class Car(
+    val name: String,
+    val accelerator: CarAccelerator = RacingCarAccelerator()
+) {
 
-    init {
-        require(name.length <= MAX_NAME_LENGTH)
+    fun drive() {
+
     }
 
-    private val _history = mutableListOf<CarAction>()
-    val history: List<CarAction>
-        get() = _history
-
-    private fun move() {
-        _history.add(CarAction.MOVE)
-    }
-
-    private fun stop() {
-        _history.add(CarAction.STOP)
-    }
-
-    fun moveOrStop(shouldMove: Boolean) {
-        if (shouldMove) {
-            move()
-        } else {
-            stop()
-        }
-    }
-
-    fun position(attempt: Int): Int {
-        return _history.take(attempt).sumBy {
-            if (it == CarAction.MOVE) 1 else 0
-        }
-    }
-
-    fun currentPosition(): Int = position(_history.size)
-
-    companion object {
-        private const val MAX_NAME_LENGTH = 5
+    fun movedDistance(): Int {
+        return 0
     }
 }
