@@ -5,11 +5,19 @@ data class Car(
     val accelerator: CarAccelerator = RacingCarAccelerator()
 ) {
 
-    fun drive() {
-
+    init {
+        require(name.length <= MAX_NAME_LENGTH)
     }
 
-    fun movedDistance(): Int {
-        return 0
+    private val position: CarPosition = CarPosition()
+
+    fun drive() {
+        position.applyAction(carAction = accelerator.trigger())
+    }
+
+    fun movedDistance(): Int = position.get()
+
+    companion object {
+        private const val MAX_NAME_LENGTH = 5
     }
 }
