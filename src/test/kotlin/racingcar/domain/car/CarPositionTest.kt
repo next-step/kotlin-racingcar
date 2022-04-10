@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
 internal class CarPositionTest {
 
@@ -25,8 +24,8 @@ internal class CarPositionTest {
 
     companion object {
         @JvmStatic
-        private fun provideCarActionPosition(): Stream<Arguments?>? {
-            return Stream.of(
+        private fun provideCarActionPosition(): List<Arguments> {
+            return listOf(
                 Arguments.of(CarAction.STOP, 0),
                 Arguments.of(CarAction.MOVE, 1),
             )
