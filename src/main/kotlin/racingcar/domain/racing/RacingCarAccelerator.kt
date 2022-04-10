@@ -5,10 +5,12 @@ import racingcar.domain.car.CarAction
 
 class RacingCarAccelerator : CarAccelerator {
 
-    override fun trigger(): CarAction {
-        return if (MOVE_CONDITION.random() >= MOVE_CONDITION_STANDARD) CarAction.MOVE
-        else CarAction.STOP
-    }
+    override fun trigger(): CarAction =
+        if (MOVE_CONDITION.random() >= MOVE_CONDITION_STANDARD) {
+            CarAction.MOVE
+        } else {
+            CarAction.STOP
+        }
 
     companion object {
         private const val MOVE_CONDITION_START = 0
