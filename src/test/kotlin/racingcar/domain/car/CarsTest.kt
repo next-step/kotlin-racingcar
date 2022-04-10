@@ -20,11 +20,11 @@ internal class CarsTest {
             )
         )
         assertThat(cars).allSatisfy {
-            assertThat(it.movedDistance()).isEqualTo(0)
+            assertThat(it.movedDistance).isEqualTo(0)
         }
         cars.race()
         assertThat(cars).allSatisfy {
-            assertThat(it.movedDistance()).isEqualTo(1)
+            assertThat(it.movedDistance).isEqualTo(1)
         }
     }
 

@@ -24,7 +24,7 @@ internal class RacingCarGameTest {
             onEachRace = {}
         ).play()
         assertThat(cars).allSatisfy {
-            assertThat(it.movedDistance()).isEqualTo(attemptCount)
+            assertThat(it.movedDistance).isEqualTo(attemptCount)
         }
     }
 
@@ -39,7 +39,7 @@ internal class RacingCarGameTest {
             onEachRace = {
                 attemptCounter += 1
                 assertThat(it).allSatisfy { car ->
-                    assertThat(car.movedDistance()).isEqualTo(attemptCounter)
+                    assertThat(car.movedDistance).isEqualTo(attemptCounter)
                 }
             }
         ).play()

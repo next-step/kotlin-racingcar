@@ -20,6 +20,6 @@ class ResultView {
     }
 
     private fun printCar(car: Car) {
-        println("${car.name} : ${"-".repeat(car.movedDistance())}")
+        println("${car.name} : ${"-".repeat(car.movedDistance)}")
     }
 }

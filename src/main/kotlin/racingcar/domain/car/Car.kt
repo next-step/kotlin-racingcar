@@ -9,6 +9,9 @@ data class Car(
 
     private val position: CarPosition = CarPosition()
 
+    val movedDistance: Int
+        get() = position.get()
+
     init {
         require(name.length <= MAX_NAME_LENGTH)
     }
@@ -16,8 +19,6 @@ data class Car(
     fun drive() {
         position.applyAction(carAction = accelerator.trigger())
     }
-
-    fun movedDistance(): Int = position.get()
 
     companion object {
         private const val MAX_NAME_LENGTH = 5
