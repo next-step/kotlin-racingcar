@@ -6,7 +6,6 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
 internal class CarTest {
 
@@ -31,10 +30,10 @@ internal class CarTest {
 
     companion object {
         @JvmStatic
-        private fun provideCarAcceleratorPosition(): Stream<Arguments?>? {
-            return Stream.of(
-                Arguments.of(StopCarAccelerator, 0),
-                Arguments.of(MoveCarAccelerator, 1),
+        private fun provideCarAcceleratorPosition(): List<Arguments> {
+            return listOf(
+                Arguments.of(CarAccelerator { CarAction.STOP }, 0),
+                Arguments.of(CarAccelerator { CarAction.MOVE }, 1),
             )
         }
     }

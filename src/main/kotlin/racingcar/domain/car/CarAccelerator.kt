@@ -1,6 +1,6 @@
 package racingcar.domain.car
 
-interface CarAccelerator {
+fun interface CarAccelerator {
 
     fun trigger(): CarAction
 }

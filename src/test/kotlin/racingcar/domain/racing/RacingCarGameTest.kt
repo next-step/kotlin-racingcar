@@ -4,8 +4,8 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import racingcar.domain.car.Car
+import racingcar.domain.car.CarAction
 import racingcar.domain.car.Cars
-import racingcar.domain.car.MoveCarAccelerator
 
 internal class RacingCarGameTest {
 
@@ -14,8 +14,8 @@ internal class RacingCarGameTest {
     internal fun `경주 게임은 attemptCount만큼 진행된다`(attemptCount: Int) {
         val cars = Cars(
             cars = listOf(
-                Car(name = "가", accelerator = MoveCarAccelerator),
-                Car(name = "나", accelerator = MoveCarAccelerator),
+                Car(name = "가", accelerator = { CarAction.MOVE }),
+                Car(name = "나", accelerator = { CarAction.MOVE }),
             )
         )
         RacingCarGame(
@@ -31,7 +31,7 @@ internal class RacingCarGameTest {
     @ParameterizedTest
     @ValueSource(ints = [1, 3, 10])
     internal fun `경주 게임이 진행될때마다 car가 움직인 거리를 계산할 수 있다`(attemptCount: Int) {
-        val cars = Cars(listOf(Car(name = "가", accelerator = MoveCarAccelerator)))
+        val cars = Cars(listOf(Car(name = "가", accelerator = { CarAction.MOVE })))
         var attemptCounter = 0
         RacingCarGame(
             cars = cars,
