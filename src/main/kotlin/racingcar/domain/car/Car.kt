@@ -7,11 +7,11 @@ data class Car(
     val accelerator: CarAccelerator = RacingCarAccelerator()
 ) {
 
+    private val position: CarPosition = CarPosition()
+
     init {
         require(name.length <= MAX_NAME_LENGTH)
     }
-
-    private val position: CarPosition = CarPosition()
 
     fun drive() {
         position.applyAction(carAction = accelerator.trigger())
