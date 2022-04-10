@@ -2,7 +2,7 @@ package racingcar.domain.car
 
 import racingcar.domain.racing.RacingCarAccelerator
 
-data class Car(
+class Car(
     val name: String,
     val accelerator: CarAccelerator = RacingCarAccelerator()
 ) {
