@@ -4,26 +4,24 @@ import racingcar.domain.car.CarNames
 import racingcar.domain.car.Cars
 
 class RacingCarGame(
-    private val cars: Cars,
-    private val attemptCount: Int,
-    private val onEachRace: (Cars) -> Unit
+    private val originalCars: Cars,
+    private val attemptCount: Int
 ) {
 
     constructor(
         carNames: CarNames,
-        attemptCount: Int,
-        onEachRace: (Cars) -> Unit
+        attemptCount: Int
     ) : this(
-        cars = Cars(carNames.mapToCar()),
-        attemptCount = attemptCount,
-        onEachRace = onEachRace,
+        originalCars = Cars(carNames.mapToCar()),
+        attemptCount = attemptCount
     )
 
-    fun play(): Cars {
+    fun play(): CarsHistory {
+        val history = CarsHistory()
         repeat(attemptCount) {
-            cars.race()
-            onEachRace(cars)
+            val racedCars = (history.latest ?: originalCars).race()
+            history.add(racedCars)
         }
-        return cars
+        return history
     }
 }

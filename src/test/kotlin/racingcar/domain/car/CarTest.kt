@@ -24,8 +24,8 @@ internal class CarTest {
     @MethodSource("provideCarAcceleratorPosition")
     internal fun `자동차는 사용하는 악셀에 따라 움직인 거리가 달라진다`(accelerator: CarAccelerator, expectedPosition: Int) {
         val car = Car(name = "test", accelerator = accelerator)
-        car.drive()
-        assertThat(car.movedDistance).isEqualTo(expectedPosition)
+        val drivenCar = car.drive()
+        assertThat(drivenCar.movedDistance).isEqualTo(expectedPosition)
     }
 
     companion object {
