@@ -12,7 +12,7 @@ class CarsHistory(_carsHistory: List<Cars>) {
     val maxDrivenCars: List<Car>
         get() {
             val maxPosition = maxPosition
-            return latest?.filter { it.movedDistance == maxPosition } ?: listOf()
+            return latest?.filter { it.movedDistance == maxPosition } ?: emptyList()
         }
 
     private val maxPosition: Int get() = latest?.maxOf { it.movedDistance } ?: 0

@@ -11,17 +11,17 @@ internal class CarsHistoryTest {
     @Test
     internal fun `자동차가 움직인 히스토리를 동적으로 추가할 수 있다`() {
         val carsHistory = CarsHistory()
-        val cars = Cars(listOf())
+        val cars = Cars(emptyList())
         carsHistory.add(cars)
         assertThat(carsHistory.latest).isEqualTo(cars)
     }
 
     @Test
     internal fun `자동차의 마지막 히스토리를 가져올 수 있다`() {
-        val latestCar = Cars(listOf())
+        val latestCar = Cars(emptyList())
         val carsHistory = CarsHistory(
             listOf(
-                Cars(listOf()),
+                Cars(emptyList()),
                 latestCar
             )
         )
