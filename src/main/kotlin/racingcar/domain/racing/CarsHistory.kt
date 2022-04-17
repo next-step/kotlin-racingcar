@@ -3,9 +3,9 @@ package racingcar.domain.racing
 import racingcar.domain.car.Car
 import racingcar.domain.car.Cars
 
-class CarsHistory(_carsHistory: List<Cars>) {
+class CarsHistory(carsHistory: List<Cars>) {
 
-    private val _carsHistory: MutableList<Cars> = _carsHistory.toMutableList()
+    private val _carsHistory: MutableList<Cars> = carsHistory.toMutableList()
     val carsHistory: List<Cars> get() = _carsHistory
 
     val latest: Cars? get() = carsHistory.lastOrNull()
