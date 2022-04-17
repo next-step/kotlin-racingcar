@@ -2,9 +2,7 @@ package racingcar.domain.racing
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import racingcar.domain.car.Car
-import racingcar.domain.car.CarAction
-import racingcar.domain.car.Cars
+import racingcar.domain.car.*
 
 internal class CarsHistoryTest {
 
@@ -30,16 +28,15 @@ internal class CarsHistoryTest {
 
     @Test
     internal fun `가장 멀리 간 자동차를 알 수 있다`() {
-        val maxDrivenCar = Car(name = "가", accelerator = { CarAction.MOVE })
         val cars = Cars(
             cars = listOf(
-                maxDrivenCar,
-                Car(name = "나", accelerator = { CarAction.STOP }),
+                Car(name = "가", accelerator = Ignore(), position = CarPosition(10)),
+                Car(name = "나", accelerator = Ignore(), position = CarPosition(0)),
             )
         )
         val carsHistory = CarsHistory(listOf(cars))
         assertThat(carsHistory.maxDrivenCars).allSatisfy {
-            assertThat(it.movedDistance).isEqualTo(maxDrivenCar.movedDistance)
+            assertThat(it.name).isEqualTo("가")
         }
     }
 }
