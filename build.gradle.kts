@@ -1,7 +1,7 @@
 plugins {
     java
     kotlin("jvm") version "1.6.10"
-    id("org.jlleitschuh.gradle.ktlint") version "9.3.0"
+    id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
 }
 
 group = "camp.nextstep.edu"
