@@ -19,7 +19,7 @@ internal class WinnersTest {
                 Car(name = "다", accelerator = { CarAction.STOP }),
             )
         ).race()
-        assertThat(Winners(CarsHistory(mutableListOf(cars)))).allSatisfy {
+        assertThat(Winners(CarsHistory(listOf(cars))).find()).allSatisfy {
             assertThat(it.movedDistance).isEqualTo(WINNER_MOVED_DISTANCE)
         }
     }

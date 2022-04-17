@@ -3,7 +3,6 @@ package racingcar.view
 import racingcar.domain.car.Car
 import racingcar.domain.car.Cars
 import racingcar.domain.racing.CarsHistory
-import racingcar.domain.racing.Winners
 
 class ResultView {
 

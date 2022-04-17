@@ -13,14 +13,14 @@ internal class CarsHistoryTest {
         val carsHistory = CarsHistory()
         val cars = Cars(listOf())
         carsHistory.add(cars)
-        assertThat(carsHistory).containsExactly(cars)
+        assertThat(carsHistory.latest).isEqualTo(cars)
     }
 
     @Test
     internal fun `자동차의 마지막 히스토리를 가져올 수 있다`() {
         val latestCar = Cars(listOf())
         val carsHistory = CarsHistory(
-            mutableListOf(
+            listOf(
                 Cars(listOf()),
                 latestCar
             )
@@ -37,7 +37,7 @@ internal class CarsHistoryTest {
                 Car(name = "나", accelerator = { CarAction.STOP }),
             )
         )
-        val carsHistory = CarsHistory(mutableListOf(cars))
+        val carsHistory = CarsHistory(listOf(cars))
         assertThat(carsHistory.maxDrivenCars).allSatisfy {
             assertThat(it.movedDistance).isEqualTo(maxDrivenCar.movedDistance)
         }
