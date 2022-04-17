@@ -16,5 +16,8 @@ fun main() {
     )
     val carsHistory: CarsHistory = game.play()
     val winners = Winners(carsHistory)
-    ResultView().printResult(carsHistory = carsHistory, winners = winners.find())
+    ResultView().printResult(
+        carsHistory = carsHistory.carsHistory,
+        winners = winners.find()
+    )
 }

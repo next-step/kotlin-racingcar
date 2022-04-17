@@ -2,17 +2,16 @@ package racingcar.view
 
 import racingcar.domain.car.Car
 import racingcar.domain.car.Cars
-import racingcar.domain.racing.CarsHistory
 
 class ResultView {
 
-    fun printResult(carsHistory: CarsHistory, winners: List<Car>) {
+    fun printResult(carsHistory: List<Cars>, winners: List<Car>) {
         printTitle()
         printCarsHistory(carsHistory)
         printWinners(winners)
     }
 
-    private fun printCarsHistory(carsHistory: CarsHistory) {
+    private fun printCarsHistory(carsHistory: List<Cars>) {
         carsHistory.forEach(::printEachTurn)
     }
 

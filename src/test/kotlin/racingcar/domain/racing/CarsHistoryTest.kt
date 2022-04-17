@@ -14,7 +14,7 @@ internal class CarsHistoryTest {
         val carsHistory = CarsHistory()
         val cars = Cars(emptyList())
         carsHistory.add(cars)
-        assertThat(carsHistory.latest).isEqualTo(cars)
+        assertThat(carsHistory.carsHistory).containsExactly(cars)
     }
 
     @Test
