@@ -2,7 +2,7 @@ package racingcar.domain.racing
 
 import racingcar.domain.car.Car
 
-class Winners(private val winners: List<Car>) : List<Car> by winners {
+class Winners(private val carsHistory: CarsHistory) {
 
-    constructor(carsHistory: CarsHistory) : this(carsHistory.maxDrivenCars)
+    fun find(): List<Car> = carsHistory.maxDrivenCars
 }

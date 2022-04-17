@@ -7,7 +7,7 @@ import racingcar.domain.racing.Winners
 
 class ResultView {
 
-    fun printResult(carsHistory: CarsHistory, winners: Winners) {
+    fun printResult(carsHistory: CarsHistory, winners: List<Car>) {
         printTitle()
         printCarsHistory(carsHistory)
         printWinners(winners)
