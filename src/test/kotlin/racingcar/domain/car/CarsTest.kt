@@ -22,8 +22,8 @@ internal class CarsTest {
         assertThat(cars).allSatisfy {
             assertThat(it.movedDistance).isEqualTo(0)
         }
-        cars.race()
-        assertThat(cars).allSatisfy {
+        val racedCars = cars.race()
+        assertThat(racedCars).allSatisfy {
             assertThat(it.movedDistance).isEqualTo(1)
         }
     }

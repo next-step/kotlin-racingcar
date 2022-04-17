@@ -17,8 +17,7 @@ internal class CarPositionTest {
     @ParameterizedTest
     @MethodSource("provideCarActionPosition")
     internal fun `CarPosition에 action을 적용하여 position에 영향을 줄 수 있다`(carAction: CarAction, expectedPosition: Int) {
-        val carPosition = CarPosition(0)
-        carPosition.applyAction(carAction)
+        val carPosition = CarPosition(0).applyAction(carAction)
         assertThat(carPosition.get()).isEqualTo(expectedPosition)
     }
 
