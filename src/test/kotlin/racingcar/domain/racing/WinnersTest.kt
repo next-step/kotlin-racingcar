@@ -1,6 +1,6 @@
 package racingcar.domain.racing
 
-import org.assertj.core.api.Assertions.*
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import racingcar.domain.car.Car
 import racingcar.domain.car.CarAction
