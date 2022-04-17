@@ -3,7 +3,7 @@ package racingcar.domain.racing
 import racingcar.domain.car.Car
 import racingcar.domain.car.Cars
 
-class CarsHistory(carsHistory: List<Cars>) {
+class CarsHistory(carsHistory: List<Cars> = emptyList()) {
 
     private val _carsHistory: MutableList<Cars> = carsHistory.toMutableList()
     val carsHistory: List<Cars> get() = _carsHistory
@@ -17,8 +17,6 @@ class CarsHistory(carsHistory: List<Cars>) {
         }
 
     private val maxPosition: Int get() = latest?.maxOf { it.movedDistance } ?: 0
-
-    constructor() : this(emptyList())
 
     fun add(cars: Cars) {
         _carsHistory.add(cars)
