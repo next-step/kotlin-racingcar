@@ -7,7 +7,7 @@ class CarsHistory(_carsHistory: List<Cars>) {
 
     private val carsHistory: MutableList<Cars> = _carsHistory.toMutableList()
 
-    val latest: Cars? get() = carsHistory.getOrNull(carsHistory.lastIndex)
+    val latest: Cars? get() = carsHistory.lastOrNull()
 
     val maxDrivenCars: List<Car>
         get() {
