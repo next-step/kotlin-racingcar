@@ -12,8 +12,7 @@ class PersonTest {
             Person(name = "이인동", age = 30, nickname = "austen.lee")
         )
 
-        assertThat(people[0].name).isEqualTo("이인동"
-        )
+        assertThat(people[0].name).isEqualTo("이인동")
         assertThat(people[1].name).isEqualTo("이인동")
         assertThat(people[2].name).isEqualTo("이인동")
     }
