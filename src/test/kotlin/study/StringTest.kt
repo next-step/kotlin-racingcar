@@ -26,5 +26,4 @@ class StringTest {
         assertThat("json"[2]).isEqualTo('o')
     }
 
-    
 }
