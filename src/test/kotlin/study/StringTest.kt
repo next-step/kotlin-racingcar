@@ -26,6 +26,5 @@ class StringTest {
         assertThat("jason"[2]).isEqualTo('s')
         assertThat("jason"[3]).isEqualTo('o')
         assertThat("jason"[4]).isEqualTo('n')
-
     }
 }
