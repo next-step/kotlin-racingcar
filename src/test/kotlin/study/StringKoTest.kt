@@ -10,4 +10,3 @@ class StringKoTest : AnnotationSpec() {
         " ".isEmpty() shouldBe false
     }
 }
-
