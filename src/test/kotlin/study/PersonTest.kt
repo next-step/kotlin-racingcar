@@ -6,6 +6,18 @@ import org.junit.jupiter.api.Test
 class PersonTest {
 
     @Test
+    fun `named arguments`() {
+        val people = listOf(
+            Person("qyu", 34, "큐"),
+            Person("qyu", 34, null),
+            Person("qyu", 34, "큐큐")
+        )
+        assertThat(people[0].name).isEqualTo("qyu")
+        assertThat(people[1].age).isEqualTo(34)
+        assertThat(people[2].nickname).isEqualTo("큐큐")
+    }
+
+    @Test
     fun `널 타입`() {
         val person = Person("qyu", 34, null)
         assertThat(person.name).isEqualTo("qyu")
