@@ -27,7 +27,7 @@ class PersonTest {
     }
 
     @Test
-    fun `기본 인자`(            ) {
+    fun `기본 인자`(                  ) {
         val person = Person("이인동", 30)
         assertThat(person.name).isEqualTo("이인동")
         assertThat(person.age).isEqualTo(30)
