@@ -19,7 +19,7 @@ class PersonTest {
     }
 
     @Test
-    fun `널 타입`(){
+    fun `널 타입`() {
         val person = Person("이인동", 30, null)
         assertThat(person.name).isEqualTo("이인동")
         assertThat(person.age).isEqualTo(30)
