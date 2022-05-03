@@ -19,7 +19,7 @@ class PersonTest {
 
     @Test
     fun `널 타입`() {
-        val person = Person("임석호", null, null)
+        val person = Person("임석호", 29, null)
 
         assertThat(person.name).isEqualTo("임석호")
         assertThat(person.age).isEqualTo(29)
@@ -37,8 +37,8 @@ class PersonTest {
 
     @Test
     fun `데이터 클래스`() {
-        val person1 = Person("임석호", 29, "d000l")
-        val person2 = Person("임석호", 29, "d000l")
+        val person1 = Person("임석호", 29)
+        val person2 = Person("임석호", 29)
         assertThat(person1).isEqualTo(person2)
     }
 }
