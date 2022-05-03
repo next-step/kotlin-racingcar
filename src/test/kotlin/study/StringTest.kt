@@ -25,5 +25,4 @@ class StringTest {
         assertThat("json"[1]).isEqualTo('s')
         assertThat("json"[2]).isEqualTo('o')
     }
-
 }
