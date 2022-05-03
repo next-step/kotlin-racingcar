@@ -1,4 +1,4 @@
-package utils
+package step2.calculator.utils
 
 class CustomStringParser {
 
