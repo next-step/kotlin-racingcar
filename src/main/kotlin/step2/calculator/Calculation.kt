@@ -2,5 +2,9 @@ package step2.calculator
 
 data class Calculation(
     val operator: Operator,
-    val number: Int
+    val number: Double
 )
+
+// infix fun Int.compensate(calculation: Calculation): Int {
+//
+// }
