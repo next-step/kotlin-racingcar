@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.ValueSource
 
 class OperandTests {
 
@@ -35,5 +36,11 @@ class OperandTests {
     @CsvSource("1, 0", "0, 0")
     fun `2개의 피연산자를 나눌 때 0으로 나누면 에러가 발생한다`(n1: Double, n2: Double) {
         assertThrows<IllegalArgumentException> { Operand(n1) / Operand(n2) }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["one", "둘"])
+    fun `숫자가 아닌 문자열이 입력되면 예외가 발생한다`(input: String) {
+        assertThrows<NumberFormatException> { Operand.of(input) }
     }
 }
