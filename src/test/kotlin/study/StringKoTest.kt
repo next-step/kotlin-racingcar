@@ -10,5 +10,6 @@ class StringKoTest : AnnotationSpec(){
         "".isEmpty() shouldBe true
         " ".isEmpty() shouldBe false
         "a".isEmpty() shouldBe false
+        "b".isEmpty() shouldBe false
     }
 }
