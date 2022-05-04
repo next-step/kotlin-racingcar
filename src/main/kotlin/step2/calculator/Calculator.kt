@@ -4,7 +4,7 @@ import step2.calculator.utils.CustomStringParser
 
 class Calculator {
 
-    fun calculate(input: String): Long {
+    fun calculate(input: String?): Long {
         val strings = CustomStringParser.parse(input)
         val token = CustomStringParser.removeEmptyStrings(strings)
 
