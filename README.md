@@ -10,12 +10,12 @@
 ## 도메인 모델
 - `문자열 계산기(StringCalculator)`
   - [ ] 문자열을 입력 받아 사칙 연산을 수행한다.
+- `수식 생성(ExpressionFactory)`
+  - [ ] 문자열을 입력 받아 `수식(Expression)`을 생성할 수 있다.
 - `수식(Expression)`
-  - [ ] 문자열을 입력 받아 `수식(Expression)`을 생성할 수 있다. 
-  - [ ] `수식(Expression)`을 계산할 수 있다.
-- `수식 숫자(ExpressionNumber)`
-  - `수식(Expression)`의 숫자를 반환한다
-  - [ ] 정수형을 반환한다.
+  - `수식(Expression)`은 여러 개의 숫자와 `연산자(Operator)`로 이루어진다.
+  - [ ] 숫자의 개수가 `연산자(Operator)`의 개수보다 1만큼 크지 않은 경우 예외를 발생한다.
+  - [ ] 식을 계산할 수 있다.
 - `연산자(Operator)`
   - [X] 연산자 기호가 없는 경우 예외가 발생한다.
   - [X] 연산자 기호를 통해 연산자를 찾을 수 있다. 
