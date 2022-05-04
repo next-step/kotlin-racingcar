@@ -1,5 +1,10 @@
 package step2
 
-fun main() {
+import step2.inspector.mustNot
 
+fun main() {
+    val expression = readlnOrNull()
+    mustNot {
+        expression.isNullOrBlank()
+    }
 }
