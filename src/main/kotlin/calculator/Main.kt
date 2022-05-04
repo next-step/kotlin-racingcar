@@ -1,5 +1,7 @@
 package calculator
 
-fun main() {
+import calculator.ui.InputView
 
+fun main() {
+    InputView().readInput()
 }

@@ -1,8 +1,11 @@
 package calculator.domain
 
-import calculator.domain.Operator.*
+import calculator.domain.Operator.DIVIDE
+import calculator.domain.Operator.MINUS
+import calculator.domain.Operator.PLUS
+import calculator.domain.Operator.TIMES
+import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
@@ -32,9 +35,12 @@ class OperatorTests {
     fun `나눗셈 연산자는 입력받은 두 피연산자를 나눌 수 있다`(left: Int, right: Int) {
         assertThat(DIVIDE.operation(Operand.of(left), Operand.of(right))).isEqualTo(Operand(left / right.toDouble()))
     }
+
     @ParameterizedTest
     @ValueSource(strings = ["", " ", "&", "#"])
-    fun `유효하지 않은 연산자인 경우 예외를 발생시킨다`() {
-        assertThrows<IllegalArgumentException> { Operator.of("") }
+    fun `유효하지 않은 연산자인 경우 예외를 발생시킨다`(symbol: String) {
+        Assertions.assertThatThrownBy { Operator.of(symbol) }
+            .isExactlyInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining("사칙 연산이 아닌 연산자는 지원하지 않습니다")
     }
 }

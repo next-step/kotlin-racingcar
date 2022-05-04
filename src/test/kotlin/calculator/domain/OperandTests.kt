@@ -1,7 +1,7 @@
 package calculator.domain
 
+import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
@@ -35,12 +35,16 @@ class OperandTests {
     @ParameterizedTest
     @CsvSource("1, 0", "0, 0")
     fun `2개의 피연산자를 나눌 때 0으로 나누면 에러가 발생한다`(n1: Double, n2: Double) {
-        assertThrows<IllegalArgumentException> { Operand(n1) / Operand(n2) }
+        Assertions.assertThatThrownBy { Operand(n1) / Operand(n2) }
+            .isExactlyInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining("0으로 나눌 수 없습니다")
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["one", "둘"])
     fun `숫자가 아닌 문자열이 입력되면 예외가 발생한다`(input: String) {
-        assertThrows<NumberFormatException> { Operand.of(input) }
+        Assertions.assertThatThrownBy { Operand.of(input) }
+            .isExactlyInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining("숫자로 변환할 수 없는 문자입니다")
     }
 }

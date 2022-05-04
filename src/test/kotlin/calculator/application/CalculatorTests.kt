@@ -2,8 +2,8 @@ package calculator.application
 
 import calculator.domain.Expression
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -22,7 +22,9 @@ class CalculatorTests {
     @Test
     fun `계산기는 0으로 나누는 연산이 포함된 식을 계산하면 예외를 발생시킨다`() {
         val zeroContainedExpression = Expression.of("10/0")
-        assertThrows<IllegalArgumentException> { calculator.calculate(zeroContainedExpression) }
+        assertThatThrownBy { calculator.calculate(zeroContainedExpression) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining("0으로 나눌 수 없습니다")
     }
 
     companion object {

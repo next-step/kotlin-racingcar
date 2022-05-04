@@ -11,11 +11,12 @@ data class Expression(
     }
 
     companion object {
-        private val OPERAND_REGEX = """[\+\-*/]""".toRegex()
-        private val OPERATOR_REGEX = """\d+""".toRegex()
+        private val REMOVE_BLANK_REGEX = """\p{Blank}""".toRegex()
+        private val OPERAND_REGEX = """[^\d\p{LC}]""".toRegex()
+        private val OPERATOR_REGEX = """[\d\p{LC}]""".toRegex()
 
         fun of(input: String): Expression {
-            val blankRemovedInput = input.replace(" ", "")
+            val blankRemovedInput = input.replace(REMOVE_BLANK_REGEX, "")
             val operands = blankRemovedInput.split(OPERAND_REGEX)
                 .filter { it.isNotBlank() }
                 .map { Operand.of(it) }
