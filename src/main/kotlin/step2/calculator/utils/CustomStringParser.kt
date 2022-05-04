@@ -9,6 +9,10 @@ class CustomStringParser {
             return str!!.split(DELIMITER)
         }
 
+        fun removeEmptyStrings(list: List<String>): List<String> {
+            return list.filter { it.isNotBlank() }
+        }
+
         private fun validate(str: String?) {
             if (str.isNullOrBlank()) {
                 throw IllegalArgumentException()

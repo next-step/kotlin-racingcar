@@ -33,4 +33,15 @@ class StringParseTest {
             CustomStringParser.parse(str)
         }.isInstanceOf(IllegalArgumentException::class.java)
     }
+
+    @Test
+    fun `빈 문자열을 제거한다`() {
+        val testList1 = listOf("\t\n")
+        val testList2 = listOf("2","","10")
+        val testList3 = listOf("2","3"," ")
+
+        assertThat(CustomStringParser.removeEmptyStrings(testList1)).isEqualTo(listOf<String>())
+        assertThat(CustomStringParser.removeEmptyStrings(testList2)).isEqualTo(listOf("2","10"))
+        assertThat(CustomStringParser.removeEmptyStrings(testList3)).isEqualTo(listOf("2","3"))
+    }
 }
