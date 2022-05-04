@@ -33,7 +33,7 @@ class OperandTests {
 
     @ParameterizedTest
     @CsvSource("1, 0", "0, 0")
-    fun `0으로 나누면 에러가 발생한다`(n1: Double, n2: Double) {
+    fun `2개의 피연산자를 나눌 때 0으로 나누면 에러가 발생한다`(n1: Double, n2: Double) {
         assertThrows<IllegalArgumentException> { Operand(n1) / Operand(n2) }
     }
 }
