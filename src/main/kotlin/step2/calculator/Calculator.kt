@@ -15,7 +15,17 @@ class Calculator {
         val operator = getOperator(token)
         val (first, second) = Pair(token[FIRST_NUMBER_POSITION_INDEX], token[SECOND_NUMBER_POSITION_INDEX])
 
-        return operator.operate(first, second)
+        val result = operator.operate(first, second)
+
+        if (hasNextOperation(token)) {
+            val leftToken: List<String> = token.subList(NEXT_OPERATOR_START_INDEX, token.size)
+            return _calculate(listOf(result.toString()) + leftToken)
+        }
+        return result
+    }
+
+    private fun hasNextOperation(token: List<String>): Boolean {
+        return token.size > NEXT_OPERATOR_START_INDEX
     }
 
     private fun getOperator(token: List<String>): Operator {
@@ -27,5 +37,7 @@ class Calculator {
 
         private const val FIRST_NUMBER_POSITION_INDEX = 0
         private const val SECOND_NUMBER_POSITION_INDEX = 2
+
+        private const val NEXT_OPERATOR_START_INDEX = 3
     }
 }
