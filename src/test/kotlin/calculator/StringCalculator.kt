@@ -7,7 +7,7 @@ class StringCalculator(private val inputString: String) {
         const val WRONG_OPERATOR_ERROR_MSG = "wrong operator conversion"
     }
 
-    val result: Double by lazy { calculate(inputString) }
+    val result: Double by lazy { calculateExpression(inputString) }
 
     init {
         checkValidExpression(inputString)
@@ -24,7 +24,7 @@ class StringCalculator(private val inputString: String) {
         require(hasWierdInput.not()) { WIERD_OPERATOR_ERROR_MSG }
     }
 
-    private fun calculate(input: String): Double {
+    private fun calculateExpression(input: String): Double {
         val splitedInput = input.split(" ")
 
         var result = splitedInput.first().toDouble()
@@ -33,13 +33,13 @@ class StringCalculator(private val inputString: String) {
             if (Operator.isValidOperator(splitedInput[i])) {
                 operator = splitedInput[i]
             } else {
-                result = calculate(result, operator, splitedInput[i].toDouble())
+                result = calculateExpression(result, operator, splitedInput[i].toDouble())
             }
         }
         return result
     }
 
-    private fun calculate(a: Double, operator: String, b: Double): Double {
+    private fun calculateExpression(a: Double, operator: String, b: Double): Double {
         return when (Operator.getOperatorByStringValue(operator)) {
             Operator.PLUS -> a + b
             Operator.MINUS -> a - b
