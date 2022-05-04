@@ -8,6 +8,5 @@ internal class StringKoTest : AnnotationSpec() {
     @Test
     fun isEmpty() {
         "".isEmpty() shouldBe true
-
     }
 }
