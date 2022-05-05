@@ -1,17 +1,15 @@
 package calculator
 
-class CalculationParameter {
-    var operators: List<Operator> = emptyList<Operator>()
-    var operands: List<Int> = emptyList<Int>()
+class CalculationParameter(expression: String?) {
+    val operators: List<Operator>
+    val operands: List<Int>
 
-    constructor(expression: String?) {
+    init {
         if (expression == null) throw IllegalArgumentException(ErrorMessage.NULL_INPUT_ERROR)
         validateExpression(expression)
-
         operators = OPERATOR_REGEX.findAll(expression).toList().map {
             Operator.stringOf(it.groupValues[0].trim())
         }.toList()
-
         operands = OPERATOR_REGEX.split(expression).map {
             convertStringOperand(it)
         }

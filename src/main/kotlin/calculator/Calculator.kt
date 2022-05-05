@@ -1,7 +1,7 @@
 package calculator
 
 class Calculator(calculationParameter: CalculationParameter) {
-    private val calculationParameter: CalculationParameter = calculationParameter
+    private val calculationParameter = calculationParameter
 
     constructor(stringExpression: String?) : this(CalculationParameter(stringExpression))
 
