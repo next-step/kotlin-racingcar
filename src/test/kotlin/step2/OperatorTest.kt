@@ -22,4 +22,13 @@ class OperatorTest: AnnotationSpec() {
         result shouldBe -1
     }
 
+    @Test
+    fun `*연산자는 두 숫자를 곱셈한다`() {
+        val sut = Operator.MULTIPLY
+
+        val result = sut.evaluate(3, 4)
+
+        result shouldBe 12
+    }
+
 }
