@@ -16,7 +16,7 @@ object StringCalculator {
             }
     }
 
-    private fun calculateRecursive(currentNumber: Long, remainList: List<String>): Long {
+    private tailrec fun calculateRecursive(currentNumber: Long, remainList: List<String>): Long {
         if (remainList.isEmpty()) {
             return currentNumber
         }
