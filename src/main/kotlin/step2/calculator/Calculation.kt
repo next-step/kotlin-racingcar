@@ -1,6 +1,6 @@
 package step2.calculator
 
-class Calculation(
+data class Calculation(
     private val operator: Operator,
     private val number: Double
 ) {
