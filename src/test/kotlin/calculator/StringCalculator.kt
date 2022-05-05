@@ -11,17 +11,20 @@ class StringCalculator(private val inputString: String) {
 
     init {
         checkValidExpression(inputString)
+        checkValidOperator(inputString)
     }
 
-    private fun checkValidExpression(input: String) {
-        require(input.isNotBlank()) { BLANK_ERROR_MSG }
-
+    private fun checkValidOperator(input: String) {
         val splitedInput = input.split(" ")
         val isCorrectInput = splitedInput.all {
             it.toIntOrNull() != null || Operator.isValidOperator(it)
         }
 
         require(isCorrectInput) { WIERD_OPERATOR_ERROR_MSG }
+    }
+
+    private fun checkValidExpression(input: String) {
+        require(input.isNotBlank()) { BLANK_ERROR_MSG }
     }
 
     private fun calculateExpression(input: String): Double {
