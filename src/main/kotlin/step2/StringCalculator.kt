@@ -19,14 +19,14 @@ class StringCalculator {
     fun startCalculate(input: String?): Int {
         if (input.isNullOrBlank()) throw IllegalArgumentException(ErrorMessage.IS_NULL_OR_BLANK)
 
-        val inputList = splitBySeparator(input)
+        val inputList = splitByDelimiter(input)
         if (inputList.size % 2 == 0) throw IllegalArgumentException(ErrorMessage.NOT_MATCH_OPERATORS_AND_OPERANDS)
 
         //첫숫자는 바로 계산하기 위해 저장한다.
         var output = checkEnabledNumber(inputList.first())
         for (index in 1 until inputList.size step 2) {
             output =
-                calculateByOperator(Operator.of(inputList[index]), output, checkEnabledNumber(inputList[index + 1]))
+                calculateByOperator(inputList[index], output, checkEnabledNumber(inputList[index + 1]))
         }
 
         return output
@@ -35,8 +35,8 @@ class StringCalculator {
     /**
      * 문자열을 스페이스로 나눠 List로 돌려주는 메소드.
      */
-    private fun splitBySeparator(input: String): List<String> {
-        return input.split(SEPARATER)
+    private fun splitByDelimiter(input: String): List<String> {
+        return input.split(DELIMITER)
     }
 
     /**
@@ -50,8 +50,8 @@ class StringCalculator {
     /**
      * Operator에 따라 계산한다.
      */
-    private fun calculateByOperator(operator: Operator, operand1: Int, operand2: Int): Int {
-        return when (operator) {
+    private fun calculateByOperator(operator: String, operand1: Int, operand2: Int): Int {
+        return when (Operator.of(operator)) {
             Operator.PLUS -> operand1 + operand2
             Operator.MINUS -> operand1 - operand2
             Operator.MULTIPLY -> operand1 * operand2
@@ -60,6 +60,6 @@ class StringCalculator {
     }
 
     companion object {
-        private const val SEPARATER = " "
+        private const val DELIMITER = " "
     }
 }
