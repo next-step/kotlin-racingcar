@@ -10,7 +10,7 @@ class StringCalculator {
         return expression
             .split(SPACE_DELIMITER)
             .let {
-                calculateRecursive(it[0].toLongOnlyNumber(), it.drop(1))
+                calculateRecursive(it[0].toLong(), it.drop(1))
             }
     }
 
@@ -19,7 +19,7 @@ class StringCalculator {
             return currentNumber
         }
         val operator = Operator.of(remainList[0])
-        val nextNumber = remainList[1].toLongOnlyNumber()
+        val nextNumber = remainList[1].toLong()
 
         return calculateRecursive(operator.operate(currentNumber, nextNumber), remainList.drop(2))
     }
