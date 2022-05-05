@@ -1,12 +1,14 @@
 package calculator
 
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
+import java.util.stream.Stream
 
 class CalculatorTest {
     @ParameterizedTest
@@ -26,11 +28,21 @@ class CalculatorTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = ["1 / 3, 0.3333333333333333", "15 / 31,0.4838709677419355"])
+    @MethodSource("provideStringForDivide")
     fun `나누기 테스트`(input: String, expect: Double) {
         val stringCalculator = StringCalculator()
         val result = stringCalculator.calculateExpression(input)
         assertThat(result).isEqualTo(expect)
+    }
+
+    companion object {
+        @JvmStatic
+        private fun provideStringForDivide(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of("1 / 3", 1 / 3.0),
+                Arguments.of("15 / 31", 15 / 31.0)
+            )
+        }
     }
 
     @ParameterizedTest
