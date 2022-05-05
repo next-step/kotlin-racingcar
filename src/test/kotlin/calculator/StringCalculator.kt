@@ -2,9 +2,8 @@ package calculator
 
 class StringCalculator {
     companion object {
-        const val BLANK_ERROR_MSG = "input string cannot be blank or empty"
-        const val WIERD_OPERATOR_ERROR_MSG = "operator should be one of [+, -, /, *]"
-        const val WRONG_OPERATOR_ERROR_MSG = "wrong operator conversion"
+        private const val BLANK_ERROR_MSG = "input string cannot be blank or empty"
+        private const val WIERD_OPERATOR_ERROR_MSG = "operator should be one of [+, -, /, *]"
     }
 
     private fun checkValidOperator(input: String) {
