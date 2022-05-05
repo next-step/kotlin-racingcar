@@ -85,7 +85,7 @@ class OperatorTest : BehaviorSpec({
 
     given("두 숫자 중 두 번째 수가 0이 주어졌을 때") {
         val first = 6
-        val second =0
+        val second = 0
         `when`("나눗셈 연산을 수행하면") {
             then("예외가 발생한다") {
                 shouldThrow<java.lang.ArithmeticException> {
