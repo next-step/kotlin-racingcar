@@ -25,6 +25,7 @@ enum class Operator(
 
         private const val INVALID_SYMBOL_ERROR_MESSAGE = "사칙 연산 기호가 아닌 값이 전달되었습니다."
 
+        @Throws(IllegalArgumentException::class)
         fun from(symbol: String) = values().find { operator ->
             operator.symbol == symbol
         } ?: throw IllegalArgumentException(INVALID_SYMBOL_ERROR_MESSAGE)

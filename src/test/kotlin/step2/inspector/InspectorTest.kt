@@ -6,7 +6,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
 
-// Todo : JUnit 끝나면 Kotest로도 만들어 보자.
 class InspectorTest {
     @ParameterizedTest
     @NullAndEmptySource

@@ -8,7 +8,9 @@ class ExpressionParser {
         .convertToCalculations()
 
     /**
-     * [2,+,3,*,4,/,2]와 같이 만들어지는 list 앞에 +를 더해줌으로써 '연산자->숫자'가 반복되는 규칙을 부여한다.
+     * expression은 "2 + 3 * 4 / 2"와 같은 형태로 들어 온다.
+     * 이를 split하면 [2,+,3,*,4,/,2] 모양의 list를 얻을 수 있는데,
+     * list 맨 앞에 +를 더해줌으로써 '연산자->숫자'가 반복되는 규칙을 부여한다.
      */
     private fun String.splitToTextSymbolAndNumbers() = listOf(Operator.SYMBOL_PLUS) + this.split(DELIMITER)
 
