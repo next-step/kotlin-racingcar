@@ -24,7 +24,7 @@
 ~~Operation 계산로직 Operator가 담당하게 변경~~  
 ~~린트 체크~~  
 
-메인으로 파일들 이동  
+~~메인으로 파일들 이동~~  
 ~~readLine, readln 차이 알아보고 필요하면 적용~~  
 ~~IllegalArgumentException kotlin에 선언된걸로 사용~~  
 계산로직 operator로 이동하기  
