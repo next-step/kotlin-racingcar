@@ -16,13 +16,12 @@ class Calculator(calculationParameter: CalculationParameter) {
         return result
     }
 
-    private fun getValueByOperator(leftOperand: Double, rightOperand: Double, operator: String): Double {
-        when (operator) {
-            "+" -> return leftOperand + rightOperand
-            "-" -> return leftOperand - rightOperand
-            "*" -> return leftOperand * rightOperand
-            "/" -> return leftOperand / rightOperand
+    private fun getValueByOperator(leftOperand: Double, rightOperand: Double, operator: Operator): Double {
+        return when (operator) {
+            Operator.PLUS -> leftOperand + rightOperand
+            Operator.MINUS -> leftOperand - rightOperand
+            Operator.MULTIPLICATION -> leftOperand * rightOperand
+            Operator.DIVISION -> leftOperand / rightOperand
         }
-        throw Error()
     }
 }

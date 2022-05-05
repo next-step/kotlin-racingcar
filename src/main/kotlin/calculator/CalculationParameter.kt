@@ -1,7 +1,7 @@
 package calculator
 
 class CalculationParameter {
-    var operators: List<String> = emptyList<String>()
+    var operators: List<Operator> = emptyList<Operator>()
     var operands: List<Int> = emptyList<Int>()
 
     constructor(expression: String?) {
@@ -9,7 +9,7 @@ class CalculationParameter {
         validateExpression(expression)
 
         operators = OPERATOR_REGEX.findAll(expression).toList().map {
-            it.groupValues[0]
+            Operator.stringOf(it.groupValues[0].trim())
         }.toList()
 
         operands = OPERATOR_REGEX.split(expression).map {
@@ -18,7 +18,7 @@ class CalculationParameter {
     }
 
     private fun convertStringOperand(stringOperand: String): Int {
-        var result: Int
+        val result: Int
 
         try {
             result = Integer.parseInt(spaceRemove(stringOperand))
@@ -36,7 +36,7 @@ class CalculationParameter {
     fun validateExpression(arithmeticExpression: String) {
         val trimmedExpression = spaceRemove(arithmeticExpression)
 
-        if (trimmedExpression.length === 0) throw IllegalArgumentException(ErrorMessage.SPACE_INPUT_ERROR)
+        if (trimmedExpression.isEmpty()) throw IllegalArgumentException(ErrorMessage.SPACE_INPUT_ERROR)
         if (!EXPRESSION_REGEX.matches(trimmedExpression)) throw IllegalArgumentException(ErrorMessage.OTHER_STRING_INPUT_ERROR)
         val operatorCount = OPERATOR_REGEX.findAll(trimmedExpression).toList().size
         val operandCount = OPERATOR_REGEX.split(trimmedExpression).filter { it.isNotEmpty() }.size
@@ -44,7 +44,7 @@ class CalculationParameter {
     }
 
     private fun isNotMatchOperatorOperandCount(operatorCount: Int, operandCount: Int): Boolean {
-        return operatorCount !== operandCount - 1
+        return operatorCount != operandCount - 1
     }
 
     companion object {
