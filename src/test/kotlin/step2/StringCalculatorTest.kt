@@ -6,7 +6,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.NullSource
 import org.junit.jupiter.params.provider.ValueSource
-import kotlin.IllegalArgumentException as IllegalArgumentException1
 
 class StringCalculatorTest {
 
@@ -14,7 +13,7 @@ class StringCalculatorTest {
     @ValueSource(strings = ["", " ", "    "])
     @ParameterizedTest
     fun `문자열 은 null 이거나 비어있을 수 없다`(expression: String?) {
-        assertThrows<IllegalArgumentException1> { StringCalculator().calculate(expression = expression) }
+        assertThrows<IllegalArgumentException> { StringCalculator().calculate(expression = expression) }
     }
 
     @ParameterizedTest

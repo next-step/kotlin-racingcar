@@ -19,6 +19,6 @@ internal class OperatorTest {
 
     @Test
     fun `사칙연산에 포함되지 않는다면 에러를 발생한다`() {
-        assertThrows<java.lang.IllegalArgumentException> { Operator.of("^") }
+        assertThrows<IllegalArgumentException> { Operator.of("^") }
     }
 }
