@@ -5,7 +5,6 @@ import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.shouldBe
 
 class CalculationTest : AnnotationSpec() {
-    // TODO: 사칙연산 기호가 아닌 경우 IllegalArgumentException 이 발생하는지 확인
 
     @Test
     fun `단순 더하기 테스트`() {
@@ -48,7 +47,7 @@ class CalculationTest : AnnotationSpec() {
     }
 
     @Test
-    fun `입력 값이 null 인 경우`() {
+    fun `입력 값이 null 인 경우 예외 발생`() {
         // Given
         val calculator = StringCalculator()
         // Then
@@ -58,12 +57,22 @@ class CalculationTest : AnnotationSpec() {
     }
 
     @Test
-    fun `입력 값이 공백인 경우`() {
+    fun `입력 값이 공백인 경우 예외 발생`() {
         // Given
         val calculator = StringCalculator()
         // Then
         shouldThrow<IllegalArgumentException> {
             calculator.calculate("")
+        }
+    }
+
+    @Test
+    fun `사직연산이 아닌 기호가 포함되어 있는 경우 예외 발생`() {
+        // Given
+        val calculator = StringCalculator()
+        // Then
+        shouldThrow<IllegalArgumentException> {
+            calculator.calculate("4 / 2 $ 3")
         }
     }
 }

@@ -35,12 +35,12 @@ sealed class Operation(val symbol: String) {
     }
 
     companion object {
-        fun findBySymbol(symbol: String): Operation? = when (symbol) {
+        fun findBySymbol(symbol: String): Operation = when (symbol) {
             Plus.symbol -> Plus
             Minus.symbol -> Minus
             Multiply.symbol -> Multiply
             Divide.symbol -> Divide
-            else -> null
+            else -> throw IllegalArgumentException()
         }
     }
 }
