@@ -69,7 +69,7 @@ class CalculatorTest {
     fun `입력 값이 빈칸인 경우 예외를 던짐`(inputString: String) {
         assertThrows<java.lang.IllegalArgumentException> {
             val stringCalculator = StringCalculator()
-            val result = stringCalculator.calculateExpression(inputString)
+            stringCalculator.calculateExpression(inputString)
         }
     }
 
@@ -78,7 +78,7 @@ class CalculatorTest {
     fun `사칙연산 기호 테스트`(inputString: String) {
         assertThrows<java.lang.IllegalArgumentException> {
             val stringCalculator = StringCalculator()
-            val result = stringCalculator.calculateExpression(inputString)
+            stringCalculator.calculateExpression(inputString)
         }
     }
 }
