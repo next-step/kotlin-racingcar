@@ -35,16 +35,6 @@ class CalculatorTest {
         assertThat(result).isEqualTo(expect)
     }
 
-    companion object {
-        @JvmStatic
-        private fun provideStringForDivide(): Stream<Arguments> {
-            return Stream.of(
-                Arguments.of("1 / 3", 1 / 3.0),
-                Arguments.of("15 / 31", 15 / 31.0)
-            )
-        }
-    }
-
     @ParameterizedTest
     @CsvSource(value = ["1 * 3,3", "15 * 31,465"])
     fun `곱하기 테스트`(input: String, expect: Double) {
@@ -79,6 +69,16 @@ class CalculatorTest {
         assertThrows<IllegalArgumentException> {
             val stringCalculator = StringCalculator()
             stringCalculator.calculateExpression(inputString)
+        }
+    }
+
+    companion object {
+        @JvmStatic
+        private fun provideStringForDivide(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of("1 / 3", 1 / 3.0),
+                Arguments.of("15 / 31", 15 / 31.0)
+            )
         }
     }
 }
