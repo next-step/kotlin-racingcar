@@ -1,6 +1,15 @@
 package calculator
 
-class Operand(val value: Double)
+@JvmInline
+value class Operand(val value: Double) {
+    companion object {
+        fun of(value: String): Operand {
+            return kotlin.runCatching {
+                Operand(value.toDouble())
+            }.getOrElse { throw IllegalArgumentException() }
+        }
+    }
+}
 typealias Result = Operand
 
 sealed class Operation(val symbol: String) {
@@ -43,7 +52,7 @@ class StringCalculator {
 
     fun calculate(expression: String?): Result {
         require(expression != null)
-        require(expression.isNotEmpty())
+        require(expression.isNotBlank())
 
         val (operands: List<Operand>, operations: List<Operation>) = tokenize(expression)
 
@@ -55,7 +64,7 @@ class StringCalculator {
     private fun tokenize(expression: String): Pair<List<Operand>, List<Operation>> {
         val tokenized = expression.split(TOKEN)
         val operands: List<Operand> = tokenized.mapIndexedNotNull { index: Int, s: String ->
-            if (index % 2 == 0) Operand(s.toDouble()) else null
+            if (index % 2 == 0) Operand.of(s) else null
         }
         val operations: List<Operation> = tokenized.mapIndexedNotNull() { index: Int, s: String ->
             if (index % 2 != 0) Operation.findBySymbol(s) else null
