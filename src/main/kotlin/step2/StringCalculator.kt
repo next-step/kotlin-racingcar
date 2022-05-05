@@ -25,6 +25,4 @@ object StringCalculator {
 
         return calculateRecursive(operator.operate(currentNumber, nextNumber), remainList.drop(2))
     }
-
 }
-
