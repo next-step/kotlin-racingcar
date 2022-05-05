@@ -9,9 +9,7 @@ enum class Operator(
     MULTIPLICATION('*', { a, b -> a * b }),
     DIVISION('/', { a, b -> a / b });
 
-    fun operate(a: Int, b: Int): Int {
-        return function.invoke(a, b)
-    }
+    fun operate(a: Int, b: Int) = function.invoke(a, b)
 
     companion object {
         fun of(symbol: Char) = values().first { it.symbol == symbol }
