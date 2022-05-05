@@ -31,4 +31,12 @@ class OperatorTest: AnnotationSpec() {
         result shouldBe 12
     }
 
+    @Test
+    fun `/연산자는 두 숫자를 나눗셈한다`() {
+        val sut = Operator.DIVIDE
+
+        val result = sut.evaluate(4, 2)
+
+        result shouldBe 2
+    }
 }
