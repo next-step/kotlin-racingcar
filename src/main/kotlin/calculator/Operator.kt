@@ -1,15 +1,23 @@
 package calculator
 
-enum class Operator(val stringValue: String) {
-    PLUS("+"),
-    MINUS("-"),
-    DIVIDE("/"),
-    MULTIPLY("*");
+enum class Operator(val stringValue: String, val calcLogic: (a: Double, b: Double) -> Double) {
+    PLUS("+", { a, b ->
+        a + b
+    }),
+    MINUS("-", { a, b ->
+        a - b
+    }),
+    DIVIDE("/", { a, b ->
+        a / b
+    }),
+    MULTIPLY("*", { a, b ->
+        a * b
+    });
 
     companion object {
         private const val WRONG_OPERATOR_ERROR_MSG = "wrong operator conversion"
 
-        fun getOperatorByStringValue(value: String): Operator {
+        private fun getOperatorByStringValue(value: String): Operator {
             return when (value) {
                 PLUS.stringValue -> PLUS
                 MINUS.stringValue -> MINUS
@@ -23,13 +31,8 @@ enum class Operator(val stringValue: String) {
             return values().any { it.stringValue == operator }
         }
 
-        fun calculate(a: Double, operator: String, b: Double): Double {
-            return when (getOperatorByStringValue(operator)) {
-                PLUS -> a + b
-                MINUS -> a - b
-                DIVIDE -> a / b
-                MULTIPLY -> a * b
-            }
+        fun getCalculateLogic(operator: String): (a: Double, b: Double) -> Double {
+            return getOperatorByStringValue(operator).calcLogic
         }
     }
 }
