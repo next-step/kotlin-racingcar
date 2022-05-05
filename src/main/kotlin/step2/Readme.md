@@ -9,14 +9,14 @@
 - 메서드가 너무 많은 일을 하지 않도록 분리하기 위해 노력해 본다.
 
 ## TODO LIST
-- 문자열 입력 받기
-- 숫자와 연산기호 구분하기
-- 사칙연산
-  - 덧셈
-  - 뺄셈
-  - 곱셈
-  - 나눗셈
-- 입력값 예외처리
-  - 입력값이 Null이거나 빈 공백 문자일경우 IllegalArgumentException throw
-  - 사칙연산 기호가 아닌 경우 IllegalArgumentException throw
-- 계산한 결과 출력
+- ~~문자열 입력 받기~~
+- ~~숫자와 연산기호 구분하기~~
+- ~~사칙연산~~
+  - ~~덧셈~~
+  - ~~뺄셈~~
+  - ~~곱셈~~
+  - ~~나눗셈~~
+- ~~입력값 예외처리~~
+  - ~~입력값이 Null이거나 빈 공백 문자일경우 IllegalArgumentException throw~~
+  - ~~사칙연산 기호가 아닌 경우 IllegalArgumentException throw~~
+- ~~계산한 결과 출력~~
