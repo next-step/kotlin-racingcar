@@ -1,9 +1,13 @@
 package calculator
 
+import io.kotest.assertions.throwables.shouldNotThrowAny
+import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.data.forAll
+import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 
-internal class OperatorTest: StringSpec({
+internal class OperatorTest : StringSpec({
     "두 숫자를 더한다" {
         //given
         val firstNumber = 1
@@ -54,5 +58,29 @@ internal class OperatorTest: StringSpec({
 
         //then
         actual shouldBe 5
+    }
+
+    "연산자 기호로 연산자 객체를 찾는다"{
+        forAll(
+            row("+"),
+            row("+"),
+            row("+"),
+            row("+"),
+        ) {
+            //when //then
+            shouldNotThrowAny { Operator.of(it) }
+        }
+    }
+
+    "적절하지 않은 연산자 기호로 연산자 객체를 찾는다"{
+        forAll(
+            row("!"),
+            row("@"),
+            row("#"),
+            row("$"),
+        ) {
+            //when //then
+            shouldThrowExactly<IllegalArgumentException> { Operator.of(it) }
+        }
     }
 })

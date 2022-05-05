@@ -5,5 +5,5 @@
 
 - [ ] 수식을 입력받는 기능 
   - [x] 입력 값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException
-  - [ ] 사칙연산 기호가 아닌 경우 IllegalArgumentException
+  - [x] 사칙연산 기호가 아닌 경우 IllegalArgumentException
 - [x] (더하기, 빼기 , 곱하기, 나누기) 연산 기능 
