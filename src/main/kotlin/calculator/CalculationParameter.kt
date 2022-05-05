@@ -2,7 +2,7 @@ package calculator
 
 class CalculationParameter {
     var operators: List<String> = emptyList<String>()
-    var factors: List<Int> = emptyList<Int>()
+    var operands: List<Int> = emptyList<Int>()
 
     constructor(expression: String?) {
         if (expression == null) throw IllegalArgumentException(ErrorMessage.NULL_INPUT_ERROR)
@@ -12,7 +12,7 @@ class CalculationParameter {
             it.groupValues[0]
         }.toList()
 
-        factors = OPERATOR_REGEX.split(expression).map {
+        operands = OPERATOR_REGEX.split(expression).map {
             convertStringOperand(it)
         }
     }

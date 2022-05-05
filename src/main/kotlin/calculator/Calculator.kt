@@ -6,22 +6,22 @@ class Calculator(calculationParameter: CalculationParameter) {
     constructor(stringExpression: String?) : this(CalculationParameter(stringExpression))
 
     fun getCalculationResult(): Double {
-        var result: Double = calculationParameter.factors[0].toDouble()
+        var result: Double = calculationParameter.operands[0].toDouble()
 
         for ((index, operator) in calculationParameter.operators.withIndex()) {
-            val rightFactor = calculationParameter.factors[index + 1]
-            result = getValueByOperator(result, rightFactor.toDouble(), operator)
+            val rightOperand = calculationParameter.operands[index + 1]
+            result = getValueByOperator(result, rightOperand.toDouble(), operator)
         }
 
         return result
     }
 
-    private fun getValueByOperator(leftFactor: Double, rightFactor: Double, operator: String): Double {
+    private fun getValueByOperator(leftOperand: Double, rightOperand: Double, operator: String): Double {
         when (operator) {
-            "+" -> return leftFactor + rightFactor
-            "-" -> return leftFactor - rightFactor
-            "*" -> return leftFactor * rightFactor
-            "/" -> return leftFactor / rightFactor
+            "+" -> return leftOperand + rightOperand
+            "-" -> return leftOperand - rightOperand
+            "*" -> return leftOperand * rightOperand
+            "/" -> return leftOperand / rightOperand
         }
         throw Error()
     }
