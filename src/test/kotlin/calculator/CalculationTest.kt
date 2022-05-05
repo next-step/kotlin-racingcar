@@ -1,10 +1,11 @@
 package calculator
 
-import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.NullSource
 import org.junit.jupiter.params.provider.ValueSource
 
 class CalculationTest : AnnotationSpec() {
@@ -70,13 +71,14 @@ class CalculationTest : AnnotationSpec() {
         actual.value shouldBe expected
     }
 
-    @Test
-    fun `입력 값이 null 인 경우 예외 발생`() {
+    @ParameterizedTest
+    @NullSource
+    fun `입력 값이 null 인 경우 예외 발생`(input: String?) {
         // Given
         val calculator = StringCalculator()
         // Then
-        shouldThrow<IllegalArgumentException> {
-            calculator.calculate(null)
+        shouldThrowExactly<IllegalArgumentException> {
+            calculator.calculate(input)
         }
     }
 
@@ -86,7 +88,7 @@ class CalculationTest : AnnotationSpec() {
         // Given
         val calculator = StringCalculator()
         // Then
-        shouldThrow<IllegalArgumentException> {
+        shouldThrowExactly<IllegalArgumentException> {
             calculator.calculate(input)
         }
     }
@@ -97,7 +99,7 @@ class CalculationTest : AnnotationSpec() {
         // Given
         val calculator = StringCalculator()
         // Then
-        shouldThrow<IllegalArgumentException> {
+        shouldThrowExactly<IllegalArgumentException> {
             calculator.calculate(input)
         }
     }
