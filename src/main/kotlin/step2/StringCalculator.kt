@@ -1,6 +1,8 @@
 package step2
 
-class StringCalculator {
+object StringCalculator {
+
+    private const val SPACE_DELIMITER = " "
 
     fun calculate(expression: String?): Number {
         if (expression.isNullOrBlank()) {
@@ -24,8 +26,5 @@ class StringCalculator {
         return calculateRecursive(operator.operate(currentNumber, nextNumber), remainList.drop(2))
     }
 
-    companion object {
-        private const val SPACE_DELIMITER = " "
-    }
 }
 

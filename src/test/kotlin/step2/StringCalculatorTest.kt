@@ -13,7 +13,7 @@ class StringCalculatorTest {
     @ValueSource(strings = ["", " ", "    "])
     @ParameterizedTest
     fun `문자열 은 null 이거나 비어있을 수 없다`(expression: String?) {
-        assertThrows<IllegalArgumentException> { StringCalculator().calculate(expression = expression) }
+        assertThrows<IllegalArgumentException> { StringCalculator.calculate(expression = expression) }
     }
 
     @ParameterizedTest(name = "{0} = {1}")
@@ -26,7 +26,6 @@ class StringCalculatorTest {
         delimiter = '='
     )
     fun `문자열 식을 성공적으로 계산한다`(input: String, output: Long) {
-        val calculator = StringCalculator()
-        assertThat(calculator.calculate(input)).isEqualTo(output)
+        assertThat(StringCalculator.calculate(input)).isEqualTo(output)
     }
 }
