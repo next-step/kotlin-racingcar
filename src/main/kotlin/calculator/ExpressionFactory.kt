@@ -1,9 +1,11 @@
 package calculator
 
-class ExpressionFactory {
+class ExpressionFactory(
+    private val separationStrategy: SeparationStrategy
+) {
 
     fun create(expressionText: String): Expression {
-        val splitTexts = expressionText.split(SEPARATOR)
+        val splitTexts = separationStrategy.separate(expressionText)
         val numbers = numbers(splitTexts)
         val operators = operators(splitTexts)
 
@@ -39,9 +41,5 @@ class ExpressionFactory {
         } catch (e: IllegalArgumentException) {
             throw IllegalArgumentException("올바르지 않은 연산자를 입력하였습니다. ($this)")
         }
-    }
-
-    companion object{
-        const val SEPARATOR = " "
     }
 }
