@@ -7,6 +7,13 @@
 예를 들어 "2 + 3 * 4 / 2"와 같은 문자열을 입력할 경우 2 + 3 * 4 / 2 실행 결과인 10을 출력해야 한다.
 
 #TODO LIST
+~~덧셈~~  
+~~뺄셈~~  
+~~곱셈~~  
+~~나눗셈~~  
+~~입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException throw~~  
+~~사칙연산 기호가 아닌 경우 IllegalArgumentException throw~~  
+~~사칙 연산을 모두 포함하는 기능 구현~~  
 ~~CsvSource 사용하기~~  
 ~~테스트 이름 상세하게 표현하기~~  
 ~~assertThrows / assertThatExceptionOfType 차이알아보고 수정하기~~   
