@@ -25,7 +25,7 @@
 ~~린트 체크~~  
 
 메인으로 파일들 이동  
-readLine, readln 차이 알아보고 필요하면 적용  
+~~readLine, readln 차이 알아보고 필요하면 적용~~  
 ~~IllegalArgumentException kotlin에 선언된걸로 사용~~  
 계산로직 operator로 이동하기  
 ~~에러상수 접근한정자제한 및 위치수정~~  
