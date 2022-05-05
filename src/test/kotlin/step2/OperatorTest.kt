@@ -1,5 +1,6 @@
 package step2
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 
@@ -45,6 +46,16 @@ class OperatorTest: DescribeSpec({
             val result = Operator.find(target)
 
             result shouldBe Operator.PLUS
+        }
+
+        it("4칙연산 외 다른 연사자가 입력되면 IllegalArgumentException가 발생한다") {
+            val target = "-"
+
+            val exception = shouldThrow<IllegalArgumentException> {
+                Operator.find(target)
+            }
+
+            exception.message shouldBe "+, -, *, / 외에는 사용할 수 없습니다."
         }
     }
 
