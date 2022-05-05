@@ -7,13 +7,13 @@ class StringCalculatorTest : StringSpec({
     "문자열을 입력 받아 사칙 연산을 수행한다." {
         val stringCalculator = StringCalculator(ExpressionFactory(OneSpaceSeparationStrategy()))
         val parameters = listOf(
-            Pair("2 + 3 * 4 / 2", 10),
-            Pair("2 * 8 / 3 - 5", 0),
-            Pair("3 + 4 - 10 * 8", -24),
+            StringCalculatorFixture("2 + 3 * 4 / 2", 10),
+            StringCalculatorFixture("2 * 8 / 3 - 5", 0),
+            StringCalculatorFixture("3 + 4 - 10 * 8", -24),
         )
 
         parameters.forEach {
-            stringCalculator.calculate(it.first) shouldBe it.second
+            stringCalculator.calculate(it.expression) shouldBe it.expected
         }
     }
 })

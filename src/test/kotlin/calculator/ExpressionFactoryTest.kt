@@ -25,7 +25,7 @@ class ExpressionFactoryTest : StringSpec({
         }
     }
 
-    "올바르지 않은 문자열 입력 시 예외가 발생한다." {
+    "올바르지 않은 수식의 문자열 입력 시 예외가 발생한다." {
         val parameters = listOf(
             "2 + 3 /",
             "2+* 4",
@@ -34,7 +34,7 @@ class ExpressionFactoryTest : StringSpec({
         )
 
         parameters.forEach {
-            shouldThrow<java.lang.IllegalArgumentException> {
+            shouldThrow<IllegalArgumentException> {
                 expressionFactory.create(it)
             }
         }

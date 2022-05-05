@@ -13,14 +13,14 @@ class ExpressionFactory(
     }
 
     private fun numbers(texts: List<String>): List<Int> {
-        return (texts.indices step 2).map {
+        return (texts.indices step TEXT_INTERVAL).map {
             val numberText = texts[it]
             toInt(numberText)
         }
     }
 
     private fun operators(texts: List<String>): List<Operator> {
-        return (1 until texts.size step 2).map {
+        return (1 until texts.size step TEXT_INTERVAL).map {
             val symbolText = texts[it]
             symbolText.toOperator()
         }
@@ -41,5 +41,9 @@ class ExpressionFactory(
         } catch (e: IllegalArgumentException) {
             throw IllegalArgumentException("올바르지 않은 연산자를 입력하였습니다. ($this)")
         }
+    }
+
+    companion object{
+        const val TEXT_INTERVAL = 2
     }
 }

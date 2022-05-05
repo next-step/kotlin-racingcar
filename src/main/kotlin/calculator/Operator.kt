@@ -1,25 +1,28 @@
 package calculator
 
-import java.util.function.BiFunction
-
 enum class Operator(
     private val symbol: String,
-    private val function: BiFunction<Int, Int, Int>
+    private val function: (Int, Int) -> Int
 ) {
     ADDITION("+", { first, second -> first + second }),
     SUBTRACTION("-", { first, second -> first - second }),
     MULTIPLICATION("*", { first, second -> first * second }),
-    DIVISION("/", { first, second -> first / second });
+    DIVISION("/", { first, second ->
+        if (second == 0) {
+            throw IllegalArgumentException("0으로는 나눌 수 없습니다.")
+        }
+        first / second
+    });
 
     fun calculate(first: Int, second: Int): Int {
-        return function.apply(first, second)
+        return function.invoke(first, second)
     }
 
     companion object {
         fun of(symbol: String): Operator {
             return Operator.values()
                 .find { it.symbol == symbol }
-                ?: throw java.lang.IllegalArgumentException("{$symbol}에 일치하는 연산자가 존재하지 않습니다.")
+                ?: throw IllegalArgumentException("{$symbol}에 일치하는 연산자가 존재하지 않습니다.")
         }
     }
 }

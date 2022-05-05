@@ -2,12 +2,16 @@ package calculator
 
 fun main() {
     val stringCalculator = StringCalculator(ExpressionFactory(OneSpaceSeparationStrategy()))
+    val readText = readExpressionText()
+    print(stringCalculator, readText)
+}
 
-    // 입력
+private fun readExpressionText(): String {
     println("수식을 입력해주세요.")
-    val readText = readln()
+    return readln()
+}
 
-    // 출력
+private fun print(stringCalculator: StringCalculator, readText: String) {
     val result = stringCalculator.calculate(readText)
     println("계산 결과: $result")
 }
