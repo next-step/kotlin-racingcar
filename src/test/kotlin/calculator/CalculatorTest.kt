@@ -67,7 +67,7 @@ class CalculatorTest {
     @ParameterizedTest
     @ValueSource(strings = ["", " ", "\n"])
     fun `입력 값이 빈칸인 경우 예외를 던짐`(inputString: String) {
-        assertThrows<java.lang.IllegalArgumentException> {
+        assertThrows<IllegalArgumentException> {
             val stringCalculator = StringCalculator()
             stringCalculator.calculateExpression(inputString)
         }
@@ -76,7 +76,7 @@ class CalculatorTest {
     @ParameterizedTest
     @ValueSource(strings = ["1 = 3", "1 ! 3", "1 @ 3", "1 # 3", "1 @ 3", "1 + 3 + 5 & 10"])
     fun `사칙연산 기호 테스트`(inputString: String) {
-        assertThrows<java.lang.IllegalArgumentException> {
+        assertThrows<IllegalArgumentException> {
             val stringCalculator = StringCalculator()
             stringCalculator.calculateExpression(inputString)
         }
