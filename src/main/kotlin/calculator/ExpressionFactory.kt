@@ -20,13 +20,12 @@ class ExpressionFactory(
     }
 
     private fun operators(texts: List<String>): List<Operator> {
-        return (1 until texts.size step TEXT_INTERVAL).map {
+        return (OPERATOR_START_INDEX until texts.size step TEXT_INTERVAL).map {
             val symbolText = texts[it]
             symbolText.toOperator()
         }
     }
 
-    // TODO: 어떤 때에 때 코틀린의 메서드를 식으로 표현하는 것이 적절할까요?
     private fun toInt(numberText: String) =
         try {
             numberText.toInt()
@@ -34,7 +33,6 @@ class ExpressionFactory(
             throw IllegalArgumentException("올바르지 않은 숫자를 입력하였습니다. ($numberText)")
         }
 
-    // TODO: 어떤 때에 때 확장 함수를 사용하는 것이 적절할까요?
     private fun String.toOperator(): Operator {
         try {
             return Operator.of(this)
@@ -43,7 +41,8 @@ class ExpressionFactory(
         }
     }
 
-    companion object{
-        const val TEXT_INTERVAL = 2
+    companion object {
+        private const val OPERATOR_START_INDEX = 1
+        private const val TEXT_INTERVAL = 2
     }
 }

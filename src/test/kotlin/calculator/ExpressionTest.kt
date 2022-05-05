@@ -2,6 +2,7 @@ package calculator
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 
@@ -24,27 +25,21 @@ class ExpressionTest : StringSpec({
     }
 
     "사칙연산에 대한 연산식을 계산할 수 있다" {
-        val parameters = listOf(
-            ExpressionFixture(
+        listOf(
+            Expression(
                 listOf(2, 4),
-                listOf(Operator.SUBTRACTION),
-                -2
-            ),
-            ExpressionFixture(
+                listOf(Operator.SUBTRACTION)
+            ) to -2,
+            Expression(
                 listOf(2, 4, 5, 6),
                 listOf(Operator.ADDITION, Operator.SUBTRACTION, Operator.MULTIPLICATION),
-                6
-            ),
-            ExpressionFixture(
+            ) to 6,
+            Expression(
                 listOf(200, 4, 5, 6),
-                listOf(Operator.DIVISION, Operator.DIVISION, Operator.SUBTRACTION),
-                4
-            ),
-        )
-
-        parameters.forEach {
-            val expression = Expression(it.numbers, it.operators)
-            expression.calculate() shouldBe it.expected
+                listOf(Operator.DIVISION, Operator.DIVISION, Operator.SUBTRACTION)
+            ) to 4,
+        ).forAll { (expression, expected) ->
+            expression.calculate() shouldBe expected
         }
     }
 })
