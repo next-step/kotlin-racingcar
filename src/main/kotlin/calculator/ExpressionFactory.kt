@@ -6,24 +6,20 @@ class ExpressionFactory(
 
     fun create(expressionText: String): Expression {
         val splitTexts = separationStrategy.separate(expressionText)
-        val numbers = numbers(splitTexts)
-        val operators = operators(splitTexts)
+        val numbersAndOperators = splitTexts.withIndex()
+            .partition { it.index % EVEN_AND_ODD_STANDARD == NUMBER_POSITION }
+        val numbers = numbers(numbersAndOperators.first)
+        val operators = operators(numbersAndOperators.second)
 
         return Expression(numbers, operators)
     }
 
-    private fun numbers(texts: List<String>): List<Int> {
-        return (texts.indices step TEXT_INTERVAL).map {
-            val numberText = texts[it]
-            toInt(numberText)
-        }
+    private fun numbers(texts: List<IndexedValue<String>>): List<Int> {
+        return texts.map { toInt(it.value) }
     }
 
-    private fun operators(texts: List<String>): List<Operator> {
-        return (OPERATOR_START_INDEX until texts.size step TEXT_INTERVAL).map {
-            val symbolText = texts[it]
-            symbolText.toOperator()
-        }
+    private fun operators(texts: List<IndexedValue<String>>): List<Operator> {
+        return texts.map { it.value.toOperator() }
     }
 
     private fun toInt(numberText: String) =
@@ -42,7 +38,7 @@ class ExpressionFactory(
     }
 
     companion object {
-        private const val OPERATOR_START_INDEX = 1
-        private const val TEXT_INTERVAL = 2
+        private const val EVEN_AND_ODD_STANDARD = 2
+        private const val NUMBER_POSITION = 0
     }
 }
