@@ -6,15 +6,10 @@ import org.junit.jupiter.api.Test
 class OperatorTest {
     @Test
     fun `Operator의 symbol이 정확한지 확인한다`() {
-        val plus = "+"
-        val minus = "-"
-        val multiply = "*"
-        val divide = "/"
-
-        assertThat(plus).isEqualTo(Operator.PLUS.symbol)
-        assertThat(minus).isEqualTo(Operator.MINUS.symbol)
-        assertThat(multiply).isEqualTo(Operator.MULTIPLY.symbol)
-        assertThat(divide).isEqualTo(Operator.DIVIDE.symbol)
+        assertThat(PLUS).isEqualTo(Operator.PLUS.symbol)
+        assertThat(MINUS).isEqualTo(Operator.MINUS.symbol)
+        assertThat(MULTIPLY).isEqualTo(Operator.MULTIPLY.symbol)
+        assertThat(DIVIDE).isEqualTo(Operator.DIVIDE.symbol)
     }
 
     @Test
@@ -43,5 +38,12 @@ class OperatorTest {
         val result = Operator.DIVIDE.operate(10.0, 2.0)
 
         assertThat(result).isEqualTo(10.0 / 2.0)
+    }
+
+    companion object {
+        private const val PLUS = "+"
+        private const val MINUS = "-"
+        private const val MULTIPLY = "*"
+        private const val DIVIDE = "/"
     }
 }
