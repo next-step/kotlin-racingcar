@@ -16,4 +16,17 @@ class OperandTest : AnnotationSpec() {
         // then
         operand shouldBe Operand(5)
     }
+
+    @Test
+    fun addOperand() {
+        // given
+        val left = Operand(5)
+        val right = Operand(10)
+
+        // when
+        val result = left.add(right)
+
+        // then
+        result shouldBe Operand(15)
+    }
 }
