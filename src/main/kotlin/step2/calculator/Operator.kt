@@ -15,5 +15,13 @@ enum class Operator(
     }),
     DIVIDE("/", { num1, num2 ->
         num1 / num2
-    })
+    });
+
+    companion object {
+        private const val INVALID_SYMBOL_ERROR_MESSAGE = "사칙 연산 기호가 아닌 값이 전달되었습니다."
+
+        fun from(symbol: String) = values().find { operator ->
+            operator.symbol == symbol
+        } ?: throw IllegalArgumentException(INVALID_SYMBOL_ERROR_MESSAGE)
+    }
 }
