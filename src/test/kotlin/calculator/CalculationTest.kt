@@ -15,7 +15,7 @@ class CalculationTest : AnnotationSpec() {
         // When
         val actual = calculator.calculate("1 + 10 + 20")
         // Then
-        actual shouldBe 31
+        actual.value shouldBe 31
     }
 
 }
