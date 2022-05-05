@@ -11,8 +11,8 @@
 ~~테스트 이름 상세하게 표현하기~~  
 ~~assertThrows / assertThatExceptionOfType 차이알아보고 수정하기~~   
 ~~validOperator 함수분리~~
-StringCalculator input하나로 받기    
-StringCalculator 재사용하게 변경  
+~~StringCalculator input하나로 받기~~    
+~~StringCalculator 재사용하게 변경~~  
 StringCalculator를 사용한 콘솔프로그램 만들기  
 ~~Operation 계산로직 Operator가 담당하게 변경~~  
 린트 체크  
