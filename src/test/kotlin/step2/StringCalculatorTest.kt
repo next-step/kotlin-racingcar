@@ -16,7 +16,7 @@ class StringCalculatorTest {
         assertThrows<IllegalArgumentException> { StringCalculator().calculate(expression = expression) }
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "{0} = {1}")
     @CsvSource(
         value = [
             "2 + 3 * 4 / 2 = 10",
