@@ -1,30 +1,15 @@
 package calculator
 
-import java.lang.Integer.parseInt
+class Calculator(calculationParameter: CalculationParameter) {
+    private val calculationParameter: CalculationParameter = calculationParameter
 
-val OPERATOR_REGEX = Regex("([+-/*])")
-
-class Calculator {
-    private var operators: List<String> = emptyList<String>()
-    private var factors: List<Int> = emptyList<Int>()
-
-    constructor(arithmeticExpression: String?) {
-        if (arithmeticExpression == null) throw Error()
-
-        operators = OPERATOR_REGEX.findAll(arithmeticExpression).map {
-            it.groupValues[0]
-        }.toList()
-
-        factors = OPERATOR_REGEX.split(arithmeticExpression).map {
-            parseInt(it.replace(Regex("\\s"), ""))
-        }
-    }
+    constructor(stringExpression: String?) : this(CalculationParameter(stringExpression))
 
     fun getCalculationResult(): Double {
-        var result: Double = factors[0].toDouble()
+        var result: Double = calculationParameter.factors[0].toDouble()
 
-        for ((index, operator) in operators.withIndex()) {
-            val rightFactor = factors[index + 1]
+        for ((index, operator) in calculationParameter.operators.withIndex()) {
+            val rightFactor = calculationParameter.factors[index + 1]
             result = getValueByOperator(result, rightFactor.toDouble(), operator)
         }
 
