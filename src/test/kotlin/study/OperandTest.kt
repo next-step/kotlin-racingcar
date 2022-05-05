@@ -29,4 +29,17 @@ class OperandTest : AnnotationSpec() {
         // then
         result shouldBe Operand(15)
     }
+
+    @Test
+    fun subOperand() {
+        // given
+        val left = Operand(5)
+        val right = Operand(10)
+
+        // when
+        val result = left.sub(right)
+
+        // then
+        result shouldBe Operand(-5)
+    }
 }
