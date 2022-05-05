@@ -17,10 +17,10 @@ class StringCalculator {
      * 문자열을 받고 계산을 시작하여 계산한값을 돌려준다.
      */
     fun startCalculate(input: String?): Int {
-        if (input.isNullOrBlank()) throw IllegalArgumentException("Input is Null or Blank.")
+        if (input.isNullOrBlank()) throw IllegalArgumentException(ErrorMessage.IS_NULL_OR_BLANK)
 
-        val inputList = splitStringBySpace(input)
-        if (inputList.size % 2 == 0) throw IllegalArgumentException("The number of operators and operands does not match.")
+        val inputList = splitBySeparator(input)
+        if (inputList.size % 2 == 0) throw IllegalArgumentException(ErrorMessage.NOT_MATCH_OPERATORS_AND_OPERANDS)
 
         //첫숫자는 바로 계산하기 위해 저장한다.
         var output = checkEnabledNumber(inputList.first())
@@ -35,8 +35,8 @@ class StringCalculator {
     /**
      * 문자열을 스페이스로 나눠 List로 돌려주는 메소드.
      */
-    private fun splitStringBySpace(input: String): List<String> {
-        return input.split(" ")
+    private fun splitBySeparator(input: String): List<String> {
+        return input.split(SEPARATER)
     }
 
     /**
@@ -44,7 +44,7 @@ class StringCalculator {
      */
     private fun checkEnabledNumber(input: String): Int {
         return input.toIntOrNull()
-            ?: throw IllegalArgumentException("There is a non-digit character in the digit position.")
+            ?: throw IllegalArgumentException(ErrorMessage.IS_NON_DIGIT_CHARACTER)
     }
 
     /**
@@ -57,5 +57,9 @@ class StringCalculator {
             Operator.MULTIPLY -> operand1 * operand2
             Operator.DIVISION -> operand1 / operand2
         }
+    }
+
+    companion object {
+        private const val SEPARATER = " "
     }
 }

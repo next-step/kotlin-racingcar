@@ -10,8 +10,7 @@ enum class Operator(
     PLUS("+"), MINUS("-"), MULTIPLY("*"), DIVISION("/");
 
     companion object {
-        fun of(char: String): Operator =
-            Operator.values().find { it.char == char }
-                ?: throw IllegalArgumentException("There is a non-operator character")
+        fun of(char: String): Operator = values().find { it.char == char }
+            ?: throw IllegalArgumentException(ErrorMessage.IS_NON_OPERATOR_CHARACTER)
     }
 }
