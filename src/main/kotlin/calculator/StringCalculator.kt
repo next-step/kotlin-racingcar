@@ -31,7 +31,8 @@ class StringCalculator {
             if (Operator.isValidOperator(splitedInput[i])) {
                 operator = splitedInput[i]
             } else {
-                result = Operator.calculate(result, operator, splitedInput[i].toDouble())
+                val calculateLogic = Operator.getCalculateLogic(operator)
+                result = calculateLogic(result, splitedInput[i].toDouble())
             }
         }
 
