@@ -14,7 +14,7 @@ class CalculatorTest {
         // then
         assertThatThrownBy {
             Calculator(nullInput)
-        }
+        }.hasMessage(ErrorMessage.NULL_INPUT_ERROR)
     }
 
     @Test
@@ -25,7 +25,7 @@ class CalculatorTest {
         // then
         assertThatThrownBy {
             Calculator(spaceInput)
-        }
+        }.hasMessage(ErrorMessage.SPACE_INPUT_ERROR)
     }
 
     @Test
@@ -36,7 +36,7 @@ class CalculatorTest {
         // then
         assertThatThrownBy {
             Calculator(input)
-        }
+        }.hasMessage(ErrorMessage.OTHER_STRING_INPUT_ERROR)
     }
 
     @Test
@@ -47,11 +47,11 @@ class CalculatorTest {
         // then
         assertThatThrownBy {
             Calculator(input)
-        }
+        }.hasMessage(ErrorMessage.NOT_MATCH_OPERAND_COUNT)
     }
 
     @Test
-    fun `2 + 3 * 4  ÷ 2 를 입력하면 10이 나온다`() {
+    fun `2 + 3 x 4  ÷ 2 를 입력하면 10이 나온다`() {
         // given
         val input = "2 + 3 * 4  / 2"
 
@@ -63,15 +63,15 @@ class CalculatorTest {
     }
 
     @Test
-    fun `공백이 포함된 입력 값인 "1  +  1   " 이 입력된 경우 2가 나온다`() {
+    fun `공백이 포함된 입력 값인 '2    0  +  1   0 ' 이 입력된 경우 30이 나온다`() {
         // given
-        val input = "1  +  1   "
+        val input = "2    0  +  1   0 "
 
         // when
         val result = Calculator(input).getCalculationResult()
 
         // then
-        assertThat(result).isEqualTo(2.0)
+        assertThat(result).isEqualTo(30.0)
     }
 
     @ParameterizedTest(name = " {0} 을 계산하면 {1} 값이 나온다")

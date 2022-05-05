@@ -11,13 +11,17 @@
 
 ### 과제에서 명시한 예외사항
 - 입력값이 `null`이거나 빈 공백 문자일 경우 `IllegalArgumentException throw`
+  - 에러메시지: `연산식에 null 은 올수 없습니다`
 - 사칙연산 기호가 아닌 경우 `IllegalArgumentException throw`
+  - 에러메시지: `연산식에 숫자, 연산자를 제외한 다른 문자가 들어가 있습니다`
 
 ### 개인적으로 추가한 예외사항
 - 연산을 수행할수 없는 연산자가 연속으로 두번 나온 경우 `IllegalArgumentException throw`
-  -  `1++1` 입력시, `IllegalArgumentException throw`
+  - `1++1` 입력시, `IllegalArgumentException throw`
+  - 에러 메시지 `연산식이 피연산자 보다 많습니다.`
 - 숫자, 연산자를 제외한 문자 입력시 `IllegalArgumentException throw`
   - `1AbCDe2` 입력시 , `IllegalArgumentException throw`
+  - 에러메시지: `연산식에 숫자, 연산자를 제외한 다른 문자가 들어가 있습니다`
 - 연산식에서 연산자 없이 숫자만 있는 경우 그 값만 응답
   - `1` 입력시, `1` 출력
 - 중간에 공백이 포함된 인자가 입력된 경우 공백을 제거하여 계산 수행
