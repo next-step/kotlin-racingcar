@@ -4,34 +4,26 @@ class Operand(val value: Double)
 typealias Result = Operand
 
 sealed class Operation(val symbol: String) {
-    abstract fun execution(left: Operand, right: Operand): Result
+    abstract fun execute(left: Operand, right: Operand): Result
 
     object Plus : Operation(symbol = "+") {
-        override fun execution(left: Operand, right: Operand): Result {
-            // TODO: 유효성 검사
-            return Result(left.value + right.value)
-        }
+        override fun execute(left: Operand, right: Operand): Result =
+            Result(left.value + right.value)
     }
 
     object Minus : Operation(symbol = "-") {
-        override fun execution(left: Operand, right: Operand): Result {
-            // TODO: 유효성 검사
-            return Result(left.value - right.value)
-        }
+        override fun execute(left: Operand, right: Operand): Result =
+            Result(left.value - right.value)
     }
 
     object Multiply : Operation(symbol = "*") {
-        override fun execution(left: Operand, right: Operand): Result {
-            // TODO: 유효성 검사
-            return Result(left.value * right.value)
-        }
+        override fun execute(left: Operand, right: Operand): Result =
+            Result(left.value * right.value)
     }
 
     object Divide : Operation(symbol = "/") {
-        override fun execution(left: Operand, right: Operand): Result {
-            // TODO: 유효성 검사
-            return Result(left.value / right.value)
-        }
+        override fun execute(left: Operand, right: Operand): Result =
+            Result(left.value / right.value)
     }
 
     companion object {
@@ -55,7 +47,7 @@ class StringCalculator {
 
         require(operands.size > operations.size)
 
-        return calculate(operands = operands, operations = operations)
+        return execute(operands = operands, operations = operations)
     }
 
     private fun tokenize(expression: String): Pair<List<Operand>, List<Operation>> {
@@ -69,10 +61,10 @@ class StringCalculator {
         return operands to operations
     }
 
-    private fun calculate(operands: List<Operand>, operations: List<Operation>): Result {
+    private fun execute(operands: List<Operand>, operations: List<Operation>): Result {
         val results = operands.toMutableList()
         operations.forEach {
-            results.add(0, it.execution(results.removeFirst(), results.removeFirst()))
+            results.add(0, it.execute(results.removeFirst(), results.removeFirst()))
         }
         return results.first()
     }
