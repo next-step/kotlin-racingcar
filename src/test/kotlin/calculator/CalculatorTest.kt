@@ -4,51 +4,40 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 
 class CalculatorTest {
-    @Test
-    fun `더하기만 테스트`() {
-        val stringCalculator1 = StringCalculator("1 + 3")
+    @ParameterizedTest
+    @CsvSource(value = ["1 + 3, 4", "15 + 31,46"])
+    fun `더하기 테스트`(input: String, expect: Double) {
+        val stringCalculator1 = StringCalculator(input)
         val result1 = stringCalculator1.result
-        assertThat(result1).isEqualTo((1 + 3).toDouble())
-
-        val stringCalculator2 = StringCalculator("15 + 31")
-        val result2 = stringCalculator2.result
-        assertThat(result2).isEqualTo((15 + 31).toDouble())
+        assertThat(result1).isEqualTo(expect)
     }
 
-    @Test
-    fun `빼기만 테스트`() {
-        val stringCalculator1 = StringCalculator("1 - 3")
+    @ParameterizedTest
+    @CsvSource(value = ["1 - 3, -2", "15 - 31,-16"])
+    fun `빼기 테스트`(input: String, expect: Double) {
+        val stringCalculator1 = StringCalculator(input)
         val result1 = stringCalculator1.result
-        assertThat(result1).isEqualTo((1 - 3).toDouble())
-
-        val stringCalculator2 = StringCalculator("15 - 31")
-        val result2 = stringCalculator2.result
-        assertThat(result2).isEqualTo((15 - 31).toDouble())
+        assertThat(result1).isEqualTo(expect)
     }
 
-    @Test
-    fun `나누기 테스트`() {
-        val stringCalculator1 = StringCalculator("1 / 3")
+    @ParameterizedTest
+    @CsvSource(value = ["1 / 3, 0.3333333333333333", "15 / 31,0.4838709677419355"])
+    fun `나누기 테스트`(input: String, expect: Double) {
+        val stringCalculator1 = StringCalculator(input)
         val result1 = stringCalculator1.result
-        assertThat(result1).isEqualTo((1 / 3.0))
-
-        val stringCalculator2 = StringCalculator("15 / 31")
-        val result2 = stringCalculator2.result
-        assertThat(result2).isEqualTo((15 / 31.0))
+        assertThat(result1).isEqualTo(expect)
     }
 
-    @Test
-    fun `곱하기 테스트`() {
-        val stringCalculator1 = StringCalculator("1 * 3")
+    @ParameterizedTest
+    @CsvSource(value = ["1 * 3,3", "15 * 31,465"])
+    fun `곱하기 테스트`(input: String, expect: Double) {
+        val stringCalculator1 = StringCalculator(input)
         val result1 = stringCalculator1.result
-        assertThat(result1).isEqualTo((1 * 3).toDouble())
-
-        val stringCalculator2 = StringCalculator("15 * 31")
-        val result2 = stringCalculator2.result
-        assertThat(result2).isEqualTo((15 * 31).toDouble())
+        assertThat(result1).isEqualTo(expect)
     }
 
     @Test
