@@ -3,6 +3,7 @@ package calculator
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
@@ -54,20 +55,18 @@ class CalculatorTest {
     @ParameterizedTest
     @ValueSource(strings = ["", " ", "\n"])
     fun `입력 값이 빈칸인 경우 예외를 던짐`(inputString: String) {
-        assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy {
-                val stringCalculator = StringCalculator(inputString)
-                println(stringCalculator.result)
-            }.withMessageContaining(StringCalculator.BLANK_ERROR_MSG)
+        assertThrows<java.lang.IllegalArgumentException> {
+            val stringCalculator = StringCalculator(inputString)
+            println(stringCalculator.result)
+        }
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["1 = 3", "1 ! 3", "1 @ 3", "1 # 3", "1 @ 3", "1 + 3 + 5 & 10"])
     fun `사칙연산 기호 테스트`(inputString: String) {
-        assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy {
-                val stringCalculator = StringCalculator(inputString)
-                println(stringCalculator.result)
-            }.withMessage(StringCalculator.WIERD_OPERATOR_ERROR_MSG)
+        assertThrows<java.lang.IllegalArgumentException> {
+            val stringCalculator = StringCalculator(inputString)
+            println(stringCalculator.result)
+        }
     }
 }
