@@ -14,9 +14,16 @@ class StringCalculatorTest {
         val calculator = StringCalculator()
         assertThatIllegalArgumentException().isThrownBy {
             calculator.startCalculate(null)
-        }
-        assertThatIllegalArgumentException().isThrownBy {
             calculator.startCalculate("")
+        }
+    }
+
+    @Test
+    fun `사칙연산 기호가 아닌 경우 IllegalArgumentException`() {
+        val calculator = StringCalculator()
+        assertThatIllegalArgumentException().isThrownBy {
+            calculator.startCalculate("2 [ 3")
+            calculator.startCalculate("2 $ 3")
         }
     }
 }
