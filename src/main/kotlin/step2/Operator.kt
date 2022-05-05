@@ -11,8 +11,9 @@ enum class Operator(expr: String, evaluate: (num1: Int, num2: Int) -> Int) {
     var evaluate = evaluate
         private set
     companion object {
-        fun find(target: String): Operator? {
-            return Operator.values().find { it.expr == target }
+        fun find(target: String): Operator {
+            return values().find { it.expr == target }
+                ?: throw IllegalArgumentException("+, -, *, / 외에는 사용할 수 없습니다.")
         }
     }
 }

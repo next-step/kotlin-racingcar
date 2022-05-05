@@ -49,7 +49,7 @@ class OperatorTest: DescribeSpec({
         }
 
         it("4칙연산 외 다른 연사자가 입력되면 IllegalArgumentException가 발생한다") {
-            val target = "-"
+            val target = "("
 
             val exception = shouldThrow<IllegalArgumentException> {
                 Operator.find(target)
