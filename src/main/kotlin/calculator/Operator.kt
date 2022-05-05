@@ -1,13 +1,13 @@
 package calculator
 
-enum class Operator(val operator: String) {
+enum class Operator(val string: String) {
     PLUS("+"),
     MINUS("-"),
     MULTIPLICATION("*"),
     DIVISION("/");
 
     companion object {
-        fun stringOf(operatorString: String): Operator =
-            values().find { it.operator == operatorString }!!
+        fun stringOf(stringOperator: String): Operator =
+            values().find { it.string == stringOperator }!!
     }
 }

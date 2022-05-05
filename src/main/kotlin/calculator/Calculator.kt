@@ -1,22 +1,22 @@
 package calculator
 
-class Calculator(calculationParameter: CalculationParameter) {
-    private val calculationParameter = calculationParameter
+class Calculator(calculationParam: CalculationParameter) {
+    private val calculationParameter = calculationParam
 
     constructor(stringExpression: String?) : this(CalculationParameter(stringExpression))
 
-    fun getCalculationResult(): Double {
+    fun calculation(): Double {
         var result: Double = calculationParameter.operands[0].toDouble()
 
         for ((index, operator) in calculationParameter.operators.withIndex()) {
             val rightOperand = calculationParameter.operands[index + 1]
-            result = getValueByOperator(result, rightOperand.toDouble(), operator)
+            result = calculationByOperator(result, rightOperand.toDouble(), operator)
         }
 
         return result
     }
 
-    private fun getValueByOperator(leftOperand: Double, rightOperand: Double, operator: Operator): Double {
+    private fun calculationByOperator(leftOperand: Double, rightOperand: Double, operator: Operator): Double {
         return when (operator) {
             Operator.PLUS -> leftOperand + rightOperand
             Operator.MINUS -> leftOperand - rightOperand

@@ -56,7 +56,7 @@ class CalculatorTest {
         val input = "2 + 3 * 4  / 2"
 
         // when
-        val result = Calculator(input).getCalculationResult()
+        val result = Calculator(input).calculation()
 
         // then
         assertThat(result).isEqualTo(10.0)
@@ -68,7 +68,7 @@ class CalculatorTest {
         val input = "2    0  +  1   0 "
 
         // when
-        val result = Calculator(input).getCalculationResult()
+        val result = Calculator(input).calculation()
 
         // then
         assertThat(result).isEqualTo(30.0)
@@ -85,7 +85,7 @@ class CalculatorTest {
     )
     fun `사칙연산이 정상적으로 수행된다`(arithmeticExpression: String, successValue: Double) {
         // when
-        val result = Calculator(arithmeticExpression).getCalculationResult()
+        val result = Calculator(arithmeticExpression).calculation()
 
         // then
         assertThat(result).isEqualTo(successValue)
