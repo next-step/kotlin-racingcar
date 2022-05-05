@@ -7,13 +7,15 @@ enum class Operator(val stringValue: String) {
     MULTIPLY("*");
 
     companion object {
+        private const val WRONG_OPERATOR_ERROR_MSG = "wrong operator conversion"
+
         fun getOperatorByStringValue(value: String): Operator {
             return when (value) {
                 PLUS.stringValue -> PLUS
                 MINUS.stringValue -> MINUS
                 DIVIDE.stringValue -> DIVIDE
                 MULTIPLY.stringValue -> MULTIPLY
-                else -> throw IllegalArgumentException(StringCalculator.WRONG_OPERATOR_ERROR_MSG)
+                else -> throw IllegalArgumentException(WRONG_OPERATOR_ERROR_MSG)
             }
         }
 
