@@ -20,5 +20,14 @@ enum class Operator(val stringValue: String) {
         fun isValidOperator(operator: String): Boolean {
             return values().any { it.stringValue == operator }
         }
+
+        fun calculate(a: Double, operator: String, b: Double): Double {
+            return when (getOperatorByStringValue(operator)) {
+                PLUS -> a + b
+                MINUS -> a - b
+                DIVIDE -> a / b
+                MULTIPLY -> a * b
+            }
+        }
     }
 }

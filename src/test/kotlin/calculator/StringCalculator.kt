@@ -36,18 +36,9 @@ class StringCalculator(private val inputString: String) {
             if (Operator.isValidOperator(splitedInput[i])) {
                 operator = splitedInput[i]
             } else {
-                result = calculateExpression(result, operator, splitedInput[i].toDouble())
+                result = Operator.calculate(result, operator, splitedInput[i].toDouble())
             }
         }
         return result
-    }
-
-    private fun calculateExpression(a: Double, operator: String, b: Double): Double {
-        return when (Operator.getOperatorByStringValue(operator)) {
-            Operator.PLUS -> a + b
-            Operator.MINUS -> a - b
-            Operator.DIVIDE -> a / b
-            Operator.MULTIPLY -> a * b
-        }
     }
 }
