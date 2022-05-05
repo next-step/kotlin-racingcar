@@ -3,8 +3,8 @@ package calculator
 import java.util.function.BiFunction
 
 enum class Operator(
-    val symbol: String,
-    private val execute: BiFunction<Int, Int, Int>
+    private val symbol: String,
+    private val execute: BiFunction<Int, Int, Int>,
 ) {
     PLUS("+", BiFunction { a: Int, b: Int -> a + b }),
     MINUS("-", BiFunction { a: Int, b: Int -> a - b }),
