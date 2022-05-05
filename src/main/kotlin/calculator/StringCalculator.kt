@@ -22,8 +22,10 @@ sealed class Operation(val symbol: String) {
     }
 
     object Divide : Operation(symbol = "/") {
-        override fun execute(left: Operand, right: Operand): Result =
-            Result(left.value / right.value)
+        override fun execute(left: Operand, right: Operand): Result {
+            require(left.value != 0.0 && right.value != 0.0)
+            return Result(left.value / right.value)
+        }
     }
 
     companion object {
