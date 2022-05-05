@@ -24,7 +24,7 @@ class OperandTest : AnnotationSpec() {
         val right = Operand(10)
 
         // when
-        val result = left.add(right)
+        val result = left + right
 
         // then
         result shouldBe Operand(15)
@@ -37,7 +37,7 @@ class OperandTest : AnnotationSpec() {
         val right = Operand(10)
 
         // when
-        val result = left.sub(right)
+        val result = left - right
 
         // then
         result shouldBe Operand(-5)
@@ -50,7 +50,7 @@ class OperandTest : AnnotationSpec() {
         val right = Operand(10)
 
         // when
-        val result = left.mul(right)
+        val result = left * right
 
         // then
         result shouldBe Operand(50)
@@ -63,7 +63,7 @@ class OperandTest : AnnotationSpec() {
         val right = Operand(5)
 
         // when
-        val result = left.div(right)
+        val result = left / right
 
         // then
         result shouldBe Operand(2)
