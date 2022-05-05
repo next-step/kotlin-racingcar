@@ -1,11 +1,6 @@
 package calculator
 
 class StringCalculator {
-    companion object {
-        private const val BLANK_ERROR_MSG = "input string cannot be blank or empty"
-        private const val WIERD_OPERATOR_ERROR_MSG = "operator should be one of [+, -, /, *]"
-    }
-
     private fun checkValidOperator(input: String) {
         val splitedInput = input.split(" ")
         val isCorrectInput = splitedInput.all {
@@ -41,5 +36,10 @@ class StringCalculator {
         }
 
         return result
+    }
+
+    companion object {
+        private const val BLANK_ERROR_MSG = "input string cannot be blank or empty"
+        private const val WIERD_OPERATOR_ERROR_MSG = "operator should be one of [+, -, /, *]"
     }
 }
