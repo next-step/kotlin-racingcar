@@ -13,4 +13,13 @@ class OperatorTest: AnnotationSpec() {
 
         result shouldBe 7
     }
+    @Test
+    fun `-연산자는 두 숫자를 차감한다`() {
+        val sut = Operator.MINUS
+
+        val result = sut.evaluate(3, 4)
+
+        result shouldBe -1
+    }
+
 }
