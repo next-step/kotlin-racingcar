@@ -2,6 +2,8 @@ package study
 
 object CalcParser {
     fun parse(expression: String): CalcMachine {
+        this.validate(expression)
+
         val map = expression
             .split(" ")
             .groupBy(this::isNumeric)
@@ -28,5 +30,11 @@ object CalcParser {
     private fun isNumeric(toCheck: String): Boolean {
         val regex = "-?[0-9]+(\\.[0-9]+)?".toRegex()
         return toCheck.matches(regex)
+    }
+
+    private fun validate(expression: String) {
+        if (expression.isBlank() || expression.isEmpty()) {
+            throw IllegalArgumentException("식이 빈 공백입니다.")
+        }
     }
 }

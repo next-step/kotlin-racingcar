@@ -93,4 +93,17 @@ class CalcParserTest : AnnotationSpec() {
             CalcParser.parse(expr)
         }
     }
+
+    @Test
+    fun `빈 공백은 분석 불가능`() {
+        // given
+        val expr = " "
+
+        // when
+
+        // then
+        shouldThrow<IllegalArgumentException> {
+            CalcParser.parse(expr)
+        }
+    }
 }
