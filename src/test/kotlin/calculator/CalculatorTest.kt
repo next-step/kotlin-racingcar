@@ -53,7 +53,7 @@ class CalculatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["", " ", "\n"])
-    fun `빈칸 테스트`(inputString: String) {
+    fun `입력 값이 빈칸인 경우 예외를 던짐`(inputString: String) {
         assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy {
                 val stringCalculator = StringCalculator(inputString)
