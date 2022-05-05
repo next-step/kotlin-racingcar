@@ -14,7 +14,7 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class StringCalculatorTest {
     @ParameterizedTest
-    @CsvSource("2 + 3,5", "5 - 2,3", "5 * 3,15", "5 + 3 / 4,2", "2 * 3 / 6 + 2,3")
+    @CsvSource("2 + 3, 5", "5 - 2, 3", "5 * 3, 15", "5 + 3 / 4, 2", "2 + 3 * 4 / 2, 10")
     fun `계산기 정상 동작`(question: String, answer: Int) {
         val calculator = StringCalculator()
         assertThat(calculator.startCalculate(question)).isEqualTo(answer)
@@ -39,7 +39,7 @@ class StringCalculatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["2 *", "2 * 5 / 3"])
+    @ValueSource(strings = ["2 *", "2 * 5 /"])
     fun `연산자와 피연산자 갯수 확인`(source: String) {
         val calculator = StringCalculator()
         assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
