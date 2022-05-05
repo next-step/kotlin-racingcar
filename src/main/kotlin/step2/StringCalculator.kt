@@ -16,22 +16,20 @@ class StringCalculator {
     /**
      * 문자열을 받고 계산을 시작하여 계산한값을 돌려준다.
      */
-    fun startCalculate(input: String?): String {
+    fun startCalculate(input: String?): Int {
         if (input.isNullOrBlank()) throw IllegalArgumentException("Input is Null or Blank.")
 
         val inputList = splitStringBySpace(input)
-        inputList.forEachIndexed { index, text ->
-            // 짝수 index에는 숫자, 홀수 index에는 연산자가 온다.
-            if (index % 2 == 0) {
-                checkEnabledNumber(text)
-                //TODO 첫 숫자면 저장하고, 이후에는 계산한다.
-            } else {
-                checkEnabledOperator(text)
-                //TODO 연산자는 저장한다.
-            }
+        if (inputList.size % 2 == 0) throw IllegalArgumentException("The number of operators and operands does not match.")
+
+        //첫숫자는 바로 계산하기 위해 저장한다.
+        var output = checkEnabledNumber(inputList.first())
+        for (index in 1 until inputList.size step 2) {
+            output =
+                calculateByOperator(Operator.of(inputList[index]), output, checkEnabledNumber(inputList[index + 1]))
         }
 
-        return input
+        return output
     }
 
     /**
@@ -42,20 +40,22 @@ class StringCalculator {
     }
 
     /**
-     * 계산가능한 연산자인지 확인하는 메소드.
+     * 계산가능한 숫자인지 확인하는 메소드.
      */
-    private fun checkEnabledOperator(input: String) {
-        when (input) {
-            "+", "-", "/", "*" -> return
-            else -> throw IllegalArgumentException("There is a non-operator character in the operator position.")
-        }
+    private fun checkEnabledNumber(input: String): Int {
+        return input.toIntOrNull()
+            ?: throw IllegalArgumentException("There is a non-digit character in the digit position.")
     }
 
     /**
-     * 계산가능한 숫자인지 확인하는 메소드.
+     * Operator에 따라 계산한다.
      */
-    private fun checkEnabledNumber(input: String) {
-        if (input.toIntOrNull() == null)
-            throw IllegalArgumentException("There is a non-digit character in the digit position.")
+    private fun calculateByOperator(operator: Operator, operand1: Int, operand2: Int): Int {
+        return when (operator) {
+            Operator.PLUS -> operand1 + operand2
+            Operator.MINUS -> operand1 - operand2
+            Operator.MULTIPLY -> operand1 * operand2
+            Operator.DIVISION -> operand1 / operand2
+        }
     }
 }
