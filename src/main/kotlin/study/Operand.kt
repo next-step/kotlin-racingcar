@@ -7,4 +7,6 @@ data class Operand constructor(private val value: Int) {
     fun sub(other: Operand): Operand = Operand(this.value - other.value)
 
     fun mul(other: Operand): Operand = Operand(this.value * other.value)
+
+    fun div(other: Operand): Operand = Operand(this.value / other.value)
 }

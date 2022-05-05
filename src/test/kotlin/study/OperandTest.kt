@@ -55,4 +55,17 @@ class OperandTest : AnnotationSpec() {
         // then
         result shouldBe Operand(50)
     }
+
+    @Test
+    fun divOperand() {
+        // given
+        val left = Operand(10)
+        val right = Operand(5)
+
+        // when
+        val result = left.div(right)
+
+        // then
+        result shouldBe Operand(2)
+    }
 }
