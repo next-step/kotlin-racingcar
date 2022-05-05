@@ -13,6 +13,9 @@
 - `수식 생성(ExpressionFactory)`
   - [X] 문자열을 입력 받아 `수식(Expression)`을 생성할 수 있다.
   - [X] 올바르지 않은 문자열 입력 시 예외가 발생한다.
+- '수식 문자열 분리 전략(SeparationStrategy)'
+  - 하나의 문자열을 받아 여러 개의 문자열로 분리할 수 있다.
+  - 구현체: OneSpaceSeparationStrategy
 - `수식(Expression)`
   - `수식(Expression)`은 여러 개의 숫자와 `연산자(Operator)`로 이루어진다.
   - [X] 숫자의 개수가 `연산자(Operator)`의 개수보다 1만큼 큰 수식을 생성할 수 있다.
