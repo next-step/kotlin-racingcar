@@ -1,10 +1,10 @@
 package calculator
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.shouldBe
 
 class CalculationTest : AnnotationSpec() {
-    // TODO: 입력값이 null or 공백인경우 IllegalArgumentException 이 발생하는지 확인
     // TODO: 사칙연산 기호가 아닌 경우 IllegalArgumentException 이 발생하는지 확인
 
     @Test
@@ -45,5 +45,25 @@ class CalculationTest : AnnotationSpec() {
         val actual = calculator.calculate("30 / 5 / 2")
         // Then
         actual.value shouldBe 3
+    }
+
+    @Test
+    fun `입력 값이 null 인 경우`() {
+        // Given
+        val calculator = StringCalculator()
+        // Then
+        shouldThrow<IllegalArgumentException> {
+            calculator.calculate(null)
+        }
+    }
+
+    @Test
+    fun `입력 값이 공백인 경우`() {
+        // Given
+        val calculator = StringCalculator()
+        // Then
+        shouldThrow<IllegalArgumentException> {
+            calculator.calculate("")
+        }
     }
 }

@@ -47,22 +47,37 @@ sealed class Operation(val symbol: String) {
 
 class StringCalculator {
 
-    fun calculate(expression: String): Result {
+    fun calculate(expression: String?): Result {
+        require(expression != null)
+        require(expression.isNotEmpty())
 
-        val tokenized = expression.split(" ")
-        val operands: MutableList<Operand> = tokenized.mapIndexedNotNull { index: Int, s: String ->
+        val (operands: List<Operand>, operations: List<Operation>) = tokenize(expression)
+
+        require(operands.size > operations.size)
+
+        return calculate(operands = operands, operations = operations)
+    }
+
+    private fun tokenize(expression: String): Pair<List<Operand>, List<Operation>> {
+        val tokenized = expression.split(TOKEN)
+        val operands: List<Operand> = tokenized.mapIndexedNotNull { index: Int, s: String ->
             if (index % 2 == 0) Operand(s.toDouble()) else null
-        }.toMutableList()
+        }
         val operations: List<Operation> = tokenized.mapIndexedNotNull() { index: Int, s: String ->
             if (index % 2 != 0) Operation.findBySymbol(s) else null
         }
-
-        operations.forEach {
-            val result = it.execution(operands.removeFirst(), operands.removeFirst())
-            operands.add(0, result)
-        }
-
-        return operands.removeFirst()
+        return operands to operations
     }
 
+    private fun calculate(operands: List<Operand>, operations: List<Operation>): Result {
+        val results = operands.toMutableList()
+        operations.forEach {
+            results.add(0, it.execution(results.removeFirst(), results.removeFirst()))
+        }
+        return results.first()
+    }
+
+    companion object {
+        private const val TOKEN = " "
+    }
 }
