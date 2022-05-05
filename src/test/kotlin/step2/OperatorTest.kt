@@ -39,4 +39,14 @@ class OperatorTest: DescribeSpec({
         }
     }
 
+    describe("find") {
+        it("+가 입력되면 PLUS 객체를 반환한다") {
+            val target = "+"
+            val result = Operator.find(target)
+
+            result shouldBe Operator.PLUS
+        }
+    }
+
+
 })
