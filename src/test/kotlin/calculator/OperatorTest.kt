@@ -103,9 +103,9 @@ private suspend fun BehaviorSpecGivenContainerScope.`연산 적용 후 검증`(
 ) {
     parameters.forEach {
         `when`("${it.first}, ${it.second}에 ${operator}를 적용하면") {
-            val result = operator.calculate(it.first, it.second)
+            val actual = operator.calculate(it.first, it.second)
             then("${it.third}이 반환된다") {
-                result shouldBe it.third
+                actual shouldBe it.third
             }
         }
     }

@@ -10,9 +10,9 @@ class BDDTest : BehaviorSpec({
         val firstNumber = 1
         val secondNumber = 3
         `when`("두 숫자를 + 연산을 수행하면") {
-            val result = firstNumber + secondNumber
+            val actual = firstNumber + secondNumber
             then("결과 값은 4를 반환한다") {
-                result shouldBe 4
+                actual shouldBe 4
             }
         }
     }
