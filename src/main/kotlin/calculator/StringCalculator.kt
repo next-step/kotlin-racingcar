@@ -13,9 +13,17 @@ sealed class Operation(val symbol: String) {
         }
     }
 
+    object Minus : Operation(symbol = "-") {
+        override fun execution(left: Operand, right: Operand): Result {
+            // TODO: 유효성 검사
+            return Result(left.value - right.value)
+        }
+    }
+
     companion object {
         fun findBySymbol(symbol: String): Operation? = when (symbol) {
             Plus.symbol -> Plus
+            Minus.symbol -> Minus
             else -> null
         }
     }

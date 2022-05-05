@@ -9,7 +9,7 @@ class CalculationTest : AnnotationSpec() {
     // TODO: 사칙연산 기호가 아닌 경우 IllegalArgumentException 이 발생하는지 확인
 
     @Test
-    fun `just plus calculation`() {
+    fun `단순 더하기 테스트`() {
         // Given
         val calculator = StringCalculator()
         // When
@@ -18,4 +18,13 @@ class CalculationTest : AnnotationSpec() {
         actual.value shouldBe 31
     }
 
+    @Test
+    fun `단순 빼기 테스트`() {
+        // Given
+        val calculator = StringCalculator()
+        // When
+        val actual = calculator.calculate("30 - 10 - 20")
+        // Then
+        actual.value shouldBe 0
+    }
 }
