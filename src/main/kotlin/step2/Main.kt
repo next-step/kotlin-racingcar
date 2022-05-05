@@ -10,4 +10,3 @@ fun main() {
     val result = calculator.calculate(input)
     println(result)
 }
-
