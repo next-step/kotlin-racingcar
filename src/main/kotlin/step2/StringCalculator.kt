@@ -17,6 +17,9 @@ class StringCalculator {
      * 문자열을 받고 계산을 시작하여 계산한값을 돌려준다.
      */
     fun startCalculate(input: String?): String {
-        return input ?: ""
+        if (input.isNullOrBlank())
+            throw IllegalArgumentException()
+
+        return input
     }
 }
