@@ -23,11 +23,11 @@ class StringCalculatorTest {
             "2 + 3 * 4 / 2 = 10",
             "10 / 10 = 1",
             "3 * 3 * 3 + 2 - 10 = 19"
-        ], delimiter = '='
+        ],
+        delimiter = '='
     )
     fun `문자열 식을 성공적으로 계산한다`(input: String, output: Long) {
         val calculator = StringCalculator()
         assertThat(calculator.calculate(input)).isEqualTo(output)
     }
 }
-
