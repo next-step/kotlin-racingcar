@@ -7,50 +7,6 @@ import org.junit.jupiter.params.provider.CsvSource
 
 class CalculatorTest {
     @Test
-    fun `입력값이 null 인 경우 에러가 발생한다`() {
-        // given
-        val nullInput = null
-
-        // then
-        assertThatThrownBy {
-            Calculator(nullInput)
-        }.hasMessage(ErrorMessage.NULL_INPUT_ERROR)
-    }
-
-    @Test
-    fun `입력값이 공백인 경우 에러가 발생한다`() {
-        // given
-        val spaceInput = "    "
-
-        // then
-        assertThatThrownBy {
-            Calculator(spaceInput)
-        }.hasMessage(ErrorMessage.SPACE_INPUT_ERROR)
-    }
-
-    @Test
-    fun `입력값에 사칙연산이 아닌 기호가 포함된 경우 에러가 발생한다`() {
-        // given
-        val input = "1 + 1 _@!#"
-
-        // then
-        assertThatThrownBy {
-            Calculator(input)
-        }.hasMessage(ErrorMessage.OTHER_STRING_INPUT_ERROR)
-    }
-
-    @Test
-    fun `입력값에 연산자가 연속으로 두번 나온 경우 에러가 발생한다`() {
-        // given
-        val input = "1++1"
-
-        // then
-        assertThatThrownBy {
-            Calculator(input)
-        }.hasMessage(ErrorMessage.NOT_MATCH_OPERAND_COUNT)
-    }
-
-    @Test
     fun `2 + 3 x 4  ÷ 2 를 입력하면 10이 나온다`() {
         // given
         val input = "2 + 3 * 4  / 2"
