@@ -11,7 +11,6 @@ enum class Operator(
     MULTIPLICATION("*", { first, second -> first * second }),
     DIVISION("/", { first, second -> first / second });
 
-
     fun calculate(first: Int, second: Int): Int {
         return function.apply(first, second)
     }
@@ -23,5 +22,4 @@ enum class Operator(
                 ?: throw java.lang.IllegalArgumentException("{$symbol}에 일치하는 연산자가 존재하지 않습니다.")
         }
     }
-
 }

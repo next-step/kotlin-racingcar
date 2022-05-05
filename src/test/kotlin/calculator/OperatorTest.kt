@@ -57,7 +57,6 @@ class OperatorTest : BehaviorSpec({
             Triple(0, 6, -6),
         )
 
-
         `연산 적용 후 검증`(parameters, operator)
     }
 
@@ -69,7 +68,6 @@ class OperatorTest : BehaviorSpec({
             Triple(11, 18, 198),
             Triple(13, 5, 65),
         )
-
 
         `연산 적용 후 검증`(parameters, operator)
     }

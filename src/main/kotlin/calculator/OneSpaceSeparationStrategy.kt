@@ -1,12 +1,12 @@
 package calculator
 
-class OneSpaceSeparationStrategy: SeparationStrategy {
+class OneSpaceSeparationStrategy : SeparationStrategy {
 
     override fun separate(input: String): List<String> {
         return input.split(SEPARATOR)
     }
 
-    companion object{
+    companion object {
         const val SEPARATOR = " "
     }
 }
