@@ -45,5 +45,12 @@ class StringTest {
 
         val nullString: String? = null //null을 split하면 몇개일까?
         assertThat(nullString?.split(" ")?.size).isEqualTo(null)
+
+        val doubleSpaceString = "공백이  두개가 들어간다면?"
+        assertThat(doubleSpaceString.split(" ").size).isEqualTo(4)
+        assertThat(doubleSpaceString.split(" ")[0]).isEqualTo("공백이")
+        assertThat(doubleSpaceString.split(" ")[1]).isEqualTo("")
+        assertThat(doubleSpaceString.split(" ")[2]).isEqualTo("두개가")
+        assertThat(doubleSpaceString.split(" ")[3]).isEqualTo("들어간다면?")
     }
 }
