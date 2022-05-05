@@ -52,5 +52,9 @@ class StringTest {
         assertThat(doubleSpaceString.split(" ")[1]).isEqualTo("")
         assertThat(doubleSpaceString.split(" ")[2]).isEqualTo("두개가")
         assertThat(doubleSpaceString.split(" ")[3]).isEqualTo("들어간다면?")
+
+        val oneLetterString = "1"
+        assertThat(oneLetterString.split(" ").size).isEqualTo(1)
+        assertThat(oneLetterString.split(" ").first()).isEqualTo("1")
     }
 }
