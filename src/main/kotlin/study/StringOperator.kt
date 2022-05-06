@@ -21,7 +21,7 @@ enum class StringOperator(private val sign: String) {
     companion object {
 
         fun of(sign: String): StringOperator =
-            StringOperator.values().find { it.sign == sign } ?: throw IllegalArgumentException("지원하지 않는 연산자 기호입니다.")
+            StringOperator.values().find { it.sign == sign } ?: throw IllegalArgumentException("$sign 는 지원하지 않는 연산자 기호입니다.")
     }
 
     abstract fun apply(left: Operand, right: Operand): Operand
