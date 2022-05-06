@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.NullAndEmptySource
+import org.junit.jupiter.params.provider.ValueSource
 
 internal class StringCalculatorKtTest {
 
@@ -78,5 +80,16 @@ internal class StringCalculatorKtTest {
     fun complex(exp: String, expected: String) {
         val calculator = StringCalculator()
         assertEquals(expected.toInt(), calculator.calculate(exp))
+    }
+
+    @DisplayName("null, 빈 문자열 테스트")
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = [" ", "   ", "\t", "\n"] )
+    fun nullOrEmptyExpressions(exp: String?) {
+        val calculator = StringCalculator()
+        assertThrows(IllegalArgumentException::class.java) {
+            calculator.calculate(exp)
+        }
     }
 }
