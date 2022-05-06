@@ -13,12 +13,9 @@ object CalcParser {
     }
 
     private fun parse(expression: String): Pair<List<StringOperator>, List<Operand>> {
-        val (numbers, operators) = expression.split(" ").partition(::isNumeric)
+        val (numbers, operators) = expression.split(" ").partition(String::isNumeric)
         return Pair(operators.map(StringOperator::of), numbers.map(Operand::of))
     }
-
-    private fun isNumeric(toCheck: String): Boolean {
-        val regex = "-?[0-9]+(\\.[0-9]+)?".toRegex()
-        return toCheck.matches(regex)
-    }
 }
+
+fun String.isNumeric(): Boolean = this.matches(Utils.NUMERIC_REGX)
