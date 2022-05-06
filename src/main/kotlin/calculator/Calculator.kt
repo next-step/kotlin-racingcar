@@ -10,7 +10,7 @@ object Calculator {
 
         expression
             .drop(1)
-            .windowed(2, 2) { (operatorString, numberString) ->
+            .windowed(size = 2, step = 2) { (operatorString, numberString) ->
                 val operator = MathOperator.from(operatorString) ?: throw IllegalArgumentException()
                 val number = numberString.toFloat()
                 result = operator.calculate(result, number)
@@ -21,7 +21,7 @@ object Calculator {
 
     private fun parseExpression(string: String): List<String> {
         return string
-            .replace(" ", "")
+            .replace(oldValue = " ", newValue = "")
             .replace(Regex("([+\\-*/])")) { " ${it.value} " }
             .split(" ")
     }
