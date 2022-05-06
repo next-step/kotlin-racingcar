@@ -4,6 +4,8 @@ import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class OperatorTest {
     @Test
@@ -66,14 +68,11 @@ class OperatorTest {
         )
     }
 
-    @Test
-    fun `사칙 연산 기호가 아닌 값이 팩토리 메서드에 전달되면 에러를 던진다`() {
+    @ParameterizedTest
+    @ValueSource(strings = ["?", "$"])
+    fun `사칙 연산 기호가 아닌 값이 팩토리 메서드에 전달되면 에러를 던진다`(symbol: String) {
         Assertions.assertThatThrownBy {
-            Operator.from("?")
-        }.isInstanceOf(IllegalArgumentException::class.java)
-
-        Assertions.assertThatThrownBy {
-            Operator.from("$")
+            Operator.from(symbol)
         }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
