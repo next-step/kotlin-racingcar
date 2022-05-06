@@ -35,7 +35,8 @@ class StringCalculator {
         }
 
         var left = leftMatcher.group(1).toInt()
-        rightsMatcher.reset()
+        if (left > 0) rightsMatcher.reset()
+
         while (rightsMatcher.find()) {
             val operator = rightsMatcher.group(1)
             val right = rightsMatcher.group(2).toInt()
@@ -56,7 +57,7 @@ class StringCalculator {
     }
 
     companion object {
-        private val leftOnePattern: Pattern = Pattern.compile("(\\d+)")
-        private val rightsPattern: Pattern = Pattern.compile("([-+/*])\\s?(\\d+)")
+        private val leftOnePattern: Pattern = Pattern.compile("(-?\\d+)")
+        private val rightsPattern: Pattern = Pattern.compile("([-+/*])\\s?(-?\\d+)")
     }
 }
