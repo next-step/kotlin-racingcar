@@ -1,0 +1,20 @@
+package calculator
+
+private const val DELIMITER = " "
+
+data class ArithmeticExpression(
+    private val expression: String
+) {
+    val operators: List<String>
+
+    val operands: List<String>
+
+    init {
+        check(expression.isNotBlank() && expression.isNotEmpty()) {"연산식은 공백이 될수 없습니다."}
+
+        val split = expression.split(DELIMITER)
+        operators = split.filterIndexed { i, _ ->  i % 2 == 1}
+        operands = split.filterIndexed { i, _ ->  i % 2 == 0}
+    }
+
+}

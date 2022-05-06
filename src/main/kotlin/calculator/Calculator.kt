@@ -5,11 +5,26 @@ interface Calculator {
 }
 
 class StringCalculator(
-    private val expression: String
+    private val expression: ArithmeticExpression
 ) : Calculator {
 
     override fun calculate(): Double {
-        return 0.0
+        val operators = expression.operators
+        val operands = expression.operands
+
+        return calculateWithExpression(operators, operands.map { it.toInt() })
+    }
+
+    private fun calculateWithExpression(operators: List<String>, operands: List<Int>): Double {
+        return operands.reduceIndexed {index, acc, i ->
+            when (operators[index - 1]) {
+                "+" -> acc + i
+                "-" -> acc - i
+                "*" -> acc * i
+                "/" -> acc / i
+                else -> {0}
+            }
+        }.toDouble()
     }
 }
 
