@@ -16,7 +16,7 @@ class StringCalculator(
     }
 
     private fun calculateWithExpression(operators: List<Operator>, operands: List<Double>): Double {
-        return operands.reduceIndexed {index, acc, i -> operators[index - 1].operate(acc, i) }
+        return operands.reduceIndexed { index, acc, i -> operators[index - 1].operate(acc, i) }
     }
 }
 
