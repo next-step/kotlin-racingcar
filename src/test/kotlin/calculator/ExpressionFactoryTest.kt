@@ -26,41 +26,29 @@ class ExpressionFactoryTest : StringSpec({
         }
     }
 
-    "문자열의 숫자가 `수식(Expression)`의 숫자로 구성된다" {
+    "문자열의 숫자가 `수식(Expression)`의 숫자와 연산자로 구성된다" {
         listOf(
-            "2 + 3" to listOf(2, 3),
-            "2 + 3 * 4" to listOf(2, 3, 4),
-            "2 + 3 * 4 / 2" to listOf(2, 3, 4, 2),
-            "2 + 3 * 4 / 2 - 10" to listOf(2, 3, 4, 2, 10)
-        ).forAll { (expressionText, numbers) ->
-            val expression = expressionFactory.create(expressionText)
-            expression.numbers shouldBe numbers
-        }
-    }
-
-    "문자열의 연산자 기호가 `수식(Expression)`의 연산자로 구성된다" {
-        listOf(
-            "2 + 3" to listOf(
+            listOf(2, 3) to listOf(
                 Operator.ADDITION
-            ),
-            "2 + 3 * 4" to listOf(
+            ) to "2 + 3",
+            listOf(2, 3, 4) to listOf(
                 Operator.ADDITION,
                 Operator.MULTIPLICATION
-            ),
-            "2 + 3 * 4 / 2" to listOf(
+            ) to "2 + 3 * 4",
+            listOf(2, 3, 4, 2) to listOf(
                 Operator.ADDITION,
                 Operator.MULTIPLICATION,
                 Operator.DIVISION
-            ),
-            "2 + 3 * 4 / 2 - 10" to listOf(
+            ) to "2 + 3 * 4 / 2",
+            listOf(2, 3, 4, 2, 10) to listOf(
                 Operator.ADDITION,
                 Operator.MULTIPLICATION,
                 Operator.DIVISION,
                 Operator.SUBTRACTION
-            ),
-        ).forAll { (expressionText, operators) ->
+            ) to "2 + 3 * 4 / 2 - 10"
+        ).forAll { (numbersAndOperators, expressionText) ->
             val expression = expressionFactory.create(expressionText)
-            expression.operators shouldBe operators
+            expression shouldBe Expression(numbersAndOperators.first, numbersAndOperators.second)
         }
     }
 

@@ -23,23 +23,4 @@ class ExpressionTest : StringSpec({
             Expression(numbers, operators)
         }
     }
-
-    "사칙연산에 대한 연산식을 계산할 수 있다" {
-        listOf(
-            Expression(
-                listOf(2, 4),
-                listOf(Operator.SUBTRACTION)
-            ) to -2,
-            Expression(
-                listOf(2, 4, 5, 6),
-                listOf(Operator.ADDITION, Operator.SUBTRACTION, Operator.MULTIPLICATION),
-            ) to 6,
-            Expression(
-                listOf(200, 4, 5, 6),
-                listOf(Operator.DIVISION, Operator.DIVISION, Operator.SUBTRACTION)
-            ) to 4,
-        ).forAll { (expression, expected) ->
-            expression.calculate() shouldBe expected
-        }
-    }
 })

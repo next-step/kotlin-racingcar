@@ -1,8 +1,8 @@
 package calculator
 
 data class Expression(
-    val numbers: List<Int>,
-    val operators: List<Operator>
+    private val numbers: List<Int>,
+    private val operators: List<Operator>
 ) {
     init {
         require(numbers.size == operators.size + 1) {
