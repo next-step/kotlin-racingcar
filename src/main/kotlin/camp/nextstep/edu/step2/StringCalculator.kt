@@ -19,7 +19,7 @@ class StringCalculator {
      * @param exp 계산할 수 있는 표현식 문자열
      */
     fun calculate(exp: String?): Int {
-        if (exp == null) {
+        if (exp.isNullOrBlank()) {
             throw IllegalArgumentException("expression should not null.")
         }
 
