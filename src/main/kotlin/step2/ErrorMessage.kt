@@ -9,4 +9,5 @@ object ErrorMessage {
     const val NOT_MATCH_OPERATORS_AND_OPERANDS = "The number of operators and operands does not match."
     const val IS_NON_DIGIT_CHARACTER = "There is a non-digit character in the digit position."
     const val IS_NON_OPERATOR_CHARACTER = "There is a non-operator character in the operator position."
+    const val CAN_NOT_DIVIDED_BY_ZERO = "It cannot be divided by zero."
 }

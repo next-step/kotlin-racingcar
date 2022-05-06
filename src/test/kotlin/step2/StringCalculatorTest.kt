@@ -64,4 +64,13 @@ class StringCalculatorTest {
         assertThat(Operator.of("/")).isEqualTo(Operator.DIVISION)
         assertThat(Operator.of("*")).isEqualTo(Operator.MULTIPLY)
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["2 / 0"])
+    fun `0으로 나눌 수 없습니다`(source: String) {
+        val calculator = StringCalculator()
+        assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
+            calculator.startCalculate(source)
+        }.withMessageMatching(ErrorMessage.CAN_NOT_DIVIDED_BY_ZERO)
+    }
 }

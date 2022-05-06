@@ -11,7 +11,7 @@ enum class Operator(
     PLUS("+", { a, b -> a + b }),
     MINUS("-", { a, b -> a - b }),
     MULTIPLY("*", { a, b -> a * b }),
-    DIVISION("/", { a, b -> a / b });
+    DIVISION("/", { a, b -> if (b == 0) throw IllegalArgumentException(ErrorMessage.CAN_NOT_DIVIDED_BY_ZERO) else a / b });
 
     companion object {
         fun of(operator: String): Operator = values().find { it.operator == operator }
