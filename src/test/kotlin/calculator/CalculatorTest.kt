@@ -18,15 +18,15 @@ class CalculatorTest {
             "27  /   5, 5.4"
         ]
     )
-    fun `수식 문자열이 들어오면, 계산한 결과결과를 리턴한다`(string: String, expect: Float) {
-        assertThat(Calculator.calculate(string)).isEqualTo(expect)
+    fun `수식 문자열이 들어오면, 계산한 결과결과를 리턴한다`(expression: String, expect: Float) {
+        assertThat(Calculator.calculate(expression)).isEqualTo(expect)
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["", "    ", "수식이 아니다", "No", "1++2**3"])
-    fun `수식이 아닌 문자열이 들어오면, IllegalArgumentException 예외가 발생한다`(string: String) {
+    fun `수식이 아닌 문자열이 들어오면, IllegalArgumentException 예외가 발생한다`(expression: String) {
         assertThrows<IllegalArgumentException> {
-            Calculator.calculate(string)
+            Calculator.calculate(expression)
         }
     }
 }

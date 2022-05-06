@@ -2,24 +2,24 @@ package calculator
 
 object Calculator {
 
-    @kotlin.jvm.Throws(IllegalArgumentException::class)
+    @Throws(IllegalArgumentException::class)
     fun calculate(string: String): Float {
-        val equation = parseEquation(string)
+        val expression = parseExpression(string)
 
-        var result = equation.first().toFloat()
+        var result = expression.first().toFloat()
 
-        equation
+        expression
             .drop(1)
-            .windowed(2, 2) { (a, b) ->
-                val expression = Expression.from(a) ?: throw IllegalArgumentException()
-                val number = b.toFloat()
-                result = expression.calculate(result, number)
+            .windowed(2, 2) { (operatorString, numberString) ->
+                val operator = MathOperator.from(operatorString) ?: throw IllegalArgumentException()
+                val number = numberString.toFloat()
+                result = operator.calculate(result, number)
             }
 
         return result
     }
 
-    private fun parseEquation(string: String): List<String> {
+    private fun parseExpression(string: String): List<String> {
         return string
             .replace(" ", "")
             .replace(Regex("([+\\-*/])")) { " ${it.value} " }
