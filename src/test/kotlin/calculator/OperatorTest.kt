@@ -63,9 +63,9 @@ internal class OperatorTest : StringSpec({
     "연산자 기호로 연산자 객체를 찾는다" {
         forAll(
             row("+"),
-            row("+"),
-            row("+"),
-            row("+"),
+            row("-"),
+            row("*"),
+            row("/"),
         ) {
             // when //then
             shouldNotThrowAny { Operator.of(it) }
@@ -73,14 +73,10 @@ internal class OperatorTest : StringSpec({
     }
 
     "적절하지 않은 연산자 기호로 연산자 객체를 찾는다" {
-        forAll(
-            row("!"),
-            row("@"),
-            row("#"),
-            row("$"),
-        ) {
-            // when //then
-            shouldThrowExactly<IllegalArgumentException> { Operator.of(it) }
-        }
+        // given
+        val symbol = "!"
+
+        // when //then
+        shouldThrowExactly<IllegalArgumentException> { Operator.of(symbol) }
     }
 })
