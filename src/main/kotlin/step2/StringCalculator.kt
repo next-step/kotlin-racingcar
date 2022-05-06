@@ -17,16 +17,20 @@ class StringCalculator {
      * 문자열을 받고 계산을 시작하여 계산한값을 돌려준다.
      */
     fun startCalculate(input: String?): Int {
-        if (input.isNullOrBlank()) throw IllegalArgumentException(ErrorMessage.IS_NULL_OR_BLANK)
+        if (input.isNullOrBlank()) {
+            throw IllegalArgumentException(ErrorMessage.IS_NULL_OR_BLANK)
+        }
 
         val inputList = splitByDelimiter(input)
-        if (inputList.size % 2 == 0) throw IllegalArgumentException(ErrorMessage.NOT_MATCH_OPERATORS_AND_OPERANDS)
+        if (inputList.size % EVEN_COMPARISON_NUMBER == RESULT_WHEN_EVEN_NUMBER) {
+            throw IllegalArgumentException(ErrorMessage.NOT_MATCH_OPERATORS_AND_OPERANDS)
+        }
 
         // 첫숫자는 바로 계산하기 위해 저장한다.
-        var output = checkEnabledNumber(inputList.first())
-        for (index in 1 until inputList.size step 2) {
+        var output = changeStringToInt(inputList.first())
+        for (index in NUMBER_OF_EXCLUDING_THE_FIRST_INDEX until inputList.size step SIZE_OF_CALCULATION_UNIT) {
             output =
-                calculateByOperator(inputList[index], output, checkEnabledNumber(inputList[index + 1]))
+                calculateByOperator(inputList[index], output, changeStringToInt(inputList[index + INDEX_OF_NUMBER]))
         }
 
         return output
@@ -42,7 +46,7 @@ class StringCalculator {
     /**
      * 계산가능한 숫자인지 확인하는 메소드.
      */
-    private fun checkEnabledNumber(input: String): Int {
+    private fun changeStringToInt(input: String): Int {
         return input.toIntOrNull()
             ?: throw IllegalArgumentException(ErrorMessage.IS_NON_DIGIT_CHARACTER)
     }
@@ -61,5 +65,13 @@ class StringCalculator {
 
     companion object {
         private const val DELIMITER = " "
+
+        private const val EVEN_COMPARISON_NUMBER = 2
+        private const val RESULT_WHEN_EVEN_NUMBER = 0
+
+        private const val NUMBER_OF_EXCLUDING_THE_FIRST_INDEX = 1
+        private const val SIZE_OF_CALCULATION_UNIT = 2
+
+        private const val INDEX_OF_NUMBER = 1
     }
 }
