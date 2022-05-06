@@ -1,23 +1,22 @@
 package study
 
 object CalcParser {
+    private val NUMERIC_REGEX = "-?[0-9]+(\\.[0-9]+)?".toRegex()
+
     fun parse(expression: String): CalcMachine {
         this.validate(expression)
-
-        val map = expression
-            .split(" ")
-            .groupBy(this::isNumeric)
-        return this.generateCalcMachine(map)
+        return this.createCalculateMachine(expression)
     }
 
-    private fun generateCalcMachine(map: Map<Boolean, List<String>>): CalcMachine  {
-        val operators = map[false]!!.map(this::convertToOperator)
-        val numbers = map[true]!!.map(this::convertToOperand)
+    private fun createCalculateMachine(expression: String): CalcMachine {
+        val expressionContext = expression.split(" ").groupBy(::isNumeric)
+        val operators = expressionContext[false]!!.map(::convertToOperator)
+        val numbers = expressionContext[true]!!.map(::convertToOperand)
         return CalcMachine(operators, numbers)
     }
 
     private fun convertToOperator(element: String): Operator =
-        when(element) {
+        when (element) {
             "+" -> Operator.PLUS
             "-" -> Operator.MINUS
             "*" -> Operator.TIMES
@@ -27,10 +26,7 @@ object CalcParser {
 
     private fun convertToOperand(element: String): Operand = Operand(element.toInt())
 
-    private fun isNumeric(toCheck: String): Boolean {
-        val regex = "-?[0-9]+(\\.[0-9]+)?".toRegex()
-        return toCheck.matches(regex)
-    }
+    private fun isNumeric(toCheck: String): Boolean = toCheck.matches(NUMERIC_REGEX)
 
     private fun validate(expression: String) {
         if (expression.isBlank() || expression.isEmpty()) {

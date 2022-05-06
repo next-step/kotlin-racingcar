@@ -7,36 +7,36 @@ import io.kotest.matchers.shouldBe
 class CalcParserTest : AnnotationSpec() {
 
     @Test
-    fun `짝수개의 피연산자가 포함된 식`() {
+    fun `짝수개의 피연산자가 포함된 식을 계산할 경우 결과 반환`() {
         // given
         val expr = "1 + 2"
 
         // when
-        val result = CalcParser.parse(expr).calc()
+        val result = CalcParser.parse(expr).calculate()
 
         // then
         result shouldBe Operand(3)
     }
 
     @Test
-    fun `홀수개의 피연산자가 포함된 식`() {
+    fun `홀수개의 피연산자가 포함된 식을 계산할 경우 결과 반환`() {
         // given
         val expr = "1 + 2 + 1"
 
         // when
-        val result = CalcParser.parse(expr).calc()
+        val result = CalcParser.parse(expr).calculate()
 
         // then
         result shouldBe Operand(4)
     }
 
     @Test
-    fun `다양한 연산자가 포함된 식`() {
+    fun `다양한 연산자가 포함된 식을 계산할 경우 결과 반환`() {
         // given
         val expr = "1 * 2 + 1 - 1 / 2"
 
         // when
-        val result = CalcParser.parse(expr).calc()
+        val result = CalcParser.parse(expr).calculate()
 
         // then
         result shouldBe Operand(1)
@@ -95,7 +95,7 @@ class CalcParserTest : AnnotationSpec() {
     }
 
     @Test
-    fun `빈 공백은 분석 불가능`() {
+    fun `빈 공백의 식을 분석할 경우 예외 발생`() {
         // given
         val expr = " "
 

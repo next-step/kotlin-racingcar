@@ -1,25 +1,24 @@
 package study
 
-import java.util.*
+import java.util.Deque
+import java.util.LinkedList
 
-class CalcMachine constructor(private val operators: List<Operator>, numbers: List<Operand>) {
+class CalcMachine(private val operators: List<Operator>, numbers: List<Operand>) {
 
     private val numberQueue: Deque<Operand> = LinkedList(numbers)
 
     init {
-        if (operators.size + 1 != this.numberQueue.size) {
-            throw IllegalArgumentException()
-        }
+        require(operators.size + 1 != this.numberQueue.size)
     }
 
-    fun calc(): Operand {
-        operators.forEach(this::operatorCalc)
+    fun calculate(): Operand {
+        operators.forEach(::processingOperators)
         return numberQueue.poll()
     }
 
-    private fun operatorCalc(operator: Operator) {
-        val lhs = numberQueue.poll()
-        val rhs = numberQueue.poll()
-        this.numberQueue.addFirst(operator.calc(lhs, rhs))
+    private fun processingOperators(operator: Operator) {
+        val leftOperand = numberQueue.poll()
+        val rightOperand = numberQueue.poll()
+        this.numberQueue.addFirst(operator.apply(leftOperand, rightOperand))
     }
 }

@@ -1,11 +1,7 @@
 package study
 
-import io.kotest.assertions.throwables.shouldNotThrow
-import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.ValueSource
 
 class OperatorTest {
 
@@ -16,7 +12,7 @@ class OperatorTest {
         val rhs = Operand(10)
 
         // when
-        val result = Operator.PLUS.calc(lhs, rhs)
+        val result = Operator.PLUS.apply(lhs, rhs)
 
         // then
         result shouldBe Operand(30)
@@ -29,7 +25,7 @@ class OperatorTest {
         val rhs = Operand(10)
 
         // when
-        val result = Operator.MINUS.calc(lhs, rhs)
+        val result = Operator.MINUS.apply(lhs, rhs)
 
         // then
         result shouldBe Operand(10)
@@ -42,7 +38,7 @@ class OperatorTest {
         val rhs = Operand(10)
 
         // when
-        val result = Operator.TIMES.calc(lhs, rhs)
+        val result = Operator.TIMES.apply(lhs, rhs)
 
         // then
         result shouldBe Operand(200)
@@ -55,7 +51,7 @@ class OperatorTest {
         val rhs = Operand(10)
 
         // when
-        val result = Operator.DIV.calc(lhs, rhs)
+        val result = Operator.DIV.apply(lhs, rhs)
 
         // then
         result shouldBe Operand(2)
