@@ -3,6 +3,8 @@ package step2.calculator
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class ExpressionParserTest {
     @Test
@@ -18,40 +20,27 @@ class ExpressionParserTest {
         assertThat(calculations).isEqualTo(calculations2)
     }
 
-    @Test
-    fun `숫자 - 연산자 순서로 되어 있지 않다면 IllegalArgumentException이 발생한다`() {
+    @ParameterizedTest
+    @ValueSource(strings = ["* 2 + 3 * 4 / 2", "* * 3 * 3 * 4 / 2", "3 4 3 * 3 * 4 / 2"])
+    fun `숫자 - 연산자 순서로 되어 있지 않다면 IllegalArgumentException이 발생한다`(expression: String) {
         Assertions.assertThatThrownBy {
-            ExpressionParser.parse("* 2 + 3 * 4 / 2")
-        }.isInstanceOf(IllegalArgumentException::class.java)
-
-        Assertions.assertThatThrownBy {
-            ExpressionParser.parse("* * 3 * 3 * 4 / 2")
-        }.isInstanceOf(IllegalArgumentException::class.java)
-
-        Assertions.assertThatThrownBy {
-            ExpressionParser.parse("3 4 3 * 3 * 4 / 2")
+            ExpressionParser.parse(expression)
         }.isInstanceOf(IllegalArgumentException::class.java)
     }
 
-    @Test
-    fun `숫자나 연산자에 공백이 존재한다면 IllegalArgumentException이 발생한다`() {
+    @ParameterizedTest
+    @ValueSource(strings = ["3  3 * 4 / 2", "3 +  * 4 / 2"])
+    fun `숫자나 연산자에 공백이 존재한다면 IllegalArgumentException이 발생한다`(expression: String) {
         Assertions.assertThatThrownBy {
-            ExpressionParser.parse("3  3 * 4 / 2")
-        }.isInstanceOf(IllegalArgumentException::class.java)
-
-        Assertions.assertThatThrownBy {
-            ExpressionParser.parse("3 +  * 4 / 2")
+            ExpressionParser.parse(expression)
         }.isInstanceOf(IllegalArgumentException::class.java)
     }
 
-    @Test
-    fun `숫자 위치에 숫자로 변환될 수 없는 값이 온다면 NumberFormatException이 발생한다`() {
+    @ParameterizedTest
+    @ValueSource(strings = ["2 + ㅋ * 4 / 2", "two + 3 * 4 / 2"])
+    fun `숫자 위치에 숫자로 변환될 수 없는 값이 온다면 NumberFormatException이 발생한다`(expression: String) {
         Assertions.assertThatThrownBy {
-            ExpressionParser.parse("2 + ㅋ * 4 / 2")
-        }.isInstanceOf(NumberFormatException::class.java)
-
-        Assertions.assertThatThrownBy {
-            ExpressionParser.parse("two + 3 * 4 / 2")
-        }.isInstanceOf(NumberFormatException::class.java)
+            ExpressionParser.parse(expression)
+        }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
