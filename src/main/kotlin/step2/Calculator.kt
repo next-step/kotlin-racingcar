@@ -8,13 +8,13 @@ class Calculator {
         val numbers = elements[true]?.map { it.toInt() }
         val operators = elements[false]!!
 
-        if(numbers.isNullOrEmpty()) {
+        if (numbers.isNullOrEmpty()) {
             return 0
         }
 
         this.total = numbers[0]
 
-        for ((i,v) in numbers.drop(1).withIndex()) {
+        for ((i, v) in numbers.drop(1).withIndex()) {
             this.total = calculate(this.total, v, operators[i])
         }
 

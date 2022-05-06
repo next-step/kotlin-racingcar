@@ -1,11 +1,10 @@
 package study
 
 import io.kotest.core.spec.style.AnnotationSpec
-import io.kotest.core.spec.style.Test
 import io.kotest.matchers.shouldBe
 import step2.isNumeric
 
-class ListTest: AnnotationSpec() {
+class ListTest : AnnotationSpec() {
     @Test
     fun `List의 GroupBy`() {
         val list = listOf("1", "+", "2", "-", "3")
@@ -18,5 +17,4 @@ class ListTest: AnnotationSpec() {
         result[false]?.size shouldBe 2
         result[false]?.get(0) shouldBe "+"
     }
-
 }

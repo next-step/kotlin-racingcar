@@ -4,7 +4,7 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 
-class OperatorTest: DescribeSpec({
+class OperatorTest : DescribeSpec({
 
     describe("evaluate") {
         it("+연산자는 두 숫자를 합한다") {
@@ -58,6 +58,4 @@ class OperatorTest: DescribeSpec({
             exception.message shouldBe "+, -, *, / 외에는 사용할 수 없습니다."
         }
     }
-
-
 })

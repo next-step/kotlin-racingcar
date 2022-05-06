@@ -3,7 +3,7 @@ package step2
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.shouldBe
 
-class CalculatorTest: AnnotationSpec() {
+class CalculatorTest : AnnotationSpec() {
     @Test
     fun `+연산자는 좌우 숫자를 계산한다`() {
         val sut = Calculator()
