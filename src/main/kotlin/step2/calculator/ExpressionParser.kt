@@ -16,16 +16,20 @@ class ExpressionParser {
 
     @Throws(IllegalArgumentException::class, NumberFormatException::class)
     private fun List<String>.convertToCalculations() = chunked(SIZE_OF_CALCULATION_UNIT) { symbolAndNumber ->
-        val textSymbol = symbolAndNumber.getOrNull(INDEX_SYMBOL)
-        val textNumber = symbolAndNumber.getOrNull(INDEX_NUMBER)
-        mustNot(IllegalArgumentException(INVALID_CALCULATION_VALUE_ERROR_MESSAGE)) {
-            textSymbol.isNullOrBlank() || textNumber.isNullOrBlank()
+        val textSymbol = requireNotNull(symbolAndNumber.firstOrNull()) {
+            NULL_CALCULATION_VALUE_ERROR_MESSAGE
+        }
+        val textNumber = requireNotNull(symbolAndNumber.lastOrNull()) {
+            NULL_CALCULATION_VALUE_ERROR_MESSAGE
+        }
+        mustNot(IllegalArgumentException(BLANK_CALCULATION_VALUE_ERROR_MESSAGE)) {
+            textSymbol.isBlank() || textNumber.isBlank()
         }
 
         // 위에서 non-null을 확인했기 때문에 !!를 사용함.
         Calculation(
-            operator = Operator.from(textSymbol!!),
-            number = textNumber!!.toDouble()
+            operator = Operator.from(textSymbol),
+            number = textNumber.toDouble()
         )
     }
 
@@ -36,6 +40,7 @@ class ExpressionParser {
         private const val INDEX_SYMBOL = 0
         private const val INDEX_NUMBER = 1
 
-        private const val INVALID_CALCULATION_VALUE_ERROR_MESSAGE = "사칙 연산의 값으로 공백을 사용할 수 없습니다."
+        private const val BLANK_CALCULATION_VALUE_ERROR_MESSAGE = "사칙 연산의 값으로 공백을 사용할 수 없습니다."
+        private const val NULL_CALCULATION_VALUE_ERROR_MESSAGE = "연산에 필요한 값이 존재하지 않습니다."
     }
 }
