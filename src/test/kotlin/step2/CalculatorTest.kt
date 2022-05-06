@@ -1,8 +1,11 @@
 package step2
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.NullSource
+import org.junit.jupiter.params.provider.ValueSource
 
 class CalculatorTest {
     @ParameterizedTest
@@ -38,5 +41,41 @@ class CalculatorTest {
     fun `종합 테스트`(expression: String, expect: Double) {
         val actual = InOrderCalculator().calculate(expression)
         actual shouldBe expect
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = [" ", ""])
+    fun `입력값이 공백인 경우 예외`(expression: String) {
+        val exception = shouldThrow<IllegalArgumentException> {
+            InOrderCalculator().calculate(expression)
+        }
+        println(exception.message)
+    }
+
+    @ParameterizedTest
+    @NullSource
+    fun `입력값이 널인 경우 예외`(expression: String?) {
+        val exception = shouldThrow<IllegalArgumentException> {
+            InOrderCalculator().calculate(expression)
+        }
+        println(exception.message)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["1 = 2", "100 % 5", "1 a 2", "1 1 1"])
+    fun `연산자가 올바르지 않은 경우 예외`(expression: String) {
+        val exception = shouldThrow<IllegalArgumentException> {
+            InOrderCalculator().calculate(expression)
+        }
+        println(exception.message)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["1 - - 2 3", "100 - 5 +"])
+    fun `식이 올바르지 않은 경우`(expression: String) {
+        val exception = shouldThrow<IllegalArgumentException> {
+            InOrderCalculator().calculate(expression)
+        }
+        println(exception.message)
     }
 }
