@@ -15,16 +15,8 @@ class StringCalculator(
         return calculateWithExpression(operators, operands)
     }
 
-    private fun calculateWithExpression(operators: List<String>, operands: List<Int>): Double {
-        return operands.reduceIndexed {index, acc, i ->
-            when (operators[index - 1]) {
-                "+" -> acc + i
-                "-" -> acc - i
-                "*" -> acc * i
-                "/" -> acc / i
-                else -> throw IllegalArgumentException("사칙연산 기호가 아닌경우 연산을 진행할 수 없습니다.")
-            }
-        }.toDouble()
+    private fun calculateWithExpression(operators: List<String>, operands: List<Double>): Double {
+        return operands.reduceIndexed {index, acc, i -> Operator.find(operators[index - 1]).operate(acc, i) }
     }
 }
 
