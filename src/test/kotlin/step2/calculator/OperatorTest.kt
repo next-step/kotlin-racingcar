@@ -3,14 +3,17 @@ package step2.calculator
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertAll
 
 class OperatorTest {
     @Test
     fun `Operator의 symbol이 정확한지 확인한다`() {
-        assertThat(Operator.SYMBOL_PLUS).isEqualTo(Operator.PLUS.symbol)
-        assertThat(Operator.SYMBOL_MINUS).isEqualTo(Operator.MINUS.symbol)
-        assertThat(Operator.SYMBOL_MULTIPLY).isEqualTo(Operator.MULTIPLY.symbol)
-        assertThat(Operator.SYMBOL_DIVIDE).isEqualTo(Operator.DIVIDE.symbol)
+        assertAll(
+            { assertThat(Operator.SYMBOL_PLUS).isEqualTo(Operator.PLUS.symbol) },
+            { assertThat(Operator.SYMBOL_MINUS).isEqualTo(Operator.MINUS.symbol) },
+            { assertThat(Operator.SYMBOL_MULTIPLY).isEqualTo(Operator.MULTIPLY.symbol) },
+            { assertThat(Operator.SYMBOL_DIVIDE).isEqualTo(Operator.DIVIDE.symbol) }
+        )
     }
 
     @Test
@@ -55,10 +58,12 @@ class OperatorTest {
         val multiply = Operator.from(Operator.SYMBOL_MULTIPLY)
         val divide = Operator.from(Operator.SYMBOL_DIVIDE)
 
-        assertThat(plus).isEqualTo(Operator.PLUS)
-        assertThat(minus).isEqualTo(Operator.MINUS)
-        assertThat(multiply).isEqualTo(Operator.MULTIPLY)
-        assertThat(divide).isEqualTo(Operator.DIVIDE)
+        assertAll(
+            { assertThat(plus).isEqualTo(Operator.PLUS) },
+            { assertThat(minus).isEqualTo(Operator.MINUS) },
+            { assertThat(multiply).isEqualTo(Operator.MULTIPLY) },
+            { assertThat(divide).isEqualTo(Operator.DIVIDE) }
+        )
     }
 
     @Test
