@@ -1,7 +1,5 @@
 package step2.calculator
 
-import step2.inspector.mustNot
-
 class ExpressionParser {
     fun parse(expression: String) = expression
         .splitToTextSymbolAndNumbers()
@@ -22,8 +20,8 @@ class ExpressionParser {
         val textNumber = requireNotNull(symbolAndNumber.lastOrNull()) {
             NULL_CALCULATION_VALUE_ERROR_MESSAGE
         }
-        mustNot(IllegalArgumentException(BLANK_CALCULATION_VALUE_ERROR_MESSAGE)) {
-            textSymbol.isBlank() || textNumber.isBlank()
+        require(textSymbol.isBlank() || textNumber.isBlank()) {
+            BLANK_CALCULATION_VALUE_ERROR_MESSAGE
         }
 
         // 위에서 non-null을 확인했기 때문에 !!를 사용함.
