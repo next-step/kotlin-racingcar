@@ -6,13 +6,13 @@ enum class Operator(expr: String, evaluate: (num1: Int, num2: Int) -> Int) {
     MULTIPLY("*", { num1: Int, num2: Int -> num1 * num2 }),
     DIVIDE("/", { num1: Int, num2: Int -> num1 / num2 });
 
-    var expr: String = expr
+    var display: String = expr
         private set
     var evaluate = evaluate
         private set
     companion object {
         fun find(target: String): Operator {
-            return values().find { it.expr == target }
+            return values().find { it.display == target }
                 ?: throw IllegalArgumentException("+, -, *, / 외에는 사용할 수 없습니다.")
         }
     }
