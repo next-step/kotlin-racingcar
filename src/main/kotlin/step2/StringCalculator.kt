@@ -22,7 +22,7 @@ class StringCalculator {
         val inputList = splitByDelimiter(input)
         if (inputList.size % 2 == 0) throw IllegalArgumentException(ErrorMessage.NOT_MATCH_OPERATORS_AND_OPERANDS)
 
-        //첫숫자는 바로 계산하기 위해 저장한다.
+        // 첫숫자는 바로 계산하기 위해 저장한다.
         var output = checkEnabledNumber(inputList.first())
         for (index in 1 until inputList.size step 2) {
             output =

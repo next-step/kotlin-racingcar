@@ -40,10 +40,10 @@ class StringTest {
         assertThat(firstWordIsSpaceString.split(" ").size).isEqualTo(4)
         assertThat(firstWordIsSpaceString.split(" ").first()).isEqualTo("")
 
-        val emptyString = "" //공백일때 나누면 몇개일까?
+        val emptyString = "" // 공백일때 나누면 몇개일까?
         assertThat(emptyString.split(" ").size).isEqualTo(1)
 
-        val nullString: String? = null //null을 split하면 몇개일까?
+        val nullString: String? = null // null을 split하면 몇개일까?
         assertThat(nullString?.split(" ")?.size).isEqualTo(null)
 
         val doubleSpaceString = "공백이  두개가 들어간다면?"
