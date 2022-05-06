@@ -30,7 +30,7 @@ class StringCalculator {
         var output = changeStringToInt(inputList.first())
         for (index in NUMBER_OF_EXCLUDING_THE_FIRST_INDEX until inputList.size step SIZE_OF_CALCULATION_UNIT) {
             output =
-                calculateByOperator(inputList[index], output, changeStringToInt(inputList[index + INDEX_OF_NUMBER]))
+                Operator.of(inputList[index]).calculate(output, changeStringToInt(inputList[index + INDEX_OF_NUMBER]))
         }
 
         return output
@@ -49,18 +49,6 @@ class StringCalculator {
     private fun changeStringToInt(input: String): Int {
         return input.toIntOrNull()
             ?: throw IllegalArgumentException(ErrorMessage.IS_NON_DIGIT_CHARACTER)
-    }
-
-    /**
-     * Operator에 따라 계산한다.
-     */
-    private fun calculateByOperator(operator: String, operand1: Int, operand2: Int): Int {
-        return when (Operator.of(operator)) {
-            Operator.PLUS -> operand1 + operand2
-            Operator.MINUS -> operand1 - operand2
-            Operator.MULTIPLY -> operand1 * operand2
-            Operator.DIVISION -> operand1 / operand2
-        }
     }
 
     companion object {

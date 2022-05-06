@@ -2,6 +2,7 @@ package step2
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.NullAndEmptySource
@@ -54,5 +55,13 @@ class StringCalculatorTest {
         assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
             calculator.startCalculate(source)
         }.withMessageMatching(ErrorMessage.IS_NON_DIGIT_CHARACTER)
+    }
+
+    @Test
+    fun `Operator는 연산자를 잘 찾아내는가`() {
+        assertThat(Operator.of("+")).isEqualTo(Operator.PLUS)
+        assertThat(Operator.of("-")).isEqualTo(Operator.MINUS)
+        assertThat(Operator.of("/")).isEqualTo(Operator.DIVISION)
+        assertThat(Operator.of("*")).isEqualTo(Operator.MULTIPLY)
     }
 }

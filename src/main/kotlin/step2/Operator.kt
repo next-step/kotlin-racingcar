@@ -5,12 +5,16 @@ package step2
  * Created by Jaesungchi on 2022.05.05..
  */
 enum class Operator(
-    val char: String
+    val operator: String,
+    val calculate: (Int, Int) -> Int
 ) {
-    PLUS("+"), MINUS("-"), MULTIPLY("*"), DIVISION("/");
+    PLUS("+", { a, b -> a + b }),
+    MINUS("-", { a, b -> a - b }),
+    MULTIPLY("*", { a, b -> a * b }),
+    DIVISION("/", { a, b -> a / b });
 
     companion object {
-        fun of(char: String): Operator = values().find { it.char == char }
+        fun of(operator: String): Operator = values().find { it.operator == operator }
             ?: throw IllegalArgumentException(ErrorMessage.IS_NON_OPERATOR_CHARACTER)
     }
 }
