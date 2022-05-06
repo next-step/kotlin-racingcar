@@ -1,10 +1,9 @@
 package study
 
 import io.kotest.matchers.throwable.shouldHaveMessage
+import org.junit.jupiter.api.Assertions.assertThrowsExactly
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import org.junit.jupiter.api.Assertions.assertThrowsExactly
-
 
 internal class CalcSyntaxCheckerTest {
 
