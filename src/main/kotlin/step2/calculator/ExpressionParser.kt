@@ -1,6 +1,13 @@
 package step2.calculator
 
-class ExpressionParser {
+object ExpressionParser {
+    private const val DELIMITER = " "
+
+    private const val SIZE_OF_CALCULATION_UNIT = 2
+
+    private const val BLANK_CALCULATION_VALUE_ERROR_MESSAGE = "사칙 연산의 값으로 공백을 사용할 수 없습니다."
+    private const val NULL_CALCULATION_VALUE_ERROR_MESSAGE = "연산에 필요한 값이 존재하지 않습니다."
+
     fun parse(expression: String) = expression
         .splitToTextSymbolAndNumbers()
         .convertToCalculations()
@@ -32,14 +39,5 @@ class ExpressionParser {
         }
 
         return value
-    }
-
-    companion object {
-        private const val DELIMITER = " "
-
-        private const val SIZE_OF_CALCULATION_UNIT = 2
-
-        private const val BLANK_CALCULATION_VALUE_ERROR_MESSAGE = "사칙 연산의 값으로 공백을 사용할 수 없습니다."
-        private const val NULL_CALCULATION_VALUE_ERROR_MESSAGE = "연산에 필요한 값이 존재하지 않습니다."
     }
 }

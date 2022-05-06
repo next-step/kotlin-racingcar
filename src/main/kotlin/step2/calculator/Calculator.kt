@@ -1,10 +1,8 @@
 package step2.calculator
 
-class Calculator(
-    private val expressionParser: ExpressionParser
-) {
+class Calculator {
     fun calculate(expression: String): Double {
-        val calculations = expressionParser.parse(expression)
+        val calculations = ExpressionParser.parse(expression)
         return calculations.fold(0.0) { acc, calculation ->
             acc compensates calculation
         }

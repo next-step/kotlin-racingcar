@@ -6,7 +6,7 @@ import org.junit.jupiter.api.assertAll
 
 class CalculatorTest {
     private val calculator: Calculator by lazy {
-        Calculator(ExpressionParser())
+        Calculator()
     }
 
     @Test
