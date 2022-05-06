@@ -1,25 +1,24 @@
 package study
 
 object CalcParser {
-    private val NUMERIC_REGEX = "-?[0-9]+(\\.[0-9]+)?".toRegex()
 
-    fun parse(expression: String): CalcMachine {
-        this.validate(expression)
+    fun compile(expression: String): CalcMachine {
+        CalcSyntaxChecker.validate(expression)
         return this.createCalculateMachine(expression)
     }
 
     private fun createCalculateMachine(expression: String): CalcMachine {
-        val expressionContext = expression.split(" ").groupBy(::isNumeric)
-        val stringOperators = expressionContext[false]!!.map(StringOperator::of)
-        val numbers = expressionContext[true]!!.map(Operand::of)
-        return CalcMachine(stringOperators, numbers)
+        val (stringOperators, operands) = this.parse(expression)
+        return CalcMachine(stringOperators, operands)
     }
 
-    private fun isNumeric(toCheck: String): Boolean = toCheck.matches(NUMERIC_REGEX)
+    private fun parse(expression: String): Pair<List<StringOperator>, List<Operand>> {
+        val (numbers, operators) = expression.split(" ").partition(::isNumeric)
+        return Pair(operators.map(StringOperator::of), numbers.map(Operand::of))
+    }
 
-    private fun validate(expression: String) {
-        if (expression.isBlank() || expression.isEmpty()) {
-            throw IllegalArgumentException("식이 빈 공백입니다.")
-        }
+    private fun isNumeric(toCheck: String): Boolean {
+        val regex = "-?[0-9]+(\\.[0-9]+)?".toRegex()
+        return toCheck.matches(regex)
     }
 }

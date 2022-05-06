@@ -12,7 +12,7 @@ class CalcParserTest : AnnotationSpec() {
         val expr = "1 + 2"
 
         // when
-        val result = CalcParser.parse(expr).calculate()
+        val result = CalcParser.compile(expr).calculate()
 
         // then
         result shouldBe Operand(3)
@@ -24,7 +24,7 @@ class CalcParserTest : AnnotationSpec() {
         val expr = "1 + 2 + 1"
 
         // when
-        val result = CalcParser.parse(expr).calculate()
+        val result = CalcParser.compile(expr).calculate()
 
         // then
         result shouldBe Operand(4)
@@ -36,7 +36,7 @@ class CalcParserTest : AnnotationSpec() {
         val expr = "1 * 2 + 1 - 1 / 2"
 
         // when
-        val result = CalcParser.parse(expr).calculate()
+        val result = CalcParser.compile(expr).calculate()
 
         // then
         result shouldBe Operand(1)
@@ -51,7 +51,7 @@ class CalcParserTest : AnnotationSpec() {
 
         // then
         shouldThrow<IllegalArgumentException> {
-            CalcParser.parse(expr)
+            CalcParser.compile(expr)
         }
     }
 
@@ -64,7 +64,7 @@ class CalcParserTest : AnnotationSpec() {
 
         // then
         shouldThrow<IllegalArgumentException> {
-            CalcParser.parse(expr)
+            CalcParser.compile(expr)
         }
     }
 
@@ -77,7 +77,7 @@ class CalcParserTest : AnnotationSpec() {
 
         // then
         shouldThrow<IllegalArgumentException> {
-            CalcParser.parse(expr)
+            CalcParser.compile(expr)
         }
     }
 
@@ -90,7 +90,7 @@ class CalcParserTest : AnnotationSpec() {
 
         // then
         shouldThrow<IllegalArgumentException> {
-            CalcParser.parse(expr)
+            CalcParser.compile(expr)
         }
     }
 
@@ -103,7 +103,7 @@ class CalcParserTest : AnnotationSpec() {
 
         // then
         shouldThrow<IllegalArgumentException> {
-            CalcParser.parse(expr)
+            CalcParser.compile(expr)
         }
     }
 }
