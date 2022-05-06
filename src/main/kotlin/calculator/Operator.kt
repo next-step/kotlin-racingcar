@@ -1,9 +1,8 @@
 package calculator
 
-import java.util.function.BinaryOperator
-
 private const val DOUBLE_ZERO = 0.0
-enum class Operator(private val value: String, private val apply: BinaryOperator<Double>) {
+
+enum class Operator(private val value: String, private val function: (Double, Double) -> Double) {
     PLUS("+", { t, u -> t + u }),
     MINUS("-", { t, u -> t - u }),
     DIVISION("/", { t, u ->
@@ -19,6 +18,6 @@ enum class Operator(private val value: String, private val apply: BinaryOperator
     }
 
     fun operate(first: Double, second: Double): Double {
-        return apply.apply(first, second)
+        return function.invoke(first, second)
     }
 }
