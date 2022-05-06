@@ -12,20 +12,20 @@ internal class StringCalculatorTest : StringSpec({
             row(""),
             row("   "),
         ) {
-            //when //then
+            // when //then
             shouldThrowExactly<IllegalArgumentException> { StringCalculator(it) }
         }
     }
 
     "주어진 문자열 수식을 연산한다" {
-        //given
+        // given
         val expression = "2 + 3 * 4 / 2"
         val stringCalculator = StringCalculator(expression)
 
-        //when
+        // when
         val actual = stringCalculator.calculate()
 
-        //then
+        // then
         actual shouldBe 10
     }
 })

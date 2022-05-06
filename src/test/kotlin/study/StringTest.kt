@@ -10,14 +10,14 @@ class StringTest : StringSpec({
         sut shouldBe true
     }
 
-    "널 타입"{
+    "널 타입" {
         val person = Person("김경록", 20, null)
 
         person.name shouldBe "김경록"
         person.nickname shouldBe null
     }
 
-    "기본 인자"{
+    "기본 인자" {
         val person = Person("김경록", 20)
 
         person.name shouldBe "김경록"
