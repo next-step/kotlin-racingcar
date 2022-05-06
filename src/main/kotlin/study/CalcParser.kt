@@ -11,7 +11,7 @@ object CalcParser {
     private fun createCalculateMachine(expression: String): CalcMachine {
         val expressionContext = expression.split(" ").groupBy(::isNumeric)
         val operators = expressionContext[false]!!.map(::convertToOperator)
-        val numbers = expressionContext[true]!!.map(::convertToOperand)
+        val numbers = expressionContext[true]!!.map(Operand::of)
         return CalcMachine(operators, numbers)
     }
 
@@ -23,8 +23,6 @@ object CalcParser {
             "/" -> Operator.DIV
             else -> throw IllegalArgumentException("지원하지 않는 연산자가 포함된 식입니다.")
         }
-
-    private fun convertToOperand(element: String): Operand = Operand(element.toInt())
 
     private fun isNumeric(toCheck: String): Boolean = toCheck.matches(NUMERIC_REGEX)
 
