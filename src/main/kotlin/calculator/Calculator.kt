@@ -22,7 +22,7 @@ class StringCalculator(
                 "-" -> acc - i
                 "*" -> acc * i
                 "/" -> acc / i
-                else -> 0
+                else -> throw IllegalArgumentException("사칙연산 기호가 아닌경우 연산을 진행할 수 없습니다.")
             }
         }.toDouble()
     }
