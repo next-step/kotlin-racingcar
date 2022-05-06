@@ -14,21 +14,24 @@ class ExpressionParser {
 
     @Throws(IllegalArgumentException::class, NumberFormatException::class)
     private fun List<String>.convertToCalculations() = chunked(SIZE_OF_CALCULATION_UNIT) { symbolAndNumber ->
-        val textSymbol = requireNotNull(symbolAndNumber.firstOrNull()) {
-            NULL_CALCULATION_VALUE_ERROR_MESSAGE
-        }
-        val textNumber = requireNotNull(symbolAndNumber.lastOrNull()) {
-            NULL_CALCULATION_VALUE_ERROR_MESSAGE
-        }
-        require(textSymbol.isBlank() || textNumber.isBlank()) {
-            BLANK_CALCULATION_VALUE_ERROR_MESSAGE
-        }
+        val textSymbol = requireNotNullOrBlank(symbolAndNumber.firstOrNull())
+        val textNumber = requireNotNullOrBlank(symbolAndNumber.lastOrNull())
 
-        // 위에서 non-null을 확인했기 때문에 !!를 사용함.
         Calculation(
             operator = Operator.from(textSymbol),
             number = textNumber.toDouble()
         )
+    }
+
+    private fun requireNotNullOrBlank(value: String?): String {
+        require(value != null) {
+            NULL_CALCULATION_VALUE_ERROR_MESSAGE
+        }
+        require(value.isNotBlank()) {
+            BLANK_CALCULATION_VALUE_ERROR_MESSAGE
+        }
+
+        return value
     }
 
     companion object {
