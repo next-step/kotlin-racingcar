@@ -10,9 +10,9 @@ object CalcParser {
 
     private fun createCalculateMachine(expression: String): CalcMachine {
         val expressionContext = expression.split(" ").groupBy(::isNumeric)
-        val operators = expressionContext[false]!!.map(Operator::of)
+        val stringOperators = expressionContext[false]!!.map(StringOperator::of)
         val numbers = expressionContext[true]!!.map(Operand::of)
-        return CalcMachine(operators, numbers)
+        return CalcMachine(stringOperators, numbers)
     }
 
     private fun isNumeric(toCheck: String): Boolean = toCheck.matches(NUMERIC_REGEX)

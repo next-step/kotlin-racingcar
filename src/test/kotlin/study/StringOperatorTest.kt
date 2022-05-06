@@ -3,7 +3,7 @@ package study
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 
-class OperatorTest {
+class StringOperatorTest {
 
     @Test
     fun addOperator() {
@@ -12,7 +12,7 @@ class OperatorTest {
         val rhs = Operand(10)
 
         // when
-        val result = Operator.PLUS.apply(lhs, rhs)
+        val result = StringOperator.PLUS.apply(lhs, rhs)
 
         // then
         result shouldBe Operand(30)
@@ -25,7 +25,7 @@ class OperatorTest {
         val rhs = Operand(10)
 
         // when
-        val result = Operator.MINUS.apply(lhs, rhs)
+        val result = StringOperator.MINUS.apply(lhs, rhs)
 
         // then
         result shouldBe Operand(10)
@@ -38,7 +38,7 @@ class OperatorTest {
         val rhs = Operand(10)
 
         // when
-        val result = Operator.TIMES.apply(lhs, rhs)
+        val result = StringOperator.TIMES.apply(lhs, rhs)
 
         // then
         result shouldBe Operand(200)
@@ -51,7 +51,7 @@ class OperatorTest {
         val rhs = Operand(10)
 
         // when
-        val result = Operator.DIV.apply(lhs, rhs)
+        val result = StringOperator.DIV.apply(lhs, rhs)
 
         // then
         result shouldBe Operand(2)
