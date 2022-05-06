@@ -8,7 +8,7 @@ class CalcMachine(private val stringOperators: List<StringOperator>, numbers: Li
     private val numberQueue: Deque<Operand> = LinkedList(numbers)
 
     init {
-        require(stringOperators.size + 1 != this.numberQueue.size)
+        require(stringOperators.size + 1 == this.numberQueue.size)
     }
 
     fun calculate(): Operand {
