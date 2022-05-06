@@ -12,7 +12,7 @@ class StringCalculator(
         val operators = expression.operators
         val operands = expression.operands
 
-        return calculateWithExpression(operators, operands.map { it.toInt() })
+        return calculateWithExpression(operators, operands)
     }
 
     private fun calculateWithExpression(operators: List<String>, operands: List<Int>): Double {
@@ -22,7 +22,7 @@ class StringCalculator(
                 "-" -> acc - i
                 "*" -> acc * i
                 "/" -> acc / i
-                else -> {0}
+                else -> 0
             }
         }.toDouble()
     }
