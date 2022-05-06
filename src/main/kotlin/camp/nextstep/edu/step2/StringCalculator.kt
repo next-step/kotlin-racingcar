@@ -1,5 +1,7 @@
 package camp.nextstep.edu.step2
 
+import java.util.regex.Pattern
+
 /**
  * 문자열 계산기
  *
@@ -12,7 +14,49 @@ package camp.nextstep.edu.step2
 
 class StringCalculator {
 
-    fun calculate(exp: String): Int {
-        TODO()
+    /**
+     * 좌측부터 (숫자 연산자 숫자) 중위 연산 패턴을 찾아 차례대로 계산합니다.
+     * @param exp 계산할 수 있는 표현식 문자열
+     */
+    fun calculate(exp: String?): Int {
+        if (exp == null) {
+            throw IllegalArgumentException("expression should not null.")
+        }
+
+        val leftMatcher = leftOnePattern.matcher(exp)
+        val rightsMatcher = rightsPattern.matcher(exp)
+
+        if (!leftMatcher.find()) {
+            throw IllegalArgumentException("expression should start with number.")
+        }
+
+        if (!rightsMatcher.find()) {
+            throw IllegalArgumentException("expression should exist at least once of infix expression.")
+        }
+
+        var left = leftMatcher.group(1).toInt()
+        rightsMatcher.reset()
+        while (rightsMatcher.find()) {
+            val operator = rightsMatcher.group(1)
+            val right = rightsMatcher.group(2).toInt()
+            left = doInfix(left, operator, right)
+        }
+
+        return left
+    }
+
+    private fun doInfix(left: Int, operator: String, right: Int): Int {
+        return when (operator) {
+            "+" -> (left.plus(right))
+            "-" -> (left.minus(right))
+            "/" -> (left.div(right))
+            "*" -> (left.times(right))
+            else -> throw IllegalArgumentException("$operator is invalid operator (use only [+,-,/,*]).")
+        }
+    }
+
+    companion object {
+        private val leftOnePattern: Pattern = Pattern.compile("(\\d+)")
+        private val rightsPattern: Pattern = Pattern.compile("([-+/*])\\s?(\\d+)")
     }
 }
