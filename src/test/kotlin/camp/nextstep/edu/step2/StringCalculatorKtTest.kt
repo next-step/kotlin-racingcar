@@ -2,56 +2,81 @@ package camp.nextstep.edu.step2
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 
 internal class StringCalculatorKtTest {
 
-    @Test
-    @DisplayName("5 + 1 = 6")
-    fun plus() {
+    @DisplayName("더하기 단일 연산 테스트")
+    @ParameterizedTest(name = "{0} = {1}")
+    @CsvSource(
+        "5 + 1, 6",
+        "10 + 100, 110",
+        "-10 + 1, -9",
+        "123 + -23, 100",
+        "-10 + 10, 0",
+    )
+    fun plus(exp: String, expected: String) {
         val calculator = StringCalculator()
-        assertEquals(6, calculator.calculate("5 + 1"))
+        assertEquals(expected.toInt(), calculator.calculate(exp))
     }
 
-    @Test
-    @DisplayName("5 - 10 = -5")
-    fun minus() {
+    @DisplayName("빼기 단일 연산 테스트")
+    @ParameterizedTest(name = "{0} = {1}")
+    @CsvSource(
+        "5 - 1, 4",
+        "10 - 100, -90",
+        "-10 - 1, -11",
+        "123 - -23, 146",
+        "-10 - 10, -20",
+    )
+    fun minus(exp: String, expected: String) {
         val calculator = StringCalculator()
-        assertEquals(-5, calculator.calculate("5 - 10"))
+        assertEquals(expected.toInt(), calculator.calculate(exp))
     }
 
-    @Test
-    @DisplayName("10 / 5 = 2")
-    fun divide() {
+    @DisplayName("나누기 단일 연산 테스트")
+    @ParameterizedTest(name = "{0} = {1}")
+    @CsvSource(
+        "5 / 1, 5",
+        "10 / 100, 0",
+        "-10 / 1, -10",
+        "123 / -123, -1",
+        "10 / 10, 1",
+    )
+    fun divide(exp: String, expected: String) {
         val calculator = StringCalculator()
-        assertEquals(2, calculator.calculate("10 / 5"))
+        assertEquals(expected.toInt(), calculator.calculate(exp))
     }
 
-    @Test
-    @DisplayName("10 * 5 = 50")
-    fun multiply() {
+    @DisplayName("곱하기 단일 연산 테스트")
+    @ParameterizedTest(name = "{0} = {1}")
+    @CsvSource(
+        "5 * 1, 5",
+        "10 * 100, 1000",
+        "-10 * 1, -10",
+        "123 * 0, 0",
+        "-10 * -10, 100",
+    )
+    fun times(exp: String, expected: String) {
         val calculator = StringCalculator()
-        assertEquals(50, calculator.calculate("10 * 5"))
+        assertEquals(expected.toInt(), calculator.calculate(exp))
     }
 
-    @Test
-    @DisplayName("2 + 3 * 4 / 2 = 10")
-    fun composition_tc_1() {
+    @DisplayName("복합 계산 테스트")
+    @ParameterizedTest(name = "{0} = {1}")
+    @CsvSource(
+        "2 + 3 * 4 / 2, 10",
+        "10 - 3 * -4 + 2, -26",
+        "-2 + 13 - 4 / 7, 1",
+        "2 + 3 * 4 * 0, 0",
+        "2 / -2 * -24 / 2, 12",
+        "2 + 3 - 455 / 2, -225",
+        "2 + 3 + 4120 + 100, 4225",
+        "-100 + -10000 - 4 - 2, -10106",
+    )
+    fun complex(exp: String, expected: String) {
         val calculator = StringCalculator()
-        assertEquals(10, calculator.calculate("2 + 3 * 4 / 2"))
-    }
-
-    @Test
-    @DisplayName("10 * 4 / 2 = 20")
-    fun composition_tc_2() {
-        val calculator = StringCalculator()
-        assertEquals(20, calculator.calculate("10 * 4 / 2"))
-    }
-
-    @Test
-    @DisplayName("100 + 10 + 1 - 1 - 10 - 100 = 0")
-    fun composition_tc_3() {
-        val calculator = StringCalculator()
-        assertEquals(0, calculator.calculate("100 + 10 + 1 - 1 - 10 - 100"))
+        assertEquals(expected.toInt(), calculator.calculate(exp))
     }
 }
