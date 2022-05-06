@@ -1,22 +1,28 @@
 package study
 
-enum class Operator {
+enum class Operator(private val sign: String) {
 
-    PLUS {
+    PLUS("+") {
         override fun apply(left: Operand, right: Operand): Operand = left.plus(right)
     },
 
-    MINUS {
+    MINUS("-") {
         override fun apply(left: Operand, right: Operand): Operand = left.minus(right)
     },
 
-    TIMES {
+    TIMES("*") {
         override fun apply(left: Operand, right: Operand): Operand = left.times(right)
     },
 
-    DIV {
+    DIV("/") {
         override fun apply(left: Operand, right: Operand): Operand = left.div(right)
     };
+
+    companion object {
+
+        fun of(sign: String): Operator =
+            Operator.values().find { it.sign == sign } ?: throw IllegalArgumentException("지원하지 않는 연산자 기호입니다.")
+    }
 
     abstract fun apply(left: Operand, right: Operand): Operand
 }
