@@ -2,10 +2,14 @@ package calculator
 
 import java.util.function.BinaryOperator
 
+private const val DOUBLE_ZERO = 0.0
 enum class Operator(private val value: String, private val apply: BinaryOperator<Double>) {
     PLUS("+", { t, u -> t + u }),
     MINUS("-", { t, u -> t - u }),
-    DIVISION("/", { t, u -> t / u }),
+    DIVISION("/", { t, u ->
+        require(u != DOUBLE_ZERO) {"0으로 나눌수 없습니다."}
+        t / u
+    }),
     TIMES("*", { t, u -> t * u });
 
     companion object {
