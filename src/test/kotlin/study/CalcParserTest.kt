@@ -48,11 +48,12 @@ class CalcParserTest : AnnotationSpec() {
         val expr = "1 * 2 + 1 - 1 / 2 % 10"
 
         // when
-
-        // then
-        shouldThrow<IllegalArgumentException> {
+        val throwableAction = {
             CalcParser.compile(expr)
         }
+
+        // then
+        shouldThrow<IllegalArgumentException>(throwableAction)
     }
 
     @Test
@@ -61,11 +62,12 @@ class CalcParserTest : AnnotationSpec() {
         val expr = "1 * 2 + 1 - 1 / 2 %"
 
         // when
-
-        // then
-        shouldThrow<IllegalArgumentException> {
+        val throwableAction = {
             CalcParser.compile(expr)
         }
+
+        // then
+        shouldThrow<IllegalArgumentException>(throwableAction)
     }
 
     @Test
@@ -74,11 +76,12 @@ class CalcParserTest : AnnotationSpec() {
         val expr = "1 * 2 + 1 - 1 / 2 10"
 
         // when
-
-        // then
-        shouldThrow<IllegalArgumentException> {
+        val throwableAction = {
             CalcParser.compile(expr)
         }
+
+        // then
+        shouldThrow<IllegalArgumentException>(throwableAction)
     }
 
     @Test
@@ -87,23 +90,11 @@ class CalcParserTest : AnnotationSpec() {
         val expr = "2 x 10"
 
         // when
-
-        // then
-        shouldThrow<IllegalArgumentException> {
+        val throwableAction = {
             CalcParser.compile(expr)
         }
-    }
-
-    @Test
-    fun `빈 공백의 식을 분석할 경우 예외 발생`() {
-        // given
-        val expr = " "
-
-        // when
 
         // then
-        shouldThrow<IllegalArgumentException> {
-            CalcParser.compile(expr)
-        }
+        shouldThrow<IllegalArgumentException>(throwableAction)
     }
 }
