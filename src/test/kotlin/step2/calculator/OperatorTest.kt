@@ -42,6 +42,13 @@ class OperatorTest {
     }
 
     @Test
+    fun `DIVIDE Operator의 operate에서 0으로 나누기를 시도하면 IllegalArgumentException이 발생한다`() {
+        Assertions.assertThatThrownBy {
+            Operator.DIVIDE.operate(10.0, 0.0)
+        }.isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    @Test
     fun `사칙 연산 기호를 전달받아 적절한 Operator를 반환한다`() {
         val plus = Operator.from(Operator.SYMBOL_PLUS)
         val minus = Operator.from(Operator.SYMBOL_MINUS)
