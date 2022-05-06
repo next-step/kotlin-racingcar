@@ -2,6 +2,7 @@ package calculator
 
 object Calculator {
 
+    @kotlin.jvm.Throws(IllegalArgumentException::class)
     fun calculate(string: String): Float {
         val equation = parseEquation(string)
 
@@ -11,7 +12,7 @@ object Calculator {
             .drop(1)
             .windowed(2, 2) { (a, b) ->
                 val expression = Expression.from(a) ?: throw IllegalArgumentException()
-                val number = b.toFloatOrNull() ?: throw IllegalArgumentException()
+                val number = b.toFloat()
                 result = expression.calculate(result, number)
             }
 
