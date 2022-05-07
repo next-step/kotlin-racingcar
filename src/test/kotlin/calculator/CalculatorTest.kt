@@ -51,6 +51,14 @@ class CalculatorTest : DescribeSpec({
                 secondCalculator.total shouldBe 1
             }
 
+            it("여러 operator 에 따른 계산식을 수행한다.") {
+                val calculator = Calculator()
+
+                calculator.calculate("5 + 2 * 3 - 1")
+
+                calculator.total shouldBe 20
+            }
+
             context("with invalid operator") {
                 it("IllegalArgumentException 에러를 발생시킨다.") {
                     val calculator = Calculator()
