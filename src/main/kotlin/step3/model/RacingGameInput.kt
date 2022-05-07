@@ -1,6 +1,6 @@
 package step3.model
 
-data class RacingGame(
+data class RacingGameInput(
     val numberOfCars: Int,
     val numberOfAttempts: Int
 )
