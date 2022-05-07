@@ -27,15 +27,15 @@ internal class CalculatorTest : AnnotationSpec() {
             Calculator().calculate("")
         }
         println(exception)
-        exception.message shouldStartWith "잘못된"
+        exception.message shouldStartWith "빈 값"
     }
 
     @Test
-    fun `null 예외`() {
+    fun `잘못된 식 예외`() {
         val exception = shouldThrow<IllegalArgumentException> {
-            Calculator().calculate(null)
+            Calculator().calculate("2 + 3 * 4 / 2 5")
         }
         println(exception)
-        exception.message shouldStartWith "잘못된"
+        exception.message shouldStartWith "잘못"
     }
 }
