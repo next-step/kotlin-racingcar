@@ -15,8 +15,21 @@ class InputView {
         println(Message.PrintingMessage.HOW_MANY_TIMES_RACE)
     }
 
-    fun getNumber(): Int {
-        val input = readlnOrNull() ?: throw IllegalArgumentException(Message.ExceptionMessage.IS_NULL_OR_BLANK)
-        return input.toIntOrNull() ?: throw IllegalArgumentException(Message.ExceptionMessage.IS_NOT_INTEGER)
+    fun getInput(): Int {
+        return changeStringToInt(readlnOrNull())
+    }
+
+    fun changeStringToInt(input: String?): Int {
+        if (input.isNullOrBlank()) {
+            throw IllegalArgumentException(Message.ExceptionMessage.IS_NULL_OR_BLANK)
+        }
+        val output = input.toIntOrNull() ?: throw IllegalArgumentException(Message.ExceptionMessage.IS_NOT_INTEGER)
+        if (output < CAN_VALID_NUMBER)
+            throw IllegalArgumentException(Message.ExceptionMessage.ENTERED_INVALID_NUMBER)
+        return output
+    }
+
+    companion object {
+        private const val CAN_VALID_NUMBER = 1
     }
 }
