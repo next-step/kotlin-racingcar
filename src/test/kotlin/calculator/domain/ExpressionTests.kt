@@ -14,11 +14,11 @@ class ExpressionTests {
         val input = "1+2-3*4/5"
         assertThat(Expression.of(input)).extracting {
             it.operands.shouldContainInOrder(
-                Operand.of(1),
-                Operand.of(2),
-                Operand.of(3),
-                Operand.of(4),
-                Operand.of(5)
+                Operand(1),
+                Operand(2),
+                Operand(3),
+                Operand(4),
+                Operand(5)
             )
             it.operators.shouldContainInOrder(
                 Operator.PLUS,
@@ -33,7 +33,7 @@ class ExpressionTests {
     @ValueSource(strings = ["2+", "+1+", "+1-1"])
     fun `식에 포함된 연산자와 피연산자의 개수가 유효하지 않으면 예외가 발생한다`(input: String) {
         assertThatThrownBy { Expression.of(input) }
-            .isExactlyInstanceOf(IllegalStateException::class.java)
+            .isExactlyInstanceOf(IllegalArgumentException::class.java)
             .hasMessageContaining("유효하지 않은 식입니다")
     }
 

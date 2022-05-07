@@ -5,12 +5,11 @@ import calculator.domain.Expression
 class Calculator {
 
     fun calculate(expression: Expression): Double {
-        expression.run {
-            var result = operands[0]
-            for (i in 1 until operands.size) {
-                result = operators[i - 1].operation(result, operands[i])
+        val result = expression.run {
+            operators.foldIndexed(operands[0]) { i, result, operator ->
+                operator.operation(result, operands[i + 1])
             }
-            return result.value
         }
+        return result.value
     }
 }

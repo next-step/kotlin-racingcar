@@ -5,9 +5,7 @@ data class Expression(
     val operators: List<Operator>
 ) {
     init {
-        if (operands.size != operators.size + 1) {
-            throw IllegalStateException("유효하지 않은 식입니다")
-        }
+        require(operands.size == operators.size + 1) { "유효하지 않은 식입니다" }
     }
 
     companion object {

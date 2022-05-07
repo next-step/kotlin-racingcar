@@ -3,6 +3,8 @@ package calculator.domain
 data class Operand(
     val value: Double
 ) {
+    constructor(value: Int) : this(value.toDouble())
+
     operator fun plus(another: Operand): Operand = Operand(value + another.value)
     operator fun minus(another: Operand): Operand = Operand(value - another.value)
     operator fun times(another: Operand): Operand = Operand(value * another.value)
@@ -14,7 +16,6 @@ data class Operand(
     }
 
     companion object {
-        fun of(intInput: Int): Operand = Operand(intInput.toDouble())
         fun of(stringInput: String): Operand {
             try {
                 return Operand(stringInput.toDouble())
