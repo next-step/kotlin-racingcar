@@ -47,7 +47,7 @@ enum class Calculator(
         private fun findOperator(symbol: String): Calculator {
             return Calculator.values()
                 .find { it.symbol == symbol }
-                ?: throw IllegalArgumentException("존재하지 않는 수식 기호입니다. (symbol: ${symbol})")
+                ?: throw IllegalArgumentException("존재하지 않는 수식 기호입니다. (symbol: $symbol)")
         }
     }
 }
