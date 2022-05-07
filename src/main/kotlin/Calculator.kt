@@ -38,8 +38,9 @@ open class Calculator(splitedStrings: String) {
         var digits = splitedValues.extracts(validDigitPattern, true)
 
         val blankCount = splitedValues.stream().filter { s -> s.isBlank() }.count().toInt()
-        if (blankCount > 0 || operators.size == 0 || digits.size == 0
-            || !operators.validate(validOperatorPattern) || !digits.validate(validDigitPattern)) {
+        if (blankCount > 0 || operators.size == 0 || digits.size == 0 ||
+            !operators.validate(validOperatorPattern) || !digits.validate(validDigitPattern)
+        ) {
             throw IllegalArgumentException()
         }
     }
