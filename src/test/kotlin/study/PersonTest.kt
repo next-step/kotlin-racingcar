@@ -12,7 +12,7 @@ class PersonTest {
             Person(name = "최재성", 28, nickname = "링크"),
             Person(name = "최재성", age = 28, nickname = "링크")
         )
-        //allSatisfy는 리스트안에 있는 모든것이 조건을 충족해야한다는 뜻. 쓰려다가 뺐음.
+        // allSatisfy는 리스트안에 있는 모든것이 조건을 충족해야한다는 뜻. 쓰려다가 뺐음.
         assertThat(people[0].name).isEqualTo("최재성")
         assertThat(people[1].name).isEqualTo("최재성")
         assertThat(people[2].name).isEqualTo("최재성")
