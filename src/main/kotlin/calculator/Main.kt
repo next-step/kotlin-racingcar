@@ -9,5 +9,4 @@ fun main() {
 
     val result = calculator.calculate(expression)
     println(result)
-
 }
