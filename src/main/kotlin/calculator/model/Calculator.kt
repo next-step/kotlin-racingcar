@@ -1,10 +1,8 @@
 package calculator.model
 
-import java.util.function.BinaryOperator
-
 enum class Calculator(
     val symbol: String,
-    val operator: BinaryOperator<Int>
+    val operator: (Int, Int) -> Int
 ) {
 
     PLUS("+", { num1, num2 -> num1 + num2 }),
@@ -41,7 +39,7 @@ enum class Calculator(
 
         private fun calculate(num1: Int, num2: Int, symbol: String): Int {
             val operator = findOperator(symbol)
-            return operator.operator.apply(num1, num2)
+            return operator.operator(num1, num2)
         }
 
         private fun findOperator(symbol: String): Calculator {
