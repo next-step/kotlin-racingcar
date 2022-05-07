@@ -84,7 +84,7 @@ internal class StringCalculatorKtTest {
     }
 
     @DisplayName("null, 빈 문자열 테스트")
-    @ParameterizedTest
+    @ParameterizedTest(name = "\"{0}\" expression should fail")
     @NullAndEmptySource
     @ValueSource(strings = [" ", "   ", "\t", "\n"])
     fun nullOrEmptyExpressions(exp: String?) {
