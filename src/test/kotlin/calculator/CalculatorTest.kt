@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
 import java.util.stream.Stream
+import kotlin.math.exp
 
 class CalculatorTest {
     @ParameterizedTest
@@ -72,12 +73,30 @@ class CalculatorTest {
         }
     }
 
+    @ParameterizedTest
+    @MethodSource("provideInputForOperatorTest")
+    fun `연산자 테스트`(a: Double, operatorString: String, b: Double, expect: Double) {
+        val operation = Operator.getCalculateLogic(operatorString)
+        val result = operation(a, b)
+        assertThat(result).isEqualTo(expect)
+    }
+
     companion object {
         @JvmStatic
         private fun provideStringForDivide(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of("1 / 3", 1 / 3.0),
                 Arguments.of("15 / 31", 15 / 31.0)
+            )
+        }
+
+        @JvmStatic
+        private fun provideInputForOperatorTest(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of(1, "+", 3, 4.0),
+                Arguments.of(1, "-", 3, -2.0),
+                Arguments.of(1, "*", 3, 3.0),
+                Arguments.of(1, "/", 3, 1 / 3.0),
             )
         }
     }

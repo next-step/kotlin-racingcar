@@ -29,5 +29,5 @@
 ~~IllegalArgumentException kotlin에 선언된걸로 사용~~  
 ~~계산로직 operator에서 분리하기~~  
 ~~에러상수 접근한정자제한 및 위치수정~~  
-오퍼레이터 테스트코드 작성  
+~~오퍼레이터 테스트코드 작성~~  
 ~~companion object 컨벤션 참고 및 수정~~  
