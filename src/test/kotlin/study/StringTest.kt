@@ -20,6 +20,5 @@ class StringTest {
 
     @Test
     internal fun string() {
-
     }
 }
