@@ -6,8 +6,8 @@ class Car {
     var position = 1
         private set
 
-    var valueGenerator: (()-> Int)? = null
-    private val defaultGenerator :()-> Int = {Random.nextInt(DEFAULT_GENERATION_RANGE)}
+    var valueGenerator: (() -> Int)? = null
+    private val defaultGenerator: () -> Int = { Random.nextInt(DEFAULT_GENERATION_RANGE) }
 
     fun proceed() {
         val seedValue = valueGenerator?.invoke() ?: defaultGenerator.invoke()
