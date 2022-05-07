@@ -1,11 +1,10 @@
 package calculator
 
 class StringCalculator(
-    private val expressionFactory: ExpressionFactory
+    private val expressionSeparator: String = " "
 ) {
     fun calculate(expressionText: String): Int {
-        val expression = expression(expressionText)
+        val expression = Expression.of(expressionText, expressionSeparator)
         return expression.calculate()
     }
-    private fun expression(expressionText: String) = expressionFactory.create(expressionText)
 }

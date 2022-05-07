@@ -6,7 +6,7 @@ import io.kotest.matchers.shouldBe
 
 class StringCalculatorTest : StringSpec({
     "문자열을 입력 받아 사칙 연산을 수행한다." {
-        val stringCalculator = StringCalculator(ExpressionFactory(OneSpaceSeparationStrategy()))
+        val stringCalculator = StringCalculator()
 
         listOf(
             "2 + 3 * 4 / 2" to 10,

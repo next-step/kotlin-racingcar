@@ -1,7 +1,7 @@
 package calculator
 
 fun main() {
-    val stringCalculator = StringCalculator(ExpressionFactory(OneSpaceSeparationStrategy()))
+    val stringCalculator = StringCalculator()
     val readText = readExpressionText()
     print(stringCalculator, readText)
 }
