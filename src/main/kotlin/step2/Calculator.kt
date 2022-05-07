@@ -23,14 +23,6 @@ object Calculator {
         return inputList
     }
 
-    fun computeByOperator(operator: String, acc: Double, operand: Double): Double =
-        when (Operator.of(operator)) {
-            Operator.PLUS -> acc + operand
-            Operator.MINUS -> acc - operand
-            Operator.MULTIPLY -> acc * operand
-            Operator.DIVISION -> {
-                require(operand != 0.0) { ErrorMessage.DIVIDE_BY_ZERO }
-                acc / operand
-            }
-        }
+    fun computeByOperator(operator: String, acc: Double, operand: Double): Double = Operator.of(operator)
+        .calculate(acc, operand)
 }

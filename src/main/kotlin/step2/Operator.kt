@@ -1,12 +1,13 @@
 package step2
 
 enum class Operator(
-    val char: String
+    val char: String,
+    val calculate: (Double, Double) -> Double
 ) {
-    PLUS("+"),
-    MINUS("-"),
-    MULTIPLY("*"),
-    DIVISION("/"),
+    PLUS("+", { acc, operator -> acc + operator }),
+    MINUS("-", { acc, operator -> acc - operator }),
+    MULTIPLY("*", { acc, operator -> acc * operator }),
+    DIVISION("/", { acc, operator -> acc / operator }),
     ;
 
     companion object {
