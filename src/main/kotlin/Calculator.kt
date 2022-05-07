@@ -29,6 +29,7 @@ object Calculator {
     private val EXPRESSION_REGEX = """(\d*) ([+\-*/]) (\d*)""".toRegex()
     private const val NOT_EMPTY_OR_NULL_MSG = "입력 값은 null 또는 빈 문자열을 사용할 수 없습니다."
     private const val NOT_MATCH_EXPRESSION = "X operator Y 규칙에 맞지 않는 포멧입니다."
+    private const val NOT_DEFINED_OPERATOR = "미정의된 연산입니다."
 
     fun run(expression: String?): Int {
 
@@ -49,7 +50,7 @@ object Calculator {
             "-" -> firstValue - secondValue
             "*" -> firstValue * secondValue
             "/" -> firstValue / secondValue
-            else -> throw IllegalArgumentException()
+            else -> throw IllegalArgumentException(NOT_DEFINED_OPERATOR)
         }
     }
 }
