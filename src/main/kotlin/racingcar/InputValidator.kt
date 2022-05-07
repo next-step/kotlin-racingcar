@@ -2,9 +2,9 @@ package racingcar
 
 class InputValidator {
     companion object {
-        fun isNaturalNumber(input: String): Boolean {
+        fun checkNaturalNumber(input: String) {
             val number = input.toIntOrNull()
-            return (number != null) && (number > 0)
+            require((number != null) && (number > 0))
         }
     }
 }

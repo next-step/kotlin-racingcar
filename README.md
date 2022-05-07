@@ -77,3 +77,4 @@
 - [x] RacingCarGame클래스의 gameResult 외부 수정 제한
 - [x] RacingCarGame 생성할 때 Car 리스트 셋업
 - [x] proceed 함수 간결하게 표현식 형태 함수로 변경
+- [x] 자연수 처리 로직에서 잘못된 인풋일 때 예외
