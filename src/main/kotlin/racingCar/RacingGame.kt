@@ -15,5 +15,5 @@ fun main() {
     racingController.startGame(countOfCar = countOfCar, countOfRace = countOfRace)
 
     val resultView = ResultView()
-    resultView.printResult(racingController.getResult())
+    resultView.printResult(racingController.raceResults)
 }

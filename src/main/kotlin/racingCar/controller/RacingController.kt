@@ -1,6 +1,7 @@
 package racingCar.controller
 
 import racingCar.model.Car
+import racingCar.model.RaceResult
 import java.util.Random
 
 /**
@@ -9,10 +10,7 @@ import java.util.Random
  */
 class RacingController {
     private val carList: MutableList<Car> = mutableListOf()
-
-    fun getResult(): List<Car> {
-        return carList
-    }
+    val raceResults: MutableList<RaceResult> = mutableListOf()
 
     fun startGame(countOfCar: Int, countOfRace: Int) {
         repeat(countOfCar) {
@@ -20,6 +18,9 @@ class RacingController {
         }
         repeat(countOfRace) {
             processGame()
+            raceResults.add(RaceResult().apply {
+                saveCarResult(carList)
+            })
         }
     }
 
