@@ -1,12 +1,14 @@
 package step3.view
 
-abstract class InputView {
+class InputView(private val inputMessage: String) {
     fun receive(): Int {
         printInputMessage()
         return receiveUserInput()
     }
 
-    protected abstract fun printInputMessage()
+    private fun printInputMessage() {
+        println(inputMessage)
+    }
 
     private fun receiveUserInput(): Int {
         val userInput = requireNotNull(readLine()) {
