@@ -31,14 +31,15 @@ class StringCalculator(private val inputStr: String) {
     }
 
     private fun calculate(accum: Double, operators: List<String>, operands: List<Double>): Double =
-        if (operands.isEmpty())
+        if (operands.isEmpty()) {
             accum
-        else
+        } else {
             calculate(
                 operate(operators.first(), accum, operands.first()),
                 operators.drop(1),
                 operands.drop(1)
             )
+        }
 
     private fun operate(operator: String, operand1: Double, operand2: Double): Double =
         when (operator) {
