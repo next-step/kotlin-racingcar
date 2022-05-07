@@ -30,5 +30,18 @@ class CalculatorTest : DescribeSpec({
                 secondCalculator.total shouldBe -2L
             }
         }
+
+        describe("multiplication") {
+            it("계산식에 * 연산자가 있다면 곱셈을 수행한다.") {
+                val calculator = Calculator()
+                val secondCalculator = Calculator()
+
+                calculator.calculate("3 * 2")
+                secondCalculator.calculate("3 * 3 * 2")
+
+                calculator.total shouldBe 6L
+                secondCalculator.total shouldBe 18L
+            }
+        }
     }
 })
