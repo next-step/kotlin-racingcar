@@ -1,13 +1,13 @@
 package calculator
 
 class Calculator {
-    var total: Long = 0
+    var total: Float = 0F
 
     fun calculate(calculatorFormula: String) {
         val parsedCalculateFormula = calculatorFormula.split(' ')
 
-        val total = parsedCalculateFormula[0].toLong()
-        val operand = parsedCalculateFormula[2].toLong()
+        val total = parsedCalculateFormula[0].toFloat()
+        val operand = parsedCalculateFormula[2].toFloat()
         val operator = parsedCalculateFormula[1]
 
         if (operator == "+") {

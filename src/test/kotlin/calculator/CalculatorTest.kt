@@ -13,8 +13,8 @@ class CalculatorTest : DescribeSpec({
                 calculator.calculate("3 + 2")
                 secondCalculator.calculate("3 + 3 + 2")
 
-                calculator.total shouldBe 5L
-                secondCalculator.total shouldBe 8L
+                calculator.total shouldBe 5
+                secondCalculator.total shouldBe 8
             }
         }
 
@@ -26,8 +26,8 @@ class CalculatorTest : DescribeSpec({
                 calculator.calculate("3 - 2")
                 secondCalculator.calculate("3 - 3 - 2")
 
-                calculator.total shouldBe 1L
-                secondCalculator.total shouldBe -2L
+                calculator.total shouldBe 1
+                secondCalculator.total shouldBe -2
             }
         }
 
@@ -39,8 +39,8 @@ class CalculatorTest : DescribeSpec({
                 calculator.calculate("3 * 2")
                 secondCalculator.calculate("3 * 3 * 2")
 
-                calculator.total shouldBe 6L
-                secondCalculator.total shouldBe 18L
+                calculator.total shouldBe 6
+                secondCalculator.total shouldBe 18
             }
         }
 
@@ -52,8 +52,8 @@ class CalculatorTest : DescribeSpec({
                 calculator.calculate("3 / 2")
                 secondCalculator.calculate("9 / 3 / 3")
 
-                calculator.total shouldBe 1L
-                secondCalculator.total shouldBe 1L
+                calculator.total shouldBe 1.5
+                secondCalculator.total shouldBe 1
             }
         }
     }
