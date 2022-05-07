@@ -8,10 +8,8 @@ object Calculator {
 
         var result: Double = inputList[0].toDouble()
 
-        var i = 1
-        while (i < inputList.size) {
+        for (i: Int in 1 until inputList.size step 2) {
             result = computeByOperator(inputList[i], result, inputList[i + 1].toDouble())
-            i += 2
         }
 
         return result
