@@ -7,7 +7,7 @@ class Car {
         private set
 
     fun proceed() {
-        val randomValue = Random.nextInt()
+        val randomValue = Random.nextInt(10)
 
         if (canGo(randomValue)) {
             position++
