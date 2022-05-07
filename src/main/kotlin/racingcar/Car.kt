@@ -4,6 +4,7 @@ import kotlin.random.Random
 
 class Car {
     var position = 1
+        private set
 
     fun proceed() {
         if (canGo()) {
