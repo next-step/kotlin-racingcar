@@ -10,7 +10,7 @@ enum class Operator(
     ;
 
     companion object {
-        fun of(char: String): Operator = Operator.values().find { it.char == char }
+        fun of(char: String): Operator = values().find { it.char == char }
             ?: throw IllegalArgumentException(ErrorMessage.INVALID_OPERATOR)
     }
 }
