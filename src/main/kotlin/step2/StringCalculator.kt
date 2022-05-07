@@ -1,16 +1,22 @@
 package step2
 
-class StringCalculator(private val inputStr: String) {
+class StringCalculator() {
 
-    init {
-        require(inputStr.isNotEmpty()) {
-            "inputStr must not be null or empty"
+    private val exprQueue = mutableListOf<String>()
+
+    fun append(expression: String): StringCalculator {
+        require(expression.isNotEmpty()) {
+            "expression must not be null or empty"
         }
+
+        val processedExpr = expression.replace(" ", "")
+        exprQueue.add(processedExpr)
+
+        return this
     }
 
     fun result(): Double {
-        val processedInputStr = inputStr.replace(" ", "")
-        val parser = ExpressionParser(processedInputStr)
+        val parser = ExpressionParser(display())
         val operands = parser.getOperands()
         val operators = parser.getOperators()
 
@@ -22,23 +28,22 @@ class StringCalculator(private val inputStr: String) {
         return calculate(0.0, operators, operands)
     }
 
-    private fun calculate(accum: Double, operators: List<String>, operands: List<Double>): Double =
+    fun display(): String = exprQueue.joinToString("")
+
+    fun clear() = exprQueue.clear()
+
+    private fun calculate(accum: Double, operators: List<Operator>, operands: List<Double>): Double =
         if (operands.isEmpty()) {
             accum
         } else {
             calculate(
-                operate(operators.first(), accum, operands.first()),
+                operators.first()
+                    .apply(
+                        accum,
+                        operands.first()
+                    ),
                 operators.drop(1),
                 operands.drop(1)
             )
-        }
-
-    private fun operate(operator: String, operand1: Double, operand2: Double): Double =
-        when (operator) {
-            "+" -> operand1 + operand2
-            "-" -> operand1 - operand2
-            "*" -> operand1 * operand2
-            "/" -> operand1 / operand2
-            else -> throw IllegalArgumentException("$operator 는 적합한 연산자가 아닙니다. ex) +, -, /, *")
         }
 }

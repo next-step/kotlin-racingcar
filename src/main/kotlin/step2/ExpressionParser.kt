@@ -15,8 +15,26 @@ class ExpressionParser(private val inputStr: String) {
         operatorRegex.split(inputStr)
             .map { it.toDouble() }
 
-    fun getOperators(): List<String> = listOf("+") +
+    fun getOperators(): List<Operator> = listOf(Operator.PLUS) +
         operatorRegex.findAll(inputStr)
-            .map { it.value }
+            .map { find(it.value) }
             .toList()
+
+    override fun toString(): String {
+        val operators = getOperators()
+            .drop(1)
+            .map { it.symbol }
+        return getOperands().foldIndexed("") { idx, accum, operand ->
+            accum + operand.toInt() + operators[idx]
+        }
+    }
+
+    private fun find(targetSymbol: String): Operator {
+        return Operator.values()
+            .find { op ->
+                op.symbol == targetSymbol
+            } ?: run {
+            throw IllegalArgumentException("사칙연산 기호가 아닌 입력이 존재합니다. symbol = $targetSymbol")
+        }
+    }
 }
