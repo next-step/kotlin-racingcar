@@ -8,8 +8,15 @@ class Calculator {
 
         val total = parsedCalculateFormula[0].toLong()
         val operand = parsedCalculateFormula[2].toLong()
+        val operator = parsedCalculateFormula[1]
 
-        this.total = total + operand
+        if (operator == "+") {
+            this.total = total + operand
+        }
+
+        if (operator == "-") {
+            this.total = total - operand
+        }
 
         if (parsedCalculateFormula.size > 3) {
             val restParsedCalculateFormula = parsedCalculateFormula.drop(3)
