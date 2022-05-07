@@ -2,10 +2,6 @@ package calculator
 
 class Calculator {
 
-    companion object {
-        const val DELIMITER = " "
-    }
-
     fun calculate(expression: String?): Int {
 
         if (expression.isNullOrBlank()) {
@@ -20,5 +16,9 @@ class Calculator {
         }
 
         return result
+    }
+
+    companion object {
+        const val DELIMITER = " "
     }
 }
