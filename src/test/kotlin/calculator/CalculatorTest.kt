@@ -1,5 +1,6 @@
 package calculator
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 
@@ -54,6 +55,18 @@ class CalculatorTest : DescribeSpec({
 
                 calculator.total shouldBe 1.5
                 secondCalculator.total shouldBe 1
+            }
+        }
+
+        context("with invalid operator") {
+            it("IllegalArgumentException 에러를 발생시킨다.") {
+                val calculator = Calculator()
+
+                val exception = shouldThrow<IllegalArgumentException> {
+                    calculator.calculate("3 & 3")
+                }
+
+                exception.message shouldBe "유효하지 않은 연산자 입니다."
             }
         }
     }
