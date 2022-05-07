@@ -1,7 +1,5 @@
 package calculator
 
-import java.util.Arrays
-
 enum class Operator(
     private val symbol: String,
     private val function: (a: Int, b: Int) -> Int
@@ -18,11 +16,7 @@ enum class Operator(
     }
 
     companion object {
-        fun of(symbol: String): Operator {
-            return Arrays.stream(values())
-                .filter { operator -> operator.symbol == symbol } // 코틀린에서는 equals 비교가 ==
-                .findFirst()
-                .orElseThrow { IllegalArgumentException("지원하지 않는 연산자 입니다. ($symbol)") }
-        }
+        fun of(symbol: String): Operator =
+            values().firstOrNull { it.symbol == symbol } ?: throw IllegalArgumentException("지원하지 않는 연산자 입니다. ($symbol)")
     }
 }
