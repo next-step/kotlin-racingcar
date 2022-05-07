@@ -7,14 +7,18 @@ class Car {
         private set
 
     fun proceed() {
-        if (canGo()) {
+        val randomValue = Random.nextInt()
+
+        if (canGo(randomValue)) {
             position++
         }
     }
 
-    private fun canGo(): Boolean {
-        val randomNumber = Random.nextInt(10)
+    private fun canGo(randomValue: Int, threshold: Int = GO_THRESHOLD): Boolean {
+        return randomValue >= threshold
+    }
 
-        return randomNumber >= 4
+    companion object {
+        private const val GO_THRESHOLD = 4
     }
 }
