@@ -20,21 +20,11 @@ class StringCalculator {
      */
     fun calculate(exp: String?): Int {
         requireNotNull(exp) { "expression should not null." }
-
-        if (exp.isBlank()) {
-            throw IllegalArgumentException("expression should not empty.")
-        }
+        require(exp.isNotBlank()) { "expression should not empty." }
 
         val leftMatcher = leftOnePattern.matcher(exp)
         val rightsMatcher = rightsPattern.matcher(exp)
-
-        if (!leftMatcher.find()) {
-            throw IllegalArgumentException("expression should start with number.")
-        }
-
-        if (!rightsMatcher.find()) {
-            throw IllegalArgumentException("expression should exist at least once of infix expression.")
-        }
+        require(leftMatcher.find() && rightsMatcher.find()) { "expression should exist at least once of infix expression." }
 
         var left = leftMatcher.group(1).toInt()
         if (left > 0) rightsMatcher.reset()
