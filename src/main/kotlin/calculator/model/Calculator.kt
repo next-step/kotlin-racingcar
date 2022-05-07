@@ -9,9 +9,7 @@ enum class Calculator(
     MINUS("-", { num1, num2 -> num1 - num2 }),
     MULTIPLICATION("*", { num1, num2 -> num1 * num2 }),
     DIVISION("/", { num1, num2 ->
-        if (num2 == 0) {
-            throw IllegalArgumentException("나누는 수가 0이 될 수 없습니다.")
-        }
+        require(num2 != 0) { "나누는 수가 0이 될 수 없습니다." }
         num1 / num2
     });
 
@@ -32,9 +30,7 @@ enum class Calculator(
         }
 
         private fun validateExpression(expression: String) {
-            if (expression.isBlank()) {
-                throw IllegalArgumentException("수식은 공백이 될 수 없습니다.")
-            }
+            require(expression.isNotBlank()) { "수식은 공백이 될 수 없습니다." }
         }
 
         private fun calculate(num1: Int, num2: Int, symbol: String): Int {
