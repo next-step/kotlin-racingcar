@@ -37,8 +37,13 @@ class CalculatorTest {
         assertEquals("수식은 공백이 될 수 없습니다.", exception.message)
     }
 
-    @ParameterizedTest
-    @CsvSource("1 + 2=3", "2 + 3 * 4 / 2=10", "4 - 2 / 2 * 5 + 1=6", delimiter = '=')
+    @ParameterizedTest(name = "{0} = {1}")
+    @CsvSource(
+        "1 + 2 = 3",
+        "2 + 3 * 4 / 2 = 10",
+        "4 - 2 / 2 * 5 + 1 = 6",
+        delimiter = '='
+    )
     fun `계산기 정상 동작`(expression: String, result: String) {
         // when, then
         assertEquals(Calculator.calculate(expression), result.toInt())
