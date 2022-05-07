@@ -6,10 +6,13 @@ class Car {
     var position = 1
         private set
 
-    fun proceed() {
-        val randomValue = Random.nextInt(10)
+    var valueGenerator: (()-> Int)? = null
+    private val defaultGenerator :()-> Int = {Random.nextInt(DEFAULT_GENERATION_RANGE)}
 
-        if (canGo(randomValue)) {
+    fun proceed() {
+        val seedValue = valueGenerator?.invoke() ?: defaultGenerator.invoke()
+
+        if (canGo(seedValue)) {
             position++
         }
     }
@@ -20,5 +23,6 @@ class Car {
 
     companion object {
         private const val GO_THRESHOLD = 4
+        private const val DEFAULT_GENERATION_RANGE = 10
     }
 }
