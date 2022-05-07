@@ -10,10 +10,11 @@ class Calculator {
         val operand = parsedCalculateFormula[2].toFloat()
 
         when (parsedCalculateFormula[1]) {
-            "+" -> this.total += operand
-            "-" -> this.total -= operand
-            "*" -> this.total *= operand
-            "/" -> this.total /= operand
+            "+" -> total += operand
+            "-" -> total -= operand
+            "*" -> total *= operand
+            "/" -> total /= operand
+            else -> throw IllegalArgumentException("유효하지 않은 연산자 입니다.")
         }
 
         if (parsedCalculateFormula.size > 3) {
