@@ -43,5 +43,18 @@ class CalculatorTest : DescribeSpec({
                 secondCalculator.total shouldBe 18L
             }
         }
+
+        describe("division") {
+            it("계산식에 / 연산자가 있다면 나눗셈을 수행한다.") {
+                val calculator = Calculator()
+                val secondCalculator = Calculator()
+
+                calculator.calculate("3 / 2")
+                secondCalculator.calculate("9 / 3 / 3")
+
+                calculator.total shouldBe 1L
+                secondCalculator.total shouldBe 1L
+            }
+        }
     }
 })
