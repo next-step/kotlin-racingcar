@@ -3,7 +3,11 @@ package calculator
 class Calculator {
     var total: Float = 0F
 
-    fun calculate(calculatorFormula: String) {
+    fun calculate(calculatorFormula: String?) {
+        if (calculatorFormula.isNullOrEmpty()) {
+            throw IllegalArgumentException("유효하지 않은 계산식 입니다.")
+        }
+
         val parsedCalculateFormula = calculatorFormula.split(' ')
 
         total = parsedCalculateFormula[0].toFloat()
