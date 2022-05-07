@@ -7,7 +7,6 @@ fun main() {
     val trialCount =  inputView.getNaturalNumberInput("시도할 횟수는 몇 회인가요?")
 
     val racingCarGame = RacingCarGame(carCount, trialCount)
-    racingCarGame.prepare()
     racingCarGame.play()
 
     val gameResult = racingCarGame.gameResult

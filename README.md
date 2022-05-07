@@ -49,6 +49,6 @@
 - [ ] 랜덤값이 로직에 있어서 테스트가 힘들다.. 어떻게 할 수 있을까?
 - [x] 비교에 대한 부분 그룹지어주기
 - [ ] RacingCarGame클래스의 gameResult 외부 수정 제한
-- [ ] RacingCarGame 생성할 때 Car 리스트 셋업
+- [x] RacingCarGame 생성할 때 Car 리스트 셋업
 - [x] proceed 함수 간결하게 표현식 형태 함수로 변경
 - [ ] 레이싱 카 테스트에서 각 부분별 테스트 분리

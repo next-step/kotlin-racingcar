@@ -1,14 +1,8 @@
 package racingcar
 
 class RacingCarGame(private val carCount: Int, private val trialCount: Int) {
-    private val carList = mutableListOf<Car>()
+    private val carList = List(carCount) { Car() }
     val gameResult = mutableListOf<List<Int>>()
-
-    fun prepare() {
-        for (i in 0 until carCount) {
-            carList.add(Car())
-        }
-    }
 
     fun play() {
         for (c in 0 until trialCount) {
