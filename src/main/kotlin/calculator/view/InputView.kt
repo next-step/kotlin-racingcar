@@ -6,6 +6,6 @@ object InputView {
     }
 
     fun inputExpression(): String {
-        return readLine()!!
+        return readln()
     }
 }
