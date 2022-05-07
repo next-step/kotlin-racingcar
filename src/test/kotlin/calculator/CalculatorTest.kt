@@ -11,52 +11,52 @@ class CalculatorTest : DescribeSpec({
                 val calculator = Calculator()
                 val secondCalculator = Calculator()
 
-                calculator.calculate("3 + 2")
-                secondCalculator.calculate("3 + 3 + 2")
+                val result = calculator.calculate("3 + 2")
+                val secondResult = secondCalculator.calculate("3 + 3 + 2")
 
-                calculator.total shouldBe 5
-                secondCalculator.total shouldBe 8
+                result shouldBe 5
+                secondResult shouldBe 8
             }
 
             it("계산식에 - 연산자가 있다면 뺄셈을 수행한다.") {
                 val calculator = Calculator()
                 val secondCalculator = Calculator()
 
-                calculator.calculate("3 - 2")
-                secondCalculator.calculate("3 - 3 - 2")
+                val result = calculator.calculate("3 - 2")
+                val secondResult = secondCalculator.calculate("3 - 3 - 2")
 
-                calculator.total shouldBe 1
-                secondCalculator.total shouldBe -2
+                result shouldBe 1
+                secondResult shouldBe -2
             }
 
             it("계산식에 * 연산자가 있다면 곱셈을 수행한다.") {
                 val calculator = Calculator()
                 val secondCalculator = Calculator()
 
-                calculator.calculate("3 * 2")
-                secondCalculator.calculate("3 * 3 * 2")
+                val result = calculator.calculate("3 * 2")
+                val secondResult = secondCalculator.calculate("3 * 3 * 2")
 
-                calculator.total shouldBe 6
-                secondCalculator.total shouldBe 18
+                result shouldBe 6
+                secondResult shouldBe 18
             }
 
             it("계산식에 / 연산자가 있다면 나눗셈을 수행한다.") {
                 val calculator = Calculator()
                 val secondCalculator = Calculator()
 
-                calculator.calculate("3 / 2")
-                secondCalculator.calculate("9 / 3 / 3")
+                val result = calculator.calculate("3 / 2")
+                val secondResult = secondCalculator.calculate("9 / 3 / 3")
 
-                calculator.total shouldBe 1.5
-                secondCalculator.total shouldBe 1
+                result shouldBe 1.5
+                secondResult shouldBe 1
             }
 
             it("여러 operator 에 따른 계산식을 수행한다.") {
                 val calculator = Calculator()
 
-                calculator.calculate("5 + 2 * 3 - 1")
+                val result = calculator.calculate("5 + 2 * 3 - 1")
 
-                calculator.total shouldBe 20
+                result shouldBe 20
             }
 
             context("with invalid operator") {

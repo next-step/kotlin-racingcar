@@ -1,9 +1,13 @@
 package calculator
 
-class Calculator {
-    var total: Float = 0F
+// 관심사 분리
+// calculator - 계산된 결괏값을 반환
+// operator - operator 에 따른 계산
 
-    fun calculate(calculatorFormula: String?) {
+class Calculator {
+    private var total: Float = 0F
+
+    fun calculate(calculatorFormula: String?): Float {
         if (calculatorFormula.isNullOrEmpty()) {
             throw IllegalArgumentException("유효하지 않은 계산식 입니다.")
         }
@@ -25,5 +29,7 @@ class Calculator {
             val restParsedCalculateFormula = parsedCalculateFormula.drop(3)
             calculate("$total ${restParsedCalculateFormula.joinToString(" ")}")
         }
+
+        return total
     }
 }
