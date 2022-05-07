@@ -6,29 +6,19 @@ class Calculator {
     fun calculate(calculatorFormula: String) {
         val parsedCalculateFormula = calculatorFormula.split(' ')
 
-        val total = parsedCalculateFormula[0].toFloat()
+        total = parsedCalculateFormula[0].toFloat()
         val operand = parsedCalculateFormula[2].toFloat()
-        val operator = parsedCalculateFormula[1]
 
-        if (operator == "+") {
-            this.total = total + operand
-        }
-
-        if (operator == "-") {
-            this.total = total - operand
-        }
-
-        if (operator == "*") {
-            this.total = total * operand
-        }
-
-        if (operator == "/") {
-            this.total = total / operand
+        when (parsedCalculateFormula[1]) {
+            "+" -> this.total += operand
+            "-" -> this.total -= operand
+            "*" -> this.total *= operand
+            "/" -> this.total /= operand
         }
 
         if (parsedCalculateFormula.size > 3) {
             val restParsedCalculateFormula = parsedCalculateFormula.drop(3)
-            calculate("${this.total} ${restParsedCalculateFormula.joinToString(" ")}")
+            calculate("$total ${restParsedCalculateFormula.joinToString(" ")}")
         }
     }
 }
