@@ -1,41 +1,45 @@
 package calculator
 
 import io.kotest.assertions.throwables.shouldThrow
-import io.kotest.core.spec.style.AnnotationSpec
-import io.kotest.inspectors.forAll
+import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldStartWith
 
-internal class CalculatorTest : AnnotationSpec() {
+internal class CalculatorTest : BehaviorSpec({
+    val calculator = Calculator()
+    var expression: String
+    var actual: Int
 
-    @Test
-    fun `계산`() {
-        // given
-        val calculator = Calculator()
-        listOf(
-            "2 + 3 * 4 / 2" to 10,
-            "10 * 2 - 3 / 1" to 17,
-
-            // when
-            // then
-        ).forAll { (expression, expected) -> calculator.calculate(expression) shouldBe expected }
-    }
-
-    @Test
-    fun `빈 문자열 예외`() {
-        val exception = shouldThrow<IllegalArgumentException> {
-            Calculator().calculate("")
+    given("정상 수식을 입력한다") {
+        expression = "2 + 3 * 4 / 2"
+        `when`("계산기 파라미터로 넘겨 실행한다") {
+            actual = calculator.calculate(expression)
+            then("기대값과 같은 결과를 출력한다") {
+                actual shouldBe 10
+            }
         }
-        println(exception)
-        exception.message shouldStartWith "빈 값"
     }
 
-    @Test
-    fun `잘못된 식 예외`() {
-        val exception = shouldThrow<IllegalArgumentException> {
-            Calculator().calculate("2 + 3 * 4 / 2 5")
+    given("빈 문자열을 입력") {
+        expression = ""
+        `when`("계산기 파라미터로 넘겨 실행한다") {
+            val exception = shouldThrow<IllegalArgumentException> {
+                Calculator().calculate(expression)
+            }
+            then("기대값과 같은 결과를 출력한다") {
+                exception.message shouldStartWith "빈 값"
+            }
         }
-        println(exception)
-        exception.message shouldStartWith "잘못"
     }
-}
+    given("잘못된 식 입력") {
+        expression = "2 + 3 * 4 / 2 5"
+        `when`("계산기 파라미터로 넘겨 실행한다") {
+            val exception = shouldThrow<IllegalArgumentException> {
+                Calculator().calculate(expression)
+            }
+            then("기대값과 같은 결과를 출력한다") {
+                exception.message shouldStartWith "잘못"
+            }
+        }
+    }
+})
