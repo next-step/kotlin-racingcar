@@ -1,8 +1,8 @@
 package camp.nextstep.edu.step2
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.NullAndEmptySource
@@ -89,7 +89,7 @@ internal class StringCalculatorKtTest {
     @ValueSource(strings = [" ", "   ", "\t", "\n"])
     fun nullOrEmptyExpressions(exp: String?) {
         val calculator = StringCalculator()
-        assertThrows(IllegalArgumentException::class.java) {
+        assertThrows<IllegalArgumentException> {
             calculator.calculate(exp)
         }
     }
