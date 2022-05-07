@@ -37,27 +37,6 @@ class CalculatorTest : FreeSpec({
             }
         }
 
-        "입력이 null인 경우 IllegalArgumentException" {
-            val exception = shouldThrow<IllegalArgumentException> {
-                Calculator.splitInput(null)
-            }
-            exception.message shouldBe ErrorMessage.INCORRECT_INPUT
-        }
-
-        "입력이 빈 문자열인 경우 IllegalArgumentException" {
-            val exception = shouldThrow<IllegalArgumentException> {
-                Calculator.splitInput("")
-            }
-            exception.message shouldBe ErrorMessage.INCORRECT_INPUT
-        }
-
-        "입력이 공백으로만 이루어진 경우 IllegalArgumentException" {
-            val exception = shouldThrow<IllegalArgumentException> {
-                Calculator.splitInput("    ")
-            }
-            exception.message shouldBe ErrorMessage.INCORRECT_INPUT
-        }
-
         "입력의 길이가 짝수인 경우 IllegalArgumentException" {
             val exception = shouldThrow<IllegalArgumentException> {
                 Calculator.splitInput("2 +")

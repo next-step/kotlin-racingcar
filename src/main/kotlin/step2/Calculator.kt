@@ -2,7 +2,7 @@ package step2
 
 object Calculator {
 
-    fun calculate(input: String?): Double {
+    fun calculate(input: String): Double {
 
         val inputList: List<String> = splitInput(input)
 
@@ -16,8 +16,7 @@ object Calculator {
     }
 
     @Throws(IllegalArgumentException::class)
-    fun splitInput(input: String?): List<String> {
-        require(!input.isNullOrBlank()) { ErrorMessage.INCORRECT_INPUT }
+    fun splitInput(input: String): List<String> {
         val inputList: List<String> = input.split(' ')
         require(inputList.size % 2 == 1) { ErrorMessage.INCORRECT_INPUT }
 
