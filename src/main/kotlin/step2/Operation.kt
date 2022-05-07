@@ -25,8 +25,7 @@ sealed class Operation(
 
     object Divide : Operation(symbol = "/") {
         override fun execute(x1: Int, x2: Int): Int {
-            requireNotZero(x1)
-            requireNotZero(x2)
+            require(x1 != 0 && x2 != 0)
             return x1 / x2
         }
     }
