@@ -22,6 +22,10 @@ class Calculator {
             this.total = total * operand
         }
 
+        if (operator == "/") {
+            this.total = total / operand
+        }
+
         if (parsedCalculateFormula.size > 3) {
             val restParsedCalculateFormula = parsedCalculateFormula.drop(3)
             calculate("${this.total} ${restParsedCalculateFormula.joinToString(" ")}")
