@@ -2,7 +2,7 @@ package step3.view
 
 import step3.model.RacingGame
 
-class InputView {
+class InputLayout {
     fun receiveUserInput() = RacingGame(
         receiveNumberOfCars(),
         receiveNumberOfAttempts()
