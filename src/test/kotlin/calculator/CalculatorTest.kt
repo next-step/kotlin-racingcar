@@ -8,10 +8,13 @@ class CalculatorTest : DescribeSpec({
         describe("plus") {
             it("계산식에 + 연산자가 있다면 더하기를 수행한다.") {
                 val calculator = Calculator()
+                val secondCalculator = Calculator()
 
                 calculator.calculate("3 + 2")
+                secondCalculator.calculate("3 + 3 + 2")
 
                 calculator.total shouldBe 5L
+                secondCalculator.total shouldBe 8L
             }
         }
     }
