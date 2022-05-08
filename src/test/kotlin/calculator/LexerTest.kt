@@ -2,6 +2,8 @@ package calculator
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FreeSpec
+import io.kotest.matchers.booleans.shouldBeFalse
+import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.shouldBe
 
 internal class LexerTest : FreeSpec({
@@ -38,5 +40,18 @@ internal class LexerTest : FreeSpec({
         lexer.next() shouldBe Token.Number(2.0)
         lexer.next() shouldBe Token.EOF
         lexer.next() shouldBe Token.EOF
+    }
+
+    "모든 토큰을 읽은경우에만 isEOF 는 true 로 반환한다" {
+        // given
+        val input = "2"
+
+        // when
+        val lexer = Lexer.new(input)
+
+        // then
+        lexer.isEOF().shouldBeFalse()
+        lexer.next()
+        lexer.isEOF().shouldBeTrue()
     }
 })

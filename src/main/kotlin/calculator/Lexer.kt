@@ -30,4 +30,6 @@ class Lexer private constructor(
     }
 
     fun next(): Token = tokens.poll() ?: Token.EOF
+
+    fun isEOF(): Boolean = tokens.isEmpty()
 }
