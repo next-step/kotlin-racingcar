@@ -97,7 +97,7 @@ class CarRacingTest : FreeSpec({
     "자동차는" - {
         "앞으로 이동할 수 있다" {
             val car = Car()
-            repeat(1) {
+            repeat(10) {
                 car.run()
             }
             car.moves shouldBeGreaterThanOrEqual 0
