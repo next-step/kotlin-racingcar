@@ -1,4 +1,4 @@
-package step2
+package calculator
 
 sealed class Operation(
     val symbol: String

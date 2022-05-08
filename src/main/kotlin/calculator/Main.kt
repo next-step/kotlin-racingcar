@@ -1,4 +1,4 @@
-package step2
+package calculator
 
 fun main() {
     val expression: String = Reader().readExpression()
