@@ -12,7 +12,7 @@ class Calculator {
             throw IllegalArgumentException("유효하지 않은 계산식 입니다.")
         }
 
-        val parsedCalculateFormula = calculatorFormula.split(' ')
+        val parsedCalculateFormula = this.parsedFor(calculatorFormula)
 
         total = parsedCalculateFormula[0].toFloat()
         val operand = parsedCalculateFormula[2].toFloat()
@@ -31,5 +31,10 @@ class Calculator {
         }
 
         return total
+    }
+
+    private val parsedFor = {
+        calculatorFormula: String ->
+        calculatorFormula.split(' ')
     }
 }
