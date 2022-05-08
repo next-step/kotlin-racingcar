@@ -1,6 +1,7 @@
 package study
 
 import io.kotest.core.spec.style.AnnotationSpec
+import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
 
 class StreamTest : AnnotationSpec() {
@@ -10,7 +11,7 @@ class StreamTest : AnnotationSpec() {
 
         val result = string.split(" ")
 
-        result shouldBe listOf("1", "+", "2")
+        result shouldContainExactly listOf("1", "+", "2")
     }
 
     @Test
