@@ -3,7 +3,7 @@ package racingcar
 import kotlin.random.Random
 
 class Car {
-    var position = 1
+    var position = 0
         private set
 
     var valueGenerator: (() -> Int)? = null
