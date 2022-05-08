@@ -14,4 +14,8 @@ class Lexer private constructor(
             TODO()
         }
     }
+
+    fun next(): Token {
+        TODO()
+    }
 }
