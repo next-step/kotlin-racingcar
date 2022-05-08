@@ -1,7 +1,7 @@
 package calculator.model
 
 enum class Operator(
-    val symbol: Char,
+    private val symbol: Char,
     val operator: (Int, Int) -> Int
 ) {
 
