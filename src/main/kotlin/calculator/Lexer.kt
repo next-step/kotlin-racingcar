@@ -29,5 +29,5 @@ class Lexer private constructor(
         }
     }
 
-    fun next(): Token = if (tokens.isEmpty()) Token.EOF else tokens.poll()
+    fun next(): Token = tokens.poll() ?: Token.EOF
 }
