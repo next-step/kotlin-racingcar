@@ -1,7 +1,10 @@
 package calculator
 
+import java.util.LinkedList
+import java.util.Queue
+
 class Lexer private constructor(
-    private val tokens: List<Token>,
+    private val tokens: Queue<Token>,
 ) {
     companion object {
         fun new(input: String?): Lexer {
@@ -9,13 +12,22 @@ class Lexer private constructor(
                 throw IllegalArgumentException("잘못된 입력입니다: $input")
             }
 
-            throw IllegalArgumentException("잘못된 입력입니다: $input")
-
-            TODO()
+            return input
+                .split(" ")
+                .filter { it.isNotBlank() }
+                .map { str ->
+                    when (str) {
+                        "+" -> Token.Plus
+                        "-" -> Token.Minus
+                        "*" -> Token.Asterisk
+                        "/" -> Token.Slash
+                        else -> str.toIntOrNull()
+                            ?.let { Token.Number(it) }
+                            ?: throw IllegalArgumentException("유효하지 않은 문자열입니다: $str")
+                    }
+                }.let { Lexer(LinkedList(it)) }
         }
     }
 
-    fun next(): Token {
-        TODO()
-    }
+    fun next(): Token = tokens.poll()
 }
