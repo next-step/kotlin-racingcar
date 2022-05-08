@@ -1,5 +1,7 @@
 package step3.view
 
+import step3.util.InputValidator
+
 class InputView(private val inputMessage: String) {
     fun receive(): Int {
         printInputMessage()
@@ -10,14 +12,5 @@ class InputView(private val inputMessage: String) {
         println(inputMessage)
     }
 
-    private fun receiveUserInput(): Int {
-        val userInput = requireNotNull(readLine()) {
-            INVALID_USER_INPUT_MESSAGE
-        }
-        return userInput.toInt()
-    }
-
-    companion object {
-        private const val INVALID_USER_INPUT_MESSAGE = "반드시 값이 입력되어야 합니다."
-    }
+    private fun receiveUserInput() = InputValidator.validate(readLine())
 }
