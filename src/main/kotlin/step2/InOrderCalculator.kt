@@ -2,9 +2,13 @@ package step2
 
 class InOrderCalculator {
 
-    fun calculate(expression: String?): Double {
-        val expressions = Expression(expression).parse()
+    fun calculator(input: String?): Double {
+        val expressions = Expression(input).parse()
 
+        return calculate(expressions)
+    }
+
+    private fun calculate(expressions: List<String>): Double {
         var result: Double = parseValidDouble(expressions[0])
         var operator: String? = null
 
