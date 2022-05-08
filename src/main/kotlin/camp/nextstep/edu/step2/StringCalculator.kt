@@ -1,7 +1,5 @@
 package camp.nextstep.edu.step2
 
-import java.util.regex.Pattern
-
 /**
  * 문자열 계산기
  *
@@ -22,17 +20,16 @@ class StringCalculator {
         requireNotNull(exp) { "expression should not null." }
         require(exp.isNotBlank()) { "expression should not empty." }
 
-        val leftMatcher = leftOnePattern.matcher(exp)
-        val rightsMatcher = rightsPattern.matcher(exp)
-        require(leftMatcher.find() && rightsMatcher.find()) { "expression should exist at least once of infix expression." }
+        val leftMatchResult = requireNotNull(leftOneRegex.find(exp)) { "expression should start with number." }
+        val rightsMatchResult = requireNotNull(rightsRegex.find(exp)) { "expression should exist at least once of infix expression." }
 
-        var left = leftMatcher.group(1).toDouble()
-        if (left > 0) rightsMatcher.reset()
+        var left = leftMatchResult.value.toDouble()
+        var rights = if (left < 0) rightsMatchResult.next() else rightsMatchResult
 
-        while (rightsMatcher.find()) {
-            val operator = rightsMatcher.group(1)
-            val right = rightsMatcher.group(2).toDouble()
-            left = doInfix(left, operator, right)
+        while (rights != null) {
+            val (operator, right) = rights.destructured
+            left = doInfix(left, operator, right.toDouble())
+            rights = rights.next()
         }
 
         return left
@@ -49,7 +46,7 @@ class StringCalculator {
     }
 
     companion object {
-        private val leftOnePattern: Pattern = Pattern.compile("(-?\\d+)")
-        private val rightsPattern: Pattern = Pattern.compile("([-+/*])\\s?(-?\\d+)")
+        private val leftOneRegex: Regex = Regex("(-?\\d+)")
+        private val rightsRegex: Regex = Regex("([-+/*])\\s?(-?\\d+)")
     }
 }
