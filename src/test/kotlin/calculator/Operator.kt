@@ -6,6 +6,10 @@ class Operator {
             return@evaluate a + b
         }
 
-        return@evaluate a - b
+        if (operator == "-") {
+            return@evaluate a - b
+        }
+
+        return@evaluate a * b
     }
 }
