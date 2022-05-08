@@ -1,60 +1,36 @@
 package stringcaculator
 
 class StringCalculator {
+    private var currentOperator: Operator = Operator.PLUS
+    fun calculate(expression: String?): Int {
+        checkExpressionIsNullOrBlank(expression)
 
-    private var result = 0
-    private var operator = "+"
-
-    fun calculate(input: String): Int {
-        result = 0
-        operator = "+"
-        input.split(" ").forEach {
-            operandCalculate(it)
+        var result = 0
+        expression!!.split(" ").forEach {
+            result = operandCalculate(it, result)
         }
         return result
     }
 
-    fun operandCalculate(input: String) {
-        checkInputIsNullOrBlank(input)
-        if (!checkIsNumber(input)) {
-            operator = input
-            return
+    private fun operandCalculate(expression: String, result: Int): Int {
+        if (!isNumber(expression)) {
+            setOperator(expression)
+            return result
         }
-
-        result = when (operator) {
-            "+" -> plus(result, input.toInt())
-            "-" -> minus(result, input.toInt())
-            "*" -> multiply(result, input.toInt())
-            "/" -> divide(result, input.toInt())
-            else -> throw IllegalArgumentException("Invalid Operator")
-        }
+        return currentOperator.calculate(result, expression.toInt())
     }
 
-    fun checkIsNumber(input: String): Boolean {
-        input.toCharArray().forEach {
-            if (!it.isDigit()) return false
-        }
-        return true
+    private fun setOperator(operator: String) {
+        val validOperator = Operator.values().find { it.operator == operator }
+        require(validOperator != null)
+        currentOperator = validOperator
     }
 
-    fun checkInputIsNullOrBlank(input: String) {
-        if (input.isNullOrBlank()) throw IllegalArgumentException("Invalid Input")
+    private fun isNumber(operand: String): Boolean {
+        return operand.toCharArray().all { it.isDigit() }
     }
 
-    fun plus(operand1: Int, operand2: Int): Int {
-        return operand1 + operand2
-    }
-
-    fun minus(operand1: Int, operand2: Int): Int {
-        return operand1 - operand2
-    }
-
-    fun multiply(operand1: Int, operand2: Int): Int {
-        return operand1 * operand2
-    }
-
-    fun divide(operand1: Int, operand2: Int): Int {
-        if (operand2 == 0) throw ArithmeticException("/by Zero")
-        return operand1 / operand2
+    private fun checkExpressionIsNullOrBlank(expression: String?) {
+        require(!expression.isNullOrBlank())
     }
 }
