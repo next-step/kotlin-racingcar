@@ -7,15 +7,26 @@ import racingCar.etc.Message
  * Created by Jaesungchi on 2022.05.07..
  */
 class InputView {
-    fun printHowManyCars() {
+
+    fun getNumberOfCars(): Int {
+        printHowManyCars()
+        return getInput()
+    }
+
+    private fun printHowManyCars() {
         println(Message.PrintingMessage.HOW_MANY_CAR)
     }
 
-    fun printHowManyTimesRace() {
+    fun getNumberOfRaces(): Int {
+        printHowManyTimesRace()
+        return getInput()
+    }
+
+    private fun printHowManyTimesRace() {
         println(Message.PrintingMessage.HOW_MANY_TIMES_RACE)
     }
 
-    fun getInput(): Int {
+    private fun getInput(): Int {
         return changeStringToInt(readlnOrNull())
     }
 

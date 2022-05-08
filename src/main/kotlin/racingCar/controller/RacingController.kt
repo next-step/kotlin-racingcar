@@ -12,11 +12,11 @@ class RacingController {
     private val carList: MutableList<Car> = mutableListOf()
     val raceResults: MutableList<RaceResult> = mutableListOf()
 
-    fun startGame(countOfCar: Int, countOfRace: Int) {
-        repeat(countOfCar) {
+    fun startGame(numberOfCars: Int, numberOfRaces: Int) {
+        repeat(numberOfCars) {
             carList.addAll(listOf(Car()))
         }
-        repeat(countOfRace) {
+        repeat(numberOfRaces) {
             processGame()
             raceResults.add(RaceResult(carList))
         }
