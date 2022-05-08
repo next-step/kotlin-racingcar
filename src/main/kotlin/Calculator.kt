@@ -1,26 +1,28 @@
 package study
 
-import java.util.regex.Pattern
-import kotlin.jvm.Throws
+import Expression
 
-open class Calculator(splitedStrings: String) {
-    var splitedValues = listOf<String>()
+open class Calculator(inputString: String) {
+
+    var expression: Expression
 
     init {
-        splitedValues = splitedStrings.split(" ")
-        validate(splitedValues)
+        expression = Expression(inputString.split(" "))
     }
 
-    fun calculate(): Int {
-        var resultValue = splitedValues.get(0).toInt()
+    fun result(): Int {
+        return calculate(expression.digits.first().toInt(), expression.operators, expression.digits.drop(1))
+    }
 
-        for (i in 1 until splitedValues.size step (2)) {
-            val operator = splitedValues[i]
-            val digit = splitedValues[i + 1].toInt()
-            resultValue = apply(resultValue, digit, operator)
+    private fun calculate(value: Int, operators: List<String>, digits: List<String>): Int {
+        return if (digits.isEmpty()) {
+            value
+        } else {
+            val digit = digits.first().toInt()
+            val operator = operators.first()
+
+            calculate(apply(value, digit, operator), operators.drop(1), digits.drop(1))
         }
-
-        return resultValue
     }
 
     private fun apply(digit1: Int, digit2: Int, operator: String): Int {
@@ -33,43 +35,10 @@ open class Calculator(splitedStrings: String) {
         }
     }
 
-    fun validate(splitedValues: List<String>) {
-        var operators = splitedValues.extracts(validDigitPattern, false)
-        var digits = splitedValues.extracts(validDigitPattern, true)
-
-        val blankCount = splitedValues.stream().filter { s -> s.isBlank() }.count().toInt()
-        if (blankCount > 0 || operators.size == 0 || digits.size == 0 ||
-            !operators.validate(validOperatorPattern) || !digits.validate(validDigitPattern)
-        ) {
-            throw IllegalArgumentException()
-        }
-    }
-
     companion object {
-        var DIGITS_REGEX = "^[0-9]*$"
-        var OPERATORS_REGEX = "[*+-/]"
-        val validDigitPattern: Pattern = Pattern.compile(DIGITS_REGEX)
-        val validOperatorPattern: Pattern = Pattern.compile(OPERATORS_REGEX)
-
         val plus = { x: Int, y: Int -> x + y }
         val substract = { x: Int, y: Int -> x - y }
         val multiply = { x: Int, y: Int -> x * y }
         val divide = { x: Int, y: Int -> x / y }
     }
-}
-
-fun List<String>.extracts(patterns: Pattern, match: Boolean): List<String> {
-    val list = mutableListOf<String>()
-    this.stream().forEach { a ->
-        if (patterns.matcher(a).find() == match) {
-            list.add(a)
-        }
-    }
-
-    return list
-}
-
-@Throws(IllegalArgumentException::class)
-fun List<String>.validate(patterns: Pattern): Boolean {
-    return this.stream().allMatch { a -> patterns.matcher(a).find() }
 }

@@ -35,6 +35,6 @@ class CalculatorTest {
     @ValueSource(strings = ["1 + 2 + 3"])
     fun ShouldMeetCalculationResult(source: String) {
         val calculator = Calculator(source)
-        assertThat(calculator.calculate()).isEqualTo(6)
+        assertThat(calculator.result()).isEqualTo(6)
     }
 }
