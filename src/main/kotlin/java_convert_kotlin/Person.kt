@@ -1,3 +1,3 @@
 package java_convert_kotlin
 
-class Person(val name: String, val age: Int?, var nickname: String? = "찰리")
+data class Person(val name: String, val age: Int?, var nickname: String? = "찰리")
