@@ -6,12 +6,9 @@ class RacingCarGame(private val carCount: Int, private val trialCount: Int) {
         get() = _gameResult.toList()
     private val _gameResult = mutableListOf<List<Int>>()
 
-    fun play() {
-        for (c in 0 until trialCount) {
-            proceed()
-
-            record()
-        }
+    fun play() = repeat(trialCount) {
+        proceed()
+        record()
     }
 
     private fun record() {
