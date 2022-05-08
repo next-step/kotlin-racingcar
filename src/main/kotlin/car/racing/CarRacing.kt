@@ -1,5 +1,7 @@
 package car.racing
 
+import kotlin.random.Random
+
 class InputView(
     private val reader: () -> String?,
     private val console: (String) -> Unit
@@ -46,5 +48,32 @@ class ResultView(
 
     companion object {
         private const val DISPLAY_MOVEMENT = "-"
+    }
+}
+
+class Car(
+    private val forwardThreshold: Int = CAN_GO_FORWARD_THRESHOLD
+) {
+    private val random = Random(System.currentTimeMillis())
+
+    private var _moves: Int = 0
+    val moves: Int
+        get() = _moves
+
+    fun run() {
+        if (canGoForward()) {
+            _moves += 1
+        }
+    }
+
+    private fun canGoForward(): Boolean {
+        require(forwardThreshold in CAN_GO_FORWARD_MIN..CAN_GO_FORWARD_MAX)
+        return random.nextInt(CAN_GO_FORWARD_MIN, CAN_GO_FORWARD_MAX) >= forwardThreshold
+    }
+
+    companion object {
+        private const val CAN_GO_FORWARD_MIN = 0
+        private const val CAN_GO_FORWARD_MAX = 9
+        private const val CAN_GO_FORWARD_THRESHOLD = 4
     }
 }

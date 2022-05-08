@@ -2,6 +2,7 @@ package car.racing
 
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.FreeSpec
+import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual
 import io.kotest.matchers.shouldBe
 
 class CarRacingTest : FreeSpec({
@@ -89,6 +90,32 @@ class CarRacingTest : FreeSpec({
                 
             """.trimIndent()
             actual shouldBe expected
+        }
+    }
+
+    "자동차는" - {
+        "앞으로 이동할 수 있다" {
+            val car = Car()
+            repeat(1) {
+                car.run()
+            }
+            car.moves shouldBeGreaterThanOrEqual 0
+        }
+
+        "낮은 임계점인경우 시도횟수와 동일하게 앞으로 이동할 수 있다" {
+            val car = Car(forwardThreshold = 0)
+            val trying = 10
+            repeat(trying) {
+                car.run()
+            }
+            car.moves shouldBe trying
+        }
+
+        "허용 임계를 초과하는 경우 IllegalArgumentException 발생" {
+            val car = Car(forwardThreshold = 10)
+            shouldThrowExactly<IllegalArgumentException> {
+                car.run()
+            }
         }
     }
 })
