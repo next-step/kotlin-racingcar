@@ -18,9 +18,7 @@ class RacingController {
         }
         repeat(countOfRace) {
             processGame()
-            raceResults.add(RaceResult().apply {
-                saveCarResult(carList)
-            })
+            raceResults.add(RaceResult(carList))
         }
     }
 

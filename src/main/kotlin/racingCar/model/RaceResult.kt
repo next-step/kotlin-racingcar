@@ -8,7 +8,7 @@ class RaceResult {
     var resultOutput = StringBuilder()
         private set
 
-    fun saveCarResult(carList: List<Car>) {
+    constructor(carList: List<Car>) {
         carList.forEach {
             repeat(it.position) {
                 resultOutput.append("-")
