@@ -34,5 +34,15 @@ class OperatorTest : DescribeSpec({
                 result shouldBe 12
             }
         }
+
+        context("with / operator") {
+            it("나눗셈을 수행한 값을 반환한다.") {
+                val operator = Operator()
+
+                val result = operator.evaluate(5f, 2f, "/")
+
+                result shouldBe 2.5
+            }
+        }
     }
 })
