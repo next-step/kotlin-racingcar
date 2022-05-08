@@ -3,7 +3,8 @@ package racingcar.domain
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
-import racingcar.domain.MovementCommand.*
+import racingcar.domain.MovementCommand.FORWARD
+import racingcar.domain.MovementCommand.WAIT
 
 class MovementCommandSpecs : DescribeSpec({
 
@@ -17,8 +18,8 @@ class MovementCommandSpecs : DescribeSpec({
 
         context("입력 숫자가 4 ~ 9 사이 숫자면") {
             val number = 4
-            it("이동 명령을 의미한다") {
-                MovementCommand.of(number) shouldBe MOVE
+            it("전진 명령을 의미한다") {
+                MovementCommand.of(number) shouldBe FORWARD
             }
         }
 
