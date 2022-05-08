@@ -18,7 +18,9 @@ class InputView(
     private fun readInt(): Int {
         val value: String? = reader()
         requireNotNull(value)
-        return value.toInt()
+        return kotlin
+            .runCatching { value.toInt() }
+            .getOrElse { throw IllegalArgumentException() }
     }
 }
 
