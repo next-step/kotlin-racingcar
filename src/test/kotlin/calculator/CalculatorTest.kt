@@ -58,7 +58,22 @@ class CalculatorTest : DescribeSpec({
                 }
 
                 exception.message shouldBe "사칙연산 기호가 아닙니다."
+            }
+        }
 
+        context("입력값이 null 이거나 빈 공백 문자일 경우") {
+            it("IllegalArgumentException 에러가 발생한다.") {
+                val calculator = Calculator();
+
+                val exception1 = shouldThrow<IllegalArgumentException>{
+                    calculator.calculate("");
+                }
+                val exception2 =  shouldThrow<IllegalArgumentException>{
+                    calculator.calculate(null);
+                }
+
+                exception1.message shouldBe "올바은 계산식이 아닙니다."
+                exception2.message shouldBe "올바은 계산식이 아닙니다."
             }
         }
 
