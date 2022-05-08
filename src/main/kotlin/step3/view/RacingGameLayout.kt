@@ -1,9 +1,14 @@
 package step3.view
 
+import step3.domain.RacingGame
+
 class RacingGameLayout(
     private val inputLayout: InputLayout,
-    // Todo : resultLayout
+    private val resultView: ResultView
 ) {
     fun execute() {
+        val racingGameInput = inputLayout.receiveUserInput()
+        val racingGame = RacingGame(racingGameInput)
+        resultView.showResult(racingGame.start())
     }
 }
