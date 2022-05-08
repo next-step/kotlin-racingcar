@@ -1,9 +1,7 @@
-package racingcar.domain
+package racingcar.application
 
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
-import racingcar.application.GameInput
-import racingcar.application.RacingGameManager
 
 class RacingGameManagerSpecs : DescribeSpec({
 
