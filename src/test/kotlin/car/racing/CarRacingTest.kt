@@ -35,4 +35,37 @@ class CarRacingTest : FreeSpec({
             }
         }
     }
+
+    "결과 화면" - {
+        val msgRecorder = StringBuilder()
+        fun fakeConsole(msg: String) = msgRecorder.append(msg)
+        val resultView = ResultView(::fakeConsole)
+
+        "-, ---, --의 결과화면이 표시" {
+            val record = listOf(
+                listOf(1, 1, 1),
+                listOf(1, 2, 1),
+                listOf(1, 3, 2)
+            )
+            resultView.showRecords(record)
+            val actual = msgRecorder.toString()
+            val expected = """
+                실행 결과:
+                -
+                -
+                -
+                
+                -
+                --
+                -
+                
+                -
+                ---
+                --
+                
+                
+            """.trimIndent()
+            actual shouldBe expected
+        }
+    }
 })
