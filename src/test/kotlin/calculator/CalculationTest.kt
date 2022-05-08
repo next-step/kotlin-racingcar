@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.NullSource
 import org.junit.jupiter.params.provider.ValueSource
 
+// 샘플로 제거하지 않는다
 class CalculationTest : AnnotationSpec() {
 
     @ParameterizedTest
@@ -54,7 +55,7 @@ class CalculationTest : AnnotationSpec() {
         "3.9 / 3 + 5,6.3",
         delimiter = ','
     )
-    fun `복잡한 사직연산 테스트`(input: String, expected: Double) {
+    fun `복잡한 사칙연산 테스트`(input: String, expected: Double) {
         // When
         val actual = StringCalculator.calculate(input)
         // Then
@@ -81,7 +82,7 @@ class CalculationTest : AnnotationSpec() {
 
     @ParameterizedTest
     @ValueSource(strings = ["4 / 2 $ 3", "1 gsad adsf", "a + b - c"])
-    fun `사직연산이 아닌 기호가 포함되어 있는 경우 예외 발생`(input: String) {
+    fun `사칙연산이 아닌 기호가 포함되어 있는 경우 예외 발생`(input: String) {
         // Then
         shouldThrowExactly<IllegalArgumentException> {
             StringCalculator.calculate(input)

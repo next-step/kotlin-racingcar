@@ -5,7 +5,7 @@ object StringCalculator {
     private const val DELIMITER = " "
 
     fun calculate(expression: String?): Result {
-        require(expression != null)
+        requireNotNull(expression)
         require(expression.isNotBlank())
 
         val (operands: List<Operand>, operations: List<Operation>) = tokenize(expression)
@@ -17,12 +17,9 @@ object StringCalculator {
 
     private fun tokenize(expression: String): Pair<List<Operand>, List<Operation>> {
         val tokenized = expression.split(DELIMITER)
-        val operands: List<Operand> = tokenized.mapIndexedNotNull { index: Int, s: String ->
-            if (index % 2 == 0) Operand.of(s) else null
-        }
-        val operations: List<Operation> = tokenized.mapIndexedNotNull() { index: Int, s: String ->
-            if (index % 2 != 0) Operation.findBySymbol(s) else null
-        }
+        val (first, second) = tokenized.withIndex().partition { it.index % 2 == 0 }
+        val operands = first.map { Operand.of(it.value) }
+        val operations = second.map { Operation.findBySymbol(it.value) }
         return operands to operations
     }
 
