@@ -8,7 +8,7 @@ class StringCalculatorTest {
     fun `null이 입력될 경우 IllegalArgumentException 에러가 발생한다`() {
         assertThatThrownBy {
             val stringCalculator = StringCalculator(null)
-            stringCalculator.execute()
+            stringCalculator.calculate()
         }.isInstanceOf(IllegalArgumentException::class.java)
     }
 
@@ -16,7 +16,7 @@ class StringCalculatorTest {
     fun `빈 문자열이 입력될 경우 IllegalArgumentException 에러가 발생한다`() {
         assertThatThrownBy {
             val stringCalculator = StringCalculator("")
-            stringCalculator.execute()
+            stringCalculator.calculate()
         }.isInstanceOf(IllegalArgumentException::class.java)
     }
 
@@ -25,7 +25,7 @@ class StringCalculatorTest {
     fun `비 정상적인 수식이 들어올 경우 IllegalArgumentException 에러가 발생한다`(input: String?) {
         assertThatThrownBy {
             val stringCalculator = StringCalculator(input)
-            stringCalculator.execute()
+            stringCalculator.calculate()
         }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
