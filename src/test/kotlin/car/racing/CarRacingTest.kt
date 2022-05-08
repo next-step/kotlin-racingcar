@@ -111,11 +111,19 @@ class CarRacingTest : FreeSpec({
             car.moves shouldBe trying
         }
 
-        "허용 임계를 초과하는 경우 IllegalArgumentException 발생" {
+        "허용 임계 초과로 설정한 경우 IllegalArgumentException 발생" {
             val car = Car(forwardThreshold = 10)
             shouldThrowExactly<IllegalArgumentException> {
                 car.run()
             }
         }
+
+        "허용 임계 미만으로 설정한 경우 IllegalArgumentException 발생" {
+            val car = Car(forwardThreshold = -1)
+            shouldThrowExactly<IllegalArgumentException> {
+                car.run()
+            }
+        }
+    }
     }
 })
