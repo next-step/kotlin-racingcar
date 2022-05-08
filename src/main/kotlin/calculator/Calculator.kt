@@ -6,22 +6,25 @@ class Calculator {
         return elements[bool]!!
     }
 
-    fun calculate(input: String): Int {
+    fun calculate(input: String): Float {
         val inputs = input.split(" ");
-        val numbers = groupByIsNumber(inputs, true)
+        val numbers = groupByIsNumber(inputs, true).map { it.toFloat() }
         val operations = groupByIsNumber(inputs, false);
 
-        var total = numbers[0].toInt();
+        var total = numbers[0]
 
         for ((index, el) in numbers.drop(1).withIndex()) {
             if (operations[index] == "+") {
-                total += el.toInt();
+                total += el
             }
             if (operations[index] == "-") {
-                total -= el.toInt();
+                total -= el
             }
             if (operations[index] == "*") {
-                total *= el.toInt();
+                total *= el
+            }
+            if (operations[index] == "/") {
+                total /= el
             }
         }
 

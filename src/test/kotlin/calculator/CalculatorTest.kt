@@ -35,6 +35,18 @@ class CalculatorTest : DescribeSpec({
             result2 shouldBe 40
         }
 
+        it("나눗셈를 수행한다.") {
+            val calculator = Calculator();
+
+            val result = calculator.calculate("4 / 2");
+            val result2 = calculator.calculate("12 / 2 / 2");
+            val result3 = calculator.calculate("10 / 2 / 2");
+
+            result shouldBe 2
+            result2 shouldBe 3
+            result3 shouldBe 2.5
+        }
+
         describe("groupByIsNumber") {
             it("true 를 받으면 숫자 배열만 리턴한다.") {
                 val inputs = listOf<String>("1", "+", "2", "-", "3");
