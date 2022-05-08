@@ -1,19 +1,17 @@
 package racingcar
 
-import java.util.Random
-
 class RacingGame(
     private val cars: List<Car>,
-    private var laps: Int
+    private var laps: Int,
+    private val movingStrategy: MovingStrategy = RandomStrategy()
 ) {
     private val roundReports: MutableList<List<Int>> = mutableListOf()
-    private val random: Random = Random()
 
     fun start() {
         if (!isNotEnd()) throw IllegalStateException("이미 종료된 레이스입니다.")
 
         cars.forEach {
-            it.move(random.nextInt(10))
+            it.move(movingStrategy)
             writeReport()
         }
 
