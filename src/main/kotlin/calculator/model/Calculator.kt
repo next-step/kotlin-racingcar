@@ -10,7 +10,9 @@ object Calculator {
         for (i in 1 until split.size step (2)) {
             val symbol = split[i].first()
             val num = split[i + 1].toInt()
-            result = Operator.calculate(result, num, symbol)
+            val operator = Operator.findOperator(symbol)
+
+            result = operator.operator(result, num)
         }
 
         return result
