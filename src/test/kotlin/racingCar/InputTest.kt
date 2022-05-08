@@ -13,7 +13,7 @@ import java.lang.reflect.Method
  */
 class InputTest {
     private val inputView = InputView()
-    private val MethodChangeStringToInt: Method =
+    private val methodChangeStringToInt: Method =
         InputView::class.java.getDeclaredMethod("changeStringToInt", String::class.java).apply {
             isAccessible = true
         }
@@ -21,7 +21,7 @@ class InputTest {
     @Test
     fun `0이 입력되었을 때 에러발생`() {
         try {
-            MethodChangeStringToInt.invoke(inputView, "0")
+            methodChangeStringToInt.invoke(inputView, "0")
         } catch (e: InvocationTargetException) {
             assertThat(e.cause?.message).isEqualTo(Message.ExceptionMessage.ENTERED_INVALID_NUMBER)
         }
@@ -30,7 +30,7 @@ class InputTest {
     @Test
     fun `음수가 입력되었을 때 에러발생`() {
         try {
-            MethodChangeStringToInt.invoke(inputView, "-1")
+            methodChangeStringToInt.invoke(inputView, "-1")
         } catch (e: InvocationTargetException) {
             assertThat(e.cause?.message).isEqualTo(Message.ExceptionMessage.ENTERED_INVALID_NUMBER)
         }
@@ -39,7 +39,7 @@ class InputTest {
     @Test
     fun `글자가 입력되었을 때 에러발생`() {
         try {
-            MethodChangeStringToInt.invoke(inputView, "글자")
+            methodChangeStringToInt.invoke(inputView, "글자")
         } catch (e: InvocationTargetException) {
             assertThat(e.cause?.message).isEqualTo(Message.ExceptionMessage.IS_NOT_INTEGER)
         }
@@ -48,7 +48,7 @@ class InputTest {
     @Test
     fun `null이 입력되었을 때 에러발생`() {
         try {
-            MethodChangeStringToInt.invoke(inputView, null)
+            methodChangeStringToInt.invoke(inputView, null)
         } catch (e: InvocationTargetException) {
             assertThat(e.cause?.message).isEqualTo(Message.ExceptionMessage.IS_NULL_OR_BLANK)
         }
@@ -57,7 +57,7 @@ class InputTest {
     @Test
     fun `빈칸이 입력되었을 때 에러발생`() {
         try {
-            MethodChangeStringToInt.invoke(inputView, " ")
+            methodChangeStringToInt.invoke(inputView, " ")
         } catch (e: InvocationTargetException) {
             assertThat(e.cause?.message).isEqualTo(Message.ExceptionMessage.IS_NULL_OR_BLANK)
         }
