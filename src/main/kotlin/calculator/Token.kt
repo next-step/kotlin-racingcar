@@ -10,4 +10,6 @@ sealed class Token {
     object Asterisk : Token()
 
     object Slash : Token()
+
+    object EOF : Token()
 }
