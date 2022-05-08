@@ -33,7 +33,7 @@ class Calculator {
     }
 
     private fun getOperator(token: List<String>): Operator {
-        return Operator.getOperator(token[OPERATOR_POSITION_INDEX])
+        return Operator.findOperator(token[OPERATOR_POSITION_INDEX])
     }
 
     companion object {

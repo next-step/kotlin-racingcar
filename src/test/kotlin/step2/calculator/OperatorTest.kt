@@ -14,10 +14,10 @@ class OperatorTest {
         val test4 = "/"
         val test5 = "#"
 
-        assertThat(Operator.getOperator(test1)).isEqualTo(Operator.PLUS)
-        assertThat(Operator.getOperator(test2)).isEqualTo(Operator.MINUS)
-        assertThat(Operator.getOperator(test3)).isEqualTo(Operator.MULTIPLY)
-        assertThat(Operator.getOperator(test4)).isEqualTo(Operator.DIVIDED)
-        assertThatThrownBy { Operator.getOperator(test5) }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThat(Operator.findOperator(test1)).isEqualTo(Operator.PLUS)
+        assertThat(Operator.findOperator(test2)).isEqualTo(Operator.MINUS)
+        assertThat(Operator.findOperator(test3)).isEqualTo(Operator.MULTIPLY)
+        assertThat(Operator.findOperator(test4)).isEqualTo(Operator.DIVIDED)
+        assertThatThrownBy { Operator.findOperator(test5) }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }

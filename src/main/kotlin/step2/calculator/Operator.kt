@@ -17,8 +17,8 @@ enum class Operator(
     }
 
     companion object {
-        fun getOperator(symbol: String): Operator {
-            val matched = Operator.values().firstOrNull { it.symbol == symbol }
+        fun findOperator(symbol: String): Operator {
+            val matched = values().firstOrNull { it.symbol == symbol }
             if (matched != null) {
                 return matched
             }
