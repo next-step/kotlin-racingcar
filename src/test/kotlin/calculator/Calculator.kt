@@ -29,8 +29,7 @@ class Calculator {
         val operand = parsedCalculateFormula[OPERAND_INDEX].toFloat()
         val operator = parsedCalculateFormula[OPERATOR_INDEX]
 
-        val operatorInstance = Operator()
-        total = operatorInstance.evaluate(total, operand, operator)
+        total = Operator.evaluate(total, operand, operator)
 
         if (parsedCalculateFormula.size > NUMBER_OF_ONE_CALCULATOR_FORMULA_INDEX) {
             val restParsedCalculateFormula = parsedCalculateFormula.drop(NUMBER_OF_ONE_CALCULATOR_FORMULA_INDEX)
