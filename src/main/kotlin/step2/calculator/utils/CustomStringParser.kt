@@ -1,20 +1,17 @@
 package step2.calculator.utils
 
-class CustomStringParser {
+object CustomStringParser {
+    private const val DELIMITER = " "
 
-    companion object {
-        fun parse(str: String?): List<String> {
-            if (str.isNullOrBlank()) {
-                throw IllegalArgumentException()
-            }
-
-            return str.split(DELIMITER)
+    fun parse(str: String?): List<String> {
+        if (str.isNullOrBlank()) {
+            throw IllegalArgumentException()
         }
 
-        fun removeEmptyStrings(list: List<String>): List<String> {
-            return list.filter { it.isNotBlank() }
-        }
+        return str.split(DELIMITER)
+    }
 
-        private const val DELIMITER = " "
+    fun removeEmptyStrings(list: List<String>): List<String> {
+        return list.filter { it.isNotBlank() }
     }
 }

@@ -26,7 +26,7 @@ class CalculatorTest {
         delimiter = '='
     )
     fun `연산 테스트`(input: String, result: String) {
-        assertThat(calculator.calculate(input)).isEqualTo(result.toLong())
+        assertThat(calculator.calculate(input)).isEqualTo(result.toDouble())
     }
 
     @Test
