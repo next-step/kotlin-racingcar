@@ -9,7 +9,7 @@ fun main() {
     val racingCarGame = RacingCarGame(carCount, trialCount)
     racingCarGame.play()
 
-    val gameResult = racingCarGame.gameResult
+    val gameResult = racingCarGame.getGameResult()
 
     val resultView = ResultView()
     resultView.printGameResult(gameResult)

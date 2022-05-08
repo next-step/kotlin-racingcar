@@ -2,6 +2,17 @@ package racingcar
 
 import kotlin.random.Random
 
+class GameResults {
+    val gameResult
+        get() = _gameResult.toList()
+    private val _gameResult = mutableListOf<List<Int>>()
+
+    fun record(carList: List<Car>) {
+        val recordData = carList.map { it.position }
+        _gameResult.add(recordData)
+    }
+}
+
 class RacingCarGame(private val carCount: Int, private val trialCount: Int) {
     private val defaultCarGoDecide = {
         val randomValue = Random.nextInt(DEFAULT_RANDOM_RANGE)
@@ -11,9 +22,8 @@ class RacingCarGame(private val carCount: Int, private val trialCount: Int) {
 
     private val carList = List(carCount) { Car(defaultCarGoDecide) }
 
-    val gameResult
-        get() = _gameResult.toList()
-    private val _gameResult = mutableListOf<List<Int>>()
+    private val _gameResults = GameResults()
+    fun getGameResult() = _gameResults.gameResult
 
     fun play() = repeat(trialCount) {
         proceed()
@@ -21,8 +31,7 @@ class RacingCarGame(private val carCount: Int, private val trialCount: Int) {
     }
 
     private fun record() {
-        val recordData = carList.map { it.position }
-        _gameResult.add(recordData)
+        _gameResults.record(carList)
     }
 
     private fun proceed() = carList.forEach { it.proceed() }
