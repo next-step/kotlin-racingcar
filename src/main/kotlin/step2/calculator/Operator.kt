@@ -1,10 +1,8 @@
 package step2.calculator
 
-import java.util.function.BiFunction
-
 enum class Operator(
     private val symbol: String,
-    private val function: BiFunction<Double, Double, Double>
+    private val function: (Double, Double) -> Double
 ) {
     PLUS("+", { a, b -> a + b }),
     MINUS("-", { a, b -> a - b }),
@@ -13,7 +11,7 @@ enum class Operator(
     ;
 
     fun operate(numberPair: NumberPair): Double {
-        return function.apply(numberPair.first, numberPair.second)
+        return function(numberPair.first, numberPair.second)
     }
 
     companion object {
