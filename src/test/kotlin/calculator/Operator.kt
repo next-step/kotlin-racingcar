@@ -1,7 +1,11 @@
 package calculator
 
 class Operator {
-    val evaluate = { a: Float, b: Float, operator: String ->
-        a + b
+    val evaluate = evaluate@{ a: Float, b: Float, operator: String ->
+        if (operator == "+") {
+            return@evaluate a + b
+        }
+
+        return@evaluate a - b
     }
 }
