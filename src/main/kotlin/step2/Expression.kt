@@ -12,7 +12,7 @@ data class Expression(val input: String?) {
     }
 
     private fun isValidExpression(parsedExpression: MutableList<String>) {
-        require(parsedExpression.size % 2 != 0) { ERROR_EXPRESSION }
+        require(parsedExpression.size % STANDARD_VALID_EXPRESSION != INVALID_EXPRESSION_FORMAT) { ERROR_EXPRESSION }
     }
 
     companion object {
@@ -20,5 +20,7 @@ data class Expression(val input: String?) {
         private const val ERROR_EXPRESSION = "식이 올바르지 않습니다."
 
         private const val DELIMETER = " "
+        private const val STANDARD_VALID_EXPRESSION = 2
+        private const val INVALID_EXPRESSION_FORMAT = 0
     }
 }
