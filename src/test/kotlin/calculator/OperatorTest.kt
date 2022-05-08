@@ -14,5 +14,15 @@ class OperatorTest : DescribeSpec({
                 result shouldBe 7
             }
         }
+
+        context("with - operator") {
+            it("뺄셈을 수행한 값을 반환한다.") {
+                val operator = Operator()
+
+                val result = operator.evaluate(3f, 4f, "-")
+
+                result shouldBe -1
+            }
+        }
     }
 })
