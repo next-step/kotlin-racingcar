@@ -24,8 +24,9 @@ class InputView {
             throw IllegalArgumentException(Message.ExceptionMessage.IS_NULL_OR_BLANK)
         }
         val output = input.toIntOrNull() ?: throw IllegalArgumentException(Message.ExceptionMessage.IS_NOT_INTEGER)
-        if (output < CAN_VALID_NUMBER)
+        if (output < CAN_VALID_NUMBER) {
             throw IllegalArgumentException(Message.ExceptionMessage.ENTERED_INVALID_NUMBER)
+        }
         return output
     }
 
