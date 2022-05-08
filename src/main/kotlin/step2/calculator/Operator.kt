@@ -4,7 +4,7 @@ import java.util.function.BiFunction
 
 enum class Operator(
     private val symbol: String,
-    private val function: BiFunction<Long, Long, Long>
+    private val function: BiFunction<Double, Double, Double>
 ) {
     PLUS("+", { a, b -> a + b }),
     MINUS("-", { a, b -> a - b }),
@@ -12,13 +12,13 @@ enum class Operator(
     DIVIDED("/", { a, b -> a / b })
     ;
 
-    fun operate(first: String, second: String): Long {
-        return function.apply(toLong(first), toLong(second))
+    fun operate(first: String, second: String): Double {
+        return function.apply(toDouble(first), toDouble(second))
     }
 
-    private fun toLong(value: String): Long {
+    private fun toDouble(value: String): Double {
         return try {
-            value.toLong()
+            value.toDouble()
         } catch (cause: NumberFormatException) {
             throw IllegalArgumentException("숫자가 아닙니다. cause = `$value`")
         }

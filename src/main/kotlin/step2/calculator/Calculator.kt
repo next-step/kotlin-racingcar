@@ -4,14 +4,14 @@ import step2.calculator.utils.CustomStringParser
 
 class Calculator {
 
-    fun calculate(input: String?): Long {
+    fun calculate(input: String?): Double {
         val strings = CustomStringParser.parse(input)
         val token = CustomStringParser.removeEmptyStrings(strings)
 
         return _calculate(token)
     }
 
-    private fun _calculate(token: List<String>): Long {
+    private fun _calculate(token: List<String>): Double {
         val operator = getOperator(token)
         val (first, second) = Pair(token[FIRST_NUMBER_POSITION_INDEX], token[SECOND_NUMBER_POSITION_INDEX])
 
