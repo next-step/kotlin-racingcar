@@ -18,4 +18,12 @@ class PersonTest : FunSpec ({
             it.nickname shouldBe "찰리"
         }
     }
+
+    test("널 타입") {
+        val person = Person("박민영", null, null)
+
+        person.name shouldBe "박민영"
+        person.age.shouldBeNull()
+        person.nickname.shouldBeNull()
+    }
 })
