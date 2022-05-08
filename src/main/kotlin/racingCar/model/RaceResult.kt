@@ -1,14 +1,14 @@
 package racingCar.model
 
 /**
- * 클래스에 대한 설명을 적어주세요.
+ * 레이스 결과를 저장하는 클래스
  * Created by Jaesungchi on 2022.05.07..
  */
-class RaceResult {
+class RaceResult(carList: List<Car>) {
     var resultOutput = StringBuilder()
         private set
 
-    constructor(carList: List<Car>) {
+    init {
         carList.forEach {
             repeat(it.position) {
                 resultOutput.append("-")
