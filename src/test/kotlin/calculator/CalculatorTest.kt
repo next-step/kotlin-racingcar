@@ -1,5 +1,6 @@
 package calculator
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 
@@ -45,6 +46,20 @@ class CalculatorTest : DescribeSpec({
             result shouldBe 2
             result2 shouldBe 3
             result3 shouldBe 2.5
+        }
+
+        context("사칙연산 기호가 아닌 경우") {
+            it("IllegalArgumentException 에러가 발생한다.") {
+
+                val calculator = Calculator();
+
+                val exception =  shouldThrow<IllegalArgumentException>{
+                    calculator.calculate("4 $ 2");
+                }
+
+                exception.message shouldBe "사칙연산 기호가 아닙니다."
+
+            }
         }
 
         describe("groupByIsNumber") {

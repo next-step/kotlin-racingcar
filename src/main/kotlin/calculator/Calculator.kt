@@ -17,15 +17,19 @@ class Calculator {
             if (operations[index] == "+") {
                 total += el
             }
-            if (operations[index] == "-") {
+            else if (operations[index] == "-") {
                 total -= el
             }
-            if (operations[index] == "*") {
+            else if (operations[index] == "*") {
                 total *= el
             }
-            if (operations[index] == "/") {
+            else if (operations[index] == "/") {
                 total /= el
             }
+            else {
+                throw IllegalArgumentException("사칙연산 기호가 아닙니다.")
+            }
+
         }
 
         return total
