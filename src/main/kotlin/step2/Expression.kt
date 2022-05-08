@@ -3,7 +3,7 @@ package step2
 data class Expression(val input: String?) {
 
     fun parse(): List<String> {
-        requireNotNull(input) { ERROR_INPUT_NULL_OR_EMPTY }
+        if (input.isNullOrBlank()) throw IllegalArgumentException(ERROR_INPUT_NULL_OR_EMPTY)
 
         val parsedExpression = input.split(DELIMETER).toMutableList()
         isValidExpression(parsedExpression)
