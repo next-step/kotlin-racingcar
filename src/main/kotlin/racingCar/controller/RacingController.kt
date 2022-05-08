@@ -30,9 +30,11 @@ class RacingController {
         }
     }
 
+    // 주사위의 숫자는 MINIMUM_SCORE 부터 EXCEEDED_SCORE -1 값까지 나온다.
+    // ex MINIMUM_SCORE = 1, EXCEEDED_SCORE = 6 일땐 [1,2,3,4,5]
     private fun rollTheDice(): Int {
         val random = Random()
-        return random.nextInt(DICE_SIZE)
+        return random.nextInt(EXCEEDED_SCORE - MINIMUM_SCORE) + MINIMUM_SCORE
     }
 
     private fun checkCanRunScore(score: Int): Boolean {
@@ -40,7 +42,8 @@ class RacingController {
     }
 
     companion object {
-        private const val DICE_SIZE = 10
+        private const val MINIMUM_SCORE = 0
+        private const val EXCEEDED_SCORE = 10
         private const val SCORE_OF_CAN_GO = 4
     }
 }
