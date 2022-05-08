@@ -1,6 +1,7 @@
 package calculator
 
 import calculator.Const.ErrorMsg
+import kotlin.math.exp
 
 object InputProcessor {
     private const val INPUT_DELIMITER = " "
@@ -13,7 +14,7 @@ object InputProcessor {
     fun splitInputToPairList(expression: String): Pair<List<Operator>, List<Double>> {
         val expressionList = expression.split(INPUT_DELIMITER)
 
-        require(expressionList.size >= 3) { ErrorMsg.INPUT_SIZE_IS_WRONG_ERROR_MSG }
+        require(expressionList.size >= 3 && expressionList.size % 2 != 0) { ErrorMsg.INPUT_SIZE_IS_WRONG_ERROR_MSG }
 
         val operators = expressionList.filterIndexed { idx, _ -> idx % 2 != 0 }
             .map { Operator.find(it) }
