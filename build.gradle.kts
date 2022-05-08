@@ -67,6 +67,10 @@ tasks {
                     value = "TOTALCOUNT"
                     maximum = "400".toBigDecimal()
                 }
+
+                excludes = listOf(
+                    "main.*"
+                )
             }
         }
     }
