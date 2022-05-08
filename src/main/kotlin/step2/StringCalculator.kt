@@ -1,6 +1,6 @@
 package step2
 
-class StringCalculator() {
+class StringCalculator {
 
     private val exprQueue = mutableListOf<String>()
 
@@ -16,9 +16,9 @@ class StringCalculator() {
     }
 
     fun result(): Double {
-        val parser = ExpressionParser(display())
-        val operands = parser.getOperands()
-        val operators = parser.getOperators()
+        val parser = Expression(display())
+        val operands = parser.operands
+        val operators = parser.operators
 
         require(operands.size == operators.size) {
             "피연산자의 수(${operands.size})와 연산자 수(${operators.size - 1})가 적합하지 않습니다 " +

@@ -1,32 +1,34 @@
 package step2
 
-class ExpressionParser(private val inputStr: String) {
+class Expression(inputStr: String) {
 
     private val validArgRegex = Regex("[\\d */+-]")
     private val operatorRegex = Regex("[+*/-]")
+
+    var operands: List<Double>
+    var operators: List<Operator>
 
     init {
         val validationCheckedStr = validArgRegex.findAll(inputStr).toList()
         require(inputStr.length == validationCheckedStr.size) {
             "inputStr contains non-digit or non-arithmetic characters"
         }
-    }
 
-    fun getOperands(): List<Double> =
-        operatorRegex.split(inputStr)
+        operands = operatorRegex.split(inputStr)
             .map { it.toDouble() }
 
-    fun getOperators(): List<Operator> = listOf(Operator.PLUS) +
-        operatorRegex.findAll(inputStr)
-            .map { find(it.value) }
-            .toList()
+        operators = listOf(Operator.PLUS) +
+            operatorRegex.findAll(inputStr)
+                .map { find(it.value) }
+                .toList()
+    }
 
     override fun toString(): String {
-        val operators = getOperators()
+        val operators = operators
             .drop(1)
             .map { it.symbol }
-        return getOperands().foldIndexed("") { idx, accum, operand ->
-            accum + operand.toInt() + operators[idx]
+        return operands.foldIndexed("") { idx, acc, operand ->
+            acc + operand.toInt() + operators[idx]
         }
     }
 
@@ -35,7 +37,7 @@ class ExpressionParser(private val inputStr: String) {
             .find { op ->
                 op.symbol == targetSymbol
             } ?: run {
-            throw IllegalArgumentException("사칙연산 기호가 아닌 입력이 존재합니다. symbol = $targetSymbol")
+            throw IllegalArgumentException("$targetSymbol is non-arithmetic symbol")
         }
     }
 }
