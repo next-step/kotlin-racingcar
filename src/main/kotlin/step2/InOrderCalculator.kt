@@ -3,10 +3,7 @@ package step2
 class InOrderCalculator {
 
     fun calculate(expression: String?): Double {
-        if (expression.isNullOrBlank()) throw IllegalArgumentException(ERROR_INPUT_NULL_OR_EMPTY)
-
-        val expressions = expression.split(DELIMETER).toMutableList()
-        if (expressions.size % 2 == 0) throw IllegalArgumentException(ERROR_EXPRESSION)
+        val expressions = Expression(expression).parse()
 
         var result: Double = expressions[0].toValidDouble()
         var operator: String? = null
@@ -34,10 +31,6 @@ class InOrderCalculator {
     }
 
     companion object {
-        private const val ERROR_INPUT_NULL_OR_EMPTY = "입력값은 null이거나 빈 공백 문자일 수 없습니다."
         private const val ERROR_INPUT_NUMBER = "잘못된 숫자를 입력하였습니다."
-        private const val ERROR_EXPRESSION = "식이 올바르지 않습니다."
-
-        private const val DELIMETER = " "
     }
 }
