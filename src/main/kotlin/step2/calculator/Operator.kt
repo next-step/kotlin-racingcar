@@ -12,16 +12,8 @@ enum class Operator(
     DIVIDED("/", { a, b -> a / b })
     ;
 
-    fun operate(first: String, second: String): Double {
-        return function.apply(toDouble(first), toDouble(second))
-    }
-
-    private fun toDouble(value: String): Double {
-        return try {
-            value.toDouble()
-        } catch (cause: NumberFormatException) {
-            throw IllegalArgumentException("숫자가 아닙니다. cause = `$value`")
-        }
+    fun operate(numberPair: NumberPair): Double {
+        return function.apply(numberPair.first, numberPair.second)
     }
 
     companion object {

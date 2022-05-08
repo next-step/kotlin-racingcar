@@ -12,10 +12,10 @@ class Calculator {
     }
 
     private fun _calculate(token: List<String>): Double {
+        val numberPair = getNumberPair(token)
         val operator = getOperator(token)
-        val (first, second) = token[FIRST_NUMBER_POSITION_INDEX] to token[SECOND_NUMBER_POSITION_INDEX]
 
-        val result = operator.operate(first, second)
+        val result = operator.operate(numberPair)
 
         if (hasNextOperation(token)) {
             val leftToken: List<String> = token.subList(NEXT_OPERATOR_START_INDEX, token.size)
@@ -26,6 +26,10 @@ class Calculator {
 
     private fun hasNextOperation(token: List<String>): Boolean {
         return token.size > NEXT_OPERATOR_START_INDEX
+    }
+
+    private fun getNumberPair(token: List<String>): NumberPair {
+        return NumberPair.of(token[FIRST_NUMBER_POSITION_INDEX], token[SECOND_NUMBER_POSITION_INDEX])
     }
 
     private fun getOperator(token: List<String>): Operator {
