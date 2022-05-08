@@ -10,7 +10,7 @@ class RacingGame(
     val output: Output
 ) {
 
-    fun race(cars: Cars) {
+    private fun race(cars: Cars) {
         cars.moveCars()
     }
 
