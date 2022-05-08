@@ -28,20 +28,19 @@ class StringCalculator {
 
         while (rights != null) {
             val (operator, right) = rights.destructured
-            left = doInfix(left, operator, right.toDouble())
+            left = doInfix(left, Operator.fromSymbol(operator), right.toDouble())
             rights = rights.next()
         }
 
         return left
     }
 
-    private fun doInfix(left: Double, operator: String, right: Double): Double {
+    private fun doInfix(left: Double, operator: Operator, right: Double): Double {
         return when (operator) {
-            "+" -> (left.plus(right))
-            "-" -> (left.minus(right))
-            "/" -> (left.div(right))
-            "*" -> (left.times(right))
-            else -> throw IllegalArgumentException("$operator is invalid operator (use only [+,-,/,*]).")
+            Operator.PLUS -> (left.plus(right))
+            Operator.MINUS -> (left.minus(right))
+            Operator.TIMES -> (left.times(right))
+            Operator.DIVIDE -> (left.div(right))
         }
     }
 
