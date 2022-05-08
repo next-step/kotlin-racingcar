@@ -12,8 +12,7 @@ class InOrderCalculator {
         var operator: String? = null
 
         (1 until expressions.size).forEach { index ->
-            if (index % 2 != 0) {
-                //isOperator
+            if (isOperator(index)) {
                 operator = expressions[index]
             } else {
                 result = Operator.execute(result, expressions[index].toValidDouble(), operator)
@@ -21,6 +20,8 @@ class InOrderCalculator {
         }
         return result
     }
+
+    private fun isOperator(index: Int): Boolean = index % 2 != 0
 
     private fun String?.toValidDouble(): Double {
         if (this.isNullOrBlank()) throw IllegalArgumentException(ERROR_INPUT_NUMBER)
@@ -32,7 +33,7 @@ class InOrderCalculator {
         }
     }
 
-    companion object{
+    companion object {
         private const val ERROR_INPUT_NULL_OR_EMPTY = "입력값은 null이거나 빈 공백 문자일 수 없습니다."
         private const val ERROR_INPUT_NUMBER = "잘못된 숫자를 입력하였습니다."
         private const val ERROR_EXPRESSION = "식이 올바르지 않습니다."
