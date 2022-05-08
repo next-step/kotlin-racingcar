@@ -7,11 +7,14 @@ enum class Operator(val symbol: String) : BinaryOperator<Double>, DoubleBinaryOp
 
     PLUS("+") {
         override fun apply(t: Double, u: Double): Double = t + u
-    }, MINUS("-") {
+    },
+    MINUS("-") {
         override fun apply(t: Double, u: Double): Double = t - u
-    }, TIMES("*") {
+    },
+    TIMES("*") {
         override fun apply(t: Double, u: Double): Double = t * u
-    }, DEVIDE("/") {
+    },
+    DEVIDE("/") {
         override fun apply(t: Double, u: Double): Double {
             require(u > 0) {
                 "Divide by zero: divider = $u"
