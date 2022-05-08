@@ -77,3 +77,27 @@ class Car(
         private const val CAN_GO_FORWARD_THRESHOLD = 4
     }
 }
+
+class Game(
+    drivers: Int,
+    private val moves: Int
+) {
+    private val cars = List(drivers) { Car() }
+    private val records = mutableListOf<List<Int>>()
+
+    fun play(): List<List<Int>> {
+        repeat(moves) {
+            cars.forEach(Car::run)
+            records.add(cars.map { it.moves })
+        }
+        return records
+    }
+}
+
+class CarRacing {
+    fun newGame(drivers: Int, moves: Int): Game {
+        require(drivers > 0)
+        require(moves > 0)
+        return Game(drivers, moves)
+    }
+}
