@@ -101,3 +101,15 @@ class CarRacing {
         return Game(drivers, moves)
     }
 }
+
+fun main() {
+    val inputView = InputView(::readLine, ::print)
+    val drivers = inputView.readDrivers()
+    val moves = inputView.readMoves()
+
+    val game = CarRacing().newGame(drivers, moves)
+    val records = game.play()
+
+    val resultView = ResultView(::print)
+    resultView.showRecords(records)
+}
