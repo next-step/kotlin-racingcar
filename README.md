@@ -10,6 +10,6 @@
 메서드가 너무 많은 일을 하지 않도록 분리하기 위해 노력해 본다.
 
 ### 상세 구현 사항
-- [ ] 입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException throw
-- [ ] 사칙연산 기호가 아닌 경우 IllegalArgumentException throw
+- [x] 입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException throw
+- [x] 사칙연산 기호가 아닌 경우 IllegalArgumentException throw
 - [ ] 사칙 연산을 모두 포함하는 기능 구현
