@@ -5,8 +5,8 @@ import step2.calculator.utils.CustomStringParser
 class Calculator {
 
     fun calculate(input: String?): Double {
-        val strings = CustomStringParser.parse(input)
-        val token = CustomStringParser.removeEmptyStrings(strings)
+        val words = CustomStringParser.splitAsWords(input)
+        val token = CustomStringParser.removeEmptyStrings(words)
 
         return _calculate(token)
     }

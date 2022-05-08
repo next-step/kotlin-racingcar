@@ -3,7 +3,7 @@ package step2.calculator.utils
 object CustomStringParser {
     private const val DELIMITER = " "
 
-    fun parse(str: String?): List<String> {
+    fun splitAsWords(str: String?): List<String> {
         if (str.isNullOrBlank()) {
             throw IllegalArgumentException()
         }
