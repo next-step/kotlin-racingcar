@@ -6,7 +6,7 @@ class StringCalculator() {
 
     fun append(expression: String): StringCalculator {
         require(expression.isNotEmpty()) {
-            "expression must not be null or empty"
+            "expression cannot be empty"
         }
 
         val processedExpr = expression.replace(" ", "")
@@ -22,7 +22,7 @@ class StringCalculator() {
 
         require(operands.size == operators.size) {
             "피연산자의 수(${operands.size})와 연산자 수(${operators.size - 1})가 적합하지 않습니다 " +
-                    "ex. 피연산자 수 == 연산자 수 + 1"
+                "ex. 피연산자 수 == 연산자 수 + 1"
         }
 
         return calculate(0.0, operators, operands)

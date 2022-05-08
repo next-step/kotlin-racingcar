@@ -1,6 +1,8 @@
 package step2
 
-import org.junit.jupiter.api.Assertions.*
+import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
@@ -60,6 +62,8 @@ internal class OperatorTest {
 
     @Test
     fun `Enum DEVIDE by zero test`() {
-        assertThrows(IllegalArgumentException::class.java) { Operator.DEVIDE.apply(10.0, 0.0) }
+        assertThatThrownBy { Operator.DEVIDE.apply(10.0, 0.0) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining("Divide by zero")
     }
 }

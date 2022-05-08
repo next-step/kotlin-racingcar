@@ -1,9 +1,10 @@
 package step2
 
-import org.junit.jupiter.api.Assertions.*
+import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import org.junit.jupiter.params.provider.ValueSource
+import org.junit.jupiter.params.provider.EmptySource
 
 internal class StringCalculatorTest {
     @ParameterizedTest
@@ -14,12 +15,8 @@ internal class StringCalculatorTest {
         "8 / 4,2.0"
     )
     fun `arithmetic operation test`(inputStr: String, expected: Double) {
-        assertEquals(
-            expected,
-            StringCalculator()
-                .append(inputStr)
-                .result()
-        )
+        val result = StringCalculator().append(inputStr).result()
+        assertThat(result).isEqualTo(expected)
     }
 
     @ParameterizedTest
@@ -30,21 +27,16 @@ internal class StringCalculatorTest {
         "2123 - 10 + 50 / 4, 540.75"
     )
     fun `multiple operands test`(inputStr: String, expected: Double) {
-        assertEquals(
-            expected,
-            StringCalculator()
-                .append(inputStr)
-                .result()
-        )
+        val result = StringCalculator().append(inputStr).result()
+        assertThat(result).isEqualTo(expected)
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["123 + 삼백", "123 + 3849 ^ 13"])
-    fun `non-arithmetic operator or non-digit check test`(inputStr: String) {
-        assertThrows(
-            IllegalArgumentException::class.java,
-            StringCalculator().append(inputStr)::result
-        )
+    @EmptySource
+    fun `append empty source check test`(inputStr: String) {
+        assertThatThrownBy { StringCalculator().append(inputStr) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("expression cannot be empty")
     }
 
     @ParameterizedTest
@@ -55,12 +47,8 @@ internal class StringCalculatorTest {
         "2123 - 10 + 50 / 4, 540.75"
     )
     fun `blank remove test`(inputStr: String, expected: Double) {
-        assertEquals(
-            expected,
-            StringCalculator()
-                .append(inputStr)
-                .result()
-        )
+        val result = StringCalculator().append(inputStr).result()
+        assertThat(result).isEqualTo(expected)
     }
 
     @ParameterizedTest
@@ -78,7 +66,7 @@ internal class StringCalculatorTest {
             .append(inputStr1)
             .append(inputStr2)
 
-        assertEquals(expected, calculator.display())
+        assertThat(expected).isEqualTo(calculator.display())
     }
 
     @ParameterizedTest
@@ -96,7 +84,7 @@ internal class StringCalculatorTest {
             .append(inputStr1)
             .append(inputStr2)
 
-        assertEquals(expected, calculator.result())
+        assertThat(expected).isEqualTo(calculator.result())
     }
 
     @ParameterizedTest
@@ -113,6 +101,7 @@ internal class StringCalculatorTest {
             .append(inputStr1)
             .append(inputStr2)
             .clear()
-        assertEquals("", calculator.display())
+
+        assertThat("").isEqualTo(calculator.display())
     }
 }

@@ -1,6 +1,7 @@
 package step2
 
-import org.junit.jupiter.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
@@ -8,9 +9,11 @@ import org.junit.jupiter.params.provider.ValueSource
 internal class ExpressionParserTest {
 
     @ParameterizedTest
-    @ValueSource(strings = ["123 + 삼백", "123 + 3849 ^ 13"])
+    @ValueSource(strings = ["123 + Thirteen", "123 + 3849 ^ 13"])
     fun `non-arithmetic operator or non-digit check test`(inputStr: String) {
-        Assertions.assertThrows(IllegalArgumentException::class.java, ExpressionParser(inputStr)::getOperands)
+        assertThatThrownBy{ ExpressionParser(inputStr) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("inputStr contains non-digit or non-arithmetic characters")
     }
 
     @ParameterizedTest
@@ -21,8 +24,7 @@ internal class ExpressionParserTest {
         "2123 - 10 + 50 / 4, 2123.0 10.0 50.0 4.0"
     )
     fun `getOperands test`(inputStr: String, expected: String) {
-        Assertions.assertEquals(
-            expected,
+        assertThat(expected).isEqualTo(
             ExpressionParser(inputStr).getOperands()
                 .joinToString(" ")
         )
@@ -36,10 +38,11 @@ internal class ExpressionParserTest {
         "2123 - 10 + 50 / 4, + - + /"
     )
     fun `getOperators test`(inputStr: String, expected: String) {
-        Assertions.assertEquals(
-            expected,
-            ExpressionParser(inputStr).getOperators()
+        assertThat(
+            ExpressionParser(inputStr)
+                .getOperators()
+                .map { it.symbol }
                 .joinToString(" ")
-        )
+        ).isEqualTo(expected)
     }
 }

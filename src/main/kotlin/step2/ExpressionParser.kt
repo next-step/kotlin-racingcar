@@ -6,8 +6,9 @@ class ExpressionParser(private val inputStr: String) {
     private val operatorRegex = Regex("[+*/-]")
 
     init {
-        require(validArgRegex.containsMatchIn(inputStr)) {
-            "숫자 혹은 사칙연산 기호가 아닌 입력이 존재합니다"
+        val validationCheckedStr = validArgRegex.findAll(inputStr).toList()
+        require(inputStr.length == validationCheckedStr.size) {
+            "inputStr contains non-digit or non-arithmetic characters"
         }
     }
 
