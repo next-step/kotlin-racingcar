@@ -9,7 +9,7 @@ class InOrderCalculator {
     }
 
     private fun calculate(expressions: List<String>): Double {
-        var result: Double = parseValidDouble(expressions[0])
+        var result: Double = parseValidDouble(expressions.firstOrNull())
         var operator: String? = null
 
         (1 until expressions.size).forEach { index ->

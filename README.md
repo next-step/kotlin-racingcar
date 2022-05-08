@@ -28,7 +28,7 @@
     * [x] 실제 계산을 수행하는 함수 분리
     * [x] 주석이 아닌 함수로 처리
   * [ ] 매직 리터럴 바꾸기
-  * [ ] 코틀린 함수 활용
+  * [x] 코틀린 함수 활용
   * [ ] enum class에 인터페이스/람다 활용([💡](https://kotlinlang.org/docs/enum-classes.html#implementing-interfaces-in-enum-classes))
   * [ ] 테스트 코드 kotest로 통일
   * [x] 불필요한 확장함수를 일반함수로 변경 (해당 클래스에서만 사용하기 때문에 확장함수를 구현할 필요가 없다.)
