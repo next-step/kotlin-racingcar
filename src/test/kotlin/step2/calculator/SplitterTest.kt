@@ -101,7 +101,7 @@ class SplitterTest : DescribeSpec({
   describe("나눗셈 문자열 분리") {
     it("나눗셈 이항식일 경우 숫자와 연산자를 분리한다.") {
       // given
-      val expression = "3 * 4"
+      val expression = "3 / 4"
 
       // when
       val splitter = Splitter(expression)
@@ -115,7 +115,7 @@ class SplitterTest : DescribeSpec({
 
     it("나눗셈 삼항식일 경우 숫자, 연산자, 나머지 식을 분리한다.") {
       // given
-      val expression = "3 * 4 * 5"
+      val expression = "3 / 4 / 5"
 
       // when
       val splitter = Splitter(expression)
@@ -125,7 +125,7 @@ class SplitterTest : DescribeSpec({
       splitter.right shouldBe 4
       splitter.operator shouldBe Operator.DIVIDE
       splitter.hasOther shouldBe true
-      splitter.other shouldBe "* 5"
+      splitter.other shouldBe "/ 5"
     }
   }
 })

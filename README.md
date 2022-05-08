@@ -11,7 +11,8 @@
 ### 구현 목록
 
 - [x] 덧셈, 뺄셈, 곱셈, 나눗셈 기능
-- [ ] 숫자, 연산자 분리 기능
+- [x] 숫자, 연산자 분리 기능
+- [ ] 연산 기능
 - [ ] 다중 연산 기능
 - [ ] 입력값이 null 이거나 빈 공백 문자일 경우 IllegalArgumentException throw 기능
 - [ ] 사칙연산 기호가 아닌 경우 IllegalArgumentException throw 기능
