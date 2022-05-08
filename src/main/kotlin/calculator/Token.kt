@@ -1,7 +1,7 @@
 package calculator
 
 sealed class Token {
-    data class Number(val value: Int) : Token()
+    data class Number(val value: Double) : Token()
 
     object Plus : Token()
 
