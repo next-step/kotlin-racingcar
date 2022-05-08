@@ -2,6 +2,7 @@ package calculator
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FreeSpec
+import io.kotest.matchers.shouldBe
 
 internal class ParserTest : FreeSpec({
     "예외 상황" - {
@@ -19,6 +20,25 @@ internal class ParserTest : FreeSpec({
                 shouldThrow<IllegalArgumentException> {
                     Parser.parse(lexer)
                 }
+            }
+        }
+    }
+
+    "성공 상황" - {
+        listOf(
+            "2 + 3 * 4 / 2" to 10.0,
+            "2 / 2 - 3.3" to -2.3,
+            "5.0 * 4 / 10.000" to 2.0,
+        ).forEach { (title, expected) ->
+            title {
+                // given
+                val lexer = Lexer.new(title)
+
+                // when
+                val actual = Parser.parse(lexer)
+
+                // then
+                actual shouldBe expected
             }
         }
     }
