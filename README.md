@@ -28,9 +28,9 @@
 
 ### Application
 - 경주 게임 관리자(RacingGameManager)
-  - [ ] 경주에 참여할 자동차를 생성한다.
-  - [ ] 경주 게임을 생성하고 실행한다.
-  - [ ] 게임 결과(GameResult)를 반환한다.
+  - [x] 경주에 참여할 자동차를 생성한다.
+  - [x] 경주 게임을 생성하고 실행한다.
+  - [x] 게임 결과(GameResult)를 반환한다.
 
 ### UI
 - 입력 뷰(InputView)
