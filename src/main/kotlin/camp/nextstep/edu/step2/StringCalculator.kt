@@ -10,7 +10,10 @@ package camp.nextstep.edu.step2
  *  StringCalculator().calculate("2 + 3 * 4 / 2") // 10
  */
 
-class StringCalculator {
+object StringCalculator {
+
+    private val leftOneRegex: Regex = Regex("(-?\\d+)")
+    private val rightsRegex: Regex = Regex("([-+/*])\\s?(-?\\d+)")
 
     /**
      * 좌측부터 (숫자 연산자 숫자) 중위 연산 패턴을 찾아 차례대로 계산합니다.
@@ -42,10 +45,5 @@ class StringCalculator {
             Operator.TIMES -> (left.times(right))
             Operator.DIVIDE -> (left.div(right))
         }
-    }
-
-    companion object {
-        private val leftOneRegex: Regex = Regex("(-?\\d+)")
-        private val rightsRegex: Regex = Regex("([-+/*])\\s?(-?\\d+)")
     }
 }

@@ -20,8 +20,7 @@ internal class StringCalculatorKtTest {
         "-10 + 10, 0",
     )
     fun plus(exp: String, expected: String) {
-        val calculator = StringCalculator()
-        assertEquals(expected.toDouble(), calculator.calculate(exp))
+        assertEquals(expected.toDouble(), StringCalculator.calculate(exp))
     }
 
     @DisplayName("빼기 단일 연산 테스트")
@@ -34,8 +33,7 @@ internal class StringCalculatorKtTest {
         "-10 - 10, -20",
     )
     fun minus(exp: String, expected: String) {
-        val calculator = StringCalculator()
-        assertEquals(expected.toDouble(), calculator.calculate(exp))
+        assertEquals(expected.toDouble(), StringCalculator.calculate(exp))
     }
 
     @DisplayName("나누기 단일 연산 테스트")
@@ -48,8 +46,7 @@ internal class StringCalculatorKtTest {
         "10 / 10, 1",
     )
     fun divide(exp: String, expected: String) {
-        val calculator = StringCalculator()
-        assertEquals(expected.toDouble(), calculator.calculate(exp))
+        assertEquals(expected.toDouble(), StringCalculator.calculate(exp))
     }
 
     @DisplayName("곱하기 단일 연산 테스트")
@@ -62,8 +59,7 @@ internal class StringCalculatorKtTest {
         "-10 * -10, 100",
     )
     fun times(exp: String, expected: String) {
-        val calculator = StringCalculator()
-        assertEquals(expected.toDouble(), calculator.calculate(exp))
+        assertEquals(expected.toDouble(), StringCalculator.calculate(exp))
     }
 
     @DisplayName("복합 계산 테스트")
@@ -79,8 +75,7 @@ internal class StringCalculatorKtTest {
         "-100 + -10000 - 4 - 2, -10106",
     )
     fun complex(exp: String, expected: String) {
-        val calculator = StringCalculator()
-        assertEquals(expected.toDouble(), calculator.calculate(exp))
+        assertEquals(expected.toDouble(), StringCalculator.calculate(exp))
     }
 
     @DisplayName("null, 빈 문자열 테스트")
@@ -88,9 +83,8 @@ internal class StringCalculatorKtTest {
     @NullAndEmptySource
     @ValueSource(strings = [" ", "   ", "\t", "\n"])
     fun nullOrEmptyExpressions(exp: String?) {
-        val calculator = StringCalculator()
         assertThrows<IllegalArgumentException> {
-            calculator.calculate(exp)
+            StringCalculator.calculate(exp)
         }
     }
 }
