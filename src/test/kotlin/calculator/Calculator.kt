@@ -29,7 +29,7 @@ class Calculator {
         val operand = parsedCalculateFormula[OPERAND_INDEX].toFloat()
         val operator = parsedCalculateFormula[OPERATOR_INDEX]
 
-        total = Operator.evaluate(total, operand, operator)
+        total = this.calculate(total, operand, operator)
 
         if (parsedCalculateFormula.size > NUMBER_OF_ONE_CALCULATOR_FORMULA_INDEX) {
             val restParsedCalculateFormula = parsedCalculateFormula.drop(NUMBER_OF_ONE_CALCULATOR_FORMULA_INDEX)
@@ -41,5 +41,9 @@ class Calculator {
 
     private val parseFor = { calculatorFormula: String ->
         calculatorFormula.split(' ')
+    }
+
+    private val calculate = { a: Float, b: Float, operator: String ->
+        Operator.evaluate(a, b, operator)
     }
 }
