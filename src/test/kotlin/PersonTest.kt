@@ -26,4 +26,12 @@ class PersonTest : FunSpec ({
         person.age.shouldBeNull()
         person.nickname.shouldBeNull()
     }
+
+    test("기본 인자") {
+        val person = Person("박민영", 29)
+
+        person.name shouldBe "박민영"
+        person.age shouldBe 29
+        person.nickname shouldBe "찰리"
+    }
 })
