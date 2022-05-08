@@ -1,9 +1,7 @@
 package calculator
 
-class Parser {
-    companion object {
-        fun parse(lexer: Lexer): Double {
-            throw IllegalArgumentException()
-        }
+object Parser {
+    fun parse(lexer: Lexer): Double {
+        return 0.0
     }
 }
