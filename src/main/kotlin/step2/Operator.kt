@@ -7,7 +7,7 @@ enum class Operator(val value: String) {
     DIVIDE("/");
 
     companion object {
-        private val ERROR_OPERATOR: String = "연산자가 올바르지 않습니다."
+        private const val ERROR_OPERATOR: String = "연산자가 올바르지 않습니다."
 
         fun execute(num1: Double, num2: Double, operator: String?): Double = when (operator) {
             PLUS.value -> num1 + num2
