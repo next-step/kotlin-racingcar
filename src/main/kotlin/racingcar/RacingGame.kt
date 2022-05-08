@@ -19,7 +19,7 @@ class RacingGame(
     }
 
     private fun writeReport() {
-        roundReports.add(cars.map { it.position })
+        roundReports.add(cars.map { it.location.value })
     }
 
     fun isNotEnd(): Boolean {
