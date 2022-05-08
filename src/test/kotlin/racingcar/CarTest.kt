@@ -6,18 +6,17 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class CarTest {
     @ParameterizedTest
-    @ValueSource(ints = [3, 5, 10])
-    fun `Threshold 이상일때만 전진 하는지 테스트`(input: Int) {
-        val car = Car()
+    @ValueSource(booleans = [false, true])
+    fun `외부에서 들어온 전진 가능한 로직대로 전진하는지 테스트`(input: Boolean) {
+        val testGoDecide = {
+            input
+        }
 
-        val beforePosition = car.position
-
-        car.valueGenerator = { input }
+        val car = Car(testGoDecide)
         car.proceed()
-
         val afterPosition = car.position
+        val expectPosition = if (input) 1 else 0
 
-        val expect = if (input >= 4) beforePosition + 1 else beforePosition
-        assertThat(afterPosition).isEqualTo(expect)
+        assertThat(afterPosition).isEqualTo(expectPosition)
     }
 }
