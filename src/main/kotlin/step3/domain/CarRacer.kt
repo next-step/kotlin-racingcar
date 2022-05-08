@@ -12,7 +12,7 @@ class CarRacer(private val car: Car = Car()) {
         }
     }
 
-    private fun isCarMovable() = getCurrentCondition() >= 4
+    private fun isCarMovable() = getCurrentCondition() >= STANDARD_OF_GOOD_CONDITION
 
     private fun getCurrentCondition() = (0..9).random()
 
