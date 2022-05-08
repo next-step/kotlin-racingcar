@@ -1,23 +1,13 @@
 package calculator
 
 class Operator {
-    val evaluate = evaluate@{ a: Float, b: Float, operator: String ->
-        if (operator == "+") {
-            return@evaluate a + b
+    val evaluate = { a: Float, b: Float, operator: String ->
+        when (operator) {
+            "+" -> a + b
+            "-" -> a - b
+            "*" -> a * b
+            "/" -> a / b
+            else -> throw IllegalArgumentException("유효하지 않은 연산자 입니다.")
         }
-
-        if (operator == "-") {
-            return@evaluate a - b
-        }
-
-        if (operator == "*") {
-            return@evaluate a * b
-        }
-
-        if (operator == "/") {
-            return@evaluate a / b
-        }
-
-        return@evaluate throw IllegalArgumentException("유효하지 않은 연산자 입니다.")
     }
 }
