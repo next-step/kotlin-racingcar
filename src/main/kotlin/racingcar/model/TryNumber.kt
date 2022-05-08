@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.model
 
 data class TryNumber(
     var number: Int

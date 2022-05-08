@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.model
 
 class Car(
     val id: Int,

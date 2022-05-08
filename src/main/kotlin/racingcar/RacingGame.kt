@@ -1,5 +1,10 @@
 package racingcar
 
+import racingcar.model.Cars
+import racingcar.model.TryNumber
+import racingcar.view.Input
+import racingcar.view.Output
+
 class RacingGame(
     val input: Input,
     val output: Output

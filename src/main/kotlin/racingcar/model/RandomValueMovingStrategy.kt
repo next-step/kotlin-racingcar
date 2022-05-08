@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.model
 
 data class RandomValueMovingStrategy(val number: Int) : MovingStrategy {
 

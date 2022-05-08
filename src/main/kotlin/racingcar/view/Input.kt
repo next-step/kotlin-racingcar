@@ -1,4 +1,7 @@
-package racingcar
+package racingcar.view
+
+import racingcar.model.CarCount
+import racingcar.model.TryNumber
 
 class Input {
 
