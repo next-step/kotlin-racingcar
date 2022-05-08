@@ -27,14 +27,10 @@ class Calculator {
 
         total = parsedCalculateFormula[TOTAL_INDEX].toFloat()
         val operand = parsedCalculateFormula[OPERAND_INDEX].toFloat()
+        val operator = parsedCalculateFormula[OPERATOR_INDEX]
 
-        when (parsedCalculateFormula[OPERATOR_INDEX]) {
-            "+" -> total += operand
-            "-" -> total -= operand
-            "*" -> total *= operand
-            "/" -> total /= operand
-            else -> throw IllegalArgumentException("유효하지 않은 연산자 입니다.")
-        }
+        val operatorInstance = Operator()
+        total = operatorInstance.evaluate(total, operand, operator)
 
         if (parsedCalculateFormula.size > NUMBER_OF_ONE_CALCULATOR_FORMULA_INDEX) {
             val restParsedCalculateFormula = parsedCalculateFormula.drop(NUMBER_OF_ONE_CALCULATOR_FORMULA_INDEX)
