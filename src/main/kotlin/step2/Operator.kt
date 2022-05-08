@@ -23,5 +23,16 @@ enum class Operator(val symbol: String) : BinaryOperator<Double>, DoubleBinaryOp
         }
     };
 
+    companion object {
+        fun find(targetSymbol: String): Operator {
+            return Operator.values()
+                .find { op ->
+                    op.symbol == targetSymbol
+                } ?: run {
+                throw IllegalArgumentException("$targetSymbol is non-arithmetic symbol")
+            }
+        }
+    }
+
     override fun applyAsDouble(t: Double, u: Double): Double = apply(t, u)
 }

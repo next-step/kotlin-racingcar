@@ -19,7 +19,7 @@ class Expression(inputStr: String) {
 
         operators = listOf(Operator.PLUS) +
             operatorRegex.findAll(inputStr)
-                .map { find(it.value) }
+                .map { Operator.find(it.value) }
                 .toList()
     }
 
@@ -29,15 +29,6 @@ class Expression(inputStr: String) {
             .map { it.symbol }
         return operands.foldIndexed("") { idx, acc, operand ->
             acc + operand.toInt() + operators[idx]
-        }
-    }
-
-    private fun find(targetSymbol: String): Operator {
-        return Operator.values()
-            .find { op ->
-                op.symbol == targetSymbol
-            } ?: run {
-            throw IllegalArgumentException("$targetSymbol is non-arithmetic symbol")
         }
     }
 }
