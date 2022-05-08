@@ -8,7 +8,6 @@ class StringTest {
     @Test
     internal fun `이름`() {
         // allSatisfy
-
     }
 
     @Test
