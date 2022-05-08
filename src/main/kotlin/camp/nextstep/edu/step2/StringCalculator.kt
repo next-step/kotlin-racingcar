@@ -18,7 +18,7 @@ class StringCalculator {
      * 좌측부터 (숫자 연산자 숫자) 중위 연산 패턴을 찾아 차례대로 계산합니다.
      * @param exp 계산할 수 있는 표현식 문자열
      */
-    fun calculate(exp: String?): Int {
+    fun calculate(exp: String?): Double {
         requireNotNull(exp) { "expression should not null." }
         require(exp.isNotBlank()) { "expression should not empty." }
 
@@ -26,19 +26,19 @@ class StringCalculator {
         val rightsMatcher = rightsPattern.matcher(exp)
         require(leftMatcher.find() && rightsMatcher.find()) { "expression should exist at least once of infix expression." }
 
-        var left = leftMatcher.group(1).toInt()
+        var left = leftMatcher.group(1).toDouble()
         if (left > 0) rightsMatcher.reset()
 
         while (rightsMatcher.find()) {
             val operator = rightsMatcher.group(1)
-            val right = rightsMatcher.group(2).toInt()
+            val right = rightsMatcher.group(2).toDouble()
             left = doInfix(left, operator, right)
         }
 
         return left
     }
 
-    private fun doInfix(left: Int, operator: String, right: Int): Int {
+    private fun doInfix(left: Double, operator: String, right: Double): Double {
         return when (operator) {
             "+" -> (left.plus(right))
             "-" -> (left.minus(right))

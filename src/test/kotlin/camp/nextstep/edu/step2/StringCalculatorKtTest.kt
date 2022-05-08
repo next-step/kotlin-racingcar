@@ -21,7 +21,7 @@ internal class StringCalculatorKtTest {
     )
     fun plus(exp: String, expected: String) {
         val calculator = StringCalculator()
-        assertEquals(expected.toInt(), calculator.calculate(exp))
+        assertEquals(expected.toDouble(), calculator.calculate(exp))
     }
 
     @DisplayName("빼기 단일 연산 테스트")
@@ -35,21 +35,21 @@ internal class StringCalculatorKtTest {
     )
     fun minus(exp: String, expected: String) {
         val calculator = StringCalculator()
-        assertEquals(expected.toInt(), calculator.calculate(exp))
+        assertEquals(expected.toDouble(), calculator.calculate(exp))
     }
 
     @DisplayName("나누기 단일 연산 테스트")
     @ParameterizedTest(name = "{0} = {1}")
     @CsvSource(
         "5 / 1, 5",
-        "10 / 100, 0",
+        "10 / 100, 0.1",
         "-10 / 1, -10",
         "123 / -123, -1",
         "10 / 10, 1",
     )
     fun divide(exp: String, expected: String) {
         val calculator = StringCalculator()
-        assertEquals(expected.toInt(), calculator.calculate(exp))
+        assertEquals(expected.toDouble(), calculator.calculate(exp))
     }
 
     @DisplayName("곱하기 단일 연산 테스트")
@@ -63,7 +63,7 @@ internal class StringCalculatorKtTest {
     )
     fun times(exp: String, expected: String) {
         val calculator = StringCalculator()
-        assertEquals(expected.toInt(), calculator.calculate(exp))
+        assertEquals(expected.toDouble(), calculator.calculate(exp))
     }
 
     @DisplayName("복합 계산 테스트")
@@ -80,7 +80,7 @@ internal class StringCalculatorKtTest {
     )
     fun complex(exp: String, expected: String) {
         val calculator = StringCalculator()
-        assertEquals(expected.toInt(), calculator.calculate(exp))
+        assertEquals(expected.toDouble(), calculator.calculate(exp))
     }
 
     @DisplayName("null, 빈 문자열 테스트")
