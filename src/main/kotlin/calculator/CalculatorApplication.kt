@@ -3,10 +3,13 @@ package calculator
 fun main() {
     println(Const.OutputMsg.INIT_MSG)
 
-    val expression = readlnOrNull()
+    val inputStr = readlnOrNull()
+    println("입력하신 문자열은 $inputStr 입니다.")
 
-    val (operators, operands) = InputProcessor.splitInputToPairList(InputProcessor.checkInputIsEmpty(expression))
+    val expression = InputProcessor.checkInputIsEmpty(inputStr)
+    val (operators, operands) = InputProcessor.splitInputToPairList(expression)
 
-    println("입력하신 문자열은 $expression 입니다.")
-    println("연산자는 $operators, 피연산자는 $operands 입니다.")
+    val result = CalculatorProcessor.calculate(operators, operands)
+
+    println("입력 결과는 $result 입니다.")
 }

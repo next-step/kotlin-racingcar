@@ -47,7 +47,6 @@ class InputProcessorTests {
                 .withMessage(ErrorMsg.INPUT_SIZE_IS_WRONG_ERROR_MSG)
         }
 
-
         @ParameterizedTest
         @ValueSource(strings = ["1 + 2 -", "4.3 * 2 - 1 +"])
         fun `입력값을 " "로 구분했을 때, 사이즈가 짝수인 경우 - IllegalArgumentException 에러 발생`(expression: String) {

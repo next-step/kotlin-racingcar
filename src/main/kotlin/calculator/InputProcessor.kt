@@ -1,7 +1,6 @@
 package calculator
 
 import calculator.Const.ErrorMsg
-import kotlin.math.exp
 
 object InputProcessor {
     private const val INPUT_DELIMITER = " "
@@ -26,5 +25,4 @@ object InputProcessor {
 
         return Pair(operators, operands)
     }
-
 }

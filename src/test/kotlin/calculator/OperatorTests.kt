@@ -10,7 +10,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
 
-
 class OperatorTests {
     @Nested
     @DisplayName("사칙연산 계산 테스트")
