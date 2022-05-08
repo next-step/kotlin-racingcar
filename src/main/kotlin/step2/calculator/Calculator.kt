@@ -13,7 +13,7 @@ class Calculator {
 
     private fun _calculate(token: List<String>): Double {
         val operator = getOperator(token)
-        val (first, second) = Pair(token[FIRST_NUMBER_POSITION_INDEX], token[SECOND_NUMBER_POSITION_INDEX])
+        val (first, second) = token[FIRST_NUMBER_POSITION_INDEX] to token[SECOND_NUMBER_POSITION_INDEX]
 
         val result = operator.operate(first, second)
 
