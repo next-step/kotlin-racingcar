@@ -11,7 +11,7 @@ import java.util.stream.Stream
 internal class OperatorTest : AnnotationSpec() {
     @ParameterizedTest
     @MethodSource("calculations")
-    fun `덧셈에 대한 사칙연산을 수행한다`(operator: Operator, left: Int, right: Int, expected: Int) {
+    fun `피연산자에 대한 사칙연산을 수행한다`(operator: Operator, left: Int, right: Int, expected: Int) {
         val result = operator.calculate(left, right)
 
         result shouldBe expected
