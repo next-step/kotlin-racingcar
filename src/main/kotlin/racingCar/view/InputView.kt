@@ -3,10 +3,12 @@ package racingCar.view
 import racingCar.constants.Message
 
 /**
- * 입력을 받고 로직을 시작하는 클래스
+ * 입력을 받고 로직을 시작하는 object
  * Created by Jaesungchi on 2022.05.07..
  */
-class InputView {
+object InputView {
+    private const val CAN_VALID_NUMBER = 1
+
     fun getNumberOfCars(): Int {
         printHowManyCars()
         return getInput()
@@ -38,9 +40,5 @@ class InputView {
             throw IllegalArgumentException(Message.ExceptionMessage.ENTERED_INVALID_NUMBER)
         }
         return output
-    }
-
-    companion object {
-        private const val CAN_VALID_NUMBER = 1
     }
 }
