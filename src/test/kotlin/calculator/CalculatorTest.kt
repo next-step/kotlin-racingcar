@@ -1,7 +1,6 @@
 package calculator
 
 import io.kotest.core.spec.style.DescribeSpec
-import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldBe
 
 internal class CalculatorTest : DescribeSpec({
