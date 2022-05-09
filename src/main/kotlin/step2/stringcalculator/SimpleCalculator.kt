@@ -2,7 +2,6 @@ package step2.stringcalculator
 
 class SimpleCalculator {
 
-    @Throws(IllegalArgumentException::class)
     fun evaluation(expression: String?): Double {
 
         val calculatorContext = CalculatorContext()
@@ -18,7 +17,6 @@ class SimpleCalculator {
         return calculatorContext.complete()
     }
 
-    @Throws(IllegalArgumentException::class)
     private fun parseExpression(expression: String?): List<String> {
         val argumentList = expression?.split(" ")?.filter { it.isNotBlank() }?.map { it.trim() }
         if (argumentList.isNullOrEmpty()) {
@@ -33,7 +31,6 @@ class SimpleCalculator {
         private var lastOperator: String? = null
         private var lastOperand: String? = null
 
-        @Throws(IllegalArgumentException::class)
         fun putNumber(operand: String) {
 
             val value = operand.toDouble()
@@ -52,7 +49,6 @@ class SimpleCalculator {
             this.lastOperator = null
         }
 
-        @Throws(IllegalArgumentException::class)
         fun putOperator(operator: String) {
             if (this.lastOperator != null) {
                 throw IllegalArgumentException("continuous operator input found  : $lastOperator , $operator")
@@ -61,7 +57,6 @@ class SimpleCalculator {
             this.lastOperand = null
         }
 
-        @Throws(IllegalArgumentException::class)
         fun complete(): Double {
             if (this.lastOperator != null) {
                 throw IllegalArgumentException("Needless operator at the end of input : ${this.lastOperator}")
@@ -71,7 +66,6 @@ class SimpleCalculator {
 
         companion object {
 
-            @Throws(IllegalArgumentException::class)
             private fun calc(operand1: Double, operand2: Double, operator: String): Double {
                 return when (operator) {
                     "+" -> operand1 + operand2
