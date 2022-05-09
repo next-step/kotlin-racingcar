@@ -6,22 +6,18 @@ import io.kotest.matchers.shouldBe
 class RacingGameSpecs : DescribeSpec({
 
     describe("경주 게임은") {
-        val numberOfPhase = 5
+        val numberOfRaces = 5
         val racingCars = RacingCars(
-            listOf(
-                Car(),
-                Car(),
-                Car()
-            )
+            List(numberOfRaces) { Car() }
         )
-        val race = RacingGame(
-            numberOfPhase,
+        val racingGame = RacingGame(
+            numberOfRaces,
             racingCars
         )
         it("경주 수 만큼 경기를 진행하고 경주 결과를 반환한다") {
-            val raceRecords = race.play()
-            with(raceRecords) {
-                size shouldBe numberOfPhase
+            val raceRecords = racingGame.play()
+            raceRecords.also {
+                it.raceRecords.size shouldBe numberOfRaces
             }
         }
     }

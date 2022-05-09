@@ -7,12 +7,15 @@ class RacingCars(
 ) {
     val size: Int = cars.size
 
-    fun race(): List<CarRecord> {
+    fun race(): RaceRecord {
         cars.forEach {
             val command = MovementCommand.of(RandomCommandGenerator.nextCommand())
             it.move(command)
         }
-
-        return cars.map { it.getCarRecord() }
+        return RaceRecord(cars.map { it.captureState() })
     }
 }
+
+data class RaceRecord(
+    val cars: List<Car.State>
+)

@@ -4,18 +4,18 @@ class RacingGame(
     private val numberOfRaces: Int,
     private val racingCars: RacingCars
 ) {
-    private val racingGameRecords: MutableList<RacingGameRecord> = ArrayList()
 
-    fun play(): List<RacingGameRecord> {
-        repeat(numberOfRaces) { phase ->
-            val raceRecords = racingCars.race()
-            racingGameRecords.add(RacingGameRecord(phase + 1, raceRecords))
+    fun play(): GameRecord {
+        val raceRecords = ArrayList<RaceRecord>()
+
+        repeat(numberOfRaces) {
+            raceRecords.add(racingCars.race())
         }
-        return racingGameRecords.toList()
+
+        return GameRecord(raceRecords.toList())
     }
 }
 
-data class RacingGameRecord(
-    val phaseOfRace: Int,
-    val raceRecord: List<CarRecord>
+data class GameRecord(
+    val raceRecords: List<RaceRecord>
 )

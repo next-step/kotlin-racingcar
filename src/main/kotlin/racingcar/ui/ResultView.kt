@@ -10,12 +10,10 @@ operator fun String.times(number: Int): String {
 object ResultView {
 
     fun show(gameResult: GameResult) {
-        gameResult.racingGameRecords.run {
-            forEach {
-                println("[${it.phaseOfRace}번째 진행]")
-                it.raceRecord.forEach { car ->
-                    println("-" * car.currentPosition)
-                }
+        gameResult.raceResults.forEach {
+            println("[${it.phaseOfRace}번째 경주]")
+            it.raceRecord.cars.forEach { car ->
+                println("-" * car.currentPosition)
             }
         }
     }

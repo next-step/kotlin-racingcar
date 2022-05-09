@@ -13,7 +13,7 @@ class RacingCarsSpecs : DescribeSpec({
         )
         it("경주가 종료되면 경주 결과를 반환한다") {
             val raceRecords = racingCars.race()
-            raceRecords.size shouldBe numberOfCars
+            raceRecords.cars.size shouldBe numberOfCars
         }
     }
 })

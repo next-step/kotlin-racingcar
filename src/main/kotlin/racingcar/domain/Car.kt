@@ -10,9 +10,9 @@ class Car {
         if (movementCommand == FORWARD) position++
     }
 
-    fun getCarRecord(): CarRecord = CarRecord(position)
-}
+    fun captureState() = State(position)
 
-data class CarRecord(
-    val currentPosition: Int
-)
+    data class State(
+        val currentPosition: Int
+    )
+}

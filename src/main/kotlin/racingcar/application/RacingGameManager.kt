@@ -11,9 +11,9 @@ object RacingGameManager {
             RacingGame(numberOfRaces, getParticipants(numberOfCars))
         }
 
-        val racingPhaseRecords = racingGame.play()
+        val gameRecord = racingGame.play()
 
-        return GameResult(racingPhaseRecords)
+        return GameResult.of(gameRecord)
     }
 
     private fun getParticipants(numberOfCars: Int): RacingCars {
