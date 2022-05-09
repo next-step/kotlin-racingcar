@@ -5,7 +5,7 @@ import java.util.function.BiFunction
 class StringCalculator {
 
     companion object {
-        fun calculate(input: String) : String {
+        fun calculate(input: String): String {
             val values = input.split(" ")
 
             val iterator = values.listIterator()
@@ -23,21 +23,26 @@ data class Number(val value: Long) {
         return Number(this.value + other.value)
     }
 
+    fun minus(other: Number): Number {
+        return Number(this.value - other.value)
+    }
+
     fun parseString(): String {
         return this.value.toString()
     }
 
     companion object {
-        fun of(str: String) : Number {
+        fun of(str: String): Number {
             return Number(str.toLong())
         }
     }
 }
 
 enum class Operator(val value: String, val expression: BiFunction<Number, Number, Number>) {
-    PLUS(value = "+", expression = {number1: Number, number2: Number -> number1.plus(number2)});
+    PLUS(value = "+", expression = { number1: Number, number2: Number -> number1.plus(number2) }),
+    MINUS(value = "-", expression = { number1: Number, number2: Number -> number1.minus(number2) });
 
-    fun calculate(number1: Number, number2: Number) : Number {
+    fun calculate(number1: Number, number2: Number): Number {
         return this.expression.apply(number1, number2)
     }
 

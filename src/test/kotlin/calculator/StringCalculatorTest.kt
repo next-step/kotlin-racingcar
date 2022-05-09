@@ -1,17 +1,32 @@
 package calculator
 
-import io.kotest.core.spec.style.StringSpec
+import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 
-class StringCalculatorTest : StringSpec ({
-    "문자열 덧셈이 가능하다." {
-        // given
-        val input = "1 + 1"
+class StringCalculatorTest : FunSpec({
+    context("StringCalculator의") {
+        context("calculate 함수를 호출하여") {
+            test("문자열 덧셈이 가능하다.") {
+                // given
+                val input = "1 + 1"
 
-        // when
-        val result : String = StringCalculator.calculate(input)
+                // when
+                val result: String = StringCalculator.calculate(input)
 
-        // then
-        result shouldBe "2"
+                // then
+                result shouldBe "2"
+            }
+
+            test("문자열 뺄 셈이 가능하다.") {
+                // given
+                val input = "2 - 1"
+
+                // when
+                val result: String = StringCalculator.calculate(input)
+
+                // then
+                result shouldBe "1"
+            }
+        }
     }
 })
