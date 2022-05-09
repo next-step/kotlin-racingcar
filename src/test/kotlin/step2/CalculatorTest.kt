@@ -19,6 +19,6 @@ class CalculatorTest {
     )
     fun `여러 케이스에 대한 계산 테스트`(input: String, result: String) {
         val calculator = Calculator()
-        assertThat(calculator.calculate(input)).isEqualTo(result.toInt())
+        assertThat(calculator.calculate(input)).isEqualTo(result.toDouble())
     }
 }

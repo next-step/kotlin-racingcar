@@ -14,7 +14,10 @@ class Validator {
     }
 
     private fun validateOperator(input: String) {
-        val requestOperator = input.filterNot { it.isDigit() }.replace(" ", "").associateBy { it }
+        val requestOperator = input
+            .filterNot { it.isDigit() }
+            .replace(" ", "")
+            .associateBy { it }
 
         requestOperator.map {
             if (!DECLARED_OPERATOR.contains(it.key)) {

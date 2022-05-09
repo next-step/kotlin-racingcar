@@ -11,9 +11,9 @@ class OperatorTest {
         value = ["1, 2"],
         delimiter = ','
     )
-    fun `ADDITION Operator 테스트`(first: Int, second: Int) {
+    fun `ADDITION Operator 테스트`(first: Double, second: Double) {
         val operator = Operator.ADDITION
-        Assertions.assertThat(operator.operate(first, second)).isEqualTo(3)
+        Assertions.assertThat(operator.operate(first, second)).isEqualTo(3.0)
     }
 
     @ParameterizedTest
@@ -21,9 +21,9 @@ class OperatorTest {
         value = ["15, 5"],
         delimiter = ','
     )
-    fun `SUBTRACTION Operator 테스트`(first: Int, second: Int) {
+    fun `SUBTRACTION Operator 테스트`(first: Double, second: Double) {
         val operator = Operator.SUBTRACTION
-        Assertions.assertThat(operator.operate(first, second)).isEqualTo(10)
+        Assertions.assertThat(operator.operate(first, second)).isEqualTo(10.0)
     }
 
     @ParameterizedTest
@@ -31,9 +31,9 @@ class OperatorTest {
         value = ["3, 5"],
         delimiter = ','
     )
-    fun `MULTIPLICATION Operator 테스트`(first: Int, second: Int) {
+    fun `MULTIPLICATION Operator 테스트`(first: Double, second: Double) {
         val operator = Operator.MULTIPLICATION
-        Assertions.assertThat(operator.operate(first, second)).isEqualTo(15)
+        Assertions.assertThat(operator.operate(first, second)).isEqualTo(15.0)
     }
 
     @ParameterizedTest
@@ -41,8 +41,8 @@ class OperatorTest {
         value = ["50, 5"],
         delimiter = ','
     )
-    fun `DIVISION Operator 테스트`(first: Int, second: Int) {
+    fun `DIVISION Operator 테스트`(first: Double, second: Double) {
         val operator = Operator.DIVISION
-        Assertions.assertThat(operator.operate(first, second)).isEqualTo(10)
+        Assertions.assertThat(operator.operate(first, second)).isEqualTo(10.0)
     }
 }

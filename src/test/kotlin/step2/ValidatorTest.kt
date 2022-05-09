@@ -8,7 +8,7 @@ class ValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = [""])
-    fun `Validator()의 validateNullOrBlank() 예외 발생 테스트`(input: String) {
+    fun `입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException 발생`(input: String) {
         val validator = Validator()
         assertThatThrownBy { validator.validate(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
@@ -17,7 +17,7 @@ class ValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["1 + 2 * 4 _ 6"])
-    fun `Validator()의 validateOperator() 예외 발생 테스트`(input: String) {
+    fun `허용하지 않는 operator 혹은 문자일 경우 IllegalArgumentException 발생`(input: String) {
         val validator = Validator()
         assertThatThrownBy { validator.validate(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
