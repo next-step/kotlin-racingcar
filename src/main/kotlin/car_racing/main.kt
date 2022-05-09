@@ -7,4 +7,5 @@ fun main() {
     ResultView.printTitle()
     val game = Game(numCar, numMovement)
     game.run()
+    ResultView.printResultRecord(game.recordList)
 }
