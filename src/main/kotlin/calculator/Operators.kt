@@ -10,7 +10,7 @@ object Operators {
         operators["/"] = Operator.DIVIDE
     }
 
-    fun getOperator(stringOperate: String): Operator? {
-        return operators[stringOperate]
+    fun getOperator(stringOperate: String): Operator {
+        return operators[stringOperate] ?: throw IllegalArgumentException()
     }
 }
