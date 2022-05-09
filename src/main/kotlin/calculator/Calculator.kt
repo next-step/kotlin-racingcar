@@ -1,21 +1,18 @@
 package calculator
 
 class Calculator {
-    fun groupByIsNumber(inputs: List<String>, bool: Boolean): List<String> {
-        val elements = inputs.groupBy { (it.toDoubleOrNull() != null) }
-        return elements[bool]!!
-    }
-
-    fun calculate(input: String?): Float {
-        if (input.isNullOrEmpty()) {
+    fun calculate(formula: String?): Float {
+        if (formula.isNullOrEmpty()) {
             throw IllegalArgumentException("올바은 계산식이 아닙니다.")
         }
 
-        val inputs = input.split(" ")
-        val numbers = groupByIsNumber(inputs, true).map { it.toFloat() }
-        val operations = groupByIsNumber(inputs, false)
+        val formulas = formula.split(" ")
+        val numbers = Util.groupByIsNumber(formulas, true).map { it.toFloat() }
+        val operations = Util.groupByIsNumber(formulas, false)
 
         var total = numbers[0]
+
+        
 
         for ((index, el) in numbers.drop(1).withIndex()) {
             when {

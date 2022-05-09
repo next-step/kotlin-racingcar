@@ -88,33 +88,5 @@ class CalculatorTest : DescribeSpec({
                 exception2.message shouldBe "올바은 계산식이 아닙니다."
             }
         }
-
-        describe("groupByIsNumber") {
-            it("true 를 받으면 숫자 배열만 리턴한다.") {
-                val inputs = listOf<String>("1", "+", "2", "-", "3")
-                val inputs2 = listOf<String>("1", "+", "2", "-", "3", "4")
-
-                val calculator = Calculator()
-
-                val result = calculator.groupByIsNumber(inputs, true)
-                val result2 = calculator.groupByIsNumber(inputs2, true)
-
-                result shouldBe listOf<String>("1", "2", "3")
-                result2 shouldBe listOf<String>("1", "2", "3", "4")
-            }
-
-            it("false 를 받으면 숫자가 아닌 요소 배열만 리턴한다.") {
-                val inputs = listOf<String>("1", "+", "2", "-", "3")
-                val inputs2 = listOf<String>("1", "+", "2", "-", "3", "4")
-
-                val calculator = Calculator()
-
-                val result = calculator.groupByIsNumber(inputs, false)
-                val result2 = calculator.groupByIsNumber(inputs2, false)
-
-                result shouldBe listOf<String>("+", "-")
-                result2 shouldBe listOf<String>("+", "-")
-            }
-        }
     }
 })
