@@ -8,7 +8,7 @@ class RacingGameLayout(
 ) {
     fun execute() {
         val racingGameInput = inputLayout.receiveUserInput()
-        val racingGame = RacingGame(racingGameInput)
+        val racingGame = RacingGame.from(racingGameInput)
         resultView.showResult(racingGame.start())
     }
 }
