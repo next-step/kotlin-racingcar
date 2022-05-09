@@ -1,9 +1,8 @@
-package racingCar
+package racingCar.view
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import racingCar.etc.Message
-import racingCar.view.InputView
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Method
 
@@ -11,7 +10,7 @@ import java.lang.reflect.Method
  * input에 대한 테스트
  * Created by Jaesungchi on 2022.05.07..
  */
-class InputTest {
+class InputViewTest {
     private val inputView = InputView()
     private val methodChangeStringToInt: Method =
         InputView::class.java.getDeclaredMethod("changeStringToInt", String::class.java).apply {

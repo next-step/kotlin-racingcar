@@ -1,8 +1,7 @@
-package racingCar
+package racingCar.controller
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import racingCar.controller.RacingController
 
 /**
  * RacingController를 테스트하는 클래스
