@@ -1,6 +1,6 @@
 package step3.view
 
-import step3.util.InputValidator
+import step3.util.InputNumberRangeValidator
 
 class InputView(private val inputMessage: String) {
     fun receive(): Int {
@@ -12,5 +12,5 @@ class InputView(private val inputMessage: String) {
         println(inputMessage)
     }
 
-    private fun receiveUserInput() = InputValidator.validate(readln())
+    private fun receiveUserInput() = InputNumberRangeValidator.validate(readln().toInt())
 }
