@@ -7,8 +7,9 @@ import racingcar.domain.RacingGame
 object RacingGameManager {
 
     fun proceed(gameInput: GameInput): GameResult {
+
         val racingGame = gameInput.run {
-            RacingGame(numberOfRaces, getParticipants(numberOfCars))
+            RacingGame(numberOfRaces, enrollRacingCars(numberOfCars))
         }
 
         val gameRecord = racingGame.play()
@@ -16,7 +17,7 @@ object RacingGameManager {
         return GameResult.of(gameRecord)
     }
 
-    private fun getParticipants(numberOfCars: Int): RacingCars {
+    private fun enrollRacingCars(numberOfCars: Int): RacingCars {
         val cars = List(numberOfCars) { Car() }
         return RacingCars(cars)
     }

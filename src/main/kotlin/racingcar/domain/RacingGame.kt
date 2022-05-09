@@ -5,6 +5,10 @@ class RacingGame(
     private val racingCars: RacingCars
 ) {
 
+    init {
+        require(numberOfRaces >= MINIMUM_NUMBER_OF_RACES) { "경주 횟수는 최소 $MINIMUM_NUMBER_OF_RACES 이상이어야 합니다." }
+    }
+
     fun play(): GameRecord {
         val raceRecords = ArrayList<RaceRecord>()
 
@@ -13,6 +17,10 @@ class RacingGame(
         }
 
         return GameRecord(raceRecords.toList())
+    }
+
+    companion object {
+        private const val MINIMUM_NUMBER_OF_RACES = 1
     }
 }
 
