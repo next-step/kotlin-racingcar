@@ -2,8 +2,8 @@ package calculator
 
 class Calculator {
     fun input(expression: String?): Int {
-        checkExpressionNullOrEmpty(expression)
-        expression ?: return -1
+        requireNotNull(expression) { "null입니다." }
+        require(expression.isEmpty().not()) { "빈 공백 문자입니다." }
 
         val expressionContents: List<String> = expression.split(" ")
 
@@ -37,10 +37,6 @@ class Calculator {
             "/" -> division(first, second)
             else -> first
         }
-    }
-
-    private fun checkExpressionNullOrEmpty(expression: String?) {
-        if (expression.isNullOrEmpty()) throw IllegalArgumentException("null 이거나 빈 공백 문자입니다.")
     }
 
     private fun checkOperation(content: String) {
