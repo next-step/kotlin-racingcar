@@ -1,9 +1,9 @@
 package calculator
 
 fun main() {
-    val stringCalculator = StringCalculator()
     val readText = readExpressionText()
-    print(stringCalculator, readText)
+    val calculatedNumber = Calculator.calculate(Expression.of(readText))
+    printResult(calculatedNumber)
 }
 
 private fun readExpressionText(): String {
@@ -11,7 +11,6 @@ private fun readExpressionText(): String {
     return readln()
 }
 
-private fun print(stringCalculator: StringCalculator, readText: String) {
-    val result = stringCalculator.calculate(readText)
+private fun printResult(result: Int) {
     println("계산 결과: $result")
 }
