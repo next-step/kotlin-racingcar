@@ -23,4 +23,19 @@ class StringTest {
     fun string() {
         assertThat("jason"[0]).isEqualTo('j')
     }
+
+    @Test
+    fun isNullOrBlank() {
+        assertThat("".isNullOrBlank()).isTrue
+        assertThat(" ".isNullOrBlank()).isTrue
+        assertThat(null.isNullOrBlank()).isTrue
+        assertThat(" a".isNullOrEmpty()).isFalse
+    }
+
+    @Test
+    fun split() {
+        assertThat("2 + 3".split(" ")[0]).isEqualTo("2")
+        assertThat("2 + 3".split(" ")[1]).isEqualTo("+")
+        assertThat("2 + 3".split(" ")[2]).isEqualTo("3")
+    }
 }
