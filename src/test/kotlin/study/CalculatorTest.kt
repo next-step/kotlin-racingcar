@@ -55,7 +55,7 @@ class CalculatorTest {
 
     companion object {
         @JvmStatic
-        fun expressionArguments(): Stream<Arguments?>? {
+        fun expressionArguments(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(
                     "1 + 1",
