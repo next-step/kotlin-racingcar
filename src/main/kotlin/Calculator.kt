@@ -18,7 +18,7 @@ object Calculator {
     private const val NOT_MATCH_EXPRESSION = "X operator Y 규칙에 맞지 않는 포멧입니다."
     private const val NOT_DEFINED_OPERATOR = "미정의된 연산입니다."
 
-    fun run(expression: String?): Int {
+    fun calculate(expression: String?): Int {
 
         requireNotNull(expression) { NOT_EMPTY_OR_NULL_MSG }
 
@@ -27,11 +27,11 @@ object Calculator {
         require(!matches.none()) { NOT_MATCH_EXPRESSION }
 
         return matches.reduce { total, operation, newValue ->
-            calculate(total, operation, newValue)
+            operate(total, operation, newValue)
         }
     }
 
-    private fun calculate(firstValue: Int, operator: String, secondValue: Int): Int {
+    private fun operate(firstValue: Int, operator: String, secondValue: Int): Int {
         return when (operator) {
             "+" -> firstValue + secondValue
             "-" -> firstValue - secondValue
