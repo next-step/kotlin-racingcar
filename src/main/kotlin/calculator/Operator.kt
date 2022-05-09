@@ -5,14 +5,14 @@ import java.util.function.BiFunction
 
 enum class Operator(
     private val type: String,
-    private val expression: BiFunction<Long, Long, BigDecimal>
+    private val expression: BiFunction<Int, Int, BigDecimal>
 ) {
-    PLUS("+", { a: Long, b: Long -> BigDecimal.valueOf(a).plus(BigDecimal.valueOf(b)) }),
-    MINUS("+", { a: Long, b: Long -> BigDecimal.valueOf(a).minus(BigDecimal.valueOf(b)) }),
-    MULTI("+", { a: Long, b: Long -> BigDecimal.valueOf(a).multiply(BigDecimal.valueOf(b)) }),
-    DIVIDE("+", { a: Long, b: Long -> BigDecimal.valueOf(a).divide(BigDecimal.valueOf(b)) });
+    PLUS("+", { a: Int, b: Int ->  BigDecimal(a).plus(BigDecimal(b))}),
+    MINUS("+", { a: Int, b: Int ->  BigDecimal(a).minus(BigDecimal(b))}),
+    MULTI("+", { a: Int, b: Int ->  BigDecimal(a).multiply(BigDecimal(b))}),
+    DIVIDE("+", { a: Int, b: Int ->  BigDecimal(a).divide(BigDecimal(b))});
 
-    fun calculate(a: Long, b: Long): BigDecimal {
+    fun calculate(a: Int, b: Int): BigDecimal {
         return expression.apply(a, b)
     }
 }
