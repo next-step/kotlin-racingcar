@@ -11,63 +11,61 @@ import org.junit.jupiter.params.provider.ValueSource
 internal class SimpleCalculatorTest {
 
     @Test
-    internal fun testForErrorCases() {
-
+    internal fun testForDivideByZeroError() {
         val simpleCalculator = SimpleCalculator()
-
-        // 연속 숫자 입력 오류
-        assertThatThrownBy {
-            simpleCalculator.evaluation("3 3 + 2")
-        }.hasMessageFindingMatch("continuous number")
-
-        // null 입력 오류
-        assertThatIllegalArgumentException().isThrownBy {
-            simpleCalculator.evaluation(null)
-        }
-
-        // empty 입력 오류
-        assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            simpleCalculator.evaluation("")
-        }
-
-        // blank 입력 오류
-        assertThatThrownBy {
-            simpleCalculator.evaluation("          ")
-        }.hasMessageFindingMatch("null or empty")
-
-        // 연속 연산자 입력 오류
-        assertThatThrownBy {
-            simpleCalculator.evaluation("+3 + 3 * / 2")
-        }.hasMessageFindingMatch("continuous operator")
-
-        // 연속 연산자 입력 오류
-        assertThatThrownBy {
-            simpleCalculator.evaluation("+3 + 3 * / 2 + +")
-        }.hasMessageFindingMatch("continuous operator")
-
-        // 남는(불필요) 연산자 오류
-        assertThatThrownBy {
-            simpleCalculator.evaluation("+3 + 3 *    2 +")
-        }.hasMessageFindingMatch("Needless operator")
-
-        // 0 나누기 오류
         assertThatThrownBy {
             simpleCalculator.evaluation("+3 / 0 *    2 +")
         }.hasMessageFindingMatch("divide by 0")
+    }
 
-        // 정의되지 않은 입력 a
-        assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            simpleCalculator.evaluation("2 + a * 4 / 2")
+    @Test
+    internal fun testForNeedlessOperatorError() {
+        val simpleCalculator = SimpleCalculator()
+        assertThatThrownBy {
+            simpleCalculator.evaluation("+3 + 3 *    2 +")
+        }.hasMessageFindingMatch("Needless operator")
+    }
+
+    @Test
+    internal fun testForContinuousNumberError() {
+        val simpleCalculator = SimpleCalculator()
+        assertThatThrownBy {
+            simpleCalculator.evaluation("3 3 + 2")
+        }.hasMessageFindingMatch("continuous number")
+    }
+
+    @Test
+    internal fun testForNullError() {
+        val simpleCalculator = SimpleCalculator()
+        assertThatIllegalArgumentException().isThrownBy {
+            simpleCalculator.evaluation(null)
         }
+    }
 
-        // 정의되지 않은 입력 %
-        assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            simpleCalculator.evaluation("2 + 3 % 4 / 2")
-        }
+    @ParameterizedTest
+    @ValueSource(strings = ["", "      "])
+    internal fun testForEmptyBlankError(testCase: String) {
+        val simpleCalculator = SimpleCalculator()
+        assertThatThrownBy {
+            simpleCalculator.evaluation("          ")
+        }.hasMessageFindingMatch("null or empty")
+    }
 
-        // 정의되지 않은 입력 %
+    @ParameterizedTest
+    @ValueSource(strings = ["+3 + 3 * / 2", "+3 + 3 * / 2 + +"])
+    internal fun testForContinuousOperatorError(testCase: String) {
+        val simpleCalculator = SimpleCalculator()
+        assertThatThrownBy {
+            simpleCalculator.evaluation(testCase)
+        }.hasMessageFindingMatch("continuous operator")
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["2 + a * 4 / 2", "2 + 3 % 4 / 2", "%2 + 3 * 4 / 2"])
+    internal fun testForUnexpectedTokenError(testCase: String) {
+        val simpleCalculator = SimpleCalculator()
         assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            simpleCalculator.evaluation("%2 + 3 * 4 / 2")
+            simpleCalculator.evaluation(testCase)
         }
     }
 
