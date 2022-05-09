@@ -27,17 +27,14 @@ class Expression(inputStr: List<String>) {
 }
 
 fun List<String>.extracts(patterns: Pattern, match: Boolean): List<String> {
-    val list = mutableListOf<String>()
-    this.stream().forEach { a ->
-        if (patterns.matcher(a).find() == match) {
-            list.add(a)
-        }
-    }
-
-    return list
+    return filter { patterns.matcher(it).find() == match }
 }
 
 @Throws(IllegalArgumentException::class)
 fun List<String>.validate(patterns: Pattern): Boolean {
-    return this.stream().allMatch { a -> patterns.matcher(a).find() }
+    val seq = this.asSequence()
+    return seq.all {
+        a ->
+        patterns.matcher(a).find()
+    }
 }
