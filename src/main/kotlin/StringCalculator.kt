@@ -1,19 +1,30 @@
+fun main() {
+    val s = StringCalculator("2+3")
+    println(s.calculate())
+}
+
 class StringCalculator(val input: String?) {
-    var op: String = ""
-
-    fun calculate() {
+    init {
         validate()
+    }
 
+    fun calculate(): Int {
         val inputArray: Array<String> = convertToArray(input!!)
 
-        val result = inputArray.reduceIndexed() { index, prev, cur ->
+        var op = ""
+        var result: Int = inputArray[0].toInt()
+        for (index in 1 until inputArray.size) {
+            println("$index, ${inputArray[index]}")
             if (index % 2 == 1) {
-                op = cur
-                prev
+                op = inputArray[index]
+                break
             }
 
-            calc(prev, op, cur)
+            validateIsDigit(inputArray[index])
+            result = calc(result, op, inputArray[index].toInt())
         }
+
+        return result
     }
 
     private fun convertToArray(input: String): Array<String> {
@@ -24,54 +35,33 @@ class StringCalculator(val input: String?) {
             .toTypedArray()
     }
 
-    fun calc(left: String, op: String, right: String): String {
-        var result = 0;
-        val leftValue = left.toInt();
-        val rightValue = right.toInt();
-
-        when (op) {
+    private fun calc(leftValue: Int, op: String, rightValue: Int): Int {
+        println("$leftValue, $op, $rightValue")
+        return when (op) {
             "+" -> {
-                result = sum(leftValue, rightValue)
+                sum(leftValue, rightValue)
             }
             "-" -> {
-                result = minus(leftValue, rightValue)
+                minus(leftValue, rightValue)
             }
             "*" -> {
-                result = multiple(leftValue, rightValue)
+                multiple(leftValue, rightValue)
             }
             "/" -> {
-                result = divide(leftValue, rightValue)
+                divide(leftValue, rightValue)
             }
+            else -> throw IllegalArgumentException()
         }
-
-        return result.toString()
     }
 
     private fun validate() {
-        if (input == null || input.isEmpty()) {
-            throw IllegalArgumentException()
-        }
-
-        for((index, value) in input.withIndex()) {
-            if (index % 2 == 0) {
-                validateIsDigit(value)
-            }
-
-            if (index % 2 == 1) {
-                validateOperator(value)
-            }
-        }
-    }
-
-    private fun validateIsDigit(value: Char) {
-        if(!value.isDigit()) {
+        if (input == null || input.replace(" ", "").isEmpty()) {
             throw IllegalArgumentException()
         }
     }
 
-    private fun validateOperator(value: Char) {
-        val validOperator = listOf<Char>('+', '-', '*', '/')
-        if(!validOperator.contains(value)) {
+    private fun validateIsDigit(value: String) {
+        if(value.toIntOrNull() == null) {
             throw IllegalArgumentException()
         }
     }
