@@ -12,8 +12,8 @@ package camp.nextstep.edu.step2
 
 object StringCalculator {
 
-    private val leftOneRegex: Regex = Regex("(-?\\d+)")
-    private val rightsRegex: Regex = Regex("([-+/*])\\s?(-?\\d+)")
+    private val leftOneRegex: Regex = Regex("""(-?\d+)""")
+    private val rightsRegex: Regex = Regex("""([-+/*])\s?(-?\d+)""")
 
     /**
      * 좌측부터 (숫자 연산자 숫자) 중위 연산 패턴을 찾아 차례대로 계산합니다.
