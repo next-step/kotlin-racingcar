@@ -15,7 +15,7 @@ class CalculatorTest {
     @ValueSource(strings = [" ", "\t", "\n"])
     fun `null 또는 whitespace 문자가 주어질 경우 IllegalArgumentException 이 발생한다`(input: String?) {
         assertThatIllegalArgumentException().isThrownBy { Calculator.calculate(input) }
-            .withMessage("Invalid expression")
+            .withMessage("수식은 null 이거나 빈 공백 문자가 될 수 없습니다.")
     }
 
     @ParameterizedTest(name = "{index}) Invalid operand: {0}")

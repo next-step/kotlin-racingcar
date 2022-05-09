@@ -2,7 +2,7 @@ package calculator
 
 object Calculator {
     fun calculate(expression: String?): Int {
-        if (expression.isNullOrBlank()) throw IllegalArgumentException("Invalid expression")
+        if (expression.isNullOrBlank()) throw IllegalArgumentException("수식은 null 이거나 빈 공백 문자가 될 수 없습니다.")
 
         val listOfNumOrOperands = expression.split(" ")
 
