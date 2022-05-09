@@ -1,22 +1,7 @@
 package step2.stringcalculator
 
-/**
- * Simple arithmetic operation class
- *
- * @author jutaeKim
- */
 class SimpleCalculator {
 
-    /**
-     * arithmetic operation
-     *
-     * @param expression expression string to evaluate
-     * @return calculation result for the expression
-     * @throws IllegalArgumentException
-     *          when expression is empty or blank
-     *          when an invalid token is found from the expression
-     *
-     */
     @Throws(IllegalArgumentException::class)
     fun evaluation(expression: String?): Double {
 
@@ -33,12 +18,6 @@ class SimpleCalculator {
         return calculatorContext.complete()
     }
 
-    /**
-     * Parsing expression input by user
-     * @param expression expression string to parse
-     * @return list of string tokenized by space character(' ')
-     * @throws IllegalArgumentException when expression is empty or blank
-     */
     @Throws(IllegalArgumentException::class)
     private fun parseExpression(expression: String?): List<String> {
         val argumentList = expression?.split(" ")?.filter { it.isNotBlank() }?.map { it.trim() }
@@ -48,10 +27,6 @@ class SimpleCalculator {
         return argumentList
     }
 
-    /**
-     * Simple arithmetic operation context class
-     *
-     */
     private class CalculatorContext {
         private var result: Double? = null
 
