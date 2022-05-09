@@ -17,10 +17,10 @@ class Calculator {
         var left = iter.nextLong()
 
         while (iter.hasNext()) {
-            val operand = iter.nextOperand()
+            val operator = iter.nextOperator()
             val right = iter.nextLong()
 
-            left = when (operand) {
+            left = when (operator) {
                 '+' -> plus(left, right)
                 '-' -> minus(left, right)
                 '*' -> multiply(left, right)
@@ -36,7 +36,7 @@ class Calculator {
         next().toLong()
     }.getOrElse { throw IllegalArgumentException() }
 
-    private fun Iterator<String>.nextOperand() = runCatching {
+    private fun Iterator<String>.nextOperator() = runCatching {
         next()[0]
     }.getOrElse { throw IllegalArgumentException() }
 }

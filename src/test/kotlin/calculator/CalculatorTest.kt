@@ -10,25 +10,25 @@ class CalculatorTest {
     @ParameterizedTest
     @CsvSource(value = ["3,4", "1,4", "4,7"])
     fun minus(a: Long, b: Long) {
-        assertThat(Calculator().minus(a,b) == a-b)
+        assertThat(Calculator().minus(a, b) == a - b)
     }
 
     @ParameterizedTest
     @CsvSource(value = ["3,4", "1,4", "4,7"])
     fun plus(a: Long, b: Long) {
-        assertThat(Calculator().plus(a,b) == a+b)
+        assertThat(Calculator().plus(a, b) == a + b)
     }
 
     @ParameterizedTest
     @CsvSource(value = ["3,4", "1,4", "4,7"])
     fun multiply(a: Long, b: Long) {
-        assertThat(Calculator().multiply(a,b) == a*b)
+        assertThat(Calculator().multiply(a, b) == a * b)
     }
 
     @ParameterizedTest
     @CsvSource(value = ["3,4", "1,4", "4,7"])
     fun divide(a: Long, b: Long) {
-        assertThat(Calculator().divide(a,b) == a/b)
+        assertThat(Calculator().divide(a, b) == a / b)
     }
 
     @Test
