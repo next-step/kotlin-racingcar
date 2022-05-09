@@ -9,7 +9,7 @@ class RacingGameLayout(
 ) {
     fun execute(carFactory: CarFactory) {
         val racingGameInput = inputLayout.receiveUserInput()
-        val racingGame = RacingGame.from(
+        val racingGame = RacingGame.of(
             racingGameInput,
             carFactory
         )
