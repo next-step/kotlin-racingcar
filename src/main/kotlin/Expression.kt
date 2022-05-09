@@ -11,7 +11,7 @@ class Expression(inputStr: List<String>) {
         digits = inputStr.extracts(VALID_DIGIT_PATTERN, true)
 
         val blankCount = inputStr.stream().filter { s -> s.isBlank() }.count().toInt()
-        if (blankCount > 0 || operators.size == 0 || digits.size == 0 ||
+        if (blankCount > 0 || operators.isEmpty() || digits.isEmpty() ||
             !operators.validate(VALID_OPERATION_PATTERN) || !digits.validate(VALID_DIGIT_PATTERN)
         ) {
             throw IllegalArgumentException()
