@@ -30,14 +30,14 @@ class Calculator {
         val numbers = Util.groupByIsNumber(formulas, true).map { it.toFloat() }
         val operations = Util.groupByIsNumber(formulas, false)
 
-        var total = numbers[0]
+        val total = numbers[0]
 
-
-
-        for ((index, num) in numbers.drop(1).withIndex()) {
-            total = calculateByOperation(operations[index], total, num)
+        return numbers.drop(1).foldIndexed(total) { index, acc, num ->
+            calculateByOperation(
+                operations[index],
+                acc,
+                num
+            )
         }
-
-        return total
     }
 }
