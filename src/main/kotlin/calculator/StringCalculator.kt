@@ -5,9 +5,9 @@ import java.util.function.BiFunction
 class StringCalculator {
 
     companion object {
-        fun calculate(input: String): String {
+        fun calculate(input: String?): String {
+            require(!input.isNullOrBlank()) { "문자열 계산기의 입력값은 null이거나 빈 값일 수 없습니다. input: $input" }
             val values = input.split(" ")
-
             val iterator = values.listIterator()
             var result: Number = Number.of(iterator.next())
             while (iterator.hasNext()) {

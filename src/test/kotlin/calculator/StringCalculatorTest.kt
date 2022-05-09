@@ -1,11 +1,45 @@
 package calculator
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 
 class StringCalculatorTest : FunSpec({
     context("StringCalculator의") {
-        context("calculate 함수를 호출하여") {
+        context("calculate 함수를 호출할 때") {
+            test("입력값이 null이면 예외가 발생한다.") {
+                // given
+                val input = null
+
+                // when then
+                val exception = shouldThrow<IllegalArgumentException> {
+                    StringCalculator.calculate(input)
+                }
+                exception.message shouldBe "문자열 계산기의 입력값은 null이거나 빈 값일 수 없습니다. input: null"
+            }
+
+            test("입력값이 빈 값이면 예외가 발생한다.") {
+                // given
+                val input = ""
+
+                // when then
+                val exception = shouldThrow<IllegalArgumentException> {
+                    StringCalculator.calculate(input)
+                }
+                exception.message shouldBe "문자열 계산기의 입력값은 null이거나 빈 값일 수 없습니다. input: "
+            }
+
+            test("입력값이 공백이면 예외가 발생한다.") {
+                // given
+                val input = "   "
+
+                // when then
+                val exception = shouldThrow<IllegalArgumentException> {
+                    StringCalculator.calculate(input)
+                }
+                exception.message shouldBe "문자열 계산기의 입력값은 null이거나 빈 값일 수 없습니다. input:    "
+            }
+
             test("문자열 덧셈이 가능하다.") {
                 // given
                 val input = "1 + 1"

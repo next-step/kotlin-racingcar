@@ -12,7 +12,7 @@
 * [x] 뺄셈이 가능해야 한다.
 * [x] 곱셈이 가능해야 한다.
 * [x] 나눗셈이 가능해야 한다.
-* [ ] 입력값이 null 이거나 빈 공백 값인 경우 IllegalArgumentException을 던진다.
+* [x] 입력값이 null 이거나 빈 공백 값인 경우 IllegalArgumentException을 던진다.
 * [ ] 사칙연산 기호 (+,-,*,/) 가 아닌경우 IllegalArgumentException을 던진다.
 * [ ] 계산하려는 문자열이 숫자로 변환할 수 없는 경우 IllegalArgumentException을 던진다.
 * [ ] 각 문자열 사이는 공백으로 구분한다.
