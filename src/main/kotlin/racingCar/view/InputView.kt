@@ -1,13 +1,12 @@
 package racingCar.view
 
-import racingCar.etc.Message
+import racingCar.constants.Message
 
 /**
  * 입력을 받고 로직을 시작하는 클래스
  * Created by Jaesungchi on 2022.05.07..
  */
 class InputView {
-
     fun getNumberOfCars(): Int {
         printHowManyCars()
         return getInput()

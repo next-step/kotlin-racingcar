@@ -1,6 +1,6 @@
 package racingCar.view
 
-import racingCar.etc.Message
+import racingCar.constants.Message
 import racingCar.model.RaceResult
 
 /**

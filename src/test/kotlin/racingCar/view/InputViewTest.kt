@@ -2,7 +2,7 @@ package racingCar.view
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import racingCar.etc.Message
+import racingCar.constants.Message
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Method
 
