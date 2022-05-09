@@ -25,12 +25,12 @@ internal class OperatorKtTest {
 
     @Test
     fun `성공적으로 나눗셈 연산을 수행한다`() {
-        Assertions.assertThat(divide(1, 2)).isEqualTo(0.5)
-        Assertions.assertThat(divide(6, 4)).isEqualTo(1.5)
+        Assertions.assertThat(divide(1, 2)).isEqualTo(0)
+        Assertions.assertThat(divide(6, 4)).isEqualTo(1)
     }
 
     @Test
-    fun `0 으로 나누는 경우 무한대의 값이 나온다`() {
-        Assertions.assertThat(divide(5, 0)).isEqualTo(Double.POSITIVE_INFINITY)
+    fun `0 으로 나누는 경우 exception을 던진다`() {
+        Assertions.assertThatIllegalArgumentException()
     }
 }
