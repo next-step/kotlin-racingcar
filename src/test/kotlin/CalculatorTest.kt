@@ -9,7 +9,7 @@ class CalculatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["", "  "])
-    fun ShouldThrowIllegalExceptionForEmptyStrings(source: String) {
+    fun `빈 문자열이 입력된 경우 IllegalArgumentException`(source: String) {
         assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
             Calculator(source)
         }
@@ -17,7 +17,7 @@ class CalculatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["1 ^ 2 @ 3"])
-    fun ShouldThrowExceptionForUnknownOperators(source: String) {
+    fun `알 수 없는 부호가 입력된 경우 IllegalArgumentException`(source: String) {
         assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
             Calculator(source)
         }
@@ -25,7 +25,7 @@ class CalculatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["1a ^ 2 @ 3"])
-    fun ShouldThrowExceptionForUnknownDigits(source: String) {
+    fun `계산 부호 외에 숫자가 아닌 항목이 입력된 경우 IllegalArgumentException`(source: String) {
         assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
             Calculator(source)
         }
@@ -33,7 +33,7 @@ class CalculatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["1 + 2 + 3"])
-    fun ShouldMeetCalculationResult(source: String) {
+    fun `계산 결과를 만족하는 경우`(source: String) {
         val calculator = Calculator(source)
         assertThat(calculator.result()).isEqualTo(6)
     }
