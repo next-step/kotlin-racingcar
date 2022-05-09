@@ -1,6 +1,7 @@
 package study
 
 import Expression
+import Operator
 
 open class Calculator(inputString: String) {
 
@@ -21,24 +22,8 @@ open class Calculator(inputString: String) {
             val digit = digits.first().toInt()
             val operator = operators.first()
 
-            calculate(apply(value, digit, operator), operators.drop(1), digits.drop(1))
+            val appliedValue = Operator.of(operator).apply(value, digit)
+            calculate(appliedValue, operators.drop(1), digits.drop(1))
         }
-    }
-
-    private fun apply(digit1: Int, digit2: Int, operator: String): Int {
-        return when (operator) {
-            "+" -> plus(digit1, digit2)
-            "-" -> substract(digit1, digit2)
-            "*" -> multiply(digit1, digit2)
-            "/" -> divide(digit1, digit2)
-            else -> 0
-        }
-    }
-
-    companion object {
-        val plus = { x: Int, y: Int -> x + y }
-        val substract = { x: Int, y: Int -> x - y }
-        val multiply = { x: Int, y: Int -> x * y }
-        val divide = { x: Int, y: Int -> x / y }
     }
 }
