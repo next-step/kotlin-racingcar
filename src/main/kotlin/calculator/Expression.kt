@@ -31,14 +31,14 @@ data class Expression(
         }
 
         private fun numbers(texts: List<IndexedValue<String>>): List<Int> {
-            return texts.map { toInt(it.value) }
+            return texts.map { (toNumbers(it.value)) }
         }
 
         private fun operators(texts: List<IndexedValue<String>>): List<Operator> {
             return texts.map { it.value.toOperator() }
         }
 
-        private fun toInt(numberText: String) =
+        private fun toNumbers(numberText: String) =
             try {
                 numberText.toInt()
             } catch (e: NumberFormatException) {
