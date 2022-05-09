@@ -1,11 +1,14 @@
 package step3.model
 
-class Car {
+import step3.domain.Engine
+import step3.domain.RandomEngine
+
+class Car(private val engine: Engine = RandomEngine) {
     var proceedLevel = INITIAL_PROCEED_LEVEL
         private set
 
     fun proceed() {
-        proceedLevel += 1
+        proceedLevel += engine.getMovableDistance()
     }
 
     companion object {
