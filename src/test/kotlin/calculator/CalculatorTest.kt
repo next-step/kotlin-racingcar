@@ -1,7 +1,8 @@
-package step2
+package calculator
 
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.NullAndEmptySource
@@ -37,47 +38,24 @@ class CalculatorTest {
         assertThatIllegalArgumentException().isThrownBy { Calculator.calculate(input) }
     }
 
-    @ParameterizedTest(name = "{index}) {0} = {1}")
-    @CsvSource(
-        textBlock = """
-        12 + 34,                46
-        5 + 4 + 3 + 2 + 1 + 0,  15
-        7428934 + 189248,       7618182
-        -1 + -2,                -3"""
-    ) fun `사칙연산 - 덧셈`(expression: String, result: Int) {
-        assertEquals(Calculator.calculate(expression), result)
+    @Test
+    fun `사칙연산 - 덧셈`() {
+        assertEquals(Operator.PLUS.calculate(7428934, 189248), 7618182)
     }
 
-    @ParameterizedTest(name = "{index}) {0} = {1}")
-    @CsvSource(
-        textBlock = """
-        10 - 0 - 4 - 2,         4
-        45 - 90,                -45
-        -1 - -2,                1
-        28348 - 3747,           24601"""
-    ) fun `사칙연산 - 뺄셈`(expression: String, result: Int) {
-        assertEquals(Calculator.calculate(expression), result)
+    @Test
+    fun `사칙연산 - 뺄셈`() {
+        assertEquals(Operator.MINUS.calculate(45, 90), -45)
     }
 
-    @ParameterizedTest(name = "{index}) {0} = {1}")
-    @CsvSource(
-        textBlock = """
-        12 * 34 * 56,           22848
-        5 * 0,                  0
-        25 * -2,                -50
-        -20 * -30,              600"""
-    ) fun `사칙연산 - 곱셈`(expression: String, result: Int) {
-        assertEquals(Calculator.calculate(expression), result)
+    @Test
+    fun `사칙연산 - 곱셈`() {
+        assertEquals(Operator.MULTIPLY.calculate(25, 2), 50)
     }
 
-    @ParameterizedTest(name = "{index}) {0} = {1}")
-    @CsvSource(
-        textBlock = """
-        4 / 2,                  2
-        15 / -5,                -3
-        100 / 2 / 5 / 2,        5"""
-    ) fun `사칙연산 - 나눗셈`(expression: String, result: Int) {
-        assertEquals(Calculator.calculate(expression), result)
+    @Test
+    fun `사칙연산 - 나눗셈`() {
+        assertEquals(Operator.DIVIDE.calculate(100, 2), 50)
     }
 
     @ParameterizedTest(name = "{index}) {0} = {1}")
