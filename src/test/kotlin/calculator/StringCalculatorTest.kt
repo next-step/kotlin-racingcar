@@ -105,6 +105,17 @@ class StringCalculatorTest : FunSpec({
                 // then
                 result shouldBe "5"
             }
+
+            test("복합 연산이 가능하다.") {
+                // given
+                val input = "2 + 3 * 4 / 2 - 1"
+
+                // when
+                val result: String = StringCalculator.calculate(input)
+
+                // then
+                result shouldBe "9"
+            }
         }
     }
 })

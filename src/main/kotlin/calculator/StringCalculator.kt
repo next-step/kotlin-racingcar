@@ -16,7 +16,7 @@ class StringCalculator {
             return result.parseString()
         }
 
-        const val VALUE_DELIMITERS = " "
+        private const val VALUE_DELIMITERS = " "
     }
 }
 
