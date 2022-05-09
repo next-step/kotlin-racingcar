@@ -10,18 +10,17 @@ import java.util.Random
  * Created by Jaesungchi on 2022.05.07..
  */
 class RacingController {
-    private val carLists: MutableList<Car> = mutableListOf()
-    val raceResults: MutableList<RaceResult> = mutableListOf()
+    private lateinit var carLists: List<Car>
+    private val _raceResults: MutableList<RaceResult> = mutableListOf()
+    val raceResults: List<RaceResult>
+        get() = _raceResults
 
     fun startGame(numberOfCars: Int, numberOfRaces: Int) {
         if (!checkValidNumber(numberOfCars) || !checkValidNumber(numberOfRaces)) return
-
-        repeat(numberOfCars) {
-            carLists.add(Car())
-        }
+        carLists = List(3) { Car() }
         repeat(numberOfRaces) {
             processGame()
-            raceResults.add(RaceResult(carLists))
+            _raceResults.add(RaceResult(carLists))
         }
     }
 
