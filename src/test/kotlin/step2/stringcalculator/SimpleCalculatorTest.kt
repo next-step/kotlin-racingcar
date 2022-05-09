@@ -6,6 +6,7 @@ import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 
 internal class SimpleCalculatorTest {
@@ -70,19 +71,13 @@ internal class SimpleCalculatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(
-        strings = [
-            "2 + 3 * 4 / 2, 10.0", // Normal case
-            "+2 + +3 * 4 / 2, 10.0", // Signed number case
-            "2 + 3.0 * +4 / +2.0, 10.0", // Double number case
-            "2 + -3 * 4 / 2, -2.0"
-        ]
+    @CsvSource(
+        "2 + 3 * 4 / 2, 10.0", // Normal case
+        "+2 + +3 * 4 / 2, 10.0", // Signed number case
+        "2 + 3.0 * +4 / +2.0, 10.0", // Double number case
+        "2 + -3 * 4 / 2, -2.0"
     )
-    internal fun testForCalculation(testCase: String) {
-
-        val arguments = testCase.split(",")
-        val expression = arguments[0]
-        val expectation = arguments[1].toDouble()
+    internal fun testForCalculation(expression: String, expectation: Double) {
 
         val simpleCalculator = SimpleCalculator()
         assertThat(simpleCalculator.evaluation(expression)).isEqualTo(expectation)
