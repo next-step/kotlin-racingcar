@@ -5,6 +5,9 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
+import racingcar.domain.Car
+import racingcar.domain.Cars
+import racingcar.domain.RacingGame
 
 class RacingGameTest : DescribeSpec({
 

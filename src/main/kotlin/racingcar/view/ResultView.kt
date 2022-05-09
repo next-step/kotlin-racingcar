@@ -1,4 +1,6 @@
-package racingcar
+package racingcar.view
+
+import racingcar.dto.RacingGameResponse
 
 class ResultView {
     companion object {

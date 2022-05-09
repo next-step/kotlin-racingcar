@@ -2,6 +2,9 @@ package racingcar
 
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.collections.shouldContainExactly
+import racingcar.domain.Car
+import racingcar.domain.Cars
+import racingcar.domain.Location
 
 class CarsTest : DescribeSpec({
 

@@ -1,6 +1,6 @@
-package racingcar
+package racingcar.domain
 
-import racingcar.Location.Companion.BASE_LOCATION
+import racingcar.domain.Location.Companion.BASE_LOCATION
 
 class Car(
     var location: Location = BASE_LOCATION
