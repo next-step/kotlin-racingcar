@@ -1,5 +1,6 @@
 package study.car
 
+import car.Car
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
@@ -17,14 +18,14 @@ class CarTest: StringSpec({
 
     "자동차가 전진하는 경우 Position 값을 증가 시킨다." {
         val car = Car()
-        car.move()
+        car.move { true }
 
         car.position shouldBe 1
     }
 
     "자동차가 전진하지 않으면 Position 값이 증가하지 않는다." {
         val car = Car()
-        car.move()
+        car.move { false }
 
         car.position shouldBe 0
     }
