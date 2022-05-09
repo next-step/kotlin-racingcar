@@ -12,5 +12,5 @@ class InputView(private val inputMessage: String) {
         println(inputMessage)
     }
 
-    private fun receiveUserInput() = InputValidator.validate(readLine())
+    private fun receiveUserInput() = InputValidator.validate(readln())
 }
