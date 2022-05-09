@@ -16,7 +16,7 @@ internal class ParserTest : FreeSpec({
                 val lexer = Lexer.from(input)
 
                 shouldThrow<IllegalArgumentException> {
-                    Parser.parse(lexer)
+                    Calculator.calculate(lexer)
                 }
             }
         }
@@ -31,7 +31,7 @@ internal class ParserTest : FreeSpec({
             title {
                 val lexer = Lexer.from(title)
 
-                val actual = Parser.parse(lexer)
+                val actual = Calculator.calculate(lexer)
 
                 actual shouldBe expected
             }

@@ -5,7 +5,7 @@ fun main() {
 
     val input: String? = readLine()
     val lexer = Lexer.from(input)
-    val result = Parser.parse(lexer)
+    val result = Calculator.calculate(lexer)
 
     println("결과: $result")
 }
