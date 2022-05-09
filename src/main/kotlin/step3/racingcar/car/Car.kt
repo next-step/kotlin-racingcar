@@ -14,8 +14,4 @@ class Car {
     fun stop() {
         drivingRecord.add(Position.STOP)
     }
-
-    fun isMovable(moveNumber: Int): Boolean {
-        return moveNumber >= 4
-    }
 }
