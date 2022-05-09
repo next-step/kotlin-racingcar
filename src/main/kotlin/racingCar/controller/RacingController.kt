@@ -16,7 +16,7 @@ class RacingController {
 
     fun startGame(numberOfCars: Int, numberOfRaces: Int) {
         if (!checkValidNumber(numberOfCars) || !checkValidNumber(numberOfRaces)) return
-        carLists = List(3) { Car() }
+        carLists = List(numberOfCars) { Car() }
         repeat(numberOfRaces) {
             processGame()
             _raceResults.add(RaceResult(carLists))
