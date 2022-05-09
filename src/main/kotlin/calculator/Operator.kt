@@ -1,6 +1,6 @@
 package calculator
 
-enum class Operator(val operand: String, val operation: (Int, Int) -> Int) {
+enum class Operator(private val operand: String, private val operation: (Int, Int) -> Int) {
     PLUS("+", { first, second -> first + second }),
     MINUS("-", { first, second -> first - second }),
     MULTIPLY("*", { first, second -> first * second }),
