@@ -2,8 +2,10 @@ package racingcar.model
 
 import kotlin.random.Random
 
-open class Car {
-    var position: Int = 0
+open class Car(position: Int = DEFAULT_POSITION) {
+    constructor(car: Car) : this(car.position)
+
+    var position: Int = position
         private set
 
     fun move() {

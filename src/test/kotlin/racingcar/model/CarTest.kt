@@ -29,10 +29,15 @@ class CarTest {
     }
 }
 
-private class StationaryCar : Car() {
+class StationaryCar : Car() {
     override fun getRandomNumber(): Int = 1
 }
 
-private class MovingCar : Car() {
+class MovingCar : Car() {
     override fun getRandomNumber(): Int = 5
+
+    fun moveAndReturn(): Car {
+        move()
+        return this
+    }
 }
