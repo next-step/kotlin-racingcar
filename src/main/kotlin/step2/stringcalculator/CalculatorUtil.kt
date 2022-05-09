@@ -1,7 +1,8 @@
 package step2.stringcalculator
 
 fun String.isDouble() = try {
-    this.toDouble(); true
+    this.toDouble()
+    true
 } catch (e: NumberFormatException) {
     false
 }
