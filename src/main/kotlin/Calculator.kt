@@ -3,15 +3,22 @@ package study
 import Expression
 import Operator
 
-open class Calculator(inputString: String) {
+open class Calculator {
 
-    var expression: Expression
+    private var inputStrings = mutableListOf<String>()
 
-    init {
-        expression = Expression(inputString.split(" "))
+    fun append(inputString: String) {
+        inputStrings.add(inputString)
+    }
+
+    fun clear() {
+        inputStrings.clear()
     }
 
     fun result(): Int {
+        val joinedString = inputStrings.joinToString(" ")
+
+        val expression = Expression(joinedString.split(" "))
         return calculate(expression.digits.first().toInt(), expression.operators, expression.digits.drop(1))
     }
 
