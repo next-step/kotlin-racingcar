@@ -15,7 +15,7 @@ class Calculator {
     }
 
     fun calculate(calculatorFormula: String?): Float {
-        if (calculatorFormula.isNullOrEmpty()) {
+        require(!calculatorFormula.isNullOrEmpty()) {
             throw IllegalArgumentException("유효하지 않은 계산식 입니다.")
         }
 
