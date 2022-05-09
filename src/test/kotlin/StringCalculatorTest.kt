@@ -6,7 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class StringCalculatorTest {
-    @Test
+    @Te
     fun `null이 입력될 경우 IllegalArgumentException 에러가 발생한다`() {
         assertThatThrownBy {
             val stringCalculator = StringCalculator()
