@@ -8,8 +8,9 @@ class Calculator {
         if (input.length == 1) {
             return input.toDouble()
         }
+        val inputNotBlank = input.replace(" ", "")
 
-        parse(input)
+        parse(inputNotBlank)
         operatorTokens.forEach {
             val operandOne = operands.removeFirst()
             val operandTwo = operands.removeFirst()
