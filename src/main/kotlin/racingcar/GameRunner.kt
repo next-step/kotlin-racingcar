@@ -4,7 +4,7 @@ import racingcar.model.Car
 import racingcar.model.GameProperties
 
 class GameRunner(private val properties: GameProperties) {
-    fun start(): GameRecorder {
+    fun start(): GameResult {
         val cars = (1..properties.numOfCars).map { Car() }
         val recorder = GameRecorder()
 
@@ -13,7 +13,7 @@ class GameRunner(private val properties: GameProperties) {
             recorder.record(cars)
         }
 
-        return recorder
+        return recorder.gameResult
     }
 
     private fun List<Car>.move() = this.forEach { it.move() }
