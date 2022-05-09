@@ -17,12 +17,9 @@ class StringCalculator() {
 
         return result
     }
+
     private fun convertToArray(input: String): Array<String> {
-        return input
-            .replace(" ", "")
-            .toCharArray()
-            .map { it.toString() }
-            .toTypedArray()
+        return input.replace(" ", "").toCharArray().map { it.toString() }.toTypedArray()
     }
 
     private fun calc(leftValue: Int, op: String, rightValue: Int): Int {
@@ -47,6 +44,7 @@ class StringCalculator() {
         validateEmptyInput(input)
         validateInputLength(input)
     }
+
     private fun validateEmptyInput(input: String?) {
         if (input == null || input.replace(" ", "").isEmpty()) {
             throw IllegalArgumentException()
@@ -60,7 +58,7 @@ class StringCalculator() {
     }
 
     private fun validateIsDigit(value: String) {
-        if(value.toIntOrNull() == null) {
+        if (value.toIntOrNull() == null) {
             throw IllegalArgumentException()
         }
     }
