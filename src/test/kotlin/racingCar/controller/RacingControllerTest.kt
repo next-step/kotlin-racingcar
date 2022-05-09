@@ -20,7 +20,7 @@ class RacingControllerTest {
     fun `입력된 숫자만큼 레이싱카가 만들어졌는가`() {
         val racingController = RacingController()
         racingController.startGame(3, 3)
-        val carList = racingController::class.java.getDeclaredField("carList").apply {
+        val carList = racingController::class.java.getDeclaredField("carLists").apply {
             isAccessible = true
         }.get(racingController) as MutableList<*>
         assertThat(carList.size).isEqualTo(3)

@@ -9,23 +9,23 @@ import java.util.Random
  * Created by Jaesungchi on 2022.05.07..
  */
 class RacingController {
-    private val carList: MutableList<Car> = mutableListOf()
+    private val carLists: MutableList<Car> = mutableListOf()
     val raceResults: MutableList<RaceResult> = mutableListOf()
 
     fun startGame(numberOfCars: Int, numberOfRaces: Int) {
         repeat(numberOfCars) {
-            carList.addAll(listOf(Car()))
+            carLists.add(Car())
         }
         repeat(numberOfRaces) {
             processGame()
-            raceResults.add(RaceResult(carList))
+            raceResults.add(RaceResult(carLists))
         }
     }
 
     private fun processGame() {
-        carList.forEach { car ->
+        carLists.forEach { car ->
             if (checkCanRunScore(rollTheDice())) {
-                car.position++
+                car.advanceOnce()
             }
         }
     }
