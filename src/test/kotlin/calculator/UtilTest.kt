@@ -9,7 +9,6 @@ class UtilTest : DescribeSpec({
             val inputs = listOf<String>("1", "+", "2", "-", "3")
             val inputs2 = listOf<String>("1", "+", "2", "-", "3", "4")
 
-
             val result = Util.groupByIsNumber(inputs, true)
             val result2 = Util.groupByIsNumber(inputs2, true)
 
