@@ -15,7 +15,7 @@ fun main() {
             carInputView = InputView(INPUT_MESSAGE_NUMBER_OF_CARS),
             attemptInputView = InputView(INPUT_MESSAGE_NUMBER_OF_ATTEMPTS)
         ),
-        resultView = ResultView()
+        resultView = ResultView
     )
     racingGameLayout.execute(RandomEngineCarFactory)
 }
