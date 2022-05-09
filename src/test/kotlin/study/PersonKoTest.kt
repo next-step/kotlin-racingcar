@@ -4,11 +4,11 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldBe
 
-class PersonKoTest: StringSpec ({
+class PersonKoTest : StringSpec({
     "이름 붙인 인자" {
         val people = listOf(
             Person("조성륜", 23, "빠삐코"),
-            Person("조성륜", 23, nickname = "빠삐코"), Person(name = "조성륜",  age = 23, nickname = "빠삐코")
+            Person("조성륜", 23, nickname = "빠삐코"), Person(name = "조성륜", age = 23, nickname = "빠삐코")
         )
 
         people.forAll {

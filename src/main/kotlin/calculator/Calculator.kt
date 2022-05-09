@@ -2,7 +2,7 @@ package calculator
 
 class Calculator {
     fun groupByIsNumber(inputs: List<String>, bool: Boolean): List<String> {
-        val elements = inputs.groupBy { (it.toDoubleOrNull() != null) };
+        val elements = inputs.groupBy { (it.toDoubleOrNull() != null) }
         return elements[bool]!!
     }
 
@@ -11,9 +11,9 @@ class Calculator {
             throw IllegalArgumentException("올바은 계산식이 아닙니다.")
         }
 
-        val inputs = input.split(" ");
+        val inputs = input.split(" ")
         val numbers = groupByIsNumber(inputs, true).map { it.toFloat() }
-        val operations = groupByIsNumber(inputs, false);
+        val operations = groupByIsNumber(inputs, false)
 
         var total = numbers[0]
 
