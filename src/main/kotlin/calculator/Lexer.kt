@@ -8,9 +8,7 @@ class Lexer private constructor(
 ) {
     companion object {
         fun from(input: String?): Lexer {
-            if (input.isNullOrBlank()) {
-                throw IllegalArgumentException("잘못된 입력입니다: $input")
-            }
+            require(!input.isNullOrBlank())
 
             return input
                 .split(" ")

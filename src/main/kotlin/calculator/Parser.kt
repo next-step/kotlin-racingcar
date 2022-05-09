@@ -4,9 +4,7 @@ object Parser {
     fun parse(lexer: Lexer): Double {
         val number = lexer.next()
 
-        if (number !is Token.Number) {
-            throw IllegalArgumentException("유효하지 않은 숫자입니다: $number")
-        }
+        require(number is Token.Number) { "유효하지 않은 숫자입니다: $number" }
 
         return calculate(number.value, lexer)
     }
@@ -19,9 +17,7 @@ object Parser {
         val operator = lexer.next()
         val nextNumber = lexer.next()
 
-        if (nextNumber !is Token.Number) {
-            throw IllegalArgumentException("유효하지 않은 숫자입니다: $nextNumber")
-        }
+        require(nextNumber is Token.Number) { "유효하지 않은 숫자입니다: $nextNumber" }
 
         return when (operator) {
             is Token.Plus -> calculate(current + nextNumber.value, lexer)
