@@ -4,13 +4,18 @@ import kotlin.random.Random
 
 class CarRacing(private val carMaxPower: Int = DEFAULT_MAX_POWER) {
 
-    fun run() {
-        val input = RacingInputReceiver().receive()
-        val ui = RacingUI()
+    private val inputReceiver = RacingInputReceiver()
+    private val ui = RacingUI()
 
+    fun run() {
+        val input = inputReceiver.receive()
         val cars = MutableList(input.carNumber) { Car() }
 
-        repeat(input.moveCount) {
+        play(cars, input.moveCount)
+    }
+
+    private fun play(cars: List<Car>, moveCount: Int) {
+        repeat(moveCount) {
             cars.forEach {
                 it.move(Random.nextInt(carMaxPower))
             }
