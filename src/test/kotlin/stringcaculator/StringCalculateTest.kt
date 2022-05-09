@@ -1,8 +1,8 @@
 package stringcaculator
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
@@ -24,7 +24,7 @@ class StringCalculateTest {
     @ParameterizedTest
     @ValueSource(strings = ["3 # 1", "3 * #", " ", "3 / 0", "# # !"])
     fun `문자열 계산 예외`(expression: String) {
-        assertThrows<java.lang.IllegalArgumentException> {
+        assertThatIllegalArgumentException().isThrownBy {
             calculator.calculate(expression)
         }
     }

@@ -1,27 +1,19 @@
 package stringcaculator
 
-enum class Operator(val operator: String) {
-    PLUS("+") {
-        override fun calculate(a: Int, b: Int): Int {
-            return a + b
-        }
-    },
-    MINUS("-") {
-        override fun calculate(a: Int, b: Int): Int {
-            return a - b
-        }
-    },
-    MULTIPLY("*") {
-        override fun calculate(a: Int, b: Int): Int {
-            return a * b
-        }
-    },
-    DIVIDE("/") {
-        override fun calculate(a: Int, b: Int): Int {
-            require(b != 0)
-            return a / b
-        }
-    };
+enum class Operator(val operator: String, val calculate: (Int, Int) -> Int) {
+    PLUS("+", { a, b -> a + b }),
+    MINUS("-", { a, b -> a - b }),
+    MULTIPLY("*", { a, b -> a * b }),
+    DIVIDE("/", { a, b ->
+        require(b != 0) { "Can't divide by zero" }
+        a / b
+    });
 
-    abstract fun calculate(a: Int, b: Int): Int
+    companion object {
+        fun of(operator: String): Operator {
+            val validOperator = Operator.values().find { it.operator == operator }
+            requireNotNull(validOperator) { "Not a valid operator" }
+            return validOperator
+        }
+    }
 }
