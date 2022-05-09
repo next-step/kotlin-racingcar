@@ -13,10 +13,8 @@ internal class ParserTest : FreeSpec({
             "연산자부터 시작하는 경우" to "/ 2 + 3",
         ).forEach { (title, input) ->
             "$title 에러가 발생한다" {
-                // given
                 val lexer = Lexer.from(input)
 
-                // when
                 shouldThrow<IllegalArgumentException> {
                     Parser.parse(lexer)
                 }
@@ -31,13 +29,10 @@ internal class ParserTest : FreeSpec({
             "5.0 * 4 / 10.000" to 2.0,
         ).forEach { (title, expected) ->
             title {
-                // given
                 val lexer = Lexer.from(title)
 
-                // when
                 val actual = Parser.parse(lexer)
 
-                // then
                 actual shouldBe expected
             }
         }

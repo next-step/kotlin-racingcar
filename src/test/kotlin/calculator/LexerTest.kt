@@ -24,13 +24,10 @@ internal class LexerTest : FreeSpec({
     }
 
     "입력에 대한 토큰을 순서대로 가져온다" {
-        // given
         val input = "2 + 3 * 4.6   / 2"
 
-        // when
         val lexer = Lexer.from(input)
 
-        // then
         lexer.next() shouldBe Token.Number(2.0)
         lexer.next() shouldBe Token.Plus
         lexer.next() shouldBe Token.Number(3.0)
@@ -43,13 +40,10 @@ internal class LexerTest : FreeSpec({
     }
 
     "모든 토큰을 읽은경우에만 isEOF 는 true 로 반환한다" {
-        // given
         val input = "2"
 
-        // when
         val lexer = Lexer.from(input)
 
-        // then
         lexer.isEOF().shouldBeFalse()
         lexer.next()
         lexer.isEOF().shouldBeTrue()
