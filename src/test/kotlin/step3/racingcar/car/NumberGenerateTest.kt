@@ -1,7 +1,8 @@
-package step3.racingcar
+package step3.racingcar.car
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.RepeatedTest
+import step3.racingcar.RandomNumberGenerator
 
 class NumberGenerateTest {
 

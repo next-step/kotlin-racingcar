@@ -1,9 +1,7 @@
-package step3.racingcar
+package step3.racingcar.car
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import step3.racingcar.car.Car
-import step3.racingcar.car.Position
 
 class CarTest {
     @Test

@@ -12,8 +12,9 @@ class Driver(
         }
     }
 
-    fun getDriveResult(): List<Position> {
+    fun getMoveResult(): Int {
         return car.getDrivingRecord()
+            .count { it == Position.MOVE }
     }
 
     private fun isMovable(moveNumber: Int): Boolean {
