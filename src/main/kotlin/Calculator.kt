@@ -1,8 +1,8 @@
 class Calculator {
 
     companion object {
-        fun calculate(expression: String?): Int {
-            checkValidExpression(expression)
+        fun calculate(expression: String?): Double {
+            requireValidExpression(expression)
             val (numbers, operators) = splitNumbersAndOperators(expression!!)
 
             var result = numbers[0]
@@ -19,18 +19,17 @@ class Calculator {
             return result
         }
 
-        private fun checkValidExpression(expression: String?) {
+        private fun requireValidExpression(expression: String?) {
             if (expression.isNullOrBlank()) throw IllegalArgumentException("잘못된 계산식 입니다")
         }
 
-        fun splitNumbersAndOperators(expression: String): Pair<List<Int>, List<String>> {
+        fun splitNumbersAndOperators(expression: String): Pair<List<Double>, List<String>> {
             val splitted = expression.split(" ")
-            val numbers = splitted.filterIndexed { i, _ -> i % 2 == 0 }
-                .map { it.toInt() }
+            val operands = splitted.filterIndexed { i, _ -> i % 2 == 0 }
+                .map { it.toDouble() }
             val operators = splitted.filterIndexed { i, _ -> i % 2 == 1 }
 
-            return Pair(numbers, operators)
+            return operands to operators
         }
     }
 }
-
