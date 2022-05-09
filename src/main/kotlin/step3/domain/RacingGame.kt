@@ -1,10 +1,11 @@
 package step3.domain
 
+import step3.model.Car
 import step3.model.RacingGameInput
 import step3.model.RacingStepStatus
 
 class RacingGame(
-    private val carRacers: List<CarRacer>,
+    private val cars: List<Car>,
     private val numberOfAttempts: Int
 ) {
     fun start() = List(numberOfAttempts) {
@@ -13,22 +14,22 @@ class RacingGame(
     }
 
     private fun getCurrentRacingStepStatus() = RacingStepStatus(
-        proceedLevels = carRacers.map { carRacer ->
-            carRacer.proceedLevel
+        proceedLevels = cars.map { car ->
+            car.proceedLevel
         }
     )
 
     private fun raceAll() {
-        carRacers.forEach { carRacer ->
-            carRacer.race()
+        cars.forEach { car ->
+            car.proceed()
         }
     }
 
     companion object {
         fun from(racingGameInput: RacingGameInput): RacingGame {
             return RacingGame(
-                carRacers = List(racingGameInput.numberOfCars) { CarRacer() },
-                racingGameInput.numberOfAttempts
+                cars = List(racingGameInput.numberOfCars) { Car() },
+                numberOfAttempts = racingGameInput.numberOfAttempts
             )
         }
     }
