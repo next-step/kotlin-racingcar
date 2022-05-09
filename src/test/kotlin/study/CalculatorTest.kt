@@ -4,6 +4,7 @@ import Calculator
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -45,6 +46,7 @@ class CalculatorTest {
     @NullSource
     @ValueSource(strings = ["", "  "])
     fun `올바르지 않은 표현식은 exception이 발생한다`(input: String?) {
+        assertThrows<IllegalArgumentException> { Calculator.calculate(input) }
         assertThatThrownBy {
             Calculator.calculate(input)
         }.isExactlyInstanceOf(java.lang.IllegalArgumentException::class.java)
@@ -62,6 +64,18 @@ class CalculatorTest {
                 Arguments.of(
                     "2 + 2",
                     4.0
+                ),
+                Arguments.of(
+                    "1111 - 111",
+                    1000.0
+                ),
+                Arguments.of(
+                    "11 * 11",
+                    121.0
+                ),
+                Arguments.of(
+                    "5 / 2",
+                    2.5
                 ),
                 Arguments.of(
                     "1 + 2 - 3 * 4 / 5",
