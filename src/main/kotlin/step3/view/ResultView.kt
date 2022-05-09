@@ -2,7 +2,10 @@ package step3.view
 
 import step3.model.RacingStepStatus
 
-class ResultView {
+object ResultView {
+    private const val RESULT_TITLE = "실행 결과"
+    private const val PROCEED_LEVEL_SYMBOL = "-"
+
     fun showResult(result: List<RacingStepStatus>) {
         println(RESULT_TITLE)
         printEntireRacingGameResult(result)
@@ -19,10 +22,5 @@ class ResultView {
             println(PROCEED_LEVEL_SYMBOL.repeat(level))
         }
         println()
-    }
-
-    companion object {
-        private const val RESULT_TITLE = "실행 결과"
-        private const val PROCEED_LEVEL_SYMBOL = "-"
     }
 }
