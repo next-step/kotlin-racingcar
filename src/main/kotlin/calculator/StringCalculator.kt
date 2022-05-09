@@ -32,8 +32,10 @@ data class Number(val value: Long) {
     }
 
     companion object {
-        fun of(str: String): Number {
-            return Number(str.toLong())
+        fun of(value: String): Number {
+            return Number(
+                value.toLongOrNull() ?: throw IllegalArgumentException("연산할 수 없는 문자열 입니다. value: $value")
+            )
         }
     }
 }
@@ -42,7 +44,7 @@ enum class Operator(val value: String, val expression: BiFunction<Number, Number
     PLUS(value = "+", expression = { number1: Number, number2: Number -> number1.plus(number2) }),
     MINUS(value = "-", expression = { number1: Number, number2: Number -> number1.minus(number2) }),
     MULTIPLE(value = "*", expression = { number1: Number, number2: Number -> number1.multiply(number2) }),
-    DIVISION(value = "/", expression = { number1: Number, number2: Number -> number1.divide(number2) }),;
+    DIVISION(value = "/", expression = { number1: Number, number2: Number -> number1.divide(number2) }), ;
 
     fun calculate(number1: Number, number2: Number): Number {
         return this.expression.apply(number1, number2)

@@ -40,6 +40,28 @@ class StringCalculatorTest : FunSpec({
                 exception.message shouldBe "문자열 계산기의 입력값은 null이거나 빈 값일 수 없습니다. input:    "
             }
 
+            test("입력값에 숫자로 변환할 수 없는 문자열이 들어간다면 예외가 발생한다.") {
+                // given
+                val input = "1 + a"
+
+                // when then
+                val exception = shouldThrow<IllegalArgumentException> {
+                    StringCalculator.calculate(input)
+                }
+                exception.message shouldBe "연산할 수 없는 문자열 입니다. value: a"
+            }
+
+            test("입력값에 지원하지 않는 연산자가 있으면 예외가 발생한다.") {
+                // given
+                val input = "1 & a"
+
+                // when then
+                val exception = shouldThrow<IllegalArgumentException> {
+                    StringCalculator.calculate(input)
+                }
+                exception.message shouldBe "지원하지 않는 연산자 입니다. operator: &"
+            }
+
             test("문자열 덧셈이 가능하다.") {
                 // given
                 val input = "1 + 1"
