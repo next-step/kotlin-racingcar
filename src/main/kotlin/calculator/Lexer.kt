@@ -11,7 +11,7 @@ class Lexer private constructor(
             require(!input.isNullOrBlank())
 
             return input
-                .split(" ")
+                .split(' ')
                 .filter { it.isNotBlank() }
                 .map { str ->
                     when (str) {
