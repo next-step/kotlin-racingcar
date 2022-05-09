@@ -1,5 +1,6 @@
 package racingCar.controller
 
+import racingCar.constants.Message
 import racingCar.model.Car
 import racingCar.model.RaceResult
 import java.util.Random
@@ -13,6 +14,8 @@ class RacingController {
     val raceResults: MutableList<RaceResult> = mutableListOf()
 
     fun startGame(numberOfCars: Int, numberOfRaces: Int) {
+        if (!checkValidNumber(numberOfCars) || !checkValidNumber(numberOfRaces)) return
+
         repeat(numberOfCars) {
             carLists.add(Car())
         }
@@ -20,6 +23,13 @@ class RacingController {
             processGame()
             raceResults.add(RaceResult(carLists))
         }
+    }
+
+    private fun checkValidNumber(number: Int): Boolean {
+        if (number < CAN_VALID_NUMBER) {
+            throw IllegalArgumentException(Message.ExceptionMessage.ENTERED_INVALID_NUMBER)
+        }
+        return true
     }
 
     private fun processGame() {
@@ -45,5 +55,6 @@ class RacingController {
         private const val MINIMUM_SCORE = 0
         private const val EXCEEDED_SCORE = 10
         private const val SCORE_OF_CAN_GO = 4
+        private const val CAN_VALID_NUMBER = 1
     }
 }

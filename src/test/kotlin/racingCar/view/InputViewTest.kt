@@ -17,24 +17,6 @@ class InputViewTest {
         }
 
     @Test
-    fun `0이 입력되었을 때 에러발생`() {
-        try {
-            methodChangeStringToInt.invoke(InputView, "0")
-        } catch (e: InvocationTargetException) {
-            assertThat(e.cause?.message).isEqualTo(Message.ExceptionMessage.ENTERED_INVALID_NUMBER)
-        }
-    }
-
-    @Test
-    fun `음수가 입력되었을 때 에러발생`() {
-        try {
-            methodChangeStringToInt.invoke(InputView, "-1")
-        } catch (e: InvocationTargetException) {
-            assertThat(e.cause?.message).isEqualTo(Message.ExceptionMessage.ENTERED_INVALID_NUMBER)
-        }
-    }
-
-    @Test
     fun `글자가 입력되었을 때 에러발생`() {
         try {
             methodChangeStringToInt.invoke(InputView, "글자")

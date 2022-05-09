@@ -7,8 +7,6 @@ import racingCar.constants.Message
  * Created by Jaesungchi on 2022.05.07..
  */
 object InputView {
-    private const val CAN_VALID_NUMBER = 1
-
     fun getNumberOfCars(): Int {
         printHowManyCars()
         return getInput()
@@ -35,10 +33,6 @@ object InputView {
         if (input.isNullOrBlank()) {
             throw IllegalArgumentException(Message.ExceptionMessage.IS_NULL_OR_BLANK)
         }
-        val output = input.toIntOrNull() ?: throw IllegalArgumentException(Message.ExceptionMessage.IS_NOT_INTEGER)
-        if (output < CAN_VALID_NUMBER) {
-            throw IllegalArgumentException(Message.ExceptionMessage.ENTERED_INVALID_NUMBER)
-        }
-        return output
+        return input.toIntOrNull() ?: throw IllegalArgumentException(Message.ExceptionMessage.IS_NOT_INTEGER)
     }
 }
