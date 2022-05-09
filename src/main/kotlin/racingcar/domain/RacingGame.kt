@@ -1,7 +1,5 @@
 package racingcar.domain
 
-import racingcar.common.RandomCommandGenerator
-
 class RacingGame(
     private val numberOfRaces: Int,
     private val racingCars: RacingCars
@@ -10,17 +8,10 @@ class RacingGame(
 
     fun play(): List<RacingGameRecord> {
         repeat(numberOfRaces) { phase ->
-            val movementCommands = generateMovementCommands()
-            val raceRecords = racingCars.race(movementCommands)
+            val raceRecords = racingCars.race()
             racingGameRecords.add(RacingGameRecord(phase + 1, raceRecords))
         }
         return racingGameRecords.toList()
-    }
-
-    private fun generateMovementCommands(): List<MovementCommand> {
-        return List(racingCars.size) {
-            MovementCommand.of(RandomCommandGenerator.nextCommand())
-        }
     }
 }
 
