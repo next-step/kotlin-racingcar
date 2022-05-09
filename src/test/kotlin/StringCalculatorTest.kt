@@ -21,7 +21,7 @@ class StringCalculatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = [" ", "2//", "2++", "2 + 3     / 4"])
+    @ValueSource(strings = [" ", "2//", "2++", "++9", "3/3/3/3/3+"])
     fun `비 정상적인 수식이 들어올 경우 IllegalArgumentException 에러가 발생한다`(input: String?) {
         assertThatThrownBy {
             val stringCalculator = StringCalculator(input)
