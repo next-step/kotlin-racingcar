@@ -20,9 +20,9 @@ class Expression(values: List<String>) {
         }
     }
 
-    fun calculate(): Int{
+    fun calculate(): Int {
 
-        operators.forEach{
+        operators.forEach {
             val operator = Operators.getOperator(it)
             val first = operands.removeFirst()
             val second = operands.first()
