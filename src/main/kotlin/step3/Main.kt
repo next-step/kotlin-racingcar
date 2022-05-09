@@ -1,5 +1,6 @@
 package step3
 
+import step3.domain.RandomEngineCarFactory
 import step3.view.InputLayout
 import step3.view.InputView
 import step3.view.RacingGameLayout
@@ -16,5 +17,5 @@ fun main() {
         ),
         resultView = ResultView()
     )
-    racingGameLayout.execute()
+    racingGameLayout.execute(RandomEngineCarFactory)
 }
