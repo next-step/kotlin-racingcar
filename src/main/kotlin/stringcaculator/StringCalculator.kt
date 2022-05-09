@@ -7,14 +7,20 @@ class StringCalculator {
         var result = 0
         var operator = Operator.PLUS
 
-        for (it in expression.split(" ")) {
-            if (isNumber(it)) {
-                result = operator.calculate(result, it.toInt())
+        for ((i, op) in expression.split(" ").withIndex()) {
+            if (i % 2 == 0) {
+                result = operandCalculate(result, op, operator)
                 continue
             }
-            operator = Operator.of(it)
+            operator = Operator.of(op)
         }
         return result
+    }
+
+    private fun operandCalculate(result: Int, operand: String, operator: Operator): Int {
+        val num = operand.toIntOrNull()
+        requireNotNull(num) { "Not a valid operand" }
+        return operator.calculate(result, num)
     }
 
     private fun isNumber(operand: String): Boolean {

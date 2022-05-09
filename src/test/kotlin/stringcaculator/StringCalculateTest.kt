@@ -22,10 +22,34 @@ class StringCalculateTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["3 # 1", "3 * #", " ", "3 / 0", "# # !"])
-    fun `문자열 계산 예외`(expression: String) {
+    @ValueSource(strings = [" "])
+    fun `문자열 계산 공백 예외`(expression: String) {
         assertThatIllegalArgumentException().isThrownBy {
             calculator.calculate(expression)
-        }
+        }.withMessage("Expression can't be blank")
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["3 # 1", "3 $ 1", "3 3 3"])
+    fun `문자열 계산 피연산자 예외`(expression: String) {
+        assertThatIllegalArgumentException().isThrownBy {
+            calculator.calculate(expression)
+        }.withMessage("Not a valid operator")
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["! + 1", "3 * #", "5 * 2 + 10 / !"])
+    fun `문자열 계산 연산자 예외`(expression: String) {
+        assertThatIllegalArgumentException().isThrownBy {
+            calculator.calculate(expression)
+        }.withMessage("Not a valid operand")
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["3 / 0", "0 / 0"])
+    fun `문자열 계산 산술 예외`(expression: String) {
+        assertThatIllegalArgumentException().isThrownBy {
+            calculator.calculate(expression)
+        }.withMessage("Can't divide by zero")
     }
 }
