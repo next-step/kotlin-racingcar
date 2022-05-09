@@ -2,7 +2,7 @@ package calculator
 
 fun main() {
     print("계산식을 입력해주세요 ->")
-    val expression = readLine() ?: ""
+    val expression = readln()
     val stringCalculator = StringCalculator()
     val result = stringCalculator.calculateExpression(expression)
 
