@@ -6,17 +6,17 @@ object Calculator {
     fun calculate(string: String): Float {
         val expression = parseExpression(string)
 
-        var result = expression.first().toFloat()
+        val first = expression.first().toFloat()
 
-        expression
+        return expression
             .drop(1)
-            .windowed(size = 2, step = 2) { (operatorString, numberString) ->
-                val operator = MathOperator.from(operatorString) ?: throw IllegalArgumentException()
+            .chunked(2) { (operatorString, numberString) ->
+                val operator = requireNotNull(MathOperator.from(operatorString))
                 val number = numberString.toFloat()
-                result = operator.calculate(result, number)
+                operator to number
+            }.fold(first) { acc, (operator, number) ->
+                operator.calculate(acc, number)
             }
-
-        return result
     }
 
     private fun parseExpression(string: String): List<String> {
