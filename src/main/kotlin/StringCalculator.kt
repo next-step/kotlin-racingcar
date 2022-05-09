@@ -1,9 +1,6 @@
-class StringCalculator(val input: String?) {
-    init {
-        validate()
-    }
-
-    fun calculate(): Int {
+class StringCalculator() {
+    fun calculate(input: String?): Int {
+        validate(input)
         val inputArray: Array<String> = convertToArray(input!!)
 
         var op = ""
@@ -20,7 +17,6 @@ class StringCalculator(val input: String?) {
 
         return result
     }
-
     private fun convertToArray(input: String): Array<String> {
         return input
             .replace(" ", "")
@@ -47,17 +43,17 @@ class StringCalculator(val input: String?) {
         }
     }
 
-    private fun validate() {
-        validateEmptyInput()
-        validateInputLength()
+    private fun validate(input: String?) {
+        validateEmptyInput(input)
+        validateInputLength(input)
     }
-    private fun validateEmptyInput() {
+    private fun validateEmptyInput(input: String?) {
         if (input == null || input.replace(" ", "").isEmpty()) {
             throw IllegalArgumentException()
         }
     }
 
-    private fun validateInputLength() {
+    private fun validateInputLength(input: String?) {
         if (input!!.length % 2 == 0) {
             throw IllegalArgumentException()
         }
@@ -69,19 +65,19 @@ class StringCalculator(val input: String?) {
         }
     }
 
-    private fun sum(a: Int, b: Int): Int {
+    fun sum(a: Int, b: Int): Int {
         return a + b
     }
 
-    private fun minus(a: Int, b: Int): Int {
+    fun minus(a: Int, b: Int): Int {
         return a - b
     }
 
-    private fun multiple(a: Int, b: Int): Int {
+    fun multiple(a: Int, b: Int): Int {
         return a * b
     }
 
-    private fun divide(a: Int, b: Int): Int {
+    fun divide(a: Int, b: Int): Int {
         return a / b
     }
 }
