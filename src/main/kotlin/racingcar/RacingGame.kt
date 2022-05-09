@@ -1,25 +1,21 @@
 package racingcar
 
 class RacingGame(
-    private val cars: List<Car>,
+    private val cars: Cars,
     private var laps: Int,
     private val movingStrategy: MovingStrategy = RandomStrategy()
 ) {
-    private val roundReports: MutableList<List<Int>> = mutableListOf()
+    private val lapReports: MutableList<List<Int>> = mutableListOf()
 
     fun start() {
         if (!isNotEnd()) throw IllegalStateException("이미 종료된 레이스입니다.")
-
-        cars.forEach {
-            it.move(movingStrategy)
-            writeReport()
-        }
-
+        cars.move(movingStrategy)
+        writeReport()
         laps--
     }
 
     private fun writeReport() {
-        roundReports.add(cars.map { it.location.value })
+        lapReports.add(cars.location().map { it.value })
     }
 
     fun isNotEnd(): Boolean {
@@ -27,7 +23,7 @@ class RacingGame(
     }
 
     fun report(): List<List<Int>> {
-        return roundReports
+        return lapReports
     }
 
     companion object {
