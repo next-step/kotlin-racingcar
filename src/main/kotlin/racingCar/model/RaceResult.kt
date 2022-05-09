@@ -11,9 +11,13 @@ class RaceResult(carList: List<Car>) {
     init {
         carList.forEach {
             repeat(it.position) {
-                resultOutput.append("-")
+                resultOutput.append(RACE_FOOTPRINT_SYMBOL)
             }
             resultOutput.append("\n")
         }
+    }
+
+    companion object {
+        private const val RACE_FOOTPRINT_SYMBOL = "-"
     }
 }
