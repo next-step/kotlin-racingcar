@@ -41,7 +41,7 @@ class SimpleCalculator {
 
             this.result = when {
                 currentResult == null -> value
-                lastOperator != null -> calc(currentResult, value, lastOperator)
+                lastOperator != null -> calculate(currentResult, value, lastOperator)
                 else -> throw IllegalArgumentException("continuous number input found :  $lastOperand , $operand")
             }
 
@@ -66,7 +66,7 @@ class SimpleCalculator {
 
         companion object {
 
-            private fun calc(operand1: Double, operand2: Double, operator: String): Double {
+            private fun calculate(operand1: Double, operand2: Double, operator: String): Double {
                 return when (operator) {
                     "+" -> operand1 + operand2
                     "-" -> operand1 - operand2
