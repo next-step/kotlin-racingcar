@@ -1,4 +1,4 @@
-package step2
+package step2.calculator
 
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
@@ -14,7 +14,6 @@ class StringCalculatorKoTest : DescribeSpec({
                     val result = Calculator.calculate("$first + $second + $third")
 
                     result shouldBe first.plus(second).plus(third)
-                    println("$result = ${first.plus(second).plus(third)}")
                 }
             }
 
@@ -26,7 +25,6 @@ class StringCalculatorKoTest : DescribeSpec({
                     val result = Calculator.calculate("$first * $second * $third")
 
                     result shouldBe first.times(second).times(third)
-                    println("$result = ${first.times(second).times(third)}")
                 }
             }
 
@@ -38,7 +36,6 @@ class StringCalculatorKoTest : DescribeSpec({
                     val result = Calculator.calculate("$first - $second - $third")
 
                     result shouldBe first.minus(second).minus(third)
-                    println("$result = ${first.minus(second).minus(third)}")
                 }
             }
 
@@ -50,7 +47,6 @@ class StringCalculatorKoTest : DescribeSpec({
                     val result = Calculator.calculate("$first / $second / $third")
 
                     result shouldBe first.div(second).div(third)
-                    println("$result = ${first.div(second).div(third)}")
                 }
             }
         }

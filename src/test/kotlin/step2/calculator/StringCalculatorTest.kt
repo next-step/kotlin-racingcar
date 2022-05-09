@@ -1,25 +1,24 @@
-package step2
+package step2.calculator
 
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 
 class StringCalculatorTest {
 
     @ParameterizedTest
-    @ValueSource(
-        strings = [
-            "2 + 3 * 4 / 2 = 10",
-            "2 = 2",
-            "2 + 5 = 7"
-        ]
+    @CsvSource(
+        value = [
+            "2 + 3 * 4 / 2=10",
+            "2=2",
+            "2 + 5=7"
+        ],
+        delimiter = '='
     )
-    fun `계산 성공`(input: String) {
-        input.split(" = ").also {
-            val result = StringCalculator.execute(it.first())
-            assertThat(result).isEqualTo(it.last().toInt())
-        }
+    fun `계산 성공`(input: String, expected: Int) {
+        val result = StringCalculator.execute(input)
+        assertThat(result).isEqualTo(expected)
     }
 
     @ParameterizedTest
@@ -80,27 +79,5 @@ class StringCalculatorTest {
             val result = Calculator.calculate(it.first())
             assertThat(result).isEqualTo(it.last().toInt())
         }
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = ["", " "])
-    fun `예외 발생 - input값이 null 또는 empty`(input: String?) {
-        assertThatThrownBy {
-            InputValidator.validate(input)
-        }.isInstanceOf(IllegalArgumentException::class.java)
-    }
-
-    @ParameterizedTest
-    @ValueSource(
-        strings = [
-            "2 + 3 % 4 / 2",
-            "2 ! 3 % 4 / 9",
-            "1 = 1"
-        ]
-    )
-    fun `예외 발생 - input값 내 산술식 아닌값 존재`(input: String?) {
-        assertThatThrownBy {
-            InputValidator.validate(input)
-        }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
