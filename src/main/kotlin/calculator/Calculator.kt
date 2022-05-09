@@ -1,9 +1,5 @@
 package calculator
 
-// 관심사 분리
-// calculator - 계산된 결괏값을 반환
-// operator - operator 에 따른 계산
-
 class Calculator {
     private var total: Float = 0F
 
