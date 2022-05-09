@@ -29,7 +29,7 @@ object InputView {
         return changeStringToInt(readlnOrNull())
     }
 
-    private fun changeStringToInt(input: String?): Int {
+    fun changeStringToInt(input: String?): Int {
         if (input.isNullOrBlank()) {
             throw IllegalArgumentException(Message.ExceptionMessage.IS_NULL_OR_BLANK)
         }

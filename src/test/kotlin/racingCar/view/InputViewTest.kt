@@ -1,5 +1,6 @@
 package racingCar.view
 
+import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import racingCar.constants.Message
@@ -11,35 +12,24 @@ import java.lang.reflect.Method
  * Created by Jaesungchi on 2022.05.07..
  */
 class InputViewTest {
-    private val methodChangeStringToInt: Method =
-        InputView::class.java.getDeclaredMethod("changeStringToInt", String::class.java).apply {
-            isAccessible = true
-        }
-
     @Test
     fun `글자가 입력되었을 때 에러발생`() {
-        try {
-            methodChangeStringToInt.invoke(InputView, "글자")
-        } catch (e: InvocationTargetException) {
-            assertThat(e.cause?.message).isEqualTo(Message.ExceptionMessage.IS_NOT_INTEGER)
-        }
+        Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
+            InputView.changeStringToInt("글자")
+        }.withMessageMatching(Message.ExceptionMessage.IS_NOT_INTEGER)
     }
 
     @Test
     fun `null이 입력되었을 때 에러발생`() {
-        try {
-            methodChangeStringToInt.invoke(InputView, null)
-        } catch (e: InvocationTargetException) {
-            assertThat(e.cause?.message).isEqualTo(Message.ExceptionMessage.IS_NULL_OR_BLANK)
-        }
+        Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
+            InputView.changeStringToInt(null)
+        }.withMessageMatching(Message.ExceptionMessage.IS_NULL_OR_BLANK)
     }
 
     @Test
     fun `빈칸이 입력되었을 때 에러발생`() {
-        try {
-            methodChangeStringToInt.invoke(InputView, " ")
-        } catch (e: InvocationTargetException) {
-            assertThat(e.cause?.message).isEqualTo(Message.ExceptionMessage.IS_NULL_OR_BLANK)
-        }
+        Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
+            InputView.changeStringToInt(" ")
+        }.withMessageMatching(Message.ExceptionMessage.IS_NULL_OR_BLANK)
     }
 }
