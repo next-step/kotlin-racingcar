@@ -38,6 +38,17 @@ class StringCalculatorTest : FunSpec({
                 // then
                 result shouldBe "6"
             }
+
+            test("문자열 나눗셈이 가능하다.") {
+                // given
+                val input = "10 / 2"
+
+                // when
+                val result: String = StringCalculator.calculate(input)
+
+                // then
+                result shouldBe "5"
+            }
         }
     }
 })

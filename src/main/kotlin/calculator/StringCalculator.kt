@@ -25,6 +25,8 @@ data class Number(val value: Long) {
 
     fun multiply(other: Number) = Number(this.value.times(other.value))
 
+    fun divide(other: Number) = Number(this.value.div(other.value))
+
     fun parseString(): String {
         return this.value.toString()
     }
@@ -39,7 +41,8 @@ data class Number(val value: Long) {
 enum class Operator(val value: String, val expression: BiFunction<Number, Number, Number>) {
     PLUS(value = "+", expression = { number1: Number, number2: Number -> number1.plus(number2) }),
     MINUS(value = "-", expression = { number1: Number, number2: Number -> number1.minus(number2) }),
-    MULTIPLE(value = "*", expression = { number1: Number, number2: Number -> number1.multiply(number2) });
+    MULTIPLE(value = "*", expression = { number1: Number, number2: Number -> number1.multiply(number2) }),
+    DIVISION(value = "/", expression = { number1: Number, number2: Number -> number1.divide(number2) }),;
 
     fun calculate(number1: Number, number2: Number): Number {
         return this.expression.apply(number1, number2)
