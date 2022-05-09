@@ -1,11 +1,13 @@
 package camp.nextstep.edu.step2
 
-enum class Operator constructor(val symbol: String) {
-    PLUS("+"),
-    MINUS("-"),
-    TIMES("*"),
-    DIVIDE("/")
+enum class Operator constructor(val symbol: String, val operator: (Double, Double) -> Double) {
+    PLUS("+", { num1, num2 -> num1 + num2 }),
+    MINUS("-", { num1, num2 -> num1 - num2 }),
+    TIMES("*", { num1, num2 -> num1 * num2 }),
+    DIVIDE("/", { num1, num2 -> num1 / num2 })
     ;
+
+    fun operate(left: Double, right: Double): Double = operator(left, right)
 
     companion object {
         private val symbolMap: Map<String, Operator> = mapOf(

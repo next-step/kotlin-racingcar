@@ -39,11 +39,6 @@ object StringCalculator {
     }
 
     private fun doInfix(left: Double, operator: Operator, right: Double): Double {
-        return when (operator) {
-            Operator.PLUS -> (left.plus(right))
-            Operator.MINUS -> (left.minus(right))
-            Operator.TIMES -> (left.times(right))
-            Operator.DIVIDE -> (left.div(right))
-        }
+        return operator.operate(left, right)
     }
 }
