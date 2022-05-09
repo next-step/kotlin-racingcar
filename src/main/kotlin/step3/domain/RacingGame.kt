@@ -1,6 +1,5 @@
 package step3.domain
 
-import step3.model.Car
 import step3.model.RacingGameInput
 import step3.model.RacingStepStatus
 

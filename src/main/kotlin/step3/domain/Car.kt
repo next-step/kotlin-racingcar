@@ -1,6 +1,4 @@
-package step3.model
-
-import step3.domain.Engine
+package step3.domain
 
 class Car(private val engine: Engine) {
     var proceedLevel = INITIAL_PROCEED_LEVEL

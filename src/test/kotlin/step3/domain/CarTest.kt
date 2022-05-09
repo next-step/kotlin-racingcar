@@ -1,8 +1,7 @@
-package step3.model
+package step3.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import step3.domain.Engine
 
 class CarTest {
     @Test
