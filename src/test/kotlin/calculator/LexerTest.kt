@@ -17,7 +17,7 @@ internal class LexerTest : FreeSpec({
         ).forEach { (type, input) ->
             "$type 을 제공하면 에러가 발생한다" {
                 shouldThrow<IllegalArgumentException> {
-                    Lexer.new(input)
+                    Lexer.from(input)
                 }
             }
         }
@@ -28,7 +28,7 @@ internal class LexerTest : FreeSpec({
         val input = "2 + 3 * 4.6   / 2"
 
         // when
-        val lexer = Lexer.new(input)
+        val lexer = Lexer.from(input)
 
         // then
         lexer.next() shouldBe Token.Number(2.0)
@@ -47,7 +47,7 @@ internal class LexerTest : FreeSpec({
         val input = "2"
 
         // when
-        val lexer = Lexer.new(input)
+        val lexer = Lexer.from(input)
 
         // then
         lexer.isEOF().shouldBeFalse()

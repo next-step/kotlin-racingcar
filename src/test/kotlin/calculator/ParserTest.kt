@@ -14,7 +14,7 @@ internal class ParserTest : FreeSpec({
         ).forEach { (title, input) ->
             "$title 에러가 발생한다" {
                 // given
-                val lexer = Lexer.new(input)
+                val lexer = Lexer.from(input)
 
                 // when
                 shouldThrow<IllegalArgumentException> {
@@ -32,7 +32,7 @@ internal class ParserTest : FreeSpec({
         ).forEach { (title, expected) ->
             title {
                 // given
-                val lexer = Lexer.new(title)
+                val lexer = Lexer.from(title)
 
                 // when
                 val actual = Parser.parse(lexer)

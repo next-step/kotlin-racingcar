@@ -7,7 +7,7 @@ class Lexer private constructor(
     private val tokens: Queue<Token>,
 ) {
     companion object {
-        fun new(input: String?): Lexer {
+        fun from(input: String?): Lexer {
             if (input.isNullOrBlank()) {
                 throw IllegalArgumentException("잘못된 입력입니다: $input")
             }
