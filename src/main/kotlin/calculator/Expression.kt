@@ -26,7 +26,7 @@ class Expression(values: List<String>) {
             val operator = Operators.getOperator(it)
             val first = operands.removeFirst()
             val second = operands.first()
-            val result = operator?.calculate(first, second)!!.toInt()
+            val result = operator.calculate(first, second).toInt()
             operands[FIRST_INDEX] = result
         }
         return operands.removeFirst()
