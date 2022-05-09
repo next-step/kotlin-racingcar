@@ -6,7 +6,6 @@ class ViewTest {
 
     @Test
     fun `ResultView 객체를 생성, 입력값 만큼 -를 print한다`() {
-        val repeat = 5
         ResultView.show(5)
     }
 }

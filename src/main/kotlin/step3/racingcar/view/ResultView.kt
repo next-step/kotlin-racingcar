@@ -7,6 +7,5 @@ object ResultView {
         repeat(result) {
             print(DASH_VIEW)
         }
-        println()
     }
 }
