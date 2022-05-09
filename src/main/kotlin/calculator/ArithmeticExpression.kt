@@ -16,6 +16,6 @@ data class ArithmeticExpression(
         operators = split.filterIndexed { i, _ -> i % 2 == 1 }
             .map { Operator.find(it) }
         operands = split.filterIndexed { i, _ -> i % 2 == 0 }
-            .map { s: String -> s.toDouble() }
+            .map { it.toDoubleOrNull() ?: throw IllegalArgumentException("입력 값을 확인해주세요.") }
     }
 }
