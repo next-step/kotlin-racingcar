@@ -5,7 +5,7 @@ enum class Operator(val operatorString: String) : BinaryOperator<Int> {
     Plus("+") {
         override fun apply(x: Int, y: Int): Int = x + y
     },
-    Substract("-") {
+    Subtract("-") {
         override fun apply(x: Int, y: Int): Int = x - y
     },
     Multiply("*") {

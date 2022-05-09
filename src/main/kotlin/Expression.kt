@@ -3,26 +3,26 @@ import kotlin.jvm.Throws
 
 class Expression(inputStr: List<String>) {
 
-    open var operators = listOf<String>()
-    open var digits = listOf<String>()
+    var operators = listOf<String>()
+    var digits = listOf<String>()
 
     init {
-        operators = inputStr.extracts(validDigitPattern, false)
-        digits = inputStr.extracts(validDigitPattern, true)
+        operators = inputStr.extracts(VALID_DIGIT_PATTERN, false)
+        digits = inputStr.extracts(VALID_DIGIT_PATTERN, true)
 
         val blankCount = inputStr.stream().filter { s -> s.isBlank() }.count().toInt()
         if (blankCount > 0 || operators.size == 0 || digits.size == 0 ||
-            !operators.validate(validOperatorPattern) || !digits.validate(validDigitPattern)
+            !operators.validate(VALID_OPERATION_PATTERN) || !digits.validate(VALID_DIGIT_PATTERN)
         ) {
             throw IllegalArgumentException()
         }
     }
 
     companion object {
-        var DIGITS_REGEX = "^[0-9]*$"
-        var OPERATORS_REGEX = "[*+-/]"
-        val validDigitPattern: Pattern = Pattern.compile(DIGITS_REGEX)
-        val validOperatorPattern: Pattern = Pattern.compile(OPERATORS_REGEX)
+        private val DIGITS_REGEX = "^[0-9]*$"
+        private val OPERATORS_REGEX = "[*+-/]"
+        private val VALID_DIGIT_PATTERN: Pattern = Pattern.compile(DIGITS_REGEX)
+        private val VALID_OPERATION_PATTERN: Pattern = Pattern.compile(OPERATORS_REGEX)
     }
 }
 

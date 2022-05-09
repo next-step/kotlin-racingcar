@@ -3,7 +3,7 @@ package study
 import Expression
 import Operator
 
-open class Calculator {
+class Calculator {
 
     private var inputStrings = mutableListOf<String>()
 
