@@ -6,11 +6,13 @@ object ResultView {
         println("실행 결과")
     }
 
-    fun printRound(cars: List<Car>) {
-        cars.forEach {
-            val char = "_".repeat(it.position)
-            println(char)
+    fun printResultRecord(recordList: List<List<Int>>) {
+        recordList.forEach { record ->
+            record.forEach {
+                val char = "_".repeat(it)
+                println(char)
+            }
+            println()
         }
-        println()
     }
 }
