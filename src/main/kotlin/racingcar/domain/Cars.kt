@@ -11,4 +11,3 @@ class Cars(
         return cars.map { it.location }
     }
 }
-
