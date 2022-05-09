@@ -27,6 +27,17 @@ class StringCalculatorTest : FunSpec({
                 // then
                 result shouldBe "1"
             }
+
+            test("문자열 곱셈이 가능하다.") {
+                // given
+                val input = "3 * 2"
+
+                // when
+                val result: String = StringCalculator.calculate(input)
+
+                // then
+                result shouldBe "6"
+            }
         }
     }
 })
