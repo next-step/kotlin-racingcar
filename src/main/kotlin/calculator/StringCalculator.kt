@@ -5,6 +5,6 @@ class StringCalculator(
 ) {
     fun calculate(expressionText: String): Int {
         val expression = Expression.of(expressionText, expressionSeparator)
-        return expression.calculate()
+        return Calculator.calculate(expression)
     }
 }
