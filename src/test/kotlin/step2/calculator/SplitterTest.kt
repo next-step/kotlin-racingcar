@@ -1,5 +1,6 @@
 package step2.calculator
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 
@@ -126,6 +127,60 @@ class SplitterTest : DescribeSpec({
       splitter.operator shouldBe Operator.DIVIDE
       splitter.hasOther shouldBe true
       splitter.other shouldBe "/ 5"
+    }
+  }
+
+  describe("에러 처리") {
+    it("입력 값이 null 인 경우 IllegalArgumentException 를 던진다.") {
+      // given
+      val input: String = null!!
+
+      // when
+      val exception = shouldThrow<IllegalArgumentException> {
+        Splitter(input)
+      }
+
+      // then
+      exception.message shouldBe "유효하지 않은 입력 값입니다."
+    }
+
+    it("입력 값이 빈 문자열인 경우 IllegalArgumentException 를 던진다.") {
+      // given
+      val input = ""
+
+      // when
+      val exception = shouldThrow<IllegalArgumentException> {
+        Splitter(input)
+      }
+
+      // then
+      exception.message shouldBe "유효하지 않은 입력 값입니다."
+    }
+
+    it("입력 값의 사칙연산 기호가 잘못된 경우 IllegalArgumentException 를 던진다.") {
+      // given
+      val input = "5 % 3"
+
+      // when
+      val exception = shouldThrow<IllegalArgumentException> {
+        Splitter(input)
+      }
+
+      // then
+      exception.message shouldBe "유효하지 않은 입력 값입니다."
+    }
+
+    it("입력 값의 띄어쓰기가 잘못된 경우 IllegalArgumentException 를 던진다.") {
+      // given
+      val input = "5  + 3"
+
+      // when
+      val exception = shouldThrow<IllegalArgumentException> {
+        Splitter(input)
+      }
+
+      // then
+      exception.message shouldBe "유효하지 않은 입력 값입니다."
     }
   }
 })
