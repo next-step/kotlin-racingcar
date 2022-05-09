@@ -8,6 +8,6 @@ enum class Operator(private val operator: String, val calculate: (Long, Long) ->
 
   companion object {
     fun findByString(string: String): Operator =
-      values().find { it.operator == string } ?: throw Error()
+      values().find { it.operator == string } ?: throw IllegalArgumentException("유효하지 않은 입력 값입니다.")
   }
 }

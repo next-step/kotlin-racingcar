@@ -14,6 +14,6 @@
 - [x] 숫자, 연산자 분리 기능
 - [x] 연산 기능
 - [x] 다중 연산 기능
-- [ ] 입력값이 null 이거나 빈 공백 문자일 경우 IllegalArgumentException throw 기능
-- [ ] 사칙연산 기호가 아닌 경우 IllegalArgumentException throw 기능
-- [ ] 띄어쓰기가 한칸씩이 아닐 경우 IllegalArgumentException throw 기능
+- [x] 입력값이 null 이거나 빈 공백 문자일 경우 IllegalArgumentException throw 기능
+- [x] 사칙연산 기호가 아닌 경우 IllegalArgumentException throw 기능
+- [x] 띄어쓰기가 한칸씩이 아닐 경우 IllegalArgumentException throw 기능

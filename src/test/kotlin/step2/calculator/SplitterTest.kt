@@ -131,18 +131,18 @@ class SplitterTest : DescribeSpec({
   }
 
   describe("에러 처리") {
-    it("입력 값이 null 인 경우 IllegalArgumentException 를 던진다.") {
-      // given
-      val input: String = null!!
-
-      // when
-      val exception = shouldThrow<IllegalArgumentException> {
-        Splitter(input)
-      }
-
-      // then
-      exception.message shouldBe "유효하지 않은 입력 값입니다."
-    }
+//    it("입력 값이 null 인 경우 IllegalArgumentException 를 던진다.") {
+//      // given
+//      val input: String = null!!
+//
+//      // when
+//      val exception = shouldThrow<IllegalArgumentException> {
+//        Splitter(input)
+//      }
+//
+//      // then
+//      exception.message shouldBe "유효하지 않은 입력 값입니다."
+//    }
 
     it("입력 값이 빈 문자열인 경우 IllegalArgumentException 를 던진다.") {
       // given

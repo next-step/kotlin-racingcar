@@ -9,12 +9,9 @@ class Splitter(expression: String) {
 
   init {
     expression.split(" ").let {
-      if (it.size < 3) {
-        throw IllegalArgumentException()
-      }
-      this.left = it[0].toLong()
+      this.left = it[0].toLongOrThrow()
       this.operator = Operator.findByString(it[1])
-      this.right = it[2].toLong()
+      this.right = it[2].toLongOrThrow()
       this.hasOther = it.size > 3
       this.other = it.drop(3).joinToString(" ")
     }

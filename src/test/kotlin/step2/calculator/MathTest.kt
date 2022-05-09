@@ -1,5 +1,6 @@
 package step2.calculator
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 
@@ -45,6 +46,19 @@ class MathTest : DescribeSpec({
 
       // then
       result shouldBe 2
+    }
+
+    it("0으로 나눌 경우 IllegalArgumentException 을 던진다.") {
+      // given
+      val zero = 0L
+
+      // when
+      val exception = shouldThrow<IllegalArgumentException> {
+        Math.divide(6, zero)
+      }
+
+      // then
+      exception.message shouldBe "유효하지 않은 입력 값입니다."
     }
   }
 
