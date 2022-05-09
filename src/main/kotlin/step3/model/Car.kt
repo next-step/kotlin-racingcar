@@ -1,9 +1,8 @@
 package step3.model
 
 import step3.domain.Engine
-import step3.domain.RandomEngine
 
-class Car(private val engine: Engine = RandomEngine) {
+class Car(private val engine: Engine) {
     var proceedLevel = INITIAL_PROCEED_LEVEL
         private set
 

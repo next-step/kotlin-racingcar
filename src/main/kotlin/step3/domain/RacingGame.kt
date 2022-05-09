@@ -28,7 +28,7 @@ class RacingGame(
     companion object {
         fun from(racingGameInput: RacingGameInput): RacingGame {
             return RacingGame(
-                cars = List(racingGameInput.numberOfCars) { Car() },
+                cars = List(racingGameInput.numberOfCars) { Car(RandomEngine) },
                 numberOfAttempts = racingGameInput.numberOfAttempts
             )
         }
