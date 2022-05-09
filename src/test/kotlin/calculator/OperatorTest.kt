@@ -9,5 +9,4 @@ internal class OperatorTest {
         val cal = Operator.PLUS.cal(1, 2)
         assertThat(cal).isEqualTo(3);
     }
-
 }
