@@ -11,9 +11,9 @@ class RacingGameManagerSpecs : DescribeSpec({
             val numberOfPhase = 5
             val gameInput = GameInput(numberOfCars, numberOfPhase)
             it("게임 결과를 반환한다") {
-                val gameResult = RacingGameManager.play(gameInput)
+                val gameResult = RacingGameManager.proceed(gameInput)
                 with(gameResult) {
-                    racingRecords.size shouldBe numberOfPhase
+                    racingGameRecords.size shouldBe numberOfPhase
                 }
             }
         }

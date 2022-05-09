@@ -26,7 +26,7 @@ class RacingCarsSpecs : DescribeSpec({
                 FORWARD
             )
             it("각 자동차별로 이동 명령을 적용한다") {
-                racingCars.execute(commands)
+                racingCars.race(commands)
                 car1.position shouldBe 1
                 car2.position shouldBe 0
                 car3.position shouldBe 1
@@ -38,7 +38,7 @@ class RacingCarsSpecs : DescribeSpec({
                 WAIT
             )
             it("예외를 발생시킨다") {
-                shouldThrowExactly<IllegalArgumentException> { racingCars.execute(commands) }
+                shouldThrowExactly<IllegalArgumentException> { racingCars.race(commands) }
             }
         }
     }

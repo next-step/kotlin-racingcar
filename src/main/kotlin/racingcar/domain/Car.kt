@@ -10,9 +10,9 @@ class Car {
         if (movementCommand == FORWARD) position++
     }
 
-    fun getState(): CarState = CarState(position)
+    fun getCarRecord(): CarRecord = CarRecord(position)
 }
 
-data class CarState(
+data class CarRecord(
     val currentPosition: Int
 )

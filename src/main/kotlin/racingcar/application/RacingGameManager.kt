@@ -6,16 +6,18 @@ import racingcar.domain.RacingGame
 
 object RacingGameManager {
 
-    fun play(gameInput: GameInput): GameResult {
+    fun proceed(gameInput: GameInput): GameResult {
         val racingGame = gameInput.run {
-            RacingGame(numberOfPhase, getParticipants(numberOfCars))
+            RacingGame(numberOfRaces, getParticipants(numberOfCars))
         }
-        val racingRecords = racingGame.proceed()
-        return GameResult(racingRecords)
+
+        val racingPhaseRecords = racingGame.play()
+
+        return GameResult(racingPhaseRecords)
     }
 
     private fun getParticipants(numberOfCars: Int): RacingCars {
-        val cars = IntRange(1, numberOfCars).map { Car() }
+        val cars = List(numberOfCars) { Car() }
         return RacingCars(cars)
     }
 }
