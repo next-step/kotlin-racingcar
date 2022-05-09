@@ -9,8 +9,9 @@ class CarTest : FreeSpec({
 
         "car의 포지션이 + 1 되어야한다." {
             val car = Car()
+            val before = car.position
             car.move()
-            car.position shouldBe 1
+            car.position shouldBe before + 1
         }
     }
 })
