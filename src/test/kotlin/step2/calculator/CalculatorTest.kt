@@ -10,7 +10,7 @@ class CalculatorTest : DescribeSpec({
     forAll(
       row("8 + 4", 12),
       row("8 - 4", 4),
-      row("8 * 4 ", 32),
+      row("8 * 4", 32),
       row("8 / 4", 2)
     ) { input, expectResult ->
       // given
@@ -27,8 +27,8 @@ class CalculatorTest : DescribeSpec({
   describe("삼항식") {
     it("모두 같은 연산자") {
       forAll(
-        row("8 + 4 + 2", 12),
-        row("8 - 4 - 2", 4),
+        row("8 + 4 + 2", 14),
+        row("8 - 4 - 2", 2),
         row("8 * 4 * 2", 64),
         row("8 / 4 / 2", 1)
       ) { input, expectResult ->

@@ -1,10 +1,10 @@
 package step2.calculator
 
-enum class Operator(val operator: String) {
-  PLUS("+"),
-  MINUS("-"),
-  MULTIPLE("*"),
-  DIVIDE("/");
+enum class Operator(private val operator: String, val calculate: (Long, Long) -> Long) {
+  PLUS("+", { a, b -> Math.plus(a, b) }),
+  MINUS("-", { a, b -> Math.minus(a, b) }),
+  MULTIPLE("*", { a, b -> Math.multiple(a, b) }),
+  DIVIDE("/", { a, b -> Math.divide(a, b) });
 
   companion object {
     fun findByString(string: String): Operator =
