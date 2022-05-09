@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 import java.io.ByteArrayInputStream
 
-class RacingInputManagerTest {
+class RacingInputReceiverTest {
 
     @ParameterizedTest
     @CsvSource(
@@ -20,7 +20,7 @@ class RacingInputManagerTest {
     fun `사용자의 입력이 들어오면, 입력을 리턴한다`(input: String, carNumber: Int, moveCount: Int) {
         System.setIn(ByteArrayInputStream(input.toByteArray()))
 
-        assertThat(RacingInputManager().receive()).isEqualTo(UserInput(carNumber, moveCount))
+        assertThat(RacingInputReceiver().receive()).isEqualTo(UserInput(carNumber, moveCount))
     }
 
     @ParameterizedTest
@@ -29,7 +29,7 @@ class RacingInputManagerTest {
         System.setIn(ByteArrayInputStream(input.toByteArray()))
 
         assertThrows<IllegalArgumentException> {
-            RacingInputManager().receive()
+            RacingInputReceiver().receive()
         }
     }
 }

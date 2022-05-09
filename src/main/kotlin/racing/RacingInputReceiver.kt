@@ -1,8 +1,6 @@
 package racing
 
-data class UserInput(val carNumber: Int, val moveCount: Int)
-
-class RacingInputManager {
+class RacingInputReceiver {
 
     @Throws(IllegalArgumentException::class)
     fun receive(): UserInput {

@@ -7,7 +7,7 @@ import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 import java.io.ByteArrayInputStream
 
-class RacingInputManagerKoTest : DescribeSpec({
+class RacingInputReceiverKoTest : DescribeSpec({
     describe("receive method") {
         forAll(
             row("5\n3", 5, 3),
@@ -18,7 +18,7 @@ class RacingInputManagerKoTest : DescribeSpec({
                 System.setIn(ByteArrayInputStream(input.toByteArray()))
 
                 it("returns ${UserInput(carNumber, moveCount)}") {
-                    RacingInputManager().receive() shouldBe UserInput(carNumber, moveCount)
+                    RacingInputReceiver().receive() shouldBe UserInput(carNumber, moveCount)
                 }
             }
         }
@@ -35,7 +35,7 @@ class RacingInputManagerKoTest : DescribeSpec({
 
                 it("throws IllegalArgumentException") {
                     shouldThrow<IllegalArgumentException> {
-                        RacingInputManager().receive()
+                        RacingInputReceiver().receive()
                     }
                 }
             }

@@ -1,6 +1,6 @@
 package racing
 
-class Car(private val moveThreshold : Int = CAR_MOVE_THRESHOLD) {
+class Car(private val moveThreshold: Int = DEFAULT_CAR_MOVE_THRESHOLD) {
     var position = 0
         private set
 
@@ -9,6 +9,6 @@ class Car(private val moveThreshold : Int = CAR_MOVE_THRESHOLD) {
     }
 
     companion object {
-        private const val CAR_MOVE_THRESHOLD = 4
+        private const val DEFAULT_CAR_MOVE_THRESHOLD = 4
     }
 }

@@ -2,23 +2,23 @@ package racing
 
 import kotlin.random.Random
 
-class CarRacing {
+class CarRacing(private val carMaxPower: Int = DEFAULT_MAX_POWER) {
 
     fun run() {
-        val input = RacingInputManager().receive()
+        val input = RacingInputReceiver().receive()
         val ui = RacingUI()
 
         val cars = MutableList(input.carNumber) { Car() }
 
         repeat(input.moveCount) {
             cars.forEach {
-                it.move(Random.nextInt(MAX_POWER))
+                it.move(Random.nextInt(carMaxPower))
             }
             ui.drawCars(cars)
         }
     }
 
     companion object {
-        const val MAX_POWER = 10
+        private const val DEFAULT_MAX_POWER = 10
     }
 }
