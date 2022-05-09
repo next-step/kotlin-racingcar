@@ -1,13 +1,11 @@
 package step3.racingcar.car
 
-import step3.racingcar.RandomNumberGenerator
-
 class Driver(
     private val car: Car
 ) {
 
-    fun drive() {
-        if (isMovable(RandomNumberGenerator.generate())) {
+    fun drive(moveNumber: Int) {
+        if (isMovable(moveNumber)) {
             car.move()
         } else {
             car.stop()
@@ -18,7 +16,7 @@ class Driver(
         return car.getDrivingRecord()
     }
 
-    fun isMovable(moveNumber: Int): Boolean {
+    private fun isMovable(moveNumber: Int): Boolean {
         return moveNumber >= DRIVE_DEFINE_NUMBER
     }
 
