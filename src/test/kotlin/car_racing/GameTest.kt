@@ -8,9 +8,19 @@ class GameTest : FreeSpec({
     "run" - {
 
         "오류 없이 실행되어야한다." {
-            val game = Game(1, 1)
+            // given
+            val numCar = 2
+            val numMovement = 5
+            val game = Game(numCar, numMovement)
 
-            game.run() shouldBe Unit
+            // when
+            game.run()
+
+            // then
+            game.recordList.size shouldBe numMovement
+            game.recordList.forEach {
+                it.size shouldBe numCar
+            }
         }
     }
 })
