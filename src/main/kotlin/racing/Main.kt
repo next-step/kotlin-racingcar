@@ -1,5 +1,5 @@
 package racing
 
-fun main(){
+fun main() {
     CarRacing().run()
 }
