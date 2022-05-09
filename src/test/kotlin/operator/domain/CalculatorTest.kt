@@ -18,12 +18,12 @@ internal class CalculatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["3+", "3--2"])
+    @ValueSource(strings = ["3+", "3--2", "3/0"])
     fun `잘못된 값이 들어갔을 때 처리하는지 테스트`(value: String) {
         val calculator = Calculator()
 
         assertThrows<IllegalArgumentException> {
-            calculator.calculate("+")
+            calculator.calculate(value)
         }
     }
 }
