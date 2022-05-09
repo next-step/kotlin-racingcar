@@ -16,4 +16,4 @@
 * [x] 사칙연산 기호 (+,-,*,/) 가 아닌경우 IllegalArgumentException을 던진다.
 * [x] 계산하려는 문자열이 숫자로 변환할 수 없는 경우 IllegalArgumentException을 던진다.
 * [x] 각 문자열 사이는 공백으로 구분한다.
-  * [ ] 공백을 상수로 만들기
+  * [x] 공백을 상수로 만들기
