@@ -6,6 +6,7 @@ class CarRacing {
 
     fun run() {
         val input = RacingInputManager().receive()
+        val ui = RacingUI()
 
         val cars = MutableList(input.carNumber) { Car() }
 
@@ -13,6 +14,7 @@ class CarRacing {
             cars.forEach {
                 it.move(Random.nextInt(MAX_POWER))
             }
+            ui.drawCars(cars)
         }
     }
 
