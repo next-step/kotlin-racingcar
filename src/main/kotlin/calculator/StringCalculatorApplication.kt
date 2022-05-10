@@ -1,10 +1,7 @@
 package calculator
 
-import java.util.Scanner
-
 fun main() {
-    val scanner = Scanner(System.`in`)
-    val value = scanner.nextLine().toString()
+    val value = readLine()
 
     val expressions = StringCalculator(value)
         .getValues()

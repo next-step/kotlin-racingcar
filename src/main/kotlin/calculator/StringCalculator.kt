@@ -1,6 +1,6 @@
 package calculator
 
-class StringCalculator(private val value: String) {
+class StringCalculator(value: String?) {
 
     companion object {
         private const val DELIMITER: String = " "
@@ -12,7 +12,11 @@ class StringCalculator(private val value: String) {
         values = validate(value)
     }
 
-    private fun validate(value: String): List<String> {
+    private fun validate(value: String?): List<String> {
+        if (value == null) {
+            throw IllegalArgumentException("잘못된 값이 전달되었습니다.")
+        }
+
         if (value.isBlank() || value.isEmpty()) {
             throw IllegalArgumentException("잘못된 값이 전달되었습니다.")
         }
