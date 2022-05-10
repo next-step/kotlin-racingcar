@@ -9,4 +9,14 @@ class CarRacing {
 
         // 실행
     }
+
+    fun go(): Int {
+        val randomValue = (0..9).random()
+
+        return if (randomValue >= 4) {
+            randomValue
+        } else {
+            0
+        }
+    }
 }
