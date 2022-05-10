@@ -1,79 +1,56 @@
 package step2.stringcalculator
 
+import step2.stringcalculator.parser.ExpressionParser
+import step2.stringcalculator.parser.Token
+import step2.stringcalculator.parser.TokenInvalid
+import step2.stringcalculator.parser.TokenNumber
+
 class SimpleCalculator {
 
     fun evaluation(expression: String?): Double {
 
         val calculatorContext = CalculatorContext()
-        val arguments = parseExpression(expression)
+        val arguments = ExpressionParser().parse(expression)
         arguments.forEach { arg ->
-            when {
-                arg.isDouble() -> calculatorContext.putNumber(arg)
-                arg.isOperator() -> calculatorContext.putOperator(arg)
-                else -> throw IllegalArgumentException("Invalid argument : $arg")
+            if (arg is TokenInvalid) {
+                throw IllegalArgumentException("Invalid argument : $arg")
             }
+            calculatorContext.putToken(token = arg)
         }
-
         return calculatorContext.complete()
-    }
-
-    private fun parseExpression(expression: String?): List<String> {
-        val argumentList = expression?.split(" ")?.filter { it.isNotBlank() }?.map { it.trim() }
-        if (argumentList.isNullOrEmpty()) {
-            throw IllegalArgumentException("Expression is null or empty string")
-        }
-        return argumentList
     }
 
     private class CalculatorContext {
         private var result: Double? = null
+        private var lastToken: Token? = null
 
-        private var lastOperator: String? = null
-        private var lastOperand: String? = null
+        fun putToken(token: Token) {
+            val lastToken = this.lastToken
+            checkTokenTypeSequence(lastToken, token)
 
-        fun putNumber(operand: String) {
-
-            val value = operand.toDouble()
-
-            val currentResult = this.result
-            val lastOperand = this.lastOperand
-            val lastOperator = this.lastOperator
-
-            this.result = when {
-                currentResult == null -> value
-                lastOperator != null -> calculate(currentResult, value, lastOperator)
-                else -> throw IllegalArgumentException("continuous number input found :  $lastOperand , $operand")
+            if (token is TokenNumber) {
+                this.result = lastToken?.calculate(result, token.doubleValue) ?: token.doubleValue
             }
 
-            this.lastOperand = operand
-            this.lastOperator = null
-        }
-
-        fun putOperator(operator: String) {
-            if (this.lastOperator != null) {
-                throw IllegalArgumentException("continuous operator input found  : $lastOperator , $operator")
-            }
-            this.lastOperator = operator
-            this.lastOperand = null
+            this.lastToken = token
         }
 
         fun complete(): Double {
-            if (this.lastOperator != null) {
-                throw IllegalArgumentException("Needless operator at the end of input : ${this.lastOperator}")
+            val lastToken = this.lastToken
+            if (lastToken?.isOperator == true) {
+                throw IllegalArgumentException("Needless operator at the end of input : ${lastToken.value}")
             }
             return this.result ?: 0.0
         }
 
-        companion object {
+        private fun checkTokenTypeSequence(lastToken: Token?, currentToken: Token) {
+            if (lastToken?.type == currentToken.type) {
+                val typeString = if (lastToken.isOperator) "operator" else "number"
+                throw IllegalArgumentException("continuous $typeString input found  : ${lastToken.value} , ${currentToken.value}")
+            }
 
-            private fun calculate(operand1: Double, operand2: Double, operator: String): Double {
-                return when (operator) {
-                    "+" -> operand1 + operand2
-                    "-" -> operand1 - operand2
-                    "*" -> operand1 * operand2
-                    "/" -> if (operand2 != 0.0) operand1 / operand2 else throw IllegalArgumentException("Can't divide by 0")
-                    else -> throw IllegalArgumentException("Invalid argument : $operator")
-                }
+            if (lastToken == null && currentToken.isOperator) {
+                throw IllegalArgumentException("Expression starts with operator : ${currentToken.value} ")
             }
         }
     }

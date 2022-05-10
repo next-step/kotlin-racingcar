@@ -28,6 +28,14 @@ internal class SimpleCalculatorTest {
     }
 
     @Test
+    internal fun testForStartsWithOperatorError() {
+        val simpleCalculator = SimpleCalculator()
+        assertThatThrownBy {
+            simpleCalculator.evaluation("* 3 + 3 *    2 ")
+        }.hasMessageFindingMatch("starts with operator")
+    }
+
+    @Test
     internal fun testForContinuousNumberError() {
         val simpleCalculator = SimpleCalculator()
         assertThatThrownBy {
