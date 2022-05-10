@@ -57,7 +57,7 @@ internal class RacingTest {
         every { Random(car1Id) } returns car1EnginesRandom
         every { Random(car2Id) } returns car2EnginesRandom
 
-        val racing = Racing.new(1, 5)
+        val racing = Racing.new(2, 5)
 
         // When
         assertDoesNotThrow {
@@ -65,18 +65,18 @@ internal class RacingTest {
         }
 
         // Then
-        val resultMap = racing.result()
-        assertNotNull(resultMap)
-        assertEquals(1, resultMap.size)
+        val resultIdMap = racing.result().mapKeys { it.key.id }
+        assertNotNull(resultIdMap)
+        assertEquals(2, resultIdMap.size)
 
-        val car1Track = requireNotNull(resultMap.mapKeys { it.key.id }[car1Id])
+        val car1Track = requireNotNull(resultIdMap[car1Id])
         Assertions.assertTrue(car1Track.isPassedAt(0))
         Assertions.assertTrue(car1Track.isPassedAt(1))
         Assertions.assertTrue(car1Track.isPassedAt(2))
         Assertions.assertTrue(car1Track.isPassedAt(3))
         Assertions.assertTrue(car1Track.isPassedAt(4))
 
-        val car2Track = requireNotNull(resultMap.mapKeys { it.key.id }[car2Id])
+        val car2Track = requireNotNull(resultIdMap[car2Id])
         Assertions.assertTrue(car2Track.isPassedAt(0))
         Assertions.assertFalse(car2Track.isPassedAt(1))
         Assertions.assertFalse(car2Track.isPassedAt(2))

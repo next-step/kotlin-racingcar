@@ -7,7 +7,7 @@ class Car(val id: Int) {
     private val engine: Engine = Engine(id)
 
     fun raceOn(track: Track, moveCount: Int) {
-        IntRange(0, moveCount).forEach { _ ->
+        IntRange(0, moveCount - 1).forEach { _ ->
             if (engine.move()) track.markTrace()
         }
     }

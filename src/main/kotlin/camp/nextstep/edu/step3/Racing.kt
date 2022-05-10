@@ -1,18 +1,33 @@
 package camp.nextstep.edu.step3
 
-class Racing private constructor(val carNumber: Int, val moveCount: Int) {
+class Racing private constructor(carNumber: Int, private val moveCount: Int) {
+
+    private var ended = false
+    private val carTracks = HashMap<Car, Track>()
+
+    init {
+        IntRange(0, carNumber - 1).forEach {
+            carTracks[Car(it)] = Track(moveCount)
+        }
+    }
 
     fun start() {
-        TODO()
+        for ((car, track) in carTracks) {
+            car.raceOn(track, moveCount)
+        }
+
+        ended = true
     }
 
     fun result(): Map<Car, Track> {
-        TODO("Not yet implemented")
+        if (!ended) throw RuntimeException("racing is not ended")
+
+        return carTracks
     }
 
     companion object {
         fun new(carNumber: Int, moveCount: Int): Racing {
-            TODO()
+            return Racing(carNumber, moveCount)
         }
     }
 }
