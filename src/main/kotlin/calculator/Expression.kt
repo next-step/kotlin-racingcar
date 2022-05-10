@@ -29,7 +29,7 @@ class Expression(values: List<String>) {
             val result = operator.calculate(first, second).toInt()
             operands[FIRST_INDEX] = result
         }
-        return operands.removeFirst()
+        return operands[FIRST_INDEX]
     }
 
     companion object {

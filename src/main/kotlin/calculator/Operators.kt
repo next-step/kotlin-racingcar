@@ -1,14 +1,12 @@
 package calculator
 
 object Operators {
-    private val operators: MutableMap<String, Operator> = HashMap()
-
-    init {
-        operators["+"] = Operator.PLUS
-        operators["-"] = Operator.MINUS
-        operators["*"] = Operator.MULTI
-        operators["/"] = Operator.DIVIDE
-    }
+    private val operators = mapOf(
+        Operator.PLUS.type to Operator.PLUS,
+        Operator.MINUS.type to Operator.MINUS,
+        Operator.MULTI.type to Operator.MULTI,
+        Operator.DIVIDE.type to Operator.DIVIDE
+    )
 
     fun getOperator(stringOperate: String): Operator {
         return operators[stringOperate] ?: throw IllegalArgumentException()
