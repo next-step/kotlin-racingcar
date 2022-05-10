@@ -9,15 +9,9 @@ import racingcar.model.CarCount
 
 internal class CarCountTest {
 
-    @Test
-    fun `게임을 실행 할 자동차의 대수는 한 대 이상이여야 한다`() {
-        val carCount = CarCount(2)
-        assertThat(carCount).isEqualTo(CarCount(2))
-    }
-
     @ValueSource(strings = ["0", "-1"])
-    @ParameterizedTest(name = "자동차의 대수가 {0} 대 일 때는 진행할 수 없다.")
-    fun `게임을 실행 할 자동차의 대수가 0대거나 음수이면 게임을 진행할 수 없다`(count: Int) {
+    @ParameterizedTest(name = "자동차의 대수가 {0} 대 일 때는 오류가 발생한다.")
+    fun `게임을 실행 할 자동차의 대수가 0대거나 음수이면 오류가 발생한다`(count: Int) {
         assertThrows<IllegalArgumentException> { CarCount(count) }
     }
 }
