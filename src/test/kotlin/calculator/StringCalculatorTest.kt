@@ -28,4 +28,13 @@ internal class StringCalculatorTest : StringSpec({
         // then
         actual shouldBe 10
     }
+
+    "잘못된 문자열 수식을 연산하면 예외를 발생시킨다" {
+        // given
+        val expression = "1 1 1 + + +"
+        val stringCalculator = StringCalculator(expression)
+
+        // when // then
+        shouldThrowExactly<NumberFormatException> { stringCalculator.calculate() }
+    }
 })
