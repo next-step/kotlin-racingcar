@@ -1,8 +1,9 @@
 package racingcar
 
 class ResultView {
-    fun printGameResult(gameResult: List<List<Int>>) {
-        gameResult.forEach { stage ->
+    fun printGameResult(gameResult: GameResults) {
+        val gameResults = gameResult.gameResult
+        gameResults.forEach { stage ->
             stage.forEach { position ->
                 repeat(position) {
                     print('-')

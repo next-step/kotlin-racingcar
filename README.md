@@ -87,4 +87,4 @@
 - [x] companion object to object class
 - [x] 숫자체크 require만으로 변경
 - [ ] RacingCarGame에서 랜덤값을 주입하면 .. RacingCarGame에 결과에 대한 테스트는 어떻게할지 고민
-- [ ] gameResult _gameResults로 표현수정
+- [x] gameResult _gameResults로 표현수정

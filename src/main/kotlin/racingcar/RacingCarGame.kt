@@ -22,8 +22,7 @@ class RacingCarGame(private val carCount: Int, private val trialCount: Int) {
 
     private val carList = List(carCount) { Car(defaultCarGoDecide) }
 
-    private val _gameResults = GameResults()
-    fun getGameResult() = _gameResults.gameResult
+    val gameResults = GameResults()
 
     fun play() = repeat(trialCount) {
         proceed()
@@ -31,7 +30,7 @@ class RacingCarGame(private val carCount: Int, private val trialCount: Int) {
     }
 
     private fun record() {
-        _gameResults.record(carList)
+        gameResults.record(carList)
     }
 
     private fun proceed() = carList.forEach { it.proceed() }
