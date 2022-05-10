@@ -3,7 +3,7 @@ package racingcar.domain
 class RacingGame(
     private val cars: Cars,
     private var laps: Int,
-    private val movingStrategy: MovingStrategy = RandomStrategy()
+    private val movingStrategy: MovingStrategy = DefaultStrategy()
 ) {
     private val lapReports: MutableList<List<Int>> = mutableListOf()
 

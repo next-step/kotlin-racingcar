@@ -1,16 +1,12 @@
 package racingcar.domain
 
-import kotlin.random.Random
-
-class RandomStrategy : MovingStrategy {
+class DefaultStrategy(
+    private val numberGenerator: NumberGenerator = RandomNumberGenerator
+) : MovingStrategy {
 
     override fun isMovable(): Boolean {
-        val number = generateRandomNumber()
+        val number = numberGenerator.generate(MOVING_CONDITION_MIN, MOVING_CONDITION_MAX)
         return number >= MOVABLE_MIN_CONDITION
-    }
-
-    private fun generateRandomNumber(): Int {
-        return Random.nextInt(MOVING_CONDITION_MIN, MOVING_CONDITION_MAX)
     }
 
     companion object {
