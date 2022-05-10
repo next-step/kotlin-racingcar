@@ -1,12 +1,11 @@
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class StringCalculatorTest {
-    @Te
+    @Test
     fun `null이 입력될 경우 IllegalArgumentException 에러가 발생한다`() {
         assertThatThrownBy {
             val stringCalculator = StringCalculator()
