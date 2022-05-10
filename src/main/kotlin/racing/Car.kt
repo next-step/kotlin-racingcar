@@ -1,10 +1,11 @@
 package racing
 
 class Car {
-    var currentPosition: Int = 1
-        private set
+    private var turn = 0
+
+    val turnOfPosition = arrayListOf(1)
 
     fun go() {
-        if ((0..9).random() >= 4) currentPosition++
+        turnOfPosition.add(turnOfPosition[turn++] + if ((0..9).random() >= 4) 1 else 0)
     }
 }

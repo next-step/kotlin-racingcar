@@ -6,21 +6,15 @@ class CarRacing {
 
         val cars: List<Car> = createCars(carCount)
         moveCars(cars = cars, moveCount = moveCount)
+
+        CarRacingResultView().printCarRacingResult(cars = cars, moveCount = moveCount)
     }
 
     fun moveCars(cars: List<Car>, moveCount: Int) {
-        cars.forEach { car ->
-            printCurrentCarMovingDistance(car.currentPosition)
-        }
-        println()
-
         for (moveIndex in 0 until moveCount) {
             cars.forEach { car ->
                 car.go()
-
-                printCurrentCarMovingDistance(car.currentPosition)
             }
-            println()
         }
     }
 
@@ -31,12 +25,5 @@ class CarRacing {
         }
 
         return cars
-    }
-
-    fun printCurrentCarMovingDistance(carPosition: Int) {
-        for (i in 0 until carPosition) {
-            print("_ ")
-        }
-        println()
     }
 }
