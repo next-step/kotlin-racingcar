@@ -10,7 +10,6 @@ internal class LexerTest : FreeSpec({
 
     "예외 상황" - {
         listOf(
-            "null" to null,
             "빈 문자열" to "",
             "공백 문자열" to " \r\n\t",
             "잘못된 문자열" to "invalid",

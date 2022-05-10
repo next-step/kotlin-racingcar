@@ -7,11 +7,13 @@ class Lexer private constructor(
     private val tokens: Queue<Token>,
 ) {
     companion object {
-        fun from(input: String?): Lexer {
-            require(!input.isNullOrBlank())
+        private const val DELIMITER = ' '
+
+        fun from(input: String): Lexer {
+            require(input.isNotBlank())
 
             return input
-                .split(' ')
+                .split(DELIMITER)
                 .filter { it.isNotBlank() }
                 .map { str ->
                     when (str) {
