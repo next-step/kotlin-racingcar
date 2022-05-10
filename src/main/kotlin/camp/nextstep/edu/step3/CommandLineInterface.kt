@@ -13,8 +13,9 @@ class CommandLineInterface {
     }
 
     fun drawTrackTo(track: Track, to: Int) {
+        val traces = track.traces()
         for (i in 0..to) {
-            if (track.isPassedAt(i)) print("⎼ ")
+            if (traces.next()) print("⎼ ")
         }
         println()
     }

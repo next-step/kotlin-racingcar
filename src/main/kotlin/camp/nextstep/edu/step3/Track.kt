@@ -9,10 +9,7 @@ class Track(private val length: Int) {
         traces[onTraceIndex++].marked = true
     }
 
-    fun isPassedAt(i: Int): Boolean {
-        if (i < 0 || i >= length) throw IllegalArgumentException("$i is invalid index of track; trackLength=$length")
-        return traces[i].marked
-    }
+    fun traces(): Iterator<Boolean> = traces.map { it.marked }.iterator()
 
     private class Trace {
         var marked: Boolean = false

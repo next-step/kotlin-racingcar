@@ -29,20 +29,19 @@ internal class CarTest {
 
         val trackLength = 5
         val track = Track(trackLength)
-        assertFalse(track.isPassedAt(0))
-        assertFalse(track.isPassedAt(1))
-        assertFalse(track.isPassedAt(2))
-        assertFalse(track.isPassedAt(3))
-        assertFalse(track.isPassedAt(4))
+        for (trace in track.traces()) {
+            assertFalse(trace)
+        }
 
         // When
         car.raceOn(track, 5)
 
         // Then
-        assertTrue(track.isPassedAt(0))
-        assertTrue(track.isPassedAt(1))
-        assertFalse(track.isPassedAt(2))
-        assertFalse(track.isPassedAt(3))
-        assertFalse(track.isPassedAt(4))
+        val traces = track.traces()
+        assertTrue(traces.next())
+        assertTrue(traces.next())
+        assertFalse(traces.next())
+        assertFalse(traces.next())
+        assertFalse(traces.next())
     }
 }
