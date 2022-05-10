@@ -1,4 +1,4 @@
-package step2
+package calculator
 
 import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.core.spec.style.AnnotationSpec
