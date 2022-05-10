@@ -1,5 +1,5 @@
 package calculator
 
-fun isNumeric(toCheck: String): Boolean {
-    return toCheck.toDoubleOrNull() != null
+fun isNumeric(numericString: String): Boolean {
+    return numericString.toDoubleOrNull() != null
 }
