@@ -14,7 +14,7 @@ class StringCalculator(private val value: String) {
 
     private fun validate(value: String): List<String> {
         if (value.isBlank() || value.isEmpty()) {
-            throw IllegalArgumentException()
+            throw IllegalArgumentException("잘못된 값이 전달되었습니다.")
         }
 
         return value.split(DELIMITER)

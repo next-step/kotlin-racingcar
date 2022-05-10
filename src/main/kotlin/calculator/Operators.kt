@@ -9,6 +9,6 @@ object Operators {
     )
 
     fun getOperator(stringOperate: String): Operator {
-        return operators[stringOperate] ?: throw IllegalArgumentException()
+        return operators[stringOperate] ?: throw IllegalArgumentException("+,-,/,* 연산만 가능합니다.")
     }
 }
