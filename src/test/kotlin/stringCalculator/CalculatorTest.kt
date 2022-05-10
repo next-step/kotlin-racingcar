@@ -7,15 +7,19 @@ import org.junit.jupiter.api.Test
 
 internal class CalculatorTest {
 
-    lateinit var calculator : Calculator
+    val calculator = Calculator()
+
+    fun initialize() {
+        calculator.input = ""
+    }
 
     @BeforeEach
     fun setUp() {
-        calculator = Calculator()
     }
 
     @AfterEach
     fun tearDown() {
+        initialize()
     }
 
     @Test
@@ -24,13 +28,16 @@ internal class CalculatorTest {
 
     @Test
     fun `calculate test`() {
-        val testValue = calculator.calculate("2 + 3 + 5 / 5")
+        calculator.input = "2 + 3 + 5 / 5"
+        val testValue = calculator.calculate()
         Assertions.assertThat(testValue).isEqualTo(2)
 
-        val testValue2 = calculator.calculate("2 + 3 / 5 - 5")
+        calculator.input = "2 + 3 / 5 - 5"
+        val testValue2 = calculator.calculate()
         Assertions.assertThat(testValue2).isEqualTo(-4)
 
-        val testValue3 = calculator.calculate("3 / 3 + 5 * 5")
+        calculator.input = "3 / 3 + 5 * 5"
+        val testValue3 = calculator.calculate()
         Assertions.assertThat(testValue3).isEqualTo(30)
     }
 
