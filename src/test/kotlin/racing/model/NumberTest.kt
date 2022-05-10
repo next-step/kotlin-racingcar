@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import racing.model.Number.Companion.MAX_NUMBER
-import racing.model.Number.Companion.MIN_NUMBER
 
 @DisplayName("숫자 테스트")
 class NumberTest {
@@ -18,7 +16,7 @@ class NumberTest {
         val exception = assertThrows(IllegalArgumentException::class.java) {
             Number(number)
         }
-        assertEquals("숫자는 $MIN_NUMBER 이상 $MAX_NUMBER 이하이어야 합니다. (number: $number)", exception.message)
+        assertEquals("숫자는 0 이상 9 이하이어야 합니다. (number: $number)", exception.message)
     }
 
     @ParameterizedTest
