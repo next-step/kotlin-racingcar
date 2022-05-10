@@ -2,62 +2,62 @@ package stringCalculator
 
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThatThrownBy
-import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.NullAndEmptySource
 
 internal class ValidatorTest {
 
     val validator = Validator()
 
-    @AfterEach
-    fun tearDown() {
+    @ParameterizedTest
+    @MethodSource("correctTestcase")
+    fun `정상 회로 확인 - 입력값이 정상적인 수식일 경우 validate 결과는 true 이다`(input: String, expected: Boolean) {
+        val result = validator.isValidInput(input)
+        Assertions.assertThat(result).isEqualTo(expected)
     }
 
     @Test
-    fun `1 + 2 + 3`() {
-        val example = validator.isValidInput("1 + 2 + 3")
-        Assertions.assertThat(example).isEqualTo(true)
-    }
-
-    @Test
-    fun `blank test`() {
+    fun `blank string을 입력하면 IllegalArgumentException 와 메시지를 출력한다`() {
         assertThatThrownBy { validator.isValidInput(" ") }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage(INPUT_NULL_OR_BLANK)
     }
 
-    @Test
-    fun `NULL test`() {
-        assertThatThrownBy { validator.isValidInput(null) }
+    @ParameterizedTest
+    @NullAndEmptySource
+    fun `비어있는(blank) 값을 입력하면 IllegalArgumentException 와 메시지를 출력한다`(input: String?) {
+        assertThatThrownBy { validator.isValidInput(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage(INPUT_NULL_OR_BLANK)
     }
 
-    @Test
-    fun `1 = 2`() {
-        assertThatThrownBy { validator.isValidInput("1 = 2") }
+    @ParameterizedTest
+    @MethodSource("edgeTestcase")
+    fun `엣지케이스 입력값이 들어 갈 경우 IllegalArgumentException 와 메시지를 출력한다`(
+        input: String,
+        errorMessage: String
+    ) {
+        assertThatThrownBy { validator.isValidInput(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(INVALID_OPERATOR)
+            .hasMessage(errorMessage)
     }
 
-    @Test
-    fun `숫자로 시작하지 않는 경우 에러 처리`() {
-        assertThatThrownBy { validator.isValidInput("+ 2 * 3") }
-            .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(INPUT_NOT_START_WITH_NUMBER)
-    }
+    companion object {
+        @JvmStatic
+        private fun correctTestcase() = listOf(
+            Arguments.of("1 - 2 + 3", true),
+            Arguments.of("3 * 3 / 3", true),
+        )
 
-    @Test
-    fun `숫자로 끝나지 않는 경우 에러 처리`() {
-        assertThatThrownBy { validator.isValidInput("1 + 2 *") }
-            .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(INPUT_NOT_END_WITH_NUMBER)
-    }
-
-    @Test
-    fun `문자가 들어가 있는 경우 에러 처리`() {
-        assertThatThrownBy { validator.isValidInput("1 + 2 *") }
-            .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(INPUT_CONTAINS_CHARACTER)
+        @JvmStatic
+        private fun edgeTestcase() = listOf(
+            Arguments.of("1 = 2", INVALID_OPERATOR),
+            Arguments.of("+ 2 * 3", INPUT_NOT_START_WITH_NUMBER),
+            Arguments.of("1 + 2 *", INPUT_NOT_END_WITH_NUMBER),
+            Arguments.of("1 + 2 *", INPUT_CONTAINS_CHARACTER)
+        )
     }
 }

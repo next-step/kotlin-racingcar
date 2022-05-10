@@ -25,6 +25,6 @@
 
 ### 기타 구현
 
-[ ] ParameterizedTest
+[X] ParameterizedTest
 [ ] 입력 기능 (readln()) 추가
 [ ] 연산자를 ENUM으로 구현
