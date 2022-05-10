@@ -4,10 +4,6 @@ class Position(
     var position: Int
 ) {
 
-    companion object {
-        private const val MIN_POSITION = 0
-    }
-
     init {
         validateMinPosition(position)
     }
@@ -18,5 +14,9 @@ class Position(
 
     fun plusOne() {
         this.position += 1
+    }
+
+    companion object {
+        private const val MIN_POSITION = 0
     }
 }

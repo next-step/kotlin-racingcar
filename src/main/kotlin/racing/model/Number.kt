@@ -5,11 +5,6 @@ value class Number(
     private val number: Int
 ) {
 
-    companion object {
-        const val MIN_NUMBER = 0
-        const val MAX_NUMBER = 9
-    }
-
     init {
         validateNumberRange(number)
     }
@@ -22,5 +17,10 @@ value class Number(
 
     fun isGreaterThanOrEqualTo(number: Int): Boolean {
         return this.number >= number
+    }
+
+    companion object {
+        const val MIN_NUMBER = 0
+        const val MAX_NUMBER = 9
     }
 }

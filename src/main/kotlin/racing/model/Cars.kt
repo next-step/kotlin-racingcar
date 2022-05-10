@@ -4,6 +4,10 @@ class Cars(
     val cars: List<Car>
 ) {
 
+    fun moveForward(carMovingStrategy: MovingStrategy) {
+        cars.forEach { it.moveForward(carMovingStrategy) }
+    }
+
     companion object {
         private const val MIN_CAR_COUNT = 1
 
@@ -20,9 +24,5 @@ class Cars(
                 "자동차 대수는 최소 ${MIN_CAR_COUNT}대 이어야 합니다. (carCount: $carCount)"
             }
         }
-    }
-
-    fun moveForward(carMovingStrategy: MovingStrategy) {
-        cars.forEach { it.moveForward(carMovingStrategy) }
     }
 }
