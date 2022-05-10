@@ -1,4 +1,4 @@
-package step2
+package calculator
 
 class Calculator {
     private var total = 0
