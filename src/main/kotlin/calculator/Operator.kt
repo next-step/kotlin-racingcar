@@ -13,13 +13,9 @@ enum class Operator(val symbol: String, val expression: (Double, Double) -> Doub
     });
 
     companion object {
-        fun checkValidation(operatorStr: String?) {
-            require(values().any { it.symbol == operatorStr }) { ErrorMsg.OPERATOR_IS_NOT_VALID_ERROR_MSG }
-        }
-
         fun find(operatorStr: String?): Operator {
-            checkValidation(operatorStr)
-            return values().first { it.symbol == operatorStr }
+            val operator = values().firstOrNull() { it.symbol == operatorStr }
+            return requireNotNull(operator){ ErrorMsg.OPERATOR_IS_NOT_VALID_ERROR_MSG }
         }
     }
 }

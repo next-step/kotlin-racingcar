@@ -5,7 +5,7 @@ import calculator.Const.ErrorMsg
 object InputProcessor {
     private const val INPUT_DELIMITER = " "
 
-    fun checkInputIsEmpty(expression: String?): String {
+    fun requireNotNullOrBlankInputStr(expression: String?): String {
         require(!expression.isNullOrBlank()) { ErrorMsg.INPUT_IS_EMPTY_OR_BLANK_ERROR_MSG }
         return expression
     }
@@ -23,6 +23,6 @@ object InputProcessor {
                 it.toDoubleOrNull() ?: throw NumberFormatException(ErrorMsg.OPERAND_IS_NOT_NUMBER_ERROR_MSG)
             }
 
-        return Pair(operators, operands)
+        return operators to operands
     }
 }

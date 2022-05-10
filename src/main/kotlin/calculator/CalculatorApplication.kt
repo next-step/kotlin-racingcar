@@ -6,7 +6,7 @@ fun main() {
     val inputStr = readlnOrNull()
     println("입력하신 문자열은 $inputStr 입니다.")
 
-    val expression = InputProcessor.checkInputIsEmpty(inputStr)
+    val expression = InputProcessor.requireNotNullOrBlankInputStr(inputStr)
     val (operators, operands) = InputProcessor.splitInputToPairList(expression)
 
     val result = CalculatorProcessor.calculate(operators, operands)
