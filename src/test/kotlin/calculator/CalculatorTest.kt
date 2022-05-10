@@ -1,8 +1,8 @@
 package calculator
 
-import org.assertj.core.api.Assertions.*
+import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
@@ -32,7 +32,7 @@ class CalculatorTest {
     }
 
     @Test
-    fun `Infinity 를 발생시키는 연삭신이 입력된 경우 IllegalArgumentException 에러가 발생한다`() {
+    fun `Infinity 를 발생시키는 연삭리이 입력된 경우 IllegalArgumentException 에러가 발생한다`() {
         // given
         val input = "10 / 0"
 
