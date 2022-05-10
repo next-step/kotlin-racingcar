@@ -4,11 +4,6 @@ import kotlin.streams.toList
 
 class Expression(values: List<String>) {
 
-    companion object {
-        const val FIRST_INDEX = 0
-        val STRING_OPERATORS: List<String> = listOf("+", "-", "*", "/")
-    }
-
     private val operands: MutableList<Int>
     private val operators: MutableList<String>
 
@@ -35,5 +30,10 @@ class Expression(values: List<String>) {
             operands[FIRST_INDEX] = result
         }
         return operands.removeFirst()
+    }
+
+    companion object {
+        const val FIRST_INDEX = 0
+        val STRING_OPERATORS: List<String> = listOf("+", "-", "*", "/")
     }
 }
