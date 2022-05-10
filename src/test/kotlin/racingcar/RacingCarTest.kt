@@ -9,7 +9,8 @@ class RacingCarTest {
     @ValueSource(ints = [3, 5, 10])
     fun `입력 대수만큼 자동차를 생성하는지 테스트`(input: Int) {
         val defaultTrial = 1
-        val game = RacingCarGame(input, defaultTrial)
+        val inputCars = List(input) { "name$it"}
+        val game = RacingCarGame(defaultTrial, inputCars)
         game.play()
 
         repeat(input) {
@@ -22,8 +23,8 @@ class RacingCarTest {
     @ParameterizedTest
     @ValueSource(ints = [3, 5, 10])
     fun `입력 시도횟수만큼 게임을 진행하는지 테스트`(input: Int) {
-        val defaultCar = 1
-        val game = RacingCarGame(defaultCar, input)
+        val defaultCar = listOf("name")
+        val game = RacingCarGame(input, defaultCar)
         game.play()
 
         val carSize = game.gameResults.gameResult.size

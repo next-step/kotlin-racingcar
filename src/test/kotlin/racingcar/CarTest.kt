@@ -12,7 +12,7 @@ class CarTest {
             input
         }
 
-        val car = Car(testGoDecide)
+        val car = Car("name", testGoDecide)
         car.proceed()
         val afterPosition = car.position
         val expectPosition = if (input) 1 else 0
