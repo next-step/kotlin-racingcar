@@ -33,11 +33,17 @@ class CalculationParameter(expression: String) {
         fun validateExpression(arithmeticExpression: String) {
             val trimmedExpression = removeSpace(arithmeticExpression)
 
-            if (trimmedExpression.isEmpty()) throw IllegalArgumentException(ErrorMessage.SPACE_INPUT_ERROR)
-            if (!EXPRESSION_REGEX.matches(trimmedExpression)) throw IllegalArgumentException(ErrorMessage.OTHER_STRING_INPUT_ERROR)
+            if (trimmedExpression.isEmpty()) {
+                throw IllegalArgumentException(ErrorMessage.SPACE_INPUT_ERROR)
+            }
+            if (!EXPRESSION_REGEX.matches(trimmedExpression)) {
+                throw IllegalArgumentException(ErrorMessage.OTHER_STRING_INPUT_ERROR)
+            }
             val operatorCount = OPERATOR_REGEX.findAll(trimmedExpression).toList().size
             val operandCount = OPERATOR_REGEX.split(trimmedExpression).filter { it.isNotEmpty() }.size
-            if (isNotMatchOperatorOperandCount(operatorCount, operandCount)) throw IllegalArgumentException(ErrorMessage.NOT_MATCH_OPERAND_COUNT)
+            if (isNotMatchOperatorOperandCount(operatorCount, operandCount)) {
+                throw IllegalArgumentException(ErrorMessage.NOT_MATCH_OPERAND_COUNT)
+            }
         }
 
         private fun removeSpace(stringValue: String): String {
