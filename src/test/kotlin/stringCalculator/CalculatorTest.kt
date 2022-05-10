@@ -8,10 +8,11 @@ import org.junit.jupiter.params.provider.MethodSource
 
 internal class CalculatorTest {
 
-    private val calculator = Calculator()
-
-    private fun initialize() {
-        calculator.input = ""
+    private lateinit var calculator: Calculator
+    
+    @BeforeEach
+    fun setup() {
+        calculator = Calculator()
     }
 
     @AfterEach
