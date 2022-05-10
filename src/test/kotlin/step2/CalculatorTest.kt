@@ -49,7 +49,7 @@ class CalculatorTest : FunSpec({
         }
     }
 
-    context("종합 테스트") {
+    context("복합된 사칙연산 테스트") {
         forAll(
             row("2 + 3 * 4 / 2", 10),
             row("5 / 2 - 1 * 3 + 0.5", 5),
