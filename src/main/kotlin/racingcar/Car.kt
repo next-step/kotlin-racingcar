@@ -1,6 +1,6 @@
 package racingcar
 
-class Car(private val canGoDecide: () -> Boolean) {
+class Car(private val name: String, private val canGoDecide: () -> Boolean) {
     var position = 0
         private set
 

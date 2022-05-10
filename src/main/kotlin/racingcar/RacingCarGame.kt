@@ -13,14 +13,14 @@ class GameResults {
     }
 }
 
-class RacingCarGame(private val carCount: Int, private val trialCount: Int) {
+class RacingCarGame(private val trialCount: Int, carCount: List<String>) {
     private val defaultCarGoDecide = {
         val randomValue = Random.nextInt(DEFAULT_RANDOM_RANGE)
 
         randomValue >= DEFAULT_CAN_GO_THRESHOLD
     }
 
-    private val carList = List(carCount) { Car(defaultCarGoDecide) }
+    private val carList = List(carCount.size) { Car(carCount[it], defaultCarGoDecide) }
 
     val gameResults = GameResults()
 
@@ -39,7 +39,7 @@ class RacingCarGame(private val carCount: Int, private val trialCount: Int) {
         private const val DEFAULT_CAN_GO_THRESHOLD = 4
         private const val DEFAULT_RANDOM_RANGE = 10
 
-        const val CAR_NUMBER_INPUT_DESC = "자동차 대수는 몇 대인가요?"
+        const val CAR_NAMES_INPUT_DESC = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
         const val TRIAL_NUMBER_INPUT_DESC = "시도할 횟수는 몇 회인가요?"
     }
 }
