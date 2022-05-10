@@ -10,4 +10,10 @@ class Cars(
     fun location(): List<Location> {
         return cars.map { it.location }
     }
+
+    companion object {
+        fun of(carCount: Int): Cars {
+            return Cars((0 until carCount).map { Car() })
+        }
+    }
 }
