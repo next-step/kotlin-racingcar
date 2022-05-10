@@ -10,17 +10,13 @@ import stringCalculator.Message.Companion.INVALID_OPERATOR
 class Validator {
 
     fun isValidInput(input: String?): Boolean {
-        require(!isNullOrBlank(input)) { INPUT_NULL_OR_BLANK }
+        require(!input.isNullOrBlank()) { INPUT_NULL_OR_BLANK }
         require(!containsNonOperator(input)) { INVALID_OPERATOR }
         startWithNumber(input)?.let { require(it) { INPUT_NOT_START_WITH_NUMBER } }
         endWithNumber(input)?.let { require(it) { INPUT_NOT_END_WITH_NUMBER } }
-        require(!containsCharacter(input)) { INPUT_CONTAINS_CHARACTER }
+        require(!containsNonOperatorNorDigitCharacter(input)) { INPUT_CONTAINS_CHARACTER }
         require(!isOperatorOrNumberInARow(input)) { INPUT_CONTAINS_OPERATOR_IN_A_ROW }
         return true
-    }
-
-    private fun isNullOrBlank(input: String?): Boolean {
-        return input.isNullOrBlank()
     }
 
     private fun containsNonOperator(input: String?): Boolean {
@@ -32,14 +28,14 @@ class Validator {
     }
 
     private fun startWithNumber(input: String?): Boolean? {
-        return input?.get(0)?.isDigit()
+        return input?.firstOrNull()?.isDigit()
     }
 
     private fun endWithNumber(input: String?): Boolean? {
         return input?.last()?.isDigit()
     }
 
-    private fun containsCharacter(input: String?): Boolean {
+    private fun containsNonOperatorNorDigitCharacter(input: String?): Boolean {
         input?.forEach { c: Char ->
             if (c.isLetter()) return true
         }

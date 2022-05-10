@@ -1,13 +1,13 @@
 package stringCalculator
 
-class Calculator() {
+class Calculator {
 
     var input: String = ""
 
     fun calculate(): Int {
         val validator = Validator()
         validator.isValidInput(input)
-        val inputList = changeStringToList(input)
+        val inputList = input.split(" ")
         return operate(inputList)
     }
 
@@ -26,9 +26,5 @@ class Calculator() {
             }
         }
         return result
-    }
-
-    private fun changeStringToList(input: String): List<String> {
-        return input.split(" ")
     }
 }
