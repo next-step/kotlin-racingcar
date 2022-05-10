@@ -1,5 +1,7 @@
 package calculator
 
+const val OPERAND_DIFF_COUNT = 1
+
 class CalculationParameter(expression: String) {
     val operators: List<Operator>
     val operands: List<Int>
@@ -51,7 +53,8 @@ class CalculationParameter(expression: String) {
         }
 
         private fun isNotMatchOperatorOperandCount(operatorCount: Int, operandCount: Int): Boolean {
-            return operatorCount != operandCount - 1
+
+            return operatorCount != operandCount - OPERAND_DIFF_COUNT
         }
     }
 }
