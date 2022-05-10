@@ -6,8 +6,7 @@ class RacingGame(
     private val movingStrategy: MovingStrategy = DefaultStrategy()
 ) {
     private val _lapReports: MutableList<List<Int>> = mutableListOf()
-    val lapReports: List<List<Int>>
-        get() = _lapReports
+    val lapReports get() = _lapReports
 
     fun start() {
         if (!isNotEnd()) throw IllegalStateException("이미 종료된 레이스입니다.")
