@@ -10,7 +10,7 @@ class SimpleCalculator {
     fun evaluation(expression: String?): Double {
 
         val calculatorContext = CalculatorContext()
-        val arguments = ExpressionParser().parse(expression)
+        val arguments = ExpressionParser.parse(expression)
         arguments.forEach { arg ->
             if (arg is TokenInvalid) {
                 throw IllegalArgumentException("Invalid argument : $arg")
