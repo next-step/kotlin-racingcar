@@ -1,7 +1,7 @@
 package racingcar
 
 class ResultView {
-    fun printGameResult(gameResult: GameResults) {
+    fun printGameHistory(gameResult: GameResults) {
         val gameResults = gameResult.gameResult
         gameResults.forEach { stage ->
             stage.forEach { eachResult ->
@@ -9,5 +9,9 @@ class ResultView {
             }
             println()
         }
+    }
+
+    fun printWinnerResult(winnerResult: String) {
+        println(winnerResult)
     }
 }

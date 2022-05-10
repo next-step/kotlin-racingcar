@@ -12,5 +12,6 @@ fun main() {
     val gameResult = racingCarGame.gameResults
 
     val resultView = ResultView()
-    resultView.printGameResult(gameResult)
+    resultView.printGameHistory(gameResult)
+    resultView.printWinnerResult(racingCarGame.getWinnerResult())
 }
