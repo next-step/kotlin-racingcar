@@ -6,7 +6,7 @@ class CalculationParameter(expression: String) {
 
     init {
         validateExpression(expression)
-        operators = OPERATOR_REGEX.findAll(expression).toList().map {
+        operators = OPERATOR_REGEX.findAll(expression).map {
             Operator.stringOf(it.groupValues[0].trim())
         }.toList()
         operands = OPERATOR_REGEX.split(expression).map {
