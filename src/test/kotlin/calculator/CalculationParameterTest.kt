@@ -27,13 +27,12 @@ class CalculationParameterTest {
         val calculationParameter = CalculationParameter(input)
 
         // then
-        assertThat(calculationParameter.operators).isEqualTo(
-            listOf(
-                Operator.PLUS, Operator.MINUS, Operator.DIVISION, Operator.MULTIPLICATION
-            )
+        assertThat(calculationParameter.operators).containsExactly(
+            Operator.PLUS, Operator.MINUS, Operator.DIVISION, Operator.MULTIPLICATION
         )
-        assertThat(calculationParameter.operands).isEqualTo(listOf(10, 20, 30, 45, 67))
+        assertThat(calculationParameter.operands).containsExactly(10, 20, 30, 45, 67)
     }
+
     @Test
     fun `validateExpression 은 입력값이 공백인 경우 에러가 발생한다`() {
         // given
