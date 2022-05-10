@@ -8,7 +8,7 @@ class Car(val id: Int) {
     private val engine: Engine = Engine(id * now().nano)
 
     fun raceOn(track: Track, moveCount: Int) {
-        IntRange(0, moveCount - 1).forEach { _ ->
+        for (i in 0 until moveCount) {
             if (engine.move()) track.markTrace()
         }
     }
