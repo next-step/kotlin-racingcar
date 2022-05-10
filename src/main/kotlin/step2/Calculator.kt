@@ -37,7 +37,7 @@ class Calculator {
         '-' -> left - right
         '*' -> left * right
         '/' -> left / right
-        else -> throw IllegalArgumentException("수학기호는 +, -, *, / 만 허용됩니다.")
+        else -> throw IllegalArgumentException("'$sign'은 허용되지않은 기호입니다.(+, -, *, / 만 허용됩니다.)")
     }.also { result ->
         println("$left $sign $right = $result")
     }
