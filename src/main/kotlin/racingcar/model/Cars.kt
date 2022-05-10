@@ -3,13 +3,13 @@ package racingcar.model
 import kotlin.random.Random
 
 class Cars(
-    private val carCount: CarCount
+    carCount: CarCount
 ) {
     var cars: List<Car> = List(carCount.count) { Car(id = it) }
 
-    fun moveCars() {
+    fun moveForwardCars() {
         cars.forEach {
-            it.move(RandomValueMovingStrategy(getRandomNum()))
+            it.moveForward(RandomValueMovingStrategy(getRandomNum()))
         }
     }
 

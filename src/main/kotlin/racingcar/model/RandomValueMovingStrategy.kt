@@ -8,7 +8,7 @@ data class RandomValueMovingStrategy(val number: Int) : MovingStrategy {
         }
     }
 
-    override fun movable(): Boolean {
+    override fun forwardMovable(): Boolean {
         return number >= FORWARD_NUM
     }
 

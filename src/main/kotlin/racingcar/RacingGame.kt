@@ -11,7 +11,7 @@ class RacingGame(
 ) {
 
     private fun race(cars: Cars) {
-        cars.moveCars()
+        cars.moveForwardCars()
     }
 
     fun startGame() {

@@ -5,8 +5,8 @@ class Car(
     var position: Int = DEFAULT_POSITION
 ) {
 
-    fun move(movingStrategy: MovingStrategy) {
-        if (movingStrategy.movable()) {
+    fun moveForward(movingStrategy: MovingStrategy) {
+        if (movingStrategy.forwardMovable()) {
             this.position++
         }
     }
