@@ -23,7 +23,7 @@ internal class OperatorTest {
     }
 
     @Test
-    fun `더하기 연산이 성공적으로 나온다`() {
+    fun `1과 3을 더하면 4가 나온다`() {
         val expected = 4L
         val addSum = Operator.of("+").operate(1, 3)
 
@@ -31,7 +31,7 @@ internal class OperatorTest {
     }
 
     @Test
-    fun `빼기 연산이 성공적으로 나온다`() {
+    fun `5에서 2를 빼면 3이 나온다`() {
         val expected = 3L
         val addSum = Operator.of("-").operate(5, 2)
 
@@ -39,7 +39,7 @@ internal class OperatorTest {
     }
 
     @Test
-    fun `곱하기 연산이 성공적으로 나온다`() {
+    fun `3과 3을 곱하면 9가 나온다`() {
         val expected = 9L
         val addSum = Operator.of("*").operate(3, 3)
 
@@ -47,7 +47,7 @@ internal class OperatorTest {
     }
 
     @Test
-    fun `나누기 연산이 성공적으로 나온다`() {
+    fun `6에서 2를 나누면 3이 나온다`() {
         val expected = 3L
         val addSum = Operator.of("/").operate(6, 2)
 
