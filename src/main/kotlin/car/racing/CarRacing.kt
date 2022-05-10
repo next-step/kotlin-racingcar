@@ -1,26 +1,31 @@
 package car.racing
 
-import kotlin.random.Random
+enum class CarCondition(private val threshold: Int) {
+    GOOD(0),
+    NORMAL(4),
+    BAD(9),
+    TERRIBLE(10);
 
-class Car(
-    private val forwardThreshold: Int = CAN_GO_FORWARD_THRESHOLD
-) {
-    private val random = Random(System.currentTimeMillis())
+    fun canGoForward(): Boolean = thresholdRange.random() >= threshold
+
+    companion object {
+        private val thresholdRange = GOOD.threshold..BAD.threshold
+    }
+}
+
+class Car(private val condition: CarCondition = CarCondition.NORMAL) {
 
     private var _moves: Int = 0
     val moves: Int
         get() = _moves
 
     fun run() {
-        if (canGoForward()) {
+        if (condition.canGoForward()) {
             _moves += 1
         }
     }
+}
 
-    private fun canGoForward(): Boolean {
-        require(forwardThreshold in CAN_GO_FORWARD_MIN..CAN_GO_FORWARD_MAX)
-        return random.nextInt(CAN_GO_FORWARD_MIN, CAN_GO_FORWARD_MAX) >= forwardThreshold
-    }
 class Cars(drivers: Int) {
     private val cars = List(size = drivers) { Car() }
     fun getAllMove(): List<Int> = cars.map { it.moves }

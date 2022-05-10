@@ -84,6 +84,13 @@ class CarRacingTest : FreeSpec({
             recordCount shouldBeGreaterThanOrEqual 1
         }
     }
+
+    "자동차 상태는" - {
+        "좋은경우 앞으로 이동한다" {
+            CarCondition.GOOD.canGoForward() shouldBe true
+        }
+        "나쁜경우 앞으로 이동하지 못한다" {
+            CarCondition.TERRIBLE.canGoForward() shouldBe false
         }
     }
 
@@ -96,27 +103,24 @@ class CarRacingTest : FreeSpec({
             car.moves shouldBeGreaterThanOrEqual 0
         }
 
-        "낮은 임계점인경우 시도횟수와 동일하게 앞으로 이동할 수 있다" {
-            val car = Car(forwardThreshold = 0)
+        "차량 상태가 좋은경우 시도횟수와 동일하게 앞으로 이동할 수 있다" {
+            val car = Car(CarCondition.GOOD)
             val trying = 10
             repeat(trying) {
                 car.run()
             }
             car.moves shouldBe trying
         }
-
-        "허용 임계 초과로 설정한 경우 IllegalArgumentException 발생" {
-            val car = Car(forwardThreshold = 10)
-            shouldThrowExactly<IllegalArgumentException> {
+        "차량 상태가 나쁜경우 앞으로 이동하지 못한다" {
+            val car = Car(CarCondition.TERRIBLE)
+            val trying = 10
+            repeat(trying) {
                 car.run()
             }
+            car.moves shouldBe 0
         }
+    }
 
-        "허용 임계 미만으로 설정한 경우 IllegalArgumentException 발생" {
-            val car = Car(forwardThreshold = -1)
-            shouldThrowExactly<IllegalArgumentException> {
-                car.run()
-            }
     "자동차들은" - {
         "드라이버의 수만큼 이동거리를 알 수 있다" {
             val drivers = 199
