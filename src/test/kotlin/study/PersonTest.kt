@@ -9,7 +9,9 @@ class PersonTest : AnnotationSpec() {
     @Test
     fun `named argument`() {
         listOf(
-            Person("김해중", 39, "래리"), Person("김해중", 39, "래리"), Person("김해중", 39, "래리")
+            Person("김해중", 39, "래리"),
+            Person("김해중", 39, "래리"),
+            Person("김해중", 39, "래리")
         ).forEach {
             it.name shouldBe "김해중"
         }
@@ -21,6 +23,15 @@ class PersonTest : AnnotationSpec() {
         person.name shouldBe "김해중"
         person.age shouldBe 39
         person.nickname shouldBe null
+    }
+
+    @Test
+    fun `nullable nickname should be larry`() {
+        val person = Person("김해중", 39, null)
+        person.nickname = "larry"
+        person.name shouldBe "김해중"
+        person.age shouldBe 39
+        person.nickname shouldBe "larry"
     }
 
     @Test
