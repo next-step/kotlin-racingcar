@@ -1,6 +1,7 @@
 package racing.model
 
-class Number(
+@JvmInline
+value class Number(
     private val number: Int
 ) {
 
