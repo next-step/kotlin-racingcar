@@ -4,8 +4,8 @@ class Car(
     private val position: Position = Position(0)
 ) {
 
-    fun moveForward(carMovingStrategy: MovingStrategy) {
-        if (carMovingStrategy.isMovable()) {
+    fun moveForward(movingStrategy: MovingStrategy) {
+        if (movingStrategy.isMovable()) {
             position.plusOne()
         }
     }

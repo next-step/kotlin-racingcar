@@ -4,8 +4,8 @@ class Cars(
     val cars: List<Car>
 ) {
 
-    fun moveForward(carMovingStrategy: MovingStrategy) {
-        cars.forEach { it.moveForward(carMovingStrategy) }
+    fun moveForward(movingStrategy: MovingStrategy) {
+        cars.forEach { it.moveForward(movingStrategy) }
     }
 
     companion object {
