@@ -1,5 +1,8 @@
 package camp.nextstep.edu.step3
 
+import camp.nextstep.edu.step3.interfaces.CommandLineInterface
+import camp.nextstep.edu.step3.racing.Racing
+
 fun main() {
     val cli = CommandLineInterface()
 

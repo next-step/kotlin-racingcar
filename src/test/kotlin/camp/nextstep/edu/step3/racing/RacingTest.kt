@@ -1,4 +1,4 @@
-package camp.nextstep.edu.step3
+package camp.nextstep.edu.step3.racing
 
 import io.mockk.every
 import io.mockk.mockk

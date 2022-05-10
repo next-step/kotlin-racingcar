@@ -1,4 +1,4 @@
-package camp.nextstep.edu.step3
+package camp.nextstep.edu.step3.racing
 
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
