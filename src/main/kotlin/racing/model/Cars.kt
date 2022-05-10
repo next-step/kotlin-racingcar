@@ -14,8 +14,7 @@ class Cars(
         fun of(carCount: Int): Cars {
             validateMinCarCount(carCount)
 
-            val cars = mutableListOf<Car>()
-            repeat(carCount) { cars.add(Car()) }
+            val cars = List(carCount) { Car() }
             return Cars(cars)
         }
 
