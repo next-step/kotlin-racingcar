@@ -6,6 +6,8 @@ fun main() {
 }
 
 fun calculation(expr: String) {
+    inputValidate(expr)
+
     var target = 0
     var exp = ""
     expr.split(" ").forEachIndexed { i, next: String ->
@@ -21,8 +23,12 @@ fun calculation(expr: String) {
     println("결과 : $target")
 }
 
+private fun inputValidate(expr: String) {
+    if (expr.isNullOrBlank()) throw IllegalArgumentException()
+}
+
 private fun checkExpOrThrow(s: String) {
-    if (!checkExp(s)) throw RuntimeException()
+    if (!checkExp(s)) throw IllegalArgumentException()
 }
 
 private fun intOrThrow(s: String) = s.toIntOrNull() ?: throw RuntimeException()
@@ -33,7 +39,7 @@ private fun cal(v1: Int, v2: Int, exp: String): Int {
         "-" -> minus(v1, v2)
         "*" -> Multiply(v1, v2)
         "/" -> divide(v1, v2)
-        else -> throw RuntimeException()
+        else -> throw IllegalArgumentException()
     }
 }
 
