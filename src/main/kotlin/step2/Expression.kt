@@ -5,13 +5,13 @@ data class Expression(val input: String?) {
     fun parse(): List<String> {
         if (input.isNullOrBlank()) throw IllegalArgumentException(ERROR_INPUT_NULL_OR_EMPTY)
 
-        val parsedExpression = input.split(DELIMETER).toMutableList()
+        val parsedExpression = input.split(DELIMETER)
         isValidExpression(parsedExpression)
 
         return parsedExpression
     }
 
-    private fun isValidExpression(parsedExpression: MutableList<String>) {
+    private fun isValidExpression(parsedExpression: List<String>) {
         require(parsedExpression.size % STANDARD_VALID_EXPRESSION != INVALID_EXPRESSION_FORMAT) { ERROR_EXPRESSION }
     }
 
