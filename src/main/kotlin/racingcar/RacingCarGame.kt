@@ -5,10 +5,10 @@ import kotlin.random.Random
 class GameResults {
     val gameResult
         get() = _gameResult.toList()
-    private val _gameResult = mutableListOf<List<Int>>()
+    private val _gameResult = mutableListOf<List<String>>()
 
     fun record(carList: List<Car>) {
-        val recordData = carList.map { it.position }
+        val recordData = carList.map { it.makeResult() }
         _gameResult.add(recordData)
     }
 }
