@@ -32,7 +32,7 @@
   * [x] enum class에 인터페이스/람다 활용([💡](https://kotlinlang.org/docs/enum-classes.html#implementing-interfaces-in-enum-classes))
   * [x] 테스트 코드 kotest로 통일
   * [x] 불필요한 확장함수를 일반함수로 변경 (해당 클래스에서만 사용하기 때문에 확장함수를 구현할 필요가 없다.)
-  * [ ] 변수명을 명확하게 변경
+  * [x] 변수명을 명확하게 변경
   * [x] mutable일 필요가 없는 변수들을 immutable로 변경
   * [x] 계산하는 함수명 변경 및 통합 (함수명 : 행동, 동사구 / 변수명 : 명사구)
   * [x] 테스트명을 명확하게 변경
