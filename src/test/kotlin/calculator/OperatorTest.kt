@@ -2,6 +2,7 @@ package calculator
 
 import io.kotest.matchers.nulls.shouldNotBeNull
 import org.assertj.core.api.Assertions.*
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -15,5 +16,16 @@ class OperatorTest {
 
         // then
         assertThat(value).shouldNotBeNull()
+    }
+
+    @Test
+    fun `사칙연산 기호가 아닌 값을 넣으면 IllegalArgumentException 에러가 발생한다`() {
+        // given
+        val illegalArguments = "`"
+
+        // then
+        assertThatThrownBy {
+            Operator.stringOf(illegalArguments)
+        }.isInstanceOf(IllegalArgumentException::class.java).hasMessage(Operator.ERROR_MESSAGE_BY_OPERARTOR_STRING)
     }
 }
