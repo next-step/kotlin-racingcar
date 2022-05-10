@@ -1,10 +1,10 @@
-class Calculation(private val expr: String) {
-    fun run() {
+class Calculation(private val expr: String?) {
+    fun run(): Int {
         inputValidate(expr)
 
         var target = 0
         var exp = ""
-        expr.split(" ").forEachIndexed { i, next: String ->
+        expr!!.split(" ").forEachIndexed { i, next: String ->
             if (i == 0) {
                 target = intOrThrow(next)
             } else if (i % 2 != 0) {
@@ -15,9 +15,10 @@ class Calculation(private val expr: String) {
             }
         }
         println("결과 : $target")
+        return target
     }
 
-    private fun inputValidate(expr: String) {
+    private fun inputValidate(expr: String?) {
         if (expr.isNullOrBlank()) throw IllegalArgumentException()
     }
 
@@ -25,7 +26,7 @@ class Calculation(private val expr: String) {
         if (!checkExp(s)) throw IllegalArgumentException()
     }
 
-    private fun intOrThrow(s: String) = s.toIntOrNull() ?: throw RuntimeException()
+    private fun intOrThrow(s: String) = s.toIntOrNull() ?: throw IllegalArgumentException()
 
     private fun cal(v1: Int, v2: Int, exp: String): Int {
         return when (exp) {
