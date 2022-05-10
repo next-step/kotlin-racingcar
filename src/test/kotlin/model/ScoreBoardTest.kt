@@ -1,7 +1,8 @@
-package gameobj
+package model
 
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
+import port.OutputPainter
 
 class StubPainter : OutputPainter {
 

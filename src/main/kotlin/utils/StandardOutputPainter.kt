@@ -1,10 +1,10 @@
-package gameobj
+package utils
 
 import port.OutputPainter
 
 class StandardOutputPainter : OutputPainter {
 
     override fun draw(buffer: String) {
-        println(buffer)
+        print(buffer)
     }
 }

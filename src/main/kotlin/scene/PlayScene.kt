@@ -1,7 +1,7 @@
 package scene
 
 import dto.InputResult
-import gameobj.ScoreBoard
+import model.ScoreBoard
 import port.OutputPainter
 
 class PlayScene(

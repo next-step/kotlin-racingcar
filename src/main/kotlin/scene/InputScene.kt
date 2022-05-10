@@ -1,16 +1,22 @@
 package scene
 
 import dto.InputResult
-import gameobj.StandardInputSystem
+import port.InputSystem
 import port.OutputPainter
 
-class InputScene(private val outputPainter: OutputPainter, private val inputSystem: StandardInputSystem) {
+class InputScene(private val outputPainter: OutputPainter, private val inputSystem: InputSystem) {
 
     fun update(): InputResult {
-        outputPainter.draw("라운드 입력> ")
-        val round = inputSystem.read().toInt()
-        outputPainter.draw("플레이어 수 입력> ")
-        val player = inputSystem.read().toInt()
-        return InputResult(round, player)
+        return InputResult(getCarNumber(), getStageNumber())
+    }
+
+    private fun getCarNumber(): Int {
+        outputPainter.draw("자동차 대수는 몇 대인가요?\n")
+        return inputSystem.read().toInt()
+    }
+
+    private fun getStageNumber(): Int {
+        outputPainter.draw("시도할 횟수는 몇 회인가요?\n")
+        return inputSystem.read().toInt()
     }
 }
