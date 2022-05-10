@@ -1,23 +1,28 @@
 package calculator
 
+import kotlin.streams.toList
+
 class Expression(values: List<String>) {
 
     companion object {
         const val FIRST_INDEX = 0
+        val STRING_OPERATORS: List<String> = listOf("+", "-", "*", "/")
     }
 
-    private val operands: MutableList<Int> = mutableListOf()
-    private val operators: MutableList<String> = mutableListOf()
+    private val operands: MutableList<Int>
+    private val operators: MutableList<String>
 
     init {
-        values.forEach {
-            try {
-                val toInt = it.toInt()
-                operands.add(toInt)
-            } catch (e: NumberFormatException) {
-                operators.add(it)
-            }
-        }
+        operators = values.stream()
+            .filter { STRING_OPERATORS.contains(it) }
+            .toList()
+            .toMutableList()
+
+        operands = values.stream()
+            .filter { !STRING_OPERATORS.contains(it) }
+            .map { it.toInt() }
+            .toList()
+            .toMutableList()
     }
 
     fun calculate(): Int {
