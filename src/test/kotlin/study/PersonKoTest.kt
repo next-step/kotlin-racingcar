@@ -45,6 +45,6 @@ class PersonKoTest : AnnotationSpec() {
     fun `데이터 클래스를 동일하지않은 값으로 초기화시 equal로 비교하면 달라야한다`() {
         val person1 = Person("한인규", 32, "iamgroot")
         val person2 = Person("한인규", 32, "iamhayden")
-        person1 shouldNotBeEqualToComparingFields  person2
+        person1 shouldNotBeEqualToComparingFields person2
     }
 }
