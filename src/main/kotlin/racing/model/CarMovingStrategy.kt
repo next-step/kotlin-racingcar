@@ -5,6 +5,6 @@ object CarMovingStrategy : MovingStrategy {
 
     override fun isMovable(): Boolean {
         val number = RandomNumberGenerator.generateRandomNumber()
-        return number.isGreaterThanOrEqualTo(MOVABLE_MIN_NUMBER)
+        return number >= MOVABLE_MIN_NUMBER
     }
 }
