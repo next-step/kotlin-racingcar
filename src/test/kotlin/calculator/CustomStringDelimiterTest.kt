@@ -6,8 +6,9 @@ import org.junit.jupiter.api.Test
 internal class CustomStringDelimiterTest {
     @Test
     fun `문자열 사이즈 확인`() {
-        val values = CustomStringDelimiter("2 + 3 * 4 / 2")
-            .getValues()
-        assertThat(values.size).isEqualTo(7)
+        val customStringDelimiter = CustomStringDelimiter("2 + 3 * 4 / 2")
+
+        assertThat(customStringDelimiter.getOperands().size).isEqualTo(4)
+        assertThat(customStringDelimiter.getOperators().size).isEqualTo(3)
     }
 }

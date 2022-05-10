@@ -1,27 +1,11 @@
 package calculator
 
-import kotlin.streams.toList
+object Expression {
 
-class Expression(values: List<String>) {
+    private const val FIRST_INDEX = 0
+    val STRING_OPERATORS: List<String> = listOf("+", "-", "*", "/")
 
-    private val operands: MutableList<Int>
-    private val operators: MutableList<String>
-
-    init {
-        operators = values.stream()
-            .filter { STRING_OPERATORS.contains(it) }
-            .toList()
-            .toMutableList()
-
-        operands = values.stream()
-            .filter { !STRING_OPERATORS.contains(it) }
-            .map { it.toInt() }
-            .toList()
-            .toMutableList()
-    }
-
-    fun calculate(): Int {
-
+    fun calculate(operands: MutableList<Int>, operators: MutableList<String>): Int {
         operators.forEach {
             val operator = Operators.getOperator(it)
             val first = operands.removeFirst()
@@ -30,10 +14,5 @@ class Expression(values: List<String>) {
             operands[FIRST_INDEX] = result
         }
         return operands[FIRST_INDEX]
-    }
-
-    companion object {
-        const val FIRST_INDEX = 0
-        val STRING_OPERATORS: List<String> = listOf("+", "-", "*", "/")
     }
 }

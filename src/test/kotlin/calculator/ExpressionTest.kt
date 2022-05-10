@@ -7,11 +7,10 @@ internal class ExpressionTest {
 
     @Test
     fun `계산하기`() {
-        val value = "2 + 3 * 4 / 2".split(" ")
-        val toList = value.toList()
+        val operands = mutableListOf(2, 3, 4, 2)
+        val operators = mutableListOf("+", "*", "/")
 
-        val expression = Expression(toList)
-        val result = expression.calculate()
+        val result = Expression.calculate(operands, operators)
 
         assertThat(result).isEqualTo(10)
     }

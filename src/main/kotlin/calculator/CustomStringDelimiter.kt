@@ -1,15 +1,26 @@
 package calculator
 
+import kotlin.streams.toList
+
 class CustomStringDelimiter(value: String?) {
 
-    companion object {
-        private const val DELIMITER: String = " "
-    }
-
     private val values: List<String>
+    private val operands: MutableList<Int>
+    private val operators: MutableList<String>
 
     init {
+
         values = validate(value)
+        operators = values.stream()
+            .filter { Expression.STRING_OPERATORS.contains(it) }
+            .toList()
+            .toMutableList()
+
+        operands = values.stream()
+            .filter { !Expression.STRING_OPERATORS.contains(it) }
+            .map { it.toInt() }
+            .toList()
+            .toMutableList()
     }
 
     private fun validate(value: String?): List<String> {
@@ -25,7 +36,15 @@ class CustomStringDelimiter(value: String?) {
             .toList()
     }
 
-    fun getValues(): List<String> {
-        return values.toMutableList()
+    fun getOperands(): MutableList<Int> {
+        return operands.toMutableList()
+    }
+
+    fun getOperators(): MutableList<String> {
+        return operators.toMutableList()
+    }
+
+    companion object {
+        private const val DELIMITER: String = " "
     }
 }

@@ -2,9 +2,6 @@ package calculator
 
 fun main() {
     val value = readLine()
-
-    val expressions = CustomStringDelimiter(value)
-        .getValues()
-
-    println(Expression(expressions).calculate())
+    val customStringDelimiter = CustomStringDelimiter(value)
+    println(Expression.calculate(customStringDelimiter.getOperands(), customStringDelimiter.getOperators()))
 }
