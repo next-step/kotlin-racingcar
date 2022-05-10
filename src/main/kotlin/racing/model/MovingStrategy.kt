@@ -1,5 +1,5 @@
 package racing.model
 
-interface MovingStrategy {
+fun interface MovingStrategy {
     fun isMovable(): Boolean
 }

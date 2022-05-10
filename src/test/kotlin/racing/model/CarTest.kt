@@ -14,11 +14,7 @@ class CarTest {
         assertEquals(car.position(), 0)
 
         // when
-        car.moveForward(object : MovingStrategy {
-            override fun isMovable(): Boolean {
-                return true
-            }
-        })
+        car.moveForward { true }
 
         // then
         assertEquals(car.position(), 1)
