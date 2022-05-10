@@ -35,16 +35,6 @@ class CalculatorTest {
         assertThat(result).isEqualTo(expect)
     }
 
-    companion object {
-        @JvmStatic
-        private fun provideStringForDivide(): Stream<Arguments> {
-            return Stream.of(
-                Arguments.of("1 / 3", 1 / 3.0),
-                Arguments.of("15 / 31", 15 / 31.0)
-            )
-        }
-    }
-
     @ParameterizedTest
     @CsvSource(value = ["1 * 3,3", "15 * 31,465"])
     fun `곱하기 테스트`(input: String, expect: Double) {
@@ -67,7 +57,7 @@ class CalculatorTest {
     @ParameterizedTest
     @ValueSource(strings = ["", " ", "\n"])
     fun `입력 값이 빈칸인 경우 예외를 던짐`(inputString: String) {
-        assertThrows<java.lang.IllegalArgumentException> {
+        assertThrows<IllegalArgumentException> {
             val stringCalculator = StringCalculator()
             stringCalculator.calculateExpression(inputString)
         }
@@ -76,9 +66,37 @@ class CalculatorTest {
     @ParameterizedTest
     @ValueSource(strings = ["1 = 3", "1 ! 3", "1 @ 3", "1 # 3", "1 @ 3", "1 + 3 + 5 & 10"])
     fun `사칙연산 기호 테스트`(inputString: String) {
-        assertThrows<java.lang.IllegalArgumentException> {
+        assertThrows<IllegalArgumentException> {
             val stringCalculator = StringCalculator()
             stringCalculator.calculateExpression(inputString)
+        }
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideInputForOperatorTest")
+    fun `연산자 테스트`(a: Double, operatorString: String, b: Double, expect: Double) {
+        val operation = Operator.getCalculateLogic(operatorString)
+        val result = operation(a, b)
+        assertThat(result).isEqualTo(expect)
+    }
+
+    companion object {
+        @JvmStatic
+        private fun provideStringForDivide(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of("1 / 3", 1 / 3.0),
+                Arguments.of("15 / 31", 15 / 31.0)
+            )
+        }
+
+        @JvmStatic
+        private fun provideInputForOperatorTest(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of(1, "+", 3, 4.0),
+                Arguments.of(1, "-", 3, -2.0),
+                Arguments.of(1, "*", 3, 3.0),
+                Arguments.of(1, "/", 3, 1 / 3.0),
+            )
         }
     }
 }
