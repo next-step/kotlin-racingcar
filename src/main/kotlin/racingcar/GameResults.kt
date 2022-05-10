@@ -12,7 +12,10 @@ class GameResults {
 
     fun getWinnerResult(carList: List<Car>): String {
         val winnerPosition = carList.maxOf { it.position }
-        val winnerNames = carList.filter { it.position == winnerPosition }.joinToString(", ") { it.name }
+        val winnerNames = carList
+            .filter { it.position == winnerPosition }
+            .joinToString(", ") { it.name }
+
         return "$winnerNames$WINNER_POSTFIX"
     }
 

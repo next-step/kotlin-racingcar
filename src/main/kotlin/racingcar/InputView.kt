@@ -2,27 +2,42 @@ package racingcar
 
 class InputView {
     fun getNaturalNumberInput(msg: String): Int {
-        while (true) {
-            val trialCountInput = getInputWithMessage(msg)
-            try {
-                InputValidator.checkNaturalNumber(trialCountInput)
-                return trialCountInput.toInt()
-            } catch (e: IllegalArgumentException) {
-                println(e.message)
-            }
+        var trialCountInput: String
+        do {
+            trialCountInput = getInputWithMessage(msg)
+        } while (isUserTypedNaturalNumber(trialCountInput))
+
+        return trialCountInput.toInt()
+    }
+
+    private fun isUserTypedNaturalNumber(input: String): Boolean {
+        return try {
+            InputValidator.checkNaturalNumber(input)
+            true
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            false
         }
     }
 
     fun getCarNamesInput(msg: String): List<String> {
-        while (true) {
+        var splitted: List<String>
+
+        do {
             val namesString = getInputWithMessage(msg)
-            try {
-                val splitted = namesString.split(",")
-                InputValidator.checkNameLength(splitted)
-                return splitted
-            } catch (e: IllegalArgumentException) {
-                println(e.message)
-            }
+            splitted = namesString.split(",")
+        } while (isUserTypedValidNames(splitted))
+
+        return splitted
+    }
+
+    private fun isUserTypedValidNames(input: List<String>): Boolean {
+        return try {
+            InputValidator.checkNameLength(input)
+            true
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            false
         }
     }
 
