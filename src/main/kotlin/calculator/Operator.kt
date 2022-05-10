@@ -1,3 +1,5 @@
+package calculator
+
 enum class Operator(
     val value: String,
     val expression: (firstValue: Int, secondValue: Int) -> Int
