@@ -17,7 +17,8 @@ class Calculator() {
     var input: String = ""
 
     fun calculate(): Int {
-        isValidInput(input)
+        val validator = Validator()
+        validator.isValidInput(input)
         val inputList = changeStringToList(input)
         return operate(inputList)
     }
@@ -41,39 +42,5 @@ class Calculator() {
 
     private fun changeStringToList(input: String): List<String> {
         return input.split(" ")
-    }
-
-    private fun isValidInput(input: String): Boolean {
-        return (
-            !isNullOrBlank(input) &&
-                !containsNonOperator(input) &&
-                startWithNumber(input) &&
-                endWithNumber(input) &&
-                !containsCharacter(input)
-            )
-    }
-
-    private fun isNullOrBlank(input: String): Boolean {
-        return true
-    }
-
-    private fun containsNonOperator(input: String): Boolean {
-        return true
-    }
-
-    private fun startWithNumber(input: String): Boolean {
-        return isNumber(input[0])
-    }
-
-    private fun endWithNumber(input: String): Boolean {
-        return isNumber(input.last())
-    }
-
-    private fun containsCharacter(input: String): Boolean {
-        return true
-    }
-
-    private fun isNumber(c: Char): Boolean {
-        return c.code in 0..9
     }
 }

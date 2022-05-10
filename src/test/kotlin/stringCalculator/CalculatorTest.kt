@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test
 
 internal class CalculatorTest {
 
-    val calculator = Calculator()
+    private val calculator = Calculator()
 
-    fun initialize() {
+    private fun initialize() {
         calculator.input = ""
     }
 
@@ -20,10 +20,6 @@ internal class CalculatorTest {
     @AfterEach
     fun tearDown() {
         initialize()
-    }
-
-    @Test
-    fun getInput() {
     }
 
     @Test
@@ -39,37 +35,5 @@ internal class CalculatorTest {
         calculator.input = "3 / 3 + 5 * 5"
         val testValue3 = calculator.calculate()
         Assertions.assertThat(testValue3).isEqualTo(30)
-    }
-
-    @Test
-    fun testGetInput() {
-    }
-
-    @Test
-    fun setInput() {
-    }
-
-    @Test
-    fun isValidInput() {
-    }
-
-    @Test
-    fun isNullOrBlank() {
-    }
-
-    @Test
-    fun containsNonOperator() {
-    }
-
-    @Test
-    fun startWithNumber() {
-    }
-
-    @Test
-    fun endWithNumber() {
-    }
-
-    @Test
-    fun containsCharacter() {
     }
 }
