@@ -18,6 +18,6 @@ fun main() {
         racingGame.start()
     }
 
-    val lapReports = racingGame.report()
+    val lapReports = racingGame.lapReports
     ResultView.print(RacingGameResponse(lapReports))
 }

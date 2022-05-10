@@ -68,8 +68,8 @@ class CarsTest : DescribeSpec({
         }
     }
 
-    describe("size"){
-        it("자동차들의 수를 반환한다"){
+    describe("size") {
+        it("자동차들의 수를 반환한다") {
             val cars = Cars(
                 listOf(
                     Car(Location(1)),
