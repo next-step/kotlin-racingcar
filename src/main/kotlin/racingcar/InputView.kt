@@ -8,7 +8,7 @@ class InputView {
                 InputValidator.checkNaturalNumber(trialCountInput)
                 return trialCountInput.toInt()
             } catch (e: IllegalArgumentException) {
-                println(ERROR_MSG_FOR_NATURAL_NUMBER)
+                println(e.message)
             }
         }
     }
@@ -18,10 +18,10 @@ class InputView {
             val namesString = getInputWithMessage(msg)
             try {
                 val splitted = namesString.split(",")
-                require(splitted.any { it.length <= MAX_NAME_LENGTH })
+                InputValidator.checkNameLength(splitted)
                 return splitted
             } catch (e: IllegalArgumentException) {
-                println(ERROR_MSG_FOR_NAME_LENGTH)
+                println(e.message)
             }
         }
     }
@@ -29,11 +29,5 @@ class InputView {
     private fun getInputWithMessage(msg: String): String {
         println(msg)
         return readln()
-    }
-
-    companion object {
-        private const val MAX_NAME_LENGTH = 5
-        private const val ERROR_MSG_FOR_NATURAL_NUMBER = "1이상 정수로 입력하세요"
-        private const val ERROR_MSG_FOR_NAME_LENGTH = "자동차 이름은 ${MAX_NAME_LENGTH}자를 초과할 수 없어요"
     }
 }
