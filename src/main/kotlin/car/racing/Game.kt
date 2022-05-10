@@ -2,7 +2,6 @@ package car.racing
 
 class Game(drivers: Int, private val moves: Int) {
     private val cars = Cars(drivers)
-    private val gameRecords = GameRecords()
 
     init {
         require(drivers > 0)
@@ -10,7 +9,7 @@ class Game(drivers: Int, private val moves: Int) {
     }
 
     fun play(): GameRecords {
-        gameRecords.reset()
+        val gameRecords = GameRecords()
         repeat(moves) {
             cars.runAll()
             gameRecords.record(cars)

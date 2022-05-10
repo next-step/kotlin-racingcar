@@ -9,13 +9,15 @@ class GameRecordsTest : FreeSpec({
         val cars = Cars(drivers)
         val records = GameRecords()
 
-        records.reset()
+        beforeEach {
+            records.reset()
+        }
+
         "기록횟수를 알 수 있다" {
             records.record(cars)
             records.records.size shouldBe 1
         }
 
-        records.reset()
         "기록은 초기화 할 수 있다" {
             records.record(cars)
             records.reset()

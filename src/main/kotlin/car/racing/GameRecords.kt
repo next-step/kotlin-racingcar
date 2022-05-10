@@ -5,6 +5,9 @@ class GameRecords {
     val records: List<List<Int>>
         get() = _records
 
-    fun record(cars: Cars): Boolean = _records.add(cars.getAllMoves())
+    fun record(cars: Cars) {
+        _records.add(cars.getAllMoves())
+    }
+
     fun reset(): Unit = _records.clear()
 }
