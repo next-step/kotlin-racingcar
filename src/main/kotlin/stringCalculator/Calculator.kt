@@ -2,18 +2,6 @@ package stringCalculator
 
 class Calculator() {
 
-    /**
-     *  Getter/ Setter: 모든 property에는 기본적으로 getter/setter 설정이 있다.
-        var input: String = ""
-            get() {
-                return field
-            }
-            set(value){
-                field = value
-            }
-     */
-
-    // default: public final
     var input: String = ""
 
     fun calculate(): Int {

@@ -18,7 +18,7 @@ class Validator {
 
     private fun containsNonOperator(input: String): Boolean {
         input.forEach { c: Char ->
-            if(!c.isDigit() || !isOperator(c))  return true
+            if (!c.isDigit() || !isOperator(c)) return true
         }
         return false
     }
@@ -33,12 +33,12 @@ class Validator {
 
     private fun containsCharacter(input: String): Boolean {
         input.forEach { c: Char ->
-            if(c.isLetter())  return true
+            if (c.isLetter()) return true
         }
         return false
     }
 
     private fun isOperator(c: Char): Boolean {
-        return (c=='+' || c=='-' || c=='*' || c=='/')
+        return (c == '+' || c == '-' || c == '*' || c == '/')
     }
 }
