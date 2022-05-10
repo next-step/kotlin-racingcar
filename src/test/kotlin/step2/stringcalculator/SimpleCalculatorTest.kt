@@ -83,7 +83,8 @@ internal class SimpleCalculatorTest {
         "2 + 3 * 4 / 2, 10.0", // Normal case
         "+2 + +3 * 4 / 2, 10.0", // Signed number case
         "2 + 3.0 * +4 / +2.0, 10.0", // Double number case
-        "2 + -3 * 4 / 2, -2.0"
+        "2 + -3 * 4 / 2, -2.0",
+        "2 - 3 * 4 / 2, -2.0"
     )
     internal fun testForCalculation(expression: String, expectation: Double) {
 
