@@ -66,13 +66,13 @@ internal class CalculatorTest {
     }
 
     @Test
-    fun `expression null or empty`() {
+    fun `계산 표현식 Null 또는 빈 스트링`() {
         assertThrows<IllegalArgumentException> { assertThat(Calculator.calculate("")) }
         assertThrows<IllegalArgumentException> { assertThat(Calculator.calculate(null)) }
     }
 
     @Test
-    fun `illegal expression`() {
+    fun `미제공 표현식`() {
         assertThrows<IllegalArgumentException> { assertThat(Calculator.calculate("1!@#2")) }
         assertThrows<IllegalArgumentException> { assertThat(Calculator.calculate("1**+1")) }
     }
