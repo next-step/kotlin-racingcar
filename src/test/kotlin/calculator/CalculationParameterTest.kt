@@ -42,7 +42,7 @@ class CalculationParameterTest {
         // then
         assertThatThrownBy {
             CalculationParameter.validateExpression(spaceInput)
-        }.hasMessage(ErrorMessage.SPACE_INPUT_ERROR)
+        }.isInstanceOf(IllegalArgumentException::class.java).hasMessage(ErrorMessage.SPACE_INPUT_ERROR)
     }
 
     @Test
@@ -53,7 +53,7 @@ class CalculationParameterTest {
         // then
         assertThatThrownBy {
             CalculationParameter.validateExpression(input)
-        }.hasMessage(ErrorMessage.OTHER_STRING_INPUT_ERROR)
+        }.isInstanceOf(IllegalArgumentException::class.java).hasMessage(ErrorMessage.OTHER_STRING_INPUT_ERROR)
     }
 
     @Test
@@ -64,6 +64,6 @@ class CalculationParameterTest {
         // then
         assertThatThrownBy {
             CalculationParameter.validateExpression(input)
-        }.hasMessage(ErrorMessage.NOT_MATCH_OPERAND_COUNT)
+        }.isInstanceOf(IllegalArgumentException::class.java).hasMessage(ErrorMessage.NOT_MATCH_OPERAND_COUNT)
     }
 }
