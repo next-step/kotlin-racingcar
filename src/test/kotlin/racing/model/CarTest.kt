@@ -8,10 +8,18 @@ import org.junit.jupiter.api.Test
 class CarTest {
 
     @Test
+    fun `위치 값 없이 자동차를 생성하면 위치 값은 0`() {
+        // given, when
+        val car = Car()
+
+        // then
+        assertEquals(car.position(), 0)
+    }
+
+    @Test
     fun `앞으로 전진하는 조건이 참이면 앞으로 1칸 전진`() {
         // given
         val car = Car()
-        assertEquals(car.position(), 0)
 
         // when
         car.moveForward { true }
