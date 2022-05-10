@@ -1,17 +1,13 @@
 package racing
 
 class CarRacing {
-    fun input() {
-        println("자동차 대수는 몇 대인가요?")
-        val carCount = readLine()!!.toInt()
-        println("시도할 횟수는 몇 회인가요?")
-        val moveCount = readLine()!!.toInt()
+    fun startRacing() {
+        val (carCount, moveCount) = CarRacingInputView().input()
 
-        // 실행
-        startRacing(carCount = carCount, moveCount = moveCount)
+        moveCars(carCount = carCount, moveCount = moveCount)
     }
 
-    fun startRacing(carCount: Int, moveCount: Int) {
+    fun moveCars(carCount: Int, moveCount: Int) {
         val cars: List<Car> = createCars(carCount)
 
         cars.forEach { car ->
