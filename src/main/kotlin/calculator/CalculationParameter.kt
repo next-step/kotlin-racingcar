@@ -39,8 +39,8 @@ class CalculationParameter(expression: String) {
             if (!EXPRESSION_REGEX.matches(trimmedExpression)) {
                 throw IllegalArgumentException(ErrorMessage.OTHER_STRING_INPUT_ERROR)
             }
-            val operatorCount = OPERATOR_REGEX.findAll(trimmedExpression).toList().size
-            val operandCount = OPERATOR_REGEX.split(trimmedExpression).filter { it.isNotEmpty() }.size
+            val operatorCount = OPERATOR_REGEX.findAll(trimmedExpression).count()
+            val operandCount = OPERATOR_REGEX.split(trimmedExpression).filter { it.isNotEmpty() }.count()
             if (isNotMatchOperatorOperandCount(operatorCount, operandCount)) {
                 throw IllegalArgumentException(ErrorMessage.NOT_MATCH_OPERAND_COUNT)
             }
