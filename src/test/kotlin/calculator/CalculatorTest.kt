@@ -2,7 +2,6 @@ package calculator
 
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.NullAndEmptySource
@@ -36,26 +35,6 @@ class CalculatorTest {
     @ValueSource(strings = ["1 +", "- 2", "3 * / 3", "4 4 - 4", "5+5"])
     fun `잘못된 식이 주어질 경우 IllegalArgumentException 이 발생한다`(input: String) {
         assertThatIllegalArgumentException().isThrownBy { Calculator.calculate(input) }
-    }
-
-    @Test
-    fun `사칙연산 - 덧셈`() {
-        assertEquals(Operator.PLUS.calculate(7428934, 189248), 7618182)
-    }
-
-    @Test
-    fun `사칙연산 - 뺄셈`() {
-        assertEquals(Operator.MINUS.calculate(45, 90), -45)
-    }
-
-    @Test
-    fun `사칙연산 - 곱셈`() {
-        assertEquals(Operator.MULTIPLY.calculate(25, 2), 50)
-    }
-
-    @Test
-    fun `사칙연산 - 나눗셈`() {
-        assertEquals(Operator.DIVIDE.calculate(100, 2), 50)
     }
 
     @ParameterizedTest(name = "{index}) {0} = {1}")

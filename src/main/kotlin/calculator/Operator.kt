@@ -9,6 +9,6 @@ enum class Operator(private val operand: String, private val operation: (Int, In
     fun calculate(first: Int, second: Int) = operation(first, second)
 
     companion object {
-        fun get(operand: String): Operator = values().firstOrNull { operand == it.operand } ?: throw IllegalArgumentException("Invalid operand: $operand")
+        fun of(operand: String): Operator = values().firstOrNull { operand == it.operand } ?: throw IllegalArgumentException("Invalid operand: $operand")
     }
 }

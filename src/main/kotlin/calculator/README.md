@@ -20,3 +20,8 @@
    - 숫자가 아닐 경우 IllegalArgumentException throw
 2. 기능 구현
 3. 객체 지향스럽게 리팩토링
+
+## 리뷰 반영
+- [x] parseNumber 안의 계산 기능 분리하기
+- [x] Operator.get 보다는 of 나 find 로 메소드 이름 바꾸기
+- [x] Operator 테스트 분리
