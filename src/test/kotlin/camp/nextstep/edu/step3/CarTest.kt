@@ -16,11 +16,11 @@ internal class CarTest {
     fun canRaceOnTrack() {
         // Given
         val id = 1
-        val car = Car(id)
         val mockkRandom = mockk<Random>()
         mockkStatic("kotlin.random.RandomKt")
         every { mockkRandom.nextInt(0, 10) } returnsMany listOf(8, 9, 1, 2, 3)
         every { Random(id) } returns mockkRandom
+        val car = Car(id)
 
         val trackLength = 5
         val track = Track(trackLength)

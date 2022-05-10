@@ -7,12 +7,13 @@ class Car(id: Int) {
     private val engine: Engine = Engine(id)
 
     fun raceOn(track: Track, moveCount: Int) {
-        engine.move()
-        TODO()
+        IntRange(0, moveCount).forEach { _ ->
+            if (engine.move()) track.markTrace()
+        }
     }
 
     private class Engine(id: Int) {
         private val random = Random(id)
-        fun move(): Boolean = random.nextInt(0, 9) >= 4
+        fun move(): Boolean = random.nextInt(0, 10) >= 4
     }
 }
