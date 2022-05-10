@@ -10,8 +10,8 @@ class NestedTest : DescribeSpec({
             1 + 2 shouldBe 3
         }
 
-        it("내부 테스트 2"){
-            3 +4 shouldBe 7
+        it("내부 테스트 2") {
+            3 + 4 shouldBe 7
         }
     }
 })

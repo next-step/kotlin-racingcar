@@ -1,7 +1,6 @@
 package study.kotest
 
 import io.kotest.core.spec.style.StringSpec
-import io.kotest.core.spec.style.describeSpec
 import io.kotest.data.blocking.forAll
 import io.kotest.data.row
 import io.kotest.matchers.should

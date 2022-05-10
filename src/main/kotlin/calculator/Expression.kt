@@ -1,11 +1,10 @@
 package calculator
 
 data class Expression(
-    private val numbers: List<Int>,
-    private val operators: List<Operator>
+    val numbers: List<Int>,
+    val operators: List<Operator>
 ) {
     init {
-        // TODO: Q. 주 생성자에서 객체 생성에 대한 검증이 필요한 경우 어떤 방법이 좋을까요?
         require(numbers.size == operators.size + 1) {
             "숫자와 연산자의 개수가 적절하지 않습니다."
         }
@@ -14,6 +13,44 @@ data class Expression(
     fun calculate(): Int {
         return numbers.reduceIndexed { index, first, second ->
             operators[index - 1].calculate(first, second)
+        }
+    }
+
+    companion object {
+        private const val EVEN_AND_ODD_STANDARD = 2
+        private const val NUMBER_POSITION = 0
+
+        fun of(expressionText: String, separator: String = " "): Expression {
+            val splitTexts = expressionText.split(separator)
+            val numbersAndOperators = splitTexts.withIndex()
+                .partition { it.index % EVEN_AND_ODD_STANDARD == NUMBER_POSITION }
+            val numbers = numbers(numbersAndOperators.first)
+            val operators = operators(numbersAndOperators.second)
+
+            return Expression(numbers, operators)
+        }
+
+        private fun numbers(texts: List<IndexedValue<String>>): List<Int> {
+            return texts.map { (toNumbers(it.value)) }
+        }
+
+        private fun operators(texts: List<IndexedValue<String>>): List<Operator> {
+            return texts.map { it.value.toOperator() }
+        }
+
+        private fun toNumbers(numberText: String) =
+            try {
+                numberText.toInt()
+            } catch (e: NumberFormatException) {
+                throw IllegalArgumentException("올바르지 않은 숫자를 입력하였습니다. ($numberText)")
+            }
+
+        private fun String.toOperator(): Operator {
+            try {
+                return Operator.of(this)
+            } catch (e: IllegalArgumentException) {
+                throw IllegalArgumentException("올바르지 않은 연산자를 입력하였습니다. ($this)")
+            }
         }
     }
 }
