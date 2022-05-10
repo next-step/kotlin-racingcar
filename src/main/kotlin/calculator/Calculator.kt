@@ -14,17 +14,17 @@ object Calculator {
             return current
         }
 
-        val operator = lexer.next()
+        val operatorToken = lexer.next()
         val nextNumber = lexer.next()
 
         require(nextNumber is Token.Number) { "유효하지 않은 숫자입니다: $nextNumber" }
 
-        return when (operator) {
+        return when (operatorToken) {
             is Token.Plus -> process(current + nextNumber.value, lexer)
             is Token.Minus -> process(current - nextNumber.value, lexer)
             is Token.Asterisk -> process(current * nextNumber.value, lexer)
             is Token.Slash -> process(current / nextNumber.value, lexer)
-            else -> throw IllegalArgumentException("유효하지 않은 연산자입니다: $operator")
+            else -> throw IllegalArgumentException("유효하지 않은 연산자입니다: $operatorToken")
         }
     }
 }
