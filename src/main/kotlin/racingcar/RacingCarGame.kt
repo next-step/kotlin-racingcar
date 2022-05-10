@@ -1,10 +1,8 @@
 package racingcar
 
-import kotlin.random.Random
-
-class RacingCarGame(private val trialCount: Int, carCount: List<String>) {
+class RacingCarGame(private val trialCount: Int,private val seedMaker: SeedMaker, carCount: List<String>) {
     private val defaultCarGoDecide = {
-        val randomValue = Random.nextInt(DEFAULT_RANDOM_RANGE)
+        val randomValue = seedMaker.nextInt()
 
         randomValue >= DEFAULT_CAN_GO_THRESHOLD
     }
@@ -28,7 +26,6 @@ class RacingCarGame(private val trialCount: Int, carCount: List<String>) {
 
     companion object {
         private const val DEFAULT_CAN_GO_THRESHOLD = 4
-        private const val DEFAULT_RANDOM_RANGE = 10
 
         const val CAR_NAMES_INPUT_DESC = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
         const val TRIAL_NUMBER_INPUT_DESC = "시도할 횟수는 몇 회인가요?"
