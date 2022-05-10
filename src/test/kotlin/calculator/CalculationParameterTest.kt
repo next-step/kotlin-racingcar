@@ -34,18 +34,6 @@ class CalculationParameterTest {
         )
         assertThat(calculationParameter.operands).isEqualTo(listOf(10, 20, 30, 45, 67))
     }
-
-    @Test
-    fun `CalculationParameter 에 null 을 입력한 경우 에러가 발생한다`() {
-        // given
-        val nullInput = null
-
-        // then
-        assertThatThrownBy {
-            CalculationParameter(nullInput)
-        }.hasMessage(ErrorMessage.NULL_INPUT_ERROR)
-    }
-
     @Test
     fun `validateExpression 은 입력값이 공백인 경우 에러가 발생한다`() {
         // given

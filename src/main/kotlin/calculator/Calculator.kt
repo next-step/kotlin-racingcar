@@ -3,7 +3,7 @@ package calculator
 class Calculator(calculationParam: CalculationParameter) {
     private val calculationParameter = calculationParam
 
-    constructor(stringExpression: String?) : this(CalculationParameter(stringExpression))
+    constructor(stringExpression: String) : this(CalculationParameter(stringExpression))
 
     fun calculation(): Double {
         var result: Double = calculationParameter.operands[0].toDouble()
