@@ -4,12 +4,11 @@ class CarRacing {
     fun startRacing() {
         val (carCount, moveCount) = CarRacingInputView().input()
 
-        moveCars(carCount = carCount, moveCount = moveCount)
+        val cars: List<Car> = createCars(carCount)
+        moveCars(cars = cars, moveCount = moveCount)
     }
 
-    fun moveCars(carCount: Int, moveCount: Int) {
-        val cars: List<Car> = createCars(carCount)
-
+    fun moveCars(cars: List<Car>, moveCount: Int) {
         cars.forEach { car ->
             printCurrentCarMovingDistance(car.currentPosition)
         }

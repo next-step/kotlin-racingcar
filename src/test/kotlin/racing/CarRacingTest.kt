@@ -7,7 +7,7 @@ class CarRacingTest {
     @Test
     fun `레이싱을 해본다`() {
         val carRacing = CarRacing()
-        carRacing.moveCars(carCount = 3, moveCount = 5)
+        carRacing.moveCars(cars = listOf(Car(), Car(), Car()), moveCount = 5)
     }
 
     @Test
