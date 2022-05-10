@@ -14,7 +14,7 @@
 - 정수가 아닌 값을 입력한 경우 `illegalargumentexception` 발생
 
 ## 작업 내용
-- [ ] main 함수에 입력 값을 받는 로직 넣기
+- [x] main 함수에 입력 값을 받는 로직 넣기
 - [ ] 입력값 Dto 추가 및 validation 로직 추가
 - [ ] main 함수에 램덤 값을 넣는 로직 넣기
 - [ ] 자동차 클래스 추가
