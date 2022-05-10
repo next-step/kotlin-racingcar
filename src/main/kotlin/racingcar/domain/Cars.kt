@@ -11,6 +11,10 @@ class Cars(
         return cars.map { it.location }
     }
 
+    fun size(): Int {
+        return cars.size
+    }
+
     companion object {
         fun of(carCount: Int): Cars {
             return Cars((0 until carCount).map { Car() })
