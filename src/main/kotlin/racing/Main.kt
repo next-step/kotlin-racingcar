@@ -18,6 +18,5 @@ fun main() {
     repeat(tryCount) {
         cars.moveForward(CarMovingStrategy)
         ResultView.printCarPositions(cars.cars)
-        println()
     }
 }

@@ -12,6 +12,7 @@ object ResultView {
 
     fun printCarPositions(cars: List<Car>) {
         cars.forEach { printCarPosition(it.position()) }
+        println()
     }
 
     private fun printCarPosition(position: Int) {
