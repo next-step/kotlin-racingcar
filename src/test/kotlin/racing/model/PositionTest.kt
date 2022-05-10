@@ -1,7 +1,6 @@
 package racing.model
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
@@ -9,12 +8,12 @@ import org.junit.jupiter.api.Test
 class PositionTest {
 
     @Test
-    fun `자동차 위치가 0 미만이면 예외 발생`() {
-        // given, when, then
-        val exception = assertThrows(IllegalArgumentException::class.java) {
-            Position(-1)
-        }
-        assertEquals("위치값은 최소 0 이상이어야 합니다. (position: -1)", exception.message)
+    fun `자동차 위치가 0 미만이면 0으로 생성`() {
+        // given, when
+        val position = Position(-1)
+
+        // then
+        assertEquals(position.position, 0)
     }
 
     @Test

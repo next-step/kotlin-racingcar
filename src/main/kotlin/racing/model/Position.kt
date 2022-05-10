@@ -5,11 +5,7 @@ class Position(
 ) {
 
     init {
-        validateMinPosition(position)
-    }
-
-    private fun validateMinPosition(position: Int) {
-        require(position >= MIN_POSITION) { "위치값은 최소 $MIN_POSITION 이상이어야 합니다. (position: $position)" }
+        position = position.coerceAtLeast(MIN_POSITION)
     }
 
     fun plusOne() {
