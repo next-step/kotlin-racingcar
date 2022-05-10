@@ -1,11 +1,10 @@
 package calculator
 
-class CalculationParameter(expression: String?) {
+class CalculationParameter(expression: String) {
     val operators: List<Operator>
     val operands: List<Int>
 
     init {
-        expression ?: throw IllegalArgumentException(ErrorMessage.NULL_INPUT_ERROR)
         validateExpression(expression)
         operators = OPERATOR_REGEX.findAll(expression).toList().map {
             Operator.stringOf(it.groupValues[0].trim())
