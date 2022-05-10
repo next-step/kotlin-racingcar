@@ -15,7 +15,7 @@ enum class Operator(val symbol: String, val expression: (Double, Double) -> Doub
     companion object {
         fun find(operatorStr: String?): Operator {
             val operator = values().firstOrNull() { it.symbol == operatorStr }
-            return requireNotNull(operator){ ErrorMsg.OPERATOR_IS_NOT_VALID_ERROR_MSG }
+            return requireNotNull(operator) { ErrorMsg.OPERATOR_IS_NOT_VALID_ERROR_MSG }
         }
     }
 }
