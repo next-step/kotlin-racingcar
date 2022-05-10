@@ -1,11 +1,10 @@
 package car_racing
 
-import java.util.Random
+import kotlin.random.Random
 
 object RandomGenerator {
-    private const val BOUNDARY_INT = 10
+    private const val MIN = 0
+    private const val MAX = 9
 
-    private val random = Random()
-
-    fun value(): Int = random.nextInt(BOUNDARY_INT)
+    fun value(): Int = Random.nextInt(MIN, MAX)
 }
