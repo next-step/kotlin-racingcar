@@ -23,7 +23,7 @@ class PositionTest {
     }
 
     @Test
-    fun `plusOne()을 실행하면 자동차 위치가 1만큼 증가`() {
+    fun `자동차 위치가 0인 경우 앞으로 한 칸 이동하면 자동차 위치가 1로 증가`() {
         // given
         val position = Position(0)
 
