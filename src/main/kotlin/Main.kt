@@ -1,8 +1,8 @@
-import gameobj.ScoreBoard
-import gameobj.StandardInputSystem
-import gameobj.StandardOutputPainter
+import model.ScoreBoard
 import scene.InputScene
 import scene.PlayScene
+import utils.StandardInputSystem
+import utils.StandardOutputPainter
 
 fun main() {
     val output = StandardOutputPainter()

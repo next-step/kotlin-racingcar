@@ -1,4 +1,4 @@
-package gameobj
+package model
 
 import port.OutputPainter
 

@@ -1,4 +1,4 @@
-package gameobj
+package model
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
@@ -7,16 +7,6 @@ import io.kotest.matchers.shouldBe
 internal class CarTest : DescribeSpec({
 
     describe("자동차 생성") {
-        it("기본 생성시 위치는 0이다.") {
-            // given
-
-            // when
-            val car = Car.spawn()
-
-            // then
-            car shouldBe Car.spawnAt(0)
-        }
-
         it("생성 위치가 음수인 경우 IllegalArgumentException 이 발생한다.") {
             // given
             val invalidPosition = -1
@@ -35,7 +25,7 @@ internal class CarTest : DescribeSpec({
         it("무작위 값이 3 이하일 경우 정지한다.") {
             // given
             val randomValue = 3
-            val car = Car.spawn()
+            val car = Car.spawnAt(0)
 
             // when
             val movedCar = car.moveForward(randomValue)
@@ -47,7 +37,7 @@ internal class CarTest : DescribeSpec({
         it("무작위 값이 4 이상일 경우 전진한다.") {
             // given
             val randomValue = 4
-            val car = Car.spawn()
+            val car = Car.spawnAt(0)
 
             // when
             val movedCar = car.moveForward(randomValue)

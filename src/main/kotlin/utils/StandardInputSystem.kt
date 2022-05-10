@@ -1,4 +1,4 @@
-package gameobj
+package utils
 
 import port.InputSystem
 

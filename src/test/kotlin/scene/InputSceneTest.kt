@@ -1,9 +1,10 @@
 package scene
 
 import dto.InputResult
-import gameobj.OutputPainter
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
+import port.InputSystem
+import port.OutputPainter
 
 class StubOutputPainter : OutputPainter {
 

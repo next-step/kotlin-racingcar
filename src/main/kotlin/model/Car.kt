@@ -1,6 +1,6 @@
-package gameobj
+package model
 
-class Car private constructor(private val position: Int) {
+data class Car private constructor(private val position: Int) {
 
     init {
         require(0 <= this.position) { INVALID_POSITION_EXCEPTION }
@@ -20,17 +20,15 @@ class Car private constructor(private val position: Int) {
 
     companion object {
 
-        const val MOVE_BOUNDARY_VALUE = 4
+        private const val MOVE_BOUNDARY_VALUE = 4
 
-        const val MOVE_STEP_SIZE = 1
+        private const val MOVE_STEP_SIZE = 1
 
-        const val STOP = 0
+        private const val STOP = 0
 
-        const val PRINT_STEP_SIGN = "-"
+        private const val PRINT_STEP_SIGN = "-"
 
         const val INVALID_POSITION_EXCEPTION = "잘못된 위치에 자동차를 생성하였습니다."
-
-        fun spawn(): Car = spawnAt(0)
 
         fun spawnAt(position: Int): Car = Car(position)
     }
