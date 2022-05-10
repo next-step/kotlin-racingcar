@@ -1,5 +1,12 @@
 package stringCalculator
 
+import stringCalculator.Message.Companion.INPUT_CONTAINS_CHARACTER
+import stringCalculator.Message.Companion.INPUT_CONTAINS_OPERATOR_IN_A_ROW
+import stringCalculator.Message.Companion.INPUT_NOT_END_WITH_NUMBER
+import stringCalculator.Message.Companion.INPUT_NOT_START_WITH_NUMBER
+import stringCalculator.Message.Companion.INPUT_NULL_OR_BLANK
+import stringCalculator.Message.Companion.INVALID_OPERATOR
+
 class Validator {
 
     fun isValidInput(input: String?): Boolean {

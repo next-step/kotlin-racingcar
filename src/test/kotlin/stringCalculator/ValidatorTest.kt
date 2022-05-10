@@ -7,6 +7,12 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.NullAndEmptySource
+import stringCalculator.Message.Companion.INPUT_CONTAINS_CHARACTER
+import stringCalculator.Message.Companion.INPUT_CONTAINS_OPERATOR_IN_A_ROW
+import stringCalculator.Message.Companion.INPUT_NOT_END_WITH_NUMBER
+import stringCalculator.Message.Companion.INPUT_NOT_START_WITH_NUMBER
+import stringCalculator.Message.Companion.INPUT_NULL_OR_BLANK
+import stringCalculator.Message.Companion.INVALID_OPERATOR
 
 internal class ValidatorTest {
 
