@@ -26,10 +26,11 @@ class SimpleCalculator {
 
         fun putToken(token: Token) {
             val lastToken = this.lastToken
+            val currentResult = this.result ?: 0.0
             checkTokenTypeSequence(lastToken, token)
 
             if (token is TokenNumber) {
-                this.result = lastToken?.calculate(result, token.doubleValue) ?: token.doubleValue
+                this.result = lastToken?.calculate(currentResult, token.doubleValue) ?: token.doubleValue
             }
 
             this.lastToken = token
