@@ -4,9 +4,6 @@ import java.util.LinkedList
 import java.util.Queue
 
 class Calculator {
-    /**
-     * 외부로 노출되있는 함수
-     */
     fun calculate(input: String?): Int {
         if (input == null || input.isBlank() || input.isEmpty())
             throw IllegalArgumentException("입력값이 null이거나 빈 공백이 아니여야합니다.")
