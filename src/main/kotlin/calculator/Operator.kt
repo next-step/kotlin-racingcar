@@ -10,6 +10,7 @@ enum class Operator(expr: String, evaluate: (num1: Int, num2: Int) -> Int) {
         private set
     var evaluate = evaluate
         private set
+
     companion object {
         fun find(target: String): Operator {
             return values().find { it.display == target }
