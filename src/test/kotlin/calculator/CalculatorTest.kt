@@ -66,8 +66,12 @@ internal class CalculatorTest {
     }
 
     @Test
-    fun `계산 표현식 Null 또는 빈 스트링`() {
+    fun `계산 표현식 빈스트링 Exception 발생`() {
         assertThrows<IllegalArgumentException> { assertThat(Calculator.calculate("")) }
+    }
+
+    @Test
+    fun `계산 표현식 Null Exception 발생`() {
         assertThrows<IllegalArgumentException> { assertThat(Calculator.calculate(null)) }
     }
 
