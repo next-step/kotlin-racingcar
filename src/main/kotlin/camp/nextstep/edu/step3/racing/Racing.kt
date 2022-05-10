@@ -3,7 +3,7 @@ package camp.nextstep.edu.step3.racing
 class Racing private constructor(carNumber: Int, private val moveCount: Int) {
 
     private var ended = false
-    private val carTracks = HashMap<Car, Track>()
+    private val carTracks = LinkedHashMap<Car, Track>()
 
     init {
         IntRange(0, carNumber - 1).forEach {
