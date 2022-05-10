@@ -27,7 +27,11 @@ class InputView(
 class ResultView(
     private val console: (String) -> Unit
 ) {
-    fun showRecords(records: List<List<Int>>) {
+    fun showRecords(gameRecords: GameRecords) {
+        showRecords(gameRecords.records)
+    }
+
+    private fun showRecords(records: List<List<Int>>) {
         console("실행 결과:\n")
         records.forEach(::showRecord)
     }

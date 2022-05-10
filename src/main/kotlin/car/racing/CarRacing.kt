@@ -21,27 +21,32 @@ class Car(
         require(forwardThreshold in CAN_GO_FORWARD_MIN..CAN_GO_FORWARD_MAX)
         return random.nextInt(CAN_GO_FORWARD_MIN, CAN_GO_FORWARD_MAX) >= forwardThreshold
     }
-
-    companion object {
-        private const val CAN_GO_FORWARD_MIN = 0
-        private const val CAN_GO_FORWARD_MAX = 9
-        private const val CAN_GO_FORWARD_THRESHOLD = 4
-    }
+class Cars(drivers: Int) {
+    private val cars = List(size = drivers) { Car() }
+    fun getAllMove(): List<Int> = cars.map { it.moves }
+    fun runAll(): Unit = cars.forEach(Car::run)
 }
 
-class Game(
-    drivers: Int,
-    private val moves: Int
-) {
-    private val cars = List(drivers) { Car() }
-    private val records = mutableListOf<List<Int>>()
+class GameRecords {
+    private val _records = mutableListOf<List<Int>>()
+    val records: List<List<Int>>
+        get() = _records
 
-    fun play(): List<List<Int>> {
+    fun record(cars: Cars): Boolean = _records.add(cars.getAllMove())
+    fun reset(): Unit = _records.clear()
+}
+
+class Game(drivers: Int, private val moves: Int) {
+    private val cars = Cars(drivers)
+    private val gameRecords = GameRecords()
+
+    fun play(): GameRecords {
+        gameRecords.reset()
         repeat(moves) {
-            cars.forEach(Car::run)
-            records.add(cars.map { it.moves })
+            cars.runAll()
+            gameRecords.record(cars)
         }
-        return records
+        return gameRecords
     }
 }
 
