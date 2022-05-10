@@ -1,8 +1,6 @@
 package calculator
 
 class Calculator {
-    private var total = 0
-
     fun calculate(expression: String): Int {
         val elements = expression.split(" ").groupBy { isNumeric(it) }
         val numbers = elements[true]?.map { it.toInt() }
@@ -12,13 +10,9 @@ class Calculator {
             return 0
         }
 
-        this.total = numbers[0]
-
-        for ((i, v) in numbers.drop(1).withIndex()) {
-            this.total = calculate(this.total, v, operators[i])
+        return numbers.reduceIndexed { index, total, number ->
+            calculate(total, number, operators[index - 1])
         }
-
-        return this.total
     }
 
     private fun calculate(num1: Int, num2: Int, display: String): Int {
