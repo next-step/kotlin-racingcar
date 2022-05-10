@@ -10,7 +10,7 @@ class Expression(inputStr: List<String>) {
         operators = inputStr.extracts(VALID_DIGIT_PATTERN, false)
         digits = inputStr.extracts(VALID_DIGIT_PATTERN, true)
 
-        val blankCount = inputStr.stream().filter { s -> s.isBlank() }.count().toInt()
+        val blankCount = inputStr.filter { s -> s.isBlank() }.count()
         if (blankCount > 0 || operators.isEmpty() || digits.isEmpty() ||
             !operators.validate(VALID_OPERATION_PATTERN) || !digits.validate(VALID_DIGIT_PATTERN)
         ) {
