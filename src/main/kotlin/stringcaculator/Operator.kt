@@ -12,8 +12,7 @@ enum class Operator(val operator: String, val calculate: (Int, Int) -> Int) {
     companion object {
         fun of(operator: String): Operator {
             val validOperator = Operator.values().find { it.operator == operator }
-            requireNotNull(validOperator) { "Not a valid operator" }
-            return validOperator
+            return requireNotNull(validOperator) { "Not a valid operator" }
         }
     }
 }
