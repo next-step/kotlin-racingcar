@@ -30,7 +30,8 @@ internal class OperatorKtTest {
     }
 
     @Test
-    fun `0 으로 나누는 경우 exception을 던진다`() {
-        Assertions.assertThatIllegalArgumentException()
+    fun `0 으로 나누는 경우 div by zero로 ArithmeticException을 던진다`() {
+        Assertions.assertThatThrownBy { divide(1, 0) }
+            .isInstanceOf(java.lang.ArithmeticException::class.java)
     }
 }
