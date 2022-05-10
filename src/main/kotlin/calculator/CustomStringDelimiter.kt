@@ -1,6 +1,6 @@
 package calculator
 
-class StringCalculator(value: String?) {
+class CustomStringDelimiter(value: String?) {
 
     companion object {
         private const val DELIMITER: String = " "
