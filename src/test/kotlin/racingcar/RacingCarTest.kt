@@ -13,7 +13,7 @@ class RacingCarTest {
         game.play()
 
         repeat(input) {
-            val carSize = game.getGameResult()[0].size
+            val carSize = game.gameResults.gameResult[0].size
 
             assertThat(carSize).isEqualTo(input)
         }
@@ -26,7 +26,7 @@ class RacingCarTest {
         val game = RacingCarGame(defaultCar, input)
         game.play()
 
-        val carSize = game.getGameResult().size
+        val carSize = game.gameResults.gameResult.size
 
         assertThat(carSize).isEqualTo(input)
     }
