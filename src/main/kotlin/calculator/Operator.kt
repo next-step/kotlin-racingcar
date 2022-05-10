@@ -1,10 +1,10 @@
 package calculator
 
 enum class Operator(expr: String, evaluate: (num1: Int, num2: Int) -> Int) {
-    PLUS("+", { num1: Int, num2: Int -> num1 + num2 }),
-    MINUS("-", { num1: Int, num2: Int -> num1 - num2 }),
-    MULTIPLY("*", { num1: Int, num2: Int -> num1 * num2 }),
-    DIVIDE("/", { num1: Int, num2: Int -> num1 / num2 });
+    PLUS("+", { num1, num2 -> num1 + num2 }),
+    MINUS("-", { num1, num2 -> num1 - num2 }),
+    MULTIPLY("*", { num1, num2 -> num1 * num2 }),
+    DIVIDE("/", { num1, num2 -> num1 / num2 });
 
     var display: String = expr
         private set
