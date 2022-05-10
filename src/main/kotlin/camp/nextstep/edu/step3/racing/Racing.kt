@@ -6,8 +6,8 @@ class Racing private constructor(carNumber: Int, private val moveCount: Int) {
     private val carTracks = LinkedHashMap<Car, Track>()
 
     init {
-        IntRange(0, carNumber - 1).forEach {
-            carTracks[Car(it)] = Track(moveCount)
+        for (id in 0 until carNumber) {
+            carTracks[Car(id)] = Track(moveCount)
         }
     }
 
