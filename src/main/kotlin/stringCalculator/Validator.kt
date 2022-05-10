@@ -24,7 +24,8 @@ class Validator {
     }
 
     private fun containsNonOperator(input: String?): Boolean {
-        input?.forEach { c: Char ->
+        val inputWithOutBlank = input?.replace(" ", "")
+        inputWithOutBlank?.forEach { c: Char ->
             if (!c.isDigit() && !isOperator(c)) return true
         }
         return false
@@ -46,7 +47,7 @@ class Validator {
     }
 
     private fun isOperator(c: Char?): Boolean {
-        return (c == '+' || c == '-' || c == '*' || c == '/' || c == ' ')
+        return (c == '+' || c == '-' || c == '*' || c == '/')
     }
 
     private fun isNumber(input: String): Boolean {
