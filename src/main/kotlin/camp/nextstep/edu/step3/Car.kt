@@ -1,10 +1,11 @@
 package camp.nextstep.edu.step3
 
+import java.time.Instant.now
 import kotlin.random.Random
 
 class Car(val id: Int) {
 
-    private val engine: Engine = Engine(id)
+    private val engine: Engine = Engine(id * now().nano)
 
     fun raceOn(track: Track, moveCount: Int) {
         IntRange(0, moveCount - 1).forEach { _ ->
