@@ -18,7 +18,7 @@ class CalculationParameter(expression: String) {
         val result: Int
 
         try {
-            result = Integer.parseInt(spaceRemove(stringOperand))
+            result = Integer.parseInt(removeSpace(stringOperand))
         } catch (e: IllegalArgumentException) {
             throw IllegalArgumentException(ErrorMessage.getParseIntErrorMessage(stringOperand))
         }
@@ -31,7 +31,7 @@ class CalculationParameter(expression: String) {
         private val EXPRESSION_REGEX = Regex("([0-9]|[+-/*])+")
 
         fun validateExpression(arithmeticExpression: String) {
-            val trimmedExpression = spaceRemove(arithmeticExpression)
+            val trimmedExpression = removeSpace(arithmeticExpression)
 
             if (trimmedExpression.isEmpty()) throw IllegalArgumentException(ErrorMessage.SPACE_INPUT_ERROR)
             if (!EXPRESSION_REGEX.matches(trimmedExpression)) throw IllegalArgumentException(ErrorMessage.OTHER_STRING_INPUT_ERROR)
@@ -40,7 +40,7 @@ class CalculationParameter(expression: String) {
             if (isNotMatchOperatorOperandCount(operatorCount, operandCount)) throw IllegalArgumentException(ErrorMessage.NOT_MATCH_OPERAND_COUNT)
         }
 
-        private fun spaceRemove(stringValue: String): String {
+        private fun removeSpace(stringValue: String): String {
             return stringValue.replace("\\s".toRegex(), "")
         }
 
