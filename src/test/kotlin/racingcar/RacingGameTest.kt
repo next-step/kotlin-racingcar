@@ -50,7 +50,7 @@ class RacingGameTest : DescribeSpec({
     }
 
     describe("report") {
-        it("게임 보고서를 만들 수 있다") {
+        it("게임 보고서를 조회할 수 있다") {
             val sut = RacingGame(Cars(listOf(Car())), 2)
             sut.report() shouldNotBe null
         }
