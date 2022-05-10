@@ -57,7 +57,11 @@ internal class ValidatorTest {
             Arguments.of("1 = 2", INVALID_OPERATOR),
             Arguments.of("+ 2 * 3", INPUT_NOT_START_WITH_NUMBER),
             Arguments.of("1 + 2 *", INPUT_NOT_END_WITH_NUMBER),
-            Arguments.of("1 + 2 *", INPUT_CONTAINS_CHARACTER)
+            Arguments.of("1 + 2 *", INPUT_CONTAINS_CHARACTER),
+            Arguments.of("1 + 2 *", INPUT_CONTAINS_CHARACTER),
+            Arguments.of("12 + / 20 + 3", INPUT_CONTAINS_OPERATOR_IN_A_ROW),
+            Arguments.of("12 45 / 20 + 3", INPUT_CONTAINS_OPERATOR_IN_A_ROW)
+
         )
     }
 }

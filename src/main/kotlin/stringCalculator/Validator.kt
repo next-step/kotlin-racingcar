@@ -8,6 +8,7 @@ class Validator {
         startWithNumber(input)?.let { require(it) { INPUT_NOT_START_WITH_NUMBER } }
         endWithNumber(input)?.let { require(it) { INPUT_NOT_END_WITH_NUMBER } }
         require(!containsCharacter(input)) { INPUT_CONTAINS_CHARACTER }
+        require(!isOperatorOrNumberInARow(input)) { INPUT_CONTAINS_OPERATOR_IN_A_ROW }
         return true
     }
 
@@ -39,5 +40,27 @@ class Validator {
 
     private fun isOperator(c: Char?): Boolean {
         return (c == '+' || c == '-' || c == '*' || c == '/' || c == ' ')
+    }
+
+    private fun isNumber(input: String): Boolean {
+        input.forEach { n: Char -> if (!n.isDigit()) return false }
+        return true
+    }
+
+    fun isOperatorOrNumberInARow(input: String?): Boolean {
+        val inputList = input?.split(" ")
+        var checkIfOperatorInARow = 0
+        if (inputList != null) {
+            for (item in inputList) {
+                if (isNumber(item)) {
+                    checkIfOperatorInARow++
+                    if (checkIfOperatorInARow != 1) return true
+                    continue
+                }
+                checkIfOperatorInARow--
+                if (checkIfOperatorInARow != 0) return true
+            }
+        }
+        return false
     }
 }
