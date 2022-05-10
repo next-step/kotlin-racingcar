@@ -6,6 +6,10 @@ class Racing private constructor(val carNumber: Int, val moveCount: Int) {
         TODO()
     }
 
+    fun result(): Map<Car, Track> {
+        TODO("Not yet implemented")
+    }
+
     companion object {
         fun new(carNumber: Int, moveCount: Int): Racing {
             TODO()
