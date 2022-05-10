@@ -1,6 +1,9 @@
 package racinggame.domain
 
-class Car(private val engine: Engine) {
+class Car(
+    val name: String,
+    private val engine: Engine
+) {
     var proceedLevel = INITIAL_PROCEED_LEVEL
         private set
 
