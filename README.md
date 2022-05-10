@@ -83,7 +83,7 @@
 - [x] 첫 자동차 위치 버그 수정
 - [x] 자동차를 움직이는 로직을 외부에서 주입
 - [x] 테스트에 상수 명확하게 이해할 수 있게 처리
-- [ ] 출력 문자열 상수로 변경
+- [x] 출력 문자열 상수로 변경
 - [ ] companion object to object class
 - [ ] 숫자체크 require만으로 변경
 - [ ] RacingCarGame에서 랜덤값을 주입하면 .. RacingCarGame에 결과에 대한 테스트는 어떻게할지 고민

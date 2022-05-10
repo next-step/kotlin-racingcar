@@ -3,8 +3,8 @@ package racingcar
 
 fun main() {
     val inputView = InputView()
-    val carCount = inputView.getNaturalNumberInput("자동차 대수는 몇 대인가요?")
-    val trialCount =  inputView.getNaturalNumberInput("시도할 횟수는 몇 회인가요?")
+    val carCount = inputView.getNaturalNumberInput(RacingCarGame.CAR_NUMBER_INPUT_DESC)
+    val trialCount =  inputView.getNaturalNumberInput(RacingCarGame.TRIAL_NUMBER_INPUT_DESC)
 
     val racingCarGame = RacingCarGame(carCount, trialCount)
     racingCarGame.play()
