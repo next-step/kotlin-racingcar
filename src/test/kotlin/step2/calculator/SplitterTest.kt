@@ -8,13 +8,10 @@ class SplitterTest : DescribeSpec({
 
     describe("덧셈 문자열 분리") {
         it("덧셈 이항식일 경우 숫자와 연산자를 분리한다.") {
-            // given
-            val expression = "3 + 4"
+            val expression = listOf<String>("3", "+", "4")
 
-            // when
             val splitter = Splitter(expression)
 
-            // then
             splitter.left shouldBe 3
             splitter.right shouldBe 4
             splitter.operator shouldBe Operator.PLUS
@@ -22,13 +19,10 @@ class SplitterTest : DescribeSpec({
         }
 
         it("덧셈 삼항식일 경우 숫자, 연산자, 나머지 식을 분리한다.") {
-            // given
-            val expression = "3 + 4 + 5"
+            val expression = listOf<String>("3", "+", "4", "+", "5")
 
-            // when
             val splitter = Splitter(expression)
 
-            // then
             splitter.left shouldBe 3
             splitter.right shouldBe 4
             splitter.operator shouldBe Operator.PLUS
@@ -39,13 +33,10 @@ class SplitterTest : DescribeSpec({
 
     describe("뺄셈 문자열 분리") {
         it("뺄셈 이항식일 경우 숫자와 연산자를 분리한다.") {
-            // given
-            val expression = "3 - 4"
+            val expression = listOf<String>("3", "-", "4")
 
-            // when
             val splitter = Splitter(expression)
 
-            // then
             splitter.left shouldBe 3
             splitter.right shouldBe 4
             splitter.operator shouldBe Operator.MINUS
@@ -53,13 +44,10 @@ class SplitterTest : DescribeSpec({
         }
 
         it("뺄셈 삼항식일 경우 숫자, 연산자, 나머지 식을 분리한다.") {
-            // given
-            val expression = "3 - 4 - 5"
+            val expression = listOf<String>("3", "-", "4", "-", "5")
 
-            // when
             val splitter = Splitter(expression)
 
-            // then
             splitter.left shouldBe 3
             splitter.right shouldBe 4
             splitter.operator shouldBe Operator.MINUS
@@ -70,13 +58,10 @@ class SplitterTest : DescribeSpec({
 
     describe("곱셈 문자열 분리") {
         it("곱셈 이항식일 경우 숫자와 연산자를 분리한다.") {
-            // given
-            val expression = "3 * 4"
+            val expression = listOf<String>("3", "*", "4")
 
-            // when
             val splitter = Splitter(expression)
 
-            // then
             splitter.left shouldBe 3
             splitter.right shouldBe 4
             splitter.operator shouldBe Operator.MULTIPLE
@@ -84,13 +69,10 @@ class SplitterTest : DescribeSpec({
         }
 
         it("곱셈 삼항식일 경우 숫자, 연산자, 나머지 식을 분리한다.") {
-            // given
-            val expression = "3 * 4 * 5"
+            val expression = listOf<String>("3", "*", "4", "*", "5")
 
-            // when
             val splitter = Splitter(expression)
 
-            // then
             splitter.left shouldBe 3
             splitter.right shouldBe 4
             splitter.operator shouldBe Operator.MULTIPLE
@@ -101,13 +83,10 @@ class SplitterTest : DescribeSpec({
 
     describe("나눗셈 문자열 분리") {
         it("나눗셈 이항식일 경우 숫자와 연산자를 분리한다.") {
-            // given
-            val expression = "3 / 4"
+            val expression = listOf<String>("3", "/", "4")
 
-            // when
             val splitter = Splitter(expression)
 
-            // then
             splitter.left shouldBe 3
             splitter.right shouldBe 4
             splitter.operator shouldBe Operator.DIVIDE
@@ -115,13 +94,10 @@ class SplitterTest : DescribeSpec({
         }
 
         it("나눗셈 삼항식일 경우 숫자, 연산자, 나머지 식을 분리한다.") {
-            // given
-            val expression = "3 / 4 / 5"
+            val expression = listOf<String>("3", "/", "4", "/", "5")
 
-            // when
             val splitter = Splitter(expression)
 
-            // then
             splitter.left shouldBe 3
             splitter.right shouldBe 4
             splitter.operator shouldBe Operator.DIVIDE
@@ -131,55 +107,43 @@ class SplitterTest : DescribeSpec({
     }
 
     describe("에러 처리") {
-//    it("입력 값이 null 인 경우 IllegalArgumentException 를 던진다.") {
-//      // given
-//      val input: String = null!!
-//
-//      // when
-//      val exception = shouldThrow<IllegalArgumentException> {
-//        Splitter(input)
-//      }
-//
-//      // then
-//      exception.message shouldBe "유효하지 않은 입력 값입니다."
-//    }
+        it("입력 값이 null 인 경우 IllegalArgumentException 를 던진다.") {
+            val input = null
 
-        it("입력 값이 빈 문자열인 경우 IllegalArgumentException 를 던진다.") {
-            // given
-            val input = ""
-
-            // when
             val exception = shouldThrow<IllegalArgumentException> {
                 Splitter(input)
             }
 
-            // then
+            exception.message shouldBe "유효하지 않은 입력 값입니다."
+        }
+
+        it("입력 값이 빈 문자열인 경우 IllegalArgumentException 를 던진다.") {
+            val input = listOf("")
+
+            val exception = shouldThrow<IllegalArgumentException> {
+                Splitter(input)
+            }
+
             exception.message shouldBe "유효하지 않은 입력 값입니다."
         }
 
         it("입력 값의 사칙연산 기호가 잘못된 경우 IllegalArgumentException 를 던진다.") {
-            // given
-            val input = "5 % 3"
+            val input = listOf("5", "%", "3")
 
-            // when
             val exception = shouldThrow<IllegalArgumentException> {
                 Splitter(input)
             }
 
-            // then
             exception.message shouldBe "유효하지 않은 입력 값입니다."
         }
 
         it("입력 값의 띄어쓰기가 잘못된 경우 IllegalArgumentException 를 던진다.") {
-            // given
-            val input = "5  + 3"
+            val input = listOf("5", " ", "+", "3")
 
-            // when
             val exception = shouldThrow<IllegalArgumentException> {
                 Splitter(input)
             }
 
-            // then
             exception.message shouldBe "유효하지 않은 입력 값입니다."
         }
     }
