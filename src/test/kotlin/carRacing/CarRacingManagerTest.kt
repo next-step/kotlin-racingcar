@@ -1,4 +1,5 @@
 package carRacing
+
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
@@ -49,9 +50,8 @@ class CarRacingManagerTest : StringSpec({
 
 })
 
+class CarRacingManagerForTest : CarRacingManager() {
 
-class CarRacingManagerForTest: CarRacingManager() {
-    
     override fun getMonitoringInformation(): String {
         return "test"
     }

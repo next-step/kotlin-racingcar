@@ -1,18 +1,18 @@
 package carRacing
 
-class RandomNumberCarRacingManager: CarRacingManager {
+class RandomNumberCarRacingManager : CarRacingManager {
 
     constructor() {}
 
     constructor(inputDto: InputDto) {
         var inputCars = emptyList<Car>()
-        for (index in 1 .. inputDto.carCount) {
+        for (index in 1..inputDto.carCount) {
             inputCars = inputCars + Car()
         }
         cars = inputCars
     }
 
-     override fun getMonitoringInformation(): String {
+    override fun getMonitoringInformation(): String {
         var result = ""
         for ((index, car) in cars.withIndex()) {
             result += getMonitoringFormatBy(car.distance)
@@ -23,7 +23,6 @@ class RandomNumberCarRacingManager: CarRacingManager {
 
         return result
     }
-
 
     fun tryMoveCar(carIndex: Int, randomInt: Int) {
         validateCarsIndex(carIndex)
