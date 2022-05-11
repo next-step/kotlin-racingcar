@@ -2,6 +2,7 @@ package racing
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
@@ -18,5 +19,10 @@ class CarRacingGameTest {
     fun `자동차 이동 테스트`(value: Int, expect: Int) {
         car.move(value)
         assertThat(car.position).isEqualTo(expect)
+    }
+
+    @Test
+    fun `랜덤값 범위 테스트`() {
+        assertThat(RandomGenerator.generate()).isBetween(0, 9)
     }
 }
