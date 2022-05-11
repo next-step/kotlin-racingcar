@@ -20,7 +20,7 @@ internal class ValidatorTest {
 
     @ParameterizedTest
     @MethodSource("correctTestcase")
-    fun `정상 회로 확인 - 입력값이 정상적인 수식일 경우 validate 결과는 true 이다`(input: String, expected: Boolean) {
+    fun `입력값이 정상적인 수식일 경우 validate 결과는 true 이다`(input: String, expected: Boolean) {
         val result = validator.isValidInput(input)
         Assertions.assertThat(result).isEqualTo(expected)
     }
@@ -42,7 +42,7 @@ internal class ValidatorTest {
 
     @ParameterizedTest
     @MethodSource("edgeTestcase")
-    fun `엣지케이스 입력값이 들어 갈 경우 IllegalArgumentException 와 메시지를 출력한다`(
+    fun `유효하지 않은 입력값이 들어 갈 경우 IllegalArgumentException 와 메시지를 출력한다`(
         input: String,
         errorMessage: String
     ) {
