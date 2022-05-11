@@ -20,8 +20,6 @@ class RacingGame(
         }
     }
 
-    private val result = mutableListOf<List<Int>>()
-
     private val cars: Cars = Cars(
         List(numOfPlayer) {
             Car(
@@ -33,6 +31,7 @@ class RacingGame(
     )
 
     fun play(): List<List<Int>> {
+        val result = mutableListOf<List<Int>>()
         repeat(numOfMove) {
             cars.run()
             result.add(cars.getPositions())
