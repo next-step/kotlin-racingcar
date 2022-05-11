@@ -10,7 +10,7 @@ class RacingGame(
     }
 
     fun play(): GameRecord {
-        val raceRecords = ArrayList<RaceRecord>()
+        val raceRecords = mutableListOf<RaceRecord>()
 
         repeat(numberOfRaces) {
             raceRecords.add(racingCars.race())
