@@ -1,8 +1,8 @@
 package study
 
+import calculator.isNumeric
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.shouldBe
-import calculator.isNumeric
 
 class ListTest : AnnotationSpec() {
     @Test
