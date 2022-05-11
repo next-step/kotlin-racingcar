@@ -5,8 +5,7 @@ class RacingGame(
     private var laps: Int,
     private val movingStrategy: MovingStrategy = DefaultStrategy()
 ) {
-    private val _lapReports: MutableList<List<Int>> = mutableListOf()
-    val lapReports get() = _lapReports
+    val report = RacingGameReport()
 
     fun start() {
         if (!isNotEnd()) throw IllegalStateException("이미 종료된 레이스입니다.")
@@ -16,7 +15,7 @@ class RacingGame(
     }
 
     private fun writeReport() {
-        _lapReports.add(cars.location().map { it.value })
+        report.add(LapReport(cars.nameWithLocation()))
     }
 
     fun isNotEnd(): Boolean {
