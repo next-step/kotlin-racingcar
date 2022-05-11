@@ -13,8 +13,8 @@ class CarTest : DescribeSpec({
   it("이동시 거리가 1 증가한다.") {
     val car = Car(3)
 
-    car.move()
+    val movedCar = car.move()
 
-    car.distance shouldBe 4
+    movedCar.distance shouldBe 4
   }
 })
