@@ -1,5 +1,5 @@
 package racing
 
 fun main() {
-    CarRacing().run()
+    CarRacing().run(RacingInputReceiver.receive())
 }

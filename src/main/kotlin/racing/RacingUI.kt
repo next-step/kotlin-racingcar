@@ -1,6 +1,6 @@
 package racing
 
-class RacingUI {
+object RacingUI {
 
     fun drawCars(cars: List<Car>) {
         cars.forEach { car ->

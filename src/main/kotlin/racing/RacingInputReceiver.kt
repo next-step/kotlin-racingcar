@@ -1,6 +1,6 @@
 package racing
 
-class RacingInputReceiver {
+object RacingInputReceiver {
 
     @Throws(IllegalArgumentException::class)
     fun receive(): UserInput {

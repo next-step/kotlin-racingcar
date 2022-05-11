@@ -1,28 +1,34 @@
 package racing
 
-import kotlin.random.Random
+class CarRacing(
+    private val carMaxPower: Int = DEFAULT_MAX_POWER,
+    private val powerStrategy: PowerStrategy = RandomPowerStrategy(carMaxPower)
+) {
+    fun run(userInput: UserInput) {
+        val cars = createCars(userInput.carNames)
 
-class CarRacing(private val carMaxPower: Int = DEFAULT_MAX_POWER) {
-
-    private val inputReceiver = RacingInputReceiver()
-    private val ui = RacingUI()
-
-    fun run() {
-        val input = inputReceiver.receive()
-        val cars = input.carNames.map { Car(it) }
-
-        play(cars, input.moveCount)
-
-        ui.drawWinners(findWinners(cars))
+        play(cars, userInput.moveCount)
     }
 
     private fun play(cars: List<Car>, moveCount: Int) {
+        RacingUI.drawCars(cars)
+
         repeat(moveCount) {
-            cars.forEach {
-                it.move(Random.nextInt(carMaxPower))
-            }
-            ui.drawCars(cars)
+            nextTurn(cars)
+            RacingUI.drawCars(cars)
         }
+
+        RacingUI.drawWinners(findWinners(cars))
+    }
+
+    private fun createCars(carNames: List<String>): List<Car> {
+        return carNames.map { name ->
+            Car(name = name, powerStrategy = powerStrategy)
+        }
+    }
+
+    private fun nextTurn(cars: List<Car>) {
+        cars.forEach(Car::move)
     }
 
     private fun findWinners(cars: List<Car>): List<Car> {
