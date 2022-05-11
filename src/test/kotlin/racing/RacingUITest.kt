@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 import java.util.stream.Stream
+import kotlin.random.Random
 
 class RacingUITest {
 
@@ -23,10 +24,10 @@ class RacingUITest {
 
     @ParameterizedTest
     @ArgumentsSource(CarStateArgumentsProvider::class)
-        /* ex) 이동 한칸 "-" 로 표시 / 시작 지점 "-" 로 표시
-        --
-        -
-        ---
+        /* ex) 이름 표시 + ":" + 이동 한칸 "-" 로 표시 / 시작 지점 "-" 로 표시
+        David : --
+        Alora : -
+        User : ---
 
          */
     fun `차량의 현재 상태를 출력한다`(cars: List<Car>, expect: String) {
@@ -36,16 +37,28 @@ class RacingUITest {
     }
 
     class CarStateArgumentsProvider : ArgumentsProvider {
+        private val names = listOf("Andy", "Bruce", "Clara", "David", "Echo", "Flora")
+        private val random = Random(123456789)
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> {
-            return Stream.of(
-                Arguments.of(generateCars(listOf(1, 2, 3)), "--\n---\n----\n\n"),
-                Arguments.of(generateCars(listOf(0, 0)), "-\n-\n\n"),
-                Arguments.of(generateCars(listOf(0, 5, 3, 2, 0)), "-\n------\n----\n---\n-\n\n")
-            )
+            val stream = Stream.builder<Arguments>()
+
+            repeat(3) {
+                val cars = generateCars()
+                stream.add(Arguments.of(cars, generateExcept(cars)))
+            }
+            return stream.build()
         }
 
-        private fun generateCars(moveList: List<Int>): List<Car> {
-            return moveList.map { Car(name = "", startPosition = it) }
+        private fun generateCars(): List<Car> {
+            val carNames = names.shuffled(random).take(random.nextInt(8))
+
+            return carNames.map { Car(name = it, startPosition = random.nextInt(10)) }
+        }
+
+        private fun generateExcept(cars: List<Car>): String {
+            return cars.joinToString(separator = "\n", postfix = "\n\n") { car ->
+                "${car.name} : ${"-".repeat(car.position + 1)}"
+            }
         }
     }
 }
