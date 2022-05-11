@@ -24,10 +24,10 @@ internal class ScoreBoardTest : DescribeSpec({
                 Car.spawnAt(2),
                 Car.spawnAt(3),
             )
-            val scoreBoard = ScoreBoard(stubPainter, cars)
+            val scoreBoard = ScoreBoard(stubPainter)
 
             // when
-            scoreBoard.draw()
+            scoreBoard.draw(cars)
 
             // then
             stubPainter.outputBuffer.size shouldBe 3
@@ -44,10 +44,10 @@ internal class ScoreBoardTest : DescribeSpec({
                 Car.spawnAt(2),
                 Car.spawnAt(3),
             )
-            val scoreBoard = ScoreBoard(stubPainter, cars)
+            val scoreBoard = ScoreBoard(stubPainter)
 
             // when
-            scoreBoard.draw()
+            scoreBoard.draw(cars)
 
             // then
             stubPainter.outputBuffer.size shouldBe 3
@@ -60,10 +60,10 @@ internal class ScoreBoardTest : DescribeSpec({
             // given
             val stubPainter = StubPainter()
             val cars = emptyList<Car>()
-            val scoreBoard = ScoreBoard(stubPainter, cars)
+            val scoreBoard = ScoreBoard(stubPainter)
 
             // when
-            scoreBoard.draw()
+            scoreBoard.draw(cars)
 
             // then
             stubPainter.outputBuffer.size shouldBe 0

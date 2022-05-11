@@ -1,33 +1,33 @@
 package scene
 
-import dto.InputResult
+import model.Car
 import model.ScoreBoard
-import port.OutputPainter
 
 class PlayScene(
-    private val outputPainter: OutputPainter,
-    private val inputResult: InputResult,
-) : Iterator<ScoreBoard> {
+    private val scoreBoard: ScoreBoard,
+) : Scene() {
 
     var currentRound = 0
 
-    private var cars = inputResult.cars
+    private var cars: List<Car>
 
-    override fun hasNext(): Boolean = currentRound < inputResult.round
-
-    override fun next(): ScoreBoard {
-        prev()
-        update()
-        return ScoreBoard(outputPainter, cars)
+    init {
+        cars = (1..player).map { Car.spawnAt(0) }
     }
 
-    private fun update() {
+    override fun before() {
+        currentRound++
+    }
+
+    override fun update() {
         cars = cars.map {
             it.moveForward(4)
         }
     }
 
-    private fun prev() {
-        currentRound++
+    override fun after() {
+        scoreBoard.draw(cars)
     }
+
+    override fun hasNext(): Boolean = currentRound < round
 }
