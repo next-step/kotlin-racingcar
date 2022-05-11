@@ -8,15 +8,15 @@ internal class CarTest {
 
     @Test
     fun `차가 한 칸 이동한다`() {
-        val car = Car(id = 0)
-        val movedCar = car.moveForward { true }
-        assertThat(movedCar.position).isEqualTo(1)
+        val car = Car(id = 0, movingStrategy = { true })
+        val result = car.moveForward()
+        assertThat(result.position).isEqualTo(1)
     }
 
     @Test
     fun `차가 한 칸 이동하지 않고 정지한다`() {
-        val car = Car(id = 1)
-        val notMovedCar = car.moveForward { false }
-        assertThat(notMovedCar.position).isEqualTo(0)
+        val car = Car(id = 1, movingStrategy = { false })
+        val result = car.moveForward()
+        assertThat(result.position).isEqualTo(0)
     }
 }

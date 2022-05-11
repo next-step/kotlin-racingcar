@@ -2,9 +2,11 @@ package racingcar
 
 import racingcar.model.Car
 import racingcar.model.Cars
+import racingcar.model.RandomValueMovingStrategy
 import racingcar.model.TryNumber
 import racingcar.view.Input
 import racingcar.view.Output
+import kotlin.random.Random
 
 class RacingGame(
     val input: Input,
@@ -35,11 +37,12 @@ class RacingGame(
 }
 
 fun main() {
+    val movingStrategy = { RandomValueMovingStrategy(Random.nextInt(Car.MAX_BOUND)).forwardMovable() }
     val racingGame = RacingGame(
         input = Input(),
         output = Output(),
         carFactory = CarFactory { carCount ->
-            Cars(List(carCount.count) { Car(id = it) })
+            Cars(List(carCount.count) { Car(id = it, movingStrategy = movingStrategy) })
         }
     )
 }
