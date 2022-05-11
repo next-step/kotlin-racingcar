@@ -45,5 +45,6 @@ fun main() {
             Cars(List(carCount.count) { Car(id = it, movingStrategy = movingStrategy) })
         }
     )
+    racingGame.startGame()
 }
 
