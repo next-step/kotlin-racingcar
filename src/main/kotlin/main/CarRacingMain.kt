@@ -24,6 +24,6 @@ fun main() {
     val game = CarRacing.newGame(driverNames = driverNames, moves = moves)
     val records = game.play()
 
-    val resultView = ResultView(::print)
-    resultView.showRecords(records)
+    val resultView = ResultView(console = ::print)
+    resultView.showRecords(gameRecords = records)
 }

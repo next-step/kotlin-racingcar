@@ -3,22 +3,32 @@ package car.racing
 class ResultView(private val console: (String) -> Unit) {
 
     fun showRecords(gameRecords: GameRecords) {
-        showRecords(gameRecords.records)
+        if (gameRecords.isRecorded()) {
+            showRecords(gameRecords.records)
+        } else {
+            showNoRecords()
+        }
     }
 
-    private fun showRecords(records: List<List<Int>>) {
+    private fun showRecords(records: List<List<Record>>) {
         console("실행 결과:\n")
         records.forEach(::showRecord)
     }
 
-    private fun showRecord(record: List<Int>) {
-        record.forEach { move ->
-            repeat(move) {
+    private fun showRecord(records: List<Record>) {
+        records.forEach { record ->
+            console("${record.driverName} : ")
+            repeat(record.moves) {
                 console(DISPLAY_MOVEMENT)
             }
             showEmptyLine()
         }
         showEmptyLine()
+    }
+
+
+    private fun showNoRecords() {
+        console("유효한 경기 기록이 없습니다.")
     }
 
     private fun showEmptyLine() = console("\n")
