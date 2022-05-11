@@ -1,4 +1,4 @@
-package racingcar.view.input.validator
+package racingcar.view.input.parser
 
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
@@ -6,13 +6,13 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
-internal class IntInputValidatorTest {
+internal class IntInputParserTest {
     @Test
     internal fun testForNotANumber() {
-        val validator = IntInputValidator()
+        val inputParser = IntInputParser()
 
         Assertions.assertThatThrownBy {
-            validator.parseValue("test")
+            inputParser.parseValue("test")
         }.hasMessageFindingMatch("숫자로")
     }
 
@@ -23,9 +23,9 @@ internal class IntInputValidatorTest {
         "0,300,-5" // "minus" case
     )
     internal fun testForRangeError(startOfRange: Int, endOfRange: Int, inputString: String) {
-        val validator = IntInputValidator(startOfRange..endOfRange)
+        val inputParser = IntInputParser(startOfRange..endOfRange)
         Assertions.assertThatThrownBy {
-            validator.parseValue(inputString)
+            inputParser.parseValue(inputString)
         }.hasMessageFindingMatch("$startOfRange ~ $endOfRange 사이 값")
     }
 
@@ -36,9 +36,9 @@ internal class IntInputValidatorTest {
         "10,-100" // minus case
     )
     internal fun testForGreaterThanError(minInputValue: Int, inputString: String) {
-        val validator = IntInputValidator(greaterThan = minInputValue)
+        val inputParser = IntInputParser(greaterThan = minInputValue)
         Assertions.assertThatThrownBy {
-            validator.parseValue(inputString)
+            inputParser.parseValue(inputString)
         }.hasMessageFindingMatch("$minInputValue 보다 큰")
     }
 
@@ -50,8 +50,8 @@ internal class IntInputValidatorTest {
     )
     internal fun testForRangeOk(startOfRange: Int, endOfRange: Int, inputString: String) {
         val expected = inputString.toInt()
-        val validator = IntInputValidator(startOfRange..endOfRange)
-        assertThat(validator.parseValue(inputString)).isEqualTo(expected)
+        val inputParser = IntInputParser(startOfRange..endOfRange)
+        assertThat(inputParser.parseValue(inputString)).isEqualTo(expected)
     }
 
     @Test
@@ -60,7 +60,7 @@ internal class IntInputValidatorTest {
         val inputString = "101"
         val expected = 101
 
-        val validator = IntInputValidator(greaterThan = minInputValue)
-        assertThat(validator.parseValue(inputString)).isEqualTo(expected)
+        val inputParser = IntInputParser(greaterThan = minInputValue)
+        assertThat(inputParser.parseValue(inputString)).isEqualTo(expected)
     }
 }

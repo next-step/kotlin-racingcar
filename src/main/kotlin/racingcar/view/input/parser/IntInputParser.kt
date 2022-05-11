@@ -1,6 +1,6 @@
-package racingcar.view.input.validator
+package racingcar.view.input.parser
 
-class IntInputValidator(private val range: IntRange = Int.MIN_VALUE..Int.MAX_VALUE) : InputValidator<Int> {
+class IntInputParser(private val range: IntRange = Int.MIN_VALUE..Int.MAX_VALUE) : InputParser<Int> {
 
     companion object {
         private const val ERROR_MESSAGE_NO_NUMBER = "숫자로 입력해 주세요."
