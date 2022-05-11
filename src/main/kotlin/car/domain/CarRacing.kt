@@ -7,7 +7,7 @@ class CarRacing {
 
     fun race(numberOfCar: NumberOfCar, tryCount: TryCount): Cars {
         val cars = Cars(numberOfCar)
-        (0..tryCount.value).forEach {
+        repeat(tryCount.value) {
             cars.move(RandomMovingStrategy())
         }
         return cars

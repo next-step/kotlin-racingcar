@@ -1,12 +1,14 @@
 package car.domain
 
-class Car {
-    var position: Int = 0
+class Car(
+    _position: Position
+) {
+    var position: Position = _position
         private set
 
     fun move(movingStrategy: MovingStrategy) {
         if (movingStrategy.movable()) {
-            position += 1
+            position = position.increase()
         }
     }
 }
