@@ -1,7 +1,7 @@
 package racingcar.domain
 
 class LapReport(
-    private val lapReport: List<Pair<CarName, Location>>
+    val lapReport: List<Pair<CarName, Location>>
 ) {
     fun winner(): List<CarName> {
         val topLocation = topLocation()
