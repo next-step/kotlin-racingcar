@@ -53,11 +53,8 @@ class DriverTest {
         for (i in 0 until 100) {
             if (i / 2 == 0) {
                 testCar.move()
-            } else {
-                testCar.stop()
             }
         }
-
         assertThat(testDriver.getMoveResult()).isEqualTo(testCar.currentDrivingRecord)
     }
 }
