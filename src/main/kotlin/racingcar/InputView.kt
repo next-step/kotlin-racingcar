@@ -5,7 +5,7 @@ class InputView {
         var trialCountInput: String
         do {
             trialCountInput = getInputWithMessage(msg)
-        } while (isUserTypedNaturalNumber(trialCountInput))
+        } while (isUserTypedNaturalNumber(trialCountInput).not())
 
         return trialCountInput.toInt()
     }
@@ -26,7 +26,7 @@ class InputView {
         do {
             val namesString = getInputWithMessage(msg)
             splitted = namesString.split(",")
-        } while (isUserTypedValidNames(splitted))
+        } while (isUserTypedValidNames(splitted).not())
 
         return splitted
     }
