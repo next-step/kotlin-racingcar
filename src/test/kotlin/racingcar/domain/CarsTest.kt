@@ -79,10 +79,10 @@ class CarsTest : DescribeSpec({
     }
 
     describe("of") {
-        context("자동차들의 수를 입력받아 자동차들을 만든다") {
-            val cars = Cars.of(5)
+        context("자동차들의 이름를 입력받아 자동차들을 만든다") {
+            val cars = Cars.of(CarName.ofList("pobi,crong,honux"))
 
-            cars.size() shouldBe 5
+            cars.size() shouldBe 3
         }
     }
 })
