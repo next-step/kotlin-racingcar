@@ -5,5 +5,5 @@ import racingcar.model.Cars
 
 fun interface CarFactory {
 
-    fun createCars(carCount: CarCount) : Cars
+    fun createCars(carCount: CarCount): Cars
 }
