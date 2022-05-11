@@ -7,8 +7,8 @@ class Cars(
         cars.forEach { it.move(movingStrategy) }
     }
 
-    fun location(): List<Location> {
-        return cars.map { it.location }
+    fun nameWithLocation(): List<Pair<CarName, Location>> {
+        return cars.map { it.carName to it.location }
     }
 
     fun size(): Int {

@@ -2,7 +2,6 @@ package racingcar.domain
 
 import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.style.DescribeSpec
-import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
 
 class CarsTest : DescribeSpec({
@@ -47,20 +46,20 @@ class CarsTest : DescribeSpec({
         }
     }
 
-    describe("location") {
-        it("자동차들의 위치 정보를 제공한다") {
+    describe("nameWithLocation") {
+        it("자동차 이름과 위치 정보를 조회한다") {
             val cars = Cars(
                 listOf(
-                    Car(location = Location(1)),
-                    Car(location = Location(2)),
-                    Car(location = Location(3)),
+                    Car(CarName("car1"), Location(1)),
+                    Car(CarName("car2"), Location(2)),
+                    Car(CarName("car3"), Location(3)),
                 )
             )
 
-            cars.location() shouldContainExactly listOf(
-                Location(1),
-                Location(2),
-                Location(3),
+            cars.nameWithLocation() shouldBe listOf(
+                CarName("car1") to Location(1),
+                CarName("car2") to Location(2),
+                CarName("car3") to Location(3),
             )
         }
     }
