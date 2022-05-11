@@ -12,7 +12,7 @@ object InputView {
 
     private fun inputCarNames(): String {
         println(CAR_NAMES_REQUEST)
-        return readln().toString()
+        return readln()
     }
 
     private fun inputLaps(): Int {

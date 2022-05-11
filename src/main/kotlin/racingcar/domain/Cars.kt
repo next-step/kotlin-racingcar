@@ -20,7 +20,7 @@ class Cars(
             return Cars((0 until carCount).map { Car() })
         }
 
-        fun of(carNames: List<CarName>) :Cars{
+        fun of(carNames: List<CarName>): Cars {
             return Cars(carNames.map { Car(it) })
         }
     }
