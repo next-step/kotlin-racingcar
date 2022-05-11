@@ -11,25 +11,18 @@ class IntInputValidator(private val range: IntRange = Int.MIN_VALUE..Int.MAX_VAL
     override fun parseValue(inputString: String?): Int {
         return try {
             val intValue = inputString?.toInt() ?: throw Exception(ERROR_MESSAGE_NO_NUMBER)
-            checkValueInRange(intValue)
+            require(intValue in range) { makeErrorMessage(range) }
+            intValue
         } catch (e: NumberFormatException) {
             throw Exception(ERROR_MESSAGE_NO_NUMBER)
         }
-    }
-
-    private fun checkValueInRange(value: Int): Int {
-        val range = this.range
-        if (value in range) {
-            return value // OK, value in the range
-        }
-        throw Exception(makeErrorMessage(range))
     }
 
     private fun makeErrorMessage(range: IntRange): String {
         return if (range.last == Int.MAX_VALUE) {
             "${range.first - 1} 보다 큰 값을 입력해 주세요. "
         } else {
-            "${range.first}와 ${range.last} 사이 값을 입력해 주세요."
+            "${range.first} ~ ${range.last} 사이 값을 입력해 주세요."
         }
     }
 }
