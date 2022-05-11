@@ -4,13 +4,12 @@ import Calculation
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
 
 class CalculationTest {
     @ParameterizedTest
-    @NullAndEmptySource
-    fun `Null or Empty test`(expr: String?) {
+    @ValueSource(strings = [" ", ""])
+    fun `empty or blank가 들어오면 실패처리`(expr: String) {
         assertThatThrownBy { Calculation(expr).run() }
             .isInstanceOf(IllegalArgumentException::class.java)
     }

@@ -1,32 +1,31 @@
-class Calculation(private val expr: String?) {
+class Calculation(private val expr: String) {
     fun run(): Int {
-        inputValidate(expr)
+        isNotBlankOrThrow(expr)
 
         var target = 0
         var exp = ""
-        expr!!.split(" ").forEachIndexed { i, next: String ->
+        expr.split(" ").forEachIndexed { i, next: String ->
             if (i == 0) {
-                target = intOrThrow(next)
+                target = toIntOrThrow(next)
             } else if (i % 2 != 0) {
                 checkExpOrThrow(next)
                 exp = next
             } else {
-                target = cal(target, intOrThrow(next), exp)
+                target = cal(target, toIntOrThrow(next), exp)
             }
         }
-        println("결과 : $target")
         return target
     }
 
-    private fun inputValidate(expr: String?) {
-        if (expr.isNullOrBlank()) throw IllegalArgumentException()
+    private fun isNotBlankOrThrow(expr: String) {
+        if (expr.isBlank()) throw IllegalArgumentException()
     }
 
     private fun checkExpOrThrow(s: String) {
         if (!checkExp(s)) throw IllegalArgumentException()
     }
 
-    private fun intOrThrow(s: String) = s.toIntOrNull() ?: throw IllegalArgumentException()
+    private fun toIntOrThrow(s: String) = s.toIntOrNull() ?: throw IllegalArgumentException()
 
     private fun cal(v1: Int, v2: Int, exp: String): Int {
         return when (exp) {
@@ -47,7 +46,6 @@ class Calculation(private val expr: String?) {
     private fun plus(v1: Int, v2: Int) = v1 + v2
 
     private fun checkExp(exp: String): Boolean {
-        return listOf("+", "-", "*", "/").contains(exp)
+        return exp in listOf("+", "-", "*", "/")
     }
 }
-
