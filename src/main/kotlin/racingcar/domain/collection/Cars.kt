@@ -12,8 +12,4 @@ class Cars(
     fun getPositions(): List<Int> {
         return cars.map { it.position }
     }
-
-    fun getCollection(): List<Car> {
-        return cars
-    }
 }
