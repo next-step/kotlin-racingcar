@@ -3,6 +3,7 @@ package racingcar.business
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
+import racingcar.business.dto.GameResult
 import racingcar.utils.NumberGenerator
 import racingcar.utils.RandomNumberGenerator
 
@@ -16,9 +17,11 @@ class RacingContextTest : DescribeSpec({
             }
 
             it("모든 자동차는 1 x moveCount 만큼 이동한다.") {
-                val expected = listOf(
-                    listOf(1, 1),
-                    listOf(2, 2)
+                val expected = GameResult(
+                    listOf(
+                        listOf(1, 1),
+                        listOf(2, 2)
+                    )
                 )
 
                 val result = RacingGame(2, 2, TestRandomNumberGenerator())
@@ -35,9 +38,11 @@ class RacingContextTest : DescribeSpec({
                 }
             }
             it("모든 자동차는 이동하지 않는다.") {
-                val expected = listOf(
-                    listOf(0, 0),
-                    listOf(0, 0)
+                val expected = GameResult(
+                    listOf(
+                        listOf(0, 0),
+                        listOf(0, 0)
+                    )
                 )
 
                 val result = RacingGame(2, 2, TestRandomNumberGenerator())

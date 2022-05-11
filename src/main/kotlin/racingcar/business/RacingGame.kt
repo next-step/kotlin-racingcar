@@ -1,5 +1,6 @@
 package racingcar.business
 
+import racingcar.business.dto.GameResult
 import racingcar.domain.Car
 import racingcar.domain.collection.Cars
 import racingcar.property.Property
@@ -30,12 +31,12 @@ class RacingGame(
         }
     )
 
-    fun play(): List<List<Int>> {
+    fun play(): GameResult {
         val result = mutableListOf<List<Int>>()
         repeat(numOfMove) {
             cars.run()
             result.add(cars.getPositions())
         }
-        return result
+        return GameResult(result)
     }
 }

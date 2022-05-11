@@ -1,11 +1,13 @@
 package racingcar.presentation
 
+import racingcar.business.dto.GameResult
+
 class OutBoundView(
     private val printer: (String) -> Unit
 ) {
-    fun displayResult(result: List<List<Int>>) {
+    fun displayResult(result: GameResult) {
         printer("실행 결과:\n")
-        result.forEach(::displayResultDetails)
+        result.data.forEach(::displayResultDetails)
     }
 
     private fun displayResultDetails(result: List<Int>) {
