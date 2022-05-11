@@ -5,7 +5,11 @@ class Game(
     private val numMovement: Int,
 ) {
 
-    var recordList: List<List<Int>> = listOf()
+    init {
+        require(numCar >= 1) { throw IllegalArgumentException("자동차 수는 1이상 이어야한다.") }
+        require(numMovement >= 1) { throw IllegalArgumentException("시도 횟수는 1이상 이어야한다.") }
+    }
+
         private set
 
     private val cars: List<Car> = (1..numCar).map { Car() }
