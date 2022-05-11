@@ -5,27 +5,27 @@ import org.junit.jupiter.api.Test
 
 class CarTest {
     @Test
-    fun `차 이동&멈춤의 상태를 저장한다`() {
+    fun `차를 이동 후 현재 위치결과를 반환한다`() {
         // given
-        val moveTestCar = Car()
+        val testCar = Car()
 
         // when
-        moveTestCar.move()
-        val recored1 = moveTestCar.drivingRecord
+        testCar.move()
 
         // then
-        assertThat(recored1.size).isEqualTo(1)
-        assertThat(recored1[0]).isEqualTo(Position.MOVE)
+        assertThat(testCar.currentDrivingRecord).isEqualTo(1)
+    }
 
+    @Test
+    fun `차 멈춤을 호출하면 위치값은 동일하다 변하지 않는다`() {
         // given
-        val stopTestCar = Car()
+        val testCar = Car()
+        val comparingCar = Car()
 
         // when
-        stopTestCar.stop()
-        val recored2 = stopTestCar.drivingRecord
+        testCar.stop()
 
         // then
-        assertThat(recored2.size).isEqualTo(1)
-        assertThat(recored2[0]).isEqualTo(Position.STOP)
+        assertThat(testCar.currentDrivingRecord).isEqualTo(comparingCar.currentDrivingRecord)
     }
 }
