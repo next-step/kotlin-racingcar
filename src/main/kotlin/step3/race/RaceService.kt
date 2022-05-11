@@ -15,9 +15,11 @@ class RaceService {
             resultView.printResultByRound(round)
         }
     }
+
     fun move(car: Car) {
         car.moveCount++
     }
+
     fun canBeMove(number: Int) = number >= MOVE_CONDITION
 
     companion object {

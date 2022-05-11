@@ -11,14 +11,12 @@ class RaceServiceTest {
 
     @Test
     fun `이동 불가능한 케이스 테스트`() {
-
         val raceService = RaceService()
         Assertions.assertFalse(raceService.canBeMove(3))
     }
 
     @Test
     fun `이동 가능한 케이스 테스트`() {
-
         val raceService = RaceService()
         Assertions.assertTrue(raceService.canBeMove(7))
     }
