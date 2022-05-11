@@ -5,16 +5,18 @@ package racingCar.model
  * Created by Jaesungchi on 2022.05.07..
  */
 class RaceResult(carList: List<Car>) {
-    var resultOutput = StringBuilder()
+    var resultOutput: String? = null
         private set
 
     init {
+        val result = StringBuilder()
         carList.forEach {
             repeat(it.position) {
-                resultOutput.append(RACE_FOOTPRINT_SYMBOL)
+                result.append(RACE_FOOTPRINT_SYMBOL)
             }
-            resultOutput.append("\n")
+            result.append("\n")
         }
+        resultOutput = result.toString()
     }
 
     companion object {
