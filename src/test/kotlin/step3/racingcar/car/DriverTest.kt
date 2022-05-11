@@ -22,4 +22,22 @@ class DriverTest {
         driver.drive(boundaryNumber)
         assertThat(driver.getMoveResult()).isEqualTo(2)
     }
+
+    @Test
+    fun `드라이버가 차의 현재 위치 값을 받는다`() {
+        // given
+        val testCar = Car()
+        val testDriver = Driver(testCar)
+
+        // when
+        for (i in 0 until 100) {
+            if (i / 2 == 0) {
+                testCar.move()
+            } else {
+                testCar.stop()
+            }
+        }
+
+        assertThat(testDriver.getMoveResult()).isEqualTo(testCar.currentDrivingRecord)
+    }
 }
