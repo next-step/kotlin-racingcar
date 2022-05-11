@@ -1,6 +1,6 @@
 package racinggame.view
 
-import racinggame.util.NumberRangeValidator
+import racinggame.validator.NumberRangeValidator
 
 class InputView(private val inputMessage: String) {
     fun receive(): Int {
