@@ -1,5 +1,7 @@
 package model
 
+import org.jetbrains.annotations.TestOnly
+
 class Race(
     numOfCars: Int
 ) {
@@ -12,5 +14,6 @@ class Race(
         return cars
     }
 
-    fun getCars() = cars
+    @TestOnly
+    internal fun getCars() = cars
 }
