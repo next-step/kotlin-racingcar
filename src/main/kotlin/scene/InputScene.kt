@@ -1,22 +1,31 @@
 package scene
 
-import dto.InputResult
 import port.InputSystem
 import port.OutputPainter
 
-class InputScene(private val outputPainter: OutputPainter, private val inputSystem: InputSystem) {
+class InputScene(private val outputPainter: OutputPainter, private val inputSystem: InputSystem) : Scene() {
 
-    fun update(): InputResult {
-        return InputResult(getCarNumber(), getStageNumber())
+    override fun before() {
     }
 
-    private fun getCarNumber(): Int {
+    override fun update() {
+        getCarNumber()
+        getStageNumber()
+    }
+
+    override fun after() {
+        outputPainter.draw("\n실행 결과\n")
+    }
+
+    private fun getCarNumber() {
         outputPainter.draw("자동차 대수는 몇 대인가요?\n")
-        return inputSystem.read().toInt()
+        setPlayer(inputSystem.read().toInt())
     }
 
-    private fun getStageNumber(): Int {
+    private fun getStageNumber() {
         outputPainter.draw("시도할 횟수는 몇 회인가요?\n")
-        return inputSystem.read().toInt()
+        setStage(inputSystem.read().toInt())
     }
+
+    override fun hasNext(): Boolean = false
 }
