@@ -1,6 +1,10 @@
 package racing
 
-class Car(private val moveThreshold: Int = DEFAULT_CAR_MOVE_THRESHOLD, startPosition: Int = 0) {
+class Car(
+    val name: String,
+    private val moveThreshold: Int = DEFAULT_CAR_MOVE_THRESHOLD,
+    startPosition: Int = 0
+) {
 
     var position = startPosition
         private set

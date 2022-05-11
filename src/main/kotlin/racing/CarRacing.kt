@@ -9,7 +9,7 @@ class CarRacing(private val carMaxPower: Int = DEFAULT_MAX_POWER) {
 
     fun run() {
         val input = inputReceiver.receive()
-        val cars = MutableList(input.carNumber) { Car() }
+        val cars = input.carNames.map { Car(it) }
 
         play(cars, input.moveCount)
     }
