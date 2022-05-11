@@ -13,10 +13,20 @@ class InputView(
         val names = value
             .split(",")
             .filter { it.isNotBlank() }
-            .map { if (it.length > 5) it.substring(0 until 5) else it }
+            .regulate()
         require(names.isNotEmpty())
         return names
     }
+
+    private fun List<String>.regulate(): List<String> =
+        map {
+            val trimmed = it.trim()
+            if (trimmed.length > 5) {
+                trimmed.substring(0 until 5)
+            } else {
+                trimmed
+            }
+        }
 
     fun readMoves(): Int {
         console("시도할 횟수는 몇 회인가요?\n")
