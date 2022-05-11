@@ -25,10 +25,11 @@ class InputDto(carCountString: String, movementTryCountString: String) {
 
         fun validateForIntegerString(numberString: String, parameterName: String) {
             if (!ONLY_NUMBER_REGEX.matches(removeSpace(numberString))) {
+                val errorMessage = ErrorMessage.getErrorMessageForOnlyIntegerString(
+                    parameterName, numberString
+                )
                 throw IllegalArgumentException(
-                    ErrorMessage.getErrorMessageForOnlyIntegerString(
-                        parameterName, numberString
-                    )
+                    errorMessage
                 )
             }
         }
