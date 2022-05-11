@@ -5,17 +5,21 @@ class InputView(
     private val console: (String) -> Unit
 ) {
 
-    fun readDrivers(): Int {
-        console("자동차 대수는 몇 대인가요?: ")
-        return readInt()
+    fun readDriverNames(): List<String> {
+        console("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n")
+        val value: String? = reader()
+        requireNotNull(value)
+        require(value.isNotBlank())
+        val names = value
+            .split(",")
+            .filter { it.isNotBlank() }
+            .map { if (it.length > 5) it.substring(0 until 5) else it }
+        require(names.isNotEmpty())
+        return names
     }
 
     fun readMoves(): Int {
-        console("시도할 횟수는 몇 회인가요?: ")
-        return readInt()
-    }
-
-    private fun readInt(): Int {
+        console("시도할 횟수는 몇 회인가요?\n")
         val value: String? = reader()
         requireNotNull(value)
         return kotlin
