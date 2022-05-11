@@ -4,46 +4,61 @@ import Calculation
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 
 class CalculationTest {
     @ParameterizedTest
     @ValueSource(strings = [" ", ""])
-    fun `empty or blank가 들어오면 실패처리`(expr: String) {
+    fun `empty or blank가 들어오면 실패한다`(expr: String) {
         assertThatThrownBy { Calculation(expr).run() }
             .isInstanceOf(IllegalArgumentException::class.java)
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["2 + 2 ^ 2 / 2 - 1"])
-    fun `사칙연산 아닌 문자열 test`(expr: String) {
+    fun `사칙연산 아닌 문자열이 포함되어 있으면 실패한다`(expr: String) {
         assertThatThrownBy { Calculation(expr).run() }
             .isInstanceOf(IllegalArgumentException::class.java)
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["2 2 + 2 ^ 2 / 2 - 1"])
-    fun `연속으로 숫자가 나올때`(expr: String) {
+    fun `숫자가 연속으로 입력되어 있으면 실패한다`(expr: String) {
         assertThatThrownBy { Calculation(expr).run() }
             .isInstanceOf(IllegalArgumentException::class.java)
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["2 + + 2 ^ 2 / 2 - 1"])
-    fun `연속으로 사칙연산이 나올때`(expr: String) {
-        assertThatThrownBy { Calculation(expr).run() }
-            .isInstanceOf(IllegalArgumentException::class.java)
-    }
-    @ParameterizedTest
-    @ValueSource(strings = ["2 + + 2 ^ 2 / 2 -"])
-    fun `마지막이 사칙연산으로 나올때`(expr: String) {
+    fun `사칙연산이 연속으로 입력되면 실패한다`(expr: String) {
         assertThatThrownBy { Calculation(expr).run() }
             .isInstanceOf(IllegalArgumentException::class.java)
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["2 + 2 * 2 / 2 - 1"])
-    fun `white case test`(expr: String) {
-        assertThat(Calculation(expr).run()).isEqualTo(3)
+    @ValueSource(strings = ["+ 2 - 1"])
+    fun `처음 입력이 숫자가 아니면 실패한다`(expr: String) {
+        assertThatThrownBy { Calculation(expr).run() }
+            .isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["1 / 0"])
+    fun `0으로 나누는 연산은 실패한다`(expr: String) {
+        assertThatThrownBy { Calculation(expr).run() }
+            .isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    @ParameterizedTest
+    @CsvSource(
+        value = [
+            "2 - 1 * 10 - 1",
+            "5 / 7 - 2",
+            "2 + 3 * 2 - 2 - 5",
+        ]
+    )
+    fun `정상 수식은 성공한다`(expr: String) {
+        assertThat(Calculation(expr).run()).isInstanceOf(Integer::class.java)
     }
 }

@@ -33,7 +33,10 @@ class Calculation(private val expr: String) {
         }
     }
 
-    private fun divide(v1: Int, v2: Int) = v1 / v2
+    private fun divide(v1: Int, v2: Int): Int {
+        if (v2 == 0) throw IllegalArgumentException()
+        return v1 / v2
+    }
 
     private fun multiply(v1: Int, v2: Int) = v1 * v2
 
