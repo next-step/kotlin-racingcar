@@ -17,7 +17,7 @@ class RandomNumberCarRacingManager : CarRacingManager {
         for ((index, car) in cars.withIndex()) {
             result += getMonitoringFormatBy(car.distance)
             if (index < cars.size - 1) {
-                result += MONITOR_DIVISION_CHARACTER
+                result += MONITOR_CHARACTER_DIVISION
             }
         }
 
@@ -33,16 +33,17 @@ class RandomNumberCarRacingManager : CarRacingManager {
 
     companion object {
         private const val MIN_FORWARD = 4
-        private const val MONITOR_DIVISION_CHARACTER = "\n"
+        private const val MONITOR_CHARACTER_BY_CAR = "-"
+        private const val MONITOR_CHARACTER_DIVISION = "\n"
 
         fun isForwardNumber(randomInt: Int): Boolean {
             return randomInt >= MIN_FORWARD
         }
 
         fun getMonitoringFormatBy(distance: Int): String {
-            var result = "-"
+            var result = MONITOR_CHARACTER_BY_CAR
 
-            for (index: Int in 1..distance) result += "-"
+            for (index: Int in 1..distance) result += MONITOR_CHARACTER_BY_CAR
 
             return result
         }
