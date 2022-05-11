@@ -17,7 +17,6 @@ enum class Operator(
     companion object {
         fun of(symbol: String): Operator {
             return values()
-                .asSequence()
                 .find { it.symbol == symbol } ?: throw IllegalArgumentException("사칙연산 기호가 아닙니다.")
         }
     }
