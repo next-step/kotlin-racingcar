@@ -1,26 +1,18 @@
 package carRacing
 
-class RandomNumberCarRacingManager() : CarRacingManager {
-    override var cars: List<Car> = emptyList()
+class RandomNumberCarRacingManager: CarRacingManager {
 
-    constructor(inputDto: InputDto) : this() {
+    constructor() {}
+
+    constructor(inputDto: InputDto) {
         var inputCars = emptyList<Car>()
         for (index in 1 .. inputDto.carCount) {
             inputCars = inputCars + Car()
         }
-        this.cars = inputCars
+        cars = inputCars
     }
 
-    override fun addCar(car: Car) {
-        cars = cars + car
-    }
-
-    override fun syncCarDistance(carsIndex: Int) {
-        validateCarsIndex(carsIndex)
-        cars[carsIndex].forward()
-    }
-
-    override fun getMonitoringInformation(): String {
+     override fun getMonitoringInformation(): String {
         var result = ""
         for ((index, car) in cars.withIndex()) {
             result += getMonitoringFormatBy(car.distance)
@@ -32,23 +24,11 @@ class RandomNumberCarRacingManager() : CarRacingManager {
         return result
     }
 
-    fun getCarListSize(): Int {
-        return cars.size
-    }
 
     fun tryMoveCar(carIndex: Int, randomInt: Int) {
         validateCarsIndex(carIndex)
         if (isForwardNumber(randomInt)) {
-            syncCarDistance(carIndex)
-        }
-    }
-
-    fun validateCarsIndex(carIndex: Int) {
-        if (carIndex < 0) {
-            throw IllegalArgumentException("음수 값으로 시스템을 실행할수 없습니다")
-        }
-        if (carIndex > cars.size) {
-            throw IllegalArgumentException("존재 하지 않은 번호 입니다")
+            syncCarDistance(carIndex, getCarDistance(carIndex) + 1)
         }
     }
 
