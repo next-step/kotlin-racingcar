@@ -2,12 +2,13 @@ package racingcar.model
 
 class Car(
     val id: Int,
-    var position: Int = DEFAULT_POSITION
+    val position: Int = DEFAULT_POSITION
 ) {
 
-    fun moveForward(movingStrategy: MovingStrategy) {
-        if (movingStrategy.forwardMovable()) {
-            this.position++
+    fun moveForward(movingStrategy: MovingStrategy): Car {
+        return when (movingStrategy.forwardMovable()) {
+            true -> Car(id = id, position = position + 1)
+            false -> Car(id = id, position = position)
         }
     }
 
