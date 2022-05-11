@@ -1,6 +1,7 @@
 package step3.racingcar.car
 
 import step3.racingcar.RandomNumberGenerator
+import step3.racingcar.car.exception.GameOverException
 
 class RacingGame private constructor(
     private val drivers: List<Driver>,
@@ -8,7 +9,7 @@ class RacingGame private constructor(
 ) {
 
     fun play() {
-        repeat(trialCount) {
+        if (isPlayable()) {
             drivers.forEach {
                 it.drive(RandomNumberGenerator.generate())
             }
@@ -19,7 +20,16 @@ class RacingGame private constructor(
         return drivers.map { it.getMoveResult() }
     }
 
+    fun isPlayable(): Boolean {
+        if (trialCount <= GAME_END_COUNT) {
+            throw GameOverException()
+        }
+        return true
+    }
+
     companion object {
+        private const val GAME_END_COUNT = 0
+
         fun init(numberOfCar: Int, trialCount: Int): RacingGame {
             val drivers = List(numberOfCar) { Driver(Car()) }
             return RacingGame(drivers, trialCount)
