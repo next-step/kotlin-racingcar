@@ -6,14 +6,14 @@ import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.*
 
-class inputDtoTest: StringSpec({
+class InputDtoTest: StringSpec({
     "inputDto 는 자동차 대수, 시도할 횟수를 입력 받아 Int Property 로 저장한다" {
         // given
         val carCount = "3"
         val movementTryCount = "5"
 
         // when
-        val inputDto = inputDto(carCount, movementTryCount)
+        val inputDto = InputDto(carCount, movementTryCount)
 
         // then
         inputDto.carCount shouldBe 3
@@ -26,7 +26,7 @@ class inputDtoTest: StringSpec({
         val movementTryCount = "  5  1  3   2  "
 
         // when
-        val inputDto = inputDto(carCount, movementTryCount)
+        val inputDto = InputDto(carCount, movementTryCount)
 
         // then
         inputDto.carCount shouldBe 30
@@ -40,7 +40,7 @@ class inputDtoTest: StringSpec({
 
         // when
         val exception = shouldThrowExactly<IllegalArgumentException> {
-            inputDto(carCount, movementTryCount)
+            InputDto(carCount, movementTryCount)
         }
 
         // then
@@ -55,7 +55,7 @@ class inputDtoTest: StringSpec({
 
         // then
         shouldNotThrow<Error> {
-            inputDto.validateForIntegerString(integerString, parameterName)
+            InputDto.validateForIntegerString(integerString, parameterName)
         }
     }
 
@@ -67,7 +67,7 @@ class inputDtoTest: StringSpec({
 
         // then
         shouldThrow<IllegalArgumentException> {
-            inputDto.validateForIntegerString(integerString, parameterName)
+            InputDto.validateForIntegerString(integerString, parameterName)
         }.message shouldBe ErrorMessage.getErrorMessageForOnlyIntegerString(parameterName, integerString)
     }
 })

@@ -2,7 +2,7 @@ package carRacing
 
 import java.lang.Integer.parseInt
 
-class inputDto(carCountString: String, movementTryCountString: String) {
+class InputDto(carCountString: String, movementTryCountString: String) {
     val carCount: Int
     val movementTryCount: Int
 
@@ -24,10 +24,13 @@ class inputDto(carCountString: String, movementTryCountString: String) {
         }
 
         fun validateForIntegerString(numberString: String, parameterName: String) {
-            if(!ONLY_NUMBER_REGEX.matches(removeSpace(numberString))) {
-                throw IllegalArgumentException(ErrorMessage.getErrorMessageForOnlyIntegerString(parameterName, numberString))
+            if (!ONLY_NUMBER_REGEX.matches(removeSpace(numberString))) {
+                throw IllegalArgumentException(
+                    ErrorMessage.getErrorMessageForOnlyIntegerString(
+                        parameterName, numberString
+                    )
+                )
             }
         }
-
     }
 }

@@ -127,5 +127,4 @@ class RandomNumberCarRacingManagerTest : StringSpec({
         randomNumberCarRacingManager.cars[0].distance shouldBe 0
     }
 
-
 })

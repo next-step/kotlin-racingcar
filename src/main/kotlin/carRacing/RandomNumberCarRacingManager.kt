@@ -1,7 +1,15 @@
 package carRacing
 
-class RandomNumberCarRacingManager : CarRacingManager {
+class RandomNumberCarRacingManager() : CarRacingManager {
     override var cars: List<Car> = emptyList()
+
+    constructor(inputDto: InputDto) : this() {
+        var inputCars = emptyList<Car>()
+        for (index in 1 .. inputDto.carCount) {
+            inputCars = inputCars + Car()
+        }
+        this.cars = inputCars
+    }
 
     override fun addCar(car: Car) {
         cars = cars + car
@@ -22,6 +30,10 @@ class RandomNumberCarRacingManager : CarRacingManager {
         }
 
         return result
+    }
+
+    fun getCarListSize(): Int {
+        return cars.size
     }
 
     fun tryMoveCar(carIndex: Int, randomInt: Int) {
