@@ -5,7 +5,7 @@ import step3.CarRaceConst
 class CarService {
 
     fun initCars() {
-        for (carIndex in 1..5) {
+        for (carIndex in 1..CarRaceConst.carSize) {
             CarRaceConst.car[carIndex] = Car(carIndex, INIT_MOVE)
         }
     }

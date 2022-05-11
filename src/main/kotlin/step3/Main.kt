@@ -8,6 +8,7 @@ fun main() {
 
     val inputView = InputView()
     inputView.readInRoundSize()
+    inputView.readInCarSize()
 
     val carService = CarService()
     carService.initCars()
