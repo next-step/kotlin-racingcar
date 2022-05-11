@@ -10,11 +10,9 @@ class Calculator {
         val numbers = inputList.filter { validator.isNumber(it) }
         val operators = inputList.filter { validator.isOperator(it.first()) }
 
-        var result = numbers[0].toInt()
-        numbers.drop(1)
-            .zip(operators) { number, operator ->
-                result = Evaluation.find(operator).applyOperator(result, number.toInt())
-            }
-        return result
+        return numbers.drop(1)
+            .foldIndexed(numbers[0]) { idx, acc, num ->
+                Evaluation.find(operators[idx]).applyOperator(acc.toInt(), num.toInt()).toString()
+            }.toInt()
     }
 }
