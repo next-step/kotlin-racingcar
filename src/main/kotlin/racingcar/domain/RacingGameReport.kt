@@ -1,7 +1,7 @@
 package racingcar.domain
 
 class RacingGameReport(
-    lapReports: List<LapReport> = listOf()
+    lapReports: List<LapReport> = emptyList()
 ) {
     private val _lapReports = lapReports.toMutableList()
     val lapReports get() = _lapReports.toList()
