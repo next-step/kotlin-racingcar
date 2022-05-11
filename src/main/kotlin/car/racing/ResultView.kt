@@ -17,12 +17,14 @@ class ResultView(private val console: (String) -> Unit) {
     }
 
     private fun showRecord(records: List<Record>) {
-        records.forEach { record ->
-            console("${record.driverName} : ")
-            repeat(record.moves) {
-                console(DISPLAY_MOVEMENT)
-            }
-            showEmptyLine()
+        records.forEach(::showNameAndMoves)
+        showEmptyLine()
+    }
+
+    private fun showNameAndMoves(record: Record) {
+        console("${record.driverName} : ")
+        repeat(record.moves) {
+            console(DISPLAY_MOVEMENT)
         }
         showEmptyLine()
     }

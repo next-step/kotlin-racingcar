@@ -11,12 +11,14 @@ class InputView(
         requireNotNull(value)
         require(value.isNotBlank())
         val names = value
-            .split(",")
-            .filter { it.isNotBlank() }
+            .tokenize()
             .regulate()
         require(names.isNotEmpty())
         return names
     }
+
+    private fun String.tokenize(): List<String> =
+        split(",").filter { it.isNotBlank() }
 
     private fun List<String>.regulate(): List<String> =
         map {
