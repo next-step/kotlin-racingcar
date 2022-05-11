@@ -1,4 +1,4 @@
-package CarRacing
+package carRacing
 
 object ErrorMessage {
     fun getErrorMessageForOnlyIntegerString(parameterName: String, parameterValue: String): String {

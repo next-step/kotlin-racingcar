@@ -1,4 +1,4 @@
-package CarRacing
+package carRacing
 
 import java.lang.Integer.parseInt
 

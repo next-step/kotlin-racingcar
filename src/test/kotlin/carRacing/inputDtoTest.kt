@@ -1,4 +1,4 @@
-package CarRacing
+package carRacing
 
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldThrow
