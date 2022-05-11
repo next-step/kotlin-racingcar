@@ -1,6 +1,7 @@
 package study
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
 
 class StringCalculatorTest {
@@ -32,14 +33,13 @@ class StringCalculatorTest {
     @Test
     fun `입력값이 null 또는 빈 공백문자인 경우`(){
         val stringCalculator = StringCalculator()
-        //assertThat(stringCalculator)
-        //assertThat(stringCalculator.calculate(null))
+        assertThatIllegalArgumentException().isThrownBy { stringCalculator.calculate("    ") }
     }
 
     @Test
     fun `사칙얀산기호가 아닌 경우`(){
         val stringCalculator = StringCalculator()
-        //assertThat(stringCalculator.calculation("4 ^ 2")).is
+        assertThatIllegalArgumentException().isThrownBy { stringCalculator.calculate("2 ? 3 ! 4 & 2") }
     }
 
     @Test
