@@ -14,7 +14,7 @@ class LocationTest : DescribeSpec({
             it("예외가 발생한다") {
                 listOf(-1, -30).forAll {
                     val exception = shouldThrow<IllegalArgumentException> {
-                        Location(it)
+                        ::Location
                     }
                     exception.message shouldContain "자동차의 위치는 0 미만일 수 없습니다."
                 }

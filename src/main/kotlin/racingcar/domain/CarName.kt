@@ -18,7 +18,7 @@ data class CarName(val value: String) {
 
         fun ofList(names: String, delimiter: String = ","): List<CarName> {
             return names.split(delimiter)
-                .map { CarName(it) }
+                .map(::CarName)
         }
     }
 }

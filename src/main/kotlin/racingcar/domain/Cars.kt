@@ -21,7 +21,7 @@ class Cars(
         }
 
         fun of(carNames: List<CarName>): Cars {
-            return Cars(carNames.map { Car(it) })
+            return Cars(carNames.map(::Car))
         }
     }
 }
