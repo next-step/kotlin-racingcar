@@ -18,7 +18,7 @@ class RacingGame private constructor(
         reduceTrialCount()
     }
 
-    fun getPlayResult(): List<Int> {
+    fun getPlayResults(): List<Int> {
         return drivers.map { it.getMoveResult() }
     }
 
