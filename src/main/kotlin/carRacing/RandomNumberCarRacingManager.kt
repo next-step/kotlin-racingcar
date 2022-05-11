@@ -61,7 +61,7 @@ class RandomNumberCarRacingManager() : CarRacingManager {
         }
 
         fun getMonitoringFormatBy(distance: Int): String {
-            var result = ""
+            var result = "-"
 
             for (index: Int in 1..distance) result += "-"
 
