@@ -18,10 +18,4 @@ internal class RandomValueMovingStrategyTest {
         val randomValueMovingStrategy = RandomValueMovingStrategy(3)
         assertThat(randomValueMovingStrategy.forwardMovable()).isFalse
     }
-
-    @Test
-    fun `랜덤 숫자를 생성한다`() {
-        val randomValueMovingStrategy = RandomValueMovingStrategy(4)
-        assertThat(randomValueMovingStrategy.number).isEqualTo(4)
-    }
 }
