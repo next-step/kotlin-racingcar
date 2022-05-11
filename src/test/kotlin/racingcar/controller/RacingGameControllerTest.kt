@@ -1,6 +1,7 @@
 package racingcar.controller
 
 import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.Assertions.assertAll
 import org.junit.jupiter.api.Test
 import racingcar.view.input.InputView
 import racingcar.view.input.NumberAndSteps
@@ -23,9 +24,11 @@ internal class RacingGameControllerTest {
 
         gameController.executeGame()
         val racingGame = gameController.currentGame
-        Assertions.assertThat(racingGame).isNotNull
 
-        Assertions.assertThat(racingGame!!.currentStep).isEqualTo(stepsToTry)
-        Assertions.assertThat(racingGame.isOver).isTrue
+        assertAll(
+            { Assertions.assertThat(racingGame).isNotNull },
+            { Assertions.assertThat(racingGame?.currentStep).isEqualTo(stepsToTry) },
+            { Assertions.assertThat(racingGame?.isOver).isTrue }
+        )
     }
 }
