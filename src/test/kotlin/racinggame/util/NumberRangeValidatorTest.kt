@@ -3,11 +3,11 @@ package racinggame.util
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-class InputNumberRangeValidatorTest {
+class NumberRangeValidatorTest {
     @Test
     fun `입력값이 0보다 작으면 IllegalArgumentException이 발생한다`() {
         assertThrows<IllegalArgumentException> {
-            InputNumberRangeValidator.validate(-1)
+            NumberRangeValidator.validate(-1)
         }
     }
 }
