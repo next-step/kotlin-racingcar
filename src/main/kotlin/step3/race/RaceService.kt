@@ -11,7 +11,8 @@ class RaceService {
     private val resultView = ResultView()
     fun runRacingByRound() {
         for (round in ROUND_START..roundSize) {
-            car.filter { canBeMove(getRandomNumber()) }.map { move(it.value) }
+            car.filter { canBeMove(getRandomNumber()) }
+                .map { move(it.value) }
             resultView.printResultByRound(round)
         }
     }
