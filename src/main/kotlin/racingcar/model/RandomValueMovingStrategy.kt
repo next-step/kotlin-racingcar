@@ -3,7 +3,7 @@ package racingcar.model
 data class RandomValueMovingStrategy(val number: Int) : MovingStrategy {
 
     init {
-        if (number < 0 || number > 9) {
+        if (number < MIN_BOUND || number >= MAX_BOUND) {
             throw IllegalArgumentException("1과 9사이의 값만을 받아야 합니다.")
         }
     }
@@ -14,5 +14,7 @@ data class RandomValueMovingStrategy(val number: Int) : MovingStrategy {
 
     companion object {
         private const val FORWARD_NUM = 4
+        private const val MIN_BOUND = 0
+        private const val MAX_BOUND = 10
     }
 }
