@@ -15,7 +15,7 @@ class CarKoTest : DescribeSpec({
             row(moveThreshold + 10)
         ) { power ->
             context("with power : $power") {
-                with(Car(moveThreshold = moveThreshold)) {
+                with(Car(name = "", moveThreshold = moveThreshold)) {
                     move(power)
 
                     it("move forward when power greater or equals than threshold") {
@@ -30,7 +30,7 @@ class CarKoTest : DescribeSpec({
             row(moveThreshold - 4),
         ) { power ->
             context("with power : $power") {
-                with(Car(moveThreshold = moveThreshold)) {
+                with(Car(name = "", moveThreshold = moveThreshold)) {
                     move(power)
 
                     it("can't move when power less than threshold") {

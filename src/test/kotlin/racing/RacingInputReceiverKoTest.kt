@@ -2,33 +2,49 @@ package racing
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.data.Row3
 import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 import java.io.ByteArrayInputStream
+import kotlin.random.Random
+
+private val names = listOf("Andy", "Bruce", "Clara", "David", "Echo", "Flora")
+private fun generateInput(names: List<String>, moveCount: Int): String {
+    return "${names.joinToString(",")}\n$moveCount"
+}
+
+private fun generateUserInputTestData(): Row3<String, List<String>, Int> {
+    val randomNames = names.shuffled().drop(3)
+    val moveCount = Random.nextInt()
+
+    return row(generateInput(randomNames, moveCount), randomNames, moveCount)
+}
 
 class RacingInputReceiverKoTest : DescribeSpec({
     describe("receive method") {
+
         forAll(
-            row("5\n3", 5, 3),
-            row("3\n3", 3, 3),
-            row("13\n1", 13, 1)
-        ) { input, carNumber, moveCount ->
+            generateUserInputTestData(),
+            generateUserInputTestData(),
+            generateUserInputTestData()
+        ) { input, carNames, moveCount ->
             context("with user input : $input") {
                 System.setIn(ByteArrayInputStream(input.toByteArray()))
 
-                it("returns ${UserInput(carNumber, moveCount)}") {
-                    RacingInputReceiver().receive() shouldBe UserInput(carNumber, moveCount)
+                it("returns ${UserInput(carNames, moveCount)}") {
+                    RacingInputReceiver().receive() shouldBe UserInput(carNames, moveCount)
                 }
             }
         }
 
         forAll(
-            row(""),
+            row(" "),
             row("    "),
-            row("자동차10대"),
-            row("지나가던강아지 한마리"),
-            row("IDontKnowKorean")
+            row("이름이 너무긴 사용자,두번째로긴사람\n5"),
+            row("자동차10대\n3"),
+            row("지나가던강아지 한마리\n숫자가아니다."),
+            row("David\n숫자가 아니다.")
         ) { input ->
             context("with wrong user Input : ( $input )") {
                 System.setIn(ByteArrayInputStream(input.toByteArray()))

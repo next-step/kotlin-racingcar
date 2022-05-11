@@ -23,12 +23,12 @@ class RacingUITest {
 
     @ParameterizedTest
     @ArgumentsSource(CarStateArgumentsProvider::class)
-    /* ex) 이동 한칸 "-" 로 표시 / 시작 지점 "-" 로 표시
-    --
-    -
-    ---
+        /* ex) 이동 한칸 "-" 로 표시 / 시작 지점 "-" 로 표시
+        --
+        -
+        ---
 
-     */
+         */
     fun `차량의 현재 상태를 출력한다`(cars: List<Car>, expect: String) {
         RacingUI().drawCars(cars)
 
@@ -45,7 +45,7 @@ class RacingUITest {
         }
 
         private fun generateCars(moveList: List<Int>): List<Car> {
-            return moveList.map { Car(startPosition = it) }
+            return moveList.map { Car(name = "", startPosition = it) }
         }
     }
 }

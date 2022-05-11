@@ -15,7 +15,7 @@ class CarTest {
         ]
     )
     fun `임계점 이상의 값이 오면 전진, 아니면 정지한다`(power: Int, moveThreshold: Int, expect: Int) {
-        with(Car(moveThreshold)) {
+        with(Car(name = "", moveThreshold = moveThreshold)) {
             move(power)
             assertThat(position).isEqualTo(expect)
         }
