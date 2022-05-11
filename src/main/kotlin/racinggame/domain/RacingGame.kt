@@ -29,9 +29,15 @@ class RacingGame(
     companion object {
         fun of(racingGameInput: RacingGameInput, carFactory: CarFactory): RacingGame {
             return RacingGame(
-                cars = racingGameInput.names.map { carFactory.create() },
+                cars = carsFrom(racingGameInput.names, carFactory),
                 numberOfAttempts = racingGameInput.numberOfAttempts
             )
+        }
+
+        private fun carsFrom(names: List<String>, carFactory: CarFactory): List<Car> {
+            return names.map { name ->
+                carFactory.create(name)
+            }
         }
     }
 }

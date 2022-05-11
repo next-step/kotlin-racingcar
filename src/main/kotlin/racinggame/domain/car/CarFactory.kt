@@ -1,5 +1,5 @@
 package racinggame.domain.car
 
 fun interface CarFactory {
-    fun create(): Car
+    fun create(name: String): Car
 }
