@@ -1,11 +1,13 @@
 package car.domain
 
+private const val DEFAULT_POSITION = 0
+private const val MIN_POSITION = 0
 data class Position(
-    val value: Int = 0
+    val value: Int = DEFAULT_POSITION
 ) {
     init {
-        require(value >= 0) { "자동차 위치는 음수가 될수 없습니다." }
+        require(value >= MIN_POSITION) { "자동차 위치는 음수가 될수 없습니다." }
     }
 
-    fun increase(): Position = Position(value + 1)
+    fun increase(): Position = Position(value.inc())
 }
