@@ -22,6 +22,8 @@ class RacingInputReceiver {
 
     private fun receiveMoveCount(): Int {
         println("시도할 횟수는 몇 회인가요?")
-        return requireNotNull(readLine()?.toInt())
+        val count = requireNotNull(readLine()?.toInt())
+        require(count >= 0) { "이동은 0 이상을 입력해야 합니다."}
+        return count
     }
 }
