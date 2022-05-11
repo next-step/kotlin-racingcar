@@ -6,8 +6,8 @@ class Game(
 ) {
 
     init {
-        require(numCar >= 1) { throw IllegalArgumentException("자동차 수는 1이상 이어야한다.") }
-        require(numMovement >= 1) { throw IllegalArgumentException("시도 횟수는 1이상 이어야한다.") }
+        require(numCar >= 1) { INVALID_CAR_NUMBER }
+        require(numMovement >= 1) { INVALID_NUM_MOVEMENT }
     }
 
     var recordList: List<Record> = listOf()
@@ -31,5 +31,7 @@ class Game(
 
     companion object {
         private const val MOVE_ACTION_MIN = 4
+        const val INVALID_CAR_NUMBER = "자동차 수는 1이상 이어야한다."
+        const val INVALID_NUM_MOVEMENT = "시도 횟수는 1이상 이어야한다."
     }
 }
