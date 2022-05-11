@@ -1,7 +1,7 @@
 package racinggame.view
 
-import racinggame.domain.CarFactory
 import racinggame.domain.RacingGame
+import racinggame.domain.car.CarFactory
 
 class RacingGameLayout(
     private val inputLayout: InputLayout,

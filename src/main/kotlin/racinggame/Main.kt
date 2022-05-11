@@ -1,6 +1,6 @@
 package racinggame
 
-import racinggame.domain.RandomEngineCarFactory
+import racinggame.domain.car.RandomEngineCarFactory
 import racinggame.view.InputLayout
 import racinggame.view.InputView
 import racinggame.view.RacingGameLayout

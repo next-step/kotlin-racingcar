@@ -1,7 +1,9 @@
 package racinggame.domain
 
-import racinggame.model.RacingGameInput
-import racinggame.model.RacingStepStatus
+import racinggame.domain.car.Car
+import racinggame.domain.car.CarFactory
+import racinggame.domain.model.RacingGameInput
+import racinggame.domain.model.RacingStepStatus
 
 class RacingGame(
     private val cars: List<Car>,

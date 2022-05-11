@@ -1,4 +1,4 @@
-package racinggame.domain
+package racinggame.domain.car
 
 fun interface CarFactory {
     fun create(): Car

@@ -1,7 +1,8 @@
-package racinggame.domain
+package racinggame.domain.car
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import racinggame.domain.engine.Engine
 
 class CarTest {
     @Test

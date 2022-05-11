@@ -1,4 +1,6 @@
-package racinggame.domain
+package racinggame.domain.car
+
+import racinggame.domain.engine.Engine
 
 class Car(
     val name: String,

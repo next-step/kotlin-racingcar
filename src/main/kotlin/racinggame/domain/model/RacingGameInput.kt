@@ -1,4 +1,4 @@
-package racinggame.model
+package racinggame.domain.model
 
 data class RacingGameInput(
     val numberOfCars: Int,

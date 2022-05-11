@@ -1,4 +1,4 @@
-package racinggame.validator
+package racinggame.view.validator
 
 object NameLengthValidator : InputValidator<String> {
     private const val MAXIMUM_LENGTH = 5

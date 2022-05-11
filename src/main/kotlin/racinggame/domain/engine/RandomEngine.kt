@@ -1,4 +1,4 @@
-package racinggame.domain
+package racinggame.domain.engine
 
 object RandomEngine : Engine {
     private const val STANDARD_OF_GOOD_CONDITION = 4

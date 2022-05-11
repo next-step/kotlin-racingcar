@@ -1,6 +1,6 @@
 package racinggame.view
 
-import racinggame.model.RacingGameInput
+import racinggame.domain.model.RacingGameInput
 
 class InputLayout(
     private val carInputView: InputView,

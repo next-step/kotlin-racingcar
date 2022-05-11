@@ -1,6 +1,6 @@
 package racinggame.view
 
-import racinggame.model.RacingStepStatus
+import racinggame.domain.model.RacingStepStatus
 
 object ResultView {
     private const val RESULT_TITLE = "실행 결과"

@@ -1,4 +1,4 @@
-package racinggame.validator
+package racinggame.view.validator
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
