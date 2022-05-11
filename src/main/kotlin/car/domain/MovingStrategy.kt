@@ -9,7 +9,5 @@ private const val START_VALUE = 0
 private const val END_VALUE = 10
 
 class RandomMovingStrategy : MovingStrategy {
-    override fun movable(): Boolean {
-        return (START_VALUE..END_VALUE).random() >= MOVABLE_VALUE
-    }
+    override fun movable(): Boolean = (START_VALUE..END_VALUE).random() >= MOVABLE_VALUE
 }

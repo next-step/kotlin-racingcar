@@ -12,7 +12,5 @@ fun main() {
 
     OutputView.result()
 
-    repeat(tryCount.value) {
-        CarRacing.race(cars).run { OutputView.output(this) }
-    }
+    repeat(tryCount.value) { OutputView.output(CarRacing.race(cars)) }
 }

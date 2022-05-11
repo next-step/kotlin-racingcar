@@ -14,9 +14,5 @@ class Cars(numberOfCar: NumberOfCar) {
         cars = List(numberOfCar.value) { Car(Position(DEFAULT_POSITION)) }
     }
 
-    fun move(movingStrategy: MovingStrategy): List<Position> {
-        cars.forEach { it.move(movingStrategy) }
-
-        return cars.map { it.position }
-    }
+    fun move(movingStrategy: MovingStrategy): List<Position> = cars.onEach { it.move(movingStrategy) }.map { it.position }
 }
