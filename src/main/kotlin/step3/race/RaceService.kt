@@ -11,14 +11,14 @@ class RaceService {
     private val resultView = ResultView()
     fun runRacingByRound() {
         for (round in ROUND_START..roundSize) {
-            car.filter { canBeMove() }.map { move(it.value) }
+            car.filter { canBeMove(getRandomNumber()) }.map { move(it.value) }
             resultView.printResultByRound(round)
         }
     }
-    private fun move(car: Car) {
+    fun move(car: Car) {
         car.moveCount++
     }
-    private fun canBeMove() = getRandomNumber() >= MOVE_CONDITION
+    fun canBeMove(number: Int) = number >= MOVE_CONDITION
 
     companion object {
         const val MOVE_CONDITION = 4
