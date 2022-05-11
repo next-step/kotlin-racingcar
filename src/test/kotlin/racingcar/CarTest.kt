@@ -12,4 +12,13 @@ class CarTest : AnnotationSpec() {
 
         sut.position shouldBe 1
     }
+
+    @Test
+    fun `이동포인트가 4미만이면 이동하지않는다`() {
+        val sut = Car()
+
+        sut.move(3)
+
+        sut.position shouldBe 0
+    }
 }
