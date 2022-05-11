@@ -35,6 +35,7 @@ tasks {
     jacocoTestReport {
         reports {
             html.required.set(true)
+            xml.required.set(true)
         }
         finalizedBy("jacocoTestCoverageVerification")
     }
