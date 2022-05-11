@@ -18,6 +18,7 @@ data class CarName(val value: String) {
                 .map { CarName(it) }
         }
 
+        val DEFAULT_NAME: CarName = CarName("car")
         private const val CAR_NAME_LIMIT = 5
     }
 }
