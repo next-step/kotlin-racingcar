@@ -17,11 +17,11 @@ import car.racing.ResultView
  * ...
  */
 fun main() {
-    val inputView = InputView(::readLine, ::print)
-    val drivers = inputView.readDrivers()
+    val inputView = InputView(reader = ::readLine, console = ::print)
+    val driverNames = inputView.readDriverNames()
     val moves = inputView.readMoves()
 
-    val game = CarRacing().newGame(drivers, moves)
+    val game = CarRacing.newGame(driverNames = driverNames, moves = moves)
     val records = game.play()
 
     val resultView = ResultView(::print)

@@ -1,10 +1,10 @@
 package car.racing
 
-class CarRacing {
+object CarRacing {
 
-    fun newGame(drivers: Int, moves: Int): Game {
-        require(drivers > 0)
+    fun newGame(driverNames: List<String>, moves: Int): Game {
+        require(driverNames.isNotEmpty())
         require(moves > 0)
-        return Game(drivers, moves)
+        return Game(driverNames, moves)
     }
 }
