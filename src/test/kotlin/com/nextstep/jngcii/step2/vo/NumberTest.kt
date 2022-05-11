@@ -1,4 +1,4 @@
-package com.nextstep.jngcii.step2
+package com.nextstep.jngcii.step2.vo
 
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows

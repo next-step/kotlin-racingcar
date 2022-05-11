@@ -1,4 +1,4 @@
-package com.nextstep.jngcii.step2
+package com.nextstep.jngcii.step2.vo
 
 class Number(
     input: String,
