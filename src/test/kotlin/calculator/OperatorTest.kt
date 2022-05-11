@@ -42,17 +42,17 @@ class OperatorTest : DescribeSpec({
 
     describe("find") {
         it("+가 입력되면 PLUS 객체를 반환한다") {
-            val target = "+"
-            val result = Operator.find(target)
+            val symbol = "+"
+            val result = Operator.find(symbol)
 
             result shouldBe Operator.PLUS
         }
 
         it("4칙연산 외 다른 연사자가 입력되면 IllegalArgumentException가 발생한다") {
-            val target = "("
+            val symbol = "("
 
             val exception = shouldThrow<IllegalArgumentException> {
-                Operator.find(target)
+                Operator.find(symbol)
             }
 
             exception.message shouldBe "+, -, *, / 외에는 사용할 수 없습니다."

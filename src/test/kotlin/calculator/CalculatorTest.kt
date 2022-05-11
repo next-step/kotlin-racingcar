@@ -1,5 +1,6 @@
 package calculator
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.shouldBe
 
@@ -20,5 +21,16 @@ class CalculatorTest : AnnotationSpec() {
         val result = sut.calculate("3 + 4 - 2")
 
         result shouldBe 5
+    }
+
+    @Test
+    fun `Null 입력시 IllegalArgumentException 가 발생한다`() {
+        val sut = Calculator()
+
+        val exception = shouldThrow<IllegalArgumentException> {
+            sut.calculate(null)
+        }
+
+        exception.message shouldBe "빈문자열은 입력될 수 없습니다."
     }
 }
