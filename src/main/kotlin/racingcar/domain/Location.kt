@@ -2,7 +2,7 @@ package racingcar.domain
 
 data class Location(
     val value: Int
-) {
+) : Comparable<Location> {
     init {
         require(value >= MIN_LOCATION) {
             "자동차의 위치는 0 미만일 수 없습니다. (입력: $value)"
@@ -18,5 +18,9 @@ data class Location(
         private const val MOVING_DISTANCE = 1
 
         val BASE_LOCATION = Location(0)
+    }
+
+    override fun compareTo(other: Location): Int {
+        return value - other.value
     }
 }

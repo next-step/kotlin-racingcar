@@ -6,7 +6,6 @@ import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
-import racingcar.domain.Location
 
 class LocationTest : DescribeSpec({
 
@@ -32,8 +31,27 @@ class LocationTest : DescribeSpec({
         }
     }
 
+    describe("compareTo") {
+        context("두 Location 이 같은 위치 값을 가지면") {
+            it("0을 반환한다") {
+                Location(1).compareTo(Location(1)) shouldBe 0
+            }
+        }
+
+        context("다른 Location 보다 큰 값을 가지면") {
+            it("1을 반환한다") {
+                Location(2).compareTo(Location(1)) shouldBe 1
+            }
+        }
+        context("다른 Location 보다 작은 값을 가지면") {
+            it("-1을 반환한다") {
+                Location(0).compareTo(Location(1)) shouldBe -1
+            }
+        }
+    }
+
     describe("equals") {
-        context("같은 위치 값을 가지면") {
+        context("두 Location 이 같은 위치 값을 가지면") {
             it("동등성을 만족한다") {
                 assertSoftly {
                     Location(0) shouldBe Location(0)
