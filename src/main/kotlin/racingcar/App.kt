@@ -9,11 +9,10 @@ import racingcar.view.ResultView
 
 fun main() {
     val request = InputView.input()
-    val inputCarNames = request.inputCarNames
+    val carNames = request.inputCarNames
     val laps = request.inputLaps
 
-    val carNames = CarName.ofList(inputCarNames)
-    val cars = Cars.of(carNames)
+    val cars = Cars.of(CarName.ofList(carNames))
     val racingGame = RacingGame(cars, laps)
 
     while (racingGame.isNotEnd()) {
