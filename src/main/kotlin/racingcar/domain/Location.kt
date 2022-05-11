@@ -13,14 +13,13 @@ data class Location(
         return Location(value + MOVING_DISTANCE)
     }
 
+    override fun compareTo(other: Location): Int {
+        return value - other.value
+    }
+
     companion object {
         private const val MIN_LOCATION = 0
         private const val MOVING_DISTANCE = 1
-
         val BASE_LOCATION = Location(0)
-    }
-
-    override fun compareTo(other: Location): Int {
-        return value - other.value
     }
 }

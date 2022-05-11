@@ -13,12 +13,12 @@ data class CarName(val value: String) {
     }
 
     companion object {
+        private const val CAR_NAME_LIMIT = 5
+        val DEFAULT_NAME: CarName = CarName("car")
+
         fun ofList(names: String, delimiter: String = ","): List<CarName> {
             return names.split(delimiter)
                 .map { CarName(it) }
         }
-
-        val DEFAULT_NAME: CarName = CarName("car")
-        private const val CAR_NAME_LIMIT = 5
     }
 }
