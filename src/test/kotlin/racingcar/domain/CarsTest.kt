@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.style.DescribeSpec
