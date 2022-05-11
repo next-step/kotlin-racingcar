@@ -19,7 +19,7 @@ class Validator {
         return true
     }
 
-    private fun containsNonOperator(input: String?): Boolean {
+    fun containsNonOperator(input: String?): Boolean {
         val inputWithOutBlank = input?.replace(" ", "")
         inputWithOutBlank?.forEach { c: Char ->
             if (!c.isDigit() && !isOperator(c)) return true
@@ -27,26 +27,26 @@ class Validator {
         return false
     }
 
-    private fun startWithNumber(input: String?): Boolean? {
+    fun startWithNumber(input: String?): Boolean? {
         return input?.firstOrNull()?.isDigit()
     }
 
-    private fun endWithNumber(input: String?): Boolean? {
+    fun endWithNumber(input: String?): Boolean? {
         return input?.last()?.isDigit()
     }
 
-    private fun containsNonOperatorNorDigitCharacter(input: String?): Boolean {
+    fun containsNonOperatorNorDigitCharacter(input: String?): Boolean {
         input?.forEach { c: Char ->
             if (c.isLetter()) return true
         }
         return false
     }
 
-    private fun isOperator(c: Char?): Boolean {
+    fun isOperator(c: Char?): Boolean {
         return (c == '+' || c == '-' || c == '*' || c == '/')
     }
 
-    private fun isNumber(input: String): Boolean {
+    fun isNumber(input: String): Boolean {
         input.forEach { n: Char -> if (!n.isDigit()) return false }
         return true
     }

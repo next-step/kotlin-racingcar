@@ -1,25 +1,30 @@
 package stringCalculator
 
-class Operator {
+import stringCalculator.Message.Companion.INVALID_OPERATOR
 
-    fun evaluate(number: Int, operator: String, result: Int): Int {
-        return if (operator == "+") {
-            add(result, number)
-        } else if (operator == "-") {
-            substrate(result, number)
-        } else if (operator == "*") {
-            multiple(result, number)
-        } else {
-            divide(result, number)
+enum class Evaluation(val operator: String, val applyOperator: (a: Int, b: Int) -> Int) {
+    ADD(
+        "+",
+        { a: Int, b: Int -> a + b }
+    ),
+    SUBSTRATE(
+        "-",
+        { a: Int, b: Int -> a - b }
+    ),
+    MULTIPLE(
+        "*",
+        { a: Int, b: Int -> a * b }
+    ),
+    DIVIDE(
+        "/",
+        { a: Int, b: Int -> a / b }
+    );
+
+    companion object {
+        fun find(operator: String): Evaluation {
+            return Evaluation.values().find { it.operator == operator } ?: throw IllegalArgumentException(
+                INVALID_OPERATOR
+            )
         }
     }
-
-    fun add(a: Int, b: Int): Int = a + b
-
-    fun substrate(a: Int, b: Int): Int = a - b
-
-    fun multiple(a: Int, b: Int): Int = a * b
-
-    fun divide(a: Int, b: Int): Int = a / b
 }
-
