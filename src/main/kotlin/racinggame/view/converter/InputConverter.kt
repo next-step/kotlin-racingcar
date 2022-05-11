@@ -1,5 +1,5 @@
 package racinggame.view.converter
 
-interface InputConverter<R> {
-    fun convert(input: String): R
+interface InputConverter<T> {
+    fun convert(input: String): T
 }
