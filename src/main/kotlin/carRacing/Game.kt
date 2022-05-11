@@ -12,7 +12,7 @@ class Game(
 
         private set
 
-    private val cars: List<Car> = (1..numCar).map { Car() }
+    private val cars: List<Car> = List(numCar) { Car() }
 
     private fun runRound() {
         this.cars.forEach {
