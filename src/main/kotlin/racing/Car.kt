@@ -1,11 +1,17 @@
 package racing
 
-class Car(private val moveThreshold: Int = DEFAULT_CAR_MOVE_THRESHOLD) {
-    var position = 0
+class Car(
+    val name: String,
+    private val powerStrategy: PowerStrategy = ZeroPowerStrategy,
+    private val moveThreshold: Int = DEFAULT_CAR_MOVE_THRESHOLD,
+    startPosition: Int = 0
+) {
+
+    var position = startPosition
         private set
 
-    fun move(power: Int) {
-        if (power >= moveThreshold) position++
+    fun move() {
+        if (powerStrategy.getPower() >= moveThreshold) position++
     }
 
     companion object {
