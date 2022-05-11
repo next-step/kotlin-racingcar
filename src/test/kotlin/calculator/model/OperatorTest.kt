@@ -11,7 +11,7 @@ class OperatorTest {
     fun `존재하지 않는 수식 기호 예외 발생`() {
         // given, when, then
         val exception = Assertions.assertThrows(IllegalArgumentException::class.java) {
-            Operator.calculate(1, 2, '&')
+            Operator.findOperator('&')
         }
         Assertions.assertEquals("존재하지 않는 수식 기호입니다. (symbol: &)", exception.message)
     }
@@ -20,7 +20,7 @@ class OperatorTest {
     fun `나누는 수가 0일 때 예외 발생`() {
         // given, when, then
         val exception = Assertions.assertThrows(IllegalArgumentException::class.java) {
-            Operator.calculate(1, 0, '/')
+            Operator.findOperator('/').operator(1, 0)
         }
         Assertions.assertEquals("나누는 수가 0이 될 수 없습니다.", exception.message)
     }
