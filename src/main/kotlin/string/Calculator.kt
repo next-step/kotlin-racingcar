@@ -1,13 +1,11 @@
 package string
+
 import enum.IntArithmetics
 
-fun main() {
-    println(Calculator.calculate("2+4*3"))
-}
 object Calculator {
     fun calculate(input: String): Int {
         validate(input)
-        val inputArray: Array<String> = convertToArray(input)
+        val inputArray: ArrayList<String> = convertToArrayList(input)
 
         var op = ""
         var result: Int = inputArray[0].toInt()
@@ -17,26 +15,36 @@ object Calculator {
                 continue
             }
 
-            validateIsDigit(inputArray[index])
             result = calc(result, op, inputArray[index].toInt())
         }
 
         return result
     }
 
-    private fun convertToArray(input: String): Array<String> {
-        return input.replace(" ", "").toCharArray().map { it.toString() }.toTypedArray()
+    private fun convertToArrayList(input: String): ArrayList<String> {
+        val inputs = input.replace(" ", "").toCharArray().map { it.toString() }.toTypedArray()
+        return parse(inputs)
     }
 
-    private fun parse(input: Array<String>) {
-        val result = emptyArray<String>()
-        var numbericString: String = ""
+    private fun parse(input: Array<String>): ArrayList<String> {
+        val result = arrayListOf<String>()
+        var accumulateString = ""
 
-        for(i: Int in 0..input.size) {
+        for (i: Int in input.indices) {
+            validateEach(input[i])
 
-            numbericString += input[i]
+            if (IntArithmetics.containOperator(input[i])) {
+                result.add(accumulateString)
+                result.add(input[i])
+                accumulateString = ""
+                continue
+            }
+
+            accumulateString += input[i]
         }
+        result.add(accumulateString)
 
+        return result
     }
 
     private fun calc(leftValue: Int, op: String, rightValue: Int): Int {
@@ -59,6 +67,7 @@ object Calculator {
 
     private fun validate(input: String) {
         validateEmptyInput(input)
+        validateBothEnds(input)
     }
 
     private fun validateEmptyInput(input: String) {
@@ -67,16 +76,21 @@ object Calculator {
         }
     }
 
-    private fun validateInputLength(input: String) {
-        if (input.length % 2 == 0) {
-            throw IllegalArgumentException()
+    private fun validateBothEnds(input: String) {
+        if (!input[0].isDigit() || !input[input.length - 1].isDigit()) {
+            throw IllegalArgumentException("잘못된 수식입니다")
         }
     }
 
-    private fun validateIsDigit(value: String) {
-        // value.int
-        if (value.toIntOrNull() == null) {
-            throw IllegalArgumentException("숫자가 아닌 입력값이 들어왔습니다")
+    private fun validateEach(value: String) {
+        if (isDigit(value) || IntArithmetics.containOperator(value)) {
+            return
         }
+
+        throw IllegalArgumentException("숫자 혹은 유효한 연산자가 아닌 입력값이 들어왔습니다")
+    }
+
+    private fun isDigit(value: String): Boolean {
+        return value.toIntOrNull() != null
     }
 }
