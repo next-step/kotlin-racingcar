@@ -5,6 +5,7 @@ class ResultView(private val console: (String) -> Unit) {
     fun showRecords(gameRecords: GameRecords) {
         if (gameRecords.isRecorded()) {
             showRecords(gameRecords.records)
+            showWinners(gameRecords.winners)
         } else {
             showNoRecords()
         }
@@ -26,6 +27,9 @@ class ResultView(private val console: (String) -> Unit) {
         showEmptyLine()
     }
 
+    private fun showWinners(winners: List<Record>) {
+        console("${winners.joinToString { it.driverName }}가 최종 우승했습니다.")
+    }
 
     private fun showNoRecords() {
         console("유효한 경기 기록이 없습니다.")
