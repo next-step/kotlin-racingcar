@@ -1,6 +1,6 @@
 package racingcar.view.input.validator
 
-class IntInputValidator(private val range: IntRange? = null) : InputValidator<Int> {
+class IntInputValidator(private val range: IntRange = Int.MIN_VALUE..Int.MAX_VALUE) : InputValidator<Int> {
 
     companion object {
         private const val ERROR_MESSAGE_NO_NUMBER = "숫자로 입력해 주세요."
@@ -18,7 +18,7 @@ class IntInputValidator(private val range: IntRange? = null) : InputValidator<In
     }
 
     private fun checkValueInRange(value: Int): Int {
-        val range = this.range ?: return value // OK, no boundary
+        val range = this.range
         if (value in range) {
             return value // OK, value in the range
         }
