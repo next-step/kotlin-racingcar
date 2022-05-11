@@ -29,10 +29,7 @@ class RacingGame private constructor(
             println("시도할 횟수는 몇 회 인가요?")
             val trialCount = InputParser.toInt(readln())
 
-            val drivers = mutableListOf<Driver>()
-            repeat(numberOfCar) {
-                drivers.add(Driver(Car()))
-            }
+            val drivers = List(numberOfCar) { Driver(Car()) }
 
             return RacingGame(drivers, trialCount)
         }
