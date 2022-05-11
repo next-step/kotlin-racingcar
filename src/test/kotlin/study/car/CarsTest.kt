@@ -27,5 +27,4 @@ class CarsTest : StringSpec({
             position.value shouldBe 1
         }
     }
-
 })

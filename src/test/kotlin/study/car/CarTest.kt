@@ -6,7 +6,7 @@ import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
-class CarTest: StringSpec({
+class CarTest : StringSpec({
     "자동차를 생성할수 있다" {
         shouldNotThrow<Throwable> { `자동차 위치 0`() }
     }

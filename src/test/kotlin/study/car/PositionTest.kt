@@ -6,7 +6,7 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
-class PositionTest: StringSpec({
+class PositionTest : StringSpec({
     "Position 객체 정상 생성" {
         shouldNotThrow<Throwable> { Position() }
     }
