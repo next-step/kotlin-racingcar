@@ -3,7 +3,7 @@ package model
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class RaceTest{
+class RaceTest {
     @Test
     fun initCars() {
         val race = Race(5)

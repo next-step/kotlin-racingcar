@@ -1,9 +1,9 @@
 package model
 
 class Race(
-    numOfCar: Int
+    numOfCars: Int
 ) {
-    private val cars: List<Car> = List(numOfCar) { Car() }
+    private val cars: List<Car> = List(numOfCars) { Car() }
 
     fun doRace(): List<Car> {
         cars.forEach {
