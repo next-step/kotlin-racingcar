@@ -28,10 +28,4 @@ class CarTest {
         assertThat(recored2.size).isEqualTo(1)
         assertThat(recored2[0]).isEqualTo(Position.STOP)
     }
-
-    @Test
-    fun `여러번 차 이동멈춤을 시도한다`() {
-        val car = Car()
-        // 이동멈춤 권한을 driver에게 이동
-    }
 }
