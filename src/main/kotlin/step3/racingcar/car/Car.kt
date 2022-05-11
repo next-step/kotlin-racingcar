@@ -1,17 +1,14 @@
 package step3.racingcar.car
 
 class Car {
-    private val drivingRecord: MutableList<Position> = mutableListOf()
-
-    fun getDrivingRecord(): List<Position> {
-        return drivingRecord.toList()
-    }
+    private val _drivingRecord: MutableList<Position> = mutableListOf()
+    val drivingRecord get() = _drivingRecord.toList()
 
     fun move() {
-        drivingRecord.add(Position.MOVE)
+        _drivingRecord.add(Position.MOVE)
     }
 
     fun stop() {
-        drivingRecord.add(Position.STOP)
+        _drivingRecord.add(Position.STOP)
     }
 }

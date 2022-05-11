@@ -7,7 +7,6 @@ import step3.racingcar.view.ResultView
 class RacingGame private constructor(
     private val drivers: List<Driver>,
     private val trialCount: Int
-
 ) {
 
     // TODO: 2022/05/09 RacingGame에서 inputView의 역할을 같이 하고 있는것 같은.. 고민이 있는데 input을 어느시점에 분리하는게 좋을지 고민...

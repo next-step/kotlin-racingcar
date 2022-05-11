@@ -11,7 +11,7 @@ class CarTest {
 
         // when
         moveTestCar.move()
-        val recored1 = moveTestCar.getDrivingRecord()
+        val recored1 = moveTestCar.drivingRecord
 
         // then
         assertThat(recored1.size).isEqualTo(1)
@@ -22,7 +22,7 @@ class CarTest {
 
         // when
         stopTestCar.stop()
-        val recored2 = stopTestCar.getDrivingRecord()
+        val recored2 = stopTestCar.drivingRecord
 
         // then
         assertThat(recored2.size).isEqualTo(1)

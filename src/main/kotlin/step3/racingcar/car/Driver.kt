@@ -13,7 +13,7 @@ class Driver(
     }
 
     fun getMoveResult(): Int {
-        return car.getDrivingRecord()
+        return car.drivingRecord
             .count { it == Position.MOVE }
     }
 
