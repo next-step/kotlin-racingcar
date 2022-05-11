@@ -7,13 +7,15 @@ import racingCar.constants.Message
  * Created by Jaesungchi on 2022.05.07..
  */
 object InputView {
-    fun getNumberOfCars(readStringValue: () -> String? = { readlnOrNull() }): Int {
-        printHowManyCars()
-        return changeStringToInt(readStringValue())
+
+    private const val DELIMITER = ","
+    fun getCarNames(readStringValue: () -> String? = { readlnOrNull() }): List<String> {
+        printWriteCarNames()
+        return splitByDelimiter(readStringValue())
     }
 
-    private fun printHowManyCars() {
-        println(Message.PrintingMessage.HOW_MANY_CAR)
+    private fun printWriteCarNames() {
+        println(Message.PrintingMessage.PLEASE_WRITE_CAR_NAMES)
     }
 
     fun getNumberOfRaces(readStringValue: () -> String? = { readlnOrNull() }): Int {
@@ -23,6 +25,10 @@ object InputView {
 
     private fun printHowManyTimesRace() {
         println(Message.PrintingMessage.HOW_MANY_TIMES_RACE)
+    }
+
+    private fun splitByDelimiter(input: String?): List<String> {
+        return input?.split(DELIMITER) ?: throw IllegalArgumentException(Message.ExceptionMessage.IS_NULL_OR_BLANK)
     }
 
     private fun changeStringToInt(input: String?): Int {

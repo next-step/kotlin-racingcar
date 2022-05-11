@@ -14,9 +14,9 @@ class RacingController {
     val raceResults: List<RaceResult>
         get() = _raceResults
 
-    fun startGame(numberOfCars: Int, numberOfRaces: Int) {
-        if (!checkValidNumber(numberOfCars) || !checkValidNumber(numberOfRaces)) return
-        carLists = List(numberOfCars) { Car() }
+    fun startGame(carNames: List<String>, numberOfRaces: Int) {
+        if (!checkValidNumber(numberOfRaces)) return
+        carLists = List(carNames.size) { Car(carNames[it]) }
         repeat(numberOfRaces) {
             processGame()
             _raceResults.add(RaceResult(carLists))
