@@ -1,4 +1,4 @@
-package car_racing
+package carRacing
 
 class Car {
     var position: Int = 0

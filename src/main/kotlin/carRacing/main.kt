@@ -1,4 +1,4 @@
-package car_racing
+package carRacing
 
 fun main() {
     val numCar: Int = InputView.numCar()

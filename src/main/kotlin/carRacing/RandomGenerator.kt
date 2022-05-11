@@ -1,4 +1,4 @@
-package car_racing
+package carRacing
 
 import kotlin.random.Random
 

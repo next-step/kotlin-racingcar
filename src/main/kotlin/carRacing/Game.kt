@@ -1,4 +1,4 @@
-package car_racing
+package carRacing
 
 class Game(
     numCar: Int,
