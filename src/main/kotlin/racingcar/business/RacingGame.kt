@@ -11,7 +11,13 @@ class RacingGame(
     private val random: NumberGenerator
 ) {
     init {
-        require(numOfPlayer > 0 && numOfMove > 0)
+        require(numOfPlayer > 0) {
+            "플레이어는 조건은 최소 1명 이상입니다."
+        }
+
+        require(numOfMove > 0) {
+            "이동 횟수 조건은 최소 1번 이상입니다."
+        }
     }
 
     private val result = mutableListOf<List<Int>>()

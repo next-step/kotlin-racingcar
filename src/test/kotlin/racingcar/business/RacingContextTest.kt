@@ -1,8 +1,10 @@
 package racingcar.business
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 import racingcar.utils.NumberGenerator
+import racingcar.utils.RandomNumberGenerator
 
 class RacingContextTest : DescribeSpec({
     describe("play 메서드") {
@@ -42,6 +44,43 @@ class RacingContextTest : DescribeSpec({
                     .play()
 
                 result shouldBe expected
+            }
+        }
+    }
+
+    describe("init 메서드") {
+
+        val random: NumberGenerator = RandomNumberGenerator()
+
+        context("플레이어가 0 명 일 때") {
+            it("예외를 던진다.") {
+                val exception = shouldThrow<IllegalArgumentException> {
+                    RacingGame(0, 1, random)
+                }
+                exception.message shouldBe "플레이어는 조건은 최소 1명 이상입니다."
+            }
+        }
+
+        context("플레이어가 1 명 이상 일 때") {
+            it("객체 생성을 한다.") {
+                RacingGame(1, 1, random)
+                RacingGame(1, 1, random)
+            }
+        }
+
+        context("이동 횟수가 0 명 일 때") {
+            it("예외를 던진다.") {
+                val exception = shouldThrow<IllegalArgumentException> {
+                    RacingGame(1, 0, random)
+                }
+                exception.message shouldBe "이동 횟수 조건은 최소 1번 이상입니다."
+            }
+        }
+
+        context("이동 횟수가 1 명 이상 일 때") {
+            it("객체 생성을 한다.") {
+                RacingGame(1, 1, random)
+                RacingGame(1, 2, random)
             }
         }
     }
