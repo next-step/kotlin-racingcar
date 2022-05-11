@@ -1,7 +1,6 @@
 package step3.racingcar.car
 
 import step3.racingcar.RandomNumberGenerator
-import step3.racingcar.view.ResultView
 
 class RacingGame private constructor(
     private val drivers: List<Driver>,
@@ -12,11 +11,12 @@ class RacingGame private constructor(
         repeat(trialCount) {
             drivers.forEach {
                 it.drive(RandomNumberGenerator.generate())
-                ResultView.show(it.getMoveResult())
-                println()
             }
-            println()
         }
+    }
+
+    fun getPlayResult(): List<Int> {
+        return drivers.map { it.getMoveResult() }
     }
 
     companion object {
