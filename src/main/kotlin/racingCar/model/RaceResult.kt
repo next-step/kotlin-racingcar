@@ -11,9 +11,8 @@ class RaceResult(carList: List<Car>) {
     init {
         val result = StringBuilder()
         carList.forEach {
-            repeat(it.position) {
-                result.append(RACE_FOOTPRINT_SYMBOL)
-            }
+            result.append(it.name + " : ")
+            result.append(RACE_FOOTPRINT_SYMBOL.repeat(it.position))
             result.append("\n")
         }
         resultOutput = result.toString()
