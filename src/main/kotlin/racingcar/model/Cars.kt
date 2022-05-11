@@ -2,11 +2,8 @@ package racingcar.model
 
 import kotlin.random.Random
 
-class Cars(
-    carCount: CarCount
+class Cars(private var cars: List<Car>
 ) {
-    var cars: List<Car> = List(carCount.count) { Car(id = it) }
-
     fun moveForwardCars() {
         cars.forEach {
             it.moveForward(RandomValueMovingStrategy(getRandomNum()))
@@ -16,4 +13,6 @@ class Cars(
     private fun getRandomNum(): Int {
         return Random.nextInt(Car.MAX_BOUND)
     }
+
+    fun forEach(action : (Car) -> (Unit)) = cars.forEach(action)
 }

@@ -1,5 +1,6 @@
 package racingcar
 
+import racingcar.model.Car
 import racingcar.model.Cars
 import racingcar.model.TryNumber
 import racingcar.view.Input
@@ -7,7 +8,8 @@ import racingcar.view.Output
 
 class RacingGame(
     val input: Input,
-    val output: Output
+    val output: Output,
+    val carFactory: CarFactory
 ) {
 
     private fun race(cars: Cars) {
@@ -18,7 +20,7 @@ class RacingGame(
         val carCount = input.getCarCount()
         val tryNumber = input.getTryNumber()
 
-        val cars = Cars(carCount)
+        val cars = carFactory.createCars(carCount)
 
         startGame(cars, tryNumber)
     }
@@ -35,7 +37,10 @@ class RacingGame(
 fun main() {
     val racingGame = RacingGame(
         input = Input(),
-        output = Output()
+        output = Output(),
+        carFactory = CarFactory { carCount ->
+            Cars(List(carCount.count) { Car(id = it) })
+        }
     )
-    racingGame.startGame()
 }
+

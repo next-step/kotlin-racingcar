@@ -10,7 +10,7 @@ class Output {
     }
 
     fun showResultPosition(cars: Cars) {
-        cars.cars.forEach {
+        cars.forEach {
             showGauge(it.position)
         }
         println()
