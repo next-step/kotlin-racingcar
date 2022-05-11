@@ -23,7 +23,7 @@ class RacingUITest {
     }
 
     @ParameterizedTest
-    @ArgumentsSource(CarStateArgumentsProvider::class)
+    @ArgumentsSource(DrawCarsArgumentsProvider::class)
         /* ex) 이름 표시 + ":" + 이동 한칸 "-" 로 표시 / 시작 지점 "-" 로 표시
         David : --
         Alora : -
@@ -36,7 +36,7 @@ class RacingUITest {
         Assertions.assertThat(output.toString()).isEqualTo(expect)
     }
 
-    class CarStateArgumentsProvider : ArgumentsProvider {
+    class DrawCarsArgumentsProvider : ArgumentsProvider {
         private val names = listOf("Andy", "Bruce", "Clara", "David", "Echo", "Flora")
         private val random = Random(123456789)
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> {
