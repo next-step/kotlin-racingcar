@@ -29,7 +29,7 @@ class RacingGame(
     companion object {
         fun of(racingGameInput: RacingGameInput, carFactory: CarFactory): RacingGame {
             return RacingGame(
-                cars = List(racingGameInput.numberOfCars) { carFactory.create() },
+                cars = racingGameInput.names.map { carFactory.create() },
                 numberOfAttempts = racingGameInput.numberOfAttempts
             )
         }

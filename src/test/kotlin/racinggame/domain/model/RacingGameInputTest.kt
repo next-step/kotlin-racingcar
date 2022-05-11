@@ -7,13 +7,14 @@ import org.junit.jupiter.api.assertAll
 class RacingGameInputTest {
     @Test
     fun `RacingGameInput은 경주에 참하가는 자동차 대수와 전진 시도 횟수를 보관한다`() {
+        val names = listOf("mipha, revali, daruk, urbosa")
         val racingGameInput = RacingGameInput(
-            numberOfCars = 3,
+            names = names,
             numberOfAttempts = 5
         )
 
         assertAll(
-            { assertThat(racingGameInput.numberOfCars).isEqualTo(3) },
+            { assertThat(racingGameInput.names).isEqualTo(names) },
             { assertThat(racingGameInput.numberOfAttempts).isEqualTo(5) }
         )
     }

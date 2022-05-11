@@ -1,6 +1,6 @@
 package racinggame.domain.model
 
 data class RacingGameInput(
-    val numberOfCars: Int,
+    val names: List<String>,
     val numberOfAttempts: Int
 )

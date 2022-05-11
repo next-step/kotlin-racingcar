@@ -1,9 +1,14 @@
 package racinggame.view
 
-import racinggame.view.validator.NumberRangeValidator
+import racinggame.view.converter.InputConverter
+import racinggame.view.validator.InputValidator
 
-class InputView(private val inputMessage: String) {
-    fun receive(): Int {
+class InputView<T>(
+    private val inputMessage: String,
+    private val inputConverter: InputConverter<T>,
+    private val validator: InputValidator<T>
+) {
+    fun receive(): T {
         printInputMessage()
         return receiveUserInput()
     }
@@ -12,5 +17,7 @@ class InputView(private val inputMessage: String) {
         println(inputMessage)
     }
 
-    private fun receiveUserInput() = NumberRangeValidator.validate(readln().toInt())
+    private fun receiveUserInput() = validator.validate(
+        inputConverter.convert(readln())
+    )
 }
