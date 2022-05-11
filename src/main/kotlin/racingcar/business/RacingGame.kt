@@ -3,12 +3,12 @@ package racingcar.business
 import racingcar.domain.Car
 import racingcar.domain.collection.Cars
 import racingcar.property.Property
-import racingcar.utils.RandomGenerator
+import racingcar.utils.NumberGenerator
 
-class RacingContext(
+class RacingGame(
     private val numOfPlayer: Int,
     private val numOfMove: Int,
-    private val random: RandomGenerator
+    private val random: NumberGenerator
 ) {
     init {
         require(numOfPlayer > 0 && numOfMove > 0)
@@ -29,7 +29,7 @@ class RacingContext(
     fun play(): List<List<Int>> {
         repeat(numOfMove) {
             cars.run()
-            result.add(cars.getPosition())
+            result.add(cars.getPositions())
         }
         return result
     }

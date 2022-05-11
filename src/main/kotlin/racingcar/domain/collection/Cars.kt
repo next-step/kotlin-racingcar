@@ -9,7 +9,7 @@ class Cars(
         cars.forEach(Car::run)
     }
 
-    fun getPosition(): List<Int> {
+    fun getPositions(): List<Int> {
         return cars.map { it.position }
     }
 

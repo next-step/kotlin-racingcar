@@ -2,13 +2,13 @@ package racingcar.business
 
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
-import racingcar.utils.RandomGenerator
+import racingcar.utils.NumberGenerator
 
 class RacingContextTest : DescribeSpec({
     describe("play 메서드") {
         context("랜덤 값이 4 이상일 때") {
-            class TestRandom : RandomGenerator {
-                override fun generateNumberWithin(range: IntRange): Int {
+            class TestRandomNumberGenerator : NumberGenerator {
+                override fun executeRangeOf(range: IntRange): Int {
                     return (4..9).random()
                 }
             }
@@ -19,7 +19,7 @@ class RacingContextTest : DescribeSpec({
                     listOf(2, 2)
                 )
 
-                val result = RacingContext(2, 2, TestRandom())
+                val result = RacingGame(2, 2, TestRandomNumberGenerator())
                     .play()
 
                 result shouldBe expected
@@ -27,8 +27,8 @@ class RacingContextTest : DescribeSpec({
         }
 
         context("랜덤 값이 3 이하일 때") {
-            class TestRandom : RandomGenerator {
-                override fun generateNumberWithin(range: IntRange): Int {
+            class TestRandomNumberGenerator : NumberGenerator {
+                override fun executeRangeOf(range: IntRange): Int {
                     return (0..3).random()
                 }
             }
@@ -38,7 +38,7 @@ class RacingContextTest : DescribeSpec({
                     listOf(0, 0)
                 )
 
-                val result = RacingContext(2, 2, TestRandom())
+                val result = RacingGame(2, 2, TestRandomNumberGenerator())
                     .play()
 
                 result shouldBe expected

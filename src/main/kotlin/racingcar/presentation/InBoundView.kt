@@ -2,15 +2,15 @@ package racingcar.presentation
 
 class InBoundView(
     private val reader: () -> String?,
-    private val console: (String) -> Unit
+    private val printer: (String) -> Unit
 ) {
     fun requestNumberOfPlayer(): Int {
-        console("자동차 대수는 몇 대인가요?: ")
+        printer("자동차 대수는 몇 대인가요?: ")
         return readText()
     }
 
     fun requestNumberOfMove(): Int {
-        console("시도할 횟수는 몇 회인가요?: ")
+        printer("시도할 횟수는 몇 회인가요?: ")
         return readText()
     }
 

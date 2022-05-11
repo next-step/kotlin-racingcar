@@ -1,11 +1,11 @@
 package racingcar.domain
 
-import racingcar.utils.RandomGenerator
+import racingcar.utils.NumberGenerator
 
 class Car(
     private val forwardThreshold: Int,
     private val forwardDistanceRange: IntRange,
-    private val random: RandomGenerator
+    private val random: NumberGenerator
 ) {
     var position: Int = 0
         private set
@@ -17,6 +17,6 @@ class Car(
     }
 
     private fun isRun(): Boolean {
-        return random.generateNumberWithin(forwardDistanceRange) >= forwardThreshold
+        return random.executeRangeOf(forwardDistanceRange) >= forwardThreshold
     }
 }

@@ -1,20 +1,20 @@
 package racingcar
 
-import racingcar.business.RacingContext
+import racingcar.business.RacingGame
 import racingcar.presentation.InBoundView
 import racingcar.presentation.OutBoundView
-import racingcar.utils.RandomGenerator
-import racingcar.utils.RandomGeneratorImpl
+import racingcar.utils.NumberGenerator
+import racingcar.utils.RandomNumberGenerator
 
 fun main() {
     val inBoundView = InBoundView(::readLine, ::print)
     val numOfPlayer: Int = inBoundView.requestNumberOfPlayer()
     val numOfMove: Int = inBoundView.requestNumberOfMove()
 
-    val random: RandomGenerator = RandomGeneratorImpl()
+    val random: NumberGenerator = RandomNumberGenerator()
 
-    val racingContext = RacingContext(numOfPlayer, numOfMove, random)
-    val result = racingContext.play()
+    val racingGame = RacingGame(numOfPlayer, numOfMove, random)
+    val result = racingGame.play()
 
     val outBoundView = OutBoundView(::print)
     outBoundView.displayResult(result)

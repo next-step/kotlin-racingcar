@@ -1,8 +1,8 @@
 package racingcar.utils
 
-class RandomGeneratorImpl : RandomGenerator {
+class RandomNumberGenerator : NumberGenerator {
 
-    override fun generateNumberWithin(range: IntRange): Int {
+    override fun executeRangeOf(range: IntRange): Int {
         val min = range.first
         val max = range.last
 
