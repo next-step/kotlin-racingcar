@@ -3,7 +3,7 @@ package racingcar.domain
 class RacingGame(
     private val numberOfRaces: Int,
     private val racingCars: RacingCars,
-    private val movementCommandGenerator: MovementCommandGenerator = RandomMovementCommandGenerator
+    private val movementCommandGenerator: MovementCommandGenerator
 ) {
 
     init {

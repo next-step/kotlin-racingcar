@@ -3,6 +3,7 @@ package racingcar.application
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
+import racingcar.domain.RandomMovementCommandGenerator
 
 class RacingGameManagerSpecs : DescribeSpec({
 
@@ -12,7 +13,7 @@ class RacingGameManagerSpecs : DescribeSpec({
             val numberOfRaces = 5
             val gameInput = GameInput(numberOfCars, numberOfRaces)
             it("게임을 진행하고 게임 결과를 반환한다") {
-                val gameResult = RacingGameManager.proceed(gameInput)
+                val gameResult = RacingGameManager.proceed(gameInput, RandomMovementCommandGenerator)
                 gameResult.also {
                     it.raceResults.size shouldBe numberOfRaces
                     it.raceResults.forEach { raceResult ->
@@ -21,13 +22,24 @@ class RacingGameManagerSpecs : DescribeSpec({
                 }
             }
         }
-        context("주어진 입력이 유효하지 않다면") {
+        context("주어진 자동차의 대수가 유효하지 않다면") {
             val numberOfCars = -1
+            val numberOfRaces = 5
+            val gameInput = GameInput(numberOfCars, numberOfRaces)
+            it("예외를 발생시킨다") {
+                shouldThrowExactly<IllegalArgumentException> {
+                    RacingGameManager.proceed(gameInput, RandomMovementCommandGenerator)
+                }
+            }
+        }
+
+        context("주어진 경주 횟수가 유효하지 않다면") {
+            val numberOfCars = 3
             val numberOfRaces = -1
             val gameInput = GameInput(numberOfCars, numberOfRaces)
             it("예외를 발생시킨다") {
                 shouldThrowExactly<IllegalArgumentException> {
-                    RacingGameManager.proceed(gameInput)
+                    RacingGameManager.proceed(gameInput, RandomMovementCommandGenerator)
                 }
             }
         }
