@@ -6,7 +6,7 @@ object NameLengthValidator : InputValidator<String> {
 
     override fun validate(input: String): String {
         return input.also { inputName ->
-            require(inputName.length <= 5) {
+            require(inputName.length <= MAXIMUM_LENGTH) {
                 INVALID_USER_INPUT_MESSAGE
             }
         }
