@@ -12,6 +12,8 @@ class CarRacing(private val carMaxPower: Int = DEFAULT_MAX_POWER) {
         val cars = input.carNames.map { Car(it) }
 
         play(cars, input.moveCount)
+
+        ui.drawWinners(findWinners(cars))
     }
 
     private fun play(cars: List<Car>, moveCount: Int) {
@@ -21,6 +23,11 @@ class CarRacing(private val carMaxPower: Int = DEFAULT_MAX_POWER) {
             }
             ui.drawCars(cars)
         }
+    }
+
+    private fun findWinners(cars: List<Car>): List<Car> {
+        val maxPosition = cars.maxOf { it.position }
+        return cars.filter { maxPosition == it.position }
     }
 
     companion object {
