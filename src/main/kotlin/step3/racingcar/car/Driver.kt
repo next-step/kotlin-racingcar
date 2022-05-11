@@ -1,26 +1,19 @@
 package step3.racingcar.car
 
+import step3.racingcar.car.strategy.MoveStrategy
+
 class Driver(
-    private val car: Car
+    private val car: Car,
+    private val moveStrategy: MoveStrategy
 ) {
 
-    fun drive(moveNumber: Int) {
-        if (isMovable(moveNumber)) {
+    fun drive() {
+        if (moveStrategy.isMovable()) {
             car.move()
-        } else {
-            car.stop()
         }
     }
 
     fun getMoveResult(): Int {
         return car.currentDrivingRecord
-    }
-
-    private fun isMovable(moveNumber: Int): Boolean {
-        return moveNumber >= DRIVE_DEFINE_NUMBER
-    }
-
-    companion object {
-        private const val DRIVE_DEFINE_NUMBER = 4
     }
 }

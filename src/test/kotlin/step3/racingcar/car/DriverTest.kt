@@ -2,32 +2,52 @@ package step3.racingcar.car
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import step3.racingcar.car.strategy.MoveStrategy
 
 class DriverTest {
 
     @Test
-    fun `4 이상 숫자가 나오면 움직인다`() {
+    fun `드라이버의 전략이 true면 차가 움직일 수 있다`() {
         // given
-        val driver = Driver(Car())
-        val moveNumber = 5
-        val nonMoveNumber = 3
-        val boundaryNumber = 4
+        val alwayMoveDriver = Driver(Car(), AlwaysTrueMoveStrategy())
 
-        driver.drive(moveNumber)
-        assertThat(driver.getMoveResult()).isEqualTo(1)
+        // when
+        val moveCount = 100
+        repeat(moveCount) {
+            alwayMoveDriver.drive()
+        }
 
-        driver.drive(nonMoveNumber)
-        assertThat(driver.getMoveResult()).isEqualTo(1)
-
-        driver.drive(boundaryNumber)
-        assertThat(driver.getMoveResult()).isEqualTo(2)
+        // then
+        assertThat(alwayMoveDriver.getMoveResult()).isEqualTo(100)
     }
 
     @Test
-    fun `드라이버가 차의 현재 위치 값을 받는다`() {
+    fun `드라이버의 전략이 false면 차가 움직일 수 있다`() {
+        // given
+        val alwayMoveDriver = Driver(
+            Car(),
+            object : MoveStrategy {
+                override fun isMovable(): Boolean {
+                    return false
+                }
+            }
+        )
+
+        // when
+        val moveCount = 100
+        repeat(moveCount) {
+            alwayMoveDriver.drive()
+        }
+
+        // then
+        assertThat(alwayMoveDriver.getMoveResult()).isEqualTo(0)
+    }
+
+    @Test
+    fun `드라이버는 차의 현재 위치 값을 알 수 있다`() {
         // given
         val testCar = Car()
-        val testDriver = Driver(testCar)
+        val testDriver = Driver(testCar, AlwaysTrueMoveStrategy())
 
         // when
         for (i in 0 until 100) {
