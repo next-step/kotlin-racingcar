@@ -1,25 +1,17 @@
 package stringCalculator
 
 import org.assertj.core.api.Assertions
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
 internal class CalculatorTest {
 
-    private lateinit var calculator: Calculator
-
-    @BeforeEach
-    fun setup() {
-        calculator = Calculator()
-    }
-
     @ParameterizedTest
     @MethodSource("testcase")
-    fun `calculate test`(input: String, expected: Int) {
-        calculator.input = input
-        val testValue = calculator.calculate()
+    fun `calculate 결과`(input: String, expected: Int) {
+        val calculator = Calculator()
+        val testValue = calculator.calculate(input)
         Assertions.assertThat(testValue).isEqualTo(expected)
     }
 
