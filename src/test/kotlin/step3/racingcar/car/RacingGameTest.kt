@@ -17,4 +17,11 @@ class RacingGameTest {
         assertThatThrownBy { badRacingGameInitCase.isPlayable() }.isInstanceOf(GameOverException::class.java)
         assertThatThrownBy { badRacingGameInitCase2.isPlayable() }.isInstanceOf(GameOverException::class.java)
     }
+
+    @Test
+    fun `게임이 진행되면 횟수가 감소한다`() {
+        val racingGame = RacingGame.init(3, 5)
+        racingGame.play()
+        assertThat(racingGame.trialCount).isEqualTo(4)
+    }
 }
