@@ -19,7 +19,7 @@ class GameTest : FreeSpec({
             // then
             game.recordList.size shouldBe numMovement
             game.recordList.forEach {
-                it.size shouldBe numCar
+                it.positions.size shouldBe numCar
             }
         }
     }

@@ -10,6 +10,7 @@ class Game(
         require(numMovement >= 1) { throw IllegalArgumentException("시도 횟수는 1이상 이어야한다.") }
     }
 
+    var recordList: List<Record> = listOf()
         private set
 
     private val cars: List<Car> = List(numCar) { Car() }
@@ -24,7 +25,7 @@ class Game(
     fun run() {
         this.recordList = (1..this.numMovement).map {
             this.runRound()
-            this.cars.map { it.position }
+            Record(this.cars.map { it.position })
         }
     }
 

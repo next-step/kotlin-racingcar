@@ -6,9 +6,9 @@ object ResultView {
         println("실행 결과")
     }
 
-    fun printResultRecord(recordList: List<List<Int>>) {
+    fun printResultRecord(recordList: List<Record>) {
         recordList.forEach { record ->
-            record.forEach {
+            record.positions.forEach {
                 val char = "_".repeat(it)
                 println(char)
             }
