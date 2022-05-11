@@ -2,6 +2,9 @@ package racing
 
 object RacingInputReceiver {
 
+    private const val MAX_NAME_LENGTH = 5
+    private const val MIN_MOVE_COUNT = 0
+
     @Throws(IllegalArgumentException::class)
     fun receive(): UserInput {
         val carNames = receiveCarNames()
@@ -15,7 +18,7 @@ object RacingInputReceiver {
             .replace(" ", "")
             .split(",")
 
-        require(carNames.none { it.count() > 5 }) { "이름은 5자 이하로 가능합니다." }
+        require(carNames.none { it.count() > MAX_NAME_LENGTH }) { "이름은 ${MAX_NAME_LENGTH}자 이하로 가능합니다." }
 
         return carNames
     }
@@ -23,7 +26,7 @@ object RacingInputReceiver {
     private fun receiveMoveCount(): Int {
         println("시도할 횟수는 몇 회인가요?")
         val count = requireNotNull(readLine()?.toInt())
-        require(count >= 0) { "이동은 0 이상을 입력해야 합니다." }
+        require(count >= MIN_MOVE_COUNT) { "이동은 $MIN_MOVE_COUNT 이상을 입력해야 합니다." }
         return count
     }
 }
