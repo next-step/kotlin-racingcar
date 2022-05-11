@@ -2,7 +2,8 @@ package racingcar.domain
 
 class RacingGame(
     private val numberOfRaces: Int,
-    private val racingCars: RacingCars
+    private val racingCars: RacingCars,
+    private val movementCommandGenerator: MovementCommandGenerator = RandomMovementCommandGenerator
 ) {
 
     init {
@@ -13,7 +14,7 @@ class RacingGame(
         val raceRecords = mutableListOf<RaceRecord>()
 
         repeat(numberOfRaces) {
-            raceRecords.add(racingCars.race())
+            raceRecords.add(racingCars.race(movementCommandGenerator))
         }
 
         return GameRecord(raceRecords.toList())

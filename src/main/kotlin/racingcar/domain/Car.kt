@@ -7,7 +7,7 @@ class Car {
         private set
 
     fun move(movementCommand: MovementCommand) {
-        if (movementCommand == FORWARD) position++
+        if (movementCommand == FORWARD) position += movementCommand.power
     }
 
     fun captureState() = State(position)

@@ -14,7 +14,7 @@ class RacingGameSpecs : DescribeSpec({
             )
             val racingGame = RacingGame(
                 numberOfRaces,
-                racingCars
+                racingCars,
             )
             it("경주 수 만큼 경기를 진행하고 경주 결과를 반환한다") {
                 val raceRecords = racingGame.play()

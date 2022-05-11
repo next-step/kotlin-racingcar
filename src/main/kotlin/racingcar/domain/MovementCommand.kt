@@ -1,7 +1,10 @@
 package racingcar.domain
 
-enum class MovementCommand {
-    FORWARD, WAIT;
+enum class MovementCommand(
+    val power: Int
+) {
+    FORWARD(1),
+    WAIT(0);
 
     companion object {
 

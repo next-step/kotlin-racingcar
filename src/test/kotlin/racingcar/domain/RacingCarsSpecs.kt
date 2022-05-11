@@ -6,17 +6,23 @@ import io.kotest.matchers.shouldBe
 
 class RacingCarsSpecs : DescribeSpec({
 
-    val numberOfCars = 3
+    val movements = listOf(0, 4, 9)
+    val numberOfCars = movements.size
 
     describe("경주에 참여한 자동차들은") {
         context("경주에 필요한 수 만큼 자동차가 등록되었다면") {
             val cars = List(numberOfCars) { Car() }
             val racingCars = RacingCars(cars)
+            val commandGenerator = PreparedMovementCommandGenerator(movements)
+
             it("경주를 진행하고 경주 결과를 반환한다") {
-                val raceRecords = racingCars.race()
+                val raceRecords = racingCars.race(commandGenerator)
                 raceRecords.also {
                     it.cars.size shouldBe numberOfCars
-                    it.cars.zip(cars) { state, car ->
+                    it.cars.forEachIndexed { i, state ->
+                        val car = cars[i]
+                        val command = MovementCommand.of(movements[i])
+                        car.position - command.power shouldBe 0
                         state.currentPosition shouldBe car.position
                     }
                 }
@@ -24,6 +30,7 @@ class RacingCarsSpecs : DescribeSpec({
         }
         context("경주에 필요한 수 만큼 자동차가 등록되지 않았다면") {
             val cars = ArrayList<Car>()
+
             it("예외를 발생시킨다") {
                 shouldThrowExactly<IllegalArgumentException> {
                     RacingCars(cars)
@@ -32,3 +39,15 @@ class RacingCarsSpecs : DescribeSpec({
         }
     }
 })
+
+class PreparedMovementCommandGenerator(
+    _preparedCommands: List<Int>
+) : MovementCommandGenerator {
+
+    private val preparedCommands = ArrayDeque(_preparedCommands)
+
+    override fun generateMovement(): MovementCommand {
+        check(preparedCommands.isNotEmpty()) { "준비된 명령을 모두 사용했습니다" }
+        return MovementCommand.of(preparedCommands.removeFirst())
+    }
+}

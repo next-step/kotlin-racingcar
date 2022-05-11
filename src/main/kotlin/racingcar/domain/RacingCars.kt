@@ -1,7 +1,5 @@
 package racingcar.domain
 
-import racingcar.common.RandomCommandGenerator
-
 class RacingCars(
     private val cars: List<Car>
 ) {
@@ -11,9 +9,9 @@ class RacingCars(
         require(cars.isNotEmpty()) { "경주를 진행하기 위해선 최소 ${MINIMUM_NUMBER_OF_CARS}대 이상의 자동차가 필요합니다" }
     }
 
-    fun race(): RaceRecord {
+    fun race(movementCommandGenerator: MovementCommandGenerator): RaceRecord {
         cars.forEach {
-            val command = MovementCommand.of(RandomCommandGenerator.nextCommand())
+            val command = movementCommandGenerator.generateMovement()
             it.move(command)
         }
         return RaceRecord(cars.map { it.captureState() })
