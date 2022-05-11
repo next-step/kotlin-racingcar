@@ -17,13 +17,9 @@ class Calculation(private val expr: String) {
         return target
     }
 
-    private fun isNotBlankOrThrow(expr: String) {
-        if (expr.isBlank()) throw IllegalArgumentException()
-    }
+    private fun isNotBlankOrThrow(expr: String) = require(expr.isNotBlank())
 
-    private fun checkExpOrThrow(s: String) {
-        if (!checkExp(s)) throw IllegalArgumentException()
-    }
+    private fun checkExpOrThrow(s: String) = require(checkExp(s))
 
     private fun toIntOrThrow(s: String) = s.toIntOrNull() ?: throw IllegalArgumentException()
 
