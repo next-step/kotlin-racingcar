@@ -41,12 +41,31 @@ class RacingUIKoTest : DescribeSpec({
             generateDrawCarsTestData()
         ) { cars, expect ->
             context("with cars : $cars") {
-                output.reset()
-                RacingUI().drawCars(cars)
-
                 it("draw $expect") {
+                    output.reset()
+                    RacingUI.drawCars(cars)
+
                     output.toString() shouldBe expect
                 }
+            }
+        }
+    }
+
+    describe("drawWinners Method") {
+        context("with winner ( Andy )") {
+            it("draw [ Andy가 최종 우승했습니다. ]") {
+                output.reset()
+                RacingUI.drawWinners(listOf(Car("Andy")))
+
+                output.toString().trimIndent() shouldBe "Andy가 최종 우승했습니다."
+            }
+        }
+        context("with winner ( Andy, Bruce )") {
+            it("draw [ Andy, Bruce가 최종 우승했습니다. ]") {
+                output.reset()
+                RacingUI.drawWinners(listOf(Car("Andy"), Car("Bruce")))
+
+                output.toString().trimIndent() shouldBe "Andy, Bruce가 최종 우승했습니다."
             }
         }
     }

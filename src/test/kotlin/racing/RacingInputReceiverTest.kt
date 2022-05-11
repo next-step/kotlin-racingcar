@@ -19,7 +19,7 @@ class RacingInputReceiverTest {
     fun `사용자의 입력이 들어오면, 입력을 리턴한다`(input: String, carNames: List<String>, moveCount: Int) {
         System.setIn(ByteArrayInputStream(input.toByteArray()))
 
-        assertThat(RacingInputReceiver().receive()).isEqualTo(UserInput(carNames, moveCount))
+        assertThat(RacingInputReceiver.receive()).isEqualTo(UserInput(carNames, moveCount))
     }
 
     @ParameterizedTest
@@ -38,7 +38,7 @@ class RacingInputReceiverTest {
         System.setIn(ByteArrayInputStream(input.toByteArray()))
 
         assertThrows<IllegalArgumentException> {
-            RacingInputReceiver().receive()
+            RacingInputReceiver.receive()
         }
     }
 

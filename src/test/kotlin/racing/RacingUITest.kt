@@ -2,11 +2,13 @@ package racing
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
+import org.junit.jupiter.params.provider.CsvSource
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 import java.util.stream.Stream
@@ -31,9 +33,19 @@ class RacingUITest {
 
          */
     fun `차량의 현재 상태를 출력한다`(cars: List<Car>, expect: String) {
-        RacingUI().drawCars(cars)
+        RacingUI.drawCars(cars)
 
         Assertions.assertThat(output.toString()).isEqualTo(expect)
+    }
+
+    @Test
+    fun `우승 차량 정보를 출력한다`() {
+        val cars = listOf(Car("Andy"), Car("Bruce"))
+        val expect = "Andy, Bruce가 최종 우승했습니다."
+
+        RacingUI.drawWinners(cars)
+
+        Assertions.assertThat(output.toString().trimIndent()).isEqualTo(expect)
     }
 
     class DrawCarsArgumentsProvider : ArgumentsProvider {
