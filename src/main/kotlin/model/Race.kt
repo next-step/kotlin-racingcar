@@ -9,7 +9,7 @@ class Race(
 
     fun doRace(): List<Car> {
         cars.forEach {
-            it.goStop()
+            it.tryToGo()
         }
         return cars
     }

@@ -10,9 +10,9 @@ internal class CarTest {
     }
 
     @Test
-    fun `go stop`() {
+    fun go() {
         val car = Car()
-        car.goStop()
-        assertThat(car.getDistance() == 1 || car.getDistance() == 2)
+        car.go()
+        assertThat(car.getDistance() == 2)
     }
 }

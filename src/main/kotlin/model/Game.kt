@@ -1,6 +1,6 @@
 package model
 
-import view.CarResultView
+import view.ResultView
 
 class Game {
     fun start() {
@@ -8,10 +8,12 @@ class Game {
         val numOfRounds = askNumOfRounds()
 
         val race = Race(numOfCars)
+        val resultView = ResultView()
 
-        for (i in 1..numOfRounds) {
-            CarResultView(race.doRace()).display()
+        repeat(numOfRounds) {
+            resultView.record(race.doRace())
         }
+        resultView.showResult()
     }
 
     private fun askNumOfCars(): Int {
