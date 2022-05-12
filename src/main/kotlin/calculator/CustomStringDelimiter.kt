@@ -21,7 +21,7 @@ class CustomStringDelimiter(value: String?) {
     }
 
     private fun validate(value: String?) {
-        require(value.isNullOrBlank()) { "잘못된 값이 전달되었습니다." }
+        require(!value.isNullOrBlank()) { "잘못된 값이 전달되었습니다." }
     }
 
     fun getOperands(): MutableList<Int> = operands
