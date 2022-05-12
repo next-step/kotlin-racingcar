@@ -4,16 +4,19 @@ import racinggame.domain.car.Car
 import racinggame.domain.car.CarFactory
 import racinggame.domain.model.IndividualRacingStepStatus
 import racinggame.domain.model.RacingGameInput
+import racinggame.domain.model.RacingGameResult
 import racinggame.domain.model.RacingStepResult
 
 class RacingGame(
     private val cars: List<Car>,
     private val numberOfAttempts: Int
 ) {
-    fun start() = List(numberOfAttempts) {
-        raceAll()
-        getCurrentRacingStepResult()
-    }
+    fun start() = RacingGameResult(
+        stepResults = List(numberOfAttempts) {
+            raceAll()
+            getCurrentRacingStepResult()
+        }
+    )
 
     private fun getCurrentRacingStepResult() = RacingStepResult(
         racingGameStatusList = cars.map { car ->
