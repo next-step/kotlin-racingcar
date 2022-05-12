@@ -15,6 +15,12 @@ internal class CarsTest {
             }
         })
 
-        assertThat(movedCars[0].position).isEqualTo(1)
+        val move = movedCars.move(object : MoveStrategy {
+            override fun isMove(): Boolean {
+                return true
+            }
+        })
+
+        assertThat(move.cars[0].position).isEqualTo(2)
     }
 }
