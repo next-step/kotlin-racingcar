@@ -2,7 +2,7 @@ package com.nextstep.jngcii.step2
 
 class Calculator {
 
-    fun compute(lhs: POperator, rhs: POperator, op: Operator): POperator {
+    fun run(lhs: POperator, rhs: POperator, op: Operator): POperator {
         val value = when (op) {
             Operator.PLUS -> lhs.value + rhs.value
             Operator.MINUS -> lhs.value - rhs.value

@@ -25,7 +25,7 @@ class CalculatorTest {
         "-2, false, -2, false, /, 1, false",
         "-4, false, 2, true, /, -2, true",
     )
-    fun plusTest(
+    fun `계산 테스트`(
         lhsNum: Int,
         lhsBool: Boolean,
         rhsNum: Int,
@@ -38,7 +38,7 @@ class CalculatorTest {
         val rhs = POperator(rhsNum, rhsBool)
         val op = Operator.of(operatorStr)
 
-        val result = calculator.compute(lhs, rhs, op)
+        val result = calculator.run(lhs, rhs, op)
 
         assertEquals(resultNum, result.value)
         assertEquals(resultBool, result.isEnd)
