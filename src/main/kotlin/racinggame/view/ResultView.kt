@@ -18,8 +18,8 @@ object ResultView {
     }
 
     private fun printRacingStep(racingStepResult: RacingStepResult) {
-        racingStepResult.proceedLevels.forEach { level ->
-            println(PROCEED_LEVEL_SYMBOL.repeat(level))
+        racingStepResult.racingGameStatusList.forEach { racingGameStatus ->
+            println(PROCEED_LEVEL_SYMBOL.repeat(racingGameStatus.proceedLevel))
         }
         println()
     }

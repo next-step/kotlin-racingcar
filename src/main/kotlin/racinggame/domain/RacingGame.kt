@@ -2,6 +2,7 @@ package racinggame.domain
 
 import racinggame.domain.car.Car
 import racinggame.domain.car.CarFactory
+import racinggame.domain.model.IndividualRacingStepStatus
 import racinggame.domain.model.RacingGameInput
 import racinggame.domain.model.RacingStepResult
 
@@ -15,8 +16,11 @@ class RacingGame(
     }
 
     private fun getCurrentRacingStepResult() = RacingStepResult(
-        proceedLevels = cars.map { car ->
-            car.proceedLevel
+        racingGameStatusList = cars.map { car ->
+            IndividualRacingStepStatus(
+                name = car.name,
+                proceedLevel = car.proceedLevel
+            )
         }
     )
 
