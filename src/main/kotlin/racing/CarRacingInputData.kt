@@ -1,6 +1,6 @@
 package racing
 
 data class CarRacingInputData(
-    val carCount: Int,
+    val carNames: List<String>,
     val moveCount: Int
 )

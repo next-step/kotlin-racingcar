@@ -2,9 +2,9 @@ package racing
 
 class CarRacing {
     fun startRacing() {
-        val (carCount, moveCount) = CarRacingInputView.input()
+        val (carNames, moveCount) = CarRacingInputView.input()
 
-        val cars: List<Car> = createCars(carCount)
+        val cars: List<Car> = createCars(carNames)
         moveCars(cars = cars, moveCount = moveCount)
 
         CarRacingResultView.printCarRacingResult(cars = cars, moveCount = moveCount)
@@ -14,5 +14,7 @@ class CarRacing {
         repeat(moveCount) { cars.forEach(Car::go) }
     }
 
-    fun createCars(carCount: Int): List<Car> = List(carCount) { Car() }
+    fun createCars(carNames: List<String>): List<Car> {
+        return List(carNames.size) { index -> Car(carNames[index]) }
+    }
 }

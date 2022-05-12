@@ -1,6 +1,6 @@
 package racing
 
-class Car {
+class Car(val name: String) {
     private var turn = 0
 
     val turnOfPosition = arrayListOf(1)
