@@ -21,18 +21,25 @@ class CarRacing {
     }
 
     fun pickWinners(cars: List<Car>, moveCount: Int): List<String> {
-        var maxPosition = 0
-        val list = arrayListOf<String>()
+        var maxDistance = 0
+        val winners = arrayListOf<String>()
         cars.forEach { car ->
-            if (maxPosition < car.turnOfPosition[moveCount]) {
-                list.clear()
-                list.add(car.name)
-                maxPosition = car.turnOfPosition[moveCount]
-            } else if (maxPosition == car.turnOfPosition[moveCount]) {
-                list.add(car.name)
-            }
+            maxDistance = updateWinnersAndMaxDistance(winners = winners, car = car, moveCount = moveCount, maxDistance = maxDistance)
         }
 
-        return list
+        return winners
+    }
+
+    fun updateWinnersAndMaxDistance(winners: ArrayList<String>, car: Car, moveCount: Int, maxDistance: Int): Int {
+        var newMaxDistance = maxDistance
+        if (maxDistance < car.turnOfPosition[moveCount]) {
+            winners.clear()
+            winners.add(car.name)
+            newMaxDistance = car.turnOfPosition[moveCount]
+        } else if (maxDistance == car.turnOfPosition[moveCount]) {
+            winners.add(car.name)
+        }
+
+        return newMaxDistance
     }
 }
