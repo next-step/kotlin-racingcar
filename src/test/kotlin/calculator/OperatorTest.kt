@@ -40,9 +40,10 @@ class OperatorTest : FreeSpec({
 
     "문자열에 해당되는 연산자가 없는 경우 예외가 발생한다." - {
         // when
-        val exception = shouldThrowExactly<IllegalArgumentException> { Operator.findBySign(sign = "#") }
+        val invalidSign = "#"
+        val exception = shouldThrowExactly<IllegalArgumentException> { Operator.findBySign(sign = invalidSign) }
 
         // then
-        exception.message shouldBe "# 에 해당하는 연산자를 찾지 못했습니다."
+        exception.message shouldBe "$invalidSign 에 해당하는 연산자를 찾지 못했습니다."
     }
 })
