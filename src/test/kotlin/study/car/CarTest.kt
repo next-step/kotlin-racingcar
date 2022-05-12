@@ -32,6 +32,6 @@ class CarTest : StringSpec({
     }
 }) {
     companion object {
-        private fun `자동차 위치 0`() = Car(Position())
+        private fun `자동차 위치 0`() = Car(Position(0))
     }
 }

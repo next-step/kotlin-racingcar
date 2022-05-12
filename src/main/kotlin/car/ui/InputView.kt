@@ -1,8 +1,9 @@
 package car.ui
 
-inline class NumberOfCar(val value: Int)
+import car.domain.vo.NumberOfCar
 
-inline class TryCount(val value: Int)
+@JvmInline
+value class TryCount(val value: Int)
 
 object InputView {
     fun input(): Pair<NumberOfCar, TryCount> {

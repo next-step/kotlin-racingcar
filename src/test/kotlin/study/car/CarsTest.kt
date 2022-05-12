@@ -1,7 +1,7 @@
 package study.car
 
 import car.domain.Cars
-import car.ui.NumberOfCar
+import car.domain.vo.NumberOfCar
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
@@ -14,8 +14,8 @@ class CarsTest : StringSpec({
     }
 
     "자동차 수가 1보다 작을시 Exception을 던진다" {
-        shouldThrow<IllegalStateException> { Cars(numberOfCar = NumberOfCar(0)) }
-        shouldThrow<IllegalStateException> { Cars(numberOfCar = NumberOfCar(-1)) }
+        shouldThrow<IllegalArgumentException> { Cars(numberOfCar = NumberOfCar(0)) }
+        shouldThrow<IllegalArgumentException> { Cars(numberOfCar = NumberOfCar(-1)) }
     }
 
     "자동차가 움직일떄 마다 위치값을 리턴한다" {

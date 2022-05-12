@@ -1,9 +1,9 @@
 package car.domain
 
 class Car(
-    _position: Position
+    position: Position
 ) {
-    var position: Position = _position
+    var position: Position = position
         private set
 
     fun move(movingStrategy: MovingStrategy) {
