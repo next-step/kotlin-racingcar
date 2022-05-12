@@ -9,26 +9,26 @@ import racing.domain.Car
 import racing.ui.RacingUI
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
-import kotlin.random.Random
 
-private val names = listOf("Andy", "Bruce", "Clara", "David", "Echo", "Flora")
-private val random = Random(123456789)
+private val drawCarsTestData = listOf(
+    listOf(Car("Andy", startPosition = 4), Car("Bruce", startPosition = 2)) to
+        """
+                |Andy : -----
+                |Bruce : ---
+                |
+                |
+            """.trimMargin(),
+    listOf(Car("Andy", startPosition = 0)) to
+        """
+                |Andy : -
+                |
+                |
+            """.trimMargin()
+)
 
-private fun generateDrawCarsTestData(): Row2<List<Car>, String> {
-    val cars = generateCars()
-
-    return row(cars, generateDrawCarExcept(cars))
-}
-
-private fun generateCars(): List<Car> {
-    val carNames = names.shuffled(random).take(random.nextInt(8))
-
-    return carNames.map { Car(name = it, startPosition = random.nextInt(10)) }
-}
-
-private fun generateDrawCarExcept(cars: List<Car>): String {
-    return cars.joinToString(separator = "\n", postfix = "\n\n") { car ->
-        "${car.name} : ${"-".repeat(car.position + 1)}"
+private fun generateDrawCarsTestRows(): List<Row2<List<Car>, String>> {
+    return drawCarsTestData.map { (cars, expect) ->
+        row(cars, expect)
     }
 }
 
@@ -38,9 +38,7 @@ class RacingUIKoTest : DescribeSpec({
 
     describe("drawCars method") {
         forAll(
-            generateDrawCarsTestData(),
-            generateDrawCarsTestData(),
-            generateDrawCarsTestData()
+            *generateDrawCarsTestRows().toTypedArray()
         ) { cars, expect ->
             context("with cars : $cars") {
                 it("draw $expect") {

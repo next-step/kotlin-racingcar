@@ -9,28 +9,22 @@ import io.kotest.matchers.shouldBe
 import racing.ui.RacingInputReceiver
 import racing.ui.UserInput
 import java.io.ByteArrayInputStream
-import kotlin.random.Random
 
-private val random = Random(123456789)
+private val userInputTestData = listOf(
+    Triple("Andy,Bruce,Clara\n4", listOf("Andy", "Bruce", "Clara"), 4),
+    Triple("Andy,Clara\n25", listOf("Andy", "Clara"), 25),
+)
 
-private val names = listOf("Andy", "Bruce", "Clara", "David", "Echo", "Flora")
-private fun generateInput(names: List<String>, moveCount: Int): String {
-    return "${names.joinToString(",")}\n$moveCount"
-}
-
-private fun generateUserInputTestData(): Row3<String, List<String>, Int> {
-    val randomNames = names.shuffled(random).drop(3)
-    val moveCount = random.nextInt(0, 100)
-
-    return row(generateInput(randomNames, moveCount), randomNames, moveCount)
+private fun generateUserInputTestRows(): List<Row3<String, List<String>, Int>> {
+    return userInputTestData.map { (input, expectNames, expectCount) ->
+        row(input, expectNames, expectCount)
+    }
 }
 
 class RacingInputReceiverKoTest : DescribeSpec({
     describe("receive method") {
         forAll(
-            generateUserInputTestData(),
-            generateUserInputTestData(),
-            generateUserInputTestData()
+            *generateUserInputTestRows().toTypedArray()
         ) { input, carNames, moveCount ->
             context("with user input : $input") {
                 System.setIn(ByteArrayInputStream(input.toByteArray()))

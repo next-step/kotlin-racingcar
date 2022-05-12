@@ -13,7 +13,6 @@ import racing.ui.RacingUI
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 import java.util.stream.Stream
-import kotlin.random.Random
 
 class RacingUITest {
 
@@ -50,28 +49,28 @@ class RacingUITest {
     }
 
     class DrawCarsArgumentsProvider : ArgumentsProvider {
-        private val names = listOf("Andy", "Bruce", "Clara", "David", "Echo", "Flora")
-        private val random = Random(123456789)
+        private val testData = listOf(
+            listOf(Car("Andy", startPosition = 4), Car("Bruce", startPosition = 2)) to
+                """
+                |Andy : -----
+                |Bruce : ---
+                |
+                |
+            """.trimMargin(),
+            listOf(Car("Andy", startPosition = 0)) to
+                """
+                |Andy : -
+                |
+                |
+            """.trimMargin()
+        )
+
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> {
-            val stream = Stream.builder<Arguments>()
-
-            repeat(3) {
-                val cars = generateCars()
-                stream.add(Arguments.of(cars, generateExcept(cars)))
+            val testArguments = testData.map { (cars, expect) ->
+                Arguments.of(cars, expect)
             }
-            return stream.build()
-        }
 
-        private fun generateCars(): List<Car> {
-            val carNames = names.shuffled(random).take(random.nextInt(8))
-
-            return carNames.map { Car(name = it, startPosition = random.nextInt(10)) }
-        }
-
-        private fun generateExcept(cars: List<Car>): String {
-            return cars.joinToString(separator = "\n", postfix = "\n\n") { car ->
-                "${car.name} : ${"-".repeat(car.position + 1)}"
-            }
+            return Stream.of(*testArguments.toTypedArray())
         }
     }
 }

@@ -12,7 +12,6 @@ import racing.ui.RacingInputReceiver
 import racing.ui.UserInput
 import java.io.ByteArrayInputStream
 import java.util.stream.Stream
-import kotlin.random.Random
 
 class RacingInputReceiverTest {
 
@@ -42,20 +41,16 @@ class RacingInputReceiverTest {
     }
 
     class InputArgumentsProvider : ArgumentsProvider {
-        private val random = Random(123456789)
+        private val testData = listOf(
+            Triple("Andy,Bruce,Clara\n4", listOf("Andy", "Bruce", "Clara"), 4),
+            Triple("Andy,Clara\n25", listOf("Andy", "Clara"), 25),
+        )
 
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments>? {
-            val names = listOf("Andy", "Bruce", "Clara", "David", "Echo", "Flora")
-            val stream = Stream.builder<Arguments>()
-            repeat(3) {
-                val randomNames = names.shuffled(random).drop(3)
-                stream.add(Arguments.of(generateInput(randomNames, it), randomNames, it))
+            val testArguments = testData.map { (input, expectNames, expectCount) ->
+                Arguments.of(input, expectNames, expectCount)
             }
-            return stream.build()
-        }
-
-        private fun generateInput(names: List<String>, moveCount: Int): String {
-            return "${names.joinToString(",")}\n$moveCount"
+            return Stream.of(*testArguments.toTypedArray())
         }
     }
 }
