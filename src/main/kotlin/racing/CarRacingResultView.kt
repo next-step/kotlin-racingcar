@@ -6,13 +6,13 @@ object CarRacingResultView {
         // 범위를 0 <= moveIndex <= moveCount 로 설정
         for (moveIndex in 0..moveCount) {
             cars.forEach { car ->
-                printCurrentCarMovingDistance(car.turnOfPosition[moveIndex])
+                printCurrentCarMovingDistance(carName = car.name, carPosition = car.turnOfPosition[moveIndex])
             }
             println()
         }
     }
 
-    private fun printCurrentCarMovingDistance(carPosition: Int) {
-        println("_ ".repeat(carPosition))
+    private fun printCurrentCarMovingDistance(carName: String, carPosition: Int) {
+        println("$carName : ".plus("-".repeat(carPosition)))
     }
 }
