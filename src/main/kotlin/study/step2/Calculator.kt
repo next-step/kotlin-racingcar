@@ -13,7 +13,9 @@ class Calculator {
                     "+" -> result += numbers[index + 1]
                     "-" -> result -= numbers[index + 1]
                     "*" -> result *= numbers[index + 1]
-                    "/" -> result /= numbers[index + 1]
+                    "/" -> result /= numbers[index + 1].apply {
+                        if (this == 0.0) throw throw IllegalArgumentException("잘못된 계산식 입니다")
+                    }
                     else -> throw IllegalArgumentException("사칙연산 기호가 아님")
                 }
             }

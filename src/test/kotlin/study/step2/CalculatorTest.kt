@@ -43,7 +43,7 @@ class CalculatorTest {
 
     @ParameterizedTest
     @NullSource
-    @ValueSource(strings = ["", "  "])
+    @ValueSource(strings = ["", "  ", "1 / 0"])
     fun `올바르지 않은 표현식은 exception이 발생한다`(input: String?) {
         assertThrows<IllegalArgumentException> { Calculator.calculate(input) }
         assertThatThrownBy {
