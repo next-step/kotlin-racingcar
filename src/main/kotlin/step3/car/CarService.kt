@@ -5,8 +5,8 @@ import step3.common.CarRaceProperty
 class CarService(private val carRaceProperty: CarRaceProperty) {
 
     fun initCars() {
-        for (carIndex in 1..carRaceProperty.carSize) {
-            carRaceProperty.car[carIndex] = Car(carIndex, INIT_MOVE)
+        for (carIndex in 0 until carRaceProperty.carSize) {
+            carRaceProperty.car.add(Car(INIT_MOVE))
         }
     }
 
