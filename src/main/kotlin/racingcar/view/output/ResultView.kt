@@ -1,7 +1,9 @@
 package racingcar.view.output
 
 import racingcar.model.RacingGame
+import racingcar.model.RacingRecord
 
 interface ResultView {
-    fun printRacingGame(racingGame: RacingGame)
+    fun showResultView(racingGame: RacingGame)
+    fun showResultView(racingRecord: RacingRecord)
 }

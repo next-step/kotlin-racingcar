@@ -14,15 +14,19 @@ class RacingGame(
         private set
     val isOver: Boolean get() = this.stepsToTry == this.currentStep
 
-    fun runGame(onGameProgress: ((RacingGame) -> Unit)? = null): RacingGame {
+    fun runGame(onGameProgress: ((RacingGame) -> Unit)? = null): RacingRecord {
         this.reset()
+        val racingRecord = RacingRecord(this.carList.count())
         repeat(this.stepsToTry) { step ->
-            this.forEachCar { it.moveIfItCan() }
+            this.carList.forEachIndexed { carIndex, car ->
+                car.moveIfItCan()
+                racingRecord.writeRecord(carIndex, car)
+            }
             this.currentStep = (step + 1)
             onGameProgress?.invoke(this)
         }
 
-        return this
+        return racingRecord
     }
 
     private fun reset() {

@@ -16,8 +16,14 @@ class RacingGameController<T>(
 
     fun executeGame() {
         val gameArgument = inputView.showInputView()
+        val game = createNewGame(gameArgument)
+        val racingRecord = game.runGame()
+        resultView.showResultView(racingRecord = racingRecord)
+    }
+
+    private fun createNewGame(gameArgument: T): RacingGame {
         val game = gameBuilder.createGame(gameArgument)
         this.currentGame = game
-        game.runGame(resultView::printRacingGame)
+        return game
     }
 }
