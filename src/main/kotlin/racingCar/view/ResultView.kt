@@ -10,9 +10,18 @@ import racingCar.model.RaceResult
 object ResultView {
     fun printResult(raceResults: List<RaceResult>) {
         println(Message.PrintingMessage.EXECUTION_RESULT)
+        printRunningRace(raceResults)
+        printWinner(raceResults.last())
+    }
+
+    private fun printRunningRace(raceResults: List<RaceResult>) {
         raceResults.forEach {
             print(it.resultOutput)
             println()
         }
+    }
+
+    private fun printWinner(raceResult: RaceResult) {
+        print("${raceResult.winners.joinToString { it }}가 최종 우승했습니다.")
     }
 }

@@ -4,9 +4,14 @@ package racingCar.model
  * 레이스 결과를 저장하는 클래스
  * Created by Jaesungchi on 2022.05.07..
  */
-class RaceResult(carList: List<Car>) {
+class RaceResult(private val carList: List<Car>) {
     var resultOutput: String? = null
         private set
+    val winners: List<String>
+        get() {
+            val positionOfFastest: Int = carList.maxOf { it.position }
+            return carList.filter { it.position == positionOfFastest }.map { it.name }
+        }
 
     init {
         val result = StringBuilder()
