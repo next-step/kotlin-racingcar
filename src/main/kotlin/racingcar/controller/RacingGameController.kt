@@ -5,6 +5,7 @@ import racingcar.domain.RacingGame
 import racingcar.domain.TryNumber
 import racingcar.view.inputCarNumber
 import racingcar.view.inputTryNumber
+import racingcar.view.printPlayResult
 
 class RacingGameController {
     fun handle() {
@@ -13,7 +14,7 @@ class RacingGameController {
             tryNumber = TryNumber(inputTryNumber()),
         )
 
-        // val playResult = racingGame.play()
+        printPlayResult(racingGame.play())
     }
 
     private fun createCars(carNumber: Int): List<Car> {
