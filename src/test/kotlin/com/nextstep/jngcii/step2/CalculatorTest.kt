@@ -13,7 +13,7 @@ class CalculatorTest {
         "-1, false, -2, false, -3, false",
         "1, false, 2, true, 3, true",
     )
-    fun addTest(
+    fun plusTest(
         lhsNum: Int,
         lhsBool: Boolean,
         rhsNum: Int,
@@ -24,7 +24,7 @@ class CalculatorTest {
         val lhs = POperator(lhsNum, lhsBool)
         val rhs = POperator(rhsNum, rhsBool)
 
-        val result = calculator.add(lhs, rhs)
+        val result = calculator.plus(lhs, rhs)
 
         assertEquals(resultNum, result.value)
         assertEquals(resultBool, result.isEnd)
