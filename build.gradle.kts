@@ -18,6 +18,10 @@ dependencies {
     testImplementation("io.kotest", "kotest-framework-datatest", "5.2.3")
 }
 
+jacoco {
+    toolVersion = "0.8.8"
+}
+
 tasks {
     compileKotlin {
         kotlinOptions.jvmTarget = "1.8"
