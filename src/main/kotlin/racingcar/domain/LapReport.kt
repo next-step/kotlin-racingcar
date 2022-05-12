@@ -5,7 +5,9 @@ class LapReport(
 ) {
     fun winner(): List<CarName> {
         val topLocation = lapReport.maxOf { it.location }
-        return lapReport.filter { it.location == topLocation }
+        return lapReport.asSequence()
+            .filter { it.location == topLocation }
             .map { it.carName }
+            .toList()
     }
 }
