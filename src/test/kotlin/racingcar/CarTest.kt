@@ -16,9 +16,17 @@ internal class CarTest {
     @Test
     fun `자동차 객체 포지션 책임 테스트`() {
         val car1 = Car(1)
-        val car2 = car1.move()
+        val car2 = car1.move(true)
 
         assertThat(car2.position).isEqualTo(2)
+    }
+
+    @Test
+    fun `자동차 객체 포지션 움직이지 않음`() {
+        val car1 = Car(1)
+        val car2 = car1.move(false)
+
+        assertThat(car2.position).isEqualTo(1)
     }
 
     @Test
