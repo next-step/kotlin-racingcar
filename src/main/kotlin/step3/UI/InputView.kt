@@ -11,3 +11,4 @@ object InputView {
         return readLine()?.toIntOrNull() ?: throw IllegalArgumentException("숫자만 입력이 가능합니다.(시도 회수)")
     }
 }
+

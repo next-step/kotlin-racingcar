@@ -17,3 +17,4 @@ class MovingStrategyRandom : MovingStrategy {
         return random.nextInt(RANGE)
     }
 }
+
