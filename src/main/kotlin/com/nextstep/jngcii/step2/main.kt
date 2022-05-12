@@ -12,6 +12,8 @@ fun main(args: Array<String>) {
         input = sc.nextLine()
         if (input.isEmpty()) break
 
+        val requests = input.convertToRequests()
+
         // todo : calculate
 
         println("=======================")
