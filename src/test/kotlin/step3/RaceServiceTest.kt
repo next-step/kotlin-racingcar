@@ -1,7 +1,6 @@
 package step3
 
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import step3.car.Car
 import step3.common.CarRaceProperty
@@ -13,14 +12,16 @@ class RaceServiceTest {
     fun `이동 불가능한 케이스 테스트`() {
         val carRaceProperty = CarRaceProperty()
         val raceService = RaceService(carRaceProperty)
-        Assertions.assertFalse(raceService.canBeMove(3))
+
+        assertThat(raceService.canBeMove(3)).isEqualTo(false)
     }
 
     @Test
     fun `이동 가능한 케이스 테스트`() {
         val carRaceProperty = CarRaceProperty()
         val raceService = RaceService(carRaceProperty)
-        Assertions.assertTrue(raceService.canBeMove(7))
+
+        assertThat(raceService.canBeMove(7)).isEqualTo(true)
     }
 
     @Test
@@ -32,6 +33,6 @@ class RaceServiceTest {
         val raceService = RaceService(carRaceProperty)
         raceService.move(car1)
 
-        assertEquals(carRaceProperty.car[1]?.moveCount, 1)
+        assertThat(carRaceProperty.car[1]?.moveCount).isEqualTo(1)
     }
 }
