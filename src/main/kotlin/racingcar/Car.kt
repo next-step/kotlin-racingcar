@@ -1,5 +1,6 @@
 package racingcar
 
-data class Car(private val position: Int) {
+data class Car(val position: Int) {
 
+    fun move(): Car = Car(position + 1)
 }

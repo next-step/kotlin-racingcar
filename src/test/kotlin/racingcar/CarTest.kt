@@ -12,4 +12,12 @@ internal class CarTest {
 
         assertThat(car1).isEqualTo(car2)
     }
+
+    @Test
+    fun `자동차 객체 포지션 책임 테스트`() {
+        val car1 = Car(1)
+        val car2 = car1.move()
+
+        assertThat(car2.position).isEqualTo(2)
+    }
 }
