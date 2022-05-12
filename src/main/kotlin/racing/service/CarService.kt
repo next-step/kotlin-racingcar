@@ -7,13 +7,14 @@ import racing.domain.MovingRule
 class CarService(private val movingRule: MovingRule) {
     fun moveCars(cars: List<Car>, round: Int): List<RoundResultView> {
         val roundResultViews: MutableList<RoundResultView> = mutableListOf()
+        var racer: List<Car> = cars
 
         for (i in 1..round) {
-            val movingCar = movingRule.goForward(cars)
-            val positions = movingCar.map {
+            racer = movingRule.goForward(racer)
+
+            val positions = racer.map {
                 it.position
             }.toList()
-
             roundResultViews.add(RoundResultView(i, positions))
         }
         return roundResultViews
