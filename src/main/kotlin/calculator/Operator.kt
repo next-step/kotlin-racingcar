@@ -2,15 +2,15 @@ package calculator
 
 enum class Operator(
     private val sign: String,
-    private val calculation: (Int, Int) -> Int
+    private val calculation: (Number, Number) -> Number
 ) {
-    ADDITION("+", { a, b -> a + b }),
-    SUBTRACTION("-", { a, b -> a - b }),
-    MULTIPLICATION("*", { a, b -> a * b }),
-    DIVISION("/", { a, b -> a / b }),
+    ADDITION("+", { a, b -> Number(a.value + b.value) }),
+    SUBTRACTION("-", { a, b -> Number(a.value - b.value) }),
+    MULTIPLICATION("*", { a, b -> Number(a.value * b.value) }),
+    DIVISION("/", { a, b -> Number(a.value / b.value) }),
     ;
 
-    fun calculate(a: Int, b: Int): Int = calculation(a, b)
+    fun calculate(a: Number, b: Number): Number = calculation(a, b)
 
     companion object {
         fun findBySign(sign: String): Operator {

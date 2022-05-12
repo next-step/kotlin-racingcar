@@ -1,7 +1,7 @@
 package calculator
 
-data class Number private constructor(
-    private val value: Int
+data class Number constructor(
+    val value: Int
 ){
     companion object {
         fun from(value: String): Number = Number(value.toInt())
