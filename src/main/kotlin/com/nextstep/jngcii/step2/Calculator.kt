@@ -8,4 +8,11 @@ class Calculator {
 
         return POperator(value, isEnd)
     }
+
+    fun minus(lhs: POperator, rhs: POperator): POperator {
+        val value = lhs.value - rhs.value
+        val isEnd = lhs.isEnd || rhs.isEnd
+
+        return POperator(value, isEnd)
+    }
 }

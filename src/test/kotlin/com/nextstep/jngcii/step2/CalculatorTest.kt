@@ -29,4 +29,27 @@ class CalculatorTest {
         assertEquals(resultNum, result.value)
         assertEquals(resultBool, result.isEnd)
     }
+
+    @ParameterizedTest
+    @CsvSource(
+        "3, false, 2, false, 1, false",
+        "-1, false, -2, false, 1, false",
+        "1, false, 2, true, -1, true",
+    )
+    fun minusTest(
+        lhsNum: Int,
+        lhsBool: Boolean,
+        rhsNum: Int,
+        rhsBool: Boolean,
+        resultNum: Int,
+        resultBool: Boolean,
+    ) {
+        val lhs = POperator(lhsNum, lhsBool)
+        val rhs = POperator(rhsNum, rhsBool)
+
+        val result = calculator.minus(lhs, rhs)
+
+        assertEquals(resultNum, result.value)
+        assertEquals(resultBool, result.isEnd)
+    }
 }
