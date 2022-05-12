@@ -3,7 +3,7 @@ package racingcar.model
 data class RandomValueMovingStrategy(val number: Int) : MovingStrategy {
 
     init {
-        if (number < MIN_BOUND || number >= MAX_BOUND) {
+        require(number in MIN_BOUND..MAX_BOUND) {
             throw IllegalArgumentException("1과 9사이의 값만을 받아야 합니다.")
         }
     }
