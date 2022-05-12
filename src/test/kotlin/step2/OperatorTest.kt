@@ -8,7 +8,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class OperatorTest {
-    @Order(1)
     @DisplayName("1) 사칙연산 기호가 아닌 경우 테스트")
     @ParameterizedTest
     @ValueSource(strings = ["#", "^", "&", "@"])
@@ -17,7 +16,6 @@ class OperatorTest {
             .isInstanceOf(IllegalArgumentException::class.java).hasMessageContaining("사용 불가능한 연산자입니다.")
     }
 
-    @Order(2)
     @DisplayName("2) 사칙연산 기호가 맞는 경우 테스트")
     @ParameterizedTest
     @ValueSource(strings = ["+", "-","*", "/"])
