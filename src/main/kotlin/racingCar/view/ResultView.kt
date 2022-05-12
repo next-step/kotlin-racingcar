@@ -22,6 +22,7 @@ object ResultView {
     }
 
     private fun printWinner(raceResult: RaceResult) {
-        print("${raceResult.winners.joinToString { it }}가 최종 우승했습니다.")
+        print(raceResult.winners.joinToString { it })
+        print(Message.PrintingMessage.WINNER_WINNER_CHICKEN_DINNER)
     }
 }
