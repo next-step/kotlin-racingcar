@@ -4,10 +4,13 @@ enum class Operator(
     val char: String,
     val calculate: (Double, Double) -> Double
 ) {
-    PLUS("+", { acc, operator -> acc + operator }),
-    MINUS("-", { acc, operator -> acc - operator }),
-    MULTIPLY("*", { acc, operator -> acc * operator }),
-    DIVISION("/", { acc, operator -> acc / operator }),
+    PLUS("+", { acc, operand -> acc + operand }),
+    MINUS("-", { acc, operand -> acc - operand }),
+    MULTIPLY("*", { acc, operand -> acc * operand }),
+    DIVISION("/", { acc, operand ->
+        require(operand != 0.0) { ErrorMessage.DIVIDE_BY_ZERO }
+        acc / operand
+    }),
     ;
 
     companion object {
