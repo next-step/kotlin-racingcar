@@ -27,7 +27,7 @@ class RacingStepResultTest {
     }
 
     @Test
-    fun `getFirstPlaces를 통해 현재 선두로 달리고 있는 자동차들의 이름을 구할 수 있다`() {
+    fun `firstPlaces를 통해 현재 선두로 달리고 있는 자동차들의 이름을 구할 수 있다`() {
         val firstPlaces = racingStepResult.firstPlaces
 
         assertThat(firstPlaces).isEqualTo(listOf("kotlin", "javascript"))
