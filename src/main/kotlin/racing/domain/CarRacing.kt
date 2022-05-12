@@ -1,33 +1,31 @@
 package racing.domain
 
-import racing.ui.RacingUI
-import racing.ui.UserInput
+object CarRacing {
 
-class CarRacing(
-    private val carMaxPower: Int = DEFAULT_MAX_POWER,
-    private val powerStrategy: PowerStrategy = RandomPowerStrategy(carMaxPower)
-) {
-    fun run(userInput: UserInput) {
-        val cars = createCars(userInput.carNames)
+    private const val MIN_MOVE_COUNT = 0
 
-        play(cars, userInput.moveCount)
-    }
+    fun run(
+        cars: List<Car>,
+        moveCount: Int,
+        onStart: (cars: List<Car>) -> Unit = {},
+        onTurnEnd: (cars: List<Car>) -> Unit = {},
+        onFinish: (winners: List<Car>) -> Unit = {}
+    ) {
+        checkValidation(moveCount)
 
-    private fun play(cars: List<Car>, moveCount: Int) {
-        RacingUI.drawCars(cars)
+        onStart(cars)
 
         repeat(moveCount) {
             nextTurn(cars)
-            RacingUI.drawCars(cars)
+            onTurnEnd(cars)
         }
 
-        RacingUI.drawWinners(findWinners(cars))
+        onFinish(findWinners(cars))
     }
 
-    private fun createCars(carNames: List<String>): List<Car> {
-        return carNames.map { name ->
-            Car(name = name, powerStrategy = powerStrategy)
-        }
+    @Throws(IllegalArgumentException::class)
+    private fun checkValidation(moveCount: Int) {
+        require(moveCount >= MIN_MOVE_COUNT) { "이동은 $MIN_MOVE_COUNT 이상을 입력해야 합니다." }
     }
 
     private fun nextTurn(cars: List<Car>) {
@@ -37,9 +35,5 @@ class CarRacing(
     private fun findWinners(cars: List<Car>): List<Car> {
         val maxPosition = cars.maxOf { it.position }
         return cars.filter { maxPosition == it.position }
-    }
-
-    companion object {
-        private const val DEFAULT_MAX_POWER = 10
     }
 }
