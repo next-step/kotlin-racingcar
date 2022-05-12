@@ -9,7 +9,7 @@ class RaceResult(private val carList: List<Car>) {
         private set
     val winners: List<String>
         get() {
-            val positionOfFastest: Int = carList.maxOf { it.position }
+            val positionOfFastest = carList.maxOf { it.position }
             return carList.filter { it.position == positionOfFastest }.map { it.name }
         }
 
@@ -18,7 +18,7 @@ class RaceResult(private val carList: List<Car>) {
         carList.forEach {
             result.append(it.name + " : ")
             result.append(RACE_FOOTPRINT_SYMBOL.repeat(it.position))
-            result.append("\n")
+            result.appendLine()
         }
         resultOutput = result.toString()
     }
