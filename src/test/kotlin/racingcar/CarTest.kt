@@ -20,4 +20,10 @@ internal class CarTest {
 
         assertThat(car2.position).isEqualTo(2)
     }
+
+    @Test
+    fun `자동차 객체 기본 포지션 값`() {
+        val car = Car()
+        assertThat(car.position).isEqualTo(0)
+    }
 }
