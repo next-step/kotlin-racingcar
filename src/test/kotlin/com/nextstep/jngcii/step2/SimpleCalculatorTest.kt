@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
-class CalculatorTest {
-    private val calculator = Calculator()
+class SimpleCalculatorTest {
+    private val calculator = SimpleCalculator()
 
     @ParameterizedTest
     @CsvSource(
