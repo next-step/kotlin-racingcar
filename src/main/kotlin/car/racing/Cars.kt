@@ -5,7 +5,5 @@ class Cars(driverNames: List<String>) {
 
     fun getAllRecord(): List<Record> = cars.map { it.getRecord() }
 
-    private fun Car.getRecord(): Record = Record(driverName, moves)
-
     fun runAll(): Unit = cars.forEach(Car::run)
 }

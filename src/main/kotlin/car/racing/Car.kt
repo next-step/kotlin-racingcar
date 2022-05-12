@@ -15,3 +15,5 @@ class Car(val driverName: String, private val condition: CarCondition = CarCondi
         }
     }
 }
+
+fun Car.getRecord(): Record = Record(driverName, moves)
