@@ -1,5 +1,6 @@
 package racinggame.view
 
+import racinggame.domain.model.IndividualRacingStepStatus
 import racinggame.domain.model.RacingStepResult
 
 object ResultView {
@@ -19,10 +20,18 @@ object ResultView {
 
     private fun printRacingStep(racingStepResult: RacingStepResult) {
         racingStepResult.racingGameStatusList.forEach { racingGameStatus ->
-            println(getCarProceedImage(racingGameStatus.proceedLevel))
+            printRacingGameStatus(racingGameStatus)
         }
         println()
     }
+
+    private fun printRacingGameStatus(racingGameStatus: IndividualRacingStepStatus) {
+        println(getRacingStepStatusText(racingGameStatus))
+    }
+
+    private fun getRacingStepStatusText(
+        racingGameStatus: IndividualRacingStepStatus
+    ) = "${racingGameStatus.name} : ${getCarProceedImage(racingGameStatus.proceedLevel)}"
 
     private fun getCarProceedImage(proceedLevel: Int) = PROCEED_LEVEL_SYMBOL.repeat(proceedLevel)
 }
