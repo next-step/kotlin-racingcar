@@ -5,7 +5,6 @@ import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.data.row
 import io.kotest.inspectors.forAll
-import io.kotest.matchers.ints.shouldBeInRange
 import io.kotest.matchers.shouldBe
 
 class RacingGameTest : StringSpec({
@@ -51,15 +50,37 @@ class RacingGameTest : StringSpec({
         )
 
         // when
-        val actual = racingGame.play()
+        val actual = racingGame.play { 4 }
 
         // then
         actual.size shouldBe 2
         actual[0].size shouldBe 2
-        actual[0][0].position shouldBeInRange 0..2
-        actual[0][1].position shouldBeInRange 0..2
+        actual[0][0].position shouldBe 1
+        actual[0][1].position shouldBe 1
         actual[1].size shouldBe 2
-        actual[1][0].position shouldBeInRange 0..2
-        actual[1][1].position shouldBeInRange 0..2
+        actual[1][0].position shouldBe 2
+        actual[1][1].position shouldBe 2
+    }
+
+    "자동차 경주 게임을 시도횟수만큼 실행한다.2" {
+        // given
+        val cars = listOf(Car(), Car())
+        val tryNumber = TryNumber(2)
+        val racingGame = RacingGame(
+            cars = cars,
+            tryNumber = tryNumber,
+        )
+
+        // when
+        val actual = racingGame.play { 3 }
+
+        // then
+        actual.size shouldBe 2
+        actual[0].size shouldBe 2
+        actual[0][0].position shouldBe 0
+        actual[0][1].position shouldBe 0
+        actual[1].size shouldBe 2
+        actual[1][0].position shouldBe 0
+        actual[1][1].position shouldBe 0
     }
 })

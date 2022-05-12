@@ -3,6 +3,7 @@ package racingcar.controller
 import racingcar.domain.Car
 import racingcar.domain.RacingGame
 import racingcar.domain.TryNumber
+import racingcar.domain.generateRandomCondition
 import racingcar.view.inputCarNumber
 import racingcar.view.inputTryNumber
 import racingcar.view.printPlayResult
@@ -14,7 +15,9 @@ class RacingGameController {
             tryNumber = TryNumber(inputTryNumber()),
         )
 
-        printPlayResult(racingGame.play())
+        printPlayResult(
+            racingGame.play(generateRandomCondition())
+        )
     }
 
     private fun createCars(carNumber: Int): List<Car> {
