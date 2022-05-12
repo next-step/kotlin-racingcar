@@ -15,5 +15,9 @@ class CarFactoryKoTest : FreeSpec({
                 }
             }
         }
+
+        "with valid car names" - {
+            "return car list with input name"
+        }
     }
 })
