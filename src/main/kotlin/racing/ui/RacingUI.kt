@@ -1,4 +1,6 @@
-package racing
+package racing.ui
+
+import racing.domain.Car
 
 object RacingUI {
 

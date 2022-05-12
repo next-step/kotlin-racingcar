@@ -2,6 +2,9 @@ package racing
 
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
+import racing.domain.CarRacing
+import racing.domain.StaticPowerStrategy
+import racing.ui.UserInput
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 

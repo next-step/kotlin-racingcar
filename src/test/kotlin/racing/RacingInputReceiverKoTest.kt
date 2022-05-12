@@ -6,6 +6,8 @@ import io.kotest.data.Row3
 import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
+import racing.ui.RacingInputReceiver
+import racing.ui.UserInput
 import java.io.ByteArrayInputStream
 import kotlin.random.Random
 

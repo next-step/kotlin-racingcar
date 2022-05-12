@@ -8,6 +8,8 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 import org.junit.jupiter.params.provider.ValueSource
+import racing.ui.RacingInputReceiver
+import racing.ui.UserInput
 import java.io.ByteArrayInputStream
 import java.util.stream.Stream
 import kotlin.random.Random

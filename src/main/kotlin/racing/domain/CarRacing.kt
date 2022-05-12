@@ -1,4 +1,7 @@
-package racing
+package racing.domain
+
+import racing.ui.RacingUI
+import racing.ui.UserInput
 
 class CarRacing(
     private val carMaxPower: Int = DEFAULT_MAX_POWER,

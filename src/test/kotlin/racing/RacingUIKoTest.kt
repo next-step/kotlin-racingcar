@@ -5,6 +5,8 @@ import io.kotest.data.Row2
 import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
+import racing.domain.Car
+import racing.ui.RacingUI
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 import kotlin.random.Random
