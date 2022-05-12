@@ -6,6 +6,13 @@ class Car(val name: String) {
     val turnOfPosition = arrayListOf(1)
 
     fun go() {
-        turnOfPosition.add(turnOfPosition[turn++] + if ((0..9).random() >= 4) 1 else 0)
+        turnOfPosition.add(turnOfPosition[turn++] + if ((0..9).random() >= REQUIRE_GO_VALUE) GO else STAY)
+    }
+
+    companion object {
+        const val GO = 1
+        const val STAY = 0
+
+        const val REQUIRE_GO_VALUE = 4
     }
 }
