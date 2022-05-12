@@ -15,7 +15,8 @@ class RaceProcessorTests {
 
         val result = raceProcessor.raceStart(carCnt, raceCnt)
 
-        assertAll( "carCnt",
+        assertAll(
+            "carCnt",
             {
                 result.forEach {
                     assertThat(it.carList.size).isEqualTo(carCnt)
