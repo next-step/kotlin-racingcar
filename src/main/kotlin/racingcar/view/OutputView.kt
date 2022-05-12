@@ -12,7 +12,6 @@ fun printPlayResult(result: List<List<Car>>) {
 private fun printPosition(cars: List<Car>) {
     val result = StringBuilder().apply {
         cars.forEach { append("${convertToPositionSymbol(it)}\n") }
-        append("\n")
     }.toString()
     println(result)
 }
