@@ -14,10 +14,10 @@ internal class NumberTest : FreeSpec({
         ).forEach { invalidString ->
             "\"$invalidString\" 은 Number로 변환에 실패한다." {
                 // when
-                val exception = shouldThrowExactly<NumberFormatException> { Number.from(invalidString) }
+                val exception = shouldThrowExactly<IllegalArgumentException> { Number.from(invalidString) }
 
                 // then
-                exception.message shouldBe "For input string: \"$invalidString\""
+                exception.message shouldBe "\"$invalidString\" 는 정수가 아닙니다."
             }
         }
     }
