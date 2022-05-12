@@ -1,16 +1,12 @@
 package racingcar
 
-class Racing(cars: Cars) {
+class Racing(private val cars: Cars) {
 
     private val racing = mutableListOf<Cars>()
 
-    init {
-        racing.add(cars)
-    }
-
     fun start(roundCount: Int, moveStrategy: MoveStrategy) {
         for (j in 0 until roundCount) {
-            val racingCars = racing.last()
+            val racingCars = if (racing.isNotEmpty()) racing.last() else cars
             racing.add(racingCars.move(moveStrategy))
         }
     }
