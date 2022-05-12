@@ -4,12 +4,11 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class PersonTest {
-    
     @Test
     fun `이름 붙인 인자`() {
         val people = listOf(
-            Person("김소영",40,"쿠쿠"),
-            Person("김소영",40, nickname = "쿠쿠"),
+            Person("김소영", 40, "쿠쿠"),
+            Person("김소영", 40, nickname = "쿠쿠"),
             Person(name = "김소영", age = 40, nickname = "쿠쿠")
         )
         assertThat(people[0].name).isEqualTo("김소영")
