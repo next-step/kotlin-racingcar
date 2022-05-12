@@ -3,6 +3,7 @@ package racingcar.domain
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.data.row
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldBe
 
@@ -43,5 +44,22 @@ class TryNumberTest : StringSpec({
 
         // when // then
         shouldThrowExactly<IllegalStateException> { tryNumber.consume() }
+    }
+
+    "시도횟수를 모두 소진했는지 확인한다." {
+        listOf(
+            row(1, true),
+            row(2, false),
+        ).forAll { (tryNumberValue, expected) ->
+            // given
+            val tryNumber = TryNumber(tryNumberValue)
+            tryNumber.consume()
+
+            // when
+            val actual = tryNumber.isComplete()
+
+            // then
+            actual shouldBe expected
+        }
     }
 })
