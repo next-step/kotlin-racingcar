@@ -1,5 +1,6 @@
 package racingcar
 
+import racingcar.domain.CarName
 import racingcar.domain.Cars
 import racingcar.domain.RacingGame
 import racingcar.dto.RacingGameResponse
@@ -8,16 +9,16 @@ import racingcar.view.ResultView
 
 fun main() {
     val request = InputView.input()
-    val carCount = request.inputCarCount
+    val carNames = request.inputCarNames
     val laps = request.inputLaps
 
-    val cars = Cars.of(carCount)
+    val cars = Cars.of(CarName.ofList(carNames))
     val racingGame = RacingGame(cars, laps)
 
     while (racingGame.isNotEnd()) {
         racingGame.start()
     }
 
-    val lapReports = racingGame.lapReports
-    ResultView.print(RacingGameResponse(lapReports))
+    val report = racingGame.report
+    ResultView.print(RacingGameResponse.of(report))
 }

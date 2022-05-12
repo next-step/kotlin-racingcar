@@ -3,11 +3,9 @@ package racingcar.domain
 class RacingGame(
     private val cars: Cars,
     private var laps: Int,
-    private val movingStrategy: MovingStrategy = DefaultStrategy()
+    private val movingStrategy: MovingStrategy = DefaultStrategy(),
+    val report: RacingGameReport = RacingGameReport()
 ) {
-    private val _lapReports: MutableList<List<Int>> = mutableListOf()
-    val lapReports: List<List<Int>>
-        get() = _lapReports
 
     fun start() {
         if (!isNotEnd()) throw IllegalStateException("이미 종료된 레이스입니다.")
@@ -17,7 +15,7 @@ class RacingGame(
     }
 
     private fun writeReport() {
-        _lapReports.add(cars.location().map { it.value })
+        report.add(LapReport(cars.nameWithLocation()))
     }
 
     fun isNotEnd(): Boolean {

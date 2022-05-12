@@ -1,21 +1,17 @@
-package racingcar
+package racingcar.domain
 
 import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.style.DescribeSpec
-import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
-import racingcar.domain.Car
-import racingcar.domain.Cars
-import racingcar.domain.Location
 
 class CarsTest : DescribeSpec({
 
     describe("move") {
         context("이동 전략이 true 이면") {
             it("자동차들이 전진한다") {
-                val car1 = Car(Location(1))
-                val car2 = Car(Location(2))
-                val car3 = Car(Location(3))
+                val car1 = Car(location = Location(1))
+                val car2 = Car(location = Location(2))
+                val car3 = Car(location = Location(3))
                 val cars = Cars(
                     listOf(car1, car2, car3)
                 )
@@ -32,9 +28,9 @@ class CarsTest : DescribeSpec({
 
         context("이동 전략이 false 이면") {
             it("자동차들이 멈춰있는다") {
-                val car1 = Car(Location(1))
-                val car2 = Car(Location(2))
-                val car3 = Car(Location(3))
+                val car1 = Car(location = Location(1))
+                val car2 = Car(location = Location(2))
+                val car3 = Car(location = Location(3))
                 val cars = Cars(
                     listOf(car1, car2, car3)
                 )
@@ -50,20 +46,20 @@ class CarsTest : DescribeSpec({
         }
     }
 
-    describe("location") {
-        it("자동차들의 위치 정보를 제공한다") {
+    describe("nameWithLocation") {
+        it("자동차 이름과 위치 정보를 조회한다") {
             val cars = Cars(
                 listOf(
-                    Car(Location(1)),
-                    Car(Location(2)),
-                    Car(Location(3)),
+                    Car(CarName("car1"), Location(1)),
+                    Car(CarName("car2"), Location(2)),
+                    Car(CarName("car3"), Location(3)),
                 )
             )
 
-            cars.location() shouldContainExactly listOf(
-                Location(1),
-                Location(2),
-                Location(3),
+            cars.nameWithLocation() shouldBe listOf(
+                CarNameWithLocation(CarName("car1") to Location(1)),
+                CarNameWithLocation(CarName("car2") to Location(2)),
+                CarNameWithLocation(CarName("car3") to Location(3)),
             )
         }
     }
@@ -72,9 +68,9 @@ class CarsTest : DescribeSpec({
         it("자동차들의 수를 반환한다") {
             val cars = Cars(
                 listOf(
-                    Car(Location(1)),
-                    Car(Location(2)),
-                    Car(Location(3)),
+                    Car(location = Location(1)),
+                    Car(location = Location(2)),
+                    Car(location = Location(3)),
                 )
             )
 
@@ -83,10 +79,10 @@ class CarsTest : DescribeSpec({
     }
 
     describe("of") {
-        context("자동차들의 수를 입력받아 자동차들을 만든다") {
-            val cars = Cars.of(5)
+        context("자동차들의 이름를 입력받아 자동차들을 만든다") {
+            val cars = Cars.of(CarName.ofList("pobi,crong,honux"))
 
-            cars.size() shouldBe 5
+            cars.size() shouldBe 3
         }
     }
 })

@@ -7,8 +7,10 @@ class Cars(
         cars.forEach { it.move(movingStrategy) }
     }
 
-    fun location(): List<Location> {
-        return cars.map { it.location }
+    fun nameWithLocation(): List<CarNameWithLocation> {
+        return cars.map {
+            CarNameWithLocation(it.carName to it.location)
+        }
     }
 
     fun size(): Int {
@@ -18,6 +20,10 @@ class Cars(
     companion object {
         fun of(carCount: Int): Cars {
             return Cars((0 until carCount).map { Car() })
+        }
+
+        fun of(carNames: List<CarName>): Cars {
+            return Cars(carNames.map(::Car))
         }
     }
 }
