@@ -24,13 +24,9 @@ class CustomStringDelimiter(value: String?) {
         require(value.isNullOrBlank()) { "잘못된 값이 전달되었습니다." }
     }
 
-    fun getOperands(): MutableList<Int> {
-        return operands.toMutableList()
-    }
+    fun getOperands(): MutableList<Int> = operands
 
-    fun getOperators(): MutableList<String> {
-        return operators.toMutableList()
-    }
+    fun getOperators(): MutableList<String> = operators
 
     companion object {
         private const val DELIMITER: String = " "
