@@ -15,6 +15,12 @@
 - [ ] 사칙 연산을 모두 포함하는 기능 구현
 - [ ] 공백 문자열을 빈 공백 문자로 분리하려면 String 클래스의 split(" ") 메소드를 활용한다. 
 - [ ] 반복적인 패턴을 찾아 반복문으로 구현한다.
-- [ ] Parameterized Tests 활용
+- [x] Parameterized Tests 활용
+
+### 고민
+
+- data class 에 부생성자로 `value: String`을 받은 후 `value: Int`로 변경해서 사용하고 싶었는데 포기
+  - data class 에 주생성자 이외 추가 생성자를 만드는건 data class의 의미가 희석되는거 같다..
+  - 주생성자를 private하게 가려도 copyOf() 메서드를 통해 노출된다고 IDE가 경고함
 
 <br>
