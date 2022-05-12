@@ -55,36 +55,5 @@ class RacingInputReceiverKoTest : DescribeSpec({
                 }
             }
         }
-
-        forAll(
-            row("자동차10대\n3"),
-            row("이름이 너무긴 사용자,두번째로긴사람\n5"),
-        ) { input ->
-            context("with user name length greater than 5 : ( $input )") {
-                System.setIn(ByteArrayInputStream(input.toByteArray()))
-
-                it("throws IllegalArgumentException") {
-                    shouldThrow<IllegalArgumentException> {
-                        RacingInputReceiver.receive()
-                    }
-                }
-            }
-        }
-
-        forAll(
-            row("지나가던강아지 한마리\n숫자가아니다."),
-            row("David\n숫자가 아니다."),
-            row("David,Dwen\n-1245234")
-        ) { input ->
-            context("with move count less than 0 or not number : ( $input )") {
-                System.setIn(ByteArrayInputStream(input.toByteArray()))
-
-                it("throws IllegalArgumentException") {
-                    shouldThrow<IllegalArgumentException> {
-                        RacingInputReceiver.receive()
-                    }
-                }
-            }
-        }
     }
 })

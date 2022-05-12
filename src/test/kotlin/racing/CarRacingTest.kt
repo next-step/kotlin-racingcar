@@ -1,45 +1,61 @@
 package racing
 
 import org.assertj.core.api.Assertions
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import racing.domain.Car
 import racing.domain.CarRacing
 import racing.domain.StaticPowerStrategy
-import racing.ui.UserInput
-import java.io.ByteArrayOutputStream
-import java.io.PrintStream
+
+private fun testCar(name: String, position: Int = 0) =
+    Car(name = name, powerStrategy = StaticPowerStrategy(power = 10), startPosition = position)
 
 class CarRacingTest {
 
-    private val output = ByteArrayOutputStream()
-
-    @BeforeEach
-    private fun setup() {
-        output.reset()
-        System.setOut(PrintStream(output))
+    @Test
+    fun `moveCount 가 0보다 작으면, IllegalArgumentException 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            CarRacing.run(
+                cars = listOf(testCar("Andy"), testCar("Bruce")),
+                moveCount = -1
+            )
+        }
     }
 
     @Test
-    fun `유저입력에 따라 게임이 진행되고, 게임의 진행 과정과 결과를 출력한다`() {
-        CarRacing(
-            powerStrategy = StaticPowerStrategy(power = 10)
-        ).run(UserInput(carNames = listOf("Andy", "Bruce"), moveCount = 2))
+    fun `moveCount 이 2 일때, 모든 차량 위치와 turn count 는 2가 된다`() {
+        val moveCount = 2
+        var count = 0
 
-        val expect =
-            """
-                |Andy : -
-                |Bruce : -
-                |
-                |Andy : --
-                |Bruce : --
-                |
-                |Andy : ---
-                |Bruce : ---
-                |
-                |Andy, Bruce가 최종 우승했습니다.
-                |
-            """.trimMargin()
+        val andy = testCar("Andy")
+        val bruce = testCar("Bruce")
 
-        Assertions.assertThat(output.toString()).isEqualTo(expect)
+        CarRacing.run(
+            cars = listOf(andy, bruce),
+            moveCount = moveCount,
+            onTurnEnd = { count++ }
+        )
+
+        Assertions.assertThat(count).isEqualTo(moveCount)
+        Assertions.assertThat(andy.position).isEqualTo(moveCount)
+        Assertions.assertThat(bruce.position).isEqualTo(moveCount)
+    }
+
+    @Test
+    fun `게임 진행이 끝난 후 가장 멀리 간 차량을 승자로 한다`() {
+        var winners: List<Car> = listOf()
+
+        val andy = testCar("Andy", 2)
+        val bruce = testCar("Bruce", 1)
+
+        CarRacing.run(
+            cars = listOf(andy, bruce),
+            moveCount = 2,
+            onFinish = {
+                winners = it
+            }
+        )
+
+        Assertions.assertThat(winners).isEqualTo(listOf(andy))
     }
 }

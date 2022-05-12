@@ -29,11 +29,8 @@ class RacingInputReceiverTest {
         strings = [
             " ",
             "    ",
-            "이름이 너무긴 사용자,두번째로긴사람\n5",
-            "자동차10대\n3",
             "지나가던강아지 한마리\n숫자가아니다.",
-            "David\n숫자가 아니다.",
-            "David,Dwen\n-1245234"
+            "David\n숫자가 아니다."
         ]
     )
     fun `잘못된 사용자의 입력이 들어오면, IllegalArgumentException 예외가 발생한다`(input: String) {
