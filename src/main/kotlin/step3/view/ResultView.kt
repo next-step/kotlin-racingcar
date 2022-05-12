@@ -1,12 +1,12 @@
 package step3.view
 
-import step3.CarRaceConst.car
+import step3.common.CarRaceProperty
 
-class ResultView {
+class ResultView(private val carRaceProperty: CarRaceProperty) {
 
     fun printResultByRound(round: Int) {
         println("-- [$round]회차 결과 ------")
-        car.map { printForwardMoveMark(it.value.moveCount) }
+        carRaceProperty.car.map { printForwardMoveMark(it.value.moveCount) }
         println("--------------------")
     }
 

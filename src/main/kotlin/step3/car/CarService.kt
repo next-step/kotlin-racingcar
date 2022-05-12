@@ -1,12 +1,12 @@
 package step3.car
 
-import step3.CarRaceConst
+import step3.common.CarRaceProperty
 
-class CarService {
+class CarService(private val carRaceProperty: CarRaceProperty) {
 
     fun initCars() {
-        for (carIndex in 1..CarRaceConst.carSize) {
-            CarRaceConst.car[carIndex] = Car(carIndex, INIT_MOVE)
+        for (carIndex in 1..carRaceProperty.carSize) {
+            carRaceProperty.car[carIndex] = Car(carIndex, INIT_MOVE)
         }
     }
 

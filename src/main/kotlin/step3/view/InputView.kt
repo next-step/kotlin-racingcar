@@ -1,8 +1,8 @@
 package step3.view
 
-import step3.CarRaceConst
+import step3.common.CarRaceProperty
 
-class InputView {
+class InputView(private val carRaceProperty: CarRaceProperty) {
 
     fun readInRoundSize() {
         println("시도할 횟수는 몇 회인가요?")
@@ -10,7 +10,7 @@ class InputView {
         kotlin.runCatching {
             readln().toInt()
         }.fold(
-            onSuccess = { CarRaceConst.roundSize = it },
+            onSuccess = { carRaceProperty.roundSize = it },
             onFailure = { exception ->
                 if (exception is NumberFormatException) {
                     println("-- 시도할 횟수를 잘못 입력하셨습니다. 숫자를 입력해주세요 --")
@@ -25,7 +25,7 @@ class InputView {
         kotlin.runCatching {
             readln().toInt()
         }.fold(
-            onSuccess = { CarRaceConst.carSize = it },
+            onSuccess = { carRaceProperty.carSize = it },
             onFailure = { exception ->
                 if (exception is NumberFormatException) {
                     println("-- 자동차 대수를 잘못 입력하셨습니다. 숫자를 입력해주세요 --")
