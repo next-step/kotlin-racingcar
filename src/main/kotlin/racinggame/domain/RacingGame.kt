@@ -3,7 +3,7 @@ package racinggame.domain
 import racinggame.domain.car.Car
 import racinggame.domain.car.CarFactory
 import racinggame.domain.model.RacingGameInput
-import racinggame.domain.model.RacingStepStatus
+import racinggame.domain.model.RacingStepResult
 
 class RacingGame(
     private val cars: List<Car>,
@@ -11,10 +11,10 @@ class RacingGame(
 ) {
     fun start() = List(numberOfAttempts) {
         raceAll()
-        getCurrentRacingStepStatus()
+        getCurrentRacingStepResult()
     }
 
-    private fun getCurrentRacingStepStatus() = RacingStepStatus(
+    private fun getCurrentRacingStepResult() = RacingStepResult(
         proceedLevels = cars.map { car ->
             car.proceedLevel
         }
