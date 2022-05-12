@@ -15,4 +15,8 @@ object CarRacingResultView {
     private fun printCurrentCarMovingDistance(carName: String, carPosition: Int) {
         println("$carName : ".plus("-".repeat(carPosition)))
     }
+
+    fun printWinners(carNames: List<String>) {
+        println("${carNames}가 최종 우승했습니다.")
+    }
 }
