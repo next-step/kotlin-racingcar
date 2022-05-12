@@ -3,7 +3,6 @@ package calculator
 object Expression {
 
     private const val FIRST_INDEX = 0
-    val STRING_OPERATORS: List<String> = listOf("+", "-", "*", "/")
 
     fun calculate(operands: MutableList<Int>, operators: MutableList<String>): Int {
         operators.forEach {

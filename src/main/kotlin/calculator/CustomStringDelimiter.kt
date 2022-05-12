@@ -11,11 +11,11 @@ class CustomStringDelimiter(value: String?) {
             .toList()
 
         operators = values
-            .filter { Expression.STRING_OPERATORS.contains(it) }
+            .filter { STRING_OPERATORS.contains(it) }
             .toMutableList()
 
         operands = values
-            .filter { !Expression.STRING_OPERATORS.contains(it) }
+            .filter { !STRING_OPERATORS.contains(it) }
             .map { it.toInt() }
             .toMutableList()
     }
@@ -30,5 +30,6 @@ class CustomStringDelimiter(value: String?) {
 
     companion object {
         private const val DELIMITER: String = " "
+        private val STRING_OPERATORS: List<String> = listOf("+", "-", "*", "/")
     }
 }
