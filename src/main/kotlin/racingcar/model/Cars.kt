@@ -10,5 +10,5 @@ class Cars(
         }
     }
 
-    fun forEach(action: (Car) -> (Unit)) = cars.forEach(action)
+    fun forEach(action: (Car) -> Unit) = cars.forEach(action)
 }
