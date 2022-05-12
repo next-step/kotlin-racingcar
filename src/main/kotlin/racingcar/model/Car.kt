@@ -13,9 +13,9 @@ data class Car(
         }
     }
 
-    private fun forward() = Car(id = id, position = position + 1, movingStrategy = movingStrategy)
+    private fun forward() = copy(position = position + 1)
 
-    private fun stop() = Car(id = id, position = position, movingStrategy = movingStrategy)
+    private fun stop() = copy()
 
     companion object {
         private const val DEFAULT_POSITION = 0
