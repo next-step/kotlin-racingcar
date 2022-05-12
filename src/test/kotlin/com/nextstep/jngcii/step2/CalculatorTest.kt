@@ -9,45 +9,36 @@ class CalculatorTest {
 
     @ParameterizedTest
     @CsvSource(
-        "1, false, 2, false, 3, false",
-        "-1, false, -2, false, -3, false",
-        "1, false, 2, true, 3, true",
+        "1, false, 2, false, +,  3, false",
+        "-1, false, -2, false, +, -3, false",
+        "1, false, 2, true, +, 3, true",
+
+        "3, false, 2, false, -, 1, false",
+        "-1, false, -2, false, -, 1, false",
+        "1, false, 2, true, -, -1, true",
+
+        "3, false, 2, false, *, 6, false",
+        "-1, false, -2, false, *, 2, false",
+        "-1, false, 2, true, *, -2, true",
+
+        "3, false, 1, false, /, 3, false",
+        "-2, false, -2, false, /, 1, false",
+        "-4, false, 2, true, /, -2, true",
     )
     fun plusTest(
         lhsNum: Int,
         lhsBool: Boolean,
         rhsNum: Int,
         rhsBool: Boolean,
+        operatorStr: String,
         resultNum: Int,
         resultBool: Boolean,
     ) {
         val lhs = POperator(lhsNum, lhsBool)
         val rhs = POperator(rhsNum, rhsBool)
+        val op = Operator.of(operatorStr)
 
-        val result = calculator.plus(lhs, rhs)
-
-        assertEquals(resultNum, result.value)
-        assertEquals(resultBool, result.isEnd)
-    }
-
-    @ParameterizedTest
-    @CsvSource(
-        "3, false, 2, false, 1, false",
-        "-1, false, -2, false, 1, false",
-        "1, false, 2, true, -1, true",
-    )
-    fun minusTest(
-        lhsNum: Int,
-        lhsBool: Boolean,
-        rhsNum: Int,
-        rhsBool: Boolean,
-        resultNum: Int,
-        resultBool: Boolean,
-    ) {
-        val lhs = POperator(lhsNum, lhsBool)
-        val rhs = POperator(rhsNum, rhsBool)
-
-        val result = calculator.minus(lhs, rhs)
+        val result = calculator.compute(lhs, rhs, op)
 
         assertEquals(resultNum, result.value)
         assertEquals(resultBool, result.isEnd)
