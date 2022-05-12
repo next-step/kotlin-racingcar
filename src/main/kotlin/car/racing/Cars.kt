@@ -1,8 +1,9 @@
 package car.racing
 
-class Cars(drivers: Int) {
-    private val cars = List(size = drivers) { Car() }
+class Cars(driverNames: List<String>) {
+    private val cars = List(driverNames.size) { index -> Car(driverNames[index]) }
 
-    fun getAllMoves(): List<Int> = cars.map { it.moves }
+    fun getAllRecord(): List<Record> = cars.map { it.getRecord() }
+
     fun runAll(): Unit = cars.forEach(Car::run)
 }

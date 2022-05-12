@@ -4,28 +4,32 @@ import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual
 import io.kotest.matchers.shouldBe
 
+@Suppress("UNUSED_PARAMETER")
 class ResultViewTest : FreeSpec({
     "결과 화면" - {
-        var recordCount = 0
+        var consolePrintCount = 0
         fun fakeConsole(msg: String) {
-            recordCount += 1
+            consolePrintCount += 1
         }
 
         val resultView = ResultView(::fakeConsole)
 
-        "빈 경기결과는 1번 기록되어 있다" {
-            recordCount = 0
-            resultView.showRecords(GameRecords())
-            recordCount shouldBe 1
+        beforeEach {
+            consolePrintCount = 0
         }
 
-        "유효한 경기는 1번 이상 기록되어 있다" {
-            recordCount = 0
-            val drivers = 3
-            val cars = Cars(drivers).apply { repeat(10) { runAll() } }
+        "빈 경기결과는 유효한 경기 기록이 없다는 메시지 표시를 위해 한번 [Console]을 호출한다" {
+            resultView.showRecords(GameRecords())
+            consolePrintCount shouldBe 1
+        }
+
+        "유효한 경기는 기록 및 우승자 표시를 위해 한번 이상 [Console]을 호출한다" {
+            val driverNames = listOf("크림", "히어로")
+            val moves = 10
+            val cars = Cars(driverNames).apply { repeat(moves) { runAll() } }
             val records = GameRecords().apply { record(cars) }
             resultView.showRecords(records)
-            recordCount shouldBeGreaterThanOrEqual 1
+            consolePrintCount shouldBeGreaterThanOrEqual 1
         }
     }
 })
