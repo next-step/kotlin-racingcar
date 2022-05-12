@@ -17,10 +17,7 @@ class RacingGame(
 
     private fun getCurrentRacingStepResult() = RacingStepResult(
         racingGameStatusList = cars.map { car ->
-            IndividualRacingStepStatus(
-                name = car.name,
-                proceedLevel = car.proceedLevel
-            )
+            IndividualRacingStepStatus.from(car)
         }
     )
 
