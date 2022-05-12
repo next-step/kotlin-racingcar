@@ -1,6 +1,6 @@
 package model
 
-data class Car private constructor(private val position: Int) {
+class Car private constructor(private val position: Int) {
 
     init {
         require(0 <= this.position) { INVALID_POSITION_EXCEPTION }
