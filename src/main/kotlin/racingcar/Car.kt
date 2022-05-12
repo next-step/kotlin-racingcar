@@ -1,10 +1,10 @@
 package racingcar
 
-class Car {
+open class Car {
     var position = 0
-        private set
+        protected set
 
-    fun move(movePoint: Int = (0..9).random()) {
+    open fun move(movePoint: Int = (0..9).random()) {
         validateMovePoint(movePoint)
 
         if (movePoint >= 4) {
