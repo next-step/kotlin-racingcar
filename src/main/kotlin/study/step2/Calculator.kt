@@ -1,3 +1,5 @@
+package study.step2
+
 class Calculator {
 
     companion object {
