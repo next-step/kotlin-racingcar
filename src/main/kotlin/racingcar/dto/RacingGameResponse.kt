@@ -1,5 +1,6 @@
 package racingcar.dto
 
+import racingcar.domain.LapReport
 import racingcar.domain.RacingGameReport
 
 data class RacingGameResponse(
@@ -17,10 +18,12 @@ data class RacingGameResponse(
         }
 
         private fun lapReports(report: RacingGameReport): List<List<Pair<String, Int>>> {
-            return report.lapReports.map {
-                it.lapReport.map { carNameWithLocation ->
-                    carNameWithLocation.carName.value to carNameWithLocation.location.value
-                }
+            return report.lapReports.map { lapReport(it) }
+        }
+
+        private fun lapReport(lapReport: LapReport): List<Pair<String, Int>> {
+            return lapReport.lapReport.map { carNameWithLocation ->
+                carNameWithLocation.carName.value to carNameWithLocation.location.value
             }
         }
     }
