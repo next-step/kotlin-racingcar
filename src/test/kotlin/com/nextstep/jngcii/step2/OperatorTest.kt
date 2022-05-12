@@ -1,4 +1,4 @@
-package com.nextstep.jngcii.step2.vo
+package com.nextstep.jngcii.step2
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.assertThrows

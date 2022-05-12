@@ -1,6 +1,9 @@
-package com.nextstep.jngcii.step2.vo
+package com.nextstep.jngcii.step2
 
-class Number(
+/**
+ * 피연산자 ㅋㅋ
+ */
+class POperator(
     input: String,
     val isEnd: Boolean = false,
 ) {

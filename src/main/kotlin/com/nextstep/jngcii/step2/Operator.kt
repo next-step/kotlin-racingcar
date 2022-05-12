@@ -1,5 +1,8 @@
-package com.nextstep.jngcii.step2.vo
+package com.nextstep.jngcii.step2
 
+/**
+ * 연산자
+ */
 enum class Operator {
     PLUS, MINUS, MULTIPLY, DIVIDE;
 

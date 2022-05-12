@@ -1,10 +1,7 @@
 package com.nextstep.jngcii.step2
 
-import com.nextstep.jngcii.step2.vo.Number
-import com.nextstep.jngcii.step2.vo.Operator
-
-class Input(
-    val numbers: List<Number>,
+class Requests(
+    val numbers: List<POperator>,
     val operators: List<Operator>
 ) {
     init {
