@@ -5,9 +5,11 @@ class RacingTrack(racerCount: Long, val times: Long) {
     repeat(racerCount.toInt()) { add(Car()) }
   }
 
+  private fun nextTime() = println()
   fun start() = repeat(times.toInt()) {
     racers.forEach {
       it.run()
     }
+    nextTime()
   }
 }

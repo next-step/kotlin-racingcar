@@ -9,5 +9,6 @@ class Car(var distance: Long = 0) {
 
   fun run(isMoved: Boolean = isMoved()) {
     if (isMoved) move()
+    ResultView.showDistance(distance)
   }
 }
