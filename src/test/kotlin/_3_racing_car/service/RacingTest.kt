@@ -12,11 +12,12 @@ import io.mockk.mockk
 internal class RacingTest : BehaviorSpec({
     given("전진을 위한 힘의 조건들과 요청한 트랙수와 횟수가 주어진 경우") {
         forAll(
-            row(listOf(4,4,4), 3, 3, listOf(3, 3, 3) ),
-            row(listOf(4,3,4, 3), 4, 3, listOf(3, 0, 3, 0) ),
-            row(listOf(3,3,3), 3, 3, listOf(0, 0, 0) ),
+            row(listOf(4, 4, 4), 3, 3, listOf(3, 3, 3)),
+            row(listOf(4, 3, 4, 3), 4, 3, listOf(3, 0, 3, 0)),
+            row(listOf(3, 3, 3), 3, 3, listOf(0, 0, 0)),
         ) { powers, trackCount, times, expected ->
-            val tracks = List(trackCount) { it
+            val tracks = List(trackCount) {
+                it
                 val power = mockk<Power>()
                 every { power.create() } returns powers[it]
                 Track(Car(), power)

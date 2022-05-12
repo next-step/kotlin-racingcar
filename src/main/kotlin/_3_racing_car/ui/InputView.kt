@@ -1,7 +1,7 @@
 package _3_racing_car.ui
 
-import _3_racing_car.domain.racer.Car
 import _3_racing_car.domain.power.RandomPower
+import _3_racing_car.domain.racer.Car
 import _3_racing_car.service.InputDto
 import _3_racing_car.service.Track
 
