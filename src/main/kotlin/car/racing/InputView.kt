@@ -23,8 +23,8 @@ class InputView(
     private fun List<String>.regulate(): List<String> =
         map {
             val trimmed = it.trim()
-            if (trimmed.length > 5) {
-                trimmed.substring(0 until 5)
+            if (trimmed.length > LENGTH_OF_DRIVER_NAME) {
+                trimmed.substring(0 until LENGTH_OF_DRIVER_NAME)
             } else {
                 trimmed
             }
@@ -37,5 +37,9 @@ class InputView(
         return kotlin
             .runCatching { value.toInt() }
             .getOrElse { throw IllegalArgumentException() }
+    }
+
+    companion object {
+        private const val LENGTH_OF_DRIVER_NAME = 5
     }
 }
