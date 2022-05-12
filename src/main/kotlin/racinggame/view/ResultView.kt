@@ -19,8 +19,10 @@ object ResultView {
 
     private fun printRacingStep(racingStepResult: RacingStepResult) {
         racingStepResult.racingGameStatusList.forEach { racingGameStatus ->
-            println(PROCEED_LEVEL_SYMBOL.repeat(racingGameStatus.proceedLevel))
+            println(getCarProceedImage(racingGameStatus.proceedLevel))
         }
         println()
     }
+
+    private fun getCarProceedImage(proceedLevel: Int) = PROCEED_LEVEL_SYMBOL.repeat(proceedLevel)
 }
