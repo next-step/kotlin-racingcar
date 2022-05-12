@@ -1,5 +1,7 @@
 package racing
 
+import racing.domain.Car
+
 class CarRacingGame(private val carCount: Int, private val times: Int) {
     private val carPositionHistory: LinkedHashMap<Car, MutableList<Int>>
 
@@ -7,7 +9,7 @@ class CarRacingGame(private val carCount: Int, private val times: Int) {
         carPositionHistory = initCarPositionHistory()
     }
 
-    fun getGameResult(): LinkedHashMap<Car, MutableList<Int>> {
+    fun start(): LinkedHashMap<Car, MutableList<Int>> {
         repeat(times) {
             moveCars()
             saveCarPosition()
@@ -18,20 +20,24 @@ class CarRacingGame(private val carCount: Int, private val times: Int) {
     private fun initCarPositionHistory(): LinkedHashMap<Car, MutableList<Int>> {
         val tmpCarPositionHistory = LinkedHashMap<Car, MutableList<Int>>()
         repeat(carCount) {
-            tmpCarPositionHistory[Car()] = mutableListOf()
+            tmpCarPositionHistory[Car(START_POSITION, RandomMoving())] = mutableListOf()
         }
         return tmpCarPositionHistory
     }
 
     private fun moveCars() {
         carPositionHistory.keys.forEach { car ->
-            car.move(RandomGenerator.generate())
+            car.move()
         }
     }
 
     private fun saveCarPosition() {
         carPositionHistory.forEach { (car, history) ->
-            history.add(car.position)
+            car.savePosition(history)
         }
+    }
+
+    companion object {
+        const val START_POSITION = 0
     }
 }

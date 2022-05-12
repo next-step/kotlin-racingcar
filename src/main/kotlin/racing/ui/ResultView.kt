@@ -1,6 +1,6 @@
 package racing.ui
 
-import racing.Car
+import racing.domain.Car
 
 class ResultView(private val carPositionHistory: LinkedHashMap<Car, MutableList<Int>>, private val times: Int) {
     fun printResult() {
@@ -14,16 +14,12 @@ class ResultView(private val carPositionHistory: LinkedHashMap<Car, MutableList<
 
     private fun printCarPosition(i: Int) {
         carPositionHistory.forEach { (_, carPosition) ->
-            convertPrintValue(carPosition[i])
+            println(PRINT_VALUE.repeat(carPosition[i]))
         }
         println()
     }
 
-    private fun convertPrintValue(position: Int) {
-        val printValue = StringBuilder()
-        repeat(position) {
-            printValue.append("-")
-        }
-        println(printValue)
+    companion object {
+        const val PRINT_VALUE = "-"
     }
 }
