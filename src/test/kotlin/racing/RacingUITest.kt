@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 import racing.domain.Car
-import racing.ui.RacingUI
+import racing.view.RacingUI
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 import java.util.stream.Stream

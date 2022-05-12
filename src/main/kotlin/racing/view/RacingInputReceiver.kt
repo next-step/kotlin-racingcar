@@ -1,4 +1,4 @@
-package racing.ui
+package racing.view
 
 object RacingInputReceiver {
 

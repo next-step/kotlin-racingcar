@@ -6,7 +6,7 @@ import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 import racing.domain.Car
-import racing.ui.RacingUI
+import racing.view.RacingUI
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 

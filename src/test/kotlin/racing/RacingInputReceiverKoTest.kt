@@ -6,8 +6,8 @@ import io.kotest.data.Row3
 import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
-import racing.ui.RacingInputReceiver
-import racing.ui.UserInput
+import racing.view.RacingInputReceiver
+import racing.view.UserInput
 import java.io.ByteArrayInputStream
 
 private val userInputTestData = listOf(

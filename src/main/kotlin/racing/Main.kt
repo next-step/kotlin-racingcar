@@ -2,8 +2,8 @@ package racing
 
 import racing.domain.CarFactory
 import racing.domain.CarRacing
-import racing.ui.RacingInputReceiver
-import racing.ui.RacingUI
+import racing.view.RacingInputReceiver
+import racing.view.RacingUI
 
 fun main() {
 
