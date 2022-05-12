@@ -17,7 +17,7 @@ class ScreenView {
         private fun showDistance(positions: List<Int>) {
             for (i in positions.indices) {
                 if (!view.containsKey(i)) {
-                    view[i] = ""
+                    view[i] = "-"
                 }
 
                 if (positions[i] == 1) {
