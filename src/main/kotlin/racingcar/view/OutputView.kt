@@ -11,12 +11,12 @@ fun printPlayResult(result: List<List<Car>>) {
 
 private fun printPosition(cars: List<Car>) {
     val result = StringBuilder().apply {
-        cars.forEach { append("${convertPositionTo(it)}\n") }
+        cars.forEach { append("${convertToPositionSymbol(it)}\n") }
         append("\n")
     }.toString()
     println(result)
 }
 
-private fun convertPositionTo(car: Car): String {
+private fun convertToPositionSymbol(car: Car): String {
     return POSITION_DISPLAY_SYMBOL.repeat(car.position)
 }
