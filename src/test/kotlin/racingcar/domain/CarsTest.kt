@@ -57,9 +57,9 @@ class CarsTest : DescribeSpec({
             )
 
             cars.nameWithLocation() shouldBe listOf(
-                CarName("car1") to Location(1),
-                CarName("car2") to Location(2),
-                CarName("car3") to Location(3),
+                CarNameWithLocation(CarName("car1") to Location(1)),
+                CarNameWithLocation(CarName("car2") to Location(2)),
+                CarNameWithLocation(CarName("car3") to Location(3)),
             )
         }
     }

@@ -16,11 +16,12 @@ data class RacingGameResponse(
                 .map { it.value }
         }
 
-        private fun lapReports(report: RacingGameReport) = report.lapReports.map {
-            it.lapReport.map { (carName, location) ->
-                carName.value to location.value
+        private fun lapReports(report: RacingGameReport): List<List<Pair<String, Int>>> {
+            return report.lapReports.map {
+                it.lapReport.map { carNameWithLocation ->
+                    carNameWithLocation.carName.value to carNameWithLocation.location.value
+                }
             }
         }
     }
 }
-

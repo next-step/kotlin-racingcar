@@ -11,9 +11,9 @@ internal class LapReportTest : DescribeSpec({
                 val winner = CarName("우승자")
                 val lapReport = LapReport(
                     listOf(
-                        winner to Location(5),
-                        CarName("비우승자") to Location(4),
-                        CarName("비우승자") to Location(3)
+                        CarNameWithLocation(winner to Location(5)),
+                        CarNameWithLocation(CarName("비우승자") to Location(4)),
+                        CarNameWithLocation(CarName("비우승자") to Location(3)),
                     )
                 )
 
@@ -25,9 +25,9 @@ internal class LapReportTest : DescribeSpec({
                 val winner2 = CarName("우승자2")
                 val lapReport = LapReport(
                     listOf(
-                        winner1 to Location(5),
-                        winner2 to Location(5),
-                        CarName("비우승자") to Location(3)
+                        CarNameWithLocation(winner1 to Location(5)),
+                        CarNameWithLocation(winner2 to Location(5)),
+                        CarNameWithLocation(CarName("비우승자") to Location(3)),
                     )
                 )
 
