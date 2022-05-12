@@ -21,6 +21,7 @@ class Cars private constructor(count: Int) {
 
     fun run(movingStrategy: MovingStrategy?) {
         carsList.forEach(Consumer { car: Car -> car.move(movingStrategy!!) })
+        println()
     }
 }
 
