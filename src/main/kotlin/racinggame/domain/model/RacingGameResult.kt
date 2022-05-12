@@ -1,4 +1,7 @@
 package racinggame.domain.model
 
 @JvmInline
-value class RacingGameResult(val stepResults: List<RacingStepResult>)
+value class RacingGameResult(val stepResults: List<RacingStepResult>) {
+    val winners
+        get() = stepResults.last().firstPlaces
+}

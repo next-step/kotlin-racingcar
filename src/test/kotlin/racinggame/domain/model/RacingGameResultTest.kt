@@ -31,4 +31,9 @@ class RacingGameResultTest {
     fun `RacingGameResult는 레이싱 게임의 각 단계별 결과를 모두 보관한다`() {
         assertThat(racingGameResult.stepResults).isEqualTo(racingStepResults)
     }
+
+    @Test
+    fun `winners를 통해 최종 우승자들을 구할 수 있다`() {
+        assertThat(racingGameResult.winners).isEqualTo(listOf("dog", "cat"))
+    }
 }
