@@ -32,12 +32,12 @@ class RandomNumberCarRacingManager : CarRacingManager {
     }
 
     companion object {
-        private const val MIN_FORWARD = 4
+        private const val MIN_FORWARD_NUMBER = 4
         private const val MONITOR_CHARACTER_BY_CAR = "-"
         private const val MONITOR_CHARACTER_DIVISION = "\n"
 
         fun isForwardNumber(randomInt: Int): Boolean {
-            return randomInt >= MIN_FORWARD
+            return randomInt >= MIN_FORWARD_NUMBER
         }
 
         fun getMonitoringFormatBy(distance: Int): String {
