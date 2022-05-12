@@ -4,17 +4,23 @@ import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 
 class CarTest : DescribeSpec({
-  it("생성된 자동차의 거리는 0이다.") {
-    val car = Car()
+  describe("run") {
+    it("isMoved 값이 true 일 때 거리가 1 증가한다.") {
+      val car = Car()
+      val isMoved = true
 
-    car.distance shouldBe 0
-  }
+      car.run(isMoved)
 
-  it("이동시 거리가 1 증가한다.") {
-    val car = Car(3)
+      car.distance shouldBe 1
+    }
 
-    val movedCar = car.move()
+    it("isMoved 값이 false 일 때 거리가 증가하지 않는다.") {
+      val car = Car()
+      val isMoved = false
 
-    movedCar.distance shouldBe 4
+      car.run(isMoved)
+
+      car.distance shouldBe 0
+    }
   }
 })
