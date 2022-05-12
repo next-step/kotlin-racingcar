@@ -4,6 +4,7 @@ import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.inspectors.forAll
+import io.kotest.matchers.shouldBe
 
 class TryNumberTest : StringSpec({
     "시도횟수가 1이상이면 정상적으로 객체를 생성한다." {
@@ -22,5 +23,25 @@ class TryNumberTest : StringSpec({
             // when //then
             shouldThrowExactly<IllegalArgumentException> { TryNumber(it) }
         }
+    }
+
+    "시도횟수를 차감한다." {
+        // given
+        val tryNumber = TryNumber(1)
+
+        // when
+        tryNumber.consume()
+
+        // then
+        tryNumber.value shouldBe 0
+    }
+
+    "잔여 시도횟수가 없을 때, 시도횟수를 차감하면 예외를 발생시킨다." {
+        // given
+        val tryNumber = TryNumber(1)
+        tryNumber.consume()
+
+        // when // then
+        shouldThrowExactly<IllegalStateException> { tryNumber.consume() }
     }
 })
