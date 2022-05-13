@@ -28,11 +28,11 @@ class RaceServiceTest {
     fun `이동이 되었는지 테스트`() {
         val carRaceProperty = CarRaceProperty()
         val car1 = Car(0)
-        carRaceProperty.car.add(car1)
+        carRaceProperty.cars.add(car1)
 
         val raceService = RaceService(carRaceProperty)
         raceService.move(car1)
 
-        assertThat(carRaceProperty.car[0].moveCount).isEqualTo(1)
+        assertThat(carRaceProperty.cars[0].moveCount).isEqualTo(1)
     }
 }

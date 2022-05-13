@@ -10,7 +10,7 @@ class RaceService(private val carRaceProperty: CarRaceProperty) {
     fun runRacingByRound() {
 
         for (round in CarRaceProperty.ROUND_START..carRaceProperty.roundSize) {
-            carRaceProperty.car
+            carRaceProperty.cars
                 .filter { canBeMove(getRandomNumber()) }
                 .map { move(it) }
 

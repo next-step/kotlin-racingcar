@@ -6,7 +6,7 @@ class ResultView(private val carRaceProperty: CarRaceProperty) {
 
     fun printResultByRound(round: Int) {
         println("-- [$round]회차 결과 ------")
-        carRaceProperty.car.map { printForwardMoveMark(it.moveCount) }
+        carRaceProperty.cars.map { printForwardMoveMark(it.moveCount) }
         println("--------------------")
     }
 

@@ -6,7 +6,7 @@ class CarService(private val carRaceProperty: CarRaceProperty) {
 
     fun initCars() {
         for (carIndex in 0 until carRaceProperty.carSize) {
-            carRaceProperty.car.add(Car(INIT_MOVE))
+            carRaceProperty.cars.add(Car(INIT_MOVE))
         }
     }
 

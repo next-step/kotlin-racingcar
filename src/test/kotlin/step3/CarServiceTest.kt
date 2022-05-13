@@ -14,6 +14,6 @@ class CarServiceTest {
         val carService = CarService(carRaceProperty)
         carService.initCars()
 
-        assertThat(carRaceProperty.car.size).isEqualTo(carRaceProperty.carSize)
+        assertThat(carRaceProperty.cars.size).isEqualTo(carRaceProperty.carSize)
     }
 }
