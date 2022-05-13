@@ -1,14 +1,15 @@
 package racingcar.model
 
-class RacingRecord(numberOfCar: Int) {
-    val recordList = List(numberOfCar) { mutableListOf<Int>() }
+data class CarRecord(val recordForStep: MutableList<Int> = mutableListOf())
+class RacingRecord(carList: Collection<Car>) {
+    val carRecordList = List(carList.size) { CarRecord() }
     val stepToTry: Int
-        get() = recordList.maxOf { it.size }
+        get() = carRecordList.maxOf { it.recordForStep.size }
 
     val latestRecord: List<Int>
-        get() = recordList.map { it.last() }
+        get() = carRecordList.map { it.recordForStep.last() }
 
     fun writeRecord(indexOfCar: Int, car: Car) {
-        recordList[indexOfCar].add(car.position)
+        carRecordList[indexOfCar].recordForStep.add(car.position)
     }
 }

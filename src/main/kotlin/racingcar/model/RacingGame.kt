@@ -16,7 +16,7 @@ class RacingGame(
 
     fun runGame(onGameProgress: ((RacingGame) -> Unit)? = null): RacingRecord {
         this.reset()
-        val racingRecord = RacingRecord(this.carList.count())
+        val racingRecord = RacingRecord(this.carList)
         repeat(this.stepsToTry) { step ->
             this.carList.forEachIndexed { carIndex, car ->
                 car.moveIfItCan()

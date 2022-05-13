@@ -28,8 +28,8 @@ class DefaultResultView : ResultView {
     }
 
     private fun printRacingRecordForTheStepAt(racingRecord: RacingRecord, step: Int) {
-        racingRecord.recordList.forEach { recordForACar ->
-            println(recordForACar[step].toBarString())
+        racingRecord.carRecordList.forEach { recordForACar ->
+            println(recordForACar.recordForStep[step].toBarString())
         }
         println()
     }
