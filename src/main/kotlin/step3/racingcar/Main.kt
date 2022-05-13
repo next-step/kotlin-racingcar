@@ -4,8 +4,8 @@ import step3.racingcar.view.InputView
 import step3.racingcar.view.ResultView
 
 fun main() {
-    val numberOfCar = InputView.showNumberOfCarInitView()
-    val trialCount = InputView.showTrialCountInitView()
+    val numberOfCar = InputView.getNumberOfCarByConsole()
+    val trialCount = InputView.getTrialCountByConsole()
     val strategy = RandomNumberStrategy()
 
     val racingGame = RacingGame.init(numberOfCar, trialCount, strategy)
