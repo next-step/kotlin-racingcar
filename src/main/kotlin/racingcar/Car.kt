@@ -14,12 +14,7 @@ class Car(val name: String, private val canGoDecide: () -> Boolean) {
         return canGoDecide.invoke()
     }
 
-    fun makeResult(): String {
-        val positionResultString = RESULT_CHAR.repeat(position)
-        return "$name : $positionResultString"
-    }
-
-    companion object {
-        private const val RESULT_CHAR = "-"
+    fun toCarResult(): CarResult {
+        return CarResult(name, position)
     }
 }

@@ -40,10 +40,11 @@ class RacingCarTest {
         val defaultTrial = 10
         val carName = "name"
         val defaultCar = listOf(carName)
+        val testList = listOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
 
         val mockingSeedMaker: SeedMaker = object : SeedMaker {
             var top = -1
-            val testList = listOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+
             override fun nextInt(): Int {
                 return testList[++top]
             }
@@ -52,8 +53,8 @@ class RacingCarTest {
         val game = RacingCarGame(defaultTrial, mockingSeedMaker, defaultCar)
         game.play()
 
-        val result = game.gameResults.gameResult.last()[0]
-        val expect = "$carName : ------"
-        assertThat(result).isEqualTo(expect)
+        val result = game.gameResults.gameResult.last()[0].position
+        val expectPosition = testList.filter { it >= 4 }.size
+        assertThat(result).isEqualTo(expectPosition)
     }
 }
