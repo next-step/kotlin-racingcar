@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import java.lang.RuntimeException
 
 internal class TrackTest {
 
@@ -36,7 +35,7 @@ internal class TrackTest {
         track.markTrace()
         track.markTrace()
 
-        assertThrows<RuntimeException> {
+        assertThrows<IllegalStateException> {
             track.markTrace()
         }
     }

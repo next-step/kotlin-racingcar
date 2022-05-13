@@ -5,7 +5,7 @@ class Track(private val length: Int) {
     private var onTraceIndex: Int = 0
 
     fun markTrace() {
-        if (onTraceIndex >= length) throw RuntimeException("end of track; cannot mark trace more.")
+        check(onTraceIndex < length) { "end of track; cannot mark trace more." }
         traces[onTraceIndex++].marked = true
     }
 
