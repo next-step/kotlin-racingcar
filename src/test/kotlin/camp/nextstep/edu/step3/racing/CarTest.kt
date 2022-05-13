@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test
 
 internal class CarTest {
 
-    @DisplayName("자동차는 트랙 위에서 달릴 수 있다.")
+    @DisplayName("자동차가 2번 움직이면 트랙에 흔적이 2칸 남습니다.")
     @Test
-    fun canRaceOnTrack() {
+    fun carRaceTest() {
         // Given
         val id = 1
         val moveTwiceEngine: Engine = object : Engine {
