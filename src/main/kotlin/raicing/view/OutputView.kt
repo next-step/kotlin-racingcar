@@ -4,18 +4,22 @@ import raicing.model.RaceResult
 
 object OutputView {
     fun resultOutput(raceResults: List<RaceResult>) {
-        val sb = StringBuilder("========== 결과 ============\n")
-
-        raceResults.forEach { raceResult ->
-            raceResult.cars.map { car ->
-                sb.append("${car.id}: ")
-                repeat(car.position) {
-                    sb.append("-")
-                }
-                sb.appendLine()
+        val outputStr = buildString {
+            append("========== 결과 ============\n")
+            raceResults.forEach { raceResult ->
+                appendLine(raceResultOnceOutput(raceResult))
             }
-            sb.appendLine()
         }
-        print(sb)
+        print(outputStr)
+    }
+
+    private fun raceResultOnceOutput(raceResult: RaceResult): String = buildString {
+        raceResult.cars.map { car ->
+            append("${car.id}: ")
+            repeat(car.position) {
+                append("-")
+            }
+            appendLine()
+        }
     }
 }
