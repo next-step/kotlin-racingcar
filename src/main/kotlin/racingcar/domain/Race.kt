@@ -4,7 +4,7 @@ class Race {
     private val cars: List<Car>
 
     constructor(carCount: Int) {
-        this.cars = (0 until carCount).map { Car() }
+        this.cars = List(carCount) { Car() }
     }
 
     constructor(cars: List<Car>) {
@@ -12,14 +12,12 @@ class Race {
     }
 
     fun run() {
-        for (car in cars) car.move()
+        cars.forEach { it.move() }
     }
 
-    fun getAllMovingDistance(): List<Int> {
-        return this.cars.map { it.position }
-    }
+    val allMovingDistance
+        get() = this.cars.map { it.position }
 
-    fun getCarsSize(): Int {
-        return this.cars.size
-    }
+    val carsSize
+        get() = this.cars.size
 }

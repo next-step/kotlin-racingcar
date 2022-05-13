@@ -1,12 +1,12 @@
 package racingcar.view.input
 
-class ReadLineInput : Input {
+class ReadInInput : Input {
 
     override fun readCar(): Int {
-        return readLine()!!.toInt()
+        return readln().toInt()
     }
 
     override fun readTry(): Int {
-        return readLine()!!.toInt()
+        return readln().toInt()
     }
 }
