@@ -23,7 +23,7 @@ internal class RacingGameTest {
         // then
         assertAll(
             { assertThat(racingGame.carList.size).isEqualTo(numberOfCar) },
-            { assertThat(gameRecord.recordList.size).isEqualTo(numberOfCar) },
+            { assertThat(gameRecord.carRecordList.size).isEqualTo(numberOfCar) },
             { assertThat(gameRecord.stepToTry).isEqualTo(stepsToTry) },
             {
                 assertThat(gameRecord.latestRecord.joinToString(""))
@@ -47,7 +47,7 @@ internal class RacingGameTest {
         // then
         assertAll(
             { assertThat(racingGame.carList.size).isEqualTo(numberOfCar) },
-            { assertThat(gameRecord.recordList.size).isEqualTo(numberOfCar) },
+            { assertThat(gameRecord.carRecordList.size).isEqualTo(numberOfCar) },
             { assertThat(gameRecord.stepToTry).isEqualTo(stepsToTry) },
             {
                 assertThat(gameRecord.latestRecord.joinToString(""))
@@ -72,7 +72,7 @@ internal class RacingGameTest {
             { assertThat(racingGame.carList.size).isEqualTo(numberOfCar) },
             { assertThat(racingGame.currentStep).isEqualTo(stepsToTry) },
             { assertThat(racingGame.isOver).isTrue },
-            { assertThat(gameRecord.recordList.size).isEqualTo(numberOfCar) }
+            { assertThat(gameRecord.carRecordList.size).isEqualTo(numberOfCar) }
         )
     }
 }
