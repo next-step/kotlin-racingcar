@@ -13,7 +13,11 @@ class CarRacing {
     }
 
     fun moveCars(cars: List<Car>, moveCount: Int) {
-        repeat(moveCount) { cars.forEach(Car::go) }
+        repeat(moveCount) {
+            cars.forEach { car ->
+                car.go { car.goIfAboveRequireGoValue() }
+            }
+        }
     }
 
     fun createCars(carNames: List<String>): List<Car> {

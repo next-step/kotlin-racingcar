@@ -5,8 +5,12 @@ class Car(val name: String) {
 
     val turnOfPosition = arrayListOf(1)
 
-    fun go() {
-        turnOfPosition.add(turnOfPosition[turn++] + if ((0..9).random() >= REQUIRE_GO_VALUE) GO else STAY)
+    fun goIfAboveRequireGoValue(): Int {
+        return if ((0..9).random() >= REQUIRE_GO_VALUE) GO else STAY
+    }
+
+    fun go(goIfAboveRequireGoValue: () -> Int) {
+        turnOfPosition.add(turnOfPosition[turn++] + goIfAboveRequireGoValue())
     }
 
     companion object {
