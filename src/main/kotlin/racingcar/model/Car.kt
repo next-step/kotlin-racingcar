@@ -1,6 +1,6 @@
-package racingCar.model
+package racingcar.model
 
-import racingCar.constants.Message
+import racingcar.constants.Message
 
 /**
  * 차량의 데이터를 저장하는 데이터 클래스

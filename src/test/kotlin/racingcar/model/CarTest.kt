@@ -1,8 +1,8 @@
-package racingCar.model
+package racingcar.model
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
-import racingCar.constants.Message
+import racingcar.constants.Message
 
 /**
  * Car 클래스 테스트 클래스

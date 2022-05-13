@@ -1,4 +1,4 @@
-package racingCar.model
+package racingcar.model
 
 /**
  * 레이스 결과를 저장하는 클래스

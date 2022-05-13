@@ -1,8 +1,8 @@
-package racingCar
+package racingcar
 
-import racingCar.controller.RacingController
-import racingCar.view.InputView
-import racingCar.view.ResultView
+import racingcar.controller.RacingController
+import racingcar.view.InputView
+import racingcar.view.ResultView
 
 fun main() {
     val carNames = InputView.getCarNames()

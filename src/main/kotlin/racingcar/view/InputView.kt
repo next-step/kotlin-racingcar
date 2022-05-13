@@ -1,6 +1,6 @@
-package racingCar.view
+package racingcar.view
 
-import racingCar.constants.Message
+import racingcar.constants.Message
 
 /**
  * 입력을 받고 로직을 시작하는 object

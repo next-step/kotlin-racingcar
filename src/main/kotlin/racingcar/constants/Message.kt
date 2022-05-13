@@ -1,4 +1,4 @@
-package racingCar.constants
+package racingcar.constants
 
 /**
  * 출력만 되는 메세지들을 모아둔 Object class

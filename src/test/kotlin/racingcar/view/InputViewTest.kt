@@ -1,8 +1,8 @@
-package racingCar.view
+package racingcar.view
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
-import racingCar.constants.Message
+import racingcar.constants.Message
 
 /**
  * input에 대한 테스트
