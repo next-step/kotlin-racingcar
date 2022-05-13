@@ -4,17 +4,17 @@ class Computer(
     private val calculator: Calculator
 ) {
     fun compute(requests: Requests): Int {
-        var lhs = requests.numbers.first()
+        var left = requests.numbers.first()
 
         for (index in 0 until requests.operators.size) {
-            if (lhs.isEnd) break
+            if (left.isEnd) break
 
-            val rhs = requests.numbers[index + 1]
-            val op = requests.operators[index]
+            val right = requests.numbers[index + 1]
+            val operator = requests.operators[index]
 
-            lhs = calculator.run(lhs, rhs, op)
+            left = calculator.run(left, right, operator)
         }
 
-        return lhs.value
+        return left.value
     }
 }

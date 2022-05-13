@@ -1,9 +1,6 @@
 package com.nextstep.jngcii.step2
 
-/**
- * 피연산자 ㅋㅋ
- */
-class POperator(
+class Operand(
     val value: Int,
     val isEnd: Boolean = false,
 ) {

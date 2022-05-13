@@ -1,7 +1,7 @@
 package com.nextstep.jngcii.step2
 
 class Requests(
-    val numbers: List<POperator>,
+    val numbers: List<Operand>,
     val operators: List<Operator>
 ) {
     init {

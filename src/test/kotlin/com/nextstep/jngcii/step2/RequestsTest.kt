@@ -8,10 +8,10 @@ class RequestsTest {
     @Test
     fun `Input 생성 성공 테스트`() {
         val numbers = listOf(
-            POperator("1"),
-            POperator("2"),
-            POperator("3"),
-            POperator("4")
+            Operand("1"),
+            Operand("2"),
+            Operand("3"),
+            Operand("4")
         )
         val operators = listOf(
             Operator.MINUS,
@@ -25,9 +25,9 @@ class RequestsTest {
     @Test
     fun `Input 생성 실패 테스트`() {
         val numbers = listOf(
-            POperator("1"),
-            POperator("2"),
-            POperator("3")
+            Operand("1"),
+            Operand("2"),
+            Operand("3")
         )
         val operators = listOf(
             Operator.MINUS,

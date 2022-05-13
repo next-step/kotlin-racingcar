@@ -1,6 +1,6 @@
 package com.nextstep.jngcii.step2
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
@@ -15,7 +15,9 @@ class OperatorTest {
         "DIVIDE,/"
     )
     fun `operator 생성 성공 테스트`(name: String, input: String) {
-        assertEquals(Operator.valueOf(name).name, Operator.of(input).name)
+        val actual = Operator.of(input).name
+        val expect = Operator.valueOf(name).name
+        assertThat(actual).isEqualTo(expect)
     }
 
     @ParameterizedTest

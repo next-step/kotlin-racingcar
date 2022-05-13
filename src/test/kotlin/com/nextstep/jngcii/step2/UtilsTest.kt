@@ -1,8 +1,6 @@
 package com.nextstep.jngcii.step2
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -13,20 +11,18 @@ class UtilsTest {
     fun `string to requests converting 값 확인 테스트 (성공케이스)`() {
         val requests = "1 + 2 / 3 * -4 - 5".convertToRequests()
 
-        assertEquals(
-            listOf(1, 2, 3, -4, 5),
-            requests.numbers.map { it.value }
-        )
+        val actualOperands = requests.numbers.map { it.value }
+        val expectedOperands = listOf(1, 2, 3, -4, 5)
+        assertThat(actualOperands).isEqualTo(expectedOperands)
 
-        assertEquals(
-            listOf(Operator.PLUS, Operator.DIVIDE, Operator.MULTIPLY, Operator.MINUS),
-            requests.operators
-        )
+        val actualOperators = requests.operators
+        val expectedOperators = listOf(Operator.PLUS, Operator.DIVIDE, Operator.MULTIPLY, Operator.MINUS)
+        assertThat(actualOperators).isEqualTo(expectedOperators)
 
         for (index in 0..3) {
-            assertFalse(requests.numbers[index].isEnd)
+            assertThat(requests.numbers[index].isEnd).isFalse
         }
-        assertTrue(requests.numbers[4].isEnd)
+        assertThat(requests.numbers[4].isEnd).isTrue
     }
 
     @ParameterizedTest

@@ -2,15 +2,15 @@ package com.nextstep.jngcii.step2
 
 class SimpleCalculator : Calculator {
 
-    override fun run(lhs: POperator, rhs: POperator, op: Operator): POperator {
-        val value = when (op) {
-            Operator.PLUS -> lhs.value + rhs.value
-            Operator.MINUS -> lhs.value - rhs.value
-            Operator.MULTIPLY -> lhs.value * rhs.value
-            Operator.DIVIDE -> lhs.value / rhs.value
+    override fun run(left: Operand, right: Operand, operator: Operator): Operand {
+        val value = when (operator) {
+            Operator.PLUS -> left.value + right.value
+            Operator.MINUS -> left.value - right.value
+            Operator.MULTIPLY -> left.value * right.value
+            Operator.DIVIDE -> left.value / right.value
         }
-        val isEnd = lhs.isEnd || rhs.isEnd
+        val isEnd = left.isEnd || right.isEnd
 
-        return POperator(value, isEnd)
+        return Operand(value, isEnd)
     }
 }

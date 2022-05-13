@@ -1,6 +1,6 @@
 package com.nextstep.jngcii.step2
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
@@ -26,21 +26,21 @@ class SimpleCalculatorTest {
         "-4, false, 2, true, /, -2, true",
     )
     fun `계산 테스트`(
-        lhsNum: Int,
-        lhsBool: Boolean,
-        rhsNum: Int,
-        rhsBool: Boolean,
-        operatorStr: String,
-        resultNum: Int,
-        resultBool: Boolean,
+        leftNumber: Int,
+        leftIsEnd: Boolean,
+        rightNumber: Int,
+        rightIsEnd: Boolean,
+        operatorString: String,
+        resultNumber: Int,
+        resultIsEnd: Boolean,
     ) {
-        val lhs = POperator(lhsNum, lhsBool)
-        val rhs = POperator(rhsNum, rhsBool)
-        val op = Operator.of(operatorStr)
+        val left = Operand(leftNumber, leftIsEnd)
+        val right = Operand(rightNumber, rightIsEnd)
+        val operator = Operator.of(operatorString)
 
-        val result = calculator.run(lhs, rhs, op)
+        val result = calculator.run(left, right, operator)
 
-        assertEquals(resultNum, result.value)
-        assertEquals(resultBool, result.isEnd)
+        assertThat(result.value).isEqualTo(resultNumber)
+        assertThat(result.isEnd).isEqualTo(resultIsEnd)
     }
 }
