@@ -20,9 +20,11 @@
 ```mermaid
 graph TD
     Interface --> |new, start| Racing
-    Racing -->|init| Track
-    Racing -->|init, race| Car
-    Car --> |raceOn| Track
+    Interface --> |init| Car
+    Interface --> |draw| Track
+    Racing -->|create| Track
+    Racing -->|raceOn| Car
+    Car --> |markTrace| Track
 ```
 
 ## 기능 요구 사항

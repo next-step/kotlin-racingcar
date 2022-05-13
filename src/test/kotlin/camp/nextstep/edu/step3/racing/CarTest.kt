@@ -1,14 +1,9 @@
 package camp.nextstep.edu.step3.racing
 
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.mockkStatic
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import java.time.Instant
-import kotlin.random.Random
 
 internal class CarTest {
 
@@ -16,16 +11,12 @@ internal class CarTest {
     @Test
     fun canRaceOnTrack() {
         // Given
-        val now = Instant.now()
-        mockkStatic("java.time.Instant")
-        every { Instant.now() } returns now
-
         val id = 1
-        val mockkRandom = mockk<Random>()
-        mockkStatic("kotlin.random.RandomKt")
-        every { mockkRandom.nextInt(0, 10) } returnsMany listOf(8, 9, 1, 2, 3)
-        every { Random(id * now.nano) } returns mockkRandom
-        val car = Car(id)
+        val moveTwiceEngine: Engine = object : Engine {
+            val returns = mutableListOf(MOVABLE_SPEED, MOVABLE_SPEED, NOT_MOVABLE_SPEED, NOT_MOVABLE_SPEED, NOT_MOVABLE_SPEED)
+            override fun speed(): Int = returns.removeFirst()
+        }
+        val car = Car(id, moveTwiceEngine)
 
         val trackLength = 5
         val track = Track(trackLength)
@@ -43,5 +34,10 @@ internal class CarTest {
         assertFalse(traces.next())
         assertFalse(traces.next())
         assertFalse(traces.next())
+    }
+
+    companion object {
+        private const val MOVABLE_SPEED = 9
+        private const val NOT_MOVABLE_SPEED = 0
     }
 }

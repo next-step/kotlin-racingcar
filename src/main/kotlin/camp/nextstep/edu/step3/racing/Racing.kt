@@ -1,15 +1,9 @@
 package camp.nextstep.edu.step3.racing
 
-class Racing private constructor(carNumber: Int, private val moveCount: Int) {
+class Racing private constructor(participants: List<Car>, private val moveCount: Int) {
 
     private var ended = false
-    private val carTracks = LinkedHashMap<Car, Track>()
-
-    init {
-        for (id in 0 until carNumber) {
-            carTracks[Car(id)] = Track(moveCount)
-        }
-    }
+    private val carTracks = linkedMapOf(*participants.map { car -> car to Track(moveCount) }.toTypedArray())
 
     fun start() {
         for ((car, track) in carTracks) {
@@ -26,8 +20,8 @@ class Racing private constructor(carNumber: Int, private val moveCount: Int) {
     }
 
     companion object {
-        fun new(carNumber: Int, moveCount: Int): Racing {
-            return Racing(carNumber, moveCount)
+        fun new(participants: List<Car>, moveCount: Int): Racing {
+            return Racing(participants, moveCount)
         }
     }
 }

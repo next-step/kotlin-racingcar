@@ -1,16 +1,11 @@
 package camp.nextstep.edu.step3.racing
 
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.mockkStatic
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
-import java.time.Instant
-import kotlin.random.Random
 
 internal class RacingTest {
 
@@ -18,17 +13,19 @@ internal class RacingTest {
     @Test
     fun racingSolo() {
         // Given
-        val now = Instant.now()
-        mockkStatic("java.time.Instant")
-        every { Instant.now() } returns now
-
-        val id = 0
-        val mockkRandom = mockk<Random>()
-        mockkStatic("kotlin.random.RandomKt")
-        every { mockkRandom.nextInt(0, 10) } returnsMany listOf(8, 9, 1, 2, 3)
-        every { Random(id * now.nano) } returns mockkRandom
-
-        val racing = Racing.new(1, 5)
+        val moveTwiceEngine: Engine = object : Engine {
+            val returns = mutableListOf(
+                MOVABLE_SPEED,
+                MOVABLE_SPEED,
+                NOT_MOVABLE_SPEED,
+                NOT_MOVABLE_SPEED,
+                NOT_MOVABLE_SPEED
+            )
+            override fun speed(): Int = returns.removeFirst()
+        }
+        val carId = 1
+        val participants: List<Car> = listOf(Car(carId, moveTwiceEngine))
+        val racing = Racing.new(participants, 5)
 
         // When
         assertDoesNotThrow {
@@ -40,7 +37,7 @@ internal class RacingTest {
         assertNotNull(resultMap)
         assertEquals(1, resultMap.size)
 
-        val carTraces = requireNotNull(resultMap.mapKeys { it.key.id }[id]).traces()
+        val carTraces = requireNotNull(resultMap.mapKeys { it.key.id }[carId]).traces()
         Assertions.assertTrue(carTraces.next())
         Assertions.assertTrue(carTraces.next())
         Assertions.assertFalse(carTraces.next())
@@ -52,21 +49,34 @@ internal class RacingTest {
     @Test
     fun racingDuo() {
         // Given
-        val now = Instant.now()
-        mockkStatic("java.time.Instant")
-        every { Instant.now() } returns now
+        val moveAllEngine: Engine = object : Engine {
+            val returns = mutableListOf(
+                MOVABLE_SPEED,
+                MOVABLE_SPEED,
+                MOVABLE_SPEED,
+                MOVABLE_SPEED,
+                MOVABLE_SPEED
+            )
+            override fun speed(): Int = returns.removeFirst()
+        }
+        val moveOnceEngine: Engine = object : Engine {
+            val returns = mutableListOf(
+                MOVABLE_SPEED,
+                NOT_MOVABLE_SPEED,
+                NOT_MOVABLE_SPEED,
+                NOT_MOVABLE_SPEED,
+                NOT_MOVABLE_SPEED
+            )
+            override fun speed(): Int = returns.removeFirst()
+        }
 
         val car1Id = 0
         val car2Id = 1
-        val car1EnginesRandom = mockk<Random>()
-        val car2EnginesRandom = mockk<Random>()
-        mockkStatic("kotlin.random.RandomKt")
-        every { car1EnginesRandom.nextInt(0, 10) } returnsMany listOf(5, 5, 4, 5, 4)
-        every { car2EnginesRandom.nextInt(0, 10) } returnsMany listOf(1, 2, 1, 3, 4)
-        every { Random(car1Id * now.nano) } returns car1EnginesRandom
-        every { Random(car2Id * now.nano) } returns car2EnginesRandom
-
-        val racing = Racing.new(2, 5)
+        val participants: List<Car> = listOf(
+            Car(car1Id, moveAllEngine),
+            Car(car2Id, moveOnceEngine)
+        )
+        val racing = Racing.new(participants, 5)
 
         // When
         assertDoesNotThrow {
@@ -91,5 +101,10 @@ internal class RacingTest {
         Assertions.assertFalse(car2Traces.next())
         Assertions.assertFalse(car2Traces.next())
         Assertions.assertFalse(car2Traces.next())
+    }
+
+    companion object {
+        private const val MOVABLE_SPEED = 9
+        private const val NOT_MOVABLE_SPEED = 0
     }
 }
