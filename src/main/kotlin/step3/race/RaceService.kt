@@ -2,7 +2,7 @@ package step3.race
 
 import step3.car.Car
 import step3.common.CarRaceProperty
-import step3.utils.NumberUtils.getRandomNumber
+import step3.utils.RandomNumberGenerator.getRandomNumber
 import step3.view.ResultView
 
 class RaceService(private val carRaceProperty: CarRaceProperty) {
