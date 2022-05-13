@@ -1,6 +1,6 @@
 package racingcar.application
 
 data class GameInput(
-    val numberOfCars: Int,
+    val names: List<String>,
     val numberOfRaces: Int,
 )
