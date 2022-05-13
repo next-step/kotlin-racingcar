@@ -11,7 +11,7 @@ class UtilsTest {
     fun `string to requests converting 값 확인 테스트 (성공케이스)`() {
         val requests = "1 + 2 / 3 * -4 - 5".convertToRequests()
 
-        val actualOperands = requests.numbers.map { it.value }
+        val actualOperands = requests.numbers.map { it.value.toInt() }
         val expectedOperands = listOf(1, 2, 3, -4, 5)
         assertThat(actualOperands).isEqualTo(expectedOperands)
 

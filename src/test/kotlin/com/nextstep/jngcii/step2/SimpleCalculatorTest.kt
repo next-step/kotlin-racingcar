@@ -3,6 +3,7 @@ package com.nextstep.jngcii.step2
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import java.math.BigDecimal
 
 class SimpleCalculatorTest {
     private val calculator = SimpleCalculator()
@@ -26,12 +27,12 @@ class SimpleCalculatorTest {
         "-4, false, 2, true, /, -2, true",
     )
     fun `계산 테스트`(
-        leftNumber: Int,
+        leftNumber: String,
         leftIsEnd: Boolean,
-        rightNumber: Int,
+        rightNumber: String,
         rightIsEnd: Boolean,
         operatorString: String,
-        resultNumber: Int,
+        resultNumber: Double,
         resultIsEnd: Boolean,
     ) {
         val left = Operand(leftNumber, leftIsEnd)
@@ -40,7 +41,7 @@ class SimpleCalculatorTest {
 
         val result = calculator.run(left, right, operator)
 
-        assertThat(result.value).isEqualTo(resultNumber)
+        assertThat(result.value.toDouble()).isEqualTo(resultNumber)
         assertThat(result.isEnd).isEqualTo(resultIsEnd)
     }
 }
