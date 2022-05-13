@@ -11,7 +11,7 @@ class StringParser {
             val res = string.split("").joinToString("") {
                 if (it == "" || it == " ") {
                     ""
-                } else if (Operators.list.contains(it)) {
+                } else if (Operator.list.contains(it)) {
                     " $it "
                 } else if (it.matches("[\\d|.]".toRegex())) {
                     it

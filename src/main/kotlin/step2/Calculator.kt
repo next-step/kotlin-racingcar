@@ -9,10 +9,10 @@ class Calculator {
             for (i in 1 until list.size step 2) {
                 val number = list[i + 1].toDouble()
                 val operator: (Double, Double) -> Double = when (list[i]) {
-                    "+" -> Operators.plus
-                    "-" -> Operators.subtract
-                    "*" -> Operators.multiply
-                    "/" -> Operators.division
+                    "+" -> Operator.plus
+                    "-" -> Operator.subtract
+                    "*" -> Operator.multiply
+                    "/" -> Operator.division
                     else -> throw IllegalAccessError("지원하지 않는 연산자")
                 }
                 result = operator(result, number)

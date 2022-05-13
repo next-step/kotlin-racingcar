@@ -1,6 +1,6 @@
 package step2
 
-class Operators {
+class Operator {
     companion object {
         val list = listOf<String>("+", "-", "*", "/")
         val plus = { a: Double, b: Double -> a + b }
