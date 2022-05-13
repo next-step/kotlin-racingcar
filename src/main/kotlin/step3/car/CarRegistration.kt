@@ -2,12 +2,15 @@ package step3.car
 
 import step3.common.CarRaceProperty
 
-class CarRegistration(private val carRaceProperty: CarRaceProperty) {
+class CarRegistration(private val roundSize: Int, private val carSize: Int) {
 
-    fun initCars() {
-        for (carIndex in 0 until carRaceProperty.carSize) {
-            carRaceProperty.cars.add(Car(INIT_MOVE))
+    fun initCarRaceProperty(): CarRaceProperty {
+        val cars = mutableListOf<Car>()
+        repeat(carSize) {
+            cars.add(Car(INIT_MOVE))
         }
+
+        return CarRaceProperty(roundSize, carSize, cars)
     }
 
     companion object {

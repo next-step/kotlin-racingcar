@@ -24,9 +24,11 @@ class CarRaceTest {
 
     @Test
     fun `이동이 되었는지 테스트`() {
-        val carRaceProperty = CarRaceProperty()
+        val carSize = 1
+        val roundSize = 1
         val carToMove = Car(0)
-        carRaceProperty.cars.add(carToMove)
+        val cars = listOf(carToMove)
+        val carRaceProperty = CarRaceProperty(roundSize, carSize, cars)
 
         val carRace = CarRace()
         carRace.moveCarPosition(carToMove)

@@ -8,13 +8,12 @@ import step3.view.InputView
 import step3.view.ResultView
 
 fun main() {
-    val carRaceProperty = CarRaceProperty()
-    val inputView = InputView(carRaceProperty)
-    inputView.readInRoundSize()
-    inputView.readInCarSize()
+    val inputView = InputView()
+    val roundSize = inputView.readInRoundSize()
+    val carSize = inputView.readInCarSize()
 
-    val carRegistration = CarRegistration(carRaceProperty)
-    carRegistration.initCars()
+    val carRegistration = CarRegistration(roundSize, carSize)
+    val carRaceProperty = carRegistration.initCarRaceProperty()
 
     val carRace = CarRace()
     val resultView = ResultView(carRaceProperty)
