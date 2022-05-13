@@ -1,44 +1,31 @@
 package scene
 
-import dto.InputResult
+import engine.EnvironmentManager
+import engine.GameEngine
+import fixture.StubEnvironmentModule
+import fixture.StubInputSystem
+import fixture.StubOutputPainter
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
-import port.InputSystem
-import port.OutputPainter
-
-class StubOutputPainter : OutputPainter {
-
-    val outputBuffer = mutableListOf<String>()
-
-    override fun draw(buffer: String) {
-        outputBuffer.add(buffer)
-    }
-}
-
-class StubInputSystem(private val inputBuffer: List<String>) : InputSystem {
-
-    private var index = 0
-
-    override fun read(): String = inputBuffer[index++]
-}
+import utils.Constants
 
 internal class InputSceneTest : DescribeSpec({
 
-    describe("입력 장면 테스트") {
-        it("사용자로부터 라운드와 플레이어 수를 입력받아 입력 Dto를 반환한다.") {
+    describe("InputScene 테스트") {
+        it("InputScene은 자동차 수와 라운드를 입력받아 저장한다.") {
             // given
-            val round = "5"
-            val player = "3"
-            val stubInputSystem = StubInputSystem(listOf(round, player))
-            val stubOutputPainter = StubOutputPainter()
-            val inputScene = InputScene(stubOutputPainter, stubInputSystem)
+            val stubEnvironmentModule = StubEnvironmentModule()
+            val environmentManager = EnvironmentManager(stubEnvironmentModule)
+            val outputPainter = StubOutputPainter()
+            val inputSystem = StubInputSystem(listOf("1", "2"))
+            val inputScene = InputScene(outputPainter, inputSystem, environmentManager)
 
             // when
-            val result = inputScene.update()
+            GameEngine.run(inputScene)
 
             // then
-            stubOutputPainter.outputBuffer.size shouldBe 2
-            result shouldBe InputResult(5, 3)
+            environmentManager.get(Constants.CAR_NUMBER_KEY) shouldBe "1"
+            environmentManager.get(Constants.STAGE_NUMBER_KEY) shouldBe "2"
         }
     }
 })

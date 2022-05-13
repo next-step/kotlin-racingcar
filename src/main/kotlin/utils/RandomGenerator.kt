@@ -1,8 +1,9 @@
 package utils
 
+import port.RandomGeneratorPort
 import kotlin.random.Random
 
-class RandomGenerator(private val from: Int, private val until: Int) {
+class RandomGenerator(private val from: Int, private val until: Int) : RandomGeneratorPort {
 
-    fun generate(): Int = Random.nextInt(from, until)
+    override fun generate(): Int = Random.nextInt(from, until)
 }

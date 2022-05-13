@@ -4,12 +4,14 @@ import engine.EnvironmentManager
 import model.Car
 import model.ScoreBoard
 import port.OutputPainter
-import utils.RandomGenerator
+import port.RandomGeneratorPort
+import utils.Constants
 
 class PlayScene(
     private val outputPainter: OutputPainter,
     private val scoreBoard: ScoreBoard,
-    private val randomGenerator: RandomGenerator,
+    private val randomGenerator: RandomGeneratorPort,
+    private val environmentManager: EnvironmentManager,
 ) : Scene {
 
     private var currentRound = 1
@@ -28,18 +30,15 @@ class PlayScene(
         splitStageLine()
     }
 
-    override fun after() {
-    }
-
     override fun hasNext(): Boolean = currentRound++ < totalRound
 
     private fun setUpCars() {
-        val carNumber = EnvironmentManager.getOrDefault("CAR_NUMBER", "0").toInt()
+        val carNumber = environmentManager.getOrDefault(Constants.CAR_NUMBER_KEY, "0").toInt()
         cars = MutableList(carNumber) { Car.spawnAt(0) }
     }
 
     private fun setUpTotalRound() {
-        totalRound = EnvironmentManager.getOrDefault("STAGE_NUMBER", "0").toInt()
+        totalRound = environmentManager.getOrDefault(Constants.STAGE_NUMBER_KEY, "0").toInt()
     }
 
     private fun drawCars() {

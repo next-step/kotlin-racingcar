@@ -1,12 +1,6 @@
 package engine
 
-object EnvironmentManager {
-
-    private var environmentModule: EnvironmentModule = InMemoryEnvironmentModule()
-
-    fun changeEnvironmentModule(environmentModule: EnvironmentModule) {
-        this.environmentModule = environmentModule
-    }
+class EnvironmentManager(private val environmentModule: EnvironmentModule) {
 
     fun put(key: String, value: String) {
         environmentModule.put(key, value)
