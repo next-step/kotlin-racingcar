@@ -1,4 +1,4 @@
-package raicing
+package raicing.view
 
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
@@ -6,7 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.EmptySource
 import org.junit.jupiter.params.provider.ValueSource
-import raicing.view.InputView
+import raicing.Const
 import java.io.ByteArrayInputStream
 
 class InputViewTests {
