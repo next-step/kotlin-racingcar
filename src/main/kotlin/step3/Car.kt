@@ -1,11 +1,9 @@
 package step3
 
-class Car {
-    var position = 0
-        private set
+class Car private constructor(){
+    private var position = 0
 
-    var positionList = ArrayList<Int>()
-        private set
+    val positionList = ArrayList<Int>()
 
     fun move(movingStrategy: MovingStrategy) {
         if (movingStrategy.movable()) {
@@ -15,8 +13,13 @@ class Car {
     }
 
     companion object {
-        fun getInstance(): Car{
+        fun makeCar(): Car{
             return Car()
         }
     }
+
+    fun getPosition() : Int{
+        return this.position
+    }
 }
+

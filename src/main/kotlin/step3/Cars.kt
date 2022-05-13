@@ -1,12 +1,12 @@
 package step3
 
 class Cars private constructor(count: Int) {
-    var carsList: List<Car>
+    val carsList: List<Car>
 
     init {
         val cars: MutableList<Car> = ArrayList(count)
         repeat(count) {
-            cars.add(Car.getInstance())
+            cars.add(Car.makeCar())
         }
         this.carsList = cars
     }

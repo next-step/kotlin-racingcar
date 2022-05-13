@@ -15,18 +15,18 @@ class CarTest {
 
     @Test
     fun `1) 이동 성공`() {
-        val car = Car.getInstance()
+        val car = Car.makeCar()
         every { movingStrategy.movable() } returns true
         car.move(movingStrategy)
-        Assertions.assertThat(car.position).isEqualTo(1)
+        Assertions.assertThat(car.getPosition()).isEqualTo(1)
     }
 
 
     @Test
     fun `2) 이동 실패`() {
-        val car: Car = Car.getInstance()
+        val car: Car = Car.makeCar()
         every { movingStrategy.movable() } returns false
         car.move(movingStrategy)
-        Assertions.assertThat(car.position).isEqualTo(0)
+        Assertions.assertThat(car.getPosition()).isEqualTo(0)
     }
 }
