@@ -6,8 +6,6 @@ import racing.domain.CarFactory
 
 class CarFactoryKoTest : FreeSpec({
     "createCars" - {
-        val name = "BrunoMars"
-
         "with valid car names" - {
             "return car list with input name" {
                 val names = listOf("Andy", "Bruce")
