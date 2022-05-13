@@ -1,26 +1,25 @@
 package calculator
 
+fun main() {
+    println(Calculator().input("1 + 2 + 3"))
+}
+
 class Calculator {
     fun input(expression: String?): Int {
-        checkExpressionNullOrEmpty(expression)
-        expression ?: return -1
+        requireNotNull(expression) { "null입니다." }
+        require(expression.isEmpty().not()) { "빈 공백 문자입니다." }
 
         val expressionContents: List<String> = expression.split(" ")
 
-        var result = 0
+        var result = expressionContents[0].toInt()
         var operation: String? = null
 
-        expressionContents.forEachIndexed { index, content ->
+        expressionContents.drop(1).forEach { content ->
             checkOperation(content)
-
-            if (index == 0) {
-                result = content.toInt()
-                return@forEachIndexed
-            }
 
             if (isOperation(content)) {
                 operation = content
-                return@forEachIndexed
+                return@forEach
             }
 
             result = calculate(first = result, second = content.toInt(), operation = operation)
@@ -37,10 +36,6 @@ class Calculator {
             "/" -> division(first, second)
             else -> first
         }
-    }
-
-    private fun checkExpressionNullOrEmpty(expression: String?) {
-        if (expression.isNullOrEmpty()) throw IllegalArgumentException("null 이거나 빈 공백 문자입니다.")
     }
 
     private fun checkOperation(content: String) {
