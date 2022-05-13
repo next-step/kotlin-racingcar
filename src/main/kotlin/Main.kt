@@ -1,12 +1,12 @@
-import engine.EnvironmentManager
-import engine.GameEngine
-import engine.InMemoryEnvironmentModule
-import model.ScoreBoard
-import scene.InputScene
-import scene.PlayScene
-import utils.RandomGenerator
-import utils.StandardInputSystem
-import utils.StandardOutputPainter
+import racing.engine.EnvironmentManager
+import racing.engine.GameEngine
+import racing.engine.InMemoryEnvironmentModule
+import racing.model.ScoreBoard
+import racing.scene.InputScene
+import racing.scene.PlayScene
+import racing.utils.RandomGenerator
+import racing.utils.StandardInputSystem
+import racing.utils.StandardOutputPainter
 
 fun main() {
     val output = StandardOutputPainter()
