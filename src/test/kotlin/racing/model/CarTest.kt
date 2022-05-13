@@ -10,7 +10,7 @@ class CarTest {
     @Test
     fun `위치 값 없이 자동차를 생성하면 위치 값은 0`() {
         // given, when
-        val car = Car(Name("aiden"))
+        val car = Car.of("aiden")
 
         // then
         assertEquals(car.position(), 0)
@@ -19,7 +19,7 @@ class CarTest {
     @Test
     fun `앞으로 전진하는 조건이 참이면 앞으로 1칸 전진`() {
         // given
-        val car = Car(Name("aiden"))
+        val car = Car.of("aiden")
 
         // when
         car.moveForward { true }

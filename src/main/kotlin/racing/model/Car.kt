@@ -1,6 +1,6 @@
 package racing.model
 
-class Car(
+class Car private constructor(
     private val name: Name,
     private val position: Position = Position(0)
 ) {
@@ -17,5 +17,15 @@ class Car(
 
     fun name(): String {
         return name.name
+    }
+
+    companion object {
+        fun of(name: String): Car {
+            return Car(Name(name))
+        }
+
+        fun of(name: String, position: Int): Car {
+            return Car(Name(name), Position(position))
+        }
     }
 }

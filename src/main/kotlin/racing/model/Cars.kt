@@ -20,7 +20,7 @@ class Cars(
             validateNotBlank(names)
 
             val splitNames = names.split(NAME_DELIMITER)
-            val cars = splitNames.map { Car(Name(it)) }
+            val cars = splitNames.map { Car.of(it) }
 
             return Cars(cars)
         }

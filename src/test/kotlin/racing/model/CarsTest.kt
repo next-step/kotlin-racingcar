@@ -23,10 +23,10 @@ class CarsTest {
         // given
         val cars = Cars(
             listOf(
-                Car(Name("aiden"), Position(3)),
-                Car(Name("pobi"), Position(1)),
-                Car(Name("crong"), Position(3)),
-                Car(Name("honux"), Position(0))
+                Car.of("aiden", 3),
+                Car.of("pobi", 1),
+                Car.of("crong", 3),
+                Car.of("honux", 0)
             )
         )
 
