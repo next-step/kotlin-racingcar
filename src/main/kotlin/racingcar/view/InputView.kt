@@ -7,7 +7,6 @@ import racingcar.constants.Message
  * Created by Jaesungchi on 2022.05.07..
  */
 object InputView {
-
     private const val DELIMITER = ","
     fun getCarNames(readStringValue: () -> String? = { readlnOrNull() }): List<String> {
         printWriteCarNames()

@@ -12,24 +12,24 @@ import racingcar.constants.Message
 class RacingControllerTest {
     @Test
     fun `음수 횟수가 입력되면 에러가 발생한다`() {
-        val racingController = RacingController()
+        val racingController = RacingController(listOf())
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            racingController.startGame(listOf("hello"), -3)
+            racingController.startGame(-3)
         }.withMessageMatching(Message.ExceptionMessage.ENTERED_INVALID_NUMBER)
     }
 
     @Test
     fun `0이 입력되면 에러가 발생한다`() {
-        val racingController = RacingController()
+        val racingController = RacingController(listOf())
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            racingController.startGame(listOf("hello"), 0)
+            racingController.startGame(0)
         }.withMessageMatching(Message.ExceptionMessage.ENTERED_INVALID_NUMBER)
     }
 
     @Test
     fun `입력된 숫자만큼 레이스 결과가가 만들어졌는가`() {
-        val racingController = RacingController()
-        racingController.startGame(listOf("hello"), 3)
+        val racingController = RacingController(listOf("car"))
+        racingController.startGame(3)
         assertThat(racingController.raceResults.size).isEqualTo(3)
     }
 }

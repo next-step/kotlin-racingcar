@@ -8,28 +8,26 @@ import racingcar.model.RaceResult
  * 레이싱을 시작하고, 계산하는 클래스
  * Created by Jaesungchi on 2022.05.07..
  */
-class RacingController {
-    private lateinit var carLists: List<Car>
+class RacingController(carNames: List<String>) {
+    private var cars: List<Car> = List(carNames.size) { Car(carNames[it]) }
     private val _raceResults: MutableList<RaceResult> = mutableListOf()
     val raceResults: List<RaceResult>
-        get() = _raceResults
+        get() = _raceResults.toList()
 
-    fun startGame(carNames: List<String>, numberOfRaces: Int) {
-        if (!checkValidNumber(numberOfRaces)) return
-        carLists = List(carNames.size) { Car(carNames[it]) }
-        repeat(numberOfRaces) {
+    fun startGame(repeatTimes: Int) {
+        checkNumberCanBeProcessed(repeatTimes)
+        repeat(repeatTimes) {
             processGame()
-            _raceResults.add(RaceResult(carLists))
+            _raceResults.add(RaceResult(cars))
         }
     }
 
-    private fun checkValidNumber(number: Int): Boolean {
+    private fun checkNumberCanBeProcessed(number: Int) {
         require(number >= CAN_VALID_NUMBER) { Message.ExceptionMessage.ENTERED_INVALID_NUMBER }
-        return true
     }
 
     private fun processGame() {
-        carLists.forEach { car ->
+        cars.forEach { car ->
             if (checkCanRunScore(rollTheDice())) {
                 car.advanceOnce()
             }
