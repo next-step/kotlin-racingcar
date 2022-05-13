@@ -3,10 +3,10 @@ package racingcar.car
 import racingcar.car.exception.GameOverException
 import racingcar.car.strategy.MoveStrategy
 
-class RacingGame private constructor(
-    private val drivers: List<Driver>,
-    private var _trialCount: Int
-) {
+class RacingGame(numberOfCar: Int, trialCount: Int, strategy: MoveStrategy) {
+    private val drivers: List<Driver> = List(numberOfCar) { Driver(Car(), strategy) }
+    private var _trialCount: Int = trialCount
+
     val trialCount get() = _trialCount
 
     fun play() {
@@ -35,10 +35,5 @@ class RacingGame private constructor(
 
     companion object {
         private const val GAME_END_COUNT = 0
-
-        fun init(numberOfCar: Int, trialCount: Int, strategy: MoveStrategy): RacingGame {
-            val drivers = List(numberOfCar) { Driver(Car(), strategy) }
-            return RacingGame(drivers, trialCount)
-        }
     }
 }

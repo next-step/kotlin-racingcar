@@ -10,7 +10,7 @@ fun main() {
     val trialCount = InputView.getTrialCountByConsole()
     val strategy = RandomNumberStrategy()
 
-    val racingGame = RacingGame.init(numberOfCar, trialCount, strategy)
+    val racingGame = RacingGame(numberOfCar, trialCount, strategy)
 
     repeat(racingGame.trialCount) {
         racingGame.play()
