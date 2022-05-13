@@ -31,7 +31,7 @@ class WinnerResultView : ResultView {
 
     private fun printRacingRecordForTheStepAt(racingRecord: RacingRecord, step: Int) {
         racingRecord.carRecordList.forEach { recordForACar ->
-            println(recordForACar.recordForStep[step].toBarString())
+            println(recordForACar.toDisplayString(step))
         }
         println()
     }
@@ -42,6 +42,7 @@ class WinnerResultView : ResultView {
         println("${winnersName}가 최종 우승했습니다.")
     }
 
+    private fun CarRecord.toDisplayString(step: Int) = "${this.car.carName}: ${this.recordForStep[step].toBarString()}"
     private fun Car.toDisplayString() = "${this.carName}: ${this.position.toBarString()}}"
     private fun Int.toBarString() = "-".repeat(this + 1)
 
