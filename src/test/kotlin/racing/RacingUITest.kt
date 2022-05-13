@@ -9,6 +9,8 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 import racing.domain.Car
+import racing.domain.RacingCars
+import racing.domain.Winners
 import racing.view.RacingUI
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
@@ -32,7 +34,7 @@ class RacingUITest {
         User : ---
 
          */
-    fun `차량의 현재 상태를 출력한다`(cars: List<Car>, expect: String) {
+    fun `차량의 현재 상태를 출력한다`(cars: RacingCars, expect: String) {
         RacingUI.drawCars(cars)
 
         Assertions.assertThat(output.toString()).isEqualTo(expect)
@@ -40,7 +42,7 @@ class RacingUITest {
 
     @Test
     fun `우승 차량 정보를 출력한다`() {
-        val cars = listOf(Car("Andy"), Car("Bruce"))
+        val cars = Winners(listOf(Car("Andy"), Car("Bruce")))
         val expect = "Andy, Bruce가 최종 우승했습니다."
 
         RacingUI.drawWinners(cars)
@@ -50,14 +52,14 @@ class RacingUITest {
 
     class DrawCarsArgumentsProvider : ArgumentsProvider {
         private val testData = listOf(
-            listOf(Car("Andy", startPosition = 4), Car("Bruce", startPosition = 2)) to
+            RacingCars(listOf(Car("Andy", startPosition = 4), Car("Bruce", startPosition = 2))) to
                 """
                 |Andy : -----
                 |Bruce : ---
                 |
                 |
             """.trimMargin(),
-            listOf(Car("Andy", startPosition = 0)) to
+            RacingCars(listOf(Car("Andy", startPosition = 0))) to
                 """
                 |Andy : -
                 |

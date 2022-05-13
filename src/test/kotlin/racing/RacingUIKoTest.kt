@@ -6,19 +6,21 @@ import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 import racing.domain.Car
+import racing.domain.RacingCars
+import racing.domain.Winners
 import racing.view.RacingUI
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 
 private val drawCarsTestData = listOf(
-    listOf(Car("Andy", startPosition = 4), Car("Bruce", startPosition = 2)) to
+    RacingCars(listOf(Car("Andy", startPosition = 4), Car("Bruce", startPosition = 2))) to
         """
                 |Andy : -----
                 |Bruce : ---
                 |
                 |
             """.trimMargin(),
-    listOf(Car("Andy", startPosition = 0)) to
+    RacingCars(listOf(Car("Andy", startPosition = 0))) to
         """
                 |Andy : -
                 |
@@ -26,7 +28,7 @@ private val drawCarsTestData = listOf(
             """.trimMargin()
 )
 
-private fun generateDrawCarsTestRows(): List<Row2<List<Car>, String>> {
+private fun generateDrawCarsTestRows(): List<Row2<RacingCars, String>> {
     return drawCarsTestData.map { (cars, expect) ->
         row(cars, expect)
     }
@@ -55,7 +57,7 @@ class RacingUIKoTest : DescribeSpec({
         context("with winner ( Andy )") {
             it("draw [ Andy가 최종 우승했습니다. ]") {
                 output.reset()
-                RacingUI.drawWinners(listOf(Car("Andy")))
+                RacingUI.drawWinners(Winners(listOf(Car("Andy"))))
 
                 output.toString().trimIndent() shouldBe "Andy가 최종 우승했습니다."
             }
@@ -63,7 +65,7 @@ class RacingUIKoTest : DescribeSpec({
         context("with winner ( Andy, Bruce )") {
             it("draw [ Andy, Bruce가 최종 우승했습니다. ]") {
                 output.reset()
-                RacingUI.drawWinners(listOf(Car("Andy"), Car("Bruce")))
+                RacingUI.drawWinners(Winners(listOf(Car("Andy"), Car("Bruce"))))
 
                 output.toString().trimIndent() shouldBe "Andy, Bruce가 최종 우승했습니다."
             }

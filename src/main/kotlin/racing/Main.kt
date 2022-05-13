@@ -11,9 +11,10 @@ fun main() {
 
     val carFactory = CarFactory()
 
-    CarRacing.run(
+    CarRacing(
         cars = carFactory.createCars(input.carNames),
-        moveCount = input.moveCount,
+        moveCount = input.moveCount
+    ).run(
         onStart = { RacingUI.drawCars(it) },
         onTurnEnd = { RacingUI.drawCars(it) },
         onFinish = { RacingUI.drawWinners(it) }

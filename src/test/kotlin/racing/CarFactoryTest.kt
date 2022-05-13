@@ -18,9 +18,9 @@ class CarFactoryTest {
     fun `차 이름이 입력되면, 해당 이름을 가진 차량을 리턴한다`() {
         val names = listOf("Andy", "Bruce")
 
-        val cars = CarFactory().createCars(names)
+        val racingCars = CarFactory().createCars(names)
 
-        cars.forEachIndexed { index, car ->
+        racingCars.cars.forEachIndexed { index, car ->
             Assertions.assertThat(car.name).isEqualTo(names[index])
         }
     }
