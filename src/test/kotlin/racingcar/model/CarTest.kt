@@ -11,14 +11,14 @@ import racingcar.constants.Message
 class CarTest {
 
     @Test
-    fun `차량 이름이 5글자가 넘어갈 경우`() {
+    fun `차량 이름이 5글자가 넘어갈 경우엔 에러가 발생한다`() {
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
             Car("abcdefg")
         }.withMessageMatching(Message.ExceptionMessage.CANNOT_NAME_EXCEED_5_CHARACTERS)
     }
 
     @Test
-    fun `차량 이름이 빈칸인 경우`() {
+    fun `차량 이름이 빈칸인 경우엔 에러가 발생한다`() {
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
             Car(" ")
         }.withMessageMatching(Message.ExceptionMessage.CANNOT_NAME_BE_BLANK)

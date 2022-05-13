@@ -11,7 +11,7 @@ import racingcar.constants.Message
  */
 class RacingControllerTest {
     @Test
-    fun `음수 횟수가 입력되었을 때`() {
+    fun `음수 횟수가 입력되면 에러가 발생한다`() {
         val racingController = RacingController()
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
             racingController.startGame(listOf("hello"), -3)
@@ -19,7 +19,7 @@ class RacingControllerTest {
     }
 
     @Test
-    fun `0이 입력되었을 때 에러발생`() {
+    fun `0이 입력되면 에러가 발생한다`() {
         val racingController = RacingController()
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
             racingController.startGame(listOf("hello"), 0)
