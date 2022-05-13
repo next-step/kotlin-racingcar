@@ -12,10 +12,7 @@ internal class CarTest {
     fun carRaceTest() {
         // Given
         val id = 1
-        val moveTwiceEngine: Engine = object : Engine {
-            val returns = mutableListOf(MOVABLE_SPEED, MOVABLE_SPEED, NOT_MOVABLE_SPEED, NOT_MOVABLE_SPEED, NOT_MOVABLE_SPEED)
-            override fun speed(): Int = returns.removeFirst()
-        }
+        val moveTwiceEngine = InstantEngine(2)
         val car = Car(id, moveTwiceEngine)
 
         val trackLength = 5
@@ -34,10 +31,5 @@ internal class CarTest {
         assertFalse(traces.next())
         assertFalse(traces.next())
         assertFalse(traces.next())
-    }
-
-    companion object {
-        private const val MOVABLE_SPEED = 9
-        private const val NOT_MOVABLE_SPEED = 0
     }
 }

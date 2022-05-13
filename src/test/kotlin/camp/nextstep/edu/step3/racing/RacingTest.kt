@@ -13,16 +13,7 @@ internal class RacingTest {
     @Test
     fun racingSolo() {
         // Given
-        val moveTwiceEngine: Engine = object : Engine {
-            val returns = mutableListOf(
-                MOVABLE_SPEED,
-                MOVABLE_SPEED,
-                NOT_MOVABLE_SPEED,
-                NOT_MOVABLE_SPEED,
-                NOT_MOVABLE_SPEED
-            )
-            override fun speed(): Int = returns.removeFirst()
-        }
+        val moveTwiceEngine = InstantEngine(2)
         val carId = 1
         val participants: List<Car> = listOf(Car(carId, moveTwiceEngine))
         val racing = Racing.new(participants, 5)
@@ -49,26 +40,9 @@ internal class RacingTest {
     @Test
     fun racingDuo() {
         // Given
-        val moveAllEngine: Engine = object : Engine {
-            val returns = mutableListOf(
-                MOVABLE_SPEED,
-                MOVABLE_SPEED,
-                MOVABLE_SPEED,
-                MOVABLE_SPEED,
-                MOVABLE_SPEED
-            )
-            override fun speed(): Int = returns.removeFirst()
-        }
-        val moveOnceEngine: Engine = object : Engine {
-            val returns = mutableListOf(
-                MOVABLE_SPEED,
-                NOT_MOVABLE_SPEED,
-                NOT_MOVABLE_SPEED,
-                NOT_MOVABLE_SPEED,
-                NOT_MOVABLE_SPEED
-            )
-            override fun speed(): Int = returns.removeFirst()
-        }
+        val moveCount = 5
+        val moveAllEngine = InstantEngine(moveCount)
+        val moveOnceEngine = InstantEngine(1)
 
         val car1Id = 0
         val car2Id = 1
@@ -76,7 +50,7 @@ internal class RacingTest {
             Car(car1Id, moveAllEngine),
             Car(car2Id, moveOnceEngine)
         )
-        val racing = Racing.new(participants, 5)
+        val racing = Racing.new(participants, moveCount)
 
         // When
         assertDoesNotThrow {
@@ -101,10 +75,5 @@ internal class RacingTest {
         Assertions.assertFalse(car2Traces.next())
         Assertions.assertFalse(car2Traces.next())
         Assertions.assertFalse(car2Traces.next())
-    }
-
-    companion object {
-        private const val MOVABLE_SPEED = 9
-        private const val NOT_MOVABLE_SPEED = 0
     }
 }
