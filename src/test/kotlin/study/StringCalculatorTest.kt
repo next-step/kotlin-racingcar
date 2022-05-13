@@ -35,4 +35,12 @@ class StringCalculatorTest {
     fun 사칙연산문자확인(a: Double, b: Double, operator: String, expected: Double) {
         StringCalculator.calculate(a, b, operator)
     }
+
+    @ParameterizedTest
+    @CsvSource(value = ["1 + 2 * 3 / 3 * 4,12", "3 + 2 / 5 + 6 * 3,21"])
+    fun `문자열 계산기 테스트`(source: String, expected: Double) {
+        val calculator = StringCalculator(" ")
+        val result = calculator.calculate(source)
+        assertThat(result).isEqualTo(expected)
+    }
 }

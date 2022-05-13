@@ -1,8 +1,29 @@
 package study
 
+import java.util.LinkedList
+import java.util.Queue
 import java.util.function.BiFunction
 
-class StringCalculator {
+class StringCalculator(private val splitter: String = " ") {
+    fun calculate(value: String): Double {
+        val numberStack = value.toNumberStack(splitter)
+        val operatorQueue= value.toOperatorQueue(splitter)
+        while (!(numberStack.size == 1 && operatorQueue.isEmpty())) {
+            val result = calculate(numberStack, operatorQueue)
+            numberStack.push(result)
+        }
+        return numberStack.peek().toDouble()
+    }
+
+    private fun calculate(numbers: LinkedList<Double>, operators: Queue<Operator>): Double {
+        if (numbers.size < 2 || operators.isEmpty()) {
+            throw IllegalArgumentException("잘못된 수식입니다.")
+        }
+        val a = numbers.pop()
+        val b = numbers.pop()
+        val operator = operators.remove()
+        return operator.calculate(a, b)
+    }
 
     companion object {
         fun calculate(a: Double, b: Double, symbol: String): Double {
@@ -10,6 +31,27 @@ class StringCalculator {
             return operator.calculate(a, b)
         }
     }
+}
+
+fun String.toNumberStack(splitter: String): LinkedList<Double> {
+    return LinkedList(this.split(splitter)
+        .filterIndexed {i, _ -> i.isNumberIndex() }
+        .map(String::toDouble)
+    )
+}
+
+fun String.toOperatorQueue(splitter: String): Queue<Operator> {
+    return LinkedList(this.split(splitter)
+        .filterIndexed {i, _ -> i.isOperatorIndex()}
+        .map(Operator::findBy)
+    )
+}
+fun Int.isNumberIndex(): Boolean {
+    return this % 2 == 0
+}
+
+fun Int.isOperatorIndex(): Boolean {
+    return this % 2 != 0
 }
 
 enum class Operator(private val operation: BiFunction<Double, Double, Double>) {
@@ -30,7 +72,7 @@ enum class Operator(private val operation: BiFunction<Double, Double, Double>) {
                 "-" -> MINUS
                 "*" -> MULTIPLY
                 "/" -> DIVIDE
-                else -> throw IllegalArgumentException("지원하지 않는 연산자입니다.")
+                else -> throw IllegalArgumentException("지원하지 않는 연산자입니다. symbol: $symbol")
             }
         }
     }
