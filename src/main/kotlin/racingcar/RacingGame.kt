@@ -19,10 +19,9 @@ class RacingGame(
     }
 
     fun startGame() {
-        val carCount = input.getCarCount()
+        val carNames = input.getCarNames()
+        val cars = carFactory.createCars(carNames)
         val tryNumber = input.getTryNumber()
-
-        val cars = carFactory.createCars(carCount)
 
         startGame(cars, tryNumber)
     }
@@ -41,8 +40,8 @@ fun main() {
     val racingGame = RacingGame(
         input = Input(),
         output = Output(),
-        carFactory = CarFactory { carCount ->
-            Cars(List(carCount.count) { Car(id = it, movingStrategy = movingStrategy) })
+        carFactory = { carNames ->
+            Cars(List(carNames.size) { Car(name = carNames[it], movingStrategy = movingStrategy) })
         }
     )
     racingGame.startGame()
