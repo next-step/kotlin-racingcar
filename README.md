@@ -86,7 +86,7 @@
 - [x] 출력 문자열 상수로 변경
 - [x] companion object to object class
 - [x] 숫자체크 require만으로 변경
-- [ ] RacingCarGame에서 랜덤값을 주입하면 .. RacingCarGame에 결과에 대한 테스트는 어떻게할지 고민
+- [x] RacingCarGame에서 랜덤값을 주입하면 .. RacingCarGame에 결과에 대한 테스트는 어떻게할지 고민
 - [x] gameResult _gameResults로 표현수정
 
 #step4 자동차 경주(우승자)
@@ -116,3 +116,8 @@
 - [x] 차량입력 테스트
 - [x] 들여쓰기 2칸이상 하지않기
 - [x] RacingCarGame에서 랜덤값을 주입하면 .. RacingCarGame에 결과에 대한 테스트는 어떻게할지 고민
+
+### 2차 todo list
+- [ ] 뷰/비즈니스로직 분리
+- [ ] 차가 움직이는 조건은 차가 가지기
+- [ ] 우승자/우승자는 여려명 에 대한 테스트 추가
