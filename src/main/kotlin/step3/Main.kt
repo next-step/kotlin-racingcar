@@ -20,9 +20,7 @@ fun main() {
     for (round in CarRaceProperty.ROUND_START..carRaceProperty.roundSize) {
         carRaceProperty.cars
             .filter { it.canMoveForward(RandomNumberGenerator.getRandomNumber()) }
-            .map {
-                carRace.moveCarPosition(it)
-            }
+            .map { carRace.moveCarPosition(it) }
 
         resultView.printResultByRound(round)
     }
