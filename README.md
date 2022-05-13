@@ -32,6 +32,11 @@
   - [x] 경주를 주어진 횟수만큼 진행한다.
   - [x] 모든 경주가 끝나면 게임 기록(GameRecord)을 반환한다.
   
+- 심판(GameReferee)
+  - [x] 게임 기록(GameRecord)을 분석해 게임 결과(GameResult)를 반환한다.
+  - [x] 자동차가 이동한 거리가 가장 긴 자동차를 우승자로 선택한다.
+  - [x] 우승자는 여러명일 수 있다.
+  - [x] 게임 기록이 비어있다면 예외를 발생시킨다.
 
 ### Application
 - 경주 게임 관리자(RacingGameManager)

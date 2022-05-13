@@ -1,6 +1,7 @@
 package racingcar.application
 
 import racingcar.domain.Car
+import racingcar.domain.GameReferee
 import racingcar.domain.MovementCommandGenerator
 import racingcar.domain.RacingCars
 import racingcar.domain.RacingGame
@@ -15,7 +16,7 @@ object RacingGameManager {
 
         val gameRecord = racingGame.play()
 
-        return GameResult.of(gameRecord)
+        return GameReferee.rank(gameRecord)
     }
 
     private fun enrollRacingCars(names: List<String>): RacingCars {
