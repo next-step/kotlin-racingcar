@@ -1,10 +1,10 @@
 package step3
 
 class CarRacing private constructor(var carCount: Int, var moveCount: Int) {
-    var cars: Cars = Cars.from(carCount)
+    var cars = Cars.from(carCount)
 
-    fun run(movingStrategy: MovingStrategy?) {
-        for (i in 0 until moveCount) {
+    fun run(movingStrategy: MovingStrategy) {
+        repeat(moveCount) {
             cars.run(movingStrategy)
         }
     }
@@ -15,4 +15,3 @@ class CarRacing private constructor(var carCount: Int, var moveCount: Int) {
         }
     }
 }
-

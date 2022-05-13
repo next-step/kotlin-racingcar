@@ -1,19 +1,22 @@
 package step3
 
-import step3.UI.ResultView
-
 class Car {
     var position = 0
+        private set
+
+    var positionList = ArrayList<Int>()
+        private set
+
     fun move(movingStrategy: MovingStrategy) {
         if (movingStrategy.movable()) {
             position++
         }
-        ResultView.show(position)
+        positionList.add(position)
     }
 
     companion object {
-        val instance: Car
-            get() = Car()
+        fun getInstance(): Car{
+            return Car()
+        }
     }
 }
-
