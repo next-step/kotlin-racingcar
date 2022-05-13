@@ -10,7 +10,7 @@ class Race(val cars: List<Car>, private val tries: Int, private val currentTries
     fun isFinished(): Boolean = tries <= currentTries
 
     fun next(): Race {
-        val nextCars = cars.map { if ( moveDecisionMaker.canMove()) it.move() else it }
-        return Race(nextCars, tries, currentTries + 1 )
+        val nextCars = cars.map { if (moveDecisionMaker.canMove()) it.move() else it }
+        return Race(nextCars, tries, currentTries + 1)
     }
 }
