@@ -1,13 +1,7 @@
 package racingcar
 
 class RacingCarGame(private val trialCount: Int, private val seedMaker: SeedMaker, carCount: List<String>) {
-    private val defaultCarGoDecide = {
-        val randomValue = seedMaker.nextInt()
-
-        randomValue >= DEFAULT_CAN_GO_THRESHOLD
-    }
-
-    private val carList = List(carCount.size) { Car(carCount[it], defaultCarGoDecide) }
+    private val carList = List(carCount.size) { Car(carCount[it], seedMaker) }
 
     val gameResults = GameResults()
 
@@ -23,8 +17,4 @@ class RacingCarGame(private val trialCount: Int, private val seedMaker: SeedMake
     }
 
     private fun proceed() = carList.forEach { it.proceed() }
-
-    companion object {
-        private const val DEFAULT_CAN_GO_THRESHOLD = 4
-    }
 }
