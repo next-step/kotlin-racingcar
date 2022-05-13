@@ -8,7 +8,7 @@ open class Car {
     var position = 0
         protected set
 
-    open fun move(movePoint: Int = (0..9).random()) {
+    open fun move(movePoint: Int = (MOVE_START_POINT..MOVE_END_POINT).random()) {
         validateMovePoint(movePoint)
 
         if (movePoint >= MOVE_BASE_POINT) {

@@ -25,7 +25,7 @@ class RaceTest : DescribeSpec({
         }
     }
 
-    describe("getAllMovingDistance") {
+    describe("allMovingDistance") {
         it("생성된 Car의 이동거리가 반환된다 ") {
             val expect = 2
             val car = StubCar()
