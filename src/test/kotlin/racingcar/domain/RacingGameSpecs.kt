@@ -19,7 +19,7 @@ class RacingGameSpecs : DescribeSpec({
             val numberOfRaces = 3
             val numberOfCars = 3
             val racingCars = RacingCars(
-                List(numberOfCars) { Car() }
+                List(numberOfCars) { Car("name") }
             )
             val racingGame = RacingGame(
                 numberOfRaces,
@@ -40,7 +40,7 @@ class RacingGameSpecs : DescribeSpec({
         context("경주 수가 유효하지 않다면") {
             val invalidNumberOfRaces = -1
             val racingCars = RacingCars(
-                listOf(Car())
+                listOf(Car("name"))
             )
             it("예외를 발생시킨다") {
                 shouldThrowExactly<IllegalArgumentException> {

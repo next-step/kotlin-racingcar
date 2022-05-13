@@ -11,7 +11,7 @@ class RacingCarsSpecs : DescribeSpec({
 
     describe("경주에 참여한 자동차들은") {
         context("경주에 필요한 수 만큼 자동차가 등록되었다면") {
-            val cars = List(numberOfCars) { Car() }
+            val cars = List(numberOfCars) { Car("name") }
             val racingCars = RacingCars(cars)
             val commandGenerator = PreparedMovementCommandGenerator(movements)
 

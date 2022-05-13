@@ -19,7 +19,7 @@ object RacingGameManager {
     }
 
     private fun enrollRacingCars(numberOfCars: Int): RacingCars {
-        val cars = List(numberOfCars) { Car() }
+        val cars = List(numberOfCars) { Car("name") }
         return RacingCars(cars)
     }
 }
