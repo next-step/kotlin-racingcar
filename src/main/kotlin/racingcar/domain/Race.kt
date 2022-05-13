@@ -1,15 +1,7 @@
 package racingcar.domain
 
-class Race {
-    private val cars: List<Car>
-
-    constructor(carCount: Int) {
-        this.cars = List(carCount) { Car() }
-    }
-
-    constructor(cars: List<Car>) {
-        this.cars = cars
-    }
+class Race(private val cars: List<Car>) {
+    constructor(carCount: Int) : this(List(carCount) { Car() })
 
     fun run() {
         cars.forEach { it.move() }

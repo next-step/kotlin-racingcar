@@ -3,16 +3,16 @@ package racingcar.view
 import racingcar.view.input.Input
 
 class InputView(private val input: Input) {
-    var carCount = 0
-        private set
-    var tryCount = 0
-        private set
+    val carCount: Int by lazy { askCarCount() }
+    val tryCount: Int by lazy { askTryCount() }
 
-    fun start() {
+    private fun askCarCount(): Int {
         println("자동차 대수는 몇 대인가요?")
-        this.carCount = input.readCar()
+        return input.readCar()
+    }
 
+    private fun askTryCount(): Int {
         println("시도할 횟수는 몇 회인가요?")
-        this.tryCount = input.readTry()
+        return input.readTry()
     }
 }

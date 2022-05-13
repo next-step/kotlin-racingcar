@@ -10,9 +10,8 @@ class InputViewTest : AnnotationSpec() {
         val expectCarCount = 5
         val expectTryCount = 3
         val input = StubInput(expectCarCount, expectTryCount)
-        val sut = InputView(input)
 
-        sut.start()
+        val sut = InputView(input)
 
         sut.carCount shouldBe expectCarCount
         sut.tryCount shouldBe expectTryCount
