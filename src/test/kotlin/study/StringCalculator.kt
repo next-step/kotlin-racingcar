@@ -5,14 +5,22 @@ import java.util.Queue
 import java.util.function.BiFunction
 
 class StringCalculator(private val splitter: String = " ") {
-    fun calculate(value: String): Double {
+    fun calculate(source: String?): Double {
+        val value = validate(source)
         val numberStack = value.toNumberStack(splitter)
-        val operatorQueue= value.toOperatorQueue(splitter)
+        val operatorQueue = value.toOperatorQueue(splitter)
         while (!(numberStack.size == 1 && operatorQueue.isEmpty())) {
             val result = calculate(numberStack, operatorQueue)
             numberStack.push(result)
         }
         return numberStack.peek().toDouble()
+    }
+
+    private fun validate(source: String?): String {
+        if (source.isNullOrBlank()) {
+            throw IllegalArgumentException("빈 값이나 공백이 들어올 수 없습니다.")
+        }
+        return source
     }
 
     private fun calculate(numbers: LinkedList<Double>, operators: Queue<Operator>): Double {
@@ -34,18 +42,21 @@ class StringCalculator(private val splitter: String = " ") {
 }
 
 fun String.toNumberStack(splitter: String): LinkedList<Double> {
-    return LinkedList(this.split(splitter)
-        .filterIndexed {i, _ -> i.isNumberIndex() }
-        .map(String::toDouble)
+    return LinkedList(
+        this.split(splitter)
+            .filterIndexed { i, _ -> i.isNumberIndex() }
+            .map(String::toDouble)
     )
 }
 
 fun String.toOperatorQueue(splitter: String): Queue<Operator> {
-    return LinkedList(this.split(splitter)
-        .filterIndexed {i, _ -> i.isOperatorIndex()}
-        .map(Operator::findBy)
+    return LinkedList(
+        this.split(splitter)
+            .filterIndexed { i, _ -> i.isOperatorIndex() }
+            .map(Operator::findBy)
     )
 }
+
 fun Int.isNumberIndex(): Boolean {
     return this % 2 == 0
 }
