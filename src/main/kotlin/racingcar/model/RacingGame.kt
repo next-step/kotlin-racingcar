@@ -9,7 +9,7 @@ class RacingGame(
     movement: Movement = DefaultMovement()
 ) {
 
-    val carList = (0 until numberOfCar).map { Car(movement = movement) }
+    val carList = (0 until numberOfCar).map { Car(carId = it.toString(), movement = movement) }
     var currentStep: Int = 0
         private set
     val isOver: Boolean get() = this.stepsToTry == this.currentStep
