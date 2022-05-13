@@ -42,23 +42,4 @@ class CarRacingTest {
         Assertions.assertThat(andy.position).isEqualTo(moveCount)
         Assertions.assertThat(bruce.position).isEqualTo(moveCount)
     }
-
-    @Test
-    fun `게임 진행이 끝난 후 가장 멀리 간 차량을 승자로 한다`() {
-        var winners: List<Car> = listOf()
-
-        val andy = testCar("Andy", 2)
-        val bruce = testCar("Bruce", 1)
-
-        CarRacing(
-            cars = RacingCars(listOf(andy, bruce)),
-            moveCount = 2
-        ).run(
-            onFinish = {
-                winners = it.cars
-            }
-        )
-
-        Assertions.assertThat(winners).isEqualTo(listOf(andy))
-    }
 }

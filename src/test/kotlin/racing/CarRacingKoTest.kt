@@ -46,25 +46,5 @@ class CarRacingKoTest : DescribeSpec({
                 bruce.position shouldBe moveCount
             }
         }
-
-        context("when finish move count") {
-            it("called onFinish with winners ( winner is car with highest position )") {
-                val andy = testCar("Andy", 2)
-                val bruce = testCar("Bruce", 1)
-
-                var winners: List<Car> = listOf()
-
-                CarRacing(
-                    cars = RacingCars(listOf(andy, bruce)),
-                    moveCount = 0
-                ).run(
-                    onFinish = {
-                        winners = it.cars
-                    }
-                )
-
-                winners shouldBe listOf(andy)
-            }
-        }
     }
 })
