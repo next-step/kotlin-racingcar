@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 
 class CalculatorTest {
-    @Order(1)
     @DisplayName("1) 오류없이 테스트 성공")
     @ParameterizedTest
     @CsvSource("5 + 2, 7",
@@ -21,7 +20,6 @@ class CalculatorTest {
         Assertions.assertThat(calculator.calculate(input)).isEqualTo(result)
     }
 
-    @Order(2)
     @DisplayName("2) 입력값이 null 또는 빈 공백 문자일 경우 테스트 실패")
     @ParameterizedTest
     @ValueSource(strings = ["", " "])
@@ -31,7 +29,6 @@ class CalculatorTest {
             .isInstanceOf(IllegalArgumentException::class.java).hasMessageContaining("잘못된 입력값입니다.")
     }
 
-    @Order(3)
     @DisplayName("3) 0으로 나누는 경우 테스트 실패")
     @ParameterizedTest
     @CsvSource(
