@@ -4,7 +4,6 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 
 class StringParserTest {
@@ -14,9 +13,10 @@ class StringParserTest {
             "1.1 + 12 + 3 / 4",
             "1.1+12+3/4",
             " 1.1         + 1 2 + 3 / 4 ",
+            " 1 . 1         + 1 2 + 3 / 4 ",
         )
         val list = listOf<String>("1.1", "+", "12", "+", "3", "/", "4")
-        stringList.forEach { str: String -> assertThat(StringParser.parse(str) == list) }
+        stringList.forEach { str: String -> assertThat(StringParser.parse(str) == list).isTrue }
     }
 
     @Test
@@ -28,20 +28,8 @@ class StringParserTest {
     }
 
     @ParameterizedTest
-    @CsvSource(
-        ",${StringParser.emptyMessage}",
-        "1+2a,${StringParser.errorMessage}",
-        "1+2^3,${StringParser.errorMessage}",
-    )
-    fun `string parse error`(string: String?, errMessage: String) {
-        assertThatThrownBy {
-            StringParser.parse(string)
-        }.hasMessageContaining(errMessage)
-    }
-
-    @ParameterizedTest
     @ValueSource(strings = ["", "  "])
-    fun `string parse empty error`(string: String?) {
+    fun `empty error`(string: String) {
         assertThatThrownBy {
             StringParser.parse(string)
         }.hasMessageContaining(StringParser.emptyMessage)
@@ -49,7 +37,7 @@ class StringParserTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["1+2a", "잘못된 입력"])
-    fun `string parse error`(string: String?) {
+    fun `input error`(string: String) {
         assertThatThrownBy {
             StringParser.parse(string)
         }.hasMessageContaining(StringParser.errorMessage)

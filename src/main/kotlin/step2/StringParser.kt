@@ -4,11 +4,11 @@ class StringParser {
     companion object {
         const val emptyMessage = "입력값이 없습니다."
         const val errorMessage = "입력값이 잘못되었습니다."
-        fun parse(str: String?): List<String> {
-            if (str == null || str.isBlank()) {
+        fun parse(string: String): List<String> {
+            if (string.isBlank()) {
                 throw IllegalArgumentException(emptyMessage)
             }
-            val res = str.split("").joinToString("") {
+            val res = string.split("").joinToString("") {
                 if (it == "" || it == " ") {
                     ""
                 } else if (Operators.list.contains(it)) {
