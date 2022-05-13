@@ -38,7 +38,7 @@ object StringCalculator {
         return left
     }
 
-    private fun doInfix(left: Double, operator: Operator, right: Double): Double {
-        return operator.operate(left, right)
+    private fun doInfix(left: Double, operate: Operator, right: Double): Double {
+        return operate(left, right)
     }
 }

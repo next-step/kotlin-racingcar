@@ -7,7 +7,7 @@ enum class Operator constructor(val symbol: String, val operator: (Double, Doubl
     DIVIDE("/", { num1, num2 -> num1 / num2 })
     ;
 
-    fun operate(left: Double, right: Double): Double = operator(left, right)
+    operator fun invoke(left: Double, right: Double) = operator(left, right)
 
     companion object {
         private val symbolMap: Map<String, Operator> = mapOf(
