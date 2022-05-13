@@ -1,8 +1,9 @@
+package com.nextstep.jngcii.step1
+
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class PersonTest {
-
     @Test
     fun `nullable types`() {
         val person = Person("정형수", 31, null)
@@ -26,5 +27,4 @@ class PersonTest {
         val person2 = Person("정형수", 31)
         assertThat(person1).isEqualTo(person2)
     }
-
 }
