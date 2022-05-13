@@ -23,13 +23,13 @@ class IntArithmeticsTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["-", "+", "*", "/"])
-    fun `정상적인 연산자가 들어올 경우 리턴값은 true`(input: String) {
+    fun `containOperator에 유효한 연산자가 들어올 경우 리턴값은 true`(input: String) {
         Assertions.assertThat(IntArithmetics.containOperator(input)).isEqualTo(true)
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["??", "//", "$", "%", "#", "@", "!"])
-    fun `비 정상적인 연산자가 들어올 경우 리턴값은 false`(input: String) {
+    fun `containOperator에 유효하지 않은 연산자가 들어올 경우 리턴값은 false`(input: String) {
         Assertions.assertThat(IntArithmetics.containOperator(input)).isEqualTo(false)
     }
 }

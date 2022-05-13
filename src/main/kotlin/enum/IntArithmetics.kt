@@ -22,5 +22,9 @@ enum class IntArithmetics(val operator: String) : BinaryOperator<Int>, IntBinary
         fun containOperator(operator: String): Boolean {
             return IntArithmetics.values().map { it.operator }.contains(operator)
         }
+
+        fun matchOperator(operator: String): IntArithmetics? {
+            return IntArithmetics.values().find { it.operator == operator }
+        }
     }
 }

@@ -1,11 +1,13 @@
 package string
 
 import enum.IntArithmetics
-
 object Calculator {
+    private const val SPACE = " "
+    private const val EMPTY_STRING = ""
+
     fun calculate(input: String): Int {
         validate(input)
-        val inputArray: ArrayList<String> = convertToArrayList(input)
+        val inputArray: List<String> = convertToArrayList(input)
 
         var op = ""
         var result: Int = inputArray[0].toInt()
@@ -15,14 +17,14 @@ object Calculator {
                 continue
             }
 
-            result = calc(result, op, inputArray[index].toInt())
+            result = arithmeticCalculate(result, op, inputArray[index].toInt())
         }
 
         return result
     }
 
     private fun convertToArrayList(input: String): ArrayList<String> {
-        val inputs = input.replace(" ", "").toCharArray().map { it.toString() }.toTypedArray()
+        val inputs = input.replace(SPACE, EMPTY_STRING).toCharArray().map { it.toString() }.toTypedArray()
         return parse(inputs)
     }
 
@@ -47,22 +49,9 @@ object Calculator {
         return result
     }
 
-    private fun calc(leftValue: Int, op: String, rightValue: Int): Int {
-        return when (op) {
-            IntArithmetics.PLUS.operator -> {
-                IntArithmetics.PLUS.apply(leftValue, rightValue)
-            }
-            IntArithmetics.MINUS.operator -> {
-                IntArithmetics.MINUS.apply(leftValue, rightValue)
-            }
-            IntArithmetics.MULTIPLE.operator -> {
-                IntArithmetics.MULTIPLE.apply(leftValue, rightValue)
-            }
-            IntArithmetics.DIVIDE.operator -> {
-                IntArithmetics.DIVIDE.apply(leftValue, rightValue)
-            }
-            else -> throw IllegalArgumentException("정의되지 않은 연산자입니다")
-        }
+    private fun arithmeticCalculate(leftValue: Int, op: String, rightValue: Int): Int {
+        val intArithmetics = IntArithmetics.matchOperator(op) ?: throw IllegalArgumentException("정의되지 않은 연산자입니다")
+        return intArithmetics.apply(leftValue, rightValue)
     }
 
     private fun validate(input: String) {
@@ -87,7 +76,7 @@ object Calculator {
             return
         }
 
-        throw IllegalArgumentException("숫자 혹은 유효한 연산자가 아닌 입력값이 들어왔습니다")
+        throw IllegalArgumentException("숫자 혹은 유효한 연산자가 아닙니다")
     }
 
     private fun isDigit(value: String): Boolean {
