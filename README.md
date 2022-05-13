@@ -62,5 +62,5 @@
   
 
 ### 공통 모듈
-- RandomCommandGenerator
+- RandomDigitGenerator
   - [x] 0~9 사이의 숫자를 생성한다
