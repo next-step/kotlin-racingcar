@@ -57,4 +57,49 @@ class RacingCarTest {
         val expectPosition = testList.filter { it >= 4 }.size
         assertThat(result).isEqualTo(expectPosition)
     }
+
+    @Test
+    fun `1명 우승자일 경우 우승자가 맞는지에 대한 테스트`() {
+        val stopSeed: SeedMaker = object : SeedMaker {
+            override fun nextInt(): Int {
+                return 1
+            }
+        }
+        val goSeed: SeedMaker = object : SeedMaker {
+            override fun nextInt(): Int {
+                return 8
+            }
+        }
+        val loser = Car("loser", stopSeed).also {
+            it.proceed()
+        }
+        val winner = Car("winner", goSeed).also {
+            it.proceed()
+        }
+
+        val gameResults = GameResults()
+        val winnerResult = gameResults.getWinnerResult(listOf(loser, winner))
+
+        assertThat(winnerResult).isEqualTo(listOf(winner.name))
+    }
+
+    @Test
+    fun `여러명 우승자에 대한 테스트`() {
+        val goSeed: SeedMaker = object : SeedMaker {
+            override fun nextInt(): Int {
+                return 8
+            }
+        }
+        val car1 = Car("car1", goSeed).also {
+            it.proceed()
+        }
+        val car2 = Car("car2", goSeed).also {
+            it.proceed()
+        }
+
+        val gameResults = GameResults()
+        val winnerResult = gameResults.getWinnerResult(listOf(car1, car2))
+
+        assertThat(winnerResult).isEqualTo(listOf(car1.name, car2.name))
+    }
 }
