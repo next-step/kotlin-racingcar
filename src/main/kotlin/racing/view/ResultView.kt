@@ -11,12 +11,12 @@ object ResultView {
     }
 
     fun printCarPositions(cars: List<Car>) {
-        cars.forEach { printCarPosition(it.position()) }
+        cars.forEach { printCarPosition(it) }
         println()
     }
 
-    private fun printCarPosition(position: Int) {
-        println(generateCarPositionMark(position))
+    private fun printCarPosition(car: Car) {
+        println("${car.name()} : ${generateCarPositionMark(car.position())}")
     }
 
     private fun generateCarPositionMark(position: Int): String {
