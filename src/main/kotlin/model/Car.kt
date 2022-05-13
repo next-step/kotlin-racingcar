@@ -1,6 +1,6 @@
 package model
 
-class Car private constructor(private val position: Int) {
+data class Car constructor(private val position: Int) {
 
     init {
         require(0 <= this.position) { INVALID_POSITION_EXCEPTION }
@@ -31,21 +31,6 @@ class Car private constructor(private val position: Int) {
         const val INVALID_POSITION_EXCEPTION = "잘못된 위치에 자동차를 생성하였습니다."
 
         fun spawnAt(position: Int): Car = Car(position)
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Car
-
-        if (position != other.position) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        return position
     }
 
     override fun toString(): String = PRINT_STEP_SIGN.repeat(this.position)

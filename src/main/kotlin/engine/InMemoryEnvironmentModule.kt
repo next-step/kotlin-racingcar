@@ -1,6 +1,7 @@
 package engine
 
 class InMemoryEnvironmentModule : EnvironmentModule {
+
     private val map: MutableMap<String, String> = HashMap()
 
     override fun put(key: String, value: String) {
