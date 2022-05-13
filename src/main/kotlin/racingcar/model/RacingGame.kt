@@ -18,15 +18,19 @@ class RacingGame(
         this.reset()
         val racingRecord = RacingRecord(this.carList)
         repeat(this.stepsToTry) { step ->
-            this.carList.forEach { car ->
-                car.moveIfItCan()
-                racingRecord.writeRecord(car)
-            }
-            this.currentStep = (step + 1)
+            goOneStep(racingRecord, step)
             onGameProgress?.invoke(this)
         }
 
         return racingRecord
+    }
+
+    private fun goOneStep(racingRecord: RacingRecord, step: Int) {
+        this.carList.forEach { car ->
+            car.moveIfItCan()
+            racingRecord.writeRecord(car)
+        }
+        this.currentStep = (step + 1)
     }
 
     private fun reset() {
