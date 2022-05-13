@@ -16,9 +16,9 @@ data class TrialResult(private val trialResult: List<Car>) {
     fun get() = _trialResult
 }
 
-data class GameResult(private var gameResult: List<TrialResult> = listOf()) {
+class GameResult(private val gameResult: MutableList<TrialResult> = mutableListOf()) {
     fun recordTrialResult(trialResult: TrialResult) {
-        gameResult = gameResult + listOf(trialResult)
+        gameResult.add(trialResult)
     }
 
     fun get() = gameResult
