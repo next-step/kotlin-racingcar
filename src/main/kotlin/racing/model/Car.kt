@@ -1,6 +1,7 @@
 package racing.model
 
 class Car(
+    private val name: Name,
     private val position: Position = Position(0)
 ) {
 

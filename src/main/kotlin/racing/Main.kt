@@ -12,7 +12,7 @@ fun main() {
     InputView.printTryCountInputMessage()
     val tryCount = InputView.inputTryCount()
 
-    val cars = Cars.of(carCount)
+    val cars = Cars.of("aiden")
     ResultView.printExecutionResultMessage()
 
     repeat(tryCount) {

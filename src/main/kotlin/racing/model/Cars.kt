@@ -9,19 +9,19 @@ class Cars(
     }
 
     companion object {
-        private const val MIN_CAR_COUNT = 1
+        private const val NAME_DELIMITER = ","
 
-        fun of(carCount: Int): Cars {
-            validateMinCarCount(carCount)
+        fun of(names: String): Cars {
+            validateNotBlank(names)
 
-            val cars = List(carCount) { Car() }
+            val splitNames = names.split(NAME_DELIMITER)
+            val cars = splitNames.map { Car(Name(it)) }
+
             return Cars(cars)
         }
 
-        private fun validateMinCarCount(carCount: Int) {
-            require(carCount >= MIN_CAR_COUNT) {
-                "자동차 대수는 최소 ${MIN_CAR_COUNT}대 이어야 합니다. (carCount: $carCount)"
-            }
+        private fun validateNotBlank(names: String) {
+            require(names.isNotBlank()) { "이름 목록이 공백일 수 없습니다." }
         }
     }
 }
