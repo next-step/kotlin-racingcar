@@ -29,7 +29,7 @@ class CarRaceTest {
         carRaceProperty.cars.add(carToMove)
 
         val carRace = CarRace()
-        carRace.moveCarPosition(carToMove, true)
+        carRace.moveCarPosition(carToMove)
 
         assertThat(carRaceProperty.cars[0].moveCount).isEqualTo(1)
     }

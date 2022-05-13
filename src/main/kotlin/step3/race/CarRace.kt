@@ -4,10 +4,8 @@ import step3.car.Car
 
 class CarRace {
 
-    fun moveCarPosition(car: Car, canMoveForward: Boolean) {
-        if (canMoveForward) {
-            moveForward(car)
-        }
+    fun moveCarPosition(car: Car) {
+        moveForward(car)
     }
 
     private fun moveForward(car: Car) = car.moveCount++
