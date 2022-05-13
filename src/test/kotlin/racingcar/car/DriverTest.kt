@@ -22,7 +22,7 @@ class DriverTest {
     }
 
     @Test
-    fun `드라이버의 전략이 false면 차가 움직일 수 있다`() {
+    fun `드라이버의 전략이 false면 차가 움직일 수 없다`() {
         // given
         val alwayMoveDriver = Driver(
             Car(),
