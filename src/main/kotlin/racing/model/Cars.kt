@@ -8,6 +8,11 @@ class Cars(
         cars.forEach { it.moveForward(movingStrategy) }
     }
 
+    fun findWinners(): List<Car> {
+        val maxPosition = cars.maxOf { it.position() }
+        return cars.filter { it.position() == maxPosition }
+    }
+
     companion object {
         private const val NAME_DELIMITER = ","
 

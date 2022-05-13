@@ -14,4 +14,8 @@ class Car(
     fun position(): Int {
         return position.position
     }
+
+    fun name(): String {
+        return name.name
+    }
 }

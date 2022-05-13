@@ -2,7 +2,7 @@ package racing.model
 
 @JvmInline
 value class Name(
-    private val name: String
+    val name: String
 ) {
 
     init {
