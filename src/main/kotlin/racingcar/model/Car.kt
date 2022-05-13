@@ -7,12 +7,12 @@ import racingcar.constants.Message
  * Created by Jaesungchi on 2022.05.07..
  */
 class Car(val name: String) {
+    var position: Int = INIT_POSITION
+        private set
+
     init {
         checkValidName(name)
     }
-
-    var position: Int = INIT_POSITION
-        private set
 
     fun advanceOnce() {
         position++
