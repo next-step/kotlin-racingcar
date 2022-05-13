@@ -19,4 +19,6 @@ fun main() {
         cars.moveForward(CarMovingStrategy)
         ResultView.printCarPositions(cars.cars)
     }
+
+    ResultView.printWinnerNames(cars.findWinners())
 }

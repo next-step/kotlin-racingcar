@@ -15,6 +15,10 @@ object ResultView {
         println()
     }
 
+    fun printWinnerNames(cars: List<Car>) {
+        println("${generateWinnerNames(cars)}가 최종 우승했습니다.")
+    }
+
     private fun printCarPosition(car: Car) {
         println("${car.name()} : ${generateCarPositionMark(car.position())}")
     }
@@ -23,5 +27,16 @@ object ResultView {
         var positionMark = ""
         repeat(position) { positionMark += POSITION_MARK }
         return positionMark
+    }
+
+    private fun generateWinnerNames(cars: List<Car>): String {
+        var names = cars[0].name()
+
+        repeat(cars.size - 1) {
+            val name = cars[it + 1].name()
+            names += ", $name"
+        }
+
+        return names
     }
 }
