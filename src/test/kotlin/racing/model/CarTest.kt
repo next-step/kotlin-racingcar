@@ -27,4 +27,16 @@ class CarTest {
         // then
         assertEquals(car.position(), 1)
     }
+
+    @Test
+    fun `앞으로 전진하는 조건이 거짓이면 멈춤`() {
+        // given
+        val car = Car.of("aiden")
+
+        // when
+        car.moveForward { false }
+
+        // then
+        assertEquals(car.position(), 0)
+    }
 }
