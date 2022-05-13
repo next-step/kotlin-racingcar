@@ -24,9 +24,7 @@ class RacingController {
     }
 
     private fun checkValidNumber(number: Int): Boolean {
-        if (number < CAN_VALID_NUMBER) {
-            throw IllegalArgumentException(Message.ExceptionMessage.ENTERED_INVALID_NUMBER)
-        }
+        require(number >= CAN_VALID_NUMBER) { Message.ExceptionMessage.ENTERED_INVALID_NUMBER }
         return true
     }
 

@@ -32,9 +32,7 @@ object InputView {
     }
 
     private fun changeStringToInt(input: String?): Int {
-        if (input.isNullOrBlank()) {
-            throw IllegalArgumentException(Message.ExceptionMessage.IS_NULL_OR_BLANK)
-        }
+        require(!input.isNullOrBlank()) { Message.ExceptionMessage.IS_NULL_OR_BLANK }
         return input.toIntOrNull() ?: throw IllegalArgumentException(Message.ExceptionMessage.IS_NOT_INTEGER)
     }
 }

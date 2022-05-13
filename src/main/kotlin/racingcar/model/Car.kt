@@ -19,12 +19,8 @@ class Car(val name: String) {
     }
 
     private fun checkValidName(name: String) {
-        if (name.isBlank()) {
-            throw IllegalArgumentException(Message.ExceptionMessage.CANNOT_NAME_BE_BLANK)
-        }
-        if (name.length > MAX_NAME_SIZE) {
-            throw IllegalArgumentException(Message.ExceptionMessage.CANNOT_NAME_EXCEED_5_CHARACTERS)
-        }
+        require(name.isNotBlank()) { Message.ExceptionMessage.CANNOT_NAME_BE_BLANK }
+        require(name.length <= MAX_NAME_SIZE) { Message.ExceptionMessage.CANNOT_NAME_EXCEED_5_CHARACTERS }
     }
 
     companion object {
