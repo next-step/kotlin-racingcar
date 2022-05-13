@@ -30,7 +30,7 @@ class CarRacingTest {
         val carE = Car("e").apply { repeat(moveCount) { turnOfPosition.add(2) } }
         val cars = listOf(carA, carB, carC, carD, carE)
 
-        val winners: List<String> = carRacing.pickWinners(cars = cars, moveCount = moveCount)
+        val winners: List<String> = carRacing.pickWinners(cars = cars)
         assertThat(winners.size).isEqualTo(1)
         assertThat(winners[0]).isEqualTo("a")
     }
@@ -46,7 +46,7 @@ class CarRacingTest {
         val carE = Car("e").apply { repeat(moveCount) { turnOfPosition.add(2) } }
         val cars = listOf(carA, carB, carC, carD, carE)
 
-        val winners: List<String> = carRacing.pickWinners(cars = cars, moveCount = moveCount)
+        val winners: List<String> = carRacing.pickWinners(cars = cars)
         assertThat(winners.size).isEqualTo(2)
         assertThat(winners[0]).isEqualTo("a")
         assertThat(winners[1]).isEqualTo("d")
@@ -63,7 +63,7 @@ class CarRacingTest {
         val carE = Car("e").apply { repeat(moveCount) { turnOfPosition.add(6) } }
         val cars = listOf(carA, carB, carC, carD, carE)
 
-        val winners: List<String> = carRacing.pickWinners(cars = cars, moveCount = moveCount)
+        val winners: List<String> = carRacing.pickWinners(cars = cars)
         assertThat(winners.size).isEqualTo(3)
         assertThat(winners[0]).isEqualTo("c")
         assertThat(winners[1]).isEqualTo("d")
@@ -81,7 +81,7 @@ class CarRacingTest {
         val carE = Car("e").apply { repeat(moveCount) { turnOfPosition.add(2) } }
         val cars = listOf(carA, carB, carC, carD, carE)
 
-        val winners: List<String> = carRacing.pickWinners(cars = cars, moveCount = moveCount)
+        val winners: List<String> = carRacing.pickWinners(cars = cars)
         assertThat(winners.size).isEqualTo(1)
         assertThat(winners[0]).isEqualTo("c")
     }

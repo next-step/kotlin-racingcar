@@ -8,7 +8,8 @@ class CarRacing {
         moveCars(cars = cars, moveCount = moveCount)
 
         CarRacingResultView.printCarRacingResult(cars = cars, moveCount = moveCount)
-        val winners: List<String> = pickWinners(cars = cars, moveCount = moveCount)
+
+        val winners: List<String> = pickWinners(cars)
         CarRacingResultView.printWinners(carNames = winners)
     }
 
@@ -24,26 +25,15 @@ class CarRacing {
         return List(carNames.size) { index -> Car(carNames[index]) }
     }
 
-    fun pickWinners(cars: List<Car>, moveCount: Int): List<String> {
-        var maxDistance = 0
-        val winners = arrayListOf<String>()
-        cars.forEach { car ->
-            maxDistance = updateWinnersAndMaxDistance(winners = winners, car = car, moveCount = moveCount, maxDistance = maxDistance)
+    fun pickWinners(cars: List<Car>): List<String> {
+        val maxDistance: Int = cars.maxOf { car -> car.turnOfPosition.last() }
+
+        val winners: List<String> = cars.filter { car ->
+            car.turnOfPosition.last() >= maxDistance
+        }.map { car ->
+            car.name
         }
 
         return winners
-    }
-
-    fun updateWinnersAndMaxDistance(winners: ArrayList<String>, car: Car, moveCount: Int, maxDistance: Int): Int {
-        var newMaxDistance = maxDistance
-        if (maxDistance < car.turnOfPosition[moveCount]) {
-            winners.clear()
-            winners.add(car.name)
-            newMaxDistance = car.turnOfPosition[moveCount]
-        } else if (maxDistance == car.turnOfPosition[moveCount]) {
-            winners.add(car.name)
-        }
-
-        return newMaxDistance
     }
 }
