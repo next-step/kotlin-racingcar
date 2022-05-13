@@ -3,11 +3,11 @@ package raicing.view
 import raicing.model.RaceResult
 
 object OutputView {
-    fun resultOutput(raceResultList: List<RaceResult>) {
+    fun resultOutput(raceResults: List<RaceResult>) {
         val sb = StringBuilder("========== 결과 ============\n")
 
-        raceResultList.forEach { raceResult ->
-            raceResult.carList.map { car ->
+        raceResults.forEach { raceResult ->
+            raceResult.cars.map { car ->
                 sb.append("${car.id}: ")
                 repeat(car.position) {
                     sb.append("-")

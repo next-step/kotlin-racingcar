@@ -10,19 +10,19 @@ class RaceProcessorTests {
 
     @Test
     fun `입력받은 자동차 대수, 시도횟수가 경기 결과 리스트 값의 size와 같아야한다`() {
-        val carCnt = 3
-        val raceCnt = 5
+        val carCount = 3
+        val raceCount = 5
 
-        val result = raceProcessor.raceStart(carCnt, raceCnt)
+        val result = raceProcessor.raceStart(carCount, raceCount)
 
         assertAll(
-            "carCnt",
+            "carCount",
             {
                 result.forEach {
-                    assertThat(it.carList.size).isEqualTo(carCnt)
+                    assertThat(it.cars.size).isEqualTo(carCount)
                 }
             }
         )
-        assertThat(result.size).isEqualTo(raceCnt)
+        assertThat(result.size).isEqualTo(raceCount)
     }
 }

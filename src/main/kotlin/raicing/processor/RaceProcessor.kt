@@ -4,42 +4,39 @@ import raicing.model.Car
 import raicing.model.RaceResult
 
 class RaceProcessor {
-    fun raceStart(carCnt: Int, raceCnt: Int): List<RaceResult> {
+    fun raceStart(carCount: Int, raceCount: Int): List<RaceResult> {
 
-        val carList = initCarList(carCnt)
-        val raceResultList = mutableListOf<RaceResult>()
+        val cars = initCars(carCount)
+        val raceResults = mutableListOf<RaceResult>()
 
-        repeat(raceCnt) {
-            val raceResult = race(carList)
-            raceResultList.add(raceResult)
+        repeat(raceCount) {
+            val raceResult = race(cars)
+            raceResults.add(raceResult)
         }
 
-        return raceResultList
+        return raceResults
     }
 
-    private fun initCarList(carCnt: Int): List<Car> {
-        val carList = mutableListOf<Car>()
-        repeat(carCnt) {
-            carList.add(Car(it))
-        }
-        return carList
+    private fun initCars(carCount: Int): List<Car> {
+        return List(carCount) { Car(it) }
     }
 
-    private fun race(carList: List<Car>): RaceResult {
-        val raceResult = carList.map { car ->
+    private fun race(cars: List<Car>): RaceResult {
+        val raceResult = cars.map { car ->
             goOrStop(car)
+            car
 
-            val afterCar = car.copy()
-            afterCar.position = car.position
-            afterCar
+//            val afterCar = car.copy()
+//            afterCar.position = car.position
+//            afterCar
         }
 
         return RaceResult(raceResult)
     }
 
     private fun goOrStop(car: Car) {
-        val randomCnt = getRandomMoveNumber()
-        if (randomCnt >= BASE_NUM) car.position++
+        val randomNum = getRandomMoveNumber()
+        if (randomNum >= BASE_NUM) car.moveForward()
     }
 
     private fun getRandomMoveNumber(): Int {

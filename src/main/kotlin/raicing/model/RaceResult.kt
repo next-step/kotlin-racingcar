@@ -1,6 +1,5 @@
 package raicing.model
 
 data class RaceResult(
-    val carList: List<Car>
+    val cars: List<Car>
 )
-
