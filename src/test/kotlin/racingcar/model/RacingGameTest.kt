@@ -33,6 +33,31 @@ internal class RacingGameTest {
     }
 
     @Test
+    internal fun testForAlwaysGoWithNamedCar() {
+
+        // given
+        val namesOfCar = listOf("carA", "carB", "carC")
+        val stepsToTry = 5
+        val movement = AlwaysGoMovement() // Always Go
+        val racingGame = RacingGame(namesOfCar, stepsToTry, movement)
+
+        // when
+        val gameRecord = racingGame.runGame()
+
+        // then
+        val numberOfCar = namesOfCar.size
+        assertAll(
+            { assertThat(racingGame.carList.size).isEqualTo(numberOfCar) },
+            { assertThat(gameRecord.carRecordList.size).isEqualTo(numberOfCar) },
+            { assertThat(gameRecord.stepToTry).isEqualTo(stepsToTry) },
+            {
+                assertThat(gameRecord.latestRecord.joinToString(""))
+                    .isEqualTo(stepsToTry.toString().repeat(numberOfCar))
+            }
+        )
+    }
+
+    @Test
     internal fun testForAlwaysNotGo() {
 
         // given
