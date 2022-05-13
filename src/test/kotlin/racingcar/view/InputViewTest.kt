@@ -19,7 +19,7 @@ class InputViewTest : AnnotationSpec() {
     }
 }
 
-class StubInput(var carCount: Int, var tryCount: Int) : Input() {
+class StubInput(var carCount: Int, var tryCount: Int) : Input {
     override fun readCar(): Int {
         return this.carCount
     }
