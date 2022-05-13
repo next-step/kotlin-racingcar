@@ -14,11 +14,9 @@ class RacingGameManagerSpecs : DescribeSpec({
             val gameInput = GameInput(numberOfCars, numberOfRaces)
             it("게임을 진행하고 게임 결과를 반환한다") {
                 val gameResult = RacingGameManager.proceed(gameInput, RandomMovementCommandGenerator)
-                gameResult.also {
-                    it.raceResults.size shouldBe numberOfRaces
-                    it.raceResults.forEach { raceResult ->
-                        raceResult.raceRecord.cars.size shouldBe numberOfCars
-                    }
+                gameResult.raceResults.size shouldBe numberOfRaces
+                gameResult.raceResults.forEach { raceResult ->
+                    raceResult.raceRecord.cars.size shouldBe numberOfCars
                 }
             }
         }
