@@ -1,6 +1,6 @@
 package step3
 
-import step3.car.CarService
+import step3.car.CarRegistration
 import step3.common.CarRaceProperty
 import step3.race.RaceService
 import step3.view.InputView
@@ -11,8 +11,8 @@ fun main() {
     inputView.readInRoundSize()
     inputView.readInCarSize()
 
-    val carService = CarService(carRaceProperty)
-    carService.initCars()
+    val carRegistration = CarRegistration(carRaceProperty)
+    carRegistration.initCars()
 
     val raceService = RaceService(carRaceProperty)
     raceService.runRacingByRound()

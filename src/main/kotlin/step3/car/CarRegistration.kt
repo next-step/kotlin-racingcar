@@ -2,7 +2,7 @@ package step3.car
 
 import step3.common.CarRaceProperty
 
-class CarService(private val carRaceProperty: CarRaceProperty) {
+class CarRegistration(private val carRaceProperty: CarRaceProperty) {
 
     fun initCars() {
         for (carIndex in 0 until carRaceProperty.carSize) {
