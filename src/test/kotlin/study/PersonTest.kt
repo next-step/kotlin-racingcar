@@ -18,7 +18,7 @@ class PersonTest {
     }
 
     @Test
-    fun `널 타입`() {
+    fun `null type check`() {
         val person = Person("qyu", 34, null)
         assertThat(person.name).isEqualTo("qyu")
         assertThat(person.age).isEqualTo(34)
@@ -26,7 +26,7 @@ class PersonTest {
     }
 
     @Test
-    fun `기본 인자`() {
+    fun `default value`() {
         val person = Person("qyu", 34)
         assertThat(person.name).isEqualTo("qyu")
         assertThat(person.age).isEqualTo(34)
@@ -34,7 +34,7 @@ class PersonTest {
     }
 
     @Test
-    fun `데이터 클래스`() {
+    fun `data class`() {
         val person1 = Person("qyu", 34, null)
         val person2 = Person("qyu", 34, null)
         assertThat(person1).isEqualTo(person2)
