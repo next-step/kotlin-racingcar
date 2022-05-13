@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 open class Car {
     var position = 0
