@@ -13,7 +13,7 @@ class NameTest {
     @ParameterizedTest
     @ValueSource(strings = ["", " ", "  "])
     fun `자동차 이름이 공백이면 예외 발생`(name: String) {
-        // given, when, then
+        // when, then
         val exception = assertThrows<IllegalArgumentException> { Name(name) }
         Assertions.assertEquals("이름이 공백일 수 없습니다.", exception.message)
     }
@@ -23,5 +23,12 @@ class NameTest {
         // given, when, then
         val exception = assertThrows<IllegalArgumentException> { Name("abcdef") }
         Assertions.assertEquals("이름이 5자를 초과할 수 없습니다.", exception.message)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["a", "abcde"])
+    fun `자동차 이름이 1자 이상 5자 이하면 정상 생성`(name: String) {
+        // when, then
+        Name(name)
     }
 }
