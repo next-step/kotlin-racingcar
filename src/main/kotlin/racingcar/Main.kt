@@ -18,4 +18,5 @@ fun main() {
         racingGame.play()
         ResultView.showRecordsAsDash(racingGame.getPlayResults())
     }
+    ResultView.showRaceWinner(racingGame.getWinners())
 }

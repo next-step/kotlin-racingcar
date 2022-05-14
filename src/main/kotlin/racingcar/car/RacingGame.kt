@@ -32,6 +32,10 @@ class RacingGame(carNames: List<String>, trialCount: Int, moveStrategy: MoveStra
         _trialCount--
     }
 
+    fun getWinners(): List<String> {
+        return drivers.getMoveResult().farthestDistanceCarNames
+    }
+
     companion object {
         private const val GAME_END_COUNT = 0
     }
