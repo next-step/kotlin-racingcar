@@ -5,14 +5,18 @@ import org.junit.jupiter.api.Test
 
 class CarTest {
     @Test
-    fun `차를 이동 후 현재 위치결과를 반환한다`() {
+    fun `차 이동을 실행한다 예측한 이동결과와 동일한지 확인한다`() {
         // given
-        val testCar = Car()
+        val testCar = Car("testCar")
 
         // when
         testCar.move()
 
         // then
-        assertThat(testCar.currentDrivingRecord).isEqualTo(1)
+        val moveResult = MoveResults.MoveResult("testCar", 1)
+
+        assertThat(testCar.moveResult.carName).isEqualTo(moveResult.carName)
+        assertThat(testCar.moveResult.moveDistance).isEqualTo(moveResult.moveDistance)
+        assertThat(testCar.moveResult).isEqualTo(moveResult)
     }
 }

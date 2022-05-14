@@ -1,8 +1,10 @@
 package racingcar.car
 
-class Car {
+class Car(
+    private val carName: String
+) {
     private val _drivingRecord: MutableList<Position> = mutableListOf()
-    val currentDrivingRecord get() = _drivingRecord.count { it == Position.MOVE }
+    val moveResult get() = MoveResults.MoveResult(carName, _drivingRecord.count { it == Position.MOVE })
 
     fun move() {
         _drivingRecord.add(Position.MOVE)
