@@ -25,13 +25,7 @@ class StringCalculator {
 
     private fun calculateEveryPair(pairList: List<Pair<String, Int>>, initValue: Int): Int {
         return pairList.fold(initValue) { acc, pair ->
-            when (pair.first) {
-                Operator.ADD.symbol -> acc + pair.second
-                Operator.SUBTRACT.symbol -> acc - pair.second
-                Operator.MULTIPLY.symbol -> acc * pair.second
-                Operator.DIVIDE.symbol -> acc / pair.second
-                else -> throw IllegalArgumentException()
-            }
+            Operator.reverseMap(pair.first)?.calculateSinglePair(acc, pair.second) ?: 0
         }
     }
 }
