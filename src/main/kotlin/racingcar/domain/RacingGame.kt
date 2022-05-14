@@ -15,7 +15,7 @@ class RacingGame(
     }
 
     private fun writeRecord() {
-        record.add(LapRecord(cars.nameWithLocation()))
+        record.add(LapRecord(cars.carRecord()))
     }
 
     fun isNotEnd(): Boolean {

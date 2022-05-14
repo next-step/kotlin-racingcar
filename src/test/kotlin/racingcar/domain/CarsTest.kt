@@ -56,7 +56,7 @@ class CarsTest : DescribeSpec({
                 )
             )
 
-            cars.nameWithLocation() shouldBe listOf(
+            cars.carRecord() shouldBe listOf(
                 CarRecord(CarName("car1"), Location(1)),
                 CarRecord(CarName("car2"), Location(2)),
                 CarRecord(CarName("car3"), Location(3)),
