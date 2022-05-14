@@ -6,15 +6,6 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
 class CarRacingManagerTest : StringSpec({
-    "addCar 는 경기용 자동차를 추가한다" {
-        // given
-        val car = Car()
-        val carRacingManagerForTest = CarRacingManagerForTest(listOf(car))
-
-        // then
-        carRacingManagerForTest.getCarSize() shouldBe 1
-    }
-
     "validateCarsIndex 는 설정하는 자동차의 Index 번호를 검증한다" {
         // given
         val car = Car()
