@@ -9,10 +9,4 @@ class CarTest {
         Assertions.assertThat(Car.create().move().position).isEqualTo(2)
         Assertions.assertThat(Car.create().move().move().position).isEqualTo(3)
     }
-
-    @Test
-    fun `test toString`() {
-        Assertions.assertThat(Car.create().toString()).isEqualTo("-")
-        Assertions.assertThat(Car.create().move().toString()).isEqualTo("--")
-    }
 }

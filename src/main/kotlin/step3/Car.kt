@@ -6,7 +6,6 @@ class Car private constructor(val position: Int) {
         fun create(): Car = Car(START_POSITION)
     }
     fun move(): Car = Car(position + 1)
-    override fun toString(): String = "-".repeat(position)
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
