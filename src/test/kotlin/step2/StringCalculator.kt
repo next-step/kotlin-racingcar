@@ -1,4 +1,4 @@
-package study
+package step2
 
 import java.util.LinkedList
 import java.util.Queue
@@ -53,7 +53,7 @@ fun String.toOperatorQueue(splitter: String): Queue<Operator> {
     return LinkedList(
         this.split(splitter)
             .filterIndexed { i, _ -> i.isOperatorIndex() }
-            .map(Operator::findBy)
+            .map(Operator.Companion::findBy)
     )
 }
 
