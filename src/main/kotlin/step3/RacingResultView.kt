@@ -6,6 +6,7 @@ class RacingResultView(
 ) {
 
     fun display() {
+        println("실행 결과")
         repeat(tries) { displayRound(it) }
     }
 
