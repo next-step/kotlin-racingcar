@@ -1,15 +1,13 @@
-class CarRacingOutputHandler {
-    companion object {
-        fun display(cars: List<Car>) {
-            cars.forEach { car ->
-                repeat(car.getMoved()) {
-                    print(DASH)
-                }
-                println()
+object CarRacingOutputHandler {
+    fun display(cars: List<Car>) {
+        cars.forEach { car ->
+            repeat(car.getMoved()) {
+                print(DASH)
             }
             println()
         }
-
-        private const val DASH = "-"
+        println()
     }
+
+    private const val DASH = "-"
 }
