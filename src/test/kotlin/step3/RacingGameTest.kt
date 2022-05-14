@@ -18,4 +18,17 @@ class RacingGameTest : FunSpec({
             racing.carList.size shouldBe cars
         }
     }
+
+    context("게임 결과는 입력한 숫자보다 많을 수 없다") {
+        forAll(
+            row(3, 5),
+            row(10, 10),
+            row(8, 2),
+        ) { cars, times ->
+            val racing = RacingGame()
+            racing.play(cars, times)
+            racing.carList.size shouldBe cars
+            racing.carList.map { it.record.size shouldBeLessThanOrEqual times }
+        }
+    }
 })
