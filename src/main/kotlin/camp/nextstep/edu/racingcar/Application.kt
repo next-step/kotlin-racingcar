@@ -17,8 +17,8 @@ fun main() {
     val carTracks = racing.result()
 
     for (i in 0 until moveCount) {
-        for ((_, track) in carTracks) {
-            cli.drawTrackTo(track, i)
+        for ((car, track) in carTracks) {
+            cli.draw(car, track, i)
         }
         cli.drawBlank()
     }

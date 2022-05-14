@@ -1,5 +1,6 @@
 package camp.nextstep.edu.racingcar.interfaces
 
+import camp.nextstep.edu.racingcar.racing.Car
 import camp.nextstep.edu.racingcar.racing.Track
 
 class CommandLineInterface {
@@ -14,7 +15,8 @@ class CommandLineInterface {
         return requireNotNull(readLine()?.toInt())
     }
 
-    fun drawTrackTo(track: Track, to: Int) {
+    fun draw(car: Car, track: Track, to: Int) {
+        print("${car.name}\t: ")
         val traces = track.traces()
         for (i in 0..to) {
             if (traces.next()) print("⎼ ")
