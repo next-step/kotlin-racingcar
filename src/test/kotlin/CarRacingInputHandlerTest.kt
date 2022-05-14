@@ -20,8 +20,8 @@ class CarRacingInputHandlerTest {
 
     @Test
     fun `자동차 입력 개수만큼 car object 를 리턴`() {
-        val numberOfCars = "3"
-        assertThat(CarRacingInputHandler.getCars(numberOfCars).size).isEqualTo(numberOfCars.toInt())
+        val cars = listOf("자동차1", "자동차2")
+        assertThat(CarRacingInputHandler.getCars(cars).size).isEqualTo(cars.size)
     }
 
     @Test

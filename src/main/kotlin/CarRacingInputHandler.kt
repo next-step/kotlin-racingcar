@@ -25,15 +25,15 @@ class CarRacingInputHandler {
         fun validate(numberOfCar: String, numberOfTries: String, cars: List<String>) {
             require(numberOfCar.isNotEmpty() && numberOfTries.isNotEmpty()) { Constants.INVALID_ARGUMENT_MESSAGE }
             require(numberOfCar.toIntOrNull() != null && numberOfTries.toIntOrNull() != null) { Constants.INVALID_ARGUMENT_MESSAGE }
-            require(validCarsName(cars)) { Constants.INVALID_CAR_NAME_MESSAGE }
+            require(!validCarsName(cars)) { Constants.INVALID_CAR_NAME_MESSAGE }
         }
 
         private fun validCarsName(cars: List<String>): Boolean {
-            return cars.any { it.length > CAR_NAME_LIMIT }
+            return cars.any { it.length >= CAR_NAME_LIMIT }
         }
 
-        fun getCars(numberOfCar: String): List<Car> {
-            return List(numberOfCar.toInt()) { Car() }
+        fun getCars(carNames: List<String>): List<Car> {
+            return carNames.map { Car(it) }
         }
 
         private val CAR_NAME_LIMIT = 5
