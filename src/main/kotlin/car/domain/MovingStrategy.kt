@@ -12,6 +12,6 @@ class RandomMovingStrategy : MovingStrategy {
     override fun movable(): Boolean = RANDOM_VALUE_RANGE.random() >= MOVABLE_VALUE
 
     companion object {
-        private val RANDOM_VALUE_RANGE = START_VALUE .. END_VALUE
+        private val RANDOM_VALUE_RANGE = START_VALUE..END_VALUE
     }
 }

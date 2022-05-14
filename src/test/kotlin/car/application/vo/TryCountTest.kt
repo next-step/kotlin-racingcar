@@ -5,7 +5,7 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.inspectors.forAll
 
-class TryCountTest: StringSpec({
+class TryCountTest : StringSpec({
     "자동차 경주 시도횟수 생성" {
         tryCounts.forAll { shouldNotThrow<Throwable> { TryCount(it) } }
     }
@@ -14,9 +14,8 @@ class TryCountTest: StringSpec({
         illegalTryCounts.forAll { shouldThrow<IllegalArgumentException> { TryCount(it) } }
     }
 }) {
-   companion object {
-       private val tryCounts = listOf(1, 2, 3, 4)
-
-       private val illegalTryCounts = listOf(0, -1)
-   }
+    companion object {
+        private val tryCounts = listOf(1, 2, 3, 4)
+        private val illegalTryCounts = listOf(0, -1)
+    }
 }

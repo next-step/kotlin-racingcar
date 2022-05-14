@@ -6,7 +6,7 @@ import car.domain.vo.Position
 class Car(
     val name: Name,
     position: Position
-): Comparable<Car> {
+) : Comparable<Car> {
     var position: Position = position
         private set
 
