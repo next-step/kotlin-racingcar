@@ -2,7 +2,7 @@ import Constants.RESULT_MESSAGE
 
 fun main() {
     val inputParams = CarRacingInputHandler.input()
-    CarRacingInputHandler.validate(inputParams.numberOfCars, inputParams.numberOfTries)
+    CarRacingInputHandler.validate(inputParams.numberOfCars, inputParams.numberOfTries, inputParams.carNames)
 
     val cars = CarRacingInputHandler.getCars(inputParams.numberOfCars)
 

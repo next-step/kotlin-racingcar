@@ -7,14 +7,14 @@ class CarRacingInputHandlerTest {
     @Test
     fun `자동차 수 입력이 없거나 시도 입력이 없으면 IllegalArgumentException`() {
         assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            CarRacingInputHandler.validate("", "2")
+            CarRacingInputHandler.validate("", "2", listOf())
         }
     }
 
     @Test
     fun `자동차 수 입력이 없거나 시도 입력이 숫자가 아니면 IllegalArgumentException`() {
         assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            CarRacingInputHandler.validate("a", "2")
+            CarRacingInputHandler.validate("a", "2", listOf())
         }
     }
 
@@ -22,5 +22,12 @@ class CarRacingInputHandlerTest {
     fun `자동차 입력 개수만큼 car object 를 리턴`() {
         val numberOfCars = "3"
         assertThat(CarRacingInputHandler.getCars(numberOfCars).size).isEqualTo(numberOfCars.toInt())
+    }
+
+    @Test
+    fun `자동차의 이름은 5글자를 초과할 수 없다`() {
+        assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
+            CarRacingInputHandler.validate("5", "2", listOf("자동차이름5초과"))
+        }
     }
 }

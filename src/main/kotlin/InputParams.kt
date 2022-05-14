@@ -1,1 +1,1 @@
-class InputParams(val numberOfCars: String, val numberOfTries: String)
+class InputParams(val numberOfCars: String, val numberOfTries: String, val carNames: List<String>)
