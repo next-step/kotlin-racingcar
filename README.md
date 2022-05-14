@@ -125,7 +125,7 @@
 ### 3차 todo list
 - [x] expression형태의 함수 반환형 명시해주기
 - [ ] car result의 결과를 Car가 아닌 CarResult에서 만들어주기
-- [ ] string 상수화
+- [x] string 상수화
 - [ ] 각 도메인별 테스트 추가
 
 
