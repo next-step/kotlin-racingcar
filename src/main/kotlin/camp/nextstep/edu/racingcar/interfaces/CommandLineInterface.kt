@@ -24,5 +24,9 @@ class CommandLineInterface {
         println()
     }
 
+    fun drawWinner(winners: List<Car>) {
+        print("${winners.joinToString(", ") { it.name }}가 최종 우승했습니다.")
+    }
+
     fun drawBlank() = println()
 }

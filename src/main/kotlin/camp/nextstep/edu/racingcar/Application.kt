@@ -22,4 +22,6 @@ fun main() {
         }
         cli.drawBlank()
     }
+
+    cli.drawWinner(racing.winners().toList())
 }
