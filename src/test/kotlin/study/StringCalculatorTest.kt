@@ -2,6 +2,8 @@ package study
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class StringCalculatorTest {
@@ -46,5 +48,15 @@ class StringCalculatorTest {
     fun `사칙연산을 모두 포함하는 기능`(){
         val stringCalculator = StringCalculator()
         assertThat(stringCalculator.calculate( "2 + 3 * 4 / 2")).isEqualTo(10)
+    }
+
+    @BeforeEach
+    fun beforeTest(){
+        println("-------TEST START-------")
+    }
+
+    @AfterEach
+    fun afterTest(){
+        println("--------TEST END--------")
     }
 }
