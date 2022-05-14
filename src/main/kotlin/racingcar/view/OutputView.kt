@@ -1,8 +1,8 @@
 package racingcar.view
 
-import racingcar.view.result.Output
+import racingcar.view.output.Output
 
-class ResultView(private val output: Output) {
+class OutputView(private val output: Output) {
 
     fun show(movingDistances: List<Int>) {
         val message = movingDistances.joinToString("") { "${this.statusBy(it)}\n" }

@@ -2,7 +2,7 @@ package racingcar.view
 
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.shouldBe
-import racingcar.view.input.Input
+import racingcar.StubInput
 
 class InputViewTest : AnnotationSpec() {
     @Test
@@ -18,12 +18,3 @@ class InputViewTest : AnnotationSpec() {
     }
 }
 
-class StubInput(private val carCount: Int, private val tryCount: Int) : Input {
-    override fun readCar(): Int {
-        return this.carCount
-    }
-
-    override fun readTry(): Int {
-        return this.tryCount
-    }
-}

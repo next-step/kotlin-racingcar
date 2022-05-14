@@ -2,13 +2,13 @@ package racingcar.view
 
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.shouldBe
-import racingcar.view.result.Output
+import racingcar.StubOutput
 
-class ResultViewTest : AnnotationSpec() {
+class OutputViewTest : AnnotationSpec() {
 
     @Test
     fun `이동거리만큼 -로 표기된다`() {
-        val sut = ResultView(StubOutput())
+        val sut = OutputView(StubOutput())
 
         val result = sut.statusBy(3)
 
@@ -18,7 +18,7 @@ class ResultViewTest : AnnotationSpec() {
     @Test
     fun `모든 자동차들의 이동거리만큼 출력된다`() {
         val output = StubOutput()
-        val sut = ResultView(output)
+        val sut = OutputView(output)
 
         sut.show(listOf(1, 2))
 
@@ -30,10 +30,3 @@ class ResultViewTest : AnnotationSpec() {
     }
 }
 
-class StubOutput : Output {
-    lateinit var result: String
-
-    override fun show(message: String) {
-        this.result = message
-    }
-}

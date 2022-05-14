@@ -1,4 +1,4 @@
-package racingcar.view.result
+package racingcar.view.output
 
 interface Output {
     fun show(message: String)
