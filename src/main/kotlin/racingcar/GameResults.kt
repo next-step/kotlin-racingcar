@@ -6,7 +6,7 @@ class GameResults {
     private val _gameResult = mutableListOf<List<CarResult>>()
 
     fun record(carList: List<Car>) {
-        val recordData = carList.map { CarResult(it.name, it.position) }
+        val recordData = carList.map { CarResult.of(it) }
         _gameResult.add(recordData)
     }
 
