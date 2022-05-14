@@ -8,6 +8,8 @@ class GameRunner(private val properties: GameProperties) {
         val cars = properties.namesOfCars.map { Car(it) }
         val recorder = GameRecorder()
 
+        recorder.record(cars) // 시작 위치 저장
+
         repeat(properties.numOfTrials) {
             cars.move()
             recorder.record(cars)
