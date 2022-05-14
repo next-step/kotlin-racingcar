@@ -30,20 +30,16 @@ class PersonTest {
     }
 
     @Test
-    internal fun `기본 인자`(   ) {
+    internal fun `기본 인자`() {
         val person = Person("김태헌", 29)
 
-        assertThat(person.name).isEqualTo("김태헌"
-        )
-        assertThat(person.age
-        ).isEqualTo(29)
-        assertThat(person.nickname).isEqualTo(
-            "김태헌")
+        assertThat(person.name).isEqualTo("김태헌")
+        assertThat(person.age).isEqualTo(29)
+        assertThat(person.nickname).isEqualTo("김태헌")
     }
 
     @Test
-    internal fun `데이터 클래스`()
-    {
+    internal fun `데이터 클래스`() {
         val person1 = Person("김태헌", 29)
         val person2 = Person("김태헌", 29)
 
