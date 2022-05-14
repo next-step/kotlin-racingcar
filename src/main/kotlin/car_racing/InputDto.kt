@@ -1,17 +1,19 @@
 package car_racing
 
-import java.lang.Integer.parseInt
-
 data class InputDto(val carCountString: String, val movementTryCountString: String) {
+    private val _carCount: UInt
     val carCount: Int
+        get() = _carCount.toInt()
+    val _movementTryCount: UInt
     val movementTryCount: Int
+        get() = _movementTryCount.toInt()
 
     init {
         validateForIntegerString(carCountString, CAR_COUNT_NAME)
         validateForIntegerString(movementTryCountString, MOVEMENT_TRY_COUNT_NAME)
 
-        carCount = parseInt(removeSpace(carCountString))
-        movementTryCount = parseInt(removeSpace(movementTryCountString))
+        _carCount = removeSpace(carCountString).toUInt()
+        _movementTryCount = removeSpace(movementTryCountString).toUInt()
     }
 
     companion object {
