@@ -23,6 +23,10 @@ class Car(val name: String) {
         return super.equals(other)
     }
 
+    override fun hashCode(): Int {
+        return name.hashCode()
+    }
+
     companion object {
         const val GO = 1
         const val STAY = 0
