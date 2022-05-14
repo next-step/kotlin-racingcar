@@ -8,8 +8,8 @@ class GameRecorder {
     fun record(cars: List<Car>) = gameResult.recordTrialResult(TrialResult(cars.map { CarResult(it) }))
 }
 
-data class CarResult(val position: Int) {
-    constructor(car: Car) : this(car.position)
+data class CarResult(val name: String, val position: Int) {
+    constructor(car: Car) : this(car.name, car.position)
 }
 
 data class TrialResult(private val trialResult: List<CarResult>) {

@@ -6,6 +6,8 @@ import racingcar.model.Car
 import racingcar.model.MovingStrategy
 
 class GameRecorderTest {
+    private val validCarName = "myCar"
+
     @Test
     fun `게임이 진행되지 않았을 경우 result 는 비어있다`() {
         val recorder = GameRecorder()
@@ -21,9 +23,9 @@ class GameRecorderTest {
             override fun tryMove(): Boolean = true
         }
 
-        val car1 = Car(movingStrategy = forwardMovingStrategy)
-        val car2 = Car(movingStrategy = forwardMovingStrategy)
-        val car3 = Car(movingStrategy = forwardMovingStrategy)
+        val car1 = Car(validCarName, movingStrategy = forwardMovingStrategy)
+        val car2 = Car(validCarName, movingStrategy = forwardMovingStrategy)
+        val car3 = Car(validCarName, movingStrategy = forwardMovingStrategy)
         val cars = listOf(car1, car2, car3)
 
         // first trial
