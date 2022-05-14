@@ -41,4 +41,3 @@
 ### 고민
 - `GasStation#getRandomGas()`는 Random 라이브러리만 사용하므로 테스트 하지 않는다.
   - Random 라이브러리를 직접 테스트하는 것과 같은 상황이므로.
-
