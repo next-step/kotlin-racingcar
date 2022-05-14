@@ -1,16 +1,17 @@
 package racingcar
 
-
 fun main() {
     val inputView = InputView()
-    val carCount = inputView.getNaturalNumberInput("자동차 대수는 몇 대인가요?")
-    val trialCount =  inputView.getNaturalNumberInput("시도할 횟수는 몇 회인가요?")
+    val carNames = inputView.getCarNamesInput(InputView.CAR_NAMES_INPUT_DESC)
+    val trialCount = inputView.getNaturalNumberInput(InputView.TRIAL_NUMBER_INPUT_DESC)
 
-    val racingCarGame = RacingCarGame(carCount, trialCount)
+    val seedMaker = SeedMakerImpl()
+    val racingCarGame = RacingCarGame(trialCount, seedMaker, carNames)
     racingCarGame.play()
 
-    val gameResult = racingCarGame.getGameResult()
+    val gameResult = racingCarGame.gameResults
 
     val resultView = ResultView()
-    resultView.printGameResult(gameResult)
+    resultView.printGameHistory(gameResult)
+    resultView.printWinnerResult(racingCarGame.getWinnerResult())
 }
