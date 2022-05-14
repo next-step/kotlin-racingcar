@@ -12,7 +12,7 @@ class RacingGame(
 
     fun play(movementStrategy: () -> Int): List<List<Car>> {
         val result = mutableListOf<List<Car>>()
-        while (tryNumber.isPlaying()) {
+        while (tryNumber.isPlaying) {
             cars = cars.map { it.moveOrNot(movementStrategy.invoke()) }
                 .also { result.add(it) }
             tryNumber.consume()

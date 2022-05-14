@@ -54,7 +54,7 @@ class TryNumberTest : StringSpec({
             tryNumber.consume()
 
             // when
-            val actual = tryNumber.isPlaying()
+            val actual = tryNumber.isPlaying
 
             // then
             actual shouldBe expected

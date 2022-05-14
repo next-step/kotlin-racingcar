@@ -7,17 +7,18 @@ class TryNumber(value: Int) {
     var value: Int = value
         private set
 
+    val isPlaying: Boolean
+        get() = value != USE_COMPLETED_TRY_NUMBER
+
     init {
         require(value >= MIN_TRY_NUMBER) { "시도횟수는 1이상인 수만 입력받을 수 있습니다. value = $value" }
     }
 
     fun consume() {
-        if (!this.isPlaying()) {
+        if (!this.isPlaying) {
             throw IllegalStateException("잔여 시도횟수가 없습니다.")
         }
 
         this.value--
     }
-
-    fun isPlaying(): Boolean = value != USE_COMPLETED_TRY_NUMBER
 }
