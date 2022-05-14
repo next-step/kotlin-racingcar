@@ -2,7 +2,7 @@ package racingcar.car
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.RepeatedTest
-import racingcar.RandomNumberGenerator
+import racingcar.utils.RandomNumberGenerator
 
 class NumberGenerateTest {
 

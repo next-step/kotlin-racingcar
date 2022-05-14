@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.utils
 
 object RandomNumberGenerator {
     private val NUMBER_RANGE = 1..9

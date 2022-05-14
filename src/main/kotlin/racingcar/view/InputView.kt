@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.InputParser
+import racingcar.utils.InputParser
 
 object InputView {
     private const val CAR_NAME_DILIMITER = ","
