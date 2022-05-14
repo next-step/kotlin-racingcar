@@ -3,11 +3,11 @@ package camp.nextstep.edu.racingcar.racing
 import io.kotest.core.spec.style.ShouldSpec
 import org.assertj.core.api.Assertions.assertThat
 
-class InstantEngine(n: Int) : Car.Engine {
+class InstantEngine(moveCount: Int) : Car.Engine {
     private val movables = mutableListOf<Int>()
 
     init {
-        repeat(n) {
+        repeat(moveCount) {
             movables.add(MOVABLE_SPEED)
         }
     }
