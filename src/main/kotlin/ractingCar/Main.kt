@@ -1,4 +1,5 @@
 package ractingCar
 
-class Main {
+fun main() {
+    Operate().play()
 }
