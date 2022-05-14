@@ -1,16 +1,47 @@
 package ractingCar.entity
 
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 
 internal class CarTest {
 
     @Test
-    fun play() {
+    fun `play 함수에 0을 넣으면 움직이지 않는다`() {
+        // given
+        val car = Car()
+
+        // when
+        car.move()
+
+        // then
+        Assertions.assertThat(car.moves).isGreaterThanOrEqualTo(0)
     }
 
     @Test
-    fun addMoves() {
+    fun `goForward 함수에 4를 넣으면 자동차를 앞으로 한 칸 이동시킨다`() {
+        //given
+        val car = Car()
+        val initialMove = car.moves
+
+        //when
+        car.goForward(4)
+        val forwardOnce = car.moves
+
+        //then
+        Assertions.assertThat(initialMove + 1).isEqualTo(forwardOnce)
+    }
+
+    @Test
+    fun `goForward 함수에 5를 넣으면 자동차를 앞으로 한 칸 이동시킨다`() {
+        //given
+        val car = Car()
+        val initialMove = car.moves
+
+        //when
+        car.goForward(5)
+        val forwardOnce = car.moves
+
+        //then
+        Assertions.assertThat(initialMove + 1).isEqualTo(forwardOnce)
     }
 }
