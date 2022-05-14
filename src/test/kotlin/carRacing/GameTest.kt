@@ -1,7 +1,8 @@
 package carRacing
 
-import carRacing.Game.Companion.INVALID_CAR_NUMBER
-import carRacing.Game.Companion.INVALID_NUM_MOVEMENT
+import carRacing.controller.Game
+import carRacing.controller.Game.Companion.INVALID_CAR_LIST
+import carRacing.controller.Game.Companion.INVALID_NUM_MOVEMENT
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
@@ -11,19 +12,19 @@ class GameTest : FreeSpec({
     "init" - {
 
         "유효하지 않은 자동차 수가 들어올 경우 IllegalArgumentException" {
-            val numCar = -1
+            val carNameList: List<String> = listOf()
             val numMovement = 5
             val exception = shouldThrow<IllegalArgumentException> {
-                Game(numCar, numMovement)
+                Game(carNameList, numMovement)
             }
-            exception.message shouldBe INVALID_CAR_NUMBER
+            exception.message shouldBe INVALID_CAR_LIST
         }
 
         "유효하지 않은 시도 횟수가 들어올 경우 IllegalArgumentException" {
-            val numCar = 1
+            val carNameList = listOf("uju")
             val numMovement = 0
             val exception = shouldThrow<IllegalArgumentException> {
-                Game(numCar, numMovement)
+                Game(carNameList, numMovement)
             }
             exception.message shouldBe INVALID_NUM_MOVEMENT
         }
@@ -33,9 +34,9 @@ class GameTest : FreeSpec({
 
         "오류 없이 실행되어야한다." {
             // given
-            val numCar = 2
+            val carNameList = listOf("uju", "test")
             val numMovement = 5
-            val game = Game(numCar, numMovement)
+            val game = Game(carNameList, numMovement)
 
             // when
             game.run()
@@ -43,7 +44,7 @@ class GameTest : FreeSpec({
             // then
             game.recordList.size shouldBe numMovement
             game.recordList.forEach {
-                it.positions.size shouldBe numCar
+                it.positions.size shouldBe carNameList.size
             }
         }
     }
