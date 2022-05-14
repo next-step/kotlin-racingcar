@@ -48,7 +48,7 @@ data class CarRecordResponse(
         }
 
         fun listOf(lapRecord: LapRecord): List<CarRecordResponse> {
-            return lapRecord.lapRecord.map { of(it) }
+            return lapRecord.carRecords.map { of(it) }
         }
     }
 }
