@@ -1,20 +1,21 @@
 package racing.ui
 
-class InputView {
-    var carCount = 0
-        private set
-    var times = 0
-        private set
+import racing.model.CarInput
 
-    fun getUserInput() {
-        carCount = getNumberOfCars()
-        times = getNumberOfTimes()
+class InputView {
+    fun getInput(): CarInput {
+        val carInput = CarInput()
+        carInput.carCount = getNumberOfCars()
+        carInput.times = getNumberOfTimes()
+
         println()
+        return carInput
     }
 
     private fun getNumberOfCars(): Int {
         println("자동차 대수는 몇 대인가요?")
         val count = readln().toIntOrNull() ?: throw IllegalArgumentException("Invalid Input(cars)")
+
         require(count > 0) { "Number of cars > 0" }
         return count
     }

@@ -1,40 +1,32 @@
 package racing
 
-import racing.domain.Car
+import racing.model.Car
+import racing.model.CarInput
+import racing.model.CarPositionHistory
+import racing.model.PositionHistory
 
-class CarRacingGame(private val carCount: Int, private val times: Int) {
-    private val carPositionHistory: LinkedHashMap<Car, MutableList<Int>>
+class CarRacingGame(private val carInput: CarInput) {
+    private val carPositionHistory: CarPositionHistory
 
     init {
         carPositionHistory = initCarPositionHistory()
     }
 
-    fun start(): LinkedHashMap<Car, MutableList<Int>> {
-        repeat(times) {
-            moveCars()
-            saveCarPosition()
+    fun start(): CarPositionHistory {
+        repeat(carInput.times) {
+            carPositionHistory.moveAllCars()
+            carPositionHistory.savePosition()
         }
         return carPositionHistory
     }
 
-    private fun initCarPositionHistory(): LinkedHashMap<Car, MutableList<Int>> {
-        val tmpCarPositionHistory = LinkedHashMap<Car, MutableList<Int>>()
-        repeat(carCount) {
-            tmpCarPositionHistory[Car(START_POSITION, RandomMoving())] = mutableListOf()
+    private fun initCarPositionHistory(): CarPositionHistory {
+        val tmpCarPositionHistory = LinkedHashMap<Car, PositionHistory>()
+        repeat(carInput.carCount) {
+            tmpCarPositionHistory[Car(START_POSITION)] = PositionHistory(mutableListOf())
         }
-        return tmpCarPositionHistory
-    }
 
-    private fun moveCars() {
-        carPositionHistory.keys.forEach { car ->
-            car.move()
-        }
-    }
-
-    private fun saveCarPosition() {
-        carPositionHistory.forEach { (car, history) ->
-            car.savePosition(history)
-        }
+        return CarPositionHistory(tmpCarPositionHistory)
     }
 
     companion object {
