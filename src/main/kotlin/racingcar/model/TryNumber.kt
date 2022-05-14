@@ -4,6 +4,10 @@ data class TryNumber(
     val number: Int
 ) {
     init {
-        require(number > 0) { "적어도 한번 이상의 시도를 해주세요." }
+        require(number >= 0) { "경주 시도 횟수가 음수가 될수는 없습니다." }
+    }
+
+    fun minus(): TryNumber {
+        return TryNumber(number -1)
     }
 }

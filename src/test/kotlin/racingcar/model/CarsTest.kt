@@ -38,11 +38,14 @@ internal class CarsTest {
         // given
         val movingStrategy = MovingStrategy { true }
         var carName = listOf("sam", "kaka", "luci")
-        val cars = Cars(List(3) { Car(name = CarName(carName[it]), movingStrategy = movingStrategy) })
+        var cars = Cars(List(3) { Car(name = CarName(carName[it]), movingStrategy = movingStrategy) })
 
         // when
         val expectedPosition = 3
-        repeat(3) { cars.moveForwardCars() }
+        repeat(3) {
+            val moveForwardCars = cars.moveForwardCars()
+            cars = moveForwardCars
+        }
 
         // then
         cars.forEach { car ->

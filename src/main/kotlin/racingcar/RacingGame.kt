@@ -14,8 +14,8 @@ class RacingGame(
     val carFactory: CarFactory
 ) {
 
-    private fun race(cars: Cars) {
-        cars.moveForwardCars()
+    private fun race(cars: Cars): Cars {
+        return cars.moveForwardCars()
     }
 
     fun startGame() {
@@ -23,15 +23,20 @@ class RacingGame(
         val cars = carFactory.createCars(carNames)
         val tryNumber = input.getTryNumber()
 
-        startGame(cars, tryNumber)
+        output.showStartMessage()
+        val finishedCars = startGame(cars, tryNumber)
+        output.printWinners(finishedCars)
     }
 
-    private fun startGame(cars: Cars, tryNumber: TryNumber) {
-        output.showStartMessage()
-        repeat(tryNumber.number) {
-            race(cars)
-            output.showResultPosition(cars)
+    private tailrec fun startGame(cars: Cars, tryNumber: TryNumber): Cars {
+        if (tryNumber.number == 0) {
+            return cars
         }
+
+        val movedCars = race(cars)
+        output.showResultPosition(movedCars)
+
+        return startGame(movedCars, tryNumber.minus())
     }
 }
 

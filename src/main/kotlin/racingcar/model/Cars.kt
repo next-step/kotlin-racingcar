@@ -1,8 +1,7 @@
 package racingcar.model
 
 class Cars(
-    // TODO cars 불변으로 만들기
-    private var cars: List<Car>
+    private val cars: List<Car>
 ) {
 
     init {
@@ -11,10 +10,10 @@ class Cars(
         }
     }
 
-    fun moveForwardCars() {
-        cars = cars.map {
+    fun moveForwardCars(): Cars {
+        return Cars(cars.map {
             it.moveForward()
-        }
+        })
     }
 
     fun findWinners(): Cars = Cars(cars.filter { it.position == findMaxPosition() })
