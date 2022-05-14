@@ -46,4 +46,57 @@ class GameRecorderTest {
         assertEquals(expectedFirstTrialResult, gameResult[0])
         assertEquals(expectedSecondTrialResult, gameResult[1])
     }
+
+    @Test
+    fun `각 횟수별 우승자들의 이름을 가져올 수 있다`() {
+        val recorder = GameRecorder()
+
+        val forwardMovingStrategy = object : MovingStrategy {
+            override fun tryMove(): Boolean = true
+        }
+        val noMovingStrategy = object : MovingStrategy {
+            override fun tryMove(): Boolean = false
+        }
+
+        val winnerCar = Car("win", movingStrategy = forwardMovingStrategy)
+        val loserCar = Car("lose", movingStrategy = noMovingStrategy)
+        val cars = listOf(winnerCar, loserCar)
+
+        winnerCar.move()
+        loserCar.move()
+        recorder.record(cars)
+
+        val trialResult = recorder.gameResult.get()[0]
+
+        assertEquals(listOf(winnerCar.name), trialResult.winners)
+    }
+
+    @Test
+    fun `게임의 우승자들의 이름을 가져올 수 있다`() {
+        val recorder = GameRecorder()
+
+        val forwardMovingStrategy = object : MovingStrategy {
+            override fun tryMove(): Boolean = true
+        }
+
+        val winnerCar1 = Car("win1", movingStrategy = forwardMovingStrategy)
+        val winnerCar2 = Car("win2", movingStrategy = forwardMovingStrategy)
+        val loserCar = Car("lose", movingStrategy = forwardMovingStrategy)
+        val cars = listOf(winnerCar1, winnerCar2, loserCar)
+
+        // first trial
+        winnerCar1.move()
+        winnerCar2.move()
+        loserCar.move()
+        recorder.record(cars)
+
+        // second trial
+        winnerCar1.move()
+        winnerCar2.move()
+        recorder.record(cars)
+
+        val gameResult = recorder.gameResult
+
+        assertEquals(listOf(winnerCar1.name, winnerCar2.name), gameResult.winners)
+    }
 }

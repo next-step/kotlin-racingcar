@@ -13,11 +13,20 @@ data class CarResult(val name: String, val position: Int) {
 }
 
 data class TrialResult(private val trialResult: List<CarResult>) {
+    val winners: List<String> = trialResult
+        .groupBy { it.position }
+        .maxByOrNull { (position, _) -> position }!!
+        .value
+        .map { it.name }
+
     fun get() = trialResult
 }
 
 class GameResult {
     private val gameResult: MutableList<TrialResult> = mutableListOf()
+
+    val winners: List<String>
+        get() = gameResult.last().winners
 
     fun recordTrialResult(trialResult: TrialResult) {
         gameResult.add(trialResult)
