@@ -1,11 +1,13 @@
 package car_racing
 
-class RandomNumberCarRacingManager(carsList: List<Car> = listOf()) : CarRacingManager(carsList) {
+class RandomNumberCarRacingManager(carListManager: CarListManager) : CarRacingManager(carListManager) {
     fun tryMoveCar(carIndex: Int, randomInt: Int) {
-        validateCarsIndex(carIndex)
-        syncCarDistance(
-            carIndex, cars[carIndex].distance + CarMovementRole.getMoveDistance(randomInt)
-        )
+        val nowDistance = carListManager.getCarDistance(carIndex) + CarMovementRole.getMoveDistance(randomInt)
+        syncCarDistance(carIndex, nowDistance)
+    }
+
+    fun getCarSize(): Int {
+        return carListManager.cars.size
     }
 
     companion object {
@@ -14,7 +16,7 @@ class RandomNumberCarRacingManager(carsList: List<Car> = listOf()) : CarRacingMa
             repeat(inputDto.carCount) {
                 inputCars = inputCars + Car()
             }
-            return RandomNumberCarRacingManager(inputCars)
+            return RandomNumberCarRacingManager(CarListManager(inputCars))
         }
     }
 }

@@ -61,6 +61,13 @@ src/main/kotlin/carRacing
 - 랜덤 수 기준으로 경주 자동차 이동 거리를 가져온다.
 - 랜덤 수 가 최소 최대값이 맞는지 validation 검사.
 
+### `CarListManager`
+
+- 자동차 List 를 관리합니다
+- arrayIndex 값을 이용한 메소드 요청시 validation 검사
+- arrayIndex 에 해당하는 자동차 이동
+- arrayIndex 에 해당하는 자동차 거리 가져오기
+
 ## 작업 내용
 
 - [x] main 함수에 입력 값을 받는 로직 넣기

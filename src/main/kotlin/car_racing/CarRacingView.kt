@@ -3,7 +3,7 @@ package car_racing
 class CarRacingView(private val carCharacter: String, private val lineCharter: String = "\n") {
 
     fun getViewString(carRacingManager: CarRacingManager): String {
-        return carRacingManager.cars.joinToString(
+        return carRacingManager.getCarList().joinToString(
             transform = { car -> getCarLineView(car) },
             separator = lineCharter
         )
