@@ -8,7 +8,7 @@ fun main() {
     val inputDto = InputDto(carCount, movementTryCount)
     val randomNumberCarRacingManager = RandomNumberCarRacingManager(inputDto)
 
-    for (tryCount in 1..inputDto.movementTryCount) {
+    repeat(inputDto.movementTryCount) {
         setRandomValue(randomNumberCarRacingManager)
         println(randomNumberCarRacingManager.getMonitoringInformation())
         println()
