@@ -24,8 +24,4 @@ class RacingLap(
     companion object {
         const val MIN_RACING_LAP = 1
     }
-
-    companion object {
-        const val MIN_RACING_LAP = 1
-    }
 }
