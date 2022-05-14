@@ -16,10 +16,6 @@ abstract class CarRacingManager {
         return cars.size
     }
 
-    fun getCarDistance(index: Int): Int {
-        return cars[index].distance
-    }
-
     fun validateCarsIndex(carIndex: Int) {
         if (carIndex < 0) {
             throw IllegalArgumentException("음수 값으로 시스템을 실행할수 없습니다")

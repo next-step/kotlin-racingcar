@@ -27,7 +27,7 @@ class RandomNumberCarRacingManager : CarRacingManager {
     fun tryMoveCar(carIndex: Int, randomInt: Int) {
         validateCarsIndex(carIndex)
         if (isForwardNumber(randomInt)) {
-            syncCarDistance(carIndex, getCarDistance(carIndex) + 1)
+            syncCarDistance(carIndex, cars[carIndex].distance + 1)
         }
     }
 
