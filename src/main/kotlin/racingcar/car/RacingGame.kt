@@ -4,7 +4,7 @@ import racingcar.car.exception.GameOverException
 import racingcar.car.strategy.MoveStrategy
 
 class RacingGame(numberOfCar: Int, trialCount: Int, strategy: MoveStrategy) {
-    private val drivers: List<Driver> = List(numberOfCar) { Driver(Car(), strategy) }
+    private val drivers: List<Driver> = List(numberOfCar) { Driver("nameForCompile", Car(), strategy) }
     private var _trialCount: Int = trialCount
 
     val trialCount get() = _trialCount

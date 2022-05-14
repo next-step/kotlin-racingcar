@@ -9,7 +9,7 @@ class DriverTest {
     @Test
     fun `드라이버의 전략이 true면 차가 움직일 수 있다`() {
         // given
-        val alwayMoveDriver = Driver(Car(), AlwaysTrueMoveStrategy())
+        val alwayMoveDriver = Driver("nameForCompile", Car(), AlwaysTrueMoveStrategy())
 
         // when
         val moveCount = 100
@@ -25,6 +25,7 @@ class DriverTest {
     fun `드라이버의 전략이 false면 차가 움직일 수 없다`() {
         // given
         val alwayMoveDriver = Driver(
+            "nameForCompile",
             Car(),
             object : MoveStrategy {
                 override fun isMovable(): Boolean {
@@ -47,7 +48,7 @@ class DriverTest {
     fun `드라이버는 차의 현재 위치 값을 알 수 있다`() {
         // given
         val testCar = Car()
-        val testDriver = Driver(testCar, AlwaysTrueMoveStrategy())
+        val testDriver = Driver("nameForCompile", testCar, AlwaysTrueMoveStrategy())
 
         // when
         for (i in 0 until 100) {
@@ -56,5 +57,13 @@ class DriverTest {
             }
         }
         assertThat(testDriver.getMoveResult()).isEqualTo(testCar.currentDrivingRecord)
+    }
+
+    @Test
+    fun `드라이버 생성시 이름을 부여한다`() {
+        val name = "드라이버"
+        val driver = Driver(name, Car(), AlwaysTrueMoveStrategy())
+
+        assertThat(driver.name).isEqualTo(name)
     }
 }

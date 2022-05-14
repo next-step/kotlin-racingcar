@@ -3,8 +3,9 @@ package racingcar.car
 import racingcar.car.strategy.MoveStrategy
 
 class Driver(
+    val name: String,
     private val car: Car,
-    private val moveStrategy: MoveStrategy
+    private val moveStrategy: MoveStrategy,
 ) {
 
     fun drive() {
