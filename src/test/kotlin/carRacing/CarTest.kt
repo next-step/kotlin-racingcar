@@ -16,6 +16,14 @@ class CarTest : FreeSpec({
             }
             exception.message shouldBe Car.INVALID_CAR_NAME
         }
+
+        "car 이름이 5자리 이상인 경우 IllegalArgumentException" {
+            val carName = "12345"
+            val exception = shouldThrow<IllegalArgumentException> {
+                Car(carName)
+            }
+            exception.message shouldBe Car.INVALID_CAR_LENGTH
+        }
     }
 
     "move" - {
