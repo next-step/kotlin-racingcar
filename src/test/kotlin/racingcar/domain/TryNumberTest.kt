@@ -44,17 +44,17 @@ class TryNumberTest : StringSpec({
         shouldThrowExactly<IllegalStateException> { tryNumber.consume() }
     }
 
-    "시도횟수를 모두 소진했는지 확인한다." {
+    "시도횟수가 남아있는지 확인한다." {
         listOf(
-            row(1, true),
-            row(2, false),
+            row(1, false),
+            row(2, true),
         ).forAll { (tryNumberValue, expected) ->
             // given
             val tryNumber = TryNumber(tryNumberValue)
             tryNumber.consume()
 
             // when
-            val actual = tryNumber.isComplete()
+            val actual = tryNumber.isPlaying()
 
             // then
             actual shouldBe expected

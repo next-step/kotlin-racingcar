@@ -12,12 +12,12 @@ class TryNumber(value: Int) {
     }
 
     fun consume() {
-        if (this.isComplete()) {
+        if (!this.isPlaying()) {
             throw IllegalStateException("잔여 시도횟수가 없습니다.")
         }
 
         this.value--
     }
 
-    fun isComplete(): Boolean = value == USE_COMPLETED_TRY_NUMBER
+    fun isPlaying(): Boolean = value != USE_COMPLETED_TRY_NUMBER
 }
