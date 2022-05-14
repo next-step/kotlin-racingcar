@@ -1,10 +1,9 @@
-package step3
+package racing.application
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import racing.application.CarRacing
 import racing.model.Car
 
 internal class CarRacingTest {
