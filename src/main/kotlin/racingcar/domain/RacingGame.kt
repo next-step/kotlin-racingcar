@@ -7,7 +7,7 @@ class RacingGame(
     private val tryNumber: TryNumber,
 ) {
     init {
-        require(cars.size >= MIN_CARS_SIZE)
+        require(cars.size >= MIN_CARS_SIZE) { "자동차 경주 게임에는 최소 2대 이상의 자동차가 필요합니다. cars size = ${cars.size}" }
     }
 
     fun play(movementStrategy: () -> Int): List<List<Car>> {
