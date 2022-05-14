@@ -13,7 +13,7 @@ object InputView {
 
     fun readInt(): Int {
         val str = readLine()
-        if (str.isNullOrEmpty() || !str.all { it.isDigit() }) {
+        if (str?.toIntOrNull() == null) {
             println("잘못된 입력입니다. 다시 입력해주세요.")
             return readInt()
         }
