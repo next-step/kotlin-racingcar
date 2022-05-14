@@ -1,16 +1,18 @@
 package racingcar
 
 import racingcar.car.RacingGame
+import racingcar.car.strategy.NameLengthLimitStrategy
 import racingcar.car.strategy.RandomNumberStrategy
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
 fun main() {
-    val numberOfCar = InputView.getNumberOfCarByConsole()
+    val carNames = InputView.getNumberOfCarByConsole()
     val trialCount = InputView.getTrialCountByConsole()
-    val strategy = RandomNumberStrategy()
+    val moveStrategy = RandomNumberStrategy()
+    val nameStrategy = NameLengthLimitStrategy()
 
-    val racingGame = RacingGame(numberOfCar, trialCount, strategy)
+    val racingGame = RacingGame(carNames, trialCount, moveStrategy, nameStrategy)
 
     repeat(racingGame.trialCount) {
         racingGame.play()
