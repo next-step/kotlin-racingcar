@@ -2,7 +2,6 @@ package stringcaculator
 
 class StringCalculator {
     fun calculate(expression: String): Int {
-
         checkExpressionIsNullOrBlank(expression)
         var result = 0
         var operator = Operator.PLUS
@@ -18,13 +17,8 @@ class StringCalculator {
     }
 
     private fun operandCalculate(result: Int, operand: String, operator: Operator): Int {
-        val num = operand.toIntOrNull()
-        requireNotNull(num) { "Not a valid operand" }
+        val num = operand.toIntOrNull() ?: throw IllegalArgumentException("Not a valid operand")
         return operator.calculate(result, num)
-    }
-
-    private fun isNumber(operand: String): Boolean {
-        return operand.toCharArray().all { it.isDigit() }
     }
 
     private fun checkExpressionIsNullOrBlank(expression: String) {
