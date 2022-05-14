@@ -1,4 +1,4 @@
-package camp.nextstep.edu.step3.racing
+package camp.nextstep.edu.racingcar.racing
 
 class Racing private constructor(participants: List<Car>, private val moveCount: Int) {
 

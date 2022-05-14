@@ -1,4 +1,4 @@
-package camp.nextstep.edu.step3.racing
+package camp.nextstep.edu.racingcar.racing
 
 import io.kotest.core.spec.style.ShouldSpec
 import org.assertj.core.api.Assertions.assertThat

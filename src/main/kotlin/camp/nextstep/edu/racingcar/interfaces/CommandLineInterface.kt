@@ -1,6 +1,6 @@
-package camp.nextstep.edu.step3.interfaces
+package camp.nextstep.edu.racingcar.interfaces
 
-import camp.nextstep.edu.step3.racing.Track
+import camp.nextstep.edu.racingcar.racing.Track
 
 class CommandLineInterface {
 

@@ -1,4 +1,4 @@
-package camp.nextstep.edu.step3.racing
+package camp.nextstep.edu.racingcar.racing
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals

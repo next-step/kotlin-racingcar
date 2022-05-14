@@ -1,4 +1,4 @@
-package camp.nextstep.edu.step3.racing
+package camp.nextstep.edu.racingcar.racing
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
