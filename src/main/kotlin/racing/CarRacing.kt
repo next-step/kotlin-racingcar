@@ -9,8 +9,8 @@ class CarRacing {
 
         CarRacingResultView.printCarRacingResult(cars = cars, moveCount = moveCount)
 
-        val winners: List<String> = pickWinners(cars)
-        CarRacingResultView.printWinners(carNames = winners)
+        val winners: Winners = pickWinners(cars)
+        CarRacingResultView.printWinners(winners = winners)
     }
 
     fun moveCars(cars: List<Car>, moveCount: Int) {
@@ -22,18 +22,17 @@ class CarRacing {
     }
 
     fun createCars(carNames: List<String>): List<Car> {
-        return List(carNames.size) { index -> Car(carNames[index]) }
+        return carNames.map { carName -> Car(carName) }
     }
 
-    fun pickWinners(cars: List<Car>): List<String> {
+    fun pickWinners(cars: List<Car>): Winners {
         val maxDistance: Int = cars.maxOf { car -> car.turnOfPosition.last() }
-
-        val winners: List<String> = cars.filter { car ->
+        val winnerNames: List<String> = cars.filter { car ->
             car.turnOfPosition.last() >= maxDistance
         }.map { car ->
             car.name
         }
 
-        return winners
+        return Winners(winnerNames)
     }
 }

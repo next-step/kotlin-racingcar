@@ -11,7 +11,7 @@ class Calculator {
 
         val expressionContents: List<String> = expression.split(" ")
 
-        var result = expressionContents[0].toInt()
+        var result = expressionContents.first().toInt()
         var operation: String? = null
 
         expressionContents.drop(1).forEach { content ->

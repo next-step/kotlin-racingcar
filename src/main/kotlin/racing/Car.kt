@@ -3,14 +3,24 @@ package racing
 class Car(val name: String) {
     private var turn = 0
 
-    val turnOfPosition = arrayListOf(1)
+    private val _turnOfPosition = arrayListOf(START_POSITION)
+    val turnOfPosition: List<Int>
+        get() = _turnOfPosition
 
     fun goIfAboveRequireGoValue(): Int {
         return if ((0..9).random() >= REQUIRE_GO_VALUE) GO else STAY
     }
 
     fun go(goIfAboveRequireGoValue: () -> Int) {
-        turnOfPosition.add(turnOfPosition[turn++] + goIfAboveRequireGoValue())
+        _turnOfPosition.add(_turnOfPosition[turn++] + goIfAboveRequireGoValue())
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (other is Car) {
+            return other.name == this.name
+        }
+
+        return super.equals(other)
     }
 
     companion object {
@@ -18,5 +28,7 @@ class Car(val name: String) {
         const val STAY = 0
 
         const val REQUIRE_GO_VALUE = 4
+
+        const val START_POSITION = 1
     }
 }
