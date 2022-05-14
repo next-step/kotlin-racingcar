@@ -1,4 +1,6 @@
-package step3
+package racing.ui
+
+import racing.model.Car
 
 class RacingResultView(
     private val tries: Int,

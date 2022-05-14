@@ -1,4 +1,6 @@
-package step3
+package racing.application
+
+import racing.model.Car
 
 class CarRacing(private val numberOfCars: Int, private val tries: Int) {
 

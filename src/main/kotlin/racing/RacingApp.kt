@@ -1,4 +1,8 @@
-package step3
+package racing
+
+import racing.application.CarRacing
+import racing.ui.RacingInputView
+import racing.ui.RacingResultView
 
 object RacingApp {
     fun launch() {

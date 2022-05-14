@@ -1,4 +1,4 @@
-package step3
+package racing.model
 
 data class Car(val position: String = CAR_PROGRESS_CHAR) {
 
@@ -6,7 +6,7 @@ data class Car(val position: String = CAR_PROGRESS_CHAR) {
         private const val CAR_PROGRESS_CHAR = "-"
     }
 
-    fun go() : Car{
+    fun go() : Car {
         return Car("$position$CAR_PROGRESS_CHAR")
     }
 
