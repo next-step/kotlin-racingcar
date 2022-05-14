@@ -6,7 +6,7 @@ class StringCalculator {
         fun calculate(input: String?): String {
             require(!input.isNullOrBlank()) { "문자열 계산기의 입력값은 null이거나 빈 값일 수 없습니다. input: $input" }
             val values = input.split(VALUE_DELIMITERS)
-            val iterator = values.listIterator()
+            val iterator = values.iterator()
             var result: Operand = Operand.of(iterator.next())
             while (iterator.hasNext()) {
                 result = Operator.of(iterator.next()).calculate(result, Operand.of(iterator.next()))
