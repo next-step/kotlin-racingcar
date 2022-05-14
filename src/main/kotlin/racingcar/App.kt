@@ -19,6 +19,6 @@ fun main() {
         racingGame.start()
     }
 
-    val report = racingGame.report
-    ResultView.print(RacingGameResponse.of(report))
+    val record = racingGame.record
+    ResultView.print(RacingGameResponse.of(record))
 }

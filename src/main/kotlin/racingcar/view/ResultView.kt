@@ -14,16 +14,16 @@ object ResultView {
 
     fun print(response: RacingGameResponse) {
         println(RESULT)
-        printLapReports(response.lapReports)
+        printLapRecords(response.lapRecords)
         printWinners(response.winners)
     }
 
-    private fun printLapReports(lapReports: List<List<Pair<String, Int>>>) {
-        println(lapReports.joinToString(LAP_DELIMITER) { lap(it) })
+    private fun printLapRecords(lapRecords: List<List<Pair<String, Int>>>) {
+        println(lapRecords.joinToString(LAP_DELIMITER) { lap(it) })
     }
 
-    private fun lap(lapReports: List<Pair<String, Int>>): String {
-        return lapReports.joinToString(CAR_DELIMITER) { "${carName(it.first)}${carLocation(it.second)}" }
+    private fun lap(lapRecords: List<Pair<String, Int>>): String {
+        return lapRecords.joinToString(CAR_DELIMITER) { "${carName(it.first)}${carLocation(it.second)}" }
     }
 
     private fun carName(name: String): String {
