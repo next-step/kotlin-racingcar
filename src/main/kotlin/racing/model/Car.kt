@@ -12,8 +12,4 @@ class Car(private var position: Int) {
             position++
         return position
     }
-
-    fun savePosition(positionHistory: PositionHistory) {
-        positionHistory.save(position)
-    }
 }

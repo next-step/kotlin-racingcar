@@ -2,18 +2,13 @@ package racing.model
 
 import racing.RandomMoving
 
-class CarPositionHistory(private val carHistory: LinkedHashMap<Car, PositionHistory>) {
-    fun savePosition() {
-        carHistory.forEach { (car, positionHistory) ->
-            car.savePosition(positionHistory)
+class CarPositionHistory(private val carPositionHistory: LinkedHashMap<Car, PositionHistory>) {
+    fun play() {
+        carPositionHistory.forEach { (car, positionHistory) ->
+            val position = car.move(RandomMoving)
+            positionHistory.save(position)
         }
     }
 
-    fun moveAllCars() {
-        carHistory.keys.forEach { car ->
-            car.move(RandomMoving)
-        }
-    }
-
-    fun forEach(action: (Car, PositionHistory) -> Unit) = carHistory.forEach(action)
+    fun forEach(action: (Car, PositionHistory) -> Unit) = carPositionHistory.forEach(action)
 }

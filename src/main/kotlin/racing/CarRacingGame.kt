@@ -14,8 +14,7 @@ class CarRacingGame(private val carInput: CarInput) {
 
     fun start(): CarPositionHistory {
         repeat(carInput.times) {
-            carPositionHistory.moveAllCars()
-            carPositionHistory.savePosition()
+            carPositionHistory.play()
         }
         return carPositionHistory
     }

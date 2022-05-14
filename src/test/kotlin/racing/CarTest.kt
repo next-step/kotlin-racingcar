@@ -41,18 +41,4 @@ class CarTest {
     fun `자동차 정지 테스트`() {
         assertThat(car.move { false }).isEqualTo(0)
     }
-
-    @Test
-    fun `자동차 위치 저장 테스트`() {
-        // given
-        val positionHistory = PositionHistory(mutableListOf())
-
-        // when
-        repeat(10) {
-            car.savePosition(positionHistory)
-        }
-
-        // then
-        assertThat(positionHistory.size()).isEqualTo(10)
-    }
 }
