@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class Car(val name: String, private val seedMaker: SeedMaker) {
     var position = 0

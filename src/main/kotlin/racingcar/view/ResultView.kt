@@ -1,4 +1,7 @@
-package racingcar
+package racingcar.view
+
+import racingcar.domain.CarResult
+import racingcar.domain.GameResults
 
 class ResultView {
     fun printGameHistory(gameResult: GameResults) {

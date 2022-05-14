@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class RacingCarGame(private val trialCount: Int, private val seedMaker: SeedMaker, carCount: List<String>) {
     private val carList = List(carCount.size) { Car(carCount[it], seedMaker) }
