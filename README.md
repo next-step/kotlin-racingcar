@@ -37,3 +37,8 @@
 - [ ] 모든 로직에 단위 테스트를 구현한다. 단, UI(System.out, System.in) 로직은 제외
 - [ ] 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 구분한다.
 - [x] UI 로직을 InputView, ResultView와 같은 클래스를 추가해 분리한다.
+
+### 고민
+- `GasStation#getRandomGas()`는 Random 라이브러리만 사용하므로 테스트 하지 않는다.
+  - Random 라이브러리를 직접 테스트하는 것과 같은 상황이므로.
+
