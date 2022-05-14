@@ -69,7 +69,7 @@ class CalculatorTest : DescribeSpec({
                     calculator.calculate("4 $ 2")
                 }
 
-                exception.message shouldBe "사칙연산 기호가 아닙니다."
+                exception.message shouldBe "옵바른 사칙연산 기호가 아닙니다. (사용 가능 연산: + - * / )"
             }
         }
 
@@ -84,8 +84,19 @@ class CalculatorTest : DescribeSpec({
                     calculator.calculate(null)
                 }
 
-                exception1.message shouldBe "올바은 계산식이 아닙니다."
-                exception2.message shouldBe "올바은 계산식이 아닙니다."
+                exception1.message shouldBe "입력값을 입력해주세요."
+                exception2.message shouldBe "입력값을 입력해주세요."
+            }
+        }
+
+        context("입력값이 공백을 포함하지 않은 경우") {
+            it("IllegalArgumentException 에러가 발생한다.") {
+                val calculator = Calculator()
+
+                val exception = shouldThrow<IllegalArgumentException> {
+                    calculator.calculate("1+2+3")
+                }
+                exception.message shouldBe "올바른 계산식이 아닙니다. 공백을 포함하여 다시 입력해주세요."
             }
         }
     }
