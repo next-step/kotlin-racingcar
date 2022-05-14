@@ -1,9 +1,8 @@
 package racing.scene
 
 interface Scene {
-
-    fun hasNext(): Boolean
-    fun before() {}
+    fun start() {}
     fun update()
-    fun after() {}
+    fun hasNext(): Boolean
+    fun onDestroy() {}
 }

@@ -1,22 +1,20 @@
 package calculator.study
 
-import calculator.dto.AST
+import calculator.dto.AbstractSyntaxTree
 import calculator.ext.isNumeric
 
-object ExpressionParser {
+class ExpressionParser(private val expressionSyntaxChecker: ExpressionSyntaxChecker) {
 
-    fun compile(expression: String): CalculateMachine {
-        CalcSyntaxChecker.validate(expression)
-        return createCalculateMachine(expression)
+    fun compile(expression: String): AbstractSyntaxTree {
+        expressionSyntaxChecker.validate(expression)
+        return parse(expression)
     }
 
-    private fun createCalculateMachine(expression: String): CalculateMachine = CalculateMachine(parse(expression))
-
-    private fun parse(expression: String): AST =
+    private fun parse(expression: String): AbstractSyntaxTree =
         expression
             .split(" ")
             .partition(String::isNumeric)
             .run {
-                AST(this.first, this.second)
+                AbstractSyntaxTree(this.first, this.second)
             }
 }

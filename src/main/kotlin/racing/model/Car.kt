@@ -6,6 +6,8 @@ data class Car constructor(private val position: Int) {
         require(0 <= this.position) { INVALID_POSITION_EXCEPTION }
     }
 
+    override fun toString(): String = PRINT_STEP_SIGN.repeat(this.position)
+
     fun moveForward(randomValue: Int): Car {
         return spawnAt(position + this.getStep(randomValue))
     }
@@ -32,6 +34,4 @@ data class Car constructor(private val position: Int) {
 
         fun spawnAt(position: Int): Car = Car(position)
     }
-
-    override fun toString(): String = PRINT_STEP_SIGN.repeat(this.position)
 }

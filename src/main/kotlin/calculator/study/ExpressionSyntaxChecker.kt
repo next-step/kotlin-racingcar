@@ -1,8 +1,8 @@
 package calculator.study
 
-object CalcSyntaxChecker {
+object ExpressionSyntaxChecker {
 
-    const val EMPTY_EXPRESSION_EXCEPTION = "비어있는 식은 사용할 수 없습니다."
+    private const val EMPTY_EXPRESSION_EXCEPTION = "비어있는 식은 사용할 수 없습니다."
 
     fun validate(expression: String) {
         if (expression.isBlank() || expression.isEmpty()) {

@@ -5,10 +5,19 @@ import io.kotest.matchers.shouldBe
 import racing.engine.EnvironmentManager
 import racing.engine.GameEngine
 import racing.fixture.StubEnvironmentModule
-import racing.fixture.StubOutputPainter
 import racing.fixture.StubRandomGenerator
 import racing.model.ScoreBoard
+import racing.port.OutputPainter
 import racing.utils.Constants
+
+class StubPlaySceneOutputPainter : OutputPainter {
+
+    val outputBuffer: MutableList<String> = mutableListOf()
+
+    override fun draw(buffer: String) {
+        outputBuffer += buffer
+    }
+}
 
 internal class PlaySceneTest : DescribeSpec({
 
@@ -21,7 +30,7 @@ internal class PlaySceneTest : DescribeSpec({
             val player = "2"
             environmentManager.put(Constants.CAR_NUMBER_KEY, player)
             environmentManager.put(Constants.STAGE_NUMBER_KEY, round)
-            val outputPainter = StubOutputPainter()
+            val outputPainter = StubPlaySceneOutputPainter()
             val scoreBoard = ScoreBoard(outputPainter)
             val successfulRandomGenerator = StubRandomGenerator(4)
             val playScene = PlayScene(outputPainter, scoreBoard, successfulRandomGenerator, environmentManager)
@@ -39,10 +48,9 @@ internal class PlaySceneTest : DescribeSpec({
 
             // when
             GameEngine.run(playScene)
-            val result = outputPainter.outputBuffer.joinToString("")
 
             // then
-            result shouldBe expectResult
+            outputPainter.outputBuffer.joinToString("") shouldBe expectResult
         }
 
         it("PlayScene은 3이하의 랜덤값이 나오면 자동차는 정지한다.") {
@@ -53,7 +61,7 @@ internal class PlaySceneTest : DescribeSpec({
             val player = "2"
             environmentManager.put(Constants.CAR_NUMBER_KEY, player)
             environmentManager.put(Constants.STAGE_NUMBER_KEY, round)
-            val outputPainter = StubOutputPainter()
+            val outputPainter = StubPlaySceneOutputPainter()
             val scoreBoard = ScoreBoard(outputPainter)
             val successfulRandomGenerator = StubRandomGenerator(3)
             val playScene = PlayScene(outputPainter, scoreBoard, successfulRandomGenerator, environmentManager)
@@ -71,10 +79,9 @@ internal class PlaySceneTest : DescribeSpec({
 
             // when
             GameEngine.run(playScene)
-            val result = outputPainter.outputBuffer.joinToString("")
 
             // then
-            result shouldBe expectResult
+            outputPainter.outputBuffer.joinToString("") shouldBe expectResult
         }
     }
 })

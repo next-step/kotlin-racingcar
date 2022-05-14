@@ -4,9 +4,9 @@ import racing.port.OutputPainter
 
 class StubOutputPainter : OutputPainter {
 
-    val outputBuffer = mutableListOf<String>()
+    lateinit var outputBuffer: String
 
     override fun draw(buffer: String) {
-        outputBuffer += buffer
+        outputBuffer = buffer
     }
 }

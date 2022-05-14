@@ -12,19 +12,19 @@ class InputScene(
 ) : Scene {
 
     override fun update() {
-        getCarNumber()
-        getStageNumber()
+        setCarNumber()
+        setStageNumber()
     }
 
-    private fun getCarNumber() {
+    override fun hasNext(): Boolean = false
+
+    private fun setCarNumber() {
         outputPainter.draw("자동차 대수는 몇 대인가요?\n")
         environmentManager.put(Constants.CAR_NUMBER_KEY, inputSystem.read())
     }
 
-    private fun getStageNumber() {
+    private fun setStageNumber() {
         outputPainter.draw("시도할 횟수는 몇 회인가요?\n")
         environmentManager.put(Constants.STAGE_NUMBER_KEY, inputSystem.read())
     }
-
-    override fun hasNext(): Boolean = false
 }

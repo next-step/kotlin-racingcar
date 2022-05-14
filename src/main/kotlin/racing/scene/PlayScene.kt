@@ -1,7 +1,7 @@
 package racing.scene
 
 import racing.engine.EnvironmentManager
-import racing.model.Car
+import racing.model.Cars
 import racing.model.ScoreBoard
 import racing.port.OutputPainter
 import racing.port.RandomGeneratorPort
@@ -16,9 +16,9 @@ class PlayScene(
 
     private var currentRound = 1
     private var totalRound = 0
-    private var cars: List<Car> = emptyList()
+    private var cars: Cars = Cars.empty()
 
-    override fun before() {
+    override fun start() {
         setUpTotalRound()
         setUpCars()
         printPrologue()
@@ -27,14 +27,14 @@ class PlayScene(
     override fun update() {
         moveCars()
         drawCars()
-        splitStageLine()
+        outputSplitLine()
     }
 
     override fun hasNext(): Boolean = currentRound++ < totalRound
 
     private fun setUpCars() {
         val carNumber = environmentManager.getOrDefault(Constants.CAR_NUMBER_KEY, "0").toInt()
-        cars = MutableList(carNumber) { Car.spawnAt(0) }
+        cars = Cars.create(carNumber)
     }
 
     private fun setUpTotalRound() {
@@ -46,13 +46,11 @@ class PlayScene(
     }
 
     private fun moveCars() {
-        cars = cars.map {
-            it.moveForward(randomGenerator.generate())
-        }
+        cars = cars.moveAll(randomGenerator)
     }
 
-    private fun splitStageLine() {
-        outputPainter.draw("\n")
+    private fun outputSplitLine() {
+        outputPainter.draw("\n\n")
     }
 
     private fun printPrologue() {
