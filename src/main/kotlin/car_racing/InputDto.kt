@@ -2,7 +2,7 @@ package car_racing
 
 import java.lang.Integer.parseInt
 
-class InputDto(carCountString: String, movementTryCountString: String) {
+data class InputDto(val carCountString: String, val movementTryCountString: String) {
     val carCount: Int
     val movementTryCount: Int
 
@@ -17,7 +17,7 @@ class InputDto(carCountString: String, movementTryCountString: String) {
     companion object {
         private const val CAR_COUNT_NAME = "자동차 대수"
         private const val MOVEMENT_TRY_COUNT_NAME = "시도할 횟수"
-        private val ONLY_NUMBER_REGEX = Regex("([0-9])+")
+        private val ONLY_NUMBER_REGEX = Regex("(\\d)+")
 
         private fun removeSpace(spaceContainedString: String): String {
             return spaceContainedString.replace("\\s".toRegex(), "")

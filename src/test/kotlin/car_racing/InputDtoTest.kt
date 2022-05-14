@@ -20,6 +20,20 @@ class InputDtoTest : StringSpec({
         inputDto.movementTryCount shouldBe 5
     }
 
+    "inputDto 는 data class 이다 " {
+        // given
+        val carCount = "3"
+        val movementTryCount = "5"
+        val inputDto1 = InputDto(carCount, movementTryCount)
+        val inputDto2 = InputDto(carCount, movementTryCount)
+
+        // when
+        val dtoIsMatch = inputDto1 == inputDto2
+
+        // then
+        dtoIsMatch shouldBe true
+    }
+
     "inputDto 는 공백이 포함된 값을 입력 받아도 정상 저장 한다" {
         // given
         val carCount = "  3  0  "
