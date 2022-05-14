@@ -9,21 +9,19 @@ import io.kotest.matchers.shouldBe
 
 class TryNumberTest : StringSpec({
     "시도횟수가 1이상이면 정상적으로 객체를 생성한다." {
-        listOf(
-            1, 2, 3, 4,
-        ).forAll {
-            // when //then
-            shouldNotThrowAny { TryNumber(it) }
-        }
+        // given
+        val value = 1
+
+        // when //then
+        shouldNotThrowAny { TryNumber(value) }
     }
 
     "시도횟수가 1미만이면 예외를 발생시킨다." {
-        listOf(
-            -3, -2, -1, 0,
-        ).forAll {
-            // when //then
-            shouldThrowExactly<IllegalArgumentException> { TryNumber(it) }
-        }
+        // given
+        val value = 0
+
+        // when //then
+        shouldThrowExactly<IllegalArgumentException> { TryNumber(value) }
     }
 
     "시도횟수를 차감한다." {
