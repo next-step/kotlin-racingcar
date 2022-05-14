@@ -1,17 +1,6 @@
 package car_racing
 
-class RandomNumberCarRacingManager : CarRacingManager {
-
-    constructor() {}
-
-    constructor(inputDto: InputDto) {
-        var inputCars = emptyList<Car>()
-        for (index in 1..inputDto.carCount) {
-            inputCars = inputCars + Car()
-        }
-        cars = inputCars
-    }
-
+class RandomNumberCarRacingManager(carsList: List<Car> = listOf()) : CarRacingManager(carsList) {
     override fun getMonitoringInformation(): String {
         var result = ""
         for ((index, car) in cars.withIndex()) {
@@ -35,6 +24,14 @@ class RandomNumberCarRacingManager : CarRacingManager {
         private const val MIN_FORWARD_NUMBER = 4
         private const val MONITOR_CHARACTER_BY_CAR = "-"
         private const val MONITOR_CHARACTER_DIVISION = "\n"
+
+        fun fromInputDto(inputDto: InputDto): RandomNumberCarRacingManager {
+            var inputCars = emptyList<Car>()
+            for (index in 1..inputDto.carCount) {
+                inputCars = inputCars + Car()
+            }
+            return RandomNumberCarRacingManager(inputCars)
+        }
 
         fun isForwardNumber(randomInt: Int): Boolean {
             return randomInt >= MIN_FORWARD_NUMBER

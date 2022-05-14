@@ -8,7 +8,7 @@ class RandomNumberCarRacingManagerTest : StringSpec({
     "getMonitoringInformation 는 자동차 경주 디스플레이하기 위한 데이터를 넘겨준다" {
         // given
         val carDistances = listOf(1, 3, 4)
-        val randomNumberCarRacingManager = createTestCarRacingManager(carDistances)
+        val randomNumberCarRacingManager = RandomNumberCarRacingManager(carDistances.map { it -> Car(it) })
         val monitoringValue = """--
 ----
 -----"""
@@ -57,7 +57,7 @@ class RandomNumberCarRacingManagerTest : StringSpec({
     "tryMoveCar 는 자동차 번호, 랜덤 숫자를 받아 전진 여부를 설정해준다" {
         // given
         val forwardRandomNumber = 4
-        val randomNumberCarRacingManager = RandomNumberCarRacingManager(InputDto("1", "0"))
+        val randomNumberCarRacingManager = RandomNumberCarRacingManager(listOf(Car()))
 
         // when
         randomNumberCarRacingManager.tryMoveCar(0, forwardRandomNumber)
@@ -69,7 +69,7 @@ class RandomNumberCarRacingManagerTest : StringSpec({
     "tryMoveCar 는 전진할수 없는 랜덤 숫자를 받으면 전진하지 않는다" {
         // given
         val stopRandomNumber = 1
-        val randomNumberCarRacingManager = RandomNumberCarRacingManager(InputDto("1", "0"))
+        val randomNumberCarRacingManager = RandomNumberCarRacingManager(listOf(Car()))
 
         // when
         randomNumberCarRacingManager.tryMoveCar(0, stopRandomNumber)
@@ -78,11 +78,3 @@ class RandomNumberCarRacingManagerTest : StringSpec({
         randomNumberCarRacingManager.cars[0].distance shouldBe 0
     }
 })
-
-private fun createTestCarRacingManager(carDistances: List<Int>): RandomNumberCarRacingManager {
-    val randomNumberCarRacingManager = RandomNumberCarRacingManager(InputDto("${carDistances.size}", "0"))
-    for ((index: Int, distance: Int) in carDistances.withIndex()) {
-        randomNumberCarRacingManager.cars[index].distance = distance
-    }
-    return randomNumberCarRacingManager
-}

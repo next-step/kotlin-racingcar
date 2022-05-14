@@ -6,7 +6,7 @@ fun main() {
     println("시도할 횟수는 몇 회인가요?")
     val movementTryCount: String = readln()
     val inputDto = InputDto(carCount, movementTryCount)
-    val randomNumberCarRacingManager = RandomNumberCarRacingManager(inputDto)
+    val randomNumberCarRacingManager = RandomNumberCarRacingManager.fromInputDto(inputDto)
 
     repeat(inputDto.movementTryCount) {
         setRandomValue(randomNumberCarRacingManager)
