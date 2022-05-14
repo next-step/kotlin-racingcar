@@ -1,12 +1,13 @@
 package step3
 
-class Cars private constructor(count: Int) {
+class Cars private constructor(private val carNames: String) {
     val carsList: List<Car>
 
     init {
-        val cars: MutableList<Car> = ArrayList(count)
-        repeat(count) {
-            cars.add(Car.makeCar())
+        val carNamesArray = carNames.split(",")
+        val cars: MutableList<Car> = ArrayList()
+        for (i in carNamesArray.indices) {
+            cars.add(Car.makeCar(carNamesArray[i]))
         }
         this.carsList = cars
     }
@@ -16,8 +17,8 @@ class Cars private constructor(count: Int) {
     }
 
     companion object {
-        fun from(count: Int): Cars {
-            return Cars(count)
+        fun from(carNames: String): Cars {
+            return Cars(carNames)
         }
     }
 }
