@@ -28,16 +28,16 @@ internal class RacingGameRecordTest : DescribeSpec({
                 val lapRecords = listOf(
                     LapRecord(
                         listOf(
-                            CarRecord(winner to Location(0)),
-                            CarRecord(CarName("참가자1") to Location(4)),
-                            CarRecord(CarName("참가자2") to Location(3)),
+                            CarRecord(winner, Location(0)),
+                            CarRecord(CarName("참가자1"), Location(4)),
+                            CarRecord(CarName("참가자2"), Location(3)),
                         )
                     ),
                     LapRecord(
                         listOf(
-                            CarRecord(winner to Location(5)),
-                            CarRecord(CarName("참가자1") to Location(4)),
-                            CarRecord(CarName("참가자2") to Location(3))
+                            CarRecord(winner, Location(5)),
+                            CarRecord(CarName("참가자1"), Location(4)),
+                            CarRecord(CarName("참가자2"), Location(3))
                         )
                     )
                 )
@@ -52,16 +52,16 @@ internal class RacingGameRecordTest : DescribeSpec({
                 val lapRecords = listOf(
                     LapRecord(
                         listOf(
-                            CarRecord(winner1 to Location(39)),
-                            CarRecord(winner2 to Location(4)),
-                            CarRecord(CarName("참가자") to Location(100))
+                            CarRecord(winner1, Location(39)),
+                            CarRecord(winner2, Location(4)),
+                            CarRecord(CarName("참가자"), Location(100))
                         )
                     ),
                     LapRecord(
                         listOf(
-                            CarRecord(winner1 to Location(500)),
-                            CarRecord(winner2 to Location(500)),
-                            CarRecord(CarName("참가자") to Location(200))
+                            CarRecord(winner1, Location(500)),
+                            CarRecord(winner2, Location(500)),
+                            CarRecord(CarName("참가자"), Location(200))
                         )
                     )
                 )

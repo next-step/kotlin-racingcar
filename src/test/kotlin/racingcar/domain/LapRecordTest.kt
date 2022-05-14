@@ -11,9 +11,9 @@ internal class LapRecordTest : DescribeSpec({
                 val winner = CarName("우승자")
                 val lapRecord = LapRecord(
                     listOf(
-                        CarRecord(winner to Location(5)),
-                        CarRecord(CarName("비우승자") to Location(4)),
-                        CarRecord(CarName("비우승자") to Location(3)),
+                        CarRecord(winner, Location(5)),
+                        CarRecord(CarName("비우승자"), Location(4)),
+                        CarRecord(CarName("비우승자"), Location(3)),
                     )
                 )
 
@@ -25,9 +25,9 @@ internal class LapRecordTest : DescribeSpec({
                 val winner2 = CarName("우승자2")
                 val lapRecord = LapRecord(
                     listOf(
-                        CarRecord(winner1 to Location(5)),
-                        CarRecord(winner2 to Location(5)),
-                        CarRecord(CarName("비우승자") to Location(3)),
+                        CarRecord(winner1, Location(5)),
+                        CarRecord(winner2, Location(5)),
+                        CarRecord(CarName("비우승자"), Location(3)),
                     )
                 )
 

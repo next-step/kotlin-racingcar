@@ -9,7 +9,7 @@ class Cars(
 
     fun nameWithLocation(): List<CarRecord> {
         return cars.map {
-            CarRecord(it.carName to it.location)
+            CarRecord(it.carName, it.location)
         }
     }
 

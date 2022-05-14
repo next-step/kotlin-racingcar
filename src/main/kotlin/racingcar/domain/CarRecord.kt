@@ -1,8 +1,11 @@
 package racingcar.domain
 
 data class CarRecord(
-    private val value: Pair<CarName, Location>
+    val carName: CarName, val location: Location
 ) {
-    val carName get() = value.first
-    val location get() = value.second
+    companion object {
+        fun of(car: Car): CarRecord {
+            return CarRecord(car.carName, car.location)
+        }
+    }
 }
