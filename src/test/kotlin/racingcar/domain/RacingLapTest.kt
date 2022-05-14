@@ -13,12 +13,12 @@ internal class RacingLapTest : StringSpec({
 
         // when
         for (i in 1..goalLapValue) {
-            racingLap.isFinished() shouldBe false
+            racingLap.isNotFinished() shouldBe true
             racingLap.waveTheFlag()
         }
 
         // then
-        racingLap.isFinished() shouldBe true
+        racingLap.isNotFinished() shouldBe false
     }
 
     "레이싱 시도가 ${RacingLap.MIN_RACING_LAP} 보다 작으면 예외가 발생한다." {

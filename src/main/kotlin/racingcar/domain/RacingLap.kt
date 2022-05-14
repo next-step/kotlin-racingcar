@@ -17,8 +17,8 @@ class RacingLap(
         currentLap += 1
     }
 
-    fun isFinished(): Boolean {
-        return goalLap == currentLap
+    fun isNotFinished(): Boolean {
+        return goalLap != currentLap
     }
 
     companion object {
