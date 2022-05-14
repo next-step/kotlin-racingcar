@@ -7,9 +7,9 @@ class Cars(
         cars.forEach { it.move(movingStrategy) }
     }
 
-    fun nameWithLocation(): List<CarNameWithLocation> {
+    fun nameWithLocation(): List<CarRecord> {
         return cars.map {
-            CarNameWithLocation(it.carName to it.location)
+            CarRecord(it.carName to it.location)
         }
     }
 
