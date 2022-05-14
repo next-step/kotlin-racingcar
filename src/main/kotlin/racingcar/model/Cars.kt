@@ -17,5 +17,11 @@ class Cars(
         }
     }
 
+    fun findWinners(): Cars = Cars(cars.filter { it.position == findMaxPosition() })
+
+    private fun findMaxPosition() = cars.maxOf { it.position }
+
     fun forEach(action: (Car) -> Unit) = cars.forEach(action)
+
+    fun getCarNameList(): List<CarName> = cars.map { it.name }.toList()
 }
