@@ -1,14 +1,14 @@
 import Constants.RESULT_MESSAGE
 
 fun main() {
-    val (numberOfCar, numberOfTries) = CarRacingInputHandler.input()
-    CarRacingInputHandler.validate(numberOfCar, numberOfTries)
+    val inputParams = CarRacingInputHandler.input()
+    CarRacingInputHandler.validate(inputParams.numberOfCars, inputParams.numberOfTries)
 
-    val cars = CarRacingInputHandler.getCars(numberOfCar)
+    val cars = CarRacingInputHandler.getCars(inputParams.numberOfCars)
 
     println(RESULT_MESSAGE)
 
-    repeat(numberOfTries.toInt()) {
+    repeat(inputParams.numberOfTries.toInt()) {
         RacingGame.play(cars, RandomMovingStrategy())
         CarRacingOutputHandler.display(cars)
     }

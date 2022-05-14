@@ -3,14 +3,14 @@ import Constants.TRIES_INPUT_MESSAGE
 
 class CarRacingInputHandler {
     companion object {
-        fun input(): Pair<String, String> {
+        fun input(): InputParams {
             displayCarMessage()
             val numberOfCar = readln()
 
             displayTriesMessage()
             val numberOfTries = readln()
 
-            return numberOfCar to numberOfTries
+            return InputParams(numberOfCar, numberOfTries)
         }
 
         private fun displayCarMessage() {
