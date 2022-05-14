@@ -6,5 +6,5 @@ fun main() {
     println("시도할 횟수는 몇 회인가요?")
     val tryRound = readLine()!!.toInt()
 
-    Show.result(tryRound, Racing.start(carNumber, tryRound))
+    RacingView.result(tryRound, Racing.start(carNumber, tryRound))
 }

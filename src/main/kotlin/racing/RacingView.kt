@@ -1,6 +1,7 @@
 package racing
 
-object Show {
+object RacingView {
+    private val DISPLAY_NUMBER = 1
     fun result(round: Int, carDistances: ArrayList<Array<Int>>) {
         for(round in 0 until round) {
             println("$round round")
@@ -15,7 +16,7 @@ object Show {
                     break
                 }
 
-                if (car[i] == 1) { // 매직 넘버
+                if (car[i] == DISPLAY_NUMBER) {
                     print("-")
                 }
             }
