@@ -29,4 +29,13 @@ class Output {
         }
         println()
     }
+
+    fun printWinners(cars: Cars) {
+        println("${showWinners(cars)} 가 최종 우승했습니다.")
+    }
+
+    private fun showWinners(cars: Cars): String {
+        return cars.findWinners()
+            .getCarNameList().joinToString { it.name }
+    }
 }
