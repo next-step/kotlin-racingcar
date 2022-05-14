@@ -9,5 +9,6 @@ class CalculatorTest : StringSpec({
 
     "plus test" {
         calculator.calculate("1 + 1") shouldBe "2"
+        calculator.calculate("1 + 2") shouldBe "3"
     }
 })
