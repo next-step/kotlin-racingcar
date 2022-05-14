@@ -1,12 +1,12 @@
-package carRacing
+package car_racing
 
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.StringSpec
-import io.kotest.matchers.*
+import io.kotest.matchers.shouldBe
 
-class InputDtoTest: StringSpec({
+class InputDtoTest : StringSpec({
     "inputDto 는 자동차 대수, 시도할 횟수를 입력 받아 Int Property 로 저장한다" {
         // given
         val carCount = "3"
@@ -47,7 +47,6 @@ class InputDtoTest: StringSpec({
         exception.message shouldBe ErrorMessage.getErrorMessageForOnlyIntegerString("자동차 대수", carCount)
     }
 
-
     "validateForIntegerString 정수를 확인한다." {
         // given
         val integerString = "10"
@@ -63,7 +62,6 @@ class InputDtoTest: StringSpec({
         // given
         val integerString = "10test!@"
         val parameterName = "testParameterName"
-
 
         // then
         shouldThrow<IllegalArgumentException> {

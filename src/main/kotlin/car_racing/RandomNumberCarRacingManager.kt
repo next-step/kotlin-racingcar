@@ -1,4 +1,4 @@
-package carRacing
+package car_racing
 
 class RandomNumberCarRacingManager : CarRacingManager {
 

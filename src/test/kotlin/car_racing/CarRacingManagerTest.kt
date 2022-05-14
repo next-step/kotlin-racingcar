@@ -1,4 +1,4 @@
-package carRacing
+package car_racing
 
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.StringSpec
@@ -32,7 +32,6 @@ class CarRacingManagerTest : StringSpec({
         shouldThrowExactly.message shouldBe "음수 값으로 시스템을 실행할수 없습니다"
     }
 
-
     "validateCarsIndex 는 cars 에 사이즈를 넘긴 값을 넣으면 에러가 발생한다" {
         // given
         val carRacingManagerForTest = CarRacingManagerForTest()
@@ -47,7 +46,6 @@ class CarRacingManagerTest : StringSpec({
         // then
         shouldThrowExactly.message shouldBe "존재 하지 않은 번호 입니다"
     }
-
 })
 
 class CarRacingManagerForTest : CarRacingManager() {

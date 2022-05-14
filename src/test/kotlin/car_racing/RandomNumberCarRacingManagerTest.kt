@@ -1,4 +1,4 @@
-package carRacing
+package car_racing
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
@@ -84,5 +84,4 @@ class RandomNumberCarRacingManagerTest : StringSpec({
         // then
         randomNumberCarRacingManager.cars[0].distance shouldBe 0
     }
-
 })

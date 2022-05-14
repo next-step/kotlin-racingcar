@@ -1,4 +1,4 @@
-package carRacing
+package car_racing
 
 abstract class CarRacingManager {
     var cars: List<Car> = emptyList()
