@@ -15,7 +15,7 @@ internal class RacingTest {
         // Given
         val moveTwiceEngine = InstantEngine(2)
         val carId = 1
-        val participants: List<Car> = listOf(Car(carId, moveTwiceEngine))
+        val participants: List<Car> = listOf(Car(carId, "twice", moveTwiceEngine))
         val racing = Racing.new(participants, 5)
 
         // When
@@ -47,8 +47,8 @@ internal class RacingTest {
         val car1Id = 0
         val car2Id = 1
         val participants: List<Car> = listOf(
-            Car(car1Id, moveAllEngine),
-            Car(car2Id, moveOnceEngine)
+            Car(car1Id, "all", moveAllEngine),
+            Car(car2Id, "once", moveOnceEngine)
         )
         val racing = Racing.new(participants, moveCount)
 

@@ -7,10 +7,10 @@ import camp.nextstep.edu.racingcar.racing.Racing
 fun main() {
     val cli = CommandLineInterface()
 
-    val carNumber = cli.readCarNumber()
+    val carNames = cli.readCarNames()
     val moveCount = cli.readMoveCount()
 
-    val participants = IntRange(1, carNumber).map { Car(it) }
+    val participants = carNames.mapIndexed { i, name -> Car(i, name) }
     val racing = Racing.new(participants, moveCount)
 
     racing.start()

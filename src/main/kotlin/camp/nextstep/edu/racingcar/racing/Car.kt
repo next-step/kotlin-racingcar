@@ -2,7 +2,11 @@ package camp.nextstep.edu.racingcar.racing
 
 import kotlin.random.Random
 
-class Car(val id: Int, private val engine: Engine = RandomlyEngine()) {
+class Car(val id: Int, val name: String, private val engine: Engine = RandomlyEngine()) {
+
+    init {
+        require(name.length <= 5) { "자동차 이름은 5자를 초과할 수 없습니다." }
+    }
 
     fun raceOn(track: Track, moveCount: Int) {
         for (i in 0 until moveCount) {

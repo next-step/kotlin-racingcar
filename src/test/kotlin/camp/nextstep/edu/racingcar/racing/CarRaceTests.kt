@@ -6,8 +6,8 @@ import org.assertj.core.api.Assertions.assertThat
 
 class CarRaceTests : BehaviorSpec({
     given("자동차 엔진이 1번 움직일 수 있을 때 ") {
-        val moveTwiceEngine = InstantEngine(1)
-        val car = Car(1, moveTwiceEngine)
+        val moveOnceEngine = InstantEngine(1)
+        val car = Car(1, "once", moveOnceEngine)
 
         `when`("길이가 총 5인 Track 에서 5번 달리면 ") {
             val track = Track(5)
@@ -26,8 +26,8 @@ class CarRaceTests : BehaviorSpec({
     }
 
     given("자동차 엔진이 3번 움직일 수 있을 때 ") {
-        val moveTwiceEngine = InstantEngine(3)
-        val car = Car(1, moveTwiceEngine)
+        val moveThirdEngine = InstantEngine(3)
+        val car = Car(1, "third", moveThirdEngine)
 
         `when`("길이가 총 3인 Track 에서 3번 달리면 ") {
             val track = Track(3)
@@ -45,7 +45,7 @@ class CarRaceTests : BehaviorSpec({
 
     given("자동차 엔진이 2번 움직일 수 있을 때 ") {
         val moveTwiceEngine = InstantEngine(2)
-        val car = Car(1, moveTwiceEngine)
+        val car = Car(1, "twice", moveTwiceEngine)
 
         `when`("길이가 총 3인 Track 에서 1번 달리면 ") {
             val track = Track(3)
@@ -62,8 +62,8 @@ class CarRaceTests : BehaviorSpec({
     }
 
     given("자동차 엔진이 5번 움직일 수 있을 때 ") {
-        val moveTwiceEngine = InstantEngine(5)
-        val car = Car(1, moveTwiceEngine)
+        val moveFiveEngine = InstantEngine(5)
+        val car = Car(1, "five", moveFiveEngine)
 
         `when`("길이가 총 3인 Track 에서 5번 달리면 ") {
             val track = Track(3)
