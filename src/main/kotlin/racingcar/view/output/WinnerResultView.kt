@@ -37,8 +37,7 @@ class WinnerResultView : ResultView {
     }
 
     private fun printWinner(winnersRecord: List<CarRecord>) {
-        val winnersName = winnersRecord.map { it.car.carName }
-            .joinToString(", ")
+        val winnersName = winnersRecord.joinToString(", ") { it.car.carName }
         println("${winnersName}가 최종 우승했습니다.")
     }
 
