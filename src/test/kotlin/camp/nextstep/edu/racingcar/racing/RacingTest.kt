@@ -87,12 +87,10 @@ internal class RacingTest {
     fun racingTrio() {
         // Given
         val moveCount = 5
-        val moveThreeEngine = InstantEngine(3)
-        val moveOnceEngine = InstantEngine(1)
 
-        val car1 = Car(0, "three", moveThreeEngine)
-        val car2 = Car(1, "once", moveOnceEngine)
-        val car3 = Car(0, "three", moveThreeEngine)
+        val car1 = Car(0, "three", InstantEngine(3))
+        val car2 = Car(1, "once", InstantEngine(1))
+        val car3 = Car(2, "three", InstantEngine(3))
         val participants: List<Car> = listOf(car1, car2, car3)
         val racing = Racing.new(participants, moveCount)
 
@@ -110,8 +108,8 @@ internal class RacingTest {
         assertTrue(car1Traces.next())
         assertTrue(car1Traces.next())
         assertTrue(car1Traces.next())
-        assertTrue(car1Traces.next())
-        assertTrue(car1Traces.next())
+        assertFalse(car1Traces.next())
+        assertFalse(car1Traces.next())
 
         val car2Traces = requireNotNull(resultIdMap[car2.id]).traces()
         assertTrue(car2Traces.next())
@@ -122,8 +120,8 @@ internal class RacingTest {
 
         val car3Traces = requireNotNull(resultIdMap[car3.id]).traces()
         assertTrue(car3Traces.next())
-        assertFalse(car3Traces.next())
-        assertFalse(car3Traces.next())
+        assertTrue(car3Traces.next())
+        assertTrue(car3Traces.next())
         assertFalse(car3Traces.next())
         assertFalse(car3Traces.next())
 
