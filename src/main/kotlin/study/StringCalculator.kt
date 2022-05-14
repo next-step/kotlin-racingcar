@@ -10,9 +10,7 @@ class StringCalculator {
         val numberListToOperate = numberList.drop(1)
         val pairList = operatorList.zip(numberListToOperate).map { (operator, number) -> Pair(operator, number) }
 
-        val initialValue = numberList.component1()
-
-        return calculateEveryPair(pairList, initialValue)
+        return calculateEveryPair(pairList, numberList[0])
     }
 
     private fun String.checkEmptyOrNull(): String {
