@@ -13,7 +13,7 @@ class Cars(
     }
 
     fun moveAll(movementStrategy: () -> Int): Cars {
-        val nextCars = cars.map { it.moveOrNot(movementStrategy.invoke()) }
-        return Cars(nextCars)
+        return cars.map { it.moveOrNot(movementStrategy.invoke()) }
+            .run { Cars(this) }
     }
 }
