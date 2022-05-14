@@ -14,11 +14,7 @@ class Operate {
             carList.add(Car())
         }
 
-        // todo: 더 나은 iterte 방법
-        var cnt = 0
-        while (true) {
-            if (cnt == userInput[1]) break
-            cnt++
+        for (i in 1..userInput[1]) {
             carList.forEach {
                 it.move()
             }

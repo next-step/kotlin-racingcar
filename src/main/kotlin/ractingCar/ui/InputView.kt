@@ -5,6 +5,7 @@ import ractingCar.lib.Validation
 
 class InputView {
     fun getInput(): List<Int> {
+        //todo: 더 좋은 return 방법?
         println(Messages.NUMBER_OF_CAR)
         val numOfCars = Validation().isNumber(readln())
 
