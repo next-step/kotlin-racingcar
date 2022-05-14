@@ -8,7 +8,6 @@ object Operators {
         Operator.DIVIDE.type to Operator.DIVIDE
     )
 
-    fun getOperator(stringOperate: String): Operator {
-        return operators[stringOperate] ?: throw IllegalArgumentException("+,-,/,* 연산만 가능합니다.")
-    }
+    fun getOperator(stringOperate: String): Operator =
+        operators[stringOperate] ?: throw IllegalArgumentException("+,-,/,* 연산만 가능합니다.")
 }

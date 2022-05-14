@@ -1,7 +1,6 @@
 package calculator
 
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -23,14 +22,13 @@ internal class ExpressionTest {
     @MethodSource("failGenerate")
     fun `연산자가 아닌 다른 문자열`(operands: MutableList<Int>, operators: MutableList<String>, actual: Int) {
 
-        assertThatIllegalArgumentException()
-            .isThrownBy { Expression.calculate(operands, operators) }
+        assertThrows<IllegalArgumentException> { Expression.calculate(operands, operators) }
     }
 
     @ParameterizedTest
     @MethodSource("failGenerateWithEmpty")
     fun `연산자가 더 많을 때`(operands: MutableList<Int>, operators: MutableList<String>, actual: Int) {
-        assertThrows<java.util.NoSuchElementException> { Expression.calculate(operands, operators) }
+        assertThrows<NoSuchElementException> { Expression.calculate(operands, operators) }
     }
 
     companion object {

@@ -9,5 +9,4 @@ fun main() {
         println(Expression.calculate(customStringDelimiter.getOperands(), customStringDelimiter.getOperators()))
         println()
     }
-
 }

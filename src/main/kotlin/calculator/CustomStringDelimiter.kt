@@ -1,50 +1,35 @@
 package calculator
 
-import kotlin.streams.toList
-
 class CustomStringDelimiter(value: String?) {
 
-    private val values: List<String>
     private val operands: MutableList<Int>
     private val operators: MutableList<String>
 
     init {
-
-        values = validate(value)
-        operators = values.stream()
-            .filter { Expression.STRING_OPERATORS.contains(it) }
+        validate(value)
+        val values = value!!.split(DELIMITER)
             .toList()
+
+        operators = values
+            .filter { STRING_OPERATORS.contains(it) }
             .toMutableList()
 
-        operands = values.stream()
-            .filter { !Expression.STRING_OPERATORS.contains(it) }
+        operands = values
+            .filter { !STRING_OPERATORS.contains(it) }
             .map { it.toInt() }
-            .toList()
             .toMutableList()
     }
 
-    private fun validate(value: String?): List<String> {
-        if (value == null) {
-            throw IllegalArgumentException("잘못된 값이 전달되었습니다.")
-        }
-
-        if (value.isBlank() || value.isEmpty()) {
-            throw IllegalArgumentException("잘못된 값이 전달되었습니다.")
-        }
-
-        return value.split(DELIMITER)
-            .toList()
+    private fun validate(value: String?) {
+        require(!value.isNullOrBlank()) { "잘못된 값이 전달되었습니다." }
     }
 
-    fun getOperands(): MutableList<Int> {
-        return operands.toMutableList()
-    }
+    fun getOperands(): MutableList<Int> = operands
 
-    fun getOperators(): MutableList<String> {
-        return operators.toMutableList()
-    }
+    fun getOperators(): MutableList<String> = operators
 
     companion object {
         private const val DELIMITER: String = " "
+        private val STRING_OPERATORS: List<String> = listOf("+", "-", "*", "/")
     }
 }
