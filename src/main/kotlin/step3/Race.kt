@@ -4,7 +4,7 @@ class Race(val cars: List<Car>, private val tries: Int, private val currentTries
     private val moveDecisionMaker = MoveDecisionMaker()
 
     constructor(numCars: Int, tries: Int, currentTries: Int = 1) : this(
-        (1..numCars).map { Car() }, tries, currentTries
+        (1..numCars).map { Car.create() }, tries, currentTries
     )
 
     fun isFinished(): Boolean = tries <= currentTries
