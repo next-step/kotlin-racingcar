@@ -21,7 +21,7 @@ class InputView {
         val userInput = readUserInput()
 
         return if (userInput.isNullOrBlank()) throw IllegalArgumentException("입력값이 주어지지 않았습니다.")
-        else userInput.split(separator)
+        else userInput.split(separator).map { it.trim() }
     }
 
     private fun readNextPositiveInteger(): Int {
