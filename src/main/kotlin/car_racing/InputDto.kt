@@ -28,9 +28,7 @@ data class InputDto(val carCountString: String, val movementTryCountString: Stri
                 val errorMessage = ErrorMessage.getErrorMessageForOnlyIntegerString(
                     parameterName, numberString
                 )
-                throw IllegalArgumentException(
-                    errorMessage
-                )
+                throw IllegalArgumentException(errorMessage)
             }
         }
     }
