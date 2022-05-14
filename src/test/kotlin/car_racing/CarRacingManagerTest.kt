@@ -1,5 +1,6 @@
 package car_racing
 
+import car_racing.util.CarRacingManagerForTest
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
@@ -44,10 +45,3 @@ class CarRacingManagerTest : StringSpec({
         shouldThrowExactly.message shouldBe "존재 하지 않은 번호 입니다"
     }
 })
-
-class CarRacingManagerForTest(carsList: List<Car>) : CarRacingManager(carsList) {
-
-    override fun getMonitoringInformation(): String {
-        return "test"
-    }
-}

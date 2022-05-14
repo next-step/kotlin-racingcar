@@ -19,6 +19,4 @@ abstract class CarRacingManager(var cars: List<Car> = mutableListOf()) {
             throw IllegalArgumentException("존재 하지 않은 번호 입니다")
         }
     }
-
-    abstract fun getMonitoringInformation(): String
 }

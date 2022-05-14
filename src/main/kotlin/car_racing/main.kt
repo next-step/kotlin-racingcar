@@ -7,10 +7,11 @@ fun main() {
     val movementTryCount: String = readln()
     val inputDto = InputDto(carCount, movementTryCount)
     val randomNumberCarRacingManager = RandomNumberCarRacingManager.fromInputDto(inputDto)
+    val carRacingView = CarRacingView("-", "\n")
 
     repeat(inputDto.movementTryCount) {
         setRandomValue(randomNumberCarRacingManager)
-        println(randomNumberCarRacingManager.getMonitoringInformation())
+        println(carRacingView.getViewString(randomNumberCarRacingManager))
         println()
     }
 }

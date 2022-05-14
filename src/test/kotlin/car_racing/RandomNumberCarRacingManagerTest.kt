@@ -5,33 +5,6 @@ import io.kotest.matchers.shouldBe
 
 class RandomNumberCarRacingManagerTest : StringSpec({
 
-    "getMonitoringInformation 는 자동차 경주 디스플레이하기 위한 데이터를 넘겨준다" {
-        // given
-        val carDistances = listOf(1, 3, 4)
-        val randomNumberCarRacingManager = RandomNumberCarRacingManager(carDistances.map { it -> Car(it) })
-        val monitoringValue = """--
-----
------"""
-
-        // when
-        val monitoringResult = randomNumberCarRacingManager.getMonitoringInformation()
-
-        // then
-        monitoringResult shouldBe monitoringValue
-    }
-
-    "getMonitoringFormatBy 거리를 기준으로 디스플레이 용 데이터를 내보낸다" {
-        // given
-        val distance = 10
-
-        // when
-        val monitoringFormat = RandomNumberCarRacingManager.getMonitoringFormatBy(distance)
-
-        // then
-        monitoringFormat.length shouldBe distance + 1
-        monitoringFormat shouldBe "-----------"
-    }
-
     "isForwardNumber 는 랜덤 숫자를 기준으로 전진해야하는 숫자인지 판별한다" {
         // given
         val randomNumber = 4
