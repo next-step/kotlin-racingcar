@@ -5,11 +5,13 @@ class PositionHistory(private val positionHistory: MutableList<Int>) {
         positionHistory.add(position)
     }
 
+    fun getPosition(index: Int): Int {
+        return positionHistory[index]
+    }
+
     fun size(): Int {
         return positionHistory.size
     }
 
-    fun getPosition(index: Int): Int {
-        return positionHistory[index]
-    }
+    fun forEach(action: (Int) -> Unit) = positionHistory.forEach(action)
 }

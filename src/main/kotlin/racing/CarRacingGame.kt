@@ -2,30 +2,18 @@ package racing
 
 import racing.model.Car
 import racing.model.CarInput
-import racing.model.CarPositionHistory
-import racing.model.PositionHistory
+import racing.model.Cars
+import racing.model.TotalPositionHistory
 
 class CarRacingGame(private val carInput: CarInput) {
-    private val carPositionHistory: CarPositionHistory
+    fun start(): TotalPositionHistory {
+        val cars = Cars(List(carInput.carCount) { Car(START_POSITION) })
+        val totalPositionHistory = TotalPositionHistory(mutableListOf())
 
-    init {
-        carPositionHistory = initCarPositionHistory()
-    }
-
-    fun start(): CarPositionHistory {
         repeat(carInput.times) {
-            carPositionHistory.play()
+            totalPositionHistory.save(cars.moveCars())
         }
-        return carPositionHistory
-    }
-
-    private fun initCarPositionHistory(): CarPositionHistory {
-        val tmpCarPositionHistory = LinkedHashMap<Car, PositionHistory>()
-        repeat(carInput.carCount) {
-            tmpCarPositionHistory[Car(START_POSITION)] = PositionHistory(mutableListOf())
-        }
-
-        return CarPositionHistory(tmpCarPositionHistory)
+        return totalPositionHistory
     }
 
     companion object {
