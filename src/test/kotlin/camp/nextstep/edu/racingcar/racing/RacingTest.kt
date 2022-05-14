@@ -1,8 +1,9 @@
 package camp.nextstep.edu.racingcar.racing
 
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
@@ -30,14 +31,14 @@ internal class RacingTest {
         assertEquals(1, resultMap.size)
 
         val carTraces = requireNotNull(resultMap.mapKeys { it.key.id }[carId]).traces()
-        Assertions.assertTrue(carTraces.next())
-        Assertions.assertTrue(carTraces.next())
-        Assertions.assertFalse(carTraces.next())
-        Assertions.assertFalse(carTraces.next())
-        Assertions.assertFalse(carTraces.next())
+        assertTrue(carTraces.next())
+        assertTrue(carTraces.next())
+        assertFalse(carTraces.next())
+        assertFalse(carTraces.next())
+        assertFalse(carTraces.next())
 
-        Assertions.assertEquals(1, racing.winners().size)
-        Assertions.assertTrue(racing.winners().containsAll(participants))
+        assertEquals(1, racing.winners().size)
+        assertTrue(racing.winners().containsAll(participants))
     }
 
     @DisplayName("2대의 자동차가 트랙에서 경주를 할 수 있다.")
@@ -64,21 +65,21 @@ internal class RacingTest {
         assertEquals(2, resultIdMap.size)
 
         val car1Traces = requireNotNull(resultIdMap[car1.id]).traces()
-        Assertions.assertTrue(car1Traces.next())
-        Assertions.assertTrue(car1Traces.next())
-        Assertions.assertTrue(car1Traces.next())
-        Assertions.assertTrue(car1Traces.next())
-        Assertions.assertTrue(car1Traces.next())
+        assertTrue(car1Traces.next())
+        assertTrue(car1Traces.next())
+        assertTrue(car1Traces.next())
+        assertTrue(car1Traces.next())
+        assertTrue(car1Traces.next())
 
         val car2Traces = requireNotNull(resultIdMap[car2.id]).traces()
-        Assertions.assertTrue(car2Traces.next())
-        Assertions.assertFalse(car2Traces.next())
-        Assertions.assertFalse(car2Traces.next())
-        Assertions.assertFalse(car2Traces.next())
-        Assertions.assertFalse(car2Traces.next())
+        assertTrue(car2Traces.next())
+        assertFalse(car2Traces.next())
+        assertFalse(car2Traces.next())
+        assertFalse(car2Traces.next())
+        assertFalse(car2Traces.next())
 
-        Assertions.assertEquals(1, racing.winners().size)
-        Assertions.assertTrue(racing.winners().contains(car1))
+        assertEquals(1, racing.winners().size)
+        assertTrue(racing.winners().contains(car1))
     }
 
     @DisplayName("3대의 자동차가 트랙에서 경주를 할 수 있다.")
@@ -106,29 +107,29 @@ internal class RacingTest {
         assertEquals(3, resultIdMap.size)
 
         val car1Traces = requireNotNull(resultIdMap[car1.id]).traces()
-        Assertions.assertTrue(car1Traces.next())
-        Assertions.assertTrue(car1Traces.next())
-        Assertions.assertTrue(car1Traces.next())
-        Assertions.assertTrue(car1Traces.next())
-        Assertions.assertTrue(car1Traces.next())
+        assertTrue(car1Traces.next())
+        assertTrue(car1Traces.next())
+        assertTrue(car1Traces.next())
+        assertTrue(car1Traces.next())
+        assertTrue(car1Traces.next())
 
         val car2Traces = requireNotNull(resultIdMap[car2.id]).traces()
-        Assertions.assertTrue(car2Traces.next())
-        Assertions.assertFalse(car2Traces.next())
-        Assertions.assertFalse(car2Traces.next())
-        Assertions.assertFalse(car2Traces.next())
-        Assertions.assertFalse(car2Traces.next())
+        assertTrue(car2Traces.next())
+        assertFalse(car2Traces.next())
+        assertFalse(car2Traces.next())
+        assertFalse(car2Traces.next())
+        assertFalse(car2Traces.next())
 
         val car3Traces = requireNotNull(resultIdMap[car3.id]).traces()
-        Assertions.assertTrue(car3Traces.next())
-        Assertions.assertFalse(car3Traces.next())
-        Assertions.assertFalse(car3Traces.next())
-        Assertions.assertFalse(car3Traces.next())
-        Assertions.assertFalse(car3Traces.next())
+        assertTrue(car3Traces.next())
+        assertFalse(car3Traces.next())
+        assertFalse(car3Traces.next())
+        assertFalse(car3Traces.next())
+        assertFalse(car3Traces.next())
 
         assertEquals(2, racing.winners().size)
-        Assertions.assertTrue(racing.winners().contains(car1))
-        Assertions.assertTrue(racing.winners().contains(car3))
+        assertTrue(racing.winners().contains(car1))
+        assertTrue(racing.winners().contains(car3))
     }
 
     @DisplayName("경주가 끝나기 전, 결과를 요청할 수 없다.")
