@@ -3,13 +3,13 @@ package calculator
 private const val DOUBLE_ZERO = 0.0
 
 enum class Operator(private val value: String, private val function: (Double, Double) -> Double) {
-    PLUS("+", { t, u -> t + u }),
-    MINUS("-", { t, u -> t - u }),
-    DIVISION("/", { t, u ->
-        require(u != DOUBLE_ZERO) { "0으로 나눌수 없습니다." }
-        t / u
+    PLUS("+", { first, second -> first + second }),
+    MINUS("-", { first, second -> first - second }),
+    DIVISION("/", { first, second ->
+        require(second != DOUBLE_ZERO) { "0으로 나눌수 없습니다." }
+        first / second
     }),
-    TIMES("*", { t, u -> t * u });
+    TIMES("*", { first, second -> first * second });
 
     companion object {
         fun find(operator: String): Operator {
@@ -19,6 +19,6 @@ enum class Operator(private val value: String, private val function: (Double, Do
     }
 
     fun operate(first: Double, second: Double): Double {
-        return function.invoke(first, second)
+        return function(first, second)
     }
 }
