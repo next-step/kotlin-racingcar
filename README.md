@@ -126,7 +126,7 @@
 - [x] expression형태의 함수 반환형 명시해주기
 - [x] car result의 결과를 Car가 아닌 CarResult에서 만들어주기
 - [x] string 상수화
-- [ ] 각 도메인별 테스트 추가
+- [x] 각 도메인별 테스트 추가
 
 
 #step5 
