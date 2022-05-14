@@ -8,7 +8,7 @@ fun main() {
     val carNames = InputView.getCarNames()
     val numberOfRaces = InputView.getNumberOfRaces()
 
-    val racingController = RacingController(carNames)
+    val racingController = RacingController.from(carNames)
     racingController.startGame(numberOfRaces)
 
     ResultView.printResult(racingController.raceResults)

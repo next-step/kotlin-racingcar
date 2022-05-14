@@ -8,8 +8,7 @@ import racingcar.model.RaceResult
  * 레이싱을 시작하고, 계산하는 클래스
  * Created by Jaesungchi on 2022.05.07..
  */
-class RacingController(carNames: List<String>) {
-    private val cars: List<Car> = List(carNames.size) { Car(carNames[it]) }
+class RacingController(private val cars: List<Car>) {
     private val _raceResults: MutableList<RaceResult> = mutableListOf()
     val raceResults: List<RaceResult>
         get() = _raceResults.toList()
@@ -47,5 +46,9 @@ class RacingController(carNames: List<String>) {
         private const val MAXIMUM_SCORE = 9
         private const val SCORE_OF_CAN_GO = 4
         private const val CAN_VALID_NUMBER = 1
+
+        fun from(carNames: List<String>): RacingController {
+            return RacingController(List(carNames.size) { Car(carNames[it]) })
+        }
     }
 }

@@ -28,7 +28,7 @@ class RacingControllerTest {
 
     @Test
     fun `입력된 숫자만큼 레이스 결과가가 만들어졌는가`() {
-        val racingController = RacingController(listOf("car"))
+        val racingController = RacingController.from(listOf("car"))
         racingController.startGame(3)
         assertThat(racingController.raceResults.size).isEqualTo(3)
     }
