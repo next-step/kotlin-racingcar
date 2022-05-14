@@ -3,6 +3,7 @@ package camp.nextstep.edu.racingcar.racing
 class Racing private constructor(participants: List<Car>, private val moveCount: Int) {
 
     private var ended = false
+    private val winners = setOf<Car>()
     private val carTracks = linkedMapOf(*participants.map { car -> car to Track(moveCount) }.toTypedArray())
 
     fun start() {
@@ -17,6 +18,12 @@ class Racing private constructor(participants: List<Car>, private val moveCount:
         check(ended) { "racing is not ended" }
 
         return carTracks
+    }
+
+    fun winners(): Set<Car> {
+        check(ended) { "racing is not ended" }
+
+        return winners
     }
 
     companion object {
