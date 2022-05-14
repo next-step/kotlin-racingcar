@@ -6,7 +6,7 @@ import _3_racing_car.domain.racer.Racer
 class Track(private val racer: Racer, private val power: Power) {
     fun run(times: Int): Int {
         repeat(times) {
-            racer.move(power.create())
+            racer.move(power.create(from = 0, until = 9))
         }
         return racer.location
     }

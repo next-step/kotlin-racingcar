@@ -5,10 +5,8 @@ import _3_racing_car.ui.InputView
 
 fun main() {
     val input = InputView()
-    input.print()
-
     val game = Game()
-    val result = game.play(input)
+    val result = game.play(input.read())
 
     result.print()
 }

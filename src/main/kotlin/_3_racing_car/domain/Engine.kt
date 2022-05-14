@@ -1,7 +1,10 @@
 package _3_racing_car.domain
 
-class Engine(private val value: Int) {
-    private val minValue = 4
+class Engine() {
 
-    fun canMoveEngine(): Boolean = value >= minValue
+    fun canMoveEngine(value: Int): Boolean = value >= MIN_VALUE
+
+    companion object {
+        private const val MIN_VALUE = 4
+    }
 }
