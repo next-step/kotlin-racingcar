@@ -38,7 +38,13 @@ class Car(val id: Int, val name: String, private val engine: Engine = RandomlyEn
         private val random = Random(Random.Default.nextInt())
 
         override fun speed(): Int {
-            return if (random.nextInt(0, 10) >= 4) 1 else 0
+            return if (random.nextInt(POWER_MIN, POWER_MAX) >= MOVABLE_POWER_MIN) 1 else 0
+        }
+
+        companion object {
+            private const val POWER_MIN = 0
+            private const val POWER_MAX = 10
+            private const val MOVABLE_POWER_MIN = 4
         }
     }
 }
