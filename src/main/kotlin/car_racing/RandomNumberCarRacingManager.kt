@@ -27,7 +27,7 @@ class RandomNumberCarRacingManager(carsList: List<Car> = listOf()) : CarRacingMa
 
         fun fromInputDto(inputDto: InputDto): RandomNumberCarRacingManager {
             var inputCars = emptyList<Car>()
-            for (index in 1..inputDto.carCount) {
+            repeat(inputDto.carCount) {
                 inputCars = inputCars + Car()
             }
             return RandomNumberCarRacingManager(inputCars)
