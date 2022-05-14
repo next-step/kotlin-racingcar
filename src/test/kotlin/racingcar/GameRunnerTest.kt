@@ -12,7 +12,6 @@ class GameRunnerTest {
 
         val gameResult = GameRunner(GameProperties(numberOfCars, numberOfTrials))
             .start()
-            .gameResult
             .get()
 
         assertEquals(numberOfTrials, gameResult.size)

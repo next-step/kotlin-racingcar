@@ -63,3 +63,9 @@
 4. 자동차의 상태를 화면에 출력
    - 진전했을 경우 append '-' 
    - 예) ResultView
+
+## 리뷰 반영
+- [x] 랜덤한 값을 만들어내는 인터페이스를 Car 에 주입하는 방식으로 변경
+- [x] TrialResult 에서 Car 의존성 없애기
+- [x] GameResult 필드를 MutableList 를 사용해서 val 로 변경
+- [x] 테스트 코드 내에서 Car 를 구현하는 방식으로 변경

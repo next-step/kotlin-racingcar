@@ -3,7 +3,7 @@ package racingcar
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import racingcar.model.Car
-import racingcar.model.MovingCar
+import racingcar.model.MovingStrategy
 
 class GameRecorderTest {
     @Test
@@ -17,21 +17,31 @@ class GameRecorderTest {
     @Test
     fun `게임이 진행될 경우 각 횟수별 자동차들의 위치를 저장한다`() {
         val recorder = GameRecorder()
+        val forwardMovingStrategy = object : MovingStrategy {
+            override fun tryMove(): Boolean = true
+        }
 
-        val car1 = MovingCar()
-        val car2 = MovingCar()
-        val car3 = MovingCar()
+        val car1 = Car(movingStrategy = forwardMovingStrategy)
+        val car2 = Car(movingStrategy = forwardMovingStrategy)
+        val car3 = Car(movingStrategy = forwardMovingStrategy)
+        val cars = listOf(car1, car2, car3)
 
-        val carsAfterFirstTrial = listOf(Car(car1.moveAndReturn()), Car(car2.moveAndReturn()), Car(car3))
-        val carsAfterSecondTrial = listOf(Car(car1), Car(car2.moveAndReturn()), Car(car3.moveAndReturn()))
+        // first trial
+        car1.move()
+        car2.move()
+        recorder.record(cars)
+        val expectedFirstTrialResult = TrialResult(listOf(CarResult(car1), CarResult(car2), CarResult(car3)))
 
-        recorder.record(carsAfterFirstTrial)
-        recorder.record(carsAfterSecondTrial)
+        // second trial
+        car2.move()
+        car3.move()
+        recorder.record(cars)
+        val expectedSecondTrialResult = TrialResult(listOf(CarResult(car1), CarResult(car2), CarResult(car3)))
 
         val gameResult = recorder.gameResult.get()
 
         assertEquals(2, gameResult.size)
-        assertEquals(TrialResult(carsAfterFirstTrial), gameResult[0])
-        assertEquals(TrialResult(carsAfterSecondTrial), gameResult[1])
+        assertEquals(expectedFirstTrialResult, gameResult[0])
+        assertEquals(expectedSecondTrialResult, gameResult[1])
     }
 }
