@@ -1,20 +1,26 @@
 package step2
 
-class Calculator {
-    fun calculate(inputString: String): Double {
-        val splitList = inputString.split(" ")
-        var result = splitList[0].toDouble()
-
-        for (index in 1 until splitList.size step 2) {
-            result = when (splitList[index]) {
-                "+" -> result + splitList[index + 1].toDouble()
-                "-" -> result - splitList[index + 1].toDouble()
-                "*" -> result * splitList[index + 1].toDouble()
-                "/" -> result / splitList[index + 1].toDouble()
-                else -> throw IllegalArgumentException()
-            }
-        }
-
-        return result
+fun calculate(inputString: String): Double {
+    if (inputString.isBlank()) {
+        throw IllegalArgumentException("Invalid Input")
     }
+
+    val inputs = inputString.split(" ")
+    var result = inputs[0].toValue()
+
+    for (index in 1 until inputs.size step 2) {
+        result = when (inputs[index]) {
+            "+" -> result + inputs[index + 1].toValue()
+            "-" -> result - inputs[index + 1].toValue()
+            "*" -> result * inputs[index + 1].toValue()
+            "/" -> result / inputs[index + 1].toValue()
+            else -> throw IllegalArgumentException("Invalid Operation Type")
+        }
+    }
+
+    return result
+}
+
+fun String.toValue(): Double {
+    return this.toDoubleOrNull() ?: throw IllegalArgumentException("Invalid Value Type")
 }
