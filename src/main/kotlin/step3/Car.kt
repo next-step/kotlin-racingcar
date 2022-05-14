@@ -12,15 +12,6 @@ class Car private constructor(private var carName: String){
         positionList.add(position)
     }
 
-    companion object {
-        fun makeCar(carName: String): Car{
-            if(carName.length > 5) {
-                throw IllegalArgumentException("자동차 이름은 5자를 초과할 수 없습니다.")
-            }
-            return Car(carName)
-        }
-    }
-
     fun getPosition() : Int{
         return this.position
     }
@@ -28,5 +19,16 @@ class Car private constructor(private var carName: String){
     fun getCarName() : String{
         return this.carName
     }
+
+    companion object {
+        const val CAR_NAME_NUMBER_FIVE_EXCEED = "자동차 이름은 5자를 초과할 수 없습니다."
+        fun makeCar(carName: String): Car{
+            if(carName.length > 5) {
+                throw IllegalArgumentException(CAR_NAME_NUMBER_FIVE_EXCEED)
+            }
+            return Car(carName)
+        }
+    }
 }
+
 
