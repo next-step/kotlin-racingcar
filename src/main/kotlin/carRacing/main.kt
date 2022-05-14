@@ -1,11 +1,16 @@
 package carRacing
 
+import carRacing.controller.Game
+import carRacing.view.InputView
+import carRacing.view.ResultView
+
 fun main() {
-    val numCar: Int = InputView.numCar()
+    val carNameList: List<String> = InputView.carNameList()
     val numMovement: Int = InputView.numMovement()
 
     ResultView.printTitle()
-    val game = Game(numCar, numMovement)
+    val game = Game(carNameList, numMovement)
     game.run()
-    ResultView.printResultRecord(game.recordList)
+    ResultView.printResultRecord(carNameList, game.recordList)
+    ResultView.printWinner(game.winner())
 }
