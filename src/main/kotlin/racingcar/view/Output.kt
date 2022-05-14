@@ -1,7 +1,6 @@
 package racingcar.view
 
 import racingcar.model.CarName
-
 import racingcar.model.Cars
 
 class Output {

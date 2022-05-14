@@ -8,6 +8,6 @@ data class TryNumber(
     }
 
     fun minus(): TryNumber {
-        return TryNumber(number -1)
+        return TryNumber(number - 1)
     }
 }
