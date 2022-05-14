@@ -10,54 +10,40 @@ class CalculatorTest : DescribeSpec({
             val calculator = Calculator()
 
             val result = calculator.calculate("1 + 2")
-            val result2 = calculator.calculate("1 + 2 + 3")
 
             result shouldBe 3
-            result2 shouldBe 6
         }
 
         it("빼기를 수행한다.") {
             val calculator = Calculator()
 
             val result = calculator.calculate("2 - 1")
-            val result2 = calculator.calculate("10 - 2 - 2")
 
             result shouldBe 1
-            result2 shouldBe 6
         }
 
         it("곱셈를 수행한다.") {
             val calculator = Calculator()
 
             val result = calculator.calculate("2 * 2")
-            val result2 = calculator.calculate("10 * 2 * 2")
 
             result shouldBe 4
-            result2 shouldBe 40
         }
 
         it("나눗셈를 수행한다.") {
             val calculator = Calculator()
 
             val result = calculator.calculate("4 / 2")
-            val result2 = calculator.calculate("12 / 2 / 2")
-            val result3 = calculator.calculate("10 / 2 / 2")
 
             result shouldBe 2
-            result2 shouldBe 3
-            result3 shouldBe 2.5
         }
 
-        it("사칙연산을 수행한다.") {
+        it("연속된 연산식 연산을 수행한다.") {
             val calculator = Calculator()
 
-            val result = calculator.calculate("4 + 2 - 1")
-            val result2 = calculator.calculate("12 + 2 / 7")
-            val result3 = calculator.calculate("10 + 2 - 2 * 2 / 2")
+            val result = calculator.calculate("10 + 2 - 2 * 2 / 2")
 
-            result shouldBe 5
-            result2 shouldBe 2
-            result3 shouldBe 10
+            result shouldBe 10
         }
 
         context("사칙연산 기호가 아닌 경우") {
