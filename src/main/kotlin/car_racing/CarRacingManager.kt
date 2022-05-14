@@ -1,11 +1,6 @@
 package car_racing
 
-abstract class CarRacingManager {
-    var cars: List<Car> = emptyList()
-
-    fun addCar(car: Car) {
-        cars = cars + car
-    }
+abstract class CarRacingManager(var cars: List<Car> = mutableListOf()) {
 
     protected fun syncCarDistance(carsIndex: Int, distance: Int) {
         validateCarsIndex(carsIndex)

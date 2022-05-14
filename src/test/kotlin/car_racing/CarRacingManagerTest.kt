@@ -7,20 +7,17 @@ import io.kotest.matchers.shouldBe
 class CarRacingManagerTest : StringSpec({
     "addCar 는 경기용 자동차를 추가한다" {
         // given
-        val carRacingManagerForTest = CarRacingManagerForTest()
         val car = Car()
-
-        // when
-        carRacingManagerForTest.addCar(car)
+        val carRacingManagerForTest = CarRacingManagerForTest(listOf(car))
 
         // then
-        carRacingManagerForTest.cars.size shouldBe 1
+        carRacingManagerForTest.getCarSize() shouldBe 1
     }
 
     "validateCarsIndex 는 설정하는 자동차의 Index 번호를 검증한다" {
         // given
-        val carRacingManagerForTest = CarRacingManagerForTest()
-        carRacingManagerForTest.addCar(Car())
+        val car = Car()
+        val carRacingManagerForTest = CarRacingManagerForTest(listOf(car))
         val carIndex = -1
 
         // when
@@ -34,8 +31,8 @@ class CarRacingManagerTest : StringSpec({
 
     "validateCarsIndex 는 cars 에 사이즈를 넘긴 값을 넣으면 에러가 발생한다" {
         // given
-        val carRacingManagerForTest = CarRacingManagerForTest()
-        carRacingManagerForTest.addCar(Car())
+        val car = Car()
+        val carRacingManagerForTest = CarRacingManagerForTest(listOf(car))
         val carIndex = 2
 
         // when
@@ -48,7 +45,7 @@ class CarRacingManagerTest : StringSpec({
     }
 })
 
-class CarRacingManagerForTest : CarRacingManager() {
+class CarRacingManagerForTest(carsList: List<Car>) : CarRacingManager(carsList) {
 
     override fun getMonitoringInformation(): String {
         return "test"

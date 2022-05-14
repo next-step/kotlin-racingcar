@@ -1,5 +1,5 @@
 package car_racing
 
-class Car {
+class Car() {
     var distance = 0
 }
