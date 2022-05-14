@@ -6,6 +6,6 @@ import org.junit.jupiter.api.Test
 class StringTest {
     @Test
     fun isEmpty() {
-        assertThat("".isEmpty()).isFalse
+        assertThat("".isEmpty()).isTrue
     }
 }
