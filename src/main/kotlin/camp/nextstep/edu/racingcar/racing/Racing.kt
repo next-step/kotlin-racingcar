@@ -14,7 +14,7 @@ class Racing private constructor(participants: List<Car>, private val moveCount:
     }
 
     fun result(): Map<Car, Track> {
-        if (!ended) throw RuntimeException("racing is not ended")
+        check(ended) { "racing is not ended" }
 
         return carTracks
     }

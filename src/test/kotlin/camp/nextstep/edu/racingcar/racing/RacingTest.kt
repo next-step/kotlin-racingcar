@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
+import org.junit.jupiter.api.assertThrows
 
 internal class RacingTest {
 
@@ -75,5 +76,25 @@ internal class RacingTest {
         Assertions.assertFalse(car2Traces.next())
         Assertions.assertFalse(car2Traces.next())
         Assertions.assertFalse(car2Traces.next())
+    }
+
+    @DisplayName("경주가 끝나기 전, 결과를 요청할 수 없다.")
+    @Test
+    internal fun shouldFailGetResultBeforeEnded() {
+        val moveCount = 5
+        val moveAllEngine = InstantEngine(moveCount)
+        val moveOnceEngine = InstantEngine(1)
+
+        val car1Id = 0
+        val car2Id = 1
+        val participants: List<Car> = listOf(
+            Car(car1Id, "all", moveAllEngine),
+            Car(car2Id, "once", moveOnceEngine)
+        )
+        val racing = Racing.new(participants, moveCount)
+
+        assertThrows<IllegalStateException> {
+            racing.result()
+        }
     }
 }
