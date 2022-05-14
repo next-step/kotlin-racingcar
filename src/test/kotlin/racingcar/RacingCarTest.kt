@@ -22,7 +22,7 @@ class RacingCarTest {
         game.play()
 
         repeat(input) {
-            val carSize = game.gameResults.gameResult[0].size
+            val carSize = game.getGameHistory().first().size
 
             assertThat(carSize).isEqualTo(input)
         }
@@ -36,7 +36,7 @@ class RacingCarTest {
         val game = RacingCarGame(input, defaultSeedMaker, defaultCar)
         game.play()
 
-        val carSize = game.gameResults.gameResult.size
+        val carSize = game.getGameHistory().size
 
         assertThat(carSize).isEqualTo(input)
     }
@@ -59,7 +59,7 @@ class RacingCarTest {
         val game = RacingCarGame(defaultTrial, mockingSeedMaker, defaultCar)
         game.play()
 
-        val result = game.gameResults.gameResult.last()[0].position
+        val result = game.getGameHistory().last()[0].position
         val expectPosition = testList.filter { it >= 4 }.size
         assertThat(result).isEqualTo(expectPosition)
     }
@@ -155,7 +155,7 @@ class RacingCarTest {
 
         val gameResults = GameResults()
         gameResults.record(listOf(car1, car2))
-        val gameHistory = gameResults.gameResult.first()
+        val gameHistory = gameResults.gameHistory.first()
 
         val expectHistory = listOf(
             CarResult("car1", 1),

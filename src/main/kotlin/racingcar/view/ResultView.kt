@@ -1,12 +1,10 @@
 package racingcar.view
 
 import racingcar.domain.CarResult
-import racingcar.domain.GameResults
 
 class ResultView {
-    fun printGameHistory(gameResult: GameResults) {
-        val gameResults = gameResult.gameResult
-        gameResults.forEach { stage ->
+    fun printGameHistory(gameHistory: List<List<CarResult>>) {
+        gameHistory.forEach { stage ->
             printStageResult(stage)
 
             println()

@@ -142,5 +142,5 @@
 ### 2차 todo list
 - [x] input 받는 곳의 상수 내부로 이동
 - [x] seedmaker default parameter로 주입
-- [ ] 히스토리와 결과를 누가 책임질지 ?
+- [x] 히스토리와 결과를 누가 책임질지 ?
 - [x] input view 매직넘버 처리

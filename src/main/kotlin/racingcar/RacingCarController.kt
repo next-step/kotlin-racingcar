@@ -13,8 +13,7 @@ class RacingCarController(private val inputView: InputView, private val resultVi
         val racingCarGame = RacingCarGame(trialCount = trialCount, carNameList = carNames)
         racingCarGame.play()
 
-        val gameResult = racingCarGame.gameResults
-        resultView.printGameHistory(gameResult)
+        resultView.printGameHistory(racingCarGame.getGameHistory())
         resultView.printWinnerResult(racingCarGame.getWinnerResult())
     }
 }
