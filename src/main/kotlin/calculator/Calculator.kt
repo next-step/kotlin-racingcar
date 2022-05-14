@@ -16,7 +16,7 @@ class Calculator {
                 return total / num
             }
             else -> {
-                throw IllegalArgumentException("사칙연산 기호가 아닙니다.")
+                throw IllegalArgumentException("옵바른 사칙연산 기호가 아닙니다. (사용 가능 연산: + - * / )")
             }
         }
     }
@@ -25,10 +25,9 @@ class Calculator {
         if (formula.isNullOrEmpty()) {
             throw IllegalArgumentException("올바은 계산식이 아닙니다.")
         }
-
-        val formulas = formula.split(" ")
-        val numbers = Util.groupByIsNumber(formulas, true).map { it.toFloat() }
-        val operations = Util.groupByIsNumber(formulas, false)
+        val splitter = Splitter(formula)
+        val operations = splitter.operations
+        val numbers = splitter.numbers
 
         val total = numbers[0]
 
