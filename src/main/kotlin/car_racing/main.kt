@@ -1,5 +1,8 @@
 package car_racing
 
+const val VIEW_STRING_CAR = "-"
+const val VIEW_STRING_SEPARATOR = "\n"
+
 fun main() {
     println("자동차 대수는 몇 대인가요?")
     val carCount: String = readln()
@@ -7,7 +10,7 @@ fun main() {
     val movementTryCount: String = readln()
     val inputDto = InputDto(carCount, movementTryCount)
     val randomNumberCarRacingManager = RandomNumberCarRacingManager.fromInputDto(inputDto)
-    val carRacingView = CarRacingView("-", "\n")
+    val carRacingView = CarRacingView(VIEW_STRING_CAR, VIEW_STRING_SEPARATOR)
 
     repeat(inputDto.movementTryCount) {
         setRandomValue(randomNumberCarRacingManager)
