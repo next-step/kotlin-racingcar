@@ -2,24 +2,23 @@ package racingcar.car
 
 import racingcar.car.exception.GameOverException
 import racingcar.car.strategy.MoveStrategy
+import racingcar.car.strategy.NameStrategy
 
-class RacingGame(numberOfCar: Int, trialCount: Int, strategy: MoveStrategy) {
-    private val drivers: List<Driver> = List(numberOfCar) { Driver("nameForCompile", Car(), strategy) }
+class RacingGame(carNames: List<String>, trialCount: Int, moveStrategy: MoveStrategy, nameStrategy: NameStrategy) {
+    private val drivers: Drivers = Drivers(carNames, moveStrategy, nameStrategy)
     private var _trialCount: Int = trialCount
 
     val trialCount get() = _trialCount
 
     fun play() {
         if (isPlayable()) {
-            drivers.forEach { driver ->
-                driver.drive()
-            }
+            drivers.driveAll()
         }
         reduceTrialCount()
     }
 
-    fun getPlayResults(): List<Int> {
-        return drivers.map { it.getMoveResult() }
+    fun getPlayResults(): MoveResults {
+        return drivers.getMoveResult()
     }
 
     fun isPlayable(): Boolean {
