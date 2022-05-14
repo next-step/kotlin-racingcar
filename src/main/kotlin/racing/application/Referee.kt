@@ -1,11 +1,12 @@
 package racing.application
 
 import racing.model.Car
+import racing.model.Round
 
 object Referee {
 
-    fun judge(cars: List<Car>): List<Car> {
-        val sortedCars = cars.sortedByDescending { it.position }
+    fun judge(finalRound: Round): List<Car> {
+        val sortedCars = finalRound.cars.sortedByDescending { it.position }
         return sortedCars.filter { isWinner(sortedCars, it) }
     }
 

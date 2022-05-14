@@ -1,50 +1,36 @@
 package racing.application
 
 import racing.model.Car
+import racing.model.Round
 
 class CarRacing(private val carNames: List<String>, private val tries: Int) {
 
     companion object {
-        const val RANDOM_VALUE_FROM = 0
-        const val RANDOM_VALUE_UNTIL = 9
         const val GO_THRESHOLD_VALUE = 4
-
-
     }
 
-    val eachRoundMap = mutableMapOf<Int, List<Car>>()
-
-    fun start() {
-        repeat(tries) { round(it) }
+    fun start(): Map<Int, Round> {
+        val roundsMap = mutableMapOf<Int, Round>()
+        repeat(tries) {
+            val prevRound = roundsMap[it - 1]
+            roundsMap[it] = doRound(it, prevRound)!!
+        }
+        return roundsMap
     }
 
-    fun round(roundNo: Int) {
-        if (isFirstRound(roundNo)) {
-            eachRoundMap[roundNo] = initFirstRound(carNames)
+    private fun doRound(roundNo: Int, prevRound: Round?): Round? {
+        return if (isFirstRound(roundNo)) {
+            getFirstRound(carNames)
         } else {
-            setRound(roundNo)
+            getNextRound(prevRound)
         }
     }
 
-    private fun isFirstRound(roundNo: Int): Boolean =
-        eachRoundMap[roundNo - 1].isNullOrEmpty()
+    private fun isFirstRound(roundNo: Int): Boolean = roundNo == 0
 
-    private fun initFirstRound(names: List<String>): List<Car> =
-        names.map { Car(name = it) }
+    private fun getFirstRound(names: List<String>): Round =
+        Round(names.map { Car(name = it) })
 
-    private fun setRound(roundNo: Int) {
-        eachRoundMap.computeIfAbsent(roundNo) {
-            eachRoundMap[roundNo - 1]!!.map {car ->
-                if(willGo()) car.go()
-                else car
-            }
-        }
-    }
-
-    private fun willGo(): Boolean =
-        GO_THRESHOLD_VALUE <= getRandom()
-
-    private fun getRandom(): Int =
-        (RANDOM_VALUE_FROM..RANDOM_VALUE_UNTIL).random()
-
+    private fun getNextRound(prevRound: Round?): Round? =
+        prevRound?.next()
 }
