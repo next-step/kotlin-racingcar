@@ -4,17 +4,12 @@ import racingcar.model.GameProperties
 
 class InputView {
     fun readGameProperties(): GameProperties {
-        return GameProperties(readNumberOfCars(), readNumberOfTrials(), readNamesOfCars())
+        return GameProperties(readNamesOfCars(), readNumberOfTrials())
     }
 
     private fun readNamesOfCars(): List<String> {
         println(NAMES_OF_CARS_QUESTION)
         return readNextListOfStrings(NAMES_OF_CARS_SEPARATOR)
-    }
-
-    private fun readNumberOfCars(): Int {
-        println(NUM_OF_CARS_QUESTION)
-        return readNextPositiveInteger()
     }
 
     private fun readNumberOfTrials(): Int {
@@ -43,7 +38,6 @@ class InputView {
     private fun nullIfNegativeNumber(input: Int): Int? = input.takeIf { it > 0 }
 
     companion object {
-        private const val NUM_OF_CARS_QUESTION = "자동차 대수는 몇 대인가요?"
         private const val NUM_OF_TRIALS_QUESTION = "시도할 횟수는 몇 회인가요?"
         private const val NAMES_OF_CARS_QUESTION = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
 
