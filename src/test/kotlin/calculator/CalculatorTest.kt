@@ -55,7 +55,7 @@ class CalculatorTest : DescribeSpec({
                     calculator.calculate("4 $ 2")
                 }
 
-                exception.message shouldBe "옵바른 사칙연산 기호가 아닙니다. (사용 가능 연산: + - * / )"
+                exception.message shouldBe "$ 은(는) 옵바른 사칙연산 기호가 아닙니다. (사용 가능 연산: + - * / )"
             }
         }
 

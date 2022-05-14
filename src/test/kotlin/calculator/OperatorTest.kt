@@ -17,7 +17,6 @@ class OperatorTest : DescribeSpec({
         context("사칙연산 기호가 아닌 경우") {
             it("IllegalArgumentException 에러가 발생한다.") {
 
-
                 val exception = shouldThrow<IllegalArgumentException> {
                     Operator.of("^")
                 }
@@ -26,6 +25,4 @@ class OperatorTest : DescribeSpec({
             }
         }
     }
-
-
 })
