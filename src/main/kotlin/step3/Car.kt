@@ -14,6 +14,9 @@ class Car private constructor(private var carName: String){
 
     companion object {
         fun makeCar(carName: String): Car{
+            if(carName.length > 5) {
+                throw IllegalArgumentException("자동차 이름은 5자를 초과할 수 없습니다.")
+            }
             return Car(carName)
         }
     }
