@@ -11,5 +11,6 @@ class CalculatorTest : StringSpec({
         calculator.calculate("1 + 1") shouldBe "2"
         calculator.calculate("1 + 2") shouldBe "3"
         calculator.calculate("1 + 2 + 3") shouldBe "6"
+        calculator.calculate("1 + 2 + 3 + 4") shouldBe "10"
     }
 })
