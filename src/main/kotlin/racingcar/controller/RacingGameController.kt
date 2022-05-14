@@ -1,6 +1,7 @@
 package racingcar.controller
 
 import racingcar.domain.Car
+import racingcar.domain.Cars
 import racingcar.domain.RacingGame
 import racingcar.domain.TryNumber
 import racingcar.domain.generateRandomCondition
@@ -20,12 +21,12 @@ class RacingGameController {
         )
     }
 
-    private fun createCars(carNumber: Int): List<Car> {
+    private fun createCars(carNumber: Int): Cars {
         val cars = mutableListOf<Car>()
         repeat(carNumber) {
             cars.add(Car())
         }
 
-        return cars.toList()
+        return Cars(cars.toList())
     }
 }

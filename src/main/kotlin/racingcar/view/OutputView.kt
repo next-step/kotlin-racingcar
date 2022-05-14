@@ -1,12 +1,13 @@
 package racingcar.view
 
 import racingcar.domain.Car
+import racingcar.domain.Cars
 
 private const val POSITION_DISPLAY_SYMBOL = "-"
 
-fun printPlayResult(result: List<List<Car>>) {
+fun printPlayResult(result: List<Cars>) {
     println("실행 결과")
-    result.forEach { cars -> printPosition(cars) }
+    result.forEach { cars -> printPosition(cars.value) }
 }
 
 private fun printPosition(cars: List<Car>) {
