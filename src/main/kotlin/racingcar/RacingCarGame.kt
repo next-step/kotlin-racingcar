@@ -5,16 +5,16 @@ class RacingCarGame(private val trialCount: Int, private val seedMaker: SeedMake
 
     val gameResults = GameResults()
 
-    fun play() = repeat(trialCount) {
+    fun play(): Unit = repeat(trialCount) {
         proceed()
         record()
     }
 
-    fun getWinnerResult() = gameResults.getWinnerResult(carList)
+    fun getWinnerResult(): List<String> = gameResults.getWinnerResult(carList)
 
     private fun record() {
         gameResults.record(carList)
     }
 
-    private fun proceed() = carList.forEach { it.proceed() }
+    private fun proceed(): Unit = carList.forEach { it.proceed() }
 }

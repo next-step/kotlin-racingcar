@@ -123,7 +123,7 @@
 - [x] 우승자/우승자는 여려명 에 대한 테스트 추가
 
 ### 3차 todo list
-- [ ] expression형태의 함수 반환형 명시해주기
+- [x] expression형태의 함수 반환형 명시해주기
 - [ ] car result의 결과를 Car가 아닌 CarResult에서 만들어주기
 - [ ] string 상수화
 - [ ] 각 도메인별 테스트 추가
