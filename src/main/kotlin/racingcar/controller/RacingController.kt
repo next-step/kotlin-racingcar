@@ -9,7 +9,7 @@ import racingcar.model.RaceResult
  * Created by Jaesungchi on 2022.05.07..
  */
 class RacingController(carNames: List<String>) {
-    private var cars: List<Car> = List(carNames.size) { Car(carNames[it]) }
+    private val cars: List<Car> = List(carNames.size) { Car(carNames[it]) }
     private val _raceResults: MutableList<RaceResult> = mutableListOf()
     val raceResults: List<RaceResult>
         get() = _raceResults.toList()
