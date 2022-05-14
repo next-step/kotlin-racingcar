@@ -17,4 +17,3 @@ class InputViewTest : AnnotationSpec() {
         sut.tryCount shouldBe expectTryCount
     }
 }
-

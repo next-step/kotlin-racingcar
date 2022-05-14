@@ -29,4 +29,3 @@ class OutputViewTest : AnnotationSpec() {
         result[2] shouldBe ""
     }
 }
-
