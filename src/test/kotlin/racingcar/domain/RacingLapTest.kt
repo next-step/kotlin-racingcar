@@ -31,4 +31,15 @@ internal class RacingLapTest : StringSpec({
         // then
         exception.message shouldBe "레이싱 시도 횟수는 최소 ${RacingLap.MIN_RACING_LAP} 이상이어야 합니다."
     }
+
+    "레이싱 시도가 ${RacingLap.MIN_RACING_LAP} 보다 작으면 예외가 발생한다." {
+        // given
+        val invalidValue = RacingLap.MIN_RACING_LAP - 1
+
+        // when
+        val exception = shouldThrowExactly<IllegalArgumentException> { RacingLap(goalLap = invalidValue) }
+
+        // then
+        exception.message shouldBe "레이싱 시도 횟수는 최소 ${RacingLap.MIN_RACING_LAP} 이상이어야 합니다."
+    }
 })
