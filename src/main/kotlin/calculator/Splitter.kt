@@ -15,13 +15,11 @@ class Splitter(formula: String) {
         return groupByIsNumber(inputs)[true]!!.map { it.toFloat() }
     }
 
-
     private fun getOperations(inputs: List<String>): List<String> {
         return groupByIsNumber(inputs)[false]!!
     }
-    
+
     private fun groupByIsNumber(inputs: List<String>): Map<Boolean, List<String>> {
         return inputs.groupBy { (it.toFloatOrNull() != null) }
     }
-
 }
