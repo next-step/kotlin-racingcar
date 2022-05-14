@@ -1,11 +1,11 @@
 package racingcar.domain
 
-class LapReport(
-    val lapReport: List<CarNameWithLocation>
+class LapRecord(
+    val carRecords: List<CarRecord>
 ) {
     fun winner(): List<CarName> {
-        val topLocation = lapReport.maxOf { it.location }
-        return lapReport.asSequence()
+        val topLocation = carRecords.maxOf { it.location }
+        return carRecords.asSequence()
             .filter { it.location == topLocation }
             .map { it.carName }
             .toList()

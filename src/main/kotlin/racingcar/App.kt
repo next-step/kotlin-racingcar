@@ -3,7 +3,8 @@ package racingcar
 import racingcar.domain.CarName
 import racingcar.domain.Cars
 import racingcar.domain.RacingGame
-import racingcar.dto.RacingGameResponse
+import racingcar.dto.RacingGameRecordResponse
+import racingcar.dto.RacingGameWinnerResponse
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
@@ -19,6 +20,9 @@ fun main() {
         racingGame.start()
     }
 
-    val report = racingGame.report
-    ResultView.print(RacingGameResponse.of(report))
+    val record = racingGame.record
+
+    ResultView.printResult()
+    ResultView.printRecord(RacingGameRecordResponse.of(record.lapRecords))
+    ResultView.printWinner(RacingGameWinnerResponse.of(record.winner()))
 }
