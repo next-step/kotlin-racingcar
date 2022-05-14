@@ -9,22 +9,14 @@ import racing.model.Car
 internal class CarRacingTest {
 
     @Test
-    fun `get random value between 0 - 9`() {
-        repeat(100) {
-            assertThat(CarRacing.getRandom())
-                .isGreaterThanOrEqualTo(0)
-                .isLessThanOrEqualTo(9)
-        }
-    }
-
-    @Test
     fun `first round do initialization test`() {
-        val carRacing = CarRacing(3, 3)
+        val carNames = listOf("name1", "name2", "name3")
+        val carRacing = CarRacing(carNames, 3)
         assertThat(carRacing.eachRoundMap)
             .isEmpty()
 
         carRacing.round(1)
-        val expected = List(3) { Car() }
+        val expected = List(3) { Car(carNames[it]) }
 
         assertThat(carRacing.eachRoundMap[1])
             .isEqualTo(expected)
@@ -32,17 +24,17 @@ internal class CarRacingTest {
 
     @ParameterizedTest
     @CsvSource(
-        "3, 3",
-        "10, 20",
-        "23, 15",
-        "1231, 1"
+        "[\"name1\", \"name2\", \"name3\"], 3",
+        "[\"name1\", \"name2\", \"name3\"], 20",
+        "[\"name1\", \"name2\", \"name3\"], 15",
+        "[\"name1\", \"name2\", \"name3\"], 1"
     )
-    fun `start method create each round result`(numberOfCars: Int, tries: Int) {
-        val carRacing = CarRacing(numberOfCars, tries)
+    fun `start method create each round result`(carNames: List<String>, tries: Int) {
+        val carRacing = CarRacing(carNames, tries)
         carRacing.start()
 
         val expectedKeys = Array(tries) { it }
-        val expectedValue = List(numberOfCars) { Car() }
+        val expectedValue = carNames.map { Car(name = it) }
         assertThat(carRacing.eachRoundMap)
             .containsKeys(*expectedKeys)
             .containsEntry(0, expectedValue)

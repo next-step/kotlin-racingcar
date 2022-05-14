@@ -3,13 +3,13 @@ package racing.model
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.ValueSource
+import org.junit.jupiter.params.provider.CsvSource
 
 internal class CarTest {
 
     @Test
     fun `create default car`() {
-        val result = Car().position
+        val result = Car(name = "testName").position
         val expected = "-"
 
         assertThat(result).isEqualTo(expected)
@@ -17,20 +17,26 @@ internal class CarTest {
 
     @Test
     fun `toString test`() {
-        val result = Car().toString()
+        val result = Car(name = "testName").toString()
         val expected = "-"
 
         assertThat(result).isEqualTo(expected)
     }
 
     @ParameterizedTest
-    @ValueSource(ints = [1,2,3,4,5])
-    fun `go test`(loop: Int) {
+    @CsvSource(
+        "1, testName",
+        "2, testName",
+        "3, testName",
+        "4, testName",
+        "5, testName",
+    )
+    fun `go test`(loop: Int, name: String) {
 
         val result = List(loop - 1) { it }
-            .fold(Car()) { acc, _ -> acc.go()}
+            .fold(Car(name)) { acc, _ -> acc.go()}
             .toString()
-        val expected = "-".repeat(loop)
+        val expected = "$name : " + "-".repeat(loop)
 
         assertThat(result).isEqualTo(expected)
     }
