@@ -28,8 +28,8 @@ class CarTest {
         val car = Car.makeCar(carName)
         every { movingStrategy.movable() } returns true
         car.move(movingStrategy)
-        Assertions.assertThat(car.getPosition()).isEqualTo(1)
-        Assertions.assertThat(car.getCarName()).isEqualTo(carName)
+        Assertions.assertThat(car.position).isEqualTo(1)
+        Assertions.assertThat(car.name).isEqualTo(carName)
     }
 
     @ParameterizedTest
@@ -38,7 +38,7 @@ class CarTest {
         val car = Car.makeCar(carName)
         every { movingStrategy.movable() } returns false
         car.move(movingStrategy)
-        Assertions.assertThat(car.getPosition()).isEqualTo(0)
-        Assertions.assertThat(car.getCarName()).isEqualTo(carName)
+        Assertions.assertThat(car.position).isEqualTo(0)
+        Assertions.assertThat(car.name).isEqualTo(carName)
     }
 }

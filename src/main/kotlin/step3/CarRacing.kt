@@ -1,7 +1,7 @@
 package step3
 
 class CarRacing private constructor(carNames: String, private var moveCount: Int) {
-    var cars = Cars.from(carNames)
+    val cars = Cars.from(carNames)
 
     fun run(movingStrategy: MovingStrategy) {
         repeat(moveCount) {

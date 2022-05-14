@@ -15,7 +15,7 @@ class ResultView {
     private fun showResultMoveHyphen(cars: Cars, movCount: Int) {
         for (j in 0 until cars.carList.size) {
             val position = cars.carList[j].positionList[movCount]
-            print(cars.carList[j].getCarName() + " : ")
+            print(cars.carList[j].name + " : ")
             repeat(position) {
                 print(MOVE_HYPHEN)
             }
@@ -28,10 +28,10 @@ class ResultView {
         val winnerList = ArrayList<String>()
         var max = 0
         for (j in 0 until cars.carList.size) {
-            val position = cars.carList[j].getPosition()
+            val position = cars.carList[j].position
             if(position >= max && position != 0) {
                 max = position
-                winnerList.add(cars.carList[j].getCarName())
+                winnerList.add(cars.carList[j].name)
             }
         }
         return winnerList

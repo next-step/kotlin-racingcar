@@ -23,7 +23,7 @@ class CarRacingTest {
         every { movingStrategy.movable() } returns true
         carRacing.run(movingStrategy)
         for (i in 0 until carRacing.cars.carList.size) {
-            Assertions.assertThat(carRacing.cars.carList[i].getPosition()).isEqualTo(moveCount)
+            Assertions.assertThat(carRacing.cars.carList[i].position).isEqualTo(moveCount)
         }
     }
 

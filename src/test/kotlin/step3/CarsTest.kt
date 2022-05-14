@@ -23,7 +23,7 @@ internal class CarsTest {
         every { movingStrategy.movable() } returns true
         cars.run(movingStrategy)
         for (i in 0 until cars.carList.size) {
-            Assertions.assertThat(cars.carList[i].getPosition()).isEqualTo(1)
+            Assertions.assertThat(cars.carList[i].position).isEqualTo(1)
         }
         Assertions.assertThat(cars.carList.size).isEqualTo(result)
     }
@@ -37,7 +37,7 @@ internal class CarsTest {
         every { movingStrategy.movable() } returns false
         cars.run(movingStrategy)
         for (i in 0 until cars.carList.size) {
-            Assertions.assertThat(cars.carList[i].getPosition()).isEqualTo(0)
+            Assertions.assertThat(cars.carList[i].position).isEqualTo(0)
         }
         Assertions.assertThat(cars.carList.size).isEqualTo(result)
     }

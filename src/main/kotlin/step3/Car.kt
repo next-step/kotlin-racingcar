@@ -1,7 +1,10 @@
 package step3
 
 class Car private constructor(private var carName: String){
-    private var position = 0
+    var position = 0
+    private set
+
+    val name = carName
 
     val positionList = ArrayList<Int>()
 
@@ -10,14 +13,6 @@ class Car private constructor(private var carName: String){
             position++
         }
         positionList.add(position)
-    }
-
-    fun getPosition() : Int{
-        return this.position
-    }
-
-    fun getCarName() : String{
-        return this.carName
     }
 
     companion object {
