@@ -56,6 +56,11 @@ src/main/kotlin/carRacing
 
 - `CarRacingManager` 를 사용하여 경주에 참여한 차들에 모니터링용 데이터 가져오기
 
+### `CarMovementRole`
+
+- 랜덤 수 기준으로 경주 자동차 이동 거리를 가져온다.
+- 랜덤 수 가 최소 최대값이 맞는지 validation 검사.
+
 ## 작업 내용
 
 - [x] main 함수에 입력 값을 받는 로직 넣기

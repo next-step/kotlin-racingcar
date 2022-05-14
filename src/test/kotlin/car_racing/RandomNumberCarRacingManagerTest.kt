@@ -4,29 +4,6 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
 class RandomNumberCarRacingManagerTest : StringSpec({
-
-    "isForwardNumber 는 랜덤 숫자를 기준으로 전진해야하는 숫자인지 판별한다" {
-        // given
-        val randomNumber = 4
-
-        // when
-        val isForward = RandomNumberCarRacingManager.isForwardNumber(randomNumber)
-
-        // then
-        isForward shouldBe true
-    }
-
-    "4미만의 랜덤 숫자는 전진 할수 없다" {
-        // given
-        val randomNumber = 1
-
-        // when
-        val isForward = RandomNumberCarRacingManager.isForwardNumber(randomNumber)
-
-        // then
-        isForward shouldBe false
-    }
-
     "tryMoveCar 는 자동차 번호, 랜덤 숫자를 받아 전진 여부를 설정해준다" {
         // given
         val forwardRandomNumber = 4
