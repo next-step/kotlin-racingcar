@@ -11,6 +11,8 @@ class Track(private val length: Int) {
 
     fun traces(): Iterator<Boolean> = traces.map { it.marked }.iterator()
 
+    fun marks(): Int = onTraceIndex
+
     private class Trace {
         var marked: Boolean = false
     }

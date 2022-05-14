@@ -1,5 +1,6 @@
 package camp.nextstep.edu.racingcar.racing
 
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DisplayName
@@ -38,5 +39,28 @@ internal class TrackTest {
         assertThrows<IllegalStateException> {
             track.markTrace()
         }
+    }
+
+    @DisplayName("자동차가 달린 흔적 수를 확인할 수 있다.")
+    @Test
+    fun marksTest() {
+        val track = Track(5)
+
+        assertEquals(0, track.marks())
+
+        track.markTrace()
+        assertEquals(1, track.marks())
+
+        track.markTrace()
+        assertEquals(2, track.marks())
+
+        track.markTrace()
+        assertEquals(3, track.marks())
+
+        track.markTrace()
+        assertEquals(4, track.marks())
+
+        track.markTrace()
+        assertEquals(5, track.marks())
     }
 }
