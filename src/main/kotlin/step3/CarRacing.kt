@@ -1,6 +1,6 @@
 package step3
 
-class CarRacing private constructor(var carCount: Int, private var moveCount: Int) {
+class CarRacing private constructor(carCount: Int, private var moveCount: Int) {
     var cars = Cars.from(carCount)
 
     fun run(movingStrategy: MovingStrategy) {
