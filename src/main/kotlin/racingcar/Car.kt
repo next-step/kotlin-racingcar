@@ -4,12 +4,6 @@ class Car(val name: String, private val seedMaker: SeedMaker) {
     var position = 0
         private set
 
-    private val defaultCarGoDecide = {
-        val randomValue = seedMaker.nextInt()
-
-        randomValue >= DEFAULT_CAN_GO_THRESHOLD
-    }
-
     fun proceed() {
         if (canGo()) {
             position++
@@ -17,7 +11,7 @@ class Car(val name: String, private val seedMaker: SeedMaker) {
     }
 
     private fun canGo(): Boolean {
-        return defaultCarGoDecide.invoke()
+        return seedMaker.nextInt() >= DEFAULT_CAN_GO_THRESHOLD
     }
 
     companion object {
