@@ -1,13 +1,13 @@
 package calculator
 
-enum class Operator(val symbol: String, val expression: (number1: Number, number2: Number) -> Number) {
-    PLUS(symbol = "+", expression = { number1: Number, number2: Number -> number1.plus(number2) }),
-    MINUS(symbol = "-", expression = { number1: Number, number2: Number -> number1.minus(number2) }),
-    MULTIPLE(symbol = "*", expression = { number1: Number, number2: Number -> number1.multiply(number2) }),
-    DIVISION(symbol = "/", expression = { number1: Number, number2: Number -> number1.divide(number2) }), ;
+enum class Operator(val symbol: String, val expression: (operand1: Operand, operand2: Operand) -> Operand) {
+    PLUS(symbol = "+", expression = { operand1: Operand, operand2: Operand -> operand1.plus(operand2) }),
+    MINUS(symbol = "-", expression = { operand1: Operand, operand2: Operand -> operand1.minus(operand2) }),
+    MULTIPLE(symbol = "*", expression = { operand1: Operand, operand2: Operand -> operand1.multiply(operand2) }),
+    DIVISION(symbol = "/", expression = { operand1: Operand, operand2: Operand -> operand1.divide(operand2) }), ;
 
-    fun calculate(number1: Number, number2: Number): Number {
-        return this.expression(number1, number2)
+    fun calculate(operand1: Operand, operand2: Operand): Operand {
+        return this.expression(operand1, operand2)
     }
 
     companion object {
