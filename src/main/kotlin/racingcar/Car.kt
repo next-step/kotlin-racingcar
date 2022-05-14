@@ -20,10 +20,6 @@ class Car(val name: String, private val seedMaker: SeedMaker) {
         return defaultCarGoDecide.invoke()
     }
 
-    fun toCarResult(): CarResult {
-        return CarResult(name, position)
-    }
-
     companion object {
         private const val DEFAULT_CAN_GO_THRESHOLD = 4
     }
