@@ -2,6 +2,9 @@ package racingcar.view
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.EmptySource
+import org.junit.jupiter.params.provider.NullSource
 import racingcar.constants.Message
 
 /**
@@ -10,10 +13,11 @@ import racingcar.constants.Message
  */
 class InputViewTest {
 
-    @Test
-    fun `차량 이름 입력에 null이 입력되면 에러가 발생한다`() {
+    @ParameterizedTest
+    @NullSource
+    fun `차량 이름 입력에 null이 입력되면 에러가 발생한다`(source: String?) {
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            InputView.getCarNames { null }
+            InputView.getCarNames { source }
         }.withMessageMatching(Message.ExceptionMessage.IS_NULL_OR_BLANK)
     }
 
@@ -24,17 +28,19 @@ class InputViewTest {
         }.withMessageMatching(Message.ExceptionMessage.IS_NOT_INTEGER)
     }
 
-    @Test
-    fun `시도할 횟수 입력에 null이 입력되면 에러가 발생한다`() {
+    @ParameterizedTest
+    @NullSource
+    fun `시도할 횟수 입력에 null이 입력되면 에러가 발생한다`(source: String?) {
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            InputView.getNumberOfRaces { null }
+            InputView.getNumberOfRaces { source }
         }.withMessageMatching(Message.ExceptionMessage.IS_NULL_OR_BLANK)
     }
 
-    @Test
-    fun `시도할 횟수 입력에 빈칸이 입력되면 에러가 발생한다`() {
+    @ParameterizedTest
+    @EmptySource
+    fun `시도할 횟수 입력에 빈칸이 입력되면 에러가 발생한다`(source: String) {
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            InputView.getNumberOfRaces { " " }
+            InputView.getNumberOfRaces { source }
         }.withMessageMatching(Message.ExceptionMessage.IS_NULL_OR_BLANK)
     }
 }
