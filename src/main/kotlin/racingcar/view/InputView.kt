@@ -1,7 +1,11 @@
 package racingcar.view
 
 class InputView {
-    fun getNaturalNumberInput(msg: String): Int {
+    fun getNaturalNumberInput(): Int {
+        return getNaturalNumberInput(TRIAL_NUMBER_INPUT_DESC)
+    }
+
+    private fun getNaturalNumberInput(msg: String): Int {
         var trialCountInput: String
         do {
             trialCountInput = getInputWithMessage(msg)
@@ -20,7 +24,11 @@ class InputView {
         }
     }
 
-    fun getCarNamesInput(msg: String): List<String> {
+    fun getCarNamesInput(): List<String> {
+        return getCarNamesInput(CAR_NAMES_INPUT_DESC)
+    }
+
+    private fun getCarNamesInput(msg: String): List<String> {
         var splitted: List<String>
 
         do {

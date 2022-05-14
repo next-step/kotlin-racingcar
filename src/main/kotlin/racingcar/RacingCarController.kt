@@ -6,12 +6,11 @@ import racingcar.view.InputView
 import racingcar.view.ResultView
 
 class RacingCarController(private val inputView: InputView, private val resultView: ResultView) {
-
     private val seedMaker = SeedMakerImpl()
 
     fun start() {
-        val carNames = inputView.getCarNamesInput(InputView.CAR_NAMES_INPUT_DESC)
-        val trialCount = inputView.getNaturalNumberInput(InputView.TRIAL_NUMBER_INPUT_DESC)
+        val carNames = inputView.getCarNamesInput()
+        val trialCount = inputView.getNaturalNumberInput()
 
         val racingCarGame = RacingCarGame(trialCount, seedMaker, carNames)
         racingCarGame.play()
