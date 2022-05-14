@@ -2,7 +2,7 @@ package racingcar.engine
 
 class RandomEngine {
 
-    fun accelerate(): Int {
-        return (0..1).random()
+    fun accelerate(): Distance {
+        return Distance((0..1).random())
     }
 }
