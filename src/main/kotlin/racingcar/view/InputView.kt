@@ -33,7 +33,7 @@ class InputView {
 
         do {
             val namesString = getInputWithMessage(msg)
-            splitted = namesString.split(",")
+            splitted = namesString.split(NAMES_INPUT_DELIMITER)
         } while (isUserTypedValidNames(splitted).not())
 
         return splitted
@@ -55,7 +55,8 @@ class InputView {
     }
 
     companion object {
-        const val CAR_NAMES_INPUT_DESC = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
-        const val TRIAL_NUMBER_INPUT_DESC = "시도할 횟수는 몇 회인가요?"
+        private const val CAR_NAMES_INPUT_DESC = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
+        private const val TRIAL_NUMBER_INPUT_DESC = "시도할 횟수는 몇 회인가요?"
+        private const val NAMES_INPUT_DELIMITER = ","
     }
 }
