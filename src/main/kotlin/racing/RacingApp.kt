@@ -6,9 +6,9 @@ import racing.ui.RacingResultView
 
 object RacingApp {
     fun launch() {
-        val numberOfCars = RacingInputView.getNumberOfCars()
+        val carNames = RacingInputView.getCarNames()
         val tries = RacingInputView.getTries()
-        val racing = CarRacing(numberOfCars, tries)
+        val racing = CarRacing(carNames, tries)
 
         racing.start()
         val resultView = RacingResultView(tries, racing.eachRoundMap)
