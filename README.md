@@ -24,5 +24,4 @@
 - 자동차 이름 5자 초과하거나 이름이 없는 경우 예외처리 => CarRacing 수정
 - CarRacing 클래스 생성자 매개변수로 Int - carCount 대신 String - carNames로 변경 => CarRacing, Step3Application
 - Cars 클래스에서 자동차 이름(carNames) 받은 내용을 , 기준으로 나눈 후 자동차 리스트 생성시 차 이름을 생성자로 넘겨줌 => CarRacing
-- Car 클래스에서 생성자에 String name을 추가한다. => Car
 - ResultView 에서 최종 우승자 구하는 로직 추가 및 우승관련 문구 내용 추가하기 => ResultView
