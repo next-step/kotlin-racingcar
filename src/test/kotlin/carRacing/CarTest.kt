@@ -1,5 +1,6 @@
 package carRacing
 
+import carRacing.model.Car
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
