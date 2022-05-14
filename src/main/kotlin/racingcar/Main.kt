@@ -2,13 +2,13 @@ package racingcar
 
 import racingcar.controller.CarNamesAndStepsGameBuilder
 import racingcar.controller.RacingGameController
-import racingcar.view.input.CarNameAndStepsInputView
+import racingcar.view.input.CarNamesAndStepsInputView
 import racingcar.view.output.WinnerResultView
 
 fun main() {
 
     val gameController = RacingGameController(
-        inputView = CarNameAndStepsInputView(),
+        inputView = CarNamesAndStepsInputView(),
         gameBuilder = CarNamesAndStepsGameBuilder(),
         resultView = WinnerResultView()
     )

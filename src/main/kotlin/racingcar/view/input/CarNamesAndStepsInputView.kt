@@ -5,7 +5,7 @@ import racingcar.view.input.parser.IntInputParser
 
 data class CarNamesAndSteps(val carNames: List<String>, val stepsToTry: Int)
 
-class CarNameAndStepsInputView : InputView<CarNamesAndSteps> {
+class CarNamesAndStepsInputView : InputView<CarNamesAndSteps> {
 
     override fun showInputView(): CarNamesAndSteps {
         val carNameList = readCarNameList()
