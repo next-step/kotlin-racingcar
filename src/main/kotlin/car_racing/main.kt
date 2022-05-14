@@ -16,7 +16,7 @@ fun main() {
 }
 
 private fun setRandomValue(randomNumberCarRacingManager: RandomNumberCarRacingManager) {
-    for (carIndex in 0 until randomNumberCarRacingManager.getCarListSize()) {
+    for (carIndex in 0 until randomNumberCarRacingManager.getCarSize()) {
         val randomNumber = (1..9).random()
         randomNumberCarRacingManager.tryMoveCar(carIndex, randomNumber)
     }

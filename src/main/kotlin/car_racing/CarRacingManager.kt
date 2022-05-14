@@ -12,7 +12,7 @@ abstract class CarRacingManager {
         cars[carsIndex].distance = distance
     }
 
-    fun getCarListSize(): Int {
+    fun getCarSize(): Int {
         return cars.size
     }
 
