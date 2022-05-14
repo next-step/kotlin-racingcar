@@ -8,9 +8,9 @@ class RandomNumberCarRacingManagerTest : StringSpec({
     "getMonitoringInformation 는 자동차 경주 디스플레이하기 위한 데이터를 넘겨준다" {
         // given
         val randomNumberCarRacingManager = RandomNumberCarRacingManager()
-        val monitoringValue = """-
----
-----"""
+        val monitoringValue = """--
+----
+-----"""
         val carDistances = listOf(1, 3, 4)
         for (distance in carDistances) {
             val car = Car()
@@ -33,8 +33,8 @@ class RandomNumberCarRacingManagerTest : StringSpec({
         val monitoringFormat = RandomNumberCarRacingManager.getMonitoringFormatBy(distance)
 
         // then
-        monitoringFormat.length shouldBe distance
-        monitoringFormat shouldBe "----------"
+        monitoringFormat.length shouldBe distance + 1
+        monitoringFormat shouldBe "-----------"
     }
 
     "isForwardNumber 는 랜덤 숫자를 기준으로 전진해야하는 숫자인지 판별한다" {
