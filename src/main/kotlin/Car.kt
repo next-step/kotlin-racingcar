@@ -1,20 +1,15 @@
 class Car {
-    private val _record = mutableListOf<String>()
+    private val _record = mutableListOf<MovingStatus>()
 
     fun move() {
-        _record.add(MOVE)
+        _record.add(MovingStatus.MOVE)
     }
 
     fun stop() {
-        _record.add(STOP)
+        _record.add(MovingStatus.STOP)
     }
 
     fun getMoved(): Int {
-        return _record.filter { it.equals(MOVE) }.count()
-    }
-
-    companion object {
-        private const val MOVE = "move"
-        private const val STOP = "stop"
+        return _record.filter { it.equals(MovingStatus.MOVE) }.count()
     }
 }
