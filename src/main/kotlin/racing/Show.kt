@@ -1,8 +1,8 @@
 package racing
 
 object Show {
-    fun result(carDistances: ArrayList<Array<Int>>) {
-        for(round in 1..5) {
+    fun result(round: Int, carDistances: ArrayList<Array<Int>>) {
+        for(round in 0 until round) {
             println("$round round")
             printDistance(round, carDistances)
         }

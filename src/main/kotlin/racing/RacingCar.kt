@@ -4,13 +4,15 @@ import kotlin.random.Random
 
 class RacingCar(private val round: Int) {
     private val distances = Array(round) {0}
+    private val MOVE_PIVOT = 4
+
     var currentRound = 0
 
     fun getDistances(): Array<Int> {
         return distances
     }
 
-    fun tryMove() {
+    fun race() {
         if (canMove()) {
             move()
         }
@@ -22,6 +24,6 @@ class RacingCar(private val round: Int) {
     }
 
     private fun canMove(): Boolean {
-        return Random.nextInt(0, 10) >= 4
+        return Random.nextInt(0, 10) >= MOVE_PIVOT
     }
 }
