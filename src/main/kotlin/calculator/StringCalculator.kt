@@ -1,12 +1,12 @@
-package Calculator
+package calculator
 
 class StringCalculator(private val input: String?) {
-    fun run() {
+    fun run(): Int {
         require(!input.isNullOrBlank()) { "입력값은 공백일 수 없습니다" }
         val splitted = splitter(input, " ")
         var operator = "+"
 
-        splitted.foldIndexed(0) { idx, sum, element ->
+        return splitted.foldIndexed(0) { idx, sum, element ->
             if (idx % 2 == 0) {
                 val rightTerm = toIntOrThrow(element)
                 calculate(sum, rightTerm, operator)
@@ -25,7 +25,7 @@ class StringCalculator(private val input: String?) {
     }
 
     private fun toIntOrThrow(element: String): Int {
-        return element.toIntOrNull() ?: throw IllegalArgumentException("$element 는 자연수가 아닙니다")
+        return element.toIntOrNull() ?: throw IllegalArgumentException("$element 는 정수가 아닙니다")
     }
 
     private fun calculate(leftTerm: Int, rightTerm: Int, operator: String): Int {
