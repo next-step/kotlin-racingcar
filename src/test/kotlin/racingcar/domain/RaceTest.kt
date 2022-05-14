@@ -33,8 +33,8 @@ class RaceTest : DescribeSpec({
 
             val sut = Race(listOf(car))
 
-            sut.allMovingDistance.size shouldBe 1
-            sut.allMovingDistance[0] shouldBe expect
+            sut.movingDistances.size shouldBe 1
+            sut.movingDistances[0] shouldBe expect
         }
     }
 })
