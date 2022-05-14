@@ -138,3 +138,9 @@
 
 ### 1차 todo list
 - [x] domain, view패키지로 분리
+
+### 2차 todo list
+- [ ] input 받는 곳의 상수 내부로 이동
+- [ ] seedmaker default parameter로 주입
+- [ ] 히스토리와 결과를 누가 책임질지 ?
+- [ ] input view 매직넘버 처리
