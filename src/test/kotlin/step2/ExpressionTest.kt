@@ -9,8 +9,7 @@ class ExpressionTest {
     fun `단순 식 계산 테스트`() {
         val expression = Expression(
             number = 2,
-            calculator = MinusCalculator(),
-            nextExpression = null
+            arithmeticOperation = ArithmeticOperation.MINUS
         )
         val firstNumber = 10
 
@@ -23,17 +22,16 @@ class ExpressionTest {
     fun `복합 식 계산 테스트`() {
         val lastExpression = Expression(
             number = 2,
-            calculator = DivisionCalculator(),
-            nextExpression = null
+            arithmeticOperation = ArithmeticOperation.DIVISION
         )
         val secondExpression = Expression(
             number = 4,
-            calculator = MultipleCalculator(),
+            arithmeticOperation = ArithmeticOperation.MULTIPLE,
             nextExpression = lastExpression
         )
         val firstExpression = Expression(
             number = 3,
-            calculator = PlusCalculator(),
+            arithmeticOperation = ArithmeticOperation.PLUS,
             nextExpression = secondExpression
         )
         val firstNumber = 2
@@ -47,8 +45,7 @@ class ExpressionTest {
     fun `계산 중 인자 오류 테스트`() {
         val expression = Expression(
             number = 10,
-            calculator = DivisionCalculator(),
-            nextExpression = null
+            arithmeticOperation = ArithmeticOperation.DIVISION
         )
         val firstNumber = 2
 

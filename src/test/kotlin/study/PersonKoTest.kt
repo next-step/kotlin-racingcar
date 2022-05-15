@@ -7,9 +7,7 @@ import io.kotest.matchers.shouldBe
 class PersonKoTest : StringSpec({
     "이름 붙인 인자" {
         val people = listOf(
-            Person("염세란", 32, "세렌"),
-            Person("염세란", 32, nickname = "세렌"),
-            Person(name = "염세란", age = 32, nickname = "세렌")
+            Person("염세란", 32, "세렌"), Person("염세란", 32, nickname = "세렌"), Person(name = "염세란", age = 32, nickname = "세렌")
         )
         people.forAll {
             it.name shouldBe "염세란"
@@ -22,7 +20,7 @@ class PersonKoTest : StringSpec({
         val person = Person("염세란", 32, nickname = null)
         person.name shouldBe "염세란"
         person.age shouldBe 32
-        person.nickname shouldBe "세렌"
+        person.nickname shouldBe "null"
     }
 
     "기본 인자" {
