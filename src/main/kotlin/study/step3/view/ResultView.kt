@@ -6,5 +6,13 @@ object ResultView {
     fun printResult() {
         val racingCar = RacingCar()
         racingCar.raceStart()
+
+        racingCar.moveRecordList.forEach { eachRoundRecord ->
+            eachRoundRecord.forEach { movedNum ->
+                for (i in 0 until movedNum) print("-")
+                println()
+            }
+            println()
+        }
     }
 }

@@ -1,15 +1,10 @@
 package study.step3.domain
 
 class Car {
-
-    private val movingList = mutableListOf<String>()
+    var movedNum = 0
 
     fun moveOneStep() {
         val randomNum = (0..9).random()
-        if (randomNum > 4) movingList.add("-")
-    }
-
-    fun printCurrentStep() {
-        movingList.forEach { print(it) }
+        if (randomNum >= 4) movedNum += 1
     }
 }
