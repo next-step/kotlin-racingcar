@@ -12,10 +12,10 @@ internal class TrackTest : BehaviorSpec({
 
         `when`("트랙에서 경주 했을때") {
             val times = 5
-            val position = track.run(times)
+            val racer = track.run(times)
 
             then("횟수만큼 레이서는 움직인다.") {
-                position shouldBe times
+                racer.location shouldBe times
             }
         }
     }
@@ -26,10 +26,10 @@ internal class TrackTest : BehaviorSpec({
 
         `when`("트랙에서 경주 했을때") {
             val times = 5
-            val position = track.run(times)
+            val racer = track.run(times)
 
             then("레이서는 멈춰있다.") {
-                position shouldBe 0
+                racer.location shouldBe 0
             }
         }
     }
