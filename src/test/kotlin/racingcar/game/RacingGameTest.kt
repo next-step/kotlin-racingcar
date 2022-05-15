@@ -5,9 +5,8 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
-import racingcar.car.RacingCar
-import racingcar.engine.Distance
-import racingcar.engine.Engine
+import racingcar.car.Car
+import racingcar.car.Position
 
 internal class RacingGameTest : StringSpec({
     "자동차를 제공하지 않으면 에러가 발생한다" {
@@ -19,10 +18,11 @@ internal class RacingGameTest : StringSpec({
     }
 
     "round 에 음수를 넣으면 에러가 발생한다" {
-        val stubEngine = object : Engine {
-            override fun accelerate(): Distance = Distance(1)
+        val stubCar = object : Car {
+            override fun position(): Position = Position(1)
+            override fun forward() {}
         }
-        val cars = List(1) { RacingCar(stubEngine) }
+        val cars = listOf(stubCar)
         val step = -1
 
         shouldThrow<IllegalArgumentException> {
@@ -32,10 +32,11 @@ internal class RacingGameTest : StringSpec({
 
     "각 자동차에 대한 게임 결과를 반환한다" {
         // given
-        val stubEngine = object : Engine {
-            override fun accelerate(): Distance = Distance(1)
+        val stubCar = object : Car {
+            override fun position(): Position = Position(1)
+            override fun forward() {}
         }
-        val cars = List(3) { RacingCar(stubEngine) }
+        val cars = List(3) { stubCar }
         val step = 5
         val racingGame = RacingGame(cars, step)
 
@@ -51,11 +52,14 @@ internal class RacingGameTest : StringSpec({
 
     "next 를 round 값 보다 많이 호출해도 최종 결과를 반환한다" {
         // given
-        val distance = 10
-        val stubEngine = object : Engine {
-            override fun accelerate(): Distance = Distance(distance)
+        val stubCar = object : Car {
+            private var current = 0
+            override fun position(): Position = Position(current)
+            override fun forward() {
+                current += 10
+            }
         }
-        val cars = List(1) { RacingCar(stubEngine) }
+        val cars = listOf(stubCar)
         val step = 5
         val racingGame = RacingGame(cars, step)
 
@@ -64,6 +68,6 @@ internal class RacingGameTest : StringSpec({
 
         // then
         val result = racingGame.next()
-        result.positions.first().value shouldBe distance * step
+        result.positions.first().value shouldBe 50
     }
 })
