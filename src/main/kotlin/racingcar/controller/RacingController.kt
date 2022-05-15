@@ -2,6 +2,7 @@ package racingcar.controller
 
 import racingcar.constants.Message
 import racingcar.model.Car
+import racingcar.model.Dice
 import racingcar.model.RaceResult
 
 /**
@@ -27,24 +28,14 @@ class RacingController(private val cars: List<Car>) {
 
     private fun processGame() {
         cars.forEach { car ->
-            if (checkCanRunScore(rollTheDice())) {
+            // TODO : 차량이 전진 가능한지 따로 메소드를 빼자.
+            if (Dice.fromRandom().isCanRunScore()) {
                 car.advanceOnce()
             }
         }
     }
 
-    private fun rollTheDice(): Int {
-        return (MINIMUM_SCORE..MAXIMUM_SCORE).random()
-    }
-
-    private fun checkCanRunScore(score: Int): Boolean {
-        return score >= SCORE_OF_CAN_GO
-    }
-
     companion object {
-        private const val MINIMUM_SCORE = 0
-        private const val MAXIMUM_SCORE = 9
-        private const val SCORE_OF_CAN_GO = 4
         private const val CAN_VALID_NUMBER = 1
 
         fun from(carNames: List<String>): RacingController {
