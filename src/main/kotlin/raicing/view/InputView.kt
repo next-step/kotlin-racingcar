@@ -1,16 +1,16 @@
 package raicing.view
 
 import raicing.Const
+import raicing.model.NaturalNumber
 
 object InputView {
-    fun readStrAndConvertToInt(infoMsg: String): Int {
+    fun readStrAndConvertToInt(infoMsg: String): NaturalNumber {
         println(infoMsg)
         return requireNaturalNum(readlnOrNull())
     }
 
-    private fun requireNaturalNum(inputStr: String?): Int {
-        val inputInt = requireNotNull(inputStr?.toIntOrNull()) { Const.ErrorMsg.INPUT_IS_NOT_NATURAL_NUMBER_ERROR_MSG }
-        require(inputInt > 0) { Const.ErrorMsg.INPUT_IS_NOT_NATURAL_NUMBER_ERROR_MSG }
-        return inputInt
+    private fun requireNaturalNum(inputStr: String?): NaturalNumber {
+        require(!inputStr.isNullOrBlank()) { Const.ErrorMsg.INPUT_IS_EMPTY_ERROR_MST }
+        return NaturalNumber.number(inputStr)
     }
 }

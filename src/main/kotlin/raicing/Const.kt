@@ -7,6 +7,7 @@ object Const {
     }
 
     object ErrorMsg {
+        const val INPUT_IS_EMPTY_ERROR_MST = "값이 비어있습니다."
         const val INPUT_IS_NOT_NATURAL_NUMBER_ERROR_MSG = "자연수만 입력 가능합니다."
     }
 }

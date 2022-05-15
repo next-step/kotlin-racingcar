@@ -9,8 +9,8 @@ fun main() {
     val raceCount = InputView.readStrAndConvertToInt(Const.OutputMsg.RACE_COUNT_MGS)
 
     val raceProcessor = RaceProcessor()
-    val initCars = raceProcessor.initCars(carCount)
-    val raceResults = raceProcessor.race(initCars, raceCount)
+    val initCars = raceProcessor.initCars(carCount.toInt())
+    val raceResults = raceProcessor.race(initCars, raceCount.toInt())
 
     OutputView.resultOutput(raceResults)
 }
