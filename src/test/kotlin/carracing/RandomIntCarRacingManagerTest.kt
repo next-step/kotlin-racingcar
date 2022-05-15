@@ -5,6 +5,17 @@ import io.kotest.matchers.shouldBe
 
 class RandomIntCarRacingManagerTest : StringSpec({
     val randomIntRacingMovementRole = RandomIntRacingMovementRole(4, 1, 9)
+    "Input Dto 로 클래스를 생성할수 있는 팩토리를 지원한다" {
+        // given
+        val inputDto = InputDto("11", "3")
+
+        // when
+        val randomIntCaRacingManger = RandomIntCarRacingManager.fromInputDto(inputDto, randomIntRacingMovementRole)
+        val carSize = randomIntCaRacingManger.getCarSize()
+
+        // then
+        carSize shouldBe 11
+    }
 
     "랜덤 값이 4 이상인 경우 자동차가 1 전진한다" {
         // given
