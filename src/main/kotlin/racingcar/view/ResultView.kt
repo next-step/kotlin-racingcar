@@ -1,9 +1,10 @@
-package racingcar
+package racingcar.view
+
+import racingcar.domain.CarResult
 
 class ResultView {
-    fun printGameHistory(gameResult: GameResults) {
-        val gameResults = gameResult.gameResult
-        gameResults.forEach { stage ->
+    fun printGameHistory(gameHistory: List<List<CarResult>>) {
+        gameHistory.forEach { stage ->
             printStageResult(stage)
 
             println()
@@ -12,7 +13,7 @@ class ResultView {
 
     private fun printStageResult(stage: List<CarResult>) {
         stage.forEach { car ->
-            val positionResult = "-".repeat(car.position)
+            val positionResult = CAR_POSITION_INDICATOR.repeat(car.position)
             println("${car.name} : $positionResult")
         }
     }
@@ -26,5 +27,6 @@ class ResultView {
     companion object {
         private const val WINNER_MSG_POSTFIX = " 가 최종 우승하였습니다."
         private const val WINNER_DELIMITER = ", "
+        private const val CAR_POSITION_INDICATOR = "-"
     }
 }

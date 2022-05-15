@@ -121,3 +121,26 @@
 - [x] 뷰/비즈니스로직 분리
 - [x] 차가 움직이는 조건은 차가 가지기
 - [x] 우승자/우승자는 여려명 에 대한 테스트 추가
+
+### 3차 todo list
+- [x] expression형태의 함수 반환형 명시해주기
+- [x] car result의 결과를 Car가 아닌 CarResult에서 만들어주기
+- [x] string 상수화
+- [x] 각 도메인별 테스트 추가
+
+
+#step5 
+
+## 프로그래밍 요구사항
+- 핵심 비지니스 로직을 가지는 객체를 domain 패키지, UI 관련한 객체를 view 패키지에 구현한다.
+- MVC 패턴 기반으로 리팩토링해 view 패키지의 객체가 domain 패키지 객체에 의존할 수 있지만, 
+  domain 패키지의 객체는 view 패키지 객체에 의존하지 않도록 구현한다.
+
+### 1차 todo list
+- [x] domain, view패키지로 분리
+
+### 2차 todo list
+- [x] input 받는 곳의 상수 내부로 이동
+- [x] seedmaker default parameter로 주입
+- [x] 히스토리와 결과를 누가 책임질지 ?
+- [x] input view 매직넘버 처리
