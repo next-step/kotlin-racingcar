@@ -6,9 +6,7 @@ import racing.dto.Winners
 class CarRacing {
     fun moveCars(cars: List<Car>, moveCount: Int) {
         repeat(moveCount) {
-            cars.forEach { car ->
-                car.go { car.goIfAboveRequireGoValue() }
-            }
+            cars.forEach(Car::go)
         }
     }
 

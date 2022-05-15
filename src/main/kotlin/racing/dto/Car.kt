@@ -11,8 +11,8 @@ class Car(val name: String) {
         return if ((0..9).random() >= REQUIRE_GO_VALUE) GO else STAY
     }
 
-    fun go(goIfAboveRequireGoValue: () -> Int) {
-        _turnOfPosition.add(_turnOfPosition[turn++] + goIfAboveRequireGoValue())
+    fun go(goAmount: () -> Int = { goIfAboveRequireGoValue() }) {
+        _turnOfPosition.add(_turnOfPosition[turn++] + goAmount())
     }
 
     override fun equals(other: Any?): Boolean {
