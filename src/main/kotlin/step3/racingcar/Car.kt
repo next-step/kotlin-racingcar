@@ -1,17 +1,14 @@
 package step3.racingcar
 
 class Car(
-    val movements: List<Boolean> = emptyList()
+    private val engine: Engine
 ) {
-    companion object {
-        fun withMovements(moveCount: Int): Car {
-            return Car(carMovements(moveCount))
-        }
+    private val _movements: MutableList<Boolean> = mutableListOf()
 
-        private fun carMovements(moveCount: Int) = List(moveCount) { isCarMove() }
+    val movements
+        get() = _movements.toList()
 
-        private fun isCarMove() = (0..9).random() >= GO_NUMBER
-
-        private const val GO_NUMBER = 4
+    fun move() {
+        _movements.add(engine.move())
     }
 }
