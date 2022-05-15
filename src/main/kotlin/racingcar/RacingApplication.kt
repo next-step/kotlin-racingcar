@@ -15,7 +15,10 @@ fun main() {
     val racing = Racing(Cars(readyCars))
     racing.start(roundCount.toInt(), DefaultMoveStrategy())
 
-    RacingView.OutputView.display(racing.result)
+    RacingView.OutputView.display(racing.history)
+
+    val winners = Winner(racing.result).winners
+    RacingView.OutputView.winner(winners)
 }
 
 fun ready(names: List<String>): List<Car> {

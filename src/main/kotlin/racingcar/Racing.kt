@@ -4,8 +4,11 @@ class Racing(private val cars: Cars) {
 
     private val _racing = mutableListOf<Cars>()
 
-    val result: List<Cars>
+    val history: List<Cars>
         get() = _racing
+
+    val result: List<Car>
+        get() = _racing.last().cars
 
     fun start(roundCount: Int, moveStrategy: MoveStrategy) {
 

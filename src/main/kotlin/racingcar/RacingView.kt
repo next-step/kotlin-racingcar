@@ -18,6 +18,10 @@ class RacingView {
             private const val RESULT_TITLE = "실행결과"
             private const val POSITION_VIEW = "-"
 
+            fun winner(names: List<String>) {
+                println(names.joinToString(separator = ",", postfix = "가 최종 우승했습니다."))
+            }
+
             fun display(cars: List<Cars>) {
                 println(RESULT_TITLE)
                 cars.forEach {

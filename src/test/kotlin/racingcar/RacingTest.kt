@@ -18,7 +18,7 @@ internal class RacingTest {
         }
 
         racing.start(1, strategy)
-        assertThat(racing.result).size().isEqualTo(1)
+        assertThat(racing.history).size().isEqualTo(1)
     }
 
     @Test
@@ -34,8 +34,8 @@ internal class RacingTest {
         racing.start(1, strategy)
 
         assertAll("자동차 포지션 테스트", {
-            assertThat(racing.result[0].cars[0].position).isEqualTo(1)
-            assertThat(racing.result[0].cars[1].position).isEqualTo(1)
+            assertThat(racing.history[0].cars[0].position).isEqualTo(1)
+            assertThat(racing.history[0].cars[1].position).isEqualTo(1)
         })
     }
 
@@ -50,6 +50,6 @@ internal class RacingTest {
         }
 
         racing.start(1, strategy)
-        assertThrows<IndexOutOfBoundsException> { racing.result[1].cars[0].position }
+        assertThrows<IndexOutOfBoundsException> { racing.history[1].cars[0].position }
     }
 }
