@@ -3,7 +3,6 @@ package carRacing.controller
 import carRacing.model.Car
 import carRacing.model.Record
 import carRacing.util.RandomGenerator
-import carRacing.util.maxAllBy
 
 class Game(
     carNameList: List<String>,
@@ -37,7 +36,8 @@ class Game(
     }
 
     fun winner(): List<Car> {
-        return cars.maxAllBy { it.position }
+        val maxPositionCar = cars.maxOrNull() ?: throw IllegalStateException(INVALID_CAR_LIST)
+        return this.cars.filter { it.isDrawWith(maxPositionCar) }
     }
 
     companion object {
