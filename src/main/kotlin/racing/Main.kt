@@ -17,7 +17,7 @@ fun main() {
 
     repeat(tryCount) {
         cars.moveForward(CarMovingStrategy)
-        ResultView.printCarPositions(cars.cars)
+        ResultView.printCarsNameAndPosition(cars.cars)
     }
 
     ResultView.printWinnerNames(cars.findWinners())
