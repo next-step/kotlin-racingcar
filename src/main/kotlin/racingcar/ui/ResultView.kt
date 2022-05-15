@@ -7,9 +7,10 @@ object ResultView {
     fun run(input: GameInput) {
         println("실행결과")
 
-        val results = RacingGame(input.toRacingCars(), input.round).getResults()
-        val resultString = GameResultPainter.from(results)
+        val result = RacingGame(input.toRacingCars(), input.round)
+            .getResults()
+            .let(GameResultPainter::from)
 
-        println(resultString)
+        println(result)
     }
 }
