@@ -1,7 +1,7 @@
 package racingcar.presentation
 
 class InBoundView(
-    private val reader: () -> String?,
+    private val reader: () -> String,
     private val printer: (String) -> Unit
 ) {
     fun requestNumberOfPlayer(): Int {

@@ -9,7 +9,7 @@ import racingcar.utils.NumberGenerator
 class RacingGame(
     private val numOfPlayer: Int,
     private val numOfMove: Int,
-    private val random: NumberGenerator
+    private val numberGenerator: NumberGenerator
 ) {
     init {
         require(numOfPlayer > 0) {
@@ -26,7 +26,7 @@ class RacingGame(
             Car(
                 Property().FORWARD_THRESHOLD,
                 Property().FORWARD_DISTANCE_RANGE,
-                random
+                numberGenerator
             )
         }
     )

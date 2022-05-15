@@ -5,7 +5,7 @@ import racingcar.utils.NumberGenerator
 class Car(
     private val forwardThreshold: Int,
     private val forwardDistanceRange: IntRange,
-    private val random: NumberGenerator
+    private val numberGenerator: NumberGenerator
 ) {
     var position: Int = 0
         private set
@@ -17,6 +17,6 @@ class Car(
     }
 
     private fun isRun(): Boolean {
-        return random.executeRangeOf(forwardDistanceRange) >= forwardThreshold
+        return numberGenerator.executeRangeOf(forwardDistanceRange) >= forwardThreshold
     }
 }

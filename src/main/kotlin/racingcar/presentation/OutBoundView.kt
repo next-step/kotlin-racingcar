@@ -7,7 +7,7 @@ class OutBoundView(
 ) {
     fun displayResult(result: GameResult) {
         printer("실행 결과:\n")
-        result.data.forEach(::displayResultDetails)
+        result.position.forEach(::displayResultDetails)
     }
 
     private fun displayResultDetails(result: List<Int>) {
