@@ -3,6 +3,8 @@ package game.racingcar
 import game.racingcar.domain.Car
 import game.racingcar.view.InputView
 import game.racingcar.view.OutputView
+import game.racingcar.view.StandardInputView
+import game.racingcar.view.StandardOutputView
 
 class RacingGame(private val inputView: InputView, private val outputView: OutputView) {
     fun run() {
@@ -14,13 +16,22 @@ class RacingGame(private val inputView: InputView, private val outputView: Outpu
     }
 
     private fun start(numberOfCar: Int, numberOfLap: Int): List<Car> {
-        println(numberOfCar)
-        println(numberOfLap)
-        return listOf()
+
+        val cars = arrayListOf<Car>()
+
+        for (i in 1..numberOfCar) {
+            cars.add(Car())
+        }
+
+        for (i in 1..numberOfLap) {
+            cars.forEach { it.move() }
+        }
+
+        return cars
     }
 }
 
 fun main() {
-    // val racingGame = RacingGame(InputView(), OutputView())
-    // racingGame.run()
+    val racingGame = RacingGame(StandardInputView(), StandardOutputView())
+    racingGame.run()
 }
