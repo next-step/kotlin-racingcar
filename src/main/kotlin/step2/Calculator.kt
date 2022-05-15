@@ -1,9 +1,7 @@
 package step2
 
 fun calculate(inputString: String): Double {
-    if (inputString.isBlank()) {
-        throw IllegalArgumentException("Invalid Input")
-    }
+    require(inputString.isNotBlank()) { "Invalid Input" }
 
     val inputs = inputString.split(" ")
     var result = inputs[0].toValue()
