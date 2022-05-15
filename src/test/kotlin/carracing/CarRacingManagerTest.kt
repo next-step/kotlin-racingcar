@@ -10,13 +10,13 @@ class CarRacingManagerTest : StringSpec({
         // given
         val moveDistance = 4
         val nowDistance = 10
-        val carListManager = CarListManager(listOf(Car(nowDistance)))
+        val carList = CarList(listOf(Car(nowDistance)))
         val racingMovementRoleForTest = RacingMovementRoleForTest()
-        val randomIntCarRacingManager = CarRacingManagerForTest(carListManager, racingMovementRoleForTest)
+        val randomIntCarRacingManager = CarRacingManagerForTest(carList, racingMovementRoleForTest)
 
         // when
         randomIntCarRacingManager.tryMoveCar(0, moveDistance)
-        val nowCarDistance = carListManager.getCarDistance(0)
+        val nowCarDistance = carList.getCarDistance(0)
         val movementRoleMoveDistance = racingMovementRoleForTest.getMoveDistance(moveDistance)
 
         // then
@@ -27,8 +27,8 @@ class CarRacingManagerTest : StringSpec({
     "getCarSize 는 CarList.Size 를 가져온다" {
         // given
         val cars = listOf(Car(), Car(), Car(), Car(), Car())
-        val carListManager = CarListManager(cars)
-        val carRacingManagerForTest = CarRacingManagerForTest(carListManager, RacingMovementRoleForTest())
+        val carList = CarList(cars)
+        val carRacingManagerForTest = CarRacingManagerForTest(carList, RacingMovementRoleForTest())
 
         // when
         val carListSize = carRacingManagerForTest.getCarSize()
@@ -40,7 +40,7 @@ class CarRacingManagerTest : StringSpec({
     "getCarList 는 CarList 데이터 가져온다" {
         // given
         val distance = 3
-        val carListManager = CarListManager(listOf(Car(distance)))
+        val carListManager = CarList(listOf(Car(distance)))
         val carRacingManagerForTest = CarRacingManagerForTest(carListManager, RacingMovementRoleForTest())
 
         // when
