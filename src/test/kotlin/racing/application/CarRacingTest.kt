@@ -5,28 +5,45 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import racing.model.Car
+import racing.model.Round
 
 internal class CarRacingTest {
 
     @Test
     fun `get random value between 0 - 9`() {
         repeat(100) {
-            assertThat(CarRacing.getRandom())
-                .isGreaterThanOrEqualTo(0)
-                .isLessThanOrEqualTo(9)
+            //given
+            val numberOfRandomInt = it + 1
+            val randomValueFrom = 0
+            val randomValueTo = 9
+
+            //when
+            val result = CarRacing
+                .getRandom(numberOfRandomInt)
+                .first()
+
+            //then
+            assertThat(result)
+                .isGreaterThanOrEqualTo(randomValueFrom)
+                .isLessThanOrEqualTo(randomValueTo)
         }
     }
 
     @Test
     fun `first round do initialization test`() {
-        val carRacing = CarRacing(3, 3)
-        assertThat(carRacing.eachRoundMap)
-            .isEmpty()
+        //given
+        val firstRoundNo = 0
+        val numberOfCars = 3
+        val tries = 3
+        val carRacing = CarRacing(numberOfCars, tries)
+        val expected = List(numberOfCars) { Car() }
 
-        carRacing.round(1)
-        val expected = List(3) { Car() }
+        //when
+        val result = carRacing.start()
 
-        assertThat(carRacing.eachRoundMap[1])
+        //then
+        assertThat(result[firstRoundNo])
+            .extracting("cars")
             .isEqualTo(expected)
     }
 
@@ -37,13 +54,16 @@ internal class CarRacingTest {
         "23, 15",
         "1231, 1"
     )
-    fun `start method create each round result`(numberOfCars: Int, tries: Int) {
-        val carRacing = CarRacing(numberOfCars, tries)
-        carRacing.start()
-
+    fun `start method create round result`(numberOfCars: Int, tries: Int) {
+        //given
         val expectedKeys = Array(tries) { it }
-        val expectedValue = List(numberOfCars) { Car() }
-        assertThat(carRacing.eachRoundMap)
+        val expectedValue = Round(List(numberOfCars) { Car() })
+
+        //when
+        val racingResult = CarRacing(numberOfCars, tries).start()
+
+        //then
+        assertThat(racingResult)
             .containsKeys(*expectedKeys)
             .containsEntry(0, expectedValue)
     }
