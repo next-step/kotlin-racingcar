@@ -1,10 +1,10 @@
 package carracing
 
-class Car(private var _distance: Int = 0) {
-    val distance
-        get() = _distance
+class Car(_distance: Int = 0) {
+    var distance: Int = _distance
+        private set
 
     fun move(moveDistance: Int) {
-        _distance += moveDistance
+        distance += moveDistance
     }
 }
