@@ -21,8 +21,10 @@ internal class GameResultPainterTest : StringSpec({
             GameResult(listOf(StubCar(3), StubCar(2), StubCar(5))),
         )
 
+        // when
         val result = GameResultPainter.from(gameResults)
 
+        // then
         result shouldBe """
             -
             
