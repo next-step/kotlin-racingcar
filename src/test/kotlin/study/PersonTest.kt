@@ -32,9 +32,9 @@ class PersonTest : AnnotationSpec() {
     @Test
     fun `default args`() {
         val person = Person("신병주", 28)
-        person shouldBe "신병주"
-        person shouldBe 28
-        person.nickname shouldNotBe null
+        person.name shouldBe "신병주"
+        person.age shouldBe 28
+        person.nickname.shouldBeNull()
     }
 
     @Test
