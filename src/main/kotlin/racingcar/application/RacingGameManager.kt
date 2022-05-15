@@ -11,7 +11,7 @@ object RacingGameManager {
     fun proceed(gameInput: GameInput, movementCommandGenerator: MovementCommandGenerator): GameResult {
 
         val racingGame = gameInput.run {
-            RacingGame(numberOfRaces, enrollRacingCars(names), movementCommandGenerator)
+            RacingGame(numberOfRaces, enrollRacingCars(names, movementCommandGenerator))
         }
 
         val gameRecord = racingGame.play()
@@ -19,9 +19,9 @@ object RacingGameManager {
         return GameReferee.rank(gameRecord)
     }
 
-    private fun enrollRacingCars(names: List<String>): RacingCars {
+    private fun enrollRacingCars(names: List<String>, movementCommandGenerator: MovementCommandGenerator): RacingCars {
         require(names.isNotEmpty()) { "자동차 이름이 입력되지 않았습니다." }
         val cars = names.map { Car(it) }
-        return RacingCars(cars)
+        return RacingCars(cars, movementCommandGenerator)
     }
 }

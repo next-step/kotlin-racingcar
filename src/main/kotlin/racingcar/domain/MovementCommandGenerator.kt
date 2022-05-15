@@ -8,7 +8,7 @@ interface MovementCommandGenerator {
 
 object RandomMovementCommandGenerator : MovementCommandGenerator {
     override fun generateMovement(): MovementCommand {
-        val command = RandomDigitGenerator.nextCommand()
+        val command = RandomDigitGenerator.nextDigit()
         return MovementCommand.of(command)
     }
 }

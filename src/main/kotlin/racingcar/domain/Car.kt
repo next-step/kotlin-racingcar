@@ -10,7 +10,7 @@ class Car(
 
     init {
         require(name.isNotBlank()) { "이름은 공백일 수 없습니다." }
-        require(NAME_LENGTH_RANGE.contains(name.length)) { "이름은 최소 1글자, 최대 5글자이어야 합니다." }
+        require(name.length in NAME_LENGTH_RANGE) { "이름은 최소 1글자, 최대 5글자이어야 합니다." }
     }
 
     fun move(movementCommand: MovementCommand) {

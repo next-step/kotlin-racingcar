@@ -1,7 +1,8 @@
 package racingcar.domain
 
 class RacingCars(
-    private val cars: List<Car>
+    private val cars: List<Car>,
+    private val movementCommandGenerator: MovementCommandGenerator
 ) {
     val size: Int = cars.size
 
@@ -9,10 +10,10 @@ class RacingCars(
         require(cars.isNotEmpty()) { "경주를 진행하기 위해선 최소 ${MINIMUM_NUMBER_OF_CARS}대 이상의 자동차가 필요합니다" }
     }
 
-    fun race(movementCommandGenerator: MovementCommandGenerator): RaceRecord {
+    fun race(): RaceRecord {
         cars.forEach {
-            val command = movementCommandGenerator.generateMovement()
-            it.move(command)
+            val movement = movementCommandGenerator.generateMovement()
+            it.move(movement)
         }
         return RaceRecord(cars.map { it.captureState() })
     }
@@ -24,4 +25,10 @@ class RacingCars(
 
 data class RaceRecord(
     val cars: List<Car.State>
-)
+) {
+    private val leadingPosition: Int = cars.maxOf { it.currentPosition }
+
+    fun findLeader(): List<Car.State> {
+        return cars.filter { it.currentPosition == leadingPosition }
+    }
+}
