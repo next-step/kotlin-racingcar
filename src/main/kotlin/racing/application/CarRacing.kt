@@ -25,9 +25,9 @@ class CarRacing(private val numberOfCars: Int, private val tries: Int) {
         return roundsMap
     }
 
-    private fun getFirstRound(numberOfCars: Int): Round =
-        Round(List(numberOfCars) { Car() })
-
     private fun getNextRound(prevRound: Round?, randomNumbers: List<Int>, numberOfCars: Int): Round =
         prevRound?.next(randomNumbers) ?: getFirstRound(numberOfCars)
+
+    private fun getFirstRound(numberOfCars: Int): Round =
+        Round(List(numberOfCars) { Car() })
 }
