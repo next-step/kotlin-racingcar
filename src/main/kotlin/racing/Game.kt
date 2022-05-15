@@ -14,7 +14,7 @@ class Game {
             printCurrentRound(carList)
         }
     }
-    fun clearResult(){
+    fun clearResult() {
         carList.clear()
     }
     private fun initializeCarList(carNumber: Int) {
