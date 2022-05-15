@@ -14,6 +14,9 @@ class Game {
             printCurrentRound(carList)
         }
     }
+    fun clearResult(){
+        carList.clear()
+    }
     private fun initializeCarList(carNumber: Int) {
 
         (0 until carNumber).forEach {

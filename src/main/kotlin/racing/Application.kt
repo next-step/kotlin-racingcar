@@ -7,7 +7,9 @@ fun main() {
     println("시도할 횟수는 몇 회인가요?")
     val turnNumberInput = readln().inputConverter()
 
-    Game().run(carNumberInput, turnNumberInput)
+    val game = Game()
+    game.run(carNumberInput, turnNumberInput)
+    game.clearResult()
 }
 
 fun String.inputConverter(): Int {
