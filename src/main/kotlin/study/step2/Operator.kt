@@ -1,4 +1,4 @@
-package study
+package study.step2
 
 enum class Operator(val symbol: String) {
     ADD("+"),
