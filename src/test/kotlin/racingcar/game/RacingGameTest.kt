@@ -48,4 +48,22 @@ internal class RacingGameTest : StringSpec({
             it.value shouldBe 1
         }
     }
+
+    "next 를 round 값 보다 많이 호출해도 최종 결과를 반환한다" {
+        // given
+        val distance = 10
+        val stubEngine = object : Engine {
+            override fun accelerate(): Distance = Distance(distance)
+        }
+        val cars = List(1) { RacingCar(stubEngine) }
+        val step = 5
+        val racingGame = RacingGame(cars, step)
+
+        // when
+        repeat(10) { racingGame.next() }
+
+        // then
+        val result = racingGame.next()
+        result.positions.first().value shouldBe distance * step
+    }
 })
