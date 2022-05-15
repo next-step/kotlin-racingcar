@@ -9,7 +9,7 @@ internal class RacingTest {
 
     @Test
     fun `레이싱 컬렉션 사이즈`() {
-        val racing = Racing(Cars(listOf(Car(), Car())))
+        val racing = Racing(Cars(listOf(Car("a"), Car("b"))))
 
         val strategy = object : MoveStrategy {
             override fun isMove(): Boolean {
@@ -23,7 +23,7 @@ internal class RacingTest {
 
     @Test
     fun `결과 값 테스트`() {
-        val racing = Racing(Cars(listOf(Car(), Car())))
+        val racing = Racing(Cars(listOf(Car("a"), Car("b"))))
 
         val strategy = object : MoveStrategy {
             override fun isMove(): Boolean {
@@ -41,7 +41,7 @@ internal class RacingTest {
 
     @Test
     fun `잘못된 결과 값 테스트`() {
-        val racing = Racing(Cars(listOf(Car(), Car())))
+        val racing = Racing(Cars(listOf(Car("a"), Car("b"))))
 
         val strategy = object : MoveStrategy {
             override fun isMove(): Boolean {

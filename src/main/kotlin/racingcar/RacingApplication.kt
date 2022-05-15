@@ -21,7 +21,7 @@ fun main() {
 fun ready(carCount: Int): List<Car> {
     val initCars = mutableListOf<Car>()
     for (i in 0 until carCount) {
-        initCars.add(Car())
+        initCars.add(Car("a"))
     }
     return initCars
 }

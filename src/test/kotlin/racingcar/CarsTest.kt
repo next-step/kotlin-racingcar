@@ -7,7 +7,7 @@ internal class CarsTest {
 
     @Test
     fun `Cars move 책임 테스트`() {
-        val cars = Cars(listOf(Car(), Car(), Car()))
+        val cars = Cars(listOf(Car("a"), Car("b"), Car("c")))
 
         val moveStrategy = SuccessMoveStrategy()
 
@@ -19,7 +19,7 @@ internal class CarsTest {
 
     @Test
     fun `Cars move 책임 테스트2`() {
-        val cars = Cars(listOf(Car(), Car(), Car()))
+        val cars = Cars(listOf(Car("a"), Car("b"), Car("c")))
 
         val successMoveStrategy = SuccessMoveStrategy()
         val failMoveStrategy = FailMoveStrategy()

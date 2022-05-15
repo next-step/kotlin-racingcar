@@ -1,8 +1,8 @@
 package racingcar
 
-data class Car(val position: Int = DEFAULT_POSITION) {
+data class Car(val name: String, val position: Int = DEFAULT_POSITION) {
 
-    fun move(isMove: Boolean): Car = if (isMove) Car(position + PLUS_POSITION) else this
+    fun move(isMove: Boolean): Car = if (isMove) Car(this.name, position + PLUS_POSITION) else this
 
     companion object {
         private const val DEFAULT_POSITION = 0
