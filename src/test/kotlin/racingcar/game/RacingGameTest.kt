@@ -2,8 +2,6 @@ package racingcar.game
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
-import io.kotest.inspectors.forAll
-import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import racingcar.car.Car
 import racingcar.car.Position
@@ -30,44 +28,28 @@ internal class RacingGameTest : StringSpec({
         }
     }
 
-    "각 자동차에 대한 게임 결과를 반환한다" {
+    "각 자동차에 대한 round 별 게임 결과를 반환한다" {
         // given
-        val stubCar = object : Car {
-            override fun position(): Position = Position(1)
-            override fun forward() {}
-        }
-        val cars = List(3) { stubCar }
-        val step = 5
-        val racingGame = RacingGame(cars, step)
-
-        // when
-        val result = racingGame.next()
-
-        // then
-        result.positions shouldHaveSize cars.size
-        result.positions.forAll {
-            it.value shouldBe 1
-        }
-    }
-
-    "next 를 round 값 보다 많이 호출해도 최종 결과를 반환한다" {
-        // given
-        val stubCar = object : Car {
-            private var current = 0
-            override fun position(): Position = Position(current)
-            override fun forward() {
-                current += 10
+        val makeCar = { distance: Int ->
+            object : Car {
+                private var current = 0
+                override fun position(): Position = Position(current)
+                override fun forward() {
+                    current += distance
+                }
             }
         }
-        val cars = listOf(stubCar)
-        val step = 5
+        val cars = listOf(makeCar(10), makeCar(20))
+        val step = 2
         val racingGame = RacingGame(cars, step)
 
         // when
-        repeat(10) { racingGame.next() }
+        val results = racingGame.getResults()
 
         // then
-        val result = racingGame.next()
-        result.positions.first().value shouldBe 50
+        results shouldBe listOf(
+            GameResult(listOf(Position(10), Position(20))),
+            GameResult(listOf(Position(20), Position(40))),
+        )
     }
 })

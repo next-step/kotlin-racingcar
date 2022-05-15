@@ -10,14 +10,22 @@ class RacingGame(private val cars: List<Car>, private val round: Int) {
         require(cars.isNotEmpty()) { "자동차는 1대 이상이어야 합니다" }
     }
 
-    fun next(): GameResult {
-        if (hasNext()) {
-            cars.forEach { it.forward() }
-            currentRound++
+    fun getResults(): List<GameResult> {
+        val results = mutableListOf<GameResult>()
+
+        while (hasNext()) {
+            results.add(next())
         }
+
+        return results
+    }
+
+    private fun next(): GameResult {
+        cars.forEach { it.forward() }
+        currentRound++
 
         return GameResult(cars.map { it.position() })
     }
 
-    fun hasNext(): Boolean = currentRound < round
+    private fun hasNext(): Boolean = currentRound < round
 }
