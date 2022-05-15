@@ -28,6 +28,6 @@ internal class OutputViewTest {
 
 class TestOutputView : OutputView {
     override fun getResult(cars: List<Car>): String {
-        return cars.joinToString("\n") { "${it.hashCode()}번 자동차 위치: ${it.position}" }
+        return cars.joinToString("\n") { "${it.hashCode()}번 자동차 위치: ${it.position()}" }
     }
 }
