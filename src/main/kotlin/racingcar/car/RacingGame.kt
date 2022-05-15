@@ -11,9 +11,10 @@ class RacingGame(carNames: List<String>, trialCount: Int, moveStrategy: MoveStra
     val trialCount get() = _trialCount
 
     fun play() {
-        if (isPlayable()) {
-            drivers.driveAll()
+        if (!isPlayable()) {
+            throw GameOverException()
         }
+        drivers.driveAll()
         reduceTrialCount()
     }
 
@@ -22,10 +23,7 @@ class RacingGame(carNames: List<String>, trialCount: Int, moveStrategy: MoveStra
     }
 
     fun isPlayable(): Boolean {
-        if (trialCount <= GAME_END_COUNT) {
-            throw GameOverException()
-        }
-        return true
+        return trialCount > GAME_END_COUNT
     }
 
     private fun reduceTrialCount() {
