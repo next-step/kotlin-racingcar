@@ -1,5 +1,6 @@
 package racingcar.game
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.collections.shouldHaveSize
@@ -9,6 +10,26 @@ import racingcar.engine.Distance
 import racingcar.engine.Engine
 
 internal class RacingGameTest : StringSpec({
+    "자동차를 제공하지 않으면 에러가 발생한다" {
+        val step = 10
+
+        shouldThrow<IllegalArgumentException> {
+            RacingGame(emptyList(), step)
+        }
+    }
+
+    "round 에 음수를 넣으면 에러가 발생한다" {
+        val stubEngine = object : Engine {
+            override fun accelerate(): Distance = Distance(1)
+        }
+        val cars = List(1) { RacingCar(stubEngine) }
+        val step = -1
+
+        shouldThrow<IllegalArgumentException> {
+            RacingGame(cars, step)
+        }
+    }
+
     "각 자동차에 대한 게임 결과를 반환한다" {
         // given
         val stubEngine = object : Engine {
