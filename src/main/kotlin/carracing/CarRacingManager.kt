@@ -6,14 +6,7 @@ abstract class CarRacingManager<RoleArgumentType>(
 ) {
 
     fun tryMoveCar(carIndex: Int, argument: RoleArgumentType) {
-        syncCarDistance(carIndex, getMoveDistance(carIndex, argument))
-    }
-
-    private fun getMoveDistance(carIndex: Int, argument: RoleArgumentType) =
-        carListManager.getCarDistance(carIndex) + racingMovementRole.getMoveDistance(argument)
-
-    private fun syncCarDistance(carsIndex: Int, distance: Int) {
-        carListManager.moveCar(carsIndex, distance)
+        carListManager.moveCar(carIndex, racingMovementRole.getMoveDistance(argument))
     }
 
     fun getCarSize(): Int {

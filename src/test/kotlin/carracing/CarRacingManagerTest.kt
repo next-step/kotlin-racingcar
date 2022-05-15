@@ -9,7 +9,8 @@ class CarRacingManagerTest : StringSpec({
     "tryMoveCar 는 RacingMovementRole 가 판단한 이동 거리 만큼 자동차가 이동한다" {
         // given
         val moveDistance = 4
-        val carListManager = CarListManager(listOf(Car()))
+        val nowDistance = 10
+        val carListManager = CarListManager(listOf(Car(nowDistance)))
         val racingMovementRoleForTest = RacingMovementRoleForTest()
         val randomIntCarRacingManager = CarRacingManagerForTest(carListManager, racingMovementRoleForTest)
 
@@ -20,7 +21,7 @@ class CarRacingManagerTest : StringSpec({
 
         // then
         movementRoleMoveDistance shouldBe moveDistance
-        nowCarDistance shouldBe moveDistance
+        nowCarDistance shouldBe moveDistance + nowDistance
     }
 
     "getCarSize 는 CarList.Size 를 가져온다" {
