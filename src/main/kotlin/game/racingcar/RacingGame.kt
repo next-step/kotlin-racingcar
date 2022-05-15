@@ -15,7 +15,7 @@ class RacingGame(
 ) {
     fun run() {
         inputView.init()
-        val cars = start(inputView.numberOfCar, inputView.numberOfLap)
+        val cars = start(inputView.numberOfCar(), inputView.numberOfLap)
         val result = outputView.getResult(cars)
         println("\n실행 결과")
         println(result)

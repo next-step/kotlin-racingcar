@@ -1,7 +1,9 @@
 package game.racingcar.view
 
 interface InputView {
-    var numberOfCar: Int
+    var carNames: List<String>
     var numberOfLap: Int
     fun init()
+
+    fun numberOfCar(): Int
 }
