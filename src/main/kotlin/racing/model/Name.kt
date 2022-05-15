@@ -2,7 +2,7 @@ package racing.model
 
 @JvmInline
 value class Name(
-    val name: String
+    private val name: String
 ) {
 
     init {
@@ -16,6 +16,10 @@ value class Name(
 
     private fun validateMaxLength(name: String) {
         require(name.length <= MAX_NAME_LENGTH) { "이름이 ${MAX_NAME_LENGTH}자를 초과할 수 없습니다." }
+    }
+
+    override fun toString(): String {
+        return name
     }
 
     companion object {

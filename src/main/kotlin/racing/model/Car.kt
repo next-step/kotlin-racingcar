@@ -16,7 +16,7 @@ class Car private constructor(
     }
 
     fun name(): String {
-        return name.name
+        return name.toString()
     }
 
     companion object {
