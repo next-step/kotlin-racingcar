@@ -6,7 +6,7 @@ import io.kotest.matchers.shouldBe
 class CarTest : DescribeSpec({
 
     describe("Car") {
-        it("move 함수 테스트") {
+        it("move 함수 실행 시 movement 가 증가한다.") {
             // given
             val car = Car()
 

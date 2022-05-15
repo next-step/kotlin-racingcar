@@ -6,7 +6,7 @@ import io.kotest.matchers.shouldBe
 class DriverTest : DescribeSpec({
 
     describe("Driver") {
-        it("drive 함수 테스트") {
+        it("인자에 따라 drive 함수를 실행한다.") {
             // given
             val car = Car(3)
             val driver = Driver(car)
@@ -18,7 +18,7 @@ class DriverTest : DescribeSpec({
             car.movement shouldBe 4
         }
 
-        it("getMoveResult") {
+        it("getMoveResult 실행 시 현재 진행상태를 반환한다.") {
             // given
             val driver = Driver(Car(3))
 
