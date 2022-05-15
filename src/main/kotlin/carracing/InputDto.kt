@@ -1,19 +1,15 @@
 package carracing
 
 data class InputDto(val carCountString: String, val movementTryCountString: String) {
-    private val _carCount: UInt
     val carCount: Int
-        get() = _carCount.toInt()
-    val _movementTryCount: UInt
     val movementTryCount: Int
-        get() = _movementTryCount.toInt()
 
     init {
         validateForIntegerString(carCountString, CAR_COUNT_NAME)
         validateForIntegerString(movementTryCountString, MOVEMENT_TRY_COUNT_NAME)
 
-        _carCount = removeSpace(carCountString).toUInt()
-        _movementTryCount = removeSpace(movementTryCountString).toUInt()
+        carCount = removeSpace(carCountString).toInt()
+        movementTryCount = removeSpace(movementTryCountString).toInt()
     }
 
     companion object {
