@@ -4,15 +4,25 @@ import racingcar.model.movement.DefaultMovement
 import racingcar.model.movement.Movement
 
 class RacingGame(
-    numberOfCar: Int,
+    namesOfCar: List<String>,
     private val stepsToTry: Int,
     movement: Movement = DefaultMovement()
 ) {
 
-    val carList = (0 until numberOfCar).map { Car(carId = it.toString(), movement = movement) }
+    val carList = namesOfCar.mapIndexed { index, carName ->
+        Car(carId = index.toString(), movement = movement, carName = carName)
+    }
+
     var currentStep: Int = 0
         private set
+
     val isOver: Boolean get() = this.stepsToTry == this.currentStep
+
+    constructor(
+        numberOfCar: Int,
+        stepsToTry: Int,
+        movement: Movement = DefaultMovement()
+    ) : this((0 until numberOfCar).map { it.toString() }, stepsToTry, movement)
 
     fun runGame(onGameProgress: ((RacingGame) -> Unit)? = null): RacingRecord {
         this.reset()

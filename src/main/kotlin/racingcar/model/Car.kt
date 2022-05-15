@@ -2,7 +2,7 @@ package racingcar.model
 
 import racingcar.model.movement.Movement
 
-class Car(val carId: String, private val movement: Movement) {
+class Car(val carId: String, private val movement: Movement, val carName: String = carId) {
 
     var position: Int = 0
         private set
