@@ -6,7 +6,7 @@ import io.kotest.matchers.shouldBe
 import racingcar.domain.CarFixture.initCars
 import racingcar.domain.CarFixture.runningCars
 
-class CarRacingTest: AnnotationSpec() {
+class CarRacingTest : AnnotationSpec() {
     @Test
     fun `자동차 수 만큼 Car 객체가 생성되고 각 시작 위치는 0이다`() {
         val carCount = 3

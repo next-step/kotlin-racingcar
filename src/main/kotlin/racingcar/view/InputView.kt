@@ -12,7 +12,7 @@ object InputView {
     }
 
     private fun readInput(inputStr: String? = null): Int {
-        require(!inputStr.isNullOrBlank()) { "입력값이 비어있어요."}
+        require(!inputStr.isNullOrBlank()) { "입력값이 비어있어요." }
         return inputStr.toInt()
     }
 }
