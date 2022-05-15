@@ -1,5 +1,6 @@
 package racing.model
 
+import org.junit.jupiter.api.Assertions.assertAll
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -34,7 +35,9 @@ class CarsTest {
         val winners = cars.findWinners()
 
         // then
-        assertEquals(winners[0].name(), "aiden")
-        assertEquals(winners[1].name(), "crong")
+        assertAll(
+            { assertEquals(winners[0].name(), "aiden") },
+            { assertEquals(winners[1].name(), "crong") }
+        )
     }
 }
