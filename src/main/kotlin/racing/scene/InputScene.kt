@@ -11,12 +11,14 @@ class InputScene(
     private val environmentManager: EnvironmentManager,
 ) : Scene {
 
-    override fun update() {
+    override fun run() {
+        start()
+    }
+
+    private fun start() {
         setCarNumber()
         setStageNumber()
     }
-
-    override fun hasNext(): Boolean = false
 
     private fun setCarNumber() {
         outputPainter.draw("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)\n")

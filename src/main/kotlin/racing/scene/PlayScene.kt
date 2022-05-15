@@ -18,23 +18,31 @@ class PlayScene(
     private var totalRound = 0
     private var cars: Cars = Cars.empty()
 
-    override fun start() {
+    override fun run() {
+        start()
+        do {
+            update()
+        } while (hasNext())
+        onDestroy()
+    }
+
+    private fun start() {
         setUpTotalRound()
         setUpCars()
         printPrologue()
     }
 
-    override fun update() {
+    private fun update() {
         moveCars()
         drawCars()
         outputSplitLine()
     }
 
-    override fun onDestroy() {
+    private fun onDestroy() {
         outputWinners()
     }
 
-    override fun hasNext(): Boolean = currentRound++ < totalRound
+    private fun hasNext(): Boolean = currentRound++ < totalRound
 
     private fun setUpCars() {
         val carNames = environmentManager.getOrDefault(Constants.CAR_NAMES_KEY, "")
