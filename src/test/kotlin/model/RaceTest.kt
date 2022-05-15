@@ -4,10 +4,11 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class RaceTest {
+    val names = listOf("test1", "test2", "test3")
     @Test
     fun initCars() {
-        val race = Race(5)
-        assertThat(race.getCars().size == 5)
+        val race = Race(names)
+        assertThat(race.getCars().size == 3)
         race.getCars().forEach {
             assertThat(it.getDistance() == 1)
         }
@@ -15,9 +16,11 @@ class RaceTest {
 
     @Test
     fun doRace() {
-        val race = Race(5)
-        race.doRace().forEach {
-            assertThat(it.getDistance() == 1 || it.getDistance() == 2)
+        val race = Race(names)
+        race.getCars().forEach {
+            assertThat(it.getDistance() == 1)
+            it.go()
+            assertThat(it.getDistance() == 2)
         }
     }
 }
