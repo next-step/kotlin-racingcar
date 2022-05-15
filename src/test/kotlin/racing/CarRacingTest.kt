@@ -2,9 +2,11 @@ package racing
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import racing.domain.CarRacing
 import racing.dto.Car
 import racing.dto.Winners
+import racing.view.CarRacingInputView
 
 class CarRacingTest {
     @Test
@@ -82,5 +84,12 @@ class CarRacingTest {
         val winners: Winners = carRacing.pickWinners(cars = cars)
         assertThat(winners.winnerNames.size).isEqualTo(1)
         assertThat(winners.winnerNames[0]).isEqualTo("c")
+    }
+
+    @Test
+    fun `차 이름이 5글자를 초과하여 IllegalStateException을 발생시킨다`() {
+        assertThrows<IllegalStateException> {
+            CarRacingInputView.checkCarNameLength("나비보벳따우")
+        }
     }
 }
