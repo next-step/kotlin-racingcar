@@ -17,4 +17,8 @@ class RacingCar(val moving: Moving) {
     fun getMoved(): Int {
         return moved.get()
     }
+
+    fun getState(): String {
+        return "-".repeat(getMoved())
+    }
 }

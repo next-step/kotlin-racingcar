@@ -20,10 +20,11 @@ internal class RacingCarTest {
     }
 
     @Test
-    fun `Moved 초기 값은 0이다`() {
+    fun `RacingCar 초기 값 테스트`() {
         val racingCar = RacingCar(moving)
 
         assertThat(racingCar.getMoved()).isEqualTo(0)
+        assertThat(racingCar.getState()).isEqualTo("")
     }
 
     @ParameterizedTest
@@ -58,6 +59,19 @@ internal class RacingCarTest {
         val moved = racingCar.move()
 
         assertThat(moved).isEqualTo(1)
+    }
+
+    @Test
+    fun `움지인 후 State를 가져올 수 있다`() {
+        val racingCar = RacingCar(moving)
+
+        every { moving.isMovable() } returns true
+
+        val moved = racingCar.move()
+        val state = racingCar.getState()
+
+        assertThat(moved).isEqualTo(1)
+        assertThat(state).isEqualTo("-")
     }
 
     private fun Boolean.toInt() = if (this) 1 else 0

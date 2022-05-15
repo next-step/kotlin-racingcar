@@ -7,7 +7,15 @@ fun main() {
     println("시도할 횟수는 몇 회인가요?")
     val numOfTry = readLine()!!.toInt()
 
-    println("$numOfCar, $numOfTry")
+    val moving = Moving()
+    val racingCars = (1..numOfCar).map { RacingCar(moving) }
 
     println("실행결과")
+    (1..numOfTry).forEach {
+        println()
+        racingCars.forEach {
+            it.move()
+            println(it.getState())
+        }
+    }
 }
