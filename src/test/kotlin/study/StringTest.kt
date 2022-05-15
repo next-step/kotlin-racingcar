@@ -1,7 +1,6 @@
 package study
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 class StringTest {
@@ -11,7 +10,7 @@ class StringTest {
         assertThat("".isNullOrEmpty()).isTrue
         assertThat(" ".isNullOrEmpty()).isFalse
 
-        val input : String? = null
+        val input: String? = null
         assertThat(input.isNullOrEmpty()).isTrue
     }
 
@@ -20,7 +19,7 @@ class StringTest {
         assertThat("".isNullOrBlank()).isTrue
         assertThat(" ".isNullOrBlank()).isTrue
 
-        val input : String? = null
+        val input: String? = null
         assertThat(input.isNullOrBlank()).isTrue
     }
 }
