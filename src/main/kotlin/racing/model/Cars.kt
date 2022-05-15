@@ -14,19 +14,9 @@ class Cars(
     }
 
     companion object {
-        private const val NAME_DELIMITER = ","
-
-        fun of(names: String): Cars {
-            validateNotBlank(names)
-
-            val splitNames = names.split(NAME_DELIMITER)
-            val cars = splitNames.map { Car.of(it) }
-
+        fun of(names: List<String>): Cars {
+            val cars = names.map { Car.of(it) }
             return Cars(cars)
-        }
-
-        private fun validateNotBlank(names: String) {
-            require(names.isNotBlank()) { "이름 목록이 공백일 수 없습니다." }
         }
     }
 }
