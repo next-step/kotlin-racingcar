@@ -11,10 +11,14 @@ class Game {
         val resultView = ResultView()
 
         repeat(numOfRounds) {
-            resultView.record(race.doRace())
+            race.doRace()
         }
-        resultView.showResult()
-        resultView.whoIsWinner()
+
+        race.getRecords().forEach {
+            resultView.showResult(it)
+        }
+
+        resultView.whoIsWinner(race.getRecords().last())
     }
 
     private fun askNamesOfCar(): List<String> {

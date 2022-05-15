@@ -13,6 +13,7 @@ internal class CarTest {
     @Test
     fun go() {
         val car = Car("test")
+        assertThat(car.getDistance() == 1)
         car.go()
         assertThat(car.getDistance() == 2)
     }
