@@ -10,5 +10,6 @@ object RacingCarOutputView {
             }
             println()
         }
+        println("====== 경주 종료 ======")
     }
 }
