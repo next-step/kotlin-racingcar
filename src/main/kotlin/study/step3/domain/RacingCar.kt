@@ -5,9 +5,7 @@ import study.step3.view.InputView
 class RacingCar {
     lateinit var moveRecordList: List<MutableList<Int>>
 
-    fun raceStart() {
-        val carNum = InputView.inputCarNum()
-        val roundNum = InputView.inputRoundNum()
+    fun raceStart(carNum: Int, roundNum: Int) {
 
         val carList = List(carNum) {}.map { Car() }
         moveRecordList = List(roundNum) {}.map { List(carNum) {}.map { 0 }.toMutableList() }

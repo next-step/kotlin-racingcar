@@ -4,8 +4,10 @@ import study.step3.domain.RacingCar
 
 object ResultView {
     fun printResult() {
+        val carNum = InputView.inputCarNum()
+        val roundNum = InputView.inputRoundNum()
         val racingCar = RacingCar()
-        racingCar.raceStart()
+        racingCar.raceStart(carNum,roundNum)
 
         racingCar.moveRecordList.forEach { eachRoundRecord ->
             eachRoundRecord.forEach { movedNum ->
