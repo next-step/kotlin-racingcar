@@ -17,6 +17,7 @@ enum class Operator(
 
     companion object {
         fun of(symbol: String): Operator =
-            values().firstOrNull { it.symbol == symbol } ?: throw IllegalArgumentException("지원하지 않는 연산자 입니다. ($symbol)")
+            values().firstOrNull { it.symbol == symbol } ?: throw IllegalArgumentException("$MESSAGE_WRONG_OPERATOR ($symbol)")
+        const val MESSAGE_WRONG_OPERATOR = "지원하지 않는 연산자 입니다."
     }
 }
