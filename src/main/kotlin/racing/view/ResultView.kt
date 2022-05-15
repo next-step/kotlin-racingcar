@@ -30,13 +30,6 @@ object ResultView {
     }
 
     private fun generateWinnerNames(cars: List<Car>): String {
-        var names = cars[0].name()
-
-        repeat(cars.size - 1) {
-            val name = cars[it + 1].name()
-            names += ", $name"
-        }
-
-        return names
+        return cars.joinToString(",") { it.name() }
     }
 }
