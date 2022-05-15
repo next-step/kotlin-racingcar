@@ -6,12 +6,16 @@ import raicing.model.RaceResult
 object OutputView {
     fun resultOutput(raceResults: RaceResult) {
         val outputStr = buildString {
-            append("========== 결과 ============\n")
-            raceResults.raceCars.forEach { raceCar ->
-                appendLine(raceResultOnceOutput(raceCar))
-            }
+            appendLine("========== 결과 ============")
+            appendLine(raceResultOutput(raceResults))
         }
         print(outputStr)
+    }
+
+    private fun raceResultOutput(raceResults: RaceResult) = buildString {
+        raceResults.raceCars.forEach { raceCar ->
+            appendLine(raceResultOnceOutput(raceCar))
+        }
     }
 
     private fun raceResultOnceOutput(raceCar: RaceCar): String = buildString {
