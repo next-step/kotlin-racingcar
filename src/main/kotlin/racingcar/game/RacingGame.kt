@@ -12,20 +12,14 @@ class RacingGame(private val cars: List<Car>, private val round: Int) {
 
     fun getResults(): List<GameResult> {
         val results = mutableListOf<GameResult>()
+        var current = cars
 
-        while (hasNext()) {
-            results.add(next())
+        while (currentRound < round) {
+            currentRound++
+            current = current.map { it.forward() }
+            results.add(GameResult(current))
         }
 
         return results
     }
-
-    private fun next(): GameResult {
-        cars.forEach { it.forward() }
-        currentRound++
-
-        return GameResult(cars.map { it.position() })
-    }
-
-    private fun hasNext(): Boolean = currentRound < round
 }

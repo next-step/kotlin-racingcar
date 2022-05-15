@@ -1,5 +1,5 @@
 package racingcar.game
 
-import racingcar.car.Position
+import racingcar.car.Car
 
-data class GameResult(val positions: List<Position>)
+data class GameResult(val cars: List<Car>)

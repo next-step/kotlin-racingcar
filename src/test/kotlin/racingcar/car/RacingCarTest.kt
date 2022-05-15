@@ -13,9 +13,9 @@ internal class RacingCarTest : StringSpec({
         }
         val racingCar = RacingCar(stubEngine)
 
-        racingCar.forward()
+        val result = racingCar.forward()
 
-        racingCar.position() shouldBe Position(100)
+        result.position() shouldBe Position(100)
     }
 
     "총 이동한 거리를 반환한다" {
@@ -30,9 +30,9 @@ internal class RacingCarTest : StringSpec({
                 return Distance(0)
             }
         }
-        val racingCar = RacingCar(stubEngine)
+        var racingCar: Car = RacingCar(stubEngine)
 
-        repeat(10) { racingCar.forward() }
+        repeat(10) { racingCar = racingCar.forward() }
 
         racingCar.position() shouldBe Position(5)
     }

@@ -1,6 +1,6 @@
 package racingcar.car
 
 interface Car {
-    fun forward()
+    fun forward(): Car
     fun position(): Position
 }

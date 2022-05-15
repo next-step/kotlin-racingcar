@@ -18,7 +18,7 @@ internal class RacingGameTest : StringSpec({
     "round 에 음수를 넣으면 에러가 발생한다" {
         val stubCar = object : Car {
             override fun position(): Position = Position(1)
-            override fun forward() {}
+            override fun forward() = this
         }
         val cars = listOf(stubCar)
         val step = -1
@@ -30,16 +30,12 @@ internal class RacingGameTest : StringSpec({
 
     "각 자동차에 대한 round 별 게임 결과를 반환한다" {
         // given
-        val makeCar = { distance: Int ->
-            object : Car {
-                private var current = 0
-                override fun position(): Position = Position(current)
-                override fun forward() {
-                    current += distance
-                }
-            }
+        class StubCar(private val position: Int, private val speed: Int) : Car {
+            override fun position(): Position = Position(position)
+            override fun forward(): Car = StubCar(position + speed, speed)
         }
-        val cars = listOf(makeCar(10), makeCar(20))
+
+        val cars = listOf(StubCar(0, 10), StubCar(0, 20))
         val step = 2
         val racingGame = RacingGame(cars, step)
 
@@ -47,9 +43,9 @@ internal class RacingGameTest : StringSpec({
         val results = racingGame.getResults()
 
         // then
-        results shouldBe listOf(
-            GameResult(listOf(Position(10), Position(20))),
-            GameResult(listOf(Position(20), Position(40))),
+        results.map { it.cars.map { car -> car.position().value } } shouldBe listOf(
+            listOf(10, 20),
+            listOf(20, 40)
         )
     }
 })

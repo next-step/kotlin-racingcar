@@ -2,12 +2,15 @@ package racingcar.car
 
 import racingcar.engine.Engine
 
-class RacingCar(private val engine: Engine) : Car {
-    private var position = Position(0)
-
-    override fun forward() {
+class RacingCar(
+    private val engine: Engine,
+    private val position: Position = Position(0)
+) : Car {
+    override fun forward(): Car {
         val distance = engine.accelerate()
-        position = Position(position.value + distance.value)
+        val newPosition = Position(position.value + distance.value)
+
+        return RacingCar(engine, newPosition)
     }
 
     override fun position(): Position = position
