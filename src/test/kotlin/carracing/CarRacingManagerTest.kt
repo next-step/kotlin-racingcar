@@ -23,6 +23,19 @@ class CarRacingManagerTest : StringSpec({
         nowCarDistance shouldBe moveDistance
     }
 
+    "getCarSize 는 CarList.Size 를 가져온다" {
+        // given
+        val cars = listOf(Car(), Car(), Car(), Car(), Car())
+        val carListManager = CarListManager(cars)
+        val carRacingManagerForTest = CarRacingManagerForTest(carListManager, RacingMovementRoleForTest())
+
+        // when
+        val carListSize = carRacingManagerForTest.getCarSize()
+
+        // then
+        carListSize shouldBe cars.size
+    }
+
     "getCarList 는 CarList 데이터 가져온다" {
         // given
         val distance = 3
