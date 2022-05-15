@@ -1,10 +1,6 @@
 package racing.model
 
-import java.util.UUID
-
 data class Car constructor(private val position: Int, private val name: String = "unknown") : Comparable<Car> {
-
-    private val uuid = UUID.randomUUID()
 
     init {
         require(0 <= this.position) { INVALID_POSITION_EXCEPTION }
@@ -13,21 +9,6 @@ data class Car constructor(private val position: Int, private val name: String =
     override fun compareTo(other: Car): Int = position - other.position
 
     override fun toString(): String = "$name: ${PRINT_STEP_SIGN.repeat(this.position)}"
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Car
-
-        if (uuid != other.uuid) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        return uuid?.hashCode() ?: 0
-    }
 
     fun moveForward(randomValue: Int): Car {
         return spawnWithPositionAndName(position + this.getStep(randomValue), name)
