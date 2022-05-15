@@ -27,7 +27,7 @@ internal class CarTest {
         val expected = 10
 
         // when
-        for (i in 1..expected) {
+        repeat(expected) {
             car.move(MustOneMoveStrategy())
         }
 
@@ -42,7 +42,7 @@ internal class CarTest {
         val expected = 20
 
         // when
-        for (i in 1..10) {
+        repeat(10) {
             car.move(object : MoveStrategy {
                 override fun move(current: Int): Int {
                     return current + 2
