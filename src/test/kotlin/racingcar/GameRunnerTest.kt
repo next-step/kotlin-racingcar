@@ -5,17 +5,21 @@ import org.junit.jupiter.api.Test
 import racingcar.model.GameProperties
 
 class GameRunnerTest {
+    private val namesOfCars = listOf("car1", "car2", "car3")
+    private val numberOfTrials = 5
+
+    private val gameResult = GameRunner(GameProperties(namesOfCars, numberOfTrials))
+        .start()
+        .get()
+
     @Test
-    fun `사용자가 입력한 수의 자동차가 사용자가 입력한 횟수만큼 전진할 수 있고 이를 저장한다`() {
-        val numberOfCars = 5
-        val numberOfTrials = 5
+    fun `자동차는 사용자가 입력한 횟수만큼 전진할 수 있고 처음 위치와 같이 게임 결과가 저장된다`() {
+        assertEquals(numberOfTrials + 1, gameResult.size)
+    }
 
-        val gameResult = GameRunner(GameProperties(numberOfCars, numberOfTrials))
-            .start()
-            .gameResult
-            .get()
-
-        assertEquals(numberOfTrials, gameResult.size)
-        assertEquals(numberOfCars, gameResult[0].get().size)
+    @Test
+    fun `사용자가 지정한 이름을 가진 자동차들이 경주를 참가하고 게임 결과에 저장된다`() {
+        assertEquals(namesOfCars.size, gameResult[0].get().size)
+        assertEquals(namesOfCars, gameResult[0].get().map { it.name })
     }
 }

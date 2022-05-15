@@ -5,8 +5,10 @@ import racingcar.model.GameProperties
 
 class GameRunner(private val properties: GameProperties) {
     fun start(): GameResult {
-        val cars = (1..properties.numOfCars).map { Car() }
+        val cars = properties.namesOfCars.map { Car(it) }
         val recorder = GameRecorder()
+
+        recorder.record(cars) // 시작 위치 저장
 
         repeat(properties.numOfTrials) {
             cars.move()

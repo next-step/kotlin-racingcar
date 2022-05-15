@@ -1,24 +1,23 @@
 package racingcar.model
 
-import kotlin.random.Random
-
-open class Car(position: Int = DEFAULT_POSITION) {
-    constructor(car: Car) : this(car.position)
+class Car(
+    name: String,
+    position: Int = DEFAULT_POSITION,
+    private val movingStrategy: MovingStrategy = RandomMovingStrategy()
+) {
+    val name: String = if (isValidName(name)) name
+    else throw IllegalArgumentException("자동차의 이름은 빈 값이거나 5자가 넘어가면 안됩니다")
 
     var position: Int = position
         private set
 
     fun move() {
-        if (getRandomNumber() >= FORWARD_NUMBER) position++
+        if (movingStrategy.tryMove()) position++
     }
 
-    protected open fun getRandomNumber(): Int {
-        return Random.nextInt(MAX_BOUND)
-    }
+    private fun isValidName(name: String) = !(name.isBlank() || name.length > 5)
 
     companion object {
-        const val DEFAULT_POSITION: Int = 0
-        const val FORWARD_NUMBER: Int = 4
-        const val MAX_BOUND: Int = 9
+        private const val DEFAULT_POSITION: Int = 0
     }
 }
