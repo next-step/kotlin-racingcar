@@ -9,19 +9,20 @@ fun main() {
     println("시도할 횟수는 몇 회인가요?")
     val movementTryCount: String = readln()
     val inputDto = InputDto(carCount, movementTryCount)
-    val randomNumberCarRacingManager = RandomNumberCarRacingManager.fromInputDto(inputDto)
-    val carRacingView = CarRacingView(VIEW_STRING_CAR, VIEW_STRING_SEPARATOR)
+    val randomIntCarRacingManager =
+        RandomIntCarRacingManager.fromInputDto(inputDto, RandomIntRacingMovementRole(4, 1, 9))
+    val carRacingView = CarRacingView<Int>(VIEW_STRING_CAR, VIEW_STRING_SEPARATOR)
 
     repeat(inputDto.movementTryCount) {
-        setRandomValue(randomNumberCarRacingManager)
-        println(carRacingView.getViewString(randomNumberCarRacingManager))
+        setRandomValue(randomIntCarRacingManager)
+        println(carRacingView.getViewString(randomIntCarRacingManager))
         println()
     }
 }
 
-private fun setRandomValue(randomNumberCarRacingManager: RandomNumberCarRacingManager) {
-    for (carIndex in 0 until randomNumberCarRacingManager.getCarSize()) {
+private fun setRandomValue(randomIntCarRacingManager: RandomIntCarRacingManager) {
+    for (carIndex in 0 until randomIntCarRacingManager.getCarSize()) {
         val randomNumber = (1..9).random()
-        randomNumberCarRacingManager.tryMoveCar(carIndex, randomNumber)
+        randomIntCarRacingManager.tryMoveCar(carIndex, randomNumber)
     }
 }

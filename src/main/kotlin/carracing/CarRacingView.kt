@@ -1,8 +1,8 @@
 package carracing
 
-class CarRacingView(private val carCharacter: String, private val separator: String = "\n") {
+class CarRacingView<T>(private val carCharacter: String, private val separator: String = "\n") {
 
-    fun getViewString(carRacingManager: CarRacingManager): String {
+    fun getViewString(carRacingManager: CarRacingManager<T>): String {
         return carRacingManager.getCarList().joinToString(
             transform = { car -> getCarLineView(car) },
             separator = separator
