@@ -1,9 +1,4 @@
 package racingCar
-
-interface IRandom {
-    fun generate(): Int
-}
-
 class Car(private val tryCount: Int, private val Random: IRandom) {
     var position: Int = 0
 
