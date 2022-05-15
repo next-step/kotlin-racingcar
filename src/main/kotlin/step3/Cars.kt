@@ -14,6 +14,21 @@ class Cars private constructor(carNames: String) {
         carList.forEach{ car: Car -> car.move(movingStrategy) }
     }
 
+    fun getWinnerList():List<String> {
+        val winnerList = ArrayList<String>()
+        var max = 0
+        for (j in 0 until carList.size) {
+            val position = carList[j].position
+            if(position > max) {
+                winnerList.clear()
+                max = position
+                winnerList.add(carList[j].name)
+            } else if (position == max && position != 0) {
+                winnerList.add(carList[j].name)
+            }
+        }
+        return winnerList
+    }
     companion object {
         fun from(carNames: String): Cars {
             return Cars(carNames)

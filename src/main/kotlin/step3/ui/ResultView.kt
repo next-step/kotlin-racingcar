@@ -9,7 +9,6 @@ class ResultView {
         for(i in 0 until movCount) {
             showResultMoveHyphen(cars, i)
         }
-        printWinnerList(getWinnerList(cars))
     }
 
     private fun showResultMoveHyphen(cars: Cars, movCount: Int) {
@@ -24,20 +23,7 @@ class ResultView {
         println()
     }
 
-    private fun getWinnerList(cars: Cars):List<String> {
-        val winnerList = ArrayList<String>()
-        var max = 0
-        for (j in 0 until cars.carList.size) {
-            val position = cars.carList[j].position
-            if(position >= max && position != 0) {
-                max = position
-                winnerList.add(cars.carList[j].name)
-            }
-        }
-        return winnerList
-    }
-
-    private fun printWinnerList(winnerList: List<String>) {
+    fun printWinnerList(winnerList: List<String>) {
         val namesList = winnerList.joinToString(COMMA_SPACE)
         val winnerMessage = "$namesList$WINNER_MESSAGE"
         print(winnerMessage)
