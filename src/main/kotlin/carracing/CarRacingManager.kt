@@ -1,4 +1,4 @@
-package car_racing
+package carracing
 
 abstract class CarRacingManager(carListManager: CarListManager) {
     private val _carListManager = carListManager

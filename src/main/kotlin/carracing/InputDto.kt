@@ -1,4 +1,4 @@
-package car_racing
+package carracing
 
 data class InputDto(val carCountString: String, val movementTryCountString: String) {
     private val _carCount: UInt

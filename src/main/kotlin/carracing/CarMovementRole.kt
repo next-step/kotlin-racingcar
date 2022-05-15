@@ -1,4 +1,4 @@
-package car_racing
+package carracing
 
 class CarMovementRole {
     companion object {

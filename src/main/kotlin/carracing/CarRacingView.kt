@@ -1,4 +1,4 @@
-package car_racing
+package carracing
 
 class CarRacingView(private val carCharacter: String, private val separator: String = "\n") {
 

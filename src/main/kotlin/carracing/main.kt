@@ -1,4 +1,4 @@
-package car_racing
+package carracing
 
 const val VIEW_STRING_CAR = "-"
 const val VIEW_STRING_SEPARATOR = "\n"

@@ -1,6 +1,6 @@
-package car_racing.util
+package carracing.util
 
-import car_racing.CarListManager
-import car_racing.CarRacingManager
+import carracing.CarListManager
+import carracing.CarRacingManager
 
 class CarRacingManagerForTest(carListManager: CarListManager) : CarRacingManager(carListManager)

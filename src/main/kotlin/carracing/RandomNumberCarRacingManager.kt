@@ -1,4 +1,4 @@
-package car_racing
+package carracing
 
 class RandomNumberCarRacingManager(carListManager: CarListManager) : CarRacingManager(carListManager) {
     fun tryMoveCar(carIndex: Int, randomInt: Int) {

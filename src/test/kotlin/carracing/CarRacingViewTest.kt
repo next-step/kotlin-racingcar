@@ -1,6 +1,6 @@
-package car_racing
+package carracing
 
-import car_racing.util.CarRacingManagerForTest
+import carracing.util.CarRacingManagerForTest
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 

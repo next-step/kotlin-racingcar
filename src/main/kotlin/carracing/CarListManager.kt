@@ -1,4 +1,4 @@
-package car_racing
+package carracing
 
 class CarListManager(cars: List<Car> = mutableListOf()) {
     private val _cars: List<Car> = cars

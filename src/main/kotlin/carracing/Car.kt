@@ -1,4 +1,4 @@
-package car_racing
+package carracing
 
 class Car(private var _distance: Int = 0) {
     val distance
