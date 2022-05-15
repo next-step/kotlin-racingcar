@@ -17,17 +17,17 @@ class CarTests {
 
     @Test
     fun `position 값이 없이 Car 객체를 생성하는 경우 position은 INIT_POSITION ('0') 이다`() {
-        val carId = 0
-        val car = Car(carId)
+        val carName = "testCar"
+        val car = Car(carName)
 
-        assertThat(car.id).isEqualTo(carId)
+        assertThat(car.name).isEqualTo(carName)
         assertThat(car.position).isEqualTo(Car.INIT_POSITION)
     }
 
     @Test
     fun `moveForward 조건이 true 인 경우 position은 1 이동한다`() {
-        val carId = 0
-        val car = Car(carId)
+        val carName = "testCar"
+        val car = Car(carName)
 
         mockkObject(CarMovingStrategy)
         every {
@@ -38,7 +38,7 @@ class CarTests {
 
         assertAll(
             {
-                assertThat(afterCar.id).isEqualTo(carId)
+                assertThat(afterCar.name).isEqualTo(carName)
                 assertThat(afterCar.position).isEqualTo(car.position + 1)
             }
         )
@@ -46,8 +46,8 @@ class CarTests {
 
     @Test
     fun `moveForward 조건이 false 인 경우 position은 그대로이다`() {
-        val carId = 0
-        val car = Car(carId)
+        val carName = "testCar"
+        val car = Car(carName)
 
         mockkObject(CarMovingStrategy)
         every {
@@ -58,7 +58,7 @@ class CarTests {
 
         assertAll(
             {
-                assertThat(afterCar.id).isEqualTo(carId)
+                assertThat(afterCar.name).isEqualTo(carName)
                 assertThat(afterCar.position).isEqualTo(car.position)
             }
         )

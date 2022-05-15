@@ -16,7 +16,7 @@ object OutputView {
 
     private fun raceResultOnceOutput(raceCar: RaceCar): String = buildString {
         raceCar.getCars().map { car ->
-            append("${car.id}: ")
+            append("${car.name}: ")
             repeat(car.position) {
                 append("-")
             }

@@ -32,7 +32,7 @@ class RaceCarTests {
             assertAll(
                 {
                     raceCar.getCars().zip(afterRaceCar.getCars()) { car, afterCar ->
-                        assertThat(afterCar.id).isEqualTo(afterCar.id)
+                        assertThat(afterCar.name).isEqualTo(afterCar.name)
                         assertThat(afterCar.position).isIn(car.position, car.position + 1)
                     }
                 }

@@ -14,6 +14,6 @@ class RaceCar(private val cars: List<Car>) {
 
     companion object {
         fun of(carCount: NaturalNumber): RaceCar =
-            RaceCar(List(carCount.toInt()) { Car(it) })
+            RaceCar(List(carCount.toInt()) { Car(it.toString()) })
     }
 }
