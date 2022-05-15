@@ -31,7 +31,7 @@ internal class CarTest : DescribeSpec({
             val movedCar = car.moveForward(randomValue)
 
             // then
-            movedCar shouldBe Car.spawnAt(0)
+            movedCar.isSamePosition(Car.spawnAt(0)) shouldBe true
         }
 
         it("무작위 값이 4 이상일 경우 전진한다.") {
@@ -43,7 +43,7 @@ internal class CarTest : DescribeSpec({
             val movedCar = car.moveForward(randomValue)
 
             // then
-            movedCar shouldBe Car.spawnAt(1)
+            movedCar.isSamePosition(Car.spawnAt(1)) shouldBe true
         }
     }
 
@@ -57,7 +57,7 @@ internal class CarTest : DescribeSpec({
             val result = movedCar.toString()
 
             // then
-            result shouldBe "-----"
+            result shouldBe "unknown: -----"
         }
 
         it("현재 위치가 0일 경우 공백으로 표현한다.") {
@@ -69,7 +69,20 @@ internal class CarTest : DescribeSpec({
             val result = movedCar.toString()
 
             // then
-            result shouldBe ""
+            result shouldBe "unknown: "
+        }
+
+        it("자동차는 이름과 위치로 표현된다.") {
+            // given
+            val position = 5
+            val name = "yohan"
+            val car = Car.spawnWithPositionAndName(position, name)
+
+            // when
+            val result = car.toString()
+
+            // then
+            result shouldBe "yohan: -----"
         }
     }
 })
