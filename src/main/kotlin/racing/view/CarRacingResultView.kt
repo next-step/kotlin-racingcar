@@ -1,4 +1,7 @@
-package racing
+package racing.view
+
+import racing.dto.Car
+import racing.dto.Winners
 
 object CarRacingResultView {
     fun printCarRacingResult(cars: List<Car>, moveCount: Int) {

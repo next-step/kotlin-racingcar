@@ -1,4 +1,4 @@
-package racing
+package racing.dto
 
 class Car(val name: String) {
     private var turn = 0

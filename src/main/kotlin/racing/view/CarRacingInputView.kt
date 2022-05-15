@@ -1,4 +1,6 @@
-package racing
+package racing.view
+
+import racing.dto.CarRacingInputData
 
 object CarRacingInputView {
     fun input(): CarRacingInputData {

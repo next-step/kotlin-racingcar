@@ -1,18 +1,9 @@
-package racing
+package racing.domain
+
+import racing.dto.Car
+import racing.dto.Winners
 
 class CarRacing {
-    fun startRacing() {
-        val (carNames, moveCount) = CarRacingInputView.input()
-
-        val cars: List<Car> = createCars(carNames)
-        moveCars(cars = cars, moveCount = moveCount)
-
-        CarRacingResultView.printCarRacingResult(cars = cars, moveCount = moveCount)
-
-        val winners: Winners = pickWinners(cars)
-        CarRacingResultView.printWinners(winners = winners)
-    }
-
     fun moveCars(cars: List<Car>, moveCount: Int) {
         repeat(moveCount) {
             cars.forEach { car ->
