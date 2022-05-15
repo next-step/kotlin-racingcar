@@ -1,11 +1,11 @@
 package carracing
 
-abstract class CarRacingManager<RoleArgumentType>(
+abstract class CarRacingManager<MovementCheckType>(
     private val carListManager: CarListManager,
-    private val racingMovementRole: RacingMovementRole<RoleArgumentType>
+    private val racingMovementRole: RacingMovementRole<MovementCheckType>
 ) {
 
-    fun tryMoveCar(carIndex: Int, argument: RoleArgumentType) {
+    fun tryMoveCar(carIndex: Int, argument: MovementCheckType) {
         carListManager.moveCar(carIndex, racingMovementRole.getMoveDistance(argument))
     }
 

@@ -11,7 +11,7 @@ fun main() {
     val inputDto = InputDto(carCount, movementTryCount)
     val randomIntCarRacingManager =
         RandomIntCarRacingManager.fromInputDto(inputDto, RandomIntRacingMovementRole(4, 1, 9))
-    val carRacingView = CarRacingView<Int>(VIEW_STRING_CAR, VIEW_STRING_SEPARATOR)
+    val carRacingView = CarRacingView(VIEW_STRING_CAR, VIEW_STRING_SEPARATOR)
 
     repeat(inputDto.movementTryCount) {
         setRandomValue(randomIntCarRacingManager)
