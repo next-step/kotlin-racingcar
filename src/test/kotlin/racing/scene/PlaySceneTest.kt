@@ -28,7 +28,7 @@ internal class PlaySceneTest : DescribeSpec({
             val environmentManager = EnvironmentManager(stubEnvironmentModule)
             val round = "2"
             val player = "2"
-            environmentManager.put(Constants.CAR_NUMBER_KEY, player)
+            environmentManager.put(Constants.CAR_NAMES_KEY, player)
             environmentManager.put(Constants.STAGE_NUMBER_KEY, round)
             val outputPainter = StubPlaySceneOutputPainter()
             val scoreBoard = ScoreBoard(outputPainter)
@@ -37,11 +37,11 @@ internal class PlaySceneTest : DescribeSpec({
             val expectResult = """
                 
                 실행결과
-                -
-                -
+                unknown: -
+                unknown: -
                 
-                --
-                --
+                unknown: --
+                unknown: --
                 
                 
             """.trimIndent()
@@ -59,7 +59,7 @@ internal class PlaySceneTest : DescribeSpec({
             val environmentManager = EnvironmentManager(stubEnvironmentModule)
             val round = "2"
             val player = "2"
-            environmentManager.put(Constants.CAR_NUMBER_KEY, player)
+            environmentManager.put(Constants.CAR_NAMES_KEY, player)
             environmentManager.put(Constants.STAGE_NUMBER_KEY, round)
             val outputPainter = StubPlaySceneOutputPainter()
             val scoreBoard = ScoreBoard(outputPainter)
@@ -68,11 +68,11 @@ internal class PlaySceneTest : DescribeSpec({
             val expectResult = """
                 
                 실행결과
+                unknown: 
+                unknown: 
                 
-                
-                
-                
-                
+                unknown: 
+                unknown: 
                 
                 
             """.trimIndent()

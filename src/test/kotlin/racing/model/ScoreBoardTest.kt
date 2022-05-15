@@ -24,9 +24,9 @@ internal class ScoreBoardTest : DescribeSpec({
 
             // then
             val expectedResult = """
-                -
-                --
-                ---
+                unknown: -
+                unknown: --
+                unknown: ---
             """.trimIndent()
             stubOutputPainter.outputBuffer shouldBe expectedResult
         }
@@ -48,9 +48,9 @@ internal class ScoreBoardTest : DescribeSpec({
 
             // then
             val expectedResult = """
-                
-                --
-                ---
+                unknown: 
+                unknown: --
+                unknown: ---
             """.trimIndent()
             stubOutputPainter.outputBuffer shouldBe expectedResult
         }
