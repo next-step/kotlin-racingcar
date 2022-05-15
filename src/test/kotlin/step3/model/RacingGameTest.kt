@@ -7,7 +7,7 @@ class RacingGameTest : StringSpec({
 
     "Racing Game Test" {
         val racingGame = RacingGame(
-            GameSetting.builder()
+            GameSetting.Builder()
                 .inputCarCount(3)
                 .inputMoveCount(5)
                 .build()

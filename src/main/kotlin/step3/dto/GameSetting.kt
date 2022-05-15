@@ -1,10 +1,10 @@
 package step3.dto
 
 class GameSetting(
-    val inputCarCount: Int,
-    val inputMoveCount: Int
+    val carCount: Int,
+    val moveCount: Int
 ) {
-    data class builder(
+    data class Builder(
         private var inputCarCount: Int = 0,
         private var inputMoveCount: Int = 0
     ) {

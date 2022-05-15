@@ -1,11 +1,15 @@
 package step3.model
 
-class Car(val id: Int) {
-    var position: Int = 0
+import step3.util.RandomGenerator
 
-    fun move() {
-        if ((0..9).random().takeIf { it >= 4 } != null) {
-            position++
-        }
+class Car(val id: Int) {
+
+    fun move(): Boolean {
+        val minRandomValue = 0
+        val maxRandomValue = 9
+        val moveWhenAbove = 4
+
+        val randomValue = RandomGenerator.generate(minRandomValue, maxRandomValue)
+        return randomValue >= moveWhenAbove
     }
 }

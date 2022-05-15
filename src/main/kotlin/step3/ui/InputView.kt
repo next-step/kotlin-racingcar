@@ -4,7 +4,7 @@ import step3.dto.GameSetting
 
 object InputView {
     fun input(): GameSetting {
-        return GameSetting.builder()
+        return GameSetting.Builder()
             .inputCarCount(inputCarCount())
             .inputMoveCount(inputMoveCount())
             .build()
