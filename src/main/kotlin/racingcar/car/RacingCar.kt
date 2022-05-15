@@ -4,7 +4,8 @@ import racingcar.engine.Engine
 
 class RacingCar(
     private val engine: Engine,
-    private val position: Position = Position(0)
+    private val position: Position = Position(0),
+    private val name: String = "",
 ) : Car {
     override fun forward(): Car {
         val distance = engine.accelerate()
@@ -14,4 +15,6 @@ class RacingCar(
     }
 
     override fun position(): Position = position
+
+    override fun name(): String = name
 }
