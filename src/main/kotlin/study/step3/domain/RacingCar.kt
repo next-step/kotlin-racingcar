@@ -17,7 +17,6 @@ class RacingCar {
                 carList[j].moveOneStep()
                 moveRecordList[i][j] = carList[j].movedNum
             }
-            println()
         }
     }
 }
