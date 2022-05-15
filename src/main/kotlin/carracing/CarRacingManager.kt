@@ -1,10 +1,6 @@
 package carracing
 
-abstract class CarRacingManager(carListManager: CarListManager) {
-    private val _carListManager = carListManager
-    val carListManager: CarListManager
-        get() = _carListManager
-
+abstract class CarRacingManager(val carListManager: CarListManager) {
     protected fun syncCarDistance(carsIndex: Int, distance: Int) {
         carListManager.moveCar(carsIndex, distance)
     }
