@@ -1,20 +1,15 @@
 package study.step3
 
-import java.util.concurrent.atomic.AtomicInteger
+import study.step3.service.RacingService
+import study.step3.view.RacingInputView
 
-class RacingCar(private val moving: Moving) {
+class RacingCar {
 
-    private val moved = AtomicInteger(0)
+    fun start() {
+        val racingInputView = RacingInputView()
 
-    fun move(): Int {
-        if (moving.isMovable()) {
-            moved.incrementAndGet()
-        }
+        val racingService = RacingService(racingInputView.getNumberOfCar(), racingInputView.getNumberOfTry())
 
-        return getMoved()
-    }
-
-    fun getMoved(): Int {
-        return moved.get()
+        racingService.start()
     }
 }

@@ -1,4 +1,4 @@
-package study.step3
+package study.step3.domain
 
 class Moving {
     fun isMovable(): Boolean {
