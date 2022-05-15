@@ -15,6 +15,6 @@ class RacingResultTest : FunSpec({
 
         // then
         racingResult.round shouldBe 1
-        racingResult.values.shouldContainExactly(4, 3)
+        racingResult.values.shouldContainExactly("----", "---")
     }
 })
