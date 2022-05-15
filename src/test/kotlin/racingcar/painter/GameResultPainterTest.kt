@@ -34,7 +34,7 @@ internal class GameResultPainterTest : StringSpec({
             
             ---
             --
-            ----- 
+            -----
         """.trimIndent()
     }
 })
