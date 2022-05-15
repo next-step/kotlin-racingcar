@@ -11,11 +11,11 @@ fun main() {
     val racingCars = (1..numOfCar).map { RacingCar(moving) }
 
     println("실행결과")
-    (1..numOfTry).forEach {
+    repeat((1..numOfTry).count()) {
         println()
         racingCars.forEach {
             it.move()
-            println(it.getState())
+            println(it.view.state)
         }
     }
 }

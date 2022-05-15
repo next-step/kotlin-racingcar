@@ -2,7 +2,7 @@ package study.step3
 
 import java.util.concurrent.atomic.AtomicInteger
 
-class RacingCar(val moving: Moving) {
+class RacingCar(private val moving: Moving) {
 
     private val moved = AtomicInteger(0)
 
@@ -16,9 +16,5 @@ class RacingCar(val moving: Moving) {
 
     fun getMoved(): Int {
         return moved.get()
-    }
-
-    fun getState(): String {
-        return "-".repeat(getMoved())
     }
 }
