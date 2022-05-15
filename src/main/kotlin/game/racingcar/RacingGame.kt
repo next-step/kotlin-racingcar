@@ -19,11 +19,11 @@ class RacingGame(private val inputView: InputView, private val outputView: Outpu
 
         val cars = arrayListOf<Car>()
 
-        for (i in 1..numberOfCar) {
+        for (i in 0 until numberOfCar) {
             cars.add(Car())
         }
 
-        for (i in 1..numberOfLap) {
+        for (i in 0 until numberOfLap) {
             cars.forEach { it.move() }
         }
 
