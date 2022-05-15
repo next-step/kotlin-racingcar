@@ -3,7 +3,8 @@ package _3_racing_car.domain.racer
 import _3_racing_car.domain.Engine
 import _3_racing_car.domain.Position
 
-class Car(override val position: Position = Position(0)) : Racer() {
+class Car(override val name: String = "알수없음", override val position: Position = Position(0)) : Racer() {
+
     override fun move(power: Int) = run {
 
         if (canMove(power)) {

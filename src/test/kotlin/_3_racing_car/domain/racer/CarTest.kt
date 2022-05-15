@@ -11,17 +11,18 @@ internal class CarTest : ExpectSpec() {
         context("move") {
             expect("전진 조건에 만족하면 위치가 변한다.") {
                 forAll(
-                    row(Position(1), 4, 2),
-                    row(Position(1), 5, 2),
-                    row(Position(2), 5, 3),
+                    row("a", Position(1), 4, "a" to 2),
+                    row("b", Position(1), 5, "b" to 2),
+                    row("c", Position(2), 5, "c" to 3),
                 ) {
-                    position, power, expected ->
+                    name, position, power, expected ->
 
-                    val car = Car(position = position)
+                    val car = Car(name = name, position = position)
 
                     car.move(power)
 
-                    car.location shouldBe expected
+                    car.name shouldBe expected.first
+                    car.location shouldBe expected.second
                 }
             }
 
