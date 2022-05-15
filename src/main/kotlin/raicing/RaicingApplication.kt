@@ -6,9 +6,10 @@ import raicing.view.InputView
 import raicing.view.OutputView
 
 fun main() {
-    val carCount = InputView.readStrAndConvertToNaturalNum(Const.OutputMsg.CAR_COUNT_MSG)
+    val carNameStr = InputView.readStrAndConvertToNotNullStr(Const.OutputMsg.CAR_NAME_MSG)
+    val initCars = RaceCar.of(RaceCar.splitCarNames(carNameStr))
+
     val raceCount = InputView.readStrAndConvertToNaturalNum(Const.OutputMsg.RACE_COUNT_MGS)
-    val initCars = RaceCar.of(carCount)
 
     val raceProcessor = RaceProcessor()
     val raceResults = raceProcessor.race(initCars, raceCount.toInt())

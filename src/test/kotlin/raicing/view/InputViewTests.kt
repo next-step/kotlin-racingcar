@@ -32,7 +32,7 @@ class InputViewTests {
         System.setIn(ByteArrayInputStream(inputStr?.toByteArray()))
         Assertions.assertThatIllegalArgumentException()
             .isThrownBy { InputView.readStrAndConvertToNaturalNum("Test Input") }
-            .withMessage(Const.ErrorMsg.INPUT_IS_EMPTY_ERROR_MST)
+            .withMessage(Const.ErrorMsg.INPUT_IS_EMPTY_ERROR_MSG)
     }
 
     @ParameterizedTest(name = "입력값이 `{0}` 이면 IllegalArgumentException 발생")
