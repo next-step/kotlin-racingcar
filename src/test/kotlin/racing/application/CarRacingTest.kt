@@ -42,7 +42,7 @@ internal class CarRacingTest {
         val result = carRacing.start()
 
         //then
-        assertThat(result[firstRoundNo])
+        assertThat(result.get(firstRoundNo))
             .extracting("cars")
             .isEqualTo(expected)
     }
@@ -63,7 +63,7 @@ internal class CarRacingTest {
         val racingResult = CarRacing(numberOfCars, tries).start()
 
         //then
-        assertThat(racingResult)
+        assertThat(racingResult.roundMap)
             .containsKeys(*expectedKeys)
             .containsEntry(0, expectedValue)
     }
