@@ -1,5 +1,7 @@
 package calculator
 
+import calculator.Calculator.Companion.MESSAGE_MUST_NOT_EMPTY
+import calculator.Calculator.Companion.MESSAGE_WRONG_EXPRESSION
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
@@ -27,10 +29,11 @@ internal class CalculatorTest : BehaviorSpec({
                 Calculator().calculate(expression)
             }
             then("기대값과 같은 결과를 출력한다") {
-                exception.message shouldStartWith "빈 값"
+                exception.message shouldStartWith MESSAGE_MUST_NOT_EMPTY
             }
         }
     }
+
     given("잘못된 식 입력") {
         expression = "2 + 3 * 4 / 2 5"
         `when`("계산기 파라미터로 넘겨 실행한다") {
@@ -38,7 +41,7 @@ internal class CalculatorTest : BehaviorSpec({
                 Calculator().calculate(expression)
             }
             then("기대값과 같은 결과를 출력한다") {
-                exception.message shouldStartWith "잘못"
+                exception.message shouldStartWith MESSAGE_WRONG_EXPRESSION
             }
         }
     }

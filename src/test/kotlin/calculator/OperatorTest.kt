@@ -1,7 +1,9 @@
 package calculator
 
+import calculator.Operator.Companion.MESSAGE_WRONG_OPERATOR
+import io.kotest.matchers.should
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
@@ -17,10 +19,7 @@ internal class OperatorTest {
     @ParameterizedTest(name = "연산자: {0}")
     @ValueSource(strings = ["^", " ", "1", "a"])
     fun `지원하지 않는 연산자 예외`(symbol: String) {
-        assertThatThrownBy {
-            Operator.of(symbol)
-        }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining("지원하지")
+        assertThrows<IllegalArgumentException> { Operator.of(symbol) }.should { it.message?.startsWith(MESSAGE_WRONG_OPERATOR) }
     }
 
     @ParameterizedTest(name = "수식: {1} {0} {2} = {3}")
