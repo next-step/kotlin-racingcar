@@ -20,7 +20,7 @@ class Drivers(
             .forEach { car -> car.move() }
     }
 
-    fun getMoveResult(): MoveResults {
+    fun getMoveResults(): MoveResults {
         return MoveResults(cars.map { it.moveResult })
     }
 }

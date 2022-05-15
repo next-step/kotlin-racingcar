@@ -18,7 +18,7 @@ class RacingGame(carNames: List<String>, trialCount: Int, moveStrategy: MoveStra
     }
 
     fun getPlayResults(): MoveResults {
-        return drivers.getMoveResult()
+        return drivers.getMoveResults()
     }
 
     fun isPlayable(): Boolean {
@@ -33,7 +33,7 @@ class RacingGame(carNames: List<String>, trialCount: Int, moveStrategy: MoveStra
     }
 
     fun getWinners(): List<String> {
-        return drivers.getMoveResult().farthestDistanceCarNames
+        return drivers.getMoveResults().farthestDistanceCarNames
     }
 
     companion object {

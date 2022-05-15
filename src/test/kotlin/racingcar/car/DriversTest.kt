@@ -41,7 +41,7 @@ class DriversTest {
         }
 
         // then
-        assertThat(alwayMoveDriver.getMoveResult()).isEqualTo(100)
+        assertThat(alwayMoveDriver.getMoveResults()).isEqualTo(100)
     }
 
     @Test
@@ -63,6 +63,6 @@ class DriversTest {
         }
 
         // then
-        assertThat(alwayMoveDriver.getMoveResult()).isEqualTo(0)
+        assertThat(alwayMoveDriver.getMoveResults()).isEqualTo(0)
     }
 }
