@@ -5,16 +5,10 @@ class RaceGame(private val inputView: InputView, private val resultView: ResultV
         val carCount = inputView.askCarCount()
         val tryCount = inputView.askTryCount()
 
-        val cars = mutableListOf<Car>()
-        val carPositions = mutableListOf<Int>()
+        val race = Race(carCount, tryCount)
 
-        for (i:Int in 1..carCount) cars.add(Car(tryCount, Random()))
+        race.run()
 
-        cars.forEach {
-            it.move()
-            carPositions.add(it.position)
-        }
-
-        resultView.show(carPositions)
+        resultView.show(race.carPositions)
     }
 }
