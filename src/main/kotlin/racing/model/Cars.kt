@@ -14,8 +14,8 @@ class Cars(
     }
 
     companion object {
-        fun of(names: List<String>): Cars {
-            val cars = names.map { Car.of(it) }
+        fun from(names: List<String>): Cars {
+            val cars = names.map { Car.from(it) }
             return Cars(cars)
         }
     }

@@ -20,7 +20,7 @@ class Car private constructor(
     }
 
     companion object {
-        fun of(name: String): Car {
+        fun from(name: String): Car {
             return Car(Name(name))
         }
 
