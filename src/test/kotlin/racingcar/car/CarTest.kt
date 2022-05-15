@@ -17,4 +17,23 @@ internal class CarTest : StringSpec({
 
         car.position() shouldBe Position(100)
     }
+
+    "총 이동한 거리를 반환한다" {
+        val stubEngine = object : Engine {
+            private var shouldForward = false
+            override fun accelerate(): Distance {
+                if (shouldForward) {
+                    shouldForward = false
+                    return Distance(1)
+                }
+                shouldForward = true
+                return Distance(0)
+            }
+        }
+        val car = Car(stubEngine)
+
+        repeat(10) { car.forward() }
+
+        car.position() shouldBe Position(5)
+    }
 })
