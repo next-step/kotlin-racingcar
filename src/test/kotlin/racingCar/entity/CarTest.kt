@@ -1,4 +1,4 @@
-package ractingCar.entity
+package racingCar.entity
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 internal class CarTest {
 
     @Test
-    fun `play 함수에 0을 넣으면 움직이지 않는다`() {
+    fun `play에 0을 넣으면 움직이지 않는다`() {
         // given
         val car = Car()
 
@@ -14,7 +14,7 @@ internal class CarTest {
         car.move()
 
         // then
-        Assertions.assertThat(car.moves).isGreaterThanOrEqualTo(0)
+        Assertions.assertThat(car.moves).isEqualTo(0)
     }
 
     @Test
