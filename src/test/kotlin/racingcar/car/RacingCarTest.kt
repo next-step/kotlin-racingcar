@@ -5,17 +5,17 @@ import io.kotest.matchers.shouldBe
 import racingcar.engine.Distance
 import racingcar.engine.Engine
 
-internal class CarTest : StringSpec({
+internal class RacingCarTest : StringSpec({
 
     "주어진 engine 에 따라 위치가 변경된다" {
         val stubEngine = object : Engine {
             override fun accelerate(): Distance = Distance(100)
         }
-        val car = Car(stubEngine)
+        val racingCar = RacingCar(stubEngine)
 
-        car.forward()
+        racingCar.forward()
 
-        car.position() shouldBe Position(100)
+        racingCar.position() shouldBe Position(100)
     }
 
     "총 이동한 거리를 반환한다" {
@@ -30,10 +30,10 @@ internal class CarTest : StringSpec({
                 return Distance(0)
             }
         }
-        val car = Car(stubEngine)
+        val racingCar = RacingCar(stubEngine)
 
-        repeat(10) { car.forward() }
+        repeat(10) { racingCar.forward() }
 
-        car.position() shouldBe Position(5)
+        racingCar.position() shouldBe Position(5)
     }
 })
