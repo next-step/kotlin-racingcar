@@ -18,12 +18,12 @@ fun main() {
         inputLayout = InputLayout(
             carInputView = InputView(
                 INPUT_MESSAGE_NAME_OF_CARS,
-                NameConverter(),
+                NameConverter,
                 NameLengthValidator
             ),
             attemptInputView = InputView(
                 INPUT_MESSAGE_NUMBER_OF_ATTEMPTS,
-                StringToIntConverter(),
+                StringToIntConverter,
                 NumberRangeValidator
             )
         ),

@@ -9,7 +9,6 @@ class NameConverterTest {
         val input = "fender,fodera,sadowsky,musicman"
         val expected = listOf("fender", "fodera", "sadowsky", "musicman")
 
-        val converter = NameConverter()
-        assertThat(converter.convert(input)).isEqualTo(expected)
+        assertThat(NameConverter.convert(input)).isEqualTo(expected)
     }
 }
