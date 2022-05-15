@@ -1,8 +1,8 @@
 package racingcar
 
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.NullSource
 import org.junit.jupiter.params.provider.ValueSource
@@ -21,6 +21,6 @@ class NumberInputTest {
     @NullSource
     @ValueSource(strings = ["문자", " ", "\t"])
     fun `숫자가 아닌 문자열을 입력 받으면 에러를 발생시킨다`(value: String?) {
-        assertThatThrownBy { InputParser.toInt(value) }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThrows<IllegalArgumentException> { InputParser.toInt(value) }
     }
 }
