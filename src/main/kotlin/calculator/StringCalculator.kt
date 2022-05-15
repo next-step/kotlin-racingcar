@@ -8,7 +8,8 @@ object StringCalculator {
         val iterator = values.iterator()
         var result: Operand = Operand.of(iterator.next())
         while (iterator.hasNext()) {
-            result = Operator.of(iterator.next()).calculate(result, Operand.of(iterator.next()))
+            val operator = Operator.of(iterator.next())
+            result = operator.calculate(result, Operand.of(iterator.next()))
         }
         return result.parseString()
     }

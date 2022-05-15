@@ -17,7 +17,7 @@ class NumberTest : StringSpec({
         val operand2 = Operand.of("2")
 
         // when
-        val result = operand1.plus(operand2)
+        val result = operand1 + operand2
 
         // then
         result shouldBe Operand.of("3")
@@ -29,7 +29,7 @@ class NumberTest : StringSpec({
         val operand2 = Operand.of("2")
 
         // when
-        val result = operand1.minus(operand2)
+        val result = operand1 - operand2
 
         // then
         result shouldBe Operand.of("-1")
@@ -41,7 +41,7 @@ class NumberTest : StringSpec({
         val operand2 = Operand.of("3")
 
         // when
-        val result = operand1.multiply(operand2)
+        val result = operand1 * operand2
 
         // then
         result shouldBe Operand.of("6")
@@ -53,7 +53,7 @@ class NumberTest : StringSpec({
         val operand2 = Operand.of("2")
 
         // when
-        val result = operand1.divide(operand2)
+        val result = operand1 / operand2
 
         // then
         result shouldBe Operand.of("3")
