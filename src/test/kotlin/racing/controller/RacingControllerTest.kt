@@ -2,7 +2,7 @@ package racing.controller
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import racing.infra.RandomMovingRule
+import racing.infra.RandomCarMovingStepper
 import racing.service.CarService
 
 internal class RacingControllerTest {
@@ -12,7 +12,7 @@ internal class RacingControllerTest {
         val car = 0
         val round = 3
 
-        val racingController = RacingController(CarService(RandomMovingRule()))
+        val racingController = RacingController(CarService(RandomCarMovingStepper()))
 
         assertThrows<IllegalArgumentException> {
             racingController.playGame(car, round)
