@@ -28,19 +28,58 @@ internal class RoundsTest {
             return Stream.of(
                 Arguments.of(
                     5,
-                    Round(listOf(Car().go(), Car().go(), Car(), Car(), Car().go()))),
+                    Round(
+                        listOf(
+                            Car("testName").go(),
+                            Car("testName").go(),
+                            Car("testName"),
+                            Car("testName"),
+                            Car("testName").go()
+                        )
+                    )
+                ),
                 Arguments.of(
                     2,
-                    Round(listOf(Car(), Car().go()))),
+                    Round(
+                        listOf(
+                            Car("testName"),
+                            Car("testName").go()
+                        )
+                    )
+                ),
                 Arguments.of(
                     3,
-                    Round(listOf(Car(), Car().go(), Car().go()))),
+                    Round(
+                        listOf(
+                            Car("testName"),
+                            Car("testName").go(),
+                            Car("testName").go()
+                        )
+                    )
+                ),
                 Arguments.of(
                     4,
-                    Round(listOf(Car(), Car(), Car(), Car().go(), Car().go()))),
+                    Round(
+                        listOf(
+                            Car("testName"),
+                            Car("testName"),
+                            Car("testName"),
+                            Car("testName").go(),
+                            Car("testName").go()
+                        )
+                    )
+                ),
                 Arguments.of(
                     1,
-                    Round(listOf(Car().go(), Car(), Car().go(), Car().go()))),
+                    Round(
+                        listOf(
+                            Car("testName").go(),
+                            Car("testName"),
+                            Car("testName").go(),
+                            Car("testName").go()
+                        )
+                    )
+                ),
             )
         }
     }

@@ -3,7 +3,7 @@ package racing.model
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.ValueSource
+import org.junit.jupiter.params.provider.CsvSource
 
 internal class CarTest {
 
@@ -13,7 +13,7 @@ internal class CarTest {
         val expected = "-"
 
         //when
-        val result = Car().position
+        val result = Car("testCar").position
 
         //then
         assertThat(result).isEqualTo(expected)
@@ -25,21 +25,27 @@ internal class CarTest {
         val expected = "-"
 
         //when
-        val result = Car().toString()
+        val result = Car("testCar").toString()
 
         //then
         assertThat(result).isEqualTo(expected)
     }
 
     @ParameterizedTest
-    @ValueSource(ints = [1,2,3,4,5])
-    fun `go test`(loop: Int) {
+    @CsvSource(
+        "1, testName",
+        "2, testName",
+        "3, testName",
+        "4, testName",
+        "5, testName",
+    )
+    fun `go test`(loop: Int, name: String) {
         //given
-        val expected = "-".repeat(loop)
+        val expected = "$name : " + "-".repeat(loop)
 
         //when
         val result = List(loop - 1) { it }
-            .fold(Car()) { acc, _ -> acc.go()}
+            .fold(Car(name)) { acc, _ -> acc.go()}
             .toString()
 
         //then
@@ -47,12 +53,18 @@ internal class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = [1,2,3,4,5])
-    fun `goOrNot test`(targetNumber: Int) {
+    @CsvSource(
+        "1, testName",
+        "2, testName",
+        "3, testName",
+        "4, testName",
+        "5, testName",
+    )
+    fun `goOrNot test`(targetNumber: Int, name: String) {
         //given
-        val car = Car()
+        val car = Car(name)
         val goOrNotNumber = checkGoOrNot(targetNumber)
-        val expected = "-".repeat(goOrNotNumber)
+        val expected = "$name : " + "-".repeat(goOrNotNumber)
 
         //when
         val result = car

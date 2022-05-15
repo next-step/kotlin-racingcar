@@ -3,9 +3,11 @@ package racing.application
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
 import racing.model.Car
 import racing.model.Round
+import java.util.stream.Stream
 
 internal class CarRacingTest {
 
@@ -33,10 +35,14 @@ internal class CarRacingTest {
     fun `first round do initialization test`() {
         //given
         val firstRoundNo = 0
-        val numberOfCars = 3
+        val carNames = listOf("tom", "jerry", "bull")
         val tries = 3
-        val carRacing = CarRacing(numberOfCars, tries)
-        val expected = List(numberOfCars) { Car() }
+        val carRacing = CarRacing(carNames, tries)
+        val expected = listOf(
+            Car("tom"),
+            Car("jerry"),
+            Car("bull")
+        )
 
         //when
         val result = carRacing.start()
@@ -48,23 +54,64 @@ internal class CarRacingTest {
     }
 
     @ParameterizedTest
-    @CsvSource(
-        "3, 3",
-        "10, 20",
-        "23, 15",
-        "1231, 1"
-    )
-    fun `start method create round result`(numberOfCars: Int, tries: Int) {
+    @MethodSource("generateData")
+    fun `start method create round result`(carNamesStr:List<String>, tries: Int, cars: List<Car>) {
         //given
         val expectedKeys = Array(tries) { it }
-        val expectedValue = Round(List(numberOfCars) { Car() })
+        val expectedValue = Round(cars)
 
         //when
-        val racingResult = CarRacing(numberOfCars, tries).start()
+        val racingResult = CarRacing(carNamesStr, tries).start()
 
         //then
         assertThat(racingResult.roundMap)
             .containsKeys(*expectedKeys)
             .containsEntry(0, expectedValue)
+    }
+
+    companion object {
+        @JvmStatic
+        private fun generateData(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of(
+                    listOf("test1","test2","test3","test4","test5"),
+                    5,
+                    listOf(
+                        Car("test1"),
+                        Car("test2"),
+                        Car("test3"),
+                        Car("test4"),
+                        Car("test5")
+                    )
+                ),
+                Arguments.of(
+                    listOf("test1","test2"),
+                    2,
+                    listOf(
+                        Car("test1"),
+                        Car("test2")
+                    )
+                ),
+                Arguments.of(
+                    listOf("test1","test2","test3"),
+                    3,
+                    listOf(
+                        Car("test1"),
+                        Car("test2"),
+                        Car("test3")
+                    )
+                ),
+                Arguments.of(
+                    listOf("test1","test2","test3","test4"),
+                    4,
+                    listOf(
+                        Car("test1"),
+                        Car("test2"),
+                        Car("test3"),
+                        Car("test4")
+                    )
+                ),
+            )
+        }
     }
 }
