@@ -4,7 +4,7 @@ import view.ResultView
 
 class Game {
     fun start() {
-        val names = askNumOfCars()
+        val names = askNamesOfCar()
         val numOfRounds = askNumOfRounds()
 
         val race = Race(names)
@@ -14,9 +14,10 @@ class Game {
             resultView.record(race.doRace())
         }
         resultView.showResult()
+        resultView.whoIsWinner()
     }
 
-    private fun askNumOfCars(): List<String> {
+    private fun askNamesOfCar(): List<String> {
         println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
         return readLine()!!.split(",").map { it.trim() }
     }
