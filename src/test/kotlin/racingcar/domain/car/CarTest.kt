@@ -15,7 +15,7 @@ internal class CarTest : FreeSpec({
         ).forEach { gas ->
             "$gas 만큼 가스를 채우면 전진한다." {
                 // given
-                val car = Car()
+                val car = CarFixture.getCar()
                 val distanceBeforeFillingGas = car.distance
 
                 // when
@@ -34,7 +34,7 @@ internal class CarTest : FreeSpec({
         ).forEach { gas ->
             "$gas 만큼 가스를 채우면 전진하지 못한다." {
                 // given
-                val car = Car()
+                val car = CarFixture.getCar()
                 val distanceBeforeFillingGas = car.distance
 
                 // when

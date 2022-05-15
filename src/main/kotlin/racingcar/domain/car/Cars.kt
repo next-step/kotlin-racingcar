@@ -1,30 +1,31 @@
 package racingcar.domain.car
 
 import racingcar.domain.GasStation
-import java.lang.IllegalArgumentException
 
 class Cars(
-    countOfCars: Int
+    racingCarNames: String
 ) {
     val values: List<Car>
     private val gasStation: GasStation = GasStation()
 
     init {
-        validateMinCount(value = countOfCars)
-        val values = mutableListOf<Car>()
-        for (i in MIN_COUNT..countOfCars) values.add(Car())
-        this.values = values
+        val names = racingCarNames.split(REGEX)
+            .map { Name(it) }
+
+        validateDuplicate(value = names)
+
+        this.values = names.map { Car(it) }
     }
 
-    private fun validateMinCount(value: Int) {
-        if (value < MIN_COUNT) {
-            throw IllegalArgumentException("자동차 수는 $MIN_COUNT 이상이어야 합니다.")
+    private fun validateDuplicate(value: List<Name>) {
+        if (value.size != value.toSet().size) {
+            throw IllegalArgumentException("자동차 이름은 서로 중복될 수 없습니다.")
         }
     }
 
     fun race() = values.forEach { car -> car.fillGasAndForward(gasStation.getRandomGas()) }
 
     companion object {
-        const val MIN_COUNT = 1
+        private const val REGEX = ","
     }
 }

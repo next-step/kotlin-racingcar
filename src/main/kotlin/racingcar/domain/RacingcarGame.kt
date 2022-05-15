@@ -9,7 +9,7 @@ class RacingcarGame(
     private val resultView: ResultView = ResultView(),
 ) {
     fun play() {
-        val racingCars = Cars(inputView.inputCountOfCars())
+        val racingCars = Cars(inputView.inputRacingCarNames())
         val racingLap = RacingLap(inputView.inputRacingLaps())
 
         resultView.printRacingResult()

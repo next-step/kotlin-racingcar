@@ -1,6 +1,8 @@
 package racingcar.domain.car
 
-class Car {
+class Car(
+    val name: Name,
+) {
     var distance: Int = 0
         private set
 
