@@ -3,44 +3,25 @@ package calculator
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 
 class CalculatorIntegrationTest {
 
     private val calculator = Calculator()
 
-    @Test
-    fun `1 + 1 을 계산할 경우 2를 반환해야한다`() {
-        assertEquals(calculator.calculate("1 + 1"), 2)
-    }
-
-    @Test
-    fun `1 - 1 을 계산할 경우 0를 반환해야한다`() {
-        assertEquals(calculator.calculate("1 - 1"), 0)
-    }
-
-    @Test
-    fun `1 * 2 을 계산할 경우 2를 반환해야한다`() {
-        assertEquals(calculator.calculate("1 * 2"), 2)
-    }
-
-    @Test
-    fun `2 ÷ 2 을 계산할 경우 1를 반환해야한다`() {
-        assertEquals(calculator.calculate("2 / 2"), 1)
-    }
-
-    @Test
-    fun `10 * 3 - 6 을 계산할 경우 24를 반환해야한다`() {
-        assertEquals(calculator.calculate("10 * 3 - 6"), 24)
-    }
-
-    @Test
-    fun `5 * 3 ÷ 6 + 10 - 5 를 계산할 경우 7를 반환해야한다`() {
-        assertEquals(calculator.calculate("5 * 3 / 6 + 10 - 5"), 7)
-    }
-
-    @Test
-    fun `1 + 3 * 6 를 계산할 경우 24를 반환해야한다`() {
-        assertEquals(calculator.calculate("1 + 3 * 6"), 24)
+    @ParameterizedTest
+    @CsvSource(
+        "'1 + 1', 2",
+        "'2 + 3', 5",
+        "'1 - 1', 0",
+        "'6 - 3', 3",
+        "'2 * 3', 6",
+        "'3 * 3', 9",
+        "'5 * 3 / 6 + 10 - 5', 7"
+    )
+    fun `정상적인 수식일 경우 올바른 결과를 반환해야한다`(statement: String, answer: Long) {
+        assertEquals(calculator.calculate(statement), answer)
     }
 
     @Test

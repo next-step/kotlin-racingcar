@@ -1,12 +1,9 @@
 package calculator
 
-import operator.*
+import operator.OperatorFactory
 
 class Calculator(
-    private val plusOperator: PlusOperator = PlusOperator(),
-    private val subtractOperator: SubtractOperator = SubtractOperator(),
-    private val divideOperator: DivideOperator = DivideOperator(),
-    private val multiplyOperator: MultiplyOperator = MultiplyOperator()
+    private val operatorFactory: OperatorFactory = OperatorFactory()
 ) {
 
     fun calculate(statement: String): Long {
@@ -18,19 +15,10 @@ class Calculator(
         var result = numbers[0].toLong()
 
         operators.forEachIndexed { index: Int, operator: String ->
-            result = getOperator(operator).operate(result, numbers[index + 1].toLong())
+            result = operatorFactory.getOperator(operator).operate(result, numbers[index + 1].toLong())
         }
         return result
     }
 
     private fun isNumeric(number: String) = number.all { char -> char.isDigit() }
-
-    private fun getOperator(operator: String): Operator =
-        when (operator) {
-            "+" -> plusOperator
-            "-" -> subtractOperator
-            "/" -> divideOperator
-            "*" -> multiplyOperator
-            else -> throw IllegalArgumentException("This operator is not acceptable. operator: $operator")
-        }
 }
