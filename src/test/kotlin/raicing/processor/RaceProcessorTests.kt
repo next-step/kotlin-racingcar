@@ -24,7 +24,7 @@ class RaceProcessorTests {
             "5, 3"
         ]
     )
-    fun `입력받은 자동차 대수, 시도횟수가 경기 결과 리스트 값의 size와 같아야한다`(carCount: Int, raceCount: Int) {
+    fun `3대의 자동차로 5번의 경주를 진행하면 경주 결과는 5개이고, 각 결과의 자동차 대수는 3대이다`(carCount: Int, raceCount: Int) {
         val cars = raceProcessor.initCars(carCount)
         val result = raceProcessor.race(cars, raceCount)
 
