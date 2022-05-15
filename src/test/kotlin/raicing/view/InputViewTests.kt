@@ -21,7 +21,7 @@ class InputViewTests {
     )
     fun `입력받은 데이터 valid 체크 - 성공`(inputStr: String?, expected: String) {
         System.setIn(ByteArrayInputStream(inputStr?.toByteArray()))
-        val result = InputView.readStrAndConvertToInt("Test Input")
+        val result = InputView.readStrAndConvertToNaturalNum("Test Input")
         assertThat(result).isEqualTo(NaturalNumber(expected))
     }
 
@@ -31,7 +31,7 @@ class InputViewTests {
     fun `입력받은 데이터 valid 체크 - null이거나 empty이면 실패`(inputStr: String?) {
         System.setIn(ByteArrayInputStream(inputStr?.toByteArray()))
         Assertions.assertThatIllegalArgumentException()
-            .isThrownBy { InputView.readStrAndConvertToInt("Test Input") }
+            .isThrownBy { InputView.readStrAndConvertToNaturalNum("Test Input") }
             .withMessage(Const.ErrorMsg.INPUT_IS_EMPTY_ERROR_MST)
     }
 
@@ -40,7 +40,7 @@ class InputViewTests {
     fun `입력받은 데이터 valid 체크 - 자연수가 아니면 실패`(inputStr: String?) {
         System.setIn(ByteArrayInputStream(inputStr?.toByteArray()))
         Assertions.assertThatIllegalArgumentException()
-            .isThrownBy { InputView.readStrAndConvertToInt("Test Input") }
+            .isThrownBy { InputView.readStrAndConvertToNaturalNum("Test Input") }
             .withMessage(Const.ErrorMsg.INPUT_IS_NOT_NATURAL_NUMBER_ERROR_MSG)
     }
 }

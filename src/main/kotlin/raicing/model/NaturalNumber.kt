@@ -18,8 +18,4 @@ value class NaturalNumber(
 
     private fun validateNaturalNumber(number: Int) =
         require(number > 0) { Const.ErrorMsg.INPUT_IS_NOT_NATURAL_NUMBER_ERROR_MSG }
-
-    companion object {
-        fun number(num: String) = NaturalNumber(num)
-    }
 }
