@@ -4,10 +4,10 @@ import view.ResultView
 
 class Game {
     fun start() {
-        val numOfCars = askNumOfCars()
+        val names = askNumOfCars()
         val numOfRounds = askNumOfRounds()
 
-        val race = Race(numOfCars)
+        val race = Race(names)
         val resultView = ResultView()
 
         repeat(numOfRounds) {
@@ -16,9 +16,9 @@ class Game {
         resultView.showResult()
     }
 
-    private fun askNumOfCars(): Int {
-        println("자동차 대수는 몇 대인가요?")
-        return readLine()!!.toInt()
+    private fun askNumOfCars(): List<String> {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
+        return readLine()!!.split(",").map { it.trim() }
     }
 
     private fun askNumOfRounds(): Int {

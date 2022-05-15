@@ -3,9 +3,9 @@ package model
 import org.jetbrains.annotations.TestOnly
 
 class Race(
-    numOfCars: Int
+    names: List<String>
 ) {
-    private val cars: List<Car> = List(numOfCars) { Car() }
+    private val cars = names.map { Car(it) }
 
     fun doRace(): List<Car> {
         cars.forEach {
