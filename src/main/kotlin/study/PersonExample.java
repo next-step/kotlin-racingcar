@@ -1,4 +1,4 @@
-package java_convert_kotlin;
+package study;
 
 public class PersonExample {
     private final String name;

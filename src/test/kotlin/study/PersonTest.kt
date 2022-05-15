@@ -1,9 +1,10 @@
+package study
+
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.inspectors.shouldForAll
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
-import java_convert_kotlin.Person
 
 class PersonTest : FunSpec({
 
