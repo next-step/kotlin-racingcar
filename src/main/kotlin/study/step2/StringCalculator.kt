@@ -24,8 +24,10 @@ class StringCalculator {
     }
 
     private fun calculateEveryPair(pairList: List<Pair<String, Int>>, initValue: Int): Int {
+
         return pairList.fold(initValue) { acc, pair ->
-            Operator.reverseMap(pair.first)?.calculateSinglePair(acc, pair.second) ?: 0
+            val operator = Operator.reverseMap(pair.first) ?: throw IllegalArgumentException("사칙연산이 아닙니다“")
+            operator.work(acc, pair.second)
         }
     }
 }
