@@ -27,8 +27,8 @@ internal class PlaySceneTest : DescribeSpec({
             val stubEnvironmentModule = StubEnvironmentModule()
             val environmentManager = EnvironmentManager(stubEnvironmentModule)
             val round = "2"
-            val player = "2"
-            environmentManager.put(Constants.CAR_NAMES_KEY, player)
+            val players = "yohan,kbs"
+            environmentManager.put(Constants.CAR_NAMES_KEY, players)
             environmentManager.put(Constants.STAGE_NUMBER_KEY, round)
             val outputPainter = StubPlaySceneOutputPainter()
             val scoreBoard = ScoreBoard(outputPainter)
@@ -37,13 +37,13 @@ internal class PlaySceneTest : DescribeSpec({
             val expectResult = """
                 
                 실행결과
-                unknown: -
-                unknown: -
+                yohan: -
+                kbs: -
                 
-                unknown: --
-                unknown: --
+                yohan: --
+                kbs: --
                 
-                
+                yohan, kbs가 최종 우승했습니다.
             """.trimIndent()
 
             // when
@@ -58,8 +58,8 @@ internal class PlaySceneTest : DescribeSpec({
             val stubEnvironmentModule = StubEnvironmentModule()
             val environmentManager = EnvironmentManager(stubEnvironmentModule)
             val round = "2"
-            val player = "2"
-            environmentManager.put(Constants.CAR_NAMES_KEY, player)
+            val players = "kbs,yohan"
+            environmentManager.put(Constants.CAR_NAMES_KEY, players)
             environmentManager.put(Constants.STAGE_NUMBER_KEY, round)
             val outputPainter = StubPlaySceneOutputPainter()
             val scoreBoard = ScoreBoard(outputPainter)
@@ -68,13 +68,13 @@ internal class PlaySceneTest : DescribeSpec({
             val expectResult = """
                 
                 실행결과
-                unknown: 
-                unknown: 
+                kbs: 
+                yohan: 
                 
-                unknown: 
-                unknown: 
+                kbs: 
+                yohan: 
                 
-                
+                kbs, yohan가 최종 우승했습니다.
             """.trimIndent()
 
             // when

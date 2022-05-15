@@ -49,5 +49,22 @@ internal class CarsTest : DescribeSpec({
             // then
             cars.toPrintableCars("/") shouldBe "mbc: /kbs: /jtbc: /sbs: "
         }
+
+        it("가장 멀리 간 자동차의 이름 리스트를 반환한다.") {
+            // given
+            val cars = Cars(
+                listOf(
+                    Car.spawnWithPositionAndName(0, "A"),
+                    Car.spawnWithPositionAndName(2, "B"),
+                    Car.spawnWithPositionAndName(3, "C"),
+                )
+            )
+
+            // when
+            val result = cars.winnerNames()
+
+            // then
+            result shouldBe listOf("C")
+        }
     }
 })

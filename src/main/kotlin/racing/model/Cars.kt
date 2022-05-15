@@ -11,6 +11,20 @@ class Cars(private val cars: List<Car>) {
 
     fun toPrintableCars(separator: String = ""): String = cars.joinToString(separator)
 
+    fun winnerNames(): List<String> {
+        val longestCar = getLongestDistance()
+        return getWinnerNames(longestCar)
+    }
+
+    private fun getWinnerNames(car: Car): List<String> =
+        cars
+            .filter { it.isSamePosition(car) }
+            .map(Car::toString)
+            .map { it.split(":") }
+            .map { it[0] }
+
+    private fun getLongestDistance(): Car = cars.maxOf { it }
+
     companion object {
         fun empty(): Cars = Cars(emptyList())
 

@@ -2,13 +2,15 @@ package racing.model
 
 import java.util.UUID
 
-data class Car constructor(private val position: Int, private val name: String = "unknown") {
+data class Car constructor(private val position: Int, private val name: String = "unknown") : Comparable<Car> {
 
     private val uuid = UUID.randomUUID()
 
     init {
         require(0 <= this.position) { INVALID_POSITION_EXCEPTION }
     }
+
+    override fun compareTo(other: Car): Int = position - other.position
 
     override fun toString(): String = "$name: ${PRINT_STEP_SIGN.repeat(this.position)}"
 
@@ -28,7 +30,7 @@ data class Car constructor(private val position: Int, private val name: String =
     }
 
     fun moveForward(randomValue: Int): Car {
-        return spawnAt(position + this.getStep(randomValue))
+        return spawnWithPositionAndName(position + this.getStep(randomValue), name)
     }
 
     fun isSamePosition(other: Car) = position == other.position
