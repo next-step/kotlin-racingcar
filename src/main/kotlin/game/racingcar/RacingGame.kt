@@ -15,20 +15,21 @@ class RacingGame(
 ) {
     fun run() {
         inputView.init()
-        val cars = start(inputView.carNames, inputView.numberOfLap)
-        val result = outputView.getResult(cars)
+        val cars = race(inputView.carNames.map { Car(it) }.toList(), inputView.numberOfLap)
+        val winners = getWinners(cars)
+        val result = outputView.getResult(cars, winners)
         println("\n실행 결과")
         println(result)
     }
 
-    private fun start(carNames: List<String>, numberOfLap: Int): List<Car> {
+    private fun getWinners(cars: List<Car>): List<Car> {
+        val maxPosition = cars.maxByOrNull { it.position() }!!.position()
+        return cars
+            .sortedByDescending { it.position() }
+            .takeWhile { it.position() == maxPosition }
+    }
 
-        val cars = arrayListOf<Car>()
-
-        for (name in carNames) {
-            cars.add(Car(name))
-        }
-
+    private fun race(cars: List<Car>, numberOfLap: Int): List<Car> {
         for (i in 0 until numberOfLap) {
             cars.forEach { it.move(moveStrategy) }
         }

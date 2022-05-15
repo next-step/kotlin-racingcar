@@ -3,7 +3,7 @@ package game.racingcar.view
 import game.racingcar.domain.Car
 
 class StandardOutputView : OutputView {
-    override fun getResult(cars: List<Car>): String {
+    override fun getResult(cars: List<Car>, winners: List<Car>): String {
         val longestNameLength = cars.maxByOrNull { it.name.length }!!.name.length
         val result = arrayListOf<String>()
         for (lap in 0 until cars[0].blackBox.size) {
@@ -11,7 +11,8 @@ class StandardOutputView : OutputView {
                 "${it.name.padEnd(longestNameLength, ' ')} : ${DISPLAY_CHARACTER.repeat(it.history(lap))}"
             }
         }
-        result += "pobi, honux가 최종 우승했습니다."
+        result += "${winners.joinToString(", ") { it.name }}가 최종 우승했습니다."
+
         return result.joinToString(LAP_DELIMITER)
     }
 
