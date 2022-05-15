@@ -1,7 +1,7 @@
-package study.step3.service
+package study.racingcar.service
 
-import study.step3.domain.Moving
-import study.step3.domain.Racing
+import study.racingcar.domain.Moving
+import study.racingcar.domain.Racing
 
 class RacingService(private val numOfCar: Int, private val numOfTry: Int) {
     fun start() {

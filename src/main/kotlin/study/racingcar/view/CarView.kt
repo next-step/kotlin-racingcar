@@ -1,6 +1,6 @@
-package study.step3.view
+package study.racingcar.view
 
-import study.step3.domain.Car
+import study.racingcar.domain.Car
 
 data class CarView(
     val moved: Int,

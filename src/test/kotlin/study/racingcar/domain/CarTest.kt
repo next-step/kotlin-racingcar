@@ -1,4 +1,4 @@
-package study.step3
+package study.racingcar
 
 import io.mockk.MockKAnnotations
 import io.mockk.every
@@ -8,9 +8,9 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import study.step3.domain.Car
-import study.step3.domain.Moving
-import study.step3.view.view
+import study.racingcar.domain.Car
+import study.racingcar.domain.Moving
+import study.racingcar.view.view
 
 internal class CarTest {
 

@@ -1,6 +1,6 @@
-package study.step3.domain
+package study.racingcar.domain
 
-import study.step3.view.view
+import study.racingcar.view.view
 
 class Racing(numOfCar: Int, moving: Moving) {
 

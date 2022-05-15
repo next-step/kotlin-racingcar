@@ -1,7 +1,7 @@
-package study.step3
+package study.racingcar
 
-import study.step3.service.RacingService
-import study.step3.view.RacingInputView
+import study.racingcar.service.RacingService
+import study.racingcar.view.RacingInputView
 
 class RacingCar {
 
