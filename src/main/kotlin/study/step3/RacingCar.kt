@@ -2,16 +2,14 @@ package study.step3
 
 import java.util.concurrent.atomic.AtomicInteger
 
-class RacingCar {
+class RacingCar(val moving: Moving) {
 
     private val moved = AtomicInteger(0)
 
-    fun go(): Int {
-        return moved.incrementAndGet()
-    }
-
-    fun goTimes(numOfTry: Int): Int {
-        repeat(numOfTry) { go() }
+    fun move(): Int {
+        if (moving.isMovable()) {
+            moved.incrementAndGet()
+        }
 
         return getMoved()
     }

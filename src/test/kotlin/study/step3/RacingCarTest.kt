@@ -1,35 +1,64 @@
 package study.step3
 
+import io.mockk.MockKAnnotations
+import io.mockk.every
+import io.mockk.impl.annotations.MockK
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 internal class RacingCarTest {
 
+    @MockK
+    lateinit var moving: Moving
+
+    @BeforeEach
+    fun setUp() {
+        MockKAnnotations.init(this, relaxUnitFun = true)
+    }
+
     @Test
-    fun `Car의 moved 초기 값은 0이다`() {
-        val racingCar = RacingCar()
+    fun `Moved 초기 값은 0이다`() {
+        val racingCar = RacingCar(moving)
 
         assertThat(racingCar.getMoved()).isEqualTo(0)
     }
 
-    @Test
-    fun `Car는 go 할 수 있다`() {
-        val racingCar = RacingCar()
+    @ParameterizedTest
+    @ValueSource(booleans = [true, false])
+    fun `Move 할 수 있다`(isMovable: Boolean) {
+        val racingCar = RacingCar(moving)
 
-        val moved = racingCar.go()
+        every { moving.isMovable() } returns isMovable
+
+        val moved = racingCar.move()
+
+        assertThat(moved).isEqualTo(isMovable.toInt())
+    }
+
+    @Test
+    fun `Movable이 false일 때, 움직이지 않는다`() {
+        val racingCar = RacingCar(moving)
+
+        every { moving.isMovable() } returns false
+
+        val moved = racingCar.move()
+
+        assertThat(moved).isEqualTo(0)
+    }
+
+    @Test
+    fun `Movable이 true일 때, 움직인다`() {
+        val racingCar = RacingCar(moving)
+
+        every { moving.isMovable() } returns true
+
+        val moved = racingCar.move()
 
         assertThat(moved).isEqualTo(1)
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = [1, 2, 3, 10])
-    fun `n회 움직일 수 있다`(times: Int) {
-        val racingCar = RacingCar()
-
-        val moved = racingCar.goTimes(times)
-
-        assertThat(moved).isEqualTo(times)
-    }
+    private fun Boolean.toInt() = if (this) 1 else 0
 }
