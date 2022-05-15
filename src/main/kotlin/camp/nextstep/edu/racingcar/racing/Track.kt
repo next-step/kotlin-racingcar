@@ -1,4 +1,4 @@
-package camp.nextstep.edu.step3.racing
+package camp.nextstep.edu.racingcar.racing
 
 class Track(private val length: Int) {
     private val traces: Array<Trace> = Array(length) { Trace() }
@@ -10,6 +10,8 @@ class Track(private val length: Int) {
     }
 
     fun traces(): Iterator<Boolean> = traces.map { it.marked }.iterator()
+
+    fun marks(): Int = onTraceIndex
 
     private class Trace {
         var marked: Boolean = false

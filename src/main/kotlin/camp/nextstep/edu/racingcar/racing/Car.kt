@@ -1,8 +1,12 @@
-package camp.nextstep.edu.step3.racing
+package camp.nextstep.edu.racingcar.racing
 
 import kotlin.random.Random
 
-class Car(val id: Int, private val engine: Engine = RandomlyEngine()) {
+class Car(val id: Int, val name: String, private val engine: Engine = RandomlyEngine()) {
+
+    init {
+        require(name.length <= 5) { "자동차 이름은 5자를 초과할 수 없습니다." }
+    }
 
     fun raceOn(track: Track, moveCount: Int) {
         for (i in 0 until moveCount) {
@@ -34,7 +38,13 @@ class Car(val id: Int, private val engine: Engine = RandomlyEngine()) {
         private val random = Random(Random.Default.nextInt())
 
         override fun speed(): Int {
-            return if (random.nextInt(0, 10) >= 4) 1 else 0
+            return if (random.nextInt(POWER_MIN, POWER_MAX) >= MOVABLE_POWER_MIN) 1 else 0
+        }
+
+        companion object {
+            private const val POWER_MIN = 0
+            private const val POWER_MAX = 10
+            private const val MOVABLE_POWER_MIN = 4
         }
     }
 }
