@@ -24,8 +24,9 @@ class ResultView {
     }
 
     data class Record(
-        val distance: Int
+        val distance: Int,
+        val names: String
     ) {
-        constructor(car: Car) : this(car.getDistance())
+        constructor(car: Car) : this(car.getDistance(), car.name)
     }
 }
