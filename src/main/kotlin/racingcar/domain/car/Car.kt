@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.car
 
 class Car {
     var distance: Int = 0

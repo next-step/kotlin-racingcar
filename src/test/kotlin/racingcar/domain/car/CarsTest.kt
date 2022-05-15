@@ -1,9 +1,9 @@
-package racingcar.domain
+package racingcar.domain.car
 
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import racingcar.domain.Cars.Companion.MIN_COUNT
+import racingcar.domain.car.Cars.Companion.MIN_COUNT
 
 internal class CarsTest : StringSpec({
 

@@ -1,5 +1,6 @@
 package racingcar.domain
 
+import racingcar.domain.car.Cars
 import racingcar.view.InputView
 import racingcar.view.ResultView
 

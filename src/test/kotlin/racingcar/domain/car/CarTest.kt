@@ -1,9 +1,9 @@
-package racingcar.domain
+package racingcar.domain.car
 
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
-import racingcar.domain.Car.Companion.ENOUGH_TO_FORWARD
-import racingcar.domain.Car.Companion.FORWARD_DISTANCE
+import racingcar.domain.car.Car.Companion.ENOUGH_TO_FORWARD
+import racingcar.domain.car.Car.Companion.FORWARD_DISTANCE
 
 internal class CarTest : FreeSpec({
 

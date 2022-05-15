@@ -1,5 +1,6 @@
-package racingcar.domain
+package racingcar.domain.car
 
+import racingcar.domain.GasStation
 import java.lang.IllegalArgumentException
 
 class Cars(
