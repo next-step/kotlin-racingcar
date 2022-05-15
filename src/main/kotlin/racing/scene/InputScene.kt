@@ -19,8 +19,8 @@ class InputScene(
     override fun hasNext(): Boolean = false
 
     private fun setCarNumber() {
-        outputPainter.draw("자동차 대수는 몇 대인가요?\n")
-        environmentManager.put(Constants.CAR_NUMBER_KEY, inputSystem.read())
+        outputPainter.draw("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)\n")
+        environmentManager.put(Constants.CAR_NAMES_KEY, inputSystem.read())
     }
 
     private fun setStageNumber() {
