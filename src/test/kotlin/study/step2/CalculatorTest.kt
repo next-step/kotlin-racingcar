@@ -2,7 +2,7 @@ package study.step2
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -13,30 +13,17 @@ import java.util.stream.Stream
 
 class CalculatorTest {
 
-    @Test
-    fun `number와 operator를 분리할 수 있다 - 1`() {
-        val expression = "1 + 1"
+    lateinit var sut: Calculator
 
-        val (operands, operators) = Calculator.splitNumbersAndOperators(expression)
-
-        assertThat(operands).isEqualTo(listOf(1.0, 1.0))
-        assertThat(operators).isEqualTo(listOf("+"))
-    }
-
-    @Test
-    fun `number와 operator를 분리할 수 있다 - 2`() {
-        val expression = "1 + 2 - 3 * 4 / 5"
-
-        val (operands, operators) = Calculator.splitNumbersAndOperators(expression)
-
-        assertThat(operands).isEqualTo(listOf(1.0, 2.0, 3.0, 4.0, 5.0))
-        assertThat(operators).isEqualTo(listOf("+", "-", "*", "/"))
+    @BeforeEach
+    fun setUp() {
+        sut = Calculator(ExpressionParser())
     }
 
     @ParameterizedTest
     @MethodSource("expressionArguments")
     fun `사칙연산을 할 수 있다`(expression: String, answer: Double) {
-        val result = Calculator.calculate(expression)
+        val result = sut.calculate(expression)
 
         assertThat(result).isEqualTo(answer)
     }
@@ -45,9 +32,9 @@ class CalculatorTest {
     @NullSource
     @ValueSource(strings = ["", "  ", "1 / 0"])
     fun `올바르지 않은 표현식은 exception이 발생한다`(input: String?) {
-        assertThrows<IllegalArgumentException> { Calculator.calculate(input) }
+        assertThrows<IllegalArgumentException> { sut.calculate(input) }
         assertThatThrownBy {
-            Calculator.calculate(input)
+            sut.calculate(input)
         }.isExactlyInstanceOf(java.lang.IllegalArgumentException::class.java)
             .hasMessage("잘못된 계산식 입니다")
     }
