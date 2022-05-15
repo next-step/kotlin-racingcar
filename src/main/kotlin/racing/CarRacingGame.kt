@@ -7,7 +7,7 @@ import racing.model.TotalPositionHistory
 
 class CarRacingGame(private val carInput: CarInput) {
     fun start(): TotalPositionHistory {
-        val cars = Cars(List(carInput.carCount) { Car(START_POSITION) })
+        val cars = makeCars()
         val totalPositionHistory = TotalPositionHistory(mutableListOf())
 
         repeat(carInput.times) {
@@ -16,7 +16,5 @@ class CarRacingGame(private val carInput: CarInput) {
         return totalPositionHistory
     }
 
-    companion object {
-        const val START_POSITION = 0
-    }
+    private fun makeCars(): Cars = Cars(List(carInput.carNames.size) { index -> Car(name = carInput.carNames[index]) })
 }

@@ -6,13 +6,13 @@ class Car(private val name: String, private var position: Int = START_POSITION) 
     init {
         require(position >= MIN_POSITION) { INVALID_CAR_POSITION }
         require(name.length <= MAX_NAME_LENGTH) { INVALID_CAR_NAME_LENGTH }
-        require(name.isNotBlank()) {INVALID_CAR_NAME_BLANK}
+        require(name.isNotBlank()) { INVALID_CAR_NAME_BLANK }
     }
 
-    fun move(movable: Movable): Int {
+    fun move(movable: Movable): CarMoveResult {
         if (movable.canMove())
             position++
-        return position
+        return CarMoveResult(name, position)
     }
 
     companion object {

@@ -3,19 +3,20 @@ package racing.ui
 import racing.model.PositionHistory
 import racing.model.TotalPositionHistory
 
-class ResultView(private val carPositionHistory: TotalPositionHistory) {
+class ResultView(private val totalPositionHistory: TotalPositionHistory) {
     fun printResult() {
         printFirst()
-        carPositionHistory.forEach { positionHistory ->
-            printCarPosition(positionHistory)
+        totalPositionHistory.forEach { positionHistory ->
+            printCarMoveResult(positionHistory)
         }
     }
 
     private fun printFirst() = println("실행 결과")
 
-    private fun printCarPosition(positionHistory: PositionHistory) {
-        positionHistory.forEach { position ->
-            println(PRINT_VALUE.repeat(position))
+    private fun printCarMoveResult(positionHistory: PositionHistory) {
+        positionHistory.forEach { moveResult ->
+            print("${moveResult.name} : ")
+            println(PRINT_VALUE.repeat(moveResult.position))
         }
         println()
     }
