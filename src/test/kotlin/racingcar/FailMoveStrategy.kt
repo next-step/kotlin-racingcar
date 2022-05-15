@@ -1,5 +1,5 @@
 package racingcar
 
-class FailMoveStrategy: MoveStrategy {
+class FailMoveStrategy : MoveStrategy {
     override fun isMove() = false
 }
