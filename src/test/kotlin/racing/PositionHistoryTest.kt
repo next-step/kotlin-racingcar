@@ -27,4 +27,18 @@ class PositionHistoryTest {
         // then
         assertThat(size).isEqualTo(10)
     }
+
+    @Test
+    fun `우승자 구하기 테스트`() {
+        // given
+        repeat(10) { position ->
+            positionHistory.save(CarMoveResult("이름 $position", position))
+        }
+
+        // when
+        val winner = positionHistory.getMaxPositionCarName().joinToString()
+
+        // then
+        assertThat(winner).isEqualTo("이름 9")
+    }
 }

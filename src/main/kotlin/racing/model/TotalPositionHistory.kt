@@ -6,4 +6,8 @@ class TotalPositionHistory(private val totalPositionHistory: MutableList<Positio
     }
 
     fun forEach(action: (PositionHistory) -> Unit) = totalPositionHistory.forEach(action)
+
+    fun findWinnersName(): List<String> {
+        return totalPositionHistory[totalPositionHistory.size - 1].getMaxPositionCarName()
+    }
 }
