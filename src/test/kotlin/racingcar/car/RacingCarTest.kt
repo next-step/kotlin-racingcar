@@ -8,9 +8,7 @@ import racingcar.engine.Engine
 internal class RacingCarTest : StringSpec({
 
     "주어진 engine 에 따라 위치가 변경된다" {
-        val stubEngine = object : Engine {
-            override fun accelerate(): Distance = Distance(100)
-        }
+        val stubEngine = Engine { Distance(100) }
         val racingCar = RacingCar(stubEngine)
 
         val result = racingCar.forward()

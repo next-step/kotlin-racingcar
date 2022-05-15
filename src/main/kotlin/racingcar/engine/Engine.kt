@@ -1,5 +1,5 @@
 package racingcar.engine
 
-interface Engine {
+fun interface Engine {
     fun accelerate(): Distance
 }
