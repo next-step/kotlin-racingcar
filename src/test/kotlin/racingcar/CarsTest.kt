@@ -9,18 +9,24 @@ internal class CarsTest {
     fun `Cars move 책임 테스트`() {
         val cars = Cars(listOf(Car(), Car(), Car()))
 
-        val movedCars = cars.move(object : MoveStrategy {
-            override fun isMove(): Boolean {
-                return true
-            }
-        })
+        val moveStrategy = SuccessMoveStrategy()
 
-        val move = movedCars.move(object : MoveStrategy {
-            override fun isMove(): Boolean {
-                return true
-            }
-        })
+        val movedCars = cars.move(moveStrategy)
+        val move = movedCars.move(moveStrategy)
 
         assertThat(move.cars[0].position).isEqualTo(2)
+    }
+
+    @Test
+    fun `Cars move 책임 테스트2`() {
+        val cars = Cars(listOf(Car(), Car(), Car()))
+
+        val successMoveStrategy = SuccessMoveStrategy()
+        val failMoveStrategy = FailMoveStrategy()
+
+        val movedCars = cars.move(successMoveStrategy)
+        val move = movedCars.move(failMoveStrategy)
+
+        assertThat(move.cars[0].position).isEqualTo(1)
     }
 }

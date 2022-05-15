@@ -33,7 +33,7 @@ internal class RacingTest {
 
         racing.start(1, strategy)
 
-        assertAll("", {
+        assertAll("자동차 포지션 테스트", {
             assertThat(racing.result[0].cars[0].position).isEqualTo(1)
             assertThat(racing.result[0].cars[1].position).isEqualTo(1)
         })
