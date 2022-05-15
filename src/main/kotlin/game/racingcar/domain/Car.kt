@@ -15,11 +15,7 @@ class Car {
         return position
     }
 
-    fun history(time: Int): Int {
-        return blackBox[time]
-    }
+    fun history(time: Int) = blackBox[time]
 
-    fun position(): Int {
-        return blackBox.lastOrNull() ?: 0
-    }
+    fun position() = blackBox.lastOrNull() ?: 0
 }

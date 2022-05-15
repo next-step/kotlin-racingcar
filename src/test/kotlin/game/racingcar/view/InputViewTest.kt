@@ -31,7 +31,5 @@ class TestInputView : InputView {
         carNames = arrayListOf("jade", "koh", "test")
     }
 
-    override fun numberOfCar(): Int {
-        return carNames.size
-    }
+    override fun numberOfCar() = carNames.size
 }
