@@ -1,25 +1,34 @@
 package racing
 
-object Racing {
-    fun start(carNumber: Int, tryRound: Int): ArrayList<Array<Int>> {
-        val racingCars = Array<RacingCar>(carNumber) { RacingCar(tryRound) }
+import kotlin.random.Random
 
-        for (count in 0 until tryRound) {
+object Racing {
+    private const val MIN_PIVOT_VALUE = 0
+    private const val MAX_PIVOT_VALUE = 10
+
+    fun start(carNumber: Int, tryRound: Int): List<MutableList<Int>> {
+        val racingCars = List(carNumber) { RacingCar(tryRound) }
+
+        repeat(tryRound) {
             for (car in racingCars) {
-                car.race()
+                car.race(createMovePoint())
             }
         }
 
         return distances(racingCars)
     }
 
-    private fun distances(racingCars: Array<RacingCar>): ArrayList<Array<Int>> {
-        val distances = ArrayList<Array<Int>>()
+    private fun distances(racingCars: List<RacingCar>): ArrayList<MutableList<Int>> {
+        val distances = ArrayList<MutableList<Int>>()
 
         for (car in racingCars) {
             distances.add(car.getDistances())
         }
 
         return distances
+    }
+
+    private fun createMovePoint(): Int {
+        return Random.nextInt(MIN_PIVOT_VALUE, MAX_PIVOT_VALUE)
     }
 }

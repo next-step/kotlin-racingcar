@@ -1,17 +1,17 @@
 package racing
 
 object RacingView {
-    private val DISPLAY_NUMBER = 1
-    fun result(round: Int, carDistances: ArrayList<Array<Int>>) {
-        for(round in 0 until round) {
-            println("$round round")
-            printDistance(round, carDistances)
+    private const val DISPLAY_NUMBER = 1
+    fun result(round: Int, carDistances: List<MutableList<Int>>) {
+        for (currentRound in 0 until round) {
+            println("${currentRound + 1} round")
+            printDistance(currentRound, carDistances)
         }
     }
 
-    private fun printDistance(round: Int, carDistances: ArrayList<Array<Int>>) {
-        for(car in carDistances) {
-            for(i in 0..car.size) {
+    private fun printDistance(round: Int, carDistances: List<MutableList<Int>>) {
+        for (car in carDistances) {
+            for (i in 0..car.size) {
                 if (i >= round) {
                     break
                 }
