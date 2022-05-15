@@ -7,7 +7,7 @@ class PersonTest {
     @Test
     fun `이름 붙인 인자`() {
         val people = listOf(
-            Person("조성륜", 23, "빠삐코"), Person("조성륜", 23,  nickname = "빠삐코"), Person(name = "조성륜", age = 23, nickname = "빠삐코")
+            Person("조성륜", 23, "빠삐코"), Person("조성륜", 23, nickname = "빠삐코"), Person(name = "조성륜", age = 23, nickname = "빠삐코")
         )
 
         // 리스트에 있는 것들이 전부 만족해야 함.
