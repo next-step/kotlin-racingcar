@@ -11,7 +11,7 @@ class GameTest : FreeSpec({
 
     "init" - {
 
-        "유효하지 않은 자동차 수가 들어올 경우 IllegalArgumentException" {
+        "유효하지 않은 자동차 이름 입력이 들어올 경우 IllegalArgumentException" {
             val carNameList: List<String> = listOf()
             val numMovement = 5
             val exception = shouldThrow<IllegalArgumentException> {
