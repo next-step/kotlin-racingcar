@@ -1,6 +1,7 @@
 package game.racingcar.view
 
 import game.racingcar.domain.Car
+import game.racingcar.strategy.MustOneMoveStrategy
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -16,7 +17,7 @@ internal class OutputViewTest {
         val outputView = TestOutputView()
 
         // when
-        testCar.move()
+        testCar.move(MustOneMoveStrategy())
         val result = outputView.getResult(cars)
 
         // then

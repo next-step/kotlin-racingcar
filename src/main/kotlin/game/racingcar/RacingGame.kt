@@ -1,12 +1,18 @@
 package game.racingcar
 
 import game.racingcar.domain.Car
+import game.racingcar.strategy.MoveStrategy
+import game.racingcar.strategy.RandomMoveStrategy
 import game.racingcar.view.InputView
 import game.racingcar.view.OutputView
 import game.racingcar.view.StandardInputView
 import game.racingcar.view.StandardOutputView
 
-class RacingGame(private val inputView: InputView, private val outputView: OutputView) {
+class RacingGame(
+    private val inputView: InputView,
+    private val outputView: OutputView,
+    private val moveStrategy: MoveStrategy,
+) {
     fun run() {
         inputView.init()
         val cars = start(inputView.numberOfCar, inputView.numberOfLap)
@@ -24,7 +30,7 @@ class RacingGame(private val inputView: InputView, private val outputView: Outpu
         }
 
         for (i in 0 until numberOfLap) {
-            cars.forEach { it.move() }
+            cars.forEach { it.move(moveStrategy) }
         }
 
         return cars
@@ -32,6 +38,6 @@ class RacingGame(private val inputView: InputView, private val outputView: Outpu
 }
 
 fun main() {
-    val racingGame = RacingGame(StandardInputView(), StandardOutputView())
+    val racingGame = RacingGame(StandardInputView(), StandardOutputView(), RandomMoveStrategy())
     racingGame.run()
 }
