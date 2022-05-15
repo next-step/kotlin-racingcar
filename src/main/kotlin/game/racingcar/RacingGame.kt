@@ -15,18 +15,18 @@ class RacingGame(
 ) {
     fun run() {
         inputView.init()
-        val cars = start(inputView.numberOfCar(), inputView.numberOfLap)
+        val cars = start(inputView.carNames, inputView.numberOfLap)
         val result = outputView.getResult(cars)
         println("\n실행 결과")
         println(result)
     }
 
-    private fun start(numberOfCar: Int, numberOfLap: Int): List<Car> {
+    private fun start(carNames: List<String>, numberOfLap: Int): List<Car> {
 
         val cars = arrayListOf<Car>()
 
-        for (i in 0 until numberOfCar) {
-            cars.add(Car())
+        for (name in carNames) {
+            cars.add(Car(name))
         }
 
         for (i in 0 until numberOfLap) {

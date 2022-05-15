@@ -12,8 +12,8 @@ internal class OutputViewTest {
     @Test
     fun `정상 출력 테스트`() {
         // given
-        val testCar = Car()
-        val cars = listOf(Car(), testCar)
+        val testCar = Car("test")
+        val cars = listOf(Car("jade"), testCar)
         val outputView = TestOutputView()
 
         // when

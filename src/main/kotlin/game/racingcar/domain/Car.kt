@@ -2,7 +2,7 @@ package game.racingcar.domain
 
 import game.racingcar.strategy.MoveStrategy
 
-class Car {
+class Car(val name: String) {
     private val _blackBox: MutableList<Int> = mutableListOf()
     private var position: Int = 0
 

@@ -12,7 +12,7 @@ internal class CarTest {
     @Test
     fun `처음 위치는 0`() {
         // given
-        val car = Car()
+        val car = Car("test")
         val expected = 0
 
         // when
@@ -23,7 +23,7 @@ internal class CarTest {
     @Test
     fun `1씩 10번 이동`() {
         // given
-        val car = Car()
+        val car = Car("test")
         val expected = 10
 
         // when
@@ -38,7 +38,7 @@ internal class CarTest {
     @Test
     fun `2씩 10번 이동`() {
         // given
-        val car = Car()
+        val car = Car("test")
         val expected = 20
 
         // when
@@ -57,7 +57,7 @@ internal class CarTest {
     @Test
     fun `자동차 히스토리 길이`() {
         // given
-        val car = Car()
+        val car = Car("test")
         val expected = 10
 
         // when

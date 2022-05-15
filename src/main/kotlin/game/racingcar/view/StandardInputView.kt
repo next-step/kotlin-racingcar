@@ -10,12 +10,16 @@ class StandardInputView : InputView {
         println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
         carNames = readln().split(",")
             .requireOrThrow("자동차 이름은 빈 값일 수 없습니다.") { it.isNotBlank() }
-            .map { it.take(5) }
+            .map { it.take(NAME_MAX_LENGTH) }
         println("시도할 횟수는 몇 회인가요?")
         numberOfLap = readln().toInt()
     }
 
     override fun numberOfCar(): Int {
         return carNames.size
+    }
+
+    companion object {
+        const val NAME_MAX_LENGTH = 5
     }
 }
