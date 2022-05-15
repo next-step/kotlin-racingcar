@@ -1,5 +1,7 @@
 package calculator
 
+import game.racingcar.util.requireOrThrow
+
 class Calculator {
 
     fun calculate(expression: String): Int {
@@ -7,8 +9,9 @@ class Calculator {
         require(expression.isNotBlank()) { MESSAGE_MUST_NOT_EMPTY }
 
         val tokens = expression.split(DELIMITER)
-        val numberOfOperator = tokens.filterIndexed { index, s -> index % 2 == 1 && s.toIntOrNull() == null }.size
-        require(numberOfOperator == tokens.size / 2) { "$MESSAGE_WRONG_EXPRESSION ($expression)" }
+        tokens
+            .filterIndexed { index, _ -> index % 2 == 0 }
+            .requireOrThrow("$MESSAGE_WRONG_EXPRESSION ($expression)") { it.toIntOrNull() != null }
 
         val result = tokens.drop(1).windowed(2, 2, true).fold(tokens[0].toInt()) { acc, strings ->
             val operator = Operator.of(strings[0])
