@@ -30,9 +30,9 @@ fun main() {
     }
 }
 
-private fun setRandomValue(randomIntCarRacingManager: RandomIntCarRacingManager) {
-    for (carIndex in 0 until randomIntCarRacingManager.getCarSize()) {
+private fun setRandomValue(carRacingManager: CarRacingManager<Int>) {
+    for (carIndex in 0 until carRacingManager.getCarSize()) {
         val randomNumber = (MIN_RANDOM_INT..MAX_RANDOM_INT).random()
-        randomIntCarRacingManager.tryMoveCar(carIndex, randomNumber)
+        carRacingManager.tryMoveCar(carIndex, randomNumber)
     }
 }
