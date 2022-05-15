@@ -2,4 +2,5 @@ package racingcar.game
 
 import racingcar.car.Car
 
-data class GameResult(val cars: List<Car>)
+@JvmInline
+value class GameResult(val cars: List<Car>)
