@@ -1,6 +1,6 @@
 package step3.ui
 
-import step3.GameResult
+import step3.dto.GameResult
 
 object ResultView {
     fun display(gameResults: List<GameResult>) {

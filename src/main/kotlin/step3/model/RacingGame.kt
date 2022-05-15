@@ -1,4 +1,8 @@
-package step3
+package step3.model
+
+import step3.dto.GameResult
+import step3.dto.GameSetting
+import step3.dto.MoveResult
 
 class RacingGame(private val gameSetting: GameSetting) {
 

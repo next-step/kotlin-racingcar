@@ -1,6 +1,6 @@
 package step3.ui
 
-import step3.GameSetting
+import step3.dto.GameSetting
 
 object InputView {
     fun input(): GameSetting {

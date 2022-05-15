@@ -1,6 +1,7 @@
-package step3
+package step3.model
 
 import io.kotest.core.spec.style.StringSpec
+import step3.dto.GameSetting
 
 class RacingGameTest : StringSpec({
 

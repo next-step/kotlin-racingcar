@@ -1,5 +1,6 @@
 package step3
 
+import step3.model.RacingGame
 import step3.ui.InputView
 import step3.ui.ResultView
 

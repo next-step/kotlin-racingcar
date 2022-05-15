@@ -1,4 +1,4 @@
-package step3
+package step3.model
 
 class Car(val id: Int) {
     var position: Int = 0

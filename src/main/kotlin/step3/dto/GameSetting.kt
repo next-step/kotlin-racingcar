@@ -1,4 +1,4 @@
-package step3
+package step3.dto
 
 class GameSetting(
     val inputCarCount: Int,
