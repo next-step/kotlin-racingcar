@@ -10,7 +10,7 @@ class CarTest : FunSpec({
             val car = Car()
 
             // when
-            val movedCar = car.move(fuel = 4)
+            val movedCar = car.tryMove(fuel = 4)
 
             // then
             movedCar.distanceMoved shouldBe 1
@@ -21,7 +21,7 @@ class CarTest : FunSpec({
             val car = Car()
 
             // when
-            val movedCar = car.move(fuel = 3)
+            val movedCar = car.tryMove(fuel = 3)
 
             // then
             movedCar.distanceMoved shouldBe 0

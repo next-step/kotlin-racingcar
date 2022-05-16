@@ -9,7 +9,7 @@ internal class CarsTest : FunSpec({
         val cars = Cars(listOf(Car(), Car()))
 
         // when
-        val resultCars = cars.move(listOf(4, 3))
+        val resultCars = cars.tryMoveAll(listOf(4, 3))
 
         // then
         resultCars.value[0].distanceMoved shouldBe 1
