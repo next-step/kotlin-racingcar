@@ -3,7 +3,6 @@ package com.nextstep.jngcii.step2
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import java.math.BigDecimal
 
 class SimpleCalculatorTest {
     private val calculator = SimpleCalculator()
