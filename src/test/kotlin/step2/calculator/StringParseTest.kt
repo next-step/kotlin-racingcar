@@ -10,7 +10,7 @@ import step2.calculator.utils.CustomStringParser
 class StringParseTest {
     @Test
     fun `문자열을 " " 기준으로 나눈다`() {
-        val string1 = "test"
+        val string1 = "step1/test"
         val string2 = "입력 문자열"
         val string3 = "2+ 5"
 
