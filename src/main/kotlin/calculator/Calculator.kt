@@ -15,7 +15,7 @@ class Calculator {
             throw IllegalArgumentException("올바른 계산식이 아닙니다. 공백을 포함하여 다시 입력해주세요.")
         }
 
-        val splitter = Splitter(formula)
+        val splitter = Formula(formula)
         val operations = splitter.operations
         val numbers = splitter.numbers
 

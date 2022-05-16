@@ -6,38 +6,6 @@ import io.kotest.matchers.shouldBe
 
 class CalculatorTest : DescribeSpec({
     describe("Calculator") {
-        it("더하기를 수행한다.") {
-            val calculator = Calculator()
-
-            val result = calculator.calculate("1 + 2")
-
-            result shouldBe 3
-        }
-
-        it("빼기를 수행한다.") {
-            val calculator = Calculator()
-
-            val result = calculator.calculate("2 - 1")
-
-            result shouldBe 1
-        }
-
-        it("곱셈를 수행한다.") {
-            val calculator = Calculator()
-
-            val result = calculator.calculate("2 * 2")
-
-            result shouldBe 4
-        }
-
-        it("나눗셈를 수행한다.") {
-            val calculator = Calculator()
-
-            val result = calculator.calculate("4 / 2")
-
-            result shouldBe 2
-        }
-
         it("연속된 연산식 연산을 수행한다.") {
             val calculator = Calculator()
 

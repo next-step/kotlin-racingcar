@@ -24,7 +24,6 @@ class DriverTest : DescribeSpec({
 
             // then
             driver.getMoveResult() shouldBe "---"
-
         }
     }
 })

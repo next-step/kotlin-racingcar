@@ -7,11 +7,37 @@ import io.kotest.matchers.shouldBe
 class OperatorTest : DescribeSpec({
 
     describe("Operator") {
-        it("symbol 에 해당하는 연산자를 찾아준다.") {
+        it("더하기를 수행한다.") {
             val operator = Operator.of("+")
 
-            operator.symbol shouldBe "+"
-            operator.operate(1f, 2f) shouldBe 3
+            val result = operator.operate(1f, 2f)
+
+            result shouldBe 3f
+        }
+
+        it("빼기를 수행한다.") {
+            val operator = Operator.of("-")
+
+            val result = operator.operate(2f, 1f)
+
+            result shouldBe 1f
+        }
+
+        it("곱셈를 수행한다.") {
+
+            val operator = Operator.of("*")
+
+            val result = operator.operate(2f, 2f)
+
+            result shouldBe 4f
+        }
+
+        it("나눗셈를 수행한다.") {
+            val operator = Operator.of("/")
+
+            val result = operator.operate(4f, 2f)
+
+            result shouldBe 2
         }
 
         context("사칙연산 기호가 아닌 경우") {
