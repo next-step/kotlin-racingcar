@@ -8,15 +8,15 @@ class RacingCarsSpecs : DescribeSpec({
 
     val movements = listOf(0, 4, 9)
     val numberOfCars = movements.size
+    val commandGenerator = PreparedMovementCommandGenerator(movements)
 
     describe("경주에 참여한 자동차들은") {
         context("경주에 필요한 수 만큼 자동차가 등록되었다면") {
-            val cars = List(numberOfCars) { Car() }
-            val racingCars = RacingCars(cars)
-            val commandGenerator = PreparedMovementCommandGenerator(movements)
+            val cars = List(numberOfCars) { Car("name") }
+            val racingCars = RacingCars(cars, commandGenerator)
 
             it("경주를 진행하고 경주 결과를 반환한다") {
-                val raceRecords = racingCars.race(commandGenerator)
+                val raceRecords = racingCars.race()
                 raceRecords.also {
                     it.cars.size shouldBe numberOfCars
                     it.cars.forEachIndexed { i, state ->
@@ -33,7 +33,7 @@ class RacingCarsSpecs : DescribeSpec({
 
             it("예외를 발생시킨다") {
                 shouldThrowExactly<IllegalArgumentException> {
-                    RacingCars(cars)
+                    RacingCars(cars, commandGenerator)
                 }
             }
         }

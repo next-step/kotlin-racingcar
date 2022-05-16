@@ -3,7 +3,6 @@ package racingcar.domain
 class RacingGame(
     private val numberOfRaces: Int,
     private val racingCars: RacingCars,
-    private val movementCommandGenerator: MovementCommandGenerator
 ) {
 
     init {
@@ -14,7 +13,7 @@ class RacingGame(
         val raceRecords = mutableListOf<RaceRecord>()
 
         repeat(numberOfRaces) {
-            raceRecords.add(racingCars.race(movementCommandGenerator))
+            raceRecords.add(racingCars.race())
         }
 
         return GameRecord(raceRecords.toList())
@@ -27,4 +26,10 @@ class RacingGame(
 
 data class GameRecord(
     val raceRecords: List<RaceRecord>
-)
+) {
+    fun last(): RaceRecord {
+        return raceRecords.last()
+    }
+
+    fun isNotEmpty() = raceRecords.isNotEmpty()
+}

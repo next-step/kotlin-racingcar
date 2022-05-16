@@ -4,16 +4,14 @@ import racingcar.application.GameInput
 
 object InputView {
 
-    private const val MIN_NUMBER_OF_CARS = 1
-    private const val MAX_NUMBER_OF_CARS = 10
+    private const val DELIMITER = ","
     private const val MIN_NUMBER_OF_RACES = 1
     private const val MAX_NUMBER_OF_RACES = 100
 
     fun read(): GameInput {
-        val numberOfCars = readNumberOfCars()
+        val names = readNameOfCars()
         val numberOfPhase = readNumberOfRaces()
-
-        return GameInput(numberOfCars, numberOfPhase)
+        return GameInput(names, numberOfPhase)
     }
 
     private fun readNumberOfRaces(): Int {
@@ -23,10 +21,8 @@ object InputView {
         return numberOfPhase
     }
 
-    private fun readNumberOfCars(): Int {
-        print("자동차 대수는 몇 대인가요? ")
-        val numberOfCars = readln().toInt()
-        require(numberOfCars in MIN_NUMBER_OF_CARS..MAX_NUMBER_OF_CARS) { "자동차 대수는 최소 $MIN_NUMBER_OF_CARS, 최대 $MAX_NUMBER_OF_CARS 이어야 합니다." }
-        return numberOfCars
+    private fun readNameOfCars(): List<String> {
+        print("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분). ")
+        return readln().split(DELIMITER)
     }
 }
