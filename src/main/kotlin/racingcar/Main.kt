@@ -10,17 +10,7 @@ fun main() {
 
     val result = race.start(carCount, roundCount)
 
-    ResultView(result)
-}
-
-fun ResultView(result: List<Round>) {
-    println("실행 결과")
-    result.mapIndexed { index, it ->
-        println("$index 라운드")
-        it.getResult().forEach {
-            println(it.toString())
-        }
-
-        println()
-    }
+    val resultView = ResultView(result)
+    resultView.title()
+    resultView.result()
 }
