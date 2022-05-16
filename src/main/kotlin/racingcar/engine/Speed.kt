@@ -1,4 +1,4 @@
 package racingcar.engine
 
 @JvmInline
-value class Distance(val value: Int)
+value class Speed(val value: Int)

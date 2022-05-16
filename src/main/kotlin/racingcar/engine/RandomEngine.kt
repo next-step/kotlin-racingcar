@@ -4,11 +4,11 @@ import random.RandomNumberGenerator
 
 class RandomEngine : Engine {
 
-    override fun accelerate(): Distance {
+    override fun accelerate(): Speed {
         val random = RandomNumberGenerator.generate(RANDOM_FROM, RANDOM_TO)
         val distance = if (shouldMove(random)) 1 else 0
 
-        return Distance(distance)
+        return Speed(distance)
     }
 
     private fun shouldMove(randomNumber: Int): Boolean {
