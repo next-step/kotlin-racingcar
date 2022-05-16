@@ -10,7 +10,7 @@ internal class CarRacingViewTest : StringSpec({
     "viewResult 는 자동차 경주 디스플레이하기 위한 데이터를 넘겨준다" {
         // given
         val carDistances = listOf(1, 3, 4)
-        val racingCars = RacingCars(carDistances.map { distance -> Car(distance) })
+        val racingCars = RacingCars(carDistances.map { distance -> Car("testCar", distance) })
         val randomNumberCarRacingManager = CarRacingManagerForTest(racingCars, RacingMovementRoleForTest())
         val carRacingView = CarRacingView("-", "\n")
         val monitoringValue = """--

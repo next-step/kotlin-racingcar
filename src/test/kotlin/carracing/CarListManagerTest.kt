@@ -10,7 +10,7 @@ class CarListManagerTest : StringSpec({
         // given
         val defaultDistance = 3
         val forwardDistance = 5
-        val car = Car(defaultDistance)
+        val car = Car("a", defaultDistance)
         val racingCars = RacingCars(listOf(car))
 
         // when
@@ -23,7 +23,7 @@ class CarListManagerTest : StringSpec({
     "getCarDistance 는 자동차 거리를 알려준다" {
         // given
         val defaultDistance = 3
-        val car = Car(defaultDistance)
+        val car = Car("a", defaultDistance)
         val racingCars = RacingCars(listOf(car))
 
         // when
@@ -35,7 +35,7 @@ class CarListManagerTest : StringSpec({
 
     "validateCarsIndex 는 설정하는 자동차의 Index 번호를 검증한다" {
         // given
-        val car = Car()
+        val car = Car("TestCar")
         val racingCars = RacingCars(listOf(car))
         val carIndex = -1
 
@@ -50,7 +50,7 @@ class CarListManagerTest : StringSpec({
 
     "validateCarsIndex 는 cars 에 사이즈를 넘긴 값을 넣으면 에러가 발생한다" {
         // given
-        val car = Car()
+        val car = Car("TestCar")
         val racingCars = RacingCars(listOf(car))
         val carIndex = 30000
 

@@ -10,8 +10,7 @@ class RandomIntCarRacingManager(
             racingMovementRoleByInt: RacingMovementRoleByInt
         ): RandomIntCarRacingManager {
             return RandomIntCarRacingManager(
-                // Todo Car Name 넣는 것 넣기
-                RacingCars(inputDto.carNames.map { name -> Car() }),
+                RacingCars(inputDto.carNames.map { name -> Car(name) }),
                 racingMovementRoleByInt
             )
         }
