@@ -6,6 +6,7 @@ import racingcar.view.ResultView
 
 fun main() {
     val racingController = RacingController()
+
     racingController.startGame(
         InputView.getCarNames(),
         InputView.getNumberOfRaces()

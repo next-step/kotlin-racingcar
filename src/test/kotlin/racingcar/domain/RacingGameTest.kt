@@ -1,4 +1,4 @@
-package racingcar.controller
+package racingcar.domain
 
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
@@ -9,27 +9,26 @@ import racingcar.constants.Message
  * RacingController를 테스트하는 클래스
  * Created by Jaesungchi on 2022.05.07..
  */
-class RacingControllerTest {
+class RacingGameTest {
     @Test
     fun `음수 횟수가 입력되면 에러가 발생한다`() {
-        val racingController = RacingController(listOf())
+        val racingGame = RacingGame(listOf(), -3)
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            racingController.startGame(-3)
+            racingGame.startGame()
         }.withMessageMatching(Message.ExceptionMessage.ENTERED_INVALID_NUMBER)
     }
 
     @Test
     fun `0이 입력되면 에러가 발생한다`() {
-        val racingController = RacingController(listOf())
+        val racingGame = RacingGame(listOf(Car("link")), 0)
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            racingController.startGame(0)
+            racingGame.startGame()
         }.withMessageMatching(Message.ExceptionMessage.ENTERED_INVALID_NUMBER)
     }
 
     @Test
     fun `입력된 숫자만큼 레이스 결과가가 만들어졌는가`() {
-        val racingController = RacingController.from(listOf("car"))
-        racingController.startGame(3)
-        assertThat(racingController.raceResults.size).isEqualTo(3)
+        val racingGame = RacingGame(listOf(Car("link")), 3)
+        assertThat(racingGame.startGame().size).isEqualTo(3)
     }
 }
