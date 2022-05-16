@@ -2,14 +2,14 @@ package camp.nextstep.edu.racingcar
 
 import camp.nextstep.edu.racingcar.interfaces.CarTrackView
 import camp.nextstep.edu.racingcar.interfaces.cli.CommandLineInterface
+import camp.nextstep.edu.racingcar.interfaces.cli.InputReader
 import camp.nextstep.edu.racingcar.racing.Car
 import camp.nextstep.edu.racingcar.racing.Racing
 
 fun main() {
     val cli = CommandLineInterface()
 
-    val carNames = cli.readCarNames()
-    val moveCount = cli.readMoveCount()
+    val (carNames, moveCount) = InputReader.readRacingInputs()
 
     val participants = carNames.mapIndexed { i, name -> Car(i, name) }
     val racing = Racing.new(participants, moveCount)
