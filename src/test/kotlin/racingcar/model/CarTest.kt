@@ -4,7 +4,6 @@ import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.EmptySource
 import org.junit.jupiter.params.provider.ValueSource
 
 class CarTest {
@@ -41,17 +40,15 @@ class CarTest {
         assertEquals(defaultCarPosition + 1, positionAfterFirstTry)
     }
 
-    @ParameterizedTest
-    @EmptySource
-    fun `자동차 이름 - 빈 값일 경우 에러가 발생한다`(input: String) {
-        assertThatIllegalArgumentException().isThrownBy { Car(input) }
+    @Test
+    fun `자동차 이름 - 빈 값일 경우 에러가 발생한다`() {
+        assertThatIllegalArgumentException().isThrownBy { Car("") }
             .withMessage("자동차의 이름은 빈 값이거나 5자가 넘어가면 안됩니다")
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = ["666666"])
-    fun `자동차 이름 - 5자가 넘어갈 경우 에러가 발생한다`(input: String) {
-        assertThatIllegalArgumentException().isThrownBy { Car(input) }
+    @Test
+    fun `자동차 이름 - 5자가 넘어갈 경우 에러가 발생한다`() {
+        assertThatIllegalArgumentException().isThrownBy { Car("666666") }
             .withMessage("자동차의 이름은 빈 값이거나 5자가 넘어가면 안됩니다")
     }
 
