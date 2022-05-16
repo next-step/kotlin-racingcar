@@ -5,15 +5,15 @@ import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual
 import io.kotest.matchers.ints.shouldBeLessThanOrEqual
 
 class RandomGeneratorTest : DescribeSpec({
-  describe("getInt") {
-    it("start 부터 end 까지의 Int 형을 반환한다.") {
-      val start = 1
-      val end = 2
+    describe("getInt") {
+        it("start 부터 end 까지의 Int 형을 반환한다.") {
+            val start = 1
+            val end = 2
 
-      val result = RandomGenerator.getInt(start, end)
+            val result = RandomGenerator.getInt(start, end)
 
-      result shouldBeGreaterThanOrEqual start
-      result shouldBeLessThanOrEqual end
+            result shouldBeGreaterThanOrEqual start
+            result shouldBeLessThanOrEqual end
+        }
     }
-  }
 })
