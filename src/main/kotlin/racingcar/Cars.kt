@@ -1,9 +1,9 @@
 package racingcar
 
-class Cars(val values : List<Car>) {
+class Cars(val values: List<Car>) {
 
     fun move(refuels: List<Int>): Cars {
-        val resultCars : MutableList<Car> = mutableListOf()
+        val resultCars: MutableList<Car> = mutableListOf()
         for (i in values.indices) {
             resultCars.add(values[i].move(refuels[i]))
         }
@@ -11,8 +11,8 @@ class Cars(val values : List<Car>) {
     }
 
     companion object {
-        fun initCars(numberOfParticipants: Int) : Cars {
-            val values : MutableList<Car> = mutableListOf()
+        fun initCars(numberOfParticipants: Int): Cars {
+            val values: MutableList<Car> = mutableListOf()
             for (i in 0 until numberOfParticipants) {
                 values.add(Car())
             }

@@ -1,7 +1,7 @@
 package racingcar
 
 object RacingCarInputView {
-    fun input() : RacingCarRequest{
+    fun input(): RacingCarRequest {
         print("경주에 참여할 자동차 대수는 몇 대인가요? ")
         val numberOfParticipantsInput = readLine()
         print("경주는 몇 라운드를 진행할 것인가요? ")

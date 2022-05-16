@@ -16,4 +16,3 @@ object StringCalculator {
 
     private const val VALUE_DELIMITERS = " "
 }
-
