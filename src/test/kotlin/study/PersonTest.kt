@@ -16,6 +16,14 @@ class PersonTest {
 
     @Test
     fun `널 타입`() {
+        val person = Person("염세란", 32, nickname = null)
+        assertThat(person.name).isEqualTo("염세란")
+        assertThat(person.age).isEqualTo(32)
+        assertThat(person.nickname).isEqualTo(null)
+    }
+
+    @Test
+    fun `기본 타입`() {
         val person = Person("염세란", 32)
         assertThat(person.name).isEqualTo("염세란")
         assertThat(person.age).isEqualTo(32)
