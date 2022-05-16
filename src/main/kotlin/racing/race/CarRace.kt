@@ -23,5 +23,5 @@ class CarRace {
         moveForward(car)
     }
 
-    private fun moveForward(car: Car) = car.moveCount++
+    private fun moveForward(car: Car) = car.setMoveCount(1)
 }
