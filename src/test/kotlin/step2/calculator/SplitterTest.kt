@@ -13,7 +13,7 @@ class SplitterTest : DescribeSpec({
 
             splitter.left shouldBe 3
             splitter.right shouldBe 4
-            splitter.arithmeticOperator shouldBe Operator.PLUS
+            splitter.arithmeticArithmeticParameter shouldBe ArithmeticParameter.PLUS
             splitter.hasOther shouldBe false
         }
 
@@ -24,9 +24,9 @@ class SplitterTest : DescribeSpec({
 
             splitter.left shouldBe 3
             splitter.right shouldBe 4
-            splitter.arithmeticOperator shouldBe Operator.PLUS
+            splitter.arithmeticArithmeticParameter shouldBe ArithmeticParameter.PLUS
             splitter.hasOther shouldBe true
-            splitter.other shouldBe "+ 5"
+            splitter.other shouldBe listOf("+", "5")
         }
     }
 
@@ -38,7 +38,7 @@ class SplitterTest : DescribeSpec({
 
             splitter.left shouldBe 3
             splitter.right shouldBe 4
-            splitter.arithmeticOperator shouldBe Operator.MINUS
+            splitter.arithmeticArithmeticParameter shouldBe ArithmeticParameter.MINUS
             splitter.hasOther shouldBe false
         }
 
@@ -49,9 +49,9 @@ class SplitterTest : DescribeSpec({
 
             splitter.left shouldBe 3
             splitter.right shouldBe 4
-            splitter.arithmeticOperator shouldBe Operator.MINUS
+            splitter.arithmeticArithmeticParameter shouldBe ArithmeticParameter.MINUS
             splitter.hasOther shouldBe true
-            splitter.other shouldBe "- 5"
+            splitter.other shouldBe listOf("-", "5")
         }
     }
 
@@ -63,7 +63,7 @@ class SplitterTest : DescribeSpec({
 
             splitter.left shouldBe 3
             splitter.right shouldBe 4
-            splitter.arithmeticOperator shouldBe Operator.MULTIPLE
+            splitter.arithmeticArithmeticParameter shouldBe ArithmeticParameter.MULTIPLE
             splitter.hasOther shouldBe false
         }
 
@@ -74,9 +74,9 @@ class SplitterTest : DescribeSpec({
 
             splitter.left shouldBe 3
             splitter.right shouldBe 4
-            splitter.arithmeticOperator shouldBe Operator.MULTIPLE
+            splitter.arithmeticArithmeticParameter shouldBe ArithmeticParameter.MULTIPLE
             splitter.hasOther shouldBe true
-            splitter.other shouldBe "* 5"
+            splitter.other shouldBe listOf("*", "5")
         }
     }
 
@@ -88,7 +88,7 @@ class SplitterTest : DescribeSpec({
 
             splitter.left shouldBe 3
             splitter.right shouldBe 4
-            splitter.arithmeticOperator shouldBe Operator.DIVIDE
+            splitter.arithmeticArithmeticParameter shouldBe ArithmeticParameter.DIVIDE
             splitter.hasOther shouldBe false
         }
 
@@ -99,23 +99,13 @@ class SplitterTest : DescribeSpec({
 
             splitter.left shouldBe 3
             splitter.right shouldBe 4
-            splitter.arithmeticOperator shouldBe Operator.DIVIDE
+            splitter.arithmeticArithmeticParameter shouldBe ArithmeticParameter.DIVIDE
             splitter.hasOther shouldBe true
-            splitter.other shouldBe "/ 5"
+            splitter.other shouldBe listOf("/", "5")
         }
     }
 
     describe("에러 처리") {
-        it("입력 값이 null 인 경우 IllegalArgumentException 를 던진다.") {
-            val input = null
-
-            val exception = shouldThrow<IllegalArgumentException> {
-                Splitter(input)
-            }
-
-            exception.message shouldBe "유효하지 않은 입력 값입니다."
-        }
-
         it("입력 값이 빈 문자열인 경우 IllegalArgumentException 를 던진다.") {
             val input = listOf("")
 
