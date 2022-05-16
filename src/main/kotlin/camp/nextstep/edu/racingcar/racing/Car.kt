@@ -8,10 +8,9 @@ class Car(val id: Int, val name: String, private val engine: Engine = RandomlyEn
         require(name.length <= 5) { "자동차 이름은 5자를 초과할 수 없습니다." }
     }
 
-    fun raceOn(track: Track, moveCount: Int) {
-        for (i in 0 until moveCount) {
-            if (engine.speed() > 0) track.markTrace()
-        }
+    fun race(): CarRaceEvent {
+        return if (engine.speed() > 0) CarRaceEvent.movedEvent(id)
+        else CarRaceEvent.stoppedEvent(id)
     }
 
     override fun equals(other: Any?): Boolean {

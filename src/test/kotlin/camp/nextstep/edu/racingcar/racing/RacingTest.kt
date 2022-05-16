@@ -26,11 +26,13 @@ internal class RacingTest {
         }
 
         // Then
-        val resultMap = racing.result()
+        val resultMap = racing.carRacingEvents()
         assertNotNull(resultMap)
         assertEquals(1, resultMap.size)
 
-        val carTraces = requireNotNull(resultMap.mapKeys { it.key.id }[carId]).traces()
+        val carRaceEvents = requireNotNull(resultMap.mapKeys { it.key.id }[carId])
+        val track = CarRaceEvent.merge(carRaceEvents)
+        val carTraces = track.traces()
         assertTrue(carTraces.next())
         assertTrue(carTraces.next())
         assertFalse(carTraces.next())
@@ -39,95 +41,6 @@ internal class RacingTest {
 
         assertEquals(1, racing.winners().size)
         assertTrue(racing.winners().containsAll(participants))
-    }
-
-    @DisplayName("2대의 자동차가 트랙에서 경주를 할 수 있다.")
-    @Test
-    fun racingDuo() {
-        // Given
-        val moveCount = 5
-        val moveAllEngine = InstantEngine(moveCount)
-        val moveOnceEngine = InstantEngine(1)
-
-        val car1 = Car(0, "all", moveAllEngine)
-        val car2 = Car(1, "once", moveOnceEngine)
-        val participants: List<Car> = listOf(car1, car2)
-        val racing = Racing.new(participants, moveCount)
-
-        // When
-        assertDoesNotThrow {
-            racing.start()
-        }
-
-        // Then
-        val resultIdMap = racing.result().mapKeys { it.key.id }
-        assertNotNull(resultIdMap)
-        assertEquals(2, resultIdMap.size)
-
-        val car1Traces = requireNotNull(resultIdMap[car1.id]).traces()
-        assertTrue(car1Traces.next())
-        assertTrue(car1Traces.next())
-        assertTrue(car1Traces.next())
-        assertTrue(car1Traces.next())
-        assertTrue(car1Traces.next())
-
-        val car2Traces = requireNotNull(resultIdMap[car2.id]).traces()
-        assertTrue(car2Traces.next())
-        assertFalse(car2Traces.next())
-        assertFalse(car2Traces.next())
-        assertFalse(car2Traces.next())
-        assertFalse(car2Traces.next())
-
-        assertEquals(1, racing.winners().size)
-        assertTrue(racing.winners().contains(car1))
-    }
-
-    @DisplayName("3대의 자동차가 트랙에서 경주를 할 수 있다.")
-    @Test
-    fun racingTrio() {
-        // Given
-        val moveCount = 5
-
-        val car1 = Car(0, "three", InstantEngine(3))
-        val car2 = Car(1, "once", InstantEngine(1))
-        val car3 = Car(2, "three", InstantEngine(3))
-        val participants: List<Car> = listOf(car1, car2, car3)
-        val racing = Racing.new(participants, moveCount)
-
-        // When
-        assertDoesNotThrow {
-            racing.start()
-        }
-
-        // Then
-        val resultIdMap = racing.result().mapKeys { it.key.id }
-        assertNotNull(resultIdMap)
-        assertEquals(3, resultIdMap.size)
-
-        val car1Traces = requireNotNull(resultIdMap[car1.id]).traces()
-        assertTrue(car1Traces.next())
-        assertTrue(car1Traces.next())
-        assertTrue(car1Traces.next())
-        assertFalse(car1Traces.next())
-        assertFalse(car1Traces.next())
-
-        val car2Traces = requireNotNull(resultIdMap[car2.id]).traces()
-        assertTrue(car2Traces.next())
-        assertFalse(car2Traces.next())
-        assertFalse(car2Traces.next())
-        assertFalse(car2Traces.next())
-        assertFalse(car2Traces.next())
-
-        val car3Traces = requireNotNull(resultIdMap[car3.id]).traces()
-        assertTrue(car3Traces.next())
-        assertTrue(car3Traces.next())
-        assertTrue(car3Traces.next())
-        assertFalse(car3Traces.next())
-        assertFalse(car3Traces.next())
-
-        assertEquals(2, racing.winners().size)
-        assertTrue(racing.winners().contains(car1))
-        assertTrue(racing.winners().contains(car3))
     }
 
     @DisplayName("경주가 끝나기 전, 결과를 요청할 수 없다.")
@@ -146,7 +59,7 @@ internal class RacingTest {
         val racing = Racing.new(participants, moveCount)
 
         assertThrows<IllegalStateException> {
-            racing.result()
+            racing.carRacingEvents()
         }
     }
 

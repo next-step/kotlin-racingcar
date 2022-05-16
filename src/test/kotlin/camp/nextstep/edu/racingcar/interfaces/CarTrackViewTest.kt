@@ -1,8 +1,8 @@
 package camp.nextstep.edu.racingcar.interfaces
 
 import camp.nextstep.edu.racingcar.racing.Car
+import camp.nextstep.edu.racingcar.racing.CarRaceEvent
 import camp.nextstep.edu.racingcar.racing.InstantEngine
-import camp.nextstep.edu.racingcar.racing.Track
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldNotContain
@@ -15,12 +15,16 @@ internal class CarTrackViewTest {
     @Test
     fun shouldReturnOnlyCarName() {
         val carName = "tim"
-        val moveCount = 5
         val car = Car(0, carName, InstantEngine(0))
-        val track = Track(moveCount)
+        val events = mutableListOf<CarRaceEvent>()
 
-        car.raceOn(track, moveCount)
-        val carTraces = CarTrackView(car, track, moveCount).toString()
+        events.add(car.race())
+        events.add(car.race())
+        events.add(car.race())
+        events.add(car.race())
+        events.add(car.race())
+
+        val carTraces = CarTrackView(car, CarRaceEvent.merge(events)).toString()
 
         carTraces.shouldContain(carName)
         carTraces.shouldNotContain("⎼")
@@ -30,12 +34,16 @@ internal class CarTrackViewTest {
     @Test
     fun shouldReturnsTwoDash() {
         val carName = "tim"
-        val moveCount = 5
         val car = Car(0, carName, InstantEngine(2))
-        val track = Track(moveCount)
+        val events = mutableListOf<CarRaceEvent>()
 
-        car.raceOn(track, moveCount)
-        val carTraces = CarTrackView(car, track, moveCount).toString()
+        events.add(car.race())
+        events.add(car.race())
+        events.add(car.race())
+        events.add(car.race())
+        events.add(car.race())
+
+        val carTraces = CarTrackView(car, CarRaceEvent.merge(events)).toString()
 
         carTraces.shouldContain(carName)
         val dashCount = carTraces.count { it == '⎼' }
@@ -46,12 +54,16 @@ internal class CarTrackViewTest {
     @Test
     fun shouldReturnsFiveDash() {
         val carName = "tim"
-        val moveCount = 5
         val car = Car(0, carName, InstantEngine(5))
-        val track = Track(moveCount)
+        val events = mutableListOf<CarRaceEvent>()
 
-        car.raceOn(track, moveCount)
-        val carTraces = CarTrackView(car, track, moveCount).toString()
+        events.add(car.race())
+        events.add(car.race())
+        events.add(car.race())
+        events.add(car.race())
+        events.add(car.race())
+
+        val carTraces = CarTrackView(car, CarRaceEvent.merge(events)).toString()
 
         carTraces.shouldContain(carName)
         val dashCount = carTraces.count { it == '⎼' }

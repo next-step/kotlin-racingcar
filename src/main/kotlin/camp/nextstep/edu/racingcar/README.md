@@ -23,12 +23,11 @@
 ## 아이디어 노트
 ```mermaid
 graph TD
-    Interface --> |new, start| Racing
-    Interface --> |init| Car
-    Interface --> |draw| Track
-    Racing -->|create| Track
-    Racing -->|raceOn| Car
-    Car --> |markTrace| Track
+    Application --> |new, start| Racing
+    Racing -->|race| Car
+    Racing -->|merge| CarRaceEvent
+    Car --> |create| CarRaceEvent
+    CarRaceEvent --> |create| Track
 ```
 
 ## 기능 요구 사항

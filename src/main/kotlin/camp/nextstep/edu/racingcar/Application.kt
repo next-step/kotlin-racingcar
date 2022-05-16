@@ -15,7 +15,7 @@ fun main() {
 
     racing.start()
 
-    for (i in 0 until moveCount) {
+    for (i in 1..moveCount) {
         RacingSnapshotWriter.writeRacingSnapshot(RacingSnapshotView(racing, i))
         ResultWriter.writeBlank()
     }

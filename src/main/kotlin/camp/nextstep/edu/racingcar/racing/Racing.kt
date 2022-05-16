@@ -4,26 +4,26 @@ class Racing private constructor(participants: List<Car>, private val moveCount:
 
     private var ended = false
     private var winners = setOf<Car>()
-    private val carTracks = linkedMapOf(*participants.map { car -> car to Track(moveCount) }.toTypedArray())
+    private val carEvents = linkedMapOf(*participants.map { car -> car to mutableListOf<CarRaceEvent>() }.toTypedArray())
 
     fun start() {
-        val racingResults = mutableListOf<Pair<Car, Int>>()
-
-        for ((car, track) in carTracks) {
-            car.raceOn(track, moveCount)
-            racingResults.add(car to track.marks())
+        repeat(moveCount) {
+            for ((car, events) in carEvents) {
+                events.add(car.race())
+            }
         }
 
+        val racingResults = carEvents.map { it.key to CarRaceEvent.merge(it.value).marks() }
         val winnersCount = racingResults.maxOf { it.second }
         winners = racingResults.filter { it.second == winnersCount }.map { it.first }.toSet()
 
         ended = true
     }
 
-    fun result(): Map<Car, Track> {
+    fun carRacingEvents(): Map<Car, List<CarRaceEvent>> {
         check(ended) { "racing is not ended" }
 
-        return carTracks
+        return carEvents
     }
 
     fun winners(): Set<Car> {
