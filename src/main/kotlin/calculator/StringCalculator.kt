@@ -7,7 +7,7 @@ class StringCalculator(private val input: String?) {
         var operator = "+"
 
         return splitted.foldIndexed(0) { idx, sum, element ->
-            if (idx % 2 == 0) {
+            if (isEvenIndex(idx)) {
                 val rightTerm = toIntOrThrow(element)
                 calculate(sum, rightTerm, operator)
             } else {
@@ -17,6 +17,8 @@ class StringCalculator(private val input: String?) {
             }
         }
     }
+
+    private fun isEvenIndex(idx: Int) = idx % 2 == 0
 
     private fun splitter(input: String, delimiter: String): List<String> = input.split(delimiter)
 
