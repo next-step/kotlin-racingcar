@@ -3,6 +3,8 @@ package racing
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import racing.domain.Car
+import racing.domain.StaticPowerStrategy
 
 class CarTest {
 

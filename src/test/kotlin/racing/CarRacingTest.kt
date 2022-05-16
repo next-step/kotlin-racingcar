@@ -1,42 +1,44 @@
 package racing
 
 import org.assertj.core.api.Assertions
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import java.io.ByteArrayOutputStream
-import java.io.PrintStream
+import org.junit.jupiter.api.assertThrows
+import racing.domain.Car
+import racing.domain.CarRacing
+import racing.domain.StaticPowerStrategy
+
+private fun TestCar(name: String, position: Int = 0) =
+    Car(name = name, powerStrategy = StaticPowerStrategy(power = 10), startPosition = position)
 
 class CarRacingTest {
 
-    private val output = ByteArrayOutputStream()
-
-    @BeforeEach
-    private fun setup() {
-        output.reset()
-        System.setOut(PrintStream(output))
+    @Test
+    fun `moveCount 가 0보다 작으면, IllegalArgumentException 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            CarRacing(
+                cars = listOf(TestCar("Andy"), TestCar("Bruce")),
+                moveCount = -1
+            ).run()
+        }
     }
 
     @Test
-    fun `유저입력에 따라 게임이 진행되고, 게임의 진행 과정과 결과를 출력한다`() {
+    fun `moveCount 이 2 일때, 모든 차량 위치와 turn count 는 2가 된다`() {
+        val moveCount = 2
+        var count = 0
+
+        val andy = TestCar("Andy")
+        val bruce = TestCar("Bruce")
+
         CarRacing(
-            powerStrategy = StaticPowerStrategy(power = 10)
-        ).run(UserInput(carNames = listOf("Andy", "Bruce"), moveCount = 2))
+            cars = listOf(andy, bruce),
+            moveCount = moveCount
+        ).run(
+            onTurnEnd = { count++ }
+        )
 
-        val expect =
-            """
-                |Andy : -
-                |Bruce : -
-                |
-                |Andy : --
-                |Bruce : --
-                |
-                |Andy : ---
-                |Bruce : ---
-                |
-                |Andy, Bruce가 최종 우승했습니다.
-                |
-            """.trimMargin()
-
-        Assertions.assertThat(output.toString()).isEqualTo(expect)
+        Assertions.assertThat(count).isEqualTo(moveCount)
+        Assertions.assertThat(andy.position).isEqualTo(moveCount)
+        Assertions.assertThat(bruce.position).isEqualTo(moveCount)
     }
 }

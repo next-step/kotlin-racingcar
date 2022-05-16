@@ -4,6 +4,8 @@ import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
+import racing.domain.Car
+import racing.domain.StaticPowerStrategy
 
 class CarKoTest : DescribeSpec({
     describe("move method") {

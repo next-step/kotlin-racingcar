@@ -8,16 +8,16 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 import org.junit.jupiter.params.provider.ValueSource
-import java.io.ByteArrayInputStream
+import racing.view.RacingInputReceiver
+import racing.view.UserInput
 import java.util.stream.Stream
-import kotlin.random.Random
 
 class RacingInputReceiverTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `사용자의 입력이 들어오면, 입력을 리턴한다`(input: String, carNames: List<String>, moveCount: Int) {
-        System.setIn(ByteArrayInputStream(input.toByteArray()))
+        System.setIn(input.byteInputStream())
 
         assertThat(RacingInputReceiver.receive()).isEqualTo(UserInput(carNames, moveCount))
     }
@@ -27,15 +27,12 @@ class RacingInputReceiverTest {
         strings = [
             " ",
             "    ",
-            "이름이 너무긴 사용자,두번째로긴사람\n5",
-            "자동차10대\n3",
             "지나가던강아지 한마리\n숫자가아니다.",
-            "David\n숫자가 아니다.",
-            "David,Dwen\n-1245234"
+            "David\n숫자가 아니다."
         ]
     )
     fun `잘못된 사용자의 입력이 들어오면, IllegalArgumentException 예외가 발생한다`(input: String) {
-        System.setIn(ByteArrayInputStream(input.toByteArray()))
+        System.setIn(input.byteInputStream())
 
         assertThrows<IllegalArgumentException> {
             RacingInputReceiver.receive()
@@ -43,20 +40,12 @@ class RacingInputReceiverTest {
     }
 
     class InputArgumentsProvider : ArgumentsProvider {
-        private val random = Random(123456789)
 
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments>? {
-            val names = listOf("Andy", "Bruce", "Clara", "David", "Echo", "Flora")
-            val stream = Stream.builder<Arguments>()
-            repeat(3) {
-                val randomNames = names.shuffled(random).drop(3)
-                stream.add(Arguments.of(generateInput(randomNames, it), randomNames, it))
-            }
-            return stream.build()
-        }
-
-        private fun generateInput(names: List<String>, moveCount: Int): String {
-            return "${names.joinToString(",")}\n$moveCount"
+            return Stream.of(
+                Arguments.of("Andy,Bruce,Clara\n4", listOf("Andy", "Bruce", "Clara"), 4),
+                Arguments.of("Andy\n25", listOf("Andy"), 25)
+            )
         }
     }
 }

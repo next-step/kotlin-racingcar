@@ -8,11 +8,13 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import org.junit.jupiter.params.provider.CsvSource
+import racing.domain.Car
+import racing.domain.RacingCars
+import racing.domain.Winners
+import racing.view.RacingUI
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 import java.util.stream.Stream
-import kotlin.random.Random
 
 class RacingUITest {
 
@@ -32,7 +34,7 @@ class RacingUITest {
         User : ---
 
          */
-    fun `차량의 현재 상태를 출력한다`(cars: List<Car>, expect: String) {
+    fun `차량의 현재 상태를 출력한다`(cars: RacingCars, expect: String) {
         RacingUI.drawCars(cars)
 
         Assertions.assertThat(output.toString()).isEqualTo(expect)
@@ -40,7 +42,7 @@ class RacingUITest {
 
     @Test
     fun `우승 차량 정보를 출력한다`() {
-        val cars = listOf(Car("Andy"), Car("Bruce"))
+        val cars = Winners(listOf("Andy", "Bruce"))
         val expect = "Andy, Bruce가 최종 우승했습니다."
 
         RacingUI.drawWinners(cars)
@@ -49,28 +51,26 @@ class RacingUITest {
     }
 
     class DrawCarsArgumentsProvider : ArgumentsProvider {
-        private val names = listOf("Andy", "Bruce", "Clara", "David", "Echo", "Flora")
-        private val random = Random(123456789)
+        private val testData = listOf(
+            RacingCars(listOf(Car("Andy", startPosition = 4), Car("Bruce", startPosition = 2))) to """
+                |Andy : -----
+                |Bruce : ---
+                |
+                |
+            """.trimMargin(),
+            RacingCars(listOf(Car("Andy", startPosition = 0))) to """
+                |Andy : -
+                |
+                |
+            """.trimMargin()
+        )
+
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> {
-            val stream = Stream.builder<Arguments>()
-
-            repeat(3) {
-                val cars = generateCars()
-                stream.add(Arguments.of(cars, generateExcept(cars)))
+            val testArguments = testData.map { (cars, expect) ->
+                Arguments.of(cars, expect)
             }
-            return stream.build()
-        }
 
-        private fun generateCars(): List<Car> {
-            val carNames = names.shuffled(random).take(random.nextInt(8))
-
-            return carNames.map { Car(name = it, startPosition = random.nextInt(10)) }
-        }
-
-        private fun generateExcept(cars: List<Car>): String {
-            return cars.joinToString(separator = "\n", postfix = "\n\n") { car ->
-                "${car.name} : ${"-".repeat(car.position + 1)}"
-            }
+            return Stream.of(*testArguments.toTypedArray())
         }
     }
 }

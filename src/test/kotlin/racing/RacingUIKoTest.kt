@@ -5,28 +5,32 @@ import io.kotest.data.Row2
 import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
+import racing.domain.Car
+import racing.domain.RacingCars
+import racing.domain.Winners
+import racing.view.RacingUI
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
-import kotlin.random.Random
 
-private val names = listOf("Andy", "Bruce", "Clara", "David", "Echo", "Flora")
-private val random = Random(123456789)
+private val drawCarsTestData = listOf(
+    RacingCars(listOf(Car("Andy", startPosition = 4), Car("Bruce", startPosition = 2))) to
+        """
+                |Andy : -----
+                |Bruce : ---
+                |
+                |
+            """.trimMargin(),
+    RacingCars(listOf(Car("Andy", startPosition = 0))) to
+        """
+                |Andy : -
+                |
+                |
+            """.trimMargin()
+)
 
-private fun generateDrawCarsTestData(): Row2<List<Car>, String> {
-    val cars = generateCars()
-
-    return row(cars, generateDrawCarExcept(cars))
-}
-
-private fun generateCars(): List<Car> {
-    val carNames = names.shuffled(random).take(random.nextInt(8))
-
-    return carNames.map { Car(name = it, startPosition = random.nextInt(10)) }
-}
-
-private fun generateDrawCarExcept(cars: List<Car>): String {
-    return cars.joinToString(separator = "\n", postfix = "\n\n") { car ->
-        "${car.name} : ${"-".repeat(car.position + 1)}"
+private fun generateDrawCarsTestRows(): List<Row2<RacingCars, String>> {
+    return drawCarsTestData.map { (cars, expect) ->
+        row(cars, expect)
     }
 }
 
@@ -36,9 +40,7 @@ class RacingUIKoTest : DescribeSpec({
 
     describe("drawCars method") {
         forAll(
-            generateDrawCarsTestData(),
-            generateDrawCarsTestData(),
-            generateDrawCarsTestData()
+            *generateDrawCarsTestRows().toTypedArray()
         ) { cars, expect ->
             context("with cars : $cars") {
                 it("draw $expect") {
@@ -55,7 +57,7 @@ class RacingUIKoTest : DescribeSpec({
         context("with winner ( Andy )") {
             it("draw [ Andy가 최종 우승했습니다. ]") {
                 output.reset()
-                RacingUI.drawWinners(listOf(Car("Andy")))
+                RacingUI.drawWinners(Winners(listOf("Andy")))
 
                 output.toString().trimIndent() shouldBe "Andy가 최종 우승했습니다."
             }
@@ -63,7 +65,7 @@ class RacingUIKoTest : DescribeSpec({
         context("with winner ( Andy, Bruce )") {
             it("draw [ Andy, Bruce가 최종 우승했습니다. ]") {
                 output.reset()
-                RacingUI.drawWinners(listOf(Car("Andy"), Car("Bruce")))
+                RacingUI.drawWinners(Winners(listOf("Andy", "Bruce")))
 
                 output.toString().trimIndent() shouldBe "Andy, Bruce가 최종 우승했습니다."
             }
