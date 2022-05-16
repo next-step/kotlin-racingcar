@@ -6,9 +6,15 @@ class RacingGame(private val carCount: Int, private val tryCount: Int) {
     fun start() {
         repeat(tryCount) {
             driverList.forEach {
-                val isMovable = (0..9).random() >= 4
+                val isMovable = MOVE_RANGE.random() >= MOVE_CONDITION
                 it.drive(isMovable)
             }
         }
     }
+
+    companion object {
+        private val MOVE_RANGE = (0..9)
+        const val MOVE_CONDITION = 4
+    }
+
 }

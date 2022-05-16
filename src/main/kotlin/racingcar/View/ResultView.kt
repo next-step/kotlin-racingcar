@@ -12,7 +12,5 @@ object ResultView {
             }
             println("")
         }
-
-        println("자동차 대수는 몇 대인가요?")
     }
 }
