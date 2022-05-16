@@ -12,13 +12,11 @@ object Calculator {
 
         for (i: Int in restParsedCalculateFormula.indices step(2)) {
             val operand = restParsedCalculateFormula[i + 1].toFloat()
-            val operator = restParsedCalculateFormula[i]
+            val op = restParsedCalculateFormula[i]
 
-            calculate(total, operand, operator).also { total = it }
+            Operator.evaluate(total, operand, op).also { total = it }
         }
 
         return total
     }
-
-    private fun calculate(total: Float, operand: Float, operator: String): Float = Operator.evaluate(total, operand, operator)
 }
