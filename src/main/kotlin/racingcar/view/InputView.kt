@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.model.GameProperties
+import racingcar.domain.model.GameProperties
 
 class InputView {
     fun readGameProperties(): GameProperties {

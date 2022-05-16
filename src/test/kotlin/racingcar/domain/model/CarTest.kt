@@ -1,10 +1,9 @@
-package racingcar.model
+package racingcar.domain.model
 
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.EmptySource
 import org.junit.jupiter.params.provider.ValueSource
 
 class CarTest {
@@ -13,7 +12,11 @@ class CarTest {
 
     @Test
     fun `무작위 값이 4보다 낮을 경우 차는 움직이지 않는다`() {
-        val car = TestCarFactory.createStationaryCar(validCarName)
+        val noMovingStrategy = object : MovingStrategy {
+            override fun tryMove(): Boolean = false
+        }
+
+        val car = Car(validCarName, movingStrategy = noMovingStrategy)
         val positionBeforeFirstTry = car.position
         car.move()
         val positionAfterFirstTry = car.position
@@ -24,7 +27,11 @@ class CarTest {
 
     @Test
     fun `무작위 값이 4보다 같거나 높을 경우 차는 한 칸 움직인다`() {
-        val car = TestCarFactory.createMovingCar(validCarName)
+        val forwardMovingStrategy = object : MovingStrategy {
+            override fun tryMove(): Boolean = true
+        }
+
+        val car = Car(validCarName, movingStrategy = forwardMovingStrategy)
         val positionBeforeFirstTry = car.position
         car.move()
         val positionAfterFirstTry = car.position
@@ -33,17 +40,15 @@ class CarTest {
         assertEquals(defaultCarPosition + 1, positionAfterFirstTry)
     }
 
-    @ParameterizedTest
-    @EmptySource
-    fun `자동차 이름 - 빈 값일 경우 에러가 발생한다`(input: String) {
-        assertThatIllegalArgumentException().isThrownBy { Car(input) }
+    @Test
+    fun `자동차 이름 - 빈 값일 경우 에러가 발생한다`() {
+        assertThatIllegalArgumentException().isThrownBy { Car("") }
             .withMessage("자동차의 이름은 빈 값이거나 5자가 넘어가면 안됩니다")
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = ["666666"])
-    fun `자동차 이름 - 5자가 넘어갈 경우 에러가 발생한다`(input: String) {
-        assertThatIllegalArgumentException().isThrownBy { Car(input) }
+    @Test
+    fun `자동차 이름 - 5자가 넘어갈 경우 에러가 발생한다`() {
+        assertThatIllegalArgumentException().isThrownBy { Car("666666") }
             .withMessage("자동차의 이름은 빈 값이거나 5자가 넘어가면 안됩니다")
     }
 

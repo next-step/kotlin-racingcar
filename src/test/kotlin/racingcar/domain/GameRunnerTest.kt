@@ -1,8 +1,8 @@
-package racingcar
+package racingcar.domain
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import racingcar.model.GameProperties
+import racingcar.domain.model.GameProperties
 
 class GameRunnerTest {
     private val namesOfCars = listOf("car1", "car2", "car3")

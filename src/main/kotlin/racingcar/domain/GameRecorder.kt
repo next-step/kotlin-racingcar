@@ -1,6 +1,6 @@
-package racingcar
+package racingcar.domain
 
-import racingcar.model.Car
+import racingcar.domain.model.Car
 
 class GameRecorder {
     val gameResult: GameResult = GameResult()
