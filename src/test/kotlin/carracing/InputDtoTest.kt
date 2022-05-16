@@ -7,25 +7,69 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
 class InputDtoTest : StringSpec({
-    "inputDto 는 자동차 대수, 시도할 횟수를 입력 받아 Int Property 로 저장한다" {
+    "carNames 는 자동차에 이름을 저장한다" {
         // given
-        val carCount = "3"
-        val movementTryCount = "5"
+        val carNamesString = "pobi,crong,honux"
+        val movementTryCountString = "3"
 
         // when
-        val inputDto = InputDto(carCount, movementTryCount)
+        val inputDto = InputDto(carNamesString, movementTryCountString)
 
         // then
-        inputDto.carCount shouldBe 3
-        inputDto.movementTryCount shouldBe 5
+        inputDto.carNames.size shouldBe 3
+        inputDto.carNames[0] shouldBe "pobi"
+        inputDto.carNames[1] shouldBe "crong"
+        inputDto.carNames[2] shouldBe "honux"
+    }
+
+    "자동차 이름을 하나도 입력하자 않은면 IllegalArgumentException 발생한다" {
+        // given
+        val carNamesString = ",  ,,  ,  "
+        val movementTryCountString = "3"
+
+        // when
+        val exception = shouldThrowExactly<IllegalArgumentException> {
+            InputDto(carNamesString, movementTryCountString)
+        }
+
+        // then
+        exception.message shouldBe "자동차 이름은 공백이 올수 없습니다"
+    }
+
+    "자동차 이름을 공백만 입력하면 IllegalArgumentException 발생한다" {
+        // given
+        val carNamesString = "a,b,c,  ,d"
+        val movementTryCountString = "3"
+
+        // when
+        val exception = shouldThrowExactly<IllegalArgumentException> {
+            InputDto(carNamesString, movementTryCountString)
+        }
+
+        // then
+        exception.message shouldBe "자동차 이름은 공백이 올수 없습니다"
+    }
+
+    "자동차 이름을 5자 초과하면 IllegalArgumentException 발생한다" {
+        // given
+        val carNamesString = "123456"
+        val movementTryCountString = "3"
+
+        // when
+        val exception = shouldThrowExactly<IllegalArgumentException> {
+            InputDto(carNamesString, movementTryCountString)
+        }
+
+        // then
+        exception.message shouldBe "자동차 이름은 5글자를 초과할수 없습니다"
     }
 
     "inputDto 는 data class 이다 " {
         // given
-        val carCount = "3"
+        val carNamesString = "a,b,c,d"
         val movementTryCount = "5"
-        val inputDto1 = InputDto(carCount, movementTryCount)
-        val inputDto2 = InputDto(carCount, movementTryCount)
+        val inputDto1 = InputDto(carNamesString, movementTryCount)
+        val inputDto2 = InputDto(carNamesString, movementTryCount)
 
         // when
         val dtoIsMatch = inputDto1 == inputDto2
@@ -34,31 +78,16 @@ class InputDtoTest : StringSpec({
         dtoIsMatch shouldBe true
     }
 
-    "inputDto 는 공백이 포함된 값을 입력 받아도 정상 저장 한다" {
+    "movementTryCount 에 공백이 포함된 값을 입력 받아도 정상 저장 한다" {
         // given
-        val carCount = "  3  0  "
+        val carNamesString = "a,b,c,d"
         val movementTryCount = "  5  1  3   2  "
 
         // when
-        val inputDto = InputDto(carCount, movementTryCount)
+        val inputDto = InputDto(carNamesString, movementTryCount)
 
         // then
-        inputDto.carCount shouldBe 30
         inputDto.movementTryCount shouldBe 5132
-    }
-
-    "inputDto 는 정수가 아닌 값을 넣으면 IllegalArgumentException 에러가 발생한다" {
-        // given
-        val carCount = "  test 123 !@#"
-        val movementTryCount = "  5  1  3   2  "
-
-        // when
-        val exception = shouldThrowExactly<IllegalArgumentException> {
-            InputDto(carCount, movementTryCount)
-        }
-
-        // then
-        exception.message shouldBe ErrorMessage.getErrorMessageForOnlyIntegerString("자동차 대수", carCount)
     }
 
     "validateForIntegerString 정수를 확인한다." {

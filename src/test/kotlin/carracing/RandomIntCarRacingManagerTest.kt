@@ -7,14 +7,14 @@ class RandomIntCarRacingManagerTest : StringSpec({
     val racingMovementRoleByInt = RacingMovementRoleByInt(4, 1, 9)
     "Input Dto 로 클래스를 생성할수 있는 팩토리를 지원한다" {
         // given
-        val inputDto = InputDto("11", "3")
+        val inputDto = InputDto("a, b, c, d", "3")
 
         // when
         val randomIntCaRacingManger = RandomIntCarRacingManager.fromInputDto(inputDto, racingMovementRoleByInt)
         val carSize = randomIntCaRacingManger.getCarSize()
 
         // then
-        carSize shouldBe 11
+        carSize shouldBe 4
     }
 
     "랜덤 값이 4 이상인 경우 자동차가 1 전진한다" {

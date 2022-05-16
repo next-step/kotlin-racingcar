@@ -9,8 +9,11 @@ class RandomIntCarRacingManager(
             inputDto: InputDto,
             racingMovementRoleByInt: RacingMovementRoleByInt
         ): RandomIntCarRacingManager {
-            val inputCars = List(inputDto.carCount) { Car() }
-            return RandomIntCarRacingManager(RacingCars(inputCars), racingMovementRoleByInt)
+            return RandomIntCarRacingManager(
+                // Todo Car Name 넣는 것 넣기
+                RacingCars(inputDto.carNames.map { name -> Car() }),
+                racingMovementRoleByInt
+            )
         }
     }
 }
