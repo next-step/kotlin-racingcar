@@ -6,6 +6,14 @@ object ResultView {
         repeat(moveCount) { round ->
             printRacingPerRound(carList, round)
         }
+        printWinner(carList)
+    }
+
+    private fun printWinner(carList: List<Car>) {
+        val maxMoveCount = carList.maxOf { car -> car.movements.count { it } }
+        carList.filter { car -> car.movements.count { it } == maxMoveCount }.joinToString().also {
+            println("[$it]가 최종 우승했습니다.")
+        }
     }
 
     private fun printRacingPerRound(carList: List<Car>, round: Int) {
