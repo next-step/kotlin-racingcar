@@ -29,5 +29,7 @@ class CarRacingInputHandlerTest {
         assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
             CarRacingInputHandler.validate("5", "2", listOf("자동차이름5초과"))
         }
+        val numberOfCars = "3"
+        assertThat(CarRacingInputHandler.getCars(numberOfCars).size).isEqualTo(numberOfCars.toInt())
     }
 }

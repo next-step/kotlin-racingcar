@@ -12,8 +12,6 @@ class CarRacingInputHandler {
             val numberOfTries = readln()
 
             return InputParams(cars.size.toString(), numberOfTries, cars)
-        }
-
         private fun displayCarMessage() {
             println(CAR_INPUT_MESSAGE)
         }

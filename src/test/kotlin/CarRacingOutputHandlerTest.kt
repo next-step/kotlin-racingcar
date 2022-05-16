@@ -19,7 +19,7 @@ class CarRacingOutputHandlerTest {
             car2.move()
             car3.move()
         }
-
+        
         CarRacingOutputHandler.display(cars)
     }
 }
