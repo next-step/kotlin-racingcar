@@ -11,7 +11,7 @@ object ResultView {
 
     private fun printWinner(carList: List<Car>) {
         val maxMoveCount = carList.maxOf { car -> car.movements.count { it } }
-        carList.filter { car -> car.movements.count { it } == maxMoveCount }.joinToString().also {
+        carList.filter { car -> car.movements.count { it } == maxMoveCount }.joinToString { it.racerName }.let {
             println("[$it]가 최종 우승했습니다.")
         }
     }
