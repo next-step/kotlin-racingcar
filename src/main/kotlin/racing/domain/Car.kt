@@ -1,9 +1,21 @@
 package racing.domain
 
-data class Car(
-    val position: Int
+class Car(
+    val name: String,
 ) {
-    fun movePosition(): Car {
-        return Car(position + 1)
+    var position: Int
+        private set
+
+    init {
+        position = DEFAULT_POSITION
     }
+
+    fun movePosition() {
+        position += 1
+    }
+
+    companion object{
+        const val DEFAULT_POSITION: Int = 0
+    }
+
 }

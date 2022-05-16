@@ -1,19 +1,31 @@
 package racing.service
 
+import racing.controller.dto.CarView
+import racing.controller.dto.ResultView
 import racing.controller.dto.RoundResultView
 import racing.domain.Car
 import racing.domain.CarMovingStepper
 
 class CarService(private val carMovingStepper: CarMovingStepper) {
-    fun moveCars(cars: List<Car>, round: Int): List<RoundResultView> {
+    fun moveCars(cars: List<Car>, round: Int): ResultView {
         val rounds = 1..round
-        var racingCars: List<Car> = cars
+        val roundResultViews = rounds.map { index ->
+            carMovingStepper.step(cars)
+            val carsView = cars.map { CarView(it.name, it.position) }.toList()
 
-        return rounds.map { index ->
-            racingCars = carMovingStepper.step(racingCars)
-            val positions = racingCars.map { it.position }.toList()
-
-            RoundResultView(index, positions)
+            RoundResultView(index, carsView)
         }.toList()
+        val winners = extractWinner(cars)
+
+        return ResultView(winners, roundResultViews)
+    }
+
+    fun extractWinner(cars: List<Car>): List<String> {
+        val sortedCars = cars.sortedBy { it.position }
+        val longestPosition = sortedCars.last().position
+
+        return sortedCars.filter { it.position == longestPosition }
+            .map { it.name }
+            .toList()
     }
 }
