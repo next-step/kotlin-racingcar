@@ -13,7 +13,7 @@ object RacingView {
 
     private fun showCarsDistance(round: Int, cars: List<RacingCar>) {
         for (car in cars) {
-            showCarDistance(round, car.name, car.getDistances())
+            showCarDistance(round, car.name, car.distances)
         }
     }
 
@@ -27,7 +27,7 @@ object RacingView {
     }
 
     private fun printCarName(name: String) {
-        print("${name}:")
+        print("$name:")
     }
 
     private fun printDistance(index: Int, round: Int, value: Int) {
@@ -41,7 +41,7 @@ object RacingView {
     }
 
     private fun showRacingWinner(cars: List<RacingCar>) {
-        val cars = cars.map { it.name to it.getDistances().filter { value -> value == 1 }.size}.sortedByDescending { it.second }
+        val cars = cars.map { it.name to it.distances.filter { value -> value == 1 }.size }.sortedByDescending { it.second }
         val highestScore = cars[0].second
         val winners = cars.filter { it.second == highestScore }.map { it.first }
 

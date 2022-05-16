@@ -7,12 +7,11 @@ class RacingCar(private val round: Int, val name: String) {
         const val NEXT_ROUND = 1
     }
 
-    private val distances = MutableList(round) {0}
-    private var currentRound = 0
+    private val _distances = MutableList(round) { 0 }
+    val distances: MutableList<Int>
+        get() = this._distances
 
-    fun getDistances(): MutableList<Int> {
-        return distances
-    }
+    private var currentRound = 0
 
     fun race(movePoint: Int) {
         if (canMove(movePoint)) {
@@ -22,7 +21,7 @@ class RacingCar(private val round: Int, val name: String) {
     }
 
     private fun move() {
-        distances[currentRound] = MOVE
+        _distances[currentRound] = MOVE
     }
 
     private fun canMove(movePoint: Int): Boolean {
