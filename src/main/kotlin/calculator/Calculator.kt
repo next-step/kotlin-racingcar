@@ -1,6 +1,6 @@
 package calculator
 
-class Calculator {
+object Calculator {
     fun calculate(calculatorFormula: String?): Float {
         require(!calculatorFormula.isNullOrEmpty()) {
             throw IllegalArgumentException("유효하지 않은 계산식 입니다.")
