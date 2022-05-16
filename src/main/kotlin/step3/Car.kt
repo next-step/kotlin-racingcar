@@ -1,11 +1,12 @@
 package step3
 
-class Car {
+class Car private constructor(carName: String){
     var position = 0
-        private set
+    private set
 
-    var positionList = ArrayList<Int>()
-        private set
+    val name = carName
+
+    val positionList = ArrayList<Int>()
 
     fun move(movingStrategy: MovingStrategy) {
         if (movingStrategy.movable()) {
@@ -15,8 +16,13 @@ class Car {
     }
 
     companion object {
-        fun getInstance(): Car{
-            return Car()
+        const val CAR_NAME_NUMBER_FIVE_EXCEED = "자동차 이름은 5자를 초과할 수 없습니다."
+        private const val NUMBER_FIVE = 5
+        fun makeCar(carName: String): Car{
+            if(carName.length > NUMBER_FIVE) {
+                throw IllegalArgumentException(CAR_NAME_NUMBER_FIVE_EXCEED)
+            }
+            return Car(carName)
         }
     }
 }

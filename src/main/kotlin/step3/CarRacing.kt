@@ -1,7 +1,7 @@
 package step3
 
-class CarRacing private constructor(var carCount: Int, var moveCount: Int) {
-    var cars = Cars.from(carCount)
+class CarRacing private constructor(carNames: String, private var moveCount: Int) {
+    val cars = Cars.from(carNames)
 
     fun run(movingStrategy: MovingStrategy) {
         repeat(moveCount) {
@@ -10,8 +10,9 @@ class CarRacing private constructor(var carCount: Int, var moveCount: Int) {
     }
 
     companion object {
-        fun of(carCount: Int, moveCount: Int): CarRacing {
-            return CarRacing(carCount, moveCount)
+        fun of(carNames: String, moveCount: Int): CarRacing {
+            return CarRacing(carNames, moveCount)
         }
     }
 }
+
