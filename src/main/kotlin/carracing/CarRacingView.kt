@@ -10,7 +10,8 @@ class CarRacingView(private val carCharacter: String, private val separator: Str
 
     fun getWinnerViewString(carRacingManager: CarRacingManager<out Int>): String {
         val winnerNameString =
-            carRacingManager.getWinnerCars().joinToString(transform = { car: Car -> car.name }, separator = "," + " ")
+            carRacingManager.getWinnerCars()
+                .joinToString(transform = { car: Car -> car.name }, separator = WINNER_VIEW_SEPARATOR)
         return "${winnerNameString}가 최종 우승했습니다."
     }
 
@@ -18,5 +19,9 @@ class CarRacingView(private val carCharacter: String, private val separator: Str
         var result = "${car.name}: $carCharacter"
         repeat(car.distance) { result += carCharacter }
         return result
+    }
+
+    companion object {
+        private const val WINNER_VIEW_SEPARATOR = "," + " "
     }
 }
