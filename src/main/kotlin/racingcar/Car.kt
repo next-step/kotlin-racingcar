@@ -2,7 +2,7 @@ package racingcar
 
 class Car(val distanceMoved: Int = 0) {
 
-    fun tryMove(fuel: Int): Car {
+    fun moveForward(fuel: Int): Car {
         if (isEnoughFuelToMove(fuel)) return Car(this.distanceMoved.inc())
         return this
     }

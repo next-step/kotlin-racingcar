@@ -3,9 +3,9 @@ package racingcar
 @JvmInline
 value class Cars(val value: List<Car>) {
 
-    fun tryMoveAll(refuels: List<Int>): Cars {
+    fun moveForwardAll(refuels: List<Int>): Cars {
         val carsAndRefuels = value zip refuels
-        return Cars(carsAndRefuels.map { it.first.tryMove(it.second) })
+        return Cars(carsAndRefuels.map { it.first.moveForward(it.second) })
     }
 
     fun distancesMoved(): List<Int> {
