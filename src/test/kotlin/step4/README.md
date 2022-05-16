@@ -18,5 +18,5 @@
 ## RaceRunner 객체 구현
 ### InputView 로 부터 차량 이름, 시도횟수 가져옴
 ### Race 수행
- 중간중간 OutputView 로 결과 출력
- 종료 후 우승자 출력
+* 중간중간 OutputView 로 결과 출력
+* 종료 후 우승자 출력
