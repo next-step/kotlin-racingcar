@@ -5,9 +5,11 @@ class CarFactory(
     private val powerStrategy: PowerStrategy = RandomPowerStrategy(carMaxPower)
 ) {
     fun createCars(carNames: List<String>): RacingCars {
-        return RacingCars(carNames.map { name ->
-            Car(name = name, powerStrategy = powerStrategy)
-        })
+        return RacingCars(
+            carNames.map { name ->
+                Car(name = name, powerStrategy = powerStrategy)
+            }
+        )
     }
 
     companion object {

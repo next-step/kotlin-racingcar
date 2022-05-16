@@ -10,7 +10,6 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 import org.junit.jupiter.params.provider.ValueSource
 import racing.view.RacingInputReceiver
 import racing.view.UserInput
-import java.io.ByteArrayInputStream
 import java.util.stream.Stream
 
 class RacingInputReceiverTest {
@@ -18,7 +17,7 @@ class RacingInputReceiverTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `사용자의 입력이 들어오면, 입력을 리턴한다`(input: String, carNames: List<String>, moveCount: Int) {
-        System.setIn(ByteArrayInputStream(input.toByteArray()))
+        System.setIn(input.byteInputStream())
 
         assertThat(RacingInputReceiver.receive()).isEqualTo(UserInput(carNames, moveCount))
     }
@@ -33,7 +32,7 @@ class RacingInputReceiverTest {
         ]
     )
     fun `잘못된 사용자의 입력이 들어오면, IllegalArgumentException 예외가 발생한다`(input: String) {
-        System.setIn(ByteArrayInputStream(input.toByteArray()))
+        System.setIn(input.byteInputStream())
 
         assertThrows<IllegalArgumentException> {
             RacingInputReceiver.receive()
@@ -41,16 +40,12 @@ class RacingInputReceiverTest {
     }
 
     class InputArgumentsProvider : ArgumentsProvider {
-        private val testData = listOf(
-            Triple("Andy,Bruce,Clara\n4", listOf("Andy", "Bruce", "Clara"), 4),
-            Triple("Andy,Clara\n25", listOf("Andy", "Clara"), 25),
-        )
 
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments>? {
-            val testArguments = testData.map { (input, expectNames, expectCount) ->
-                Arguments.of(input, expectNames, expectCount)
-            }
-            return Stream.of(*testArguments.toTypedArray())
+            return Stream.of(
+                Arguments.of("Andy,Bruce,Clara\n4", listOf("Andy", "Bruce", "Clara"), 4),
+                Arguments.of("Andy\n25", listOf("Andy"), 25)
+            )
         }
     }
 }
