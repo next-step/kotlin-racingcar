@@ -8,6 +8,10 @@ value class Cars(val values: List<Car>) {
         return Cars(carsAndRefuels.map { it.first.move(it.second) })
     }
 
+    fun distancesMoved(): List<Int> {
+        return values.map { it.distanceMoved }
+    }
+
     companion object {
         fun initCars(numberOfParticipants: Int): Cars {
             return Cars(List(numberOfParticipants) { Car() })
