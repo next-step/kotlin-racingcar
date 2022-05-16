@@ -12,11 +12,15 @@ object InputView {
 
     private fun inputCarCount(): Int {
         println("자동차 대수는 몇 대인가요?")
-        return readLine()!!.toInt()
+        val inputCarCount = readLine()!!.toInt()
+        require(inputCarCount > 0) { "1 이상 입력해주세요." }
+        return inputCarCount
     }
 
     private fun inputMoveCount(): Int {
         println("시도할 횟수는 몇 회인가요?")
-        return readLine()!!.toInt()
+        val inputMoveCount = readLine()!!.toInt()
+        require(inputMoveCount > 0) { "1 이상 입력해주세요." }
+        return inputMoveCount
     }
 }
