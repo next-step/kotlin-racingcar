@@ -4,7 +4,7 @@ fun main() {
     val racingCarRequest: RacingCarRequest = RacingCarInputView.input()
     val racingResults = RaceHost.play(
         Rounds(racingCarRequest.rounds),
-        racingCarRequest.numberOfParticipants
+        NumberOfParticipants(racingCarRequest.numberOfParticipants),
     )
     RacingCarOutputView.output(racingResults)
 }
