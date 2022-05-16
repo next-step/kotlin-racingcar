@@ -1,5 +1,6 @@
 package carRacing
 
+import carRacing.util.RandomGenerator
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.ints.shouldBeBetween
 
