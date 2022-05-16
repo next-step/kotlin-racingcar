@@ -7,7 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class StringCalculatorTest {
-    val calculator = StringCalculator()
+    private val calculator = StringCalculator()
 
     @Test
     fun `입력값이 null인 경우`() {
@@ -15,6 +15,7 @@ class StringCalculatorTest {
             calculator.calculate(null)
         }
             .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("입력값이 null 혹은 빈 값입니다.")
     }
 
     @ParameterizedTest
@@ -24,5 +25,6 @@ class StringCalculatorTest {
             calculator.calculate(input)
         }
             .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("입력값이 null 혹은 빈 값입니다.")
     }
 }
