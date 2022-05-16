@@ -34,7 +34,7 @@ class Racing(
             val newDistance = distanceService.get()
 
             logger.debug { "car : [$name], prevDistance : $prevDistance, newDistance : $newDistance" }
-            return@map Car(name = name, distance = prevDistance + newDistance)
+            return@map Car(name = name, prevDistance = prevDistance, newDistance = newDistance)
         }
     }
 

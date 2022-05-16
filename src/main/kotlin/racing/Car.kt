@@ -2,6 +2,9 @@ package racing
 
 data class Car(
     val name: Int,
-    val distance: Int
-)
+    val prevDistance: Int,
+    val newDistance: Int,
+) {
+    val distance = prevDistance + newDistance
+}
 
