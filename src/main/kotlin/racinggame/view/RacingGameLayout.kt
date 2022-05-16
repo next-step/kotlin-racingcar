@@ -2,6 +2,7 @@ package racinggame.view
 
 import racinggame.domain.RacingGame
 import racinggame.domain.car.CarFactory
+import racinggame.domain.model.RacingGameResult
 
 class RacingGameLayout(
     private val inputLayout: InputLayout,
@@ -14,5 +15,11 @@ class RacingGameLayout(
             carFactory
         )
         resultView.showResult(racingGame.start())
+    }
+
+    fun receiveUserInput() = inputLayout.receiveUserInput()
+
+    fun showResult(racingGameResult: RacingGameResult) {
+        resultView.showResult(racingGameResult)
     }
 }
