@@ -1,3 +1,5 @@
+package step2
+
 enum class Operation(val exp: String) {
     PLUS("+") {
         override fun compute(v1: Int, v2: Int) = plus(v1, v2)
@@ -11,9 +13,6 @@ enum class Operation(val exp: String) {
     DIVIDE("/") {
         override fun compute(v1: Int, v2: Int) = divide(v1, v2)
     },
-    NONE("") {
-        override fun compute(v1: Int, v2: Int) = throw IllegalArgumentException()
-    }
     ;
 
     abstract fun compute(v1: Int, v2: Int): Int
@@ -21,7 +20,9 @@ enum class Operation(val exp: String) {
     companion object {
         fun of(exp: String) = runCatching {
             values().first { it.exp == exp }
-        }.getOrElse { NONE }
+        }.getOrElse { throw IllegalArgumentException() }
+
+        fun contains(exp: String): Boolean = of(exp) in values()
 
         private fun divide(v1: Int, v2: Int): Int {
             if (v2 == 0) throw IllegalArgumentException()
