@@ -1,11 +1,10 @@
 package carracing
 
-class RandomIntRacingMovementRole(
+class RacingMovementRoleByInt(
     private val minForwardNumber: Int,
     private val minRandomNumber: Int,
     private val maxRandomNumber: Int
-) :
-    RacingMovementRole<Int> {
+) : RacingMovementRole<Int> {
 
     @Throws(IllegalArgumentException::class)
     override fun getMoveDistance(argument: Int): Int {

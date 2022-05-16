@@ -9,10 +9,10 @@ class RandomIntRacingMovementRoleTest : StringSpec({
     "isForwardNumber 는 랜덤 숫자를 기준으로 전진해야하는 숫자인지 판별한다" {
         // given
         val randomNumber = 4
-        val randomIntRacingMovementRole = RandomIntRacingMovementRole(randomNumber, 1, 9)
+        val racingMovementRoleByInt = RacingMovementRoleByInt(randomNumber, 1, 9)
 
         // when
-        val moveDistance = randomIntRacingMovementRole.getMoveDistance(randomNumber)
+        val moveDistance = racingMovementRoleByInt.getMoveDistance(randomNumber)
 
         // then
         moveDistance shouldBe 1
@@ -21,10 +21,10 @@ class RandomIntRacingMovementRoleTest : StringSpec({
     "4미만의 랜덤 숫자는 전진 할수 없다" {
         // given
         val randomNumber = 1
-        val randomIntRacingMovementRole = RandomIntRacingMovementRole(4, 1, 9)
+        val racingMovementRoleByInt = RacingMovementRoleByInt(4, 1, 9)
 
         // when
-        val moveDistance = randomIntRacingMovementRole.getMoveDistance(randomNumber)
+        val moveDistance = racingMovementRoleByInt.getMoveDistance(randomNumber)
 
         // then
         moveDistance shouldBe 0
@@ -33,22 +33,22 @@ class RandomIntRacingMovementRoleTest : StringSpec({
     "0 이하의 숫자를 넣으면 IllegalArgumentException 발생" {
         // given
         val randomNumber = 0
-        val randomIntRacingMovementRole = RandomIntRacingMovementRole(4, 1, 9)
+        val racingMovementRoleByInt = RacingMovementRoleByInt(4, 1, 9)
 
         // when
         shouldThrowExactly<IllegalArgumentException> {
-            randomIntRacingMovementRole.getMoveDistance(randomNumber)
+            racingMovementRoleByInt.getMoveDistance(randomNumber)
         }.message shouldBe ErrorMessage.getMinNumberError(randomNumber, 1)
     }
 
     "10 이상의 숫자를 넣으면 IllegalArgumentException 발생" {
         // given
         val randomNumber = 10
-        val randomIntRacingMovementRole = RandomIntRacingMovementRole(4, 1, 9)
+        val racingMovementRoleByInt = RacingMovementRoleByInt(4, 1, 9)
 
         // when
         shouldThrowExactly<IllegalArgumentException> {
-            randomIntRacingMovementRole.getMoveDistance(randomNumber)
+            racingMovementRoleByInt.getMoveDistance(randomNumber)
         }.message shouldBe ErrorMessage.getMaxNumberError(randomNumber, 9)
     }
 })

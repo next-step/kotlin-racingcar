@@ -2,18 +2,18 @@ package carracing
 
 class RandomIntCarRacingManager(
     carList: CarList,
-    randomIntRacingMovementRole: RandomIntRacingMovementRole
-) : CarRacingManager<Int>(carList, randomIntRacingMovementRole) {
+    racingMovementRoleByInt: RacingMovementRoleByInt
+) : CarRacingManager<Int>(carList, racingMovementRoleByInt) {
     companion object {
         fun fromInputDto(
             inputDto: InputDto,
-            randomIntRacingMovementRole: RandomIntRacingMovementRole
+            racingMovementRoleByInt: RacingMovementRoleByInt
         ): RandomIntCarRacingManager {
             var inputCars = emptyList<Car>()
             repeat(inputDto.carCount) {
                 inputCars = inputCars + Car()
             }
-            return RandomIntCarRacingManager(CarList(inputCars), randomIntRacingMovementRole)
+            return RandomIntCarRacingManager(CarList(inputCars), racingMovementRoleByInt)
         }
     }
 }

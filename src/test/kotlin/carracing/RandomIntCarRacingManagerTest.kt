@@ -4,13 +4,13 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
 class RandomIntCarRacingManagerTest : StringSpec({
-    val randomIntRacingMovementRole = RandomIntRacingMovementRole(4, 1, 9)
+    val racingMovementRoleByInt = RacingMovementRoleByInt(4, 1, 9)
     "Input Dto 로 클래스를 생성할수 있는 팩토리를 지원한다" {
         // given
         val inputDto = InputDto("11", "3")
 
         // when
-        val randomIntCaRacingManger = RandomIntCarRacingManager.fromInputDto(inputDto, randomIntRacingMovementRole)
+        val randomIntCaRacingManger = RandomIntCarRacingManager.fromInputDto(inputDto, racingMovementRoleByInt)
         val carSize = randomIntCaRacingManger.getCarSize()
 
         // then
@@ -21,7 +21,7 @@ class RandomIntCarRacingManagerTest : StringSpec({
         // given
         val nowDistance = 1
         val randomIntCarRacingManager =
-            RandomIntCarRacingManager(CarList(listOf(Car(nowDistance))), randomIntRacingMovementRole)
+            RandomIntCarRacingManager(CarList(listOf(Car(nowDistance))), racingMovementRoleByInt)
         val moveRandomInt = 4
 
         // when
@@ -36,7 +36,7 @@ class RandomIntCarRacingManagerTest : StringSpec({
         // given
         val nowDistance = 40
         val randomIntCarRacingManager =
-            RandomIntCarRacingManager(CarList(listOf(Car(nowDistance))), randomIntRacingMovementRole)
+            RandomIntCarRacingManager(CarList(listOf(Car(nowDistance))), racingMovementRoleByInt)
         val stopRandomInt = 2
 
         // when

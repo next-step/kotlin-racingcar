@@ -15,7 +15,7 @@ fun main() {
 
     val randomIntCarRacingManager = RandomIntCarRacingManager.fromInputDto(
         inputDto,
-        RandomIntRacingMovementRole(
+        RacingMovementRoleByInt(
             FORWARD_INT,
             MIN_RANDOM_INT,
             MAX_RANDOM_INT,
