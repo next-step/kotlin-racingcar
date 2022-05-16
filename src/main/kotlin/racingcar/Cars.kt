@@ -1,15 +1,15 @@
 package racingcar
 
 @JvmInline
-value class Cars(val values: List<Car>) {
+value class Cars(val value: List<Car>) {
 
     fun move(refuels: List<Int>): Cars {
-        val carsAndRefuels = values zip refuels
+        val carsAndRefuels = value zip refuels
         return Cars(carsAndRefuels.map { it.first.move(it.second) })
     }
 
     fun distancesMoved(): List<Int> {
-        return values.map { it.distanceMoved }
+        return value.map { it.distanceMoved }
     }
 
     companion object {

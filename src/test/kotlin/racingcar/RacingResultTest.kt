@@ -15,6 +15,6 @@ class RacingResultTest : FunSpec({
 
         // then
         racingResult.round shouldBe 1
-        racingResult.distancesMoved.shouldContainExactly("----", "---")
+        racingResult.distancesMoved.shouldContainExactly(4, 3)
     }
 })

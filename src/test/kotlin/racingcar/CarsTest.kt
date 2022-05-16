@@ -12,8 +12,8 @@ internal class CarsTest : FunSpec({
         val resultCars = cars.move(listOf(4, 3))
 
         // then
-        resultCars.values[0].distanceMoved shouldBe 1
-        resultCars.values[1].distanceMoved shouldBe 0
+        resultCars.value[0].distanceMoved shouldBe 1
+        resultCars.value[1].distanceMoved shouldBe 0
     }
 
     test("initCars 정적 팩터리를 호출해, 참여자 수만큼 자동차 객체를 생성한다.") {
@@ -24,6 +24,6 @@ internal class CarsTest : FunSpec({
         val cars = Cars.initCars(numberOfParticipants)
 
         // then
-        cars.values.size shouldBe 4
+        cars.value.size shouldBe 4
     }
 })

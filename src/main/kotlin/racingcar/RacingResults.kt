@@ -1,9 +1,9 @@
 package racingcar
 
-class RacingResults(val values: List<RacingResult> = listOf()) {
+class RacingResults(val value: List<RacingResult> = listOf()) {
     fun add(value: RacingResult): RacingResults {
-        val valuesTemp = values.toMutableList()
-        valuesTemp.add(value)
-        return RacingResults(valuesTemp.toList())
+        val valueTemp = this.value.toMutableList()
+        valueTemp.add(value)
+        return RacingResults(valueTemp.toList())
     }
 }
