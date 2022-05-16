@@ -9,7 +9,7 @@ class CarTest : FunSpec({
     test("move fail") {
         val car = Car(object: NumberGenerator {
             override fun generate(minValue: Int, maxValue: Int): Int {
-                return 1
+                return Car.MOVABLE_THRESHOLD - 1
             }
         })
         car.move() shouldBe false
@@ -18,7 +18,7 @@ class CarTest : FunSpec({
     test("move success") {
         val car = Car(object: NumberGenerator {
             override fun generate(minValue: Int, maxValue: Int): Int {
-                return 4
+                return Car.MOVABLE_THRESHOLD
             }
         })
         car.move() shouldBe true
