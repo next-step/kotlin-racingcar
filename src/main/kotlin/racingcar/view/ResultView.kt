@@ -8,7 +8,9 @@ class ResultView {
     }
 
     fun printCurrentRace(cars: List<Car>) {
-        cars.forEach { println(mapForDisplay(it.distance)) }
+        cars.forEach {
+            println("${it.getName()} : ${mapForDisplay(it.distance)}")
+        }
         println()
     }
 

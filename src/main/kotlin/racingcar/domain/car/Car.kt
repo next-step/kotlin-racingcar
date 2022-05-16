@@ -12,6 +12,8 @@ class Car(
         }
     }
 
+    fun getName(): String = name.value
+
     companion object {
         const val ENOUGH_TO_FORWARD = 4
         const val FORWARD_DISTANCE = 1
