@@ -7,7 +7,7 @@
 
 
 ### TODO-LIST
-- [ ] 회차당 자동자들의 상태를 Record라는 객체를 통해 기록한다. Record는 자동차 수 크기의 List 프로퍼티를 가지고 있다.
+- [x] 회차당 자동자들의 상태를 Record라는 객체를 통해 기록한다. Record는 자동차 수 크기의 List 프로퍼티를 가지고 있다.
 - [ ] 자동차 전진 여부를 결정하는 역할을 Dice 라는 객체를 통해 기록한다.
 - [ ] 각 게임은 Record, Dice 를 인자로 받아 하나의 instance가 된다. 
 - [x] UI를 담당하는 로직을 InputView / ResultView와 같은 클래스로 분리하여 구현한다.
