@@ -1,4 +1,4 @@
-package racingcar.model
+package racingcar.domain
 
 /**
  * 레이스 결과를 저장하는 클래스

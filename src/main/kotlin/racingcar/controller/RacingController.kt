@@ -1,9 +1,9 @@
 package racingcar.controller
 
 import racingcar.constants.Message
-import racingcar.model.Car
-import racingcar.model.Dice
-import racingcar.model.RaceResult
+import racingcar.domain.Car
+import racingcar.domain.Dice
+import racingcar.domain.RaceResult
 
 /**
  * 레이싱을 시작하고, 계산하는 클래스

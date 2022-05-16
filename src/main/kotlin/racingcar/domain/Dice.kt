@@ -1,4 +1,4 @@
-package racingcar.model
+package racingcar.domain
 
 /**
  * 전진을 위한 점수를 저장한 클래스.
