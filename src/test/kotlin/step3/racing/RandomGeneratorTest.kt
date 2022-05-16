@@ -16,5 +16,4 @@ class RandomGeneratorTest : DescribeSpec({
       result shouldBeLessThanOrEqual end
     }
   }
-
 })

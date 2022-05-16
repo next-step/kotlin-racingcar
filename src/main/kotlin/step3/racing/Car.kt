@@ -5,7 +5,7 @@ class Car(var distance: Long = 0) {
     distance += 1
   }
 
-  private fun isMoved() = RandomGenerator.getInt(0, 9) > 4
+  private fun isMoved() = RandomGenerator.getInt(0, 9) >= 4
 
   fun run(isMoved: Boolean = isMoved()) {
     if (isMoved) move()
