@@ -2,7 +2,8 @@ package racingcar
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import racingcar.model.TestCarFactory
+import racingcar.model.Car
+import racingcar.model.MovingStrategy
 
 class GameRecorderTest {
     private val validCarName = "myCar"
@@ -19,9 +20,13 @@ class GameRecorderTest {
     fun `게임이 진행될 경우 각 횟수별 자동차들의 위치를 저장한다`() {
         val recorder = GameRecorder()
 
-        val car1 = TestCarFactory.createMovingCar(validCarName)
-        val car2 = TestCarFactory.createMovingCar(validCarName)
-        val car3 = TestCarFactory.createMovingCar(validCarName)
+        val forwardMovingStrategy = object : MovingStrategy {
+            override fun tryMove(): Boolean = true
+        }
+
+        val car1 = Car(validCarName, movingStrategy = forwardMovingStrategy)
+        val car2 = Car(validCarName, movingStrategy = forwardMovingStrategy)
+        val car3 = Car(validCarName, movingStrategy = forwardMovingStrategy)
         val cars = listOf(car1, car2, car3)
 
         // first trial
@@ -47,8 +52,16 @@ class GameRecorderTest {
     fun `각 횟수별 우승자들의 이름을 가져올 수 있다`() {
         val recorder = GameRecorder()
 
-        val winnerCar = TestCarFactory.createMovingCar("win")
-        val loserCar = TestCarFactory.createStationaryCar("lose")
+        val forwardMovingStrategy = object : MovingStrategy {
+            override fun tryMove(): Boolean = true
+        }
+
+        val noMovingStrategy = object : MovingStrategy {
+            override fun tryMove(): Boolean = false
+        }
+
+        val winnerCar = Car("win", movingStrategy = forwardMovingStrategy)
+        val loserCar = Car("lose", movingStrategy = noMovingStrategy)
         val cars = listOf(winnerCar, loserCar)
 
         winnerCar.move()
@@ -64,9 +77,17 @@ class GameRecorderTest {
     fun `게임의 우승자들의 이름을 가져올 수 있다`() {
         val recorder = GameRecorder()
 
-        val winnerCar1 = TestCarFactory.createMovingCar("win1")
-        val winnerCar2 = TestCarFactory.createMovingCar("win2")
-        val loserCar = TestCarFactory.createStationaryCar("lose")
+        val forwardMovingStrategy = object : MovingStrategy {
+            override fun tryMove(): Boolean = true
+        }
+
+        val noMovingStrategy = object : MovingStrategy {
+            override fun tryMove(): Boolean = false
+        }
+
+        val winnerCar1 = Car("win1", movingStrategy = forwardMovingStrategy)
+        val winnerCar2 = Car("win2", movingStrategy = forwardMovingStrategy)
+        val loserCar = Car("lose", movingStrategy = noMovingStrategy)
         val cars = listOf(winnerCar1, winnerCar2, loserCar)
 
         // first trial
