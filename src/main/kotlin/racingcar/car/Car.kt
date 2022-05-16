@@ -1,6 +1,6 @@
 package racingcar.car
 
-class Car(val no: Int, moveCount: Int) {
+class Car(moveCount: Int) {
     companion object {
         val range = (0..9)
     }
