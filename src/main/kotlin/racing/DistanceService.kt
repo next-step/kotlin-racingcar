@@ -9,7 +9,7 @@ class RandomImpl : Random {
     override fun getNumber(): Int = distanceRange.random()
 }
 
-class DistanceService(private val random: RandomImpl = RandomImpl()) {
+class DistanceService(private val random: Random = RandomImpl()) {
     private val standardDistance = 4
 
     fun get(): Int {
