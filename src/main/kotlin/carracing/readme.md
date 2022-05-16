@@ -22,7 +22,7 @@
 - [x] `InputDto`에 자동차 이름 밸리데이션 검사 추가
 - [x] `Car`에 자동차 이름(`name`) 프로퍼티 추가
 - [x] `RacingRacs`(자동차 리스트 관리 객체) 에서 우승자를 리스트를 가져오는 메소드 추가
-- [ ] `CarRacingView` - `getViewString` 에 자동차 이름을 같이 표사하게 수정
+- [x] `CarRacingView` - `getViewString` 에 자동차 이름을 같이 표사하게 수정
     - ```
       pobi : -
       crong : -

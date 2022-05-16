@@ -7,7 +7,7 @@ const val MIN_RANDOM_INT = 1
 const val MAX_RANDOM_INT = 9
 
 fun main() {
-    println("자동차 대수는 몇 대인가요?")
+    println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
     val carCount: String = readln()
     println("시도할 횟수는 몇 회인가요?")
     val movementTryCount: String = readln()
@@ -23,11 +23,14 @@ fun main() {
     )
     val carRacingView = CarRacingView(VIEW_STRING_CAR, VIEW_STRING_SEPARATOR)
 
+    println("실행 결과")
     repeat(inputDto.movementTryCount) {
         setRandomValue(carRacingManager)
         println(carRacingView.getViewString(carRacingManager))
         println()
     }
+
+    println(carRacingView.getWinnerViewString(carRacingManager))
 }
 
 private fun setRandomValue(carRacingManager: CarRacingManager<Int>) {
