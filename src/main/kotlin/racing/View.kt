@@ -1,7 +1,7 @@
 package racing
 
 object View {
-    fun List<MutableList<Car>>.display() {
+    fun List<List<Car>>.display() {
         this.forEach { games ->
             println("")
             games.forEach { println(it.toChar()) }

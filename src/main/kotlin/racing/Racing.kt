@@ -16,12 +16,11 @@ class Racing(
             .display()
     }
 
-    fun game(roundList: List<Count>, carList: List<Count>): List<MutableList<Car>> {
-        val games: MutableList<MutableList<Car>> = mutableListOf()
+    fun game(roundList: List<Count>, carList: List<Count>): List<List<Car>> {
+        val games: MutableList<List<Car>> = mutableListOf()
 
         roundList.forEachIndexed { index, _ ->
-            val prevGame = kotlin.runCatching { games[index - 1] }.getOrDefault(emptyList())
-
+            val prevGame: List<Car> = games.getOrElse(index - 1) { emptyList() }
             games.add(round(carList = carList, prevGame = prevGame).toMutableList())
         }
 
