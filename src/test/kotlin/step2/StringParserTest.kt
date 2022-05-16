@@ -1,45 +1,44 @@
 package step2
 
+import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class StringParserTest {
-    @Test
-    fun `string parse`() {
-        val stringList = listOf<String>(
-            "1.1 + 12 + 3 / 4",
-            "1.1+12+3/4",
-            " 1.1         + 1 2 + 3 / 4 ",
-            " 1 . 1         + 1 2 + 3 / 4 ",
-        )
-        val list = listOf<String>("1.1", "+", "12", "+", "3", "/", "4")
-        stringList.forEach { str: String -> assertThat(StringParser.parse(str) == list).isTrue }
-    }
-
-    @Test
-    fun `assertThatThrownBy example`() {
-        val list = listOf("0", "1", "2")
-        val size = list.size
-        val index = 9
-        assertThatThrownBy { list[index] }.hasMessageMatching("Index $index out of bounds for length $size")
+    @ParameterizedTest
+    @ValueSource(
+        strings = [
+            "1.1a + 12 + 3 / 4",
+            "1.1a+12+3/4",
+            " 1.1  a       + 1 2 +3 / 4 ",
+            " 1 . 1a         + 1 2 + 3 /4 ",
+        ]
+    )
+    fun `입력된 문자열로부터 공백을 제거하고 연산기호에만 공백을 추가한다`(string: String) {
+        val expected = "1.1a + 12 + 3 / 4"
+        assertThat(StringParser.parseByOperatorSymbols(string)).isEqualTo(expected)
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["", "  "])
-    fun `empty error`(string: String) {
-        assertThatThrownBy {
-            StringParser.parse(string)
-        }.hasMessageContaining(StringParser.emptyMessage)
+    @ValueSource(
+        strings = [
+            "1.1a + 12 + 3 / 4",
+            "1.1a+12+3/4",
+            " 1.1  a       + 1 2 +3 / 4 ",
+            " 1 . 1a         + 1 2 + 3 /4 ",
+        ]
+    )
+    fun `입력된 문자열로부터 공백이 모두 제거되고 연산기호를 기준으로 분리된 문자열 리스트를 반환한다`(string: String) {
+        val expected = listOf<String>("1.1a", "+", "12", "+", "3", "/", "4")
+        assertThat(StringParser.listByOperatorSymbol(string)).isEqualTo(expected)
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["1+2a", "잘못된 입력"])
-    fun `input error`(string: String) {
-        assertThatThrownBy {
-            StringParser.parse(string)
-        }.hasMessageContaining(StringParser.errorMessage)
+    @ValueSource(strings = ["1.1a", "x"])
+    fun `Double 로 변환할 수 없는 문자열의 경우에 대한 예외처리`(string: String) {
+        Assertions.assertThatThrownBy {
+            Calculator.calculate(string)
+        }.hasMessageContaining(StringParser.NumberFormatExceptionErrorMessage)
     }
 }

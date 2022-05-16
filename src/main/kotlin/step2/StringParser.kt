@@ -1,26 +1,29 @@
 package step2
 
-class StringParser {
-    companion object {
-        const val emptyMessage = "입력값이 없습니다."
-        const val errorMessage = "입력값이 잘못되었습니다."
-        fun parse(string: String): List<String> {
-            if (string.isBlank()) {
-                throw IllegalArgumentException(emptyMessage)
-            }
-            val res = string.split("").joinToString("") {
-                if (it == "" || it == " ") {
-                    ""
-                } else if (Operator.list.contains(it)) {
-                    " $it "
-                } else if (it.matches("[\\d|.]".toRegex())) {
-                    it
-                } else {
-                    throw IllegalArgumentException("$errorMessage [$it]")
-                }
-            }.split(" ")
+object StringParser {
+    private val operatorSymbols = listOf<String>("+", "-", "*", "/") // 연산기호 문자열 리스트
+    const val NumberFormatExceptionErrorMessage = "숫자 형식이 아닙니다"
 
-            return res
+    // 입력된 문자열로부터 공백을 모두 제거하고, 연산기호("+", "-", "*", "/") 주변에만 공백을 갖도록 문자열 파씽
+    fun parseByOperatorSymbols(string: String): String {
+        return string
+            .split("")
+            .filter { it.isNotBlank() }
+            .joinToString("") { if (operatorSymbols.contains(it)) " $it " else it }
+    }
+
+    // 입력된 문자열로부터 연산기호를 기준으로 split 된 문자열 리스트 반환
+    fun listByOperatorSymbol(string: String): List<String> {
+        return parseByOperatorSymbols(string).split(" ")
+    }
+
+    // 입력된 문자열로부터 Double 전환값을 반환. 에러 발생시 toDoubleErrorMessage 에러 throw
+    fun toDouble(string: String): Double {
+        try {
+            return string.toDouble()
+        } catch (e: NumberFormatException) {
+            println(e)
+            throw IllegalArgumentException(NumberFormatExceptionErrorMessage)
         }
     }
 }
