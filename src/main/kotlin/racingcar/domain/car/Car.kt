@@ -1,7 +1,7 @@
 package racingcar.domain.car
 
 class Car(
-    val name: Name,
+    val carName: CarName,
 ) {
     var distance: Int = 0
         private set
@@ -12,7 +12,7 @@ class Car(
         }
     }
 
-    fun getName(): String = name.value
+    fun getName(): String = carName.value
 
     companion object {
         const val ENOUGH_TO_FORWARD = 4
