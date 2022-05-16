@@ -1,6 +1,7 @@
 package racingcar
 
-class Cars(val values: List<Car>) {
+@JvmInline
+value class Cars(val values: List<Car>) {
 
     fun move(refuels: List<Int>): Cars {
         val resultCars: MutableList<Car> = mutableListOf()
