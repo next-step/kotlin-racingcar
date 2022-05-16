@@ -21,7 +21,7 @@ class RandomIntCarRacingManagerTest : StringSpec({
         // given
         val nowDistance = 1
         val randomIntCarRacingManager =
-            RandomIntCarRacingManager(CarList(listOf(Car(nowDistance))), racingMovementRoleByInt)
+            RandomIntCarRacingManager(Cars(listOf(Car(nowDistance))), racingMovementRoleByInt)
         val moveRandomInt = 4
 
         // when
@@ -36,7 +36,7 @@ class RandomIntCarRacingManagerTest : StringSpec({
         // given
         val nowDistance = 40
         val randomIntCarRacingManager =
-            RandomIntCarRacingManager(CarList(listOf(Car(nowDistance))), racingMovementRoleByInt)
+            RandomIntCarRacingManager(Cars(listOf(Car(nowDistance))), racingMovementRoleByInt)
         val stopRandomInt = 2
 
         // when

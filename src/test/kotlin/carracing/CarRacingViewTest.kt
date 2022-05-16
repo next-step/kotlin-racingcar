@@ -10,8 +10,8 @@ internal class CarRacingViewTest : StringSpec({
     "viewResult 는 자동차 경주 디스플레이하기 위한 데이터를 넘겨준다" {
         // given
         val carDistances = listOf(1, 3, 4)
-        val carList = CarList(carDistances.map { distance -> Car(distance) })
-        val randomNumberCarRacingManager = CarRacingManagerForTest(carList, RacingMovementRoleForTest())
+        val cars = Cars(carDistances.map { distance -> Car(distance) })
+        val randomNumberCarRacingManager = CarRacingManagerForTest(cars, RacingMovementRoleForTest())
         val carRacingView = CarRacingView("-", "\n")
         val monitoringValue = """--
 ----
@@ -26,7 +26,7 @@ internal class CarRacingViewTest : StringSpec({
 
     "경주에 참가한 자동차가 없는 경우 빈 문자열이 나온다" {
         // given
-        val carRacingManager = CarRacingManagerForTest(CarList(), RacingMovementRoleForTest())
+        val carRacingManager = CarRacingManagerForTest(Cars(), RacingMovementRoleForTest())
         val carRacingView = CarRacingView("-", "\n")
         val monitoringValue = ""
 

@@ -1,7 +1,7 @@
 package carracing.util
 
-import carracing.CarList
 import carracing.CarRacingManager
+import carracing.Cars
 
-class CarRacingManagerForTest(carList: CarList, racingMovementRoleForTest: RacingMovementRoleForTest) :
-    CarRacingManager<Int>(carList, racingMovementRoleForTest)
+class CarRacingManagerForTest(cars: Cars, racingMovementRoleForTest: RacingMovementRoleForTest) :
+    CarRacingManager<Int>(cars, racingMovementRoleForTest)

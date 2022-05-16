@@ -1,19 +1,19 @@
 package carracing
 
 abstract class CarRacingManager<MovementCheckType>(
-    private val carList: CarList,
+    private val cars: Cars,
     private val racingMovementRole: RacingMovementRole<MovementCheckType>
 ) {
 
     fun tryMoveCar(carIndex: Int, argument: MovementCheckType) {
-        carList.moveCar(carIndex, racingMovementRole.getMoveDistance(argument))
+        cars.moveCar(carIndex, racingMovementRole.getMoveDistance(argument))
     }
 
     fun getCarSize(): Int {
-        return carList.cars.size
+        return cars.cars.size
     }
 
     fun getCarList(): List<Car> {
-        return carList.cars
+        return cars.cars
     }
 }

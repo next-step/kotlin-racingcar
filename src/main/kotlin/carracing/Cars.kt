@@ -1,6 +1,6 @@
 package carracing
 
-class CarList(val cars: List<Car> = mutableListOf()) {
+class Cars(val cars: List<Car> = mutableListOf()) {
     fun moveCar(carIndex: Int, moveDistance: Int) {
         validateCarsIndex(carIndex)
         cars[carIndex].move(moveDistance)
