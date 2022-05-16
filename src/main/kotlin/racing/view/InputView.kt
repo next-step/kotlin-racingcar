@@ -20,22 +20,19 @@ class InputView {
 
         return roundSize
     }
-    fun readInCarSize(): Int {
-        println("자동차 대수는 몇 대인가요?")
+    fun readInCarName(): List<String> {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)")
 
-        var carSize = 0
+        var carNames: List<String> = emptyList()
         kotlin.runCatching {
-            readln().toInt()
+            readln().split(",")
         }.fold(
-            onSuccess = { carSize = it },
+            onSuccess = { carNames = it },
             onFailure = { exception ->
-                if (exception is NumberFormatException) {
-                    println("-- 자동차 대수를 잘못 입력하셨습니다. 숫자를 입력해주세요 --")
-                    readInCarSize()
-                }
+                throw Exception(exception)
             }
         )
 
-        return carSize
+        return carNames
     }
 }

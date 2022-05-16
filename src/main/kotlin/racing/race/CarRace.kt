@@ -11,6 +11,8 @@ class CarRace {
             raceByRound(carRaceProperty)
             resultView.printResultByRound(round)
         }
+
+        resultView.printWinner()
     }
 
     private fun raceByRound(carRaceProperty: CarRaceProperty) {

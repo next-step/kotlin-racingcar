@@ -1,6 +1,9 @@
 package racing.car
 
-data class Car(private var moveCount: Int) {
+data class Car(
+    private val carName: String,
+    private var moveCount: Int
+) {
     fun canMoveForward(number: Int) = number >= MOVE_CONDITION
 
     fun setMoveCount(moveCount: Int) {
@@ -9,6 +12,10 @@ data class Car(private var moveCount: Int) {
 
     fun getMoveCount(): Int {
         return this.moveCount
+    }
+
+    fun getCarName(): String {
+        return this.carName
     }
 
     companion object {

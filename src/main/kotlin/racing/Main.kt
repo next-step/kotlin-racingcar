@@ -7,8 +7,8 @@ import racing.view.ResultView
 
 fun main() {
     val inputView = InputView()
+    val carSize = inputView.readInCarName()
     val roundSize = inputView.readInRoundSize()
-    val carSize = inputView.readInCarSize()
 
     val carRegistration = CarRegistration(roundSize, carSize)
     val carRaceProperty = carRegistration.initCarRaceProperty()
