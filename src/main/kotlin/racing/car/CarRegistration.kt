@@ -5,12 +5,11 @@ import racing.common.CarRaceProperty
 class CarRegistration(private val roundSize: Int, private val carNames: List<String>) {
 
     fun initCarRaceProperty(): CarRaceProperty {
-        val cars = mutableListOf<Car>()
-        carNames.forEach {
-            cars.add(Car(it, INIT_MOVE))
-        }
 
-        return CarRaceProperty(roundSize, cars)
+        return CarRaceProperty(
+            roundSize = roundSize,
+            cars = carNames.map { Car(it, INIT_MOVE) }
+        )
     }
 
     companion object {
