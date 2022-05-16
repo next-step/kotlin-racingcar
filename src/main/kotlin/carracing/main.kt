@@ -13,7 +13,7 @@ fun main() {
     val movementTryCount: String = readln()
     val inputDto = InputDto(carCount, movementTryCount)
 
-    val randomIntCarRacingManager = RandomIntCarRacingManager.fromInputDto(
+    val carRacingManager = RandomIntCarRacingManager.fromInputDto(
         inputDto,
         RacingMovementRoleByInt(
             FORWARD_INT,
@@ -24,8 +24,8 @@ fun main() {
     val carRacingView = CarRacingView(VIEW_STRING_CAR, VIEW_STRING_SEPARATOR)
 
     repeat(inputDto.movementTryCount) {
-        setRandomValue(randomIntCarRacingManager)
-        println(carRacingView.getViewString(randomIntCarRacingManager))
+        setRandomValue(carRacingManager)
+        println(carRacingView.getViewString(carRacingManager))
         println()
     }
 }
