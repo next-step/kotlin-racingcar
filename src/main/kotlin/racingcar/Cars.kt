@@ -13,11 +13,7 @@ value class Cars(val values: List<Car>) {
 
     companion object {
         fun initCars(numberOfParticipants: Int): Cars {
-            val values: MutableList<Car> = mutableListOf()
-            for (i in 0 until numberOfParticipants) {
-                values.add(Car())
-            }
-            return Cars(values)
+            return Cars(List(numberOfParticipants) { Car() })
         }
     }
 }
