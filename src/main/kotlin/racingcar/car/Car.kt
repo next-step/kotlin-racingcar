@@ -7,12 +7,11 @@ class Car(moveCount: Int) {
 
     private val randomInts = RandomList.intListBy(range, moveCount)
     private val drivingPoints = randomInts.map { i -> DrivingForce.pointBy(i) }
-    private val positions: List<Int> = drivingPoints.fold(arrayListOf(0)) { positions: ArrayList<Int>, point: Int ->
+    private val initPositions = arrayListOf(0)
+    private val positions = drivingPoints.fold(initPositions) { positions, point ->
         positions.add(positions.last() + point)
         positions
     }
 
-    fun positionBy(step:Int): Int {
-        return positions[step]
-    }
+    fun positionBy(step: Int): Int = positions[step]
 }
