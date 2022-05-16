@@ -1,7 +1,7 @@
 package com.nextstep.jngcii.step3.domain
 
 class Record(
-    private val carCount: Int,
+    val carCount: Int,
     val trialCount: Int
 ) {
     companion object {
