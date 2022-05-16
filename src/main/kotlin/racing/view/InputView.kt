@@ -1,5 +1,7 @@
 package racing.view
 
+import racing.exception.CarNameLengthExcessException
+
 class InputView {
 
     fun readInRoundSize(): Int {
@@ -10,29 +12,31 @@ class InputView {
             readln().toInt()
         }.fold(
             onSuccess = { roundSize = it },
-            onFailure = { exception ->
-                if (exception is NumberFormatException) {
-                    println("-- 시도할 횟수를 잘못 입력하셨습니다. 숫자를 입력해주세요 --")
-                    readInRoundSize()
-                }
-            }
+            onFailure = { exception -> throw exception }
         )
 
         return roundSize
     }
+
     fun readInCarName(): List<String> {
         println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)")
 
         var carNames: List<String> = emptyList()
         kotlin.runCatching {
-            readln().split(",")
+            val carNames = readln().split(",")
+            validateCarNames(carNames)
+            carNames
         }.fold(
             onSuccess = { carNames = it },
-            onFailure = { exception ->
-                throw Exception(exception)
-            }
+            onFailure = { exception -> throw exception }
         )
 
         return carNames
+    }
+
+    private fun validateCarNames(carNames: List<String>) {
+        if (!carNames.none { it.length > 5 }) {
+            throw CarNameLengthExcessException("자동차 이름은 5자를 초과할 수 없습니다.")
+        }
     }
 }
