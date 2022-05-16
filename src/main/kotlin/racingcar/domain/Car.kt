@@ -26,5 +26,7 @@ class Car(val name: String) {
     companion object {
         private const val INIT_POSITION = 0
         private const val MAX_NAME_SIZE = 5
+
+
     }
 }
