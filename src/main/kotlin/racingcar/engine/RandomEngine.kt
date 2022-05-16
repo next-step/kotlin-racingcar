@@ -6,8 +6,13 @@ class RandomEngine : Engine {
 
     override fun accelerate(): Distance {
         val random = RandomNumberGenerator.generate(RANDOM_FROM, RANDOM_TO)
+        val distance = if (shouldMove(random)) 1 else 0
 
-        return Distance(if (random >= MOVE_THRESHOLD) 1 else 0)
+        return Distance(distance)
+    }
+
+    private fun shouldMove(randomNumber: Int): Boolean {
+        return randomNumber >= MOVE_THRESHOLD
     }
 
     companion object {
