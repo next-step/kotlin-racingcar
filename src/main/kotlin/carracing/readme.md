@@ -30,7 +30,7 @@
       ```
 
 
-- [ ] `CarRacingView` 에 우승자 표시 View 함수 추가
+- [x] `CarRacingView` 에 우승자 표시 View 함수 추가
     - pobi, honux가 최종 우승했습니다.
 
 # 3단계 - 자동차 경주
