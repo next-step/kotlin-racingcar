@@ -13,6 +13,7 @@ internal class RacingGameTest : StringSpec({
         class StubCar : Car {
             override fun position(): Position = Position(0)
             override fun forward(): Car = this
+            override fun name(): String = "StubCar"
         }
 
         val round = 10
@@ -30,6 +31,7 @@ internal class RacingGameTest : StringSpec({
         class StubCar(private val position: Int, private val speed: Int) : Car {
             override fun position(): Position = Position(position)
             override fun forward(): Car = StubCar(position + speed, speed)
+            override fun name(): String = "StubCar"
         }
 
         val cars = listOf(StubCar(0, 10), StubCar(0, 20))
