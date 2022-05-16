@@ -8,19 +8,13 @@ class ResultView {
     }
 
     fun printCurrentRace(cars: List<Car>) {
-        for (car in cars) {
-            println(mapForDisplay(car.distance))
-        }
+        cars.forEach { println(mapForDisplay(it.distance)) }
         println()
     }
 
     private fun mapForDisplay(distance: Int): String {
         val stringBuilder = StringBuilder()
-
-        for (i in 1..distance) {
-            stringBuilder.append(DISTANCE_VIEW)
-        }
-
+        repeat(times = distance) { stringBuilder.append(DISTANCE_VIEW) }
         return stringBuilder.toString()
     }
 
