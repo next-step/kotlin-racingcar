@@ -1,6 +1,6 @@
 package racingcar.domain.car
 
-data class Name(
+data class CarName(
     val value: String
 ) {
     init {
