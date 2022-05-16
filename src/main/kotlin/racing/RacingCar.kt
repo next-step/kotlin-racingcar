@@ -1,6 +1,6 @@
 package racing
 
-class RacingCar(private val round: Int) {
+class RacingCar(private val round: Int, val name: String) {
     companion object {
         const val MOVE_PIVOT = 4
         const val MOVE = 1

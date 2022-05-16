@@ -6,8 +6,9 @@ object Racing {
     private const val MIN_PIVOT_VALUE = 0
     private const val MAX_PIVOT_VALUE = 10
 
-    fun start(carNumber: Int, tryRound: Int): List<MutableList<Int>> {
-        val racingCars = List(carNumber) { RacingCar(tryRound) }
+    fun start(carNames: List<String>, tryRound: Int): List<RacingCar> {
+        validate(carNames)
+        val racingCars: List<RacingCar> = carNames.map { RacingCar(tryRound, it) }
 
         repeat(tryRound) {
             for (car in racingCars) {
@@ -15,17 +16,19 @@ object Racing {
             }
         }
 
-        return distances(racingCars)
+        return racingCars
     }
 
-    private fun distances(racingCars: List<RacingCar>): ArrayList<MutableList<Int>> {
-        val distances = ArrayList<MutableList<Int>>()
-
-        for (car in racingCars) {
-            distances.add(car.getDistances())
+    private fun validate(carNames: List<String>) {
+        for(carName in carNames) {
+            validateName(carName)
         }
+    }
 
-        return distances
+    private fun validateName(name: String) {
+        if (name.length > 5 || name.isBlank()) {
+            throw IllegalArgumentException("자동차 이름이 비어있거나 5자를 초과하였습니다.")
+        }
     }
 
     private fun createMovePoint(): Int {
