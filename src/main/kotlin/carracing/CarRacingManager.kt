@@ -9,6 +9,10 @@ abstract class CarRacingManager<MovementCheckType>(
         racingCars.moveCar(carIndex, racingMovementRole.getMoveDistance(argument))
     }
 
+    fun getWinnerCars(): List<Car> {
+        return racingCars.getMaxDistanceCars()
+    }
+
     fun getCarSize(): Int {
         return racingCars.cars.size
     }

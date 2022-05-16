@@ -6,6 +6,28 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
 class CarRacingManagerTest : StringSpec({
+    "getWinnerCars 는 자동차 경우 우승자 리스트를 가져옵니다" {
+        // given
+        val racingCars = RacingCars(
+            listOf<Car>(
+                Car("TestCar1", 3),
+                Car("TestCar2", 4),
+                Car("TestCar3", 10),
+                Car("TestCar4", 0),
+                Car("TestCar5"),
+            )
+        )
+        val carRacingManager = CarRacingManagerForTest(racingCars, RacingMovementRoleForTest())
+
+        // when
+        val maxDistanceCars = carRacingManager.getWinnerCars()
+
+        // then
+        maxDistanceCars.size shouldBe 1
+        maxDistanceCars[0].name shouldBe "TestCar3"
+        maxDistanceCars[0].distance shouldBe 10
+    }
+
     "tryMoveCar 는 RacingMovementRole 가 판단한 이동 거리 만큼 자동차가 이동한다" {
         // given
         val moveDistance = 4
