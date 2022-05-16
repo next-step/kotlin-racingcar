@@ -20,6 +20,6 @@ object RacingInputReceiver {
     private fun receiveMoveCount(): Int {
         println("시도할 횟수는 몇 회인가요?")
 
-        return requireNotNull(readLine()?.toInt())
+        return requireNotNull(readLine()).toInt()
     }
 }

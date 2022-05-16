@@ -1,9 +1,10 @@
 package racing.domain
 
 class CarRacing(
-    private val cars: RacingCars,
+    cars: List<Car>,
     private val moveCount: Int
 ) {
+    private val cars = RacingCars(cars)
     init {
         checkValidation()
     }

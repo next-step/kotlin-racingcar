@@ -1,6 +1,6 @@
 package racing.domain
 
-class RacingCars(val cars: List<Car>) {
+class RacingCars(private val cars: List<Car>) {
 
     init {
         checkValidation()
@@ -10,9 +10,14 @@ class RacingCars(val cars: List<Car>) {
         cars.forEach { it.move() }
     }
 
+    fun forEach(each: (name: String, position: Int) -> Unit) {
+        cars.forEach {
+            each(it.name, it.position)
+        }
+    }
+
     fun findWinners(): Winners {
-        val maxPosition = cars.maxOf { it.position }
-        return Winners(cars.filter { maxPosition == it.position })
+        return Winners.from(cars)
     }
 
     @Throws(IllegalArgumentException::class)
