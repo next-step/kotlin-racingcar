@@ -10,13 +10,13 @@ import org.junit.jupiter.api.Test
 class RaceResultTest {
     @Test
     fun `여러 차량중에서 유일한 승자를 제대로 판단하는가`() {
-        val result = RaceResult(listOf(Car("hello").apply { advanceOnce() }, Car("good")))
+        val result = RaceResult(listOf(Car("hello").apply { playOneRound() }, Car("good")))
         assertThat(result.winners[0]).isEqualTo("hello")
     }
 
     @Test
     fun `1등이 둘 이상인 상황에서 승자를 제대로 판단하는가`() {
-        val result = RaceResult(listOf(Car("hello").apply { advanceOnce() }, Car("good").apply { advanceOnce() }))
+        val result = RaceResult(listOf(Car("hello").apply { playOneRound() }, Car("good").apply { playOneRound() }))
         assertThat(result.winners.size).isEqualTo(2)
     }
 }

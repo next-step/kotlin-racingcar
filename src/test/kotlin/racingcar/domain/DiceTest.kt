@@ -11,14 +11,12 @@ class DiceTest {
     @ParameterizedTest
     @ValueSource(ints = [4, 5, 6, 7, 8, 9])
     fun `주사위 숫자가 4이상일때 전진이 가능한 상태인가`(source: Int) {
-        val dice = Dice(source)
-        assertThat(dice.isCanRunScore()).isTrue
+        assertThat(Dice.rollDiceAndGetPoint(source)).isEqualTo(1)
     }
 
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3])
     fun `주사위 숫자가 3이하일때 전진이 안되는 상태인가`(source: Int) {
-        val dice = Dice(source)
-        assertThat(dice.isCanRunScore()).isFalse
+        assertThat(Dice.rollDiceAndGetPoint(source)).isEqualTo(0)
     }
 }

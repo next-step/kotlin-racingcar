@@ -2,7 +2,6 @@ package racingcar.controller
 
 import racingcar.constants.Message
 import racingcar.domain.Car
-import racingcar.domain.Dice
 import racingcar.domain.RaceResult
 
 /**
@@ -28,10 +27,7 @@ class RacingController(private val cars: List<Car>) {
 
     private fun processGame() {
         cars.forEach { car ->
-            // TODO : 차량이 전진 가능한지 따로 메소드를 빼자.
-            if (Dice.fromRandom().isCanRunScore()) {
-                car.advanceOnce()
-            }
+            car.playOneRound()
         }
     }
 

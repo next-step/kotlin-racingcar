@@ -14,8 +14,8 @@ class Car(val name: String) {
         checkValidName(name)
     }
 
-    fun advanceOnce() {
-        position++
+    fun playOneRound() {
+        position += Dice.rollDiceAndGetPoint()
     }
 
     private fun checkValidName(name: String) {
