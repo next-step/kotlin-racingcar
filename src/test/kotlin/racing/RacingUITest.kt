@@ -42,7 +42,7 @@ class RacingUITest {
 
     @Test
     fun `우승 차량 정보를 출력한다`() {
-        val cars = Winners(listOf(Car("Andy"), Car("Bruce")))
+        val cars = Winners(listOf("Andy", "Bruce"))
         val expect = "Andy, Bruce가 최종 우승했습니다."
 
         RacingUI.drawWinners(cars)
@@ -52,15 +52,13 @@ class RacingUITest {
 
     class DrawCarsArgumentsProvider : ArgumentsProvider {
         private val testData = listOf(
-            RacingCars(listOf(Car("Andy", startPosition = 4), Car("Bruce", startPosition = 2))) to
-                """
+            RacingCars(listOf(Car("Andy", startPosition = 4), Car("Bruce", startPosition = 2))) to """
                 |Andy : -----
                 |Bruce : ---
                 |
                 |
             """.trimMargin(),
-            RacingCars(listOf(Car("Andy", startPosition = 0))) to
-                """
+            RacingCars(listOf(Car("Andy", startPosition = 0))) to """
                 |Andy : -
                 |
                 |

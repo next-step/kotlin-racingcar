@@ -1,7 +1,7 @@
 package racing
 
 import io.kotest.core.spec.style.FreeSpec
-import io.kotest.matchers.shouldBe
+import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import racing.domain.CarFactory
 
 class CarFactoryKoTest : FreeSpec({
@@ -11,10 +11,7 @@ class CarFactoryKoTest : FreeSpec({
                 val names = listOf("Andy", "Bruce")
 
                 val racingCars = CarFactory().createCars(names)
-
-                names.forEachIndexed { index, name ->
-                    racingCars.cars[index].name shouldBe name
-                }
+                racingCars.map { it.name } shouldContainExactlyInAnyOrder listOf("Andy", "Bruce")
             }
         }
     }

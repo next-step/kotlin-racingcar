@@ -13,7 +13,7 @@ class CarFactoryTest {
         val racingCars = CarFactory().createCars(names)
 
         names.forEachIndexed { index, name ->
-            Assertions.assertThat(racingCars.cars[index].name).isEqualTo(name)
+            Assertions.assertThat(racingCars[index].name).isEqualTo(name)
         }
     }
 }

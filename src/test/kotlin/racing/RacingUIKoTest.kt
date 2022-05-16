@@ -57,7 +57,7 @@ class RacingUIKoTest : DescribeSpec({
         context("with winner ( Andy )") {
             it("draw [ Andy가 최종 우승했습니다. ]") {
                 output.reset()
-                RacingUI.drawWinners(Winners(listOf(Car("Andy"))))
+                RacingUI.drawWinners(Winners(listOf("Andy")))
 
                 output.toString().trimIndent() shouldBe "Andy가 최종 우승했습니다."
             }
@@ -65,7 +65,7 @@ class RacingUIKoTest : DescribeSpec({
         context("with winner ( Andy, Bruce )") {
             it("draw [ Andy, Bruce가 최종 우승했습니다. ]") {
                 output.reset()
-                RacingUI.drawWinners(Winners(listOf(Car("Andy"), Car("Bruce"))))
+                RacingUI.drawWinners(Winners(listOf("Andy", "Bruce")))
 
                 output.toString().trimIndent() shouldBe "Andy, Bruce가 최종 우승했습니다."
             }

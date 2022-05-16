@@ -5,10 +5,9 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import racing.domain.Car
 import racing.domain.CarRacing
-import racing.domain.RacingCars
 import racing.domain.StaticPowerStrategy
 
-private fun testCar(name: String, position: Int = 0) =
+private fun TestCar(name: String, position: Int = 0) =
     Car(name = name, powerStrategy = StaticPowerStrategy(power = 10), startPosition = position)
 
 class CarRacingTest {
@@ -17,7 +16,7 @@ class CarRacingTest {
     fun `moveCount 가 0보다 작으면, IllegalArgumentException 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
             CarRacing(
-                cars = RacingCars(listOf(testCar("Andy"), testCar("Bruce"))),
+                cars = listOf(TestCar("Andy"), TestCar("Bruce")),
                 moveCount = -1
             ).run()
         }
@@ -28,11 +27,11 @@ class CarRacingTest {
         val moveCount = 2
         var count = 0
 
-        val andy = testCar("Andy")
-        val bruce = testCar("Bruce")
+        val andy = TestCar("Andy")
+        val bruce = TestCar("Bruce")
 
         CarRacing(
-            cars = RacingCars(listOf(andy, bruce)),
+            cars = listOf(andy, bruce),
             moveCount = moveCount
         ).run(
             onTurnEnd = { count++ }

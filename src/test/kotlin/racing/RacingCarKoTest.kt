@@ -7,7 +7,7 @@ import racing.domain.Car
 import racing.domain.RacingCars
 import racing.domain.StaticPowerStrategy
 
-private fun testCar(name: String, position: Int = 0) =
+private fun TestCar(name: String, position: Int = 0) =
     Car(name = name, powerStrategy = StaticPowerStrategy(power = 10), startPosition = position)
 
 class RacingCarKoTest : FreeSpec({
@@ -15,8 +15,8 @@ class RacingCarKoTest : FreeSpec({
     "init" - {
         "when car name length greater than 5" - {
             "throws IllegalArgumentException" {
-                val andy = testCar("Andy")
-                val bruce = testCar("BrunoMars")
+                val andy = TestCar("Andy")
+                val bruce = TestCar("BrunoMars")
 
                 shouldThrow<IllegalArgumentException> {
                     RacingCars(listOf(andy, bruce))
@@ -25,8 +25,8 @@ class RacingCarKoTest : FreeSpec({
         }
     }
     "moveAll" - {
-        val andy = testCar("Andy", 2)
-        val bruce = testCar("Bruce", 1)
+        val andy = TestCar("Andy", 2)
+        val bruce = TestCar("Bruce", 1)
 
         val racingCars = RacingCars(listOf(andy, bruce))
 
@@ -41,9 +41,9 @@ class RacingCarKoTest : FreeSpec({
     }
 
     "findWinners" - {
-        val andy = testCar("Andy", 2)
-        val bruce = testCar("Bruce", 1)
-        val clara = testCar("Bruce", 2)
+        val andy = TestCar("Andy", 2)
+        val bruce = TestCar("Bruce", 1)
+        val clara = TestCar("Clara", 2)
 
         val racingCars = RacingCars(listOf(andy, bruce, clara))
 
@@ -51,7 +51,7 @@ class RacingCarKoTest : FreeSpec({
             "should return list of winners" {
                 val winners = racingCars.findWinners()
 
-                winners.cars shouldBe listOf(andy, clara)
+                winners.carNames shouldBe listOf("Andy", "Clara")
             }
         }
     }
