@@ -1,6 +1,7 @@
 package camp.nextstep.edu.racingcar
 
-import camp.nextstep.edu.racingcar.interfaces.CommandLineInterface
+import camp.nextstep.edu.racingcar.interfaces.CarTrackView
+import camp.nextstep.edu.racingcar.interfaces.cli.CommandLineInterface
 import camp.nextstep.edu.racingcar.racing.Car
 import camp.nextstep.edu.racingcar.racing.Racing
 
@@ -18,7 +19,7 @@ fun main() {
 
     for (i in 0 until moveCount) {
         for ((car, track) in carTracks) {
-            cli.draw(car, track, i)
+            cli.draw(CarTrackView(car, track), i)
         }
         cli.drawBlank()
     }

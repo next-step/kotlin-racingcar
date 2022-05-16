@@ -1,7 +1,7 @@
-package camp.nextstep.edu.racingcar.interfaces
+package camp.nextstep.edu.racingcar.interfaces.cli
 
+import camp.nextstep.edu.racingcar.interfaces.CarTrackView
 import camp.nextstep.edu.racingcar.racing.Car
-import camp.nextstep.edu.racingcar.racing.Track
 
 class CommandLineInterface {
 
@@ -15,13 +15,8 @@ class CommandLineInterface {
         return requireNotNull(readLine()?.toInt())
     }
 
-    fun draw(car: Car, track: Track, to: Int) {
-        print("${car.name}\t: ")
-        val traces = track.traces()
-        for (i in 0..to) {
-            if (traces.next()) print("⎼ ")
-        }
-        println()
+    fun draw(carTrackView: CarTrackView, to: Int) {
+        println(carTrackView.traces(to))
     }
 
     fun drawWinner(winners: List<Car>) {
