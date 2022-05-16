@@ -1,21 +1,14 @@
 package step2
 
-enum class Operation(val exp: String) {
-    PLUS("+") {
-        override fun compute(v1: Int, v2: Int) = plus(v1, v2)
-    },
-    MINUS("-") {
-        override fun compute(v1: Int, v2: Int) = minus(v1, v2)
-    },
-    MULTIPLY("*") {
-        override fun compute(v1: Int, v2: Int) = multiply(v1, v2)
-    },
-    DIVIDE("/") {
-        override fun compute(v1: Int, v2: Int) = divide(v1, v2)
-    },
+enum class Operation(val exp: String, val compute: (Int, Int) -> Int) {
+    PLUS("+", { v1, v2 -> v1 + v2 }),
+    MINUS("-", { v1, v2 -> v1 - v2 }),
+    MULTIPLY("*", { v1, v2 -> v1 * v2 }),
+    DIVIDE("/", { v1, v2 ->
+        if (v2 == 0) throw IllegalArgumentException()
+        v1 / v2
+    }),
     ;
-
-    abstract fun compute(v1: Int, v2: Int): Int
 
     companion object {
         fun of(exp: String) = runCatching {
@@ -23,16 +16,5 @@ enum class Operation(val exp: String) {
         }.getOrElse { throw IllegalArgumentException() }
 
         fun contains(exp: String): Boolean = of(exp) in values()
-
-        private fun divide(v1: Int, v2: Int): Int {
-            if (v2 == 0) throw IllegalArgumentException()
-            return v1 / v2
-        }
-
-        private fun multiply(v1: Int, v2: Int) = v1 * v2
-
-        private fun minus(v1: Int, v2: Int) = v1 - v2
-
-        private fun plus(v1: Int, v2: Int) = v1 + v2
     }
 }
