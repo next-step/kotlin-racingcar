@@ -17,7 +17,7 @@ internal class CarTest {
 
         // when
         // then
-        assertThat(car.position()).isEqualTo(expected)
+        assertThat(car.position).isEqualTo(expected)
     }
 
     @Test
@@ -32,7 +32,7 @@ internal class CarTest {
         }
 
         // then
-        assertThat(car.position()).isEqualTo(expected)
+        assertThat(car.position).isEqualTo(expected)
     }
 
     @Test
@@ -51,7 +51,7 @@ internal class CarTest {
         }
 
         // then
-        assertThat(car.position()).isEqualTo(expected)
+        assertThat(car.position).isEqualTo(expected)
     }
 
     @Test

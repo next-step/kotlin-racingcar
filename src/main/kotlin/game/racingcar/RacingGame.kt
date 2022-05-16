@@ -23,10 +23,10 @@ class RacingGame(
     }
 
     private fun getWinners(cars: List<Car>): List<Car> {
-        val maxPosition = cars.maxByOrNull { it.position() }!!.position()
+        val maxPosition = cars.maxByOrNull { it.position }!!.position
         return cars
-            .sortedByDescending { it.position() }
-            .takeWhile { it.position() == maxPosition }
+            .sortedByDescending { it.position }
+            .takeWhile { it.position == maxPosition }
     }
 
     private fun race(cars: List<Car>, numberOfLap: Int): List<Car> {

@@ -4,18 +4,18 @@ import game.racingcar.strategy.MoveStrategy
 
 class Car(val name: String) {
     private val _blackBox: MutableList<Int> = mutableListOf()
-    private var position: Int = 0
+    private var _position: Int = 0
 
     val blackBox: List<Int>
         get() = _blackBox.toList()
+    val position: Int
+        get() = _position
 
     fun move(moveStrategy: MoveStrategy): Int {
-        position = moveStrategy.move(position)
-        _blackBox.add(position)
-        return position
+        _position = moveStrategy.move(_position)
+        _blackBox.add(_position)
+        return _position
     }
 
     fun history(time: Int) = blackBox[time]
-
-    fun position() = blackBox.lastOrNull() ?: 0
 }

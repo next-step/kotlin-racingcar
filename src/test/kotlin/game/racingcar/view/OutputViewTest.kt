@@ -45,7 +45,7 @@ internal class OutputViewTest {
 
 class TestOutputView : OutputView {
     override fun getResult(cars: List<Car>, winners: List<Car>): String {
-        return cars.joinToString("\n") { "${it.hashCode()}번 자동차 위치: ${it.position()}" }
+        return cars.joinToString("\n") { "${it.hashCode()}번 자동차 위치: ${it.position}" }
             .plus("\n${winners.joinToString(", ") { it.name }}가 최종 우승")
     }
 }
