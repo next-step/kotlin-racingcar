@@ -12,10 +12,6 @@ class InputScene(
 ) : Scene {
 
     override fun run() {
-        start()
-    }
-
-    private fun start() {
         setCarNumber()
         setStageNumber()
     }

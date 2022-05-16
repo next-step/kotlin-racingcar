@@ -23,7 +23,7 @@ class PlayScene(
         do {
             update()
         } while (hasNext())
-        onDestroy()
+        end()
     }
 
     private fun start() {
@@ -38,7 +38,7 @@ class PlayScene(
         outputSplitLine()
     }
 
-    private fun onDestroy() {
+    private fun end() {
         outputWinners()
     }
 
@@ -70,7 +70,6 @@ class PlayScene(
     }
 
     private fun outputWinners() {
-        val winnerNames = cars.winnerNames().joinToString(", ")
-        outputPainter.draw("${winnerNames}가 최종 우승했습니다.")
+        outputPainter.draw("${cars.getWinners()}가 최종 우승했습니다.")
     }
 }
