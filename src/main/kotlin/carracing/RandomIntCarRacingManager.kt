@@ -9,10 +9,7 @@ class RandomIntCarRacingManager(
             inputDto: InputDto,
             racingMovementRoleByInt: RacingMovementRoleByInt
         ): RandomIntCarRacingManager {
-            var inputCars = emptyList<Car>()
-            repeat(inputDto.carCount) {
-                inputCars = inputCars + Car()
-            }
+            val inputCars = List(inputDto.carCount) { Car() }
             return RandomIntCarRacingManager(Cars(inputCars), racingMovementRoleByInt)
         }
     }
