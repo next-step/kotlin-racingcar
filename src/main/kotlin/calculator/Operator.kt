@@ -7,7 +7,7 @@ enum class Operator {
     MULTIPLY;
 }
 fun String.convertToOperatorEnum(): Operator =
-    when(this){
+    when (this) {
         "+" -> Operator.PLUS
         "-" -> Operator.MINUS
         "/" -> Operator.DIVIDE

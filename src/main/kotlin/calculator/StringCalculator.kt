@@ -4,15 +4,18 @@ class StringCalculator(private val input: String?) {
     fun run(): Int {
         require(!input.isNullOrBlank()) { "입력값은 공백일 수 없습니다" }
         val splitted = splitter(input, " ")
-        var operator = Operator.PLUS
 
-        return splitted.foldIndexed(0) { idx, sum, element ->
+        return calculate(splitted)
+    }
+
+    private fun calculate(splittedInput: List<String>): Int {
+        var operator = Operator.PLUS
+        return splittedInput.foldIndexed(0) { idx, sum, element ->
             if (isEvenIndex(idx)) {
                 val rightTerm = toIntOrThrow(element)
                 calculate(sum, rightTerm, operator)
             } else {
                 operator = element.convertToOperatorEnum()
-
                 sum
             }
         }
@@ -33,8 +36,9 @@ class StringCalculator(private val input: String?) {
             Operator.MULTIPLY -> leftTerm * rightTerm
             Operator.DIVIDE -> if (rightTerm == 0) {
                 throw IllegalArgumentException("/ 뒤에는 0이 올 수 없습니다")
-            } else { leftTerm / rightTerm }
-
+            } else {
+                leftTerm / rightTerm
+            }
         }
     }
 }
