@@ -1,10 +1,10 @@
-package step3
+package racing
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import step3.car.Car
-import step3.common.CarRaceProperty
-import step3.race.CarRace
+import racing.car.Car
+import racing.common.CarRaceProperty
+import racing.race.CarRace
 
 class CarRaceTest {
 

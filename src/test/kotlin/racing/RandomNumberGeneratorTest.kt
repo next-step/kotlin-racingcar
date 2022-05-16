@@ -1,8 +1,8 @@
-package step3
+package racing
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
-import step3.utils.RandomNumberGenerator
+import racing.utils.RandomNumberGenerator
 
 class RandomNumberGeneratorTest {
 

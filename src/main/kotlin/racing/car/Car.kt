@@ -1,4 +1,4 @@
-package step3.car
+package racing.car
 
 data class Car(var moveCount: Int) {
     fun canMoveForward(number: Int) = number >= MOVE_CONDITION

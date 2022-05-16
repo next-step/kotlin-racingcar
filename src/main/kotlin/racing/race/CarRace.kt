@@ -1,6 +1,6 @@
-package step3.race
+package racing.race
 
-import step3.car.Car
+import racing.car.Car
 
 class CarRace {
 

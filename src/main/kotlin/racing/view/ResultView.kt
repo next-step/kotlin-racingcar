@@ -1,6 +1,6 @@
-package step3.view
+package racing.view
 
-import step3.common.CarRaceProperty
+import racing.common.CarRaceProperty
 
 class ResultView(private val carRaceProperty: CarRaceProperty) {
 

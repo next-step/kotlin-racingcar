@@ -1,6 +1,6 @@
-package step3.car
+package racing.car
 
-import step3.common.CarRaceProperty
+import racing.common.CarRaceProperty
 
 class CarRegistration(private val roundSize: Int, private val carSize: Int) {
 

@@ -1,6 +1,6 @@
-package step3.common
+package racing.common
 
-import step3.car.Car
+import racing.car.Car
 
 class CarRaceProperty(val roundSize: Int, val carSize: Int, val cars: List<Car>) {
 

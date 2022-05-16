@@ -1,11 +1,11 @@
-package step3
+package racing
 
-import step3.car.CarRegistration
-import step3.common.CarRaceProperty
-import step3.race.CarRace
-import step3.utils.RandomNumberGenerator
-import step3.view.InputView
-import step3.view.ResultView
+import racing.car.CarRegistration
+import racing.common.CarRaceProperty
+import racing.race.CarRace
+import racing.utils.RandomNumberGenerator
+import racing.view.InputView
+import racing.view.ResultView
 
 fun main() {
     val inputView = InputView()
