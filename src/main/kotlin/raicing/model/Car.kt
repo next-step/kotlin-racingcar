@@ -1,26 +1,17 @@
 package raicing.model
 
-data class Car(val id: Int) {
-    var position: Int = INIT_POSITION
-        private set
+import raicing.strategy.MovingStrategy
 
-    fun moveForwardDependingOption(randomNum: Int) {
-        if (moveForwardOptionCheck(randomNum))
-            position++
-    }
+data class Car(val name: String, val position: Int = INIT_POSITION) {
 
-    fun deepCopy(): Car {
-        val newCar = Car(id)
-        newCar.position = position
-        return newCar
-    }
-
-    private fun moveForwardOptionCheck(randomNum: Int): Boolean {
-        return (randomNum >= BASE_NUM)
+    fun moveForward(movingStrategy: MovingStrategy): Car {
+        return if (movingStrategy.canMoveForward())
+            copy(position = position + 1)
+        else
+            this
     }
 
     companion object {
-        const val BASE_NUM = 4
         const val INIT_POSITION = 0
     }
 }
