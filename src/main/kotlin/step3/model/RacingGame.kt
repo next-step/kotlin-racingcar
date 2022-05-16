@@ -7,7 +7,7 @@ class RacingGame(private val gameSetting: GameSetting) {
 
     private val racingTrack: RacingTrack = RacingTrack(gameSetting)
 
-    fun racing(): List<TrackResult> {
+    fun race(): List<TrackResult> {
         return (1..gameSetting.moveCount)
             .toList()
             .map { racingTrack.move() }

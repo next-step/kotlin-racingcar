@@ -7,7 +7,7 @@ import step3.ui.ResultView
 object RacingGameLauncher {
     fun start() {
         val gameSetting = InputView.input()
-        val result = RacingGame(gameSetting).racing()
+        val result = RacingGame(gameSetting).race()
         ResultView.display(result)
     }
 }

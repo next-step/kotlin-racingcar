@@ -9,7 +9,7 @@ class RandomGeneratorTest : FunSpec({
         val minValue = 0
         val maxValue = 9
         for (i in 1..1000) {
-            val randomValue = RandomGenerator.generate(minValue, maxValue)
+            val randomValue = RandomGenerator().generate(minValue, maxValue)
             randomValue shouldBeInRange (minValue..maxValue)
         }
     }

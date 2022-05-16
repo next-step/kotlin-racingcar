@@ -1,11 +1,26 @@
 package step3.model
 
 import io.kotest.core.spec.style.FunSpec
+import io.kotest.matchers.shouldBe
+import step3.util.NumberGenerator
 
 class CarTest : FunSpec({
 
-    test("move") {
-        val car = Car(1)
-        car.move()
+    test("move fail") {
+        val car = Car(object: NumberGenerator {
+            override fun generate(minValue: Int, maxValue: Int): Int {
+                return 1
+            }
+        })
+        car.move() shouldBe false
+    }
+
+    test("move success") {
+        val car = Car(object: NumberGenerator {
+            override fun generate(minValue: Int, maxValue: Int): Int {
+                return 4
+            }
+        })
+        car.move() shouldBe true
     }
 })
