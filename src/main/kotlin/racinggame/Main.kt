@@ -1,5 +1,6 @@
 package racinggame
 
+import racinggame.controller.RacingGameController
 import racinggame.domain.car.RandomEngineCarFactory
 import racinggame.view.InputLayout
 import racinggame.view.InputView
@@ -29,5 +30,6 @@ fun main() {
         ),
         resultView = ResultView
     )
-    racingGameLayout.execute(RandomEngineCarFactory)
+    val racingGameController = RacingGameController(racingGameLayout)
+    racingGameController.execute(RandomEngineCarFactory)
 }
