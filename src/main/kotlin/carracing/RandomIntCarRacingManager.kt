@@ -1,16 +1,16 @@
 package carracing
 
 class RandomIntCarRacingManager(
-    cars: Cars,
+    racingCars: RacingCars,
     racingMovementRoleByInt: RacingMovementRoleByInt
-) : CarRacingManager<Int>(cars, racingMovementRoleByInt) {
+) : CarRacingManager<Int>(racingCars, racingMovementRoleByInt) {
     companion object {
         fun fromInputDto(
             inputDto: InputDto,
             racingMovementRoleByInt: RacingMovementRoleByInt
         ): RandomIntCarRacingManager {
             val inputCars = List(inputDto.carCount) { Car() }
-            return RandomIntCarRacingManager(Cars(inputCars), racingMovementRoleByInt)
+            return RandomIntCarRacingManager(RacingCars(inputCars), racingMovementRoleByInt)
         }
     }
 }

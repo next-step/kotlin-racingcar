@@ -11,23 +11,23 @@ class CarListManagerTest : StringSpec({
         val defaultDistance = 3
         val forwardDistance = 5
         val car = Car(defaultDistance)
-        val cars = Cars(listOf(car))
+        val racingCars = RacingCars(listOf(car))
 
         // when
-        cars.moveCar(0, forwardDistance)
+        racingCars.moveCar(0, forwardDistance)
 
         // then
-        cars.cars[0].distance shouldBe defaultDistance + forwardDistance
+        racingCars.cars[0].distance shouldBe defaultDistance + forwardDistance
     }
 
     "getCarDistance 는 자동차 거리를 알려준다" {
         // given
         val defaultDistance = 3
         val car = Car(defaultDistance)
-        val cars = Cars(listOf(car))
+        val racingCars = RacingCars(listOf(car))
 
         // when
-        val carDistance = cars.getCarDistance(0)
+        val carDistance = racingCars.getCarDistance(0)
 
         // then
         carDistance shouldBe defaultDistance
@@ -36,12 +36,12 @@ class CarListManagerTest : StringSpec({
     "validateCarsIndex 는 설정하는 자동차의 Index 번호를 검증한다" {
         // given
         val car = Car()
-        val cars = Cars(listOf(car))
+        val racingCars = RacingCars(listOf(car))
         val carIndex = -1
 
         // when
         val shouldThrowExactly = shouldThrowExactly<IllegalArgumentException> {
-            cars.validateCarsIndex(carIndex)
+            racingCars.validateCarsIndex(carIndex)
         }
 
         // then
@@ -51,12 +51,12 @@ class CarListManagerTest : StringSpec({
     "validateCarsIndex 는 cars 에 사이즈를 넘긴 값을 넣으면 에러가 발생한다" {
         // given
         val car = Car()
-        val cars = Cars(listOf(car))
+        val racingCars = RacingCars(listOf(car))
         val carIndex = 30000
 
         // when
         val shouldThrowExactly = shouldThrowExactly<IllegalArgumentException> {
-            cars.validateCarsIndex(carIndex)
+            racingCars.validateCarsIndex(carIndex)
         }
 
         // then
