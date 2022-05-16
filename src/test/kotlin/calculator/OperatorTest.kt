@@ -7,40 +7,23 @@ import calculator.Operator.SUBTRACTION
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.data.row
+import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.shouldBe
 
 class OperatorTest : FreeSpec({
 
-    "문자열로 덧셈 연산자를 찾을 수 있다." - {
+    "문자열로 연산자를 찾을 수 있다." - {
         // when
-        val operator = Operator.findBySign(sign = "+")
-
-        // then
-        operator shouldBe ADDITION
-    }
-
-    "문자열로 뺄셈 연산자를 찾을 수 있다." - {
-        // when
-        val operator = Operator.findBySign(sign = "-")
-
-        // then
-        operator shouldBe SUBTRACTION
-    }
-
-    "문자열로 곱셈 연산자를 찾을 수 있다." - {
-        // when
-        val operator = Operator.findBySign(sign = "*")
-
-        // then
-        operator shouldBe MULTIPLICATION
-    }
-
-    "문자열로 나눗셈 연산자를 찾을 수 있다." - {
-        // when
-        val operator = Operator.findBySign(sign = "/")
-
-        // then
-        operator shouldBe DIVISION
+        listOf(
+            "+",
+            "-",
+            "*",
+            "/",
+        ).forEach { operatorString ->
+            "$operatorString 은 연산자 문자열이다." {
+                Operator.values() shouldContain Operator.findBySign(sign = operatorString)
+            }
+        }
     }
 
     "문자열에 해당되는 연산자가 없는 경우 예외가 발생한다." - {
@@ -59,7 +42,7 @@ class OperatorTest : FreeSpec({
             row(-1, -1, -2)
         ).forEach { (a, b, result) ->
             "$a + $b = $result"  {
-                ADDITION.calculate(Number(a), Number(b)).value shouldBe result
+                ADDITION.calculate(CalculatorNumber(a), CalculatorNumber(b)).value shouldBe result
             }
         }
     }
@@ -71,7 +54,7 @@ class OperatorTest : FreeSpec({
             row(-1, -1, 0)
         ).forEach { (a, b, result) ->
             "$a + $b = $result"  {
-                SUBTRACTION.calculate(Number(a), Number(b)).value shouldBe result
+                SUBTRACTION.calculate(CalculatorNumber(a), CalculatorNumber(b)).value shouldBe result
             }
         }
     }
@@ -83,7 +66,7 @@ class OperatorTest : FreeSpec({
             row(-1, -1, 1)
         ).forEach { (a, b, result) ->
             "$a + $b = $result"  {
-                MULTIPLICATION.calculate(Number(a), Number(b)).value shouldBe result
+                MULTIPLICATION.calculate(CalculatorNumber(a), CalculatorNumber(b)).value shouldBe result
             }
         }
     }
@@ -96,7 +79,7 @@ class OperatorTest : FreeSpec({
             row(-1, -1, 1)
         ).forEach { (a, b, result) ->
             "$a + $b = $result"  {
-                DIVISION.calculate(Number(a), Number(b)).value shouldBe result
+                DIVISION.calculate(CalculatorNumber(a), CalculatorNumber(b)).value shouldBe result
             }
         }
     }
