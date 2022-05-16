@@ -8,20 +8,15 @@ class Cars(
         cars.forEach { it.moveForward(movingStrategy) }
     }
 
+    fun findWinners(): List<Car> {
+        val maxPosition = cars.maxOf { it.position() }
+        return cars.filter { it.position() == maxPosition }
+    }
+
     companion object {
-        private const val MIN_CAR_COUNT = 1
-
-        fun of(carCount: Int): Cars {
-            validateMinCarCount(carCount)
-
-            val cars = List(carCount) { Car() }
+        fun from(names: List<String>): Cars {
+            val cars = names.map { Car.from(it) }
             return Cars(cars)
-        }
-
-        private fun validateMinCarCount(carCount: Int) {
-            require(carCount >= MIN_CAR_COUNT) {
-                "자동차 대수는 최소 ${MIN_CAR_COUNT}대 이어야 합니다. (carCount: $carCount)"
-            }
         }
     }
 }

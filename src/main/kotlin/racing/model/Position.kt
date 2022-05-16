@@ -1,11 +1,13 @@
 package racing.model
 
 class Position(
-    var position: Int
+    position: Int
 ) {
+    var position = position
+        private set
 
     init {
-        position = position.coerceAtLeast(MIN_POSITION)
+        this.position = position.coerceAtLeast(MIN_POSITION)
     }
 
     fun plusOne() {

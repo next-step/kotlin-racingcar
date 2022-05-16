@@ -6,17 +6,19 @@ import racing.view.InputView
 import racing.view.ResultView
 
 fun main() {
-    InputView.printCarCountInputMessage()
-    val carCount = InputView.inputCarCount()
+    InputView.printCarNamesInputMessage()
+    val carNames = InputView.inputCarNames()
 
     InputView.printTryCountInputMessage()
     val tryCount = InputView.inputTryCount()
 
-    val cars = Cars.of(carCount)
+    val cars = Cars.from(carNames)
     ResultView.printExecutionResultMessage()
 
     repeat(tryCount) {
         cars.moveForward(CarMovingStrategy)
-        ResultView.printCarPositions(cars.cars)
+        ResultView.printCarsNameAndPosition(cars.cars)
     }
+
+    ResultView.printWinnerNames(cars.findWinners())
 }

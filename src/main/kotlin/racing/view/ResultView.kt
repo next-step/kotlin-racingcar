@@ -10,18 +10,26 @@ object ResultView {
         println("실행 결과")
     }
 
-    fun printCarPositions(cars: List<Car>) {
-        cars.forEach { printCarPosition(it.position()) }
+    fun printCarsNameAndPosition(cars: List<Car>) {
+        cars.forEach { printCarNameAndPosition(it) }
         println()
     }
 
-    private fun printCarPosition(position: Int) {
-        println(generateCarPositionMark(position))
+    fun printWinnerNames(cars: List<Car>) {
+        println("${generateWinnerNames(cars)}가 최종 우승했습니다.")
+    }
+
+    private fun printCarNameAndPosition(car: Car) {
+        println("${car.name()} : ${generateCarPositionMark(car.position())}")
     }
 
     private fun generateCarPositionMark(position: Int): String {
         var positionMark = ""
         repeat(position) { positionMark += POSITION_MARK }
         return positionMark
+    }
+
+    private fun generateWinnerNames(cars: List<Car>): String {
+        return cars.joinToString(",") { it.name() }
     }
 }
