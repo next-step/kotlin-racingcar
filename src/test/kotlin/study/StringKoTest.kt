@@ -11,4 +11,6 @@ class StringKoTest : AnnotationSpec() {
         " ".isEmpty() shouldBe false
         "a".isEmpty() shouldBe false
     }
+
 }
+

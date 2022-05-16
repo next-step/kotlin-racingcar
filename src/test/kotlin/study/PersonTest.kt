@@ -38,4 +38,6 @@ class PersonTest {
         val person2 = Person("엄기훈", 33)
         assertThat(person1).isEqualTo(person2)
     }
+
 }
+
