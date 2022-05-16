@@ -20,7 +20,7 @@ internal class ExpressionParserTest {
         val (operands, operators) = sut.parse(expression)
 
         assertThat(operands).isEqualTo(listOf(1.0, 1.0))
-        assertThat(operators).isEqualTo(listOf(Operator.ADDITION))
+        assertThat(operators).isEqualTo(listOf(Symbol.ADDITION))
     }
 
     @Test
@@ -32,7 +32,7 @@ internal class ExpressionParserTest {
         assertThat(operands).isEqualTo(listOf(1.0, 2.0, 3.0, 4.0, 5.0))
         assertThat(operators).isEqualTo(
             listOf(
-                Operator.ADDITION, Operator.SUBTRACTION, Operator.MULTIPLICATION, Operator.DIVISION
+                Symbol.ADDITION, Symbol.SUBTRACTION, Symbol.MULTIPLICATION, Symbol.DIVISION
             )
         )
     }

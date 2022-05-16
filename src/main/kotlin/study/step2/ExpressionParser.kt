@@ -2,13 +2,13 @@ package study.step2
 
 class ExpressionParser {
 
-    fun parse(expression: String): Pair<List<Double>, List<Operator>> {
+    fun parse(expression: String): Expression {
         val splitted = expression.split(" ")
         val operands = splitted.filterIndexed { i, _ -> i % 2 == 0 }
             .map { it.toDouble() }
-        val operators = splitted.filterIndexed { i, _ -> i % 2 == 1 }
-            .map { Operator.of(it) }
+        val symbols = splitted.filterIndexed { i, _ -> i % 2 == 1 }
+            .map { Symbol.of(it) }
 
-        return operands to operators
+        return Expression(operands, symbols)
     }
 }

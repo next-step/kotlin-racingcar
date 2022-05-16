@@ -6,8 +6,8 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.EmptySource
 import org.junit.jupiter.params.provider.MethodSource
-import org.junit.jupiter.params.provider.NullSource
 import org.junit.jupiter.params.provider.ValueSource
 import java.util.stream.Stream
 
@@ -29,9 +29,9 @@ class CalculatorTest {
     }
 
     @ParameterizedTest
-    @NullSource
-    @ValueSource(strings = ["", "  ", "1 / 0"])
-    fun `올바르지 않은 표현식은 exception이 발생한다`(input: String?) {
+    @EmptySource
+    @ValueSource(strings = [" ", "1 / 0"])
+    fun `올바르지 않은 표현식은 exception이 발생한다`(input: String) {
         assertThrows<IllegalArgumentException> { sut.calculate(input) }
         assertThatThrownBy {
             sut.calculate(input)
