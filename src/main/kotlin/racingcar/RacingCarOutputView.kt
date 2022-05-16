@@ -4,13 +4,21 @@ object RacingCarOutputView {
 
     fun output(racingResults : RacingResults) {
         for(i in racingResults.value.indices) {
-            println("라운드 - [${racingResults.value[i].round}] 결과")
-            racingResults.value[i].distancesMoved.forEach() {
-                println(MOVED_SYMBOL.repeat(it))
-            }
+            outputRoundInfo(racingResults.value[i].round)
+            outputRacingResult(racingResults.value[i])
             println()
         }
         println("====== 경주 종료 ======")
+    }
+
+    private fun outputRoundInfo(round: Int) {
+        println("라운드 - [$round] 결과")
+    }
+
+    private fun outputRacingResult(racingResult: RacingResult) {
+        racingResult.distancesMoved.forEach() {
+            println(MOVED_SYMBOL.repeat(it))
+        }
     }
 
     private const val MOVED_SYMBOL = "-"
