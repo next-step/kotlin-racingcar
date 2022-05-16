@@ -2,11 +2,11 @@ package racingcar
 
 fun main() {
 
-    RacingView.InputView.displayCarNames()
+    InputView.displayCarNames()
     val carNames: String = readln()
     require(carNames.isNotBlank()) { "잘못된 요청 입니다." }
 
-    RacingView.InputView.displayRoundCount()
+    InputView.displayRoundCount()
     val roundCount: String = readln()
     require(roundCount.isNotBlank()) { "잘못된 요청 입니다." }
 
@@ -15,10 +15,10 @@ fun main() {
     val racing = Racing(Cars(readyCars))
     racing.start(roundCount.toInt(), DefaultMoveStrategy())
 
-    RacingView.OutputView.display(racing.history)
+    OutputView.display(racing.history)
 
     val winners = Winner(racing.result).winners
-    RacingView.OutputView.winner(winners)
+    OutputView.winner(winners)
 }
 
 fun ready(names: List<String>): List<Car> {

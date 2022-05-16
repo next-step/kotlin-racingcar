@@ -2,9 +2,13 @@ package racingcar
 
 data class Car(val name: String, val position: Int = DEFAULT_POSITION) {
 
-    fun move(isMove: Boolean): Car = if (isMove) Car(this.name, position + PLUS_POSITION) else this
+    fun move(isMove: Boolean): Car = if (isMove) {
+        this.copy(position = position + PLUS_POSITION)
+    } else {
+        this
+    }
 
-    fun isWinner(position: Int) = this.position == position
+    fun isWinner(position: Int): Boolean = this.position == position
 
     companion object {
         private const val DEFAULT_POSITION = 0
