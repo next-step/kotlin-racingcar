@@ -15,15 +15,7 @@ class DriverTest : DescribeSpec({
             driver.drive(true)
 
             // then
-            car.movement shouldBe 4
-        }
-
-        it("getMoveResult 실행 시 현재 진행상태를 반환한다.") {
-            // given
-            val driver = Driver(Car(3))
-
-            // then
-            driver.getMoveResult() shouldBe "---"
+            driver.driveRecord shouldBe listOf(4)
         }
     }
 })
