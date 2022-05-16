@@ -5,7 +5,8 @@ import racing.View.display
 
 class Racing(
     private val carCount: CarCount,
-    private val roundCount: RoundCount
+    private val roundCount: RoundCount,
+    private val distanceService: DistanceService = DistanceService()
 ) {
 
     companion object : KLogging()
@@ -31,7 +32,7 @@ class Racing(
     fun round(carList: List<Count>, prevGame: List<Car>): List<Car> {
         return carList.map { name ->
             val prevDistance = prevGame.firstOrNull { it.name == name }?.distance ?: 0
-            val newDistance = Distance.get()
+            val newDistance = distanceService.get()
 
             logger.debug { "car : [$name], prevDistance : $prevDistance, newDistance : $newDistance" }
             return@map Car(name = name, distance = prevDistance + newDistance)

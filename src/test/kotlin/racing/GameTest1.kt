@@ -1,7 +1,7 @@
 package racing
 
 import io.mockk.every
-import io.mockk.mockkObject
+import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
@@ -37,10 +37,10 @@ internal class RacingTest {
     fun `랜덤으로 생성된 distance 가 4보다 작으면 0으로 생성된 Collection`(
         carCnt: Int, roundCnt: Int
     ) {
-        mockkObject(Distance)
-        every { Distance.getRandom() } returns 3
+        val random = mockk<RandomImpl>()
+        every { random.getNumber() } returns 3
 
-        val racing = Racing(carCount = carCnt, roundCount = roundCnt)
+        val racing = Racing(carCount = carCnt, roundCount = roundCnt, distanceService = DistanceService(random))
         val result = racing.game(
             roundList = roundCnt.toList(),
             carList = carCnt.toList(),
