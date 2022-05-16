@@ -1,7 +1,7 @@
-package racingcar
+package racingcar.domain
 
-import racingcar.model.Car
-import racingcar.model.GameProperties
+import racingcar.domain.model.Car
+import racingcar.domain.model.GameProperties
 
 class GameRunner(private val properties: GameProperties) {
     fun start(): GameResult {

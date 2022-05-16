@@ -1,9 +1,9 @@
-package racingcar
+package racingcar.domain
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import racingcar.model.Car
-import racingcar.model.MovingStrategy
+import racingcar.domain.model.Car
+import racingcar.domain.model.MovingStrategy
 
 class GameRecorderTest {
     private val validCarName = "myCar"

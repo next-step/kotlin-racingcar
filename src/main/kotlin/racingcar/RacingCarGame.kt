@@ -1,5 +1,6 @@
 package racingcar
 
+import racingcar.domain.GameRunner
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
