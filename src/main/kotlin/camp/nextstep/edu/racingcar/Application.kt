@@ -1,7 +1,8 @@
 package camp.nextstep.edu.racingcar
 
-import camp.nextstep.edu.racingcar.interfaces.CarTrackView
+import camp.nextstep.edu.racingcar.interfaces.RacingSnapshotView
 import camp.nextstep.edu.racingcar.interfaces.cli.InputReader
+import camp.nextstep.edu.racingcar.interfaces.cli.RacingSnapshotWriter
 import camp.nextstep.edu.racingcar.interfaces.cli.ResultWriter
 import camp.nextstep.edu.racingcar.racing.Car
 import camp.nextstep.edu.racingcar.racing.Racing
@@ -13,12 +14,9 @@ fun main() {
     val racing = Racing.new(participants, moveCount)
 
     racing.start()
-    val carTracks = racing.result()
 
     for (i in 0 until moveCount) {
-        for ((car, track) in carTracks) {
-            ResultWriter.writeResult(CarTrackView(car, track), i)
-        }
+        RacingSnapshotWriter.writeRacingSnapshot(RacingSnapshotView(racing, i))
         ResultWriter.writeBlank()
     }
 

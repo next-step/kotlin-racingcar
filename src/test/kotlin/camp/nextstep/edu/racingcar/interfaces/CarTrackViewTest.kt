@@ -20,7 +20,7 @@ internal class CarTrackViewTest {
         val track = Track(moveCount)
 
         car.raceOn(track, moveCount)
-        val carTraces = CarTrackView(car, track).traces(moveCount)
+        val carTraces = CarTrackView(car, track, moveCount).toString()
 
         carTraces.shouldContain(carName)
         carTraces.shouldNotContain("⎼")
@@ -35,7 +35,7 @@ internal class CarTrackViewTest {
         val track = Track(moveCount)
 
         car.raceOn(track, moveCount)
-        val carTraces = CarTrackView(car, track).traces(moveCount)
+        val carTraces = CarTrackView(car, track, moveCount).toString()
 
         carTraces.shouldContain(carName)
         val dashCount = carTraces.count { it == '⎼' }
@@ -51,7 +51,7 @@ internal class CarTrackViewTest {
         val track = Track(moveCount)
 
         car.raceOn(track, moveCount)
-        val carTraces = CarTrackView(car, track).traces(moveCount)
+        val carTraces = CarTrackView(car, track, moveCount).toString()
 
         carTraces.shouldContain(carName)
         val dashCount = carTraces.count { it == '⎼' }
