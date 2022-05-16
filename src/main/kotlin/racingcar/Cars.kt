@@ -4,11 +4,8 @@ package racingcar
 value class Cars(val values: List<Car>) {
 
     fun move(refuels: List<Int>): Cars {
-        val resultCars: MutableList<Car> = mutableListOf()
-        for (i in values.indices) {
-            resultCars.add(values[i].move(refuels[i]))
-        }
-        return Cars(resultCars)
+        val carsAndRefuels = values zip refuels
+        return Cars(carsAndRefuels.map { it.first.move(it.second) })
     }
 
     companion object {
