@@ -1,44 +1,26 @@
 package racing
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import racing.model.CarMoveResult
+import racing.model.Name
+import racing.model.Position
 import racing.model.PositionHistory
 
 class PositionHistoryTest {
-    private lateinit var positionHistory: PositionHistory
-
-    @BeforeEach
-    fun setUp() {
-        positionHistory = PositionHistory(mutableListOf())
-    }
-
-    @Test
-    fun `이동 결과 저장 테스트`() {
-        // given
-        repeat(10) { position ->
-            positionHistory.save(CarMoveResult("차${position}", position))
-        }
-
-        // when
-        val size = positionHistory.size()
-
-        // then
-        assertThat(size).isEqualTo(10)
-    }
-
     @Test
     fun `우승자 구하기 테스트`() {
         // given
-        repeat(10) { position ->
-            positionHistory.save(CarMoveResult("이름 $position", position))
+        val results = mutableListOf<CarMoveResult>()
+        repeat(5) {
+            results.add(CarMoveResult(Name("Car $it"), Position(it)))
         }
+        val positionHistory = PositionHistory(results.toList())
 
         // when
-        val winner = positionHistory.getMaxPositionCarName().joinToString()
+        val winner = positionHistory.getMaxPositionCarName().names.joinToString { it.name }
 
         // then
-        assertThat(winner).isEqualTo("이름 9")
+        assertThat(winner).isEqualTo("Car 4")
     }
 }

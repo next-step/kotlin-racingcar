@@ -16,14 +16,19 @@ class ResultView(private val totalPositionHistory: TotalPositionHistory) {
 
     private fun printCarMoveResult(positionHistory: PositionHistory) {
         positionHistory.forEach { moveResult ->
-            print("${moveResult.name} : ")
-            println(PRINT_VALUE.repeat(moveResult.position))
+            print("${moveResult.name.name} : ")
+            println(PRINT_VALUE.repeat(moveResult.position.position))
         }
         println()
     }
 
     private fun printWinnersName() {
-        println(totalPositionHistory.findWinnersName().joinToString(separator = ", ", postfix = "가 최종 우승했습니다."))
+        println(
+            totalPositionHistory.findWinnersName().names.joinToString(
+                separator = ", ",
+                postfix = "가 최종 우승했습니다."
+            ) { it.name }
+        )
     }
 
     companion object {

@@ -4,10 +4,10 @@ import racing.RandomMoving
 
 class Cars(private val cars: List<Car>) {
     fun moveCars(): PositionHistory {
-        val positionHistory = PositionHistory(mutableListOf())
+        val positionHistory = mutableListOf<CarMoveResult>()
         cars.forEach { car ->
-            positionHistory.save(car.move(RandomMoving))
+            positionHistory.add(car.move(RandomMoving))
         }
-        return positionHistory
+        return PositionHistory(positionHistory.toList())
     }
 }

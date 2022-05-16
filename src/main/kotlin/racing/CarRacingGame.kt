@@ -3,18 +3,26 @@ package racing
 import racing.model.Car
 import racing.model.CarInput
 import racing.model.Cars
+import racing.model.Position
+import racing.model.PositionHistory
 import racing.model.TotalPositionHistory
 
 class CarRacingGame(private val carInput: CarInput) {
     fun start(): TotalPositionHistory {
         val cars = makeCars()
-        val totalPositionHistory = TotalPositionHistory(mutableListOf())
+        val totalPositionHistory = mutableListOf<PositionHistory>()
 
-        repeat(carInput.times) {
-            totalPositionHistory.save(cars.moveCars())
+        repeat(carInput.times.times) {
+            totalPositionHistory.add(cars.moveCars())
         }
-        return totalPositionHistory
+        return TotalPositionHistory(totalPositionHistory.toList())
     }
 
-    private fun makeCars(): Cars = Cars(List(carInput.carNames.size) { index -> Car(name = carInput.carNames[index]) })
+    private fun makeCars(): Cars {
+        val cars = mutableListOf<Car>()
+        carInput.names.forEach { name ->
+            cars.add(Car(name, Position()))
+        }
+        return Cars(cars.toList())
+    }
 }
