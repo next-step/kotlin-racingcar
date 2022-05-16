@@ -9,9 +9,9 @@ internal class CarsTest : DescribeSpec({
             // given
             val cars = Cars(
                 listOf(
-                    Car.spawnAt(0),
-                    Car.spawnAt(2),
-                    Car.spawnAt(3),
+                    Car(0),
+                    Car(2),
+                    Car(3),
                 )
             )
 
@@ -19,16 +19,16 @@ internal class CarsTest : DescribeSpec({
             val result = cars.toPrintableCars()
 
             // then
-            result shouldBe "-----"
+            result shouldBe "unknown: unknown: --unknown: ---"
         }
 
         it("자동차들을 구분자를 포함한 출력 가능한 형태의 문자열로 변환한다.") {
             // given
             val cars = Cars(
                 listOf(
-                    Car.spawnAt(0),
-                    Car.spawnAt(2),
-                    Car.spawnAt(3),
+                    Car(0),
+                    Car(2),
+                    Car(3),
                 )
             )
 
@@ -36,7 +36,18 @@ internal class CarsTest : DescribeSpec({
             val result = cars.toPrintableCars("/")
 
             // then
-            result shouldBe "/--/---"
+            result shouldBe "unknown: /unknown: --/unknown: ---"
+        }
+
+        it("구분자를 가진 자동차 이름들을 가진 생성할 수 있다.") {
+            // given
+            val names = "mbc,kbs,jtbc,sbs"
+
+            // when
+            val cars = Cars.createWithNames(names)
+
+            // then
+            cars.toPrintableCars("/") shouldBe "mbc: /kbs: /jtbc: /sbs: "
         }
     }
 })

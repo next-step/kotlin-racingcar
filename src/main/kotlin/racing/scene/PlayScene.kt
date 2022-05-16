@@ -18,23 +18,35 @@ class PlayScene(
     private var totalRound = 0
     private var cars: Cars = Cars.empty()
 
-    override fun start() {
+    override fun run() {
+        start()
+        do {
+            update()
+        } while (hasNext())
+        end()
+    }
+
+    private fun start() {
         setUpTotalRound()
         setUpCars()
         printPrologue()
     }
 
-    override fun update() {
+    private fun update() {
         moveCars()
         drawCars()
         outputSplitLine()
     }
 
-    override fun hasNext(): Boolean = currentRound++ < totalRound
+    private fun end() {
+        outputWinners()
+    }
+
+    private fun hasNext(): Boolean = currentRound++ < totalRound
 
     private fun setUpCars() {
-        val carNumber = environmentManager.getOrDefault(Constants.CAR_NUMBER_KEY, "0").toInt()
-        cars = Cars.create(carNumber)
+        val carNames = environmentManager.getOrDefault(Constants.CAR_NAMES_KEY, "")
+        cars = Cars.createWithNames(carNames)
     }
 
     private fun setUpTotalRound() {
@@ -55,5 +67,9 @@ class PlayScene(
 
     private fun printPrologue() {
         outputPainter.draw("\n실행결과\n")
+    }
+
+    private fun outputWinners() {
+        outputPainter.draw("${cars.getWinners()}가 최종 우승했습니다.")
     }
 }

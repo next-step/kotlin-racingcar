@@ -17,15 +17,17 @@ internal class InputSceneTest : DescribeSpec({
             val stubEnvironmentModule = StubEnvironmentModule()
             val environmentManager = EnvironmentManager(stubEnvironmentModule)
             val outputPainter = StubOutputPainter()
-            val inputSystem = StubInputSystem(listOf("1", "2"))
+            val expectedNames = "mbc,kbs,jtbc,sbs"
+            val expectedRound = "2"
+            val inputSystem = StubInputSystem(listOf(expectedNames, expectedRound))
             val inputScene = InputScene(outputPainter, inputSystem, environmentManager)
 
             // when
             GameEngine.run(inputScene)
 
             // then
-            environmentManager.get(Constants.CAR_NUMBER_KEY) shouldBe "1"
-            environmentManager.get(Constants.STAGE_NUMBER_KEY) shouldBe "2"
+            environmentManager.get(Constants.CAR_NAMES_KEY) shouldBe expectedNames
+            environmentManager.get(Constants.STAGE_NUMBER_KEY) shouldBe expectedRound
         }
     }
 })

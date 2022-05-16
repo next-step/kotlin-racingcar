@@ -8,7 +8,7 @@ class StringTest : AnnotationSpec() {
     @Test
     fun isEmpty() {
         "".isEmpty() shouldBe true
-        " ".isEmpty() shouldBe true
-        "\t".isEmpty() shouldBe true
+        " ".isEmpty() shouldBe false
+        "\t".isEmpty() shouldBe false
     }
 }

@@ -13,7 +13,7 @@ internal class CarTest : DescribeSpec({
 
             // when
             val car = shouldThrow<IllegalArgumentException> {
-                Car.spawnAt(invalidPosition)
+                Car(invalidPosition)
             }
 
             // then
@@ -25,25 +25,25 @@ internal class CarTest : DescribeSpec({
         it("무작위 값이 3 이하일 경우 정지한다.") {
             // given
             val randomValue = 3
-            val car = Car.spawnAt(0)
+            val car = Car(0)
 
             // when
             val movedCar = car.moveForward(randomValue)
 
             // then
-            movedCar shouldBe Car.spawnAt(0)
+            movedCar.compareTo(Car(0)) shouldBe 0
         }
 
         it("무작위 값이 4 이상일 경우 전진한다.") {
             // given
             val randomValue = 4
-            val car = Car.spawnAt(0)
+            val car = Car(0)
 
             // when
             val movedCar = car.moveForward(randomValue)
 
             // then
-            movedCar shouldBe Car.spawnAt(1)
+            movedCar.compareTo(Car(1)) shouldBe 0
         }
     }
 
@@ -51,25 +51,38 @@ internal class CarTest : DescribeSpec({
         it("현재 위치 만큼 -로 표현된다.") {
             // given
             val position = 5
-            val movedCar = Car.spawnAt(position)
+            val movedCar = Car(position)
 
             // when
             val result = movedCar.toString()
 
             // then
-            result shouldBe "-----"
+            result shouldBe "unknown: -----"
         }
 
         it("현재 위치가 0일 경우 공백으로 표현한다.") {
             // given
             val position = 0
-            val movedCar = Car.spawnAt(position)
+            val movedCar = Car(position)
 
             // when
             val result = movedCar.toString()
 
             // then
-            result shouldBe ""
+            result shouldBe "unknown: "
+        }
+
+        it("자동차는 이름과 위치로 표현된다.") {
+            // given
+            val position = 5
+            val name = "yohan"
+            val car = Car(position, name)
+
+            // when
+            val result = car.toString()
+
+            // then
+            result shouldBe "yohan: -----"
         }
     }
 })

@@ -12,9 +12,9 @@ internal class ScoreBoardTest : DescribeSpec({
             val stubOutputPainter = StubOutputPainter()
             val cars = Cars(
                 listOf(
-                    Car.spawnAt(1),
-                    Car.spawnAt(2),
-                    Car.spawnAt(3),
+                    Car(1),
+                    Car(2),
+                    Car(3),
                 )
             )
             val scoreBoard = ScoreBoard(stubOutputPainter)
@@ -24,9 +24,9 @@ internal class ScoreBoardTest : DescribeSpec({
 
             // then
             val expectedResult = """
-                -
-                --
-                ---
+                unknown: -
+                unknown: --
+                unknown: ---
             """.trimIndent()
             stubOutputPainter.outputBuffer shouldBe expectedResult
         }
@@ -36,9 +36,9 @@ internal class ScoreBoardTest : DescribeSpec({
             val stubOutputPainter = StubOutputPainter()
             val cars = Cars(
                 listOf(
-                    Car.spawnAt(0),
-                    Car.spawnAt(2),
-                    Car.spawnAt(3),
+                    Car(0),
+                    Car(2),
+                    Car(3),
                 )
             )
             val scoreBoard = ScoreBoard(stubOutputPainter)
@@ -48,9 +48,9 @@ internal class ScoreBoardTest : DescribeSpec({
 
             // then
             val expectedResult = """
-                
-                --
-                ---
+                unknown: 
+                unknown: --
+                unknown: ---
             """.trimIndent()
             stubOutputPainter.outputBuffer shouldBe expectedResult
         }
