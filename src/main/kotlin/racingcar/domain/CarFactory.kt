@@ -1,7 +1,7 @@
 package racingcar.domain
 
 /**
- * 클래스에 대한 설명을 적어주세요.
+ * 차량을 만들어주는 클래스
  * Created by Jaesungchi on 2022.05.16..
  */
 object CarFactory {

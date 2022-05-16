@@ -10,7 +10,10 @@ object Dice {
     private const val SCORE_OF_CAN_GO = 4
     private const val POINT_MOVE = 1
     private const val POINT_STOP = 0
+
     fun rollDiceAndGetPoint(score: Int = rollDice()) = if (isCanRunScore(score)) POINT_MOVE else POINT_STOP
+
     private fun isCanRunScore(score: Int) = score >= SCORE_OF_CAN_GO
+    
     private fun rollDice() = (MINIMUM_SCORE..MAXIMUM_SCORE).random()
 }
