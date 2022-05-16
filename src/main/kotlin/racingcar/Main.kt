@@ -15,7 +15,8 @@ fun main() {
 
 fun ResultView(result: List<Round>) {
     println("실행 결과")
-    result.map {
+    result.mapIndexed { index, it ->
+        println("$index 라운드")
         it.getResult().forEach {
             println(it.toString())
         }
