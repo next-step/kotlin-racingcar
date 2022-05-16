@@ -12,8 +12,6 @@ class StandardInputView : InputView {
             .requireOrThrow("자동차 이름은 빈 값일 수 없습니다.") { it.isNotBlank() }
             .map { it.take(NAME_MAX_LENGTH) }
 
-
-
         println("시도할 횟수는 몇 회인가요?")
         numberOfLap = readln().toInt()
     }
