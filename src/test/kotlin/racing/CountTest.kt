@@ -3,7 +3,7 @@ package racing
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-internal class CntTest {
+internal class CountTest {
 
     @Test
     fun `Int 5 입력되었을때 5개의 원소를 갖는 List 생성`() {

@@ -6,8 +6,8 @@ fun main() {
     val playCount = Input.playCount()
 
     Racing(
-        carCnt = carCount,
-        roundCnt = playCount
+        carCount = carCount,
+        roundCount = playCount
     ).start()
 
 }

@@ -17,7 +17,7 @@ internal class RacingTest {
     fun `자동차, Round 기준으로 2차원 Collection이 생성되는지 확인`(
         carCnt: Int, roundCnt: Int
     ) {
-        val racing = Racing(carCnt = carCnt, roundCnt = roundCnt)
+        val racing = Racing(carCount = carCnt, roundCount = roundCnt)
         val result = racing.game(
             roundList = roundCnt.toList(),
             carList = carCnt.toList(),
@@ -40,7 +40,7 @@ internal class RacingTest {
         mockkObject(Distance)
         every { Distance.getRandom() } returns 3
 
-        val racing = Racing(carCnt = carCnt, roundCnt = roundCnt)
+        val racing = Racing(carCount = carCnt, roundCount = roundCnt)
         val result = racing.game(
             roundList = roundCnt.toList(),
             carList = carCnt.toList(),

@@ -4,18 +4,18 @@ import mu.KLogging
 import racing.View.display
 
 class Racing(
-    private val carCnt: CarCnt,
-    private val roundCnt: RoundCnt
+    private val carCount: CarCount,
+    private val roundCount: RoundCount
 ) {
 
     companion object : KLogging()
 
     fun start() {
-        game(roundList = roundCnt.toList(), carList = carCnt.toList())
+        game(roundList = roundCount.toList(), carList = carCount.toList())
             .display()
     }
 
-    fun game(roundList: List<Cnt>, carList: List<Cnt>): List<MutableList<Car>> {
+    fun game(roundList: List<Count>, carList: List<Count>): List<MutableList<Car>> {
         val games: MutableList<MutableList<Car>> = mutableListOf()
 
         roundList.forEachIndexed { index, _ ->
@@ -28,7 +28,7 @@ class Racing(
     }
 
 
-    fun round(carList: List<Cnt>, prevGame: List<Car>): List<Car> {
+    fun round(carList: List<Count>, prevGame: List<Car>): List<Car> {
         return carList.map { name ->
             val prevDistance = prevGame.firstOrNull { it.name == name }?.distance ?: 0
             val newDistance = Distance.get()
