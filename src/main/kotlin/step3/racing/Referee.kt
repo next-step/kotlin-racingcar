@@ -8,5 +8,5 @@ object Referee {
         }.map { it.name }
     }
 
-    private fun findTopDistance(racers: List<Car>) = racers.sortedByDescending { it.distance }.first().distance
+    private fun findTopDistance(racers: List<Car>) = racers.maxOf { it.distance }
 }

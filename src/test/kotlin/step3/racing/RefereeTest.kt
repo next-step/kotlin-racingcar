@@ -7,7 +7,7 @@ import io.kotest.matchers.shouldBe
 class RefereeTest : DescribeSpec({
     describe("findWinnerNames") {
         it("1등이 한명일 경우 1등의 이름을 반환한다.") {
-            val winner = Car("a").apply { run(true) }
+            val winner = Car("a").apply { run(10) }
             val racers = listOf(winner, Car("b"), Car("c"))
 
             val result = Referee.findWinnerNames(racers)
@@ -17,8 +17,8 @@ class RefereeTest : DescribeSpec({
         }
 
         it("1등이 두명일 경우 1등의 이름을 반환한다.") {
-            val winner1 = Car("a").apply { run(true) }
-            val winner2 = Car("d").apply { run(true) }
+            val winner1 = Car("a").apply { run(10) }
+            val winner2 = Car("d").apply { run(10) }
             val racers = listOf(winner1, Car("b"), Car("c"), winner2)
 
             val result = Referee.findWinnerNames(racers)

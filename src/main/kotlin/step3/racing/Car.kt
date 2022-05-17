@@ -1,5 +1,7 @@
 package step3.racing
 
+private const val MOVING_CONDITION = 4
+
 class Car(val name: String) {
     var distance: Int = 0
         private set
@@ -8,9 +10,7 @@ class Car(val name: String) {
         distance += 1
     }
 
-    private fun isMoved() = RandomGenerator.getInt(0, 9) >= 4
-
-    fun run(isMoved: Boolean = isMoved()) {
-        if (isMoved) move()
+    fun run(input: Int) {
+        if (input >= MOVING_CONDITION) move()
     }
 }
