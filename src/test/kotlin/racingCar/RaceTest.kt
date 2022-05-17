@@ -5,12 +5,12 @@ import io.kotest.matchers.shouldBe
 
 class RaceTest : DescribeSpec({
     describe("run") {
-        it("carCount 만큼 moveFor 을 실행한다.") {
-            val race = Race(3, 1)
+        it("tryCount * carCount 만큼 moveFor 을 호출한다.") {
+            val race = Race(3, 2)
 
             race.run()
 
-            race.carPositions.size shouldBe 3
+            race.carPositions.size shouldBe 6
         }
     }
 })
