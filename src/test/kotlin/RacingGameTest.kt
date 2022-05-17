@@ -39,6 +39,6 @@ class RacingGameTest {
         repeat(numberOfTries) {
             RacingGame.play(cars, strategy)
         }
-        assertThat(getWinner(cars)).isEqualTo(setOf("자동차1", "자동차2", "자동차3"))
+        assertThat(getWinner(cars)).isEqualTo(listOf("자동차1", "자동차2", "자동차3"))
     }
 }
