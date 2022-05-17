@@ -1,25 +1,24 @@
 package racingcar.ui
 
 import racingcar.application.GameResult
-import racingcar.application.RaceResult
 import racingcar.domain.Car
+import racingcar.domain.Record
 
 object ResultView {
 
     private const val PADDING = 6
 
     fun show(gameResult: GameResult) {
-        gameResult.run {
-            raceResults.forEach {
-                printRace(it)
-            }
-            printWinners(winners)
+
+        gameResult.records.forEachIndexed { i, record ->
+            printRace(i + 1, record)
         }
+        printWinners(gameResult.winners)
     }
 
-    private fun printRace(raceResult: RaceResult) {
-        println("[${raceResult.phaseOfRace}번째 경주]")
-        raceResult.raceRecord.cars.forEach { car ->
+    private fun printRace(roundOfRace: Int, record: Record) {
+        println("[${roundOfRace}번째 경주]")
+        record.carStates.forEach { car ->
             printLane(car)
         }
         println()

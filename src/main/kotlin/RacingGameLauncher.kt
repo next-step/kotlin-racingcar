@@ -7,7 +7,7 @@ object RacingGameLauncher {
     fun launch() {
         val gameInput = InputView.read()
 
-        val gameResult = RacingGameManager.proceed(gameInput, RandomDriver)
+        val gameResult = RacingGameManager.play(gameInput, RandomDriver)
 
         ResultView.show(gameResult)
     }

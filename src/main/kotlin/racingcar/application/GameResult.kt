@@ -1,13 +1,8 @@
 package racingcar.application
 
-import racingcar.domain.RaceRecord
+import racingcar.domain.Record
 
 data class GameResult(
     val winners: List<String>,
-    val raceResults: List<RaceResult>,
-)
-
-data class RaceResult(
-    val phaseOfRace: Int,
-    val raceRecord: RaceRecord
+    val records: List<Record>,
 )
