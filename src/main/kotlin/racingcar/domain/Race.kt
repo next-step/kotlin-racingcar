@@ -25,13 +25,16 @@ class Race(
     }
 
     fun selectWinner(): List<String> {
-        val maxPosition = getMaxPosition()
-        return cars.filter { it.position == maxPosition }
+        val winner = findWinner()
+        return cars.filter { it.isDrawWith(winner) }
             .map { it.name }
     }
 
-    private fun getMaxPosition(): Int {
-        return cars.maxOf { it.position }
+    private fun findWinner(): Car {
+        return cars.reduce { winner, other ->
+            if (other.isWinningOver(winner)) other
+            else winner
+        }
     }
 
     companion object {

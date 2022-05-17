@@ -16,6 +16,14 @@ class Car(
         position += driver.drive()
     }
 
+    fun isWinningOver(other: Car): Boolean {
+        return position > other.position
+    }
+
+    fun isDrawWith(other: Car): Boolean {
+        return position == other.position
+    }
+
     fun captureState() = State(name, position)
 
     companion object {
