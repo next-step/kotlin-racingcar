@@ -7,7 +7,7 @@ class CarTrackSnapshot(car: Car, events: List<CarRaceEvent>) {
 
     private val carName = car.name
     private val track = CarRaceEvent.merge(events)
-    private val traces = track.traces().asSequence().joinToString(" ") { if (it) "⎼" else "" }
+    private val traces = track.traces().joinToString(" ") { if (it) "⎼" else "" }
 
     override fun toString(): String {
         return "${carName}\t: $traces"
