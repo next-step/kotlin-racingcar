@@ -20,14 +20,14 @@ object Calculator {
             .filter { it.isNotBlank() }
 
         var accumulator = INITIAL_ACCUMULATOR
-        repeat(countOperation(operationUnits.size)) {
+        repeat(countOperationPair(operationUnits.size)) {
             val (operator, operand) = extractOperationPair(it, operationUnits)
             accumulator = operate(operator, accumulator, operand)
         }
         return accumulator
     }
 
-    private fun countOperation(it: Int) = it / 2
+    private fun countOperationPair(it: Int) = it / 2
 
     private fun extractOperationPair(operationTurn: Int, operationUnits: List<String>): Pair<String, Double> {
         val index = operationTurn * 2
