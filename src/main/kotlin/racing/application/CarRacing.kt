@@ -1,7 +1,5 @@
 package racing.application
 
-import racing.model.Car
-import racing.model.Round
 import racing.model.Rounds
 
 class CarRacing(
@@ -22,20 +20,7 @@ class CarRacing(
 
     fun start(): Rounds {
         val rounds = Rounds()
-        repeat(tries) {
-            val prevRound = rounds.get(it - 1)
-            val numberOfCars = carNames.size
-            rounds.put(
-                it,
-                getNextRound(prevRound, getRandom(numberOfCars), numberOfCars)
-            )
-        }
-        return rounds
+        return rounds.process(tries, carNames)
     }
 
-    private fun getNextRound(prevRound: Round?, randomNumbers: List<Int>, numberOfCars: Int): Round =
-        prevRound?.next(randomNumbers) ?: getFirstRound(numberOfCars)
-
-    private fun getFirstRound(numberOfCars: Int): Round =
-        Round(List(numberOfCars) { Car(carNames[it]) })
 }
