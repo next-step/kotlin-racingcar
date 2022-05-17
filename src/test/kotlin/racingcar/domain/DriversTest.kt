@@ -27,6 +27,7 @@ class DriversTest {
             Drivers(
                 listOf(invalidCarName),
                 AlwaysTrueMoveStrategy(),
+                NameLengthLimitStrategy()
             )
         }
     }
@@ -34,7 +35,7 @@ class DriversTest {
     @Test
     fun `드라이버의 전략이 true면 차가 움직일 수 있다`() {
         // given
-        val alwayMoveDriver = Drivers(listOf("car"), AlwaysTrueMoveStrategy())
+        val alwayMoveDriver = Drivers(listOf("car"), AlwaysTrueMoveStrategy(), NameLengthLimitStrategy())
 
         // when
         val moveCount = 100
@@ -55,7 +56,8 @@ class DriversTest {
         // given
         val alwayMoveDriver = Drivers(
             listOf("car"),
-            AlwaysFalseMoveStrategy()
+            AlwaysFalseMoveStrategy(),
+            NameLengthLimitStrategy()
         )
 
         // when

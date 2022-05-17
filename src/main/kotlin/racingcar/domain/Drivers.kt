@@ -1,14 +1,13 @@
 package racingcar.domain
 
 import racingcar.domain.strategy.MoveStrategy
-import racingcar.domain.strategy.NameLengthLimitStrategy
 import racingcar.domain.strategy.NameStrategy
 import racingcar.dto.MoveResults
 
 class Drivers(
     private val carNames: List<String>,
     private val moveStrategy: MoveStrategy,
-    nameStrategy: NameStrategy = NameLengthLimitStrategy()
+    nameStrategy: NameStrategy
 ) {
     init {
         carNames.forEach { nameStrategy.validateName(it) }
