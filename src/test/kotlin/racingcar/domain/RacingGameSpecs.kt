@@ -12,14 +12,14 @@ class RacingGameSpecs : DescribeSpec({
         3, 0, 1
     )
 
-    val movementGenerator = PreparedMovementCommandGenerator(movements)
+    val movementGenerator = PreparedDriver(movements)
 
     describe("경주 게임은") {
         context("경주 수가 유효하면") {
             val numberOfRaces = 3
             val numberOfCars = 3
             val racingCars = RacingCars(
-                List(numberOfCars) { Car("name") },
+                List(numberOfCars) { Car("name", RandomDriver) },
                 movementGenerator
             )
             val racingGame = RacingGame(
@@ -40,7 +40,7 @@ class RacingGameSpecs : DescribeSpec({
         context("경주 수가 유효하지 않다면") {
             val invalidNumberOfRaces = -1
             val racingCars = RacingCars(
-                listOf(Car("name")),
+                listOf(Car("name", RandomDriver)),
                 movementGenerator
             )
             it("예외를 발생시킨다") {

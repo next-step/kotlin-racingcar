@@ -2,7 +2,7 @@ package racingcar.domain
 
 class Race(
     private val cars: List<Car>,
-    private val movementCommandGenerator: MovementCommandGenerator
+    private val driver: Driver
 ) {
 
     fun proceed(numberOfRounds: Int): List<Record> {
@@ -19,7 +19,7 @@ class Race(
     }
 
     private fun proceedRound() {
-        cars.forEach { it.move(movementCommandGenerator.generateMovement()) }
+        cars.forEach { it.move()}
     }
 
     fun selectWinner(): List<String> {

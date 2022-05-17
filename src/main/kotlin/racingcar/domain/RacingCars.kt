@@ -2,7 +2,7 @@ package racingcar.domain
 
 class RacingCars(
     private val cars: List<Car>,
-    private val movementCommandGenerator: MovementCommandGenerator
+    private val driver: Driver
 ) {
     val size: Int = cars.size
 
@@ -12,8 +12,8 @@ class RacingCars(
 
     fun race(): RaceRecord {
         cars.forEach {
-            val movement = movementCommandGenerator.generateMovement()
-            it.move(movement)
+            val movement = driver.drive()
+            it.move()
         }
         return RaceRecord(cars.map { it.captureState() })
     }

@@ -8,11 +8,11 @@ class RacingCarsSpecs : DescribeSpec({
 
     val movements = listOf(0, 4, 9)
     val numberOfCars = movements.size
-    val commandGenerator = PreparedMovementCommandGenerator(movements)
+    val commandGenerator = PreparedDriver(movements)
 
     describe("경주에 참여한 자동차들은") {
         context("경주에 필요한 수 만큼 자동차가 등록되었다면") {
-            val cars = List(numberOfCars) { Car("name") }
+            val cars = List(numberOfCars) { Car("name", RandomDriver) }
             val racingCars = RacingCars(cars, commandGenerator)
 
             it("경주를 진행하고 경주 결과를 반환한다") {
@@ -39,15 +39,3 @@ class RacingCarsSpecs : DescribeSpec({
         }
     }
 })
-
-class PreparedMovementCommandGenerator(
-    _preparedCommands: List<Int>
-) : MovementCommandGenerator {
-
-    private val preparedCommands = ArrayDeque(_preparedCommands)
-
-    override fun generateMovement(): MovementCommand {
-        check(preparedCommands.isNotEmpty()) { "준비된 명령을 모두 사용했습니다" }
-        return MovementCommand.of(preparedCommands.removeFirst())
-    }
-}

@@ -1,9 +1,8 @@
 package racingcar.domain
 
-import racingcar.domain.MovementCommand.FORWARD
-
 class Car(
-    val name: String
+    val name: String,
+    private val driver: Driver
 ) {
     var position: Int = 0
         private set
@@ -13,8 +12,9 @@ class Car(
         require(name.length in NAME_LENGTH_RANGE) { "이름은 최소 1글자, 최대 5글자이어야 합니다." }
     }
 
-    fun move(movementCommand: MovementCommand) {
-        if (movementCommand == FORWARD) position += movementCommand.power
+    fun move() {
+        val movementCommand = driver.drive()
+        position += movementCommand.power
     }
 
     fun captureState() = State(name, position)

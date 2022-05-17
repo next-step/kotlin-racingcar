@@ -1,5 +1,5 @@
 import racingcar.application.RacingGameManager
-import racingcar.domain.RandomMovementCommandGenerator
+import racingcar.domain.RandomDriver
 import racingcar.ui.InputView
 import racingcar.ui.ResultView
 
@@ -7,7 +7,7 @@ object RacingGameLauncher {
     fun launch() {
         val gameInput = InputView.read()
 
-        val gameResult = RacingGameManager.proceed(gameInput, RandomMovementCommandGenerator)
+        val gameResult = RacingGameManager.proceed(gameInput, RandomDriver)
 
         ResultView.show(gameResult)
     }
