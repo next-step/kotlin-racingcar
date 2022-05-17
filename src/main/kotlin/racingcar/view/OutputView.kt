@@ -7,12 +7,12 @@ private const val POSITION_DISPLAY_SYMBOL = "-"
 
 fun printPlayResult(result: List<Cars>) {
     println("실행 결과")
-    result.forEach { cars -> printPosition(cars.value) }
+    result.forEach { cars -> printPosition(cars.cars) }
 }
 
 private fun printPosition(cars: List<Car>) {
     val result = StringBuilder().apply {
-        cars.forEach { append("${convertToPositionSymbol(it)}\n") }
+        cars.forEach { append("${it.name.value} : ${convertToPositionSymbol(it)}\n") }
     }.toString()
     println(result)
 }

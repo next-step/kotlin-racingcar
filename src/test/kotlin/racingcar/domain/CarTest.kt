@@ -12,7 +12,7 @@ internal class CarTest : StringSpec({
             row(4, 1),
         ).forAll { (condition, expected) ->
             // given
-            val car = Car()
+            val car = Car("k5")
 
             // when
             val actual = car.moveOrNot(condition)

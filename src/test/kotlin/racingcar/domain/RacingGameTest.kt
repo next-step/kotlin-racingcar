@@ -8,8 +8,8 @@ class RacingGameTest : StringSpec({
         // given
         val cars = Cars(
             listOf(
-                Car(),
-                Car(),
+                Car("k5"),
+                Car("sm3"),
             ),
         )
         val tryNumber = TryNumber(2)
@@ -23,7 +23,7 @@ class RacingGameTest : StringSpec({
 
         // then
         actual.size shouldBe 2
-        actual[0].value.size shouldBe 2
-        actual[1].value.size shouldBe 2
+        actual[0].cars.size shouldBe 2
+        actual[1].cars.size shouldBe 2
     }
 })
