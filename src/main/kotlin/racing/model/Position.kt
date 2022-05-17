@@ -1,14 +1,18 @@
 package racing.model
 
-data class Position(val position: Int = START_POSITION) {
+data class Position(val position: Int = START_POSITION) : Comparable<Position> {
     init {
         require(position >= MIN_POSITION) { INVALID_CAR_POSITION }
     }
 
     fun move(): Position = Position(position + 1)
 
-    fun isMaxPosition(maxPosition: Int): Boolean {
-        return position == maxPosition
+    fun isMaxPosition(maxPosition: Position): Boolean {
+        return this == maxPosition
+    }
+
+    override fun compareTo(other: Position): Int {
+        return position - other.position
     }
 
     companion object {
