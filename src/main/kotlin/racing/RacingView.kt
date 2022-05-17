@@ -2,6 +2,9 @@ package racing
 
 object RacingView {
     private const val DISPLAY_NUMBER = 1
+    private const val HIGHEST_SCORE_INDEX = 1
+    private const val GO_FORWARD = "-"
+    private const val EMPTY_STRING = ""
     fun result(round: Int, cars: List<RacingCar>) {
         for (currentRound in 0 until round) {
             println("${currentRound + 1} round")
@@ -23,7 +26,7 @@ object RacingView {
         for ((i, value) in carDistance.withIndex()) {
             printDistance(i, round, value)
         }
-        println("")
+        println(EMPTY_STRING)
     }
 
     private fun printCarName(name: String) {
@@ -36,13 +39,13 @@ object RacingView {
         }
 
         if (value == DISPLAY_NUMBER) {
-            print("-")
+            print(GO_FORWARD)
         }
     }
 
     private fun showRacingWinner(cars: List<RacingCar>) {
-        val cars = cars.map { it.name to it.distances.filter { value -> value == 1 }.size }.sortedByDescending { it.second }
-        val highestScore = cars[0].second
+        val cars = cars.map { it.name to it.distances.filter { value -> value == DISPLAY_NUMBER }.size }.sortedByDescending { it.second }
+        val highestScore = cars[HIGHEST_SCORE_INDEX].second
         val winners = cars.filter { it.second == highestScore }.map { it.first }
 
         println("${winners.joinToString(", ")}가 최종 우승했습니다")
