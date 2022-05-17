@@ -2,7 +2,7 @@ package racing.model
 
 class Car private constructor(
     private val name: Name,
-    private val position: Position = Position.from(0)
+    private val position: Position = Position.from(DEFAULT_POSITION)
 ) {
 
     fun moveForward(movingStrategy: MovingStrategy): Car {
@@ -21,6 +21,8 @@ class Car private constructor(
     }
 
     companion object {
+        private const val DEFAULT_POSITION = 0
+
         fun from(name: String): Car {
             return Car(Name(name))
         }
