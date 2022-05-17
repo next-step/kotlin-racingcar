@@ -11,11 +11,12 @@ class TryCountTest : StringSpec({
     }
 
     "자동차 경주 시도횟수가 0이하 일 경우 Exception을 던진다" {
+        val illegalTryCounts = listOf(0, -1)
+
         illegalTryCounts.forAll { shouldThrow<IllegalArgumentException> { TryCount(it) } }
     }
 }) {
     companion object {
         private val tryCounts = listOf(1, 2, 3, 4)
-        private val illegalTryCounts = listOf(0, -1)
     }
 }

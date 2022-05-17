@@ -13,7 +13,7 @@ object CarRacing {
     fun race(racingInput: RacingInput): RacingResult {
         val (carNames, tryCount) = racingInput
         val cars = Cars(carNames)
-        return RacingResult(List(tryCount.value) { startRap(cars) }, cars.winners.map { it.name })
+        return RacingResult(List(tryCount.value) { startRap(cars) }, cars.findWinners().map { it.name })
     }
 
     private fun startRap(cars: Cars): RapResults {
