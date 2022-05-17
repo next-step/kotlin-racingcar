@@ -1,12 +1,14 @@
 package com.nextstep.jngcii.racingcar.domain
 
+import com.nextstep.jngcii.racingcar.view.ResultView
+
 class Game(
     private val record: Record,
-    private val dice: Dice
+    private val dice: Dice,
 ) {
     private var isEnd = false
 
-    fun start() {
+    fun start(resultView: ResultView) {
         startCheck()
 
         repeat(record.trialCount) {
@@ -14,6 +16,7 @@ class Game(
                 val canGo = dice.run()
                 record.write(carIndex, canGo)
             }
+            resultView.printResult(record)
         }
     }
 

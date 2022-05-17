@@ -17,7 +17,5 @@ fun main() {
     val dice = RandomDice()
     val game = Game(record, dice)
 
-    game.start()
-
-    resultView.printResult(record)
+    game.start(resultView)
 }
