@@ -1,10 +1,10 @@
 package racing.ui
 
-import racing.model.Round
+import racing.model.Rounds
 
 class RacingResultView(
     private val tries: Int,
-    private val eachRoundMap: Map<Int, Round>
+    private val rounds: Rounds
 ) {
 
     fun display() {
@@ -13,7 +13,9 @@ class RacingResultView(
     }
 
     private fun displayRound(roundNo: Int) {
-        eachRoundMap[roundNo]?.cars?.forEach { println(it) }
+        rounds.get(roundNo)
+            ?.cars
+            ?.forEach { println(it) }
         println()
     }
 }
