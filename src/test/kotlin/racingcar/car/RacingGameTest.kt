@@ -7,8 +7,8 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import racingcar.controller.RacingGame
-import racingcar.domain.MoveStrategy
-import racingcar.domain.NameStrategy
+import racingcar.domain.strategy.MoveStrategy
+import racingcar.domain.strategy.NameStrategy
 import racingcar.exception.GameOverException
 
 class RacingGameTest {
@@ -18,10 +18,7 @@ class RacingGameTest {
     @BeforeEach
     fun initStrategy() {
         moveStrategy = AlwaysTrueMoveStrategy()
-        nameStrategy = object : NameStrategy {
-            override fun validateName(name: String) {
-            }
-        }
+        nameStrategy = TestNameStrategy()
     }
 
     @ParameterizedTest

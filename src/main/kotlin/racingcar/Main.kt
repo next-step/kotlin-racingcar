@@ -1,8 +1,8 @@
 package racingcar
 
 import racingcar.controller.RacingGame
-import racingcar.domain.NameLengthLimitStrategy
-import racingcar.domain.RandomNumberStrategy
+import racingcar.domain.strategy.NameLengthLimitStrategy
+import racingcar.domain.strategy.RandomNumberStrategy
 import racingcar.view.InputView
 import racingcar.view.ResultView
 

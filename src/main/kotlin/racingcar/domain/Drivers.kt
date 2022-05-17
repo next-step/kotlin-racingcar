@@ -1,5 +1,8 @@
 package racingcar.domain
 
+import racingcar.domain.strategy.MoveStrategy
+import racingcar.domain.strategy.NameLengthLimitStrategy
+import racingcar.domain.strategy.NameStrategy
 import racingcar.dto.MoveResults
 
 class Drivers(

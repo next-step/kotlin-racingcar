@@ -1,8 +1,8 @@
 package racingcar.controller
 
 import racingcar.domain.Drivers
-import racingcar.domain.MoveStrategy
-import racingcar.domain.NameStrategy
+import racingcar.domain.strategy.MoveStrategy
+import racingcar.domain.strategy.NameStrategy
 import racingcar.dto.MoveResults
 import racingcar.exception.GameOverException
 

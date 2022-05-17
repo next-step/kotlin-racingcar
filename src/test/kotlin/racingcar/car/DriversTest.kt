@@ -4,8 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import racingcar.domain.Drivers
-import racingcar.domain.MoveStrategy
-import racingcar.domain.NameLengthLimitStrategy
+import racingcar.domain.strategy.NameLengthLimitStrategy
 import racingcar.dto.MoveResults
 import racingcar.exception.InvalidDriverNameException
 
@@ -55,11 +54,7 @@ class DriversTest {
         // given
         val alwayMoveDriver = Drivers(
             listOf("car"),
-            object : MoveStrategy {
-                override fun isMovable(): Boolean {
-                    return false
-                }
-            }
+            AlwaysFalseMoveStrategy()
         )
 
         // when
