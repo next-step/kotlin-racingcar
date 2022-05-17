@@ -20,7 +20,7 @@ internal class RacingTest {
         val car3 = Car(3, "Third", InstantEngine(3))
         val car4 = Car(4, "Five", InstantEngine(5))
         val participants: List<Car> = listOf(car1, car2, car3, car4)
-        val racing = Racing.new(participants, 5)
+        val racing = Racing(participants, 5)
 
         // When
         assertDoesNotThrow {
@@ -71,7 +71,7 @@ internal class RacingTest {
         val moveCount = 5
 
         assertThrows<IllegalArgumentException> {
-            Racing.new(listOf(), moveCount)
+            Racing(listOf(), moveCount)
         }
     }
 
@@ -90,7 +90,7 @@ internal class RacingTest {
         )
 
         assertThrows<IllegalArgumentException> {
-            Racing.new(participants, moveCount)
+            Racing(participants, moveCount)
         }
     }
 
@@ -107,7 +107,7 @@ internal class RacingTest {
             Car(car1Id, "all", moveAllEngine),
             Car(car2Id, "once", moveOnceEngine)
         )
-        val racing = Racing.new(participants, moveCount)
+        val racing = Racing(participants, moveCount)
 
         assertThrows<IllegalStateException> {
             racing.carRacingEvents()
@@ -127,7 +127,7 @@ internal class RacingTest {
             Car(car1Id, "all", moveAllEngine),
             Car(car2Id, "once", moveOnceEngine)
         )
-        val racing = Racing.new(participants, moveCount)
+        val racing = Racing(participants, moveCount)
 
         assertThrows<IllegalStateException> {
             racing.winners()

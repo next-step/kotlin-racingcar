@@ -13,7 +13,7 @@ internal class WinnerTest {
         val tam = Car(2, "tam", InstantEngine(3))
         val tem = Car(3, "tem", InstantEngine(5))
 
-        val racing = Racing.new(listOf(tim, tom, tam, tem), 5)
+        val racing = Racing(listOf(tim, tom, tam, tem), 5)
 
         racing.start()
 

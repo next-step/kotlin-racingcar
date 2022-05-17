@@ -11,7 +11,7 @@ fun main() {
     val (carNames, moveCount) = RacingInputReader.readRacingInputs()
 
     val participants = carNames.mapIndexed { i, name -> Car(i, name) }
-    val racing = Racing.new(participants, moveCount)
+    val racing = Racing(participants, moveCount)
 
     racing.start()
 
