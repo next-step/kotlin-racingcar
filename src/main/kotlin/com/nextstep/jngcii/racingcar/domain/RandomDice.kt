@@ -1,14 +1,11 @@
 package com.nextstep.jngcii.racingcar.domain
 
-import java.util.Random
-
 class RandomDice : Dice {
-    private val random = Random()
-
-    override fun run() = random.nextInt(END_EXCLUSIVE) >= PIVOT
+    override fun run() = (START_NUMBER..END_NUMBER).random() >= PIVOT
 
     companion object {
-        private const val END_EXCLUSIVE = 10
+        private const val START_NUMBER = 0
+        private const val END_NUMBER = 9
         private const val PIVOT = 4
     }
 }
