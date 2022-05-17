@@ -69,27 +69,5 @@ class CalculatorTest : DescribeSpec({
                 exception.message shouldBe "유효하지 않은 연산자 입니다."
             }
         }
-
-        context("without calculateFormula") {
-            it("calculateFormula 가 null 이라면 IllegalArgumentException 에러를 발생시킨다.") {
-                val calculator = Calculator
-
-                val exception = shouldThrow<IllegalArgumentException> {
-                    calculator.calculate("")
-                }
-
-                exception.message shouldBe "유효하지 않은 계산식 입니다."
-            }
-
-            it("calculateFormula 가 빈 문자열 이라면 에러를 발생시킨다.") {
-                val calculator = Calculator
-
-                val exception = shouldThrow<IllegalArgumentException> {
-                    calculator.calculate(null)
-                }
-
-                exception.message shouldBe "유효하지 않은 계산식 입니다."
-            }
-        }
     }
 })
