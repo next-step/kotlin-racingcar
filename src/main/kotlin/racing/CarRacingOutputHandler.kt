@@ -1,3 +1,5 @@
+package racing
+
 object CarRacingOutputHandler {
     fun display(cars: List<Car>) {
         cars.forEach { car ->

@@ -1,3 +1,5 @@
+package racing
+
 object Constants {
     const val INVALID_ARGUMENT_MESSAGE = "잘못된 요청 입니다."
     const val INVALID_CAR_NAME_MESSAGE = "자동차 이름은 5자를 초과할 수 없습니다."

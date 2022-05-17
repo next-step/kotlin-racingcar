@@ -1,3 +1,5 @@
+package racing
+
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
@@ -21,7 +23,8 @@ class CarRacingInputHandlerTest {
     @Test
     fun `자동차 입력 개수만큼 car object 를 리턴`() {
         val cars = listOf("자동차1", "자동차2")
-        assertThat(CarRacingInputHandler.getCars(cars).size).isEqualTo(cars.size)
+        val inputParams = InputParams("2","5", cars)
+        assertThat(CarRacingInputHandler.getCars(inputParams).size).isEqualTo(cars.size)
     }
 
     @Test
@@ -29,7 +32,8 @@ class CarRacingInputHandlerTest {
         assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
             CarRacingInputHandler.validate("5", "2", listOf("자동차이름5초과"))
         }
-        val numberOfCars = "3"
-        assertThat(CarRacingInputHandler.getCars(numberOfCars).size).isEqualTo(numberOfCars.toInt())
+        val cars = listOf("자동차1", "자동차2")
+        val inputParams = InputParams("2","5", cars)
+        assertThat(CarRacingInputHandler.getCars(inputParams).size).isEqualTo(cars.size.toInt())
     }
 }

@@ -1,3 +1,5 @@
+package racing
+
 import org.junit.jupiter.api.Test
 
 class CarRacingOutputHandlerTest {
@@ -19,7 +21,7 @@ class CarRacingOutputHandlerTest {
             car2.move()
             car3.move()
         }
-        
+
         CarRacingOutputHandler.display(cars)
     }
 }

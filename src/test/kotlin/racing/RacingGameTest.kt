@@ -1,7 +1,11 @@
-import RacingGame.getWinner
+package racing
+
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import racing.gamerule.MovingStrategy
+import racing.gamerule.RacingGame
+import racing.gamerule.RacingGame.getWinner
 
 class RacingGameTest {
 
