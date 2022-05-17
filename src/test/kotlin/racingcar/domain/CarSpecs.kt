@@ -12,14 +12,14 @@ class CarSpecs : DescribeSpec({
         context("이름이 공백이라면") {
             it("예외를 발생시킨다") {
                 shouldThrowExactly<IllegalArgumentException> {
-                    Car(" ")
+                    Car(" ", RandomDriver)
                 }
             }
         }
         context("이름이 1글자 미만이라면") {
             it("예외를 발생시킨다") {
                 shouldThrowExactly<IllegalArgumentException> {
-                    Car("")
+                    Car("", RandomDriver)
                 }
             }
         }
@@ -27,29 +27,45 @@ class CarSpecs : DescribeSpec({
         context("이름이 5글자를 초과한다면") {
             it("예외를 발생시킨다") {
                 shouldThrowExactly<IllegalArgumentException> {
-                    Car("123456")
+                    Car("123456", RandomDriver)
                 }
             }
         }
 
-        context("이동 명령이 전진이라면") {
-            val car = Car("myCar")
-            val command = FORWARD
+        context("운전자가 전진하라는 이동 명령을 내리면") {
+            val movements = listOf(4, 9)
+            val car = Car("myCar", PreparedDriver(movements))
             it("앞으로 전진한다") {
-                val prevPosition = car.position
-                car.move(command)
-                car.position shouldBe (prevPosition + 1)
+                repeat(movements.size) {
+                    val prevPosition = car.position
+                    car.move()
+                    car.position shouldBe (prevPosition + FORWARD.power)
+                }
             }
         }
 
         context("이동 명령이 대기라면") {
-            val car = Car("myCar")
-            val command = WAIT
+            val movements = listOf(0, 3)
+            val car = Car("myCar", PreparedDriver(movements))
             it("현재 위치에서 대기한다") {
-                val prevPosition = car.position
-                car.move(command)
-                car.position shouldBe prevPosition
+                repeat(movements.size) {
+                    val prevPosition = car.position
+                    car.move()
+                    car.position shouldBe (prevPosition + WAIT.power)
+                }
             }
         }
     }
 })
+
+class PreparedDriver(
+    _preparedCommands: List<Int>
+) : Driver {
+
+    private val preparedCommands = ArrayDeque(_preparedCommands)
+
+    override fun drive(): Int {
+        check(preparedCommands.isNotEmpty()) { "준비된 명령을 모두 사용했습니다" }
+        return MovementCommand.of(preparedCommands.removeFirst()).power
+    }
+}
