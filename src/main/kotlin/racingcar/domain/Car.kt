@@ -14,8 +14,8 @@ class Car(val name: String) {
         checkValidName(name)
     }
 
-    fun playOneRound() {
-        position += Dice.rollDiceAndGetPoint()
+    fun playOneRound(forcedMovement: Boolean? = null) {
+        position += forcedMovement?.run { if (this) POINT_MOVE else POINT_STOP } ?: Dice.rollDiceAndGetPoint()
     }
 
     private fun checkValidName(name: String) {
@@ -26,5 +26,7 @@ class Car(val name: String) {
     companion object {
         private const val INIT_POSITION = 0
         private const val MAX_NAME_SIZE = 5
+        private const val POINT_MOVE = 1
+        private const val POINT_STOP = 0
     }
 }
