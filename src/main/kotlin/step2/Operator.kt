@@ -6,7 +6,7 @@ enum class Operator(val symbol: String, val operator: (Double, Double) -> Double
     MULTIPLY("*", { a: Double, b: Double -> a * b }),
     DIVISION("/", { a: Double, b: Double ->
         @Suppress("UNINITIALIZED_ENUM_COMPANION_WARNING")
-        if (b == 0.0) throw IllegalArgumentException(division0ErrorMessage)
+        require(b != 0.0) { division0ErrorMessage }
         a / b
     });
 
