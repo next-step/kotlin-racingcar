@@ -23,8 +23,8 @@ class Winner private constructor(winner: Car) {
     }
 
     companion object {
-        fun of(racing: Racing): Set<Winner> {
-            val racingResults = racing.carRacingEvents().map { (car, events) -> car to events.merge().marks() }
+        fun of(carRacingEvents: Map<Car, List<CarRaceEvent>>): Set<Winner> {
+            val racingResults = carRacingEvents.map { (car, events) -> car to events.merge().marks() }
             val winnersCount = racingResults.maxOf { it.second }
 
             return racingResults.filter { it.second == winnersCount }.map { Winner(it.first) }.toSet()
