@@ -4,16 +4,14 @@ import java.util.Random
 
 class Race(private val carCount: Int, private val tryCount: Int) {
     val carPositions = mutableListOf<Int>()
-    private val cars = mutableListOf<Car>()
-
-    init {
-        for (i: Int in 1..this.carCount) cars.add(Car())
-    }
+    private val cars: List<Car> = (1..this.carCount).map { Car() }
 
     fun run() {
-        cars.forEach {
-            it.moveFor(tryCount, Random().nextInt(10))
-            carPositions.add(it.position)
+        for (i in 1..tryCount) {
+            cars.forEach {
+                it.moveFor(Random().nextInt(10))
+                carPositions.add(it.position)
+            }
         }
     }
 }
