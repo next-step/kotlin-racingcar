@@ -2,7 +2,7 @@ package camp.nextstep.edu.racingcar.interfaces.cli
 
 import camp.nextstep.edu.racingcar.interfaces.RacingInputs
 
-object InputReader {
+object RacingInputReader {
 
     fun readRacingInputs(): RacingInputs {
         return RacingInputs(readCarNames(), readMoveCount())
