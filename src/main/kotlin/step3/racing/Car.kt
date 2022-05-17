@@ -1,6 +1,9 @@
 package step3.racing
 
-class Car(val name: String, var distance: Int = 0) {
+class Car(val name: String) {
+    var distance: Int = 0
+        private set
+
     private fun move() {
         distance += 1
     }
@@ -9,6 +12,5 @@ class Car(val name: String, var distance: Int = 0) {
 
     fun run(isMoved: Boolean = isMoved()) {
         if (isMoved) move()
-        ResultView.showDistance(name, distance)
     }
 }

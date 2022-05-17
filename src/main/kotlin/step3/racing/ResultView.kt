@@ -1,11 +1,11 @@
 package step3.racing
 
 object ResultView {
-    fun showDistance(name: String, input: Int) {
+    fun showDistance(name: String, distance: Int) {
         print("$name : ")
-        repeat(input) { print("-") }
+        repeat(distance) { print("-") }
         println()
     }
 
-    fun showFirstRacer(name: String) = println("$name 가 최종 우승했습니다.")
+    fun showWinner(names: String) = println("$names 가 최종 우승했습니다.")
 }
