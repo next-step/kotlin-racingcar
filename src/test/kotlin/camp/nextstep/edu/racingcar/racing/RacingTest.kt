@@ -11,14 +11,16 @@ import org.junit.jupiter.api.assertThrows
 
 internal class RacingTest {
 
-    @DisplayName("1대의 자동차가 트랙에서 경주를 할 수 있다.")
+    @DisplayName("자동차가 경주를 마치면 각 자동차의 경주 이벤트 목록과 우승자 목록을 가져올 수 있다.")
     @Test
-    fun racingSolo() {
+    fun racingTest() {
         // Given
-        val moveTwiceEngine = InstantEngine(2)
-        val carId = 1
-        val participants: List<Car> = listOf(Car(carId, "twice", moveTwiceEngine))
-        val racing = Racing.new(participants, 5)
+        val car1 = Car(1, "twice", InstantEngine(2))
+        val car2 = Car(2, "Five", InstantEngine(5))
+        val car3 = Car(3, "Third", InstantEngine(3))
+        val car4 = Car(4, "Five", InstantEngine(5))
+        val participants: List<Car> = listOf(car1, car2, car3, car4)
+        val racing = Racing(participants, 5)
 
         // When
         assertDoesNotThrow {
@@ -26,108 +28,70 @@ internal class RacingTest {
         }
 
         // Then
-        val resultMap = racing.result()
-        assertNotNull(resultMap)
-        assertEquals(1, resultMap.size)
+        val carRacingEvents = racing.carRacingEvents()
+        assertNotNull(carRacingEvents)
+        assertEquals(4, carRacingEvents.size)
 
-        val carTraces = requireNotNull(resultMap.mapKeys { it.key.id }[carId]).traces()
-        assertTrue(carTraces.next())
-        assertTrue(carTraces.next())
-        assertFalse(carTraces.next())
-        assertFalse(carTraces.next())
-        assertFalse(carTraces.next())
+        val car1sRaceEvents = requireNotNull(carRacingEvents.mapKeys { it.key.id }[car1.id])
+        assertTrue(car1sRaceEvents[0].moved)
+        assertTrue(car1sRaceEvents[1].moved)
+        assertFalse(car1sRaceEvents[2].moved)
+        assertFalse(car1sRaceEvents[3].moved)
+        assertFalse(car1sRaceEvents[4].moved)
 
-        assertEquals(1, racing.winners().size)
-        assertTrue(racing.winners().containsAll(participants))
+        val car2sRaceEvents = requireNotNull(carRacingEvents.mapKeys { it.key.id }[car2.id])
+        assertTrue(car2sRaceEvents[0].moved)
+        assertTrue(car2sRaceEvents[1].moved)
+        assertTrue(car2sRaceEvents[2].moved)
+        assertTrue(car2sRaceEvents[3].moved)
+        assertTrue(car2sRaceEvents[4].moved)
+
+        val car3sRaceEvents = requireNotNull(carRacingEvents.mapKeys { it.key.id }[car3.id])
+        assertTrue(car3sRaceEvents[0].moved)
+        assertTrue(car3sRaceEvents[1].moved)
+        assertTrue(car3sRaceEvents[2].moved)
+        assertFalse(car3sRaceEvents[3].moved)
+        assertFalse(car3sRaceEvents[4].moved)
+
+        val car4sRaceEvents = requireNotNull(carRacingEvents.mapKeys { it.key.id }[car4.id])
+        assertTrue(car4sRaceEvents[0].moved)
+        assertTrue(car4sRaceEvents[1].moved)
+        assertTrue(car4sRaceEvents[2].moved)
+        assertTrue(car4sRaceEvents[3].moved)
+        assertTrue(car4sRaceEvents[4].moved)
+
+        val winners = requireNotNull(racing.winners())
+        assertEquals(2, racing.winners().size)
+        assertTrue(participants.map { it.id }.containsAll(winners.map { it.id }))
     }
 
-    @DisplayName("2대의 자동차가 트랙에서 경주를 할 수 있다.")
+    @DisplayName("자동차 경주에 참여하는 자동차는 최소 1개 이상이어야 한다.")
     @Test
-    fun racingDuo() {
-        // Given
+    internal fun shouldFailRacingParticipantsEmpty() {
         val moveCount = 5
+
+        assertThrows<IllegalArgumentException> {
+            Racing(listOf(), moveCount)
+        }
+    }
+
+    @DisplayName("자동차 경주에서 자동차는 최소 1회 이상 움직일 수 있어야 한다.")
+    @Test
+    internal fun shouldFailRacingMoveCountZero() {
+        val moveCount = 0
         val moveAllEngine = InstantEngine(moveCount)
         val moveOnceEngine = InstantEngine(1)
 
-        val car1 = Car(0, "all", moveAllEngine)
-        val car2 = Car(1, "once", moveOnceEngine)
-        val participants: List<Car> = listOf(car1, car2)
-        val racing = Racing.new(participants, moveCount)
+        val car1Id = 0
+        val car2Id = 1
+        val participants: List<Car> = listOf(
+            Car(car1Id, "all", moveAllEngine),
+            Car(car2Id, "once", moveOnceEngine)
+        )
 
-        // When
-        assertDoesNotThrow {
-            racing.start()
+        assertThrows<IllegalArgumentException> {
+            Racing(participants, moveCount)
         }
-
-        // Then
-        val resultIdMap = racing.result().mapKeys { it.key.id }
-        assertNotNull(resultIdMap)
-        assertEquals(2, resultIdMap.size)
-
-        val car1Traces = requireNotNull(resultIdMap[car1.id]).traces()
-        assertTrue(car1Traces.next())
-        assertTrue(car1Traces.next())
-        assertTrue(car1Traces.next())
-        assertTrue(car1Traces.next())
-        assertTrue(car1Traces.next())
-
-        val car2Traces = requireNotNull(resultIdMap[car2.id]).traces()
-        assertTrue(car2Traces.next())
-        assertFalse(car2Traces.next())
-        assertFalse(car2Traces.next())
-        assertFalse(car2Traces.next())
-        assertFalse(car2Traces.next())
-
-        assertEquals(1, racing.winners().size)
-        assertTrue(racing.winners().contains(car1))
-    }
-
-    @DisplayName("3대의 자동차가 트랙에서 경주를 할 수 있다.")
-    @Test
-    fun racingTrio() {
-        // Given
-        val moveCount = 5
-
-        val car1 = Car(0, "three", InstantEngine(3))
-        val car2 = Car(1, "once", InstantEngine(1))
-        val car3 = Car(2, "three", InstantEngine(3))
-        val participants: List<Car> = listOf(car1, car2, car3)
-        val racing = Racing.new(participants, moveCount)
-
-        // When
-        assertDoesNotThrow {
-            racing.start()
-        }
-
-        // Then
-        val resultIdMap = racing.result().mapKeys { it.key.id }
-        assertNotNull(resultIdMap)
-        assertEquals(3, resultIdMap.size)
-
-        val car1Traces = requireNotNull(resultIdMap[car1.id]).traces()
-        assertTrue(car1Traces.next())
-        assertTrue(car1Traces.next())
-        assertTrue(car1Traces.next())
-        assertFalse(car1Traces.next())
-        assertFalse(car1Traces.next())
-
-        val car2Traces = requireNotNull(resultIdMap[car2.id]).traces()
-        assertTrue(car2Traces.next())
-        assertFalse(car2Traces.next())
-        assertFalse(car2Traces.next())
-        assertFalse(car2Traces.next())
-        assertFalse(car2Traces.next())
-
-        val car3Traces = requireNotNull(resultIdMap[car3.id]).traces()
-        assertTrue(car3Traces.next())
-        assertTrue(car3Traces.next())
-        assertTrue(car3Traces.next())
-        assertFalse(car3Traces.next())
-        assertFalse(car3Traces.next())
-
-        assertEquals(2, racing.winners().size)
-        assertTrue(racing.winners().contains(car1))
-        assertTrue(racing.winners().contains(car3))
     }
 
     @DisplayName("경주가 끝나기 전, 결과를 요청할 수 없다.")
@@ -143,10 +107,10 @@ internal class RacingTest {
             Car(car1Id, "all", moveAllEngine),
             Car(car2Id, "once", moveOnceEngine)
         )
-        val racing = Racing.new(participants, moveCount)
+        val racing = Racing(participants, moveCount)
 
         assertThrows<IllegalStateException> {
-            racing.result()
+            racing.carRacingEvents()
         }
     }
 
@@ -163,7 +127,7 @@ internal class RacingTest {
             Car(car1Id, "all", moveAllEngine),
             Car(car2Id, "once", moveOnceEngine)
         )
-        val racing = Racing.new(participants, moveCount)
+        val racing = Racing(participants, moveCount)
 
         assertThrows<IllegalStateException> {
             racing.winners()

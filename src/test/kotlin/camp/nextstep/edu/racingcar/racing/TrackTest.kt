@@ -13,7 +13,7 @@ internal class TrackTest {
     @Test
     fun markCarTrace() {
         val track = Track(3)
-        val beforeTraces = track.traces()
+        val beforeTraces = track.traces().iterator()
         assertFalse(beforeTraces.next())
         assertFalse(beforeTraces.next())
         assertFalse(beforeTraces.next())
@@ -21,7 +21,7 @@ internal class TrackTest {
         track.markTrace()
         track.markTrace()
 
-        val afterTraces = track.traces()
+        val afterTraces = track.traces().iterator()
         assertTrue(afterTraces.next())
         assertTrue(afterTraces.next())
         assertFalse(afterTraces.next())

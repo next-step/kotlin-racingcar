@@ -9,7 +9,7 @@ class Track(private val length: Int) {
         traces[onTraceIndex++].marked = true
     }
 
-    fun traces(): Iterator<Boolean> = traces.map { it.marked }.iterator()
+    fun traces(): Collection<Boolean> = traces.map { it.marked }
 
     fun marks(): Int = onTraceIndex
 
