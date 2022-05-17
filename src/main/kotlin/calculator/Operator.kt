@@ -1,15 +1,14 @@
 package calculator
 
-class Operator {
+enum class Operator(private val symbol: String, val evaluate: (augend: Float, addend: Float) -> Float) {
+    PLUS("+", { augend, addend -> augend + addend }),
+    MINUS("-", { augend, addend -> augend - addend }),
+    MULTIPLE("*", { augend, addend -> augend * addend }),
+    DIVIDE("/", { augend, addend -> augend / addend });
+
     companion object {
-        val evaluate = { a: Float, b: Float, operator: String ->
-            when (operator) {
-                "+" -> a + b
-                "-" -> a - b
-                "*" -> a * b
-                "/" -> a / b
-                else -> throw IllegalArgumentException("유효하지 않은 연산자 입니다.")
-            }
+        fun find(symbol: String): Operator {
+            return values().find { it.symbol == symbol } ?: throw IllegalArgumentException("유효하지 않은 연산자 입니다.")
         }
     }
 }

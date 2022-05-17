@@ -7,8 +7,8 @@ import io.kotest.matchers.shouldBe
 class CalculatorTest : DescribeSpec({
     describe("calculate") {
         it("계산식에 + 연산자가 있다면 더하기를 수행한다.") {
-            val calculator = Calculator()
-            val secondCalculator = Calculator()
+            val calculator = Calculator
+            val secondCalculator = Calculator
 
             val result = calculator.calculate("3 + 2")
             val secondResult = secondCalculator.calculate("3 + 3 + 2")
@@ -18,8 +18,8 @@ class CalculatorTest : DescribeSpec({
         }
 
         it("계산식에 - 연산자가 있다면 뺄셈을 수행한다.") {
-            val calculator = Calculator()
-            val secondCalculator = Calculator()
+            val calculator = Calculator
+            val secondCalculator = Calculator
 
             val result = calculator.calculate("3 - 2")
             val secondResult = secondCalculator.calculate("3 - 3 - 2")
@@ -29,8 +29,8 @@ class CalculatorTest : DescribeSpec({
         }
 
         it("계산식에 * 연산자가 있다면 곱셈을 수행한다.") {
-            val calculator = Calculator()
-            val secondCalculator = Calculator()
+            val calculator = Calculator
+            val secondCalculator = Calculator
 
             val result = calculator.calculate("3 * 2")
             val secondResult = secondCalculator.calculate("3 * 3 * 2")
@@ -40,8 +40,8 @@ class CalculatorTest : DescribeSpec({
         }
 
         it("계산식에 / 연산자가 있다면 나눗셈을 수행한다.") {
-            val calculator = Calculator()
-            val secondCalculator = Calculator()
+            val calculator = Calculator
+            val secondCalculator = Calculator
 
             val result = calculator.calculate("3 / 2")
             val secondResult = secondCalculator.calculate("9 / 3 / 3")
@@ -51,7 +51,7 @@ class CalculatorTest : DescribeSpec({
         }
 
         it("여러 operator 에 따른 계산식을 수행한다.") {
-            val calculator = Calculator()
+            val calculator = Calculator
 
             val result = calculator.calculate("5 + 2 * 3 - 1")
 
@@ -60,7 +60,7 @@ class CalculatorTest : DescribeSpec({
 
         context("with invalid operator") {
             it("IllegalArgumentException 에러를 발생시킨다.") {
-                val calculator = Calculator()
+                val calculator = Calculator
 
                 val exception = shouldThrow<IllegalArgumentException> {
                     calculator.calculate("3 & 3")
@@ -72,7 +72,7 @@ class CalculatorTest : DescribeSpec({
 
         context("without calculateFormula") {
             it("calculateFormula 가 null 이라면 IllegalArgumentException 에러를 발생시킨다.") {
-                val calculator = Calculator()
+                val calculator = Calculator
 
                 val exception = shouldThrow<IllegalArgumentException> {
                     calculator.calculate("")
@@ -82,7 +82,7 @@ class CalculatorTest : DescribeSpec({
             }
 
             it("calculateFormula 가 빈 문자열 이라면 에러를 발생시킨다.") {
-                val calculator = Calculator()
+                val calculator = Calculator
 
                 val exception = shouldThrow<IllegalArgumentException> {
                     calculator.calculate(null)
