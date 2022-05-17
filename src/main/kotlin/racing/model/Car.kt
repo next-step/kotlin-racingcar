@@ -12,23 +12,15 @@ class Car private constructor(
         return Car(Name(name()), Position.from(position()))
     }
 
-    fun position(): Int {
-        return position.position
-    }
+    fun position() = position.position
 
-    fun name(): String {
-        return name.toString()
-    }
+    fun name() = name.toString()
 
     companion object {
         private const val DEFAULT_POSITION = 0
 
-        fun from(name: String): Car {
-            return Car(Name(name))
-        }
+        fun from(name: String) = Car(Name(name))
 
-        fun of(name: String, position: Int): Car {
-            return Car(Name(name), Position.from(position))
-        }
+        fun of(name: String, position: Int) = Car(Name(name), Position.from(position))
     }
 }

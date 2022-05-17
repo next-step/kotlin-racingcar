@@ -4,7 +4,5 @@ class RacingGameResult(
     val result: List<Cars>
 ) {
 
-    fun findWinners(): List<Car> {
-        return result.last().findWinners()
-    }
+    fun findWinners() = result.last().findWinners()
 }

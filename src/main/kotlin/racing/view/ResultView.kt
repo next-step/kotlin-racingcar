@@ -24,13 +24,10 @@ object ResultView {
         println()
     }
 
-    private fun printCarNameAndPosition(car: Car) {
+    private fun printCarNameAndPosition(car: Car) =
         println("${car.name()} : ${generateCarPositionMark(car.position())}")
-    }
 
-    private fun printWinnerNames(cars: List<Car>) {
-        println("${generateWinnerNames(cars)}가 최종 우승했습니다.")
-    }
+    private fun printWinnerNames(cars: List<Car>) = println("${generateWinnerNames(cars)}가 최종 우승했습니다.")
 
     private fun generateCarPositionMark(position: Int): String {
         var positionMark = ""
@@ -38,7 +35,5 @@ object ResultView {
         return positionMark
     }
 
-    private fun generateWinnerNames(cars: List<Car>): String {
-        return cars.joinToString(",") { it.name() }
-    }
+    private fun generateWinnerNames(cars: List<Car>) = cars.joinToString(",") { it.name() }
 }
