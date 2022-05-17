@@ -2,7 +2,7 @@ package racing.car
 
 data class Car(
     private val carName: String,
-    private var moveCount: Int
+    private var moveCount: Int = 0
 ) {
     fun canMoveForward(number: Int) = number >= MOVE_CONDITION
 

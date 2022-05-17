@@ -1,17 +1,16 @@
 package racing
 
-import racing.car.CarRegistration
+import racing.car.Car
+import racing.common.CarRaceProperty
 import racing.race.CarRace
 import racing.view.InputView
 import racing.view.ResultView
 
 fun main() {
     val inputView = InputView()
-    val carSize = inputView.readInCarName()
+    val carNames = inputView.readInCarNames()
     val roundSize = inputView.readInRoundSize()
-
-    val carRegistration = CarRegistration(roundSize, carSize)
-    val carRaceProperty = carRegistration.initCarRaceProperty()
+    val carRaceProperty = CarRaceProperty(roundSize, carNames.map { Car(it) })
 
     val carRace = CarRace()
     val resultView = ResultView(carRaceProperty)
