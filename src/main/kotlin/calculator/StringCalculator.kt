@@ -9,16 +9,14 @@ class StringCalculator(private val input: String?) {
     }
 
     private fun calculate(splittedInput: List<String>): Int {
-        var operator = Operator.PLUS
-        return splittedInput.foldIndexed(0) { idx, sum, element ->
+        return splittedInput.foldIndexed(Pair(0, Operator.PLUS)) { idx, pair, element ->
             if (isEvenIndex(idx)) {
                 val rightTerm = toIntOrThrow(element)
-                calculate(sum, rightTerm, operator)
+                Pair(calculate(pair.first, rightTerm, pair.second), pair.second)
             } else {
-                operator = element.convertToOperatorEnum()
-                sum
+                Pair(pair.first, element.convertToOperatorEnum())
             }
-        }
+        }.first
     }
 
     private fun isEvenIndex(idx: Int) = idx % 2 == 0
