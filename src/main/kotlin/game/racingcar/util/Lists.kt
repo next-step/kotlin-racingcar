@@ -1,3 +1,4 @@
+@file:JvmName("ListUtils")
 package game.racingcar.util
 
 inline fun <T : Any> List<T>.requireOrThrow(
