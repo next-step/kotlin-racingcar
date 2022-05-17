@@ -20,7 +20,7 @@ class CarTest : FunSpec({
             // given
             val carInstance = Car(5)
             // when, then
-            for(i in 0..5){
+            for (i in 0..5) {
                 carInstance.currentLocation shouldBe i
             }
         }

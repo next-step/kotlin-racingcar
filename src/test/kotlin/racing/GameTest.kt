@@ -9,7 +9,7 @@ class GameTest : FunSpec({
     val game = Game()
     context("run() 단위테스트 - 정상 범위의 input 입력후 run() 호출 시 게임이 정상적으로 동작한다") {
         test("3대, 4턴 조건으로 run 실행 시 car는 3대, 모든 car의 currentLocation은 0..4 사이값을 가져야 한다") {
-            //given
+            // given
             val carNumberInput = 3
             val turnNumberInput = 4
             // when

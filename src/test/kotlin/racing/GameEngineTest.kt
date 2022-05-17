@@ -26,34 +26,32 @@ class GameEngineTest : FunSpec({
     }
     context("playTurn(car) 단위테스트") {
         test("dice result가 4 이상인 경우에는 currentLocation이 1 증가한다") {
-            //given
+            // given
             forAll(
                 row(0, 10, 4),
                 row(1, 5, 8),
                 row(2, 2, 6)
-            ){carNumber, initialLocation, givenDice ->
+            ) { carNumber, initialLocation, givenDice ->
                 val givenCar = Car(carNumber, initialLocation)
-                //when
+                // when
                 gameEngine.playTurn(givenCar, givenDice)
-                //then
+                // then
                 givenCar.currentLocation shouldBe initialLocation + 1
             }
         }
         test("dice result가 3 이하인 경우에는 currentLocation이 변하지 않는다") {
-            //given
+            // given
             forAll(
                 row(0, 10, 3),
                 row(1, 5, 2),
                 row(2, 2, 1)
-            ){carNumber, initialLocation, givenDice ->
+            ) { carNumber, initialLocation, givenDice ->
                 val givenCar = Car(carNumber, initialLocation)
-                //when
+                // when
                 gameEngine.playTurn(givenCar, givenDice)
-                //then
+                // then
                 givenCar.currentLocation shouldBe initialLocation
             }
         }
-
     }
-
 })
