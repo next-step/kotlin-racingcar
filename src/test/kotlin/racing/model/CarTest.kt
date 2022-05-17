@@ -23,7 +23,7 @@ class CarTest {
     @Test
     fun `앞으로 전진하는 조건이 참이면 앞으로 1칸 전진`() {
         // when
-        car.moveForward { true }
+        val car = car.moveForward { true }
 
         // then
         assertEquals(car.position(), 1)
@@ -32,7 +32,7 @@ class CarTest {
     @Test
     fun `앞으로 전진하는 조건이 거짓이면 멈춤`() {
         // when
-        car.moveForward { false }
+        val car = car.moveForward { false }
 
         // then
         assertEquals(car.position(), 0)

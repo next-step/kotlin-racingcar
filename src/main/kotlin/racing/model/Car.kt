@@ -2,13 +2,14 @@ package racing.model
 
 class Car private constructor(
     private val name: Name,
-    private val position: Position = Position(0)
+    private val position: Position = Position.from(0)
 ) {
 
-    fun moveForward(movingStrategy: MovingStrategy) {
+    fun moveForward(movingStrategy: MovingStrategy): Car {
         if (movingStrategy.isMovable()) {
-            position.plusOne()
+            return Car(Name(name()), position.plusOne())
         }
+        return Car(Name(name()), Position.from(position()))
     }
 
     fun position(): Int {
@@ -25,7 +26,7 @@ class Car private constructor(
         }
 
         fun of(name: String, position: Int): Car {
-            return Car(Name(name), Position(position))
+            return Car(Name(name), Position.from(position))
         }
     }
 }

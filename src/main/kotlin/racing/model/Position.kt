@@ -1,20 +1,19 @@
 package racing.model
 
-class Position(
-    position: Int
+@JvmInline
+value class Position private constructor(
+    val position: Int
 ) {
-    var position = position
-        private set
 
-    init {
-        this.position = position.coerceAtLeast(MIN_POSITION)
-    }
-
-    fun plusOne() {
-        this.position += 1
+    fun plusOne(): Position {
+        return Position(position + 1)
     }
 
     companion object {
         private const val MIN_POSITION = 0
+
+        fun from(position: Int): Position {
+            return Position(position.coerceAtLeast(MIN_POSITION))
+        }
     }
 }
