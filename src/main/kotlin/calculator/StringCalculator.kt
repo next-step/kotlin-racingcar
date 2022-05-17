@@ -8,7 +8,7 @@ class StringCalculator {
         val splitEquation = equation.split(" ")
 
         for ((index, element) in splitEquation.withIndex()) {
-            if (index % 2 == 0) {
+            if (isOperandIndex(index)) {
                 operand = element.toDoubleOrNull() ?: throw IllegalArgumentException("입력값이 잘못되었습니다.")
                 result = operator.operate(result, operand)
             } else {
@@ -18,6 +18,8 @@ class StringCalculator {
 
         return result
     }
+
+    private fun isOperandIndex(index: Int) = index % 2 == 0
 
     private fun validateEmpty(input: String?): String {
         if (input.isNullOrBlank()) {
