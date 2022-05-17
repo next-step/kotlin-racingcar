@@ -2,8 +2,13 @@ package step3.racing
 
 object InputView {
   fun getInt(input: String?): Int {
-    requireNotNull(input) { "입력 값이 없습니다." }
+    require(!input.isNullOrBlank()) { "입력 값이 없습니다." }
     return input.toIntOrThrow()
+  }
+
+  fun getStringArray(input: String?): List<String> {
+    require(!input.isNullOrBlank()) { "입력 값이 없습니다." }
+    return input.split(",")
   }
 
   private fun String.toIntOrThrow(): Int =
