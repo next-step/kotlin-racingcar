@@ -1,3 +1,5 @@
+package calculator
+
 class StringCalculator {
     fun calculate(input: String?): Double {
         val equation = validateEmpty(input)

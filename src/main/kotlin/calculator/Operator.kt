@@ -1,3 +1,5 @@
+package calculator
+
 enum class Operator(
     private val operator: (Double, Double) -> Double
 ) {
