@@ -65,6 +65,12 @@ class StringCalculatorTest {
         assertThat(calculator.calculate(input)).isEqualTo(expectedResult)
     }
 
+    @ParameterizedTest
+    @MethodSource("complexArguments")
+    fun `사칙연산`(input: String, expectedResult: Double) {
+        assertThat(calculator.calculate(input)).isEqualTo(expectedResult)
+    }
+
     companion object {
         @JvmStatic
         fun plusArguments(): Stream<Arguments> {
@@ -98,6 +104,17 @@ class StringCalculatorTest {
             return Stream.of(
                 Arguments.arguments("1 / 1", 1.0),
                 Arguments.arguments("52.4 / 0.8", 65.5),
+            )
+        }
+
+        @JvmStatic
+        fun complexArguments(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.arguments("1 + 2 * 3 / 4", 2.25),
+                Arguments.arguments("5 - 7 * 0 / 0.8", 0.0),
+                Arguments.arguments("52.4 - 0.4 - 2 / 10", 5.0),
+                Arguments.arguments("-3.0 * -3 * 9 - 20 - 1 / 6", 10.0),
+                Arguments.arguments("2 + 3 * 4 / 2", 10.0),
             )
         }
     }
