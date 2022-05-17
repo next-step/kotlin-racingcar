@@ -9,7 +9,7 @@ internal class RacingTest {
 
     @Test
     fun `레이싱 컬렉션 사이즈`() {
-        val racing = Racing(Cars(listOf(Car(), Car())))
+        val racing = Racing(Cars(listOf(Car("a"), Car("b"))))
 
         val strategy = object : MoveStrategy {
             override fun isMove(): Boolean {
@@ -18,12 +18,12 @@ internal class RacingTest {
         }
 
         racing.start(1, strategy)
-        assertThat(racing.result).size().isEqualTo(1)
+        assertThat(racing.history).size().isEqualTo(1)
     }
 
     @Test
     fun `결과 값 테스트`() {
-        val racing = Racing(Cars(listOf(Car(), Car())))
+        val racing = Racing(Cars(listOf(Car("a"), Car("b"))))
 
         val strategy = object : MoveStrategy {
             override fun isMove(): Boolean {
@@ -33,15 +33,15 @@ internal class RacingTest {
 
         racing.start(1, strategy)
 
-        assertAll("", {
-            assertThat(racing.result[0].cars[0].position).isEqualTo(1)
-            assertThat(racing.result[0].cars[1].position).isEqualTo(1)
+        assertAll("자동차 포지션 테스트", {
+            assertThat(racing.history[0].cars[0].position).isEqualTo(1)
+            assertThat(racing.history[0].cars[1].position).isEqualTo(1)
         })
     }
 
     @Test
     fun `잘못된 결과 값 테스트`() {
-        val racing = Racing(Cars(listOf(Car(), Car())))
+        val racing = Racing(Cars(listOf(Car("a"), Car("b"))))
 
         val strategy = object : MoveStrategy {
             override fun isMove(): Boolean {
@@ -50,6 +50,6 @@ internal class RacingTest {
         }
 
         racing.start(1, strategy)
-        assertThrows<IndexOutOfBoundsException> { racing.result[1].cars[0].position }
+        assertThrows<IndexOutOfBoundsException> { racing.history[1].cars[0].position }
     }
 }
