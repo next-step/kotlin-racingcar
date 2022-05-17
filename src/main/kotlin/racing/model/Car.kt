@@ -10,7 +10,7 @@ data class Car(
     }
 
     override fun compareTo(other: Car): Int = position - other.position
-
+  
     override fun toString(): String = "$name: ${PRINT_STEP_SIGN.repeat(position)}"
 
     fun moveForward(power: Int): Car = copy(position = position + nextStep(power))

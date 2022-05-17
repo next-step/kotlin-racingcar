@@ -16,6 +16,8 @@ class Cars(private val cars: List<Car>) {
         return cars.filter { maxCar.compareTo(it) == 0 }
     }
 
+    fun getWinners(): Winner = Winner(cars)
+
     companion object {
         fun empty(): Cars = Cars(emptyList())
 

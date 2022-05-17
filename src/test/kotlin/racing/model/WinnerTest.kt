@@ -15,6 +15,7 @@ internal class WinnerTest : DescribeSpec({
                     Car(3, "C"),
                 )
             )
+
             val winner = Winner(cars)
 
             // when
