@@ -12,7 +12,6 @@ class RacingCars(
 
     fun race(): RaceRecord {
         cars.forEach {
-            val movement = driver.drive()
             it.move()
         }
         return RaceRecord(cars.map { it.captureState() })
