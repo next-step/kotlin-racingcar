@@ -1,11 +1,11 @@
 package racingCar
 
-class Car(private val Random: IRandom) {
+class Car() {
     var position: Int = 0
 
-    fun moveFor(tryCount: Int) {
+    fun moveFor(tryCount: Int, movingPoint: Int) {
         for (i: Int in 1..tryCount) {
-            position = if (Random.generate() >= 4) position + 1 else position
+            position = if (movingPoint >= 4) position + 1 else position
         }
     }
 }
