@@ -1,10 +1,10 @@
-package com.nextstep.jngcii.step3
+package com.nextstep.jngcii.racingcar
 
-import com.nextstep.jngcii.step3.domain.Game
-import com.nextstep.jngcii.step3.domain.RandomDice
-import com.nextstep.jngcii.step3.domain.Record
-import com.nextstep.jngcii.step3.view.InputView
-import com.nextstep.jngcii.step3.view.ResultView
+import com.nextstep.jngcii.racingcar.domain.Game
+import com.nextstep.jngcii.racingcar.domain.RandomDice
+import com.nextstep.jngcii.racingcar.domain.Record
+import com.nextstep.jngcii.racingcar.view.InputView
+import com.nextstep.jngcii.racingcar.view.ResultView
 
 fun main() {
     val inputView = InputView()

@@ -1,4 +1,4 @@
-package com.nextstep.jngcii.step3.view
+package com.nextstep.jngcii.racingcar.view
 
 class InputView {
     fun getCarCount(): Int {

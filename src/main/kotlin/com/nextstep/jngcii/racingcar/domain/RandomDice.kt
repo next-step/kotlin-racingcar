@@ -1,4 +1,4 @@
-package com.nextstep.jngcii.step3.domain
+package com.nextstep.jngcii.racingcar.domain
 
 import java.util.Random
 

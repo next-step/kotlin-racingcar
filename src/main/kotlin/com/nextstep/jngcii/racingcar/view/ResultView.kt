@@ -1,6 +1,6 @@
-package com.nextstep.jngcii.step3.view
+package com.nextstep.jngcii.racingcar.view
 
-import com.nextstep.jngcii.step3.domain.Record
+import com.nextstep.jngcii.racingcar.domain.Record
 
 class ResultView {
 

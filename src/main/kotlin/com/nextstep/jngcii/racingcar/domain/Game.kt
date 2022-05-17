@@ -1,4 +1,4 @@
-package com.nextstep.jngcii.step3.domain
+package com.nextstep.jngcii.racingcar.domain
 
 class Game(
     private val record: Record,
