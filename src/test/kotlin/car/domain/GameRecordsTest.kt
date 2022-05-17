@@ -39,7 +39,9 @@ class GameRecordsTest : FreeSpec({
             "유효한 경기를 했다면 알 수 있다" {
                 val cars = Cars(driverNames = driverNames)
 
-                cars.runAll()
+                repeat(10) {
+                    cars.runAll()
+                }
                 val moves = cars.getAllRecord().maxOfOrNull { it.moves }
                 records.record(cars)
 
