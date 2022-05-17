@@ -1,5 +1,6 @@
 package camp.nextstep.edu.racingcar.racing
 
+import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertNotNull
@@ -40,7 +41,7 @@ internal class RacingTest {
         assertFalse(carTraces.next())
 
         assertEquals(1, racing.winners().size)
-        assertTrue(racing.winners().containsAll(participants))
+        assertArrayEquals(racing.winners().map { it.id }.toTypedArray(), participants.map { it.id }.toTypedArray())
     }
 
     @DisplayName("경주가 끝나기 전, 결과를 요청할 수 없다.")
