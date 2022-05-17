@@ -15,8 +15,8 @@ fun main() {
 
     racing.start()
 
-    for (i in 1..moveCount) {
-        RacingSnapshotWriter.writeRacingSnapshot(RacingSnapshot(racing, i))
+    for (movements in 1..moveCount) {
+        RacingSnapshotWriter.writeRacingSnapshot(RacingSnapshot(racing, movements))
         ResultWriter.writeBlank()
     }
 
