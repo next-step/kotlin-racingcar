@@ -4,17 +4,17 @@ import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
 
-internal class NumberTest : FreeSpec({
+internal class CalculatorNumberTest : FreeSpec({
 
-    "정수 이외의 문자열로 Number 변환을 시도하면 예외가 발생한다." - {
+    "정수 이외의 문자열로 CalculatorNumber 변환을 시도하면 예외가 발생한다." - {
         listOf(
             "",
             " ",
             "zz"
         ).forEach { invalidString ->
-            "\"$invalidString\" 은 Number로 변환에 실패한다." {
+            "\"$invalidString\" 은 CalculatorNumber로 변환에 실패한다." {
                 // when
-                val exception = shouldThrowExactly<IllegalArgumentException> { Number.from(invalidString) }
+                val exception = shouldThrowExactly<IllegalArgumentException> { CalculatorNumber.from(invalidString) }
 
                 // then
                 exception.message shouldBe "\"$invalidString\" 는 정수가 아닙니다."

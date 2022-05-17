@@ -7,9 +7,9 @@ import io.kotest.matchers.string.shouldEndWith
 
 internal class CalculatorTest : FreeSpec({
 
-    "전달된 수식 문자열이 null이거나 공백인 경우 예외가 발생한다." {
-        shouldThrowExactly<IllegalArgumentException> { Calculator(null) }
-        shouldThrowExactly<IllegalArgumentException> { Calculator(" ") }
+    "전달된 수식 문자열이 공백인 경우 예외가 발생한다." {
+        val calculator = Calculator()
+        shouldThrowExactly<IllegalArgumentException> { calculator.calculate(" ") }
     }
 
     "연산자와 피연산자 개수가 올바르지 않은 경우 예외가 발생한다." - {
@@ -19,7 +19,7 @@ internal class CalculatorTest : FreeSpec({
         ).forEach { invalidValue ->
             "$invalidValue 는 예외가 발생한다." {
                 // when
-                val exception = shouldThrowExactly<IllegalArgumentException> { Calculator(invalidValue) }
+                val exception = shouldThrowExactly<IllegalArgumentException> { Calculator().calculate(invalidValue) }
 
                 // then
                 exception.message shouldBe "입력된 수식이 올바르지 않습니다."
@@ -36,7 +36,7 @@ internal class CalculatorTest : FreeSpec({
         ).forEach { invalidValue ->
             "$invalidValue 는 예외가 발생한다." {
                 // when
-                val exception = shouldThrowExactly<IllegalArgumentException> { Calculator(invalidValue) }
+                val exception = shouldThrowExactly<IllegalArgumentException> { Calculator().calculate(invalidValue) }
 
                 // then
                 exception.message shouldEndWith "는 정수가 아닙니다."
@@ -52,7 +52,7 @@ internal class CalculatorTest : FreeSpec({
         ).forEach { invalidValue ->
             "$invalidValue 는 예외가 발생한다." {
                 // when
-                val exception = shouldThrowExactly<IllegalArgumentException> { Calculator(invalidValue) }
+                val exception = shouldThrowExactly<IllegalArgumentException> { Calculator().calculate(invalidValue) }
 
                 // then
                 exception.message shouldEndWith "에 해당하는 연산자를 찾지 못했습니다."

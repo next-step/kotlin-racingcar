@@ -1,6 +1,7 @@
 package racingcar.view
 
-import racingcar.domain.Car
+import racingcar.domain.car.Car
+import java.lang.String.join
 
 class ResultView {
     fun printRacingResult() {
@@ -8,20 +9,20 @@ class ResultView {
     }
 
     fun printCurrentRace(cars: List<Car>) {
-        for (car in cars) {
-            println(mapForDisplay(car.distance))
+        cars.forEach {
+            println("${it.getName()} : ${mapForDisplay(it.distance)}")
         }
         println()
     }
 
     private fun mapForDisplay(distance: Int): String {
         val stringBuilder = StringBuilder()
-
-        for (i in 1..distance) {
-            stringBuilder.append(DISTANCE_VIEW)
-        }
-
+        repeat(times = distance) { stringBuilder.append(DISTANCE_VIEW) }
         return stringBuilder.toString()
+    }
+
+    fun printWinners(winners: List<String>) {
+        println("${join(", ", winners)}가 최종 우승했습니다.")
     }
 
     companion object {
