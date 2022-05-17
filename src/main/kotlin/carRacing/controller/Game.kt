@@ -36,8 +36,8 @@ class Game(
     }
 
     fun winner(): List<Car> {
-        val maxPositionCar = cars.maxOrNull() ?: throw IllegalStateException(INVALID_CAR_LIST)
-        return this.cars.filter { it.isDrawWith(maxPositionCar) }
+        val car = cars.maxOrNull() ?: throw IllegalStateException(INVALID_CAR_LIST)
+        return this.cars.filter { it.isDrawWith(car) }
     }
 
     companion object {
