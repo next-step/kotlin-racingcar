@@ -1,5 +1,6 @@
 package camp.nextstep.edu.racingcar.racing
 
+import camp.nextstep.edu.racingcar.racing.CarRaceEvent.Companion.merge
 import io.kotest.core.spec.style.BehaviorSpec
 import org.assertj.core.api.Assertions.assertThat
 
@@ -18,7 +19,7 @@ class CarRaceEventTest : BehaviorSpec({
             events.add(car.race())
 
             then("Track 에 흔적이 1개 남아있어야 한다.") {
-                val traces = CarRaceEvent.merge(events).traces().iterator()
+                val traces = events.merge().traces().iterator()
                 assertThat(traces.next()).isTrue
                 assertThat(traces.next()).isFalse
                 assertThat(traces.next()).isFalse
@@ -40,7 +41,7 @@ class CarRaceEventTest : BehaviorSpec({
             events.add(car.race())
 
             then("Track 의 흔적은 3개가 남아있어야 한다.") {
-                val traces = CarRaceEvent.merge(events).traces().iterator()
+                val traces = events.merge().traces().iterator()
                 assertThat(traces.next()).isTrue
                 assertThat(traces.next()).isTrue
                 assertThat(traces.next()).isTrue

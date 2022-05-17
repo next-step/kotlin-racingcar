@@ -18,12 +18,12 @@ class CarRaceEvent private constructor(val eventId: Long, val carId: Int, val mo
 
         fun stoppedEvent(carId: Int) = CarRaceEvent(idGenerator.getAndIncrement(), carId, false)
 
-        fun merge(events: List<CarRaceEvent>): Track {
-            require(events.isNotEmpty())
-            check(events.all { events[0].carId == it.carId }) { "하나의 자동차에 대한 이벤트만 연산할 수 있습니다. " }
+        fun List<CarRaceEvent>.merge(): Track {
+            require(this.isNotEmpty())
+            check(this.all { this[0].carId == it.carId }) { "하나의 자동차에 대한 이벤트만 연산할 수 있습니다. " }
 
-            val track = Track(events.size)
-            for (event in events.sortedBy { it.eventId }) {
+            val track = Track(this.size)
+            for (event in this.sortedBy { it.eventId }) {
                 if (event.moved) track.markTrace()
             }
             return track
