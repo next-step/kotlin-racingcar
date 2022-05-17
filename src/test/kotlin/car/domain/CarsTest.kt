@@ -31,7 +31,7 @@ class CarsTest : StringSpec({
 
         cars.move { true }
 
-        cars.winners.size shouldNotBe 0
+        cars.findWinners().size shouldNotBe 0
     }
 }) {
     companion object {

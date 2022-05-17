@@ -31,8 +31,23 @@ class CarTest : StringSpec({
 
         car.position.value shouldBe 0
     }
+
+    "자동차 경주에서 우승한 자동차일 경우 true를 반환한다." {
+        val winner = `자동차 위치 1, 이름 B`()
+        val winnerPosition = Position(1)
+
+        winner.isWinner(winnerPosition) shouldBe true
+    }
+
+    "자동차 경주에서 우승하지 못한 경우 false를 반환한다." {
+        val winner = `자동차 위치 0, 이름 A`()
+        val winnerPosition = Position(1)
+
+        winner.isWinner(winnerPosition) shouldBe false
+    }
 }) {
     companion object {
         private fun `자동차 위치 0, 이름 A`() = Car(Name("A"), Position(0))
+        private fun `자동차 위치 1, 이름 B`() = Car(Name("B"), Position(1))
     }
 }
