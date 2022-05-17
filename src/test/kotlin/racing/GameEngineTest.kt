@@ -1,8 +1,10 @@
 package racing
 
 import io.kotest.core.spec.style.FunSpec
+import io.kotest.data.forAll
+import io.kotest.data.row
 import io.kotest.matchers.ints.shouldBeInRange
-
+import io.kotest.matchers.shouldBe
 
 class GameEngineTest : FunSpec({
     val gameEngine = GameEngine
@@ -22,4 +24,36 @@ class GameEngineTest : FunSpec({
             givenCarList[2].currentLocation shouldBeInRange 100..101
         }
     }
+    context("playTurn(car) 단위테스트") {
+        test("dice result가 4 이상인 경우에는 currentLocation이 1 증가한다") {
+            //given
+            forAll(
+                row(0, 10, 4),
+                row(1, 5, 8),
+                row(2, 2, 6)
+            ){carNumber, initialLocation, givenDice ->
+                val givenCar = Car(carNumber, initialLocation)
+                //when
+                gameEngine.playTurn(givenCar, givenDice)
+                //then
+                givenCar.currentLocation shouldBe initialLocation + 1
+            }
+        }
+        test("dice result가 3 이하인 경우에는 currentLocation이 변하지 않는다") {
+            //given
+            forAll(
+                row(0, 10, 3),
+                row(1, 5, 2),
+                row(2, 2, 1)
+            ){carNumber, initialLocation, givenDice ->
+                val givenCar = Car(carNumber, initialLocation)
+                //when
+                gameEngine.playTurn(givenCar, givenDice)
+                //then
+                givenCar.currentLocation shouldBe initialLocation
+            }
+        }
+
+    }
+
 })

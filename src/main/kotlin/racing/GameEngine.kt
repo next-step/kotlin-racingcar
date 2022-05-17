@@ -1,18 +1,18 @@
 package racing
 
 object GameEngine {
-    private val randomRange = 0..9
-    private const val moveCriteria = 4
+    private val RANDOM_RANGE: IntRange = 0..9
+    private const val MOVE_CRITERIA: Int = 4
 
     fun playTurnForAllCar(carList: List<Car>) {
         carList.forEach {
-            playTurn(it)
+            playTurn(it, RANDOM_RANGE.random())
         }
     }
-    private fun playTurn(car: Car) {
-        val diceResult = getRandomNumberBetween(randomRange)
+
+    fun playTurn(car: Car, diceResult: Int) {
         if (carMoveDecision(diceResult)) car.move()
     }
-    private fun getRandomNumberBetween(range: IntRange) = range.random()
-    private fun carMoveDecision(number: Int): Boolean = number >= moveCriteria
+
+    private fun carMoveDecision(number: Int): Boolean = number >= MOVE_CRITERIA
 }
