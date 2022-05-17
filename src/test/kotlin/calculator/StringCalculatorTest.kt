@@ -32,6 +32,15 @@ class StringCalculatorTest {
             .hasMessage("입력값이 null 혹은 빈 값입니다.")
     }
 
+    @Test
+    fun `0으로 나눈 경우`() {
+        assertThatThrownBy {
+            calculator.calculate("1 / 0")
+        }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("0으로 나눌 수 없습니다")
+    }
+
     @ParameterizedTest
     @MethodSource("plusArguments")
     fun `더하기`(input: String, expectedResult: Double) {
