@@ -9,18 +9,7 @@ class GameRecords {
         get() = _records.lastOrNull() ?: emptyList()
 
     val winners: List<Record>
-        get() {
-            val farthestMoves = latestRecord.getFarthestMoves()
-            return if (farthestMoves == 0) {
-                emptyList()
-            } else {
-                latestRecord.filter { it.moves == farthestMoves }
-            }
-        }
-
-    private fun List<Record>.getFarthestMoves(): Int {
-        return maxOfOrNull { it.moves } ?: 0
-    }
+        get() = GameReferee.getWinners(latestRecord)
 
     fun record(cars: Cars) {
         _records.add(cars.getAllRecord())
