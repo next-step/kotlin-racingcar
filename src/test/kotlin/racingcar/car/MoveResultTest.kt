@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 class MoveResultTest {
 
     @Test
-    fun `가장 먼 거리의 차 이름을 반환한다`() {
+    fun `moveDistance 값이 가장 큰 차의 이름을 반환한다`() {
         val moveResults = MoveResults(
             listOf(
                 MoveResults.MoveResult("pang", 5),
