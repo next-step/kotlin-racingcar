@@ -39,9 +39,9 @@ internal class CalculatorTest() : AnnotationSpec() {
 
     @Test
     fun `연산 불가능한 연산자가 입력된 경우 예외 처리`() {
-        val nonArithmeticOperation = "//"
-        assertThrows<IllegalArgumentException> { Calculator.calculate("5 $nonArithmeticOperation 2") }
-            .message shouldBe "연산 불가능한 연산자가 입력되었습니다.: $nonArithmeticOperation"
+        val nonArithmeticOperator = "//"
+        assertThrows<IllegalArgumentException> { Calculator.calculate("5 $nonArithmeticOperator 2") }
+            .message shouldBe "연산 불가능한 연산자가 입력되었습니다.: $nonArithmeticOperator"
     }
 
     @Test

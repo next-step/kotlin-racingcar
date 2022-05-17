@@ -1,6 +1,6 @@
 package calculator.operation
 
-class NoMatch(override val operator: String) : Operator(operator) {
+class NonArithmeticOperator(override val operator: String) : Operator(operator) {
 
     override fun match(operator: String) = true
 

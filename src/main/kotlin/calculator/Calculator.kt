@@ -3,7 +3,7 @@ package calculator
 import calculator.operation.Addition
 import calculator.operation.Division
 import calculator.operation.Multiplication
-import calculator.operation.NoMatch
+import calculator.operation.NonArithmeticOperator
 import calculator.operation.Subtraction
 
 object Calculator {
@@ -40,7 +40,7 @@ object Calculator {
         }
     }
 
-    private fun operate(operator: String, leftOperand: Double, rightOperand: Double) = OPERATORS.plus(NoMatch(operator))
+    private fun operate(operator: String, leftOperand: Double, rightOperand: Double) = OPERATORS.plus(NonArithmeticOperator(operator))
         .filter { it.match(operator) }[0]
         .operate(leftOperand, rightOperand)
 }
