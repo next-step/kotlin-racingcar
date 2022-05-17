@@ -1,6 +1,10 @@
 package car.domain
 
+import car.domain.vo.Name
+import car.domain.vo.Position
+
 class Car(
+    val name: Name,
     position: Position
 ) {
     var position: Position = position
@@ -11,4 +15,6 @@ class Car(
             position = position.increase()
         }
     }
+
+    fun isWinner(winnerPosition: Position): Boolean = position == winnerPosition
 }

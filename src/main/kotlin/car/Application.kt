@@ -1,16 +1,13 @@
 package car
 
-import car.domain.CarRacing
-import car.domain.Cars
+import car.application.CarRacing
+import car.application.dto.RacingInput
+import car.application.vo.TryCount
 import car.ui.InputView
 import car.ui.OutputView
 
 fun main() {
-    val (numberOfCar, tryCount) = InputView.input()
-
-    val cars = Cars(numberOfCar)
-
-    OutputView.result()
-
-    repeat(tryCount.value) { OutputView.output(CarRacing.race(cars)) }
+    val (carNames, tryCount) = InputView.input()
+    val racingResult = CarRacing.race(RacingInput(carNames, TryCount(tryCount)))
+    OutputView.output(racingResult)
 }
