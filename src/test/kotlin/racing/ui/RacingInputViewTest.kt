@@ -3,10 +3,6 @@ package racing.ui
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
 internal class RacingInputViewTest {
 
@@ -22,30 +18,11 @@ internal class RacingInputViewTest {
             .hasMessageContaining("자동차 이름은 5자를 초과할 수 없습니다.")
     }
 
-    @ParameterizedTest
-    @MethodSource("generateData")
-    fun `parsing car name string test`(carNameStr: String, expected: List<String>) { //given
+    @Test
+    fun `parsing car name string test`() { //given
+        val carNameStr = "my,mbti,is,entp"
+        val expected = listOf("my", "mbti", "is", "entp")
         assertThat(RacingInputView.parseCarNamesStr(carNameStr)) //when
             .isEqualTo(expected) //then
-    }
-
-    companion object {
-        @JvmStatic
-        private fun generateData(): Stream<Arguments> {
-            return Stream.of(
-                Arguments.of(
-                    "my,mbti,is,entp",
-                    listOf("my", "mbti", "is", "entp")
-                ),
-                Arguments.of(
-                    "I,my,me,mine",
-                    listOf("I", "my", "me", "mine")
-                ),
-                Arguments.of(
-                    "you,your,yours",
-                    listOf("you", "your", "yours")
-                ),
-            )
-        }
     }
 }
