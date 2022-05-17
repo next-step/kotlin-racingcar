@@ -8,10 +8,14 @@ class RacingGame(carCnt: Int, val tryCnt: Int) {
     }
 
     fun execute() {
+        val resultView = ResultView()
         repeat(tryCnt) {
             cars.forEach {
                 it.move(it.generate())
+                resultView.view(it.position)
+                resultView.newLine()
             }
+            resultView.newLine()
         }
     }
 }
