@@ -1,6 +1,6 @@
 package racingCar
 
-class ResultView() {
+object ResultView {
     fun show(carPositions: List<Int>) {
         println("RaceGame 결과: ")
         println(convertDataToView(carPositions))

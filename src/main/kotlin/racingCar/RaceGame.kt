@@ -1,14 +1,14 @@
 package racingCar
 
-class RaceGame(private val inputView: InputView, private val resultView: ResultView) {
+object RaceGame {
     fun start() {
-        val carCount = inputView.askCarCount()
-        val tryCount = inputView.askTryCount()
+        val carCount = InputView.askCarCount()
+        val tryCount = InputView.askTryCount()
 
         val race = Race(carCount, tryCount)
 
         race.run()
 
-        resultView.show(race.carPositions)
+        ResultView.show(race.carPositions)
     }
 }
