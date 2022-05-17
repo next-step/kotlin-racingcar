@@ -10,9 +10,7 @@ object RacingApp {
         val tries = RacingInputView.getTries()
         val racingResult = CarRacing(carNames, tries).start()
 
-        val resultView = RacingResultView(tries, racingResult)
-
-        resultView.display()
+        RacingResultView.display(tries, racingResult)
     }
 }
 
