@@ -2,9 +2,10 @@ package racing
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.ints.shouldBeInRange
-import racing.Game.Companion.gameEngine
+
 
 class GameEngineTest : FunSpec({
+    val gameEngine = GameEngine
     context("playTurnForAllCar(carList) 단위테스트") {
         test("한 번 실행하면 carList 내부의 모든 currentLocation이 기존값~기존값+1 사이에 존재한다") {
             // given

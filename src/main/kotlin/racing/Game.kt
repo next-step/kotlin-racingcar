@@ -1,7 +1,7 @@
 package racing
 
 class Game {
-    private val carList: MutableList<Car> = mutableListOf<Car>()
+    val carList: MutableList<Car> = mutableListOf()
     private val gameEngine = GameEngine
 
     fun run(carNumber: Int, turnNumber: Int) {
@@ -13,9 +13,10 @@ class Game {
             ResultView().printCurrentRound(carList)
         }
     }
-    fun clearResult() {
+    fun clearCarList() {
         carList.clear()
     }
+
     private fun initializeCarList(carNumber: Int) {
         (0 until carNumber).forEach {
             carList.add(Car(it))

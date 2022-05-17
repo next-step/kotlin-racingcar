@@ -1,11 +1,9 @@
 package racing
 
 import io.kotest.core.spec.style.FunSpec
-import io.kotest.data.forAll
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.ints.shouldBeInRange
-import racing.Game.Companion.carList
 
 class GameTest : FunSpec({
     // given
@@ -17,20 +15,20 @@ class GameTest : FunSpec({
             // when
             game.run(carNumberInput, turnNumberInput)
             // then
-            carList shouldHaveSize 3
+            game.carList shouldHaveSize 3
 
-            carList.forAll {
+            game.carList.forAll {
                 it.currentLocation shouldBeInRange (0..4)
             }
         }
     }
     context("clearResult() 단위테스트") {
         test("run 실행 이후 clearResult 실행 시 carList는 비어있어야 한다") {
-            carList shouldHaveSize 3
+            game.carList shouldHaveSize 3
             // when
-            game.clearResult()
+            game.clearCarList()
             // then
-            carList shouldHaveSize 0
+            game.carList shouldHaveSize 0
         }
     }
 })

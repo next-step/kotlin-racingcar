@@ -6,7 +6,7 @@ fun main() {
 
     val game = Game()
     game.run(carNumberInput, turnNumberInput)
-    game.clearResult()
+    game.clearCarList()
 }
 
 
