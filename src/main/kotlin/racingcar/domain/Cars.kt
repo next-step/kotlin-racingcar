@@ -16,4 +16,11 @@ class Cars(
         return cars.map { it.moveOrNot(movementStrategy.invoke()) }
             .run { Cars(this) }
     }
+
+    fun selectWinners(): List<Name> {
+        val maxPosition = _cars.maxOf { it.position }
+        return _cars.filter { it.position == maxPosition }
+            .map { it.name }
+            .sortedBy { it.value }
+    }
 }

@@ -40,4 +40,22 @@ class CarsTest : FunSpec({
             actual.cars[1].position shouldBe expected
         }
     }
+
+    test("우승자를 찾는 기능") {
+        // given
+        val cars = listOf(
+            Car(Name("a"), 3),
+            Car(Name("b"), 2),
+            Car(Name("c"), 1),
+            Car(Name("d"), 3),
+        ).let { Cars(it) }
+
+        // when
+        val winners = cars.selectWinners()
+
+        // then
+        winners.size shouldBe 2
+        winners[0].value shouldBe "a"
+        winners[1].value shouldBe "d"
+    }
 })

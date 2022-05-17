@@ -22,8 +22,8 @@ class RacingGameTest : StringSpec({
         val actual = racingGame.play { 4 }
 
         // then
-        actual.size shouldBe 2
-        actual[0].cars.size shouldBe 2
-        actual[1].cars.size shouldBe 2
+        actual.value.size shouldBe 2
+        actual.value[0].cars.size shouldBe 2
+        actual.value[1].cars.size shouldBe 2
     }
 })

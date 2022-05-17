@@ -8,6 +8,7 @@ import racingcar.domain.generateRandomCondition
 import racingcar.view.inputCarNames
 import racingcar.view.inputTryNumber
 import racingcar.view.printPlayResult
+import racingcar.view.printWinners
 
 class RacingGameController {
     fun handle() {
@@ -16,9 +17,11 @@ class RacingGameController {
             tryNumber = TryNumber(inputTryNumber()),
         )
 
-        printPlayResult(
-            racingGame.play(generateRandomCondition())
-        )
+        racingGame.play(generateRandomCondition())
+            .also {
+                printPlayResult(it)
+                printWinners(it.getWinners())
+            }
     }
 
     private fun createCars(carNames: List<String>): Cars {
