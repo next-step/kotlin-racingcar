@@ -1,7 +1,7 @@
 package racing
 
-import racing.model.CarMovingStrategy
 import racing.model.Cars
+import racing.model.RacingGame
 import racing.view.InputView
 import racing.view.ResultView
 
@@ -13,12 +13,7 @@ fun main() {
     val tryCount = InputView.inputTryCount()
 
     val cars = Cars.from(carNames)
-    ResultView.printExecutionResultMessage()
+    val racingGameResult = RacingGame.play(cars, tryCount)
 
-    repeat(tryCount) {
-        cars.moveForward(CarMovingStrategy)
-        ResultView.printCarsNameAndPosition(cars.cars)
-    }
-
-    ResultView.printWinnerNames(cars.findWinners())
+    ResultView.printGameResult(racingGameResult)
 }

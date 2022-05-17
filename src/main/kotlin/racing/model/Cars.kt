@@ -4,8 +4,9 @@ class Cars(
     val cars: List<Car>
 ) {
 
-    fun moveForward(movingStrategy: MovingStrategy) {
-        cars.forEach { it.moveForward(movingStrategy) }
+    fun moveForward(movingStrategy: MovingStrategy): Cars {
+        val cars = cars.map { it.moveForward(movingStrategy) }
+        return Cars(cars)
     }
 
     fun findWinners(): List<Car> {

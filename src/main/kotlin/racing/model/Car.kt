@@ -2,30 +2,25 @@ package racing.model
 
 class Car private constructor(
     private val name: Name,
-    private val position: Position = Position(0)
+    private val position: Position = Position.from(DEFAULT_POSITION)
 ) {
 
-    fun moveForward(movingStrategy: MovingStrategy) {
+    fun moveForward(movingStrategy: MovingStrategy): Car {
         if (movingStrategy.isMovable()) {
-            position.plusOne()
+            return Car(Name(name()), position.plusOne())
         }
+        return Car(Name(name()), Position.from(position()))
     }
 
-    fun position(): Int {
-        return position.position
-    }
+    fun position() = position.position
 
-    fun name(): String {
-        return name.toString()
-    }
+    fun name() = name.toString()
 
     companion object {
-        fun from(name: String): Car {
-            return Car(Name(name))
-        }
+        private const val DEFAULT_POSITION = 0
 
-        fun of(name: String, position: Int): Car {
-            return Car(Name(name), Position(position))
-        }
+        fun from(name: String) = Car(Name(name))
+
+        fun of(name: String, position: Int) = Car(Name(name), Position.from(position))
     }
 }
