@@ -22,5 +22,4 @@ class Game {
             carList.add(Car(it))
         }
     }
-
 }

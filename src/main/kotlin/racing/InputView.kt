@@ -1,6 +1,6 @@
 package racing
 
-class InputView{
+class InputView {
     fun showCarInput(): Int {
         println("자동차 대수는 몇 대인가요?")
         return readln().inputConverter()

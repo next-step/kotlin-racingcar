@@ -1,9 +1,9 @@
 package racing
 
-data class Car(
-    val number: Int,
-    var currentLocation: Int = 0,
-) {
+class Car(val number: Int, _currentLocation: Int = 0) {
+    var currentLocation = _currentLocation
+        private set
+
     fun move() {
         this.currentLocation++
     }

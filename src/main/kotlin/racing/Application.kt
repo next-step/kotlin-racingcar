@@ -8,5 +8,3 @@ fun main() {
     game.run(carNumberInput, turnNumberInput)
     game.clearCarList()
 }
-
-
