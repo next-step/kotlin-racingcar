@@ -17,7 +17,7 @@ class Record(
     fun write(carIndex: Int, canGo: Boolean) {
         carIndex.validate()
 
-        if (goCounts[carIndex] + 1 > trialCount) {
+        if (goCounts[carIndex] + SINGLE_COUNT > trialCount) {
             throw IllegalStateException("최대 전진 횟수는 시도 횟수보다 클 수 없습니다.")
         }
 
