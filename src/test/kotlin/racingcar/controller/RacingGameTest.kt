@@ -1,4 +1,4 @@
-package racingcar.car
+package racingcar.controller
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
@@ -6,9 +6,10 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import racingcar.controller.RacingGame
+import racingcar.domain.strategy.AlwaysTrueMoveStrategy
 import racingcar.domain.strategy.MoveStrategy
 import racingcar.domain.strategy.NameStrategy
+import racingcar.domain.strategy.TestNameStrategy
 import racingcar.exception.GameOverException
 
 class RacingGameTest {

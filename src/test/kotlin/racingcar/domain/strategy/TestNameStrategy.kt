@@ -1,6 +1,4 @@
-package racingcar.car
-
-import racingcar.domain.strategy.NameStrategy
+package racingcar.domain.strategy
 
 class TestNameStrategy : NameStrategy {
     override fun validateName(name: String) {
