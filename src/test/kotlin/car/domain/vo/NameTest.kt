@@ -5,7 +5,7 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.inspectors.forAll
 
-class NameTest: StringSpec({
+class NameTest : StringSpec({
     "이름을 생성할수 있다" {
         names.forAll { shouldNotThrow<Throwable> { Name(it) } }
     }

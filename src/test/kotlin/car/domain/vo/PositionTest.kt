@@ -1,6 +1,5 @@
 package car.domain.vo
 
-import car.domain.vo.Position
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec

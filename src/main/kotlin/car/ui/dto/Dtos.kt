@@ -1,3 +1,4 @@
+// ktlint-disable filename
 package car.ui.dto
 
 data class RacingCarInput(

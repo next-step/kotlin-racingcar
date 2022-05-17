@@ -5,7 +5,7 @@ private const val MIN_POSITION = 0
 @JvmInline
 value class Position(
     val value: Int
-): Comparable<Position> {
+) : Comparable<Position> {
     init {
         require(value >= MIN_POSITION) { "위치값은 음수가 될수 없습니다." }
     }
