@@ -2,15 +2,17 @@ package racingcar.domain
 
 class Race(
     private val cars: List<Car>,
-    private val driver: Driver
+    private val numberOfRaces: Int
 ) {
+    init {
+        require(numberOfRaces >= MINIMUM_NUMBER_OF_RACES) { "경주는 최소 ${MINIMUM_NUMBER_OF_RACES}번 이상 진행되어야 합니다." }
+        require(cars.isNotEmpty()) { "경주를 진행할 자동차가 없습니다." }
+    }
 
-    fun proceed(numberOfRounds: Int): List<Record> {
-        require(numberOfRounds >= MINIMUM_NUMBER_OF_ROUNDS) { "경주는 최소 ${MINIMUM_NUMBER_OF_ROUNDS}번 이상 진행되어야 합니다." }
-
+    fun proceed(): List<Record> {
         val records = mutableListOf<Record>()
 
-        repeat(numberOfRounds) {
+        repeat(numberOfRaces) {
             proceedRound()
             records.add(Record(cars.map { it.captureState() }))
         }
@@ -19,7 +21,7 @@ class Race(
     }
 
     private fun proceedRound() {
-        cars.forEach { it.move()}
+        cars.forEach { it.move() }
     }
 
     fun selectWinner(): List<String> {
@@ -33,10 +35,10 @@ class Race(
     }
 
     companion object {
-        const val MINIMUM_NUMBER_OF_ROUNDS = 1
+        const val MINIMUM_NUMBER_OF_RACES = 1
     }
 }
 
 data class Record(
-    val roundRecords: List<Car.State>
+    val carStates: List<Car.State>
 )
