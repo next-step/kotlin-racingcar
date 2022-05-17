@@ -57,3 +57,15 @@ class CarSpecs : DescribeSpec({
         }
     }
 })
+
+class PreparedDriver(
+    _preparedCommands: List<Int>
+) : Driver {
+
+    private val preparedCommands = ArrayDeque(_preparedCommands)
+
+    override fun drive(): Int {
+        check(preparedCommands.isNotEmpty()) { "준비된 명령을 모두 사용했습니다" }
+        return MovementCommand.of(preparedCommands.removeFirst()).power
+    }
+}

@@ -13,8 +13,7 @@ class Car(
     }
 
     fun move() {
-        val movementCommand = driver.drive()
-        position += movementCommand.power
+        position += driver.drive()
     }
 
     fun captureState() = State(name, position)
