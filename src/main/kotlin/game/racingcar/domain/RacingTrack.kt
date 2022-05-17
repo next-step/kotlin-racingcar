@@ -4,16 +4,15 @@ import game.racingcar.strategy.MoveStrategy
 
 class RacingTrack(private val cars: List<Car>) {
     fun race(numberOfLap: Int, moveStrategy: MoveStrategy): List<Car> {
-        for (i in 0 until numberOfLap) {
+        repeat(numberOfLap) {
             cars.forEach { it.move(moveStrategy) }
         }
         return cars
     }
 
     fun getWinners(): List<Car> {
-        val maxPosition = cars.maxByOrNull { it.position }!!.position
+        val maxPosition = cars.maxOf { it.position }
         return cars
-            .sortedByDescending { it.position }
-            .takeWhile { it.position == maxPosition }
+            .filter { it.position == maxPosition }
     }
 }
