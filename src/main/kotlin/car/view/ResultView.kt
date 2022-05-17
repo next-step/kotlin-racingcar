@@ -26,9 +26,7 @@ class ResultView(private val console: (String) -> Unit) {
 
     private fun showNameAndMoves(record: Record) {
         console("${record.driverName} : ")
-        repeat(record.moves) {
-            console(DISPLAY_MOVEMENT)
-        }
+        console(DISPLAY_MOVEMENT.repeat(record.moves))
         showEmptyLine()
     }
 
