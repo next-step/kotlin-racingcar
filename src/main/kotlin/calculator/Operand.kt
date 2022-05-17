@@ -1,13 +1,13 @@
 package calculator
 
 data class Operand(val value: Long) {
-    fun plus(other: Operand) = Operand(this.value.plus(other.value))
+    operator fun plus(other: Operand): Operand { return Operand(this.value.plus(other.value)) }
 
-    fun minus(other: Operand) = Operand(this.value.minus(other.value))
+    operator fun minus(other: Operand): Operand { return Operand(this.value.minus(other.value)) }
 
-    fun multiply(other: Operand) = Operand(this.value.times(other.value))
+    operator fun times(other: Operand): Operand { return Operand(this.value.times(other.value)) }
 
-    fun divide(other: Operand) = Operand(this.value.div(other.value))
+    operator fun div(other: Operand): Operand { return Operand(this.value.div(other.value)) }
 
     fun parseString(): String {
         return this.value.toString()
