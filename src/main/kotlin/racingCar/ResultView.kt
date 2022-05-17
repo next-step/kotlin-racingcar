@@ -1,9 +1,9 @@
 package racingCar
 
-class ResultView(private val Drawer: IDrawer) {
+class ResultView() {
     fun show(carPositions: List<Int>) {
         println("RaceGame 결과: ")
-        Drawer.paintFor(convertDataToView(carPositions))
+        println(convertDataToView(carPositions))
     }
 
     private fun convertDataToView(carPositions: List<Int>): String {
