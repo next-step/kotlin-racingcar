@@ -1,10 +1,6 @@
 package racingcar.car
 
 class Car(moveCount: Int) {
-    companion object {
-        private val range = (0..9)
-    }
-
     private val randomInts = RandomList.intListBy(range, moveCount)
     private val drivingPoints = randomInts.map { DrivingForce.pointBy(it) }
     private val initPosition = 0
@@ -15,4 +11,8 @@ class Car(moveCount: Int) {
     }
 
     fun positionBy(step: Int): Int = positionsByStep[step]
+
+    companion object {
+        private val range = (0..9)
+    }
 }
