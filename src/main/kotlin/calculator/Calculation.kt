@@ -1,4 +1,4 @@
-package step2
+package calculator
 
 class Calculation(private val expr: String) {
     fun run(): Int {

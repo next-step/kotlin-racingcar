@@ -1,4 +1,4 @@
-package step2
+package calculator
 
 enum class Operation(val exp: String, val compute: (Int, Int) -> Int) {
     PLUS("+", { v1, v2 -> v1 + v2 }),

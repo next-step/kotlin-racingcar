@@ -1,6 +1,6 @@
 # kotlin-racingcar
 
-## step2 todo list
+## calculator todo list
 * [x] 1차 기능 구현 pr요청
 * [x] todo list 작성
 * [x] nullable관련 제거, 네이밍변경 등등
