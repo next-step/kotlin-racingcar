@@ -1,3 +1,5 @@
+package racingcar
+
 class InputView(viewText: String) {
     init {
         println(viewText)
@@ -6,5 +8,3 @@ class InputView(viewText: String) {
     val value: Int
         get() = readLine()!!.toInt()
 }
-
-class ResultView()
