@@ -9,7 +9,7 @@ import io.kotest.matchers.string.shouldNotContain
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-internal class CarTrackViewTest {
+internal class CarTrackSnapshotTest {
 
     @DisplayName("자동차가 트랙 5칸 중에 0칸을 달렸을때")
     @Test
@@ -24,7 +24,7 @@ internal class CarTrackViewTest {
         events.add(car.race())
         events.add(car.race())
 
-        val carTraces = CarTrackView(car, CarRaceEvent.merge(events)).toString()
+        val carTraces = CarTrackSnapshot(car, events).toString()
 
         carTraces.shouldContain(carName)
         carTraces.shouldNotContain("⎼")
@@ -43,7 +43,7 @@ internal class CarTrackViewTest {
         events.add(car.race())
         events.add(car.race())
 
-        val carTraces = CarTrackView(car, CarRaceEvent.merge(events)).toString()
+        val carTraces = CarTrackSnapshot(car, events).toString()
 
         carTraces.shouldContain(carName)
         val dashCount = carTraces.count { it == '⎼' }
@@ -63,7 +63,7 @@ internal class CarTrackViewTest {
         events.add(car.race())
         events.add(car.race())
 
-        val carTraces = CarTrackView(car, CarRaceEvent.merge(events)).toString()
+        val carTraces = CarTrackSnapshot(car, events).toString()
 
         carTraces.shouldContain(carName)
         val dashCount = carTraces.count { it == '⎼' }

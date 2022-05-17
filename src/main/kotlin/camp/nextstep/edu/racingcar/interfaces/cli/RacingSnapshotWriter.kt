@@ -1,10 +1,10 @@
 package camp.nextstep.edu.racingcar.interfaces.cli
 
-import camp.nextstep.edu.racingcar.interfaces.RacingSnapshotView
+import camp.nextstep.edu.racingcar.interfaces.RacingSnapshot
 
 object RacingSnapshotWriter {
 
-    fun writeRacingSnapshot(snapshot: RacingSnapshotView) {
-        println(snapshot.racingResults.joinToString("\n"))
+    fun writeRacingSnapshot(snapshot: RacingSnapshot) {
+        println(snapshot.carTracks.joinToString("\n"))
     }
 }

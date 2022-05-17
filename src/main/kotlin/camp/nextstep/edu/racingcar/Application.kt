@@ -1,6 +1,6 @@
 package camp.nextstep.edu.racingcar
 
-import camp.nextstep.edu.racingcar.interfaces.RacingSnapshotView
+import camp.nextstep.edu.racingcar.interfaces.RacingSnapshot
 import camp.nextstep.edu.racingcar.interfaces.cli.InputReader
 import camp.nextstep.edu.racingcar.interfaces.cli.RacingSnapshotWriter
 import camp.nextstep.edu.racingcar.interfaces.cli.ResultWriter
@@ -16,7 +16,7 @@ fun main() {
     racing.start()
 
     for (i in 1..moveCount) {
-        RacingSnapshotWriter.writeRacingSnapshot(RacingSnapshotView(racing, i))
+        RacingSnapshotWriter.writeRacingSnapshot(RacingSnapshot(racing, i))
         ResultWriter.writeBlank()
     }
 
