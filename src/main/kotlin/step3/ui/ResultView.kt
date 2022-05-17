@@ -8,13 +8,19 @@ object ResultView {
     }
 
     private fun displayMoveResults(gameResult: TrackResult, isLastMove: Boolean) {
-        gameResult.moveResults.forEach { println("-".repeat(it.position)) }
+        gameResult.moveResults.forEach { println("${it.car.name} : " + "-".repeat(it.position)) }
+        println()
         if (isLastMove) {
-            println()
+            displayWinner(gameResult)
         }
     }
 
     private fun isLastMove(index: Int, listSize: Int): Boolean {
-        return (index != listSize - 1)
+        return (index == listSize - 1)
+    }
+
+    private fun displayWinner(gameResult: TrackResult) {
+        val winners = gameResult.getWinners().joinToString(", ") { it.name }
+        println("${winners}가 최종 우승했습니다.")
     }
 }

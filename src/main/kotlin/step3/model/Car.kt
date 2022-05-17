@@ -3,7 +3,7 @@ package step3.model
 import step3.util.NumberGenerator
 import step3.util.RandomGenerator
 
-class Car(private val numberGenerator: NumberGenerator = RandomGenerator()) {
+class Car(val name: String, private val numberGenerator: NumberGenerator = RandomGenerator()) {
     companion object {
         const val MIN_RANDOM_VALUE = 0
         const val MAX_RANDOM_VALUE = 9

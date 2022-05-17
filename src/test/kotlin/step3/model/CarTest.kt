@@ -6,12 +6,12 @@ import io.kotest.matchers.shouldBe
 class CarTest : FunSpec({
 
     test("move fail") {
-        val car = Car { _, _ -> Car.MOVABLE_THRESHOLD - 1 }
+        val car = Car("car") { _, _ -> Car.MOVABLE_THRESHOLD - 1 }
         car.move() shouldBe false
     }
 
     test("move success") {
-        val car = Car { _, _ -> Car.MOVABLE_THRESHOLD }
+        val car = Car("car") { _, _ -> Car.MOVABLE_THRESHOLD }
         car.move() shouldBe true
     }
 })

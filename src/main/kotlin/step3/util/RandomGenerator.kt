@@ -2,7 +2,7 @@ package step3.util
 
 import java.security.SecureRandom
 
-class RandomGenerator: NumberGenerator {
+class RandomGenerator : NumberGenerator {
 
     private val secureRandom = SecureRandom()
 
