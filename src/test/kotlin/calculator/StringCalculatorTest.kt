@@ -70,7 +70,7 @@ class StringCalculatorTest {
         fun minusArguments(): Stream<Arguments> {
             return Stream.of(
                 Arguments.arguments("1 - 1", 0.0),
-                Arguments.arguments("17328.58 - 17328.59", -0.1),
+                Arguments.arguments("17328.125 - 17328.25", -0.125),
                 Arguments.arguments("0.0 - 0.0", 0.0),
             )
         }
