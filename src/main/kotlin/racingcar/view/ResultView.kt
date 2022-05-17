@@ -2,17 +2,23 @@ package racingcar.view
 
 import racingcar.race.Race
 
-class ResultView(private val race: Race) {
+class ResultView(race: Race) {
+    private val cars = race.cars
+    private val steps = List(race.moveCount) { it + 1 }
+
     fun show() {
         println("\n실행 결과")
-        repeat(race.moveCount) {
-            val step = it + 1
-            println("step - $step")
-            showPositions(step)
-        }
+        steps.forEach(fun(step: Int) {
+            showPositionsBy(step)
+            println()
+        })
     }
 
-    private fun showPositions(step: Int) = race.cars.forEach { car -> showPosition(car.positionBy(step)) }
+    private fun showPositionsBy(step: Int) = cars.forEach { showPositionBy(it.positionBy(step)) }
 
-    private fun showPosition(position: Int) = println("|" + List(position) { "-" }.joinToString(""))
+    companion object {
+        private fun showPositionBy(position: Int) = println(stringBy(position))
+
+        private fun stringBy(position: Int) = List(position) { "-" }.joinToString("")
+    }
 }
