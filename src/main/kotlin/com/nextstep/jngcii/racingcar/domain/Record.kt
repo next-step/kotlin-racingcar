@@ -4,14 +4,6 @@ class Record(
     val carCount: Int,
     val trialCount: Int
 ) {
-    companion object {
-        private const val INITIAL_INDEX = 0
-
-        private const val INITIAL_COUNT = 0
-        private const val EMPTY_COUNT = 0
-        private const val SINGLE_COUNT = 1
-    }
-
     private val goCounts = (INITIAL_INDEX until carCount)
         .map { INITIAL_COUNT }
         .toMutableList()
@@ -39,4 +31,12 @@ class Record(
     }
 
     private fun Boolean.toCount() = if (this) SINGLE_COUNT else EMPTY_COUNT
+
+    companion object {
+        private const val INITIAL_INDEX = 0
+
+        private const val INITIAL_COUNT = 0
+        private const val EMPTY_COUNT = 0
+        private const val SINGLE_COUNT = 1
+    }
 }

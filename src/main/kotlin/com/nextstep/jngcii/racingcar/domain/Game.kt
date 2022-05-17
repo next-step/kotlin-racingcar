@@ -4,10 +4,6 @@ class Game(
     private val record: Record,
     private val dice: Dice
 ) {
-    companion object {
-        private const val INITIAL_INDEX = 0
-    }
-
     private var isEnd = false
 
     fun start() {
@@ -24,5 +20,9 @@ class Game(
     private fun startCheck() {
         if (isEnd) throw IllegalStateException("이미 실행된 game입니다.")
         isEnd = true
+    }
+
+    companion object {
+        private const val INITIAL_INDEX = 0
     }
 }
