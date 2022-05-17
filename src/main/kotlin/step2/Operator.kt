@@ -1,6 +1,6 @@
 package step2
 
-enum class Operator(val symbol: String, val operator: (Double, Double) -> Double) {
+enum class Operator(private val symbol: String, private val operator: (Double, Double) -> Double) {
     PLUS("+", { a: Double, b: Double -> a + b }),
     SUBTRACT("-", { a: Double, b: Double -> a - b }),
     MULTIPLY("*", { a: Double, b: Double -> a * b }),
