@@ -14,12 +14,6 @@ object StringParser {
     fun listByOperatorSymbol(string: String): List<String> = parseByOperatorSymbols(string).split(" ")
 
     // 입력된 문자열로부터 Double 전환값을 반환. 에러 발생시 toDoubleErrorMessage 에러 throw
-//    fun toDouble(string: String): Double = try {
-//        string.toDouble()
-//    } catch (e: NumberFormatException) {
-//        println(e)
-//        throw IllegalArgumentException(NumberFormatExceptionErrorMessage)
-//    }
     fun toDouble(string: String) =
         string.toDoubleOrNull() ?: throw IllegalArgumentException(NumberFormatExceptionErrorMessage)
 }
