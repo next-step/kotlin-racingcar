@@ -31,6 +31,8 @@ class Racing private constructor(participants: List<Car>, private val moveCount:
 
     companion object {
         fun new(participants: List<Car>, moveCount: Int): Racing {
+            require(participants.isNotEmpty())
+            require(moveCount > 0) { "최소 1회 이상 움직일 수 있어야 합니다." }
             return Racing(participants, moveCount)
         }
     }

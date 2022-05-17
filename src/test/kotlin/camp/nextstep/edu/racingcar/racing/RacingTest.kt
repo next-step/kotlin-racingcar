@@ -65,6 +65,35 @@ internal class RacingTest {
         assertTrue(participants.map { it.id }.containsAll(winners.map { it.id }))
     }
 
+    @DisplayName("자동차 경주에 참여하는 자동차는 최소 1개 이상이어야 한다.")
+    @Test
+    internal fun shouldFailRacingParticipantsEmpty() {
+        val moveCount = 5
+
+        assertThrows<IllegalArgumentException> {
+            Racing.new(listOf(), moveCount)
+        }
+    }
+
+    @DisplayName("자동차 경주에서 자동차는 최소 1회 이상 움직일 수 있어야 한다.")
+    @Test
+    internal fun shouldFailRacingMoveCountZero() {
+        val moveCount = 0
+        val moveAllEngine = InstantEngine(moveCount)
+        val moveOnceEngine = InstantEngine(1)
+
+        val car1Id = 0
+        val car2Id = 1
+        val participants: List<Car> = listOf(
+            Car(car1Id, "all", moveAllEngine),
+            Car(car2Id, "once", moveOnceEngine)
+        )
+
+        assertThrows<IllegalArgumentException> {
+            Racing.new(participants, moveCount)
+        }
+    }
+
     @DisplayName("경주가 끝나기 전, 결과를 요청할 수 없다.")
     @Test
     internal fun shouldFailGetResultBeforeEnded() {
