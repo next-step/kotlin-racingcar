@@ -1,5 +1,8 @@
 package car.racing
 
+import car.domain.GameRecords
+import car.domain.Record
+
 class ResultView(private val console: (String) -> Unit) {
 
     fun showRecords(gameRecords: GameRecords) {

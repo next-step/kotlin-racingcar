@@ -1,6 +1,6 @@
 package main
 
-import car.racing.CarRacing
+import car.domain.CarRacing
 import car.racing.InputView
 import car.racing.ResultView
 

@@ -1,5 +1,7 @@
-package car.racing
+package car.domain
 
+import car.domain.Car
+import car.domain.CarCondition
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual

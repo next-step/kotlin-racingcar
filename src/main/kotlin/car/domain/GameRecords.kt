@@ -1,4 +1,4 @@
-package car.racing
+package car.domain
 
 class GameRecords {
     private val _records = mutableListOf<List<Record>>()

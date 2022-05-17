@@ -1,4 +1,4 @@
-package car.racing
+package car.domain
 
 class Car(val driverName: String, private val condition: CarCondition = CarCondition.NORMAL) {
     private var _moves: Int = 0
