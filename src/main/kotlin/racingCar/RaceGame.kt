@@ -5,10 +5,13 @@ object RaceGame {
         val carCount = InputView.askCarCount()
         val tryCount = InputView.askTryCount()
 
-        val race = Race(carCount, tryCount)
+        val race = Race(carCount)
 
         race.run()
 
-        ResultView.show(race.carPositions)
+        repeat(tryCount) {
+            race.run()
+            ResultView.show(race.result)
+        }
     }
 }

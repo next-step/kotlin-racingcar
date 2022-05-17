@@ -1,12 +1,12 @@
 package racingCar
 
 object ResultView {
-    fun show(carPositions: List<Int>) {
-        println("RaceGame 결과: ")
-        println(convertDataToView(carPositions))
+    fun show(raceResult: List<Int>) {
+        println("Race 결과: ")
+        println(convertDataToView(raceResult))
     }
 
-    private fun convertDataToView(carPositions: List<Int>): String {
-        return carPositions.joinToString(separator = "\n") { "-".repeat(it) }
+    private fun convertDataToView(raceResult: List<Int>): String {
+        return raceResult.joinToString(separator = "\n") { "-".repeat(it) }
     }
 }
