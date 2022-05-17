@@ -6,6 +6,7 @@ import org.junit.jupiter.api.assertThrows
 import racingcar.domain.Drivers
 import racingcar.domain.MoveStrategy
 import racingcar.domain.NameLengthLimitStrategy
+import racingcar.dto.MoveResults
 import racingcar.exception.InvalidDriverNameException
 
 class DriversTest {
@@ -73,5 +74,22 @@ class DriversTest {
         val moveDistance = moveResults.result[0].moveDistance
 
         assertThat(moveDistance).isEqualTo(expectedDistance)
+    }
+
+    @Test
+    fun `우승자의 이동결과를 반환한다`() {
+        val drivers = Drivers(listOf("pang", "yohan"), AlwaysTrueMoveStrategy(), NameLengthLimitStrategy())
+
+        drivers.driveAll()
+
+        val winnerResults = drivers.getWinnerResults()
+        val expectedWinnerResults =
+            listOf(
+                MoveResults.MoveResult("pang", 1),
+                MoveResults.MoveResult("yohan", 1),
+
+            )
+
+        assertThat(winnerResults).isEqualTo(expectedWinnerResults)
     }
 }

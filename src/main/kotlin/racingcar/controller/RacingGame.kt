@@ -33,7 +33,8 @@ class RacingGame(carNames: List<String>, trialCount: Int, moveStrategy: MoveStra
     }
 
     fun getWinners(): List<String> {
-        return drivers.getMoveResults().farthestDistanceCarNames
+        return drivers.getWinnerResults()
+            .map { it.carName }
     }
 
     companion object {
