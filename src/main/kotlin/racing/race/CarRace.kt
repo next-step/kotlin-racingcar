@@ -2,7 +2,7 @@ package racing.race
 
 import racing.car.Car
 import racing.common.CarRaceProperty
-import racing.utils.RandomNumberGenerator
+import racing.utils.RandomNumberGenerator.getRandomNumber
 import racing.view.ResultView
 
 class CarRace {
@@ -17,7 +17,7 @@ class CarRace {
 
     private fun raceByRound(carRaceProperty: CarRaceProperty) {
         carRaceProperty.cars
-            .filter { it.canMoveForward(RandomNumberGenerator.getRandomNumber()) }
+            .filter { it.canMoveForward(getRandomNumber()) }
             .map { moveCarPosition(it) }
     }
 
