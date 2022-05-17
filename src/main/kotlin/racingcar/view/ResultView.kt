@@ -22,11 +22,17 @@ object ResultView {
         return winnerNameView
     }
 
-    fun showRecordsAsDash(results: MoveResults) {
-        results.result.map { result ->
+    fun showAllRacingRecords(results: List<MoveResults>) {
+        results.forEach { eachResult ->
+            showEachRecord(eachResult)
+            println()
+        }
+    }
+
+    private fun showEachRecord(moveResults: MoveResults) {
+        moveResults.data.map { result ->
             showResultView(result.carName, getDashView(result.moveDistance))
         }
-        println()
     }
 
     private fun showResultView(carName: String, dash: String) {

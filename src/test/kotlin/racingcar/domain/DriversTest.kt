@@ -45,7 +45,7 @@ class DriversTest {
 
         // then
         val moveResults = alwayMoveDriver.getMoveResults()
-        val moveDistance = moveResults.result[0].moveDistance
+        val moveDistance = moveResults.data[0].moveDistance
 
         assertThat(moveDistance).isEqualTo(expectedDistance)
     }
@@ -67,7 +67,7 @@ class DriversTest {
 
         // then
         val moveResults = alwayMoveDriver.getMoveResults()
-        val moveDistance = moveResults.result[0].moveDistance
+        val moveDistance = moveResults.data[0].moveDistance
 
         assertThat(moveDistance).isEqualTo(expectedDistance)
     }

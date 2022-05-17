@@ -1,7 +1,7 @@
 package racingcar.dto
 
 data class MoveResults(
-    val result: List<MoveResult>
+    val data: List<MoveResult>
 ) {
 
     data class MoveResult(

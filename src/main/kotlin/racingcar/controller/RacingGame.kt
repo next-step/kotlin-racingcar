@@ -8,20 +8,19 @@ import racingcar.exception.GameOverException
 
 class RacingGame(carNames: List<String>, trialCount: Int, moveStrategy: MoveStrategy, nameStrategy: NameStrategy) {
     private val drivers: Drivers = Drivers(carNames, moveStrategy, nameStrategy)
+    private var _results: MutableList<MoveResults> = mutableListOf()
     private var _trialCount: Int = trialCount
 
     val trialCount get() = _trialCount
+    val results: List<MoveResults> get() = _results
 
     fun play() {
         if (!isPlayable()) {
             throw GameOverException()
         }
         drivers.driveAll()
+        _results.add(drivers.getMoveResults())
         reduceTrialCount()
-    }
-
-    fun getPlayResults(): MoveResults {
-        return drivers.getMoveResults()
     }
 
     fun isPlayable(): Boolean {

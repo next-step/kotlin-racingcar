@@ -16,7 +16,7 @@ fun main() {
 
     repeat(racingGame.trialCount) {
         racingGame.play()
-        ResultView.showRecordsAsDash(racingGame.getPlayResults())
     }
+    ResultView.showAllRacingRecords(racingGame.results)
     ResultView.showRaceWinner(racingGame.getWinners())
 }
