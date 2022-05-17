@@ -1,8 +1,6 @@
-package racingcar.car
+package racingcar.domain
 
-import racingcar.car.strategy.MoveStrategy
-import racingcar.car.strategy.NameLengthLimitStrategy
-import racingcar.car.strategy.NameStrategy
+import racingcar.dto.MoveResults
 
 class Drivers(
     private val carNames: List<String>,

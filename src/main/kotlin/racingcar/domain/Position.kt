@@ -1,4 +1,4 @@
-package racingcar.car
+package racingcar.domain
 
 enum class Position(desc: String) {
     MOVE("이동"),

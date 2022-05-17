@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.car.MoveResults
+import racingcar.dto.MoveResults
 
 object ResultView {
     private const val DASH_VIEW = "-"

@@ -1,4 +1,4 @@
-package racingcar.car
+package racingcar.dto
 
 class MoveResults(
     val result: List<MoveResult>

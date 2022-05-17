@@ -6,9 +6,10 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import racingcar.car.exception.GameOverException
-import racingcar.car.strategy.MoveStrategy
-import racingcar.car.strategy.NameStrategy
+import racingcar.controller.RacingGame
+import racingcar.domain.MoveStrategy
+import racingcar.domain.NameStrategy
+import racingcar.exception.GameOverException
 
 class RacingGameTest {
     lateinit var moveStrategy: MoveStrategy

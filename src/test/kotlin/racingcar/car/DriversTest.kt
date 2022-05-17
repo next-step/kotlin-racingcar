@@ -3,9 +3,10 @@ package racingcar.car
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import racingcar.car.exception.InvalidDriverNameException
-import racingcar.car.strategy.MoveStrategy
-import racingcar.car.strategy.NameLengthLimitStrategy
+import racingcar.domain.Drivers
+import racingcar.domain.MoveStrategy
+import racingcar.domain.NameLengthLimitStrategy
+import racingcar.exception.InvalidDriverNameException
 
 class DriversTest {
 

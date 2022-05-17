@@ -1,4 +1,6 @@
-package racingcar.car
+package racingcar.domain
+
+import racingcar.dto.MoveResults
 
 class Car(
     private val carName: String

@@ -1,8 +1,10 @@
-package racingcar.car
+package racingcar.controller
 
-import racingcar.car.exception.GameOverException
-import racingcar.car.strategy.MoveStrategy
-import racingcar.car.strategy.NameStrategy
+import racingcar.domain.Drivers
+import racingcar.domain.MoveStrategy
+import racingcar.domain.NameStrategy
+import racingcar.dto.MoveResults
+import racingcar.exception.GameOverException
 
 class RacingGame(carNames: List<String>, trialCount: Int, moveStrategy: MoveStrategy, nameStrategy: NameStrategy) {
     private val drivers: Drivers = Drivers(carNames, moveStrategy, nameStrategy)

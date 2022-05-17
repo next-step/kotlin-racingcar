@@ -2,6 +2,7 @@ package racingcar.car
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
+import racingcar.dto.MoveResults
 
 class MoveResultTest {
 
