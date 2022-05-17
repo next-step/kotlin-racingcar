@@ -1,7 +1,7 @@
 package calculator
 
 import calculator.Calculator.Companion.MESSAGE_MUST_NOT_EMPTY
-import calculator.Calculator.Companion.MESSAGE_WRONG_EXPRESSION
+import calculator.Operator.Companion.MESSAGE_WRONG_OPERATOR
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
@@ -41,7 +41,7 @@ internal class CalculatorTest : BehaviorSpec({
                 Calculator().calculate(expression)
             }
             then("기대값과 같은 결과를 출력한다") {
-                exception.message shouldStartWith MESSAGE_WRONG_EXPRESSION
+                exception.message shouldStartWith MESSAGE_WRONG_OPERATOR
             }
         }
     }

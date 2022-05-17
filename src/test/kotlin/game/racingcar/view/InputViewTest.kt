@@ -16,18 +16,13 @@ internal class InputViewTest {
         inputView.init()
 
         // then
-        Assertions.assertThat(inputView.numberOfCar).isEqualTo(3)
-        Assertions.assertThat(inputView.numberOfLap).isEqualTo(5)
+        Assertions.assertThat(inputView.carNames()).hasSize(3)
+        Assertions.assertThat(inputView.numberOfLap()).isEqualTo(5)
     }
 }
 
 class TestInputView : InputView {
-    override var numberOfCar: Int = 0
+    override fun carNames(): List<String> = mutableListOf("jade", "koh", "test")
 
-    override var numberOfLap: Int = 0
-
-    override fun init() {
-        numberOfCar = 3
-        numberOfLap = 5
-    }
+    override fun numberOfLap(): Int = 5
 }

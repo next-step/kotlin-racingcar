@@ -1,6 +1,7 @@
 package game.racingcar
 
 import game.racingcar.domain.Car
+import game.racingcar.domain.RacingTrack
 import game.racingcar.strategy.MoveStrategy
 import game.racingcar.strategy.RandomMoveStrategy
 import game.racingcar.view.InputView
@@ -15,25 +16,13 @@ class RacingGame(
 ) {
     fun run() {
         inputView.init()
-        val cars = start(inputView.numberOfCar, inputView.numberOfLap)
-        val result = outputView.getResult(cars)
+        val racingTrack = RacingTrack(inputView.carNames().map { Car(it) })
+
+        val cars = racingTrack.race(inputView.numberOfLap(), moveStrategy)
+
+        val result = outputView.getResult(cars, racingTrack.getWinners())
         println("\n실행 결과")
         println(result)
-    }
-
-    private fun start(numberOfCar: Int, numberOfLap: Int): List<Car> {
-
-        val cars = arrayListOf<Car>()
-
-        for (i in 0 until numberOfCar) {
-            cars.add(Car())
-        }
-
-        for (i in 0 until numberOfLap) {
-            cars.forEach { it.move(moveStrategy) }
-        }
-
-        return cars
     }
 }
 
