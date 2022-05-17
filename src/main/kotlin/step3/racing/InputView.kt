@@ -1,11 +1,11 @@
 package step3.racing
 
 object InputView {
-    fun getLong(input: String?): Long {
-        input ?: throw IllegalArgumentException("입력 값이 없습니다.")
-        return input.toLongOrThrow()
-    }
+  fun getInt(input: String?): Int {
+    requireNotNull(input) { "입력 값이 없습니다." }
+    return input.toIntOrThrow()
+  }
 
-    private fun String.toLongOrThrow(): Long =
-        toLongOrNull() ?: throw IllegalArgumentException("유효하지 않은 입력 값입니다.")
+  private fun String.toIntOrThrow(): Int =
+    toIntOrNull() ?: throw IllegalArgumentException("숫자가 입력되지 않았습니다.")
 }
