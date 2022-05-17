@@ -23,9 +23,9 @@ class InputView {
 
         var carNames: List<String> = emptyList()
         kotlin.runCatching {
-            val carNames = readln().split(",")
-            validateCarNames(carNames)
-            carNames
+            val tokens = readln().split(",")
+            validateCarNames(tokens)
+            tokens
         }.fold(
             onSuccess = { carNames = it },
             onFailure = { exception -> throw exception }
