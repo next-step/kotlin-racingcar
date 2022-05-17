@@ -1,8 +1,8 @@
 package main
 
 import car.domain.CarRacing
-import car.racing.InputView
-import car.racing.ResultView
+import car.view.InputView
+import car.view.ResultView
 
 /**
  * 자동차 경주 게임 시작(Main)

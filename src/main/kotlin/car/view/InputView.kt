@@ -1,4 +1,4 @@
-package car.racing
+package car.view
 
 class InputView(
     private val reader: () -> String?,

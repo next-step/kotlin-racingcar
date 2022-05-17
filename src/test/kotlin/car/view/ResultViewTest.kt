@@ -1,4 +1,4 @@
-package car.racing
+package car.view
 
 import car.domain.Cars
 import car.domain.GameRecords
