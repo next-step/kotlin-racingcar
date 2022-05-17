@@ -9,14 +9,14 @@ import java.util.concurrent.atomic.AtomicLong
  * @property carId 어떤 차가
  * @property moved 움직였는지
  */
-class CarRaceEvent private constructor(val eventId: Long, val carId: Int, val moved: Boolean) {
+class CarRaceEvent(val eventId: Long = idGenerator.getAndIncrement(), val carId: Int, val moved: Boolean) {
 
     companion object {
         private val idGenerator = AtomicLong(0L)
 
-        fun movedEvent(carId: Int) = CarRaceEvent(idGenerator.getAndIncrement(), carId, true)
+        fun movedEvent(carId: Int) = CarRaceEvent(carId = carId, moved = true)
 
-        fun stoppedEvent(carId: Int) = CarRaceEvent(idGenerator.getAndIncrement(), carId, false)
+        fun stoppedEvent(carId: Int) = CarRaceEvent(carId = carId, moved = false)
 
         fun List<CarRaceEvent>.merge(): Track {
             require(this.isNotEmpty())
