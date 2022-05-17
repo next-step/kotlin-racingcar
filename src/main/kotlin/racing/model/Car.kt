@@ -21,8 +21,4 @@ data class Car(
     fun go() : Car {
         return Car(name,position + CAR_PROGRESS_CHAR)
     }
-
-    override fun toString(): String {
-        return "$name : $position"
-    }
 }

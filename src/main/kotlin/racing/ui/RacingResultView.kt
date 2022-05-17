@@ -17,7 +17,7 @@ object RacingResultView {
 
     private fun displayRound(round: Round?) {
         round?.cars
-            ?.forEach { println(it) }
+            ?.forEach { println("${it.name} : ${it.position}") }
         println()
     }
 
