@@ -10,15 +10,15 @@ class GameRecords {
 
     val winners: List<Record>
         get() {
-            val highestMoves = latestRecord.getHighestMoves()
-            return if (highestMoves == 0) {
+            val farthestMoves = latestRecord.getFarthestMoves()
+            return if (farthestMoves == 0) {
                 emptyList()
             } else {
-                latestRecord.filter { it.moves == highestMoves }
+                latestRecord.filter { it.moves == farthestMoves }
             }
         }
 
-    private fun List<Record>.getHighestMoves(): Int {
+    private fun List<Record>.getFarthestMoves(): Int {
         return maxOfOrNull { it.moves } ?: 0
     }
 
