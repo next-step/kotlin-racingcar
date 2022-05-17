@@ -1,11 +1,12 @@
 package camp.nextstep.edu.racingcar.interfaces
 
-import camp.nextstep.edu.racingcar.racing.Racing
+import camp.nextstep.edu.racingcar.racing.Car
+import camp.nextstep.edu.racingcar.racing.CarRaceEvent
 
-class RacingSnapshot(racing: Racing, movements: Int) {
+class RacingSnapshot(carRacingEvents: Map<Car, List<CarRaceEvent>>) {
 
-    val carTracks: List<CarTrackSnapshot> = racing.carRacingEvents().map {
+    val carTracks: List<CarTrackSnapshot> = carRacingEvents.map {
         (car, events) ->
-        CarTrackSnapshot(car, events.take(movements))
+        CarTrackSnapshot(car, events)
     }
 }

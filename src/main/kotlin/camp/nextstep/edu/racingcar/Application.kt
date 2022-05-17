@@ -16,7 +16,11 @@ fun main() {
     racing.start()
 
     for (movements in 1..moveCount) {
-        RacingSnapshotWriter.writeRacingSnapshot(RacingSnapshot(racing, movements))
+        RacingSnapshotWriter.writeRacingSnapshot(
+            RacingSnapshot(
+                racing.carRacingEvents().mapValues { (_, events) -> events.take(movements) }
+            )
+        )
         RacingResultWriter.writeBlank()
     }
 
