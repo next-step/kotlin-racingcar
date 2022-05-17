@@ -36,7 +36,7 @@ class RacingGame(
     }
 
     private fun goOneStep(racingRecord: RacingRecord, step: Int) {
-        this.carList.forEach { car ->
+        forEachCar { car ->
             car.moveIfItCan()
             racingRecord.writeRecord(car)
         }
