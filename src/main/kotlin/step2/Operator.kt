@@ -20,5 +20,6 @@ enum class Operator(val symbol: String, val operator: (Double, Double) -> Double
             DIVISION.symbol -> DIVISION.operator
             else -> throw IllegalAccessError(symbolErrorMessage)
         }
+        val symbols = Operator.values().map { it.symbol }
     }
 }
