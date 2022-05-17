@@ -1,21 +1,19 @@
 package racing.model
 
 data class Car(
-    private val position: Int,
-    private val name: String = "unknown"
+    val position: Int,
+    val name: String = DEFAULT_CAR_NAME
 ) : Comparable<Car> {
 
     init {
-        require(0 <= this.position) { INVALID_POSITION_EXCEPTION }
+        require(0 <= position) { INVALID_POSITION_EXCEPTION }
     }
 
     override fun compareTo(other: Car): Int = position - other.position
 
-    override fun toString(): String = "$name: ${PRINT_STEP_SIGN.repeat(this.position)}"
+    override fun toString(): String = "$name: ${PRINT_STEP_SIGN.repeat(position)}"
 
-    fun moveForward(randomValue: Int): Car {
-        return Car(position + this.getStep(randomValue), name)
-    }
+    fun moveForward(randomValue: Int): Car = copy(position = position + getStep(randomValue))
 
     private fun getStep(randomValue: Int): Int = if (canMove(randomValue)) {
         MOVE_STEP_SIZE
@@ -34,6 +32,8 @@ data class Car(
         private const val STOP = 0
 
         private const val PRINT_STEP_SIGN = "-"
+
+        private const val DEFAULT_CAR_NAME = "unknown"
 
         const val INVALID_POSITION_EXCEPTION = "잘못된 위치에 자동차를 생성하였습니다."
     }

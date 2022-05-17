@@ -11,7 +11,10 @@ class Cars(private val cars: List<Car>) {
 
     fun toPrintableCars(separator: String = ""): String = cars.joinToString(separator)
 
-    fun getWinners(): Winner = Winner(cars)
+    fun maxAll(): List<Car> {
+        val maxCar = cars.maxOf { it }
+        return cars.filter { maxCar.compareTo(it) == 0 }
+    }
 
     companion object {
         fun empty(): Cars = Cars(emptyList())

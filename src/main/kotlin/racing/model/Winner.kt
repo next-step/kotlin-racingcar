@@ -1,18 +1,7 @@
 package racing.model
 
-data class Winner(private val cars: List<Car>) {
+class Winner(private val cars: Cars) {
 
-    override fun toString(): String {
-        val longestCar = getLongestDistance()
-        return getWinnerNames(longestCar).joinToString(", ")
-    }
-
-    private fun getWinnerNames(car: Car): List<String> =
-        cars
-            .filter { it.compareTo(car) == 0 }
-            .map(Car::toString)
-            .map { it.split(":") }
-            .map { it[0] }
-
-    private fun getLongestDistance(): Car = cars.maxOf { it }
+    fun names(separator: String = ", "): String =
+        cars.maxAll().map(Car::name).joinToString(separator)
 }

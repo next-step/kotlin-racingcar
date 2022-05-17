@@ -3,6 +3,7 @@ package racing.scene
 import racing.engine.EnvironmentManager
 import racing.model.Cars
 import racing.model.ScoreBoard
+import racing.model.Winner
 import racing.port.OutputPainter
 import racing.port.RandomGeneratorPort
 import racing.utils.Constants
@@ -70,6 +71,7 @@ class PlayScene(
     }
 
     private fun outputWinners() {
-        outputPainter.draw("${cars.getWinners()}가 최종 우승했습니다.")
+        val winner = Winner(cars)
+        outputPainter.draw("${winner.names()}가 최종 우승했습니다.")
     }
 }
