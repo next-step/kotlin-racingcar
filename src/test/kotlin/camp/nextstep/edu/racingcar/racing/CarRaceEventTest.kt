@@ -1,51 +1,60 @@
 package camp.nextstep.edu.racingcar.racing
 
 import camp.nextstep.edu.racingcar.racing.CarRaceEvent.Companion.merge
-import io.kotest.core.spec.style.BehaviorSpec
-import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
-class CarRaceEventTest : BehaviorSpec({
-    given("자동차 엔진이 1번 움직일 수 있을 때 ") {
-        val moveOnceEngine = InstantEngine(1)
-        val car = Car(1, "once", moveOnceEngine)
+internal class CarRaceEventTest {
 
-        `when`("자동차가 5번 달리면 ") {
-            val events = mutableListOf<CarRaceEvent>()
+    @DisplayName("자동차가 움직인 이벤트는 움직임 여부를 알 수 있다.")
+    @Test
+    fun movedCarRaceEventTest() {
+        val movedEvent = CarRaceEvent(0, 0, true)
+        assertTrue(movedEvent.moved)
+    }
 
-            events.add(car.race())
-            events.add(car.race())
-            events.add(car.race())
-            events.add(car.race())
-            events.add(car.race())
+    @DisplayName("자동차가 움직이지 않은 이벤트는 움직임 여부를 알 수 있다.")
+    @Test
+    fun notMovedCarRaceEventTest() {
+        val notMovedEvent = CarRaceEvent(0, 0, false)
+        assertFalse(notMovedEvent.moved)
+    }
 
-            then("Track 에 흔적이 1개 남아있어야 한다.") {
-                val traces = events.merge().traces().iterator()
-                assertThat(traces.next()).isTrue
-                assertThat(traces.next()).isFalse
-                assertThat(traces.next()).isFalse
-                assertThat(traces.next()).isFalse
-                assertThat(traces.next()).isFalse
-            }
+    @DisplayName("여러 이벤트를 합치면 자동차가 달린 흔적을 알 수 있다.")
+    @Test
+    fun mergeCarRaceEventsTest() {
+        val track = listOf(
+            CarRaceEvent(0, 1, true),
+            CarRaceEvent(1, 1, true),
+            CarRaceEvent(2, 1, false),
+            CarRaceEvent(3, 1, true),
+            CarRaceEvent(4, 1, false),
+            CarRaceEvent(5, 1, true),
+        ).merge()
+
+        assertEquals(4, track.marks())
+    }
+
+    @DisplayName("서로 다른 자동차의 이벤트는 합칠 수 없다.")
+    @Test
+    fun shouldFailMergeOtherCarsEventTest() {
+        assertThrows<IllegalStateException> {
+            listOf(
+                CarRaceEvent(0, 1, true),
+                CarRaceEvent(1, 2, true),
+            ).merge()
         }
     }
 
-    given("자동차 엔진이 3번 움직일 수 있을 때 ") {
-        val moveThirdEngine = InstantEngine(3)
-        val car = Car(1, "third", moveThirdEngine)
-
-        `when`("자동차가 3번 달리면 ") {
-            val events = mutableListOf<CarRaceEvent>()
-
-            events.add(car.race())
-            events.add(car.race())
-            events.add(car.race())
-
-            then("Track 의 흔적은 3개가 남아있어야 한다.") {
-                val traces = events.merge().traces().iterator()
-                assertThat(traces.next()).isTrue
-                assertThat(traces.next()).isTrue
-                assertThat(traces.next()).isTrue
-            }
+    @DisplayName("이벤트가 없으면 합칠 수 없다.")
+    @Test
+    fun shouldFailMergeEmptyEvents() {
+        assertThrows<IllegalArgumentException> {
+            listOf<CarRaceEvent>().merge()
         }
     }
-})
+}
