@@ -13,15 +13,15 @@ data class Car(
 
     override fun toString(): String = "$name: ${PRINT_STEP_SIGN.repeat(position)}"
 
-    fun moveForward(randomValue: Int): Car = copy(position = position + getStep(randomValue))
+    fun moveForward(power: Int): Car = copy(position = position + nextStep(power))
 
-    private fun getStep(randomValue: Int): Int = if (canMove(randomValue)) {
+    private fun nextStep(power: Int): Int = if (isEnoughPower(power)) {
         MOVE_STEP_SIZE
     } else {
         STOP
     }
 
-    private fun canMove(randomValue: Int): Boolean = MOVE_BOUNDARY_VALUE <= randomValue
+    private fun isEnoughPower(randomValue: Int): Boolean = MOVE_BOUNDARY_VALUE <= randomValue
 
     companion object {
 

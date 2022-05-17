@@ -9,7 +9,7 @@ class Cars(private val cars: List<Car>) {
         return Cars(movedCars)
     }
 
-    fun toPrintableCars(separator: String = ""): String = cars.joinToString(separator)
+    fun toPrintableCars(separator: String = ""): String = cars.joinToString(separator, postfix = "\n")
 
     fun maxAll(): List<Car> {
         val maxCar = cars.maxOf { it }
@@ -19,15 +19,12 @@ class Cars(private val cars: List<Car>) {
     companion object {
         fun empty(): Cars = Cars(emptyList())
 
-        fun createWithNames(names: String, delimiters: String = ","): Cars =
+        fun createWithNames(names: List<String>): Cars =
             Cars(
-                splitNames(names, delimiters)
+                names
                     .map(::createCarWithName)
                     .toList()
             )
-
-        private fun splitNames(names: String, delimiters: String): List<String> =
-            names.split(delimiters).map(String::trim)
 
         private fun createCarWithName(name: String): Car = Car(0, name)
     }
