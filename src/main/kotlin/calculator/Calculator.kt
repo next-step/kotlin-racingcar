@@ -2,8 +2,9 @@ package calculator
 
 object Calculator {
     fun calculate(calculatorFormula: String?): Float {
-        require(!calculatorFormula.isNullOrEmpty()) { "유효하지 않은 계산식 입니다." }
+        validateFor(calculatorFormula)
 
+        calculatorFormula as String
         val parsedCalculateFormula = calculatorFormula.split(" ")
         val restParsedCalculateFormula = parsedCalculateFormula.drop(1)
         var total = parsedCalculateFormula[0].toFloatOrThrow()
@@ -19,4 +20,8 @@ object Calculator {
     }
 
     private fun String.toFloatOrThrow(): Float = toFloatOrNull() ?: throw IllegalArgumentException("유효하지 않은 계산식 입니다.")
+
+    private fun validateFor(calculatorFormula: String?) {
+        require(!calculatorFormula.isNullOrEmpty()) { "유효하지 않은 계산식 입니다." }
+    }
 }
