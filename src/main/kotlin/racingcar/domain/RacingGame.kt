@@ -10,9 +10,12 @@ class RacingGame(
     private val cars: List<Car>,
     private val repeatTimes: Int
 ) {
-    fun startGame(): List<RaceResult> {
-        val raceResults : MutableList<RaceResult> = mutableListOf()
+    init {
         checkNumberCanBeProcessed(repeatTimes)
+    }
+
+    fun startGame(): List<RaceResult> {
+        val raceResults: MutableList<RaceResult> = mutableListOf()
         repeat(repeatTimes) {
             processGame()
             raceResults.add(RaceResult(cars))
