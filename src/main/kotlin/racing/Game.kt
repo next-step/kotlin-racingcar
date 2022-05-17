@@ -1,10 +1,9 @@
 package racing
 
 class Game {
-    companion object {
-        val gameEngine = GameEngine
-        val carList = mutableListOf<Car>()
-    }
+    private val carList: MutableList<Car> = mutableListOf<Car>()
+    private val gameEngine = GameEngine
+
     fun run(carNumber: Int, turnNumber: Int) {
 
         initializeCarList(carNumber)
