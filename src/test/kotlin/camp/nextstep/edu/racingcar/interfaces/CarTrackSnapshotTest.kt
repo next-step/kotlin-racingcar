@@ -2,7 +2,6 @@ package camp.nextstep.edu.racingcar.interfaces
 
 import camp.nextstep.edu.racingcar.racing.Car
 import camp.nextstep.edu.racingcar.racing.CarRaceEvent
-import camp.nextstep.edu.racingcar.racing.InstantEngine
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldNotContain
@@ -11,59 +10,40 @@ import org.junit.jupiter.api.Test
 
 internal class CarTrackSnapshotTest {
 
-    @DisplayName("자동차가 트랙 5칸 중에 0칸을 달렸을때")
+    @DisplayName("자동차가 움직인 적 없는 경우 ⎼ 는 없다.")
     @Test
     fun shouldReturnOnlyCarName() {
         val carName = "tim"
-        val car = Car(0, carName, InstantEngine(0))
-        val events = mutableListOf<CarRaceEvent>()
 
-        events.add(car.race())
-        events.add(car.race())
-        events.add(car.race())
-        events.add(car.race())
-        events.add(car.race())
-
-        val carTraces = CarTrackSnapshot(car, events).toString()
+        val events = listOf(
+            CarRaceEvent(0, 0, false),
+            CarRaceEvent(1, 0, false),
+            CarRaceEvent(2, 0, false),
+            CarRaceEvent(3, 0, false),
+            CarRaceEvent(4, 0, false),
+            CarRaceEvent(5, 0, false),
+        )
+        val carTraces = CarTrackSnapshot(Car(0, carName), events).toString()
 
         carTraces.shouldContain(carName)
         carTraces.shouldNotContain("⎼")
     }
 
-    @DisplayName("자동차가 트랙 5칸 중에 2칸을 달렸을때")
+    @DisplayName("자동차가 5번 움직인 경우 ⎼ 는 5개 이다.")
     @Test
     fun shouldReturnsTwoDash() {
         val carName = "tim"
-        val car = Car(0, carName, InstantEngine(2))
-        val events = mutableListOf<CarRaceEvent>()
 
-        events.add(car.race())
-        events.add(car.race())
-        events.add(car.race())
-        events.add(car.race())
-        events.add(car.race())
-
-        val carTraces = CarTrackSnapshot(car, events).toString()
-
-        carTraces.shouldContain(carName)
-        val dashCount = carTraces.count { it == '⎼' }
-        dashCount.shouldBe(2)
-    }
-
-    @DisplayName("자동차가 트랙 5칸 중에 5칸을 달렸을때")
-    @Test
-    fun shouldReturnsFiveDash() {
-        val carName = "tim"
-        val car = Car(0, carName, InstantEngine(5))
-        val events = mutableListOf<CarRaceEvent>()
-
-        events.add(car.race())
-        events.add(car.race())
-        events.add(car.race())
-        events.add(car.race())
-        events.add(car.race())
-
-        val carTraces = CarTrackSnapshot(car, events).toString()
+        val events = listOf(
+            CarRaceEvent(0, 0, true),
+            CarRaceEvent(1, 0, true),
+            CarRaceEvent(2, 0, true),
+            CarRaceEvent(3, 0, false),
+            CarRaceEvent(4, 0, true),
+            CarRaceEvent(5, 0, true),
+            CarRaceEvent(6, 0, false),
+        )
+        val carTraces = CarTrackSnapshot(Car(0, carName), events).toString()
 
         carTraces.shouldContain(carName)
         val dashCount = carTraces.count { it == '⎼' }
