@@ -23,7 +23,7 @@ class CarRacingInputHandlerTest {
     @Test
     fun `자동차 입력 개수만큼 car object 를 리턴`() {
         val cars = listOf("자동차1", "자동차2")
-        val inputParams = InputParams("2","5", cars)
+        val inputParams = InputParams("2", "5", cars)
         assertThat(CarRacingInputHandler.getCars(inputParams).size).isEqualTo(cars.size)
     }
 
@@ -33,7 +33,7 @@ class CarRacingInputHandlerTest {
             CarRacingInputHandler.validate("5", "2", listOf("자동차이름5초과"))
         }
         val cars = listOf("자동차1", "자동차2")
-        val inputParams = InputParams("2","5", cars)
+        val inputParams = InputParams("2", "5", cars)
         assertThat(CarRacingInputHandler.getCars(inputParams).size).isEqualTo(cars.size.toInt())
     }
 }
