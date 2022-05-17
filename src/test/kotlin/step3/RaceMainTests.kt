@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 class RaceMainTests {
 
     @Test
-    fun `trying toInt() from null`() {
+    fun `raceSeries result should return correct race round size and car count`() {
         val raceRounds = 5
         val carCount = 2
         val raceSeries = RaceSeries(carCount, raceRounds)
