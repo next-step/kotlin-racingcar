@@ -7,21 +7,27 @@ class InputView(private val minCarCount: Int, private val minMoveCount: Int) {
     val carCount = getCarCount()
     val moveCount = getMoveCount()
 
-    private fun getCarCount(retry: Int = 1): CarCount = try {
+    private fun getCarCount(askCount: Int = 1): CarCount = try {
+        printBy(askCount)
         println("자동차 대수는 몇 대인가요?")
         CarCount(readln().toIntOrNull() ?: 0, minCarCount)
     } catch (e: Exception) {
-        if (retry > 2) println("좋은 말로 할 때... s(^_^)b ")
         println(e.message)
-        getCarCount(retry + 1)
+        getCarCount(askCount + 1)
     }
 
-    private fun getMoveCount(retry: Int = 1): MoveCount = try {
+    private fun getMoveCount(askCount: Int = 1): MoveCount = try {
+        printBy(askCount)
         println("시도할 횟수는 몇 회인가요?")
         MoveCount(readln().toIntOrNull() ?: 0, minMoveCount)
     } catch (e: Exception) {
-        if (retry > 2) println("좋은 말로 할 때... s(^_^)b ")
         println(e.message)
-        getMoveCount(retry + 1)
+        getMoveCount(askCount + 1)
+    }
+
+    companion object {
+        fun printBy(askCount: Int) {
+            if (askCount % 4 == 0) println("같은걸 $askCount 번째 물어봅니다... s(^_^)a")
+        }
     }
 }
