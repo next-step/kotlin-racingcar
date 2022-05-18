@@ -10,4 +10,8 @@ data class TryNumber(
     fun minus(): TryNumber {
         return TryNumber(number - 1)
     }
+
+    fun isZero(): Boolean {
+        return number == 0
+    }
 }

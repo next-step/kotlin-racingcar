@@ -29,7 +29,7 @@ class RacingGame(
     }
 
     private tailrec fun startGame(cars: Cars, tryNumber: TryNumber): Cars {
-        if (tryNumber.number == 0) {
+        if (tryNumber.isZero()) {
             return cars
         }
 
