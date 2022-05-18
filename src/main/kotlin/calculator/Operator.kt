@@ -1,4 +1,4 @@
-package step2
+package calculator
 
 enum class Operator (val operator: String, val expression: (Int, Int) -> Int){
     PLUS("+", {result, additionalNumber -> result + additionalNumber}),

@@ -1,15 +1,15 @@
-package step3
+package racingcar
 
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import step3.Car.Companion.CAR_NAME_NUMBER_FIVE_EXCEED
+import racingcar.domain.Car
+import racingcar.domain.MovingStrategy
 
 @ExtendWith(MockKExtension::class)
 class CarTest {

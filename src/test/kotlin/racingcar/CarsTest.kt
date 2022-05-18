@@ -1,14 +1,14 @@
-package step3
+package racingcar
 
-import io.kotest.matchers.collections.shouldContainExactly
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
 import org.assertj.core.api.Assertions
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import racingcar.domain.Cars
+import racingcar.domain.MovingStrategy
 
 @ExtendWith(MockKExtension::class)
 internal class CarsTest {

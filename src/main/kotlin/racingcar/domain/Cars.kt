@@ -1,6 +1,5 @@
-package step3
+package racingcar.domain
 
-import java.util.Collections
 import kotlin.streams.toList
 
 class Cars private constructor(carNames: String) {

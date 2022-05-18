@@ -1,4 +1,4 @@
-package step3.ui
+package racingcar.view
 
 class InputView {
     fun askCarNames(): String {

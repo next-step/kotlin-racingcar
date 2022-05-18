@@ -1,4 +1,4 @@
-package step3
+package racingcar.domain
 
 interface MovingStrategy {
     fun movable(): Boolean

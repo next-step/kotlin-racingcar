@@ -1,4 +1,4 @@
-package step3
+package racingcar.domain
 
 class CarRacing private constructor(carNames: String, private var moveCount: Int) {
     val cars = Cars.from(carNames)
