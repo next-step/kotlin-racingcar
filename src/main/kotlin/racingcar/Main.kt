@@ -1,7 +1,7 @@
 package racingcar
 
-import racingcar.View.InputView
-import racingcar.View.ResultView
+import racingcar.view.InputView
+import racingcar.view.ResultView
 
 fun main() {
     val carCount = InputView.getCarCount()

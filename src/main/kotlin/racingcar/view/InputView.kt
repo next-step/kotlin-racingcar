@@ -1,6 +1,6 @@
-package racingcar.View
+package racingcar.view
 
-import racingcar.IntParser
+import IntParser
 
 object InputView {
     fun getCarCount(): Int {

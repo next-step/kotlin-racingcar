@@ -1,4 +1,4 @@
-package racingcar.View
+package racingcar.view
 
 import racingcar.Driver
 

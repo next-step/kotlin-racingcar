@@ -6,16 +6,30 @@ import io.kotest.matchers.shouldBe
 class DriverTest : DescribeSpec({
 
     describe("Driver") {
-        it("인자에 따라 drive 함수를 실행한다.") {
-            // given
-            val car = Car(3)
-            val driver = Driver(car)
+        it("drive test") {
+            it("인자가 true 면 Car 가 이동한다.") {
+                // given
+                val car = Car(3)
+                val driver = Driver(car)
 
-            // when
-            driver.drive(true)
+                // when
+                driver.drive(true)
 
-            // then
-            driver.driveRecord shouldBe listOf(4)
+                // then
+                driver.driveRecord shouldBe listOf(4)
+            }
+
+            it("인자가 false 면 Car 가 이동하지 않는다.") {
+                // given
+                val car = Car(3)
+                val driver = Driver(car)
+
+                // when
+                driver.drive(false)
+
+                // then
+                driver.driveRecord shouldBe listOf(3)
+            }
         }
     }
 })
