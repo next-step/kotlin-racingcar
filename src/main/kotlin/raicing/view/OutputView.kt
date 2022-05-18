@@ -21,7 +21,7 @@ object OutputView {
 
     private fun raceResultOnceOutput(raceCar: RaceCar): String = buildString {
         raceCar.getCars().map { car ->
-            append("${car.name}: ")
+            append("${car.carInfo.name}: ")
             repeat(car.position) {
                 append("-")
             }
@@ -30,7 +30,7 @@ object OutputView {
     }
 
     private fun raceWinnerStr(raceResults: RaceResult): String {
-        val winners = raceResults.whoIsWinner()?.joinToString(", ") { it.name }
+        val winners = raceResults.whoIsWinner()?.joinToString(", ") { it.carInfo.name }
         return if (winners.isNullOrEmpty()) {
             "우승자는 없습니다."
         } else {
