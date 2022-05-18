@@ -10,11 +10,11 @@ class CarRacingManagerTest : StringSpec({
         // given
         val racingCars = RacingCars(
             listOf<Car>(
-                Car("TestCar1", 3),
-                Car("TestCar2", 4),
-                Car("TestCar3", 10),
-                Car("TestCar4", 0),
-                Car("TestCar5"),
+                Car("Car1", 3),
+                Car("Car2", 4),
+                Car("Car3", 10),
+                Car("Car4", 0),
+                Car("Car5"),
             )
         )
         val carRacingManager = CarRacingManagerForTest(racingCars, RacingMovementRoleForTest())
@@ -24,7 +24,7 @@ class CarRacingManagerTest : StringSpec({
 
         // then
         maxDistanceCars.size shouldBe 1
-        maxDistanceCars[0].name shouldBe "TestCar3"
+        maxDistanceCars[0].name shouldBe "Car3"
         maxDistanceCars[0].distance shouldBe 10
     }
 
@@ -32,7 +32,7 @@ class CarRacingManagerTest : StringSpec({
         // given
         val moveDistance = 4
         val nowDistance = 10
-        val racingCars = RacingCars(listOf(Car("testCar", nowDistance)))
+        val racingCars = RacingCars(listOf(Car("Car", nowDistance)))
         val racingMovementRoleForTest = RacingMovementRoleForTest()
         val randomIntCarRacingManager = CarRacingManagerForTest(racingCars, racingMovementRoleForTest)
 
@@ -49,11 +49,11 @@ class CarRacingManagerTest : StringSpec({
     "getCarSize 는 CarList.Size 를 가져온다" {
         // given
         val cars = listOf(
-            Car("TestCar1"),
-            Car("TestCar2"),
-            Car("TestCar3"),
-            Car("TestCar4"),
-            Car("TestCar5")
+            Car("Car1"),
+            Car("Car2"),
+            Car("Car3"),
+            Car("Car4"),
+            Car("Car5")
         )
         val carList = RacingCars(cars)
         val carRacingManagerForTest = CarRacingManagerForTest(carList, RacingMovementRoleForTest())
@@ -68,7 +68,7 @@ class CarRacingManagerTest : StringSpec({
     "getCarList 는 CarList 데이터 가져온다" {
         // given
         val distance = 3
-        val racingCarsManager = RacingCars(listOf(Car("testCar", distance)))
+        val racingCarsManager = RacingCars(listOf(Car("Car", distance)))
         val carRacingManagerForTest = CarRacingManagerForTest(racingCarsManager, RacingMovementRoleForTest())
 
         // when

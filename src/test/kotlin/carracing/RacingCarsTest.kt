@@ -11,11 +11,11 @@ class RacingCarsTest : StringSpec({
         // given
         val racingCars = RacingCars(
             listOf<Car>(
-                Car("TestCar1", 3),
-                Car("TestCar2", 4),
-                Car("TestCar3", 10),
-                Car("TestCar4", 0),
-                Car("TestCar5"),
+                Car("Car1", 3),
+                Car("Car2", 4),
+                Car("Car3", 10),
+                Car("Car4", 0),
+                Car("Car5"),
             )
         )
 
@@ -24,7 +24,7 @@ class RacingCarsTest : StringSpec({
 
         // then
         maxDistanceCars.size shouldBe 1
-        maxDistanceCars[0].name shouldBe "TestCar3"
+        maxDistanceCars[0].name shouldBe "Car3"
         maxDistanceCars[0].distance shouldBe 10
     }
 
@@ -32,12 +32,12 @@ class RacingCarsTest : StringSpec({
         // given
         val racingCars = RacingCars(
             listOf<Car>(
-                Car("TestCar1", 3),
-                Car("TestCar2", 30),
-                Car("TestCar3", 30),
-                Car("TestCar4", 30),
-                Car("TestCar5", 10),
-                Car("TestCar6", 4),
+                Car("Car1", 3),
+                Car("Car2", 30),
+                Car("Car3", 30),
+                Car("Car4", 30),
+                Car("Car5", 10),
+                Car("Car6", 4),
             )
         )
 
@@ -47,9 +47,9 @@ class RacingCarsTest : StringSpec({
         // then
         maxDistanceCars.size shouldBe 3
         maxDistanceCars.map { car: Car -> car.name } shouldContainExactly listOf(
-            "TestCar2",
-            "TestCar3",
-            "TestCar4"
+            "Car2",
+            "Car3",
+            "Car4"
         )
         maxDistanceCars.map { car: Car -> car.distance } shouldContainExactly List(3) { 30 }
     }
@@ -83,7 +83,7 @@ class RacingCarsTest : StringSpec({
 
     "validateCarsIndex 는 설정하는 자동차의 Index 번호를 검증한다" {
         // given
-        val car = Car("TestCar")
+        val car = Car("Car")
         val racingCars = RacingCars(listOf(car))
         val carIndex = -1
 
@@ -98,7 +98,7 @@ class RacingCarsTest : StringSpec({
 
     "validateCarsIndex 는 cars 에 사이즈를 넘긴 값을 넣으면 에러가 발생한다" {
         // given
-        val car = Car("TestCar")
+        val car = Car("Car")
         val racingCars = RacingCars(listOf(car))
         val carIndex = 30000
 

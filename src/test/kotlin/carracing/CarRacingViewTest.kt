@@ -11,12 +11,12 @@ internal class CarRacingViewTest : StringSpec({
         // given
         val racingCars = RacingCars(
             listOf(
-                Car("TestCar1", 3),
-                Car("TestCar2", 30),
-                Car("TestCar3", 30),
-                Car("TestCar4", 30),
-                Car("TestCar5", 10),
-                Car("TestCar6", 4),
+                Car("Car1", 3),
+                Car("Car2", 30),
+                Car("Car3", 30),
+                Car("Car4", 30),
+                Car("Car5", 10),
+                Car("Car6", 4),
             )
         )
         val randomNumberCarRacingManager = CarRacingManagerForTest(racingCars, RacingMovementRoleForTest())
@@ -26,18 +26,18 @@ internal class CarRacingViewTest : StringSpec({
         val winnerViewString = carRacingView.getWinnerViewString(randomNumberCarRacingManager)
 
         // then
-        winnerViewString shouldBe "TestCar2, TestCar3, TestCar4가 최종 우승했습니다."
+        winnerViewString shouldBe "Car2, Car3, Car4가 최종 우승했습니다."
     }
 
     "viewResult 는 자동차 경주 디스플레이하기 위한 데이터를 넘겨준다" {
         // given
         val carDistances = listOf(1, 3, 4)
-        val racingCars = RacingCars(carDistances.mapIndexed { index, distance -> Car("testCar$index", distance) })
+        val racingCars = RacingCars(carDistances.mapIndexed { index, distance -> Car("Car$index", distance) })
         val randomNumberCarRacingManager = CarRacingManagerForTest(racingCars, RacingMovementRoleForTest())
         val carRacingView = CarRacingView("-", "\n")
-        val monitoringValue = """testCar0: --
-testCar1: ----
-testCar2: -----"""
+        val monitoringValue = """Car0: --
+Car1: ----
+Car2: -----"""
 
         // whenÎ
         val viewResult = carRacingView.getViewString(randomNumberCarRacingManager)
