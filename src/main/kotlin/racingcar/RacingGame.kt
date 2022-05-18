@@ -14,7 +14,6 @@ class RacingGame(private val carCount: Int, private val tryCount: Int) {
 
     companion object {
         private val MOVE_RANGE = (0..9)
-        const val MOVE_CONDITION = 4
+        private const val MOVE_CONDITION = 4
     }
-
 }
