@@ -11,7 +11,9 @@ class Cars(
 
     fun getWinnerNames(): List<String> {
         val winnerDistance = values.maxOf { it.distance }
-        return values.filter { it.distance == winnerDistance }
+        return values.asSequence()
+            .filter { it.distance == winnerDistance }
             .map { it.getName() }
+            .toList()
     }
 }
