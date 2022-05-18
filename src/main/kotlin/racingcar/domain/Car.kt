@@ -15,7 +15,8 @@ class Car(val name: String) {
     }
 
     fun playOneRound(forcedMovement: Boolean? = null) {
-        position += forcedMovement?.run { if (this) POINT_MOVE else POINT_STOP } ?: Dice.rollDiceAndGetPoint()
+        val isCanGo = forcedMovement ?: Dice.rollDiceAndGetIsCanGo()
+        position += if (isCanGo) POINT_MOVE else POINT_STOP
     }
 
     private fun checkValidName(name: String) {
