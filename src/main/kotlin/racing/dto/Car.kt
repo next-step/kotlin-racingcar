@@ -1,17 +1,17 @@
 package racing.dto
 
-class Car(val name: String) {
+class Car(val name: String, startPosition: Int = START_POSITION) {
     private var turn = 0
 
-    private val _turnOfPosition = arrayListOf(START_POSITION)
+    private val _turnOfPosition = arrayListOf(startPosition)
     val turnOfPosition: List<Int>
         get() = _turnOfPosition
 
-    fun goIfAboveRequireGoValue(): Int {
+    private fun goIfAboveRequireGoValue(): Int {
         return if ((0..9).random() >= REQUIRE_GO_VALUE) GO else STAY
     }
 
-    fun go(goAmount: () -> Int = { goIfAboveRequireGoValue() }) {
+    fun go(goAmount: () -> Int = ::goIfAboveRequireGoValue) {
         _turnOfPosition.add(_turnOfPosition[turn++] + goAmount())
     }
 

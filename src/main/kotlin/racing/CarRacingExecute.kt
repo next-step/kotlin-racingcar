@@ -1,7 +1,6 @@
 package racing
 
 import racing.domain.CarRacing
-import racing.dto.Car
 import racing.dto.Winners
 import racing.view.CarRacingInputView
 import racing.view.CarRacingResultView
@@ -15,13 +14,13 @@ class CarRacingExecute {
 
     fun startRacing() {
         val (carNames, moveCount) = CarRacingInputView.input()
+        carNames.forEach { carRacing.checkCarNameLength(carName = it) }
 
-        val cars: List<Car> = carRacing.createCars(carNames)
-        carRacing.moveCars(cars = cars, moveCount = moveCount)
+        carRacing.moveCars(moveCount = moveCount)
 
-        CarRacingResultView.printCarRacingResult(cars = cars, moveCount = moveCount)
+        CarRacingResultView.printCarRacingResult(cars = carRacing.cars, moveCount = moveCount)
 
-        val winners: Winners = carRacing.pickWinners(cars)
+        val winners = Winners(cars = carRacing.cars).pickWinners()
         CarRacingResultView.printWinners(winners = winners)
     }
 }

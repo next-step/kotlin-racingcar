@@ -1,27 +1,24 @@
 package racing.domain
 
 import racing.dto.Car
-import racing.dto.Winners
 
 class CarRacing {
-    fun moveCars(cars: List<Car>, moveCount: Int) {
+    val cars: List<Car>
+        get() = _cars
+    private val _cars = arrayListOf<Car>()
+
+    fun moveCars(moveCount: Int) {
         repeat(moveCount) {
-            cars.forEach(Car::go)
+            _cars.forEach(Car::go)
         }
     }
 
-    fun createCars(carNames: List<String>): List<Car> {
-        return carNames.map { carName -> Car(carName) }
+    fun createCars(carNames: List<String>) {
+        _cars.clear()
+        _cars.addAll(carNames.map { Car(name = it) })
     }
 
-    fun pickWinners(cars: List<Car>): Winners {
-        val maxDistance: Int = cars.maxOf { car -> car.turnOfPosition.last() }
-        val winnerNames: List<String> = cars.filter { car ->
-            car.turnOfPosition.last() >= maxDistance
-        }.map { car ->
-            car.name
-        }
-
-        return Winners(winnerNames)
+    fun checkCarNameLength(carName: String) {
+        check(carName.length <= 5) { "차 이름은 5글자 이하여야 합니다." }
     }
 }
