@@ -2,10 +2,7 @@ package game.racingcar.strategy
 
 class RandomMoveStrategy : MoveStrategy {
     override fun move(current: Int): Int {
-        return when (TOTAL_RANGE.random()) {
-            in MOVABLE_RANGE -> current + MOVING_UNIT
-            else -> current
-        }
+        return if (TOTAL_RANGE.random() in MOVABLE_RANGE) current + MOVING_UNIT else current
     }
 
     companion object {
