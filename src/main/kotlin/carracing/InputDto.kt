@@ -15,6 +15,7 @@ data class InputDto(val carNamesString: String, val movementTryCountString: Stri
     companion object {
         private const val MOVEMENT_TRY_COUNT_NAME = "시도할 횟수"
         private val ONLY_NUMBER_REGEX = Regex("(\\d)+")
+        private const val CAR_NAMES_STRING_DELIMITERS = ","
 
         private fun removeSpace(spaceContainedString: String): String {
             return spaceContainedString.replace("\\s".toRegex(), "")
@@ -30,7 +31,7 @@ data class InputDto(val carNamesString: String, val movementTryCountString: Stri
         }
 
         fun validateForCarNames(carNamesString: String) {
-            carNamesString.split(",").forEach { Car.validateForCarName(it) }
+            carNamesString.split(CAR_NAMES_STRING_DELIMITERS).forEach { Car.validateForCarName(it) }
         }
     }
 }
