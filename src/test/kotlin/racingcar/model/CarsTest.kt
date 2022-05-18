@@ -27,7 +27,7 @@ internal class CarsTest {
     }
 
     @Test
-    fun `경주할 자동차 이름이 하나도 없는 경우 에러가 발생한다`() {
+    fun `경주할 자동차가 없는 경우 에러가 발생한다`() {
         val carLists: List<Car> = emptyList()
 
         assertThrows<IllegalArgumentException> { Cars(carLists) }
