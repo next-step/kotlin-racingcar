@@ -1,14 +1,14 @@
 package racing.model
 
-data class Name(val name: String) {
+import racing.exception.CarNameException
+
+data class Name(val value: String) {
     init {
-        require(name.length <= MAX_NAME_LENGTH) { INVALID_CAR_NAME_LENGTH }
-        require(name.isNotBlank()) { INVALID_CAR_NAME_BLANK }
+        if (value.trim().length !in NAME_LENGTH_RANGE) throw CarNameException(INVALID_CAR_NAME_LENGTH)
     }
 
     companion object {
-        private const val MAX_NAME_LENGTH = 5
-        const val INVALID_CAR_NAME_LENGTH = "자동차의 이름은 5자를 초과할 수 없습니다."
-        const val INVALID_CAR_NAME_BLANK = "자동차의 이름은 공백이 될 수 없습니다."
+        private val NAME_LENGTH_RANGE = (1..5)
+        private const val INVALID_CAR_NAME_LENGTH = "자동차의 이름은 1~5글자 사이입니다."
     }
 }

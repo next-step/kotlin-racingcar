@@ -1,15 +1,15 @@
 package racing
 
-import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import racing.exception.CarsNameException
 import racing.model.Names
-import racing.model.Names.Companion.INVALID_CAR_NAMES
 
 class NamesTest {
     @Test
     fun `자동차 이름 입력 개수 에러 테스트`() {
-        assertThatIllegalArgumentException().isThrownBy {
+        assertThrows<CarsNameException> {
             Names(listOf())
-        }.withMessage(INVALID_CAR_NAMES)
+        }
     }
 }

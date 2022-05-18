@@ -1,11 +1,13 @@
 package racing.model
 
-class Times(val times: Int) {
+import racing.exception.TimesException
+
+class Times(val value: Int) {
     init {
-        require(times > 0) { INVALID_TIMES }
+        if (value <= 0) throw TimesException(INVALID_TIMES)
     }
 
     companion object {
-        const val INVALID_TIMES = "시도 횟수는 0보다 커야 합니다."
+        private const val INVALID_TIMES = "시도 횟수는 0보다 커야 합니다."
     }
 }
