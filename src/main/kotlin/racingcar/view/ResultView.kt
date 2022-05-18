@@ -19,6 +19,6 @@ class ResultView(race: Race) {
     companion object {
         private fun showPositionBy(position: Int) = println(stringBy(position))
 
-        private fun stringBy(position: Int) = List(position) { "-" }.joinToString("")
+        private fun stringBy(position: Int): String = "-".repeat(position)
     }
 }
