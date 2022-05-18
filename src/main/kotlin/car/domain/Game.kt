@@ -1,4 +1,4 @@
-package car.racing
+package car.domain
 
 class Game(driverNames: List<String>, private val moves: Int) {
     private val cars = Cars(driverNames)

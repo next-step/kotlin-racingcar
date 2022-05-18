@@ -1,4 +1,4 @@
-package car.racing
+package car.domain
 
 object CarRacing {
 

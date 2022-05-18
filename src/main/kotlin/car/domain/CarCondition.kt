@@ -1,4 +1,4 @@
-package car.racing
+package car.domain
 
 enum class CarCondition(private val threshold: Int) {
     GOOD(0),

@@ -1,9 +1,6 @@
-package car.racing
+package car.view
 
-class InputView(
-    private val reader: () -> String?,
-    private val console: (String) -> Unit
-) {
+class InputView(private val reader: () -> String?, private val console: (String) -> Unit) {
 
     fun readDriverNames(): List<String> {
         console("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n")

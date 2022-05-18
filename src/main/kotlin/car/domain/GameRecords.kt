@@ -1,4 +1,4 @@
-package car.racing
+package car.domain
 
 class GameRecords {
     private val _records = mutableListOf<List<Record>>()
@@ -9,18 +9,7 @@ class GameRecords {
         get() = _records.lastOrNull() ?: emptyList()
 
     val winners: List<Record>
-        get() {
-            val highestMoves = latestRecord.getHighestMoves()
-            return if (highestMoves == 0) {
-                emptyList()
-            } else {
-                latestRecord.filter { it.moves == highestMoves }
-            }
-        }
-
-    private fun List<Record>.getHighestMoves(): Int {
-        return maxOfOrNull { it.moves } ?: 0
-    }
+        get() = GameReferee.getWinners(latestRecord)
 
     fun record(cars: Cars) {
         _records.add(cars.getAllRecord())

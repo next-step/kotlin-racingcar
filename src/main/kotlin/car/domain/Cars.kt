@@ -1,4 +1,4 @@
-package car.racing
+package car.domain
 
 class Cars(driverNames: List<String>) {
     private val cars = List(driverNames.size) { index -> Car(driverNames[index]) }
