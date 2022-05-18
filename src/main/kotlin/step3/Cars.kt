@@ -1,5 +1,8 @@
 package step3
 
+import java.util.Collections
+import kotlin.streams.toList
+
 class Cars private constructor(carNames: String) {
     val carList = ArrayList<Car>()
 
@@ -15,26 +18,13 @@ class Cars private constructor(carNames: String) {
     }
 
     fun getWinnerList():List<String> {
-        val winnerList = ArrayList<String>()
-        var max = 0
-        for (j in 0 until carList.size) {
-            val position = carList[j].position
-            if(position > max) {
-                winnerList.clear()
-                max = position
-                winnerList.add(carList[j].name)
-            } else if (position == max && position != 0) {
-                winnerList.add(carList[j].name)
-            }
-        }
-        return winnerList
+        val maxPosition = carList.maxOf { it.position }
+        return carList.stream().filter {it.position == maxPosition}.map { car->car.name }.toList()
     }
+
     companion object {
         fun from(carNames: String): Cars {
             return Cars(carNames)
         }
     }
 }
-
-
-
