@@ -12,9 +12,7 @@ class GameTest {
         val carCount = 3
         val trialCount = 1
         val recordOf3CarAnd1Trial = Record(carCount, trialCount)
-        val justTrueDice = object : Dice {
-            override fun run() = true
-        }
+        val justTrueDice = Dice { true }
 
         Game(recordOf3CarAnd1Trial, justTrueDice).start(resultView)
 
@@ -28,9 +26,7 @@ class GameTest {
         val carCount = 3
         val trialCount = 10
         val recordOf3CarAnd10Trial = Record(carCount, trialCount)
-        val justTrueDice = object : Dice {
-            override fun run() = false
-        }
+        val justTrueDice = Dice { false }
 
         Game(recordOf3CarAnd10Trial, justTrueDice).start(resultView)
 
