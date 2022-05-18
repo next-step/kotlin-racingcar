@@ -46,7 +46,9 @@ fun main() {
         input = Input(),
         output = Output(),
         carFactory = { carNames ->
-            Cars(List(carNames.size) { Car(name = carNames[it], movingStrategy = movingStrategy) })
+            carNames
+                .map { carName -> Car(name = carName, movingStrategy = movingStrategy) }
+                .let(::Cars)
         }
     )
     racingGame.startGame()
