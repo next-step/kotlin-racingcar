@@ -6,7 +6,7 @@ data class CarName(
 
     init {
         require(name.length <= 5) {
-            throw IllegalArgumentException("자동차 이름은 5자를 초과할 수 없습니다.")
+            "자동차 이름은 5자를 초과할 수 없습니다."
         }
     }
 
