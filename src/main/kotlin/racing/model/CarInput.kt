@@ -1,3 +1,3 @@
 package racing.model
 
-data class CarInput(var carCount: Int = 0, var times: Int = 0)
+data class CarInput(val names: Names, val times: Times)

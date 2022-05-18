@@ -1,23 +1,34 @@
 package racing.ui
 
-import racing.model.CarPositionHistory
+import racing.model.MoveResults
+import racing.model.MoveResultHistory
 
-class ResultView(private val carPositionHistory: CarPositionHistory, private val times: Int) {
+class ResultView(private val moveResultHistory: MoveResultHistory) {
     fun printResult() {
         printFirst()
-        repeat(times) {
-            printCarPosition(it)
+        moveResultHistory.history.forEach { history ->
+            printCarMoveResult(history)
         }
+        printWinnersName()
     }
 
     private fun printFirst() = println("실행 결과")
 
-    private fun printCarPosition(index: Int) {
-        carPositionHistory.forEach { _, positionHistory ->
-            println(PRINT_VALUE.repeat(positionHistory.getPosition(index)))
+    private fun printCarMoveResult(moveResults: MoveResults) {
+        moveResults.results.forEach { moveResult ->
+            print("${moveResult.name.value} : ")
+            println(PRINT_VALUE.repeat(moveResult.position.value))
         }
-
         println()
+    }
+
+    private fun printWinnersName() {
+        println(
+            moveResultHistory.getWinnerNames().names.joinToString(
+                separator = ", ",
+                postfix = "가 최종 우승했습니다."
+            ) { name -> name.value }
+        )
     }
 
     companion object {

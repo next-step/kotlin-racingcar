@@ -2,14 +2,10 @@ package racing.model
 
 import racing.Movable
 
-class Car(private var position: Int) {
-    init {
-        require(position >= 0) { "자동차의 초기 위치는 0이상 입니다." }
-    }
-
-    fun move(movable: Movable): Int {
+class Car(private val name: Name, private var position: Position) {
+    fun move(movable: Movable): CarMoveResult {
         if (movable.canMove())
-            position++
-        return position
+            position = position.move()
+        return CarMoveResult(name, position)
     }
 }
