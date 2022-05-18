@@ -1,12 +1,11 @@
-package carRacing.controller
+package carRacing.model
 
-import carRacing.model.Car
-import carRacing.model.Record
-import carRacing.util.RandomGenerator
+import carRacing.util.Random
 
 class Game(
     carNameList: List<String>,
     private val numMovement: Int,
+    private val random: Random,
 ) {
 
     init {
@@ -14,7 +13,6 @@ class Game(
         require(numMovement >= 1) { INVALID_NUM_MOVEMENT }
     }
 
-    private val randomGenerator: RandomGenerator = RandomGenerator
     private val _recordList: MutableList<Record> = mutableListOf()
     val recordList: List<Record> get() = _recordList
 
@@ -26,7 +24,7 @@ class Game(
 
     private fun runRound() {
         this.cars.forEach {
-            move(it, randomGenerator.value())
+            move(it, this.random.value())
         }
     }
 
