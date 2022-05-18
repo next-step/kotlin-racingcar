@@ -7,19 +7,9 @@ internal class CarTest {
 
     @Test
     fun `자동차가 앞으로 전진한다`() {
-        val car = Car(1)
+        val car = Car("eunseok")
+        car.movePosition()
 
-        val movePosition = car.movePosition()
-
-        assertThat(movePosition.position).isEqualTo(2)
-    }
-
-    @Test
-    fun `자동차는 불변객체를 리턴한다`() {
-        val car = Car(1)
-
-        val movePosition = car.movePosition()
-
-        assertThat(car).isNotEqualTo(movePosition)
+        assertThat(car.position).isEqualTo(1)
     }
 }

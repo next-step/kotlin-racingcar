@@ -1,16 +1,16 @@
 package racing.controller
 
-import racing.controller.dto.RoundResultView
+import racing.controller.dto.ResultView
 import racing.domain.Car
 import racing.service.CarService
 
 class RacingController(private val carService: CarService) {
 
-    fun playGame(carNum: Int, round: Int): List<RoundResultView> {
-        require(carNum >= 1 && round >= 1) {
+    fun playGame(users: List<String>, round: Int): ResultView {
+        require(users.isNotEmpty() && round >= 1) {
             "자동차, 라운드 수를 정확히 입력해주세요"
         }
-        val cars: List<Car> = List(carNum) { Car(0) }
+        val cars = users.map { Car(it) }.toList()
 
         return carService.moveCars(cars, round)
     }

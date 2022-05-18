@@ -1,5 +1,5 @@
 package racing.domain
 
 interface CarMovingStepper {
-    fun step(cars: List<Car>): List<Car>
+    fun step(cars: List<Car>)
 }

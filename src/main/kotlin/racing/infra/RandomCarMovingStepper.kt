@@ -5,17 +5,17 @@ import racing.domain.CarMovingStepper
 import java.util.Random
 
 class RandomCarMovingStepper : CarMovingStepper {
-    companion object {
-        private val random = Random()
-    }
-
-    override fun step(cars: List<Car>): List<Car> {
-        return cars.map {
-            if (random.nextInt(10) >= 4) {
+    override fun step(cars: List<Car>) {
+        cars.forEach {
+            if (random.nextInt(MAX_BOUND) >= FORWARD_NUMBER) {
                 it.movePosition()
-            } else {
-                Car(it.position)
             }
         }
+    }
+
+    companion object {
+        const val FORWARD_NUMBER: Int = 4
+        const val MAX_BOUND: Int = 10
+        private val random = Random()
     }
 }
