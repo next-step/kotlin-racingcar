@@ -35,13 +35,10 @@ class CarTest : StringSpec({
         // given
         val carName = " "
 
-        // when
-        val exception = shouldThrowExactly<IllegalArgumentException> {
-            Car.validateForCarName(carName)
-        }
-
         // then
-        exception.message shouldBe "자동차 이름은 공백이 올수 없습니다"
+        shouldThrowExactly<IllegalArgumentException> {
+            Car.validateForCarName(carName)
+        }.message shouldBe "자동차 이름은 공백이 올수 없습니다"
     }
 
     "자동차 이름을 5자 초과하면 IllegalArgumentException 발생한다" {
