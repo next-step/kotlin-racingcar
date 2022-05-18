@@ -6,9 +6,12 @@ object InputView {
         return input.toIntOrThrow()
     }
 
-    fun getStringArray(input: String?): List<String> {
+    fun getStringArray(input: String?, maxLength: Int): List<String> {
         require(!input.isNullOrBlank()) { "입력 값이 없습니다." }
-        return input.split(",")
+        val result = input.split(",").onEach {
+            if (it.length >= maxLength) throw IllegalArgumentException("하나의 이름의 기이는 $maxLength 를 넘을 수 없습니다.")
+        }
+        return result
     }
 
     private fun String.toIntOrThrow(): Int =
