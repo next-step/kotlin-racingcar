@@ -19,3 +19,11 @@ class Car(
     }
 
 }
+
+fun List<Car>.extractWinner(): List<String> {
+    val longestPosition = this.maxOf { it.position }
+
+    return this.filter { it.position == longestPosition }
+        .map { it.name }
+        .toList()
+}

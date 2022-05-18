@@ -5,6 +5,7 @@ import racing.controller.dto.ResultView
 import racing.controller.dto.RoundResultView
 import racing.domain.Car
 import racing.domain.CarMovingStepper
+import racing.domain.extractWinner
 
 class CarService(private val carMovingStepper: CarMovingStepper) {
     fun moveCars(cars: List<Car>, round: Int): ResultView {
@@ -15,17 +16,8 @@ class CarService(private val carMovingStepper: CarMovingStepper) {
 
             RoundResultView(index, carsView)
         }.toList()
-        val winners = extractWinner(cars)
+        val winners = cars.extractWinner()
 
         return ResultView(winners, roundResultViews)
-    }
-
-    fun extractWinner(cars: List<Car>): List<String> {
-        val sortedCars = cars.sortedBy { it.position }
-        val longestPosition = sortedCars.last().position
-
-        return sortedCars.filter { it.position == longestPosition }
-            .map { it.name }
-            .toList()
     }
 }
