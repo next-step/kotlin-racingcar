@@ -40,18 +40,17 @@ class RacingCarsTest : StringSpec({
                 Car("Car6", 4),
             )
         )
+        val expectedWinners = listOf<Car>(
+            racingCars.cars[1],
+            racingCars.cars[2],
+            racingCars.cars[3]
+        )
 
         // when
         val maxDistanceCars = racingCars.getMaxDistanceCars()
 
         // then
-        maxDistanceCars.size shouldBe 3
-        maxDistanceCars.map { car: Car -> car.name } shouldContainExactly listOf(
-            "Car2",
-            "Car3",
-            "Car4"
-        )
-        maxDistanceCars.map { car: Car -> car.distance } shouldContainExactly List(3) { 30 }
+        maxDistanceCars shouldContainExactly expectedWinners
     }
 
     "moveCar 는 자동차를 이동시킨다" {
