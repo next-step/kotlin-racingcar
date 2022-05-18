@@ -36,8 +36,8 @@ data class InputDto(val carNamesString: String, val movementTryCountString: Stri
         }
 
         private fun validateForCarName(carName: String) {
-            if (carName.trim().isEmpty()) throw IllegalArgumentException(ERROR_MESSAGE_CAR_STRING_SPACE)
-            if (carName.length > 5) throw IllegalArgumentException(ERROR_MESSAGE_CAR_STRING_5_LETTER)
+            require(carName.trim().isNotEmpty()) { ERROR_MESSAGE_CAR_STRING_SPACE }
+            require(carName.length <= 5) { ERROR_MESSAGE_CAR_STRING_5_LETTER }
         }
     }
 }
