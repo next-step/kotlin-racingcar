@@ -16,7 +16,11 @@ class Cars(
         })
     }
 
-    fun findWinners(): Cars = Cars(cars.filter { it.position == findMaxPosition() })
+    fun findWinners(): Cars {
+        val maxPosition = findMaxPosition()
+        return cars.filter { it.position == maxPosition }
+            .let(::Cars)
+    }
 
     private fun findMaxPosition() = cars.maxOf { it.position }
 
