@@ -1,6 +1,5 @@
 package game.racingcar.domain
 
-import game.racingcar.strategy.MoveStrategy
 import game.racingcar.strategy.MustOneMoveStrategy
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
@@ -43,11 +42,7 @@ internal class CarTest {
 
         // when
         repeat(10) {
-            car.move(object : MoveStrategy {
-                override fun move(current: Int): Int {
-                    return current + 2
-                }
-            })
+            car.move { current -> current + 2 }
         }
 
         // then

@@ -7,14 +7,13 @@ class Car(val name: String) {
 
     val blackBox: List<Int>
         get() = _blackBox.toList()
-    var position: Int = 0
-        private set
+    val position: Int
+        get() = _blackBox.lastOrNull() ?: 0
 
     fun move(moveStrategy: MoveStrategy): Int {
-        position = moveStrategy.move(position)
-        _blackBox.add(position)
+        _blackBox.add(moveStrategy.move(position))
         return position
     }
 
-    fun history(time: Int) = blackBox[time]
+    fun history(time: Int): Int = blackBox[time]
 }
