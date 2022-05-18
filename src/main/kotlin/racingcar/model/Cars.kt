@@ -26,5 +26,5 @@ class Cars(
 
     fun forEach(action: (Car) -> Unit) = cars.forEach(action)
 
-    fun getCarNameList(): List<CarName> = cars.map { it.name }.toList()
+    fun getCarNameList(): List<CarName> = cars.map { it.name }
 }
