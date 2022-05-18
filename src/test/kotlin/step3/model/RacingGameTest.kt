@@ -10,7 +10,7 @@ class RacingGameTest : StringSpec({
     "Racing Game Test" {
         val racingGame = RacingGame(
             GameSetting.Builder()
-                .inputCarCount(3)
+                .inputCarNames(listOf("car1", "car2", "car3"))
                 .inputMoveCount(5)
                 .build()
         )

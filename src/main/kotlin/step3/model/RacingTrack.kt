@@ -5,7 +5,9 @@ import step3.dto.MoveResult
 
 class RacingTrack(gameSetting: GameSetting) {
 
-    private val trackLines: List<TrackLine> = List(gameSetting.carCount) { i -> TrackLine(Car()) }
+    private val trackLines: List<TrackLine> = gameSetting.carNames
+        .map(::Car)
+        .map(::TrackLine)
 
     fun move(): List<MoveResult> {
         return trackLines
