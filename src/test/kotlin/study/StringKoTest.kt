@@ -10,4 +10,9 @@ class StringKoTest : AnnotationSpec() {
         " ".isEmpty() shouldBe false
         "a".isEmpty() shouldBe false
     }
+
+    @Test
+    fun split() {
+        "aaa,ddd,fff".split(",") shouldBe listOf("aaa", "ddd", "fff")
+    }
 }
