@@ -12,24 +12,24 @@ class RaceCarTests {
     inner class RaceCarOfTests {
         @Test
         fun `입력받은 자동차의 이름 수만큼 경주할 자동차 리스트의 길이가 만들어져야 한다`() {
-            val carNames = listOf(
+            val carInfos = listOf(
                 CarInfo("a"),
                 CarInfo("b"),
                 CarInfo("c"),
                 CarInfo("d"),
                 CarInfo("e")
             )
-            val raceCar = RaceCar.of(carNames)
+            val raceCar = RaceCar.of(carInfos)
 
             assertAll(
                 {
-                    raceCar.getCars().zip(carNames) { car, carName ->
-                        assertThat(car.carInfo).isEqualTo(carName)
+                    raceCar.getCars().zip(carInfos) { car, carInfo ->
+                        assertThat(car.carInfo.name).isEqualTo(carInfo.name)
                     }
                 }
             )
 
-            assertThat(raceCar.getCars().size).isEqualTo(carNames.size)
+            assertThat(raceCar.getCars().size).isEqualTo(carInfos.size)
         }
     }
 }
