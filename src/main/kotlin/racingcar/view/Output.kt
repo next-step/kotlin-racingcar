@@ -35,6 +35,10 @@ class Output {
 
     private fun showWinners(cars: Cars): String {
         return cars.findWinners()
-            .getCarNameList().joinToString { it.name }
+            .getCarNameList().joinToString(COMMA_SEPARATOR)
+    }
+
+    companion object {
+        private const val COMMA_SEPARATOR = ", "
     }
 }
