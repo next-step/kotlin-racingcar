@@ -1,15 +1,15 @@
 package racingcar.business
 
-import racingcar.business.dto.GameResult
-import racingcar.domain.Car
+import racingcar.domain.GameResult
+import racingcar.domain.Record
 import racingcar.domain.collection.Cars
-import racingcar.property.Property
 import racingcar.utils.NumberGenerator
 
 class RacingGame(
-    private val numOfPlayer: Int,
+    private val carNames: List<String>,
     private val numOfMove: Int,
-    private val numberGenerator: NumberGenerator
+    private val numberGenerator: NumberGenerator,
+    numOfPlayer: Int = carNames.size
 ) {
     init {
         require(numOfPlayer > 0) {
@@ -21,22 +21,15 @@ class RacingGame(
         }
     }
 
-    private val cars: Cars = Cars(
-        List(numOfPlayer) {
-            Car(
-                Property().FORWARD_THRESHOLD,
-                Property().FORWARD_DISTANCE_RANGE,
-                numberGenerator
-            )
-        }
-    )
+    private val cars: Cars = Cars.generateCars(carNames, numberGenerator)
 
     fun play(): GameResult {
-        val result = mutableListOf<List<Int>>()
+        val result = mutableListOf<List<Record>>()
         repeat(numOfMove) {
             cars.run()
-            result.add(cars.getPositions())
+            result.add(cars.getCarRecords())
         }
+
         return GameResult(result)
     }
 }

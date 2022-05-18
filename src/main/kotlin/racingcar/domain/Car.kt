@@ -3,8 +3,7 @@ package racingcar.domain
 import racingcar.utils.NumberGenerator
 
 class Car(
-    private val forwardThreshold: Int,
-    private val forwardDistanceRange: IntRange,
+    val carName: String,
     private val numberGenerator: NumberGenerator
 ) {
     var position: Int = 0
@@ -18,5 +17,10 @@ class Car(
 
     private fun isRun(): Boolean {
         return numberGenerator.executeRangeOf(forwardDistanceRange) >= forwardThreshold
+    }
+
+    companion object {
+        private const val forwardThreshold: Int = 4
+        private val forwardDistanceRange: IntRange = 0..9
     }
 }

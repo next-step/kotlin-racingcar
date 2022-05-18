@@ -4,9 +4,14 @@ class InBoundView(
     private val reader: () -> String,
     private val printer: (String) -> Unit
 ) {
-    fun requestNumberOfPlayer(): Int {
-        printer("자동차 대수는 몇 대인가요?: ")
-        return readText()
+    fun requestCarNames(): List<String> {
+        printer("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n")
+        val names: String = reader()
+        require(names.isNotBlank()) {
+            "경주할 자동차 이름이 입력 되지 않았습니다."
+        }
+
+        return names.split()
     }
 
     fun requestNumberOfMove(): Int {
@@ -15,8 +20,30 @@ class InBoundView(
     }
 
     private fun readText(): Int {
-        val number: String = requireNotNull(reader())
+        val number: String = reader()
         return runCatching { number.toInt() }
             .getOrElse { throw IllegalArgumentException() }
+    }
+
+    private fun String.split(): List<String> {
+        return this.split(",").filter { it.checkDriverName() }
+    }
+
+    private fun String.checkDriverName(): Boolean {
+        val name: String = this.trim()
+
+        require(name.isNotBlank()) {
+            "공백을 입력할 수 없습니다."
+        }
+
+        require(name.length <= MAX_CAR_NAME_LENGTH) {
+            "이름은 5글자가 넘을 수 없습니다."
+        }
+
+        return true
+    }
+
+    companion object {
+        private const val MAX_CAR_NAME_LENGTH = 5
     }
 }

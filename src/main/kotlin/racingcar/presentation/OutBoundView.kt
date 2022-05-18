@@ -1,18 +1,21 @@
 package racingcar.presentation
 
-import racingcar.business.dto.GameResult
+import racingcar.domain.GameResult
+import racingcar.domain.Record
 
 class OutBoundView(
     private val printer: (String) -> Unit
 ) {
     fun displayResult(result: GameResult) {
         printer("실행 결과:\n")
-        result.position.forEach(::displayResultDetails)
+        result.records.forEach(::displayResultDetails)
+        printer("${result.winners.joinToString()}가 최종 우승했습니다.")
     }
 
-    private fun displayResultDetails(result: List<Int>) {
+    private fun displayResultDetails(result: List<Record>) {
         result.forEach { player ->
-            repeat(player) {
+            printer(player.carName + " : ")
+            repeat(player.position) {
                 printer(DISPLAY_MOVEMENT)
             }
             disPlayEmptyLine()

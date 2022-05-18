@@ -8,12 +8,12 @@ import racingcar.utils.RandomNumberGenerator
 
 fun main() {
     val inBoundView = InBoundView({ requireNotNull(readLine()) }, ::print)
-    val numOfPlayer: Int = inBoundView.requestNumberOfPlayer()
+    val carNames: List<String> = inBoundView.requestCarNames()
     val numOfMove: Int = inBoundView.requestNumberOfMove()
 
     val random: NumberGenerator = RandomNumberGenerator()
 
-    val racingGame = RacingGame(numOfPlayer, numOfMove, random)
+    val racingGame = RacingGame(carNames, numOfMove, random)
     val result = racingGame.play()
 
     val outBoundView = OutBoundView(::print)
