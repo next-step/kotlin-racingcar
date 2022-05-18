@@ -1,8 +1,8 @@
 package racing
 
 import racing.model.RacingGame
-import racing.ui.InputView
-import racing.ui.ResultView
+import racing.view.InputView
+import racing.view.ResultView
 
 object RacingGameLauncher {
     fun start() {
