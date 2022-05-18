@@ -6,11 +6,8 @@ class Car(val name: String) {
     var distance: Int = 0
         private set
 
-    private fun move() {
-        distance += 1
-    }
-
-    fun run(input: Int) {
-        if (input >= MOVING_CONDITION) move()
+    fun run(input: Int): Car {
+        if (input >= MOVING_CONDITION) distance += 1
+        return this
     }
 }

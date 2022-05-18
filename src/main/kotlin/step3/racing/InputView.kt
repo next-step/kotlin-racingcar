@@ -9,7 +9,7 @@ object InputView {
     fun getStringArray(input: String?, maxLength: Int): List<String> {
         require(!input.isNullOrBlank()) { "입력 값이 없습니다." }
         val result = input.split(",").onEach {
-            if (it.length >= maxLength) throw IllegalArgumentException("하나의 이름의 기이는 $maxLength 를 넘을 수 없습니다.")
+            if (it.length >= maxLength) throw IllegalArgumentException("길이는 $maxLength 를 넘을 수 없습니다.")
         }
         return result
     }

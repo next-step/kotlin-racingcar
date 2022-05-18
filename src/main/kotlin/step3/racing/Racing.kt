@@ -8,9 +8,11 @@ fun main() {
     println("시도할 횟수는 몇 회인가요?")
     val racingTime = InputView.getInt(readLine())
 
-    val racingTrack = RacingTrack(racerNames, racingTime)
+    val racingTrack = RacingTrack(racerNames, racingTime, RandomGenerator)
     racingTrack.start()
 
+    val raceHistory = racingTrack.raceHistory
+    ResultView.showHistory(raceHistory)
     val winnerNames = Referee.findWinnerNames(racingTrack.racers)
     ResultView.showWinner(winnerNames.joinToString(NAME_SEPARATOR))
 }

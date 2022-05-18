@@ -9,7 +9,7 @@ class RacingTrackTest : DescribeSpec({
         it("생성시 racerCount 만큼 Car 를 생성한다. ") {
             val racers = listOf("a", "b", "c", "d")
 
-            val racingTrack = RacingTrack(racers, 3)
+            val racingTrack = RacingTrack(racers, 3, RandomGenerator)
 
             racingTrack.racers.also {
                 it.size shouldBe racers.size

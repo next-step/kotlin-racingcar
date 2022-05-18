@@ -120,7 +120,7 @@ class InputViewTest : DescribeSpec({
                 InputView.getStringArray(input, maxLength)
             }
 
-            exception.message shouldBe "하나의 이름의 기이는 $maxLength 를 넘을 수 없습니다."
+            exception.message shouldBe "길이는 $maxLength 를 넘을 수 없습니다."
         }
     }
 })
