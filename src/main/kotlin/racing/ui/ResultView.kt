@@ -1,33 +1,33 @@
 package racing.ui
 
-import racing.model.PositionHistory
-import racing.model.TotalPositionHistory
+import racing.model.MoveResults
+import racing.model.MoveResultHistory
 
-class ResultView(private val totalPositionHistory: TotalPositionHistory) {
+class ResultView(private val moveResultHistory: MoveResultHistory) {
     fun printResult() {
         printFirst()
-        totalPositionHistory.forEach { positionHistory ->
-            printCarMoveResult(positionHistory)
+        moveResultHistory.history.forEach { history ->
+            printCarMoveResult(history)
         }
         printWinnersName()
     }
 
     private fun printFirst() = println("실행 결과")
 
-    private fun printCarMoveResult(positionHistory: PositionHistory) {
-        positionHistory.forEach { moveResult ->
-            print("${moveResult.name.name} : ")
-            println(PRINT_VALUE.repeat(moveResult.position.position))
+    private fun printCarMoveResult(moveResults: MoveResults) {
+        moveResults.results.forEach { moveResult ->
+            print("${moveResult.name.value} : ")
+            println(PRINT_VALUE.repeat(moveResult.position.value))
         }
         println()
     }
 
     private fun printWinnersName() {
         println(
-            totalPositionHistory.findWinnersName().names.joinToString(
+            moveResultHistory.getWinnerNames().names.joinToString(
                 separator = ", ",
                 postfix = "가 최종 우승했습니다."
-            ) { it.name }
+            ) { name -> name.value }
         )
     }
 

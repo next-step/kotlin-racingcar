@@ -6,6 +6,6 @@ class Car(private val name: Name, private var position: Position) {
     fun move(movable: Movable): CarMoveResult {
         if (movable.canMove())
             position = position.move()
-        return CarMoveResult(name.copy(), position.copy())
+        return CarMoveResult(name, position)
     }
 }
