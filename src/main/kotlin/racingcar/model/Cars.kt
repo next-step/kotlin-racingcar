@@ -10,11 +10,7 @@ class Cars(
         }
     }
 
-    fun moveForwardCars(): Cars {
-        return Cars(cars.map {
-            it.moveForward()
-        })
-    }
+    fun moveForwardCars(): Cars = cars.map { it.moveForward() }.let(::Cars)
 
     fun findWinners(): Cars {
         val maxPosition = findMaxPosition()
