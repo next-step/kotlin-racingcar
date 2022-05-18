@@ -1,18 +1,27 @@
 package racingcar.view
 
-class InputView {
-    private fun getCount(message: String, retry: Int = 1): Int = try {
-        println(message)
-        val res = readln().toInt()
-        if (res < 1) throw NumberFormatException()
-        res
-    } catch (e: java.lang.NumberFormatException) {
+import racingcar.count.CarCount
+import racingcar.count.MoveCount
+
+class InputView(private val minCarCount: Int, private val minMoveCount: Int) {
+    val carCount = getCarCount()
+    val moveCount = getMoveCount()
+
+    private fun getCarCount(retry: Int = 1): CarCount = try {
+        println("자동차 대수는 몇 대인가요?")
+        CarCount(readln().toIntOrNull() ?: 0, minCarCount)
+    } catch (e: Exception) {
         if (retry > 2) println("좋은 말로 할 때... s(^_^)b ")
-        println("1보다 큰 정수로 입력해주세요.")
-        getCount(message, retry + 1)
+        println(e.message)
+        getCarCount(retry + 1)
     }
 
-    fun getCarCount(): Int = getCount("자동차 대수는 몇 대인가요?")
-
-    fun getMoveCount(): Int = getCount("시도할 횟수는 몇 회인가요?")
+    private fun getMoveCount(retry: Int = 1): MoveCount = try {
+        println("시도할 횟수는 몇 회인가요?")
+        MoveCount(readln().toIntOrNull() ?: 0, minMoveCount)
+    } catch (e: Exception) {
+        if (retry > 2) println("좋은 말로 할 때... s(^_^)b ")
+        println(e.message)
+        getMoveCount(retry + 1)
+    }
 }

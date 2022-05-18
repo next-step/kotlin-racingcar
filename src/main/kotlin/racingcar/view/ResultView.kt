@@ -4,9 +4,9 @@ import racingcar.race.Race
 
 class ResultView(race: Race) {
     private val cars = race.cars
-    private val steps = List(race.moveCount) { it + 1 }
+    private val steps = List(race.railSize) { it + 1 }
 
-    fun show() {
+    fun showResult() {
         println("\n실행 결과")
         steps.forEach(fun(step: Int) {
             showPositionsBy(step)
