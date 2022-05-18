@@ -21,9 +21,7 @@ class Calculator {
     private fun isNumberIndex(value: Int) = value % 2 == 0
 
     private fun validateSize(calculatorNumbers: List<CalculatorNumber>, operators: List<Operator>) {
-        if (calculatorNumbers.size - 1 != operators.size) {
-            throw IllegalArgumentException("입력된 수식이 올바르지 않습니다.")
-        }
+        require((calculatorNumbers.size - 1) == operators.size) { "입력된 수식이 올바르지 않습니다." }
     }
 
     private fun calculateNumbers(
