@@ -20,5 +20,7 @@ data class Car(
     companion object {
         private const val DEFAULT_POSITION = 0
         internal const val MAX_BOUND = 10
+        fun of(movingStrategy: MovingStrategy): Car =
+            Car(name = CarName("Car"), position = DEFAULT_POSITION, movingStrategy = movingStrategy)
     }
 }
