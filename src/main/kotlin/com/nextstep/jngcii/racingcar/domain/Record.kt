@@ -1,36 +1,19 @@
 package com.nextstep.jngcii.racingcar.domain
 
-class Record(
-    val carCount: Int,
-    val trialCount: Int
-) {
-    private val goCounts = (INITIAL_INDEX until carCount)
+class Record(carCount: Int) {
+    private val cars = (INITIAL_INDEX until carCount)
         .map { INITIAL_COUNT }
         .toMutableList()
 
-    fun getGoCount(carIndex: Int): Int {
-        carIndex.validate()
+    val eachCarDrivenDistance get() = cars.map { it.toDistanceShape }
 
-        return goCounts[carIndex]
+    fun goOrStopEachCar(dice: Dice) = cars.forEachIndexed { index, _ ->
+        cars[index] += dice.run().toCount
     }
 
-    fun write(carIndex: Int, canGo: Boolean) {
-        carIndex.validate()
+    private val Int.toDistanceShape get() = List(this) { DASH }.joinToString(EMPTY_STRING)
 
-        if (goCounts[carIndex] + SINGLE_COUNT > trialCount) {
-            throw IllegalStateException("최대 전진 횟수는 시도 횟수보다 클 수 없습니다.")
-        }
-
-        goCounts[carIndex] += canGo.toCount()
-    }
-
-    private fun Int.validate() {
-        if (this < INITIAL_INDEX || this >= carCount) {
-            throw IllegalArgumentException("0 <= n < $carCount 의 숫자만 입력 가능합니다.")
-        }
-    }
-
-    private fun Boolean.toCount() = if (this) SINGLE_COUNT else EMPTY_COUNT
+    private val Boolean.toCount get() = if (this) SINGLE_COUNT else EMPTY_COUNT
 
     companion object {
         private const val INITIAL_INDEX = 0
@@ -38,5 +21,8 @@ class Record(
         private const val INITIAL_COUNT = 0
         private const val EMPTY_COUNT = 0
         private const val SINGLE_COUNT = 1
+
+        private const val EMPTY_STRING = ""
+        private const val DASH = "-"
     }
 }
