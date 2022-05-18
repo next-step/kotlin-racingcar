@@ -1,10 +1,12 @@
-package step3.ui
+package racing.ui
 
-import step3.dto.TrackResult
+import racing.dto.RacingRecord
+import racing.dto.TrackResult
 
 object ResultView {
-    fun display(gameResults: List<TrackResult>) {
-        gameResults.forEachIndexed { index, gameResult -> displayMoveResults(gameResult, isLastMove(index, gameResults.size)) }
+    fun display(racingRecord: RacingRecord) {
+        val trackResults = racingRecord.trackResults
+        trackResults.forEachIndexed { index, gameResult -> displayMoveResults(gameResult, isLastMove(index, trackResults.size)) }
     }
 
     private fun displayMoveResults(gameResult: TrackResult, isLastMove: Boolean) {

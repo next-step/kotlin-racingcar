@@ -1,7 +1,7 @@
-package step3.model
+package racing.model
 
-import step3.util.NumberGenerator
-import step3.util.RandomGenerator
+import racing.util.NumberGenerator
+import racing.util.RandomGenerator
 
 class Car(val name: String, private val numberGenerator: NumberGenerator = RandomGenerator) {
     init {

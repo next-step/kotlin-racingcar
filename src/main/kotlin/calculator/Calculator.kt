@@ -1,4 +1,4 @@
-package step2
+package calculator
 
 fun calculate(inputString: String): Double {
     require(inputString.isNotBlank()) { "Invalid Input" }

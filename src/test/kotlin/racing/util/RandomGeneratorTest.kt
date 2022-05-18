@@ -1,4 +1,4 @@
-package step3.util
+package racing.util
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.ints.shouldBeInRange

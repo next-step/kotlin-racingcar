@@ -1,7 +1,7 @@
-package step3.model
+package racing.model
 
-import step3.dto.GameSetting
-import step3.dto.MoveResult
+import racing.dto.GameSetting
+import racing.dto.MoveResult
 
 class RacingTrack(gameSetting: GameSetting) {
 

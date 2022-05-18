@@ -1,18 +1,21 @@
-package step3.model
+package racing.model
 
-import step3.dto.GameSetting
-import step3.dto.MoveResult
-import step3.dto.TrackResult
+import racing.dto.GameSetting
+import racing.dto.MoveResult
+import racing.dto.RacingRecord
+import racing.dto.TrackResult
 
 class RacingGame(private val gameSetting: GameSetting) {
 
     private val racingTrack: RacingTrack = RacingTrack(gameSetting)
+    val record = RacingRecord()
 
-    fun race(): List<TrackResult> {
-        return (1..gameSetting.moveCount)
+    fun race() {
+        (1..gameSetting.moveCount)
             .toList()
             .map { racingTrack.move() }
             .map { TrackResult(it, winnerList(it)) }
+            .forEach(record::add)
     }
 
     private fun winnerList(moveResults: List<MoveResult>): List<Car> {

@@ -1,4 +1,4 @@
-package step3.dto
+package racing.dto
 
 class GameSetting(
     val carNames: List<String>,

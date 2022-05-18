@@ -1,5 +1,5 @@
-package step3.dto
+package racing.dto
 
-import step3.model.Car
+import racing.model.Car
 
 data class TrackResult(val moveResults: List<MoveResult>, val winnerCars: List<Car>)

@@ -1,4 +1,4 @@
-package step3.model
+package racing.model
 
 class TrackLine(val car: Car) {
 

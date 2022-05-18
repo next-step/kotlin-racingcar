@@ -1,9 +1,9 @@
-package step3.model
+package racing.model
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.collections.shouldHaveSize
-import step3.dto.GameSetting
+import racing.dto.GameSetting
 
 class RacingGameTest : StringSpec({
 
@@ -15,10 +15,10 @@ class RacingGameTest : StringSpec({
                 .build()
         )
 
-        val result = racingGame.race()
+        racingGame.race()
 
-        result shouldHaveSize 5
-        result.forAll {
+        racingGame.record.trackResults shouldHaveSize 5
+        racingGame.record.trackResults.forAll {
             it.moveResults shouldHaveSize 3
         }
     }
