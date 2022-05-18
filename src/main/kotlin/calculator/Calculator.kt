@@ -1,7 +1,4 @@
-package study
-
-import Expression
-import Operator
+package calculator
 
 class Calculator {
 

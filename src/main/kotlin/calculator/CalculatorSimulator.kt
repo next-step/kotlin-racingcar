@@ -1,4 +1,4 @@
-import study.Calculator
+package calculator
 
 fun main() {
     print("please input calculation expression :")

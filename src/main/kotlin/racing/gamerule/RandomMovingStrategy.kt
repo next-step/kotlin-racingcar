@@ -1,3 +1,5 @@
+package racing.gamerule
+
 class RandomMovingStrategy : MovingStrategy {
     private val MOVING_RANGE = 1..9
 

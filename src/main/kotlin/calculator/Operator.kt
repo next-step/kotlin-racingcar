@@ -1,3 +1,5 @@
+package calculator
+
 import java.util.function.BinaryOperator
 
 enum class Operator(val operatorString: String) : BinaryOperator<Int> {
