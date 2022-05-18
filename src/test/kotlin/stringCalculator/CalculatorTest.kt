@@ -1,6 +1,7 @@
 package stringCalculator
 
 import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -8,17 +9,23 @@ import org.junit.jupiter.params.provider.ValueSource
 
 internal class CalculatorTest {
 
+    lateinit var calculator: Calculator
+
+    @BeforeEach
+    fun setup() {
+        calculator = Calculator()
+    }
+
     @ParameterizedTest
     @MethodSource("validTestcase")
-    fun `calculate 에 유효한 값을 입력하면 사칙연산을 한다`(input: String, expected: Int) {
-        val calculator = Calculator()
+    fun `수식이 입력되면 사칙연산을 한다`(input: String, expected: Int) {
         val testValue = calculator.calculate(input)
         Assertions.assertThat(testValue).isEqualTo(expected)
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["1-", "2 + 3 + / 5", "2 + a / 5 - 5", "     "])
-    fun `calculate 에 유효하지 않은 값을 입력하면 IllegalArgumentException 리턴한다`(input: String) {
+    fun `올바르지 않은 수식이 입력되면 IllegalArgumentException 이 발생한다`(input: String) {
         val calculator = Calculator()
         Assertions.assertThatThrownBy { calculator.calculate(input) }
             .isInstanceOf(IllegalArgumentException::class.java)

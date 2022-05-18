@@ -3,7 +3,7 @@ package stringCalculator
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
-internal class EvaluationKtTest {
+internal class EvaluationTest {
 
     @Test
     fun `add 연산자는 두 숫자를 합한다`() {
