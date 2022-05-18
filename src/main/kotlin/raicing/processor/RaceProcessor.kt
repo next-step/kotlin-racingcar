@@ -15,7 +15,7 @@ class RaceProcessor {
             // 경기 1회 진행
             val raceResult = raceCar.raceOnce(CarMovingStrategy)
             // 경기 결과 리스트에 추가
-            raceCars.add(raceResult)
+            raceCars += raceResult
         }
 
         return RaceResult(raceCars)

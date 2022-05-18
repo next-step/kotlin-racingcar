@@ -5,10 +5,11 @@ import raicing.strategy.MovingStrategy
 data class Car(val name: String, val position: Int = INIT_POSITION) {
 
     fun moveForward(movingStrategy: MovingStrategy): Car {
-        return if (movingStrategy.canMoveForward())
+        return if (movingStrategy.canMoveForward()) {
             copy(position = position + 1)
-        else
+        } else {
             this
+        }
     }
 
     companion object {

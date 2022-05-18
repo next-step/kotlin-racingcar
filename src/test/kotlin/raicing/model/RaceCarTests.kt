@@ -58,23 +58,4 @@ class RaceCarTests {
             assertThat(result.size).isEqualTo(carCount)
         }
     }
-
-    @Nested
-    @DisplayName("경주 1회 테스트")
-    inner class RaceOnceTests {
-        @Test
-        fun `raceOnce()를 실행하면 자동차의 position이 그대로이거나 1 증가한다`() {
-            val raceCar = RaceCar.of(listOf("a", "b", "c", "d", "e"))
-
-            val afterRaceCar = raceCar.raceOnce(CarMovingStrategy)
-            assertAll(
-                {
-                    raceCar.getCars().zip(afterRaceCar.getCars()) { car, afterCar ->
-                        assertThat(afterCar.name).isEqualTo(afterCar.name)
-                        assertThat(afterCar.position).isIn(car.position, car.position + 1)
-                    }
-                }
-            )
-        }
-    }
 }

@@ -8,7 +8,7 @@ object OutputView {
         val outputStr = buildString {
             appendLine("========== 결과 ============")
             appendLine(raceResultOutput(raceResults))
-            appendLine("${getRaceWinnerName(raceResults)}가 최종 우승했습니다.")
+            appendLine(raceWinnerStr(raceResults))
         }
         print(outputStr)
     }
@@ -29,6 +29,12 @@ object OutputView {
         }
     }
 
-    private fun getRaceWinnerName(raceResults: RaceResult): String =
-        raceResults.whoIsWinner().joinToString(", ") { it.name }
+    private fun raceWinnerStr(raceResults: RaceResult): String {
+        val winners = raceResults.whoIsWinner()?.joinToString(", ") { it.name }
+        return if (winners.isNullOrEmpty()) {
+            "우승자는 없습니다."
+        } else {
+            "${winners}가 최종 우승했습니다."
+        }
+    }
 }

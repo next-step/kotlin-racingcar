@@ -1,5 +1,5 @@
 package raicing.strategy
 
-interface MovingStrategy {
+fun interface MovingStrategy {
     fun canMoveForward(): Boolean
 }
