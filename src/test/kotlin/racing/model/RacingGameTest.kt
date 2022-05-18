@@ -8,12 +8,11 @@ import racing.dto.GameSetting
 class RacingGameTest : StringSpec({
 
     "Racing Game Test" {
-        val racingGame = RacingGame(
-            GameSetting.Builder()
-                .inputCarNames(listOf("car1", "car2", "car3"))
-                .inputMoveCount(5)
-                .build()
-        )
+        val gameSetting = GameSetting.Builder()
+            .inputCarNames(listOf("car1", "car2", "car3"))
+            .inputMoveCount(5)
+            .build()
+        val racingGame = RacingGame(gameSetting)
 
         racingGame.race()
 

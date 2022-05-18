@@ -7,6 +7,9 @@ import io.kotest.matchers.string.shouldStartWith
 
 class CarTest : FunSpec({
 
+    val neverMovingCar = Car("car") { _, _ -> Car.MOVABLE_THRESHOLD - 1 }
+    val alwaysMovingCar = Car("car") { _, _ -> Car.MOVABLE_THRESHOLD }
+
     test("Invalid Name Length") {
         val exceptionForValue = shouldThrow<IllegalArgumentException> {
             Car("")
@@ -17,12 +20,10 @@ class CarTest : FunSpec({
     }
 
     test("move fail") {
-        val car = Car("car") { _, _ -> Car.MOVABLE_THRESHOLD - 1 }
-        car.move() shouldBe false
+        neverMovingCar.move() shouldBe false
     }
 
     test("move success") {
-        val car = Car("car") { _, _ -> Car.MOVABLE_THRESHOLD }
-        car.move() shouldBe true
+        alwaysMovingCar.move() shouldBe true
     }
 })
