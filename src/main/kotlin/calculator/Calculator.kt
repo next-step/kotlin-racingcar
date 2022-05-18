@@ -27,7 +27,7 @@ object Calculator {
         return accumulator
     }
 
-    private fun countOperationPair(it: Int) = it / 2
+    private fun countOperationPair(operationUnitCount: Int) = operationUnitCount / 2
 
     private fun extractOperationPair(operationTurn: Int, operationUnits: List<String>): Pair<String, Double> {
         val index = operationTurn * 2
