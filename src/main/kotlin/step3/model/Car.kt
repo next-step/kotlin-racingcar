@@ -17,9 +17,9 @@ class Car(val name: String, private val numberGenerator: NumberGenerator = Rando
     }
 
     companion object {
-        const val MIN_RANDOM_VALUE = 0
-        const val MAX_RANDOM_VALUE = 9
         const val MOVABLE_THRESHOLD = 4
-        val NAME_LENGTH_RANGE = (1..5)
+        private const val MIN_RANDOM_VALUE = 0
+        private const val MAX_RANDOM_VALUE = 9
+        private val NAME_LENGTH_RANGE = (1..5)
     }
 }

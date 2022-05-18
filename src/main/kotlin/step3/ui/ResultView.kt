@@ -19,8 +19,8 @@ object ResultView {
         return (index == listSize - 1)
     }
 
-    private fun displayWinner(gameResult: TrackResult) {
-        val winners = gameResult.getWinners().joinToString(", ") { it.name }
+    private fun displayWinner(trackResult: TrackResult) {
+        val winners = trackResult.winnerCars.joinToString(", ") { it.name }
         println("${winners}가 최종 우승했습니다.")
     }
 }
