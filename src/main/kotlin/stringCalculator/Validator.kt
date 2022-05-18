@@ -9,12 +9,12 @@ import stringCalculator.Message.Companion.INVALID_OPERATOR
 
 class Validator {
 
-    fun isValidInput(input: String?): Boolean {
+    fun validateInput(input: String?): Boolean {
         require(!input.isNullOrBlank()) { INPUT_NULL_OR_BLANK }
         require(!containsNonOperator(input)) { INVALID_OPERATOR }
         startWithNumber(input)?.let { require(it) { INPUT_NOT_START_WITH_NUMBER } }
         endWithNumber(input)?.let { require(it) { INPUT_NOT_END_WITH_NUMBER } }
-        require(!containsNonOperatorNorDigitCharacter(input)) { INPUT_CONTAINS_CHARACTER }
+        require(!containsCharactor(input)) { INPUT_CONTAINS_CHARACTER }
         require(!isOperatorOrNumberInARow(input)) { INPUT_CONTAINS_OPERATOR_IN_A_ROW }
         return true
     }
@@ -35,7 +35,7 @@ class Validator {
         return input?.last()?.isDigit()
     }
 
-    fun containsNonOperatorNorDigitCharacter(input: String?): Boolean {
+    fun containsCharactor(input: String?): Boolean {
         input?.forEach { c: Char ->
             if (c.isLetter()) return true
         }
@@ -52,18 +52,15 @@ class Validator {
     }
 
     fun isOperatorOrNumberInARow(input: String?): Boolean {
-        val inputList = input?.split(" ")
+        val inputList = input!!.split(" ")
         var checkIfOperatorInARow = 0
-        if (inputList != null) {
-            for (item in inputList) {
-                if (isNumber(item)) {
-                    checkIfOperatorInARow++
-                    if (checkIfOperatorInARow != 1) return true
-                    continue
-                }
+        for (item in inputList) {
+            if (isNumber(item)) {
+                checkIfOperatorInARow++
+            } else {
                 checkIfOperatorInARow--
-                if (checkIfOperatorInARow != 0) return true
             }
+            if (checkIfOperatorInARow != 1 || checkIfOperatorInARow != 0) return true
         }
         return false
     }

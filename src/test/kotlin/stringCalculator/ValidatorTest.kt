@@ -21,13 +21,13 @@ internal class ValidatorTest {
     @ParameterizedTest
     @MethodSource("correctTestcase")
     fun `입력값이 정상적인 수식일 경우 validate 결과는 true 이다`(input: String, expected: Boolean) {
-        val result = validator.isValidInput(input)
+        val result = validator.validateInput(input)
         Assertions.assertThat(result).isEqualTo(expected)
     }
 
     @Test
     fun `blank string을 입력하면 IllegalArgumentException 와 메시지를 출력한다`() {
-        assertThatThrownBy { validator.isValidInput(" ") }
+        assertThatThrownBy { validator.validateInput(" ") }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage(INPUT_NULL_OR_BLANK)
     }
@@ -35,7 +35,7 @@ internal class ValidatorTest {
     @ParameterizedTest
     @NullAndEmptySource
     fun `비어있는(blank) 값을 입력하면 IllegalArgumentException 와 메시지를 출력한다`(input: String?) {
-        assertThatThrownBy { validator.isValidInput(input) }
+        assertThatThrownBy { validator.validateInput(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage(INPUT_NULL_OR_BLANK)
     }
@@ -46,7 +46,7 @@ internal class ValidatorTest {
         input: String,
         errorMessage: String
     ) {
-        assertThatThrownBy { validator.isValidInput(input) }
+        assertThatThrownBy { validator.validateInput(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage(errorMessage)
     }
