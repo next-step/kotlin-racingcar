@@ -79,7 +79,7 @@ class InputViewTest : DescribeSpec({
         it("문자열을 콤마 단위로 분할하여 배열을 반환한다.") {
             val input = "a,b,c"
 
-            val result: List<String> = InputView.getStringArray(input)
+            val result: List<String> = InputView.getStringArray(input, 5)
 
             result shouldBe listOf("a", "b", "c")
         }
@@ -87,7 +87,7 @@ class InputViewTest : DescribeSpec({
         it("문자 하나를 입력받으면 길이 1 배열을 반환한다.") {
             val input = "a"
 
-            val result: List<String> = InputView.getStringArray(input)
+            val result: List<String> = InputView.getStringArray(input, 5)
 
             result shouldBe listOf("a")
         }
@@ -96,7 +96,7 @@ class InputViewTest : DescribeSpec({
             val input = ""
 
             val exception = shouldThrow<IllegalArgumentException> {
-                InputView.getStringArray(input)
+                InputView.getStringArray(input, 5)
             }
 
             exception.message shouldBe "입력 값이 없습니다."
@@ -106,10 +106,21 @@ class InputViewTest : DescribeSpec({
             val input = null
 
             val exception = shouldThrow<IllegalArgumentException> {
-                InputView.getStringArray(input)
+                InputView.getStringArray(input, 5)
             }
 
             exception.message shouldBe "입력 값이 없습니다."
+        }
+
+        it("문자열 하나의 길이가 5가 넘는다면 IllegalArgumentException 를 던진다.") {
+            val input = "a,b,c,d,abcde"
+            val maxLength = 5
+
+            val exception = shouldThrow<IllegalArgumentException> {
+                InputView.getStringArray(input, maxLength)
+            }
+
+            exception.message shouldBe "하나의 이름의 기이는 $maxLength 를 넘을 수 없습니다."
         }
     }
 })
