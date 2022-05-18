@@ -1,7 +1,7 @@
 package racingcar
 
 class RacingGame(private val carCount: Int, private val tryCount: Int) {
-    val driverList = List(this.carCount) { Driver(Car()) }
+    val driverList = List(this.carCount) { Driver("papic", Car()) }
 
     fun start() {
         repeat(tryCount) {
