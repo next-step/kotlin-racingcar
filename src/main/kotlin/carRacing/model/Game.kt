@@ -1,12 +1,11 @@
-package carRacing.controller
+package carRacing.model
 
-import carRacing.model.Car
-import carRacing.model.Record
-import carRacing.util.RandomGenerator
+import carRacing.util.Random
 
 class Game(
     carNameList: List<String>,
     private val numMovement: Int,
+    private val random: Random,
 ) {
 
     init {
@@ -19,10 +18,13 @@ class Game(
 
     private val cars: List<Car> = carNameList.map { Car(it) }
 
+    fun move(car: Car, value: Int) {
+        if (value >= MOVE_ACTION_MIN) car.move()
+    }
+
     private fun runRound() {
         this.cars.forEach {
-            val randomValue: Int = RandomGenerator.value()
-            if (randomValue >= MOVE_ACTION_MIN) it.move()
+            move(it, this.random.value())
         }
     }
 
@@ -36,8 +38,8 @@ class Game(
     }
 
     fun winner(): List<Car> {
-        val maxPositionCar = cars.maxOrNull() ?: throw IllegalStateException(INVALID_CAR_LIST)
-        return this.cars.filter { it.isDrawWith(maxPositionCar) }
+        val car = cars.maxOrNull() ?: throw IllegalStateException(INVALID_CAR_LIST)
+        return this.cars.filter { it.isDrawWith(car) }
     }
 
     companion object {

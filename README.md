@@ -52,3 +52,9 @@
     - maxOf 메서드를 사용하고싶었으나 최초 1개만 반환됨.
     - 따라서 max가 동일한 값으로 여러개일 경우 여러개를 반환할 수 있는 확장 함수 구현
 
+## Step5: 자동차 경주 (리팩토링)
+
+### 변경 사항
+
+- [x] Game class의 winner 함수의 maxPositionCar 변수명 변경
+- [x] Game class move 함수 추출하여 테스트 가능하도록 수정 

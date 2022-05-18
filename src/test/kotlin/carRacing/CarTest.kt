@@ -35,4 +35,16 @@ class CarTest : FreeSpec({
             car.position shouldBe before + 1
         }
     }
+
+    "isDrawWith" - {
+
+        "포지션이 동일한 경우 true를 리턴한다." {
+            val car1 = Car("car1")
+            val car2 = Car("car2")
+
+            val result = car1.isDrawWith(car2)
+
+            result shouldBe true
+        }
+    }
 })
