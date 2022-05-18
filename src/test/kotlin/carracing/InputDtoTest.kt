@@ -71,11 +71,8 @@ class InputDtoTest : StringSpec({
         val inputDto1 = InputDto(carNamesString, movementTryCount)
         val inputDto2 = InputDto(carNamesString, movementTryCount)
 
-        // when
-        val dtoIsMatch = inputDto1 == inputDto2
-
         // then
-        dtoIsMatch shouldBe true
+        inputDto1 shouldBe inputDto2
     }
 
     "movementTryCount 에 공백이 포함된 값을 입력 받아도 정상 저장 한다" {
