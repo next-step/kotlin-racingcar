@@ -15,6 +15,7 @@ internal class ValidationTest {
         Assertions.assertThat(result).isEqualTo(3)
     }
 
+    // java::class 사용하지 않기
     @Test
     fun `정수가 아닌 값을 입력하면 IllegalArgumentException를 던진다`() {
         // then
