@@ -1,6 +1,6 @@
 package racingcar
 
-import racingcar.domain.RacingcarGame
+import racingcar.controller.RacingcarGame
 
 fun main() {
     val racingcarGame = RacingcarGame()
