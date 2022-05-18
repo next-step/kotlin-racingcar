@@ -5,11 +5,6 @@ import org.junit.jupiter.api.Test
 
 class StringTest {
     @Test
-    fun isEmpty() {
-        println("".isEmpty())
-    }
-
-    @Test
     internal fun isBlack() {
         assertThat(" ".isBlank()).isTrue
         assertThat("\r\r".isBlank()).isTrue

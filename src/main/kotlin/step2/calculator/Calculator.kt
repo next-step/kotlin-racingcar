@@ -2,7 +2,7 @@ package step2.calculator
 
 class Calculator {
     fun execute(input: String?): Long {
-        input ?: throw IllegalArgumentException("유효하지 않은 입력 값입니다.")
+        requireNotNull(input) { "유효하지 않은 입력 값입니다." }
         return this.calculate(input.split(DELIMITER))
     }
 

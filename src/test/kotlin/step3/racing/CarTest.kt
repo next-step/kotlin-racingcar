@@ -1,26 +1,43 @@
 package step3.racing
 
 import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.data.forAll
+import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 
 class CarTest : DescribeSpec({
     describe("run") {
-        it("isMoved 값이 true 일 때 거리가 1 증가한다.") {
-            val car = Car()
-            val isMoved = true
+        it("1~4 사이의 값이 입력되면 이동하지 않는다.") {
+            forAll(
+                row(0),
+                row(1),
+                row(2),
+                row(3),
+            ) { input ->
+                val car = Car("name")
 
-            car.run(isMoved)
+                car.run(input)
 
-            car.distance shouldBe 1
+                car.distance shouldBe 0
+            }
         }
 
-        it("isMoved 값이 false 일 때 거리가 증가하지 않는다.") {
-            val car = Car()
-            val isMoved = false
+        it("4~10 사이의 값은 이동한다.") {
+            forAll(
+                row(4),
+                row(5),
+                row(6),
+                row(7),
+                row(8),
+                row(9),
+                row(10),
+            ) { input ->
+                val car = Car("name")
 
-            car.run(isMoved)
+                car.run(input)
 
-            car.distance shouldBe 0
+                car.distance shouldBe 1
+            }
         }
     }
 })
