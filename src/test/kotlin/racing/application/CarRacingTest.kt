@@ -2,10 +2,7 @@ package racing.application
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.CsvSource
 import racing.model.Car
-import racing.model.Round
 
 internal class CarRacingTest {
 
@@ -33,38 +30,21 @@ internal class CarRacingTest {
     fun `first round do initialization test`() {
         //given
         val firstRoundNo = 0
-        val numberOfCars = 3
+        val carNames = listOf("tom", "jerry", "bull")
         val tries = 3
-        val carRacing = CarRacing(numberOfCars, tries)
-        val expected = List(numberOfCars) { Car() }
+        val carRacing = CarRacing(carNames, tries)
+        val expected = listOf(
+            Car("tom"),
+            Car("jerry"),
+            Car("bull")
+        )
 
         //when
         val result = carRacing.start()
 
         //then
-        assertThat(result[firstRoundNo])
+        assertThat(result.get(firstRoundNo))
             .extracting("cars")
             .isEqualTo(expected)
-    }
-
-    @ParameterizedTest
-    @CsvSource(
-        "3, 3",
-        "10, 20",
-        "23, 15",
-        "1231, 1"
-    )
-    fun `start method create round result`(numberOfCars: Int, tries: Int) {
-        //given
-        val expectedKeys = Array(tries) { it }
-        val expectedValue = Round(List(numberOfCars) { Car() })
-
-        //when
-        val racingResult = CarRacing(numberOfCars, tries).start()
-
-        //then
-        assertThat(racingResult)
-            .containsKeys(*expectedKeys)
-            .containsEntry(0, expectedValue)
     }
 }

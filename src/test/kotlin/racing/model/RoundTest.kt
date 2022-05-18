@@ -1,18 +1,23 @@
 package racing.model
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
+import org.junit.jupiter.api.Test
 
 internal class RoundTest {
 
-    @ParameterizedTest
-    @MethodSource("generateData")
-    fun `next test`(numberOfCar: Int, randomNumbers: List<Int>, expected: List<Car>) {
+    @Test
+    fun `next test`() {
         //given
-        val cars = List(numberOfCar) { Car() }
+        val numberOfCar = 5
+        val randomNumbers = listOf(5, 8, 1, 2, 4)
+        val expected = listOf(
+            Car("testName").go(),
+            Car("testName").go(),
+            Car("testName"),
+            Car("testName"),
+            Car("testName").go()
+        )
+        val cars = List(numberOfCar) { Car("testName") }
         val round = Round(cars)
 
         //when
@@ -21,33 +26,5 @@ internal class RoundTest {
         //then
         assertThat(result)
             .isEqualTo(expected)
-    }
-
-    companion object {
-        @JvmStatic
-        private fun generateData(): Stream<Arguments> {
-            return Stream.of(
-                Arguments.of(
-                    5,
-                    listOf(5, 8, 1, 2, 4),
-                    listOf(Car().go(), Car().go(), Car(), Car(), Car().go())),
-                Arguments.of(
-                    2,
-                    listOf(1, 4),
-                    listOf(Car(), Car().go())),
-                Arguments.of(
-                    3,
-                    listOf(2, 8, 4),
-                    listOf(Car(), Car().go(), Car().go())),
-                Arguments.of(
-                    5,
-                    listOf(1, 1, 1, 5, 4),
-                    listOf(Car(), Car(), Car(), Car().go(), Car().go())),
-                Arguments.of(
-                    4,
-                    listOf(6, 3, 6, 8),
-                    listOf(Car().go(), Car(), Car().go(), Car().go())),
-            )
-        }
     }
 }

@@ -1,9 +1,11 @@
 package racing.application
 
-import racing.model.Car
-import racing.model.Round
+import racing.model.Rounds
 
-class CarRacing(private val numberOfCars: Int, private val tries: Int) {
+class CarRacing(
+    private val carNames: List<String>,
+    private val tries: Int
+) {
 
     companion object {
         private const val RANDOM_VALUE_FROM = 0
@@ -16,18 +18,9 @@ class CarRacing(private val numberOfCars: Int, private val tries: Int) {
         }
     }
 
-    fun start(): Map<Int, Round> {
-        val roundsMap = mutableMapOf<Int, Round>()
-        repeat(tries) {
-            val prevRound = roundsMap[it - 1]
-            roundsMap[it] = getNextRound(prevRound, getRandom(numberOfCars), numberOfCars)
-        }
-        return roundsMap
+    fun start(): Rounds {
+        val rounds = Rounds()
+        return rounds.process(tries, carNames)
     }
 
-    private fun getNextRound(prevRound: Round?, randomNumbers: List<Int>, numberOfCars: Int): Round =
-        prevRound?.next(randomNumbers) ?: getFirstRound(numberOfCars)
-
-    private fun getFirstRound(numberOfCars: Int): Round =
-        Round(List(numberOfCars) { Car() })
 }
