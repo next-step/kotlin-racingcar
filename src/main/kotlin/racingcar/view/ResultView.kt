@@ -8,10 +8,10 @@ class ResultView(race: Race) {
 
     fun showResult() {
         println("\n실행 결과")
-        steps.forEach(fun(step: Int) {
+        steps.forEach { step: Int ->
             showPositionsBy(step)
             println()
-        })
+        }
     }
 
     private fun showPositionsBy(step: Int) = cars.forEach { showPositionBy(it.positionBy(step)) }
