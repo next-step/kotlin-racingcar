@@ -1,6 +1,6 @@
 package racingcar
 
-class Driver(private val car: Car) {
+class Driver(val name: String, private val car: Car) {
     val driveRecord = mutableListOf<Int>()
 
     fun drive(isMovable: Boolean) {
