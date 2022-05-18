@@ -11,6 +11,6 @@ fun main() {
     val racingTrack = RacingTrack(racerNames, racingTime)
     racingTrack.start()
 
-    val winners = racingTrack.getWinnerNames()
-    ResultView.showWinner(winners.joinToString(NAME_SEPARATOR))
+    val winnerNames = Referee.findWinnerNames(racingTrack.racers)
+    ResultView.showWinner(winnerNames.joinToString(NAME_SEPARATOR))
 }

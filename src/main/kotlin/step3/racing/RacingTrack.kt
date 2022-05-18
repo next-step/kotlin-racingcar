@@ -1,9 +1,7 @@
 package step3.racing
 
-class RacingTrack(racerNames: List<String>, val times: Int) {
-    val racers: List<Car> = buildList {
-        repeat(racerNames.size) { add(Car(racerNames[it])) }
-    }
+class RacingTrack(racerNames: List<String>, private val times: Int) {
+    val racers: List<Car> = racerNames.map { Car(it) }
 
     fun start() = repeat(times) {
         racers.forEach {
@@ -11,9 +9,5 @@ class RacingTrack(racerNames: List<String>, val times: Int) {
             ResultView.showDistance(it.name, it.distance)
         }
         println()
-    }
-
-    fun getWinnerNames(): List<String> {
-        return Referee.findWinnerNames(racers)
     }
 }
