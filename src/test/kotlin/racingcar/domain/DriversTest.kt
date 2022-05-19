@@ -54,7 +54,7 @@ class DriversTest {
     @Test
     fun `드라이버의 전략이 false면 차가 움직일 수 없다`() {
         // given
-        val alwayMoveDriver = Drivers(
+        val notMovableDriver = Drivers(
             listOf("car"),
             AlwaysFalseMoveStrategy(),
             NameLengthLimitStrategy()
@@ -64,11 +64,11 @@ class DriversTest {
         val moveCount = 100
         val expectedDistance = 0
         repeat(moveCount) {
-            alwayMoveDriver.driveAll()
+            notMovableDriver.driveAll()
         }
 
         // then
-        val moveResults = alwayMoveDriver.getMoveResults()
+        val moveResults = notMovableDriver.getMoveResults()
         val moveDistance = moveResults.data[0].moveDistance
 
         assertThat(moveDistance).isEqualTo(expectedDistance)
