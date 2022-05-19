@@ -1,4 +1,4 @@
-package study.step1
+package study.kotlinBasic
 
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.shouldBe

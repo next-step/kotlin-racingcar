@@ -1,4 +1,4 @@
-package study.step2
+package study.stringCalculator
 
 enum class Operator(val symbol: String, val work: (Int, Int) -> Int) {
     ADD("+", { a, b -> a + b }),

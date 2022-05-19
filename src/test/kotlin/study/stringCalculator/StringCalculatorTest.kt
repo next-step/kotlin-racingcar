@@ -1,11 +1,10 @@
-package study.step2
+package study.stringCalculator
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import study.step2.StringCalculator
 
 class StringCalculatorTest {
     @Test

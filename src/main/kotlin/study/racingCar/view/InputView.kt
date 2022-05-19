@@ -1,4 +1,4 @@
-package study.step3.view
+package study.racingCar.view
 
 object InputView {
 

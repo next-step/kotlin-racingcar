@@ -1,10 +1,9 @@
-package study.step3.domain
-
-import study.step3.view.InputView
+package study.racingCar.domain
 
 class RacingCar {
     lateinit var moveRecordList: List<MutableList<Int>>
-
+    //List => 그냥 kotlin에서 제공하는 api이름인거 같다. records는 어떨까요? cars는 어떨까요?
+    // grep.app 에 변수명 검색해보자
     fun raceStart(carNum: Int, roundNum: Int) {
 
         val carList = List(carNum) {}.map { Car() }

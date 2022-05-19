@@ -1,6 +1,6 @@
-package study.step3.view
+package study.racingCar.view
 
-import study.step3.domain.RacingCar
+import study.racingCar.domain.RacingCar
 
 object ResultView {
     fun printResult() {
