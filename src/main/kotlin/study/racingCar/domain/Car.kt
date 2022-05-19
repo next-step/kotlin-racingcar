@@ -1,16 +1,19 @@
 package study.racingCar.domain
 
-class Car {
-    var movedNum = 0
-        private set
+class Car(var movedSteps: Int = 0, var tryCounts: Int = 0) {
 
-    fun moveOneStep() {
-        val randomNum = RANDOM_NUM
-        if (randomNum >= 4) movedNum += 1
+    fun tryMoveOneStep() {
+        if (RANDOM_NUM >= MOVE_CONDITION) movedSteps += 1
+        resetRandomNum()
+        tryCounts++
     }
-    // companion Object : 4 => Forward Number
+
+    private fun resetRandomNum() {
+        RANDOM_NUM = (0..9).random()
+    }
 
     companion object {
-        val RANDOM_NUM = (0..9).random()
+        const val MOVE_CONDITION = 4
+        var RANDOM_NUM = (0..9).random()
     }
 }
