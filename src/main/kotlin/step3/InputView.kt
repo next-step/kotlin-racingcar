@@ -3,15 +3,15 @@ package step3
 class InputView {
     fun getCarCount(): Int {
         println(INPUT_HOW_MANY_CAR)
-        return getValidInt(readln())
+        return getValidNaturalNumber(readln())
     }
 
     fun getTryCount(): Int {
         println(INPUT_HOW_MANY_TIMES)
-        return getValidInt(readln())
+        return getValidNaturalNumber(readln())
     }
 
-    private fun getValidInt(input: String): Int {
+    private fun getValidNaturalNumber(input: String): Int {
         return input.toIntOrNull() ?: throw IllegalArgumentException(ERROR_INPUT_INVALID_NUMBER)
     }
 
