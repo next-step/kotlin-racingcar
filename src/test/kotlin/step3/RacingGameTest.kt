@@ -28,7 +28,7 @@ class RacingGameTest : FunSpec({
             val racing = RacingGame()
             racing.play(cars, times)
             racing.carList.size shouldBe cars
-            racing.carList.map { it.record.size shouldBeLessThanOrEqual times }
+            racing.records.map { it.value.size shouldBeLessThanOrEqual times }
         }
     }
 })
