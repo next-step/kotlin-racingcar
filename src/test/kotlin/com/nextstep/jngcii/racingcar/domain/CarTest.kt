@@ -1,19 +1,21 @@
 package com.nextstep.jngcii.racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class CarTest {
-    private lateinit var car: Car
 
-    @BeforeEach
-    fun setUp() {
-        car = Car(SAMPLE_CAR_NAME)
+    @Test
+    fun `car 생성 실패 테스트`() {
+        assertThrows<IllegalArgumentException>("자동차이름은 공백일 수 없습니다.") { Car(" ") }
+        assertThrows<IllegalArgumentException>("자동차이름은 5자를 초과할 수 없습니다.") { Car("asdfasd") }
     }
 
     @Test
     fun goTest() {
+        val car = Car(SAMPLE_CAR_NAME)
+
         assertThat(car.distance).isEqualTo(0)
 
         car.go { false }

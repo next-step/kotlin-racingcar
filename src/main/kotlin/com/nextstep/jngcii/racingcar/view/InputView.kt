@@ -6,9 +6,7 @@ class InputView {
 
         val input = readLine() ?: throw IllegalArgumentException("입력값이 없습니다.")
 
-        return input.split(COMMA).map {
-            it.trim().validate()
-        }
+        return input.split(COMMA).map { it.trim() }
     }
 
     fun getTrialCount(): Int {
@@ -23,20 +21,7 @@ class InputView {
         } ?: throw IllegalArgumentException("숫자를 입력해주세요.")
     }
 
-    private fun String.validate(): String {
-        if (this.isBlank()) {
-            throw IllegalArgumentException("자동차이름은 공백일 수 없습니다.")
-        }
-
-        if (this.length > 5) {
-            throw IllegalArgumentException("자동차이름은 ${MAX_CAR_NAME_LENGTH}자를 초과할 수 없습니다.")
-        }
-
-        return this
-    }
-
     companion object {
         private const val COMMA = ","
-        private const val MAX_CAR_NAME_LENGTH = 5
     }
 }
