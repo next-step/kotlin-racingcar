@@ -23,16 +23,14 @@ object ResultView {
     }
 
     fun showAllRacingRecords(results: List<MoveResults>) {
-        results.forEach { eachResult ->
-            showEachRecord(eachResult)
-            println()
-        }
+        results.forEach(::showEachRecord)
     }
 
     private fun showEachRecord(moveResults: MoveResults) {
         moveResults.data.map { result ->
             showResultView(result.carName, getDashView(result.moveDistance))
         }
+        println()
     }
 
     private fun showResultView(carName: String, dash: String) {
