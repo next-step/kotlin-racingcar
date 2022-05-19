@@ -5,9 +5,6 @@ class ResultView {
         records.forEach { record ->
             println(record.value.joinToString(JOIN_CHARACTER_FOR_RECORD))
         }
-    }
-
-    fun printNextRacing() {
         println()
     }
 

@@ -12,7 +12,6 @@ class RacingGame(private val carList: List<Car>, private val times: Int) {
                 record.add(car.moveOrStop(getRandomNumber()))
             }
             ResultView().printRacingResult(records)
-            ResultView().printNextRacing()
         }
     }
 
