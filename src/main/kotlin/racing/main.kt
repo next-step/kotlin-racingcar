@@ -1,9 +1,10 @@
 package racing
 
+const val DELIMITER = ","
 fun main() {
     try {
         println("경주할 자동차 이름을 입력하세요")
-        val carNames = readln().split(",")
+        val carNames = readln().split(DELIMITER)
 
         println("시도할 횟수는 몇 회인가요?")
         val tryRound = readln().toInt()
