@@ -1,20 +1,22 @@
 package calculator
 
-class Splitter {
-    companion object {
-        fun getSymbols(source: String): List<String> =
-            source.split(" ")
-                .filter {
-                    it.toIntOrNull() === null
-                }
+object Splitter {
+    fun getSymbols(source: String): List<String> =
+        source.split(" ")
+            .filter {
+                isInt(it)
+            }
 
-        fun getNumbers(source: String): List<Int> =
-            source.split(" ")
-                .filter {
-                    it.toIntOrNull() !== null
-                }
-                .map {
-                    it.toInt()
-                }
+    fun getNumbers(source: String): List<Int> =
+        source.split(" ")
+            .filterNot {
+                isInt(it)
+            }
+            .map {
+                it.toInt()
+            }
+
+    private fun isInt(value: String): Boolean {
+        return value.toIntOrNull() == null
     }
 }

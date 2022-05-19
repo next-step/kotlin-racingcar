@@ -16,7 +16,7 @@ class Calculator() {
         }
     }
 
-    private fun evaluate(
+    fun evaluate(
         numbers: List<Int>,
         symbols: List<String>
     ) = numbers.reduceIndexed { index, source, other ->
