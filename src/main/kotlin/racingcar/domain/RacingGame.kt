@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class RacingGame(carCnt: Int, val tryCnt: Int) {
     var cars = mutableListOf<Car>()
@@ -7,15 +7,12 @@ class RacingGame(carCnt: Int, val tryCnt: Int) {
         repeat(carCnt) { cars.add(Car()) }
     }
 
-    fun execute() {
-        val resultView = ResultView()
+    fun execute(method: () -> Int): List<Car> {
         repeat(tryCnt) {
             cars.forEach {
-                it.move(it.generate())
-                resultView.view(it.position)
-                resultView.newLine()
+                it.move(method())
             }
-            resultView.newLine()
         }
+        return cars.toList()
     }
 }

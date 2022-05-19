@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.ui
 
 class InputView() {
     fun readCarCount(): Int {

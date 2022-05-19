@@ -1,10 +1,12 @@
-import racingcar.InputView
-import racingcar.RacingGame
+import racingcar.domain.RacingGame
+import racingcar.generate
+import racingcar.ui.InputView
+import racingcar.ui.ResultView
 
 fun main() {
     val inputView = InputView()
     val carCnt = inputView.readCarCount()
     val tryCnt = inputView.readTryCount()
-    println("\n실행결과")
-    RacingGame(carCnt, tryCnt).execute()
+    val cars = RacingGame(carCnt, tryCnt).execute { generate() }
+    ResultView().execute(cars, tryCnt)
 }
