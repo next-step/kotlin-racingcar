@@ -1,16 +1,9 @@
 package racingcar
 
-class Car {
-    var progress: Boolean = false
-    var position: Int = 0
-
-    init {
-        position++
-    }
+class Car(var position: Int = 0) {
 
     fun move(condition: Int) {
         if (condition in 4..9) {
-            progress = true
             position++
         }
     }

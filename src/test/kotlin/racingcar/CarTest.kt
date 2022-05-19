@@ -10,7 +10,7 @@ class CarTest {
     fun `전진하는 조건은 무작위 값이 4 이상 9미만일 경우 이다`(value: Int) {
         val car = Car()
         car.move(value)
-        assertThat(car.progress).isEqualTo(true)
+        assertThat(car.position).isNotEqualTo(0)
     }
 
     @ValueSource(ints = [0, 1, 2, 3])
@@ -18,6 +18,6 @@ class CarTest {
     fun `전진하지 않는 조건은 무작위 값이 0이상 3이하일 경우 이다`(value: Int) {
         val car = Car()
         car.move(value)
-        assertThat(car.progress).isEqualTo(false)
+        assertThat(car.position).isEqualTo(0)
     }
 }
