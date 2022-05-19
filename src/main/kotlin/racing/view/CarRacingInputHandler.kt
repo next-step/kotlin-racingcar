@@ -1,7 +1,9 @@
-package racing
+package racing.view
 
-import racing.Constants.CAR_INPUT_MESSAGE
-import racing.Constants.TRIES_INPUT_MESSAGE
+import racing.domain.Car
+import racing.domain.Constants
+import racing.domain.Constants.CAR_INPUT_MESSAGE
+import racing.domain.Constants.TRIES_INPUT_MESSAGE
 
 object CarRacingInputHandler {
     fun input(): InputParams {

@@ -1,6 +1,6 @@
-package racing.gamerule
+package racing.domain
 
-import racing.Car
+import racing.domain.gamerule.MovingStrategy
 
 object RacingGame {
     fun play(cars: List<Car>, movingStrategy: MovingStrategy) {

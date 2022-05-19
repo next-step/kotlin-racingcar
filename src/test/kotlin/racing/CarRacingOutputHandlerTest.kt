@@ -1,6 +1,8 @@
 package racing
 
 import org.junit.jupiter.api.Test
+import racing.domain.Car
+import racing.view.CarRacingOutputHandler
 
 class CarRacingOutputHandlerTest {
 

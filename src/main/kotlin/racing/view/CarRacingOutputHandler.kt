@@ -1,4 +1,6 @@
-package racing
+package racing.view
+
+import racing.domain.Car
 
 object CarRacingOutputHandler {
     fun display(cars: List<Car>) {
