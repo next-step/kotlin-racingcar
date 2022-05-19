@@ -16,7 +16,11 @@ class CarTest {
     fun goTest() {
         assertThat(car.distance).isEqualTo(0)
 
-        car.go()
+        car.go { false }
+
+        assertThat(car.distance).isEqualTo(0)
+
+        car.go { true }
 
         assertThat(car.distance).isEqualTo(1)
     }

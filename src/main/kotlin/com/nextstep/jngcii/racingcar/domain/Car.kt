@@ -1,15 +1,18 @@
 package com.nextstep.jngcii.racingcar.domain
 
-class Car(val name: String) {
-    private var _distance = INITIAL_DISTANCE
-    val distance get() = _distance
+open class Car(val name: String) {
+    open val speed = SPEED
+    private var _distance = ZERO_DISTANCE
+    open val distance get() = _distance
 
-    fun go() {
-        _distance += SINGLE_COUNT
+    open fun go(dice: Dice) {
+        _distance += dice.run().intBySpeed
     }
 
+    private val Boolean.intBySpeed get() = if (this) speed else ZERO_DISTANCE
+
     companion object {
-        private const val INITIAL_DISTANCE = 0
-        private const val SINGLE_COUNT = 1
+        private const val ZERO_DISTANCE = 0
+        private const val SPEED = 1
     }
 }
