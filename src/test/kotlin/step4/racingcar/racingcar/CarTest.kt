@@ -1,37 +1,41 @@
 package step4.racingcar.racingcar
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class CarTest {
 
-    @Test
-    fun `자동차 생성 테스트`() {
-        val randCarCount = (0..9).random()
-        val cars = List(randCarCount) { Car(it.toString(), SuccessEngine()) }
+    @ParameterizedTest
+    @ValueSource(strings = ["molly", "jayce", "pug"])
+    fun `자동차 생성 테스트`(input: String) {
+        val cars = Car(input)
 
-        assertEquals(cars.count(), randCarCount)
+        assertEquals(cars.racerName, input)
     }
 
-    @Test
-    fun `자동차 이동 실패 테스트`() {
-        val randMoveCount = (0..9).random()
-        val car = Car("실패", FailEngine())
-        repeat(randMoveCount) {
-            car.move()
-        }
+    @ParameterizedTest
+    @ValueSource(ints = [5, 8, 9])
+    fun `자동차 이동 성공 테스트`(input: Int) {
+        val car = Car("성공")
+        car.moveOrStop(input)
 
-        assertEquals(car.movements.count { !it }, randMoveCount)
+        assertEquals(car.movements.count { it }, 1)
     }
 
-    @Test
-    fun `자동차 이동 성공 테스트`() {
-        val randMoveCount = (0..9).random()
-        val car = Car("성공", SuccessEngine())
-        repeat(randMoveCount) {
-            car.move()
-        }
+    @ParameterizedTest
+    @ValueSource(ints = [1, 3])
+    fun `자동차 이동 실패 테스트`(input: Int) {
+        val car = Car("실패")
+        car.moveOrStop(input)
 
-        assertEquals(car.movements.count { it }, randMoveCount)
+        assertEquals(car.movements.count { it }, 1)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["abcdef", "aaaaaa", "bbbbbb"])
+    fun `자동차 이름 사이즈 5자 이상 오류 테스트`(input: String) {
+        assertThrows<IllegalArgumentException> { Car(input) }
     }
 }
