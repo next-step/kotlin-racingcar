@@ -5,10 +5,10 @@ class Game(
     private val trialCount: Int,
     private val dice: Dice
 ) {
-    fun start(printAction: (distance: Int) -> Unit) {
+    fun start(printAction: (car: Car) -> Unit) {
         repeat(trialCount) {
             cars.forEach { it.go(dice) }
-            cars.forEach { printAction(it.distance) }
+            cars.forEach { printAction(it) }
         }
     }
 }

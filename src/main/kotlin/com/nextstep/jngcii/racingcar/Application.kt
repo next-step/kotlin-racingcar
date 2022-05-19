@@ -18,7 +18,7 @@ fun main() {
 
     resultView.printInitialPhase()
 
-    game.start { resultView.printDistance(it) }
+    game.start { resultView.printDistance(it.name, it.distance) }
 }
 
 private val List<String>.toCarList get() = this.map { Car(it) }

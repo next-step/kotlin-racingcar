@@ -5,8 +5,8 @@ class ResultView {
         println("실행 결과")
     }
 
-    fun printDistance(distance: Int) {
-        println(distance.shape)
+    fun printDistance(name: String, distance: Int) {
+        println("$name : ${distance.shape}")
     }
 
     private val Int.shape get() = List(this) { DASH }.joinToString(EMPTY_STRING)
