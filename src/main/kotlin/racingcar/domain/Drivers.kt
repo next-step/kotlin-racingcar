@@ -20,14 +20,16 @@ class Drivers(
             .forEach { car -> car.move() }
     }
 
-    fun getWinnerResults(): List<MoveResults.MoveResult> {
+    fun getWinnerResults(): MoveResults {
         val farthestDistance = cars.maxOf { it.moveResult.moveDistance }
-        return cars
+        val moveResult = cars
+            .filter { it.moveResult.moveDistance == farthestDistance }
             .map { it.moveResult }
-            .filter { it.moveDistance == farthestDistance }
+        return MoveResults(moveResult)
     }
 
     fun getMoveResults(): MoveResults {
+        cars.map { it.moveResult }
         return MoveResults(cars.map { it.moveResult })
     }
 }

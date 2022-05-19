@@ -22,9 +22,8 @@ class RacingGame(carNames: List<String>, private val trialCount: Int, moveStrate
         return trialCount > GAME_END_COUNT
     }
 
-    fun getWinners(): List<String> {
+    fun getWinners(): MoveResults {
         return drivers.getWinnerResults()
-            .map { it.carName }
     }
 
     companion object {

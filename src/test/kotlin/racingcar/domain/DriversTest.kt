@@ -82,10 +82,11 @@ class DriversTest {
 
         val winnerResults = drivers.getWinnerResults()
         val expectedWinnerResults =
-            listOf(
-                MoveResults.MoveResult("pang", 1),
-                MoveResults.MoveResult("yohan", 1),
-
+            MoveResults(
+                listOf(
+                    MoveResults.MoveResult("pang", 1),
+                    MoveResults.MoveResult("yohan", 1),
+                )
             )
 
         assertThat(winnerResults).isEqualTo(expectedWinnerResults)
