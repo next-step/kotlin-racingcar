@@ -7,6 +7,7 @@ object RacingView {
     private const val EMPTY_STRING = ""
     private const val NEXT_ROUND = 1
     private const val INIT_ROUND = 0
+
     fun result(round: Int, cars: List<RacingCar>) {
         for (currentRound in INIT_ROUND until round) {
             println("${currentRound + NEXT_ROUND} round")

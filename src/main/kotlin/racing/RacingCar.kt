@@ -1,23 +1,15 @@
 package racing
 
--class RacingCar(round: Int, val name: String) {
-    init {
-        validateName(name)
-    }
-    companion object {
-        const val MOVE_PIVOT = 4
-        const val MOVE = 1
-        const val NEXT_ROUND = 1
-        const val INITIALIZE_VALUE = 0
-        private const val MAX_CAR_NAME_LENGTH = 5
-    }
-
+class RacingCar(round: Int, val name: String) {
     private val _distances = MutableList(round) { INITIALIZE_VALUE }
     val distances: List<Int>
         get() = this._distances.toList()
 
     private var currentRound = INITIALIZE_VALUE
 
+    init {
+        validateName(name)
+    }
     fun race(movePoint: Int) {
         if (canMove(movePoint)) {
             move()
@@ -36,5 +28,13 @@ package racing
     private fun validateName(name: String) {
         require(name.length <= MAX_CAR_NAME_LENGTH) { "자동차 이름이 ${MAX_CAR_NAME_LENGTH}자를 초과하였습니다" }
         require(name.isNotBlank()) { "자동차 이름이 비어있습니다" }
+    }
+
+    companion object {
+        const val MOVE_PIVOT = 4
+        const val MOVE = 1
+        const val NEXT_ROUND = 1
+        const val INITIALIZE_VALUE = 0
+        private const val MAX_CAR_NAME_LENGTH = 5
     }
 }
