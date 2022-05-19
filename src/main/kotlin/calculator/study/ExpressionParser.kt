@@ -15,6 +15,6 @@ class ExpressionParser(private val expressionSyntaxChecker: ExpressionSyntaxChec
             .split(" ")
             .partition(String::isNumeric)
             .run {
-                AbstractSyntaxTree(this.first, this.second)
+                AbstractSyntaxTree(first, second)
             }
 }

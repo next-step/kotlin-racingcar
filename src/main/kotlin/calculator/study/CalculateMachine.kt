@@ -12,7 +12,7 @@ class CalculateMachine private constructor(private val abstractSyntaxTree: Abstr
         abstractSyntaxTree.operators.forEach {
             val leftOperand = numberQueue.poll()
             val rightOperand = numberQueue.poll()
-            this.numberQueue.addFirst(it.apply(leftOperand, rightOperand))
+            numberQueue.addFirst(it.apply(leftOperand, rightOperand))
         }
         return numberQueue.poll()
     }

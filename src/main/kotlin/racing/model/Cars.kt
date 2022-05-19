@@ -2,29 +2,34 @@ package racing.model
 
 import racing.port.RandomGeneratorPort
 
-class Cars(private val cars: List<Car>) {
+class Cars(private val cars: List<Car>) : List<Car> by cars {
+
+    init {
+        require(cars.isNotEmpty())
+    }
 
     fun moveAll(randomGenerator: RandomGeneratorPort): Cars {
         val movedCars = cars.map { it.moveForward(randomGenerator.generate()) }
         return Cars(movedCars)
     }
 
-    fun toPrintableCars(separator: String = ""): String = cars.joinToString(separator)
+    fun maxAll(): List<Car> {
+        if (cars.isEmpty()) {
+            return emptyList()
+        }
+        val maxCar = cars.maxOf { it }
+        return cars.filter { maxCar.compareTo(it) == 0 }
+    }
 
-    fun getWinners(): Winner = Winner(cars)
+    fun winnerNames(): List<String> = maxAll().map(Car::name)
 
     companion object {
-        fun empty(): Cars = Cars(emptyList())
-
-        fun createWithNames(names: String, delimiters: String = ","): Cars =
+        fun createWithNames(names: List<String>): Cars =
             Cars(
-                splitNames(names, delimiters)
+                names
                     .map(::createCarWithName)
                     .toList()
             )
-
-        private fun splitNames(names: String, delimiters: String): List<String> =
-            names.split(delimiters).map(String::trim)
 
         private fun createCarWithName(name: String): Car = Car(0, name)
     }

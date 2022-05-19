@@ -1,10 +1,8 @@
 package racing.model
 
-import racing.port.OutputPainter
+class ScoreBoard(private val history: List<Cars>) : List<Cars> by history {
 
-class ScoreBoard(private val painter: OutputPainter) {
-
-    fun draw(cars: Cars) {
-        painter.draw(cars.toPrintableCars("\n"))
+    init {
+        require(history.isNotEmpty())
     }
 }

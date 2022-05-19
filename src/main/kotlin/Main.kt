@@ -1,9 +1,7 @@
-import racing.engine.EnvironmentManager
-import racing.engine.GameEngine
-import racing.engine.InMemoryEnvironmentModule
 import racing.model.ScoreBoard
 import racing.scene.InputScene
 import racing.scene.PlayScene
+import racing.scene.ResultScene
 import racing.utils.RandomGenerator
 import racing.utils.StandardInputSystem
 import racing.utils.StandardOutputPainter
@@ -11,13 +9,14 @@ import racing.utils.StandardOutputPainter
 fun main() {
     val output = StandardOutputPainter()
     val input = StandardInputSystem()
-    val environmentManager = EnvironmentManager(InMemoryEnvironmentModule())
 
-    val inputScene = InputScene(output, input, environmentManager)
+    val inputScene = InputScene(output, input)
+    val inputDto = inputScene.getGameInformation()
 
-    val scoreBoard = ScoreBoard(output)
     val randomGenerator = RandomGenerator(0, 9)
-    val playScene = PlayScene(output, scoreBoard, randomGenerator, environmentManager)
+    val playScene = PlayScene(inputDto, randomGenerator)
+    val history = playScene.playGame()
 
-    listOf(inputScene, playScene).forEach(GameEngine::run)
+    val resultScene = ResultScene(ScoreBoard(history), output)
+    resultScene.draw()
 }
