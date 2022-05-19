@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.car
 
 private const val INITIAL_POSITION = 0
 private const val NEXT_POSITION = 1

@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.car
 
 private const val MIN_NAME_LENGTH = 1
 private const val MAX_NAME_LENGTH = 5

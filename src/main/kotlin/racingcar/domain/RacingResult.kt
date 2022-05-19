@@ -1,5 +1,8 @@
 package racingcar.domain
 
+import racingcar.domain.car.Cars
+import racingcar.domain.car.Name
+
 class RacingResult(
     private val _value: List<Cars>,
 ) {

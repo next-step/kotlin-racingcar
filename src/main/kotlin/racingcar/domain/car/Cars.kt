@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.car
 
 private const val MIN_CARS_SIZE = 2
 

@@ -1,9 +1,9 @@
 package racingcar.controller
 
-import racingcar.domain.Car
-import racingcar.domain.Cars
 import racingcar.domain.RacingGame
 import racingcar.domain.TryNumber
+import racingcar.domain.car.Car
+import racingcar.domain.car.Cars
 import racingcar.domain.generateRandomCondition
 import racingcar.view.inputCarNames
 import racingcar.view.inputTryNumber

@@ -1,5 +1,7 @@
 package racingcar.domain
 
+import racingcar.domain.car.Cars
+
 class RacingGame(
     private var cars: Cars,
     private var tryNumber: TryNumber,

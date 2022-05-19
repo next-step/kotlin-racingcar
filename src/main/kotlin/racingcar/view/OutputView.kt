@@ -1,8 +1,8 @@
 package racingcar.view
 
-import racingcar.domain.Car
-import racingcar.domain.Name
 import racingcar.domain.RacingResult
+import racingcar.domain.car.Car
+import racingcar.domain.car.Name
 
 private const val POSITION_DISPLAY_SYMBOL = "-"
 

@@ -2,6 +2,8 @@ package racingcar.domain
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import racingcar.domain.car.Car
+import racingcar.domain.car.Cars
 
 class RacingGameTest : StringSpec({
     "자동차 경주 게임을 시도횟수만큼 실행한다." {

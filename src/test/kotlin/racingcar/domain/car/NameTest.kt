@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.car
 
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrowExactly

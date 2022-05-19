@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.car
 
 private const val MOVEMENT_CONDITION_STANDARD = 4
 
