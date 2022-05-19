@@ -41,7 +41,7 @@ class CarsTest : FunSpec({
         }
     }
 
-    test("우승자를 찾는 기능") {
+    test("입력받은 Position과 같은 값의 자동차들을 찾는다.") {
         // given
         val cars = listOf(
             Car(Name("a"), Position(3)),
@@ -51,7 +51,7 @@ class CarsTest : FunSpec({
         ).let { Cars(it) }
 
         // when
-        val winners = cars.selectWinners()
+        val winners = cars.findAllEqualPositionTo(Position(3))
 
         // then
         winners.size shouldBe 2

@@ -8,6 +8,6 @@ class RacingResult(
 
     fun getWinners(): List<Name> {
         val finalResult = _value.last()
-        return finalResult.selectWinners()
+        return finalResult.findAllEqualPositionTo(finalResult.maxPosition)
     }
 }
