@@ -12,6 +12,6 @@ class RacingService(private val moveStrategy: MoveStrategy) {
             response.add(racingCars.move(moveStrategy))
         }
 
-        return RacingResponse(response, response.last().cars)
+        return RacingResponse(response)
     }
 }
