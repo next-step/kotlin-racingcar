@@ -10,8 +10,8 @@ class RacingResultTest : StringSpec({
             listOf(
                 Cars(
                     listOf(
-                        Car(Name("a"), 1),
-                        Car(Name("b"), 2),
+                        Car(Name("a"), Position(1)),
+                        Car(Name("b"), Position(2)),
                     ),
                 ),
             )

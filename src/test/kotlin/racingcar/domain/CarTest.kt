@@ -18,7 +18,7 @@ internal class CarTest : StringSpec({
             val actual = car.moveOrNot(condition)
 
             // then
-            actual.position shouldBe expected
+            actual.position.value shouldBe expected
         }
     }
 })

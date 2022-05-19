@@ -20,7 +20,7 @@ private fun printPosition(cars: List<Car>) {
 }
 
 private fun convertToPositionSymbol(car: Car): String {
-    return POSITION_DISPLAY_SYMBOL.repeat(car.position)
+    return POSITION_DISPLAY_SYMBOL.repeat(car.position.value)
 }
 
 fun printWinners(names: List<Name>) {
