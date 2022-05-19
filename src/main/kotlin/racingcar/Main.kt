@@ -14,9 +14,7 @@ fun main() {
 
     val racingGame = RacingGame(carNames, trialCount, moveStrategy, nameStrategy)
 
-    repeat(racingGame.trialCount) {
-        racingGame.play()
-    }
+    racingGame.play()
     ResultView.showAllRacingRecords(racingGame.results)
     ResultView.showRaceWinner(racingGame.getWinners())
 }

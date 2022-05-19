@@ -4,31 +4,22 @@ import racingcar.domain.Drivers
 import racingcar.domain.strategy.MoveStrategy
 import racingcar.domain.strategy.NameStrategy
 import racingcar.dto.MoveResults
-import racingcar.exception.GameOverException
 
-class RacingGame(carNames: List<String>, trialCount: Int, moveStrategy: MoveStrategy, nameStrategy: NameStrategy) {
+class RacingGame(carNames: List<String>, private val trialCount: Int, moveStrategy: MoveStrategy, nameStrategy: NameStrategy) {
     private val drivers: Drivers = Drivers(carNames, moveStrategy, nameStrategy)
-    private var _results: MutableList<MoveResults> = mutableListOf()
-    private var _trialCount: Int = trialCount
+    private val _results: MutableList<MoveResults> = mutableListOf()
 
-    val trialCount get() = _trialCount
-    val results: List<MoveResults> get() = _results
+    val results: List<MoveResults> get() = _results.toList()
 
     fun play() {
-        if (!isPlayable()) {
-            throw GameOverException()
+        repeat(trialCount) {
+            drivers.driveAll()
+            _results.add(drivers.getMoveResults())
         }
-        drivers.driveAll()
-        _results.add(drivers.getMoveResults())
-        reduceTrialCount()
     }
 
     fun isPlayable(): Boolean {
         return trialCount > GAME_END_COUNT
-    }
-
-    private fun reduceTrialCount() {
-        _trialCount--
     }
 
     fun getWinners(): List<String> {
