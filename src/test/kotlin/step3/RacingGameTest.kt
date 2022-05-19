@@ -13,9 +13,9 @@ class RacingGameTest : FunSpec({
             row(10, 10),
             row(8, 2),
         ) { cars, times ->
-            val racing = RacingGame()
-            racing.play(cars, times)
-            racing.carList.size shouldBe cars
+            val racing = RacingGame(List(cars) { Car() }, times)
+            racing.play()
+            racing.records.size shouldBe cars
         }
     }
 
@@ -25,9 +25,8 @@ class RacingGameTest : FunSpec({
             row(10, 10),
             row(8, 2),
         ) { cars, times ->
-            val racing = RacingGame()
-            racing.play(cars, times)
-            racing.carList.size shouldBe cars
+            val racing = RacingGame(List(cars) { Car() }, times)
+            racing.play()
             racing.records.map { it.value.size shouldBeLessThanOrEqual times }
         }
     }
