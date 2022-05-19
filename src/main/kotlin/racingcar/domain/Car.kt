@@ -2,7 +2,7 @@ package racingcar.domain
 
 private const val MOVEMENT_CONDITION_STANDARD = 4
 
-class Car(
+data class Car(
     val name: Name,
     val position: Position = Position.ZERO,
 ) {
@@ -10,8 +10,7 @@ class Car(
 
     fun moveOrNot(condition: Int): Car {
         if (condition >= MOVEMENT_CONDITION_STANDARD) {
-            return Car(
-                name = name,
+            return this.copy(
                 position = position.next()
             )
         }
