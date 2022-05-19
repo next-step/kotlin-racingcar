@@ -1,11 +1,9 @@
 package racing.view
 
-import racing.dto.RacingRecord
 import racing.dto.TrackResult
 
 object ResultView {
-    fun display(racingRecord: RacingRecord) {
-        val trackResults = racingRecord.trackResults
+    fun display(trackResults: List<TrackResult>) {
         trackResults.forEachIndexed { index, gameResult -> displayMoveResults(gameResult, isLastMove(index, trackResults.size)) }
     }
 

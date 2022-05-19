@@ -2,13 +2,12 @@ package racing.model
 
 import racing.dto.GameSetting
 import racing.dto.MoveResult
-import racing.dto.RacingRecord
 import racing.dto.TrackResult
 
 class RacingGame(private val gameSetting: GameSetting) {
 
     private val racingTrack: RacingTrack = RacingTrack(gameSetting)
-    val record = RacingRecord()
+    private val record = RacingRecord()
 
     fun race() {
         (1..gameSetting.moveCount)
@@ -16,6 +15,10 @@ class RacingGame(private val gameSetting: GameSetting) {
             .map { racingTrack.move() }
             .map { TrackResult(it, winnerList(it)) }
             .forEach(record::add)
+    }
+
+    fun getResults(): List<TrackResult> {
+        return record.getResults()
     }
 
     private fun winnerList(moveResults: List<MoveResult>): List<Car> {

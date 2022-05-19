@@ -4,15 +4,11 @@ import racing.model.RacingGame
 import racing.view.InputView
 import racing.view.ResultView
 
-object RacingGameLauncher {
+class RacingGameController {
     fun start() {
         val gameSetting = InputView.input()
         val racingGame = RacingGame(gameSetting)
         racingGame.race()
-        ResultView.display(racingGame.record)
+        ResultView.display(racingGame.getResults())
     }
-}
-
-fun main() {
-    RacingGameLauncher.start()
 }
