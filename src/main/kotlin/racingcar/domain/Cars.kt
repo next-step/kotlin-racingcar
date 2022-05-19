@@ -21,8 +21,10 @@ class Cars(
     }
 
     fun findAllEqualPositionTo(position: Position): List<Name> {
-        return _cars.filter { it.position == position }
+        return _cars.asSequence()
+            .filter { it.position == position }
             .map { it.name }
             .sortedBy { it.value }
+            .toList()
     }
 }
