@@ -7,12 +7,21 @@ class RacingGame(private val carList: List<Car>, private val times: Int) {
 
     fun play() {
         repeat(times) {
-            carList.forEach { car ->
-                val record = _records.getOrPut(car) { mutableListOf() }
-                record.add(car.moveOrStop(getRandomNumber()))
-            }
-            ResultView().printRacingResult(records)
+            recordPlayResult()
+            printPlayResult()
         }
+    }
+
+    private fun recordPlayResult() {
+        carList.forEach { car ->
+            val record = _records.getOrPut(car) { mutableListOf() }
+            val playResult = car.moveOrStop(getRandomNumber())
+            record.add(playResult)
+        }
+    }
+
+    private fun printPlayResult() {
+        ResultView().printRacingResult(records)
     }
 
     private fun getRandomNumber(): Int {
