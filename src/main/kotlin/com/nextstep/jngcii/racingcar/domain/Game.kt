@@ -9,6 +9,7 @@ class Game(
         repeat(trialCount) {
             cars.forEach { it.go(dice) }
             cars.forEach { printAction(it) }
+            println()
         }
     }
 }

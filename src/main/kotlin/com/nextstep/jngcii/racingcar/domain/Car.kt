@@ -2,6 +2,7 @@ package com.nextstep.jngcii.racingcar.domain
 
 open class Car(val name: String) {
     open val speed = SPEED
+
     private var _distance = ZERO_DISTANCE
     open val distance get() = _distance
 
@@ -27,3 +28,9 @@ open class Car(val name: String) {
         private const val MAX_CAR_NAME_LENGTH = 5
     }
 }
+
+val List<Car>.winners
+    get(): List<Car> {
+        val maxDistance = this.maxOf { it.distance }
+        return this.filter { it.distance == maxDistance }
+    }

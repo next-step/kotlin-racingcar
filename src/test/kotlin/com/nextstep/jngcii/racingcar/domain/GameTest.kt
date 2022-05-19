@@ -20,12 +20,12 @@ internal class GameTest {
         assertThat(actual).isEqualTo(expected)
     }
 
-    private class FakeCar(
-        override val speed: Int
-    ) : Car("FAKE")
-
     companion object {
         private const val CAR_COUNT = 2
         private const val TRIAL_COUNT = 3
     }
+
+    private class FakeCar(
+        override val speed: Int
+    ) : Car("FAKE")
 }
