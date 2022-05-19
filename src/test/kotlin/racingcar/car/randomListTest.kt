@@ -8,7 +8,7 @@ class RandomListTest {
     fun `주어진 size 만큼 랜덤리스트가 생성된다`() {
         val range = -100..100
         for (size in 0..200) {
-            Assertions.assertThat(RandomList.intListBy(range, size).size).isEqualTo(size)
+            Assertions.assertThat(randomListBy(range, size).size).isEqualTo(size)
         }
     }
 
@@ -18,7 +18,7 @@ class RandomListTest {
             for (max in min + 10..20) {
                 val range = min..max
                 val size = 100
-                RandomList.intListBy(range, size).forEach { Assertions.assertThat(range.contains(it)).isTrue }
+                randomListBy(range, size).forEach { Assertions.assertThat(range.contains(it)).isTrue }
             }
     }
 }
