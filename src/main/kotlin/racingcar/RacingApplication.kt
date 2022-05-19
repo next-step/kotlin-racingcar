@@ -1,5 +1,6 @@
 package racingcar
 
+import racingcar.application.RacingService
 import racingcar.domain.Car
 import racingcar.domain.CarSelector
 import racingcar.domain.Cars
@@ -18,12 +19,12 @@ fun main() {
 
     val readyCars = ready(CarSelector(carNames).names)
 
-    val racing = Racing(Cars(readyCars))
-    racing.start(roundCount.toInt(), DefaultMoveStrategy())
+    val racing = RacingService(DefaultMoveStrategy())
+    val racingResponse = racing.start(roundCount.toInt(), Cars(readyCars))
 
-    OutputView.display(racing.history)
+    OutputView.display(racingResponse.allResult)
 
-    val winners = Winner(racing.result).winners
+    val winners = Winner(racingResponse.finalResult).winners
     OutputView.winner(winners)
 }
 
