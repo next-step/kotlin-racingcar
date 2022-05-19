@@ -13,10 +13,7 @@ internal class CarsTest : DescribeSpec({
             val cars = Cars.createWithNames(names)
 
             // then
-            cars.next().name shouldBe "mbc"
-            cars.next().name shouldBe "kbs"
-            cars.next().name shouldBe "jtbc"
-            cars.next().name shouldBe "sbs"
+            cars.size() shouldBe 4
         }
     }
 })

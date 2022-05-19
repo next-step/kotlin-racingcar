@@ -17,12 +17,11 @@ internal class InputSceneTest : DescribeSpec({
             val inputScene = InputScene(outputPainter, inputSystem)
 
             // when
-            val result = inputScene.run()
+            val result = inputScene.getGameInformation()
 
             // then
             result.round shouldBe expectedRound.toInt()
-            result.cars.next().name shouldBe "mbc"
-            result.cars.next().name shouldBe "kbs"
+            result.names shouldBe listOf("mbc", "kbs")
         }
     }
 })

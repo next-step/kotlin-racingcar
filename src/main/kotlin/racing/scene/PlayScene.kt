@@ -2,33 +2,30 @@ package racing.scene
 
 import racing.dto.InputDto
 import racing.model.Cars
-import racing.model.ScoreBoard
-import racing.port.OutputPainter
 import racing.port.RandomGeneratorPort
 
 class PlayScene(
     inputDto: InputDto,
-    private val painter: OutputPainter,
     private val randomGenerator: RandomGeneratorPort,
 ) {
 
     private var currentRound = 1
-    private var totalRound = inputDto.round
-    private var cars: Cars = inputDto.cars
-    private val history = mutableListOf<Cars>()
+    private var cars: Cars = Cars.createWithNames(inputDto.names)
+    private val totalRound = inputDto.round
+    private val roundHistory = mutableListOf<Cars>()
 
-    fun run(): ScoreBoard {
+    fun playGame(): List<Cars> {
         do {
             moveCars()
-            drawCars()
+            recordHistory()
         } while (hasNext())
-        return ScoreBoard(history, painter)
+        return roundHistory
     }
 
     private fun hasNext(): Boolean = currentRound++ < totalRound
 
-    private fun drawCars() {
-        history.add(cars)
+    private fun recordHistory() {
+        roundHistory.add(cars)
     }
 
     private fun moveCars() {

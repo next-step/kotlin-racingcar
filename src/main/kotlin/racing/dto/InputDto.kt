@@ -1,7 +1,9 @@
 package racing.dto
 
-import racing.model.Cars
+data class InputDto(val names: List<String>, val round: Int) {
 
-data class InputDto(private val names: List<String>, val round: Int) {
-    val cars = Cars.createWithNames(names)
+    init {
+        require(names.isNotEmpty())
+        require(0 < round)
+    }
 }

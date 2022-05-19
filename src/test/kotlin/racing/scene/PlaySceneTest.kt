@@ -4,6 +4,7 @@ import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 import racing.dto.InputDto
 import racing.fixture.StubRandomGenerator
+import racing.model.ScoreBoard
 import racing.port.OutputPainter
 
 class StubPlaySceneOutputPainter : OutputPainter {
@@ -25,7 +26,9 @@ internal class PlaySceneTest : DescribeSpec({
             val inputDto = InputDto(players, round)
             val outputPainter = StubPlaySceneOutputPainter()
             val successfulRandomGenerator = StubRandomGenerator(4)
-            val playScene = PlayScene(inputDto, outputPainter, successfulRandomGenerator)
+            val playScene = PlayScene(inputDto, successfulRandomGenerator)
+            val history = playScene.playGame()
+            val resultScene = ResultScene(ScoreBoard(history), outputPainter)
             val expectResult = """
                 
                 실행결과
@@ -39,7 +42,7 @@ internal class PlaySceneTest : DescribeSpec({
             """.trimIndent()
 
             // when
-            playScene.run().draw()
+            resultScene.draw()
 
             // then
             outputPainter.outputBuffer.joinToString("") shouldBe expectResult
@@ -52,7 +55,9 @@ internal class PlaySceneTest : DescribeSpec({
             val inputDto = InputDto(players, round)
             val outputPainter = StubPlaySceneOutputPainter()
             val successfulRandomGenerator = StubRandomGenerator(3)
-            val playScene = PlayScene(inputDto, outputPainter, successfulRandomGenerator)
+            val playScene = PlayScene(inputDto, successfulRandomGenerator)
+            val history = playScene.playGame()
+            val resultScene = ResultScene(ScoreBoard(history), outputPainter)
             val expectResult = """
                 
                 실행결과
@@ -66,7 +71,7 @@ internal class PlaySceneTest : DescribeSpec({
             """.trimIndent()
 
             // when
-            playScene.run().draw()
+            resultScene.draw()
 
             // then
             outputPainter.outputBuffer.joinToString("") shouldBe expectResult

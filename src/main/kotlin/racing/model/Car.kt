@@ -7,6 +7,7 @@ data class Car(
 
     init {
         require(0 <= position) { INVALID_POSITION_EXCEPTION }
+        require(name.isNotEmpty() && name.isNotBlank())
     }
 
     override fun compareTo(other: Car): Int = position - other.position

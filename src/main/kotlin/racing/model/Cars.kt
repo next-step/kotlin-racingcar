@@ -2,9 +2,11 @@ package racing.model
 
 import racing.port.RandomGeneratorPort
 
-class Cars(private val cars: List<Car>) : Iterator<Car> {
+class Cars(private val cars: List<Car>) : List<Car> by cars {
 
-    private var index = 0
+    init {
+        require(cars.isNotEmpty())
+    }
 
     fun moveAll(randomGenerator: RandomGeneratorPort): Cars {
         val movedCars = cars.map { it.moveForward(randomGenerator.generate()) }
@@ -19,9 +21,7 @@ class Cars(private val cars: List<Car>) : Iterator<Car> {
         return cars.filter { maxCar.compareTo(it) == 0 }
     }
 
-    override fun hasNext(): Boolean = index < cars.size
-
-    override fun next(): Car = cars[index++]
+    fun winnerNames(): List<String> = maxAll().map(Car::name)
 
     companion object {
         fun createWithNames(names: List<String>): Cars =

@@ -3,24 +3,27 @@ package racing.model
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 import racing.fixture.StubOutputPainter
+import racing.scene.ResultScene
 
-internal class ScoreBoardTest : DescribeSpec({
+internal class ResultSceneTest : DescribeSpec({
 
     describe("전광판 객체 테스트") {
         it("입력된 모든 자동차의 현재 위치를 출력한다.") {
             // given
             val stubOutputPainter = StubOutputPainter()
-            val cars = Cars(
-                listOf(
-                    Car(1),
-                    Car(2),
-                    Car(3),
+            val history = listOf(
+                Cars(
+                    listOf(
+                        Car(1),
+                        Car(2),
+                        Car(3),
+                    )
                 )
             )
-            val scoreBoard = ScoreBoard(listOf(cars), stubOutputPainter)
+            val resultScene = ResultScene(ScoreBoard(history), stubOutputPainter)
 
             // when
-            scoreBoard.draw()
+            resultScene.draw()
 
             // then
             val expectedResult = """
@@ -38,17 +41,19 @@ internal class ScoreBoardTest : DescribeSpec({
         it("위치가 0인 자동차도 출력한다.") {
             // given
             val stubOutputPainter = StubOutputPainter()
-            val cars = Cars(
-                listOf(
-                    Car(0),
-                    Car(2),
-                    Car(3),
+            val history = listOf(
+                Cars(
+                    listOf(
+                        Car(0),
+                        Car(2),
+                        Car(3),
+                    )
                 )
             )
-            val scoreBoard = ScoreBoard(listOf(cars), stubOutputPainter)
+            val resultScene = ResultScene(ScoreBoard(history), stubOutputPainter)
 
             // when
-            scoreBoard.draw()
+            resultScene.draw()
 
             // then
             val expectedResult = """
