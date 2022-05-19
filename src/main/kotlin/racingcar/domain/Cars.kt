@@ -1,8 +1,7 @@
 package racingcar.domain
 
 class Cars private constructor(carNames: String) {
-    var carList : List<Car>
-        private set
+    val carList : List<Car>
 
     init {
          carList = carNames
