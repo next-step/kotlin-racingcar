@@ -7,10 +7,14 @@ import org.junit.jupiter.api.Test
 internal class RecordTest {
 
     private lateinit var record: Record
+    private val dummyCars = listOf(
+        Car("peter"),
+        Car("muzi")
+    )
 
     @BeforeEach
     fun setUp() {
-        record = Record(CAR_COUNT)
+        record = Record(dummyCars)
     }
 
     @Test
@@ -20,7 +24,7 @@ internal class RecordTest {
         record.goOrStopEachCar(justGoDice)
 
         val actual = record.eachCarDrivenDistance
-        val expected = List(CAR_COUNT) { DASH }
+        val expected = List(dummyCars.size) { DASH }
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -32,13 +36,12 @@ internal class RecordTest {
         record.goOrStopEachCar(justGoDice)
 
         val actual = record.eachCarDrivenDistance
-        val expected = List(CAR_COUNT) { EMPTY_STRING }
+        val expected = List(dummyCars.size) { EMPTY_STRING }
 
         assertThat(actual).isEqualTo(expected)
     }
 
     companion object {
-        private const val CAR_COUNT = 3
         private const val EMPTY_STRING = ""
         private const val DASH = "-"
     }
