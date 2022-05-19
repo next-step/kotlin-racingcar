@@ -1,15 +1,13 @@
 package racingcar.domain
 
-import kotlin.streams.toList
-
 class Cars private constructor(carNames: String) {
-    val carList = ArrayList<Car>()
+    var carList : List<Car>
+        private set
 
     init {
-        val carNamesArray = carNames.split(",")
-        for (i in carNamesArray.indices) {
-            carList.add(Car.makeCar(carNamesArray[i]))
-        }
+         carList = carNames
+            .split(",")
+            .map(Car::makeCar)
     }
 
     fun run(movingStrategy: MovingStrategy) {
@@ -18,7 +16,7 @@ class Cars private constructor(carNames: String) {
 
     fun getWinnerList():List<String> {
         val maxPosition = carList.maxOf { it.position }
-        return carList.stream().filter {it.position == maxPosition}.map { car->car.name }.toList()
+        return carList.asSequence().filter { it.position == maxPosition }.map { car -> car.name }.toList()
     }
 
     companion object {
