@@ -11,11 +11,7 @@ internal class RacingTest {
     fun `레이싱 컬렉션 사이즈`() {
         val racing = Racing(Cars(listOf(Car("a"), Car("b"))))
 
-        val strategy = object : MoveStrategy {
-            override fun isMove(): Boolean {
-                return true
-            }
-        }
+        val strategy = MoveStrategy { true }
 
         racing.start(1, strategy)
         assertThat(racing.history).size().isEqualTo(1)
@@ -25,11 +21,7 @@ internal class RacingTest {
     fun `결과 값 테스트`() {
         val racing = Racing(Cars(listOf(Car("a"), Car("b"))))
 
-        val strategy = object : MoveStrategy {
-            override fun isMove(): Boolean {
-                return true
-            }
-        }
+        val strategy = MoveStrategy { true }
 
         racing.start(1, strategy)
 

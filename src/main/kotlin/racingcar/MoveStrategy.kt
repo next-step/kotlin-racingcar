@@ -1,5 +1,5 @@
 package racingcar
 
-interface MoveStrategy {
+fun interface MoveStrategy {
     fun isMove(): Boolean
 }

@@ -30,6 +30,6 @@ object OutputView {
     }
 
     private fun getDistanceView(distance: Int) {
-        for (i in 0..distance) print(POSITION_VIEW)
+        repeat(distance) { print(POSITION_VIEW) }
     }
 }
