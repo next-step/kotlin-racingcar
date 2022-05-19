@@ -1,6 +1,7 @@
 package racingcar.domain
 
 private const val INITIAL_POSITION = 0
+private const val NEXT_POSITION = 1
 
 @JvmInline
 value class Position(
@@ -10,12 +11,9 @@ value class Position(
         check(value >= INITIAL_POSITION) { "자동차의 처음 position은 0이상의 숫자만 가능합니다. position = $value" }
     }
 
-    fun next(): Position = this + ONE
-
-    operator fun plus(other: Position): Position = Position(this.value + other.value)
+    fun next(): Position = Position(this.value + NEXT_POSITION)
 
     companion object {
-        private val ONE = Position(1)
         val ZERO = Position(INITIAL_POSITION)
     }
 
