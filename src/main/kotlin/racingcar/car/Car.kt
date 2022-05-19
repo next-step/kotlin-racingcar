@@ -1,7 +1,7 @@
 package racingcar.car
 
 class Car(moveCount: Int) {
-    private val drivingForces = randomListBy(range, moveCount)
+    private val drivingForces = randomListBy(drivingForcePool, moveCount)
     private val drivingPoints = drivingForces.map { drivingPointBy(it) }
     private val initPosition = 0
     private val initPositions = arrayListOf(initPosition)
@@ -13,6 +13,6 @@ class Car(moveCount: Int) {
     fun positionBy(step: Int): Int = positionsByStep[step]
 
     companion object {
-        private val range = (0..9)
+        private val drivingForcePool = (0..9)
     }
 }
