@@ -21,7 +21,7 @@ object Racing {
     }
 
     private fun validate(carNames: List<String>) {
-        for(carName in carNames) {
+        for (carName in carNames) {
             validateName(carName)
         }
     }
