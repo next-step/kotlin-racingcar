@@ -1,5 +1,9 @@
 package racingcar
 
+import racingcar.domain.Car
+import racingcar.domain.Cars
+import racingcar.domain.MoveStrategy
+
 class Racing(private val cars: Cars) {
 
     private val _racing = mutableListOf<Cars>()

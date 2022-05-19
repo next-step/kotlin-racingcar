@@ -4,6 +4,9 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.api.assertThrows
+import racingcar.domain.Car
+import racingcar.domain.Cars
+import racingcar.domain.MoveStrategy
 
 internal class RacingTest {
 
