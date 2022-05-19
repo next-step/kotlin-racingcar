@@ -19,4 +19,12 @@ class PositionTest {
         assertThatThrownBy { Position(-1) }
             .isInstanceOf(IllegalArgumentException().javaClass)
     }
+
+    @Test
+    fun `포지션 전진`() {
+        val position = Position()
+        val nextPosition = position.move()
+
+        assertThat(nextPosition.value).isGreaterThan(position.value)
+    }
 }
