@@ -13,6 +13,10 @@ class NameTest : StringSpec({
     "이름이 비어있는 경우 Exception을 던진다." {
         shouldThrow<IllegalArgumentException> { Name("") }
     }
+
+    "이름이 5글자를 초과하면 Exception을 던진다." {
+        shouldThrow<IllegalArgumentException> { Name("123456") }
+    }
 }) {
     companion object {
         private val names = listOf("A", "AB", "ABC")
