@@ -20,7 +20,7 @@ fun main() {
 
     repeat(trialCount) {
         record.goOrStopEachCar(dice)
-        record.eachCarDrivenDistance.forEach { resultView.printRoad(it) }
+        record.eachCarDistance.forEach { resultView.printDistance(it) }
     }
 }
 

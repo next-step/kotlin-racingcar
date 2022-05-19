@@ -23,8 +23,8 @@ internal class RecordTest {
 
         record.goOrStopEachCar(justGoDice)
 
-        val actual = record.eachCarDrivenDistance
-        val expected = List(dummyCars.size) { DASH }
+        val actual = record.eachCarDistance
+        val expected = List(dummyCars.size) { 1 }
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -35,14 +35,9 @@ internal class RecordTest {
 
         record.goOrStopEachCar(justGoDice)
 
-        val actual = record.eachCarDrivenDistance
-        val expected = List(dummyCars.size) { EMPTY_STRING }
+        val actual = record.eachCarDistance
+        val expected = List(dummyCars.size) { 0 }
 
         assertThat(actual).isEqualTo(expected)
-    }
-
-    companion object {
-        private const val EMPTY_STRING = ""
-        private const val DASH = "-"
     }
 }
