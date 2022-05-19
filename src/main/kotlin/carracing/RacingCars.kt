@@ -1,6 +1,13 @@
 package carracing
 
-class CarList(val cars: List<Car> = mutableListOf()) {
+class RacingCars(val cars: List<Car> = mutableListOf()) {
+
+    fun getMaxDistanceCars(): List<Car> {
+        val sortedCars = cars.sortedByDescending { car: Car -> car.distance }
+        val maxDistance = sortedCars[0].distance
+        return sortedCars.takeWhile { car: Car -> car.distance == maxDistance }
+    }
+
     fun moveCar(carIndex: Int, moveDistance: Int) {
         validateCarsIndex(carIndex)
         cars[carIndex].move(moveDistance)
