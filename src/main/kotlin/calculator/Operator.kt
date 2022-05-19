@@ -5,7 +5,7 @@ enum class Operator(val symbol: String, val evaluate: (source: Int, other: Int) 
     MINUS("-", { source, other -> source.minus(other) }),
     MULTIPLY("*", { source, other -> source.times(other) }),
     DIVIDE("/", { source, other ->
-        if(other == 0) {
+        if (other == 0) {
             throw IllegalArgumentException("0으로 나눌 수 없습니다.")
         }
         source.div(other)

@@ -1,9 +1,14 @@
 package racingcar
 
 class Race {
-    fun start(carCount: Int, roundCount: Int): List<Round> {
-        val carList = getCarList(carCount)
-        val roundList = getRoundList(roundCount)
+    var carList = listOf<Car>()
+        private set
+    var roundList = listOf<Round>()
+        private set
+
+    fun start(carCount: Int, roundCount: Int) {
+        setData(carCount, roundCount)
+
         for (currentRound in roundList) {
             carList.map {
                 it.moveRandom()
@@ -11,8 +16,11 @@ class Race {
 
             currentRound.saveResult(carList)
         }
+    }
 
-        return roundList
+    private fun setData(carCount: Int, roundCount: Int) {
+        carList = getCarList(carCount)
+        roundList = getRoundList(roundCount)
     }
 
     private fun getCarList(carCount: Int): List<Car> {

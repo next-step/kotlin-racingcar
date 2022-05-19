@@ -2,23 +2,22 @@ package racingcar
 
 import kotlin.random.Random
 
-data class Car(var distance: Int = 0) {
+data class Car(var defaultDistance: Int = 0) {
+    var distance = defaultDistance
+        private set
 
-    fun moveRandom(number: Int = Random.nextInt(Companion.MAX_RANDOM_VALUE)) {
+    fun moveRandom(number: Int = Random.nextInt(MAX_RANDOM_VALUE)) {
         if (canMove(number)) {
-            distance += 1
+            distance += MOVE_FORWARD_VALUE
         }
     }
 
-    private fun canMove(number: Int): Boolean {
-        if (number >= 4) {
-            return true
-        }
-
-        return false
-    }
+    private fun canMove(number: Int): Boolean =
+        number >= MINIMUM_VALUE_FOR_MOVEMENT
 
     companion object {
-        const val MAX_RANDOM_VALUE = 10
+        private const val MAX_RANDOM_VALUE = 10
+        private const val MOVE_FORWARD_VALUE = 1
+        private const val MINIMUM_VALUE_FOR_MOVEMENT = 4
     }
 }

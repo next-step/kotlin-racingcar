@@ -6,7 +6,7 @@ import org.junit.jupiter.api.assertThrows
 
 class OperatorTest {
     @Test()
-    fun `전달받은 symbol과 일치하는 연산자 enum을 반환한다`() {
+    fun `symbol과 일치하는 연산자 enum을 반환한다`() {
         val expectedSymbol = "+"
 
         val result = Operator.findBy(expectedSymbol)

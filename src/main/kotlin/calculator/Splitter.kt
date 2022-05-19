@@ -4,15 +4,19 @@ object Splitter {
     fun getSymbols(source: String): List<String> =
         source.split(" ")
             .filter {
-                it.toIntOrNull() === null
+                isInt(it)
             }
 
     fun getNumbers(source: String): List<Int> =
         source.split(" ")
-            .filter {
-                it.toIntOrNull() !== null
+            .filterNot {
+                isInt(it)
             }
             .map {
                 it.toInt()
             }
+
+    private fun isInt(value: String): Boolean {
+        return value.toIntOrNull() == null
+    }
 }

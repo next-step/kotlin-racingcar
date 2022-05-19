@@ -31,7 +31,7 @@ class CalculatorTest {
     }
 
     @Test
-    fun `number list와 symbol list를 순서대로 조합해서 계산하고 결과를 리턴한다`() {
+    fun `연산자와 피연산자를 순서대로 조합해서 계산하고 결과를 리턴한다`() {
         val calculator = Calculator()
 
         val result = calculator.evaluate(listOf(1, 2, 3), listOf("+", "*"))

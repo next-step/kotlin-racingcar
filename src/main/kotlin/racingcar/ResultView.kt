@@ -5,22 +5,26 @@ data class ResultView(val result: List<Round>) {
         println("실행 결과")
     }
 
+    fun printResult() {
+        result.mapIndexed { index, it ->
+            roundTitle(index + 1)
+            it.result.forEach {
+                println(distanceToLetter(it.distance))
+            }
+
+            println()
+        }
+    }
+
+    private fun distanceToLetter(distance: Int): String {
+        return DISTANCE_LETTER.repeat(distance)
+    }
+
     private fun roundTitle(round: Int) {
         println("$round 라운드")
     }
 
-    private fun newLine() {
-        println()
-    }
-
-    fun result() {
-        result.mapIndexed { index, it ->
-            roundTitle(index + 1)
-            it.getResult().forEach {
-                println(it)
-            }
-
-            newLine()
-        }
+    companion object {
+        const val DISTANCE_LETTER = "-"
     }
 }
