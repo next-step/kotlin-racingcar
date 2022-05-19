@@ -11,9 +11,7 @@ enum class Operation(val exp: String, val compute: (Int, Int) -> Int) {
     ;
 
     companion object {
-        fun of(exp: String) = runCatching {
-            values().first { it.exp == exp }
-        }.getOrElse { throw IllegalArgumentException() }
+        fun of(exp: String) = values().first { it.exp == exp }
 
         fun contains(exp: String): Boolean = of(exp) in values()
     }
