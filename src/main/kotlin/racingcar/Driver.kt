@@ -2,7 +2,7 @@ package racingcar
 
 class Driver(val name: String, private val car: Car) {
 
-    val driveRecord = mutableListOf<Int>()
+    val driveRecord = mutableListOf<Int>(car.movement)
 
     init {
         require(name.trim().length in (1..5)) {

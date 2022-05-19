@@ -6,10 +6,11 @@ import racingcar.view.ResultView
 fun main() {
     val driverNames = InputView.getPlayerName()
     val tryCount = InputView.getTryCount()
+    val drivers = driverNames.map { Driver(it, Car()) }
 
-    val game = RacingGame(driverNames, tryCount)
+    val game = RacingGame(drivers, tryCount)
 
     game.start()
 
-    ResultView.printResult(tryCount, game.drivers)
+    ResultView.printResult(game)
 }

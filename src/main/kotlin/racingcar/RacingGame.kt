@@ -1,7 +1,7 @@
 package racingcar
 
-class RacingGame(driverNames: List<String>, private val tryCount: Int) {
-    val drivers = driverNames.map { Driver(it, Car()) }
+class RacingGame(val drivers: List<Driver>, val tryCount: Int) {
+    private val carCount = drivers.size
 
     fun start() {
         repeat(tryCount) {
@@ -12,8 +12,14 @@ class RacingGame(driverNames: List<String>, private val tryCount: Int) {
         }
     }
 
+    fun getWinner(): List<String> {
+        val maxMovement = drivers.maxOf { it.driveRecord.last() }
+
+        return drivers.filter { it.driveRecord.last() == maxMovement }.map { it.name }
+    }
+
     init {
-        require(driverNames.size > MIN_CAR_COUNT) {
+        require(carCount > MIN_CAR_COUNT) {
             throw RuntimeException(CAR_COUNT_ERROR_MESSAGE)
         }
     }
