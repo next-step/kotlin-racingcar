@@ -30,4 +30,26 @@ class RacingGameTest : FunSpec({
             racing.records.map { it.value.size shouldBeLessThanOrEqual times }
         }
     }
+
+    context("4보다 큰거나 같은경우 자동차는 전진한다") {
+        forAll(
+            row(4),
+            row(11),
+            row(20),
+        ) { move ->
+            val car = Car()
+            car.moveOrStop(move) shouldBe "-"
+        }
+    }
+
+    context("4보다 작은경우 자동차는 전진한다") {
+        forAll(
+            row(0),
+            row(2),
+            row(3),
+        ) { move ->
+            val car = Car()
+            car.moveOrStop(move) shouldBe ""
+        }
+    }
 })
