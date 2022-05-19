@@ -1,6 +1,7 @@
-package racingcar.model
+package racingcar.domain
 
 import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.EmptySource
@@ -25,5 +26,19 @@ class CarTest {
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
             Car(source)
         }.withMessageMatching(Message.ExceptionMessage.CANNOT_NAME_BE_BLANK)
+    }
+
+    @Test
+    fun `차량은 전진하는 점수일때 전진한다`() {
+        val car = Car("link")
+        car.playOneRound(true)
+        assertThat(car.position).isEqualTo(1)
+    }
+
+    @Test
+    fun `차량은 전진하는 점수가 아니라면 전진하지않는다`() {
+        val car = Car("link")
+        car.playOneRound(false)
+        assertThat(car.position).isEqualTo(0)
     }
 }

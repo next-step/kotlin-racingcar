@@ -1,4 +1,4 @@
-package racingcar.model
+package racingcar.domain
 
 import racingcar.constants.Message
 
@@ -14,8 +14,9 @@ class Car(val name: String) {
         checkValidName(name)
     }
 
-    fun advanceOnce() {
-        position++
+    fun playOneRound(forcedMovement: Boolean? = null) {
+        val isCanGo = forcedMovement ?: Dice.rollDiceAndGetIsCanGo()
+        position += if (isCanGo) POINT_MOVE else POINT_STOP
     }
 
     private fun checkValidName(name: String) {
@@ -26,5 +27,7 @@ class Car(val name: String) {
     companion object {
         private const val INIT_POSITION = 0
         private const val MAX_NAME_SIZE = 5
+        private const val POINT_MOVE = 1
+        private const val POINT_STOP = 0
     }
 }

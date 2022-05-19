@@ -1,7 +1,7 @@
 package racingcar.view
 
 import racingcar.constants.Message
-import racingcar.model.RaceResult
+import racingcar.domain.RaceResult
 
 /**
  * 결과를 출력하는 object

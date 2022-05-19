@@ -1,18 +1,17 @@
-package racingcar.model
+package racingcar.domain
 
 /**
  * 레이스 결과를 저장하는 클래스
  * Created by Jaesungchi on 2022.05.07..
  */
 class RaceResult(carList: List<Car>) {
-    var resultOutput: String
-        private set
-    val winners: List<String> = run {
-        val positionOfFastest = carList.maxOf { it.position }
-        carList.filter { it.position == positionOfFastest }.map { it.name }
-    }
+    val resultOutput: String
+    val winners: List<String>
 
     init {
+        val positionOfFastest = carList.maxOf { it.position }
+        winners = carList.filter { it.position == positionOfFastest }.map { it.name }
+
         val result = StringBuilder()
         carList.forEach {
             result.append(it.name + " : ")
