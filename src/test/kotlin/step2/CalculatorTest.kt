@@ -13,7 +13,7 @@ class CalculatorTest : FunSpec({
             row("1 + 2", 3),
             row("10 + 20 + 30 + 40", 100),
         ) { input, expect ->
-            val actual = InOrderCalculator().calculator(input)
+            val actual = InOrderCalculator().calculate(input)
             actual shouldBe expect
         }
     }
@@ -23,7 +23,7 @@ class CalculatorTest : FunSpec({
             row("1 - 2", -1),
             row("100 - 2 - 10", 88),
         ) { input, expect ->
-            val actual = InOrderCalculator().calculator(input)
+            val actual = InOrderCalculator().calculate(input)
             actual shouldBe expect
         }
     }
@@ -34,7 +34,7 @@ class CalculatorTest : FunSpec({
             row("0 * 1", 0),
             row("5 * 10 * 3", 150),
         ) { input, expect ->
-            val actual = InOrderCalculator().calculator(input)
+            val actual = InOrderCalculator().calculate(input)
             actual shouldBe expect
         }
     }
@@ -44,17 +44,17 @@ class CalculatorTest : FunSpec({
             row("1 / 2", 0.5),
             row("60 / 2 / 3", 10),
         ) { input, expect ->
-            val actual = InOrderCalculator().calculator(input)
+            val actual = InOrderCalculator().calculate(input)
             actual shouldBe expect
         }
     }
 
-    context("종합 테스트") {
+    context("복합된 사칙연산 테스트") {
         forAll(
             row("2 + 3 * 4 / 2", 10),
             row("5 / 2 - 1 * 3 + 0.5", 5),
         ) { input, expect ->
-            val actual = InOrderCalculator().calculator(input)
+            val actual = InOrderCalculator().calculate(input)
             actual shouldBe expect
         }
     }
@@ -65,7 +65,7 @@ class CalculatorTest : FunSpec({
             row(""),
         ) { input ->
             val exception = shouldThrow<IllegalArgumentException> {
-                InOrderCalculator().calculator(input)
+                InOrderCalculator().calculate(input)
             }
             println(exception.message)
         }
@@ -74,7 +74,7 @@ class CalculatorTest : FunSpec({
     context("입력값이 널인 경우 예외") {
         val input = null
         val exception = shouldThrow<IllegalArgumentException> {
-            InOrderCalculator().calculator(input)
+            InOrderCalculator().calculate(input)
         }
         println(exception.message)
     }
@@ -87,7 +87,7 @@ class CalculatorTest : FunSpec({
             row("1 1 1"),
         ) { input ->
             val exception = shouldThrow<IllegalArgumentException> {
-                InOrderCalculator().calculator(input)
+                InOrderCalculator().calculate(input)
             }
             println(exception.message)
         }
@@ -99,7 +99,7 @@ class CalculatorTest : FunSpec({
             row("100 - 5 +"),
         ) { input ->
             val exception = shouldThrow<IllegalArgumentException> {
-                InOrderCalculator().calculator(input)
+                InOrderCalculator().calculate(input)
             }
             println(exception.message)
         }
