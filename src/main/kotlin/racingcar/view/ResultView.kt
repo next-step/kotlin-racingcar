@@ -1,6 +1,6 @@
-package step3.ui
+package racingcar.view
 
-import step3.Cars
+import racingcar.domain.Cars
 
 class ResultView {
 

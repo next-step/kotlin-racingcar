@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 import io.kotest.matchers.collections.shouldContainExactly
 import io.mockk.every
@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import racingcar.domain.CarRacing
+import racingcar.domain.MovingStrategy
+import racingcar.domain.MovingStrategyRandom
 
 @ExtendWith(MockKExtension::class)
 class CarRacingTest {

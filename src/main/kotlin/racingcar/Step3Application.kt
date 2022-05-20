@@ -1,7 +1,9 @@
-package step3
+package racingcar
 
-import step3.ui.InputView
-import step3.ui.ResultView
+import racingcar.domain.CarRacing
+import racingcar.domain.MovingStrategyRandom
+import racingcar.view.InputView
+import racingcar.view.ResultView
 
 fun main () {
     val inputView = InputView()
