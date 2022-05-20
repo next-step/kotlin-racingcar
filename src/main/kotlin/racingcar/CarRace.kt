@@ -9,7 +9,7 @@ import racingcar.view.InputView
 import racingcar.view.OutputView
 import java.util.Random
 
-class CarRace(val inputView: InputView, val outputView: OutputView) {
+class CarRace(private val inputView: InputView, private val outputView: OutputView) {
     fun run() {
         val random = Random()
         val countOfCars = inputView.askCountOfCars()
@@ -24,8 +24,6 @@ class CarRace(val inputView: InputView, val outputView: OutputView) {
         cars.move { random.nextInt(10) * 10 > 4 }
         val snapshots = cars.values.map(::CarSnapshot).toList()
         outputView.printCarPositions(snapshots)
-        println()
-        println("==========================")
         println()
     }
 }
