@@ -39,5 +39,5 @@ class CarTests {
         assertThat(afterCar.position).isEqualTo(car.position)
     }
 
-    private fun Car(name: String, position: Int = 0) = Car(CarInfo(name), position)
+    private fun Car(name: String, position: Int = 0) = Car(CarName(name), position)
 }

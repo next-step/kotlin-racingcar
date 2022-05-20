@@ -14,7 +14,7 @@ class RaceResultTests {
         val raceResult = RaceResult(raceCar)
 
         val actual = raceResult.whoIsWinner()
-        val expected = listOf(Car(CarInfo("b"), 3))
+        val expected = listOf(Car("b", 3))
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -32,8 +32,8 @@ class RaceResultTests {
 
         val actual = raceResult.whoIsWinner()
         val expected = listOf(
-            Car(CarInfo("b"), 1),
-            Car(CarInfo("c"), 1)
+            Car("b", 1),
+            Car("c", 1)
         )
 
         assertThat(actual).isEqualTo(expected)
@@ -41,5 +41,5 @@ class RaceResultTests {
 
     private fun RaceCar(vararg cars: Car) = RaceCar(cars.asList())
     private fun RaceResult(vararg raceCars: RaceCar) = RaceResult(raceCars.asList())
-    private fun Car(name: String, position: Int = 0) = Car(CarInfo(name), position)
+    private fun Car(name: String, position: Int = 0) = Car(CarName(name), position)
 }

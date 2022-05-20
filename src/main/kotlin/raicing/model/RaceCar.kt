@@ -19,7 +19,7 @@ class RaceCar(private val cars: List<Car>) {
     }
 
     companion object {
-        fun of(carInfos: List<CarInfo>): RaceCar =
-            RaceCar(carInfos.map { Car(it) })
+        fun of(carNames: List<CarName>): RaceCar =
+            RaceCar(carNames.map { Car(it) })
     }
 }

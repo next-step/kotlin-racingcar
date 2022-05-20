@@ -1,13 +1,13 @@
 package raicing.view
 
 import raicing.Const
-import raicing.model.CarInfo
+import raicing.model.CarName
 import raicing.model.NaturalNumber
 
 object InputView {
     private const val INPUT_DELIMITER = ','
 
-    fun readStrAndConvertToList(infoMsg: String): List<CarInfo> {
+    fun readStrAndConvertToList(infoMsg: String): List<CarName> {
         println(infoMsg)
         val inputStr = readlnOrNull()
         require(!inputStr.isNullOrBlank()) { Const.ErrorMsg.INPUT_IS_EMPTY_ERROR_MSG }
@@ -24,10 +24,10 @@ object InputView {
         return NaturalNumber(inputStr)
     }
 
-    private fun splitCarNames(carNameStr: String): List<CarInfo> {
+    private fun splitCarNames(carNameStr: String): List<CarName> {
         val carNames = carNameStr.split(INPUT_DELIMITER)
         return carNames.map { carName ->
-            CarInfo(carName.trim())
+            CarName(carName.trim())
         }
     }
 }
