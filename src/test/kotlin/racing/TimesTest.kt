@@ -4,7 +4,7 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import racing.exception.TimesException
-import racing.model.Times
+import racing.domain.vo.Times
 
 class TimesTest {
     @ParameterizedTest

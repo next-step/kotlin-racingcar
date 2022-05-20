@@ -2,10 +2,10 @@ package racing
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import racing.model.CarMoveResult
-import racing.model.MoveResults
-import racing.model.Name
-import racing.model.Position
+import racing.domain.vo.CarMoveResult
+import racing.domain.MoveResults
+import racing.domain.vo.Name
+import racing.domain.vo.Position
 
 class MoveResultsTest {
     @Test

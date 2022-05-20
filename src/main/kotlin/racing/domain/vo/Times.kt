@@ -1,8 +1,8 @@
-package racing.model
+package racing.domain.vo
 
 import racing.exception.TimesException
 
-class Times(val value: Int) {
+data class Times(val value: Int) {
     init {
         if (value <= 0) throw TimesException(INVALID_TIMES)
     }

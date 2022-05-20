@@ -1,8 +1,6 @@
-package racing
+package racing.domain
 
-import racing.model.CarFactory
-import racing.model.CarInput
-import racing.model.MoveResultHistory
+import racing.domain.vo.CarInput
 
 class CarRacingGame(private val carInput: CarInput) {
     fun start(): MoveResultHistory {

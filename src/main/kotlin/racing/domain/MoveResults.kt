@@ -1,4 +1,6 @@
-package racing.model
+package racing.domain
+
+import racing.domain.vo.CarMoveResult
 
 class MoveResults(val results: List<CarMoveResult>) {
     fun getMaxPositionCarNames(): Names {

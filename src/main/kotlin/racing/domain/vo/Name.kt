@@ -1,4 +1,4 @@
-package racing.model
+package racing.domain.vo
 
 import racing.exception.CarNameException
 

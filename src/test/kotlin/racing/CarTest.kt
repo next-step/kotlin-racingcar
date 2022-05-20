@@ -3,10 +3,10 @@ package racing
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import racing.model.Car
-import racing.model.CarMoveResult
-import racing.model.Name
-import racing.model.Position
+import racing.domain.Car
+import racing.domain.vo.CarMoveResult
+import racing.domain.vo.Name
+import racing.domain.vo.Position
 
 class CarTest {
     private lateinit var car: Car

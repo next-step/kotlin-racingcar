@@ -1,4 +1,4 @@
-package racing.model
+package racing.domain
 
 class MoveResultHistory(val history: List<MoveResults>) {
     fun getWinnerNames(): Names {

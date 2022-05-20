@@ -3,7 +3,7 @@ package racing
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import racing.exception.CarsNameException
-import racing.model.Names
+import racing.domain.Names
 
 class NamesTest {
     @Test

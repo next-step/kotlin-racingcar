@@ -1,9 +1,9 @@
 package racing.ui
 
-import racing.model.CarInput
-import racing.model.Name
-import racing.model.Names
-import racing.model.Times
+import racing.domain.vo.CarInput
+import racing.domain.vo.Name
+import racing.domain.Names
+import racing.domain.vo.Times
 
 class InputView {
     fun getInput(): CarInput {

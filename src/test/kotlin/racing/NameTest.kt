@@ -4,7 +4,7 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import racing.exception.CarNameException
-import racing.model.Name
+import racing.domain.vo.Name
 
 class NameTest {
     @ParameterizedTest
