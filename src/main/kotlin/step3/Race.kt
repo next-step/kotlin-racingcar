@@ -1,6 +1,6 @@
 package step3
 
-class Race(val cars: List<Car>, private val tries: Int, private val currentTries: Int = 1) {
+class Race private constructor(val cars: List<Car>, private val tries: Int, private val currentTries: Int = 1) {
     private val moveDecisionMaker = MoveDecisionMaker()
 
     constructor(numCars: Int, tries: Int, currentTries: Int = 1) : this(
