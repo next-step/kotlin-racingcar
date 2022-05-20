@@ -30,8 +30,8 @@ object OutputView {
     }
 
     private fun raceWinnerStr(raceResults: RaceResult): String {
-        val winners = raceResults.whoIsWinner()?.joinToString(", ") { it.carInfo.name }
-        return if (winners.isNullOrEmpty()) {
+        val winners = raceResults.whoIsWinner().joinToString(",") { it.carInfo.name }
+        return if (winners.isEmpty()) {
             "우승자는 없습니다."
         } else {
             "${winners}가 최종 우승했습니다."
