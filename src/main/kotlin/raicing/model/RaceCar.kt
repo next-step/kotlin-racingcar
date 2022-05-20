@@ -14,8 +14,8 @@ class RaceCar(private val cars: List<Car>) {
 
     fun getMaxPosition() = cars.maxOf { it.position }
 
-    fun getMaxPositionCars(maxPosition: Int): List<Car> {
-        return cars.filter { it.position == maxPosition }
+    fun getCarsByPosition(position: Int): List<Car> {
+        return cars.filter { it.position == position }
     }
 
     companion object {
