@@ -7,7 +7,7 @@ object Racing {
     private const val MAX_PIVOT_VALUE = 10
 
     fun start(carNames: List<String>, tryRound: Int): List<RacingCar> {
-        val racingCars: List<RacingCar> = carNames.map { RacingCar(tryRound, it) }
+        val racingCars: List<RacingCar> = carNames.map { RacingCar(it) }
 
         repeat(tryRound) {
             race(racingCars)

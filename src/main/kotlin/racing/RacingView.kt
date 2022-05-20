@@ -2,7 +2,7 @@ package racing
 
 object RacingView {
     private const val DISPLAY_NUMBER = 1
-    private const val HIGHEST_SCORE_INDEX = 1
+    private const val HIGHEST_SCORE_INDEX = 0
     private const val GO_FORWARD = "-"
     private const val EMPTY_STRING = ""
     private const val NEXT_ROUND = 1

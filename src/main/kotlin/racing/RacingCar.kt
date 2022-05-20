@@ -1,24 +1,21 @@
 package racing
 
-class RacingCar(round: Int, val name: String) {
-    private val _distances = MutableList(round) { INITIALIZE_VALUE }
+class RacingCar(val name: String) {
+    private val _distances = mutableListOf<Int>()
     val distances: List<Int>
         get() = this._distances.toList()
-
-    private var currentRound = INITIALIZE_VALUE
 
     init {
         validateName(name)
     }
     fun race(movePoint: Int) {
-        if (canMove(movePoint)) {
-            move()
-        }
-        currentRound += NEXT_ROUND
+        val isMove = canMove(movePoint)
+        move(isMove)
     }
 
-    private fun move() {
-        _distances[currentRound] = MOVE
+    private fun move(isMove: Boolean) {
+        val result = if (isMove) MOVE else STOP
+        _distances.add(result)
     }
 
     private fun canMove(movePoint: Int): Boolean {
@@ -33,8 +30,7 @@ class RacingCar(round: Int, val name: String) {
     companion object {
         const val MOVE_PIVOT = 4
         const val MOVE = 1
-        const val NEXT_ROUND = 1
-        const val INITIALIZE_VALUE = 0
+        const val STOP = 0
         private const val MAX_CAR_NAME_LENGTH = 5
     }
 }
