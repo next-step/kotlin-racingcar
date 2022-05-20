@@ -4,8 +4,10 @@ import java.util.LinkedList
 import java.util.Queue
 import java.util.function.BiFunction
 
-class StringCalculator(private val splitter: String = " ") {
-    fun calculate(source: String?): Double {
+private const val BASIC_SPLITTER = " "
+
+class StringCalculator(private val splitter: String = BASIC_SPLITTER) {
+    fun calculate(source: String): Double {
         val value = validate(source)
         val numberStack = value.toNumberStack(splitter)
         val operatorQueue = value.toOperatorQueue(splitter)
@@ -16,17 +18,13 @@ class StringCalculator(private val splitter: String = " ") {
         return numberStack.peek().toDouble()
     }
 
-    private fun validate(source: String?): String {
-        if (source.isNullOrBlank()) {
-            throw IllegalArgumentException("빈 값이나 공백이 들어올 수 없습니다.")
-        }
+    private fun validate(source: String): String {
+        require(source.isBlank()) { "빈 값이 들어올 수 없습니다." }
         return source
     }
 
     private fun calculate(numbers: LinkedList<Double>, operators: Queue<Operator>): Double {
-        if (numbers.size < 2 || operators.isEmpty()) {
-            throw IllegalArgumentException("잘못된 수식입니다.")
-        }
+        require(numbers.size < 2 || operators.isEmpty()) { "잘못된 수식입니다." }
         val a = numbers.pop()
         val b = numbers.pop()
         val operator = operators.remove()
@@ -41,7 +39,7 @@ class StringCalculator(private val splitter: String = " ") {
     }
 }
 
-fun String.toNumberStack(splitter: String): LinkedList<Double> {
+private fun String.toNumberStack(splitter: String): LinkedList<Double> {
     return LinkedList(
         this.split(splitter)
             .filterIndexed { i, _ -> i.isNumberIndex() }
@@ -49,7 +47,7 @@ fun String.toNumberStack(splitter: String): LinkedList<Double> {
     )
 }
 
-fun String.toOperatorQueue(splitter: String): Queue<Operator> {
+private fun String.toOperatorQueue(splitter: String): Queue<Operator> {
     return LinkedList(
         this.split(splitter)
             .filterIndexed { i, _ -> i.isOperatorIndex() }
@@ -57,13 +55,9 @@ fun String.toOperatorQueue(splitter: String): Queue<Operator> {
     )
 }
 
-fun Int.isNumberIndex(): Boolean {
-    return this % 2 == 0
-}
+private fun Int.isNumberIndex(): Boolean = this % 2 == 0
 
-fun Int.isOperatorIndex(): Boolean {
-    return this % 2 != 0
-}
+private fun Int.isOperatorIndex(): Boolean = this % 2 != 0
 
 enum class Operator(private val operation: BiFunction<Double, Double, Double>) {
     PLUS({ a, b -> a + b }),

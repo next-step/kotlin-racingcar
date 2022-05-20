@@ -5,7 +5,6 @@ import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
 
 class StringCalculatorTest {
@@ -48,10 +47,8 @@ class StringCalculatorTest {
         assertThat(result).isEqualTo(expected)
     }
 
-    @ParameterizedTest
-    @NullAndEmptySource
-    fun `빈 공백 문자열이나 null이 들어올 경우 예외 발생`(source: String?) {
-        assertThatThrownBy { calculator.calculate(source) }
+    @Test
+    fun `빈 공백 문자열이나 null이 들어올 경우 예외 발생`() {
         assertThatThrownBy { calculator.calculate(" ") }
     }
 
