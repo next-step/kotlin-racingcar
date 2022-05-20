@@ -16,6 +16,10 @@ class Car(
         _movements.add(input > GO_NUMBER)
     }
 
+    fun getMovementCount(): Int {
+        return this.movements.count { it }
+    }
+
     companion object {
         private const val RACER_NAME_LENGTH_LIMIT = 5
         private const val GO_NUMBER = 4

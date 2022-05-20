@@ -10,24 +10,24 @@ class CarRacingTest {
     @ValueSource(ints = [3, 6])
     fun `우승자 확인 테스트`(input: Int) {
         val racers = listOf("molly", "jayce", "pug")
-        val cars = racers.map { Car(it) }
-        cars.first().move(5)
-        cars.forEach {
-            it.move(input)
-        }
-        val winner = CarRacing.getWinner(cars)
-        assertThat(winner).isEqualTo(listOf(cars.first()))
+        val racingGame = CarRacing(racers, 0)
+        racingGame.execute()
+        racingGame.gameResult.cars.first().move(5)
+
+        val winner = racingGame.getWinner()
+        assertThat(winner).isEqualTo(listOf(racers.first()).joinToString())
     }
 
     @ParameterizedTest
     @ValueSource(ints = [3, 6])
     fun `우승자 여러명 테스트`(input: Int) {
         val racers = listOf("molly", "jayce", "pug")
-        val cars = racers.map { Car(it) }
-        cars.forEach {
+        val racingGame = CarRacing(racers, 0)
+        racingGame.execute()
+        racingGame.gameResult.cars.forEach {
             it.move(input)
         }
-        val winner = CarRacing.getWinner(cars)
-        assertThat(winner).isEqualTo(cars)
+        val winner = racingGame.getWinner()
+        assertThat(winner).isEqualTo(racers.joinToString())
     }
 }

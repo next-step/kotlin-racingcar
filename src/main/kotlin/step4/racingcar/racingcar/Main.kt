@@ -5,7 +5,7 @@ fun main() {
     val racers = InputView.racers()
     val movementCount = InputView.movementCount()
 
-    CarRacing.execute(racers, movementCount).also {
-        ResultView.view(it, movementCount)
-    }
+    val racingGame = CarRacing(racers, movementCount)
+    racingGame.execute()
+    ResultView.view(racingGame)
 }

@@ -1,13 +1,14 @@
 package step4.racingcar.racingcar
 
 object ResultView {
-    fun view(carList: List<Car>, moveCount: Int) {
+    fun view(gameResult: CarRacing) {
+        val result = gameResult.gameResult
         println(">>>>> 실행결과")
-        repeat(moveCount) { round ->
-            printRacingPerRound(carList, round)
+        repeat(result.round) { round ->
+            printRacingPerRound(result.cars, round)
         }
-        CarRacing.getWinner(carList).also {
-            println("[${it.joinToString()}]가 최종 우승했습니다.")
+        gameResult.getWinner().also {
+            println("[${it}]가 최종 우승했습니다.")
         }
     }
 
