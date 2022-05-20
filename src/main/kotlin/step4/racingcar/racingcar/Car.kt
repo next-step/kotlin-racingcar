@@ -4,9 +4,7 @@ class Car(
     val racerName: String
 ) {
     init {
-        if (racerName.length > RACER_NAME_LENGTH_LIMIT) {
-            throw IllegalArgumentException("입력된 선수의 이름이 5자 이상인 선수가 있습니다.")
-        }
+        require(racerName.length <= RACER_NAME_LENGTH_LIMIT) { "입력된 선수의 이름이 5자 이상인 선수가 있습니다." }
     }
 
     private val _movements: MutableList<Boolean> = mutableListOf()
