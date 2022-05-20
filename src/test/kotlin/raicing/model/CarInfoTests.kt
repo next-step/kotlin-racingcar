@@ -13,6 +13,14 @@ class CarInfoTests {
     @Nested
     @DisplayName("입력받은 문자열을 자동차 이름으로 변환 테스트")
     inner class SplitCarNamesTests {
+
+        @ParameterizedTest(name = "CarInfo의 이름은 `{0}` 이다.")
+        @ValueSource(strings = ["abc", "a", "한글"])
+        fun `CarInfo는 문자열이 5자 이하인 이름을 가진다`(carNameStr: String) {
+            val result = CarInfo(carNameStr)
+            assertThat(result.name).isEqualTo(carNameStr)
+        }
+
         @ParameterizedTest(name = "입력값이 `{0}` 이면 IllegalArgumentException 발생")
         @ValueSource(strings = ["", " ", "\t"])
         fun `입력값이 비어있으면 실패 - IllegalArgumentException 발생`(carNameStr: String) {
@@ -27,13 +35,6 @@ class CarInfoTests {
             Assertions.assertThatIllegalArgumentException()
                 .isThrownBy { CarInfo(carNameStr) }
                 .withMessage(Const.ErrorMsg.CAR_NAME_IS_TOO_LONG)
-        }
-
-        @ParameterizedTest(name = "입력값이 `{0}` 이면 성공")
-        @ValueSource(strings = ["abc", "a", "한글"])
-        fun `입력값에 5자 이하인 이름만 있으면 성공`(carNameStr: String) {
-            val result = CarInfo(carNameStr)
-            assertThat(result.name).isEqualTo(carNameStr)
         }
     }
 }
