@@ -15,13 +15,14 @@ class CarRace(private val inputView: InputView, private val outputView: OutputVi
         val countOfCars = inputView.askCountOfCars()
         val cars = Cars(List(countOfCars) { Car() })
         val countOfTrial = inputView.askCountOfTrial()
+        println("실행결과")
         for (i in 0 until countOfTrial) {
             takeOneTrial(cars, random)
         }
     }
 
     private fun takeOneTrial(cars: Cars, random: Random) {
-        cars.move { random.nextInt(10) * 10 > 4 }
+        cars.move { random.nextInt(10) * 10 >= 4 }
         val snapshots = cars.values.map(::CarSnapshot).toList()
         outputView.printCarPositions(snapshots)
         println()
