@@ -17,7 +17,7 @@ object CarRacing {
     private fun executeCarRacing(carList: List<Car>) {
         carList.forEach {
             val random = generateRandomNumber()
-            it.moveOrStop(random)
+            it.move(random)
         }
     }
 

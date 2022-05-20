@@ -11,9 +11,9 @@ class CarRacingTest {
     fun `우승자 확인 테스트`(input: Int) {
         val racers = listOf("molly", "jayce", "pug")
         val cars = racers.map { Car(it) }
-        cars.first().moveOrStop(5)
+        cars.first().move(5)
         cars.forEach {
-            it.moveOrStop(input)
+            it.move(input)
         }
         val winner = CarRacing.getWinner(cars)
         assertThat(winner).isEqualTo(listOf(cars.first()))
@@ -25,7 +25,7 @@ class CarRacingTest {
         val racers = listOf("molly", "jayce", "pug")
         val cars = racers.map { Car(it) }
         cars.forEach {
-            it.moveOrStop(input)
+            it.move(input)
         }
         val winner = CarRacing.getWinner(cars)
         assertThat(winner).isEqualTo(cars)

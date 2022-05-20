@@ -12,12 +12,12 @@ class Car(
     val movements
         get() = _movements.toList()
 
-    fun moveOrStop(input: Int) {
+    fun move(input: Int) {
         _movements.add(input > GO_NUMBER)
     }
 
     companion object {
-        const val RACER_NAME_LENGTH_LIMIT = 5
+        private const val RACER_NAME_LENGTH_LIMIT = 5
         private const val GO_NUMBER = 4
     }
 }

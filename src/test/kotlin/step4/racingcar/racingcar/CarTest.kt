@@ -19,7 +19,7 @@ class CarTest {
     @ValueSource(ints = [5, 8, 9])
     fun `자동차 이동 성공 테스트`(input: Int) {
         val car = Car("성공")
-        car.moveOrStop(input)
+        car.move(input)
 
         assertEquals(car.movements.count { it }, 1)
     }
@@ -28,7 +28,7 @@ class CarTest {
     @ValueSource(ints = [1, 3])
     fun `자동차 이동 실패 테스트`(input: Int) {
         val car = Car("실패")
-        car.moveOrStop(input)
+        car.move(input)
 
         assertEquals(car.movements.count { it }, 1)
     }
