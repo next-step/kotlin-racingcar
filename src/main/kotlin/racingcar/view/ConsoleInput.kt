@@ -1,6 +1,6 @@
 package racingcar.view
 
-class ConsoleInput: InputView {
+class ConsoleInput : InputView {
     override fun askCountOfCars(): Int {
         return try {
             println("자동차 대수는 몇 대 인가요?")
