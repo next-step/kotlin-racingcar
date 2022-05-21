@@ -5,10 +5,12 @@ import racingcar.dto.MoveResults
 class Car(
     private val carName: String
 ) {
-    private val _drivingRecord: MutableList<Position> = mutableListOf()
-    val moveResult get() = MoveResults.MoveResult(carName, _drivingRecord.count { it == Position.MOVE })
+    private var _drivingRecord: Int = 0
+    private val drivingRecord: Int = _drivingRecord
+
+    val moveResult get() = MoveResults.MoveResult(carName, drivingRecord)
 
     fun move() {
-        _drivingRecord.add(Position.MOVE)
+        _drivingRecord++
     }
 }
