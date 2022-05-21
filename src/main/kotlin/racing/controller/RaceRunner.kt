@@ -1,4 +1,8 @@
-package step4
+package racing.controller
+
+import racing.model.Race
+import racing.view.InputView
+import racing.view.OutputView
 
 object RaceRunner {
     @JvmStatic

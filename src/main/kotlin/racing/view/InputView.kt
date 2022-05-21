@@ -1,6 +1,6 @@
-package step5.view
+package racing.view
 
-import step5.model.Car
+import racing.model.Car
 
 object InputView {
     private const val CARNAME_DELIMITER = ","

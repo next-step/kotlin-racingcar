@@ -2,6 +2,8 @@ package step5.model
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
+import racing.model.Car
+import racing.model.Race
 
 class RaceTest {
     val cars = listOf(Car.create("pobi"), Car.create("crong"), Car.create("eddi"))

@@ -1,4 +1,7 @@
-package step4
+package racing.view
+
+import racing.model.Car
+import racing.model.Race
 
 object OutputView {
     fun printRace(race: Race) {

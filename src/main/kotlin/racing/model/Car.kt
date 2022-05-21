@@ -1,4 +1,4 @@
-package step5.model
+package racing.model
 
 class Car private constructor(val name: String, val position: Int) {
 

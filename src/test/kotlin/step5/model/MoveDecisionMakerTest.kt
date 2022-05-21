@@ -2,6 +2,7 @@ package step5.model
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
+import racing.model.MoveDecisionMaker
 
 class MoveDecisionMakerTest {
     val moveDecisionMaker = MoveDecisionMaker()

@@ -1,4 +1,4 @@
-package step5.model
+package racing.model
 
 class Race(val cars: List<Car>, private val tries: Int, private val currentTries: Int = 1) {
     private val moveDecisionMaker = MoveDecisionMaker()
