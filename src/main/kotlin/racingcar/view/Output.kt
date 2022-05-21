@@ -31,9 +31,6 @@ class Output {
     }
 
     fun printWinners(racingGameResult: RacingGameResult) {
-        println("---------------------------")
-        showStartMessage()
-
         racingGameResult.result.forEach {
             showResultPosition(it.cars)
         }
