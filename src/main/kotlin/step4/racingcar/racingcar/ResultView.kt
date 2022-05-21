@@ -8,7 +8,7 @@ object ResultView {
             printRacingPerRound(result.cars, round)
         }
         result.getWinner().also {
-            println("[${it}]가 최종 우승했습니다.")
+            println("[$it]가 최종 우승했습니다.")
         }
     }
 

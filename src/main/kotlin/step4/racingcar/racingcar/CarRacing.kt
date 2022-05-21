@@ -19,6 +19,4 @@ class CarRacing(racers: List<String>, private val moveCount: Int) {
             it.move(random)
         }
     }
-
-
 }
