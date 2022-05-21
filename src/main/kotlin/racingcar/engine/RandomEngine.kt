@@ -17,7 +17,7 @@ class RandomEngine : Engine {
 
     companion object {
         private const val RANDOM_FROM = 0
-        private const val RANDOM_TO = 10
+        private const val RANDOM_TO = 9
         private const val MOVE_THRESHOLD = 4
     }
 }

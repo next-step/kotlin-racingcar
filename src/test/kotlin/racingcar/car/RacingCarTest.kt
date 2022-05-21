@@ -15,7 +15,7 @@ internal class RacingCarTest : StringSpec({
         racingCar.position() shouldBe Position(0)
     }
 
-    "속도가 0인 엔진을 제공하는 경우 위치는 0으로 유지된다." {
+    "속력이 0인 엔진을 제공하는 경우 위치는 0으로 유지된다." {
         val stubEngine = Engine { Speed(0) }
         val racingCar = RacingCar(stubEngine)
 
@@ -24,16 +24,7 @@ internal class RacingCarTest : StringSpec({
         result.position() shouldBe Position(0)
     }
 
-    "매번 전진하는 엔진을 제공하는 경우 위치는 엔진의 속도만큼 증가한다." {
-        val stubEngine = Engine { Speed(10) }
-        val racingCar = RacingCar(stubEngine)
-
-        val result = racingCar.forward()
-
-        result.position() shouldBe Position(10)
-    }
-
-    "총 이동한 거리를 반환한다" {
+    "엔진의 속력에 따라 위치가 변경된다" {
         val stubEngine = object : Engine {
             private var shouldForward = false
             override fun accelerate(): Speed {
