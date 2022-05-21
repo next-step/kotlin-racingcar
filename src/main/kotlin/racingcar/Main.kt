@@ -4,12 +4,13 @@ import racingcar.view.InputView
 import racingcar.view.ResultView
 
 fun main() {
-    val carCount = InputView.getCarCount()
+    val driverNames = InputView.getPlayerName()
     val tryCount = InputView.getTryCount()
+    val drivers = driverNames.map { Driver(it, Car()) }
 
-    val game = RacingGame(carCount, tryCount)
+    val game = RacingGame(drivers, tryCount)
 
     game.start()
 
-    ResultView.printResult(tryCount, game.driverList)
+    ResultView.printResult(game)
 }
