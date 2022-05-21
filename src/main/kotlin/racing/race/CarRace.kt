@@ -5,17 +5,17 @@ import racing.common.CarRaceProperty
 import racing.utils.RandomNumberGenerator.getRandomNumber
 import racing.view.ResultView
 
-class CarRace {
-    fun start(carRaceProperty: CarRaceProperty, resultView: ResultView) {
+class CarRace(private val carRaceProperty: CarRaceProperty) {
+    fun start(resultView: ResultView) {
         for (round in CarRaceProperty.ROUND_START..carRaceProperty.roundSize) {
-            raceByRound(carRaceProperty)
+            raceByRound()
             resultView.printResultByRound(round)
         }
 
         resultView.printWinner()
     }
 
-    private fun raceByRound(carRaceProperty: CarRaceProperty) {
+    private fun raceByRound() {
         carRaceProperty.cars
             .filter { it.canMoveForward(getRandomNumber()) }
             .map { moveCarPosition(it) }

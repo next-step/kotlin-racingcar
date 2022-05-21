@@ -13,7 +13,7 @@ class CarRaceTest {
         val carNames = listOf("A")
         val carRaceProperty = CarRaceProperty(roundSize, carNames)
 
-        val carRace = CarRace()
+        val carRace = CarRace(carRaceProperty)
         carRace.moveCarPosition(carRaceProperty.cars[0])
 
         assertThat(carRaceProperty.cars[0].getMoveCount()).isEqualTo(1)

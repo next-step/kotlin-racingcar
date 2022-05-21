@@ -11,7 +11,7 @@ fun main() {
     val roundSize = inputView.readInRoundSize()
     val carRaceProperty = CarRaceProperty(roundSize, carNames)
 
-    val carRace = CarRace()
+    val carRace = CarRace(carRaceProperty)
     val resultView = ResultView(carRaceProperty)
-    carRace.start(carRaceProperty, resultView)
+    carRace.start(resultView)
 }
