@@ -7,7 +7,7 @@ object ResultView {
         repeat(result.round) { round ->
             printRacingPerRound(result.cars, round)
         }
-        gameResult.getWinner().also {
+        result.getWinner().also {
             println("[${it}]가 최종 우승했습니다.")
         }
     }
