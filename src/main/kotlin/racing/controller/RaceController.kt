@@ -4,11 +4,7 @@ import racing.model.Race
 import racing.view.InputView
 import racing.view.OutputView
 
-object RaceRunner {
-    @JvmStatic
-    fun main(args: Array<String>) {
-        run()
-    }
+object RaceController {
 
     fun run() {
         val cars = InputView.getCars()
