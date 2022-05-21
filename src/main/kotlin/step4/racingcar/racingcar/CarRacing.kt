@@ -1,16 +1,15 @@
 package step4.racingcar.racingcar
 
-class CarRacing(private val racers: List<String>, private val moveCount: Int) {
-    private val _cars: MutableList<Car> = mutableListOf()
+class CarRacing(racers: List<String>, private val moveCount: Int) {
+
+    private val car = racers.map { Car(it) }
 
     val gameResult: GameResult
-        get() = GameResult(this._cars, moveCount)
+        get() = GameResult(car, moveCount)
 
     fun execute() {
-        this._cars.addAll(racers.map { Car(it) })
-
         repeat(moveCount) {
-            executeCarRacing(_cars)
+            executeCarRacing(car)
         }
     }
 
@@ -28,10 +27,8 @@ class CarRacing(private val racers: List<String>, private val moveCount: Int) {
     }
 
     private fun generateRandomNumber() = RANDOM_RANGE.random()
-    private val RANDOM_RANGE = (0..9)
-}
 
-data class GameResult(
-    val cars: List<Car>,
-    val round: Int
-)
+    companion object {
+        private val RANDOM_RANGE = (0..9)
+    }
+}
