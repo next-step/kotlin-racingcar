@@ -1,6 +1,6 @@
 package racingcar.model
 
-class Cars(
+data class Cars(
     private val cars: List<Car>
 ) {
 
