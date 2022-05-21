@@ -4,8 +4,8 @@ package racingcar
 value class Cars(val value: List<Car>) {
 
     fun moveForwardAll(refuels: List<Int>): Cars {
-        val carsAndRefuels = value zip refuels
-        return Cars(carsAndRefuels.map { it.first.moveForward(it.second) })
+        val carsAndRefuels = value.zip(refuels) { car, refuel -> car.moveForward(refuel) }
+        return Cars(carsAndRefuels)
     }
 
     fun distancesMoved(): List<Int> {
