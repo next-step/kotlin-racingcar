@@ -1,6 +1,5 @@
 package racing
 
-import racing.car.Car
 import racing.common.CarRaceProperty
 import racing.race.CarRace
 import racing.view.InputView
@@ -10,7 +9,7 @@ fun main() {
     val inputView = InputView()
     val carNames = inputView.readInCarNames()
     val roundSize = inputView.readInRoundSize()
-    val carRaceProperty = CarRaceProperty(roundSize, carNames.map { Car(it) })
+    val carRaceProperty = CarRaceProperty(roundSize, carNames)
 
     val carRace = CarRace()
     val resultView = ResultView(carRaceProperty)
