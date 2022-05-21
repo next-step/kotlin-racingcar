@@ -29,7 +29,6 @@ class Drivers(
     }
 
     fun getMoveResults(): MoveResults {
-        cars.map { it.moveResult }
         return MoveResults(cars.map { it.moveResult })
     }
 }
