@@ -4,8 +4,13 @@ data class RaceResult(
     val raceCars: List<RaceCar>
 ) {
     fun whoIsWinner(): List<Car> {
-        val raceResult = raceCars.last()
-        val maxPosition = raceResult.getCars().maxOf { it.position }
-        return raceResult.getCars().filter { it.position == maxPosition }
+        val raceLastResult = raceCars.lastOrNull() ?: return emptyList()
+        val maxPosition = raceLastResult.getMaxPosition()
+
+        if (maxPosition == 0) {
+            return emptyList()
+        }
+
+        return raceLastResult.getCarsByPosition(maxPosition)
     }
 }
