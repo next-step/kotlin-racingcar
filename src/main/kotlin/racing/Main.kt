@@ -16,7 +16,7 @@ fun main() {
 
     val carRaceProperty = CarRaceProperty(roundSize, carNames)
 
-    val carRace = CarRace(carRaceProperty)
     val resultView = ResultView(carRaceProperty)
-    carRace.start(resultView)
+    val carRace = CarRace(carRaceProperty, resultView)
+    carRace.start()
 }

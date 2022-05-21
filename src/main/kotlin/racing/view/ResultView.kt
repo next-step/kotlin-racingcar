@@ -19,20 +19,8 @@ class ResultView(private val carRaceProperty: CarRaceProperty) {
         return MARK_FORWARD_MOVE.repeat(move)
     }
 
-    fun printWinner() {
-        println("${getWinnerCarNames()}가 최종 우승했습니다.")
-    }
-
-    private fun getWinnerCarNames(): String {
-        return carRaceProperty.cars
-            .filter { it.getMoveCount() == getWinnerCount() }
-            .joinToString(",") { it.getCarName() }
-    }
-
-    private fun getWinnerCount(): Int {
-        return carRaceProperty.cars
-            .maxByOrNull { it.getMoveCount() }!!
-            .getMoveCount()
+    fun printWinner(winnerCarNames: String) {
+        println("${winnerCarNames}가 최종 우승했습니다.")
     }
 
     companion object {
