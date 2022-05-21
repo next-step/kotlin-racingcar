@@ -7,7 +7,7 @@ import racingcar.model.CarName
 import racingcar.model.Cars
 import racingcar.model.MovingStrategy
 import racingcar.model.RacingDataPerTry
-import racingcar.model.RacingGame2
+import racingcar.model.RacingGame
 import racingcar.model.RacingGameResult
 import racingcar.model.TryNumber
 
@@ -47,7 +47,7 @@ internal class RacingGameTest {
             ),
         )
 
-        val racingGame = RacingGame2(tryNumber = tryNumber, cars = cars)
+        val racingGame = RacingGame(tryNumber = tryNumber, cars = cars)
         val result = racingGame.startGame()
 
         assertThat(result).isEqualTo(expectedResult)

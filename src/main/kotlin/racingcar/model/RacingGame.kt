@@ -1,6 +1,6 @@
 package racingcar.model
 
-class RacingGame2(
+class RacingGame(
     val tryNumber: TryNumber,
     val cars: Cars
 ) {

@@ -1,6 +1,6 @@
 package racingcar
 
-import racingcar.model.RacingGame2
+import racingcar.model.RacingGame
 import racingcar.view.Input
 import racingcar.view.Output
 
@@ -16,8 +16,8 @@ class RacingGameController(
         val tryNumber = input.getTryNumber()
 
         output.showStartMessage()
-        val racingGame2 = RacingGame2(tryNumber = tryNumber, cars = cars)
-        val result = racingGame2.startGame()
+        val racingGame = RacingGame(tryNumber = tryNumber, cars = cars)
+        val result = racingGame.startGame()
         output.printWinners(result)
     }
 }
