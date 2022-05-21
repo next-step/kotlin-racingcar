@@ -13,6 +13,7 @@ internal class GameResultPainterTest : StringSpec({
         class StubCar(val position: Int) : Car {
             override fun forward(): Car = this
             override fun position(): Position = Position(position)
+            override fun name(): String = "StubCar"
         }
 
         val gameResults = listOf(
@@ -26,17 +27,17 @@ internal class GameResultPainterTest : StringSpec({
 
         // then
         result shouldBe """
-            -
+            StubCar : -
+            StubCar : 
+            StubCar : -
             
-            -
+            StubCar : --
+            StubCar : --
+            StubCar : ---
             
-            --
-            --
-            ---
-            
-            ---
-            --
-            -----
+            StubCar : ---
+            StubCar : --
+            StubCar : -----
         """.trimIndent()
     }
 })

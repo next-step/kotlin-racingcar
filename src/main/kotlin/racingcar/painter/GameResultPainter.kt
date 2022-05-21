@@ -15,7 +15,7 @@ object GameResultPainter {
     fun from(gameResult: List<GameResult>): String =
         gameResult.joinToString(SEPARATOR_BETWEEN_ROUND) {
             it.cars.joinToString(SEPARATOR_BETWEEN_CAR) { car ->
-                car.position().toDash()
+                "${car.name()} : ${car.position().toDash()}"
             }
         }
 }
