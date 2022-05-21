@@ -6,6 +6,6 @@ fun main() {
     val movementCount = InputView.movementCount()
 
     val racingGame = CarRacing(racers, movementCount)
-    racingGame.execute()
+    racingGame.execute(RandomNumber)
     ResultView.view(racingGame)
 }

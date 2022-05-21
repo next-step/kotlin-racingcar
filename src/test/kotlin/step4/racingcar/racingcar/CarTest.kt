@@ -30,7 +30,7 @@ class CarTest {
         val car = Car("실패")
         car.move(input)
 
-        assertEquals(car.movements.count { it }, 1)
+        assertEquals(car.movements.count { it }, 0)
     }
 
     @ParameterizedTest

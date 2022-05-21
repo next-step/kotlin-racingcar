@@ -7,28 +7,18 @@ class CarRacing(racers: List<String>, private val moveCount: Int) {
     val gameResult: GameResult
         get() = GameResult(car, moveCount)
 
-    fun execute() {
+    fun execute(randomNumber: NumberGenerator) {
         repeat(moveCount) {
-            executeCarRacing(car)
+            executeCarRacing(car, randomNumber)
         }
     }
 
-    fun getWinner(): String {
-        val cars = this.gameResult.cars
-        val maxCount = cars.maxOf { car -> car.getMovementCount() }
-        return cars.filter { car -> car.getMovementCount() == maxCount }.joinToString { it.racerName }
-    }
-
-    private fun executeCarRacing(carList: List<Car>) {
+    private fun executeCarRacing(carList: List<Car>, randomNumber: NumberGenerator) {
         carList.forEach {
-            val random = generateRandomNumber()
+            val random = randomNumber.generate()
             it.move(random)
         }
     }
 
-    private fun generateRandomNumber() = RANDOM_RANGE.random()
 
-    companion object {
-        private val RANDOM_RANGE = (0..9)
-    }
 }
