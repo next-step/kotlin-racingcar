@@ -18,10 +18,6 @@ class RacingGame(carNames: List<String>, private val trialCount: Int, moveStrate
         }
     }
 
-    fun isPlayable(): Boolean {
-        return trialCount > GAME_END_COUNT
-    }
-
     fun getWinners(): MoveResults {
         return drivers.getWinnerResults()
     }
