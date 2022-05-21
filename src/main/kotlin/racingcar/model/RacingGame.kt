@@ -18,7 +18,7 @@ class RacingGame(
         )
     }
 
-    private tailrec fun startGame(cars: Cars, tryNumber: TryNumber, racingGameResult : MutableList<RacingDataPerTry>): Cars {
+    private tailrec fun startGame(cars: Cars, tryNumber: TryNumber, racingGameResult: MutableList<RacingDataPerTry>): Cars {
         if (tryNumber.isZero()) {
             return cars
         }

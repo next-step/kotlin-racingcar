@@ -36,11 +36,8 @@ data class Car(
         result = 31 * result + position
         return result
     }
-
     companion object {
         internal const val DEFAULT_POSITION = 0
         internal const val MAX_BOUND = 10
     }
-
-
 }
