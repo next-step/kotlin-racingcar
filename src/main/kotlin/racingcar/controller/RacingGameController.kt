@@ -1,32 +1,31 @@
 package racingcar.controller
 
-import racingcar.domain.Car
-import racingcar.domain.Cars
 import racingcar.domain.RacingGame
 import racingcar.domain.TryNumber
+import racingcar.domain.car.Car
+import racingcar.domain.car.Cars
 import racingcar.domain.generateRandomCondition
-import racingcar.view.inputCarNumber
+import racingcar.view.inputCarNames
 import racingcar.view.inputTryNumber
 import racingcar.view.printPlayResult
+import racingcar.view.printWinners
 
 class RacingGameController {
     fun handle() {
         val racingGame = RacingGame(
-            cars = createCars(inputCarNumber()),
+            cars = createCars(inputCarNames()),
             tryNumber = TryNumber(inputTryNumber()),
         )
 
-        printPlayResult(
-            racingGame.play(generateRandomCondition())
-        )
+        racingGame.play(generateRandomCondition())
+            .also {
+                printPlayResult(it)
+                printWinners(it.getWinners())
+            }
     }
 
-    private fun createCars(carNumber: Int): Cars {
-        val cars = mutableListOf<Car>()
-        repeat(carNumber) {
-            cars.add(Car())
-        }
-
-        return Cars(cars.toList())
+    private fun createCars(carNames: List<String>): Cars {
+        val cars = carNames.map { Car(it) }
+        return Cars(cars)
     }
 }

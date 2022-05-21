@@ -1,10 +1,12 @@
 package racingcar.domain
 
+import racingcar.domain.car.Cars
+
 class RacingGame(
     private var cars: Cars,
     private var tryNumber: TryNumber,
 ) {
-    fun play(movementStrategy: () -> Int): List<Cars> {
+    fun play(movementStrategy: () -> Int): RacingResult {
         val result = mutableListOf<Cars>()
         while (tryNumber.isPlaying) {
             cars = cars.moveAll(movementStrategy)
@@ -12,6 +14,6 @@ class RacingGame(
             tryNumber = tryNumber.consume()
         }
 
-        return result.toList()
+        return RacingResult(result.toList())
     }
 }

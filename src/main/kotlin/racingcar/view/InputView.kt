@@ -1,17 +1,17 @@
 package racingcar.view
 
-fun inputCarNumber(): Int {
+fun inputCarNames(): List<String> {
     return try {
-        println("자동차 대수는 몇 대인가요?")
-        val carNumber = readLine()
-        if (carNumber.isNullOrBlank()) {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분.")
+        val carNames = readLine()
+        if (carNames.isNullOrBlank()) {
             throw IllegalArgumentException("[ERROR] 차량의 갯수에는 공백이나 null 입력이 불가능합니다.")
         }
 
-        carNumber.toInt()
+        carNames.split(",").map { it.trim() }
     } catch (e: IllegalArgumentException) {
         println(e.message)
-        inputCarNumber()
+        inputCarNames()
     }
 }
 

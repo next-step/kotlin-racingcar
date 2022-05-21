@@ -2,14 +2,16 @@ package racingcar.domain
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import racingcar.domain.car.Car
+import racingcar.domain.car.Cars
 
 class RacingGameTest : StringSpec({
     "자동차 경주 게임을 시도횟수만큼 실행한다." {
         // given
         val cars = Cars(
             listOf(
-                Car(),
-                Car(),
+                Car("k5"),
+                Car("sm3"),
             ),
         )
         val tryNumber = TryNumber(2)
@@ -22,8 +24,8 @@ class RacingGameTest : StringSpec({
         val actual = racingGame.play { 4 }
 
         // then
-        actual.size shouldBe 2
-        actual[0].value.size shouldBe 2
-        actual[1].value.size shouldBe 2
+        actual.value.size shouldBe 2
+        actual.value[0].cars.size shouldBe 2
+        actual.value[1].cars.size shouldBe 2
     }
 })
