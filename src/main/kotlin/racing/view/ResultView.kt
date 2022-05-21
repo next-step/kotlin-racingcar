@@ -16,11 +16,7 @@ class ResultView(private val carRaceProperty: CarRaceProperty) {
     }
 
     private fun getForwardMoveMark(move: Int): String {
-        var forwardMark = ""
-        repeat(move) {
-            forwardMark += MARK_FORWARD_MOVE
-        }
-        return forwardMark
+        return MARK_FORWARD_MOVE.repeat(move)
     }
 
     fun printWinner() {
