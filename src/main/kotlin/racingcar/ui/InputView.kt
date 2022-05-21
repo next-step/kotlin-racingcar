@@ -3,12 +3,12 @@ package racingcar.ui
 class InputView() {
     fun readCarCount(): Int {
         println(CAR_COUNT_TEXT)
-        return readLine()!!.toInt()
+        return readln().toInt()
     }
 
     fun readTryCount(): Int {
         println(TRY_COUNT_TEXT)
-        return readLine()!!.toInt()
+        return readln().toInt()
     }
 
     companion object {

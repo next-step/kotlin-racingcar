@@ -5,7 +5,7 @@ enum class Operation(val exp: String, val compute: (Int, Int) -> Int) {
     MINUS("-", { v1, v2 -> v1 - v2 }),
     MULTIPLY("*", { v1, v2 -> v1 * v2 }),
     DIVIDE("/", { v1, v2 ->
-        if (v2 == 0) throw IllegalArgumentException()
+        require(v2 != 0)
         v1 / v2
     }),
     ;

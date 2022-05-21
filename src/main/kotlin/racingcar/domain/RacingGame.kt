@@ -7,12 +7,20 @@ class RacingGame(carCnt: Int, val tryCnt: Int) {
         repeat(carCnt) { cars.add(Car()) }
     }
 
-    fun execute(method: () -> Int): List<Car> {
-        repeat(tryCnt) {
-            cars.forEach {
-                it.move(method())
-            }
+    fun execute(method: () -> Int): List<CarHistory> {
+        val histories: MutableList<CarHistory> = mutableListOf()
+        cars.forEach {
+            val carHistory = it.move(method())
+            histories.add(carHistory)
         }
-        return cars.toList()
+        return histories.toList()
+    }
+
+    fun play(method: () -> Int): List<List<CarHistory>> {
+        val recordList: MutableList<List<CarHistory>> = mutableListOf()
+        repeat(tryCnt) {
+            recordList.add(execute(method))
+        }
+        return recordList.toList()
     }
 }

@@ -1,19 +1,16 @@
 package racingcar.domain
 
-class Car(var position: Int = 0) {
-    var histories: MutableList<CarHistory> = mutableListOf()
-        private set
-
-    init {
-        histories.add(CarHistory(position, false))
-    }
-
-    fun move(condition: Int) {
-        if (condition in 4..9) {
+class Car(private var position: Int = 0) {
+    fun move(condition: Int): CarHistory {
+        if (condition in MOVE_CONDITION_RANGE) {
             position++
         }
-        histories.add(CarHistory(position, true))
+        return CarHistory(position)
+    }
+
+    companion object {
+        val MOVE_CONDITION_RANGE = 4..9
     }
 }
 
-class CarHistory(var position: Int, val isChange: Boolean)
+class CarHistory(var position: Int)

@@ -1,18 +1,14 @@
 package racingcar.ui
 
-import racingcar.domain.Car
+import racingcar.domain.CarHistory
 
 class ResultView {
 
-    fun execute(cars: List<Car>, tryCnt: Int) {
+    fun view(playRecord: List<List<CarHistory>>) {
         println(START_TEXT)
-        repeat(tryCnt) { retryIndex ->
-            cars.forEach { car ->
-                if (retryIndex == 0) print(POSITION_TEXT)
-                val currentCarHistory = car.histories[retryIndex]
-                if (retryIndex > 0 && currentCarHistory.isChange) {
-                    printPosition(currentCarHistory.position)
-                }
+        playRecord.forEach { round ->
+            round.forEach { carHistory ->
+                printPosition(carHistory.position)
                 newLine()
             }
             newLine()
@@ -23,7 +19,7 @@ class ResultView {
     private fun newLine() = println(NEWLINE_TEXT)
 
     companion object {
-        const val START_TEXT = "\n실행결과"
+        const val START_TEXT = "실행결과"
         const val POSITION_TEXT = "-"
         const val NEWLINE_TEXT = ""
     }
