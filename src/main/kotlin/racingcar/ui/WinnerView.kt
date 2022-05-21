@@ -1,12 +1,16 @@
 package racingcar.ui
 
 import racingcar.game.GameResult
-import racingcar.painter.GameWinnerPainter
+import racingcar.game.GameWinner
 
 object WinnerView {
+    private const val WINNER_NAME_SEPARATOR = ","
 
     fun run(results: List<GameResult>) {
         println()
-        println(GameWinnerPainter.from(results))
+
+        val winners = GameWinner.of(results)
+
+        println("${winners.joinToString(WINNER_NAME_SEPARATOR)} 가 최종 우승했습니다.")
     }
 }

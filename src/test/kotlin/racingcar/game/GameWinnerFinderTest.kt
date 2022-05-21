@@ -1,21 +1,20 @@
-package racingcar.painter
+package racingcar.game
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import racingcar.car.Car
 import racingcar.car.Position
-import racingcar.game.GameResult
 
-internal class GameWinnerPainterTest : StringSpec({
+internal class GameWinnerFinderTest : StringSpec({
 
     "게임 결과가 없으면 에러가 발생한다" {
         shouldThrow<NoSuchElementException> {
-            GameWinnerPainter.from(emptyList())
+            GameWinner.of(emptyList())
         }
     }
 
-    "승자의 이름들을 반환한다" {
+    "주어진 게임 결과에서 우승자들을 반환한다" {
         // given
         val makeCar = { name: String, position: Int ->
             object : Car {
@@ -34,9 +33,9 @@ internal class GameWinnerPainterTest : StringSpec({
         )
 
         // when
-        val winner = GameWinnerPainter.from(listOf(results))
+        val winners = GameWinner.of(listOf(results))
 
         // then
-        winner shouldBe "car2, car4가 최종 우승했습니다."
+        winners.map { it.name() } shouldBe listOf("car2", "car4")
     }
 })
