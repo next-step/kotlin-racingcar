@@ -6,13 +6,13 @@ class WinnerJudge(private val carRaceProperty: CarRaceProperty) {
 
     fun getWinnerCarNames(): String {
         return carRaceProperty.cars
-            .filter { it.getMoveCount() == getWinnerCount() }
-            .joinToString(",") { it.getCarName() }
+            .filter { it.moveCount == getWinnerCount() }
+            .joinToString(",") { it.carName }
     }
 
     private fun getWinnerCount(): Int {
         return carRaceProperty.cars
-            .maxByOrNull { it.getMoveCount() }!!
-            .getMoveCount()
+            .maxByOrNull { it.moveCount }!!
+            .moveCount
     }
 }

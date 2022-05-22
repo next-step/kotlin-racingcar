@@ -14,6 +14,6 @@ class CarRaceTest {
 
         carRaceProperty.cars[0].moveForward()
 
-        assertThat(carRaceProperty.cars[0].getMoveCount()).isEqualTo(1)
+        assertThat(carRaceProperty.cars[0].moveCount).isEqualTo(1)
     }
 }

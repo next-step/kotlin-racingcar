@@ -12,7 +12,7 @@ class ResultView(private val carRaceProperty: CarRaceProperty) {
     }
 
     private fun printResultByCar(car: Car) {
-        println("${car.getCarName()} : ${getForwardMoveMark(car.getMoveCount())}")
+        println("${car.carName} : ${getForwardMoveMark(car.moveCount)}")
     }
 
     private fun getForwardMoveMark(move: Int): String {
