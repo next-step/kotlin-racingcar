@@ -6,26 +6,20 @@ object Racing {
     private const val MIN_PIVOT_VALUE = 0
     private const val MAX_PIVOT_VALUE = 10
 
-    fun start(carNumber: Int, tryRound: Int): List<MutableList<Int>> {
-        val racingCars = List(carNumber) { RacingCar(tryRound) }
+    fun start(carNames: List<String>, tryRound: Int): List<RacingCar> {
+        val racingCars: List<RacingCar> = carNames.map { RacingCar(it) }
 
         repeat(tryRound) {
-            for (car in racingCars) {
-                car.race(createMovePoint())
-            }
+            race(racingCars)
         }
 
-        return distances(racingCars)
+        return racingCars
     }
 
-    private fun distances(racingCars: List<RacingCar>): ArrayList<MutableList<Int>> {
-        val distances = ArrayList<MutableList<Int>>()
-
+    private fun race(racingCars: List<RacingCar>) {
         for (car in racingCars) {
-            distances.add(car.getDistances())
+            car.race(createMovePoint())
         }
-
-        return distances
     }
 
     private fun createMovePoint(): Int {

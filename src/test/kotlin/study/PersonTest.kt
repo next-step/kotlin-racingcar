@@ -8,8 +8,8 @@ class PersonTest {
     fun `이름 붙인 인자`() {
         var people = listOf(
             Person("서정국", 33, "꾸기"),
-            Person("서정국", 33, nickname="꾸기"),
-            Person(name="서정국", age=33, nickname="꾸기")
+            Person("서정국", 33, nickname = "꾸기"),
+            Person(name = "서정국", age = 33, nickname = "꾸기")
         )
         assertThat(people[0].name).isEqualTo("서정국")
         assertThat(people[1].name).isEqualTo("서정국")
