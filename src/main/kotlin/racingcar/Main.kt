@@ -13,7 +13,7 @@ fun main() {
 
     val random: NumberGenerator = RandomNumberGenerator()
 
-    val racingGame = RacingGame(carNames, numOfMove, random)
+    val racingGame = RacingGame(numOfMove, carNames, random)
     val result = racingGame.play()
 
     val outBoundView = OutBoundView(::print)

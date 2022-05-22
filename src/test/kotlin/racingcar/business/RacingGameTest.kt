@@ -40,7 +40,7 @@ class RacingGameTest : DescribeSpec({
 
                 val expectedWinner = listOf("car1", "car2", "car3")
 
-                val result = RacingGame(listOf("car1", "car2", "car3"), 2, TestRandomNumberGenerator())
+                val result = RacingGame(2, listOf("car1", "car2", "car3"), TestRandomNumberGenerator())
                     .play()
 
                 result.records shouldBe expectedGameRecord.records
@@ -76,7 +76,7 @@ class RacingGameTest : DescribeSpec({
 
                 val expectedWinner = listOf("car1", "car2", "car3")
 
-                val result = RacingGame(listOf("car1", "car2", "car3"), 2, TestRandomNumberGenerator())
+                val result = RacingGame(2, listOf("car1", "car2", "car3"), TestRandomNumberGenerator())
                     .play()
 
                 result.records shouldBe expectedGameRecord.records
@@ -92,7 +92,7 @@ class RacingGameTest : DescribeSpec({
         context("플레이어가 0 명 일 때") {
             it("예외를 던진다.") {
                 val exception = shouldThrow<IllegalArgumentException> {
-                    RacingGame(listOf(), 1, random)
+                    RacingGame(1, listOf(), random)
                 }
                 exception.message shouldBe "플레이어는 조건은 최소 1명 이상입니다."
             }
@@ -100,15 +100,15 @@ class RacingGameTest : DescribeSpec({
 
         context("플레이어가 1 명 이상 일 때") {
             it("객체 생성을 한다.") {
-                RacingGame(listOf("car1"), 1, random)
-                RacingGame(listOf("car1", "car2"), 1, random)
+                RacingGame(1, listOf("car1"), random)
+                RacingGame(1, listOf("car1", "car2"), random)
             }
         }
 
         context("이동 횟수가 0 명 일 때") {
             it("예외를 던진다.") {
                 val exception = shouldThrow<IllegalArgumentException> {
-                    RacingGame(listOf("car1"), 0, random)
+                    RacingGame(0, listOf("car1"), random)
                 }
                 exception.message shouldBe "이동 횟수 조건은 최소 1번 이상입니다."
             }
@@ -116,8 +116,8 @@ class RacingGameTest : DescribeSpec({
 
         context("이동 횟수가 1 명 이상 일 때") {
             it("객체 생성을 한다.") {
-                RacingGame(listOf("car1"), 1, random)
-                RacingGame(listOf("car1"), 2, random)
+                RacingGame(1, listOf("car1"), random)
+                RacingGame(2, listOf("car1"), random)
             }
         }
     }

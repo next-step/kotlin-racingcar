@@ -6,12 +6,13 @@ import racingcar.domain.collection.RoundRecord
 import racingcar.utils.NumberGenerator
 
 class RacingGame(
-    private val carNames: List<String>,
     private val numOfMove: Int,
-    private val numberGenerator: NumberGenerator,
-    numOfPlayer: Int = carNames.size
+    carNames: List<String>,
+    numberGenerator: NumberGenerator
 ) {
     init {
+        val numOfPlayer: Int = carNames.size
+
         require(numOfPlayer > 0) {
             "플레이어는 조건은 최소 1명 이상입니다."
         }
