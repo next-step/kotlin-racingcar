@@ -5,9 +5,10 @@ object RaceHost {
     fun play(rounds: Rounds, numberOfParticipants: NumberOfParticipants): RacingResults {
         var cars: Cars = Cars.initCars(numberOfParticipants.value)
         var racingResults = RacingResults()
-        repeat(rounds.value) {
-            cars = cars.moveForwardAll(RandomGasStation.refuels(numberOfParticipants.value))
-            racingResults = racingResults.add(RacingResult.of(round = it + 1, cars = cars))
+        (1..rounds.value).forEach() { round ->
+            val refuels = RandomGasStation.refuels(numberOfParticipants.value)
+            cars = cars.moveForwardAll(refuels = refuels)
+            racingResults = racingResults.add(RacingResult.of(round = round, cars = cars))
         }
         return racingResults
     }
