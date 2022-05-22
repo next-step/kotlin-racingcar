@@ -1,12 +1,12 @@
 package racingcar.presentation
 
 class InBoundView(
-    private val reader: () -> String,
-    private val printer: (String) -> Unit
+    private val readLine: () -> String,
+    private val print: (String) -> Unit
 ) {
     fun requestCarNames(): List<String> {
-        printer("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n")
-        val names: String = reader()
+        print("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n")
+        val names: String = readLine()
         require(names.isNotBlank()) {
             "경주할 자동차 이름이 입력 되지 않았습니다."
         }
@@ -15,12 +15,12 @@ class InBoundView(
     }
 
     fun requestNumberOfMove(): Int {
-        printer("시도할 횟수는 몇 회인가요?: ")
+        print("시도할 횟수는 몇 회인가요?: ")
         return readText()
     }
 
     private fun readText(): Int {
-        val number: String = reader()
+        val number: String = readLine()
         return runCatching { number.toInt() }
             .getOrElse { throw IllegalArgumentException() }
     }
