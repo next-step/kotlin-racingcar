@@ -14,7 +14,7 @@ class CarNames(val values: List<CarName>) {
         fun of(carNames: String): CarNames {
             validateCarNames(carNames)
             val splitCarNames: List<String> = carNames.split(NAMES_DELIMITER)
-            return CarNames(values = List(splitCarNames.size) { CarName(splitCarNames[it]) })
+            return CarNames(values = List(splitCarNames.size) { CarName.of(splitCarNames[it].trim()) })
         }
 
         private fun validateCarNames(carNames: String) {
