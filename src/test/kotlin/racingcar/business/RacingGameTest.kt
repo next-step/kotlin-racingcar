@@ -9,7 +9,7 @@ import racingcar.domain.collection.RoundRecord
 import racingcar.utils.NumberGenerator
 import racingcar.utils.RandomNumberGenerator
 
-class RacingContextTest : DescribeSpec({
+class RacingGameTest : DescribeSpec({
     describe("play 메서드") {
         context("랜덤 값이 4 이상일 때") {
             class TestRandomNumberGenerator : NumberGenerator {
