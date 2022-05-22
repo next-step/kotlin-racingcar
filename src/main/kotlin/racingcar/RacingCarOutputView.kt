@@ -8,6 +8,11 @@ object RacingCarOutputView {
             println()
         }
         println("====== 경주 종료 ======")
+        outputWinners(racingResults)
+    }
+
+    private fun outputWinners(racingResults: RacingResults) {
+        println("${racingResults.winners().joinToString { it.name() }}가 최종 우승했습니다.")
     }
 
     private fun outputRacingResult(racingResult: RacingResult) {
