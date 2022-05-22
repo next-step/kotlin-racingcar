@@ -2,6 +2,7 @@ package racing
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
+import racing.view.RacingCar
 
 class RacingCarTest {
     @Test

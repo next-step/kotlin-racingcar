@@ -1,4 +1,4 @@
-package racing
+package racing.view
 
 class RacingCar(val name: String) {
     private val _distances = mutableListOf<Int>()

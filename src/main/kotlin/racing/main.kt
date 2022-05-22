@@ -1,5 +1,7 @@
 package racing
 
+import racing.view.RacingView
+
 const val DELIMITER = ","
 fun main() {
     try {

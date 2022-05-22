@@ -1,4 +1,4 @@
-package racing
+package racing.view
 
 object RacingView {
     private const val DISPLAY_NUMBER = 1

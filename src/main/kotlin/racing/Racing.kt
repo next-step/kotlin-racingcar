@@ -1,5 +1,6 @@
 package racing
 
+import racing.view.RacingCar
 import kotlin.random.Random
 
 object Racing {
