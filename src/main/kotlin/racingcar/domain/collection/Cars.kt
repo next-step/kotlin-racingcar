@@ -28,9 +28,9 @@ class Cars(
     companion object {
         fun generateCars(names: List<String>, numberGenerator: NumberGenerator): Cars {
             val cars = mutableListOf<Car>()
-            names.forEach { carName ->
-                cars.add(Car(carName, numberGenerator))
-            }
+
+            names.map { carName -> Car(carName, numberGenerator) }
+                .forEach { car -> cars.add(car) }
 
             return Cars(cars)
         }
