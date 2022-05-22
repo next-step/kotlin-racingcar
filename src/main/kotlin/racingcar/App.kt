@@ -16,12 +16,11 @@ fun main() {
                 .map { carName ->
                     Car(
                         name = carName,
-                        movingStrategy = RandomValueMovingStrategy()
+                        movingStrategy = RandomValueMovingStrategy((1..9).random())
                     )
                 }
                 .let(::Cars)
         }
     )
-
     racingGameController.start()
 }

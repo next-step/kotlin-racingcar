@@ -1,9 +1,15 @@
 package racingcar.model
 
-class RandomValueMovingStrategy : MovingStrategy {
+data class RandomValueMovingStrategy(val number: Int) : MovingStrategy {
+
+    init {
+        require(number in MIN_BOUND..MAX_BOUND) {
+            throw IllegalArgumentException("1과 9사이의 값만을 받아야 합니다.")
+        }
+    }
 
     override fun forwardMovable(): Boolean {
-        return (1..9).random() >= FORWARD_NUM
+        return number >= FORWARD_NUM
     }
 
     companion object {
