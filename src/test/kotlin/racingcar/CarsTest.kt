@@ -1,10 +1,11 @@
 package racingcar
 
 import io.kotest.core.spec.style.FunSpec
+import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
 
 internal class CarsTest : FunSpec({
-    test("move 함수를 호출해, 연료 값들을 가지고 자동차들을 움직이게 시도할 수 있다.") {
+    test("연료 값들을 가지고 자동차들을 움직이게 시도할 수 있다.") {
         // given
         val cars = Cars(listOf(Car(name = CarName.of("charlie")), Car(name = CarName.of("brown"))))
 
@@ -25,5 +26,22 @@ internal class CarsTest : FunSpec({
 
         // then
         cars.value.size shouldBe 4
+    }
+
+    test("가장 멀리 이동한 자동차들을 반환한다.") {
+        // given
+        val cars = Cars(
+            listOf(
+                Car(5, CarName.of("charlie")),
+                Car(4, CarName.of("brown")),
+                Car(5, CarName.of("aaa"))
+            )
+        )
+
+        // when
+        val sut = cars.longestMovedCars()
+
+        // then
+        sut.map { it.name() }.shouldContainExactly("charlie", "aaa")
     }
 })
