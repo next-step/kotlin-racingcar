@@ -1,14 +1,14 @@
 package _3_racing_car.domain
 
-data class Position(var value: Int) {
+class Position(value: Int) {
+    var value = value
+        private set
 
     init {
         validate(value)
     }
 
-    private fun validate(value: Int) {
-        require(value >= INIT_POSITION) { "유효하지 않은 값입니다. value=$value" }
-    }
+    private fun validate(value: Int) = require(value >= INIT_POSITION) { "유효하지 않은 값입니다. value=$value" }
 
     fun forward(value: Int = PLUS_POSITION) {
         this.value += value
