@@ -1,8 +1,9 @@
-package racing.model
+package racing.domain.vo
 
 import racing.exception.CarNameException
 
-data class Name(val value: String) {
+@JvmInline
+value class Name(val value: String) {
     init {
         if (value.trim().length !in NAME_LENGTH_RANGE) throw CarNameException(INVALID_CAR_NAME_LENGTH)
     }

@@ -1,6 +1,8 @@
-package racing.model
+package racing.domain
 
-import racing.Movable
+import racing.domain.vo.CarMoveResult
+import racing.domain.vo.Name
+import racing.domain.vo.Position
 
 class Car(private val name: Name, private var position: Position) {
     fun move(movable: Movable): CarMoveResult {

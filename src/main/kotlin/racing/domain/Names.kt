@@ -1,5 +1,6 @@
-package racing.model
+package racing.domain
 
+import racing.domain.vo.Name
 import racing.exception.CarsNameException
 
 class Names(val names: List<Name>) {

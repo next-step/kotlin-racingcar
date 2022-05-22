@@ -1,5 +1,6 @@
 package racing
 
+import racing.domain.CarRacingGame
 import racing.ui.InputView
 import racing.ui.ResultView
 

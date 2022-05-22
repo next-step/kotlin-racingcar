@@ -1,4 +1,4 @@
-package racing
+package racing.domain
 
 object RandomGenerator {
     private const val MIN_BOUND = 0
