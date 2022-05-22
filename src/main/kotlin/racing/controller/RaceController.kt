@@ -1,10 +1,10 @@
-package step4
+package racing.controller
 
-object RaceRunner {
-    @JvmStatic
-    fun main(args: Array<String>) {
-        run()
-    }
+import racing.model.Race
+import racing.view.InputView
+import racing.view.OutputView
+
+object RaceController {
 
     fun run() {
         val cars = InputView.getCars()

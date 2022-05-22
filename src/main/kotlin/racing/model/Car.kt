@@ -1,8 +1,8 @@
-package step3
+package racing.model
 
-class Car private constructor(val position: Int) {
+class Car private constructor(val name: String, val position: Int) {
 
-    fun move(): Car = Car(position + 1)
+    fun move(): Car = Car(name, position + 1)
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -10,17 +10,21 @@ class Car private constructor(val position: Int) {
 
         other as Car
 
+        if (name != other.name) return false
         if (position != other.position) return false
 
         return true
     }
 
     override fun hashCode(): Int {
-        return position
+        var result = name.hashCode()
+        result = 31 * result + position
+        return result
     }
 
     companion object {
         private const val START_POSITION = 1
-        fun create(): Car = Car(START_POSITION)
+
+        fun create(name: String): Car = Car(name, START_POSITION)
     }
 }

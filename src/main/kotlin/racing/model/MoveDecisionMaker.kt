@@ -1,4 +1,4 @@
-package step3
+package racing.model
 
 import kotlin.random.Random
 
