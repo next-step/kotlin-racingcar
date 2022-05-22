@@ -2,7 +2,11 @@ package racing
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 import racing.car.Car
+import racing.exception.CarNameLengthExcessException
+import racing.validation.CarRaceValidation
 
 class CarTest {
 
@@ -18,5 +22,14 @@ class CarTest {
         val movePossibleCar = Car("A", 0)
 
         Assertions.assertThat(movePossibleCar.canMoveForward(7)).isEqualTo(true)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["", " ", "Porsche"])
+    fun `자동차 이름이 입력 범위에 없는 경우 CarNameLengthExcessException 발생`(carName: String) {
+        val carRaceValidation = CarRaceValidation()
+
+        Assertions.assertThatThrownBy { carRaceValidation.validateCarName(listOf(carName)) }
+            .isInstanceOf(CarNameLengthExcessException::class.java)
     }
 }
