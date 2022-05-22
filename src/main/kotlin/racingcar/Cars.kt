@@ -8,13 +8,13 @@ value class Cars(val value: List<Car>) {
         return Cars(carsAndRefuels)
     }
 
-    fun distancesMoved(): List<Int> {
-        return value.map { it.distanceMoved }
+    fun size(): Int {
+        return value.size
     }
 
     companion object {
-        fun initCars(numberOfParticipants: Int): Cars {
-            return Cars(List(numberOfParticipants) { Car() })
+        fun initCars(carNames: CarNames): Cars {
+            return Cars(List(size = carNames.size()) { Car(name = carNames.get(it)) })
         }
     }
 }

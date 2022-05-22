@@ -1,10 +1,14 @@
 package racingcar
 
-class RacingResult(val round: Int, val distancesMoved: List<Int>) {
+class RacingResult(val round: Int, private val cars: Cars) {
+
+    fun carsResult(): List<Car> {
+        return cars.value
+    }
 
     companion object {
         fun of(round: Int, cars: Cars): RacingResult {
-            return RacingResult(round, cars.distancesMoved())
+            return RacingResult(round, cars)
         }
     }
 }

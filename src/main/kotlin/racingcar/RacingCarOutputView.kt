@@ -11,10 +11,18 @@ object RacingCarOutputView {
     }
 
     private fun outputRacingResult(racingResult: RacingResult) {
-        println("라운드 - [${racingResult.round}] 결과")
-        racingResult.distancesMoved.forEach() {
-            println(MOVED_SYMBOL.repeat(it))
+        outputRacingRound(racingResult)
+        outputRacingCarsInfo(racingResult)
+    }
+
+    private fun outputRacingCarsInfo(racingResult: RacingResult) {
+        racingResult.carsResult().forEach() { carResult ->
+            println("${carResult.name()} : ${MOVED_SYMBOL.repeat(carResult.distanceMoved)}")
         }
+    }
+
+    private fun outputRacingRound(racingResult: RacingResult) {
+        println("라운드[${racingResult.round}] 결과")
     }
 
     private const val MOVED_SYMBOL = "-"

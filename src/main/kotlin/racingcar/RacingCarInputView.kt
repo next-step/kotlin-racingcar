@@ -2,9 +2,9 @@ package racingcar
 
 object RacingCarInputView {
     fun input(): RacingCarRequest {
-        print("경주에 참여할 자동차 대수는 몇 대인가요? ")
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분). ")
         val carNamesInput = readLine()
-        print("경주는 몇 라운드를 진행할 것인가요? ")
+        println("경주는 몇 라운드를 진행할 것인가요? ")
         val roundsInput = readLine()
         return RacingCarRequest.of(carNames = carNamesInput, rounds = roundsInput)
     }

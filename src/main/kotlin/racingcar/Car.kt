@@ -1,10 +1,14 @@
 package racingcar
 
-class Car(val distanceMoved: Int = 0) {
+class Car(val distanceMoved: Int = 0, val name: CarName) {
+
+    fun name(): String {
+        return name.value
+    }
 
     fun moveForward(fuel: Int): Car {
         if (isEnoughFuelToMove(fuel)) {
-            return Car(this.distanceMoved.inc())
+            return Car(this.distanceMoved.inc(), this.name)
         }
         return this
     }
