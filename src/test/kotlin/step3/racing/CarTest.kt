@@ -4,6 +4,7 @@ import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
+import step3.racing.domain.Car
 
 class CarTest : DescribeSpec({
     describe("run") {

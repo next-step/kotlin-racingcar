@@ -2,21 +2,27 @@ package step3.racing
 
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.types.shouldBeInstanceOf
+import step3.racing.domain.RacingTrack
+import step3.racing.util.StubRandomGenerator
 
 class RacingTrackTest : DescribeSpec({
-    describe("생성") {
-        it("생성시 racerCount 만큼 Car 를 생성한다. ") {
-            val racers = listOf("a", "b", "c", "d")
+    describe("start") {
+        it("레이싱 경주의 히스토리를 저장한다.") {
+            val racers = listOf("a", "b", "c")
+            val times = 2
+            val randomGenerator = StubRandomGenerator(mutableListOf(10, 0, 0, 10, 0, 0))
+            val racingTrack = RacingTrack(racers, times, randomGenerator)
 
-            val racingTrack = RacingTrack(racers, 3, RandomGenerator)
+            racingTrack.start()
 
-            racingTrack.racers.also {
-                it.size shouldBe racers.size
-                it.map { car ->
-                    car.shouldBeInstanceOf<Car>()
-                }
-            }
+            val allHistory = racingTrack.raceHistory.getAllHistory()
+            allHistory.size shouldBe times
+            allHistory[0].cars[0].distance shouldBe 1
+            allHistory[0].cars[1].distance shouldBe 0
+            allHistory[0].cars[2].distance shouldBe 0
+            allHistory[1].cars[0].distance shouldBe 2
+            allHistory[1].cars[1].distance shouldBe 0
+            allHistory[1].cars[2].distance shouldBe 0
         }
     }
 })

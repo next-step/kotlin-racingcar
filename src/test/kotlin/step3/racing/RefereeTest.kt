@@ -3,6 +3,8 @@ package step3.racing
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.shouldBe
+import step3.racing.domain.Car
+import step3.racing.domain.Referee
 
 class RefereeTest : DescribeSpec({
     describe("findWinnerNames") {

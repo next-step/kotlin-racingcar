@@ -1,4 +1,6 @@
-package step3.racing
+package step3.racing.view
+
+import step3.racing.domain.RaceHistory
 
 object ResultView {
     fun showHistory(raceHistory: RaceHistory) {

@@ -3,6 +3,7 @@ package step3.racing
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
+import step3.racing.view.InputView
 
 class InputViewTest : DescribeSpec({
     describe("getInt()") {

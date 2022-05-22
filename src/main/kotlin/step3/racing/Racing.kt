@@ -1,5 +1,11 @@
 package step3.racing
 
+import step3.racing.domain.RacingTrack
+import step3.racing.domain.Referee
+import step3.racing.util.RandomGenerator
+import step3.racing.view.InputView
+import step3.racing.view.ResultView
+
 private const val NAME_SEPARATOR = ", "
 private const val NAME_MAX_LENGTH = 5
 fun main() {
@@ -8,7 +14,7 @@ fun main() {
     println("시도할 횟수는 몇 회인가요?")
     val racingTime = InputView.getInt(readLine())
 
-    val racingTrack = RacingTrack(racerNames, racingTime, RandomGenerator)
+    val racingTrack = RacingTrack(racerNames, racingTime, RandomGenerator())
     racingTrack.start()
 
     val raceHistory = racingTrack.raceHistory

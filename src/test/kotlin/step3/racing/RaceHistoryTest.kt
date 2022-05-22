@@ -3,6 +3,9 @@ package step3.racing
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
+import step3.racing.domain.Car
+import step3.racing.domain.RaceHistory
+import step3.racing.domain.Round
 
 class RaceHistoryTest : DescribeSpec({
     describe("push") {
@@ -32,7 +35,8 @@ class RaceHistoryTest : DescribeSpec({
 
             val allHistory = raceHistory.getAllHistory()
             allHistory.size shouldBe 1
-            allHistory[0].cars[0] shouldBe car
+            allHistory[0].cars[0].name shouldBe "name"
+            allHistory[0].cars[0].distance shouldBe 0
         }
     }
 })

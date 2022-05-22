@@ -1,4 +1,4 @@
-package step3.racing
+package step3.racing.domain
 
 class RaceHistory(private val round: Int) {
     private val history: MutableList<Round> = mutableListOf()

@@ -1,4 +1,4 @@
-package step3.racing
+package step3.racing.domain
 
 object Referee {
     fun findWinnerNames(racers: List<Car>): List<String> {

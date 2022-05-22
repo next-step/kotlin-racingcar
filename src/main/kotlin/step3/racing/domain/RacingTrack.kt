@@ -1,4 +1,6 @@
-package step3.racing
+package step3.racing.domain
+
+import step3.racing.util.RandomGenerator
 
 class RacingTrack(
     racerNames: List<String>,
