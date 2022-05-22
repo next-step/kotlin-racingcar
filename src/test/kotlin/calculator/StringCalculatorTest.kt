@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.NullAndEmptySource
-import org.junit.jupiter.params.provider.NullSource
 import org.junit.jupiter.params.provider.ValueSource
 import java.lang.IllegalArgumentException
 
@@ -21,7 +20,7 @@ class StringCalculatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["1", "1 + 2 -"])
-    fun `예외_잘못된 형식의 연산식이 주어지면 IllegalArgumentException throw`(inputString: String) {
+    fun `예외_잘못된 연산식은 IllegalArgumentException throw`(inputString: String) {
         assertThrows(IllegalArgumentException::class.java) {
             StringCalculator().calculate(inputString)
         }
@@ -29,7 +28,7 @@ class StringCalculatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["1 + 1 & 0", "1 % 2 - 1"])
-    fun `예외_잘못된 연산기호인 경우 IllegalArgumentException throw`(inputString: String) {
+    fun `예외_정의되지 않은 연산기호는 IllegalArgumentException throw`(inputString: String) {
         assertThrows(IllegalArgumentException::class.java) {
             StringCalculator().calculate(inputString)
         }
@@ -37,7 +36,7 @@ class StringCalculatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["1 + 1 - a", "$ * 2 - 1"])
-    fun `예외_사칙 숫자가 아닌 경우 IllegalArgumentException throw`(inputString: String) {
+    fun `예외_사칙 숫자가 아니면 IllegalArgumentException throw`(inputString: String) {
         assertThrows(IllegalArgumentException::class.java) {
             StringCalculator().calculate(inputString)
         }
@@ -78,4 +77,3 @@ class StringCalculatorTest {
         assertEquals(expected, actual)
     }
 }
-
