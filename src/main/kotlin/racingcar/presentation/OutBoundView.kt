@@ -1,7 +1,7 @@
 package racingcar.presentation
 
 import racingcar.domain.GameResult
-import racingcar.domain.Record
+import racingcar.domain.collection.RoundRecord
 
 class OutBoundView(
     private val printer: (String) -> Unit
@@ -12,14 +12,15 @@ class OutBoundView(
         printer("${result.winners.joinToString()}가 최종 우승했습니다.")
     }
 
-    private fun displayResultDetails(result: List<Record>) {
-        result.forEach { player ->
-            printer(player.carName + " : ")
-            repeat(player.position) {
-                printer(DISPLAY_MOVEMENT)
+    private fun displayResultDetails(result: RoundRecord) {
+        result.roundRecord
+            .forEach { player ->
+                printer(player.carName + " : ")
+                repeat(player.position) {
+                    printer(DISPLAY_MOVEMENT)
+                }
+                disPlayEmptyLine()
             }
-            disPlayEmptyLine()
-        }
         disPlayEmptyLine()
     }
 

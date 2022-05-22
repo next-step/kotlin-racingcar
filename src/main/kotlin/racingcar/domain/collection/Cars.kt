@@ -11,14 +11,14 @@ class Cars(
         cars.forEach(Car::run)
     }
 
-    fun getCarRecords(): List<Record> {
+    fun getCarRecords(): RoundRecord {
         val records = mutableListOf<Record>()
 
         getPositions().forEach { position ->
             records.add(Record(position.first, position.second))
         }
 
-        return records
+        return RoundRecord(records)
     }
 
     private fun getPositions(): List<Pair<String, Int>> {

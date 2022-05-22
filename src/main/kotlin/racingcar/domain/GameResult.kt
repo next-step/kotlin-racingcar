@@ -1,48 +1,35 @@
 package racingcar.domain
 
+import racingcar.domain.collection.RoundRecord
+
 class GameResult(
-    val records: List<List<Record>>
+    val records: List<RoundRecord>
 ) {
     val winners = getWinnerFrom(records.last())
 
-    private fun getWinnerFrom(gameResult: List<Record>): List<String> {
-        val organizePosition = organizePosition(gameResult)
-        val highestPosition = organizePosition.first
-        val recordByPosition = organizePosition.second
+    private fun getWinnerFrom(gameResult: RoundRecord): List<String> {
+        val recordByPosition: Map<Int, RoundRecord> = groupByPosition(gameResult)
+        val highestPosition = findMaxPosition(recordByPosition)
 
         val winner: MutableList<String> = mutableListOf()
         val records = recordByPosition[highestPosition]
 
-        records!!.forEach { record ->
-            winner.add(record.carName)
-        }
+        records!!.roundRecord
+            .forEach { record ->
+                winner.add(record.carName)
+            }
 
         return winner
     }
 
-    private fun organizePosition(gameResult: List<Record>): Pair<Int, MutableMap<Int, MutableList<Record>>> {
-        var highestPosition: Int? = null
-        val recordsByPosition: MutableMap<Int, MutableList<Record>> = mutableMapOf()
+    private fun groupByPosition(gameResult: RoundRecord): Map<Int, RoundRecord> {
+        return gameResult.roundRecord
+            .groupBy { record -> record.position }
+            .mapValues { it -> RoundRecord(it.value) }
+    }
 
-        gameResult.forEach { record ->
-            if (highestPosition == null) {
-                highestPosition = record.position
-                recordsByPosition[highestPosition!!] = mutableListOf(record)
-                return@forEach
-            }
-
-            if (highestPosition == record.position) {
-                val records = recordsByPosition[highestPosition!!]
-                records!!.add(record)
-                return@forEach
-            }
-
-            if (highestPosition!! < record.position) {
-                highestPosition = record.position
-                recordsByPosition[highestPosition!!] = mutableListOf(record)
-            }
-        }
-
-        return Pair(highestPosition!!, recordsByPosition)
+    private fun findMaxPosition(recordByPosition: Map<Int, RoundRecord>): Int {
+        return recordByPosition.keys
+            .maxOf { position -> position }
     }
 }

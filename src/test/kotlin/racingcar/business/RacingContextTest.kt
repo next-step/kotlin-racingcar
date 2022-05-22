@@ -5,6 +5,7 @@ import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 import racingcar.domain.GameResult
 import racingcar.domain.Record
+import racingcar.domain.collection.RoundRecord
 import racingcar.utils.NumberGenerator
 import racingcar.utils.RandomNumberGenerator
 
@@ -20,15 +21,19 @@ class RacingContextTest : DescribeSpec({
             it("모든 자동차는 1 x moveCount 만큼 이동하고 모두 우승자이다.") {
                 val expectedGameRecord = GameResult(
                     listOf(
-                        listOf(
-                            Record("car1", 1),
-                            Record("car2", 1),
-                            Record("car3", 1)
+                        RoundRecord(
+                            listOf(
+                                Record("car1", 1),
+                                Record("car2", 1),
+                                Record("car3", 1)
+                            )
                         ),
-                        listOf(
-                            Record("car1", 2),
-                            Record("car2", 2),
-                            Record("car3", 2)
+                        RoundRecord(
+                            listOf(
+                                Record("car1", 2),
+                                Record("car2", 2),
+                                Record("car3", 2)
+                            )
                         )
                     )
                 )
@@ -52,15 +57,19 @@ class RacingContextTest : DescribeSpec({
             it("모든 자동차는 이동하지 않고, 모두 우승자이다.") {
                 val expectedGameRecord = GameResult(
                     listOf(
-                        listOf(
-                            Record("car1", 0),
-                            Record("car2", 0),
-                            Record("car3", 0)
+                        RoundRecord(
+                            listOf(
+                                Record("car1", 0),
+                                Record("car2", 0),
+                                Record("car3", 0)
+                            )
                         ),
-                        listOf(
-                            Record("car1", 0),
-                            Record("car2", 0),
-                            Record("car3", 0)
+                        RoundRecord(
+                            listOf(
+                                Record("car1", 0),
+                                Record("car2", 0),
+                                Record("car3", 0)
+                            )
                         )
                     )
                 )

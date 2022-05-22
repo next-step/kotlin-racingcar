@@ -1,8 +1,8 @@
 package racingcar.business
 
 import racingcar.domain.GameResult
-import racingcar.domain.Record
 import racingcar.domain.collection.Cars
+import racingcar.domain.collection.RoundRecord
 import racingcar.utils.NumberGenerator
 
 class RacingGame(
@@ -24,7 +24,7 @@ class RacingGame(
     private val cars: Cars = Cars.generateCars(carNames, numberGenerator)
 
     fun play(): GameResult {
-        val result = mutableListOf<List<Record>>()
+        val result = mutableListOf<RoundRecord>()
         repeat(numOfMove) {
             cars.run()
             result.add(cars.getCarRecords())
