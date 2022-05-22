@@ -12,17 +12,8 @@ class Cars(
     }
 
     fun getCarRecords(): RoundRecord {
-        val records = mutableListOf<Record>()
-
-        getPositions().forEach { position ->
-            records.add(Record(position.first, position.second))
-        }
-
+        val records = cars.map { car -> Record(car.carName, car.position) }
         return RoundRecord(records)
-    }
-
-    private fun getPositions(): List<Pair<String, Int>> {
-        return cars.map { Pair(it.carName, it.position) }
     }
 
     companion object {
