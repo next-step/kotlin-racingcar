@@ -44,35 +44,35 @@ class StringCalculatorTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = ["1 + 2, 3", "1 + 2 + 3, 6"])
+    @CsvSource(value = ["1 + 2|3", "1 + 2 + 3|6"], delimiter = '|')
     fun `성공_덧셈연산`(inputStr: String, expected: Long) {
         val actual = StringCalculator().calculate(inputStr)
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
-    @CsvSource(value = ["3 - 2, 1", "1 - 2, -1"])
+    @CsvSource(value = ["3 - 2|1", "1 - 2|-1"], delimiter = '|')
     fun `성공_뺄셈연산`(inputStr: String, expected: Long) {
         val actual = StringCalculator().calculate(inputStr)
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
-    @CsvSource(value = ["1 * 2 * 3, 6", "1 * 0 * -1, 0", "1 * -1, -1"])
+    @CsvSource(value = ["1 * 2 * 3|6", "1 * 0 * -1|0", "1 * -1|-1"], delimiter = '|')
     fun `성공_곱셈연산`(inputStr: String, expected: Long) {
         val actual = StringCalculator().calculate(inputStr)
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
-    @CsvSource(value = ["4 / 2, 2", "5 / 2, 2", "1 / 2, 0", "2 / -1, -2"])
+    @CsvSource(value = ["4 / 2|2", "5 / 2|2", "1 / 2|0", "2 / -1|-2"], delimiter = '|')
     fun `성공_나눗셈연산`(inputStr: String, expected: Long) {
         val actual = StringCalculator().calculate(inputStr)
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
-    @CsvSource(value = ["1 - 1 + 2, 2", "1 * 7 - 1 / 2, 3"])
+    @CsvSource(value = ["1 - 1 + 2|2", "1 * 7 - 1 / 2|3"], delimiter = '|')
     fun `성공_혼합연산`(inputStr: String, expected: Long) {
         val actual = StringCalculator().calculate(inputStr)
         assertEquals(expected, actual)
