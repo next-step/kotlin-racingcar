@@ -7,6 +7,6 @@ data class Rounds(val value: Int) {
     }
 
     companion object {
-        const val MINIMUM_ROUNDS_VALUE = 1;
+        const val MINIMUM_ROUNDS_VALUE = 1
     }
 }
