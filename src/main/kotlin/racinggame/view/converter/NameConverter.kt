@@ -1,11 +1,9 @@
 package racinggame.view.converter
 
-class NameConverter : InputConverter<List<String>> {
+object NameConverter : InputConverter<List<String>> {
+    private const val DELIMITER = ","
+
     override fun convert(input: String): List<String> {
         return input.split(DELIMITER)
-    }
-
-    companion object {
-        private const val DELIMITER = ","
     }
 }
