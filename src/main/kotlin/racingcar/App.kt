@@ -7,14 +7,18 @@ import racingcar.view.Input
 import racingcar.view.Output
 
 fun main() {
-    val movingStrategy = { RandomValueMovingStrategy((0..9).random()).forwardMovable() }
 
     val racingGameController = RacingGameController(
         input = Input(),
         output = Output(),
         carFactory = { carNames ->
             carNames
-                .map { carName -> Car(name = carName, movingStrategy = movingStrategy) }
+                .map { carName ->
+                    Car(
+                        name = carName,
+                        movingStrategy = RandomValueMovingStrategy()
+                    )
+                }
                 .let(::Cars)
         }
     )
