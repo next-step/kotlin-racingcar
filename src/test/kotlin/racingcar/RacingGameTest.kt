@@ -27,7 +27,7 @@ internal class RacingGameTest {
         )
 
         val expectedResult = RacingGameResult(
-            result = List(tryNumber.number) { currentTryNumber ->
+            results = List(tryNumber.number) { currentTryNumber ->
                 RacingDataPerTry(
                     cars = Cars(
                         listOf(

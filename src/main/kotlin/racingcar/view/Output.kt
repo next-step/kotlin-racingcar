@@ -31,7 +31,7 @@ class Output {
     }
 
     fun printWinners(racingGameResult: RacingGameResult) {
-        racingGameResult.result.forEach {
+        racingGameResult.results.forEach {
             showResultPosition(it.cars)
         }
         println("${showWinners(racingGameResult.winners)} 가 최종 우승했습니다.")

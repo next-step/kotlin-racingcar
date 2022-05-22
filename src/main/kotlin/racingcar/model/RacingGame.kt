@@ -5,25 +5,24 @@ class RacingGame(
     val cars: Cars
 ) {
     fun startGame(): RacingGameResult {
-        val racingGameResult = mutableListOf<RacingDataPerTry>()
-        val finishedCars = startGame(cars, tryNumber, racingGameResult)
+        val finishedResults = startGame(cars, tryNumber, listOf())
         return RacingGameResult(
-            result = racingGameResult,
-            winners = finishedCars.findWinners()
+            results = finishedResults,
+            winners = finishedResults.last().cars.findWinners()
         )
     }
 
     private tailrec fun startGame(
         cars: Cars,
         tryNumber: TryNumber,
-        racingGameResult: MutableList<RacingDataPerTry>
-    ): Cars {
+        racingGameResult: List<RacingDataPerTry>
+    ): List<RacingDataPerTry> {
         if (tryNumber.isZero()) {
-            return cars
+            return racingGameResult
         }
+
         val movedCars = race(cars)
-        racingGameResult.add(RacingDataPerTry(cars = movedCars))
-        return startGame(movedCars, tryNumber.minus(), racingGameResult)
+        return startGame(movedCars, tryNumber.minus(), racingGameResult + RacingDataPerTry(movedCars))
     }
 
     private fun race(cars: Cars): Cars {
