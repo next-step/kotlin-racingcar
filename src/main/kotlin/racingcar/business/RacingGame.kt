@@ -1,17 +1,18 @@
 package racingcar.business
 
-import racingcar.business.dto.GameResult
-import racingcar.domain.Car
+import racingcar.domain.GameResult
 import racingcar.domain.collection.Cars
-import racingcar.property.Property
+import racingcar.domain.collection.RoundRecord
 import racingcar.utils.NumberGenerator
 
 class RacingGame(
-    private val numOfPlayer: Int,
     private val numOfMove: Int,
-    private val random: NumberGenerator
+    carNames: List<String>,
+    numberGenerator: NumberGenerator
 ) {
     init {
+        val numOfPlayer: Int = carNames.size
+
         require(numOfPlayer > 0) {
             "플레이어는 조건은 최소 1명 이상입니다."
         }
@@ -21,22 +22,15 @@ class RacingGame(
         }
     }
 
-    private val cars: Cars = Cars(
-        List(numOfPlayer) {
-            Car(
-                Property().FORWARD_THRESHOLD,
-                Property().FORWARD_DISTANCE_RANGE,
-                random
-            )
-        }
-    )
+    private val cars: Cars = Cars.generateCars(carNames, numberGenerator)
 
     fun play(): GameResult {
-        val result = mutableListOf<List<Int>>()
+        val result = mutableListOf<RoundRecord>()
         repeat(numOfMove) {
             cars.run()
-            result.add(cars.getPositions())
+            result.add(cars.getCarRecords())
         }
+
         return GameResult(result)
     }
 }

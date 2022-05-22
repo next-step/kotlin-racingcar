@@ -14,7 +14,7 @@ class CarTest : DescribeSpec({
             }
 
             it("앞으로 이동한다.") {
-                val car = Car(4, 0..9, TestRandomNumberGenerator())
+                val car = Car("carName", TestRandomNumberGenerator())
 
                 car.position shouldBe 0
 
@@ -32,7 +32,7 @@ class CarTest : DescribeSpec({
             }
 
             it("앞으로 이동하면 안된다.") {
-                val car = Car(4, 0..9, TestRandomNumberGenerator())
+                val car = Car("carName", TestRandomNumberGenerator())
 
                 car.position shouldBe 0
 
