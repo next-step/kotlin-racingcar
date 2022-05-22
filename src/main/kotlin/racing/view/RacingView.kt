@@ -1,5 +1,7 @@
 package racing.view
 
+import racing.domain.RacingCar
+
 object RacingView {
     private const val DISPLAY_NUMBER = 1
     private const val HIGHEST_SCORE_INDEX = 0

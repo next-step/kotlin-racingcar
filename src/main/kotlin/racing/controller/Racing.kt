@@ -1,6 +1,6 @@
-package racing
+package racing.controller
 
-import racing.view.RacingCar
+import racing.domain.RacingCar
 import kotlin.random.Random
 
 object Racing {
