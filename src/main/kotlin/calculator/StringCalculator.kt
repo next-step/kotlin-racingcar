@@ -8,7 +8,7 @@ class StringCalculator {
     }
 
     fun calculate(inputStr: String? = null): Long {
-        val inputList = convertStrToList(inputStr)
+        val inputList = convertStringToList(inputStr)
         val inputSize = inputList.size
         require(inputSize >= MIN_LENGTH && inputSize.isOddNumber()) { "잘못된 형식의 Input 입니다." }
         return calculateStart(inputList)
@@ -17,11 +17,12 @@ class StringCalculator {
     private fun calculateStart(inputStr: List<String>): Long {
         val numbers = fetchNumberList(inputStr)
         val operators = fetchOperatorList(inputStr)
-        var sum = numbers[0]
-        for (i in operators.indices) {
-            sum = CalculateInfo(sum, numbers[i + 1], operators[i]).doCalculate()
-        }
-        return sum
+        return numbers.reduceIndexed { index, total, number ->  operators[index - 1].calculate(total, number) }
+    }
+
+    private fun convertStringToList(inputString: String? = null): List<String> {
+        require(!inputString.isNullOrBlank()) { "Input이 비어있어요. 다시 시도해주세요." }
+        return inputString.split(" ")
     }
 
     private fun fetchOperatorList(inputStrList: List<String>): List<Operator> {
@@ -34,11 +35,6 @@ class StringCalculator {
             .map { numStr ->
                 requireNotNull(numStr.toLongOrNull()) { "숫자가 아니에요." }
             }
-    }
-
-    private fun convertStrToList(inputString: String? = null): List<String> {
-        require(!inputString.isNullOrBlank()) { "Input이 비어있어요. 다시 시도해주세요." }
-        return inputString.split(" ")
     }
 }
 
