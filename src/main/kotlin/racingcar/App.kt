@@ -16,7 +16,7 @@ fun main() {
                 .map { carName ->
                     Car(
                         name = carName,
-                        movingStrategy = RandomValueMovingStrategy((1..9).random())
+                        movingStrategy = RandomValueMovingStrategy()
                     )
                 }
                 .let(::Cars)

@@ -8,13 +8,13 @@ internal class RandomValueMovingStrategyTest {
 
     @Test
     fun `랜덤 숫자가 전진하는 조건은 4 이상이다`() {
-        val randomValueMovingStrategy = RandomValueMovingStrategy(4)
-        assertThat(randomValueMovingStrategy.forwardMovable()).isTrue
+        val randomValueMovingStrategy = RandomValueMovingStrategy()
+        assertThat(randomValueMovingStrategy.forwardMovable(4)).isTrue
     }
 
     @Test
     fun `랜덤 숫자가 전진하지 않는 조건은 4 미만이다`() {
-        val randomValueMovingStrategy = RandomValueMovingStrategy(3)
-        assertThat(randomValueMovingStrategy.forwardMovable()).isFalse
+        val randomValueMovingStrategy = RandomValueMovingStrategy()
+        assertThat(randomValueMovingStrategy.forwardMovable(3)).isFalse
     }
 }
