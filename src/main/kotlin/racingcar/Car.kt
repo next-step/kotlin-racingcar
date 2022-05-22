@@ -3,7 +3,9 @@ package racingcar
 class Car(val distanceMoved: Int = 0) {
 
     fun moveForward(fuel: Int): Car {
-        if (isEnoughFuelToMove(fuel)) return Car(this.distanceMoved.inc())
+        if (isEnoughFuelToMove(fuel)) {
+            return Car(this.distanceMoved.inc())
+        }
         return this
     }
 
