@@ -2,7 +2,8 @@ package racing.domain.vo
 
 import racing.exception.PositionException
 
-data class Position(val value: Int = START_POSITION) : Comparable<Position> {
+@JvmInline
+value class Position(val value: Int = START_POSITION) : Comparable<Position> {
     init {
         if (value < MIN_POSITION) throw PositionException(INVALID_CAR_POSITION)
     }

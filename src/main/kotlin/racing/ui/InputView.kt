@@ -1,8 +1,8 @@
 package racing.ui
 
+import racing.domain.Names
 import racing.domain.vo.CarInput
 import racing.domain.vo.Name
-import racing.domain.Names
 import racing.domain.vo.Times
 
 class InputView {

@@ -1,7 +1,7 @@
 package racing.ui
 
-import racing.domain.MoveResults
 import racing.domain.MoveResultHistory
+import racing.domain.MoveResults
 
 class ResultView(private val moveResultHistory: MoveResultHistory) {
     fun printResult() {

@@ -2,7 +2,8 @@ package racing.domain.vo
 
 import racing.exception.TimesException
 
-data class Times(val value: Int) {
+@JvmInline
+value class Times(val value: Int) {
     init {
         if (value <= 0) throw TimesException(INVALID_TIMES)
     }
