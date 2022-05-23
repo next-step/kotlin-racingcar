@@ -1,4 +1,6 @@
-package racing
+package racing.view
+
+import racing.domain.RacingCar
 
 object RacingView {
     private const val DISPLAY_NUMBER = 1
@@ -47,8 +49,8 @@ object RacingView {
     }
 
     private fun showRacingWinner(cars: List<RacingCar>) {
-        val cars = cars.map { it.name to it.distances.filter { value -> value == DISPLAY_NUMBER }.size }.sortedByDescending { it.second }
-        val highestScore = cars[HIGHEST_SCORE_INDEX].second
+        val cars = cars.map { it.name to it.distances.filter { value -> value == DISPLAY_NUMBER }.size }
+        val highestScore = cars.maxOf { it.second }
         val winners = cars.filter { it.second == highestScore }.map { it.first }
 
         println("${winners.joinToString(", ")}가 최종 우승했습니다")

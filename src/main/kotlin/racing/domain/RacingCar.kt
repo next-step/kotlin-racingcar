@@ -1,4 +1,4 @@
-package racing
+package racing.domain
 
 class RacingCar(val name: String) {
     private val _distances = mutableListOf<Int>()
