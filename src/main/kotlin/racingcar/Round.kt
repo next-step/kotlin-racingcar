@@ -7,5 +7,12 @@ class Round {
         _result.addAll(
             carList.map { it.copy(defaultDistance = it.distance) }
         )
+
+        result.maxOf { it.distance }
+    }
+
+    fun winner(): List<Car> {
+        val maxDistance = result.maxOf { it.distance }
+        return result.filter { it.distance == maxDistance }
     }
 }
