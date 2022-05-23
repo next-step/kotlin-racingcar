@@ -1,15 +1,25 @@
 package racingcar
 
-class InputView {
-    var carCount = 0
-        private set
-    var roundCount = 0
-        private set
+object InputView {
+    fun getCarNames(): List<String> {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
+        val carNames = readLine()!!.split(",")
 
-    fun excute() {
-        println("자동차 대수는 몇 대인가요?")
-        carCount = readLine()!!.toInt()
+        carNames.forEach {
+            validateCarName(it)
+        }
+
+        return carNames
+    }
+
+    fun getRoundCount(): Int {
         println("시도할 횟수는 몇 회인가요?")
-        roundCount = readLine()!!.toInt()
+        return readLine()!!.toInt()
+    }
+
+    private fun validateCarName(carName: String) {
+        if (carName.length > 5) {
+            throw IllegalArgumentException("자동차의 이름은 최대 5자를 초과할 수 없습니다.")
+        }
     }
 }

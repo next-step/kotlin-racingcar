@@ -13,12 +13,12 @@ class RaceTest {
         val roundCount = 5
 
         // when
-        race.start(carCount, roundCount)
+        val result = race.result(listOf("", "", ""), roundCount)
 
         // then
-        assertThat(race.roundList).allMatch {
+        assertThat(result).allMatch {
             isInstanceOf(it, Round::class.java)
         }
-        assertThat(race.roundList.size).isEqualTo(roundCount)
+        assertThat(result.size).isEqualTo(roundCount)
     }
 }

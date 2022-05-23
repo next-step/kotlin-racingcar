@@ -9,11 +9,15 @@ data class ResultView(val result: List<Round>) {
         result.mapIndexed { index, it ->
             roundTitle(index + 1)
             it.result.forEach {
+                print(it.name + " : ")
                 println(distanceToLetter(it.distance))
             }
 
             println()
         }
+
+        val winnerNames = result.last().winner().map { it.name }
+        println(winnerNames.joinToString(", ") + "가 최종 우승했습니다.")
     }
 
     private fun distanceToLetter(distance: Int): String {

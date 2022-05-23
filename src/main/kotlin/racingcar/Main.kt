@@ -1,14 +1,11 @@
 package racingcar
 
 fun main() {
-    val inputView = InputView()
-    inputView.excute()
-
     val race = Race()
 
-    race.start(inputView.carCount, inputView.roundCount)
+    val result = race.result(InputView.getCarNames(), InputView.getRoundCount())
 
-    val resultView = ResultView(race.roundList)
+    val resultView = ResultView(result)
     resultView.title()
     resultView.printResult()
 }

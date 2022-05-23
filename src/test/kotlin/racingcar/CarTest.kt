@@ -8,6 +8,15 @@ import kotlin.random.Random
 
 class CarTest {
     @Test
+    fun `자동차의 이름을 정할 수 있다`() {
+        // given
+        val car = Car("vista")
+
+        // then
+        assertThat(car.name).isEqualTo("vista")
+    }
+
+    @Test
     fun `자동차의 처음 이동거리는 0이다`() {
         // given
         val car = Car()
@@ -23,7 +32,7 @@ class CarTest {
         val car = Car()
 
         // when
-        car.moveRandom(int)
+        car.move(int)
 
         // then
         assertThat(car.distance).isEqualTo(0)
@@ -35,7 +44,7 @@ class CarTest {
         val car = Car()
 
         // when
-        car.moveRandom(Random.nextInt(4, Int.MAX_VALUE))
+        car.move(Random.nextInt(4, Int.MAX_VALUE))
 
         // then
         assertThat(car.distance).isEqualTo(1)

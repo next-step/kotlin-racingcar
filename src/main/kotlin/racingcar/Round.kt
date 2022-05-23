@@ -1,12 +1,18 @@
 package racingcar
 
 class Round {
-    var result = listOf<Car>()
-        private set
-
+    private val _result = mutableListOf<Car>()
+    val result: List<Car> get() = _result.toList()
     fun saveResult(carList: List<Car>) {
-        result = carList.map {
-            it.copy(it.distance)
-        }
+        _result.addAll(
+            carList.map { it.copy(defaultDistance = it.distance) }
+        )
+
+        result.maxOf { it.distance }
+    }
+
+    fun winner(): List<Car> {
+        val maxDistance = result.maxOf { it.distance }
+        return result.filter { it.distance == maxDistance }
     }
 }
