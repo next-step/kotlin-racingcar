@@ -12,11 +12,22 @@ class RandomListTest {
     }
 
     @Test
-    fun `랜덤리스트의 모든 엘리먼트는 range 에 포함된 값이다`() {
-        for (min in -10..10)
-            for (max in min + 10..min + 20) {
-                val range = min..max
-                randomListBy(range, 100).forEach { Assertions.assertThat(range.contains(it)).isTrue }
-            }
+    fun `충분히 큰 사이즈의 랜덤리스트를 구성할 경우, 각 엘리먼트의 분포도는 어느정도 균일함을 갖는다(허용오차 5%)`() {
+        repeat(100) {
+            val listSize = 100000
+            val min = 0
+            val max = 9
+            val range = (min..max)
+            val rangeSize = max - min + 1
+            val expectedSize = listSize / rangeSize
+            val allowableErrorRatio = 5
+            val allowableErrorSize = expectedSize / 100 * allowableErrorRatio
+            val allowableErrorRange = (expectedSize - allowableErrorSize..expectedSize + allowableErrorSize)
+            val randomList = randomListBy(range, listSize)
+            val intListMap = randomList.groupBy { it }
+
+            Assertions.assertThat(intListMap.size).isEqualTo(rangeSize)
+            intListMap.forEach { (int, list) -> Assertions.assertThat(allowableErrorRange.contains(list.size)).isTrue }
+        }
     }
 }
