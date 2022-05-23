@@ -2,8 +2,8 @@ package racingcar.model
 
 class RandomValueMovingStrategy : MovingStrategy {
 
-    override fun forwardMovable(number: Int): Boolean {
-        return number >= FORWARD_NUM
+    override fun forwardMovable(): Boolean {
+        return getRandomValue() > FORWARD_NUM
     }
 
     companion object {

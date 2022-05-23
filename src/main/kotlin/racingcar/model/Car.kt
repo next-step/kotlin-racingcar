@@ -1,7 +1,5 @@
 package racingcar.model
 
-import racingcar.model.RandomValueMovingStrategy.Companion.getRandomValue
-
 data class Car(
     val name: CarName,
     val position: Int = DEFAULT_POSITION,
@@ -9,7 +7,7 @@ data class Car(
 ) {
 
     fun moveForward(): Car {
-        return when (movingStrategy.forwardMovable(getRandomValue())) {
+        return when (movingStrategy.forwardMovable()) {
             true -> forward()
             false -> stop()
         }
