@@ -13,7 +13,7 @@ class RaceTest {
         val roundCount = 5
 
         // when
-        val result = race.result(carCount, roundCount)
+        val result = race.result(listOf("", "", ""), roundCount)
 
         // then
         assertThat(result).allMatch {

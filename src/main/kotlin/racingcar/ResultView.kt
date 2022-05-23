@@ -9,6 +9,7 @@ data class ResultView(val result: List<Round>) {
         result.mapIndexed { index, it ->
             roundTitle(index + 1)
             it.result.forEach {
+                print(it.name + " : ")
                 println(distanceToLetter(it.distance))
             }
 

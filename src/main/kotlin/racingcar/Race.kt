@@ -1,8 +1,8 @@
 package racingcar
 
 class Race {
-    fun result(carCount: Int, roundCount: Int): List<Round> {
-        val carList = getCarList(carCount)
+    fun result(carNames: List<String>, roundCount: Int): List<Round> {
+        val carList = getCarList(carNames)
         val roundList = getRoundList(roundCount)
 
         for (currentRound in roundList) {
@@ -16,8 +16,8 @@ class Race {
         return roundList
     }
 
-    private fun getCarList(carCount: Int): List<Car> {
-        return List(carCount) { Car() }
+    private fun getCarList(carNames: List<String>): List<Car> {
+        return List(carNames.size) { i -> Car(carNames[i]) }
     }
 
     private fun getRoundList(roundCount: Int): List<Round> {

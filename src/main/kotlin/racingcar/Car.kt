@@ -2,7 +2,7 @@ package racingcar
 
 import kotlin.random.Random
 
-data class Car(val defaultDistance: Int = 0) {
+data class Car(val name: String = "", val defaultDistance: Int = 0) {
     var distance = defaultDistance
         private set
 
