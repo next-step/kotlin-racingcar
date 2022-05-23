@@ -21,8 +21,4 @@ class RacingGame(carNames: List<String>, private val trialCount: Int, moveStrate
     fun getWinners(): MoveResults {
         return drivers.getWinnerResults()
     }
-
-    companion object {
-        private const val GAME_END_COUNT = 0
-    }
 }

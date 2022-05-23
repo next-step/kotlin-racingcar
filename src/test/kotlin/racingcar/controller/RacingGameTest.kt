@@ -1,6 +1,9 @@
 package racingcar.controller
 
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import racingcar.domain.Drivers
 import racingcar.domain.strategy.AlwaysTrueMoveStrategy
 import racingcar.domain.strategy.MoveStrategy
 import racingcar.domain.strategy.NameStrategy
@@ -14,5 +17,23 @@ class RacingGameTest {
     fun initStrategy() {
         moveStrategy = AlwaysTrueMoveStrategy()
         nameStrategy = TestNameStrategy()
+    }
+
+    @Test
+    fun `레이싱게임 우승자는 드라이버 우승자와 같다`() {
+        val racer = listOf("pang", "yohan", "lucy")
+        val trialCount = 5
+        val racingGame = RacingGame(racer, trialCount, moveStrategy, nameStrategy)
+
+        racingGame.play()
+        val winnersFromRacingGame = racingGame.getWinners()
+
+        val drivers = Drivers(racer, moveStrategy, nameStrategy)
+        repeat(trialCount) {
+            drivers.driveAll()
+        }
+
+        // then
+        Assertions.assertThat(winnersFromRacingGame).isEqualTo(drivers.getWinnerResults())
     }
 }
