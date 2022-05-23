@@ -8,7 +8,7 @@ class CarRacingTest {
     @Test
     internal fun `차량 이동 테스트`() {
         val racers = listOf("molly")
-        val racing = CarRacing(racers, 10)
+        val racing = CarRacing(racers.map { Car(it) }, 10)
         racing.execute(MockNumberGenerator)
 
         assertThat(racing.gameResult.cars.first().getMovementCount()).isEqualTo(10)
