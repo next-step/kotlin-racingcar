@@ -1,12 +1,11 @@
 package racingcar.view
 
-import racingcar.race.Race
+import racingcar.car.Car
 
-class ResultView(race: Race) {
-    private val cars = race.cars
-    private val steps = List(race.railSize) { it + 1 }
+class ResultView(private val cars: List<Car>, stepSize: Int) {
+    private val steps = List(stepSize) { it + 1 }
 
-    fun showResult() {
+    fun showAllPositionsByStep() {
         println("\n실행 결과")
         steps.forEach { step: Int ->
             showPositionsBy(step)
