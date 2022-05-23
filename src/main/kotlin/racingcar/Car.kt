@@ -2,11 +2,11 @@ package racingcar
 
 import kotlin.random.Random
 
-data class Car(var defaultDistance: Int = 0) {
+data class Car(val defaultDistance: Int = 0) {
     var distance = defaultDistance
         private set
 
-    fun moveRandom(number: Int = Random.nextInt(MAX_RANDOM_VALUE)) {
+    fun move(number: Int = Random.nextInt(MAX_RANDOM_VALUE)) {
         if (canMove(number)) {
             distance += MOVE_FORWARD_VALUE
         }

@@ -23,7 +23,7 @@ class CarTest {
         val car = Car()
 
         // when
-        car.moveRandom(int)
+        car.move(int)
 
         // then
         assertThat(car.distance).isEqualTo(0)
@@ -35,7 +35,7 @@ class CarTest {
         val car = Car()
 
         // when
-        car.moveRandom(Random.nextInt(4, Int.MAX_VALUE))
+        car.move(Random.nextInt(4, Int.MAX_VALUE))
 
         // then
         assertThat(car.distance).isEqualTo(1)
