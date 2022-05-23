@@ -9,7 +9,7 @@ enum class Operator(val operatorStr: String, val calculate: (num1: Long, num2: L
     DIVIDE("/", { num1, num2 -> num1 / num2 });
     companion object {
         fun findBy(operatorStr: String): Operator {
-            return values().find { it.operatorStr == operatorStr } ?: throw IllegalArgumentException("잘못된 연산자에요.")
+            return values().find { it.operatorStr == operatorStr } ?: throw IllegalArgumentException("잘못된 연산자에요. $operatorStr")
         }
     }
 }

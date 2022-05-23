@@ -4,79 +4,76 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
 import java.lang.IllegalArgumentException
 
 class StringCalculatorTest {
     @ParameterizedTest
-    @ValueSource(strings = ["", " "])
-    fun `예외_입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException throw`(inputString: String) {
-        val exception = assertThrows(IllegalArgumentException::class.java) {
+    @NullAndEmptySource
+    @ValueSource(strings = [" ", "   ", "\t", "\n"])
+    fun `예외_입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException throw`(inputString: String?) {
+        assertThrows(IllegalArgumentException::class.java) {
             StringCalculator().calculate(inputString)
         }
-        assertEquals("Input이 비어있어요. 다시 시도해주세요.", exception.message)
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["1", "1 + 2 -"])
-    fun `예외_잘못된 형식의 연산식이 주어지면 IllegalArgumentException throw`(inputString: String) {
-        val exception = assertThrows(IllegalArgumentException::class.java) {
+    fun `예외_잘못된 연산식은 IllegalArgumentException throw`(inputString: String) {
+        assertThrows(IllegalArgumentException::class.java) {
             StringCalculator().calculate(inputString)
         }
-        assertEquals("잘못된 형식의 Input 입니다.", exception.message)
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["1 + 1 & 0", "1 % 2 - 1"])
-    fun `예외_잘못된 연산기호인 경우 IllegalArgumentException throw`(inputString: String) {
-        val exception = assertThrows(IllegalArgumentException::class.java) {
+    fun `예외_정의되지 않은 연산기호는 IllegalArgumentException throw`(inputString: String) {
+        assertThrows(IllegalArgumentException::class.java) {
             StringCalculator().calculate(inputString)
         }
-        assertEquals("잘못된 연산자에요.", exception.message)
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["1 + 1 - a", "$ * 2 - 1"])
-    fun `예외_사칙 숫자가 아닌 경우 IllegalArgumentException throw`(inputString: String) {
-        val exception = assertThrows(IllegalArgumentException::class.java) {
+    fun `예외_사칙 숫자가 아니면 IllegalArgumentException throw`(inputString: String) {
+        assertThrows(IllegalArgumentException::class.java) {
             StringCalculator().calculate(inputString)
         }
-        assertEquals("숫자가 아니에요.", exception.message)
     }
 
     @ParameterizedTest
-    @CsvSource(value = ["1 + 2, 3", "1 + 2 + 3, 6"])
+    @CsvSource(value = ["1 + 2|3", "1 + 2 + 3|6"], delimiter = '|')
     fun `성공_덧셈연산`(inputStr: String, expected: Long) {
         val actual = StringCalculator().calculate(inputStr)
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
-    @CsvSource(value = ["3 - 2, 1", "1 - 2, -1"])
+    @CsvSource(value = ["3 - 2|1", "1 - 2|-1"], delimiter = '|')
     fun `성공_뺄셈연산`(inputStr: String, expected: Long) {
         val actual = StringCalculator().calculate(inputStr)
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
-    @CsvSource(value = ["1 * 2 * 3, 6", "1 * 0 * -1, 0", "1 * -1, -1"])
+    @CsvSource(value = ["1 * 2 * 3|6", "1 * 0 * -1|0", "1 * -1|-1"], delimiter = '|')
     fun `성공_곱셈연산`(inputStr: String, expected: Long) {
         val actual = StringCalculator().calculate(inputStr)
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
-    @CsvSource(value = ["4 / 2, 2", "5 / 2, 2", "1 / 2, 0", "2 / -1, -2"])
+    @CsvSource(value = ["4 / 2|2", "5 / 2|2", "1 / 2|0", "2 / -1|-2"], delimiter = '|')
     fun `성공_나눗셈연산`(inputStr: String, expected: Long) {
         val actual = StringCalculator().calculate(inputStr)
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
-    @CsvSource(value = ["1 - 1 + 2, 2", "1 * 7 - 1 / 2, 3"])
+    @CsvSource(value = ["1 - 1 + 2|2", "1 * 7 - 1 / 2|3"], delimiter = '|')
     fun `성공_혼합연산`(inputStr: String, expected: Long) {
         val actual = StringCalculator().calculate(inputStr)
         assertEquals(expected, actual)
     }
 }
-
