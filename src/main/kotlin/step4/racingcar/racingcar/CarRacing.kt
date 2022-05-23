@@ -7,16 +7,16 @@ class CarRacing(racers: List<String>, private val moveCount: Int) {
     val gameResult: GameResult
         get() = GameResult(car, moveCount)
 
-    fun execute(randomNumber: NumberGenerator) {
+    fun execute(carEngine: NumberGenerator) {
         repeat(moveCount) {
-            executeCarRacing(car, randomNumber)
+            executeCarRacing(car, carEngine)
         }
     }
 
-    private fun executeCarRacing(carList: List<Car>, randomNumber: NumberGenerator) {
+    private fun executeCarRacing(carList: List<Car>, carEngine: NumberGenerator) {
         carList.forEach {
-            val random = randomNumber.generate()
-            it.move(random)
+            val engine = carEngine.generate()
+            it.move(engine)
         }
     }
 }
