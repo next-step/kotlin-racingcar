@@ -1,5 +1,7 @@
-package carracing
+package carracing.view
 
+import carracing.domain.Car
+import carracing.domain.RacingCars
 import carracing.util.CarRacingManagerForTest
 import carracing.util.RacingMovementRoleForTest
 import io.kotest.core.spec.style.StringSpec

@@ -1,4 +1,4 @@
-package carracing
+package carracing.domain
 
 class Car(_name: String, _distance: Int = 0) {
     val name: String = _name

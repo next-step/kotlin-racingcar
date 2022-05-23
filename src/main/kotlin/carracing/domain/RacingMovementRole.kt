@@ -1,4 +1,4 @@
-package carracing
+package carracing.domain
 
 interface RacingMovementRole<T> {
     fun getMoveDistance(argument: T): Int

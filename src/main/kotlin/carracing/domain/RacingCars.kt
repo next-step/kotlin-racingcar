@@ -1,4 +1,4 @@
-package carracing
+package carracing.domain
 
 class RacingCars(val cars: List<Car> = mutableListOf()) {
 
