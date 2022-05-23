@@ -15,6 +15,9 @@ data class ResultView(val result: List<Round>) {
 
             println()
         }
+
+        val winnerNames = result.last().winner().map { it.name }
+        println(winnerNames.joinToString(", ") + "가 최종 우승했습니다.")
     }
 
     private fun distanceToLetter(distance: Int): String {
