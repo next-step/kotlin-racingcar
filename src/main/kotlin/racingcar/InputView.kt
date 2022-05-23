@@ -6,9 +6,7 @@ object InputView {
         val carNames = readLine()!!.split(",")
 
         carNames.forEach {
-            if (it.length > 5) {
-                throw IllegalArgumentException("자동차의 이름은 최대 5자를 초과할 수 없습니다.")
-            }
+            validateCarName(it)
         }
 
         return carNames
@@ -17,5 +15,11 @@ object InputView {
     fun getRoundCount(): Int {
         println("시도할 횟수는 몇 회인가요?")
         return readLine()!!.toInt()
+    }
+
+    private fun validateCarName(carName: String) {
+        if (carName.length > 5) {
+            throw IllegalArgumentException("자동차의 이름은 최대 5자를 초과할 수 없습니다.")
+        }
     }
 }
