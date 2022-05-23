@@ -2,8 +2,8 @@ package racing.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import racing.domain.gamerule.MovingStrategy
 import racing.domain.RacingGame.getWinner
+import racing.domain.gamerule.MovingStrategy
 
 class RacingGameTest {
 
