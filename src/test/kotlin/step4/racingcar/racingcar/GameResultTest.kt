@@ -12,8 +12,8 @@ class GameResultTest {
         val cars = listOf(Car("molly"), Car("jayce"), Car("pug"))
         cars.first().move(5)
         val gameResult = GameResult(cars, 1)
-        val winner = gameResult.getWinner()
-        Assertions.assertThat(winner).isEqualTo(listOf(cars.first().racerName).joinToString())
+        val winner = gameResult.getWinners()
+        Assertions.assertThat(winner).isEqualTo(listOf(cars.first().racerName))
     }
 
     @ParameterizedTest
@@ -21,7 +21,7 @@ class GameResultTest {
     fun `우승자 여러명 테스트`(input: Int) {
         val cars = listOf(Car("molly"), Car("jayce"), Car("pug"))
         val gameResult = GameResult(cars, 1)
-        val winner = gameResult.getWinner()
-        Assertions.assertThat(winner).isEqualTo(cars.joinToString { it.racerName })
+        val winner = gameResult.getWinners()
+        Assertions.assertThat(winner).isEqualTo(cars.map { it.racerName })
     }
 }
