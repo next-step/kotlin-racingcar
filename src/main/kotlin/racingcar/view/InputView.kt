@@ -9,7 +9,7 @@ class InputView(private val minCarCount: Int, private val minMoveCount: Int) {
 
     private fun getCarCount(askCount: Int = 1): CarCount = try {
         printBy(askCount)
-        println("자동차 대수는 몇 대인가요?")
+        println(CarCount.inputMessage)
         CarCount(readln().toIntOrNull() ?: 0, minCarCount)
     } catch (e: IllegalArgumentException) {
         println(e.message)
@@ -18,7 +18,7 @@ class InputView(private val minCarCount: Int, private val minMoveCount: Int) {
 
     private fun getMoveCount(askCount: Int = 1): MoveCount = try {
         printBy(askCount)
-        println("시도할 횟수는 몇 회인가요?")
+        println(MoveCount.inputMessage)
         MoveCount(readln().toIntOrNull() ?: 0, minMoveCount)
     } catch (e: IllegalArgumentException) {
         println(e.message)
