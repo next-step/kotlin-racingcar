@@ -1,6 +1,7 @@
 package racingcar
 
-data class CarName private constructor(val value: String) {
+@JvmInline
+value class CarName private constructor(val value: String) {
 
     companion object {
         fun of(value: String): CarName {
