@@ -15,6 +15,8 @@ object Calculator {
     private val OPERATORS = listOf(Addition, Subtraction, Multiplication, Division)
 
     fun calculate(formula: String): Double {
+        validateFormula(formula)
+
         val operationUnits = ("${Addition.operator} $formula").split(DELIMITER)
             .map { it.trim() }
             .filter { it.isNotBlank() }
@@ -25,6 +27,10 @@ object Calculator {
             accumulator = operate(operator, accumulator, operand)
         }
         return accumulator
+    }
+
+    private fun validateFormula(formula: String) {
+        require(formula.isNotBlank()) { "연산 불가능한 문자열이 입력되었습니다." }
     }
 
     private fun countOperationPair(operationUnitCount: Int) = operationUnitCount / 2
