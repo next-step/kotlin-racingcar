@@ -3,7 +3,7 @@ package carracing.service
 import carracing.domain.Car
 import carracing.domain.RacingCars
 import carracing.domain.RacingMovementRoleByInt
-import carracing.dto.InputDto
+import carracing.service.dto.InputDto
 
 class RandomIntCarRacingManager(
     racingCars: RacingCars,
