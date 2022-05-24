@@ -10,13 +10,15 @@ import com.nextstep.jngcii.racingcar.view.ResultView
 fun main() {
     val inputView = InputView()
     val resultView = ResultView()
+    val dice = RandomDice()
 
     val names = inputView.getCarNames()
-    val cars = Cars(cars = names.map { Car(it) })
+    val cars = Cars(
+        cars = names.map { Car(name = it, dice = dice) }
+    )
     val trialCount = inputView.getTrialCount()
 
-    val dice = RandomDice()
-    val game = Game(cars, trialCount, dice)
+    val game = Game(cars, trialCount)
 
     resultView.printInitialPhase()
 

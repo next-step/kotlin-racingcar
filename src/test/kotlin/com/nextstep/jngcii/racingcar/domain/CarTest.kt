@@ -14,17 +14,24 @@ class CarTest {
 
     @Test
     fun goTest() {
-        val car = Car(SAMPLE_CAR_NAME)
+        val car = Car(name = SAMPLE_CAR_NAME, dice = { true })
 
         assertThat(car.distance).isEqualTo(0)
 
-        car.go { false }
-
-        assertThat(car.distance).isEqualTo(0)
-
-        car.go { true }
+        car.go()
 
         assertThat(car.distance).isEqualTo(1)
+    }
+
+    @Test
+    fun notGoTest() {
+        val car = Car(name = SAMPLE_CAR_NAME, dice = { false })
+
+        assertThat(car.distance).isEqualTo(0)
+
+        car.go()
+
+        assertThat(car.distance).isEqualTo(0)
     }
 
     companion object {

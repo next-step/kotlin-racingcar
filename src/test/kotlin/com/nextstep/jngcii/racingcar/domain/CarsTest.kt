@@ -19,28 +19,28 @@ internal class CarsTest {
         @JvmStatic
         fun arguments() = listOf(
             Arguments.of(
-                PrefixCar(name = "A", distance = 10),
-                PrefixCar(name = "B", distance = 20),
-                PrefixCar(name = "C", distance = 30),
+                Car(name = "A").goBy(10),
+                Car(name = "B").goBy(20),
+                Car(name = "C").goBy(30),
                 listOf("C")
             ),
             Arguments.of(
-                PrefixCar(name = "A", distance = 30),
-                PrefixCar(name = "B", distance = 20),
-                PrefixCar(name = "C", distance = 30),
+                Car(name = "A").goBy(20),
+                Car(name = "B").goBy(10),
+                Car(name = "C").goBy(20),
                 listOf("A", "C")
             ),
             Arguments.of(
-                PrefixCar(name = "A", distance = 10),
-                PrefixCar(name = "B", distance = 10),
-                PrefixCar(name = "C", distance = 10),
+                Car(name = "A").goBy(10),
+                Car(name = "B").goBy(10),
+                Car(name = "C").goBy(10),
                 listOf("A", "B", "C")
             ),
         )
-    }
 
-    private class PrefixCar(
-        name: String,
-        override val distance: Int
-    ) : Car(name)
+        private fun Car.goBy(times: Int): Car {
+            repeat(times) { this.go() }
+            return this
+        }
+    }
 }

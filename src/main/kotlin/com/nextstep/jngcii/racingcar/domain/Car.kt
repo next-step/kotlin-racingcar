@@ -1,16 +1,19 @@
 package com.nextstep.jngcii.racingcar.domain
 
-open class Car(val name: String) {
-    open val speed = SPEED
+class Car(
+    val name: String,
+    val speed: Int = SPEED,
+    val dice: Dice = Dice { true }
+) {
     private var _distance = ZERO_DISTANCE
-    open val distance get() = _distance
+    val distance get() = _distance
 
     init {
         require(name.isNotBlank()) { "자동차이름은 공백일 수 없습니다." }
         require(name.length <= 5) { "자동차이름은 ${MAX_CAR_NAME_LENGTH}자를 초과할 수 없습니다." }
     }
 
-    open fun go(dice: Dice) {
+    fun go() {
         _distance += if (dice.run()) speed else ZERO_DISTANCE
     }
 

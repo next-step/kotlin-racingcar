@@ -9,9 +9,8 @@ internal class GameTest {
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4, 5])
     fun `자동차 스피드에 따라 시도횟수만큼 전진하는지 테스트`(speed: Int) {
-        val fakeCars = Cars(List(CAR_COUNT) { FakeCar(speed) })
-        val dice = Dice { true }
-        val game = Game(fakeCars, TRIAL_COUNT, dice)
+        val fakeCars = Cars(List(CAR_COUNT) { Car(name = "fake", speed = speed) })
+        val game = Game(fakeCars, TRIAL_COUNT)
 
         game.start { }
 
@@ -24,8 +23,4 @@ internal class GameTest {
         private const val CAR_COUNT = 2
         private const val TRIAL_COUNT = 3
     }
-
-    private class FakeCar(
-        override val speed: Int
-    ) : Car("FAKE")
 }
