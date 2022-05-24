@@ -1,4 +1,4 @@
-package racingcar.presentation
+package racingcar.view
 
 class InBoundView(
     private val readLine: () -> String,
