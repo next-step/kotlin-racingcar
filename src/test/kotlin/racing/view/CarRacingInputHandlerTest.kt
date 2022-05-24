@@ -1,8 +1,10 @@
-package racing
+package racing.view
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class CarRacingInputHandlerTest {
 
@@ -27,10 +29,11 @@ class CarRacingInputHandlerTest {
         assertThat(CarRacingInputHandler.getCars(inputParams).size).isEqualTo(cars.size)
     }
 
-    @Test
-    fun `자동차의 이름은 5글자를 초과할 수 없다`() {
+    @ParameterizedTest
+    @ValueSource(strings = ["자동차이름5초과", ""])
+    fun `자동차의 이름은 5글자를 초과할 수 없다`(source: String) {
         assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            CarRacingInputHandler.validate("5", "2", listOf("자동차이름5초과"))
+            CarRacingInputHandler.validate("5", "2", listOf(source))
         }
         val cars = listOf("자동차1", "자동차2")
         val inputParams = InputParams("2", "5", cars)

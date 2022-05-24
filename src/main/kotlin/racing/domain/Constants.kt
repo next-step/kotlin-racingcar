@@ -1,4 +1,4 @@
-package racing
+package racing.domain
 
 object Constants {
     const val INVALID_ARGUMENT_MESSAGE = "잘못된 요청 입니다."

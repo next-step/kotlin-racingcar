@@ -1,9 +1,11 @@
 package racing
 
-import racing.Constants.RESULT_MESSAGE
-import racing.gamerule.RacingGame
-import racing.gamerule.RacingGame.getWinner
-import racing.gamerule.RandomMovingStrategy
+import racing.domain.Constants.RESULT_MESSAGE
+import racing.domain.RacingGame
+import racing.domain.RacingGame.getWinner
+import racing.domain.gamerule.RandomMovingStrategy
+import racing.view.CarRacingInputHandler
+import racing.view.CarRacingOutputHandler
 
 fun main() {
     val inputParams = CarRacingInputHandler.input()
