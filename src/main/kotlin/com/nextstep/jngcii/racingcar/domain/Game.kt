@@ -1,7 +1,7 @@
 package com.nextstep.jngcii.racingcar.domain
 
 class Game(
-    private val cars: List<Car>,
+    private val cars: Cars,
     private val trialCount: Int,
     private val dice: Dice
 ) {

@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
-internal class CarListTest {
+internal class CarsTest {
 
     @ParameterizedTest
     @CsvSource(
@@ -13,11 +13,11 @@ internal class CarListTest {
         "A:10|B:10|C:10, A:B:C"
     )
     fun `winners 확인 테스트`(carStrings: String, expectedStrings: String) {
-
-        val cars = carStrings.split(PIPE_DELIMITER).map {
+        val carList = carStrings.split(PIPE_DELIMITER).map {
             val (name, distance) = it.split(COLON_DELIMITER)
             return@map PrefixCar(name = name, distance = distance.toInt())
         }
+        val cars = Cars(cars = carList)
 
         val expected = expectedStrings.split(COLON_DELIMITER)
 

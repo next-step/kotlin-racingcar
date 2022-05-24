@@ -2,7 +2,6 @@ package com.nextstep.jngcii.racingcar.domain
 
 open class Car(val name: String) {
     open val speed = SPEED
-
     private var _distance = ZERO_DISTANCE
     open val distance get() = _distance
 
@@ -10,17 +9,14 @@ open class Car(val name: String) {
         if (name.isBlank()) {
             throw IllegalArgumentException("자동차이름은 공백일 수 없습니다.")
         }
-
         if (name.length > 5) {
             throw IllegalArgumentException("자동차이름은 ${MAX_CAR_NAME_LENGTH}자를 초과할 수 없습니다.")
         }
     }
 
     open fun go(dice: Dice) {
-        _distance += dice.run().intBySpeed
+        _distance += if (dice.run()) speed else ZERO_DISTANCE
     }
-
-    private val Boolean.intBySpeed get() = if (this) speed else ZERO_DISTANCE
 
     companion object {
         private const val ZERO_DISTANCE = 0
@@ -28,9 +24,3 @@ open class Car(val name: String) {
         private const val MAX_CAR_NAME_LENGTH = 5
     }
 }
-
-val List<Car>.winners
-    get(): List<Car> {
-        val maxDistance = this.maxOf { it.distance }
-        return this.filter { it.distance == maxDistance }
-    }
