@@ -1,23 +1,17 @@
 package calculator
 
-import calculator.operation.Addition
-import calculator.operation.Division
-import calculator.operation.Multiplication
-import calculator.operation.NonArithmeticOperator
-import calculator.operation.Subtraction
-
 object Calculator {
 
     private const val INITIAL_ACCUMULATOR = 0.0
 
     private const val DELIMITER = " "
 
-    private val OPERATORS = listOf(Addition, Subtraction, Multiplication, Division)
+    private val OPERATORS = listOf(Operator.Addition, Operator.Subtraction, Operator.Multiplication, Operator.Division)
 
     fun calculate(formula: String): Double {
         validateFormula(formula)
 
-        val operationUnits = ("${Addition.operator} $formula").split(DELIMITER)
+        val operationUnits = ("${Operator.Addition.operator} $formula").split(DELIMITER)
             .map { it.trim() }
             .filter { it.isNotBlank() }
 
@@ -46,7 +40,7 @@ object Calculator {
         }
     }
 
-    private fun operate(operator: String, leftOperand: Double, rightOperand: Double) = OPERATORS.plus(NonArithmeticOperator(operator))
+    private fun operate(operator: String, leftOperand: Double, rightOperand: Double) = OPERATORS.plus(Operator.NonArithmetic(operator))
         .filter { it.match(operator) }[0]
         .operate(leftOperand, rightOperand)
 }
