@@ -1,6 +1,6 @@
 package racingcar
 
-class Car(val distanceMoved: Int = 0, private val name: CarName) {
+data class Car(val distanceMoved: Int = 0, private val name: CarName) {
 
     fun name(): String {
         return name.value
@@ -8,7 +8,7 @@ class Car(val distanceMoved: Int = 0, private val name: CarName) {
 
     fun moveForward(fuel: Int): Car {
         if (isEnoughFuelToMove(fuel)) {
-            return Car(this.distanceMoved.inc(), this.name)
+            return this.copy(distanceMoved = this.distanceMoved.inc())
         }
         return this
     }
