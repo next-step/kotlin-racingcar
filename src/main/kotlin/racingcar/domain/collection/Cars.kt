@@ -18,11 +18,7 @@ class Cars(
 
     companion object {
         fun generateCars(names: List<String>, numberGenerator: NumberGenerator): Cars {
-            val cars = mutableListOf<Car>()
-
-            names.map { carName -> Car(carName, numberGenerator) }
-                .forEach { car -> cars.add(car) }
-
+            val cars: List<Car> = names.map { carName -> Car(carName, numberGenerator) }
             return Cars(cars)
         }
     }

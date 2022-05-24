@@ -8,11 +8,11 @@ class GameResult(
     val winners = getWinnerFrom(records.last())
 
     private fun getWinnerFrom(gameResult: RoundRecord): List<String> {
-        val recordByPosition: Map<Int, RoundRecord> = groupByPosition(gameResult)
-        val highestPosition = findMaxPosition(recordByPosition)
+        val roundRecordByPosition: Map<Int, RoundRecord> = groupByPosition(gameResult)
+        val highestPosition = findMaxPosition(roundRecordByPosition)
 
         val winner: MutableList<String> = mutableListOf()
-        val records = recordByPosition[highestPosition]
+        val records = roundRecordByPosition[highestPosition]
 
         records!!.roundRecord
             .forEach { record ->
@@ -25,7 +25,7 @@ class GameResult(
     private fun groupByPosition(gameResult: RoundRecord): Map<Int, RoundRecord> {
         return gameResult.roundRecord
             .groupBy { record -> record.position }
-            .mapValues { it -> RoundRecord(it.value) }
+            .mapValues { recordByPosition -> RoundRecord(recordByPosition.value) }
     }
 
     private fun findMaxPosition(recordByPosition: Map<Int, RoundRecord>): Int {
