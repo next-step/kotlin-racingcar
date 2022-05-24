@@ -6,7 +6,7 @@ class CarNames(val values: List<CarName>) {
         return this.values.size
     }
 
-    fun get(index: Int): CarName {
+    operator fun get(index: Int): CarName {
         return this.values[index]
     }
 

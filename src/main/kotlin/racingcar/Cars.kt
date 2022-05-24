@@ -23,7 +23,7 @@ value class Cars(val value: List<Car>) {
 
     companion object {
         fun initCars(carNames: CarNames): Cars {
-            return Cars(List(size = carNames.size()) { Car(name = carNames.get(it)) })
+            return Cars(List(size = carNames.size()) { Car(name = carNames[it]) })
         }
     }
 }
