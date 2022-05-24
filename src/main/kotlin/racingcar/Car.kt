@@ -1,6 +1,6 @@
 package racingcar
 
-class Car(val distanceMoved: Int = 0, val name: CarName) {
+class Car(val distanceMoved: Int = 0, private val name: CarName) {
 
     fun name(): String {
         return name.value
