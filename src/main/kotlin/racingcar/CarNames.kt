@@ -11,16 +11,9 @@ class CarNames(private val values: List<CarName>) {
     }
 
     companion object {
-        fun of(carNames: String): CarNames {
-            validateCarNames(carNames)
-            val splitCarNames: List<String> = carNames.split(NAMES_DELIMITER)
-            return CarNames(values = List(splitCarNames.size) { CarName.of(splitCarNames[it].trim()) })
+        fun of(carNames: List<String>): CarNames {
+            val values: List<CarName> = carNames.map { carName -> CarName.of(carName) }
+            return CarNames(values)
         }
-
-        private fun validateCarNames(carNames: String) {
-            require(carNames.isNotBlank()) { "차 이름들의 값은 빈 값이거나 공백일 수 없습니다. carNames: $carNames" }
-        }
-
-        private const val NAMES_DELIMITER = ","
     }
 }

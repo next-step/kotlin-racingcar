@@ -19,7 +19,7 @@ internal class CarsTest : FunSpec({
 
     test("자동차 이름값들의 정보를 받아서, 참가자 수만큼 자동차 객체를 생성한다.") {
         // given
-        val carNames = CarNames.of("charlie,brown,snoopy,dog")
+        val carNames = CarNames.of(listOf("charlie", "brown", "snoopy", "dog"))
 
         // when
         val cars = Cars.initCars(carNames = carNames)

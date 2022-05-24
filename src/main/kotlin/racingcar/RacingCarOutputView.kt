@@ -2,8 +2,8 @@ package racingcar
 
 object RacingCarOutputView {
 
-    fun output(racingResults : RacingResults) {
-        for(i in racingResults.value.indices) {
+    fun output(racingResults: RacingResults) {
+        for (i in racingResults.value.indices) {
             outputRacingResult(racingResults.value[i])
             println()
         }
