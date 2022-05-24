@@ -6,19 +6,17 @@ object Calculator {
 
     private const val DELIMITER = " "
 
-    private val OPERATORS = listOf(Operator.Addition, Operator.Subtraction, Operator.Multiplication, Operator.Division)
-
     fun calculate(formula: String): Double {
         validateFormula(formula)
 
-        val operationUnits = ("${Operator.Addition.operator} $formula").split(DELIMITER)
+        val operationUnits = ("+ $formula").split(DELIMITER)
             .map { it.trim() }
             .filter { it.isNotBlank() }
 
         var accumulator = INITIAL_ACCUMULATOR
         repeat(countOperationPair(operationUnits.size)) {
             val (operator, operand) = extractOperationPair(it, operationUnits)
-            accumulator = operate(operator, accumulator, operand)
+            accumulator = Operator.operate(operator, accumulator, operand)
         }
         return accumulator
     }
@@ -39,8 +37,4 @@ object Calculator {
             throw IllegalArgumentException("연산 불가능한 피연산자가 입력되었습니다.: $operand")
         }
     }
-
-    private fun operate(operator: String, leftOperand: Double, rightOperand: Double) = OPERATORS.plus(Operator.NonArithmetic(operator))
-        .filter { it.match(operator) }[0]
-        .operate(leftOperand, rightOperand)
 }
