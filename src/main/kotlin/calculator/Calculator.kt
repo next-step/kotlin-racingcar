@@ -10,12 +10,12 @@ object Calculator {
 
     private const val INITIAL_ACCUMULATOR = 0.0
 
-    private val DELIMITER_REGEX = """\b""".toRegex()
+    private const val DELIMITER = " "
 
     private val OPERATORS = listOf(Addition, Subtraction, Multiplication, Division)
 
     fun calculate(formula: String): Double {
-        val operationUnits = ("${Addition.operator} $formula").split(DELIMITER_REGEX)
+        val operationUnits = ("${Addition.operator} $formula").split(DELIMITER)
             .map { it.trim() }
             .filter { it.isNotBlank() }
 
