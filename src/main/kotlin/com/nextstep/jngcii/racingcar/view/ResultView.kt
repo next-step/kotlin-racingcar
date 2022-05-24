@@ -6,14 +6,12 @@ class ResultView {
     }
 
     fun printDistance(name: String, distance: Int) {
-        println("$name : ${distance.shape}")
+        println("$name : ${DASH.repeat(distance)}")
     }
 
     fun printFinalPhase(winners: List<String>) {
         println("${winners.joinToString(JOIN_SEPARATOR)}가 최종우승했습니다.")
     }
-
-    private val Int.shape get() = List(this) { DASH }.joinToString(EMPTY_STRING)
 
     companion object {
         private const val EMPTY_STRING = ""
