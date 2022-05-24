@@ -1,6 +1,6 @@
 package racingcar
 
-class CarNames(val values: List<CarName>) {
+class CarNames(private val values: List<CarName>) {
 
     fun size(): Int {
         return this.values.size
