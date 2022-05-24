@@ -1,6 +1,6 @@
 package calculator.operation
 
-abstract class Operator(open val operator: String) {
+abstract class Operator(val operator: String) {
 
     open fun match(operator: String) = this.operator == operator
 
