@@ -1,6 +1,6 @@
 package calculator
 
-sealed class Operator(private val operator: String, val operationLambda: (leftOperand: Double, rightOperand: Double) -> Double) {
+sealed class Operator(private val op: String, private val operationLambda: (leftOperand: Double, rightOperand: Double) -> Double) {
 
     object Addition : Operator("+", { leftOperand, rightOperand -> leftOperand + rightOperand })
     object Subtraction : Operator("-", { leftOperand, rightOperand -> leftOperand - rightOperand })
@@ -18,12 +18,12 @@ sealed class Operator(private val operator: String, val operationLambda: (leftOp
 
         private val OPERATORS = listOf(Addition, Subtraction, Multiplication, Division)
 
+        private val OPERATORS_BY_OP = OPERATORS.associateBy { it.op }
+
         fun operate(operator: String, leftOperand: Double, rightOperand: Double) = let {
-            OPERATORS.firstOrNull { it.match(operator) } ?: NonArithmetic(operator)
+            OPERATORS_BY_OP[operator] ?: NonArithmetic(operator)
         }.operate(leftOperand, rightOperand)
     }
-
-    fun match(operator: String) = this.operator == operator
 
     fun operate(leftOperand: Double, rightOperand: Double) = operationLambda(leftOperand, rightOperand)
 }
