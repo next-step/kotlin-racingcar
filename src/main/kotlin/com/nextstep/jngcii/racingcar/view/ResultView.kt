@@ -3,7 +3,10 @@ package com.nextstep.jngcii.racingcar.view
 import com.nextstep.jngcii.racingcar.domain.History
 import com.nextstep.jngcii.racingcar.domain.Record
 
-class ResultView {
+object ResultView {
+    private const val DASH = "-"
+    private const val JOIN_SEPARATOR = ", "
+
     fun print(history: History) {
         println("실행 결과")
 
@@ -19,10 +22,5 @@ class ResultView {
             println("$name : ${DASH.repeat(distance)}")
         }
         println()
-    }
-
-    companion object {
-        private const val DASH = "-"
-        private const val JOIN_SEPARATOR = ", "
     }
 }

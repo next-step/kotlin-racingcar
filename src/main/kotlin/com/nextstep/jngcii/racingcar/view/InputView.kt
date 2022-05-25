@@ -1,6 +1,8 @@
 package com.nextstep.jngcii.racingcar.view
 
-class InputView {
+object InputView {
+    private const val COMMA = ","
+
     fun getCarNames(): List<String> {
         println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
 
@@ -19,9 +21,5 @@ class InputView {
         }.getOrElse {
             throw IllegalArgumentException("정수만 입력 가능합니다.")
         } ?: throw IllegalArgumentException("숫자를 입력해주세요.")
-    }
-
-    companion object {
-        private const val COMMA = ","
     }
 }

@@ -9,8 +9,8 @@ import com.nextstep.jngcii.racingcar.view.InputView
 import com.nextstep.jngcii.racingcar.view.ResultView
 
 fun main() {
-    val inputView = InputView()
-    val resultView = ResultView()
+    val inputView = InputView
+    val resultView = ResultView
 
     val names = inputView.getCarNames()
     val dice = RandomDice()
