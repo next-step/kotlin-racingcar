@@ -2,6 +2,7 @@ package calculator
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
@@ -17,15 +18,17 @@ class CalculationTest {
     @ParameterizedTest
     @ValueSource(strings = ["2 + 2 ^ 2 / 2 - 1"])
     fun `사칙연산 아닌 문자열이 포함되어 있으면 실패한다`(expr: String) {
-        assertThatIllegalArgumentException()
-            .isThrownBy { Calculation(expr).run() }
+        assertThrows<NoSuchElementException> {
+            Calculation(expr).run()
+        }
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["2 2 + 2 ^ 2 / 2 - 1"])
     fun `숫자가 연속으로 입력되어 있으면 실패한다`(expr: String) {
-        assertThatIllegalArgumentException()
-            .isThrownBy { Calculation(expr).run() }
+        assertThrows<NoSuchElementException> {
+            Calculation(expr).run()
+        }
     }
 
     @ParameterizedTest
