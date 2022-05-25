@@ -1,6 +1,11 @@
 package racingcar.domain
 
-class Car(private var position: Int = 0) {
+class Car(private var position: Int = 0, val name: String) {
+
+    init {
+        require(name.length in NAME_LENGTH_RANGE)
+    }
+
     fun move(condition: Int): CarHistory {
         if (condition in MOVE_CONDITION_RANGE) {
             position++
@@ -9,6 +14,7 @@ class Car(private var position: Int = 0) {
     }
 
     companion object {
+        val NAME_LENGTH_RANGE = 1..5
         val MOVE_CONDITION_RANGE = 4..9
     }
 }
