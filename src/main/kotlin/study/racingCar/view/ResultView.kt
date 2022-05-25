@@ -5,7 +5,7 @@ object ResultView {
 
         movedStepsRecords.forEach { eachTryRecords ->
             eachTryRecords.forEach { movedSteps ->
-                (0..movedSteps).forEach { print("-") }
+                println("-".repeat(movedSteps))
                 println()
             }
             println()
