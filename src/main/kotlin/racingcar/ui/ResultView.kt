@@ -8,14 +8,18 @@ class ResultView {
     fun view(playRecord: List<List<CarHistory>>) {
         println(START_TEXT)
         playRecord.forEach { round ->
-            round.forEach { carHistory ->
-                printCar(carHistory)
-                newLine()
-            }
+            stage(round)
             newLine()
         }
         val winners = Winner(playRecord).winner()
         println(WINNER_TEXT.format(winners.toString()))
+    }
+
+    private fun stage(round: List<CarHistory>) {
+        round.forEach { carHistory ->
+            printCar(carHistory)
+            newLine()
+        }
     }
 
     private fun printCar(carHistory: CarHistory) {
