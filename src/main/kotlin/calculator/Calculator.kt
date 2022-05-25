@@ -4,7 +4,7 @@ fun String?.tokenize(): List<String> = this?.trim()?.split("\\s+".toRegex())?.fi
     ?: throw IllegalArgumentException("Null cannot be tokenized")
 
 fun List<String>.parse(): Expression {
-    fun parse(exp: Expression, tokenList: List<String>): Expression {
+    tailrec fun parse(exp: Expression, tokenList: List<String>): Expression {
         if (tokenList.isEmpty()) return exp
 
         val newExp = when (val parsed = Expression.parse(tokenList.first())) {
