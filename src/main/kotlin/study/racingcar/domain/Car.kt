@@ -1,6 +1,9 @@
 package study.racingcar.domain
 
-class Car(var position: Int = 0) {
+class Car(position: Int = 0) {
+
+    var position = position
+        private set
 
     fun move(condition: Int): Int {
         if (condition >= 4) {
