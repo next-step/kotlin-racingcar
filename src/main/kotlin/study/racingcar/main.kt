@@ -1,7 +1,10 @@
 package study.racingcar
 
-fun main() {
-    val racingCar = RacingCar()
+import study.racingcar.controller.RacingController
+import study.racingcar.service.RacingService
 
-    racingCar.start()
+fun main() {
+    val racingService = RacingService()
+    val racingController = RacingController(racingService)
+    racingController.startRace()
 }

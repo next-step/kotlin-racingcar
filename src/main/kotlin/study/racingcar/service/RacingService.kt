@@ -1,17 +1,14 @@
 package study.racingcar.service
 
-import study.racingcar.domain.Moving
 import study.racingcar.domain.Racing
+import study.racingcar.view.RacingView
 
-class RacingService(private val numOfCar: Int, private val numOfTry: Int) {
-    fun start() {
-        val racing = Racing(numOfCar, Moving())
+class RacingService {
 
-        println("실행결과")
-
-        repeat((1..numOfTry).count()) {
-            racing.race()
-            println()
+    fun race(racing: Racing) {
+        repeat((1..racing.totalRound).count()) {
+            racing.start()
+            RacingView(racing).printRacing()
         }
     }
 }

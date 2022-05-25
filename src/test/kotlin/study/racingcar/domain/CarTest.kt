@@ -1,81 +1,37 @@
 package study.racingcar
 
-import io.mockk.MockKAnnotations
-import io.mockk.every
-import io.mockk.impl.annotations.MockK
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import study.racingcar.domain.Car
-import study.racingcar.domain.Moving
-import study.racingcar.view.view
 
 internal class CarTest {
 
-    @MockK
-    lateinit var moving: Moving
-
-    @BeforeEach
-    fun setUp() {
-        MockKAnnotations.init(this, relaxUnitFun = true)
-    }
-
     @Test
     fun `Car 초기 값 테스트`() {
-        val car = Car(moving)
+        val car = Car()
 
-        assertThat(car.view.moved).isEqualTo(0)
-        assertThat(car.view.state).isEqualTo("")
+        assertThat(car.position).isEqualTo(0)
     }
 
     @ParameterizedTest
-    @ValueSource(booleans = [true, false])
-    fun `Move 할 수 있다`(isMovable: Boolean) {
-        val car = Car(moving)
+    @ValueSource(ints = [4, 5, 6, 7, 8, 9])
+    fun `condition이 4 이상일 때 움직인다`(condition: Int) {
+        val car = Car()
 
-        every { moving.isMovable() } returns isMovable
+        car.move(condition)
 
-        val moved = car.move()
-
-        assertThat(moved).isEqualTo(isMovable.toInt())
+        assertThat(car.position).isEqualTo(1)
     }
 
-    @Test
-    fun `Movable이 false일 때, 움직이지 않는다`() {
-        val car = Car(moving)
+    @ParameterizedTest
+    @ValueSource(ints = [0, 1, 2, 3])
+    fun `condition이 4 이하일 때 움직이지 않는다`(condition: Int) {
+        val car = Car()
 
-        every { moving.isMovable() } returns false
+        car.move(condition)
 
-        val moved = car.move()
-
-        assertThat(moved).isEqualTo(0)
+        assertThat(car.position).isEqualTo(0)
     }
-
-    @Test
-    fun `Movable이 true일 때, 움직인다`() {
-        val car = Car(moving)
-
-        every { moving.isMovable() } returns true
-
-        val moved = car.move()
-
-        assertThat(moved).isEqualTo(1)
-    }
-
-    @Test
-    fun `움직인 후 State를 가져올 수 있다`() {
-        val car = Car(moving)
-
-        every { moving.isMovable() } returns true
-
-        val moved = car.move()
-        val state = car.view.state
-
-        assertThat(moved).isEqualTo(1)
-        assertThat(state).isEqualTo("-")
-    }
-
-    private fun Boolean.toInt() = if (this) 1 else 0
 }

@@ -1,20 +1,12 @@
 package study.racingcar.domain
 
-import java.util.concurrent.atomic.AtomicInteger
+class Car(var position: Int = 0) {
 
-class Car(private val moving: Moving) {
-
-    private val moved = AtomicInteger(0)
-
-    fun move(): Int {
-        if (moving.isMovable()) {
-            moved.incrementAndGet()
+    fun move(condition: Int): Int {
+        if (condition >= 4) {
+            position++
         }
 
-        return getMoved()
-    }
-
-    fun getMoved(): Int {
-        return moved.get()
+        return position
     }
 }

@@ -3,16 +3,13 @@ package study.racingcar.view
 import study.racingcar.domain.Car
 
 data class CarView(
-    val moved: Int,
-    val state: String
+    val car: Car
 ) {
-    fun print() {
-        println(state)
+    fun printPosition() {
+        print(POSITION_VALUE.repeat(car.position))
+    }
+
+    companion object {
+        const val POSITION_VALUE: String = "-"
     }
 }
-
-internal val Car.view
-    get() = CarView(
-        moved = this.getMoved(),
-        state = "-".repeat(this.getMoved())
-    )

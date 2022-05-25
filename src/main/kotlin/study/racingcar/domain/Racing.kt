@@ -1,15 +1,17 @@
 package study.racingcar.domain
 
-import study.racingcar.view.view
+class Racing(internal val cars: List<Car>, val totalRound: Int) {
 
-class Racing(numOfCar: Int, moving: Moving) {
+    var round = 0
+        private set
 
-    private val cars = (1..numOfCar).map { Car(moving) }
+    constructor(numOfCar: Int, round: Int) : this((1..numOfCar).map { Car() }, round)
 
-    fun race() {
+    fun start() {
+        if (round >= totalRound) return
+
         cars.forEach {
-            it.move()
-            it.view.print()
+            it.move((1..9).random())
         }
     }
 }
