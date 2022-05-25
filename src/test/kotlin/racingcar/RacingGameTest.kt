@@ -16,7 +16,7 @@ class RacingGameTest {
     fun `주어진 횟수 동안 n대의 자동차는 전진 혹은 멈춰 있는다`(carNames: String, tryCnt: Int, condition: Int) {
         val racingGame = RacingGame(carNames, tryCnt)
         racingGame.execute { condition }
-        assertThat(carNames).isEqualTo(racingGame.cars.size)
+        assertThat(carNames.split(",").size).isEqualTo(racingGame.cars.size)
         assertThat(tryCnt).isEqualTo(racingGame.tryCnt)
     }
 }
