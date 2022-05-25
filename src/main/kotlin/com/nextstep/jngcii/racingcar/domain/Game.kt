@@ -2,13 +2,13 @@ package com.nextstep.jngcii.racingcar.domain
 
 class Game(
     private val cars: Cars,
-    private val trialCount: Int
+    private val trialCount: Int,
+    private val history: History
 ) {
-    fun start(printAction: (car: Car) -> Unit) {
+    fun start() {
         repeat(trialCount) {
             cars.forEach { it.go() }
-            cars.forEach { printAction(it) }
-            println()
+            history.write()
         }
     }
 }
