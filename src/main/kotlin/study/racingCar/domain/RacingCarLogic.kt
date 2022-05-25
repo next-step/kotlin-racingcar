@@ -7,7 +7,7 @@ class RacingCarLogic {
 
         for (i in 0 until movingTryNum) {
             for (j in 0 until carNum) {
-                cars[j].tryMoveOneStep()
+                cars[j].moveOneStep()
                 movedStepsRecords[i][j] = cars[j].movedSteps
             }
         }
