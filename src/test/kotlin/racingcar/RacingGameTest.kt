@@ -8,15 +8,15 @@ import racingcar.domain.RacingGame
 class RacingGameTest {
     @CsvSource(
         value = [
-            "3,3,4",
-            "3,3,2",
+            "'glen,glenn,win',3,4",
+            "'glen,glenn,win',3,2",
         ]
     )
     @ParameterizedTest
-    fun `주어진 횟수 동안 n대의 자동차는 전진 혹은 멈춰 있는다`(carCnt: Int, tryCnt: Int, condition: Int) {
-        val racingGame = RacingGame(carCnt, tryCnt)
+    fun `주어진 횟수 동안 n대의 자동차는 전진 혹은 멈춰 있는다`(carNames: String, tryCnt: Int, condition: Int) {
+        val racingGame = RacingGame(carNames, tryCnt)
         racingGame.execute { condition }
-        assertThat(carCnt).isEqualTo(racingGame.cars.size)
+        assertThat(carNames).isEqualTo(racingGame.cars.size)
         assertThat(tryCnt).isEqualTo(racingGame.tryCnt)
     }
 }

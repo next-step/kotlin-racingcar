@@ -1,7 +1,8 @@
 package racingcar.domain
 
-class RacingGame(carCnt: Int, val tryCnt: Int) {
-    var cars: List<Car> = List(carCnt) { Car() }
+class RacingGame(carNames: String, val tryCnt: Int) {
+    private val nameList = carNames.split(",")
+    var cars: List<Car> = nameList.map { Car(name = it) }
 
     fun execute(method: () -> Int): List<CarHistory> {
         return cars.map { it.move(method()) }
