@@ -1,4 +1,4 @@
-package racingcar.presentation
+package racingcar.view
 
 import racingcar.domain.GameResult
 import racingcar.domain.collection.RoundRecord

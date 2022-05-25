@@ -1,10 +1,10 @@
 package racingcar
 
 import racingcar.business.RacingGame
-import racingcar.presentation.InBoundView
-import racingcar.presentation.OutBoundView
 import racingcar.utils.NumberGenerator
 import racingcar.utils.RandomNumberGenerator
+import racingcar.view.InBoundView
+import racingcar.view.OutBoundView
 
 fun main() {
     val inBoundView = InBoundView({ requireNotNull(readLine()) }, ::print)

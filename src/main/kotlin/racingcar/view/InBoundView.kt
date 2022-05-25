@@ -1,4 +1,4 @@
-package racingcar.presentation
+package racingcar.view
 
 class InBoundView(
     private val readLine: () -> String,
@@ -26,21 +26,25 @@ class InBoundView(
     }
 
     private fun String.split(): List<String> {
-        return this.split(",").filter { it.checkDriverName() }
+        return this.split(",").checkDriverNames()
     }
 
-    private fun String.checkDriverName(): Boolean {
-        val name: String = this.trim()
+    private fun List<String>.checkDriverNames(): List<String> {
+        this.forEach { name ->
+            run {
+                val removedWhiteSpaceName = name.trim()
 
-        require(name.isNotBlank()) {
-            "공백을 입력할 수 없습니다."
+                require(removedWhiteSpaceName.isNotBlank()) {
+                    "공백을 입력할 수 없습니다."
+                }
+
+                require(removedWhiteSpaceName.length <= MAX_CAR_NAME_LENGTH) {
+                    "이름은 5글자가 넘을 수 없습니다."
+                }
+            }
         }
 
-        require(name.length <= MAX_CAR_NAME_LENGTH) {
-            "이름은 5글자가 넘을 수 없습니다."
-        }
-
-        return true
+        return this
     }
 
     companion object {
