@@ -11,15 +11,15 @@ class RacingController(private val racingService: RacingService) {
         val raceInfo = getRaceInfo()
         val racing = Racing(raceInfo.numOfCars, raceInfo.round)
 
+        RacingView(racing).printRaceResult()
         racingService.race(racing)
-        RacingView(racing).printRacing()
     }
 
     private fun getRaceInfo(): RaceInfo {
         return RaceInfo(getNumberOfCar(), getRound())
     }
 
-    fun getNumberOfCar(): Int {
+    private fun getNumberOfCar(): Int {
         println(CAR_NUMBER_MESSAGE)
 
         val numberOfCar = readLine()!!.toInt()
@@ -29,7 +29,7 @@ class RacingController(private val racingService: RacingService) {
         return numberOfCar
     }
 
-    fun getRound(): Int {
+    private fun getRound(): Int {
         println(ROUND_NUMBER_MESSAGE)
 
         val numberOfTry = readLine()!!.toInt()

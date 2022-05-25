@@ -6,9 +6,10 @@ import study.racingcar.view.RacingView
 class RacingService {
 
     fun race(racing: Racing) {
+        val racingView = RacingView(racing)
         repeat((1..racing.totalRound).count()) {
             racing.start()
-            RacingView(racing).printRacing()
+            racingView.printRacing()
         }
     }
 }

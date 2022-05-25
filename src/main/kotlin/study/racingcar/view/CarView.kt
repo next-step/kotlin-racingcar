@@ -6,7 +6,7 @@ data class CarView(
     val car: Car
 ) {
     fun printPosition() {
-        print(POSITION_VALUE.repeat(car.position))
+        println(POSITION_VALUE.repeat(car.position))
     }
 
     companion object {

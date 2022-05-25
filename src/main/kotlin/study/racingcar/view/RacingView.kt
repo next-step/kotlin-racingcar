@@ -6,10 +6,15 @@ data class RacingView(
     val racing: Racing
 ) {
     fun printRacing() {
-        println("실행 결과")
-        // print cars
-        racing.cars.map { CarView(it).printPosition() }
-
+        racing.cars.forEach { CarView(it).printPosition() }
         println()
+    }
+
+    fun printRaceResult() {
+        println(RACE_RESULT_MESSAGE)
+    }
+
+    companion object {
+        private const val RACE_RESULT_MESSAGE = "실행 결과"
     }
 }
