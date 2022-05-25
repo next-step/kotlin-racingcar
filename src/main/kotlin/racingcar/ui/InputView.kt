@@ -1,9 +1,9 @@
 package racingcar.ui
 
 class InputView() {
-    fun readCarCount(): Int {
-        println(CAR_COUNT_TEXT)
-        return readln().toInt()
+    fun readCarNames(): String {
+        println(CAR_NAMES_TEXT)
+        return readln()
     }
 
     fun readTryCount(): Int {
@@ -12,7 +12,7 @@ class InputView() {
     }
 
     companion object {
-        private const val CAR_COUNT_TEXT = "자동차 대수는 몇 대인가요?"
+        private const val CAR_NAMES_TEXT = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
         private const val TRY_COUNT_TEXT = "시도할 횟수는 몇 회인가요?"
     }
 }
