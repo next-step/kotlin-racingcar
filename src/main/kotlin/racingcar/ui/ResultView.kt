@@ -1,6 +1,7 @@
 package racingcar.ui
 
 import racingcar.domain.CarHistory
+import racingcar.domain.Winner
 
 class ResultView {
 
@@ -13,6 +14,8 @@ class ResultView {
             }
             newLine()
         }
+        val winners = Winner(playRecord).winner()
+        println(WINNER_TEXT.format(winners.toString()))
     }
 
     private fun printCar(carHistory: CarHistory) {
@@ -26,5 +29,6 @@ class ResultView {
         const val POSITION_TEXT = "-"
         const val NEWLINE_TEXT = ""
         const val NAME_POSTFIX_TEXT = " : "
+        const val WINNER_TEXT = "%s가 최종 우승했습니다."
     }
 }
