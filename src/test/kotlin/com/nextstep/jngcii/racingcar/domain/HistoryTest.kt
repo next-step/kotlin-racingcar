@@ -18,11 +18,14 @@ internal class HistoryTest {
 
     @Test
     fun `write할때마다 자동차들의 주행 상태를 기록한다 - go를 한번도 안하는 경우`() {
-        assertThat(history.records.size).isEqualTo(0)
+        assertThat(
+            history.records.map { it.distanceByName }
+        ).isEqualTo(
+            emptyList<Map<String, Int>>()
+        )
 
         history.write()
 
-        assertThat(history.records.size).isEqualTo(1)
         assertThat(
             history.records.map { it.distanceByName }
         ).isEqualTo(
@@ -33,7 +36,6 @@ internal class HistoryTest {
 
         history.write()
 
-        assertThat(history.records.size).isEqualTo(2)
         assertThat(
             history.records.map { it.distanceByName }
         ).isEqualTo(
@@ -46,12 +48,15 @@ internal class HistoryTest {
 
     @Test
     fun `write할때마다 자동차들의 주행 상태를 기록한다 - 매번 go 이후 기록하는 경우`() {
-        assertThat(history.records.size).isEqualTo(0)
+        assertThat(
+            history.records.map { it.distanceByName }
+        ).isEqualTo(
+            emptyList<Map<String, Int>>()
+        )
 
         cars.forEach { it.goOrStayByDiceCondition() }
         history.write()
 
-        assertThat(history.records.size).isEqualTo(1)
         assertThat(
             history.records.map { it.distanceByName }
         ).isEqualTo(
@@ -63,7 +68,6 @@ internal class HistoryTest {
         cars.forEach { it.goOrStayByDiceCondition() }
         history.write()
 
-        assertThat(history.records.size).isEqualTo(2)
         assertThat(
             history.records.map { it.distanceByName }
         ).isEqualTo(
