@@ -5,6 +5,7 @@ import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
 import java.util.stream.Stream
@@ -17,12 +18,10 @@ class TokenizeTest {
         assertThat(input.tokenize()).isEmpty()
     }
 
-    @Test
-    fun `앞선 공백 문자나 연속된 공백 문자, 뒤의 공백문자는 제거된다`() {
-        assertThat("  1 + 2".tokenize()).isEqualTo(listOf("1", "+", "2"))
-        assertThat("13 - 21   ".tokenize()).isEqualTo(listOf("13", "-", "21"))
-        assertThat("15543 * 21121 \n ".tokenize()).isEqualTo(listOf("15543", "*", "21121"))
-        assertThat("-231 \t  /  232".tokenize()).isEqualTo(listOf("-231", "/", "232"))
+    @ParameterizedTest
+    @MethodSource("provideTokenWhiteSpaceTestArgument")
+    fun `앞선 공백 문자나 연속된 공백 문자, 뒤의 공백문자는 제거된다`(input: String, result: List<String>) {
+        assertThat(input.tokenize()).isEqualTo(result)
     }
 
     @Test
@@ -31,6 +30,17 @@ class TokenizeTest {
             val expression: String? = null
             expression.tokenize()
         }.isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    companion object {
+
+        @JvmStatic
+        fun provideTokenWhiteSpaceTestArgument(): Stream<Arguments> = Stream.of(
+            Arguments.of("  1 + 2", listOf("1", "+", "2")),
+            Arguments.of("13 - 21   ", listOf("13", "-", "21")),
+            Arguments.of("15543 * 21121 \n ", listOf("15543", "*", "21121")),
+            Arguments.of("-231 \t  /  232", listOf("-231", "/", "232")),
+        )
     }
 }
 
@@ -94,25 +104,25 @@ class ParseTest {
 class CalculatorTest {
 
     @ParameterizedTest
-    @MethodSource("providePlusTestArgument")
+    @CsvSource(value = ["1 + 2:3", "2 + 3:5", "10 + 0:10", "100 + 100:200", "-1 + 2:1", "1 + -2:-1"], delimiter = ':')
     fun `덧셈 연산`(input: String, result: Int) {
         assertThat(input.calculate()).isEqualTo(result)
     }
 
     @ParameterizedTest
-    @MethodSource("provideMinusTestArgument")
+    @CsvSource(value = ["1 - 2:-1", "5 - 3:2", "0 - 9:-9", "10 - 0:10"], delimiter = ':')
     fun `뺄셈 연산`(input: String, result: Int) {
         assertThat(input.calculate()).isEqualTo(result)
     }
 
     @ParameterizedTest
-    @MethodSource("provideTimesTestArgument")
+    @CsvSource(value = ["1 * 1:1", "5 * 0:0", "0 * 9:0", "10 * 5:50", "10 * -1:-10"], delimiter = ':')
     fun `곱셈 연산`(input: String, result: Int) {
         assertThat(input.calculate()).isEqualTo(result)
     }
 
     @ParameterizedTest
-    @MethodSource("provideDivTestArgument")
+    @CsvSource(value = ["4 / 2:2", "5 / 2:2", "100 / 101:0", "100 / -10:-10"], delimiter = ':')
     fun `나눗셈 연산`(input: String, result: Int) {
         assertThat(input.calculate()).isEqualTo(result)
     }
@@ -134,43 +144,5 @@ class CalculatorTest {
         assertThat("1 + 2 * 3".calculate()).isEqualTo(9)
         assertThat("4 - 2 / 2".calculate()).isEqualTo(1)
         assertThat("7 + 3 * 6 - 22 / 2".calculate()).isEqualTo(19)
-    }
-
-    companion object {
-
-        @JvmStatic
-        fun providePlusTestArgument(): Stream<Arguments> = Stream.of(
-            Arguments.of("1 + 2", 3),
-            Arguments.of("2 + 3", 5),
-            Arguments.of("10 + 0", 10),
-            Arguments.of("100 + 100", 200),
-            Arguments.of("-1 + 2", 1),
-            Arguments.of("1 + -2", -1),
-        )
-
-        @JvmStatic
-        fun provideMinusTestArgument(): Stream<Arguments> = Stream.of(
-            Arguments.of("1 - 2", -1),
-            Arguments.of("5 - 3", 2),
-            Arguments.of("0 - 9", -9),
-            Arguments.of("10 - 0", 10),
-        )
-
-        @JvmStatic
-        fun provideTimesTestArgument(): Stream<Arguments> = Stream.of(
-            Arguments.of("1 * 1", 1),
-            Arguments.of("5 * 0", 0),
-            Arguments.of("0 * 9", 0),
-            Arguments.of("10 * 5", 50),
-            Arguments.of("10 * -1", -10),
-        )
-
-        @JvmStatic
-        fun provideDivTestArgument(): Stream<Arguments> = Stream.of(
-            Arguments.of("4 / 2", 2),
-            Arguments.of("5 / 2", 2),
-            Arguments.of("100 / 101", 0),
-            Arguments.of("100 / -10", -10),
-        )
     }
 }
