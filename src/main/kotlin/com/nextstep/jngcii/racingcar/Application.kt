@@ -1,6 +1,5 @@
 package com.nextstep.jngcii.racingcar
 
-import com.nextstep.jngcii.racingcar.domain.Car
 import com.nextstep.jngcii.racingcar.domain.Cars
 import com.nextstep.jngcii.racingcar.domain.Game
 import com.nextstep.jngcii.racingcar.domain.History
@@ -14,9 +13,7 @@ fun main() {
 
     val names = inputView.getCarNames()
     val dice = RandomDice()
-    val cars = Cars(
-        cars = names.map { Car(name = it, dice = dice) }
-    )
+    val cars = Cars(names, dice)
     val history = History(cars)
     val trialCount = inputView.getTrialCount()
 
