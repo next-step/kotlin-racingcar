@@ -12,11 +12,9 @@ class Cars(
             it.name to it.distance
         }
 
-    val winners
-        get(): List<Car> {
-            val maxDistance = cars.maxOf { it.distance }
-            return cars.filter { it.distance == maxDistance }
-        }
+    fun getNames(distance: Int) = cars
+        .filter { it.distance == distance }
+        .map { it.name }
 
     fun forEach(action: (car: Car) -> Unit) {
         cars.forEach { action(it) }

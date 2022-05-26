@@ -9,10 +9,10 @@ internal class CarsTest {
 
     @ParameterizedTest
     @MethodSource("arguments")
-    fun `winners 확인 테스트`(carA: Car, carB: Car, carC: Car, expected: List<String>) {
+    fun `특정 거리만큼 간 차들 확인 테스트`(carA: Car, carB: Car, carC: Car, distance: Int, expected: List<String>) {
         val cars = Cars(cars = listOf(carA, carB, carC))
 
-        Assertions.assertThat(cars.winners.map { it.name }).isEqualTo(expected)
+        Assertions.assertThat(cars.getNames(distance)).isEqualTo(expected)
     }
 
     companion object {
@@ -22,18 +22,21 @@ internal class CarsTest {
                 Car(name = "A").goBy(10),
                 Car(name = "B").goBy(20),
                 Car(name = "C").goBy(30),
+                30,
                 listOf("C")
             ),
             Arguments.of(
                 Car(name = "A").goBy(20),
                 Car(name = "B").goBy(10),
                 Car(name = "C").goBy(20),
+                20,
                 listOf("A", "C")
             ),
             Arguments.of(
                 Car(name = "A").goBy(10),
                 Car(name = "B").goBy(10),
                 Car(name = "C").goBy(10),
+                10,
                 listOf("A", "B", "C")
             ),
         )
