@@ -18,7 +18,7 @@ class CarTest {
 
         assertThat(car.distance).isEqualTo(0)
 
-        car.go()
+        car.goOrStayByDiceCondition()
 
         assertThat(car.distance).isEqualTo(1)
     }
@@ -29,7 +29,7 @@ class CarTest {
 
         assertThat(car.distance).isEqualTo(0)
 
-        car.go()
+        car.goOrStayByDiceCondition()
 
         assertThat(car.distance).isEqualTo(0)
     }

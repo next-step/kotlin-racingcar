@@ -39,7 +39,7 @@ internal class CarsTest {
         )
 
         private fun Car.goBy(times: Int): Car {
-            repeat(times) { this.go() }
+            repeat(times) { this.goOrStayByDiceCondition() }
             return this
         }
     }

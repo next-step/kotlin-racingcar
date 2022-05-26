@@ -48,7 +48,7 @@ internal class HistoryTest {
     fun `write할때마다 자동차들의 주행 상태를 기록한다 - 매번 go 이후 기록하는 경우`() {
         assertThat(history.records.size).isEqualTo(0)
 
-        cars.forEach { it.go() }
+        cars.forEach { it.goOrStayByDiceCondition() }
         history.write()
 
         assertThat(history.records.size).isEqualTo(1)
@@ -60,7 +60,7 @@ internal class HistoryTest {
             )
         )
 
-        cars.forEach { it.go() }
+        cars.forEach { it.goOrStayByDiceCondition() }
         history.write()
 
         assertThat(history.records.size).isEqualTo(2)

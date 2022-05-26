@@ -13,7 +13,7 @@ class Car(
         require(name.length <= MAX_CAR_NAME_LENGTH) { "자동차이름은 ${MAX_CAR_NAME_LENGTH}자를 초과할 수 없습니다." }
     }
 
-    fun go() {
+    fun goOrStayByDiceCondition() {
         _distance += if (dice.run()) speed else ZERO_DISTANCE
     }
 
