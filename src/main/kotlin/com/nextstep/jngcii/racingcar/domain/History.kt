@@ -5,10 +5,7 @@ class History(val cars: Cars) {
     val records get() = _records.toList()
 
     fun write() {
-        val distanceByName = mutableMapOf<String, Int>()
-        cars.forEach { distanceByName[it.name] = it.distance }
-
-        val record = Record(distanceByName)
+        val record = Record(cars.nameToDistanceMap)
         _records.add(record)
     }
 }

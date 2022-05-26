@@ -7,6 +7,11 @@ class Cars(
         cars = names.map { Car(name = it, dice = dice) }
     )
 
+    val nameToDistanceMap
+        get() = cars.associate {
+            it.name to it.distance
+        }
+
     val winners
         get(): List<Car> {
             val maxDistance = cars.maxOf { it.distance }
