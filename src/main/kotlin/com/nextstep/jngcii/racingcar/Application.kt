@@ -1,24 +1,25 @@
 package com.nextstep.jngcii.racingcar
 
+import com.nextstep.jngcii.racingcar.domain.Cars
+import com.nextstep.jngcii.racingcar.domain.Game
+import com.nextstep.jngcii.racingcar.domain.History
 import com.nextstep.jngcii.racingcar.domain.RandomDice
-import com.nextstep.jngcii.racingcar.domain.Record
 import com.nextstep.jngcii.racingcar.view.InputView
 import com.nextstep.jngcii.racingcar.view.ResultView
 
 fun main() {
-    val inputView = InputView()
-    val resultView = ResultView()
+    val inputView = InputView
+    val resultView = ResultView
 
-    val carCount = inputView.getCarCount()
+    val names = inputView.getCarNames()
+    val dice = RandomDice()
+    val cars = Cars(names, dice)
+    val history = History(cars)
     val trialCount = inputView.getTrialCount()
 
-    val record = Record(carCount)
-    val dice = RandomDice()
+    val game = Game(cars, trialCount, history)
 
-    resultView.printInitialPhase()
+    game.start()
 
-    repeat(trialCount) {
-        record.goOrStopEachCar(dice)
-        record.eachCarDrivenDistance.forEach { resultView.printRoad(it) }
-    }
+    resultView.print(history)
 }
