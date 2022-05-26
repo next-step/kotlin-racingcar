@@ -19,24 +19,24 @@ internal class CarsTest {
         @JvmStatic
         fun arguments() = listOf(
             Arguments.of(
-                Car(name = "A").goBy(10),
-                Car(name = "B").goBy(20),
-                Car(name = "C").goBy(30),
-                30,
+                Car(name = "A").goBy(1),
+                Car(name = "B").goBy(2),
+                Car(name = "C").goBy(3),
+                3,
                 listOf("C")
             ),
             Arguments.of(
-                Car(name = "A").goBy(20),
-                Car(name = "B").goBy(10),
-                Car(name = "C").goBy(20),
-                20,
+                Car(name = "A").goBy(2),
+                Car(name = "B").goBy(1),
+                Car(name = "C").goBy(2),
+                2,
                 listOf("A", "C")
             ),
             Arguments.of(
-                Car(name = "A").goBy(10),
-                Car(name = "B").goBy(10),
-                Car(name = "C").goBy(10),
-                10,
+                Car(name = "A").goBy(1),
+                Car(name = "B").goBy(1),
+                Car(name = "C").goBy(1),
+                1,
                 listOf("A", "B", "C")
             ),
         )
