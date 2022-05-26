@@ -3,27 +3,37 @@ package calculator
 fun String?.tokenize(): List<String> = this?.trim()?.split("\\s+".toRegex())?.filter { it != "" }
     ?: throw IllegalArgumentException("Null cannot be tokenized")
 
-fun List<String>.parse(): Expression {
-    tailrec fun parse(exp: Expression, tokenList: List<String>): Expression {
-        if (tokenList.isEmpty()) return exp
-
-        val newExp = when (val parsed = Expression.parse(tokenList.first())) {
-            is Expression.Operand -> when (exp) {
-                Expression.Undefined -> parsed
-                is Expression.Operator -> exp.also { it.secondOperand = parsed }
-                else -> throw IllegalArgumentException("Invalid expression")
-            }
-            is Expression.Operator -> parsed.also { it.firstOperand = exp }
-            else -> throw IllegalArgumentException("Invalid expression")
-        }
-
-        return parse(newExp, tokenList.drop(1))
-    }
-
-    return parse(Expression.Undefined, this)
+interface Parser {
+    fun parse(tokenList: List<String>): Expression
 }
 
-fun String?.calculate(): Int = this.tokenize().parse().eval()
+class NonPrecedenceParser : Parser {
+
+    override fun parse(tokenList: List<String>): Expression {
+        tailrec fun parse(exp: Expression, tokenList: List<String>): Expression {
+            if (tokenList.isEmpty()) return exp
+
+            val newExp = when (val parsed = Expression.parse(tokenList.first())) {
+                is Expression.Operand -> when (exp) {
+                    Expression.Undefined -> parsed
+                    is Expression.Operator -> exp.also { it.secondOperand = parsed }
+                    else -> throw IllegalArgumentException("Invalid expression")
+                }
+                is Expression.Operator -> parsed.also { it.firstOperand = exp }
+                else -> throw IllegalArgumentException("Invalid expression")
+            }
+
+            return parse(newExp, tokenList.drop(1))
+        }
+
+        return parse(Expression.Undefined, tokenList)
+    }
+}
+
+class Calculator(private val parser: Parser = NonPrecedenceParser()) {
+
+    fun calculate(input: String): Int = parser.parse(input.tokenize()).eval()
+}
 
 sealed interface Expression {
 
