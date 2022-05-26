@@ -10,17 +10,20 @@ object ResultView {
     fun print(history: History) {
         println("실행 결과")
 
-        history.records.forEach {
-            printSingleRecord(it)
-        }
+        history.records
+            .forEach { printSingleRecord(it) }
 
         println("${history.cars.winners.joinToString(JOIN_SEPARATOR)}가 최종우승했습니다.")
     }
 
     private fun printSingleRecord(record: Record) {
-        record.distanceByName.forEach { (name, distance) ->
-            println("$name : ${DASH.repeat(distance)}")
-        }
+        record.distanceByName
+            .forEach { printSingleCarDistance(it) }
         println()
+    }
+
+    private fun printSingleCarDistance(car: Map.Entry<String, Int>) {
+        val (name, distance) = car
+        println("$name : ${DASH.repeat(distance)}")
     }
 }
