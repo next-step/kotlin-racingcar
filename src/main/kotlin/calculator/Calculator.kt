@@ -60,11 +60,7 @@ sealed interface Expression {
                 "-" -> Operator(Int::minus)
                 "*" -> Operator(Int::times)
                 "/" -> Operator(Int::div)
-                else -> try {
-                    Operand(input.toInt())
-                } catch (e: NumberFormatException) {
-                    throw IllegalArgumentException(e)
-                }
+                else -> input.toIntOrNull()?.let { Operand(it) } ?: throw IllegalArgumentException()
             }
         }
     }
