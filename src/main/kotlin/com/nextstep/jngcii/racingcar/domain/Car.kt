@@ -2,10 +2,11 @@ package com.nextstep.jngcii.racingcar.domain
 
 class Car(
     val name: String,
-    val speed: Int = SPEED,
-    val dice: Dice = Dice { true }
+    private val speed: Int = SPEED,
+    private val dice: Dice = Dice { true },
+    advantage: Int? = null
 ) {
-    private var _distance = ZERO_DISTANCE
+    private var _distance = advantage ?: ZERO_DISTANCE
     val distance get() = _distance
 
     init {

@@ -1,11 +1,15 @@
 package com.nextstep.jngcii.racingcar.domain
 
 class Cars(
-    private val cars: List<Car>
+    vararg _cars: Car
 ) {
     constructor(names: List<String>, dice: Dice) : this(
-        cars = names.map { Car(name = it, dice = dice) }
+        _cars = names
+            .map { Car(name = it, dice = dice) }
+            .toTypedArray()
     )
+
+    private val cars: List<Car> = _cars.toList()
 
     val nameToDistanceMap
         get() = cars.associate {
