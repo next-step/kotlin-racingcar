@@ -25,11 +25,11 @@ fun List<String>.parse(): Expression {
 
 fun String?.calculate(): Int = this.tokenize().parse().eval()
 
-sealed class Expression {
+sealed interface Expression {
 
-    abstract fun eval(): Int
+    fun eval(): Int
 
-    object Undefined : Expression() {
+    object Undefined : Expression {
 
         override fun eval(): Int {
             throw IllegalArgumentException("Incomplete expression")
@@ -40,14 +40,14 @@ sealed class Expression {
         val function: (Int, Int) -> Int,
         var firstOperand: Expression = Undefined,
         var secondOperand: Expression = Undefined
-    ) : Expression() {
+    ) : Expression {
 
         override fun eval(): Int {
             return function(firstOperand.eval(), secondOperand.eval())
         }
     }
 
-    data class Operand(private val value: Int) : Expression() {
+    data class Operand(private val value: Int) : Expression {
         override fun eval(): Int = value
     }
 
