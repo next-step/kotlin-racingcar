@@ -4,7 +4,7 @@ import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.EmptySource
+import org.junit.jupiter.params.provider.NullAndEmptySource
 
 internal class CalculatorTest() : AnnotationSpec() {
 
@@ -21,9 +21,9 @@ internal class CalculatorTest() : AnnotationSpec() {
     }
 
     @ParameterizedTest
-    @EmptySource
-    fun `빈 문자열이 입력된 경우 예외 처리`(emptyString: String) {
+    @NullAndEmptySource
+    fun `빈 문자열 및 null 이 입력된 경우 예외 처리`(emptyString: String?) {
         assertThrows<IllegalArgumentException> { Calculator.calculate(emptyString) }
-            .message shouldBe "연산 불가능한 문자열이 입력되었습니다."
+            .message shouldBe "연산 불가능한 입력 입니다."
     }
 }

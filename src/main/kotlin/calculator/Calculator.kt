@@ -6,7 +6,7 @@ object Calculator {
 
     private const val DELIMITER = " "
 
-    fun calculate(formula: String): Double {
+    fun calculate(formula: String?): Double {
         validateFormula(formula)
 
         val operationUnits = ("+ $formula").split(DELIMITER)
@@ -21,8 +21,8 @@ object Calculator {
         return accumulator
     }
 
-    private fun validateFormula(formula: String) {
-        require(formula.isNotBlank()) { "연산 불가능한 문자열이 입력되었습니다." }
+    private fun validateFormula(formula: String?) {
+        require(!formula.isNullOrBlank()) { "연산 불가능한 입력 입니다." }
     }
 
     private fun countOperationPair(operationUnitCount: Int) = operationUnitCount / 2
