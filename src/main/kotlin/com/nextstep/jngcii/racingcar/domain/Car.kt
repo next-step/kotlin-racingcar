@@ -10,7 +10,7 @@ class Car(
 
     init {
         require(name.isNotBlank()) { "자동차이름은 공백일 수 없습니다." }
-        require(name.length <= 5) { "자동차이름은 ${MAX_CAR_NAME_LENGTH}자를 초과할 수 없습니다." }
+        require(name.length <= MAX_CAR_NAME_LENGTH) { "자동차이름은 ${MAX_CAR_NAME_LENGTH}자를 초과할 수 없습니다." }
     }
 
     fun go() {
