@@ -3,8 +3,16 @@ package calculator
 import java.util.Scanner
 
 fun main() {
+    val equationValidator = EquationValidator()
+    val equationTokenizer = EquationTokenizer()
+    val stringCalculator = StringCalculator()
+
     val input = InputView().input()
-    val result = StringCalculator().calculate(input)
+    equationValidator.validateEquation(input)
+
+    val (operands, operators) = equationTokenizer.tokenize(input)
+    val result = stringCalculator.calculate(operands, operators)
+
     OutputView().output(result)
 }
 

@@ -1,38 +1,18 @@
 package calculator
 
 class StringCalculator {
-    fun calculate(input: String?): Double {
-        val equation = validateEmpty(input)
-        var (result, operand, operator) = initialize()
-
-        val splitEquation = equation.split(" ")
-
-        for ((index, element) in splitEquation.withIndex()) {
-            if (isOperandIndex(index)) {
-                operand = element.toDoubleOrNull() ?: throw IllegalArgumentException("입력값이 잘못되었습니다.")
-                result = operator.operate(result, operand)
-            } else {
-                operator = Operator.toOperator(element) ?: throw IllegalArgumentException("입력값이 잘못되었습니다.")
-            }
+    fun calculate(operands: MutableList<Operand>, operators: MutableList<Operator>): Double {
+        if (operands.isEmpty() || operators.isEmpty()) {
+            throw IllegalArgumentException("operands, operators는 1개 이상이어야 합니다. operands: $operands operators: $operators")
         }
+        var result = operands.removeFirst().value
 
+        while (operands.isNotEmpty()) {
+            val operand = operands.removeFirst()
+            val operator = operators.removeFirst()
+
+            result = operator.operate(result, operand)
+        }
         return result
-    }
-
-    private fun isOperandIndex(index: Int) = index % 2 == 0
-
-    private fun validateEmpty(input: String?): String {
-        if (input.isNullOrBlank()) {
-            throw IllegalArgumentException("입력값이 null 혹은 빈 값입니다.")
-        }
-        return input
-    }
-
-    private fun initialize(): Triple<Double, Double, Operator> {
-        var result = 0.0
-        var operand = 0.0
-        var operator = Operator.PLUS
-
-        return Triple(result, operand, operator)
     }
 }
