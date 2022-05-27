@@ -1,8 +1,8 @@
 package racing
 
-import racing.common.CarRaceProperty
-import racing.race.CarRace
-import racing.validation.CarRaceValidation
+import racing.domain.common.CarRaceProperty
+import racing.domain.race.CarRace
+import racing.domain.validation.CarRaceValidation
 import racing.view.InputView
 import racing.view.ResultView
 

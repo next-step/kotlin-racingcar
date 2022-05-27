@@ -1,7 +1,7 @@
 package racing.view
 
-import racing.car.Car
-import racing.common.CarRaceProperty
+import racing.domain.car.Car
+import racing.domain.common.CarRaceProperty
 
 class ResultView(private val carRaceProperty: CarRaceProperty) {
 

@@ -4,9 +4,9 @@ import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import racing.car.Car
-import racing.exception.CarNameLengthExcessException
-import racing.validation.CarRaceValidation
+import racing.domain.car.Car
+import racing.domain.exception.CarNameLengthExcessException
+import racing.domain.validation.CarRaceValidation
 
 class CarTest {
 

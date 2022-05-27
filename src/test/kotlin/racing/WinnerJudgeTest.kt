@@ -2,8 +2,8 @@ package racing
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
-import racing.common.CarRaceProperty
-import racing.race.WinnerJudge
+import racing.domain.common.CarRaceProperty
+import racing.domain.race.WinnerJudge
 
 class WinnerJudgeTest {
 

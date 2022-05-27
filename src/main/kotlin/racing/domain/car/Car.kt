@@ -1,6 +1,6 @@
-package racing.car
+package racing.domain.car
 
-import racing.utils.RandomNumberGenerator
+import racing.domain.utils.RandomNumberGenerator
 
 data class Car(
     private val _carName: String,

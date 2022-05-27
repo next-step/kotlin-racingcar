@@ -1,6 +1,6 @@
-package racing.race
+package racing.domain.race
 
-import racing.common.CarRaceProperty
+import racing.domain.common.CarRaceProperty
 
 class WinnerJudge(private val carRaceProperty: CarRaceProperty) {
 

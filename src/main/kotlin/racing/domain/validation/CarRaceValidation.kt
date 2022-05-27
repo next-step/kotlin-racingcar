@@ -1,6 +1,6 @@
-package racing.validation
+package racing.domain.validation
 
-import racing.exception.CarNameLengthExcessException
+import racing.domain.exception.CarNameLengthExcessException
 
 class CarRaceValidation {
 

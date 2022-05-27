@@ -1,6 +1,6 @@
-package racing.common
+package racing.domain.common
 
-import racing.car.Car
+import racing.domain.car.Car
 
 class CarRaceProperty(val roundSize: Int) {
     lateinit var cars: List<Car>
