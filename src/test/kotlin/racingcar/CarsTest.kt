@@ -30,7 +30,7 @@ internal class CarsTest : FunSpec({
 
     test("가장 멀리 이동한 자동차들을 반환한다.") {
         // given
-        val cars = Cars(
+        val sut = Cars(
             listOf(
                 Car(5, CarName.of("charlie")),
                 Car(4, CarName.of("brown")),
@@ -39,9 +39,9 @@ internal class CarsTest : FunSpec({
         )
 
         // when
-        val sut = cars.longestMovedCars()
+        val result = sut.longestMovedCars()
 
         // then
-        sut.map { it.name() }.shouldContainExactly("charlie", "aaa")
+        result.map { it.name() }.shouldContainExactly("charlie", "aaa")
     }
 })

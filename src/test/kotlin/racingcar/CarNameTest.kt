@@ -23,10 +23,10 @@ internal class CarNameTest : FunSpec({
             val value = "  charlie "
 
             // when
-            val sut = CarName.of(value)
+            val result = CarName.of(value)
 
             // then
-            sut.value shouldBe "charlie"
+            result.value shouldBe "charlie"
         }
     }
 })
