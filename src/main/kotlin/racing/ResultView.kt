@@ -5,7 +5,7 @@ class ResultView {
         println("실행 결과")
     }
 
-    fun printCurrentRound(carList: MutableList<Car>) {
+    fun printCurrentRound(carList: List<Car>) {
         carList.forEach {
             val pathString = "-".repeat(it.currentLocation)
             println("${it.number}: $pathString")

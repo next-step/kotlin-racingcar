@@ -1,25 +1,25 @@
 package racing
 
 class Game {
-    val carList: MutableList<Car> = mutableListOf()
+    lateinit var carList: List<Car>
     private val gameEngine = GameEngine
 
-    fun run(carNumber: Int, turnNumber: Int) {
-        initializeCarList(carNumber)
-        ResultView().showReadyMessage()
+    fun run(car: Int, turn: Int) {
+        initializeCarList(car)
+        val resultView = ResultView()
+        resultView.showReadyMessage()
 
-        (0 until turnNumber).forEach { _ ->
+        repeat(turn){
             gameEngine.playTurnForAllCar(carList)
-            ResultView().printCurrentRound(carList)
+            resultView.printCurrentRound(carList)
         }
     }
     fun clearCarList() {
-        carList.clear()
+        carList = listOf()
     }
 
     private fun initializeCarList(carNumber: Int) {
-        (0 until carNumber).forEach {
-            carList.add(Car(it))
-        }
+        this.carList = (0 until carNumber)
+            .map{ Car(it) }
     }
 }

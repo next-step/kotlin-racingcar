@@ -6,7 +6,7 @@ import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 
-class InputViewTest : FunSpec({
+class InputValidationUtilTest : FunSpec({
 
     context("inputConverter 단위테스트") {
         test("1 이상의 정수로 변환 가능한 입력값에 대한 변환은 성공한다") {

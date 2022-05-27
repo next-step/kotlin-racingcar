@@ -1,8 +1,9 @@
 package racing
 
 fun main() {
-    val carNumberInput = InputView().showCarInput()
-    val turnNumberInput = InputView().showTurnInput()
+    val inputView = InputView()
+    val carNumberInput = inputView.showCarInput()
+    val turnNumberInput = inputView.showTurnInput()
 
     val game = Game()
     game.run(carNumberInput, turnNumberInput)
