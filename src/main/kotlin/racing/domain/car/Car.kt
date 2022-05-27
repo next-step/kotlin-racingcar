@@ -24,6 +24,6 @@ data class Car(
     fun moveForward() = this._moveCount++
 
     companion object {
-        const val MOVE_CONDITION = 4
+        private const val MOVE_CONDITION = 4
     }
 }
