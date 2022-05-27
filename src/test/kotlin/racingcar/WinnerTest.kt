@@ -17,7 +17,7 @@ class WinnerTest {
         val result = listOf(lastCarHistory)
         val winner: List<String> = Winner(result).winner()
 
-        assertThat(expectWinner).isEqualTo(winner.first())
+        assertThat(winner.first()).isEqualTo(expectWinner)
     }
     @Test
     fun `자동차 경주 게임 우승자는 1명 이상일 수 있다`() {
@@ -29,7 +29,9 @@ class WinnerTest {
         )
         val result = listOf(lastCarHistory)
         val winner: List<String> = Winner(result).winner()
+        val expect = listOf("glenn", "teo")
 
-        assertThat(winner.size).isEqualTo(expectCount)
+        assertThat(winner).hasSize(expectCount)
+        assertThat(winner).isEqualTo(expect)
     }
 }

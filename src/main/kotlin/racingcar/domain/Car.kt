@@ -19,9 +19,9 @@ class Car(private var position: Int = 0, val name: String) {
     }
 
     companion object {
-        val NAME_LENGTH_RANGE = 1..5
-        val MOVE_CONDITION_RANGE = 4..9
+        private val NAME_LENGTH_RANGE = 1..5
+        private val MOVE_CONDITION_RANGE = 4..9
     }
 }
 
-class CarHistory(val name: String, var position: Int)
+class CarHistory(val name: String, val position: Int)

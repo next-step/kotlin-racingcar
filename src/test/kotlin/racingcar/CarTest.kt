@@ -12,7 +12,9 @@ class CarTest {
     @ValueSource(ints = [4, 5, 6, 7, 8, 9])
     @ParameterizedTest
     fun `전진하는 조건은 무작위 값이 4 이상 9미만일 경우 이다`(value: Int) {
-        assertThat(Car(name = "glenn").move(value).position).isNotEqualTo(0)
+        val car = Car(name = "glenn")
+        val history = car.move(value)
+        assertThat(history.position).isEqualTo(1)
     }
 
     @ValueSource(ints = [0, 1, 2, 3])

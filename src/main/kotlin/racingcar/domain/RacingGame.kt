@@ -22,6 +22,6 @@ class RacingGame(carNames: String, val tryCnt: Int) {
     }
 
     companion object {
-        const val SPLIT_TEXT = ","
+        private const val SPLIT_TEXT = ","
     }
 }

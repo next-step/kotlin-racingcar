@@ -29,10 +29,10 @@ class ResultView {
     private fun newLine() = println(NEWLINE_TEXT)
 
     companion object {
-        const val START_TEXT = "실행결과"
-        const val POSITION_TEXT = "-"
-        const val NEWLINE_TEXT = ""
-        const val NAME_POSTFIX_TEXT = " : "
-        const val WINNER_TEXT = "%s가 최종 우승했습니다."
+        private const val START_TEXT = "실행결과"
+        private const val POSITION_TEXT = "-"
+        private const val NEWLINE_TEXT = ""
+        private const val NAME_POSTFIX_TEXT = " : "
+        private const val WINNER_TEXT = "%s가 최종 우승했습니다."
     }
 }
