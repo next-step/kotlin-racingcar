@@ -1,5 +1,7 @@
 package racingcar.domain
 
+import racingcar.util.RandomGenerator.randomNumber
+
 object CarRacing {
     fun initCars(carCount: Int): List<Car> {
         return (0 until carCount).map { Car() }
@@ -11,6 +13,4 @@ object CarRacing {
             Car(position = nextPosition)
         }
     }
-
-    private fun randomNumber() = (0..9).random()
 }
