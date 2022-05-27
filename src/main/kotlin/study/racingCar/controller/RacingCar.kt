@@ -6,12 +6,17 @@ import study.racingCar.view.ResultView
 
 class RacingCar {
     fun startGame() {
-        val carNum = InputView.inputCarNum()
+        val carNames = InputView.inputCarNames()
         val tryNum = InputView.inputMovingTryNum()
 
         val carRacing = RacingCarLogic()
-        val movedStepsRecords = carRacing.startRacing(carNum, tryNum)
+        val movedStepsRecords = carRacing.startRacing(carNames, tryNum)
 
         ResultView.printResult(movedStepsRecords)
     }
+}
+
+fun main(){
+    val racingCar = RacingCar()
+    racingCar.startGame()
 }
