@@ -13,11 +13,13 @@ class PersonTest {
             Person(name = "김태헌", age = 29, nickname = "디디")
         )
 
-        assertThat(people).allSatisfy(Consumer {
-            assertThat(it.name).isEqualTo("김태헌")
-            assertThat(it.age).isEqualTo(29)
-            assertThat(it.nickname).isEqualTo("디디")
-        })
+        assertThat(people).allSatisfy(
+            Consumer {
+                assertThat(it.name).isEqualTo("김태헌")
+                assertThat(it.age).isEqualTo(29)
+                assertThat(it.nickname).isEqualTo("디디")
+            }
+        )
     }
 
     @Test
