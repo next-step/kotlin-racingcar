@@ -4,6 +4,9 @@ import study.racingcar.domain.Car
 import study.racingcar.domain.RaceInfo
 import study.racingcar.service.RacingService
 import study.racingcar.view.CarView
+import study.racingcar.view.RacingView.Companion.CAR_NUMBER_MESSAGE
+import study.racingcar.view.RacingView.Companion.RACE_RESULT_MESSAGE
+import study.racingcar.view.RacingView.Companion.ROUND_NUMBER_MESSAGE
 
 class RacingController(private val racingService: RacingService) {
 
@@ -19,7 +22,7 @@ class RacingController(private val racingService: RacingService) {
         println(RACE_RESULT_MESSAGE)
         racingService.getAllRounds().forEach { round ->
             round.cars.forEach {
-                println(CarView(it).position)
+                println(CarView(it).result)
             }
             println()
         }
@@ -50,9 +53,6 @@ class RacingController(private val racingService: RacingService) {
     }
 
     companion object {
-        private const val CAR_NUMBER_MESSAGE = "자동차 대수는 몇 대인가요?"
-        private const val ROUND_NUMBER_MESSAGE = "시도할 횟수는 몇 회인가요?"
-        private const val RACE_RESULT_MESSAGE = "실행 결과"
         private const val MINIMUM_CAR = 1
         private const val MINIMUM_ROUND = 1
     }

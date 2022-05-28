@@ -6,7 +6,9 @@ data class CarView(
     val car: Car
 ) {
 
-    val position = POSITION_VALUE.repeat(car.position)
+    private val position = POSITION_VALUE.repeat(car.position)
+
+    val result = "${car.name} : $position"
 
     companion object {
         const val POSITION_VALUE: String = "-"
