@@ -1,3 +1,3 @@
 package study.racingcar.domain
 
-data class RaceInfo(val numOfCar: Int, val round: Int)
+data class RaceInfo(val carNames: List<String>, val round: Int)

@@ -4,7 +4,7 @@ import study.racingcar.domain.Car
 import study.racingcar.domain.RaceInfo
 import study.racingcar.service.RacingService
 import study.racingcar.view.CarView
-import study.racingcar.view.RacingView.Companion.CAR_NUMBER_MESSAGE
+import study.racingcar.view.RacingView.Companion.CAR_NAME_INPUT_MESSAGE
 import study.racingcar.view.RacingView.Companion.RACE_RESULT_MESSAGE
 import study.racingcar.view.RacingView.Companion.ROUND_NUMBER_MESSAGE
 
@@ -12,7 +12,7 @@ class RacingController(private val racingService: RacingService) {
 
     fun startRace() {
         val raceInfo = getRaceInfo()
-        val cars = (1..raceInfo.numOfCar).map { Car("name") }
+        val cars = raceInfo.carNames.map { Car(it) }
 
         racingService.start(raceInfo.round, cars)
         printRace()
@@ -29,17 +29,17 @@ class RacingController(private val racingService: RacingService) {
     }
 
     private fun getRaceInfo(): RaceInfo {
-        return RaceInfo(getNumberOfCar(), getRound())
+        return RaceInfo(getNamesOfCar(), getRound())
     }
 
-    private fun getNumberOfCar(): Int {
-        println(CAR_NUMBER_MESSAGE)
+    private fun getNamesOfCar(): List<String> {
+        println(CAR_NAME_INPUT_MESSAGE)
 
-        val numberOfCar = readLine()!!.toInt()
+        val names = readLine()!!.split(",")
 
-        require(numberOfCar > MINIMUM_CAR)
+        require(names.size >= MINIMUM_CAR)
 
-        return numberOfCar
+        return names
     }
 
     private fun getRound(): Int {
@@ -47,7 +47,7 @@ class RacingController(private val racingService: RacingService) {
 
         val numberOfTry = readLine()!!.toInt()
 
-        require(numberOfTry > MINIMUM_ROUND)
+        require(numberOfTry >= MINIMUM_ROUND)
 
         return numberOfTry
     }
