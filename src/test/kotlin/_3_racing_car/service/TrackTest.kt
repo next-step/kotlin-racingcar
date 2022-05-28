@@ -7,7 +7,7 @@ import io.kotest.matchers.shouldBe
 
 internal class TrackTest : BehaviorSpec({
     given("전진하는 힘의 조건에 만족한 경우") {
-        val power = Power { _, _ -> 4 }
+        val power = Power { 4 }
         val track = Track(Car(), power)
 
         `when`("트랙에서 경주 했을때") {
@@ -21,7 +21,7 @@ internal class TrackTest : BehaviorSpec({
     }
 
     given("전진하는 힘의 조건에 만족하지 않은 경우") {
-        val power = Power { _, _ -> 3 }
+        val power = Power { 3 }
         val track = Track(Car(), power)
 
         `when`("트랙에서 경주 했을때") {

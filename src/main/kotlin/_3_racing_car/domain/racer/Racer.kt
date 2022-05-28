@@ -1,12 +1,11 @@
 package _3_racing_car.domain.racer
 
+import _3_racing_car.domain.Name
 import _3_racing_car.domain.Position
 
 abstract class Racer() {
-    abstract val name: String
+    abstract val name: Name
     protected abstract val position: Position
-    val location: Int
-        get() = position.value
 
-    abstract fun move(power: Int)
+    abstract fun move(power: Int): Position
 }

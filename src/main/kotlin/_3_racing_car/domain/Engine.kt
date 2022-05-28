@@ -1,6 +1,6 @@
 package _3_racing_car.domain
 
-class Engine() {
+class Engine {
 
     fun canMoveEngine(value: Int): Boolean = value >= MIN_VALUE
 

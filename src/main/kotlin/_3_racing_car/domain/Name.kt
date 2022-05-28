@@ -1,6 +1,6 @@
 package _3_racing_car.domain
 
-class Name(value: String) {
+data class Name(val value: String) {
     init {
         validateBlank(value)
         validateSize(value)
