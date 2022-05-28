@@ -1,26 +1,27 @@
 package racingcar.domain
 
-class RacingGame(carCnt: Int, val tryCnt: Int) {
-    var cars = mutableListOf<Car>()
+class RacingGame(carNames: String, val tryCnt: Int) {
+    private val nameList = carNames.split(SPLIT_TEXT)
+    var cars: List<Car> = nameList.map { Car(name = it) }
 
-    init {
-        repeat(carCnt) { cars.add(Car()) }
+    private fun init(): List<CarHistory> {
+        return cars.map { it.prepare() }
     }
-
     fun execute(method: () -> Int): List<CarHistory> {
-        val histories: MutableList<CarHistory> = mutableListOf()
-        cars.forEach {
-            val carHistory = it.move(method())
-            histories.add(carHistory)
-        }
-        return histories.toList()
+        return cars.map { it.move(method()) }
     }
 
     fun play(method: () -> Int): List<List<CarHistory>> {
-        val recordList: MutableList<List<CarHistory>> = mutableListOf()
-        repeat(tryCnt) {
-            recordList.add(execute(method))
+        return List(tryCnt) { index ->
+            if (index == 0) {
+                init()
+            } else {
+                execute(method)
+            }
         }
-        return recordList.toList()
+    }
+
+    companion object {
+        private const val SPLIT_TEXT = ","
     }
 }
