@@ -1,11 +1,12 @@
 package study.racingCar.domain
 
-class Car(val carName: String, var movedSteps: Int = 0) {
+class Car(val carName: String, var mileage: Int = 0) {
+    init {
+        require(carName.length <= 5) { "자동차 이름은 5자를 초과할 수 없습니다." }
+    }
 
-    fun moveOneStep(trigger: Int = (0..9).random()): Car {
-        if (trigger >= MOVE_CONDITION) {
-            movedSteps++
-        }
+    fun tryMove(engineStatus: Int = (0..9).random()): Car {
+        if (engineStatus >= MOVE_CONDITION) mileage++
         return this
     }
 
