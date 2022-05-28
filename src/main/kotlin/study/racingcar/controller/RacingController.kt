@@ -6,6 +6,7 @@ import study.racingcar.service.RacingService
 import study.racingcar.view.CarView
 import study.racingcar.view.RacingView.Companion.CAR_NAME_INPUT_MESSAGE
 import study.racingcar.view.RacingView.Companion.RACE_RESULT_MESSAGE
+import study.racingcar.view.RacingView.Companion.RACING_WINNER_MESSAGE
 import study.racingcar.view.RacingView.Companion.ROUND_NUMBER_MESSAGE
 
 class RacingController(private val racingService: RacingService) {
@@ -16,6 +17,7 @@ class RacingController(private val racingService: RacingService) {
 
         racingService.start(raceInfo.round, cars)
         printRace()
+        printWinner()
     }
 
     private fun printRace() {
@@ -26,6 +28,11 @@ class RacingController(private val racingService: RacingService) {
             }
             println()
         }
+    }
+
+    private fun printWinner() {
+        val winners = racingService.getLastRound().winners()
+        println(RACING_WINNER_MESSAGE(winners.joinToString(", ") { it.name }))
     }
 
     private fun getRaceInfo(): RaceInfo {

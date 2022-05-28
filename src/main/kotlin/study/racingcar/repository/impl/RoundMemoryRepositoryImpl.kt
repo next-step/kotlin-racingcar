@@ -20,4 +20,8 @@ class RoundMemoryRepositoryImpl : RoundRepository {
 
         repository.add(newRound)
     }
+
+    override fun findLast(): Round {
+        return repository.maxByOrNull { it.number }!!
+    }
 }

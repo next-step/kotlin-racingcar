@@ -23,4 +23,8 @@ class RacingService(private val roundRepository: RoundRepository) {
     fun getAllRounds(): List<Round> {
         return roundRepository.findAll().sortedBy { it.number }
     }
+
+    fun getLastRound(): Round {
+        return roundRepository.findLast()
+    }
 }
