@@ -1,12 +1,15 @@
 package _3_racing_car.ui
 
-data class ResultView(val result: List<Int>) {
+import _3_racing_car.service.dto.RacingOutputDto
+
+data class ResultView(val dto: RacingOutputDto) {
 
     fun print() {
         println("실행 결과")
-        result.forEach {
-            println(MARKED.repeat(it))
+        dto.racers.forEach { (name, location) ->
+            println("$name : ${MARKED.repeat(location)}")
         }
+        println("${dto.winners.joinToString(", ")}가 최종 우승했습니다.")
     }
 
     companion object {

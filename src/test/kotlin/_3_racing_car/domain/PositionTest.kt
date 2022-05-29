@@ -22,9 +22,9 @@ internal class PositionTest : ExpectSpec() {
 
                     val position = Position(value = init)
 
-                    position.forward(plus)
+                    val result = position.forward(plus)
 
-                    position.value shouldBe expected
+                    result.value shouldBe expected
                 }
             }
         }

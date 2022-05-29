@@ -7,29 +7,29 @@ import io.kotest.matchers.shouldBe
 
 internal class TrackTest : BehaviorSpec({
     given("전진하는 힘의 조건에 만족한 경우") {
-        val power = Power { _, _ -> 4 }
+        val power = Power { 4 }
         val track = Track(Car(), power)
 
         `when`("트랙에서 경주 했을때") {
             val times = 5
-            val position = track.run(times)
+            val racer = track.run(times)
 
             then("횟수만큼 레이서는 움직인다.") {
-                position shouldBe times
+                racer.location shouldBe times
             }
         }
     }
 
     given("전진하는 힘의 조건에 만족하지 않은 경우") {
-        val power = Power { _, _ -> 3 }
+        val power = Power { 3 }
         val track = Track(Car(), power)
 
         `when`("트랙에서 경주 했을때") {
             val times = 5
-            val position = track.run(times)
+            val racer = track.run(times)
 
             then("레이서는 멈춰있다.") {
-                position shouldBe 0
+                racer.location shouldBe 0
             }
         }
     }

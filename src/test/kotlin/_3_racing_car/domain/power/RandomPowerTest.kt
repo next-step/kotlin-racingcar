@@ -14,10 +14,10 @@ internal class RandomPowerTest : ExpectSpec() {
                     row(0, 2, IntRange(0, 1)),
                     row(1, 3, IntRange(1, 3)),
                 ) {
-                    from, until, expect ->
-                    val power = RandomPower()
+                    min, max, expect ->
+                    val power = RandomPower(min, max)
 
-                    val result = power.create(from, until)
+                    val result = power.create()
 
                     result shouldBeInRange expect
                 }
