@@ -3,12 +3,9 @@ package study.racingCar
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
-import study.racingCar.controller.RacingCar
 import study.racingCar.domain.Car
 import study.racingCar.domain.RacingCarLogic
 import study.racingCar.domain.WinnersLogic
-import study.racingCar.view.InputView
-import study.racingCar.view.ResultView
 
 class RacingCarTest {
 

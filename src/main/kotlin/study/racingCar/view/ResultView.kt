@@ -4,7 +4,7 @@ object ResultView {
     fun printResult(mileageRecords: List<List<Pair<String, Int>>>) {
         mileageRecords.forEach { eachTryRecords ->
             eachTryRecords.forEach { (name, mileage) ->
-                println("${name} : ${"-".repeat(mileage)}")
+                println("$name : ${"-".repeat(mileage)}")
             }
             println()
         }
