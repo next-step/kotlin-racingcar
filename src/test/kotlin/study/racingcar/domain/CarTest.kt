@@ -53,19 +53,4 @@ internal class CarTest {
 
         assertThat(car.position).isEqualTo(0)
     }
-
-    @Test
-    fun `Car를 copy할 수 있다`() {
-        val car = Car("name")
-
-        val newCar = car.copy()
-
-        assertThat(newCar.name).isEqualTo("name")
-        assertThat(newCar.position).isEqualTo(0)
-
-        car.move(5)
-
-        assertThat(car.position).isEqualTo(1)
-        assertThat(newCar.position).isEqualTo(0)
-    }
 }

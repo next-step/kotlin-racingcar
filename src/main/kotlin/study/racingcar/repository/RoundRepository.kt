@@ -9,5 +9,5 @@ interface RoundRepository {
 
     fun findBy(number: Int): Round
 
-    fun save(round: Round)
+    fun saveAll(rounds: List<Round>)
 }

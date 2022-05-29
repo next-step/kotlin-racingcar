@@ -5,7 +5,7 @@ import study.racingcar.repository.RoundRepository
 
 class RoundMemoryRepositoryImpl : RoundRepository {
 
-    private val repository: MutableList<Round> = mutableListOf()
+    private var repository: List<Round> = listOf()
 
     override fun findAll(): List<Round> {
         return repository
@@ -15,13 +15,11 @@ class RoundMemoryRepositoryImpl : RoundRepository {
         return repository.first { it.number == number }
     }
 
-    override fun save(round: Round) {
-        val newRound = Round(round.number, round.cars.map { it.copy() })
-
-        repository.add(newRound)
-    }
-
     override fun findLast(): Round {
         return repository.maxByOrNull { it.number }!!
+    }
+
+    override fun saveAll(rounds: List<Round>) {
+        repository = rounds
     }
 }

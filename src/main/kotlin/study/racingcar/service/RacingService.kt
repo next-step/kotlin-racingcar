@@ -7,17 +7,18 @@ import study.racingcar.repository.RoundRepository
 class RacingService(private val roundRepository: RoundRepository) {
 
     fun start(totalRound: Int, cars: List<Car>) {
-        repeat((1..totalRound).count()) {
+        val rounds = (1..totalRound).map {
             race(it, cars)
         }
+        roundRepository.saveAll(rounds)
     }
 
-    private fun race(round: Int, cars: List<Car>) {
+    private fun race(round: Int, cars: List<Car>): Round {
         cars.forEach {
             it.move((1..9).random())
         }
 
-        roundRepository.save(Round(round, cars))
+        return Round(round, cars.map { it.copy() })
     }
 
     fun getAllRounds(): List<Round> {
