@@ -19,9 +19,9 @@ class StringCalculator {
     }
 
     private fun calculateEveryPair(pairs: List<Pair<String, Int>>, initValue: Int): Int {
-        return pairs.fold(initValue) { acc, pair ->
-            val operator = Operator.reverseMap(pair.first) ?: throw IllegalArgumentException("사칙연산 기호가 아닙니다“")
-            operator.work(acc, pair.second)
+        return pairs.fold(initValue) { acc, (operator,number) ->
+            val enumOperator = Operator.reverseMap(operator) ?: throw IllegalArgumentException("사칙연산 기호가 아닙니다“")
+            enumOperator.work(acc, number)
         }
     }
 }
