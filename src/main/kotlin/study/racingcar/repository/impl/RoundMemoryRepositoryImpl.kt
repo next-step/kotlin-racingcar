@@ -16,7 +16,7 @@ class RoundMemoryRepositoryImpl : RoundRepository {
     }
 
     override fun findLast(): Round {
-        return repository.maxByOrNull { it.number }!!
+        return repository.maxByOrNull { it.number } ?: throw IllegalStateException("Round Repository가 비어있습니다.")
     }
 
     override fun saveAll(rounds: List<Round>) {
