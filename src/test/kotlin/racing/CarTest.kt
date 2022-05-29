@@ -6,7 +6,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import racing.domain.car.Car
 import racing.domain.exception.CarNameLengthExcessException
-import racing.domain.validation.CarRaceValidation
 
 class CarTest {
 
@@ -27,9 +26,7 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(strings = ["", " ", "Porsche"])
     fun `자동차 이름이 입력 범위에 없는 경우 CarNameLengthExcessException 발생`(carName: String) {
-        val carRaceValidation = CarRaceValidation()
-
-        Assertions.assertThatThrownBy { carRaceValidation.validateCarName(listOf(carName)) }
+        Assertions.assertThatThrownBy { Car(carName) }
             .isInstanceOf(CarNameLengthExcessException::class.java)
     }
 }
