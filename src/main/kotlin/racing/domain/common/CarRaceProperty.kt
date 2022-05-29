@@ -7,6 +7,6 @@ class CarRaceProperty(val roundSize: Int) {
         private set
 
     constructor(roundSize: Int, carNames: List<String>) : this(roundSize) {
-        cars = carNames.map { Car(it) }
+        cars = carNames.map(::Car)
     }
 }
