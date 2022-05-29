@@ -8,10 +8,10 @@ data class Car(
 ) {
 
     val carName: String
-        get() { return _carName }
+        get() = _carName
 
     val moveCount: Int
-        get() { return _moveCount }
+        get() = _moveCount
 
     fun move() {
         if (canMoveForward(RandomNumberGenerator.getRandomNumber())) {
@@ -21,7 +21,7 @@ data class Car(
 
     fun canMoveForward(number: Int) = number >= MOVE_CONDITION
 
-    fun moveForward() = this._moveCount++
+    fun moveForward() = _moveCount++
 
     companion object {
         private const val MOVE_CONDITION = 4

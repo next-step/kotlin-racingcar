@@ -11,6 +11,6 @@ class CarRaceValidation {
     }
 
     companion object {
-        private val CAR_NAME_RANGE = IntRange(1, 5)
+        private val CAR_NAME_RANGE = 1..5
     }
 }
