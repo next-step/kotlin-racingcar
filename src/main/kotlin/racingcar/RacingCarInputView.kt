@@ -21,17 +21,12 @@ class RacingCarRequest(val carNames: CarNames, val rounds: Rounds) {
 
         private fun validateCarNames(carNamesInput: String?) {
             require(!carNamesInput.isNullOrBlank()) { "경주할 자동차 이름의 입력값은 빈 값이거나, 공백일 수 없습니다." }
-            val splitCarNames: List<String> = carNamesInput.split(NAMES_DELIMITER)
-            splitCarNames.forEach() { carName ->
-                require(carName.isNotBlank()) { "자동차 이름은 빈 값이거나 공백일 수 없습니다." }
-            }
         }
 
         private fun validateRounds(roundsInput: String?) {
             require(!roundsInput.isNullOrBlank()) { "라운드 입력값은 빈 값이거나, 공백일 수 없습니다." }
-            val rounds = roundsInput.toIntOrNull()
+            roundsInput.toIntOrNull()
                 ?: throw IllegalArgumentException("라운드 입력값은 정수여야 합니다.")
-            require(rounds >= 1) { "라운드 입력값은 0보다 큰 값이어야 합니다." }
         }
 
         private const val NAMES_DELIMITER = ","
