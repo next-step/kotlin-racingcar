@@ -2,7 +2,7 @@ package study.racingCar.domain
 
 class Car(val carName: String, var mileage: Int = 0) {
     init {
-        require(carName.length <= 5) { "자동차 이름은 5자를 초과할 수 없습니다." }
+        require(carName.length <= MAX_NAME_LENGTH) { "자동차 이름은 5자를 초과할 수 없습니다." }
     }
 
     fun tryMove(engineStatus: Int = (0..9).random()): Car {
@@ -12,5 +12,6 @@ class Car(val carName: String, var mileage: Int = 0) {
 
     companion object {
         const val MOVE_CONDITION = 4
+        const val MAX_NAME_LENGTH = 5
     }
 }
