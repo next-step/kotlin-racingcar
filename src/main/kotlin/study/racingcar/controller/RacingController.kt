@@ -3,11 +3,8 @@ package study.racingcar.controller
 import study.racingcar.domain.Car
 import study.racingcar.domain.RaceInfo
 import study.racingcar.service.RacingService
-import study.racingcar.view.CarView
-import study.racingcar.view.RacingView.Companion.CAR_NAME_INPUT_MESSAGE
-import study.racingcar.view.RacingView.Companion.RACE_RESULT_MESSAGE
-import study.racingcar.view.RacingView.Companion.RACING_WINNER_MESSAGE
-import study.racingcar.view.RacingView.Companion.ROUND_NUMBER_MESSAGE
+import study.racingcar.view.RacingView
+import study.racingcar.view.RoundView
 
 class RacingController(private val racingService: RacingService) {
 
@@ -16,23 +13,19 @@ class RacingController(private val racingService: RacingService) {
         val cars = raceInfo.carNames.map { Car(it) }
 
         racingService.start(raceInfo.round, cars)
+        RacingView.printRacingStart()
         printRace()
-        printWinner()
+        printWinners()
     }
 
     private fun printRace() {
-        println(RACE_RESULT_MESSAGE)
         racingService.getAllRounds().forEach { round ->
-            round.cars.forEach {
-                println(CarView(it).result)
-            }
-            println()
+            RoundView(round).printRoundResult()
         }
     }
 
-    private fun printWinner() {
-        val winners = racingService.getLastRound().winners()
-        println(RACING_WINNER_MESSAGE(winners.joinToString(", ") { it.name }))
+    private fun printWinners() {
+        RoundView(racingService.getLastRound()).printWinners()
     }
 
     private fun getRaceInfo(): RaceInfo {
@@ -40,7 +33,7 @@ class RacingController(private val racingService: RacingService) {
     }
 
     private fun getNamesOfCar(): List<String> {
-        println(CAR_NAME_INPUT_MESSAGE)
+        RacingView.printCarNameInputMessage()
 
         val names = readLine()!!.split(",")
 
@@ -50,7 +43,7 @@ class RacingController(private val racingService: RacingService) {
     }
 
     private fun getRound(): Int {
-        println(ROUND_NUMBER_MESSAGE)
+        RacingView.printRoundNumberMessage()
 
         val numberOfTry = readLine()!!.toInt()
 
