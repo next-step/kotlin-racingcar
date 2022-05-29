@@ -3,7 +3,12 @@ package study.racingCar
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import study.racingCar.controller.RacingCar
 import study.racingCar.domain.Car
+import study.racingCar.domain.RacingCarLogic
+import study.racingCar.domain.WinnersLogic
+import study.racingCar.view.InputView
+import study.racingCar.view.ResultView
 
 class RacingCarTest {
 
@@ -40,6 +45,12 @@ class RacingCarTest {
 
     @Test
     fun `우승자는 한명이상일 수 있다`(){
-        
+        val carNames = listOf("test1","test2","test3")
+        val tryNum = 5
+        val mileageRecords = RacingCarLogic().startRacing(carNames, tryNum)
+        val winners = WinnersLogic().judgeWinners(mileageRecords).split(",")
+        assertThat(winners.size).isGreaterThanOrEqualTo(1)
     }
 }
+
+

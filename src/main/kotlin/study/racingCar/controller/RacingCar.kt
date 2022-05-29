@@ -1,6 +1,7 @@
 package study.racingCar.controller
 
 import study.racingCar.domain.RacingCarLogic
+import study.racingCar.domain.WinnersLogic
 import study.racingCar.view.InputView
 import study.racingCar.view.ResultView
 
@@ -8,10 +9,11 @@ class RacingCar {
     fun startGame() {
         val carNames = InputView.inputCarNames()
         val tryNum = InputView.inputMovingTryNum()
-        val movedStepsRecords = RacingCarLogic().startRacing(carNames, tryNum)
+        val mileageRecords = RacingCarLogic().startRacing(carNames, tryNum)
+        val winners = WinnersLogic().judgeWinners(mileageRecords)
 
-        ResultView.printResult(movedStepsRecords)
-        ResultView.printWinners(movedStepsRecords)
+        ResultView.printResult(mileageRecords)
+        ResultView.printWinners(winners)
     }
 }
 
