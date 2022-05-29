@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.collections.shouldContainExactly
@@ -32,9 +32,7 @@ internal class CarsTest : FunSpec({
         // given
         val sut = Cars(
             listOf(
-                Car(5, CarName.of("charlie")),
-                Car(4, CarName.of("brown")),
-                Car(5, CarName.of("aaa"))
+                Car(5, CarName.of("charlie")), Car(4, CarName.of("brown")), Car(5, CarName.of("aaa"))
             )
         )
 

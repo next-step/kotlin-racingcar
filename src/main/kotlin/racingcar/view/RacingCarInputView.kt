@@ -1,4 +1,7 @@
-package racingcar
+package racingcar.view
+
+import racingcar.domain.CarNames
+import racingcar.domain.Rounds
 
 object RacingCarInputView {
     fun input(): RacingCarRequest {

@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class RacingResults(val value: List<RacingResult> = listOf()) {
     fun add(racingResult: RacingResult): RacingResults {

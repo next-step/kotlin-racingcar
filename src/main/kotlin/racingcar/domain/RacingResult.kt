@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class RacingResult(val round: Int, private val cars: Cars) {
 
