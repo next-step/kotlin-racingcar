@@ -6,7 +6,9 @@ class Car(val carName: String, var mileage: Int = 0) {
     }
 
     fun tryMove(engineStatus: Int = (0..9).random()): Car {
-        if (engineStatus >= MOVE_CONDITION) mileage++
+        if (engineStatus >= MOVE_CONDITION) {
+            mileage++
+        }
         return this
     }
 
