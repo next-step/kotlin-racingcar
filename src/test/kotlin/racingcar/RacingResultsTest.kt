@@ -4,14 +4,19 @@ import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 
 internal class RacingResultsTest : FunSpec({
-    test("add 함수를 호출하여 요소를 더한 RacingResult 객체를 반환받을 수 있다.") {
+    test("add 함수를 호출하여 하나의 레이싱 결과를 추가한 RacingResults 객체를 반환받을 수 있다.") {
         // given
-        val racingResults = RacingResults(listOf(RacingResult(1, listOf(1))))
+        val carList = List(1) { Car(1, CarName.of("charlie")) }
+        val cars = Cars(carList)
+        val racingResultList = listOf(RacingResult(1, cars))
+        val sut = RacingResults(racingResultList)
+
+        val racingResult = RacingResult(2, Cars(List(1) { Car(2, CarName.of("charlie")) }))
 
         // when
-        val sut = racingResults.add(RacingResult(2, listOf(2)))
+        val result = sut.add(racingResult)
 
         // then
-        sut.value.size shouldBe 2
+        result.value.size shouldBe 2
     }
 })

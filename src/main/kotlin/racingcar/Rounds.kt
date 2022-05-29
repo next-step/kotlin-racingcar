@@ -3,6 +3,10 @@ package racingcar
 data class Rounds(val value: Int) {
 
     init {
-        require(value > 0) { "경기 진행 수는 0보다 커야합니다." }
+        require(value >= MINIMUM_ROUNDS_VALUE) { "경주는 1회이상 진행해야 합니다. Rounds.value: $value" }
+    }
+
+    companion object {
+        const val MINIMUM_ROUNDS_VALUE = 1
     }
 }

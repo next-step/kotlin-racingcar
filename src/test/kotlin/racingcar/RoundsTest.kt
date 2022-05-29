@@ -11,6 +11,6 @@ internal class RoundsTest : FunSpec({
 
         // when then
         val exception = shouldThrow<IllegalArgumentException> { Rounds(value) }
-        exception.message shouldBe "경기 진행 수는 0보다 커야합니다."
+        exception.message shouldBe "경주는 1회이상 진행해야 합니다. Rounds.value: $value"
     }
 })
