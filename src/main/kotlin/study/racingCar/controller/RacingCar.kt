@@ -17,7 +17,7 @@ class RacingCar {
     }
 }
 
-fun main(){
+fun main() {
     val racingCar = RacingCar()
     racingCar.startGame()
 }

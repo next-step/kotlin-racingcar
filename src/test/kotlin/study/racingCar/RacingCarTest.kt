@@ -44,8 +44,8 @@ class RacingCarTest {
     }
 
     @Test
-    fun `우승자는 한명이상일 수 있다`(){
-        val carNames = listOf("test1","test2","test3")
+    fun `우승자는 한명이상일 수 있다`() {
+        val carNames = listOf("test1", "test2", "test3")
         val tryNum = 5
         val mileageRecords = RacingCarLogic().startRacing(carNames, tryNum)
         val winners = WinnersLogic().judgeWinners(mileageRecords).split(",")
