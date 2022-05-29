@@ -52,5 +52,3 @@ class RacingCarTest {
         assertThat(winners.size).isGreaterThanOrEqualTo(1)
     }
 }
-
-
