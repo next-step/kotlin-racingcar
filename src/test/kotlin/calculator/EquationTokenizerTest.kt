@@ -11,7 +11,7 @@ internal class EquationTokenizerTest {
 
     @ParameterizedTest
     @MethodSource("tokenize")
-    internal fun `토크나이징`(input: String, expectedOperands: List<Operand>, expectedOperators: List<Operator>) {
+    fun `토크나이징`(input: String, expectedOperands: List<Operand>, expectedOperators: List<Operator>) {
         val (operands, operators) = equationTokenizer.tokenize(input)
 
         assertThat(operands).containsExactlyInAnyOrderElementsOf(expectedOperands)
@@ -26,8 +26,7 @@ internal class EquationTokenizerTest {
                 Arguments.arguments(
                     "3 * 4 / 2",
                     mutableListOf(Operand("3"), Operand("4"), Operand("2")),
-                    mutableListOf(Operator.MULTIPLY),
-                    Operator.DIVIDE
+                    mutableListOf(Operator.MULTIPLY, Operator.DIVIDE),
                 )
             )
         }
