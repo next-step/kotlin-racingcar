@@ -1,4 +1,4 @@
-package study.step1
+package study
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.inspectors.forAll
