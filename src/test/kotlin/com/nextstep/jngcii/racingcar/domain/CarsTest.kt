@@ -45,7 +45,7 @@ internal class CarsTest {
 
         private fun Car.goBy(distance: Int): Car {
             repeat(distance) {
-                this.goOrStayByDiceCondition()
+                this.go()
             }
             return this
         }

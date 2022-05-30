@@ -7,7 +7,7 @@ class Game(
 ) {
     fun start() {
         repeat(trialCount) {
-            cars.forEach { it.goOrStayByDiceCondition() }
+            cars.forEach { it.go() }
             history.write()
         }
     }

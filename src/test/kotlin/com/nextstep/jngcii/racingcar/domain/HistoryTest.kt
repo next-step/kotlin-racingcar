@@ -55,7 +55,7 @@ internal class HistoryTest {
             emptyList<Map<String, Int>>()
         )
 
-        cars.forEach { it.goOrStayByDiceCondition() }
+        cars.forEach { it.go() }
         history.write()
 
         assertThat(
@@ -66,7 +66,7 @@ internal class HistoryTest {
             )
         )
 
-        cars.forEach { it.goOrStayByDiceCondition() }
+        cars.forEach { it.go() }
         history.write()
 
         assertThat(
@@ -121,7 +121,7 @@ internal class HistoryTest {
 
         private fun Car.goBy(distance: Int): Car {
             repeat(distance) {
-                this.goOrStayByDiceCondition()
+                this.go()
             }
             return this
         }
