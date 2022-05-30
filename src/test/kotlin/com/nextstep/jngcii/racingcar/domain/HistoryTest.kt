@@ -91,7 +91,9 @@ internal class HistoryTest {
             cars = Cars(carA, carB, carC)
         )
 
-        assertThat(history.winners).isEqualTo(expected)
+        assertThat(
+            history.winners.map { it.name }
+        ).isEqualTo(expected)
     }
 
     companion object {

@@ -5,12 +5,12 @@ class History(private val cars: Cars) {
     val records get() = _records.toList()
 
     val winners
-        get(): List<String> {
+        get(): List<Car> {
             val maxDistance = cars
                 .nameToDistanceMap
                 .maxOf { it.value }
 
-            return cars.getNames(maxDistance)
+            return cars.filterBy(maxDistance)
         }
 
     fun write() {

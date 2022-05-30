@@ -16,9 +16,7 @@ class Cars(
             it.name to it.distance
         }
 
-    fun getNames(distance: Int) = cars
-        .filter { it.distance == distance }
-        .map { it.name }
+    fun filterBy(distance: Int) = cars.filter { it.distance == distance }
 
     fun forEach(action: (car: Car) -> Unit) {
         cars.forEach { action(it) }

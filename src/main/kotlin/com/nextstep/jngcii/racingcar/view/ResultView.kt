@@ -13,7 +13,9 @@ object ResultView {
         history.records
             .forEach { printSingleRecord(it) }
 
-        val winners = history.winners.joinToString(JOIN_SEPARATOR)
+        val winners = history.winners
+            .joinToString(JOIN_SEPARATOR) { it.name }
+
         println("${winners}가 최종우승했습니다.")
     }
 
