@@ -13,10 +13,10 @@ class CarRacing(
         }
     }
 
-    private fun executeCarRacing(carList: List<Car>, carEngine: NumberGenerator) {
+    private fun executeCarRacing(carList: List<Car>, movingSignal: NumberGenerator) {
         carList.forEach {
-            val engine = carEngine.generate()
-            it.move(engine)
+            val signal = movingSignal.generate()
+            it.move(signal)
         }
     }
 }
