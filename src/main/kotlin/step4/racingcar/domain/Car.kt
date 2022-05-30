@@ -9,8 +9,8 @@ class Car(
 
     private val _movements: MutableList<Boolean> = mutableListOf()
 
-    val movements
-        get() = _movements.toList()
+    val movements: List<Boolean>
+        get() = _movements
 
     fun move(input: Int) {
         _movements.add(input > GO_NUMBER)
