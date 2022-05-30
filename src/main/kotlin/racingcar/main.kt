@@ -4,6 +4,6 @@ import racingcar.view.ResultView
 
 fun main() {
     val gameBoard = GameBoard()
-    val resultView = ResultView(gameBoard.cars, gameBoard.moveCount)
+    val resultView = ResultView(gameBoard)
     resultView.showAllPositionsByStep()
 }
