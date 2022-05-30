@@ -21,12 +21,11 @@ object ResultView {
 
     private fun printSingleRecord(record: Record) {
         record.distanceByName
-            .forEach { printSingleCarDistance(it) }
+            .forEach { (name, distance) -> printSingleCarDistance(name, distance) }
         println()
     }
 
-    private fun printSingleCarDistance(car: Map.Entry<String, Int>) {
-        val (name, distance) = car
+    private fun printSingleCarDistance(name: String, distance: Int) {
         println("$name : ${DASH.repeat(distance)}")
     }
 }
