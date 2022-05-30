@@ -8,7 +8,7 @@ class EquationTokenizer {
         val operators = mutableListOf<Operator>()
 
         for ((index, element) in splitEquation.withIndex()) {
-            if (isOperandIndex(index)) {
+            if (index.isOperandIndex()) {
                 operands.add(Operand(element))
                 continue
             }
@@ -17,6 +17,6 @@ class EquationTokenizer {
 
         return Pair(operands, operators)
     }
-
-    private fun isOperandIndex(index: Int) = index % 2 == 0
 }
+
+private fun Int.isOperandIndex() = this % 2 == 0
