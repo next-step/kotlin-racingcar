@@ -1,5 +1,7 @@
 package racingcar.domain
 
+import racingcar.domain.move.MovingStrategy
+
 private const val MINIMUM_NUMBER_OF_CARS = 2
 
 class Cars(cars: List<Car>) {
@@ -10,7 +12,7 @@ class Cars(cars: List<Car>) {
         this.values = cars
     }
 
-    fun move(canMove: () -> Boolean) {
-        values.forEach { car -> car.move(canMove) }
+    fun move(movingStrategy: MovingStrategy) {
+        values.forEach { car -> car.move(movingStrategy) }
     }
 }
