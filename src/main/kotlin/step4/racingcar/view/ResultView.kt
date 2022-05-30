@@ -1,13 +1,15 @@
-package step4.racingcar.racingcar
+package step4.racingcar.view
+
+import step4.racingcar.domain.Car
+import step4.racingcar.domain.GameResult
 
 object ResultView {
-    fun view(gameResult: CarRacing) {
-        val result = gameResult.gameResult
+    fun view(gameResult: GameResult) {
         println(">>>>> 실행결과")
-        repeat(result.round) { round ->
-            printRacingPerRound(result.cars, round)
+        repeat(gameResult.round) { round ->
+            printRacingPerRound(gameResult.cars, round)
         }
-        result.getWinners().also {
+        gameResult.getWinners().also {
             println("[${it.joinToString()}]가 최종 우승했습니다.")
         }
     }

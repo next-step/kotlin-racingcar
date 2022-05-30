@@ -1,9 +1,11 @@
-package step4.racingcar.racingcar
+package step4.racingcar
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import step4.racingcar.domain.Car
+import step4.racingcar.domain.GameResult
 
 class GameResultTest {
 
