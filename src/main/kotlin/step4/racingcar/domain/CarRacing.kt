@@ -13,9 +13,9 @@ class CarRacing(
     val gameResult: GameResult
         get() = GameResult(cars, moveCount)
 
-    fun execute(carEngine: NumberGenerator) {
+    fun execute(movingSignal: NumberGenerator) {
         repeat(moveCount) {
-            executeCarRacing(cars, carEngine)
+            executeCarRacing(cars, movingSignal)
         }
     }
 
