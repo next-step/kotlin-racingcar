@@ -11,7 +11,7 @@ class Over4MoveStrategy(
     private val randomGenerator: RandomGenerator = RangeRandomGenerator()
 ) : MoveStrategy {
 
-    companion object{
+    companion object {
         private const val MOVE_CRITERION = 4
     }
 

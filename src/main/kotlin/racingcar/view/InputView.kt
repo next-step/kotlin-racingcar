@@ -1,7 +1,5 @@
 package racingcar.view
 
-import java.lang.IllegalArgumentException
-
 class InputView {
     fun receiveRequest(): Pair<Int, Int> {
         println("자동차 대수는 몇 대인가요?")

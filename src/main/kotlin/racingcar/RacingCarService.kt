@@ -22,18 +22,25 @@ class RacingCarService(
         }
 
         for (i in 1..numberOfTries) {
-            cars.forEach {
-                moveStrategy.move(it)
-            }
-            val repsResult = GameResult.RepsResult(cars.map { GameResult.CarSnapShot(it.id, it.position) })
-            gameResult.addReps(repsResult)
+            play1Reps(cars, gameResult)
         }
 
         return gameResult
     }
 
+    private fun play1Reps(
+        cars: List<Car>,
+        gameResult: GameResult
+    ) {
+        for (it in cars) {
+            moveStrategy.move(it)
+        }
+        val repsResult = GameResult.RepsResult(cars.map { GameResult.CarSnapShot(it.id, it.position) })
+        gameResult.addReps(repsResult)
+    }
+
     private fun initialize(numberOfCars: Int): List<Car> {
-        if (numberOfCars == 0) {
+        if (numberOfCars < 2) {
             throw IllegalArgumentException("자동차 대수는 2대 이상이어야 합니다.")
         }
         for (i in 1..numberOfCars) {

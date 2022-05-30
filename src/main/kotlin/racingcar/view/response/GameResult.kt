@@ -9,9 +9,7 @@ class GameResult(
 
     class RepsResult(
         val snapShots: List<CarSnapShot>
-    ) {
-
-    }
+    )
 
     class CarSnapShot(
         val id: Int,
