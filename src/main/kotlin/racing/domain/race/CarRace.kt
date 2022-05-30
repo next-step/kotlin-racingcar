@@ -4,9 +4,14 @@ import racing.domain.common.CarRaceProperty
 import racing.domain.utils.RandomNumberStrategy
 
 class CarRace(private val carRaceProperty: CarRaceProperty) {
-    fun startByRound(randomNumberMaker: RandomNumberStrategy) {
+
+    fun start(randomNumberMaker: RandomNumberStrategy) {
         repeat(carRaceProperty.roundSize) { round ->
-            carRaceProperty.cars.forEach { it.move(round, randomNumberMaker.getRandomNumber()) }
+            startByRound(round, randomNumberMaker)
         }
+    }
+
+    fun startByRound(round: Int, randomNumberMaker: RandomNumberStrategy) {
+        carRaceProperty.cars.forEach { it.move(round, randomNumberMaker.getRandomNumber()) }
     }
 }

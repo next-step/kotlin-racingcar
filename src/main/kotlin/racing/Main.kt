@@ -17,7 +17,7 @@ fun main() {
 
     val carRace = CarRace(carRaceProperty)
     val randomNumberMaker = RandomNumberMaker()
-    carRace.startByRound(randomNumberMaker)
+    carRace.start(randomNumberMaker)
     resultView.printCarPositionByRound()
 
     val winnerJudge = WinnerJudge(carRaceProperty)
