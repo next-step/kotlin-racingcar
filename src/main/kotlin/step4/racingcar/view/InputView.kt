@@ -1,4 +1,4 @@
-package step4.racingcar.racingcar.view
+package step4.racingcar.view
 
 object InputView {
 

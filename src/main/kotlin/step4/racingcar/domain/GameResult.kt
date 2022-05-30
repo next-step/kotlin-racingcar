@@ -1,4 +1,4 @@
-package step4.racingcar.racingcar.domain
+package step4.racingcar.domain
 
 data class GameResult(
     val cars: List<Car>,
