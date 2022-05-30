@@ -1,14 +1,15 @@
 package racingcar.car
 
-class Car {
+import racingcar.engine.Engine
+
+class Car(private val engine: Engine) {
     private val position = mutableMapOf<Int, Int>()
 
-    fun positionBy(moveCount: Int): Int = if (moveCount < 1) initPosition else position.getOrPut(moveCount) {
-        positionBy(moveCount - 1) + drivingPointBy(drivingForcePool.random())
+    fun positionBy(moveCount: Int): Int = if (moveCount < 1) INIT_POSITION else position.getOrPut(moveCount) {
+        positionBy(moveCount - 1) + engine.advancePoint()
     }
 
     companion object {
-        private val drivingForcePool = (0..9)
-        private const val initPosition = 0
+        private const val INIT_POSITION = 0
     }
 }
