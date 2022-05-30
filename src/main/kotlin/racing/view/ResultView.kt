@@ -5,14 +5,21 @@ import racing.domain.common.CarRaceProperty
 
 class ResultView(private val carRaceProperty: CarRaceProperty) {
 
-    fun printResultByRound(round: Int) {
-        println("-- [$round]회차 결과 ------")
-        carRaceProperty.cars.map { printResultByCar(it) }
-        println("--------------------")
+    fun printCarPositionByRound() {
+        repeat(carRaceProperty.roundSize) { round ->
+            println("-- [${round + 1}]회차 결과 ------")
+
+            carRaceProperty.cars
+                .map { car ->
+                    printPositionByRound(car, round)
+                }
+
+            println("--------------------")
+        }
     }
 
-    private fun printResultByCar(car: Car) {
-        println("${car.carName} : ${getForwardMoveMark(car.moveCount)}")
+    private fun printPositionByRound(car: Car, round: Int) {
+        println("${car.carName} : ${getForwardMoveMark(car.positionByRound[round]!!)}")
     }
 
     private fun getForwardMoveMark(move: Int): String {
