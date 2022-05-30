@@ -1,15 +1,11 @@
 package racingcar.car
 
-class Car(moveCount: Int) {
-    private val drivingForces = randomListBy(drivingForcePool, moveCount)
-    private val drivingPoints = drivingForces.map { drivingPointBy(it) }
-    private val initPositions = arrayListOf(initPosition)
-    private val positionsByStep = drivingPoints.fold(initPositions) { positions, point ->
-        positions.add(positions.last() + point)
-        positions
-    }
+class Car {
+    private val position = mutableMapOf<Int, Int>()
 
-    fun positionBy(step: Int): Int = positionsByStep[step]
+    fun positionBy(moveCount: Int): Int = if (moveCount < 1) initPosition else position.getOrPut(moveCount) {
+        positionBy(moveCount - 1) + drivingPointBy(drivingForcePool.random())
+    }
 
     companion object {
         private val drivingForcePool = (0..9)

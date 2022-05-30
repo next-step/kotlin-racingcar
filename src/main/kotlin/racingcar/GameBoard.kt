@@ -7,5 +7,5 @@ class GameBoard(minCarCount: Int = 1, minMoveCount: Int = 1) {
     private val inputView = InputView(minCarCount, minMoveCount)
     private val carCount = inputView.carCount.value
     val moveCount = inputView.moveCount.value
-    val cars = List(carCount) { Car(moveCount) }
+    val cars = List(carCount) { Car() }
 }
