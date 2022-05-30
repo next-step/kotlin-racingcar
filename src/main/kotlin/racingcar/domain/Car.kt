@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 data class Car(val distanceMoved: Int = 0, private val name: CarName) {
 

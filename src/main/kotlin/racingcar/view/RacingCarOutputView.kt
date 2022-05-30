@@ -1,4 +1,7 @@
-package racingcar
+package racingcar.view
+
+import racingcar.domain.RacingResult
+import racingcar.domain.RacingResults
 
 object RacingCarOutputView {
 

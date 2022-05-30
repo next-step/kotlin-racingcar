@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 data class Rounds(val value: Int) {
 

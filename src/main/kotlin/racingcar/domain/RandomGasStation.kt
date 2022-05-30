@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 object RandomGasStation {
     fun refuels(count: Int): List<Int> {
