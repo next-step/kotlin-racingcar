@@ -11,13 +11,13 @@ import racingcar.domain.Winner
 class RacingController(private val racingService: RacingService) {
 
     fun play(carNames: String, roundCount: String): RacingResponse {
-        val readyCars = CarSelector(carNames).names
-            .map { (Car(it)) }
+
+        val readyCars = CarSelector.select(carNames)
 
         return racingService.start(roundCount.toInt(), Cars(readyCars))
     }
 
     fun winner(cars: List<Car>): WinnerResponse {
-        return WinnerResponse(Winner(cars))
+        return WinnerResponse(Winner(cars).winners)
     }
 }

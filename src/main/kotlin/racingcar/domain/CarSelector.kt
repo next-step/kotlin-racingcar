@@ -1,10 +1,14 @@
 package racingcar.domain
 
-class CarSelector(nameString: String) {
+private const val DEFAULT_DELIMITER = ","
 
-    val names = nameString.split(DEFAULT_DELIMITER)
+object CarSelector {
 
-    companion object {
-        private const val DEFAULT_DELIMITER = ","
+    fun select(nameString: String): List<Car> {
+        return getNames(nameString).map { (Car(it)) }
+    }
+
+    private fun getNames(nameString: String): List<String> {
+        return nameString.split(DEFAULT_DELIMITER)
     }
 }

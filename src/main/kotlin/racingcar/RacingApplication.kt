@@ -18,10 +18,6 @@ fun main() {
     val racingResponse = racingController.play(carNames, roundCount)
     OutputView.display(racingResponse.allResult)
 
-    val final = racingResponse.allResult
-        .last()
-        .cars
-
-    val winnerResponse = racingController.winner(final)
-    OutputView.winner(winnerResponse.winner.winners)
+    val winnerResponse = racingController.winner(racingResponse.finalRound)
+    OutputView.winner(winnerResponse.winners)
 }
