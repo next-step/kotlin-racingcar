@@ -13,7 +13,7 @@ class CarRacingController {
 
             val carRacing = CarRacing.of(racers, movementCount)
             carRacing.execute(RandomNumber)
-            ResultView.view(carRacing)
+            ResultView.view(carRacing.gameResult)
         }
     }
 }
