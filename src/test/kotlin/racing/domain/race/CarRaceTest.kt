@@ -34,7 +34,7 @@ class CarRaceTest {
 
         carRace.start(randomNumber)
 
-        assertThat(carRaceProperty.cars[0].moveCount).isEqualTo(2)
+        assertThat(carRaceProperty.cars[0].moveCount).isEqualTo(5)
     }
 
     @Test
