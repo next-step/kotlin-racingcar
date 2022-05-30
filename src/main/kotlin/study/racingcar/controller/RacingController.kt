@@ -1,47 +1,58 @@
 package study.racingcar.controller
 
+import study.racingcar.domain.Car
 import study.racingcar.domain.RaceInfo
-import study.racingcar.domain.Racing
 import study.racingcar.service.RacingService
 import study.racingcar.view.RacingView
+import study.racingcar.view.RoundView
 
 class RacingController(private val racingService: RacingService) {
 
     fun startRace() {
         val raceInfo = getRaceInfo()
-        val racing = Racing(raceInfo.numOfCars, raceInfo.round)
+        val cars = raceInfo.carNames.map { Car(it) }
 
-        RacingView(racing).printRaceResult()
-        racingService.race(racing)
+        racingService.start(raceInfo.round, cars)
+        RacingView.printRacingStart()
+        printRace()
+        printWinners()
+    }
+
+    private fun printRace() {
+        racingService.getAllRounds().forEach { round ->
+            RoundView(round).printRoundResult()
+        }
+    }
+
+    private fun printWinners() {
+        RoundView(racingService.getLastRound()).printWinners()
     }
 
     private fun getRaceInfo(): RaceInfo {
-        return RaceInfo(getNumberOfCar(), getRound())
+        return RaceInfo(getNamesOfCar(), getRound())
     }
 
-    private fun getNumberOfCar(): Int {
-        println(CAR_NUMBER_MESSAGE)
+    private fun getNamesOfCar(): List<String> {
+        RacingView.printCarNameInputMessage()
 
-        val numberOfCar = readLine()!!.toInt()
+        val names = readLine()!!.split(",")
 
-        require(numberOfCar > MINIMUM_CAR)
+        require(names.size >= MINIMUM_CAR)
 
-        return numberOfCar
+        return names
     }
 
     private fun getRound(): Int {
-        println(ROUND_NUMBER_MESSAGE)
+        RacingView.printRoundNumberMessage()
 
         val numberOfTry = readLine()!!.toInt()
 
-        require(numberOfTry > MINIMUM_ROUND)
+        require(numberOfTry >= MINIMUM_ROUND)
 
         return numberOfTry
     }
 
     companion object {
-        private const val CAR_NUMBER_MESSAGE = "자동차 대수는 몇 대인가요?"
-        private const val ROUND_NUMBER_MESSAGE = "시도할 횟수는 몇 회인가요?"
         private const val MINIMUM_CAR = 1
         private const val MINIMUM_ROUND = 1
     }
