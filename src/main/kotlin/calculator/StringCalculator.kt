@@ -7,9 +7,9 @@ private const val BASIC_SPLITTER = " "
 
 class StringCalculator(private val splitter: String = BASIC_SPLITTER) {
     fun calculate(source: String): Double {
-        val value = validate(source)
-        val numberStack = value.toNumberStack(splitter)
-        val operatorQueue = value.toOperatorQueue(splitter)
+        validate(source)
+        val numberStack = source.toNumberStack(splitter)
+        val operatorQueue = source.toOperatorQueue(splitter)
         while (!(numberStack.size == 1 && operatorQueue.isEmpty())) {
             val result = calculate(numberStack, operatorQueue)
             numberStack.push(result)
@@ -17,13 +17,12 @@ class StringCalculator(private val splitter: String = BASIC_SPLITTER) {
         return numberStack.peek().toDouble()
     }
 
-    private fun validate(source: String): String {
-        require(source.isBlank()) { "빈 값이 들어올 수 없습니다." }
-        return source
+    private fun validate(source: String) {
+        require(source.isNotBlank()) { "빈 값이 들어올 수 없습니다." }
     }
 
     private fun calculate(numbers: LinkedList<Double>, operators: Queue<Operator>): Double {
-        require(numbers.size < 2 || operators.isEmpty()) { "잘못된 수식입니다." }
+        require(numbers.size > 2 || operators.isNotEmpty()) { "잘못된 수식입니다." }
         val a = numbers.pop()
         val b = numbers.pop()
         val operator = operators.remove()
