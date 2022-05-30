@@ -23,8 +23,8 @@ class PositionTest {
     @Test
     fun `포지션 전진`() {
         val position = Position()
-        val nextPosition = position.move()
+        position.move()
 
-        assertThat(nextPosition.value).isGreaterThan(position.value)
+        assertThat(position.value).isEqualTo(1)
     }
 }

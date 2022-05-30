@@ -8,6 +8,8 @@ class Car(position: Position = Position()) {
         private set
 
     fun move(movingStrategy: MovingStrategy) {
-        position = if (movingStrategy.canMove()) position.move() else position
+        if (movingStrategy.canMove()) {
+            position.move()
+        }
     }
 }
