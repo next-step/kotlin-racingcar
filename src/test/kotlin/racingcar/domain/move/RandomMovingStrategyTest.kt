@@ -9,6 +9,6 @@ class RandomMovingStrategyTest {
     fun randomTest() {
         val nextInt = Random.nextInt(10)
 
-        assertThat(nextInt).isLessThan(10).isGreaterThan(0)
+        assertThat(nextInt).isLessThan(10).isGreaterThanOrEqualTo(0)
     }
 }

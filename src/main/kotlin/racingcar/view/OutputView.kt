@@ -1,7 +1,7 @@
 package racingcar.view
 
-import racingcar.dto.CarSnapshot
+import racingcar.domain.Cars
 
 interface OutputView {
-    fun printCarPositions(carSnapShots: List<CarSnapshot>)
+    fun printCarPositions(cars: Cars)
 }

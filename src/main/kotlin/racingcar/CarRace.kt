@@ -4,7 +4,6 @@ import racingcar.domain.Car
 import racingcar.domain.Cars
 import racingcar.domain.move.MovingStrategy
 import racingcar.domain.move.RandomMovingStrategy
-import racingcar.dto.CarSnapshot
 import racingcar.view.ConsoleInput
 import racingcar.view.ConsoleOutput
 import racingcar.view.InputView
@@ -24,8 +23,7 @@ class CarRace(private val inputView: InputView, private val outputView: OutputVi
 
     private fun takeOneTrial(cars: Cars, movingStrategy: MovingStrategy) {
         cars.move(movingStrategy)
-        val snapshots = cars.values.map(::CarSnapshot).toList()
-        outputView.printCarPositions(snapshots)
+        outputView.printCarPositions(cars)
         println()
     }
 }
