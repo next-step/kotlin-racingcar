@@ -1,5 +1,9 @@
 package racingcar
 
+import racingcar.application.RacingService
+import racingcar.infra.DefaultMoveStrategy
+import racingcar.ui.RacingController
+
 fun main() {
 
     InputView.displayCarNames()
@@ -10,17 +14,10 @@ fun main() {
     val roundCount: String = readln()
     require(roundCount.isNotBlank()) { "잘못된 요청 입니다." }
 
-    val readyCars = ready(CarSelector(carNames).names)
+    val racingController = RacingController(RacingService(DefaultMoveStrategy()))
+    val racingResponse = racingController.play(carNames, roundCount)
+    OutputView.display(racingResponse.allResult)
 
-    val racing = Racing(Cars(readyCars))
-    racing.start(roundCount.toInt(), DefaultMoveStrategy())
-
-    OutputView.display(racing.history)
-
-    val winners = Winner(racing.result).winners
-    OutputView.winner(winners)
-}
-
-fun ready(names: List<String>): List<Car> {
-    return names.map { Car(it) }
+    val winnerResponse = racingController.winner(racingResponse.finalRound)
+    OutputView.winner(winnerResponse.winners)
 }

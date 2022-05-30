@@ -1,4 +1,6 @@
-package racingcar
+package racingcar.infra
+
+import racingcar.domain.MoveStrategy
 
 class DefaultMoveStrategy : MoveStrategy {
 
