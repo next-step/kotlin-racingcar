@@ -1,20 +1,19 @@
-package racingcar.race
+package racingcar.count
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import racingcar.count.MoveCount
 
-class MoveCountTest {
+class CarCountTest {
     @ParameterizedTest
-    @CsvSource("2,2", "3,2", "5,1")
+    @CsvSource("2,2", "3,2", "10,5")
     fun `최소조건 이상의 숫자가 입력되었을 경우 value 를 통해 해당 값을 얻을 수 있다`(count: Int, min: Int) {
-        Assertions.assertThat(MoveCount(count, min).value).isEqualTo(count)
+        Assertions.assertThat(CarCount(count, min).value).isEqualTo(count)
     }
 
     @ParameterizedTest
-    @CsvSource("2,3", "3,5", "5,10")
+    @CsvSource("-2,2", "2,3", "1,5")
     fun `최소조건 미만의 숫자가 입력되었을 경우 에러처리`(count: Int, min: Int) {
-        Assertions.assertThatThrownBy { MoveCount(count, min) }
+        Assertions.assertThatThrownBy { CarCount(count, min) }
     }
 }

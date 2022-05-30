@@ -2,22 +2,18 @@ package racingcar.view
 
 import racingcar.GameBoard
 
-class ResultView(private val gameBoard: GameBoard) {
-    private val steps = List(gameBoard.moveCount) { it + 1 }
+private fun showPositionBy(position: Int) = println(stringBy(position))
 
+private fun stringBy(position: Int): String = "-".repeat(position)
+
+class ResultView(private val gameBoard: GameBoard) {
     fun showAllPositionsByStep() {
         println("\n실행 결과")
-        steps.forEach { step: Int ->
-            showPositionsBy(step)
+        repeat(gameBoard.moveCount) {
+            showPositionsBy(it + 1)
             println()
         }
     }
 
     private fun showPositionsBy(step: Int) = gameBoard.cars.forEach { showPositionBy(it.positionBy(step)) }
-
-    companion object {
-        private fun showPositionBy(position: Int) = println(stringBy(position))
-
-        private fun stringBy(position: Int): String = "-".repeat(position)
-    }
 }

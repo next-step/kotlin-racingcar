@@ -1,12 +1,11 @@
 package racingcar
 
 import racingcar.car.Car
-import racingcar.engine.RandomEngine
+import racingcar.car.engine.RandomEngine
 import racingcar.view.InputView
 
 class GameBoard(minCarCount: Int = 1, minMoveCount: Int = 1) {
     private val inputView = InputView(minCarCount, minMoveCount)
-    private val carCount = inputView.carCount.value
+    val cars = List(inputView.carCount.value) { Car(RandomEngine()) }
     val moveCount = inputView.moveCount.value
-    val cars = List(carCount) { Car(RandomEngine()) }
 }

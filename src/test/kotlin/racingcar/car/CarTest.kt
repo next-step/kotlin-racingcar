@@ -2,7 +2,7 @@ package racingcar.car
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
-import racingcar.engine.ConstantEngine
+import racingcar.car.engine.ConstantEngine
 
 class CarTest {
     @Test
