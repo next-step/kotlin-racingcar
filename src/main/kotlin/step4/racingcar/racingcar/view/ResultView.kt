@@ -1,4 +1,7 @@
-package step4.racingcar.racingcar
+package step4.racingcar.racingcar.view
+
+import step4.racingcar.racingcar.domain.Car
+import step4.racingcar.racingcar.domain.CarRacing
 
 object ResultView {
     fun view(gameResult: CarRacing) {
