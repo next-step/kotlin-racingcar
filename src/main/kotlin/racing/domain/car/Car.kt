@@ -4,9 +4,9 @@ import racing.domain.exception.CarNameLengthExcessException
 
 data class Car(
     private val _carName: String,
-    private var _moveCount: Int = 0,
-    private var _positionByRound: MutableMap<Int, Int> = mutableMapOf()
+    private var _moveCount: Int = 0
 ) {
+    private var _positionByRound: MutableMap<Int, Int> = mutableMapOf()
 
     init {
         if (!CAR_NAME_RANGE.contains(_carName.trim().length)) {
