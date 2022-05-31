@@ -5,7 +5,7 @@ import _3_racing_car.domain.Position
 
 abstract class Racer() {
     abstract val name: Name
-    protected abstract val position: Position
+    protected abstract var position: Position
 
     abstract fun move(power: Int): Position
 }

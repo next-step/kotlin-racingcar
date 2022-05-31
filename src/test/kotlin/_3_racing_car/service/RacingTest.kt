@@ -30,7 +30,6 @@ internal class RacingTest : BehaviorSpec({
                 then("최대 거리와 우승자를 반환한다.") {
                     assertSoftly(result) {
                         result.winners shouldBe winners
-                        result.maxLocation shouldBe maxLocation
                     }
                 }
             }
