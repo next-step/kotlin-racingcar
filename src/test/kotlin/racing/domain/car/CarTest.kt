@@ -12,14 +12,16 @@ class CarTest {
     fun `움직일 수 있는 범위 내에 있지 않아 이동이 불가능한 경우에 대한 테스트`() {
         val moveImpossibleCar = Car("A", 0)
 
-        Assertions.assertThat(moveImpossibleCar.canMoveForward(3)).isEqualTo(false)
+        moveImpossibleCar.move(1, 1)
+        Assertions.assertThat(moveImpossibleCar.moveCount).isEqualTo(0)
     }
 
     @Test
     fun `움직일 수 있는 범위 내에 있어서 이동이 가능한 경우에 대한 테스트`() {
         val movePossibleCar = Car("A", 0)
 
-        Assertions.assertThat(movePossibleCar.canMoveForward(7)).isEqualTo(true)
+        movePossibleCar.move(1, 6)
+        Assertions.assertThat(movePossibleCar.moveCount).isEqualTo(1)
     }
 
     @ParameterizedTest

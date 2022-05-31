@@ -11,7 +11,7 @@ class CarRace(private val carRaceProperty: CarRaceProperty) {
         }
     }
 
-    fun startByRound(round: Int, randomNumberMaker: RandomNumberStrategy) {
+    private fun startByRound(round: Int, randomNumberMaker: RandomNumberStrategy) {
         carRaceProperty.cars.forEach { it.move(round, randomNumberMaker.getRandomNumber()) }
     }
 }

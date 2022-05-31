@@ -31,9 +31,9 @@ data class Car(
         recordByRound(round)
     }
 
-    fun canMoveForward(number: Int) = number >= MOVE_CONDITION
+    private fun canMoveForward(number: Int) = number >= MOVE_CONDITION
 
-    fun moveForward() = _moveCount++
+    private fun moveForward() = _moveCount++
 
     private fun recordByRound(round: Int) {
         _positionByRound[round] = _moveCount
