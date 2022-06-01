@@ -2,18 +2,20 @@ package racingcar.controller
 
 import racingcar.domain.Drivers
 import racingcar.domain.strategy.MoveStrategy
-import racingcar.domain.strategy.NameStrategy
 import racingcar.dto.MoveResults
 
-class RacingGame(carNames: List<String>, private val trialCount: Int, moveStrategy: MoveStrategy, nameStrategy: NameStrategy) {
-    private val drivers: Drivers = Drivers(carNames, moveStrategy, nameStrategy)
+class RacingGame(
+    private val drivers: Drivers,
+    private val trialCount: Int,
+    private val moveStrategy: MoveStrategy,
+) {
     private val _results: MutableList<MoveResults> = mutableListOf()
 
     val results: List<MoveResults> get() = _results.toList()
 
     fun play() {
         repeat(trialCount) {
-            drivers.driveAll()
+            drivers.driveAll(moveStrategy)
             _results.add(drivers.getMoveResults())
         }
     }

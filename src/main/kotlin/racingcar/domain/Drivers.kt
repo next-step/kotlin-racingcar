@@ -6,7 +6,6 @@ import racingcar.dto.MoveResults
 
 class Drivers(
     private val carNames: List<String>,
-    private val moveStrategy: MoveStrategy,
     nameStrategy: NameStrategy
 ) {
     init {
@@ -15,7 +14,7 @@ class Drivers(
 
     private val cars: List<Car> = List(carNames.size) { Car(carNames[it]) }
 
-    fun driveAll() {
+    fun driveAll(moveStrategy: MoveStrategy) {
         cars.filter { moveStrategy.isMovable() }
             .forEach { car -> car.move() }
     }

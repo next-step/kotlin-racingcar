@@ -6,7 +6,7 @@ class Car(
     private val carName: String
 ) {
     private var _drivingRecord: Int = 0
-    private val drivingRecord: Int = _drivingRecord
+    private val drivingRecord: Int get() = _drivingRecord
 
     val moveResult get() = MoveResults.MoveResult(carName, drivingRecord)
 

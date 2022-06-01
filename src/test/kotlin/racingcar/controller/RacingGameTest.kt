@@ -23,15 +23,11 @@ class RacingGameTest {
     fun `레이싱게임 우승자는 드라이버 우승자와 같다`() {
         val racer = listOf("pang", "yohan", "lucy")
         val trialCount = 5
-        val racingGame = RacingGame(racer, trialCount, moveStrategy, nameStrategy)
+        val drivers = Drivers(racer, nameStrategy)
+        val racingGame = RacingGame(drivers, trialCount, moveStrategy)
 
         racingGame.play()
         val winnersFromRacingGame = racingGame.getWinners()
-
-        val drivers = Drivers(racer, moveStrategy, nameStrategy)
-        repeat(trialCount) {
-            drivers.driveAll()
-        }
 
         // then
         Assertions.assertThat(winnersFromRacingGame).isEqualTo(drivers.getWinnerResults())

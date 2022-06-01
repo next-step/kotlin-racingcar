@@ -3,7 +3,6 @@ package racingcar.domain
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import racingcar.domain.strategy.AlwaysFalseMoveStrategy
 import racingcar.domain.strategy.AlwaysTrueMoveStrategy
 import racingcar.domain.strategy.NameLengthLimitStrategy
 import racingcar.dto.MoveResults
@@ -18,7 +17,6 @@ class DriversTest {
         assertThrows<InvalidDriverNameException> {
             Drivers(
                 listOf(validCarName, invalidCarName),
-                AlwaysTrueMoveStrategy(),
                 NameLengthLimitStrategy()
             )
         }
@@ -26,7 +24,6 @@ class DriversTest {
         assertThrows<InvalidDriverNameException> {
             Drivers(
                 listOf(invalidCarName),
-                AlwaysTrueMoveStrategy(),
                 NameLengthLimitStrategy()
             )
         }
@@ -35,13 +32,13 @@ class DriversTest {
     @Test
     fun `드라이버의 전략이 true면 차가 움직일 수 있다`() {
         // given
-        val alwayMoveDriver = Drivers(listOf("car"), AlwaysTrueMoveStrategy(), NameLengthLimitStrategy())
+        val alwayMoveDriver = Drivers(listOf("car"), NameLengthLimitStrategy())
 
         // when
         val moveCount = 100
         val expectedDistance = 100
         repeat(moveCount) {
-            alwayMoveDriver.driveAll()
+            alwayMoveDriver.driveAll(AlwaysTrueMoveStrategy())
         }
 
         // then
@@ -56,7 +53,6 @@ class DriversTest {
         // given
         val notMovableDriver = Drivers(
             listOf("car"),
-            AlwaysFalseMoveStrategy(),
             NameLengthLimitStrategy()
         )
 
@@ -64,7 +60,7 @@ class DriversTest {
         val moveCount = 100
         val expectedDistance = 0
         repeat(moveCount) {
-            notMovableDriver.driveAll()
+            notMovableDriver.driveAll(AlwaysTrueMoveStrategy())
         }
 
         // then
@@ -76,9 +72,9 @@ class DriversTest {
 
     @Test
     fun `우승자의 이동결과를 반환한다`() {
-        val drivers = Drivers(listOf("pang", "yohan"), AlwaysTrueMoveStrategy(), NameLengthLimitStrategy())
+        val drivers = Drivers(listOf("pang", "yohan"), NameLengthLimitStrategy())
 
-        drivers.driveAll()
+        drivers.driveAll(AlwaysTrueMoveStrategy())
 
         val winnerResults = drivers.getWinnerResults()
         val expectedWinnerResults =
