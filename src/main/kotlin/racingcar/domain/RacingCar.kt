@@ -16,5 +16,5 @@ class RacingCar(private val carRacer: CarRacer) {
         }
     }
 
-    private fun canMove() = carRacer.race() >= MOVING_BENCHMARK
+    private fun canMove() = carRacer.drive() >= MOVING_BENCHMARK
 }
