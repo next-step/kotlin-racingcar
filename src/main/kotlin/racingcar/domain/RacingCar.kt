@@ -5,16 +5,16 @@ import racingcar.domain.carracer.CarRacer
 private const val DEFAULT_MOVEMENT = 0
 private const val MOVING_BENCHMARK = 4
 
-class RacingCar(private val carRacer: CarRacer, movement: Int = DEFAULT_MOVEMENT) {
+class RacingCar(private val carRacer: CarRacer) {
 
-    var movement = movement
+    var movement = DEFAULT_MOVEMENT
         private set
 
     fun move() {
-        if (canMove(carRacer.race())) {
+        if (canMove()) {
             movement++
         }
     }
 
-    private fun canMove(random: Int) = random >= MOVING_BENCHMARK
+    private fun canMove() = carRacer.race() >= MOVING_BENCHMARK
 }
