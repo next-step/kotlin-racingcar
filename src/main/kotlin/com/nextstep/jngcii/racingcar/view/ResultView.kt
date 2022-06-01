@@ -11,7 +11,7 @@ object ResultView {
         println("실행 결과")
 
         history.records
-            .forEach { printSingleRecord(it) }
+            .forEach(::printSingleRecord)
 
         val winners = history.winners
             .joinToString(JOIN_SEPARATOR) { it.name }
@@ -21,7 +21,7 @@ object ResultView {
 
     private fun printSingleRecord(record: Record) {
         record.distanceByName
-            .forEach { (name, distance) -> printSingleCarDistance(name, distance) }
+            .forEach(::printSingleCarDistance)
         println()
     }
 
