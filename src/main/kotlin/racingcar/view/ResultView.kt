@@ -30,4 +30,6 @@ class ResultView(private val gameBoard: GameBoard) {
         repeat(longestNameSize - name.length) { displayName += " " }
         return displayName
     }
+
+    fun showWinners() = println("${gameBoard.winners.joinToString(", ") { it.name }} (이)가 최종 우승했습니다.")
 }
