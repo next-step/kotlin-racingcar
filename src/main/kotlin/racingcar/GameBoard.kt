@@ -6,6 +6,6 @@ import racingcar.view.InputView
 
 class GameBoard(minCarCount: Int = 1, minMoveCount: Int = 1) {
     private val inputView = InputView(minCarCount, minMoveCount)
-    val cars = List(inputView.carCount.value) { Car(RandomEngine()) }
+    val cars = inputView.carNames.map { Car(RandomEngine(), it) }
     val moveCount = inputView.moveCount.value
 }
