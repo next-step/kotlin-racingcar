@@ -6,13 +6,13 @@ class GameResult(
     fun addReps(repsResult: RepsResult) {
         repsResults.add(repsResult)
     }
-
-    class RepsResult(
-        val snapShots: List<CarSnapShot>
-    )
-
-    class CarSnapShot(
-        val id: Int,
-        val position: Int
-    )
 }
+
+class RepsResult(
+    val snapShots: List<CarSnapShot>
+)
+
+class CarSnapShot(
+    val id: Int,
+    val position: Int
+)

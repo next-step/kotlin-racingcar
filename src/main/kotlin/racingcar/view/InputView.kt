@@ -1,6 +1,6 @@
 package racingcar.view
 
-class InputView {
+object InputView {
     fun receiveRequest(): Pair<Int, Int> {
         println("자동차 대수는 몇 대인가요?")
         val numberOfCars = readln().toIntOrNull() ?: throw IllegalArgumentException("자동차 대수가 올바르지 않습니다.")

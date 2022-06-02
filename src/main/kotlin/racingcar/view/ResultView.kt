@@ -2,7 +2,7 @@ package racingcar.view
 
 import racingcar.view.response.GameResult
 
-class ResultView {
+object ResultView {
     fun printResult(gameResult: GameResult) {
         for (repsResult in gameResult.repsResults) {
             for (snapshot in repsResult.snapShots.sortedBy { it.id }) {
