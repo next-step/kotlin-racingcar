@@ -1,6 +1,6 @@
 package racingcar.car
 
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import racingcar.car.engine.ConstantEngine
 
@@ -11,7 +11,14 @@ class CarTest {
         val car = Car(ConstantEngine(advancePoint))
         for (moveCount in 1..10) {
             val position = car.positionBy(moveCount)
-            Assertions.assertThat(position == advancePoint * moveCount).isTrue
+            assertThat(position == advancePoint * moveCount).isTrue
         }
+    }
+
+    @Test
+    fun `자동차는 이름값을 갖는다`() {
+        val name = "자동차 이름"
+        val car = Car(ConstantEngine(1), name)
+        assertThat(car.name).isEqualTo(name)
     }
 }
