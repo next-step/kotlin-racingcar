@@ -11,7 +11,7 @@ class ResultView(gameBoard: GameBoard) {
     private val cars = gameBoard.cars
     private val winners = gameBoard.winners
     private val moveCount = gameBoard.moveCount
-    private val longestNameSize = cars.map { it.name }.maxOf { it.length }
+    private val maxNameLength = cars.map { it.name }.maxOf { it.length }
 
     fun showAllPositionsByStep() {
         println("\n실행 결과")
@@ -29,7 +29,7 @@ class ResultView(gameBoard: GameBoard) {
 
     private fun getDisplayName(name: String): String {
         var displayName = name
-        repeat(longestNameSize - name.length) { displayName += " " }
+        repeat(maxNameLength - name.length) { displayName += " " }
         return displayName
     }
 
