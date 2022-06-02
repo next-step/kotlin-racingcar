@@ -7,13 +7,15 @@ private fun showPositionBy(name: String, position: Int) = println("$name :${stri
 
 private fun stringBy(position: Int): String = "-".repeat(position)
 
-class ResultView(private val gameBoard: GameBoard) {
+class ResultView(gameBoard: GameBoard) {
     private val cars = gameBoard.cars
+    private val winners = gameBoard.winners
+    private val moveCount = gameBoard.moveCount
     private val longestNameSize = cars.map { it.name }.maxOf { it.length }
 
     fun showAllPositionsByStep() {
         println("\n실행 결과")
-        repeat(gameBoard.moveCount) {
+        repeat(moveCount) {
             showPositionsBy(it + 1)
             println()
         }
@@ -31,5 +33,5 @@ class ResultView(private val gameBoard: GameBoard) {
         return displayName
     }
 
-    fun showWinners() = println("${gameBoard.winners.joinToString(", ") { it.name }} (이)가 최종 우승했습니다.")
+    fun showWinners() = println("${winners.joinToString(", ") { it.name }} (이)가 최종 우승했습니다.")
 }
