@@ -19,7 +19,7 @@ fun main() {
 
     val game = Game(cars, trialCount, history)
 
-    game.start()
+    val winners = game.start()
 
-    resultView.print(history)
+    resultView.print(history, winners)
 }

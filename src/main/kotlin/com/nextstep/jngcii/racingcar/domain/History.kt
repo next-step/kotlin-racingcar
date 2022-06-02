@@ -4,15 +4,6 @@ class History(private val cars: Cars) {
     private val _records = mutableListOf<Record>()
     val records get() = _records.toList()
 
-    val winners
-        get(): List<Car> {
-            val maxDistance = cars
-                .nameToDistanceMap
-                .maxOf { it.value }
-
-            return cars.filterBy(maxDistance)
-        }
-
     fun write() {
         val record = Record(cars.nameToDistanceMap)
         _records.add(record)
