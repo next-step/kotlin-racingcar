@@ -7,7 +7,7 @@ class CarTest {
 
     @Test
     fun move() {
-        val car = Car(1)
+        val car = Car("dd.kim")
 
         car.move()
 

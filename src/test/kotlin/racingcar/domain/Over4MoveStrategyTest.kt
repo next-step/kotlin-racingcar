@@ -21,7 +21,7 @@ class Over4MoveStrategyTest {
     @Test
     fun `4 이하값에 대해선 car를 이동시키지 않는다`() {
         val moveStrategy = Over4MoveStrategy(Only4RandomGenerator())
-        val car = Car(1)
+        val car = Car("dd.kim")
 
         moveStrategy.move(car)
 
@@ -31,7 +31,7 @@ class Over4MoveStrategyTest {
     @Test
     fun `5 이상값에 대해선 car를 이동시킨다`() {
         val moveStrategy = Over4MoveStrategy(Only5RandomGenerator())
-        val car = Car(1)
+        val car = Car("dd.kim")
 
         moveStrategy.move(car)
 

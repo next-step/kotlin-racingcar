@@ -11,8 +11,8 @@ private val racingGameService: RacingCarService = RacingCarService(
 )
 
 fun main() {
-    val (numberOfCars, numberOfTries) = InputView.receiveRequest()
-    val gameResult = racingGameService.playGame(numberOfCars, numberOfTries)
+    val (carNames, numberOfTries) = InputView.receiveRequest()
+    val gameResult = racingGameService.playGame(carNames, numberOfTries)
 
     ResultView.printResult(gameResult)
 }
