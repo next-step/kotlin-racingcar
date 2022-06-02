@@ -1,11 +1,12 @@
-package racingcar.car
+package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import racingcar.car.exception.InvalidDriverNameException
-import racingcar.car.strategy.MoveStrategy
-import racingcar.car.strategy.NameLengthLimitStrategy
+import racingcar.domain.strategy.AlwaysTrueMoveStrategy
+import racingcar.domain.strategy.NameLengthLimitStrategy
+import racingcar.dto.MoveResults
+import racingcar.exception.InvalidDriverNameException
 
 class DriversTest {
 
@@ -16,7 +17,6 @@ class DriversTest {
         assertThrows<InvalidDriverNameException> {
             Drivers(
                 listOf(validCarName, invalidCarName),
-                AlwaysTrueMoveStrategy(),
                 NameLengthLimitStrategy()
             )
         }
@@ -24,7 +24,7 @@ class DriversTest {
         assertThrows<InvalidDriverNameException> {
             Drivers(
                 listOf(invalidCarName),
-                AlwaysTrueMoveStrategy(),
+                NameLengthLimitStrategy()
             )
         }
     }
@@ -32,18 +32,18 @@ class DriversTest {
     @Test
     fun `드라이버의 전략이 true면 차가 움직일 수 있다`() {
         // given
-        val alwayMoveDriver = Drivers(listOf("car"), AlwaysTrueMoveStrategy())
+        val alwayMoveDriver = Drivers(listOf("car"), NameLengthLimitStrategy())
 
         // when
         val moveCount = 100
         val expectedDistance = 100
         repeat(moveCount) {
-            alwayMoveDriver.driveAll()
+            alwayMoveDriver.driveAll(AlwaysTrueMoveStrategy())
         }
 
         // then
         val moveResults = alwayMoveDriver.getMoveResults()
-        val moveDistance = moveResults.result[0].moveDistance
+        val moveDistance = moveResults.data[0].moveDistance
 
         assertThat(moveDistance).isEqualTo(expectedDistance)
     }
@@ -51,26 +51,40 @@ class DriversTest {
     @Test
     fun `드라이버의 전략이 false면 차가 움직일 수 없다`() {
         // given
-        val alwayMoveDriver = Drivers(
+        val notMovableDriver = Drivers(
             listOf("car"),
-            object : MoveStrategy {
-                override fun isMovable(): Boolean {
-                    return false
-                }
-            }
+            NameLengthLimitStrategy()
         )
 
         // when
         val moveCount = 100
         val expectedDistance = 0
         repeat(moveCount) {
-            alwayMoveDriver.driveAll()
+            notMovableDriver.driveAll(AlwaysTrueMoveStrategy())
         }
 
         // then
-        val moveResults = alwayMoveDriver.getMoveResults()
-        val moveDistance = moveResults.result[0].moveDistance
+        val moveResults = notMovableDriver.getMoveResults()
+        val moveDistance = moveResults.data[0].moveDistance
 
         assertThat(moveDistance).isEqualTo(expectedDistance)
+    }
+
+    @Test
+    fun `우승자의 이동결과를 반환한다`() {
+        val drivers = Drivers(listOf("pang", "yohan"), NameLengthLimitStrategy())
+
+        drivers.driveAll(AlwaysTrueMoveStrategy())
+
+        val winnerResults = drivers.getWinnerResults()
+        val expectedWinnerResults =
+            MoveResults(
+                listOf(
+                    MoveResults.MoveResult("pang", 1),
+                    MoveResults.MoveResult("yohan", 1),
+                )
+            )
+
+        assertThat(winnerResults).isEqualTo(expectedWinnerResults)
     }
 }

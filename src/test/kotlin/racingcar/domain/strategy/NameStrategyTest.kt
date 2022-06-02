@@ -1,10 +1,9 @@
-package racingcar.car
+package racingcar.domain.strategy
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import racingcar.car.exception.InvalidDriverNameException
-import racingcar.car.strategy.NameLengthLimitStrategy
+import racingcar.exception.InvalidDriverNameException
 
 class NameStrategyTest {
     @Test

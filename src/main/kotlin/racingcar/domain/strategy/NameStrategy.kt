@@ -1,4 +1,4 @@
-package racingcar.car.strategy
+package racingcar.domain.strategy
 
 interface NameStrategy {
     fun validateName(name: String)

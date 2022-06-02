@@ -1,8 +1,9 @@
 package racingcar
 
-import racingcar.car.RacingGame
-import racingcar.car.strategy.NameLengthLimitStrategy
-import racingcar.car.strategy.RandomNumberStrategy
+import racingcar.controller.RacingGame
+import racingcar.domain.Drivers
+import racingcar.domain.strategy.NameLengthLimitStrategy
+import racingcar.domain.strategy.RandomNumberStrategy
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
@@ -12,11 +13,9 @@ fun main() {
     val moveStrategy = RandomNumberStrategy()
     val nameStrategy = NameLengthLimitStrategy()
 
-    val racingGame = RacingGame(carNames, trialCount, moveStrategy, nameStrategy)
+    val racingGame = RacingGame(Drivers(carNames, nameStrategy), trialCount, moveStrategy)
 
-    repeat(racingGame.trialCount) {
-        racingGame.play()
-        ResultView.showRecordsAsDash(racingGame.getPlayResults())
-    }
+    racingGame.play()
+    ResultView.showAllRacingRecords(racingGame.results)
     ResultView.showRaceWinner(racingGame.getWinners())
 }

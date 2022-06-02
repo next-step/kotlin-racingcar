@@ -1,14 +1,14 @@
 package racingcar.view
 
-import racingcar.car.MoveResults
+import racingcar.dto.MoveResults
 
 object ResultView {
     private const val DASH_VIEW = "-"
     private const val WINNER_NAME_LINKER = ","
 
-    fun showRaceWinner(winners: List<String>) {
-        winners.toString()
-        println("${toWinnerView(winners)}가 최종 우승했습니다.")
+    fun showRaceWinner(winners: MoveResults) {
+        val winnerNames = winners.data.map { it.carName }
+        println("${toWinnerView(winnerNames)}가 최종 우승했습니다.")
     }
 
     private fun toWinnerView(winners: List<String>): String {
@@ -22,8 +22,12 @@ object ResultView {
         return winnerNameView
     }
 
-    fun showRecordsAsDash(results: MoveResults) {
-        results.result.map { result ->
+    fun showAllRacingRecords(results: List<MoveResults>) {
+        results.forEach(::showEachRecord)
+    }
+
+    private fun showEachRecord(moveResults: MoveResults) {
+        moveResults.data.map { result ->
             showResultView(result.carName, getDashView(result.moveDistance))
         }
         println()

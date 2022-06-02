@@ -1,6 +1,6 @@
-package racingcar.car.strategy
+package racingcar.domain.strategy
 
-import racingcar.car.exception.InvalidDriverNameException
+import racingcar.exception.InvalidDriverNameException
 
 class NameLengthLimitStrategy : NameStrategy {
     override fun validateName(name: String) {

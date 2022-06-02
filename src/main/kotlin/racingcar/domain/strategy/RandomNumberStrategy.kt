@@ -1,4 +1,4 @@
-package racingcar.car.strategy
+package racingcar.domain.strategy
 
 import racingcar.utils.RandomNumberGenerator
 
