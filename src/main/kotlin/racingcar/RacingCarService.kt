@@ -5,7 +5,22 @@ import racingcar.domain.MoveStrategy
 import racingcar.domain.Over4MoveStrategy
 import racingcar.repository.CarRepository
 import racingcar.service.RandomGenerator
+import racingcar.view.response.CarSnapShot
 import racingcar.view.response.GameResult
+import racingcar.view.response.RepsResult
+
+fun List<Car>.play1Reps(moveStrategy: MoveStrategy): RepsResult {
+    for (it in this) {
+        moveStrategy.move(it)
+    }
+    return RepsResult(this.map { CarSnapShot(it.name, it.position) })
+}
+
+fun List<Car>.getWinnerNames(): List<String> {
+    val maxPosition = this.maxOfOrNull { it.position } ?: throw IllegalArgumentException("우승자가 존재하지 않습니다.")
+
+    return this.filter { it.position == maxPosition }.map { it.name }
+}
 
 class RacingCarService(
     private val carRepository: CarRepository,
@@ -13,40 +28,30 @@ class RacingCarService(
     private val moveStrategy: MoveStrategy = Over4MoveStrategy(randomGenerator)
 ) {
 
-    fun playGame(numberOfCars: Int, numberOfTries: Int): GameResult {
-        val cars = initialize(numberOfCars)
+    fun playGame(carNames: List<String>, numberOfTries: Int): GameResult {
+        val cars = initialize(carNames)
         val gameResult = GameResult()
 
-        if (numberOfTries < 1) {
-            throw IllegalArgumentException("시도 횟수는 1번 이상이어야 합니다")
-        }
+        require(numberOfTries >= 1) { "시도 횟수는 1번 이상이어야 합니다" }
 
         for (i in 1..numberOfTries) {
-            play1Reps(cars, gameResult)
+            val repsResult = cars.play1Reps(moveStrategy)
+            gameResult.addReps(repsResult)
         }
+
+        val winnerNames = cars.getWinnerNames()
+        gameResult.addWinners(winnerNames)
 
         return gameResult
     }
 
-    private fun play1Reps(
-        cars: List<Car>,
-        gameResult: GameResult
-    ) {
-        for (it in cars) {
-            moveStrategy.move(it)
-        }
-        val repsResult = GameResult.RepsResult(cars.map { GameResult.CarSnapShot(it.id, it.position) })
-        gameResult.addReps(repsResult)
-    }
-
-    private fun initialize(numberOfCars: Int): List<Car> {
-        if (numberOfCars < 2) {
-            throw IllegalArgumentException("자동차 대수는 2대 이상이어야 합니다.")
-        }
-        for (i in 1..numberOfCars) {
-            val car = Car(i)
+    private fun initialize(carNames: List<String>): List<Car> {
+        require(carNames.size >= 2) { "자동차 대수는 2대 이상이어야 합니다." }
+        for (name in carNames) {
+            val car = Car(name)
             carRepository.save(car)
         }
+
         return carRepository.findAll()
     }
 }

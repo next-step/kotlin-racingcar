@@ -10,18 +10,17 @@ class CarRepositoryTest {
     fun save() {
         val carRepository = CarRepository()
 
-        val car = Car(1)
-        car.move()
+        val car = Car("dd.kim").also { it.move() }
         carRepository.save(car)
-        carRepository.save(Car(2))
-        carRepository.save(Car(3))
+        carRepository.save(Car("kyle"))
+        carRepository.save(Car("bumblebee"))
 
         assertThat(carRepository.findAll()).hasSize(3)
-            .extracting(Car::id, Car::position)
+            .extracting(Car::name, Car::position)
             .containsExactly(
-                Tuple.tuple(1, 1),
-                Tuple.tuple(2, 0),
-                Tuple.tuple(3, 0)
+                Tuple.tuple("dd.kim", 1),
+                Tuple.tuple("kyle", 0),
+                Tuple.tuple("bumblebee", 0)
             )
     }
 
@@ -29,16 +28,16 @@ class CarRepositoryTest {
     fun update() {
         val carRepository = CarRepository()
 
-        val car = Car(1).also { it.move() }
+        val car = Car("dd.kim").also { it.move() }
         carRepository.save(car)
-        carRepository.save(Car(2))
-        carRepository.save(Car(1))
+        carRepository.save(Car("kyle"))
+        carRepository.save(Car("dd.kim"))
 
         assertThat(carRepository.findAll()).hasSize(2)
-            .extracting(Car::id, Car::position)
+            .extracting(Car::name, Car::position)
             .containsExactlyInAnyOrder(
-                Tuple.tuple(1, 0),
-                Tuple.tuple(2, 0),
+                Tuple.tuple("dd.kim", 0),
+                Tuple.tuple("kyle", 0),
             )
     }
 }

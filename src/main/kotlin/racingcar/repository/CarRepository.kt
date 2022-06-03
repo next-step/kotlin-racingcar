@@ -7,7 +7,7 @@ class CarRepository(
 ) {
 
     fun save(car: Car) {
-        cars.removeIf { it.id == car.id }
+        cars.removeIf { it.name == car.name }
         cars.add(car)
     }
 
