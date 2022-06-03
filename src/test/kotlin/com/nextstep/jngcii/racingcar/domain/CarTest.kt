@@ -28,7 +28,7 @@ class CarTest {
 
         assertThat(car.distance).isEqualTo(initialDistance)
 
-        car.goOrStayByDiceCondition()
+        car.go()
 
         assertThat(car.distance).isEqualTo(expectedDistance)
     }

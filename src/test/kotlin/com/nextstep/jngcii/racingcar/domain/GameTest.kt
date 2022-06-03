@@ -9,15 +9,17 @@ internal class GameTest {
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4, 5])
     fun `자동차 스피드에 따라 시도횟수만큼 전진하는지 테스트`(speed: Int) {
-        val fakeCars = Cars(*Array(CAR_COUNT) { Car(name = "fake", speed = speed) })
+        val cars = Array(CAR_COUNT) { Car(name = "fake", speed = speed) }
+        val fakeCars = Cars(*cars)
         val history = History(fakeCars)
         val game = Game(fakeCars, TRIAL_COUNT, history)
 
-        game.start()
+        val winners = game.start()
 
         fakeCars.forEach {
             assertThat(it.distance).isEqualTo(TRIAL_COUNT * speed)
         }
+        assertThat(winners.cars).isEqualTo(cars.toList())
     }
 
     companion object {

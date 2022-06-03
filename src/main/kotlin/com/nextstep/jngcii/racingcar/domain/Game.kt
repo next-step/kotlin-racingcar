@@ -5,10 +5,11 @@ class Game(
     private val trialCount: Int,
     private val history: History
 ) {
-    fun start() {
+    fun start(): Winners {
         repeat(trialCount) {
-            cars.forEach { it.goOrStayByDiceCondition() }
+            cars.forEach { it.go() }
             history.write()
         }
+        return Winners(cars)
     }
 }
