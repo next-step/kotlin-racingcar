@@ -6,12 +6,12 @@ import racing.domain.utils.RandomNumberStrategy
 class CarRace(private val carRaceProperty: CarRaceProperty) {
 
     fun start(randomNumberMaker: RandomNumberStrategy) {
-        repeat(carRaceProperty.roundSize) { round ->
-            startByRound(round, randomNumberMaker)
+        repeat(carRaceProperty.roundSize) {
+            startByRound(randomNumberMaker)
         }
     }
 
-    private fun startByRound(round: Int, randomNumberMaker: RandomNumberStrategy) {
-        carRaceProperty.cars.forEach { it.move(round, randomNumberMaker.getRandomNumber()) }
+    private fun startByRound(randomNumberMaker: RandomNumberStrategy) {
+        carRaceProperty.cars.forEach { it.move(randomNumberMaker.getRandomNumber()) }
     }
 }

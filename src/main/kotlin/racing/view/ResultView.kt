@@ -10,9 +10,7 @@ class ResultView(private val carRaceProperty: CarRaceProperty) {
             println("-- [${round + 1}]회차 결과 ------")
 
             carRaceProperty.cars
-                .map { car ->
-                    printPositionByRound(car, round)
-                }
+                .map { printPositionByRound(it, round) }
 
             println("--------------------")
         }
@@ -23,7 +21,7 @@ class ResultView(private val carRaceProperty: CarRaceProperty) {
     }
 
     private fun getPositionByRound(car: Car, round: Int): Int {
-        return car.positionByRound[round] ?: throw IllegalArgumentException("${round}라운드의 ${car.carName}의 위치를 찾는데 문제가 발생했습니다.")
+        return car.positions[round]
     }
 
     private fun getForwardMoveMark(move: Int): String {

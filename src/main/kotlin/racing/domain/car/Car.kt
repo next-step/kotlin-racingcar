@@ -6,7 +6,7 @@ data class Car(
     private val _carName: String,
     private var _moveCount: Int = 0
 ) {
-    private var _positionByRound: MutableMap<Int, Int> = mutableMapOf()
+    private val _positions: MutableList<Int> = mutableListOf()
 
     init {
         if (!CAR_NAME_RANGE.contains(_carName.trim().length)) {
@@ -20,23 +20,23 @@ data class Car(
     val moveCount: Int
         get() = _moveCount
 
-    val positionByRound: MutableMap<Int, Int>
-        get() = _positionByRound
+    val positions: List<Int>
+        get() = _positions.toList()
 
-    fun move(round: Int, number: Int) {
+    fun move(number: Int) {
         if (canMoveForward(number)) {
             moveForward()
         }
 
-        recordByRound(round)
+        recordByRound()
     }
 
     private fun canMoveForward(number: Int) = number >= MOVE_CONDITION
 
     private fun moveForward() = _moveCount++
 
-    private fun recordByRound(round: Int) {
-        _positionByRound[round] = _moveCount
+    private fun recordByRound() {
+        _positions.add(_moveCount)
     }
 
     companion object {
