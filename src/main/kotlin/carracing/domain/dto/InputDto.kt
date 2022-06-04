@@ -1,4 +1,4 @@
-package carracing.service.dto
+package carracing.domain.dto
 
 import carracing.domain.Car
 import carracing.util.ErrorMessage

@@ -1,9 +1,6 @@
-package carracing.service
+package carracing.domain
 
-import carracing.domain.Car
-import carracing.domain.RacingCars
-import carracing.domain.RacingMovementRoleByInt
-import carracing.service.dto.InputDto
+import carracing.domain.dto.InputDto
 
 class RandomIntCarRacingManager(
     racingCars: RacingCars,

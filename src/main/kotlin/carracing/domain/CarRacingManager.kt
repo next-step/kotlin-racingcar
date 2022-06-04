@@ -1,8 +1,4 @@
-package carracing.service
-
-import carracing.domain.Car
-import carracing.domain.RacingCars
-import carracing.domain.RacingMovementRole
+package carracing.domain
 
 abstract class CarRacingManager<MovementCheckType>(
     private val racingCars: RacingCars,

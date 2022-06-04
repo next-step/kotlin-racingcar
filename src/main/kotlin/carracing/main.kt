@@ -1,9 +1,9 @@
 package carracing
 
+import carracing.domain.CarRacingManager
 import carracing.domain.RacingMovementRoleByInt
-import carracing.service.CarRacingManager
-import carracing.service.RandomIntCarRacingManager
-import carracing.service.dto.InputDto
+import carracing.domain.RandomIntCarRacingManager
+import carracing.domain.dto.InputDto
 import carracing.view.CarRacingView
 
 const val VIEW_STRING_CAR = "-"

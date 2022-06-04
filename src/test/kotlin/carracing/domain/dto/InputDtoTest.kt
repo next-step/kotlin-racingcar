@@ -1,4 +1,4 @@
-package carracing.service.dto
+package carracing.domain.dto
 
 import carracing.util.ErrorMessage
 import io.kotest.assertions.throwables.shouldNotThrow

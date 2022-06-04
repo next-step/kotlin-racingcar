@@ -1,7 +1,7 @@
 package carracing.view
 
 import carracing.domain.Car
-import carracing.service.CarRacingManager
+import carracing.domain.CarRacingManager
 
 class CarRacingView(private val carCharacter: String, private val separator: String = "\n") {
 
