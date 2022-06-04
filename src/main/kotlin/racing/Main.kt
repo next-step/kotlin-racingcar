@@ -1,8 +1,9 @@
 package racing
 
-import racing.common.CarRaceProperty
-import racing.race.CarRace
-import racing.validation.CarRaceValidation
+import racing.domain.common.CarRaceProperty
+import racing.domain.common.RandomNumberMaker
+import racing.domain.race.CarRace
+import racing.domain.race.WinnerJudge
 import racing.view.InputView
 import racing.view.ResultView
 
@@ -11,12 +12,14 @@ fun main() {
     val carNames = inputView.readInCarNames()
     val roundSize = inputView.readInRoundSize()
 
-    val carRaceValidation = CarRaceValidation()
-    carRaceValidation.validateCarName(carNames)
-
     val carRaceProperty = CarRaceProperty(roundSize, carNames)
-
     val resultView = ResultView(carRaceProperty)
-    val carRace = CarRace(carRaceProperty, resultView)
-    carRace.start()
+
+    val carRace = CarRace(carRaceProperty)
+    val randomNumberMaker = RandomNumberMaker()
+    carRace.start(randomNumberMaker)
+    resultView.printCarPositionByRound()
+
+    val winnerJudge = WinnerJudge(carRaceProperty)
+    resultView.printWinner(winnerJudge.getWinnerCarNames())
 }
