@@ -7,7 +7,7 @@ import racingcar.view.ResultView
 
 private val racingGameService: RacingCarService = RacingCarService(
     CarRepository(),
-    RangeRandomGenerator()
+    RangeRandomGenerator(),
 )
 
 fun main() {

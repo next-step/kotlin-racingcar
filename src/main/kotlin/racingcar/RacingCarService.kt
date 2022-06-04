@@ -9,14 +9,14 @@ import racingcar.view.response.CarSnapShot
 import racingcar.view.response.GameResult
 import racingcar.view.response.RepsResult
 
-fun List<Car>.play1Reps(moveStrategy: MoveStrategy): RepsResult {
+private fun List<Car>.play1Reps(moveStrategy: MoveStrategy): RepsResult {
     for (it in this) {
         moveStrategy.move(it)
     }
     return RepsResult(this.map { CarSnapShot(it.name, it.position) })
 }
 
-fun List<Car>.getWinnerNames(): List<String> {
+private fun List<Car>.getWinnerNames(): List<String> {
     val maxPosition = this.maxOfOrNull { it.position } ?: throw IllegalArgumentException("우승자가 존재하지 않습니다.")
 
     return this.filter { it.position == maxPosition }.map { it.name }
@@ -25,7 +25,7 @@ fun List<Car>.getWinnerNames(): List<String> {
 class RacingCarService(
     private val carRepository: CarRepository,
     private val randomGenerator: RandomGenerator,
-    private val moveStrategy: MoveStrategy = Over4MoveStrategy(randomGenerator)
+    private val moveStrategy: MoveStrategy = Over4MoveStrategy(randomGenerator),
 ) {
 
     fun playGame(carNames: List<String>, numberOfTries: Int): GameResult {

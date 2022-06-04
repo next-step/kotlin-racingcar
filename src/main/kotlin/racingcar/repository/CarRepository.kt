@@ -3,7 +3,7 @@ package racingcar.repository
 import racingcar.domain.Car
 
 class CarRepository(
-    private val cars: MutableList<Car> = mutableListOf()
+    private val cars: MutableList<Car> = mutableListOf(),
 ) {
 
     fun save(car: Car) {

@@ -1,15 +1,20 @@
 package racingcar.view.response
 
 class GameResult(
-    val repsResults: MutableList<RepsResult> = mutableListOf(),
-    val winners: MutableList<Winner> = mutableListOf()
+    private val _repsResults: MutableList<RepsResult> = mutableListOf(),
+    private val _winners: MutableList<Winner> = mutableListOf(),
 ) {
+    val repsResults: List<RepsResult>
+        get() = _repsResults
+    val winners: List<Winner>
+        get() = _winners
+
     fun addReps(repsResult: RepsResult) {
-        repsResults.add(repsResult)
+        _repsResults.add(repsResult)
     }
 
     fun addWinners(winnerNames: List<String>) {
-        this.winners.addAll(winnerNames.map { Winner(it) })
+        this._winners.addAll(winnerNames.map { Winner(it) })
     }
 }
 

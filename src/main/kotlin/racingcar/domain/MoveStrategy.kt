@@ -8,7 +8,7 @@ interface MoveStrategy {
 }
 
 class Over4MoveStrategy(
-    private val randomGenerator: RandomGenerator = RangeRandomGenerator()
+    private val randomGenerator: RandomGenerator = RangeRandomGenerator(),
 ) : MoveStrategy {
 
     override fun move(car: Car) {
