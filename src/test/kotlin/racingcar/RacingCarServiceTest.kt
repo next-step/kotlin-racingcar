@@ -5,14 +5,12 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import racingcar.domain.Car
 import racingcar.domain.MoveStrategy
-import racingcar.repository.CarRepository
 import racingcar.service.RangeRandomGenerator
 import racingcar.view.response.CarSnapShot
 import racingcar.view.response.Winner
 
 private class RacingCarServiceTest {
     val racingCarService = RacingCarService(
-        CarRepository(),
         RangeRandomGenerator(),
         TestMoveStrategy()
     )
