@@ -1,5 +1,7 @@
 package racingcar.view
 
+private const val CAR_NAME_SPLITTER = ","
+
 class ConsoleInput : InputView {
     override fun askCountOfCars(): Int {
         return try {
@@ -18,6 +20,16 @@ class ConsoleInput : InputView {
         } catch (e: IllegalArgumentException) {
             println(e.message)
             askCountOfCars()
+        }
+    }
+
+    override fun askCarNames(): List<String> {
+        return try {
+            println("자동차 이름을 입력해주세요")
+            readln().split(CAR_NAME_SPLITTER).map { it.trim() }
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            askCarNames()
         }
     }
 }

@@ -6,7 +6,7 @@ private const val CONSOLE_CAR_POSITION_EXPRESSION = "-"
 
 class ConsoleOutput : OutputView {
     override fun printCarPositions(cars: Cars) {
-        cars.forEach { car -> println(car.position.value.toStringForPrint()) }
+        cars.forEach { car -> println("${car.name} : ${car.position.value.toStringForPrint()}") }
     }
 }
 

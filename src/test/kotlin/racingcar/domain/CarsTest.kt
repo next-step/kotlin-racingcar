@@ -12,7 +12,7 @@ class CarsTest {
     }
     @Test
     fun `자동차들은 움직일 수 있다`() {
-        val cars = Cars.of(3)
+        val cars = Cars.of(listOf("제이", "제이슨", "포비"))
         cars.move(alwaysMovingStrategy)
         cars.values.forEach { car -> assertThat(car.position.value).isEqualTo(1) }
     }
