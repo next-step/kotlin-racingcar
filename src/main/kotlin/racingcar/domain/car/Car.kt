@@ -1,10 +1,11 @@
-package racingcar.domain
+package racingcar.domain.car
 
+import racingcar.domain.car.vo.Name
+import racingcar.domain.car.vo.Position
 import racingcar.domain.move.MovingStrategy
-import racingcar.vo.Position
 
 class Car(
-    val name: String,
+    val name: Name,
     val position: Position = Position()
 ) {
 

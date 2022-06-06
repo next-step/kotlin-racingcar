@@ -1,4 +1,4 @@
-package racingcar.vo
+package racingcar.domain.car.vo
 
 private const val MINIMUM_POSITION_VALUE = 0
 private const val MOVE_UNIT = 1

@@ -1,4 +1,4 @@
-package racingcar.vo
+package racingcar.domain.car.vo
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
