@@ -9,7 +9,7 @@ private const val POSITION_DISPLAY_SYMBOL = "-"
 fun printPlayResult(result: RacingResult) {
     println("실행 결과")
     result.value
-        .forEach { cars -> printPosition(cars.cars) }
+        .forEach { racingRecord -> printPosition(racingRecord.cars) }
 }
 
 private fun printPosition(cars: List<Car>) {

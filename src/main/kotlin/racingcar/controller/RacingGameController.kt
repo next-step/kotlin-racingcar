@@ -20,8 +20,8 @@ class RacingGameController {
         racingGame.play(generateRandomCondition())
             .also {
                 printPlayResult(it)
-                printWinners(it.getWinners())
             }
+        printWinners(racingGame.getWinners())
     }
 
     private fun createCars(carNames: List<String>): Cars {
