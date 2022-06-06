@@ -1,7 +1,6 @@
 package racingcar
 
-import racingcar.domain.Cars
-import racingcar.domain.move.MovingStrategy
+import racingcar.domain.car.Cars
 import racingcar.domain.move.RandomMovingStrategy
 import racingcar.view.ConsoleInput
 import racingcar.view.ConsoleOutput
@@ -12,17 +11,9 @@ class CarRace(private val inputView: InputView, private val outputView: OutputVi
     fun run() {
         val movingStrategy = RandomMovingStrategy()
         val cars = Cars.of(inputView.askCarNames())
-        val countOfTrial = inputView.askCountOfTrial()
-        println("실행결과")
-        for (i in 0 until countOfTrial) {
-            takeOneTrial(cars, movingStrategy)
-        }
-    }
-
-    private fun takeOneTrial(cars: Cars, movingStrategy: MovingStrategy) {
-        cars.move(movingStrategy)
-        outputView.printCarPositions(cars)
-        println()
+        val trialCount = inputView.askCountOfTrial()
+        val carRaceResult = cars.move(movingStrategy, trialCount)
+        outputView.printCarRace(carRaceResult)
     }
 }
 

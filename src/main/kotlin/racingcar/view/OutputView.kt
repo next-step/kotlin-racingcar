@@ -1,7 +1,7 @@
 package racingcar.view
 
-import racingcar.domain.Cars
+import racingcar.domain.result.CarRaceResult
 
 interface OutputView {
-    fun printCarPositions(cars: Cars)
+    fun printCarRace(carRaceResult: CarRaceResult)
 }

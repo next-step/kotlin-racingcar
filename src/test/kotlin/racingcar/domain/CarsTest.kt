@@ -3,6 +3,7 @@ package racingcar.domain
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import racingcar.domain.car.Cars
 import racingcar.domain.move.MovingStrategy
 
 class CarsTest {
@@ -15,7 +16,7 @@ class CarsTest {
     @Test
     fun `자동차들은 움직일 수 있다`() {
         val cars = Cars.of(listOf("제이", "제이슨", "포비"))
-        cars.move(alwaysMovingStrategy)
+        cars.move(alwaysMovingStrategy, TrialCount(1))
         cars.values.forEach { car -> assertThat(car.position.value).isEqualTo(1) }
     }
 
