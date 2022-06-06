@@ -1,5 +1,11 @@
 package carracing
 
+import carracing.domain.CarRacingManager
+import carracing.domain.RacingMovementRoleByInt
+import carracing.domain.RandomIntCarRacingManager
+import carracing.domain.dto.InputDto
+import carracing.view.CarRacingView
+
 const val VIEW_STRING_CAR = "-"
 const val VIEW_STRING_SEPARATOR = "\n"
 const val FORWARD_INT = 4

@@ -1,4 +1,6 @@
-package carracing
+package carracing.domain
+
+import carracing.domain.dto.InputDto
 
 class RandomIntCarRacingManager(
     racingCars: RacingCars,

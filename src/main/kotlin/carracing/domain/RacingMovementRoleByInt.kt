@@ -1,4 +1,6 @@
-package carracing
+package carracing.domain
+
+import carracing.util.ErrorMessage
 
 class RacingMovementRoleByInt(
     private val minForwardNumber: Int,

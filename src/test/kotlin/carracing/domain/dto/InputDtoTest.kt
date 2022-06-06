@@ -1,5 +1,6 @@
-package carracing
+package carracing.domain.dto
 
+import carracing.util.ErrorMessage
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.assertions.throwables.shouldThrowExactly

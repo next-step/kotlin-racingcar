@@ -1,4 +1,4 @@
-package carracing
+package carracing.domain
 
 import carracing.util.CarRacingManagerForTest
 import carracing.util.RacingMovementRoleForTest

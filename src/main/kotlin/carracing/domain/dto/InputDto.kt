@@ -1,4 +1,7 @@
-package carracing
+package carracing.domain.dto
+
+import carracing.domain.Car
+import carracing.util.ErrorMessage
 
 data class InputDto(val carNamesString: String, val movementTryCountString: String) {
     val carNames: List<String>

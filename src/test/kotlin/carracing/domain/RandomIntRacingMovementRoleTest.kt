@@ -1,5 +1,6 @@
-package carracing
+package carracing.domain
 
+import carracing.util.ErrorMessage
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe

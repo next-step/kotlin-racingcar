@@ -1,8 +1,8 @@
 package carracing.util
 
-import carracing.RacingMovementRole
+import carracing.domain.RacingMovementRole
 
-class RacingMovementRoleForTest() : RacingMovementRole<Int> {
+class RacingMovementRoleForTest : RacingMovementRole<Int> {
     override fun getMoveDistance(argument: Int): Int {
         return argument
     }

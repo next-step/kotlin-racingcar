@@ -1,4 +1,4 @@
-package carracing
+package carracing.domain
 
 abstract class CarRacingManager<MovementCheckType>(
     private val racingCars: RacingCars,

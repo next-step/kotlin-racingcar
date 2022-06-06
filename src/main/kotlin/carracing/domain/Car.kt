@@ -1,8 +1,7 @@
-package carracing
+package carracing.domain
 
-class Car(_name: String, _distance: Int = 0) {
-    val name: String = _name
-    var distance: Int = _distance
+class Car(val name: String, carDistance: Int = 0) {
+    var distance: Int = carDistance
         private set
 
     fun move(moveDistance: Int) {

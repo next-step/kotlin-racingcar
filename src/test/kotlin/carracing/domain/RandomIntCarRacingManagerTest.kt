@@ -1,5 +1,6 @@
-package carracing
+package carracing.domain
 
+import carracing.domain.dto.InputDto
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
