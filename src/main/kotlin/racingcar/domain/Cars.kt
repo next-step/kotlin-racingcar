@@ -17,4 +17,10 @@ class Cars(val values: List<Car>): Iterable<Car> {
     override fun iterator(): Iterator<Car> {
         return values.iterator()
     }
+
+    companion object {
+        fun of(numberOfCars: Int): Cars {
+            return Cars(List(numberOfCars) { Car() })
+        }
+    }
 }

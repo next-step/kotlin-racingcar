@@ -3,14 +3,17 @@ package racingcar.vo
 private const val MINIMUM_POSITION_VALUE = 0
 private const val MOVE_UNIT = 1
 
-class Position(var value: Int = MINIMUM_POSITION_VALUE) {
+class Position(private var _value: Int = MINIMUM_POSITION_VALUE) {
+    val value
+        get() = _value
+
     init {
-        require(value >= MINIMUM_POSITION_VALUE) {
+        require(_value >= MINIMUM_POSITION_VALUE) {
             "자동차의 위치는 음수일 수 없습니다."
         }
     }
 
     fun move() {
-        this.value = value + MOVE_UNIT
+        this._value = _value + MOVE_UNIT
     }
 }

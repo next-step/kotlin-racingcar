@@ -12,8 +12,7 @@ import racingcar.view.OutputView
 class CarRace(private val inputView: InputView, private val outputView: OutputView) {
     fun run() {
         val movingStrategy = RandomMovingStrategy()
-        val countOfCars = inputView.askCountOfCars()
-        val cars = Cars(List(countOfCars) { Car() })
+        val cars = Cars.of(inputView.askCountOfCars())
         val countOfTrial = inputView.askCountOfTrial()
         println("실행결과")
         for (i in 0 until countOfTrial) {
