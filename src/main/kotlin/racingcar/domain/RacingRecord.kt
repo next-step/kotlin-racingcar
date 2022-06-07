@@ -1,7 +1,8 @@
 package racingcar.domain
 
-import racingcar.domain.car.Car
+import racingcar.domain.car.Name
+import racingcar.domain.car.Position
 
 class RacingRecord(
-    val cars: List<Car>,
+    val value: List<Pair<Name, Position>>,
 )

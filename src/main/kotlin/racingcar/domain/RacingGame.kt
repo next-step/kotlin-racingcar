@@ -23,4 +23,6 @@ class RacingGame(
     }
 }
 
-private fun Cars.toRacingResult(): RacingRecord = RacingRecord(this.cars)
+private fun Cars.toRacingResult(): RacingRecord = RacingRecord(
+    this.cars.map { it.name to it.position }
+)

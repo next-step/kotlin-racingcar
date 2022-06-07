@@ -1,24 +1,24 @@
 package racingcar.view
 
 import racingcar.domain.RacingResult
-import racingcar.domain.car.Car
 import racingcar.domain.car.Name
+import racingcar.domain.car.Position
 
 private const val POSITION_DISPLAY_SYMBOL = "-"
 
 fun printPlayResult(result: RacingResult) {
     println("실행 결과")
     result.value
-        .forEach { racingRecord -> printPosition(racingRecord.cars) }
+        .forEach { racingRecord -> printPosition(racingRecord.value) }
 }
 
-private fun printPosition(cars: List<Car>) = with(StringBuilder()) {
-    cars.forEach { append("${it.name.value} : ${convertToPositionSymbol(it)}\n") }
+private fun printPosition(racingRecord: List<Pair<Name, Position>>) = with(StringBuilder()) {
+    racingRecord.forEach { append("${it.first.value} : ${convertToPositionSymbol(it.second)}\n") }
     println(this.toString())
 }
 
-private fun convertToPositionSymbol(car: Car): String {
-    return POSITION_DISPLAY_SYMBOL.repeat(car.position.value)
+private fun convertToPositionSymbol(position: Position): String {
+    return POSITION_DISPLAY_SYMBOL.repeat(position.value)
 }
 
 fun printWinners(names: List<Name>) {
