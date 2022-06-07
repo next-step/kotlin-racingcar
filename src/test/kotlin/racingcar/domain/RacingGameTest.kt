@@ -25,7 +25,7 @@ class RacingGameTest : StringSpec({
 
         // then
         actual.value.size shouldBe 2
-        actual.value[0].cars.size shouldBe 2
-        actual.value[1].cars.size shouldBe 2
+        actual.value[0].value.size shouldBe 2
+        actual.value[1].value.size shouldBe 2
     }
 })
