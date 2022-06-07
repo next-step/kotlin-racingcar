@@ -1,11 +1,13 @@
-package racingcar.domain
+package racingcar.domain.car
 
+import racingcar.domain.car.vo.Name
+import racingcar.domain.car.vo.Position
 import racingcar.domain.move.MovingStrategy
-import racingcar.vo.Position
 
-class Car(position: Position = Position()) {
-    var position: Position = position
-        private set
+class Car(
+    val name: Name,
+    val position: Position = Position()
+) {
 
     fun move(movingStrategy: MovingStrategy) {
         if (movingStrategy.canMove()) {

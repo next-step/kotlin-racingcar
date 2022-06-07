@@ -1,6 +1,8 @@
 package racingcar.view
 
+import racingcar.domain.TrialCount
+
 interface InputView {
-    fun askCountOfCars(): Int
-    fun askCountOfTrial(): Int
+    fun askCountOfTrial(): TrialCount
+    fun askCarNames(): List<String>
 }
