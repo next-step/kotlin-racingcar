@@ -12,11 +12,9 @@ fun printPlayResult(result: RacingResult) {
         .forEach { racingRecord -> printPosition(racingRecord.cars) }
 }
 
-private fun printPosition(cars: List<Car>) {
-    val result = StringBuilder().apply {
-        cars.forEach { append("${it.name.value} : ${convertToPositionSymbol(it)}\n") }
-    }.toString()
-    println(result)
+private fun printPosition(cars: List<Car>) = with(StringBuilder()) {
+    cars.forEach { append("${it.name.value} : ${convertToPositionSymbol(it)}\n") }
+    println(this.toString())
 }
 
 private fun convertToPositionSymbol(car: Car): String {
