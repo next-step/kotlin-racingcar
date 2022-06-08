@@ -12,13 +12,11 @@ class ResultView(gameBoard: GameBoard) {
     private val winners: List<Car> = gameBoard.winners
     private val moveCount: Int = gameBoard.moveCount
     private val maxNameLength: Int = cars.map { it.name }.maxOf { it.length }
-    private val displayNames = mutableMapOf<Car, String>()
-    private val Car.displayName: String
-        get() = displayNames.getOrPut(this) { getDisplayName(this.name) }
+    private val displayNames: Map<Car, String> = cars.associateWith { getDisplayName(it.name) }
 
     private fun getDisplayName(name: String): String = name + " ".repeat(maxNameLength - name.length)
 
-    private fun showPositionsBy(step: Int) = cars.forEach { showPositionBy(it.displayName, it.positionBy(step)) }
+    private fun showPositionsBy(step: Int) = cars.forEach { showPositionBy(displayNames[it]!!, it.positionBy(step)) }
 
     fun showAllPositionsByStep() {
         println("\n실행 결과")
