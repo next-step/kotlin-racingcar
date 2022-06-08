@@ -13,5 +13,6 @@ class GameBoard(minCarCount: Int = 1, minMoveCount: Int = 1) {
     private val inputView = InputView(minCarCount, minMoveCount)
     val cars = inputView.carNames.map { Car(RandomEngine(), it) }
     val moveCount = inputView.moveCount.value
-    val winners = getWinners(cars, moveCount)
+    private val referee = Referee(cars, moveCount)
+    val winners = referee.getWinners()
 }
