@@ -2,8 +2,8 @@ package racingcar.count
 
 class CarNames(input: String, minCount: Int = 2) {
     val value = input.split(',').map { it.trim() }.filter { it.isNotBlank() }
-    private val count = value.size
-    private val uniqueCount = value.groupBy { it }.keys.size
+    private val count: Int = value.size
+    private val uniqueCount: Int = value.groupBy { it }.keys.size
 
     init {
         require(minCount >= 1) { "최소 자동차 수는 1 이상이어야 합니다." }
