@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.count.CarCount
+import racingcar.count.CarNames
 import racingcar.count.MoveCount
 
 private fun printBy(askCount: Int) {
@@ -8,16 +8,16 @@ private fun printBy(askCount: Int) {
 }
 
 class InputView(private val minCarCount: Int, private val minMoveCount: Int) {
-    val carCount = getCarCount()
+    val carNames = getCarNames().value
     val moveCount = getMoveCount()
 
-    private fun getCarCount(askCount: Int = 1): CarCount = try {
+    private fun getCarNames(askCount: Int = 1): CarNames = try {
         printBy(askCount)
-        println(CarCount.inputMessage)
-        CarCount(readln().toIntOrNull() ?: 0, minCarCount)
+        println(CarNames.inputMessage)
+        CarNames(readln(), minCarCount)
     } catch (e: IllegalArgumentException) {
         println(e.message)
-        getCarCount(askCount + 1)
+        getCarNames(askCount + 1)
     }
 
     private fun getMoveCount(askCount: Int = 1): MoveCount = try {
