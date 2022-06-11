@@ -1,13 +1,15 @@
-package study.kotlinBasic
+package study
 
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.shouldBe
 
-class StringKoTest : AnnotationSpec() {
+class StringKoTest : AnnotationSpec(){
+
     @AnnotationSpec.Test
-    fun isEmpty() {
+    fun isEmpty(){
         "".isEmpty() shouldBe true
         " ".isEmpty() shouldBe false
         "a".isEmpty() shouldBe false
+        "b".isEmpty() shouldBe false
     }
 }

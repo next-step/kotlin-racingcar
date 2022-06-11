@@ -10,3 +10,4 @@ enum class Operator(val symbol: String, val work: (Int, Int) -> Int) {
         fun reverseMap(string: String): Operator? = Operator.values().find { it.symbol == string }
     }
 }
+
