@@ -1,23 +1,23 @@
 package study.racingCar.controller
 
-import study.racingCar.domain.RacingCarLogic
-import study.racingCar.domain.WinnersLogic
+import study.racingCar.domain.Game
+import study.racingCar.domain.Winners
 import study.racingCar.view.InputView
 import study.racingCar.view.ResultView
 
 class RacingCar {
-    fun startGame() {
+    fun start() {
         val carNames = InputView.inputCarNames()
         val tryNum = InputView.inputMovingTryNum()
-        val mileageRecords = RacingCarLogic().startRacing(carNames, tryNum)
-        val winners = WinnersLogic().judgeWinners(mileageRecords)
+        val gameResult = Game().startGame(carNames, tryNum)
+        val winners = Winners().judgeWinners(gameResult)
 
-        ResultView.printResult(mileageRecords)
+        ResultView.printResult(gameResult)
         ResultView.printWinners(winners)
     }
 }
 
 fun main() {
     val racingCar = RacingCar()
-    racingCar.startGame()
+    racingCar.start()
 }

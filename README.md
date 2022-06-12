@@ -20,14 +20,15 @@
 < Car >
 1. 자동차 이름을 초기화한다.
 2. 자동차 이름이 5자 초과할 경우 IllegalArgumentException throw
-3. 무작위 값이 4이상일 때 mileage 값이 1증가
+3. 자동차 이름이 빈칸이거나 null일 경우 IllegalArgumentException throw
+4. 무작위 값이 4이상일 때 mileage 값이 1 증가
 
-< RacingCar Logic >
+< Game >
 1. 경주할 자동차 리스트를 생성한다.
 2. 각 자동차 이름과 mileage가 기록된 자동차 경주 결과 리스트를 생성한다.
 
-< Winner Logic >
-1. 자동차 경주 결과 리스트에서 우승자 목록 문자열을 생성한다.
+< Winners >
+1. 자동차 경주 결과 리스트에서 우승자 목록 문자열 리스트를 생성한다.
 
 < ResultView >
 1. 자동차 경주 결과 리스트를 출력한다.
