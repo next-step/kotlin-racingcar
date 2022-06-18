@@ -12,9 +12,7 @@ class CarRaceResultForRound(cars: List<Car>) {
     val carSnapShots = cars.map { CarSnapShot(it) }
 
     internal fun getWinnersForRound(): List<CarSnapShot> {
-        val maxPosition = carSnapShots.map { it.position }
-            .maxOf { it }
-
+        val maxPosition = carSnapShots.maxOf { it.position }
         return carSnapShots.filter { it.isSamePositionWith(maxPosition) }
     }
 }

@@ -1,7 +1,6 @@
 package racingcar.domain.car
 
 import racingcar.domain.TrialCount
-import racingcar.domain.car.vo.Name
 import racingcar.domain.move.MovingStrategy
 import racingcar.domain.result.CarRaceResult
 import racingcar.domain.result.CarRaceResultForRound
@@ -27,7 +26,7 @@ class Cars(val values: List<Car>) {
 
     companion object {
         fun of(names: List<String>): Cars {
-            return Cars(names.map { Car(Name(it)) })
+            return Cars(names.map { Car.of(it) })
         }
     }
 }
