@@ -1,0 +1,4 @@
+package racingCar
+
+class RacingCarGame {
+}
