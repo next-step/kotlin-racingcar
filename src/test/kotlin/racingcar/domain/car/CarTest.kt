@@ -2,7 +2,6 @@ package racingcar.domain.car
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import racingcar.domain.car.vo.Name
 import racingcar.domain.move.MovingStrategy
 
 class CarTest {
@@ -19,7 +18,7 @@ class CarTest {
 
     @Test
     fun `자동차 생성`() {
-        val car = Car(Name("장재주"))
+        val car = Car.of("장재주")
 
         assertThat(car.name.value).isEqualTo("장재주")
         assertThat(car.position.value).isEqualTo(0)
@@ -27,7 +26,7 @@ class CarTest {
 
     @Test
     fun `자동차 전진`() {
-        val car = Car(Name("장재주"))
+        val car = Car.of("장재주")
 
         car.move(alwaysMovingStrategy)
         assertThat(car.position.value).isEqualTo(1)
@@ -35,7 +34,7 @@ class CarTest {
 
     @Test
     fun `자동차 전진하지 않음`() {
-        val car = Car(Name("장재주"))
+        val car = Car.of("장재주")
 
         car.move(alwaysNotMovingStrategy)
         assertThat(car.position.value).isEqualTo(0)
