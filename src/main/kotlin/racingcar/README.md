@@ -11,6 +11,26 @@
     - Domain - 자동차 경주 핵심 로직
 - [X] 모든 로직에 단위 테스트를 구현한다. 단, UI(System.out, System.in) 로직은 제외
 
+# 책임
+- 경주를 하라 -> CarRace.start()
+- 이동 여부를 결정해라
+  -> MoveStrategy: RandomBasedMoveStrategy, TimeBasedMoveStrategy
+- 이동해라 -> Car.move()
+
+# 기능 상세
+  - InputView
+    - [X] 이동할 자동차 대수를 입력받는다
+    - [X] 시도할 경기 횟수를 입력받는다 
+  - ResultView
+    - [ ] 경기 횟수별 자동차 상태를 화면에 출력한다 
+  - Car 자동차 
+    - [ ] MoveStrategy 따라 이동한다
+    - [ ] 현재 위치를 알고 있다
+    - [ ] 경기별 위치를 기억한다
+  - CarRace 자동차 경주
+    - [ ] 자동차 대수만큼 자동차를 생성한다 
+    - [ ] 자동차 경기 시작
+
 # 예시
 ```
 자동차 대수는 몇 대인가요?
