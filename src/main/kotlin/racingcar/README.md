@@ -33,7 +33,8 @@
     - [X] 자동차 경기를 시작한다
   - RaceResult: 자동차 경주 결과
     - [ ] 매 경기별 자동차 위치를 알고 있다
-
+  - MoveStrategy: 이동 정책
+    - [X] RandomBasedMoveStrategy: 0 - 9 사이 램덤 값을 이용해 이동 여부를 결정한다
 # 예시
 ```
 자동차 대수는 몇 대인가요?
