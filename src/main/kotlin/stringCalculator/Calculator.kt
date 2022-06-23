@@ -4,7 +4,7 @@ class Calculator {
 
     fun calculate(input: String): Int {
         val validator = Validator()
-        validator.isValidInput(input)
+        validator.validateInput(input)
 
         val inputList = input.split(" ")
         val numbers = inputList.filter { validator.isNumber(it) }
