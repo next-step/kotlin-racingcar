@@ -2,22 +2,19 @@ package racingcar.domain.car
 
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.shouldBe
-import racingcar.domain.moving.MoveStrategy
+import racingcar.domain.movingStrategy
+import racingcar.domain.notMovingStrategy
 
 class CarsTest : AnnotationSpec() {
     private val movingCars = List(3) {
         Car(
-            object : MoveStrategy {
-                override fun isMovable() = true
-            }
+            movingStrategy
         )
     }
 
     private val notMovingCars = List(3) {
         Car(
-            object : MoveStrategy {
-                override fun isMovable() = false
-            }
+            notMovingStrategy
         )
     }
 

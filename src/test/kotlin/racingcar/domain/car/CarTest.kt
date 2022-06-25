@@ -2,21 +2,10 @@ package racingcar.domain.car
 
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.shouldBe
-import racingcar.domain.moving.MoveStrategy
+import racingcar.domain.movingStrategy
+import racingcar.domain.notMovingStrategy
 
 class CarTest : AnnotationSpec() {
-    private val movingStrategy = object : MoveStrategy {
-        override fun isMovable(): Boolean {
-            return true
-        }
-    }
-
-    private val notMovingStrategy = object : MoveStrategy {
-        override fun isMovable(): Boolean {
-            return false
-        }
-    }
-
     @Test
     fun `자동차 생성시 초기 위치는 0이다`() {
         // given
