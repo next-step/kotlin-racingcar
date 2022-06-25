@@ -1,7 +1,8 @@
-package racingcar.domain
+package racingcar.domain.car
 
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.shouldBe
+import racingcar.domain.Car
 import racingcar.domain.moving.MoveStrategy
 
 class CarTest : AnnotationSpec() {

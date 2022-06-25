@@ -1,5 +1,6 @@
 package racingcar.domain
 
+import racingcar.domain.car.Cars
 object CarRace {
     fun start(carCount: CarCount, trialCount: TrialCount): RaceResult =
         race(
