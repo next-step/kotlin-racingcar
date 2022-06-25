@@ -32,8 +32,8 @@
   - CarRace: 자동차 경주
     - [X] 자동차 대수만큼 자동차를 생성한다 
     - [X] 자동차 경기를 시작한다
-  - RaceResult: 자동차 경주 결과
-    - [ ] 매 경기별 자동차 위치를 알고 있다
+  - RaceRecord: 자동차 경주 결과
+    - [X] 매 경기별 자동차 위치를 기억한다
   - MoveStrategy: 이동 정책
     - [X] RandomBasedMoveStrategy: 0 - 9 사이 램덤 값을 이용해 이동 여부를 결정한다
 # 예시
