@@ -8,6 +8,6 @@ fun main() {
     val carCount = CarCount(InputView.readNumOfCars())
     val trialCount = TrialCount(InputView.readNumOfTrials())
     ResultView.showResult(
-        CarRace.start(carCount, trialCount)
+        CarRace().start(carCount, trialCount)
     )
 }

@@ -1,8 +1,14 @@
 package racingcar.domain
 
+import racingcar.domain.car.Car
 import racingcar.domain.car.Cars
-object CarRace {
-    fun start(carCount: CarCount, trialCount: TrialCount): RaceResult =
+import racingcar.domain.moving.RandomBasedMoveStrategy
+import racingcar.domain.record.RaceRecord
+
+class CarRace {
+    private val raceRecord = RaceRecord()
+
+    fun start(carCount: CarCount, trialCount: TrialCount): RaceRecord =
         race(
             initCars(carCount), trialCount
         )
@@ -10,16 +16,19 @@ object CarRace {
     private fun initCars(carCount: CarCount): Cars =
         Cars(
             (0 until carCount.value).map {
-                Car()
+                Car(RandomBasedMoveStrategy())
             }
         )
 
-    private fun race(cars: Cars, trialCount: TrialCount): RaceResult =
-        RaceResult(
-            (0 until trialCount.value).associate {
-                Trial(it) to cars.move()
-            }
-        )
+    private fun race(cars: Cars, trialCount: TrialCount): RaceRecord {
+        repeat(trialCount.value) {
+            cars.move()
+            raceRecord.record(
+                cars
+            )
+        }
+        return raceRecord
+    }
 }
 
 @JvmInline value class CarCount(val value: Int) {
