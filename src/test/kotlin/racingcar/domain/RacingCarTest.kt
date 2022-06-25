@@ -10,7 +10,7 @@ internal class RacingCarTest : AnnotationSpec() {
 
     @ParameterizedTest
     @CsvSource(value = ["0,0", "3,0", "4,1", "9,1"])
-    fun move(accepted: Int, expected: Int) {
+    fun `레이싱 카는 이동 요청 시, 4 이상일 경우에만 이동해야 한다`(accepted: Int, expected: Int) {
         // given
         val racingCar = RacingCar(MockCarRacer(accepted))
 

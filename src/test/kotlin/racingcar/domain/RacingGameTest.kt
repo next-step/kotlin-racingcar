@@ -7,7 +7,7 @@ import racingcar.domain.carracer.MockCarRacer
 internal class RacingGameTest {
 
     @Test
-    fun move() {
+    fun `레이싱 카는 이동 요청 시, 4 이상일 경우에만 이동해야 한다`() {
         // given
         val expected = listOf(1, 1, 1)
         val carRacer = MockCarRacer(4)
