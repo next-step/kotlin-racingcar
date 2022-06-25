@@ -23,7 +23,7 @@
     - [X] 시도할 경기 횟수를 입력받는다 
   - ResultView
     - [ ] 경기 횟수별 자동차 상태를 화면에 출력한다 
-  - Postion, Postions: 자동차 위치 
+  - Position, Positions: 자동차 위치 
   - Car: 자동차 
     - [X] MoveStrategy 따라 이동한다
     - [X] 현재 위치를 알고 있다

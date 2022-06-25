@@ -1,18 +1,21 @@
-package racingcar.domain
+package racingcar.domain.car
 
 import racingcar.domain.moving.MoveStrategy
+import racingcar.domain.position.Position
 
 class Car(
-    val position: Int = 0,
+    private val moveStrategy: MoveStrategy
 ) {
-    fun move(moveStrategy: MoveStrategy): Car {
-        return if (moveStrategy.isMovable())
-            Car(position + FORWARD)
-        else
-            this
-    }
+    private var _position = Position(0)
 
-    companion object {
-        const val FORWARD = 1
+    val position: Position
+        get() = _position
+
+    fun move() {
+        if (moveStrategy.isMovable()) {
+            _position = Position(
+                _position.value + 1
+            )
+        }
     }
 }

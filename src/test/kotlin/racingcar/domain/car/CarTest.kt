@@ -2,17 +2,16 @@ package racingcar.domain.car
 
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.shouldBe
-import racingcar.domain.Car
 import racingcar.domain.moving.MoveStrategy
 
 class CarTest : AnnotationSpec() {
-    private val moveStrategy = object : MoveStrategy {
+    private val movingStrategy = object : MoveStrategy {
         override fun isMovable(): Boolean {
             return true
         }
     }
 
-    private val notMoveStrategy = object : MoveStrategy {
+    private val notMovingStrategy = object : MoveStrategy {
         override fun isMovable(): Boolean {
             return false
         }
@@ -22,27 +21,39 @@ class CarTest : AnnotationSpec() {
     fun `자동차 생성시 초기 위치는 0이다`() {
         // given
         // when
-        val car = Car()
+        val car = Car(movingStrategy)
         // then
-        car.position shouldBe 0
+        car.position.value shouldBe 0
     }
 
     @Test
     fun `자동차는 한칸 이동한다`() {
         // given
-        val car = Car(10)
+        val car = Car(movingStrategy)
         // when
-        val movedCar = car.move(moveStrategy)
+        car.move()
         // then
-        movedCar.position shouldBe 11
+        car.position.value shouldBe 1
+    }
+
+    @Test
+    fun `자동차는 두칸 이동한다`() {
+        // given
+        val car = Car(movingStrategy)
+        // when
+        car.move()
+        car.move()
+        // then
+        car.position.value shouldBe 2
     }
 
     @Test
     fun `자동차는 이동하지 않는다`() {
-        val car = Car(10)
+        val car = Car(notMovingStrategy)
         // when
-        val movedCar = car.move(notMoveStrategy)
+        car.move()
+        car.move()
         // then
-        movedCar.position shouldBe 10
+        car.position.value shouldBe 0
     }
 }
