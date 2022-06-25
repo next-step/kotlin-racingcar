@@ -20,4 +20,16 @@ internal class RacingCarTest : AnnotationSpec() {
         // then
         racingCar.movement shouldBe expected
     }
+
+    @Test
+    fun `자동차에 이름을 부여할 수 있다`() {
+        // given
+        val name = "자동차이름"
+
+        // when
+        val racingCar = RacingCar(RacingCarName(name), MockCarRacer(0))
+
+        // then
+        racingCar.name shouldBe name
+    }
 }
