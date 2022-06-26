@@ -7,4 +7,13 @@ class RacingGame(private val racingCars: List<RacingCar>) {
     fun move() {
         racingCars.forEach { it.move() }
     }
+
+    fun getWinners(): List<String> {
+        val winningMovement = movements.reduce { acc, movement ->
+            if (acc >= movement) acc else movement
+        }
+        return racingCars
+            .filter { it.movement == winningMovement }
+            .map { it.name }
+    }
 }
