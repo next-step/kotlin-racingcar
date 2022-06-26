@@ -10,5 +10,14 @@ fun main() {
     val racingGame = inputView.inputRacingGame()
     val numberOfAttempts = inputView.inputNumberOfAttempts()
 
-    resultView.printRaceProgress(racingGame, numberOfAttempts)
+    resultView.printResultTitle()
+    repeat(numberOfAttempts) {
+        resultView.printRacingRound(it)
+        racingGame.move()
+
+        val names = racingGame.names
+        val movements = racingGame.movements
+        resultView.printRacingCarMovements(names, movements)
+    }
+    resultView.printRacingWinners(racingGame.getWinners())
 }

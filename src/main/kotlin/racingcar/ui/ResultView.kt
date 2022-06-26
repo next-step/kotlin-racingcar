@@ -1,15 +1,20 @@
 package racingcar.ui
 
-import racingcar.domain.RacingGame
-
 class ResultView {
 
-    fun printRaceProgress(racingGame: RacingGame, numberOfAttempts: Int) {
-        println("실행 결과")
-        repeat(numberOfAttempts) {
-            println("${it + 1} 회차")
-            racingGame.move()
-            racingGame.movements.forEach { println("-".repeat(it)) }
-        }
+    fun printResultTitle() {
+        println("\n실행 결과")
+    }
+
+    fun printRacingRound(round: Int) {
+        println("\n${round + 1} 회차")
+    }
+
+    fun printRacingCarMovements(names: List<String>, movements: List<Int>) {
+        names.forEachIndexed { index, name -> println("$name : ${"-".repeat(movements[index])}") }
+    }
+
+    fun printRacingWinners(winners: List<String>) {
+        println("\n${winners.joinToString(", ")}이(가) 최종 우승했습니다.")
     }
 }
