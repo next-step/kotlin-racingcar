@@ -1,9 +1,6 @@
 package racingcar.domain
 
 import racingcar.domain.carracer.CarRacer
-import kotlin.random.Random
-
-private const val MOVING_BENCHMARK = 4
 
 class RacingCar(
     name: Name,
@@ -30,10 +27,8 @@ class RacingCar(
     )
 
     fun move() {
-        if (canMove()) {
+        if (carRacer.canMove()) {
             _movement = Movement(movement + 1)
         }
     }
-
-    private fun canMove() = carRacer.drive() >= MOVING_BENCHMARK
 }
