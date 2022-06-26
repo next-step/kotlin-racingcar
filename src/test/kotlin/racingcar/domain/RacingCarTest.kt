@@ -27,7 +27,7 @@ internal class RacingCarTest : AnnotationSpec() {
         val name = "자동차이름"
 
         // when
-        val racingCar = RacingCar(RacingCarName(name), MockCarRacer(0))
+        val racingCar = RacingCar(Name(name), MockCarRacer(0))
 
         // then
         racingCar.name shouldBe name

@@ -7,7 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.EmptySource
 
-internal class RacingCarNameTest : AnnotationSpec() {
+internal class NameTest : AnnotationSpec() {
 
     @ParameterizedTest
     @EmptySource
@@ -16,7 +16,7 @@ internal class RacingCarNameTest : AnnotationSpec() {
         // given
         // when
         // then
-        assertThrows<IllegalArgumentException> { RacingCarName(accepted) }
+        assertThrows<IllegalArgumentException> { Name(accepted) }
             .message shouldBe "자동차 이름은 1자 이상이고, 5자를 초과할 수 없습니다."
     }
 }
