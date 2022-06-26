@@ -4,10 +4,6 @@ import racingcar.domain.carracer.CarRacer
 import kotlin.random.Random
 
 private const val MOVING_BENCHMARK = 4
-private val chars = (('A'..'Z') + ('0'..'9'))
-private fun getDefaultName() = (0..4)
-    .map { chars[Random.nextInt(chars.size)] }
-    .joinToString("")
 
 class RacingCar(
     name: Name,
@@ -22,7 +18,7 @@ class RacingCar(
         get() = _movement.value
 
     constructor(carRacer: CarRacer) : this(
-        name = Name(getDefaultName()),
+        name = Name(),
         movement = Movement(),
         carRacer,
     )
