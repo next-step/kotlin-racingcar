@@ -14,6 +14,10 @@ fun main() {
     repeat(numberOfAttempts) {
         resultView.printRacingRound(it)
         racingGame.move()
-        racingGame.movements.forEach(resultView::printRacingCarMovement)
+
+        val names = racingGame.names
+        val movements = racingGame.movements
+        resultView.printRacingCarMovements(names, movements)
     }
+    resultView.printRacingWinners(racingGame.getWinners())
 }

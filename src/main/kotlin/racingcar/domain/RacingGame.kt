@@ -1,7 +1,7 @@
 package racingcar.domain
 
 class RacingGame(private val racingCars: List<RacingCar>) {
-
+    val names get() = racingCars.map { it.name }
     val movements get() = racingCars.map { it.movement }
 
     fun move() {
