@@ -11,19 +11,19 @@ class RacingCarGame {
     fun play() {
         val cars = generateCars(Input.getCarNames())
         val moves = Input.getNumberOfMoves()
-        repeat(moves) {
-            getMovedCarList(cars)
-        }
-        Result.printWinner(cars)
+        val movedCars = getMovedCarList(cars, moves)
+        Result.printWinner(movedCars)
     }
 
-    fun getMovedCarList(cars: List<Car>): List<Car>{
+    fun getMovedCarList(cars: List<Car>, moves: Int): List<Car>{
         val movedCars = cars.toMutableList()
-        repeat(cars.size) {
-            val car = movedCars.removeFirst()
-            movedCars.add(moveCar(car))
+        repeat(moves) {
+            repeat(cars.size) {
+                val car = movedCars.removeFirst()
+                movedCars.add(moveCar(car))
+            }
+            Result.printCarsDistanc(movedCars)
         }
-        Result.printCarsDistanc(movedCars)
         return movedCars
     }
 
