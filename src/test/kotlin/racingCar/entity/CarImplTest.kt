@@ -24,7 +24,7 @@ internal class CarImplTest {
         // given
         val car = CarImpl("A")
         val expectedDistance = car.distance
-        val randomNumber = 6
+        val randomNumber = 4
 
         // when
         val testCar = car.move(randomNumber)
