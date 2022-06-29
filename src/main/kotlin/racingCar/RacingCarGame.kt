@@ -10,20 +10,23 @@ class RacingCarGame {
         val cars = generateCars(Input().getCarNames())
         val moves = Input().getNumberOfMoves()
         repeat(moves) {
-            moveCars(cars)
+            getMovedCarList(cars)
         }
         Result().printWinner(cars)
     }
 
-    fun moveCars(cars: List<Car>): List<Car> {
+    fun getMovedCarList(cars: List<Car>): List<Car>{
         val movedCars = cars.toMutableList()
         repeat(cars.size) {
             val car = movedCars.removeFirst()
-            movedCars.add(car.move(generateRandomNumber()))
+            movedCars.add(moveCar(car))
         }
-
         Result().printCarsDistanc(movedCars)
         return movedCars
+    }
+
+    fun moveCar(car: Car): Car {
+        return car.move(generateRandomNumber())
     }
 
     fun generateCars(carNames: List<String>): List<Car> {
