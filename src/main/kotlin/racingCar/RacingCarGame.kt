@@ -7,18 +7,22 @@ import racingCar.ui.Result
 
 class RacingCarGame {
     fun play() {
-        var cars = generateCars(Input().getCarNames())
+        val cars = generateCars(Input().getCarNames())
         val moves = Input().getNumberOfMoves()
         repeat(moves) {
-            cars = moveCars(cars)
+            moveCars(cars)
         }
         Result().printWinner(cars)
     }
 
     fun moveCars(cars: List<Car>): List<Car> {
-        val movedCars = cars.map { car: Car -> car.move(generateRandomNumber()) }
+        val movedCars = cars.toMutableList()
+        repeat(cars.size) {
+            val car = movedCars.removeFirst()
+            movedCars.add(car.move(generateRandomNumber()))
+        }
+
         Result().printCarsDistanc(movedCars)
-        println()
         return movedCars
     }
 
