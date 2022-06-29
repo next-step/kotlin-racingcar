@@ -21,7 +21,7 @@ internal class RacingCarGameTest {
     }
 
     @Test
-    fun `0과 9 사이의 중 하나의 숫자를 임의로 생성한다`() {
+    fun `generateRandomNumber는 0과 9 사이의 중 하나의 숫자를 임의로 생성한다`() {
         // when
         val rangeList = (0..9)
         val testNumber = RacingCarGame().generateRandomNumber()
