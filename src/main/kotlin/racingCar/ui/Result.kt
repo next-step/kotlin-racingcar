@@ -6,6 +6,7 @@ import racingCar.entity.Car
 class Result {
     fun printCarsDistanc(cars: List<Car>) {
         cars.forEach { car: Car -> println(car.name + ": " + "-".repeat(car.distance)) }
+        println()
     }
 
     fun printWinner(cars: List<Car>) {
