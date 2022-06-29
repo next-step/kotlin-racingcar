@@ -2,6 +2,8 @@ package racingCar
 
 import racingCar.entity.Car
 import racingCar.entity.CarImpl
+import racingCar.entity.CarImpl.Companion.MOVE_END_POINT
+import racingCar.entity.CarImpl.Companion.MOVE_START_POINT
 import racingCar.ui.Input
 import racingCar.ui.Result
 
@@ -34,7 +36,7 @@ class RacingCarGame {
     }
 
     fun generateRandomNumber(): Int {
-        return (0..9).random()
+        return (MOVE_START_POINT..MOVE_END_POINT).random()
     }
 
     fun getMaxDistance(cars: List<Car>): Int {

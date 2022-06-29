@@ -2,7 +2,7 @@ package racingCar.entity
 
 class CarImpl(override val name: String, override val distance: Int = 1) : Car {
     override fun move(randNumber: Int): Car {
-        if (randNumber < 4) return CarImpl(this.name, this.distance)
+        if (randNumber < MOVE_BASE_POINT) return CarImpl(this.name, this.distance)
         return CarImpl(this.name, this.distance + 1)
     }
 
