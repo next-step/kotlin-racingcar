@@ -9,12 +9,12 @@ import racingCar.ui.Result
 
 class RacingCarGame {
     fun play() {
-        val cars = generateCars(Input().getCarNames())
-        val moves = Input().getNumberOfMoves()
+        val cars = generateCars(Input.getCarNames())
+        val moves = Input.getNumberOfMoves()
         repeat(moves) {
             getMovedCarList(cars)
         }
-        Result().printWinner(cars)
+        Result.printWinner(cars)
     }
 
     fun getMovedCarList(cars: List<Car>): List<Car>{
@@ -23,7 +23,7 @@ class RacingCarGame {
             val car = movedCars.removeFirst()
             movedCars.add(moveCar(car))
         }
-        Result().printCarsDistanc(movedCars)
+        Result.printCarsDistanc(movedCars)
         return movedCars
     }
 

@@ -3,7 +3,7 @@ package racingCar.ui
 import racingCar.RacingCarGame
 import racingCar.entity.Car
 
-class Result {
+object Result {
     fun printCarsDistanc(cars: List<Car>) {
         cars.forEach { car: Car -> println(car.name + ": " + "-".repeat(car.distance)) }
         println()
