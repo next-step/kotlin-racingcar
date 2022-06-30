@@ -1,9 +1,9 @@
 package racingCar.entity
 
-class CarImpl(override val distance: Int = 1) : Car {
+class CarImpl(override val name: String, override val distance: Int = 1) : Car {
     override fun move(randNumber: Int): Car {
-        if (randNumber < 4) return CarImpl(this.distance)
-        return CarImpl(this.distance + 1)
+        if (randNumber < MOVE_BASE_POINT) return CarImpl(this.name, this.distance)
+        return CarImpl(this.name, this.distance + 1)
     }
 
     companion object {

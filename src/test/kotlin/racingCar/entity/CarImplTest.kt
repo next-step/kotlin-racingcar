@@ -8,7 +8,7 @@ internal class CarImplTest {
     @Test
     fun `자동차가 이동하면 distance가 1 증가한다`() {
         // given
-        val car = CarImpl()
+        val car = CarImpl("A")
         val expectedDistance = car.distance
         val moves = 6
 
@@ -22,9 +22,9 @@ internal class CarImplTest {
     @Test
     fun `move()에 4 이상의 숫자가 들어가면 자동차가 1 이동한다`() {
         // given
-        val car = CarImpl()
+        val car = CarImpl("A")
         val expectedDistance = car.distance
-        val randomNumber = 6
+        val randomNumber = 4
 
         // when
         val testCar = car.move(randomNumber)
@@ -36,7 +36,7 @@ internal class CarImplTest {
     @Test
     fun `move()에 4 미만의 숫자가 들어가면 자동차가 이동하지 않는다`() {
         // given
-        val car = CarImpl()
+        val car = CarImpl("A")
         val expectedDistance = car.distance
         val randomNumber = 2
 
