@@ -70,7 +70,7 @@ internal class RacingCarGameTest {
     }
 
     @Test
-    fun `거리가 5 4 5 2를 간 자동차가 있으면 공동 우승한 차가 두 대 이다`(){
+    fun `가장 멀리간 자동차가 두 대면 우승자는 둘이다`(){
         // given
         val cars = listOf<Car>(CarImpl("A", 5), CarImpl("B", 4), CarImpl("C", 5), CarImpl("D", 2))
         val expectedCarSize = 2
