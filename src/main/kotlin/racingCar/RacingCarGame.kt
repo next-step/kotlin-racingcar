@@ -40,7 +40,7 @@ class RacingCarGame {
     }
 
     fun getMaxDistance(cars: List<Car>): Int {
-        return cars.maxWithOrNull(Comparator.comparingInt { it.distance })!!.distance
+        return cars.maxOf { it.distance }
     }
 
     fun getWinner(cars: List<Car>): List<String> {
