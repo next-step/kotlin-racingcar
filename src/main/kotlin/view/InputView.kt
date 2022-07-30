@@ -1,0 +1,5 @@
+package view
+
+class InputView {
+
+}
