@@ -6,10 +6,9 @@ import java.util.Queue
 class Calculator private constructor() {
     companion object {
         fun calculate(input: String?): Int {
-            checkIsValidExpression(input)
-            if (input == null) throw IllegalArgumentException()
+            validateInput(input)
 
-            val queue = input.toSequence()
+            val queue = input!!.toSequence()
             var result = queue.poll().toInt()
 
             while (queue.isNotEmpty()) {
@@ -21,25 +20,24 @@ class Calculator private constructor() {
             return result
         }
 
-        private fun checkIsValidExpression(input: String?) {
-            if (input == null) throw IllegalArgumentException()
-            if (input.isBlank()) throw IllegalArgumentException()
-            // 공백으로 문자열 분할
-            val list = input.split(" ").toMutableList()
-            // 빈 문자열 제거
-            list.removeIf { element -> element.isEmpty() }
-            val queue = input.toSequence()
-            // 연산과 수식의 합은 홀수여야 한다.
+        private fun validateInput(input: String?) {
+            validateIsNotNullOrBlank(input)
+
+            input?.let { validateSequence(it.toSequence()) }
+        }
+
+        private fun validateIsNotNullOrBlank(input: String?) {
+            if (input.isNullOrBlank()) throw IllegalArgumentException()
+        }
+
+        private fun validateSequence(queue: Queue<String>) {
             if (queue.size % 2 == 0) throw IllegalArgumentException()
 
-            // 수식은 숫자와 연산자가 번갈아 와야 한다.
-            var mustBeNumber = false
+            if (!queue.poll().isValidOperand()) throw IllegalArgumentException()
+
             while (queue.isNotEmpty()) {
-                val parameter = queue.poll()
-                mustBeNumber = !mustBeNumber
-                if (mustBeNumber && parameter.toIntOrNull() != null) continue
-                if (!mustBeNumber && parameter.isValidOperator()) continue
-                throw IllegalArgumentException()
+                if (!queue.poll().isValidOperator()) throw IllegalArgumentException()
+                if (!queue.poll().isValidOperand()) throw IllegalArgumentException()
             }
         }
 
@@ -62,6 +60,8 @@ class Calculator private constructor() {
             if (this == "/") return true
             return false
         }
+
+        private fun String.isValidOperand(): Boolean = this.toIntOrNull() != null
 
         fun add(a: Int, b: Int): Int = a + b
 
