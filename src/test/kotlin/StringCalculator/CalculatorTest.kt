@@ -45,21 +45,21 @@ class CalculatorTest {
 
     @Test
     fun `덧셈`() {
-        assertThat(Calculator.add(3, 2)).isEqualTo(5)
+        assertThat(CalculatorOperator.ADD.calculate(3, 2)).isEqualTo(5)
     }
 
     @Test
     fun `뺄셈`() {
-        assertThat(Calculator.subtract(3, 2)).isEqualTo(1)
+        assertThat(CalculatorOperator.SUBTRACT.calculate(3, 2)).isEqualTo(1)
     }
 
     @Test
     fun `곱셈`() {
-        assertThat(Calculator.multiply(3, 2)).isEqualTo(6)
+        assertThat(CalculatorOperator.MULTIPLY.calculate(3, 2)).isEqualTo(6)
     }
 
     @Test
     fun `나눗셈`() {
-        assertThat(Calculator.divide(3, 2)).isEqualTo(1)
+        assertThat(CalculatorOperator.DIVIDE.calculate(3, 2)).isEqualTo(1)
     }
 }

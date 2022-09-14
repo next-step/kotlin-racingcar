@@ -12,9 +12,10 @@ class Calculator private constructor() {
             var result = queue.poll().toInt()
 
             while (queue.isNotEmpty()) {
-                val operator = queue.poll().toOperator()
+                val symbol = queue.poll()
+                val operator = CalculatorOperator.values().find { it.symbol == symbol }!!
                 val operand = queue.poll().toInt()
-                result = operator(result, operand)
+                result = operator.calculate(result, operand)
             }
 
             return result
@@ -36,7 +37,8 @@ class Calculator private constructor() {
             if (!queue.poll().isValidOperand()) throw IllegalArgumentException()
 
             while (queue.isNotEmpty()) {
-                if (!queue.poll().isValidOperator()) throw IllegalArgumentException()
+                val symbol = queue.poll()
+                CalculatorOperator.values().find { it.symbol == symbol } ?: throw IllegalArgumentException()
                 if (!queue.poll().isValidOperand()) throw IllegalArgumentException()
             }
         }
@@ -45,33 +47,6 @@ class Calculator private constructor() {
             return LinkedList(this.split(" ").filter { element -> element.isNotEmpty() })
         }
 
-        private fun String.toOperator(): (Int, Int) -> Int {
-            if (this == "+") return Companion::add
-            if (this == "-") return Companion::subtract
-            if (this == "*") return Companion::multiply
-            if (this == "/") return Companion::divide
-            throw IllegalArgumentException()
-        }
-
-        private fun String.isValidOperator(): Boolean {
-            if (this == "-") return true
-            if (this == "+") return true
-            if (this == "*") return true
-            if (this == "/") return true
-            return false
-        }
-
         private fun String.isValidOperand(): Boolean = this.toIntOrNull() != null
-
-        fun add(a: Int, b: Int): Int = a + b
-
-        fun subtract(a: Int, b: Int) = a - b
-
-        fun multiply(a: Int, b: Int) = a * b
-
-        fun divide(a: Int, b: Int): Int {
-            if (b == 0) throw IllegalArgumentException()
-            return a / b
-        }
     }
 }
