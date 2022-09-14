@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test
 class CalculatorTest {
 
     @Test
-    fun `유효값 확인`() {
-        // 잘못된 입력값들
+    fun `유효하지 못한 입력`() {
         // null
         assertThatThrownBy {
             Calculator.calculate(null)
@@ -33,9 +32,10 @@ class CalculatorTest {
         assertThatThrownBy {
             Calculator.calculate("123 12")
         }.isInstanceOf(IllegalArgumentException::class.java)
+    }
 
-        // 유효값들
-
+    @Test
+    fun `유효한 입력`() {
         assertThat(Calculator.calculate("123")).isEqualTo(123)
         assertThat(Calculator.calculate("+123")).isEqualTo(123)
         assertThat(Calculator.calculate("-123")).isEqualTo(-123)
