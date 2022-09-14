@@ -69,6 +69,9 @@ class Calculator private constructor() {
 
         fun multiply(a: Int, b: Int) = a * b
 
-        fun divide(a: Int, b: Int) = a / b
+        fun divide(a: Int, b: Int): Int {
+            if (b == 0) throw IllegalArgumentException()
+            return a / b
+        }
     }
 }
