@@ -1,7 +1,7 @@
 package step2.domain.operation.command
 
-import step2.domain.operation.model.InputOperationCommand
+import step2.domain.operation.model.BinaryInputOperationCommand
 
 interface OperationCommand {
-    fun operate(input: InputOperationCommand): Int
+    fun operate(input: BinaryInputOperationCommand): Int
 }

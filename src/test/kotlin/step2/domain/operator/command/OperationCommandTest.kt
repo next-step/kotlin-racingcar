@@ -10,7 +10,7 @@ import step2.domain.operation.command.implement.DefaultOperationCommand
 import step2.domain.operation.command.implement.DivisionOperationCommand
 import step2.domain.operation.command.implement.MultiplicationOperationCommand
 import step2.domain.operation.command.implement.SubtractionOperationCommand
-import step2.domain.operation.model.InputOperationCommand
+import step2.domain.operation.model.BinaryInputOperationCommand
 
 class OperationCommandTest {
 
@@ -63,5 +63,5 @@ class OperationCommandTest {
         assertThat(result).isEqualTo(first / second)
     }
 
-    private fun createInputOperationCommand(first: Int, second: Int) = InputOperationCommand(first, second)
+    private fun createInputOperationCommand(first: Int, second: Int) = BinaryInputOperationCommand(first, second)
 }

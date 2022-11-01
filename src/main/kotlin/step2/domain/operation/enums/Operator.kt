@@ -1,9 +1,9 @@
 package step2.domain.operation.enums
 
+import step2.domain.operation.command.OperationCommand
 import step2.domain.operation.command.implement.AdditionOperationCommand
 import step2.domain.operation.command.implement.DivisionOperationCommand
 import step2.domain.operation.command.implement.MultiplicationOperationCommand
-import step2.domain.operation.command.OperationCommand
 import step2.domain.operation.command.implement.SubtractionOperationCommand
 
 enum class Operator(
