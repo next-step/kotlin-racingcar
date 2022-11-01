@@ -1,10 +1,10 @@
 package step2.domain.operation.enums
 
-import step2.domain.operation.command.AdditionOperationCommand
-import step2.domain.operation.command.DivisionOperationCommand
-import step2.domain.operation.command.MultiplicationOperationCommand
+import step2.domain.operation.command.implement.AdditionOperationCommand
+import step2.domain.operation.command.implement.DivisionOperationCommand
+import step2.domain.operation.command.implement.MultiplicationOperationCommand
 import step2.domain.operation.command.OperationCommand
-import step2.domain.operation.command.SubtractionOperationCommand
+import step2.domain.operation.command.implement.SubtractionOperationCommand
 
 enum class Operator(
     private val operator: String
@@ -24,10 +24,10 @@ enum class Operator(
 
     fun toCommand(): OperationCommand {
         return when (this) {
-            ADDITION -> AdditionOperationCommand()
-            SUBTRACTION -> SubtractionOperationCommand()
-            MULTIPLICATION -> MultiplicationOperationCommand()
-            DIVISION -> DivisionOperationCommand()
+            ADDITION -> AdditionOperationCommand
+            SUBTRACTION -> SubtractionOperationCommand
+            MULTIPLICATION -> MultiplicationOperationCommand
+            DIVISION -> DivisionOperationCommand
         }
     }
 }
