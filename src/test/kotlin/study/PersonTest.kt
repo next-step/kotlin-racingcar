@@ -6,9 +6,7 @@ import org.junit.jupiter.api.Test
 class PersonTest {
     @Test
     fun `이름 붙인 인자`() {
-        // 자바로 치자면 빌더패턴?
         val person = Person(name = "윤영빈", age = 29, nickname = "heedoitdox")
-
         assertThat(person.name).isEqualTo("윤영빈")
         assertThat(person.age).isEqualTo(29)
         assertThat(person.nickname).isEqualTo("heedoitdox")
