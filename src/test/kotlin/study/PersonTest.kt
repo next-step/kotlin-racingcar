@@ -1,9 +1,9 @@
 package study
 
-import io.kotest.core.spec.style.AnnotationSpec
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 
-class PersonTest : AnnotationSpec() {
+class PersonTest {
     @Test
     fun `이름 붙인 인자`() {
         val person = Person("shinyoung Kim", 30, "rolroralra")
