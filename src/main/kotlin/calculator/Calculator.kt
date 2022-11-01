@@ -1,0 +1,4 @@
+package calculator
+
+class Calculator {
+}
