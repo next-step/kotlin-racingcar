@@ -4,12 +4,13 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import step2.domain.operation.AdditionOperationCommand
-import step2.domain.operation.DefaultOperationCommand
-import step2.domain.operation.DivisionOperationCommand
-import step2.domain.operation.MultiplicationOperationCommand
-import step2.domain.operation.OperationCommand
-import step2.domain.operation.SubtractionOperationCommand
+import step2.domain.operation.command.AdditionOperationCommand
+import step2.domain.operation.command.DefaultOperationCommand
+import step2.domain.operation.command.DivisionOperationCommand
+import step2.domain.operation.command.MultiplicationOperationCommand
+import step2.domain.operation.command.OperationCommand
+import step2.domain.operation.command.SubtractionOperationCommand
+import step2.domain.operation.model.InputOperationCommand
 
 class OperationCommandTest {
 
@@ -17,43 +18,50 @@ class OperationCommandTest {
 
     @Test
     internal fun `두 개의 인자는 연산이 된다`() {
-        val firstElement = 1
-        val secondElement = 2
+        val first = 1
+        val second = 2
+        val input = createInputOperationCommand(first, second)
 
         operationCommand = DefaultOperationCommand()
-        val result = operationCommand.operate(firstElement, secondElement)
+        val result = operationCommand.operate(input)
         assertThat(result).isNotNull
     }
 
     @ParameterizedTest
     @CsvSource(value = ["1,2", "3,4"])
     internal fun `두 개의 인자를 더할 수 있다`(first: Int, second: Int) {
+        val input = createInputOperationCommand(first, second)
         operationCommand = AdditionOperationCommand()
-        val result = operationCommand.operate(first, second)
+        val result = operationCommand.operate(input)
         assertThat(result).isEqualTo(first + second)
     }
 
     @ParameterizedTest
     @CsvSource(value = ["1,2", "3,4"])
     internal fun `첫 번째 인자에서 두 번째 인자를 뺄 수 있다`(first: Int, second: Int) {
+        val input = createInputOperationCommand(first, second)
         operationCommand = SubtractionOperationCommand()
-        val result = operationCommand.operate(first, second)
+        val result = operationCommand.operate(input)
         assertThat(result).isEqualTo(first - second)
     }
 
     @ParameterizedTest
     @CsvSource(value = ["1,2", "3,4", "100,0"])
     internal fun `두 개의 인자를 곱할 수 있다`(first: Int, second: Int) {
+        val input = createInputOperationCommand(first, second)
         operationCommand = MultiplicationOperationCommand()
-        val result = operationCommand.operate(first, second)
+        val result = operationCommand.operate(input)
         assertThat(result).isEqualTo(first * second)
     }
 
     @ParameterizedTest
     @CsvSource(value = ["1,2", "3,4"])
     internal fun `첫 번째 인자에서 두 번째 인자를 나눌 수 있다`(first: Int, second: Int) {
+        val input = createInputOperationCommand(first, second)
         operationCommand = DivisionOperationCommand()
-        val result = operationCommand.operate(first, second)
+        val result = operationCommand.operate(input)
         assertThat(result).isEqualTo(first / second)
     }
+
+    fun createInputOperationCommand(first: Int, second: Int) = InputOperationCommand(first, second)
 }
