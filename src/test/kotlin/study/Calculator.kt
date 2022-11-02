@@ -27,7 +27,7 @@ class Calculator {
             val targetOperator = operatorStack.pop()
             numberStack.push(targetOperator(numberStack.pop(), s))
         } else {
-            numberStack.add(s)
+            numberStack.push(s)
         }
     }
 }
