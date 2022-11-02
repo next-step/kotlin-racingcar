@@ -54,4 +54,16 @@ class OperationTest : FunSpec({
             exception.message shouldBe "0으로 나눌 수 없습니다."
         }
     }
+
+    context("Operation") {
+        test("find - 연산 기호가 같은 Operation을 찾는다.") {
+            Operation.find("+") shouldBe PLUS
+        }
+
+        test("find - 연산 기호를 찾지 못하면 예외를 던진다.") {
+            val wrongOperator = ""
+            val exception = shouldThrowExactly<IllegalArgumentException> { Operation.find(wrongOperator) }
+            exception.message shouldBe "사칙 연산 기호가 잘못됐습니다."
+        }
+    }
 })
