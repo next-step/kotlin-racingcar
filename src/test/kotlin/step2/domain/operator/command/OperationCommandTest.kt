@@ -10,14 +10,14 @@ import step2.domain.operation.command.implement.DefaultOperationCommand
 import step2.domain.operation.command.implement.DivisionOperationCommand
 import step2.domain.operation.command.implement.MultiplicationOperationCommand
 import step2.domain.operation.command.implement.SubtractionOperationCommand
-import step2.domain.operation.model.BinaryInputOperationCommand
+import step2.domain.operation.model.BinaryInputCommand
 
-class OperationCommandTest {
+internal class OperationCommandTest {
 
     private lateinit var operationCommand: OperationCommand
 
     @Test
-    internal fun `두 개의 인자는 연산이 된다`() {
+    fun `두 개의 인자는 연산이 된다`() {
         val first = 1
         val second = 2
         val input = createInputOperationCommand(first, second)
@@ -29,7 +29,7 @@ class OperationCommandTest {
 
     @ParameterizedTest
     @CsvSource(value = ["1,2", "3,4"])
-    internal fun `두 개의 인자를 더할 수 있다`(first: Int, second: Int) {
+    fun `두 개의 인자를 더할 수 있다`(first: Int, second: Int) {
         val input = createInputOperationCommand(first, second)
         operationCommand = AdditionOperationCommand
         val result = operationCommand.operate(input)
@@ -38,7 +38,7 @@ class OperationCommandTest {
 
     @ParameterizedTest
     @CsvSource(value = ["1,2", "3,4"])
-    internal fun `첫 번째 인자에서 두 번째 인자를 뺄 수 있다`(first: Int, second: Int) {
+    fun `첫 번째 인자에서 두 번째 인자를 뺄 수 있다`(first: Int, second: Int) {
         val input = createInputOperationCommand(first, second)
         operationCommand = SubtractionOperationCommand
         val result = operationCommand.operate(input)
@@ -47,7 +47,7 @@ class OperationCommandTest {
 
     @ParameterizedTest
     @CsvSource(value = ["1,2", "3,4", "100,0"])
-    internal fun `두 개의 인자를 곱할 수 있다`(first: Int, second: Int) {
+    fun `두 개의 인자를 곱할 수 있다`(first: Int, second: Int) {
         val input = createInputOperationCommand(first, second)
         operationCommand = MultiplicationOperationCommand
         val result = operationCommand.operate(input)
@@ -56,12 +56,12 @@ class OperationCommandTest {
 
     @ParameterizedTest
     @CsvSource(value = ["1,2", "3,4"])
-    internal fun `첫 번째 인자에서 두 번째 인자를 나눌 수 있다`(first: Int, second: Int) {
+    fun `첫 번째 인자에서 두 번째 인자를 나눌 수 있다`(first: Int, second: Int) {
         val input = createInputOperationCommand(first, second)
         operationCommand = DivisionOperationCommand
         val result = operationCommand.operate(input)
         assertThat(result).isEqualTo(first / second)
     }
 
-    private fun createInputOperationCommand(first: Int, second: Int) = BinaryInputOperationCommand(first, second)
+    private fun createInputOperationCommand(first: Int, second: Int) = BinaryInputCommand(first, second)
 }
