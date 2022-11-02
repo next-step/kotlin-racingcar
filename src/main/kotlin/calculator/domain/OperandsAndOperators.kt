@@ -5,7 +5,7 @@ class OperandsAndOperators(private val operands: Operands, private val operators
     private var sum = Operand(0)
 
     fun operate() {
-        sum = operands.pull();
+        sum = operands.pull()
 
         while (operators.hasNext()) {
             val operator = operators.pull()
