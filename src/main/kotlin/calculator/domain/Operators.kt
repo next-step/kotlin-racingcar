@@ -1,12 +1,14 @@
 package calculator.domain
 
-class Operators {
+import java.util.*
+
+class Operators(private val operatorQueue: Queue<Operator>) {
 
     fun hasNext(): Boolean {
-        TODO("Not yet implemented")
+        return operatorQueue.isNotEmpty()
     }
 
     fun pull(): Operator {
-        TODO("Not yet implemented")
+        return operatorQueue.poll()
     }
 }
