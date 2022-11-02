@@ -5,6 +5,8 @@ import java.util.*
 class BlankParser {
 
     fun parseOperators(expression: String): Operators {
+        validateExpression(expression)
+
         val operatorQueue: Queue<Operator> = LinkedList()
         val split = expression.split(DELIMITER)
 
@@ -17,6 +19,8 @@ class BlankParser {
     }
 
     fun parseOperands(expression: String): Operands {
+        validateExpression(expression)
+
         val operandQueue: Queue<Operand> = LinkedList()
         val split = expression.split(DELIMITER)
 
@@ -26,6 +30,12 @@ class BlankParser {
             i += 2
         }
         return Operands(operandQueue)
+    }
+
+    private fun validateExpression(expression: String) {
+        if (expression.isBlank()) {
+            throw IllegalArgumentException()
+        }
     }
 
     private companion object {
