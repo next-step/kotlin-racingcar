@@ -15,7 +15,7 @@ class Calculator {
                 s == "-" -> operatorStack.push(minusLambda)
                 s == "*" -> operatorStack.push(timesLambda)
                 s == "/" -> operatorStack.push(divideLambda)
-                isDigit(s) -> processMidCalc(s.toInt())
+                isInt(s) -> processMidCalc(s.toInt())
                 else -> throw IllegalArgumentException()
             }
         }
@@ -37,4 +37,4 @@ var minusLambda = { a: Int, b: Int -> a - b }
 var timesLambda = { a: Int, b: Int -> a * b }
 var divideLambda = { a: Int, b: Int -> if (b == 0) 0 else a / b }
 
-fun isDigit(s: String): Boolean = s.toIntOrNull() != null
+fun isInt(s: String): Boolean = s.toIntOrNull() != null
