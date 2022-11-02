@@ -1,5 +1,6 @@
 package calculator.domain
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
@@ -37,6 +38,12 @@ class OperandTest : StringSpec() {
             val two = Operand(2)
 
             one.divide(two) shouldBe Operand(0)
+        }
+
+        "피연산자는 숫자만 가능하다" {
+            shouldThrow<NumberFormatException> {
+                Operand("a")
+            }
         }
     }
 }
