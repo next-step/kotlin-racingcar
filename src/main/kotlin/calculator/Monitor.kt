@@ -1,3 +1,7 @@
 package calculator
 
-class Monitor()
+class Monitor {
+    fun display(message: String) {
+        println(message)
+    }
+}
