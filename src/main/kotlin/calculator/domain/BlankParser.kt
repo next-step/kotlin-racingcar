@@ -1,5 +1,7 @@
 package calculator.domain
 
+import java.util.*
+
 class BlankParser {
 
     fun parseOperators(expression: String): Operators {
@@ -7,6 +9,6 @@ class BlankParser {
     }
 
     fun parseOperands(expression: String): Operands {
-        return Operands()
+        return Operands(LinkedList())
     }
 }

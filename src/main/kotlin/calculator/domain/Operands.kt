@@ -1,8 +1,10 @@
 package calculator.domain
 
-class Operands {
+import java.util.*
+
+class Operands(private val operandQueue: Queue<Operand>) {
 
     fun pull(): Operand {
-        TODO("Not yet implemented")
+        return operandQueue.poll()
     }
 }
