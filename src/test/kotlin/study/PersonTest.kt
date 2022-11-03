@@ -26,4 +26,11 @@ class PersonTest {
         )
     }
 
+    @Test
+    fun `데이터 클래스`() {
+        val person1 = Person("dk-ko", 0)
+        val person2 = Person("dk-ko", 0)
+        assertThat(person1).isEqualTo(person2)
+    }
+
 }
