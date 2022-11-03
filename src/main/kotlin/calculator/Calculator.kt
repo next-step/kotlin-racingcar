@@ -2,10 +2,9 @@ package calculator
 
 class Calculator {
 
-    fun calculate(input: String): Int {
-        require(input.isNotBlank()) {
-            throw IllegalArgumentException("빈 값은 올 수 없어요")
-        }
+    fun calculate(input: String?): Int {
+        requireNotNull(input) { "null은 올 수 없어요" }
+        require(input.isNotBlank()) { "빈 값은 올 수 없어요" }
 
         val values = input.split(" ")
 

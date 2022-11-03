@@ -5,7 +5,7 @@ import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import org.junit.jupiter.params.provider.EmptySource
+import org.junit.jupiter.params.provider.NullAndEmptySource
 
 class CalculatorTest {
 
@@ -24,9 +24,9 @@ class CalculatorTest {
         assertThat(calculator.calculate(input)).isEqualTo(expected)
     }
 
-    @EmptySource
+    @NullAndEmptySource
     @ParameterizedTest(name = "`{arguments}` 인경우 예외가 발생한다.")
-    internal fun calculateExceptionTest(input: String) {
+    internal fun calculateExceptionTest(input: String?) {
 
         // when, then
         assertThatIllegalArgumentException().isThrownBy {
