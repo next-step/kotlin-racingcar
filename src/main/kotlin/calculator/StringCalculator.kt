@@ -19,5 +19,9 @@ class StringCalculator {
         fun divide(decimal1: BigDecimal, decimal2: BigDecimal): BigDecimal {
             TODO("Not yet implemented")
         }
+
+        fun calculate(string2: String?) {
+            TODO("Not yet implemented")
+        }
     }
 }

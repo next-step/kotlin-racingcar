@@ -1,12 +1,16 @@
 package calculator
 
 import calculator.StringCalculator.Companion.add
+import calculator.StringCalculator.Companion.calculate
 import calculator.StringCalculator.Companion.divide
 import calculator.StringCalculator.Companion.multiply
 import calculator.StringCalculator.Companion.subtract
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.NullSource
+import org.junit.jupiter.params.provider.ValueSource
 import java.math.BigDecimal
 
 class StringCalculatorTest {
@@ -59,18 +63,37 @@ class StringCalculatorTest {
             .isInstanceOf(IllegalArgumentException::class.java)
     }
 
-    @Test
-    fun `입력값 검증`() {
-        TODO("Not yet implemented")
+    @ParameterizedTest
+    @NullSource
+    @ValueSource(strings = [" ", "  ", "   "])
+    fun `입력값 공백, 널 검증`(input: String) {
+        assertThatThrownBy { calculate(input) }
+            .isInstanceOf(IllegalArgumentException::class.java)
     }
 
-    @Test
-    fun `사칙연산 기호 검증`() {
-        TODO("Not yet implemented")
+    @ParameterizedTest
+    @ValueSource(
+        strings = [
+            "2 + + 3",
+            "- 5 + 2",
+            "1 1 2",
+            "1 $ 2"
+        ]
+    )
+    fun `사칙연산 기호 검증`(input: String) {
+        assertThatThrownBy { calculate(input) }
+            .isInstanceOf(IllegalArgumentException::class.java)
     }
 
-    @Test
-    fun `문자열 사칙연산`() {
-        TODO("Not yet implemented")
+    @ParameterizedTest
+    @ValueSource(
+        strings = [
+            "2 + 3 * 4 / 2: 10",
+            "5 * 10 / 5 / 2: 5",
+            "7 / 2 * 100 - 1: 299"
+        ]
+    )
+    fun `문자열 사칙연산`(input: String, expected: Int) {
+        assertThat(calculate(input)).isEqualTo(expected)
     }
 }
