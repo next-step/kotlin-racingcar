@@ -15,7 +15,7 @@ class OperationTest {
         val operation = Operation.of(symbol)
 
         // when
-        val result = operation.calculate(10, 2)
+        val result = operation.operate(10, 2)
 
         // then
         assertThat(result).isEqualTo(expected.toInt())
