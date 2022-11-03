@@ -16,7 +16,9 @@ class StringCalculator {
             dividend.divide(divisor, max(dividend.scale(), divisor.scale()), HALF_EVEN)
 
         fun calculate(string2: String?) {
-            TODO("Not yet implemented")
+            if (string2.isNullOrBlank()) {
+                throw IllegalArgumentException()
+            }
         }
     }
 }

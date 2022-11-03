@@ -63,7 +63,7 @@ class StringCalculatorTest {
     @ParameterizedTest
     @NullSource
     @ValueSource(strings = [" ", "  ", "   "])
-    fun `입력값 공백, 널 검증`(input: String) {
+    fun `입력값 공백, 널 검증`(input: String?) {
         assertThatThrownBy { calculate(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
     }
