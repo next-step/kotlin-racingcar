@@ -3,7 +3,7 @@ package step2
 class StringCalculator {
 
     fun calculate(input: String?): Int {
-        if (input.isNullOrEmpty()) throw IllegalArgumentException()
+        if (input.isNullOrEmpty()) throw IllegalArgumentException("input 값은 Null, 공백이 될 수 없습니다.")
 
         val operators = input.split(" ")
         var accumulator = operators[0].toInt()
