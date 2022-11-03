@@ -1,4 +1,4 @@
-package step2.config
+package step2.assemble
 
 import step2.application.parser.implement.SequentialParsingProcessor
 import step2.application.port.`in`.CalculatorInputPortImpl
