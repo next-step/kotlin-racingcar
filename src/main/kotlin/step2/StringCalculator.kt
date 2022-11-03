@@ -13,12 +13,13 @@ class StringCalculator {
         return accumulator
     }
 
-    private fun calculateWith(operator: Pair<String, Int>, base: Int): Int {
-        return when (operator.first) {
-            "+" -> base + operator.second
-            "-" -> base - operator.second
-            "*" -> base * operator.second
-            "/" -> base / operator.second
+    private fun calculateWith(operators: Pair<String, Int>, base: Int): Int {
+        val (operator, operand) = operators
+        return when (operator) {
+            "+" -> base + operand
+            "-" -> base - operand
+            "*" -> base * operand
+            "/" -> base / operand
             else -> throw IllegalArgumentException()
         }
     }
