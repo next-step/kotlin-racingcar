@@ -1,5 +1,8 @@
 package step2
 
+import step2.Operator.*
+import step2.Operator.Companion.from
+
 class StringCalculator {
 
     fun calculate(input: String?): Int {
@@ -15,12 +18,11 @@ class StringCalculator {
 
     private fun calculateWith(operators: Pair<String, Int>, base: Int): Int {
         val (operator, operand) = operators
-        return when (operator) {
-            "+" -> base + operand
-            "-" -> base - operand
-            "*" -> base * operand
-            "/" -> base / operand
-            else -> throw IllegalArgumentException()
+        return when (from(operator)) {
+            PLUS -> base + operand
+            MINUS -> base - operand
+            MULTIPLY -> base * operand
+            DIVIDE -> base / operand
         }
     }
 }
