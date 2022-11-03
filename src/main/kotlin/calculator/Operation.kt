@@ -4,10 +4,10 @@ enum class Operation(
     val symbol: String,
     val operate: (Int, Int) -> Int
 ) {
-    PLUS("+", { a, b -> a.plus(b) }),
-    MINUS("-", { a, b -> a.minus(b) }),
-    MULTIPLE("*", { a, b -> a.times(b) }),
-    DIVIDE("/", { a, b -> a.div(b) });
+    PLUS("+", { a, b -> a + b }),
+    MINUS("-", { a, b -> a - b }),
+    MULTIPLE("*", { a, b -> a * b }),
+    DIVIDE("/", { a, b -> a / b });
 
     companion object {
         fun of(inputSymbol: String): Operation {
