@@ -20,7 +20,7 @@ class SequentialParsingProcessor : ParsingProcessor {
 
         splitStringArray.windowed(size = 2, step = 2, partialWindows = true) { window: List<String> ->
             val number = parseInt(window.first())
-            val operator = if (window.size == 2) parseOperator(window.last()) else Operator.EMPTY_STATE
+            val operator = if (window.size == 2) parseOperator(window.last()) else Operator.ILLEGAL_STATE
             inputOperationCommandList.add(InputOperationCommand(number, operator))
         }
 

@@ -33,7 +33,7 @@ internal class OperatorTest {
     @Test
     fun `Operator enum 을 Command 로 전환`() {
         Operator.values().forEach {
-            if (it == Operator.EMPTY_STATE) {
+            if (it == Operator.ILLEGAL_STATE) {
                 assertThrows<IllegalStateException> { it.toCommand() }
                 return@forEach
             }

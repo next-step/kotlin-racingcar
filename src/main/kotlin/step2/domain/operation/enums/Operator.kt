@@ -9,7 +9,7 @@ import step2.domain.operation.command.implement.SubtractionOperationCommand
 enum class Operator(
     private val operator: String?
 ) {
-    ADDITION("+"), SUBTRACTION("-"), MULTIPLICATION("*"), DIVISION("/"), EMPTY_STATE(null);
+    ADDITION("+"), SUBTRACTION("-"), MULTIPLICATION("*"), DIVISION("/"), ILLEGAL_STATE(null);
 
     companion object {
         fun operatorOf(operatorString: String): Operator {
@@ -28,7 +28,7 @@ enum class Operator(
             SUBTRACTION -> SubtractionOperationCommand
             MULTIPLICATION -> MultiplicationOperationCommand
             DIVISION -> DivisionOperationCommand
-            EMPTY_STATE -> throw IllegalStateException("연산을 할 수 없는 상태입니다.")
+            ILLEGAL_STATE -> throw IllegalStateException("연산을 할 수 없는 상태입니다.")
         }
     }
 }
