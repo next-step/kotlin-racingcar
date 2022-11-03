@@ -9,6 +9,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.NullSource
 import org.junit.jupiter.params.provider.ValueSource
 import java.math.BigDecimal
@@ -44,14 +45,10 @@ class StringCalculatorTest {
         assertThat(result).isEqualTo(BigDecimal(21))
     }
 
-    @Test
-    fun `나눗셈`() {
-        val decimal1 = BigDecimal(10)
-        val decimal2 = BigDecimal(3)
-
-        val result = divide(decimal1, decimal2)
-
-        assertThat(result).isEqualTo(BigDecimal(3))
+    @ParameterizedTest
+    @CsvSource(value = ["10:3:3", "10:3.00:3.33", "10.00:3:3.33", "100.0:20.0000:5.0000"], delimiter = ':')
+    fun `나눗셈`(d1: BigDecimal, d2: BigDecimal, expected: BigDecimal) {
+        assertThat(divide(d1, d2)).isEqualTo(expected)
     }
 
     @Test
@@ -60,7 +57,7 @@ class StringCalculatorTest {
         val decimal2 = BigDecimal(0)
 
         assertThatThrownBy { divide(decimal1, decimal2) }
-            .isInstanceOf(IllegalArgumentException::class.java)
+            .isInstanceOf(ArithmeticException::class.java)
     }
 
     @ParameterizedTest
@@ -86,12 +83,12 @@ class StringCalculatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(
-        strings = [
-            "2 + 3 * 4 / 2: 10",
-            "5 * 10 / 5 / 2: 5",
-            "7 / 2 * 100 - 1: 299"
-        ]
+    @CsvSource(
+        value = [
+            "2 + 3 * 4 / 2:10",
+            "5 * 10 / 5 / 2:5",
+            "7 / 2 * 100 - 1:299"
+        ], delimiter = ':'
     )
     fun `문자열 사칙연산`(input: String, expected: Int) {
         assertThat(calculate(input)).isEqualTo(expected)
