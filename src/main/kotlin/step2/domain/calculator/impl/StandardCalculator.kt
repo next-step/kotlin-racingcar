@@ -7,10 +7,6 @@ import step2.domain.operation.model.BinaryInputCommand
 
 class StandardCalculator : Calculator {
 
-    /**
-     * @param inputOperationCommandList
-     * @return Int 결과
-     */
     override fun calculate(inputOperationCommandList: List<InputOperationCommand>): Int {
         return sequentialOperate(inputOperationCommandList)
     }
@@ -18,6 +14,7 @@ class StandardCalculator : Calculator {
     private fun sequentialOperate(inputOperationCommandList: List<InputOperationCommand>): Int {
         var answer = 0
         var temp: InputOperationCommand? = null
+
         inputOperationCommandList.windowed(size = 2, step = 1, partialWindows = true) { window: List<InputOperationCommand> ->
             var first = window.first()
             temp?.let { first = it }
