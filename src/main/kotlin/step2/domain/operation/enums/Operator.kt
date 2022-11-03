@@ -7,9 +7,9 @@ import step2.domain.operation.command.implement.MultiplicationOperationCommand
 import step2.domain.operation.command.implement.SubtractionOperationCommand
 
 enum class Operator(
-    private val operator: String
+    private val operator: String?
 ) {
-    ADDITION("+"), SUBTRACTION("-"), MULTIPLICATION("*"), DIVISION("/"), EMPTY_STATE("");
+    ADDITION("+"), SUBTRACTION("-"), MULTIPLICATION("*"), DIVISION("/"), EMPTY_STATE(null);
 
     companion object {
         fun operatorOf(operatorString: String): Operator {
