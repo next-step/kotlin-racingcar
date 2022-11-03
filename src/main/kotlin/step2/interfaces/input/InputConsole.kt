@@ -79,7 +79,7 @@ object InputConsole {
 
     private fun checkContinue(): Boolean {
         println(CONTINUE_QUESTION)
-        return when (scanner.nextLine()) {
+        return when (scanner.nextLine().uppercase()) {
             YES -> true
             NO -> false
             else -> {
