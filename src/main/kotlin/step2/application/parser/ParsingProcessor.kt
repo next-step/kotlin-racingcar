@@ -1,4 +1,4 @@
-package step2.interfaces.parser
+package step2.application.parser
 
 import step2.domain.calculator.model.InputOperationCommand
 

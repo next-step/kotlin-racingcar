@@ -1,8 +1,8 @@
-package step2.interfaces.parser.implement
+package step2.application.parser.implement
 
+import step2.application.parser.ParsingProcessor
 import step2.domain.calculator.model.InputOperationCommand
 import step2.domain.operation.enums.Operator
-import step2.interfaces.parser.ParsingProcessor
 import java.lang.Integer.parseInt
 
 class SequentialParsingProcessor : ParsingProcessor {
