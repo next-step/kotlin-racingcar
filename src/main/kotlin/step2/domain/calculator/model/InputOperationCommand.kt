@@ -4,5 +4,5 @@ import step2.domain.operation.enums.Operator
 
 data class InputOperationCommand(
     val number: Int,
-    val nextOperator: Operator?
+    val nextOperator: Operator
 )
