@@ -6,6 +6,5 @@ internal class CalculatorTest {
     internal fun calculator() {
         assertThrows<IllegalArgumentException> { Calculator("") }
     }
-
 }
 
