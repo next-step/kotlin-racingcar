@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource
 internal class OperatorTest {
 
     @ParameterizedTest
-    @ValueSource(strings = ["", "  ", "&,", "#", "="])
+    @ValueSource(strings = ["+", "-", "*", "/"])
     fun `사칙연산 기호인 경우`(symbol: String) {
         assertThat(Operator(symbol)).shouldNotBeNull()
     }
