@@ -13,7 +13,7 @@ class Calculator {
         splitStr.forEach { s ->
             when {
                 OperatorEnum.exist(s) -> operatorStack.push(OperatorEnum.findby(s).process())
-                isDouble(s) -> processMidCalc(numberStack, operatorStack, s.toDouble())
+                s.isDouble() -> processMidCalc(numberStack, operatorStack, s.toDouble())
                 else -> throw IllegalArgumentException()
             }
         }
@@ -22,7 +22,7 @@ class Calculator {
 
     private fun validRule(splitStr: List<String>) {
         splitStr.forEachIndexed { index, s ->
-            val numberRule = index.mod(2) == 0 && isDouble(s)
+            val numberRule = index.mod(2) == 0 && s.isDouble()
             val operatorRule = index.mod(2) == 1 && OperatorEnum.exist(s)
 
             if (!numberRule && !operatorRule) {
@@ -49,4 +49,4 @@ class Calculator {
     }
 }
 
-fun isDouble(s: String): Boolean = s.toDoubleOrNull() != null
+fun String.isDouble(): Boolean = this.toDoubleOrNull() != null
