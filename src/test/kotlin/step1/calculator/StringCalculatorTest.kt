@@ -50,7 +50,7 @@ internal class StringCalculatorTest {
         val actual = calculator.calculate()
 
         // Then
-        assertThat(actual).isEqualTo(4)
+        assertThat(actual).isEqualTo(expected)
     }
 
     @ParameterizedTest(name = "Case#[{index}]{0} : {1} = {2}")
