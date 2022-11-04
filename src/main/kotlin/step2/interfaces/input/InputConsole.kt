@@ -2,7 +2,8 @@ package step2.interfaces.input
 
 import step2.domain.operation.enums.Operator
 import java.lang.Integer.parseInt
-import java.util.*
+import java.util.Scanner
+import java.util.StringJoiner
 
 object InputConsole {
 
