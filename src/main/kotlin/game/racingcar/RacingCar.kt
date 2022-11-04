@@ -1,7 +1,14 @@
 package game.racingcar
 
-class RacingCar(var location: Int = 0) {
+import game.racingcar.move.MoveStrategy
+
+class RacingCar(
+    private val moveStrategy: MoveStrategy,
+    var location: Int = 0,
+) {
     fun move() {
-        location += 1
+        if (moveStrategy.movable()) {
+            location += 1
+        }
     }
 }
