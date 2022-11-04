@@ -7,15 +7,17 @@ import java.util.StringJoiner
 
 object InputConsole {
 
-    private const val JOINER_DELIMITER = " "
     private val scanner = Scanner(System.`in`)
+    private const val JOINER_DELIMITER = " "
 
     private const val INPUT_NUMBER_COMMENT = "숫자를 입력해주세요"
     private const val INPUT_OPERATOR_COMMENT = "연산자를 입력해주세요"
     private const val INPUT_CORRECT_NUMBER_COMMENT = "올바른 숫자를 입력해주세요"
     private const val INPUT_CORRECT_OPERATOR_COMMENT = "올바른 연산자를 입력해주세요"
+
     private const val YES = "Y"
     private const val NO = "N"
+
     private const val CONTINUE_QUESTION = "연산을 계속 하시겠습니까? $YES: 넵 $NO: 아니요"
     private const val REPEAT_CORRECT_ANSWER = "답변을 제대로 해주세요"
 
