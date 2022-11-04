@@ -1,11 +1,10 @@
 import java.lang.IllegalArgumentException
 
 enum class Operator (val value: String){
-    add("+"),
-    minus("-"),
-    times("*"),
-    div("/"),
-    none("");
+    ADD("+"),
+    MINUS("-"),
+    TIMES("*"),
+    DIV("/");
 
     companion object {
         fun of(s: String) : Operator {

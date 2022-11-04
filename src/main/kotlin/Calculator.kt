@@ -6,7 +6,7 @@ class Calculator {
 
         var result = Number("0")
         var beforeNumber : Number = Number("0")
-        var beforeOperator : Operator = Operator.add
+        var beforeOperator : Operator = Operator.ADD
         args.split(" ")
             .forEachIndexed { index, s ->
                 if (index % 2 == 0) {
