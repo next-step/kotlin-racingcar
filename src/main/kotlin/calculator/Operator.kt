@@ -15,4 +15,6 @@ enum class Operator(val expression:String , val calculate :(Int,Int)->Int) {
             return values().firstOrNull { it.expression.equals(operator) };
         }
     }
+
+
 }
