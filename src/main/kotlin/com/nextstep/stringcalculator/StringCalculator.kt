@@ -1,11 +1,11 @@
 package com.nextstep.stringcalculator
 
-class StringCalculator(private val expression: String) {
-    val elements: List<Element>
+class StringCalculator(private val input: String) {
+    private val expression: Expression
     init {
-        if (expression.isBlank()) throw IllegalArgumentException("Input shouldn't be blank")
-        elements = expression.split(" ")
-            .mapIndexed { idx, s -> if (isNumber(idx)) Number(s) else Operator.find(s) }
+        if (input.isBlank()) throw IllegalArgumentException("Input shouldn't be blank")
+        this.expression = Expression(input)
     }
-    private fun isNumber(idx: Int) = idx % 2 == 0
+
+    fun calculate(): Long = expression.calculate()
 }

@@ -1,21 +1,28 @@
 package com.nextstep.stringcalculator
 
-import com.nextstep.stringcalculator.Operator.PLUS
 import io.kotest.assertions.throwables.shouldThrow
-import io.kotest.core.spec.style.FunSpec
-import io.kotest.matchers.collections.shouldContainExactly
+import io.kotest.core.spec.style.AnnotationSpec
+import io.kotest.matchers.shouldBe
 import io.kotest.matchers.throwable.shouldHaveMessage
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 
-class StringCalculatorTest : FunSpec({
+class StringCalculatorTest : AnnotationSpec() {
 
-    test("StringCalculator should take a string expression and split it by ' ' and convert into a list of Element instance") {
-        val stringCalculator = StringCalculator("1 + 2")
-        stringCalculator.elements shouldContainExactly listOf(Number("1"), PLUS, Number("2"))
-    }
-
-    test("If StringCalculator take empty string, throw IllegalArgumentException") {
+    @DisplayName("If StringCalculator take empty string, throw IllegalArgumentException")
+    @Test
+    fun constructor_exception() {
         shouldThrow<IllegalArgumentException> {
             StringCalculator(" ")
         } shouldHaveMessage "Input shouldn't be blank"
     }
-})
+
+    @DisplayName("String calculator can calculate string expression")
+    @ParameterizedTest
+    @CsvSource(value = ["1 + 2, 3", "1 - 2, -1", "1 * 2, 2", "1 / 2, 0"])
+    fun calculate(expression: String, result: Long) {
+        val stringCalculator = StringCalculator(expression)
+        stringCalculator.calculate() shouldBe result
+    }
+}
