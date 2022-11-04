@@ -11,7 +11,7 @@ class BlankParser : Parser {
         val split = expression.split(DELIMITER)
 
         for (i in 1 until split.size step 2) {
-            operatorQueue.offer(Operator(split[i]))
+            operatorQueue.offer(Operator.from(split[i]))
         }
         return Operators(operatorQueue)
     }

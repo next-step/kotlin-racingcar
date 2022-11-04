@@ -11,22 +11,22 @@ class OperatorsTest : StringSpec() {
     init {
         "Operators는 저장되어 있는 Operator를 꺼낼 수 있다" {
             val operatorQueue: Queue<Operator> = LinkedList()
-            operatorQueue.offer(Operator("+"))
-            operatorQueue.offer(Operator("-"))
-            operatorQueue.offer(Operator("*"))
-            operatorQueue.offer(Operator("/"))
+            operatorQueue.offer(Operator.from("+"))
+            operatorQueue.offer(Operator.from("-"))
+            operatorQueue.offer(Operator.from("*"))
+            operatorQueue.offer(Operator.from("/"))
 
             val operators = Operators(operatorQueue)
 
-            operators.poll() shouldBe Operator("+")
-            operators.poll() shouldBe Operator("-")
-            operators.poll() shouldBe Operator("*")
-            operators.poll() shouldBe Operator("/")
+            operators.poll() shouldBe Operator.from("+")
+            operators.poll() shouldBe Operator.from("-")
+            operators.poll() shouldBe Operator.from("*")
+            operators.poll() shouldBe Operator.from("/")
         }
 
         "Operator는 저장되어 있는 Operator가 있는지 확인할 수 있다" {
             val operatorQueue: Queue<Operator> = LinkedList()
-            operatorQueue.offer(Operator("+"))
+            operatorQueue.offer(Operator.from("+"))
 
             val operators = Operators(operatorQueue)
 

@@ -10,9 +10,9 @@ class BlankParserTest : StringSpec() {
 
             val operators = parser.parseOperators("3 + 6 * 2 / 3")
 
-            operators.poll() shouldBe Operator("+")
-            operators.poll() shouldBe Operator("*")
-            operators.poll() shouldBe Operator("/")
+            operators.poll() shouldBe Operator.from("+")
+            operators.poll() shouldBe Operator.from("*")
+            operators.poll() shouldBe Operator.from("/")
         }
 
         "피연산자를 파싱한다" {
