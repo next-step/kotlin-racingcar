@@ -8,13 +8,11 @@ enum class Operator(val prime: String) {
 
     companion object {
         fun findByValue(prime: String): Operator {
-            Operator.values()
-                .forEach { operator ->
-                    if (prime == operator.prime) {
-                        return operator
-                    }
-                }
-            throw IllegalArgumentException("해당하는 연산자 enum 을 찾을 수 없습니다")
+            val operator = values().find { operator ->
+                prime == operator.prime
+            }
+            require(operator != null)
+            return operator
         }
     }
 }
