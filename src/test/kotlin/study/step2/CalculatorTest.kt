@@ -1,10 +1,10 @@
-package study
+package study.step2
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.inspectors.forAll
+import io.kotest.matchers.throwable.shouldHaveMessage
 import org.assertj.core.api.Assertions.assertThat
-import study.step2.Calculator
 
 class CalculatorTest : StringSpec({
     val calculator = Calculator()
@@ -84,6 +84,18 @@ class CalculatorTest : StringSpec({
             "2 * 5 / 2 + 2 - 1" to 6,
         ).forAll {
             assertThat(calculator.calc(it.first)).isEqualTo(it.second)
+        }
+    }
+
+    "순서가 맞지 않는 계산식이 주어지고, 사칙연산 계산을 진행하하면, 예외가 발생한다" {
+        listOf(
+            "1 1 + 3 + 3",
+            "1 + 1 + 3 3",
+            "1 + 1 3 + 3"
+        ).forAll {
+            shouldThrow<IllegalArgumentException> {
+                calculator.calc(it)
+            }.shouldHaveMessage("계산식의 순서가 맞지 않습니다")
         }
     }
 })
