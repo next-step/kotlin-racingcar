@@ -56,7 +56,7 @@ object InputConsole {
             val number = scanner.nextLine()
             validateNumber(number)
 
-            Pair(operator, number)
+            operator to number
         } catch (e: IllegalArgumentException) {
             inputOperatorWithNumber()
         }
