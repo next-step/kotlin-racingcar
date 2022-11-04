@@ -25,7 +25,9 @@ class StandardCalculator : Calculator<Int> {
             }
 
             val second = window.last()
-            val result = first.nextOperator.toCommand().operate(BinaryInputCommand(first.number, second.number))
+            val inputCommand = BinaryInputCommand(first.number, second.number)
+
+            val result = first.nextOperator.toCommand().operate(inputCommand)
             temp = InputOperationCommand(number = result, second.nextOperator)
         }
         return answer
