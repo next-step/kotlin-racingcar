@@ -15,7 +15,7 @@ internal class CalculatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["3 - 2"])
+    @ValueSource(strings = ["2 - 3"])
     fun `뺄셈`(operation: String) {
         assertThat(Calculator().calculate(operation)).isEqualTo(-1.0)
     }
@@ -30,6 +30,12 @@ internal class CalculatorTest {
     @ValueSource(strings = ["13 / 2"])
     fun `나눗셈`(operation: String) {
         assertThat(Calculator().calculate(operation)).isEqualTo(6.5)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["2 + 3 * 4 / 2"])
+    fun `사칙연산을 모두 포함하는 연산`(operation: String) {
+        assertThat(Calculator().calculate(operation)).isEqualTo(10.0)
     }
 
     @ParameterizedTest
