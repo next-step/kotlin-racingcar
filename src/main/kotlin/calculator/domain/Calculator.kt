@@ -6,8 +6,6 @@ class Calculator(private val parser: Parser = BlankParser()) {
         val operands = parser.parseOperands(expression)
         val operators = parser.parseOperators(expression)
 
-        val something = OperandsAndOperators(operands, operators)
-        something.operate()
-        return something.getResult()
+        return OperandsAndOperators(operands, operators).operate()
     }
 }
