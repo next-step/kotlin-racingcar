@@ -7,7 +7,7 @@ import step2.interfaces.output.OutputConsole
 class CalculatorConsoleAdapter(
     private val calculatorInputPort: CalculatorInputPort<Int>
 ) {
-    fun calculate() {
+    fun init() {
         val expression = InputConsole.input()
         val result = calculatorInputPort.input(expression).toString()
         OutputConsole.output(result)
