@@ -5,7 +5,11 @@ class Calculator {
     fun calculate(operation: String?) {
         require(!operation.isNullOrBlank())
         val (operator, numbers) = partitionFormula(operation)
-        require(operator.size == numbers.size + DEFAULT_OFFSET)
+        require(
+            operator.isNotEmpty() &&
+                    numbers.isNotEmpty() &&
+                    operator.size == numbers.size + DEFAULT_OFFSET
+        )
         Operator("")
     }
 
