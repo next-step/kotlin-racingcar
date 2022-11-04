@@ -5,7 +5,6 @@ import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import step2.domain.operation.command.OperationCommand
 import step2.domain.operation.command.implement.AdditionOperationCommand
-import step2.domain.operation.command.implement.DefaultOperationCommand
 import step2.domain.operation.command.implement.DivisionOperationCommand
 import step2.domain.operation.command.implement.MultiplicationOperationCommand
 import step2.domain.operation.command.implement.SubtractionOperationCommand
@@ -20,7 +19,7 @@ internal class OperationCommandKoTest : StringSpec({
         val second = 2
         val input = createInputOperationCommand(first, second)
 
-        operationCommand = DefaultOperationCommand
+        operationCommand = AdditionOperationCommand
         val result = operationCommand.operate(input)
         result.shouldNotBeNull()
     }
