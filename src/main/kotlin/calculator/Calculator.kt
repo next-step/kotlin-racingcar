@@ -29,8 +29,10 @@ class Calculator(
             val operator = memory.fetch(index)
             val operand = memory.fetch(index + 1).toInt()
 
-            memory.accumulator = parse(operator, accumulator, operand)
+            val result = parse(operator, accumulator, operand)
+            memory.accumulate(result)
         }
+
         monitor.display(memory.accumulator.toString())
         return memory.accumulator
     }

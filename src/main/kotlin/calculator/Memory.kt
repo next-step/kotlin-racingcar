@@ -1,10 +1,17 @@
 package calculator
 
-data class Memory(private var terms: List<String> = emptyList(), var accumulator: Int = 0) {
+data class Memory(private var terms: List<String> = emptyList(), private var _accumulator: Int = 0) {
+
+    val accumulator
+        get() = _accumulator
 
     fun store(terms: List<String>) {
         this.terms = terms
-        this.accumulator = terms[0].toInt()
+        this._accumulator = terms[0].toInt()
+    }
+
+    fun accumulate(value: Int) {
+        _accumulator = value
     }
 
     fun size(): Int {
@@ -17,6 +24,6 @@ data class Memory(private var terms: List<String> = emptyList(), var accumulator
 
     fun reset() {
         terms = emptyList()
-        accumulator = 0
+        _accumulator = 0
     }
 }
