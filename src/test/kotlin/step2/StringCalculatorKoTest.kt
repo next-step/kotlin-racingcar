@@ -6,11 +6,11 @@ import io.kotest.matchers.shouldBe
 import java.lang.IllegalArgumentException
 
 class StringCalculatorKoTest : StringSpec({
-    "2 + 3 * 4 / 2 의 결과는?" {
+    "2 + 3 * 4 / 2 을 입력하면 10이 반환된다." {
         StringCalculator.calculate("2 + 3 * 4 / 2") shouldBe 10
     }
 
-    "입력값이 널인 경우" {
+    "입력값이 널인 경우 IllegalArgumentException이 발생한다." {
         shouldThrow<IllegalArgumentException> { StringCalculator.calculate(null) }
     }
 
