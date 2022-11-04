@@ -1,7 +1,6 @@
 package calculator
 
 import org.assertj.core.api.Assertions
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 class OperandsTest {
@@ -14,12 +13,13 @@ class OperandsTest {
         Assertions.assertThat(operands.getOperand()).isEqualTo(1)
         Assertions.assertThat(operands.getOperand()).isEqualTo(2)
     }
+
     @Test
     fun `피연산자 상태가 계산 가능한지 반환합니다`() {
         val operands = Operands()
         operands.add("1")
         operands.add("2")
-        Assertions.assertThat(operands.isCalculable()).isTrue()
+        Assertions.assertThat(operands.isCalculable()).isTrue
     }
 
     @Test
@@ -32,6 +32,4 @@ class OperandsTest {
             operands.add("4")
         }.isInstanceOf(IllegalArgumentException::class.java)
     }
-
-
 }

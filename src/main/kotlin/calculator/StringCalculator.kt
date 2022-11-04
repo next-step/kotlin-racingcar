@@ -11,7 +11,7 @@ class StringCalculator {
             val operators = Operators()
             input.split(SEPARATOR).forEach {
                 addParam(it, operands, operators)
-                if (isCalculable(operands, operators)){
+                if (isCalculable(operands, operators)) {
                     val x = operands.getOperand()
                     val y = operands.getOperand()
                     operands.add(getResult(operators, x, y))
@@ -26,9 +26,9 @@ class StringCalculator {
             }
         }
 
-        private fun getResult(operators: Operators, x: Int, y: Int) :Int{
+        private fun getResult(operators: Operators, x: Int, y: Int): Int {
             try {
-                return operators.getOperator().calculate(x, y);
+                return operators.getOperator().calculate(x, y)
             } catch (e: ArithmeticException) {
                 throw IllegalArgumentException("0으로는 나눌수 없습니다.", e)
             }
@@ -39,10 +39,10 @@ class StringCalculator {
 
         private fun addParam(param: String, operands: Operands, operators: Operators) {
             if (Operator.isOperator(param)) {
-                operators.add(param);
+                operators.add(param)
                 return
             }
-            operands.add(param);
+            operands.add(param)
         }
     }
 }

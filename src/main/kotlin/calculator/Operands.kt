@@ -4,19 +4,19 @@ private const val CALCULABLE = 2
 
 class Operands {
 
-    val operands : ArrayDeque<Int> = ArrayDeque()
+    val operands: ArrayDeque<Int> = ArrayDeque()
 
-    fun add(operand : Int){
+    fun add(operand: Int) {
         validate()
         this.operands.add(operand)
     }
 
-    fun add(operand : String){
+    fun add(operand: String) {
         validate()
-        try{
+        try {
             this.operands.add(operand.toInt())
-        }catch (e: java.lang.NumberFormatException){
-           throw IllegalArgumentException("피연산자는 숫자여야만 합니다.");
+        } catch (e: java.lang.NumberFormatException) {
+            throw IllegalArgumentException("피연산자는 숫자여야만 합니다.")
         }
     }
 
@@ -30,8 +30,8 @@ class Operands {
 
     fun getOperand() = this.operands.removeFirst()
 
-    fun getResult() :Int{
-        if (this.operands.size != 1){
+    fun getResult(): Int {
+        if (this.operands.size != 1) {
             throw IllegalArgumentException("유효하지 않은 입력값입니다.")
         }
         return getOperand()
