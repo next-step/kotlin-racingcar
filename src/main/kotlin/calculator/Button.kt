@@ -10,4 +10,12 @@ class Button {
 
         return input
     }
+
+    fun pressed(input: String?): String {
+        if (input.isNullOrBlank()) {
+            throw IllegalArgumentException()
+        }
+
+        return input
+    }
 }
