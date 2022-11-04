@@ -21,7 +21,7 @@ class Operands {
     }
 
     private fun validate() {
-        if (operands.size > CALCULABLE) {
+        if (operands.size >= CALCULABLE) {
             throw IllegalArgumentException("유효하지 않은 입력값입니다.")
         }
     }
