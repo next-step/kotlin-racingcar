@@ -1,10 +1,8 @@
 package nexstep.mission
 
-import nexstep.mission.calculator.CalculatorController
-import nexstep.mission.calculator.io.ConsoleInput
-import nexstep.mission.calculator.io.ConsoleOutput
+import nexstep.mission.calculator.CalculatorConfig
 
 fun main(args: Array<String>) {
-    val calculatorController = CalculatorController(ConsoleInput, ConsoleOutput)
+    val calculatorController = CalculatorConfig.calculatorController()
     calculatorController.calculate()
 }
