@@ -9,6 +9,7 @@ class SequentialParsingProcessor : ParsingProcessor {
 
     companion object {
         private const val SPLIT_DELIMITER = " "
+        private const val SPLIT_SIZE = 2
     }
 
     override fun proceed(string: String): List<InputOperationCommand> {
@@ -18,9 +19,9 @@ class SequentialParsingProcessor : ParsingProcessor {
 
         val inputOperationCommandList = mutableListOf<InputOperationCommand>()
 
-        splitStringArray.windowed(size = 2, step = 2, partialWindows = true) { window: List<String> ->
-            val number = parseInt(window.first())
-            val operator = if (window.size == 2) parseOperator(window.last()) else Operator.ILLEGAL_STATE
+        splitStringArray.chunked(size = SPLIT_SIZE) { chunk: List<String> ->
+            val number = parseInt(chunk.first())
+            val operator = if (chunk.size == SPLIT_SIZE) parseOperator(chunk.last()) else Operator.ILLEGAL_STATE
             inputOperationCommandList.add(InputOperationCommand(number, operator))
         }
 
