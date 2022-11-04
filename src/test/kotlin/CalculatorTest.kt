@@ -4,7 +4,8 @@ import org.junit.jupiter.api.assertThrows
 internal class CalculatorTest {
     @Test
     internal fun calculator() {
-        assertThrows<IllegalArgumentException> { Calculator("") }
+        val calculator = Calculator();
+        assertThrows<IllegalArgumentException> { calculator.main("") }
     }
 }
 

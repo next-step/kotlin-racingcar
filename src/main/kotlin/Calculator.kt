@@ -1,10 +1,7 @@
-import kotlin.IllegalArgumentException
+import java.lang.IllegalArgumentException
 
-data class Calculator (val context: String){
-    init {
-        if (context.isNullOrBlank()) throw IllegalArgumentException("")
-        context.split(" ")
+class Calculator {
+    fun main(arg : String) {
+        if (arg.isNullOrBlank()) throw IllegalArgumentException("") // todo
     }
-
-
 }
