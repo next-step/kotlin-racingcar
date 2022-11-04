@@ -1,4 +1,4 @@
-package step1.calculator
+package step2.calculator
 
 class StringCalculator(expression: String) {
     init {

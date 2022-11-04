@@ -1,4 +1,4 @@
-package sutdy
+package step1.sutdy
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName

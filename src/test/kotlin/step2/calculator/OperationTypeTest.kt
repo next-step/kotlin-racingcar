@@ -1,4 +1,4 @@
-package step1.calculator
+package step2.calculator
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType

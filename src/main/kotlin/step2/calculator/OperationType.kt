@@ -1,4 +1,4 @@
-package step1.calculator
+package step2.calculator
 
 enum class OperationType(private val operator: String) {
     PLUS("+") {

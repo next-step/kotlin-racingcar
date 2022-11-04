@@ -1,4 +1,4 @@
-package step1.calculator
+package step2.calculator
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
