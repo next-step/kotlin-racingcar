@@ -10,28 +10,28 @@ class MemoryTest {
     }
 
     @Test
-    fun `store() - 메모리에 값을 적재시키면 배열과 함께 배열의 첫 값이 누산기에 저장된다`() {
+    fun `store()는 메모리에 배열과 함께 배열의 첫 값이 누산기에 저장된다`() {
         var memory = Memory()
         memory.store(listOf("1", "+", "3"))
         assertThat(memory).isEqualTo(Memory(listOf("1", "+", "3"), 1))
     }
 
     @Test
-    fun `size() - 배열의 길이를 반환한다`() {
+    fun `size()는 메모리 길이를 반환한다`() {
         var memory = Memory()
         memory.store(listOf("1", "+", "3"))
         assertThat(memory.size()).isEqualTo(3)
     }
 
     @Test
-    fun `fetch() - 원하는 인덱스의 값을 불러온다`() {
+    fun `fetch()는 원하는 주소의 값을 불러온다`() {
         var memory = Memory()
         memory.store(listOf("1", "+", "3"))
         assertThat(memory.fetch(0)).isEqualTo("1")
     }
 
     @Test
-    fun `reset() - 배열과 누산기의 값을 초기 상태로 만든다`() {
+    fun `reset()은 배열과 누산기의 값을 초기 상태로 만든다`() {
         var setMemory = Memory(listOf("1", "+", "3"), 5)
         val emptyMemory = Memory()
 
