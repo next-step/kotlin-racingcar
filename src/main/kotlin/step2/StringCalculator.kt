@@ -14,14 +14,14 @@ class StringCalculator(
 
         validateLength(elements)
 
-        var firstNumber = elements[0].toDouble()
+        var result = elements[0].toDouble()
         for (i in 1 until elements.size step (2)) {
-            val operator = elements[i]
-            val targetNumber = elements[i + 1]
-            validateNumber(targetNumber)
-            firstNumber = operatorSelector.get(operator).operate(firstNumber, targetNumber.toDouble())
+            val operatorString = elements[i]
+            val targetNumberString = elements[i + 1]
+            validateNumber(targetNumberString)
+            result = operatorSelector.get(operatorString).operate(result, targetNumberString.toDouble())
         }
-        return firstNumber
+        return result
     }
 
     companion object StringValidator {
