@@ -12,31 +12,27 @@ sealed interface Operator {
     object Plus : Operator {
         const val SYMBOL_PLUS = "+"
 
-        override fun operate(num1: Double, num2: Double): Double {
-            TODO("Not yet implemented")
-        }
+        override fun operate(num1: Double, num2: Double): Double =
+            num1.plus(num2)
     }
 
     object Minus : Operator {
         const val SYMBOL_MINUS = "-"
 
-        override fun operate(num1: Double, num2: Double): Double {
-            TODO("Not yet implemented")
-        }
+        override fun operate(num1: Double, num2: Double): Double =
+            num1.minus(num2)
     }
 
     object Multiply : Operator {
         const val SYMBOL_MULTIPLY = "*"
-        override fun operate(num1: Double, num2: Double): Double {
-            TODO("Not yet implemented")
-        }
+        override fun operate(num1: Double, num2: Double): Double =
+            num1.times(num2)
     }
 
     object Divide : Operator {
         const val SYMBOL_DIVIDE = "/"
-        override fun operate(num1: Double, num2: Double): Double {
-            TODO("Not yet implemented")
-        }
+        override fun operate(num1: Double, num2: Double): Double =
+            num1.div(num2)
     }
 
     companion object {
