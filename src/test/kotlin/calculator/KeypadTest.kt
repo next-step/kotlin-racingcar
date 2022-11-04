@@ -11,12 +11,12 @@ class KeypadTest {
     }
 
     @Test
-    fun `공백(" ")을 입력받으면 IllegalArgumentException 던진다`() {
+    fun `공백을 입력받으면 IllegalArgumentException 던진다`() {
         assertThrows<IllegalArgumentException> { Keypad().pressed(" ") }
     }
 
     @Test
-    fun `빈 문자열("")을 입력받으면 IllegalArgumentException 던진다`() {
+    fun `빈 문자열을 입력받으면 IllegalArgumentException 던진다`() {
         assertThrows<IllegalArgumentException> { Keypad().pressed("") }
     }
 
