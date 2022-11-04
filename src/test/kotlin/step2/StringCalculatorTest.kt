@@ -52,38 +52,16 @@ class StringCalculatorTest : StringSpec({
         exception.message shouldBe "숫자 자리에 다른 문자가 입력되었습니다."
     }
 
-    "덧셈 테스트" {
-        val expected = 5
-        val actual = stringCalculator.calculate("2 + 3")
-
-        actual shouldBe expected
-    }
-
-    "뺄셈 테스트" {
-        val expected = -1
-        val actual = stringCalculator.calculate("2 - 3")
-
-        actual shouldBe expected
-    }
-
-    "나눗셈 테스트" {
-        val expected = 0.67
-        val actual = stringCalculator.calculate("2 / 3")
-
-        actual shouldBe expected
-    }
-
-    "곱셈 테스트" {
-        val expected = 6
-        val actual = stringCalculator.calculate("2 * 3")
-
-        actual shouldBe expected
-    }
-
-    "복합 연산 테스트" {
-        val expected = 10
-        val actual = stringCalculator.calculate("2 + 3 * 4 / 2")
-
-        actual shouldBe expected
+    "사칙 연산 테스트" {
+        listOf(
+            "2 + 3" to 5,
+            "2 - 3" to -1,
+            "2 * 3" to 6,
+            "2 / 3" to 0.67,
+            "2 + 3 * 4 / 2" to 10
+        ).forEach { (expression, expected) ->
+            val actual = stringCalculator.calculate(expression)
+            actual shouldBe expected
+        }
     }
 })
