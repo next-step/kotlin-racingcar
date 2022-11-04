@@ -1,5 +1,7 @@
 package calculator
 
+import calculator.model.ComplexOperation
+import calculator.model.ComplexOperationResult
 import calculator.model.DivideFormula
 import calculator.model.DivideResult
 import calculator.model.MinusFormula
@@ -12,7 +14,6 @@ import calculator.model.PlusResult
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.shouldNotBe
 
 class CalculatorKoTest : BehaviorSpec() {
 
@@ -42,12 +43,18 @@ class CalculatorKoTest : BehaviorSpec() {
                 }
             }
 
+            `when`("2 + 3 * 4 / 2 식이 입력 되었다면") {
+                then("10. 결과가 나온다") {
+                    Calculator.calculate(ComplexOperation) shouldBe ComplexOperationResult
+                }
+            }
+
             `when`("입력값이 null 이면") {
                 then("에러가 발생한다") {
                     val exception = shouldThrow<IllegalArgumentException> {
                         Calculator.calculate(null)
                     }
-                    exception shouldNotBe IllegalArgumentException().message
+                    exception.message shouldBe "Failed requirement."
                 }
             }
 
@@ -56,7 +63,7 @@ class CalculatorKoTest : BehaviorSpec() {
                     val exception = shouldThrow<IllegalArgumentException> {
                         Calculator.calculate(" ")
                     }
-                    exception shouldNotBe IllegalArgumentException().message
+                    exception.message shouldBe "Failed requirement."
                 }
             }
 
@@ -65,7 +72,7 @@ class CalculatorKoTest : BehaviorSpec() {
                     val exception = shouldThrow<IllegalArgumentException> {
                         Calculator.calculate(MonkeyTestFormula)
                     }
-                    exception shouldNotBe IllegalArgumentException().message
+                    exception.message shouldBe "Failed requirement."
                 }
             }
         }

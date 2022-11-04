@@ -13,3 +13,6 @@ const val DivideFormula = "2304123040 / 25"
 const val DivideResult = 92164921.6
 
 const val MonkeyTestFormula = "1#3-2*3+4^2+55 4%"
+
+const val ComplexOperation = "2 + 3 * 4 / 2"
+const val ComplexOperationResult = 10.0
