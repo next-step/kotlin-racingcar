@@ -3,20 +3,17 @@ package study.step2
 import java.util.Stack
 
 class Calculator {
-    fun calc(str: String): Int {
-        val numberStack = Stack<Int>()
-        val operatorStack = Stack<(a: Int, b: Int) -> Int>()
+    fun calc(str: String): Double {
+        val numberStack = Stack<Double>()
+        val operatorStack = Stack<(a: Double, b: Double) -> Double>()
         val splitStr = str.split(EMPTY_SPACE)
 
         validRule(splitStr)
 
         splitStr.forEach { s ->
             when {
-                s == "+" -> operatorStack.push(plusLambda)
-                s == "-" -> operatorStack.push(minusLambda)
-                s == "*" -> operatorStack.push(timesLambda)
-                s == "/" -> operatorStack.push(divideLambda)
-                isInt(s) -> processMidCalc(numberStack, operatorStack, s.toInt())
+                OperatorEnum.exist(s) -> operatorStack.push(OperatorEnum.findby(s).process())
+                isDouble(s) -> processMidCalc(numberStack, operatorStack, s.toDouble())
                 else -> throw IllegalArgumentException()
             }
         }
@@ -25,7 +22,7 @@ class Calculator {
 
     private fun validRule(splitStr: List<String>) {
         splitStr.forEachIndexed { index, s ->
-            val numberRule = index.mod(2) == 0 && isInt(s)
+            val numberRule = index.mod(2) == 0 && isDouble(s)
             val operatorRule = index.mod(2) == 1 && OperatorEnum.exist(s)
 
             if (!numberRule && !operatorRule) {
@@ -35,9 +32,9 @@ class Calculator {
     }
 
     private fun processMidCalc(
-        numberStack: Stack<Int>,
-        operatorStack: Stack<(a: Int, b: Int) -> Int>,
-        s: Int
+        numberStack: Stack<Double>,
+        operatorStack: Stack<(a: Double, b: Double) -> Double>,
+        s: Double
     ) {
         if (operatorStack.isNotEmpty()) {
             val targetOperator = operatorStack.pop()
@@ -52,9 +49,4 @@ class Calculator {
     }
 }
 
-var plusLambda = { a: Int, b: Int -> a + b }
-var minusLambda = { a: Int, b: Int -> a - b }
-var timesLambda = { a: Int, b: Int -> a * b }
-var divideLambda = { a: Int, b: Int -> if (b == 0) 0 else a / b }
-
-fun isInt(s: String): Boolean = s.toIntOrNull() != null
+fun isDouble(s: String): Boolean = s.toDoubleOrNull() != null

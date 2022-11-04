@@ -16,7 +16,7 @@ class CalculatorTest : StringSpec({
             "4 + 3 + 2 + -1" to 8,
             "2 + 3 + 4 + 2" to 11
         ).forAll { (formula, result) ->
-            assertThat(calculator.calc(formula)).isEqualTo(result)
+            assertThat(calculator.calc(formula)).isEqualTo(result.toDouble())
         }
     }
 
@@ -27,7 +27,7 @@ class CalculatorTest : StringSpec({
             "4 - 1 - 2 - -1" to 2,
             "10 - 3 - 4 - 2" to 1
         ).forAll { (formula, result) ->
-            assertThat(calculator.calc(formula)).isEqualTo(result)
+            assertThat(calculator.calc(formula)).isEqualTo(result.toDouble())
         }
     }
 
@@ -38,17 +38,30 @@ class CalculatorTest : StringSpec({
             "4 * 1 * 2 * -1" to -8,
             "10 * 3 * 4 * 2" to 240
         ).forAll { (formula, result) ->
-            assertThat(calculator.calc(formula)).isEqualTo(result)
+            assertThat(calculator.calc(formula)).isEqualTo(result.toDouble())
         }
     }
 
     "나눗셈" {
         listOf(
             "1 / 1" to 1,
-            "1 / 0" to 0,
-            "4 / 1" to 4
+            "3 / 1" to 3,
+            "1 / 3" to 0.3333333333333333,
+            "10 / 20" to 0.5,
+            "1 / 4" to 0.25
         ).forAll { (formula, result) ->
-            assertThat(calculator.calc(formula)).isEqualTo(result)
+            assertThat(calculator.calc(formula)).isEqualTo(result.toDouble())
+        }
+    }
+
+    "주어진 값이 0으로 나눗셈을, 계산할때, 에러가 발생한다" {
+        listOf(
+            "0 / 0",
+            "1 / 0"
+        ).forAll {
+            shouldThrow<IllegalArgumentException> {
+                calculator.calc(it)
+            }.shouldHaveMessage("분모는 0이 될 수 없습니다")
         }
     }
 
@@ -83,7 +96,7 @@ class CalculatorTest : StringSpec({
             "2 - 3 + 4 / 3 * 1" to 1,
             "2 * 5 / 2 + 2 - 1" to 6,
         ).forAll {
-            assertThat(calculator.calc(it.first)).isEqualTo(it.second)
+            assertThat(calculator.calc(it.first)).isEqualTo(it.second.toDouble())
         }
     }
 
