@@ -4,24 +4,24 @@ import java.lang.IllegalArgumentException
 
 enum class OperatorEnum(val operator: String) {
     PLUS("+") {
-        override fun process(): (a: Double, b: Double) -> Double {
-            return { a: Double, b: Double -> a + b }
+        override fun process(): (a: Int, b: Int) -> Int {
+            return { a: Int, b: Int -> a + b }
         }
     },
     MINUS("-") {
-        override fun process(): (a: Double, b: Double) -> Double {
-            return { a: Double, b: Double -> a - b }
+        override fun process(): (a: Int, b: Int) -> Int {
+            return { a: Int, b: Int -> a - b }
         }
     },
     TIMES("*") {
-        override fun process(): (a: Double, b: Double) -> Double {
-            return { a: Double, b: Double -> a * b }
+        override fun process(): (a: Int, b: Int) -> Int {
+            return { a: Int, b: Int -> a * b }
         }
     },
     DIVIDE("/") {
-        override fun process(): (a: Double, b: Double) -> Double {
-            return { a: Double, b: Double ->
-                if (b == 0.0) {
+        override fun process(): (a: Int, b: Int) -> Int {
+            return { a: Int, b: Int ->
+                if (b == 0) {
                     throw IllegalArgumentException("분모는 0이 될 수 없습니다")
                 }
                 a / b
@@ -29,7 +29,7 @@ enum class OperatorEnum(val operator: String) {
         }
     };
 
-    abstract fun process(): (a: Double, b: Double) -> Double
+    abstract fun process(): (a: Int, b: Int) -> Int
 
     companion object {
         fun exist(operator: String): Boolean {

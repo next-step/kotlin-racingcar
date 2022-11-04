@@ -7,54 +7,58 @@ import io.kotest.matchers.throwable.shouldHaveMessage
 import org.assertj.core.api.Assertions.assertThat
 
 class CalculatorTest : StringSpec({
-    val calculator = Calculator()
+    lateinit var calculator: Calculator
 
-    "덧셈" {
+    beforeSpec() {
+        calculator = Calculator()
+    }
+
+    "계산식이 덧셈만 있을때, 계산을 하면, 올바른 결과가 나온다" {
         listOf(
             "1 + 1 + 1 + 1" to 4,
             "1 + 2 + 3 + 0" to 6,
             "4 + 3 + 2 + -1" to 8,
             "2 + 3 + 4 + 2" to 11
         ).forAll { (formula, result) ->
-            assertThat(calculator.calc(formula)).isEqualTo(result.toDouble())
+            assertThat(calculator.calc(formula)).isEqualTo(result)
         }
     }
 
-    "뺄셈" {
+    "계산식이 뺄셈만 있을때, 계산을 하면, 올바른 결과가 나온다" {
         listOf(
             "1 - 1 - 1 - 1" to -2,
             "1 - 2 - 3 - 0" to -4,
             "4 - 1 - 2 - -1" to 2,
             "10 - 3 - 4 - 2" to 1
         ).forAll { (formula, result) ->
-            assertThat(calculator.calc(formula)).isEqualTo(result.toDouble())
+            assertThat(calculator.calc(formula)).isEqualTo(result)
         }
     }
 
-    "곱셈" {
+    "계산식이 곱셈만 있을때, 계산을 하면, 올바른 결과가 나온다" {
         listOf(
             "1 * 1 * 1 * 2" to 2,
             "1 * 2 * 3 * 0" to 0,
             "4 * 1 * 2 * -1" to -8,
             "10 * 3 * 4 * 2" to 240
         ).forAll { (formula, result) ->
-            assertThat(calculator.calc(formula)).isEqualTo(result.toDouble())
+            assertThat(calculator.calc(formula)).isEqualTo(result)
         }
     }
 
-    "나눗셈" {
+    "계산식이 나눗셈만 있을때, 계산을 하면, 내림처리로 처리된 결과가 나온다" {
         listOf(
             "1 / 1" to 1,
             "3 / 1" to 3,
-            "1 / 3" to 0.3333333333333333,
-            "10 / 20" to 0.5,
-            "1 / 4" to 0.25
+            "1 / 3" to 0,
+            "10 / 20" to 0,
+            "1 / 4" to 0
         ).forAll { (formula, result) ->
-            assertThat(calculator.calc(formula)).isEqualTo(result.toDouble())
+            assertThat(calculator.calc(formula)).isEqualTo(result)
         }
     }
 
-    "주어진 값이 0으로 나눗셈을, 계산할때, 에러가 발생한다" {
+    "나눗셈시 분모가 0으로, 계산할때, 에러가 발생한다" {
         listOf(
             "0 / 0",
             "1 / 0"
@@ -65,7 +69,7 @@ class CalculatorTest : StringSpec({
         }
     }
 
-    "입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException throw" {
+    "입력값이 null이거나 빈 공백 문자일 경우, 계산하면, 예외가 발생한다" {
         listOf(
             "",
             " ",
@@ -73,11 +77,11 @@ class CalculatorTest : StringSpec({
         ).forAll {
             shouldThrow<IllegalArgumentException> {
                 calculator.calc(it)
-            }
+            }.shouldHaveMessage("입력값이 null이거나 빈 공백 문자가 될 수 없습니다")
         }
     }
 
-    "사칙연산 기호가 아닌 경우 IllegalArgumentException throw" {
+    "사칙연산 기호가 아닌 계산식이 주어진경우, 계산하면, 예외가 발생한다" {
         listOf(
             "1 a 1 * 1 * 2",
             "1 * 2 b 3 * 0",
@@ -86,7 +90,7 @@ class CalculatorTest : StringSpec({
         ).forAll {
             shouldThrow<IllegalArgumentException> {
                 calculator.calc(it)
-            }
+            }.shouldHaveMessage("올바르지 않은 사칙연산 기호입니다")
         }
     }
 
@@ -96,7 +100,7 @@ class CalculatorTest : StringSpec({
             "2 - 3 + 4 / 3 * 1" to 1,
             "2 * 5 / 2 + 2 - 1" to 6,
         ).forAll {
-            assertThat(calculator.calc(it.first)).isEqualTo(it.second.toDouble())
+            assertThat(calculator.calc(it.first)).isEqualTo(it.second)
         }
     }
 
