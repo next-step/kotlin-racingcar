@@ -10,10 +10,8 @@ class BlankParser {
         val operatorQueue: Queue<Operator> = LinkedList()
         val split = expression.split(DELIMITER)
 
-        var i = 1
-        while (i < split.size) {
+        for (i in 1 until split.size step 2) {
             operatorQueue.offer(Operator(split[i]))
-            i += 2
         }
         return Operators(operatorQueue)
     }
@@ -24,10 +22,8 @@ class BlankParser {
         val operandQueue: Queue<Operand> = LinkedList()
         val split = expression.split(DELIMITER)
 
-        var i = 0
-        while (i < split.size) {
+        for (i in split.indices step 2) {
             operandQueue.offer(Operand(split[i]))
-            i += 2
         }
         return Operands(operandQueue)
     }
