@@ -4,7 +4,7 @@ import java.lang.IllegalArgumentException
 
 class Calculator(
     private val cpu: CPU = CPU(),
-    private val button: Button = Button(),
+    private val keypad: Keypad = Keypad(),
     private val monitor: Monitor = Monitor(),
     private var memory: Memory = Memory()
 ) {
@@ -15,9 +15,9 @@ class Calculator(
 
     fun pressButton(input: String?) {
         val expression: String = if (input == null) {
-            button.pressed()
+            keypad.pressed()
         } else {
-            button.pressed(input)
+            keypad.pressed(input)
         }
         val terms = covertExpressionToTerm(expression)
         memory.store(terms)

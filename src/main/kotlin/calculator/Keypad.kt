@@ -1,6 +1,6 @@
 package calculator
 
-class Button {
+class Keypad {
     fun pressed(): String {
         val input: String? = readLine()
 
