@@ -1,16 +1,13 @@
 package calculator.domain
 
-import java.util.*
 import java.util.function.BinaryOperator
 
 data class Operator(val signString: String) {
     private val sign: Sign
 
     init {
-        sign = Arrays.stream(Sign.values())
-            .filter { sign: Sign -> sign.isSameSign(signString) }
-            .findFirst()
-            .orElseThrow { IllegalArgumentException() }
+        sign = Sign.values()
+            .firstOrNull { sign: Sign -> sign.isSameSign(signString) } ?: throw IllegalArgumentException()
     }
 
     fun operate(operand1: Operand, operand2: Operand): Operand {
