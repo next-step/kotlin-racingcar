@@ -1,41 +1,34 @@
 package calculator.domain
 
-data class Operator(private val value: String) {
+import java.util.*
+import java.util.function.BinaryOperator
+
+data class Operator(val signString: String) {
+    private val sign: Sign
 
     init {
-        validate(value)
-    }
-
-    private fun validate(value: String) {
-        if (PLUS != value
-            && MINUS != value
-            && MULTIPLY != value
-            && DIVIDE != value
-        ) {
-            throw IllegalArgumentException()
-        }
+        sign = Arrays.stream(Sign.values())
+            .filter { sign: Sign -> sign.isSameSign(signString) }
+            .findFirst()
+            .orElseThrow { IllegalArgumentException() }
     }
 
     fun operate(operand1: Operand, operand2: Operand): Operand {
-        if (PLUS == value) {
-            return operand1.sum(operand2)
-        }
-        if (MINUS == value) {
-            return operand1.subtract(operand2)
-        }
-        if (MULTIPLY == value) {
-            return operand1.multiply(operand2)
-        }
-        if (DIVIDE == value) {
-            return operand1.divide(operand2)
-        }
-        throw IllegalStateException()
+        return sign.operate(operand1, operand2)
     }
 
-    companion object {
-        private const val PLUS = "+"
-        private const val MINUS = "-"
-        private const val MULTIPLY = "*"
-        private const val DIVIDE = "/"
+    private enum class Sign(private val value: String, private val operator: BinaryOperator<Operand>) {
+        PLUS("+", Operand::sum),
+        MINUS("-", Operand::subtract),
+        MULTIPLY("*", Operand::multiply),
+        DIVIDE("/", Operand::divide);
+
+        fun isSameSign(sign: String): Boolean {
+            return value == sign
+        }
+
+        fun operate(operand1: Operand, operand2: Operand): Operand {
+            return operator.apply(operand1, operand2)
+        }
     }
 }
