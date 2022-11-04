@@ -25,5 +25,4 @@ internal class ApplicationTest {
         val result = application.calculate(context)
         assertEquals(result, Calculator(value))
     }
-
 }
