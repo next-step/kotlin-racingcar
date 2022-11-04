@@ -1,6 +1,6 @@
 package com.nextstep.stringcalculator
 
-enum class Operator(val symbol: String, val calculate: (Long, Long) -> Long) {
+enum class Operator(val symbol: String, val calculate: (Long, Long) -> Long) : Element {
     PLUS("+", { x, y -> x + y }),
     MINUS("-", { x, y -> x - y }),
     MULTIPLY("*", { x, y -> x * y }),
