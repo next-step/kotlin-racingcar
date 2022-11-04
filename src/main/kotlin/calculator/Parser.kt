@@ -1,18 +1,18 @@
-package step2
+package calculator
 
 class Parser {
     companion object {
         private val space = "\\s".toRegex()
     }
 
-    fun parse(rawExpression: String): List<Pair<Operator, Double>> {
-        if (rawExpression.isEmpty()) {
-            throw IllegalArgumentException("입력값이 빈 값이면 예외가 발생합니다.")
+    fun parse(rawExpression: String?): List<Pair<Operator, Double>> {
+        require(!rawExpression.isNullOrEmpty()) {
+            "입력값이 빈 값이면 예외가 발생합니다."
         }
 
         val tokenizedExpressions: List<String> = rawExpression.split(space)
 
-        if (tokenizedExpressions.size > 3 && tokenizedExpressions.size % 2 == 0) {
+        if (tokenizedExpressions.size < 3 || tokenizedExpressions.size % 2 == 0) {
             throw IllegalArgumentException("짝수개의 피연산자와 홀수개의 연산자가 존재 해야 합니다.")
         }
 
@@ -36,7 +36,7 @@ class Parser {
 
     private fun valid(index: Int, expression: String): Boolean =
         if (index % 2 == 0) {
-            expression.toDoubleOrNull()?.let { true } ?: false
+            expression.toDoubleOrNull() != null
         } else {
             Operator.exist(expression)
         }

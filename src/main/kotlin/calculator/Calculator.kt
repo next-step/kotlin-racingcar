@@ -1,4 +1,4 @@
-package step2
+package calculator
 
 class Calculator {
     private fun Double.calculate(expression: Pair<Operator, Double>): Double =

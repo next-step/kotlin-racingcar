@@ -1,4 +1,4 @@
-package step2
+package calculator
 
 enum class Operator(val symbol: String) : (Double, Double) -> Double {
     PLUS("+") {
