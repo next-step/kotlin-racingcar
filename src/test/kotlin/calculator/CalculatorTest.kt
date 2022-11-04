@@ -23,7 +23,7 @@ internal class CalculatorTest {
     @ParameterizedTest
     @ValueSource(strings = ["5 * 9"])
     fun `곱셈`(operation: String) {
-        assertThat(Calculator().calculate(operation)).isEqualTo(45)
+        assertThat(Calculator().calculate(operation)).isEqualTo(45.0)
     }
 
     @ParameterizedTest
