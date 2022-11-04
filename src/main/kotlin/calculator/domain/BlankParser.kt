@@ -29,9 +29,7 @@ class BlankParser {
     }
 
     private fun validateExpression(expression: String) {
-        if (expression.isBlank()) {
-            throw IllegalArgumentException()
-        }
+        require(expression.isNotBlank())
     }
 
     private companion object {
