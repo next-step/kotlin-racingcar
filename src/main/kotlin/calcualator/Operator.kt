@@ -1,3 +1,5 @@
+package calcualator
+
 import java.lang.IllegalArgumentException
 
 enum class Operator(val value: String) {
@@ -8,9 +10,7 @@ enum class Operator(val value: String) {
 
     companion object {
         fun of(s: String): Operator {
-            values().forEach {
-                if (it.value == s) return it
-            }
+            return values().firstOrNull { it.value == s } ?:
             throw IllegalArgumentException("적절한 연산자를 찾을 수 없습니다.")
         }
     }

@@ -1,3 +1,5 @@
+package calcualator
+
 data class Calculator(private val value: String) {
     fun operate(beforeOperator: Operator, value: Calculator): Calculator {
         return when (beforeOperator) {
