@@ -6,12 +6,11 @@ class Calculator {
     fun calc(str: String): Int {
         val numberStack = Stack<Int>()
         val operatorStack = Stack<(a: Int, b: Int) -> Int>()
-        val splitStr = str.split(" ")
+        val splitStr = str.split(EMPTY_SPACE)
 
         validRule(splitStr)
 
-        splitStr.forEachIndexed { index, s ->
-            println("index $index")
+        splitStr.forEach { s ->
             when {
                 s == "+" -> operatorStack.push(plusLambda)
                 s == "-" -> operatorStack.push(minusLambda)
@@ -46,6 +45,10 @@ class Calculator {
         } else {
             numberStack.push(s)
         }
+    }
+
+    companion object {
+        const val EMPTY_SPACE = " "
     }
 }
 

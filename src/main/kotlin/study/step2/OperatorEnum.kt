@@ -10,7 +10,7 @@ enum class OperatorEnum(val operator: String) {
         fun exist(operator: String): Boolean {
             OperatorEnum.values()
                 .forEach { s ->
-                    if (operator === s.operator) return true
+                    if (operator == s.operator) return true
                 }
             return false
         }
