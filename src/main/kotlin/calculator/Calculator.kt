@@ -1,6 +1,8 @@
 package calculator
 
-class Calculator {
+object Calculator {
+    private const val DELIMITER_WHITE_SPACE = " "
+    private const val DEFAULT_OFFSET = 1
 
     fun calculate(operation: String?): Double {
         require(!operation.isNullOrBlank())
@@ -22,8 +24,4 @@ class Calculator {
             .partition { it in Operator.OPERATORS }
             .let { it.first to it.second.mapNotNull { num -> num.toDoubleOrNull() } }
 
-    companion object {
-        private const val DELIMITER_WHITE_SPACE = " "
-        private const val DEFAULT_OFFSET = 1
-    }
 }
