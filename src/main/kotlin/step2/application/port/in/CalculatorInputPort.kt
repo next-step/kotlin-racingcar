@@ -3,14 +3,14 @@ package step2.application.port.`in`
 import step2.application.parser.ParsingProcessor
 import step2.domain.calculator.Calculator
 
-interface CalculatorInputPort {
-    fun input(inputString: String): Int
+interface CalculatorInputPort<T> {
+    fun input(inputString: String): T
 }
 
 class CalculatorInputPortImpl(
     private val parsingProcessor: ParsingProcessor,
-    private val calculator: Calculator
-) : CalculatorInputPort {
+    private val calculator: Calculator<Int>
+) : CalculatorInputPort<Int> {
     override fun input(inputString: String): Int {
         val inputOperationCommandList = parsingProcessor.proceed(inputString)
         return calculator.calculate(inputOperationCommandList)

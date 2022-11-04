@@ -8,7 +8,7 @@ import step2.domain.operation.enums.Operator
 
 internal class StandardCalculatorTest {
 
-    private lateinit var calculator: Calculator
+    private lateinit var calculator: Calculator<Int>
 
     companion object {
         private lateinit var defaultInputOperationCommandList: List<InputOperationCommand>

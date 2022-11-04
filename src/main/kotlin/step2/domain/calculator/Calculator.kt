@@ -2,7 +2,7 @@ package step2.domain.calculator
 
 import step2.domain.calculator.model.InputOperationCommand
 
-interface Calculator {
+interface Calculator<T> {
 
-    fun calculate(inputOperationCommandList: List<InputOperationCommand>): Int
+    fun calculate(inputOperationCommandList: List<InputOperationCommand>): T
 }

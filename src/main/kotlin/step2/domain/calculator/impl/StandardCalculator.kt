@@ -5,7 +5,7 @@ import step2.domain.calculator.model.InputOperationCommand
 import step2.domain.operation.enums.Operator
 import step2.domain.operation.model.BinaryInputCommand
 
-class StandardCalculator : Calculator {
+class StandardCalculator : Calculator<Int> {
 
     override fun calculate(inputOperationCommandList: List<InputOperationCommand>): Int {
         return sequentialOperate(inputOperationCommandList)

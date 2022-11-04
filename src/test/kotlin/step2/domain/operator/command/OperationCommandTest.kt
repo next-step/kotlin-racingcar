@@ -14,7 +14,7 @@ import step2.domain.operation.model.BinaryInputCommand
 
 internal class OperationCommandTest {
 
-    private lateinit var operationCommand: OperationCommand
+    private lateinit var operationCommand: OperationCommand<Int>
 
     @Test
     fun `두 개의 인자는 연산이 된다`() {

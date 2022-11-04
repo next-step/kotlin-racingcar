@@ -22,7 +22,7 @@ enum class Operator(
         }
     }
 
-    fun toCommand(): OperationCommand {
+    fun toCommand(): OperationCommand<Int> {
         return when (this) {
             ADDITION -> AdditionOperationCommand
             SUBTRACTION -> SubtractionOperationCommand
