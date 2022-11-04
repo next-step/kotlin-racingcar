@@ -2,9 +2,9 @@ package calculator.domain
 
 import java.util.*
 
-class BlankParser {
+class BlankParser : Parser {
 
-    fun parseOperators(expression: String): Operators {
+    override fun parseOperators(expression: String): Operators {
         validateExpression(expression)
 
         val operatorQueue: Queue<Operator> = LinkedList()
@@ -16,7 +16,7 @@ class BlankParser {
         return Operators(operatorQueue)
     }
 
-    fun parseOperands(expression: String): Operands {
+    override fun parseOperands(expression: String): Operands {
         validateExpression(expression)
 
         val operandQueue: Queue<Operand> = LinkedList()
