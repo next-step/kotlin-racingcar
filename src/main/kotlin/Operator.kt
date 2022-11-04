@@ -11,7 +11,7 @@ enum class Operator(val value: String) {
             values().forEach {
                 if (it.value == s) return it
             }
-            throw IllegalArgumentException("")
+            throw IllegalArgumentException("적절한 연산자를 찾을 수 없습니다.")
         }
     }
 }

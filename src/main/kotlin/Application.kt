@@ -3,7 +3,7 @@ import java.lang.IllegalArgumentException
 class Application {
     fun calculate(args: String): Calculator {
         if (args.isNullOrBlank()) {
-            throw IllegalArgumentException("")
+            throw IllegalArgumentException("빈 문자를 입력할 수 없습니다.")
         }
 
         var result = Calculator("0")
