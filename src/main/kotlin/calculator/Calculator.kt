@@ -10,7 +10,7 @@ class Calculator(
 ) {
 
     init {
-        print("----on----")
+        monitor.display("----on----")
     }
 
     fun pressButton(input: String?) {
