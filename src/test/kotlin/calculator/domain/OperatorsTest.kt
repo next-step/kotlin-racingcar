@@ -18,10 +18,10 @@ class OperatorsTest : StringSpec() {
 
             val operators = Operators(operatorQueue)
 
-            operators.pull() shouldBe Operator("+")
-            operators.pull() shouldBe Operator("-")
-            operators.pull() shouldBe Operator("*")
-            operators.pull() shouldBe Operator("/")
+            operators.poll() shouldBe Operator("+")
+            operators.poll() shouldBe Operator("-")
+            operators.poll() shouldBe Operator("*")
+            operators.poll() shouldBe Operator("/")
         }
 
         "Operator는 저장되어 있는 Operator가 있는지 확인할 수 있다" {
@@ -32,7 +32,7 @@ class OperatorsTest : StringSpec() {
 
             operators.hasNext().shouldBeTrue()
 
-            operators.pull()
+            operators.poll()
 
             operators.hasNext().shouldBeFalse()
         }

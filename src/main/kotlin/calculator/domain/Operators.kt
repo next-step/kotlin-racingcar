@@ -8,7 +8,7 @@ class Operators(private val operatorQueue: Queue<Operator>) {
         return operatorQueue.isNotEmpty()
     }
 
-    fun pull(): Operator {
+    fun poll(): Operator {
         return operatorQueue.poll()
     }
 }

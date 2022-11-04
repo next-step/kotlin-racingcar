@@ -4,7 +4,7 @@ import java.util.*
 
 class Operands(private val operandQueue: Queue<Operand>) {
 
-    fun pull(): Operand {
+    fun poll(): Operand {
         return operandQueue.poll()
     }
 }

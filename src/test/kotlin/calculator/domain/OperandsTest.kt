@@ -15,9 +15,9 @@ class OperandsTest :StringSpec() {
 
             val operands = Operands(operandQueue)
 
-            operands.pull() shouldBe Operand(0)
-            operands.pull() shouldBe Operand(1)
-            operands.pull() shouldBe Operand(2)
+            operands.poll() shouldBe Operand(0)
+            operands.poll() shouldBe Operand(1)
+            operands.poll() shouldBe Operand(2)
         }
     }
 }
