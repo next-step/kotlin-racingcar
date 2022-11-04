@@ -15,5 +15,12 @@ internal class CalculatorTest {
         val result = calculator.calculate("1 + 2 + 3")
         assertEquals(result, Number("6"))
     }
+
+    @Test
+    internal fun calculate2() {
+        val calculator = Calculator()
+        val result = calculator.calculate("2 * 3 / 2")
+        assertEquals(result, Number("3"))
+    }
 }
 
