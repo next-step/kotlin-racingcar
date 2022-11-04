@@ -1,6 +1,6 @@
 package nexstep.mission.calculator
 
-enum class Operation(val operator: String, val calculator: (Int, Int) -> Int) {
+enum class Operator(val symbol: String, val operate: (Int, Int) -> Int) {
 
     PLUS("+", { x, y -> x + y }),
     MINUS("-", { x, y -> x - y }),
@@ -11,7 +11,7 @@ enum class Operation(val operator: String, val calculator: (Int, Int) -> Int) {
     });
 
     companion object {
-        fun find(operator: String): Operation = values()
-            .find { it.operator == operator } ?: throw IllegalArgumentException("사칙 연산 기호가 잘못됐습니다.")
+        fun find(symbol: String): Operator = values()
+            .find { it.symbol == symbol } ?: throw IllegalArgumentException("사칙 연산 기호가 잘못됐습니다.")
     }
 }
