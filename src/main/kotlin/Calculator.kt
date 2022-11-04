@@ -1,12 +1,14 @@
 import java.lang.IllegalArgumentException
 
 class Calculator {
-    fun calculate(args : String) : Number{
-        if (args.isNullOrBlank()) throw IllegalArgumentException("")
+    fun calculate(args: String): Number {
+        if (args.isNullOrBlank()) {
+            throw IllegalArgumentException("")
+        }
 
         var result = Number("0")
-        var beforeNumber : Number = Number("0")
-        var beforeOperator : Operator = Operator.ADD
+        var beforeNumber: Number = Number("0")
+        var beforeOperator: Operator = Operator.ADD
         args.split(" ")
             .forEachIndexed { index, s ->
                 if (index % 2 == 0) {
