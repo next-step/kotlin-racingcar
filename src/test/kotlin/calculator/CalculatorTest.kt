@@ -22,4 +22,12 @@ internal class CalculatorTest {
             Calculator().calculate(operation)
         }
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = [" 1 * 2 + 2 - 10", "4 5 * 10 - 2", "2 *+ 3 - 5 6 + 10"])
+    fun `유효한 입력값이 아닌 경우`(operation: String) {
+        assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
+            Calculator().calculate(operation)
+        }
+    }
 }
