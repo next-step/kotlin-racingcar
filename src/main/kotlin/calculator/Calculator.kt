@@ -1,7 +1,5 @@
 package calculator
 
-import java.lang.IllegalArgumentException
-
 class Calculator(
     private val cpu: CPU = CPU(),
     private val keypad: Keypad = Keypad(),
@@ -26,7 +24,7 @@ class Calculator(
     fun calculate(): Int {
         for (index: Int in 1 until memory.size() step 2) {
             val accumulator = memory.accumulator
-            val operator = memory.fetch(index)
+            val operator = Operator.findByValue(memory.fetch(index))
             val operand = memory.fetch(index + 1).toInt()
 
             val result = parse(operator, accumulator, operand)
@@ -41,25 +39,23 @@ class Calculator(
         return expression.split(" ")
     }
 
-    private fun parse(term: String, operand1: Int, operand2: Int): Int {
-        return when (term) {
-            "+" -> {
+    private fun parse(operator: Operator, operand1: Int, operand2: Int): Int {
+        return when (operator) {
+            Operator.ADD -> {
                 cpu.add(operand1, operand2)
             }
 
-            "-" -> {
+            Operator.SUBTRACT -> {
                 cpu.subtract(operand1, operand2)
             }
 
-            "*" -> {
+            Operator.MULTIPLY -> {
                 cpu.multiply(operand1, operand2)
             }
 
-            "/" -> {
+            Operator.DIVIDE -> {
                 cpu.divide(operand1, operand2)
             }
-
-            else -> throw IllegalArgumentException()
         }
     }
 }
