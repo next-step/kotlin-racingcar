@@ -15,6 +15,4 @@ data class Number(private val value: String) {
             else -> throw IllegalArgumentException("")
         }
     }
-
-
 }
