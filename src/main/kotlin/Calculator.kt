@@ -1,23 +1,10 @@
-import java.lang.IllegalArgumentException
-
-class Calculator {
-    fun calculate(args: String): Number {
-        if (args.isNullOrBlank()) {
-            throw IllegalArgumentException("")
+data class Calculator(private val value: String) {
+    fun operate(beforeOperator: Operator, value: Calculator): Calculator {
+        return when (beforeOperator) {
+            Operator.ADD -> Calculator(this.value.toInt().plus(value.value.toInt()).toString())
+            Operator.MINUS -> Calculator(this.value.toInt().minus(value.value.toInt()).toString())
+            Operator.TIMES -> Calculator(this.value.toInt().times(value.value.toInt()).toString())
+            Operator.DIV -> Calculator(this.value.toInt().div(value.value.toInt()).toString())
         }
-
-        var result = Number("0")
-        var beforeNumber: Number = Number("0")
-        var beforeOperator: Operator = Operator.ADD
-        args.split(" ")
-            .forEachIndexed { index, s ->
-                if (index % 2 == 0) {
-                    result = beforeNumber.operate(beforeOperator, Number(s))
-                    beforeNumber = result
-                } else if (index % 2 == 1) {
-                    beforeOperator = Operator.of(s)
-                }
-            }
-        return result
     }
 }
