@@ -4,6 +4,7 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.inspectors.forAll
 import org.assertj.core.api.Assertions.assertThat
+import study.step2.Calculator
 
 class CalculatorTest : StringSpec({
     val calculator = Calculator()
