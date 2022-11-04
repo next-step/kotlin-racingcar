@@ -51,7 +51,7 @@ class StringCalculator(expression: String) {
         }
     }
 
-    private fun isNumber(currentValue: String) = Regex(NUMBER_REGULAR).containsMatchIn(currentValue)
+    private fun isNumber(currentValue: String) = currentValue.toDoubleOrNull() != null
     private fun isNotNumber(currentValue: String) = !isNumber(currentValue)
 
     companion object {
@@ -59,6 +59,5 @@ class StringCalculator(expression: String) {
         private const val INVALID_NUMBER_ERROR_MESSAGE = "연산 대상 항목에는 숫자만 입력하세요"
         private const val DELIMITER = " "
         private const val MINIMUM_EXPRESSION_LENGTH = 3
-        private const val NUMBER_REGULAR = "^[\\d]$"
     }
 }
