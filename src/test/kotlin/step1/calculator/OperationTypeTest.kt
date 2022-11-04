@@ -1,7 +1,9 @@
 package step1.calculator
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -20,6 +22,17 @@ internal class OperationTypeTest {
         assertThat(actual).isEqualTo(expected)
     }
 
+    @Test
+    @DisplayName("정의된 연산자 타입이 아닌 경우 예외가 발생한다.")
+    fun throwException_WhenInvalidOperator() {
+        // Given
+        val given = "%"
+
+        // When & Then
+        assertThatExceptionOfType(IllegalArgumentException::class.java)
+            .isThrownBy { OperationType.match(given) }
+    }
+
     @ParameterizedTest(name = "[Case#{index}]{1} {0} {2} = {3}")
     @MethodSource
     @DisplayName("연산자 타입에 해당하는 수식을 연산한다.")
@@ -35,6 +48,19 @@ internal class OperationTypeTest {
 
         // Then
         assertThat(actual).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @MethodSource
+    @DisplayName("제수가 0인 경우 예외가 발생한다.")
+    fun throwException_WhenZeroDivisor(leftValue: Double) {
+        // Given
+        val operationType = OperationType.DIVIDE
+        val given = 0.0
+
+        // When & Then
+        assertThatExceptionOfType(IllegalArgumentException::class.java)
+            .isThrownBy { operationType.calculate(leftValue, given) }
     }
 
     companion object {
@@ -57,6 +83,14 @@ internal class OperationTypeTest {
                 Arguments.of("-", leftValue, rightValue, 2.0),
                 Arguments.of("*", leftValue, rightValue, 8.0),
                 Arguments.of("/", leftValue, rightValue, 2.0)
+            )
+        }
+
+        @JvmStatic
+        fun throwException_WhenZeroDivisor(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of(Double.POSITIVE_INFINITY),
+                Arguments.of(Double.NEGATIVE_INFINITY)
             )
         }
     }
