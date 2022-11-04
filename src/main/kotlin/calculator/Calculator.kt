@@ -8,7 +8,7 @@ class Calculator {
         require(
             operator.isNotEmpty() &&
                     numbers.isNotEmpty() &&
-                    operator.size == numbers.size + DEFAULT_OFFSET
+                    numbers.size == operator.size + DEFAULT_OFFSET
         )
         Operator("")
     }
