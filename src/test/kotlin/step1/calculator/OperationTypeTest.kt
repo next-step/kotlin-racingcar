@@ -13,7 +13,7 @@ import java.util.stream.Stream
 internal class OperationTypeTest {
     @ParameterizedTest(name = "[Case#{index}]{0} : {1}")
     @MethodSource
-    @DisplayName("연산자에 따른 타입을 반환한다.")
+    @DisplayName("문자열 연산자에 따른 연산자 타입을 반환한다.")
     fun getOperatorTypeByOperator(given: String, expected: OperationType) {
         // When
         val actual = OperationType.match(given)

@@ -13,7 +13,7 @@ import java.util.stream.Stream
 internal class StringCalculatorTest {
     @ParameterizedTest(name = "Case#[{index}]{0} : {1} = {2}")
     @MethodSource
-    @DisplayName("덧셈 수식을 계산한다.")
+    @DisplayName("덧셈 표현식을 계산한다.")
     fun calculateAddExpression(description: String, given: String, expected: Number) {
         // Given
         val calculator = StringCalculator(given)
@@ -27,7 +27,7 @@ internal class StringCalculatorTest {
 
     @ParameterizedTest(name = "Case#[{index}]{0} : {1} = {2}")
     @MethodSource
-    @DisplayName("뺼셈 수식을 계산한다.")
+    @DisplayName("뺼셈 표현식을 계산한다.")
     fun calculateMinusExpression(description: String, given: String, expected: Number) {
         // Given
         val calculator = StringCalculator(given)
@@ -41,7 +41,7 @@ internal class StringCalculatorTest {
 
     @ParameterizedTest(name = "Case#[{index}]{0} : {1} = {2}")
     @MethodSource
-    @DisplayName("곱셈 수식을 계산 한다.")
+    @DisplayName("곱셈 표현식을 계산 한다.")
     fun calculateMultiplyExpression(description: String, given: String, expected: Number) {
         // Given
         val calculator = StringCalculator(given)
@@ -55,7 +55,7 @@ internal class StringCalculatorTest {
 
     @ParameterizedTest(name = "Case#[{index}]{0} : {1} = {2}")
     @MethodSource
-    @DisplayName("나눗셈 수식을 계산한다.")
+    @DisplayName("나눗셈 표현식을 계산한다.")
     fun calculateDivideExpression(description: String, given: String, expected: Number) {
         // Given
         val calculator = StringCalculator(given)
@@ -73,10 +73,8 @@ internal class StringCalculatorTest {
         // Given
         val given = "1 - 2 + 3 * 4 / 5"
 
-        val calculator = StringCalculator(given)
-
         // When
-        val actual = calculator.calculate()
+        val actual = StringCalculator(given).calculate()
 
         // Then
         assertThat(actual).isEqualTo(1.6)
@@ -115,7 +113,7 @@ internal class StringCalculatorTest {
                 Arguments.of("정수의 곱셈", "2 * 1", 2),
                 Arguments.of("음수의 곱셈", "-2 * -2", 4),
                 Arguments.of("음수가 포함된 곱셈", "-2 * 2", -4),
-                Arguments.of("음수인 실수가 포함된 뺄셈", "-2.1 * 2", -4.2)
+                Arguments.of("음수인 실수가 포함된 곱셈", "-2.1 * 2", -4.2)
             )
         }
 
@@ -123,9 +121,9 @@ internal class StringCalculatorTest {
         fun calculateDivideExpression(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of("정수의 나눗셈", "2 / 2", 1),
-                Arguments.of("음수의 곱셈", "-2 / -2", 1),
-                Arguments.of("음수가 포함된 곱셈", "-2 / 2", -1),
-                Arguments.of("음수인 실수가 포함된 뺄셈", "-2.1 / 2", -1.05)
+                Arguments.of("음수의 나눗셈", "-2 / -2", 1),
+                Arguments.of("음수가 포함된 나눗셈", "-2 / 2", -1),
+                Arguments.of("음수인 실수가 포함된 나눗셈", "-2.1 / 2", -1.05)
             )
         }
 
