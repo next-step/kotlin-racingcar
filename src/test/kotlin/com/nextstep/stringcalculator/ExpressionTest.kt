@@ -18,7 +18,7 @@ class ExpressionTest : AnnotationSpec() {
 
     @DisplayName("Expression can calculate")
     @ParameterizedTest
-    @CsvSource(value = ["1 + 2, 3", "1 - 2, -1", "1 * 2, 2", "1 / 2, 0"])
+    @CsvSource(value = ["1 + 2, 3", "1 - 2, -1", "1 * 2, 2", "1 / 2, 0", "1 + 2 + 3, 6", "2 / 2 + 3 - 1, 3"])
     fun calculate(stringExpression: String, result: Long) {
         val expression = Expression(stringExpression)
         expression.calculate() shouldBe result

@@ -10,13 +10,12 @@ class Expression(private val expression: String) {
     private fun isNumber(idx: Int) = idx % 2 == 0
 
     fun calculate(): Long {
-        var result: Long = (elements[0] as Number).number
-        for (idx in elements.indices step 3) {
-            val operator = elements[idx + 1] as Operator
-            val right = (elements[idx + 2] as Number).number
-
-            result = operator.calculate(result, right)
+        var left: Long = (elements[0] as Number).number // TODO: 2022/11/05 0으로 나누는 경우 처리, 연산자로 끝나는 잘못된 식 처리
+        for (idx in 1 until elements.size step 2) {
+            val operator = elements[idx] as Operator
+            val right = (elements[idx + 1] as Number).number
+            left = operator.calculate(left, right)
         }
-        return result
+        return left
     }
 }
