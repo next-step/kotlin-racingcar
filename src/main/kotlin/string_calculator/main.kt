@@ -1,6 +1,6 @@
 package string_calculator
 
-fun main(args: Array<String>) {
+fun main() {
     print("문자열을 입력해 주세요:")
     val input = readLine()
 
