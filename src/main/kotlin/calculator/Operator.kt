@@ -10,7 +10,10 @@ enum class Operator(val op: String) : (Double, Double) -> Double {
         override fun invoke(a: Double, b: Double): Double = a.minus(b)
     },
     DIVIDE("/") {
-        override fun invoke(a: Double, b: Double): Double = a.div(b)
+        override fun invoke(a: Double, b: Double): Double {
+            require(b != 0.0) { "나누기를 진행할 때, 피연산자는 0이 될 수 없어요." }
+            return a.div(b)
+        }
     },
     MULTIPLY("*") {
         override fun invoke(a: Double, b: Double): Double = a.times(b)

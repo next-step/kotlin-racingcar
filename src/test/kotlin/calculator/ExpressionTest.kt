@@ -48,4 +48,17 @@ internal class ExpressionTest : FunSpec({
             Expression(data).calculate() shouldBe result
         }
     }
+
+    context("나눗셈을 진행할 때, 피연산자가 0이라면 예외를 던진다.") {
+        withData(
+            nameFn = { "$it" },
+            ts = listOf(
+                listOf("4", "/", "0", "+", "1") to 3.0,
+            )
+        ) { (data, result) ->
+            shouldThrow<IllegalArgumentException> {
+                Expression(data).calculate() shouldBe result
+            }
+        }
+    }
 })
