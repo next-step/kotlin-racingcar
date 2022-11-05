@@ -23,7 +23,7 @@ class StringCalculatorTest {
 
         var input = "2 + 3 * 4 / 2"
         input = input.replace(" ", "")
-        val index = input.indexOfFirst { c -> c == StringCalculator.Operator.PLUS.sign }
+        val index = input.indexOfFirst { c -> Operator.PLUS.equals(c) }
         assertThat(index).isEqualTo(1)
     }
 
