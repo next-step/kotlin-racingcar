@@ -36,5 +36,4 @@ object StringCalculator {
         }
         operands.add(param)
     }
-
 }
