@@ -7,7 +7,7 @@ import io.kotest.matchers.shouldBe
 class ExpressionsTest : StringSpec({
     "단항 테스트" {
         UnaryExpression("1").evaluate() shouldBe 1
-        UnaryExpression("1").evaluate() shouldBe 1
+        UnaryExpression("+1").evaluate() shouldBe 1
         UnaryExpression("-1").evaluate() shouldBe -1
     }
 
