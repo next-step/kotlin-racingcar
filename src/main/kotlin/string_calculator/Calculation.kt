@@ -1,6 +1,6 @@
 package string_calculator
 
-enum class Calculation(val operator: Char, val calculation: (Int, Int) -> Int) {
+enum class Calculation(val operator: Char, private val calculation: (Int, Int) -> Int) {
     PLUS('+', { a, b -> a + b }),
     MINUS('-', { a, b -> a - b }),
     MULTIPLY('*', { a, b -> a * b }),

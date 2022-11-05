@@ -2,8 +2,8 @@ package string_calculator
 
 class CalculatorService {
     companion object {
-        const val FIRST_OPERATOR = '+'
-        const val ZERO = 0
+        private const val FIRST_OPERATOR = '+'
+        private const val ZERO = 0
     }
 
     fun verifyExpression(expression: String?) {
@@ -30,12 +30,12 @@ class CalculatorService {
         return result
     }
 
-    fun verifyOperator(s: String) {
+    private fun verifyOperator(s: String) {
         if (s.length != 1 || !Calculation.isValid(s.first()))
             throw IllegalArgumentException("잘못된 연산자 입니다.")
     }
 
-    fun verifyNumber(s: String): Int {
+    private fun verifyNumber(s: String): Int {
         if (!s.all { Character.isDigit(it) })
             throw IllegalArgumentException("피연산자는 자연수여야 합니다.")
         try {
