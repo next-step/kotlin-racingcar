@@ -13,10 +13,14 @@ class Car(
     fun currentPosition() = this.position
 
     fun move() {
+        checkStop()
+        this.position = movingStrategy.move(this.position)
+    }
+
+    private fun checkStop() {
         if (::lastPosition.isInitialized) {
             throw IllegalStateException("자동차는 이미 정지한 상태입니다")
         }
-        this.position = movingStrategy.move(this.position)
     }
 
     fun stop() {
