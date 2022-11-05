@@ -10,6 +10,7 @@ class OperandsTest {
         val operands = Operands()
         operands.add("1")
         operands.add("2")
+
         Assertions.assertThat(operands.firstOperand()).isEqualTo(1)
         Assertions.assertThat(operands.firstOperand()).isEqualTo(2)
     }
@@ -19,12 +20,14 @@ class OperandsTest {
         val operands = Operands()
         operands.add("1")
         operands.add("2")
+
         Assertions.assertThat(operands.isCalculable()).isTrue
     }
 
     @Test
     fun `유효하지 않은 입력값인 경우 예외를 던집니다`() {
         val operands = Operands()
+
         Assertions.assertThatThrownBy { operands.add("*") }.isInstanceOf(IllegalArgumentException::class.java)
         Assertions.assertThatThrownBy {
             operands.add("1")
