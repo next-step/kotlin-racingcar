@@ -1,5 +1,6 @@
 package game.racingcar
 
+import game.racingcar.dto.LocationSnapshot
 import game.racingcar.view.InputView
 import game.racingcar.view.OutputView
 
@@ -7,14 +8,14 @@ class RacingCarGame(
     private val numberOfCars: Int,
     private val numberOfTrials: Int,
 ) {
-    fun play(): List<List<Int>> {
-        val locationSnapshots = mutableListOf<List<Int>>()
+    fun play(): List<LocationSnapshot> {
+        val locationSnapshots = mutableListOf<LocationSnapshot>()
 
         val racingCars = RacingCars(numberOfCars)
         repeat(numberOfTrials) {
             with(racingCars) {
                 moveAll()
-                locationSnapshots.add(locationSnapshot())
+                locationSnapshots.add(LocationSnapshot(locations()))
             }
         }
         return locationSnapshots
