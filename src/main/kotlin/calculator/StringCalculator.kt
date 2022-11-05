@@ -8,12 +8,16 @@ object StringCalculator {
         val operands = Operands()
         val operators = Operators()
         input.split(SEPARATOR).forEach {
-            addParam(it, operands, operators)
-            if (isCalculable(operands, operators)) {
-                calculate(operands, operators)
-            }
+            process(it, operands, operators)
         }
         return operands.getResult()
+    }
+
+    private fun process(param: String, operands: Operands, operators: Operators) {
+        addParam(param, operands, operators)
+        if (isCalculable(operands, operators)) {
+            calculate(operands, operators)
+        }
     }
 
     private fun calculate(operands: Operands, operators: Operators) {

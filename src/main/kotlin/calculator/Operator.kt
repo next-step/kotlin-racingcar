@@ -11,7 +11,7 @@ enum class Operator(val expression: String, val calculate: (Int, Int) -> Int) {
 
     companion object {
         fun valueOf(operator: String): Operator? {
-            return values().firstOrNull { it.expression.equals(operator) }
+            return values().firstOrNull { it.expression == operator }
         }
     }
 }
