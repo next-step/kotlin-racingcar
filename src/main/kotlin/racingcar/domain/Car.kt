@@ -1,8 +1,10 @@
 package racingcar.domain
 
-data class Car(
+import racingcar.view.InputView
+
+class Car(
     var route: String = "-"
-) {
+) : InputView {
     companion object {
         fun make(count: Long) =
             mutableListOf<Car>().apply {

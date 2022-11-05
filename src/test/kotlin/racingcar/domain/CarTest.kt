@@ -3,7 +3,7 @@ package racingcar.domain
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class CarTest{
+class CarTest {
 
     @Test
     fun `입력 값에 따른 Car 클래스 생성 개수 확인`() {
