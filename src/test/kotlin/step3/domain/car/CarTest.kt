@@ -2,6 +2,7 @@ package step3.domain.car
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 
 internal class CarTest : StringSpec({
@@ -16,5 +17,14 @@ internal class CarTest : StringSpec({
         val initPosition = car.isCurrentPosition()
         val postPosition = car.move()
         initPosition shouldNotBe postPosition
+    }
+
+    "자동차는 위치값이 같다고 해서 같은 객체가 아니다" {
+        val firstCar = Car()
+        val secondCar = Car()
+        firstCar.move()
+        secondCar.move()
+        firstCar.isCurrentPosition() shouldBe secondCar.isCurrentPosition()
+        firstCar shouldNotBe secondCar
     }
 })
