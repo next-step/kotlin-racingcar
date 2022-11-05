@@ -1,6 +1,6 @@
 package com.nextstep.stringcalculator
 
-class Expression(private val expression: String) {
+class Expression(expression: String) {
     val elements: List<Element>
     init {
         elements = expression.split(" ")

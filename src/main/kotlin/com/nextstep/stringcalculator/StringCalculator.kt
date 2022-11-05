@@ -1,6 +1,6 @@
 package com.nextstep.stringcalculator
 
-class StringCalculator(private val input: String) {
+class StringCalculator(input: String) {
     private val expression: Expression
     init {
         if (input.isBlank()) throw IllegalArgumentException("Input shouldn't be blank")
