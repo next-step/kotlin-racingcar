@@ -1,14 +1,20 @@
 package calculator
 
-import org.assertj.core.api.Assertions
-import org.junit.jupiter.api.Test
+import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.shouldBe
 
-class OperatorTest {
-
-    @Test
-    fun `기호 연산자 제외 추출 확인`() {
-        val expression = "%9 $+ 8 - 7 * 6 / 5"
-        val result = "% $       "
-        Assertions.assertThat(extractOperator(expression)).isEqualTo(result)
+class OperatorTest : StringSpec({
+    "연산자 정상 확인" {
+        Operator.find("+") shouldBe Operator.PLUS
+        Operator.find("-") shouldBe Operator.MINUS
+        Operator.find("/") shouldBe Operator.DIVISION
+        Operator.find("*") shouldBe Operator.MULTIPLE
     }
-}
+
+    "연산자 비정상 확인" {
+        shouldThrow<IllegalArgumentException> {
+            Operator.find("&")
+        }
+    }
+})

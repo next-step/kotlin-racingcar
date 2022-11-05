@@ -9,14 +9,14 @@ class CalculatorTest {
     @Test
     fun `계산기 정상 확인`() {
         val expression = "9 + 8 - 7 * 6 / 5"
-        assertThat(Calculator().calculator(expression)).isEqualTo(12L)
+        assertThat(Calculator().calculate(expression)).isEqualTo(12L)
     }
 
     @Test
     fun `계산기 비정상 확인 (빈 문자열)`() {
         val expression = ""
         assertThrows<IllegalArgumentException> {
-            Calculator().calculator(expression)
+            Calculator().calculate(expression)
         }
     }
 
@@ -24,7 +24,8 @@ class CalculatorTest {
     fun `계산기 비정상 확인 (이상한 기호)`() {
         val expression = "1 % 2"
         assertThrows<IllegalArgumentException> {
-            Calculator().calculator(expression)
+            Calculator().calculate(expression)
         }
     }
+
 }
