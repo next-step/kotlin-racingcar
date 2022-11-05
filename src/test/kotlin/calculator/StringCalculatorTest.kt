@@ -1,3 +1,5 @@
+package calculator
+
 import org.assertj.core.api.AssertionsForInterfaceTypes.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -73,10 +75,10 @@ class StringCalculatorTest {
         }
     }
 
-    @Test
-    fun `사칙연산 기호가 아닌경우`() {
+    @ParameterizedTest
+    @ValueSource(strings = ["2 ! 3 * 4 / 2", "23 * 22A * 1"])
+    fun `사칙연산 기호가 아닌경우`(input: String) {
 
-        val input = "2 ! 3 * 4 / 2"
         val stringCalculator = StringCalculator()
         assertThrows<IllegalArgumentException> {
             stringCalculator.calculate(input)
