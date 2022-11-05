@@ -3,13 +3,7 @@ package game.racingcar
 class RacingCars(
     numberOfCars: Int
 ) {
-    private val racingCars = mutableListOf<RacingCar>()
-
-    init {
-        repeat(numberOfCars) {
-            racingCars.add(RacingCar())
-        }
-    }
+    private val racingCars = (1..numberOfCars).map { RacingCar() }
 
     fun moveAll() {
         racingCars.forEach { it.move() }
