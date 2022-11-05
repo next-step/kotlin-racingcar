@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource
 
 internal class StringCalculatorTest {
     @Test
-    fun `2 + 3 * 4 divide by 2 의 결과는`() {
+    fun `계산식의 결과가 정상적으로 반환된다`() {
         assertThat(StringCalculator.calculate("2 + 3 * 4 / 2")).isEqualTo(10)
     }
 
