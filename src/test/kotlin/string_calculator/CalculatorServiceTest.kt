@@ -68,8 +68,8 @@ class CalculatorServiceTest : StringSpec({
         }
     }
 
-    "0 으로 나누는 경우는 ArithmeticException 을 반환한다." {
-        val exception = shouldThrow<ArithmeticException> {
+    "0 으로 나누는 경우는 IllegalArgumentException 을 반환한다." {
+        val exception = shouldThrow<IllegalArgumentException> {
             val exp = "3 / 0".trim().split(" ")
             calculatorService.calculator(exp)
         }
