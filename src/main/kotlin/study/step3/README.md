@@ -12,5 +12,4 @@
 - Car 객체 생성 - 상태 : 현재 위치,동작 : 전진  
 - 0~9 사이의 무작의 값을 구하는 기능 구현  
 - RacingCar 객체에서 전진 또는 멈춤 구현
-- InputView, ResultView 로 UI 분리하여 구현
-- racingCarMain 구현 
+- InputView, ResultView 로 UI 분리, RacingCarMain 구현 
