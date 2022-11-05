@@ -38,7 +38,7 @@ class CalculationTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = ["10:3:3", "10:3.00:3.33", "10.00:3:3.33", "100.0:20.0000:5.0000"], delimiter = ':')
+    @CsvSource(value = ["10:3:3", "10:3.00:3.33", "10.00:3:3.33", "100.0:20.0000:5.0000", "7:2:3"], delimiter = ':')
     fun `나눗셈`(d1: BigDecimal, d2: BigDecimal, expected: BigDecimal) {
         Assertions.assertThat(Calculation.DIVIDE.calculate(d1, d2)).isEqualTo(expected)
     }

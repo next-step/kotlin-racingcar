@@ -22,7 +22,7 @@ internal class StringCalculatorProcessorTest {
     internal fun `계산할 수 없는 리스트`(input: String) {
         val list = input.split(" ")
         assertThatThrownBy { StringCalculatorProcessor(list).process() }
-            .isInstanceOf(IllegalArgumentException::class.java)
+            .isInstanceOf(RuntimeException::class.java)
     }
 
     @ParameterizedTest
