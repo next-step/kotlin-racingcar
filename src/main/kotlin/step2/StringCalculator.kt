@@ -17,11 +17,6 @@ object StringCalculator {
 
     private fun calculateWith(operators: Pair<String, Int>, base: Int): Int {
         val (operator, operand) = operators
-        return when (from(operator)) {
-            Operator.PLUS -> base + operand
-            Operator.MINUS -> base - operand
-            Operator.MULTIPLY -> base * operand
-            Operator.DIVIDE -> base / operand
-        }
+        return from(operator).calculate(base, operand)
     }
 }
