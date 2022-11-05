@@ -9,7 +9,7 @@ internal class RacingCarTest {
     fun `자동차가 move 메서드를 호출하면 1만큼 앞으로 전진한다`() {
         // given
         val racingCar = RacingCar(AlwaysMoveStrategy())
-        val preLocation = racingCar.location
+        val preLocation = 0
         // when
         racingCar.move()
         // then
