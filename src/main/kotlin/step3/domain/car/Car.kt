@@ -4,9 +4,7 @@ class Car {
 
     private var position: Position = Position()
 
-    fun isCurrentPosition(): Position {
-        return position
-    }
+    fun isCurrentPosition(): Position = position
 
     fun move() {
         position.forward()
