@@ -45,4 +45,11 @@ internal class CarTest : StringSpec({
             car.move()
         }
     }
+
+    "자동차가 이동을 시도했을 때, 시도한 횟수를 저장한다" {
+        val car = Car()
+        car.move()
+        car.move()
+        car.attemptCount() shouldBe 2
+    }
 })
