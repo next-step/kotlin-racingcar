@@ -5,11 +5,9 @@ import java.math.BigDecimal
 
 private const val DELIMITER = " "
 
-class StringCalculator {
-    companion object {
-        fun calculate(input: String?): BigDecimal {
-            require(!input.isNullOrBlank())
-            return StringCalculatorProcessor(input.split(DELIMITER)).process()
-        }
+object StringCalculator {
+    fun calculate(input: String?): BigDecimal {
+        require(!input.isNullOrBlank())
+        return StringCalculatorProcessor(input.split(DELIMITER)).process()
     }
 }
