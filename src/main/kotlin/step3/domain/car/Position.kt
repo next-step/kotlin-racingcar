@@ -19,4 +19,6 @@ class Position(
     override fun hashCode(): Int {
         return position
     }
+
+    fun toInt() = position
 }
