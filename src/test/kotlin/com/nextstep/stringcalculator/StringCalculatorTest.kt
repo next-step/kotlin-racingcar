@@ -14,8 +14,12 @@ class StringCalculatorTest : AnnotationSpec() {
     @Test
     fun constructor_exception() {
         shouldThrow<IllegalArgumentException> {
+            StringCalculator(null)
+        } shouldHaveMessage "Input shouldn't be null or blank"
+
+        shouldThrow<IllegalArgumentException> {
             StringCalculator(" ")
-        } shouldHaveMessage "Input shouldn't be blank"
+        } shouldHaveMessage "Input shouldn't be null or blank"
     }
 
     @DisplayName("String calculator can calculate string expression")

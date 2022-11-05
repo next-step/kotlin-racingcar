@@ -1,9 +1,11 @@
 package com.nextstep.stringcalculator
 
+private const val delimiter = " "
+
 class Expression(expression: String) {
     val elements: List<Element>
     init {
-        elements = expression.split(" ")
+        elements = expression.split(delimiter)
             .mapIndexed { idx, s -> if (isNumber(idx)) Number(s) else Operator.find(s) }
     }
 
