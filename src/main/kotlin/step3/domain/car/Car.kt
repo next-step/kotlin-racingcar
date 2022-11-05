@@ -2,13 +2,13 @@ package step3.domain.car
 
 class Car {
 
-    private var position: Int = 0
+    private var position: Position = Position()
 
-    fun isCurrentPosition(): Int {
+    fun isCurrentPosition(): Position {
         return position
     }
 
     fun move() {
-        position++
+        position.forward()
     }
 }
