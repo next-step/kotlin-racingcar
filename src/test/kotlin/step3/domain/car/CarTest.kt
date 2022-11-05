@@ -1,5 +1,6 @@
 package step3.domain.car
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
@@ -32,7 +33,16 @@ internal class CarTest : StringSpec({
         val car = Car()
         car.move()
         car.stop()
-        val lastPosition = car.lastPosition()
+        val lastPosition = car.lastPosition
         lastPosition shouldBe car.currentPosition()
+    }
+
+    "자동차가 멈추면 이동을 하지 못한다" {
+        val car = Car()
+        car.move()
+        car.stop()
+        shouldThrow<IllegalStateException> {
+            car.move()
+        }
     }
 })
