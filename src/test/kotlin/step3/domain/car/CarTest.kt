@@ -15,9 +15,10 @@ internal class CarTest : StringSpec({
 
     "자동차는 움직이면 위치값이 변한다" {
         val car = Car()
-        val initPosition = car.currentPosition()
-        val postPosition = car.move()
-        initPosition shouldNotBe postPosition
+        val initAttemptCount = car.attemptCount()
+        car.move()
+        val postAttemptCount = car.attemptCount()
+        initAttemptCount shouldNotBe postAttemptCount
     }
 
     "자동차는 위치값이 같다고 해서 같은 객체가 아니다" {
