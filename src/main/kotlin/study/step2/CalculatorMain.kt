@@ -1,6 +1,4 @@
-package study
-
-import study.step2.Calculator
+package study.step2
 
 fun main() {
     print("계산식을 입력해주세요 : ")
