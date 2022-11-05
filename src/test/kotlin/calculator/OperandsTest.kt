@@ -1,6 +1,7 @@
 package calculator
 
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 class OperandsTest {
@@ -11,8 +12,11 @@ class OperandsTest {
         operands.add("1")
         operands.add("2")
 
-        Assertions.assertThat(operands.firstOperand()).isEqualTo(1)
-        Assertions.assertThat(operands.firstOperand()).isEqualTo(2)
+        val operandA = operands.firstOperand()
+        val operandB = operands.firstOperand()
+
+        assertThat(operandA).isEqualTo(1)
+        assertThat(operandB).isEqualTo(2)
     }
 
     @Test
@@ -21,15 +25,17 @@ class OperandsTest {
         operands.add("1")
         operands.add("2")
 
-        Assertions.assertThat(operands.isCalculable()).isTrue
+        val calculable = operands.isCalculable()
+
+        assertThat(calculable).isTrue
     }
 
     @Test
     fun `유효하지 않은 입력값인 경우 예외를 던집니다`() {
         val operands = Operands()
 
-        Assertions.assertThatThrownBy { operands.add("*") }.isInstanceOf(IllegalArgumentException::class.java)
-        Assertions.assertThatThrownBy {
+        assertThatThrownBy { operands.add("*") }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy {
             operands.add("1")
             operands.add("3")
             operands.add("4")

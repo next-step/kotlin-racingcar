@@ -2,7 +2,6 @@ package calculator
 
 class Operands {
 
-    private val CALCULABLE_SIZE = 2
     private val operands: ArrayDeque<Int> = ArrayDeque()
 
     fun add(operand: Int) {
@@ -25,5 +24,9 @@ class Operands {
     fun getResult(): Int {
         require(operands.size == 1) { throw IllegalArgumentException("유효하지 않은 입력값입니다.") }
         return firstOperand()
+    }
+
+    companion object {
+        private const val CALCULABLE_SIZE = 2
     }
 }

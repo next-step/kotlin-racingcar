@@ -20,7 +20,9 @@ class OperatorsTest {
         val operators = Operators()
         operators.add(Operator.PLUS)
 
-        assertThat(operators.isCalculable()).isTrue
+        val calculable = operators.isCalculable()
+
+        assertThat(calculable).isTrue
     }
 
     @Test

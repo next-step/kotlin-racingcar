@@ -1,8 +1,8 @@
 package calculator
 
-private const val SEPARATOR = " "
-
 object StringCalculator {
+
+    private const val SEPARATOR = " "
     fun calculate(input: String): Int {
         validateInput(input)
         val operands = Operands()

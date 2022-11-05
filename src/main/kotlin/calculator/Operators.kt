@@ -2,8 +2,6 @@ package calculator
 
 class Operators {
 
-    private val CALCULABLE_SIZE = 1
-
     private val operators: ArrayDeque<Operator> = ArrayDeque()
 
     fun add(operator: Operator) {
@@ -14,4 +12,8 @@ class Operators {
     fun firstOperator() = operators.removeFirst()
 
     fun isCalculable(): Boolean = this.operators.size == CALCULABLE_SIZE
+
+    companion object {
+        private const val CALCULABLE_SIZE = 1
+    }
 }
