@@ -24,4 +24,10 @@ internal class StringCalculatorTest {
             { assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy { StringCalculator.calculate(input) } }
         )
     }
+
+    @Test
+    fun `연산자가 $일 경우 IllegalArgumentException이 발생한다`() {
+        // when & then
+        assertThatThrownBy { StringCalculator.calculate("1 $ 1") }.isInstanceOf(java.lang.IllegalArgumentException::class.java)
+    }
 }
