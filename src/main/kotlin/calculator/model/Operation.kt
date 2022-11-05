@@ -4,9 +4,9 @@ import java.math.BigDecimal
 import java.math.RoundingMode.FLOOR
 import kotlin.math.max
 
-enum class Calculation(
+enum class Operation(
     val symbol: String,
-    val calculate: (BigDecimal, BigDecimal) -> BigDecimal
+    val apply: (BigDecimal, BigDecimal) -> BigDecimal
 ) {
     ADD("+", BigDecimal::plus),
     SUBTRACT("-", BigDecimal::minus),

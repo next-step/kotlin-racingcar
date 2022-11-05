@@ -1,6 +1,6 @@
 package calculator.service
 
-import calculator.model.CalculationBlock
+import calculator.model.OperationBlock
 import java.math.BigDecimal
 
 private const val ONE = 1
@@ -15,11 +15,10 @@ class StringCalculatorProcessor(
     fun process(): BigDecimal {
         val first = input.first()
         val leftList = input.drop(ONE)
-        CalculationBlock(BigDecimal(10))
-        var block = CalculationBlock.of(first)
+        var block = OperationBlock.of(first)
 
         for (value in leftList) {
-            block = CalculationBlock.reduce(block, value)
+            block = OperationBlock.reduce(block, value)
         }
 
         return block.result()
