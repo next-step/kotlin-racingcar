@@ -15,10 +15,10 @@ class StringCalculatorProcessor(
     fun process(): BigDecimal {
         val first = input.first()
         val leftList = input.drop(ONE)
-        var block = OperationBlock.of(first)
+        var block = OperationBlock(BigDecimal(first))
 
         for (value in leftList) {
-            block = OperationBlock.reduce(block, value)
+            block = block.reduce(value)
         }
 
         return block.result()

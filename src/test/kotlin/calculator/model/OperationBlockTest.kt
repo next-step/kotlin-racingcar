@@ -26,7 +26,7 @@ internal class OperationBlockTest {
         val value = "+"
         val expected = OperationBlock(BigDecimal(10), Operation.of("+"))
 
-        val result = OperationBlock.reduce(block, value)
+        val result = block.reduce(value)
 
         assertThat(result.accumulator).isEqualTo(expected.accumulator)
         assertThat(result.calculation).isEqualTo(expected.calculation)
@@ -38,7 +38,7 @@ internal class OperationBlockTest {
         val value = "11"
         val expected = OperationBlock(BigDecimal(21))
 
-        val result = OperationBlock.reduce(block, value)
+        val result = block.reduce(value)
 
         assertThat(result.accumulator).isEqualTo(expected.accumulator)
         assertThat(result.calculation).isEqualTo(expected.calculation)
@@ -48,6 +48,6 @@ internal class OperationBlockTest {
     fun `연산자가 없을 경우 reduce 불가`() {
         val block = OperationBlock(BigDecimal(10))
         val value = "10"
-        assertThrows<IllegalStateException> { OperationBlock.reduce(block, value) }
+        assertThrows<IllegalStateException> { block.reduce(value) }
     }
 }
