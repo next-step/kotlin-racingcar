@@ -12,9 +12,8 @@ internal class PositionTest : StringSpec({
     }
 
     "위치 값이 다르면 두 위치는 다르게 표현된다" {
-        val first = Position()
-        val second = Position()
-        second.forward()
-        first shouldNotBe second
+        val position = Position()
+        val movedPosition = position.forward()
+        position shouldNotBe movedPosition
     }
 })

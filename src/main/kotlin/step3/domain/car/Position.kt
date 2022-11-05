@@ -1,11 +1,9 @@
 package step3.domain.car
 
 class Position(
-    private var position: Int = 0
+    private val position: Int = 0
 ) {
-    fun forward() {
-        this.position++
-    }
+    fun forward() = Position(this.position + 1)
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
