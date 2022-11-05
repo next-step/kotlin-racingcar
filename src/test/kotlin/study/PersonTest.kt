@@ -21,8 +21,8 @@ class PersonTest {
     fun `기본 인자`() {
         val person = Person("dk-ko", 0)
         assertAll(
-            { assertThat(person.name).isEqualTo("dk-ko")},
-            { assertThat(person.nickname).isNull()}
+            { assertThat(person.name).isEqualTo("dk-ko") },
+            { assertThat(person.nickname).isNull() }
         )
     }
 
@@ -32,5 +32,4 @@ class PersonTest {
         val person2 = Person("dk-ko", 0)
         assertThat(person1).isEqualTo(person2)
     }
-
 }
