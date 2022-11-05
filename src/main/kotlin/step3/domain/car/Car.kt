@@ -1,10 +1,17 @@
 package step3.domain.car
 
-class Car {
+import step3.domain.car.strategy.MovingStrategy
+import step3.domain.car.strategy.implement.DefaultMovingStrategy
+
+class Car(
+    private val movingStrategy: MovingStrategy = DefaultMovingStrategy()
+) {
 
     private var position: Position = Position()
 
-    fun isCurrentPosition(): Position = position
+    fun isCurrentPosition(): Position = this.position
 
-    fun move() = position.forward()
+    fun move() {
+        this.position = movingStrategy.move(this.position)
+    }
 }
