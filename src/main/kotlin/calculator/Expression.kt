@@ -6,9 +6,9 @@ data class Expression(
     private val rawExpression: List<String>
 ) {
     init {
-        require(isCorrect()) { "계산할 수 있는 최소 입력 값을 입력해주세요." }
+        require(isMoreThanMinimumSize()) { "계산할 수 있는 최소 입력 값을 입력해주세요." }
         require(isCorrectSize()) { "홀수개의 연산자와 짝수개의 피연산자가 존재 해야 합니다." }
-        require(isCorrectData()) { "수식이 올바르지 않습니다." }
+        require(isCorrectExpression()) { "수식이 올바르지 않습니다." }
     }
 
     fun calculate(): Double {
@@ -24,11 +24,11 @@ data class Expression(
         }
     }
 
-    private fun isCorrect() = rawExpression.size > 2
+    private fun isMoreThanMinimumSize() = rawExpression.size > 2
 
     private fun isCorrectSize() = rawExpression.size % 2 == 1
 
-    private fun isCorrectData() = rawExpression.withIndex()
+    private fun isCorrectExpression() = rawExpression.withIndex()
         .all { (idx, data) ->
             when (idx % 2 == 0) {
                 true -> data.isNumeric()
