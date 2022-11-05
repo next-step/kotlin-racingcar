@@ -8,17 +8,18 @@ class Car(
 ) {
 
     private var position: Position = Position()
-    private lateinit var lastPosition: Position
+    lateinit var lastPosition: Position
 
     fun currentPosition() = this.position
 
     fun move() {
+        if (::lastPosition.isInitialized) {
+            throw IllegalStateException("자동차는 이미 정지한 상태입니다")
+        }
         this.position = movingStrategy.move(this.position)
     }
 
     fun stop() {
         this.lastPosition = currentPosition()
     }
-
-    fun lastPosition() = this.lastPosition
 }
