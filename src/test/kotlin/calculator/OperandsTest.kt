@@ -12,8 +12,8 @@ class OperandsTest {
         operands.add("1")
         operands.add("2")
 
-        val operandA = operands.firstOperand()
-        val operandB = operands.firstOperand()
+        val operandA = operands.removeFirst()
+        val operandB = operands.removeFirst()
 
         assertThat(operandA).isEqualTo(1)
         assertThat(operandB).isEqualTo(2)

@@ -19,11 +19,11 @@ class Operands {
 
     fun isCalculable() = this.operands.size == CALCULABLE_SIZE
 
-    fun firstOperand() = this.operands.removeFirst()
+    fun removeFirst() = this.operands.removeFirst()
 
     fun getResult(): Int {
         require(operands.size == 1) { throw IllegalArgumentException("유효하지 않은 입력값입니다.") }
-        return firstOperand()
+        return removeFirst()
     }
 
     companion object {
