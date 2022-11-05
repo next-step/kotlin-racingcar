@@ -5,7 +5,7 @@ data class Car(
 ) {
     companion object {
         fun make(count: Long) =
-            ArrayList<Car>().apply {
+            mutableListOf<Car>().apply {
                 for (i in 0 until count) {
                     this.add(Car())
                 }
