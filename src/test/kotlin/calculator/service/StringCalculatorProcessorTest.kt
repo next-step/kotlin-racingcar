@@ -1,8 +1,8 @@
 package calculator.service
 
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
@@ -13,16 +13,14 @@ internal class StringCalculatorProcessorTest {
     @Test
     internal fun `길이가 0인 리스트`() {
         val list = emptyList<String>()
-        assertThatThrownBy { StringCalculatorProcessor(list).process() }
-            .isInstanceOf(IllegalArgumentException::class.java)
+        assertThrows<IllegalArgumentException> { StringCalculatorProcessor(list).process() }
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["+", "* 1 + 2", "1 + + 2", "1 +", "1 1 2", "1 $ 2"])
     internal fun `계산할 수 없는 리스트`(input: String) {
         val list = input.split(" ")
-        assertThatThrownBy { StringCalculatorProcessor(list).process() }
-            .isInstanceOf(RuntimeException::class.java)
+        assertThrows<RuntimeException> { StringCalculatorProcessor(list).process() }
     }
 
     @ParameterizedTest

@@ -1,8 +1,8 @@
 package calculator.model
 
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import java.math.BigDecimal
 
 internal class CalculationBlockTest {
@@ -11,15 +11,13 @@ internal class CalculationBlockTest {
     fun `연산이 없을 경우 apply 불가`() {
         val block = CalculationBlock(BigDecimal(10))
         val decimal = BigDecimal(10)
-        assertThatThrownBy { block.apply(decimal) }
-            .isInstanceOf(IllegalStateException::class.java)
+        assertThrows<IllegalStateException> { block.apply(decimal) }
     }
 
     @Test
     fun `중간 연산일 경우 result 획득 불가`() {
         val block = CalculationBlock(BigDecimal(10), Calculation.ADD)
-        assertThatThrownBy { block.result() }
-            .isInstanceOf(IllegalStateException::class.java)
+        assertThrows<IllegalStateException> { block.result() }
     }
 
     @Test
@@ -50,7 +48,6 @@ internal class CalculationBlockTest {
     fun `연산자가 없을 경우 reduce 불가`() {
         val block = CalculationBlock(BigDecimal(10))
         val value = "10"
-        assertThatThrownBy { CalculationBlock.reduce(block, value) }
-            .isInstanceOf(IllegalStateException::class.java)
+        assertThrows<IllegalStateException> { CalculationBlock.reduce(block, value) }
     }
 }

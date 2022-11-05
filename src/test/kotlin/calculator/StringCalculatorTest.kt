@@ -2,7 +2,7 @@ package calculator
 
 import calculator.StringCalculator.Companion.calculate
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.NullSource
@@ -14,8 +14,7 @@ class StringCalculatorTest {
     @NullSource
     @ValueSource(strings = [" ", "  ", "   "])
     fun `입력값 공백, 널 검증`(input: String?) {
-        assertThatThrownBy { calculate(input) }
-            .isInstanceOf(IllegalArgumentException::class.java)
+        assertThrows<IllegalArgumentException> { calculate(input) }
     }
 
     @ParameterizedTest

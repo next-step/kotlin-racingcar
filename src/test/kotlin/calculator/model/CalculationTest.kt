@@ -1,7 +1,8 @@
 package calculator.model
 
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import java.math.BigDecimal
@@ -14,7 +15,7 @@ class CalculationTest {
 
         val result = Calculation.ADD.calculate(decimal1, decimal2)
 
-        Assertions.assertThat(result).isEqualTo(BigDecimal(3))
+        assertThat(result).isEqualTo(BigDecimal(3))
     }
 
     @Test
@@ -24,7 +25,7 @@ class CalculationTest {
 
         val result = Calculation.SUBTRACT.calculate(decimal1, decimal2)
 
-        Assertions.assertThat(result).isEqualTo(BigDecimal(-1))
+        assertThat(result).isEqualTo(BigDecimal(-1))
     }
 
     @Test
@@ -34,13 +35,13 @@ class CalculationTest {
 
         val result = Calculation.MULTIPLY.calculate(decimal1, decimal2)
 
-        Assertions.assertThat(result).isEqualTo(BigDecimal(21))
+        assertThat(result).isEqualTo(BigDecimal(21))
     }
 
     @ParameterizedTest
     @CsvSource(value = ["10:3:3", "10:3.00:3.33", "10.00:3:3.33", "100.0:20.0000:5.0000", "7:2:3"], delimiter = ':')
     fun `나눗셈`(d1: BigDecimal, d2: BigDecimal, expected: BigDecimal) {
-        Assertions.assertThat(Calculation.DIVIDE.calculate(d1, d2)).isEqualTo(expected)
+        assertThat(Calculation.DIVIDE.calculate(d1, d2)).isEqualTo(expected)
     }
 
     @Test
@@ -48,7 +49,6 @@ class CalculationTest {
         val decimal1 = BigDecimal(1)
         val decimal2 = BigDecimal(0)
 
-        Assertions.assertThatThrownBy { Calculation.DIVIDE.calculate(decimal1, decimal2) }
-            .isInstanceOf(ArithmeticException::class.java)
+        assertThrows<ArithmeticException> { Calculation.DIVIDE.calculate(decimal1, decimal2) }
     }
 }
