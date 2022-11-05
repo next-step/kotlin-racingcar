@@ -27,4 +27,12 @@ internal class CarTest : StringSpec({
         firstCar.isCurrentPosition() shouldBe secondCar.isCurrentPosition()
         firstCar shouldNotBe secondCar
     }
+
+    "자동차가 멈추면 마지막 위치값을 기억한다" {
+        val car = Car()
+        car.move()
+        car.stop()
+        val lastPosition = car.lastPosition()
+        lastPosition shouldBe car.isCurrentPosition()
+    }
 })
