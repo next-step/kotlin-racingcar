@@ -1,6 +1,6 @@
 package com.dajeong.step2
 
-import step2.Application
+import stringcalculator.application.Application
 
 fun main() {
     Application().run()

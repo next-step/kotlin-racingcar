@@ -1,8 +1,12 @@
-package step2.operator
+package stringcalculator.operator
 
 import kotlin.math.roundToInt
 
 class DivideOperator : Operator {
+    override fun character(): String {
+        return "/"
+    }
+
     override fun operate(x: Double, y: Double): Double {
         return round(x / y)
     }

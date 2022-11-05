@@ -1,14 +1,15 @@
 package step2
 
-import com.dajeong.step2.StringCalculator
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import step2.operator.OperatorSelector
+import stringcalculator.application.StringCalculator
+import stringcalculator.operator.OperatorRegister
+import stringcalculator.operator.OperatorSelector
 
 class StringCalculatorTest : StringSpec({
 
-    val stringCalculator = StringCalculator(OperatorSelector())
+    val stringCalculator = StringCalculator(OperatorSelector(OperatorRegister.operators))
 
     "공백 문자열 에러 테스트" {
         val exception = shouldThrowExactly<IllegalArgumentException> {
