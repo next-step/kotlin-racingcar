@@ -1,4 +1,4 @@
-package sutdy
+package step1.sutdy
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
