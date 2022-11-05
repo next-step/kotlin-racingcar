@@ -3,13 +3,6 @@ import java.util.Queue
 
 class StringCalculator {
 
-    enum class Operator(val sign: Char) {
-        PLUS('+'),
-        MINUS('-'),
-        MULTIPLY('*'),
-        DIVIDE('/');
-    }
-
     fun calculate(input: String): Int {
 
         if (input.isNullOrEmpty()) {
@@ -17,6 +10,7 @@ class StringCalculator {
         }
 
         var data = input.replace(" ", "")
+        verifyOperator(data)
         val sortedPriorityList = priorityIndexes(data)
         val queue = createOperandAndOperatorQueue(data, sortedPriorityList)
 
@@ -30,11 +24,11 @@ class StringCalculator {
             val operator = queue.poll()
             val operand = queue.poll()
 
-            when (operator.first()) {
-                Operator.PLUS.sign -> result += Integer.parseInt(operand)
-                Operator.MINUS.sign -> result -= Integer.parseInt(operand)
-                Operator.MULTIPLY.sign -> result *= Integer.parseInt(operand)
-                Operator.DIVIDE.sign -> result /= Integer.parseInt(operand)
+            result = when (Operator(operator.first())) {
+                Operator.PLUS -> Operator.PLUS.calculate(result, Integer.parseInt(operand))
+                Operator.MINUS -> Operator.MINUS.calculate(result, Integer.parseInt(operand))
+                Operator.MULTIPLY -> Operator.MULTIPLY.calculate(result, Integer.parseInt(operand))
+                Operator.DIVIDE -> Operator.DIVIDE.calculate(result, Integer.parseInt(operand))
             }
         }
 
@@ -42,14 +36,14 @@ class StringCalculator {
     }
 
     private fun verifyOperator(data: String) {
-        // 80 ~ 89 제외한 나머지
         for (c in data) {
+            var isOperator = false
             for (operator in Operator.values()) {
-                if (c == operator.sign) {
-                    continue
+                if (operator.equals(c)) {
+                    isOperator = true
                 }
             }
-            if (c < 80.toChar() || c > 89.toChar()) {
+            if (!isOperator && (c < 48.toChar() || c > 57.toChar())) {
                 throw IllegalArgumentException()
             }
         }
@@ -59,7 +53,7 @@ class StringCalculator {
         val priorityList = mutableListOf<Pair<Char, Int>>()
 
         for (operator in Operator.values()) {
-            val index = data.indexOfFirst { c -> c == operator.sign }
+            val index = data.indexOfFirst { c -> operator.equals(c) }
             if (index > -1) {
                 val pair: Pair<Char, Int> = Pair(operator.sign, index)
                 priorityList.add(pair)
