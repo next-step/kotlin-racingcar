@@ -1,9 +1,13 @@
 package game.racingcar
 
+import game.racingcar.move.MoveStrategy
+import game.racingcar.move.RandomMoveStrategy
+
 class RacingCars(
-    numberOfCars: Int
+    numberOfCars: Int,
+    moveStrategy: MoveStrategy = RandomMoveStrategy()
 ) {
-    private val racingCars = (1..numberOfCars).map { RacingCar() }
+    private val racingCars = (1..numberOfCars).map { RacingCar(moveStrategy) }
 
     fun moveAll() {
         racingCars.forEach { it.move() }
