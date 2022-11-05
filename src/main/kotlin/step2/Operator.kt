@@ -1,5 +1,7 @@
 package step2
 
+import java.lang.IllegalArgumentException
+
 enum class Operator(val sign: String) {
     PLUS("+"),
     MINUS("-"),
@@ -20,7 +22,8 @@ enum class Operator(val sign: String) {
             return if (sign == "+") PLUS
             else if (sign == "-") MINUS
             else if (sign == "*") MULTIPLY
-            else DIVIDE
+            else if (sign == "/") DIVIDE
+            else throw IllegalArgumentException("Operator의 종류는 +-*/ 중 하나여야 합니다.")
         }
     }
 }
