@@ -10,7 +10,7 @@ internal class RacingCarsTest {
         // given
         val racingCars = RacingCars(3)
         // when
-        val snapshot = racingCars.locationSnapshot()
+        val snapshot = racingCars.locations()
         // then
         snapshot.forEach {
             assertThat(it).isEqualTo(0)

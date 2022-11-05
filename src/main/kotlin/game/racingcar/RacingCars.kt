@@ -15,7 +15,7 @@ class RacingCars(
         racingCars.forEach { it.move() }
     }
 
-    fun locationSnapshot(): List<Int> {
+    fun locations(): List<Int> {
         return racingCars.map { it.location }
     }
 }
