@@ -1,12 +1,12 @@
 package com.nextstep.stringcalculator
 
-enum class Operator(val symbol: String, val calculate: (Long, Long) -> Long) : Element {
+enum class Operator(val symbol: String, val calculate: (Number, Number) -> Number) : Element {
     PLUS("+", { x, y -> x + y }),
     MINUS("-", { x, y -> x - y }),
     MULTIPLY("*", { x, y -> x * y }),
     DIVIDE("/", { x, y -> x / y });
 
-    fun apply(leftNumber: Long, rightNumber: Long): Long = this.calculate(leftNumber, rightNumber)
+    fun apply(left: Number, right: Number): Number = this.calculate(left, right)
 
     companion object {
         fun find(input: String): Operator {

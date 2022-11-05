@@ -14,29 +14,29 @@ class OperatorTest : BehaviorSpec({
     given("Operator.apply(number, number)") {
         `when`("PLUS and two numbers are provided") {
             then("plus two numbers") {
-                val result: Long = PLUS.apply(10, 2)
-                result shouldBe 12
+                val result: Number = PLUS.apply(Number(10), Number(2))
+                result.value shouldBe 12
             }
         }
 
         `when`("MINUS and two numbers are provided") {
             then("minus two numbers") {
-                val result: Long = MINUS.apply(10, 2)
-                result shouldBe 8
+                val result: Number = MINUS.apply(Number(10), Number(2))
+                result.value shouldBe 8
             }
         }
 
         `when`("MULTIPLY and two numbers are provided") {
             then("multiply two numbers") {
-                val result: Long = MULTIPLY.apply(10, 2)
-                result shouldBe 20
+                val result: Number = MULTIPLY.apply(Number(10), Number(2))
+                result.value shouldBe 20
             }
         }
 
         `when`("DIVIDE and two numbers are provided") {
             then("divide left number by right number") {
-                val result: Long = DIVIDE.apply(10, 2)
-                result shouldBe 5
+                val result: Number = DIVIDE.apply(Number(10), Number(2))
+                result.value shouldBe 5
             }
         }
     }
