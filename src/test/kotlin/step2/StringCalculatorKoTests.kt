@@ -20,7 +20,7 @@ class StringCalculatorKoTests : FreeSpec({
             "2 * 3 / 4 - 2" to -1,
             "2 / 3 + 4 * 2" to 8
         ).forEach { (expression, expected) ->
-            "$expression = $expected" {
+            "$expression = $expected - OK" {
                 stringCalculator.calculate(expression) shouldBe expected
             }
         }
@@ -31,7 +31,7 @@ class StringCalculatorKoTests : FreeSpec({
             null,
             " ",
         ).forEach {
-            "expression: [${it ?: "null"}]" {
+            "expression: [$it] - ${ErrorMessage.NULL_OR_BLANK}" {
                 val exception = shouldThrow<IllegalArgumentException> {
                     stringCalculator.calculate(it)
                 }
@@ -47,7 +47,7 @@ class StringCalculatorKoTests : FreeSpec({
             "2 * 3 / 4 ! 2",
             "2 / 3 = 4 - 2"
         ).forEach {
-            "expression: [$it]" {
+            "expression: [$it] - ${ErrorMessage.INVALID_OPERATOR}" {
                 val exception = shouldThrow<IllegalArgumentException> {
                     stringCalculator.calculate(it)
                 }
@@ -63,7 +63,7 @@ class StringCalculatorKoTests : FreeSpec({
             "2 * x / 4 - 2",
             "x / 3 + 4 - 2"
         ).forEach {
-            "expression: [$it]" {
+            "expression: [$it] - ${ErrorMessage.INVALID_NUMBER_FORMAT}" {
                 val exception = shouldThrow<IllegalArgumentException> {
                     stringCalculator.calculate(it)
                 }
@@ -79,7 +79,7 @@ class StringCalculatorKoTests : FreeSpec({
             "2 * 3 / 4 - ",
             "2 / 3 + 4 - "
         ).forEach {
-            "expression: [$it]" {
+            "expression: [$it] - ${ErrorMessage.NOT_ENOUGH_OPERAND}" {
                 val exception = shouldThrow<IllegalArgumentException> {
                     stringCalculator.calculate(it)
                 }
