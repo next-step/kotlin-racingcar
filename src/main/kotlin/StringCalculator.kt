@@ -24,12 +24,8 @@ class StringCalculator {
             val operator = queue.poll()
             val operand = queue.poll()
 
-            result = when (Operator(operator.first())) {
-                Operator.PLUS -> Operator.PLUS.calculate(result, Integer.parseInt(operand))
-                Operator.MINUS -> Operator.MINUS.calculate(result, Integer.parseInt(operand))
-                Operator.MULTIPLY -> Operator.MULTIPLY.calculate(result, Integer.parseInt(operand))
-                Operator.DIVIDE -> Operator.DIVIDE.calculate(result, Integer.parseInt(operand))
-            }
+            val o = Operator(operator.first())
+            result = o.calculate(result, Integer.parseInt(operand))
         }
 
         return result
