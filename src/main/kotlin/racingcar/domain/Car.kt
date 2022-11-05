@@ -1,6 +1,18 @@
 package racingcar.domain
 
 data class Car(
-    val distance: Long
+    var route: String = "-"
 ) {
+    companion object {
+        fun make(count: Long) =
+            ArrayList<Car>().apply {
+                for (i in 0 until count) {
+                    this.add(Car())
+                }
+            }
+    }
+
+    fun move() {
+        this.route += "-"
+    }
 }
