@@ -1,9 +1,9 @@
-package string_calculator
+package step2_string_calculator
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import string_calculator.Calculation.Companion.calculate
-import string_calculator.Calculation.Companion.isValid
+import step2_string_calculator.Calculation.Companion.calculate
+import step2_string_calculator.Calculation.Companion.isValid
 
 class CalculationTest : StringSpec({
     "두 입력 값을 더한 결과가 올바르다." {

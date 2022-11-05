@@ -1,4 +1,4 @@
-package string_calculator
+package step2_string_calculator
 
 enum class Calculation(val operator: Char, private val calculation: (Int, Int) -> Int) {
     PLUS('+', { a, b -> a + b }),

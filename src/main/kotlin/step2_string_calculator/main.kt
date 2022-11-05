@@ -1,4 +1,4 @@
-package string_calculator
+package step2_string_calculator
 
 fun main() {
     print("문자열을 입력해 주세요:")

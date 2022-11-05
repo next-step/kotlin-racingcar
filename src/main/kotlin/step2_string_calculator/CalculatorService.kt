@@ -1,4 +1,4 @@
-package string_calculator
+package step2_string_calculator
 
 class CalculatorService {
     fun verifyExpression(expression: String?) {
