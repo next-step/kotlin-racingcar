@@ -8,8 +8,8 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class StringCalculatorTest {
 
-    @ParameterizedTest
-    @CsvSource(value = ["2 + 3 * 4 / 2,10", "2 - 10 + 7 + 1 * 100,0"])
+    @ParameterizedTest(name = "{0} = {1}")
+    @CsvSource(value = ["2 + 3 * 4 / 2 = 10", "2 - 10 + 7 + 1 * 100 = 0"], delimiter = '=')
     fun `정상 입력값에서 계산시 결과값을 반환해야 합니다`(input: String, expectedResult: Int) {
         assertThat(StringCalculator.calculate(input)).isEqualTo(expectedResult)
     }

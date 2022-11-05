@@ -10,8 +10,8 @@ class OperandsTest {
         val operands = Operands()
         operands.add("1")
         operands.add("2")
-        Assertions.assertThat(operands.getOperand()).isEqualTo(1)
-        Assertions.assertThat(operands.getOperand()).isEqualTo(2)
+        Assertions.assertThat(operands.firstOperand()).isEqualTo(1)
+        Assertions.assertThat(operands.firstOperand()).isEqualTo(2)
     }
 
     @Test

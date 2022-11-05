@@ -1,39 +1,29 @@
 package calculator
 
-private const val CALCULABLE = 2
-
 class Operands {
 
-    val operands: ArrayDeque<Int> = ArrayDeque()
+    private val CALCULABLE_SIZE = 2
+    private val operands: ArrayDeque<Int> = ArrayDeque()
 
     fun add(operand: Int) {
-        validate()
+        require(operands.size < CALCULABLE_SIZE) { "유효하지 않은 입력값입니다." }
         this.operands.add(operand)
     }
 
     fun add(operand: String) {
-        validate()
         try {
-            this.operands.add(operand.toInt())
+            this.add(operand.toInt())
         } catch (e: java.lang.NumberFormatException) {
             throw IllegalArgumentException("피연산자는 숫자여야만 합니다.")
         }
     }
 
-    private fun validate() {
-        if (operands.size >= CALCULABLE) {
-            throw IllegalArgumentException("유효하지 않은 입력값입니다.")
-        }
-    }
+    fun isCalculable() = this.operands.size == CALCULABLE_SIZE
 
-    fun isCalculable() = this.operands.size == CALCULABLE
-
-    fun getOperand() = this.operands.removeFirst()
+    fun firstOperand() = this.operands.removeFirst()
 
     fun getResult(): Int {
-        if (this.operands.size != 1) {
-            throw IllegalArgumentException("유효하지 않은 입력값입니다.")
-        }
-        return getOperand()
+        require(operands.size == 1) { throw IllegalArgumentException("유효하지 않은 입력값입니다.") }
+        return firstOperand()
     }
 }
