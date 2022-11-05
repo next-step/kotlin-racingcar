@@ -1,9 +1,9 @@
 package racingcar
 
+import fixture.NextRandomFixture
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import kotlin.random.Random
 
 internal class CarTest {
 
@@ -13,16 +13,9 @@ internal class CarTest {
         // given
         val car = Car(0)
         // when
-        val afterRaceCar = car.race(FixNextRandom(input))
+        val afterRaceCar = car.race(NextRandomFixture(input))
 
         // then
         assertThat(afterRaceCar.pos).isEqualTo(expectedPos)
     }
-}
-
-class FixNextRandom(
-    private val fixValue: Int
-) : Random() {
-    override fun nextBits(bitCount: Int): Int = bitCount
-    override fun nextInt(until: Int): Int = fixValue
 }
