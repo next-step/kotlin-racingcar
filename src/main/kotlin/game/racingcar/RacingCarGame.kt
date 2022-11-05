@@ -7,7 +7,7 @@ class RacingCarGame(
     private val numberOfCars: Int,
     private val numberOfTrials: Int,
 ) {
-    fun play(): MutableList<List<Int>> {
+    fun play(): List<List<Int>> {
         val locationSnapshots = mutableListOf<List<Int>>()
 
         val racingCars = RacingCars(numberOfCars)
