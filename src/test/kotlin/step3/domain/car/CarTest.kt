@@ -8,13 +8,13 @@ import io.kotest.matchers.shouldNotBe
 internal class CarTest : StringSpec({
     "자동차는 위치값을 갖는다" {
         val car = Car()
-        val initPosition = car.isCurrentPosition()
+        val initPosition = car.currentPosition()
         initPosition.shouldNotBeNull()
     }
 
     "자동차는 움직이면 위치값이 변한다" {
         val car = Car()
-        val initPosition = car.isCurrentPosition()
+        val initPosition = car.currentPosition()
         val postPosition = car.move()
         initPosition shouldNotBe postPosition
     }
@@ -24,7 +24,7 @@ internal class CarTest : StringSpec({
         val secondCar = Car()
         firstCar.move()
         secondCar.move()
-        firstCar.isCurrentPosition() shouldBe secondCar.isCurrentPosition()
+        firstCar.currentPosition() shouldBe secondCar.currentPosition()
         firstCar shouldNotBe secondCar
     }
 
@@ -33,6 +33,6 @@ internal class CarTest : StringSpec({
         car.move()
         car.stop()
         val lastPosition = car.lastPosition()
-        lastPosition shouldBe car.isCurrentPosition()
+        lastPosition shouldBe car.currentPosition()
     }
 })
