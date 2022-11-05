@@ -6,7 +6,5 @@ class Car {
 
     fun isCurrentPosition(): Position = position
 
-    fun move() {
-        position.forward()
-    }
+    fun move() = position.forward()
 }
