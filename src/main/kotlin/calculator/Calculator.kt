@@ -12,13 +12,12 @@ class Calculator(
     }
 
     fun pressButton(input: String?) {
-        val expression: String = if (input == null) {
+        val terms: List<String> = if (input == null) {
             keypad.pressed()
         } else {
             keypad.pressed(input)
         }
 
-        val terms = covertExpressionToTerm(expression)
         memory.store(terms)
     }
 
@@ -34,9 +33,5 @@ class Calculator(
 
         monitor.display(memory.accumulator.toString())
         return memory.accumulator
-    }
-
-    private fun covertExpressionToTerm(expression: String): List<String> {
-        return expression.split(" ")
     }
 }
