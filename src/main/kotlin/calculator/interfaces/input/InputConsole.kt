@@ -21,8 +21,7 @@ object InputConsole {
     fun input(): String {
         val stringJoiner = StringJoiner(JOINER_DELIMITER)
 
-        val firstNumber = inputFirstNumber()
-        validateNumber(firstNumber)
+        val firstNumber = inputNumber(INPUT_NUMBER_COMMENT)
 
         stringJoiner.add(firstNumber)
 
@@ -35,15 +34,12 @@ object InputConsole {
         return stringJoiner.toString()
     }
 
-    private fun inputFirstNumber(): String =
+    private fun inputNumber(comment: String): String =
         try {
-            println(INPUT_NUMBER_COMMENT)
-            val firstNumber = readln()
-            validateNumber(firstNumber)
-
-            firstNumber
+            println(comment)
+            readln().validateNumber()
         } catch (e: IllegalArgumentException) {
-            inputFirstNumber()
+            inputNumber(e.localizedMessage)
         }
 
     private fun inputOperatorWithNumber(): Pair<String, String> =
@@ -53,21 +49,21 @@ object InputConsole {
             validateOperator(operator)
 
             println(INPUT_NUMBER_COMMENT)
-            val number = readln()
-            validateNumber(number)
+            val number = readln().validateNumber()
 
             operator to number
         } catch (e: IllegalArgumentException) {
             inputOperatorWithNumber()
         }
 
-    private fun validateNumber(string: String) {
+    private fun String.validateNumber() =
         try {
-            string.toInt()
+            apply {
+                this.toInt()
+            }
         } catch (e: NumberFormatException) {
             throw IllegalArgumentException(INPUT_CORRECT_NUMBER_COMMENT)
         }
-    }
 
     private fun validateOperator(string: String) {
         try {
