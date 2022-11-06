@@ -1,8 +1,8 @@
 package racingcar
 
-class Car(val status: Int = 0) {
-    fun move(): Car {
-        return Car(status + 1)
+class Car(var status: Int = 0) {
+    fun move() {
+        status++
     }
 
     override fun equals(other: Any?): Boolean {
