@@ -27,7 +27,7 @@ class CalculatorTest : BehaviorSpec({
     )
     Given("유효한 수식이") {
         When("계산기에 입력되면") {
-            Then("결과값을 출력한다.") {
+            Then("수식의 계산 결과값을 출력한다.") {
                 validExpressions.forAll { (expression, result) ->
                     calculate(expression) shouldBe result
                 }
