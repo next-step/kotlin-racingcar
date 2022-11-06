@@ -1,6 +1,6 @@
 package calcualator
 
-data class Calculator(private val value: String) {
+class Calculator(private val value: String) {
     fun operate(beforeOperator: Operator, value: Calculator): Calculator {
         return when (beforeOperator) {
             Operator.ADD -> Calculator(this.value.toInt().plus(value.value.toInt()).toString())
