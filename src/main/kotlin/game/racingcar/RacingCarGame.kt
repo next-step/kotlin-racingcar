@@ -7,14 +7,14 @@ import game.racingcar.view.InputView
 import game.racingcar.view.OutputView
 
 class RacingCarGame(
-    private val numberOfCars: Int,
+    private val carNames: List<String>,
     private val numberOfTrials: Int,
     private val moveStrategy: MoveStrategy = RandomMoveStrategy()
 ) {
     fun play(): List<LocationSnapshot> {
         val locationSnapshots = mutableListOf<LocationSnapshot>()
 
-        val racingCars = RacingCars(numberOfCars, moveStrategy)
+        val racingCars = RacingCars(carNames, moveStrategy)
         (1..numberOfTrials).forEach {
             locationSnapshots.add(LocationSnapshot(racingCars.moveAll()))
         }
@@ -23,9 +23,9 @@ class RacingCarGame(
 }
 
 fun main() {
-    val (numberOfCars, numberOfTrials) = InputView.getInputFromConsole()
+    val (carNames, numberOfTrials) = InputView.getInputFromConsole()
 
-    val racingCarGame = RacingCarGame(numberOfCars, numberOfTrials)
+    val racingCarGame = RacingCarGame(carNames, numberOfTrials)
     val snapshots = racingCarGame.play()
 
     OutputView.printOutputToConsole(snapshots)

@@ -5,8 +5,8 @@ import game.racingcar.move.RandomMoveStrategy
 import java.lang.IllegalArgumentException
 
 class RacingCar(
+    val name: String = "",
     private val moveStrategy: MoveStrategy = RandomMoveStrategy(),
-    private val name: String = "",
     var location: Int = 0,
 ) {
     init {

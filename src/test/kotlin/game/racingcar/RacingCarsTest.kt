@@ -9,7 +9,7 @@ internal class RacingCarsTest {
     @Test
     fun `RacingCars가 AlwaysMoveStrategy로 생성되었을 때 모두 위치가 1씩 증가한다`() {
         // given
-        val racingCars = RacingCars(3, AlwaysMoveStrategy())
+        val racingCars = RacingCars(listOf("haris", "horis", "huris"), AlwaysMoveStrategy())
         // when
         val snapshot = racingCars.moveAll()
         // then
