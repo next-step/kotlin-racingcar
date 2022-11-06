@@ -43,7 +43,7 @@ internal class OperatorKoTest : FreeSpec({
         Operator.values().forEach {
             "COMMAND INPUT STRING: $it" {
                 when (it) {
-                    Operator.ILLEGAL_STATE -> assertThrows<IllegalStateException> { it.toCommand() }
+                    Operator.EMPTY_OPERATOR -> assertThrows<IllegalStateException> { it.toCommand() }
                     else -> assertThat(it.toCommand()).isNotNull
                 }
             }

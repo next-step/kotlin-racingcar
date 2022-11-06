@@ -15,7 +15,7 @@ class SequentialParsingProcessor : ParsingProcessor {
 
         splitStringArray.chunked(size = SPLIT_SIZE) { chunk: List<String> ->
             val number = chunk.first().toInt()
-            val operator = if (chunk.size == SPLIT_SIZE) parseOperator(chunk.last()) else Operator.ILLEGAL_STATE
+            val operator = if (chunk.size == SPLIT_SIZE) parseOperator(chunk.last()) else Operator.EMPTY_OPERATOR
             inputOperationCommandList.add(InputOperationCommand(number, operator))
         }
 

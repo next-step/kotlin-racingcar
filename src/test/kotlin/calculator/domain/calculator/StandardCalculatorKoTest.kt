@@ -16,7 +16,7 @@ internal class StandardCalculatorKoTest : StringSpec({
             InputOperationCommand(1, Operator.ADDITION),
             InputOperationCommand(2, Operator.ADDITION),
             InputOperationCommand(3, Operator.ADDITION),
-            InputOperationCommand(4, Operator.ILLEGAL_STATE)
+            InputOperationCommand(4, Operator.EMPTY_OPERATOR)
         )
 
         calculator = StandardCalculator()
@@ -29,7 +29,7 @@ internal class StandardCalculatorKoTest : StringSpec({
             InputOperationCommand(1, Operator.ADDITION),
             InputOperationCommand(2, Operator.MULTIPLICATION),
             InputOperationCommand(3, Operator.SUBTRACTION),
-            InputOperationCommand(4, Operator.ILLEGAL_STATE)
+            InputOperationCommand(4, Operator.EMPTY_OPERATOR)
         )
 
         calculator = StandardCalculator()
@@ -42,7 +42,7 @@ internal class StandardCalculatorKoTest : StringSpec({
             InputOperationCommand(2, Operator.ADDITION),
             InputOperationCommand(3, Operator.MULTIPLICATION),
             InputOperationCommand(4, Operator.DIVISION),
-            InputOperationCommand(2, Operator.ILLEGAL_STATE)
+            InputOperationCommand(2, Operator.EMPTY_OPERATOR)
         )
 
         calculator = StandardCalculator()

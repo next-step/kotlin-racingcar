@@ -19,7 +19,7 @@ class StandardCalculator : Calculator<Int> {
             var first = window.first()
             temp?.let { first = it }
 
-            if (first.nextOperator == Operator.ILLEGAL_STATE) run {
+            if (first.nextOperator == Operator.EMPTY_OPERATOR) run {
                 answer = first.number
                 return@windowed
             }
