@@ -1,10 +1,10 @@
 package calculator
 
-import calculator.utils.rawExpressionSplit
+import calculator.utils.splitByBlank
 
 object ExpressionValidator {
     fun validate(rawExpression: String) {
-        val tokenizedExpressions = rawExpression.rawExpressionSplit()
+        val tokenizedExpressions = rawExpression.splitByBlank()
 
         require(isRightSize(tokenizedExpressions)) { "올바른 수식을 입력해주세요." }
         require(isComputableExpression(tokenizedExpressions)) { "올바른 수식을 입력해주세요." }
@@ -20,7 +20,7 @@ object ExpressionValidator {
     private fun isComputableExpression(expression: List<String>): Boolean {
         expression.forEachIndexed { index, tokenized ->
             val isValid = if (index % 2 == 0) isNumber(tokenized) else isOperator(tokenized)
-            if (!isValid) throw IllegalArgumentException("올바른 수식을 입력해주세요.")
+            if (!isValid) return false
         }
 
         return true

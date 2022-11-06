@@ -31,14 +31,17 @@ internal class OperatorTest : FunSpec({
             val operator: Operator,
             val number1: Double,
             val number2: Double,
-            val result: Double
+            val result: Double,
         )
 
         withData(
-            OperatorTestData(operator = Operator.ADDITION, number1 = 10.0, number2 = 2.0, result = 12.0),
-            OperatorTestData(operator = Operator.SUBTRACTION, number1 = 1.0, number2 = 10.0, result = -9.0),
-            OperatorTestData(operator = Operator.DIVISION, number1 = 13.0, number2 = 2.0, result = 6.5),
-            OperatorTestData(operator = Operator.MULTIPLICATION, number1 = 1.1, number2 = 10.0, result = 11.0)
+            nameFn = { "${it.number1} 과 ${it.number2}를 ${it.operator} 연산하면 결과는 ${it.result}가 된다." },
+            ts = listOf(
+                OperatorTestData(operator = Operator.ADDITION, number1 = 10.0, number2 = 2.0, result = 12.0),
+                OperatorTestData(operator = Operator.SUBTRACTION, number1 = 1.0, number2 = 10.0, result = -9.0),
+                OperatorTestData(operator = Operator.DIVISION, number1 = 13.0, number2 = 2.0, result = 6.5),
+                OperatorTestData(operator = Operator.MULTIPLICATION, number1 = 1.1, number2 = 10.0, result = 11.0)
+            )
         ) { (operator, number1, number2, result) ->
             operator(number1, number2) shouldBe result
         }

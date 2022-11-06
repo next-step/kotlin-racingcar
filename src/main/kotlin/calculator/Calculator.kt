@@ -1,6 +1,6 @@
 package calculator
 
-import calculator.utils.rawExpressionSplit
+import calculator.utils.splitByBlank
 
 object Calculator {
     fun execute(rawExpression: String): Double {
@@ -19,5 +19,5 @@ object Calculator {
     }
 
     private fun convertComputableExpression(rawExpression: String): List<String> =
-        listOf<String>("+").plus(rawExpression.rawExpressionSplit())
+        listOf<String>("+").plus(rawExpression.splitByBlank())
 }

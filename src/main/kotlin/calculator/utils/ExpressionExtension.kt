@@ -1,3 +1,3 @@
 package calculator.utils
 
-fun String.rawExpressionSplit(): List<String> = this.split("\\s".toRegex())
+fun String.splitByBlank(): List<String> = this.split("\\s".toRegex())
