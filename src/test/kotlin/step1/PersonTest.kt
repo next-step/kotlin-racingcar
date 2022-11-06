@@ -1,10 +1,12 @@
+package step1
+
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class PersonTest {
     @Test
     fun `이름 붙인 인자`() {
-        val person= Person(name = "정미수", nickname = "misudev", age = 29)
+        val person = Person(name = "정미수", nickname = "misudev", age = 29)
 
         assertThat(person.name).isEqualTo("정미수")
         assertThat(person.age).isEqualTo(29)
@@ -33,5 +35,4 @@ class PersonTest {
 
         assertThat(person1).isEqualTo(person2)
     }
-
 }
