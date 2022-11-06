@@ -1,12 +1,10 @@
 package calculator.interfaces.input
 
 import calculator.domain.operation.enums.Operator
-import java.util.Scanner
 import java.util.StringJoiner
 
 object InputConsole {
 
-    private val scanner = Scanner(System.`in`)
     private const val JOINER_DELIMITER = " "
 
     private const val INPUT_NUMBER_COMMENT = "숫자를 입력해주세요"
@@ -40,7 +38,7 @@ object InputConsole {
     private fun inputFirstNumber(): String =
         try {
             println(INPUT_NUMBER_COMMENT)
-            val firstNumber = scanner.nextLine()
+            val firstNumber = readln()
             validateNumber(firstNumber)
 
             firstNumber
@@ -51,11 +49,11 @@ object InputConsole {
     private fun inputOperatorWithNumber(): Pair<String, String> =
         try {
             println(INPUT_OPERATOR_COMMENT)
-            val operator = scanner.nextLine()
+            val operator = readln()
             validateOperator(operator)
 
             println(INPUT_NUMBER_COMMENT)
-            val number = scanner.nextLine()
+            val number = readln()
             validateNumber(number)
 
             operator to number
@@ -81,7 +79,7 @@ object InputConsole {
 
     private fun checkContinue(): Boolean {
         println(CONTINUE_QUESTION)
-        return when (scanner.nextLine().uppercase()) {
+        return when (readln().uppercase()) {
             YES -> true
             NO -> false
             else -> {

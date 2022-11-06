@@ -45,7 +45,6 @@ internal class OperatorKoTest : FreeSpec({
                 when (it) {
                     Operator.ILLEGAL_STATE -> assertThrows<IllegalStateException> { it.toCommand() }
                     else -> assertThat(it.toCommand()).isNotNull
-
                 }
             }
         }
