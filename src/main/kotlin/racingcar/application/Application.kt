@@ -16,10 +16,11 @@ class Application {
                 break
             }
             println(GuideScript.INPUT_PARTICIPANTS_GUIDE)
-            val totalParticipants = readln()
+            val totalParticipants = readln().toInt()
+            val cars = carManager.ready(totalParticipants)
+
             println(GuideScript.INPUT_TRY_COUNT_GUIDE)
             val tryCount = readln().toInt()
-            val cars = carManager.ready(totalParticipants)
             carRacing.participate(cars, tryCount)
         }
         println(GuideScript.CLOSE_GUIDE)

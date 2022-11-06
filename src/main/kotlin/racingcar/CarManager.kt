@@ -1,7 +1,7 @@
 package racingcar
 
 class CarManager {
-    fun ready(totalParticipants: String): List<Car> {
+    fun ready(totalParticipants: Int): List<Car> {
         TODO("Not yet implemented")
     }
 }
