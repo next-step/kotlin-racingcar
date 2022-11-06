@@ -1,21 +1,21 @@
-import calcualator.Calculator
+import calcualator.Number
 import calcualator.Operator
 import java.lang.IllegalArgumentException
 
 class CalculatorApplication {
-    fun calculate(context: String): Calculator {
+    fun calculate(context: String): Number {
         if (context.isBlank()) {
             throw IllegalArgumentException("빈 문자를 입력할 수 없습니다.")
         }
 
-        var result = Calculator(INIT_NUMBER)
+        var result = Number(INIT_NUMBER)
         var beforeOperator: Operator = Operator.ADD
         context.split(" ")
-            .forEachIndexed { index, s ->
+            .forEachIndexed { index, inputString ->
                 if (index % 2 == 0) {
-                    result = result.operate(beforeOperator, Calculator(s))
+                    result = result.operate(beforeOperator, Number(inputString))
                 } else if (index % 2 == 1) {
-                    beforeOperator = Operator.of(s)
+                    beforeOperator = Operator.of(inputString)
                 }
             }
         return result
