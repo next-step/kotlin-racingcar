@@ -1,16 +1,11 @@
 package stringcalculator.application
 
-import stringcalculator.operator.OperatorRegister
 import stringcalculator.operator.OperatorSelector
 
 class Application {
     private val stringCalculator: StringCalculator = StringCalculator(
-        OperatorSelector(OperatorRegister.operators)
+        OperatorSelector()
     )
-
-    companion object {
-        private const val STOP_COMMAND = "0"
-    }
 
     fun run() {
         println(GuideScript.PROGRAM_INFO)
@@ -28,5 +23,9 @@ class Application {
         }
         println(GuideScript.CLOSE_GUIDE)
         return
+    }
+
+    companion object {
+        private const val STOP_COMMAND = "0"
     }
 }

@@ -1,9 +1,7 @@
 package stringcalculator.operator
 
-class OperatorSelector(
-    operators: List<Operator>
-) {
-    private val operatorMap: Map<String, Operator> = operators.associateBy { it.character() }
+class OperatorSelector {
+    private val operatorMap: Map<String, Operator> = Operator.values().associateBy { it.character }
 
     fun get(operator: String): Operator {
         if (!operatorMap.containsKey(operator)) {
