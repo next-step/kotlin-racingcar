@@ -10,7 +10,7 @@ class RandomMoveCondition : MoveCondition {
 
     companion object {
         private const val MIN_NUMBER = 0
-        private const val MAX_NUMBER = 0
+        private const val MAX_NUMBER = 9
         private const val THRESHOLD_NUMBER = 4
     }
 }
