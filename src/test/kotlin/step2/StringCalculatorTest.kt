@@ -3,56 +3,28 @@ package step2
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.NullAndEmptySource
 
 class StringCalculatorTest {
-    @Test
-    fun `덧셈`() {
-        val input = "1 + 2"
+    @ParameterizedTest
+    @CsvSource(value = ["1 + 2,3", "10 - 2,8", "5 * 2,10", "10 / 2,5", "2 + 3 * 4 / 2,10"])
+    fun `올바른 수식을 입력한 경우`(input: String?, expected: Int?) {
         val stringCalculator = StringCalculator()
 
-        assertThat(stringCalculator.calculate(input)).isEqualTo(3)
+        assertThat(stringCalculator.calculate(input)).isEqualTo(expected)
     }
 
-    @Test
-    fun `뺄셈`() {
-        val input = "10 - 2"
+    @ParameterizedTest
+    @NullAndEmptySource
+    fun `입력값이 null 또는 빈 문자열인 경우`(input: String?) {
         val stringCalculator = StringCalculator()
 
-        assertThat(stringCalculator.calculate(input)).isEqualTo(8)
-    }
-
-    @Test
-    fun `곱셈`() {
-        val input = "5 * 2"
-        val stringCalculator = StringCalculator()
-
-        assertThat(stringCalculator.calculate(input)).isEqualTo(10)
-    }
-
-    @Test
-    fun `나눗셈`() {
-        val input = "10 / 2"
-        val stringCalculator = StringCalculator()
-
-        assertThat(stringCalculator.calculate(input)).isEqualTo(5)
-    }
-
-    @Test
-    fun `올바른 수식을 입력한 경우`() {
-        val input = "2 + 3 * 4 / 2"
-        val stringCalculator = StringCalculator()
-
-        assertThat(stringCalculator.calculate(input)).isEqualTo(10)
-    }
-
-    @Test
-    fun `입력값이 null인 경우`() {
-        val input = null
-        val stringCalculator = StringCalculator()
-
-        assertThatThrownBy {
+        assertThrows<IllegalArgumentException> {
             stringCalculator.calculate(input)
-        }.isInstanceOf(IllegalArgumentException::class.java)
+        }
     }
 
     @Test
@@ -60,8 +32,8 @@ class StringCalculatorTest {
         val input = "2 ? 3 * 4 / 2"
         val stringCalculator = StringCalculator()
 
-        assertThatThrownBy {
+        assertThrows<IllegalArgumentException> {
             stringCalculator.calculate(input)
-        }.isInstanceOf(IllegalArgumentException::class.java)
+        }
     }
 }

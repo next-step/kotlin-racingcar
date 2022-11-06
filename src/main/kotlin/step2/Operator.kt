@@ -1,26 +1,17 @@
 package step2
+import java.lang.IllegalArgumentException
 
-import java.util.function.BiFunction
+enum class Operator(val value: String, val calculate: (Int, Int) -> Int){
+    PLUS("+", { a , b -> a + b }),
 
-enum class Operator(val value: String) : BiFunction<Int, Int, Int> {
-    PLUS("+") {
-        override fun apply(t: Int, u: Int): Int = t + u
-    },
+    MINUS("-", { a, b -> a - b}),
 
-    MINUS("-") {
-        override fun apply(t: Int, u: Int): Int = t - u
-    },
+    MULTIPLY("*", { a, b -> a * b }),
 
-    MULTIPLY("*") {
-        override fun apply(t: Int, u: Int): Int = t * u
-    },
-
-    DIVIDE("/") {
-        override fun apply(t: Int, u: Int): Int = t / u
-    };
+    DIVIDE("/", { a, b -> a / b });
 
     companion object {
         private val operators = Operator.values().associateBy(Operator::value)
-        fun from(value: String) = operators[value]
+        fun from(value: String) = operators[value] ?: throw IllegalArgumentException()
     }
 }
