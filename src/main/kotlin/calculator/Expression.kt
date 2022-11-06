@@ -5,5 +5,10 @@ class Expression(
 ) {
     init {
         requireNotNull(expression)
+        requireNotBlank(expression)
+    }
+
+    private fun requireNotBlank(expression: String) {
+        require(expression.isNotBlank())
     }
 }
