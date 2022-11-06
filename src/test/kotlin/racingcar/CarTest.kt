@@ -1,5 +1,20 @@
 package racingcar
 
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Test
 
-internal class CarTest
+class CarTest {
+    @Test
+    fun `전진 테스트`() {
+        var toMoveCar = Car()
+        val moveCount = 2
+        val movedCar = Car(moveCount)
+
+        for (i in 1..moveCount) {
+            toMoveCar = toMoveCar.move()
+        }
+
+        assertEquals(movedCar, toMoveCar)
+    }
+}
+
