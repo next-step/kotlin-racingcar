@@ -1,5 +1,6 @@
 package calculator
 
+import calculator.const.CalculatorException
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
@@ -56,25 +57,28 @@ internal class ExpressionTest : FunSpec({
 
         context("사이즈가 3보다 작은 경우 실패한다.") {
             checkAll(numberArb, operatorArb) { a, op ->
-                shouldThrow<IllegalArgumentException> {
+                val exception = shouldThrow<IllegalArgumentException> {
                     Expression(listOf(a, op))
                 }
+                exception.message shouldBe CalculatorException.NOT_ENOUGH_SIZE
             }
         }
 
         context("홀수 개의 연산자와 짝수 개의 피연산자로 이루어져 있지 않다면 실패한다.") {
             checkAll(numberArb, operatorArb, numberArb, operatorArb) { a, op1, b, op2 ->
-                shouldThrow<IllegalArgumentException> {
+                val exception = shouldThrow<IllegalArgumentException> {
                     Expression(listOf(a, op1, b, op2))
                 }
+                exception.message shouldBe CalculatorException.NOT_PROPER_SIZE
             }
         }
 
         context("수식이 올바르지 않다면 실패한다.") {
             checkAll(operatorArb, operatorArb, numberArb) { op1, op2, a ->
-                shouldThrow<IllegalArgumentException> {
+                val exception = shouldThrow<IllegalArgumentException> {
                     Expression(listOf(op1, op2, a))
                 }
+                exception.message shouldBe CalculatorException.NOT_CORRECT_EXPRESSION
             }
         }
     }
@@ -99,9 +103,10 @@ internal class ExpressionTest : FunSpec({
                 listOf("4", "/", "0", "+", "1"),
             )
         ) { data ->
-            shouldThrow<IllegalArgumentException> {
+            val exception = shouldThrow<IllegalArgumentException> {
                 Expression(data).calculate()
             }
+            exception.message shouldBe CalculatorException.ZERO_DIVIDE_ERROR
         }
     }
 })

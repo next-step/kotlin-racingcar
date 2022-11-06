@@ -1,5 +1,6 @@
 package calculator
 
+import calculator.const.CalculatorException
 import calculator.util.isNumeric
 import calculator.util.isOddSize
 
@@ -26,10 +27,10 @@ data class Expression(
     }
 
     private fun isEnoughSize() =
-        require(rawExpression.size > MIN_SIZE) { "계산할 수 있는 최소 입력 값을 입력해주세요." }
+        require(rawExpression.size > MIN_SIZE) { CalculatorException.NOT_ENOUGH_SIZE }
 
     private fun isCorrectSize() =
-        require(rawExpression.isOddSize()) { "홀수개의 연산자와 짝수개의 피연산자가 존재 해야 합니다." }
+        require(rawExpression.isOddSize()) { CalculatorException.NOT_PROPER_SIZE }
 
     private fun isCorrectExpression() =
         require(
@@ -40,7 +41,7 @@ data class Expression(
                         false -> Operator.exist(data)
                     }
                 }
-        ) { "수식이 올바르지 않습니다." }
+        ) { CalculatorException.NOT_CORRECT_EXPRESSION }
 
     companion object {
         private const val FIRST_INDEX = 1

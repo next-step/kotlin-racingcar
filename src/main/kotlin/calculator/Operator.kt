@@ -1,5 +1,6 @@
 package calculator
 
+import calculator.const.CalculatorException
 import kotlin.IllegalArgumentException
 
 enum class Operator(val op: String) : (Double, Double) -> Double {
@@ -11,7 +12,7 @@ enum class Operator(val op: String) : (Double, Double) -> Double {
     },
     DIVIDE("/") {
         override fun invoke(a: Double, b: Double): Double {
-            require(b != 0.0) { "나누기를 진행할 때, 피연산자는 0이 될 수 없어요." }
+            require(b != 0.0) { CalculatorException.ZERO_DIVIDE_ERROR }
             return a.div(b)
         }
     },
