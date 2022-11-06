@@ -2,15 +2,21 @@ package calculator
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.collections.shouldContainAll
+import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.types.shouldBeInstanceOf
 
 internal class OperatorTest : StringSpec({
-    "사칙연산 기호가 아닌 경우 예외 발생" {
-        val plusSymbol = "+"
-        val wrongSymbol = "@"
+    "올바른 사칙연산 기호" {
+        val symbols = Operator.values().map { it.symbol }
+        val expectSymbols = listOf("+", "-", "*", "/")
 
-        Operator.of(plusSymbol).shouldBeInstanceOf<Operator>()
+        symbols shouldHaveSize 4
+        symbols shouldContainAll expectSymbols
+    }
+
+    "사칙연산 기호가 아닌 경우 예외 발생" {
+        val wrongSymbol = "@"
 
         shouldThrow<IllegalArgumentException> {
             Operator.of(wrongSymbol)

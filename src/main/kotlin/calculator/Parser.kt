@@ -1,10 +1,6 @@
 package calculator
 
 class Parser {
-    companion object {
-        private val space = "\\s".toRegex()
-    }
-
     fun parse(rawExpression: String?): List<Pair<Operator, Double>> {
         require(!rawExpression.isNullOrEmpty()) {
             "입력값이 빈 값이면 예외가 발생합니다."
@@ -40,4 +36,8 @@ class Parser {
         } else {
             Operator.exist(expression)
         }
+
+    companion object {
+        private val space = "\\s".toRegex()
+    }
 }
