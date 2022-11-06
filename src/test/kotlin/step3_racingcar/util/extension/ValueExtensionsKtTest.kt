@@ -6,10 +6,10 @@ import io.kotest.matchers.shouldBe
 
 class ValueExtensionsKtTest : BehaviorSpec({
     given("Int 값에 .greaterThanOrEquals 확장함수를 호출 했을 때") {
+        val number = 3
         `when`("인자의 값이 더 크다면") {
             then("false 가 반환된다.") {
                 listOf(4, 8, 50).forAll {
-                    val number = 3
                     number.greaterThanOrEquals(it) shouldBe false
                 }
             }
@@ -18,7 +18,6 @@ class ValueExtensionsKtTest : BehaviorSpec({
         `when`("인자의 값이 작거나 같다면") {
             then("true 가 반환된다") {
                 listOf(3, 2, 1).forAll {
-                    val number = 3
                     number.greaterThanOrEquals(it) shouldBe true
                 }
             }

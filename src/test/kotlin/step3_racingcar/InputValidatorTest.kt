@@ -13,8 +13,8 @@ class InputValidatorTest : BehaviorSpec({
 
     given("입력 값이") {
         `when`("null 이거나 공백 또는 빈 문자열일 경우") {
-            then("illegalArgumentException 예외를 반환한다.") {
-                invalidInputList.forAll {
+            invalidInputList.forAll {
+                then("illegalArgumentException 예외를 반환한다.") {
                     val exception = shouldThrow<IllegalArgumentException> {
                         inputValidator.inputValidate(it)
                     }
@@ -24,8 +24,8 @@ class InputValidatorTest : BehaviorSpec({
         }
 
         `when`("숫자가 아닌 문자가 올 경우") {
-            then("illegalArgumentException 예외를 반환한다.") {
-                notConvertToIntList.forAll {
+            notConvertToIntList.forAll {
+                then("illegalArgumentException 예외를 반환한다.") {
                     val exception = shouldThrow<IllegalArgumentException> {
                         inputValidator.inputValidate(it)
                     }
@@ -35,8 +35,8 @@ class InputValidatorTest : BehaviorSpec({
         }
 
         `when`("0 이하의 숫자를 입력할 경우") {
-            then("illegalArgumentException 예외를 반환한다.") {
-                zeroAndNegativeNumberList.forAll {
+            zeroAndNegativeNumberList.forAll {
+                then("illegalArgumentException 예외를 반환한다.") {
                     val exception = shouldThrow<IllegalArgumentException> {
                         inputValidator.inputValidate(it)
                     }
@@ -46,8 +46,8 @@ class InputValidatorTest : BehaviorSpec({
         }
 
         `when`("양의 정수를 입력할 경우") {
-            then("입력한 값이 Int 타입으로 반환된다.") {
-                positiveNumberList.forAll {
+            positiveNumberList.forAll {
+                then("입력한 값이 Int 타입으로 반환된다.") {
                     inputValidator.inputValidate(it) shouldBe it.toIntOrNull()
                 }
             }
