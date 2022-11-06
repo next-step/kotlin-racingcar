@@ -2,7 +2,9 @@ package game.racingcar
 
 import game.racingcar.move.AlwaysMoveStrategy
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertAll
 
 internal class RacingCarsTest {
 
@@ -16,5 +18,21 @@ internal class RacingCarsTest {
         snapshot.forEach {
             assertThat(it).isEqualTo(1)
         }
+    }
+
+    @Test
+    fun `RacingCars가 AlawaysMoveStrategy로 생성되었을 때 승자는 모두가 된다`() {
+        // given
+        val racingCars = RacingCars(listOf("haris", "horis", "huris"), AlwaysMoveStrategy())
+
+        // when
+        val winners: List<String> = racingCars.pickWinners()
+
+        // then
+        assertAll(
+            { assertTrue(winners.contains("haris")) },
+            { assertTrue(winners.contains("horis")) },
+            { assertTrue(winners.contains("huris")) },
+        )
     }
 }
