@@ -26,6 +26,13 @@ class NonNegative {
         this.value = this.value.toInt().plus(FORWARD_VALUE)
     }
 
+    operator fun compareTo(other: NonNegative): Int =
+        when {
+            this.value.toInt() > other.value.toInt() -> 1
+            this.value.toInt() < other.value.toInt() -> -1
+            else -> 0
+        }
+
     private fun validateNegative() {
         require(MINIMUM_NUMBER <= this.value.toInt()) { "$MINIMUM_NUMBER 보다 작은 수를 입력할 수 없습니다." }
     }

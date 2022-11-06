@@ -31,4 +31,11 @@ class NonNegativeTest {
         nonNegative.plus()
         assertEquals(1, nonNegative.toInt())
     }
+
+    @Test
+    fun `숫자 비교`() {
+        val nonNegative1 = NonNegative("100")
+        val nonNegative2 = NonNegative("001")
+        assertEquals(1, nonNegative1.compareTo(nonNegative2))
+    }
 }
