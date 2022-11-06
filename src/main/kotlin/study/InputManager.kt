@@ -1,20 +1,25 @@
 package study
 
-import java.util.Scanner
+object InputManager {
 
-class InputManager {
+    private const val INPUT_DATA_SPLIT_DELIMITER = " "
 
-    companion object {
-        private val scanner: Scanner = Scanner(System.`in`)
-        fun nextLine(): String {
-            return validateInput(scanner.nextLine())
-        }
+    fun inputData(): String {
+        return validateInput(readLine())
+    }
 
-        private fun validateInput(input: String?): String {
-            if (input.isNullOrBlank()) {
-                throw IllegalArgumentException("옳지 않은 값입니다.")
-            }
-            return input
-        }
+    fun splitInputData(input: String): List<String> {
+        return input.split(INPUT_DATA_SPLIT_DELIMITER)
+    }
+
+    fun groupByNumberAndOperator(splitStrings: List<String>): List<List<String>> {
+        return splitStrings.withIndex()
+            .groupBy { it.index % 2 }
+            .map { it.value.map { valueIt -> valueIt.value } }
+    }
+
+    private fun validateInput(input: String?): String {
+        require(!input.isNullOrBlank()) { "빈 값을 입력할 수 없습니다." }
+        return input
     }
 }
