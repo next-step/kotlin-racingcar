@@ -1,6 +1,9 @@
 import java.util.Stack
 
 class Calculator {
+    companion object {
+        private const val STRING_SPACING = " "
+    }
 
     fun calculate(strNum1: String?, strNum2: String?, operation: String): String {
         val i = strNum1?.toBigDecimalOrNull() ?: throw IllegalArgumentException()
@@ -12,7 +15,7 @@ class Calculator {
     fun calculateStringInput(input: String): String {
         val stack = Stack<String>()
         val number = Stack<String>()
-        input.split(" ").map { s ->
+        input.split(STRING_SPACING).map { s ->
             if (Operator.getOperators().contains(s)) {
                 stack.push(s)
             } else {
