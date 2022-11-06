@@ -1,6 +1,6 @@
 package calculator
 
-object Calculator {
+class Calculator {
     private const val DELIMITER_WHITE_SPACE = " "
     private const val DEFAULT_OFFSET = 1
 
