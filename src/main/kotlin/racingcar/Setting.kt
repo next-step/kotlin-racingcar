@@ -1,3 +1,3 @@
 package racingcar
 
-data class Setting(val numberOfCars: Int, val numberOfLab: Int)
+data class Setting(val numberOfCars: Int = 3, val numberOfLab: Int = 5)
