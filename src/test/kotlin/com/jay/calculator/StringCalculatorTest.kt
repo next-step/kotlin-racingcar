@@ -10,9 +10,9 @@ import java.lang.IllegalArgumentException
 internal class StringCalculatorTest {
     @ParameterizedTest
     @MethodSource("malformedClientInputs")
-    fun `적절하지 않은 input은 예외가 발생한다`(input: String?, errorMessage: String) {
+    fun `값이 없거나 사칙연산이 아닌 input은 예외가 발생한다`(input: String?, errorMessage: String) {
         val exception = assertThrows(IllegalArgumentException::class.java) {
-            StringCalculator.calculate(input)
+            StringCalculator.calculateDelimiters(input)
         }
 
         assertThat(exception.message).isEqualTo(errorMessage)
@@ -21,7 +21,7 @@ internal class StringCalculatorTest {
     @ParameterizedTest
     @MethodSource("clientInputs")
     fun `사칙 연산 기호 기반으로 계산한다`(input: String?, expected: Int) {
-        val actual = StringCalculator.calculate(input)
+        val actual = StringCalculator.calculateDelimiters(input)
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -34,6 +34,7 @@ internal class StringCalculatorTest {
             Arguments.of("1 $ 2", "invalid operand - $"),
             Arguments.of("1 ^ 2", "invalid operand - ^"),
             Arguments.of("1 + s", "invalid input - s"),
+            Arguments.of("2 / 0", "cannot divide into zero"),
         )
 
         @JvmStatic

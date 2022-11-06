@@ -14,7 +14,10 @@ enum class Operand(val symbol: String) : BinaryOperator<Int> {
         override fun apply(t: Int, u: Int): Int = t - u
     },
     DIVIDE("/") {
-        override fun apply(t: Int, u: Int): Int = t / u
+        override fun apply(t: Int, u: Int): Int {
+            require(u != 0) { "cannot divide into zero" }
+            return t / u
+        }
     };
 
     companion object {
