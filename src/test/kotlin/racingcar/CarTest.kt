@@ -11,7 +11,7 @@ class CarTest {
         val movedCar = Car(moveCount)
 
         for (i in 1..moveCount) {
-            toMoveCar = toMoveCar.move()
+            toMoveCar.move()
         }
 
         assertEquals(movedCar, toMoveCar)
