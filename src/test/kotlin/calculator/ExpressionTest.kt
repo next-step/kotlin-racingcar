@@ -96,11 +96,11 @@ internal class ExpressionTest : FunSpec({
         withData(
             nameFn = { "$it" },
             ts = listOf(
-                listOf("4", "/", "0", "+", "1") to 3.0,
+                listOf("4", "/", "0", "+", "1"),
             )
-        ) { (data, result) ->
+        ) { data ->
             shouldThrow<IllegalArgumentException> {
-                Expression(data).calculate() shouldBe result
+                Expression(data).calculate()
             }
         }
     }
