@@ -1,7 +1,6 @@
 package calculator.interfaces.input
 
 import calculator.domain.operation.enums.Operator
-import java.lang.Integer.parseInt
 import java.util.Scanner
 import java.util.StringJoiner
 
@@ -66,7 +65,7 @@ object InputConsole {
 
     private fun validateNumber(string: String) {
         try {
-            parseInt(string)
+            string.toInt()
         } catch (e: NumberFormatException) {
             throw IllegalArgumentException(INPUT_CORRECT_NUMBER_COMMENT)
         }

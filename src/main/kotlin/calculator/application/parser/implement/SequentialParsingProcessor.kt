@@ -3,7 +3,6 @@ package calculator.application.parser.implement
 import calculator.application.parser.ParsingProcessor
 import calculator.domain.calculator.model.InputOperationCommand
 import calculator.domain.operation.enums.Operator
-import java.lang.Integer.parseInt
 
 class SequentialParsingProcessor : ParsingProcessor {
 
@@ -15,7 +14,7 @@ class SequentialParsingProcessor : ParsingProcessor {
         val inputOperationCommandList = mutableListOf<InputOperationCommand>()
 
         splitStringArray.chunked(size = SPLIT_SIZE) { chunk: List<String> ->
-            val number = parseInt(chunk.first())
+            val number = chunk.first().toInt()
             val operator = if (chunk.size == SPLIT_SIZE) parseOperator(chunk.last()) else Operator.ILLEGAL_STATE
             inputOperationCommandList.add(InputOperationCommand(number, operator))
         }
