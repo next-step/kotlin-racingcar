@@ -1,10 +1,10 @@
 package calculator.interfaces.parser.implement
 
+import calculator.application.parser.ParsingProcessor
+import calculator.application.parser.implement.SequentialParsingProcessor
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import org.assertj.core.api.Assertions.assertThat
-import calculator.application.parser.ParsingProcessor
-import calculator.application.parser.implement.SequentialParsingProcessor
 
 internal class SequentialParsingProcessorKoTest : StringSpec({
 

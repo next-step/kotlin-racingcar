@@ -1,10 +1,10 @@
 package calculator.domain.calculator
 
-import io.kotest.core.spec.style.StringSpec
-import io.kotest.matchers.shouldBe
 import calculator.domain.calculator.impl.StandardCalculator
 import calculator.domain.calculator.model.InputOperationCommand
 import calculator.domain.operation.enums.Operator
+import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.shouldBe
 
 internal class StandardCalculatorKoTest : StringSpec({
 
