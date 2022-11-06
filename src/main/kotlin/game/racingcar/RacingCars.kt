@@ -13,4 +13,9 @@ class RacingCars(
         return racingCars.onEach { it.move() }
             .run { this.map { Pair(it.name, it.location) } }
     }
+
+    fun pickWinners(): List<String> {
+        val maxLocation = racingCars.maxOf { it.location }
+        return racingCars.filter { it.location == maxLocation }.map { it.name }
+    }
 }

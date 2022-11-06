@@ -26,6 +26,7 @@ internal class RacingCarsTest {
         val racingCars = RacingCars(listOf("haris", "horis", "huris"), AlwaysMoveStrategy())
 
         // when
+        racingCars.moveAll()
         val winners: List<String> = racingCars.pickWinners()
 
         // then
