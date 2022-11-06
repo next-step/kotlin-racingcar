@@ -1,7 +1,7 @@
 package study
 
 enum class Operator(
-    val operator: Char,
+    val symbol: Char,
     val calculate: (Int, Int) -> Int
 ) {
     PLUS('+', { a, b -> a + b }),
@@ -11,10 +11,10 @@ enum class Operator(
 
     companion object {
         fun of(char: Char) = when (char) {
-            PLUS.operator -> PLUS
-            MINUS.operator -> MINUS
-            MULTIPLY.operator -> MULTIPLY
-            DIVIDE.operator -> DIVIDE
+            PLUS.symbol -> PLUS
+            MINUS.symbol -> MINUS
+            MULTIPLY.symbol -> MULTIPLY
+            DIVIDE.symbol -> DIVIDE
             else -> throw IllegalArgumentException("사칙연산 기호가 아닙니다.")
         }
     }
