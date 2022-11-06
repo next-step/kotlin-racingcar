@@ -1,7 +1,23 @@
 package racingcar
 
 class Car {
-    fun forward() {
-        TODO("Not yet implemented")
+    private var currentLocation: String = ""
+
+    fun go(number: Int) {
+        if (canIGo(number)) {
+            forward()
+        }
+    }
+
+    private fun forward() {
+        currentLocation += "-"
+    }
+
+    private fun canIGo(number: Int): Boolean {
+        return number in 4..9
+    }
+
+    fun currentLocation(): String {
+        return currentLocation
     }
 }
