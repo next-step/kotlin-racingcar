@@ -18,4 +18,8 @@ private fun minus(num1: Int, num2: Int) = num1 - num2
 
 private fun multiply(num1: Int, num2: Int) = num1 * num2
 
-private fun divide(num1: Int, num2: Int) = num1 / num2
+private fun divide(num1: Int, num2: Int) = if (num2 == 0) {
+    throw ArithmeticException("Cannot be divided by zero")
+} else {
+    (num1 / num2)
+}
