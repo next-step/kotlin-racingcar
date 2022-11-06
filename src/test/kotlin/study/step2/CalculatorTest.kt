@@ -5,6 +5,7 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.throwable.shouldHaveMessage
 import org.assertj.core.api.Assertions.assertThat
+import study.step2.Expression.parse
 
 class CalculatorTest : StringSpec({
     lateinit var calculator: Calculator
@@ -20,7 +21,7 @@ class CalculatorTest : StringSpec({
             "4 + 3 + 2 + -1" to 8,
             "2 + 3 + 4 + 2" to 11
         ).forAll { (formula, result) ->
-            assertThat(calculator.calc(formula)).isEqualTo(result)
+            assertThat(calculator.calc(parse(formula))).isEqualTo(result)
         }
     }
 
@@ -31,7 +32,7 @@ class CalculatorTest : StringSpec({
             "4 - 1 - 2 - -1" to 2,
             "10 - 3 - 4 - 2" to 1
         ).forAll { (formula, result) ->
-            assertThat(calculator.calc(formula)).isEqualTo(result)
+            assertThat(calculator.calc(parse(formula))).isEqualTo(result)
         }
     }
 
@@ -42,7 +43,7 @@ class CalculatorTest : StringSpec({
             "4 * 1 * 2 * -1" to -8,
             "10 * 3 * 4 * 2" to 240
         ).forAll { (formula, result) ->
-            assertThat(calculator.calc(formula)).isEqualTo(result)
+            assertThat(calculator.calc(parse(formula))).isEqualTo(result)
         }
     }
 
@@ -54,7 +55,7 @@ class CalculatorTest : StringSpec({
             "10 / 20" to 0,
             "1 / 4" to 0
         ).forAll { (formula, result) ->
-            assertThat(calculator.calc(formula)).isEqualTo(result)
+            assertThat(calculator.calc(parse(formula))).isEqualTo(result)
         }
     }
 
@@ -64,33 +65,8 @@ class CalculatorTest : StringSpec({
             "1 / 0"
         ).forAll {
             shouldThrow<IllegalArgumentException> {
-                calculator.calc(it)
+                calculator.calc(parse(it))
             }.shouldHaveMessage("분모는 0이 될 수 없습니다")
-        }
-    }
-
-    "입력값이 null이거나 빈 공백 문자일 경우, 계산하면, 예외가 발생한다" {
-        listOf(
-            "",
-            " ",
-            "   "
-        ).forAll {
-            shouldThrow<IllegalArgumentException> {
-                calculator.calc(it)
-            }.shouldHaveMessage("입력값이 null이거나 빈 공백 문자가 될 수 없습니다")
-        }
-    }
-
-    "사칙연산 기호가 아닌 계산식이 주어진경우, 계산하면, 예외가 발생한다" {
-        listOf(
-            "1 a 1 * 1 * 2",
-            "1 * 2 b 3 * 0",
-            "4 * 1 + 2 c -1",
-            "10 / 3 + 4 D 2"
-        ).forAll {
-            shouldThrow<IllegalArgumentException> {
-                calculator.calc(it)
-            }.shouldHaveMessage("올바르지 않은 사칙연산 기호입니다")
         }
     }
 
@@ -100,19 +76,7 @@ class CalculatorTest : StringSpec({
             "2 - 3 + 4 / 3 * 1" to 1,
             "2 * 5 / 2 + 2 - 1" to 6,
         ).forAll {
-            assertThat(calculator.calc(it.first)).isEqualTo(it.second)
-        }
-    }
-
-    "순서가 맞지 않는 계산식이 주어지고, 사칙연산 계산을 진행하하면, 예외가 발생한다" {
-        listOf(
-            "1 1 + 3 + 3",
-            "1 + 1 + 3 3",
-            "1 + 1 3 + 3"
-        ).forAll {
-            shouldThrow<IllegalArgumentException> {
-                calculator.calc(it)
-            }.shouldHaveMessage("계산식의 순서가 맞지 않습니다")
+            assertThat(calculator.calc(parse(it.first))).isEqualTo(it.second)
         }
     }
 })
