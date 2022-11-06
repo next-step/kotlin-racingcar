@@ -2,7 +2,7 @@ import calcualator.Calculator
 import calcualator.Operator
 import java.lang.IllegalArgumentException
 
-class Application {
+class CalculatorApplication {
     fun calculate(context: String): Calculator {
         if (context.isBlank()) {
             throw IllegalArgumentException("빈 문자를 입력할 수 없습니다.")
