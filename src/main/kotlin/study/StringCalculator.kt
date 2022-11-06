@@ -31,9 +31,12 @@ enum class Operator(
     }
 }
 
-fun calculate(input: String?): Int {
-    require(!input.isNullOrBlank()) { "input이 null이거나 공백입니다." }
-    val (numbers, operators) = input.split(" ")
+class StringCalculator(
+    private val separator: String
+) {
+    fun calculate(input: String?): Int {
+        require(!input.isNullOrBlank()) { "input이 null이거나 공백입니다." }
+        val (numbers, operators) = input.split(separator)
         .withIndex()
         .partition { it.index % 2 == 0 }
 
@@ -42,13 +45,13 @@ fun calculate(input: String?): Int {
         .takeIf { it.size > 1 }
         ?: throw IllegalArgumentException("하나 이상의 숫자가 입력되어야합니다.")
 
-    return parsedNumbers
-        .drop(1) // initial value drop
-        .foldIndexed(parsedNumbers.first()) { index, acc, number ->
-            operators[index]
-                .value
-                .first()
-                .let(Operator::of)
-                .calculate(acc, number)
-        }
+        return parsedNumbers
+            .drop(1) // initial value drop
+            .foldIndexed(parsedNumbers.first()) { index, acc, number ->
+                operators[index]
+                    .value
+                    .first()
+                    .let(Operator::of)
+                    .calculate(acc, number)
+            }
 }
