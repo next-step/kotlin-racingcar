@@ -4,13 +4,13 @@ import racingcar.CarManager
 import racingcar.CarRacing
 
 class Application {
-    private val carManager = CarManager();
+    private val carManager = CarManager()
     private val carRacing = CarRacing()
 
     fun run() {
         println(GuideScript.PROGRAM_INFO)
         while (true) {
-            GuideScript.BEGIN_GUIDE
+            println(GuideScript.BEGIN_GUIDE)
             val runCommand = readln()
             if (STOP_COMMAND == runCommand) {
                 break
