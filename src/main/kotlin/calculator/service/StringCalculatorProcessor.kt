@@ -3,7 +3,7 @@ package calculator.service
 import calculator.model.OperationBlock
 import java.math.BigDecimal
 
-private const val ONE = 1
+private const val PROCESSOR_INIT_COUNT = 1
 
 class StringCalculatorProcessor(
     val input: List<String>
@@ -13,9 +13,9 @@ class StringCalculatorProcessor(
     }
 
     fun process(): BigDecimal {
-        val first = input.first()
-        val leftList = input.drop(ONE)
-        var block = OperationBlock(BigDecimal(first))
+        val initialValue = input.first()
+        val leftList = input.drop(PROCESSOR_INIT_COUNT)
+        var block = OperationBlock(BigDecimal(initialValue))
 
         for (value in leftList) {
             block = block.reduce(value)
