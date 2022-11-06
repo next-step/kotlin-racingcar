@@ -5,6 +5,8 @@ import nexstep.mission.racingcar.io.Output
 import nexstep.mission.racingcar.io.RacingCarDto
 import java.util.Random
 
+private val RANDOM = Random()
+
 class RacingCarController(
     private val input: Input,
     private val output: Output
@@ -21,7 +23,7 @@ class RacingCarController(
         when (true) {
             (round == 0) -> Unit
             else -> {
-                racingGame.race { Random().nextInt(10) }
+                racingGame.race { RANDOM.nextInt(10) }
                 output.output(racingGame.racingCars.map { RacingCarDto(it.position) })
                 startRace(round - 1, racingGame)
             }
