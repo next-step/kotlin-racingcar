@@ -13,7 +13,7 @@ object Calculator {
         for (i in 1 until expression.size step 2) {
             val operator = Operator.symbolOf(expression[i])
             val operand = expression[i + 1].toInt()
-            result = operate(result, operator, operand)
+            result = operator.operate(result, operand)
         }
 
         return result

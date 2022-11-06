@@ -34,7 +34,7 @@ class OperatorTest : BehaviorSpec({
             val operator = Operator.symbolOf("+")
             val operand = 2
             Then("축적값에 피연산자가 더해진다.") {
-                operate(accumulation, operator, operand) shouldBe 5
+                operator.operate(accumulation, operand) shouldBe 5
             }
         }
 
@@ -44,7 +44,7 @@ class OperatorTest : BehaviorSpec({
             val operator = Operator.symbolOf("-")
             val operand = 2
             Then("축적값에 피연산자가 빼진다.") {
-                operate(accumulation, operator, operand) shouldBe 3
+                operator.operate(accumulation, operand) shouldBe 3
             }
         }
 
@@ -54,7 +54,7 @@ class OperatorTest : BehaviorSpec({
             val operator = Operator.symbolOf("*")
             val operand = 2
             Then("축적값에 피연산자가 곱해진다.") {
-                operate(accumulation, operator, operand) shouldBe 6
+                operator.operate(accumulation, operand) shouldBe 6
             }
         }
 
@@ -64,7 +64,7 @@ class OperatorTest : BehaviorSpec({
             val operator = Operator.symbolOf("/")
             val operand = 2
             Then("축적값에 피연산자가 나눠진다.") {
-                operate(accumulation, operator, operand) shouldBe 3
+                operator.operate(accumulation, operand) shouldBe 3
             }
         }
     }
