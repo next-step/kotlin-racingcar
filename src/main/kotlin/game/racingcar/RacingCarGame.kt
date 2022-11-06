@@ -15,10 +15,8 @@ class RacingCarGame(
         val locationSnapshots = mutableListOf<LocationSnapshot>()
 
         val racingCars = RacingCars(numberOfCars, moveStrategy)
-        repeat(numberOfTrials) {
-            with(racingCars) {
-                locationSnapshots.add(LocationSnapshot(moveAll()))
-            }
+        (1..numberOfTrials).forEach {
+            locationSnapshots.add(LocationSnapshot(racingCars.moveAll()))
         }
         return locationSnapshots
     }
