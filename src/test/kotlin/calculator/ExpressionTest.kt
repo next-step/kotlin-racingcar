@@ -37,17 +37,25 @@ internal class ExpressionTest : FunSpec({
     }
 
     context("올바르지 않은 데이터는 검증에 실패한다.") {
-        withData(
-            nameFn = { "$it" },
-            ts = listOf(
-                listOf("2", "+"),
-                listOf("2", "+", "2", "-"),
-                listOf("+", "+", "2")
-            )
-        ) { data ->
-            shouldThrow<IllegalArgumentException> {
-                Expression(data)
+        context("사이즈가 3보다 작은 경우 실패한다.") {
+            val exception = shouldThrow<IllegalArgumentException> {
+                Expression(listOf("2", "+"))
             }
+            exception.message shouldBe CalculatorException.NOT_ENOUGH_SIZE
+        }
+
+        context("홀수 개의 연산자와 짝수 개의 피연산자로 이루어져 있지 않다면 실패한다.") {
+            val exception = shouldThrow<IllegalArgumentException> {
+                Expression(listOf("2", "+", "2", "-"))
+            }
+            exception.message shouldBe CalculatorException.NOT_PROPER_SIZE
+        }
+
+        context("수식이 올바르지 않다면 실패한다.") {
+            val exception = shouldThrow<IllegalArgumentException> {
+                Expression(listOf("+", "+", "2"))
+            }
+            exception.message shouldBe CalculatorException.NOT_CORRECT_EXPRESSION
         }
     }
 
