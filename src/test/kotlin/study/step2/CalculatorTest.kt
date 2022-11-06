@@ -70,4 +70,22 @@ class CalculatorTest {
             calc.calculate(input)
         }.isInstanceOf(IllegalArgumentException::class.java)
     }
+
+    @Test
+    fun `잘못된 순서를 가진 연산자가 들어올 경우 IllegalArgumentException throw`() {
+        Assertions.assertThatThrownBy {
+            val calc = Calculator()
+            val input = "3 * * 5"
+            calc.calculate(input)
+        }.isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    @Test
+    fun `잘못된 순서를 가진 피연산자가 들어올 경우 IllegalArgumentException throw`() {
+        Assertions.assertThatThrownBy {
+            val calc = Calculator()
+            val input = "3 * 2 2 3"
+            calc.calculate(input)
+        }.isInstanceOf(IllegalArgumentException::class.java)
+    }
 }
