@@ -4,7 +4,7 @@ import java.lang.IllegalArgumentException
 import java.math.BigDecimal
 import java.math.RoundingMode
 
-class Calculator {
+object Calculator {
     private val operators: List<Operator> = listOf(
         Operator.PlusOperator(),
         Operator.MinusOperator(),
@@ -44,8 +44,6 @@ class Calculator {
     }
 
     private class CalculateExecutor(val operands: List<BigDecimal>, val operators: List<String>) {
-
-
         init {
             if (operands.isEmpty()) {
                 throw IllegalArgumentException("Must not be empty")
