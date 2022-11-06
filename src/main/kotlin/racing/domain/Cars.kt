@@ -1,7 +1,7 @@
 package racing.domain
 
 class Cars {
-    private val cars: List<Car>
+    val cars: List<Car>
 
     constructor(carCount: Int) {
         val cars: MutableList<Car> = mutableListOf()

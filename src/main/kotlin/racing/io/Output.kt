@@ -7,5 +7,6 @@ object Output {
 
     fun resultMessage(resultDto: ResultDto) {
         println(RESULT_MESSAGE)
+        println(resultDto.result)
     }
 }
