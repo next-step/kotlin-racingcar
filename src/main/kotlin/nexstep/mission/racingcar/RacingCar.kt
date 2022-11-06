@@ -1,3 +1,12 @@
 package nexstep.mission.racingcar
 
-class RacingCar(var position: Int = 0)
+private const val MOVEMENT_CONDITION = 4
+
+class RacingCar(var position: Int = 0) {
+
+    fun move(random: Int) {
+        if (random >= MOVEMENT_CONDITION) {
+            ++position
+        }
+    }
+}
