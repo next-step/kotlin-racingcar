@@ -4,6 +4,7 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.should
+import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.startWith
 import step3_racingcar.validator.InputValidator
 
@@ -43,11 +44,20 @@ class InputValidatorTest : BehaviorSpec({
                 }
             }
         }
+
+        `when`("양의 정수를 입력할 경우") {
+            then("입력한 값이 Int 타입으로 반환된다.") {
+                positiveNumberList.forAll {
+                    inputValidator.inputValidate(it) shouldBe it.toIntOrNull()
+                }
+            }
+        }
     }
 }) {
     companion object {
         private val invalidInputList = listOf(null, "", "   ")
         private val notConvertToIntList = listOf("car", "4.56", "44g6")
         private val zeroAndNegativeNumberList = listOf("-3", "-55", "0")
+        private val positiveNumberList = listOf("1", "5", "100")
     }
 }
