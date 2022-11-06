@@ -1,9 +1,11 @@
 package step2
 
-class StringCalculator {
+import step2.Operator.Companion.from
+
+object StringCalculator {
 
     fun calculate(input: String?): Int {
-        if (input.isNullOrEmpty()) throw IllegalArgumentException()
+        if (input.isNullOrEmpty()) throw IllegalArgumentException("input 값은 Null, 공백이 될 수 없습니다.")
 
         val operators = input.split(" ")
         var accumulator = operators[0].toInt()
@@ -13,13 +15,8 @@ class StringCalculator {
         return accumulator
     }
 
-    private fun calculateWith(operator: Pair<String, Int>, base: Int): Int {
-        return when (operator.first) {
-            "+" -> base + operator.second
-            "-" -> base - operator.second
-            "*" -> base * operator.second
-            "/" -> base / operator.second
-            else -> throw IllegalArgumentException()
-        }
+    private fun calculateWith(operators: Pair<String, Int>, base: Int): Int {
+        val (operator, operand) = operators
+        return from(operator).calculate(base, operand)
     }
 }
