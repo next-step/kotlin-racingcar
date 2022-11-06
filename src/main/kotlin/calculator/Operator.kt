@@ -28,7 +28,7 @@ enum class Operator(
     companion object {
         fun findByStringOperator(operator: String): Operator {
             return Operator.values()
-                .find { it.operator == operator } ?: throw IllegalArgumentException("연산자를 찾을 수 없습니다.")
+                .find { it.operator == operator } ?: throw IllegalArgumentException("문자열 계산기에서 지원하지 않는 연산자에요.")
         }
     }
 
