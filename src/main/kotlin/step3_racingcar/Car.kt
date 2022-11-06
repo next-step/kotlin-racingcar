@@ -1,10 +1,16 @@
 package step3_racingcar
 
-data class Car(
-    private val distance: List<Char> = emptyList()
+import step3_racingcar.strategy.ForwardStrategy
+
+class Car(
+    private var distance: MutableList<Char> = mutableListOf(),
+    private val strategy: ForwardStrategy
 ) {
+    fun move() {
+        if (strategy.move()) this.distance.add(SPACE)
+    }
+
     companion object {
-        @JvmStatic
-        private fun move() {}
+        private const val SPACE = '-'
     }
 }
