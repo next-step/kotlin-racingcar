@@ -1,5 +1,5 @@
-import calcualator.Number
-import calcualator.Operator
+package calcualator
+
 import java.lang.IllegalArgumentException
 
 class CalculatorApplication {
