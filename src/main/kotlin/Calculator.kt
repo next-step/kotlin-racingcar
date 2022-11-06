@@ -15,10 +15,10 @@ class Calculator {
     private fun divide(i: BigDecimal, j: BigDecimal): BigDecimal =
         i.divide(j, MathContext.DECIMAL64)
 
-    fun calculate(strNum1: String?, strNum2: String?, operator: String): String {
+    fun calculate(strNum1: String?, strNum2: String?, operation: String): String {
         val i = strNum1?.toBigDecimalOrNull() ?: throw IllegalArgumentException()
         val j = strNum2?.toBigDecimalOrNull() ?: throw IllegalArgumentException()
-        return when (operator) {
+        return when (operation) {
             Operator.ADD.symbol -> add(i, j)
             Operator.MINUS.symbol -> subtract(i, j)
             Operator.MULTIPLE.symbol -> multiply(i, j)
