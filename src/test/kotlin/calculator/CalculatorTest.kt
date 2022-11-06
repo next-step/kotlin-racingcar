@@ -1,5 +1,6 @@
 package calculator
 
+import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
@@ -44,6 +45,16 @@ internal class CalculatorTest {
         val expression = Expression(operation)
         val (numbers, operators) = expression.partitionExpression()
         assertThat(calculator.calculate(numbers, operators)).isEqualTo(6.5)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["13 / 0"])
+    fun `0 나눗셈`(operation: String) {
+        val expression = Expression(operation)
+        val (numbers, operators) = expression.partitionExpression()
+        Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
+            calculator.calculate(numbers, operators)
+        }
     }
 
     @ParameterizedTest
