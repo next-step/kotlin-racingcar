@@ -1,7 +1,7 @@
 package calculator
 
 class Input(
-    private val expression: String?
+    val expression: String?
 ) {
     init {
         requireNotNull(expression)
