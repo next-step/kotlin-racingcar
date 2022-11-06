@@ -4,6 +4,12 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
+import io.kotest.property.Arb
+import io.kotest.property.arbitrary.double
+import io.kotest.property.arbitrary.merge
+import io.kotest.property.arbitrary.negativeDouble
+import io.kotest.property.arbitrary.positiveDouble
+import io.kotest.property.checkAll
 import java.lang.IllegalArgumentException
 
 internal class OperatorTest : FunSpec({
@@ -43,6 +49,35 @@ internal class OperatorTest : FunSpec({
             )
         ) { (operator, a, b, result) ->
             operator(a, b) shouldBe result
+        }
+    }
+
+    context("올바른 연산자 문자에 대해 올바른 연산을 진행한다.[Property-Based-Test]") {
+        context("덧셈") {
+            checkAll<Double, Double> { a, b ->
+                Operator.ADD(a, b) shouldBe (a + b)
+            }
+        }
+
+        context("뺄셈") {
+            checkAll<Double, Double> { a, b ->
+                Operator.MINUS(a, b) shouldBe (a - b)
+            }
+        }
+
+        context("나눗셈") {
+            val doubleArb = Arb.double()
+            val nonZeroDoubleArb = Arb.positiveDouble().merge(Arb.negativeDouble())
+
+            checkAll(doubleArb, nonZeroDoubleArb) { a, b ->
+                Operator.DIVIDE(a, b) shouldBe (a / b)
+            }
+        }
+
+        context("곱셈") {
+            checkAll<Double, Double> { a, b ->
+                Operator.MULTIPLY(a, b) shouldBe (a * b)
+            }
         }
     }
 })
