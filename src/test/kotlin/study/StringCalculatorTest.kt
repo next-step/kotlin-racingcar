@@ -5,32 +5,40 @@ import org.junit.jupiter.api.assertThrows
 
 class StringCalculatorTest {
     @Test
-    fun `덧셈`() {
+    fun `더하기 수식을 입력하면 더한 값이 반환된다`() {
         assert(calculate("12 + 4") == 16)
     }
 
     @Test
-    fun `뺄셈`() {
+    fun `빼기 수식을 입력하면 뺀 값이 반환된다`() {
         assert(calculate("12 - 14") == -2)
     }
 
     @Test
-    fun `곱셈`() {
+    fun `곱하기 수식을 입력하면 곱한 값이 반환된다`() {
         assert(calculate("11 * 11") == 121)
     }
 
     @Test
-    fun `나눗셈`() {
+    fun `나누기 수식을 입력하면 나눈 값이 반환된다`() {
         assert(calculate("12 / 6") == 2)
     }
 
     @Test
-    fun `복합 연산 테스트`() {
+    fun `0으로 나누는 수식을 입력하면 에러가 발생한다`() {
+        val exception = assertThrows<IllegalArgumentException> {
+            calculate("12 / 0")
+        }
+        assert(exception.message == "0으로 나눌 수 없습니다.")
+    }
+
+    @Test
+    fun `복합 연산 수식을 입력하면 순서대로 계산된 값이 반환된다`() {
         assert(calculate("12 + 6 / 2 * 10 - 4") == 86)
     }
 
     @Test
-    fun `공백 테스트`() {
+    fun `공백을 입력하면 에러가 발생한다`() {
         val exception = assertThrows<IllegalArgumentException> {
             calculate("")
         }
@@ -38,7 +46,7 @@ class StringCalculatorTest {
     }
 
     @Test
-    fun `Blank 테스트`() {
+    fun `Whitespace를 입력하면 에러가 발생한다`() {
         val exception = assertThrows<IllegalArgumentException> {
             calculate("     ")
         }
@@ -46,7 +54,7 @@ class StringCalculatorTest {
     }
 
     @Test
-    fun `null 테스트`() {
+    fun `null을 입력하면 에러가 발생한다`() {
         val exception = assertThrows<IllegalArgumentException> {
             calculate(null)
         }
@@ -54,7 +62,7 @@ class StringCalculatorTest {
     }
 
     @Test
-    fun `잘못된 수식 테스트`() {
+    fun `올바르지 않은 수식을 입력하면 에러가 발생한다`() {
         val exception = assertThrows<IllegalArgumentException> {
             calculate("123 * + 44")
         }
@@ -62,7 +70,7 @@ class StringCalculatorTest {
     }
 
     @Test
-    fun `숫자가 하나만 입력됨`() {
+    fun `숫자가 하나인 수식을 입력하면 에러가 발생한다`() {
         val exception = assertThrows<IllegalArgumentException> {
             calculate("123 *")
         }
@@ -70,7 +78,7 @@ class StringCalculatorTest {
     }
 
     @Test
-    fun `사칙연산이 아닌 경우 테스트`() {
+    fun `사칙연산이 아닌 수식을 입력하면 에러가 발생한다`() {
         val exception = assertThrows<IllegalArgumentException> {
             calculate("123 & 44")
         }
