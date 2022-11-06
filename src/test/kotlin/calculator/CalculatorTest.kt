@@ -3,6 +3,8 @@ package calculator
 import org.assertj.core.api.AssertionsForClassTypes.assertThat
 import org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 internal class CalculatorTest {
 
@@ -51,33 +53,36 @@ internal class CalculatorTest {
         assertThat(result).isEqualTo(10)
     }
 
-    @Test
-    fun `입력 값이 null 이거나 빈 공백 문자일 경우 IllegalArgumentException throw`() {
+    @ParameterizedTest
+    @ValueSource(strings = ["", " "])
+    fun `입력 값이 null 이거나 빈 공백 문자일 경우 IllegalArgumentException throw`(input: String?) {
         val calculator = Calculator()
 
         assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy {
-                calculator.calculate(expression = null)
+                calculator.calculate(expression = input)
             }
     }
 
-    @Test
-    fun `입력 값이 빈 공백 문자일 경우 IllegalArgumentException throw`() {
+    @ParameterizedTest
+    @ValueSource(
+        strings = [
+            "1",
+            "a",
+            "#",
+            "1#2",
+            "*21",
+            "12*",
+            "123",
+            "*+-"
+        ]
+    )
+    fun `사칙 연산 기호가 아닌 경우 IllegalArgumentException throw`(input: String?) {
         val calculator = Calculator()
 
         assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy {
-                calculator.calculate(expression = " ")
-            }
-    }
-
-    @Test
-    fun `사칙 연산 기호가 아닌 경우 IllegalArgumentException throw`() {
-        val calculator = Calculator()
-
-        assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy {
-                calculator.calculate(expression = "1#2")
+                calculator.calculate(expression = input)
             }
     }
 }

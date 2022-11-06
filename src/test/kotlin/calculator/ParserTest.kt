@@ -1,13 +1,14 @@
 package calculator
 
 import org.assertj.core.api.AssertionsForClassTypes.assertThat
+import org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
 
 internal class ParserTest {
 
     @Test
     fun `정상 공식은 정상적으로 파싱된다`() {
-        val parser = Parser()
+        val parser = Parser(3)
 
         val elements: List<String> = parser.parse("2 + 3 * 4 / 2")
 
@@ -16,7 +17,7 @@ internal class ParserTest {
 
     @Test
     fun `빈 공식`() {
-        val parser = Parser()
+        val parser = Parser(3)
 
         val elements: List<String> = parser.parse(" ")
 
@@ -24,12 +25,13 @@ internal class ParserTest {
     }
 
     @Test
-    fun `빈 elements 는 무효이다`() {
-        val parser = Parser()
+    fun `빈 elements 인 경우 IllegalArgumentException throw`() {
+        val parser = Parser(3)
         val elements: List<String> = listOf()
 
-        val result = parser.validate(elements)
-
-        assertThat(result).isEqualTo(false)
+        assertThatExceptionOfType(IllegalArgumentException::class.java)
+            .isThrownBy {
+                parser.validate(elements)
+            }
     }
 }

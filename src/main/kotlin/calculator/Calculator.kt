@@ -5,14 +5,11 @@ import calculator.operator.Operator
 
 class Calculator {
 
-    private val parser: Parser = Parser()
+    private val parser: Parser = Parser(3)
 
     @Throws(Exception::class)
     fun calculate(expression: String?): Int {
         val elements = parser.parse(expression)
-
-        if (elements.isEmpty()) throw IllegalArgumentException("elements is empty")
-
         if (parser.validate(elements).not()) throw IllegalArgumentException("element is not valid")
 
         // 처음 3개 추출해서 처리
