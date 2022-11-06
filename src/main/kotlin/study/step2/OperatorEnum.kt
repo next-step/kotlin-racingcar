@@ -42,14 +42,8 @@ enum class OperatorEnum(val operator: String) {
             return false
         }
 
-        fun findby(operator: String): OperatorEnum {
-            OperatorEnum.values()
-                .forEach { s ->
-                    if (operator == s.operator) {
-                        return s
-                    }
-                }
-            throw IllegalArgumentException("해당하는 연산자 enum 을 찾을 수 없습니다")
+        fun findByOrNull(operator: String): OperatorEnum? {
+            return OperatorEnum.values().find { operator == it.operator }
         }
     }
 }
