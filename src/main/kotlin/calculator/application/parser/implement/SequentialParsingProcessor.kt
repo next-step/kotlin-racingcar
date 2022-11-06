@@ -7,11 +7,6 @@ import java.lang.Integer.parseInt
 
 class SequentialParsingProcessor : ParsingProcessor {
 
-    companion object {
-        private const val SPLIT_DELIMITER = " "
-        private const val SPLIT_SIZE = 2
-    }
-
     override fun proceed(string: String): List<InputOperationCommand> {
         val splitStringArray = string.trim().split(SPLIT_DELIMITER)
 
@@ -31,4 +26,9 @@ class SequentialParsingProcessor : ParsingProcessor {
     private fun Int.isOdd() = this % 2 != 0
 
     private fun parseOperator(element: String) = Operator.operatorOf(element)
+
+    companion object {
+        private const val SPLIT_DELIMITER = " "
+        private const val SPLIT_SIZE = 2
+    }
 }
