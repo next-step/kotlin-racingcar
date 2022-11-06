@@ -16,14 +16,11 @@ fun main() {
     println("시도할 횟수는 몇 회인가요?")
     val count = sc.nextInt()
 
-    carList.forEach {
-        for (i in 1..count) {
+    for (i in 1..count) {
+        carList.forEach {
             it.move((0..9).random())
-            println(it.status)
+            it.printStatus()
         }
         println()
     }
-
-    println("실행 결과")
-    println("$carNumber, $count")
 }
