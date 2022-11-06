@@ -22,6 +22,13 @@ data class Expression(
             }
         }
 
+    fun partitionExpression(): Pair<List<Double>, List<String>> =
+        expression.withIndex()
+            .partition { it.index % NUMBER_PATTERN_INDEX == 0 }
+            .let { (numbers, operators) ->
+                numbers.map { num -> num.value.toDouble() } to operators.map { it.value }
+            }
+
     companion object {
         private const val DELIMITER_WHITE_SPACE = " "
         private const val OPERATION_REGULAR_EXPRESSION = "^[+\\-*/\\d\\s+]*$"
