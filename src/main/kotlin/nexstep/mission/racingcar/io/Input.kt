@@ -4,5 +4,5 @@ interface Input {
 
     fun inputRacingCars(): Int
 
-    fun inputRacingGames(): Int
+    fun inputRound(): Int
 }

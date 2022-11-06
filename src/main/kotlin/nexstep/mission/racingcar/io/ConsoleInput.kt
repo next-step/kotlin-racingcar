@@ -7,7 +7,7 @@ object ConsoleInput : Input {
         return readln().toInt()
     }
 
-    override fun inputRacingGames(): Int {
+    override fun inputRound(): Int {
         println("시도할 횟수는 몇 회인가요?")
         return readln().toInt()
     }
