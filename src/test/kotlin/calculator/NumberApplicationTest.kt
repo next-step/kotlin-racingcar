@@ -1,3 +1,5 @@
+package calculator
+
 import calcualator.CalculatorApplication
 import calcualator.Number
 import org.junit.jupiter.api.Assertions.assertEquals
