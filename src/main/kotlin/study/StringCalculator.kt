@@ -4,10 +4,25 @@ enum class Operator(
     val symbol: Char,
     val calculate: (Int, Int) -> Int
 ) {
-    PLUS('+', { a, b -> a + b }),
-    MINUS('-', { a, b -> a - b }),
-    MULTIPLY('*', { a, b -> a * b }),
-    DIVIDE('/', { a, b -> a / b });
+    PLUS(
+        symbol = '+',
+        calculate = { a, b -> a + b }
+    ),
+    MINUS(
+        symbol = '-',
+        calculate = { a, b -> a - b }
+    ),
+    MULTIPLY(
+        symbol = '*',
+        calculate = { a, b -> a * b }
+    ),
+    DIVIDE(
+        symbol = '/',
+        calculate = { a, b ->
+            if (b != 0) a / b
+            else throw IllegalArgumentException("0으로 나눌 수 없습니다.")
+        }
+    );
 
     companion object {
         fun of(char: Char) = values()
