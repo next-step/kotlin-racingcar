@@ -13,8 +13,8 @@ enum class Operation(
     });
 
     companion object {
-        fun of(operator: String): Operation {
-            return values().find { operation -> operation.sign == operator }
+        fun of(sign: String): Operation {
+            return values().find { operation -> operation.sign == sign }
                 ?: throw IllegalArgumentException("사칙연산만 가능합니다.")
         }
     }

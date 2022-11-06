@@ -2,7 +2,7 @@ package stringcalculator
 
 import java.lang.IllegalArgumentException
 
-class StringCalculator() {
+class StringCalculator {
 
     private val DELIMITER = " "
 
@@ -14,10 +14,10 @@ class StringCalculator() {
         var total = splitInput.first().toInt()
 
         for (index in 1..splitInput.lastIndex step 2) {
-            val operator = splitInput[index]
+            val sign = splitInput[index]
             val operand = splitInput[index + 1].toInt()
 
-            val operation = Operation.of(operator)
+            val operation = Operation.of(sign)
             total = operation.calculate(total, operand)
         }
 
