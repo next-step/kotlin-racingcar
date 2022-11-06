@@ -36,22 +36,34 @@ class StringCalculator(
 ) {
     fun calculate(input: String?): Int {
         require(!input.isNullOrBlank()) { "input이 null이거나 공백입니다." }
-        val (numbers, operators) = input.split(separator)
-        .withIndex()
-        .partition { it.index % 2 == 0 }
+        val (numbers, symbols) = input
+            .split(separator)
+            .separateByIndex { it.isEven }
 
-    val parsedNumbers = numbers
-        .map { it.value.toIntOrNull() ?: throw IllegalArgumentException("숫자가 아닌 값이 숫자자리에 입력되었습니다.") }
-        .takeIf { it.size > 1 }
-        ?: throw IllegalArgumentException("하나 이상의 숫자가 입력되어야합니다.")
+        val operands = numbers.parseToOperands()
+        val operators = symbols.parseToOperators()
 
-        return parsedNumbers
-            .drop(1) // initial value drop
-            .foldIndexed(parsedNumbers.first()) { index, acc, number ->
-                operators[index]
-                    .value
-                    .first()
-                    .let(Operator::of)
-                    .calculate(acc, number)
-            }
+        return calculate(operators, operands)
+    }
+
+    private fun calculate(operators: List<Operator>, operands: List<Int>) = operands
+        .drop(1) // initial value drop
+        .foldIndexed(operands.first()) { index, acc, number ->
+            operators[index].calculate(acc, number)
+        }
+
+    private fun List<IndexedValue<String>>.parseToOperands(): List<Int> =
+        map { it.value.toIntOrNull() ?: throw IllegalArgumentException("숫자가 아닌 값이 숫자자리에 입력되었습니다.") }
+            .takeIf { it.size > 1 }
+            ?: throw IllegalArgumentException("하나 이상의 숫자가 입력되어야합니다.")
+
+    private fun List<IndexedValue<String>>.parseToOperators(): List<Operator> =
+        map { it.value.first().let(Operator::of) }
+
+    private fun List<String>.separateByIndex(
+        predicate: (index: Int) -> Boolean
+    ) = withIndex()
+        .partition { predicate(it.index) }
+
+    private val Int.isEven: Boolean get() = this % 2 == 0
 }
