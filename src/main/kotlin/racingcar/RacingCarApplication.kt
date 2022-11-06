@@ -10,5 +10,5 @@ fun main() {
     println("시도할 횟수는 몇 회인가요?")
     val count = sc.nextInt()
     println("실행 결과")
-    println("----")
+    println("$carNumber, $count")
 }

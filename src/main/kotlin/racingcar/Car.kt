@@ -1,7 +1,7 @@
 package racingcar
 
 class Car(val status: Int = 0) {
-    fun move() : Car {
+    fun move(): Car {
         return Car(status + 1)
     }
 

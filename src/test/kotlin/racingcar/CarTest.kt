@@ -1,6 +1,6 @@
 package racingcar
 
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class CarTest {
@@ -17,4 +17,3 @@ class CarTest {
         assertEquals(movedCar, toMoveCar)
     }
 }
-
