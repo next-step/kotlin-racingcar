@@ -1,14 +1,19 @@
 package study.step3
 
 import study.step3.model.RacingCar
-import study.step3.view.InputView.Companion.input
-import study.step3.view.ResultView.Companion.result
+import study.step3.util.RandomDigit
+import study.step3.view.InputView.inputRacingCarInfo
+import study.step3.view.ResultView.resultRacingCar
 
 fun main() {
-    val (numberCars, repeatRace) = input()
+    try {
+        val (numberCars, repeatRace) = inputRacingCarInfo()
 
-    val racingCar = RacingCar(numberCars, repeatRace)
-    racingCar.race()
+        val racingCar = RacingCar(numberCars, repeatRace, RandomDigit())
+        racingCar.race()
 
-    result(racingCar.cars(), repeatRace)
+        resultRacingCar(racingCar.getCars(), repeatRace)
+    } catch (e: Exception) {
+        println("주의: ${e.message}")
+    }
 }

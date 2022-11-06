@@ -1,23 +1,25 @@
 package study.step3.model
 
-class Car {
-    private var location: Int = 0
+class Car(
+    private var location: Int = 0,
     private var racingTimes: Int = 0
-    private var history: MutableMap<Int, Int> = mutableMapOf()
+) {
+    private val history = mutableListOf<Int>()
 
-    fun advance(randomDigit: Int) {
-        if (randomDigit >= ADVANCE_BASE_DIGIT) {
-            location++
-        }
+    fun advance() {
+        location++
+        saveHistory()
+    }
+
+    fun stop() {
+        saveHistory()
+    }
+
+    private fun saveHistory() {
         racingTimes++
-        history[racingTimes] = location
+        history.add(location)
     }
-
-    fun location(): Int = location
-    fun racingTimes(): Int = racingTimes
-    fun history(): Map<Int, Int> = history.toMap()
-
-    companion object {
-        const val ADVANCE_BASE_DIGIT = 4
-    }
+    fun getLocation(): Int = location
+    fun getRacingTimes(): Int = racingTimes
+    fun getHistory(): List<Int> = history.toList()
 }

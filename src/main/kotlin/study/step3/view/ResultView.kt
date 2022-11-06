@@ -2,19 +2,20 @@ package study.step3.view
 
 import study.step3.model.Car
 
-class ResultView {
+object ResultView {
 
-    companion object {
-        fun result(cars: List<Car>, racingTimes: Int) {
-            println("실행 결과")
-            (1..racingTimes).forEach { times ->
-                cars.forEach {
-                    val i = it.history()[times]
-                    requireNotNull(i)
-                    println("-".repeat(i))
-                }
-                println()
-            }
+    fun resultRacingCar(cars: List<Car>, racingTimes: Int) {
+        println("실행 결과")
+        (0 until racingTimes).forEach { times ->
+            printCarHistory(cars, times)
         }
+    }
+
+    private fun printCarHistory(cars: List<Car>, times: Int) {
+        cars.forEach {
+            val i = it.getHistory()[times]
+            println("-".repeat(i))
+        }
+        println()
     }
 }
