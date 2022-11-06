@@ -12,14 +12,14 @@ enum class Operator(val symbol: String, val operate: (Int, Int) -> (Int)) {
     }
 }
 
-private fun plus(num1: Int, num2: Int) = num1 + num2
+private fun plus(firstNum: Int, secondNum: Int) = firstNum + secondNum
 
-private fun minus(num1: Int, num2: Int) = num1 - num2
+private fun minus(firstNum: Int, secondNum: Int) = firstNum - secondNum
 
-private fun multiply(num1: Int, num2: Int) = num1 * num2
+private fun multiply(firstNum: Int, secondNum: Int) = firstNum * secondNum
 
-private fun divide(num1: Int, num2: Int) = if (num2 == 0) {
+private fun divide(firstNum: Int, secondNum: Int) = if (secondNum == 0) {
     throw ArithmeticException("Cannot be divided by zero")
 } else {
-    (num1 / num2)
+    (firstNum / secondNum)
 }
