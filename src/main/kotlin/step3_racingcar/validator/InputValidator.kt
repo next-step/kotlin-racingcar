@@ -1,4 +1,4 @@
-package step3_racingcar
+package step3_racingcar.validator
 
 import step3_racingcar.util.extension.isPositive
 
