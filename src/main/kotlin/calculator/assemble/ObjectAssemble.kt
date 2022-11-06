@@ -7,7 +7,7 @@ import calculator.interfaces.adpater.CalculatorConsoleAdapter
 
 object ObjectAssemble {
     fun calculatorView() = CalculatorConsoleAdapter(calculatorInputPort())
+    private fun calculatorInputPort() = CalculatorInputPortImpl(parsingProcessor(), calculator())
     private fun parsingProcessor() = SequentialParsingProcessor()
     private fun calculator() = StandardCalculator()
-    private fun calculatorInputPort() = CalculatorInputPortImpl(parsingProcessor(), calculator())
 }
