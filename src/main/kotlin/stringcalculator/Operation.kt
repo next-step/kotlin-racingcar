@@ -8,14 +8,15 @@ enum class Operation(
     SUBTRACT("-", { a, b -> a - b }),
     MULTI("*", { a, b -> a * b }),
     DIVIDE("/", { a, b ->
-        if (a == 0 || b == 0) throw IllegalArgumentException("0으로 나눌 수 없습니다.")
+        require(a != 0 || b != 0) { "0으로 나눌 수 없습니다." }
         a / b
     });
 
     companion object {
         fun of(sign: String): Operation {
-            return values().find { operation -> operation.sign == sign }
-                ?: throw IllegalArgumentException("사칙연산만 가능합니다.")
+            val matchedValue = values().find { operation -> operation.sign == sign }
+            requireNotNull(matchedValue) { "사칙연산 문자만 가능합니다." }
+            return matchedValue
         }
     }
 }

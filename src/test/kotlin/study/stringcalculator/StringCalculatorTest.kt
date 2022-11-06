@@ -3,6 +3,8 @@ package study.stringcalculator
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 import stringcalculator.StringCalculator
 import java.lang.IllegalArgumentException
 
@@ -10,13 +12,10 @@ class StringCalculatorTest {
 
     var sc: StringCalculator = StringCalculator()
 
-    @Test
-    fun calculatorTest() {
-        val input1 = "2 + 3 * 4 / 2"
-        assertThat(sc.calculate(input1)).isEqualTo(10)
-
-        val input2 = "4 + 5 * 2 / 3"
-        assertThat(sc.calculate(input2)).isEqualTo(6)
+    @ParameterizedTest
+    @CsvSource(value = ["2 + 3 * 4 / 2:10", "4 + 5 * 2 / 3:6"], delimiter = ':')
+    fun calculatorTest(input: String, expected: Int) {
+        assertThat(sc.calculate(input)).isEqualTo(expected)
     }
 
     @Test

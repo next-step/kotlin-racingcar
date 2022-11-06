@@ -1,7 +1,5 @@
 package stringcalculator
 
-import java.lang.IllegalArgumentException
-
 class StringCalculator {
 
     private val DELIMITER = " "
@@ -25,8 +23,6 @@ class StringCalculator {
     }
 
     private fun inputValidate(input: String?) {
-        if (input.isNullOrBlank()) {
-            throw IllegalArgumentException("빈값이나 null은 허용되지 않습니다")
-        }
+        require(!input.isNullOrBlank()) { "빈값이나 null은 허용되지 않습니다" }
     }
 }
