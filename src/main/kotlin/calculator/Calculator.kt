@@ -13,8 +13,13 @@ object Calculator {
         var result = expression.first().toInt()
 
         for (i in INDEX_OF_FIRST_OPERATOR until expression.size step PAIR) {
+            val indexOfOperand = i + 1
             val operator = Operator.symbolOf(expression[i])
-            val operand = expression[i + 1].toInt()
+            val operand = if (indexOfOperand == expression.size) {
+                throw IllegalArgumentException("The input value is invalid")
+            } else {
+                expression[indexOfOperand].toInt()
+            }
             result = operator.operate(result, operand)
         }
 
