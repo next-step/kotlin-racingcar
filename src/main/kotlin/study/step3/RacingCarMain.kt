@@ -6,14 +6,13 @@ import study.step3.view.InputView.inputRacingCarInfo
 import study.step3.view.ResultView.resultRacingCar
 
 fun main() {
-    try {
+    runCatching {
         val (numberCars, repeatRace) = inputRacingCarInfo()
 
         val racingCar = RacingCar(numberCars, repeatRace, RandomDigit())
         racingCar.race()
-
         resultRacingCar(racingCar.getCars(), repeatRace)
-    } catch (e: Exception) {
+    }.onFailure { e ->
         println("주의: ${e.message}")
     }
 }

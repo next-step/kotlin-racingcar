@@ -1,5 +1,5 @@
 package study.step3.util
 
-interface DigitNumber {
+interface DigitGenerator {
     fun getDigit(): Int
 }

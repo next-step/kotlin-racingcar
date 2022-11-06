@@ -1,33 +1,43 @@
 package study.step3.model
 
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.inspectors.forAll
 import org.assertj.core.api.Assertions.assertThat
+import study.step3.util.StaticDigit
 
 class CarTest : StringSpec({
 
-    "주어진 자동차에, 전진하면, 위치가 1 증가한다  " {
-        // given
-        val car = Car()
-        val beforeLocation = car.getLocation()
+    "주어진 자동차에, 주어진 숫자가 4 이상이면 전진하여, 위치가 1 증가한다  " {
+        listOf(
+            4, 5, 6, 7, 8, 9
+        ).forAll {
+            // given
+            val car = Car(digitGenerator = StaticDigit(it))
+            val beforeLocation = car.getLocation()
 
-        // when
-        car.advance()
+            // when
+            car.move()
 
-        // then
-        val afterLocation = car.getLocation()
-        assertThat(afterLocation - beforeLocation).isOne()
+            // then
+            val afterLocation = car.getLocation()
+            assertThat(afterLocation - beforeLocation).isOne()
+        }
     }
 
-    "주어진 자동차에, 멈춘하면, 위치가 변경되지 않는다" {
-        // given
-        val car = Car()
-        val beforeLocation = car.getLocation()
+    "주어진 자동차에,주어진 숫자가 4 미만이면 멈춘하여, 위치가 변경되지 않는다" {
+        listOf(
+            0, 1, 2, 3
+        ).forAll {
+            // given
+            val car = Car(digitGenerator = StaticDigit(it))
+            val beforeLocation = car.getLocation()
 
-        // when
-        car.stop()
+            // when
+            car.move()
 
-        // then
-        val afterLocation = car.getLocation()
-        assertThat(afterLocation).isEqualTo(beforeLocation)
+            // then
+            val afterLocation = car.getLocation()
+            assertThat(afterLocation).isEqualTo(beforeLocation)
+        }
     }
 })
