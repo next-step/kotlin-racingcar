@@ -7,7 +7,7 @@ fun main() {
 class RacingGame(
     private val settingView: SettingView = SettingView(),
     private val progressView: ProgressView = ProgressView(),
-    private val goStop: GoStop = GoStop()
+    private val movable: Movable = Movable()
 ) {
 
     fun start(setting: Setting = settingView.setUp()): List<String> {
@@ -23,7 +23,7 @@ class RacingGame(
     private fun playTurn(cars: List<String>): List<String> {
 
         val progress = cars.map { s ->
-            if (goStop.canGo()) "$s-"
+            if (movable.canGo()) "$s-"
             else s
         }
 
