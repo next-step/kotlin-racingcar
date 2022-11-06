@@ -3,14 +3,12 @@ package step3_racingcar
 import step3_racingcar.strategy.ForwardStrategy
 
 class Car(
-    private var distance: MutableList<Char> = mutableListOf(),
+    private var distance: Int = 0,
     private val strategy: ForwardStrategy
 ) {
     fun move() {
-        if (strategy.move()) this.distance.add(SPACE)
+        if (strategy.move()) addDistance()
     }
 
-    companion object {
-        private const val SPACE = '-'
-    }
+    private fun addDistance() = this.distance ++
 }
