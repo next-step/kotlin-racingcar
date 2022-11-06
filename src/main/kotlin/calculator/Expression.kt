@@ -15,12 +15,18 @@ data class Expression(
 
     private fun checkIfExpressionIsValid(expression: List<String>) =
         expression.forEachIndexed { index, exp ->
-            if ((index % NUMBER_PATTERN_INDEX == 0 && exp.contains(OPERATOR_REGULAR_EXPRESSION.toRegex())) ||
-                (index % NUMBER_PATTERN_INDEX == 1 && exp.contains(NUMBER_REGULAR_EXPRESSION.toRegex()))
+            if ((index.isNumberIndex() && exp.contains(OPERATOR_REGULAR_EXPRESSION.toRegex())) ||
+                (index.isOperatorIndex() && exp.contains(NUMBER_REGULAR_EXPRESSION.toRegex()))
             ) {
                 throw IllegalArgumentException("잘못된 입력입니다. 숫자, 연산자 입력 순서 확인해주세요")
             }
         }
+
+    private fun Int.isNumberIndex() =
+        this % NUMBER_PATTERN_INDEX == 0
+
+    private fun Int.isOperatorIndex() =
+        !this.isNumberIndex()
 
     fun partitionExpression(): Pair<List<Double>, List<String>> =
         expression.withIndex()
