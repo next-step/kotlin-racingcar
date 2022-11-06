@@ -4,18 +4,14 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.EmptySource
 
 internal class NumberApplicationTest {
-    @Test
-    internal fun `빈 문자열을 입력하면 에러가 남`() {
+    @ParameterizedTest
+    @EmptySource
+    internal fun `공백 및 빈 문자열을 입력하면 에러가 남`(context: String) {
         val calculatorApplication = CalculatorApplication()
-        assertThrows<IllegalArgumentException> { calculatorApplication.calculate("") }
-    }
-
-    @Test
-    internal fun `공백을 입력하면 에러가 남`() {
-        val calculatorApplication = CalculatorApplication()
-        assertThrows<IllegalArgumentException> { calculatorApplication.calculate(" ") }
+        assertThrows<IllegalArgumentException> { calculatorApplication.calculate(context) }
     }
 
     @ParameterizedTest
