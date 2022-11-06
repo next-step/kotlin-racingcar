@@ -13,6 +13,7 @@ object OutputView {
                 repeat(location) { print("-") }
                 println()
             }
+            println()
         }
         val winnersString = racingCarPlayResult.winners.joinToString(", ")
         println("${winnersString}가 최종 우승했습니다.\n")
