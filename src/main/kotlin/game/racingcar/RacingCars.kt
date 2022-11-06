@@ -9,8 +9,8 @@ class RacingCars(
 ) {
     private val racingCars = carNames.map { RacingCar(it, moveStrategy) }
 
-    fun moveAll(): List<Int> {
+    fun moveAll(): List<Pair<String, Int>> {
         return racingCars.onEach { it.move() }
-            .run { this.map { it.location } }
+            .run { this.map { Pair(it.name, it.location) } }
     }
 }
