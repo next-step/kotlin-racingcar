@@ -10,9 +10,5 @@ object GuideScript {
 
     const val BEGIN_GUIDE = "# 시작하려면 아무키나 입력하세요. (종료는 0)"
 
-    const val INPUT_PARTICIPANTS_GUIDE = "# 자동차 대수는 몇 대 인가요?"
-
-    const val INPUT_TRY_COUNT_GUIDE = "# 시도할 횟수는 몇 회인가요?"
-
     const val CLOSE_GUIDE = "# 종료합니다."
 }

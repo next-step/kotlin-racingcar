@@ -1,11 +1,15 @@
 package racingcar.application
 
-import racingcar.CarManager
-import racingcar.CarRacing
+import racingcar.racingcar.CarManager
+import racingcar.racingcar.CarRacing
+import racingcar.ui.InputView
+import racingcar.ui.ResultView
 
 class Application {
-    private val carManager = CarManager()
-    private val carRacing = CarRacing()
+    private val carRacing = CarRacing(CarManager())
+
+    private val inputView = InputView()
+    private val resultView = ResultView()
 
     fun run() {
         println(GuideScript.PROGRAM_INFO)
@@ -15,13 +19,9 @@ class Application {
             if (STOP_COMMAND == runCommand) {
                 break
             }
-            println(GuideScript.INPUT_PARTICIPANTS_GUIDE)
-            val totalParticipants = readln().toInt()
-            val cars = carManager.ready(totalParticipants)
-
-            println(GuideScript.INPUT_TRY_COUNT_GUIDE)
-            val tryCount = readln().toInt()
-            carRacing.participate(cars, tryCount)
+            val carRacingRequest = inputView.getRequest()
+            val carRacingResult = carRacing.participate(carRacingRequest)
+            resultView.view(carRacingResult)
         }
         println(GuideScript.CLOSE_GUIDE)
     }

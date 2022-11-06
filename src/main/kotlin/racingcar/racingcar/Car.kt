@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.racingcar
 
 class Car {
     private var currentLocation: String = ""

@@ -2,6 +2,7 @@ package racingcar
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import racingcar.racingcar.CarManager
 
 class CarManagerTest : StringSpec({
     val carManager = CarManager()

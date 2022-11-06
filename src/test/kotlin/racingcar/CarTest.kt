@@ -2,6 +2,7 @@ package racingcar
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import racingcar.racingcar.Car
 
 class CarTest : StringSpec({
     "자동차 전진 테스트" {
