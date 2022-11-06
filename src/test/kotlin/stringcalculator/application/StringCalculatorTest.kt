@@ -1,9 +1,8 @@
-package step2
+package stringcalculator.application
 
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import stringcalculator.application.StringCalculator
 import stringcalculator.operator.OperatorSelector
 
 class StringCalculatorTest : StringSpec({
