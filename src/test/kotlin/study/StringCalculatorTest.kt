@@ -94,32 +94,96 @@ class StringCalculatorTest {
     @ParameterizedTest
     @ValueSource(strings = ["2 + 3 * 4 / 2", "200 + 3 * 4 / 2", "3 * 4 / 2"])
     fun `문자열 계산기 객체 생성 - 성공`(input: String) {
+        val splitInputData = InputManager.splitInputData(input)
+        val groupByNumberAndOperator = InputManager.groupByNumberAndOperator(splitInputData)
+        val stringNumbers = StringNumbers(groupByNumberAndOperator[0])
+        val operators = Operators(groupByNumberAndOperator[1])
         assertDoesNotThrow {
-            StringCalculator.execute(input)
+            val stringCalculator = StringCalculator(stringNumbers, operators)
+            stringCalculator.calculate()
         }
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["2 + - * 4 / 2", "2 + 3 * 4 /", "+ 3 * 4 / 2"])
+    @ValueSource(strings = ["2 + - * 4 / 2", "2 + 3 * 4 /", "+ 3 * 4 / 2", "1 + 3 * 4 / 2 +"])
     @EmptySource
     fun `문자열 계산기 객체 생성 - 실패`(input: String) {
         assertThrows<IllegalArgumentException> {
-            StringCalculator.execute(input)
+            val splitInputData = InputManager.splitInputData(input)
+            val groupByNumberAndOperator = InputManager.groupByNumberAndOperator(splitInputData)
+            val stringNumbers = StringNumbers(groupByNumberAndOperator[0])
+            val operators = Operators(groupByNumberAndOperator[1])
+            val stringCalculator = StringCalculator(stringNumbers, operators)
+            stringCalculator.calculate()
         }
     }
 
     @ParameterizedTest
     @CsvSource("2 + 3 * 4 / 2:10", "1 + 1 + 1 + 1:4", "0 - 0 - 0 - 0:0", delimiter = ':')
     fun `문자열 계산기 계산 - 성공`(input: String, expected: Long) {
-        val actual = StringCalculator.execute(input)
+        val splitInputData = InputManager.splitInputData(input)
+        val groupByNumberAndOperator = InputManager.groupByNumberAndOperator(splitInputData)
+        val stringNumbers = StringNumbers(groupByNumberAndOperator[0])
+        val operators = Operators(groupByNumberAndOperator[1])
+        val stringCalculator = StringCalculator(stringNumbers, operators)
+        val actual = stringCalculator.calculate()
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["0 / 0"])
     fun `문자열 계산기 계산 - 실패`(input: String) {
+        val splitInputData = InputManager.splitInputData(input)
+        val groupByNumberAndOperator = InputManager.groupByNumberAndOperator(splitInputData)
+        val stringNumbers = StringNumbers(groupByNumberAndOperator[0])
+        val operators = Operators(groupByNumberAndOperator[1])
         assertThrows<ArithmeticException> {
-            StringCalculator.execute(input)
+            val stringCalculator = StringCalculator(stringNumbers, operators)
+            stringCalculator.calculate()
         }
+    }
+
+    @Test
+    fun `Operator 더하기 연산`() {
+        val num1 = 1L
+        val num2 = 2L
+        val first = StringNumber(num1)
+        val operator = Operator.fromDescription("+")
+        val second = StringNumber(num2)
+        val result = operator.calculate(first, second)
+        assertEquals(num1 + num2, result)
+    }
+
+    @Test
+    fun `Operator 빼기 연산`() {
+        val num1 = 1L
+        val num2 = 2L
+        val first = StringNumber(num1)
+        val operator = Operator.fromDescription("-")
+        val second = StringNumber(num2)
+        val result = operator.calculate(first, second)
+        assertEquals(num1 - num2, result)
+    }
+
+    @Test
+    fun `Operator 나누기 연산`() {
+        val num1 = 4L
+        val num2 = 2L
+        val first = StringNumber(num1)
+        val operator = Operator.fromDescription("/")
+        val second = StringNumber(num2)
+        val result = operator.calculate(first, second)
+        assertEquals(num1 / num2, result)
+    }
+
+    @Test
+    fun `Operator 곱하기 연산`() {
+        val num1 = 4L
+        val num2 = 2L
+        val first = StringNumber(num1)
+        val operator = Operator.fromDescription("*")
+        val second = StringNumber(num2)
+        val result = operator.calculate(first, second)
+        assertEquals(num1 * num2, result)
     }
 }
