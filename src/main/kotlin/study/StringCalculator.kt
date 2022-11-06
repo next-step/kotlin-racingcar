@@ -10,13 +10,9 @@ enum class Operator(
     DIVIDE('/', { a, b -> a / b });
 
     companion object {
-        fun of(char: Char) = when (char) {
-            PLUS.symbol -> PLUS
-            MINUS.symbol -> MINUS
-            MULTIPLY.symbol -> MULTIPLY
-            DIVIDE.symbol -> DIVIDE
-            else -> throw IllegalArgumentException("사칙연산 기호가 아닙니다.")
-        }
+        fun of(char: Char) = values()
+            .find { it.symbol == char }
+            ?: throw IllegalArgumentException("사칙연산 기호가 아닙니다.")
     }
 }
 
