@@ -1,6 +1,7 @@
 package calculator
 
 import calculator.util.isNumeric
+import calculator.util.isOddSize
 
 data class Expression(
     private val rawExpression: List<String>
@@ -13,8 +14,8 @@ data class Expression(
 
     fun calculate(): Double {
         val calculateData = rawExpression
-            .drop(1)
-            .chunked(2)
+            .drop(FIRST_INDEX)
+            .chunked(CHUNK_SIZE)
             .map { (operator, operand) ->
                 Operator.from(operator) to operand.toDouble()
             }
@@ -24,9 +25,9 @@ data class Expression(
         }
     }
 
-    private fun isMoreThanMinimumSize() = rawExpression.size > 2
+    private fun isMoreThanMinimumSize() = rawExpression.size > MIN_SIZE
 
-    private fun isCorrectSize() = rawExpression.size % 2 == 1
+    private fun isCorrectSize() = rawExpression.isOddSize()
 
     private fun isCorrectExpression() = rawExpression.withIndex()
         .all { (idx, data) ->
@@ -35,4 +36,10 @@ data class Expression(
                 false -> Operator.exist(data)
             }
         }
+
+    companion object {
+        private const val FIRST_INDEX = 1
+        private const val CHUNK_SIZE = 2
+        private const val MIN_SIZE = 2
+    }
 }
