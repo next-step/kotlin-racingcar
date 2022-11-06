@@ -21,7 +21,7 @@ enum class Operator(val op: String) : (Double, Double) -> Double {
     };
 
     companion object {
-        fun from(op: String) = Operator.values().find { it.op == op } ?: throw IllegalArgumentException("올바른 연산자를 입력해주세요.")
+        fun from(op: String) = Operator.values().find { it.op == op } ?: throw IllegalArgumentException(CalculatorException.NOT_PROPER_OPERATOR)
         fun exist(op: String) = Operator.values().any { it.op == op }
     }
 }
