@@ -17,8 +17,7 @@ class RacingCarGame(
         val racingCars = RacingCars(numberOfCars, moveStrategy)
         repeat(numberOfTrials) {
             with(racingCars) {
-                moveAll()
-                locationSnapshots.add(LocationSnapshot(locations()))
+                locationSnapshots.add(LocationSnapshot(moveAll()))
             }
         }
         return locationSnapshots

@@ -9,11 +9,8 @@ class RacingCars(
 ) {
     private val racingCars = (1..numberOfCars).map { RacingCar(moveStrategy) }
 
-    fun moveAll() {
-        racingCars.forEach { it.move() }
-    }
-
-    fun locations(): List<Int> {
-        return racingCars.map { it.location }
+    fun moveAll(): List<Int> {
+        return racingCars.onEach { it.move() }
+            .run { this.map { it.location } }
     }
 }
