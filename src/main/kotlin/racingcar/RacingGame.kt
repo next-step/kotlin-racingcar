@@ -1,5 +1,9 @@
 package racingcar
 
+fun main() {
+    RacingGame().start()
+}
+
 class RacingGame(
     private val settingView: SettingView = SettingView(),
     private val progressView: ProgressView = ProgressView(),
