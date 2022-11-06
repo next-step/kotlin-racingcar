@@ -6,12 +6,13 @@ import org.junit.jupiter.api.Test
 class CarTest {
     @Test
     fun `전진 테스트`() {
-        var toMoveCar = Car()
         val moveCount = 2
+        var toMoveCar = Car()
         val movedCar = Car(moveCount)
 
+        val moveCondition = 4
         for (i in 1..moveCount) {
-            toMoveCar.move()
+            toMoveCar.move(moveCondition)
         }
 
         assertEquals(movedCar, toMoveCar)

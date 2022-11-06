@@ -18,8 +18,10 @@ fun main() {
 
     carList.forEach {
         for (i in 1..count) {
-            it.move()
+            it.move((0..9).random())
+            println(it.status)
         }
+        println()
     }
 
     println("실행 결과")
