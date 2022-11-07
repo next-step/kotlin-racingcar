@@ -20,13 +20,13 @@ class Calculator {
         var operator: Operator = iterator.next().toOperator()
         var second: Int = iterator.next().toInt()
 
-        var result: Int = operator.operate(first, second)
+        var result: Int = operator.calculate(first, second)
 
         // 이후에는 하나씩 처리
         while (iterator.hasNext()) {
             operator = iterator.next().toOperator()
             second = iterator.next().toInt()
-            result = operator.operate(result, second)
+            result = operator.calculate(result, second)
         }
 
         return result

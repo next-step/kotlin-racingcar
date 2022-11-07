@@ -1,14 +1,6 @@
 package calculator.common
 
-import calculator.common.Constant.DivideCharacter
-import calculator.common.Constant.MinusCharacter
-import calculator.common.Constant.MultiplyCharacter
-import calculator.common.Constant.PlusCharacter
-import calculator.operator.DivideOperator
-import calculator.operator.MinusOperator
-import calculator.operator.MultiplyOperator
 import calculator.operator.Operator
-import calculator.operator.PlusOperator
 
 fun String.isNumber(): Boolean {
     val result = toIntOrNull()
@@ -18,21 +10,22 @@ fun String.isNumber(): Boolean {
 fun String.isNotNumber(): Boolean = isNumber().not()
 
 fun String.isOperator(): Boolean {
-    val result = when (this) {
-        PlusCharacter, MinusCharacter, MultiplyCharacter, DivideCharacter -> true
-        else -> false
-    }
-    return result
+    Operator
+        .values()
+        .forEach { operator ->
+            if (operator.isEqualSign(this)) return true
+        }
+    return false
 }
 
 fun String.isNotOperator(): Boolean = isOperator().not()
 
 fun String.toOperator(): Operator {
-    return when (this) {
-        PlusCharacter -> PlusOperator
-        MinusCharacter -> MinusOperator
-        MultiplyCharacter -> MultiplyOperator
-        DivideCharacter -> DivideOperator
-        else -> throw UnsupportedOperationException("transform fail to Operator")
-    }
+    check(isOperator()) { "this string is not operator" }
+    Operator
+        .values()
+        .forEach {
+            if (it.isEqualSign(this)) return it
+        }
+    throw IllegalArgumentException("not found operator")
 }

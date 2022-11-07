@@ -8,10 +8,10 @@ import org.junit.jupiter.params.provider.ValueSource
 
 internal class CalculatorTest {
 
+    private val calculator = Calculator()
+
     @Test
     fun `더하기 계산`() {
-        val calculator = Calculator()
-
         val result = calculator.calculate(expression = "2 + 9")
 
         assertThat(result).isEqualTo(11)
@@ -19,8 +19,6 @@ internal class CalculatorTest {
 
     @Test
     fun `빼기 계산`() {
-        val calculator = Calculator()
-
         val result = calculator.calculate(expression = "2 - 9")
 
         assertThat(result).isEqualTo(-7)
@@ -28,8 +26,6 @@ internal class CalculatorTest {
 
     @Test
     fun `곱하기 계산`() {
-        val calculator = Calculator()
-
         val result = calculator.calculate(expression = "2 * 9")
 
         assertThat(result).isEqualTo(18)
@@ -37,8 +33,6 @@ internal class CalculatorTest {
 
     @Test
     fun `나누기 계산`() {
-        val calculator = Calculator()
-
         val result = calculator.calculate(expression = "10 / 2")
 
         assertThat(result).isEqualTo(5)
@@ -46,8 +40,6 @@ internal class CalculatorTest {
 
     @Test
     fun `일반 수식이 들어오면 계산이 된다`() {
-        val calculator = Calculator()
-
         val result = calculator.calculate(expression = "2 + 3 * 4 / 2")
 
         assertThat(result).isEqualTo(10)
@@ -56,8 +48,6 @@ internal class CalculatorTest {
     @ParameterizedTest
     @ValueSource(strings = ["", " "])
     fun `입력 값이 null 이거나 빈 공백 문자일 경우 IllegalArgumentException throw`(input: String?) {
-        val calculator = Calculator()
-
         assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy {
                 calculator.calculate(expression = input)
@@ -78,8 +68,6 @@ internal class CalculatorTest {
         ]
     )
     fun `사칙 연산 기호가 아닌 경우 IllegalArgumentException throw`(input: String?) {
-        val calculator = Calculator()
-
         assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy {
                 calculator.calculate(expression = input)
