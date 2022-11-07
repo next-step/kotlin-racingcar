@@ -7,14 +7,15 @@ class Calculator(private val inputs: List<String>) {
     }
 
     fun execute(): Double {
-        var result = Operand.from(inputs[0])
+        var total = Operand.from(inputs[0]).number
 
         for (i in 1 until inputs.size step 2) {
-            val operator = Operator.from(inputs[i])
+            val operation = Operator.from(inputs[i])
             val operand = Operand.from(inputs[i + 1])
-            result = operator.calculate(result, operand)
+
+            total = operation.apply(total, operand.number)
         }
 
-        return result.number
+        return total
     }
 }
