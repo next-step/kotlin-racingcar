@@ -1,7 +1,7 @@
 package racingcar.assemble
 
-import racingcar.application.port.`in`.InputPort
-import racingcar.application.port.out.OutputPort
+import racingcar.application.port.input.InputPort
+import racingcar.application.port.output.OutputPort
 import racingcar.application.race.Race
 import racingcar.application.race.factory.CarFactory
 import racingcar.domain.car.engine.implement.RandomMovingEngine

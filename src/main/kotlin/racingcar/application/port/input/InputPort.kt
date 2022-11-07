@@ -1,4 +1,4 @@
-package racingcar.application.port.`in`
+package racingcar.application.port.input
 
 import racingcar.application.model.RacingCarInputCommand
 import racingcar.application.race.Race

@@ -1,6 +1,6 @@
 package racingcar.interfaces.ui.input
 
-import racingcar.application.port.`in`.InputPort
+import racingcar.application.port.input.InputPort
 import racingcar.interfaces.ui.input.console.RacingCarInputConsole
 
 class RacingCarInputAdapter(

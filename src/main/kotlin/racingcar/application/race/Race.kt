@@ -1,7 +1,7 @@
 package racingcar.application.race
 
 import racingcar.application.model.RacingCarInputCommand
-import racingcar.application.port.out.OutputPort
+import racingcar.application.port.output.OutputPort
 import racingcar.application.race.factory.CarFactory
 
 class Race(
