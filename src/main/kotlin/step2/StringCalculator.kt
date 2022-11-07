@@ -33,7 +33,7 @@ class StringCalculator(input: String) {
             return operand1 / operand2
         }
 
-        fun calculate(s: String) : Int {
+        fun calculate(s: String): Int {
             val st = StringTokenizer(s, " ")
             var result = validateOperand(st.nextToken())
 
@@ -54,7 +54,7 @@ class StringCalculator(input: String) {
             else -> throw IllegalArgumentException("연산자가 올바르지 않습니다.")
         }
 
-        fun validateOperand(operand: String) : Int {
+        fun validateOperand(operand: String): Int {
             try {
                 return operand.toInt()
             } catch (ex: NumberFormatException) {
