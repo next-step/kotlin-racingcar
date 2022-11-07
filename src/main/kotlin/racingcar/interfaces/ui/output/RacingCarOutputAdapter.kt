@@ -2,7 +2,7 @@ package racingcar.interfaces.ui.output
 
 import racingcar.interfaces.ui.output.console.RacingCarOutputConsole
 
-class RacingCarOutputView {
+class RacingCarOutputAdapter {
     fun output(string: String) {
         RacingCarOutputConsole.consolePrint(string)
     }

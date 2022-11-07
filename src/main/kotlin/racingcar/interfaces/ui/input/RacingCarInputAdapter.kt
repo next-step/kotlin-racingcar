@@ -3,7 +3,7 @@ package racingcar.interfaces.ui.input
 import racingcar.application.port.`in`.InputPort
 import racingcar.interfaces.ui.input.console.RacingCarInputConsole
 
-class RacingCarInputView(
+class RacingCarInputAdapter(
     private val inputPort: InputPort
 ) {
 
