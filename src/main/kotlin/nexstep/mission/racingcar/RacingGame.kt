@@ -1,14 +1,13 @@
 package nexstep.mission.racingcar
 
-import nexstep.mission.calculator.removeFirst
+import nexstep.mission.extenstionfun.pop
 
-fun <T> MutableList<T>.pop() = this.removeFirst()
 fun List<RacingCar>.toSortedMutable() = this.sortedByDescending { it.position }.toMutableList()
 
 private const val NAME_SPLITTER = ","
 
 class RacingGame(val racingCars: List<RacingCar>) {
-    constructor(names: String) : this(createRacingCars(names.split(NAME_SPLITTER)))
+    constructor(names: String) : this(createRacingCars(names.split(NAME_SPLITTER).toMutableList()))
 
     fun race(strategy: () -> Int): List<RacingCar> =
         racingCars.onEach { it.move(strategy.invoke()) }
@@ -24,14 +23,14 @@ class RacingGame(val racingCars: List<RacingCar>) {
 
     companion object {
         private tailrec fun createRacingCars(
-            names: List<String>,
+            names: MutableList<String>,
             racingCars: MutableList<RacingCar> = mutableListOf()
         ): List<RacingCar> =
             when (true) {
                 names.isEmpty() -> racingCars.toList()
                 else -> {
-                    racingCars += RacingCar(names.first())
-                    createRacingCars(names.removeFirst(), racingCars)
+                    racingCars += RacingCar(names.pop())
+                    createRacingCars(names, racingCars)
                 }
             }
     }
