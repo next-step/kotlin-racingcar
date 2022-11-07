@@ -5,7 +5,9 @@ import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.EmptySource
 import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.NullSource
 import org.junit.jupiter.params.provider.ValueSource
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -23,7 +25,8 @@ class CalculatorTest {
 
     @DisplayName("입력 값이 공백일 경우 익셉션")
     @ParameterizedTest
-    @ValueSource(strings = [" ", ""])
+    @EmptySource
+    @NullSource
     fun `input data is not blank`(input: String?) {
         assertThatIllegalArgumentException()
             .isThrownBy { calculator.calculate(input) }
