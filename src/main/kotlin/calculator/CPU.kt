@@ -1,27 +1,27 @@
 package calculator
 
 class CPU {
-    private fun add(i: Int, j: Int): Int = i + j
-    private fun subtract(i: Int, j: Int): Int = i - j
-    private fun multiply(i: Int, j: Int): Int = i * j
-    private fun divide(i: Int, j: Int): Int = i / j
+    private fun add(preOperand: Int, postOperand: Int): Int = preOperand + postOperand
+    private fun subtract(preOperand: Int, postOperand: Int): Int = preOperand - postOperand
+    private fun multiply(preOperand: Int, postOperand: Int): Int = preOperand * postOperand
+    private fun divide(preOperand: Int, postOperand: Int): Int = preOperand / postOperand
 
-    fun execute(operator: Operator, operand1: Int, operand2: Int): Int {
+    fun execute(operator: Operator, preOperand: Int, postOperand: Int): Int {
         return when (operator) {
             Operator.ADD -> {
-                add(operand1, operand2)
+                add(preOperand, postOperand)
             }
 
             Operator.SUBTRACT -> {
-                subtract(operand1, operand2)
+                subtract(preOperand, postOperand)
             }
 
             Operator.MULTIPLY -> {
-                multiply(operand1, operand2)
+                multiply(preOperand, postOperand)
             }
 
             Operator.DIVIDE -> {
-                divide(operand1, operand2)
+                divide(preOperand, postOperand)
             }
         }
     }
