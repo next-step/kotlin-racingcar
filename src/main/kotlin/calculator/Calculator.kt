@@ -2,6 +2,7 @@ package calculator
 
 import calculator.common.toOperator
 import calculator.operator.Operator
+import kotlin.math.exp
 
 class Calculator {
 
@@ -9,6 +10,7 @@ class Calculator {
 
     @Throws(Exception::class)
     fun calculate(expression: String?): Int {
+        require(expression != null) { "expression is null" }
         val elements = parser.parse(expression)
         if (parser.validate(elements).not()) throw IllegalArgumentException("element is not valid")
 

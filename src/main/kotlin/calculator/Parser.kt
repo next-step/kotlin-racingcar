@@ -5,8 +5,8 @@ import calculator.common.isNotOperator
 
 class Parser(private val limit: Int) {
 
-    fun parse(input: String?): List<String> {
-        if (input.isNullOrBlank()) {
+    fun parse(input: String): List<String> {
+        if (input.isBlank()) {
             return emptyList()
         }
         return input.split(" ")
