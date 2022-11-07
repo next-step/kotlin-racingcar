@@ -5,18 +5,25 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
+import racingcar.domain.car.engine.MovingEngine
 import racingcar.domain.car.engine.implement.RandomMovingEngine
 
 internal class CarTest : StringSpec({
 
+    lateinit var movingEngine: MovingEngine
+
+    beforeEach {
+        movingEngine = RandomMovingEngine()
+    }
+
     "자동차는 위치값을 갖는다" {
-        val car = Car(MOVING_STRATEGY)
+        val car = Car(movingEngine)
         val initPosition = car.currentPosition()
         initPosition.shouldNotBeNull()
     }
 
     "자동차는 움직이면 위치값이 변한다" {
-        val car = Car(MOVING_STRATEGY)
+        val car = Car(movingEngine)
         val initAttemptCount = car.attemptCount()
         car.move()
         val postAttemptCount = car.attemptCount()
@@ -33,7 +40,7 @@ internal class CarTest : StringSpec({
     }
 
     "자동차가 멈추면 마지막 위치값을 기억한다" {
-        val car = Car(MOVING_STRATEGY)
+        val car = Car(movingEngine)
         car.move()
         car.stop()
         val lastPosition = car.lastPosition
@@ -41,7 +48,7 @@ internal class CarTest : StringSpec({
     }
 
     "자동차가 멈추면 이동을 하지 못한다" {
-        val car = Car(MOVING_STRATEGY)
+        val car = Car(movingEngine)
         car.move()
         car.stop()
         shouldThrow<IllegalStateException> {
@@ -50,11 +57,9 @@ internal class CarTest : StringSpec({
     }
 
     "자동차가 이동을 시도했을 때, 시도한 횟수를 저장한다" {
-        val car = Car(MOVING_STRATEGY)
+        val car = Car(movingEngine)
         car.move()
         car.move()
         car.attemptCount() shouldBe 2
     }
 })
-
-private val MOVING_STRATEGY = RandomMovingEngine()
