@@ -8,6 +8,8 @@ fun main() {
     println(StringCalculator.calculate(input))
 }
 
+private const val INPUT_DELIMITER = " "
+
 class StringCalculator(input: String) {
     init {
         if (input.isBlank()) {
@@ -34,7 +36,7 @@ class StringCalculator(input: String) {
         }
 
         fun calculate(s: String): Int {
-            val st = StringTokenizer(s, " ")
+            val st = StringTokenizer(s, INPUT_DELIMITER)
             var result = validateOperand(st.nextToken())
 
             while (st.hasMoreTokens()) {
