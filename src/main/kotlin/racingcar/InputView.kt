@@ -1,10 +1,6 @@
 package racingcar
 
-// Int 입력시 -> 유효성 검사만, 미 입력시 default 값으로 실행
-// String 입력시 -> String 유효성 검사 -> Int 유효성 검사
-// 미 입력시 -> readLine
-
-class SettingView {
+class InputView {
 
     fun setUp(numberOfCars: Int, numberOfLabs: Int): Setting {
         return Setting(validateInteger(numberOfCars), validateInteger(numberOfLabs))

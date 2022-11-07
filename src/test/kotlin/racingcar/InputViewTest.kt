@@ -4,7 +4,7 @@ import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 
-class SettingViewTest : BehaviorSpec({
+class InputViewTest : BehaviorSpec({
 
     given("입력값이 주어지지 않은 상태") {
         val numberOfCars = null
@@ -14,7 +14,7 @@ class SettingViewTest : BehaviorSpec({
 
             then("IllegalArgumentException(입력값이 null 혹은 공백일 수 없습니다)을 반환한다") {
                 shouldThrowWithMessage<IllegalArgumentException>("입력값이 null 혹은 공백일 수 없습니다") {
-                    SettingView().setUp(numberOfCars, numberOfLabs)
+                    InputView().setUp(numberOfCars, numberOfLabs)
                 }
             }
         }
@@ -27,7 +27,7 @@ class SettingViewTest : BehaviorSpec({
         `when`("설정을 시도하면") {
             then("IllegalArgumentException(입력된 문자는 정수여야 합니다) 반환한다") {
                 shouldThrowWithMessage<IllegalArgumentException>("입력된 문자는 정수여야 합니다") {
-                    SettingView().setUp(numberOfCars, numberOfLabs)
+                    InputView().setUp(numberOfCars, numberOfLabs)
                 }
             }
         }
@@ -39,7 +39,7 @@ class SettingViewTest : BehaviorSpec({
         `when`("설정을 시도하면") {
             then("IllegalArgumentException(입력된 문자는 정수여야 합니다) 반환한다") {
                 shouldThrowWithMessage<IllegalArgumentException>("입력된 문자는 정수여야 합니다") {
-                    SettingView().setUp(numberOfCars, numberOfLabs)
+                    InputView().setUp(numberOfCars, numberOfLabs)
                 }
             }
         }
@@ -51,7 +51,7 @@ class SettingViewTest : BehaviorSpec({
         `when`("설정을 시도하면") {
             then("IllegalArgumentException(1보다 작은 정수를 입력할 수 없습니다) 반환한다") {
                 shouldThrowWithMessage<IllegalArgumentException>("1보다 작은 정수를 입력할 수 없습니다") {
-                    SettingView().setUp(numberOfCars, numberOfLabs)
+                    InputView().setUp(numberOfCars, numberOfLabs)
                 }
             }
         }
@@ -62,7 +62,7 @@ class SettingViewTest : BehaviorSpec({
         val numberOfLabs = "3"
         `when`("설정을 시도하면") {
             then("IllegalArgumentException(1보다 작은 정수를 입력할 수 없습니다) 반환한다") {
-                SettingView().setUp(numberOfCars, numberOfLabs) shouldBe Setting(5, 3)
+                InputView().setUp(numberOfCars, numberOfLabs) shouldBe Setting(5, 3)
             }
         }
     }
@@ -72,7 +72,7 @@ class SettingViewTest : BehaviorSpec({
         val numberOfLabs = 3
         `when`("설정을 시도하면") {
             then("IllegalArgumentException(1보다 작은 정수를 입력할 수 없습니다) 반환한다") {
-                SettingView().setUp(numberOfCars, numberOfLabs) shouldBe Setting(5, 3)
+                InputView().setUp(numberOfCars, numberOfLabs) shouldBe Setting(5, 3)
             }
         }
     }
@@ -83,7 +83,7 @@ class SettingViewTest : BehaviorSpec({
         `when`("설정을 시도하면") {
             then("IllegalArgumentException(1보다 작은 정수를 입력할 수 없습니다) 반환한다") {
                 shouldThrowWithMessage<IllegalArgumentException>("1보다 작은 정수를 입력할 수 없습니다") {
-                    SettingView().setUp(numberOfCars, numberOfLabs)
+                    InputView().setUp(numberOfCars, numberOfLabs)
                 }
             }
         }
