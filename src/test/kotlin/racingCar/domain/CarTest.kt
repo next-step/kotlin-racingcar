@@ -11,6 +11,6 @@ class CarTest {
 
         car.move()
 
-        assertThat(car.isSamePosition(Position(2)))
+        assertThat(car).isEqualTo(Car(2))
     }
 }

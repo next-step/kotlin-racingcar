@@ -12,9 +12,14 @@ class Cars(carNumber: Int, private val strategy: MoveStrategy) {
 
     fun moveByStrategy() {
         cars.forEach {
-            if (strategy.move()) {
-                it.move()
-            }
+            moveByStrategy(it)
         }
+    }
+
+    private fun moveByStrategy(car: Car) {
+        if (!strategy.move()) {
+            return
+        }
+        car.move()
     }
 }
