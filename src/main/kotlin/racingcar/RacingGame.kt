@@ -5,33 +5,29 @@ fun main() {
 }
 
 class RacingGame(
-    private val settingView: SettingView = SettingView(),
-    private val progressView: ProgressView = ProgressView(),
+    private val inputView: InputView = InputView(),
+    private val resultView: ResultView = ResultView(),
     private val movable: Movable = Movable()
 ) {
 
-    fun start(setting: Setting = settingView.setUp()): List<String> {
-        var cars = generateCars(setting.numberOfCars)
+    fun start(setting: Setting = inputView.setUp()): List<Car> {
+        val cars = generateCars(setting.numberOfCars)
 
         repeat(setting.numberOfLab) {
-            cars = playTurn(cars)
+            playTurn(cars)
         }
 
         return cars
     }
 
-    private fun playTurn(cars: List<String>): List<String> {
-
-        val progress = cars.map { s ->
-            if (movable.canGo()) "$s-"
-            else s
+    private fun playTurn(cars: List<Car>) {
+        cars.forEach { car ->
+            if (movable.canGo()) car.go()
         }
-
-        progressView.display(progress)
-        return progress
+        resultView.displayResult(cars)
     }
 
-    private fun generateCars(numberOfCars: Int): List<String> {
-        return List(numberOfCars) { "" }
+    private fun generateCars(numberOfCars: Int): List<Car> {
+        return List(numberOfCars) { Car() }
     }
 }
