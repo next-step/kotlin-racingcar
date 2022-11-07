@@ -17,4 +17,8 @@ class Cars {
             it.move(MOVEMENT_STRATEGY)
         }
     }
+
+    fun racingResult(): List<RacingResultDTO> {
+        return cars.map { RacingResultDTO(it.getDistance()) }.toList()
+    }
 }
