@@ -21,9 +21,7 @@ class Car(
     }
 
     private fun checkStop() {
-        if (::lastPosition.isInitialized) {
-            throw IllegalStateException("자동차는 이미 정지한 상태입니다")
-        }
+        check(!::lastPosition.isInitialized) { "자동차는 이미 정지한 상태입니다" }
     }
 
     private fun addAttemptCount() {
