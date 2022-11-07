@@ -27,4 +27,5 @@ class CalculatorTest {
             Calculator().calculate(expression)
         }
     }
+
 }
