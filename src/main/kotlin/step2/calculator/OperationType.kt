@@ -16,13 +16,13 @@ enum class OperationType(private val operator: String, val calculate: (Double, D
     });
 
     companion object {
-        private const val INVALID_OPERATOR_ERROR_MESSAGE = "옳바르지 않은 연산자입니다. 사칙연산에 해당하는 연산자만 입력하세요 :  %s"
+        private const val INVALID_OPERATOR_ERROR_MESSAGE = "올바르지 않은 연산자입니다. 사칙연산에 해당하는 연산자만 입력하세요 :  %s"
         private const val ZERO_DIVISOR_ERROR_MESSAGE = "0으로 나눌수 없습니다."
 
-        fun match(operator: String): OperationType = requireNotNull(
-            values().firstOrNull() {
-                it.operator == operator
-            }) { INVALID_OPERATOR_ERROR_MESSAGE.format(operator) }
+        fun match(operator: String): OperationType =
+            requireNotNull(
+                values().firstOrNull { it.operator == operator }
+            ) { INVALID_OPERATOR_ERROR_MESSAGE.format(operator) }
 
         private fun validateDivisor(divisor: Double) =
             require(divisor.isNotZero()) { ZERO_DIVISOR_ERROR_MESSAGE }
