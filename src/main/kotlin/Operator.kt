@@ -4,15 +4,15 @@ import java.math.MathContext
 enum class Operator(val symbol: String) {
     ADD("+") {
         override fun calculate(i: BigDecimal, j: BigDecimal): BigDecimal =
-            i.add(j)
+            i + j
     },
     MINUS("-") {
         override fun calculate(i: BigDecimal, j: BigDecimal): BigDecimal =
-            i.subtract(j)
+            i - j
     },
     MULTIPLE("*") {
         override fun calculate(i: BigDecimal, j: BigDecimal): BigDecimal =
-            i.multiply(j)
+            i * j
     },
     DIVIDE("/") {
         override fun calculate(i: BigDecimal, j: BigDecimal): BigDecimal =
