@@ -14,7 +14,10 @@ enum class Operation(
     DIVIDE("/", { d1, d2 -> d1.divide(d2, max(d1.scale(), d2.scale()), FLOOR) });
 
     companion object {
-        fun of(symbol: String) = values().find { it.symbol == symbol } ?: throw IllegalArgumentException()
+        fun of(symbol: String) =
+            values().find { it.symbol == symbol }
+                ?: throw IllegalArgumentException("유호하지 않은 연산기호입니다.")
+
         fun isSymbol(symbol: String) = values().any { it.symbol == symbol }
     }
 }

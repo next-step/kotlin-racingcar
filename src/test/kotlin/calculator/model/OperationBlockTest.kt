@@ -29,7 +29,7 @@ internal class OperationBlockTest {
         val result = block.reduce(value)
 
         assertThat(result.accumulator).isEqualTo(expected.accumulator)
-        assertThat(result.calculation).isEqualTo(expected.calculation)
+        assertThat(result.operation).isEqualTo(expected.operation)
     }
 
     @Test
@@ -41,7 +41,7 @@ internal class OperationBlockTest {
         val result = block.reduce(value)
 
         assertThat(result.accumulator).isEqualTo(expected.accumulator)
-        assertThat(result.calculation).isEqualTo(expected.calculation)
+        assertThat(result.operation).isEqualTo(expected.operation)
     }
 
     @Test

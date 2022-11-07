@@ -5,16 +5,16 @@ import java.util.Objects.isNull
 
 class OperationBlock(
     val accumulator: BigDecimal,
-    val calculation: Operation? = null
+    val operation: Operation? = null
 ) {
     fun result(): BigDecimal {
-        check(isNull(calculation))
+        check(isNull(operation)) { "아직 처리되지 않은 연산이 존재합니다." }
         return accumulator
     }
 
     fun apply(nextValue: BigDecimal): BigDecimal {
-        checkNotNull(calculation)
-        return calculation.apply(accumulator, nextValue)
+        checkNotNull(operation) { "블럭에 연산이 존재하지 않아 처리할 수 없습니다." }
+        return operation.apply(accumulator, nextValue)
     }
 
     fun reduce(value: String): OperationBlock {
