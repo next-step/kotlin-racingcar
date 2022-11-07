@@ -1,9 +1,10 @@
-package calculator.interfaces.input
+package calculator.interfaces.input.impl
 
 import calculator.domain.operation.enums.Operator
+import calculator.interfaces.input.InputConsole
 import java.util.StringJoiner
 
-object StepInputConsole {
+object StepInputConsole : InputConsole {
 
     private const val JOINER_DELIMITER = " "
 
@@ -18,7 +19,7 @@ object StepInputConsole {
     private const val CONTINUE_QUESTION = "연산을 계속 하시겠습니까? $YES: 넵 $NO: 아니요"
     private const val REPEAT_CORRECT_ANSWER = "답변을 제대로 해주세요"
 
-    fun input(): String {
+    override fun input(): String {
         val stringJoiner = StringJoiner(JOINER_DELIMITER)
 
         val firstNumber = inputNumber(INPUT_NUMBER_COMMENT)
