@@ -27,5 +27,4 @@ class PersonKoTest : StringSpec({
         val person2 = Person(name = "shin", age = 20)
         person1.name shouldBe person2.nickname
     }
-
 })
