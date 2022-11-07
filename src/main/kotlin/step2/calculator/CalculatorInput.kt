@@ -2,9 +2,10 @@ package step2.calculator
 
 import step2.calculator.system.component.Component
 import step2.calculator.system.component.ComponentConverter
+import step2.user.UserInput
 
 data class CalculatorInput(
-    val buttonList: List<Component>
+    val buttons: List<Component>
 ) {
 
     companion object {
