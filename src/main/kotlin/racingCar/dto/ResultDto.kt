@@ -1,7 +1,12 @@
-package racingCar.dto;
+package racingCar.dto
 
 import racingCar.domain.Cars
+import racingCar.domain.Position
+import java.util.stream.Collectors
 
-public class ResultDto(cars :Cars) {
+class ResultDto(cars: Cars) {
 
+    val positions: List<Position> = cars.cars.stream()
+        .map { it.position }
+        .collect(Collectors.toList())
 }

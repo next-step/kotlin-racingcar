@@ -1,14 +1,12 @@
 package racingCar.domain
 
 import racingCar.dto.ResultDto
-import java.util.stream.IntStream
 
-class Racing {
+class Racing(carNumber: Int, strategy: MoveStrategy) {
 
-    fun play(carNumber: Int, tryNumber: Int): ResultDto {
-        val cars = Cars(carNumber, RandomStrategy())
-        IntStream.range(0, tryNumber)
-            .forEach { cars.moveByStrategy() }
+    private val cars = Cars(carNumber, strategy)
+    fun play(): ResultDto {
+        cars.moveByStrategy()
         return ResultDto(cars)
     }
 }
