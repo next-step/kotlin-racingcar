@@ -8,12 +8,10 @@ data class Numeric(
 
     companion object {
         @Throws(NumberFormatException::class)
-        @JvmStatic
         fun from(input: String): Numeric {
             return Numeric(input.toDouble())
         }
 
-        @JvmStatic
         fun isNumeric(input: String): Boolean {
             return try {
                 input.toDouble()

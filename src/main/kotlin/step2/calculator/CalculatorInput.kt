@@ -8,10 +8,9 @@ data class CalculatorInput(
 ) {
 
     companion object {
-        @JvmStatic
-        fun from(input: List<String>): CalculatorInput {
+        fun from(input: UserInput): CalculatorInput {
             return CalculatorInput(
-                input.map { ComponentConverter.convert(it) }
+                input.value.map { ComponentConverter.convert(it) }
             )
         }
     }

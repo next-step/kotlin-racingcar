@@ -4,7 +4,7 @@ import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.doubles.shouldBeExactly
 import step2.calculator.system.SystemImpl
-import step2.user.UserCleanedInput
+import step2.user.UserInput
 
 /**
  * @see CalculatorImpl
@@ -16,8 +16,8 @@ class CalculatorIntegrationTest : ShouldSpec({
 
     context("숫자 기호 순차 입력을 요청하면") {
         val originalInput = "1 + 5 - 0 * 5 / 7 "
-        val cleanedInput = UserCleanedInput.from(originalInput)
-        val calculatorInput = CalculatorInput.from(cleanedInput.inputList)
+        val userInput = UserInput.from(originalInput)
+        val calculatorInput = CalculatorInput.from(userInput)
         should("정상 동작한다") {
             val result = shouldNotThrowAny {
                 calculator.enter(calculatorInput)
@@ -28,8 +28,8 @@ class CalculatorIntegrationTest : ShouldSpec({
 
     context("숫자가 중복된 경우") {
         val originalInput = "1 + 5  1 * 5 / 7 "
-        val cleanedInput = UserCleanedInput.from(originalInput)
-        val calculatorInput = CalculatorInput.from(cleanedInput.inputList)
+        val userInput = UserInput.from(originalInput)
+        val calculatorInput = CalculatorInput.from(userInput)
         should("이전 결과를 덮어 씌운다.") {
             val result = shouldNotThrowAny {
                 calculator.enter(calculatorInput)
@@ -40,8 +40,8 @@ class CalculatorIntegrationTest : ShouldSpec({
 
     context("문자가 중복된 경우") {
         val originalInput = "1 - + 5 - 0 * 5 / 7 "
-        val cleanedInput = UserCleanedInput.from(originalInput)
-        val calculatorInput = CalculatorInput.from(cleanedInput.inputList)
+        val userInput = UserInput.from(originalInput)
+        val calculatorInput = CalculatorInput.from(userInput)
         should("이전 함수를 무시한다.") {
             val result = shouldNotThrowAny {
                 calculator.enter(calculatorInput)

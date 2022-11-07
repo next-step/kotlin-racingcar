@@ -26,13 +26,11 @@ enum class LazyFunction(val sign: String) : Function {
     abstract fun evaluate(front: Double, back: Double): Double
 
     companion object {
-        @JvmStatic
         fun from(input: String): LazyFunction {
             return values().firstOrNull { it.sign == input }
                 ?: throw IllegalArgumentException("Not Lazy Function : $input")
         }
 
-        @JvmStatic
         fun isLazyFunction(input: String): Boolean {
             return values().map { it.sign }.contains(input)
         }

@@ -3,8 +3,7 @@ package step2
 import step2.calculator.CalculatorImpl
 import step2.calculator.CalculatorInput
 import step2.calculator.system.SystemImpl
-import step2.user.UserCleanedInput
-import step2.user.UserOriginalInput
+import step2.user.UserInput
 
 fun main() {
 
@@ -15,9 +14,9 @@ fun main() {
     println("공백으로 문자를 구분합니다.")
     println("중복된 숫자는 이전 값을 덮어씌우며, 중복된 지연 함수는 이전 함수를 무시합니다.")
 
-    val userOriginalInput = UserOriginalInput(readLine())
-    val userCleanedInput = UserCleanedInput.from(userOriginalInput.context)
-    val calculatorInput = CalculatorInput.from(userCleanedInput.inputList)
+    val userOriginalInput = readlnOrNull() ?: throw IllegalArgumentException("null 입력은 허용하지 않습니다.")
+    val userCleanedInput = UserInput.from(userOriginalInput)
+    val calculatorInput = CalculatorInput.from(userCleanedInput)
 
     val result = calculator.enter(calculatorInput)
 
