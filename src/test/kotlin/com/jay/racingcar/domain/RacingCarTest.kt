@@ -23,13 +23,13 @@ internal class RacingCarTest {
     }
 
     private fun forwardStrategy() = object : MovingStrategy {
-        override fun move(): Boolean {
+        override fun canMove(): Boolean {
             return true
         }
     }
 
     private fun stopStrategy() = object : MovingStrategy {
-        override fun move(): Boolean {
+        override fun canMove(): Boolean {
             return false
         }
     }

@@ -5,6 +5,6 @@ class RacingCar(
     var position: Int = 0
 ) {
     fun move() {
-        if (movingStrategy.move()) position++
+        if (movingStrategy.canMove()) position++
     }
 }
