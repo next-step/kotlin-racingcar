@@ -8,7 +8,9 @@ import java.util.stream.IntStream
 
 fun main() {
     val racing = Racing(getCarNumber(), RandomStrategy())
-    IntStream.range(0, getTryNumber())
+    val tryNumber = getTryNumber()
+    OutputView.printResultMsg()
+    IntStream.range(0, tryNumber)
         .forEach {
             val result = racing.play()
             OutputView.printResult(result)
