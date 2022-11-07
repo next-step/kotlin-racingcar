@@ -1,8 +1,8 @@
-package step3.domain.car
+package racingcar.domain.car
 
-import step3.domain.car.strategy.Count
-import step3.domain.car.strategy.MovingStrategy
-import step3.domain.car.strategy.implement.DefaultMovingStrategy
+import racingcar.domain.car.strategy.Count
+import racingcar.domain.car.strategy.MovingStrategy
+import racingcar.domain.car.strategy.implement.DefaultMovingStrategy
 
 class Car(
     private val movingStrategy: MovingStrategy = DefaultMovingStrategy()

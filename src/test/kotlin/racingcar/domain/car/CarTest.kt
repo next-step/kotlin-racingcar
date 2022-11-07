@@ -1,11 +1,11 @@
-package step3.domain.car
+package racingcar.domain.car
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
-import step3.domain.car.strategy.implement.RandomMovingStrategy
+import racingcar.domain.car.strategy.implement.RandomMovingStrategy
 
 internal class CarTest : StringSpec({
 

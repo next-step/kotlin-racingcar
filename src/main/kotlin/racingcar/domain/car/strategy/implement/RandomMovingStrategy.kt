@@ -1,7 +1,7 @@
-package step3.domain.car.strategy.implement
+package racingcar.domain.car.strategy.implement
 
-import step3.domain.car.Position
-import step3.domain.car.strategy.MovingStrategy
+import racingcar.domain.car.Position
+import racingcar.domain.car.strategy.MovingStrategy
 import kotlin.random.Random
 
 /**

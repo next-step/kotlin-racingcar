@@ -1,4 +1,4 @@
-package step3.domain.car.strategy
+package racingcar.domain.car.strategy
 
 class Count(
     private var count: Int = 0

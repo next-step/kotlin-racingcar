@@ -1,6 +1,6 @@
-package step3.domain.car.strategy
+package racingcar.domain.car.strategy
 
-import step3.domain.car.Position
+import racingcar.domain.car.Position
 
 interface MovingStrategy {
 

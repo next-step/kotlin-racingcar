@@ -1,4 +1,4 @@
-package step3.domain.car
+package racingcar.domain.car
 
 class Position(
     private val position: Int = 0
