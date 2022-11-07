@@ -7,12 +7,20 @@ import study.step4.util.StaticDigit
 
 class CarTest : StringSpec({
 
+    "자동차 객체를,  생성하면, 이름을 갖게된다 " {
+        // given & when
+        val car = Car(name = "자동차1")
+        // then
+        assertThat(car.name).isEqualTo("자동차1")
+    }
+
     "주어진 자동차에, 주어진 숫자가 4 이상이면 전진하여, 위치가 1 증가한다  " {
         listOf(
             4, 5, 6, 7, 8, 9
         ).forAll {
             // given
             val car = Car(digitGenerator = StaticDigit(it))
+
             val beforeLocation = car.getLocation()
 
             // when

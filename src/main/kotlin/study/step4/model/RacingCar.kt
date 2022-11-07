@@ -15,8 +15,8 @@ class RacingCar(
     }
 
     private fun settingCar(numberCar: List<String>) {
-        numberCar.forEach { _ ->
-            cars.add(Car(digitGenerator = digitGenerator))
+        numberCar.forEach { name ->
+            cars.add(Car(name = name, digitGenerator = digitGenerator))
         }
     }
 
