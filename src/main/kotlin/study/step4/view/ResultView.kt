@@ -14,7 +14,7 @@ object ResultView {
     private fun printCarHistory(cars: List<Car>, times: Int) {
         cars.forEach {
             val i = it.getHistory()[times]
-            println("-".repeat(i))
+            println("${it.name} : " + "-".repeat(i))
         }
         println()
     }
