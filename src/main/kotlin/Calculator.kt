@@ -21,13 +21,13 @@ class Calculator {
             } else {
                 val num = if (stack.isNotEmpty()) {
                     if (number.isNotEmpty()) calculate(number.pop().toString(), s, stack.pop())
-                    else throw RuntimeException(ErrorMessage.InputError.message)
+                    else throw IllegalArgumentException(ErrorMessage.InputError.message)
                 } else s
                 number.push(num)
             }
         }
         val result = number.pop()
-        if (number.isNotEmpty() || stack.isNotEmpty())throw RuntimeException(ErrorMessage.InputError.message)
+        if (number.isNotEmpty() || stack.isNotEmpty())throw IllegalArgumentException(ErrorMessage.InputError.message)
         return result
     }
 }

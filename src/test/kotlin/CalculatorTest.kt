@@ -4,7 +4,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
-import java.lang.RuntimeException
 
 class CalculatorTest {
     private val calculator = Calculator()
@@ -102,7 +101,7 @@ class CalculatorTest {
     @ParameterizedTest
     @ValueSource(strings = [ "1 + 1 + 1 + 1 + 1 +", "/ 2 + 3 * 4 / 2", " 1 1 + 1 + 1", "1 + 1 1 + 1"])
     fun `calculateStringInput throw RuntimeException`(input: String) {
-        val exception = assertThrows<RuntimeException> {
+        val exception = assertThrows<IllegalArgumentException> {
             calculator.calculateStringInput(input)
         }
 
