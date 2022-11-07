@@ -4,16 +4,18 @@ import game.racingcar.move.MoveStrategy
 import game.racingcar.move.RandomMoveStrategy
 
 class RacingCars(
-    numberOfCars: Int,
+    carNames: List<String>,
     moveStrategy: MoveStrategy = RandomMoveStrategy()
 ) {
-    private val racingCars = (1..numberOfCars).map { RacingCar(moveStrategy) }
+    private val racingCars = carNames.map { RacingCar(it, moveStrategy) }
 
-    fun moveAll() {
-        racingCars.forEach { it.move() }
+    fun moveAll(): List<Pair<String, Int>> {
+        return racingCars.onEach { it.move() }
+            .run { this.map { Pair(it.name, it.location) } }
     }
 
-    fun locations(): List<Int> {
-        return racingCars.map { it.location }
+    fun pickWinners(): List<String> {
+        val maxLocation = racingCars.maxOf { it.location }
+        return racingCars.filter { it.location == maxLocation }.map { it.name }
     }
 }

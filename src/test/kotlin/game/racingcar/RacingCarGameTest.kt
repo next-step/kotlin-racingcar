@@ -9,7 +9,7 @@ internal class RacingCarGameTest() {
     @Test
     fun `RacingCarGame이 AlwaysMoveStrategy로 생성되었을 때 위치 스냅샷이 1씩 증가한다`() {
         // given
-        val racingCarGame = RacingCarGame(3, 5, AlwaysMoveStrategy())
+        val racingCarGame = RacingCarGame(listOf("haris", "horis", "huris"), 5, AlwaysMoveStrategy())
 
         // when
         val locationSnapshots = racingCarGame.play()

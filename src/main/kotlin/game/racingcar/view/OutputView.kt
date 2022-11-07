@@ -1,16 +1,21 @@
 package game.racingcar.view
 
-import game.racingcar.dto.LocationSnapshot
+import game.racingcar.dto.RacingCarPlayResult
 
 object OutputView {
 
-    fun printOutputToConsole(snapshots: List<LocationSnapshot>) {
+    fun printOutputToConsole(racingCarPlayResult: RacingCarPlayResult) {
         println("실행 결과")
-        snapshots.forEach { locationOfCars ->
-            locationOfCars.locations.forEach { location ->
+        racingCarPlayResult.locationSnapshots.forEach { locationOfCars ->
+            locationOfCars.locations.forEach { snapshot ->
+                val (name, location) = snapshot
+                print("$name : ")
                 repeat(location) { print("-") }
                 println()
             }
+            println()
         }
+        val winnersString = racingCarPlayResult.winners.joinToString(", ")
+        println("${winnersString}가 최종 우승했습니다.\n")
     }
 }
