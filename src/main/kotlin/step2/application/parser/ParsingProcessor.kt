@@ -1,8 +1,0 @@
-package step2.application.parser
-
-import step2.domain.calculator.model.InputOperationCommand
-
-interface ParsingProcessor {
-
-    fun proceed(string: String): List<InputOperationCommand>
-}
