@@ -4,7 +4,8 @@ import racingCar.dto.ResultDto
 
 class Racing {
 
-    fun play() : ResultDto {
+    fun play(carNumber :Int , tryNumber: Int) : ResultDto {
+        val cars = Cars(carNumber , RandomStrategy());
         return ResultDto()
     }
 }
