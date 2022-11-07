@@ -9,16 +9,16 @@ import kotlin.random.Random
  */
 class RandomMovingEngine : MovingEngine {
 
-    private companion object {
-        private const val MOVING_MINIMUM_CONDITION_NUMBER = 4
-        private const val RANDOM_FORM_NUMBER = 0
-        private const val RANDOM_TO_NUMBER = 9
-    }
-
     override fun move(position: Position): Position = if (checkRandomCondition()) position.forward() else position
 
     private fun checkRandomCondition(): Boolean {
         val randomNumber = Random.nextInt(RANDOM_FORM_NUMBER, RANDOM_TO_NUMBER)
         return randomNumber >= MOVING_MINIMUM_CONDITION_NUMBER
+    }
+
+    private companion object {
+        private const val MOVING_MINIMUM_CONDITION_NUMBER = 4
+        private const val RANDOM_FORM_NUMBER = 0
+        private const val RANDOM_TO_NUMBER = 9
     }
 }
