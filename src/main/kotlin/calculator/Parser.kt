@@ -14,8 +14,7 @@ class Parser(private val limit: Int) {
 
     @Throws(IllegalArgumentException::class)
     fun validate(elements: List<String>): Boolean {
-        if (elements.isEmpty()) throw IllegalArgumentException("elements is empty")
-        if (elements.size < limit) throw IllegalArgumentException("elements size less than min size")
+        require(elements.size >= limit) { "elements size less min size" }
 
         // 요소 중에서 연산자가 아니거나 숫자가 아닌 게 있는지 조사
         elements.forEach { element ->
