@@ -11,12 +11,12 @@ class RacingApplication {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val count = InputView.readCarCount()
-            val count2 = InputView.readRoundCount()
+            val carCount = InputView.readCarCount()
+            val roundCount = InputView.readRoundCount()
 
             val racingGame = RacingGame(
-                carCount = CarCount(count),
-                roundCount = RoundCount(count2),
+                carCount = CarCount(carCount),
+                roundCount = RoundCount(roundCount),
                 racingCarGarage = RacingCarGarage(
                     racingCarsFactory = RacingCarsFactoryImpl()
                 ),
