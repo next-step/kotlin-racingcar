@@ -7,9 +7,9 @@ object ConsoleInput : Input {
         return readln().toInt()
     }
 
-    override fun inputRacingCarNames(): List<String> {
+    override fun inputRacingCarNames(): String {
         println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
-        return readln().split(",")
+        return readln()
     }
 
     override fun inputRound(): Int {

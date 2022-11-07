@@ -4,7 +4,7 @@ interface Input {
 
     fun inputRacingCars(): Int
 
-    fun inputRacingCarNames(): List<String>
+    fun inputRacingCarNames(): String
 
     fun inputRound(): Int
 }
