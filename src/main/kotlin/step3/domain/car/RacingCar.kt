@@ -11,11 +11,10 @@ class RacingCar(
 ) : CarNamePolicy by DefaultCarNamePolicy, CarDistance<Int> by DefaultCarDistance() {
 
     init {
-        require(isValidName(name)) { "name must be a valid name" }
+        require(isValidName(name)) { "name must be a valid name [$name]" }
     }
 
     fun go() {
-        println("$this is going")
         increment(1)
     }
 

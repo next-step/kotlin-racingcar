@@ -22,8 +22,8 @@ class RacingGameHistoryTest : FunSpec({
         val racingGameHistory = RacingGameHistory(racingGame)
 
         // Then
-        racingGameHistory.history.size shouldBe racingGame.carList.size
-        racingGameHistory.history.map { it.name }.containsAll(racingGame.carList.map { it.name }) shouldBe true
+        racingGameHistory.racingCarHistoryList.size shouldBe racingGame.carList.size
+        racingGameHistory.racingCarHistoryList.map { it.name }.containsAll(racingGame.carList.map { it.name }) shouldBe true
         println(racingGameHistory)
     }
 })

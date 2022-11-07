@@ -15,11 +15,7 @@ class RacingCarTest : FunSpec({
     context("레이싱 카가 정상적으로 생성된다") {
         table(
             headers("validCarNameLength"),
-            row(5),
-            row(6),
-            row(10),
-            row(15),
-            row(20),
+            *(1..5).map { row(it) }.toTypedArray()
         ).forAll { validCarNameLength ->
             val validCarName = DefaultCarNamePolicyTest.generateCarName(validCarNameLength)
 
@@ -31,12 +27,8 @@ class RacingCarTest : FunSpec({
 
     context("이름 정책에 어긋난 이름의 레이싱 카는 IllegalArgumentException 발생한다") {
         table(
-            headers("invalidCarName"),
-            row(0),
-            row(1),
-            row(2),
-            row(3),
-            row(4),
+            headers("invalidCarNameLength"),
+            *(6..100).map { row(it) }.toTypedArray()
         ).forAll { invalidCarNameLength ->
             val invalidCarName = DefaultCarNamePolicyTest.generateCarName(invalidCarNameLength)
 
@@ -56,7 +48,7 @@ class RacingCarTest : FunSpec({
             row(4),
         ).forAll { goCallingCount ->
             test("When RacingCar.go() called $goCallingCount times, then distance increase $goCallingCount") {
-                val racingCar = RacingCar("test-car-name")
+                val racingCar = RacingCar("car")
 
                 val beforeDistance = racingCar.distance
 

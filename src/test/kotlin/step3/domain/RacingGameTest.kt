@@ -21,11 +21,11 @@ class RacingGameTest : FunSpec({
     }
 
     fun setReady(racingGame: RacingGame) {
-        racingGame.addRacingCar("test01")
-        racingGame.addRacingCar("test02")
-        racingGame.addRacingCar("test03")
-        racingGame.addRacingCar("test04")
-        racingGame.addRacingCar("test05")
+        racingGame.addRacingCar("test1")
+        racingGame.addRacingCar("test2")
+        racingGame.addRacingCar("test3")
+        racingGame.addRacingCar("test4")
+        racingGame.addRacingCar("test5")
 
         racingGame.isReadyToStart() shouldBe true
     }
@@ -126,7 +126,7 @@ class RacingGameTest : FunSpec({
 
     test("RacingGame.addRacingCar(String) : 정상작동") {
         // Given
-        val addCarName = "test-01"
+        val addCarName = "test1"
         val beforeCount = racingGame.carList.count { it.name == addCarName }
 
         // When
@@ -154,7 +154,7 @@ class RacingGameTest : FunSpec({
             test("stepCount: $addCarCount") {
                 // Given
                 repeat(addCarCount) {
-                    racingGame.addRacingCar("test-$addCarCount")
+                    racingGame.addRacingCar("car$addCarCount")
                 }
 
                 // Expected

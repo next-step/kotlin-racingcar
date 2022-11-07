@@ -20,16 +20,20 @@ class RacingGame(
         const val DEFAULT_TOTAL_CAR_COUNT = 5
         const val DEFAULT_TOTAL_TRY_COUNT = 5
     }
+
     private var currentTryCount = 0
+
+    init {
+        require(totalCarCount > 0) { "Total Car Count must be positive number [$totalCarCount]" }
+        require(totalTryCount > 0) { "Total Try Count must be positive number [$totalTryCount]" }
+    }
 
     fun nextStep() {
         checkReadyToStart()
 
-        println("### next step start ###")
         carList.forEach { if (randomGenerator.randomValid()) it.go() }
         currentTryCount++
         addGameHistory(this)
-        println("### next step end ###")
     }
 
     fun nextStep(stepCount: Int) {
