@@ -7,7 +7,7 @@ object StringCalculator {
     private const val NUMBER_TARGET_INDEX = 2
     private const val DELIMITER = " "
     fun calculateDelimiters(input: String?): Int {
-        val delimiter = split(input)
+        val delimiter = splitIntoSingleArgs(input)
         return calculateDelimiters(delimiter)
     }
 
@@ -19,13 +19,9 @@ object StringCalculator {
         return result
     }
 
-    private fun split(input: String?): List<String> {
-        validate(input)
-        return input!!.split(DELIMITER)
-    }
-
-    private fun validate(input: String?) {
+    private fun splitIntoSingleArgs(input: String?): List<String> {
         require(!input.isNullOrEmpty()) { "input cannot be empty or null" }
+        return input.split(DELIMITER)
     }
 
     private fun toInt(input: String) = try {
