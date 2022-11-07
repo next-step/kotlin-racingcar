@@ -1,10 +1,11 @@
+import racingcar.domain.CarNames
 import racingcar.domain.GameManager
 import racingcar.etc.InputView
 import racingcar.etc.StringAsNumber
 
 fun main() {
-    val numberOfCars = StringAsNumber(InputView.numberOfCars())
+    val carNames = CarNames(InputView.carNames())
     val numberOfRaces = StringAsNumber(InputView.numberOfRaces())
-    val gameManager = GameManager(numberOfCars.toInt(), numberOfRaces.toInt())
+    val gameManager = GameManager(carNames, numberOfRaces.toInt())
     gameManager.racing()
 }

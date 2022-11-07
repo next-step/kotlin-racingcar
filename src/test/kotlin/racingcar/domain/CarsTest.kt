@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test
 class CarsTest {
 
     @Test
-    fun `자동차 댓수를 입력 받아 컬렉션 생성`() {
+    fun `자동차 이름 목록을 입력 받아 컬렉션 생성`() {
         assertDoesNotThrow {
-            Cars(2)
+            Cars(CarNames("pobi,crong,honux"))
         }
     }
 }

@@ -2,9 +2,9 @@ package racingcar.domain
 
 import racingcar.etc.ResultView
 
-class GameManager(numberOfCars: Int, private val numberOfRaces: Int) {
+class GameManager(carNames: CarNames, private val numberOfRaces: Int) {
 
-    private val cars: Cars = Cars(numberOfCars)
+    private val cars: Cars = Cars(carNames)
 
     fun racing() {
         println("\n실행 결과")

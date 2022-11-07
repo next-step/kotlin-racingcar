@@ -1,6 +1,6 @@
 package racingcar.domain
 
-class Cars {
+class Cars(carNames: CarNames) {
 
     companion object {
         private val MOVEMENT_STRATEGY: MovementStrategy = RandomNumberMovementStrategy()
@@ -8,8 +8,8 @@ class Cars {
 
     private val cars: List<Car>
 
-    constructor(numberOfCars: Int) {
-        cars = List(numberOfCars) { Car() }
+    init {
+        cars = carNames.toList().map { Car(carName = it) }.toList()
     }
 
     fun racing() {
@@ -19,6 +19,6 @@ class Cars {
     }
 
     fun racingResult(): List<RacingResultDTO> {
-        return cars.map { RacingResultDTO(it.getDistance()) }.toList()
+        return cars.map { RacingResultDTO(it.carName.text, it.distance.toInt()) }.toList()
     }
 }
