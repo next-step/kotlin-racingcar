@@ -8,4 +8,5 @@ fun main() {
     val numberOfRaces = StringAsNumber(InputView.numberOfRaces())
     val gameManager = GameManager(carNames, numberOfRaces.toInt())
     gameManager.racing()
+    gameManager.winners()
 }

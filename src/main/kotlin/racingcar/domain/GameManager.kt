@@ -13,4 +13,8 @@ class GameManager(carNames: CarNames, private val numberOfRaces: Int) {
             ResultView.racing(cars.racingResult())
         }
     }
+
+    fun winners() {
+        ResultView.winners(cars.winners())
+    }
 }
