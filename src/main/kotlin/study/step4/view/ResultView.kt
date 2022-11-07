@@ -1,6 +1,6 @@
 package study.step4.view
 
-import study.step3.model.Car
+import study.step4.model.Car
 
 object ResultView {
 

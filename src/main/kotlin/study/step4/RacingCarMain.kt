@@ -1,15 +1,18 @@
 package study.step4
 
-import study.step3.model.RacingCar
-import study.step3.util.RandomDigit
-import study.step3.view.InputView.inputRacingCarInfo
-import study.step3.view.ResultView.resultRacingCar
+import study.step4.model.RacingCar
+import study.step4.util.RandomDigit
+import study.step4.view.InputGenerator
+import study.step4.view.InputView.inputRacingCarInfo
+import study.step4.view.ResultView.resultRacingCar
 
 fun main() {
     runCatching {
-        val (numberCars, repeatRace) = inputRacingCarInfo()
+        val (racingCarNames, repeatRace) = inputRacingCarInfo()
 
-        val racingCar = RacingCar(numberCars, repeatRace, RandomDigit())
+        val racingCarNamesList = InputGenerator.convertRacingCarNamesList(racingCarNames)
+
+        val racingCar = RacingCar(racingCarNamesList, repeatRace, RandomDigit())
         racingCar.race()
         resultRacingCar(racingCar.getCars(), repeatRace)
     }.onFailure { e ->

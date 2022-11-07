@@ -1,20 +1,17 @@
 package study.step4.view
 
-import study.step2.isInt
-
 object InputView {
-
-    fun inputRacingCarInfo(): Pair<Int, Int> {
-        println("자동차 대수는 몇 대인가요?")
-        val numberCars: String? = readLine()
-        requireNotNull(numberCars) { "숫자를 입력해야 합니다" }
-        require(numberCars.isInt()) { "숫자만 입력 가능합니다" }
+    fun inputRacingCarInfo(): Pair<String, Int> {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).?")
+        val racingCarNames: String? = readLine()
+        InputValid.racingCarNameValid(racingCarNames)
 
         println("시도할 횟수는 몇 회인가요?")
-        val repeatRace: String? = readLine()
-        requireNotNull(repeatRace) { "숫자를 입력해야 합니다" }
-        require(repeatRace.isInt()) { "숫자만 입력 가능합니다" }
+        val repeatTime: String? = readLine()
+        InputValid.repeatTimeValid(repeatTime)
 
-        return numberCars.toInt() to repeatRace.toInt()
+        requireNotNull(racingCarNames)
+        requireNotNull(repeatTime)
+        return racingCarNames to repeatTime.toInt()
     }
 }

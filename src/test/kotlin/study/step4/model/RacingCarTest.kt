@@ -13,21 +13,21 @@ internal class RacingCarTest : StringSpec({
     "주어진 레이싱 경기에, 참가하는 자동차 수가 0이면, 에러를 발생한다" {
         shouldThrow<IllegalArgumentException> {
             // expect
-            RacingCar(0, 3, RandomDigit())
+            RacingCar(listOf(), 3, RandomDigit())
         }.shouldHaveMessage("참가 자동차 수는 0보다 커야 합니다")
     }
 
     "주어진 레이싱 경기에, 참가하는 자동차 수가 주어지면, 조회한 자동차 수도 같아야 한다" {
         listOf(
-            3,
-            10,
-            111
+            listOf("1"),
+            listOf("1", "2", "3"),
+            listOf("1", "2", "3", "4", "5", "6", "7", "8", "9")
         ).forAll {
             // given & when
             val racingCar = RacingCar(it, 3, RandomDigit())
 
             // then
-            assertThat(racingCar.getCars().size).isEqualTo(it)
+            assertThat(racingCar.getCars().size).isEqualTo(it.size)
         }
     }
 
@@ -38,7 +38,7 @@ internal class RacingCarTest : StringSpec({
             30
         ).forAll {
             // given
-            val racingCar = RacingCar(3, it, RandomDigit())
+            val racingCar = RacingCar(listOf("name"), it, RandomDigit())
 
             // when
             racingCar.race()
@@ -55,7 +55,7 @@ internal class RacingCarTest : StringSpec({
             4, 5, 6, 7, 8, 9
         ).forAll {
             // given
-            val racingCar = RacingCar(3, 3, StaticDigit(it))
+            val racingCar = RacingCar(listOf("name"), 3, StaticDigit(it))
 
             // when
             racingCar.race()
@@ -72,7 +72,7 @@ internal class RacingCarTest : StringSpec({
             0, 1, 2, 3
         ).forAll {
             // given
-            val racingCar = RacingCar(3, 3, StaticDigit(it))
+            val racingCar = RacingCar(listOf("name"), 3, StaticDigit(it))
 
             // when
             racingCar.race()
