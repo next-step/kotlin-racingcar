@@ -1,26 +1,24 @@
 package calculator.domain
 
+import java.util.function.BinaryOperator
+
 enum class Operator(
-    private val value: String,
-) : Calculable {
+    private val value: String
+) : BinaryOperator<Double> {
+
     PLUS("+") {
-        override fun calculate(number1: Operand, number2: Operand): Operand {
-            return Operand(number1.plus(number2))
-        }
+        override fun apply(number1: Double, number2: Double): Double = number1.plus(number2)
     },
     MINUS("-") {
-        override fun calculate(number1: Operand, number2: Operand): Operand {
-            return Operand(number1.minus(number2))
-        }
+        override fun apply(number1: Double, number2: Double): Double = number1.minus(number2)
     },
     MULTIPLE("*") {
-        override fun calculate(number1: Operand, number2: Operand): Operand {
-            return Operand(number1.multiply(number2))
-        }
+        override fun apply(number1: Double, number2: Double): Double = number1 * number2
     },
     DIVIDE("/") {
-        override fun calculate(number1: Operand, number2: Operand): Operand {
-            return Operand(number1.div(number2))
+        override fun apply(number1: Double, number2: Double): Double {
+            require(number2 != 0.0) { "0으로는 나눌 수 없습니다" }
+            return number1 / number2
         }
     };
 
