@@ -1,26 +1,29 @@
 package calculator.service
 
-import calculator.model.OperationBlock
+import calculator.model.Operation
 import java.math.BigDecimal
 
 private const val PROCESSOR_INIT_COUNT = 1
 
 class StringCalculatorProcessor(
-    val input: List<String>
+    private val input: List<String>
 ) {
     init {
-        require(input.isNotEmpty())
+        require(input.isNotEmpty()) { "비어있는 리스트는 계산할 수 없습니다." }
     }
 
     fun process(): BigDecimal {
-        val initialValue = input.first()
+        val initialValue = BigDecimal(input.first())
         val leftList = input.drop(PROCESSOR_INIT_COUNT)
-        var block = OperationBlock(BigDecimal(initialValue))
 
-        for (value in leftList) {
-            block = block.reduce(value)
+        var buffer = initialValue
+        val iterator = leftList.iterator()
+        while (iterator.hasNext()) {
+            val operation = Operation.of(iterator.next())
+            val nextValue = BigDecimal(iterator.next())
+            buffer = operation.apply(buffer, nextValue)
         }
 
-        return block.result()
+        return buffer
     }
 }

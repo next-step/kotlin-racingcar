@@ -17,10 +17,17 @@ internal class StringCalculatorProcessorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["+", "* 1 + 2", "1 + + 2", "1 +", "1 1 2", "1 $ 2"])
-    internal fun `계산할 수 없는 리스트`(input: String) {
+    @ValueSource(strings = ["1 +", "1 * 2 /"])
+    internal fun `원소 갯수가 부족한 리스트`(input: String) {
         val list = input.split(" ")
-        assertThrows<RuntimeException> { StringCalculatorProcessor(list).process() }
+        assertThrows<NoSuchElementException> { StringCalculatorProcessor(list).process() }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["* 1 +", "1 + + 2", "1 * 2 3", "1 2 3", "1 $ 2"])
+    internal fun `계산식이 잘못 된 리스트`(input: String) {
+        val list = input.split(" ")
+        assertThrows<IllegalArgumentException> { StringCalculatorProcessor(list).process() }
     }
 
     @ParameterizedTest
