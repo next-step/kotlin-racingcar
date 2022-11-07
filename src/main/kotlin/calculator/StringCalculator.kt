@@ -21,9 +21,9 @@ object StringCalculator {
     }
 
     private fun calculate(operands: Operands, operators: Operators) {
-        val x = operands.firstOperand()
-        val y = operands.firstOperand()
-        val operator = operators.firstOperator()
+        val x = operands.removeFirst()
+        val y = operands.removeFirst()
+        val operator = operators.removeFirst()
         operands.add(operator.calculate(x, y))
     }
 
