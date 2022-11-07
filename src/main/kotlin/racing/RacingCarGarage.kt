@@ -12,12 +12,15 @@ class RacingCarGarage(
         get() = _cars
 
     fun createCars(count: CarCount): List<Car> {
-        TODO()
+        val cars = racingCarsFactory.createCars(count.value)
+        _cars.addAll(cars)
+        return _cars
     }
 
     fun parkCars(cars: List<Car>) {
-        TODO()
+        _cars.clear()
+        _cars.addAll(cars.map { it })
     }
 
-    fun shouldCreateCars(): Boolean = TODO()
+    fun shouldCreateCars(): Boolean = cars.isEmpty()
 }
