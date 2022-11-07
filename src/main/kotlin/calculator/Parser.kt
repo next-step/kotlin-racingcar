@@ -5,6 +5,13 @@ import calculator.common.isNotOperator
 
 class Parser(private val limit: Int) {
 
+    fun provideElementsIterator(expression: String?): ListIterator<String> {
+        requireNotNull(expression) { "expression is null" }
+        val elements = parse(expression)
+        if (validate(elements).not()) throw IllegalArgumentException("element is not valid")
+        return elements.listIterator()
+    }
+
     fun parse(input: String): List<String> {
         if (input.isBlank()) {
             return emptyList()

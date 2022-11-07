@@ -40,9 +40,9 @@ internal class CalculatorTest {
 
     @Test
     fun `일반 수식이 들어오면 계산이 된다`() {
-        val result = calculator.calculate(expression = "2 + 3 * 4 / 2")
+        val result = calculator.calculate(expression = "2 + 4 * 4 / 2")
 
-        assertThat(result).isEqualTo(10)
+        assertThat(result).isEqualTo(12)
     }
 
     @ParameterizedTest
