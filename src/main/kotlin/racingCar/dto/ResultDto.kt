@@ -1,4 +1,7 @@
 package racingCar.dto;
 
-public class ResultDto {
+import racingCar.domain.Cars
+
+public class ResultDto(cars :Cars) {
+
 }
