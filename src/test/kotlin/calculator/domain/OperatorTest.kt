@@ -29,10 +29,8 @@ class OperatorTest {
     fun `사칙연산 테스트`(input: String, expected: Double) {
         val arr = input.split(" ")
 
-        val result = Operator.from(arr[1]).calculate(Operand.from(arr[0]), Operand.from(arr[2]))
+        val result = Operator.from(arr[1]).apply(arr[0].toDouble(), arr[2].toDouble())
 
-        assertThat(result.number).isEqualTo(expected)
+        assertThat(result).isEqualTo(expected)
     }
-
-
 }

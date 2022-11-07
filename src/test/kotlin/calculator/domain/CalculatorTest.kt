@@ -27,5 +27,4 @@ class CalculatorTest {
     fun `올바른 순서와 수식일때는 정상 반환`() {
         assertThat(Calculator(Lists.newArrayList("1", "+", "1")).execute()).isEqualTo(2.0)
     }
-
 }

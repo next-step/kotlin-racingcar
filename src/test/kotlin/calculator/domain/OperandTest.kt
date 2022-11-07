@@ -20,5 +20,4 @@ class OperandTest {
     fun `정상적으로 값이 들어간 케이스`() {
         assertThat(Operand.from("1").number).isEqualTo(1.0)
     }
-
 }
