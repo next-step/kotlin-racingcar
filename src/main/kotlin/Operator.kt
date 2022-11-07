@@ -26,12 +26,7 @@ enum class Operator(val symbol: String) {
             values().firstOrNull { it.symbol == operation }
                 ?: throw IllegalArgumentException()
 
-        fun getOperators(): List<String> =
-            mutableListOf(
-                ADD.symbol,
-                MINUS.symbol,
-                MULTIPLE.symbol,
-                DIVIDE.symbol
-            )
+        fun isContains(symbol: String): Boolean =
+            Operator.values().map { it.symbol }.contains(symbol)
     }
 }

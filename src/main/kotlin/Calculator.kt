@@ -16,7 +16,7 @@ class Calculator {
         val stack = Stack<String>()
         val number = Stack<String>()
         input.split(STRING_SPACING).map { s ->
-            if (Operator.getOperators().contains(s)) {
+            if (Operator.isContains(s)) {
                 stack.push(s)
             } else {
                 val num = if (stack.isNotEmpty()) {
