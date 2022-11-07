@@ -11,6 +11,16 @@ enum class Operator(
 ) {
     ADDITION("+"), SUBTRACTION("-"), MULTIPLICATION("*"), DIVISION("/"), EMPTY_OPERATOR(null);
 
+    fun toCommand(): OperationCommand<Int> {
+        return when (this) {
+            ADDITION -> AdditionOperationCommand
+            SUBTRACTION -> SubtractionOperationCommand
+            MULTIPLICATION -> MultiplicationOperationCommand
+            DIVISION -> DivisionOperationCommand
+            EMPTY_OPERATOR -> throw IllegalStateException("연산을 할 수 없는 상태입니다.")
+        }
+    }
+
     companion object {
         fun operatorOf(operatorString: String): Operator {
             for (value in values()) {
@@ -19,16 +29,6 @@ enum class Operator(
                 }
             }
             throw IllegalArgumentException("존재하지 않는 연산자입니다.")
-        }
-    }
-
-    fun toCommand(): OperationCommand<Int> {
-        return when (this) {
-            ADDITION -> AdditionOperationCommand
-            SUBTRACTION -> SubtractionOperationCommand
-            MULTIPLICATION -> MultiplicationOperationCommand
-            DIVISION -> DivisionOperationCommand
-            EMPTY_OPERATOR -> throw IllegalStateException("연산을 할 수 없는 상태입니다.")
         }
     }
 }
