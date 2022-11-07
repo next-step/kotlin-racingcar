@@ -17,6 +17,8 @@ class RacingCarController(
         val racingGame = RacingGame(racingCarNames)
         val round = input.inputRound()
         startRace(round, racingGame)
+        val winners = racingGame.winner()
+        output.printWinner(winners.map { it.name.value })
     }
 
     private tailrec fun startRace(round: Int, racingGame: RacingGame): Unit =
@@ -24,7 +26,7 @@ class RacingCarController(
             (round == 0) -> Unit
             else -> {
                 racingGame.race { RANDOM.nextInt(10) }
-                output.output(racingGame.racingCars.map { RacingCarDto(it.name.value, it.position) })
+                output.printPositions(racingGame.racingCars.map { RacingCarDto(it.name.value, it.position) })
                 startRace(round - 1, racingGame)
             }
         }
