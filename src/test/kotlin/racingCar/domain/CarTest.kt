@@ -1,17 +1,16 @@
 package racingCar.domain
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-class CarTest{
-    
+class CarTest {
+
     @Test
     fun `자동차는 움직여야 합니다`() {
         val car = Car()
 
         car.move()
 
-        assertThat(car.isSamePosition(Position(2)));
+        assertThat(car.isSamePosition(Position(2)))
     }
 }
