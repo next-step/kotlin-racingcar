@@ -1,13 +1,13 @@
-package racingcar.domain.car.strategy.implement
+package racingcar.domain.car.engine.implement
 
 import racingcar.domain.car.Position
-import racingcar.domain.car.strategy.MovingStrategy
+import racingcar.domain.car.engine.MovingEngine
 import kotlin.random.Random
 
 /**
  * 전진하는 조건은 0에서 9 사이에서 무작위 값을 구한 후 무작위 값이 4 이상일 경우이다.
  */
-class RandomMovingStrategy : MovingStrategy {
+class RandomMovingEngine : MovingEngine {
 
     private companion object {
         private const val MOVING_MINIMUM_CONDITION_NUMBER = 4

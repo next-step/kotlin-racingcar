@@ -1,11 +1,11 @@
 package racingcar.domain.car
 
-import racingcar.domain.car.strategy.Count
-import racingcar.domain.car.strategy.MovingStrategy
-import racingcar.domain.car.strategy.implement.DefaultMovingStrategy
+import racingcar.domain.car.engine.Count
+import racingcar.domain.car.engine.MovingEngine
+import racingcar.domain.car.engine.implement.DefaultMovingEngine
 
 class Car(
-    private val movingStrategy: MovingStrategy = DefaultMovingStrategy()
+    private val movingEngine: MovingEngine = DefaultMovingEngine()
 ) {
 
     private var position: Position = Position()
@@ -16,7 +16,7 @@ class Car(
 
     fun move() {
         checkStop()
-        this.position = movingStrategy.move(this.position)
+        this.position = movingEngine.move(this.position)
         addAttemptCount()
     }
 

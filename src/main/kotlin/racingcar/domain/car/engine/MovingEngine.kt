@@ -1,8 +1,8 @@
-package racingcar.domain.car.strategy
+package racingcar.domain.car.engine
 
 import racingcar.domain.car.Position
 
-interface MovingStrategy {
+interface MovingEngine {
 
     fun move(position: Position): Position
 }
