@@ -19,22 +19,20 @@ class Race(
 
     private fun race(participatingCars: ParticipatingCars, endNumber: Int) {
         participatingCars.initRace()
-        participatingCars.outputProcessing(endNumber)
+        participatingCars.startRace(endNumber)
     }
 
     private fun ParticipatingCars.initRace() {
         outputPort.outputNewLine()
         this.sizeRange().forEach { _ ->
-            run {
-                outputPort.output(LITERAL_POSITION)
-                outputPort.outputNewLine()
-            }
+            outputPort.output(LITERAL_POSITION)
+            outputPort.outputNewLine()
         }
         outputPort.outputNewLine()
         Thread.sleep(PER_RACE_SECONDS)
     }
 
-    private fun ParticipatingCars.outputProcessing(endNumber: Int) {
+    private fun ParticipatingCars.startRace(endNumber: Int) {
         for (i in 1..endNumber) {
             this.nextRound()
         }
@@ -42,12 +40,10 @@ class Race(
 
     private fun ParticipatingCars.nextRound() {
         this.move { position: Int ->
-            run {
-                for (i in 0..position) {
-                    outputPort.output(LITERAL_POSITION)
-                }
-                outputPort.outputNewLine()
+            for (i in 0..position) {
+                outputPort.output(LITERAL_POSITION)
             }
+            outputPort.outputNewLine()
         }
         outputPort.outputNewLine()
         Thread.sleep(PER_RACE_SECONDS)
