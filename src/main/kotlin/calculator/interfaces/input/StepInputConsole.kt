@@ -3,7 +3,7 @@ package calculator.interfaces.input
 import calculator.domain.operation.enums.Operator
 import java.util.StringJoiner
 
-object InputConsole {
+object StepInputConsole {
 
     private const val JOINER_DELIMITER = " "
 
