@@ -4,6 +4,7 @@ import racing.domain.GoOrStopCarActionImpl
 import racing.domain.RacingCarsFactoryImpl
 import racing.domain.RandomMovingCarConditionNumberImpl
 import racing.model.CarCount
+import racing.model.ResultView
 import racing.model.RoundCount
 
 class RacingApplication {
@@ -24,6 +25,7 @@ class RacingApplication {
                 ),
             )
             racingGame.race()
+            ResultView.printRaceResult(racingGame.results)
         }
     }
 }

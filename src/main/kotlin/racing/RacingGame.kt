@@ -11,7 +11,9 @@ class RacingGame(
     private val racingCarGarage: RacingCarGarage,
     private val goOrStopCarAction: GoOrStopCarAction,
 ) {
-    val results: MutableList<List<Car>> = mutableListOf()
+    private val _results: MutableList<List<Car>> = mutableListOf()
+    val results: List<List<Car>>
+        get() = _results
 
     fun race() {
         val roundCount = this.roundCount.value
@@ -24,9 +26,8 @@ class RacingGame(
                 val action = goOrStopCarAction.castCarAction()
                 it.copy(mileage = it.mileage + action.value)
             }
-            results.add(raceCarResult)
+            _results.add(raceCarResult)
             racingCarGarage.parkCars(raceCarResult)
         }
-        println("$results")
     }
 }
