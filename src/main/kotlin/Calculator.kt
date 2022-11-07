@@ -6,8 +6,8 @@ class Calculator {
     }
 
     fun calculate(strNum1: String?, strNum2: String?, operation: String): String {
-        val i = strNum1?.toBigDecimalOrNull() ?: throw IllegalArgumentException()
-        val j = strNum2?.toBigDecimalOrNull() ?: throw IllegalArgumentException()
+        val i = requireNotNull(strNum1?.toBigDecimalOrNull())
+        val j = requireNotNull(strNum2?.toBigDecimalOrNull())
 
         return Operator.symbolOf(operation).calculate(i, j).toString()
     }
