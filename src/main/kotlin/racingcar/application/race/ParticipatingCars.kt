@@ -6,7 +6,7 @@ class ParticipatingCars(
     private val carList: List<Car>
 ) {
     fun initRace(outputFunction: () -> Unit) {
-        IntRange(START_NUMBER, this.carList.size).forEach {
+        IntRange(START_NUMBER, this.carList.size).forEach { _ ->
             outputFunction()
         }
     }
