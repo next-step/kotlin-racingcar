@@ -1,9 +1,11 @@
 package nexstep.mission.racingcar
 
 import io.kotest.core.spec.style.FunSpec
+import io.kotest.inspectors.forAll
 import io.kotest.inspectors.forExactly
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeTypeOf
+import nexstep.mission.racingcar.vo.Name
 
 class RacingGameTest : FunSpec({
 
@@ -27,6 +29,21 @@ class RacingGameTest : FunSpec({
 
         racingGame.racingCars.forExactly(3) {
             it.position shouldBe 1
+        }
+    }
+
+    test("경주 자동차의 position값이 제일 높은 우승자를 계산한다.") {
+        val racingCars = listOf(
+            RacingCar(Name("pobi"), 5),
+            RacingCar(Name("jason"), 5),
+            RacingCar(Name("brown"), 4),
+        )
+        val racingGame = RacingGame(racingCars)
+
+        val result = racingGame.winner()
+
+        result.forAll {
+            it.position shouldBe 5
         }
     }
 })
