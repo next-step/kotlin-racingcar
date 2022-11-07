@@ -1,4 +1,4 @@
-package `racing-car`
+package racingCar.domain
 
 class Car {
 
