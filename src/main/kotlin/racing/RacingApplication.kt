@@ -16,12 +16,14 @@ class RacingApplication {
             val racingGame = RacingGame(
                 carCount = CarCount(count),
                 roundCount = RoundCount(count2),
+                racingCarGarage = RacingCarGarage(
+                    racingCarsFactory = RacingCarsFactoryImpl()
+                ),
                 goOrStopCarAction = GoOrStopCarActionImpl(
                     randomMovingCarConditionNumber = RandomMovingCarConditionNumberImpl()
                 ),
-                racingCarsFactory = RacingCarsFactoryImpl()
             )
-            racingGame.play()
+            racingGame.race()
         }
     }
 }

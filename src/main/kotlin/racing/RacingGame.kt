@@ -1,7 +1,6 @@
 package racing
 
 import racing.domain.GoOrStopCarAction
-import racing.domain.RacingCarsFactory
 import racing.model.Car
 import racing.model.CarCount
 import racing.model.RoundCount
@@ -9,26 +8,24 @@ import racing.model.RoundCount
 class RacingGame(
     private val carCount: CarCount,
     private val roundCount: RoundCount,
+    private val racingCarGarage: RacingCarGarage,
     private val goOrStopCarAction: GoOrStopCarAction,
-    private val racingCarsFactory: RacingCarsFactory,
 ) {
-    data class RacingCar(
-        val cars: List<Car>
-    )
+    val results: MutableList<List<Car>> = mutableListOf()
 
-    private var racingCar: RacingCar = RacingCar(racingCarsFactory.createCars(carCount.value))
-    private val results: MutableList<List<Car>> = mutableListOf()
-
-    fun play() {
+    fun race() {
         val roundCount = this.roundCount.value
         for (i in 0 until roundCount) {
-            val cars = this.racingCar.cars
-            val result = cars.map {
+            val cars = if (racingCarGarage.shouldCreateCars()) {
+                racingCarGarage.createCars(carCount)
+            } else racingCarGarage.cars
+
+            val raceCarResult = cars.map {
                 val action = goOrStopCarAction.castCarAction()
                 it.copy(mileage = it.mileage + action.value)
             }
-            results.add(result)
-            racingCar = RacingCar(cars = result.map { it.copy() })
+            results.add(raceCarResult)
+            racingCarGarage.parkCars(raceCarResult)
         }
         println("$results")
     }
