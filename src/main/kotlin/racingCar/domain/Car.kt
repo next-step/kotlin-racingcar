@@ -1,9 +1,9 @@
 package racingCar.domain
 
 class Car {
+    private var position = Position()
     fun move() {
-        TODO("Not yet implemented")
+        this.position = position.increase();
     }
 
-    private val position = Position()
 }
