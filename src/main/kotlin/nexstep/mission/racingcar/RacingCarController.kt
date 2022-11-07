@@ -24,7 +24,7 @@ class RacingCarController(
             (round == 0) -> Unit
             else -> {
                 racingGame.race { RANDOM.nextInt(10) }
-                output.output(racingGame.racingCars.map { RacingCarDto(it.position) })
+                output.output(racingGame.racingCars.map { RacingCarDto(it.name.value, it.position) })
                 startRace(round - 1, racingGame)
             }
         }
