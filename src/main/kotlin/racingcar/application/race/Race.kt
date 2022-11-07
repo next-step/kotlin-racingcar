@@ -24,7 +24,7 @@ class Race(
 
     private fun ParticipatingCars.initRace() {
         outputPort.outputNewLine()
-        this.sizeRange().forEach { _ ->
+        this.initRace {
             outputPort.output(LITERAL_POSITION)
             outputPort.outputNewLine()
         }

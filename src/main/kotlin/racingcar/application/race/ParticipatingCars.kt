@@ -5,7 +5,12 @@ import racingcar.domain.car.Car
 class ParticipatingCars(
     private val carList: List<Car>
 ) {
-    fun sizeRange(): IntRange = IntRange(START_NUMBER, this.carList.size)
+    fun initRace(outputFunction: () -> Unit) {
+        IntRange(START_NUMBER, this.carList.size).forEach {
+            outputFunction()
+        }
+    }
+
     fun move(outputFunction: (Int) -> Unit) {
         carList.forEach {
             it.move()
