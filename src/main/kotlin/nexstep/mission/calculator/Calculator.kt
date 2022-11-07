@@ -1,7 +1,7 @@
 package nexstep.mission.calculator
 
-fun String.isInteger() = this.toIntOrNull()?.let { true } ?: false
-fun List<String>.removeFirst() = this.subList(1, this.size)
+fun String.isInteger() = this.toIntOrNull() != null
+fun List<String>.removeFirst() = this.takeLast(this.size - 1)
 
 object Calculator {
 
