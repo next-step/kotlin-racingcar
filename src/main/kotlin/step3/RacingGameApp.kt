@@ -1,21 +1,28 @@
-package com.kotlin.racingcar.step3
+package step3
 
 import step3.domain.RacingGame
+import step3.view.input.impl.DefaultInputCarCountView
+import step3.view.result.DefaultResultView
 
-fun main(args: Array<String>) {
-    val racingGame = RacingGame(5, 5)
+fun main() {
+    val defaultInputCarCountView = DefaultInputCarCountView()
+    val resultView = DefaultResultView()
 
-    racingGame.addRacingCar("rolroralra")
-    racingGame.addRacingCar("test01")
-    racingGame.addRacingCar("test02")
-    racingGame.addRacingCar("test03")
-    racingGame.addRacingCar("test04")
+    defaultInputCarCountView.printInputViewForTotalCarCount()
+    val totalCarCount = readln().toInt()
+
+    defaultInputCarCountView.printInputViewForTotalTryCount()
+    val totalTryCount = readln().toInt()
+
+    val racingGame = RacingGame(totalCarCount, totalTryCount)
+
+    (1..totalCarCount).forEach {
+        racingGame.addRacingCar("test-$it")
+    }
 
     racingGame.nextStepAll()
-    racingGame.carList.forEach { println(it) }
-    racingGame.historyList.forEach { println(it) }
 
-    println("### winners")
+    println()
 
-    racingGame.getWinnerRacingCarList().forEach { println(it) }
+    resultView.printRacingGameResult(racingGame)
 }

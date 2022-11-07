@@ -8,13 +8,14 @@ import org.junit.jupiter.params.provider.MethodSource
 import step3.domain.car.policy.CarNamePolicy
 import step3.domain.car.policy.DefaultCarNamePolicy
 
+@Suppress()
 class DefaultCarNamePolicyTest {
     companion object {
         @JvmStatic
-        fun validCarNameLengthRange() = (5..20)
+        fun validCarNameLengthRange() = (1..5).map { Arguments.of(it) }.stream()
 
         @JvmStatic
-        fun invalidCarNameLengthRange() = (0..4).map { Arguments.of(it) }.stream()
+        fun invalidCarNameLengthRange() = ((0..0) + (6..20)).map { Arguments.of(it) }.stream()
 
         @JvmStatic
         fun randomCharacter(): Char = (('a'..'z') + ('A'..'Z') + ('0'..'9')).random()

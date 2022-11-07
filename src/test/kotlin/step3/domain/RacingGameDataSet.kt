@@ -15,7 +15,7 @@ class RacingGameDataSet {
             val racingGame = testData()
             if (isReady) {
                 repeat(racingGame.totalCarCount) {
-                    racingGame.addRacingCar(UUID.randomUUID().toString())
+                    racingGame.addRacingCar(UUID.randomUUID().toString().substring(0..4))
                 }
             }
             return racingGame
