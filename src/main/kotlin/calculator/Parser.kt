@@ -24,11 +24,8 @@ class Parser(private val limit: Int) {
         require(elements.size >= limit) { "elements size less min size" }
 
         // 요소 중에서 연산자가 아니거나 숫자가 아닌 게 있는지 조사
-        elements.forEach { element ->
-            if (element.isNotNumber() && element.isNotOperator()) {
-                throw IllegalArgumentException("element is not valid")
-            }
+        return elements.none { element ->
+            element.isNotNumber() && element.isNotOperator()
         }
-        return true
     }
 }
