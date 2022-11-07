@@ -13,8 +13,8 @@ class RacingCarController(
 ) {
 
     fun race() {
-        val racingCarCount = input.inputRacingCars()
-        val racingGame = RacingGame(racingCarCount)
+        val racingCarNames = input.inputRacingCarNames()
+        val racingGame = RacingGame(racingCarNames)
         val round = input.inputRound()
         startRace(round, racingGame)
     }
