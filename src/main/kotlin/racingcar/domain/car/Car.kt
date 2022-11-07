@@ -1,6 +1,5 @@
 package racingcar.domain.car
 
-import racingcar.domain.car.engine.Count
 import racingcar.domain.car.engine.MovingEngine
 import racingcar.domain.car.engine.implement.DefaultMovingEngine
 
@@ -10,6 +9,7 @@ class Car(
 
     private var position: Position = Position()
     lateinit var lastPosition: Position
+
     private var attemptCount: Count = Count()
 
     fun currentPosition() = this.position

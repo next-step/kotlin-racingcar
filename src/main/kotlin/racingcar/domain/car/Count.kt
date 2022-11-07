@@ -1,4 +1,4 @@
-package racingcar.domain.car.engine
+package racingcar.domain.car
 
 class Count(
     private var count: Int = 0
