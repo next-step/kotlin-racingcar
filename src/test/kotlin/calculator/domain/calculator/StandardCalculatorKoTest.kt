@@ -9,6 +9,11 @@ import io.kotest.matchers.shouldBe
 internal class StandardCalculatorKoTest : StringSpec({
 
     lateinit var calculator: Calculator<Int>
+
+    beforeEach {
+        calculator = StandardCalculator()
+    }
+
     lateinit var defaultInputOperationCommandList: List<InputOperationCommand>
 
     "덧셈 계산" {
@@ -19,7 +24,6 @@ internal class StandardCalculatorKoTest : StringSpec({
             InputOperationCommand(4, Operator.EMPTY_OPERATOR)
         )
 
-        calculator = StandardCalculator()
         val result = calculator.calculate(defaultInputOperationCommandList)
         result shouldBe 10
     }
@@ -32,7 +36,6 @@ internal class StandardCalculatorKoTest : StringSpec({
             InputOperationCommand(4, Operator.EMPTY_OPERATOR)
         )
 
-        calculator = StandardCalculator()
         val result = calculator.calculate(defaultInputOperationCommandList)
         result shouldBe 5
     }
@@ -45,7 +48,6 @@ internal class StandardCalculatorKoTest : StringSpec({
             InputOperationCommand(2, Operator.EMPTY_OPERATOR)
         )
 
-        calculator = StandardCalculator()
         val result = calculator.calculate(defaultInputOperationCommandList)
         result shouldBe 10
     }

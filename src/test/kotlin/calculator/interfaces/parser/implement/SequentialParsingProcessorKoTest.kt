@@ -2,13 +2,19 @@ package calculator.interfaces.parser.implement
 
 import calculator.application.parser.ParsingProcessor
 import calculator.application.parser.implement.SequentialParsingProcessor
+import calculator.domain.calculator.Calculator
+import calculator.domain.calculator.impl.StandardCalculator
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import org.assertj.core.api.Assertions.assertThat
 
 internal class SequentialParsingProcessorKoTest : StringSpec({
 
-    val parsingProcessor: ParsingProcessor = SequentialParsingProcessor()
+    lateinit var parsingProcessor: ParsingProcessor
+
+    beforeEach {
+        parsingProcessor = SequentialParsingProcessor()
+    }
 
     "이항 연산자를 입력 모델로 변환한다" {
         listOf(
