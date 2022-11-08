@@ -17,7 +17,7 @@ enum class Operator(
 
     companion object {
         fun find(keyword: String): Operator {
-            return values().find { it.keyword == keyword } ?: throw IllegalArgumentException()
+            return values().find { it.keyword == keyword } ?: throw IllegalArgumentException("지원하지 않는 연산자입니다.")
         }
     }
 }
