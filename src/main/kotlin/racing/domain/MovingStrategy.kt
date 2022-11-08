@@ -1,5 +1,5 @@
 package racing.domain
 
 interface MovingStrategy {
-    fun go(): Boolean
+    fun move(): Boolean = true
 }
