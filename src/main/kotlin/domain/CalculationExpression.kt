@@ -1,27 +1,23 @@
 package domain
 
-import constant.Constants.Companion.OPERATOR
 import java.lang.IllegalArgumentException
 
+const val OPERATOR = 1
 class CalculationExpression(inputData: String?) {
     val operand: Operand
     val operator: Operator
-    private val operandList = ArrayList<String?>()
+    private val operandList = ArrayList<Double>()
     private val operatorList = ArrayList<String?>()
-
+    private val splitInput: List<String>
     init {
-        val splitInput = splitInputData(inputData)
+        splitInput = splitInputData(inputData)
 
         if (ValidationChecker().isOperator(splitInput[0])) {
             throw IllegalArgumentException()
         }
 
         for (i in 0 until splitInputData(inputData).size) {
-            if (isOperator(i)) {
-                operatorList.add(splitInput[i])
-                continue
-            }
-            operandList.add(splitInput[i])
+            createSplitInputList(i)
         }
 
         operand = Operand(operandList)
@@ -30,6 +26,14 @@ class CalculationExpression(inputData: String?) {
 
     private fun splitInputData(inputData: String?): List<String> {
         return inputData?.split(" ")!!
+    }
+
+    private fun createSplitInputList(index: Int) {
+        if (isOperator(index)) {
+            operatorList.add(splitInput[index])
+            return
+        }
+        operandList.add(splitInput[index].toDouble())
     }
 
     private fun isOperator(i: Int): Boolean {

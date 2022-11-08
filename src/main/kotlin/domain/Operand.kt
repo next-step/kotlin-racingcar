@@ -1,9 +1,9 @@
 package domain
 
-class Operand(val operandList: ArrayList<String?>) {
+class Operand(val operandList: ArrayList<Double>) {
     init {
         for (operand in operandList) {
-            checkOperandValidation(operand)
+            checkOperandValidation(operand.toString())
         }
     }
 

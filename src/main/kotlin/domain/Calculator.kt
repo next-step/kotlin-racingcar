@@ -1,64 +1,66 @@
 package domain
 
-import constant.Constants.Companion.ADDITION
-import constant.Constants.Companion.DIVISION
-import constant.Constants.Companion.MULTIPLICATION
-import constant.Constants.Companion.ROUND
-import constant.Constants.Companion.SUBTRACT
-import java.lang.IllegalArgumentException
 import kotlin.math.round
 
 class Calculator {
+    companion object {
+        const val ADDITION = "+"
+        const val SUBTRACT = "-"
+        const val DIVISION = "/"
+        const val MULTIPLICATION = "*"
+        const val ROUND = 100
+    }
+
+    enum class CalculatorType(val expression: (Double, Double) -> Double) {
+        ADDITION({ a, b -> round((a + b) * ROUND) / ROUND }),
+        SUBTRACT({ a, b -> round((a - b) * ROUND) / ROUND }),
+        DIVISION({ a, b -> round((a / b) * ROUND) / ROUND }),
+        MULTIPLICATION({ a, b -> round((a * b) * ROUND) / ROUND });
+    }
+
     fun calculate(inputData: CalculationExpression): Double {
         var operandIndex: Int
-        var result = inputData.operand.operandList[0]?.toDouble()!!
-        try {
-            for (operatorIndex in 0 until inputData.operator.operatorList.size) {
-                operandIndex = operatorIndex + 1
-                if (inputData.operator.operatorList[operatorIndex] == ADDITION) {
-                    result = addition(result.toString(), inputData.operand.operandList[operandIndex])
-                    continue
-                }
+        var result = inputData.operand.operandList[0]
+        val calculatorTypeMapping = mutableMapOf<String?, CalculatorType>()
 
-                if (inputData.operator.operatorList[operatorIndex] == SUBTRACT) {
-                    result = subtract(result.toString(), inputData.operand.operandList[operandIndex])
-                    continue
-                }
+        makeCalculatorTypeMapper(calculatorTypeMapping)
+        checkLastOperandExist(inputData)
 
-                if (inputData.operator.operatorList[operatorIndex] == DIVISION) {
-                    result = division(result.toString(), inputData.operand.operandList[operandIndex])
-                    continue
-                }
-
-                if (inputData.operator.operatorList[operatorIndex] == MULTIPLICATION) {
-                    result = multiplication(result.toString(), inputData.operand.operandList[operandIndex])
-                    continue
-                }
-            }
-        } catch (e: IndexOutOfBoundsException) {
-            // "1 + "와 같이 마지막 피연산자가 없을 경우에 대한 처리
-            println("Empty Operand")
-            throw IllegalArgumentException()
+        for (operatorIndex in 0 until inputData.operator.operatorList.size) {
+            operandIndex = operatorIndex + 1
+            checkDivideToZero(
+                inputData.operator.operatorList[operatorIndex],
+                inputData.operand.operandList[operandIndex]
+            )
+            result = calculatorTypeMapping[inputData.operator.operatorList[operatorIndex]]?.expression?.let {
+                it(
+                    result,
+                    inputData.operand.operandList[operandIndex]
+                )
+            }!!
         }
         return result
     }
 
-    fun addition(number1: String?, number2: String?): Double {
-        return round((number1?.toDouble()!! + number2?.toDouble()!!) * ROUND) / ROUND
+    private fun makeCalculatorTypeMapper(calculatorTypeMapper: MutableMap<String?, CalculatorType>) {
+        calculatorTypeMapper[ADDITION] = CalculatorType.ADDITION
+        calculatorTypeMapper[SUBTRACT] = CalculatorType.SUBTRACT
+        calculatorTypeMapper[DIVISION] = CalculatorType.DIVISION
+        calculatorTypeMapper[MULTIPLICATION] = CalculatorType.MULTIPLICATION
     }
 
-    fun subtract(number1: String?, number2: String?): Double {
-        return round((number1?.toDouble()!! - number2?.toDouble()!!) * ROUND) / ROUND
+    private fun checkLastOperandExist(inputData: CalculationExpression) {
+        try {
+            inputData.operand.operandList[inputData.operator.operatorList.size]
+        } catch (e: IndexOutOfBoundsException) {
+            // "1 +"와 같이 마지막 피연산자가 없을 경우에 대한 처리
+            throw IllegalArgumentException("Empty Operand")
+        }
     }
 
-    fun division(number1: String?, number2: String?): Double {
-        if (number2 == "0") {
+    private fun checkDivideToZero(operator: String?, operand: Double) {
+        if (operator == DIVISION && operand == 0.0) {
             throw IllegalArgumentException()
         }
-        return round((number1?.toDouble()!! / number2?.toDouble()!!) * ROUND) / ROUND
-    }
-
-    fun multiplication(number1: String?, number2: String?): Double {
-        return round((number1?.toDouble()!! * number2?.toDouble()!!) * ROUND) / ROUND
     }
 }

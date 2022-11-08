@@ -1,13 +1,15 @@
 package domain
 
-import constant.Constants.Companion.ADDITION
-import constant.Constants.Companion.DIVISION
-import constant.Constants.Companion.MULTIPLICATION
-import constant.Constants.Companion.SUBTRACT
 import java.lang.IllegalArgumentException
 import java.lang.NumberFormatException
 
 class ValidationChecker {
+    companion object {
+        const val ADDITION = "+"
+        const val SUBTRACT = "-"
+        const val DIVISION = "/"
+        const val MULTIPLICATION = "*"
+    }
 
     fun checkNullAndBlankValidation(input: String?) {
         checkNull(input)
@@ -16,15 +18,13 @@ class ValidationChecker {
 
     fun checkNull(input: String?) {
         if (input == null) {
-            println("Null")
-            throw IllegalArgumentException()
+            throw IllegalArgumentException("Null")
         }
     }
 
     fun checkBlank(input: String?) {
         if (input == "") {
-            println("Blank")
-            throw IllegalArgumentException()
+            throw IllegalArgumentException("Blank")
         }
     }
 
@@ -32,15 +32,13 @@ class ValidationChecker {
         try {
             input?.toDouble()
         } catch (e: NumberFormatException) {
-            println("Invalid Operand")
-            throw IllegalArgumentException()
+            throw IllegalArgumentException("Invalid Operand")
         }
     }
 
     fun checkValidOperator(input: String?) {
         if (!(input == ADDITION || input == SUBTRACT || input == DIVISION || input == MULTIPLICATION)) {
-            println("Invalid Operation")
-            throw IllegalArgumentException()
+            throw IllegalArgumentException("Invalid Operation")
         }
     }
 
