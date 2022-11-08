@@ -1,10 +1,11 @@
 package racingcar
 
-class Car {
-    var position: Int = 0
+class Car(position: Int = 0) {
+    var position: Int = position
+        private set
 
-    fun move(random: Int) {
-        if (random >= FOREWORD_CRITERIA) this.position++
+    fun move(foreword: Int) {
+        if (foreword >= FOREWORD_CRITERIA) this.position++
     }
 
     companion object {

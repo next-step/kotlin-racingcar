@@ -2,17 +2,35 @@ package calculator
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
-import io.kotest.matchers.collections.shouldContainAll
-import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 
 internal class OperatorTest : StringSpec({
-    "올바른 사칙연산 기호" {
-        val symbols = Operator.values().map { it.symbol }
-        val expectSymbols = listOf("+", "-", "*", "/")
+    "덧셈 기호 (+) 의 연산자" {
+        val plusSymbol = "+"
+        val plusOperator = Operator.of(plusSymbol)
 
-        symbols shouldHaveSize 4
-        symbols shouldContainAll expectSymbols
+        plusOperator shouldBe Operator.PLUS
+    }
+
+    "뺄셈 기호 (-) 의 연산자" {
+        val minusSymbol = "-"
+        val minusOperator = Operator.of(minusSymbol)
+
+        minusOperator shouldBe Operator.MINUS
+    }
+
+    "곱셈 기호 (*) 의 연산자" {
+        val multiSymbol = "*"
+        val multiOperator = Operator.of(multiSymbol)
+
+        multiOperator shouldBe Operator.MULTI
+    }
+
+    "나누셈 기호 (/) 의 연산자" {
+        val divSymbol = "/"
+        val divOperator = Operator.of(divSymbol)
+
+        divOperator shouldBe Operator.DIV
     }
 
     "사칙연산 기호가 아닌 경우 예외 발생" {
