@@ -15,7 +15,7 @@ internal class RandomMoveConditionTest : FunSpec({
         val numberArb = Arb.int(4, 9)
         checkAll(numberArb) { num ->
             every { RandomNumberGenerator.generate(any()) } returns num
-            RandomMoveCondition().available() shouldBe true
+            RandomMoveCondition().isAvailable() shouldBe true
         }
     }
 
@@ -24,7 +24,7 @@ internal class RandomMoveConditionTest : FunSpec({
         val numberArb = Arb.int(0, 3)
         checkAll(numberArb) { num ->
             every { RandomNumberGenerator.generate(any()) } returns num
-            RandomMoveCondition().available() shouldBe false
+            RandomMoveCondition().isAvailable() shouldBe false
         }
     }
 })
