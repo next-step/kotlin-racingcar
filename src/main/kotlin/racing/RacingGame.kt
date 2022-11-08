@@ -17,7 +17,7 @@ class RacingGame(
 
     fun race() {
         val roundCount = this.roundCount.value
-        for (i in 0 until roundCount) {
+        repeat(roundCount) {
             val cars = if (racingCarGarage.shouldCreateCars()) {
                 racingCarGarage.createCars(carCount)
             } else racingCarGarage.cars
