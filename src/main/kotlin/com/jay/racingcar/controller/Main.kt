@@ -7,15 +7,11 @@ import com.jay.racingcar.view.OutputView
 import java.lang.IllegalArgumentException
 
 fun main() {
-    InputView.printCarInputMessage()
-    val carCountsString = InputView.inputMessage()
-    require(!carCountsString.isNullOrEmpty()) { "invalid inputs" }
-    val carCount = toInt(carCountsString)
+    OutputView.printCarInputMessage()
+    val carCount = inputCarCount()
 
-    InputView.printTryMessage()
-    val triesString = InputView.inputMessage()
-    require(!triesString.isNullOrEmpty()) { "invalid inputs" }
-    val tries = toInt(triesString)
+    OutputView.printTryMessage()
+    val tries = inputTries()
 
     val racingCars = RacingCars.create(carCount, RandomStrategy())
 
@@ -24,6 +20,18 @@ fun main() {
         racingCars.play()
         OutputView.printResult(racingCars)
     }
+}
+
+private fun inputTries(): Int {
+    val triesString = InputView.inputMessage()
+    require(!triesString.isNullOrEmpty()) { "invalid inputs" }
+    return toInt(triesString)
+}
+
+private fun inputCarCount(): Int {
+    val carCountsString = InputView.inputMessage()
+    require(!carCountsString.isNullOrEmpty()) { "invalid inputs" }
+    return toInt(carCountsString)
 }
 
 private fun toInt(input: String) = try {
