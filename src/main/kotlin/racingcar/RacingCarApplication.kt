@@ -1,8 +1,8 @@
 package racingcar
 
 fun main() {
+    val randomNumberRange = 0..9
     val inputView = InputView()
-    val resultView = ResultView()
 
     println("자동차 대수는 몇 대인가요?")
     val carNumber = inputView.input()
@@ -16,9 +16,19 @@ fun main() {
     val count = inputView.input()
     for (i in 1..count) {
         carList.forEach {
-            it.move((0..9).random())
-            resultView.printStatus(it.status)
+            it.move((randomNumberRange).random())
+            print(makeResult(it.status))
         }
         println()
     }
+
+
+}
+fun makeResult(number: Int) : String{
+    val str : StringBuilder = StringBuilder()
+    for (i in 1..number) {
+        str.append("-")
+    }
+    str.append("\n")
+    return str.toString()
 }
