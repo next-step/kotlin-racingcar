@@ -8,13 +8,13 @@ object RacingGame {
         start(participatingCars, numberOfAttempts, moveType)
     }
 
-    private fun loadCar(numberOfCars: Int): List<Car> = (1..numberOfCars).map { Car(it) }
+    private fun loadCar(numberOfCars: Int): List<Car> = List(numberOfCars) { Car(it) }
 
     private fun start(cars: List<Car>, numberOfAttempts: Int, moveType: MoveType) {
         repeat(numberOfAttempts) {
             cars.forEach {
                 it.move(moveType)
-                OutputView.showCarMoveResult(it.getCurrentLocation())
+                OutputView.showCarMoveResult(it.currentPosition)
             }
             OutputView.nextTurn()
         }

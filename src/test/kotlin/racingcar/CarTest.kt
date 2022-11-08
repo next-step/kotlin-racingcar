@@ -12,7 +12,7 @@ internal class CarTest : BehaviorSpec({
         val position = 0
         mockkObject(MoveType)
         When("전진 가능한 상태라면") {
-            val car = Car(id = id, currentPosition = position)
+            val car = Car(id = id, _currentPosition = position)
             every { MoveType.isPossibleMove(any()) } returns true
             car.move(MoveType.DEFAULT)
             Then("전진한다.") {
@@ -21,7 +21,7 @@ internal class CarTest : BehaviorSpec({
         }
 
         When("전진 불가능 상태라면") {
-            val car = Car(id = id, currentPosition = position)
+            val car = Car(id = id, _currentPosition = position)
             every { MoveType.isPossibleMove(any()) } returns false
             car.move(MoveType.DEFAULT)
             Then("전진하지 않는다.") {
