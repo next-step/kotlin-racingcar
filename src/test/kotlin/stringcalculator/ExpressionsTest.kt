@@ -19,18 +19,18 @@ class ExpressionsTest : StringSpec({
     }
 
     "+ 연산 테스트" {
-        PlusBinaryExpression(UnaryExpression("1"), UnaryExpression("2")).evaluate() shouldBe 3
+        BinaryExpression(UnaryExpression("1"), Operator.PLUS, UnaryExpression("2")).evaluate() shouldBe 3
     }
 
     "- 연산 테스트" {
-        MinusBinaryExpression(UnaryExpression("1"), UnaryExpression("2")).evaluate() shouldBe -1
+        BinaryExpression(UnaryExpression("1"), Operator.MINUS, UnaryExpression("2")).evaluate() shouldBe -1
     }
 
     "/ 연산 테스트" {
-        DivideBinaryExpression(UnaryExpression("1"), UnaryExpression("2")).evaluate() shouldBe 0.5
+        BinaryExpression(UnaryExpression("1"), Operator.DIVIDE, UnaryExpression("2")).evaluate() shouldBe 0.5
     }
 
     "* 연산 테스트" {
-        MultiplyBinaryExpression(UnaryExpression("1"), UnaryExpression("2")).evaluate() shouldBe 2
+        BinaryExpression(UnaryExpression("1"), Operator.MULTIPLY, UnaryExpression("2")).evaluate() shouldBe 2
     }
 })

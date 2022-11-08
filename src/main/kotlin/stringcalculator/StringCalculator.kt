@@ -9,16 +9,10 @@ object StringCalculator {
         var expression: Expression = UnaryExpression(words.first())
 
         for (i in 1 until words.size step 2) {
-            val operator = words[i]
-            val second = UnaryExpression(words[i + 1])
+            val operator = Operator.find(words[i])
+            val operand = words[i + 1]
 
-            expression = when (operator) {
-                "+" -> PlusBinaryExpression(expression, second)
-                "-" -> MinusBinaryExpression(expression, second)
-                "/" -> DivideBinaryExpression(expression, second)
-                "*" -> MultiplyBinaryExpression(expression, second)
-                else -> throw IllegalArgumentException("사칙연산 기호가 아닙니다.")
-            }
+            expression = BinaryExpression(expression, operator, UnaryExpression(operand))
         }
 
         return expression.evaluate().toInt()
