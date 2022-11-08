@@ -5,6 +5,7 @@ import step3.domain.car.RacingCar
 class DefaultRacingCarContainer(
     private val totalCarCount: Int,
 ) : RacingCarContainer {
+
     override val carList = mutableListOf<RacingCar>()
 
     override fun addRacingCar(carName: String) {
