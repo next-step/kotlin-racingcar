@@ -14,28 +14,28 @@ class OperatorTest : BehaviorSpec({
     given("Operator.apply(number, number)") {
         `when`("PLUS and two numbers are provided") {
             then("plus two numbers") {
-                val result: Number = PLUS.apply(Number(10), Number(2))
+                val result: Operand = PLUS.calculate(Operand(10), Operand(2))
                 result.value shouldBe 12
             }
         }
 
         `when`("MINUS and two numbers are provided") {
             then("minus two numbers") {
-                val result: Number = MINUS.apply(Number(10), Number(2))
+                val result: Operand = MINUS.calculate(Operand(10), Operand(2))
                 result.value shouldBe 8
             }
         }
 
         `when`("MULTIPLY and two numbers are provided") {
             then("multiply two numbers") {
-                val result: Number = MULTIPLY.apply(Number(10), Number(2))
+                val result: Operand = MULTIPLY.calculate(Operand(10), Operand(2))
                 result.value shouldBe 20
             }
         }
 
         `when`("DIVIDE and two numbers are provided") {
             then("divide left number by right number") {
-                val result: Number = DIVIDE.apply(Number(10), Number(2))
+                val result: Operand = DIVIDE.calculate(Operand(10), Operand(2))
                 result.value shouldBe 5
             }
         }
@@ -74,7 +74,7 @@ class OperatorTest : BehaviorSpec({
             then("IllegalArgumentException will be thrown") {
                 shouldThrow<IllegalArgumentException> {
                     Operator.find(" ")
-                } shouldHaveMessage "string operator should be one of (+, -, *, /), it was:  "
+                } shouldHaveMessage "String operator should be one of (+, -, *, /), it was:  "
             }
         }
 
@@ -82,7 +82,7 @@ class OperatorTest : BehaviorSpec({
             then("IllegalArgumentException will be thrown") {
                 shouldThrow<IllegalArgumentException> {
                     Operator.find("#")
-                } shouldHaveMessage "string operator should be one of (+, -, *, /), it was: #"
+                } shouldHaveMessage "String operator should be one of (+, -, *, /), it was: #"
             }
         }
     }
