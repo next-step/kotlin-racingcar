@@ -7,7 +7,7 @@ import org.junit.jupiter.api.assertThrows
 import racingcar.common.RandomNumber
 import racingcar.domain.Car
 import racingcar.domain.Car.Companion.move
-import racingcar.domain.CarBehavior
+import racingcar.domain.Gear
 
 class RaceTest {
 
@@ -25,5 +25,25 @@ class RaceTest {
         assertThat(num)
             .isGreaterThanOrEqualTo(0)
             .isLessThanOrEqualTo(9)
+    }
+
+    @Test
+    @DisplayName("전진 조건일 경우 자동차의 현재 위치가 1 증가함")
+    fun test3() {
+        val cars = Car.registerCars(1)
+        Gear.FORWARD.range = 0..9
+        Gear.STOP.range = -1..-1
+        cars.first().move()
+        assertThat(cars.first().currentPosition).isEqualTo(1)
+    }
+
+    @Test
+    @DisplayName("정지 조건일 경우 자동차의 현재 위치가 증가함")
+    fun test4() {
+        val cars = Car.registerCars(1)
+        Gear.FORWARD.range = -1..-1
+        Gear.STOP.range = 0..9
+        cars.first().move()
+        assertThat(cars.first().currentPosition).isEqualTo(0)
     }
 }
