@@ -1,6 +1,6 @@
 package racingcar.application.race.factory
 
-import racingcar.application.race.ParticipatingCars
+import racingcar.domain.car.ParticipatingCars
 import racingcar.domain.car.Car
 import racingcar.domain.car.engine.MovingEngine
 

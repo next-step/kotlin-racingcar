@@ -1,6 +1,4 @@
-package racingcar.application.race
-
-import racingcar.domain.car.Car
+package racingcar.domain.car
 
 class ParticipatingCars(
     private val carList: List<Car>

@@ -3,6 +3,7 @@ package racingcar.application.race
 import racingcar.application.model.RacingCarInputCommand
 import racingcar.application.port.output.OutputPort
 import racingcar.application.race.factory.CarFactory
+import racingcar.domain.car.ParticipatingCars
 
 class Race(
     private val outputPort: OutputPort,
