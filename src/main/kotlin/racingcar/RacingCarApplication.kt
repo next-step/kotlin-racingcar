@@ -21,11 +21,10 @@ fun main() {
         }
         println()
     }
-
-
 }
-fun makeResult(number: Int) : String{
-    val str : StringBuilder = StringBuilder()
+
+fun makeResult(number: Int): String {
+    val str: StringBuilder = StringBuilder()
     for (i in 1..number) {
         str.append("-")
     }

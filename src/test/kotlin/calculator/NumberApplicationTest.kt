@@ -18,7 +18,7 @@ internal class NumberApplicationTest {
 
     @ParameterizedTest
     @CsvSource(value = ["1 + 2 + 3:6", "2 * 3 / 2:3"], delimiter = ':')
-    internal fun `계산식 확인`(context: String, value: String) {
+    internal fun `계산식 확인`(context: String, value: Int) {
         val calculatorApplication = CalculatorApplication()
         val result = calculatorApplication.calculate(context)
         assertEquals(result, Number(value))
