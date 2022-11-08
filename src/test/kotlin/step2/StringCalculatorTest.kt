@@ -6,13 +6,14 @@ import org.junit.jupiter.api.assertThrows
 import java.lang.IllegalArgumentException
 
 class StringCalculatorTest : FunSpec({
-    val sut = StringCalculator()
+    val tokenCalculator = ChunkTokenCalculator()
+    val sut = StringCalculator(tokenCalculator = tokenCalculator)
 
     context("calculate 메서드는") {
         context("계산식을 문자열로 입력하면") {
             test("계산한 결과를 숫자로 반환한다.") {
                 // given
-                val expression = "2 + 3 * 4 / 2"
+                val expression = "2 + 3 x 4 / 2"
                 // when
                 val actual = sut.calculate(expression = expression)
                 // then

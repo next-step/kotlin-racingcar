@@ -1,10 +1,11 @@
 package step2
 
-class StringCalculator {
-
+class StringCalculator(
+    private val tokenCalculator: TokenCalculator,
+) {
     fun calculate(expression: String?): Int {
         val validExpression = ExpressionValidator.validate(expression = expression)
-        ExpressionTokenizer.tokenize(expression = validExpression)
-        return 10
+        val tokens = ExpressionTokenizer.tokenize(expression = validExpression)
+        return this.tokenCalculator.calculate(tokens = tokens)
     }
 }

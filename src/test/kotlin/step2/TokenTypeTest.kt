@@ -10,7 +10,6 @@ class TokenTypeTest : FunSpec({
                 val actual = TokenType.getByValue(value = "+")
                 actual shouldBe TokenType.OPERATOR
             }
-
         }
 
         context("피연산자 토큰 값을 입력하면") {
