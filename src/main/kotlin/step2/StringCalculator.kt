@@ -24,14 +24,14 @@ class StringCalculator {
     }
 
     companion object {
+        private val regex = Regex("^(\\d+ [+\\-*/] )+\\d+\$")
+
         fun parse(input: String): List<String> {
             validate(input)
             return input.split(" ")
         }
 
         private fun validate(value: String): String {
-            val regex = Regex("^(\\d+ [+\\-*/] )+\\d+\$")
-
             if (!regex.containsMatchIn(value)) {
                 throw InvalidCalculatorInput()
             }
