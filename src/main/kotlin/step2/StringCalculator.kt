@@ -1,5 +1,6 @@
 package step2
 
+import step2.domain.Calculator
 import java.util.StringTokenizer
 
 fun main() {
@@ -19,22 +20,6 @@ class StringCalculator(input: String) {
     }
 
     companion object {
-        fun add(operand1: Int, operand2: Int): Int {
-            return operand1 + operand2
-        }
-
-        fun subtract(operand1: Int, operand2: Int): Int {
-            return operand1 - operand2
-        }
-
-        fun multiply(operand1: Int, operand2: Int): Int {
-            return operand1 * operand2
-        }
-
-        fun divide(operand1: Int, operand2: Int): Int {
-            return operand1 / operand2
-        }
-
         fun calculate(s: String): Int {
             val st = StringTokenizer(s, INPUT_DELIMITER)
             var result = validateOperand(st.nextToken())
@@ -43,17 +28,9 @@ class StringCalculator(input: String) {
                 val operator = st.nextToken()
                 val operand = validateOperand(st.nextToken())
 
-                result = startCalculation(operator, result, operand)
+                result = Calculator.calculate(operator, result, operand)
             }
             return result
-        }
-
-        private fun startCalculation(operator: String?, result: Int, operand: Int): Int = when (operator) {
-            "+" -> add(result, operand)
-            "-" -> subtract(result, operand)
-            "*" -> multiply(result, operand)
-            "/" -> divide(result, operand)
-            else -> throw IllegalArgumentException("연산자가 올바르지 않습니다.")
         }
 
         fun validateOperand(operand: String): Int {
