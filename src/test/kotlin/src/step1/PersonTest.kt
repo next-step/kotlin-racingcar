@@ -2,7 +2,6 @@ package src.step1
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import src.step1.Person
 
 class PersonTest {
 

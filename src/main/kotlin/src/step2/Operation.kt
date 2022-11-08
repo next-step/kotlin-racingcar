@@ -6,7 +6,7 @@ interface Calculable {
     fun calculate(x: Int, y: Int): Int
 }
 
-enum class Calculator(val symbol: Char): Calculable {
+enum class Operation(val symbol: Char) : Calculable {
     PLUS('+') {
         override fun calculate(x: Int, y: Int): Int {
             return x + y
@@ -31,14 +31,12 @@ enum class Calculator(val symbol: Char): Calculable {
 
 object StringCalculator {
 
-    private val symbols = listOf('+', '-', '*', '/')
-
     fun execute(value: String?): Int {
         validate(value)
 
         var result = 0
         var symbol: Char? = null
-        value!!.forEachIndexed forEach@{ index, it  ->
+        value!!.forEachIndexed forEach@{ index, it ->
             // 연산자를 저장
             if (!it.isDigit()) {
                 symbol = it
@@ -51,8 +49,8 @@ object StringCalculator {
             }
 
             // 계산
-            val calculator = Calculator.values().find { it.symbol == symbol }
-            result =  calculator?.calculate(result, Character.getNumericValue(it))
+            val operation = Operation.values().find { it.symbol == symbol }
+            result = operation?.calculate(result, Character.getNumericValue(it))
                 ?: return@forEach
         }
 
@@ -61,10 +59,9 @@ object StringCalculator {
 
     private fun validate(value: String?) {
         if (value.isNullOrBlank()) throw IllegalArgumentException("값이 입력되지 않았습니다")
-        val isContainsSymbol = value.any { it in symbols }
-
-        if (!isContainsSymbol) {
-            throw IllegalArgumentException("연산자가 포함되지 않았습니다")
-        }
+        val symbolCount = value.count { it -> it in Operation.values().map { it.symbol }.toList() }
+        if (symbolCount == 0) throw IllegalArgumentException("연산자가 입력되지 않았습니다")
+        val numberCount = value.count { it.isDigit() }
+        if (numberCount == 0) throw IllegalArgumentException("숫자가 입력되지 않았습니다")
     }
 }
