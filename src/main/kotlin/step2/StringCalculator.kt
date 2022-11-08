@@ -4,7 +4,7 @@ class StringCalculator {
 
     fun execute(input: String): Int {
         if (input.isBlank()) {
-            throw StringCalculatorIllegalArgumentException()
+            throw InvalidCalculatorInput()
         }
 
         val values = parse(input)
@@ -39,7 +39,7 @@ class StringCalculator {
             val regex = Regex("^(\\d+ [+\\-*/] )+\\d+\$")
 
             if (!regex.containsMatchIn(value)) {
-                throw StringCalculatorIllegalArgumentException()
+                throw InvalidCalculatorInput()
             }
 
             return value

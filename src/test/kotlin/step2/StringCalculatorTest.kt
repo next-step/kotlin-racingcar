@@ -24,15 +24,15 @@ class StringCalculatorTest {
         val calculator = StringCalculator()
 
         // act && assert
-        assertThrows<StringCalculatorIllegalArgumentException> {
+        assertThrows<InvalidCalculatorInput> {
             calculator.execute("")
         }
 
-        assertThrows<StringCalculatorIllegalArgumentException> {
+        assertThrows<InvalidCalculatorInput> {
             calculator.execute("1 == 1")
         }
 
-        assertThrows<StringCalculatorIllegalArgumentException> {
+        assertThrows<InvalidCalculatorInput> {
             calculator.execute("0")
         }
     }

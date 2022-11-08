@@ -27,7 +27,7 @@ class StringCalculatorSpec : BehaviorSpec() {
                     val illegalArgument3 = "a + b - c"
 
                     Then("예외를 던진다") {
-                        shouldThrow<StringCalculatorIllegalArgumentException> {
+                        shouldThrow<InvalidCalculatorInput> {
                             calculator.execute(illegalArgument1)
                             calculator.execute(illegalArgument2)
                             calculator.execute(illegalArgument3)
