@@ -1,11 +1,11 @@
 package com.nextstep.stringcalculator
 
-class StringCalculator(input: String?) {
-    private val expression: Expression
-    init {
-        require(input != null && input.isNotBlank()) { "Input shouldn't be null or blank" }
-        this.expression = Expression(input)
-    }
+class StringCalculator {
 
-    fun calculate(): Long = expression.calculate()
+    companion object {
+        fun calculate(input: String?): Long {
+            require(input != null && input.isNotBlank()) { "Input shouldn't be null or blank" }
+            return Expression(input).calculate()
+        }
+    }
 }

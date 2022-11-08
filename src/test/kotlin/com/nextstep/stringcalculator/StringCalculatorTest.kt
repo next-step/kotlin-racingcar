@@ -14,11 +14,11 @@ class StringCalculatorTest : AnnotationSpec() {
     @Test
     fun constructor_exception() {
         shouldThrow<IllegalArgumentException> {
-            StringCalculator(null)
+            StringCalculator.calculate(null)
         } shouldHaveMessage "Input shouldn't be null or blank"
 
         shouldThrow<IllegalArgumentException> {
-            StringCalculator(" ")
+            StringCalculator.calculate(" ")
         } shouldHaveMessage "Input shouldn't be null or blank"
     }
 
@@ -26,7 +26,6 @@ class StringCalculatorTest : AnnotationSpec() {
     @ParameterizedTest
     @CsvSource(value = ["1 + 2, 3", "1 - 2, -1", "1 * 2, 2", "1 / 2, 0"])
     fun calculate(expression: String, result: Long) {
-        val stringCalculator = StringCalculator(expression)
-        stringCalculator.calculate() shouldBe result
+        StringCalculator.calculate(expression) shouldBe result
     }
 }
