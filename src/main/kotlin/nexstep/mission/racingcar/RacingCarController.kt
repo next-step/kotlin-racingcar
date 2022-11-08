@@ -7,6 +7,8 @@ import java.util.Random
 
 private val RANDOM = Random()
 
+private const val NUMBER_UNDER_TEN = 10
+
 class RacingCarController(
     private val input: Input,
     private val output: Output
@@ -25,7 +27,7 @@ class RacingCarController(
         when {
             (round == 0) -> Unit
             else -> {
-                racingGame.race { RANDOM.nextInt(10) }
+                racingGame.race { RANDOM.nextInt(NUMBER_UNDER_TEN) }
                 output.printPositions(racingGame.racingCars.map { RacingCarDto(it.name.value, it.position) })
                 startRace(round - 1, racingGame)
             }

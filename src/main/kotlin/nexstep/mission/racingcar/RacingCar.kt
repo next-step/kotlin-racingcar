@@ -10,8 +10,8 @@ class RacingCar(
 ) {
     constructor(name: String) : this(Name(name))
 
-    fun move(random: Int) {
-        if (random >= MOVEMENT_CONDITION) {
+    fun move(movement: Int) {
+        if (movement >= MOVEMENT_CONDITION) {
             ++position
         }
     }
