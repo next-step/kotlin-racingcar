@@ -1,8 +1,10 @@
 package calculator
 
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.MethodSource
 
 internal class StringCalculatorTest {
 
@@ -44,5 +46,19 @@ internal class StringCalculatorTest {
 
         // then
         assertEquals(expectedResult, actualResult)
+    }
+
+    @ParameterizedTest(name = "input = [{0}]")
+    @MethodSource("blankOrNullStrings")
+    fun `입력값 null 또는 빈 공백문자 테스트`(input: String?) {
+        // when & then
+        assertThatThrownBy {
+            StringCalculator.calculate(input)
+        }.isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    companion object {
+        @JvmStatic
+        fun blankOrNullStrings() = listOf(null, "", "   ")
     }
 }

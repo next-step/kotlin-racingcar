@@ -2,7 +2,9 @@ package calculator
 
 object StringCalculator {
 
-    fun calculate(input: String): Long {
+    fun calculate(input: String?): Long {
+
+        require(!input.isNullOrBlank()) { "입력값은 null이나 빈 공백 문자일 수 없습니다." }
 
         val split: List<String> = input.split(" ")
 
