@@ -1,8 +1,14 @@
 package racingcar
 
 import racingcar.condition.MoveCondition
+import racingcar.strategy.MoveStrategy
 
-class Car(val name: String, position: Int, private val condition: List<MoveCondition>) {
+class Car(
+    val name: String,
+    private val moveStrategy: MoveStrategy,
+    private val moveConditions: List<MoveCondition>,
+    position: Int,
+) {
     var position: Int = position
         private set
 
@@ -14,7 +20,7 @@ class Car(val name: String, position: Int, private val condition: List<MoveCondi
     }
 
     private fun isMovable(): Boolean {
-        return condition.any { it.available() }
+        return moveStrategy.isMovable(moveConditions)
     }
 
     companion object {

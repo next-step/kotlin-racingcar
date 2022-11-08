@@ -1,12 +1,21 @@
 package racingcar
 
 import racingcar.condition.MoveCondition
+import racingcar.strategy.MoveStrategy
 
-class Cars(carNumber: Int, conditions: List<MoveCondition>) {
-    private val cars: List<Car> =
-        IntRange(0, carNumber - 1).map { num ->
-            Car("${num}번 차", START_POSITION, conditions)
-        }
+class Cars(
+    carNumber: Int,
+    moveStrategy: MoveStrategy,
+    moveConditions: List<MoveCondition>
+) {
+    private val cars: List<Car> = List(carNumber) { num ->
+        Car(
+            name = "${num}번 차",
+            moveStrategy = moveStrategy,
+            moveConditions = moveConditions,
+            position = START_POSITION
+        )
+    }
 
     fun move(): Record {
         return Record(cars.map { car -> car.move() })
