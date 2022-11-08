@@ -2,7 +2,7 @@ package calculator
 
 data class Num(var value: Int) {
 
-    constructor(value: String) : this(value.toIntOrNull() ?: throw IllegalArgumentException())
+    constructor(value: String) : this(Integer.parseInt(value))
 
     fun add(number: Num) = Num(this.value + number.value)
 
