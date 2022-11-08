@@ -24,7 +24,7 @@
 
 - 전략 패턴
 - 어댑터 포트 패턴
-  - input, output 을 적극적으로 분리한 헥사고날 아키텍처 도입
+  - 입력 역할(레이스를 실행하기 위한 상태를 결정)과 출력 역할(레이스의 현재 상태를 전달)이 명확하다고 판단하여 input, output 을 분리한 어댑터 포트 패턴 도입
 
 ![관계도](https://user-images.githubusercontent.com/66561524/200694563-ddb8e2aa-fb0d-4797-b2a2-99a187a0d9b1.png)
 
