@@ -9,7 +9,7 @@ class RacingCarService {
     fun play(carCount: Int, roundCount: Int) {
         val cars: Cars = CarGenerator.generate(carCount)
 
-        for (i in 1..roundCount step 1) {
+        for (i in 1..roundCount) {
             playEachRound(i, cars)
         }
     }
