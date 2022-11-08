@@ -7,13 +7,6 @@ class Car(var status: Int = 0) {
         }
     }
 
-    fun printStatus() {
-        for (i in 1..status) {
-            print("-")
-        }
-        println()
-    }
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is Car) return false

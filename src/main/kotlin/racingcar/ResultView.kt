@@ -5,9 +5,16 @@ class ResultView {
         for (i in 1..count) {
             carList.forEach {
                 it.move((0..9).random())
-                it.printStatus()
+                printStatus(it.status)
             }
             println()
         }
+    }
+
+    private fun printStatus(number: Int) {
+        for (i in 0..number) {
+            print("-")
+        }
+        println()
     }
 }
