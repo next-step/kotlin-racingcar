@@ -2,9 +2,9 @@ package stringcalculator
 
 object StringCalculator {
     fun calculate(value: String?): Int {
-        require(value?.isNotBlank() ?: false) { "입력값은 null, 공백일 수 없습니다." }
+        require(!value.isNullOrBlank()) { "입력값은 null, 공백일 수 없습니다." }
 
-        val words = value!!.split(" ")
+        val words = value.split(" ")
 
         var expression: Expression = UnaryExpression(words.first())
 
