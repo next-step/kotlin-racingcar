@@ -1,6 +1,6 @@
 package racing.view
 
-import racing.Game
+import racing.domain.Game
 
 class GameResultView(private val game: Game) {
 
