@@ -1,6 +1,7 @@
 package step2
 
-class Operand private constructor(val value: Int) {
+@JvmInline
+value class Operand private constructor(val value: Int) {
     companion object {
         fun of(operand: String): Operand = operand.toIntOrNull()?.let {
             Operand(it)
