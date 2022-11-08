@@ -3,6 +3,8 @@ package step2
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class StringCalculatorTest {
 
@@ -18,22 +20,23 @@ class StringCalculatorTest {
         assertThat(result).isEqualTo(10)
     }
 
-    @Test
-    fun exception() {
+    @ParameterizedTest
+    @ValueSource(strings = ["", "1 == 1", "0"])
+    fun exception(candidate: String) {
         // arrange
         val calculator = StringCalculator()
 
         // act && assert
         assertThrows<InvalidCalculatorInput> {
-            calculator.execute("")
+            calculator.execute(candidate)
         }
 
         assertThrows<InvalidCalculatorInput> {
-            calculator.execute("1 == 1")
+            calculator.execute(candidate)
         }
 
         assertThrows<InvalidCalculatorInput> {
-            calculator.execute("0")
+            calculator.execute(candidate)
         }
     }
 }
