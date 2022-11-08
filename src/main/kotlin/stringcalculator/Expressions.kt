@@ -12,6 +12,6 @@ class BinaryExpression(
     override fun evaluate(): Double = operator(first.evaluate(), second.evaluate())
 }
 
-class UnaryExpression(private val value: String) : Expression {
+class NumberExpression(private val value: String) : Expression {
     override fun evaluate(): Double = value.toDouble()
 }
