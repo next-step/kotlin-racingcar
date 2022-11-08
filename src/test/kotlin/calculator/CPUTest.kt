@@ -7,29 +7,28 @@ import io.kotest.matchers.shouldBe
 internal class CPUTest : StringSpec({
 
     "3 더하기 2는 5" {
-        CPU().add(3, 2) shouldBe 5
+        CPU().execute(Operator.ADD, 3, 2) shouldBe 5
     }
 
     "3 빼기 2는 1이다" {
-        CPU().subtract(3, 2) shouldBe 1
+        CPU().execute(Operator.SUBTRACT, 3, 2) shouldBe 1
     }
 
     "3 곱하기 2는 6이다" {
-        CPU().multiply(3, 2) shouldBe 6
+        CPU().execute(Operator.MULTIPLY, 3, 2) shouldBe 6
     }
 
     "나눗셈 결과 소수점이 있으면 버린다" {
-        CPU().divide(3, 2) shouldBe 1
+        CPU().execute(Operator.DIVIDE, 3, 2) shouldBe 1
     }
 
     "나눗셈 결과 소수점이 없다면 기존과 동일한 값이 나온다" {
-        CPU().divide(4, 2) shouldBe 2
+        CPU().execute(Operator.DIVIDE, 4, 2) shouldBe 2
     }
 
-    // 함수명에 /(Slash)를 넣고 싶은데 안되서 JUnit말고 kotest를 사용했습니다.
     "0으로 나누면 ArithmeticException(/ by zero) 예외가 발생한다" {
         shouldThrowWithMessage<ArithmeticException>("/ by zero") {
-            CPU().divide(4, 0)
+            CPU().execute(Operator.DIVIDE, 4, 0)
         }
     }
 })

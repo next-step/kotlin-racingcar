@@ -1,20 +1,28 @@
 package calculator
 
 enum class Operator(val prime: String) {
-    ADD("+"),
-    SUBTRACT("-"),
-    MULTIPLY("*"),
-    DIVIDE("/");
+    ADD("+") {
+        override fun execute(preOperand: Int, postOperand: Int): Int = preOperand + postOperand
+    },
+    SUBTRACT("-") {
+        override fun execute(preOperand: Int, postOperand: Int): Int = preOperand - postOperand
+    },
+    MULTIPLY("*") {
+        override fun execute(preOperand: Int, postOperand: Int): Int = preOperand * postOperand
+    },
+    DIVIDE("/") {
+        override fun execute(preOperand: Int, postOperand: Int): Int = preOperand / postOperand
+    };
 
     companion object {
         fun findByValue(prime: String): Operator {
-            Operator.values()
-                .forEach { operator ->
-                    if (prime == operator.prime) {
-                        return operator
-                    }
-                }
-            throw IllegalArgumentException("해당하는 연산자 enum 을 찾을 수 없습니다")
+            val operator = values().find { operator ->
+                prime == operator.prime
+            }
+            require(operator != null)
+            return operator
         }
     }
+
+    abstract fun execute(preOperand: Int, postOperand: Int): Int
 }

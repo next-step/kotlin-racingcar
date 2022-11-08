@@ -21,8 +21,14 @@ class KeypadTest {
     }
 
     @Test
-    fun `위의 것을 제외한 문자열을 입력하면 그대로 반환한다`() {
+    fun `입력된 문자를 공백단위로 분리하여 배열로 반환한다`() {
+        val inputText = "11 + 1"
+        Assertions.assertThat(Keypad().pressed(inputText)).isEqualTo(listOf("11", "+", "1"))
+    }
+
+    @Test
+    fun `공백이 없더라도 배열에 담겨 반환된다`() {
         val inputText = "11"
-        Assertions.assertThat(Keypad().pressed(inputText)).isEqualTo(inputText)
+        Assertions.assertThat(Keypad().pressed(inputText)).isEqualTo(listOf("11"))
     }
 }
