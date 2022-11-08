@@ -5,6 +5,8 @@ import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.should
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.startWith
+import step2.converter.StringToInt
+import step2.operator.Operator
 import java.lang.IllegalArgumentException
 
 class StringCalculatorKoTests : FreeSpec({
@@ -31,12 +33,12 @@ class StringCalculatorKoTests : FreeSpec({
             null,
             " ",
         ).forEach {
-            "expression: [$it] - ${ErrorMessage.NULL_OR_BLANK}" {
+            "expression: [$it] - ${StringCalculator.ERROR_MESSAGE_NULL_OR_BLANK}" {
                 val exception = shouldThrow<IllegalArgumentException> {
                     stringCalculator.calculate(it)
                 }
 
-                exception.message should startWith(ErrorMessage.NULL_OR_BLANK.message)
+                exception.message should startWith(StringCalculator.ERROR_MESSAGE_NULL_OR_BLANK)
             }
         }
     }
@@ -47,12 +49,12 @@ class StringCalculatorKoTests : FreeSpec({
             "2 * 3 / 4 ! 2",
             "2 / 3 = 4 - 2"
         ).forEach {
-            "expression: [$it] - ${ErrorMessage.INVALID_OPERATOR}" {
+            "expression: [$it] - ${Operator.ERROR_MESSAGE_INVALID_OPERATOR}" {
                 val exception = shouldThrow<IllegalArgumentException> {
                     stringCalculator.calculate(it)
                 }
 
-                exception.message should startWith(ErrorMessage.INVALID_OPERATOR.message)
+                exception.message should startWith(Operator.ERROR_MESSAGE_INVALID_OPERATOR)
             }
         }
     }
@@ -63,12 +65,12 @@ class StringCalculatorKoTests : FreeSpec({
             "2 * x / 4 - 2",
             "x / 3 + 4 - 2"
         ).forEach {
-            "expression: [$it] - ${ErrorMessage.INVALID_NUMBER_FORMAT}" {
+            "expression: [$it] - ${StringToInt.ERROR_MESSAGE_INVALID_NUMBER_FORMAT}" {
                 val exception = shouldThrow<IllegalArgumentException> {
                     stringCalculator.calculate(it)
                 }
 
-                exception.message should startWith(ErrorMessage.INVALID_NUMBER_FORMAT.message)
+                exception.message should startWith(StringToInt.ERROR_MESSAGE_INVALID_NUMBER_FORMAT)
             }
         }
     }
@@ -79,12 +81,12 @@ class StringCalculatorKoTests : FreeSpec({
             "2 * 3 / 4 - ",
             "2 / 3 + 4 - "
         ).forEach {
-            "expression: [$it] - ${ErrorMessage.NOT_ENOUGH_OPERAND}" {
+            "expression: [$it] - ${StringCalculator.ERROR_MESSAGE_NOT_ENOUGH_OPERAND}" {
                 val exception = shouldThrow<IllegalArgumentException> {
                     stringCalculator.calculate(it)
                 }
 
-                exception.message should startWith(ErrorMessage.NOT_ENOUGH_OPERAND.message)
+                exception.message should startWith(StringCalculator.ERROR_MESSAGE_NOT_ENOUGH_OPERAND)
             }
         }
     }

@@ -1,9 +1,8 @@
 package step3.random
 
-import step3.domain.game.random.DefaultRandomGenerator
-
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.collections.shouldBeIn
+import step3.domain.game.random.DefaultRandomGenerator
 
 class DefaultRandomGeneratorTest : FunSpec({
     val randomGenerator = DefaultRandomGenerator

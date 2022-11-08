@@ -6,6 +6,8 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.EmptySource
 import org.junit.jupiter.params.provider.ValueSource
+import step2.converter.StringToInt
+import step2.operator.Operator
 
 class StringCalculatorTests {
     private lateinit var stringCalculator: StringCalculator
@@ -26,7 +28,7 @@ class StringCalculatorTests {
     fun `입력값이 널이거나 비어있을 경우`(emptyExpression: String?) {
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy { stringCalculator.calculate(emptyExpression) }
-            .withMessageStartingWith(ErrorMessage.NULL_OR_BLANK.toString())
+            .withMessageStartingWith(StringCalculator.ERROR_MESSAGE_NULL_OR_BLANK)
     }
 
     @ParameterizedTest
@@ -34,7 +36,7 @@ class StringCalculatorTests {
     fun `사칙연산 기호가 아닌 경우`(expressionContainingInvalidOperator: String?) {
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy { stringCalculator.calculate(expressionContainingInvalidOperator) }
-            .withMessageStartingWith(ErrorMessage.INVALID_OPERATOR.toString())
+            .withMessageStartingWith(Operator.ERROR_MESSAGE_INVALID_OPERATOR)
     }
 
     @ParameterizedTest
@@ -42,7 +44,7 @@ class StringCalculatorTests {
     fun `피연산자가 숫자가 아닐 경우`(expressionContainingInvalidOperand: String?) {
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy { stringCalculator.calculate(expressionContainingInvalidOperand) }
-            .withMessageStartingWith(ErrorMessage.INVALID_NUMBER_FORMAT.toString())
+            .withMessageStartingWith(StringToInt.ERROR_MESSAGE_INVALID_NUMBER_FORMAT)
     }
 
     @ParameterizedTest
@@ -50,6 +52,6 @@ class StringCalculatorTests {
     fun `피연산자가 숫자가 모자랄 경우`(expressionContainingInvalidOperand: String?) {
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy { stringCalculator.calculate(expressionContainingInvalidOperand) }
-            .withMessageStartingWith(ErrorMessage.NOT_ENOUGH_OPERAND.toString())
+            .withMessageStartingWith(StringCalculator.ERROR_MESSAGE_NOT_ENOUGH_OPERAND)
     }
 }

@@ -1,8 +1,5 @@
 package step3.distance
 
-import step3.domain.car.distance.CarDistance
-import step3.domain.car.distance.DefaultCarDistance
-
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.data.forAll
 import io.kotest.data.headers
@@ -10,7 +7,8 @@ import io.kotest.data.row
 import io.kotest.data.table
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.assertThrows
-import java.lang.IllegalArgumentException
+import step3.domain.car.distance.CarDistance
+import step3.domain.car.distance.DefaultCarDistance
 
 class DefaultCarDistanceTest : FunSpec({
     lateinit var distance: CarDistance<Int>
