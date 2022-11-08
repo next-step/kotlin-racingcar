@@ -9,12 +9,11 @@ import study.step4.view.ResultView.resultRacingCar
 fun main() {
     runCatching {
         val (racingCarNames, repeatRace) = inputRacingCarInfo()
-
         val racingCarNamesList = InputGenerator.convertRacingCarNamesList(racingCarNames)
 
         val racingCar = RacingCar(racingCarNamesList, repeatRace, RandomDigit())
         racingCar.race()
-        resultRacingCar(racingCar.getCars(), repeatRace)
+        resultRacingCar(racingCar.getChampions(), racingCar.getCars(), repeatRace)
     }.onFailure { e ->
         println("주의: ${e.message}")
     }

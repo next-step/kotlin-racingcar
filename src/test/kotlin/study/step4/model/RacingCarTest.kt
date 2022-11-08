@@ -83,4 +83,41 @@ internal class RacingCarTest : StringSpec({
             }
         }
     }
+
+    "레이싱 경과 경기후, 챔피언을 조회하면, 거리가 가장 먼 자동차가 반환된다" {
+        // given
+        val cars = mutableListOf(
+            Car("name1", 10, 5),
+            Car("name2", 11, 5),
+            Car("name3", 8, 5)
+        )
+
+        // when
+        val racingCar = RacingCar(listOf("name"), 3, RandomDigit(), cars = cars)
+
+        // then
+        val champion = racingCar.getChampions().first()
+        assertThat(champion.name).isEqualTo("name2")
+        assertThat(champion.getLocation()).isEqualTo(11)
+    }
+
+    "레이싱 경과 경기후 챔피언이 중복인 경우, 챔피언을 조회하면, 거리가 가장 먼 자동차 모두가 반환된다" {
+        // given
+        val cars = mutableListOf(
+            Car("name1", 10, 5),
+            Car("name2", 11, 5),
+            Car("name3", 8, 5),
+            Car("name4", 11, 5),
+        )
+
+        // when
+        val racingCar = RacingCar(listOf("name"), 3, RandomDigit(), cars = cars)
+
+        // then
+        val champions = racingCar.getChampions()
+        assertThat(champions.size).isEqualTo(2)
+        champions.forEach {
+            assertThat(it.getLocation()).isEqualTo(11)
+        }
+    }
 })
