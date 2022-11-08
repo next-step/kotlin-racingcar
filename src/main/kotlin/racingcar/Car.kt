@@ -1,8 +1,8 @@
 package racingcar
 
 class Car(var status: Int = 0) {
-    fun move(random: Int) {
-        if (random >= MOVE_CONDITION) {
+    fun move(condition: Int) {
+        if (condition >= MOVE_CONDITION) {
             status++
         }
     }

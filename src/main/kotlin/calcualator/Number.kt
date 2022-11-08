@@ -1,19 +1,19 @@
 package calcualator
 
-data class Number(private val value: String) {
+data class Number(private val value: Int) {
     fun plus(number: Number): Number {
-        return Number(this.value.toInt().plus(number.value.toInt()).toString())
+        return Number(this.value.plus(number.value))
     }
 
     fun minus(number: Number): Number {
-        return Number(this.value.toInt().minus(number.value.toInt()).toString())
+        return Number(this.value.minus(number.value))
     }
 
     fun times(number: Number): Number {
-        return Number(this.value.toInt().times(number.value.toInt()).toString())
+        return Number(this.value.times(number.value))
     }
 
     fun div(number: Number): Number {
-        return Number(this.value.toInt().div(number.value.toInt()).toString())
+        return Number(this.value.div(number.value))
     }
 }

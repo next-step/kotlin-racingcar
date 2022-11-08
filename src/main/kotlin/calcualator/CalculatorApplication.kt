@@ -13,7 +13,7 @@ class CalculatorApplication {
         context.split(" ")
             .forEachIndexed { index, inputString ->
                 if (index % 2 == 0) {
-                    result = beforeOperator.operate(result, Number(inputString))
+                    result = beforeOperator.operate(result, Number(inputString.toInt()))
                 } else if (index % 2 == 1) {
                     beforeOperator = Operator.of(inputString)
                 }
@@ -22,6 +22,6 @@ class CalculatorApplication {
     }
 
     companion object {
-        const val INIT_NUMBER = "0"
+        const val INIT_NUMBER = 0
     }
 }
