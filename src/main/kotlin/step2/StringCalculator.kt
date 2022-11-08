@@ -10,20 +10,14 @@ class StringCalculator {
         val values = parse(input)
         var result = values.first().toInt()
 
-        values.forEachIndexed { index, s ->
+        values.forEachIndexed { index, symbol ->
             if (index == values.size - 1) return@forEachIndexed
 
             val operand = values[index + 1].toIntOrNull() ?: return@forEachIndexed
 
-            val operator: Operator = when (s) {
-                "+" -> Adder(result, operand)
-                "-" -> Subtractor(result, operand)
-                "*" -> Multiplier(result, operand)
-                "/" -> Divider(result, operand)
-                else -> throw StringCalculatorIllegalArgumentException()
-            }
+            val operator = Operation.symbolToOperator(symbol)
 
-            result = operator.calculate()
+            result = operator.calculate(result, operand)
         }
 
         return result
