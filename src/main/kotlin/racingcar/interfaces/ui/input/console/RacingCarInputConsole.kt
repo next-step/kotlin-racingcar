@@ -1,13 +1,13 @@
 package racingcar.interfaces.ui.input.console
 
-import racingcar.application.model.RacingCarInputCommand
+import racingcar.application.model.RaceInputCommand
 
 object RacingCarInputConsole {
 
-    fun input(): RacingCarInputCommand {
+    fun input(): RaceInputCommand {
         val carCount = queryNumber("자동차 대수는 몇 대인가요?")
         val attemptCount = queryNumber("시도할 횟수는 몇 회인가요?")
-        return RacingCarInputCommand(carCount, attemptCount)
+        return RaceInputCommand(carCount, attemptCount)
     }
 
     private fun queryNumber(question: String): Int =
@@ -16,7 +16,7 @@ object RacingCarInputConsole {
             val numberString = readln()
             validateNumber(numberString)
             numberString.toInt()
-        } catch (e: Exception) {
+        } catch (e: IllegalArgumentException) {
             queryNumber(question)
         }
 

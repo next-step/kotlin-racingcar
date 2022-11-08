@@ -1,6 +1,6 @@
 package racingcar.application.model
 
-data class RacingCarInputCommand(
+data class RaceInputCommand(
     val carCount: Int,
     val attemptCount: Int
 )

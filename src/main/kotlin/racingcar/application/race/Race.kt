@@ -1,6 +1,6 @@
 package racingcar.application.race
 
-import racingcar.application.model.RacingCarInputCommand
+import racingcar.application.model.RaceInputCommand
 import racingcar.application.port.output.OutputPort
 import racingcar.application.race.factory.CarFactory
 import racingcar.domain.car.ParticipatingCars
@@ -10,9 +10,9 @@ class Race(
     private val carFactory: CarFactory
 ) {
 
-    fun proceed(racingCarInputCommand: RacingCarInputCommand) {
-        val endNumber = racingCarInputCommand.attemptCount
-        val participatingCars = carFactory.create(racingCarInputCommand.carCount)
+    fun proceed(raceInputCommand: RaceInputCommand) {
+        val endNumber = raceInputCommand.attemptCount
+        val participatingCars = carFactory.create(raceInputCommand.carCount)
 
         outputPort.output(RESULT_COMMENT)
         race(participatingCars, endNumber)
