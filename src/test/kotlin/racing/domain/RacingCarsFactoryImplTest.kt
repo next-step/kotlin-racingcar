@@ -16,7 +16,7 @@ internal class RacingCarsFactoryImplTest {
 
     @ParameterizedTest
     @ValueSource(ints = [1, 5])
-    fun `경주용 자동차가 0개 이상 필요하여 생성해야 되는 경우`(count: Int) {
+    fun `경주용 자동차가 1개 이상 필요하여 생성해야 되는 경우`(count: Int) {
         val cars = racingCarsFactory.createCars(count)
         assertThat(cars.size).isEqualTo(count)
     }
