@@ -9,6 +9,16 @@ class ExpressionValidatorTest : FunSpec({
     val sut = ExpressionValidator
 
     context("validate 메서드는") {
+        context("올바른 계산식을 입력하면") {
+            test("유효성 검사를 마친 계산식을 다시 반환한다.") {
+                // given
+                val expression = "2 + 3"
+                // when
+                val actual = sut.validate(expression = expression)
+                actual shouldBe expression
+            }
+        }
+
         context("null 로 입력하면") {
             test("IllegalArgumentException 이 발생한다.") {
                 // given
