@@ -12,7 +12,7 @@ class OperatorSignTest : FunSpec({
                 listOf(
                     Pair("+", OperatorSign.PLUS),
                     Pair("-", OperatorSign.MINUS),
-                    Pair("x", OperatorSign.MULTIPLE),
+                    Pair("*", OperatorSign.MULTIPLE),
                     Pair("/", OperatorSign.DIVIDE),
                 ).forEach {
                     val (given: String, expected: OperatorSign) = it
@@ -24,8 +24,8 @@ class OperatorSignTest : FunSpec({
 
         context("잘못된 연산 기호를 입력하면") {
             test("IllegalArgumentException 이 발생한다.") {
-                val exception = assertThrows<IllegalArgumentException> { OperatorSign.getBySign(sign = "*") }
-                exception.message shouldBe "잘못된 연산 기호를 입력했습니다."
+                val exception = assertThrows<IllegalArgumentException> { OperatorSign.getBySign(sign = "X") }
+                exception.message shouldBe "연산 기호는 +, -, *, / 만 입력할 수 있습니다."
             }
         }
     }

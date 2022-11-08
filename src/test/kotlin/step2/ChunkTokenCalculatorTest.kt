@@ -13,7 +13,7 @@ class ChunkTokenCalculatorTest : FunSpec({
                 val tokens = listOf(
                     Token.of(value = "2"),
                     Token.of(value = "+"), Token.of(value = "3"),
-                    Token.of(value = "x"), Token.of(value = "4"),
+                    Token.of(value = "*"), Token.of(value = "4"),
                     Token.of(value = "/"), Token.of(value = "2"),
                 )
                 // when

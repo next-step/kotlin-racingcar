@@ -7,7 +7,7 @@ enum class OperatorSign(
 ) {
     PLUS("+"),
     MINUS("-"),
-    MULTIPLE("x"),
+    MULTIPLE("*"),
     DIVIDE("/");
 
     companion object {
@@ -17,7 +17,7 @@ enum class OperatorSign(
                 MINUS.sign -> MINUS
                 MULTIPLE.sign -> MULTIPLE
                 DIVIDE.sign -> DIVIDE
-                else -> throw IllegalArgumentException("잘못된 연산 기호를 입력했습니다.")
+                else -> throw IllegalArgumentException("연산 기호는 +, -, *, / 만 입력할 수 있습니다.")
             }
         }
     }

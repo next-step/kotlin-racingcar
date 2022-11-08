@@ -13,7 +13,7 @@ class StringCalculatorTest : FunSpec({
         context("계산식을 문자열로 입력하면") {
             test("계산한 결과를 숫자로 반환한다.") {
                 // given
-                val expression = "2 + 3 x 4 / 2"
+                val expression = "2 + 3 * 4 / 2"
                 // when
                 val actual = sut.calculate(expression = expression)
                 // then
@@ -45,6 +45,19 @@ class StringCalculatorTest : FunSpec({
                     }
                     exception.message shouldBe "입력한 계산식은 null 또는 공백이 될 수 없습니다."
                 }
+            }
+        }
+
+        context("잘못된 연산 기호를 입력하면") {
+            test("IllegalArgumentException 이 발생한다.") {
+                // given
+                val expression = "2 + 3 X 4 / 2"
+                // when
+                val exception = assertThrows<IllegalArgumentException> {
+                    sut.calculate(expression = expression)
+                }
+                // then
+                exception.message shouldBe "연산 기호는 +, -, *, / 만 입력할 수 있습니다."
             }
         }
     }
