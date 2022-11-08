@@ -5,6 +5,7 @@ import step3.domain.game.history.RacingGameHistory
 import step3.view.result.RacingGameHistoryView
 
 class DefaultRacingGameHistoryView : RacingGameHistoryView {
+
     override fun printRacingGameHistory(racingGameHistory: RacingGameHistory) {
         racingGameHistory.racingCarHistoryList.forEach { printRacingCarHistory(it) }
         println()
