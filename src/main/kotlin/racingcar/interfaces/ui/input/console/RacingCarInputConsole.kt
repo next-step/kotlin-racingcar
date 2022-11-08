@@ -4,14 +4,9 @@ import racingcar.application.model.RacingCarInputCommand
 
 object RacingCarInputConsole {
 
-    private const val CAR_COUNT_QUESTION = "자동차 대수는 몇 대인가요?"
-    private const val ATTEMPT_COUNT_QUESTION = "시도할 횟수는 몇 회인가요?"
-
-    private const val INPUT_CORRECT_NUMBER_COMMENT = "올바른 숫자를 입력해주세요"
-
     fun input(): RacingCarInputCommand {
-        val carCount = queryNumber(CAR_COUNT_QUESTION)
-        val attemptCount = queryNumber(ATTEMPT_COUNT_QUESTION)
+        val carCount = queryNumber("자동차 대수는 몇 대인가요?")
+        val attemptCount = queryNumber("시도할 횟수는 몇 회인가요?")
         return RacingCarInputCommand(carCount, attemptCount)
     }
 
@@ -27,10 +22,10 @@ object RacingCarInputConsole {
 
     private fun validateNumber(string: String?) {
         try {
-            require(!string.isNullOrEmpty()) { INPUT_CORRECT_NUMBER_COMMENT }
+            require(!string.isNullOrEmpty()) { "올바른 숫자를 입력해주세요" }
             string.toInt()
         } catch (e: NumberFormatException) {
-            throw IllegalArgumentException(INPUT_CORRECT_NUMBER_COMMENT)
+            throw IllegalArgumentException("올바른 숫자를 입력해주세요")
         }
     }
 }
