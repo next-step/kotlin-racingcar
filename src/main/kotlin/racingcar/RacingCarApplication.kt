@@ -14,5 +14,11 @@ fun main() {
 
     println("시도할 횟수는 몇 회인가요?")
     val count = inputView.input()
-    resultView.printResult(carList, count)
+    for (i in 1..count) {
+        carList.forEach {
+            it.move((0..9).random())
+            resultView.printStatus(it.status)
+        }
+        println()
+    }
 }
