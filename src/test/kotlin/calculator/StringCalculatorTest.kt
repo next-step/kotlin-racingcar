@@ -25,7 +25,7 @@ class StringCalculatorTest {
 
         var input = "2 + 3 * 4 / 2"
         input = input.replace(" ", "")
-        val index = input.indexOfFirst { c -> Operator.PLUS.equals(c) }
+        val index = input.indexOfFirst { c -> Operator.PLUS.isSame(c) }
         assertThat(index).isEqualTo(1)
     }
 
@@ -34,7 +34,7 @@ class StringCalculatorTest {
         val input = "2 + 3"
         val stringCalculator = StringCalculator()
         val result = stringCalculator.calculate(input)
-        assertThat(result).isEqualTo(5)
+        assertThat(result).isEqualTo(Num(5))
     }
 
     @Test
@@ -43,7 +43,7 @@ class StringCalculatorTest {
         val input = "3 - 2"
         val stringCalculator = StringCalculator()
         val result = stringCalculator.calculate(input)
-        assertThat(result).isEqualTo(1)
+        assertThat(result).isEqualTo(Num(1))
     }
 
     @Test
@@ -52,7 +52,7 @@ class StringCalculatorTest {
         val input = "2 * 4"
         val stringCalculator = StringCalculator()
         val result = stringCalculator.calculate(input)
-        assertThat(result).isEqualTo(8)
+        assertThat(result).isEqualTo(Num(8))
     }
 
     @Test
@@ -61,7 +61,7 @@ class StringCalculatorTest {
         val input = "4 / 2"
         val stringCalculator = StringCalculator()
         val result = stringCalculator.calculate(input)
-        assertThat(result).isEqualTo(2)
+        assertThat(result).isEqualTo(Num(2))
     }
 
     @ParameterizedTest
@@ -92,6 +92,6 @@ class StringCalculatorTest {
         val stringCalculator = StringCalculator()
         val result = stringCalculator.calculate(input)
 
-        assertThat(result).isEqualTo(10)
+        assertThat(result).isEqualTo(Num(10))
     }
 }

@@ -8,36 +8,43 @@ class Expression(
 ) {
 
     fun apply(): Queue<String> {
-        val sortedPriorityList = priorityIndexes(input)
-        return createOperandAndOperatorQueue(input, sortedPriorityList)
+        val queue = createOperandAndOperatorQueue(input)
+        if (queue.size % 2 == 0) throw IllegalArgumentException()
+        return queue
     }
 
-    private fun priorityIndexes(data: String): List<Pair<Char, Int>> {
-        val priorityList = mutableListOf<Pair<Char, Int>>()
+    private fun priorityIndexes(data: String): List<Char> {
+        val priorityList = mutableListOf<Char>()
 
-        for (operator in Operator.values()) {
-            val index = data.indexOfFirst { c -> operator.equals(c) }
-            if (index > -1) {
-                val pair: Pair<Char, Int> = Pair(operator.sign, index)
-                priorityList.add(pair)
+        for (c in data) {
+            if (isOperatorLetter(c)) {
+                priorityList.add(c)
             }
         }
 
-        return priorityList.sortedBy { pair -> pair.second }
+        return priorityList
     }
 
-    private fun createOperandAndOperatorQueue(data: String, sortedPriorityList: List<Pair<Char, Int>>): Queue<String> {
+    private fun isOperatorLetter(c: Char): Boolean {
+        for (operator in Operator.values()) {
+            if (operator.isSame(c)) {
+                return true
+            }
+        }
+        return false
+    }
+
+    private fun createOperandAndOperatorQueue(data: String): Queue<String> {
 
         var temp = data
+        val sortedPriorityList = priorityIndexes(data)
         val queue = LinkedList<String>()
 
-        for (pair in sortedPriorityList) {
-            val operand = temp.substringBefore(pair.first.toString())
-            if (!operand.isNullOrEmpty()) {
-                queue.add(operand)
-                queue.add(pair.first.toString())
-                temp = temp.substringAfter(pair.first.toString())
-            }
+        for (operator in sortedPriorityList) {
+            val operand = temp.substringBefore(operator.toString())
+            queue.add(operand)
+            queue.add(operator.toString())
+            temp = temp.substringAfter(operator.toString())
         }
 
         queue.add(temp)
