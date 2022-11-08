@@ -22,7 +22,6 @@ class RacingGameController(
 
         val racingGame = RacingGame(racingCarNameList.size, totalTryCount)
 
-
         racingCarNameList.forEach {
             racingGame.addRacingCar(it)
         }
