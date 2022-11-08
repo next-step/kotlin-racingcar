@@ -22,7 +22,7 @@ class RacingCarController(
     }
 
     private tailrec fun startRace(round: Int, racingGame: RacingGame): Unit =
-        when (true) {
+        when {
             (round == 0) -> Unit
             else -> {
                 racingGame.race { RANDOM.nextInt(10) }

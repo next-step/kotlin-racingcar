@@ -26,7 +26,7 @@ class RacingGame(val racingCars: List<RacingCar>) {
             names: MutableList<String>,
             racingCars: MutableList<RacingCar> = mutableListOf()
         ): List<RacingCar> =
-            when (true) {
+            when {
                 names.isEmpty() -> racingCars.toList()
                 else -> {
                     racingCars += RacingCar(names.pop())
