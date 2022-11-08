@@ -22,12 +22,11 @@ class StringCalculator(input: String) {
     companion object {
         fun calculate(s: String): Int {
             val st = StringTokenizer(s, INPUT_DELIMITER)
+            check(st.countTokens() % 2 != 0) { "입력된 원소의 갯수는 홀수여야 합니다." }
             var result = validateOperand(st.nextToken())
-
             while (st.hasMoreTokens()) {
                 val operator = st.nextToken()
                 val operand = validateOperand(st.nextToken())
-
                 result = Calculator.calculate(operator, result, operand)
             }
             return result
