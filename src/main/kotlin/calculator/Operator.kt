@@ -1,10 +1,18 @@
 package calculator
 
 enum class Operator(val prime: String) {
-    ADD("+"),
-    SUBTRACT("-"),
-    MULTIPLY("*"),
-    DIVIDE("/");
+    ADD("+") {
+        override fun execute(preOperand: Int, postOperand: Int): Int = preOperand + postOperand
+    },
+    SUBTRACT("-") {
+        override fun execute(preOperand: Int, postOperand: Int): Int = preOperand - postOperand
+    },
+    MULTIPLY("*") {
+        override fun execute(preOperand: Int, postOperand: Int): Int = preOperand * postOperand
+    },
+    DIVIDE("/") {
+        override fun execute(preOperand: Int, postOperand: Int): Int = preOperand / postOperand
+    };
 
     companion object {
         fun findByValue(prime: String): Operator {
@@ -15,4 +23,6 @@ enum class Operator(val prime: String) {
             return operator
         }
     }
+
+    abstract fun execute(preOperand: Int, postOperand: Int): Int
 }
