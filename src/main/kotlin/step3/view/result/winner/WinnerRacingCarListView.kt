@@ -1,4 +1,4 @@
-package step3.view.result
+package step3.view.result.winner
 
 import step3.domain.RacingGame
 

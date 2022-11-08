@@ -3,31 +3,33 @@ package step3.controller
 import step3.domain.RacingGame
 import step3.infra.RacingGameInputReader
 import step3.infra.impl.DefaultRacingGameInputReader
+import step3.view.input.DefaultInputView
 import step3.view.input.InputView
-import step3.view.input.impl.InputViewWithCarCountImpl
 import step3.view.result.DefaultResultView
 import step3.view.result.ResultView
-import step3.view.result.history.impl.RacingGameHistoryViewImpl
+import step3.view.result.history.impl.RacingGameHistoryWithCarNameViewImpl
 
-class RacingGameController(
-    private val inputView: InputView = InputViewWithCarCountImpl(),
-    private val resultView: ResultView = DefaultResultView(racingGameHistoryView = RacingGameHistoryViewImpl()),
+class RacingGameWithNameController(
+    private val inputView: InputView = DefaultInputView(),
+    private val resultView: ResultView = DefaultResultView(racingGameHistoryView = RacingGameHistoryWithCarNameViewImpl()),
     private val inputReader: RacingGameInputReader = DefaultRacingGameInputReader()
 ) : RacingGameInputReader by inputReader {
     fun run() {
-        // 1. totalCarCount Input Prompt
+        // 1. RacingCarList Input Prompt
         inputView.printInputViewForTotalCarCount()
-        val totalCarCount = readInput().trim().toInt()
+        val racingCarNameList = readInput().trim().split(",")
 
         // 2. totalTryCount Input Prompt
         inputView.printInputViewForTotalTryCount()
         val totalTryCount = readInput().toInt()
 
         // 3. RacingGame init
-        val racingGame = RacingGame(totalCarCount, totalTryCount)
+        val racingGame = RacingGame(racingCarNameList.size, totalTryCount)
 
-        // 4. Add all racingCar (#totalCarCount)
-        (1..totalCarCount).forEach { racingGame.addRacingCar("car$it") }
+        // 4. Add all racingCar with input car names
+        racingCarNameList.forEach {
+            racingGame.addRacingCar(it)
+        }
 
         // 5. All steps process
         racingGame.nextStepAll()
