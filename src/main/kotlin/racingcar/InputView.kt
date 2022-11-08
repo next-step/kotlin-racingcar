@@ -3,14 +3,11 @@ package racingcar
 class InputView {
 
     fun setUp(numberOfCars: Int, numberOfLabs: Int): Setting {
-        return Setting(validateInteger(numberOfCars), validateInteger(numberOfLabs))
+        return Setting(passIfGreaterThanOne(numberOfCars), passIfGreaterThanOne(numberOfLabs))
     }
 
     fun setUp(numberOfCars: String? = askNumberOfCars(), numberOfLabs: String? = askNumberOfLabs()): Setting {
-        return Setting(
-            validateInteger(parseIntegerString(numberOfCars)),
-            validateInteger(parseIntegerString(numberOfLabs))
-        )
+        return setUp(parseIntIfIntegerString(numberOfCars), parseIntIfIntegerString(numberOfLabs))
     }
 
     private fun askNumberOfCars(): String? {
@@ -23,13 +20,13 @@ class InputView {
         return readLine()
     }
 
-    private fun parseIntegerString(inputText: String?): Int {
-        require(!inputText.isNullOrBlank()) { "입력값이 null 혹은 공백일 수 없습니다" }
-        requireNotNull(inputText.toIntOrNull()) { "입력된 문자는 정수여야 합니다" }
-        return inputText.toInt()
+    private fun parseIntIfIntegerString(integerString: String?): Int {
+        require(!integerString.isNullOrBlank()) { "입력값이 null 혹은 공백일 수 없습니다" }
+        requireNotNull(integerString.toIntOrNull()) { "입력된 문자는 정수여야 합니다" }
+        return integerString.toInt()
     }
 
-    private fun validateInteger(number: Int): Int {
+    private fun passIfGreaterThanOne(number: Int): Int {
         require(number >= 1) { "1보다 작은 정수를 입력할 수 없습니다" }
         return number
     }
