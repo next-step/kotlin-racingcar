@@ -1,10 +1,10 @@
 package racing
 
 import racing.view.GameInputView
+import racing.view.GameResultView
 
-fun main(args: Array<String>) {
+fun main() {
     val game = GameInputView().inputRacingGameInfo()
-
-    // var car = Car(4, 0)
-    // car.go()
+    println()
+    GameResultView(game).startRacingGame()
 }
