@@ -8,9 +8,11 @@ class Calculator(
 
     val result get() = calculate(splitExpression(expression))
 
-    private fun calculate(expressionContents: List<String>): Int {
-        validateExpression(expressionContents)
+    init {
+        validateExpression(splitExpression(expression))
+    }
 
+    private fun calculate(expressionContents: List<String>): Int {
         var result = expressionContents.first().toInt()
 
         for (index in 1 until expressionContents.size step 2) {
@@ -28,7 +30,10 @@ class Calculator(
 
     private fun validateExpression(expressionContents: List<String>) {
         validateEmptyExpression(expressionContents)
+        validateNumber(expressionContents)
+    }
 
+    private fun validateNumber(expressionContents: List<String>) {
         for (index in 0 until expressionContents.size step 2) {
             runCatching { expressionContents[index].toInt() }
                 .onFailure {
