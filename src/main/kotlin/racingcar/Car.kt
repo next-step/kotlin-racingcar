@@ -1,15 +1,17 @@
 package racingcar
 
 import racingcar.strategy.ForwardStrategy
+import racingcar.strategy.MovingStrategy
 
 class Car(
-    var distance: Int = 0,
-    private val strategy: ForwardStrategy
+    private var distance: Int = 0,
+    private val strategy: MovingStrategy = ForwardStrategy()
 ) {
-    fun move(): Car {
+    fun move() {
         if (strategy.move()) addDistance()
-        return this
     }
+
+    fun getDistance() = distance
 
     private fun addDistance() = this.distance ++
 }

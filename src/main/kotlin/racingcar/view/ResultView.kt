@@ -1,11 +1,11 @@
 package racingcar.view
 
-import racingcar.Car
+import racingcar.Cars
 
 class ResultView {
-    fun printCarDistance(cars: List<Car>) {
-        cars.forEach {
-            println(SPACE.repeat(it.distance))
+    fun printCarDistance(cars: Cars) {
+        cars.getCars().forEach {
+            println(SPACE.repeat(it.getDistance()))
         }
         println()
     }
