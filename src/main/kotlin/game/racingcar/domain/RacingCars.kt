@@ -1,4 +1,4 @@
-package game.racingcar
+package game.racingcar.domain
 
 import game.racingcar.dto.CarLocation
 import game.racingcar.move.MoveStrategy

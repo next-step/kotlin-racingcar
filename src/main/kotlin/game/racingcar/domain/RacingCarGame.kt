@@ -1,11 +1,9 @@
-package game.racingcar
+package game.racingcar.domain
 
 import game.racingcar.dto.CarLocationSnapshot
 import game.racingcar.dto.RacingCarPlayResult
 import game.racingcar.move.MoveStrategy
 import game.racingcar.move.RandomMoveStrategy
-import game.racingcar.view.InputView
-import game.racingcar.view.OutputView
 
 class RacingCarGame(
     private val carNames: List<String>,
@@ -19,13 +17,4 @@ class RacingCarGame(
             .map { CarLocationSnapshot(it) }
             .let { RacingCarPlayResult(it, racingCars.pickWinners()) }
     }
-}
-
-fun main() {
-    val (carNames, numberOfTrials) = InputView.getInputFromConsole()
-
-    val racingCarGame = RacingCarGame(carNames, numberOfTrials)
-    val racingCarPlayResult = racingCarGame.play()
-
-    OutputView.printOutputToConsole(racingCarPlayResult)
 }

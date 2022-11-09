@@ -1,5 +1,6 @@
 package game.racingcar
 
+import game.racingcar.domain.RacingCars
 import game.racingcar.move.AlwaysMoveStrategy
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertTrue
