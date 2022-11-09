@@ -1,6 +1,6 @@
 package racingcar
 
-class ResultView(private val progressString: String = "-") {
+class ResultView(private val progressCharacter: String = "-") {
 
     fun displayResult(cars: List<Car>) {
         cars.forEach { car ->
@@ -11,7 +11,7 @@ class ResultView(private val progressString: String = "-") {
 
     private fun displayCar(car: Car) {
         repeat(car.now()) {
-            print(progressString)
+            print(progressCharacter)
         }
         println()
     }
