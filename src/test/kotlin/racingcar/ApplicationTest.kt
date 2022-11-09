@@ -3,29 +3,11 @@ package racingcar
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
-import racingcar.common.RandomNumber
 import racingcar.domain.Car
-import racingcar.domain.Car.Companion.move
+import racingcar.domain.Car.Companion.drive
 import racingcar.domain.Gear
 
 class ApplicationTest {
-
-    @Test
-    @DisplayName("자동차의 수가 0일 경우 IllegalArgumentException 오류")
-    fun test1() {
-        val numberOfCars = 0
-        assertThrows<IllegalArgumentException> { Car.registerCars(numberOfCars) }
-    }
-
-    @Test
-    @DisplayName("랜덤 값의 범위가 0부터 9까지 일 경우 그 사이 값이 나옴")
-    fun test2() {
-        val num = RandomNumber(0..9).generate()
-        assertThat(num)
-            .isGreaterThanOrEqualTo(0)
-            .isLessThanOrEqualTo(9)
-    }
 
     @Test
     @DisplayName("전진 조건일 경우 자동차의 현재 위치가 1 증가함")
@@ -33,17 +15,17 @@ class ApplicationTest {
         val cars = Car.registerCars(1)
         Gear.FORWARD.range = 0..9
         Gear.STOP.range = -1..-1
-        cars.first().move()
-        assertThat(cars.first().currentPosition).isEqualTo(1)
+        cars.first().drive(RandomGear.getGear())
+        assertThat(cars.first().getCurrentPosition()).isEqualTo(1)
     }
 
     @Test
-    @DisplayName("정지 조건일 경우 자동차의 현재 위치가 증가함")
+    @DisplayName("정지 조건일 경우 자동차의 현재 위치 고정")
     fun test4() {
         val cars = Car.registerCars(1)
         Gear.FORWARD.range = -1..-1
         Gear.STOP.range = 0..9
-        cars.first().move()
-        assertThat(cars.first().currentPosition).isEqualTo(0)
+        cars.first().drive(RandomGear.getGear())
+        assertThat(cars.first().getCurrentPosition()).isEqualTo(0)
     }
 }

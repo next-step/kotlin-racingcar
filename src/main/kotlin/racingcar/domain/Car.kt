@@ -15,14 +15,13 @@ class Car : Moveable {
     fun getCurrentPosition() = currentPosition
 
     companion object {
-        fun registerCars(numberOfCars: Int): Array<Car> {
-            require(numberOfCars != 0) { "0대의 차로는 시작할 수 없습니다." }
-            return Array(numberOfCars) { Car() }
-        }
+        fun registerCars(numberOfCars: Int) = Array(numberOfCars) { Car() }
 
-        fun Car.move(): Int {
-            Gear.drive(this)
-            return this.currentPosition
+        fun Car.drive(gear: Gear) {
+            when (gear) {
+                Gear.FORWARD -> this.go()
+                Gear.STOP -> this.stop()
+            }
         }
     }
 }

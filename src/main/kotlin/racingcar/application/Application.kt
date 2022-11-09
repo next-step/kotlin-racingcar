@@ -20,8 +20,10 @@ class Application {
         val cars = Car.registerCars(numberOfCars)
 
         (1..numberOfTimes).forEach { _ ->
-            cars.map { it.move() }
-                .forEach { ResultView.presentSituation(it) }
+            cars.forEach {
+                it.drive(RandomGear.getGear())
+                ResultView.presentSituation(it.getCurrentPosition())
+            }
             println()
         }
     }
