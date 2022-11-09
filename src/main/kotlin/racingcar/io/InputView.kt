@@ -7,11 +7,11 @@ object InputView {
     private const val READ_MESSAGE = "자동차 대수는 몇 대인가요?"
     private const val WRITE_MESSAGE = "시도할 횟수는 몇 회인가요?"
 
-    fun read(): Pair<Int, Int> {
+    fun read(): Input {
         val numberOfCars = getInput(READ_MESSAGE)
         val numberOfTry = getInput(WRITE_MESSAGE)
 
-        return Pair(numberOfCars, numberOfTry)
+        return Input(numberOfCars, numberOfTry)
     }
 
     private fun getInput(message: String): Int {
@@ -27,3 +27,8 @@ object InputView {
         require(input.toInt() > 0) { CarException.MORE_THAN_ONE }
     }
 }
+
+data class Input(
+    val numberOfCars: Int,
+    val numberOfTry: Int,
+)
