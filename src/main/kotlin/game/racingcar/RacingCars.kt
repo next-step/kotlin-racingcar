@@ -15,7 +15,10 @@ class RacingCars(
     }
 
     fun pickWinners(): List<String> {
-        val maxLocation = racingCars.maxOf { it.location }
-        return racingCars.filter { it.location == maxLocation }.map { it.name }
+        return carsIn(getMaxLocation())
     }
+
+    private fun carsIn(maxLocation: Int) = racingCars.filter { it.location == maxLocation }.map { it.name }
+
+    private fun getMaxLocation() = racingCars.maxOf { it.location }
 }
