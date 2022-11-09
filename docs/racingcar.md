@@ -3,7 +3,8 @@
 ### 테스트 시나리오
 
 ### 입력
-- [ ] 입력 값이 0일 경우 IllegalArgumentException 오류
+- [x] 자동차 등록의 입력 값이 0일 경우 IllegalArgumentException 오류
+- [x] 시도할 횟수의 입력 값이 0일 경우 IllegalArgumentException 오류
 
 ### 자동차
 - [x] 전진 조건일 경우 자동차의 현재 위치가 1 증가함
