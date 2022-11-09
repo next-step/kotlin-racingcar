@@ -14,7 +14,7 @@ class Calculator {
             when {
                 formula.toIntOrNull() != null -> addOperandStack(operandStack, formula)
                 Operator.contains(formula) -> addOperatorStack(operatorStack, formula)
-                else -> throw IllegalArgumentException()
+                else -> throw IllegalArgumentException("연산자나 피연산자가 아닌 값이 입력되었습니다.")
             }
 
             if (canOperate(operandStack, operatorStack)) operandStack.add(process(operandStack, operatorStack))
