@@ -15,9 +15,9 @@ class RacingApplication {
             val roundCount = InputView.readRoundCount()
 
             val racingGame = RacingGame(
-                carCount = CarCount(carCount),
                 roundCount = RoundCount(roundCount),
                 racingCarGarage = RacingCarGarage(
+                    carCount = CarCount(carCount),
                     racingCarsFactory = RacingCarsFactoryImpl()
                 ),
                 goOrStopCarAction = GoOrStopCarActionImpl(

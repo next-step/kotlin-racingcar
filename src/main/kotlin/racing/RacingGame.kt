@@ -2,11 +2,9 @@ package racing
 
 import racing.domain.GoOrStopCarAction
 import racing.model.Car
-import racing.model.CarCount
 import racing.model.RoundCount
 
 class RacingGame(
-    private val carCount: CarCount,
     private val roundCount: RoundCount,
     private val racingCarGarage: RacingCarGarage,
     private val goOrStopCarAction: GoOrStopCarAction,
@@ -18,9 +16,7 @@ class RacingGame(
     fun race() {
         val roundCount = this.roundCount.value
         repeat(roundCount) {
-            val cars = if (racingCarGarage.shouldCreateCars()) {
-                racingCarGarage.createCars(carCount)
-            } else racingCarGarage.cars
+            val cars = racingCarGarage.cars
 
             val raceCarResult = cars.map {
                 val action = goOrStopCarAction.castCarAction()
