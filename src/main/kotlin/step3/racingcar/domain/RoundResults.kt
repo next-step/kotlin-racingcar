@@ -5,7 +5,7 @@ class RoundResults {
 
     fun accumulate(roundResult: RoundResult) = elements.add(roundResult)
 
-    fun addUpAccelerateCount(): Int =
+    fun acceleratedCount(): Int =
         elements.filter { it.moveStatus.isGo() }
             .count()
 

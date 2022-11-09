@@ -2,16 +2,18 @@ package step3.racingcar.domain
 
 import java.util.UUID
 
+const val CAR_ID_DELIMITER = "-"
+
 class Car {
-    private val id: String = UUID.randomUUID().toString()
-    private var roundResults: RoundResults = RoundResults()
+    val id: String = UUID.randomUUID().toString().substringBefore(CAR_ID_DELIMITER)
+    var roundResults: RoundResults = RoundResults()
 
     fun race(round: Int, randomNumber: Int): RoundResult =
         RoundResult(round, MoveStatus.match(randomNumber)).apply {
             roundResults.accumulate(this)
         }
 
-    fun accumulatedScore(): Int = roundResults.addUpAccelerateCount()
+    fun acceleratedRoundCount(): Int = roundResults.acceleratedCount()
 
-    fun roundCount(): Int = roundResults.size()
+    fun playRoundCount(): Int = roundResults.size()
 }

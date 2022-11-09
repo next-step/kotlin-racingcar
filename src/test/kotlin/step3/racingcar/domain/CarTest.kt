@@ -12,7 +12,7 @@ class CarTest : BehaviorSpec({
             then("차량 전진 횟수가 1 증가한다.") {
                 roundResult.round shouldBe round
                 roundResult.moveStatus shouldBe MoveStatus.ACCELERATION
-                car.accumulatedScore() shouldBe 1
+                car.acceleratedRoundCount() shouldBe 1
             }
         }
         `when`("두번째 라운드에 3이 주어지면") {
@@ -20,7 +20,7 @@ class CarTest : BehaviorSpec({
             then("차량의 전진 횟수는 증가하지 않는다.") {
                 roundResult.round shouldBe round
                 roundResult.moveStatus shouldBe MoveStatus.BREAK
-                car.accumulatedScore() shouldBe 1
+                car.acceleratedRoundCount() shouldBe 1
             }
         }
         `when`("세번째 라운드에 6이 주어지면") {
@@ -28,13 +28,13 @@ class CarTest : BehaviorSpec({
             then("차량 전진 횟수가 1 증가한다.") {
                 roundResult.round shouldBe round
                 roundResult.moveStatus shouldBe MoveStatus.ACCELERATION
-                car.accumulatedScore() shouldBe 2
+                car.acceleratedRoundCount() shouldBe 2
             }
         }
         `when`("레이스가 종료된 후") {
             then("세번의 라운드 동안 차량은 총 두번 전진 했다.") {
-                car.roundCount() shouldBe 3
-                car.accumulatedScore() shouldBe 2
+                car.playRoundCount() shouldBe 3
+                car.acceleratedRoundCount() shouldBe 2
             }
         }
     }
