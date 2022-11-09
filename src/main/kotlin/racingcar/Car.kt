@@ -1,17 +1,28 @@
 package racingcar
 
-import racingcar.MoveType.Companion.isPossibleMove
-
-data class Car(
-    val id: Int,
-    private var _currentPosition: Int = 0,
+class Car(
+    id: Int,
+    currentPosition: Int = 0,
 ) {
-    var currentPosition: Int = _currentPosition
+    var currentPosition: Int = currentPosition
         private set
 
-    fun move(moveType: MoveType) {
-        if (isPossibleMove(moveType)) {
-            this.currentPosition += moveType.movePosition
+    fun move(moveStrategy: MoveStrategy) {
+        if (moveStrategy.isPossibleMove()) {
+            this.currentPosition += moveStrategy.getDistance()
         }
     }
 }
+
+// class Car(position: Int = 0) {
+//     var position: Int = position
+//         private set
+//
+//     fun move(foreword: Int) {
+//         if (foreword >= FOREWORD_CRITERIA) this.position++
+//     }
+//
+//     companion object {
+//         private const val FOREWORD_CRITERIA = 4
+//     }
+// }
