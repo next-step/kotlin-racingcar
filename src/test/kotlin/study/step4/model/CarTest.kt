@@ -1,11 +1,18 @@
-package study.step3.model
+package study.step4.model
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.inspectors.forAll
 import org.assertj.core.api.Assertions.assertThat
-import study.step3.util.StaticDigit
+import study.step4.util.StaticDigit
 
 class CarTest : StringSpec({
+
+    "자동차 객체를,  생성하면, 이름을 갖게된다 " {
+        // given & when
+        val car = Car(name = "자동차1")
+        // then
+        assertThat(car.name).isEqualTo("자동차1")
+    }
 
     "주어진 자동차에, 주어진 숫자가 4 이상이면 전진하여, 위치가 1 증가한다  " {
         listOf(
@@ -13,6 +20,7 @@ class CarTest : StringSpec({
         ).forAll {
             // given
             val car = Car(digitGenerator = StaticDigit(it))
+
             val beforeLocation = car.getLocation()
 
             // when

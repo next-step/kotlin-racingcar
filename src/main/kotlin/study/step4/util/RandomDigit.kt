@@ -1,4 +1,4 @@
-package study.step3.util
+package study.step4.util
 
 import kotlin.random.Random
 

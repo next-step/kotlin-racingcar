@@ -1,11 +1,12 @@
-package study.step3.model
+package study.step4.model
 
-import study.step3.util.DigitGenerator
-import study.step3.util.RandomDigit
+import study.step4.util.DigitGenerator
+import study.step4.util.RandomDigit
 
 private const val ADVANCE_BASE_DIGIT = 4
 
 class Car(
+    val name: String = "",
     private var location: Int = 0,
     private var racingTimes: Int = 0,
     private val digitGenerator: DigitGenerator = RandomDigit()
