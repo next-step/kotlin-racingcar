@@ -12,7 +12,7 @@ class RaceStage(
 
     companion object {
         fun create(carCount: Int): RaceStage = RaceStage(
-            (0 until carCount).map { Car() }
+            List(carCount) { Car() }
         )
     }
 
