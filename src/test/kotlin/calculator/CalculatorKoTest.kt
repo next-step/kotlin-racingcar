@@ -6,73 +6,69 @@ import calculator.model.DivideFormula
 import calculator.model.DivideResult
 import calculator.model.MinusFormula
 import calculator.model.MinusResult
-import calculator.model.MonkeyTestFormula
 import calculator.model.MultiplyFormula
 import calculator.model.MultiplyResult
 import calculator.model.PlusFormula
 import calculator.model.PlusResult
-import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 
 class CalculatorKoTest : BehaviorSpec() {
 
+    lateinit var calculator: Calculator
+    lateinit var expression: Expression
+
     init {
-        given("계산기에") {
-            `when`("410 + 500 식이 입력 되었다면") {
+        beforeEach {
+            calculator = Calculator()
+        }
+
+        given("계산기에 410 + 500 식이 입력 되었고") {
+            beforeEach { expression = Expression(PlusFormula) }
+            `when`("연산식을 계산을 하면") {
                 then("910.0 결과가 나온다") {
-                    Calculator.calculate(PlusFormula) shouldBe PlusResult
+                    val (numbers, operators) = expression.partitionExpression()
+                    calculator.calculate(numbers, operators) shouldBe PlusResult
                 }
             }
+        }
 
-            `when`("5090 - 1240 식이 입력 되었다면") {
+        given("계산기에 5090 - 1240 식이 입력 되었고") {
+            beforeEach { expression = Expression(MinusFormula) }
+            `when`("연산식을 계산하면") {
                 then("3850.0 결과가 나온다") {
-                    Calculator.calculate(MinusFormula) shouldBe MinusResult
+                    val (numbers, operators) = expression.partitionExpression()
+                    calculator.calculate(numbers, operators) shouldBe MinusResult
                 }
             }
+        }
 
-            `when`("9 * 9 식이 입력 되었다면") {
+        given("계산기에 9 * 9 식이 입력 되고") {
+            beforeEach { expression = Expression(MultiplyFormula) }
+            `when`("연산식을 계산하면") {
                 then("81.0 결과가 나온다") {
-                    Calculator.calculate(MultiplyFormula) shouldBe MultiplyResult
+                    val (numbers, operators) = expression.partitionExpression()
+                    calculator.calculate(numbers, operators) shouldBe MultiplyResult
                 }
             }
+        }
 
-            `when`("2304123040 / 25 식이 입력 되었다면") {
+        given("계산기에 2304123040 / 25 식이 입력 되고") {
+            beforeEach { expression = Expression(DivideFormula) }
+            `when`("연산식을 계산하면") {
                 then("92164921.6 결과가 나온다") {
-                    Calculator.calculate(DivideFormula) shouldBe DivideResult
+                    val (numbers, operators) = expression.partitionExpression()
+                    calculator.calculate(numbers, operators) shouldBe DivideResult
                 }
             }
+        }
 
-            `when`("2 + 3 * 4 / 2 식이 입력 되었다면") {
-                then("10. 결과가 나온다") {
-                    Calculator.calculate(ComplexOperation) shouldBe ComplexOperationResult
-                }
-            }
-
-            `when`("입력값이 null 이면") {
-                then("에러가 발생한다") {
-                    val exception = shouldThrow<IllegalArgumentException> {
-                        Calculator.calculate(null)
-                    }
-                    exception.message shouldBe "Failed requirement."
-                }
-            }
-
-            `when`("입력값이 공백이면") {
-                then("에러가 발생한다") {
-                    val exception = shouldThrow<IllegalArgumentException> {
-                        Calculator.calculate(" ")
-                    }
-                    exception.message shouldBe "Failed requirement."
-                }
-            }
-
-            `when`("몽키 테스팅을 했다면") {
-                then("에러가 발생한다") {
-                    val exception = shouldThrow<IllegalArgumentException> {
-                        Calculator.calculate(MonkeyTestFormula)
-                    }
-                    exception.message shouldBe "Failed requirement."
+        given("계산기에 2 + 3 * 4 / 2 식이 입력 되었고") {
+            beforeEach { expression = Expression(ComplexOperation) }
+            `when`("연산식을 계산하면") {
+                then("10.0 결과가 나온다") {
+                    val (numbers, operators) = expression.partitionExpression()
+                    calculator.calculate(numbers, operators) shouldBe ComplexOperationResult
                 }
             }
         }
