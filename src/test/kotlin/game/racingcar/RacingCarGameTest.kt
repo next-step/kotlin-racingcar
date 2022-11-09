@@ -15,9 +15,10 @@ internal class RacingCarGameTest() {
         val locationSnapshots = racingCarGame.play()
 
         // then
-        locationSnapshots.forEachIndexed { expected, locationOfCars ->
+        locationSnapshots.locationSnapshots.forEachIndexed { expected, locationOfCars ->
             locationOfCars.locations.forEach { location ->
-                assertThat(location).isEqualTo(expected + 1)
+                val (name, locate) = location
+                assertThat(locate).isEqualTo(expected + 1)
             }
         }
     }

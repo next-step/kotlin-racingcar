@@ -16,7 +16,8 @@ internal class RacingCarsTest {
         val snapshot = racingCars.moveAll()
         // then
         snapshot.forEach {
-            assertThat(it).isEqualTo(1)
+            val (name, location) = it
+            assertThat(location).isEqualTo(1)
         }
     }
 
