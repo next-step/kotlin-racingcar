@@ -20,12 +20,16 @@ internal class RacingCarTest {
     @Test
     fun `자동차 이름이 5자를 초과하면 IllegalArgumentException이 발생한다`() {
         // when & then
-        assertThatThrownBy { RacingCar("harris", AlwaysMoveStrategy()) }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { RacingCar("harris", AlwaysMoveStrategy()) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("이름의 길이는 5자를 초과할 수 없습니다. 입력 값 : harris")
     }
 
     @Test
     fun `이름이 빈 문자열로 생성되면 IllegalArgumentException이 발생한다`() {
         // when & then
-        assertThatThrownBy { RacingCar(name = "") }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { RacingCar(name = "") }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("이름은 빈 문자열일 수 없습니다.")
     }
 }
