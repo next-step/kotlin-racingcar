@@ -1,14 +1,10 @@
-import study.InputManager
-import study.Operators
-import study.StringCalculator
-import study.StringNumbers
+import racingcar.etc.GameManager
+import racingcar.etc.InputView
+import racingcar.etc.StringAsNumber
 
 fun main() {
-    val inputData: String = InputManager.inputData()
-    val splitInputData: List<String> = InputManager.splitInputData(inputData)
-    val groupByNumberAndOperator: List<List<String>> = InputManager.groupByNumberAndOperator(splitInputData)
-    val stringNumbers = StringNumbers(groupByNumberAndOperator[0])
-    val operators = Operators(groupByNumberAndOperator[1])
-    val stringCalculator = StringCalculator(stringNumbers, operators)
-    println(stringCalculator.calculate())
+    val numberOfCars = StringAsNumber(InputView.numberOfCars())
+    val numberOfRaces = StringAsNumber(InputView.numberOfRaces())
+    val gameManager = GameManager(numberOfCars.toInt(), numberOfRaces.toInt())
+    gameManager.racing()
 }
