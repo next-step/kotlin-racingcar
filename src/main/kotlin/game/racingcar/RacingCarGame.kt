@@ -13,13 +13,11 @@ class RacingCarGame(
     private val moveStrategy: MoveStrategy = RandomMoveStrategy()
 ) {
     fun play(): RacingCarPlayResult {
-        val locationSnapshots = mutableListOf<LocationSnapshot>()
-
         val racingCars = RacingCars(carNames, moveStrategy)
-        (1..numberOfTrials).forEach {
-            locationSnapshots.add(LocationSnapshot(racingCars.moveAll()))
-        }
-        return RacingCarPlayResult(locationSnapshots, racingCars.pickWinners())
+        return (1..numberOfTrials)
+            .map { racingCars.moveAll() }
+            .map { LocationSnapshot(it) }
+            .let { RacingCarPlayResult(it, racingCars.pickWinners()) }
     }
 }
 
