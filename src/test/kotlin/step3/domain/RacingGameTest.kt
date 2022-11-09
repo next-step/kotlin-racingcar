@@ -1,6 +1,8 @@
 package step3.domain
 
 import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldBeEmpty
 import step3.model.Car
 import step3.model.DefaultCar
 
@@ -12,13 +14,21 @@ class RacingGameTest : BehaviorSpec({
         val racingGame = RacingGame(fakeRandomGenerator, cars)
         `when`("랜덤값이 유효하지 않다면") {
             fakeRandomGenerator.isValid = false
-            // TODO racingGame.race()
-            then("차가 전진하지 않는다") {}
+            racingGame.race()
+            then("차가 전진하지 않는다") {
+                racingGame.cars.forEach { car ->
+                    car.getTrack().shouldBeEmpty()
+                }
+            }
         }
         `when`("랜덤값이 유효하면") {
             fakeRandomGenerator.isValid = true
-            // TODO racingGame.race()
-            then("차가 전진한다") {}
+            racingGame.race()
+            then("차가 전진한다") {
+                racingGame.cars.forEach { car ->
+                    car.getTrack() shouldBe "-"
+                }
+            }
         }
     }
 })
