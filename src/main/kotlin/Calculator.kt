@@ -1,10 +1,6 @@
 import java.util.Stack
 
 class Calculator {
-    companion object {
-        private const val STRING_SPACING = " "
-    }
-
     fun calculate(strNum1: String?, strNum2: String?, operation: String): String {
         val i = requireNotNull(strNum1?.toBigDecimalOrNull())
         val j = requireNotNull(strNum2?.toBigDecimalOrNull())
@@ -15,7 +11,7 @@ class Calculator {
     fun calculateStringInput(input: String): String {
         val stack = Stack<String>()
         val number = Stack<String>()
-        input.split(STRING_SPACING).map { s ->
+        input.split(SEPARATOR).map { s ->
             if (Operator.isContains(s)) {
                 stack.push(s)
             } else {
@@ -27,7 +23,11 @@ class Calculator {
             }
         }
         val result = number.pop()
-        if (number.isNotEmpty() || stack.isNotEmpty())throw IllegalArgumentException(ErrorMessage.InputError.message)
+        if (number.isNotEmpty() || stack.isNotEmpty()) throw IllegalArgumentException(ErrorMessage.InputError.message)
         return result
+    }
+
+    companion object {
+        private const val SEPARATOR = " "
     }
 }
