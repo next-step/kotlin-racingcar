@@ -5,6 +5,7 @@ import io.kotest.matchers.shouldBe
 import racing.domain.FakeRandomMovingCarConditionNumber
 import racing.domain.GoOrStopCarAction
 import racing.domain.GoOrStopCarActionImpl
+import racing.domain.RacingCarsFactory
 import racing.domain.RacingCarsFactoryImpl
 import racing.model.CarCount
 import racing.model.RoundCount
@@ -12,12 +13,12 @@ import racing.model.RoundCount
 internal class RacingGameKoTest : BehaviorSpec() {
 
     private lateinit var racingGame: RacingGame
-    private lateinit var racingCarGarage: RacingCarGarage
+    private lateinit var racingCarsFactory: RacingCarsFactory
     private lateinit var goOrStopCarAction: GoOrStopCarAction
 
     init {
         beforeEach {
-            racingCarGarage = RacingCarGarage(racingCarsFactory = RacingCarsFactoryImpl())
+            racingCarsFactory = RacingCarsFactoryImpl()
             goOrStopCarAction = GoOrStopCarActionImpl(
                 randomMovingCarConditionNumber = FakeRandomMovingCarConditionNumber()
             )
@@ -26,9 +27,11 @@ internal class RacingGameKoTest : BehaviorSpec() {
         given("유저가 차량 3대, 시도횟수 5회 입력을 하였고") {
             beforeEach {
                 racingGame = RacingGame(
-                    carCount = CarCount(3),
                     roundCount = RoundCount(5),
-                    racingCarGarage = racingCarGarage,
+                    racingCarGarage = RacingCarGarage(
+                        carCount = CarCount(3),
+                        racingCarsFactory = racingCarsFactory
+                    ),
                     goOrStopCarAction = goOrStopCarAction
                 )
             }
