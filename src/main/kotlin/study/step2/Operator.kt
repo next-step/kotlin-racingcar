@@ -13,7 +13,7 @@ enum class Operator(val operator: String) {
     DIVIDE("/") {
         override fun operate(firstOperand: Int, secondOperand: Int): Int {
             require(secondOperand != 0) {
-                "0으로 나눌수는 없습니다."
+                "0으로 나눌수 없습니다."
             }
             return firstOperand / secondOperand
         }

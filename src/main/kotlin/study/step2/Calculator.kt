@@ -32,7 +32,7 @@ class Calculator {
 
     private fun addOperandStack(operandStack: Stack<Int>, formula: String) {
         require(!hasTwoOperands(operandStack)) {
-            "연산자 자리에 피연산자가 들어가 있습니다."
+            "연산자 자리에 피연산자가 입력되었습니다."
         }
 
         operandStack.add(formula.toInt())
@@ -40,7 +40,7 @@ class Calculator {
 
     private fun addOperatorStack(operatorStack: Stack<Operator>, s: String) {
         require(operatorStack.isEmpty()) {
-            "피연산자 자리에 연산자가 들어가 있습니다."
+            "피연산자 자리에 연산자가 입력되었습니다."
         }
 
         operatorStack.add(Operator.find(s))
