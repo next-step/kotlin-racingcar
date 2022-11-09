@@ -10,7 +10,7 @@ object OutputView {
             locationOfCars.locations.forEach { snapshot ->
                 val (name, location) = snapshot
                 print("$name : ")
-                repeat(location) { print("-") }
+                print("-".repeat(location))
                 println()
             }
             println()
