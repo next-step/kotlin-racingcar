@@ -11,9 +11,9 @@ fun main() {
     var raceStage = RaceStage.create(carCount)
 
     ResultView.printResultIntroWording()
-    for (round: Int in 1..roundCount) {
-        raceStage = raceStage.racing()
 
+    repeat(roundCount) {
+        raceStage = raceStage.racing()
         ResultView.printResult(raceStage)
     }
 }
