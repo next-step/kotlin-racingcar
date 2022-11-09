@@ -3,14 +3,38 @@ package calculator
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.types.shouldBeInstanceOf
 
 internal class OperatorTest : StringSpec({
-    "사칙연산 기호가 아닌 경우 예외 발생" {
+    "덧셈 기호 (+) 의 연산자" {
         val plusSymbol = "+"
-        val wrongSymbol = "@"
+        val plusOperator = Operator.of(plusSymbol)
 
-        Operator.of(plusSymbol).shouldBeInstanceOf<Operator>()
+        plusOperator shouldBe Operator.PLUS
+    }
+
+    "뺄셈 기호 (-) 의 연산자" {
+        val minusSymbol = "-"
+        val minusOperator = Operator.of(minusSymbol)
+
+        minusOperator shouldBe Operator.MINUS
+    }
+
+    "곱셈 기호 (*) 의 연산자" {
+        val multiSymbol = "*"
+        val multiOperator = Operator.of(multiSymbol)
+
+        multiOperator shouldBe Operator.MULTI
+    }
+
+    "나누셈 기호 (/) 의 연산자" {
+        val divSymbol = "/"
+        val divOperator = Operator.of(divSymbol)
+
+        divOperator shouldBe Operator.DIV
+    }
+
+    "사칙연산 기호가 아닌 경우 예외 발생" {
+        val wrongSymbol = "@"
 
         shouldThrow<IllegalArgumentException> {
             Operator.of(wrongSymbol)
