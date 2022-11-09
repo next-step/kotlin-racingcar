@@ -9,9 +9,10 @@ class RacingCar(
 ) {
     var location: Int = 0
         private set
+
     init {
-        if (name.length > 5) throw IllegalArgumentException("이름의 길이는 5자를 초과할 수 없습니다.")
-        if (name.isEmpty()) throw IllegalArgumentException("이름은 빈 문자열일 수 없습니다.")
+        require(name.length <= 5) { "이름의 길이는 5자를 초과할 수 없습니다. 입력 값 : $name" }
+        require(name.isNotEmpty()) { "이름은 빈 문자열일 수 없습니다." }
     }
 
     fun move() {
