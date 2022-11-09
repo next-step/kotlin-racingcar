@@ -26,21 +26,27 @@ class CalculatorServiceTest : StringSpec({
 
     "사칙 연산 기호가 아닌 경우 IllegalArgumentException 을 반환한다." {
         val exception = shouldThrow<IllegalArgumentException> {
-            calculatorService.verifyOperator("&")
+            val input = "3 & 8"
+            val exp = input.trim().split(" ")
+            calculatorService.calculator(exp)
         }
         exception.message should startWith("잘못된 연산자 입니다.")
     }
 
     "피연산자는 소수일 수 없다." {
         val exception = shouldThrow<IllegalArgumentException> {
-            calculatorService.verifyNumber("56.67")
+            val input = "3.45 + 8"
+            val exp = input.trim().split(" ")
+            calculatorService.calculator(exp)
         }
         exception.message should startWith("피연산자는 자연수여야 합니다.")
     }
 
     "피연산자는 문자일 수 없다." {
         val exception = shouldThrow<IllegalArgumentException> {
-            calculatorService.verifyNumber("wow")
+            val input = "wow - kotlin"
+            val exp = input.trim().split(" ")
+            calculatorService.calculator(exp)
         }
         exception.message should startWith("피연산자는 자연수여야 합니다.")
     }
@@ -62,8 +68,8 @@ class CalculatorServiceTest : StringSpec({
         }
     }
 
-    "0 으로 나누는 경우는 ArithmeticException 을 반환한다." {
-        val exception = shouldThrow<ArithmeticException> {
+    "0 으로 나누는 경우는 IllegalArgumentException 을 반환한다." {
+        val exception = shouldThrow<IllegalArgumentException> {
             val exp = "3 / 0".trim().split(" ")
             calculatorService.calculator(exp)
         }

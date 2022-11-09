@@ -1,12 +1,15 @@
 package string_calculator
 
-import java.util.function.BiFunction
-
-enum class Calculation(val operator: Char, val calculation: BiFunction<Int, Int, Int>) {
-    PLUS('+', BiFunction { a, b -> a + b }),
-    MINUS('-', BiFunction { a, b -> a - b }),
-    MULTIPLY('*', BiFunction { a, b -> a * b }),
-    DIVIDE('/', BiFunction { a, b -> a / b });
+enum class Calculation(val operator: Char, private val calculation: (Int, Int) -> Int) {
+    PLUS('+', { a, b -> a + b }),
+    MINUS('-', { a, b -> a - b }),
+    MULTIPLY('*', { a, b -> a * b }),
+    DIVIDE(
+        '/', { a, b ->
+            require(b != 0) { "0 으로 나눌 수 없습니다." }
+            a / b
+        }
+    );
 
     companion object {
         @JvmStatic
@@ -18,6 +21,6 @@ enum class Calculation(val operator: Char, val calculation: BiFunction<Int, Int,
         fun calculate(a: Int, b: Int, operator: Char): Int =
             values()
                 .first() { it.operator == operator }
-                .calculation.apply(a, b)
+                .calculation(a, b)
     }
 }
