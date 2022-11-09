@@ -5,7 +5,7 @@ import racingcar.domain.Car.Companion.move
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
-class Race {
+class Application {
 
     fun main() {
         val numberOfCars = InputView.registerParticipant()

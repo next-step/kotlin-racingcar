@@ -9,7 +9,7 @@ import racingcar.domain.Car
 import racingcar.domain.Car.Companion.move
 import racingcar.domain.Gear
 
-class RaceTest {
+class ApplicationTest {
 
     @Test
     @DisplayName("자동차의 수가 0일 경우 IllegalArgumentException 오류")
