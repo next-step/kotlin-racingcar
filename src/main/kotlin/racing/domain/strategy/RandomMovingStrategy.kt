@@ -1,12 +1,12 @@
 package racing.domain.strategy
 
-import java.util.Random
+import kotlin.random.Random
 
 class RandomMovingStrategy : MovingStrategy {
     companion object {
-        const val MOVING_POINT = 4
-        const val MOVING_RANGE_MAX = 10
+        const val MOVEMENT_CONDITION = 4
+        const val MOVEMENT_RANGE_MAX = 10
     }
 
-    override fun move(): Boolean = Random().nextInt(MOVING_RANGE_MAX) >= MOVING_POINT
+    override fun isMove(): Boolean = Random.nextInt(MOVEMENT_RANGE_MAX) >= MOVEMENT_CONDITION
 }
