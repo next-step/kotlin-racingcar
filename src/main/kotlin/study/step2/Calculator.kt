@@ -4,38 +4,53 @@ import java.lang.IllegalArgumentException
 import java.util.Stack
 
 class Calculator {
-    fun calculate(input: String): Int {
+    fun calculate(formula: String): Int {
         val operandStack = Stack<Int>()
         val operatorStack = Stack<Operator>()
 
-        val inputSplit = input.split(" ")
+        val formulaSplit = formula.split(" ")
 
-        inputSplit.forEach { s: String ->
+        formulaSplit.forEach { formula: String ->
             when {
-                s.toIntOrNull() != null && operandStack.isEmpty() -> operandStack.add(s.toInt())
-                Operator.values().map { o -> o.operator }.contains(s) -> addOperatorStack(operatorStack, s)
-                s.toIntOrNull() != null -> operandStack.add(process(operandStack, operatorStack, s.toInt()))
+                formula.toIntOrNull() != null -> addOperandStack(operandStack, formula)
+                Operator.contains(formula) -> addOperatorStack(operatorStack, formula)
                 else -> throw IllegalArgumentException()
             }
+
+            if (canOperate(operandStack, operatorStack)) operandStack.add(process(operandStack, operatorStack))
         }
 
         return operandStack.pop()
     }
 
-    private fun addOperatorStack(operatorStack: Stack<Operator>, s: String) {
-        if (!operatorStack.empty()) {
-            throw IllegalArgumentException()
-        }
-
-        operatorStack.add(Operator.values().find { o -> o.operator == s })
+    private fun hasTwoOperands(operandStack: Stack<Int>): Boolean {
+        return operandStack.size >= 2
     }
 
-    private fun process(operandStack: Stack<Int>, operatorStack: Stack<Operator>, s: Int): Int {
-        if (operatorStack.empty()) {
-            throw IllegalArgumentException()
+    private fun canOperate(operandStack: Stack<Int>, operatorStack: Stack<Operator>) =
+        hasTwoOperands(operandStack) && operatorStack.isNotEmpty()
+
+    private fun addOperandStack(operandStack: Stack<Int>, formula: String) {
+        require(!hasTwoOperands(operandStack)) {
+            "연산자 자리에 피연산자가 들어가 있습니다."
         }
 
+        operandStack.add(formula.toInt())
+    }
+
+    private fun addOperatorStack(operatorStack: Stack<Operator>, s: String) {
+        require(operatorStack.isEmpty()) {
+            "피연산자 자리에 연산자가 들어가 있습니다."
+        }
+
+        operatorStack.add(Operator.find(s))
+    }
+
+    private fun process(operandStack: Stack<Int>, operatorStack: Stack<Operator>): Int {
+        val secondOperand = operandStack.pop()
+        val firstOperand = operandStack.pop()
+
         return operatorStack.pop()
-            .operate(operandStack.pop(), s)
+            .operate(firstOperand, secondOperand)
     }
 }
