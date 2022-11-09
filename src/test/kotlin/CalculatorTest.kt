@@ -99,7 +99,7 @@ class CalculatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = [ "1 + 1 + 1 + 1 + 1 +", "/ 2 + 3 * 4 / 2", " 1 1 + 1 + 1", "1 + 1 1 + 1"])
+    @ValueSource(strings = [ "+ + + +", "1 + 1 + 1 + 1 + 1 +", "/ 2 + 3 * 4 / 2", " 1 1 + 1 + 1", "1 + 1 1 + 1"])
     fun `calculateStringInput throw RuntimeException`(input: String) {
         val exception = assertThrows<IllegalArgumentException> {
             calculator.calculateStringInput(input)

@@ -22,8 +22,9 @@ class Calculator {
                 number.push(num)
             }
         }
+        if (stack.isNotEmpty()) throw IllegalArgumentException(ErrorMessage.InputError.message)
         val result = number.pop()
-        if (number.isNotEmpty() || stack.isNotEmpty()) throw IllegalArgumentException(ErrorMessage.InputError.message)
+        if (number.isNotEmpty()) throw IllegalArgumentException(ErrorMessage.InputError.message)
         return result
     }
 
