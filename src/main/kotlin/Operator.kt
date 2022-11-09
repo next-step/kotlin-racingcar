@@ -24,7 +24,7 @@ enum class Operator(val symbol: String) {
     companion object {
         fun symbolOf(operation: String) =
             values().firstOrNull { it.symbol == operation }
-                ?: throw IllegalArgumentException()
+                ?: throw IllegalArgumentException(ErrorMessage.NotExistOperator.message)
 
         fun isContains(symbol: String): Boolean =
             Operator.values().map { it.symbol }.contains(symbol)
