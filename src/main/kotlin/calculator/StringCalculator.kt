@@ -1,5 +1,6 @@
 package calculator
 
+import java.math.BigDecimal
 import java.util.StringTokenizer
 
 /**
@@ -7,12 +8,12 @@ import java.util.StringTokenizer
  */
 class StringCalculator {
 
-    fun calculator(input: String?): Int {
+    fun calculator(input: String?): BigDecimal {
 
         require(!input.isNullOrBlank()) { "입력값이 null 혹은 공백일 수 없습니다." }
 
         val st = StringTokenizer(input)
-        var result = st.nextToken().toInt()
+        var result = parsedInt(st.nextToken())
 
         while (st.hasMoreTokens()) {
             val symbol = st.nextToken()
@@ -22,11 +23,7 @@ class StringCalculator {
         return result
     }
 
-    private fun parsedInt(str: String): Int {
-        try {
-            return str.toInt()
-        } catch (e: NumberFormatException) {
-            throw IllegalArgumentException("잘못된 입력 순서입니다.")
-        }
+    private fun parsedInt(str: String): BigDecimal {
+        return str.toBigDecimalOrNull() ?: throw IllegalArgumentException("잘못된 입력 순서입니다.")
     }
 }
