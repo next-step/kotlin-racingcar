@@ -2,12 +2,12 @@ package racingcar
 
 class InputView {
 
-    fun setUp(numberOfCars: Int, numberOfLabs: Int): Setting {
-        return Setting(passIfGreaterThanOne(numberOfCars), passIfGreaterThanOne(numberOfLabs))
+    fun receiveSetting(numberOfCars: Int, numberOfLabs: Int): Setting {
+        return Setting(passIfEqualsOrGreaterThanOne(numberOfCars), passIfEqualsOrGreaterThanOne(numberOfLabs))
     }
 
-    fun setUp(numberOfCars: String? = askNumberOfCars(), numberOfLabs: String? = askNumberOfLabs()): Setting {
-        return setUp(parseIntIfIntegerString(numberOfCars), parseIntIfIntegerString(numberOfLabs))
+    fun receiveSetting(numberOfCars: String? = askNumberOfCars(), numberOfLabs: String? = askNumberOfLabs()): Setting {
+        return receiveSetting(parseIntIfIntegerString(numberOfCars), parseIntIfIntegerString(numberOfLabs))
     }
 
     private fun askNumberOfCars(): String? {
@@ -26,7 +26,7 @@ class InputView {
         return integerString.toInt()
     }
 
-    private fun passIfGreaterThanOne(number: Int): Int {
+    private fun passIfEqualsOrGreaterThanOne(number: Int): Int {
         require(number >= 1) { "1보다 작은 정수를 입력할 수 없습니다" }
         return number
     }

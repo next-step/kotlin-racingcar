@@ -10,7 +10,7 @@ class RacingGame(
     private val movable: Movable = Movable()
 ) {
 
-    fun start(setting: Setting = inputView.setUp()): List<Car> {
+    fun start(setting: Setting = inputView.receiveSetting()): List<Car> {
         val cars = generateCars(setting.numberOfCars)
 
         repeat(setting.numberOfLab) {

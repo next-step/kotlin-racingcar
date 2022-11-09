@@ -14,7 +14,7 @@ class InputViewTest : BehaviorSpec({
 
             then("IllegalArgumentException(입력값이 null 혹은 공백일 수 없습니다)을 반환한다") {
                 shouldThrowWithMessage<IllegalArgumentException>("입력값이 null 혹은 공백일 수 없습니다") {
-                    InputView().setUp(numberOfCars, numberOfLabs)
+                    InputView().receiveSetting(numberOfCars, numberOfLabs)
                 }
             }
         }
@@ -27,7 +27,7 @@ class InputViewTest : BehaviorSpec({
         `when`("설정을 시도하면") {
             then("IllegalArgumentException(입력된 문자는 정수여야 합니다) 반환한다") {
                 shouldThrowWithMessage<IllegalArgumentException>("입력된 문자는 정수여야 합니다") {
-                    InputView().setUp(numberOfCars, numberOfLabs)
+                    InputView().receiveSetting(numberOfCars, numberOfLabs)
                 }
             }
         }
@@ -39,7 +39,7 @@ class InputViewTest : BehaviorSpec({
         `when`("설정을 시도하면") {
             then("IllegalArgumentException(입력된 문자는 정수여야 합니다) 반환한다") {
                 shouldThrowWithMessage<IllegalArgumentException>("입력된 문자는 정수여야 합니다") {
-                    InputView().setUp(numberOfCars, numberOfLabs)
+                    InputView().receiveSetting(numberOfCars, numberOfLabs)
                 }
             }
         }
@@ -51,7 +51,7 @@ class InputViewTest : BehaviorSpec({
         `when`("설정을 시도하면") {
             then("IllegalArgumentException(1보다 작은 정수를 입력할 수 없습니다) 반환한다") {
                 shouldThrowWithMessage<IllegalArgumentException>("1보다 작은 정수를 입력할 수 없습니다") {
-                    InputView().setUp(numberOfCars, numberOfLabs)
+                    InputView().receiveSetting(numberOfCars, numberOfLabs)
                 }
             }
         }
@@ -62,7 +62,7 @@ class InputViewTest : BehaviorSpec({
         val numberOfLabs = "3"
         `when`("설정을 시도하면") {
             then("IllegalArgumentException(1보다 작은 정수를 입력할 수 없습니다) 반환한다") {
-                InputView().setUp(numberOfCars, numberOfLabs) shouldBe Setting(5, 3)
+                InputView().receiveSetting(numberOfCars, numberOfLabs) shouldBe Setting(5, 3)
             }
         }
     }
@@ -72,7 +72,7 @@ class InputViewTest : BehaviorSpec({
         val numberOfLabs = 3
         `when`("설정을 시도하면") {
             then("IllegalArgumentException(1보다 작은 정수를 입력할 수 없습니다) 반환한다") {
-                InputView().setUp(numberOfCars, numberOfLabs) shouldBe Setting(5, 3)
+                InputView().receiveSetting(numberOfCars, numberOfLabs) shouldBe Setting(5, 3)
             }
         }
     }
@@ -83,7 +83,7 @@ class InputViewTest : BehaviorSpec({
         `when`("설정을 시도하면") {
             then("IllegalArgumentException(1보다 작은 정수를 입력할 수 없습니다) 반환한다") {
                 shouldThrowWithMessage<IllegalArgumentException>("1보다 작은 정수를 입력할 수 없습니다") {
-                    InputView().setUp(numberOfCars, numberOfLabs)
+                    InputView().receiveSetting(numberOfCars, numberOfLabs)
                 }
             }
         }
