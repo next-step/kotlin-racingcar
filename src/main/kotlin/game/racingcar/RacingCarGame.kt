@@ -1,6 +1,6 @@
 package game.racingcar
 
-import game.racingcar.dto.LocationSnapshot
+import game.racingcar.dto.CarLocationSnapshot
 import game.racingcar.dto.RacingCarPlayResult
 import game.racingcar.move.MoveStrategy
 import game.racingcar.move.RandomMoveStrategy
@@ -16,7 +16,7 @@ class RacingCarGame(
         val racingCars = RacingCars(carNames, moveStrategy)
         return (1..numberOfTrials)
             .map { racingCars.moveAll() }
-            .map { LocationSnapshot(it) }
+            .map { CarLocationSnapshot(it) }
             .let { RacingCarPlayResult(it, racingCars.pickWinners()) }
     }
 }

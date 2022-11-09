@@ -1,6 +1,6 @@
 package game.racingcar.dto
 
 data class RacingCarPlayResult(
-    val locationSnapshots: List<LocationSnapshot>,
+    val carLocationSnapshots: List<CarLocationSnapshot>,
     val winners: List<String>
 )
