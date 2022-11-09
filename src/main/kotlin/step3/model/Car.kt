@@ -1,3 +1,6 @@
 package step3.model
 
-interface Car
+interface Car {
+    fun getTrack(): String
+    fun goForward()
+}
