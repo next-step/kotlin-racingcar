@@ -5,5 +5,4 @@ interface Moveable {
     fun go()
 
     fun stop()
-
 }
