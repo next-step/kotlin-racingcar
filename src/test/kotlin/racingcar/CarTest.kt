@@ -2,8 +2,10 @@ package racingcar
 
 import fixture.NextRandomFixture
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.ValueSource
 
 internal class CarTest {
 
@@ -17,5 +19,17 @@ internal class CarTest {
 
         // then
         assertThat(afterRaceCar.pos).isEqualTo(expectedPos)
+    }
+
+    @ValueSource(strings = ["-1", "10", "100"])
+    @ParameterizedTest(name = "0-9외의 값(`{arguments}`)이 나오면 예외가 발생한다.")
+    fun driveRaceExceptionTest(input: Int) {
+        // given
+        val car = Car(0)
+
+        // when, then
+        assertThatIllegalArgumentException().isThrownBy {
+            car.race(NextRandomFixture(input))
+        }
     }
 }
