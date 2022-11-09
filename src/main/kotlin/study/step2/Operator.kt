@@ -11,7 +11,12 @@ enum class Operator(val operator: String) {
         override fun operate(firstOperand: Int, secondOperand: Int): Int = firstOperand * secondOperand
     },
     DIVIDE("/") {
-        override fun operate(firstOperand: Int, secondOperand: Int): Int = firstOperand / secondOperand
+        override fun operate(firstOperand: Int, secondOperand: Int): Int {
+            require(secondOperand != 0) {
+                "0으로 나눌수는 없습니다."
+            }
+            return firstOperand / secondOperand
+        }
     };
 
     abstract fun operate(firstOperand: Int, secondOperand: Int): Int
