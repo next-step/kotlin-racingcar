@@ -8,6 +8,10 @@ class Calculator {
         return Operator.symbolOf(operation).calculate(i, j).toString()
     }
 
+    fun calculateWithNumberStack(strNum: String, operation: String, number: Stack<String>): String =
+        if (number.isNotEmpty()) calculate(number.pop().toString(), strNum, operation)
+        else throw IllegalArgumentException(ErrorMessage.InputError.message)
+
     fun calculateStringInput(input: String): String {
         val stack = Stack<String>()
         val number = Stack<String>()
@@ -15,10 +19,10 @@ class Calculator {
             if (Operator.isContains(s)) {
                 stack.push(s)
             } else {
-                val num = if (stack.isNotEmpty()) {
-                    if (number.isNotEmpty()) calculate(number.pop().toString(), s, stack.pop())
-                    else throw IllegalArgumentException(ErrorMessage.InputError.message)
-                } else s
+                val num = when {
+                    stack.isNotEmpty() -> calculateWithNumberStack(s, stack.pop(), number)
+                    else -> s
+                }
                 number.push(num)
             }
         }
