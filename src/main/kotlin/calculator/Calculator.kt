@@ -24,7 +24,7 @@ class Calculator(
     fun calculate(): Int {
         for (index: Int in 1 until memory.size() step 2) {
             val accumulator = memory.accumulator
-            val operator = Operator.findByValue(memory.fetch(index))
+            val operator = Operator.getByValue(memory.fetch(index))
             val operand = memory.fetch(index + 1).toInt()
 
             val result = cpu.execute(operator, accumulator, operand)
