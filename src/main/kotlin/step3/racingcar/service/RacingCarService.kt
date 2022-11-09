@@ -18,7 +18,7 @@ class RacingCarService {
         ResultView.roundResultGuideMessage(currentRound)
         cars.elements.forEach {
             val randomValue = RandomNumberGenerator.generate()
-            it.race(randomValue)
+            it.race(currentRound, randomValue)
             ResultView.printEachCarScore(it)
         }
     }

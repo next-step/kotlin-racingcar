@@ -8,7 +8,7 @@ class ResultView {
         private val result: StringBuilder = StringBuilder()
 
         fun printEachCarScore(car: Car) {
-            for (i in 0 until car.moveCount()) {
+            for (i in 0 until car.accumulatedScore()) {
                 result.append(SCORE_BAR)
             }
             println(result)
