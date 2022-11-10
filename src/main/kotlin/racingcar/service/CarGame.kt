@@ -7,7 +7,7 @@ class CarGame(carCount: Int) {
     val cars: List<Car> = List(carCount) { Car() }
 
     fun play() {
-        cars.forEach { it.move(Score(4)) }
+        cars.forEach { it.move(Score.random()) }
     }
 
     fun printDashboard(outputSource: (Car) -> Unit) {
