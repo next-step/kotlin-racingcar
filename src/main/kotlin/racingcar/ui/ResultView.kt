@@ -1,4 +1,6 @@
-package racingcar.etc
+package racingcar.ui
+
+import racingcar.dto.RacingResultDTO
 
 object ResultView {
 

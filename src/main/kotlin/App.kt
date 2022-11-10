@@ -1,6 +1,6 @@
-import racingcar.etc.GameManager
-import racingcar.etc.InputView
-import racingcar.etc.StringAsNumber
+import racingcar.ui.GameManager
+import racingcar.ui.InputView
+import racingcar.model.StringAsNumber
 
 fun main() {
     val numberOfCars = StringAsNumber(InputView.numberOfCars())

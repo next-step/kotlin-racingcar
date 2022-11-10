@@ -1,10 +1,10 @@
 package racingcar.domain
 
-import racingcar.etc.NonNegative
+import racingcar.model.Position
 
 class Car {
 
-    private var distance: NonNegative = NonNegative()
+    private var distance: Position = Position()
 
     fun move(strategy: MovementStrategy) {
         if (strategy.isMovable()) {

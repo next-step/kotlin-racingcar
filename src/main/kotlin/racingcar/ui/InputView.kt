@@ -1,4 +1,4 @@
-package racingcar.etc
+package racingcar.ui
 
 object InputView {
 

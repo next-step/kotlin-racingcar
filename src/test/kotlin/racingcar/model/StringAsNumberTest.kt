@@ -1,4 +1,4 @@
-package racingcar.etc
+package racingcar.model
 
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows

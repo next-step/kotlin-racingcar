@@ -1,4 +1,4 @@
-package racingcar.etc
+package racingcar.model
 
 data class StringAsNumber(private val text: String) : Number() {
 

@@ -1,6 +1,6 @@
-package racingcar.etc
+package racingcar.model
 
-class NonNegative {
+class Position {
 
     companion object {
         private const val MINIMUM_NUMBER = 0
@@ -26,7 +26,7 @@ class NonNegative {
         this.value = this.value.toInt().plus(FORWARD_VALUE)
     }
 
-    operator fun compareTo(other: NonNegative): Int =
+    operator fun compareTo(other: Position): Int =
         when {
             this.value.toInt() > other.value.toInt() -> 1
             this.value.toInt() < other.value.toInt() -> -1

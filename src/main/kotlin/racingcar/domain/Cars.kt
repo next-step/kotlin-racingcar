@@ -1,6 +1,6 @@
 package racingcar.domain
 
-import racingcar.etc.RacingResultDTO
+import racingcar.dto.RacingResultDTO
 
 class Cars {
 
