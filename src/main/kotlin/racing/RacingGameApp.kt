@@ -1,9 +1,12 @@
 package racing
 
+import racing.domain.Game
 import racing.view.GameInputView
 
 fun main() {
-    val game = GameInputView().inputRacingGameInfo()
+    val racingCarCount = GameInputView.inputRacingCarCount()
+    val racingRound = GameInputView.inputRacingRound()
     println()
-    game.play()
+
+    Game.play(racingCarCount, racingRound)
 }

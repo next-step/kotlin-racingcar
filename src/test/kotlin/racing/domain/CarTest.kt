@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import racing.domain.strategy.RandomMovingStrategy
 import racing.view.GameOutputView
-import racing.view.GameOutputView.Companion.POSITION_MARK
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 
@@ -16,14 +15,9 @@ internal class CarTest {
 
     private lateinit var car: Car
 
-    companion object {
-        private val RANDOM_STRATEGY = RandomMovingStrategy()
-        private val gameOutput = GameOutputView()
-    }
-
     @BeforeEach
     fun setUp() {
-        car = Car(RANDOM_STRATEGY)
+        car = Car(RandomMovingStrategy)
         System.setOut(PrintStream(outputStreamCaptor))
     }
 
@@ -37,8 +31,8 @@ internal class CarTest {
         repeat(10) {
             car.move()
         }
-        gameOutput.printPositions(car)
-        assertThat(POSITION_MARK.repeat(car.position)).isEqualTo(outputStreamCaptor.toString().trim())
+        GameOutputView.printPositions(car)
+        assertThat(GameOutputView.POSITION_MARK.repeat(car.position)).isEqualTo(outputStreamCaptor.toString().trim())
     }
 
     @AfterEach
