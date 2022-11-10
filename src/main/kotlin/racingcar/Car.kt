@@ -6,20 +6,19 @@ import racingcar.strategy.MoveStrategy
 class Car(
     val name: String,
     private val moveStrategy: MoveStrategy,
-    private val moveConditions: List<MoveCondition>,
     position: Int,
 ) {
     var position: Int = position
         private set
 
-    fun move(): Int {
-        if (isMovable()) {
+    fun move(moveConditions: List<MoveCondition>): Int {
+        if (isMovable(moveConditions)) {
             position = position.plus(SPEED)
         }
         return position
     }
 
-    private fun isMovable(): Boolean {
+    private fun isMovable(moveConditions: List<MoveCondition>): Boolean {
         return moveStrategy.isMovable(moveConditions)
     }
 
