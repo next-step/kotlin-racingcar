@@ -2,40 +2,27 @@ package com.nextstep.racingcar.domain
 
 import com.nextstep.racingcar.domain.Movement.MOVE
 import com.nextstep.racingcar.domain.Movement.NONE
-import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
-import io.kotest.data.forAll
-import io.kotest.data.row
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.verify
 
 class CarTest : StringSpec({
     val car = Car()
-    val randomIntGenerator = mockk<RandomIntGenerator>()
+    val numberGenerator = mockk<NumberGenerator>()
+    val moveRule = mockk<NumberMoveRule>()
 
-    "Only if number parameter is 4 or more, move fun returns true" {
+    "Car#move returns Movement Enum meaning thee car moved or not" {
+        every { numberGenerator.generate() } returns 5
+        every { moveRule.movable(5) } returns MOVE
 
-        forAll(
-            row(0, NONE),
-            row(3, NONE),
-            row(4, MOVE),
-            row(9, MOVE)
-        ) { number, movement ->
-            every { randomIntGenerator.generate() } returns number
-            car.move(randomIntGenerator) shouldBe movement
-        }
-    }
+        val movement = car.move(numberGenerator, moveRule)
 
-    "If less than 0 or over 9 is passed, move fun throws exception" {
-        forAll(
-            row(-1),
-            row(10)
-        ) { number ->
-            every { randomIntGenerator.generate() } returns number
-            shouldThrow<IllegalArgumentException> { car.move(randomIntGenerator) }
-        }
+        verify { numberGenerator.generate() }
+        verify { moveRule.movable(any()) }
+        movement shouldBe MOVE
     }
 
     "car can save movement histories" {

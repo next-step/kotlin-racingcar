@@ -1,6 +1,6 @@
 package com.nextstep.racingcar.domain
 
-class RandomIntGenerator : NumberGenerator {
+class RandomNumberGenerator : NumberGenerator {
 
     override fun generate(): Int {
         val range = 0..9
