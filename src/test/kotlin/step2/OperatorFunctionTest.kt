@@ -2,10 +2,12 @@ package step2
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
+import org.junit.jupiter.api.assertThrows
 import step2.OperatorSign.DIVIDE
 import step2.OperatorSign.MINUS
 import step2.OperatorSign.MULTIPLE
 import step2.OperatorSign.PLUS
+import java.lang.IllegalStateException
 
 class OperatorFunctionTest : FunSpec({
     context("OperatorFunction") {
@@ -23,6 +25,11 @@ class OperatorFunctionTest : FunSpec({
 
         test("divide 함수") {
             OperatorFunction.divide(12, 3) shouldBe 4
+        }
+
+        test("divide 함수는 0으로 나누면 에러가 발생한다.") {
+            val exception = assertThrows<IllegalStateException> { OperatorFunction.divide(12, 0) }
+            exception.message shouldBe "0 으로 숫자를 나눌 수 없습니다."
         }
 
         context("get 함수는") {
