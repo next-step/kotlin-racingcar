@@ -30,4 +30,27 @@ class OperatorTest : FunSpec({
             }
         }
     }
+
+    context("연산 테스트") {
+        test("plus 연산") {
+            Operator.PLUS.execute(1, 3) shouldBe 4
+        }
+
+        test("minus 연산") {
+            Operator.MINUS.execute(10, 3) shouldBe 7
+        }
+
+        test("multiple 연산") {
+            Operator.MULTIPLE.execute(3, 4) shouldBe 12
+        }
+
+        test("divide 연산") {
+            Operator.DIVIDE.execute(12, 3) shouldBe 4
+        }
+
+        test("divide 연산은 0으로 나누면 에러가 발생한다.") {
+            val exception = assertThrows<IllegalStateException> { Operator.DIVIDE.execute(12, 0) }
+            exception.message shouldBe "0 으로 숫자를 나눌 수 없습니다."
+        }
+    }
 })
