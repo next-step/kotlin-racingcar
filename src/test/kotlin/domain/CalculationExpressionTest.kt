@@ -1,8 +1,10 @@
 package domain
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
+import java.lang.IllegalArgumentException
 
 internal class CalculationExpressionTest {
     companion object {
@@ -13,42 +15,81 @@ internal class CalculationExpressionTest {
     }
 
     @Test
-    fun `피연산자_분리_테스트`() {
-        lateinit var testOperandList: List<String>
+    fun `공백_예외_테스트`() {
+        assertThrows(IllegalArgumentException::class.java) {
+            CalculationExpression("1 + 2 *  + 4")
+        }
+    }
+
+    @Test
+    fun `유효한_숫자가_아닐_경우_예외_테스트`() {
         assertAll(
             {
-                testOperandList = listOf("1.0", "2", "3", "4")
-                for (i in testOperandList.indices) {
+                assertThrows(IllegalArgumentException::class.java) {
+                    CalculationExpression("A + 2 *  + 4")
+                }
+            },
+            {
+                assertThrows(IllegalArgumentException::class.java) {
+                    CalculationExpression("+ + 2 *  + 4")
+                }
+            }
+        )
+    }
+
+    @Test
+    fun `유효한_연산자가_아닐_경우_예외_테스트`() {
+        assertAll(
+            {
+                assertThrows(IllegalArgumentException::class.java) {
+                    CalculationExpression("1 @ 2 * 3 + 4")
+                }
+            },
+            {
+                assertThrows(IllegalArgumentException::class.java) {
+                    CalculationExpression("73 - 2 A 33 + 4")
+                }
+            }
+        )
+    }
+
+    @Test
+    fun `피연산자_분리_테스트`() {
+        lateinit var testOperands: List<String>
+        assertAll(
+            {
+                testOperands = listOf("1.0", "2", "3", "4")
+                for (i in testOperands.indices) {
                     assertEquals(
-                        testOperandList[i].toDouble(),
-                        CalculationExpression("1 + 2 * 3 + 4").operand.operandList[i]
+                        testOperands[i].toDouble(),
+                        CalculationExpression("1 + 2 * 3 + 4").operand.operands[i]
                     )
                 }
             },
             {
-                testOperandList = listOf("-1", "-2", "100", "4")
-                for (i in testOperandList.indices) {
+                testOperands = listOf("-1", "-2", "100", "4")
+                for (i in testOperands.indices) {
                     assertEquals(
-                        testOperandList[i].toDouble(),
-                        CalculationExpression("-1 + -2 * 100 / 4").operand.operandList[i]
+                        testOperands[i].toDouble(),
+                        CalculationExpression("-1 + -2 * 100 / 4").operand.operands[i]
                     )
                 }
             },
             {
-                testOperandList = listOf("1", "-21", "23", "124")
-                for (i in testOperandList.indices) {
+                testOperands = listOf("1", "-21", "23", "124")
+                for (i in testOperands.indices) {
                     assertEquals(
-                        testOperandList[i].toDouble(),
-                        CalculationExpression("1 / -21 * 23 + 124").operand.operandList[i]
+                        testOperands[i].toDouble(),
+                        CalculationExpression("1 / -21 * 23 + 124").operand.operands[i]
                     )
                 }
             },
             {
-                testOperandList = listOf("99", "78", "66", "-34")
-                for (i in testOperandList.indices) {
+                testOperands = listOf("99", "78", "66", "-34")
+                for (i in testOperands.indices) {
                     assertEquals(
-                        testOperandList[i].toDouble(),
-                        CalculationExpression("99 * 78 / 66 + -34").operand.operandList[i]
+                        testOperands[i].toDouble(),
+                        CalculationExpression("99 * 78 / 66 + -34").operand.operands[i]
                     )
                 }
             }
@@ -57,38 +98,41 @@ internal class CalculationExpressionTest {
 
     @Test
     fun `연산자_분리_테스트`() {
-        lateinit var testOperatorList: List<String>
+        lateinit var testOperators: List<String>
         assertAll(
             {
-                testOperatorList = listOf(ADDITION, MULTIPLICATION, ADDITION)
-                for (i in testOperatorList.indices) {
-                    assertEquals(testOperatorList[i], CalculationExpression("1 + 2 * 3 + 4").operator.operatorList[i])
-                }
-            },
-            {
-                testOperatorList = listOf(ADDITION, MULTIPLICATION, DIVISION)
-                for (i in testOperatorList.indices) {
+                testOperators = listOf(ADDITION, MULTIPLICATION, ADDITION)
+                for (i in testOperators.indices) {
                     assertEquals(
-                        testOperatorList[i],
-                        CalculationExpression("-1 + -2 * 100 / 4").operator.operatorList[i]
+                        testOperators[i],
+                        CalculationExpression("1 + 2 * 3 + 4").arithmeticOperator.operators[i]
                     )
                 }
             },
             {
-                testOperatorList = listOf(DIVISION, MULTIPLICATION, SUBTRACT)
-                for (i in testOperatorList.indices) {
+                testOperators = listOf(ADDITION, MULTIPLICATION, DIVISION)
+                for (i in testOperators.indices) {
                     assertEquals(
-                        testOperatorList[i],
-                        CalculationExpression("1 / -21 * 23 - 124").operator.operatorList[i]
+                        testOperators[i],
+                        CalculationExpression("-1 + -2 * 100 / 4").arithmeticOperator.operators[i]
                     )
                 }
             },
             {
-                testOperatorList = listOf(MULTIPLICATION, DIVISION, ADDITION)
-                for (i in testOperatorList.indices) {
+                testOperators = listOf(DIVISION, MULTIPLICATION, SUBTRACT)
+                for (i in testOperators.indices) {
                     assertEquals(
-                        testOperatorList[i],
-                        CalculationExpression("99 * 78 / 66 + -34").operator.operatorList[i]
+                        testOperators[i],
+                        CalculationExpression("1 / -21 * 23 - 124").arithmeticOperator.operators[i]
+                    )
+                }
+            },
+            {
+                testOperators = listOf(MULTIPLICATION, DIVISION, ADDITION)
+                for (i in testOperators.indices) {
+                    assertEquals(
+                        testOperators[i],
+                        CalculationExpression("99 * 78 / 66 + -34").arithmeticOperator.operators[i]
                     )
                 }
             }

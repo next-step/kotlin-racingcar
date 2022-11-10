@@ -1,14 +1,25 @@
 package domain
 
-class Operand(val operandList: ArrayList<Double>) {
+import java.lang.IllegalArgumentException
+import java.lang.NumberFormatException
+
+class Operand(val operands: ArrayList<Double>) {
+
     init {
-        for (operand in operandList) {
-            checkOperandValidation(operand.toString())
+        for (operand in operands) {
+            checkValidNumber(operand.toString())
         }
     }
 
-    private fun checkOperandValidation(input: String?) {
-        ValidationChecker().checkNullAndBlankValidation(input)
-        ValidationChecker().checkValidNumber(input)
+    private fun checkValidNumber(input: String) {
+        try {
+            input.toDouble()
+        } catch (e: NumberFormatException) {
+            throw IllegalArgumentException("Invalid Operand")
+        }
+    }
+
+    fun getOperandValues(index: Int): Double {
+        return operands[index]
     }
 }

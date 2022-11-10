@@ -1,7 +1,5 @@
 package domain
 
-import kotlin.math.round
-
 class Calculator {
     companion object {
         const val ADDITION = "+"
@@ -11,54 +9,45 @@ class Calculator {
         const val ROUND = 100
     }
 
-    enum class CalculatorType(val expression: (Double, Double) -> Double) {
-        ADDITION({ a, b -> round((a + b) * ROUND) / ROUND }),
-        SUBTRACT({ a, b -> round((a - b) * ROUND) / ROUND }),
-        DIVISION({ a, b -> round((a / b) * ROUND) / ROUND }),
-        MULTIPLICATION({ a, b -> round((a * b) * ROUND) / ROUND });
-    }
-
-    fun calculate(inputData: CalculationExpression): Double {
+    fun calculate(inputValue: CalculationExpression): Double {
         var operandIndex: Int
-        var result = inputData.operand.operandList[0]
-        val calculatorTypeMapping = mutableMapOf<String?, CalculatorType>()
+        var result = inputValue.operand.getOperandValues(0)
+        var calculatorType = makeCalculatorTypeMapper()
+        checkLastOperandExist(inputValue)
 
-        makeCalculatorTypeMapper(calculatorTypeMapping)
-        checkLastOperandExist(inputData)
-
-        for (operatorIndex in 0 until inputData.operator.operatorList.size) {
+        for ((operatorIndex, arithmeticOperator) in inputValue.arithmeticOperator.getOperatorsWithIndex()) {
             operandIndex = operatorIndex + 1
             checkDivideToZero(
-                inputData.operator.operatorList[operatorIndex],
-                inputData.operand.operandList[operandIndex]
+                arithmeticOperator,
+                inputValue.operand.getOperandValues(operandIndex)
             )
-            result = calculatorTypeMapping[inputData.operator.operatorList[operatorIndex]]?.expression?.let {
+            result = calculatorType[arithmeticOperator]?.mathematicalExpression?.let {
                 it(
                     result,
-                    inputData.operand.operandList[operandIndex]
+                    inputValue.operand.getOperandValues(operandIndex)
                 )
             }!!
         }
         return result
     }
 
-    private fun makeCalculatorTypeMapper(calculatorTypeMapper: MutableMap<String?, CalculatorType>) {
-        calculatorTypeMapper[ADDITION] = CalculatorType.ADDITION
-        calculatorTypeMapper[SUBTRACT] = CalculatorType.SUBTRACT
-        calculatorTypeMapper[DIVISION] = CalculatorType.DIVISION
-        calculatorTypeMapper[MULTIPLICATION] = CalculatorType.MULTIPLICATION
+    private fun makeCalculatorTypeMapper(): Map<String, CalculatorType> {
+        return mapOf(
+            ADDITION to CalculatorType.ADDITION, SUBTRACT to CalculatorType.SUBTRACT,
+            DIVISION to CalculatorType.DIVISION, MULTIPLICATION to CalculatorType.MULTIPLICATION
+        )
     }
 
-    private fun checkLastOperandExist(inputData: CalculationExpression) {
+    private fun checkLastOperandExist(inputValue: CalculationExpression) {
         try {
-            inputData.operand.operandList[inputData.operator.operatorList.size]
+            inputValue.operand.operands[inputValue.arithmeticOperator.getOperatorsSize()]
         } catch (e: IndexOutOfBoundsException) {
             // "1 +"와 같이 마지막 피연산자가 없을 경우에 대한 처리
             throw IllegalArgumentException("Empty Operand")
         }
     }
 
-    private fun checkDivideToZero(operator: String?, operand: Double) {
+    private fun checkDivideToZero(operator: String, operand: Double) {
         if (operator == DIVISION && operand == 0.0) {
             throw IllegalArgumentException()
         }

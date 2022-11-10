@@ -3,40 +3,65 @@ package domain
 import java.lang.IllegalArgumentException
 
 const val OPERATOR = 1
-class CalculationExpression(inputData: String?) {
-    val operand: Operand
-    val operator: Operator
-    private val operandList = ArrayList<Double>()
-    private val operatorList = ArrayList<String?>()
-    private val splitInput: List<String>
-    init {
-        splitInput = splitInputData(inputData)
+const val INPUT_VALUE_DELIMITER = " "
 
-        if (ValidationChecker().isOperator(splitInput[0])) {
+class CalculationExpression(inputValue: String) {
+    val operand: Operand
+    val arithmeticOperator: ArithmeticOperator
+    private val operands = ArrayList<Double>()
+    private val operators = ArrayList<String>()
+    private val splitInput: List<String>
+
+    companion object {
+        const val ADDITION = "+"
+        const val SUBTRACT = "-"
+        const val DIVISION = "/"
+        const val MULTIPLICATION = "*"
+    }
+
+    init {
+        splitInput = splitInputValue(inputValue)
+
+        if (isOperator(splitInput[0])) {
             throw IllegalArgumentException()
         }
 
-        for (i in 0 until splitInputData(inputData).size) {
+        for (i in 0 until splitInputValue(inputValue).size) {
             createSplitInputList(i)
         }
 
-        operand = Operand(operandList)
-        operator = Operator(operatorList)
+        operand = Operand(operands)
+        arithmeticOperator = ArithmeticOperator(operators)
     }
 
-    private fun splitInputData(inputData: String?): List<String> {
-        return inputData?.split(" ")!!
+    private fun isOperator(input: String): Boolean {
+        if (!(input == ADDITION || input == SUBTRACT || input == DIVISION || input == MULTIPLICATION)) {
+            return false
+        }
+        return true
+    }
+
+    private fun splitInputValue(inputValue: String): List<String> {
+        return inputValue.split(INPUT_VALUE_DELIMITER)
     }
 
     private fun createSplitInputList(index: Int) {
-        if (isOperator(index)) {
-            operatorList.add(splitInput[index])
+        checkBlank(splitInput[index])
+
+        if (isOperatorInputTurn(index)) {
+            operators.add(splitInput[index])
             return
         }
-        operandList.add(splitInput[index].toDouble())
+        operands.add(splitInput[index].toDouble())
     }
 
-    private fun isOperator(i: Int): Boolean {
+    private fun isOperatorInputTurn(i: Int): Boolean {
         return i % 2 == OPERATOR
+    }
+
+    private fun checkBlank(input: String) {
+        if (input == "") {
+            throw IllegalArgumentException("Blank")
+        }
     }
 }
