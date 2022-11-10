@@ -17,11 +17,6 @@ data class Token private constructor(
         return Operator.getByLabel(label = value)
     }
 
-    fun getOperatorSign(): OperatorSign {
-        check(this.isOperator()) { "연산자 유형인 경우에만 연산 기호를 구할 수 있습니다." }
-        return OperatorSign.getBySign(sign = this.value)
-    }
-
     fun getOperand(): Int {
         check(this.isOperand()) { "피연산자 유형인 경우에만 피연산자 숫자를 구할 수 있습니다." }
         return this.value.toInt()
