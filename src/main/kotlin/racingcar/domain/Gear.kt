@@ -5,8 +5,8 @@ enum class Gear(var range: IntRange) {
     STOP(0..3);
 
     companion object {
-        fun getGear(ran: Int): Gear {
-            return values().find { it.range.contains(ran) }!!
+        fun getGear(random: Int): Gear {
+            return values().find { it.range.contains(random) }!!
         }
     }
 }
