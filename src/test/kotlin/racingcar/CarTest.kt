@@ -17,17 +17,10 @@ internal class CarTest {
     }
 
     @Test
-    fun `go()를 하면 자동차가 한 칸 전진한다`() {
-        val car = Car()
-        car.go()
-        assertThat(car).isEqualTo(Car(_progress = 1))
-    }
-
-    @Test
     fun `progress 를 통해 현재의 진행도를 알 수 있다`() {
         val car = Car(_progress = 0)
 
-        car.go()
+        car.move()
         assertThat(car.progress).isEqualTo(1)
     }
 }

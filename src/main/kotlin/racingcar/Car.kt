@@ -1,11 +1,13 @@
 package racingcar
 
-data class Car(val name: String = "", private var _progress: Int = 0) {
+data class Car(val name: String = "", private var _progress: Int = 0) : Movable() {
 
     val progress
         get() = _progress
 
-    fun go() {
-        _progress += 1
+    fun move() {
+        if (this.canMove()) {
+            _progress += 1
+        }
     }
 }
