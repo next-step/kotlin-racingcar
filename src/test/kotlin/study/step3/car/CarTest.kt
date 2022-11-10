@@ -3,7 +3,7 @@ package study.step3.car
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class CarTest {
+internal class CarTest {
     @Test
     fun `dice 값이 4 이상일 때만 전진할 수 있다`() {
         val car = Car()
