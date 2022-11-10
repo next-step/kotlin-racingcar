@@ -7,10 +7,10 @@ fun main() {
     val inputView = InputView()
     val resultView = ResultView()
 
-    val carCount = inputView.getCarCount()
+    val nameOfCars = inputView.getNameOfCars()
     val tryCount = inputView.getTryCount()
 
-    val cars = Cars(List(carCount) { Car() })
+    val cars = Cars(List(nameOfCars.size) { Car() })
     repeat(tryCount) {
         cars.race()
         resultView.printCarDistance(cars)
