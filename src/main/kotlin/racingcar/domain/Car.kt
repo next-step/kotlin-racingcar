@@ -10,17 +10,16 @@ class Car : Moveable {
     }
 
     override fun stop() {
+    }
 
+    fun drive(gear: Gear) {
+        when (gear) {
+            Gear.FORWARD -> this.go()
+            Gear.STOP -> this.stop()
+        }
     }
 
     companion object {
         fun registerCars(numberOfCars: Int) = Array(numberOfCars) { Car() }
-
-        fun Car.drive(gear: Gear) {
-            when (gear) {
-                Gear.FORWARD -> this.go()
-                Gear.STOP -> this.stop()
-            }
-        }
     }
 }

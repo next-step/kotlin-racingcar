@@ -2,7 +2,6 @@ package racingcar.application
 
 import racingcar.RandomGear
 import racingcar.domain.Car
-import racingcar.domain.Car.Companion.drive
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
