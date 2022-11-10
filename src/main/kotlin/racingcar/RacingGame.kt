@@ -11,11 +11,13 @@ class RacingGame(
 ) {
 
     fun start(setting: Setting = inputView.receiveSetting()): List<Car> {
-        val cars = generateCars(setting.numberOfCars)
+        val cars = generateCars(setting.nameOfCars)
 
         repeat(setting.numberOfLab) {
             playTurn(cars)
         }
+
+        endGame(cars)
 
         return cars
     }
@@ -27,7 +29,17 @@ class RacingGame(
         resultView.displayResult(cars)
     }
 
-    private fun generateCars(numberOfCars: Int): List<Car> {
-        return List(numberOfCars) { it -> Car(name = it.toString()) }
+    private fun endGame(cars: List<Car>) {
+        val winner = makeWinner(cars)
+        resultView.displayWinner(winner)
+    }
+
+    private fun makeWinner(cars: List<Car>): List<Car> {
+        val maximumProgress = cars.maxOf { car -> car.progress }
+        return cars.filter { car -> car.progress == maximumProgress }
+    }
+
+    private fun generateCars(nameOfCars: List<String>): List<Car> {
+        return List(nameOfCars.size) { Car(name = nameOfCars[it]) }
     }
 }

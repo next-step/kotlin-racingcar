@@ -16,4 +16,13 @@ class ResultView(private val progressCharacter: String = "-") {
         }
         println()
     }
+
+    fun displayWinner(cars: List<Car>) {
+        val names = cars.map { car ->
+            car.name
+        }
+
+        val joinName = names.joinToString()
+        println("${joinName}가 최종 우승했습니다. ")
+    }
 }
