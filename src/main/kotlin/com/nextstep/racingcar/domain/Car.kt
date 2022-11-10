@@ -1,4 +1,4 @@
-package com.nextstep.racingcar
+package com.nextstep.racingcar.domain
 
 private const val MOVE_CONDITION = 4
 
