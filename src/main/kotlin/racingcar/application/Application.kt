@@ -22,7 +22,7 @@ class Application {
         (1..numberOfTimes).forEach { _ ->
             cars.forEach {
                 it.drive(RandomGear.getGear())
-                ResultView.presentSituation(it.getCurrentPosition())
+                ResultView.presentSituation(it.currentPosition)
             }
             println()
         }

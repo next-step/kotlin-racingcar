@@ -2,7 +2,8 @@ package racingcar.domain
 
 class Car : Moveable {
 
-    private var currentPosition: Int = 0
+    var currentPosition: Int = 0
+        private set
 
     override fun go() {
         currentPosition++
@@ -11,8 +12,6 @@ class Car : Moveable {
     override fun stop() {
         currentPosition
     }
-
-    fun getCurrentPosition() = currentPosition
 
     companion object {
         fun registerCars(numberOfCars: Int) = Array(numberOfCars) { Car() }

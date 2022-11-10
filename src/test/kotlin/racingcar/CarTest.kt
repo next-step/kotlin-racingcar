@@ -16,7 +16,7 @@ class CarTest {
         Gear.FORWARD.range = 0..9
         Gear.STOP.range = -1..-1
         cars.first().drive(RandomGear.getGear())
-        assertThat(cars.first().getCurrentPosition()).isEqualTo(1)
+        assertThat(cars.first().currentPosition).isEqualTo(1)
     }
 
     @Test
@@ -26,6 +26,6 @@ class CarTest {
         Gear.FORWARD.range = -1..-1
         Gear.STOP.range = 0..9
         cars.first().drive(RandomGear.getGear())
-        assertThat(cars.first().getCurrentPosition()).isEqualTo(0)
+        assertThat(cars.first().currentPosition).isEqualTo(0)
     }
 }
