@@ -4,6 +4,7 @@ import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.inspectors.forAll
+import io.kotest.matchers.shouldBe
 
 class CarRacingTest : StringSpec({
     "참여 인원이 존재하면 자동차 경주를 생성할 수 있다" {
@@ -39,5 +40,48 @@ class CarRacingTest : StringSpec({
 
                 shouldNotThrowAny { carRacing.start(it) }
             }
+    }
+
+    "종료된 경주가 아니면 결과를 확인할 수 없다" {
+        val carRacing = CarRacing(carRacers = listOf(CarRacer(StandardCar(), RandomCarControl())))
+
+        shouldThrowAny { carRacing.result() }
+    }
+
+    "종료된 경주면 결과를 확인할 수 있다" {
+        val carRacing = CarRacing(
+            carRacers = listOf(CarRacer(StandardCar(), RandomCarControl())),
+            status = Status.FINISHED
+        )
+
+        shouldNotThrowAny { carRacing.result() }
+    }
+
+    "자동차 경주 결과가 정상적으로 반환된다" {
+        val forwardCarControl = object : CarControl {
+            override fun power(): Int = 4
+        }
+
+        val stopCarControl = object : CarControl {
+            override fun power(): Int = 3
+        }
+
+        val carRacing = CarRacing(
+            carRacers = listOf(
+                CarRacer(StandardCar(), forwardCarControl),
+                CarRacer(StandardCar(), stopCarControl)
+            ),
+            status = Status.READY
+        )
+
+        carRacing.start(2)
+
+        val result = carRacing.result()
+
+        result.size shouldBe 2
+        result[0]!![0].position shouldBe Position(1)
+        result[0]!![1].position shouldBe Position.ZERO
+        result[1]!![0].position shouldBe Position(2)
+        result[1]!![1].position shouldBe Position.ZERO
     }
 })
