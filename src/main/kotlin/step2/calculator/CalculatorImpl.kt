@@ -8,7 +8,7 @@ class CalculatorImpl(
     private val system: System
 ) : Calculator {
 
-    override fun enter(input: CalculatorInput): CalculateResult {
+    override fun calculate(input: CalculatorInput): CalculateResult {
         val result = input.buttons
             .fold(Memory(INIT_VALUE, Numeric(INIT_VALUE))) { memory, component ->
                 return@fold system.compute(
