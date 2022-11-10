@@ -57,7 +57,7 @@ class TokenTest : FunSpec({
                 // given
                 val operandToken = Token.from(value = "3")
                 // when & then
-                operandToken.getOperandNumber() shouldBe 3
+                operandToken.getOperand() shouldBe 3
             }
         }
 
@@ -67,7 +67,7 @@ class TokenTest : FunSpec({
                 val operatorToken = Token.from(value = "/")
                 // when
                 val exception = assertThrows<IllegalStateException> {
-                    operatorToken.getOperandNumber()
+                    operatorToken.getOperand()
                 }
                 // then
                 exception.message shouldBe "피연산자 유형인 경우에만 피연산자 숫자를 구할 수 있습니다."

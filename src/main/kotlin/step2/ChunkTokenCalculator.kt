@@ -4,13 +4,14 @@ class ChunkTokenCalculator : TokenCalculator {
 
     override fun calculate(tokens: List<Token>): Int {
         val (firstToken: Token, restTokens: List<Token>) = head(tokens)
-        val firstOperandNumber = firstToken.getOperandNumber()
+        val firstOperandNumber = firstToken.getOperand()
         return restTokens
             .chunked(2)
             .fold(firstOperandNumber) { acc, tokens ->
                 val (operatorToken: Token, operandToken: Token) = tokens
-                val operatorFunction = OperatorFunction.get(operatorSign = operatorToken.getOperatorSign())
-                operatorFunction(acc, operandToken.getOperandNumber())
+                val operator = operatorToken.getOperator()
+                val operand = operandToken.getOperand()
+                operator.execute(acc, operand)
             }
     }
 }
