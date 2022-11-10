@@ -3,11 +3,11 @@ package step2
 class ChunkTokenCalculator : TokenCalculator {
 
     override fun calculate(tokens: List<Token>): Int {
-        val (firstToken: Token, restTokens: List<Token>) = headWithRest(tokens)
-        val firstOperandNumber = firstToken.getOperand()
+        val (headToken: Token, restTokens: List<Token>) = headWithRest(tokens)
+        val firstOperand = headToken.getOperand()
         return restTokens
             .chunked(2)
-            .fold(firstOperandNumber) { acc, tokens ->
+            .fold(firstOperand) { acc, tokens ->
                 val (operatorToken: Token, operandToken: Token) = tokens
                 val operator = operatorToken.getOperator()
                 val operand = operandToken.getOperand()
