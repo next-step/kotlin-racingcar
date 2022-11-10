@@ -11,7 +11,10 @@ enum class TokenType(
     companion object {
         fun getByValue(value: String): TokenType {
             val isNumber = { value: String -> value.toIntOrNull() != null }
-            return if (isNumber(value)) OPERAND else OPERATOR
+            if (isNumber(value)) {
+                return OPERAND
+            }
+            return OPERATOR
         }
     }
 }
