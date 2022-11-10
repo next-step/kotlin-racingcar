@@ -31,6 +31,20 @@ class OperatorTest : FunSpec({
         }
     }
 
+    context("existsByLabel 함수는") {
+        context("입력한 값에 해당하는 Operator label 이 있으면") {
+            test("true 를 반환한다.") {
+                Operator.existsByLabel("+") shouldBe true
+            }
+        }
+
+        context("입력한 값에 해당하는 Operator label 이 없으면") {
+            test("false 를 반환한다.") {
+                Operator.existsByLabel("!") shouldBe false
+            }
+        }
+    }
+
     context("연산 테스트") {
         test("plus 연산") {
             Operator.PLUS.execute(1, 3) shouldBe 4

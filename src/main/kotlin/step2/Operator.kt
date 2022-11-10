@@ -22,5 +22,9 @@ enum class Operator(
             return Operator.values().find { it.label == label }
                 ?: throw IllegalArgumentException("연산 기호는 +, -, *, / 만 입력할 수 있습니다.")
         }
+
+        fun existsByLabel(label: String): Boolean {
+            return Operator.values().any { it.label == label }
+        }
     }
 }
