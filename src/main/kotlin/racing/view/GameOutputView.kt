@@ -19,6 +19,6 @@ object GameOutputView {
     }
 
     fun printPositions(car: Car) {
-        println(POSITION_MARK.repeat(car.position))
+        println("${car.name} : ${POSITION_MARK.repeat(car.position)}")
     }
 }
