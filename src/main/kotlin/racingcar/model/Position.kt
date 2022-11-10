@@ -8,5 +8,7 @@ class Position(var value: Int = INITIAL_POSITION) {
         require(value >= INITIAL_POSITION)
     }
 
-    fun increase() = value++
+    fun increase(speed: Int) {
+        value += speed
+    }
 }
