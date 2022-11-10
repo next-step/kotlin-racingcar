@@ -28,6 +28,6 @@ class RacingGame(
     }
 
     private fun generateCars(numberOfCars: Int): List<Car> {
-        return List(numberOfCars) { Car() }
+        return List(numberOfCars) { it -> Car(name = it.toString()) }
     }
 }

@@ -1,10 +1,11 @@
 package racingcar
 
-data class Car(private var progress: Int = 0) {
+data class Car(val name: String = "", private var _progress: Int = 0) {
+
+    val progress
+        get() = _progress
 
     fun go() {
-        progress += 1
+        _progress += 1
     }
-
-    fun now(): Int = progress
 }

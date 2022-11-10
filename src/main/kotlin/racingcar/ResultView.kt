@@ -10,7 +10,7 @@ class ResultView(private val progressCharacter: String = "-") {
     }
 
     private fun displayCar(car: Car) {
-        repeat(car.now()) {
+        repeat(car.progress) {
             print(progressCharacter)
         }
         println()
