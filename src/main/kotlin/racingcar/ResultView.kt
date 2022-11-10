@@ -10,6 +10,7 @@ class ResultView(private val progressCharacter: String = "-") {
     }
 
     private fun displayCar(car: Car) {
+        print("${car.name} : ")
         repeat(car.progress) {
             print(progressCharacter)
         }
