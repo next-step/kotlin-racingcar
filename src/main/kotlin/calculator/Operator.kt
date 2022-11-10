@@ -19,7 +19,7 @@ enum class Operator(val prime: String) {
             val operator = values().find { operator ->
                 prime == operator.prime
             }
-            require(operator != null){
+            require(operator != null) {
                 "구현되지 않은 기호입니다."
             }
             return operator

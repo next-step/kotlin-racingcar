@@ -1,7 +1,6 @@
 package calculator
 
 class Calculator(
-    private val cpu: CPU = CPU(),
     private val keypad: Keypad = Keypad(),
     private val monitor: Monitor = Monitor(),
     private var memory: Memory = Memory()
@@ -27,7 +26,7 @@ class Calculator(
             val operator = Operator.getByValue(memory.fetch(index))
             val operand = memory.fetch(index + 1).toInt()
 
-            val result = cpu.execute(operator, accumulator, operand)
+            val result = operator.execute(accumulator, operand)
             memory.accumulate(result)
         }
 
