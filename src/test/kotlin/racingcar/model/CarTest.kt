@@ -12,7 +12,7 @@ internal class CarTest {
     internal fun `점수가 4 이상이면 포지션 증가`(score: Int, expected: Int) {
         val car = Car()
         car.move(score)
-        assertThat(car.position).isEqualTo(expected)
+        assertThat(car.position.value).isEqualTo(expected)
     }
 
     @ParameterizedTest
@@ -27,6 +27,6 @@ internal class CarTest {
     internal fun `점수가 4 이상인 횟수만큼 포지션 증가`(score: Int, tryCount: Int, expected: Int) {
         val car = Car()
         repeat(tryCount) { car.move(score) }
-        assertThat(car.position).isEqualTo(expected)
+        assertThat(car.position.value).isEqualTo(expected)
     }
 }
