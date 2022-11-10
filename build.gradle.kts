@@ -15,6 +15,7 @@ dependencies {
     testImplementation("org.assertj", "assertj-core", "3.22.0")
     testImplementation("io.kotest", "kotest-runner-junit5", "5.2.3")
     testImplementation("io.kotest", "kotest-framework-datatest", "5.2.3")
+    testImplementation("io.mockk:mockk:1.12.0")
 }
 
 tasks {
