@@ -5,10 +5,10 @@ import io.kotest.matchers.shouldBe
 
 internal class DefaultRandomTest : StringSpec({
     "랜덤 최소값 = 0" {
-        RandomStrategy.minValue shouldBe 0
+        Random.minValue shouldBe 0
     }
 
     "랜덤 최대값 = 9" {
-        RandomStrategy.maxValue shouldBe 9
+        Random.maxValue shouldBe 9
     }
 })
