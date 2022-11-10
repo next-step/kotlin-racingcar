@@ -10,7 +10,7 @@ internal class CalculatorTest {
 
     @ParameterizedTest
     @MethodSource("calculateTest")
-    fun `계산 테스트`(inputs: String, result: Int) {
+    fun `문자열 계산기의 결과가 올바르게 나오는 지 확인하는 테스트`(inputs: String, result: Int) {
         // given
         val expression = Expression(inputs)
         val calculator = Calculator(expression)
@@ -46,6 +46,7 @@ internal class CalculatorTest {
             Arguments.of("12 / 3 / 2 / 2", 1),
             Arguments.of("8 / 2 / 2 / 2", 1),
             Arguments.of("30 / 5 / 3 / 2", 1),
+            Arguments.of("30 / 0", 0),
         )
     }
 }

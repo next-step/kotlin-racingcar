@@ -8,7 +8,13 @@ enum class Operator(
     PLUS("+", { currentOperand, nextOperand -> currentOperand + nextOperand }),
     MINUS("-", { currentOperand, nextOperand -> currentOperand - nextOperand }),
     MULTIPLE("*", { currentOperand, nextOperand -> currentOperand * nextOperand }),
-    DIVIDE("/", { currentOperand, nextOperand -> currentOperand / nextOperand });
+    DIVIDE("/", { currentOperand, nextOperand ->
+        try {
+            currentOperand / nextOperand
+        } catch (e: ArithmeticException) {
+            0
+        }
+    });
 
     companion object {
         fun of(input: String): Operator = values().find { operator: Operator ->
