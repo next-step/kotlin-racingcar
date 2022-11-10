@@ -15,9 +15,9 @@ class ExpressionTokenizerTest : FunSpec({
                 val actual = sut.tokenize(expression = expression)
                 // then
                 val expected = listOf(
-                    Token.of(value = "2"),
-                    Token.of(value = "+"), Token.of(value = "3"),
-                    Token.of(value = "-"), Token.of(value = "5"),
+                    Token.from(value = "2"),
+                    Token.from(value = "+"), Token.from(value = "3"),
+                    Token.from(value = "-"), Token.from(value = "5"),
                 )
                 actual shouldContainExactly expected
             }

@@ -23,7 +23,7 @@ data class Token private constructor(
     }
 
     companion object {
-        fun of(value: String): Token {
+        fun from(value: String): Token {
             val tokenType = TokenType.getByValue(value = value)
             return Token(
                 type = tokenType,

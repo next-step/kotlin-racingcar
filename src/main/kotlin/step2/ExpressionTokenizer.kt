@@ -7,5 +7,5 @@ object ExpressionTokenizer {
         expression
             .split(SPACE)
             .filter { !it.isNullOrBlank() }
-            .map { Token.of(value = it) }
+            .map { Token.from(value = it) }
 }

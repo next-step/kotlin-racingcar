@@ -8,8 +8,8 @@ class TokenTest : FunSpec({
     context("isOperator 메서드는") {
         test("토큰이 연산자 유형인지 알 수 있다.") {
             // given
-            val operatorToken = Token.of(value = "+")
-            val operandToken = Token.of(value = "3")
+            val operatorToken = Token.from(value = "+")
+            val operandToken = Token.from(value = "3")
             // when & then
             operatorToken.isOperator() shouldBe true
             operandToken.isOperator() shouldBe false
@@ -19,8 +19,8 @@ class TokenTest : FunSpec({
     context("isOperand 메서드는") {
         test("토큰이 피연산자 유형인지 알 수 있다.") {
             // given
-            val operandToken = Token.of(value = "3")
-            val operatorToken = Token.of(value = "+")
+            val operandToken = Token.from(value = "3")
+            val operatorToken = Token.from(value = "+")
             // when & then
             operandToken.isOperand() shouldBe true
             operatorToken.isOperand() shouldBe false
@@ -31,7 +31,7 @@ class TokenTest : FunSpec({
         context("토큰이 연산자 유형이면") {
             test("기호에 해당하는 OperatorSign 을 구할 수 있다.") {
                 // given
-                val operatorToken = Token.of(value = "/")
+                val operatorToken = Token.from(value = "/")
                 // when & then
                 operatorToken.getOperatorSign() shouldBe OperatorSign.DIVIDE
             }
@@ -40,7 +40,7 @@ class TokenTest : FunSpec({
         context("토큰이 피연산자 유형이면") {
             test("IllegalStateException 가 발생한다.") {
                 // given
-                val operandToken = Token.of(value = "3")
+                val operandToken = Token.from(value = "3")
                 // when
                 val exception = assertThrows<IllegalStateException> {
                     operandToken.getOperatorSign()
@@ -55,7 +55,7 @@ class TokenTest : FunSpec({
         context("토큰이 피연산자 유형이면") {
             test("피연산자에 해당하는 숫자를 구할 수 있다.") {
                 // given
-                val operandToken = Token.of(value = "3")
+                val operandToken = Token.from(value = "3")
                 // when & then
                 operandToken.getOperandNumber() shouldBe 3
             }
@@ -64,7 +64,7 @@ class TokenTest : FunSpec({
         context("토큰이 연산자 유형이면") {
             test("IllegalStateException 가 발생한다.") {
                 // given
-                val operatorToken = Token.of(value = "/")
+                val operatorToken = Token.from(value = "/")
                 // when
                 val exception = assertThrows<IllegalStateException> {
                     operatorToken.getOperandNumber()
