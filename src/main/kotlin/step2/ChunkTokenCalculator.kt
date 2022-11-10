@@ -8,8 +8,7 @@ class ChunkTokenCalculator : TokenCalculator {
         return restTokens
             .chunked(2)
             .fold(firstOperandNumber) { acc, tokens ->
-                val operatorToken = tokens[0]
-                val operandToken = tokens[1]
+                val (operatorToken: Token, operandToken: Token) = tokens
                 val operatorFunction = OperatorFunction.get(operatorSign = operatorToken.getOperatorSign())
                 operatorFunction(acc, operandToken.getOperandNumber())
             }
