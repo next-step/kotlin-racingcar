@@ -38,13 +38,13 @@ internal class OperationTypeTest {
     @DisplayName("연산자 타입에 해당하는 수식을 연산한다.")
     fun calculateByOperator(
         given: String,
-        leftTerm: Double,
-        rightTerm: Double,
+        leftOperand: Double,
+        rightOperand: Double,
         expected: Double
     ) {
         // When
         val actual = OperationType.match(given)
-            .calculate(leftTerm, rightTerm)
+            .calculate(leftOperand, rightOperand)
 
         // Then
         assertThat(actual).isEqualTo(expected)
@@ -53,14 +53,14 @@ internal class OperationTypeTest {
     @ParameterizedTest
     @MethodSource
     @DisplayName("제수가 0인 경우 예외가 발생한다.")
-    fun throwException_WhenZeroDivisor(leftTerm: Double) {
+    fun throwException_WhenZeroDivisor(leftOperand: Double) {
         // Given
         val operationType = OperationType.DIVIDE
         val given = 0.0
 
         // When & Then
         assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy { operationType.calculate(leftTerm, given) }
+            .isThrownBy { operationType.calculate(leftOperand, given) }
     }
 
     companion object {
@@ -76,13 +76,13 @@ internal class OperationTypeTest {
 
         @JvmStatic
         fun calculateByOperator(): Stream<Arguments> {
-            val leftTerm = 4.0
-            val rightTerm = 2.0
+            val leftOperand = 4.0
+            val rightOperand = 2.0
             return Stream.of(
-                Arguments.of("+", leftTerm, rightTerm, 6.0),
-                Arguments.of("-", leftTerm, rightTerm, 2.0),
-                Arguments.of("*", leftTerm, rightTerm, 8.0),
-                Arguments.of("/", leftTerm, rightTerm, 2.0)
+                Arguments.of("+", leftOperand, rightOperand, 6.0),
+                Arguments.of("-", leftOperand, rightOperand, 2.0),
+                Arguments.of("*", leftOperand, rightOperand, 8.0),
+                Arguments.of("/", leftOperand, rightOperand, 2.0)
             )
         }
 

@@ -1,63 +1,35 @@
 package step2.calculator
 
-class StringCalculator(expression: String) {
-    init {
-        validateExpression(expression)
+class StringCalculator {
+    fun calculate(expression: String): Number {
+        val separateExpression: List<String> = ExpressionParser.parse(expression)
+        return calculateExpression(separateExpression)
     }
 
-    private fun validateExpression(expression: String) {
-        if (isLessThanMinimumExpressionLength(expression.trim().length)) {
-            throw IllegalArgumentException(LESS_THAN_MINIMUM_EXPRESSION_LENGTH_ERROR_MESSAGE)
-        }
-    }
+    private fun calculateExpression(separateExpression: List<String>): Number {
+        var result: Double = toOperand(separateExpression[0])
 
-    private fun isLessThanMinimumExpressionLength(length: Int) = length < MINIMUM_EXPRESSION_LENGTH
-
-    private val separateExpression = expression.split(DELIMITER)
-    private var result = coverToTerm(0)
-
-    fun calculate(): Number {
-        separateExpression.forEachIndexed { index, it ->
-            operateEachExpression(index, it)
+        for (i in 1 until separateExpression.size step 2) {
+            val operator: OperationType = OperationType.match(separateExpression[i])
+            val rightOperand: Double = toOperand(separateExpression[i + 1])
+            result = operator.calculate(result, rightOperand)
         }
         return calibrate(result)
     }
 
+    private fun toOperand(currentValue: String): Double = validateOperand(currentValue)
+
     private fun calibrate(result: Double): Number {
-        if (result % 1 == 0.0) {
+        if (result.hasNoRemainder()) {
             return result.toInt()
         }
         return result
     }
 
-    private fun operateEachExpression(index: Int, currentValue: String) {
-        if (isOddIndex(index)) {
-            val operation = OperationType.match(currentValue)
-            val rightTerm = coverToTerm(index + 1)
-            result = operation.calculate(result, rightTerm)
-        }
-    }
-
-    private fun isOddIndex(index: Int): Boolean = index % 2 != 0
-
-    private fun coverToTerm(index: Int): Double {
-        validateTerm(separateExpression[index])
-        return separateExpression[index].toDouble()
-    }
-
-    private fun validateTerm(currentValue: String) {
-        if (isNotNumber(currentValue)) {
-            throw IllegalArgumentException(INVALID_NUMBER_ERROR_MESSAGE)
-        }
-    }
-
-    private fun isNumber(currentValue: String) = currentValue.toDoubleOrNull() != null
-    private fun isNotNumber(currentValue: String) = !isNumber(currentValue)
+    private fun validateOperand(currentValue: String) =
+        requireNotNull(currentValue.toDoubleOrNull()) { INVALID_NUMBER_ERROR_MESSAGE }
 
     companion object {
-        private const val LESS_THAN_MINIMUM_EXPRESSION_LENGTH_ERROR_MESSAGE = "최소 두개의 항과 1개의 연산자를 입력하세요"
         private const val INVALID_NUMBER_ERROR_MESSAGE = "연산 대상 항목에는 숫자만 입력하세요"
-        private const val DELIMITER = " "
-        private const val MINIMUM_EXPRESSION_LENGTH = 3
     }
 }

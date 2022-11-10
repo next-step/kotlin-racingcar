@@ -32,5 +32,47 @@
   * [x] Double 타입으로 연산한 결과가 정수인 경우 소수점 영역 제외 처리
 
 ## 용어 정리
-* 표현식 : 항과 연산자로 구성된 수식
-* 제수 : 나누는 수
+* 표현식, Expression : 피연산자와 연산자로 구성된 수식
+* 연산자, Operator : 데이터를 처리하는 기호
+* 피연산자, Operand : 처리될 데이터
+* 제수, Divisor : 나누는 수
+
+---
+## 코드 리뷰 피드백 내용 정리
+* [x] 일급 시민을 이용하여 Enum의 각 상태에 해당하는 함수를 구현하기 위해 부가적으로 작성된 코드 제거
+* [x] Kotlin의 requrie(), requireNotNull() 적용을 통해 유효성 검증 부의 구현 편의성 및 가독성 개선   
+* [x] 약어로 표현된 변수의 구체적인 의미 표현을 통한 가독성 개선
+* [x] Double,Int 타입 파라미터의 유효성 검증을 위한 확장 함수 작성
+* [x] String.format()으로 작성된 코드를 String의 확장 함수 format()으로 대체
+* [x] StringCalculator 클래스를 재활용 할 수 있도록 상태를 가지는 변수 제거
+* [x] 문자열 계산기의 역할과 책임 분리
+  - ExpressionParser : 문자열로 입력된 표현식의 유효성 검증 및 구분자를 기준으로 값 분리
+  - StringCalculator : 분리된 각 피연산자의 유효성 검증 및 연산자와 피연산자를 선택하여 수식 생성 및 연잔자의 계산 부 호출  
+  - OperationType : 연산자 타입에 따른 값 계산
+* [x] 피연산자 표현하는 명확하지 않은 변수명 수정 : *Term -> *Operand
+* [x] 과도하게 분리되어 가독성이 떨어지는 유효성 검증 함수를 Kotlin의 requireNotNull()을 이용하여 편의성 및 가독성 개선
+* [x] 함수의 반환형 생략으로 인해 함수 동작 결과가 왜곡되어 전달될 수 있는 부분 개선
+
+## Step2 회고
+```
+아직은 자바로 작성하는 것에 익숙하여 함수형을 지향하는 코틀린스러운 코드 작성에 어색함이 있다.
+자바로 익숙하게 작성되는 코드들이 코틀린이 제공하는 여러 기능을 통해 어떻게 코틀린스럽게 표현될 수 있는지에 대한 학습과 고민이 필요하다.
+```
+
+### 예외처리
+- AS-IS : Java에서 작성하던 `if(notAllowedCondition()) -> thorw *Exception`의 예외 처리 패턴
+- TO-BE : Kotlin에서 제공하는 IllegalArgumentException, IllegalStateException을 편리하게 다룰 수 있는 require(), requireNotNull(), check(), checkNotNull()을 활용하여 예외처리에 대한 구현 편의성과 가독성 개선
+
+### 일급시민  
+- AS-IS : Java의 BiFunction 인터페이스를 이용하여 별도의 구현체를 이용한 함수형 메소드 작성
+- TO-BE : Kotlin의 일급 시민을 활용하여 부가적인 구현체 코드 작성이 없어 구현 편의성과 가독성이 개선될 수 있음
+
+### 확장함수
+- AS-IS : Java에서 각 메서드가 하나의 기능만 수행하기 위해 더 작은 단위로 작성되는 과정에서 하나의 클래스에 많은 메서드들이 위치
+- TO-BE : Application 에서 공통적으로 사용될 수 있는 함수를 특정 타입에 대해 확장 함수를 구현함으로써, 각 클래스에는 비지니스 처리를 위한 핵심 로직만을 위치시켜 가독성과 유지보수성 개선될 수 있음
+
+### 테스트
+- JUnit : 기존 경우의 수 TC 작성 시, @ParameterizedTest + @MethodSource를 즐겨 사용하였으나, 파라미터 주입부인 static 메서드와 TC 실행부가 분리되어 TC가 많아지는 경우 관리에 어려움이 있었음
+- Kotest : 여러 Spec을 제공하며, 경우의 수 TC 작성 시, 파라미터 작성부와 실행부가 하나의 단위로 구성되어 TC 가독성 및 관리가 용이 
+  - 다만, 기존 @ParameterizedTest(name = "")을 이용하여 각 테스트를 명시적으로 표현하는 부분을 Kotest로 대체하는 부분에 익숙치 않아 테스트를 명시적으로 표현하는 여러 방법에 대한 연습이 필요
+  - Spring Boot 개발환경에서 openApi3.yml + redoc cli를 이용한 API 문서 구성 시, JUnit으로 작성된 각 TC의 method 명이 API 설명으로 들어가는 단점을 Kotest를 이용해서 해결 할 수 있을지에 대한 확인 필요
