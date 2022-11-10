@@ -12,13 +12,8 @@ enum class OperatorSign(
 
     companion object {
         fun getBySign(sign: String): OperatorSign {
-            return when (sign) {
-                PLUS.sign -> PLUS
-                MINUS.sign -> MINUS
-                MULTIPLE.sign -> MULTIPLE
-                DIVIDE.sign -> DIVIDE
-                else -> throw IllegalArgumentException("연산 기호는 +, -, *, / 만 입력할 수 있습니다.")
-            }
+            return OperatorSign.values().find { it.sign == sign }
+                ?: throw throw IllegalArgumentException("연산 기호는 +, -, *, / 만 입력할 수 있습니다.")
         }
     }
 }
