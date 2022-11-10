@@ -1,6 +1,6 @@
 package racingcar
 
-class Random : FowardStrategy {
+class Random : ForwardStrategy {
     override fun generateInt(): Int = seed.random()
 
     companion object {

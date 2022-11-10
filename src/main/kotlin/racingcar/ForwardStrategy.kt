@@ -1,5 +1,5 @@
 package racingcar
 
-fun interface FowardStrategy {
+fun interface ForwardStrategy {
     fun generateInt(): Int
 }

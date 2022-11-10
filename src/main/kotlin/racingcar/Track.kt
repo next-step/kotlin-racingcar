@@ -3,7 +3,7 @@ package racingcar
 import racingcar.io.InputView
 import racingcar.io.ResultView
 
-class Track(private val random: FowardStrategy) {
+class Track(private val random: ForwardStrategy) {
 
     fun play() {
         ResultView.printMessage(ResultView.Message.CAR_NAMES_WITH_COMMA)
