@@ -2,6 +2,13 @@ package racing.view
 
 object GameInputView {
 
+    fun inputNameOfRacingCars(): String {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
+        val nameOfRacingCars = readLine()!!
+        require(nameOfRacingCars.isNotBlank()) { "입력값이 null 혹은 공백일 수 없습니다." }
+        return nameOfRacingCars
+    }
+
     fun inputRacingCarCount(): Int {
         println("자동차 대수는 몇 대인가요?")
         val racingCarCount = readLine()!!.toInt()
