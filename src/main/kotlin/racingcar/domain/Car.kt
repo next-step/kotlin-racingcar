@@ -10,7 +10,7 @@ class Car : Moveable {
     }
 
     override fun stop() {
-        currentPosition
+
     }
 
     companion object {
