@@ -19,4 +19,18 @@ class TokenTypeTest : FunSpec({
             }
         }
     }
+
+    context("isOperator 메서드는") {
+        test("연산자 유형이면 true 를 피연산자 유형이면 false 를 반환한다.") {
+            TokenType.OPERATOR.isOperator() shouldBe true
+            TokenType.OPERAND.isOperator() shouldBe false
+        }
+    }
+
+    context("isOperand 메서드는") {
+        test("피연산자 유형이면 true 를 연산자 유형이면 false 를 반환한다.") {
+            TokenType.OPERAND.isOperand() shouldBe true
+            TokenType.OPERATOR.isOperand() shouldBe false
+        }
+    }
 })

@@ -5,11 +5,11 @@ data class Token private constructor(
     val value: String,
 ) {
     fun isOperator(): Boolean {
-        return this.type == TokenType.OPERATOR
+        return this.type.isOperator()
     }
 
     fun isOperand(): Boolean {
-        return this.type == TokenType.OPERAND
+        return this.type.isOperand()
     }
 
     fun getOperatorSign(): OperatorSign {
