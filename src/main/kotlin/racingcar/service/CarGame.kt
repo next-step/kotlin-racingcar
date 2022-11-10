@@ -9,8 +9,4 @@ class CarGame(carCount: Int) {
     fun play() {
         cars.forEach { it.move(Score.random()) }
     }
-
-    fun printDashboard(outputSource: (Car) -> Unit) {
-        cars.forEach(outputSource)
-    }
 }

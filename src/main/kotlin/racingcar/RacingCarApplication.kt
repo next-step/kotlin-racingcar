@@ -2,6 +2,7 @@ package racingcar
 
 import racingcar.service.CarGame
 import racingcar.view.InputView
+import racingcar.view.ResultView
 
 object RacingCarApplication {
     @JvmStatic
@@ -11,14 +12,10 @@ object RacingCarApplication {
 
         val carGame = CarGame(carCount)
 
-        println("\n실행결과")
+        ResultView.printHeader()
         repeat(tryCount) {
             carGame.play()
-            carGame.printDashboard { car ->
-                car.repeatForEachPosition { print("-") }
-                println()
-            }
-            println()
+            ResultView.printDashBoard(carGame)
         }
     }
 }

@@ -10,6 +10,4 @@ class Car(val position: Position = Position()) {
             position.increase(DEFAULT_SPEED)
         }
     }
-
-    fun repeatForEachPosition(consumer: () -> Unit) = repeat(position.value) { consumer() }
 }
