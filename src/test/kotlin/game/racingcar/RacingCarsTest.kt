@@ -1,5 +1,6 @@
 package game.racingcar
 
+import game.racingcar.domain.RacingCar
 import game.racingcar.domain.RacingCars
 import game.racingcar.move.AlwaysMoveStrategy
 import org.assertj.core.api.Assertions.assertThat
@@ -12,7 +13,7 @@ internal class RacingCarsTest {
     @Test
     fun `RacingCars가 AlwaysMoveStrategy로 생성되었을 때 모두 위치가 1씩 증가한다`() {
         // given
-        val racingCars = RacingCars(listOf("haris", "horis", "huris"), AlwaysMoveStrategy())
+        val racingCars = RacingCars(listOf("haris", "horis", "huris").map { RacingCar(it, AlwaysMoveStrategy()) })
         // when
         val snapshot = racingCars.moveAll()
         // then
@@ -24,7 +25,7 @@ internal class RacingCarsTest {
     @Test
     fun `RacingCars가 AlawaysMoveStrategy로 생성되었을 때 승자는 모두가 된다`() {
         // given
-        val racingCars = RacingCars(listOf("haris", "horis", "huris"), AlwaysMoveStrategy())
+        val racingCars = RacingCars(listOf("haris", "horis", "huris").map { RacingCar(it, AlwaysMoveStrategy()) })
 
         // when
         racingCars.moveAll()

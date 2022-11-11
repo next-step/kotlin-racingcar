@@ -1,5 +1,6 @@
 package game.racingcar
 
+import game.racingcar.domain.RacingCar
 import game.racingcar.domain.RacingCarGame
 import game.racingcar.domain.RacingCars
 import game.racingcar.move.AlwaysMoveStrategy
@@ -11,7 +12,8 @@ internal class RacingCarGameTest() {
     @Test
     fun `RacingCarGame이 AlwaysMoveStrategy로 생성되었을 때 위치 스냅샷이 1씩 증가한다`() {
         // given
-        val racingCarGame = RacingCarGame(5, RacingCars(listOf("haris", "horis", "huris"), AlwaysMoveStrategy()))
+        val racingCars = RacingCars(listOf("haris", "horis", "huris").map { RacingCar(it, AlwaysMoveStrategy()) })
+        val racingCarGame = RacingCarGame(5, racingCars)
 
         // when
         val locationSnapshots = racingCarGame.play()

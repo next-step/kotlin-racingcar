@@ -1,15 +1,10 @@
 package game.racingcar.domain
 
 import game.racingcar.dto.CarLocation
-import game.racingcar.move.MoveStrategy
-import game.racingcar.move.RandomMoveStrategy
 
 class RacingCars(
-    carNames: List<String>,
-    moveStrategy: MoveStrategy = RandomMoveStrategy()
+    private val racingCars: List<RacingCar>
 ) {
-    private val racingCars = carNames.map { RacingCar(it, moveStrategy) }
-
     fun moveAll(): List<CarLocation> {
         return racingCars.onEach { it.move() }
             .map { CarLocation(it.name, it.location) }

@@ -1,5 +1,6 @@
 package game.racingcar
 
+import game.racingcar.domain.RacingCar
 import game.racingcar.domain.RacingCarGame
 import game.racingcar.domain.RacingCars
 import game.racingcar.move.RandomMoveStrategy
@@ -9,7 +10,7 @@ import game.racingcar.view.OutputView
 fun main() {
     val (carNames, numberOfTrials) = InputView.getInputFromConsole()
 
-    val racingCars = RacingCars(carNames, RandomMoveStrategy())
+    val racingCars = RacingCars(carNames.map { RacingCar(it, RandomMoveStrategy()) })
     val racingCarGame = RacingCarGame(numberOfTrials, racingCars)
     val racingCarPlayResult = racingCarGame.play()
 
