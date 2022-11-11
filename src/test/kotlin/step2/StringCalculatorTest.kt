@@ -36,11 +36,4 @@ class StringCalculatorTest {
         Assertions.assertThatThrownBy { StringCalculator(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
     }
-
-    @DisplayName("정수 검증 테스트")
-    @Test
-    fun `정수 검증 테스트`() {
-        Assertions.assertThatThrownBy { StringCalculator.validateOperand("ABC") }
-            .isInstanceOf(NumberFormatException::class.java)
-    }
 }
