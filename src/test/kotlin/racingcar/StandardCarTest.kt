@@ -14,7 +14,7 @@ class StandardCarTest : StringSpec({
 
                 car.move(it)
 
-                car.position shouldBe expected
+                car.position() shouldBe expected
             }
     }
 
@@ -25,7 +25,7 @@ class StandardCarTest : StringSpec({
 
                 car.move(it)
 
-                car.position shouldBe Position.ZERO
+                car.position() shouldBe Position.ZERO
             }
     }
 })
