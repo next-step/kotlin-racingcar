@@ -1,8 +1,11 @@
 package racing.domain
 
-class RacingGame(carCount: Int, tryCount: Int) {
-    private var cars: Cars = Cars(carCount)
-    private var rounds: Rounds = Rounds(tryCount)
+class RacingGame(
+    private var cars: Cars,
+    private val rounds: Rounds
+) {
+    constructor(carCount: Int, tryCount: Int) : this(Cars(carCount), Rounds(tryCount))
+
     private var result: Result = Result()
 
     fun play(): Result {
