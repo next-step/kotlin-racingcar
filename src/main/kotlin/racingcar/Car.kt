@@ -1,12 +1,12 @@
 package racingcar
 
-class Car(position: Int = 0) {
-    var position: Int = position
-        private set
-
-    fun move(foreword: Int) {
-        if (foreword >= FOREWORD_CRITERIA) this.position++
-    }
+data class Car(
+    val name: String,
+    val position: Int = 0
+) {
+    fun move(foreword: Int): Car =
+        if (foreword >= FOREWORD_CRITERIA) this.copy(position = this.position.inc())
+        else this
 
     companion object {
         private const val FOREWORD_CRITERIA = 4
