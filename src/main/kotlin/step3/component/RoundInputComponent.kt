@@ -3,7 +3,7 @@ package step3.component
 import step3.RoundFactory
 import step3.RoundStore
 
-class RoundInputComponent: Component {
+class RoundInputComponent : Component {
     private var inputComponent: InputComponent
 
     init {
