@@ -6,9 +6,8 @@ class RacingGame(
 ) {
     constructor(carCount: Int, tryCount: Int) : this(Cars(carCount), Rounds(tryCount))
 
-    private var result: Result = Result()
-
     fun play(): Result {
+        var result = Result()
         while (rounds.hasNext()) {
             cars = rounds.play(cars)
             result.add(cars)
