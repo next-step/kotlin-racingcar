@@ -29,6 +29,6 @@ class CarTest {
         val carA = cars.filter { it.name == "A" }
         carA.first().drive(Gear.FORWARD)
 
-        assertThat(Car.getFurthestCars(cars)).isEqualTo("A")
+        assertThat(Car.getFurthestCars(cars).first().name).isEqualTo("A")
     }
 }

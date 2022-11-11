@@ -21,9 +21,9 @@ class Car(val name: String) : Moveable {
     companion object {
         fun registerCars(NamesOfCars: List<String>) = Array(NamesOfCars.size) { Car(NamesOfCars[it]) }
 
-        fun getFurthestCars(cars: Array<Car>): String {
+        fun getFurthestCars(cars: Array<Car>): List<Car> {
             val max = cars.maxOf { it.currentPosition }
-            return cars.filter { it.currentPosition == max }.joinToString(", ") { it.name }
+            return cars.filter { it.currentPosition == max }
         }
     }
 }

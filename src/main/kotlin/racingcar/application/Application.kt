@@ -21,6 +21,6 @@ class Application {
         }
 
         val winners = Car.getFurthestCars(cars)
-        ResultView.getWinner(winners)
+        ResultView.presentWinner(winners)
     }
 }

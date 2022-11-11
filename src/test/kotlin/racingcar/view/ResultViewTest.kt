@@ -5,6 +5,7 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import racingcar.domain.Car
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 
@@ -33,7 +34,7 @@ class ResultViewTest {
     @Test
     @DisplayName("A인 자동차가 우승할 경우 A가 최종 우승했습니다.")
     fun `If a car wins, A wins the final victory`() {
-        ResultView.getWinner("A")
+        ResultView.presentWinner(listOf(Car("A")))
         assertThat(outputStreamCaptor.toString().trim { it <= ' ' }).isEqualTo("A가 최종 우승했습니다.")
     }
 }
