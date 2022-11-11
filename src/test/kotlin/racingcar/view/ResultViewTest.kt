@@ -29,4 +29,11 @@ class ResultViewTest {
         ResultView.presentSituation("홍길동", 5)
         assertThat(outputStreamCaptor.toString().trim { it <= ' ' }).isEqualTo("홍길동 : -----")
     }
+
+    @Test
+    @DisplayName("A인 자동차가 우승할 경우 A가 최종 우승했습니다.")
+    fun `If a car wins, A wins the final victory`() {
+        ResultView.getWinner("A")
+        assertThat(outputStreamCaptor.toString().trim { it <= ' ' }).isEqualTo("A가 최종 우승했습니다.")
+    }
 }
