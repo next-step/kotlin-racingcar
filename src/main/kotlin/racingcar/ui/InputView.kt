@@ -7,21 +7,17 @@ object InputView {
 
     fun requestCarNum(): Int {
         println(READ_LINE_CAR_NUM_INTRO_RESOURCE)
-        val carNum = requireNotNull(readLine()) { "carNum must be not null" }.toIntOrNull()
-        carNum.also {
-            checkNotNull(it) { "carNum must be Integer" }
-            check(it > 0) { "number of cars must be more than 0" }
-        }
-        return carNum!!
+        return readInt("carNum")
     }
 
     fun requestExecuteNum(): Int {
         println(READ_LINE_EXECUTE_NUM_INTRO_RESOURCE)
-        val executeNum = requireNotNull(readLine()) { "executeNum must be not null" }.toIntOrNull()
-        executeNum.also {
-            checkNotNull(it) { "executeNum must be Integer" }
-            check(it > 0) { "number of executions must be more than 0" }
-        }
-        return executeNum!!
+        return readInt("executeNum")
     }
+
+    private fun readInt(subject: String): Int =
+        requireNotNull(readLine()?.toIntOrNull()) { "$subject must be Integer" }
+            .also {
+                check(it > 0) { "$subject must be more than 0" }
+            }
 }
