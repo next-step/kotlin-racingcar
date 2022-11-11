@@ -14,7 +14,8 @@ class RacingCars(
         return carsIn(getMaxLocation())
     }
 
-    private fun carsIn(maxLocation: Int) = racingCars.filter { it.location == maxLocation }.map { it.name }
+    private fun carsIn(maxLocation: Int) = racingCars.filter { it.location == maxLocation }
+        .map { it.name }
 
     private fun getMaxLocation() = racingCars.maxOf { it.location }
 }
