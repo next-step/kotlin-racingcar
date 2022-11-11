@@ -7,11 +7,11 @@ object Input {
 
     fun readCarCount(): Int {
         println(READ_CAR_MESSAGE)
-        return readLine()!!.toInt()
+        return readln().toInt()
     }
 
     fun readTryCount(): Int {
         println(READ_TRY_MESSAGE)
-        return readLine()!!.toInt()
+        return readln().toInt()
     }
 }
