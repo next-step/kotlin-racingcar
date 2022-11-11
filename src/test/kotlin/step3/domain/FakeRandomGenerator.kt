@@ -2,12 +2,10 @@ package step3.domain
 
 import racingcar.domain.RandomGenerator
 
-class FakeRandomGenerator : RandomGenerator {
-    override val candidates: List<Int> = (0..9).toList()
+class FakeTrueGenerator : RandomGenerator {
+    override fun getRandomValidation(): Boolean = true
+}
 
-    override fun getRandomNumber(): Int = candidates[4]
-
-    var isValid: Boolean = true
-
-    override fun getRandomValidation(): Boolean = isValid
+class FakeFalseGenerator : RandomGenerator {
+    override fun getRandomValidation(): Boolean = false
 }

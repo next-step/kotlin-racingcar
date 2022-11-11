@@ -11,10 +11,8 @@ class RacingGameTest : BehaviorSpec({
     given("레이싱 게임을 할 차를 등록한다") {
         val car = DefaultCar()
         val cars: List<Car> = listOf(car)
-        val fakeRandomGenerator = FakeRandomGenerator()
-        val racingGame = RacingGame(fakeRandomGenerator, cars)
         `when`("랜덤값이 유효하지 않다면") {
-            fakeRandomGenerator.isValid = false
+            val racingGame = RacingGame(FakeFalseGenerator(), cars)
             racingGame.race()
             then("차가 전진하지 않는다") {
                 racingGame.cars.forEach { car ->
@@ -23,7 +21,7 @@ class RacingGameTest : BehaviorSpec({
             }
         }
         `when`("랜덤값이 유효하면") {
-            fakeRandomGenerator.isValid = true
+            val racingGame = RacingGame(FakeTrueGenerator(), cars)
             racingGame.race()
             then("차가 전진한다") {
                 racingGame.cars.forEach { car ->
