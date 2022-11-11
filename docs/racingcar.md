@@ -4,6 +4,7 @@
 
 ### 입력
 - [x] 자동차 이름의 입력이 pobi,crong,honux 일 경우 3대의 자동차 등록이 됨
+- [x] 자동차 이름의 입력이 5자를 초과할 경우 IllegalArgumentException 오류
 - [x] 자동차 이름의 입력이 공백일 경우 IllegalArgumentException 오류
 - [x] 시도할 횟수의 입력 값이 0일 경우 IllegalArgumentException 오류
 

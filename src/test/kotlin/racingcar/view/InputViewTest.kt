@@ -31,6 +31,17 @@ class InputViewTest {
     }
 
     @ParameterizedTest
+    @DisplayName("자동차 이름의 입력이 5자를 초과할 경우 IllegalArgumentException 오류")
+    @ValueSource(strings = ["asdfghjkll\n5"])
+    fun `Error when participant input value is 5 length`(input: String) {
+        val inputStream = InputStream.generate(input)
+        System.setIn(inputStream)
+        assertThrows<IllegalArgumentException> {
+            InputView.register()
+        }
+    }
+
+    @ParameterizedTest
     @DisplayName("시도할 횟수의 입력 값이 0일 경우 IllegalArgumentException 오류")
     @ValueSource(strings = ["pobi,crong,honux\n0"])
     fun `Error when number input value is 0`(input: String) {
