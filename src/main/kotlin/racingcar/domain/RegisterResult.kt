@@ -1,3 +1,3 @@
 package racingcar.domain
 
-data class RegisterResult(val participant: Int, val times: Int)
+data class RegisterResult(val participant: List<String>, val times: Int)

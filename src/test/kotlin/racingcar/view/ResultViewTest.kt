@@ -24,9 +24,9 @@ class ResultViewTest {
     }
 
     @Test
-    @DisplayName("현재 위치가 5일경우 ----- 값을 반환해야함")
+    @DisplayName("자동차 이름이 홍길동이고 현재 위치가 5일경우 홍길동 : ----- 값을 반환해야함")
     fun `Returns a ------value if the current location is 5`() {
-        ResultView.presentSituation(5)
-        assertThat(outputStreamCaptor.toString().trim { it <= ' ' }).isEqualTo("-----")
+        ResultView.presentSituation("홍길동", 5)
+        assertThat(outputStreamCaptor.toString().trim { it <= ' ' }).isEqualTo("홍길동 : -----")
     }
 }

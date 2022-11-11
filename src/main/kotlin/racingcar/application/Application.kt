@@ -15,7 +15,7 @@ class Application {
         repeat(register.times) {
             cars.forEach {
                 it.drive(RandomGear.getGear())
-                ResultView.presentSituation(it.currentPosition)
+                ResultView.presentSituation(it.name, it.currentPosition)
             }
             println()
         }
