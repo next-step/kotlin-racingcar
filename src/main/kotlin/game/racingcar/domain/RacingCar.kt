@@ -13,7 +13,7 @@ class RacingCar(
 
     init {
         require(name.length <= 5) { "이름의 길이는 5자를 초과할 수 없습니다. 입력 값 : $name" }
-        require(name.isNotEmpty()) { "이름은 빈 문자열일 수 없습니다." }
+        require(name.isNotBlank()) { "이름은 빈 문자열일 수 없습니다." }
     }
 
     fun move() {
