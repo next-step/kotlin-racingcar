@@ -1,17 +1,19 @@
 package car_race.logic.car
 
+import car_race.logic.system.MovingSystem
+
 data class CarPosition(
     private var value: Int = 0
 ) {
+    fun getValue() = value
+
     fun nextRound() {
-        val randomNum = DICE_RANGE.random()
+        val randomNum = MovingSystem.rollDice()
+
         value += if (randomNum >= DIVIDE_NUMBER) 1 else 0
     }
 
-    fun getValue() = value
-
     companion object {
-        private val DICE_RANGE = (0..9)
         private const val DIVIDE_NUMBER = 4
     }
 }
