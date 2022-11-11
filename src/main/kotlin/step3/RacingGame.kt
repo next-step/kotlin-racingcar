@@ -1,7 +1,7 @@
 package step3
 
-import step3.domain.Car
-import step3.domain.Cars
+import step3.domain.car.Car
+import step3.domain.car.Cars
 import step3.view.InputView
 import step3.view.ResultView
 

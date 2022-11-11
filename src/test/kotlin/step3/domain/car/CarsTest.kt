@@ -1,4 +1,4 @@
-package step3.domain
+package step3.domain.car
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy

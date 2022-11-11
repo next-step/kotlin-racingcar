@@ -1,9 +1,10 @@
-package step3.domain
+package step3.domain.car
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import step3.domain.car.status.Position
 
 class CarTest {
     private lateinit var car: Car

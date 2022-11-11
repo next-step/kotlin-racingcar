@@ -1,6 +1,6 @@
 package step3.view
 
-import step3.domain.Cars
+import step3.domain.car.Cars
 
 class ResultView {
     companion object {

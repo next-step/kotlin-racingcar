@@ -1,4 +1,4 @@
-package step3.domain
+package step3.util
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
@@ -16,7 +16,12 @@ class UtilsTest {
     @DisplayName("Random 숫자 생성 예외처리 테스트")
     @Test
     fun `Random 숫자 생성 예외처리 테스트`() {
-        assertThatThrownBy { Utils.generateRandomNumber(Utils.RANDOM_NUMBER_END_INDEX, Utils.RANDOM_NUMBER_START_INDEX) }
+        assertThatThrownBy {
+            Utils.generateRandomNumber(
+                Utils.RANDOM_NUMBER_END_INDEX,
+                Utils.RANDOM_NUMBER_START_INDEX
+            )
+        }
             .isInstanceOf(IllegalArgumentException::class.java)
     }
 }

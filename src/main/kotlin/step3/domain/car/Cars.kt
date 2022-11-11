@@ -1,4 +1,7 @@
-package step3.domain
+package step3.domain.car
+
+import step3.domain.car.status.Position
+import step3.util.Utils
 
 data class Cars(val car: List<Car>) {
     private val cars = car

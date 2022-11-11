@@ -1,4 +1,6 @@
-package step3.domain
+package step3.domain.car
+
+import step3.domain.car.status.Position
 
 private const val MOVING_MINIMUM_CONDITION_NUMBER = 4
 

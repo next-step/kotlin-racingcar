@@ -1,4 +1,4 @@
-package step3.domain
+package step3.domain.car.status
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
