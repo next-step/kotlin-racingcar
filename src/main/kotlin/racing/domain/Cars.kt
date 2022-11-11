@@ -15,4 +15,9 @@ object Cars {
 
         return cars.toMutableList()
     }
+
+    fun getWinnerCars(cars: List<Car>): List<Car> {
+        val maxPosition = cars.maxOf { car -> car.position }
+        return cars.filter { car -> car.position == maxPosition }
+    }
 }
