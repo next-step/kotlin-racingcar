@@ -33,4 +33,12 @@ internal class RacingCarTest {
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("이름은 빈 문자열일 수 없습니다.")
     }
+
+    @Test
+    fun `이름이 blank 문자열로 생성되면 IllegalArgumentException이 발생한다`() {
+        // when & then
+        assertThatThrownBy { RacingCar(name = " ") }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("이름은 빈 문자열일 수 없습니다.")
+    }
 }
