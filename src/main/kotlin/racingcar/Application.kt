@@ -2,11 +2,10 @@ package racingcar
 
 fun main() {
     try {
-        val carRacing = CarRacing(createCarRacers())
+        val carRacing = CarRacing(carRacers = createCarRacers(), count = InputView.readTryCount())
+        val raceResult = carRacing.result()
 
-        carRacing.start(InputView.readTryCount())
-
-        OutputView.writeResult(carRacing.result())
+        OutputView.writeResult(raceResult)
     } catch (e: RuntimeException) {
         OutputView.writeError(e)
     }

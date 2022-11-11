@@ -15,46 +15,28 @@ class CarRacingTest : StringSpec({
         shouldThrowAny { CarRacing(carRacers = emptyList()) }
     }
 
-    "종료된 경주는 다시 시작할 수 없다" {
-        val carRacing = CarRacing(
-            carRacers = listOf(CarRacer(StandardCar(), RandomCarControl())),
-            status = Status.FINISHED
-        )
-
-        shouldThrowAny { carRacing.start() }
-    }
-
     "시도할 횟수가 0이하면 경주를 시작할 수 없다" {
         listOf(0, -1, -2)
             .forAll {
-                val carRacing = CarRacing(carRacers = listOf(CarRacer(StandardCar(), RandomCarControl())))
-
-                shouldThrowAny { carRacing.start(it) }
+                shouldThrowAny {
+                    CarRacing(
+                        carRacers = listOf(CarRacer(StandardCar(), RandomCarControl())),
+                        count = it
+                    )
+                }
             }
     }
 
     "시도할 횟수가 1이상이고 준비상태면 경주를 시작할 수 있다" {
         listOf(1, 2, 3)
             .forAll {
-                val carRacing = CarRacing(carRacers = listOf(CarRacer(StandardCar(), RandomCarControl())))
-
-                shouldNotThrowAny { carRacing.start(it) }
+                shouldNotThrowAny {
+                    CarRacing(
+                        carRacers = listOf(CarRacer(StandardCar(), RandomCarControl())),
+                        count = it
+                    )
+                }
             }
-    }
-
-    "종료된 경주가 아니면 결과를 확인할 수 없다" {
-        val carRacing = CarRacing(carRacers = listOf(CarRacer(StandardCar(), RandomCarControl())))
-
-        shouldThrowAny { carRacing.result() }
-    }
-
-    "종료된 경주면 결과를 확인할 수 있다" {
-        val carRacing = CarRacing(
-            carRacers = listOf(CarRacer(StandardCar(), RandomCarControl())),
-            status = Status.FINISHED
-        )
-
-        shouldNotThrowAny { carRacing.result() }
     }
 
     "자동차 경주 결과가 정상적으로 반환된다" {
@@ -63,10 +45,8 @@ class CarRacingTest : StringSpec({
                 CarRacer(StandardCar(), ForwardCarControl),
                 CarRacer(StandardCar(), StopCarControl)
             ),
-            status = Status.READY
+            count = 2
         )
-
-        carRacing.start(2)
 
         val result = carRacing.result()
 

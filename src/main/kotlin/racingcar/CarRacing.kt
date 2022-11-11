@@ -1,22 +1,27 @@
 package racingcar
 
 class CarRacing(
-    private val carRacers: List<CarRacer>,
-    private var status: Status = Status.READY
+    private val count: Int = 1,
+    private val carRacers: List<CarRacer>
 ) {
     private val records: MutableList<Record> = mutableListOf()
+    private var result: RaceResult? = null
 
     init {
+        require(count > 0) { "시도할 횟수는 1이상 이어야 합니다." }
         require(carRacers.isNotEmpty()) { "자동차 경주에 참여할 대상이 없습니다." }
     }
 
-    fun start(count: Int = 1) {
-        require(count > 0) { "시도할 횟수는 1이상 이어야 합니다." }
-        check(status.isReady()) { "자동차 경주를 시작할 수 없습니다." }
+    fun result(): RaceResult {
+        if (result != null) {
+            return result as RaceResult
+        }
 
         repeat(count) { race(it) }
 
-        status = Status.FINISHED
+        result = records.groupBy { it.round }
+
+        return result as RaceResult
     }
 
     private fun race(round: Round) {
@@ -24,11 +29,5 @@ class CarRacing(
             it.drive()
             records.add(Record(round, it))
         }
-    }
-
-    fun result(): RaceResult {
-        check(status.isFinished()) { "자동차 경주 결과를 확인할 수 없습니다." }
-
-        return records.groupBy { it.round }
     }
 }

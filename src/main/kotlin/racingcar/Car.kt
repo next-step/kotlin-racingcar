@@ -1,6 +1,6 @@
 package racingcar
 
 interface Car {
-    var position: Position
+    val position: Position
     fun move(power: Int)
 }
