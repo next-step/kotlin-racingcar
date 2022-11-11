@@ -28,4 +28,8 @@ class StandardCarTest : StringSpec({
                 car.position() shouldBe Position.ZERO
             }
     }
+
+    "기본 생성자로 자동차를 생성하면 초기 위치는 0이다" {
+        StandardCar().position() shouldBe Position.ZERO
+    }
 })
