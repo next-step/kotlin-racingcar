@@ -40,15 +40,6 @@ internal class CarTest {
         assertThat(car.position).isEqualTo(0)
     }
 
-    // @Test
-    // fun `이동에 따른 마크 정상 출력`() {
-    //     repeat(10) {
-    //         car.move()
-    //     }
-    //     GameOutputView.printPositions(car)
-    //     assertThat(GameOutputView.POSITION_MARK.repeat(car.position)).isEqualTo(outputStreamCaptor.toString().trim())
-    // }
-
     @AfterEach
     fun tearDown() {
         System.setOut(standardOut)

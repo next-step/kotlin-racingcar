@@ -1,15 +1,14 @@
 package racing.domain
 
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.api.Test
 
 internal class GameTest {
 
-    @ParameterizedTest
-    @CsvSource("1,3", "3,3", "5,3")
-    fun `게임 초기화`(racingCarCount: Int, round: Int) {
-        val game = Game(racingCarCount, round)
-        assertThat(game.cars.size).isEqualTo(racingCarCount)
+    @Test
+    fun `레이싱 게임 정상 동작`() {
+        val nameOfCars = "pobi,crong,honux"
+        val cars = Cars.createCars(nameOfCars)
+        val game = Game(cars, 5)
+        game.play()
     }
 }
