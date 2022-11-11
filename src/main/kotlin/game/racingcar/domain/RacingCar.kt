@@ -6,8 +6,9 @@ import game.racingcar.move.RandomMoveStrategy
 class RacingCar(
     val name: String,
     private val moveStrategy: MoveStrategy = RandomMoveStrategy(),
+    location: Int = 0
 ) {
-    var location: Int = 0
+    var location: Int = location
         private set
 
     init {
