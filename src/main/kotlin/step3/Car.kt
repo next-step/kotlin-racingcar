@@ -1,6 +1,6 @@
 package step3
 
-class Car {
+class Car(val id: Int) {
     var position = 0
         private set
     fun move(oil: Oil) {
