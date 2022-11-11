@@ -8,29 +8,29 @@ import io.kotest.matchers.string.startWith
 import io.kotest.matchers.types.shouldBeInstanceOf
 
 class OperatorKoTest : DescribeSpec({
-    describe("기본 사칙 연산 테스트") {
-        it("덧셈 테스트") {
+    describe("연산자 테스트") {
+        it("덧셈 연산자 호출 테스트") {
             val input = "+"
             val operator = Operator.find(input)
             operator.shouldBeInstanceOf<Operator>()
             operator shouldBe Operator.PLUS
         }
 
-        it("뺄셈 테스트") {
+        it("뺄셈 연산자 호출 테스트") {
             val input = "-"
             val operator = Operator.find(input)
 
             operator shouldBe Operator.MINUS
         }
 
-        it("곱셈 테스트") {
+        it("곱셈 연산자 호출 테스트") {
             val input = "*"
             val operator = Operator.find(input)
 
             operator shouldBe Operator.MULTIPLE
         }
 
-        it("나눗셈 테스트") {
+        it("나눗셈 연산자 호출 테스트") {
             val input = "/"
             val operator = Operator.find(input)
 
