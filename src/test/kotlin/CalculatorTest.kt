@@ -1,59 +1,56 @@
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import kotlin.IllegalArgumentException
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.NullAndEmptySource
 
 class CalculatorTest {
 
-    @Test
-    fun `2 더하기 3은 5이다`() {
+    @ParameterizedTest
+    @CsvSource(
+        "2 + 3 = 5",
+        "7 - 6 = 1",
+        "5 * 3 = 15",
+        "20 / 4 = 5",
+        "6 + 3 - 5 * 3 / 6 = 2",
+        delimiter = '='
+    )
+    fun `계산기 정상 작동`(expression: String, result: Int) {
+        // given
         val calculator = Calculator()
-        val result = calculator.calculate("2 + 3")
-        assertThat(result).isEqualTo(5)
+        // when, then
+        assertThat(calculator.calculate(expression)).isEqualTo(result)
     }
 
-    @Test
-    fun `7 빼기 6은 1이다`() {
+    @ParameterizedTest
+    @NullAndEmptySource
+    fun `입력값이 null 이거나 빈 공백 문자 일 경우 IAE`(list: String?) {
+        // given
         val calculator = Calculator()
-        val result = calculator.calculate("7 - 6")
-        assertThat(result).isEqualTo(1)
-    }
-
-    @Test
-    fun `5 곱하기 3은 15이다`() {
-        val calculator = Calculator()
-        val result = calculator.calculate("5 * 3")
-        assertThat(result).isEqualTo(15)
-    }
-
-    @Test
-    fun `20 나누기 4는 5이다`() {
-        val calculator = Calculator()
-        val result = calculator.calculate("20 / 4")
-        assertThat(result).isEqualTo(5)
-    }
-
-    @Test
-    fun `입력값이 null 이거나 빈 공백 문자 일 경우 IAE`() {
-        val calculator = Calculator()
-        val exception = assertThrows<IllegalArgumentException> { calculator.calculate(null) }
-
+        // when
+        val exception = assertThrows<IllegalArgumentException> { calculator.calculate(list)}
+        // then
         assert(exception.message == "계산식이 NULL 혹은 공백입니다.")
     }
 
     @Test
     fun `사칙연산 기호가 아닌 경우 IAE`() {
+        // given
         val calculator = Calculator()
+        // when
         val exception = assertThrows<IllegalArgumentException> { calculator.calculate("7 ! 3") }
-
+        // then
         assertThat(exception.message).isEqualTo("사칙연산 기호가 아닙니다.")
     }
 
     @Test
-    fun `4 더하기 8 빼기 6 곱하기 3 나누기 3 은 3이다`() {
+    fun `분모가 0인 경우 AE 발생`() {
+        // given
         val calculator = Calculator()
-        val result = calculator.calculate("4 + 8 - 6 * 3 / 6")
-
-        assertThat(result).isEqualTo(3)
+        // when
+        val exception = assertThrows<ArithmeticException> { calculator.calculate("5 / 0") }
+        // then
+        assertThat(exception.message).isEqualTo("분모는 0이 될 수 없습니다.")
     }
 }

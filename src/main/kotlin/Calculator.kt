@@ -1,73 +1,37 @@
+// 수식의 문법상 오류가 있는지 확인하는 클래스
 class Calculator() {
     fun calculate(expression: String?): Int {
+        // 수식이 null 혹은 공백인지 확인
         nullOrEmptyCheck(expression)
 
-        val arr_experssion: Array<String> =
+        // 입력받은 문자열 공백 제거 및 배열로 변경
+        val arrExpression: Array<String> =
             expression?.split(" ".toRegex())?.dropLastWhile { it.isEmpty() }?.toTypedArray() as Array<String>
-        val operando1 = arr_experssion[0].toInt()
 
-        val result = operatorCheck(operando1, arr_experssion)
-
-        return result
-    }
-
-    fun operatorCheck(operando1: Int, arr_fomula: Array<String>): Int {
-        var i = 0
-
-        var result = operando1
-
-        while (i < arr_fomula.size) {
-            if (finishOperandoCheck(i, arr_fomula.size - 1)) {
-                when (arr_fomula[i + 1]) {
-                    "+" ->
-                        result = sum(result, arr_fomula[i + 2].toInt())
-
-                    "-" ->
-                        result = minus(result, arr_fomula[i + 2].toInt())
-
-                    "*" ->
-                        result = multiply(result, arr_fomula[i + 2].toInt())
-
-                    "/" ->
-                        result = divide(result, arr_fomula[i + 2].toInt())
-
-                    else ->
-                        iaeException()
-                }
-            }
+        // 1. 나누기가 나왔을 시 . 다음 피연산자가 0일 경우 확인 , 2.수식에서 사칙연산 외의 기호가 있는지 확인
+        var i = 1
+        while (i < arrExpression.size) {
+            operatorCheck(arrExpression[i] , arrExpression[i+1])
             i += 2
         }
 
-        return result
+        // 본격적인 수식 계산 클래스
+        val operator = Operator()
+        return operator.operate(arrExpression)
     }
 
-    fun finishOperandoCheck(currentIndex: Int, finishIndex: Int): Boolean {
-        return currentIndex != finishIndex
-    }
-
-    fun iaeException() {
-        throw IllegalArgumentException("사칙연산 기호가 아닙니다.")
-    }
-
-    fun nullOrEmptyCheck(expression: String?) {
-        if (expression == null || (expression == "")) {
-            throw IllegalArgumentException("계산식이 NULL 혹은 공백입니다.")
+    private fun operatorCheck(operator: String , operand2: String) {
+        if (operator == "/" && operand2 == "0") {
+            throw ArithmeticException("분모는 0이 될 수 없습니다.")
+        }
+        if (operator != "+" && operator != "-" && operator != "*" && operator != "/") {
+            throw IllegalArgumentException("사칙연산 기호가 아닙니다.")
         }
     }
 
-    fun sum(operando1: Int, operando2: Int): Int {
-        return operando1 + operando2
-    }
-
-    fun minus(operando1: Int, operando2: Int): Int {
-        return operando1 - operando2
-    }
-
-    fun multiply(operando1: Int, operando2: Int): Int {
-        return operando1 * operando2
-    }
-
-    fun divide(operando1: Int, operando2: Int): Int {
-        return operando1 / operando2
+    private fun nullOrEmptyCheck(expression: String?) {
+        if (expression.isNullOrEmpty()) {
+            throw IllegalArgumentException("계산식이 NULL 혹은 공백입니다.")
+        }
     }
 }
