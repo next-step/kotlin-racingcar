@@ -14,7 +14,7 @@ class StandardCarTest : StringSpec({
 
                 car.move(it)
 
-                car.position() shouldBe expected
+                car.position shouldBe expected
             }
     }
 
@@ -25,11 +25,11 @@ class StandardCarTest : StringSpec({
 
                 car.move(it)
 
-                car.position() shouldBe Position.ZERO
+                car.position shouldBe Position.ZERO
             }
     }
 
     "기본 생성자로 자동차를 생성하면 초기 위치는 0이다" {
-        StandardCar().position() shouldBe Position.ZERO
+        StandardCar().position shouldBe Position.ZERO
     }
 })
