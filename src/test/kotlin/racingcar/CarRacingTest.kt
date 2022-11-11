@@ -58,18 +58,10 @@ class CarRacingTest : StringSpec({
     }
 
     "자동차 경주 결과가 정상적으로 반환된다" {
-        val forwardCarControl = object : CarControl {
-            override fun power(): Int = 4
-        }
-
-        val stopCarControl = object : CarControl {
-            override fun power(): Int = 3
-        }
-
         val carRacing = CarRacing(
             carRacers = listOf(
-                CarRacer(StandardCar(), forwardCarControl),
-                CarRacer(StandardCar(), stopCarControl)
+                CarRacer(StandardCar(), ForwardCarControl),
+                CarRacer(StandardCar(), StopCarControl)
             ),
             status = Status.READY
         )
