@@ -1,4 +1,4 @@
-package step2
+package calculator
 
 enum class Operator(val sign: String, val calculate: (Int, Int) -> Int) {
     PLUS(sign = "+", calculate = { a, b -> a + b }),

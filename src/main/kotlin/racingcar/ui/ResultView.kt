@@ -1,6 +1,6 @@
-package step3.ui
+package racingcar.ui
 
-import step3.model.Car
+import racingcar.model.Car
 
 object ResultView {
 

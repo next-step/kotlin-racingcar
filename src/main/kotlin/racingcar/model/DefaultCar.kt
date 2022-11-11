@@ -1,4 +1,4 @@
-package step3.model
+package racingcar.model
 
 data class DefaultCar(private var track: String = "") : Car {
     override fun getTrack(): String = track

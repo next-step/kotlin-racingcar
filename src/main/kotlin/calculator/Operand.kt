@@ -1,4 +1,4 @@
-package step2
+package calculator
 
 @JvmInline
 value class Operand private constructor(val value: Int) {

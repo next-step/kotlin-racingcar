@@ -3,6 +3,8 @@ package step3.model
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldBeEmpty
+import racingcar.model.Car
+import racingcar.model.DefaultCar
 
 class DefaultCarTest : BehaviorSpec({
     given("차") {

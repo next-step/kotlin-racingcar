@@ -1,6 +1,6 @@
-package step3.domain
+package racingcar.domain
 
-import step3.model.Car
+import racingcar.model.Car
 
 class RacingGame(
     private val randomGenerator: RandomGenerator,

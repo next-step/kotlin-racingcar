@@ -1,11 +1,11 @@
 package step3.controller
 
-import step3.domain.DefaultRandomGenerator
-import step3.domain.RacingGame
-import step3.model.Car
-import step3.model.DefaultCar
-import step3.ui.InputView
-import step3.ui.ResultView
+import racingcar.domain.DefaultRandomGenerator
+import racingcar.domain.RacingGame
+import racingcar.model.Car
+import racingcar.model.DefaultCar
+import racingcar.ui.InputView
+import racingcar.ui.ResultView
 
 fun main() {
     val (carNum, executeNum) = InputView.requestCarNum() to InputView.requestExecuteNum()

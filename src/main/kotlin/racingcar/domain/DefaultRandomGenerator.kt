@@ -1,4 +1,4 @@
-package step3.domain
+package racingcar.domain
 
 class DefaultRandomGenerator : RandomGenerator {
     override val candidates: List<Int> = (0..9).toList()

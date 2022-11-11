@@ -1,4 +1,4 @@
-package step3.model
+package racingcar.model
 
 interface Car {
     fun getTrack(): String

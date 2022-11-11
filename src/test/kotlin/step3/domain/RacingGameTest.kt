@@ -3,8 +3,9 @@ package step3.domain
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldBeEmpty
-import step3.model.Car
-import step3.model.DefaultCar
+import racingcar.domain.RacingGame
+import racingcar.model.Car
+import racingcar.model.DefaultCar
 
 class RacingGameTest : BehaviorSpec({
     given("레이싱 게임을 할 차를 등록한다") {

@@ -1,5 +1,7 @@
 package step3.domain
 
+import racingcar.domain.RandomGenerator
+
 class FakeRandomGenerator : RandomGenerator {
     override val candidates: List<Int> = (0..9).toList()
 
