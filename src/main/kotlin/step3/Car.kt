@@ -10,10 +10,10 @@ class Car {
     }
 
     private fun canMove(oil: Oil): Boolean {
-        return oil.amount >= CAN_MOVE_FUEL
+        return oil >= CAN_MOVE_OIL
     }
 
     companion object {
-        private const val CAN_MOVE_FUEL = 4
+        private val CAN_MOVE_OIL = Oil(amount = 4)
     }
 }
