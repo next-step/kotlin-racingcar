@@ -1,7 +1,7 @@
 package car_race.logic.car
 
 class Car private constructor(
-    private var carPosition: CarPosition = CarPosition()
+    private val carPosition: CarPosition = CarPosition()
 ) {
     fun nextRound() {
         carPosition.nextRound()
