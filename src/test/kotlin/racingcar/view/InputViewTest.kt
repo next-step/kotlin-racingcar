@@ -10,13 +10,24 @@ import java.io.ByteArrayInputStream
 class InputViewTest {
 
     @ParameterizedTest
-    @DisplayName("입력이 pobi,crong,honux 일 경우 3대의 자동차 등록이 됨")
+    @DisplayName("자동차 이름의 입력이 pobi,crong,honux 일 경우 3대의 자동차 등록이 됨")
     @ValueSource(strings = ["pobi,crong,honux\n5"])
-    fun `Error when participant input value is 0`(input: String) {
+    fun `3 if when participant input value is pobi,crong,honux`(input: String) {
         val inputStream = InputStream.generate(input)
         System.setIn(inputStream)
         val register = InputView.register()
-        Assertions.assertThat(register.participant).isEqualTo(3)
+        Assertions.assertThat(register.participant.size).isEqualTo(3)
+    }
+
+    @ParameterizedTest
+    @DisplayName("자동차 이름의 입력이 공백일 경우 IllegalArgumentException 오류")
+    @ValueSource(strings = [" \n5"])
+    fun `Error when participant input value is blank`(input: String) {
+        val inputStream = InputStream.generate(input)
+        System.setIn(inputStream)
+        assertThrows<IllegalArgumentException> {
+            InputView.register()
+        }
     }
 
     @ParameterizedTest

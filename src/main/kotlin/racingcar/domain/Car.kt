@@ -1,7 +1,6 @@
 package racingcar.domain
 
-class Car : Moveable {
-
+class Car(val name: String) : Moveable {
     var currentPosition: Int = 0
         private set
 
@@ -20,6 +19,6 @@ class Car : Moveable {
     }
 
     companion object {
-        fun registerCars(numberOfCars: Int) = Array(numberOfCars) { Car() }
+        fun registerCars(NamesOfCars: List<String>) = Array(NamesOfCars.size) { Car(NamesOfCars[it]) }
     }
 }
