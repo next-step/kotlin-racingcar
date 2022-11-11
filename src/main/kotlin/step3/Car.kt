@@ -3,14 +3,14 @@ package step3
 class Car {
     var position = 0
         private set
-    fun move(fuel: Int) {
-        if (canMove(fuel = fuel)) {
+    fun move(oil: Oil) {
+        if (canMove(oil = oil)) {
             this.position++
         }
     }
 
-    private fun canMove(fuel: Int): Boolean {
-        return fuel >= CAN_MOVE_FUEL
+    private fun canMove(oil: Oil): Boolean {
+        return oil.amount >= CAN_MOVE_FUEL
     }
 
     companion object {

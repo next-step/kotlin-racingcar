@@ -9,9 +9,9 @@ class CarTest : FunSpec({
             test("자동차는 움직일 수 있다.") {
                 // given
                 val sut = Car()
-                val 충분한_연료 = 4
+                val 충분한_연료 = Oil(amount = 4)
                 // when
-                sut.move(fuel = 충분한_연료)
+                sut.move(oil = 충분한_연료)
                 //
                 sut.position shouldBe 1
             }
@@ -21,9 +21,9 @@ class CarTest : FunSpec({
             test("자동차는 움직일 수 없다.") {
                 // given
                 val sut = Car()
-                val 부족한_연료 = 3
+                val 부족한_연료 = Oil(amount = 3)
                 // when
-                sut.move(fuel = 부족한_연료)
+                sut.move(oil = 부족한_연료)
                 // then
                 sut.position shouldBe 0
             }
