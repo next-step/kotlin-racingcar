@@ -11,7 +11,7 @@ class Calculator() {
         // 1. 나누기가 나왔을 시 . 다음 피연산자가 0일 경우 확인 , 2.수식에서 사칙연산 외의 기호가 있는지 확인
         var i = 1
         while (i < arrExpression.size) {
-            operatorCheck(arrExpression[i] , arrExpression[i+1])
+            operatorCheck(arrExpression[i], arrExpression[i + 1])
             i += 2
         }
 
@@ -20,7 +20,7 @@ class Calculator() {
         return operator.operate(arrExpression)
     }
 
-    private fun operatorCheck(operator: String , operand2: String) {
+    private fun operatorCheck(operator: String, operand2: String) {
         if (operator == "/" && operand2 == "0") {
             throw ArithmeticException("분모는 0이 될 수 없습니다.")
         }
@@ -30,8 +30,6 @@ class Calculator() {
     }
 
     private fun nullOrEmptyCheck(expression: String?) {
-        if (expression.isNullOrEmpty()) {
-            throw IllegalArgumentException("계산식이 NULL 혹은 공백입니다.")
-        }
+        require(!expression.isNullOrEmpty()) { "계산식이 NULL 혹은 공백입니다." }
     }
 }
