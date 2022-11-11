@@ -19,16 +19,16 @@ class CarRacing(
         status = Status.FINISHED
     }
 
-    private fun race(count: Int) {
+    private fun race(round: Int) {
         carRacers.forEach {
             it.drive()
-            records.add(Record(count, it))
+            records.add(Record(round, it))
         }
     }
 
     fun result(): Map<Int, List<Record>> {
         check(status.isFinished()) { "자동차 경주 결과를 확인할 수 없습니다." }
 
-        return records.groupBy { it.count }
+        return records.groupBy { it.round }
     }
 }
