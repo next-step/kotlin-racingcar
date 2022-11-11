@@ -10,7 +10,7 @@ class RacingCarGame(
     fun play(): RacingCarPlayResult {
         return (1..numberOfTrials)
             .map { racingCars.moveAll() }
-            .map { CarLocationSnapshot(it) }
-            .let { RacingCarPlayResult(it, racingCars.pickWinners()) }
+            .map { carLocation -> CarLocationSnapshot(carLocation) }
+            .let { carLocationSnapshots -> RacingCarPlayResult(carLocationSnapshots, racingCars.pickWinners()) }
     }
 }
