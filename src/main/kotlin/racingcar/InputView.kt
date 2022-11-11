@@ -11,5 +11,5 @@ object InputView {
         return readNumber()
     }
 
-    private fun readNumber() = readLine()?.toIntOrNull() ?: throw IllegalArgumentException("숫자를 입력해 주세요.")
+    private fun readNumber() = readln().toIntOrNull() ?: throw IllegalArgumentException("숫자를 입력해 주세요.")
 }
