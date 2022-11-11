@@ -21,4 +21,8 @@ object GameOutputView {
     fun printPositions(car: Car) {
         println("${car.name} : ${POSITION_MARK.repeat(car.position)}")
     }
+
+    fun printRaceWinner(winnerCars: List<Car>) {
+        println("${winnerCars.joinToString { it.name }}가 최종 우승했습니다.")
+    }
 }

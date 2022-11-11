@@ -2,7 +2,7 @@ package racing.domain
 
 import racing.view.GameOutputView
 
-class Game(private val cars: List<Car>, private val round: Int = 3) {
+class Game(val cars: List<Car>, private val round: Int = 3) {
 
     fun play() {
         GameOutputView.printStartGame()
@@ -11,6 +11,7 @@ class Game(private val cars: List<Car>, private val round: Int = 3) {
             GameOutputView.printRaceStatus(cars)
             GameOutputView.printNextRound()
         }
+        GameOutputView.printRaceWinner(Cars.getWinnerCars(cars))
     }
 
     private fun race() {
