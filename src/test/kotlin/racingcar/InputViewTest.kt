@@ -11,23 +11,23 @@ class InputViewTest {
 
     @ParameterizedTest
     @DisplayName("자동차 등록의 입력 값이 0일 경우 IllegalArgumentException 오류")
-    @ValueSource(strings = ["0"])
+    @ValueSource(strings = ["0\n5"])
     fun `Error when participant input value is 0`(input: String) {
         val inputStream = InputStream.generate(input)
         System.setIn(inputStream)
         assertThrows<IllegalArgumentException> {
-            InputView.registerParticipant()
+            InputView.register()
         }
     }
 
     @ParameterizedTest
     @DisplayName("시도할 횟수의 입력 값이 0일 경우 IllegalArgumentException 오류")
-    @ValueSource(strings = ["0"])
+    @ValueSource(strings = ["5\n0"])
     fun `Error when number input value is 0`(input: String) {
         val inputStream = InputStream.generate(input)
         System.setIn(inputStream)
         assertThrows<IllegalArgumentException> {
-            InputView.setNumberOfTimes()
+            InputView.register()
         }
     }
 
