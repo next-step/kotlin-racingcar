@@ -11,6 +11,7 @@ class RacingResultComponent : Component {
         rounds.forEach { round ->
             val roundResult = round.start(cars = cars)
             RoundResultComponent(roundResult = roundResult).render()
+            Thread.sleep(1000)
             println()
         }
     }
