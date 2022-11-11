@@ -19,7 +19,7 @@ class CarRacing(
         status = Status.FINISHED
     }
 
-    private fun race(round: Int) {
+    private fun race(round: Round) {
         carRacers.forEach {
             it.drive()
             records.add(Record(round, it))

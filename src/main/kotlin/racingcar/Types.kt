@@ -1,3 +1,4 @@
 package racingcar
 
-typealias RaceResult = Map<Int, List<Record>>
+typealias Round = Int
+typealias RaceResult = Map<Round, List<Record>>

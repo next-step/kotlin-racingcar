@@ -1,10 +1,10 @@
 package racingcar
 
 data class Record(
-    val round: Int,
+    val round: Round,
     val position: Position
 ) {
-    constructor(round: Int, carRacer: CarRacer) : this(
+    constructor(round: Round, carRacer: CarRacer) : this(
         round = round,
         position = carRacer.position
     )
