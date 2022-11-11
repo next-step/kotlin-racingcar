@@ -26,7 +26,7 @@ class CarRacing(
         }
     }
 
-    fun result(): Map<Int, List<Record>> {
+    fun result(): RaceResult {
         check(status.isFinished()) { "자동차 경주 결과를 확인할 수 없습니다." }
 
         return records.groupBy { it.round }
