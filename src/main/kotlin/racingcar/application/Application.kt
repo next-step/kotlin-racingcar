@@ -19,5 +19,8 @@ class Application {
             }
             println()
         }
+
+        val winners = Car.getFurthestCars(cars)
+        ResultView.getWinner(winners)
     }
 }
