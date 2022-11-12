@@ -4,10 +4,8 @@ import racingcar.ui.InputView
 import racingcar.ui.ResultView
 
 fun main() {
-    InputView.input()
-
-    val carNumber = InputView.carNumber
-    val tryNumber = InputView.tryNumber
+    val carNumber = InputView.inputCarNumber()
+    val tryNumber = InputView.inputTryNumber()
 
     ResultView.output(carNumber, tryNumber)
 }

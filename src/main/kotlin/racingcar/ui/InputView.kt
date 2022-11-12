@@ -1,16 +1,13 @@
 package racingcar.ui
 
 object InputView {
-    var carNumber: Int = 0
-        private set
-    var tryNumber: Int = 0
-        private set
-
-    fun input() {
+    fun inputCarNumber(): Int {
         println(MessageCode.CarNumberQuestion.message)
-        carNumber = requireNotNull(readLine()?.toInt())
+        return requireNotNull(readLine()?.toInt())
+    }
 
+    fun inputTryNumber(): Int {
         println(MessageCode.TryNumberQuestion.message)
-        tryNumber = requireNotNull(readLine()?.toInt())
+        return requireNotNull(readLine()?.toInt())
     }
 }
