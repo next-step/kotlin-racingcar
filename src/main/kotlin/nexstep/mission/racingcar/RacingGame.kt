@@ -24,14 +24,11 @@ class RacingGame(val racingCars: List<RacingCar>) {
     companion object {
         private tailrec fun createRacingCars(
             names: MutableList<String>,
-            racingCars: MutableList<RacingCar> = mutableListOf()
+            racingCars: List<RacingCar> = listOf()
         ): List<RacingCar> =
             when {
-                names.isEmpty() -> racingCars.toList()
-                else -> {
-                    racingCars += RacingCar(names.pop())
-                    createRacingCars(names, racingCars)
-                }
+                names.isEmpty() -> racingCars
+                else -> createRacingCars(names, racingCars + RacingCar(names.pop()))
             }
     }
 }
