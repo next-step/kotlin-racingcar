@@ -3,11 +3,9 @@ package calculator
 class Calculator(
     private val parser: Parser
 ) {
-    private var result: Int = 0
-
-    fun calculate(input: Input): Int {
-        val elements = parser.parse(input)
-        result = elements[0].toInt()
+    fun calculate(expression: Expression): Int {
+        val elements = parser.parse(expression)
+        var result = elements.first().toInt()
 
         for (i in 1 until elements.size step 2) {
             val operator = elements[i]

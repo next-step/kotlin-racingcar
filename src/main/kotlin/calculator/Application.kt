@@ -2,9 +2,9 @@ package calculator
 
 class Application
 
-fun main(args: Array<String>) {
-    val input = Input(readlnOrNull())
+fun main() {
+    val expression = Expression(readln())
     val calculator = Calculator(Parser())
 
-    println(calculator.calculate(input))
+    println(calculator.calculate(expression))
 }

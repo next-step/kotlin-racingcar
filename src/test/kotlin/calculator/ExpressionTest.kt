@@ -7,16 +7,10 @@ import io.kotest.inspectors.forAll
 import java.lang.IllegalStateException
 
 class ExpressionTest : StringSpec({
-    "문자열 계산기의 입력(수식)은 null일 수 없어요." {
-        shouldThrow<IllegalArgumentException> {
-            Input(null)
-        }
-    }
-
     "문자열 계산기의 입력(수식)은 빈 공백 문열일 수 없어요." {
         listOf("", " ").forAll { expression ->
             shouldThrow<IllegalArgumentException> {
-                Input(expression)
+                Expression(expression)
             }
         }
     }
@@ -30,7 +24,7 @@ class ExpressionTest : StringSpec({
             "(1 + 1)",
         ).forAll { expression ->
             shouldThrow<IllegalArgumentException> {
-                Input(expression)
+                Expression(expression)
             }
         }
     }
@@ -43,7 +37,7 @@ class ExpressionTest : StringSpec({
             "1 / 1",
         ).forAll { expression ->
             shouldNotThrow<IllegalStateException> {
-                Input(expression)
+                Expression(expression)
             }
         }
     }

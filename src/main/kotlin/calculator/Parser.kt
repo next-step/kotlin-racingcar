@@ -2,12 +2,12 @@ package calculator
 
 class Parser {
 
-    companion object {
-        val SPLIT_DELIMITER_REGEX = "\\s+".toRegex()
+    fun parse(expression: Expression): List<String> {
+        requireNotNull(expression.expression)
+        return SPLIT_DELIMITER_REGEX.split(expression.expression)
     }
 
-    fun parse(input: Input): List<String> {
-        requireNotNull(input.expression)
-        return SPLIT_DELIMITER_REGEX.split(input.expression)
+    companion object {
+        private val SPLIT_DELIMITER_REGEX = "\\s+".toRegex()
     }
 }
