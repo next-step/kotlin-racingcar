@@ -10,13 +10,11 @@ object StringCalculator {
 
         var result = split[0].toLong()
         for (i in 1 until split.size step 2) {
-            result = when (split[i]) {
-                "+" -> result + split[i + 1].toLong()
-                "-" -> result - split[i + 1].toLong()
-                "*" -> result * split[i + 1].toLong()
-                "/" -> result / split[i + 1].toLong()
-                else -> throw IllegalArgumentException("올바른 사칙연산 기호가 아닙니다.")
-            }
+
+            val operator = ArithmeticOperator.of(split[i])
+            val operand = split[i + 1].toLong()
+
+            result = operator.operate(result, operand)
         }
 
         return result
