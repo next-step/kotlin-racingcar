@@ -1,10 +1,6 @@
 package calculator
 
-import calculator.operation.Addition
 import calculator.operation.ArithmeticOperations
-import calculator.operation.Division
-import calculator.operation.Multiplication
-import calculator.operation.Subtraction
 
 internal fun String.calculateNumberList(): List<Int> = ArrayList<Int>().apply {
     val split = split(" ")
@@ -23,16 +19,12 @@ internal fun String.calculateOperationList(): List<ArithmeticOperations> = Array
     val split = split(" ")
     split.forEachIndexed { index, str ->
         if (index % 2 != 0) {
-            val operation = when (str) {
-                "+" -> Addition()
-                "-" -> Subtraction()
-                "*" -> Multiplication()
-                "/" -> Division()
-                else -> {
-                    throw IllegalArgumentException("operator not found")
-                }
+            try {
+                val operatorType = OperatorType.commandOfType(str)
+                add(operatorType.operator)
+            } catch (e: NoSuchElementException) {
+                throw IllegalArgumentException("operator not found")
             }
-            add(operation)
         }
     }
 }
