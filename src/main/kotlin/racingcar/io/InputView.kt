@@ -1,6 +1,6 @@
 package racingcar.io
 
-import calculator.utils.splitByComma
+import racingcar.utils.splitByComma
 
 object InputView {
     fun getNameOfCars(): List<ParticipateCarName> {
