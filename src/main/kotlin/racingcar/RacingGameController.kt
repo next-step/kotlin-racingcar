@@ -2,7 +2,7 @@ package racingcar
 
 import racingcar.io.OutputView
 
-object RacingGame {
+object RacingGameController {
     fun play(numberOfCars: Int, numberOfAttempts: Int, moveStrategy: MoveStrategy) {
         val participatingCars = loadCar(numberOfCars)
         start(participatingCars, numberOfAttempts, moveStrategy)
