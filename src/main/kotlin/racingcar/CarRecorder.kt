@@ -4,6 +4,7 @@ class CarRecorder() {
     private val record = mutableMapOf<Int, List<Car>>()
 
     fun recording(turn: Int, cars: List<Car>) {
+        if (cars.isEmpty()) throw IllegalArgumentException("자동차 결과가 없습니다.")
         record[turn] = cars
     }
 
