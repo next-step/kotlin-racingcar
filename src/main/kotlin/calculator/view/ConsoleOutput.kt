@@ -2,7 +2,7 @@ package calculator.view
 
 class ConsoleOutput {
 
-    fun print(calculatedResult: Double) {
+    fun print(calculatedResult: Int) {
         println(calculatedResult)
     }
 }

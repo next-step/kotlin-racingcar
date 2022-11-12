@@ -1,11 +1,11 @@
-package calculator.util
+package calculator.domain
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldBe
 
-internal class CalculatorTest : BehaviorSpec({
+internal class OperatorTest : BehaviorSpec({
 
     Given("사칙 연산 기호가 주어질 경우") {
         When("+ 이면") {
