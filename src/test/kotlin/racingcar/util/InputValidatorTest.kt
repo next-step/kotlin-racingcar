@@ -6,12 +6,21 @@ import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import racingcar.const.CarException
 
-internal class InputValidatorTest: BehaviorSpec({
+internal class InputValidatorTest : BehaviorSpec({
     Given("차의 이름을 받는 입력에 대해, ") {
         When("null 값이 들어오면, ") {
             then("예외를 반환한다.") {
                 val exception = shouldThrow<IllegalArgumentException> {
                     InputValidator.validateCarNameStr(null)
+                }
+                exception.message shouldBe CarException.NULL_INPUT_ERROR
+            }
+        }
+
+        When("빈 값이 들어오면, ") {
+            then("예외를 반환한다.") {
+                val exception = shouldThrow<IllegalArgumentException> {
+                    InputValidator.validateCarNameStr("")
                 }
                 exception.message shouldBe CarException.NULL_INPUT_ERROR
             }
@@ -40,6 +49,15 @@ internal class InputValidatorTest: BehaviorSpec({
             Then("예외를 반환한다.") {
                 val exception = shouldThrow<IllegalArgumentException> {
                     InputValidator.validateNumberOfTryStr(null)
+                }
+                exception.message shouldBe CarException.NULL_INPUT_ERROR
+            }
+        }
+
+        When("빈 값이 들어오면, ") {
+            then("예외를 반환한다.") {
+                val exception = shouldThrow<IllegalArgumentException> {
+                    InputValidator.validateNumberOfTryStr("")
                 }
                 exception.message shouldBe CarException.NULL_INPUT_ERROR
             }
@@ -76,6 +94,15 @@ internal class InputValidatorTest: BehaviorSpec({
             then("예외를 반환한다.") {
                 val exception = shouldThrow<IllegalArgumentException> {
                     InputValidator.validateParserStr(null)
+                }
+                exception.message shouldBe CarException.NULL_INPUT_ERROR
+            }
+        }
+
+        When("빈 값이 들어오면, ") {
+            then("예외를 반환한다.") {
+                val exception = shouldThrow<IllegalArgumentException> {
+                    InputValidator.validateParserStr("")
                 }
                 exception.message shouldBe CarException.NULL_INPUT_ERROR
             }
