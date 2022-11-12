@@ -4,12 +4,12 @@ import racingcar.condition.MoveCondition
 import racingcar.strategy.MoveStrategy
 
 class Cars(
-    carNumber: Int,
+    carNames: List<String>,
     moveStrategy: MoveStrategy,
 ) {
-    private val cars: List<Car> = List(carNumber) { num ->
+    private val cars: List<Car> = carNames.map { carName ->
         Car(
-            name = "${num}번 차",
+            name = carName,
             moveStrategy = moveStrategy,
             position = START_POSITION
         )
