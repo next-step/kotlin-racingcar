@@ -5,21 +5,20 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-
 class CalculatorTest {
 
     @Test
     @DisplayName("더하기 테스트")
     fun addition() {
-        //given
+        // given
         val input = "2 + 3 + 3"
         val result = 2 + 3 + 3
 
-        //when
+        // when
         val calculator = Calculator()
         val calcResult = calculator.calculate(input)
 
-        //then
+        // then
         assertTrue(calcResult == result)
     }
 
@@ -62,15 +61,15 @@ class CalculatorTest {
     @Test
     @DisplayName("사칙연산 테스트")
     fun calculate() {
-        //given
+        // given
         val input = "2 + 3 - 4 * 5 / 2"
-        val result = ((2 + 3- 4) * 5) / 2
+        val result = ((2 + 3 - 4) * 5) / 2
 
-        //when
+        // when
         val calculator = Calculator()
         val calcResult = calculator.calculate(input)
 
-        //then
+        // then
         assertTrue(result == calcResult)
     }
 }
