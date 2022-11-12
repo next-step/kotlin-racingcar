@@ -9,7 +9,7 @@ class RandomGeneratorTest {
     @Test
     fun `랜덤숫자 발행 테스트`() {
         val randomNumber = RandomGenerator.generate()
-        assertThat(randomNumber).isGreaterThan(0)
-        assertThat(randomNumber).isLessThan(10)
+        assertThat(randomNumber).isGreaterThanOrEqualTo(0)
+        assertThat(randomNumber).isLessThanOrEqualTo(9)
     }
 }
