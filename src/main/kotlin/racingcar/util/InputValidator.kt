@@ -16,6 +16,6 @@ object InputValidator {
     }
 
     fun validateParserStr(input: String?) {
-        // TODO
+        require(input != null) { CarException.NULL_INPUT_ERROR }
     }
 }
