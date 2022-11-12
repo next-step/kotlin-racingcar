@@ -2,7 +2,6 @@ package calculator
 
 class Calculator {
 
-    @Throws(IllegalArgumentException::class, NumberFormatException::class)
     fun calculate(input: String?): Int {
         ValidCheck.checkValid(input)
 

@@ -6,7 +6,6 @@ import calculator.operation.Division
 import calculator.operation.Multiplication
 import calculator.operation.Subtraction
 
-@Throws(NumberFormatException::class)
 fun String.calculateNumberList(): List<Int> = ArrayList<Int>().apply {
     val split = split(" ")
     split.forEachIndexed { index, str ->
@@ -20,7 +19,6 @@ fun String.calculateNumberList(): List<Int> = ArrayList<Int>().apply {
     }
 }
 
-@Throws(IllegalArgumentException::class)
 fun String.calculateOperationList(): List<ArithmeticOperations> = ArrayList<ArithmeticOperations>().apply {
     val split = split(" ")
     split.forEachIndexed { index, str ->
