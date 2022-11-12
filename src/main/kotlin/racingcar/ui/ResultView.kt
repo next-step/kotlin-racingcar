@@ -8,7 +8,7 @@ object ResultView {
 
     fun racing(results: List<RacingResultDTO>) {
         results.forEach {
-            println(DISTANCE_CHARACTER.repeat(it.distance))
+            println("${it.carName} : ${DISTANCE_CHARACTER.repeat(it.distance)}")
         }
         println()
     }

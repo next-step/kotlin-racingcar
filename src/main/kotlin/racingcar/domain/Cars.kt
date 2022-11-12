@@ -17,7 +17,7 @@ class Cars(carNames: CarNames) {
     }
 
     fun racingResult(): List<RacingResultDTO> {
-        return cars.map { RacingResultDTO(it.getDistance()) }.toList()
+        return cars.map { RacingResultDTO(it.getCarName(), it.getDistance()) }.toList()
     }
 
     companion object {
