@@ -1,34 +1,25 @@
 package racingcar.core
 
-import io.kotest.matchers.ints.shouldBeLessThanOrEqual
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.assertThrows
+import io.kotest.matchers.shouldBe
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import racingcar.ui.MessageCode
 
 internal class CarTest {
+    private val car = Car()
 
     @ParameterizedTest
-    @ValueSource(ints = [100, 3, 9])
-    fun move(tryNumber: Int) {
-        val car = Car(tryNumber)
+    @ValueSource(ints = [4, 5, Int.MAX_VALUE])
+    fun `move when randomNumber greater and equal then 4`(randomNumber: Int) {
+        car.move(randomNumber)
 
-        val result = car.move()
-        val resultCount = result.split(" ").count()
-
-        resultCount shouldBeLessThanOrEqual tryNumber
+        car.moveStep.count() shouldBe 1
     }
 
     @ParameterizedTest
-    @ValueSource(ints = [-1, 0, Int.MIN_VALUE])
-    fun `move throw Exception when tryNumber is Incorrect`(tryNumber: Int) {
-        val car = Car(tryNumber)
+    @ValueSource(ints = [-1, 0, 3, Int.MIN_VALUE])
+    fun `no move when randomNumber less then 4`(randomNumber: Int) {
+        car.move(randomNumber)
 
-        val exception = assertThrows<IllegalArgumentException> {
-            car.move()
-        }
-
-        assertThat(exception.message).isEqualTo(MessageCode.TryNumberException.message)
+        car.moveStep.count() shouldBe 0
     }
 }
