@@ -13,7 +13,7 @@ class CalculatorApplication {
         context.split(" ")
             .forEachIndexed { index, inputString ->
                 if (index % 2 == 0) {
-                    result = beforeOperator.invoke(result, Number(inputString.toInt()))
+                    result = beforeOperator.expression(result, Number(inputString.toInt()))
                 } else if (index % 2 == 1) {
                     beforeOperator = Operator.of(inputString)
                 }
