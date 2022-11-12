@@ -1,5 +1,6 @@
 package study.step4.controller
 
+import study.step4.model.RacingCarNameGenerator.convertCarNamesList
 import study.step4.model.RacingGame
 import study.step4.model.RandomDigit
 import study.step4.view.InputView.inputRacingCarInfo
@@ -10,7 +11,7 @@ class RacingGameController {
         runCatching {
             val (racingCarNames, repeatRace) = inputRacingCarInfo()
 
-            val racingGame = RacingGame(racingCarNames, repeatRace, RandomDigit())
+            val racingGame = RacingGame(convertCarNamesList(racingCarNames), repeatRace, RandomDigit())
             racingGame.race()
 
             resultRacingCar(racingGame.getChampions(), racingGame.getCars(), repeatRace)
