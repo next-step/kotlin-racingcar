@@ -22,7 +22,6 @@ class ResultView(private val progressCharacter: String = "-") {
             car.name
         }
 
-        val joinName = names.joinToString()
-        println("${joinName}가 최종 우승했습니다. ")
+        println("${names.joinToString()}가 최종 우승했습니다. ")
     }
 }
