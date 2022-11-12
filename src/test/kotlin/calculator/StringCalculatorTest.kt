@@ -89,6 +89,28 @@ internal class StringCalculatorTest {
         }.isInstanceOf(IllegalArgumentException::class.java)
     }
 
+    @Test
+    fun `피연산자 자리에 숫자가 아닌 경우`() {
+        // given
+        val wrongInput = "1 + * - 3"
+
+        // when * then
+        val a = assertThatThrownBy {
+            StringCalculator.calculate(wrongInput)
+        }.isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    @Test
+    fun `연산자, 피연산자 개수 합이 홀수가 아닌 경우`() {
+        // given
+        val wrongInput = "1 + 2 - 3 *"
+
+        // when & then
+        assertThatThrownBy {
+            StringCalculator.calculate(wrongInput)
+        }.isInstanceOf(IllegalArgumentException::class.java)
+    }
+
     companion object {
         @JvmStatic
         fun blankOrNullStrings() = listOf(null, "", "   ")
