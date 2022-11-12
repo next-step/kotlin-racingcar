@@ -1,8 +1,8 @@
 package racingcar
 
-class Statistics () {
+class Statistics() {
     companion object {
-        fun exec(cars: List<Car>) : String{
+        fun exec(cars: List<Car>): String {
             var max = Int.MIN_VALUE
             for (car in cars) {
                 if (car.status > max) {
