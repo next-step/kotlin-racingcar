@@ -24,8 +24,8 @@ class RacingGame(private val numberGenerator: NumberGenerator, private val moveR
 
     private fun play(cars: List<Car>) {
         for (car in cars) {
-            val movement = car.move(numberGenerator, moveRule)
-            resultView.printResult(movement)
+            car.move(numberGenerator, moveRule)
+            resultView.printResult(car)
         }
         resultView.printLine()
     }

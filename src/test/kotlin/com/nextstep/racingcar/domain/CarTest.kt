@@ -4,7 +4,6 @@ import com.nextstep.racingcar.domain.Movement.MOVE
 import com.nextstep.racingcar.domain.Movement.NONE
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldContainExactly
-import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -18,11 +17,10 @@ class CarTest : StringSpec({
         every { numberGenerator.generate() } returns 5
         every { moveRule.move(5) } returns MOVE
 
-        val movement = car.move(numberGenerator, moveRule)
+        car.move(numberGenerator, moveRule)
 
         verify { numberGenerator.generate() }
         verify { moveRule.move(any()) }
-        movement shouldBe MOVE
     }
 
     "car can save movement histories" {
