@@ -1,12 +1,13 @@
 package study.step4.model
 
+import study.step4.util.DigitEngine
 import study.step4.util.DigitGenerator
 
 class RacingCar(
     racingCarNames: List<String>,
     private val repeatNumber: Int,
     private val digitGenerator: DigitGenerator,
-    private var cars: MutableList<Car> = mutableListOf()
+    private val cars: MutableList<Car> = mutableListOf()
 ) {
 
     init {
@@ -16,7 +17,7 @@ class RacingCar(
 
     private fun settingCar(numberCar: List<String>) {
         numberCar.forEach { name ->
-            cars.add(Car(name = name, digitGenerator = digitGenerator))
+            cars.add(Car(name = name, engin = DigitEngine(digitGenerator)))
         }
     }
 

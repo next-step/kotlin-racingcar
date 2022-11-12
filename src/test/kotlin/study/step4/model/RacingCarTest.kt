@@ -24,7 +24,11 @@ internal class RacingCarTest : StringSpec({
             listOf("1", "2", "3", "4", "5", "6", "7", "8", "9")
         ).forAll {
             // given & when
-            val racingCar = RacingCar(it, 3, RandomDigit())
+            val racingCar = RacingCar(
+                racingCarNames = it,
+                repeatNumber = 3,
+                digitGenerator = RandomDigit()
+            )
 
             // then
             assertThat(racingCar.getCars().size).isEqualTo(it.size)
@@ -38,7 +42,11 @@ internal class RacingCarTest : StringSpec({
             30
         ).forAll {
             // given
-            val racingCar = RacingCar(listOf("name"), it, RandomDigit())
+            val racingCar = RacingCar(
+                racingCarNames = listOf("name"),
+                repeatNumber = it,
+                digitGenerator = RandomDigit()
+            )
 
             // when
             racingCar.race()
@@ -55,7 +63,11 @@ internal class RacingCarTest : StringSpec({
             4, 5, 6, 7, 8, 9
         ).forAll {
             // given
-            val racingCar = RacingCar(listOf("name"), 3, StaticDigit(it))
+            val racingCar = RacingCar(
+                racingCarNames = listOf("name"),
+                repeatNumber = 3,
+                digitGenerator = StaticDigit(it)
+            )
 
             // when
             racingCar.race()
@@ -72,7 +84,11 @@ internal class RacingCarTest : StringSpec({
             0, 1, 2, 3
         ).forAll {
             // given
-            val racingCar = RacingCar(listOf("name"), 3, StaticDigit(it))
+            val racingCar = RacingCar(
+                racingCarNames = listOf("name"),
+                repeatNumber = 3,
+                digitGenerator = StaticDigit(it)
+            )
 
             // when
             racingCar.race()
@@ -93,7 +109,12 @@ internal class RacingCarTest : StringSpec({
         )
 
         // when
-        val racingCar = RacingCar(listOf("name"), 3, RandomDigit(), cars = cars)
+        val racingCar = RacingCar(
+            racingCarNames = listOf("name"),
+            repeatNumber = 3,
+            digitGenerator = RandomDigit(),
+            cars = cars
+        )
 
         // then
         val champion = racingCar.getChampions().first()
@@ -111,7 +132,12 @@ internal class RacingCarTest : StringSpec({
         )
 
         // when
-        val racingCar = RacingCar(listOf("name"), 3, RandomDigit(), cars = cars)
+        val racingCar = RacingCar(
+            racingCarNames = listOf("name"),
+            repeatNumber = 3,
+            digitGenerator = RandomDigit(),
+            cars = cars
+        )
 
         // then
         val champions = racingCar.getChampions()
