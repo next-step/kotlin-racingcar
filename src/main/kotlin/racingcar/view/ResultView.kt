@@ -5,7 +5,7 @@ import racingcar.domain.Race
 
 class ResultView {
 
-    fun getRaceResult(race: Race, cars: List<Car>) {
+    fun printRaceResult(race: Race, cars: List<Car>) {
         this.printResultTitle()
         repeat(race.round) { this.printCarsInfo(race.run(cars)) }
         this.printWinner(race, cars)
