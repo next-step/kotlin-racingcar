@@ -1,28 +1,42 @@
 package racingcar
 
-class RacingCarGame(numberOfCar: Int, private val numberOfTrial: Int) {
-    private val cars: List<Car> = (0..numberOfCar).map { i -> Car(i) }.toList()
+class RacingCarGame(
+    numberOfCar: Int,
+    private val numberOfTrial: Int,
+    private val movePolicy: MovePolicy = RandomMovePolicy()
+) {
+    private val cars: List<Car>
+
+    init {
+        require(numberOfCar > 0) { "자동차 대수는 1대 이상이여야 합니다" }
+        require(numberOfTrial > 0) { "시도 횟수는 1회 이상이여야 합니다" }
+
+        this.cars = List(numberOfCar) { i -> Car(i) }
+    }
 
     fun startGame(): RacingCarGameSnapShots {
-        for (i in 0 until numberOfTrial) {
-            move()
+        repeat(numberOfTrial) {
+            move(it)
         }
         return RacingCarGameSnapShots(cars)
     }
 
-    private fun move() {
-        for (i in cars.indices) {
-            val nextMovement = decideMovement()
-            cars[i].move(nextMovement)
+    private fun move(atTrial: Int) {
+        cars.forEach {
+            val nextMovement = movePolicy.decide(it, atTrial)
+            it.move(nextMovement)
         }
     }
 
-    private fun decideMovement(): Int {
-        val random: Int = ((Math.random() * 10)).toInt()
-        if (random < 4) {
-            return 0
-        } else {
-            return random
+    interface MovePolicy {
+        fun decide(car: Car, atTrial: Int): Int
+    }
+
+    class RandomMovePolicy : MovePolicy {
+
+        override fun decide(car: Car, atTrial: Int): Int {
+            val random: Int = ((Math.random() * 10)).toInt()
+            return if (random < 4) 0 else random
         }
     }
 }
