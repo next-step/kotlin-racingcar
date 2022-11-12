@@ -34,11 +34,15 @@
 ### 기능 목록
 * [InputView] 입력을 담당하는 클래스
 * [OutputView] 출력을 담당하는 클래스
+* [ParticipateCarName] 경주에 참여하는 자동차 이름을 관리하는 클래스
 * [RandomNumberGenerator] 범위에 해당하는 랜덤 값을 생성하는 클래스
+* [StringExtension] String Extension 클래스
 * [Car] 자동차 클래스
   * 전진 가능한 상태이면 MoveStrategy에 정의된 값 만큼 이동
+* [CarRecorder] 1턴 이동할때마다 자동차 상태를 기록하는 클래스
 * [MoveStrategy] 이동 타입을 정의한 클래스
   * 타입에 따라 자동차의 이동가능 여부를 판단
   * 자동차가 이동할 수 있는 거리를 관리
 * [RacingcarApplication] 레이싱 게임을 시작하는 메인 클래스
-* [RacingGame] 자동차 대수, 시도할 횟수, 무브 타입을 받아서 게임을 시작하는 클래스
+* [RacingGameController] 자동차 대수, 시도할 횟수, 무브 타입을 받아서 게임을 시작하는 클래스
+* [RandomMoveStrategy] 0 ~ 9 사이 랜덤값을 발생시킨 후, 랜덤값이 4 이상이면 자동차가 전진하는 전략을 관리하는 클래스
