@@ -37,7 +37,7 @@ internal class CarTest {
 
     @Test
     fun `자동차 최초 position은 0이다`() {
-        assertThat(car.position).isEqualTo(0)
+        assertThat(car.position).isZero
     }
 
     @AfterEach
