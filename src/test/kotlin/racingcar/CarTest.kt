@@ -12,8 +12,8 @@ internal class CarTest {
 
     @Test
     fun `자동차에 이름을 붙여줄 수 있다`() {
-        val name = "나의 첫 자동차"
-        assertThat(Car(name)).isEqualTo(Car(name = "나의 첫 자동차"))
+        val name = "첫 자동차"
+        assertThat(Car(name)).isEqualTo(Car(name = "첫 자동차"))
     }
 
     @Test
