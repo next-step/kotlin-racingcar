@@ -1,6 +1,6 @@
-import domain.CalculationExpression
-import domain.Calculator
-import view.InputView
+import calculator.domain.CalculationExpression
+import calculator.domain.Calculator
+import calculator.view.InputView
 
 fun main() {
     val input = CalculationExpression(InputView().getUserInput())

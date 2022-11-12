@@ -1,4 +1,4 @@
-package view
+package calculator.view
 
 class InputView {
     fun getUserInput(): String {
