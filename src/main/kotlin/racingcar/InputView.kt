@@ -1,7 +1,11 @@
 package racingcar
 
 class InputView {
-    fun input(): Int {
+    fun inputInt(): Int {
         return readln().toInt()
+    }
+
+    fun inputString(): String {
+        return readln()
     }
 }

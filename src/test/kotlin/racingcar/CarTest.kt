@@ -7,8 +7,8 @@ class CarTest {
     @Test
     fun `전진 테스트`() {
         val moveCount = 2
-        var toMoveCar = Car()
-        val movedCar = Car(moveCount)
+        var toMoveCar = Car("one")
+        val movedCar = Car("two", moveCount)
 
         val moveCondition = 4
         for (i in 1..moveCount) {
@@ -21,8 +21,8 @@ class CarTest {
     @Test
     fun `멈춤 테스트`() {
         val moveCount = 2
-        var toMoveCar = Car()
-        val stopCar = Car()
+        var toMoveCar = Car("one")
+        val stopCar = Car("two")
 
         val moveCondition = 3
         for (i in 1..moveCount) {

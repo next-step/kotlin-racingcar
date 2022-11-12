@@ -1,6 +1,9 @@
 package racingcar
 
-class Car(var status: Int = 0) {
+class Car(
+    val name: String,
+    var status: Int = 0
+) {
     fun move(condition: Int) {
         if (condition >= MOVE_CONDITION) {
             status++
