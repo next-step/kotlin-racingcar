@@ -17,10 +17,14 @@ class RacingGameTest : FunSpec({
     }
 
     /**
+     * step3)
      * 아래 테스트가 제 역할을 하는게 맞는걸까?
      * RacingGame 객체의 race 함수에 대한 테스트 코드이지만
      * 정작 RacingCar의 move 함수에 대한 테스트라는 생각이 듦
      * 단위 테스트에서 런던파를 지지하기에 고전파 방식의 테스트 코드가 조금은 어색하다고 느껴짐
+     *
+     * step4)
+     * 고전파 테스트 방식을 정리 후 연습해보기로 결정 -> 현 코드 유지
      */
     test("전달받은 함수를 경주 자동차에 전달하여 이동시키는 함수를 호출한다.") {
         val racingGame = RacingGame("pobi,jason,brown")
