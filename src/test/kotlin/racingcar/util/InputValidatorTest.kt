@@ -70,4 +70,23 @@ internal class InputValidatorTest: BehaviorSpec({
             }
         }
     }
+
+    Given("파싱 해야하는 입력에 대해, ") {
+        When("null 값이 들어오면, ") {
+            then("예외를 반환한다.") {
+                val exception = shouldThrow<IllegalArgumentException> {
+                    InputValidator.validateParserStr(null)
+                }
+                exception.message shouldBe CarException.NULL_INPUT_ERROR
+            }
+        }
+
+        When("정상적이라면, ") {
+            Then("정상 수행된다.") {
+                shouldNotThrowAny {
+                    InputValidator.validateParserStr("car1,car2,car3")
+                }
+            }
+        }
+    }
 })

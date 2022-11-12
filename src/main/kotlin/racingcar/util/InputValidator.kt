@@ -14,4 +14,8 @@ object InputValidator {
         require(input.isNumeric()) { CarException.NOT_DIGIT_ERROR }
         require(input.toInt() > 0) { CarException.MORE_THAN_ONE }
     }
+
+    fun validateParserStr(input: String?) {
+        // TODO
+    }
 }
