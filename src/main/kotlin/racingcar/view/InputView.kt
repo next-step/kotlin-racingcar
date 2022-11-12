@@ -1,14 +1,10 @@
 package racingcar.view
 
-class InputView {
-    fun getCarCountByInput(question: String) = showQuestionAndGetInput(question).toInt()
+interface InputView {
+    fun printQuestion(question: String) = println(question)
 
-    fun getRaceRoundByInput(question: String) = showQuestionAndGetInput(question).toInt()
-
-    private fun printQuestion(question: String) = println(question)
-
-    private fun printInput() = readln()
-    private fun showQuestionAndGetInput(question: String): String {
+    fun printInput() = readln()
+    fun showQuestionAndGetInput(question: String): String {
         printQuestion(question)
         return printInput()
     }
