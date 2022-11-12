@@ -18,7 +18,7 @@ object Output {
 
         fun makeWholeResult(result: Result): String {
             val sb = StringBuilder()
-            val roundPositions: List<Positions> = result.positions
+            val roundPositions: List<Positions> = result.positionsList
             for (roundPosition: Positions in roundPositions) {
                 makeRoundResult(roundPosition, sb)
             }
