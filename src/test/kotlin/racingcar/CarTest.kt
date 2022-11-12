@@ -27,13 +27,13 @@ internal class CarTest : BehaviorSpec({
     }
 })
 
-class FakeAlwaysMoveStrategy : MoveStrategy {
+internal class FakeAlwaysMoveStrategy : MoveStrategy {
     override fun isPossibleMove(): Boolean = true
 
     override fun getDistance(): Int = 1
 }
 
-class FakeAlwaysNotMoveStrategy : MoveStrategy {
+internal class FakeAlwaysNotMoveStrategy : MoveStrategy {
     override fun isPossibleMove(): Boolean = false
 
     override fun getDistance(): Int = 1

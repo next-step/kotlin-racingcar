@@ -5,7 +5,7 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.datatest.withData
 
-class ParticipateCarNameTest : FunSpec({
+internal class ParticipateCarNameTest : FunSpec({
     context("경주에 참여하는 자동차 이름은 최대 5자까지 가능하다.") {
         withData(
             "a", "ab", "abc", "abcd", "abcde"
