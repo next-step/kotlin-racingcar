@@ -1,22 +1,15 @@
 package racingcar.domain
 
-import racingcar.view.InputView
-
-class Car : InputView {
-
-    private var route: String = ""
-    fun make() = generateCar(this.showQuestionAndGetInput("자동차 대수는 몇 대인가요?").toInt())
-
-    fun generateCar(count: Int) =
-        mutableListOf<Car>().apply {
-            for (i in 0 until count) {
-                this.add(Car())
-            }
-        }
-
-    fun getRoute() = this.route
-
+class Car(
+    var route: Int = 0
+) {
     fun move() {
-        this.route += "-"
+        this.route += 1
+    }
+
+    companion object {
+        fun generateCar(count: Int) = buildList {
+            repeat(count) { add(Car()) }
+        }
     }
 }
