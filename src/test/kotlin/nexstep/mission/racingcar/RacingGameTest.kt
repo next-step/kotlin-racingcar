@@ -26,7 +26,7 @@ class RacingGameTest : FunSpec({
      * step4)
      * 고전파 테스트 방식을 정리 후 연습해보기로 결정 -> 현 코드 유지
      */
-    test("전달받은 함수를 경주 자동차에 전달하여 이동시키는 함수를 호출한다.") {
+    test("레이싱 게임을 시작하면 자동차들은 움직인다.") {
         val racingGame = RacingGame("pobi,jason,brown")
 
         racingGame.race { 4 }
