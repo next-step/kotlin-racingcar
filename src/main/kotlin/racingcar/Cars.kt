@@ -16,7 +16,7 @@ class Cars(
     }
 
     fun move(moveConditions: List<MoveCondition>): Record {
-        return Record(cars.map { car -> car.move(moveConditions) })
+        return Record(cars.map { car -> CarRecord(car.name, car.move(moveConditions)) })
     }
 
     companion object {
