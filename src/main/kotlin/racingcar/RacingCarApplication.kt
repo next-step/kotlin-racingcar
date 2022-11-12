@@ -15,7 +15,7 @@ fun main() {
     println("시도할 횟수는 몇 회인가요?")
     val count = inputView.inputInt()
 
-    println("실행 결과\n")
+    println("\n실행 결과")
 
     for (i in 1..count) {
         carList.forEach {
@@ -25,6 +25,9 @@ fun main() {
         }
         println()
     }
+
+    val exec = Statistics.exec(carList)
+    println(exec)
 }
 
 fun makeResult(number: Int): String {
