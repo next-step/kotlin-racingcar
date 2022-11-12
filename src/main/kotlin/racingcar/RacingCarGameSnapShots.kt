@@ -13,22 +13,14 @@ class RacingCarGameSnapShots(cars: List<Car>) {
 
     fun getPositions(atTrial: Int): List<Int> {
         require(atTrial > 0 && atTrial <= getNumberOfTrial()) { "Cannot get position, bigger than number of trial $atTrial" }
-        return snapShots[atTrial - 1].getPositions()
+        return snapShots[atTrial - 1].positions
     }
 
     fun getNumberOfTrial(): Int {
         return snapShots.size
     }
 
-    inner class RacingCarGameSnapShot(cars: List<Car>, atTrial: Int) {
-        private val positionByCar: Map<Int /*carIdx*/, Int /*position*/>
-
-        init {
-            this.positionByCar = cars.map { it.order to it.getPositionAt(atTrial) }.toMap().toSortedMap()
-        }
-
-        fun getPositions(): List<Int> {
-            return positionByCar.values.toList()
-        }
+    class RacingCarGameSnapShot(cars: List<Car>, atTrial: Int) {
+        val positions: List<Int> = cars.map { it.getPositionAt(atTrial) }.toList()
     }
 }

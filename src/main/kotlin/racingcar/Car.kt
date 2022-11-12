@@ -12,7 +12,7 @@ class Car(val order: Int) {
      * trialNumber : n th trial (starting from 1)
      */
     fun getPositionAt(atTrial: Int): Int {
-        require(atTrial > 0 && atTrial <= movements.size) { "Invalid trial number $atTrial" }
+        require(atTrial in 1..movements.size) { "Invalid trial number $atTrial" }
         return movements.take(atTrial).sum()
     }
 
