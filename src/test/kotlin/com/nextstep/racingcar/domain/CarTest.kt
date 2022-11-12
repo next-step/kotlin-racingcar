@@ -16,12 +16,12 @@ class CarTest : StringSpec({
 
     "Car#move returns Movement Enum meaning thee car moved or not" {
         every { numberGenerator.generate() } returns 5
-        every { moveRule.movable(5) } returns MOVE
+        every { moveRule.move(5) } returns MOVE
 
         val movement = car.move(numberGenerator, moveRule)
 
         verify { numberGenerator.generate() }
-        verify { moveRule.movable(any()) }
+        verify { moveRule.move(any()) }
         movement shouldBe MOVE
     }
 

@@ -16,7 +16,7 @@ class NumberMoveRuleTest : StringSpec({
             row(4, Movement.MOVE),
             row(9, Movement.MOVE)
         ) { number, movement ->
-            numberMoveRule.movable(number) shouldBe movement
+            numberMoveRule.move(number) shouldBe movement
         }
     }
 
@@ -25,7 +25,7 @@ class NumberMoveRuleTest : StringSpec({
             row(-1),
             row(10)
         ) { number ->
-            shouldThrow<IllegalArgumentException> { numberMoveRule.movable(number) }
+            shouldThrow<IllegalArgumentException> { numberMoveRule.move(number) }
         }
     }
 })

@@ -5,7 +5,9 @@ class Car {
 
     fun move(numberGenerator: NumberGenerator, moveRule: MoveRule): Movement {
         val number = numberGenerator.generate()
-        return moveRule.movable(number)
+        val movement = moveRule.move(number)
+        saveHistory(movement)
+        return movement
     }
 
     fun saveHistory(movement: Movement) {

@@ -1,9 +1,14 @@
 package com.nextstep.racingcar.view
 
+import com.nextstep.racingcar.domain.Movement
+
 class ResultView {
 
-    fun printResult(results: List<*>) {
-        println("실행 결과")
-        // TODO: 2022/11/10
-    }
+    fun printResult() = println("실행 결과")
+
+    fun printResult(movement: Movement) = println(convertToView(movement))
+
+    private fun convertToView(movement: Movement): String = if (movement == Movement.MOVE) "-" else ""
+
+    fun printLine() = println()
 }
