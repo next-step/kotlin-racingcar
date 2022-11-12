@@ -4,6 +4,11 @@ class Car(
     val name: String,
     var status: Int = 0
 ) {
+    init {
+        if (name.length > NAME_LENGTH_CONDITION)
+            throw IllegalArgumentException("자동자 이름은 ${NAME_LENGTH_CONDITION}자를 넘을 수 없습니다.")
+    }
+
     fun move(condition: Int) {
         if (condition >= MOVE_CONDITION) {
             status++
@@ -25,5 +30,6 @@ class Car(
 
     companion object {
         const val MOVE_CONDITION = 4
+        const val NAME_LENGTH_CONDITION = 5
     }
 }
