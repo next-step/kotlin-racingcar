@@ -1,6 +1,6 @@
 package racing.domain
 
-data class Position(private val value: Int = MIN_POSITION_VALUE) {
+data class Position(val value: Int = MIN_POSITION_VALUE) {
 
     init {
         if (value < MIN_POSITION_VALUE) {

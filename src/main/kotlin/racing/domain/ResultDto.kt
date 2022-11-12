@@ -7,17 +7,17 @@ class ResultDto(val result: String) {
 
         fun from(result: Result): ResultDto {
             val sb = StringBuilder()
-            val roundResults: List<Cars> = result.roundResults
-            for (roundResult: Cars in roundResults) {
-                makeRoundResult(roundResult, sb)
+            val roundPositions: List<Positions> = result.positions
+            for (roundPosition: Positions in roundPositions) {
+                makeRoundResult(roundPosition, sb)
             }
             return ResultDto(sb.toString())
         }
 
-        private fun makeRoundResult(roundResult: Cars, sb: StringBuilder) {
-            val cars = roundResult.cars
-            for (car: Car in cars) {
-                makeCarResult(car.position, sb)
+        private fun makeRoundResult(roundPosition: Positions, sb: StringBuilder) {
+            val positions = roundPosition.positions
+            for (position: Position in positions) {
+                makeCarResult(position.value, sb)
             }
             sb.append(LINE_BREAK)
         }
