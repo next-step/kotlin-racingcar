@@ -1,18 +1,20 @@
 package study.step4.model
 
-import study.step4.util.DigitEngine
-import study.step4.util.DigitGenerator
+import study.step4.view.InputValid
 
-class RacingCar(
-    racingCarNames: List<String>,
+const val CAR_NAME_DELIMITERS = ","
+
+class RacingGame(
+    racingCarNames: String,
     private val repeatNumber: Int,
-    private val digitGenerator: DigitGenerator,
+    private val digitGenerator: DigitGenerator = RandomDigit(),
     private val cars: MutableList<Car> = mutableListOf()
 ) {
 
     init {
-        require(racingCarNames.isNotEmpty()) { "참가 자동차 수는 0보다 커야 합니다" }
-        settingCar(racingCarNames)
+        val carNamesList = carNamesList(racingCarNames)
+        InputValid.racingCarNameValid(carNamesList)
+        settingCar(carNamesList)
     }
 
     private fun settingCar(numberCar: List<String>) {
@@ -39,4 +41,10 @@ class RacingCar(
         val maxLocation = cars.maxOf { it.getLocation() }
         return cars.filter { it.getLocation() == maxLocation }.toList()
     }
+
+    private fun carNamesList(racingCarNames: String): List<String> =
+        racingCarNames.split(CAR_NAME_DELIMITERS)
+            .map { it.trim() }
+            .filter { it.isNotEmpty() }
+            .toList()
 }

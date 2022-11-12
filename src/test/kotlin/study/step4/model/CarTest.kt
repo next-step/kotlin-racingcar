@@ -3,8 +3,6 @@ package study.step4.model
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.inspectors.forAll
 import org.assertj.core.api.Assertions.assertThat
-import study.step4.util.DigitEngine
-import study.step4.util.StaticDigit
 
 class CarTest : StringSpec({
 

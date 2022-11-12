@@ -1,4 +1,4 @@
-package study.step4.util
+package study.step4.model
 
 private const val ADVANCE_BASE_DIGIT = 4
 

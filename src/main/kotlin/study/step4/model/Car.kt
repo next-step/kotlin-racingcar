@@ -1,9 +1,5 @@
 package study.step4.model
 
-import study.step4.util.DigitEngine
-import study.step4.util.EnginGenerator
-import study.step4.util.RandomDigit
-
 class Car(
     val name: String = "",
     private var location: Int = 0,
