@@ -15,7 +15,7 @@ class RacingGame(val racingCars: List<RacingCar>) {
     fun winner(favorites: MutableList<RacingCar> = this.racingCars.toSortedMutable()): List<RacingCar> =
         generateSequence(favorites.pop()) { next(it, favorites) }.toList()
 
-    private fun next(previous: RacingCar, favorites: MutableList<RacingCar>) =
+    private fun next(previous: RacingCar, favorites: MutableList<RacingCar>): RacingCar? =
         when (previous.position) {
             favorites.first().position -> favorites.pop()
             else -> null

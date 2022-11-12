@@ -39,7 +39,7 @@ class RacingGameTest : FunSpec({
     test("경주 자동차의 position값이 제일 높은 우승자를 계산한다.") {
         val racingCars = listOf(
             RacingCar(Name("pobi"), 5),
-            RacingCar(Name("jason"), 5),
+            RacingCar(Name("jason"), 4),
             RacingCar(Name("brown"), 4),
         )
         val racingGame = RacingGame(racingCars)
@@ -48,6 +48,7 @@ class RacingGameTest : FunSpec({
 
         result.forAll {
             it.position shouldBe 5
+            it.name.value shouldBe "pobi"
         }
     }
 })
