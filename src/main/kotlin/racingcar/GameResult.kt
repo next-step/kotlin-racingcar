@@ -2,4 +2,8 @@ package racingcar
 
 data class GameResult(
     val result: List<Record>
-) : List<Record> by result
+) : List<Record> by result {
+    fun getLastRoundRecord(): Record {
+        return Record(emptyList())
+    }
+}
