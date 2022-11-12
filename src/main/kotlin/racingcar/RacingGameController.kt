@@ -1,15 +1,16 @@
 package racingcar
 
 import racingcar.io.OutputView
+import racingcar.io.ParticipateCarName
 
 object RacingGameController {
-    fun play(nameOfCars: List<String>, numberOfAttempts: Int, moveStrategy: MoveStrategy) {
+    fun play(nameOfCars: List<ParticipateCarName>, numberOfAttempts: Int, moveStrategy: MoveStrategy) {
         val participatingCars = loadCar(nameOfCars)
         start(participatingCars, numberOfAttempts, moveStrategy)
     }
 
-    private fun loadCar(nameOfCars: List<String>): List<Car> =
-        nameOfCars.mapIndexed { index, name -> Car(id = index, name = name) }
+    private fun loadCar(nameOfCars: List<ParticipateCarName>): List<Car> =
+        nameOfCars.mapIndexed { index, participateCar -> Car(id = index, name = participateCar.name) }
 
     private fun start(cars: List<Car>, numberOfAttempts: Int, moveStrategy: MoveStrategy) {
         repeat(numberOfAttempts) {
