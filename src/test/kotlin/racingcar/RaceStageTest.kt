@@ -15,15 +15,15 @@ internal class RaceStageTest {
     }
 
     @Test
-    @DisplayName("자동차가 갯수만큼 생성된다.")
+    @DisplayName("입력받은 자동차 이름 수의 자동차 갯수가 생성된다.")
     internal fun createTest() {
         // given
-        val carCount = 5
+        val inputCarNames = "pobi,crong,honux".split(",")
 
         // when
-        val raceStage = RaceStage.create(carCount)
+        val raceStage = RaceStage.create(inputCarNames)
 
         // then
-        assertThat(raceStage.cars).hasSize(carCount)
+        assertThat(raceStage.cars).hasSize(inputCarNames.size)
     }
 }

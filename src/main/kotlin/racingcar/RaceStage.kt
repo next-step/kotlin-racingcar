@@ -12,8 +12,8 @@ class RaceStage(
     }
 
     companion object {
-        fun create(carCount: Int): RaceStage = RaceStage(
-            List(carCount) { Car() }
+        fun create(carNames: List<String>): RaceStage = RaceStage(
+            List(carNames.size) { index -> Car(carNames[index]) }
         )
     }
 

@@ -5,10 +5,10 @@ import racingcar.view.ResultView
 
 fun main() {
 
-    val carCount = InputView.inputCarCount()
+    val carNames = InputView.inputCarNames()
     val roundCount = InputView.inputRacingFullRound()
 
-    var raceStage = RaceStage.create(carCount)
+    var raceStage = RaceStage.create(carNames)
 
     ResultView.printResultIntroWording()
 
