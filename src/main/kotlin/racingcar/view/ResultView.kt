@@ -11,7 +11,14 @@ class ResultView {
 
     private fun printCarsInfo(carsInfo: List<Car>) {
         println()
-        carsInfo.forEach { printRouteInfo(it.route) }
+        carsInfo.forEach {
+            printCarInfo(it.name)
+            printRouteInfo(it.route)
+        }
+    }
+
+    private fun printCarInfo(name: String){
+        print("$name:")
     }
 
     private fun printRouteInfo(route: Int) {

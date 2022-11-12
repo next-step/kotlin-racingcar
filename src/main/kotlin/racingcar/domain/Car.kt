@@ -2,9 +2,10 @@ package racingcar.domain
 
 import java.lang.IllegalArgumentException
 
+const val MAX_CAR_NAME_LENGTH = 5
+
 class Car(
-    var route: Int = 0,
-    val name: String = ""
+    var route: Int = 0, val name: String = ""
 ) {
     fun move() {
         this.route += 1
@@ -15,7 +16,6 @@ class Car(
     }
 
     companion object {
-        val MAX_CAR_NAME_LENGTH = 5
         fun generateCar(count: Int) = buildList {
             repeat(count) { add(Car()) }
         }
