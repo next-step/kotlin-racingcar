@@ -1,10 +1,11 @@
-package study.step3
+package study.step3.racing
 
 import io.mockk.every
 import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import study.step3.car.CarFactory
+import study.step3.generator.RandomNumberGenerator
 
 internal class RacingTest {
     @Test
@@ -13,6 +14,6 @@ internal class RacingTest {
         every { randomNumberGenerator.generate() } returns 4
 
         val racing = Racing(CarFactory.createCars(2), randomNumberGenerator)
-        assertThat(racing.play()).isEqualTo(listOf(2, 2))
+        assertThat(racing.attempt()).isEqualTo(listOf(2, 2))
     }
 }
