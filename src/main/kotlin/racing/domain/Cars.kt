@@ -17,7 +17,6 @@ class Cars {
 
     fun move(): Cars {
         val cars = cars.map { car -> car.move() }
-            .toList()
         return Cars(cars)
     }
 }
