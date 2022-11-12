@@ -1,14 +1,13 @@
 package racingcar.domain
 
 import racingcar.dto.RacingResultDTO
-import racingcar.model.NonNegative
 
-class Cars(numberOfCars: NonNegative) {
+class Cars(carNames: CarNames) {
 
     private val cars: List<Car>
 
     init {
-        cars = List(numberOfCars.getNonNegativeValue()) { Car() }
+        cars = carNames.toList().map { Car(it) }
     }
 
     fun racing() {

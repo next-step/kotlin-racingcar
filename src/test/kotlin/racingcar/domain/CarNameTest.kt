@@ -1,27 +1,27 @@
 package racingcar.domain
 
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.EmptySource
 import org.junit.jupiter.params.provider.ValueSource
 
-class CarsTest {
+class CarNameTest {
 
-    @Test
-    fun `자동차 이름 목록을 입력 받아 컬렉션 생성 - 성공`() {
+    @ParameterizedTest
+    @ValueSource(strings = ["pobi", "crong", "honux"])
+    fun `자동차 이름 생성 - 성공`(input: String) {
         assertDoesNotThrow {
-            Cars(CarNames("pobi,crong,honux"))
+            CarName(input)
         }
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["raemerrr", ",crong,honux", "pobi,,honux", "pobi,crong,"])
+    @ValueSource(strings = ["raemerrr", "123456"])
     @EmptySource
-    fun `자동차 이름 목록을 입력 받아 컬렉션 생성 - 실패`(input: String) {
+    fun `자동차 이름 생성 - 실패`(input: String) {
         assertThrows<IllegalArgumentException> {
-            Cars(CarNames(input))
+            CarName(input)
         }
     }
 }

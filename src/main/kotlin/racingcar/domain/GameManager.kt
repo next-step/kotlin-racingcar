@@ -7,7 +7,7 @@ import racingcar.ui.ResultView
 object GameManager {
 
     fun racing() {
-        val cars = Cars(NonNegative(InputView.numberOfCars()))
+        val cars = Cars(CarNames(InputView.carNames()))
         val numberOfRaces = NonNegative(InputView.numberOfRaces()).getNonNegativeValue()
         println("\n실행 결과")
         for (race in 1..numberOfRaces) {
