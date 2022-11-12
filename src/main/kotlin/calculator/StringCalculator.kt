@@ -9,9 +9,9 @@ object StringCalculator {
 
         var result = splitInput[0].toLongOrThrow()
         for (i in 1 until splitInput.size step 2) {
-            val operator = ArithmeticOperator.of(splitInput[i])
+            val arithmeticOperator = ArithmeticOperator.of(splitInput[i])
             val operand = splitInput[i + 1].toLongOrThrow()
-            result = operator.operate(result, operand)
+            result = arithmeticOperator.operate(result, operand)
         }
 
         return result
