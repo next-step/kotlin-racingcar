@@ -9,10 +9,10 @@ class RacingGame {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val inputData = InputView.setInputData()
-            val cars = Cars(Array(inputData.first) { Car() }.toList())
+            val inputData = InputView.inputData()
+            val cars = Cars(Array(inputData.getNumberOfCars()) { Car() }.toList())
             ResultView.printResultTitle()
-            repeat(inputData.second) {
+            repeat(inputData.getPlayTime()) {
                 cars.play()
                 ResultView.printResult(cars)
             }
