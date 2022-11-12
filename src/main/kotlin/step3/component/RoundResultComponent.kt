@@ -7,6 +7,7 @@ class RoundResultComponent(
 ) : Component {
     override fun render() {
         roundResult.carPositions.forEach { carPosition ->
+            SpanComponent(text = "자동차 ${carPosition.id}: ").render()
             DistanceComponent(position = carPosition.position).render()
             println()
         }
