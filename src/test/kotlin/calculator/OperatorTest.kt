@@ -11,7 +11,7 @@ internal class OperatorTest {
 
     @ParameterizedTest
     @MethodSource("successRecognitionOperatorTest")
-    fun `연산자 인식 성공 테스트`(input: String, result: Operator) {
+    fun `input값이 사칙연산 기호라서 연산자 인식 성공`(input: String, result: Operator) {
         val actual = Operator.of(input)
 
         val expected = result
@@ -20,7 +20,7 @@ internal class OperatorTest {
 
     @ParameterizedTest
     @MethodSource("failureRecognitionOperatorTest")
-    fun `연산자 인식 실패 테스트`(input: String) {
+    fun `input값이 사칙연산 기호가 아닌 다른 문자라서 연산자 인식 실패`(input: String) {
         assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy {
                 Operator.of(input)
