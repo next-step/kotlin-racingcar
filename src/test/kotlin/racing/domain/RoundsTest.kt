@@ -14,7 +14,7 @@ class RoundsTest : StringSpec() {
         "play 를 하면 Rounds 가 진행된다" {
             val rounds = Rounds(1)
 
-            rounds.play(Cars(1))
+            rounds.play()
 
             rounds.hasNext() shouldBe false
         }

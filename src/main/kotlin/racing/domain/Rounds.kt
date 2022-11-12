@@ -6,8 +6,7 @@ class Rounds(private val maxRound: Int) {
 
     fun hasNext(): Boolean = currentRound < maxRound
 
-    fun play(cars: Cars): Cars {
+    fun play() {
         currentRound++
-        return cars.move()
     }
 }

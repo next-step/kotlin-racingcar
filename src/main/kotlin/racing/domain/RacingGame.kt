@@ -9,8 +9,8 @@ class RacingGame(
     fun play(): Result {
         var result = Result()
         while (rounds.hasNext()) {
-            cars = rounds.play(cars)
-            result.add(cars)
+            rounds.play()
+            result.add(cars.move())
         }
 
         return result
