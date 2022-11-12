@@ -10,7 +10,7 @@ internal class MoveStrategyTest {
     @DisplayName("0 ~ 3 범위의 수 테스트")
     @ParameterizedTest(name = "4미만의 값({0})는 전진할 수 없다")
     @ValueSource(ints = [0, 1, 2, 3])
-    fun `4보다 작은 수는 전진할 수 없다`(input: Int) {
+    fun `4보다 작은 수는 멈춘다`(input: Int) {
         assertThat(MoveStrategy().canMove(input)).isEqualTo(false)
     }
 
