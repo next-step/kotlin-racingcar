@@ -32,7 +32,7 @@ class RacingGameTest : FunSpec({
         racingGame.race { 4 }
 
         racingGame.racingCars.forExactly(3) {
-            it.position shouldBe 1
+            it.position() shouldBe 1
         }
     }
 
@@ -47,7 +47,7 @@ class RacingGameTest : FunSpec({
         val result = racingGame.winner()
 
         result.forAll {
-            it.position shouldBe 5
+            it.position() shouldBe 5
             it.name.value shouldBe "pobi"
         }
     }
