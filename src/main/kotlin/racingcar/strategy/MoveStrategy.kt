@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.strategy
 
 interface MoveStrategy {
     fun isPossibleMove(): Boolean

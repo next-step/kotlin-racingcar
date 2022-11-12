@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.strategy
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe

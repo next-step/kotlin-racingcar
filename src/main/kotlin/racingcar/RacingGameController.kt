@@ -2,6 +2,7 @@ package racingcar
 
 import racingcar.io.OutputView
 import racingcar.io.ParticipateCarName
+import racingcar.strategy.MoveStrategy
 
 object RacingGameController {
     private const val FIRST_TURN = 1

@@ -1,6 +1,7 @@
 package racingcar
 
 import racingcar.io.InputView
+import racingcar.strategy.RandomMoveStrategy
 
 fun main() {
     val nameOfCars = InputView.getNameOfCars()
