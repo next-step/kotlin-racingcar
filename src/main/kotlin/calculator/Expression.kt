@@ -20,7 +20,6 @@ class Expression(
     }
 
     private fun validateExpression(expressionContents: List<String>) {
-        println(expressionContents.size)
         validateEmptyExpression(expressionContents)
         validateNumber(expressionContents)
         validateOperator(expressionContents)
