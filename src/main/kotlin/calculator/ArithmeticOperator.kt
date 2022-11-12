@@ -2,18 +2,15 @@ package calculator
 
 enum class ArithmeticOperator(
     private val symbol: String,
+    val operate: (Long, Long) -> Long,
 ) {
-    PLUS("+") { override fun operate(operand1: Long, operand2: Long): Long = operand1 + operand2 },
-    MINUS("-") { override fun operate(operand1: Long, operand2: Long): Long = operand1 - operand2 },
-    MULTIPLY("*") { override fun operate(operand1: Long, operand2: Long): Long = operand1 * operand2 },
-    DIVIDE("/") {
-        override fun operate(operand1: Long, operand2: Long): Long {
-            require(operand2 != 0L) { "0으로 나눌 수 없습니다." }
-            return operand1 / operand2
-        }
-    };
-
-    abstract fun operate(operand1: Long, operand2: Long): Long
+    PLUS("+", { operand1: Long, operand2: Long -> operand1 + operand2 }),
+    MINUS("-", { operand1: Long, operand2: Long -> operand1 - operand2 }),
+    MULTIPLY("*", { operand1: Long, operand2: Long -> operand1 * operand2 }),
+    DIVIDE("/", { operand1: Long, operand2: Long ->
+        require(operand2 != 0L) { "0으로 나눌 수 없습니다." }
+        operand1 / operand2
+    });
 
     companion object {
         fun of(symbol: String): ArithmeticOperator {
