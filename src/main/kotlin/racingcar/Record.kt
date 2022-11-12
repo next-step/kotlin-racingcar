@@ -10,8 +10,3 @@ data class Record(
         }
     }
 }
-
-data class CarRecord(
-    val name: String,
-    val position: Int,
-)
