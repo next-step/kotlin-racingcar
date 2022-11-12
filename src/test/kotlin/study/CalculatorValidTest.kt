@@ -9,12 +9,10 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.EmptySource
-import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.NullSource
 import org.junit.jupiter.params.provider.ValueSource
-import java.util.stream.Stream
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -58,16 +56,10 @@ class CalculatorValidTest {
     }
 
     @ParameterizedTest
-    @MethodSource("provideInputNumbers")
-    fun addition(a: Int, b: Int) {
+    @CsvSource(value = ["2, 3, 5", "5, 8, 13"])
+    fun addition(a: Int, b: Int, result: Int) {
         //given, when, then
-        assertTrue(Addition().operation(a, b) == a + b)
+        assertTrue(Addition().operation(a, b) == result)
     }
 
-    private fun provideInputNumbers(): Stream<Arguments> {
-        return Stream.of(
-            Arguments.of(2, 3),
-            Arguments.of(5, 8),
-        )
-    }
 }
