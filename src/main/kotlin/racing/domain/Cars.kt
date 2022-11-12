@@ -4,11 +4,7 @@ class Cars {
     val cars: List<Car>
 
     constructor(carCount: Int) {
-        val cars: MutableList<Car> = mutableListOf()
-        for (i in 0 until carCount) {
-            cars.add(Car())
-        }
-        this.cars = cars.toList()
+        this.cars = (0 until carCount).map { Car() }
     }
 
     constructor(cars: List<Car>) {
