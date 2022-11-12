@@ -1,7 +1,6 @@
 package study
 
 import calculator.ValidCheck
-import calculator.calculateOperationList
 import calculator.operation.Addition
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -36,7 +35,7 @@ class CalculatorValidTest {
         val input = "2 + 3 * 4 % 1"
 
         // when, then
-        assertThatThrownBy { input.calculateOperationList() }
+        assertThatThrownBy { ValidCheck.checkSplitArrayOperator(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageContaining("operator")
     }

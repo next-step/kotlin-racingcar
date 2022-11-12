@@ -6,7 +6,7 @@ import calculator.operation.Division
 import calculator.operation.Multiplication
 import calculator.operation.Subtraction
 
-fun String.calculateNumberList(): List<Int> = ArrayList<Int>().apply {
+internal fun String.calculateNumberList(): List<Int> = ArrayList<Int>().apply {
     val split = split(" ")
     split.forEachIndexed { index, str ->
         if (index % 2 == 0) {
@@ -19,7 +19,7 @@ fun String.calculateNumberList(): List<Int> = ArrayList<Int>().apply {
     }
 }
 
-fun String.calculateOperationList(): List<ArithmeticOperations> = ArrayList<ArithmeticOperations>().apply {
+internal fun String.calculateOperationList(): List<ArithmeticOperations> = ArrayList<ArithmeticOperations>().apply {
     val split = split(" ")
     split.forEachIndexed { index, str ->
         if (index % 2 != 0) {

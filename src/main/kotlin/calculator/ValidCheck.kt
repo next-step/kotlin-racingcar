@@ -14,4 +14,8 @@ object ValidCheck {
     fun checkEmptyString(input: String?) {
         require(!input.isNullOrBlank()) { "입력값이 null 이거나 빈 공백 문자" }
     }
+
+    fun checkSplitArrayOperator(input: String) {
+        input.calculateOperationList()
+    }
 }
