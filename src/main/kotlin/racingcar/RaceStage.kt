@@ -1,9 +1,10 @@
 package racingcar
 
-import kotlin.random.Random
+private const val START_VALUE = 0
+private const val LIMIT_VALUE = 10
 
 class RaceStage(
-    val cars: List<Car>
+    val cars: List<Car>,
 ) {
 
     init {
@@ -17,6 +18,6 @@ class RaceStage(
     }
 
     fun racing(): RaceStage = RaceStage(
-        cars.map { car -> car.race(Random.Default) }
+        cars.map { car -> car.race(RacingCarEngine.canMove(((START_VALUE until LIMIT_VALUE).random()))) }
     )
 }
