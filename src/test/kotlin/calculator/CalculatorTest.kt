@@ -5,6 +5,8 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 internal class CalculatorTest {
     private val calculator = Calculator()
@@ -16,10 +18,9 @@ internal class CalculatorTest {
         }.isInstanceOf(IllegalArgumentException::class.java).hasMessageContaining(ExceptionCode.NOT_ALLOWED_NULL_OR_BLANK.getMessage())
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("input에 빈값이 들어오면 에러를 낸다")
-    // @ParameterizedTest
-    // @ValueSource(strings = ["", "  "])
+    @ValueSource(strings = ["", "  "])
     fun inputIsNotAllowedEmpty(input: String?) {
         assertThatThrownBy {
             calculator.calculate(input)
@@ -79,46 +80,46 @@ internal class CalculatorTest {
     @Test
     @DisplayName("더하기 단항 연산을 성공한다")
     fun singlePlusSuccess() {
-        assertThat(calculator.calculate("1 + 2")).isEqualTo(3)
-        assertThat(calculator.calculate("10 + 20")).isEqualTo(30)
-        assertThat(calculator.calculate("4 + 5")).isEqualTo(9)
-        assertThat(calculator.calculate("11 + 2")).isEqualTo(33)
-        assertThat(calculator.calculate("0 + 2")).isEqualTo(2)
+        assertThat(calculator.calculate("1 + 2")).isEqualTo(3F)
+        assertThat(calculator.calculate("10 + 20")).isEqualTo(30F)
+        assertThat(calculator.calculate("4 + 5")).isEqualTo(9F)
+        assertThat(calculator.calculate("11 + 2")).isEqualTo(13F)
+        assertThat(calculator.calculate("0 + 2")).isEqualTo(2F)
     }
 
     @Test
     @DisplayName("빼기 단항 연산을 성공한다")
     fun singleMinusSuccess() {
-        assertThat(calculator.calculate("1 - 2")).isEqualTo(-1)
-        assertThat(calculator.calculate("10 - 20")).isEqualTo(-10)
-        assertThat(calculator.calculate("4 - 5")).isEqualTo(-1)
-        assertThat(calculator.calculate("11 - 2")).isEqualTo(9)
-        assertThat(calculator.calculate("0 - 2")).isEqualTo(-2)
+        assertThat(calculator.calculate("1 - 2")).isEqualTo(-1F)
+        assertThat(calculator.calculate("10 - 20")).isEqualTo(-10F)
+        assertThat(calculator.calculate("4 - 5")).isEqualTo(-1F)
+        assertThat(calculator.calculate("11 - 2")).isEqualTo(9F)
+        assertThat(calculator.calculate("0 - 2")).isEqualTo(-2F)
     }
 
     @Test
     @DisplayName("곱하기 단항 연산을 성공한다")
     fun singleMultipleSuccess() {
-        assertThat(calculator.calculate("1 * 2")).isEqualTo(2)
-        assertThat(calculator.calculate("10 * 20")).isEqualTo(200)
-        assertThat(calculator.calculate("4 * 5")).isEqualTo(20)
-        assertThat(calculator.calculate("11 * 2")).isEqualTo(22)
-        assertThat(calculator.calculate("0 * 2")).isEqualTo(0)
+        assertThat(calculator.calculate("1 * 2")).isEqualTo(2F)
+        assertThat(calculator.calculate("10 * 20")).isEqualTo(200F)
+        assertThat(calculator.calculate("4 * 5")).isEqualTo(20F)
+        assertThat(calculator.calculate("11 * 2")).isEqualTo(22F)
+        assertThat(calculator.calculate("0 * 2")).isEqualTo(0F)
     }
 
     @Test
     @DisplayName("나누기 단항 연산을 성공한다")
     fun singleDivideSuccess() {
-        assertThat(calculator.calculate("1 / 2")).isEqualTo(0.5)
-        assertThat(calculator.calculate("10 / 20")).isEqualTo(0.5)
-        assertThat(calculator.calculate("4 / 5")).isEqualTo(4 / 5)
-        assertThat(calculator.calculate("11 / 2")).isEqualTo(11 / 2)
-        assertThat(calculator.calculate("0 / 2")).isEqualTo(0)
+        assertThat(calculator.calculate("1 / 2")).isEqualTo(0.5F)
+        assertThat(calculator.calculate("10 / 20")).isEqualTo(0.5F)
+        assertThat(calculator.calculate("4 / 5")).isEqualTo(0.8F)
+        assertThat(calculator.calculate("11 / 2")).isEqualTo(5.5F)
+        assertThat(calculator.calculate("0 / 2")).isEqualTo(0F)
     }
 
     @Test
     @DisplayName("복잡한 다항 연산을 성공한다")
     fun manyComplicatedOperationSuccess() {
-        assertThat(calculator.calculate("1 * 2 + 3 - 1 / 2")).isEqualTo(2)
+        assertThat(calculator.calculate("1 * 2 + 3 - 1 / 2")).isEqualTo(2F)
     }
 }
