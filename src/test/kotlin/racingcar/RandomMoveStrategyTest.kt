@@ -8,7 +8,7 @@ import io.mockk.unmockkAll
 import racingcar.utils.RandomNumberGenerator
 
 internal class RandomMoveStrategyTest : FunSpec({
-    context("RandomGenerator 값이 4 이상이면, 움직일 수 있는 삳태이다.") {
+    context("RandomGenerator 값이 4 이상이면, 움직일 수 있는 상태이다.") {
         mockkObject(RandomNumberGenerator)
         every { RandomNumberGenerator.generate(any()) } returns 9
         RandomMoveStrategy().isPossibleMove() shouldBe true
