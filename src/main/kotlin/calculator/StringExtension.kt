@@ -13,7 +13,7 @@ internal fun String.calculateNumberList(): List<Int> = ArrayList<Int>().apply {
             try {
                 add(str.toInt())
             } catch (e: NumberFormatException) {
-                throw e
+                throw IllegalArgumentException("숫자(정수)가 아님")
             }
         }
     }
