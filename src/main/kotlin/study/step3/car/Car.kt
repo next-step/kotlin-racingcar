@@ -1,15 +1,21 @@
 package study.step3.car
 
-class Car() {
-    var currentLocation: Int = 1
+class Car {
+    var currentLocation: Int = INIT_LOCATION
+        private set
 
     fun move(dice: Int) {
         if (canMove(dice)) {
-            this.currentLocation += 1
+            currentLocation += 1
         }
     }
 
     private fun canMove(dice: Int): Boolean {
-        return dice >= 4
+        return dice >= FORWARD_NUMBER
+    }
+
+    companion object {
+        private const val FORWARD_NUMBER = 4
+        private const val INIT_LOCATION = 1
     }
 }
