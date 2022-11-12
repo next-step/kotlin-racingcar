@@ -13,7 +13,7 @@ class Car {
     }
 
     fun getDistance(): Int {
-        return distance.toInt()
+        return distance.value
     }
 
     fun compareTo(other: Car): Int {

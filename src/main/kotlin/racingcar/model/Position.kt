@@ -1,39 +1,29 @@
 package racingcar.model
 
-class Position {
+import racingcar.domain.GameManager
 
-    companion object {
-        private const val MINIMUM_NUMBER = 0
-        private const val FORWARD_VALUE = 1
+data class Position(var value: Int = 0) {
+
+    init {
+        GameManager.validateNegativeNumber(this.value)
     }
 
-    private var value: Number
-
-    constructor() {
-        this.value = 0
-    }
-
-    constructor(text: String) {
-        this.value = StringAsNumber(text)
-        validateNegative()
-    }
-
-    fun toInt(): Int {
-        return this.value.toInt()
+    constructor(input: String) : this() {
+        this.value = GameManager.validateNegativeStringNumber(input)
     }
 
     fun plus() {
-        this.value = this.value.toInt().plus(FORWARD_VALUE)
+        this.value += FORWARD_VALUE
+    }
+
+    companion object {
+        private const val FORWARD_VALUE = 1
     }
 
     operator fun compareTo(other: Position): Int =
         when {
-            this.value.toInt() > other.value.toInt() -> 1
-            this.value.toInt() < other.value.toInt() -> -1
+            this.value > other.value -> 1
+            this.value < other.value -> -1
             else -> 0
         }
-
-    private fun validateNegative() {
-        require(MINIMUM_NUMBER <= this.value.toInt()) { "$MINIMUM_NUMBER 보다 작은 수를 입력할 수 없습니다." }
-    }
 }

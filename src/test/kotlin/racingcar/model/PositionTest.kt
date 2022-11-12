@@ -29,7 +29,7 @@ class PositionTest {
     fun `음수가 아닌 숫자의 더하기 기능 검증`() {
         val position = Position()
         position.plus()
-        assertEquals(1, position.toInt())
+        assertEquals(1, position.value)
     }
 
     @Test

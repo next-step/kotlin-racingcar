@@ -2,15 +2,12 @@ package racingcar.domain
 
 import racingcar.dto.RacingResultDTO
 
-class Cars {
-
-    companion object {
-        private val MOVEMENT_STRATEGY: MovementStrategy = RandomNumberMovementStrategy()
-    }
+class Cars(numberOfCars: Int) {
 
     private val cars: List<Car>
 
-    constructor(numberOfCars: Int) {
+    init {
+        GameManager.validateNegativeNumber(numberOfCars)
         cars = List(numberOfCars) { Car() }
     }
 
@@ -22,5 +19,9 @@ class Cars {
 
     fun racingResult(): List<RacingResultDTO> {
         return cars.map { RacingResultDTO(it.getDistance()) }.toList()
+    }
+
+    companion object {
+        private val MOVEMENT_STRATEGY: MovementStrategy = RandomNumberMovementStrategy()
     }
 }
