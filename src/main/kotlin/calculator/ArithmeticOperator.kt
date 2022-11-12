@@ -6,7 +6,12 @@ enum class ArithmeticOperator(
     PLUS("+") { override fun operate(operand1: Long, operand2: Long): Long = operand1 + operand2 },
     MINUS("-") { override fun operate(operand1: Long, operand2: Long): Long = operand1 - operand2 },
     MULTIPLY("*") { override fun operate(operand1: Long, operand2: Long): Long = operand1 * operand2 },
-    DIVIDE("/") { override fun operate(operand1: Long, operand2: Long): Long = operand1 / operand2 };
+    DIVIDE("/") {
+        override fun operate(operand1: Long, operand2: Long): Long {
+            require(operand2 != 0L) { "0으로 나눌 수 없습니다." }
+            return operand1 / operand2
+        }
+    };
 
     abstract fun operate(operand1: Long, operand2: Long): Long
 

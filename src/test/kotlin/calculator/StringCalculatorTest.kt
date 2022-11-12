@@ -2,6 +2,7 @@ package calculator
 
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.MethodSource
@@ -47,6 +48,17 @@ internal class StringCalculatorTest {
 
         // then
         assertEquals(expectedResult, actualResult)
+    }
+
+    @Test
+    fun `나눗셈 테스트 (0으로 나누는 경우)`() {
+        // given
+        val input = "7 / 0"
+
+        // when & then
+        assertThatThrownBy {
+            StringCalculator.calculate(input)
+        }.isInstanceOf(IllegalArgumentException::class.java)
     }
 
     @ParameterizedTest(name = "{0} = {1}")
