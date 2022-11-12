@@ -11,6 +11,10 @@ class Race(
 ) {
     fun run(cars: List<Car>) = cars.moveCars()
 
+    fun findWinner(cars: List<Car>) = cars.filter { it.route == findHighRoute(cars) }
+
+    private fun findHighRoute(cars: List<Car>) = cars.maxOf { it.route }
+
     private fun List<Car>.moveCars(): List<Car> {
         this.forEach { moveCar(it) }
         return this
