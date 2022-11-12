@@ -16,4 +16,6 @@ fun main() {
         raceStage = raceStage.racing()
         ResultView.printResult(raceStage)
     }
+
+    ResultView.printWinner(raceStage)
 }

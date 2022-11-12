@@ -26,4 +26,18 @@ internal class RaceStageTest {
         // then
         assertThat(raceStage.cars).hasSize(inputCarNames.size)
     }
+
+    @Test
+    @DisplayName("경주 우승자를 정상적으로 반환한다.")
+    internal fun getWinnerTest() {
+        // given
+        val winnerPos = 10
+        val raceStage = RaceStage(listOf(Car("a", winnerPos), Car("b", 5), Car("c", 1), Car("d", winnerPos)))
+
+        // when
+        val winners = raceStage.getWinners()
+
+        // then
+        assertThat(winners).extracting("name").containsExactlyElementsOf(listOf("a", "d"))
+    }
 }
