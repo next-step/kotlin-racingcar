@@ -2,14 +2,12 @@ package study
 
 import calculator.Calculator
 import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 class CalculatorTest {
 
     @Test
-    @DisplayName("더하기 테스트")
-    fun addition() {
+    fun `더하기 테스트`() {
         // given
         val input = "2 + 3 + 3"
         val result = 2 + 3 + 3
@@ -23,8 +21,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("빼기 테스트")
-    fun subtraction() {
+    fun `빼기 테스트`() {
         val input = "2 - 3"
         val result = 2 - 3
 
@@ -35,8 +32,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("곱하기 테스트")
-    fun multiplication() {
+    fun `곱하기 테스트`() {
         val input = "3 * 4"
         val result = 3 * 4
 
@@ -47,8 +43,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("나누기 테스트")
-    fun division() {
+    fun `나누기 테스트`() {
         val input = "4 / 2"
         val result = 4 / 2
 
@@ -59,8 +54,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("사칙연산 테스트")
-    fun calculate() {
+    fun `사칙연산 테스트`() {
         // given
         val input = "2 + 3 - 4 * 5 / 2"
         val result = ((2 + 3 - 4) * 5) / 2
