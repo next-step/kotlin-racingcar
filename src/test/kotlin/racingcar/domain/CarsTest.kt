@@ -1,11 +1,13 @@
 package racingcar.domain
 
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.EmptySource
 import org.junit.jupiter.params.provider.ValueSource
+import racingcar.dto.RacingResultDTO
 
 class CarsTest {
 
@@ -23,5 +25,19 @@ class CarsTest {
         assertThrows<IllegalArgumentException> {
             Cars(CarNames(input))
         }
+    }
+
+    @Test
+    fun `우승자 출력`() {
+        val cars = Cars(CarNames("pobi,crong,honux"))
+        val winners = cars.winners()
+        assertEquals(
+            listOf(
+                RacingResultDTO("pobi", 0),
+                RacingResultDTO("crong", 0),
+                RacingResultDTO("honux", 0)
+            ),
+            winners
+        )
     }
 }
