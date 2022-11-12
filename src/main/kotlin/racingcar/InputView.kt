@@ -9,6 +9,4 @@ class InputView {
         val input = readln()
         return input.trim().split(",")
     }
-
-
 }
