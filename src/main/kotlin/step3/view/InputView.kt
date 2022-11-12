@@ -24,12 +24,12 @@ class InputView {
 
         private fun inputCarNumber(): Int {
             println(CAR_NUMBER_INPUT_MESSAGE)
-            return readLine()!!.toInt()
+            return readln().toInt()
         }
 
         private fun inputPlayTime(): Int {
             println(PLAY_TIME_INPUT_MESSAGE)
-            return readLine()!!.toInt()
+            return readln().toInt()
         }
     }
 }
