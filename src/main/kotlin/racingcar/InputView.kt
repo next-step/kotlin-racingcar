@@ -1,5 +1,7 @@
 package racingcar
 
+private const val MAXIMUM_WORD_COUNT = 5
+
 class InputView {
 
     fun receiveSetting(nameOfCars: List<String>, numberOfLabs: Int): Setting {
@@ -29,7 +31,7 @@ class InputView {
 
     private fun checkNameLengthBetweenOneAndFive(name: String) {
         require(name.isNotBlank()) { ",로 분리된 값이 공백, 빈 문자열일 수 없습니다" }
-        require(name.length <= 5) { "자동차 이름은 다섯자를 초과할 수 없습니다" }
+        require(name.length <= MAXIMUM_WORD_COUNT) { "자동차 이름은 다섯자를 초과할 수 없습니다" }
     }
 
     private fun askNumberOfLabs(): String? {
