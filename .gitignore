@@ -30,3 +30,6 @@ out/
 
 ### VS Code ###
 .vscode/
+src/main/.DS_Store
+src/main/kotlin/.DS_Store
+src/main/kotlin/step3/.DS_Store

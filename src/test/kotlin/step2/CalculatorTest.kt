@@ -1,5 +1,6 @@
 package step2
 
+import calculator.Calculator
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable
@@ -22,17 +23,17 @@ internal class CalculatorTest {
             calculator.calculate(null)
         }
         // then
-        assertThatIllegalArgumentException().isThrownBy(throwingCallable).withMessage("expression is null or blank")
+        assertThatIllegalArgumentException().isThrownBy(throwingCallable).withMessage("expression is null")
     }
 
     @Test
     fun `수식이 비어있으면 예외를 발생시킨다`() {
         // given
         val throwingCallable = ThrowingCallable {
-            calculator.calculate("")
+            calculator.calculate("   ")
         }
         // then
-        assertThatIllegalArgumentException().isThrownBy(throwingCallable).withMessage("expression is null or blank")
+        assertThatIllegalArgumentException().isThrownBy(throwingCallable).withMessage("expression is blank")
     }
 
     @Test

@@ -1,9 +1,13 @@
 package step2
 
+import calculator.Operator
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
 
 class OperatorTest {
 
@@ -17,36 +21,13 @@ class OperatorTest {
         assertThatIllegalArgumentException().isThrownBy(throwingCallable).withMessage("invalid operator")
     }
 
-    @Test
-    fun `기호가 더하기면 더하기 연산자를 반환한다`() {
+    @ParameterizedTest
+    @MethodSource("operators")
+    fun `해당 기호에 대한 연산자를 반환한다`(sign: String, operator: Operator) {
         // given
-        val actual = Operator.of("+")
+        val actual = Operator.of(sign)
         // then
-        assertThat(actual).isEqualTo(Operator.PLUS)
-    }
-
-    @Test
-    fun `기호가 빼기면 빼기 연산자를 반환한다`() {
-        // given
-        val actual = Operator.of("-")
-        // then
-        assertThat(actual).isEqualTo(Operator.MINUS)
-    }
-
-    @Test
-    fun `기호가 곱하기면 곱하기 연산자를 반환한다`() {
-        // given
-        val actual = Operator.of("*")
-        // then
-        assertThat(actual).isEqualTo(Operator.MULTIPLY)
-    }
-
-    @Test
-    fun `기호가 나누기면 나누기 연산자를 반환한다`() {
-        // given
-        val actual = Operator.of("/")
-        // then
-        assertThat(actual).isEqualTo(Operator.DIVIDE)
+        assertThat(actual).isEqualTo(operator)
     }
 
     @Test
@@ -87,5 +68,15 @@ class OperatorTest {
         val actual = plusOperator.calculate(2, 2)
         // then
         assertThat(actual).isEqualTo(1)
+    }
+
+    companion object {
+        @JvmStatic
+        fun operators() = listOf(
+            Arguments.of("+", Operator.PLUS),
+            Arguments.of("-", Operator.MINUS),
+            Arguments.of("*", Operator.MULTIPLY),
+            Arguments.of("/", Operator.DIVIDE)
+        )
     }
 }
