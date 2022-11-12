@@ -1,14 +1,14 @@
 package racingcar.domain
 
 import racingcar.dto.RacingResultDTO
+import racingcar.model.NonNegative
 
-class Cars(numberOfCars: Int) {
+class Cars(numberOfCars: NonNegative) {
 
     private val cars: List<Car>
 
     init {
-        GameManager.validateNegativeNumber(numberOfCars)
-        cars = List(numberOfCars) { Car() }
+        cars = List(numberOfCars.getNonNegativeValue()) { Car() }
     }
 
     fun racing() {
