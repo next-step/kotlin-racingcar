@@ -10,38 +10,23 @@ import org.junit.jupiter.params.provider.ValueSource
 internal class StringCalculatorTest {
 
     @ParameterizedTest(name = "{0} = {1}")
-    @CsvSource("1 + 2=3", "100 + 1=101", "-1 + 10=9", delimiter = '=')
-    fun `덧셈 테스트`(input: String, expectedResult: Long) {
-        // when
-        val actualResult = StringCalculator.calculate(input)
-
-        // then
-        assertEquals(expectedResult, actualResult)
-    }
-
-    @ParameterizedTest(name = "{0} = {1}")
-    @CsvSource("1 - 2=-1", "2 - 2=0", "-1 - 10=-11", delimiter = '=')
-    fun `뺄셈 테스트`(input: String, expectedResult: Long) {
-        // when
-        val actualResult = StringCalculator.calculate(input)
-
-        // then
-        assertEquals(expectedResult, actualResult)
-    }
-
-    @ParameterizedTest(name = "{0} = {1}")
-    @CsvSource("1 * 2=2", "2 * 2=4", "-1 * 10=-10", delimiter = '=')
-    fun `곱셈 테스트`(input: String, expectedResult: Long) {
-        // when
-        val actualResult = StringCalculator.calculate(input)
-
-        // then
-        assertEquals(expectedResult, actualResult)
-    }
-
-    @ParameterizedTest(name = "{0} = {1}")
-    @CsvSource("1 / 2=0", "2 / 2=1", "100 / 1=100", "-1 / 10=0", delimiter = '=')
-    fun `나눗셈 테스트`(input: String, expectedResult: Long) {
+    @CsvSource(
+        "1 + 2=3",
+        "-1 + 10=9",
+        "4 - 2=2",
+        "-1 - 10=-11",
+        "2 * 2=4",
+        "-1 * 10=-10",
+        "100 / 1=100",
+        "-1 / 10=0",
+        "2 - 3 * 4 / 2=-2",
+        "2 + 3 * 4 / 2=10",
+        "2 - 3 + 4 / 2=1",
+        "2 + 3 * 4 - 2=18",
+        "2 + 3 / 6 * 4 - 2=-2",
+        delimiter = '='
+    )
+    fun `사칙연산 테스트`(input: String, expectedResult: Long) {
         // when
         val actualResult = StringCalculator.calculate(input)
 
@@ -50,7 +35,7 @@ internal class StringCalculatorTest {
     }
 
     @Test
-    fun `나눗셈 테스트 (0으로 나누는 경우)`() {
+    fun `0으로 나누는 경우 테스트`() {
         // given
         val input = "7 / 0"
 
@@ -58,16 +43,6 @@ internal class StringCalculatorTest {
         assertThatThrownBy {
             StringCalculator.calculate(input)
         }.isInstanceOf(IllegalArgumentException::class.java)
-    }
-
-    @ParameterizedTest(name = "{0} = {1}")
-    @CsvSource("2 - 3 * 4 / 2=-2", "2 + 3 * 4 / 2=10", "2 - 3 + 4 / 2=1", "2 + 3 * 4 - 2=18", "2 + 3 / 6 * 4 - 2=-2", delimiter = '=')
-    fun `사칙연산 종합 테스트`(input: String, expectedResult: Long) {
-        // when
-        val actualResult = StringCalculator.calculate(input)
-
-        // then
-        assertEquals(expectedResult, actualResult)
     }
 
     @ParameterizedTest(name = "input = [{0}]")
