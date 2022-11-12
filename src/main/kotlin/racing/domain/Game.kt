@@ -11,7 +11,12 @@ class Game(val cars: List<Car>, private val round: Int = 3) {
             GameOutputView.printRaceStatus(cars)
             GameOutputView.printNextRound()
         }
-        GameOutputView.printRaceWinner(Cars.getWinnerCars(cars))
+        GameOutputView.printRaceWinner(getWinner(cars))
+    }
+
+    fun getWinner(cars: List<Car>): List<Car> {
+        val maxPosition = cars.maxOf { car -> car.position }
+        return cars.filter { car -> car.position == maxPosition }
     }
 
     private fun race() {
