@@ -3,18 +3,19 @@ package racingcar
 import racingcar.io.OutputView
 
 object RacingGameController {
-    fun play(numberOfCars: Int, numberOfAttempts: Int, moveStrategy: MoveStrategy) {
-        val participatingCars = loadCar(numberOfCars)
+    fun play(nameOfCars: List<String>, numberOfAttempts: Int, moveStrategy: MoveStrategy) {
+        val participatingCars = loadCar(nameOfCars)
         start(participatingCars, numberOfAttempts, moveStrategy)
     }
 
-    private fun loadCar(numberOfCars: Int): List<Car> = List(numberOfCars) { Car(it) }
+    private fun loadCar(nameOfCars: List<String>): List<Car> =
+        nameOfCars.mapIndexed { index, name -> Car(id = index, name = name) }
 
     private fun start(cars: List<Car>, numberOfAttempts: Int, moveStrategy: MoveStrategy) {
         repeat(numberOfAttempts) {
             cars.forEach {
-                it.move(moveStrategy)
-                OutputView.showCarMoveResult(it.currentPosition)
+                val movingCar = it.move(moveStrategy)
+                OutputView.showMovingCarResult(movingCar)
             }
             OutputView.nextTurn()
         }

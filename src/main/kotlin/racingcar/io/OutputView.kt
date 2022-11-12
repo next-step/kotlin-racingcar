@@ -1,8 +1,11 @@
 package racingcar.io
 
+import racingcar.Car
+
 object OutputView {
-    fun showCarMoveResult(currentPosition: Int) {
-        repeat(currentPosition) { print("-") }
+    fun showMovingCarResult(car: Car) {
+        print("${car.name} : ")
+        repeat(car.currentPosition) { print("-") }
         println()
     }
 

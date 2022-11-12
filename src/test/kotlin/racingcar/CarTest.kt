@@ -9,18 +9,18 @@ internal class CarTest : BehaviorSpec({
         val position = 0
 
         When("전진 가능한 상태라면") {
-            val car = Car(id = id, currentPosition = position)
-            car.move(FakeAlwaysMoveStrategy())
+            val car = Car(id = id, currentPosition = position, name = "car1")
+            val movingCar = car.move(FakeAlwaysMoveStrategy())
             Then("전진한다.") {
-                car.currentPosition shouldBe position + 1
+                movingCar.currentPosition shouldBe position + 1
             }
         }
 
         When("전진 불가능 상태라면") {
-            val car = Car(id = id, currentPosition = position)
-            car.move(FakeAlwaysNotMoveStrategy())
+            val car = Car(id = id, currentPosition = position, name = "car2")
+            val movingCar = car.move(FakeAlwaysNotMoveStrategy())
             Then("전진하지 않는다.") {
-                car.currentPosition shouldBe position
+                movingCar.currentPosition shouldBe position
             }
         }
     }
