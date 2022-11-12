@@ -6,18 +6,9 @@ import racing.domain.strategy.RandomMovingStrategy
 object Cars {
     const val NAME_SEPARATOR = ","
 
-    fun createCars(nameOfCars: String, movingStrategy: MovingStrategy = RandomMovingStrategy): List<Car> {
-        val nameList = nameOfCars.split(NAME_SEPARATOR)
-        val cars = mutableListOf<Car>()
-        nameList.onEach {
-            cars.add(Car(it, movingStrategy))
-        }
+    fun splitNameOfCars(nameOfCars: String) = nameOfCars.split(NAME_SEPARATOR)
 
-        return cars.toMutableList()
-    }
-
-    fun getWinnerCars(cars: List<Car>): List<Car> {
-        val maxPosition = cars.maxOf { car -> car.position }
-        return cars.filter { car -> car.position == maxPosition }
+    fun createCars(nameList: List<String>, movingStrategy: MovingStrategy = RandomMovingStrategy): List<Car> {
+        return nameList.map { Car(it, movingStrategy) }
     }
 }
