@@ -4,7 +4,7 @@ object StringCalculator {
 
     private const val DELIMITER = " "
 
-    fun calculate(input: String?): Long {
+    fun calculate(input: String): Long {
         val splitInput: List<String> = splitInput(input)
 
         var result = splitInput[0].toLongOrThrow()
@@ -17,8 +17,8 @@ object StringCalculator {
         return result
     }
 
-    private fun splitInput(input: String?): List<String> {
-        require(!input.isNullOrBlank()) { "입력값은 null이나 빈 공백 문자일 수 없습니다." }
+    private fun splitInput(input: String): List<String> {
+        require(input.isNotBlank()) { "입력값은 빈 공백 문자일 수 없습니다." }
 
         val splitInput: List<String> = input.split(DELIMITER)
         require(splitInput.size % 2 != 0) { "피연산자, 연산자의 개수의 합은 홀수여야 합니다." }

@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
 
 internal class StringCalculatorTest {
@@ -72,8 +71,8 @@ internal class StringCalculatorTest {
     }
 
     @ParameterizedTest(name = "input = [{0}]")
-    @MethodSource("blankOrNullStrings")
-    fun `입력값 null 또는 빈 공백문자 테스트`(input: String?) {
+    @ValueSource(strings = ["", "   "])
+    fun `입력값 빈 공백문자 테스트`(input: String) {
         // when & then
         assertThatThrownBy {
             StringCalculator.calculate(input)
@@ -109,10 +108,5 @@ internal class StringCalculatorTest {
         assertThatThrownBy {
             StringCalculator.calculate(wrongInput)
         }.isInstanceOf(IllegalArgumentException::class.java)
-    }
-
-    companion object {
-        @JvmStatic
-        fun blankOrNullStrings() = listOf(null, "", "   ")
     }
 }
