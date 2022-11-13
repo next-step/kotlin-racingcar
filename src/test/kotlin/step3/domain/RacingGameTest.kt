@@ -16,7 +16,7 @@ class RacingGameTest : BehaviorSpec({
             racingGame.race()
             then("차가 전진하지 않는다") {
                 racingGame.cars.forEach { car ->
-                    car.getTrack().shouldBeEmpty()
+                    car.track.shouldBeEmpty()
                 }
             }
         }
@@ -25,7 +25,7 @@ class RacingGameTest : BehaviorSpec({
             racingGame.race()
             then("차가 전진한다") {
                 racingGame.cars.forEach { car ->
-                    car.getTrack() shouldBe "-"
+                    car.track shouldBe "-"
                 }
             }
         }
