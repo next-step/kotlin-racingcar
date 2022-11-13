@@ -2,7 +2,8 @@ package racing.domain
 
 class Cars(private val cars: List<Car>) {
 
-    constructor(carNames: String) : this(carNames.split(CAR_NAMES_SPLIT_DELIMITER).map { name -> Car(name) })
+    constructor(carNames: String, moveStrategy: MoveStrategy = RandomStrategy.instance)
+            : this(carNames.split(CAR_NAMES_SPLIT_DELIMITER).map { name -> Car(name, moveStrategy) })
 
     val carInfos: CarInfos
         get() = CarInfos(cars.map { CarInfo(it.name, it.position) })
