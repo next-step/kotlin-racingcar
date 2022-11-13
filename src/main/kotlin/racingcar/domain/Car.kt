@@ -1,9 +1,9 @@
 package racingcar.domain
 
-class Car(
-    distance: Int = 0,
+data class Car(
+    val name: String,
 ) {
-    private var _distance = distance
+    private var _distance = 0
     val distance get() = _distance
 
     fun takeAction() {

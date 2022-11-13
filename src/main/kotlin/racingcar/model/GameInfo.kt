@@ -1,6 +1,11 @@
 package racingcar.model
 
 data class GameInfo(
-    val carNumber: Int,
-    val trialNumber: Int,
+    val carInfo: CarInfo,
+    val trialCount: Int,
+)
+
+data class CarInfo(
+    val names: List<String>,
+    val count: Int,
 )
