@@ -1,15 +1,16 @@
-package racingcar.domain
+package racingcar.domain.racing_game
 
+import racingcar.domain.random.RandomGenerator
 import racingcar.model.Car
 
-class RacingGame(
+class DefaultRacingGame(
     private val randomGenerator: RandomGenerator,
     cars: List<Car>
-) {
-    var cars: List<Car> = cars.toList()
+) : RacingGame {
+    override var cars: List<Car> = cars.toList()
         private set
 
-    fun race() {
+    override fun race() {
         cars = cars.map { car ->
             if (randomGenerator.getRandomValidation()) return@map car.goForward()
             car
