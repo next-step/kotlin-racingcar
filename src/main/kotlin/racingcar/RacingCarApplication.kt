@@ -20,21 +20,12 @@ fun main() {
     for (i in 1..count) {
         carList.forEach {
             it.move((randomNumberRange).random())
-            print(it.name + " : ")
-            print(makeResult(it.status))
+            val result = it.makeResult()
+            print(result)
         }
         println()
     }
 
     val exec = Statistics.exec(carList)
     println(exec)
-}
-
-fun makeResult(number: Int): String {
-    val str: StringBuilder = StringBuilder()
-    for (i in 1..number) {
-        str.append("-")
-    }
-    str.append("\n")
-    return str.toString()
 }

@@ -2,6 +2,7 @@ package racingcar
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class CarTest {
     @Test
@@ -30,5 +31,12 @@ class CarTest {
         }
 
         assertEquals(stopCar, toMoveCar)
+    }
+
+    @Test
+    fun `이름 제한 생성 테스트`() {
+        assertThrows<IllegalArgumentException> {
+            Car("123456")
+        }
     }
 }
