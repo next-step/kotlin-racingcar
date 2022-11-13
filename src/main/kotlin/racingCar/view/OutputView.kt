@@ -14,6 +14,7 @@ object OutputView {
     private const val POSITION_UNIT = "-"
     private const val WINNER_DESCRIPTION_MSG = "가 최종 우승했습니다."
     fun askTryNumber() = println(TRY_NUM_ASK_QST)
+    fun askUsernames() = println(USERNAME_ASK_QST)
 
     fun printResultMsg() = println(RESULT_MSG)
     fun printResult(result: ResultDto) {
@@ -30,7 +31,7 @@ object OutputView {
             .collect(Collectors.joining())
     }
 
-    fun askUsernames() = println(USERNAME_ASK_QST)
+
     fun printWinners(winners: List<Username>) {
         println("${winners.map { it.username }.joinToString(",")}${WINNER_DESCRIPTION_MSG} ")
     }

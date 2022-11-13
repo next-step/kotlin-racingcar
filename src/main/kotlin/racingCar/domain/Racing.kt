@@ -13,7 +13,7 @@ class Racing(usernames: List<String>, strategy: MoveStrategy) {
 
     fun pickWinner(): List<Username> {
         val winners = cars.findWinners();
-        checkNotNull(winners)
+        checkNotNull(winners){"우승자는 없을 수 없습니다. 동점자인 경우 여러 우승자를 허용합니다. "}
         return winners
     }
 }
