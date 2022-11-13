@@ -9,7 +9,7 @@ class CarTest {
     fun `자동차는 움직입니다`() {
         val car = Car()
 
-        car.move()
+        car.moveByStrategy({ true })
 
         assertThat(car).isEqualTo(Car.from(2))
     }

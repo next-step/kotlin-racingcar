@@ -7,10 +7,21 @@ class CarsTest {
 
     @Test
     fun `이동 전략에 따라 자동차가 움직입니다`() {
-        val cars = Cars(3) { true }
+        val cars = Cars(listOf(Username("pobi"), Username("crong"), Username("kcs"))) { true }
 
         cars.moveByStrategy()
 
-        assertThat(cars.cars).containsExactly(Car.from(2), Car.from(2), Car.from(2))
+        assertThat(cars.cars).containsValues(Car.from(2), Car.from(2), Car.from(2))
+    }
+
+    @Test
+    fun `한명 이상의 우승자가 선출되었습니다`() {
+        val cars = Cars(listOf(Username("pobi"), Username("crong"), Username("kcs"))) { true }
+        cars.cars.get(Username("pobi"))?.moveByStrategy({ true })
+        cars.cars.get(Username("crong"))?.moveByStrategy({ true })
+
+        val winners = cars.findWinners()
+
+        assertThat(winners).containsExactly(Username("pobi"), Username("crong"))
     }
 }

@@ -7,10 +7,17 @@ class RacingTest {
 
     @Test
     fun `레이싱 게임 시작시, 결과를 반환됩니다`() {
-        val racing = Racing(3) { true }
+        val racing = Racing(listOf("pobi", "crong", "kcs")) { true }
 
         val result = racing.play()
 
-        assertThat(result.positions).containsExactly(Position(2), Position(2), Position(2))
+        assertThat(result.positions)
+            .containsAllEntriesOf(
+                mapOf(
+                    Username("pobi") to Position(2),
+                    Username("crong") to Position(2),
+                    Username("kcs") to Position(2)
+                )
+            )
     }
 }
