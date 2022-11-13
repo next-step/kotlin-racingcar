@@ -1,7 +1,7 @@
 package racingcar.racingcar
 
 class CarManager {
-    fun ready(totalParticipants: Int): List<Car> {
-        return List(totalParticipants) { Car() }
+    fun ready(carNames: List<String>): List<Car> {
+        return carNames.map { Car(it) }
     }
 }
