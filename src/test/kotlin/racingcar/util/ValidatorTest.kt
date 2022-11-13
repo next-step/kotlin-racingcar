@@ -6,12 +6,12 @@ import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import racingcar.const.CarException
 
-internal class InputValidatorTest : BehaviorSpec({
+internal class ValidatorTest : BehaviorSpec({
     Given("차의 이름을 받는 입력에 대해, ") {
         When("null 값이 들어오면, ") {
             then("예외를 반환한다.") {
                 val exception = shouldThrow<IllegalArgumentException> {
-                    InputValidator.validateCarNameStr(null)
+                    Validator.validateCarNameStr(null)
                 }
                 exception.message shouldBe CarException.NULL_INPUT_ERROR
             }
@@ -20,7 +20,7 @@ internal class InputValidatorTest : BehaviorSpec({
         When("빈 값이 들어오면, ") {
             then("예외를 반환한다.") {
                 val exception = shouldThrow<IllegalArgumentException> {
-                    InputValidator.validateCarNameStr("")
+                    Validator.validateCarNameStr("")
                 }
                 exception.message shouldBe CarException.NULL_INPUT_ERROR
             }
@@ -29,7 +29,7 @@ internal class InputValidatorTest : BehaviorSpec({
         When("5자리를 초과한다면, ") {
             Then("예외를 반환한다.") {
                 val exception = shouldThrow<IllegalArgumentException> {
-                    InputValidator.validateCarNameStr("SangHyun")
+                    Validator.validateCarNameStr("SangHyun")
                 }
                 exception.message shouldBe CarException.MORE_THAN_FIVE_WORD_ERROR
             }
@@ -38,7 +38,7 @@ internal class InputValidatorTest : BehaviorSpec({
         When("정상적이라면, ") {
             Then("정상 수행된다.") {
                 shouldNotThrowAny {
-                    InputValidator.validateCarNameStr("SH")
+                    Validator.validateCarNameStr("SH")
                 }
             }
         }
@@ -48,7 +48,7 @@ internal class InputValidatorTest : BehaviorSpec({
         When("null 값이 들어오면, ") {
             Then("예외를 반환한다.") {
                 val exception = shouldThrow<IllegalArgumentException> {
-                    InputValidator.validateNumberOfTryStr(null)
+                    Validator.validateNumberOfTryStr(null)
                 }
                 exception.message shouldBe CarException.NULL_INPUT_ERROR
             }
@@ -57,7 +57,7 @@ internal class InputValidatorTest : BehaviorSpec({
         When("빈 값이 들어오면, ") {
             then("예외를 반환한다.") {
                 val exception = shouldThrow<IllegalArgumentException> {
-                    InputValidator.validateNumberOfTryStr("")
+                    Validator.validateNumberOfTryStr("")
                 }
                 exception.message shouldBe CarException.NULL_INPUT_ERROR
             }
@@ -66,7 +66,7 @@ internal class InputValidatorTest : BehaviorSpec({
         When("숫자가 아니라면, ") {
             Then("예외를 반환한다.") {
                 val exception = shouldThrow<IllegalArgumentException> {
-                    InputValidator.validateNumberOfTryStr("SH")
+                    Validator.validateNumberOfTryStr("SH")
                 }
                 exception.message shouldBe CarException.NOT_DIGIT_ERROR
             }
@@ -75,7 +75,7 @@ internal class InputValidatorTest : BehaviorSpec({
         When("1 이상이 아니라면, ") {
             Then("예외를 반환한다.") {
                 val exception = shouldThrow<IllegalArgumentException> {
-                    InputValidator.validateNumberOfTryStr("0")
+                    Validator.validateNumberOfTryStr("0")
                 }
                 exception.message shouldBe CarException.MORE_THAN_ONE
             }
@@ -83,7 +83,7 @@ internal class InputValidatorTest : BehaviorSpec({
         When("정상적이라면, ") {
             Then("정상 수행된다.") {
                 shouldNotThrowAny {
-                    InputValidator.validateNumberOfTryStr("3")
+                    Validator.validateNumberOfTryStr("3")
                 }
             }
         }
@@ -93,7 +93,7 @@ internal class InputValidatorTest : BehaviorSpec({
         When("null 값이 들어오면, ") {
             then("예외를 반환한다.") {
                 val exception = shouldThrow<IllegalArgumentException> {
-                    InputValidator.validateParserStr(null)
+                    Validator.validateParserStr(null)
                 }
                 exception.message shouldBe CarException.NULL_INPUT_ERROR
             }
@@ -102,7 +102,7 @@ internal class InputValidatorTest : BehaviorSpec({
         When("빈 값이 들어오면, ") {
             then("예외를 반환한다.") {
                 val exception = shouldThrow<IllegalArgumentException> {
-                    InputValidator.validateParserStr("")
+                    Validator.validateParserStr("")
                 }
                 exception.message shouldBe CarException.NULL_INPUT_ERROR
             }
@@ -111,7 +111,7 @@ internal class InputValidatorTest : BehaviorSpec({
         When("정상적이라면, ") {
             Then("정상 수행된다.") {
                 shouldNotThrowAny {
-                    InputValidator.validateParserStr("car1,car2,car3")
+                    Validator.validateParserStr("car1,car2,car3")
                 }
             }
         }

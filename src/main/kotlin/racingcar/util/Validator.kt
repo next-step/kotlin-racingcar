@@ -3,7 +3,7 @@ package racingcar.util
 import racingcar.const.CarException
 import racingcar.extension.isNumeric
 
-object InputValidator {
+object Validator {
     fun validateCarNameStr(input: String?) {
         require(!input.isNullOrBlank()) { CarException.NULL_INPUT_ERROR }
         require(input.length <= 5) { CarException.MORE_THAN_FIVE_WORD_ERROR }

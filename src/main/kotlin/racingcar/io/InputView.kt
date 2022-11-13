@@ -1,7 +1,7 @@
 package racingcar.io
 
-import racingcar.util.InputValidator
 import racingcar.util.Parser
+import racingcar.util.Validator
 
 object InputView {
     private const val READ_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
@@ -17,17 +17,13 @@ object InputView {
     private fun getCarNames(): List<String> {
         println(READ_MESSAGE)
         val carNameStr = Reader.read()
-        val carNames = Parser.parse(carNameStr)
-        carNames.forEach { carName ->
-            InputValidator.validateCarNameStr(carName)
-        }
-        return carNames
+        return Parser.parse(carNameStr)
     }
 
     private fun getNumberOfTry(): Int {
         println(WRITE_MESSAGE)
         val numberOfTryStr = Reader.read()
-        InputValidator.validateNumberOfTryStr(numberOfTryStr)
+        Validator.validateNumberOfTryStr(numberOfTryStr)
         return numberOfTryStr!!.toInt()
     }
 }

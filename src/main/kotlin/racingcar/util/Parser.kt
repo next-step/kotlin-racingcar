@@ -6,7 +6,7 @@ object Parser {
     private val COMMA_SPLIT_REGEX = ",".toRegex()
 
     fun parse(rawString: String?): List<String> {
-        InputValidator.validateParserStr(rawString)
+        Validator.validateParserStr(rawString)
         val removeWhiteString = rawString!!.removeWhitespaces()
         return removeWhiteString.split(COMMA_SPLIT_REGEX)
     }
