@@ -5,10 +5,7 @@ import java.util.stream.IntStream
 
 class Cars(carNumber: Int, private val strategy: MoveStrategy) {
 
-    val cars: List<Car> =
-        IntStream.range(0, carNumber)
-            .mapToObj { Car() }
-            .collect(Collectors.toList())
+    val cars: List<Car> = List(carNumber){ Car() }
 
     fun moveByStrategy() {
         cars.forEach {

@@ -13,9 +13,9 @@ fun main() {
     OutputView.askTryNumber()
     val tryNumber = InputView.number()
     OutputView.printResultMsg()
-    IntStream.range(0, tryNumber)
-        .forEach {
-            val result = racing.play()
-            OutputView.printResult(result)
-        }
+    (0..tryNumber).forEach {
+        val result = racing.play()
+        OutputView.printResult(result)
+
+    }
 }
