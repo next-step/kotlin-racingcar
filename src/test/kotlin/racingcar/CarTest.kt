@@ -10,7 +10,7 @@ class CarTest : BehaviorSpec({
         `when`("전진 조건을 만족할 때") {
             val car = Car(strategy = ForwardStrategy(RandomNumber(greaterThanOrEquals4Range)))
             then("distance 가 증가한다.") {
-                car.move()
+                car.moveOrNot()
                 car.getDistance() shouldBe 1
             }
         }
@@ -18,7 +18,7 @@ class CarTest : BehaviorSpec({
         `when`("전진 조건을 만족하지 않을 때") {
             val car = Car(strategy = ForwardStrategy(RandomNumber(lessThan4Range)))
             then("distance 는 변화가 없다.") {
-                car.move()
+                car.moveOrNot()
                 car.getDistance() shouldBe 0
             }
         }

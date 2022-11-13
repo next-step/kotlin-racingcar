@@ -5,11 +5,11 @@ import racingcar.strategy.MovingStrategy
 
 class Car(
     private var distance: Int = 0,
-    private val name: String,
+    private val name: String = "car",
     private val strategy: MovingStrategy = ForwardStrategy(),
 ) {
-    fun move() {
-        if (strategy.move()) addDistance()
+    fun moveOrNot() {
+        if (strategy.movable()) addDistance()
     }
 
     fun getDistance() = distance
