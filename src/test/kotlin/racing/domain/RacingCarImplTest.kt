@@ -5,10 +5,12 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.EnumSource
 import racing.model.Car
 import racing.model.CarAction
+import racing.model.Driver
 
 internal class RacingCarImplTest {
     lateinit var racingCar: RacingCar
     lateinit var goOrStopCarAction: GoOrStopCarAction
+    private val driver = Driver("똘기")
 
     @ParameterizedTest
     @EnumSource(value = CarAction::class, names = ["GO"])
@@ -16,7 +18,7 @@ internal class RacingCarImplTest {
         goOrStopCarAction = FakeGoOrStopCarAction(carAction)
         racingCar = RacingCarImpl(goOrStopCarAction)
 
-        val car = Car()
+        val car = Car(driver)
         val resultCar = racingCar.driveCar(car)
         assertThat(resultCar.mileage).isEqualTo(car.mileage + 1)
     }
@@ -27,7 +29,7 @@ internal class RacingCarImplTest {
         goOrStopCarAction = FakeGoOrStopCarAction(carAction)
         racingCar = RacingCarImpl(goOrStopCarAction)
 
-        val car = Car()
+        val car = Car(driver)
         val resultCar = racingCar.driveCar(car)
         assertThat(resultCar.mileage).isEqualTo(car.mileage)
     }
