@@ -13,6 +13,6 @@ data class Car(var position: Position = Position()) {
     }
 
     companion object {
-        fun from(pos :Int) :Car = Car(Position(pos))
+        fun from(pos: Int): Car = Car(Position(pos))
     }
 }

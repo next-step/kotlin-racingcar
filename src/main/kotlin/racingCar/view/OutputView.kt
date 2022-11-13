@@ -3,8 +3,6 @@ package racingCar.view
 import racingCar.domain.Position
 import racingCar.domain.Username
 import racingCar.dto.ResultDto
-import java.util.stream.Collectors
-import java.util.stream.IntStream
 
 object OutputView {
 
@@ -21,7 +19,6 @@ object OutputView {
         result.positions.forEach {
             println("${it.key.username} : ${toPositionUnits(it.value)}")
         }
-
     }
 
     private fun toPositionUnits(position: Position): String {
@@ -29,7 +26,6 @@ object OutputView {
             .map { POSITION_UNIT }
             .joinToString("")
     }
-
 
     fun printWinners(winners: List<Username>) {
         println("${winners.map { it.username }.joinToString(",")}${WINNER_DESCRIPTION_MSG} ")
