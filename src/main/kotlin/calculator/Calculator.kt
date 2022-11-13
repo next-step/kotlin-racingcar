@@ -2,10 +2,10 @@ package calculator
 
 class Calculator {
     fun calculate(input: String?): Int {
-        val removedSpaceInput = removeSpace(input)
-        val data = validateNullCheck(removedSpaceInput)
-        val operators = extractOperators(data)
-        var operands = extractOperands(data)
+        val data = validateNullCheck(input)
+        val splitedDatas = data.split(" ")
+        val operators = extractOperators(splitedDatas)
+        var operands = extractOperands(splitedDatas)
 
         var calculatedValue = operands.first()
         operands = operands.drop(1)
@@ -17,36 +17,28 @@ class Calculator {
         return calculatedValue
     }
 
-    private fun extractOperands(input: String): List<Int> {
+    private fun extractOperands(input: List<String>): List<Int> {
         val operand = mutableListOf<Int>()
-        var foundNumber = ""
         input.forEach {
-            if (it.digitToIntOrNull() != null) {
-                foundNumber += it
-                return@forEach
+            if (it.toIntOrNull() != null) {
+                operand.add(it.toInt())
             }
-            operand.add(foundNumber.toInt())
-            foundNumber = ""
         }
-        operand.add(foundNumber.toInt())
-
         return operand
     }
 
-    private fun extractOperators(input: String): List<Operator> {
+    private fun extractOperators(input: List<String>): List<Operator> {
         val operators = mutableListOf<Operator>()
         input.forEach {
-            if (it.digitToIntOrNull() == null) {
-                operators.add(Operator.valueOfSymbol(it.toString()))
+            if (it.toIntOrNull() == null) {
+                operators.add(Operator.valueOfSymbol(it))
             }
         }
         return operators
     }
 
-    private fun removeSpace(data: String?): String? = data?.replace(" ", "")
-
     private fun validateNullCheck(data: String?): String {
-        require(!data.isNullOrEmpty()) { throw IllegalArgumentException("input data is null, please check data") }
+        require(!data.isNullOrEmpty()) { "input data is null, please check data" }
         return data
     }
 }
