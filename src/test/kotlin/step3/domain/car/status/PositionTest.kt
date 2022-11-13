@@ -28,4 +28,11 @@ class PositionTest {
         position.move()
         assertThat(position).isEqualTo(Position(1))
     }
+
+    @DisplayName("Position 위치 반환 테스트")
+    @Test
+    fun `Position 위치 반환 테스트`() {
+        val position = Position(0)
+        assertThat(position.getPosition()).isEqualTo(0)
+    }
 }
