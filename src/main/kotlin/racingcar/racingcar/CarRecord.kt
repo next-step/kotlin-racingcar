@@ -1,6 +1,6 @@
 package racingcar.racingcar
 
-class CarRecord(
+data class CarRecord(
     val carName: String,
     val distance: Int
 )

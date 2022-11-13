@@ -15,21 +15,21 @@ class CarRacingTest : StringSpec({
         forAll(
             row(
                 listOf(TurnIndicator(listOf(1)), TurnIndicator(listOf(2))),
-                listOf(Car()),
+                listOf(Car("자동차A")),
                 2,
-                listOf(TurnRecord(1, listOf(0)), TurnRecord(2, listOf(0)))
+                listOf(TurnRecord(1, listOf(CarRecord("자동차A", 0))), TurnRecord(2, listOf(CarRecord("자동차A", 0))))
             ),
             row(
                 listOf(TurnIndicator(listOf(8)), TurnIndicator(listOf(9))),
-                listOf(Car()),
+                listOf(Car("자동차B")),
                 2,
-                listOf(TurnRecord(1, listOf(1)), TurnRecord(2, listOf(2)))
+                listOf(TurnRecord(1, listOf(CarRecord("자동차B", 1))), TurnRecord(2, listOf(CarRecord("자동차B", 2))))
             ),
             row(
                 listOf(TurnIndicator(listOf(3)), TurnIndicator(listOf(4)), TurnIndicator(listOf(2))),
-                listOf(Car()),
+                listOf(Car("자동차C")),
                 3,
-                listOf(TurnRecord(1, listOf(0)), TurnRecord(2, listOf(1)), TurnRecord(3, listOf(1)))
+                listOf(TurnRecord(1, listOf(CarRecord("자동차C", 0))), TurnRecord(2, listOf(CarRecord("자동차C", 1))), TurnRecord(3, listOf(CarRecord("자동차C", 1))))
             )
         ) { turnIndicators, cars, turnCount, expectedRecord ->
 

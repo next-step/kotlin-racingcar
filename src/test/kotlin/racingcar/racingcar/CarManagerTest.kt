@@ -10,9 +10,8 @@ class CarManagerTest : StringSpec({
 
     "자동차 생성 테스트" {
         forAll(
-            row(3, 3),
-            row(3, 3),
-            row(5, 5),
+            row(listOf("apple", "banana", "kiwi"), 3),
+            row(listOf("pizza", "chicken", "rice", "choco", "candy"), 5),
         ) { totalParticipants, expectedSize ->
             val ready = carManager.ready(totalParticipants)
             val actualSize = ready.size
