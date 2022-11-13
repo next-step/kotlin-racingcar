@@ -3,7 +3,7 @@ package step3
 data class RoundResult(
     val carPositions: List<CarPosition>
 ) {
-    data class CarPosition(
+    data class CarPosition private constructor(
         val id: Int,
         val position: Int,
     ) {
