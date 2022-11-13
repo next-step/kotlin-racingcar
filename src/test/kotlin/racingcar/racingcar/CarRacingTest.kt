@@ -10,29 +10,36 @@ import io.mockk.mockk
 class CarRacingTest : StringSpec({
 
     val mockIndicatorGenerator = mockk<IndicatorGenerator>()
-    val carA = Car("자동차A")
-    val carB = Car("자동차B")
-    val carC = Car("자동차C")
 
-    "자동차 경주 테스트" {
+    "자동차 경주 결과 테스트" {
         forAll(
             row(
                 listOf(TurnIndicator(listOf(1)), TurnIndicator(listOf(2))),
-                listOf(carA),
+                listOf(Car("A")),
                 2,
-                listOf(TurnRecord(1, listOf(CarRecord(carA, 0))), TurnRecord(2, listOf(CarRecord(carA, 0))))
+                listOf(
+                    TurnRecord(1, listOf(CarRecord(Car("A"), 0))),
+                    TurnRecord(2, listOf(CarRecord(Car("A"), 0)))
+                )
             ),
             row(
                 listOf(TurnIndicator(listOf(8)), TurnIndicator(listOf(9))),
-                listOf(carB),
+                listOf(Car("B")),
                 2,
-                listOf(TurnRecord(1, listOf(CarRecord(carB, 1))), TurnRecord(2, listOf(CarRecord(carB, 2))))
+                listOf(
+                    TurnRecord(1, listOf(CarRecord(Car("B"), 1))),
+                    TurnRecord(2, listOf(CarRecord(Car("B"), 2)))
+                )
             ),
             row(
                 listOf(TurnIndicator(listOf(3)), TurnIndicator(listOf(4)), TurnIndicator(listOf(2))),
-                listOf(carC),
+                listOf(Car("C")),
                 3,
-                listOf(TurnRecord(1, listOf(CarRecord(carC, 0))), TurnRecord(2, listOf(CarRecord(carC, 1))), TurnRecord(3, listOf(CarRecord(carC, 1))))
+                listOf(
+                    TurnRecord(1, listOf(CarRecord(Car("C"), 0))),
+                    TurnRecord(2, listOf(CarRecord(Car("C"), 1))),
+                    TurnRecord(3, listOf(CarRecord(Car("C"), 1)))
+                )
             )
         ) { turnIndicators, cars, turnCount, expectedRecord ->
 
@@ -47,6 +54,36 @@ class CarRacingTest : StringSpec({
                 turnRecord.turn shouldBe expectedRecord[index].turn
                 turnRecord.results shouldBe expectedRecord[index].results
             }
+        }
+    }
+
+    "자동차 경주 우승자 테스트" {
+        forAll(
+            row(
+                listOf(Car("A"), Car("B")),
+                listOf(TurnIndicator(listOf(4, 9))),
+                listOf(Car("A"), Car("B")),
+            ),
+            row(
+                listOf(Car("A"), Car("B")),
+                listOf(TurnIndicator(listOf(3, 9))),
+                listOf(Car("B"))
+            ),
+            row(
+                listOf(Car("A"), Car("B")),
+                listOf(TurnIndicator(listOf(4, 1))),
+                listOf(Car("A"))
+            )
+        ) { cars, turnIndicators, expectedWinners ->
+            every { mockIndicatorGenerator.generate(any(), any()) } returns turnIndicators
+            val carRacing = CarRacing(
+                mockIndicatorGenerator,
+                1,
+                cars
+            )
+            carRacing.start()
+            val result = carRacing.result()
+            result.winners shouldBe expectedWinners
         }
     }
 })
