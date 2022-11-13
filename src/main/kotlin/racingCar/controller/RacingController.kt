@@ -6,7 +6,7 @@ import racingCar.view.InputView
 import racingCar.view.OutputView
 
 fun main() {
-    OutputView.askCarNumber()
+    OutputView.askUsernames()
     val usernames = InputView.usernames()
     val racing = Racing(usernames, RandomStrategy())
     OutputView.askTryNumber()

@@ -14,7 +14,5 @@ object InputView {
         }
     }
 
-    fun usernames(): List<Username> {
-        TODO("Not yet implemented")
-    }
+    fun usernames(): List<String> = readLine()!!.split(",");
 }

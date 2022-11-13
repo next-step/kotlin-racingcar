@@ -2,8 +2,9 @@ package racingCar.dto
 
 import racingCar.domain.Cars
 import racingCar.domain.Position
+import racingCar.domain.Username
 
 class ResultDto(cars: Cars) {
 
-    val positions: List<Position> = cars.cars.map { it.value.position }
+    val positions: Map<Username,Position> = cars.cars.map { it.key to it.value.position }.toMap()
 }

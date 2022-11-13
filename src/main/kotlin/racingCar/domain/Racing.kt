@@ -2,9 +2,10 @@ package racingCar.domain
 
 import racingCar.dto.ResultDto
 
-class Racing(usernames: List<Username>, strategy: MoveStrategy) {
+class Racing(usernames: List<String>, strategy: MoveStrategy) {
 
-    private val cars = Cars(usernames, strategy)
+    private val cars = Cars(usernames.map { Username(it) }.toList(), strategy)
+
     fun play(): ResultDto {
         cars.moveByStrategy()
         return ResultDto(cars)
