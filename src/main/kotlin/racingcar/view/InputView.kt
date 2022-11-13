@@ -2,7 +2,8 @@ package racingcar.view
 
 import racingcar.validator.InputValidator
 
-class InputView {
+object InputView {
+    private const val COMMA = ','
     private val inputValidator = InputValidator()
 
     fun getNameOfCars(): List<String> {
@@ -15,9 +16,5 @@ class InputView {
         println("시도할 횟수는 몇 회인가요?")
         val input = inputValidator.inputValidate(readLine())
         return inputValidator.numberValidate(input)
-    }
-
-    companion object {
-        private const val COMMA = ','
     }
 }
