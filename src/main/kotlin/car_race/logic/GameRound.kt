@@ -14,7 +14,7 @@ class GameRound private constructor(
         }
 
         private fun validate(input: String) {
-            try {
+            val inputNumber = try {
                 input.toLong()
             } catch (e: NumberFormatException) {
                 throw IllegalArgumentException(
@@ -22,7 +22,7 @@ class GameRound private constructor(
                     e
                 )
             }
-            check(input.toLong() > 0) { throw IllegalArgumentException(INVALID_TYPE_MESSAGE) }
+            check(inputNumber > 0) { throw IllegalArgumentException(INVALID_TYPE_MESSAGE) }
         }
     }
 }

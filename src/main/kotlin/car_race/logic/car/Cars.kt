@@ -1,11 +1,15 @@
 package car_race.logic.car
 
-class Cars private constructor(
+import car_race.logic.system.MovingSystem
+
+class Cars(
     private val cars: List<Car>
 ) {
 
-    fun nextRound() {
-        cars.map { car -> car.nextRound() }
+    fun nextRound(movingSystem: MovingSystem) {
+        cars.map { car ->
+            car.nextRound(movingSystem)
+        }
     }
 
     fun getPositions(): List<CarPosition> {
@@ -20,14 +24,12 @@ class Cars private constructor(
         fun from(input: String): Cars {
             validate(input)
 
-            val createdCars = (1..input.toLong()).map {
-                Car.from()
-            }
+            val createdCars = (1..input.toLong()).map { Car() }
             return Cars(createdCars)
         }
 
         private fun validate(input: String) {
-            try {
+            val inputNumber = try {
                 input.toLong()
             } catch (e: NumberFormatException) {
                 throw IllegalArgumentException(
@@ -35,7 +37,7 @@ class Cars private constructor(
                     e
                 )
             }
-            check(input.toLong() > 0) { throw IllegalArgumentException(INVALID_TYPE_MESSAGE) }
+            check(inputNumber > 0) { throw IllegalArgumentException(INVALID_TYPE_MESSAGE) }
         }
     }
 }

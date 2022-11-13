@@ -1,19 +1,17 @@
 package car_race.logic.car
 
-class Car private constructor(
-    private val carPosition: CarPosition = CarPosition()
-) {
-    fun nextRound() {
-        carPosition.nextRound()
-    }
+import car_race.logic.system.MovingSystem
 
+class Car(
+    private var carPosition: CarPosition = CarPosition()
+) {
     fun getPosition(): CarPosition {
         return carPosition
     }
 
-    companion object {
-        fun from(): Car {
-            return Car()
+    fun nextRound(movingSystem: MovingSystem) {
+        if (movingSystem.canMove()) {
+            carPosition = carPosition.move(1)
         }
     }
 }
