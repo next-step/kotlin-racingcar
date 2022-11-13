@@ -17,6 +17,9 @@ object InputView {
     }
 
     private fun getNamesAndCount(): CarInfo = readLine()?.split(COMMA)?.let { names ->
+        names.forEach { name ->
+            require(name.length <= 5) { throw IllegalArgumentException("자동차 이름은 5자를 초과할 수 없습니다.") }
+        }
         CarInfo(names = names, count = names.size)
     } ?: throw IllegalArgumentException("하나 이상의 자동차 이름을 입력해주세요.")
 
