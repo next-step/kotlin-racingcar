@@ -3,7 +3,6 @@ package racingcar
 class Car(
     val name: String,
     var status: Int = 0,
-    private var result: String = "",
 ) {
     init {
         if (name.length > NAME_LENGTH_CONDITION)
