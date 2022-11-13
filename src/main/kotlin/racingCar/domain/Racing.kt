@@ -10,4 +10,10 @@ class Racing(usernames: List<String>, strategy: MoveStrategy) {
         cars.moveByStrategy()
         return ResultDto(cars)
     }
+
+    fun pickWinner(): List<Username> {
+        val winners = cars.findWinners();
+        checkNotNull(winners)
+        return winners
+    }
 }
