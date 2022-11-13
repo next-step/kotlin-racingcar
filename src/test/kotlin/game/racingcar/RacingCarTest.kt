@@ -5,6 +5,9 @@ import game.racingcar.move.AlwaysMoveStrategy
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.EmptySource
+import org.junit.jupiter.params.provider.ValueSource
 
 internal class RacingCarTest {
     @Test
@@ -26,18 +29,12 @@ internal class RacingCarTest {
             .hasMessage("이름의 길이는 5자를 초과할 수 없습니다. 입력 값 : harris")
     }
 
-    @Test
-    fun `이름이 빈 문자열로 생성되면 IllegalArgumentException이 발생한다`() {
+    @ParameterizedTest
+    @EmptySource
+    @ValueSource(strings = [" ", "\t", "\n"])
+    fun `이름이 공백 문자열로 생성되면 IllegalArgumentException이 발생한다`(input: String) {
         // when & then
-        assertThatThrownBy { RacingCar(name = "") }
-            .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("이름은 빈 문자열일 수 없습니다.")
-    }
-
-    @Test
-    fun `이름이 blank 문자열로 생성되면 IllegalArgumentException이 발생한다`() {
-        // when & then
-        assertThatThrownBy { RacingCar(name = " ") }
+        assertThatThrownBy { RacingCar(name = input) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("이름은 빈 문자열일 수 없습니다.")
     }
