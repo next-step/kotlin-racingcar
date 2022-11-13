@@ -4,7 +4,6 @@ class Car(
     val carName: String
 ) {
     var moveStep: Int = 0
-        private set
 
     init {
         val carNameCount = carName.count()

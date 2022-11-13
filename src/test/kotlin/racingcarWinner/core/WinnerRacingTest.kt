@@ -52,4 +52,44 @@ internal class WinnerRacingTest {
 
         Assertions.assertThat(exception.message).isEqualTo(MessageCode.TryNumberException.message)
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = [0, 1, 5, 10, Int.MIN_VALUE])
+    fun `getWinner when winner is one`(maxMoveStep: Int) {
+        val carNames = "pobi,crong,honux".split(",")
+        val racing = WinnerRacing()
+        val winnerIndex = 0
+
+        // when
+        val cars = carNames.map { carName ->
+            val car = Car(carName)
+            car.moveStep = maxMoveStep - 1
+            car
+        }
+        cars[winnerIndex].moveStep = maxMoveStep
+        val resultWinnerList = racing.getWinner(cars, maxMoveStep)
+
+        resultWinnerList.count() shouldBe 1
+        resultWinnerList[winnerIndex] shouldBe cars[winnerIndex].carName
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [0, 1, 5, 10])
+    fun `getWinner when winner more than one`(maxMoveStep: Int) {
+        val carNames = "pobi,crong,honux".split(",")
+        val racing = WinnerRacing()
+
+        // when
+        val cars = carNames.map { carName ->
+            val car = Car(carName)
+            car.moveStep = maxMoveStep
+            car
+        }
+        val resultWinnerList = racing.getWinner(cars, maxMoveStep)
+
+        resultWinnerList.forEachIndexed { index, winner ->
+            winner shouldBe cars[index].carName
+        }
+        resultWinnerList.count() shouldBe cars.count()
+    }
 }
