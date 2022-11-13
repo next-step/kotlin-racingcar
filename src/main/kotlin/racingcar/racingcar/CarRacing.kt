@@ -1,11 +1,8 @@
 package racingcar.racingcar
 
-class CarRacing(
-    private val carManager: CarManager
-) {
-    fun participate(carRacingRequest: CarRacingRequest): CarRacingResult {
-        val cars = carManager.ready(carRacingRequest.totalParticipants, carRacingRequest.turnCount)
-        return start(cars, carRacingRequest.turnCount)
+class CarRacing {
+    fun participate(cars: List<Car>, turnCount: Int): CarRacingResult {
+        return start(cars, turnCount)
     }
 
     private fun start(cars: List<Car>, turnCount: Int): CarRacingResult {

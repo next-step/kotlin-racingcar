@@ -7,7 +7,8 @@ import racingcar.ui.InputView
 import racingcar.ui.ResultView
 
 class Application {
-    private val carRacing = CarRacing(CarManager(IndicatorGenerator()))
+    private val carManager = CarManager(IndicatorGenerator())
+    private val carRacing = CarRacing()
 
     private val inputView = InputView()
     private val resultView = ResultView()
@@ -21,7 +22,8 @@ class Application {
                 break
             }
             val carRacingRequest = inputView.getRequest()
-            val carRacingResult = carRacing.participate(carRacingRequest)
+            val cars = carManager.ready(carRacingRequest.totalParticipants, carRacingRequest.turnCount)
+            val carRacingResult = carRacing.participate(cars, carRacingRequest.turnCount)
             resultView.view(carRacingResult)
         }
         println(GuideScript.CLOSE_GUIDE)
