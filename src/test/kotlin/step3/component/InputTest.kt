@@ -2,20 +2,16 @@ package step3.component
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
+import step3.ui.Input
 
-class InputComponentTest : FunSpec({
-    context("Input 컴포넌트") {
+class InputTest : FunSpec({
+    context("Input") {
         test("생성 테스트") {
             // given
-            val label = "자동차 대수는 몇 대인가요?"
             val onCommand: (String) -> Unit = { }
             // when
-            val actual = InputComponent(
-                label = label,
-                onCommand = onCommand,
-            )
+            val actual = Input(onCommand = onCommand)
             // then
-            actual.label shouldBe label
             actual.onCommand shouldBe onCommand
         }
 
@@ -23,7 +19,7 @@ class InputComponentTest : FunSpec({
             // given
             val onCommand: (String) -> Unit = {}
             // when
-            val actual = InputComponent(label = "자동차 대수는 몇 대인가요?")
+            val actual = Input()
             actual.addCommandListener(onCommand)
             // then
             actual.onCommand shouldBe onCommand

@@ -2,6 +2,7 @@ package step3.component
 
 import step3.CarStore
 import step3.RoundStore
+import step3.ui.Span
 
 class RacingResultComponent : Component {
     override fun render() {
@@ -10,7 +11,7 @@ class RacingResultComponent : Component {
 
         rounds.forEach { round ->
             val roundResult = round.start(cars = cars)
-            SpanComponent(text = "${round.id} 라운드")
+            Span(text = "${round.id} 라운드")
             println()
             RoundResultComponent(roundResult = roundResult).render()
             Thread.sleep(1000)
