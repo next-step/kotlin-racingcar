@@ -2,13 +2,12 @@ package racingcar.domain
 
 import racingcar.dto.RacingResultDTO
 
-class Cars(numberOfCars: Int) {
+class Cars(carNames: CarNames) {
 
     private val cars: List<Car>
 
     init {
-        GameManager.validateNegativeNumber(numberOfCars)
-        cars = List(numberOfCars) { Car() }
+        cars = carNames.toList().map { Car(it) }
     }
 
     fun racing() {
@@ -18,7 +17,19 @@ class Cars(numberOfCars: Int) {
     }
 
     fun racingResult(): List<RacingResultDTO> {
-        return cars.map { RacingResultDTO(it.getDistance()) }.toList()
+        return cars.map { RacingResultDTO(it.getCarName(), it.getDistance()) }.toList()
+    }
+
+    fun winners(): List<RacingResultDTO> {
+        val winnerDistance = findWinnerDistance()
+        return cars.filter { it.getDistance() == winnerDistance }
+            .map { RacingResultDTO(it.getCarName(), it.getDistance()) }.toList()
+    }
+
+    private fun findWinnerDistance(): Int {
+        val nullableWinnerCar = this.cars.maxWithOrNull(Comparator.comparingInt { it.getDistance() })
+        requireNotNull(nullableWinnerCar) { "우승자를 출력할 수 없습니다." }
+        return nullableWinnerCar.getDistance()
     }
 
     companion object {

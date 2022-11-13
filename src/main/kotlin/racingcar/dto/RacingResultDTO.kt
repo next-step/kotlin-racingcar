@@ -1,3 +1,3 @@
 package racingcar.dto
 
-data class RacingResultDTO(val distance: Int)
+data class RacingResultDTO(val carName: String, val distance: Int)

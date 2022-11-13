@@ -1,19 +1,17 @@
 package racingcar.model
 
-import racingcar.domain.GameManager
-
-data class Position(var value: Int = 0) {
-
-    init {
-        GameManager.validateNegativeNumber(this.value)
-    }
+data class Position(private var value: NonNegative = NonNegative()) {
 
     constructor(input: String) : this() {
-        this.value = GameManager.validateNegativeStringNumber(input)
+        this.value = NonNegative(input)
     }
 
     fun plus() {
-        this.value += FORWARD_VALUE
+        this.value.plus(FORWARD_VALUE)
+    }
+
+    fun getPosition(): Int {
+        return this.value.getNonNegativeValue()
     }
 
     companion object {
