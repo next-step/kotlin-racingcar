@@ -12,19 +12,20 @@ class Application {
     private val inputView = InputView()
     private val resultView = ResultView()
 
+    private var run = true
+
     fun run() {
         println(GuideScript.PROGRAM_INFO)
-        while (true) {
-            println(GuideScript.BEGIN_GUIDE)
-            val runCommand = readln()
-            if (STOP_COMMAND == runCommand) {
-                break
-            }
+        while (run) {
             val carRacingRequest = inputView.getRequest()
             val cars = carManager.ready(carRacingRequest.carNames)
             val carRacing = CarRacing(IndicatorGenerator(), carRacingRequest.turnCount, cars)
             carRacing.start()
             resultView.view(carRacing.result())
+
+            println(GuideScript.BEGIN_GUIDE)
+            val runCommand = readln()
+            run = STOP_COMMAND != runCommand
         }
         println(GuideScript.CLOSE_GUIDE)
     }
