@@ -7,8 +7,12 @@ object ValidCheck {
     }
 
     fun checkSplitArrayCount(split: List<String>?) {
-        require((split?.size ?: 0) >= 3) { "문자열에 숫자나 연산자 개수 부족" }
-        require((split?.size ?: 0) % 2 != 0) { "문자열에 숫자나 연산자 개수 부족" }
+        try {
+            require((split?.size ?: 0) >= 3) { "문자열에 숫자나 연산자 개수 부족" }
+            require((split?.size ?: 0) % 2 != 0) { "문자열에 숫자나 연산자 개수 부족" }
+        } catch (e: IllegalArgumentException) {
+            throw StringSplitCountInvalidException(e.message, e.cause)
+        }
     }
 
     fun checkEmptyString(input: String?) {

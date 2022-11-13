@@ -1,14 +1,15 @@
 package study
 
+import calculator.StringSplitCountInvalidException
 import calculator.ValidCheck
 import calculator.operation.Addition
 import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.NullAndEmptySource
-import org.junit.jupiter.params.provider.ValueSource
 
 class CalculatorValidTest {
 
@@ -18,10 +19,9 @@ class CalculatorValidTest {
         val input = "2 + 3 * 4 /"
 
         // when, then
-        assertThatThrownBy { ValidCheck.checkSplitArrayCount(input.split(" ")) }
-            .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining("숫자")
-            .hasMessageContaining("연산자")
+        Assertions.assertThrows(StringSplitCountInvalidException::class.java) {
+            ValidCheck.checkSplitArrayCount(input.split(" "))
+        }
     }
 
     @Test
@@ -37,8 +37,7 @@ class CalculatorValidTest {
 
     @ParameterizedTest
     @NullAndEmptySource
-    @ValueSource(strings = ["", " ", "    "])
-    fun isEmpty_String_Exception(input: String?) {
+    fun `널 또는 빈 문자열 검사`(input: String?) {
         // given, when, then
         assertThatThrownBy { ValidCheck.checkEmptyString(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
