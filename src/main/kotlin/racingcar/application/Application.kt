@@ -21,7 +21,7 @@ class Application {
                 break
             }
             val carRacingRequest = inputView.getRequest()
-            val cars = carManager.ready(carRacingRequest.totalParticipants)
+            val cars = carManager.ready(carRacingRequest.carNames.size)
             val carRacing = CarRacing(IndicatorGenerator(), carRacingRequest.turnCount, cars)
             carRacing.start()
             resultView.view(carRacing.result())

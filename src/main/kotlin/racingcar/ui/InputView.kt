@@ -3,11 +3,13 @@ package racingcar.ui
 import racingcar.racingcar.CarRacingRequest
 
 class InputView {
+
     fun getRequest(): CarRacingRequest {
         println(INPUT_PARTICIPANTS_GUIDE)
         val carNameString = readln()
 
         val carNames = splitCarNames(carNameString)
+        carNames.forEach { validateCarName(it) }
 
         println(INPUT_TRY_COUNT_GUIDE)
         val turnCount = readln().toInt()
@@ -22,6 +24,12 @@ class InputView {
 
         private fun splitCarNames(input: String): List<String> {
             return input.split(",")
+        }
+
+        private fun validateCarName(carName: String) {
+            if (carName.length > 5) {
+                throw IllegalArgumentException("자동차 이름은 5자를 초과할 수 없습니다.")
+            }
         }
 
         private fun validateTurnCount(input: Int) {
