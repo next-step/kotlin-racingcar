@@ -17,9 +17,7 @@ object ResultView {
 
     private fun printRoundRaceResult(racingResult: RacingResult) =
         racingResult.result
-            .forEach {
-                println(CAR_MILEAGE_INDICATOR.repeat(it.mileage))
-            }
+            .forEach { println("${it.driver.name} : ${CAR_MILEAGE_INDICATOR.repeat(it.mileage)}") }
 
     private fun printWinners(winners: List<Driver>) {
         println("${winners.joinToString(", ") { it.name }}가 최종 우승했습니다.")
