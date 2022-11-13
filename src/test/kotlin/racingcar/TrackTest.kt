@@ -6,7 +6,7 @@ import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 
 internal class TrackTest : StringSpec({
-    val track = Track(Random())
+    val track = Track(RandomForward())
 
     "우승자를 선출한다." {
         val maxPosition = 10
