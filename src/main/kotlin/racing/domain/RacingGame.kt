@@ -4,7 +4,7 @@ class RacingGame(
     private var cars: Cars,
     private val rounds: Rounds
 ) {
-    constructor(carCount: Int, tryCount: Int) : this(Cars(carCount), Rounds(tryCount))
+    constructor(carNames: String, tryCount: Int) : this(Cars(carNames), Rounds(tryCount))
 
     fun play(): Result {
         val result = Result()
