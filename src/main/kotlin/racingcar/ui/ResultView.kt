@@ -1,5 +1,6 @@
 package racingcar.ui
 
+import racingcar.racingcar.Car
 import racingcar.racingcar.CarRacingResult
 import racingcar.racingcar.CarRecord
 import racingcar.racingcar.TurnRecord
@@ -7,15 +8,26 @@ import racingcar.racingcar.TurnRecord
 class ResultView {
     fun view(carRacingResult: CarRacingResult) {
         println("[자동차 경주 결과]")
-        val results = carRacingResult.getAll()
+        val results = carRacingResult.records
         results.forEach { result ->
-            printResult(result)
+            printTurnResult(result)
         }
+        printBlank()
+        printWinners(carRacingResult.winners)
     }
 
-    private fun printResult(result: TurnRecord) {
+    private fun printTurnResult(result: TurnRecord) {
         println("${result.turn} 회")
         println(result.results.joinToString("\n") { carRecordToView(it) })
+    }
+
+    private fun printBlank() {
+        println()
+    }
+
+    private fun printWinners(winners: List<Car>) {
+        val winnersName = winners.map { it.name }.joinToString()
+        println("${winnersName}가 최종 우승했습니다.")
     }
 
     private fun carRecordToView(carRecord: CarRecord): String {

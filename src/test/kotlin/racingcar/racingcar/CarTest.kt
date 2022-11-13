@@ -18,7 +18,7 @@ class CarTest : StringSpec({
             row(9, 6)
         ) { number, expectedDistance ->
             car.go(number)
-            val actualDistance = car.currentLocation()
+            val actualDistance = car.currentDistance()
             actualDistance shouldBe expectedDistance
         }
     }
@@ -33,7 +33,7 @@ class CarTest : StringSpec({
             row(-1, 0)
         ) { number, expectedDistance ->
             car.go(number)
-            val actualDistance = car.currentLocation()
+            val actualDistance = car.currentDistance()
             actualDistance shouldBe expectedDistance
         }
     }

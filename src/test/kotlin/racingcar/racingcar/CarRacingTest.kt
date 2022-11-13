@@ -42,7 +42,7 @@ class CarRacingTest : StringSpec({
 
             carRacing.start()
             val result = carRacing.result()
-            val actualRecord = result.getAll()
+            val actualRecord = result.records
             actualRecord.forEachIndexed { index, turnRecord ->
                 turnRecord.turn shouldBe expectedRecord[index].turn
                 turnRecord.results shouldBe expectedRecord[index].results
