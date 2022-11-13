@@ -7,6 +7,7 @@ import game.racingcar.dto.CarLocation
 import game.racingcar.move.AlwaysMoveStrategy
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertAll
 
 internal class RacingCarGameTest() {
 
@@ -20,10 +21,13 @@ internal class RacingCarGameTest() {
         val locationSnapshots = racingCarGame.play()
 
         // then
-        assertThat(locationSnapshots.carLocationSnapshots.size).isEqualTo(1)
-        assertThat(locationSnapshots.carLocationSnapshots[0].locations.size).isEqualTo(3)
-        assertThat(locationSnapshots.carLocationSnapshots[0].locations[0]).isEqualTo(CarLocation("haris", 1))
-        assertThat(locationSnapshots.carLocationSnapshots[0].locations[1]).isEqualTo(CarLocation("horis", 1))
-        assertThat(locationSnapshots.carLocationSnapshots[0].locations[2]).isEqualTo(CarLocation("huris", 1))
+        val snapshots = locationSnapshots.carLocationSnapshots
+        assertAll(
+            { assertThat(snapshots.size).isEqualTo(1) },
+            { assertThat(snapshots[0].locations.size).isEqualTo(3) },
+            { assertThat(snapshots[0].locations[0]).isEqualTo(CarLocation("haris", 1)) },
+            { assertThat(snapshots[0].locations[1]).isEqualTo(CarLocation("horis", 1)) },
+            { assertThat(snapshots[0].locations[2]).isEqualTo(CarLocation("huris", 1)) },
+        )
     }
 }
