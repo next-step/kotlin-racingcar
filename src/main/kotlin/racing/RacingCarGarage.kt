@@ -2,14 +2,14 @@ package racing
 
 import racing.domain.RacingCarsFactory
 import racing.model.Car
-import racing.model.CarCount
+import racing.model.Driver
 
 class RacingCarGarage(
-    private val carCount: CarCount,
+    private val drivers: List<Driver>,
     private val racingCarsFactory: RacingCarsFactory,
 ) {
     private val _cars: MutableList<Car> by lazy {
-        racingCarsFactory.createCars(carCount.value).toMutableList()
+        racingCarsFactory.createCars(drivers).toMutableList()
     }
 
     val cars: List<Car>
