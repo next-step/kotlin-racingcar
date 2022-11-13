@@ -1,7 +1,7 @@
 package racingcarWinner.core
 
 class Car(
-    private val carName: String
+    val carName: String
 ) {
     var moveStep: Int = 0
         private set
