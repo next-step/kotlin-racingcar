@@ -2,6 +2,8 @@ package step2
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.data.forAll
+import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldBe
 
 class StringCalculatorSpec : BehaviorSpec() {
@@ -22,15 +24,13 @@ class StringCalculatorSpec : BehaviorSpec() {
                 }
 
                 And("유효하지 않은 입력값이면") {
-                    val illegalArgument1 = ""
-                    val illegalArgument2 = "1 = 1"
-                    val illegalArgument3 = "a + b - c"
+                    val illegalArguments = listOf("", "1 = 1", "a + b - c")
 
                     Then("예외를 던진다") {
-                        shouldThrow<StringCalculatorIllegalArgumentException> {
-                            calculator.execute(illegalArgument1)
-                            calculator.execute(illegalArgument2)
-                            calculator.execute(illegalArgument3)
+                        illegalArguments.forAll {
+                            shouldThrow<InvalidCalculatorInput> {
+                                calculator.execute(it)
+                            }
                         }
                     }
                 }
