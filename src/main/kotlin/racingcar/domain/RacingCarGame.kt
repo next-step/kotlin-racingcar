@@ -7,7 +7,7 @@ import racingcar.ui.ResultView
 class RacingCarGame {
 
     fun run() {
-        showResult(getGameInfo())
+        startGame(getGameInfo())
     }
 
     private fun getGameInfo(): GameInfo = GameInfo(
@@ -15,10 +15,14 @@ class RacingCarGame {
         trialNumber = InputView.getTrialNumber()
     )
 
-    private fun showResult(gameInfo: GameInfo) {
+    private fun startGame(gameInfo: GameInfo) {
         val cars = List(gameInfo.carNumber) { Car() }
+        showResult(gameInfo.trialNumber, cars)
+    }
+
+    private fun showResult(trialNumber: Int, cars: List<Car>) {
         ResultView.printResultMessage()
-        repeat(gameInfo.trialNumber) { round ->
+        repeat(trialNumber) { round ->
             val resultOfRound = proceedRound(cars)
             ResultView.printTraceOfRound(round, resultOfRound)
         }
