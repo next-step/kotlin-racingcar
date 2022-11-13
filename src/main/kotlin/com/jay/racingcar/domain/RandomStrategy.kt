@@ -2,8 +2,8 @@ package com.jay.racingcar.domain
 
 class RandomStrategy : MovingStrategy {
     override fun canMove(): Boolean {
-        val random = (RANDOM_START_RANGE..RANDOM_END_RANGE).random()
-        return random > MOVING_THRESHOLD
+        val movingJudgementNumber = (RANDOM_START_RANGE..RANDOM_END_RANGE).random()
+        return movingJudgementNumber > MOVING_THRESHOLD
     }
 
     companion object {
