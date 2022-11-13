@@ -4,9 +4,10 @@ import com.jay.racingcar.domain.RacingCars
 
 object OutputView {
     private const val DISTANCE_MARK = "-"
+    private const val CAR_NAME_MARK = " : "
 
     fun printCarInputMessage() {
-        println("자동차 대수는 몇 대인가요?")
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
     }
 
     fun printTryMessage() {
@@ -20,6 +21,7 @@ object OutputView {
     fun printResult(racingCars: RacingCars) {
         racingCars.racingCars
             .forEach {
+                print(it.getNameValue() + CAR_NAME_MARK)
                 println(DISTANCE_MARK.repeat(it.getPosition()))
             }
         println()

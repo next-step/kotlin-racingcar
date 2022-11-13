@@ -6,10 +6,10 @@ class RacingCars private constructor(val racingCars: List<RacingCar>) {
     }
 
     companion object {
-        fun create(count: Int, movingStrategy: MovingStrategy): RacingCars {
+        fun create(names: Names, movingStrategy: MovingStrategy): RacingCars {
             val cars = mutableListOf<RacingCar>()
-            for (i in 0 until count) {
-                cars.add(RacingCar(movingStrategy))
+            for (i in 0 until names.size()) {
+                cars.add(RacingCar(names.get(i), movingStrategy))
             }
             return RacingCars(cars)
         }

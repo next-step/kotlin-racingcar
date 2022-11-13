@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 internal class RacingCarTest {
     @Test
     fun `자동차가 ManualStrategy를 만족하면 전진한다`() {
-        val racingCar = RacingCar(forwardStrategy())
+        val racingCar = RacingCar(Name("jay"), forwardStrategy())
 
         racingCar.move()
 
@@ -15,7 +15,7 @@ internal class RacingCarTest {
 
     @Test
     fun `자동차가 StopStrategy를 만족하면 멈춰있는다`() {
-        val racingCar = RacingCar(stopStrategy())
+        val racingCar = RacingCar(Name("jay"), stopStrategy())
 
         racingCar.move()
 

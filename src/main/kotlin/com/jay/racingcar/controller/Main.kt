@@ -1,19 +1,22 @@
 package com.jay.racingcar.controller
 
+import com.jay.racingcar.domain.Names
 import com.jay.racingcar.domain.RacingCars
 import com.jay.racingcar.domain.RandomStrategy
 import com.jay.racingcar.view.InputView
+import com.jay.racingcar.view.InputView.CAR_NAMES_DELIMITER
 import com.jay.racingcar.view.OutputView
 import java.lang.IllegalArgumentException
 
 fun main() {
     OutputView.printCarInputMessage()
-    val carCount = inputCarCount()
+    val carNames = inputCarNames()
+    val names = Names(carNames)
 
     OutputView.printTryMessage()
     val tries = inputTries()
 
-    val racingCars = RacingCars.create(carCount, RandomStrategy())
+    val racingCars = RacingCars.create(names, RandomStrategy())
 
     OutputView.printOutputMessage()
     for (i in 0 until tries) {
@@ -28,10 +31,10 @@ private fun inputTries(): Int {
     return toInt(triesString)
 }
 
-private fun inputCarCount(): Int {
+private fun inputCarNames(): List<String> {
     val carCountsString = InputView.inputMessage()
     require(!carCountsString.isNullOrEmpty()) { "invalid inputs" }
-    return toInt(carCountsString)
+    return carCountsString.split(CAR_NAMES_DELIMITER)
 }
 
 private fun toInt(input: String) = try {

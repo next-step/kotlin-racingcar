@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test
 internal class RacingCarsTest {
     @Test
     fun `자동차들을 생성한다`() {
-        val racingCars = RacingCars.create(3, forwardStrategy())
+        val racingCars = RacingCars.create(Names(listOf("jay", "pobi", "honux")), forwardStrategy())
 
         assertThat(racingCars.racingCars.size).isEqualTo(3)
     }
 
     @Test
     fun `게임을 플레이하면 Strategy에 기반한 위치를 반환한다`() {
-        val racingCars = RacingCars.create(3, forwardStrategy())
+        val racingCars = RacingCars.create(Names(listOf("jay", "pobi", "honux")), forwardStrategy())
 
         racingCars.play()
 
