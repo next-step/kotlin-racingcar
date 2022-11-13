@@ -3,9 +3,7 @@ package racing.domain
 data class Position(val value: Int = MIN_POSITION_VALUE) {
 
     init {
-        if (value < MIN_POSITION_VALUE) {
-            throw IllegalArgumentException()
-        }
+        require(value >= MIN_POSITION_VALUE)
     }
 
     fun move(): Position {
