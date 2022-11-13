@@ -26,9 +26,9 @@ object OutputView {
     }
 
     private fun toPositionUnits(position: Position): String {
-        return IntStream.range(0, position.position)
-            .mapToObj { POSITION_UNIT }
-            .collect(Collectors.joining())
+        return (0..position.position)
+            .map { POSITION_UNIT }
+            .joinToString("")
     }
 
 
