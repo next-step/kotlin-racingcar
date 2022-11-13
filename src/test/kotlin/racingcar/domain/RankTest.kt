@@ -1,12 +1,11 @@
-package racingcar
+package racingcar.domain
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldHaveAtLeastSize
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 
-internal class TrackTest : StringSpec({
-    val track = Track(RandomForward())
+internal class RankTest : StringSpec({
 
     "우승자를 선출한다." {
         val maxPosition = 10
@@ -16,7 +15,7 @@ internal class TrackTest : StringSpec({
             Car("loser", minPosition)
         )
 
-        val winners: List<Car> = track.getWinner(cars)
+        val winners: List<Car> = Rank.getWinner(cars)
 
         winners shouldHaveSize 1
         winners.first().name shouldBe "winner"
@@ -31,7 +30,7 @@ internal class TrackTest : StringSpec({
             Car("loser", minPosition)
         )
 
-        val winners = track.getWinner(cars)
+        val winners = Rank.getWinner(cars)
 
         winners shouldHaveAtLeastSize 1
         winners shouldHaveSize 2
