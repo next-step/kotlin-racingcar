@@ -35,3 +35,16 @@
 - 자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다. 우승자는 한 명 이상일 수 있다.  
 
 ### 구현 목록
+- Input UI
+  - 경주할 자동차 이름을 입력한다
+- CompeteCar 구현
+  - DefaultCar 기능을 위임받는다
+  - 각각의 Car에 이름이 부여된다
+- CompeteRacingGame 구현
+  - DefaultRacingGame 기능을 위임받는다
+  - 승자를 얻을수 있는 기능이 추가된다
+- RacingGameFactory 구현
+  - 게임 타입에 따라 해당 Concrete RacingGame을 얻는다
+- Output UI
+  - 승리자를 출력한다
+
