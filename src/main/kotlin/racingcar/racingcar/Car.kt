@@ -1,6 +1,8 @@
 package racingcar.racingcar
 
-class Car {
+class Car(
+    val name: String
+) {
     private var currentLocation: Int = 0
 
     fun go(number: Int) {
