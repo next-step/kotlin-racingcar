@@ -2,7 +2,7 @@ package racingCar.view
 
 object InputView {
 
-    fun getNumber(): Int {
+    fun number(): Int {
         try {
             return readLine()!!.toInt()
         } catch (e: NumberFormatException) {
