@@ -1,6 +1,8 @@
 package game.racingcar.domain
 
 import game.racingcar.dto.CarLocation
+import game.racingcar.move.MoveStrategy
+import game.racingcar.move.RandomMoveStrategy
 
 class RacingCars(
     private val racingCars: List<RacingCar>
@@ -18,4 +20,14 @@ class RacingCars(
         .map { it.name }
 
     private fun getMaxLocation() = racingCars.maxOf { it.location }
+
+    companion object {
+        fun from(names: List<String>, moveStrategy: MoveStrategy = RandomMoveStrategy()): RacingCars {
+            return RacingCars(
+                names.map {
+                    RacingCar(it, moveStrategy)
+                }
+            )
+        }
+    }
 }
