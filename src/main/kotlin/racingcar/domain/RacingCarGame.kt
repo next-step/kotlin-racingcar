@@ -11,14 +11,14 @@ class RacingCarGame {
     }
 
     private fun getGameInfo(): GameInfo = GameInfo(
-        carNum = InputView.getCarNumber(),
-        trialNum = InputView.getTrialNumber()
+        carNumber = InputView.getCarNumber(),
+        trialNumber = InputView.getTrialNumber()
     )
 
     private fun showResult(gameInfo: GameInfo) {
-        val cars = List(gameInfo.carNum) { Car() }
+        val cars = List(gameInfo.carNumber) { Car() }
         ResultView.printResultMessage()
-        repeat(gameInfo.trialNum) { round ->
+        repeat(gameInfo.trialNumber) { round ->
             val resultOfRound = proceedRound(cars)
             ResultView.printTraceOfRound(round, resultOfRound)
         }

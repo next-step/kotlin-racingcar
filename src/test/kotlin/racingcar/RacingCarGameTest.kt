@@ -8,8 +8,8 @@ import racingcar.model.GameInfo
 
 class RacingCarGameTest : BehaviorSpec({
 
-    val gameInfo = GameInfo(carNum = 3, trialNum = 5)
-    val cars = List(gameInfo.carNum) { Car() }
+    val gameInfo = GameInfo(carNumber = 3, trialNumber = 5)
+    val cars = List(gameInfo.carNumber) { Car() }
     val initialDistanceOfCars = cars.map { car ->
         car.distance
     }
