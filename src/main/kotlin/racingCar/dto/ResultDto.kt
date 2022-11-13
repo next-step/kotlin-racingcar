@@ -6,7 +6,5 @@ import java.util.stream.Collectors
 
 class ResultDto(cars: Cars) {
 
-    val positions: List<Position> = cars.cars.stream()
-        .map { it.getPosition() }
-        .collect(Collectors.toList())
+    val positions: List<Position> = cars.cars.map { it.position }
 }

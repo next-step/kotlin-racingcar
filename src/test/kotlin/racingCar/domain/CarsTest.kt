@@ -11,6 +11,6 @@ class CarsTest {
 
         cars.moveByStrategy()
 
-        assertThat(cars.cars).containsExactly(Car(2), Car(2), Car(2))
+        assertThat(cars.cars).containsExactly(Car(Position(2)), Car(Position(2)), Car(Position(2)))
     }
 }

@@ -1,11 +1,8 @@
 package racingCar.domain
 
-data class Car(private var position: Position = Position()) {
-    constructor(position: Int) : this(Position(position))
-
+data class Car(var position: Position = Position()) {
     fun move() {
         this.position = position.increase()
     }
 
-    fun getPosition(): Position = position.copy()
 }
