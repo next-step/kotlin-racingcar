@@ -20,6 +20,7 @@ class RacingCarGame {
             Car(name = name)
         }
         showResultOfRounds(gameInfo.trialCount, cars)
+        showWinner(cars)
     }
 
     private fun showResultOfRounds(trialCount: Int, cars: List<Car>) {
@@ -35,5 +36,20 @@ class RacingCarGame {
             it.takeAction()
         }
         return cars
+    }
+
+    private fun showWinner(cars: List<Car>) {
+        ResultView.printWinner(
+            winner = pickWinner(
+                max = cars.maxOf { car ->
+                    car.distance
+                },
+                cars = cars
+            )
+        )
+    }
+
+    private fun pickWinner(max: Int, cars: List<Car>): List<Car> = cars.filter { car ->
+        car.distance == max
     }
 }
