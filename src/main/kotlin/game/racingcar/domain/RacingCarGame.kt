@@ -5,7 +5,7 @@ import game.racingcar.dto.RacingCarPlayResult
 
 class RacingCarGame(
     private val numberOfTrials: Int,
-    private val racingCars: RacingCars
+    private val racingCars: RacingCars,
 ) {
     fun play(): RacingCarPlayResult {
         return (1..numberOfTrials)
