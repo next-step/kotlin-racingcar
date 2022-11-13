@@ -1,7 +1,7 @@
 package step3.domain.car
 
+import step3.domain.car.action.MovingStrategyImpl
 import step3.domain.car.status.Position
-import step3.util.Utils
 
 data class Cars(val car: List<Car>) {
     private val cars = car
@@ -11,7 +11,7 @@ data class Cars(val car: List<Car>) {
     }
 
     fun play() {
-        cars.forEach { it.move(Utils.generateRandomNumber(Utils.RANDOM_NUMBER_START_INDEX, Utils.RANDOM_NUMBER_END_INDEX)) }
+        cars.forEach { it.move(MovingStrategyImpl()) }
     }
 
     fun getPositions(): List<Position> {
