@@ -16,7 +16,7 @@ class Car(
         }
     }
 
-    fun makeResult(): String{
+    fun makeResult(): String {
         val str: StringBuilder = StringBuilder()
         str.append(this.name + " : ")
         for (i in 1..this.status) {
@@ -25,8 +25,6 @@ class Car(
         str.append("\n")
         return str.toString()
     }
-
-
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
