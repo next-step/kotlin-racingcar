@@ -12,9 +12,8 @@ fun main() {
     OutputView.askTryNumber()
     val tryNumber = InputView.number()
     OutputView.printResultMsg()
-    (0..tryNumber).forEach {
+    repeat(tryNumber) {
         val result = racing.play()
         OutputView.printResult(result)
-
     }
 }
