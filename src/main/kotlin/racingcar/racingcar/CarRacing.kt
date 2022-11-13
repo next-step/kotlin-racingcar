@@ -15,7 +15,7 @@ class CarRacing(
 
             val turnRecord = cars.mapIndexed { index, car ->
                 car.go(indicator.findByCarIndex(index))
-                car.currentLocation()
+                CarRecord(car.name, car.currentLocation())
             }
             carRacingResult.record(TurnRecord(turn + 1, turnRecord))
         }
