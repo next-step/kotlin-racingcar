@@ -28,6 +28,6 @@ object OutputView {
     }
 
     fun printWinners(winners: List<Username>) {
-        println("${winners.map { it.username }.joinToString(",")}${WINNER_DESCRIPTION_MSG} ")
+        println("${winners.map { it.username }.joinToString(",")}  $WINNER_DESCRIPTION_MSG ")
     }
 }
