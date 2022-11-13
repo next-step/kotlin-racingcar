@@ -31,11 +31,14 @@ class CarRacing(
     }
 
     fun result(): CarRacingResult {
+        carRacingResult.winners = determineWinners()
+        return carRacingResult
+    }
+
+    private fun determineWinners(): List<Car> {
         val finalTurnRecord = carRacingResult.records.last()
-        val winners = finalTurnRecord.results
+        return finalTurnRecord.results
             .filter { it.distance == maxDistance }
             .map { it.car }
-        carRacingResult.winners = winners
-        return carRacingResult
     }
 }
