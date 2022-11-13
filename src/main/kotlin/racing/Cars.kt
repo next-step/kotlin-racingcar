@@ -3,7 +3,7 @@ package racing
 data class Cars(private val cars: List<Car>) {
     companion object {
         fun init(listOfNames: List<String>, moveStrategy: MoveStrategy): Cars {
-            val carList = listOfNames.map { name -> Car(moveStrategy = moveStrategy, name = Name.of(name)) }
+            val carList = listOfNames.map { Car(moveStrategy = moveStrategy, name = Name.of(it)) }
             return Cars(carList)
         }
     }
