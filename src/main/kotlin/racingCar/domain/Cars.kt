@@ -17,7 +17,7 @@ class Cars(carNumber: Int, private val strategy: MoveStrategy) {
     }
 
     private fun moveByStrategy(car: Car) {
-        if (!strategy.move()) {
+        if (!strategy.canMove()) {
             return
         }
         car.move()
