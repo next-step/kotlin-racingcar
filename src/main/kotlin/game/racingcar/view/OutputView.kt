@@ -6,11 +6,10 @@ object OutputView {
 
     fun printOutputToConsole(racingCarPlayResult: RacingCarPlayResult) {
         println("실행 결과")
-        racingCarPlayResult.locationSnapshots.forEach { locationOfCars ->
-            locationOfCars.locations.forEach { snapshot ->
-                val (name, location) = snapshot
+        racingCarPlayResult.carLocationSnapshots.forEach { locationOfCars ->
+            locationOfCars.locations.forEach { (name, location) ->
                 print("$name : ")
-                repeat(location) { print("-") }
+                print("-".repeat(location))
                 println()
             }
             println()
