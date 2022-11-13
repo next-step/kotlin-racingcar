@@ -7,8 +7,8 @@ import org.junit.jupiter.params.provider.ValueSource
 class NameTest {
 
     @ParameterizedTest
-    @ValueSource(strings = ["totoro", "jisoo", "jennie"])
-    fun `이름이_다섯자_이상인_경우`(name: String) {
+    @ValueSource(strings = ["totoro", "jinsoo", "jennie"])
+    fun `이름이_다섯자_초과인_경우`(name: String) {
         assertThrows<IllegalArgumentException> {
             Name.of(name)
         }
