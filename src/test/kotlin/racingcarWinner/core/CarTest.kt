@@ -10,12 +10,22 @@ internal class CarTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["tester", "adbcde", "jessica"])
-    fun `car does not hava carName greater then 5`(carName: String) {
+    fun `car does not have carName greater then 5`(carName: String) {
         val exception = assertThrows<IllegalArgumentException> {
             Car(carName)
         }
 
-        Assertions.assertThat(exception.message).isEqualTo(MessageCode.CarNameLengthException.message)
+        Assertions.assertThat(exception.message).isEqualTo(MessageCode.CarNameMaxLengthException.message)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = [""])
+    fun `car does not have carName less then or equal 0`(carName: String) {
+        val exception = assertThrows<IllegalArgumentException> {
+            Car(carName)
+        }
+
+        Assertions.assertThat(exception.message).isEqualTo(MessageCode.CarNameMInLengthException.message)
     }
 
     @ParameterizedTest

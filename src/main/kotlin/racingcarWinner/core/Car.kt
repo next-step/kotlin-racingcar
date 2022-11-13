@@ -7,7 +7,14 @@ class Car(
         private set
 
     init {
-        if (carName.count() > CAR_NAME_LENGTH_LIMIT) throw IllegalArgumentException(MessageCode.CarNameLengthException.message)
+        val carNameCount = carName.count()
+        if (carNameCount <= CAR_NAME_LENGTH_MIN_LIMIT) {
+            throw IllegalArgumentException(MessageCode.CarNameMInLengthException.message)
+        }
+
+        if (carNameCount > CAR_NAME_LENGTH_MAX_LIMIT) {
+            throw IllegalArgumentException(MessageCode.CarNameMaxLengthException.message)
+        }
     }
 
     private fun isMovable(randomNumber: Int): Boolean =
@@ -18,7 +25,8 @@ class Car(
     }
 
     companion object {
-        private const val CAR_NAME_LENGTH_LIMIT = 5
+        const val CAR_NAME_LENGTH_MIN_LIMIT = 0
+        const val CAR_NAME_LENGTH_MAX_LIMIT = 5
         private const val MOVE_LIMIT = 4
     }
 }
