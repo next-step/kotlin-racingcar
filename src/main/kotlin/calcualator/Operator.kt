@@ -1,12 +1,29 @@
 package calcualator
 
-import java.lang.IllegalArgumentException
+enum class Operator(
+    val value: String,
+) : (Number, Number) -> Number {
 
-enum class Operator(val value: String) {
-    ADD("+"),
-    MINUS("-"),
-    TIMES("*"),
-    DIV("/");
+    ADD("+") {
+        override fun invoke(p1: Number, p2: Number): Number {
+            return p1.plus(p2)
+        }
+    },
+    MINUS("-") {
+        override fun invoke(p1: Number, p2: Number): Number {
+            return p1.minus(p2)
+        }
+    },
+    TIMES("*") {
+        override fun invoke(p1: Number, p2: Number): Number {
+            return p1.times(p2)
+        }
+    },
+    DIV("/") {
+        override fun invoke(p1: Number, p2: Number): Number {
+            return p1.div(p2)
+        }
+    };
 
     companion object {
         fun of(s: String): Operator {

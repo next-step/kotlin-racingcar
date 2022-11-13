@@ -1,27 +1,27 @@
-import calcualator.Calculator
-import calcualator.Operator
+package calcualator
+
 import java.lang.IllegalArgumentException
 
-class Application {
-    fun calculate(context: String): Calculator {
+class CalculatorApplication {
+    fun calculate(context: String): Number {
         if (context.isBlank()) {
             throw IllegalArgumentException("빈 문자를 입력할 수 없습니다.")
         }
 
-        var result = Calculator(INIT_NUMBER)
+        var result = Number(INIT_NUMBER)
         var beforeOperator: Operator = Operator.ADD
         context.split(" ")
-            .forEachIndexed { index, s ->
+            .forEachIndexed { index, inputString ->
                 if (index % 2 == 0) {
-                    result = result.operate(beforeOperator, Calculator(s))
+                    result = beforeOperator.invoke(result, Number(inputString.toInt()))
                 } else if (index % 2 == 1) {
-                    beforeOperator = Operator.of(s)
+                    beforeOperator = Operator.of(inputString)
                 }
             }
         return result
     }
 
     companion object {
-        const val INIT_NUMBER = "0"
+        const val INIT_NUMBER = 0
     }
 }
