@@ -6,6 +6,11 @@ object Calculator {
     private const val INDEX_OF_FIRST_OPERATOR = 1
     private const val PAIR = 2
 
+    data class OperatorAndOperand(
+        val operator: Operator,
+        val operand: Int,
+    )
+
     fun calculate(input: String?): Int {
         val expression = processInput(input)
         var result = expression.first().toInt()
@@ -23,7 +28,7 @@ object Calculator {
         return input.split(BLANK)
     }
 
-    private fun getOperatorAndOperand(index: Int, expression: List<String>): Pair<Operator, Int> {
+    private fun getOperatorAndOperand(index: Int, expression: List<String>): OperatorAndOperand {
         val indexOfOperand = index + 1
         val operator = Operator.symbolOf(expression[index])
         val operand = if (indexOfOperand == expression.size) {
@@ -32,6 +37,6 @@ object Calculator {
             expression[indexOfOperand].toInt()
         }
 
-        return Pair(operator, operand)
+        return OperatorAndOperand(operator = operator, operand = operand)
     }
 }
