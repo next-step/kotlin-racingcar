@@ -4,19 +4,19 @@ import racingcar.condition.MoveCondition
 import racingcar.strategy.MoveStrategy
 
 class Cars(
-    carNumber: Int,
+    carNames: List<String>,
     moveStrategy: MoveStrategy,
 ) {
-    private val cars: List<Car> = List(carNumber) { num ->
+    private val cars: List<Car> = carNames.map { carName ->
         Car(
-            name = "${num}번 차",
+            name = carName,
             moveStrategy = moveStrategy,
             position = START_POSITION
         )
     }
 
     fun move(moveConditions: List<MoveCondition>): Record {
-        return Record(cars.map { car -> car.move(moveConditions) })
+        return Record(cars.map { car -> CarRecord(car.name, car.move(moveConditions)) })
     }
 
     companion object {

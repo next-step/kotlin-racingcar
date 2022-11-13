@@ -11,10 +11,10 @@ import racingcar.strategy.SatisfySingleConditionMoveStrategy
 
 internal class CarsTest : BehaviorSpec({
     Given("하나라도 만족하면 움직이는 차들이여도, ") {
-        val numberOfCars = 3
+        val carNames = listOf("car1", "car2", "car3")
         val moveConditions = listOf(RandomMoveCondition(), NotMoveCondition(), AlwaysMoveCondition())
         val cars = Cars(
-            carNumber = numberOfCars,
+            carNames = carNames,
             moveStrategy = SatisfySingleConditionMoveStrategy(),
         )
         When("어떤 조건이든, ") {
@@ -27,10 +27,10 @@ internal class CarsTest : BehaviorSpec({
     }
 
     Given("모든 조건을 만족하면 움직이는 차들이라면, ") {
-        val numberOfCars = 3
+        val carNames = listOf("car1", "car2", "car3")
         val moveConditions = listOf(RandomMoveCondition(), NotMoveCondition(), AlwaysMoveCondition())
         val cars = Cars(
-            carNumber = numberOfCars,
+            carNames = carNames,
             moveStrategy = SatisfyAllConditionStrategy(),
         )
         When("어떤 조건이든, ") {
@@ -43,10 +43,10 @@ internal class CarsTest : BehaviorSpec({
     }
 
     Given("랜덤 조건을 만족하면 움직이는 차들이라면, ") {
-        val numberOfCars = 3
+        val carNames = listOf("car1", "car2", "car3")
         val moveConditions = listOf(RandomMoveCondition(), NotMoveCondition(), AlwaysMoveCondition())
         val cars = Cars(
-            carNumber = numberOfCars,
+            carNames = carNames,
             moveStrategy = SatisfyRandomMoveStrategy(),
         )
         When("어떤 조건이든, ") {
