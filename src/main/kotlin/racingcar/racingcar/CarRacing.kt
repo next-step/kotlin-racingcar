@@ -6,6 +6,7 @@ class CarRacing(
     private val cars: List<Car>
 ) {
     private var carRacingResult = CarRacingResult()
+    private var maxDistance = 0
 
     fun start() {
         this.carRacingResult = CarRacingResult()
@@ -13,15 +14,28 @@ class CarRacing(
         for (turn in 0 until turnCount) {
             val indicator = indicators[turn]
 
-            val turnRecord = cars.mapIndexed { index, car ->
-                car.go(indicator.findByCarIndex(index))
-                CarRecord(car, car.currentLocation())
-            }
+            val turnRecord = cars
+                .onEachIndexed { index, car ->
+                    car.go(indicator.findByCarIndex(index))
+                    recordMaxDistance(car)
+                }
+                .map {
+                    CarRecord(it, it.currentDistance())
+                }
             carRacingResult.record(TurnRecord(turn + 1, turnRecord))
         }
     }
 
+    private fun recordMaxDistance(car: Car) {
+        maxDistance = maxDistance.coerceAtLeast(car.currentDistance())
+    }
+
     fun result(): CarRacingResult {
+        val finalTurnRecord = carRacingResult.records.last()
+        val winners = finalTurnRecord.results
+            .filter { it.distance == maxDistance }
+            .map { it.car }
+        carRacingResult.winners = winners
         return carRacingResult
     }
 }

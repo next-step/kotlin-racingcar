@@ -3,7 +3,7 @@ package racingcar.racingcar
 data class Car(
     val name: String
 ) {
-    private var currentLocation: Int = 0
+    private var distance: Int = 0
 
     fun go(number: Int) {
         if (canIGo(number)) {
@@ -16,11 +16,11 @@ data class Car(
     }
 
     private fun forward() {
-        currentLocation += MINIMUM_DISTANCE
+        distance += MINIMUM_DISTANCE
     }
 
-    fun currentLocation(): Int {
-        return currentLocation
+    fun currentDistance(): Int {
+        return distance
     }
 
     companion object {
