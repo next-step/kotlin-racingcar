@@ -9,8 +9,6 @@ import io.kotest.matchers.comparables.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import org.junit.jupiter.api.assertThrows
-import step3.domain.RacingGame
-import step3.domain.car.policy.CarNamePolicyDataSet
 
 class RacingGameTest : FunSpec({
 
@@ -20,48 +18,8 @@ class RacingGameTest : FunSpec({
         racingGame = RacingGame()
     }
 
-    fun setReady(racingGame: RacingGame) {
-        while (racingGame.isNotReadyToStart()) {
-            racingGame.addRacingCar(CarNamePolicyDataSet.randomValidCarName())
-        }
-
-        racingGame.isReadyToStart() shouldBe true
-    }
-
-    test("RacingCar.nextStep() : When RacingGame is not ready, IllegalStateException should be thrown") {
-        // Given
-        racingGame.isReadyToStart() shouldBe false
-
-        // Expected
-        assertThrows<IllegalStateException> { racingGame.nextStep() }
-    }
-
-    context("RacingCar.nextStep(Int) : When RacingGame is not ready, IllegalStateException should be thrown") {
-        table(
-            headers("stepCount"),
-            *(1..RacingGame.DEFAULT_TOTAL_TRY_COUNT).map { row(it) }.toTypedArray()
-        ).forAll { stepCount ->
-            test("stepCount: $stepCount") {
-                // Given
-                racingGame.isReadyToStart() shouldBe false
-
-                // Expected
-                assertThrows<IllegalStateException> { racingGame.nextStep(stepCount) }
-            }
-        }
-    }
-
-    test("RacingCar.nextStepAll() : When RacingGame is not ready, IllegalStateException should be thrown") {
-        // Given
-        racingGame.isReadyToStart() shouldBe false
-
-        // Expected
-        assertThrows<IllegalStateException> { racingGame.nextStepAll() }
-    }
-
     test("RacingCar.nextStep() : 정상 작동") {
         // Given
-        setReady(racingGame)
         val beforeHistoryListSize = racingGame.historyList.size
 
         // When
@@ -81,7 +39,6 @@ class RacingGameTest : FunSpec({
         ).forAll { stepCount ->
             test("stepCount: $stepCount") {
                 // Given
-                setReady(racingGame)
                 val beforeHistoryListSize = racingGame.historyList.size
 
                 // When
@@ -102,16 +59,12 @@ class RacingGameTest : FunSpec({
             *((0 downTo -RacingGame.DEFAULT_TOTAL_TRY_COUNT) + (RacingGame.DEFAULT_TOTAL_TRY_COUNT + 1..3 * RacingGame.DEFAULT_TOTAL_TRY_COUNT)).map { row(it) }.toTypedArray()
         ).forAll { stepCount ->
             test("stepCount: $stepCount") {
-                setReady(racingGame)
                 assertThrows<IllegalArgumentException> { racingGame.nextStep(stepCount) }
             }
         }
     }
 
     test("RacingCar.nextStepAll() : 정상 작동") {
-        // Given
-        setReady(racingGame)
-
         // When
         racingGame.nextStepAll()
 
@@ -120,55 +73,13 @@ class RacingGameTest : FunSpec({
         racingGame.historyList.size shouldBe racingGame.totalTryCount
     }
 
-    test("carList") { }
-
-    test("RacingGame.addRacingCar(String) : 정상작동") {
-        // Given
-        val addCarName = "test1"
-        val beforeCount = racingGame.carList.count { it.name == addCarName }
-
-        // When
-        racingGame.addRacingCar(addCarName)
-
-        // Then
-        val afterCount = racingGame.carList.count { it.name == addCarName }
-
-        afterCount shouldBe beforeCount + 1
-    }
-
-    test("RacingCar.isFullRacingCar() : 정상 작동") {
-        // Given
-        setReady(racingGame)
-
-        // Expected
-        racingGame.isFullRacingCar() shouldBe true
-    }
-
-    context("RacingCar.isNotFullRacingCar() : 정상 작동") {
-        table(
-            headers("addCarCount"),
-            *(0 until RacingGame.DEFAULT_TOTAL_TRY_COUNT).map { row(it) }.toTypedArray()
-        ).forAll { addCarCount ->
-            test("stepCount: $addCarCount") {
-                // Given
-                repeat(addCarCount) {
-                    racingGame.addRacingCar("car$addCarCount")
-                }
-
-                // Expected
-                racingGame.isNotFullRacingCar() shouldBe true
-            }
-        }
-    }
-
     test("RacingCar.addGameHistory() : OK") {
         // Given
-        setReady(racingGame)
 
         val beforeHistoryListSize = racingGame.historyList.size
 
         // When
-        racingGame.addGameHistory()
+        racingGame.nextStep()
 
         // Then
         val afterHistoryListSize = racingGame.historyList.size
@@ -181,7 +92,6 @@ class RacingGameTest : FunSpec({
 
     test("RacingCar.isCompleted() : When completed, return true") {
         // Given
-        setReady(racingGame)
         racingGame.nextStepAll()
 
         // Expected
@@ -195,7 +105,6 @@ class RacingGameTest : FunSpec({
         ).forAll { stepCount ->
             test("stepCount: $stepCount") {
                 // Given
-                setReady(racingGame)
                 racingGame.nextStep(stepCount)
 
                 // Expected
@@ -206,7 +115,6 @@ class RacingGameTest : FunSpec({
 
     test("RacingCar.getWinnerRacingCarList() : 정상 작동") {
         // Given
-        setReady(racingGame)
         racingGame.nextStepAll()
 
         // When
@@ -224,7 +132,6 @@ class RacingGameTest : FunSpec({
         ).forAll { stepCount ->
             test("stepCount: $stepCount") {
                 // Given
-                setReady(racingGame)
                 racingGame.nextStep(stepCount)
 
                 // Expected

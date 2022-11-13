@@ -7,7 +7,6 @@ import io.kotest.data.row
 import io.kotest.data.table
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
-import org.junit.jupiter.api.assertThrows
 import step3.domain.car.policy.CarNamePolicyDataSet
 import step3.domain.car.policy.DefaultCarNamePolicy
 
@@ -22,24 +21,24 @@ class RacingCarTest : FunSpec({
             val validCarName = CarNamePolicyDataSet.randomCarName(validCarNameLength)
 
             test("[$validCarName] : 유효한 RacingCarName (length: $validCarNameLength)") {
-                RacingCar(validCarName) shouldNotBe null
+                RacingCar() shouldNotBe null
             }
         }
     }
 
-    context("이름 정책에 어긋난 이름의 레이싱 카는 IllegalArgumentException 발생한다") {
-        table(
-            headers("invalidCarNameLength"),
-            *((0..100) - (DefaultCarNamePolicy.MIN_LEHGTH_OF_CAR_NAME..DefaultCarNamePolicy.MAX_LENGTH_OF_CAR_NAME))
-                .map { row(it) }.toTypedArray()
-        ).forAll { invalidCarNameLength ->
-            val invalidCarName = CarNamePolicyDataSet.randomCarName(invalidCarNameLength)
-
-            test("[$invalidCarName] : 유효하지 않은 RacingCarName (length: $invalidCarNameLength)") {
-                assertThrows<IllegalArgumentException> { RacingCar(invalidCarName) }
-            }
-        }
-    }
+    // context("이름 정책에 어긋난 이름의 레이싱 카는 IllegalArgumentException 발생한다") {
+    //     table(
+    //         headers("invalidCarNameLength"),
+    //         *((0..100) - (DefaultCarNamePolicy.MIN_LEHGTH_OF_CAR_NAME..DefaultCarNamePolicy.MAX_LENGTH_OF_CAR_NAME))
+    //             .map { row(it) }.toTypedArray()
+    //     ).forAll { invalidCarNameLength ->
+    //         val invalidCarName = CarNamePolicyDataSet.randomCarName(invalidCarNameLength)
+    //
+    //         test("[$invalidCarName] : 유효하지 않은 RacingCarName (length: $invalidCarNameLength)") {
+    //             assertThrows<IllegalArgumentException> { RacingCar() }
+    //         }
+    //     }
+    // }
 
     context("RacingCar.go() method 정상 작동") {
         table(
@@ -51,7 +50,7 @@ class RacingCarTest : FunSpec({
             row(4),
         ).forAll { goCallingCount ->
             test("When RacingCar.go() called $goCallingCount times, then distance increase $goCallingCount") {
-                val racingCar = RacingCar("car")
+                val racingCar = RacingCar()
 
                 val beforeDistance = racingCar.distance
 

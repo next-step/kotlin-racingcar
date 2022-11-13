@@ -1,6 +1,6 @@
 package step3.domain.game.history
 
-import step3.domain.RacingGame
+import step3.domain.game.RacingGame
 
 class RacingGameHistory(racingGame: RacingGame) {
 

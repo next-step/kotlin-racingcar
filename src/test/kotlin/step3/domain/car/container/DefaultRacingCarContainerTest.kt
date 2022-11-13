@@ -9,7 +9,6 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
-import step3.domain.car.policy.CarNamePolicyDataSet
 
 class DefaultRacingCarContainerTest : FunSpec({
 
@@ -20,7 +19,7 @@ class DefaultRacingCarContainerTest : FunSpec({
         ).forAll { totalCarCount ->
             test("totalCarCount: $totalCarCount => OK") {
                 assertDoesNotThrow {
-                    DefaultRacingCarContainer(totalCarCount) shouldNotBe null
+                    RacingCarContainer(totalCarCount) shouldNotBe null
                 }
             }
         }
@@ -34,7 +33,7 @@ class DefaultRacingCarContainerTest : FunSpec({
         ).forAll { totalCarCount ->
             test("totalCarCount: $totalCarCount => thrown IllegalArgumentException") {
                 assertThrows<IllegalArgumentException> {
-                    DefaultRacingCarContainer(totalCarCount)
+                    RacingCarContainer(totalCarCount)
                 }
             }
         }
@@ -50,10 +49,10 @@ class DefaultRacingCarContainerTest : FunSpec({
                 .toTypedArray()
         ).forAll { totalCarCount, addCarCount ->
             test("totalCarCount: $totalCarCount, addCarCont: $addCarCount => OK") {
-                val racingCarContainer = DefaultRacingCarContainer(totalCarCount)
+                val racingCarContainer = RacingCarContainer(totalCarCount)
                 repeat(addCarCount) {
                     assertDoesNotThrow {
-                        racingCarContainer.addRacingCar(CarNamePolicyDataSet.randomValidCarName())
+                        racingCarContainer.addRacingCar()
                     }
                 }
             }
@@ -70,10 +69,10 @@ class DefaultRacingCarContainerTest : FunSpec({
                 .toTypedArray()
         ).forAll { totalCarCount, addCarCount ->
             test("totalCarCount: $totalCarCount, addCarCont: $addCarCount => thrown IllegalStateException") {
-                val racingCarContainer = DefaultRacingCarContainer(totalCarCount)
+                val racingCarContainer = RacingCarContainer(totalCarCount)
                 assertThrows<IllegalStateException> {
                     repeat(addCarCount) {
-                        racingCarContainer.addRacingCar(CarNamePolicyDataSet.randomValidCarName())
+                        racingCarContainer.addRacingCar()
                     }
                 }
             }
@@ -91,9 +90,9 @@ class DefaultRacingCarContainerTest : FunSpec({
         ).forAll { totalCarCount, addCarCount ->
             test("totalCarCount: $totalCarCount, addCarCont: $addCarCount => isFull: false") {
                 // Given
-                val racingCarContainer = DefaultRacingCarContainer(totalCarCount)
+                val racingCarContainer = RacingCarContainer(totalCarCount)
                 repeat(addCarCount) {
-                    racingCarContainer.addRacingCar(CarNamePolicyDataSet.randomValidCarName())
+                    racingCarContainer.addRacingCar()
                 }
 
                 // Expected
@@ -115,9 +114,9 @@ class DefaultRacingCarContainerTest : FunSpec({
         ).forAll { totalCarCount, addCarCount ->
             test("totalCarCount: $totalCarCount, addCarCont: $addCarCount => isFull: true") {
                 // Given
-                val racingCarContainer = DefaultRacingCarContainer(totalCarCount)
+                val racingCarContainer = RacingCarContainer(totalCarCount)
                 repeat(addCarCount) {
-                    racingCarContainer.addRacingCar(CarNamePolicyDataSet.randomValidCarName())
+                    racingCarContainer.addRacingCar()
                 }
 
                 // Expected

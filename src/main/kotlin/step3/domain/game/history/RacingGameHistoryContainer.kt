@@ -1,10 +1,12 @@
 package step3.domain.game.history
 
-import step3.domain.RacingGame
+import step3.domain.game.RacingGame
 
-interface RacingGameHistoryContainer {
+class RacingGameHistoryContainer {
 
-    val historyList: List<RacingGameHistory>
+    val historyList: List<RacingGameHistory> = mutableListOf()
 
-    fun addGameHistory(racingGame: RacingGame)
+    fun addGameHistory(racingGame: RacingGame) {
+        (historyList as MutableList).add(RacingGameHistory(racingGame))
+    }
 }

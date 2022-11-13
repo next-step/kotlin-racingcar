@@ -3,19 +3,18 @@ package step3.domain.game.history
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.comparables.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
-import step3.domain.RacingGame
+import step3.domain.game.RacingGame
 import step3.domain.game.RacingGameDataSet
 
 class RacingGameHistoryTest : FunSpec({
     lateinit var racingGame: RacingGame
 
     beforeEach {
-        racingGame = RacingGameDataSet.testData(isReady = true)
+        racingGame = RacingGameDataSet.testData()
     }
 
     test("RacingGameHistory 생성 정상 작동") {
         // Given
-        racingGame.isReadyToStart() shouldBe true
         racingGame.carList.size shouldBeGreaterThan 0
 
         // When
@@ -23,8 +22,7 @@ class RacingGameHistoryTest : FunSpec({
 
         // Then
         racingGameHistory.racingCarHistoryList.size shouldBe racingGame.carList.size
-        racingGameHistory.racingCarHistoryList.map { it.name }.containsAll(racingGame.carList.map { it.name }) shouldBe true
 
-        racingGameHistory.racingCarHistoryList.forEach{ println(it) }
+        racingGameHistory.racingCarHistoryList.forEach { println(it) }
     }
 })
