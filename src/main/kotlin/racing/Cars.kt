@@ -17,7 +17,7 @@ data class Cars(private val cars: List<Car>) {
     }
 
     fun getWinners(): List<Name> {
-        return cars.sorted()
+        return cars
             .groupBy(Car::distance, Car::name)
             .maxByOrNull { it.key }!!.value
     }
