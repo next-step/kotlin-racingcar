@@ -15,15 +15,15 @@ class WinnerRacing {
         }
     }
 
-    fun startRacing(tryNumber: Int): List<Int> {
+    fun startRacing(tryNumber: Int): Map<String, Int> {
         if (tryNumber < INIT_TRY_NUMBER) throw IllegalArgumentException(MessageCode.TryNumberException.message)
-
-        return cars.map { car ->
+        val carMap = mutableMapOf<String, Int>()
+        cars.forEach { car ->
             car.move(Util.getRandomNumber())
-            val moveStep = car.moveStep
-            setMaxMoveStep(moveStep)
-            moveStep
+            setMaxMoveStep(car.moveStep)
+            carMap[car.carName] = car.moveStep
         }
+        return carMap
     }
 
     private fun setMaxMoveStep(moveStep: Int) {
