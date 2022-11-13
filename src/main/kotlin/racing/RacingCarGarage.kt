@@ -17,6 +17,6 @@ class RacingCarGarage(
 
     fun parkCars(cars: List<Car>) {
         _cars.clear()
-        _cars.addAll(cars.map { it })
+        _cars.addAll(cars.map { it.copy() })
     }
 }
