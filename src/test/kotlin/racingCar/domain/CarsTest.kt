@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 class CarsTest {
 
     @Test
-    fun `이동 전략에 따라 자동차를 움직여야 합니다`() {
+    fun `이동 전략에 따라 자동차가 움직입니다`() {
         val cars = Cars(3) { true }
 
         cars.moveByStrategy()

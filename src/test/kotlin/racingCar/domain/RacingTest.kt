@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 class RacingTest {
 
     @Test
-    fun `레이싱 게임 시작시, 결과를 반환해야합니다`() {
+    fun `레이싱 게임 시작시, 결과를 반환됩니다`() {
         val racing = Racing(3){ true }
 
         val result = racing.play()
