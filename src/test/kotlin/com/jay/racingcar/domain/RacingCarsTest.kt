@@ -18,7 +18,7 @@ internal class RacingCarsTest {
         racingCars.play()
 
         racingCars.racingCars.forEach {
-            assertThat(it.position).isEqualTo(1)
+            assertThat(it.getPosition()).isEqualTo(1)
         }
     }
 

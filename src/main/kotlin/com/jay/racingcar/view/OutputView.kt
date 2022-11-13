@@ -20,7 +20,7 @@ object OutputView {
     fun printResult(racingCars: RacingCars) {
         racingCars.racingCars
             .forEach {
-                println(DISTANCE_MARK.repeat(it.position))
+                println(DISTANCE_MARK.repeat(it.getPosition()))
             }
         println()
     }

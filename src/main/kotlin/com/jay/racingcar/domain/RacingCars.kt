@@ -1,6 +1,6 @@
 package com.jay.racingcar.domain
 
-class RacingCars(val racingCars: List<RacingCar>) {
+class RacingCars private constructor(val racingCars: List<RacingCar>) {
     fun play() {
         racingCars.forEach { it.move() }
     }

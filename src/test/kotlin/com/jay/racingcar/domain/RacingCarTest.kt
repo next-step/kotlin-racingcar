@@ -10,7 +10,7 @@ internal class RacingCarTest {
 
         racingCar.move()
 
-        assertThat(racingCar.position).isEqualTo(1)
+        assertThat(racingCar.getPosition()).isEqualTo(1)
     }
 
     @Test
@@ -19,7 +19,7 @@ internal class RacingCarTest {
 
         racingCar.move()
 
-        assertThat(racingCar.position).isEqualTo(0)
+        assertThat(racingCar.getPosition()).isEqualTo(0)
     }
 
     private fun forwardStrategy() = object : MovingStrategy {
