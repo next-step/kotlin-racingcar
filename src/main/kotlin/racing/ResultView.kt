@@ -1,4 +1,6 @@
-package racing.model
+package racing
+
+import racing.model.Car
 
 object ResultView {
     private const val CAR_MILEAGE_INDICATOR = "-"
