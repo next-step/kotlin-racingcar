@@ -1,5 +1,7 @@
 package racingCar.view
 
+import racingCar.domain.Username
+
 object InputView {
 
     fun number(): Int {
@@ -10,5 +12,9 @@ object InputView {
         } catch (e: NullPointerException) {
             throw IllegalArgumentException("입력값이 비어있습니다.", e)
         }
+    }
+
+    fun usernames(): List<Username> {
+        TODO("Not yet implemented")
     }
 }

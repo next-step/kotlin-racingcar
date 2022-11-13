@@ -1,12 +1,12 @@
 package racingCar.domain
 
-class Cars(carNumber: Int, private val strategy: MoveStrategy) {
+class Cars(usernames: List<Username>, private val strategy: MoveStrategy) {
 
-    val cars: List<Car> = List(carNumber) { Car() }
+    val cars :Map<Username,Car> =  usernames.map { it to Car() }.toMap()
 
     fun moveByStrategy() {
         cars.forEach {
-            moveByStrategy(it)
+            moveByStrategy(it.value)
         }
     }
 

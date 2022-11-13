@@ -7,8 +7,8 @@ import racingCar.view.OutputView
 
 fun main() {
     OutputView.askCarNumber()
-    val carNumber = InputView.number()
-    val racing = Racing(carNumber, RandomStrategy())
+    val usernames = InputView.usernames()
+    val racing = Racing(usernames, RandomStrategy())
     OutputView.askTryNumber()
     val tryNumber = InputView.number()
     OutputView.printResultMsg()
