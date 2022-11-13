@@ -1,31 +1,38 @@
 package racing
 
 import racing.domain.GoOrStopCarActionImpl
+import racing.domain.RacingCarImpl
 import racing.domain.RacingCarsFactoryImpl
-import racing.domain.RandomMovingCarConditionNumberImpl
+import racing.domain.RandomMoveStrategy
 import racing.model.CarCount
-import racing.model.ResultView
 import racing.model.RoundCount
 
 class RacingApplication {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val carCount = InputView.readCarCount()
-            val roundCount = InputView.readRoundCount()
+            val carCount = InputView.readCarCount()?.let { CarCount(it) }
+                ?: throw IllegalArgumentException("유효한 값이 아닙니다.")
+            val roundCount = InputView.readRoundCount()?.let { RoundCount(it) }
+                ?: throw IllegalArgumentException("유효한 값이 아닙니다.")
 
+            val racingRecordBoard = RacingRecordBoard()
             val racingGame = RacingGame(
-                roundCount = RoundCount(roundCount),
                 racingCarGarage = RacingCarGarage(
-                    carCount = CarCount(carCount),
+                    carCount = carCount,
                     racingCarsFactory = RacingCarsFactoryImpl()
                 ),
-                goOrStopCarAction = GoOrStopCarActionImpl(
-                    randomMovingCarConditionNumber = RandomMovingCarConditionNumberImpl()
-                ),
+                racingCar = RacingCarImpl(
+                    goOrStopCarAction = GoOrStopCarActionImpl(
+                        moveStrategy = RandomMoveStrategy()
+                    )
+                )
             )
-            racingGame.race()
-            ResultView.printRaceResult(racingGame.results)
+            repeat(roundCount.value) {
+                val raceResult = racingGame.race()
+                racingRecordBoard.add(raceResult)
+            }
+            ResultView.printRaceResult(racingRecordBoard.results)
         }
     }
 }
