@@ -9,8 +9,8 @@ class CarTest {
     fun `자동차가_움직이는_경우`() {
         // given
         val moveStrategy = MoveStrategy { true }
-        val car = Car(moveStrategy = moveStrategy)
-        val expectedCar = Car(moveStrategy = moveStrategy, distance = 1)
+        val car = Car(moveStrategy = moveStrategy, name = Name.of("jin"))
+        val expectedCar = Car(moveStrategy = moveStrategy, distance = 1, name = Name.of("jin"))
 
         // when
         car.move()
@@ -23,8 +23,8 @@ class CarTest {
     fun `자동차가_움직이지_않는_경우`() {
         // given
         val moveStrategy = MoveStrategy { false }
-        val car = Car(moveStrategy = moveStrategy)
-        val expectedCar = Car(moveStrategy = moveStrategy, distance = 0)
+        val car = Car(moveStrategy = moveStrategy, name = Name.of("jin"))
+        val expectedCar = Car(moveStrategy = moveStrategy, distance = 0, name = Name.of("jin"))
 
         // when
         car.move()
