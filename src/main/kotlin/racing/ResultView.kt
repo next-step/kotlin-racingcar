@@ -1,17 +1,21 @@
 package racing
 
-import racing.model.Car
+import racing.model.RacingResult
 
 object ResultView {
     private const val CAR_MILEAGE_INDICATOR = "-"
 
-    fun printRaceResult(results: List<List<Car>>) {
+    fun printRaceResult(results: List<RacingResult>) {
         println("실행 결과")
-        results.forEach { cars ->
-            cars.forEach {
-                println(CAR_MILEAGE_INDICATOR.repeat(it.mileage))
-            }
+        results.forEach { racingResult ->
+            printRoundRaceResult(racingResult)
             println()
         }
     }
+
+    private fun printRoundRaceResult(racingResult: RacingResult) =
+        racingResult.result
+            .forEach {
+                println(CAR_MILEAGE_INDICATOR.repeat(it.mileage))
+            }
 }
