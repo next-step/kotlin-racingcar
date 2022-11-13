@@ -1,11 +1,11 @@
 package step3
 
 class Car(val id: Int) {
-    var position = 0
+    var position = Position(value = 0)
         private set
     fun move(oil: Oil) {
-        if (canMove(oil = oil)) {
-            this.position++
+        if (this.canMove(oil = oil)) {
+            this.position = this.position.forward()
         }
     }
 

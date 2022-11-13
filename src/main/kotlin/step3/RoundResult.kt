@@ -5,7 +5,7 @@ data class RoundResult(
 ) {
     data class CarPosition private constructor(
         val id: Int,
-        val position: Int,
+        val position: Position,
     ) {
         companion object {
             fun from(car: Car): CarPosition {
