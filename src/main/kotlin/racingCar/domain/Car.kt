@@ -12,6 +12,8 @@ data class Car(var position: Position = Position()) {
         move()
     }
 
+    fun isSamePosition(pos: Position) = this.position == pos
+
     companion object {
         fun from(pos: Int): Car = Car(Position(pos))
     }

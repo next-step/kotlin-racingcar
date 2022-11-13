@@ -16,5 +16,5 @@ class Cars(usernames: List<Username>, private val strategy: MoveStrategy) {
         }
 
     private fun findUsernamesWithPosition(position: Position): List<Username> =
-        this.cars.filter { it.value.position == position }.map { it.key }
+        this.cars.filter { it.value.isSamePosition(position) }.map { it.key }
 }

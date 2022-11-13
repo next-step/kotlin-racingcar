@@ -2,6 +2,8 @@ package racingCar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 
 class CarTest {
 
@@ -12,5 +14,15 @@ class CarTest {
         car.moveByStrategy({ true })
 
         assertThat(car).isEqualTo(Car.from(2))
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = ["1:true", "2:false"], delimiter = '=')
+    fun `동일한 위치여부를 판단합니다`(input: Int, expectedResult: Boolean) {
+        val car = Car()
+
+        val result = car.isSamePosition(Position(input))
+
+        assertThat(result).isEqualTo(expectedResult)
     }
 }
