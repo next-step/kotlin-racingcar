@@ -1,9 +1,7 @@
-package step3.model
+package racingcar.model
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import racingcar.model.Car
-import racingcar.model.DefaultCar
 
 class DefaultCarTest : BehaviorSpec({
     given("차") {

@@ -1,4 +1,4 @@
-package step3.controller
+package racingcar
 
 import racingcar.domain.DefaultRandomGenerator
 import racingcar.domain.RacingGame

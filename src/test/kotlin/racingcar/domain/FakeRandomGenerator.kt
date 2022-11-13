@@ -1,6 +1,4 @@
-package step3.domain
-
-import racingcar.domain.RandomGenerator
+package racingcar.domain
 
 class FakeTrueGenerator : RandomGenerator {
     override fun getRandomValidation(): Boolean = true
