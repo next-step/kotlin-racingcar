@@ -1,10 +1,13 @@
 package racingcar
 
-data class Car(private var progress: Int = 0) {
+data class Car(val name: String = "", private var _progress: Int = 0) : MoveStrategy() {
 
-    fun go() {
-        progress += 1
+    val progress
+        get() = _progress
+
+    fun move() {
+        if (this.canMove()) {
+            _progress += 1
+        }
     }
-
-    fun now(): Int = progress
 }
