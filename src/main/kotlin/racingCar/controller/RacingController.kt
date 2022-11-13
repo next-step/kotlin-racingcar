@@ -4,7 +4,6 @@ import racingCar.domain.Racing
 import racingCar.domain.RandomStrategy
 import racingCar.view.InputView
 import racingCar.view.OutputView
-import java.util.stream.IntStream
 
 fun main() {
     OutputView.askCarNumber()

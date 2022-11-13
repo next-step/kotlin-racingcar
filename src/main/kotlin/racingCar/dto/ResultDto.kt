@@ -2,7 +2,6 @@ package racingCar.dto
 
 import racingCar.domain.Cars
 import racingCar.domain.Position
-import java.util.stream.Collectors
 
 class ResultDto(cars: Cars) {
 
