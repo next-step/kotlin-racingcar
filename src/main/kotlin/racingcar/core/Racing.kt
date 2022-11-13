@@ -3,20 +3,18 @@ package racingcar.core
 import racingcar.ui.MessageCode
 import java.lang.IllegalArgumentException
 
-object Racing {
-    const val INIT_TRY_NUMBER = 1
-    private const val INIT_CAR_NUMBER = 1
+class Racing(carNumber: Int) {
 
-    val cars = mutableListOf<Car>()
+    private var cars: List<Car> = mutableListOf()
 
-    fun setCarInit() {
-        cars.clear()
+    init {
+        cars = setCars(carNumber)
     }
 
-    fun setCars(carNumber: Int) {
+    private fun setCars(carNumber: Int): List<Car> {
         if (carNumber < INIT_CAR_NUMBER) throw IllegalArgumentException(MessageCode.CarNumberException.message)
-        (INIT_CAR_NUMBER..carNumber).map {
-            cars.add(Car())
+        return (INIT_CAR_NUMBER..carNumber).map {
+            Car()
         }
     }
 
@@ -27,5 +25,10 @@ object Racing {
             car.move(Util.getRandomNumber())
             car.moveStep
         }
+    }
+
+    companion object {
+        const val INIT_TRY_NUMBER = 1
+        private const val INIT_CAR_NUMBER = 1
     }
 }
