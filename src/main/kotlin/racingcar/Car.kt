@@ -25,6 +25,10 @@ class Car(
         return str.toString()
     }
 
+    fun isWinner(max: Int): Boolean {
+        return this.status == max
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is Car) return false
