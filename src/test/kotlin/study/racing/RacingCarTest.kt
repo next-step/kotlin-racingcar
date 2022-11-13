@@ -23,7 +23,7 @@ class RacingCarTest : StringSpec({
 
         mockkObject(Random.Default) {
             every { Random.nextInt(RANDOM_RANGE) } returns 3
-            car.move()
+            car.moveForward()
         }
 
         car.position shouldBe 0
@@ -34,7 +34,7 @@ class RacingCarTest : StringSpec({
 
         mockkObject(Random.Default) {
             every { Random.nextInt(RANDOM_RANGE) } returns 4
-            car.move()
+            car.moveForward()
         }
 
         car.position shouldBe 1

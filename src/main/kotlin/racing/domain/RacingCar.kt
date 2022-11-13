@@ -21,7 +21,7 @@ class RacingCar(
         }
     }
 
-    fun move() {
+    fun moveForward() {
         val random = Random.nextInt(RANDOM_RANGE)
         if (random >= THRESHOLD) {
             position++
