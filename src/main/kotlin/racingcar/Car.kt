@@ -1,7 +1,7 @@
 package racingcar
 
 class Car(
-    val name: String,
+    private val name: String,
     var status: Int = 0,
 ) {
     init {
@@ -47,7 +47,7 @@ class Car(
     }
 
     companion object {
-        const val MOVE_CONDITION = 4
-        const val NAME_LENGTH_CONDITION = 5
+        private const val MOVE_CONDITION = 4
+        private const val NAME_LENGTH_CONDITION = 5
     }
 }

@@ -21,6 +21,6 @@ class Cars(var cars: List<Car>) {
     }
 
     companion object {
-        val RANDOM_NUMBER_RANGE = 0..9
+        private val RANDOM_NUMBER_RANGE = 0..9
     }
 }
