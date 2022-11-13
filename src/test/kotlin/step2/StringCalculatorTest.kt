@@ -19,12 +19,13 @@ class StringCalculatorTest {
     @Test
     fun `입력된 원소 갯수 확인 테스트`() {
         Assertions.assertThatThrownBy { StringCalculator.calculate("2 + 3 * 4 / 2 +") }
-            .isInstanceOf(IllegalStateException::class.java)
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("입력된 원소의 갯수는 홀수여야 합니다.")
     }
 
     @DisplayName("연산 테스트")
     @ParameterizedTest
-    @CsvSource(value = ["1 + 2:3", "1 - 2:-1", "1 * 2:2", "1 / 2:0"], delimiter = ':')
+    @CsvSource(value = ["1 + 2:3", "3 - 2:1", "1 * 2:2", "1 / 2:0"], delimiter = ':')
     fun `연산 테스트`(input: String, output: Int) {
         assertThat(StringCalculator.calculate(input)).isEqualTo(output)
     }
@@ -34,13 +35,6 @@ class StringCalculatorTest {
     @ValueSource(strings = ["", " "])
     fun `빈 문자열에 대한 예외처리 테스트`(input: String) {
         Assertions.assertThatThrownBy { StringCalculator(input) }
-            .isInstanceOf(IllegalArgumentException::class.java)
-    }
-
-    @DisplayName("정수 검증 테스트")
-    @Test
-    fun `정수 검증 테스트`() {
-        Assertions.assertThatThrownBy { StringCalculator.validateOperand("ABC") }
-            .isInstanceOf(NumberFormatException::class.java)
+            .isInstanceOf(IllegalStateException::class.java)
     }
 }

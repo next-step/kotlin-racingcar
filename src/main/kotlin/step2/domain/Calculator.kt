@@ -1,10 +1,10 @@
 package step2.domain
 
-enum class Calculator(val operator: String, val operation: (Operand, Operand) -> Int) {
-    PLUS("+", { operand1, operand2 -> operand1.value + operand2.value }),
-    MINUS("-", { operand1, operand2 -> operand1.value - operand2.value }),
-    MULTIPLY("*", { operand1, operand2 -> operand1.value * operand2.value }),
-    DIVIDE("/", { operand1, operand2 -> operand1.value / operand2.value });
+enum class Calculator(val operator: String, val operation: (Operand, Operand) -> Operand) {
+    PLUS("+", { operand1, operand2 -> Operand(operand1.value + operand2.value) }),
+    MINUS("-", { operand1, operand2 -> Operand(operand1.value - operand2.value) }),
+    MULTIPLY("*", { operand1, operand2 -> Operand(operand1.value * operand2.value) }),
+    DIVIDE("/", { operand1, operand2 -> Operand(operand1.value / operand2.value) });
 
     companion object {
         private fun findCalculator(operator: String): Calculator {
@@ -12,8 +12,8 @@ enum class Calculator(val operator: String, val operation: (Operand, Operand) ->
                 ?: throw IllegalArgumentException("연산자가 올바르지 않습니다.")
         }
 
-        fun calculate(operator: String, operand1: Int, operand2: Int): Int {
-            return findCalculator(operator).operation(Operand(operand1), Operand(operand2))
+        fun calculate(operator: String, operand1: Operand, operand2: Operand): Operand {
+            return findCalculator(operator).operation(operand1, operand2)
         }
     }
 }
