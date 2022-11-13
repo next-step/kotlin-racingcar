@@ -1,28 +1,19 @@
-package step2
+package stringcalculator.application
 
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import stringcalculator.application.StringCalculator
-import stringcalculator.operator.OperatorRegister
 import stringcalculator.operator.OperatorSelector
 
 class StringCalculatorTest : StringSpec({
 
-    val stringCalculator = StringCalculator(OperatorSelector(OperatorRegister.operators))
+    val stringCalculator = StringCalculator(OperatorSelector())
 
     "공백 문자열 에러 테스트" {
         val exception = shouldThrowExactly<IllegalArgumentException> {
             stringCalculator.calculate("   ")
         }
         exception.message shouldBe "입력값이 비어있습니다. 올바른 값을 입력해주세요."
-    }
-
-    "Null 에러 테스트" {
-        val exception = shouldThrowExactly<IllegalArgumentException> {
-            stringCalculator.calculate(null)
-        }
-        exception.message shouldBe "입력값이 null 입니다. 올바른 값을 입력해주세요."
     }
 
     "유효하지 않은 특수문자 에러 테스트" {

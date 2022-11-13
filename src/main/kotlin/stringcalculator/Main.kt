@@ -1,4 +1,4 @@
-package com.dajeong.step2
+package stringcalculator
 
 import stringcalculator.application.Application
 
