@@ -7,7 +7,7 @@ class OilStationTest : FunSpec({
     test("오일(연료) 를 랜덤하게 구하는 테스트") {
         (0..99).forEach { _ ->
             // when
-            val oil = OilStation.getOilRandomly()
+            val oil = OilStation.generateOilRandomly()
             // then
             oil.amount shouldBeInRange (0..9)
         }

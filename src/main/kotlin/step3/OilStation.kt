@@ -1,9 +1,9 @@
 package step3
 
 object OilStation {
-    private val randomRange = (0..9)
+    private val RANDOM_RANGE = (0..9)
 
-    fun getOilRandomly(): Oil {
-        return Oil(amount = randomRange.random())
+    fun generateOilRandomly(): Oil {
+        return Oil(amount = RANDOM_RANGE.random())
     }
 }
