@@ -15,7 +15,6 @@ object OutputView {
     private const val WINNER_DESCRIPTION_MSG = "가 최종 우승했습니다."
     fun askTryNumber() = println(TRY_NUM_ASK_QST)
     fun askUsernames() = println(USERNAME_ASK_QST)
-
     fun printResultMsg() = println(RESULT_MSG)
     fun printResult(result: ResultDto) {
         println()

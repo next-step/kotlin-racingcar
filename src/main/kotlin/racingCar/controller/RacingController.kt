@@ -16,5 +16,6 @@ fun main() {
         val result = racing.play()
         OutputView.printResult(result)
     }
-    OutputView.printWinners(racing.pickWinner())
+    val winners = racing.pickWinner()
+    OutputView.printWinners(winners)
 }
