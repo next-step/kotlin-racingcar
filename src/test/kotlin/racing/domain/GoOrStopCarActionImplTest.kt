@@ -9,7 +9,7 @@ internal class GoOrStopCarActionImplTest {
 
     private lateinit var goOrStopCarAction: GoOrStopCarAction
     private lateinit var moveStrategy: MoveStrategy
-    
+
     @ParameterizedTest
     @ValueSource(booleans = [true])
     fun `경주용 자동차 이동 조건이 되었을 때`(move: Boolean) {
