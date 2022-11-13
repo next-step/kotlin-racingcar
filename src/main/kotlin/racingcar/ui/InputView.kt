@@ -6,11 +6,19 @@ class InputView {
     fun getRequest(): CarRacingRequest {
         println(INPUT_PARTICIPANTS_GUIDE)
         val totalParticipants = readln().toInt()
+        validateInput(totalParticipants)
 
         println(INPUT_TRY_COUNT_GUIDE)
-        val tryCount = readln().toInt()
+        val turnCount = readln().toInt()
+        validateInput(turnCount)
 
-        return CarRacingRequest(totalParticipants, tryCount)
+        return CarRacingRequest(totalParticipants, turnCount)
+    }
+
+    private fun validateInput(input: Int) {
+        if (input < 0) {
+            throw IllegalArgumentException("음수를 입력하였습니다. 0보다 큰 숫자를 입력해주세요.")
+        }
     }
 
     private companion object {

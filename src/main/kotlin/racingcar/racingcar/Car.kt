@@ -1,23 +1,32 @@
 package racingcar.racingcar
 
-class Car {
-    private var currentLocation: String = ""
+class Car(
+    private val indicator: Indicator
+) {
+    private var currentLocation: Int = 0
 
-    fun go(number: Int) {
-        if (canIGo(number)) {
+    fun go(turn: Int) {
+        val current = indicator.current(turn)
+        if (canIGo(current)) {
             forward()
         }
     }
 
-    private fun forward() {
-        currentLocation += "-"
-    }
-
     private fun canIGo(number: Int): Boolean {
-        return number in 4..9
+        val intRange = AVAILABLE_RANGE
+        return number in intRange
     }
 
-    fun currentLocation(): String {
+    private fun forward() {
+        currentLocation += MINIMUM_DISTANCE
+    }
+
+    fun currentLocation(): Int {
         return currentLocation
+    }
+
+    companion object {
+        const val MINIMUM_DISTANCE = 1
+        val AVAILABLE_RANGE = 4..9
     }
 }

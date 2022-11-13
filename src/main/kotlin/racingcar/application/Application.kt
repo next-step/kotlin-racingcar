@@ -2,11 +2,12 @@ package racingcar.application
 
 import racingcar.racingcar.CarManager
 import racingcar.racingcar.CarRacing
+import racingcar.racingcar.IndicatorGenerator
 import racingcar.ui.InputView
 import racingcar.ui.ResultView
 
 class Application {
-    private val carRacing = CarRacing(CarManager())
+    private val carRacing = CarRacing(CarManager(IndicatorGenerator()))
 
     private val inputView = InputView()
     private val resultView = ResultView()

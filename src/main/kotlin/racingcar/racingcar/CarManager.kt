@@ -1,9 +1,9 @@
 package racingcar.racingcar
 
-class CarManager {
-    fun ready(totalParticipants: Int): List<Car> {
-        return (1..totalParticipants)
-            .map { Car() }
-            .toList()
+class CarManager(
+    private val indicatorGenerator: IndicatorGenerator
+) {
+    fun ready(totalParticipants: Int, turnCount: Int): List<Car> {
+        return List(totalParticipants) { Car(indicatorGenerator.generate(turnCount)) }
     }
 }

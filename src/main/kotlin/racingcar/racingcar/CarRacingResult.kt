@@ -1,13 +1,13 @@
 package racingcar.racingcar
 
 class CarRacingResult {
-    private val results: MutableList<List<String>> = mutableListOf()
+    private val records: MutableList<TurnRecord> = mutableListOf()
 
-    fun record(result: List<String>) {
-        results.add(result)
+    fun record(turnRecord: TurnRecord) {
+        records.add(turnRecord)
     }
 
-    fun getAll(): List<List<String>> {
-        return results
+    fun getAll(): MutableList<TurnRecord> {
+        return records
     }
 }

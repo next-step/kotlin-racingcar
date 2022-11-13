@@ -1,24 +1,22 @@
 package racingcar.racingcar
 
-import racingcar.util.RandomUtil
-
 class CarRacing(
     private val carManager: CarManager
 ) {
     fun participate(carRacingRequest: CarRacingRequest): CarRacingResult {
-        val cars = carManager.ready(carRacingRequest.totalParticipants)
-        return racing(cars, carRacingRequest.tryCount)
+        val cars = carManager.ready(carRacingRequest.totalParticipants, carRacingRequest.turnCount)
+        return start(cars, carRacingRequest.turnCount)
     }
 
-    private fun racing(cars: List<Car>, tryCount: Int): CarRacingResult {
+    private fun start(cars: List<Car>, turnCount: Int): CarRacingResult {
         val carRacingResult = CarRacingResult()
-        for (i in 1..tryCount) {
-            val result = cars.map {
-                val randomNumber = RandomUtil.generateRandomNumber(0, 9)
-                it.go(randomNumber)
+        for (turn in 1..turnCount) {
+
+            val turnRecord = cars.map {
+                it.go(turn)
                 it.currentLocation()
             }
-            carRacingResult.record(result)
+            carRacingResult.record(TurnRecord(turn, turnRecord))
         }
         return carRacingResult
     }
