@@ -10,7 +10,8 @@ class RacingGame(
         val result = Result()
         while (rounds.hasNext()) {
             rounds.play()
-            result.add(cars.move())
+            cars.move()
+            result.add(cars.positions)
         }
 
         return result

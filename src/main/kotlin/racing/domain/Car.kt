@@ -8,11 +8,9 @@ data class Car(
     constructor(name: String) : this(Name(name))
     constructor(position: Int, moveStrategy: MoveStrategy) : this(Name("racer"), Position(position), moveStrategy)
 
-    fun move(): Position {
+    fun move() {
         if (moveStrategy.canMove()) {
             position = position.move()
         }
-
-        return position
     }
 }
