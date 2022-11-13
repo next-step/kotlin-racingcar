@@ -12,7 +12,7 @@ internal class CarTest {
     fun `move when randomNumber greater and equal then 4`(randomNumber: Int) {
         car.move(randomNumber)
 
-        car.moveStep.count() shouldBe 1
+        car.moveStep shouldBe 1
     }
 
     @ParameterizedTest
@@ -20,6 +20,6 @@ internal class CarTest {
     fun `no move when randomNumber less then 4`(randomNumber: Int) {
         car.move(randomNumber)
 
-        car.moveStep.count() shouldBe 0
+        car.moveStep shouldBe 0
     }
 }

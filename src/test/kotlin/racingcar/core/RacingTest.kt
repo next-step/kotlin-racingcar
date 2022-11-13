@@ -1,5 +1,6 @@
 package racingcar.core
 
+import io.kotest.matchers.ints.shouldBeLessThanOrEqual
 import io.kotest.matchers.shouldBe
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
@@ -40,6 +41,9 @@ internal class RacingTest {
         val moveResult = Racing.startRacing(tryNumber = tryNumber)
 
         moveResult.count() shouldBe carNumber
+        moveResult.forEach { carMoveStep ->
+            carMoveStep shouldBeLessThanOrEqual tryNumber
+        }
     }
 
     @ParameterizedTest
