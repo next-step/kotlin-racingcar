@@ -1,9 +1,11 @@
+import io.kotest.matchers.shouldBe
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
+import java.util.Stack
 
 class CalculatorTest {
     private val calculator = Calculator()
@@ -99,12 +101,40 @@ class CalculatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = [ "1 + 1 + 1 + 1 + 1 +", "/ 2 + 3 * 4 / 2", " 1 1 + 1 + 1", "1 + 1 1 + 1"])
-    fun `calculateStringInput throw RuntimeException`(input: String) {
+    @ValueSource(strings = [ "+ + + +", "1 + 1 + 1 + 1 + 1 +", "/ 2 + 3 * 4 / 2", " 1 1 + 1 + 1", "1 + 1 1 + 1"])
+    fun `calculateStringInput throw IllegalArgumentException`(input: String) {
         val exception = assertThrows<IllegalArgumentException> {
             calculator.calculateStringInput(input)
         }
 
+        assertThat(exception.message).isEqualTo(ErrorMessage.InputError.message)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["10", "2.22", "-2"])
+    fun calculateWithNumberStack(inputNumber: String) {
+        // given
+        val stack = Stack<String>()
+        val numbers = listOf("1", "3")
+        val operation = Operator.ADD.symbol
+        stack.addAll(numbers)
+
+        val number = stack.peek().toBigDecimal()
+        val calculateResult = calculator.calculateWithNumberStack(inputNumber, operation, stack).toBigDecimal()
+
+        calculateResult shouldBe inputNumber.toBigDecimal() + number
+        stack.count() shouldBe numbers.count() - 1
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = ["20, +", "1, -"])
+    fun `calculateWithNumberStack throw IllegalArgumentException`(inputNumber: String, inputOperation: String) {
+        // given
+        val stack = Stack<String>()
+
+        val exception = assertThrows<IllegalArgumentException> {
+            calculator.calculateWithNumberStack(inputNumber, inputOperation, stack)
+        }
         assertThat(exception.message).isEqualTo(ErrorMessage.InputError.message)
     }
 }

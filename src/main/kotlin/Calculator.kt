@@ -1,10 +1,6 @@
 import java.util.Stack
 
 class Calculator {
-    companion object {
-        private const val STRING_SPACING = " "
-    }
-
     fun calculate(strNum1: String?, strNum2: String?, operation: String): String {
         val i = requireNotNull(strNum1?.toBigDecimalOrNull())
         val j = requireNotNull(strNum2?.toBigDecimalOrNull())
@@ -12,22 +8,31 @@ class Calculator {
         return Operator.symbolOf(operation).calculate(i, j).toString()
     }
 
+    fun calculateWithNumberStack(strNum: String, operation: String, number: Stack<String>): String =
+        if (number.isNotEmpty()) calculate(number.pop().toString(), strNum, operation)
+        else throw IllegalArgumentException(ErrorMessage.InputError.message)
+
     fun calculateStringInput(input: String): String {
         val stack = Stack<String>()
         val number = Stack<String>()
-        input.split(STRING_SPACING).map { s ->
+        input.split(SEPARATOR).map { s ->
             if (Operator.isContains(s)) {
                 stack.push(s)
             } else {
-                val num = if (stack.isNotEmpty()) {
-                    if (number.isNotEmpty()) calculate(number.pop().toString(), s, stack.pop())
-                    else throw IllegalArgumentException(ErrorMessage.InputError.message)
-                } else s
+                val num = when {
+                    stack.isNotEmpty() -> calculateWithNumberStack(s, stack.pop(), number)
+                    else -> s
+                }
                 number.push(num)
             }
         }
+        if (stack.isNotEmpty()) throw IllegalArgumentException(ErrorMessage.InputError.message)
         val result = number.pop()
-        if (number.isNotEmpty() || stack.isNotEmpty())throw IllegalArgumentException(ErrorMessage.InputError.message)
+        if (number.isNotEmpty()) throw IllegalArgumentException(ErrorMessage.InputError.message)
         return result
+    }
+
+    companion object {
+        private const val SEPARATOR = " "
     }
 }
