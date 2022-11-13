@@ -1,6 +1,8 @@
 package com.jay.racingcar.view
 
+import com.jay.racingcar.domain.RacingCar
 import com.jay.racingcar.domain.RacingCars
+import kotlin.streams.toList
 
 object OutputView {
     private const val DISTANCE_MARK = "-"
@@ -18,6 +20,10 @@ object OutputView {
         println("실행 결과")
     }
 
+    private fun printWinnerMessage() {
+        println("가 최종 우승했습니다.")
+    }
+
     fun printResult(racingCars: RacingCars) {
         racingCars.racingCars
             .forEach {
@@ -25,5 +31,10 @@ object OutputView {
                 println(DISTANCE_MARK.repeat(it.getPosition()))
             }
         println()
+    }
+
+    fun printWinners(winners: List<RacingCar>) {
+        print(winners.stream().map { it.getNameValue() }.toList().joinToString(separator = ","))
+        printWinnerMessage()
     }
 }

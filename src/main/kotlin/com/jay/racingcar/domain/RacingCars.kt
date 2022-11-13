@@ -5,6 +5,11 @@ class RacingCars private constructor(val racingCars: List<RacingCar>) {
         racingCars.forEach { it.move() }
     }
 
+    fun getWinners(): List<RacingCar> {
+        val sortedRacingCarsByPosition = racingCars.sorted().groupBy { it.getPosition() }.toMap()
+        return sortedRacingCarsByPosition.values.first()
+    }
+
     companion object {
         fun create(names: Names, movingStrategy: MovingStrategy): RacingCars {
             val cars = mutableListOf<RacingCar>()

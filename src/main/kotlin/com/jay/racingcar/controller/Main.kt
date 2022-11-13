@@ -23,6 +23,8 @@ fun main() {
         racingCars.play()
         OutputView.printResult(racingCars)
     }
+
+    OutputView.printWinners(racingCars.getWinners())
 }
 
 private fun inputTries(): Int {
