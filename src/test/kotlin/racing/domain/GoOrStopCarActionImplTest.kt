@@ -1,37 +1,32 @@
 package racing.domain
 
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.whenever
 import racing.model.CarAction
 
 internal class GoOrStopCarActionImplTest {
 
     private lateinit var goOrStopCarAction: GoOrStopCarAction
-    private val randomMovingCarConditionNumber: RandomMovingCarConditionNumber = mock()
-
-    @BeforeEach
-    fun setUp() {
-        goOrStopCarAction = GoOrStopCarActionImpl(
-            randomMovingCarConditionNumber = randomMovingCarConditionNumber
-        )
-    }
-
+    private lateinit var moveStrategy: MoveStrategy
+    
     @ParameterizedTest
-    @ValueSource(ints = [4, 102])
-    fun `경주용 자동차 이동 조건이 4이상일 때`(count: Int) {
-        whenever(randomMovingCarConditionNumber.random()).thenReturn(count)
+    @ValueSource(booleans = [true])
+    fun `경주용 자동차 이동 조건이 되었을 때`(move: Boolean) {
+        moveStrategy = FakeRandomMoveStrategy(move)
+        goOrStopCarAction = GoOrStopCarActionImpl(
+            moveStrategy = moveStrategy
+        )
         assertThat(goOrStopCarAction.castCarAction()).isEqualTo(CarAction.GO)
     }
 
     @ParameterizedTest
-    @ValueSource(ints = [0, 1, 2, 3])
-    fun `경주용 자동차 이동 조건이 4미만일 때`(count: Int) {
-        whenever(randomMovingCarConditionNumber.random()).thenReturn(count)
+    @ValueSource(booleans = [false])
+    fun `경주용 자동차 이동 조건이 안되었을 때`(move: Boolean) {
+        moveStrategy = FakeRandomMoveStrategy(move)
+        goOrStopCarAction = GoOrStopCarActionImpl(
+            moveStrategy = moveStrategy
+        )
         assertThat(goOrStopCarAction.castCarAction()).isEqualTo(CarAction.STOP)
     }
 }
