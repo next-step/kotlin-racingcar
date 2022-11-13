@@ -1,6 +1,10 @@
 package study.racing.entity
 
-class RacingCar {
+import study.racing.PowerSource
+
+class RacingCar(
+    private val source: PowerSource
+) {
     var currentPosition: Int = 0
         private set
 
@@ -10,10 +14,9 @@ class RacingCar {
         }
     }
 
-    private val canMoveForward: Boolean get() = POWER_RANGE.random() >= POWER_THRESHOLD
+    private val canMoveForward: Boolean get() = source.getPower() >= POWER_THRESHOLD
 
     companion object {
-        private val POWER_RANGE = 0..9
         private const val POWER_THRESHOLD = 4
     }
 }

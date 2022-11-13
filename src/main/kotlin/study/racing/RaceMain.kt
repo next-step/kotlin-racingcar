@@ -16,6 +16,7 @@ fun main() {
     val race = Race(
         roundCount = roundCount,
         carCount = carCount,
+        powerSource = RandomPowerSource()
     )
     race.start()
 
