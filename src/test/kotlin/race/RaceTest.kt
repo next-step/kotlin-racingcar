@@ -17,6 +17,6 @@ class RaceTest {
 
         // Assert
         assertThat(carCount).isEqualTo(cars.size)
-        assertThat(tryCount).isEqualTo(cars.first().movedDistance.size)
+        assertThat(tryCount).isEqualTo(cars.first().movementByRounds.size)
     }
 }

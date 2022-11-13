@@ -15,7 +15,7 @@ class CarTest {
         car.move(false)
 
         // Assert
-        assertThat(car.movedDistance[0]).isTrue
-        assertThat(car.movedDistance[1]).isFalse
+        assertThat(car.movementByRounds[0]).isTrue
+        assertThat(car.movementByRounds[1]).isFalse
     }
 }
