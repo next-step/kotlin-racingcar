@@ -16,10 +16,10 @@ class RacingCars(
         return carsIn(getMaxLocation())
     }
 
-    private fun carsIn(maxLocation: Int) = racingCars.filter { it.location == maxLocation }
+    private fun carsIn(maxLocation: Int): List<String> = racingCars.filter { it.location == maxLocation }
         .map { it.name }
 
-    private fun getMaxLocation() = racingCars.maxOf { it.location }
+    private fun getMaxLocation(): Int = racingCars.maxOf { it.location }
 
     companion object {
         fun from(names: List<String>, moveStrategy: MoveStrategy = RandomMoveStrategy()): RacingCars {
