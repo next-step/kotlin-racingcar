@@ -8,7 +8,6 @@ import racing.domain.RacingCarImpl
 import racing.domain.RacingCarsFactory
 import racing.domain.RacingCarsFactoryImpl
 import racing.domain.RandomMoveStrategy
-import racing.model.CarCount
 import racing.model.Driver
 import racing.model.RoundCount
 
