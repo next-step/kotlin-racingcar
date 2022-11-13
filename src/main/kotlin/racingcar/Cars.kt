@@ -1,12 +1,16 @@
 package racingcar
 
 class Cars(var cars: List<Car>) {
-    init {
-        this.cars = cars
+    fun move(): String {
+        var result = ""
+        cars.forEach {
+            it.move((RANDOM_NUMBER_RANGE).random())
+            result += it.makeResult()
+        }
+        return result
+    }
 
-        // for (carName in carNames) {
-        //     if (carName.length > InputView.NAME_LENGTH_CONDITION)
-        //         throw IllegalArgumentException("자동자 이름은 ${InputView.NAME_LENGTH_CONDITION}자를 넘을 수 없습니다.")
-        // }
+    companion object {
+        val RANDOM_NUMBER_RANGE = 0..9
     }
 }
