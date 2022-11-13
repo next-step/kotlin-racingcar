@@ -6,11 +6,7 @@ fun main() {
 
     println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
     val carNames = inputView.inputCarNames()
-
-    val carList = mutableListOf<Car>()
-    for (carName in carNames) {
-        carList.add(Car(carName))
-    }
+    val carList = initCarList(carNames)
 
     println("시도할 횟수는 몇 회인가요?")
     val tryNumber = inputView.inputInt()
@@ -26,4 +22,12 @@ fun main() {
     val exec = Statistics.exec(carList)
     result += exec
     println(result)
+}
+
+private fun initCarList(carNames: List<String>): MutableList<Car> {
+    val carList = mutableListOf<Car>()
+    for (carName in carNames) {
+        carList.add(Car(carName))
+    }
+    return carList
 }
