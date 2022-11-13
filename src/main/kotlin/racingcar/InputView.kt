@@ -1,11 +1,22 @@
 package racingcar
 
 data class InputView(
-    val count: Int = readln("자동차 대수는 몇 대인가요?").toInt(),
-    val number: Int = readln("시도할 횟수는 몇 회인가요?").toInt(),
+    val cars: List<Car> = readCars("자동차 대수는 몇 대인가요?"),
+    val roundCount: Int = readRoundCount("시도할 횟수는 몇 회인가요?"),
 )
 
-private fun readln(message: String): String {
+private fun readCars(message: String): List<Car> {
     println(message)
-    return readln()
+
+    val list = mutableListOf<Car>()
+    repeat(readln().toInt()) {
+        list.add(Car())
+    }
+
+    return list
+}
+
+private fun readRoundCount(message: String): Int {
+    println(message)
+    return readln().toInt()
 }
