@@ -1,5 +1,7 @@
 package racingcar
 
+import racingcar.controller.RacingCarGameSnapShots
+
 class ResultView(snapShots: RacingCarGameSnapShots) {
     val snapStopText: String
 

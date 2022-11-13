@@ -1,5 +1,7 @@
 package racingcar
 
+import racingcar.controller.RacingCarGame
+
 object InputView {
     fun receiveInput(): RacingCarGame {
         println("자동차 대수는 몇 대인가요?")

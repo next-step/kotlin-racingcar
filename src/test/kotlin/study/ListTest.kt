@@ -1,3 +1,5 @@
+package study
+
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import java.util.Arrays.asList

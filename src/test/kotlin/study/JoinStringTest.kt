@@ -1,4 +1,4 @@
-package racingcar
+package study
 
 import io.kotest.assertions.assertSoftly
 import io.kotest.matchers.shouldBe
