@@ -20,7 +20,7 @@ class ResultView {
 
     private fun carRecordToView(carRecord: CarRecord): String {
         val distanceString = List(carRecord.distance) { LOCATION_STRING }.joinToString("")
-        return "${carRecord.carName} : $distanceString"
+        return "${carRecord.car.name} : $distanceString"
     }
 
     companion object {

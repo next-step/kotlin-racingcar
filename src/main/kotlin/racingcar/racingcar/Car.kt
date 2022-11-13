@@ -1,6 +1,6 @@
 package racingcar.racingcar
 
-class Car(
+data class Car(
     val name: String
 ) {
     private var currentLocation: Int = 0

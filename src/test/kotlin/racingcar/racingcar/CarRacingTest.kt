@@ -10,26 +10,29 @@ import io.mockk.mockk
 class CarRacingTest : StringSpec({
 
     val mockIndicatorGenerator = mockk<IndicatorGenerator>()
+    val carA = Car("자동차A")
+    val carB = Car("자동차B")
+    val carC = Car("자동차C")
 
     "자동차 경주 테스트" {
         forAll(
             row(
                 listOf(TurnIndicator(listOf(1)), TurnIndicator(listOf(2))),
-                listOf(Car("자동차A")),
+                listOf(carA),
                 2,
-                listOf(TurnRecord(1, listOf(CarRecord("자동차A", 0))), TurnRecord(2, listOf(CarRecord("자동차A", 0))))
+                listOf(TurnRecord(1, listOf(CarRecord(carA, 0))), TurnRecord(2, listOf(CarRecord(carA, 0))))
             ),
             row(
                 listOf(TurnIndicator(listOf(8)), TurnIndicator(listOf(9))),
-                listOf(Car("자동차B")),
+                listOf(carB),
                 2,
-                listOf(TurnRecord(1, listOf(CarRecord("자동차B", 1))), TurnRecord(2, listOf(CarRecord("자동차B", 2))))
+                listOf(TurnRecord(1, listOf(CarRecord(carB, 1))), TurnRecord(2, listOf(CarRecord(carB, 2))))
             ),
             row(
                 listOf(TurnIndicator(listOf(3)), TurnIndicator(listOf(4)), TurnIndicator(listOf(2))),
-                listOf(Car("자동차C")),
+                listOf(carC),
                 3,
-                listOf(TurnRecord(1, listOf(CarRecord("자동차C", 0))), TurnRecord(2, listOf(CarRecord("자동차C", 1))), TurnRecord(3, listOf(CarRecord("자동차C", 1))))
+                listOf(TurnRecord(1, listOf(CarRecord(carC, 0))), TurnRecord(2, listOf(CarRecord(carC, 1))), TurnRecord(3, listOf(CarRecord(carC, 1))))
             )
         ) { turnIndicators, cars, turnCount, expectedRecord ->
 
