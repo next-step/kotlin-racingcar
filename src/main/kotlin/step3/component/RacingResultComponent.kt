@@ -10,6 +10,8 @@ class RacingResultComponent : Component {
 
         rounds.forEach { round ->
             val roundResult = round.start(cars = cars)
+            SpanComponent(text = "${round.id} 라운드")
+            println()
             RoundResultComponent(roundResult = roundResult).render()
             Thread.sleep(1000)
             println()
