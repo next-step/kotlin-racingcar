@@ -5,7 +5,7 @@ enum class MovingJudgeRule(
     private val strategy: MovingStrategy
 ) {
 
-    ADVANCED_RULE(
+    ADVANCE_RULE(
         expression = { number -> number >= FORWARD_STRATEGY_BOUND },
         strategy = MovingStrategy.ADVANCE,
     ),

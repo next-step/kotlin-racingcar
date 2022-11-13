@@ -12,7 +12,7 @@ class MovingJudgeRuleTest : BehaviorSpec({
             val strategy = MovingJudgeRule.judge(randNumber)
 
             then("ADVANCE_RULE을 반환한다.") {
-                strategy shouldBe MovingJudgeRule.ADVANCED_RULE
+                strategy shouldBe MovingJudgeRule.ADVANCE_RULE
             }
         }
 
