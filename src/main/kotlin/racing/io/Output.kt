@@ -34,9 +34,7 @@ object Output {
         }
 
         private fun makeCarResult(position: Int, sb: StringBuilder) {
-            for (i in 0 until position) {
-                sb.append(MARK)
-            }
+            sb.append(MARK.repeat(position))
             sb.append(LINE_BREAK)
         }
     }
