@@ -12,7 +12,7 @@ class OperatorsTest {
 
         operators.add(Operator.PLUS)
 
-        assertThat(operators.firstOperator()).isEqualTo(Operator.PLUS)
+        assertThat(operators.removeFirst()).isEqualTo(Operator.PLUS)
     }
 
     @Test

@@ -9,7 +9,7 @@ class Operators {
         operators.add(operator)
     }
 
-    fun firstOperator() = operators.removeFirst()
+    fun removeFirst() = operators.removeFirst()
 
     fun isCalculable(): Boolean = this.operators.size == CALCULABLE_SIZE
 
