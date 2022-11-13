@@ -1,20 +1,27 @@
 package racingcar.racingcar
 
-class CarRacing {
-    fun participate(cars: List<Car>, turnCount: Int): CarRacingResult {
-        return start(cars, turnCount)
+class CarRacing(
+    private val indicatorGenerator: IndicatorGenerator,
+    private val turnCount: Int,
+    private val cars: List<Car>
+) {
+    private var carRacingResult = CarRacingResult()
+
+    fun start() {
+        this.carRacingResult = CarRacingResult()
+        val indicators = indicatorGenerator.generate(cars.size, turnCount)
+        for (turn in 0 until turnCount) {
+            val indicator = indicators[turn]
+
+            val turnRecord = cars.mapIndexed { index, car ->
+                car.go(indicator.findByCarIndex(index))
+                car.currentLocation()
+            }
+            carRacingResult.record(TurnRecord(turn + 1, turnRecord))
+        }
     }
 
-    private fun start(cars: List<Car>, turnCount: Int): CarRacingResult {
-        val carRacingResult = CarRacingResult()
-        for (turn in 1..turnCount) {
-
-            val turnRecord = cars.map {
-                it.go(turn)
-                it.currentLocation()
-            }
-            carRacingResult.record(TurnRecord(turn, turnRecord))
-        }
+    fun result(): CarRacingResult {
         return carRacingResult
     }
 }

@@ -7,19 +7,32 @@ import io.kotest.matchers.shouldBe
 
 class CarTest : StringSpec({
 
-    "자동차 동작(전진 혹은 정지) 테스트" {
-        val numbers = listOf(4, 9, 0, 3, 10, -1)
-        val indicator = Indicator(numbers)
+    "자동차 전진 테스트" {
+        val car = Car()
         forAll(
-            row(1, 1),
-            row(2, 1),
+            row(4, 1),
+            row(6, 2),
+            row(8, 3),
+            row(5, 4),
+            row(7, 5),
+            row(9, 6)
+        ) { number, expectedDistance ->
+            car.go(number)
+            val actualDistance = car.currentLocation()
+            actualDistance shouldBe expectedDistance
+        }
+    }
+
+    "자동차 정지 테스트" {
+        val car = Car()
+        forAll(
+            row(1, 0),
+            row(2, 0),
             row(3, 0),
-            row(4, 0),
-            row(5, 0),
-            row(6, 0)
-        ) { turn, expectedDistance ->
-            val car = Car(indicator)
-            car.go(turn)
+            row(0, 0),
+            row(-1, 0)
+        ) { number, expectedDistance ->
+            car.go(number)
             val actualDistance = car.currentLocation()
             actualDistance shouldBe expectedDistance
         }
