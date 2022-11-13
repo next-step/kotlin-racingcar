@@ -8,17 +8,19 @@ import io.kotest.matchers.types.beInstanceOf
 class ResultTest : StringSpec() {
     init {
         "Result 는 CarInfos 를 가질 수 있다" {
-            val result = Result()
+            val resultMutable = mutableListOf<CarInfos>()
 
-            result.add(CarInfos(listOf(CarInfo("ko", Position(1)), CarInfo("rong", Position(2)))))
-            result.add(CarInfos(listOf(CarInfo("ko", Position(3)), CarInfo("rong", Position(4)))))
+            resultMutable.add(CarInfos(listOf(CarInfo("ko", Position(1)), CarInfo("rong", Position(2)))))
+            resultMutable.add(CarInfos(listOf(CarInfo("ko", Position(3)), CarInfo("rong", Position(4)))))
 
-            result.carInfosList should beInstanceOf<List<CarInfos>>()
-            result.carInfosList[0].carInfoList shouldContainExactly listOf(
+            val result = Result(resultMutable)
+
+            result.roundResults should beInstanceOf<List<CarInfos>>()
+            result.roundResults[0].carInfoList shouldContainExactly listOf(
                 CarInfo("ko", Position(1)),
                 CarInfo("rong", Position(2))
             )
-            result.carInfosList[1].carInfoList shouldContainExactly listOf(
+            result.roundResults[1].carInfoList shouldContainExactly listOf(
                 CarInfo("ko", Position(3)),
                 CarInfo("rong", Position(4))
             )

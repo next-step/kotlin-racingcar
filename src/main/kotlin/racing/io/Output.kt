@@ -20,7 +20,7 @@ object Output {
 
         fun makeWholeResult(result: Result): String {
             val sb = StringBuilder()
-            val carInfosPerRound: List<CarInfos> = result.carInfosList
+            val carInfosPerRound: List<CarInfos> = result.roundResults
             for (carInfos: CarInfos in carInfosPerRound) {
                 makeRoundResult(carInfos, sb)
             }
