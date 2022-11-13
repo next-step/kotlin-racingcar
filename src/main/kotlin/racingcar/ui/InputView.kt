@@ -1,18 +1,26 @@
 package racingcar.ui
 
+import racingcar.model.CarInfo
+
 object InputView {
 
-    fun getCarNumber(): Int {
-        println("자동차 대수는 몇 대인가요?")
-        return getNumber()
+    private const val COMMA = ","
+
+    fun getCarInfo(): CarInfo {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
+        return getNamesAndCount()
     }
 
-    fun getTrialNumber(): Int {
+    fun getTrialCount(): Int {
         println("시도할 횟수는 몇 회인가요?")
-        return getNumber()
+        return getCount()
     }
 
-    private fun getNumber(): Int = readLine()?.toIntOrNull()?.let {
+    private fun getNamesAndCount(): CarInfo = readLine()?.split(COMMA)?.let { names ->
+        CarInfo(names = names, count = names.size)
+    } ?: throw IllegalArgumentException("하나 이상의 자동차 이름을 입력해주세요.")
+
+    private fun getCount(): Int = readLine()?.toIntOrNull()?.let {
         require(it > 0) { IllegalArgumentException("0보다 큰 수를 입력해주세요.") }
         it
     } ?: throw IllegalArgumentException("숫자를 입력해주세요.")
