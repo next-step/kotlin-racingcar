@@ -8,16 +8,16 @@ class InputView {
         return Setting(passIfNameLengthBetweenOneAndFive(nameOfCars), passIfEqualsOrGreaterThanOne(numberOfLabs))
     }
 
-    fun receiveSetting(nameOfCars: String? = askNumberOfCars(), numberOfLabs: String? = askNumberOfLabs()): Setting {
-        return receiveSetting(parseCarNameByComma(nameOfCars), parseIntIfIntegerString(numberOfLabs))
+    fun receiveSetting(nameOfCars: String? = askNameOfCars(), numberOfLabs: String? = askNumberOfLabs()): Setting {
+        return receiveSetting(splitByComma(nameOfCars), parseIntIfIntegerString(numberOfLabs))
     }
 
-    private fun askNumberOfCars(): String? {
+    private fun askNameOfCars(): String? {
         display("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
         return readLine()
     }
 
-    private fun parseCarNameByComma(nameOfCars: String?): List<String> {
+    private fun splitByComma(nameOfCars: String?): List<String> {
         require(!nameOfCars.isNullOrBlank()) { "입력값이 null 혹은 공백일 수 없습니다" }
         return nameOfCars.split(",")
     }
