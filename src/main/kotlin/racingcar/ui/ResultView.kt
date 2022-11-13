@@ -21,7 +21,6 @@ class ResultView {
         return List(location) { LOCATION_STRING }.joinToString("")
     }
 
-
     companion object {
         const val LOCATION_STRING = "-"
     }
