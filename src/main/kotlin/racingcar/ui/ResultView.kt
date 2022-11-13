@@ -12,6 +12,7 @@ object ResultView {
     fun printTraceOfRound(round: Int, cars: List<Car>) {
         println("[ROUND ${round + 1}]")
         cars.forEach { car ->
+            print("${car.name} : ")
             repeat(car.distance) {
                 print(MARK)
             }
