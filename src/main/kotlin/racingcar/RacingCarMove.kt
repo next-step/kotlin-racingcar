@@ -6,7 +6,7 @@ object RacingCarMove {
 
     fun move(moveCountList: ArrayList<Int>) {
         moveCountList.forEachIndexed { index, _ ->
-            if (checkMoveValue(createRandomInt())){
+            if (checkMoveValue(createRandomInt())) {
                 moveCountList[index] ++
             }
         }
