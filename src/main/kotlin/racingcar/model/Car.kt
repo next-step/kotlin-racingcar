@@ -1,7 +1,6 @@
 package racingcar.model
 
 interface Car {
-    fun getTrack(): String
-    fun goForward()
-    fun copy(): Car
+    val track: String
+    fun goForward(): Car
 }

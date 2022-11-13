@@ -9,7 +9,7 @@ object ResultView {
     fun printIntro() = println(RESULT_INTRO_RESOURCE)
 
     fun printResult(cars: List<Car>) {
-        cars.forEach { car -> println(car.getTrack()) }
+        cars.forEach { car -> println(car.track) }
         println()
     }
 }
