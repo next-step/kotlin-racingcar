@@ -1,6 +1,7 @@
 package racingcar.ui
 
 import racingcar.racingcar.CarRacingResult
+import racingcar.racingcar.CarRecord
 import racingcar.racingcar.TurnRecord
 
 class ResultView {
@@ -14,11 +15,12 @@ class ResultView {
 
     private fun printResult(result: TurnRecord) {
         println("${result.turn} 회")
-        println(result.results.joinToString("\n") { locationToView(it) })
+        println(result.results.joinToString("\n") { carRecordToView(it) })
     }
 
-    private fun locationToView(location: Int): String {
-        return List(location) { LOCATION_STRING }.joinToString("")
+    private fun carRecordToView(carRecord: CarRecord): String {
+        val distanceString = List(carRecord.distance) { LOCATION_STRING }.joinToString("")
+        return "${carRecord.carName} : $distanceString"
     }
 
     companion object {
