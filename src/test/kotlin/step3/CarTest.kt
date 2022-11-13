@@ -13,7 +13,7 @@ class CarTest : FunSpec({
                 // when
                 sut.move(oil = 충분한_연료)
                 //
-                sut.position shouldBe 1
+                sut.position shouldBe Position(value = 1)
             }
         }
 
@@ -25,7 +25,7 @@ class CarTest : FunSpec({
                 // when
                 sut.move(oil = 부족한_연료)
                 // then
-                sut.position shouldBe 0
+                sut.position shouldBe Position(value = 0)
             }
         }
     }
