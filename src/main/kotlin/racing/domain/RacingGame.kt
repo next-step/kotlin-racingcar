@@ -11,7 +11,7 @@ class RacingGame(
         while (rounds.hasNext()) {
             rounds.play()
             cars.move()
-            result.add(cars.positions)
+            result.add(cars.carInfos)
         }
 
         return result

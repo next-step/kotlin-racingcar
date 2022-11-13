@@ -1,11 +1,11 @@
 package racing.domain
 
 class Result {
-    private val roundResults: MutableList<Positions> = mutableListOf()
-    val positionsList: List<Positions>
+    private val roundResults: MutableList<CarInfos> = mutableListOf()
+    val carInfosList: List<CarInfos>
         get() = roundResults.toList()
 
-    fun add(positions: Positions) {
-        roundResults.add(positions)
+    fun add(carInfos: CarInfos) {
+        roundResults.add(carInfos)
     }
 }

@@ -1,6 +1,6 @@
 package racing.domain
 
-class Name(val value: String) {
+data class Name(val value: String) {
     init {
         require(value.trim().length <= NAME_MAX_LENGTH)
     }
