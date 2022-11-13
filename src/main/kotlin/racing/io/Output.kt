@@ -3,9 +3,11 @@ package racing.io
 import racing.domain.CarInfo
 import racing.domain.CarInfos
 import racing.domain.Result
+import racing.domain.Winners
 
 object Output {
     private const val RESULT_MESSAGE = "실행 결과"
+    private const val WINNER_MESSAGE = "가 최종 우승했습니다."
 
     fun resultMessage(result: Result) {
         println(RESULT_MESSAGE)
@@ -22,6 +24,7 @@ object Output {
             for (carInfos: CarInfos in carInfosPerRound) {
                 makeRoundResult(carInfos, sb)
             }
+            makeWinnerResult(result.winners, sb)
             return sb.toString()
         }
 
@@ -37,6 +40,14 @@ object Output {
             sb.append(carInfo.name.value).append(" : ")
             sb.append(MARK.repeat(carInfo.position.value))
             sb.append(LINE_BREAK)
+        }
+
+        private fun makeWinnerResult(winners: Winners, sb: StringBuilder) {
+            for (winner in winners.winners) {
+                sb.append(winner.name.value).append(", ")
+            }
+            sb.deleteRange(sb.length - 2, sb.length)
+            sb.append(WINNER_MESSAGE)
         }
     }
 }

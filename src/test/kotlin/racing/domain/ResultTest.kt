@@ -14,10 +14,14 @@ class ResultTest : StringSpec() {
             result.add(CarInfos(listOf(CarInfo("ko", Position(3)), CarInfo("rong", Position(4)))))
 
             result.carInfosList should beInstanceOf<List<CarInfos>>()
-            result.carInfosList[0].carInfoList shouldContainExactly listOf(CarInfo("ko", Position(1)),
-                CarInfo("rong", Position(2)))
-            result.carInfosList[1].carInfoList shouldContainExactly listOf(CarInfo("ko", Position(3)),
-                CarInfo("rong", Position(4)))
+            result.carInfosList[0].carInfoList shouldContainExactly listOf(
+                CarInfo("ko", Position(1)),
+                CarInfo("rong", Position(2))
+            )
+            result.carInfosList[1].carInfoList shouldContainExactly listOf(
+                CarInfo("ko", Position(3)),
+                CarInfo("rong", Position(4))
+            )
         }
     }
 }

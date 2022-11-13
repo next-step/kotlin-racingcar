@@ -10,6 +10,8 @@ data class Position(val value: Int = MIN_POSITION_VALUE) {
         return Position(value + DEFAULT_MOVE_VALUE)
     }
 
+    fun max(other: Position): Position = if (value > other.value) this else other
+
     companion object {
         private const val MIN_POSITION_VALUE = 0
         private const val DEFAULT_MOVE_VALUE = 1
