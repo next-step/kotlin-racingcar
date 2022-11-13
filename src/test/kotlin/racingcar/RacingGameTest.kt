@@ -10,7 +10,7 @@ class RacingGameTest : BehaviorSpec({
 
         `when`("게임을 시작하면") {
             then("배열의 길이가 3인 문자열 배열을 반환한다.") {
-                RacingGame().start(setting).size shouldBe 3
+                RacingGame().run(setting).size shouldBe 3
             }
         }
     }

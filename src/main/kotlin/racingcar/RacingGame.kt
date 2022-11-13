@@ -1,7 +1,7 @@
 package racingcar
 
 fun main() {
-    RacingGame().start(victoryCondition = VictoryCondition.Longest)
+    RacingGame().run(victoryCondition = VictoryCondition.Longest)
 }
 
 class RacingGame(
@@ -9,7 +9,7 @@ class RacingGame(
     private val resultView: ResultView = ResultView(),
 ) {
 
-    fun start(
+    fun run(
         setting: Setting = inputView.receiveSetting(),
         victoryCondition: VictoryCondition = VictoryCondition.Longest
     ): List<Car> {
