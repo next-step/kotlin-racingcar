@@ -1,6 +1,7 @@
 package step3.component
 
 import step3.RoundResult
+import step3.ui.Br
 import step3.ui.Span
 
 class RoundResultComponent(
@@ -10,7 +11,7 @@ class RoundResultComponent(
         roundResult.carPositions.forEach { carPosition ->
             Span(text = "자동차 ${carPosition.id}: ").draw()
             DistanceComponent(position = carPosition.position).render()
-            println()
+            Br().draw()
         }
     }
 }
