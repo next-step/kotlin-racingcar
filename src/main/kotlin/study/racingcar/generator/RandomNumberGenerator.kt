@@ -2,9 +2,9 @@ package study.racingcar.generator
 
 import kotlin.random.Random
 
-class RandomNumberGenerator() : Generator {
+class RandomNumberGenerator : Generator {
     override fun generate(): Int {
-        return Random.nextInt(1, MAXIMUM_NUMBER)
+        return Random.nextInt(0, MAXIMUM_NUMBER)
     }
 
     companion object {

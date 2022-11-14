@@ -10,12 +10,10 @@ fun main() {
     val attempts = InputView.getCountOfAttempts()
 
     val racingGame = RacingGame(carCount, attempts)
-    val generator = RandomNumberGenerator(MAX_RANDOM_NUMBER)
+    val generator = RandomNumberGenerator()
     val racingResult = racingGame.run(generator)
 
     racingResult.forEach { attemptResult ->
         OutputView.showResult(attemptResult)
     }
 }
-
-const val MAX_RANDOM_NUMBER = 9
