@@ -15,7 +15,7 @@ class RaceStage(
 
     companion object {
         fun create(carNames: List<String>): RaceStage = RaceStage(
-            List(carNames.size) { index -> Car(carNames[index]) }
+            carNames.map { carName -> Car(carName) }
         )
     }
 
