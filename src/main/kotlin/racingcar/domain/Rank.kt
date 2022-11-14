@@ -1,11 +1,11 @@
 package racingcar.domain
 
 object Rank {
-    fun getWinnerNames(cars: List<Car>): String =
+    fun getWinnerNames(cars: List<Car>): List<String> =
         this.getWinner(cars)
-            .joinToString(",") { it.name }
+            .map { it.name }
 
-    fun getWinner(cars: List<Car>): List<Car> {
+    private fun getWinner(cars: List<Car>): List<Car> {
         val carsByPosition = cars.groupBy { it.position }
         val maxPosition: Int = carsByPosition.maxOf { it.key }
 

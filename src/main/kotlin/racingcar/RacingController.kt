@@ -2,23 +2,20 @@ package racingcar
 
 import racingcar.domain.Car
 import racingcar.domain.RacingGame
-import racingcar.domain.Rank
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
 class RacingController {
 
     fun race() {
-        val cars: List<Car> = this.loadCar()
+        val carNames: List<String> = this.getCarNames()
         val playCount: Int = this.getPlayCount()
-        val finishedRacingCars: List<Car> = this.playGame(playCount, cars)
-        this.rank(finishedRacingCars)
+        this.playGame(carNames, playCount)
     }
 
-    private fun loadCar(): List<Car> {
+    private fun getCarNames(): List<String> {
         ResultView.printMessage(ResultView.Message.CAR_NAMES_WITH_COMMA)
-        val names: List<String> = InputView.requestString(DELIMITERS)
-        return names.map { Car(name = it) }
+        return InputView.requestString(DELIMITERS)
     }
 
     private fun getPlayCount(): Int {
@@ -26,15 +23,12 @@ class RacingController {
         return InputView.requestPositiveNumber()
     }
 
-    private fun playGame(playCount: Int, cars: List<Car>): List<Car> {
+    private fun playGame(carNames: List<String>, playCount: Int) {
         ResultView.printMessage(ResultView.Message.RESULT)
-        val racingGame = RacingGame(cars, RandomForward())
-        return racingGame.play(playCount, printResult)
-    }
+        val racingGame = RacingGame(RandomForward(), carNames)
+        val winners: List<String> = racingGame.play(playCount, printResult)
 
-    private fun rank(finishedRacingCars: List<Car>) {
-        val winners: String = Rank.getWinnerNames(finishedRacingCars)
-        ResultView.printMessage(winners, ResultView.Message.WINNER)
+        ResultView.printMessage(winners.joinToString(DELIMITERS), ResultView.Message.WINNER)
     }
 
     companion object {

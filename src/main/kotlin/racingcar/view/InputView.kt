@@ -16,7 +16,7 @@ object InputView {
         val input: String = this.requestString()
         val split = input.split(delimiters)
 
-        require(split.all { it.length <= maxElementSize })
+        require(split.all { it.length <= maxElementSize }) { "${delimiters}로 구분된 글자들은 ${maxElementSize}자를 초과 할 수 없습니다." }
 
         return split
     }
