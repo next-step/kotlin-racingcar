@@ -2,22 +2,21 @@ package racing
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.ValueSource
+import org.junit.jupiter.params.provider.MethodSource
+import racing.domain.RacingCarsFactory
 import racing.domain.RacingCarsFactoryImpl
-import racing.model.CarCount
+import racing.model.Driver
+import java.util.stream.Stream
 
 
 internal class RacingCarGarageTest {
 
-    lateinit var racingCarGarage: RacingCarGarage
+    private lateinit var racingCarsFactory: RacingCarsFactory
 
     @BeforeEach
     fun setUp() {
-        racingCarGarage = RacingCarGarage(
-            racingCarsFactory = RacingCarsFactoryImpl()
-        )
+        racingCarsFactory = RacingCarsFactoryImpl()
     }
 
     /**
@@ -25,30 +24,36 @@ internal class RacingCarGarageTest {
      * https://github.com/junit-team/junit5/issues/2703
      */
     @ParameterizedTest
-    @ValueSource(ints = [3, 10, 2])
-    fun `필요한 차량 수 만큼 자동차를 생성한다`(carCount: Int) {
-        val cars = racingCarGarage.createCars(CarCount(carCount))
-        assertThat(cars.size).isEqualTo(carCount)
+    @MethodSource("provideDrivers")
+    fun `필요한 차량 수 만큼 자동차를 생성한다`(drivers: List<String>) {
+        RacingCarGarage(
+            drivers = drivers.map { Driver(it) },
+            racingCarsFactory = racingCarsFactory,
+        )
+            .cars
+            .count()
+            .let(::assertThat)
+            .isEqualTo(drivers.count())
     }
 
-    @Test
-    fun `현재 차고에 차량이 있는지 확인했을 때 차가 있는 경우`() {
-        racingCarGarage.createCars(CarCount(5))
-        assertThat(racingCarGarage.shouldCreateCars()).isFalse
+    @ParameterizedTest
+    @MethodSource("provideDrivers")
+    fun `1 lap 돈 차량을 차고에 주차(저장)한다`(drivers: List<String>) {
+        val racingCarGarage = RacingCarGarage(
+            drivers = drivers.map { Driver(it) },
+            racingCarsFactory = racingCarsFactory,
+        )
+        val testCarResult = racingCarGarage.cars
+            .mapIndexed { index, car ->
+                if (index % 2 == 0) car.copy(mileage = car.mileage + 1) else car.copy()
+            }
+        racingCarGarage.parkCars(testCarResult)
+        assertThat(racingCarGarage.cars).isEqualTo(testCarResult)
     }
 
-    @Test
-    fun `현재 차고에 차량이 있는지 확인했을 때 차가 없는 경우`() {
-        assertThat(racingCarGarage.shouldCreateCars()).isTrue
-    }
-
-    @Test
-    fun `1 lap 돈 차량을 차고에 주차(저장)한다`() {
-        val cars = racingCarGarage.createCars(CarCount(5))
-        val testCars = cars.mapIndexed { index, car ->
-            if (index % 2 == 0) car.copy(car.mileage + 1) else car.copy()
-        }
-        racingCarGarage.parkCars(testCars)
-        assertThat(racingCarGarage.cars).isEqualTo(testCars)
+    companion object {
+        @JvmStatic
+        fun provideDrivers(): Stream<List<String>> =
+            Stream.of(listOf("똘기", "떵이", "호치", "새초미"))
     }
 }
