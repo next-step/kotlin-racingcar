@@ -8,10 +8,10 @@ class RacingCar(
     val name: Name,
     position: Int = 0
 ) {
+    constructor(name: String) : this(Name(name))
+
     var position = position
         private set
-
-    constructor(name: String) : this(Name(name))
 
     fun move(movement: Int) {
         if (movement >= MOVEMENT_CONDITION) {
