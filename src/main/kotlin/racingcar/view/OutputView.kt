@@ -1,13 +1,23 @@
 package racingcar.view
 
 class OutputView {
-    var isTitle = true
-    fun showResult(position: String, isLastCarCycle: Boolean) {
+    private var isTitle = true
+
+    fun showRaceState(position: String, isLastCarCycle: Boolean) {
+        addTitle()
+        println(position)
+        addLineForLastCar(isLastCarCycle)
+    }
+
+    private fun addTitle() {
         if (isTitle) {
             println("실행 결과")
         }
+
         isTitle = false
-        println(position)
+    }
+
+    private fun addLineForLastCar(isLastCarCycle: Boolean) {
         if (isLastCarCycle) {
             println()
         }
