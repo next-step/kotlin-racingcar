@@ -1,12 +1,15 @@
 package racing.view
 
 object GameInputView {
+    private const val NAME_SEPARATOR = ","
 
-    fun inputNameOfRacingCars(): String {
+    fun splitNameOfCars(nameOfCars: String) = nameOfCars.split(NAME_SEPARATOR)
+
+    fun inputNameOfRacingCars(): List<String> {
         println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
         val nameOfRacingCars = readLine()!!
         require(nameOfRacingCars.isNotBlank()) { "입력값이 null 혹은 공백일 수 없습니다." }
-        return nameOfRacingCars
+        return splitNameOfCars(nameOfRacingCars)
     }
 
     fun inputRacingCarCount(): Int {
