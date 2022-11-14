@@ -27,7 +27,7 @@ class InputValidatorTest : BehaviorSpec({
             notConvertToIntList.forAll {
                 then("illegalArgumentException 예외를 반환한다.") {
                     val exception = shouldThrow<IllegalArgumentException> {
-                        inputValidator.inputValidate(it)
+                        inputValidator.numberValidate(it)
                     }
                     exception.message should startWith("입력 값은 정수 여야 합니다.")
                 }
@@ -38,7 +38,7 @@ class InputValidatorTest : BehaviorSpec({
             zeroAndNegativeNumberList.forAll {
                 then("illegalArgumentException 예외를 반환한다.") {
                     val exception = shouldThrow<IllegalArgumentException> {
-                        inputValidator.inputValidate(it)
+                        inputValidator.numberValidate(it)
                     }
                     exception.message should startWith("입력 값은 1 이상이어야 합니다.")
                 }
@@ -48,7 +48,7 @@ class InputValidatorTest : BehaviorSpec({
         `when`("양의 정수를 입력할 경우") {
             positiveNumberList.forAll {
                 then("입력한 값이 Int 타입으로 반환된다.") {
-                    inputValidator.inputValidate(it) shouldBe it.toIntOrNull()
+                    inputValidator.numberValidate(it) shouldBe it.toIntOrNull()
                 }
             }
         }

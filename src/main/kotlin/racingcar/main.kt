@@ -4,15 +4,14 @@ import racingcar.view.InputView
 import racingcar.view.ResultView
 
 fun main() {
-    val inputView = InputView()
-    val resultView = ResultView()
+    val inputView = InputView
+    val resultView = ResultView
 
-    val carCount = inputView.getCarCount()
+    val nameOfCars = inputView.getNameOfCars()
     val tryCount = inputView.getTryCount()
 
-    val cars = Cars(List(carCount) { Car() })
-    repeat(tryCount) {
-        cars.race()
-        resultView.printCarDistance(cars)
-    }
+    resultView.printResultTitle()
+    val cars = Cars(nameOfCars.map { Car(name = it) })
+    cars.game(tryCount)
+    resultView.printWinners(cars.getWinners())
 }
