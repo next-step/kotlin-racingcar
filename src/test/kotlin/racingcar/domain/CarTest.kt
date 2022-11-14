@@ -11,7 +11,7 @@ internal class CarTest {
         var car = Car()
 
         // when
-        val actual = car.moveCar().position
+        val actual = car.move().position
 
         // then
         assertThat(actual).isEqualTo(Position(2))
@@ -23,7 +23,7 @@ internal class CarTest {
         var car = Car()
 
         // when
-        val actual = car.moveCar().moveCar().moveCar().moveCar().position
+        val actual = car.move().move().move().move().position
 
         // then
         assertThat(actual).isEqualTo(Position(5))
