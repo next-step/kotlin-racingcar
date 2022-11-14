@@ -1,6 +1,6 @@
 package racingcar.view
 
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -16,7 +16,7 @@ class InputViewTest {
         val inputStream = InputStream.generate(input)
         System.setIn(inputStream)
         val register = InputView.register()
-        Assertions.assertThat(register.participant.size).isEqualTo(3)
+        assertThat(register.participant.size).isEqualTo(3)
     }
 
     @ParameterizedTest
@@ -50,6 +50,28 @@ class InputViewTest {
         assertThrows<IllegalArgumentException> {
             InputView.register()
         }
+    }
+
+    @ParameterizedTest
+    @DisplayName("자동차 이름에 앞/뒤로 공백이 들어간 경우 공백이 제거됨")
+    @ValueSource(strings = [" po ,crong,honux\n5"])
+    fun `Remove spaces if front_back spaces are included in the car name`(input: String) {
+        val inputStream = InputStream.generate(input)
+        System.setIn(inputStream)
+
+        val register = InputView.register()
+        assertThat(register.participant.contains(" po ")).isFalse
+    }
+
+    @ParameterizedTest
+    @DisplayName("자동차 이름 중간에 공백 포함되어도 자동차 등록이 됨")
+    @ValueSource(strings = ["Hi kt\n5"])
+    fun `Register a car with spaces in the middle of the car name`(input: String) {
+        val inputStream = InputStream.generate(input)
+        System.setIn(inputStream)
+
+        val register = InputView.register()
+        assertThat(register.participant.contains("Hi kt")).isTrue
     }
 
     object InputStream {

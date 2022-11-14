@@ -7,6 +7,8 @@
 - [x] 자동차 이름의 입력이 5자를 초과할 경우 IllegalArgumentException 오류
 - [x] 자동차 이름의 입력이 공백일 경우 IllegalArgumentException 오류
 - [x] 시도할 횟수의 입력 값이 0일 경우 IllegalArgumentException 오류
+- [x] 자동차 이름에 앞/뒤로 공백이 들어간 경우 공백이 제거됨
+- [x] 자동차 이름 중간에 공백 포함되어도 자동차 등록이 됨
 
 ### 결과
 - [x] 자동차 이름이 홍길동이고 현재 위치가 5일경우 "홍길동 : -----" 값을 반환해야함
