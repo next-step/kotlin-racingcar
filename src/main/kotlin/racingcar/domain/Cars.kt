@@ -1,13 +1,12 @@
 package racingcar.domain
 
-@JvmInline
-value class Cars(val value: List<Car> = emptyList()) {
+class Cars(val value: List<Car> = emptyList()) {
 
     fun racing(): Cars {
         var cars = Cars()
         value.forEach { car ->
             cars += if (isMove())
-                car.moveCar()
+                car.move()
              else
                 car
         }
@@ -24,10 +23,10 @@ value class Cars(val value: List<Car> = emptyList()) {
     }
 
     companion object {
-        const val TERMS_OF_RACING_MIN = 0
-        const val TERMS_OF_RACING_MAX = 10
+        private const val TERMS_OF_RACING_MIN = 0
+        private const val TERMS_OF_RACING_MAX = 10
 
-        const val TERMS_OF_RACING = 4
+        private const val TERMS_OF_RACING = 4
     }
 
 }
