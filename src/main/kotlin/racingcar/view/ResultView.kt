@@ -5,7 +5,7 @@ import racingcar.domain.car.Cars
 class ResultView {
     companion object {
         fun printResult(cars: Cars) {
-            cars.getPositions().forEach { printCar(it.getPosition()) }
+            cars.getPositions().forEach { printCar(it.position) }
             println()
         }
 
