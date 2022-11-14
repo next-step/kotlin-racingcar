@@ -10,7 +10,7 @@ class OperatorTest {
         val operator = Operator()
 
         // when
-        operator.find("1 + 2")
+        operator.find('+')
         val result = operator.operate(1, 2)
 
         // then
@@ -23,7 +23,7 @@ class OperatorTest {
         val operator = Operator()
 
         // when
-        operator.find("11 - 1")
+        operator.find('-')
         val result = operator.operate(11, 1)
 
         // then
@@ -36,7 +36,7 @@ class OperatorTest {
         val operator = Operator()
 
         // when
-        operator.find("2 * 3")
+        operator.find('*')
         val result = operator.operate(2, 3)
 
         // then
@@ -49,7 +49,7 @@ class OperatorTest {
         val operator = Operator()
 
         // when
-        operator.find("10 / 2")
+        operator.find('/')
         val result = operator.operate(10, 2)
 
         // then

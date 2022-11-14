@@ -3,12 +3,14 @@ package calculator
 class Operator {
     private lateinit var optype: OperatorType
 
-    fun find(s: String) {
-        optype = if (s.contains('+')) OperatorType.PLUS
-        else if (s.contains('-')) OperatorType.MINUS
-        else if (s.contains('*')) OperatorType.TIMES
-        else if (s.contains('/')) OperatorType.DIVIDED_BY
-        else throw IllegalArgumentException()
+    fun find(ch: Char) {
+        optype = when (ch) {
+            '+' -> OperatorType.PLUS
+            '-' -> OperatorType.MINUS
+            '*' -> OperatorType.TIMES
+            '/' -> OperatorType.DIVIDED_BY
+            else -> throw IllegalArgumentException()
+        }
     }
 
     fun operate(a: Int, b: Int): Int {
