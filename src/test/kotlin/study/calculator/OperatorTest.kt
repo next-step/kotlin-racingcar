@@ -7,25 +7,25 @@ import io.kotest.matchers.shouldBe
 class OperatorTest : StringSpec({
     "덧셈" {
         val operator = Operator.PLUS
-        val result = operator.invoke(1, 2)
+        val result = operator.operate(1, 2)
         result shouldBe 3
     }
 
     "뺄셈" {
         val operator = Operator.MINUS
-        val result = operator.invoke(2, 1)
+        val result = operator.operate(2, 1)
         result shouldBe 1
     }
 
     "곱셈" {
         val operator = Operator.MULTIPLY
-        val result = operator.invoke(2, 3)
+        val result = operator.operate(2, 3)
         result shouldBe 6
     }
 
     "나눗셈" {
         val operator = Operator.DIVIDE
-        val result = operator.invoke(6, 2)
+        val result = operator.operate(6, 2)
         result shouldBe 3
     }
 
