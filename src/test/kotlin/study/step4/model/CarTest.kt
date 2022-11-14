@@ -1,7 +1,6 @@
 package study.step4.model
 
 import io.kotest.core.spec.style.StringSpec
-import io.kotest.inspectors.forAll
 import org.assertj.core.api.Assertions.assertThat
 
 class CarTest : StringSpec({
@@ -13,38 +12,34 @@ class CarTest : StringSpec({
         assertThat(car.name).isEqualTo("자동차1")
     }
 
-    "주어진 자동차에, 주어진 숫자가 4 이상이면 전진하여, 위치가 1 증가한다  " {
-        listOf(
-            4, 5, 6, 7, 8, 9
-        ).forAll {
-            // given
-            val car = Car(engin = DigitEngine(StaticDigit(it)))
+    "주어진 자동차에, 숫자 엔진이 run 시 true 를 반환하면,  위치가 1 증가한다  " {
+        // given
+        val engin = DigitEngine(StaticDigit(5))
+        val car = Car(engin = engin)
 
-            val beforeLocation = car.getLocation()
+        val beforeLocation = car.getLocation()
 
-            // when
-            car.move()
+        // when
+        car.move()
 
-            // then
-            val afterLocation = car.getLocation()
-            assertThat(afterLocation - beforeLocation).isOne()
-        }
+        // then
+        assertThat(engin.run()).isTrue
+        val afterLocation = car.getLocation()
+        assertThat(afterLocation - beforeLocation).isOne()
     }
 
-    "주어진 자동차에,주어진 숫자가 4 미만이면 멈춘하여, 위치가 변경되지 않는다" {
-        listOf(
-            0, 1, 2, 3
-        ).forAll {
-            // given
-            val car = Car(engin = DigitEngine(StaticDigit(it)))
-            val beforeLocation = car.getLocation()
+    "주어진 자동차에,숫자 엔진이 run 시 false 를 반환하면, 위치가 변경되지 않는다" {
+        // given
+        val engin = DigitEngine(StaticDigit(0))
+        val car = Car(engin = engin)
+        val beforeLocation = car.getLocation()
 
-            // when
-            car.move()
+        // when
+        car.move()
 
-            // then
-            val afterLocation = car.getLocation()
-            assertThat(afterLocation).isEqualTo(beforeLocation)
-        }
+        // then
+        assertThat(engin.run()).isFalse
+        val afterLocation = car.getLocation()
+        assertThat(afterLocation).isEqualTo(beforeLocation)
     }
 })

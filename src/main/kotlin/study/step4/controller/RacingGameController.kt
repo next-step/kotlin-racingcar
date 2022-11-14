@@ -7,7 +7,7 @@ import study.step4.view.InputView.inputRacingCarInfo
 import study.step4.view.ResultView.resultRacingCar
 
 class RacingGameController {
-    fun racingGame() {
+    fun raceGame() {
         runCatching {
             val (racingCarNames, repeatRace) = inputRacingCarInfo()
 
