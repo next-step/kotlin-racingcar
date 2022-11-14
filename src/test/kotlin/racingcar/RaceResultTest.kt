@@ -3,6 +3,7 @@ package racingcar
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.collections.shouldContainExactly
+import io.kotest.matchers.shouldBe
 
 class RaceResultTest : StringSpec({
     "라운드별 기록을 반환한다" {
@@ -17,6 +18,8 @@ class RaceResultTest : StringSpec({
         val map = raceResult.toMap()
 
         map.keys shouldContainExactly setOf(1, 2, 3)
-        listOf(*map.keys.toTypedArray()).forAll { it == map[it]?.first()?.round }
+        listOf(*map.keys.toTypedArray()).forAll {
+            it shouldBe map[it]?.first()?.round
+        }
     }
 })
