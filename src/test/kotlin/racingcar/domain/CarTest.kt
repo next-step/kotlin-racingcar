@@ -30,6 +30,9 @@ class CarTest {
 
         carA.go()
 
-        assertThat(Car.getFurthestCars(listOf(carA, carB)).first().name).isEqualTo("A")
+        val cars = listOf(carA, carB)
+        val furthestCars = Car.getFurthestCars(cars)
+
+        assertThat(furthestCars.contains(carA)).isTrue
     }
 }
