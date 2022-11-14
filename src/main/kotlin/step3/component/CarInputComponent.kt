@@ -1,5 +1,6 @@
 package step3.component
 
+import step3.Car
 import step3.CarFactory
 import step3.CarNameSplitter
 import step3.CarStore
@@ -15,9 +16,13 @@ class CarInputComponent : Component {
 
     fun onCommand(value: String) {
         val carNames = CarNameSplitter.execute(target = value)
-        val createDtos = carNames.map { CarCreateDto(name = it) }
-        val cars = CarFactory.createMany(dtos = createDtos)
+        val cars = this.createCars(carNames = carNames)
         CarStore.saveAll(cars)
+    }
+
+    private fun createCars(carNames: List<String>): List<Car> {
+        val createDtos = carNames.map { CarCreateDto(name = it) }
+        return CarFactory.createMany(dtos = createDtos)
     }
 
     override fun render() {
