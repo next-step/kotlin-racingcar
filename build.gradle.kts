@@ -28,5 +28,6 @@ tasks {
     }
     ktlint {
         verbose.set(true)
+        outputToConsole.set(true)
     }
 }

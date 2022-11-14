@@ -50,4 +50,3 @@ class Calculator {
         return first / last
     }
 }
-
