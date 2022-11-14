@@ -4,14 +4,14 @@ class Car {
     var currentLocation: Int = INIT_LOCATION
         private set
 
-    fun move(dice: Int) {
-        if (canMove(dice)) {
+    fun move(power: Int) {
+        if (canMove(power)) {
             currentLocation += 1
         }
     }
 
-    private fun canMove(dice: Int): Boolean {
-        return dice >= FORWARD_NUMBER
+    private fun canMove(power: Int): Boolean {
+        return power >= FORWARD_NUMBER
     }
 
     companion object {
