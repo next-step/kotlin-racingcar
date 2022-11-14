@@ -1,7 +1,7 @@
 package racingcar.domain
 
-class Car(val name: String) : Moveable {
-    var currentPosition: Int = 0
+class Car(val name: String, initialPosition: Int = 0) : Moveable {
+    var currentPosition: Int = initialPosition
         private set
 
     override fun go() {
