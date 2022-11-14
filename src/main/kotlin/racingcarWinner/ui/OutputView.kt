@@ -2,6 +2,7 @@ package racingcarWinner.ui
 
 import racingcarWinner.core.Car
 import racingcarWinner.core.MessageCode
+import racingcarWinner.core.Winner
 import racingcarWinner.core.WinnerRacing
 
 object OutputView {
@@ -16,8 +17,8 @@ object OutputView {
         print(tryAllRacingOutput(cars, racing, tryNumber))
     }
 
-    fun outputWinner(cars: List<Car>, racing: WinnerRacing) {
-        val winnerList = racing.getWinner(cars, racing.maxMoveStep).joinToString(SEPARATOR)
+    fun outputWinner(cars: List<Car>, maxMoveStep: Int) {
+        val winnerList = Winner.getWinner(cars, maxMoveStep).joinToString(SEPARATOR)
         println(ESCAPE_LINE.plus(winnerList).plus(MessageCode.WinnerResult.message))
     }
 
@@ -31,6 +32,6 @@ object OutputView {
 
     private fun tryAllRacingOutput(cars: List<Car>, racing: WinnerRacing, tryNumber: Int): String =
         (WinnerRacing.INIT_TRY_NUMBER..tryNumber).joinToString(ESCAPE_DOUBLE_LINE) {
-            tryOneRacingOutput(cars, racing, tryNumber)
+            tryOneRacingOutput(cars, racing, it)
         }
 }

@@ -14,5 +14,5 @@ fun main() {
 
     OutputView.outputResult(cars, racing, tryNumber)
 
-    OutputView.outputWinner(cars, racing)
+    OutputView.outputWinner(cars, racing.maxMoveStep)
 }
