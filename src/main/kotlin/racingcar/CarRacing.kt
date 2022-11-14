@@ -12,27 +12,23 @@ class CarRacing(
     }
 
     fun race(): RaceResult {
-        if (cache != null) {
-            return cache as RaceResult
-        }
-
-        val records = mutableListOf<Record>()
-
-        repeat(count) { records.addAll(race(it)) }
-
-        cache = RaceResult(records)
+        cache = if (cache != null) cache else tryRace()
 
         return cache as RaceResult
     }
 
-    private fun race(round: Round): List<Record> {
+    private fun tryRace(): RaceResult {
         val records = mutableListOf<Record>()
 
+        repeat(count) { race(it, records) }
+
+        return RaceResult(records)
+    }
+
+    private fun race(round: Round, records: MutableList<Record>) {
         carRacers.forEach {
             it.drive()
             records.add(Record(round, it))
         }
-
-        return records
     }
 }
