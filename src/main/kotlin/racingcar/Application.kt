@@ -3,9 +3,9 @@ package racingcar
 fun main() {
     try {
         val carRacing = CarRacing(carRacers = createCarRacers(), count = InputView.readTryCount())
-        val raceResult = carRacing.race()
 
-        OutputView.writeResult(raceResult)
+        OutputView.writeResult(carRacing.race())
+        OutputView.writeWinner(Winner(carRacing))
     } catch (e: RuntimeException) {
         OutputView.writeError(e)
     }

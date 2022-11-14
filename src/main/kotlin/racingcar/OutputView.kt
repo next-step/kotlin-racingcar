@@ -9,6 +9,10 @@ object OutputView {
         }
     }
 
+    fun writeWinner(winner: Winner) {
+        println("${winner.names().joinToString(", ")}가 최종 우승했습니다.")
+    }
+
     fun writeError(e: Exception) {
         println(e.message)
     }
