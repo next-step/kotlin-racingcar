@@ -1,12 +1,12 @@
 package calculator
 
 import calculator.common.ExceptionCode
-import calculator.common.Utils
+import calculator.common.OperatorHelper
 import java.util.Stack
 
 class Calculator {
-    private val operator = OperatorImpl()
-    private val utils = Utils()
+    private val operator = SimpleOperator()
+    private val utils = OperatorHelper()
 
     fun calculate(input: String?): Float {
         val stack = Stack<Float>()
@@ -17,7 +17,7 @@ class Calculator {
                 utils.isNumeric(it) -> {
                     stack.add(it.toFloat())
                 }
-                else -> {
+                utils.isOperator(it) -> {
                     val secondNum = stack.pop()
                     val firstNum = stack.pop()
                     when (it) {

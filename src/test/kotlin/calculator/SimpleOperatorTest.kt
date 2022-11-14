@@ -1,14 +1,14 @@
 package operator
 
-import calculator.OperatorImpl
+import calculator.SimpleOperator
 import calculator.common.ExceptionCode
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-class OperatorImplTest {
+class SimpleOperatorTest {
 
-    private val operator = OperatorImpl()
+    private val operator = SimpleOperator()
     @Test
     @DisplayName("더하기 단항 연산을 성공한다")
     fun singlePlusSuccess() {

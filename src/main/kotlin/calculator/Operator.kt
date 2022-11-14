@@ -12,7 +12,7 @@ interface Operator {
     fun divide(firstNum: Float, secondNum: Float): Float
 }
 
-class OperatorImpl : Operator {
+class SimpleOperator : Operator {
 
     override fun add(firstNum: Float, secondNum: Float): Float = firstNum + secondNum
 

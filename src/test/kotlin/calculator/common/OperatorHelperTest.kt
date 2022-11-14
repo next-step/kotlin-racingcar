@@ -4,9 +4,9 @@ import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-class UtilsTest {
+class OperatorHelperTest {
 
-    private val utils = Utils()
+    private val utils = OperatorHelper()
 
     @Test
     @DisplayName("숫자 string이 아니면 false를 반환한다")

@@ -2,7 +2,7 @@ package calculator.common
 
 import java.util.Stack
 
-class Utils {
+class OperatorHelper {
     fun infixToPostFix(input: List<String>): MutableList<String> {
         val stack = Stack<String>()
         val postFix = mutableListOf<String>()
