@@ -1,4 +1,4 @@
-package racingcar.racingcar
+package racingcar.domain
 
 data class CarRecord(
     val car: Car,

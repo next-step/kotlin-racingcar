@@ -1,6 +1,6 @@
-package racingcar.ui
+package racingcar.view
 
-import racingcar.racingcar.CarRacingRequest
+import racingcar.domain.CarRacingRequest
 
 class InputView {
 

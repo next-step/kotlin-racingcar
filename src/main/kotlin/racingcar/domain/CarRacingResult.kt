@@ -1,4 +1,4 @@
-package racingcar.racingcar
+package racingcar.domain
 
 class CarRacingResult(
     val winners: List<Car>,

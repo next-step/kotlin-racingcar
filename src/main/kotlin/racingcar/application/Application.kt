@@ -1,10 +1,10 @@
 package racingcar.application
 
-import racingcar.racingcar.CarManager
-import racingcar.racingcar.CarRacing
-import racingcar.racingcar.IndicatorGenerator
-import racingcar.ui.InputView
-import racingcar.ui.ResultView
+import racingcar.domain.CarManager
+import racingcar.domain.CarRacing
+import racingcar.domain.IndicatorGenerator
+import racingcar.view.InputView
+import racingcar.view.ResultView
 
 class Application {
     private val carManager = CarManager()

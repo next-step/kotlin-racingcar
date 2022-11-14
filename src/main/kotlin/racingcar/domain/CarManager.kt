@@ -1,4 +1,4 @@
-package racingcar.racingcar
+package racingcar.domain
 
 class CarManager {
     fun ready(carNames: List<String>): List<Car> {

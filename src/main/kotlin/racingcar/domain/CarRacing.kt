@@ -1,4 +1,4 @@
-package racingcar.racingcar
+package racingcar.domain
 
 class CarRacing(
     private val indicatorGenerator: IndicatorGenerator,
