@@ -2,7 +2,7 @@ package step3.component
 
 import step3.ui.Span
 
-class RoundResultHeaderComponent(
+class RoundOrderComponent(
     private val id: Int,
 ) : Component {
     override fun render() {
