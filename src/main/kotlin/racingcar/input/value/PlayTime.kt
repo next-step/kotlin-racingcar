@@ -1,11 +1,9 @@
 package racingcar.input.value
 
-data class PlayTime(private val playTime: Int) {
-    init {
-        require(playTime > 0) { "시도 횟수는 0보다 커야 합니다." }
-    }
+private const val MINIMUM_PLAY_TIME = 0
 
-    fun getPlayTime(): Int {
-        return playTime
+data class PlayTime(val value: Int) {
+    init {
+        require(value > MINIMUM_PLAY_TIME) { "시도 횟수는 0보다 커야 합니다." }
     }
 }

@@ -1,11 +1,9 @@
 package racingcar.input.value
 
-data class NumberOfCars(private val numberOfCars: Int) {
-    init {
-        require(numberOfCars > 1) { "자동차 대수는 1보다 커야 합니다." }
-    }
+private const val MINIMUM_NUM_OF_CARS = 1
 
-    fun getNumberOfCars(): Int {
-        return numberOfCars
+data class NumberOfCars(val value: Int) {
+    init {
+        require(value > MINIMUM_NUM_OF_CARS) { "자동차 대수는 1보다 커야 합니다." }
     }
 }

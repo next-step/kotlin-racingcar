@@ -14,7 +14,7 @@ class InputResultDtoTest {
         val playTime = PlayTime(5)
         val inputResultDto = InputResultDto(numberOfCars, playTime)
 
-        assertThat(inputResultDto.getNumberOfCars()).isEqualTo(3)
-        assertThat(inputResultDto.getPlayTime()).isEqualTo(5)
+        assertThat(inputResultDto.getNumberOfCars).isEqualTo(3)
+        assertThat(inputResultDto.getPlayTime).isEqualTo(5)
     }
 }

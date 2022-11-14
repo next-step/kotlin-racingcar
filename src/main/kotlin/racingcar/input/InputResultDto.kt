@@ -3,12 +3,7 @@ package racingcar.input
 import racingcar.input.value.NumberOfCars
 import racingcar.input.value.PlayTime
 
-data class InputResultDto(private val numberOfCars: NumberOfCars, private val playTime: PlayTime) {
-    fun getNumberOfCars(): Int {
-        return numberOfCars.getNumberOfCars()
-    }
-
-    fun getPlayTime(): Int {
-        return playTime.getPlayTime()
-    }
+data class InputResultDto(private val NumberOfCars: NumberOfCars, private val playTime: PlayTime) {
+    val getNumberOfCars get() = NumberOfCars.value
+    val getPlayTime get() = playTime.value
 }
