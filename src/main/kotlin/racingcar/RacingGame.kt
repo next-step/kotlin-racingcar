@@ -5,11 +5,6 @@ import racingcar.domain.Setting
 import racingcar.domain.VictoryCondition
 import racingcar.view.InputView
 import racingcar.view.ResultView
-
-fun main() {
-    RacingGame().run(victoryCondition = VictoryCondition.Longest)
-}
-
 class RacingGame(
     private val inputView: InputView = InputView(),
     private val resultView: ResultView = ResultView(),

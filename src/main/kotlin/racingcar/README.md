@@ -26,4 +26,5 @@
 ## 5단계 기능 요구사항
 
 - [x] InputView 와 ResultView View 패키지안에 넣기
-- [ ] MoveStrategy, VictoryCondition, Car, Setting Domain 패키지 안에 넣기
+- [x] MoveStrategy, VictoryCondition, Car, Setting Domain 패키지 안에 넣기
+- [x] RacingGame 파일에서 Main 분리
