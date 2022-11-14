@@ -10,19 +10,21 @@ class OperatorHelper {
             if (isNumeric(it)) {
                 postFix.add(it)
             } else {
-                while (!stack.isEmpty()) {
-                    postFix.add(stack.pop())
-                }
+                insertStackToList(postFix, stack)
                 stack.add(it)
             }
         }
-        while (!stack.isEmpty()) {
-            postFix.add(stack.pop())
-        }
+        insertStackToList(postFix, stack)
         return postFix
     }
 
     fun isNumeric(str: String) = str.all { it in '0'..'9' }
 
     fun isOperator(str: String) = str.all { it in charArrayOf('+', '-', '*', '/') }
+
+    private fun insertStackToList(list: MutableList<String>, stack: Stack<String>) {
+        while (!stack.isEmpty()) {
+            list.add(stack.pop())
+        }
+    }
 }

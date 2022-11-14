@@ -1,6 +1,6 @@
 package calculator
 
-import calculator.common.ExceptionCode
+import calculator.enums.ExceptionCode
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.DisplayName

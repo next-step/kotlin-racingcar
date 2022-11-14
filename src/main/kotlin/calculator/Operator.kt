@@ -1,6 +1,6 @@
 package calculator
 
-import calculator.common.ExceptionCode
+import calculator.enums.ExceptionCode
 
 interface Operator {
     fun add(firstNum: Float, secondNum: Float): Float

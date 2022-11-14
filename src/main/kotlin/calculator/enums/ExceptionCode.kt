@@ -1,4 +1,4 @@
-package calculator.common
+package calculator.enums
 
 enum class ExceptionCode(
     private val message: String,
@@ -9,7 +9,7 @@ enum class ExceptionCode(
     NOT_DIVIDE_ZERO("0으로 나누기 연산을 할 수 없습니다")
     ;
 
-    fun getMessage(): String? {
+    fun getMessage(): String {
         return this.message
     }
 }
