@@ -16,4 +16,17 @@ class OperatorTest {
         // then
         assertThat(result).isEqualTo(3)
     }
+
+    @Test
+    fun `뺄셈 연산을 할 수 있다`() {
+        // given
+        val operator = Operator()
+
+        // when
+        operator.find("11 - 1")
+        val result = operator.operate(11, 1)
+
+        // then
+        assertThat(result).isEqualTo(10)
+    }
 }

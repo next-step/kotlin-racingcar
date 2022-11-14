@@ -1,5 +1,5 @@
 package calculator
 
 enum class OperatorType {
-    PLUS
+    PLUS, MINUS
 }
