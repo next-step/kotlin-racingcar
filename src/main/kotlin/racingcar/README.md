@@ -22,3 +22,8 @@
 - [x] 인라인으로 변경
 - [x] 자동차 조건에 맞는 테스트 변경
 - [x] 전진할 수 없다 -> 멈춘다.
+
+## 5단계 기능 요구사항
+
+- [] InputView 와 ResultView View 패키지안에 넣기
+- [] MoveStrategy, VictoryCondition, Car, Setting Domain 패키지 안에 넣기
