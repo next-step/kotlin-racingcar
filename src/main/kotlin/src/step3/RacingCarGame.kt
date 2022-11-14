@@ -3,7 +3,9 @@ package src.step3
 object RacingCarGame {
     fun startGame() {
         val inputValue = InputView.executeInputScreen()
-        ResultView.showGameResult(inputValue.carNumber, inputValue.tryCount)
+        val cars = CarOperator
+            .calculateCarMoveDistance(inputValue.carNumber, inputValue.tryCount)
+        ResultView.showGameResult(cars)
     }
 }
 

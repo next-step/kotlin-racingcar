@@ -1,10 +1,26 @@
 package src.step3
 
-class Car(
-    var moveCounts: MutableList<Int> = mutableListOf(),
-) {
+class Car {
 
-    fun move(moveCount: Int) {
-        moveCounts.add(moveCount)
+    private var moveCounts: List<Int> = emptyList()
+
+    fun move(tryCount: Int, randomValue: Int): Car {
+        var moveCount = 0
+        for (i in 0 until tryCount) {
+            if (4 <= randomValue) {
+                moveCount++
+            }
+            this.moveCounts += moveCount
+        }
+
+        return this
+    }
+
+    fun getMoveCountSize(): Int {
+        return moveCounts.size
+    }
+
+    fun getMoveCountIndex(index: Int): Int {
+        return moveCounts[index]
     }
 }

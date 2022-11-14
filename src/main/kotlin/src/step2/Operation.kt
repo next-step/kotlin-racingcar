@@ -26,6 +26,13 @@ enum class Operation(val symbol: Char) : Calculable {
         override fun calculate(x: Int, y: Int): Int {
             return x / y
         }
+    };
+    companion object {
+        fun findSymbol(symbol: Char?): Operation {
+            checkNotNull(symbol) { "연산자가 없습니다" }
+            return Operation.values().find { it.symbol == symbol }
+                ?: throw IllegalArgumentException("연산자를 찾을 수 없습니다")
+        }
     }
 }
 
@@ -49,9 +56,7 @@ object StringCalculator {
             }
 
             // 계산
-            val operation = Operation.values().find { it.symbol == symbol }
-            result = operation?.calculate(result, Character.getNumericValue(it))
-                ?: return@forEach
+            result = Operation.findSymbol(symbol).calculate(result, Character.getNumericValue(it))
         }
 
         return result
