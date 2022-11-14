@@ -4,9 +4,9 @@ import study.racingcar.car.Car
 import study.racingcar.generator.Generator
 
 class Racing(private val cars: List<Car>, private val generator: Generator) {
-    fun attempt(): List<Result> {
+    fun round(): List<Record> {
         cars.forEach { car -> car.move(this.generator.generate()) }
 
-        return cars.map { car -> Result(car) }
+        return cars.map { car -> Record(car) }
     }
 }

@@ -11,9 +11,9 @@ internal class RacingTest {
         val cars = CarFactory.createCars(listOf("카니발", "아반떼"))
         val racing = Racing(cars, generatorStub)
         val expected = cars.map { car ->
-            Result(car.name, car.currentLocation + 1)
+            Record(car.name, car.currentLocation + 1)
         }
 
-        assertThat(racing.attempt()).isEqualTo(expected)
+        assertThat(racing.round()).isEqualTo(expected)
     }
 }

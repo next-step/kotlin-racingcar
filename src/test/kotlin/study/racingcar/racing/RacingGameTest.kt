@@ -12,12 +12,28 @@ internal class RacingGameTest {
         val racingGame = RacingGame(cars, 2)
 
         val firstRace = cars.map { car ->
-            Result(car.name, car.currentLocation + 1)
+            Record(car.name, car.currentLocation + 1)
         }
         val secondRace = firstRace.map { result ->
-            Result(result.name, result.location + 1)
+            Record(result.name, result.location + 1)
         }
 
         assertThat(racingGame.run(generator)).isEqualTo(listOf(firstRace, secondRace))
+    }
+
+    @Test
+    fun `RacingGame에서는 Race 종료 후 우승자를 출력한다`() {
+        val generator = GeneratorStub()
+        val cars = CarFactory.createCars(listOf("아반떼", "소나타"))
+        val racingGame = RacingGame(cars, 2)
+
+        val firstRace = cars.map { car ->
+            Record(car.name, car.currentLocation + 1)
+        }
+        val secondRace = firstRace.map { result ->
+            Record(result.name, result.location + 1)
+        }
+
+        assertThat(racingGame.run(generator)).isEqualTo(RacingResult(listOf(firstRace, secondRace)))
     }
 }

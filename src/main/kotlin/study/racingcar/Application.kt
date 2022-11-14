@@ -8,15 +8,14 @@ import study.racingcar.racing.RacingGame
 
 fun main() {
     val names = InputView.getCarsName()
-    val attempts = InputView.getAttempts()
+    val round = InputView.getRound()
 
     val cars = CarFactory.createCars(names)
     val generator = RandomNumberGenerator()
 
-    val racingGame = RacingGame(cars, attempts)
+    val racingGame = RacingGame(cars, round)
     val racingResult = racingGame.run(generator)
 
-    racingResult.forEach { attemptResult ->
-        OutputView.showResult(attemptResult)
-    }
+    OutputView.printResult(racingResult)
+    OutputView.printWinners(racingResult)
 }
