@@ -1,4 +1,4 @@
-package com.nextstep.racingcar.domain
+package com.nextstep.racingcar.domain.gamerules
 
 interface NumberGenerator {
     fun generate(): Int

@@ -1,10 +1,10 @@
 package com.nextstep.racingcar.domain
 
+import com.nextstep.racingcar.domain.gamerules.MoveRule
 import com.nextstep.racingcar.view.CliResultView
 import com.nextstep.racingcar.view.InputView
 
 class RacingGame(
-    private val numberGenerator: NumberGenerator,
     private val moveRule: MoveRule,
     private val inputView: InputView,
     private val resultView: CliResultView
@@ -23,7 +23,7 @@ class RacingGame(
 
     private fun play(cars: List<Car>) {
         cars.map { car ->
-            car.move(numberGenerator, moveRule)
+            car.move(moveRule)
             resultView.printResult(car)
         }
         resultView.printLine()

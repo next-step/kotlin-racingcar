@@ -1,15 +1,16 @@
 package com.nextstep.racingcar.domain
 
+import com.nextstep.racingcar.domain.gamerules.MoveRule
+
 class Car {
     private val histories = mutableListOf<Movement>()
 
-    fun move(numberGenerator: NumberGenerator, moveRule: MoveRule) {
-        val number = numberGenerator.generate()
-        val movement = moveRule.move(number)
+    fun move(moveRule: MoveRule) {
+        val movement = moveRule.move()
         saveHistory(movement)
     }
 
-    fun saveHistory(movement: Movement) {
+    private fun saveHistory(movement: Movement) {
         histories.add(movement)
     }
 
