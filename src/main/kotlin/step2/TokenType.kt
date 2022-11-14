@@ -2,13 +2,14 @@ package step2
 
 import java.lang.IllegalArgumentException
 
-enum class TokenType(
-    val isOperator: () -> Boolean,
-    val isOperand: () -> Boolean,
-) {
-    OPERATOR(isOperator = { true }, isOperand = { false }),
-    OPERAND(isOperator = { false }, isOperand = { true }),
+enum class TokenType {
+    OPERATOR,
+    OPERAND,
     ;
+
+    fun isOperator() = this == OPERATOR
+
+    fun isOperand() = this == OPERAND
 
     companion object {
         fun getByValue(value: String): TokenType {

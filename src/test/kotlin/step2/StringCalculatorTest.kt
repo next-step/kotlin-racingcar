@@ -57,7 +57,7 @@ class StringCalculatorTest : FunSpec({
                     sut.calculate(expression = expression)
                 }
                 // then
-                exception.message shouldBe "연산 기호는 +, -, *, / 만 입력할 수 있습니다."
+                exception.message shouldBe "토큰 유형은 연산자 또는 피연산자만 가능합니다."
             }
         }
     }
