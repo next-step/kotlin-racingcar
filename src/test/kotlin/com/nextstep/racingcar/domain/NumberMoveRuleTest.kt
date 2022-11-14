@@ -1,7 +1,7 @@
 package com.nextstep.racingcar.domain
 
-import com.nextstep.racingcar.domain.gamerules.NumberGenerator
-import com.nextstep.racingcar.domain.gamerules.NumberMoveRule
+import com.nextstep.racingcar.domain.rules.NumberGenerator
+import com.nextstep.racingcar.domain.rules.NumberMoveRule
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.data.forAll

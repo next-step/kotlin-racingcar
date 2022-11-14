@@ -1,8 +1,8 @@
 package com.nextstep.racingcar
 
 import com.nextstep.racingcar.domain.RacingGame
-import com.nextstep.racingcar.domain.gamerules.NumberMoveRule
-import com.nextstep.racingcar.domain.gamerules.RandomNumberGenerator
+import com.nextstep.racingcar.domain.rules.NumberMoveRule
+import com.nextstep.racingcar.domain.rules.RandomNumberGenerator
 import com.nextstep.racingcar.view.CliInputView
 import com.nextstep.racingcar.view.CliResultView
 

@@ -1,6 +1,6 @@
 package com.nextstep.racingcar.domain
 
-import com.nextstep.racingcar.domain.gamerules.MoveRule
+import com.nextstep.racingcar.domain.rules.MoveRule
 import com.nextstep.racingcar.view.CliResultView
 import com.nextstep.racingcar.view.InputView
 
