@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 
 class OperatorTest {
     @Test
-    fun `덧셈 연산을 할 수 있다`() {
+    fun `덧셈 연산을 한다`() {
         // given
         val operator = Operator()
 
@@ -18,7 +18,7 @@ class OperatorTest {
     }
 
     @Test
-    fun `뺄셈 연산을 할 수 있다`() {
+    fun `뺄셈 연산을 한다`() {
         // given
         val operator = Operator()
 
@@ -31,7 +31,7 @@ class OperatorTest {
     }
 
     @Test
-    fun `곱셈 연산을 할 수 있다`() {
+    fun `곱셈 연산을 한다`() {
         // given
         val operator = Operator()
 
@@ -44,7 +44,7 @@ class OperatorTest {
     }
 
     @Test
-    fun `나눗셈 연산을 할 수 있다`() {
+    fun `나눗셈 연산을 한다`() {
         // given
         val operator = Operator()
 
