@@ -3,48 +3,44 @@ package racingcar.domain
 import racingcar.view.OutputView
 
 const val MOVE_FORWARD = 4
-const val MOVE_MARKER = "- "
 
 class Cars {
     private val cars = mutableListOf<Car>()
 
     fun startRace(gameInputValue: GameInputValue, movingConditionStrategy: MovingConditionStrategy) {
         val outputView = OutputView()
-        makeCars(gameInputValue.inputNumberOfCar)
-        iterateNumberOfGames(gameInputValue, movingConditionStrategy, outputView)
+        make(gameInputValue.inputNumberOfCars, movingConditionStrategy)
+        iterateNumberOfGames(gameInputValue, outputView)
     }
 
-    private fun makeCars(numberOfCar: Int) {
+    private fun make(numberOfCar: Int, movingConditionStrategy: MovingConditionStrategy) {
         for (i in 0 until numberOfCar) {
-            cars.add(Car())
+            cars.add(Car(movingConditionStrategy))
         }
     }
 
-    private fun iterateNumberOfGames(gameInputValue: GameInputValue, movingConditionStrategy: MovingConditionStrategy, outputView: OutputView) {
-        for (numberOfTry in 0 until gameInputValue.inputNumberOfTry) {
-            iterateNumberOfCars(gameInputValue, movingConditionStrategy, outputView)
+    private fun iterateNumberOfGames(gameInputValue: GameInputValue, outputView: OutputView) {
+        for (numberOfGames in 0 until gameInputValue.inputNumberOfGames) {
+            iterateNumberOfCars(gameInputValue, outputView)
         }
     }
 
-    private fun iterateNumberOfCars(gameInputValue: GameInputValue, movingConditionStrategy: MovingConditionStrategy, outputView: OutputView) {
-        for (numberOfCar in 0 until gameInputValue.inputNumberOfCar) {
-            makeRaceState(numberOfCar, gameInputValue, movingConditionStrategy, outputView)
+    private fun iterateNumberOfCars(gameInputValue: GameInputValue, outputView: OutputView) {
+        for (numberOfCars in 0 until gameInputValue.inputNumberOfCars) {
+            moveCar(numberOfCars)
+            showCarPosition(numberOfCars, gameInputValue, outputView)
         }
     }
 
-    private fun makeRaceState(numberOfCar: Int, gameInputValue: GameInputValue, movingConditionStrategy: MovingConditionStrategy, outputView: OutputView) {
-        val isLastCarCycle = numberOfCar == gameInputValue.inputNumberOfCar - 1
-        if (movingConditionStrategy.move() >= MOVE_FORWARD) {
-            setCarPosition(numberOfCar, MOVE_MARKER)
-        }
-        outputView.showRaceState(getCarPosition(numberOfCar), isLastCarCycle)
+    private fun moveCar(numberOfCars: Int) {
+        cars[numberOfCars].move()
     }
 
-    private fun setCarPosition(index: Int, value: String) {
-        cars[index].position += value
+    private fun showCarPosition(numberOfCars: Int, gameInputValue: GameInputValue, outputView: OutputView) {
+        cars[numberOfCars].showPosition(isLastCarCycle(numberOfCars, gameInputValue), outputView)
     }
 
-    private fun getCarPosition(index: Int): String {
-        return cars[index].position
+    private fun isLastCarCycle(numberOfCar: Int, gameInputValue: GameInputValue): Boolean {
+        return numberOfCar == gameInputValue.inputNumberOfCars - 1
     }
 }
