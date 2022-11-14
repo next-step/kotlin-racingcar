@@ -7,6 +7,7 @@ class Operator {
         optype = if (s.contains('+')) OperatorType.PLUS
         else if (s.contains('-')) OperatorType.MINUS
         else if (s.contains('*')) OperatorType.TIMES
+        else if (s.contains('/')) OperatorType.DIVIDED_BY
         else throw IllegalArgumentException()
     }
 
@@ -15,6 +16,7 @@ class Operator {
             OperatorType.PLUS -> plus(a, b)
             OperatorType.MINUS -> minus(a, b)
             OperatorType.TIMES -> times(a, b)
+            OperatorType.DIVIDED_BY -> dividedBy(a, b)
             else -> throw IllegalStateException() // find() 메서드를 먼저 호출!
         }
     }
@@ -29,5 +31,9 @@ class Operator {
 
     private fun times(a: Int, b: Int): Int {
         return a * b
+    }
+
+    private fun dividedBy(a: Int, b: Int): Int {
+        return a / b
     }
 }

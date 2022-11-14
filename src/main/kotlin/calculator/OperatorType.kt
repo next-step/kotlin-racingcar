@@ -1,5 +1,5 @@
 package calculator
 
 enum class OperatorType {
-    PLUS, MINUS, TIMES
+    PLUS, MINUS, TIMES, DIVIDED_BY
 }
