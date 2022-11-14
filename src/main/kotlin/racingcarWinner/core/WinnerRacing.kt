@@ -17,7 +17,9 @@ class WinnerRacing {
 
     fun startRacing(tryNumber: Int): Map<String, Int> {
         if (tryNumber < INIT_TRY_NUMBER) throw IllegalArgumentException(MessageCode.TryNumberException.message)
+
         val carMap = mutableMapOf<String, Int>()
+
         cars.forEach { car ->
             car.move(Util.getRandomNumber())
             setMaxMoveStep(car.moveStep)
