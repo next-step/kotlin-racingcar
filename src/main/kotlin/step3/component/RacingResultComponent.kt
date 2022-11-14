@@ -16,5 +16,6 @@ class RacingResultComponent : Component {
             Br().draw()
             Thread.sleep(1000)
         }
+        WinnerComponent(cars = cars).render()
     }
 }
