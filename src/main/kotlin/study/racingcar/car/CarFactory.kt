@@ -1,4 +1,4 @@
-package study.step3.car
+package study.racingcar.car
 
 object CarFactory {
     fun createCars(count: Int): List<Car> {

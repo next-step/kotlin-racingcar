@@ -1,7 +1,7 @@
-package study.step3.racing
+package study.racingcar.racing
 
-import study.step3.car.CarFactory
-import study.step3.generator.Generator
+import study.racingcar.car.CarFactory
+import study.racingcar.generator.Generator
 
 class RacingGame(private val countOfCars: Int, private val countOfAttempts: Int) {
     fun run(generator: Generator): List<List<Int>> {

@@ -1,9 +1,9 @@
-package study.step3
+package study.racingcar
 
-import study.step3.generator.RandomNumberGenerator
-import study.step3.io.InputView
-import study.step3.io.OutputView
-import study.step3.racing.RacingGame
+import study.racingcar.generator.RandomNumberGenerator
+import study.racingcar.io.InputView
+import study.racingcar.io.OutputView
+import study.racingcar.racing.RacingGame
 
 fun main() {
     val carCount = InputView.getCountOfCars()

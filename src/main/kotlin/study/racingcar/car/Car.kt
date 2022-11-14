@@ -1,4 +1,4 @@
-package study.step3.car
+package study.racingcar.car
 
 class Car {
     var currentLocation: Int = INIT_LOCATION

@@ -1,4 +1,4 @@
-package study.step3.io
+package study.racingcar.io
 
 object InputView {
     fun getCountOfCars(): Int {

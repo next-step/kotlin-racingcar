@@ -2,6 +2,7 @@ package study.step3.car
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import study.racingcar.car.CarFactory
 
 internal class CarFactoryTest {
     @Test

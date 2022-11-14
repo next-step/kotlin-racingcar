@@ -4,8 +4,9 @@ import io.mockk.every
 import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import study.step3.car.CarFactory
-import study.step3.generator.RandomNumberGenerator
+import study.racingcar.car.CarFactory
+import study.racingcar.generator.RandomNumberGenerator
+import study.racingcar.racing.Racing
 
 internal class RacingTest {
     @Test

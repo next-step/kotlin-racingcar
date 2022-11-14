@@ -1,4 +1,4 @@
-package study.step3.generator
+package study.racingcar.generator
 
 import kotlin.random.Random
 

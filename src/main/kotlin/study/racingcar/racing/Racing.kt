@@ -1,7 +1,7 @@
-package study.step3.racing
+package study.racingcar.racing
 
-import study.step3.car.Car
-import study.step3.generator.Generator
+import study.racingcar.car.Car
+import study.racingcar.generator.Generator
 
 class Racing(private val cars: List<Car>, private val generator: Generator) {
     fun attempt(): List<Int> {

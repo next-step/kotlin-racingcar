@@ -1,4 +1,4 @@
-package study.step3.io
+package study.racingcar.io
 
 object OutputView {
     fun showResult(locationList: List<Int>) {
@@ -8,11 +8,11 @@ object OutputView {
         printEndOfTurn()
     }
 
-    private fun printLineByLocation(location: Int){
+    private fun printLineByLocation(location: Int) {
         return println("-".repeat(location))
     }
 
-    private fun printEndOfTurn(){
+    private fun printEndOfTurn() {
         return println()
     }
 }
