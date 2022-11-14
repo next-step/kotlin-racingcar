@@ -1,4 +1,4 @@
-package study.step3.racing
+package study.racingcar.racing
 
 import study.racingcar.generator.Generator
 

@@ -1,4 +1,4 @@
-package study.step3.racing
+package study.racingcar.racing
 
 import io.mockk.every
 import io.mockk.mockk
@@ -6,7 +6,6 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import study.racingcar.car.CarFactory
 import study.racingcar.generator.RandomNumberGenerator
-import study.racingcar.racing.Racing
 
 internal class RacingTest {
     @Test
