@@ -1,7 +1,6 @@
-package src.step3
+package src.racingcar
 
 import org.assertj.core.api.Assertions
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 class CarTest {

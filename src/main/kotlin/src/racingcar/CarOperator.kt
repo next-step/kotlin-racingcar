@@ -1,4 +1,4 @@
-package src.step3
+package src.racingcar
 
 object CarOperator {
 

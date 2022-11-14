@@ -1,4 +1,4 @@
-package src.step3
+package src.racingcar
 
 import kotlin.random.Random
 import kotlin.random.nextInt

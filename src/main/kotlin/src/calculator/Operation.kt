@@ -1,4 +1,4 @@
-package src.step2
+package src.calculator
 
 import kotlin.IllegalArgumentException
 

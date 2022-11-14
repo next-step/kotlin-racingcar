@@ -1,4 +1,4 @@
-package src.step3
+package src.racingcar
 
 object ResultView {
     fun showGameResult(cars: MutableList<Car>) {
