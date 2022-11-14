@@ -1,10 +1,10 @@
 package racingcar
 
 class CarRacer(private val car: Car, private val carControl: CarControl) {
-    val name: Name
+    val carName: Name
         get() = car.name
 
-    val position: Position
+    val carPosition: Position
         get() = car.position
 
     fun drive() {

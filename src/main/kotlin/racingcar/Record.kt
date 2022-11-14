@@ -7,7 +7,7 @@ data class Record(
 ) {
     constructor(round: Round, carRacer: CarRacer) : this(
         round = round,
-        name = carRacer.name,
-        position = carRacer.position
+        name = carRacer.carName,
+        position = carRacer.carPosition
     )
 }
