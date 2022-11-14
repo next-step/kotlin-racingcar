@@ -1,23 +1,16 @@
 package racingcar.view
 
+import racingcar.domain.RegisterResult
 
 object InputView {
+    fun register(): RegisterResult {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
+        val participant = readln().replace(" ", "")
+            .split(",")
 
-    private var participant: Int = 0
-    private var times: Int = 0
-    fun registerParticipant() {
-        println("자동차 대수는 몇 대인가요 ?")
-        participant = readLine()!!.toInt()
-        require(participant != 0) { "0대의 차로는 시작할 수 없습니다." }
-    }
-
-    fun getParticipant() = participant
-
-    fun setNumberOfTimes() {
         println("시도할 횟수는 몇 회인가요?")
-        times = readLine()!!.toInt()
-        require(times != 0) { "0번의 횟수를 시도할 수 없습니다." }
-    }
+        val times = readln().toInt()
 
-    fun getNumberOfTimes() = times
+        return RegisterResult(participant, times)
+    }
 }

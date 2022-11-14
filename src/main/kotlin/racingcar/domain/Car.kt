@@ -1,27 +1,29 @@
 package racingcar.domain
 
-class Car : Moveable {
-
-    private var currentPosition: Int = 0
+class Car(val name: String) : Moveable {
+    var currentPosition: Int = 0
+        private set
 
     override fun go() {
         currentPosition++
     }
 
     override fun stop() {
-        currentPosition
     }
 
-    fun getCurrentPosition() = currentPosition
+    fun drive(gear: Gear) {
+        when (gear) {
+            Gear.FORWARD -> this.go()
+            Gear.STOP -> this.stop()
+        }
+    }
 
     companion object {
-        fun registerCars(numberOfCars: Int) = Array(numberOfCars) { Car() }
+        fun registerCars(namesOfCars: List<String>) = Array(namesOfCars.size) { Car(namesOfCars[it]) }.toList()
 
-        fun Car.drive(gear: Gear) {
-            when (gear) {
-                Gear.FORWARD -> this.go()
-                Gear.STOP -> this.stop()
-            }
+        fun getFurthestCars(cars: List<Car>): List<Car> {
+            val max = cars.maxOf { it.currentPosition }
+            return cars.filter { it.currentPosition == max }
         }
     }
 }
