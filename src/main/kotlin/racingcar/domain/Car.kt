@@ -10,8 +10,8 @@ class Car(
     }
 
     companion object {
-        const val POSITION_FIRST = 1
-        const val POSITION_MOVE = 1
+        private const val POSITION_FIRST = 1
+        private const val POSITION_MOVE = 1
     }
 
 }
