@@ -11,5 +11,5 @@ fun main() {
     }
 }
 
-private fun createCarRacers(): List<CarRacer> =
-    IntRange(1, InputView.readCarCount()).map { CarRacer(StandardCar(name = Name("hi")), RandomCarControl()) }
+private fun createCarRacers(): List<CarRacer> = InputView.readCarNames()
+    .map { CarRacer(StandardCar(name = Name(it)), RandomCarControl()) }
