@@ -1,4 +1,6 @@
-package racingcar
+package racingcar.view
+
+import racingcar.Setting
 
 private const val MAXIMUM_WORD_COUNT = 5
 

@@ -1,5 +1,8 @@
 package racingcar
 
+import racingcar.view.InputView
+import racingcar.view.ResultView
+
 fun main() {
     RacingGame().run(victoryCondition = VictoryCondition.Longest)
 }
