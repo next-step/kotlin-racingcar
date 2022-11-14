@@ -1,22 +1,22 @@
 package study.step4.model
 
-import study.step4.util.DigitGenerator
+import study.step4.model.RacingCarNameGenerator.racingCarNameValid
 
-class RacingCar(
+class RacingGame(
     racingCarNames: List<String>,
     private val repeatNumber: Int,
-    private val digitGenerator: DigitGenerator,
-    private var cars: MutableList<Car> = mutableListOf()
+    private val digitGenerator: DigitGenerator = RandomDigit(),
+    private val cars: MutableList<Car> = mutableListOf()
 ) {
 
     init {
-        require(racingCarNames.isNotEmpty()) { "참가 자동차 수는 0보다 커야 합니다" }
+        racingCarNameValid(racingCarNames)
         settingCar(racingCarNames)
     }
 
     private fun settingCar(numberCar: List<String>) {
         numberCar.forEach { name ->
-            cars.add(Car(name = name, digitGenerator = digitGenerator))
+            cars.add(Car(name = name, engin = DigitEngine(digitGenerator)))
         }
     }
 
