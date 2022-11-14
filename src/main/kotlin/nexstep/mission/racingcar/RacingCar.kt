@@ -6,8 +6,11 @@ private const val MOVEMENT_CONDITION = 4
 
 class RacingCar(
     val name: Name,
-    private var position: Int = 0
+    position: Int = 0
 ) {
+    var position = position
+        private set
+
     constructor(name: String) : this(Name(name))
 
     fun move(movement: Int) {
@@ -15,6 +18,4 @@ class RacingCar(
             ++position
         }
     }
-
-    fun position(): Int = this.position
 }
