@@ -1,6 +1,6 @@
 package study.racingcar.car
 
-class Car {
+class Car(val name: String) {
     var currentLocation: Int = INIT_LOCATION
         private set
 
