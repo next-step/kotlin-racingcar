@@ -9,8 +9,8 @@ class CarsTest {
     @DisplayName("Cars 생성 테스트")
     @Test
     fun `Cars 생성 테스트`() {
-        val cars = Cars(listOf(Car(), Car()))
-        assertThat(cars).isEqualTo(Cars(listOf(Car(), Car())))
+        val cars = Cars(listOf(Car("pobi"), Car("crong"), Car("honux")))
+        assertThat(cars).isEqualTo(Cars(listOf(Car("pobi"), Car("crong"), Car("honux"))))
     }
 
     @DisplayName("Cars 생성 예외처리 테스트")

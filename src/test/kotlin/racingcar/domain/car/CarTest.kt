@@ -11,26 +11,26 @@ class CarTest {
 
     @BeforeEach
     fun setUp() {
-        car = Car()
+        car = Car("pobi")
     }
 
     @DisplayName("Car 생성 테스트")
     @Test
     fun `Car 생성 테스트`() {
-        assertThat(car).isEqualTo(Car())
+        assertThat(car).isEqualTo(Car("pobi"))
     }
 
     @DisplayName("Car 이동 테스트")
     @Test
     fun `Car 이동 테스트`() {
         car.move { true }
-        assertThat(car).isEqualTo(Car(Position(1)))
+        assertThat(car.position).isEqualTo(Position(1))
     }
 
     @DisplayName("Car 이동 실패 테스트")
     @Test
     fun `Car 이동 실패 테스트`() {
         car.move { false }
-        assertThat(car).isEqualTo(Car())
+        assertThat(car.position).isEqualTo(Position(0))
     }
 }

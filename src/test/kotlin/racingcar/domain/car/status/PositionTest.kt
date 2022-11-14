@@ -25,7 +25,7 @@ class PositionTest {
     @Test
     fun `Position 이동 테스트`() {
         var position = Position(0)
-        position = Position(position.position + 1)
+        position = Position(position.value + 1)
         assertThat(position).isEqualTo(Position(1))
     }
 
@@ -33,6 +33,6 @@ class PositionTest {
     @Test
     fun `Position 위치 반환 테스트`() {
         val position = Position(0)
-        assertThat(position.position).isEqualTo(0)
+        assertThat(position.value).isEqualTo(0)
     }
 }

@@ -11,7 +11,7 @@ class RacingGame {
         @JvmStatic
         fun main(args: Array<String>) {
             val inputData = InputView.inputData()
-            val cars = Cars(Array(inputData.getNumberOfCars) { Car() }.toList())
+            val cars = Cars(Array(inputData.getNumberOfCars) { Car("pobi") }.toList())
             ResultView.printResultTitle()
             repeat(inputData.getPlayTime) {
                 cars.play(RandomMovingStrategy())
