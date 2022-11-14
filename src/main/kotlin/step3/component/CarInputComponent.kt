@@ -1,7 +1,9 @@
 package step3.component
 
 import step3.CarFactory
+import step3.CarNameSplitter
 import step3.CarStore
+import step3.dto.CarCreateDto
 import step3.ui.Input
 import step3.ui.Span
 
@@ -12,7 +14,9 @@ class CarInputComponent : Component {
     init { this.input.addCommandListener(this::onCommand) }
 
     fun onCommand(value: String) {
-        val cars = CarFactory.createMany(amount = value.toInt())
+        val carNames = CarNameSplitter.execute(target = value)
+        val createDtos = carNames.map { CarCreateDto(name = it) }
+        val cars = CarFactory.createMany(dtos = createDtos)
         CarStore.saveAll(cars)
     }
 

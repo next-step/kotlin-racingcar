@@ -2,18 +2,19 @@ package step3
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.collections.shouldHaveSize
+import step3.fixture.CarCreateDtoFixture
 
 class CarFactoryTest : FunSpec({
     val sut = CarFactory
-    context("자동차 생성 테스트") {
-        context("수량이 주어지면") {
-            test("수량만큼 자동차를 생성한다.") {
+    context("자동차 여러 대 생성 테스트") {
+        context("자동차를 생성하는 dto 가 여러 개 주어지면") {
+            test("dto 만큼 자동차를 생성할 수 있다.") {
                 // given
-                val 수량 = 5
+                var createDtos = CarCreateDtoFixture.getMany(amount = 3)
                 // when
-                val actual = sut.createMany(amount = 수량)
+                val actual = sut.createMany(dtos = createDtos)
                 // then
-                actual shouldHaveSize 수량
+                actual shouldHaveSize 3
             }
         }
     }
