@@ -13,12 +13,10 @@ internal class WinnerRacingTest {
     @ValueSource(strings = ["pobi,crong,honux", "pobi,crong,honux,alen", "pobi , crong "])
     fun setCar(carNames: String) {
         val carNameList = carNames.split(",")
-        val racing = WinnerRacing()
+        val cars = WinnerRacing().setCars(carNameList)
 
-        racing.setCars(carNameList)
-
-        racing.cars.count() shouldBe carNameList.count()
-        racing.cars.forEachIndexed { index, car ->
+        cars.count() shouldBe carNameList.count()
+        cars.forEachIndexed { index, car ->
             car.carName shouldBe carNameList[index].trim()
         }
     }
@@ -27,15 +25,15 @@ internal class WinnerRacingTest {
     @ValueSource(strings = ["pobi,crong,honux", "pobi,crong,honux,alen"])
     fun startRacing(carNames: String) {
         val tryNumber = 3
-        val carNameList = carNames.split(",")
         val racing = WinnerRacing()
-        racing.setCars(carNameList)
+        val cars = racing.setCars(carNames.split(","))
 
-        val moveResult = racing.startRacing(tryNumber = tryNumber)
+        val moveResult = racing.startRacing(cars = cars, tryNumber = tryNumber)
 
-        moveResult.count() shouldBe carNameList.count()
-        moveResult.forEach { carMoveStep ->
-            carMoveStep shouldBeLessThanOrEqual tryNumber
+        moveResult.count() shouldBe cars.count()
+        moveResult.keys.toList() shouldBe cars.map { car -> car.carName }
+        moveResult.forEach { carMap ->
+            carMap.value shouldBeLessThanOrEqual tryNumber
         }
     }
 
@@ -44,10 +42,10 @@ internal class WinnerRacingTest {
     fun `startRacing throw Exception when tryNumber is Incorrect`(tryNumber: Int) {
         val carNames = "pobi,crong,honux"
         val racing = WinnerRacing()
-        racing.setCars(carNames.split(","))
+        val cars = racing.setCars(carNames.split(","))
 
         val exception = assertThrows<IllegalArgumentException> {
-            racing.startRacing(tryNumber = tryNumber)
+            racing.startRacing(cars = cars, tryNumber = tryNumber)
         }
 
         Assertions.assertThat(exception.message).isEqualTo(MessageCode.TryNumberException.message)

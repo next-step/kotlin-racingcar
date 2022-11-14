@@ -9,9 +9,10 @@ fun main() {
     val tryNumber = InputView.inputTryNumber()
 
     val racing = WinnerRacing()
-    racing.setCars(carNameList)
 
-    OutputView.outputResult(racing, tryNumber)
+    val cars = racing.setCars(carNameList)
 
-    OutputView.outputWinner(racing)
+    OutputView.outputResult(cars, racing, tryNumber)
+
+    OutputView.outputWinner(cars, racing)
 }

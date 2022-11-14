@@ -3,19 +3,15 @@ package racingcarWinner.core
 import java.lang.IllegalArgumentException
 
 class WinnerRacing {
-    var cars: List<Car> = mutableListOf()
-        private set
-
     var maxMoveStep: Int = 0
         private set
 
-    fun setCars(carNames: List<String>) {
-        cars = carNames.map { carName ->
+    fun setCars(carNames: List<String>): List<Car> =
+        carNames.map { carName ->
             Car(carName.trim())
         }
-    }
 
-    fun startRacing(tryNumber: Int): Map<String, Int> {
+    fun startRacing(cars: List<Car>, tryNumber: Int): Map<String, Int> {
         if (tryNumber < INIT_TRY_NUMBER) throw IllegalArgumentException(MessageCode.TryNumberException.message)
 
         val carMap = mutableMapOf<String, Int>()
