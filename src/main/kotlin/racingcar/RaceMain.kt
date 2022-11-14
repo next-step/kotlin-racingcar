@@ -1,5 +1,6 @@
 package racingcar
 
+import racingcar.strategy.RandomMoveStrategy
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
@@ -13,7 +14,7 @@ fun main() {
     ResultView.printResultIntroWording()
 
     repeat(roundCount) {
-        raceStage = raceStage.racing()
+        raceStage = raceStage.racing(RandomMoveStrategy())
         ResultView.printResult(raceStage)
     }
 

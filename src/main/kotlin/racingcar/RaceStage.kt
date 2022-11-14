@@ -1,9 +1,7 @@
 package racingcar
 
+import racingcar.strategy.CarMoveStrategy
 import java.util.Comparator.comparingInt
-
-private const val START_VALUE = 0
-private const val LIMIT_VALUE = 10
 
 class RaceStage(
     val cars: List<Car>,
@@ -19,8 +17,8 @@ class RaceStage(
         )
     }
 
-    fun racing(): RaceStage = RaceStage(
-        cars.map { car -> car.race(RacingCarEngine.canMove(((START_VALUE until LIMIT_VALUE).random()))) }
+    fun racing(strategy: CarMoveStrategy): RaceStage = RaceStage(
+        cars.map { car -> car.race(RacingCarEngine.canMove(strategy.generate())) }
     )
 
     fun getWinners(): List<Car> {

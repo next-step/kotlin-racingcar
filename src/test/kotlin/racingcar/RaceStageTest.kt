@@ -1,5 +1,6 @@
 package racingcar
 
+import fixture.TestCarMoveStrategy
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.DisplayName
@@ -25,6 +26,32 @@ internal class RaceStageTest {
 
         // then
         assertThat(raceStage.cars).hasSize(inputCarNames.size)
+    }
+
+    @Test
+    @DisplayName("참가한 모든 자동차가 전진한다.")
+    internal fun raceForwardTest() {
+        // given
+        val raceStage = RaceStage.create(listOf("pobi", "crong", "honux"))
+
+        // when
+        val result = raceStage.racing(TestCarMoveStrategy(5))
+
+        // then
+        assertThat(result.cars).extracting("pos").containsExactlyElementsOf(listOf(1, 1, 1))
+    }
+
+    @Test
+    @DisplayName("참가한 모든 자동차가 전진하지 않는다.")
+    internal fun raceNonForwardTest() {
+        // given
+        val raceStage = RaceStage.create(listOf("pobi", "crong", "honux"))
+
+        // when
+        val result = raceStage.racing(TestCarMoveStrategy(2))
+
+        // then
+        assertThat(result.cars).extracting("pos").containsExactlyElementsOf(listOf(0, 0, 0))
     }
 
     @Test
