@@ -1,17 +1,15 @@
 package racingcar.domain
 
-import kotlin.random.Random
-
-const val RANDOM_MIN_NUM = 0
-const val RANDOM_MAX_NUM = 9
-const val RANDOM_CONDITION_NUM = 4
+import racingcar.service.CarMovingRule
 
 class Race(
     val round: Int
 ) {
+
+    private val movingRule = CarMovingRule()
     fun run(cars: List<Car>) = cars.moveCars()
 
-    fun findWinner(cars: List<Car>) = cars.filter { it.route == findHighRoute(cars) }
+    fun findWinnersName(cars: List<Car>) = cars.filter { it.route == findHighRoute(cars) }.map { it.name }
 
     private fun findHighRoute(cars: List<Car>) = cars.maxOf { it.route }
 
@@ -21,8 +19,6 @@ class Race(
     }
 
     private fun moveCar(car: Car) {
-        if (movingRule()) car.move()
+        if (movingRule.isMoving()) car.move()
     }
-
-    private fun movingRule() = Random.nextInt(RANDOM_MIN_NUM, RANDOM_MAX_NUM) >= RANDOM_CONDITION_NUM
 }

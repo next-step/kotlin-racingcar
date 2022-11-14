@@ -1,7 +1,5 @@
 package racingcar.domain
 
-import java.lang.IllegalArgumentException
-
 const val MAX_CAR_NAME_LENGTH = 5
 
 class Car(
@@ -13,7 +11,7 @@ class Car(
     }
 
     fun valid() {
-        require(name.length < MAX_CAR_NAME_LENGTH) { IllegalArgumentException("차 이름은 5자를 넘으면 안 됩니다.") }
+        require(name.length < MAX_CAR_NAME_LENGTH) { "차 이름은 5자를 넘으면 안 됩니다." }
     }
 
     companion object {

@@ -15,4 +15,10 @@ class RacingGame {
 
         resultView.printRaceResult(race, cars)
     }
+
+    private fun ResultView.printRaceResult(race: Race, cars: List<Car>) {
+        this.printResultTitle()
+        repeat(race.round) { this.printCarsInfo(race.run(cars)) }
+        this.printWinner(race.findWinnersName(cars))
+    }
 }

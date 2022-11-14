@@ -1,28 +1,20 @@
 package racingcar.view
 
 import racingcar.domain.Car
-import racingcar.domain.Race
 
 class ResultView {
 
-    fun printRaceResult(race: Race, cars: List<Car>) {
-        this.printResultTitle()
-        repeat(race.round) { this.printCarsInfo(race.run(cars)) }
-        this.printWinner(race, cars)
-    }
-
-    private fun printResultTitle() {
+    fun printResultTitle() {
         println()
         print("실행 결과")
     }
 
-    private fun printWinner(race: Race, carsInfo: List<Car>) {
+    fun printWinner(winnersName: List<String>) {
         println()
-        val winners = race.findWinner(carsInfo).joinToString(",") { it.name }
-        println("${winners}가 최종 우승했습니다.")
+        println("${winnersName.joinToString(",")}가 최종 우승했습니다.")
     }
 
-    private fun printCarsInfo(carsInfo: List<Car>) {
+    fun printCarsInfo(carsInfo: List<Car>) {
         println()
         carsInfo.forEach {
             printCarInfo(it.name)
