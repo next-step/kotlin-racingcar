@@ -19,7 +19,7 @@ class Car(val name: String) : Moveable {
     }
 
     companion object {
-        fun registerCars(namesOfCars: List<String>) = Array(namesOfCars.size) { Car(namesOfCars[it]) }.toList()
+        fun registerCars(namesOfCars: List<String>) = List(namesOfCars.size) { Car(namesOfCars[it]) }
 
         fun getFurthestCars(cars: List<Car>): List<Car> {
             val max = cars.maxOf { it.currentPosition }
