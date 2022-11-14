@@ -3,7 +3,7 @@ package racingcar
 fun main() {
     try {
         val carRacing = CarRacing(carRacers = createCarRacers(), count = InputView.readTryCount())
-        val raceResult = carRacing.result()
+        val raceResult = carRacing.race()
 
         OutputView.writeResult(raceResult)
     } catch (e: RuntimeException) {

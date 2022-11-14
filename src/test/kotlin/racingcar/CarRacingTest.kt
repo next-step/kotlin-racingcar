@@ -57,12 +57,14 @@ class CarRacingTest : StringSpec({
             count = 2
         )
 
-        val result = carRacing.result()
+        val result = carRacing.race()
 
-        result.size shouldBe 2
-        result[0]!![0].position shouldBe Position(1)
-        result[0]!![1].position shouldBe Position.ZERO
-        result[1]!![0].position shouldBe Position(2)
-        result[1]!![1].position shouldBe Position.ZERO
+        val map = result.toMap()
+
+        map.size shouldBe 2
+        map[0]!![0].position shouldBe Position(1)
+        map[0]!![1].position shouldBe Position.ZERO
+        map[1]!![0].position shouldBe Position(2)
+        map[1]!![1].position shouldBe Position.ZERO
     }
 })

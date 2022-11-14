@@ -12,14 +12,14 @@ class CarRacing(
         require(carRacers.isNotEmpty()) { "자동차 경주에 참여할 대상이 없습니다." }
     }
 
-    fun result(): RaceResult {
+    fun race(): RaceResult {
         if (result != null) {
             return result as RaceResult
         }
 
         repeat(count) { race(it) }
 
-        result = records.groupBy { it.round }
+        result = RaceResult(records)
 
         return result as RaceResult
     }
