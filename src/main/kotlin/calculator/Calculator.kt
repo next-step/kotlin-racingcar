@@ -12,8 +12,7 @@ class Calculator {
         val stack = Stack<Float>()
         val inputList = inputValidation(input)
         val postFix = utils.infixToPostFix(inputList)
-        println(postFix)
-        postFix.map { it ->
+        postFix.forEach { it ->
             when {
                 utils.isNumeric(it) -> {
                     stack.add(it.toFloat())

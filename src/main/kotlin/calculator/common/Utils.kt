@@ -6,7 +6,7 @@ class Utils {
     fun infixToPostFix(input: List<String>): MutableList<String> {
         val stack = Stack<String>()
         val postFix = mutableListOf<String>()
-        input.map {
+        input.forEach {
             if (isNumeric(it)) {
                 postFix.add(it)
             } else {
