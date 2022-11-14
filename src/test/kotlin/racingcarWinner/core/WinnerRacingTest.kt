@@ -50,4 +50,17 @@ internal class WinnerRacingTest {
 
         Assertions.assertThat(exception.message).isEqualTo(MessageCode.TryNumberException.message)
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = [ "pobi", "alen"])
+    fun `startRacing throw Exception when carNumber is one`(carNames: String) {
+        val tryNumber = 3
+        val racing = WinnerRacing()
+        val cars = racing.setCars(carNames.split(","))
+        val exception = assertThrows<IllegalArgumentException> {
+            racing.startRacing(cars = cars, tryNumber = tryNumber)
+        }
+
+        Assertions.assertThat(exception.message).isEqualTo(MessageCode.CarNumberException.message)
+    }
 }

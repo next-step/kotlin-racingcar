@@ -8,6 +8,7 @@ import racingcarWinner.core.WinnerRacing
 object OutputView {
     private const val MOVE_STEP = "-"
     private const val SEPARATOR = " "
+    private const val COMMA = ", "
     private const val COLON = " : "
     private const val ESCAPE_LINE = "\n"
     private const val ESCAPE_DOUBLE_LINE = "\n\n"
@@ -18,7 +19,7 @@ object OutputView {
     }
 
     fun outputWinner(cars: List<Car>, maxMoveStep: Int) {
-        val winnerList = Winner.getWinner(cars, maxMoveStep).joinToString(SEPARATOR)
+        val winnerList = Winner.getWinner(cars, maxMoveStep).joinToString(COMMA)
         println(ESCAPE_LINE.plus(winnerList).plus(MessageCode.WinnerResult.message))
     }
 
