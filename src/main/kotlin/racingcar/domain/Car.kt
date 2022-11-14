@@ -5,7 +5,7 @@ class Car(
     val position: Position = Position(POSITION_FIRST),
 ) {
 
-    fun moveCar(): Car {
+    fun move(): Car {
         return Car(Position(position.value + POSITION_MOVE))
     }
 
