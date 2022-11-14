@@ -1,6 +1,6 @@
 package racingcar.domain.car
 
-import racingcar.domain.car.action.MovingStrategyImpl
+import racingcar.domain.car.action.RandomMovingStrategy
 import racingcar.domain.car.status.Position
 
 data class Cars(private val cars: List<Car>) {
@@ -9,7 +9,7 @@ data class Cars(private val cars: List<Car>) {
     }
 
     fun play() {
-        cars.forEach { it.move(MovingStrategyImpl()) }
+        cars.forEach { it.move(RandomMovingStrategy()) }
     }
 
     fun getPositions(): List<Position> {
