@@ -5,13 +5,12 @@ class CarRacing(
     private val turnCount: Int,
     private val cars: List<Car>
 ) {
-    private var carRacingResult = CarRacingResult()
+    private val records: MutableList<TurnRecord> = mutableListOf()
     private var maxDistance = 0
 
     fun start() {
-        this.carRacingResult = CarRacingResult()
         val indicators = indicatorGenerator.generate(cars.size, turnCount)
-        for (turn in 0 until turnCount) {
+        repeat(turnCount) { turn ->
             val indicator = indicators[turn]
 
             val turnRecord = cars
@@ -22,7 +21,7 @@ class CarRacing(
                 .map {
                     CarRecord(it, it.currentDistance())
                 }
-            carRacingResult.record(TurnRecord(turn + 1, turnRecord))
+            this.records.add(TurnRecord(turn + 1, turnRecord))
         }
     }
 
@@ -31,12 +30,14 @@ class CarRacing(
     }
 
     fun result(): CarRacingResult {
-        carRacingResult.winners = determineWinners()
-        return carRacingResult
+        return CarRacingResult(
+            winners = determineWinners(),
+            records = this.records
+        )
     }
 
     private fun determineWinners(): List<Car> {
-        val finalTurnRecord = carRacingResult.records.last()
+        val finalTurnRecord = records.last()
         return finalTurnRecord.results
             .filter { it.distance == maxDistance }
             .map { it.car }
