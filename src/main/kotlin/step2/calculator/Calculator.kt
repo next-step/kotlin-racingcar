@@ -1,5 +1,5 @@
 package step2.calculator
 
 interface Calculator {
-    fun enter(input: CalculatorInput): CalculateResult
+    fun calculate(input: CalculatorInput): CalculateResult
 }

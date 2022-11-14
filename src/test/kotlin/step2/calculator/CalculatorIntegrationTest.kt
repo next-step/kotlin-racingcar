@@ -20,7 +20,7 @@ class CalculatorIntegrationTest : ShouldSpec({
         val calculatorInput = CalculatorInput.from(userInput)
         should("정상 동작한다") {
             val result = shouldNotThrowAny {
-                calculator.enter(calculatorInput)
+                calculator.calculate(calculatorInput)
             }
             result.value shouldBeExactly (1.0 + 5.0) * 5 / 7
         }
@@ -32,7 +32,7 @@ class CalculatorIntegrationTest : ShouldSpec({
         val calculatorInput = CalculatorInput.from(userInput)
         should("이전 결과를 덮어 씌운다.") {
             val result = shouldNotThrowAny {
-                calculator.enter(calculatorInput)
+                calculator.calculate(calculatorInput)
             }
             result.value shouldBeExactly 5.0 / 7
         }
@@ -44,7 +44,7 @@ class CalculatorIntegrationTest : ShouldSpec({
         val calculatorInput = CalculatorInput.from(userInput)
         should("이전 함수를 무시한다.") {
             val result = shouldNotThrowAny {
-                calculator.enter(calculatorInput)
+                calculator.calculate(calculatorInput)
             }
             result.value shouldBeExactly (1.0 + 5.0) * 5 / 7
         }

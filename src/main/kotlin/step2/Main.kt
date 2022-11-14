@@ -18,7 +18,7 @@ fun main() {
     val userCleanedInput = UserInput.from(userOriginalInput)
     val calculatorInput = CalculatorInput.from(userCleanedInput)
 
-    val result = calculator.enter(calculatorInput)
+    val result = calculator.calculate(calculatorInput)
 
     println("결과 값은 ${result.value} 입니다.")
 }
