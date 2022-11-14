@@ -3,6 +3,7 @@ package racingcar
 private const val FORWARD_THRESHOLD = 4
 
 class StandardCar(
+    override val name: Name,
     position: Position = Position.ZERO
 ) : Car {
     override var position: Position = position

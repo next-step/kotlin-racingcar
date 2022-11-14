@@ -8,7 +8,16 @@ import io.kotest.matchers.shouldBe
 
 class CarRacingTest : StringSpec({
     "참여 인원이 존재하면 자동차 경주를 생성할 수 있다" {
-        shouldNotThrowAny { CarRacing(carRacers = listOf(CarRacer(StandardCar(), RandomCarControl()))) }
+        shouldNotThrowAny {
+            CarRacing(
+                carRacers = listOf(
+                    CarRacer(
+                        StandardCar(name = Name("hi")),
+                        RandomCarControl()
+                    )
+                )
+            )
+        }
     }
 
     "참여 인원이 없으면 자동차 경주를 생성할 수 없다" {
@@ -20,7 +29,7 @@ class CarRacingTest : StringSpec({
             .forAll {
                 shouldThrowAny {
                     CarRacing(
-                        carRacers = listOf(CarRacer(StandardCar(), RandomCarControl())),
+                        carRacers = listOf(CarRacer(StandardCar(name = Name("hi")), RandomCarControl())),
                         count = it
                     )
                 }
@@ -32,7 +41,7 @@ class CarRacingTest : StringSpec({
             .forAll {
                 shouldNotThrowAny {
                     CarRacing(
-                        carRacers = listOf(CarRacer(StandardCar(), RandomCarControl())),
+                        carRacers = listOf(CarRacer(StandardCar(name = Name("hi")), RandomCarControl())),
                         count = it
                     )
                 }
@@ -42,8 +51,8 @@ class CarRacingTest : StringSpec({
     "자동차 경주 결과가 정상적으로 반환된다" {
         val carRacing = CarRacing(
             carRacers = listOf(
-                CarRacer(StandardCar(), ForwardCarControl),
-                CarRacer(StandardCar(), StopCarControl)
+                CarRacer(StandardCar(name = Name("hi")), ForwardCarControl),
+                CarRacer(StandardCar(name = Name("bye")), StopCarControl)
             ),
             count = 2
         )
