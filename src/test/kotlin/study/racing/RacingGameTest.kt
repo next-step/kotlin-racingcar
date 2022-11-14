@@ -1,39 +1,45 @@
 package study.racing
 
-import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.string.shouldBeUUID
+import io.mockk.every
+import io.mockk.mockk
 import racing.domain.RacingGame
-import racing.enumeration.RacingGameStatus
-import racing.factory.RacingCarFactory
+import racing.domain.Round
+import racing.dto.RoundInfo
 
 class RacingGameTest : StringSpec({
-    "참가 대수 3대 5 round 게임을 준비 상태로 생성한다." {
-        val participants = RacingCarFactory.create(3)
-        val game = RacingGame.create(participants, 5)
-
-        game.id.value.shouldBeUUID()
+    "참가 대수 3대 1 round 게임을 생성한다." {
+        val game = RacingGame.create(3, 1)
         game.participants.size shouldBe 3
-        game.round shouldBe 5
-        game.status shouldBe RacingGameStatus.READY
+        game.rounds.size shouldBe 1
     }
 
-    "참가 대수 3대 5 round 게임을 실행한다." {
-        val participants = RacingCarFactory.create(3)
-        val game = RacingGame.create(participants, 5)
+    "참가 대수 3대 1 round 게임을 실행한다." {
+        val game = RacingGame.create(3, 1)
 
-        game.play()
-        game.status shouldBe RacingGameStatus.FINISH
-    }
+        mockk<Round> {
+            every { race() } returns RoundInfo(
+                round = 1,
+                carInfos = listOf(
+                    mockk {
+                        every { position } returns 2
+                    },
+                    mockk {
+                        every { position } returns 2
+                    },
+                    mockk {
+                        every { position } returns 2
+                    }
+                )
+            )
 
-    "이미 완료된 게임은 시작할 수 없다." {
-        val participants = RacingCarFactory.create(3)
-        val game = RacingGame.create(participants, 5)
-
-        game.play()
-        shouldThrow<IllegalStateException> {
-            game.play()
+            val roundGameInfo = game.play()
+            roundGameInfo.roundInfos.size shouldBe 1
+            roundGameInfo.roundInfos.forEach {
+                it.round shouldBe 1
+                it.carInfos.size shouldBe 3
+            }
         }
     }
 })
