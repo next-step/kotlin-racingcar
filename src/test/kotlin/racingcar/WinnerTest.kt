@@ -3,7 +3,7 @@ package racingcar
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
-class RaceResultTest : StringSpec({
+class WinnerTest : StringSpec({
     "위치 가장 큰 자동차가 우승한다" {
         val carRacing = CarRacing(
             carRacers = listOf(
