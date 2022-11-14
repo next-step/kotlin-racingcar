@@ -9,7 +9,7 @@ data class Cars(private val cars: List<Car>) {
     }
 
     fun play() {
-        cars.forEach { it.move(RandomMovingStrategy()) }
+        cars.forEach { it.move(RandomMovingStrategy().isMovable) }
     }
 
     fun getPositions(): List<Position> {

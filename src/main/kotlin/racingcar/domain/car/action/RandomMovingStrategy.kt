@@ -1,14 +1,9 @@
 package racingcar.domain.car.action
 
-import racingcar.util.Utils
-
 private const val MOVING_MINIMUM_CONDITION_NUMBER = 4
+private const val RANDOM_NUMBER_START_INDEX = 0
+private const val RANDOM_NUMBER_END_INDEX = 9
 
-class RandomMovingStrategy : MovingStrategy {
-    override fun isMovable(): Boolean {
-        if (MOVING_MINIMUM_CONDITION_NUMBER <= Utils.generateRandomNumber(Utils.RANDOM_NUMBER_START_INDEX, Utils.RANDOM_NUMBER_END_INDEX)) {
-            return true
-        }
-        return false
-    }
+class RandomMovingStrategy {
+    val isMovable = MovingStrategy { (RANDOM_NUMBER_START_INDEX..RANDOM_NUMBER_END_INDEX).random() >= MOVING_MINIMUM_CONDITION_NUMBER }
 }
