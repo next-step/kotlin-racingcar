@@ -1,8 +1,8 @@
 package racingcar.application
 
-import racingcar.domain.CarManager
-import racingcar.domain.CarRacing
-import racingcar.domain.IndicatorGenerator
+import racingcar.domain.carRacing.CarManager
+import racingcar.domain.carRacing.CarRacing
+import racingcar.domain.carIndicator.IndicatorGenerator
 import racingcar.view.InputView
 import racingcar.view.ResultView
 

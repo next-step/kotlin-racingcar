@@ -1,4 +1,9 @@
-package racingcar.domain
+package racingcar.domain.carRacing
+
+import racingcar.domain.carRacing.dto.CarRacingResult
+import racingcar.domain.carRacing.dto.CarRecord
+import racingcar.domain.carIndicator.IndicatorGenerator
+import racingcar.domain.carRacing.dto.TurnRecord
 
 class CarRacing(
     private val indicatorGenerator: IndicatorGenerator,

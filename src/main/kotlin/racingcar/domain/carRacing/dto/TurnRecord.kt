@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.carRacing.dto
 
 class TurnRecord(
     val turn: Int,

@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.carIndicator
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.ints.shouldBeInRange

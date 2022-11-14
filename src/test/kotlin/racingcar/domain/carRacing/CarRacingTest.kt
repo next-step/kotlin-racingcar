@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.carRacing
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.data.forAll
@@ -6,6 +6,10 @@ import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
+import racingcar.domain.carIndicator.IndicatorGenerator
+import racingcar.domain.carIndicator.TurnIndicator
+import racingcar.domain.carRacing.dto.CarRecord
+import racingcar.domain.carRacing.dto.TurnRecord
 
 class CarRacingTest : StringSpec({
 
