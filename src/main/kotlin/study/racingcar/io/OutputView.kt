@@ -1,15 +1,22 @@
 package study.racingcar.io
 
+import study.racingcar.racing.Result
+
 object OutputView {
-    fun showResult(locationList: List<Int>) {
-        locationList.forEach { location: Int ->
-            printLineByLocation(location)
+    fun showResult(Results: List<Result>) {
+        Results.forEach { result: Result ->
+            printLineByResult(result)
         }
         printEndOfTurn()
     }
 
-    private fun printLineByLocation(location: Int) {
-        return println("-".repeat(location))
+    private fun printLineByResult(result: Result) {
+        val builder = StringBuilder()
+        builder.append(result.name)
+            .append(" : ")
+            .append("-".repeat(result.location))
+
+        return println(builder.toString())
     }
 
     private fun printEndOfTurn() {
