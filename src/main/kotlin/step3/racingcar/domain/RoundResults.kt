@@ -1,7 +1,7 @@
 package step3.racingcar.domain
 
 class RoundResults {
-    private var elements: MutableList<RoundResult> = mutableListOf()
+    private val elements: MutableList<RoundResult> = mutableListOf()
 
     fun accumulate(roundResult: RoundResult) = elements.add(roundResult)
 
@@ -11,5 +11,5 @@ class RoundResults {
 
     fun size(): Int = elements.size
 
-    fun elements() = elements
+    fun elements() = elements.toList()
 }
