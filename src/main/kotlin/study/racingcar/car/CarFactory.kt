@@ -1,9 +1,9 @@
 package study.racingcar.car
 
 object CarFactory {
-    fun createCars(count: Int): List<Car> {
-        return List(count) {
-            Car()
+    fun createCars(names: List<String>): List<Car> {
+        return names.map { name ->
+            Car(name)
         }
     }
 }
