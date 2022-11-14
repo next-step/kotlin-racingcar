@@ -1,18 +1,21 @@
 package racingcar.domain
 
+import java.util.concurrent.ThreadLocalRandom
+
 
 class Car(
     val position: Position = Position(POSITION_FIRST),
 ) {
 
-    fun move(): Car {
-        return if (isMove())
+    fun move(terms: Int = ThreadLocalRandom.current().nextInt(TERMS_OF_RACING_MIN, TERMS_OF_RACING_MAX)): Car {
+        return if (isMove(terms))
             Car(Position(position.value + POSITION_MOVE))
         else this
     }
 
-    private fun isMove(): Boolean {
-        return (TERMS_OF_RACING_MIN..TERMS_OF_RACING_MAX).random() > TERMS_OF_RACING
+    private fun isMove(terms: Int): Boolean {
+        val isPass = terms >= TERMS_OF_RACING
+        return isPass
     }
 
     companion object {

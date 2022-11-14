@@ -1,6 +1,5 @@
 package racingcar
 
-import racingcar.domain.Car
 import racingcar.domain.RacingGame
 import racingcar.ui.InputView.printInputRacingCarCount
 import racingcar.ui.InputView.printInputRacingCount
@@ -11,10 +10,7 @@ fun main() {
 
     val racingCarCount = readLine()?.toInt() ?: 0
 
-    var racingGame = RacingGame()
-    repeat(racingCarCount) {
-        racingGame += Car()
-    }
+    val racingGame = RacingGame.startRacingGame(racingCarCount)
 
     printInputRacingCount()
 
