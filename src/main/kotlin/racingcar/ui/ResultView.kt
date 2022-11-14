@@ -1,26 +1,26 @@
 package racingcar.ui
 
 import racingcar.domain.Car
-import racingcar.domain.Cars
+import racingcar.domain.RacingGame
 
 object ResultView {
 
-    fun printResult(cars: Cars, count: Int) {
+    fun printResult(racingGame: RacingGame, count: Int) {
         println("실핼결과")
-        printSpacer()
+        println()
 
-        var result = cars
+        var result = racingGame
         repeat(count) {
             result = result.racing()
             printCarsPosition(result)
-            printSpacer()
+            println()
         }
     }
 
-    private fun printCarsPosition(cars: Cars) {
-        cars.value.forEach { car ->
+    private fun printCarsPosition(racingGame: RacingGame) {
+        racingGame.value.forEach { car ->
             printCarState(car)
-            printSpacer()
+            println()
         }
     }
 
@@ -29,7 +29,5 @@ object ResultView {
             print("-")
         }
     }
-
-    private fun printSpacer() = println()
 
 }
