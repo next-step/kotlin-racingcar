@@ -8,8 +8,8 @@ data class Cars(private val cars: List<Car>) {
         require(cars.isNotEmpty()) { "자동차는 1대 이상이어야 합니다." }
     }
 
-    fun play() {
-        cars.forEach { it.move(RandomMovingStrategy().isMovable) }
+    fun play(randomMovingStrategy: RandomMovingStrategy) {
+        cars.forEach { it.move(randomMovingStrategy.isMovable) }
     }
 
     fun getPositions(): List<Position> {

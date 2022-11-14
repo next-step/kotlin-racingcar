@@ -2,6 +2,7 @@ package racingcar
 
 import racingcar.domain.car.Car
 import racingcar.domain.car.Cars
+import racingcar.domain.car.action.RandomMovingStrategy
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
@@ -13,7 +14,7 @@ class RacingGame {
             val cars = Cars(Array(inputData.getNumberOfCars) { Car() }.toList())
             ResultView.printResultTitle()
             repeat(inputData.getPlayTime) {
-                cars.play()
+                cars.play(RandomMovingStrategy())
                 ResultView.printResult(cars)
             }
         }
