@@ -6,6 +6,7 @@ class Operator {
     fun find(s: String) {
         optype = if (s.contains('+')) OperatorType.PLUS
         else if (s.contains('-')) OperatorType.MINUS
+        else if (s.contains('*')) OperatorType.TIMES
         else throw IllegalArgumentException()
     }
 
@@ -13,6 +14,7 @@ class Operator {
         return when (optype) {
             OperatorType.PLUS -> plus(a, b)
             OperatorType.MINUS -> minus(a, b)
+            OperatorType.TIMES -> times(a, b)
             else -> throw IllegalStateException() // find() 메서드를 먼저 호출!
         }
     }
@@ -23,5 +25,9 @@ class Operator {
 
     private fun minus(a: Int, b: Int): Int {
         return a - b
+    }
+
+    private fun times(a: Int, b: Int): Int {
+        return a * b
     }
 }

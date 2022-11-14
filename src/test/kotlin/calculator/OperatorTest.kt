@@ -29,4 +29,17 @@ class OperatorTest {
         // then
         assertThat(result).isEqualTo(10)
     }
+
+    @Test
+    fun `곱셈 연산을 할 수 있다`() {
+        // given
+        val operator = Operator()
+
+        // when
+        operator.find("2 * 3")
+        val result = operator.operate(2, 3)
+
+        // then
+        assertThat(result).isEqualTo(6)
+    }
 }
