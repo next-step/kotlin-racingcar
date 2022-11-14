@@ -29,9 +29,6 @@ class WinnerRacing {
         if (moveStep > maxMoveStep) maxMoveStep = moveStep
     }
 
-    fun getWinner(carsList: List<Car>, maxMoveStep: Int): List<String> =
-        carsList.filter { car -> car.moveStep == maxMoveStep }.map { it.carName }
-
     companion object {
         const val INIT_TRY_NUMBER = 1
         const val MIN_CAR_NUMBER = 1
