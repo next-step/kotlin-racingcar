@@ -2,7 +2,7 @@ package carracing.domain
 
 import carracing.ui.OutputView
 
-class Racing(var cars: List<Car>, var attemptCount: Int) {
+class Racing(var cars: Cars, private val attemptCount: Int) {
 
     fun race() {
         for (round in 1..attemptCount) {
@@ -11,10 +11,11 @@ class Racing(var cars: List<Car>, var attemptCount: Int) {
     }
 
     private fun movingCar() {
-        for (value in cars.indices) {
-            cars[value].move()
-            OutputView.gameRoundPrint(cars[value].position)
+        cars._cars.forEach {
+            it.move()
+            OutputView.gameRoundPrint(it.position)
         }
+
         OutputView.lineChange()
     }
 }
