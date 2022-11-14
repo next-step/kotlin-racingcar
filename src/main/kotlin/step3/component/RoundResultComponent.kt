@@ -2,14 +2,13 @@ package step3.component
 
 import step3.RoundResult
 import step3.ui.Br
-import step3.ui.Span
 
 class RoundResultComponent(
     private val roundResult: RoundResult,
 ) : Component {
     override fun render() {
         roundResult.carPositions.forEach { carPosition ->
-            Span(text = "자동차 ${carPosition.id}: ").draw()
+            CarNameComponent(name = carPosition.name).render()
             DistanceComponent(position = carPosition.position).render()
             Br().draw()
         }

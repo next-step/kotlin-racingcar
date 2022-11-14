@@ -4,13 +4,13 @@ data class RoundResult(
     val carPositions: List<CarPosition>
 ) {
     data class CarPosition private constructor(
-        val id: Int,
+        val name: String,
         val position: Position,
     ) {
         companion object {
             fun from(car: Car): CarPosition {
                 return CarPosition(
-                    id = car.id,
+                    name = car.name,
                     position = car.position,
                 )
             }
