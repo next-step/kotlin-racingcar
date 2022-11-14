@@ -2,13 +2,15 @@ package racing.view
 
 import racing.domain.Car
 
-class GameOutputView {
+object GameOutputView {
 
-    fun startGame() {
+    const val POSITION_MARK = "-"
+
+    fun printStartGame() {
         println("실행 결과")
     }
 
-    fun nextRound() {
+    fun printNextRound() {
         println()
     }
 
@@ -17,10 +19,10 @@ class GameOutputView {
     }
 
     fun printPositions(car: Car) {
-        println(POSITION_MARK.repeat(car.position))
+        println("${car.name} : ${POSITION_MARK.repeat(car.position)}")
     }
 
-    companion object {
-        const val POSITION_MARK = "-"
+    fun printRaceWinner(winnerCars: List<Car>) {
+        println("${winnerCars.joinToString { it.name }}가 최종 우승했습니다.")
     }
 }

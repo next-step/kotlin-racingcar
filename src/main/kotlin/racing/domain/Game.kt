@@ -1,28 +1,27 @@
 package racing.domain
 
-import racing.domain.strategy.RandomMovingStrategy
 import racing.view.GameOutputView
 
-class Game(racingCarCount: Int = 2, private val round: Int = 3) {
-    var cars = List(racingCarCount) { Car(MOVING_STRATEGY) }
+class Game(val cars: List<Car>, private val round: Int = 3) {
 
     fun play() {
-        gameOutputView.startGame()
+        GameOutputView.printStartGame()
         for (i in 0 until round) {
             race()
-            gameOutputView.printRaceStatus(cars)
-            gameOutputView.nextRound()
+            GameOutputView.printRaceStatus(cars)
+            GameOutputView.printNextRound()
         }
+        GameOutputView.printRaceWinner(getWinner(cars))
+    }
+
+    fun getWinner(cars: List<Car>): List<Car> {
+        val maxPosition = cars.maxOf { car -> car.position }
+        return cars.filter { car -> car.position == maxPosition }
     }
 
     private fun race() {
         cars.forEach {
             it.move()
         }
-    }
-
-    companion object {
-        private val MOVING_STRATEGY = RandomMovingStrategy()
-        private val gameOutputView = GameOutputView()
     }
 }
