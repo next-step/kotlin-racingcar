@@ -1,5 +1,6 @@
 package racingcar
 
+import racingcar.domain.Car
 import racingcar.domain.RacingGame
 import racingcar.ui.InputView.printInputRacingCarCount
 import racingcar.ui.InputView.printInputRacingCount
