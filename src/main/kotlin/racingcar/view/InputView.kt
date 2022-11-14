@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.Setting
+import racingcar.domain.Setting
 
 private const val MAXIMUM_WORD_COUNT = 5
 

@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 data class Car(val name: String = "", private var _progress: Int = 0) : MoveStrategy() {
 
