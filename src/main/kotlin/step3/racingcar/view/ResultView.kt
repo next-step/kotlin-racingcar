@@ -22,7 +22,7 @@ class ResultView {
         }
 
         private fun printEachCarsRoundScore(currentRound: Int, cars: Cars) {
-            cars.elements.forEach {
+            cars.elements().forEach {
                 printEachRoundScore(currentRound, it)
             }
         }
