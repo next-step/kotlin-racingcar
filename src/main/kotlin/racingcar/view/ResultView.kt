@@ -5,6 +5,7 @@ import racingcar.Cars
 
 object ResultView {
     private const val SPACE = "-"
+    private const val SEPARATOR = ", "
 
     fun printResultTitle() {
         println("\n실행 결과")
@@ -22,10 +23,7 @@ object ResultView {
             println("우승자가 없습니다.")
         }
 
-        print(cars[0].getName())
-        cars.slice(1 until cars.size).forEach {
-            print(", ${it.getName()}")
-        }
-        print("가 최종 우승했습니다.")
+        val names = cars.joinToString(SEPARATOR) { it.getName() }
+        print("$names 가 최종 우승했습니다.")
     }
 }
