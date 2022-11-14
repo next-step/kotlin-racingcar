@@ -30,4 +30,10 @@ class PersonTest {
         val person2 = Person("전가빈", 30)
         assertThat(person1).isEqualTo(person2)
     }
+
+    @Test
+    fun `닉네임이 없을 시 이름과 같이 한다`() {
+        val person = Person("전가빈", 30)
+        assertThat(person.nickname).isEqualTo("전가빈")
+    }
 }
