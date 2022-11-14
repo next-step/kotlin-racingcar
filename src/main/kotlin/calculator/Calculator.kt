@@ -2,43 +2,43 @@ package calculator
 
 class Calculator {
     fun calculate(input: String?): Int {
-        val removedSpaceInput = removeSpace(input)
-        val data = validateNullCheck(removedSpaceInput)
-        val (operators, numbers) = splitOperandWithNumber(data)
-        var result = 0
+        val data = validateNullCheck(input)
+        val splitedDatas = data.split(" ")
+        val operators = extractOperators(splitedDatas)
+        var operands = extractOperands(splitedDatas)
 
-        numbers.forEachIndexed { index, number ->
-            val operand = Operand.valueOfSymbol(operators[index])
-            result = operand.calc(result, number)
+        var calculatedValue = operands.first()
+        operands = operands.drop(1)
+
+        operands.forEachIndexed { index, number ->
+            val operator = operators[index]
+            calculatedValue = operator.calculate(calculatedValue, number)
         }
-        return result
+        return calculatedValue
     }
 
-    private fun splitOperandWithNumber(data: String): Pair<List<String>, List<Int>> {
-        val numbers = mutableListOf<Int>()
-        val operators = mutableListOf("+")
-        var number = ""
-        data.forEach {
-            if (it.digitToIntOrNull() != null) {
-                number += it
-                return@forEach
+    private fun extractOperands(input: List<String>): List<Int> {
+        val operand = mutableListOf<Int>()
+        input.forEach {
+            if (it.toIntOrNull() != null) {
+                operand.add(it.toInt())
             }
-            operators.add(it.toString())
-            numbers.add(number.toInt())
-            number = ""
         }
-        numbers.add(number.toInt())
-        return Pair(operators, numbers)
+        return operand
     }
 
-    private fun removeSpace(data: String?): String? {
-        return data?.replace(" ", "")
+    private fun extractOperators(input: List<String>): List<Operator> {
+        val operators = mutableListOf<Operator>()
+        input.forEach {
+            if (it.toIntOrNull() == null) {
+                operators.add(Operator.valueOfSymbol(it))
+            }
+        }
+        return operators
     }
 
     private fun validateNullCheck(data: String?): String {
-        if (data.isNullOrEmpty()) {
-            throw IllegalArgumentException("input data is null, please check data")
-        }
+        require(!data.isNullOrEmpty()) { "input data is null, please check data" }
         return data
     }
 }
