@@ -1,7 +1,7 @@
 package racingcar
 
-import racingcar.io.InputView
-import racingcar.io.ResultView
+import racingcar.view.InputView
+import racingcar.view.ResultView
 
 fun main() {
     val (carNames, numberOfTry) = InputView.read()

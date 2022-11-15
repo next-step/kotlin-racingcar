@@ -1,4 +1,4 @@
-package racingcar.io
+package racingcar.view
 
 import racingcar.CarRecord
 import racingcar.GameResult
