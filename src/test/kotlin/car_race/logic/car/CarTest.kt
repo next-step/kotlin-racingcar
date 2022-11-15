@@ -9,9 +9,10 @@ import io.kotest.matchers.shouldBe
  */
 class CarTest : FunSpec({
     context("Car 단위 테스트") {
+        val defaultCarName = CarName("기본 차")
         val defaultPositionValue = 0
         val defaultPosition = CarPosition(defaultPositionValue)
-        val car = Car(defaultPosition)
+        val car = Car(defaultCarName, defaultPosition)
 
         test("fun getPosition(): 현재 위치를 반환한다.") {
             car.getPosition() shouldBe defaultPosition
