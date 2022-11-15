@@ -9,7 +9,7 @@ class Cars(private val cars: List<Car>) {
             : this(carNames.split(CAR_NAMES_SPLIT_DELIMITER).map { name -> Car(name, moveStrategy) })
 
     fun move() {
-        cars.map { car -> car.move() }
+        cars.forEach { it.move() }
     }
 
     companion object {
