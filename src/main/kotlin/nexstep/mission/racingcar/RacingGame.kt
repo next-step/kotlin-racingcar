@@ -2,7 +2,7 @@ package nexstep.mission.racingcar
 
 import nexstep.mission.extenstionfun.pop
 
-fun List<RacingCar>.toSortedMutable() = this.sortedByDescending { it.position() }.toMutableList()
+fun List<RacingCar>.toSortedMutable() = this.sortedByDescending { it.position }.toMutableList()
 
 private const val NAME_SPLITTER = ","
 
@@ -16,8 +16,8 @@ class RacingGame(val racingCars: List<RacingCar>) {
         generateSequence(favorites.pop()) { next(it, favorites) }.toList()
 
     private fun next(previous: RacingCar, favorites: MutableList<RacingCar>): RacingCar? =
-        when (previous.position()) {
-            favorites.first().position() -> favorites.pop()
+        when (previous.position) {
+            favorites.first().position -> favorites.pop()
             else -> null
         }
 

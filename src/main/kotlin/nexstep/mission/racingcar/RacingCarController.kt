@@ -15,21 +15,22 @@ class RacingCarController(
 ) {
 
     fun race() {
-        val racingCarNames = input.inputRacingCarNames()
+        val racingCarNames: String = input.inputRacingCarNames()
         val racingGame = RacingGame(racingCarNames)
-        val round = input.inputRound()
+        val round: Int = input.inputRound()
         startRace(round, racingGame)
-        val winners = racingGame.winner()
+        val winners: List<RacingCar> = racingGame.winner()
         output.printWinner(winners.map { it.name.value })
     }
 
-    private tailrec fun startRace(round: Int, racingGame: RacingGame): Unit =
+    private tailrec fun startRace(round: Int, racingGame: RacingGame) {
         when {
-            (round == 0) -> Unit
+            (round == 0) -> return
             else -> {
                 racingGame.race { RANDOM.nextInt(NUMBER_UNDER_TEN) }
-                output.printPositions(racingGame.racingCars.map { RacingCarDto(it.name.value, it.position()) })
+                output.printPositions(racingGame.racingCars.map { RacingCarDto(it.name.value, it.position) })
                 startRace(round - 1, racingGame)
             }
         }
+    }
 }
