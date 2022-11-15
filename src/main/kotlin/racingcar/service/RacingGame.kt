@@ -3,7 +3,7 @@ package racingcar.service
 import racingcar.model.Car
 import racingcar.model.MoveFactor
 
-class CarGame(carCount: Int) {
+class RacingGame(carCount: Int) {
     val cars: List<Car> = List(carCount) { Car() }
 
     fun play() {

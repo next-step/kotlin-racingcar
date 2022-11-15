@@ -1,7 +1,7 @@
 package racingcar.view
 
 import racingcar.model.Car
-import racingcar.service.CarGame
+import racingcar.service.RacingGame
 
 private const val TRACE_SYMBOL = "-"
 
@@ -10,8 +10,8 @@ object ResultView {
         println("\n실행결과")
     }
 
-    fun printDashBoard(carGame: CarGame) {
-        val cars = carGame.cars
+    fun printDashBoard(racingGame: RacingGame) {
+        val cars = racingGame.cars
         cars.forEach { printCarTrace(it) }
         println()
     }

@@ -1,21 +1,21 @@
 package racingcar
 
-import racingcar.service.CarGame
+import racingcar.service.RacingGame
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
-object RacingCarApplication {
+object RacingGameApplication {
     @JvmStatic
     fun main(args: Array<String>) {
         val carCount = InputView.readCarCount()
         val tryCount = InputView.readTryCount()
 
-        val carGame = CarGame(carCount)
+        val racingGame = RacingGame(carCount)
 
         ResultView.printHeader()
         repeat(tryCount) {
-            carGame.play()
-            ResultView.printDashBoard(carGame)
+            racingGame.play()
+            ResultView.printDashBoard(racingGame)
         }
     }
 }
