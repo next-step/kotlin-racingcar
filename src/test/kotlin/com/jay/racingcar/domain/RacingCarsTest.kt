@@ -22,14 +22,6 @@ internal class RacingCarsTest {
         }
     }
 
-    @Test
-    fun `우승자의 목록을 반환한다`() {
-        val racingCars = RacingCars.create(Names(listOf("jay", "pobi", "honux")), forwardStrategy())
-        val winnerNames = racingCars.getWinners().map { it.getNameValue() }.toList()
-
-        assertThat(winnerNames).containsAll(listOf("jay", "pobi", "honux"))
-    }
-
     private fun forwardStrategy() = object : MovingStrategy {
         override fun canMove(): Boolean {
             return true

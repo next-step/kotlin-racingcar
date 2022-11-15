@@ -2,8 +2,8 @@ package com.jay.racingcar.domain
 
 import kotlin.streams.toList
 
-class Names(nameString: List<String>) {
-    private val names: List<Name> = nameString.stream().map { Name(it) }.toList()
+class Names(nameInputs: List<String>) {
+    private val names: List<Name> = nameInputs.stream().map { Name(it) }.toList()
 
     fun size(): Int = names.size
 
