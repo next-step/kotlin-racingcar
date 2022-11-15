@@ -1,7 +1,7 @@
 package study.racing.entity
 
 class Round(
-    private var cars: List<RacingCar>
+    private val cars: List<RacingCar>
 ) {
     var record: List<Int>? = null
         private set

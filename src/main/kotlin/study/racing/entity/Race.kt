@@ -7,9 +7,8 @@ class Race constructor(
     carCount: Int,
     powerSource: PowerSource,
 ) {
-    private var cars: List<RacingCar> = List(carCount) { RacingCar(powerSource) }
-    var rounds: List<Round> = List(roundCount) { Round(cars) }
-        private set
+    private val cars: List<RacingCar> = List(carCount) { RacingCar(powerSource) }
+    val rounds: List<Round> = List(roundCount) { Round(cars) }
 
     fun start() {
         rounds.forEach(Round::race)
