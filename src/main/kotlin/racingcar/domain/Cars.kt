@@ -9,15 +9,15 @@ class Cars {
 
     fun startRace(gameInputValue: GameInputValue, movingConditionStrategy: MovingConditionStrategy) {
         val outputView = OutputView()
-        var splitNameOfCarsSize = splitInputValue(gameInputValue.inputNameOfCars).size
-        make(splitNameOfCarsSize, movingConditionStrategy)
-        iterateNumberOfGames(splitNameOfCarsSize, outputView)
+        var splitNameOfCars = splitInputValue(gameInputValue.inputNameOfCars)
+        make(splitNameOfCars, movingConditionStrategy)
+        iterateNumberOfGames(splitNameOfCars.size, outputView)
     }
 
-    private fun make(numberOfCars: Int, movingConditionStrategy: MovingConditionStrategy) {
+    private fun make(numberOfCars: List<String>, movingConditionStrategy: MovingConditionStrategy) {
 
-        for (i in 0 until numberOfCars) {
-            cars.add(Car(movingConditionStrategy))
+        for (i in numberOfCars.indices) {
+            cars.add(Car(movingConditionStrategy, numberOfCars[i]))
         }
     }
 

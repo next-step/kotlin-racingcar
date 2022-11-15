@@ -3,9 +3,9 @@ package racingcar.view
 class OutputView {
     private var isTitle = true
 
-    fun showRaceState(position: String, isLastCarCycle: Boolean) {
+    fun showRaceState(name: String, position: String, isLastCarCycle: Boolean) {
         addTitle()
-        println(position)
+        println("$name : $position")
         addLineForLastCar(isLastCarCycle)
     }
 

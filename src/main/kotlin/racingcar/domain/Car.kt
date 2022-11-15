@@ -4,7 +4,7 @@ import racingcar.view.OutputView
 
 const val MOVE_MARKER = "- "
 
-class Car(private val movingConditionStrategy: MovingConditionStrategy) {
+class Car(private val movingConditionStrategy: MovingConditionStrategy, var name: String = "") {
     var position = ""
 
     fun move() {
@@ -18,6 +18,6 @@ class Car(private val movingConditionStrategy: MovingConditionStrategy) {
     }
 
     fun showPosition(isLastCarCycle: Boolean, outputView: OutputView) {
-        outputView.showRaceState(position, isLastCarCycle)
+        outputView.showRaceState(name, position, isLastCarCycle)
     }
 }
