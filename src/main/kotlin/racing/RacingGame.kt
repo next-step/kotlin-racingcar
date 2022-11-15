@@ -2,7 +2,7 @@ package racing
 
 import racing.domain.Racing
 import racing.model.Car
-import racing.model.Driver
+import racing.model.CarName
 import racing.model.RacingResult
 import racing.model.RoundCount
 
@@ -14,10 +14,10 @@ class RacingGame(
     private val racingRecordBoard: RacingRecordBoard,
 ) {
 
-    fun getRaceInfo(): Pair<List<Driver>, RoundCount> {
+    fun getRaceInfo(): Pair<List<CarName>, RoundCount> {
         val (drivers, roundCount) = inputView.getRaceInfo()
             .let { (drivers, roundCount) ->
-                drivers.map { driver -> Driver(driver) } to (roundCount?.let { RoundCount(it) })
+                drivers.map { driver -> CarName(driver) } to (roundCount?.let { RoundCount(it) })
             }
         require(drivers.isNotEmpty()) { "유효한 자동차 이름이 아닙니다." }
         requireNotNull(roundCount) { "유효한 시도횟수 입력 값이 아닙니다." }
@@ -25,20 +25,20 @@ class RacingGame(
     }
 
 
-    fun start(drivers: List<Driver>, roundCount: RoundCount) {
-        setUpCarWithDrivers(drivers)
+    fun start(carNames: List<CarName>, roundCount: RoundCount) {
+        setUpCarWithDrivers(carNames)
         raceAllRound(roundCount)
     }
 
-    fun getRacingResultAndWinners(): Pair<List<RacingResult>, List<Driver>> =
+    fun getRacingResultAndWinners(): Pair<List<RacingResult>, List<CarName>> =
         racingRecordBoard.results to racingRecordBoard.winners
 
-    fun printResult(racingResult: List<RacingResult>, winners: List<Driver>) {
+    fun printResult(racingResult: List<RacingResult>, winners: List<CarName>) {
         resultView.printRaceResult(results = racingResult, winners = winners)
     }
 
-    private fun setUpCarWithDrivers(drivers: List<Driver>): Unit =
-        racingCarGarage.setCarsWithDrivers(drivers = drivers)
+    private fun setUpCarWithDrivers(carNames: List<CarName>): Unit =
+        racingCarGarage.setCarsWithNames(carNames = carNames)
 
     private fun raceAllRound(roundCount: RoundCount) {
         repeat(roundCount.value) {

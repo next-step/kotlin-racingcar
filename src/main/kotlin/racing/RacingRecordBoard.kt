@@ -1,7 +1,7 @@
 package racing
 
 import racing.model.Car
-import racing.model.Driver
+import racing.model.CarName
 import racing.model.RacingResult
 
 class RacingRecordBoard {
@@ -9,11 +9,11 @@ class RacingRecordBoard {
     val results: List<RacingResult>
         get() = _results.toList()
 
-    val winners: List<Driver>
+    val winners: List<CarName>
         get() {
             val result = this.lastResult.result
             val maxMileage = result.maxByMileage()
-            return result.filter { it.mileage == maxMileage }.map { it.driver }
+            return result.filter { it.mileage == maxMileage }.map { it.carName }
         }
 
     private val lastResult: RacingResult

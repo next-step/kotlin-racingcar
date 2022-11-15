@@ -1,12 +1,12 @@
 package racing.model
 
 data class Car(
-    val driver: Driver,
+    val carName: CarName,
     val mileage: Int = 0,
 )
 
 @JvmInline
-value class Driver(
+value class CarName(
     val name: String
 ) {
     init {

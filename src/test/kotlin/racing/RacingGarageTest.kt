@@ -6,7 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 import racing.domain.RacingCarsFactory
 import racing.domain.RacingCarsFactoryImpl
-import racing.model.Driver
+import racing.model.CarName
 import java.util.stream.Stream
 
 
@@ -29,7 +29,7 @@ internal class RacingGarageTest {
         RacingCarGarage(
             racingCarsFactory = racingCarsFactory,
         )
-            .apply { setCarsWithDrivers(drivers.map { Driver(it) }) }
+            .apply { setCarsWithNames(drivers.map { CarName(it) }) }
             .cars
             .count()
             .let(::assertThat)
@@ -43,7 +43,7 @@ internal class RacingGarageTest {
         val racingCarGarage = RacingCarGarage(
             racingCarsFactory = racingCarsFactory,
         ).apply {
-            setCarsWithDrivers(drivers.map { Driver(it) })
+            setCarsWithNames(drivers.map { CarName(it) })
         }
         val testCarResult = racingCarGarage.cars
             .map { car -> car.copy(mileage = car.mileage + 1) }

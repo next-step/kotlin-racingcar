@@ -6,7 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import racing.model.Car
-import racing.model.Driver
+import racing.model.CarName
 import java.util.stream.Stream
 
 internal class RacingRecordBoardTest {
@@ -22,7 +22,7 @@ internal class RacingRecordBoardTest {
     @MethodSource("provideDrivers")
     fun `자동차 경주 결과 정보를 저장한 경우`(cars: List<Pair<String, Int>>) {
         val result = cars.map { (driver, mileage) ->
-            Car(Driver(driver), mileage)
+            Car(CarName(driver), mileage)
         }
         racingRecordBoard.add(result)
         assertThat(racingRecordBoard.results.first().result).isEqualTo(result)
@@ -32,10 +32,10 @@ internal class RacingRecordBoardTest {
     @MethodSource("provideDriversWithWinner")
     fun `우승자가 한명 일 때 자동차 경주 후 우승자 확인하였을 때 우승자가 한명이여야 한다`(cars: List<Pair<String, Int>>, winnerDriver: String) {
         val result = cars.map { (driver, mileage) ->
-            Car(Driver(driver), mileage)
+            Car(CarName(driver), mileage)
         }
         racingRecordBoard.add(result)
-        val winner = Driver(winnerDriver)
+        val winner = CarName(winnerDriver)
         assertThat(racingRecordBoard.winners).isEqualTo(listOf(winner))
     }
 

@@ -5,19 +5,19 @@ import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
-internal class DriverTest {
+internal class CarNameTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["Kobe", "Jason", "Curry"])
     fun `운전자 이름이 5자 이하인 경우`(driver: String) {
-        assertThat(Driver(driver)).isNotNull
+        assertThat(CarName(driver)).isNotNull
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["Kobe Bryant", "Jason Kids", "Steffan Curry", "LeBron Jame"])
     fun `운전자 이름이 5자 초과하는 경우`(driver: String) {
         assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            Driver(driver)
+            CarName(driver)
         }
     }
 }

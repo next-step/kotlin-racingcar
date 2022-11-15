@@ -2,7 +2,7 @@ package racing
 
 import racing.domain.RacingCarsFactory
 import racing.model.Car
-import racing.model.Driver
+import racing.model.CarName
 
 class RacingCarGarage(
     private val racingCarsFactory: RacingCarsFactory,
@@ -12,8 +12,8 @@ class RacingCarGarage(
     val cars: List<Car>
         get() = _cars.toList()
 
-    fun setCarsWithDrivers(drivers: List<Driver>) {
-        racingCarsFactory.createCars(drivers)
+    fun setCarsWithNames(carNames: List<CarName>) {
+        racingCarsFactory.createCars(carNames)
             .also {
                 _cars.addAll(it)
             }

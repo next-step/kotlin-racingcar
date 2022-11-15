@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
-import racing.model.Driver
+import racing.model.CarName
 import java.util.stream.Stream
 
 internal class RacingCarsFactoryImplTest {
@@ -19,7 +19,7 @@ internal class RacingCarsFactoryImplTest {
     @ParameterizedTest
     @MethodSource("provideDriveNames")
     fun `1명 이상 드라이버가 자동차가 필요하여 생성해야 되는 경우`(drivers: List<String>) {
-        val cars = racingCarsFactory.createCars(drivers.map { Driver(it) })
+        val cars = racingCarsFactory.createCars(drivers.map { CarName(it) })
         assertThat(cars.size).isEqualTo(drivers.size)
     }
 
