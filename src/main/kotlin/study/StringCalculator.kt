@@ -47,7 +47,7 @@ class StringCalculator(
     }
 
     private fun calculate(operators: List<Operator>, operands: List<Int>) = operands
-        .drop(1) // initial value drop
+        .drop(DROP_INITIAL_VALUE)
         .foldIndexed(operands.first()) { index, acc, number ->
             operators[index].calculate(acc, number)
         }
@@ -66,4 +66,8 @@ class StringCalculator(
         .partition { predicate(it.index) }
 
     private val Int.isEven: Boolean get() = this % 2 == 0
+
+    companion object {
+        private const val DROP_INITIAL_VALUE = 1
+    }
 }
