@@ -1,12 +1,9 @@
 package racingcar.domain
 
-class Car(
-    distance: Int = 0,
+data class Car(
+    val name: String,
+    val distance: Int = 0
 ) {
-    private var _distance = distance
-    val distance get() = _distance
 
-    fun takeAction() {
-        _distance += Action.execute().distance
-    }
+    fun takeAction(): Car = this.copy(distance = Action.execute().distance)
 }

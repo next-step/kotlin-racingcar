@@ -6,7 +6,7 @@ import racingcar.domain.Car
 
 class CarTest : BehaviorSpec({
 
-    val car = Car()
+    val car = Car("yujin")
     val initialDistance = car.distance
     Given("자동차가") {
         When("액션을 취하면") {
