@@ -37,17 +37,14 @@ enum class Operator(
 class StringCalculator(
     private val separator: String
 ) {
-    fun calculate(input: String?): Int {
-        validate(input)
-        val (numbers, symbols) = input
-            .split(separator)
-            .separateByIndex { it.isEven }
+    fun calculate(input: String?): Int = validate(input)
+        .run { split(input) }
+        .let { (numbers, symbols) ->
+            val operands = numbers.parseToOperands()
+            val operators = symbols.parseToOperators()
 
-        val operands = numbers.parseToOperands()
-        val operators = symbols.parseToOperators()
-
-        return calculate(operators, operands)
-    }
+            calculate(operators, operands)
+        }
 
     @OptIn(ExperimentalContracts::class)
     private fun validate(input: String?) {
@@ -56,6 +53,10 @@ class StringCalculator(
         }
         if (input.isNullOrBlank()) throw IllegalArgumentException("input이 null이거나 공백입니다.")
     }
+
+    private fun split(input: String) = input
+        .split(separator)
+        .separateByIndex { it.isEven }
 
     private fun calculate(operators: List<Operator>, operands: List<Int>) = operands
         .drop(DROP_INITIAL_VALUE)
