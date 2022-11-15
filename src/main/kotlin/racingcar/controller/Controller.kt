@@ -15,6 +15,7 @@ class Controller {
             cars.play(RandomMovingStrategy())
             ResultView.printResult(cars)
         }
+        ResultView.printWinners(cars.getWinners())
     }
 
     private fun inputRacers(): Cars {

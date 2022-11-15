@@ -12,4 +12,9 @@ data class Cars(val cars: List<Car>) {
     fun play(randomMovingStrategy: RandomMovingStrategy) {
         cars.forEach { it.move(randomMovingStrategy.isMovable) }
     }
+
+    fun getWinners(): List<String> {
+        val maxPosition = cars.maxOf { it.position.value }
+        return cars.filter { it.position.value == maxPosition }.map { it.name.value }
+    }
 }
