@@ -7,9 +7,7 @@ class Calculator(
     private val expression: Expression
 ) {
 
-    val result = calculate()
-
-    private fun calculate(): Int {
+    fun calculate(): Int {
         val expressionContents = splitExpression(expression)
 
         var result = expressionContents.first().toInt()

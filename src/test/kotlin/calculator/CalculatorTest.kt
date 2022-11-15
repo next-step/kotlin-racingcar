@@ -1,6 +1,7 @@
 package calculator
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -9,24 +10,42 @@ import java.util.stream.Stream
 internal class CalculatorTest {
 
     @ParameterizedTest
-    @MethodSource("calculateTest")
-    fun `문자열 계산기의 결과가 올바르게 나오는 지 확인하는 테스트`(inputs: String, result: Int) {
+    @MethodSource("successCalculateTest")
+    fun `문자열 계산기가 수식에 따른 결과가 올바르게 나오는 케이스`(inputs: String, result: Int) {
         // given
         val expression = Expression(inputs)
         val calculator = Calculator(expression)
 
         // when
-        val actual = calculator.result
+        val actual = calculator.calculate()
 
         // then
         val expected = result
         assertThat(actual).isEqualTo(expected)
     }
 
+    @ParameterizedTest
+    @MethodSource("failureCalculateTest")
+    fun `수식이 잘못되어 계산을 실패한 케이스`(inputs: String, result: Int) {
+        assertThatExceptionOfType(IllegalArgumentException::class.java)
+            .isThrownBy {
+                // given
+                val expression = Expression(inputs)
+                val calculator = Calculator(expression)
+
+                // when
+                val actual = calculator.calculate()
+
+                // then
+                val expected = result
+                assertThat(actual).isEqualTo(expected)
+            }
+    }
+
     companion object {
 
         @JvmStatic
-        fun calculateTest() = Stream.of(
+        fun successCalculateTest() = Stream.of(
             // 덧셈
             Arguments.of("1 + 2", 3),
             Arguments.of("1 + 2 + 3", 6),
@@ -47,6 +66,13 @@ internal class CalculatorTest {
             Arguments.of("8 / 2 / 2 / 2", 1),
             Arguments.of("30 / 5 / 3 / 2", 1),
             Arguments.of("30 / 0", 0),
+        )
+
+        @JvmStatic
+        fun failureCalculateTest() = Stream.of(
+            Arguments.of("안녕하세요", 3),
+            Arguments.of("잘부탁드립니다", 6),
+            Arguments.of("17 null 1 - 2 - 3 - 5 - 6", 0),
         )
     }
 }
