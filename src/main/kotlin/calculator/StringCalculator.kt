@@ -27,11 +27,6 @@ class StringCalculator(private val operator: Operator) {
     }
 
     private fun isInt(s: String): Boolean {
-        return try {
-            s.toInt()
-            true
-        } catch (e: NumberFormatException) {
-            false
-        }
+        return s.toIntOrNull() != null
     }
 }
