@@ -8,10 +8,11 @@ import io.kotest.matchers.types.beInstanceOf
 class ResultTest : StringSpec() {
     init {
         "Result 는 CarInfos 를 가질 수 있다" {
-            val resultMutable = mutableListOf<CarInfos>()
+            val resultMutable: List<CarInfos> = buildList {
+                add(CarInfos(listOf(CarInfo("ko", Position(1)), CarInfo("rong", Position(2)))))
+                add(CarInfos(listOf(CarInfo("ko", Position(3)), CarInfo("rong", Position(4)))))
+            }
 
-            resultMutable.add(CarInfos(listOf(CarInfo("ko", Position(1)), CarInfo("rong", Position(2)))))
-            resultMutable.add(CarInfos(listOf(CarInfo("ko", Position(3)), CarInfo("rong", Position(4)))))
 
             val result = Result(resultMutable)
 

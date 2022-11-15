@@ -8,14 +8,14 @@ class RacingGame(
             : this(Cars(carNames, moveStrategy), Rounds(tryCount))
 
     fun play(): Result {
-        val result = mutableListOf<CarInfos>()
-
-        while (rounds.hasNext()) {
-            rounds.play()
-            cars.move()
-            result.add(cars.carInfos)
+        val result: List<CarInfos> = buildList {
+            while (rounds.hasNext()) {
+                rounds.play()
+                cars.move()
+                add(cars.carInfos)
+            }
         }
 
-        return Result(result.toList())
+        return Result(result)
     }
 }
