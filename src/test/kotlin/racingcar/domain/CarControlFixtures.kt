@@ -1,5 +1,7 @@
 package racingcar
 
+import racingcar.domain.CarControl
+
 class InputCarControl(private val input: Int) : CarControl {
     override fun power(): Int = input
 }

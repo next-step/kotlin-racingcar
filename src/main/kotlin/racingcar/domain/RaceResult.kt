@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class RaceResult(records: List<Record>) {
     val records: List<Record> = records.toList()

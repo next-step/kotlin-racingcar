@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 private const val FORWARD_THRESHOLD = 4
 

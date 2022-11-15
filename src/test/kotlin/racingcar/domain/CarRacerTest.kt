@@ -1,7 +1,8 @@
-package racingcar
+package racingcar.domain
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.ints.shouldBeGreaterThan
+import racingcar.InputCarControl
 
 class CarRacerTest : StringSpec({
     "4를 입력하여 자동차를 운전하면 전진한다" {

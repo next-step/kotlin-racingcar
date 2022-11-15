@@ -1,9 +1,11 @@
-package racingcar
+package racingcar.domain
 
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.inspectors.forAll
+import racingcar.ForwardCarControl
+import racingcar.StopCarControl
 
 class CarRacingTest : StringSpec({
     "참여 인원이 존재하면 자동차 경주를 생성할 수 있다" {

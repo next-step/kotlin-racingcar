@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class CarRacing(
     private val count: Int = 1,
