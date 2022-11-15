@@ -5,6 +5,7 @@ import io.kotest.core.spec.style.BehaviorSpec
 import racingcar.condition.AlwaysMoveCondition
 import racingcar.condition.NotMoveCondition
 import racingcar.condition.RandomMoveCondition
+import racingcar.domain.Cars
 import racingcar.strategy.SatisfyAllConditionStrategy
 import racingcar.strategy.SatisfyRandomMoveStrategy
 import racingcar.strategy.SatisfySingleConditionMoveStrategy

@@ -7,6 +7,7 @@ import io.mockk.mockk
 import racingcar.condition.NotMoveCondition
 import racingcar.condition.RandomMoveCondition
 import racingcar.condition.TestCondition
+import racingcar.domain.Car
 import racingcar.strategy.SatisfyAllConditionStrategy
 import racingcar.strategy.SatisfyRandomMoveStrategy
 import racingcar.strategy.SatisfySingleConditionMoveStrategy

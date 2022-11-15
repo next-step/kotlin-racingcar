@@ -2,6 +2,7 @@ package racingcar
 
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.core.spec.style.BehaviorSpec
+import racingcar.domain.Game
 
 internal class GameTest : BehaviorSpec({
     Given("차의 개수와 시행 횟수가 주어지면") {

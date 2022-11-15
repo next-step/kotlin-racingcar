@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 import racingcar.strategy.MoveStrategy
 import racingcar.util.Validator

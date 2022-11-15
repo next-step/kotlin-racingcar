@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 import racingcar.dto.CarRecord
 import racingcar.dto.Record
