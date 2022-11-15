@@ -1,6 +1,7 @@
 package car_race.view
 
 import car_race.logic.GameRound
+import car_race.logic.car.CarNames
 import car_race.logic.car.Cars
 
 object InputView {
@@ -11,9 +12,10 @@ object InputView {
         return GameRound.from(input)
     }
 
-    fun inputCarCount(): Cars {
-        println("자동차 대수는 몇 대인가요?")
+    fun inputCars(): Cars {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
         val input = readlnOrNull() ?: throw IllegalArgumentException("null 입력은 허용하지 않습니다.")
-        return Cars.from(input)
+        val carNames = CarNames.from(input)
+        return Cars.from(carNames)
     }
 }

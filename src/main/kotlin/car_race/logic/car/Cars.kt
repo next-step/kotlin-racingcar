@@ -12,32 +12,24 @@ class Cars(
         }
     }
 
-    fun getPositions(): List<CarPosition> {
+    fun getNameAndPositionList(): List<Pair<CarName, CarPosition>> {
         return cars.map { car ->
-            car.getPosition()
+            car.getNameAndPosition()
         }
     }
 
+    fun getWinners(): List<Car> {
+        val highestScore = cars.maxOf { car -> car.getPosition().getValue() }
+        return cars.filter { car -> car.getPosition().getValue() == highestScore }
+    }
+
     companion object {
-        private const val INVALID_TYPE_MESSAGE = "게임 참여 자동차는 양의 정수여야 합니다."
-
-        fun from(input: String): Cars {
-            validate(input)
-
-            val createdCars = (1..input.toLong()).map { Car() }
-            return Cars(createdCars)
-        }
-
-        private fun validate(input: String) {
-            val inputNumber = try {
-                input.toLong()
-            } catch (e: NumberFormatException) {
-                throw IllegalArgumentException(
-                    INVALID_TYPE_MESSAGE,
-                    e
-                )
-            }
-            check(inputNumber > 0) { throw IllegalArgumentException(INVALID_TYPE_MESSAGE) }
+        fun from(carNames: CarNames): Cars {
+            return Cars(
+                carNames.names.map { name ->
+                    Car(name)
+                }
+            )
         }
     }
 }
