@@ -10,23 +10,17 @@ class InputView {
         private const val ERROR = "[ERROR] "
 
         fun inputRacers(): Array<String> {
-            return try {
-                println(RACERS_INPUT_MESSAGE)
-                Racers(readln()).value.toTypedArray()
-            } catch (e: Exception) {
-                println(ERROR + e.message)
-                inputRacers()
-            }
+            println(RACERS_INPUT_MESSAGE)
+            return Racers(readln()).value.toTypedArray()
         }
 
         fun inputPlayTime(): Int {
-            return try {
-                println(PLAY_TIME_INPUT_MESSAGE)
-                PlayTime(readln().toInt()).value
-            } catch (e: Exception) {
-                println(ERROR + e.message)
-                inputPlayTime()
-            }
+            println(PLAY_TIME_INPUT_MESSAGE)
+            return PlayTime(readln().toInt()).value
+        }
+
+        fun printError(message: String) {
+            println(ERROR + message)
         }
     }
 }
