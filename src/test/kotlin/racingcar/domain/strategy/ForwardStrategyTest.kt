@@ -1,4 +1,4 @@
-package racingcar.strategy
+package racingcar.domain.strategy
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
@@ -7,14 +7,14 @@ import racingcar.util.random.RandomNumber
 class ForwardStrategyTest : BehaviorSpec({
     given("move 메서드를 호출할 때") {
         `when`("랜덤 값이 4보다 작다면") {
-            val forwardStrategy = ForwardStrategy(RandomNumber(lessThan4Range))
+            val forwardStrategy = RandomForwardStrategy(RandomNumber(lessThan4Range))
             then("false 를 반환한다.") {
                 forwardStrategy.movable() shouldBe false
             }
         }
 
         `when`("랜덤 값이 4보다 같거나 크다면") {
-            val forwardStrategy = ForwardStrategy(RandomNumber(greaterThanOrEquals4Range))
+            val forwardStrategy = RandomForwardStrategy(RandomNumber(greaterThanOrEquals4Range))
             then("true 를 반환한다.") {
                 forwardStrategy.movable() shouldBe true
             }
