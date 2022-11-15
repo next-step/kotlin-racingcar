@@ -21,16 +21,4 @@ class CarTest {
         cars.first().drive(Gear.STOP)
         assertThat(cars.first().currentPosition).isEqualTo(0)
     }
-
-    @Test
-    @DisplayName("A자동차와 B자동차 중 A자동차가 가장 멀리 감")
-    fun `Out of cars A and B, car A is the farthest away`() {
-        val carA = Car("A", 5)
-        val carB = Car("B")
-
-        val cars = listOf(carA, carB)
-        val furthestCars = Car.getFurthestCars(cars)
-
-        assertThat(furthestCars.contains(carA)).isTrue
-    }
 }
