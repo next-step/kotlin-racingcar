@@ -1,9 +1,11 @@
 package racingcar
 
 class RaceResult(records: List<Record>) {
-    private val records: List<Record> = ArrayList(records)
+    val records: List<Record> = records.toList()
 
-    fun toMap(): Map<Round, List<Record>> {
-        return records.groupBy { it.round }
+    fun finalRecords(): List<Record> {
+        val finalRound = records.maxOf { it.round }
+
+        return records.filter { it.round == finalRound }
     }
 }

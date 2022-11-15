@@ -3,10 +3,12 @@ package racingcar
 object OutputView {
     fun writeResult(result: RaceResult) {
         println("실행 결과")
-        result.toMap().forEach {
-            it.value.forEach { record -> println("${record.name} : ${"-".repeat(record.position.value)}") }
-            println()
-        }
+        result.records
+            .groupBy { it.round }
+            .forEach {
+                it.value.forEach { record -> println("${record.name} : ${"-".repeat(record.position.value)}") }
+                println()
+            }
     }
 
     fun writeWinner(winner: Winner) {

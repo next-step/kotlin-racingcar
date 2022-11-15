@@ -4,7 +4,6 @@ import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.inspectors.forAll
-import io.kotest.matchers.shouldBe
 
 class CarRacingTest : StringSpec({
     "참여 인원이 존재하면 자동차 경주를 생성할 수 있다" {
@@ -57,14 +56,6 @@ class CarRacingTest : StringSpec({
             count = 2
         )
 
-        val result = carRacing.race()
-
-        val map = result.toMap()
-
-        map.size shouldBe 2
-        map[0]!![0].position shouldBe Position(1)
-        map[0]!![1].position shouldBe Position.ZERO
-        map[1]!![0].position shouldBe Position(2)
-        map[1]!![1].position shouldBe Position.ZERO
+        shouldNotThrowAny { carRacing.race() }
     }
 })
