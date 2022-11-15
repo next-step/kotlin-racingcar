@@ -1,12 +1,9 @@
 package racingcar.controller
 
-import racingcar.controller.policy.MovePolicy
-import racingcar.controller.policy.RandomMovePolicy
-
 class RacingCarGame(
     numberOfCar: Int,
     private val numberOfTrial: Int,
-    private val movePolicy: MovePolicy = RandomMovePolicy()
+    private val conditionProvider: ConditionProvider = RandomNumberProvider
 ) {
     private val cars: List<Car>
 
@@ -23,7 +20,10 @@ class RacingCarGame(
     }
 
     private fun move(): RacingCarGameSnapShot {
-        cars.forEach { it.move(movePolicy.decide()) }
+        cars.forEach {
+            val nextMovement = MovePolicy.decide(conditionProvider.nextCondition())
+            it.move(nextMovement)
+        }
 
         val positions = cars.map { it.currentPosition }.toList()
         return RacingCarGameSnapShot(positions)

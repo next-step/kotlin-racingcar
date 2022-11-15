@@ -5,7 +5,6 @@ import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
-import racingcar.controller.policy.MovePolicy
 
 class RacingCarGameTest : DescribeSpec({
     describe("create RacingCarGame fail") {
@@ -33,23 +32,28 @@ class RacingCarGameTest : DescribeSpec({
 
         describe("start game success") {
             it("if number of car : 1, number of trial : 3") {
-                val result = RacingCarGame(1, 3, FixedMovePolicy(5)).startGame()
+                val result = RacingCarGame(1, 3, FixedNumberProvider(9)).startGame()
 
                 assertSoftly(result) {
-                    it.getPositions(1) shouldBe listOf(5)
-                    it.getPositions(2) shouldBe listOf(10)
-                    it.getPositions(3) shouldBe listOf(15)
+                    it.getPositions(1) shouldBe listOf(1)
+                    it.getPositions(2) shouldBe listOf(2)
+                    it.getPositions(3) shouldBe listOf(3)
                 }
             }
+            it("if number of car : 1, number of trial : 1") {
+                val result = RacingCarGame(1, 1, FixedNumberProvider(1)).startGame()
+                result.getPositions(1) shouldBe listOf(0)
+            }
+
             it("if number of car : 2, number of trial : 5") {
-                val result = RacingCarGame(2, 5, FixedMovePolicy(5)).startGame()
+                val result = RacingCarGame(2, 5, FixedNumberProvider(9)).startGame()
 
                 assertSoftly(result) {
-                    it.getPositions(1) shouldBe listOf(5, 5)
-                    it.getPositions(2) shouldBe listOf(10, 10)
-                    it.getPositions(3) shouldBe listOf(15, 15)
-                    it.getPositions(4) shouldBe listOf(20, 20)
-                    it.getPositions(5) shouldBe listOf(25, 25)
+                    it.getPositions(1) shouldBe listOf(1, 1)
+                    it.getPositions(2) shouldBe listOf(2, 2)
+                    it.getPositions(3) shouldBe listOf(3, 3)
+                    it.getPositions(4) shouldBe listOf(4, 4)
+                    it.getPositions(5) shouldBe listOf(5, 5)
                 }
             }
         }
@@ -58,9 +62,9 @@ class RacingCarGameTest : DescribeSpec({
     companion object {
         val zeroOrNegative = listOf(0, -1, -10)
 
-        class FixedMovePolicy(private val fixedMovement: Int) : MovePolicy {
-            override fun decide(): Int {
-                return fixedMovement
+        class FixedNumberProvider(private val fixedNumber: Int) : ConditionProvider {
+            override fun nextCondition(): Int {
+                return fixedNumber
             }
         }
     }
