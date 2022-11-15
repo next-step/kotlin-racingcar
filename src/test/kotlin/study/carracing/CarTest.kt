@@ -33,4 +33,3 @@ class StandardStrategy(var number: Int) : MoveStrategy {
         return false
     }
 }
-
