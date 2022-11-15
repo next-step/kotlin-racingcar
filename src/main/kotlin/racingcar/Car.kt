@@ -1,23 +1,27 @@
 package racingcar
 
-import java.lang.IllegalArgumentException
-import kotlin.random.Random
-
-private const val START = 0
-private const val FORWARD = 4
-private const val LIMIT = 10
+import racingcar.RacingCarEngine.FORWARD
+import racingcar.RacingCarEngine.NON_FORWARD
 
 private const val MOVE_POS = 1
 
+private const val NAME_MAX_LENGTH = 5
+
 class Car(
-    val pos: Int = 0
+    val name: String,
+    val pos: Int = 0,
 ) {
 
-    fun race(rnd: Random): Car {
-        return when (rnd.nextInt(LIMIT)) {
-            in START until FORWARD -> Car(pos)
-            in FORWARD until LIMIT -> Car(pos + MOVE_POS)
-            else -> throw IllegalArgumentException("System error")
+    init {
+        require(name.length <= NAME_MAX_LENGTH) {
+            "자동차 이름은 5자를 초과할 수 없어요."
+        }
+    }
+
+    fun race(engine: RacingCarEngine): Car {
+        return when (engine) {
+            FORWARD -> Car(name, pos + MOVE_POS)
+            NON_FORWARD -> this
         }
     }
 }

@@ -1,9 +1,10 @@
 package racingcar
 
-import kotlin.random.Random
+import racingcar.strategy.CarMoveStrategy
+import java.util.Comparator.comparingInt
 
 class RaceStage(
-    val cars: List<Car>
+    val cars: List<Car>,
 ) {
 
     init {
@@ -11,12 +12,18 @@ class RaceStage(
     }
 
     companion object {
-        fun create(carCount: Int): RaceStage = RaceStage(
-            List(carCount) { Car() }
+        fun create(carNames: List<String>): RaceStage = RaceStage(
+            carNames.map { carName -> Car(carName) }
         )
     }
 
-    fun racing(): RaceStage = RaceStage(
-        cars.map { car -> car.race(Random.Default) }
+    fun racing(strategy: CarMoveStrategy): RaceStage = RaceStage(
+        cars.map { car -> car.race(RacingCarEngine.canMove(strategy.generate())) }
     )
+
+    fun getWinners(): List<Car> {
+        val winnerCar = cars.maxWithOrNull(comparingInt { it.pos }) ?: throw IllegalStateException("우승자가 없을 수 없어요.")
+
+        return cars.filter { it.pos == winnerCar.pos }
+    }
 }
