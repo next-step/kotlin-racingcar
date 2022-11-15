@@ -20,9 +20,9 @@ object RacingCarInputConsole {
             queryNumber(question)
         }
 
-    private fun validateNumber(string: String?) {
+    private fun validateNumber(string: String) {
         try {
-            require(!string.isNullOrEmpty()) { "올바른 숫자를 입력해주세요" }
+            require(string.isNotBlank()) { "올바른 숫자를 입력해주세요" }
             string.toInt()
         } catch (e: NumberFormatException) {
             throw IllegalArgumentException("올바른 숫자를 입력해주세요")
