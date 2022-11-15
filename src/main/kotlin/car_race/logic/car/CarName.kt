@@ -12,6 +12,6 @@ data class CarName(
     fun getName() = name
 
     companion object {
-        private const val NAME_MAX_LENGTH = 5
+        const val NAME_MAX_LENGTH = 5
     }
 }
