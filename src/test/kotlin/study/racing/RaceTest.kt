@@ -14,7 +14,7 @@ class RaceTest {
     fun `자동차 대수가 1보다 작은 값이 입력된 경우 에러가 발생한다`() {
         val exception = assertThrows<IllegalArgumentException> {
             InputView
-                .CarCount(FakeCountProvider("-1"))
+                .CarCount(FakeValueProvider("-1"))
                 .getCount()
         }
         assert(exception.message == "올바르지 않은 자동차 대수 값이 입력되었습니다.")
@@ -24,7 +24,7 @@ class RaceTest {
     fun `라운드 횟수가 1보다 작은 값이 입력된 경우 에러가 발생한다`() {
         val exception = assertThrows<IllegalArgumentException> {
             InputView
-                .RoundCount(FakeCountProvider("-1"))
+                .RoundCount(FakeValueProvider("-1"))
                 .getCount()
         }
         assert(exception.message == "올바르지 않은 시도 횟수 값이 입력되었습니다.")
@@ -34,7 +34,7 @@ class RaceTest {
     fun `자동차 대수가 숫자가 아닌 값이 입력된 경우 에러가 발생한다`() {
         val exception = assertThrows<IllegalArgumentException> {
             InputView
-                .CarCount(FakeCountProvider("&"))
+                .CarCount(FakeValueProvider("&"))
                 .getCount()
         }
         assert(exception.message == "올바르지 않은 자동차 대수 값이 입력되었습니다.")

@@ -1,31 +1,31 @@
 package study.racing.ui
 
-import study.racing.CountProvider
+import study.racing.ValueProvider
 
 sealed class InputView(
     val promptMessage: String,
     val errorMessage: String,
-    protected open val countProvider: CountProvider,
+    protected open val valueProvider: ValueProvider<String?>,
 ) {
     data class CarCount(
-        override val countProvider: CountProvider,
+        override val valueProvider: ValueProvider<String?>,
     ) : InputView(
         promptMessage = "자동차 대수는 몇 대인가요?",
         errorMessage = "올바르지 않은 자동차 대수 값이 입력되었습니다.",
-        countProvider = countProvider,
+        valueProvider = valueProvider,
     )
 
     data class RoundCount(
-        override val countProvider: CountProvider,
+        override val valueProvider: ValueProvider<String?>,
     ) : InputView(
         promptMessage = "시도할 횟수는 몇 회인가요?",
         errorMessage = "올바르지 않은 시도 횟수 값이 입력되었습니다.",
-        countProvider = countProvider,
+        valueProvider = valueProvider,
     )
 
     fun getCount(): Int {
         println(promptMessage)
-        return countProvider.getCount()
+        return valueProvider.getValue()
             ?.toIntOrNull()
             ?.takeIf { it > 0 }
             ?: throw IllegalArgumentException(errorMessage)

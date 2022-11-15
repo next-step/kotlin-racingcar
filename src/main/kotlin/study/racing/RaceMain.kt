@@ -6,11 +6,11 @@ import study.racing.ui.ResultView
 
 fun main() {
     val carCount = InputView
-        .CarCount(SystemCountProvider)
+        .CarCount(SystemValueProvider)
         .getCount()
 
     val roundCount = InputView
-        .RoundCount(SystemCountProvider)
+        .RoundCount(SystemValueProvider)
         .getCount()
 
     val race = Race(
