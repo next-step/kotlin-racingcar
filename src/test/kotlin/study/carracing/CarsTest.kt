@@ -13,7 +13,8 @@ class CarsTest {
         val car1 = Car()
         val car2 = Car()
         val car3 = Car()
-        assertThat(Cars(listOf(car1, car2, car3)).getSize()).isEqualTo(3)
+        val cars = Cars(listOf(car1, car2, car3))
+        assertThat(cars.size).isEqualTo(3)
     }
 
     @Test
