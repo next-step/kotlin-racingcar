@@ -1,5 +1,6 @@
 package study.racing
 
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -10,7 +11,12 @@ import study.racing.ui.InputView
 
 class RaceTest {
 
-    private val randomPowerSource = RandomPowerSource()
+    private lateinit var randomPowerSource: RandomPowerSource
+
+    @BeforeEach
+    fun init() {
+        randomPowerSource = RandomPowerSource()
+    }
 
     @Test
     fun `자동차 대수가 1보다 작은 값이 입력된 경우 에러가 발생한다`() {
