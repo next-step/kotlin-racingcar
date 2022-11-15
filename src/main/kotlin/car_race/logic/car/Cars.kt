@@ -7,7 +7,7 @@ class Cars(
 ) {
 
     fun nextRound(movingSystem: MovingSystem) {
-        cars.map { car ->
+        cars.forEach { car ->
             car.nextRound(movingSystem)
         }
     }

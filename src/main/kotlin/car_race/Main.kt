@@ -8,10 +8,8 @@ fun main() {
     val gameRound = InputView.inputGameRound()
     val cars = InputView.inputCarCount()
 
-    val movingSystem = RandomMovingSystem
     for (i in 1..gameRound.value) {
         ResultView.printEachRound(cars)
-        cars.nextRound(movingSystem)
-        println()
+        cars.nextRound(RandomMovingSystem)
     }
 }

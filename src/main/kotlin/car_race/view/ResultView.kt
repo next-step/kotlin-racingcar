@@ -9,6 +9,7 @@ object ResultView {
         cars.getPositions().forEach { carPosition ->
             printPosition(carPosition)
         }
+        println()
     }
 
     private fun printPosition(carPosition: CarPosition) {
