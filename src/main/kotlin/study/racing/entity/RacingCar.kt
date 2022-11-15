@@ -9,12 +9,12 @@ class RacingCar(
         private set
 
     fun moveForward() {
-        if (canMoveForward) {
+        if (canMoveForward(source.getPower())) {
             currentPosition += MOVE_INTERVAL
         }
     }
 
-    private val canMoveForward: Boolean get() = source.getPower() >= POWER_THRESHOLD
+    private fun canMoveForward(power: Int): Boolean = power >= POWER_THRESHOLD
 
     companion object {
         private const val START_POSITION = 0
