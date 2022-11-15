@@ -3,6 +3,7 @@ package racing.domain
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.RepeatedTest
 import org.junit.jupiter.api.Test
+import racing.view.GameOutputView
 
 internal class GameTest {
 
@@ -11,7 +12,7 @@ internal class GameTest {
         val nameList = listOf("pobi", "crong", "honux")
         val cars = CarsFactory.createCars(nameList)
         val game = Game(cars, 5)
-        game.play()
+        game.play { GameOutputView.printRaceStatus(it) }
     }
 
     @Test
@@ -19,8 +20,8 @@ internal class GameTest {
         val nameList = listOf("pobi", "crong", "honux")
         val cars = CarsFactory.createCars(nameList)
         val game = Game(cars, 0)
-        game.play()
-        assertThat(game.getWinner(cars).size).isEqualTo(nameList.size)
+        val gameResult = game.play { GameOutputView.printRaceStatus(it) }
+        assertThat(gameResult.getWinner().size).isEqualTo(nameList.size)
     }
 
     @RepeatedTest(5)
@@ -28,7 +29,7 @@ internal class GameTest {
         val nameList = listOf("pobi", "crong", "honux")
         val cars = CarsFactory.createCars(nameList)
         val game = Game(cars, 5)
-        game.play()
-        assertThat(game.getWinner(cars).size).isGreaterThanOrEqualTo(1)
+        val gameResult = game.play { GameOutputView.printRaceStatus(it) }
+        assertThat(gameResult.getWinner().size).isGreaterThanOrEqualTo(1)
     }
 }
