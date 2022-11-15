@@ -1,6 +1,6 @@
 package calculator
 
-class Calculator(private val operator: Operator) {
+class StringCalculator(private val operator: Operator) {
     fun calculate(s: String): Int {
         val (opd, opt) = parse(s)
 
