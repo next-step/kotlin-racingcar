@@ -1,5 +1,8 @@
 package study
 
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.contract
+
 enum class Operator(
     val symbol: Char,
     val calculate: (Int, Int) -> Int
@@ -35,7 +38,7 @@ class StringCalculator(
     private val separator: String
 ) {
     fun calculate(input: String?): Int {
-        require(!input.isNullOrBlank()) { "input이 null이거나 공백입니다." }
+        validate(input)
         val (numbers, symbols) = input
             .split(separator)
             .separateByIndex { it.isEven }
@@ -44,6 +47,14 @@ class StringCalculator(
         val operators = symbols.parseToOperators()
 
         return calculate(operators, operands)
+    }
+
+    @OptIn(ExperimentalContracts::class)
+    private fun validate(input: String?) {
+        contract {
+            returns() implies (input != null)
+        }
+        if (input.isNullOrBlank()) throw IllegalArgumentException("input이 null이거나 공백입니다.")
     }
 
     private fun calculate(operators: List<Operator>, operands: List<Int>) = operands
