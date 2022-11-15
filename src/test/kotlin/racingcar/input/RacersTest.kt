@@ -1,4 +1,4 @@
-package racingcar.input.value
+package racingcar.input
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.DisplayName

@@ -1,4 +1,4 @@
-package racingcar.input.value
+package racingcar.input
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
