@@ -11,16 +11,16 @@ class Race(
 ) {
 
     fun proceed(raceInputCommand: RaceInputCommand) {
-        val endNumber = raceInputCommand.attemptCount
+        val attemptCount = raceInputCommand.attemptCount
         val participatingCars = carFactory.create(raceInputCommand.carCount)
 
         outputPort.output(RESULT_COMMENT)
-        race(participatingCars, endNumber)
+        race(participatingCars, attemptCount)
     }
 
-    private fun race(participatingCars: ParticipatingCars, endNumber: Int) {
+    private fun race(participatingCars: ParticipatingCars, attemptCount: Int) {
         participatingCars.initRace()
-        participatingCars.startRace(endNumber)
+        participatingCars.startRace(attemptCount)
     }
 
     private fun ParticipatingCars.initRace() {
@@ -33,8 +33,8 @@ class Race(
         Thread.sleep(PER_RACE_SECONDS)
     }
 
-    private fun ParticipatingCars.startRace(endNumber: Int) {
-        IntRange(start = START_ROUND_NUMBER, endInclusive = endNumber).forEach { _ ->
+    private fun ParticipatingCars.startRace(attemptCount: Int) {
+        IntRange(start = START_ROUND_NUMBER, endInclusive = attemptCount).forEach { _ ->
             this.nextRound()
         }
     }

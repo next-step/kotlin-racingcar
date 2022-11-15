@@ -1,22 +1,9 @@
 package racingcar.domain.car
 
-class Count(
-    private var count: Int = 0
+@JvmInline
+value class Count(
+    private val count: Int = 0
 ) {
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Count
-
-        if (count != other.count) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        return count
-    }
 
     fun toInt(): Int = count
     fun add() = Count(count + 1)
