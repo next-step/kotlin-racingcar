@@ -1,17 +1,17 @@
 package racingcar.view
 
+import racingcar.domain.car.Car
 import racingcar.domain.car.Cars
 
 class ResultView {
     companion object {
         fun printResult(cars: Cars) {
-            cars.getPositions().forEach { printCar(it.value) }
+            cars.cars.forEach { printCar(it) }
             println()
         }
 
-        private fun printCar(position: Int) {
-            repeat(position) { print("-") }
-            println()
+        private fun printCar(car: Car) {
+            println("${car.name.value} : ${"-".repeat(car.position.value)}")
         }
 
         fun printResultTitle() {
