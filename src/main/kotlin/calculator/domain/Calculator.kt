@@ -1,4 +1,4 @@
-package domain
+package calculator.domain
 
 class Calculator {
     companion object {

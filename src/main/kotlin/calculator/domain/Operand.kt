@@ -1,4 +1,4 @@
-package domain
+package calculator.domain
 
 import java.lang.IllegalArgumentException
 import java.lang.NumberFormatException
