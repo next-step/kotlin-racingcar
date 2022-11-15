@@ -9,7 +9,6 @@ internal class WinnerTest {
     @ValueSource(ints = [0, 1, 5, 10, Int.MIN_VALUE])
     fun `getWinner when winner is one`(maxMoveStep: Int) {
         val carNames = "pobi,crong,honux".split(",")
-        val racing = WinnerRacing()
         val winnerIndex = 0
 
         // when
@@ -19,7 +18,7 @@ internal class WinnerTest {
             car
         }
         cars[winnerIndex].moveStep = maxMoveStep
-        val resultWinnerList = racing.getWinner(cars, maxMoveStep)
+        val resultWinnerList = Winner.getWinner(cars, maxMoveStep)
 
         resultWinnerList.count() shouldBe 1
         resultWinnerList[winnerIndex] shouldBe cars[winnerIndex].carName
@@ -29,7 +28,6 @@ internal class WinnerTest {
     @ValueSource(ints = [0, 1, 5, 10])
     fun `getWinner when winner more than one`(maxMoveStep: Int) {
         val carNames = "pobi,crong,honux".split(",")
-        val racing = WinnerRacing()
 
         // when
         val cars = carNames.map { carName ->
@@ -37,7 +35,7 @@ internal class WinnerTest {
             car.moveStep = maxMoveStep
             car
         }
-        val resultWinnerList = racing.getWinner(cars, maxMoveStep)
+        val resultWinnerList = Winner.getWinner(cars, maxMoveStep)
 
         resultWinnerList.forEachIndexed { index, winner ->
             winner shouldBe cars[index].carName
