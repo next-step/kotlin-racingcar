@@ -10,7 +10,7 @@ import racing.model.Driver
 import java.util.stream.Stream
 
 
-internal class RacingCarGarageTest {
+internal class RacingGarageTest {
 
     private lateinit var racingCarsFactory: RacingCarsFactory
 
@@ -27,9 +27,9 @@ internal class RacingCarGarageTest {
     @MethodSource("provideDrivers")
     fun `필요한 차량 수 만큼 자동차를 생성한다`(drivers: List<String>) {
         RacingCarGarage(
-            drivers = drivers.map { Driver(it) },
             racingCarsFactory = racingCarsFactory,
         )
+            .apply { setCarsWithDrivers(drivers.map { Driver(it) }) }
             .cars
             .count()
             .let(::assertThat)
@@ -40,9 +40,10 @@ internal class RacingCarGarageTest {
     @MethodSource("provideDrivers")
     fun `1 lap 돈 차량을 차고에 주차(저장)한다`(drivers: List<String>) {
         val racingCarGarage = RacingCarGarage(
-            drivers = drivers.map { Driver(it) },
             racingCarsFactory = racingCarsFactory,
-        )
+        ).apply {
+            setCarsWithDrivers(drivers.map { Driver(it) })
+        }
         val testCarResult = racingCarGarage.cars
             .mapIndexed { index, car ->
                 if (index % 2 == 0) car.copy(mileage = car.mileage + 1) else car.copy()
