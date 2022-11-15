@@ -5,8 +5,8 @@ private const val DEFAULT_SPEED = 1
 
 class Car(val position: Position = Position()) {
 
-    fun move(score: Score) {
-        if (score.isBiggerThanOrEquals(MOVE_THRESHOLD)) {
+    fun move(factor: MoveFactor) {
+        if (factor.isBiggerThanOrEquals(MOVE_THRESHOLD)) {
             position.increase(DEFAULT_SPEED)
         }
     }
