@@ -1,12 +1,9 @@
-import racingcar.domain.Cars
-import racingcar.domain.GameInputValue
-import racingcar.domain.InputNumber
-import racingcar.domain.RandomMovingStrategy
+import racingcar.domain.*
 import racingcar.view.InputView
 
 fun main() {
-    val inputNumberOfCars = InputNumber(InputView().getNumberOfCars()).number
+    val inputNameOfCars = InputName(InputView().getNameOfCars()).name
     val inputNumberOfTGames = InputNumber(InputView().getNumberOfGames()).number
-    val gameInputValue = GameInputValue(inputNumberOfCars, inputNumberOfTGames)
+    val gameInputValue = GameInputValue(inputNameOfCars, inputNumberOfTGames)
     Cars().startRace(gameInputValue, RandomMovingStrategy())
 }

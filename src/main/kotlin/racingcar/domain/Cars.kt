@@ -9,26 +9,32 @@ class Cars {
 
     fun startRace(gameInputValue: GameInputValue, movingConditionStrategy: MovingConditionStrategy) {
         val outputView = OutputView()
-        make(gameInputValue.inputNumberOfCars, movingConditionStrategy)
-        iterateNumberOfGames(gameInputValue, outputView)
+        var splitNameOfCarsSize = splitInputValue(gameInputValue.inputNameOfCars).size
+        make(splitNameOfCarsSize, movingConditionStrategy)
+        iterateNumberOfGames(splitNameOfCarsSize, outputView)
     }
 
-    private fun make(numberOfCar: Int, movingConditionStrategy: MovingConditionStrategy) {
-        for (i in 0 until numberOfCar) {
+    private fun make(numberOfCars: Int, movingConditionStrategy: MovingConditionStrategy) {
+
+        for (i in 0 until numberOfCars) {
             cars.add(Car(movingConditionStrategy))
         }
     }
 
-    private fun iterateNumberOfGames(gameInputValue: GameInputValue, outputView: OutputView) {
-        for (numberOfGames in 0 until gameInputValue.inputNumberOfGames) {
-            iterateNumberOfCars(gameInputValue, outputView)
+    private fun splitInputValue(inputValue: String): List<String> {
+        return inputValue.split(INPUT_VALUE_DELIMITER)
+    }
+
+    private fun iterateNumberOfGames(nameOfCarsSize: Int, outputView: OutputView) {
+        for (numberOfGames in 0 until nameOfCarsSize) {
+            iterateNumberOfCars(nameOfCarsSize, outputView)
         }
     }
 
-    private fun iterateNumberOfCars(gameInputValue: GameInputValue, outputView: OutputView) {
-        for (numberOfCars in 0 until gameInputValue.inputNumberOfCars) {
+    private fun iterateNumberOfCars(nameOfCarsSize: Int, outputView: OutputView) {
+        for (numberOfCars in 0 until nameOfCarsSize) {
             moveCar(numberOfCars)
-            showCarPosition(numberOfCars, gameInputValue, outputView)
+            showCarPosition(numberOfCars, nameOfCarsSize, outputView)
         }
     }
 
@@ -36,11 +42,11 @@ class Cars {
         cars[numberOfCars].move()
     }
 
-    private fun showCarPosition(numberOfCars: Int, gameInputValue: GameInputValue, outputView: OutputView) {
-        cars[numberOfCars].showPosition(isLastCarCycle(numberOfCars, gameInputValue), outputView)
+    private fun showCarPosition(numberOfCars: Int, nameOfCarsSize: Int, outputView: OutputView) {
+        cars[numberOfCars].showPosition(isLastCarCycle(numberOfCars, nameOfCarsSize), outputView)
     }
 
-    private fun isLastCarCycle(numberOfCar: Int, gameInputValue: GameInputValue): Boolean {
-        return numberOfCar == gameInputValue.inputNumberOfCars - 1
+    private fun isLastCarCycle(numberOfCar: Int, nameOfCarsSize: Int): Boolean {
+        return numberOfCar == nameOfCarsSize - 1
     }
 }
