@@ -1,5 +1,5 @@
 package carracing.domain
 
-interface MoveStrategy {
+fun interface MoveStrategy {
     fun isMovable(): Boolean
 }

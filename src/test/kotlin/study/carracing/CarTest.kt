@@ -1,7 +1,7 @@
 package study.carracing
 
 import carracing.domain.Car
-import carracing.domain.StandardStrategy
+import carracing.domain.MoveStrategy
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -24,3 +24,13 @@ class CarTest {
         assertThat(car.position).isEqualTo(1)
     }
 }
+
+class StandardStrategy(var number: Int) : MoveStrategy {
+    override fun isMovable(): Boolean {
+        if (number >= 4) {
+            return true
+        }
+        return false
+    }
+}
+
