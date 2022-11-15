@@ -1,4 +1,4 @@
-package racingcar.io
+package racingcar.view
 
 object ResultView {
     private const val MARK = "-"

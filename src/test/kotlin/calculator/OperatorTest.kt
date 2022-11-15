@@ -5,18 +5,16 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.types.shouldBeInstanceOf
 
 internal class OperatorTest : StringSpec({
     "사칙 연산 기호의 연산자" {
         forAll(
-            row("+"),
-            row("-"),
-            row("*"),
-            row("/")
-        ) { symbol ->
-            val operator = Operator.of(symbol)
-            operator.shouldBeInstanceOf<Operator>()
+            row("+", Operator.PLUS),
+            row("-", Operator.MINUS),
+            row("*", Operator.MULTI),
+            row("/", Operator.DIV)
+        ) { symbol, operator ->
+            Operator.of(symbol) shouldBe operator
         }
     }
 
