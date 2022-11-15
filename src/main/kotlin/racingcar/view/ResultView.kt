@@ -1,7 +1,8 @@
 package racingcar.view
 
-import racingcar.Car
-import racingcar.Cars
+import racingcar.domain.Car
+import racingcar.domain.Cars
+import racingcar.domain.Winner
 
 object ResultView {
     private const val SPACE = "-"
@@ -11,19 +12,26 @@ object ResultView {
         println("\n실행 결과")
     }
 
-    fun printCarDistance(cars: Cars) {
-        cars.getCars().forEach {
+    fun printResult(recordCars: List<Cars>) {
+        recordCars.forEach {
+            printCarDistance(it.getCars())
+        }
+    }
+
+    private fun printCarDistance(cars: List<Car>) {
+        cars.forEach {
             println("${it.getName()}: ${SPACE.repeat(it.getDistance())}")
         }
         println()
     }
 
-    fun printWinners(cars: List<Car>) {
-        if (cars.isEmpty()) {
+    fun printWinners(winners: Winner) {
+        if (winners.getWinners().isEmpty()) {
             println("우승자가 없습니다.")
+            return
         }
 
-        val names = cars.joinToString(SEPARATOR) { it.getName() }
+        val names = winners.getWinners().joinToString(SEPARATOR) { it.getName() }
         print("$names 가 최종 우승했습니다.")
     }
 }
