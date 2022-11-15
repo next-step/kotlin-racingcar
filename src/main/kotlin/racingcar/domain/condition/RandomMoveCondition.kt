@@ -1,4 +1,4 @@
-package racingcar.condition
+package racingcar.domain.condition
 
 import racingcar.util.RandomNumberGenerator
 

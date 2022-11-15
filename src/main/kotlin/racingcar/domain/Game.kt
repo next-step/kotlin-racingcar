@@ -1,9 +1,9 @@
 package racingcar.domain
 
-import racingcar.condition.NotMoveCondition
-import racingcar.condition.RandomMoveCondition
+import racingcar.domain.condition.NotMoveCondition
+import racingcar.domain.condition.RandomMoveCondition
 import racingcar.dto.GameResult
-import racingcar.strategy.SatisfySingleConditionMoveStrategy
+import racingcar.domain.strategy.SatisfySingleConditionMoveStrategy
 
 class Game(private val carNames: List<String>, numberOfTry: Int) {
     private val rounds = (0 until numberOfTry)

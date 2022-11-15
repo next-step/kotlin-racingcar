@@ -1,6 +1,6 @@
 package racingcar.domain
 
-import racingcar.strategy.MoveStrategy
+import racingcar.domain.strategy.MoveStrategy
 import racingcar.util.Validator
 
 class Car(

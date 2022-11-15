@@ -1,6 +1,6 @@
-package racingcar.strategy
+package racingcar.domain.strategy
 
-import racingcar.condition.MoveCondition
+import racingcar.domain.condition.MoveCondition
 
 class SatisfyAllConditionStrategy(
     private val moveConditions: List<MoveCondition>

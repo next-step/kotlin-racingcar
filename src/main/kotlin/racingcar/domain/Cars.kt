@@ -2,7 +2,7 @@ package racingcar.domain
 
 import racingcar.dto.CarRecord
 import racingcar.dto.Record
-import racingcar.strategy.MoveStrategy
+import racingcar.domain.strategy.MoveStrategy
 
 class Cars(
     carNames: List<String>,

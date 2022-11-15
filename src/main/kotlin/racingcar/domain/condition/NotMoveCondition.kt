@@ -1,4 +1,4 @@
-package racingcar.condition
+package racingcar.domain.condition
 
 class NotMoveCondition : MoveCondition {
     override fun isAvailable(): Boolean {

@@ -1,7 +1,7 @@
-package racingcar.strategy
+package racingcar.domain.strategy
 
-import racingcar.condition.MoveCondition
-import racingcar.condition.RandomMoveCondition
+import racingcar.domain.condition.MoveCondition
+import racingcar.domain.condition.RandomMoveCondition
 
 class SatisfyRandomMoveStrategy(
     private val moveCondition: MoveCondition = RandomMoveCondition()

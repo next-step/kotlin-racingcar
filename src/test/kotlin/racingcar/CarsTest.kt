@@ -2,13 +2,13 @@ package racingcar
 
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.core.spec.style.BehaviorSpec
-import racingcar.condition.AlwaysMoveCondition
-import racingcar.condition.NotMoveCondition
-import racingcar.condition.RandomMoveCondition
+import racingcar.domain.condition.AlwaysMoveCondition
+import racingcar.domain.condition.NotMoveCondition
+import racingcar.domain.condition.RandomMoveCondition
 import racingcar.domain.Cars
-import racingcar.strategy.SatisfyAllConditionStrategy
-import racingcar.strategy.SatisfyRandomMoveStrategy
-import racingcar.strategy.SatisfySingleConditionMoveStrategy
+import racingcar.domain.strategy.SatisfyAllConditionStrategy
+import racingcar.domain.strategy.SatisfyRandomMoveStrategy
+import racingcar.domain.strategy.SatisfySingleConditionMoveStrategy
 
 internal class CarsTest : BehaviorSpec({
     Given("하나라도 만족하면 움직이는 차들이여도, ") {
