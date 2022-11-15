@@ -1,29 +1,28 @@
 package racingcar
 
 import io.kotest.core.spec.style.BehaviorSpec
-import io.kotest.matchers.collections.shouldBeIn
+import io.kotest.matchers.shouldBe
 import racingcar.domain.Car
 import racingcar.domain.RacingCarGame
-import racingcar.model.GameInfo
 
 class RacingCarGameTest : BehaviorSpec({
 
-    val gameInfo = GameInfo(carNumber = 3, trialNumber = 5)
-    val cars = List(gameInfo.carNumber) { Car() }
-    val initialDistanceOfCars = cars.map { car ->
-        car.distance
-    }
+    val racingCarGame = RacingCarGame()
+    val car1 = Car(name = "pobi", distance = 3)
+    val car2 = Car(name = "crong", distance = 5)
+    val car3 = Car(name = "honux", distance = 5)
+    val cars = listOf(car1, car2, car3)
 
-    Given("3대의 자동차가") {
-        When("한 라운드를 진행하면") {
-            val resultOfRound = RacingCarGame().proceedRound(cars)
-            Then("3대의 자동차 각각은 주행 거리가 그대로이거나 1 증가한다.") {
-                val resultDistanceOfCars = resultOfRound.map { car ->
+    Given("자동차 경주 게임이 끝나") {
+        When("최댓값을 구해 우승자를 정하면") {
+            val result = racingCarGame.pickWinner(
+                max = cars.maxOf { car ->
                     car.distance
-                }
-                resultDistanceOfCars.forEachIndexed { index, distance ->
-                    distance shouldBeIn listOf(initialDistanceOfCars[index], initialDistanceOfCars[index] + 1)
-                }
+                },
+                cars = cars
+            )
+            Then("최댓값과 같은 거리 값을 가진 자동차가 우승한다.") {
+                result shouldBe listOf(car2, car3)
             }
         }
     }

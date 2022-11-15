@@ -31,7 +31,7 @@ class RacingCarGame {
         }
     }
 
-    fun proceedRound(cars: List<Car>): List<Car> {
+    private fun proceedRound(cars: List<Car>): List<Car> {
         cars.forEach {
             it.takeAction()
         }
@@ -49,7 +49,7 @@ class RacingCarGame {
         )
     }
 
-    private fun pickWinner(max: Int, cars: List<Car>): List<Car> = cars.filter { car ->
+    fun pickWinner(max: Int, cars: List<Car>): List<Car> = cars.filter { car ->
         car.distance == max
     }
 }
