@@ -38,17 +38,18 @@ internal class RacingGarageTest {
 
     @ParameterizedTest
     @MethodSource("provideDrivers")
-    fun `1 lap 돈 차량을 차고에 주차(저장)한다`(drivers: List<String>) {
+    fun `경주차 차고에 1씩 이동된 자동차를 주차하면 이동된 자동차 정보가 저장된다`(drivers: List<String>) {
+        // Given
         val racingCarGarage = RacingCarGarage(
             racingCarsFactory = racingCarsFactory,
         ).apply {
             setCarsWithDrivers(drivers.map { Driver(it) })
         }
         val testCarResult = racingCarGarage.cars
-            .mapIndexed { index, car ->
-                if (index % 2 == 0) car.copy(mileage = car.mileage + 1) else car.copy()
-            }
+            .map { car -> car.copy(mileage = car.mileage + 1) }
+        // When
         racingCarGarage.parkCars(testCarResult)
+        // Then
         assertThat(racingCarGarage.cars).isEqualTo(testCarResult)
     }
 
