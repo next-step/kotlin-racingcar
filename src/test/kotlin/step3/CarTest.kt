@@ -11,7 +11,7 @@ class CarTest : FunSpec({
                 val sut = Car(id = 1, name = "relkimm")
                 val 충분한_연료 = Oil(amount = 4)
                 // when
-                sut.move(oil = 충분한_연료)
+                sut.move(movePolicy = OilPolicy(oil = 충분한_연료))
                 //
                 sut.position shouldBe Position(value = 1)
             }
@@ -23,7 +23,7 @@ class CarTest : FunSpec({
                 val sut = Car(id = 1, name = "relkimm")
                 val 부족한_연료 = Oil(amount = 3)
                 // when
-                sut.move(oil = 부족한_연료)
+                sut.move(movePolicy = OilPolicy(oil = 부족한_연료))
                 // then
                 sut.position shouldBe Position(value = 0)
             }

@@ -11,11 +11,12 @@ class WinnerCalculatorTest : FunSpec({
             val seulgeunCar = Car(id = 2, name = "seulgeun")
             val duckCar = Car(id = 3, name = "duck")
 
-            relkimmCar.move(oil = Oil(4))
-            relkimmCar.move(oil = Oil(4))
-            relkimmCar.move(oil = Oil(4))
-            seulgeunCar.move(oil = Oil(amount = 4))
-            seulgeunCar.move(oil = Oil(amount = 4))
+            val oilPolicy = OilPolicy(oil = Oil(amount = 4))
+            relkimmCar.move(oilPolicy)
+            relkimmCar.move(oilPolicy)
+            relkimmCar.move(oilPolicy)
+            seulgeunCar.move(oilPolicy)
+            seulgeunCar.move(oilPolicy)
             // when
             val actual = WinnerCalculator.execute(cars = listOf(relkimmCar, seulgeunCar, duckCar))
             // then
@@ -29,12 +30,13 @@ class WinnerCalculatorTest : FunSpec({
                 val seulgeunCar = Car(id = 2, name = "seulgeun")
                 val duckCar = Car(id = 3, name = "duck")
 
-                relkimmCar.move(oil = Oil(4))
-                relkimmCar.move(oil = Oil(4))
-                relkimmCar.move(oil = Oil(4))
-                seulgeunCar.move(oil = Oil(amount = 4))
-                seulgeunCar.move(oil = Oil(amount = 4))
-                seulgeunCar.move(oil = Oil(amount = 4))
+                val oilPolicy = OilPolicy(oil = Oil(amount = 4))
+                relkimmCar.move(oilPolicy)
+                relkimmCar.move(oilPolicy)
+                relkimmCar.move(oilPolicy)
+                seulgeunCar.move(oilPolicy)
+                seulgeunCar.move(oilPolicy)
+                seulgeunCar.move(oilPolicy)
                 // when
                 val actual = WinnerCalculator.execute(cars = listOf(relkimmCar, seulgeunCar, duckCar))
                 // then

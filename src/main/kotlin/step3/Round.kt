@@ -9,7 +9,7 @@ class Round(val id: Int) {
     private fun moveCars(cars: List<Car>): List<RoundResult.CarPosition> {
         return cars.map { car ->
             val oil = OilStation.generateOilRandomly()
-            car.move(oil = oil)
+            car.move(movePolicy = OilPolicy(oil = oil))
             RoundResult.CarPosition.from(car = car)
         }
     }
