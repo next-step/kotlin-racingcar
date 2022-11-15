@@ -2,6 +2,6 @@ package racing.domain
 
 import racing.model.Car
 
-interface RacingCar {
+interface Racing {
     fun driveCar(car: Car): Car
 }
