@@ -2,15 +2,14 @@ package racingcar
 
 fun main() {
     try {
-        val carRacing = CarRacing(createCarRacers())
+        val carRacing = CarRacing(carRacers = createCarRacers(), count = InputView.readTryCount())
 
-        carRacing.start(InputView.readTryCount())
-
-        OutputView.writeResult(carRacing.result())
+        OutputView.writeResult(carRacing.race())
+        OutputView.writeWinner(Winner(carRacing))
     } catch (e: RuntimeException) {
         OutputView.writeError(e)
     }
 }
 
-private fun createCarRacers(): List<CarRacer> =
-    IntRange(1, InputView.readCarCount()).map { CarRacer(StandardCar(), RandomCarControl()) }
+private fun createCarRacers(): List<CarRacer> = InputView.readCarNames()
+    .map { CarRacer(StandardCar(name = Name(it)), RandomCarControl()) }
