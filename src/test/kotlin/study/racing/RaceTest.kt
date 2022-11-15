@@ -2,6 +2,8 @@ package study.racing
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 import study.racing.entity.RacingCar
 import study.racing.entity.Round
 import study.racing.ui.InputView
@@ -58,23 +60,21 @@ class RaceTest {
         assert(exception.message == "이 라운드는 이미 종료되었습니다.")
     }
 
-    @Test
-    fun `Power값이 4 이상일 경우 전진한다`() {
-        for (i in 4..9) {
-            val car = RacingCar(FakePowerSource(i))
-            val prevPosition = car.currentPosition
-            car.moveForward()
-            assert(car.currentPosition == prevPosition + 1)
-        }
+    @ParameterizedTest
+    @ValueSource(ints = [4, 5, 6, 7, 8, 9])
+    fun `Power값이 4 이상일 경우 전진한다`(power: Int) {
+        val car = RacingCar(FakePowerSource(power))
+        val prevPosition = car.currentPosition
+        car.moveForward()
+        assert(car.currentPosition == prevPosition + 1)
     }
 
-    @Test
-    fun `Power값이 4 미만일 경우 정지한다`() {
-        for (i in 0 until 4) {
-            val car = RacingCar(FakePowerSource(i))
-            val prevPosition = car.currentPosition
-            car.moveForward()
-            assert(car.currentPosition == prevPosition)
-        }
+    @ParameterizedTest
+    @ValueSource(ints = [1, 2, 3])
+    fun `Power값이 4 미만일 경우 정지한다`(power: Int) {
+        val car = RacingCar(FakePowerSource(power))
+        val prevPosition = car.currentPosition
+        car.moveForward()
+        assert(car.currentPosition == prevPosition)
     }
 }
