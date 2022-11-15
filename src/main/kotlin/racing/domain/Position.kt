@@ -1,15 +1,17 @@
 package racing.domain
 
-data class Position(val value: Int = MIN_POSITION_VALUE) {
+data class Position(val value: Int = MIN_POSITION_VALUE) : Comparable<Position> {
 
     init {
-        if (value < MIN_POSITION_VALUE) {
-            throw IllegalArgumentException()
-        }
+        require(value >= MIN_POSITION_VALUE)
     }
 
     fun move(): Position {
         return Position(value + DEFAULT_MOVE_VALUE)
+    }
+
+    override fun compareTo(other: Position): Int {
+        return this.value - other.value
     }
 
     companion object {

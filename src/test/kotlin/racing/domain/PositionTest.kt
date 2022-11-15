@@ -17,5 +17,12 @@ class PositionTest : StringSpec() {
 
             position.move() shouldBe Position(1)
         }
+
+        "위치는 compareTo 를 사용할 수 있다" {
+
+            Position(1).compareTo(Position(2)) shouldBe -1
+            Position(1).compareTo(Position(1)) shouldBe 0
+            Position(2).compareTo(Position(1)) shouldBe 1
+        }
     }
 }

@@ -2,17 +2,20 @@ package racing.domain
 
 class RacingGame(
     private var cars: Cars,
-    private val rounds: Rounds
+    private val rounds: Rounds,
 ) {
-    constructor(carCount: Int, tryCount: Int) : this(Cars(carCount), Rounds(tryCount))
+    constructor(carNames: String, tryCount: Int, moveStrategy: MoveStrategy = RandomStrategy.instance)
+            : this(Cars(carNames, moveStrategy), Rounds(tryCount))
 
     fun play(): Result {
-        val result = Result()
-        while (rounds.hasNext()) {
-            rounds.play()
-            result.add(cars.move())
+        val result: List<CarInfos> = buildList {
+            while (rounds.hasNext()) {
+                rounds.play()
+                cars.move()
+                add(cars.carInfos)
+            }
         }
 
-        return result
+        return Result(result)
     }
 }

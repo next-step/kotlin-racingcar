@@ -1,14 +1,16 @@
 package racing.domain
 
-data class Car(var position: Position = Position(), private val moveStrategy: MoveStrategy = RandomStrategy.instance) {
+data class Car(
+    val name: Name,
+    var position: Position = Position(),
+    private val moveStrategy: MoveStrategy = RandomStrategy.instance
+) {
+    constructor(name: String, moveStrategy: MoveStrategy) : this(Name(name), moveStrategy = moveStrategy)
+    constructor(position: Int, moveStrategy: MoveStrategy) : this(Name("racer"), Position(position), moveStrategy)
 
-    constructor(position: Int, moveStrategy: MoveStrategy) : this(Position(position), moveStrategy)
-
-    fun move(): Position {
+    fun move() {
         if (moveStrategy.canMove()) {
             position = position.move()
         }
-
-        return position
     }
 }

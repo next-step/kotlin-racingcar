@@ -2,9 +2,17 @@ package racing.domain
 
 class Cars(private val cars: List<Car>) {
 
-    constructor(carCount: Int) : this((0 until carCount).map { Car() })
+    val carInfos: CarInfos
+        get() = CarInfos(cars.map { CarInfo(it.name, it.position) })
 
-    fun move(): Positions {
-        return Positions(cars.map { car -> car.move() })
+    constructor(carNames: String, moveStrategy: MoveStrategy = RandomStrategy.instance)
+            : this(carNames.split(CAR_NAMES_SPLIT_DELIMITER).map { name -> Car(name, moveStrategy) })
+
+    fun move() {
+        cars.forEach { it.move() }
+    }
+
+    companion object {
+        private const val CAR_NAMES_SPLIT_DELIMITER = ","
     }
 }

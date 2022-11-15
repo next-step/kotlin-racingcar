@@ -11,9 +11,9 @@ class CarTest : StringSpec() {
             }
             val car = Car(0, goStrategy)
 
-            val position = car.move()
+            car.move()
 
-            position shouldBe Position(1)
+            car.position shouldBe Position(1)
         }
 
         "자동차는 멈춰있을 수도 있다" {
@@ -22,9 +22,9 @@ class CarTest : StringSpec() {
             }
             val car = Car(0, stopStrategy)
 
-            val position = car.move()
+            car.move()
 
-            position shouldBe Position()
+            car.position shouldBe Position()
         }
     }
 }

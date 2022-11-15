@@ -5,10 +5,10 @@ import racing.io.Input
 import racing.io.Output
 
 fun main() {
-    val carCount = Input.readCarCount()
+    val carNames = Input.readCarNames()
     val tryCount = Input.readTryCount()
 
-    val racingGame = RacingGame(carCount, tryCount)
+    val racingGame = RacingGame(carNames, tryCount)
     val result = racingGame.play()
 
     Output.resultMessage(result)
