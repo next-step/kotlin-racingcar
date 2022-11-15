@@ -1,10 +1,13 @@
 package racing.domain
 
 class Winners(lastRoundResult: CarInfos) {
-    val winners: List<CarInfo>
+    val winners: List<CarInfo> = getWinner(lastRoundResult)
 
-    init {
-        val maxPosition = lastRoundResult.findMaxPosition()
-        winners = lastRoundResult.carInfoList.filter { maxPosition == it.position }
+    companion object {
+        private fun getWinner(lastRoundResult: CarInfos): List<CarInfo> {
+            val maxPosition = lastRoundResult.findMaxPosition()
+
+            return lastRoundResult.carInfoList.filter { maxPosition == it.position }
+        }
     }
 }
