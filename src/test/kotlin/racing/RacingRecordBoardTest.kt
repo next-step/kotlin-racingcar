@@ -30,7 +30,7 @@ internal class RacingRecordBoardTest {
 
     @ParameterizedTest
     @MethodSource("provideDriversWithWinner")
-    fun `자동차 경주 우승자 확인`(cars: List<Pair<String, Int>>, winnerDriver: String) {
+    fun `우승자가 한명 일 때 자동차 경주 후 우승자 확인하였을 때 우승자가 한명이여야 한다`(cars: List<Pair<String, Int>>, winnerDriver: String) {
         val result = cars.map { (driver, mileage) ->
             Car(Driver(driver), mileage)
         }
