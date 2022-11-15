@@ -1,21 +1,9 @@
 package carracing.domain
 
-import carracing.ui.OutputView
-
-class Racing(var cars: Cars, private val attemptCount: Int) {
-
-    fun race() {
-        for (round in 1..attemptCount) {
-            movingCar()
-        }
-    }
-
-    private fun movingCar() {
-        cars._cars.forEach {
+class Racing(var cars: Cars) {
+    fun race(): Cars {
+        return Cars(cars.map {
             it.move()
-            OutputView.gameRoundPrint(it.position)
-        }
-
-        OutputView.lineChange()
+        })
     }
 }
