@@ -1,9 +1,7 @@
 package racingcarWinner.core
 
-import java.lang.IllegalArgumentException
-
 class WinnerRacing {
-    var maxMoveStep: Int = 0
+    var maxMoveStep: Int = DEFAULT_MAX_MOVE_STEP
         private set
 
     fun setCars(carNames: List<String>): List<Car> =
@@ -12,8 +10,8 @@ class WinnerRacing {
         }
 
     fun startRacing(cars: List<Car>, tryNumber: Int): Map<String, Int> {
-        if (cars.count() <= MIN_CAR_NUMBER) throw IllegalArgumentException(MessageCode.CarNumberException.message)
-        if (tryNumber < INIT_TRY_NUMBER) throw IllegalArgumentException(MessageCode.TryNumberException.message)
+        require(cars.count() > MIN_CAR_NUMBER) { MessageCode.CarNumberException.message }
+        require(tryNumber >= INIT_TRY_NUMBER) { MessageCode.TryNumberException.message }
 
         val carMap = mutableMapOf<String, Int>()
 
@@ -32,5 +30,6 @@ class WinnerRacing {
     companion object {
         const val INIT_TRY_NUMBER = 1
         const val MIN_CAR_NUMBER = 1
+        private const val DEFAULT_MAX_MOVE_STEP = 0
     }
 }
