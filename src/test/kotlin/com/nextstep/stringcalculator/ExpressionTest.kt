@@ -15,15 +15,16 @@ class ExpressionTest : AnnotationSpec() {
     @Test
     fun constructor() {
         val expression = Expression("1 + 2")
-        expression.elements shouldContainExactly listOf(Number("1"), Operator.PLUS, Number("2"))
+        expression.elements shouldContainExactly listOf(Operand("1"), Operator.PLUS, Operand("2"))
     }
 
     @DisplayName("If the expression is invalid, then throw exception")
     @Test
     fun constructor_exception() {
         shouldThrow<IllegalArgumentException> { Expression("1 + 3 +") } shouldHaveMessage "Input expression is invalid, 1 + 3 +"
-        shouldThrow<IllegalArgumentException> { Expression("1 + 3 3") } shouldHaveMessage "Input expression is invalid, 1 + 3 3"
+        shouldThrow<IllegalArgumentException> { Expression("1 + 3 3") } shouldHaveMessage "String operator should be one of (+, -, *, /), it was: 3"
         shouldThrow<IllegalArgumentException> { Expression("1 + +") } shouldHaveMessage "Input expression is invalid, 1 + +"
+        shouldThrow<IllegalArgumentException> { Expression("1 + a") } shouldHaveMessage "Input expression is invalid, 1 + a"
     }
 
     @DisplayName("Expression can calculate")
