@@ -2,6 +2,7 @@ package racingcar
 
 import racingcar.condition.NotMoveCondition
 import racingcar.condition.RandomMoveCondition
+import racingcar.dto.GameResult
 import racingcar.strategy.SatisfySingleConditionMoveStrategy
 
 class Game(private val carNames: List<String>, numberOfTry: Int) {

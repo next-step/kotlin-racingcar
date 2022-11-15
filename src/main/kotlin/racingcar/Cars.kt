@@ -1,5 +1,7 @@
 package racingcar
 
+import racingcar.dto.CarRecord
+import racingcar.dto.Record
 import racingcar.strategy.MoveStrategy
 
 class Cars(

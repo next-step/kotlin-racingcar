@@ -3,6 +3,8 @@ package racingcar
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
+import racingcar.dto.CarRecord
+import racingcar.dto.Record
 
 internal class RecordTest : BehaviorSpec({
     Given("차 기록들이 주어지고, ") {

@@ -1,8 +1,8 @@
 package racingcar.view
 
-import racingcar.CarRecord
-import racingcar.GameResult
-import racingcar.Record
+import racingcar.dto.CarRecord
+import racingcar.dto.GameResult
+import racingcar.dto.Record
 
 object ResultView {
     private const val TRACE = "-"

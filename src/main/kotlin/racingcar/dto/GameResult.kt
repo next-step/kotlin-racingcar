@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.dto
 
 data class GameResult(
     private val result: List<Record>

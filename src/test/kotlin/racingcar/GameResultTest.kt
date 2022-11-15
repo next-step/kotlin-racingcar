@@ -2,6 +2,9 @@ package racingcar
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
+import racingcar.dto.CarRecord
+import racingcar.dto.GameResult
+import racingcar.dto.Record
 
 internal class GameResultTest : BehaviorSpec({
     Given("경기 결과가 주어지면, ") {

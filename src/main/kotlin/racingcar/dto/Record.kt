@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.dto
 
 data class Record(
     private val record: List<CarRecord>
