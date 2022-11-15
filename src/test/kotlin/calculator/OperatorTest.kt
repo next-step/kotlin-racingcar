@@ -1,6 +1,5 @@
-package step2
+package calculator
 
-import calculator.Operator
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable

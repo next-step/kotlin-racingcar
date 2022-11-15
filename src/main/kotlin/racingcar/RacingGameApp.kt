@@ -1,20 +1,12 @@
-package step3.controller
+package racingcar
 
-import racingcar.domain.DefaultRandomGenerator
-import racingcar.domain.RacingGame
-import racingcar.model.Car
-import racingcar.model.DefaultCar
+import racingcar.controller.RacingGameController
+import racingcar.domain.racing_game.RacingGameFactory
+import racingcar.model.GameMode
 import racingcar.ui.InputView
-import racingcar.ui.ResultView
 
 fun main() {
-    val (carNum, executeNum) = InputView.requestCarNum() to InputView.requestExecuteNum()
-    val cars = List<Car>(carNum) { DefaultCar() }
-    val racingGame = RacingGame(DefaultRandomGenerator(), cars)
-
-    ResultView.printIntro()
-    repeat(executeNum) {
-        racingGame.race()
-        ResultView.printResult(racingGame.cars)
-    }
+    val racingGame = RacingGameFactory().create(GameMode.COMPETE)
+    val racingGameController = RacingGameController(racingGame)
+    racingGameController.doRacingGame(executeNum = InputView.requestExecuteNum())
 }

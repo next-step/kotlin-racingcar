@@ -1,13 +1,8 @@
 package racingcar.model
 
-data class DefaultCar(private var track: String = "") : Car {
-    override fun getTrack(): String = track
+data class DefaultCar(override val track: String = "") : Car {
 
-    override fun goForward() {
-        track += DEFAULT_TRACK
-    }
-
-    override fun copy(): Car = copy(track = track)
+    override fun goForward(): Car = DefaultCar(track + DEFAULT_TRACK)
 
     companion object {
         private const val DEFAULT_TRACK = "-"
