@@ -1,35 +1,32 @@
 package racingcar.view
 
-import racingcar.input.InputResultDto
-import racingcar.input.value.NumberOfCars
 import racingcar.input.value.PlayTime
+import racingcar.input.value.Racers
 
 class InputView {
     companion object {
-        private const val CAR_NUMBER_INPUT_MESSAGE = "자동차 대수는 몇 대인가요?"
+        private const val RACERS_INPUT_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
         private const val PLAY_TIME_INPUT_MESSAGE = "시도할 횟수는 몇 회인가요?"
         private const val ERROR = "[ERROR] "
 
-        fun inputData(): InputResultDto {
+        fun inputRacers(): Array<String> {
             return try {
-                InputResultDto(
-                    NumberOfCars(inputCarNumber()),
-                    PlayTime(inputPlayTime())
-                )
+                println(RACERS_INPUT_MESSAGE)
+                Racers(readln()).value.toTypedArray()
             } catch (e: Exception) {
                 println(ERROR + e.message)
-                inputData()
+                inputRacers()
             }
         }
 
-        private fun inputCarNumber(): Int {
-            println(CAR_NUMBER_INPUT_MESSAGE)
-            return readln().toInt()
-        }
-
-        private fun inputPlayTime(): Int {
-            println(PLAY_TIME_INPUT_MESSAGE)
-            return readln().toInt()
+        fun inputPlayTime(): Int {
+            return try {
+                println(PLAY_TIME_INPUT_MESSAGE)
+                PlayTime(readln().toInt()).value
+            } catch (e: Exception) {
+                println(ERROR + e.message)
+                inputPlayTime()
+            }
         }
     }
 }

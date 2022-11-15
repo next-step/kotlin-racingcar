@@ -19,4 +19,20 @@ class CarsTest {
         assertThatThrownBy { Cars(listOf()) }
             .isInstanceOf(IllegalArgumentException::class.java)
     }
+
+    @DisplayName("입력된 자동차 대수가 1대 이하인 경우 예외처리")
+    @Test
+    fun `입력된 자동차 대수가 1대 이하인 경우`() {
+        assertThatThrownBy { Cars(listOf(Car("pobi"))) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining("자동차 이름은 2개 이상 입력해주세요.")
+    }
+
+    @DisplayName("입력된 자동차 이름이 중복인 경우 예외처리")
+    @Test
+    fun `입력된 자동차 이름이 중복인 경우`() {
+        assertThatThrownBy { Cars(listOf(Car("pobi"), Car("crong"), Car("honux"), Car("pobi"))) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining("자동차 이름은 중복될 수 없습니다.")
+    }
 }
