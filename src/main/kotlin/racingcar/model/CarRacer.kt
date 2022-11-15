@@ -1,7 +1,5 @@
 package racingcar.model
 
-import kotlin.random.Random
-
 /**
  * 자동차 경주자
  */
@@ -10,9 +8,10 @@ class CarRacer {
     var path: String = ""
         private set
 
-    fun move(moveCount: Int) {
-        if (moveCount < 4) return
+    fun moveTo(position: Int): String {
+        if (position < 4) return ""
         path += CHARACTER_MOVE
+        return path
     }
 
     companion object {

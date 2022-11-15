@@ -1,7 +1,6 @@
 package racingcar
 
-import kotlin.random.Random
+class RandomCountGenerator {
 
-object RandomCountGenerator {
-    fun generateCount() = Random(System.currentTimeMillis()).nextInt(0, 10)
+    fun generateCount(): Int = (0 until 10).random()
 }
