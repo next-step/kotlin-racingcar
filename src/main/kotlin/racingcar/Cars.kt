@@ -1,6 +1,5 @@
 package racingcar
 
-import racingcar.condition.MoveCondition
 import racingcar.strategy.MoveStrategy
 
 class Cars(
@@ -15,8 +14,8 @@ class Cars(
         )
     }
 
-    fun move(moveConditions: List<MoveCondition>): Record {
-        return Record(cars.map { car -> CarRecord(car.name, car.move(moveConditions)) })
+    fun move(): Record {
+        return Record(cars.map { car -> CarRecord(car.name, car.move()) })
     }
 
     companion object {

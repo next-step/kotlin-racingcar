@@ -15,12 +15,12 @@ internal class CarsTest : BehaviorSpec({
         val moveConditions = listOf(RandomMoveCondition(), NotMoveCondition(), AlwaysMoveCondition())
         val cars = Cars(
             carNames = carNames,
-            moveStrategy = SatisfySingleConditionMoveStrategy(),
+            moveStrategy = SatisfySingleConditionMoveStrategy(moveConditions),
         )
         When("어떤 조건이든, ") {
             Then("정상적으로 동작한다.") {
                 shouldNotThrowAny {
-                    cars.move(moveConditions)
+                    cars.move()
                 }
             }
         }
@@ -31,12 +31,12 @@ internal class CarsTest : BehaviorSpec({
         val moveConditions = listOf(RandomMoveCondition(), NotMoveCondition(), AlwaysMoveCondition())
         val cars = Cars(
             carNames = carNames,
-            moveStrategy = SatisfyAllConditionStrategy(),
+            moveStrategy = SatisfyAllConditionStrategy(moveConditions),
         )
         When("어떤 조건이든, ") {
             Then("정상적으로 동작한다.") {
                 shouldNotThrowAny {
-                    cars.move(moveConditions)
+                    cars.move()
                 }
             }
         }
@@ -44,15 +44,14 @@ internal class CarsTest : BehaviorSpec({
 
     Given("랜덤 조건을 만족하면 움직이는 차들이라면, ") {
         val carNames = listOf("car1", "car2", "car3")
-        val moveConditions = listOf(RandomMoveCondition(), NotMoveCondition(), AlwaysMoveCondition())
         val cars = Cars(
             carNames = carNames,
             moveStrategy = SatisfyRandomMoveStrategy(),
         )
-        When("어떤 조건이든, ") {
+        When("랜덤 조건에 맞게, ") {
             Then("정상적으로 동작한다.") {
                 shouldNotThrowAny {
-                    cars.move(moveConditions)
+                    cars.move()
                 }
             }
         }

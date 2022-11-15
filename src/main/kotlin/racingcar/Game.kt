@@ -6,12 +6,11 @@ import racingcar.strategy.SatisfySingleConditionMoveStrategy
 
 class Game(private val carNames: List<String>, numberOfTry: Int) {
     private val rounds = (0 until numberOfTry)
-    private val moveConditions = listOf(RandomMoveCondition(), NotMoveCondition())
     fun execute(): GameResult {
         val cars = Cars(
             carNames = carNames,
-            moveStrategy = SatisfySingleConditionMoveStrategy(),
+            moveStrategy = SatisfySingleConditionMoveStrategy(listOf(RandomMoveCondition(), NotMoveCondition())),
         )
-        return GameResult(rounds.map { cars.move(moveConditions) })
+        return GameResult(rounds.map { cars.move() })
     }
 }
