@@ -1,5 +1,8 @@
 package study
 
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.contract
+
 enum class Operator(
     val symbol: Char,
     val calculate: (Int, Int) -> Int
@@ -34,20 +37,29 @@ enum class Operator(
 class StringCalculator(
     private val separator: String
 ) {
-    fun calculate(input: String?): Int {
-        require(!input.isNullOrBlank()) { "input이 null이거나 공백입니다." }
-        val (numbers, symbols) = input
-            .split(separator)
-            .separateByIndex { it.isEven }
+    fun calculate(input: String?): Int = validate(input)
+        .run { split(input) }
+        .let { (numbers, symbols) ->
+            val operands = numbers.parseToOperands()
+            val operators = symbols.parseToOperators()
 
-        val operands = numbers.parseToOperands()
-        val operators = symbols.parseToOperators()
+            calculate(operators, operands)
+        }
 
-        return calculate(operators, operands)
+    @OptIn(ExperimentalContracts::class)
+    private fun validate(input: String?) {
+        contract {
+            returns() implies (input != null)
+        }
+        if (input.isNullOrBlank()) throw IllegalArgumentException("input이 null이거나 공백입니다.")
     }
 
+    private fun split(input: String) = input
+        .split(separator)
+        .separateByIndex { it.isEven }
+
     private fun calculate(operators: List<Operator>, operands: List<Int>) = operands
-        .drop(1) // initial value drop
+        .drop(DROP_INITIAL_VALUE)
         .foldIndexed(operands.first()) { index, acc, number ->
             operators[index].calculate(acc, number)
         }
@@ -66,4 +78,8 @@ class StringCalculator(
         .partition { predicate(it.index) }
 
     private val Int.isEven: Boolean get() = this % 2 == 0
+
+    companion object {
+        private const val DROP_INITIAL_VALUE = 1
+    }
 }
