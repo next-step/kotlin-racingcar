@@ -1,52 +1,27 @@
 package racingcar
 
-import racingcar.data.Car
-import racingcar.ui.InputView
-import racingcar.ui.ResultView
-import java.security.SecureRandom
+class RacingCar(carCount: Int, private val tryCount: Int, private val moveCarListener: (Car) -> Unit) {
 
-object RacingCar {
-    fun startRace() {
-        val inputView = InputView()
-        val carCount = inputView.inputCarCount()
-        val tryCount = inputView.inputTryCount()
+    private val carList: List<Car>
 
-        val resultView = ResultView()
-        resultView.printInitResult()
-
-        val carList = createCars(carCount)
-
-        for (i in 0 until tryCount) {
-            moveCars(carList)
-
-            for (car in carList) {
-                resultView.printCarMoveCount(car.moveCount)
-            }
-
-            if (i < tryCount - 1) {
-                resultView.printLineSpacing()
-            }
-        }
-    }
-
-    private fun createCars(count: Int): List<Car> =
-        ArrayList<Car>().apply {
-            for (i in 0 until count) {
+    init {
+        carList = ArrayList<Car>().apply {
+            for (i in 0 until carCount) {
                 add(Car())
             }
         }
+    }
 
-    private fun moveCars(carList: List<Car>) {
-        for (car in carList) {
-            if (checkMoveValue(createRandomInt())) {
-                car.moveCount ++
-            }
+    fun start() {
+        for (i in 0 until tryCount) {
+            moveCars()
         }
     }
 
-    fun createRandomInt(): Int = SecureRandom.getInstanceStrong().nextInt(10)
-
-    fun checkMoveValue(value: Int): Boolean = value >= 4
-
-    fun getMoveString(moveCount: Int): String = ResultView().getMoveString(moveCount)
+    private fun moveCars() {
+        for (car in carList) {
+            car.move()
+            moveCarListener(car)
+        }
+    }
 }

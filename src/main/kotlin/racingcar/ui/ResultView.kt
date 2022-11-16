@@ -1,22 +1,20 @@
 package racingcar.ui
 
+import racingcar.Car
+import racingcar.RacingCarUtil
+
 internal class ResultView {
-    fun printInitResult() {
+    init {
         println("실행 결과")
     }
 
-    fun printCarMoveCount(moveCount: Int) {
-        println(getMoveString(moveCount))
+    fun printCarState(car: Car) {
+        println(getMoveString(car.moveCount))
     }
 
     fun printLineSpacing() {
         println()
     }
 
-    fun getMoveString(moveCount: Int): String =
-        StringBuilder().apply {
-            for (i in 0 until moveCount) {
-                append("-")
-            }
-        }.toString()
+    private fun getMoveString(moveCount: Int): String = RacingCarUtil.createMoveString(moveCount)
 }
