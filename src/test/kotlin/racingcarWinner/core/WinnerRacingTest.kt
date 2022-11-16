@@ -1,5 +1,7 @@
 package racingcarWinner.core
 
+import io.kotest.matchers.ints.shouldBeLessThanOrEqual
+import io.kotest.matchers.shouldBe
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.assertThrows
@@ -13,6 +15,22 @@ internal class WinnerRacingTest {
     @BeforeEach
     fun setUp() {
         winner = Winner()
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["pobi,crong,honux", "pobi,crong,honux,alen"])
+    fun startRacing(carNames: String) {
+        val tryNumber = 3
+        val carNameList = carNames.split(",")
+        val cars = CarList.setCars(carNameList)
+
+        val moveResult = WinnerRacing.startRacing(cars = cars, winner = winner, tryNumber = tryNumber)
+
+        moveResult.count() shouldBe carNameList.count()
+        moveResult.forEachIndexed { index, car ->
+            car.carName shouldBe carNameList[index]
+            car.moveStep shouldBeLessThanOrEqual tryNumber
+        }
     }
 
     @ParameterizedTest

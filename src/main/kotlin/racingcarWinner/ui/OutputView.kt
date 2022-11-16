@@ -27,9 +27,9 @@ object OutputView {
         (WinnerRacing.INIT_TRY_NUMBER..moveStep).joinToString(SEPARATOR) { MOVE_STEP }
 
     private fun tryOneRacingOutput(cars: List<Car>, winner: Winner, tryNumber: Int): String =
-        WinnerRacing.startRacing(cars, winner, tryNumber).map { carMap ->
-            carMap.key.plus(COLON).plus(toMoveStepOutput(carMap.value))
-        }.joinToString(ESCAPE_LINE)
+        WinnerRacing.startRacing(cars, winner, tryNumber).joinToString(ESCAPE_LINE) { car ->
+            car.carName.plus(COLON).plus(toMoveStepOutput(car.moveStep))
+        }
 
     private fun tryAllRacingOutput(cars: List<Car>, winner: Winner, tryNumber: Int): String =
         (WinnerRacing.INIT_TRY_NUMBER..tryNumber).joinToString(ESCAPE_DOUBLE_LINE) {
