@@ -22,7 +22,11 @@ class RaceStage(
     )
 
     fun getWinners(): List<Car> {
-        val winnerCar = cars.maxWithOrNull(comparingInt { it.pos }) ?: throw IllegalStateException("우승자가 없을 수 없어요.")
+        val winnerCar = cars.findMaxPosCar()
         return cars.filter { it.equalsPos(winnerCar) }
+    }
+
+    private fun List<Car>.findMaxPosCar(): Car {
+        return this.maxWithOrNull(comparingInt { it.pos }) ?: throw IllegalStateException("우승자가 없을 수 없어요.")
     }
 }
