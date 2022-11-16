@@ -10,6 +10,10 @@ import io.kotest.matchers.string.startWith
 internal class PositionTest : FunSpec({
 
     context("객체 생성") {
+        test("0 값을 가진 객체가 생성된다.") {
+            Position() shouldBe Position(0)
+        }
+
         test("0 이상의 자연수 일 경우, 객체가 생성된다.") {
             shouldNotThrowAny {
                 Position(0)

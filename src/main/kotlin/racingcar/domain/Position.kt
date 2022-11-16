@@ -1,6 +1,6 @@
 package racingcar.domain
 
-data class Position(private val position: Int) {
+data class Position(private val position: Int = 0) {
     init {
         if (position < MIN_THRESHOLD) throw IllegalArgumentException("The minimum value for position should be greater than $MIN_THRESHOLD")
     }
