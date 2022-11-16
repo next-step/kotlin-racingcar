@@ -8,11 +8,8 @@ class CarFactory(
     private val movingEngine: MovingEngine
 ) {
     fun create(count: Int): ParticipatingCars {
-        val carList = mutableListOf<Car>()
-        IntRange(start = START_CREATE_COUNT, endInclusive = count).forEach { _ ->
-            carList.add(Car(movingEngine))
-        }
-        return ParticipatingCars(carList.toList())
+        val cars = List(count) { Car(movingEngine) }
+        return ParticipatingCars(cars)
     }
 
     private companion object {
