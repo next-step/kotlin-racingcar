@@ -24,4 +24,11 @@ object ResultView {
         }
         println()
     }
+
+    fun printWinner(racingGame: RacingGame) {
+        val winnerNames = racingGame.winners()
+            .map { it.name }
+            .reduce { s1, s2 -> "$s1, $s2" }
+        println(winnerNames + "가 최종 우승했습니다.")
+    }
 }

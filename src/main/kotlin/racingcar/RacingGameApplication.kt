@@ -17,5 +17,6 @@ object RacingGameApplication {
             racingGame.play()
             ResultView.printDashBoard(racingGame)
         }
+        ResultView.printWinner(racingGame)
     }
 }

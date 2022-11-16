@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import racingcar.model.Car
+import racingcar.model.Position
 import racingcar.view.InputView.CAR_NAME_DELIMITER
 
 internal class RacingGameTest {
@@ -31,5 +33,30 @@ internal class RacingGameTest {
     internal fun `자동차 목록에 공백이나 빈 이름이 포함되면 안된다`(delimitedCarNames: String) {
         val carNames = delimitedCarNames.split(CAR_NAME_DELIMITER)
         assertThrows<IllegalArgumentException> { RacingGame(carNames) }
+    }
+
+    @Test
+    internal fun `우승자를 선정한다`() {
+        val winner = Car("win", Position(10))
+        val loser = Car("lose", Position(9))
+        val cars = setOf(winner, loser)
+        val racingGame = RacingGame(cars)
+
+        val winners = racingGame.winners()
+
+        assertThat(winners.size).isEqualTo(1)
+        assertThat(winners.first().name).isEqualTo(winner.name)
+    }
+
+    @Test
+    internal fun `우승자가 2명 이상일 경우`() {
+        val car1 = Car("pobi", Position(10))
+        val car2 = Car("crong", Position(10))
+        val car3 = Car("honux", Position(10))
+        val cars = setOf(car1, car2, car3)
+
+        val winners = RacingGame(cars).winners()
+
+        assertThat(winners.toTypedArray() contentEquals cars.toTypedArray())
     }
 }
