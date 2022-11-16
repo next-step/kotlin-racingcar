@@ -2,8 +2,9 @@ package racing.domain
 
 class CarRacing(
     numOfCars: Int,
+    moveStrategy: MoveStrategy,
 ) {
-    private val cars: List<Car> = List(numOfCars) { Car() }
+    private val cars: List<Car> = List(numOfCars) { Car(moveStrategy) }
 
     val positions: List<Int>
         get() = cars.map(Car::position)
