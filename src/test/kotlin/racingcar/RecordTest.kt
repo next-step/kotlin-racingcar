@@ -3,16 +3,16 @@ package racingcar
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
-import racingcar.dto.CarRecord
+import racingcar.dto.CarInfo
 import racingcar.dto.Record
 
 internal class RecordTest : BehaviorSpec({
     Given("차 기록들이 주어지고, ") {
         val givenForFirstTest = Record(
             listOf(
-                CarRecord(name = "car1", position = 1),
-                CarRecord(name = "car2", position = 2),
-                CarRecord(name = "car3", position = 3)
+                CarInfo(name = "car1", position = 1),
+                CarInfo(name = "car2", position = 2),
+                CarInfo(name = "car3", position = 3)
             )
         )
         When("선두 주자를 출력하는 메서드를 사용하면, ") {
@@ -25,9 +25,9 @@ internal class RecordTest : BehaviorSpec({
 
         val givenForSecondTest = Record(
             listOf(
-                CarRecord(name = "car1", position = 1),
-                CarRecord(name = "car2", position = 3),
-                CarRecord(name = "car3", position = 3)
+                CarInfo(name = "car1", position = 1),
+                CarInfo(name = "car2", position = 3),
+                CarInfo(name = "car3", position = 3)
             )
         )
         When("선두 주자를 출력하는 메서드를 사용하면, ") {

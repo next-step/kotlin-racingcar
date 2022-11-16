@@ -2,7 +2,7 @@ package racingcar
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import racingcar.dto.CarRecord
+import racingcar.dto.CarInfo
 import racingcar.dto.GameResult
 import racingcar.dto.Record
 
@@ -12,16 +12,16 @@ internal class GameResultTest : BehaviorSpec({
             listOf(
                 Record(
                     listOf(
-                        CarRecord(name = "car1", position = 1),
-                        CarRecord(name = "car2", position = 2),
-                        CarRecord(name = "car3", position = 3)
+                        CarInfo(name = "car1", position = 1),
+                        CarInfo(name = "car2", position = 2),
+                        CarInfo(name = "car3", position = 3)
                     )
                 ),
                 Record(
                     listOf(
-                        CarRecord(name = "car1", position = 4),
-                        CarRecord(name = "car2", position = 5),
-                        CarRecord(name = "car3", position = 6)
+                        CarInfo(name = "car1", position = 4),
+                        CarInfo(name = "car2", position = 5),
+                        CarInfo(name = "car3", position = 6)
                     )
                 )
             )
@@ -31,9 +31,9 @@ internal class GameResultTest : BehaviorSpec({
             Then("마지막 결과를 가져온다.") {
                 result shouldBe Record(
                     listOf(
-                        CarRecord(name = "car1", position = 4),
-                        CarRecord(name = "car2", position = 5),
-                        CarRecord(name = "car3", position = 6)
+                        CarInfo(name = "car1", position = 4),
+                        CarInfo(name = "car2", position = 5),
+                        CarInfo(name = "car3", position = 6)
                     )
                 )
             }

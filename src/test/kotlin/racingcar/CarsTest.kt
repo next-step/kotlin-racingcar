@@ -2,10 +2,10 @@ package racingcar
 
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.core.spec.style.BehaviorSpec
+import racingcar.domain.Cars
 import racingcar.domain.condition.AlwaysMoveCondition
 import racingcar.domain.condition.NotMoveCondition
 import racingcar.domain.condition.RandomMoveCondition
-import racingcar.domain.Cars
 import racingcar.domain.strategy.SatisfyAllConditionStrategy
 import racingcar.domain.strategy.SatisfyRandomMoveStrategy
 import racingcar.domain.strategy.SatisfySingleConditionMoveStrategy

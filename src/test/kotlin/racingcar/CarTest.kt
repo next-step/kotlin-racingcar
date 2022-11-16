@@ -4,10 +4,10 @@ import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
+import racingcar.domain.Car
 import racingcar.domain.condition.NotMoveCondition
 import racingcar.domain.condition.RandomMoveCondition
 import racingcar.domain.condition.TestCondition
-import racingcar.domain.Car
 import racingcar.domain.strategy.SatisfyAllConditionStrategy
 import racingcar.domain.strategy.SatisfyRandomMoveStrategy
 import racingcar.domain.strategy.SatisfySingleConditionMoveStrategy

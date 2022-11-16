@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.dto.CarRecord
+import racingcar.dto.CarInfo
 import racingcar.dto.GameResult
 import racingcar.dto.Record
 
@@ -31,7 +31,7 @@ object ResultView {
         println()
     }
 
-    private fun extractWinnerNames(frontRunners: List<CarRecord>): String {
+    private fun extractWinnerNames(frontRunners: List<CarInfo>): String {
         return frontRunners.joinToString(SEPARATOR) { it.name }
     }
 }
