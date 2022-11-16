@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 import fixture.TestCarMoveStrategy
 import org.assertj.core.api.Assertions.assertThat

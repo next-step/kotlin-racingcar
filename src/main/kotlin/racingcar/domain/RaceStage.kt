@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 import racingcar.strategy.CarMoveStrategy
 import java.util.Comparator.comparingInt
