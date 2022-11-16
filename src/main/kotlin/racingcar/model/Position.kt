@@ -4,8 +4,8 @@ data class Position(private val value: PositiveNumber = PositiveNumber()) {
 
     constructor(input: String) : this(PositiveNumber(input))
 
-    fun plus() {
-        this.value.plus(FORWARD_VALUE)
+    fun plus(): Position {
+        return Position(this.value.plus(FORWARD_VALUE))
     }
 
     fun getPosition(): Int {

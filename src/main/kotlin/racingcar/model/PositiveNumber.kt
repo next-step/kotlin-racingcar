@@ -10,8 +10,8 @@ data class PositiveNumber(private var value: Int = 0) {
         this.value = validateNegativeStringNumber(input)
     }
 
-    fun plus(add: Int) {
-        this.value += add
+    fun plus(add: Int): PositiveNumber {
+        return PositiveNumber(this.value + add)
     }
 
     fun getPositiveNumber(): Int {

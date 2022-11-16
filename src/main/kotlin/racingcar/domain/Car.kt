@@ -6,7 +6,7 @@ class Car(private val carName: CarName, private var distance: Position = Positio
 
     fun move(strategy: MovementStrategy) {
         if (strategy.isMovable()) {
-            distance.plus()
+            distance = distance.plus()
         }
     }
 

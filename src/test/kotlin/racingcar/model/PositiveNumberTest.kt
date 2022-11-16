@@ -43,9 +43,9 @@ class PositiveNumberTest {
 
     @Test
     fun `음수가 아닌 숫자의 더하기 기능 검증`() {
-        val positiveNumber = PositiveNumber()
+        var positiveNumber = PositiveNumber()
         val plusValue = 1
-        positiveNumber.plus(plusValue)
+        positiveNumber = positiveNumber.plus(plusValue)
         Assertions.assertEquals(plusValue, positiveNumber.getPositiveNumber())
     }
 
