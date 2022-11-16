@@ -3,6 +3,7 @@ package racingcar.view
 import racingcar.model.Car
 import racingcar.service.RacingGame
 
+private const val NAME_COLUMN_SEPARATOR = " : "
 private const val TRACE_SYMBOL = "-"
 
 object ResultView {
@@ -17,6 +18,7 @@ object ResultView {
     }
 
     private fun printCarTrace(car: Car) {
+        print(car.name + NAME_COLUMN_SEPARATOR)
         repeat(car.position.value) {
             print(TRACE_SYMBOL)
         }
