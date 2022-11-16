@@ -5,7 +5,6 @@ import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.should
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.startWith
-import java.lang.IllegalArgumentException
 
 class StringCalculatorKoTests : FreeSpec({
     lateinit var stringCalculator: StringCalculator
