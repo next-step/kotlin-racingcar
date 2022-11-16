@@ -1,7 +1,12 @@
 package study
 
 import org.assertj.core.api.Assertions.assertThat
+
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.NullSource
+
 
 class PersonTest {
 
@@ -13,11 +18,11 @@ class PersonTest {
         assertThat(person.nickname).isEqualTo("edi")
     }
 
-    @Test
-    fun `널 타입`() {
-        val person = Person(name = "이영준", age = 29, null)
-        assertThat(person.nickname).isEqualTo(null)
-    }
+    @ParameterizedTest
+    @NullSource
+    fun `널 타입`(person: Person? = Person(name = "이영준", age = 29, null)) {
+        assertTrue(person?.nickname == null)
+
 
     @Test
     fun `기본 인자`() {
