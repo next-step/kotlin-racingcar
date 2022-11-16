@@ -14,6 +14,7 @@ class RacingGame(val cars: List<Car>) {
     }
 
     companion object {
+        const val CAR_NAME_DELIMITER = ","
         private const val DEFAULT_NAME_PREFIX = "P"
 
         fun of(carCount: Int): RacingGame {
@@ -21,8 +22,8 @@ class RacingGame(val cars: List<Car>) {
             return RacingGame(cars)
         }
 
-        fun of(carNames: List<String>): RacingGame {
-            return RacingGame(carNames.map { Car(it) })
+        fun of(carNames: String): RacingGame {
+            return RacingGame(carNames.split(CAR_NAME_DELIMITER).map { Car(it) })
         }
     }
 }
