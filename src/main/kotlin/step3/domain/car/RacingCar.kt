@@ -7,10 +7,6 @@ class RacingCar(
     private val carDistance: CarDistance<Int> = DefaultCarDistance()
 ) : CarDistance<Int> by carDistance {
 
-    init {
-        // require(isValidName(name)) { "name must be a valid name [$name]" }
-    }
-
     fun go() {
         increment(1)
     }
