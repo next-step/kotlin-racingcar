@@ -12,7 +12,7 @@ class RacingGame(carCount: Int) {
         this.cars = cars.toList()
     }
 
-    var cars: List<Car> = List(carCount) { Car() }
+    var cars: List<Car> = List(carCount) { Car("-") }
 
     fun play() {
         cars.forEach { it.move(MoveFactor.random()) }
