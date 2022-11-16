@@ -11,8 +11,7 @@ class RacingGame(
         val result: List<CarInfos> = buildList {
             while (rounds.hasNext()) {
                 rounds.play()
-                cars.move()
-                add(cars.carInfos)
+                add(cars.move())
             }
         }
 
