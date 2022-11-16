@@ -23,7 +23,7 @@ object RacingCarInputConsole {
     private fun validateNumber(string: String) {
         try {
             require(string.isNotBlank()) { "올바른 숫자를 입력해주세요" }
-            require(string.toInt() > 0) { "입력값은 0보다 커야 합니다" }
+            string.toInt()
         } catch (e: NumberFormatException) {
             throw IllegalArgumentException("올바른 숫자를 입력해주세요")
         }

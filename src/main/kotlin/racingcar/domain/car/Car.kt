@@ -40,4 +40,3 @@ class Car(
 
     fun attemptCount(): Int = this.attemptCount.toInt()
 }
-
