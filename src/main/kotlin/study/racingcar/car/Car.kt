@@ -10,14 +10,14 @@ class Car(val name: String) {
     var currentLocation: Int = INIT_LOCATION
         private set
 
-    fun move(power: Int) {
+    fun move(power: Power) {
         if (canMove(power)) {
             currentLocation += 1
         }
     }
 
-    private fun canMove(power: Int): Boolean {
-        return power >= FORWARD_NUMBER
+    private fun canMove(power: Power): Boolean {
+        return power.value >= FORWARD_NUMBER
     }
 
     companion object {
