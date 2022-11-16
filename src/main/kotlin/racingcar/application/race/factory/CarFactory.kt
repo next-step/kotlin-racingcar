@@ -7,7 +7,7 @@ import racingcar.domain.car.engine.MovingEngine
 class CarFactory(
     private val movingEngine: MovingEngine
 ) {
-    fun create(count: Int): ParticipatingCars {
+    fun createByCount(count: Int): ParticipatingCars {
         val cars = List(count) { Car(movingEngine) }
         return ParticipatingCars(cars)
     }

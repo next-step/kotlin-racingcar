@@ -12,7 +12,7 @@ class Race(
 
     fun proceed(raceInputCommand: RaceInputCommand) {
         val attemptCount = raceInputCommand.attemptCount
-        val participatingCars = carFactory.create(raceInputCommand.carCount)
+        val participatingCars = carFactory.createByCount(count = raceInputCommand.carCount)
 
         outputPort.output(RESULT_COMMENT)
         race(participatingCars, attemptCount)
