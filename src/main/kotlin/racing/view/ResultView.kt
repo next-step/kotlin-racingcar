@@ -5,7 +5,7 @@ import racing.domain.CarRacing
 object ResultView {
 
     fun printResultTitle() {
-        println("실행 결과")
+        println("\n실행 결과")
     }
 
     fun printResult(carRacing: CarRacing) {
