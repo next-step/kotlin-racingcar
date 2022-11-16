@@ -1,6 +1,6 @@
 package racingcar.domain.car
 
-import racingcar.domain.car.action.RandomMovingStrategy
+import racingcar.domain.car.action.MovingStrategy
 
 data class Cars(val cars: List<Car>) {
     init {
@@ -11,8 +11,8 @@ data class Cars(val cars: List<Car>) {
 
     constructor(cars: Array<String>) : this(cars.map { Car(it) })
 
-    fun play(randomMovingStrategy: RandomMovingStrategy) {
-        cars.forEach { it.move(randomMovingStrategy) }
+    fun play(movingStrategy: MovingStrategy) {
+        cars.forEach { it.move(movingStrategy) }
     }
 
     fun getWinners(): List<String> {
