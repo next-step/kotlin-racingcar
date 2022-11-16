@@ -1,6 +1,6 @@
 package racingcar.domain
 
-import racingcar.model.NonNegative
+import racingcar.model.PositiveNumber
 import racingcar.ui.InputView
 import racingcar.ui.ResultView
 
@@ -13,7 +13,7 @@ object GameManager {
     }
 
     private fun racing(cars: Cars) {
-        val numberOfRaces = NonNegative(InputView.numberOfRaces()).getNonNegativeValue()
+        val numberOfRaces = PositiveNumber(InputView.numberOfRaces()).getPositiveNumber()
         println("\n실행 결과")
         for (race in 1..numberOfRaces) {
             cars.racing()

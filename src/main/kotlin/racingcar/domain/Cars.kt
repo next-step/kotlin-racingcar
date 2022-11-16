@@ -7,7 +7,7 @@ class Cars(carNames: CarNames) {
     private val cars: List<Car>
 
     init {
-        cars = carNames.toList().map { Car(it) }
+        cars = carNames.getCarNames().map { Car(it) }
     }
 
     fun racing() {

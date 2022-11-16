@@ -1,15 +1,15 @@
 package racingcar.domain
 
-class CarNames(private val text: String) {
+class CarNames(text: String) {
 
     private val carNames: List<CarName>
 
     init {
         require(text.isNotBlank()) { "자동차 이름 목록은 빈 값을 입력할 수 없습니다." }
-        carNames = this.text.split(CAR_NAME_SPLIT_DELIMITER).map { CarName(it) }.toList()
+        carNames = text.split(CAR_NAME_SPLIT_DELIMITER).map { CarName(it) }.toList()
     }
 
-    fun toList(): List<CarName> {
+    fun getCarNames(): List<CarName> {
         return carNames
     }
 

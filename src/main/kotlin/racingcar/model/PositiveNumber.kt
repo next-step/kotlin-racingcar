@@ -1,6 +1,10 @@
 package racingcar.model
 
-data class NonNegative(private var value: Int = 0) {
+data class PositiveNumber(private var value: Int = 0) {
+
+    init {
+        validateNegativeNumber(this.value)
+    }
 
     constructor(input: String) : this() {
         this.value = validateNegativeStringNumber(input)
@@ -10,11 +14,11 @@ data class NonNegative(private var value: Int = 0) {
         this.value += add
     }
 
-    fun getNonNegativeValue(): Int {
+    fun getPositiveNumber(): Int {
         return this.value
     }
 
-    operator fun compareTo(other: NonNegative): Int =
+    operator fun compareTo(other: PositiveNumber): Int =
         when {
             this.value > other.value -> 1
             this.value < other.value -> -1
