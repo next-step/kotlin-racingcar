@@ -39,7 +39,8 @@
 * [StringExtension] String Extension 클래스
 * [Car] 자동차 클래스
   * 전진 가능한 상태이면 MoveStrategy에 정의된 값 만큼 이동
-* [CarRecorder] 1턴 이동할때마다 자동차 상태를 기록하는 클래스
+* [ParticipatedCars] 참가 자동차들이 이동 횟수만큼 이동하는 클래스
+* [GameJudgment] 게임이 끝난 후, 우승자를 판단하는 클래스
 * [MoveStrategy] 이동 타입을 정의한 클래스
   * 타입에 따라 자동차의 이동가능 여부를 판단
   * 자동차가 이동할 수 있는 거리를 관리
