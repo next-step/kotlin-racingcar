@@ -1,7 +1,9 @@
-package racingcar
+package racingcar.domain
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import racingcar.ForwardCarControl
+import racingcar.StopCarControl
 
 class WinnerTest : StringSpec({
     "위치 가장 큰 자동차가 우승한다" {
