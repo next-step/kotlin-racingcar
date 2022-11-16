@@ -1,10 +1,8 @@
 package racingcarWinner.core
 
-class WinnerRacing {
-    fun setCars(carNames: List<String>): List<Car> =
-        carNames.map { carName ->
-            Car(carName.trim())
-        }
+object WinnerRacing {
+    const val INIT_TRY_NUMBER = 1
+    const val MIN_CAR_NUMBER = 1
 
     fun startRacing(cars: List<Car>, winner: Winner, tryNumber: Int): Map<String, Int> {
         require(cars.count() > MIN_CAR_NUMBER) { MessageCode.CarNumberException.message }
@@ -18,10 +16,5 @@ class WinnerRacing {
             carMap[car.carName] = car.moveStep
         }
         return carMap
-    }
-
-    companion object {
-        const val INIT_TRY_NUMBER = 1
-        const val MIN_CAR_NUMBER = 1
     }
 }

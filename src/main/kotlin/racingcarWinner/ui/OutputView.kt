@@ -13,9 +13,9 @@ object OutputView {
     private const val ESCAPE_LINE = "\n"
     private const val ESCAPE_DOUBLE_LINE = "\n\n"
 
-    fun outputResult(cars: List<Car>, racing: WinnerRacing, winner: Winner, tryNumber: Int) {
+    fun outputResult(cars: List<Car>, winner: Winner, tryNumber: Int) {
         println(MessageCode.Result.message)
-        print(tryAllRacingOutput(cars, racing, winner, tryNumber))
+        print(tryAllRacingOutput(cars, winner, tryNumber))
     }
 
     fun outputWinner(cars: List<Car>, winner: Winner) {
@@ -26,13 +26,13 @@ object OutputView {
     private fun toMoveStepOutput(moveStep: Int): String =
         (WinnerRacing.INIT_TRY_NUMBER..moveStep).joinToString(SEPARATOR) { MOVE_STEP }
 
-    private fun tryOneRacingOutput(cars: List<Car>, racing: WinnerRacing, winner: Winner, tryNumber: Int): String =
-        racing.startRacing(cars, winner, tryNumber).map { carMap ->
+    private fun tryOneRacingOutput(cars: List<Car>, winner: Winner, tryNumber: Int): String =
+        WinnerRacing.startRacing(cars, winner, tryNumber).map { carMap ->
             carMap.key.plus(COLON).plus(toMoveStepOutput(carMap.value))
         }.joinToString(ESCAPE_LINE)
 
-    private fun tryAllRacingOutput(cars: List<Car>, racing: WinnerRacing, winner: Winner, tryNumber: Int): String =
+    private fun tryAllRacingOutput(cars: List<Car>, winner: Winner, tryNumber: Int): String =
         (WinnerRacing.INIT_TRY_NUMBER..tryNumber).joinToString(ESCAPE_DOUBLE_LINE) {
-            tryOneRacingOutput(cars, racing, winner, it)
+            tryOneRacingOutput(cars, winner, it)
         }
 }
