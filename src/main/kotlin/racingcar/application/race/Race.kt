@@ -34,9 +34,7 @@ class Race(
     }
 
     private fun ParticipatingCars.startRace(attemptCount: Int) {
-        IntRange(start = START_ROUND_NUMBER, endInclusive = attemptCount).forEach { _ ->
-            this.nextRound()
-        }
+        repeat(attemptCount) { this.nextRound() }
     }
 
     private fun ParticipatingCars.nextRound() {
