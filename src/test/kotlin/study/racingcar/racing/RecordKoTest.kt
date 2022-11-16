@@ -5,7 +5,7 @@ import io.kotest.matchers.shouldBe
 import study.racingcar.car.Car
 
 internal class RecordKoTest : StringSpec({
-    "Car를 통해 생성" {
+    "Car만을 통해서 Record를 생성할 수 있따" {
         val car = Car("자동차")
         val record = Record(car)
 
@@ -13,7 +13,7 @@ internal class RecordKoTest : StringSpec({
         record.location shouldBe car.currentLocation
     }
 
-    "기본 인자" {
+    "기본 생성자를 통해서 Record를 생성할 수 있다" {
         val record = Record("자동차", 1)
 
         record.name shouldBe "자동차"

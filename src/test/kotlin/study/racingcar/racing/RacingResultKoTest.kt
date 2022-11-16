@@ -4,7 +4,7 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
 internal class RacingResultKoTest : StringSpec({
-    "기본 인자" {
+    "RacingResult를 통해 모든 라운드 결과와 승자들을 알 수 있다" {
         val winners = listOf(
             Record("그렌저", 2),
             Record("소나타", 2)
@@ -14,6 +14,6 @@ internal class RacingResultKoTest : StringSpec({
         val racingResult = RacingResult(rounds)
 
         racingResult.rounds shouldBe rounds
-        racingResult.getWinners() shouldBe winners
+        racingResult.winners() shouldBe winners
     }
 })

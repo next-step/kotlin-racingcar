@@ -1,7 +1,7 @@
 package study.racingcar.racing
 
 data class RacingResult(val rounds: List<List<Record>>) {
-    fun getWinners(): List<Record> {
+    fun winners(): List<Record> {
         val lastResult = rounds.last()
         val maxLocation = getMaxLocation(lastResult)
 

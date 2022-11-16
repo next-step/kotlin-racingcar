@@ -13,7 +13,7 @@ object OutputView {
     }
 
     fun printWinners(result: RacingResult) {
-        val winnersName = result.getWinners()
+        val winnersName = result.winners()
             .joinToString(",") { winner ->
                 winner.name
             }
