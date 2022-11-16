@@ -31,7 +31,7 @@ class Race(
             outputPort.outputNewLine()
         }
         outputPort.outputNewLine()
-        Thread.sleep(PER_RACE_SECONDS)
+        Thread.sleep(PER_RACE_ROUND_SECONDS)
     }
 
     private fun ParticipatingCars.startRace(attemptCount: Int) {
@@ -47,13 +47,13 @@ class Race(
             outputPort.outputNewLine()
         }
         outputPort.outputNewLine()
-        Thread.sleep(PER_RACE_SECONDS)
+        Thread.sleep(PER_RACE_ROUND_SECONDS)
     }
 
     private companion object {
         private const val RESULT_COMMENT = "처리 결과"
         private const val LITERAL_POSITION = "-"
-        private const val PER_RACE_SECONDS = 2000L
+        private const val PER_RACE_ROUND_SECONDS = 2000L
         private const val START_POSITION_NUMBER = 0
     }
 }
