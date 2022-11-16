@@ -45,4 +45,13 @@ internal class CarTest : StringSpec({
         car.move()
         car.attemptCount() shouldBe 2
     }
+
+    "자동차는 생성될 때 이름을 부여할 수 있다" {
+        val car = Car(movingEngine, "ep")
+        car.name.shouldNotBeNull()
+    }
+
+    "자동차의 이름은 5글자를 초과할 수 없다" {
+        shouldThrow<IllegalArgumentException> { Car(movingEngine, "eastperson") }
+    }
 })
