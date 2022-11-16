@@ -25,7 +25,7 @@ class ParticipatingCarsTest : FunSpec({
     }
 
     test("레이스 초기화시 출력 함수를 인자로 넘길 수 있다") {
-        val outputFunction: () -> Unit = { println("출력완료") }
+        val outputFunction: (String) -> Unit = { carName -> println("$carName 출력완료") }
         participatingCars.initRace(outputFunction)
     }
 })

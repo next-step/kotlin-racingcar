@@ -25,7 +25,8 @@ class Race(
 
     private fun ParticipatingCars.initRace() {
         outputPort.outputNewLine()
-        this.initRace {
+        this.initRace { carName: String ->
+            outputPort.output("$carName: ")
             outputPort.output(LITERAL_POSITION)
             outputPort.outputNewLine()
         }
@@ -38,7 +39,8 @@ class Race(
     }
 
     private fun ParticipatingCars.nextRound() {
-        this.move { position: Int ->
+        this.move { position: Int, carName: String ->
+            outputPort.output("$carName: ")
             IntRange(start = START_POSITION_NUMBER, endInclusive = position).forEach { _ ->
                 outputPort.output(LITERAL_POSITION)
             }

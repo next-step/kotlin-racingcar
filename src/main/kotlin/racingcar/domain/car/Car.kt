@@ -8,13 +8,13 @@ class Car(
     _name: String? = null
 ) {
 
-    val name = _name
+    val name: String = _name ?: "unknown"
     private var position: Position = Position()
     private var stop: Boolean = false
     private var attemptCount: Count = Count()
 
     init {
-        name?.let { require(it.length <= 5) { "자동차 이름의 길이는 5글자를 초과할 수 없습니다." } }
+        _name?.let { require(it.length <= 5) { "자동차 이름의 길이는 5글자를 초과할 수 없습니다." } }
     }
 
     fun currentPosition() = this.position

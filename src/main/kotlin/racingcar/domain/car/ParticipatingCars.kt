@@ -3,20 +3,16 @@ package racingcar.domain.car
 class ParticipatingCars(
     private val carList: List<Car>
 ) {
-    fun initRace(outputFunction: () -> Unit) {
-        IntRange(START_NUMBER, this.carList.size).forEach { _ ->
-            outputFunction()
+    fun initRace(outputFunction: (carName: String) -> Unit) {
+        this.carList.forEach { car ->
+            outputFunction(car.name)
         }
     }
 
-    fun move(outputFunction: (Int) -> Unit) {
+    fun move(outputFunction: (Int, String) -> Unit) {
         carList.forEach {
             it.move()
-            outputFunction(it.currentPosition().toInt())
+            outputFunction(it.currentPosition().toInt(), it.name)
         }
-    }
-
-    private companion object {
-        private const val START_NUMBER = 1
     }
 }
