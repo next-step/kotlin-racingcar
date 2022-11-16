@@ -3,7 +3,6 @@ package racingcar
 import racingcar.strategy.MoveStrategy
 
 data class Car(
-    val id: Int,
     val name: String,
     val currentPosition: Int = 0,
 ) {
