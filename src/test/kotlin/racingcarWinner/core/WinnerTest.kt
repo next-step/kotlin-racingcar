@@ -12,13 +12,14 @@ internal class WinnerTest {
         val winnerIndex = 0
 
         // when
+        val winner = Winner(maxMoveStep)
         val cars = carNames.map { carName ->
             val car = Car(carName)
             car.moveStep = maxMoveStep - 1
             car
         }
         cars[winnerIndex].moveStep = maxMoveStep
-        val resultWinnerList = Winner.getWinner(cars, maxMoveStep)
+        val resultWinnerList = winner.getWinner(cars)
 
         resultWinnerList.count() shouldBe 1
         resultWinnerList[winnerIndex] shouldBe cars[winnerIndex].carName
@@ -30,15 +31,16 @@ internal class WinnerTest {
         val carNames = "pobi,crong,honux".split(",")
 
         // when
+        val winner = Winner(maxMoveStep)
         val cars = carNames.map { carName ->
             val car = Car(carName)
             car.moveStep = maxMoveStep
             car
         }
-        val resultWinnerList = Winner.getWinner(cars, maxMoveStep)
+        val resultWinnerList = winner.getWinner(cars)
 
-        resultWinnerList.forEachIndexed { index, winner ->
-            winner shouldBe cars[index].carName
+        resultWinnerList.forEachIndexed { index, winnerName ->
+            winnerName shouldBe cars[index].carName
         }
         resultWinnerList.count() shouldBe cars.count()
     }

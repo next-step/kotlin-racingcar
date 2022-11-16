@@ -3,11 +3,19 @@ package racingcarWinner.core
 import io.kotest.matchers.ints.shouldBeLessThanOrEqual
 import io.kotest.matchers.shouldBe
 import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 internal class WinnerRacingTest {
+
+    private var winner = Winner()
+
+    @BeforeEach
+    fun setUp() {
+        winner = Winner()
+    }
 
     @ParameterizedTest
     @ValueSource(strings = ["pobi,crong,honux", "pobi,crong,honux,alen", "pobi , crong "])
@@ -28,7 +36,7 @@ internal class WinnerRacingTest {
         val racing = WinnerRacing()
         val cars = racing.setCars(carNames.split(","))
 
-        val moveResult = racing.startRacing(cars = cars, tryNumber = tryNumber)
+        val moveResult = racing.startRacing(cars = cars, winner = winner, tryNumber = tryNumber)
 
         moveResult.count() shouldBe cars.count()
         moveResult.keys.toList() shouldBe cars.map { car -> car.carName }
@@ -45,7 +53,7 @@ internal class WinnerRacingTest {
         val cars = racing.setCars(carNames.split(","))
 
         val exception = assertThrows<IllegalArgumentException> {
-            racing.startRacing(cars = cars, tryNumber = tryNumber)
+            racing.startRacing(cars = cars, winner = winner, tryNumber = tryNumber)
         }
 
         Assertions.assertThat(exception.message).isEqualTo(MessageCode.TryNumberException.message)
@@ -58,7 +66,7 @@ internal class WinnerRacingTest {
         val racing = WinnerRacing()
         val cars = racing.setCars(carNames.split(","))
         val exception = assertThrows<IllegalArgumentException> {
-            racing.startRacing(cars = cars, tryNumber = tryNumber)
+            racing.startRacing(cars = cars, winner = winner, tryNumber = tryNumber)
         }
 
         Assertions.assertThat(exception.message).isEqualTo(MessageCode.CarNumberException.message)
