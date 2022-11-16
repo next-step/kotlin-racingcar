@@ -23,13 +23,16 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("A자동차와 B자동차 중 A자동차가 가장 멀리 감")
-    fun `Out of cars A and B, car A is the farthest away`() {
-        val carA = Car("A")
-        val carB = Car("B")
+    @DisplayName("자동차의 기본 위치는 0")
+    fun `Default position of the car is 0`() {
+        val cars = Car.registerCars(listOf("홍길동"))
+        assertThat(cars.first().currentPosition).isEqualTo(0)
+    }
 
-        carA.go()
-
-        assertThat(Car.getFurthestCars(listOf(carA, carB)).first().name).isEqualTo("A")
+    @Test
+    @DisplayName("kiki라고 등록된 자동차의 이름은 kiki")
+    fun `name of the car registered as kiki is kiki`() {
+        val cars = Car.registerCars(listOf("kiki"))
+        assertThat(cars.first().name).isEqualTo("kiki")
     }
 }

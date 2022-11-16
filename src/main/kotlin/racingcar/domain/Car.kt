@@ -1,7 +1,7 @@
 package racingcar.domain
 
-class Car(val name: String) : Moveable {
-    var currentPosition: Int = 0
+class Car(val name: String, initialPosition: Int = 0) : Moveable {
+    var currentPosition: Int = initialPosition
         private set
 
     override fun go() {
@@ -19,11 +19,6 @@ class Car(val name: String) : Moveable {
     }
 
     companion object {
-        fun registerCars(namesOfCars: List<String>) = Array(namesOfCars.size) { Car(namesOfCars[it]) }.toList()
-
-        fun getFurthestCars(cars: List<Car>): List<Car> {
-            val max = cars.maxOf { it.currentPosition }
-            return cars.filter { it.currentPosition == max }
-        }
+        fun registerCars(namesOfCars: List<String>) = namesOfCars.map { Car(it) }
     }
 }

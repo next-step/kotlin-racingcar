@@ -7,6 +7,8 @@
 - [x] 자동차 이름의 입력이 5자를 초과할 경우 IllegalArgumentException 오류
 - [x] 자동차 이름의 입력이 공백일 경우 IllegalArgumentException 오류
 - [x] 시도할 횟수의 입력 값이 0일 경우 IllegalArgumentException 오류
+- [x] 자동차 이름에 앞/뒤로 공백이 들어간 경우 공백이 제거됨
+- [x] 자동차 이름 중간에 공백 포함되어도 자동차 등록이 됨
 
 ### 결과
 - [x] 자동차 이름이 홍길동이고 현재 위치가 5일경우 "홍길동 : -----" 값을 반환해야함
@@ -15,9 +17,13 @@
 ### 자동차
 - [x] 전진 조건일 경우 자동차의 현재 위치가 1 증가함
 - [x] 후진 조건일 경우 자동차의 현재 위치 고정
-- [x] A자동차와 B자동차 중 A자동차가 가장 멀리 감
+- [x] 자동차의 기본 위치는 0
+- [x] kiki라고 등록된 자동차의 이름은 kiki
 
 ## 자동차 등록
 - [x] 자동차 이름의 배열이 빈 배열일 경우 IllegalArgumentException 오류
 - [x] 자동차 이름이 5자를 초과할 경우 IllegalArgumentException 오류
 - [x] 시도할 횟수의 입력 값이 0일 경우 IllegalArgumentException 오류
+
+## 경주 결과
+- [x] A자동차와 B자동차 중 A자동차가 가장 멀리 감
