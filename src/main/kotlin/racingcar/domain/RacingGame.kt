@@ -4,12 +4,12 @@ import racingcar.RandomGear
 
 object RacingGame {
 
-    fun race(register: RegisterResult, times: Int, presentSituation: (car: Car) -> Unit): RaceResult {
+    fun race(register: RegisterResult, times: Int, onRoundFinish: (car: Car) -> Unit): RaceResult {
         val cars = Car.registerCars(register.participant)
         repeat(times) {
             cars.forEach {
                 it.drive(RandomGear.getGear())
-                presentSituation(it)
+                onRoundFinish(it)
             }
         }
         return RaceResult(cars)
