@@ -39,23 +39,6 @@ internal class CarTest : StringSpec({
         firstCar shouldNotBe secondCar
     }
 
-    "자동차가 멈추면 마지막 위치값을 기억한다" {
-        val car = Car(movingEngine)
-        car.move()
-        car.stop()
-        val lastPosition = car.lastPosition
-        lastPosition shouldBe car.currentPosition()
-    }
-
-    "자동차가 멈추면 이동을 하지 못한다" {
-        val car = Car(movingEngine)
-        car.move()
-        car.stop()
-        shouldThrow<IllegalStateException> {
-            car.move()
-        }
-    }
-
     "자동차가 이동을 시도했을 때, 시도한 횟수를 저장한다" {
         val car = Car(movingEngine)
         car.move()

@@ -8,13 +8,6 @@ class Car(
 
     private var position: Position = Position()
     private var stop: Boolean = false
-    private var _lastPosition: Position? = null
-    val lastPosition: Position
-        get() {
-            check(_lastPosition != null) { "자동차가 정지한 상태가 아닙니다" }
-            return _lastPosition as Position
-        }
-
     private var attemptCount: Count = Count()
 
     fun currentPosition() = this.position
@@ -31,11 +24,6 @@ class Car(
 
     private fun addAttemptCount() {
         this.attemptCount = this.attemptCount.add()
-    }
-
-    fun stop() {
-        this.stop = true
-        this._lastPosition = currentPosition()
     }
 
     fun attemptCount(): Int = this.attemptCount.toInt()
