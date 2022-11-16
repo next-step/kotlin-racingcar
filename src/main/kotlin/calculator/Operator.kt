@@ -22,5 +22,11 @@ enum class Operator(private val sign: Char) {
         operator fun invoke(sign: Char): Operator {
             return values().first { o -> o.isSame(sign) }
         }
+
+        fun exist(sign: Char): Boolean {
+            return values().any { o -> o.isSame(sign) }
+        }
+
+        fun list(): List<String> = values().map { it -> it.sign.toString() }.toList()
     }
 }
