@@ -53,6 +53,5 @@ class Race(
         private const val LITERAL_POSITION = "-"
         private const val PER_RACE_SECONDS = 2000L
         private const val START_POSITION_NUMBER = 0
-        private const val START_ROUND_NUMBER = 0
     }
 }
