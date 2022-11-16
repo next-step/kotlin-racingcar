@@ -15,10 +15,10 @@ class RacingCarRace {
         resultView.printInitResult()
 
         for (i in 0 until carVo.tryCount) {
-            RacingCarMove.move(carVo.resultMoveList)
+            RacingCar.moveCars(carVo.resultMoveList)
 
             for (resultMoveCount in carVo.resultMoveList) {
-                resultView.printCarMove(RacingCarMove.getMoveString(resultMoveCount))
+                resultView.printCarMove(RacingCar.getMoveString(resultMoveCount))
             }
 
             if (i < carVo.tryCount - 1) {

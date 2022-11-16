@@ -2,9 +2,9 @@ package racingcar
 
 import java.security.SecureRandom
 
-object RacingCarMove {
+object RacingCar {
 
-    fun move(moveCountList: ArrayList<Int>) {
+    fun moveCars(moveCountList: ArrayList<Int>) {
         moveCountList.forEachIndexed { index, _ ->
             if (checkMoveValue(createRandomInt())) {
                 moveCountList[index] ++
