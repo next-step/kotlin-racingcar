@@ -5,26 +5,18 @@ internal class ResultView {
         println("실행 결과")
     }
 
-    fun printCarMove(moveResult: String) {
-        println(moveResult)
+    fun printCarMoveCount(moveCount: Int) {
+        println(getMoveString(moveCount))
     }
 
     fun printLineSpacing() {
         println()
     }
 
-    //
-    // fun printResult(racingCarInfo: RacingCarInfo, printIndex: Int) {
-    //     if (printIndex == 0) {
-    //         println("실행 결과")
-    //     }
-    //
-    //     for (resultMoveCount in racingCarInfo.resultMoveList) {
-    //         println(RacingCarMove.getMoveString(resultMoveCount))
-    //     }
-    //
-    //     if (printIndex < racingCarInfo.tryCount - 1) {
-    //         println()
-    //     }
-    // }
+    fun getMoveString(moveCount: Int): String =
+        StringBuilder().apply {
+            for (i in 0 until moveCount) {
+                append("-")
+            }
+        }.toString()
 }

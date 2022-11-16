@@ -20,7 +20,7 @@ object RacingCar {
             moveCars(carList)
 
             for (car in carList) {
-                resultView.printCarMove(getMoveString(car.moveCount))
+                resultView.printCarMoveCount(car.moveCount)
             }
 
             if (i < tryCount - 1) {
@@ -48,11 +48,5 @@ object RacingCar {
 
     fun checkMoveValue(value: Int): Boolean = value >= 4
 
-    fun getMoveString(moveCount: Int): String {
-        return StringBuilder().apply {
-            for (i in 0 until moveCount) {
-                append("-")
-            }
-        }.toString()
-    }
+    fun getMoveString(moveCount: Int): String = ResultView().getMoveString(moveCount)
 }
