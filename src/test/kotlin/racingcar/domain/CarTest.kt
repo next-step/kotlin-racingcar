@@ -21,4 +21,18 @@ class CarTest {
         cars.first().drive(Gear.STOP)
         assertThat(cars.first().currentPosition).isEqualTo(0)
     }
+
+    @Test
+    @DisplayName("자동차의 기본 위치는 0")
+    fun `Default position of the car is 0`() {
+        val cars = Car.registerCars(listOf("홍길동"))
+        assertThat(cars.first().currentPosition).isEqualTo(0)
+    }
+
+    @Test
+    @DisplayName("kiki라고 등록된 자동차의 이름은 kiki")
+    fun `name of the car registered as kiki is kiki`() {
+        val cars = Car.registerCars(listOf("kiki"))
+        assertThat(cars.first().name).isEqualTo("kiki")
+    }
 }
