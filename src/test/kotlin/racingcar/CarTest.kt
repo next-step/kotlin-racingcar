@@ -31,4 +31,26 @@ internal class CarTest {
         // then
         assertThat(afterRaceCar.pos).isEqualTo(expectedPos)
     }
+
+    @Test
+    @DisplayName("자동차 위치가 같으면 true를 반환한다.")
+    internal fun equalsPosTrueTest() {
+        // given
+        val carA = Car("carA", 10)
+        val carB = Car("carB", 10)
+
+        // when, then
+        assertThat(carA.equalsPos(carB)).isTrue
+    }
+
+    @Test
+    @DisplayName("자동차 위치가 다르면 false를 반환한다.")
+    internal fun equalsPosFalseTest() {
+        // given
+        val carA = Car("carA", 10)
+        val carB = Car("carB", 5)
+
+        // when, then
+        assertThat(carA.equalsPos(carB)).isFalse
+    }
 }

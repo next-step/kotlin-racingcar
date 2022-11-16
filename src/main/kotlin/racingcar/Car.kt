@@ -24,4 +24,8 @@ class Car(
             NON_FORWARD -> this
         }
     }
+
+    fun equalsPos(car: Car): Boolean {
+        return this.pos == car.pos
+    }
 }
