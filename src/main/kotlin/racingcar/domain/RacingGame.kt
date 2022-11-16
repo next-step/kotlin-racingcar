@@ -1,14 +1,17 @@
 package racingcar.domain
 
-import racingcar.RandomGear
-
 object RacingGame {
 
-    fun race(register: RegisterResult, times: Int, onRoundFinish: (car: Car) -> Unit): RaceResult {
+    fun race(
+        register: RegisterResult,
+        times: Int,
+        gearFactory: GearFactory,
+        onRoundFinish: (car: Car) -> Unit
+    ): RaceResult {
         val cars = Car.registerCars(register.participant)
         repeat(times) {
             cars.forEach {
-                it.drive(RandomGear.getGear())
+                it.drive(gearFactory.getGear())
                 onRoundFinish(it)
             }
         }
