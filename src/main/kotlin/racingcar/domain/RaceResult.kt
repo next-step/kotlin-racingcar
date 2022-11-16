@@ -1,9 +1,10 @@
 package racingcar.domain
 
-data class RaceResult(var cars: List<Car>) {
+class RaceResult(cars: List<Car>) {
+    var winnerCars: List<Car>
 
     init {
         val max = cars.maxOf { it.currentPosition }
-        cars = cars.filter { it.currentPosition == max }
+        winnerCars = cars.filter { it.currentPosition == max }
     }
 }

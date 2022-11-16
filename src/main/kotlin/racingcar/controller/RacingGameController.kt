@@ -11,6 +11,6 @@ object RacingGameController {
         ResultView.executionResult()
         val raceResult =
             RacingGame.race(register, register.times) { ResultView.presentSituation(it.name, it.currentPosition) }
-        ResultView.presentWinner(raceResult.cars)
+        ResultView.presentWinner(raceResult.winnerCars)
     }
 }

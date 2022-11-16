@@ -15,6 +15,6 @@ class RaceResultTest {
         val cars = listOf(carA, carB)
         val raceResult = RaceResult(cars)
 
-        Assertions.assertThat(raceResult.cars.contains(carA)).isTrue
+        Assertions.assertThat(raceResult.winnerCars.contains(carA)).isTrue
     }
 }
