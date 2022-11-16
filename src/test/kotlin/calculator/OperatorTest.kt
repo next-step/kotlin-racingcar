@@ -7,10 +7,9 @@ class OperatorTest {
     @Test
     fun `덧셈 연산을 한다`() {
         // given
-        val operator = Operator()
+        val operator = Operator.find('+')
 
         // when
-        operator.find('+')
         val result = operator.operate(1, 2)
 
         // then
@@ -20,10 +19,10 @@ class OperatorTest {
     @Test
     fun `뺄셈 연산을 한다`() {
         // given
-        val operator = Operator()
+        val operator = Operator.find('-')
 
         // when
-        operator.find('-')
+
         val result = operator.operate(11, 1)
 
         // then
@@ -33,10 +32,9 @@ class OperatorTest {
     @Test
     fun `곱셈 연산을 한다`() {
         // given
-        val operator = Operator()
+        val operator = Operator.find('*')
 
         // when
-        operator.find('*')
         val result = operator.operate(2, 3)
 
         // then
@@ -46,10 +44,9 @@ class OperatorTest {
     @Test
     fun `나눗셈 연산을 한다`() {
         // given
-        val operator = Operator()
+        val operator = Operator.find('/')
 
         // when
-        operator.find('/')
         val result = operator.operate(10, 2)
 
         // then

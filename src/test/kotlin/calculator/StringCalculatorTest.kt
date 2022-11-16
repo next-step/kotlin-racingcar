@@ -10,7 +10,7 @@ class StringCalculatorTest {
     fun `사칙연산을 한다`(input: String) {
         // given
         val validator = Validator()
-        val stringCalculator = StringCalculator(operator = Operator())
+        val stringCalculator = StringCalculator()
         validator.validate(input)
 
         // when
