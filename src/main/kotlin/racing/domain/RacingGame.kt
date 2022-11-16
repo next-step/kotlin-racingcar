@@ -14,13 +14,13 @@ class RacingGame {
         var count = InputView.inputNumber()
 
         while (count-- > 0) {
-            turn(cars)
+            race(cars)
         }
 
         ResultView.printGameResult(ResultStatistics(cars).toResult())
     }
 
-    fun turn(cars: Cars) {
+    private fun race(cars: Cars) {
         for (car in cars) {
             car.move(RandomGenerator.generate())
         }

@@ -1,13 +1,17 @@
 package racing.domain
 
-data class Car(val name: String) {
+data class Car(val name: String, private var _position: Int = 0) {
 
-    private val routes = Routes()
+    val position: Int
+        get() = _position
+
     fun move(num: Int) {
-        when (num) {
-            in 4..9 -> routes.add()
+        if (num >= FORWARD_MOVE) {
+            _position++
         }
     }
 
-    fun routes() = routes
+    companion object {
+        const val FORWARD_MOVE: Int = 4
+    }
 }

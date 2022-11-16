@@ -22,7 +22,7 @@ class RacingGameTest {
         val cars: Cars = CarFactory.create(3)
         for (car in cars) {
             car.move(num)
-            assertThat(car.routes().size()).isEqualTo(1)
+            assertThat(car.position).isEqualTo(1)
         }
     }
 
@@ -32,7 +32,7 @@ class RacingGameTest {
         val cars: Cars = CarFactory.create(3)
         for (car in cars) {
             car.move(num)
-            assertThat(car.routes().size()).isEqualTo(0)
+            assertThat(car.position).isEqualTo(0)
         }
     }
 

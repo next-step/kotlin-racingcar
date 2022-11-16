@@ -14,14 +14,6 @@ class Cars(count: Int) : Iterable<Car> {
             }.toList()
     }
 
-    // override fun hasNext(): Boolean {
-    //     return list.size > index
-    // }
-    //
-    // override fun next(): Car {
-    //     return list[index++]
-    // }
-
     fun count() = list.size
     override fun iterator(): Iterator<Car> {
         return list.iterator()
