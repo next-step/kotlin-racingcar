@@ -1,26 +1,14 @@
 package src.racingcar
 
-class Car {
+class Car(private var moveCount: Int = 0) {
 
-    private var moveCounts: List<Int> = emptyList()
+    fun move(): Int {
+       if (CAR_MOVE_CONDITION_NUMBER <= getCarMoveRandomValue()) moveCount++
 
-    fun move(tryCount: Int, randomValue: Int): Car {
-        var moveCount = 0
-        for (i in 0 until tryCount) {
-            if (4 <= randomValue) {
-                moveCount++
-            }
-            this.moveCounts += moveCount
-        }
-
-        return this
+       return moveCount
     }
 
-    fun getMoveCountSize(): Int {
-        return moveCounts.size
-    }
-
-    fun getMoveCountIndex(index: Int): Int {
-        return moveCounts[index]
+    companion object {
+        private const val CAR_MOVE_CONDITION_NUMBER = 4
     }
 }
