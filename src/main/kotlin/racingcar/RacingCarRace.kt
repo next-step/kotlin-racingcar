@@ -11,9 +11,19 @@ class RacingCarRace {
         val tryCount = inputView.inputTryCount()
         val carVo = RacingCarInfo(carCount, tryCount, ArrayList(Array(carCount) { 0 }.toList()))
 
+        val resultView = ResultView()
+        resultView.printInitResult()
+
         for (i in 0 until carVo.tryCount) {
             RacingCarMove.move(carVo.resultMoveList)
-            ResultView().printResult(carVo, i)
+
+            for (resultMoveCount in carVo.resultMoveList) {
+                resultView.printCarMove(RacingCarMove.getMoveString(resultMoveCount))
+            }
+
+            if (i < carVo.tryCount - 1) {
+                resultView.printLineSpacing()
+            }
         }
     }
 }
