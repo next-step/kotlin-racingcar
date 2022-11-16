@@ -13,7 +13,7 @@ internal class RacingGameTest {
     @ParameterizedTest
     @ValueSource(ints = [1, 5, 10, 20])
     internal fun `자동차가 N대 생성된다`(carCount: Int) {
-        val racingGame = RacingGame(carCount)
+        val racingGame = RacingGame.of(carCount)
         assertThat(racingGame.cars.size).isEqualTo(carCount)
     }
 
@@ -21,7 +21,7 @@ internal class RacingGameTest {
     internal fun `자동차 목록을 입력받는다`() {
         val carNames = "pobi,crong,honux".split(CAR_NAME_DELIMITER)
 
-        val racingGame = RacingGame(carNames)
+        val racingGame = RacingGame.of(carNames)
 
         val carNameArray = carNames.toTypedArray()
         val carNameArrayInRacingGame = racingGame.cars.map { it.name }.toTypedArray()
@@ -32,14 +32,14 @@ internal class RacingGameTest {
     @ValueSource(strings = ["", ",a,b", "a,,b", "a,b,"])
     internal fun `자동차 목록에 공백이나 빈 이름이 포함되면 안된다`(delimitedCarNames: String) {
         val carNames = delimitedCarNames.split(CAR_NAME_DELIMITER)
-        assertThrows<IllegalArgumentException> { RacingGame(carNames) }
+        assertThrows<IllegalArgumentException> { RacingGame.of(carNames) }
     }
 
     @Test
     internal fun `우승자를 선정한다`() {
         val winner = Car("win", Position(10))
         val loser = Car("lose", Position(9))
-        val cars = setOf(winner, loser)
+        val cars = listOf(winner, loser)
         val racingGame = RacingGame(cars)
 
         val winners = racingGame.winners()
@@ -50,10 +50,10 @@ internal class RacingGameTest {
 
     @Test
     internal fun `우승자가 2명 이상일 경우`() {
-        val car1 = Car("pobi", Position(10))
-        val car2 = Car("crong", Position(10))
-        val car3 = Car("honux", Position(10))
-        val cars = setOf(car1, car2, car3)
+        val p1 = Car("pobi", Position(10))
+        val p2 = Car("crong", Position(10))
+        val p3 = Car("honux", Position(10))
+        val cars = listOf(p1, p2, p3)
 
         val winners = RacingGame(cars).winners()
 

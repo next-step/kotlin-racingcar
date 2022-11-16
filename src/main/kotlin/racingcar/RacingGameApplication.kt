@@ -10,7 +10,7 @@ object RacingGameApplication {
         val carNames = InputView.readCarNames()
         val tryCount = InputView.readTryCount()
 
-        val racingGame = RacingGame(carNames)
+        val racingGame = RacingGame.of(carNames)
 
         ResultView.printHeader()
         repeat(tryCount) {
