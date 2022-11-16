@@ -10,7 +10,7 @@ data class Cars(val cars: List<Car>) {
     }
 
     fun play(randomMovingStrategy: RandomMovingStrategy) {
-        cars.forEach { it.move(randomMovingStrategy.isMovable) }
+        cars.forEach { it.move(randomMovingStrategy) }
     }
 
     fun getWinners(): List<String> {
