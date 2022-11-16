@@ -1,17 +1,16 @@
 package racingcar.controller
 
 import racingcar.domain.RacingGame
-import racingcar.view.InputView.register
+import racingcar.view.InputView
 import racingcar.view.ResultView
-import racingcar.view.ResultView.executionResult
-import racingcar.view.ResultView.presentSituation
 
 object RacingGameController {
 
     fun run() {
-        val register = register()
-        executionResult()
-        val raceResult = RacingGame.race(register, register.times) { presentSituation(it.name, it.currentPosition) }
+        val register = InputView.register()
+        ResultView.executionResult()
+        val raceResult =
+            RacingGame.race(register, register.times) { ResultView.presentSituation(it.name, it.currentPosition) }
         ResultView.presentWinner(raceResult.cars)
     }
 }
