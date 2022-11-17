@@ -1,24 +1,16 @@
 package racingcar
 
 class Cars(var cars: List<Car>) {
-    fun move(): String {
-        var result = ""
+    fun move(): List<Car> {
+        val of = mutableListOf<Car>()
+
         cars.forEach {
-            it.move((RANDOM_NUMBER_RANGE).random())
-            result += it.makeResult()
+            of.add(it.move((RANDOM_NUMBER_RANGE).random()))
         }
-        return result
+        return of
     }
 
-    fun findMaxStatusValue(): Int {
-        var max = Int.MIN_VALUE
-        for (car in cars) {
-            if (car.status > max) {
-                max = car.status
-            }
-        }
-        return max
-    }
+    fun findMaxStatusValue(): Int = cars.maxOf { it.status }
 
     companion object {
         private val RANDOM_NUMBER_RANGE = 0..9

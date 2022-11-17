@@ -16,8 +16,9 @@ fun main() {
 
     val cars = Cars(carList)
     for (i in 1..tryNumber) {
-        val moved = cars.move()
-        result += moved + "\n"
+        val movedCars = cars.move()
+        result += resultView.makeResults(movedCars)
+        result += "\n"
     }
 
     val exec = Statistics.exec(cars)
