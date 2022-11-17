@@ -39,8 +39,6 @@ internal class CarRacingTest {
     companion object {
         const val MOVE_SIZE = 1
 
-        val moveStrategy = object : MoveStrategy {
-            override fun getMoveDistance() = MOVE_SIZE
-        }
+        val moveStrategy = MoveStrategy { MOVE_SIZE }
     }
 }

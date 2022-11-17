@@ -1,6 +1,5 @@
 package racing.domain
 
-interface MoveStrategy {
-
+fun interface MoveStrategy {
     fun getMoveDistance(): Int
 }

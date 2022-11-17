@@ -39,12 +39,8 @@ internal class CarTest {
     }
 
     companion object {
-        val forwardByOneMoveStrategy = object : MoveStrategy {
-            override fun getMoveDistance() = 1
-        }
+        val forwardByOneMoveStrategy = MoveStrategy { 1 }
 
-        val stopMoveStrategy = object : MoveStrategy {
-            override fun getMoveDistance() = 0
-        }
+        val stopMoveStrategy = MoveStrategy { 0 }
     }
 }
