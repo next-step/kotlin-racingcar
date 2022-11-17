@@ -30,15 +30,53 @@ internal class RacingCarTest {
 
     @Test
     fun `자동차 이름 입력 시 공백이면 예외가 발생한다`() {
-        assertThrows(IllegalArgumentException::class.java) {
-            InputName("")
-        }
+        assertAll(
+            {
+                assertThrows(IllegalArgumentException::class.java) {
+                    InputName("")
+                }
+            },
+            {
+                assertThrows(IllegalArgumentException::class.java) {
+                    InputName("Korea,,USA")
+                }
+            },
+            {
+                assertThrows(IllegalArgumentException::class.java) {
+                    InputName("Korea, ,USA")
+                }
+            },
+            {
+                assertThrows(IllegalArgumentException::class.java) {
+                    InputName(",Korea,USA")
+                }
+            }
+        )
     }
 
     @Test
     fun `자동차 이름 5자 초과 시 예외가 발생한다`() {
-        assertThrows(IllegalArgumentException::class.java) {
-            InputName("coffee")
-        }
+        assertAll(
+            {
+                assertThrows(IllegalArgumentException::class.java) {
+                    InputName("coffee")
+                }
+            },
+            {
+                assertThrows(IllegalArgumentException::class.java) {
+                    InputName("Korea,HappyMan,USA")
+                }
+            },
+            {
+                assertThrows(IllegalArgumentException::class.java) {
+                    InputName("Korea,American")
+                }
+            },
+            {
+                assertThrows(IllegalArgumentException::class.java) {
+                    InputName("Horizon,Korea,USA")
+                }
+            }
+        )
     }
 }
