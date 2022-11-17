@@ -2,6 +2,7 @@ package racingcar.domain
 
 class InputName(input: String) {
     val names: List<String>
+
     init {
         names = splitInputValue(input)
         for (name in names) {
@@ -10,6 +11,7 @@ class InputName(input: String) {
             }
             checkValidNameLength(name)
         }
+        checkDuplicatedName()
     }
 
     private fun splitInputValue(inputValue: String): List<String> {
@@ -23,6 +25,12 @@ class InputName(input: String) {
     private fun checkValidNameLength(name: String) {
         if (name.length > 5) {
             throw IllegalArgumentException("$ERROR_MESSAGE Invalid Length")
+        }
+    }
+
+    private fun checkDuplicatedName() {
+        if (names.size != names.distinct().count()) {
+            throw IllegalArgumentException("$ERROR_MESSAGE Duplicated Name")
         }
     }
 

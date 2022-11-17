@@ -79,4 +79,30 @@ internal class RacingCarTest {
             }
         )
     }
+
+    @Test
+    fun `이름 중복 시 예외가 발생한다`() {
+        assertAll(
+            {
+                assertThrows(IllegalArgumentException::class.java) {
+                    InputName("Korea,Japan,Korea,China")
+                }
+            },
+            {
+                assertThrows(IllegalArgumentException::class.java) {
+                    InputName("Korea,USA,USA")
+                }
+            },
+            {
+                assertThrows(IllegalArgumentException::class.java) {
+                    InputName("Korea,Tiger,Lion,Horse,Korea")
+                }
+            },
+            {
+                assertThrows(IllegalArgumentException::class.java) {
+                    InputName("Korea,Korea,USA")
+                }
+            }
+        )
+    }
 }
