@@ -2,8 +2,6 @@ package racingcar.domain
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
-import io.kotest.matchers.shouldBe
-import io.kotest.matchers.string.startWith
 
 class NameTest : BehaviorSpec({
     given("이름을 입력할 때") {
@@ -11,10 +9,9 @@ class NameTest : BehaviorSpec({
             val input = "윤영빈윤영빈윤영빈윤영빈"
 
             then("IllegalArgumentException 이 발생한다.") {
-                val exception = shouldThrow<IllegalArgumentException> {
+                shouldThrow<IllegalArgumentException> {
                     Name(input)
                 }
-                exception.message shouldBe startWith("이름은 10자 이하여야 합니다.")
             }
         }
     }
