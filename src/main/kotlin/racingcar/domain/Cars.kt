@@ -5,17 +5,19 @@ import racingcar.view.OutputView
 class Cars {
     private val cars = mutableListOf<Car>()
 
-    fun startRace(gameInputValue: GameInputValue, movingConditionStrategy: MovingConditionStrategy) {
-        val outputView = OutputView()
-        make(gameInputValue.inputNameOfCars, movingConditionStrategy)
-        iterateNumberOfGames(gameInputValue, outputView)
-    }
-
-    private fun make(numberOfCars: List<String>, movingConditionStrategy: MovingConditionStrategy) {
-
+    fun make(numberOfCars: List<String>, movingConditionStrategy: MovingConditionStrategy) {
         for (i in numberOfCars.indices) {
             cars.add(Car(movingConditionStrategy, numberOfCars[i]))
         }
+    }
+
+    fun race(gameInputValue: GameInputValue) {
+        val outputView = OutputView()
+        iterateNumberOfGames(gameInputValue, outputView)
+    }
+
+    fun showResult(): String {
+        return OutputView().showWinner(WinnerSelector(cars).selectWinner())
     }
 
     private fun iterateNumberOfGames(gameInputValue: GameInputValue, outputView: OutputView) {

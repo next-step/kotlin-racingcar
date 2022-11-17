@@ -5,5 +5,8 @@ fun main() {
     val inputNameOfCars = InputName(InputView().getNameOfCars()).names
     val inputNumberOfTGames = InputNumber(InputView().getNumberOfGames()).number
     val gameInputValue = GameInputValue(inputNameOfCars, inputNumberOfTGames)
-    Cars().startRace(gameInputValue, RandomMovingStrategy())
+    val cars = Cars()
+    cars.make(inputNameOfCars, RandomMovingStrategy())
+    cars.race(gameInputValue)
+    cars.showResult()
 }

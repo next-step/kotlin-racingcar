@@ -1,9 +1,12 @@
 package racingcar
 
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertAll
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
-import racingcar.domain.InputName
-import racingcar.domain.InputNumber
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
+import racingcar.domain.*
 
 internal class RacingCarTest {
     @Test
@@ -104,5 +107,53 @@ internal class RacingCarTest {
                 }
             }
         )
+    }
+
+    @ParameterizedTest
+    @CsvSource("'Korea,Japan,China', '5'")
+    fun `우승자 선택 및 출력한다`(names: String, games: String) {
+        val inputNameOfCars = InputName(names).names
+        val inputNumberOfTGames = InputNumber(games).number
+        val gameInputValue = GameInputValue(inputNameOfCars, inputNumberOfTGames)
+        assertAll(
+            {
+                val cars = Cars()
+                cars.make(inputNameOfCars, MockStrategy(KOREA_CAR_NUMBER))
+                cars.race(gameInputValue)
+                assertEquals("Korea", cars.showResult())
+            },
+            {
+                val cars = Cars()
+                cars.make(inputNameOfCars, MockStrategy(JAPAN_CAR_NUMBER))
+                cars.race(gameInputValue)
+                assertEquals("Japan", cars.showResult())
+            },
+            {
+                val cars = Cars()
+                cars.make(inputNameOfCars, MockStrategy(CHINA_CAR_NUMBER))
+                cars.race(gameInputValue)
+                assertEquals("China", cars.showResult())
+            },
+            {
+                val cars = Cars()
+                cars.make(inputNameOfCars, MockStrategy(ALL_CAR_STOP_WINNER_NUMBER))
+                cars.race(gameInputValue)
+                assertEquals("Korea, Japan, China", cars.showResult())
+            },
+            {
+                val cars = Cars()
+                cars.make(inputNameOfCars, MockStrategy(ALL_CAR_MOVE_WINNER_NUMBER))
+                cars.race(gameInputValue)
+                assertEquals("Korea, Japan, China", cars.showResult())
+            }
+        )
+    }
+
+    companion object {
+        const val KOREA_CAR_NUMBER = 0
+        const val JAPAN_CAR_NUMBER = 1
+        const val CHINA_CAR_NUMBER = 2
+        const val ALL_CAR_STOP_WINNER_NUMBER = 3
+        const val ALL_CAR_MOVE_WINNER_NUMBER = 4
     }
 }

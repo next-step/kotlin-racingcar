@@ -22,4 +22,23 @@ class OutputView {
             println()
         }
     }
+
+    fun showWinner(winnerNames: MutableList<String>): String {
+        var winnerName = ""
+
+        for ((winnerNamesIndex, names) in winnerNames.withIndex()) {
+            winnerName += makeWinnerNameFormat(winnerNamesIndex, names, winnerNames.size - 1)
+        }
+
+        println("${winnerName}가 최종 우승했습니다.")
+
+        return winnerName
+    }
+
+    private fun makeWinnerNameFormat(winnerNamesIndex: Int, names: String, winnerNamesLastIndex: Int): String {
+        if (winnerNamesIndex != winnerNamesLastIndex) {
+            return "$names, "
+        }
+        return "$names"
+    }
 }
