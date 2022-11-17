@@ -5,24 +5,30 @@ import io.kotest.matchers.ints.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
 
 class CarsTest : BehaviorSpec({
-    given("자동차들이") {
-        `when`("경기를 진행했을 때") {
-            then("가장 많은 거리를 간 자동차는 한 대 뿐이다.") {
-                val cars = Cars(onlyOneMaxDistanceCar)
-                val maxDistanceCar = cars.findMaxDistanceCars()
-                maxDistanceCar.size shouldBe 1
+    given("자동차 게임에서") {
+        `when`("가장 많은 거리를 이동한 자동차가") {
+            and("한 대 라면") {
+                then("findMaxDistanceCars() 리스트의 사이즈는 1이다.") {
+                    val cars = Cars(onlyOneMaxDistanceCar)
+                    val maxDistanceCar = cars.findMaxDistanceCars()
+                    maxDistanceCar.size shouldBe 1
+                }
             }
 
-            then("가장 많은 거리를 간 자동차는 여러 대이다.") {
-                val cars = Cars(multipleMaxDistanceCar)
-                val maxDistanceCar = cars.findMaxDistanceCars()
-                maxDistanceCar.size shouldBeGreaterThan 1
+            and("여러 대 라면") {
+                then("findMaxDistanceCars() 리스트의 사이즈는 1보다 크다.") {
+                    val cars = Cars(multipleMaxDistanceCar)
+                    val maxDistanceCar = cars.findMaxDistanceCars()
+                    maxDistanceCar.size shouldBeGreaterThan 1
+                }
             }
 
-            then("가장 많은 거리를 간 자동차는 없다.") {
-                val cars = Cars(noOneMaxDistance)
-                val maxDistanceCar = cars.findMaxDistanceCars()
-                maxDistanceCar.size shouldBe 0
+            and("없다면") {
+                then("findMaxDistanceCars() 리스트의 사이즈는 0이다.") {
+                    val cars = Cars(noOneMaxDistance)
+                    val maxDistanceCar = cars.findMaxDistanceCars()
+                    maxDistanceCar.size shouldBe 0
+                }
             }
         }
     }
