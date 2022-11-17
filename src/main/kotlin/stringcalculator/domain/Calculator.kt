@@ -18,6 +18,10 @@ enum class Calculator(private val sign: String, private val operation: BinaryOpe
     }
 
     fun calculate(left: Int, right: Int): Int {
+        if (this == DIVIDE && right == 0) {
+            throw IllegalArgumentException("0으로 나눌 수 없습니다.")
+        }
+
         return operation.apply(left, right)
     }
 }

@@ -37,4 +37,10 @@ class CalculatorTest : StringSpec({
             calculator.calculate(2, 2) shouldBe expected
         }
     }
+
+    "0으로 나누면 예외가 발생한다" {
+        shouldThrow<IllegalArgumentException> {
+            DIVIDE.calculate(2, 0)
+        }
+    }
 })
