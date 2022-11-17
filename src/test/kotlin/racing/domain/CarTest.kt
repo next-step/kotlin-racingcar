@@ -9,14 +9,13 @@ class CarTest : BehaviorSpec({
         `when`("전진 조건을 만족할때") {
             val car = Car()
             then("position이 증가한다.") {
-                car.tryMove(4)
+                car.move()
                 car.position shouldBe 1
             }
         }
         `when`("전진 조건을 만족하지 않았을떄") {
             val car = Car()
             then("position이 유지된다.") {
-                car.tryMove(3)
                 car.position shouldBe 0
             }
         }
