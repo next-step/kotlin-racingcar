@@ -6,7 +6,6 @@ import racingcar.domain.Winner
 
 object ResultView {
     private const val SPACE = "-"
-    private const val SEPARATOR = ", "
 
     fun printResultTitle() {
         println("\n실행 결과")
@@ -31,7 +30,7 @@ object ResultView {
             return
         }
 
-        val names = winners.getWinners().joinToString(SEPARATOR) { it.getName() }
+        val names = winners.getWinners().joinToString() { it.getName() }
         print("$names 가 최종 우승했습니다.")
     }
 }
