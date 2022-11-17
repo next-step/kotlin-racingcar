@@ -44,4 +44,4 @@
   - AS-IS : `Car`객체의 각 라운드 결과 목록을 저장하는 `RoundResults`객체를 이용하여 경기 결과를 표현
   - TO-BE : `Car`객체의 누적된 진행거리를 저장하는 distance 필드를 이용하여 경기 결과를 표현
 * [x] repeat()를 이용하여 for문으로 작성된 반복문의 가독성 개선
-* [ ] Service에서 일부 객체 생성하는 책임을 Controller로 분리
+* [x] Service에서 일부 객체 생성하는 책임을 Controller로 분리

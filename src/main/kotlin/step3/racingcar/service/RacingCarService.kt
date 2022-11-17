@@ -1,13 +1,15 @@
 package step3.racingcar.service
 
 import step3.racingcar.domain.Cars
+import step3.racingcar.domain.PlayInfo
 import step3.racingcar.utils.RandomNumberGenerator
 import step3.racingcar.view.ResultView
 
 class RacingCarService {
-    fun play(carCount: Int, roundCount: Int) {
-        val cars = Cars(carCount)
-        repeat(roundCount) { playEachRound(it, cars) }
+    fun play(playInfo: PlayInfo) {
+        repeat(playInfo.totalRound) {
+            playEachRound(it, playInfo.cars)
+        }
     }
 
     private fun playEachRound(currentRound: Int, cars: Cars) {
