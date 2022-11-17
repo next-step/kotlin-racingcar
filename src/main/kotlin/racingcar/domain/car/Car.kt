@@ -12,7 +12,7 @@ data class Car(val name: Name) {
 
     fun move(movingStrategy: MovingStrategy) {
         if (movingStrategy.isMovable()) {
-            position = Position(position.value + 1)
+            position = position.add()
         }
     }
 }
