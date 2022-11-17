@@ -1,13 +1,13 @@
 package racing.domain
 
-class Car(private var _position: Int = 0) {
+class Car(position: Int = 0) {
 
-    val position: Int
-        get() = _position
+    var position = position
+        private set
 
     fun move(num: Int) {
         if (num >= FORWARD_MOVE) {
-            _position++
+            position++
         }
     }
 

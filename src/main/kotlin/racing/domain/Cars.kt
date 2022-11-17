@@ -13,7 +13,4 @@ class Cars(count: Int) {
     fun count() = list.size
 
     fun list() = list
-    // override fun iterator(): Iterator<Car> {
-    //     return list.iterator()
-    // }
 }
