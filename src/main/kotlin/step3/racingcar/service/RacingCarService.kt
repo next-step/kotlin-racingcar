@@ -7,10 +7,7 @@ import step3.racingcar.view.ResultView
 class RacingCarService {
     fun play(carCount: Int, roundCount: Int) {
         val cars = Cars(carCount)
-
-        for (i in 1..roundCount) {
-            playEachRound(i, cars)
-        }
+        repeat(roundCount) { playEachRound(it, cars) }
     }
 
     private fun playEachRound(currentRound: Int, cars: Cars) {
