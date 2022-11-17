@@ -2,11 +2,11 @@ package racingcar.domain.car
 
 import racingcar.domain.car.action.MovingStrategy
 
+private const val MINIMUM_NUMBER_OF_RACERS = 2
+
 data class Cars(val cars: List<Car>) {
     init {
-        require(cars.isNotEmpty()) { "빈 문자열은 입력할 수 없습니다." }
-        require(cars.size >= 2) { "자동차 이름은 2개 이상 입력해주세요." }
-        require(cars.size == cars.distinct().size) { "자동차 이름은 중복될 수 없습니다." }
+        require(cars.size >= MINIMUM_NUMBER_OF_RACERS) { "자동차는 2대 이상이어야 합니다." }
     }
 
     constructor(cars: Array<String>) : this(cars.map { Car(it) })

@@ -27,4 +27,12 @@ class RacersTest {
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageContaining("자동차 이름은 쉼표(,)로 구분해 주세요.")
     }
+
+    @DisplayName("입력된 자동차 이름이 중복인 경우 예외처리")
+    @Test
+    fun `입력된 자동차 이름이 중복인 경우`() {
+        Assertions.assertThatThrownBy { Racers("pobi,crong,honux,pobi") }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining("자동차 이름은 중복될 수 없습니다.")
+    }
 }
