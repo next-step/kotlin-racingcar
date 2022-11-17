@@ -1,17 +1,15 @@
 package racingcar.model
 
-data class Position(private var value: NonNegative = NonNegative()) {
+data class Position(private val value: PositiveNumber = PositiveNumber()) {
 
-    constructor(input: String) : this() {
-        this.value = NonNegative(input)
-    }
+    constructor(input: String) : this(PositiveNumber(input))
 
-    fun plus() {
-        this.value.plus(FORWARD_VALUE)
+    fun plus(): Position {
+        return Position(this.value.plus(FORWARD_VALUE))
     }
 
     fun getPosition(): Int {
-        return this.value.getNonNegativeValue()
+        return this.value.getPositiveNumber()
     }
 
     companion object {
