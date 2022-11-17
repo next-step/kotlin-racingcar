@@ -1,4 +1,8 @@
-import racingcar.domain.*
+import racingcar.domain.Cars
+import racingcar.domain.GameInputValue
+import racingcar.domain.InputName
+import racingcar.domain.InputNumber
+import racingcar.domain.RandomMovingStrategy
 import racingcar.view.InputView
 
 fun main() {

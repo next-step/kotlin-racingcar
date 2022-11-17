@@ -6,7 +6,10 @@ import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import racingcar.domain.*
+import racingcar.domain.Cars
+import racingcar.domain.GameInputValue
+import racingcar.domain.InputName
+import racingcar.domain.InputNumber
 
 internal class RacingCarTest {
     @Test

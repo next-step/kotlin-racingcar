@@ -2,18 +2,16 @@ package racingcar.domain
 
 import racingcar.view.OutputView
 
-const val MOVE_MARKER = "- "
-
 class Car(private val movingConditionStrategy: MovingConditionStrategy, var name: String = "") {
-    var position = ""
+    var position = 0
 
     fun move() {
         if (movingConditionStrategy.move() >= MOVE_FORWARD) {
-            markCarPosition(MOVE_MARKER)
+            markCarPosition(MOVE_VALUE)
         }
     }
 
-    private fun markCarPosition(value: String) {
+    private fun markCarPosition(value: Int) {
         position += value
     }
 
@@ -23,5 +21,7 @@ class Car(private val movingConditionStrategy: MovingConditionStrategy, var name
 
     companion object {
         const val MOVE_FORWARD = 4
+        //const val MOVE_MARKER = "- "
+        const val MOVE_VALUE = 1
     }
 }

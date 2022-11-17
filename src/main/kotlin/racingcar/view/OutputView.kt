@@ -3,9 +3,13 @@ package racingcar.view
 class OutputView {
     private var isTitle = true
 
-    fun showRaceState(name: String, position: String, isLastCarCycle: Boolean) {
+    fun showRaceState(name: String, position: Int, isLastCarCycle: Boolean) {
         addTitle()
-        println("$name : $position")
+        print("$name : ")
+        for (i in 0..position) {
+            print("$MOVE_MARKER")
+        }
+        println()
         addLineForLastCar(isLastCarCycle)
     }
 
@@ -40,5 +44,9 @@ class OutputView {
             return "$names, "
         }
         return "$names"
+    }
+
+    companion object {
+        const val MOVE_MARKER = "- "
     }
 }
