@@ -6,14 +6,13 @@ const val CAR_ID_DELIMITER = "-"
 
 class Car {
     val id: String = UUID.randomUUID().toString().substringBefore(CAR_ID_DELIMITER)
-    var roundResults: RoundResults = RoundResults()
+    var distance = 0
 
-    fun race(round: Int, randomNumber: Int): RoundResult =
-        RoundResult(round, MoveStatus.match(randomNumber)).apply {
-            roundResults.accumulate(this)
+    fun race(randomNumber: Int) {
+        if (isMove(randomNumber)) {
+            distance++
         }
+    }
 
-    fun acceleratedRoundCount(): Int = roundResults.acceleratedCount()
-
-    fun playRoundCount(): Int = roundResults.size()
+    private fun isMove(randomNumber: Int) = randomNumber >= 4
 }
