@@ -1,6 +1,7 @@
 package racing
 
-data class Name private constructor(val name: String) {
+@JvmInline
+value class Name private constructor(val name: String) {
     companion object {
         fun of(name: String): Name {
             if (name.length > 5) {

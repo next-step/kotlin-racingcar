@@ -8,11 +8,11 @@ fun main() {
     val inputView = InputView()
     val outputView = OutputView()
 
-    val listOfNames = inputView.getNames()
+    val names = inputView.getNames()
     val numberOfGames = inputView.getNumberOfGames()
 
     val random = Random()
-    val racingCars = Cars.init(listOfNames, MoveStrategy { random.nextInt(10) >= 4 })
+    val racingCars = Cars.init(names, MoveStrategy { random.nextInt(10) >= 4 })
 
     outputView.printResultString()
     repeat(numberOfGames) {

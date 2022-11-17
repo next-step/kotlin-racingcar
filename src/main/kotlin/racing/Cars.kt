@@ -2,8 +2,8 @@ package racing
 
 data class Cars(private val cars: List<Car>) {
     companion object {
-        fun init(listOfNames: List<String>, moveStrategy: MoveStrategy): Cars {
-            val carList = listOfNames.map { Car(moveStrategy = moveStrategy, name = Name.of(it)) }
+        fun init(names: List<String>, moveStrategy: MoveStrategy): Cars {
+            val carList = names.map { Car(moveStrategy = moveStrategy, name = Name.of(it)) }
             return Cars(carList)
         }
     }
@@ -19,6 +19,6 @@ data class Cars(private val cars: List<Car>) {
     fun getWinners(): List<Name> {
         return cars
             .groupBy(Car::distance, Car::name)
-            .maxByOrNull { it.key }!!.value
+            .maxByOrNull { it.key }?.value ?: throw IllegalStateException("승자가 없습니다.")
     }
 }

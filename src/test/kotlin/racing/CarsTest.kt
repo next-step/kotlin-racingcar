@@ -43,10 +43,10 @@ class CarsTest {
     }
 
     @Test
-    fun `우승자_찾기_검증` () {
+    fun `우승자_찾기_검증`() {
         // given
         val brokenCarUserNames = listOf(Name.of("mimi"), Name.of("jin"))
-        val brokenCars = brokenCarUserNames.map { Car(moveStrategy = MoveStrategy { false }, name = it)}
+        val brokenCars = brokenCarUserNames.map { Car(moveStrategy = MoveStrategy { false }, name = it) }
         val cars = Cars(movableCars.plus(brokenCars))
 
         // when
@@ -56,5 +56,4 @@ class CarsTest {
         assertThat(cars.getWinners()).containsAll(movableCarUserNames)
         assertThat(cars.getWinners()).doesNotContainAnyElementsOf(brokenCarUserNames)
     }
-
 }
