@@ -5,5 +5,24 @@ class Cars(
 ) {
     fun getCars() = cars
 
-    fun race() = cars.map { it.moveOrNot() }
+    fun race() {
+        cars.forEach { it.moveOrNot() }
+    }
+
+    fun findMaxDistanceCars(): List<Car> {
+        val max: Int = getMaxDistance(this.cars)
+
+        return if (max == ZERO) {
+            emptyList()
+        } else {
+            this.cars.filter { it.getDistance() == max }
+        }
+    }
+
+    private fun getMaxDistance(cars: List<Car>) =
+        cars.maxOf { it.getDistance() }
+
+    companion object {
+        private const val ZERO = 0
+    }
 }
