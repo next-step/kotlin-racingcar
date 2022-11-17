@@ -4,10 +4,11 @@ import racingcar.domain.car.action.MovingStrategy
 import racingcar.domain.car.status.Name
 import racingcar.domain.car.status.Position
 
-data class Car(private val carName: String) {
-    val name: Name = Name(carName)
+data class Car(val name: Name) {
     var position: Position = Position(0)
-        private set 
+        private set
+
+    constructor(name: String) : this(Name(name))
 
     fun move(movingStrategy: MovingStrategy) {
         if (movingStrategy.isMovable()) {
