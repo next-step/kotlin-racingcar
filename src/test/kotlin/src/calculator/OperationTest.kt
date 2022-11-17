@@ -1,4 +1,4 @@
-package src.step2
+package src.calculator
 
 import io.kotest.matchers.throwable.shouldHaveMessage
 import org.assertj.core.api.Assertions
