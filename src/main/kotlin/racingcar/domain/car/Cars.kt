@@ -15,7 +15,7 @@ data class Cars(val cars: List<Car>) {
         cars.forEach { it.move(movingStrategy) }
     }
 
-    fun getWinners(): List<String> {
+    fun findTheWinner(): List<String> {
         val maxPosition = cars.maxOf { it.position.value }
         return cars.filter { it.position.value == maxPosition }.map { it.name.value }
     }
