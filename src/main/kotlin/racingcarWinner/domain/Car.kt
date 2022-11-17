@@ -13,11 +13,11 @@ class Car(
         require(carName.length <= CAR_NAME_LENGTH_MAX_LIMIT) { MessageCode.CarNameMaxLengthException.message }
     }
 
-    private fun isMovable(randomNumber: Int): Boolean =
-        randomNumber >= MOVE_LIMIT
+    private fun isMovable(condition: Int): Boolean =
+        condition >= MOVE_LIMIT
 
-    fun move(randomNumber: Int) {
-        if (isMovable(randomNumber)) moveStep++
+    fun move(condition: Int) {
+        if (isMovable(condition)) moveStep++
     }
 
     companion object {
