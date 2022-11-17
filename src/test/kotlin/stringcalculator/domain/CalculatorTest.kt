@@ -43,4 +43,8 @@ class CalculatorTest : StringSpec({
             DIVIDE.calculate(2, 0)
         }
     }
+
+    "연산 결과의 소수점은 무시한다" {
+        DIVIDE.calculate(1, 3) shouldBe 0
+    }
 })
