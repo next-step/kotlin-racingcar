@@ -15,7 +15,7 @@ fun main() {
     println("\n실행 결과")
 
     val cars = Cars(carList)
-    for (i in 1..tryNumber) {
+    repeat(tryNumber) {
         val movedCars = cars.move()
         result += resultView.makeResults(movedCars)
         result += "\n"
