@@ -1,6 +1,6 @@
 package racing.domain
 
-data class Car(val name: String, private var _position: Int = 0) {
+class Car(private var _position: Int = 0) {
 
     val position: Int
         get() = _position

@@ -8,8 +8,10 @@ class RandomGeneratorTest {
 
     @Test
     fun `랜덤숫자 발행 테스트`() {
-        val randomNumber = RandomGenerator.generate()
-        assertThat(randomNumber).isGreaterThanOrEqualTo(0)
-        assertThat(randomNumber).isLessThanOrEqualTo(9)
+        for (i in 1..9) {
+            val randomNumber = RandomGenerator.generate()
+            assertThat(randomNumber).isGreaterThanOrEqualTo(0)
+            assertThat(randomNumber).isLessThanOrEqualTo(9)
+        }
     }
 }

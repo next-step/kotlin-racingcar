@@ -7,13 +7,11 @@ class RacingGame {
 
     fun start() {
 
-        ResultView.requireCarsCount()
-        val cars = Cars(InputView.inputNumber())
+        val carCount = InputView.requireCarsCount()
+        val cars = CarFactory.create(carCount)
+        var numberOfGames = InputView.requireNumberOfGames()
 
-        ResultView.requireNumberOfGames()
-        var count = InputView.inputNumber()
-
-        while (count-- > 0) {
+        while (numberOfGames-- > 0) {
             race(cars)
         }
 
@@ -21,7 +19,7 @@ class RacingGame {
     }
 
     private fun race(cars: Cars) {
-        for (car in cars) {
+        for (car in cars.list()) {
             car.move(RandomGenerator.generate())
         }
     }
