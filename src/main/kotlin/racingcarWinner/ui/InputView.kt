@@ -20,9 +20,7 @@ object InputView {
     }
 
     private fun validateCarNames(carNames: String): String {
-        if (!carNames.matches(INPUT_REGEX.toRegex())) {
-            throw IllegalArgumentException(MessageCode.CarNamesInputFormatException.message)
-        }
+        require(carNames.matches(INPUT_REGEX.toRegex())) { MessageCode.CarNamesInputFormatException.message }
         return carNames
     }
 }
