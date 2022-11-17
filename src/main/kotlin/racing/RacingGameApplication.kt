@@ -4,8 +4,8 @@ import racing.application.RacingGame
 import racing.ui.InputView
 
 fun main() {
-    val numberOfCars = InputView.getNumberOfCars()
-    val tryCount = InputView.getTryCounts()
+    val numberOfCar = InputView.getNumberOfCar()
+    val tryCount = InputView.getTryCount()
 
-    RacingGame(tryCount = tryCount, numberOfCar = numberOfCars).runRace()
+    RacingGame(tryCount = tryCount, numberOfCar = numberOfCar).runRace()
 }
