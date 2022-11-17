@@ -33,6 +33,18 @@ internal class CarTest {
     }
 
     @Test
+    @DisplayName("위치가 더 멀리나간 자동차를 반환한다.")
+    internal fun isWinnerTest() {
+        // given
+        val carA = Car("carA", 5)
+        val carB = Car("carB", 10)
+
+        // when, then
+        assertThat(carA.isWinner(carB)).isFalse
+        assertThat(carB.isWinner(carA)).isTrue
+    }
+
+    @Test
     @DisplayName("자동차 위치가 같으면 true를 반환한다.")
     internal fun equalsPosTrueTest() {
         // given
@@ -40,7 +52,7 @@ internal class CarTest {
         val carB = Car("carB", 10)
 
         // when, then
-        assertThat(carA.equalsPos(carB)).isTrue
+        assertThat(carA.isDraw(carB)).isTrue
     }
 
     @Test
@@ -51,6 +63,6 @@ internal class CarTest {
         val carB = Car("carB", 5)
 
         // when, then
-        assertThat(carA.equalsPos(carB)).isFalse
+        assertThat(carA.isDraw(carB)).isFalse
     }
 }

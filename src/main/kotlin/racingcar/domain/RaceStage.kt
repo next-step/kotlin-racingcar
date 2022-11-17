@@ -1,7 +1,6 @@
 package racingcar.domain
 
 import racingcar.strategy.CarMoveStrategy
-import java.util.Comparator.comparingInt
 
 class RaceStage(
     val cars: List<Car>,
@@ -22,11 +21,9 @@ class RaceStage(
     )
 
     fun getWinners(): List<Car> {
-        val winnerCar = cars.findMaxPosCar()
-        return cars.filter { it.equalsPos(winnerCar) }
+        val winnerCar = cars.findWinner()
+        return cars.filter { it.isDraw(winnerCar) }
     }
 
-    private fun List<Car>.findMaxPosCar(): Car {
-        return this.maxWithOrNull(comparingInt { it.pos }) ?: throw IllegalStateException("우승자가 없을 수 없어요.")
-    }
+    private fun List<Car>.findWinner(): Car = this.reduce { carA, carB -> if (carA.isWinner(carB)) carA else carB }
 }

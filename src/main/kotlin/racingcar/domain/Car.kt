@@ -25,7 +25,7 @@ class Car(
         }
     }
 
-    fun equalsPos(car: Car): Boolean {
-        return this.pos == car.pos
-    }
+    fun isWinner(car: Car): Boolean = pos >= car.pos
+
+    fun isDraw(car: Car): Boolean = this.pos == car.pos
 }
