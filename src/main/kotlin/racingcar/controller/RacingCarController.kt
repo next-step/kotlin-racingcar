@@ -18,8 +18,8 @@ class RacingCarController() {
         ResultView.printResultTitle()
         racingGame.start()
 
-        val winners = Winner.find(racingGame.getCars())
-        ResultView.printResult(racingGame.getRecordCars())
+        val winners = Winner.from(racingGame.getCars())
+        ResultView.printResult(racingGame.getCarRecords())
         ResultView.printWinners(winners)
     }
 

@@ -1,19 +1,18 @@
 package racingcar.domain
 
 class RacingGame(
-    private var cars: Cars,
+    private val cars: Cars,
     private val tryCount: TryCount,
 ) {
-    private var recordCars: MutableList<Cars> = mutableListOf()
+    private val carRecords: MutableList<Cars> = mutableListOf()
 
     fun getCars() = cars
-    fun getTryCount() = tryCount
-    fun getRecordCars() = recordCars
+    fun getCarRecords() = carRecords
 
     fun start() {
         repeat(tryCount.getCount()) {
             cars.race()
-            recordCars.add(cars)
+            carRecords.add(cars)
         }
     }
 }
