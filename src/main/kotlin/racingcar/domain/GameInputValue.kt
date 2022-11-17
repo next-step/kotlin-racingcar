@@ -1,3 +1,3 @@
 package racingcar.domain
 
-data class GameInputValue(val inputNameOfCars: String, val inputNumberOfGames: Int)
+data class GameInputValue(val inputNameOfCars: List<String>, val inputNumberOfGames: Int)

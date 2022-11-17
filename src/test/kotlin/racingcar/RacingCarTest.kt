@@ -1,7 +1,6 @@
 package racingcar
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertThrows
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import racingcar.domain.InputName
 import racingcar.domain.InputNumber
@@ -16,13 +15,30 @@ internal class RacingCarTest {
 
     @Test
     fun `자동차 이름 입력이 정상적으로 된다`() {
-        assertEquals("james", InputName("james").name)
+        assertAll(
+            {
+                assertEquals("james", InputName("james").names[0])
+            },
+            {
+                val inputName = InputName("Korea,Japan,USA")
+                for ((index, name) in inputName.names.withIndex()) {
+                    assertEquals(name, inputName.names[index])
+                }
+            }
+        )
     }
 
     @Test
     fun `자동차 이름 입력 시 공백이면 예외가 발생한다`() {
         assertThrows(IllegalArgumentException::class.java) {
             InputName("")
+        }
+    }
+
+    @Test
+    fun `자동차 이름 5자 초과 시 예외가 발생한다`() {
+        assertThrows(IllegalArgumentException::class.java) {
+            InputName("coffee")
         }
     }
 }

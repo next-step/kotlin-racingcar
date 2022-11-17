@@ -20,4 +20,8 @@ class Car(private val movingConditionStrategy: MovingConditionStrategy, var name
     fun showPosition(isLastCarCycle: Boolean, outputView: OutputView) {
         outputView.showRaceState(name, position, isLastCarCycle)
     }
+
+    companion object {
+        const val MOVE_FORWARD = 4
+    }
 }

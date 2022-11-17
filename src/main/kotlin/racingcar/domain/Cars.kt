@@ -2,16 +2,13 @@ package racingcar.domain
 
 import racingcar.view.OutputView
 
-const val MOVE_FORWARD = 4
-
 class Cars {
     private val cars = mutableListOf<Car>()
 
     fun startRace(gameInputValue: GameInputValue, movingConditionStrategy: MovingConditionStrategy) {
         val outputView = OutputView()
-        var splitNameOfCars = splitInputValue(gameInputValue.inputNameOfCars)
-        make(splitNameOfCars, movingConditionStrategy)
-        iterateNumberOfGames(splitNameOfCars.size, outputView)
+        make(gameInputValue.inputNameOfCars, movingConditionStrategy)
+        iterateNumberOfGames(gameInputValue, outputView)
     }
 
     private fun make(numberOfCars: List<String>, movingConditionStrategy: MovingConditionStrategy) {
@@ -21,20 +18,16 @@ class Cars {
         }
     }
 
-    private fun splitInputValue(inputValue: String): List<String> {
-        return inputValue.split(INPUT_VALUE_DELIMITER)
-    }
-
-    private fun iterateNumberOfGames(nameOfCarsSize: Int, outputView: OutputView) {
-        for (numberOfGames in 0 until nameOfCarsSize) {
-            iterateNumberOfCars(nameOfCarsSize, outputView)
+    private fun iterateNumberOfGames(gameInputValue: GameInputValue, outputView: OutputView) {
+        for (numberOfGames in 0 until gameInputValue.inputNumberOfGames) {
+            iterateNumberOfCars(gameInputValue, outputView)
         }
     }
 
-    private fun iterateNumberOfCars(nameOfCarsSize: Int, outputView: OutputView) {
-        for (numberOfCars in 0 until nameOfCarsSize) {
+    private fun iterateNumberOfCars(gameInputValue: GameInputValue, outputView: OutputView) {
+        for (numberOfCars in 0 until gameInputValue.inputNameOfCars.size) {
             moveCar(numberOfCars)
-            showCarPosition(numberOfCars, nameOfCarsSize, outputView)
+            showCarPosition(numberOfCars, gameInputValue.inputNameOfCars.size, outputView)
         }
     }
 
