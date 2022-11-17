@@ -15,7 +15,7 @@ internal class WinnerRacingTest {
     fun startRacing(carNames: String) {
         val tryNumber = 3
         val carNameList = carNames.split(",")
-        val cars = CarList.setCars(carNameList)
+        val cars = Cars(carNameList).carList
 
         val moveResult = WinnerRacing.startRacing(cars = cars, tryNumber = tryNumber)
 
@@ -30,7 +30,7 @@ internal class WinnerRacingTest {
     @ValueSource(ints = [-1, 0, Int.MIN_VALUE])
     fun `startRacing throw Exception when tryNumber is Incorrect`(tryNumber: Int) {
         val carNames = "pobi,crong,honux"
-        val cars = CarList.setCars(carNames.split(","))
+        val cars = Cars(carNames.split(",")).carList
 
         val exception = assertThrows<IllegalArgumentException> {
             WinnerRacing.startRacing(cars = cars, tryNumber = tryNumber)
@@ -43,7 +43,7 @@ internal class WinnerRacingTest {
     @ValueSource(strings = ["pobi", "alen"])
     fun `startRacing throw Exception when carNumber is one`(carNames: String) {
         val tryNumber = 3
-        val cars = CarList.setCars(carNames.split(","))
+        val cars = Cars(carNames.split(",")).carList
         val exception = assertThrows<IllegalArgumentException> {
             WinnerRacing.startRacing(cars = cars, tryNumber = tryNumber)
         }
