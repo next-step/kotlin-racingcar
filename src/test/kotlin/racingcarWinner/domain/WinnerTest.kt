@@ -6,20 +6,19 @@ import org.junit.jupiter.params.provider.ValueSource
 
 internal class WinnerTest {
     @ParameterizedTest
-    @ValueSource(ints = [0, 1, 5, 10, Int.MIN_VALUE])
+    @ValueSource(ints = [0, 1, 5, 10, Int.MAX_VALUE])
     fun `getWinner when winner is one`(maxMoveStep: Int) {
         val carNames = "pobi,crong,honux".split(",")
         val winnerIndex = 0
 
         // when
-        val winner = Winner(maxMoveStep)
         val cars = carNames.map { carName ->
             val car = Car(carName)
             car.moveStep = maxMoveStep - 1
             car
         }
         cars[winnerIndex].moveStep = maxMoveStep
-        val resultWinnerList = winner.getWinner(cars)
+        val resultWinnerList = Winner.getWinner(cars)
 
         resultWinnerList.count() shouldBe 1
         resultWinnerList[winnerIndex] shouldBe cars[winnerIndex].carName
@@ -31,13 +30,12 @@ internal class WinnerTest {
         val carNames = "pobi,crong,honux".split(",")
 
         // when
-        val winner = Winner(maxMoveStep)
         val cars = carNames.map { carName ->
             val car = Car(carName)
             car.moveStep = maxMoveStep
             car
         }
-        val resultWinnerList = winner.getWinner(cars)
+        val resultWinnerList = Winner.getWinner(cars)
 
         resultWinnerList.forEachIndexed { index, winnerName ->
             winnerName shouldBe cars[index].carName

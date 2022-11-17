@@ -3,20 +3,12 @@ package racingcarWinner.domain
 import io.kotest.matchers.ints.shouldBeLessThanOrEqual
 import io.kotest.matchers.shouldBe
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import racingcarWinner.util.MessageCode
 
 internal class WinnerRacingTest {
-
-    private var winner = Winner()
-
-    @BeforeEach
-    fun setUp() {
-        winner = Winner()
-    }
 
     @ParameterizedTest
     @ValueSource(strings = ["pobi,crong,honux", "pobi,crong,honux,alen"])
@@ -25,7 +17,7 @@ internal class WinnerRacingTest {
         val carNameList = carNames.split(",")
         val cars = CarList.setCars(carNameList)
 
-        val moveResult = WinnerRacing.startRacing(cars = cars, winner = winner, tryNumber = tryNumber)
+        val moveResult = WinnerRacing.startRacing(cars = cars, tryNumber = tryNumber)
 
         moveResult.count() shouldBe carNameList.count()
         moveResult.forEachIndexed { index, car ->
@@ -41,19 +33,19 @@ internal class WinnerRacingTest {
         val cars = CarList.setCars(carNames.split(","))
 
         val exception = assertThrows<IllegalArgumentException> {
-            WinnerRacing.startRacing(cars = cars, winner = winner, tryNumber = tryNumber)
+            WinnerRacing.startRacing(cars = cars, tryNumber = tryNumber)
         }
 
         assertThat(exception.message).isEqualTo(MessageCode.TryNumberException.message)
     }
 
     @ParameterizedTest
-    @ValueSource(strings = [ "pobi", "alen"])
+    @ValueSource(strings = ["pobi", "alen"])
     fun `startRacing throw Exception when carNumber is one`(carNames: String) {
         val tryNumber = 3
         val cars = CarList.setCars(carNames.split(","))
         val exception = assertThrows<IllegalArgumentException> {
-            WinnerRacing.startRacing(cars = cars, winner = winner, tryNumber = tryNumber)
+            WinnerRacing.startRacing(cars = cars, tryNumber = tryNumber)
         }
 
         assertThat(exception.message).isEqualTo(MessageCode.CarNumberException.message)
