@@ -1,3 +1,4 @@
 package study.racingcar.car
 
-data class Power(val value: Int)
+@JvmInline
+value class Power(val value: Int)

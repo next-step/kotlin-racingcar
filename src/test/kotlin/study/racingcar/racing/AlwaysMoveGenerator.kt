@@ -2,7 +2,7 @@ package study.racingcar.racing
 
 import study.racingcar.generator.Generator
 
-internal class GeneratorStub : Generator {
+internal class AlwaysMoveGenerator : Generator {
     override fun generate(): Int {
         return FORWARD_NUMBER
     }

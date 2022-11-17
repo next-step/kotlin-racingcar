@@ -1,13 +1,12 @@
 package study.racingcar.generator
 
-import kotlin.random.Random
-
 class RandomNumberGenerator : Generator {
     override fun generate(): Int {
-        return Random.nextInt(0, MAXIMUM_NUMBER)
+        return (MINIMUM_NUMBER..MAXIMUM_NUMBER).random()
     }
 
     companion object {
+        private const val MINIMUM_NUMBER = 0
         private const val MAXIMUM_NUMBER = 9
     }
 }
