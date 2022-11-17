@@ -1,4 +1,4 @@
-package racingcarWinner.core
+package racingcarWinner.domain
 
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.params.ParameterizedTest

@@ -1,10 +1,11 @@
-package racingcarWinner.core
+package racingcarWinner.domain
 
 import io.kotest.matchers.shouldBe
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import racingcarWinner.util.MessageCode
 
 internal class CarTest {
 
@@ -15,7 +16,7 @@ internal class CarTest {
             Car(carName)
         }
 
-        Assertions.assertThat(exception.message).isEqualTo(MessageCode.CarNameMaxLengthException.message)
+        assertThat(exception.message).isEqualTo(MessageCode.CarNameMaxLengthException.message)
     }
 
     @ParameterizedTest
@@ -25,7 +26,7 @@ internal class CarTest {
             Car(carName)
         }
 
-        Assertions.assertThat(exception.message).isEqualTo(MessageCode.CarNameMInLengthException.message)
+        assertThat(exception.message).isEqualTo(MessageCode.CarNameMInLengthException.message)
     }
 
     @ParameterizedTest

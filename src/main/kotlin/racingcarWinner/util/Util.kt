@@ -1,4 +1,4 @@
-package racingcarWinner.core
+package racingcarWinner.util
 
 import java.util.Random
 

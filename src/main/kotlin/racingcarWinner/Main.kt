@@ -1,7 +1,7 @@
 package racingcarWinner
 
-import racingcarWinner.core.CarList
-import racingcarWinner.core.Winner
+import racingcarWinner.domain.CarList
+import racingcarWinner.domain.Winner
 import racingcarWinner.ui.InputView
 import racingcarWinner.ui.OutputView
 

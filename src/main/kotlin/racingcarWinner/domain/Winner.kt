@@ -1,4 +1,4 @@
-package racingcarWinner.core
+package racingcarWinner.domain
 
 class Winner(
     private var maxMoveStep: Int = DEFAULT_MAX_MOVE_STEP

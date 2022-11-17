@@ -1,4 +1,7 @@
-package racingcarWinner.core
+package racingcarWinner.domain
+
+import racingcarWinner.util.MessageCode
+import racingcarWinner.util.Util
 
 object WinnerRacing {
     const val INIT_TRY_NUMBER = 1

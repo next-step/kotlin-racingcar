@@ -1,9 +1,9 @@
 package racingcarWinner.ui
 
-import racingcarWinner.core.Car
-import racingcarWinner.core.MessageCode
-import racingcarWinner.core.Winner
-import racingcarWinner.core.WinnerRacing
+import racingcarWinner.domain.Car
+import racingcarWinner.domain.Winner
+import racingcarWinner.domain.WinnerRacing
+import racingcarWinner.util.MessageCode
 
 object OutputView {
     private const val MOVE_STEP = "-"

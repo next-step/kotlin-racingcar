@@ -1,4 +1,6 @@
-package racingcarWinner.core
+package racingcarWinner.domain
+
+import racingcarWinner.util.MessageCode
 
 class Car(
     val carName: String

@@ -1,6 +1,6 @@
 package racingcarWinner.ui
 
-import racingcarWinner.core.MessageCode
+import racingcarWinner.util.MessageCode
 
 object InputView {
     private const val SEPARATOR = ","

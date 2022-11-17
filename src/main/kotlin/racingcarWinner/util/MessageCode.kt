@@ -1,4 +1,7 @@
-package racingcarWinner.core
+package racingcarWinner.util
+
+import racingcarWinner.domain.Car
+import racingcarWinner.domain.WinnerRacing
 
 enum class MessageCode(val message: String) {
     CarNameMInLengthException("자동차 이름은 ${Car.CAR_NAME_LENGTH_MIN_LIMIT} 자 보다 길어야 합니다."),

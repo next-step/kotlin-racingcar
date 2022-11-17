@@ -1,12 +1,13 @@
-package racingcarWinner.core
+package racingcarWinner.domain
 
 import io.kotest.matchers.ints.shouldBeLessThanOrEqual
 import io.kotest.matchers.shouldBe
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import racingcarWinner.util.MessageCode
 
 internal class WinnerRacingTest {
 
@@ -43,7 +44,7 @@ internal class WinnerRacingTest {
             WinnerRacing.startRacing(cars = cars, winner = winner, tryNumber = tryNumber)
         }
 
-        Assertions.assertThat(exception.message).isEqualTo(MessageCode.TryNumberException.message)
+        assertThat(exception.message).isEqualTo(MessageCode.TryNumberException.message)
     }
 
     @ParameterizedTest
@@ -55,6 +56,6 @@ internal class WinnerRacingTest {
             WinnerRacing.startRacing(cars = cars, winner = winner, tryNumber = tryNumber)
         }
 
-        Assertions.assertThat(exception.message).isEqualTo(MessageCode.CarNumberException.message)
+        assertThat(exception.message).isEqualTo(MessageCode.CarNumberException.message)
     }
 }

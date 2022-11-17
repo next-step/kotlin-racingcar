@@ -1,4 +1,4 @@
-package racingcarWinner.core
+package racingcarWinner.domain
 
 object CarList {
 
