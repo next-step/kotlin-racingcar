@@ -5,7 +5,7 @@ class Cars(carNames: List<String>, private val strategy: MoveStrategy) {
     val cars: List<Car>
 
     init {
-        require(!carNames.isNullOrEmpty()) { "자동차이름은 한개 이상이여야만 합니다." }
+        require(carNames.isNotEmpty()) { "자동차이름은 한개 이상이여야만 합니다." }
         cars = carNames.map { Car(name = CarName(it)) }
     }
 
