@@ -8,15 +8,17 @@ fun main() {
     val carCount = inputView.inputCarCount()
     val tryCount = inputView.inputTryCount()
 
-    val resultView = ResultView()
+    RacingCar(carCount, tryCount).start().apply {
+        val resultView = ResultView()
 
-    var printCount = 0
-    RacingCar(carCount, tryCount) { car ->
-        resultView.printCarState(car)
-        printCount ++
+        for (i in 0 until tryCount) {
+            for (car in this) {
+                resultView.printCarMove(car, i)
+            }
 
-        if (printCount % carCount == 0 && printCount < (carCount * tryCount)) {
-            resultView.printLineSpacing()
+            if (i < tryCount - 1) {
+                resultView.printLineSpacing()
+            }
         }
-    }.start()
+    }
 }

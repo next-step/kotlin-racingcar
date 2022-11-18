@@ -7,8 +7,8 @@ internal class ResultView {
         println("실행 결과")
     }
 
-    fun printCarState(car: Car) {
-        println(getMoveString(car.moveCount))
+    fun printCarMove(car: Car, tryCount: Int) {
+        println(getMoveString(car.moveHistory[tryCount]))
     }
 
     fun printLineSpacing() {
