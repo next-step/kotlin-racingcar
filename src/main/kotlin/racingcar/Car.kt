@@ -4,8 +4,8 @@ class Car(moveCount: Int = 0) {
     var moveCount = moveCount
         private set
 
-    fun move() {
-        if (RacingCarUtil.checkMoveValue(RacingCarUtil.createRandomInt())) {
+    fun move(moveNumber: Int) {
+        if (RacingCarUtil.checkMoveValue(moveNumber)) {
             moveCount ++
         }
     }

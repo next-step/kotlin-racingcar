@@ -20,7 +20,7 @@ class RacingCar(carCount: Int, private val tryCount: Int, private val moveCarLis
 
     private fun moveCars() {
         for (car in carList) {
-            car.move()
+            car.move(RacingCarUtil.createRandomInt())
             moveCarListener(car)
         }
     }
