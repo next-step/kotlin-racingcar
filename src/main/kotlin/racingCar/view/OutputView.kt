@@ -1,7 +1,7 @@
 package racingCar.view
 
+import racingCar.domain.Car
 import racingCar.domain.Position
-import racingCar.domain.CarName
 import racingCar.dto.ResultDto
 
 object OutputView {
@@ -11,6 +11,7 @@ object OutputView {
     private const val RESULT_MSG = "실행결과"
     private const val POSITION_UNIT = "-"
     private const val WINNER_DESCRIPTION_MSG = "가 최종 우승했습니다."
+    private const val CAR_NAME_SEPARATOR = ","
     fun askTryNumber() = println(TRY_NUM_ASK_QST)
     fun askUsernames() = println(USERNAME_ASK_QST)
     fun printResultMsg() = println(RESULT_MSG)
@@ -21,13 +22,13 @@ object OutputView {
         }
     }
 
-    private fun toPositionUnits(position: Position): String {
-        return (0..position.position)
-            .map { POSITION_UNIT }
-            .joinToString("")
+    fun printWinners(winners: List<Car>) {
+        println("${winners.joinToString(CAR_NAME_SEPARATOR) { getNameOfCar(it) }}  $WINNER_DESCRIPTION_MSG ")
     }
 
-    fun printWinners(winners: List<CarName>) {
-        println("${winners.map { it.carName }.joinToString(",")}  $WINNER_DESCRIPTION_MSG ")
+    private fun getNameOfCar(car: Car) = car.name.carName
+    private fun toPositionUnits(position: Position): String {
+        return (1..position.position)
+            .joinToString("") { POSITION_UNIT }
     }
 }

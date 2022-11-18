@@ -7,4 +7,6 @@ value class Position(val position: Int = 1) {
     }
 
     fun increase(): Position = Position(position + 1)
+
+    operator fun minus(other: Position): Int = this.position - other.position
 }

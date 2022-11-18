@@ -1,20 +1,24 @@
 package racingCar.domain
 
-class Cars(carNames: List<CarName>, private val strategy: MoveStrategy) {
+class Cars(carNames: List<String>, private val strategy: MoveStrategy) {
 
-    val cars: Map<CarName, Car> = carNames.map { it to Car() }.toMap()
+    val cars: List<Car>
+
+    init {
+        require(!carNames.isNullOrEmpty()) { "자동차이름은 한개 이상이여야만 합니다." }
+        cars = carNames.map { Car(name = CarName(it)) }
+    }
 
     fun moveByStrategy() {
         cars.forEach {
-            it.value.moveByStrategy(strategy)
+            it.moveByStrategy(strategy)
         }
     }
 
-    fun findWinners(): List<CarName>? =
-        this.cars.maxByOrNull { it.value.position.position }?.let { maxPosition ->
-            return findUsernamesWithPosition(maxPosition.value.position)
+    fun findWinners(): List<Car> =
+        this.cars.maxByOrNull { it }!!.let { winnerCar ->
+            return findSamePositionOf(winnerCar)
         }
 
-    private fun findUsernamesWithPosition(position: Position): List<CarName> =
-        this.cars.filter { it.value.isSamePosition(position) }.map { it.key }
+    private fun findSamePositionOf(winner: Car): List<Car> = this.cars.filter { it.isSamePosition(winner) }
 }

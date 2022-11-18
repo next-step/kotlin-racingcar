@@ -21,7 +21,7 @@ class CarTest {
     fun `동일한 위치여부를 판단합니다`(input: Int, expectedResult: Boolean) {
         val car = Car()
 
-        val result = car.isSamePosition(Position(input))
+        val result = car.isSamePosition(Car.from(input))
 
         assertThat(result).isEqualTo(expectedResult)
     }
