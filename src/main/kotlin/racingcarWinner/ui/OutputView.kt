@@ -1,7 +1,6 @@
 package racingcarWinner.ui
 
 import racingcarWinner.domain.Car
-import racingcarWinner.domain.WinnerRacing
 import racingcarWinner.util.MessageCode
 
 object OutputView {
@@ -15,8 +14,8 @@ object OutputView {
         println(ESCAPE_LINE.plus(MessageCode.Result.message))
     }
 
-    fun printTryOneRacingOutput(cars: List<Car>) {
-        println(tryOneRacingOutput(cars).plus(ESCAPE_LINE))
+    fun printTryOneRacingOutput(racingCars: List<Car>) {
+        println(tryOneRacingOutput(racingCars).plus(ESCAPE_LINE))
     }
 
     fun outputWinner(winnerList: List<String>) {
@@ -26,8 +25,8 @@ object OutputView {
     private fun toMoveStepOutput(moveStep: Int): String =
         (InputView.INIT_TRY_NUMBER..moveStep).joinToString(SEPARATOR) { MOVE_STEP }
 
-    private fun tryOneRacingOutput(cars: List<Car>): String =
-        WinnerRacing.startRacing(cars).joinToString(ESCAPE_LINE) { car ->
+    private fun tryOneRacingOutput(racingCars: List<Car>): String =
+        racingCars.joinToString(ESCAPE_LINE) { car ->
             car.carName.plus(COLON).plus(toMoveStepOutput(car.moveStep))
         }
 }

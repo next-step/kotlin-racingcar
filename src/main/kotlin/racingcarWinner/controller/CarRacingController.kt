@@ -2,6 +2,7 @@ package racingcarWinner.controller
 
 import racingcarWinner.domain.Cars
 import racingcarWinner.domain.Winner
+import racingcarWinner.domain.WinnerRacing
 import racingcarWinner.ui.InputView
 import racingcarWinner.ui.OutputView
 
@@ -14,7 +15,7 @@ class CarRacingController {
 
         OutputView.outputResult()
         for (i in InputView.INIT_TRY_NUMBER..tryNumber) {
-            OutputView.printTryOneRacingOutput(cars)
+            OutputView.printTryOneRacingOutput(WinnerRacing.startRacing(cars))
         }
 
         OutputView.outputWinner(Winner.getWinner(cars))
