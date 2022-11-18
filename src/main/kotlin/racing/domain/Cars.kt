@@ -1,16 +1,14 @@
 package racing.domain
 
 class Cars(
-    val cars: List<Car>
+    val cars: List<Car>,
+    private val moveStrategy: CarMoveStrategy
 ) {
-    private val MOVING_CONDITION = 4
 
-    fun tryMoveCars(conditionNumbers: List<Int>) {
-        cars.zip(conditionNumbers)
-            .forEach {
-                (car, isCarMoved) ->
-                if (isCarMoved >= MOVING_CONDITION) car.move()
-            }
+    fun tryMoveCars() {
+        cars.forEach {
+            car -> if (moveStrategy.isMovable()) car.move()
+        }
     }
 
     fun getCarsPosition(): List<Int> {

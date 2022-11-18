@@ -1,7 +1,6 @@
 package racing.application
 
 import racing.domain.Car
-import racing.domain.CarMoveStrategy
 import racing.domain.Cars
 import racing.domain.RandomStrategy
 import racing.ui.OutputView
@@ -11,15 +10,12 @@ class RacingGame(
     val numberOfCar: Int
 ) {
 
-    private val carMoveStrategy: CarMoveStrategy = RandomStrategy()
-
     fun runRace() {
-        val cars = Cars(List(numberOfCar) { Car() })
-
+        val cars = Cars(List(numberOfCar) { Car() }, RandomStrategy())
         OutputView.printTitle()
 
         repeat(tryCount) {
-            cars.tryMoveCars(carMoveStrategy.values(tryCount))
+            cars.tryMoveCars()
             OutputView.printCarPosition(cars.getCarsPosition())
         }
     }
