@@ -1,5 +1,7 @@
 package racingcar
 
+private val RANDOM_NUMBER_RANGE = 0..9
+
 fun main() {
     val inputView = InputView()
     val resultView = ResultView()
@@ -16,7 +18,7 @@ fun main() {
 
     val cars = Cars(carList)
     repeat(tryNumber) {
-        val movedCars = cars.move()
+        val movedCars = cars.move { (RANDOM_NUMBER_RANGE).random() }
         result += resultView.makeResults(movedCars)
         result += "\n"
     }
