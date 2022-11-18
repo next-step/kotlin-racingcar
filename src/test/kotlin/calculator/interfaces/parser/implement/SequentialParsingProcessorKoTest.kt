@@ -2,8 +2,6 @@ package calculator.interfaces.parser.implement
 
 import calculator.application.parser.ParsingProcessor
 import calculator.application.parser.implement.SequentialParsingProcessor
-import calculator.domain.calculator.Calculator
-import calculator.domain.calculator.impl.StandardCalculator
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import org.assertj.core.api.Assertions.assertThat
