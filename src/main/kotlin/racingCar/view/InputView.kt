@@ -11,6 +11,7 @@ object InputView {
             throw IllegalArgumentException("입력값은 숫자여야 합니다.", e)
         }
     }
+
     fun usernames(): List<String> = validateInput().split(CAR_NAME_SPLITTER)
 
     private fun validateInput(): String {

@@ -12,9 +12,9 @@ class CarsTest {
         cars.moveByStrategy()
 
         assertThat(cars.cars).containsExactly(
-            Car.withNameAndPosition("pobi", 2),
-            Car.withNameAndPosition("crong", 2),
-            Car.withNameAndPosition("kcs", 2)
+            Car.withNameAndPosition("pobi", 1),
+            Car.withNameAndPosition("crong", 1),
+            Car.withNameAndPosition("kcs", 1)
         )
     }
 
@@ -27,8 +27,8 @@ class CarsTest {
         val winners = cars.findWinners()
 
         assertThat(winners).containsExactly(
-            Car.withNameAndPosition("pobi", 2),
-            Car.withNameAndPosition("crong", 2)
+            Car.withNameAndPosition("pobi", 1),
+            Car.withNameAndPosition("crong", 1)
         )
     }
 }

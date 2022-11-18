@@ -11,13 +11,13 @@ class CarTest {
     fun `자동차는 움직입니다`() {
         val car = Car()
 
-        car.moveByStrategy({ true })
+        car.moveByStrategy { true }
 
-        assertThat(car).isEqualTo(Car.from(2))
+        assertThat(car).isEqualTo(Car.from(1))
     }
 
     @ParameterizedTest
-    @CsvSource(value = ["1=true", "2=false"], delimiter = '=')
+    @CsvSource(value = ["0=true", "1=false"], delimiter = '=')
     fun `동일한 위치여부를 판단합니다`(input: Int, expectedResult: Boolean) {
         val car = Car()
 

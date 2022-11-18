@@ -14,9 +14,9 @@ class RacingTest {
         assertThat(result.positions)
             .containsAllEntriesOf(
                 mapOf(
-                    CarName("pobi") to Position(2),
-                    CarName("crong") to Position(2),
-                    CarName("kcs") to Position(2)
+                    CarName("pobi") to Position(1),
+                    CarName("crong") to Position(1),
+                    CarName("kcs") to Position(1)
                 )
             )
     }
