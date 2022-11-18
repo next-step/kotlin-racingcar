@@ -4,27 +4,18 @@ import java.security.SecureRandom
 
 private const val MAXIMUM_BOUND = 10
 
-class RacingCar(carCount: Int, private val tryCount: Int) {
-
-    private val carList: List<Car>
-
-    init {
-        carList = ArrayList<Car>().apply {
-            for (i in 0 until carCount) {
-                add(Car())
-            }
-        }
-    }
+class RacingCar(private val cars: List<Car>, private val tryCount: Int) {
+    constructor(carCount: Int, tryCount: Int) : this((0..carCount).map { Car() }, tryCount)
 
     fun start(): List<Car> {
         for (i in 0 until tryCount) {
             moveCars()
         }
-        return carList
+        return cars
     }
 
     private fun moveCars() {
-        for (car in carList) {
+        for (car in cars) {
             car.move(SecureRandom.getInstanceStrong().nextInt(MAXIMUM_BOUND))
         }
     }
