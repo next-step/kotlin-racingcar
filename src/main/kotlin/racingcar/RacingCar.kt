@@ -1,5 +1,9 @@
 package racingcar
 
+import java.security.SecureRandom
+
+private const val MAXIMUM_BOUND = 10
+
 class RacingCar(carCount: Int, private val tryCount: Int, private val moveCarListener: (Car) -> Unit) {
 
     private val carList: List<Car>
@@ -20,7 +24,7 @@ class RacingCar(carCount: Int, private val tryCount: Int, private val moveCarLis
 
     private fun moveCars() {
         for (car in carList) {
-            car.move(RacingCarUtil.createRandomInt())
+            car.move(SecureRandom.getInstanceStrong().nextInt(MAXIMUM_BOUND))
             moveCarListener(car)
         }
     }
