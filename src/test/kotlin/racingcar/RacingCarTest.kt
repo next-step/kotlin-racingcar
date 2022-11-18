@@ -3,6 +3,7 @@ package racingcar
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import racingcar.ui.ResultView
 
 class RacingCarTest {
 
@@ -26,7 +27,7 @@ class RacingCarTest {
 
     @Test
     fun `전진 문자 테스트`() {
-        assertTrue(RacingCarUtil.createMoveString(3) == "---")
+        assertTrue(ResultView().getMoveString(3) == "---")
     }
 
     @Test

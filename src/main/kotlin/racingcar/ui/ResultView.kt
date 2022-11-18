@@ -1,7 +1,6 @@
 package racingcar.ui
 
 import racingcar.Car
-import racingcar.RacingCarUtil
 
 internal class ResultView {
     init {
@@ -16,5 +15,10 @@ internal class ResultView {
         println()
     }
 
-    private fun getMoveString(moveCount: Int): String = RacingCarUtil.createMoveString(moveCount)
+    fun getMoveString(moveCount: Int): String =
+        StringBuilder().apply {
+            for (i in 0 until moveCount) {
+                append("-")
+            }
+        }.toString()
 }
