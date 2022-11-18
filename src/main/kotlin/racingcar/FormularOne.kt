@@ -22,13 +22,9 @@ class FormularOne {
     }
 
     /**
-     * 자동차 경주 목록 생성.
+     * 자동차 경주자 목록 생성
      */
     private fun makeCarRacerList(numberOfCar: Int): List<CarRacer> {
-        return buildList(numberOfCar) {
-            for (i in 1..numberOfCar) {
-                add(CarRacer())
-            }
-        }
+        return List(numberOfCar) { CarRacer() }
     }
 }
