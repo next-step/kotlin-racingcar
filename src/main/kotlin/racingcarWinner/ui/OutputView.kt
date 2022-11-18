@@ -1,7 +1,6 @@
 package racingcarWinner.ui
 
 import racingcarWinner.domain.Car
-import racingcarWinner.domain.Winner
 import racingcarWinner.domain.WinnerRacing
 import racingcarWinner.util.MessageCode
 
@@ -20,9 +19,8 @@ object OutputView {
         println(tryOneRacingOutput(cars).plus(ESCAPE_LINE))
     }
 
-    fun outputWinner(cars: List<Car>) {
-        val winnerList = Winner.getWinner(cars).joinToString(COMMA)
-        println(winnerList.plus(MessageCode.WinnerResult.message))
+    fun outputWinner(winnerList: List<String>) {
+        println(winnerList.joinToString(COMMA).plus(MessageCode.WinnerResult.message))
     }
 
     private fun toMoveStepOutput(moveStep: Int): String =
