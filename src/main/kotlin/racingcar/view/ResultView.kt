@@ -1,8 +1,8 @@
-package racingcar.io
+package racingcar.view
 
-import racingcar.CarRecord
-import racingcar.GameResult
-import racingcar.Record
+import racingcar.dto.CarInfo
+import racingcar.dto.GameResult
+import racingcar.dto.Record
 
 object ResultView {
     private const val TRACE = "-"
@@ -31,7 +31,7 @@ object ResultView {
         println()
     }
 
-    private fun extractWinnerNames(frontRunners: List<CarRecord>): String {
+    private fun extractWinnerNames(frontRunners: List<CarInfo>): String {
         return frontRunners.joinToString(SEPARATOR) { it.name }
     }
 }

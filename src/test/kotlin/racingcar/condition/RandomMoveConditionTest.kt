@@ -7,6 +7,7 @@ import io.kotest.property.arbitrary.int
 import io.kotest.property.checkAll
 import io.mockk.every
 import io.mockk.mockkObject
+import racingcar.domain.condition.RandomMoveCondition
 import racingcar.util.RandomNumberGenerator
 
 internal class RandomMoveConditionTest : FunSpec({

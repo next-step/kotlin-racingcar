@@ -1,7 +1,8 @@
-package racingcar
+package racingcar.domain
 
-import racingcar.condition.MoveCondition
-import racingcar.strategy.MoveStrategy
+import racingcar.domain.strategy.MoveStrategy
+import racingcar.dto.CarInfo
+import racingcar.dto.Record
 
 class Cars(
     carNames: List<String>,
@@ -15,8 +16,12 @@ class Cars(
         )
     }
 
-    fun move(moveConditions: List<MoveCondition>): Record {
-        return Record(cars.map { car -> CarRecord(car.name, car.move(moveConditions)) })
+    fun move() {
+        cars.map { car -> car.move() }
+    }
+
+    fun getRecord(): Record {
+        return Record(cars.map { car -> CarInfo(car.name, car.position) })
     }
 
     companion object {

@@ -1,7 +1,6 @@
-package racingcar
+package racingcar.domain
 
-import racingcar.condition.MoveCondition
-import racingcar.strategy.MoveStrategy
+import racingcar.domain.strategy.MoveStrategy
 import racingcar.util.Validator
 
 class Car(
@@ -16,15 +15,15 @@ class Car(
         Validator.validateCarNameStr(name)
     }
 
-    fun move(moveConditions: List<MoveCondition>): Int {
-        if (isMovable(moveConditions)) {
+    fun move(): Int {
+        if (isMovable()) {
             position = position.plus(SPEED)
         }
         return position
     }
 
-    private fun isMovable(moveConditions: List<MoveCondition>): Boolean {
-        return moveStrategy.isMovable(moveConditions)
+    private fun isMovable(): Boolean {
+        return moveStrategy.isMovable()
     }
 
     companion object {

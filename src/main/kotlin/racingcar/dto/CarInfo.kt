@@ -1,6 +1,6 @@
-package racingcar
+package racingcar.dto
 
-data class CarRecord(
+data class CarInfo(
     val name: String,
     val position: Int,
 )
