@@ -9,7 +9,7 @@ import racingcar.dto.Record
 internal class GameResultTest : BehaviorSpec({
     Given("경기 결과가 주어지면, ") {
         val given = GameResult(
-            listOf(
+            mutableListOf(
                 Record(
                     listOf(
                         CarInfo(name = "car1", position = 1),

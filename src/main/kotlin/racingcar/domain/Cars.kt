@@ -2,6 +2,7 @@ package racingcar.domain
 
 import racingcar.domain.strategy.MoveStrategy
 import racingcar.dto.CarInfo
+import racingcar.dto.Record
 
 class Cars(
     carNames: List<String>,
@@ -15,8 +16,12 @@ class Cars(
         )
     }
 
-    fun move(): List<CarInfo> {
-        return cars.map { car -> CarInfo(car.name, car.move()) }
+    fun move() {
+        cars.map { car -> car.move() }
+    }
+
+    fun getRecord(): Record {
+        return Record(cars.map { car -> CarInfo(car.name, car.position) })
     }
 
     companion object {
