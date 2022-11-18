@@ -11,11 +11,11 @@ class CarRacingController {
         val carNameList = InputView.inputCarNames()
         val tryNumber = InputView.inputTryNumber()
 
-        val cars = Cars(carNameList).carList
+        val cars = Cars(carNameList)
 
         OutputView.outputResult()
         for (i in InputView.INIT_TRY_NUMBER..tryNumber) {
-            OutputView.printTryOneRacingOutput(WinnerRacing.startRacing(cars))
+            OutputView.printTryOneRacingOutput(WinnerRacing.startRacing(cars.carList))
         }
 
         OutputView.outputWinner(Winner.getWinner(cars))

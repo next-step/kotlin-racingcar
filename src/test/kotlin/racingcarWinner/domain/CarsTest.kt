@@ -31,4 +31,24 @@ internal class CarsTest {
 
         assertThat(exception.message).isEqualTo(MessageCode.CarNumberException.message)
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = [0, 1, 5, 10, Int.MAX_VALUE])
+    fun findMaxMoveStepCarNameList(maxMoveStep: Int) {
+        val carNames = "pobi,crong,honux".split(",")
+        val cars = Cars(carNames)
+        val winnerIndex = 0
+
+        // when
+        val carList = cars.carList.map { car ->
+            car.moveStep = maxMoveStep - 1
+            car
+        }
+        carList[winnerIndex].moveStep = maxMoveStep
+
+        val resultCarNameList = cars.findMaxMoveStepCarNameList()
+
+        resultCarNameList.count() shouldBe 1
+        resultCarNameList[winnerIndex] shouldBe carList[winnerIndex].carName
+    }
 }
