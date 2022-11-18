@@ -12,7 +12,7 @@ fun main() {
         val resultView = ResultView()
 
         for (i in 0 until tryCount) {
-            for (car in this) {
+            this.forEach { car ->
                 resultView.printCarMove(car, i)
             }
 
