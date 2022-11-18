@@ -2,28 +2,12 @@ package calcualator
 
 enum class Operator(
     val value: String,
-) : (Number, Number) -> Number {
-
-    ADD("+") {
-        override fun invoke(p1: Number, p2: Number): Number {
-            return p1.plus(p2)
-        }
-    },
-    MINUS("-") {
-        override fun invoke(p1: Number, p2: Number): Number {
-            return p1.minus(p2)
-        }
-    },
-    TIMES("*") {
-        override fun invoke(p1: Number, p2: Number): Number {
-            return p1.times(p2)
-        }
-    },
-    DIV("/") {
-        override fun invoke(p1: Number, p2: Number): Number {
-            return p1.div(p2)
-        }
-    };
+    val expression: (Number, Number) -> Number
+) {
+    ADD("+", { a, b -> a.plus(b) }),
+    MINUS("-", { a, b -> a.minus(b) }),
+    TIMES("*", { a, b -> a.times(b) }),
+    DIV("/", { a, b -> a.div(b) });
 
     companion object {
         fun of(s: String): Operator {
