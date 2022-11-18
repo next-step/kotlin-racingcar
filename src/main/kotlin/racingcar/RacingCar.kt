@@ -15,7 +15,7 @@ class RacingCar(private val cars: List<Car>, private val tryCount: Int) {
     }
 
     private fun moveCars() {
-        for (car in cars) {
+        cars.forEach { car ->
             car.move(SecureRandom.getInstanceStrong().nextInt(MAXIMUM_BOUND))
         }
     }
