@@ -1,8 +1,8 @@
 package racingCar.domain
 
-class Cars(usernames: List<Username>, private val strategy: MoveStrategy) {
+class Cars(carNames: List<CarName>, private val strategy: MoveStrategy) {
 
-    val cars: Map<Username, Car> = usernames.map { it to Car() }.toMap()
+    val cars: Map<CarName, Car> = carNames.map { it to Car() }.toMap()
 
     fun moveByStrategy() {
         cars.forEach {
@@ -10,11 +10,11 @@ class Cars(usernames: List<Username>, private val strategy: MoveStrategy) {
         }
     }
 
-    fun findWinners(): List<Username>? =
+    fun findWinners(): List<CarName>? =
         this.cars.maxByOrNull { it.value.position.position }?.let { maxPosition ->
             return findUsernamesWithPosition(maxPosition.value.position)
         }
 
-    private fun findUsernamesWithPosition(position: Position): List<Username> =
+    private fun findUsernamesWithPosition(position: Position): List<CarName> =
         this.cars.filter { it.value.isSamePosition(position) }.map { it.key }
 }

@@ -17,7 +17,7 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = ["1:true", "2:false"], delimiter = '=')
+    @CsvSource(value = ["1=true", "2=false"], delimiter = '=')
     fun `동일한 위치여부를 판단합니다`(input: Int, expectedResult: Boolean) {
         val car = Car()
 

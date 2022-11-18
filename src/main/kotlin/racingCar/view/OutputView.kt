@@ -1,7 +1,7 @@
 package racingCar.view
 
 import racingCar.domain.Position
-import racingCar.domain.Username
+import racingCar.domain.CarName
 import racingCar.dto.ResultDto
 
 object OutputView {
@@ -17,7 +17,7 @@ object OutputView {
     fun printResult(result: ResultDto) {
         println()
         result.positions.forEach {
-            println("${it.key.username} : ${toPositionUnits(it.value)}")
+            println("${it.key.carName} : ${toPositionUnits(it.value)}")
         }
     }
 
@@ -27,7 +27,7 @@ object OutputView {
             .joinToString("")
     }
 
-    fun printWinners(winners: List<Username>) {
-        println("${winners.map { it.username }.joinToString(",")}  $WINNER_DESCRIPTION_MSG ")
+    fun printWinners(winners: List<CarName>) {
+        println("${winners.map { it.carName }.joinToString(",")}  $WINNER_DESCRIPTION_MSG ")
     }
 }

@@ -1,9 +1,6 @@
 package racingCar.domain
 
 data class Car(var position: Position = Position()) {
-    private fun move() {
-        this.position = position.increase()
-    }
 
     fun moveByStrategy(strategy: MoveStrategy) {
         if (!strategy.canMove()) {
@@ -11,8 +8,10 @@ data class Car(var position: Position = Position()) {
         }
         move()
     }
-
     fun isSamePosition(pos: Position) = this.position == pos
+    private fun move() {
+        this.position = position.increase()
+    }
 
     companion object {
         fun from(pos: Int): Car = Car(Position(pos))

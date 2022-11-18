@@ -7,7 +7,7 @@ class CarsTest {
 
     @Test
     fun `이동 전략에 따라 자동차가 움직입니다`() {
-        val cars = Cars(listOf(Username("pobi"), Username("crong"), Username("kcs"))) { true }
+        val cars = Cars(listOf(CarName("pobi"), CarName("crong"), CarName("kcs"))) { true }
 
         cars.moveByStrategy()
 
@@ -16,12 +16,12 @@ class CarsTest {
 
     @Test
     fun `한명 이상의 우승자가 선출되었습니다`() {
-        val cars = Cars(listOf(Username("pobi"), Username("crong"), Username("kcs"))) { true }
-        cars.cars.get(Username("pobi"))?.moveByStrategy({ true })
-        cars.cars.get(Username("crong"))?.moveByStrategy({ true })
+        val cars = Cars(listOf(CarName("pobi"), CarName("crong"), CarName("kcs"))) { true }
+        cars.cars.get(CarName("pobi"))?.moveByStrategy({ true })
+        cars.cars.get(CarName("crong"))?.moveByStrategy({ true })
 
         val winners = cars.findWinners()
 
-        assertThat(winners).containsExactly(Username("pobi"), Username("crong"))
+        assertThat(winners).containsExactly(CarName("pobi"), CarName("crong"))
     }
 }
