@@ -1,6 +1,6 @@
 package racingcar
 
-class Cars(var cars: List<Car>) {
+data class Cars(var cars: List<Car>) {
     fun move(condition: () -> Int): List<Car> {
         val of = mutableListOf<Car>()
 
