@@ -1,7 +1,7 @@
 package study
 
+import calculator.Calculator
 import calculator.StringSplitCountInvalidException
-import calculator.ValidCheck
 import calculator.operation.Addition
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Assertions
@@ -17,10 +17,11 @@ class CalculatorValidTest {
     fun `문자열 split 배열 개수 유효성 검사`() {
         // given
         val input = "2 + 3 * 4 /"
+        val calculator = Calculator()
 
         // when, then
         Assertions.assertThrows(StringSplitCountInvalidException::class.java) {
-            ValidCheck.checkSplitArrayCount(input.split(" "))
+            calculator.checkSplitArrayCount(input.split(" "))
         }
     }
 
@@ -28,18 +29,34 @@ class CalculatorValidTest {
     fun `사칙연산 기호가 아닌 경우 검사`() {
         // given
         val input = "2 + 3 * 4 % 1"
+        val calculator = Calculator()
 
         // when, then
-        assertThatThrownBy { ValidCheck.checkSplitArrayOperator(input) }
+        assertThatThrownBy { calculator.calculateOperationList(input.split(" ")) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageContaining("operator")
+    }
+
+    @Test
+    fun `입력 값 숫자(정수)가 아닌 경우 검사`() {
+        // given
+        val input = "2 + 3.3 * 4 % 1"
+        val calculator = Calculator()
+
+        // when, then
+        assertThatThrownBy { calculator.calculateNumberList(input.split(" ")) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining("숫자")
     }
 
     @ParameterizedTest
     @NullAndEmptySource
     fun `널 또는 빈 문자열 검사`(input: String?) {
-        // given, when, then
-        assertThatThrownBy { ValidCheck.checkEmptyString(input) }
+        // given
+        val calculator = Calculator()
+
+        // when, then
+        assertThatThrownBy { calculator.checkEmptyString(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageContaining("null")
             .hasMessageContaining("공백")
