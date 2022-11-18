@@ -5,16 +5,11 @@ package racingcar.model
  */
 class CarRacer {
 
-    var path: String = ""
+    var position: Int = 0
         private set
 
-    fun moveTo(position: Int): String {
-        if (position < 4) return ""
-        path += CHARACTER_MOVE
-        return path
-    }
-
-    companion object {
-        const val CHARACTER_MOVE = "-"
+    fun moveTo(randomCount: Int) {
+        if (randomCount < 4) return
+        position++
     }
 }

@@ -8,17 +8,33 @@ import racingcar.model.CarRacingGame
  */
 class FormularOne {
 
+    private var totalResult: String = ""
+
     /**
      * 대회 시작
      */
-    fun start(numberOfCar: Int, numberOfGame: Int): Map<Int, String> {
-        if (numberOfCar <= 0 || numberOfGame <= 0) return emptyMap()
+    fun start(numberOfCar: Int, numberOfGame: Int): String {
+        if (numberOfCar <= 0 || numberOfGame <= 0) return ""
 
         val carRacers: List<CarRacer> = makeCarRacerList(numberOfCar)
-        val games = CarRacingGame(numberOfGame = numberOfGame, carRacers = carRacers)
-        games.start()
 
-        return games.takeResult()
+        for (i in 1..numberOfGame) {
+            val game = CarRacingGame(carRacers = carRacers)
+            game.start()
+            totalResult += (saveGameResult(game.result()) + "\n")
+        }
+
+        return totalResult
+    }
+
+    private fun saveGameResult(carRacers: List<CarRacer>): String {
+        var gameResult = ""
+        carRacers
+            .forEach { racer ->
+                repeat(racer.position) { gameResult += "-" }
+                gameResult += "\n"
+            }
+        return gameResult
     }
 
     /**
