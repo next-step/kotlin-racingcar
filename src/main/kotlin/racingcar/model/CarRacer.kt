@@ -5,6 +5,12 @@ package racingcar.model
  */
 class CarRacer {
 
+    constructor()
+
+    constructor(racer: CarRacer) {
+        position = racer.position
+    }
+
     var position: Int = 0
         private set
 

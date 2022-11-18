@@ -4,7 +4,8 @@ fun main() {
     val inputView = InputView()
     inputView.show()
 
-    val result = FormularOne().start(numberOfCar = inputView.numberOfCar, numberOfGame = inputView.numberOfGame)
+    val f1 = FormularOne()
+    f1.start(numberOfCar = inputView.numberOfCar, numberOfGame = inputView.numberOfGame)
 
-    ResultView().show(result)
+    ResultView().show(f1.result())
 }

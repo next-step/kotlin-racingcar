@@ -9,6 +9,7 @@ import racingcar.model.CarRacingGame
 class FormularOne {
 
     private var totalResult: String = ""
+    private var totalList: MutableList<List<CarRacer>> = mutableListOf()
 
     /**
      * 대회 시작
@@ -21,21 +22,13 @@ class FormularOne {
         for (i in 1..numberOfGame) {
             val game = CarRacingGame(carRacers = carRacers)
             game.start()
-            totalResult += (saveGameResult(game.result()) + "\n")
+            totalList.add(game.result())
         }
 
         return totalResult
     }
 
-    private fun saveGameResult(carRacers: List<CarRacer>): String {
-        var gameResult = ""
-        carRacers
-            .forEach { racer ->
-                repeat(racer.position) { gameResult += "-" }
-                gameResult += "\n"
-            }
-        return gameResult
-    }
+    fun result() = totalList
 
     /**
      * 자동차 경주자 목록 생성

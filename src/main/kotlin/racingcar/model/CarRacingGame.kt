@@ -6,13 +6,16 @@ package racingcar.model
 class CarRacingGame(private val carRacers: List<CarRacer>) {
 
     fun start() {
-        carRacers
-            .forEach { racer ->
-                racer.moveTo(randomCount = (0..9).random())
-            }
+        carRacers.forEach { racer ->
+            racer.moveTo(randomCount = (0..9).random())
+        }
     }
 
     fun result(): List<CarRacer> {
         return carRacers
+            .map { racer ->
+                CarRacer(racer = racer)
+            }
+            .toList()
     }
 }
