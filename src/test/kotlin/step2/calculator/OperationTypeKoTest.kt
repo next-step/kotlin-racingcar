@@ -31,8 +31,8 @@ internal class OperationTypeKoTest : StringSpec({
     }
 
     "연산자 타입에 해당하는 수식을 연산한다." {
-        val leftTerm = 4.0
-        val rightTerm = 2.0
+        val leftOperand = 4.0
+        val rightOperand = 2.0
         forAll(
             table(
                 headers("문자열 연산자", "연산 결과 기대값"),
@@ -42,7 +42,7 @@ internal class OperationTypeKoTest : StringSpec({
                 row("/", 2.0),
             )
         ) { given: String, expected: Double ->
-            OperationType.match(given).calculate(leftTerm, rightTerm) shouldBe expected
+            OperationType.match(given).calculate(leftOperand, rightOperand) shouldBe expected
         }
     }
 
@@ -52,9 +52,9 @@ internal class OperationTypeKoTest : StringSpec({
         forAll(
             row(Double.POSITIVE_INFINITY),
             row(Double.NEGATIVE_INFINITY)
-        ) { leftTerm: Double ->
+        ) { leftOperand: Double ->
             shouldThrow<IllegalArgumentException> {
-                operationType.calculate(leftTerm, given)
+                operationType.calculate(leftOperand, given)
             }
         }
     }
