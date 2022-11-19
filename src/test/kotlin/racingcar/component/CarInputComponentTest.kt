@@ -10,7 +10,7 @@ class CarInputComponentTest : FunSpec({
             test("입력한 대수만큼 자동차를 생성하고 스토어에 저장한다.") {
                 val sut = CarInputComponent()
                 // when
-                sut.onCommand("relkimm, seulgeun, hyeokzza, duck")
+                sut.onCommand("동구, 상근, 재혁, 주덕")
                 // then
                 val actual = CarStore.getState()
                 actual shouldHaveSize 4
