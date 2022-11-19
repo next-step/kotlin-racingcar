@@ -1,16 +1,14 @@
 package racingcar.component
 
-import racingcar.Car
-import racingcar.WinnerCalculator
+import racingcar.Winner
 import racingcar.ui.Span
 
-class WinnerComponent(private val cars: List<Car>) : Component {
-    private fun getWinnerText(winners: List<Car>): String {
+class WinnerComponent(private val winners: List<Winner>) : Component {
+    private fun getWinnerText(winners: List<Winner>): String {
         return winners.joinToString(", ") { it.name.value }
     }
 
     override fun render() {
-        val winners = WinnerCalculator.execute(cars = cars)
         val text = "${this.getWinnerText(winners)} 가 최종 우승했습니다."
         Span(text = text).draw()
     }

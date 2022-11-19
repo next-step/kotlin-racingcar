@@ -1,22 +1,22 @@
 package racingcar.component
 
-import racingcar.CarGroup
-import racingcar.store.CarStore
+import racingcar.store.CarGroupStore
 import racingcar.store.RoundStore
 import racingcar.ui.Br
 
 class RacingResultComponent : Component {
     override fun render() {
-        val cars = CarStore.getState()
+        val carGroup = CarGroupStore.getState()
         val rounds = RoundStore.getState()
 
         rounds.forEach { round ->
-            val roundResult = round.start(carGroup = CarGroup(cars = cars))
+            val roundResult = round.start(carGroup = carGroup)
             RoundOrderComponent(id = round.id).render()
             RoundResultComponent(roundResult = roundResult).render()
             Br().draw()
             Thread.sleep(1000)
         }
-        WinnerComponent(cars = cars).render()
+        val winners = carGroup.getWinners()
+        WinnerComponent(winners = winners).render()
     }
 }
