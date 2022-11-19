@@ -1,8 +1,9 @@
 package racingcar
 
-import racingcar.io.InputView
-import racingcar.io.OutputView
-import racingcar.strategy.RandomMoveStrategy
+import racingcar.controller.RacingGameController
+import racingcar.domain.strategy.RandomMoveStrategy
+import racingcar.view.InputView
+import racingcar.view.OutputView
 
 fun main() {
     val nameOfCars = InputView.getParticipateCarNames()
