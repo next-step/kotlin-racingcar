@@ -11,4 +11,9 @@ class CarGroup(private val cars: List<Car>) {
     fun getPositions(): List<CarPosition> {
         return this.cars.map { CarPosition.from(car = it) }
     }
+
+    fun getWinners(): List<Winner> {
+        val winnerCars = WinnerCalculator.execute(cars = this.cars)
+        return winnerCars.map { Winner(name = it.name) }
+    }
 }
