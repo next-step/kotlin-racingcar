@@ -15,6 +15,11 @@ class RacingGameTest {
         for (car in cars) {
             car.move(4)
         }
-        assertThat(ResultStatistics(cars).toResult()).isEqualTo("-${System.lineSeparator()}-")
+
+        val result = """
+            lee: -
+            kkoks: -
+        """.trimIndent()
+        assertThat(ResultStatistics(cars).toResult()).isEqualTo(result)
     }
 }
