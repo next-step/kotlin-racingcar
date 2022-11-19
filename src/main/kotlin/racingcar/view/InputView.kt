@@ -1,14 +1,14 @@
 package racingcar.view
 
-import racingcar.input.RaceSettingInput
+import racingcar.value.RacingCarGameInput
 
 class InputView {
     companion object {
-        fun getInput(): RaceSettingInput {
+        fun getInput(): RacingCarGameInput {
             val numberOfCar = getNumberOfCarInput()
             val totalCountOfRound = getTotalCountOfRoundInput()
 
-            return RaceSettingInput(numberOfCar, totalCountOfRound)
+            return RacingCarGameInput(numberOfCar, totalCountOfRound)
         }
 
         private fun getNumberOfCarInput(): Int {
