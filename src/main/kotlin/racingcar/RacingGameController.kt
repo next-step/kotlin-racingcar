@@ -1,5 +1,6 @@
 package racingcar
 
+import racingcar.io.OutputView
 import racingcar.io.ParticipateCarName
 import racingcar.strategy.MoveStrategy
 
@@ -25,7 +26,7 @@ object RacingGameController {
         moveStrategy: MoveStrategy
     ): List<String> {
         val participatedCars = ParticipatedCars(moveStrategy)
-        val finalTurnCarsInfo = participatedCars.turn(FIRST_TURN, numberOfAttempts, cars)
+        val finalTurnCarsInfo = participatedCars.turn(FIRST_TURN, numberOfAttempts, cars, OutputView::showMovingCarResult)
 
         return GameJudgment(finalTurnCarsInfo).getWinners()
     }

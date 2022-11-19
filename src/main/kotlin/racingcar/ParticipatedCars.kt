@@ -1,6 +1,5 @@
 package racingcar
 
-import racingcar.io.OutputView
 import racingcar.strategy.MoveStrategy
 
 class ParticipatedCars(
@@ -9,14 +8,15 @@ class ParticipatedCars(
     fun turn(
         turn: Int,
         finalTurn: Int,
-        cars: List<Car>
+        cars: List<Car>,
+        showMovingCarResult: (List<Car>) -> Unit,
     ): List<Car> {
         return if (turn > finalTurn) {
             cars
         } else {
-            val movedCars = cars.map { it.move(moveStrategy) }
-            OutputView.showMovingCarResult(movedCars)
-            return turn(turn.inc(), finalTurn, movedCars)
+            val movedCars: List<Car> = cars.map { it.move(moveStrategy) }
+            showMovingCarResult(movedCars)
+            return turn(turn.inc(), finalTurn, movedCars, showMovingCarResult)
         }
     }
 }
