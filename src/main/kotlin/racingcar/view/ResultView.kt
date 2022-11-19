@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.RaceStage
+import racingcar.domain.RaceStage
 
 private const val SCORE_SYMBOL = "-"
 private const val LINE_BREAK = "\n"

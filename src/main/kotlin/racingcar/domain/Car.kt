@@ -1,7 +1,7 @@
-package racingcar
+package racingcar.domain
 
-import racingcar.RacingCarEngine.FORWARD
-import racingcar.RacingCarEngine.NON_FORWARD
+import racingcar.domain.RacingCarEngine.FORWARD
+import racingcar.domain.RacingCarEngine.NON_FORWARD
 
 private const val MOVE_POS = 1
 
@@ -24,4 +24,8 @@ class Car(
             NON_FORWARD -> this
         }
     }
+
+    fun isWinner(car: Car): Boolean = pos >= car.pos
+
+    fun isDraw(car: Car): Boolean = this.pos == car.pos
 }

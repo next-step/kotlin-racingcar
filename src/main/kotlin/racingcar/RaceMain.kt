@@ -1,5 +1,6 @@
 package racingcar
 
+import racingcar.domain.RaceStage
 import racingcar.strategy.RandomMoveStrategy
 import racingcar.view.InputView
 import racingcar.view.ResultView

@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
@@ -30,5 +30,39 @@ internal class CarTest {
 
         // then
         assertThat(afterRaceCar.pos).isEqualTo(expectedPos)
+    }
+
+    @Test
+    @DisplayName("위치가 더 멀리나간 자동차를 반환한다.")
+    internal fun isWinnerTest() {
+        // given
+        val carA = Car("carA", 5)
+        val carB = Car("carB", 10)
+
+        // when, then
+        assertThat(carA.isWinner(carB)).isFalse
+        assertThat(carB.isWinner(carA)).isTrue
+    }
+
+    @Test
+    @DisplayName("자동차 위치가 같으면 true를 반환한다.")
+    internal fun equalsPosTrueTest() {
+        // given
+        val carA = Car("carA", 10)
+        val carB = Car("carB", 10)
+
+        // when, then
+        assertThat(carA.isDraw(carB)).isTrue
+    }
+
+    @Test
+    @DisplayName("자동차 위치가 다르면 false를 반환한다.")
+    internal fun equalsPosFalseTest() {
+        // given
+        val carA = Car("carA", 10)
+        val carB = Car("carB", 5)
+
+        // when, then
+        assertThat(carA.isDraw(carB)).isFalse
     }
 }
