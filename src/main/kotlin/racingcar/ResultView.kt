@@ -1,12 +1,15 @@
 package racingcar
 
 class ResultView {
-    fun printResult(result: String) {
-        if (result.last() == ',') {
-            print(result.substring(0, result.lastIndex))
-        }
-        if (result.last() != ',') {
-            print(result)
+    fun printResult(cars: List<Car>, result: String) {
+        print(result)
+
+        cars.forEachIndexed() {
+            index, _ ->
+            print(cars[index].name)
+            if (cars.lastIndex != index) {
+                print(",")
+            }
         }
         println("가 최종 우승했습니다.")
     }
@@ -20,7 +23,7 @@ class ResultView {
         return result
     }
 
-    fun makeResult(car: Car): String {
+    private fun makeResult(car: Car): String {
         val str: StringBuilder = StringBuilder()
         str.append(car.name + " : ")
         for (i in 1..car.status) {

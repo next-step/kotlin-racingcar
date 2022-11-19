@@ -24,9 +24,7 @@ fun main() {
     }
 
     val exec = Statistics.exec(cars)
-    result += exec
-
-    resultView.printResult(result)
+    resultView.printResult(exec, result)
 }
 
 private fun initCarList(carNames: List<String>): MutableList<Car> {

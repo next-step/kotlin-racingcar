@@ -2,20 +2,9 @@ package racingcar
 
 class Statistics() {
     companion object {
-        fun exec(cars: Cars): String {
-            var result = ""
+        fun exec(cars: Cars): List<Car> {
             var max = cars.findMaxStatusValue()
-
-            cars.cars.forEach {
-                car ->
-                run {
-                    if (car.isWinner(max)) {
-                        result += car
-                        result += ","
-                    }
-                }
-            }
-            return result
+            return cars.statistic(max)
         }
     }
 }
