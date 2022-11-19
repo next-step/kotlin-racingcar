@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 internal class CarRacingTest {
 
     @Test
-    fun `주어진 자동차 이름의 개수만큼 자동차를 생성한다`() {
+    fun `주어진 자동차 이름에 해당하는 자동차를 생성한다`() {
         // given
         val namesOfCars = listOf("car1", "car2", "car3")
 
@@ -18,7 +18,7 @@ internal class CarRacingTest {
         )
 
         // then
-        assertEquals(namesOfCars.size, carRacing.positions.size)
+        assertEquals(namesOfCars.sorted(), carRacing.carInfos.map(CarInfo::name).sorted())
     }
 
     @Test
@@ -33,7 +33,7 @@ internal class CarRacingTest {
         carRacing.move()
 
         // then
-        assertTrue(carRacing.positions.all { it == MOVE_SIZE })
+        assertTrue(carRacing.carInfos.all { it.position == MOVE_SIZE })
     }
 
     companion object {
