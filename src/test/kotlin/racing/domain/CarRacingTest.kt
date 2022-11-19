@@ -36,6 +36,23 @@ internal class CarRacingTest {
         assertTrue(carRacing.carInfos.all { it.position == MOVE_SIZE })
     }
 
+    @Test
+    fun `우승 자동차 목록 반환 테스트`() {
+        // given
+        val namesOfCars = listOf("car1", "car2", "car3")
+        val carRacing = CarRacing(
+            namesOfCars = namesOfCars,
+            moveStrategy = moveStrategy,
+        )
+        carRacing.move()
+
+        // when
+        val winnerCarInfos = carRacing.winnerCarInfos
+
+        // then
+        assertEquals(namesOfCars.sorted(), winnerCarInfos.map(CarInfo::name).sorted())
+    }
+
     companion object {
         const val MOVE_SIZE = 1
 

@@ -13,6 +13,13 @@ class CarRacing(
     val carInfos: List<CarInfo>
         get() = cars.map { CarInfo(name = it.name, position = it.position) }
 
+    val winnerCarInfos: List<CarInfo>
+        get() {
+            val maxPosition = cars.maxOf(Car::position)
+            return cars.filter { maxPosition == it.position }
+                .map { CarInfo(name = it.name, position = it.position) }
+        }
+
     fun move() {
         cars.forEach(Car::move)
     }
