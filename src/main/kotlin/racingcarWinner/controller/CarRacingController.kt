@@ -17,6 +17,7 @@ class CarRacingController {
             OutputView.printTryOneRacingOutput(carRacing.startRacing())
         }
 
-        OutputView.outputWinner(Winner(carRacing.carList).getWinner())
+        val winner = Winner(carRacing.getCarList())
+        OutputView.outputWinner(winner.getWinner())
     }
 }

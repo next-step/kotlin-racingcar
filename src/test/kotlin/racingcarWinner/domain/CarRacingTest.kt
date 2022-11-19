@@ -12,7 +12,7 @@ internal class CarRacingTest {
     @ValueSource(strings = ["pobi,crong,honux", "pobi,crong,honux,alen", "pobi , crong "])
     fun `cars init`(carNames: String) {
         val carNameList = carNames.split(",")
-        val cars = CarRacing(carNameList).carList
+        val cars = CarRacing(carNameList).getCarList()
 
         assertThat(cars.count()).isEqualTo(carNameList.count())
         cars.forEachIndexed { index, car ->

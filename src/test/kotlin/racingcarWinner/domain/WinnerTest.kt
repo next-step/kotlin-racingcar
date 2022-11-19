@@ -21,7 +21,7 @@ internal class WinnerTest {
         val winnerIndex = 0
 
         // when
-        val carList = racing.carList.mapIndexed { index, car ->
+        val carList = racing.getCarList().mapIndexed { index, car ->
             if (index == winnerIndex)car.move(10)
             car
         }
@@ -35,7 +35,7 @@ internal class WinnerTest {
     @ValueSource(ints = [0, 1, 5, 10])
     fun `getWinner when winner more than one`(maxMoveStep: Int) {
         // when
-        val carList = racing.carList.map { car ->
+        val carList = racing.getCarList().map { car ->
             car.move(10)
             car
         }
