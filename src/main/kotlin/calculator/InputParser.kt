@@ -1,4 +1,4 @@
-package step2.calculator
+package calculator
 
 object InputParser {
     fun parse(input: String?): List<String> {

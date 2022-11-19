@@ -1,4 +1,4 @@
-package step2.calculator
+package calculator
 
 object StringCalculator {
     fun execute(input: String?): Double {
@@ -15,11 +15,11 @@ object StringCalculator {
         var result: Double = parsedInput[0].toDouble()
 
         for (i in 1 until parsedInput.size step 2) {
-            val prev = result
+            val prevNumber = result
             val operator = Operator.find(parsedInput[i])
-            val next = parsedInput[i + 1].toDouble()
+            val nextNumber = parsedInput[i + 1].toDouble()
 
-            result = Expression(prev, operator, next).calculate()
+            result = operator.calculate(prevNumber, nextNumber)
         }
 
         return result
