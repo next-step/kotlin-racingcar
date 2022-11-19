@@ -1,16 +1,18 @@
 package racingcar
 
-import racingcar.impl.InputViewImpl
+import racingcar.application.car.CarRacing
+import racingcar.view.InputViewImpl
+import racingcar.view.PromptServiceImpl
+import racingcar.view.ResultView
 
 fun main() {
-    val carFactory = CarFactory()
     val inputView = InputViewImpl()
     val resultView = ResultView()
-    val promptService = PromptService(
+    val promptService = PromptServiceImpl(
         inputView = inputView,
         resultView = resultView
     )
 
-    val carRacing = CarRacing(carFactory, promptService)
+    val carRacing = CarRacing(promptService)
     carRacing.run()
 }
