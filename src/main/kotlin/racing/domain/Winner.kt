@@ -5,10 +5,10 @@ class Winner(cars: Cars) {
     var cars = cars
         private set
 
-    constructor(carList: List<Car>) : this(Cars(carList.map { it.name }.joinToString(",")))
+    constructor(carList: List<Car>) : this(Cars(carList))
 
-    fun win(): List<Car> {
+    fun win(): String {
         val maxPosition = cars.maxOf { it.position }
-        return cars.filter { it.position == maxPosition }
+        return cars.filter { it.position == maxPosition }.joinToString { it.name }
     }
 }

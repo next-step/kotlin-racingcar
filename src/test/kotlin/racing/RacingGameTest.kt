@@ -31,7 +31,7 @@ class RacingGameTest {
         val kkoksCar = Car("kkoks", 3)
         val winner = Winner(listOf(leeCar, kkoksCar))
         val result = winner.win()
-        assertThat(result).contains(leeCar)
+        assertThat(result).isEqualTo("lee")
     }
 
     @Test
@@ -40,6 +40,6 @@ class RacingGameTest {
         val kkoksCar = Car("kkoks", 5)
         val winner = Winner(listOf(leeCar, kkoksCar))
         val result = winner.win()
-        assertThat(result).containsAll(listOf(leeCar, kkoksCar))
+        assertThat(result).isEqualTo("lee, kkoks")
     }
 }

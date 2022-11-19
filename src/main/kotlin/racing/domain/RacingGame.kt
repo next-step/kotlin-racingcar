@@ -18,5 +18,7 @@ class RacingGame {
             }
             ResultView.printRacingGameResult(ResultStatistics(cars).toResult())
         }
+        val winner = Winner(cars)
+        ResultView.printRacingGameWinner(winner.win())
     }
 }

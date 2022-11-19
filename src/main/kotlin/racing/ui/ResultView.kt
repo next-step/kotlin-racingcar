@@ -10,5 +10,9 @@ class ResultView {
         fun printRacingGameResult(result: String) {
             println(result)
         }
+
+        fun printRacingGameWinner(winner: String) {
+            println("${winner}가 최종 우승했습니다.")
+        }
     }
 }
