@@ -2,15 +2,15 @@ package racingcar.store
 
 import racingcar.Car
 
-object CarStore : Store<Car> {
+object CarStore : Store<List<Car>> {
     private var cars = listOf<Car>()
 
-    override fun findAll(): List<Car> {
+    override fun getState(): List<Car> {
         return cars
     }
 
-    override fun saveAll(list: List<Car>): List<Car> {
-        cars = list
+    override fun setState(state: List<Car>): List<Car> {
+        cars = state
         return cars
     }
 }

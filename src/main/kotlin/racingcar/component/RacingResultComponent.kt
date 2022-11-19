@@ -7,8 +7,8 @@ import racingcar.ui.Br
 
 class RacingResultComponent : Component {
     override fun render() {
-        val cars = CarStore.findAll()
-        val rounds = RoundStore.findAll()
+        val cars = CarStore.getState()
+        val rounds = RoundStore.getState()
 
         rounds.forEach { round ->
             val roundResult = round.start(carGroup = CarGroup(cars = cars))

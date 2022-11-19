@@ -18,7 +18,7 @@ class CarInputComponent : Component {
     fun onCommand(value: String) {
         val carNames = CarNameSplitter.execute(target = value)
         val cars = this.createCars(carNames = carNames)
-        CarStore.saveAll(cars)
+        CarStore.setState(cars)
     }
 
     private fun createCars(carNames: List<CarName>): List<Car> {

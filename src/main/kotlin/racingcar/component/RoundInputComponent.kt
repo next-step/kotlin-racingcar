@@ -13,7 +13,7 @@ class RoundInputComponent : Component {
 
     fun onCommand(value: String) {
         val rounds = RoundFactory.createMany(amount = value.toInt())
-        RoundStore.saveAll(rounds)
+        RoundStore.setState(rounds)
     }
 
     override fun render() {

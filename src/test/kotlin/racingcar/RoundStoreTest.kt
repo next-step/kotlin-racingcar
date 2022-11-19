@@ -11,7 +11,7 @@ class RoundStoreTest : FunSpec({
             // given
             val rounds = RoundFactory.createMany(amount = 5)
             // when
-            val actual = sut.saveAll(rounds)
+            val actual = sut.setState(rounds)
             // then
             actual shouldContainExactly rounds
         }
@@ -22,9 +22,9 @@ class RoundStoreTest : FunSpec({
         test("여러 횟수의 라운드를 조회할 수 있다.") {
             // given
             val rounds = RoundFactory.createMany(amount = 5)
-            sut.saveAll(rounds)
+            sut.setState(rounds)
             // when
-            val actual = sut.findAll()
+            val actual = sut.getState()
             // then
             actual shouldContainExactly rounds
         }

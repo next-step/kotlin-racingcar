@@ -12,7 +12,7 @@ class CarStoreTest : FunSpec({
             // given
             val cars = CarFactory.createMany(dtos = CarCreateDtoFixture.getMany(amount = 5))
             // when
-            val actual = sut.saveAll(cars)
+            val actual = sut.setState(cars)
             // then
             actual shouldContainExactly cars
         }
@@ -23,9 +23,9 @@ class CarStoreTest : FunSpec({
         test("여러 대의 자동차를 조회할 수 있다.") {
             // given
             val cars = CarFactory.createMany(dtos = CarCreateDtoFixture.getMany(amount = 3))
-            sut.saveAll(cars)
+            sut.setState(cars)
             // when
-            val actual = sut.findAll()
+            val actual = sut.getState()
             // then
             actual shouldContainExactly cars
         }

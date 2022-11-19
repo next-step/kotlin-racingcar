@@ -2,15 +2,15 @@ package racingcar.store
 
 import racingcar.Round
 
-object RoundStore : Store<Round> {
+object RoundStore : Store<List<Round>> {
     private var rounds = listOf<Round>()
 
-    override fun findAll(): List<Round> {
+    override fun getState(): List<Round> {
         return rounds
     }
 
-    override fun saveAll(list: List<Round>): List<Round> {
-        rounds = list
+    override fun setState(state: List<Round>): List<Round> {
+        rounds = state
         return rounds
     }
 }

@@ -12,7 +12,7 @@ class CarInputComponentTest : FunSpec({
                 // when
                 sut.onCommand("relkimm, seulgeun, hyeokzza, duck")
                 // then
-                val actual = CarStore.findAll()
+                val actual = CarStore.getState()
                 actual shouldHaveSize 4
             }
         }

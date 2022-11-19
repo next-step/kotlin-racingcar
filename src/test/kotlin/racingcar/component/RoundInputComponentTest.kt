@@ -12,7 +12,7 @@ class RoundInputComponentTest : FunSpec({
                 // when
                 sut.onCommand("3")
                 // then
-                val actual = RoundStore.findAll()
+                val actual = RoundStore.getState()
                 actual shouldHaveSize 3
             }
         }
