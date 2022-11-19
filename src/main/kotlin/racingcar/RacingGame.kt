@@ -1,14 +1,17 @@
 package racingcar
 
-import java.util.Collections
 import kotlin.random.Random
 
 class RacingGame {
-    var carList: List<Car> = listOf()
+    lateinit var carList: List<Car>
         private set
 
-    fun set(numberOfCars: Int) {
-        carList = Collections.nCopies(numberOfCars, Car())
+    fun set(numberOfCars: Int, count: Int) {
+        val carMList: MutableList<Car> = mutableListOf()
+        for (i in 1..numberOfCars) {
+            carMList.add(Car())
+        }
+        carList = carMList.toList()
     }
 
     private fun random(): Int {

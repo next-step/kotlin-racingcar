@@ -10,7 +10,7 @@ class RacingGameTest {
         val racingGame = RacingGame()
 
         // when
-        racingGame.set(3)
+        racingGame.set(3, 5)
 
         // then
         assertThat(racingGame.carList.size).isEqualTo(3)
