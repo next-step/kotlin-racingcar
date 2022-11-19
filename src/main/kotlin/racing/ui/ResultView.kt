@@ -3,8 +3,11 @@ package racing.ui
 class ResultView {
 
     companion object {
-        fun printGameResult(result: String) {
+
+        fun printRacingGameGuideText() {
             println("실행결과")
+        }
+        fun printRacingGameResult(result: String) {
             println(result)
         }
     }

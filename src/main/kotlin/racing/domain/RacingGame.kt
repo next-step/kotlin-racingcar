@@ -11,11 +11,12 @@ class RacingGame {
         val cars = CarFactory.create(carNames)
         var numberOfGames = InputView.requireNumberOfGames()
 
+        ResultView.printRacingGameGuideText()
         while (numberOfGames-- > 0) {
             cars.race {
                 RandomGenerator.generate()
             }
-            ResultView.printGameResult(ResultStatistics(cars).toResult())
+            ResultView.printRacingGameResult(ResultStatistics(cars).toResult())
         }
     }
 }
