@@ -12,10 +12,10 @@ class CarNamesTest : FunSpec({
         test("이름을 쉼표를 기준으로 구분하여 생성합니다") {
             val inputCarNames = "car1,car2,car3"
 
-            with(CarNames.from(inputCarNames).names) {
-                this[0].getName() shouldBe "car1"
-                this[1].getName() shouldBe "car2"
-                this[2].getName() shouldBe "car3"
+            with(CarNames(inputCarNames).names) {
+                this[0].name shouldBe "car1"
+                this[1].name shouldBe "car2"
+                this[2].name shouldBe "car3"
             }
         }
     }

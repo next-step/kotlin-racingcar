@@ -26,7 +26,7 @@ class CarNameTest : FunSpec({
         test("fun getName() : 차의 이름을 가져온다.") {
             val defaultCarName = "seven"
 
-            CarName(defaultCarName).getName() shouldBe defaultCarName
+            CarName(defaultCarName).name shouldBe defaultCarName
         }
     }
 })

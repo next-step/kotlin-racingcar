@@ -15,7 +15,7 @@ class CarTest : FunSpec({
         val car = Car(defaultCarName, defaultPosition)
 
         test("fun getPosition(): 현재 위치를 반환한다.") {
-            car.getPosition() shouldBe defaultPosition
+            car.carPosition shouldBe defaultPosition
         }
 
         test("fun nextRound(): movingSystem.isMove()가 true 면 한 칸 움직인다") {
@@ -24,7 +24,7 @@ class CarTest : FunSpec({
             }
 
             car.nextRound(alwaysTrueSystem)
-            car.getPosition().getValue() shouldBe defaultPositionValue + 1
+            car.carPosition.position shouldBe defaultPositionValue + 1
         }
 
         test("fun nextRound(): movingSystem.isMove()가 false 면 움직이지 않는다") {
@@ -33,7 +33,7 @@ class CarTest : FunSpec({
             }
 
             car.nextRound(alwaysFalseSystem)
-            car.getPosition().getValue() shouldBe defaultPositionValue
+            car.carPosition.position shouldBe defaultPositionValue
         }
     }
 })
