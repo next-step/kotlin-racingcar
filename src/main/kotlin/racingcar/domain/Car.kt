@@ -12,9 +12,9 @@ class Car(
 
     fun move(condition: Int): Car {
         if (condition >= MOVE_CONDITION) {
-            status++
+            return Car(this.name, this.status++)
         }
-        return this
+        return Car(this.name, this.status)
     }
 
     fun isWinner(max: Int): Boolean {
