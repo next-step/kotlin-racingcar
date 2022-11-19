@@ -1,15 +1,15 @@
 package racingcar.component
 
-import racingcar.Car
 import racingcar.CarFactory
+import racingcar.CarGroup
 import racingcar.CarName
 import racingcar.CarNameSplitter
 import racingcar.dto.CarCreateDto
-import racingcar.store.CarStore
+import racingcar.store.CarGroupStore
 import racingcar.ui.Input
 import racingcar.ui.Span
 
-class CarInputComponent : Component {
+class CarNameInputComponent : Component {
     private val span = Span(text = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).", block = true)
     private val input = Input()
 
@@ -17,13 +17,14 @@ class CarInputComponent : Component {
 
     fun onCommand(value: String) {
         val carNames = CarNameSplitter.execute(target = value)
-        val cars = this.createCars(carNames = carNames)
-        CarStore.setState(cars)
+        val carGroup = this.createCarGroup(carNames = carNames)
+        CarGroupStore.setState(state = carGroup)
     }
 
-    private fun createCars(carNames: List<CarName>): List<Car> {
+    private fun createCarGroup(carNames: List<CarName>): CarGroup {
         val createDtos = carNames.map { CarCreateDto(name = it) }
-        return CarFactory.createMany(dtos = createDtos)
+        val cars = CarFactory.createMany(dtos = createDtos)
+        return CarGroup(cars = cars)
     }
 
     override fun render() {
