@@ -1,6 +1,6 @@
-package racingcar.io
+package racingcar.view
 
-import racingcar.Car
+import racingcar.domain.Car
 import racingcar.utils.joinToStringByComma
 
 object OutputView {

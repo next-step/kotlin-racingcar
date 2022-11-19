@@ -1,4 +1,4 @@
-package racingcar.io
+package racingcar.view
 
 data class ParticipateCarName(
     val name: String
