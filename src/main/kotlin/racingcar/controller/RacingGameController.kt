@@ -1,8 +1,11 @@
-package racingcar
+package racingcar.controller
 
-import racingcar.io.OutputView
-import racingcar.io.ParticipateCarName
-import racingcar.strategy.MoveStrategy
+import racingcar.domain.Car
+import racingcar.domain.GameJudgment
+import racingcar.domain.ParticipatedCars
+import racingcar.domain.strategy.MoveStrategy
+import racingcar.view.OutputView
+import racingcar.view.ParticipateCarName
 
 object RacingGameController {
     private const val FIRST_TURN = 1
