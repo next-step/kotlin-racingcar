@@ -12,7 +12,7 @@ class RoundTest : FunSpec({
                 val sut = Round(id = 1)
                 val cars = CarFactory.createMany(dtos = CarCreateDtoFixture.getMany(amount = 3))
                 // when
-                val actual = sut.start(cars = cars)
+                val actual = sut.start(carGroup = CarGroup(cars = cars))
                 // then
                 actual.carPositions shouldHaveSize 3
             }
