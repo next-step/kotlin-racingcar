@@ -3,6 +3,7 @@ package racingcar
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.collections.shouldContainExactly
 import racingcar.fixture.CarCreateDtoFixture
+import racingcar.store.CarStore
 
 class CarStoreTest : FunSpec({
     context("자동차 저장 테스트") {

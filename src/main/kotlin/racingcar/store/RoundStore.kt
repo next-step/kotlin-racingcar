@@ -1,14 +1,16 @@
-package racingcar
+package racingcar.store
+
+import racingcar.Round
 
 object RoundStore : Store<Round> {
     private var rounds = listOf<Round>()
 
     override fun findAll(): List<Round> {
-        return this.rounds
+        return rounds
     }
 
     override fun saveAll(list: List<Round>): List<Round> {
-        this.rounds = list
-        return this.rounds
+        rounds = list
+        return rounds
     }
 }

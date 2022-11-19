@@ -1,7 +1,7 @@
 package racingcar.component
 
 import racingcar.RoundFactory
-import racingcar.RoundStore
+import racingcar.store.RoundStore
 import racingcar.ui.Input
 import racingcar.ui.Span
 

@@ -2,7 +2,7 @@ package racingcar.component
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.collections.shouldHaveSize
-import racingcar.RoundStore
+import racingcar.store.RoundStore
 
 class RoundInputComponentTest : FunSpec({
     context("커멘드 이벤트 리스너 테스트") {

@@ -2,6 +2,7 @@ package racingcar
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.collections.shouldContainExactly
+import racingcar.store.RoundStore
 
 class RoundStoreTest : FunSpec({
     context("라운드 저장 테스트") {

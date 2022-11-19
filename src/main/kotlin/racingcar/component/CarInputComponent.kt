@@ -4,8 +4,8 @@ import racingcar.Car
 import racingcar.CarFactory
 import racingcar.CarName
 import racingcar.CarNameSplitter
-import racingcar.CarStore
 import racingcar.dto.CarCreateDto
+import racingcar.store.CarStore
 import racingcar.ui.Input
 import racingcar.ui.Span
 

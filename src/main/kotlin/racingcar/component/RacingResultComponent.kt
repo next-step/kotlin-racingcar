@@ -1,8 +1,8 @@
 package racingcar.component
 
 import racingcar.CarGroup
-import racingcar.CarStore
-import racingcar.RoundStore
+import racingcar.store.CarStore
+import racingcar.store.RoundStore
 import racingcar.ui.Br
 
 class RacingResultComponent : Component {

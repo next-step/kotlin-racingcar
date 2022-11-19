@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.store
 
 interface Store<T> {
     fun findAll(): List<T>
