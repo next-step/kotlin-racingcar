@@ -1,7 +1,8 @@
 package racing
 
-import org.assertj.core.api.AssertionsForInterfaceTypes
+import org.assertj.core.api.AssertionsForInterfaceTypes.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import racing.domain.CarFactory
@@ -10,10 +11,18 @@ import racing.domain.Cars
 class CarTest {
 
     @Test
-    fun `자동차를 생성한다`() {
+    fun `자동차를 생성할 때 자동차의 이름은 5글자 이하이다`() {
         val names = "lee,kkoks,amery"
         val cars: Cars = CarFactory.create(names)
-        AssertionsForInterfaceTypes.assertThat(cars.count()).isEqualTo(3)
+        assertThat(cars.count()).isEqualTo(3)
+    }
+
+    @Test
+    fun `자동차를 생성할 때 자동차의 이름은 5글자를 초과한다`() {
+        val names = "leejhw,kkoks,amery"
+        assertThrows<IllegalArgumentException> {
+            CarFactory.create(names)
+        }
     }
 
     @ParameterizedTest
@@ -23,7 +32,7 @@ class CarTest {
         val cars: Cars = CarFactory.create(names)
         for (car in cars) {
             car.move(num)
-            AssertionsForInterfaceTypes.assertThat(car.position).isEqualTo(1)
+            assertThat(car.position).isEqualTo(1)
         }
     }
 
@@ -34,7 +43,7 @@ class CarTest {
         val cars: Cars = CarFactory.create(names)
         for (car in cars) {
             car.move(num)
-            AssertionsForInterfaceTypes.assertThat(car.position).isEqualTo(0)
+            assertThat(car.position).isEqualTo(0)
         }
     }
 }
