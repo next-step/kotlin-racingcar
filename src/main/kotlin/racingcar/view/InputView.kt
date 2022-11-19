@@ -1,7 +1,7 @@
 package racingcar.view
 
-import racingcar.input.PlayTime
-import racingcar.input.Racers
+import racingcar.domain.input.PlayTime
+import racingcar.domain.input.Racers
 
 class InputView {
     companion object {
