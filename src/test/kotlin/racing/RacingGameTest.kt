@@ -10,7 +10,8 @@ class RacingGameTest {
 
     @Test
     fun `실행결과 출력`() {
-        val cars: Cars = CarFactory.create(2)
+        val names = "lee,kkoks"
+        val cars: Cars = CarFactory.create(names)
         for (car in cars) {
             car.move(4)
         }

@@ -7,8 +7,8 @@ class RacingGame {
 
     fun start() {
 
-        val carCount = InputView.requireCarsCount()
-        val cars = CarFactory.create(carCount)
+        val carNames = InputView.requireRacingCarNames()
+        val cars = CarFactory.create(carNames)
         var numberOfGames = InputView.requireNumberOfGames()
 
         while (numberOfGames-- > 0) {

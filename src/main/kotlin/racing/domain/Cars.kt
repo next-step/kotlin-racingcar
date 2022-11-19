@@ -1,12 +1,12 @@
 package racing.domain
 
-class Cars(count: Int) : Iterable<Car> {
+class Cars(names: String) : Iterable<Car> {
 
     private val list: List<Car>
 
     init {
-        list = List(count) {
-            Car()
+        list = names.split(SEPARATOR).map {
+            Car(it)
         }
     }
 
@@ -19,4 +19,8 @@ class Cars(count: Int) : Iterable<Car> {
         }
     }
     override fun iterator(): Iterator<Car> = list.iterator()
+
+    companion object {
+        const val SEPARATOR = ","
+    }
 }
