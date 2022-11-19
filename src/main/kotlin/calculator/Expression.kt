@@ -14,9 +14,7 @@ class Expression(
         nextNumber: Double
     ) {
         when (operator) {
-            Operator.DIVISION -> nextNumber.takeIf { nextNumber > 0 }
-                ?: throw IllegalArgumentException("It cannot be divided by zero.")
-            else -> println("Computable formula.")
+            Operator.DIVISION -> require(nextNumber > 0) { "It cannot be divided by zero." }
         }
     }
 }

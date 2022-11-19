@@ -1,27 +1,28 @@
 package calculator
 
-object StringCalculator {
-    fun execute(input: String?): Double {
-        val parsedInput = parseInput(input)
+class StringCalculator {
+    companion object {
+        fun execute(input: String?): Double {
+            val mathematicsElements = parseInput(input)
 
-        return calculateInput(parsedInput)
-    }
-
-    private fun parseInput(input: String?): List<String> {
-        return InputParser.parse(input)
-    }
-
-    private fun calculateInput(parsedInput: List<String>): Double {
-        var result: Double = parsedInput[0].toDouble()
-
-        for (i in 1 until parsedInput.size step 2) {
-            val prevNumber = result
-            val operator = Operator.find(parsedInput[i])
-            val nextNumber = parsedInput[i + 1].toDouble()
-
-            result = operator.calculate(prevNumber, nextNumber)
+            return calculateInput(mathematicsElements)
+        }
+        private fun parseInput(input: String?): List<String> {
+            return InputParser.parse(input)
         }
 
-        return result
+        private fun calculateInput(mathematicsElements: List<String>): Double {
+            var result: Double = mathematicsElements[0].toDouble()
+
+            for (i in 1 until mathematicsElements.size step 2) {
+                val prevNumber = result
+                val operator = Operator.find(mathematicsElements[i])
+                val nextNumber = mathematicsElements[i + 1].toDouble()
+
+                result = operator.calculate(prevNumber, nextNumber)
+            }
+
+            return result
+        }
     }
 }
