@@ -1,13 +1,16 @@
 package racing.domain
 
-class Cars(names: String) : Iterable<Car> {
+class Cars : Iterable<Car> {
 
     private val list: List<Car>
 
-    init {
+    constructor(names: String) {
         list = names.split(SEPARATOR).map {
             Car(it)
         }
+    }
+    constructor(carList: List<Car>) {
+        list = carList
     }
 
     fun count() = list.size
