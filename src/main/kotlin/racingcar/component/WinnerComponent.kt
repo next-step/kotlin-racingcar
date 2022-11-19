@@ -6,7 +6,7 @@ import racingcar.ui.Span
 
 class WinnerComponent(private val cars: List<Car>) : Component {
     private fun getWinnerText(winners: List<Car>): String {
-        return winners.joinToString(", ") { it.name }
+        return winners.joinToString(", ") { it.name.value }
     }
 
     override fun render() {

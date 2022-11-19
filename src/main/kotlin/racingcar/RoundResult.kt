@@ -4,7 +4,7 @@ data class RoundResult(
     val carPositions: List<CarPosition>
 ) {
     data class CarPosition private constructor(
-        val name: String,
+        val name: CarName,
         val position: Position,
     ) {
         companion object {

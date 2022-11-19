@@ -2,6 +2,7 @@ package racingcar.component
 
 import racingcar.Car
 import racingcar.CarFactory
+import racingcar.CarName
 import racingcar.CarNameSplitter
 import racingcar.CarStore
 import racingcar.dto.CarCreateDto
@@ -20,7 +21,7 @@ class CarInputComponent : Component {
         CarStore.saveAll(cars)
     }
 
-    private fun createCars(carNames: List<String>): List<Car> {
+    private fun createCars(carNames: List<CarName>): List<Car> {
         val createDtos = carNames.map { CarCreateDto(name = it) }
         return CarFactory.createMany(dtos = createDtos)
     }

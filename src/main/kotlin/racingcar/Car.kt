@@ -2,7 +2,7 @@ package racingcar
 
 class Car(
     val id: Int,
-    val name: String,
+    val name: CarName,
     position: Position = Position(value = 0),
 ) {
     var position = position

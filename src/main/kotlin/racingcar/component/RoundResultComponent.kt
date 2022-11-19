@@ -8,7 +8,7 @@ class RoundResultComponent(
 ) : Component {
     override fun render() {
         roundResult.carPositions.forEach { carPosition ->
-            CarNameComponent(name = carPosition.name).render()
+            CarNameComponent(name = carPosition.name.value).render()
             DistanceComponent(position = carPosition.position).render()
             Br().draw()
         }

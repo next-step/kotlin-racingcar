@@ -1,11 +1,14 @@
 package racingcar
 
 object CarNameSplitter {
-    private const val COMMA = ","
+    private const val CAR_NAME_DELIMITER = ","
 
-    fun execute(target: String): List<String> {
+    fun execute(target: String): List<CarName> {
         return target
-            .split(COMMA)
-            .map { it.trim() }
+            .split(CAR_NAME_DELIMITER)
+            .map {
+                val trimmed = it.trim()
+                CarName(value = trimmed)
+            }
     }
 }
