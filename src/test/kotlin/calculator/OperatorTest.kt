@@ -1,11 +1,11 @@
-package step2
+package calculator
 
+import calculator.Operation.Addition
+import calculator.Operation.Division
+import calculator.Operation.Multiplication
+import calculator.Operation.Subtraction
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import step2.Operation.Addition
-import step2.Operation.Division
-import step2.Operation.Multiplication
-import step2.Operation.Subtraction
 
 class OperatorTest {
 
