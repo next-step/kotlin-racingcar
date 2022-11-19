@@ -6,15 +6,16 @@ import racingCar.view.InputView
 import racingCar.view.OutputView
 
 fun main() {
-    OutputView.askCarNumber()
-    val carNumber = InputView.number()
-    val racing = Racing(carNumber, RandomStrategy())
+    OutputView.askUsernames()
+    val usernames = InputView.usernames()
+    val racing = Racing(usernames, RandomStrategy())
     OutputView.askTryNumber()
     val tryNumber = InputView.number()
     OutputView.printResultMsg()
-    (0..tryNumber).forEach {
+    repeat(tryNumber) {
         val result = racing.play()
         OutputView.printResult(result)
-
     }
+    val winners = racing.pickWinner()
+    OutputView.printWinners(winners)
 }

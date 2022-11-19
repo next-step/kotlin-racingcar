@@ -1,19 +1,24 @@
 package racingCar.domain
 
-class Cars(carNumber: Int, private val strategy: MoveStrategy) {
+class Cars(carNames: List<String>, private val strategy: MoveStrategy) {
 
-    val cars: List<Car> = List(carNumber) { Car() }
+    val cars: List<Car>
+
+    init {
+        require(carNames.isNotEmpty()) { "자동차이름은 한개 이상이여야만 합니다." }
+        cars = carNames.map { Car(name = CarName(it)) }
+    }
 
     fun moveByStrategy() {
         cars.forEach {
-            moveByStrategy(it)
+            it.moveByStrategy(strategy)
         }
     }
 
-    private fun moveByStrategy(car: Car) {
-        if (!strategy.canMove()) {
-            return
+    fun findWinners(): List<Car> =
+        this.cars.maxByOrNull { it }!!.let { winnerCar ->
+            return findSamePositionOf(winnerCar)
         }
-        car.move()
-    }
+
+    private fun findSamePositionOf(winner: Car): List<Car> = this.cars.filter { it.isSamePosition(winner) }
 }
