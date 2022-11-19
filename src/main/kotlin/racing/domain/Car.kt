@@ -18,6 +18,21 @@ class Car(name: String, position: Int = 0) {
         }
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Car
+
+        if (name != other.name) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return name.hashCode()
+    }
+
     companion object {
         const val FORWARD_MOVE: Int = 4
         const val CAR_NAME_LIMIT: Int = 5
