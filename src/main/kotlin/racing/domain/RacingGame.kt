@@ -12,15 +12,11 @@ class RacingGame {
         var numberOfGames = InputView.requireNumberOfGames()
 
         while (numberOfGames-- > 0) {
-            race(cars)
+            cars.race {
+                RandomGenerator.generate()
+            }
         }
 
         ResultView.printGameResult(ResultStatistics(cars).toResult())
-    }
-
-    private fun race(cars: Cars) {
-        for (car in cars.list()) {
-            car.move(RandomGenerator.generate())
-        }
     }
 }

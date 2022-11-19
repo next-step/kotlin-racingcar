@@ -1,6 +1,6 @@
 package racing.domain
 
-class Cars(count: Int) {
+class Cars(count: Int) : Iterable<Car> {
 
     private val list: List<Car>
 
@@ -12,5 +12,11 @@ class Cars(count: Int) {
 
     fun count() = list.size
 
-    fun list() = list
+    fun race(movable: () -> Int) {
+        list.forEach {
+            car ->
+            car.move(movable.invoke())
+        }
+    }
+    override fun iterator(): Iterator<Car> = list.iterator()
 }

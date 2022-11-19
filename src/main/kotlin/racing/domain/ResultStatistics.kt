@@ -3,11 +3,7 @@ package racing.domain
 class ResultStatistics(private val cars: Cars) {
 
     fun toResult(): String {
-        val stringBuilder = StringBuilder()
-        for (car in cars.list()) {
-            stringBuilder.appendLine(toMark(car))
-        }
-        return stringBuilder.toString()
+        return cars.map { toMark(it) }.joinToString(separator = System.lineSeparator())
     }
 
     private fun toMark(car: Car): String {

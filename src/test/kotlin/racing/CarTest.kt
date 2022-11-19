@@ -19,7 +19,7 @@ class CarTest {
     @ValueSource(ints = [4, 9])
     fun `자동차 이동`(num: Int) {
         val cars: Cars = CarFactory.create(3)
-        for (car in cars.list()) {
+        for (car in cars) {
             car.move(num)
             AssertionsForInterfaceTypes.assertThat(car.position).isEqualTo(1)
         }
@@ -29,7 +29,7 @@ class CarTest {
     @ValueSource(ints = [0, 3])
     fun `자동차 이동실패`(num: Int) {
         val cars: Cars = CarFactory.create(3)
-        for (car in cars.list()) {
+        for (car in cars) {
             car.move(num)
             AssertionsForInterfaceTypes.assertThat(car.position).isEqualTo(0)
         }

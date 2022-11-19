@@ -14,6 +14,6 @@ class InputView {
             return inputNumber()
         }
 
-        fun inputNumber() = readLine()!!.toInt()
+        private fun inputNumber() = readln().toInt()
     }
 }
