@@ -6,11 +6,12 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.ValueSource
 
 internal class CarRacingTest {
 
     @Test
-    fun `주어진 자동차 이름에 해당하는 자동차를 생성한다`() {
+    fun `자동차 경주 생성 테스트`() {
         // given
         val namesOfCars = listOf("car1", "car2", "car3")
 
@@ -23,6 +24,21 @@ internal class CarRacingTest {
 
         // then
         assertEquals(namesOfCars.sorted(), carRacing.carInfos.map(CarInfo::name).sorted())
+        assertTrue(carRacing.carInfos.all { it.position == 0 })
+    }
+
+    @ParameterizedTest(name = "numOfMove: {0}")
+    @ValueSource(strings = ["-10", "-1", "0"])
+    fun `자동차 경주 생성시 경주횟수가 1보다 작을 경우 에러 테스트`(numOfMove: Int) {
+
+        // when & then
+        Assertions.assertThatThrownBy {
+            CarRacing(
+                numOfMove = numOfMove,
+                namesOfCars = listOf("car1", "car2", "car3"),
+                moveStrategy = moveStrategy,
+            )
+        }.isInstanceOf(IllegalArgumentException::class.java)
     }
 
     @Test

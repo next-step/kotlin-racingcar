@@ -8,6 +8,10 @@ class CarRacing(
     private var currentNumOfMove = 0
     private val cars: List<Car> = namesOfCars.map { name -> Car(name, moveStrategy) }
 
+    init {
+        require(numOfMove > 0) { "경주 횟수는 0보다 커야합니다." }
+    }
+
     val carInfos: List<CarInfo>
         get() = cars.map { CarInfo(name = it.name, position = it.position) }
 
