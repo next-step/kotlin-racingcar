@@ -5,7 +5,7 @@ import io.kotest.matchers.shouldBe
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
-internal class WinnerRacingTest {
+internal class CarRacingTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["pobi,crong,honux", "pobi,crong,honux,alen"])
@@ -14,7 +14,7 @@ internal class WinnerRacingTest {
         val carNameList = carNames.split(",")
         val cars = Cars(carNameList).carList
 
-        val moveResult = WinnerRacing.startRacing(cars = cars)
+        val moveResult = CarRacing.startRacing(cars = cars)
 
         moveResult.count() shouldBe carNameList.count()
         moveResult.forEachIndexed { index, car ->
