@@ -1,21 +1,9 @@
 package racingcar
 
 class Car(
-    private val _name: String,
-    private var _status: Int = 0,
+    val name: String,
+    var status: Int = 0,
 ) {
-    val name: String
-        get() {
-            return this._name
-        }
-    var status: Int
-        get() {
-            return this._status
-        }
-        set(value) {
-            _status = value
-        }
-
     init {
         if (name.length > NAME_LENGTH_CONDITION) {
             throw IllegalArgumentException("자동자 이름은 ${NAME_LENGTH_CONDITION}자를 넘을 수 없습니다.")
