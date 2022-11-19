@@ -3,11 +3,7 @@ package racingcar.domain.car
 class ParticipatingCars(
     private val carList: List<Car>
 ) {
-    fun initRace(outputFunction: (carName: String) -> Unit) {
-        this.carList.forEach { car ->
-            outputFunction(car.name)
-        }
-    }
+    fun initNameList() = this.carList.map { it.name }.toList()
 
     fun move(outputFunction: (Int, String) -> Unit) {
         carList.forEach {
