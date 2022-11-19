@@ -7,25 +7,25 @@ import org.junit.jupiter.api.Test
 internal class CarRacingTest {
 
     @Test
-    fun `주어진 개수만큼 자동차를 생성한다`() {
+    fun `주어진 자동차 이름의 개수만큼 자동차를 생성한다`() {
         // given
-        val numOfCars = 5
+        val namesOfCars = listOf("car1", "car2", "car3")
 
         // when
         val carRacing = CarRacing(
-            numOfCars = numOfCars,
+            namesOfCars = namesOfCars,
             moveStrategy = moveStrategy,
         )
 
         // then
-        assertEquals(numOfCars, carRacing.positions.size)
+        assertEquals(namesOfCars.size, carRacing.positions.size)
     }
 
     @Test
     fun `move 함수를 호출하면 내부의 자동차들이 이동한다`() {
         // given
         val carRacing = CarRacing(
-            numOfCars = 5,
+            namesOfCars = listOf("car1", "car2", "car3"),
             moveStrategy = moveStrategy,
         )
 
