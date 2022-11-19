@@ -6,10 +6,6 @@ class CarRacing(
 ) {
     private val cars: List<Car> = namesOfCars.map { name -> Car(name, moveStrategy) }
 
-    // TODO : remove
-    val positions: List<Int>
-        get() = cars.map(Car::position)
-
     val carInfos: List<CarInfo>
         get() = cars.map { CarInfo(name = it.name, position = it.position) }
 
