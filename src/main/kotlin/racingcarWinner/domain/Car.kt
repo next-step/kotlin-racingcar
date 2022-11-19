@@ -6,6 +6,7 @@ class Car(
     val carName: String
 ) {
     var moveStep: Int = DEFAULT_MOVE_STEP
+        private set
 
     init {
         require(carName.length > CAR_NAME_LENGTH_MIN_LIMIT) { MessageCode.CarNameMInLengthException.message }
@@ -19,6 +20,9 @@ class Car(
     fun move(condition: Int) {
         if (isMovable(condition)) moveStep++
     }
+
+    fun isSameDistance(distance: Int): Boolean =
+        distance == moveStep
 
     companion object {
         const val CAR_NAME_LENGTH_MIN_LIMIT = 0

@@ -1,7 +1,7 @@
 package racingcarWinner.domain
 
-import io.kotest.matchers.shouldBe
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
@@ -36,7 +36,7 @@ internal class CarTest {
         val car = Car(carName)
         car.move(randomNumber)
 
-        car.moveStep shouldBe 1
+        assertThat(car.moveStep).isEqualTo(1)
     }
 
     @ParameterizedTest
@@ -46,6 +46,28 @@ internal class CarTest {
         val car = Car(carName)
         car.move(randomNumber)
 
-        car.moveStep shouldBe 0
+        assertThat(car.moveStep).isEqualTo(0)
+    }
+
+    @Test
+    fun `isSameDistance should be true when distance equal to moveStep`() {
+        val car = Car(carName = "test")
+        val distance = 1
+        car.move(6)
+
+        val result = car.isSameDistance(distance)
+
+        assertThat(result).isTrue
+    }
+
+    @Test
+    fun `isSameDistance should be false when distance not equal to moveStep`() {
+        val car = Car(carName = "test")
+        val distance = 1
+        car.move(3)
+
+        val result = car.isSameDistance(distance)
+
+        assertThat(result).isFalse
     }
 }
