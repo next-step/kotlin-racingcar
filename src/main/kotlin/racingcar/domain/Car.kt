@@ -1,6 +1,6 @@
-package racingcar
+package racingcar.domain
 
-import racingcar.strategy.MoveStrategy
+import racingcar.domain.strategy.MoveStrategy
 
 data class Car(
     val name: String,

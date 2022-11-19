@@ -1,9 +1,9 @@
-package racingcar
+package racingcar.domain
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import racingcar.strategy.FakeAlwaysMoveStrategy
-import racingcar.strategy.FakeAlwaysNotMoveStrategy
+import racingcar.domain.strategy.FakeAlwaysMoveStrategy
+import racingcar.domain.strategy.FakeAlwaysNotMoveStrategy
 
 internal class CarTest : BehaviorSpec({
     Given("MoveType 조건에 따라 자동차는") {

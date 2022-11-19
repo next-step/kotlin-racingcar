@@ -1,8 +1,9 @@
-package racingcar
+package racingcar.domain
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import racingcar.strategy.FakeAlwaysMoveStrategy
+import racingcar.domain.strategy.FakeAlwaysMoveStrategy
+import racingcar.view.OutputView
 
 internal class ParticipatedCarsTest : BehaviorSpec({
     Given("자동차는") {
@@ -11,7 +12,7 @@ internal class ParticipatedCarsTest : BehaviorSpec({
         When("이동 횟수만큼") {
             val finalCarsInfo = participatedCars.turn(
                 1, 3,
-                listOf(car)
+                listOf(car), OutputView::showMovingCarResult
             )
 
             Then("이동한다") {

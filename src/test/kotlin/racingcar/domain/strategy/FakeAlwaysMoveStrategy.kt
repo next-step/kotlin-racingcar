@@ -1,4 +1,4 @@
-package racingcar.strategy
+package racingcar.domain.strategy
 
 class FakeAlwaysMoveStrategy : MoveStrategy {
     override fun isPossibleMove(): Boolean = true
