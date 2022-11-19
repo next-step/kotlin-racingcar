@@ -1,6 +1,6 @@
-package step3.impl
+package racingcar.impl
 
-import step3.InputView
+import racingcar.InputView
 
 class InputViewImpl : InputView {
     override fun readInputNumber(): Int {

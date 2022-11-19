@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 class CarRacing(
     private val carFactory: CarFactory,
@@ -14,16 +14,10 @@ class CarRacing(
     }
 
     fun startRace(cars: List<Car>, moves: Int): List<List<Int>> {
-        val result = mutableListOf<List<Int>>()
-
-        for (i in 1..moves) {
-            val distances = mutableListOf<Int>()
-            cars.forEach {
-                distances.add(it.move())
+        return List(moves) {
+            List(cars.size) { i ->
+                cars[i].move()
             }
-            result.add(distances)
         }
-
-        return result
     }
 }

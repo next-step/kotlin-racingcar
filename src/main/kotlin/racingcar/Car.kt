@@ -1,13 +1,17 @@
-package step3
+package racingcar
 
 class Car {
     private var distance: Int = 0
 
     fun move(): Int {
-        val number = (0..9).random()
+        val number = numberRange.random()
         if (number >= 4) {
             distance += 1
         }
         return distance
+    }
+
+    companion object {
+        private val numberRange = (0..9)
     }
 }

@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.inspectors.shouldForAll

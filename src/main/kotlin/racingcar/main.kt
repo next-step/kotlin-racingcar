@@ -1,6 +1,6 @@
-package step3
+package racingcar
 
-import step3.impl.InputViewImpl
+import racingcar.impl.InputViewImpl
 
 fun main() {
     val carFactory = CarFactory()

@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 class ResultView {
     fun show(result: List<List<Int>>) {

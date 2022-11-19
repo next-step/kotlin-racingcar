@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 interface InputView {
     fun readInputNumber(): Int
