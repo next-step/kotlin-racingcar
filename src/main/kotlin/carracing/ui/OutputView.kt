@@ -30,7 +30,6 @@ object OutputView {
         println(GAME_RESULT_MESSAGE)
 
         val cars = Cars(carNames.split(CAR_NAME_DELIMITER).map { Car(Name(it)) })
-
         for (round in 1..attemptCount) {
             printCar(Racing(cars).race())
             lineChange()

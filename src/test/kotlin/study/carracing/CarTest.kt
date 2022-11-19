@@ -31,4 +31,3 @@ class CarTest {
         assertThat(car.getName()).isEqualTo("lee")
     }
 }
-
