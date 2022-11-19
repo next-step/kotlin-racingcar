@@ -2,6 +2,8 @@ package racing.domain
 
 class Car(name: String, position: Int = 0) {
 
+    var name = name
+        private set
     var position = position
         private set
 

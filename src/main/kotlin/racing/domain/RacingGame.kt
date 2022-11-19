@@ -15,8 +15,7 @@ class RacingGame {
             cars.race {
                 RandomGenerator.generate()
             }
+            ResultView.printGameResult(ResultStatistics(cars).toResult())
         }
-
-        ResultView.printGameResult(ResultStatistics(cars).toResult())
     }
 }
