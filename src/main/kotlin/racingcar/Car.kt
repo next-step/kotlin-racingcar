@@ -1,28 +1,15 @@
 package racingcar
 
-class Car(
-    id: Int,
-    currentPosition: Int = 0,
-) {
-    var currentPosition: Int = currentPosition
-        private set
+import racingcar.strategy.MoveStrategy
 
-    fun move(moveStrategy: MoveStrategy) {
-        if (moveStrategy.isPossibleMove()) {
-            this.currentPosition += moveStrategy.getDistance()
+data class Car(
+    val name: String,
+    val currentPosition: Int = 0,
+) {
+    fun move(moveStrategy: MoveStrategy): Car {
+        return when (moveStrategy.isPossibleMove()) {
+            true -> this.copy(currentPosition = currentPosition + moveStrategy.getDistance())
+            false -> this
         }
     }
 }
-
-// class Car(position: Int = 0) {
-//     var position: Int = position
-//         private set
-//
-//     fun move(foreword: Int) {
-//         if (foreword >= FOREWORD_CRITERIA) this.position++
-//     }
-//
-//     companion object {
-//         private const val FOREWORD_CRITERIA = 4
-//     }
-// }

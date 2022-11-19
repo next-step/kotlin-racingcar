@@ -1,9 +1,12 @@
 package racingcar.io
 
+import racingcar.utils.splitByComma
+
 object InputView {
-    fun getNumberOfCars(): Int {
-        println("자동차 대수는 몇 대인가요?")
-        return readln().toInt()
+    fun getParticipateCarNames(): List<ParticipateCarName> {
+        println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,)를 기준으로 구분)")
+        val cars = readln().splitByComma()
+        return cars.map { ParticipateCarName(it) }
     }
 
     fun getNumberOfAttempts(): Int {
