@@ -9,10 +9,10 @@ fun main() {
     val namesOfCars = InputView.inputNamesOfCars()
     val numOfMove = InputView.inputNumOfMove()
 
-    val carRacing = CarRacing(namesOfCars, RandomMoveStrategy())
+    val carRacing = CarRacing(numOfMove, namesOfCars, RandomMoveStrategy())
 
     ResultView.printResultTitle()
-    for (i in 1..numOfMove) {
+    while (!carRacing.finish) {
         carRacing.move()
         ResultView.printResult(carRacing.carInfos)
     }

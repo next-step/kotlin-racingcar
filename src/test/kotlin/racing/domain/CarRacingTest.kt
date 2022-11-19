@@ -1,8 +1,11 @@
 package racing.domain
 
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 
 internal class CarRacingTest {
 
@@ -13,6 +16,7 @@ internal class CarRacingTest {
 
         // when
         val carRacing = CarRacing(
+            numOfMove = 10,
             namesOfCars = namesOfCars,
             moveStrategy = moveStrategy,
         )
@@ -25,6 +29,7 @@ internal class CarRacingTest {
     fun `move 함수를 호출하면 내부의 자동차들이 이동한다`() {
         // given
         val carRacing = CarRacing(
+            numOfMove = 10,
             namesOfCars = listOf("car1", "car2", "car3"),
             moveStrategy = moveStrategy,
         )
@@ -36,11 +41,49 @@ internal class CarRacingTest {
         assertTrue(carRacing.carInfos.all { it.position == MOVE_SIZE })
     }
 
+    @ParameterizedTest(name = "numOfMove: {0}, actualNumOfMove: {1}, result: {2}")
+    @CsvSource("10,9,false", "10,10,true", "1,0,false", "1,1,true")
+    fun `자동차 경주 끝났는지 반환하는 테스트`(numOfMove: Int, actualNumOfMove: Int, result: Boolean) {
+        // given
+        val carRacing = CarRacing(
+            numOfMove = numOfMove,
+            namesOfCars = listOf("car1", "car2", "car3"),
+            moveStrategy = moveStrategy,
+        )
+
+        // when
+        for (i in 1..actualNumOfMove) {
+            carRacing.move()
+        }
+
+        // then
+        assertEquals(result, carRacing.finish)
+    }
+
+    @ParameterizedTest(name = "numOfMove: {0}, actualNumOfMove: {1}")
+    @CsvSource("10,11", "10,12", "1,2", "1,3")
+    fun `자동차 경주 끝났는데 경주를 지속하는 경우 에러 테스트`(numOfMove: Int, actualNumOfMove: Int) {
+        // given
+        val carRacing = CarRacing(
+            numOfMove = numOfMove,
+            namesOfCars = listOf("car1", "car2", "car3"),
+            moveStrategy = moveStrategy,
+        )
+
+        // when & then
+        Assertions.assertThatThrownBy {
+            for (i in 1..actualNumOfMove) {
+                carRacing.move()
+            }
+        }.isInstanceOf(IllegalStateException::class.java)
+    }
+
     @Test
     fun `우승 자동차 목록 반환 테스트`() {
         // given
         val namesOfCars = listOf("car1", "car2", "car3")
         val carRacing = CarRacing(
+            numOfMove = 1,
             namesOfCars = namesOfCars,
             moveStrategy = moveStrategy,
         )
@@ -51,6 +94,26 @@ internal class CarRacingTest {
 
         // then
         assertEquals(namesOfCars.sorted(), winnerCarInfos.map(CarInfo::name).sorted())
+    }
+
+    @Test
+    fun `우승 자동차 목록 반환시 경주가 끝나지 않은 경우 에러 테스트`() {
+        // given
+        val numOfMove = 10
+        val carRacing = CarRacing(
+            numOfMove = numOfMove,
+            namesOfCars = listOf("car1", "car2", "car3"),
+            moveStrategy = moveStrategy,
+        )
+
+        for (i in 1 until numOfMove) {
+            carRacing.move()
+        }
+
+        // when & then
+        Assertions.assertThatThrownBy {
+            carRacing.winnerCarInfos
+        }.isInstanceOf(IllegalStateException::class.java)
     }
 
     companion object {
