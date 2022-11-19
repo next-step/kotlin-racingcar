@@ -11,7 +11,7 @@ object OutputView {
     private const val ESCAPE_LINE = "\n"
 
     fun outputResult() {
-        println(ESCAPE_LINE.plus(MessageCode.Result.message))
+        println(MessageCode.Result.message)
     }
 
     fun printTryOneRacingOutput(racingCars: List<Car>) {

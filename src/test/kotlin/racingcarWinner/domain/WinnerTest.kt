@@ -1,45 +1,49 @@
 package racingcarWinner.domain
 
-import io.kotest.matchers.shouldBe
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 internal class WinnerTest {
+
+    lateinit var racing: CarRacing
+
+    @BeforeEach
+    fun setUp() {
+        val carNames = "pobi,crong,honux".split(",")
+        racing = CarRacing(carNames)
+    }
+
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 5, 10, Int.MAX_VALUE])
     fun `getWinner when winner is one`(maxMoveStep: Int) {
-        val carNames = "pobi,crong,honux".split(",")
-        val cars = Cars(carNames)
         val winnerIndex = 0
 
         // when
-        val carList = cars.carList.map { car ->
-            car.moveStep = maxMoveStep - 1
+        val carList = racing.carList.mapIndexed { index, car ->
+            if (index == winnerIndex)car.move(10)
             car
         }
-        carList[winnerIndex].moveStep = maxMoveStep
-        val resultWinnerList = Winner.getWinner(cars)
+        val resultWinnerList = Winner(carList).getWinner()
 
-        resultWinnerList.count() shouldBe 1
-        resultWinnerList[winnerIndex] shouldBe carList[winnerIndex].carName
+        assertThat(resultWinnerList.count()).isEqualTo(1)
+        assertThat(resultWinnerList[winnerIndex]).isEqualTo(carList[winnerIndex].carName)
     }
 
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 5, 10])
     fun `getWinner when winner more than one`(maxMoveStep: Int) {
-        val carNames = "pobi,crong,honux".split(",")
-        val cars = Cars(carNames)
-
         // when
-        val carList = cars.carList.map { car ->
-            car.moveStep = maxMoveStep
+        val carList = racing.carList.map { car ->
+            car.move(10)
             car
         }
-        val resultWinnerList = Winner.getWinner(cars)
+        val resultWinnerList = Winner(carList).getWinner()
 
         resultWinnerList.forEachIndexed { index, winnerName ->
-            winnerName shouldBe carList[index].carName
+            assertThat(winnerName).isEqualTo(carList[index].carName)
         }
-        resultWinnerList.count() shouldBe carList.count()
+        assertThat(resultWinnerList.count()).isEqualTo(carList.count())
     }
 }

@@ -1,6 +1,11 @@
 package racingcarWinner.domain
 
-object Winner {
-    fun getWinner(cars: Cars): List<String> =
-        cars.findMaxMoveStepCarNameList()
+class Winner(
+    private val cars: List<Car>
+) {
+    fun getWinner(): List<String> =
+        cars.filter { car -> car.isSameDistance(getMaxMoveStep()) }.map { it.carName }
+
+    private fun getMaxMoveStep(): Int =
+        cars.maxOf { it.moveStep }
 }
