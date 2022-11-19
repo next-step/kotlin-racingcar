@@ -7,7 +7,7 @@ class ScoreBoard(
     private val outputPort: OutputPort
 ) {
 
-    fun initRace(names: List<String>) {
+    fun currentNames(names: List<String>) {
         outputPort.output(RESULT_COMMENT)
         outputPort.outputNewLine()
         names.forEach {
@@ -19,7 +19,7 @@ class ScoreBoard(
         Thread.sleep(PER_RACE_ROUND_SECONDS)
     }
 
-    fun nextRound(position: Int, carName: String) {
+    fun currentRound(position: Int, carName: String) {
         outputPort.output("$carName: ")
         IntRange(start = START_POSITION_NUMBER, endInclusive = position).forEach { _ ->
             outputPort.output(LITERAL_POSITION)
@@ -27,7 +27,7 @@ class ScoreBoard(
         outputPort.outputNewLine()
     }
 
-    fun winnersAnnounce(carNames: List<String>) {
+    fun announceWinners(carNames: List<String>) {
         outputPort.output("우승자 발표")
         outputPort.outputNewLine()
         outputPort.output("두구두구두구----")

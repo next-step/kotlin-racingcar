@@ -17,13 +17,13 @@ class Race(
     }
 
     private fun race(participatingCars: ParticipatingCars, attemptCount: Int) {
-        scoreBoard.initRace(participatingCars.initNameList())
+        scoreBoard.currentNames(participatingCars.names())
         repeat(attemptCount) {
             participatingCars.move { position: Int, carName: String ->
-                scoreBoard.nextRound(position, carName)
+                scoreBoard.currentRound(position, carName)
                 scoreBoard.term()
             }
         }
-        scoreBoard.winnersAnnounce(participatingCars.winnersNameList())
+        scoreBoard.announceWinners(participatingCars.winnersNames())
     }
 }
