@@ -1,5 +1,6 @@
 package racingcar.component
 
+import racingcar.CarGroup
 import racingcar.CarStore
 import racingcar.RoundStore
 import racingcar.ui.Br
@@ -10,7 +11,7 @@ class RacingResultComponent : Component {
         val rounds = RoundStore.findAll()
 
         rounds.forEach { round ->
-            val roundResult = round.start(cars = cars)
+            val roundResult = round.start(carGroup = CarGroup(cars = cars))
             RoundOrderComponent(id = round.id).render()
             RoundResultComponent(roundResult = roundResult).render()
             Br().draw()
