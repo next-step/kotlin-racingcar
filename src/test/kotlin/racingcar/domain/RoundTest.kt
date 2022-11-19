@@ -39,4 +39,16 @@ internal class RoundTest : FunSpec({
             exception.message shouldBe "There is no left round"
         }
     }
+
+    context("hasNext()") {
+        test("시도 횟수가 1 이상일 경우, 참을 반환한다.") {
+            val actual = Round(1).hasNext()
+            actual shouldBe true
+        }
+
+        test("시도 횟수가 1 미만일 경우, 거짓을 반환한다.") {
+            val actual = Round(0).hasNext()
+            actual shouldBe false
+        }
+    }
 })

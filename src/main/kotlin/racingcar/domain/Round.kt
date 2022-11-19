@@ -13,7 +13,7 @@ data class Round(private val round: Int) {
         }
     }
 
-    private fun hasNext() = round > MIN_THRESHOLD
+    fun hasNext() = round > MIN_THRESHOLD
 
     companion object {
         private const val MIN_THRESHOLD = 0
