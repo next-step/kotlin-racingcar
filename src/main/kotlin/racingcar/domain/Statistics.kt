@@ -1,4 +1,7 @@
-package racingcar
+package racingcar.domain
+
+import racingcar.domain.Car
+import racingcar.domain.Cars
 
 class Statistics() {
     companion object {

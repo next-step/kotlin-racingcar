@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.view
 
 class InputView {
     fun inputInt(): Int {

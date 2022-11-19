@@ -1,5 +1,11 @@
 package racingcar
 
+import racingcar.domain.Car
+import racingcar.domain.Cars
+import racingcar.domain.Statistics
+import racingcar.view.InputView
+import racingcar.view.ResultView
+
 private val RANDOM_NUMBER_RANGE = 0..9
 
 fun main() {
