@@ -5,8 +5,7 @@ import racingcarWinner.util.MessageCode
 class Car(
     val carName: String
 ) {
-    var moveStep: Int = DEFAULT_MOVE_STEP
-        private set
+    private var moveStep: Int = DEFAULT_MOVE_STEP
 
     init {
         require(carName.length > CAR_NAME_LENGTH_MIN_LIMIT) { MessageCode.CarNameMInLengthException.message }
@@ -16,6 +15,8 @@ class Car(
 
     private fun isMovable(condition: Int): Boolean =
         condition >= MOVE_LIMIT
+
+    fun getMoveStep() = moveStep
 
     fun move(condition: Int) {
         if (isMovable(condition)) moveStep++

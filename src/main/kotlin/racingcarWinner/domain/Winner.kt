@@ -7,5 +7,5 @@ class Winner(
         cars.filter { car -> car.isSameDistance(getMaxMoveStep()) }.map { it.carName }
 
     private fun getMaxMoveStep(): Int =
-        cars.maxOf { it.moveStep }
+        cars.maxOf { it.getMoveStep() }
 }

@@ -36,7 +36,7 @@ internal class CarTest {
         val car = Car(carName)
         car.move(randomNumber)
 
-        assertThat(car.moveStep).isEqualTo(1)
+        assertThat(car.getMoveStep()).isEqualTo(1)
     }
 
     @ParameterizedTest
@@ -46,7 +46,7 @@ internal class CarTest {
         val car = Car(carName)
         car.move(randomNumber)
 
-        assertThat(car.moveStep).isEqualTo(0)
+        assertThat(car.getMoveStep()).isEqualTo(0)
     }
 
     @Test

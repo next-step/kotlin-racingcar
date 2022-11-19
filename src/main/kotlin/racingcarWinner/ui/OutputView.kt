@@ -14,7 +14,7 @@ object OutputView {
 
     fun printTryOneRacingOutput(racingCars: List<Car>) {
         racingCars.forEach {
-            println("${it.carName} $COLON ${MOVE_STEP.repeat(it.moveStep)}")
+            println("${it.carName} $COLON ${MOVE_STEP.repeat(it.getMoveStep())}")
         }
         println()
     }

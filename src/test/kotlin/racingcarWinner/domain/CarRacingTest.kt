@@ -14,10 +14,10 @@ internal class CarRacingTest {
         val carNameList = carNames.split(",")
         val cars = CarRacing(carNameList).carList
 
-        assertThat(cars.count()).isEqualTo(carNames.count())
+        assertThat(cars.count()).isEqualTo(carNameList.count())
         cars.forEachIndexed { index, car ->
             assertThat(car.carName).isEqualTo(carNameList[index].trim())
-            assertThat(car.moveStep).isEqualTo(0)
+            assertThat(car.getMoveStep()).isEqualTo(0)
         }
     }
 
@@ -43,7 +43,7 @@ internal class CarRacingTest {
         assertThat(moveResult.count()).isEqualTo(carNameList.count())
         moveResult.forEachIndexed { index, car ->
             assertThat(car.carName).isEqualTo(carNameList[index])
-            assertThat(car.moveStep).isLessThanOrEqualTo(tryNumber)
+            assertThat(car.getMoveStep()).isLessThanOrEqualTo(tryNumber)
         }
     }
 }
