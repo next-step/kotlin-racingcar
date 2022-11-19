@@ -9,8 +9,7 @@ object CarStore : Store<List<Car>> {
         return cars
     }
 
-    override fun setState(state: List<Car>): List<Car> {
+    override fun setState(state: List<Car>) {
         cars = state
-        return cars
     }
 }

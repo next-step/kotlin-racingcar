@@ -9,8 +9,7 @@ object RoundStore : Store<List<Round>> {
         return rounds
     }
 
-    override fun setState(state: List<Round>): List<Round> {
+    override fun setState(state: List<Round>) {
         rounds = state
-        return rounds
     }
 }
