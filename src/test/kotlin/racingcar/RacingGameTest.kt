@@ -4,6 +4,9 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
+import racingcar.domain.Car
+import racingcar.domain.NumberGenerator
+import racingcar.domain.RacingGame
 
 class RacingGameTest : StringSpec({
     "레이싱 게임은 매 횟수마다 자동차의 현재 위치를 보여줘요" {

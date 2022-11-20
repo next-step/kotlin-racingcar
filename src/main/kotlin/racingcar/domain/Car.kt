@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class Car(
     private var _location: Int = 0,

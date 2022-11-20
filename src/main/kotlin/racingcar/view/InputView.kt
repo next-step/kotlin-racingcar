@@ -1,4 +1,7 @@
-package racingcar
+package racingcar.view
+
+import racingcar.domain.Car
+
 object InputView {
     fun readCars(): List<Car> {
         println("자동차 대수는 몇 대인가요?")
