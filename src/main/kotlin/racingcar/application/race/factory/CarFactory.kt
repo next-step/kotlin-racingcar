@@ -8,7 +8,7 @@ class CarFactory(
     private val movingEngine: MovingEngine
 ) {
     fun createByCarNames(carNames: List<String>): ParticipatingCars {
-        val cars = carNames.map { Car(movingEngine, it) }.toList()
+        val cars = carNames.map { Car(movingEngine, it) }
         return ParticipatingCars(cars)
     }
 }
