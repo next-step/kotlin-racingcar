@@ -17,10 +17,7 @@ class ParticipatingCars(
     }
 
     private fun winners(): List<Car> {
-        val winnerPosition = this.carList.sortedWith(
-            compareBy { p -> p.currentPosition().toInt() }
-        ).last().currentPosition()
-
-        return this.carList.filter { it.currentPosition() == winnerPosition }.toList()
+        val winnerPosition = this.carList.maxOf { it.currentPosition().toInt() }
+        return this.carList.filter { it.currentPosition().toInt() == winnerPosition }.toList()
     }
 }
