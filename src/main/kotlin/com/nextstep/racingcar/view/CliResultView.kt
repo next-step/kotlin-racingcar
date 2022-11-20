@@ -9,6 +9,8 @@ class CliResultView : ResultView {
 
     override fun printResult(car: Car) {
         val resultView = StringBuilder()
+        resultView.append(car.name)
+        resultView.append(" : ")
         for (movement in car.getHistories()) {
             resultView.append(convertToView(movement))
         }

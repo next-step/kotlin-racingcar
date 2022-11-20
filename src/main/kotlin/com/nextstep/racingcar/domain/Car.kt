@@ -2,7 +2,7 @@ package com.nextstep.racingcar.domain
 
 import com.nextstep.racingcar.domain.rules.MoveRule
 
-class Car(private val name: String) {
+class Car(val name: String) {
     private val histories = MoveHistory()
 
     init {
