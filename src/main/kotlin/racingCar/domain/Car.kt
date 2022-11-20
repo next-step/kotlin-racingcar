@@ -2,11 +2,12 @@ package racingCar.domain
 
 data class Car(var position: Position = Position(), val name: CarName = CarName()) : Comparable<Car> {
 
-    fun moveByStrategy(strategy: MoveStrategy) {
+    fun moveByStrategy(strategy: MoveStrategy): Car {
         if (!strategy.canMove()) {
-            return
+            return copy()
         }
         move()
+        return copy()
     }
 
     fun isSamePosition(other: Car) = this.position == other.position
