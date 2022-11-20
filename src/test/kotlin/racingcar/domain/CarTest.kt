@@ -3,7 +3,6 @@ package racingcar.domain
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import racingcar.domain.Car
 
 class CarTest {
     @Test
