@@ -4,11 +4,16 @@ import com.nextstep.racingcar.domain.Movement
 
 private const val MOVE_CONDITION = 4
 
-class NumberMoveRule(private val generator: NumberGenerator) : MoveRule {
+class RandomMoveRule : MoveRule {
 
     override fun move(): Movement {
-        val number = generator.generate()
+        val number = generate()
         require(number in 0..9) { "Number should be greater than or equal 0 and less than or equal 9" }
         return if (number >= MOVE_CONDITION) Movement.MOVE else Movement.NONE
+    }
+
+    private fun generate(): Int {
+        val range = 0..9
+        return range.random()
     }
 }
