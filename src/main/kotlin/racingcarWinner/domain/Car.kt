@@ -1,9 +1,11 @@
-package racingcarWinner.core
+package racingcarWinner.domain
+
+import racingcarWinner.util.MessageCode
 
 class Car(
     val carName: String
 ) {
-    var moveStep: Int = DEFAULT_MOVE_STEP
+    private var moveStep: Int = DEFAULT_MOVE_STEP
 
     init {
         require(carName.length > CAR_NAME_LENGTH_MIN_LIMIT) { MessageCode.CarNameMInLengthException.message }
@@ -11,12 +13,17 @@ class Car(
         require(carName.length <= CAR_NAME_LENGTH_MAX_LIMIT) { MessageCode.CarNameMaxLengthException.message }
     }
 
-    private fun isMovable(randomNumber: Int): Boolean =
-        randomNumber >= MOVE_LIMIT
+    private fun isMovable(condition: Int): Boolean =
+        condition >= MOVE_LIMIT
 
-    fun move(randomNumber: Int) {
-        if (isMovable(randomNumber)) moveStep++
+    fun getMoveStep() = moveStep
+
+    fun move(condition: Int) {
+        if (isMovable(condition)) moveStep++
     }
+
+    fun isSameDistance(distance: Int): Boolean =
+        distance == moveStep
 
     companion object {
         const val CAR_NAME_LENGTH_MIN_LIMIT = 0
