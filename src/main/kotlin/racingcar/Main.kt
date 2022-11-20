@@ -1,7 +1,9 @@
 package racingcar
 
-import racingcar.domain.VictoryCondition
+import racingcar.controller.RacingGameController
 
 fun main() {
-    RacingGame().run(victoryCondition = VictoryCondition.Longest)
+    val controller = RacingGameController()
+    controller.setUpGame()
+    controller.race()
 }
