@@ -11,6 +11,6 @@ class RacingCarNumberGenerator : NumberGenerator {
 
     companion object {
         private const val RAND_NUMBER_START_BOUND = 0
-        private const val RAND_NUMBER_END_BOUND = 0
+        private const val RAND_NUMBER_END_BOUND = 9
     }
 }

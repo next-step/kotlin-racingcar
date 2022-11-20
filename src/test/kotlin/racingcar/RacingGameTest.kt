@@ -14,12 +14,12 @@ class RacingGameTest : StringSpec({
         every { mockNumberGenerator.rand() } returns 0
 
         val racingGame = RacingGame(
-            cars = listOf(Car(0)),
+            cars = listOf(Car(0, "car")),
             numberGenerator = mockNumberGenerator
         )
 
         val car = racingGame.round()[0]
 
-        car.currentLocation() shouldBe 0
+        car.location shouldBe 0
     }
 })
