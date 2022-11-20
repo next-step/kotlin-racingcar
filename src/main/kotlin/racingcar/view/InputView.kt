@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.domain.carRacing.dto.CarRacingRequest
+import racingcar.application.CarRacingRequest
 
 class InputView {
 

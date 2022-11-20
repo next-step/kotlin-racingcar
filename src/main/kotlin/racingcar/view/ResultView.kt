@@ -1,9 +1,9 @@
 package racingcar.view
 
+import racingcar.application.CarRacingResult
 import racingcar.domain.carRacing.Car
-import racingcar.domain.carRacing.dto.CarRacingResult
-import racingcar.domain.carRacing.dto.CarRecord
-import racingcar.domain.carRacing.dto.TurnRecord
+import racingcar.domain.carRacing.CarRecord
+import racingcar.domain.carRacing.TurnRecord
 
 class ResultView {
     fun view(carRacingResult: CarRacingResult) {

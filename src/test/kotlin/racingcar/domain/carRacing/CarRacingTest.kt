@@ -8,8 +8,6 @@ import io.mockk.every
 import io.mockk.mockk
 import racingcar.domain.carIndicator.IndicatorGenerator
 import racingcar.domain.carIndicator.TurnIndicator
-import racingcar.domain.carRacing.dto.CarRecord
-import racingcar.domain.carRacing.dto.TurnRecord
 
 class CarRacingTest : StringSpec({
 

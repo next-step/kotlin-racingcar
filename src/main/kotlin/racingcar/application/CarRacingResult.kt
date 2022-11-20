@@ -1,6 +1,7 @@
-package racingcar.domain.carRacing.dto
+package racingcar.application
 
 import racingcar.domain.carRacing.Car
+import racingcar.domain.carRacing.TurnRecord
 
 class CarRacingResult(
     val winners: List<Car>,

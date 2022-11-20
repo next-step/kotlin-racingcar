@@ -1,9 +1,7 @@
 package racingcar.domain.carRacing
 
+import racingcar.application.CarRacingResult
 import racingcar.domain.carIndicator.IndicatorGenerator
-import racingcar.domain.carRacing.dto.CarRacingResult
-import racingcar.domain.carRacing.dto.CarRecord
-import racingcar.domain.carRacing.dto.TurnRecord
 
 class CarRacing(private val cars: List<Car>) {
     private val records: MutableList<TurnRecord> = mutableListOf()
@@ -35,9 +33,7 @@ class CarRacing(private val cars: List<Car>) {
 
     private fun determineWinners(): List<Car> {
         val maxDistance = maxDistance()
-        return lastRecord().results
-            .filter { it.distance == maxDistance }
-            .map { it.car }
+        return lastRecord().winners(maxDistance)
     }
 
     private fun maxDistance() = lastRecord().results.maxOf { it.distance }
