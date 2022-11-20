@@ -4,50 +4,52 @@ import java.util.LinkedList
 import java.util.Queue
 
 class Expression(
-    val input: String
+    private var _mathematical: String
 ) {
 
-    fun apply(): Queue<String> {
-        val queue = createOperandAndOperatorQueue(input)
+    private val mathematical: String
+        get() = _mathematical
+
+    init {
+        _mathematical = _mathematical.replace(" ", "")
+        verifyMathematical(_mathematical)
+    }
+
+    fun compute(): Queue<String> {
+        return polynomial(mathematical)
+    }
+
+    private fun priorityIndexes(data: String): List<Char> {
+        return data.filter { c -> isOperatorLetter(c) }.toList()
+    }
+
+    private fun isOperatorLetter(c: Char): Boolean {
+        return Operator.exist(c)
+    }
+
+    private fun polynomial(mathematical: String): Queue<String> {
+
+        var newMathematical = mathematical
+        val sortedPriorityList = priorityIndexes(mathematical)
+        val queue = LinkedList<String>()
+
+        for (operator in sortedPriorityList) {
+            val operand = newMathematical.substringBefore(operator.toString())
+            queue.add(operand)
+            queue.add(operator.toString())
+            newMathematical = newMathematical.substringAfter(operator.toString())
+        }
+
+        queue.add(newMathematical)
         if (queue.size % 2 == 0) throw IllegalArgumentException()
         return queue
     }
 
-    private fun priorityIndexes(data: String): List<Char> {
-        val priorityList = mutableListOf<Char>()
+    private fun verifyMathematical(mathematical: String) {
+        val splitData = mathematical.split(*Operator.list().toTypedArray())
 
-        for (c in data) {
-            if (isOperatorLetter(c)) {
-                priorityList.add(c)
-            }
+        if (splitData.size != mathematical.length - (mathematical.length / 2)) {
+            throw IllegalArgumentException()
         }
-
-        return priorityList
-    }
-
-    private fun isOperatorLetter(c: Char): Boolean {
-        for (operator in Operator.values()) {
-            if (operator.isSame(c)) {
-                return true
-            }
-        }
-        return false
-    }
-
-    private fun createOperandAndOperatorQueue(data: String): Queue<String> {
-
-        var temp = data
-        val sortedPriorityList = priorityIndexes(data)
-        val queue = LinkedList<String>()
-
-        for (operator in sortedPriorityList) {
-            val operand = temp.substringBefore(operator.toString())
-            queue.add(operand)
-            queue.add(operator.toString())
-            temp = temp.substringAfter(operator.toString())
-        }
-
-        queue.add(temp)
-        return queue
     }
 }
