@@ -5,16 +5,16 @@ import racingcar.domain.car.engine.implement.DefaultMovingEngine
 
 class Car(
     private val movingEngine: MovingEngine = DefaultMovingEngine(),
-    _name: String? = null
+    name: String? = null
 ) {
 
-    val name: String = _name ?: "unknown"
+    val name: String = name ?: "unknown"
     private var position: Position = Position()
     private var stop: Boolean = false
     private var attemptCount: Count = Count()
 
     init {
-        _name?.let { require(it.length <= 5) { "자동차 이름의 길이는 5글자를 초과할 수 없습니다." } }
+        name?.let { require(it.length <= 5) { "자동차 이름의 길이는 5글자를 초과할 수 없습니다." } }
     }
 
     fun currentPosition() = this.position
