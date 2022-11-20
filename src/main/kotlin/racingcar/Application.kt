@@ -11,6 +11,9 @@ fun main() {
 
     repeat(roundCount) {
         val drivingCars = racingGame.round()
-        ResultView.print(drivingCars)
+        ResultView.printLocation(drivingCars)
     }
+
+    val winners = racingGame.judge()
+    ResultView.printWinner(winners)
 }
