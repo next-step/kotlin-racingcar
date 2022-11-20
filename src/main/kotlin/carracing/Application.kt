@@ -5,8 +5,7 @@ import carracing.ui.OutputView
 
 fun main() {
 
-    val carCount = InputView.getCarCount()
+    val carNames = InputView.inputCarNames()
     val attemptCount = InputView.getAttemptCount()
-    OutputView.racingResult(carCount, attemptCount)
+    OutputView.racingResult(carNames, attemptCount)
 }
-
