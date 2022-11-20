@@ -12,10 +12,9 @@ class RacingGame(
 
     fun start() {
         val carNames = inputView.inputCarNames()
-        val numberOfCars = carNames.size
         val numberOfRounds = inputView.inputNumberOfRounds()
 
-        val cars = (1..numberOfCars).map { Car() }
+        val cars = carNames.map { Car(it) }
 
         resultView.printResult()
 
