@@ -1,5 +1,5 @@
 package race
 
-interface RandomGenerator<T> {
+interface NumberGenerator<T> {
     fun generate(): T
 }

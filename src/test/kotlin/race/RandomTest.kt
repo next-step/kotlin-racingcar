@@ -8,7 +8,7 @@ class RandomTest {
     @Test
     fun `항상 0-9사이의 값이 나온다`() {
         // Arrange
-        val randomGeneratorNumber = RandomGeneratorNumber()
+        val randomGeneratorNumber = RandomNumberGenerator()
         // Act
         val generatedNumber = randomGeneratorNumber.generate()
 
