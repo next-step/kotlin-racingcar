@@ -14,18 +14,13 @@ class RacingGame(
         val carNames = inputView.inputCarNames()
         val numberOfRounds = inputView.inputNumberOfRounds()
 
-        val cars = carNames.map { Car(it) }
+        val cars = Cars(carNames)
 
-        resultView.printResult()
+        resultView.printBeforeResult()
 
-        repeat(numberOfRounds) { play(cars) }
-    }
-
-    private fun play(cars: List<Car>) {
-        cars.forEach {
-            it.move(moveRule)
-            resultView.printResult(it)
+        repeat(numberOfRounds) {
+            cars.play(moveRule)
+            resultView.printBeforeResult(cars)
         }
-        resultView.printLine()
     }
 }

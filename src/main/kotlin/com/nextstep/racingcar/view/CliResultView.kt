@@ -1,23 +1,24 @@
 package com.nextstep.racingcar.view
 
-import com.nextstep.racingcar.domain.Car
+import com.nextstep.racingcar.domain.Cars
 import com.nextstep.racingcar.domain.Movement
 
 class CliResultView : ResultView {
 
-    override fun printResult() = println("실행 결과")
+    override fun printBeforeResult() = println("실행 결과")
 
-    override fun printResult(car: Car) {
+    override fun printBeforeResult(cars: Cars) {
         val resultView = StringBuilder()
-        resultView.append(car.name)
-        resultView.append(" : ")
-        for (movement in car.getHistories()) {
-            resultView.append(convertToView(movement))
+        cars.getHistories().forEach {
+            resultView.append(it.first)
+            resultView.append(" : ")
+            resultView.append(convertToView(it.second))
+            resultView.appendLine()
         }
         println(resultView.toString())
     }
 
-    private fun convertToView(movement: Movement): String = if (movement == Movement.MOVE) "-" else ""
+    private fun convertToView(movements: List<Movement>): String = movements.joinToString(separator = "") { convertToView(it) }
 
-    override fun printLine() = println()
+    private fun convertToView(movement: Movement): String = if (movement == Movement.MOVE) "-" else ""
 }
