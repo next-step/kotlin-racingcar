@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar
 
 enum class MovingStrategy(
     private val expression: (Int) -> (Int)

@@ -1,6 +1,4 @@
-package racingcar.view
-
-import racingcar.domain.Car
+package racingcar
 
 private const val VALID_CAR_NAME_LENGTH = 5
 
@@ -10,7 +8,7 @@ object InputView {
         val names = parseCarName(readln())
 
         val list = mutableListOf<Car>()
-        for(name in names) {
+        for (name in names) {
             require(isValidLength(name)) { "글자수는 5자를 넘을 수 없어요" }
 
             list.add(
@@ -30,7 +28,7 @@ object InputView {
         return name.length <= VALID_CAR_NAME_LENGTH
     }
 
-    private fun parseCarName(input :String): List<String> {
+    private fun parseCarName(input: String): List<String> {
         return input.split(",")
     }
 }

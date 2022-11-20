@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar
 
 interface NumberGenerator {
     fun rand(): Int

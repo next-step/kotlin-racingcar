@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar
 
 enum class MovingJudgeRule(
     private val expression: (Int) -> (Boolean),

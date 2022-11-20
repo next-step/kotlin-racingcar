@@ -1,6 +1,4 @@
-package racingcar.view
-
-import racingcar.domain.Car
+package racingcar
 
 object ResultView {
     fun print(cars: List<Car>) {
