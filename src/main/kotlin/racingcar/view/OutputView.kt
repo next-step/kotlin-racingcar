@@ -1,13 +1,13 @@
-package racingcar.io
+package racingcar.view
 
-import racingcar.Car
+import racingcar.domain.Car
 import racingcar.utils.joinToStringByComma
 
 object OutputView {
     private const val MOVE = "-"
 
     fun showMovingCarResult(cars: List<Car>) {
-        cars.forEach { println("${it.name} : ${MOVE.repeat(it.currentPosition)}") }
+        cars.forEach { println("${it.participateCarName.name} : ${MOVE.repeat(it.currentPosition)}") }
         println()
     }
 
