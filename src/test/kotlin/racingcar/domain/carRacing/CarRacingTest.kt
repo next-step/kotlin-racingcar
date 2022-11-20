@@ -49,9 +49,9 @@ class CarRacingTest : StringSpec({
 
             every { mockIndicatorGenerator.generate(any(), any()) } returns turnIndicators
 
-            val carRacing = CarRacing(mockIndicatorGenerator, turnCount, cars)
+            val carRacing = CarRacing(cars)
 
-            carRacing.start()
+            carRacing.start(mockIndicatorGenerator, turnCount)
             val result = carRacing.result()
             val actualRecord = result.records
             actualRecord.forEachIndexed { index, turnRecord ->
@@ -80,12 +80,8 @@ class CarRacingTest : StringSpec({
             )
         ) { cars, turnIndicators, expectedWinners ->
             every { mockIndicatorGenerator.generate(any(), any()) } returns turnIndicators
-            val carRacing = CarRacing(
-                mockIndicatorGenerator,
-                1,
-                cars
-            )
-            carRacing.start()
+            val carRacing = CarRacing(cars)
+            carRacing.start(mockIndicatorGenerator, 1)
             val result = carRacing.result()
             result.winners shouldBe expectedWinners
         }

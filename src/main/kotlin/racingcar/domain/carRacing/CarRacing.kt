@@ -1,19 +1,15 @@
 package racingcar.domain.carRacing
 
+import racingcar.domain.carIndicator.IndicatorGenerator
 import racingcar.domain.carRacing.dto.CarRacingResult
 import racingcar.domain.carRacing.dto.CarRecord
-import racingcar.domain.carIndicator.IndicatorGenerator
 import racingcar.domain.carRacing.dto.TurnRecord
 
-class CarRacing(
-    private val indicatorGenerator: IndicatorGenerator,
-    private val turnCount: Int,
-    private val cars: List<Car>
-) {
+class CarRacing(private val cars: List<Car>) {
     private val records: MutableList<TurnRecord> = mutableListOf()
     private var maxDistance = 0
 
-    fun start() {
+    fun start(indicatorGenerator: IndicatorGenerator, turnCount: Int) {
         val indicators = indicatorGenerator.generate(cars.size, turnCount)
         repeat(turnCount) { turn ->
             val indicator = indicators[turn]

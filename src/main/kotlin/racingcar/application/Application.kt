@@ -1,8 +1,8 @@
 package racingcar.application
 
+import racingcar.domain.carIndicator.IndicatorGenerator
 import racingcar.domain.carRacing.CarManager
 import racingcar.domain.carRacing.CarRacing
-import racingcar.domain.carIndicator.IndicatorGenerator
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
@@ -19,8 +19,8 @@ class Application {
         while (run) {
             val carRacingRequest = inputView.getRequest()
             val cars = carManager.ready(carRacingRequest.carNames)
-            val carRacing = CarRacing(IndicatorGenerator(), carRacingRequest.turnCount, cars)
-            carRacing.start()
+            val carRacing = CarRacing(cars)
+            carRacing.start(IndicatorGenerator(), carRacingRequest.turnCount)
             resultView.view(carRacing.result())
 
             println(GuideScript.BEGIN_GUIDE)
