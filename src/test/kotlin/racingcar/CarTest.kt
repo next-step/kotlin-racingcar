@@ -7,7 +7,7 @@ class CarTest : StringSpec({
 
     "자동차의 처음 위치는 0이에요" {
         val car = Car()
-        car.currentLocation() shouldBe 0
+        car.location shouldBe 0
     }
 
     "자동차는 4 ~ 9의 숫자일 때 1 만큼 이동해요" {
@@ -15,7 +15,7 @@ class CarTest : StringSpec({
             val car = Car()
             car.move(number)
 
-            car.currentLocation() shouldBe 1
+            car.location shouldBe 1
         }
     }
 
@@ -24,7 +24,7 @@ class CarTest : StringSpec({
             val car = Car()
             car.move(number)
 
-            car.currentLocation() shouldBe 0
+            car.location shouldBe 0
         }
     }
 })

@@ -1,9 +1,9 @@
 package racingcar
 
-class Application
-
 fun main() {
-    val (cars, roundCount) = InputView()
+    val roundCount = InputView.readRoundCount()
+    val cars = InputView.readCars()
+
     val racingGame = RacingGame(
         cars = cars,
         numberGenerator = RacingCarNumberGenerator()
