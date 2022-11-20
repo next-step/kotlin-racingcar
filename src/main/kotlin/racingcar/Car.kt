@@ -1,7 +1,7 @@
 package racingcar
 
 class Car(
-    private var _location: Int = 0,
+    private var _location: Int = DEFAULT_CAR_LOCATION,
     val name: String,
 ) {
     init {
@@ -21,6 +21,7 @@ class Car(
     }
 
     companion object {
+        private const val DEFAULT_CAR_LOCATION = 0
         private const val VALID_CAR_NAME_LENGTH = 5
     }
 }
