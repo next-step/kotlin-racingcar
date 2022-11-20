@@ -4,20 +4,20 @@ class Race(
     private val randomGeneratorNumber: RandomNumberGenerator,
     private val record: Record,
 ) {
-    fun start(carCount: Int, tryCount: Int): HashMap<Int, MutableList<Boolean>> {
-        val cars = List(carCount) { Car() }
+    fun start(carNames: List<String>, tryCount: Int): Record {
+        val cars: List<Car> = carNames.map { Car.from(it) }
         for (i in 1..tryCount) {
             moveCars(cars)
         }
-        return record.raceRecord
+        return record
     }
 
     private fun moveCars(cars: List<Car>) =
-        repeat(cars.size) { index ->
+        cars.forEach { car ->
             val randomNumber = randomGeneratorNumber.generate()
             record.record(
-                carIndex = index,
-                movement = cars[index].move(randomNumber)
+                carName = car.name,
+                movement = cars.find { it.name == car.name }!!.move(randomNumber)
             )
         }
 }

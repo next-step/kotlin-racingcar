@@ -1,20 +1,23 @@
 package race
 
 import race.view.Input
-import race.view.Message.GET_CAR_COUNT_MESSAGE
+import race.view.Message.GET_CARS_NAME_MESSAGE
 import race.view.Message.GET_RACE_COUNT_MESSAGE
 import race.view.Output
 
 private val randomNumberGenerator = RandomNumberGenerator()
 private val inputView = Input()
-private val outputView = Output()
+private lateinit var outputView: Output
 
 fun main() {
-    val carCount = inputView.getCount(GET_CAR_COUNT_MESSAGE)
-    val raceCount = inputView.getCount(GET_RACE_COUNT_MESSAGE)
+    val inputCarNames = inputView.getCarNames(GET_CARS_NAME_MESSAGE)
+    val carNames = inputCarNames.split(",")
+    val raceCount = inputView.getRaceCount(GET_RACE_COUNT_MESSAGE)
 
-    val record = Record.from(carCount)
+    val record = Record.from(carNames)
     val race = Race(randomNumberGenerator, record)
-    val result = race.start(carCount, raceCount)
-    outputView.printResult(result)
+    val resultRecord = race.start(carNames, raceCount)
+    outputView = Output(resultRecord)
+    outputView.printResult()
+    outputView.printWinner()
 }
