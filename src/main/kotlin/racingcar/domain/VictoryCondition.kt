@@ -3,14 +3,14 @@ package racingcar.domain
 enum class VictoryCondition {
     Longest {
         override fun announceWinner(cars: List<Car>): List<Car> {
-            val maximumProgress = cars.maxOf { car -> car.progress }
-            return cars.filter { car -> car.progress == maximumProgress }
+            val maximumPosition = cars.maxOf { car -> car.position }
+            return cars.filter { car -> car.position == maximumPosition }
         }
     },
     Shortest {
         override fun announceWinner(cars: List<Car>): List<Car> {
-            val minimumProgress = cars.minOf { car -> car.progress }
-            return cars.filter { car -> car.progress == minimumProgress }
+            val minimumPosition = cars.minOf { car -> car.position }
+            return cars.filter { car -> car.position == minimumPosition }
         }
     };
 
