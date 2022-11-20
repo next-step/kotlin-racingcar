@@ -20,7 +20,7 @@ internal class NamesTest {
 
     @ParameterizedTest
     @MethodSource("namesInputs")
-    fun `정상적으로 Names가 초기화된다`(inputs: List<String>, size: Int) {
+    fun `Name의 이름들이 5글자이하로 Names가 초기화된다`(inputs: List<String>, size: Int) {
         val name = Names(inputs)
 
         Assertions.assertThat(name.size()).isEqualTo(size)
