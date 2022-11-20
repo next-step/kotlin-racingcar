@@ -1,9 +1,9 @@
 package racingcar
 
-class Application
-
 fun main() {
-    val (cars, roundCount) = InputView()
+    val cars = InputView.readCars()
+    val roundCount = InputView.readRoundCount()
+
     val racingGame = RacingGame(
         cars = cars,
         numberGenerator = RacingCarNumberGenerator()
@@ -11,6 +11,9 @@ fun main() {
 
     repeat(roundCount) {
         val drivingCars = racingGame.round()
-        ResultView.print(drivingCars)
+        ResultView.printLocation(drivingCars)
     }
+
+    val winners = racingGame.judge()
+    ResultView.printWinner(winners)
 }

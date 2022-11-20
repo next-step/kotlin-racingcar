@@ -6,6 +6,11 @@ interface NumberGenerator {
 
 class RacingCarNumberGenerator : NumberGenerator {
     override fun rand(): Int {
-        return (0..9).random()
+        return (RAND_NUMBER_START_BOUND..RAND_NUMBER_END_BOUND).random()
+    }
+
+    companion object {
+        private const val RAND_NUMBER_START_BOUND = 0
+        private const val RAND_NUMBER_END_BOUND = 9
     }
 }

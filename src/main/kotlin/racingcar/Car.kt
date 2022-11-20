@@ -1,16 +1,27 @@
 package racingcar
 
 class Car(
-    private var location: Int = 0,
+    private var _location: Int = DEFAULT_CAR_LOCATION,
+    val name: String,
 ) {
-    fun move(randNumber: Int) {
-        val rule = MovingJudgeRule.judge(randNumber)
-        val strategy = rule.strategy()
-
-        location = strategy.move(location)
+    init {
+        require(isValidLength(name)) { "글자수는 5자를 넘을 수 없어요" }
     }
 
-    fun currentLocation(): Int {
-        return location
+    val location
+        get() = _location
+    fun move(number: Int) {
+        val rule = MovingJudgeRule.judge(number)
+        val strategy = rule.strategy
+        _location = strategy.move(_location)
+    }
+
+    private fun isValidLength(name: String): Boolean {
+        return name.length <= VALID_CAR_NAME_LENGTH
+    }
+
+    companion object {
+        private const val DEFAULT_CAR_LOCATION = 0
+        private const val VALID_CAR_NAME_LENGTH = 5
     }
 }
