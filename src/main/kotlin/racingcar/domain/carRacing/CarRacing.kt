@@ -22,9 +22,11 @@ class CarRacing(private val cars: List<Car>) {
                 .map {
                     CarRecord(it, it.currentDistance())
                 }
-            this.records.add(TurnRecord(turn + 1, turnRecord))
+            this.records.add(TurnRecord(turnForResult(turn), turnRecord))
         }
     }
+
+    private fun turnForResult(turn: Int) = turn + 1
 
     private fun recordMaxDistance(car: Car) {
         maxDistance = maxDistance.coerceAtLeast(car.currentDistance())
