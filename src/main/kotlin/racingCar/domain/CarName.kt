@@ -9,8 +9,8 @@ value class CarName(val carName: String = DEFAULT_CAR_NANE) {
 
     companion object {
 
-        const val MAX_NAME_LENGTH = 5
+        private const val MAX_NAME_LENGTH = 5
 
-        const val DEFAULT_CAR_NANE = "Anony"
+        private const val DEFAULT_CAR_NANE = "Anony"
     }
 }

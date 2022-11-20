@@ -16,7 +16,7 @@ class Cars(carNames: List<String>, private val strategy: MoveStrategy) {
     }
 
     fun findWinners(): List<Car> =
-        this.cars.maxByOrNull { it }!!.let { winnerCar ->
+        this.cars.maxOf { it }.let { winnerCar ->
             return findSamePositionOf(winnerCar)
         }
 
