@@ -1,6 +1,6 @@
-package racingcar.ui
+package racingcar.view
 
-import racingcar.racingcar.CarRacingRequest
+import racingcar.application.CarRacingRequest
 
 class InputView {
 
@@ -27,15 +27,11 @@ class InputView {
         }
 
         private fun validateCarName(carName: String) {
-            if (carName.length > 5) {
-                throw IllegalArgumentException("자동차 이름은 5자를 초과할 수 없습니다. 초과한 이름: $carName")
-            }
+            require(carName.length <= 5) { "자동차 이름은 5자를 초과할 수 없습니다. (초과한 이름: $carName)" }
         }
 
         private fun validateTurnCount(input: Int) {
-            if (input < 0) {
-                throw IllegalArgumentException("시도 회수에 음수를 입력하였습니다. 0보다 큰 숫자를 입력해주세요.")
-            }
+            require(input >= 0) { "시도 회수에 음수를 입력하였습니다. 0보다 큰 숫자를 입력해주세요." }
         }
     }
 }

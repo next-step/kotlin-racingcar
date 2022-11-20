@@ -1,4 +1,4 @@
-package racingcar.racingcar
+package racingcar.domain.carIndicator
 
 class TurnIndicator(
     private val indicators: List<Int>

@@ -1,4 +1,4 @@
-package racingcar.racingcar
+package racingcar.domain.carIndicator
 
 import racingcar.util.RandomUtil
 
