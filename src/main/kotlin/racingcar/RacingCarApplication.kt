@@ -1,6 +1,11 @@
 package racingcar
 
-private val RANDOM_NUMBER_RANGE = 0..9
+import racingcar.domain.Car
+import racingcar.domain.Cars
+import racingcar.domain.RandomNumberStrategy
+import racingcar.domain.Statistics
+import racingcar.view.InputView
+import racingcar.view.ResultView
 
 fun main() {
     val inputView = InputView()
@@ -18,15 +23,13 @@ fun main() {
 
     val cars = Cars(carList)
     repeat(tryNumber) {
-        val movedCars = cars.move { (RANDOM_NUMBER_RANGE).random() }
+        val movedCars = cars.move { RandomNumberStrategy().moveStrategy() }
         result += resultView.makeResults(movedCars)
         result += "\n"
     }
 
     val exec = Statistics.exec(cars)
-    result += exec
-
-    resultView.printResult(result)
+    resultView.printResult(exec, result)
 }
 
 private fun initCarList(carNames: List<String>): MutableList<Car> {
