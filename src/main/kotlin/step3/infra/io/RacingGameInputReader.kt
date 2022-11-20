@@ -2,6 +2,7 @@ package step3.infra.io
 
 class RacingGameInputReader {
 
+    @Deprecated("since step4")
     fun readInputForTotalCarCount(): Int {
         val totalCarCount = readInput().trim().toInt()
 
@@ -19,4 +20,12 @@ class RacingGameInputReader {
     }
 
     private fun readInput(): String = readln()
+
+    fun readInputForCarNameList(): List<String> {
+        val carNameList = readInput().trim().split(",")
+
+        require(carNameList.isNotEmpty()) { "carNameList sholud be not empty [$carNameList]" }
+
+        return carNameList
+    }
 }

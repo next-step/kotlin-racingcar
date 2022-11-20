@@ -8,14 +8,16 @@ import step3.infra.random.DefaultRandomGenerator
 import step3.infra.random.RandomGenerator
 
 class RacingGame(
-    val totalCarCount: Int = DEFAULT_TOTAL_CAR_COUNT,
-    val totalTryCount: Int = DEFAULT_TOTAL_TRY_COUNT,
+    carNameList: List<String>,
+    val totalTryCount: Int,
 ) {
 
     companion object {
         const val DEFAULT_TOTAL_CAR_COUNT = 5
         const val DEFAULT_TOTAL_TRY_COUNT = 5
     }
+
+    private val totalCarCount = carNameList.size
 
     private val racingCarContainer: RacingCarContainer = RacingCarContainer(totalCarCount)
 
@@ -35,9 +37,7 @@ class RacingGame(
         require(totalCarCount > 0) { "Total Car Count must be positive number [$totalCarCount]" }
         require(totalTryCount > 0) { "Total Try Count must be positive number [$totalTryCount]" }
 
-        repeat(totalCarCount) {
-            racingCarContainer.addRacingCar()
-        }
+        carNameList.forEach { racingCarContainer.addRacingCar(it) }
     }
 
     fun nextStep() {

@@ -9,13 +9,17 @@ import io.kotest.matchers.comparables.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import org.junit.jupiter.api.assertThrows
+import step3.domain.car.name.CarNameDataSet
 
 class RacingGameTest : FunSpec({
 
     lateinit var racingGame: RacingGame
 
     beforeEach {
-        racingGame = RacingGame()
+        val totalCarCount = RacingGame.DEFAULT_TOTAL_CAR_COUNT
+        val totalTryCount = RacingGame.DEFAULT_TOTAL_TRY_COUNT
+        val carNameList = CarNameDataSet.testDataList(totalCarCount)
+        racingGame = RacingGame(carNameList, totalTryCount)
     }
 
     test("RacingCar.nextStep() : 정상 작동") {

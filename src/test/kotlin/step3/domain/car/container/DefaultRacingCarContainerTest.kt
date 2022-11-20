@@ -9,6 +9,7 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
+import step3.domain.car.name.CarNameDataSet
 
 class DefaultRacingCarContainerTest : FunSpec({
 
@@ -52,7 +53,8 @@ class DefaultRacingCarContainerTest : FunSpec({
                 val racingCarContainer = RacingCarContainer(totalCarCount)
                 repeat(addCarCount) {
                     assertDoesNotThrow {
-                        racingCarContainer.addRacingCar()
+                        val carName = CarNameDataSet.testData()
+                        racingCarContainer.addRacingCar(carName)
                     }
                 }
             }
@@ -72,7 +74,8 @@ class DefaultRacingCarContainerTest : FunSpec({
                 val racingCarContainer = RacingCarContainer(totalCarCount)
                 assertThrows<IllegalStateException> {
                     repeat(addCarCount) {
-                        racingCarContainer.addRacingCar()
+                        val carName = CarNameDataSet.testData()
+                        racingCarContainer.addRacingCar(carName)
                     }
                 }
             }
@@ -92,7 +95,8 @@ class DefaultRacingCarContainerTest : FunSpec({
                 // Given
                 val racingCarContainer = RacingCarContainer(totalCarCount)
                 repeat(addCarCount) {
-                    racingCarContainer.addRacingCar()
+                    val carName = CarNameDataSet.testData()
+                    racingCarContainer.addRacingCar(carName)
                 }
 
                 // Expected
@@ -116,7 +120,8 @@ class DefaultRacingCarContainerTest : FunSpec({
                 // Given
                 val racingCarContainer = RacingCarContainer(totalCarCount)
                 repeat(addCarCount) {
-                    racingCarContainer.addRacingCar()
+                    val carName = CarNameDataSet.testData()
+                    racingCarContainer.addRacingCar(carName)
                 }
 
                 // Expected
