@@ -2,10 +2,10 @@ package racingcar.domain
 
 import racingcar.domain.strategy.MovingStrategy
 
-class Car(
+data class Car(
     private val name: Name,
     private val strategy: MovingStrategy,
-    private var distance: Distance
+    private val distance: Distance
 ) {
     fun moveOrNot() {
         if (strategy.movable()) distance.move()
