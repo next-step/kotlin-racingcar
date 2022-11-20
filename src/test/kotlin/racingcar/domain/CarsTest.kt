@@ -4,35 +4,44 @@ import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.ints.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
 
-class CarsTest : BehaviorSpec({
-    given("자동차 게임에서") {
-        `when`("가장 많은 거리를 이동한 자동차가") {
-            and("한 대 라면") {
-                then("findMaxDistanceCars() 리스트의 사이즈는 1이다.") {
-                    val cars = Cars(onlyOneMaxDistanceCar)
-                    val maxDistanceCar = cars.findMaxDistanceCars()
-                    maxDistanceCar.size shouldBe 1
-                }
-            }
+class CarsTest : BehaviorSpec() {
+    private lateinit var cars: Cars
+    private lateinit var maxDistanceCar: List<Car>
 
-            and("여러 대 라면") {
-                then("findMaxDistanceCars() 리스트의 사이즈는 1보다 크다.") {
-                    val cars = Cars(multipleMaxDistanceCar)
-                    val maxDistanceCar = cars.findMaxDistanceCars()
-                    maxDistanceCar.size shouldBeGreaterThan 1
-                }
-            }
+    init {
+        beforeEach {
+            maxDistanceCar = cars.findMaxDistanceCars()
+        }
 
-            and("없다면") {
-                then("findMaxDistanceCars() 리스트의 사이즈는 0이다.") {
-                    val cars = Cars(noOneMaxDistance)
-                    val maxDistanceCar = cars.findMaxDistanceCars()
-                    maxDistanceCar.size shouldBe 0
+        given("자동차들 중") {
+            `when`("가장 먼 거리를 이동한 자동차가 한 대라면") {
+                and("한 대 라면") {
+                    cars = Cars(onlyOneMaxDistanceCar)
+
+                    then("한 대의 자동차만 리턴된다.") {
+                        maxDistanceCar.size shouldBe 1
+                    }
+                }
+
+                and("여러 대 라면") {
+                    cars = Cars(multipleMaxDistanceCar)
+
+                    then("여러 대의 자동차가 리턴된다.") {
+                        maxDistanceCar.size shouldBeGreaterThan 1
+                    }
+                }
+
+                and("없다면") {
+                    cars = Cars(noOneMaxDistance)
+
+                    then("0 대의 자동차가 리턴된다.") {
+                        maxDistanceCar.size shouldBe 0
+                    }
                 }
             }
         }
     }
-}) {
+
     companion object {
         private const val MAX_DISTANCE = 5
         private const val ZERO = 0
