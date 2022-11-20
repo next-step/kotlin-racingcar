@@ -8,7 +8,7 @@ import racingcar.view.OutputView
 internal class ParticipatedCarsTest : BehaviorSpec({
     Given("자동차는") {
         val participatedCars = ParticipatedCars(FakeAlwaysMoveStrategy())
-        val car = Car("a", 0)
+        val car = Car(ParticipateCarName("a"), 0)
         When("이동 횟수만큼") {
             val finalCarsInfo = participatedCars.turn(
                 1, 3,

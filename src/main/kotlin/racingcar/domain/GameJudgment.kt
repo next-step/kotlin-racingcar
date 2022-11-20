@@ -8,6 +8,6 @@ data class GameJudgment(
 
         return cars
             .filter { it.currentPosition == winningScore }
-            .map { it.name }
+            .map { it.participateCarName.name }
     }
 }

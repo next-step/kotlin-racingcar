@@ -7,7 +7,7 @@ object OutputView {
     private const val MOVE = "-"
 
     fun showMovingCarResult(cars: List<Car>) {
-        cars.forEach { println("${it.name} : ${MOVE.repeat(it.currentPosition)}") }
+        cars.forEach { println("${it.participateCarName.name} : ${MOVE.repeat(it.currentPosition)}") }
         println()
     }
 
