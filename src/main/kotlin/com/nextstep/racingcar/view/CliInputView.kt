@@ -1,10 +1,9 @@
 package com.nextstep.racingcar.view
 
 class CliInputView : InputView {
-
-    override fun inputNumberOfCars(): Int {
-        println("자동차 대수는 몇 대인가요?")
-        return readLine()!!.toInt()
+    override fun inputCarNames(): List<String> {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)")
+        return readLine()!!.split(",")
     }
 
     override fun inputNumberOfRounds(): Int {
