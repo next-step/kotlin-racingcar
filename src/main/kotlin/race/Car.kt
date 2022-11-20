@@ -1,9 +1,11 @@
 package race
 
 class Car {
-    var movementByRounds = mutableListOf<Boolean>()
+    fun move(randomNumber: Int): Boolean {
+        return randomNumber >= THRESHOLD
+    }
 
-    fun move(moveMent: Boolean) {
-        movementByRounds.add(moveMent)
+    companion object {
+        private const val THRESHOLD = 4
     }
 }

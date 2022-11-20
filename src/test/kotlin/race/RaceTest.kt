@@ -4,7 +4,6 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class RaceTest {
-    private val race: Race = Race()
 
     @Test
     fun `경주 성공`() {
@@ -12,11 +11,15 @@ class RaceTest {
         val carCount = 3
         val tryCount = 5
 
+        val record = Record.from(carCount)
+        val randomNumberGenerator = RandomNumberGenerator()
+        val race = Race(randomNumberGenerator, record)
+
         // Act
-        val cars = race.start(carCount, tryCount)
+        val records = race.start(carCount, tryCount)
 
         // Assert
-        assertThat(carCount).isEqualTo(cars.size)
-        assertThat(tryCount).isEqualTo(cars.first().movementByRounds.size)
+        assertThat(carCount).isEqualTo(records.size)
+        assertThat(tryCount).isEqualTo(records[records.keys.first()]!!.size)
     }
 }
