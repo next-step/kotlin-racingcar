@@ -8,11 +8,12 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.collections.shouldContainExactly
+import io.kotest.matchers.shouldBe
 import io.kotest.matchers.throwable.shouldHaveMessage
 
 class CarTest : StringSpec({
 
-    "Car#move returns Movement Enum meaning the car moved or not" {
+    "Car can give user's history" {
         forAll(
             row(MoveRule { NONE }, NONE),
             row(MoveRule { MOVE }, MOVE)
@@ -35,5 +36,18 @@ class CarTest : StringSpec({
                 Car(name)
             } shouldHaveMessage "car name should be shorter than 6 letters and not empty"
         }
+    }
+
+    "Car can give user's location info" {
+        val car = Car("쪼밀리")
+        val movingRule = MoveRule { MOVE }
+        val notMovingRule = MoveRule { NONE }
+
+        car.move(movingRule)
+        car.move(notMovingRule)
+
+        val location = car.getLocation()
+
+        location shouldBe 1
     }
 })

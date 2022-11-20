@@ -1,6 +1,7 @@
 package com.nextstep.racingcar.domain
 
 import com.nextstep.racingcar.domain.Movement.MOVE
+import com.nextstep.racingcar.domain.Movement.NONE
 import com.nextstep.racingcar.domain.rules.MoveRule
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
@@ -48,5 +49,14 @@ class CarsTest : StringSpec({
             Pair("쪼밀리", listOf(MOVE)),
             Pair("코틀린", listOf(MOVE))
         )
+    }
+
+    "Cars can find winners" {
+        val names = listOf("수진", "쪼밀리", "코틀린")
+        val cars = Cars(names)
+        val movingRule = MoveRule { MOVE }
+        val notMovingRule = MoveRule { NONE }
+
+        TODO("테스트 어떻게 하지???")
     }
 })

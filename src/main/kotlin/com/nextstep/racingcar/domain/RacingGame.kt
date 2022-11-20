@@ -22,5 +22,7 @@ class RacingGame(
             cars.play(moveRule)
             resultView.printBeforeResult(cars)
         }
+
+        resultView.printWinners(cars.findWinners())
     }
 }

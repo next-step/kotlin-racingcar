@@ -17,4 +17,6 @@ class Car(val name: String) {
     fun getHistories(): List<Movement> {
         return histories.getHistories()
     }
+
+    fun getLocation(): Int = histories.getLocation()
 }

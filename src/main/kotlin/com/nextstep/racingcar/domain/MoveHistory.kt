@@ -1,5 +1,7 @@
 package com.nextstep.racingcar.domain
 
+import com.nextstep.racingcar.domain.Movement.MOVE
+
 class MoveHistory {
     private val histories = mutableListOf<Movement>()
 
@@ -10,4 +12,6 @@ class MoveHistory {
     fun getHistories(): List<Movement> {
         return histories.toList()
     }
+
+    fun getLocation(): Int = histories.count { it == MOVE }
 }
