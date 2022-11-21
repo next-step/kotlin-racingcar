@@ -20,5 +20,12 @@ class CarNameTest : FunSpec({
                 exception.message shouldBe "자동차 이름은 5 글자를 초과할 수 없습니다."
             }
         }
+
+        context("이름이 비어 있으면") {
+            test("IllegalArgumentException 이 발생한다.") {
+                val exception = assertThrows<IllegalArgumentException> { CarName(value = "") }
+                exception.message shouldBe "자동차 이름은 비어 있을 수 없습니다."
+            }
+        }
     }
 })
