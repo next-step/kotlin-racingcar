@@ -6,6 +6,18 @@ import org.junit.jupiter.api.Test
 internal class RacingGameTest {
 
     @Test
+    fun `input으로 입력되는 이름들을 가지고 자동차를 만든다`() {
+        // given
+        val names = listOf("pobi", "crong", "honux")
+
+        // when
+        val actual = RacingGame.create(names).value.map { it.name } == names
+
+        // then
+        assertThat(actual).isTrue
+    }
+
+    @Test
     fun `레이싱게임 단일 우승자를 찾는다`() {
         // given
         val game = RacingGame(
