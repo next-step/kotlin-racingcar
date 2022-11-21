@@ -1,7 +1,5 @@
 package racingcar
 
-private const val MINIMUM_BOUND = 4
-
 class Car(private var moveCount: Int = 0) {
     val moveHistory = ArrayList<Int>()
 
@@ -12,5 +10,9 @@ class Car(private var moveCount: Int = 0) {
 
         moveHistory.add(moveCount)
         return moveCount
+    }
+
+    companion object {
+        private const val MINIMUM_BOUND = 4
     }
 }
