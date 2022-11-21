@@ -2,7 +2,6 @@ package racingcar.domain.car
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
-import io.kotest.matchers.ints.shouldBeInRange
 import io.kotest.matchers.shouldBe
 import racingcar.exception.InvalidCarNameLengthInput
 
@@ -27,12 +26,5 @@ class CarSpec : StringSpec({
         val result = car.move(3)
 
         result shouldBe 0
-    }
-
-    "0과 9사이의 수를 랜덤하게 반환한다" {
-        val car = Car("pony")
-        val result = car.getRandomNumber()
-
-        result shouldBeInRange 0..9
     }
 })
