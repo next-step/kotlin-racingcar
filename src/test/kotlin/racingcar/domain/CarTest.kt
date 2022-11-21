@@ -29,6 +29,23 @@ class CarTest : FunSpec({
                 sut.position shouldBe Position(value = 0)
             }
         }
+
+        context("주행하고 나면") {
+            test("주행한 위치를 가지는 새로운 자동차를 반환할 수 있다.") {
+                // given
+                val car = Car(id = 1, name = CarName(value = "동구"))
+                val 충분한_연료 = Oil(amount = 6)
+                // when
+                val actual = car.move(movePolicy = OilPolicy(oil = 충분한_연료))
+                // then
+                actual shouldNotBe car
+                with(actual) {
+                    this.id shouldBe car.id
+                    this.name shouldBe car.name
+                    this.position shouldBe Position(value = 1)
+                }
+            }
+        }
     }
 
     context("자동차 생성 테스트") {

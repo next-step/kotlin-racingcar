@@ -14,9 +14,10 @@ class Car(
         position = car.position,
     )
 
-    fun move(movePolicy: MovePolicy) {
+    fun move(movePolicy: MovePolicy): Car {
         if (movePolicy.canMove()) {
             this.position = this.position.forward()
         }
+        return Car(car = this)
     }
 }
