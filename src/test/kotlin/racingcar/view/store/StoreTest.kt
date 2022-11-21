@@ -32,20 +32,4 @@ class StoreTest : FunSpec({
     }
 })
 
-object CarNameStore : Store<CarName>() {
-    private var carName = CarName(value = "")
-
-    override fun getState(): CarName {
-        return this.carName
-    }
-
-    override fun subscribe(listener: Listener): UnSubscribe {
-        this.listeners.add(listener)
-        return { listeners.remove(listener) }
-    }
-
-    override fun setState(state: CarName) {
-        this.carName = state
-        listeners.forEach { listener -> listener() }
-    }
-}
+object CarNameStore : Store<CarName>(initialState = CarName(value = "동구"))

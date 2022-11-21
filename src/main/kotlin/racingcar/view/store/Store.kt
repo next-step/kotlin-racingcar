@@ -3,10 +3,19 @@ package racingcar.view.store
 typealias Listener = () -> Unit
 typealias UnSubscribe = () -> Unit
 
-abstract class Store<T> {
-    protected val listeners = HashSet<Listener>()
+open class Store<T>(initialState: T) {
+    private var state = initialState
+    private val listeners = HashSet<Listener>()
 
-    abstract fun getState(): T
-    abstract fun setState(state: T)
-    abstract fun subscribe(listener: Listener): UnSubscribe
+    fun getState(): T {
+        return this.state
+    }
+    fun setState(state: T) {
+        this.state = state
+        this.listeners.forEach { listener -> listener() }
+    }
+    fun subscribe(listener: Listener): UnSubscribe {
+        listeners.add(listener)
+        return { listeners.remove(listener) }
+    }
 }
