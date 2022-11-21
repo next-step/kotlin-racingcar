@@ -2,6 +2,7 @@ package racingcar.view.component
 
 import racingcar.domain.Round
 import racingcar.domain.RoundResult
+import racingcar.view.container.CarPositionContainer
 import racingcar.view.store.CarGroupStore
 import racingcar.view.ui.Br
 
@@ -17,7 +18,7 @@ class RoundComponent(private val round: Round) : Component {
     override fun render() {
         val roundResult = this.roundStart()
         RoundOrderComponent(id = round.id).render()
-        RoundResultComponent(roundResult = roundResult).render()
+        CarPositionContainer().render()
         Br().draw()
         Thread.sleep(1000)
     }
