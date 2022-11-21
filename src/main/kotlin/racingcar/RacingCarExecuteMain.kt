@@ -5,20 +5,20 @@ import racingcar.ui.ResultView
 
 fun main() {
     val inputView = InputView()
+    val resultView = ResultView()
+
     val carCount = inputView.inputCarCount()
     val tryCount = inputView.inputTryCount()
 
-    RacingCar(carCount, tryCount).start().apply {
-        val resultView = ResultView()
+    val racingHistory = RacingCar(carCount, tryCount).start()
 
-        for (i in 0 until tryCount) {
-            this.forEach { car ->
-                resultView.printCarMove(car, i)
-            }
+    for (i in 0 until tryCount) {
+        racingHistory.keys.forEach { car ->
+            resultView.printCarMove(racingHistory[car]!![i])
+        }
 
-            if (i < tryCount - 1) {
-                resultView.printLineSpacing()
-            }
+        if (i < tryCount - 1) {
+            resultView.printLineSpacing()
         }
     }
 }
