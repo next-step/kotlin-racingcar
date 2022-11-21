@@ -1,7 +1,5 @@
-package study
+package calculator
 
-import calculator.Calculator
-import calculator.StringSplitCountInvalidException
 import calculator.operation.Addition
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Assertions
