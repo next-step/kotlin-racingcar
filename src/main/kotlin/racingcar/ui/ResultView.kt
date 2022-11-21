@@ -15,10 +15,13 @@ object ResultView {
             printCarsPosition(result)
             println()
         }
+
+        println(result.awardsCars().toString() + "가 최종 우승했습니다.")
     }
 
     private fun printCarsPosition(racingGame: RacingGame) {
         racingGame.value.forEach { car ->
+            print("${car.name} : ")
             printCarState(car)
             println()
         }
