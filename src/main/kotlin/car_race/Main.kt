@@ -5,13 +5,13 @@ import car_race.view.InputView
 import car_race.view.ResultView
 
 fun main() {
+    val cars = InputView.inputCars()
     val gameRound = InputView.inputGameRound()
-    val cars = InputView.inputCarCount()
 
-    val movingSystem = RandomMovingSystem
+    ResultView.resultViewStart()
     for (i in 1..gameRound.value) {
         ResultView.printEachRound(cars)
-        cars.nextRound(movingSystem)
-        println()
+        cars.nextRound(RandomMovingSystem)
     }
+    ResultView.printWinners(cars)
 }

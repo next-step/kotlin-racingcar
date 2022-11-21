@@ -15,7 +15,7 @@ class CarPositionTest : FunSpec({
 
         test("fun getValue(): 현재 위치를 반환한다.") {
             val position = shouldNotThrowAny {
-                defaultCarPosition.getValue()
+                defaultCarPosition.position
             }
 
             position shouldBe defaultPosition
@@ -25,7 +25,7 @@ class CarPositionTest : FunSpec({
             val movingDistance = 1
             val movedPosition = defaultCarPosition.move(movingDistance)
 
-            movedPosition.getValue() shouldBe defaultPosition + movingDistance
+            movedPosition.position shouldBe defaultPosition + movingDistance
         }
     }
 })
