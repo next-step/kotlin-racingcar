@@ -13,10 +13,5 @@ internal class ResultView {
         println()
     }
 
-    fun getMoveString(moveCount: Int): String =
-        StringBuilder().apply {
-            for (i in 0 until moveCount) {
-                append("-")
-            }
-        }.toString()
+    fun getMoveString(moveCount: Int): String = "-".repeat(moveCount)
 }
