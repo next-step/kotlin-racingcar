@@ -1,9 +1,7 @@
 package racingcar.domain
 
 class Round(val id: Int) {
-    fun start(carGroup: CarGroup): RoundResult {
+    fun start(carGroup: CarGroup) {
         carGroup.move()
-        val carPositions = carGroup.getPositions()
-        return RoundResult(carPositions = carPositions)
     }
 }
