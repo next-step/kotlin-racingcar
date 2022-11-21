@@ -1,4 +1,4 @@
-package step2
+package calculator
 interface Operator {
     fun calculate(a: Int, b: Int): Int
 }
