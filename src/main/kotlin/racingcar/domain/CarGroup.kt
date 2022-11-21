@@ -1,8 +1,8 @@
 package racingcar.domain
 
-class CarGroup(private val cars: List<Car>) {
+class CarGroup(private var cars: List<Car>) {
     fun move() {
-        this.cars.forEach { car ->
+        this.cars = this.cars.map { car ->
             val oil = OilStation.generateOilRandomly()
             car.move(movePolicy = OilPolicy(oil = oil))
         }
