@@ -3,21 +3,20 @@ package racingcar.domain.car
 class ParticipatingCars(
     private val carList: List<Car>
 ) {
-    fun names() = this.carList.map { it.name }.toList()
 
-    fun move(outputFunction: (Int, String) -> Unit) {
-        carList.forEach {
+    fun move() {
+        this.carList.forEach {
             it.move()
-            outputFunction(it.currentPosition().toInt(), it.name)
         }
     }
 
-    fun winnersNames(): List<String> {
-        return winners().map { it.name }.toList()
+    fun winners(): List<Pair<String, Int>> {
+        val winnerPosition = this.carList.maxOf { it.currentPosition().toInt() }
+        return this.carList
+            .filter { it.currentPosition().toInt() == winnerPosition }
+            .map { it.name to it.currentPosition().toInt() }
+            .toList()
     }
 
-    private fun winners(): List<Car> {
-        val winnerPosition = this.carList.maxOf { it.currentPosition().toInt() }
-        return this.carList.filter { it.currentPosition().toInt() == winnerPosition }.toList()
-    }
+    fun currentPosition(): List<Pair<String, Int>> = carList.map { it.name to it.currentPosition().toInt() }
 }
