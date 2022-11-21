@@ -1,11 +1,22 @@
 package racingcar.view.container
 
-import racingcar.view.component.RoundComponent
-import racingcar.view.store.RoundStore
+import racingcar.domain.Round
+import racingcar.view.component.RoundOrderComponent
+import racingcar.view.store.CarGroupStore
+import racingcar.view.ui.Br
 
-class RoundContainer : Container {
+class RoundContainer(private val round: Round) : Container {
+
+    private fun roundStart() {
+        val carGroup = CarGroupStore.getState()
+        this.round.start(carGroup = carGroup)
+        CarGroupStore.setState(state = carGroup)
+    }
     override fun render() {
-        val rounds = RoundStore.getState()
-        rounds.forEach { round -> RoundComponent(round = round).render() }
+        this.roundStart()
+        RoundOrderComponent(id = round.id).render()
+        CarPositionContainer().render()
+        Br().draw()
+        Thread.sleep(1000)
     }
 }
