@@ -1,8 +1,8 @@
 package racingcar
 
-import racingcar.component.CarNameInputComponent
-import racingcar.component.RacingResultComponent
-import racingcar.component.RoundInputComponent
+import racingcar.view.component.CarNameInputComponent
+import racingcar.view.component.RacingResultComponent
+import racingcar.view.component.RoundInputComponent
 
 object RacingGame {
     fun run() {

@@ -1,0 +1,15 @@
+package racingcar.domain
+
+@JvmInline
+value class CarName(
+    val value: String,
+) {
+    init {
+        require(this.value.isNullOrBlank().not()) { "자동차 이름은 비어 있을 수 없습니다." }
+        require(this.value.length <= MAX_NAME_LENGTH) { "자동차 이름은 5 글자를 초과할 수 없습니다." }
+    }
+
+    companion object {
+        private const val MAX_NAME_LENGTH = 5
+    }
+}
