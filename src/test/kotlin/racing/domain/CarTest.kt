@@ -1,23 +1,17 @@
 package racing.domain
 
-import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
 
-class CarTest : BehaviorSpec({
+class CarTest : FreeSpec({
 
-    given("자동차가") {
-        `when`("전진 조건을 만족할때") {
-            val car = Car()
-            then("position이 증가한다.") {
-                car.move()
-                car.position shouldBe 1
-            }
-        }
-        `when`("전진 조건을 만족하지 않았을떄") {
-            val car = Car()
-            then("position이 유지된다.") {
-                car.position shouldBe 0
-            }
+    "move" - {
+
+        "Car의 position이 한칸 움직인다." {
+            val car = Car(CarName("pobi"))
+            car.move()
+
+            car.position.value shouldBe 1
         }
     }
 })
