@@ -2,6 +2,7 @@ package racingcar.domain
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNotBe
 
 class CarTest : FunSpec({
     context("자동차 주행 테스트") {
@@ -26,6 +27,22 @@ class CarTest : FunSpec({
                 sut.move(movePolicy = OilPolicy(oil = 부족한_연료))
                 // then
                 sut.position shouldBe Position(value = 0)
+            }
+        }
+    }
+
+    context("자동차 생성 테스트") {
+        test("기존의 자동차를 통해 새로운 자동차를 생성할 수 있다.") {
+            // given
+            val car = Car(id = 1, name = CarName(value = "동구"), position = Position(value = 3))
+            // when
+            val actual = Car(car = car)
+            // then
+            actual shouldNotBe car
+            with(actual) {
+                this.id shouldBe car.id
+                this.name shouldBe car.name
+                this.position shouldBe car.position
             }
         }
     }

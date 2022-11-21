@@ -7,6 +7,13 @@ class Car(
 ) {
     var position = position
         private set
+
+    constructor(car: Car) : this(
+        id = car.id,
+        name = car.name,
+        position = car.position,
+    )
+
     fun move(movePolicy: MovePolicy) {
         if (movePolicy.canMove()) {
             this.position = this.position.forward()
