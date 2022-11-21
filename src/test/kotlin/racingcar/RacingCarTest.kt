@@ -2,6 +2,7 @@ package racingcar
 
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import racingcar.move.ForwardStrategy
 import racingcar.ui.ResultView
 
 class RacingCarTest {
@@ -25,7 +26,7 @@ class RacingCarTest {
     fun `자동차 경주 자동차 생성 테스트`() {
         val carCount = 3
 
-        val racingHistory = RacingCar(3, 1).start()
+        val racingHistory = RacingCar(3, 1).start(ForwardStrategy.CarForward)
 
         assertTrue(racingHistory.keys.toList().size == carCount)
     }
@@ -34,7 +35,7 @@ class RacingCarTest {
     fun `자동차 경주 시도 횟에 따른 이동 히스토리 생성 테스트`() {
         val tryCount = 5
 
-        val racingHistory = RacingCar(3, tryCount).start()
+        val racingHistory = RacingCar(3, tryCount).start(ForwardStrategy.CarForward)
 
         assertTrue(racingHistory.values.toList()[0].size == tryCount)
     }
