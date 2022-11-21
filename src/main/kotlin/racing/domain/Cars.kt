@@ -6,7 +6,7 @@ class Cars : Iterable<Car> {
 
     constructor(names: String) {
         list = names.split(SEPARATOR).map {
-            Car(it)
+            Car.produce(it)
         }
     }
     constructor(carList: List<Car>) {
@@ -18,7 +18,7 @@ class Cars : Iterable<Car> {
     fun race(movable: () -> Int) {
         list.forEach {
             car ->
-            car.move(movable.invoke())
+            car.move(movable())
         }
     }
     override fun iterator(): Iterator<Car> = list.iterator()

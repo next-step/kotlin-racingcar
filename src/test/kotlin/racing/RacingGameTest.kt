@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test
 import racing.domain.Car
 import racing.domain.CarFactory
 import racing.domain.Cars
-import racing.domain.ResultStatistics
 import racing.domain.Winner
+import racing.ui.ResultView
 
 class RacingGameTest {
 
@@ -22,13 +22,13 @@ class RacingGameTest {
             lee : -
             kkoks : -
         """.trimIndent()
-        assertThat(ResultStatistics(cars).toResult()).isEqualTo(result)
+        assertThat(ResultView.toRaceResult(cars)).isEqualTo(result)
     }
 
     @Test
     fun `Racing Game 단독 우승자 출력`() {
-        val leeCar = Car("lee", 5)
-        val kkoksCar = Car("kkoks", 3)
+        val leeCar = Car.produce("lee", 5)
+        val kkoksCar = Car.produce("kkoks", 3)
         val winner = Winner(listOf(leeCar, kkoksCar))
         val result = winner.win()
         assertThat(result).isEqualTo("lee")
@@ -36,8 +36,8 @@ class RacingGameTest {
 
     @Test
     fun `Racing Game 공동 우승자 출력`() {
-        val leeCar = Car("lee", 5)
-        val kkoksCar = Car("kkoks", 5)
+        val leeCar = Car.produce("lee", 5)
+        val kkoksCar = Car.produce("kkoks", 5)
         val winner = Winner(listOf(leeCar, kkoksCar))
         val result = winner.win()
         assertThat(result).isEqualTo("lee, kkoks")
