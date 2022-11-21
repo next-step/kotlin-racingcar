@@ -21,7 +21,7 @@ class PromptServiceImpl(
         return assignedNumber ?: inputView.readInput().toInt()
     }
 
-    override fun showResult(result: List<Map<String, Int>>) {
-        resultView.show(result)
+    override fun showResult(result: List<CarRacingResult>, winners: Set<CarName>) {
+        resultView.show(result, winners)
     }
 }
