@@ -6,7 +6,7 @@ import racingcar.domain.RacingGame
 object ResultView {
 
     fun printResult(racingGame: RacingGame, count: Int) {
-        println("실핼결과")
+        println("실행결과")
         println()
 
         var result = racingGame
