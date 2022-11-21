@@ -16,7 +16,7 @@ class RacingGame(val value: List<Car> = emptyList()) {
     }
 
     companion object {
-        fun startRacingGame(count: Int): RacingGame {
+        fun create(count: Int): RacingGame {
             var racingGame = RacingGame()
             repeat(count) {
                 racingGame += Car()

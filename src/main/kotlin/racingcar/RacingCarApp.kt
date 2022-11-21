@@ -10,7 +10,7 @@ fun main() {
 
     val racingCarCount = readLine()?.toInt() ?: 0
 
-    val racingGame = RacingGame.startRacingGame(racingCarCount)
+    val racingGame = RacingGame.create(racingCarCount)
 
     printInputRacingCount()
 
