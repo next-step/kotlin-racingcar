@@ -7,11 +7,13 @@ class Cars(
 
     fun tryMoveCars() {
         cars.forEach {
-            car -> if (moveStrategy.isMovable()) car.move()
+            car ->
+            if (moveStrategy.isMovable()) car.move()
         }
     }
 
-    fun getCarsPosition(): List<Int> {
-        return cars.map(Car::position)
+    fun winner(): List<Car> {
+        val maxPosition = cars.maxOf { it.position.value }
+        return cars.filter { it.position.value == maxPosition }
     }
 }
