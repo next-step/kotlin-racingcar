@@ -7,5 +7,3 @@ interface MovingRule {
         private const val RANDOM_CONDITION_NUM = 4
     }
 }
-
-
