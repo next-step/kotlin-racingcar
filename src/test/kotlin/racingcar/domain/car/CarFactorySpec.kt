@@ -8,7 +8,7 @@ import io.kotest.matchers.types.shouldBeInstanceOf
 class CarFactorySpec : StringSpec({
     "자동차 이름을 입력받아 해당 이름을 가진 racingcar.domain.car.Car 인스턴스를 반환한다" {
         // arrange
-        val carNames = listOf("pobi", "crong", "honux")
+        val carNames = setOf("pobi", "crong", "honux")
 
         // act
         val cars = CarFactory.create(carNames)

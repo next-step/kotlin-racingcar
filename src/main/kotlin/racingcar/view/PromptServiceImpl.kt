@@ -1,5 +1,7 @@
 package racingcar.view
 
+import racingcar.domain.car.CarName
+import racingcar.domain.car.CarRacingResult
 import racingcar.view.Message.RACING_CANDIDATE_NAME_INPUT
 import racingcar.view.Message.RACING_MOVE_INPUT
 
@@ -8,11 +10,11 @@ class PromptServiceImpl(
     private val resultView: ResultView
 ) : PromptService {
 
-    override fun getNameOfCars(assignedNames: String?): List<String> {
+    override fun getNameOfCars(assignedNames: String?): Set<String> {
         println(RACING_CANDIDATE_NAME_INPUT)
 
         val names = assignedNames ?: inputView.readInput()
-        return names.split(",").map { it.trim() }
+        return names.split(",").map { it.trim() }.toSet()
     }
 
     override fun getNumberOfMoves(assignedNumber: Int?): Int {
