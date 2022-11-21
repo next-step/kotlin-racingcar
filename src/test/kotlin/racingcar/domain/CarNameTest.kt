@@ -3,6 +3,7 @@ package racingcar.domain
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.assertThrows
+import java.lang.IllegalArgumentException
 
 class CarNameTest : FunSpec({
     context("자동차 이름 생성 테스트") {
@@ -14,8 +15,8 @@ class CarNameTest : FunSpec({
         }
 
         context("5 글자 초과의 이름이면") {
-            test("IllegalStateException 이 발생한다.") {
-                val exception = assertThrows<IllegalStateException> { CarName(value = "relkimm") }
+            test("IllegalArgumentException 이 발생한다.") {
+                val exception = assertThrows<IllegalArgumentException> { CarName(value = "relkimm") }
                 exception.message shouldBe "자동차 이름은 5 글자를 초과할 수 없습니다."
             }
         }
