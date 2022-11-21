@@ -9,8 +9,4 @@ class Car private constructor(private var moveCount: Int = 0) {
         }
         return moveCount
     }
-
-    companion object {
-        private const val MINIMUM_BOUND = 4
-    }
 }

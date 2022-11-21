@@ -1,7 +1,5 @@
 package racingcar
 
-import racingcar.move.ForwardStrategy
-
 class RacingCar private constructor(private val cars: List<Car>, private val tryCount: Int, private val carHistory: HashMap<Car, ArrayList<Int>> = HashMap()) {
     constructor(carCount: Int, tryCount: Int) : this((0 until carCount).map { Car() }, tryCount)
 

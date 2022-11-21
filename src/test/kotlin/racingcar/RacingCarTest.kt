@@ -2,24 +2,21 @@ package racingcar
 
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import racingcar.move.ForwardStrategy
-import racingcar.ui.ResultView
 
 class RacingCarTest {
 
     @Test
-    fun `전진 문자 테스트`() {
-        assertTrue(ResultView().getMoveString(3) == "---")
-    }
-
-    @Test
     fun `전진 성공 테스트`() {
-        assertTrue(Car().move(6) == 1)
+        val forward = ForwardStrategy.CarPassForward
+
+        assertTrue(Car().move(forward.forward()) == 1)
     }
 
     @Test
     fun `전진 실패 테스트`() {
-        assertTrue(Car().move(3) == 0)
+        val forward = ForwardStrategy.CarNotForward
+
+        assertTrue(Car().move(forward.forward()) == 0)
     }
 
     @Test

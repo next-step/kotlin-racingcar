@@ -1,6 +1,5 @@
 package racingcar
 
-import racingcar.move.ForwardStrategy
 import racingcar.ui.InputView
 import racingcar.ui.ResultView
 
