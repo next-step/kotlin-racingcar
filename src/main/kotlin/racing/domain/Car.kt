@@ -36,5 +36,6 @@ class Car(name: String, position: Int = 0) {
     companion object {
         const val FORWARD_MOVE: Int = 4
         const val CAR_NAME_LIMIT: Int = 5
+        fun produce(name: String, position: Int = 0) = Car(name, position)
     }
 }

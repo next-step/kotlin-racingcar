@@ -13,10 +13,8 @@ class RacingGame {
 
         ResultView.printRacingGameGuideText()
         while (numberOfGames-- > 0) {
-            cars.race {
-                RandomGenerator.generate()
-            }
-            ResultView.printRacingGameResult(ResultStatistics(cars).toResult())
+            cars.race { RandomGenerator.generate() }
+            ResultView.printRacingGameResult(ResultView.toRaceResult(cars))
         }
         val winner = Winner(cars)
         ResultView.printRacingGameWinner(winner.win())
