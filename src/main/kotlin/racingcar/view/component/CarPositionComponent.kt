@@ -7,7 +7,7 @@ class CarPositionComponent(private val carPositions: List<CarPosition>) : Compon
     override fun render() {
         this.carPositions.forEach { carPosition ->
             CarNameComponent(name = carPosition.name.value).render()
-            DistanceComponent(position = carPosition.position).render()
+            CarDistanceComponent(position = carPosition.position).render()
             Br().draw()
         }
     }

@@ -6,6 +6,6 @@ class CarNameComponent(
     private val name: String,
 ) : Component {
     override fun render() {
-        Span(text = "$name : ").draw()
+        Span(text = "${this.name} : ").draw()
     }
 }

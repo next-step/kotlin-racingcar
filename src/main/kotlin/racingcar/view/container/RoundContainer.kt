@@ -6,7 +6,6 @@ import racingcar.view.store.CarGroupStore
 import racingcar.view.ui.Br
 
 class RoundContainer(private val round: Round) : Container {
-
     private fun roundStart() {
         val carGroup = CarGroupStore.getState()
         this.round.start(carGroup = carGroup)
