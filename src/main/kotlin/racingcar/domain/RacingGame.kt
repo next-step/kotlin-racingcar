@@ -1,6 +1,4 @@
-package racingcar
-
-import racingcar.domain.Car
+package racingcar.domain
 
 class RacingGame(private val cars: List<Car>, private val turn: Int) {
 
@@ -11,15 +9,11 @@ class RacingGame(private val cars: List<Car>, private val turn: Int) {
 
     fun playTurn(): Result {
         if (isPlaying) {
-            increaseTurn()
+            nowTurn++
             moveCars()
         }
 
         return Result(cars)
-    }
-
-    private fun increaseTurn() {
-        nowTurn++
     }
 
     private fun moveCars() {

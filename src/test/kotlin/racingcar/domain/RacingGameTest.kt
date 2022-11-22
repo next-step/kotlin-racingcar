@@ -2,7 +2,6 @@ package racingcar.domain
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import racingcar.RacingGame
 
 class RacingGameTest : BehaviorSpec({
 

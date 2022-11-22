@@ -1,7 +1,7 @@
 package racingcar.controller
 
-import racingcar.RacingGame
 import racingcar.domain.Car
+import racingcar.domain.RacingGame
 import racingcar.domain.Setting
 import racingcar.domain.VictoryCondition
 import racingcar.view.InputView
