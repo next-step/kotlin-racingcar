@@ -2,7 +2,6 @@ package step3.racingcar.service
 
 import step3.racingcar.domain.Cars
 import step3.racingcar.domain.PlayInfo
-import step3.racingcar.utils.RandomNumberGenerator
 import step3.racingcar.view.ResultView
 
 class RacingCarService {
@@ -12,11 +11,10 @@ class RacingCarService {
         }
     }
 
-    private fun playEachRound(currentRound: Int, cars: Cars) {
+    private fun playEachRound(currentRoundIndex: Int, cars: Cars) {
         cars.elements().forEach {
-            val randomValue = RandomNumberGenerator.generate()
-            it.race(randomValue)
+            it.race(currentRoundIndex)
         }
-        ResultView.printRoundResult(currentRound, cars)
+        ResultView.printRoundResult(currentRoundIndex, cars)
     }
 }

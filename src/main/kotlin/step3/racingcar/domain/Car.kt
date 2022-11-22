@@ -7,10 +7,14 @@ private const val MOVE_CRITERIA = 4
 
 class Car {
     val id: String = UUID.randomUUID().toString().substringBefore(CAR_ID_DELIMITER)
+    private var randomNumbers: RandomNumbers = RandomNumbers()
     var distance = 0
 
-    fun race(randomNumber: Int) {
-        if (isMove(randomNumber)) {
+    fun addRandomNumber(randomNumber: Int) = randomNumbers.add(randomNumber)
+
+    fun race(currentRoundIndex: Int) {
+        val randomNumberByCurrentRound: Int = randomNumbers[currentRoundIndex]
+        if (isMove(randomNumberByCurrentRound)) {
             distance++
         }
     }
