@@ -1,9 +1,9 @@
-package racingcar.strategy
+package racingcar.domain.strategy
 
 import racingcar.util.extension.greaterThanOrEquals
 import racingcar.util.random.RandomNumber
 
-class ForwardStrategy(
+class RandomForwardStrategy(
     private val random: RandomNumber = RandomNumber(DEFAULT_RANGE)
 ) : MovingStrategy {
     override fun movable(): Boolean {
