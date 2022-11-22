@@ -2,14 +2,28 @@ package step3.domain.car
 
 import step3.domain.car.distance.CarDistance
 import step3.domain.car.distance.DefaultCarDistance
+import step3.domain.car.name.CarName
+
+private const val DEFAULT_INIT_DISTANCE = 0
+
+private const val DEFAULT_INCREMENT_DISTANCE = 1
 
 class RacingCar(
-    private val carDistance: CarDistance<Int> = DefaultCarDistance()
-) : CarDistance<Int> by carDistance {
+    carName: String,
+    initDistance: Int = DEFAULT_INIT_DISTANCE
+) {
+
+    private val carName: CarName = CarName(carName)
+
+    private val carDistance: CarDistance<Int> = DefaultCarDistance(initDistance)
+
+    val name: String
+        get() = carName.name
+
+    val distance: Int
+        get() = carDistance.distance
 
     fun go() {
-        increment(1)
+        carDistance.increment(DEFAULT_INCREMENT_DISTANCE)
     }
-
-    override fun toString(): String = "${this.javaClass.simpleName}(distance=$distance)"
 }

@@ -15,10 +15,10 @@ class RacingCarContainer(
     val carList: List<RacingCar>
         get() = _carList
 
-    fun addRacingCar() {
+    fun addRacingCar(carName: String) {
         check(isNotFullRacingCar()) { "Racing car is already full. Cannot add new racing car" }
 
-        _carList.add(RacingCar())
+        _carList.add(RacingCar(carName))
     }
 
     fun isNotFullRacingCar(): Boolean = _carList.size < totalCarCount

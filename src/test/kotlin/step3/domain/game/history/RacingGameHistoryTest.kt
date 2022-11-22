@@ -3,6 +3,7 @@ package step3.domain.game.history
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.comparables.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
+import step3.domain.car.name.CarNameDataSet
 import step3.domain.game.RacingGame
 import step3.domain.game.RacingGameDataSet
 
@@ -10,7 +11,7 @@ class RacingGameHistoryTest : FunSpec({
     lateinit var racingGame: RacingGame
 
     beforeEach {
-        racingGame = RacingGameDataSet.testData()
+        racingGame = RacingGameDataSet.testData(CarNameDataSet.testDataList())
     }
 
     test("RacingGameHistory 생성 정상 작동") {

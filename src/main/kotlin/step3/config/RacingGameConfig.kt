@@ -8,23 +8,23 @@ import step3.infra.io.RacingGameInputReader
 import step3.infra.random.DefaultRandomGenerator
 import step3.infra.random.RandomGenerator
 import step3.view.input.InputView
-import step3.view.input.impl.InputViewWithCarCountImpl
-import step3.view.result.DefaultResultView
+import step3.view.input.impl.InputViewWithCarNameImpl
 import step3.view.result.ResultView
-import step3.view.result.history.impl.RacingGameHistoryViewImpl
+import step3.view.result.history.impl.RacingGameHistoryWithCarNameViewImpl
+import step3.view.result.winner.impl.RacingGameWinnerViewImpl
 
 class RacingGameConfig {
     fun racingGameController(): RacingGameController = RacingGameController(inputView(), resultView(), inputReader())
 
-    fun inputView(): InputView = InputViewWithCarCountImpl()
+    fun inputView(): InputView = InputViewWithCarNameImpl()
 
-    fun resultView(): ResultView = DefaultResultView(RacingGameHistoryViewImpl())
+    fun resultView(): ResultView = ResultView(RacingGameHistoryWithCarNameViewImpl(), RacingGameWinnerViewImpl())
 
     fun inputReader(): RacingGameInputReader = RacingGameInputReader()
 
-    fun racingGame(totalCarCount: Int, totalTryCount: Int): RacingGame =
+    fun racingGame(carNameList: List<String>, totalTryCount: Int): RacingGame =
         RacingGame(
-            totalCarCount = totalCarCount,
+            carNameList = carNameList,
             totalTryCount = totalTryCount
         )
 
