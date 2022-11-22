@@ -1,24 +1,24 @@
-package study.racing.entity
+package study.racing.domain.entity
 
-import study.racing.PowerSource
+import study.racing.domain.repository.RacingCarRepository
 
 class RacingCar(
-    private val source: PowerSource
+    val name: String,
+    private val repo: RacingCarRepository
 ) {
     var currentPosition: Int = START_POSITION
         private set
 
     fun moveForward() {
-        if (canMoveForward(source.getPower())) {
+        if (canMoveForward(repo.getPower())) {
             currentPosition += MOVE_INTERVAL
         }
     }
 
-    private fun canMoveForward(power: Int): Boolean = power >= POWER_THRESHOLD
+    private fun canMoveForward(power: Int): Boolean = repo.canMoveForward(power)
 
     companion object {
         private const val START_POSITION = 0
         private const val MOVE_INTERVAL = 1
-        private const val POWER_THRESHOLD = 4
     }
 }

@@ -1,21 +1,36 @@
 package study.racing.ui
 
-import study.racing.entity.Race
+import study.racing.domain.entity.Race
 
 class ResultView(
     private val race: Race
 ) {
     fun printResult() {
         println("경주 결과")
-        race.rounds
-            .joinToString(ROUND_SEPARATOR) { round ->
-                round.record
-                    ?.joinToString(RACING_CAR_SEPARATOR) { position ->
-                        "-".repeat(position)
-                    }
-                    ?: throw IllegalStateException("끝나지 않은 라운드가 있습니다.")
-            }.let(::println)
+        printRoundResult()
+        printRaceResult()
     }
+
+    private fun printRoundResult() = race.rounds
+        .joinToString(ROUND_SEPARATOR) { round ->
+            round.record
+                ?.joinToString(RACING_CAR_SEPARATOR) { record ->
+                    "${record.name} : ${"-".repeat(record.position)}"
+                }
+                ?: throw IllegalStateException("끝나지 않은 라운드가 있습니다.")
+        }
+        .let(::println)
+
+    private fun printRaceResult() = race.rounds
+        .lastOrNull()
+        ?.record
+        ?.let { record ->
+            val max = record.maxOf { it.position }
+            record.filter { it.position == max }
+                .joinToString(", ") { it.name }
+                .let { "${it}가 최종 우승했습니다." }
+        }
+        ?.let(::println)
 
     companion object {
         private const val ROUND_SEPARATOR = "\n\n"
