@@ -4,6 +4,12 @@ class Car(
     private var position: Int = 0
 ) {
 
+    fun move(movable: Boolean) {
+        if (movable) {
+            position++
+        }
+    }
+
     fun samePosition(position: Int): Boolean {
         return this.position == position
     }
