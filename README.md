@@ -17,7 +17,7 @@
 - [ ] Application의 calculate 함수를 Calculator 클래스 내부로 이동
 - [ ] calculate 함수의 로컬 변수명 변경
   - inputFormula -> formula
-- [ ] calculateInternal 함수의 로컬 변수명 변경
+- [x] calculateInternal 함수의 로컬 변수명 변경
   - summary -> total
 - [ ] Application 내부 메서드 순서 변경 (호출 순)
 - [x] 불필요한 코드 제거 (map)

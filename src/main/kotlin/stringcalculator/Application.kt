@@ -26,16 +26,16 @@ class Application {
     }
 
     private fun calculateInternal(numbers: List<Int>, signs: List<String>): Int {
-        var summary = numbers[0]
+        var total = numbers[0]
         for (i in signs.indices) {
             val operator = Operator.of(signs[i])
 
-            val left = summary
+            val left = total
             val right = numbers[i + 1]
-            summary = operator.calculate(left, right)
+            total = operator.calculate(left, right)
         }
 
-        return summary
+        return total
     }
 
     private fun getSigns(stringFormula: List<String>) =
