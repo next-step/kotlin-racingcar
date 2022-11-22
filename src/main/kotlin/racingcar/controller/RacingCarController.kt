@@ -34,7 +34,7 @@ class RacingCarController() {
         )
 
         return RacingGame(
-            cars = cars,
+            initialCars = cars,
             tryCount = tryCount
         )
     }

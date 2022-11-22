@@ -14,8 +14,7 @@ class CarTest : BehaviorSpec({
                 distance = Distance()
             )
             then("distance 가 증가한다.") {
-                car.moveOrNot()
-                car.getDistance() shouldBe 1
+                car.moveOrNot().getDistance() shouldBe 1
             }
         }
 

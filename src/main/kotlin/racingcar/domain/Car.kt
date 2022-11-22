@@ -7,8 +7,12 @@ data class Car(
     private val strategy: MovingStrategy,
     private val distance: Distance
 ) {
-    fun moveOrNot() {
-        if (strategy.movable()) distance.move()
+    fun moveOrNot(): Car {
+        return if (strategy.movable()) {
+            this.copy(distance = distance.move())
+        } else {
+            this
+        }
     }
 
     fun getDistance() = distance.getDistance()

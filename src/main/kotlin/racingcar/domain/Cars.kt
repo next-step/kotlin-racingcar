@@ -5,8 +5,8 @@ class Cars(
 ) {
     fun getCars() = cars
 
-    fun race() {
-        cars.forEach { it.moveOrNot() }
+    fun race(): Cars {
+        return Cars(cars.map { it.moveOrNot() })
     }
 
     fun findMaxDistanceCars(): List<Car> {

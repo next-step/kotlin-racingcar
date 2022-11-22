@@ -12,7 +12,7 @@ class RacingGameTest : BehaviorSpec({
 
             `when`("시도횟수만큼") {
                 val racingGame = RacingGame(
-                    cars = cars,
+                    initialCars = cars,
                     tryCount = TryCount(tryCount)
                 )
                 racingGame.start()
