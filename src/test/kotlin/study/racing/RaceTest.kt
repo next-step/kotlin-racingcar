@@ -21,7 +21,7 @@ class RaceTest {
         race.start()
 
         val recordCount = race.rounds
-            .mapNotNull { it.record }
+            .mapNotNull { it.records }
             .size
 
         assert(recordCount == roundCount)

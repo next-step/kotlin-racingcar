@@ -13,7 +13,7 @@ class ResultView(
 
     private fun printRoundResult() = race.rounds
         .joinToString(ROUND_SEPARATOR) { round ->
-            round.record
+            round.records
                 ?.joinToString(RACING_CAR_SEPARATOR) { record ->
                     "${record.name} : ${"-".repeat(record.position)}"
                 }
@@ -21,16 +21,11 @@ class ResultView(
         }
         .let(::println)
 
-    private fun printRaceResult() = race.rounds
-        .lastOrNull()
-        ?.record
-        ?.let { record ->
-            val max = record.maxOf { it.position }
-            record.filter { it.position == max }
-                .joinToString(", ") { it.name }
-                .let { "${it}가 최종 우승했습니다." }
-        }
-        ?.let(::println)
+    private fun printRaceResult() = race
+        .getWinner()
+        .joinToString(", ") { it.name }
+        .let { "${it}가 최종 우승했습니다." }
+        .let(::println)
 
     companion object {
         private const val ROUND_SEPARATOR = "\n\n"
