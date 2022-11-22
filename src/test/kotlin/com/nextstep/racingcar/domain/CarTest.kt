@@ -10,8 +10,33 @@ import io.kotest.data.row
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.throwable.shouldHaveMessage
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.verify
 
 class CarTest : StringSpec({
+
+    "Car#constructor exception test: car name should be shorter than 6 letters and not empty" {
+        forAll(
+            row("long name"),
+            row(""),
+            row("    ")
+        ) { name ->
+            shouldThrow<IllegalArgumentException> {
+                Car(name)
+            } shouldHaveMessage "car name should be shorter than 6 letters and not empty"
+        }
+    }
+
+    "If car is called, car delegate moveRule to move" {
+        val car = Car("sujin")
+        val moveRule = mockk<MoveRule>()
+        every { moveRule.move() } returns MOVE
+
+        car.move(moveRule)
+
+        verify(exactly = 1) { moveRule.move() }
+    }
 
     "Car can give user's history" {
         forAll(
@@ -23,18 +48,6 @@ class CarTest : StringSpec({
             car.move(moveRule)
 
             car.getHistories() shouldContainExactly listOf(movement)
-        }
-    }
-
-    "Car#constructor exception test: car name should be shorter than 6 letters and not empty" {
-        forAll(
-            row("long name"),
-            row(""),
-            row("    ")
-        ) { name ->
-            shouldThrow<IllegalArgumentException> {
-                Car(name)
-            } shouldHaveMessage "car name should be shorter than 6 letters and not empty"
         }
     }
 

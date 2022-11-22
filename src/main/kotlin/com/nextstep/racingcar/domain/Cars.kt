@@ -2,10 +2,15 @@ package com.nextstep.racingcar.domain
 
 import com.nextstep.racingcar.domain.rules.MoveRule
 
-class Cars(carNames: List<String>) {
-    private val cars: List<Car> = carNames.map { Car(it) }
+class Cars(cars: List<Car>) {
+    private val cars: List<Car>
+    init {
+        this.cars = cars
+    }
 
-    fun play(moveRule: MoveRule) = cars.forEach { it.move(moveRule) }
+    constructor(carNames: Set<String>) : this(carNames.map { Car(it) })
+
+    fun play(moveRule: MoveRule): Unit = cars.forEach { it.move(moveRule) }
 
     fun getHistories(): List<Pair<String, List<Movement>>> = cars.map { Pair(it.name, it.getHistories()) }
 
