@@ -7,13 +7,13 @@ class RacingGame(private val cars: List<Car>, private val turn: Int) {
     val isPlaying
         get() = nowTurn < turn
 
-    fun playTurn(): Result {
+    fun playTurn(): CarsState {
         if (isPlaying) {
             nowTurn++
             moveCars()
         }
 
-        return Result(cars)
+        return CarsState(cars)
     }
 
     private fun moveCars() {
@@ -27,4 +27,4 @@ class RacingGame(private val cars: List<Car>, private val turn: Int) {
     }
 }
 
-class Result(val cars: List<Car>)
+class CarsState(val cars: List<Car>)
