@@ -1,27 +1,28 @@
 package racingcar.view
 
-import racingcar.domain.Car
+import racingcar.domain.CarState
+import racingcar.domain.CarStates
 
 class ResultView(private val progressCharacter: String = "-") {
 
-    fun displayNowState(cars: List<Car>) {
-        cars.forEach { car ->
-            displayCar(car)
+    fun displayNowState(states: CarStates) {
+        states.cars.forEach { state ->
+            displayCarState(state)
         }
         println()
     }
 
-    private fun displayCar(car: Car) {
-        print("${car.name} : ")
-        repeat(car.position) {
+    private fun displayCarState(state: CarState) {
+        print("${state.name} : ")
+        repeat(state.position) {
             print(progressCharacter)
         }
         println()
     }
 
-    fun displayWinner(cars: List<Car>) {
-        val names = cars.map { car ->
-            car.name
+    fun displayWinner(winnerStates: List<CarState>) {
+        val names = winnerStates.map { statae ->
+            statae.name
         }
 
         println("${names.joinToString()}가 최종 우승했습니다. ")

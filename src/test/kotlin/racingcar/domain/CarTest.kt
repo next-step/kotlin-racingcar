@@ -52,13 +52,13 @@ internal class CarTest {
     @Test
     fun `자동차를 기본 인자로 생성하면 위치의 값은 0이다`() {
         val name = "자동차"
-        assertThat(Car(name)).isEqualTo(Car(name = "자동차", _position = 0))
+        assertThat(Car(name)).isEqualTo(Car(name = "자동차", position = 0))
     }
 
     @Test
-    fun `position 을 통해 현재 자동차의 위치를 알 수 있다`() {
+    fun `Car 로부터 CarState를 받아와 통해 현재 자동차의 위치를 알 수 있다`() {
         val car = Car("자동차")
-        assertThat(car.position).isEqualTo(0)
+        assertThat(car.toState()).isEqualTo(CarState("자동차", 0))
     }
 
     @Test
@@ -66,7 +66,7 @@ internal class CarTest {
         val name = "자동차"
         val car = Car(name)
         car.move(true)
-        assertThat(Car(name)).isEqualTo(Car(name = "자동차", _position = 0))
+        assertThat(Car(name)).isEqualTo(Car(name = "자동차", position = 0))
     }
 
     @Test
@@ -74,6 +74,6 @@ internal class CarTest {
         val name = "자동차"
         val car = Car(name)
         car.move(false)
-        assertThat(car).isEqualTo(Car(name = "자동차", _position = 0))
+        assertThat(car).isEqualTo(Car(name = "자동차", position = 0))
     }
 }

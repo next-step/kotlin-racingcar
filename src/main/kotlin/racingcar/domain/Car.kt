@@ -3,20 +3,21 @@ package racingcar.domain
 private const val MAXIMUM_WORD_COUNT = 5
 private const val DEFAULT_POSITION = 0
 
-data class Car(val name: String, private var _position: Int = DEFAULT_POSITION) : MoveStrategy() {
-
-    val position
-        get() = _position
+data class Car(val name: String, private var position: Int = DEFAULT_POSITION) : MoveStrategy() {
 
     init {
         validateName(name)
-        validatePosition(_position)
+        validatePosition(position)
     }
 
     fun move(movable: Boolean = canMove()) {
         if (movable) {
-            _position += 1
+            position += 1
         }
+    }
+
+    fun toState(): CarState {
+        return CarState(name, position)
     }
 
     private fun validateName(name: String) {

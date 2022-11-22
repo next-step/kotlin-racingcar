@@ -1,6 +1,6 @@
 package racingcar.controller
 
-import racingcar.domain.CarsState
+import racingcar.domain.CarStates
 import racingcar.domain.RacingGame
 import racingcar.domain.Setting
 import racingcar.domain.VictoryCondition
@@ -23,16 +23,16 @@ class RacingGameController(
         return RacingGame(setting.cars, setting.numberOfLab)
     }
 
-    private fun playGame(game: RacingGame): CarsState {
+    private fun playGame(game: RacingGame): CarStates {
         while (game.isPlaying) {
             val result = game.playTurn()
-            resultView.displayNowState(result.cars)
+            resultView.displayNowState(result)
         }
-        return game.getLastState()
+        return game.getStates()
     }
 
-    private fun endGame(state: CarsState) {
-        val winner = victoryCondition.announceWinner(state.cars)
+    private fun endGame(states: CarStates) {
+        val winner = victoryCondition.announceWinner(states.cars)
         resultView.displayWinner(winner)
     }
 }
