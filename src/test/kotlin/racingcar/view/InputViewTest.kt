@@ -1,8 +1,9 @@
-package racingcar
+package racingcar.view
 
 import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
+import racingcar.domain.Setting
 
 class InputViewTest : BehaviorSpec({
 
@@ -63,8 +64,8 @@ class InputViewTest : BehaviorSpec({
         `when`("설정을 시도하면") {
             then("A라는 이름을 가진 길이가 1인 이름 배열을 가진 Setting 을 반환한다") {
                 val setting = InputView().receiveSetting(nameOfCars, numberOfLabs)
-                setting shouldBe Setting(listOf("A"), 3)
-                setting.nameOfCars.size shouldBe 1
+                setting shouldBe Setting.byCarNames(listOf("A"), 3)
+                setting.cars.size shouldBe 1
             }
         }
     }
@@ -75,31 +76,7 @@ class InputViewTest : BehaviorSpec({
         `when`("설정을 시도하면") {
             then("홍종표,강현석,박재성의 이름을 가진 길이가 3인 이름 배열을 가진 Setting 을 반환한다") {
                 val setting = InputView().receiveSetting(nameOfCars, numberOfLabs)
-                setting shouldBe Setting(listOf("홍종표", "강현석", "박재성"), 3)
-            }
-        }
-    }
-
-    given("numberOfCars에 5글자를 초과하는 텍스트(넥스트스텝짱)를 넣은 상태") {
-        val nameOfCars = "넥스트스텝짱"
-        val numberOfLabs = "3"
-        `when`("설정을 시도하면") {
-            then("IllegalArgumentException(자동차 이름은 다섯자를 초과할 수 없습니다) 반환한다") {
-                shouldThrowWithMessage<IllegalArgumentException>("자동차 이름은 다섯자를 초과할 수 없습니다") {
-                    InputView().receiveSetting(nameOfCars, numberOfLabs)
-                }
-            }
-        }
-    }
-
-    given(",로 분리된 값이 공백이거나 빈 문자열인 상태") {
-        val nameOfCars = ", ,"
-        val numberOfLabs = "3"
-        `when`("설정을 시도하면") {
-            then("IllegalArgumentException(,로 분리된 값이 공백, 빈 문자열일 수 없습니다) 반환한다") {
-                shouldThrowWithMessage<IllegalArgumentException>(",로 분리된 값이 공백, 빈 문자열일 수 없습니다") {
-                    InputView().receiveSetting(nameOfCars, numberOfLabs)
-                }
+                setting shouldBe Setting.byCarNames(listOf("홍종표", "강현석", "박재성"), 3)
             }
         }
     }

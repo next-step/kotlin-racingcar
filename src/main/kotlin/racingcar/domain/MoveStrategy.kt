@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 private const val START_DIGIT: Int = 0
 private const val MEDIAN_DIGIT: Int = 4
