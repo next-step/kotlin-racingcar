@@ -1,4 +1,4 @@
-package racingcar.input
+package racingcar.domain.input
 
 data class Racers(private val racers: String) {
     val value = racers.split(",")

@@ -1,4 +1,4 @@
-package racingcar.input
+package racingcar.domain.input
 
 private const val MINIMUM_PLAY_TIME = 0
 
