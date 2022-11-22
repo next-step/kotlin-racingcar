@@ -1,5 +1,6 @@
 package step3.racingcar.controller
 
+import step3.racingcar.domain.Cars
 import step3.racingcar.domain.PlayInfo
 import step3.racingcar.service.RacingCarService
 import step3.racingcar.view.InputView.Companion.inputCarCountGuideMessagePrinter
@@ -11,7 +12,8 @@ class RacingCarController {
     fun gameStart() {
         val numberOfCars = inputCarCountGuideMessagePrinter()
         val totalRound = inputRoundCountGuideMessagePrinter()
-        val playInfo = PlayInfo(numberOfCars, totalRound)
+        val cars = Cars(numberOfCars)
+        val playInfo = PlayInfo(cars, totalRound)
         racingCarService.play(playInfo)
     }
 }
