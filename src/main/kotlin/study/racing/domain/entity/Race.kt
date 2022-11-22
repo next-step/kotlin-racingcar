@@ -1,11 +1,10 @@
 package study.racing.domain.entity
 
-class Race constructor(
+class Race(
     roundCount: Int,
     cars: List<RacingCar>,
 ) {
-    var rounds: List<Round> = List(roundCount) { Round(cars) }
-        private set
+    val rounds: List<Round> = List(roundCount) { Round(cars) }
 
     fun start() {
         rounds.forEach(Round::race)
