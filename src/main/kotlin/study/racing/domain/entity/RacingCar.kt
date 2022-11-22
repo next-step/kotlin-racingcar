@@ -3,6 +3,7 @@ package study.racing.domain.entity
 import study.racing.domain.repository.RacingCarRepository
 
 class RacingCar(
+    val name: String,
     private val repo: RacingCarRepository
 ) {
     var currentPosition: Int = START_POSITION

@@ -3,7 +3,7 @@ package study.racing.domain.entity
 class Round(
     private val cars: List<RacingCar>
 ) {
-    var record: List<Int>? = null
+    var record: List<Record>? = null
         private set
     private val isOver: Boolean get() = record != null
 
@@ -11,8 +11,8 @@ class Round(
         if (isOver) throw IllegalStateException("이 라운드는 이미 종료되었습니다.")
         cars
             .onEach(RacingCar::moveForward)
-            .let { cars ->
-                record = cars.map { it.currentPosition }
+            .also { cars ->
+                record = cars.map(Record::invoke)
             }
     }
 }
