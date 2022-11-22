@@ -17,9 +17,7 @@ enum class Operator(private val sign: String, private val operation: BinaryOpera
 
     companion object {
         fun of(sign: String): Operator {
-            values().find { it.sign == sign }
-                ?.let { return it }
-                .run { throw IllegalArgumentException("연산할 수 없는 기호입니다. 기호: $sign") }
+            return values().find { it.sign == sign } ?: throw IllegalArgumentException("연산할 수 없는 기호입니다. 기호: $sign")
         }
     }
 
