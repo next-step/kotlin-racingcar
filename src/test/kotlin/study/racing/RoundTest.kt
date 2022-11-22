@@ -2,6 +2,7 @@ package study.racing
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import study.racing.data.RandomPowerSource
 import study.racing.domain.entity.RacingCar
 import study.racing.domain.entity.Round
 import study.racing.domain.repository.RacingCarRepositoryImpl

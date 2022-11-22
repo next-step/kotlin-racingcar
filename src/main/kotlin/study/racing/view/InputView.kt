@@ -1,40 +1,29 @@
-package study.racing.ui
-
-import study.racing.ValueProvider
+package study.racing.view
 
 sealed class InputView(
     val promptMessage: String,
     val errorMessage: String,
-    protected open val valueProvider: ValueProvider<String?>,
 ) {
     protected fun getValue(): String? {
         println(promptMessage)
-        return valueProvider.getValue()
+        return readLine()
     }
 
-    data class CarName(
-        override val valueProvider: ValueProvider<String?>,
-    ) : InputView(
+    object CarName : InputView(
         promptMessage = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).",
         errorMessage = "올바르지 않은 자동차 이름 값이 입력되었습니다.",
-        valueProvider = valueProvider,
     ) {
         fun getNames(): List<String> = getValue()
-            ?.split(",")
+            ?.split(SEPARATOR)
             ?.takeIf { it.isNotEmpty() }
             ?: throw IllegalArgumentException(errorMessage)
 
-        companion object {
-            private const val SEPARATOR = ","
-        }
+        private const val SEPARATOR = ","
     }
 
-    data class RoundCount(
-        override val valueProvider: ValueProvider<String?>,
-    ) : InputView(
+    object RoundCount : InputView(
         promptMessage = "시도할 횟수는 몇 회인가요?",
         errorMessage = "올바르지 않은 시도 횟수 값이 입력되었습니다.",
-        valueProvider = valueProvider,
     ) {
         fun getCount(): Int = getValue()
             ?.toIntOrNull()

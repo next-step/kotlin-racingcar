@@ -1,6 +1,6 @@
 package study.racing.domain.repository
 
-import study.racing.PowerSource
+import study.racing.data.PowerSource
 
 class RacingCarRepositoryImpl(
     private val powerSource: PowerSource,

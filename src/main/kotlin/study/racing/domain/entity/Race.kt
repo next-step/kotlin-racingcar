@@ -6,7 +6,7 @@ class Race(
     roundCount: Int,
     cars: List<RacingCar>,
 ) {
-    val rounds: List<Round> = List(roundCount) { Round(RoundRepositoryImpl(),cars) }
+    val rounds: List<Round> = List(roundCount) { Round(RoundRepositoryImpl(), cars) }
 
     fun start() {
         rounds.forEach(Round::race)
