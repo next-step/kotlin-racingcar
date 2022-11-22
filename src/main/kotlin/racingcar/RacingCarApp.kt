@@ -2,16 +2,16 @@ package racingcar
 
 import racingcar.domain.Car
 import racingcar.domain.RacingGame
-import racingcar.ui.InputView.printInputRacingCarCount
+import racingcar.ui.InputView.printInputRacingCarName
 import racingcar.ui.InputView.printInputRacingCount
 import racingcar.ui.ResultView.printResult
 
 fun main() {
-    printInputRacingCarCount()
+    printInputRacingCarName()
 
-    val racingCarCount = readLine()?.toInt() ?: 0
+    val racingCarNames = readLine()?.split(",") ?: emptyList()
 
-    val racingGame = RacingGame.create(racingCarCount)
+    val racingGame = RacingGame.create(racingCarNames)
 
     printInputRacingCount()
 
