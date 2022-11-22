@@ -1,6 +1,6 @@
 package racingcar.domain
 
-const val DEFAULT_LAB_COUNT = 5
+private const val DEFAULT_LAB_COUNT = 5
 
 data class Setting(val cars: List<Car>, val numberOfLab: Int = DEFAULT_LAB_COUNT) {
     init {
