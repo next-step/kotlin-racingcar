@@ -4,7 +4,7 @@ import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 
 class CarTest : BehaviorSpec({
-    given("경주에 참가하는 자동차 한대에 숫자 4가 주어지고") {
+    given("경주에 참가하는 자동차 한대에 4이상의 숫자가 주어지고") {
         val givenCar = Car()
         val givenNumber = 4
         `when`("경주를 진행하면") {
@@ -15,7 +15,7 @@ class CarTest : BehaviorSpec({
         }
     }
 
-    given("경주에 참가하는 자동차 한대에 숫자 3가 주어지고") {
+    given("경주에 참가하는 자동차 한대에 3이하의 숫자가 주어지고") {
         val givenCar = Car()
         val givenNumber = 3
         `when`("경주를 진행하면") {
