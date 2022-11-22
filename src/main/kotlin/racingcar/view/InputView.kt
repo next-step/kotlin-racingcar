@@ -9,7 +9,7 @@ class InputView {
     }
 
     private fun askNameOfCars(): String? {
-        display("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
         return readLine()
     }
 
@@ -19,7 +19,7 @@ class InputView {
     }
 
     private fun askNumberOfLab(): String? {
-        display("시도할 횟수는 몇 회인가요?")
+        println("시도할 횟수는 몇 회인가요?")
         return readLine()
     }
 
@@ -27,9 +27,5 @@ class InputView {
         require(!integerString.isNullOrBlank()) { "입력값이 null 혹은 공백일 수 없습니다" }
         requireNotNull(integerString.toIntOrNull()) { "입력된 문자는 정수여야 합니다" }
         return integerString.toInt()
-    }
-
-    private fun display(message: String) {
-        println(message)
     }
 }
