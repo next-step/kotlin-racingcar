@@ -3,12 +3,12 @@ package stringcalculator.domain
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import stringcalculator.domain.Calculator.ADD
-import stringcalculator.domain.Calculator.DIVIDE
-import stringcalculator.domain.Calculator.MULTIPLY
-import stringcalculator.domain.Calculator.SUBTRACT
+import stringcalculator.domain.Operator.ADD
+import stringcalculator.domain.Operator.DIVIDE
+import stringcalculator.domain.Operator.MULTIPLY
+import stringcalculator.domain.Operator.SUBTRACT
 
-class CalculatorTest : StringSpec({
+class OperatorTest : StringSpec({
 
     "사칙연산 기호로 해당하는 계산기를 찾는다" {
         listOf(
@@ -17,13 +17,13 @@ class CalculatorTest : StringSpec({
             "*" to MULTIPLY,
             "/" to DIVIDE
         ).forEach { (sign, calculator) ->
-            Calculator.of(sign) shouldBe calculator
+            Operator.of(sign) shouldBe calculator
         }
     }
 
     "올바르지 않는 기호로 계산기를 찾으면 예외가 발생한다" {
         shouldThrow<IllegalArgumentException> {
-            Calculator.of("a")
+            Operator.of("a")
         }
     }
 

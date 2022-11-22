@@ -2,7 +2,7 @@ package stringcalculator.domain
 
 import java.util.function.BinaryOperator
 
-enum class Calculator(private val sign: String, private val operation: BinaryOperator<Int>) {
+enum class Operator(private val sign: String, private val operation: BinaryOperator<Int>) {
 
     ADD("+", { a, b -> a + b }),
     SUBTRACT("-", { a, b -> a - b }),
@@ -10,7 +10,7 @@ enum class Calculator(private val sign: String, private val operation: BinaryOpe
     DIVIDE("/", { a, b -> a / b });
 
     companion object {
-        fun of(sign: String): Calculator {
+        fun of(sign: String): Operator {
             values().find { it.sign == sign }
                 ?.let { return it }
                 .run { throw IllegalArgumentException("연산할 수 없는 기호입니다. 기호: $sign") }

@@ -1,6 +1,6 @@
 package stringcalculator
 
-import stringcalculator.domain.Calculator
+import stringcalculator.domain.Operator
 import stringcalculator.ui.InputView
 
 fun main() {
@@ -8,7 +8,6 @@ fun main() {
 }
 
 private const val INDEX_OF_NUMBER = 0
-
 private const val INDEX_OF_SIGN = 1
 
 class Application {
@@ -29,11 +28,11 @@ class Application {
     private fun calculateInternal(numbers: List<Int>, signs: List<String>): Int {
         var summary = numbers[0]
         for (i in signs.indices) {
-            val calculator = Calculator.of(signs[i])
+            val operator = Operator.of(signs[i])
 
             val left = summary
             val right = numbers[i + 1]
-            summary = calculator.calculate(left, right)
+            summary = operator.calculate(left, right)
         }
 
         return summary
