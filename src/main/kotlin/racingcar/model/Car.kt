@@ -15,6 +15,6 @@ class Car(
 
     companion object {
         fun of(name: String) = Car(Name(name))
-        fun of(name: String, position: Position) = Car(Name(name), position)
+        fun of(name: String, position: Int) = Car(Name(name), Position(position))
     }
 }

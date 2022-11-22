@@ -6,7 +6,6 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import racingcar.model.Car
-import racingcar.model.Position
 import racingcar.service.RacingGame.Companion.CAR_NAME_DELIMITER
 
 internal class RacingGameTest {
@@ -36,8 +35,8 @@ internal class RacingGameTest {
 
     @Test
     internal fun `우승자를 선정한다`() {
-        val winner = Car.of("win", Position(10))
-        val loser = Car.of("lose", Position(9))
+        val winner = Car.of("win", 10)
+        val loser = Car.of("lose", 9)
         val cars = listOf(winner, loser)
         val racingGame = RacingGame(cars)
 
@@ -49,9 +48,9 @@ internal class RacingGameTest {
 
     @Test
     internal fun `우승자가 2명 이상일 경우`() {
-        val p1 = Car.of("pobi", Position(10))
-        val p2 = Car.of("crong", Position(10))
-        val p3 = Car.of("honux", Position(10))
+        val p1 = Car.of("pobi", 10)
+        val p2 = Car.of("crong", 10)
+        val p3 = Car.of("honux", 10)
         val cars = listOf(p1, p2, p3)
 
         val winners = RacingGame(cars).winners()
