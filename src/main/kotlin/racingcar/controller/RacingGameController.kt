@@ -1,6 +1,6 @@
 package racingcar.controller
 
-import racingcar.domain.Car
+import racingcar.domain.CarsState
 import racingcar.domain.RacingGame
 import racingcar.domain.Setting
 import racingcar.domain.VictoryCondition
@@ -10,26 +10,29 @@ import racingcar.view.ResultView
 class RacingGameController(
     private val inputView: InputView = InputView(),
     private val resultView: ResultView = ResultView(),
+    private val victoryCondition: VictoryCondition = VictoryCondition.Longest
 ) {
 
-    private var game: RacingGame? = null
-    private val victoryCondition = VictoryCondition.Longest
-
-    fun setUpGame(setting: Setting = inputView.receiveSetting()) {
-        game = RacingGame(setting.cars, setting.numberOfLab)
+    fun race() {
+        val game = setUpGame()
+        val endState = playGame(game)
+        endGame(endState)
     }
 
-    fun race() {
-        while (game!!.isPlaying) {
-            val result = game!!.playTurn()
+    private fun setUpGame(setting: Setting = inputView.receiveSetting()): RacingGame {
+        return RacingGame(setting.cars, setting.numberOfLab)
+    }
+
+    private fun playGame(game: RacingGame): CarsState {
+        while (game.isPlaying) {
+            val result = game.playTurn()
             resultView.displayNowState(result.cars)
         }
-        endGame(game!!.getLastState())
+        return game.getLastState()
     }
 
-    private fun endGame(cars: List<Car>) {
-        val winner = victoryCondition.announceWinner(cars)
+    private fun endGame(state: CarsState) {
+        val winner = victoryCondition.announceWinner(state.cars)
         resultView.displayWinner(winner)
-        game = null
     }
 }

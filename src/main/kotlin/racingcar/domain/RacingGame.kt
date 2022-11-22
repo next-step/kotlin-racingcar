@@ -22,8 +22,8 @@ class RacingGame(private val cars: List<Car>, private val turn: Int) {
         }
     }
 
-    fun getLastState(): List<Car> {
-        return cars
+    fun getLastState(): CarsState {
+        return CarsState(cars)
     }
 }
 
