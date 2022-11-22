@@ -25,8 +25,7 @@ class CarTest : BehaviorSpec({
                 distance = Distance()
             )
             then("distance 는 변화가 없다.") {
-                car.moveOrNot()
-                car.getDistance() shouldBe 0
+                car.moveOrNot().getDistance() shouldBe 0
             }
         }
     }
