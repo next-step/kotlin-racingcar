@@ -1,6 +1,6 @@
 package step3.racingcar.view
 
-import step3.racingcar.expansion.isNotDigit
+import step3.racingcar.extension.isNotDigit
 
 class InputView {
     companion object {
