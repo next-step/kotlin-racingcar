@@ -46,7 +46,7 @@ internal class CarTest {
     }
 
     @Test
-    fun `자동차를 기본 인자로 생성하면 포지션의 값은 0이다`() {
+    fun `자동차를 기본 인자로 생성하면 위치의 값은 0이다`() {
         val name = "자동차"
         assertThat(Car(name)).isEqualTo(Car(name = "자동차", _position = 0))
     }
