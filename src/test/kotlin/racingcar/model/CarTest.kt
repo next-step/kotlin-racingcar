@@ -1,7 +1,6 @@
 package racingcar.model
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
@@ -29,24 +28,5 @@ internal class CarTest {
         val car = Car.of("pobi")
         repeat(tryCount) { car.move(MoveFactor(value)) }
         assertThat(car.position.value).isEqualTo(expected)
-    }
-
-    @Test
-    internal fun `자동차에 이름을 부여한다`() {
-        val name = "crong"
-        val car = Car.of(name)
-        assertThat(car.name.value).isEqualTo(name)
-    }
-
-    @Test
-    internal fun `자동차의 이름은 5자를 초과할 수 없다`() {
-        val name = "crongg"
-        assertThrows<IllegalArgumentException> { Car.of(name) }
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = ["", " ", "  "])
-    internal fun `자동차의 이름은 공백이나 빈 문자열이 올 수 없다`(name: String) {
-        assertThrows<IllegalArgumentException> { Car.of(name) }
     }
 }
