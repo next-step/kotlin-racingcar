@@ -27,4 +27,5 @@
 - [ ] 함수에서 중괄호를 사용하는 경우 `return` 명시
 - [ ] scope function 대신 Elvis operator 활용!
 - [ ] 나누기 0 예외 처리를 operation 내부에서 수행하도록 변경
-- [ ] InputView를 object class로 변경
+- [x] InputView를 object class로 변경
+  - 자바의 private 생성자를 만들고, static 메서드로 명시하던 것과 비슷하다..

@@ -13,7 +13,7 @@ private const val INDEX_OF_SIGN = 1
 class Application {
 
     fun run() {
-        val inputFormula = InputView().inputFormula()
+        val inputFormula = InputView.inputFormula()
         val result = calculate(inputFormula)
         print(result)
     }
