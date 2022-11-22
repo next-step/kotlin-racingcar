@@ -18,12 +18,12 @@ class RacingGame(val cars: List<Car>) {
         private const val DEFAULT_NAME_PREFIX = "P"
 
         fun of(carCount: Int): RacingGame {
-            val cars = List(carCount) { Car(DEFAULT_NAME_PREFIX + it) }
+            val cars = List(carCount) { Car.of(DEFAULT_NAME_PREFIX + it) }
             return RacingGame(cars)
         }
 
         fun of(carNames: String): RacingGame {
-            return RacingGame(carNames.split(CAR_NAME_DELIMITER).map { Car(it) })
+            return RacingGame(carNames.split(CAR_NAME_DELIMITER).map { Car.of(it) })
         }
     }
 }

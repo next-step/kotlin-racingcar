@@ -18,7 +18,7 @@ object ResultView {
     }
 
     private fun printCarTrace(car: Car) {
-        print(car.name + NAME_COLUMN_SEPARATOR)
+        print(car.name.value + NAME_COLUMN_SEPARATOR)
         repeat(car.position.value) {
             print(TRACE_SYMBOL)
         }
@@ -27,7 +27,7 @@ object ResultView {
 
     fun printWinner(racingGame: RacingGame) {
         val winnerNames = racingGame.winners()
-            .map { it.name }
+            .map { it.name.value }
             .reduce { s1, s2 -> "$s1, $s2" }
         println(winnerNames + "가 최종 우승했습니다.")
     }

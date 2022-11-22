@@ -24,7 +24,7 @@ internal class RacingGameTest {
         val racingGame = RacingGame.of(carNames)
 
         val carNameArray = carNames.split(CAR_NAME_DELIMITER).toTypedArray()
-        val carNameArrayInRacingGame = racingGame.cars.map { it.name }.toTypedArray()
+        val carNameArrayInRacingGame = racingGame.cars.map { it.name.value }.toTypedArray()
         assertThat(carNameArray contentEquals carNameArrayInRacingGame).isTrue
     }
 
@@ -36,8 +36,8 @@ internal class RacingGameTest {
 
     @Test
     internal fun `우승자를 선정한다`() {
-        val winner = Car("win", Position(10))
-        val loser = Car("lose", Position(9))
+        val winner = Car.of("win", Position(10))
+        val loser = Car.of("lose", Position(9))
         val cars = listOf(winner, loser)
         val racingGame = RacingGame(cars)
 
@@ -49,9 +49,9 @@ internal class RacingGameTest {
 
     @Test
     internal fun `우승자가 2명 이상일 경우`() {
-        val p1 = Car("pobi", Position(10))
-        val p2 = Car("crong", Position(10))
-        val p3 = Car("honux", Position(10))
+        val p1 = Car.of("pobi", Position(10))
+        val p2 = Car.of("crong", Position(10))
+        val p3 = Car.of("honux", Position(10))
         val cars = listOf(p1, p2, p3)
 
         val winners = RacingGame(cars).winners()
