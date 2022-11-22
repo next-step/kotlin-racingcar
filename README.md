@@ -23,7 +23,7 @@
 - [ ] 불필요한 변경 제거 (map)
 - [x] 연산기호 객체를 표현할 수 있는 클래스명으로 변경
   - Calculator -> Operator
-- [ ] Scanner 대신 readln 함수 사용
+- [x] Scanner 대신 readln 함수 사용
 - [ ] 함수에서 중괄호를 사용하는 경우 `return` 명시
 - [ ] scope function 대신 Elvis operator 활용!
 - [ ] 나누기 0 예외 처리를 operation 내부에서 수행하도록 변경
