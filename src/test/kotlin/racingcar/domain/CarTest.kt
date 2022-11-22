@@ -1,19 +1,23 @@
 package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 internal class CarTest {
 
-    @Test
-    fun `자동차에 이름의 글자수 제한은 한 글자이상 다섯 글자 이하다`() {
-        val name = "첫 자동차"
-        assertThat(Car(name)).isEqualTo(Car(name = "첫 자동차"))
+    @DisplayName("자동차 이름 글자 수 범위 테스트")
+    @ParameterizedTest(name = "한글자 이상 다섯글자 이하의 이름: {0}은 생성된다")
+    @ValueSource(strings = ["일", "둘둘", "삼삼삼", "사사사사", "오오오오오"])
+    fun `자동차에 이름의 글자수 제한은 한 글자이상 다섯 글자 이하다`(name: String) {
+        assertThat(Car(name)).isEqualTo(Car(name = name))
     }
 
     @Test
-    fun `빈 문자열은 자동차의  이름이 될 수 없다`() {
+    fun `빈 문자열은 자동차의 이름이 될 수 없다`() {
         val emptyName = ""
 
         val assertion = assertThrows<IllegalArgumentException> {
