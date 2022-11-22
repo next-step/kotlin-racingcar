@@ -13,14 +13,14 @@ private const val INDEX_OF_SIGN = 1
 class Application {
 
     fun run() {
-        val inputFormula = InputView.inputFormula()
-        val result = calculate(inputFormula)
+        val formula = InputView.inputFormula()
+        val result = calculate(formula)
         print(result)
     }
 
-    private fun calculate(inputFormula: List<String>): Int {
-        val numbers = getNumbers(inputFormula)
-        val signs = getSigns(inputFormula)
+    private fun calculate(formula: List<String>): Int {
+        val numbers = getNumbers(formula)
+        val signs = getSigns(formula)
 
         return calculateInternal(numbers, signs)
     }

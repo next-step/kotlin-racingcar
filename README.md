@@ -15,7 +15,7 @@
 
 ### 2단계 피드백
 - [ ] Application의 calculate 함수를 Calculator 클래스 내부로 이동
-- [ ] calculate 함수의 로컬 변수명 변경
+- [x] calculate 함수의 로컬 변수명 변경
   - inputFormula -> formula
 - [x] calculateInternal 함수의 로컬 변수명 변경
   - summary -> total
