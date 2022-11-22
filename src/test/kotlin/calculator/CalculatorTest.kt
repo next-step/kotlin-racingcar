@@ -11,7 +11,7 @@ internal class CalculatorTest {
 
     @ParameterizedTest
     @MethodSource("successCalculateTest")
-    fun `문자열 계산기가 수식에 따른 결과가 올바르게 나오는 케이스`(inputs: String, result: Int) {
+    fun `문자열 계산기가 수식에 따른 계산 결과가 성공`(inputs: String, result: Int) {
         // given
         val expression = Expression(inputs)
         val calculator = Calculator(expression)
@@ -26,7 +26,7 @@ internal class CalculatorTest {
 
     @ParameterizedTest
     @MethodSource("failureCalculateTest")
-    fun `수식이 잘못되어 계산을 실패한 케이스`(inputs: String, result: Int) {
+    fun `수식이 잘못되어 계산을 실패`(inputs: String, result: Int) {
         assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy {
                 // given

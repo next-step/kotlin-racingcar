@@ -4,13 +4,22 @@ import java.util.concurrent.ThreadLocalRandom
 
 
 class Car(
+    val name: String,
     val position: Position = Position(POSITION_FIRST),
 ) {
 
+    init {
+        validateNameLength()
+    }
+
     fun move(terms: Int = ThreadLocalRandom.current().nextInt(TERMS_OF_RACING_MIN, TERMS_OF_RACING_MAX)): Car {
         return if (isMove(terms))
-            Car(Position(position.value + POSITION_MOVE))
+            Car(name, Position(position.value + POSITION_MOVE))
         else this
+    }
+
+    private fun validateNameLength() {
+        if (name.length > 5) throw IllegalArgumentException("자동차 이름은 5글자를 초과할 수 없습니다.")
     }
 
     private fun isMove(terms: Int): Boolean {
