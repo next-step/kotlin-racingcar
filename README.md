@@ -20,7 +20,7 @@
 - [ ] calculateInternal 함수의 로컬 변수명 변경
   - summary -> total
 - [ ] Application 내부 메서드 순서 변경 (호출 순)
-- [ ] 불필요한 변경 제거 (map)
+- [x] 불필요한 코드 제거 (map)
 - [x] 연산기호 객체를 표현할 수 있는 클래스명으로 변경
   - Calculator -> Operator
 - [x] Scanner 대신 readln 함수 사용

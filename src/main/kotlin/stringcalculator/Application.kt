@@ -39,7 +39,7 @@ class Application {
     }
 
     private fun getSigns(stringFormula: List<String>) =
-        stringFormula.filterIndexed { index, _ -> index % 2 == INDEX_OF_SIGN }.map { it }
+        stringFormula.filterIndexed { index, _ -> index % 2 == INDEX_OF_SIGN }
 
     private fun getNumbers(stringFormula: List<String>) =
         stringFormula.filterIndexed { index, _ -> index % 2 == INDEX_OF_NUMBER }.map { it.toInt() }
