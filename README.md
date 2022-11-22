@@ -14,17 +14,17 @@
 - [x] 입력 순으로 계산 (연산 우선 순위 무시)
 
 ### 2단계 피드백
-- [ ] Application의 calculate 함수를 Calculator 클래스 내부로 이동
+- [x] Application의 calculate 함수를 Calculator 클래스 내부로 이동
 - [x] calculate 함수의 로컬 변수명 변경
   - inputFormula -> formula
 - [x] calculateInternal 함수의 로컬 변수명 변경
   - summary -> total
-- [ ] Application 내부 메서드 순서 변경 (호출 순)
+- [x] Application 내부 메서드 순서 변경 (호출 순)
 - [x] 불필요한 코드 제거 (map)
 - [x] 연산기호 객체를 표현할 수 있는 클래스명으로 변경
   - Calculator -> Operator
 - [x] Scanner 대신 readln 함수 사용
-- [ ] 함수에서 중괄호를 사용하는 경우 `return` 명시
+- [x] 함수에서 중괄호를 사용하는 경우 `return` 명시
 - [x] scope function 대신 Elvis operator 활용!
 - [x] 나누기 0 예외 처리를 operation 내부에서 수행하도록 변경
 - [x] InputView를 object class로 변경
