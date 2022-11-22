@@ -9,10 +9,8 @@ class Round(
 
     fun race() {
         if (isOver) throw IllegalStateException("이 라운드는 이미 종료되었습니다.")
-        cars
+        record = cars
             .onEach(RacingCar::moveForward)
-            .also { cars ->
-                record = cars.map(Record::invoke)
-            }
+            .map(Record::invoke)
     }
 }
