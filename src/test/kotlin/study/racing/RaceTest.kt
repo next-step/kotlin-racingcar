@@ -1,6 +1,7 @@
 package study.racing
 
 import org.junit.jupiter.api.Test
+import study.racing.data.RandomPowerSource
 import study.racing.domain.entity.Race
 import study.racing.domain.entity.RacingCar
 import study.racing.domain.repository.RacingCarRepositoryImpl
@@ -21,7 +22,7 @@ class RaceTest {
         race.start()
 
         val recordCount = race.rounds
-            .mapNotNull { it.record }
+            .mapNotNull { it.records }
             .size
 
         assert(recordCount == roundCount)

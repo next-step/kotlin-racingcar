@@ -1,18 +1,19 @@
 package study.racing
 
+import study.racing.data.RandomPowerSource
 import study.racing.domain.entity.Race
 import study.racing.domain.entity.RacingCar
 import study.racing.domain.repository.RacingCarRepositoryImpl
-import study.racing.ui.InputView
-import study.racing.ui.ResultView
+import study.racing.view.InputView
+import study.racing.view.ResultView
 
 fun main() {
     val carNames = InputView
-        .CarName(SystemValueProvider)
+        .CarName
         .getNames()
 
     val roundCount = InputView
-        .RoundCount(SystemValueProvider)
+        .RoundCount
         .getCount()
 
     val race = Race(
