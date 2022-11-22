@@ -1,4 +1,4 @@
-package study.racing.entity
+package study.racing.domain.entity
 
 class Round(
     private val cars: List<RacingCar>

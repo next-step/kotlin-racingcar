@@ -1,4 +1,4 @@
-package study.racing.entity
+package study.racing.domain.entity
 
 import study.racing.PowerSource
 

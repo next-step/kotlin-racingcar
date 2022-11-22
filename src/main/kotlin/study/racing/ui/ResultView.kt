@@ -1,6 +1,6 @@
 package study.racing.ui
 
-import study.racing.entity.Race
+import study.racing.domain.entity.Race
 
 class ResultView(
     private val race: Race

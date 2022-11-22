@@ -1,6 +1,6 @@
 package study.racing
 
-import study.racing.entity.Race
+import study.racing.domain.entity.Race
 import study.racing.ui.InputView
 import study.racing.ui.ResultView
 
