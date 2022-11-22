@@ -2,7 +2,7 @@ package study.racing
 
 import study.racing.domain.entity.Race
 import study.racing.domain.entity.RacingCar
-import study.racing.domain.repository.RacingCarRepository
+import study.racing.domain.repository.RacingCarRepositoryImpl
 import study.racing.ui.InputView
 import study.racing.ui.ResultView
 
@@ -20,7 +20,7 @@ fun main() {
         cars = carNames.map { name ->
             RacingCar(
                 name = name,
-                repo = RacingCarRepository(RandomPowerSource()),
+                repo = RacingCarRepositoryImpl(RandomPowerSource()),
             )
         }
     )
