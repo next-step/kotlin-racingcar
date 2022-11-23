@@ -21,14 +21,4 @@ class CarTest {
             Car(carName)
         }
     }
-
-    @Test
-    fun `자동차 이름은 쉼표(,)를 기준으로 구분한다`() {
-        val carNames = "자동차1,자동차2,자동차3"
-        val tryCount = 1
-
-        val racingHistory = RacingCar(carNames, tryCount).start(ForwardStrategy.CarForward)
-
-        assertTrue(racingHistory.keys.toList().size == carNames.split(",").size)
-    }
 }
