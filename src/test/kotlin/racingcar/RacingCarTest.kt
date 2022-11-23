@@ -37,4 +37,15 @@ class RacingCarTest {
 
         assertTrue(racingHistory.values.toList()[0].size == tryCount)
     }
+
+    @Test
+    fun `자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다, 우승자는 한 명 이상일 수 있다`() {
+        val carNames = "자동차1,자동차2,자동차3"
+        val tryCount = 1
+        val racingCar = RacingCar(carNames, tryCount)
+
+        racingCar.start(ForwardStrategy.CarForward)
+
+        assertTrue(racingCar.getWinningCarNames().isNotEmpty())
+    }
 }

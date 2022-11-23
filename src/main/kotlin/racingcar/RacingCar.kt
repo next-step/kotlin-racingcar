@@ -28,4 +28,20 @@ class RacingCar private constructor(private val cars: ArrayList<Car> = ArrayList
             carHistoryItem.add(car.move(moveStrategy.forward()))
         }
     }
+
+    fun getWinningCarNames(): List<String> {
+        val winningCars = ArrayList<String>()
+
+        for (i in tryCount downTo 0) {
+            carHistory.keys.forEach { car ->
+                if (i == carHistory[car]!![tryCount - 1]) {
+                    winningCars.add(car.name)
+                }
+            }
+
+            if (winningCars.size > 0) break
+        }
+
+        return winningCars
+    }
 }

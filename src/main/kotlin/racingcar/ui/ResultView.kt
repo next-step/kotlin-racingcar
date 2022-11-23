@@ -13,6 +13,10 @@ internal class ResultView {
         println(getMoveString(carMove))
     }
 
+    fun printWinningCars(names: List<String>) {
+        print("${names.joinToString(", ")}가 최종 우승했습니다.")
+    }
+
     fun printLineSpacing() {
         println()
     }

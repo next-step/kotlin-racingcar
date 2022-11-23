@@ -9,8 +9,10 @@ fun main() {
 
     val carNames = inputView.inputCarNames()
     val tryCount = inputView.inputTryCount()
+    val racingCar = RacingCar(carNames, tryCount)
 
-    val racingHistory = RacingCar(carNames, tryCount).start(ForwardStrategy.CarForward)
+    val racingHistory = racingCar.start(ForwardStrategy.CarForward)
+    val winningCarNames = racingCar.getWinningCarNames()
 
     for (i in 0 until tryCount) {
         racingHistory.keys.forEach { car ->
@@ -22,4 +24,6 @@ fun main() {
             resultView.printLineSpacing()
         }
     }
+
+    resultView.printWinningCars(winningCarNames)
 }
