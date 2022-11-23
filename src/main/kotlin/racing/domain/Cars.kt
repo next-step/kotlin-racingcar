@@ -1,17 +1,19 @@
 package racing.domain
 
 class Cars(
-    val cars: List<Car>,
+    val roundInfo: List<Car>,
     private val moveStrategy: CarMoveStrategy
 ) {
 
     fun tryMoveCars() {
-        cars.forEach {
-            car -> if (moveStrategy.isMovable()) car.move()
+        roundInfo.forEach {
+            car ->
+            if (moveStrategy.isMovable()) car.move()
         }
     }
 
-    fun getCarsPosition(): List<Int> {
-        return cars.map(Car::position)
+    fun winner(): List<Car> {
+        val maxPosition = roundInfo.maxOf { it.position.value }
+        return roundInfo.filter { it.position.value == maxPosition }
     }
 }

@@ -1,11 +1,11 @@
 package racing.domain
 
-class Car {
-
-    var position: Int = 0
-        private set
+class Car(
+    val carName: CarName,
+    var position: Position = Position()
+) {
 
     fun move() {
-        position++
+        position.move()
     }
 }

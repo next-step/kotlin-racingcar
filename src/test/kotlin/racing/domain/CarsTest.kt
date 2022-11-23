@@ -1,32 +1,38 @@
 package racing.domain
 
-import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
 
-class CarsTest : BehaviorSpec({
+class CarsTest : FreeSpec({
 
-    given("자동차들이") {
-        `when`("전진 조건을 만족할때") {
-            val cars = Cars(List(4) { Car() }, object : CarMoveStrategy {
-                override fun isMovable(): Boolean {
-                    return true
+    "tryMoveCars" - {
+
+        "Car들이 전체 움직인다." {
+            val carsName = "pobi,crong,honux".split(",")
+            val cars = Cars(
+                carsName.map { Car(CarName(it)) },
+                object : CarMoveStrategy {
+                    override fun isMovable(): Boolean {
+                        return true
+                    }
                 }
-            })
-            then("position이 증가한다.") {
-                cars.tryMoveCars()
-                cars.getCarsPosition() shouldBe listOf(1, 1, 1, 1)
-            }
+            )
+            cars.tryMoveCars()
+
+            cars.roundInfo.map { it.position.value } shouldBe listOf(1, 1, 1)
         }
-        `when`("전진 조건을 만족하지 않을때") {
-            val cars = Cars(List(4) { Car() }, object: CarMoveStrategy {
-                override fun isMovable(): Boolean {
-                    return false
-                }
-            })
-            then("postion을 증가하지 않는다.") {
-                cars.tryMoveCars()
-                cars.getCarsPosition() shouldBe listOf(0, 0, 0, 0)
-            }
+    }
+
+    "winner" - {
+
+        "우승자를 출력한다." - {
+            val cars = Cars(
+                listOf(Car(CarName("pobi"), Position()), Car(CarName("crong"), Position())),
+                RandomStrategy()
+            )
+            val winnerNames = cars.winner().map { it.carName.name }
+
+            winnerNames shouldBe listOf("pobi", "crong")
         }
     }
 })
