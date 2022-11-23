@@ -14,6 +14,6 @@ class MoveFactor(private val value: Int) {
     fun isBiggerThanOrEquals(target: Int) = value >= target
 
     companion object {
-        fun random() = MoveFactor(nextInt(MINIMUM_VALUE, MAXIMUM_VALUE))
+        val random = { MoveFactor(nextInt(MINIMUM_VALUE, MAXIMUM_VALUE)) }
     }
 }

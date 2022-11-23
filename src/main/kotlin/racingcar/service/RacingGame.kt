@@ -1,16 +1,16 @@
 package racingcar.service
 
 import racingcar.model.Car
+import racingcar.model.Cars
 import racingcar.model.MoveFactor
 
-class RacingGame(val cars: List<Car>) {
+class RacingGame(val cars: Cars) {
     fun play() {
-        cars.forEach { it.move(MoveFactor.random()) }
+        cars.move(MoveFactor.random)
     }
 
-    fun winners(): List<Car> {
-        val winnerPosition = cars.maxOf { car -> car.position.value }
-        return cars.filter { car -> car.position.value == winnerPosition }
+    fun winners(): Cars {
+        return cars.carsInLead()
     }
 
     companion object {
@@ -19,11 +19,12 @@ class RacingGame(val cars: List<Car>) {
 
         fun of(carCount: Int): RacingGame {
             val cars = List(carCount) { Car.of(DEFAULT_NAME_PREFIX + it) }
-            return RacingGame(cars)
+            return RacingGame(Cars(cars))
         }
 
         fun of(carNames: String): RacingGame {
-            return RacingGame(carNames.split(CAR_NAME_DELIMITER).map { Car.of(it) })
+            val cars = carNames.split(CAR_NAME_DELIMITER).map { Car.of(it) }
+            return RacingGame(Cars(cars))
         }
     }
 }
