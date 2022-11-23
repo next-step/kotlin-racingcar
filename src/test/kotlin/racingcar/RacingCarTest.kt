@@ -9,14 +9,14 @@ class RacingCarTest {
     fun `전진 성공 테스트`() {
         val forward = ForwardStrategy.CarPassForward
 
-        assertTrue(Car().move(forward.forward()) == 1)
+        assertTrue(Car("자동차").move(forward.forward()) == 1)
     }
 
     @Test
     fun `전진 실패 테스트`() {
         val forward = ForwardStrategy.CarNotForward
 
-        assertTrue(Car().move(forward.forward()) == 0)
+        assertTrue(Car("자동차").move(forward.forward()) == 0)
     }
 
     @Test
