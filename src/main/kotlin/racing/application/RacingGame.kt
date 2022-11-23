@@ -10,11 +10,11 @@ import racing.ui.OutputView.printWinnerCars
 
 class RacingGame(
     val tryCount: Int,
-    val carNames: List<String>
+    val carNames: List<CarName>
 ) {
 
     fun runRace() {
-        val cars = Cars(carNames.map { Car(CarName(it)) }, RandomStrategy())
+        val cars = Cars(carNames.map { Car(it) }, RandomStrategy())
         printTitle()
 
         repeat(tryCount) {
