@@ -11,4 +11,13 @@ class CarTest {
 
         Assertions.assertTrue(Car(carName).name.equals(carName, false))
     }
+
+    @Test
+    fun `자동차 이름은 5자를 초과할 수 없다`() {
+        val carName = "자동차123"
+
+        Assertions.assertThrows(IllegalArgumentException::class.java) {
+            Car(carName)
+        }
+    }
 }
