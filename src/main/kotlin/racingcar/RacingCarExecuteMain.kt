@@ -11,7 +11,7 @@ fun main() {
     val tryCount = inputView.inputTryCount()
     val racingCar = RacingCar(carNames, tryCount)
 
-    val racingHistory = racingCar.start(ForwardStrategy.CarForward)
+    val racingHistory = racingCar.start(ForwardStrategy.DefaultForward)
     val winningCarNames = racingCar.getWinningCarNames()
 
     for (i in 0 until tryCount) {
