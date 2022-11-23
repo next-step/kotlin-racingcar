@@ -9,7 +9,7 @@ object OutputView {
     fun printTitle() = println("실행 결과")
 
     fun printCarNameAndPosition(cars: Cars) {
-        cars.cars.forEach {
+        cars.roundInfo.forEach {
             printCarLine(it)
         }
         println()
