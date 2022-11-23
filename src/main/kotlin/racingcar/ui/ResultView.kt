@@ -5,6 +5,10 @@ internal class ResultView {
         println("실행 결과")
     }
 
+    fun printCarName(name: String) {
+        print("$name : ")
+    }
+
     fun printCarMove(carMove: Int) {
         println(getMoveString(carMove))
     }
@@ -13,5 +17,5 @@ internal class ResultView {
         println()
     }
 
-    fun getMoveString(moveCount: Int): String = "-".repeat(moveCount)
+    private fun getMoveString(moveCount: Int): String = "-".repeat(moveCount)
 }

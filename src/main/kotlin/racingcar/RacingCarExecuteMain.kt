@@ -14,6 +14,7 @@ fun main() {
 
     for (i in 0 until tryCount) {
         racingHistory.keys.forEach { car ->
+            resultView.printCarName(car.name)
             resultView.printCarMove(racingHistory[car]!![i])
         }
 
