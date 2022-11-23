@@ -20,9 +20,7 @@ fun main() {
             resultView.printCarMove(racingHistory[car]!![i])
         }
 
-        if (i < tryCount - 1) {
-            resultView.printLineSpacing()
-        }
+        resultView.printLineSpacing()
     }
 
     resultView.printWinningCars(winningCarNames)
