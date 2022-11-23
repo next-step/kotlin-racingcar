@@ -7,12 +7,8 @@ import racingcar.domain.car.engine.MovingEngine
 class CarFactory(
     private val movingEngine: MovingEngine
 ) {
-    fun createByCount(count: Int): ParticipatingCars {
-        val cars = List(count) { Car(movingEngine) }
+    fun createByCarNames(carNames: List<String>): ParticipatingCars {
+        val cars = carNames.map { Car(movingEngine, it) }
         return ParticipatingCars(cars)
-    }
-
-    private companion object {
-        private const val START_CREATE_COUNT = 1
     }
 }

@@ -1,57 +1,48 @@
 package racingcar.application.race
 
 import racingcar.application.model.RaceInputCommand
-import racingcar.application.port.output.OutputPort
+import racingcar.application.race.event.model.CarData
+import racingcar.application.race.event.model.EventState
+import racingcar.application.race.event.model.RoundEventCarData
+import racingcar.application.race.event.model.WinEventCarData
+import racingcar.application.race.event.publisher.EventPublisher
 import racingcar.application.race.factory.CarFactory
 import racingcar.domain.car.ParticipatingCars
 
 class Race(
-    private val outputPort: OutputPort,
-    private val carFactory: CarFactory
+    private val carFactory: CarFactory,
+    private val eventPublisher: EventPublisher
 ) {
 
     fun proceed(raceInputCommand: RaceInputCommand) {
         val attemptCount = raceInputCommand.attemptCount
-        val participatingCars = carFactory.createByCount(count = raceInputCommand.carCount)
-
-        outputPort.output(RESULT_COMMENT)
+        val participatingCars = carFactory.createByCarNames(carNames = raceInputCommand.carNames)
         race(participatingCars, attemptCount)
     }
 
     private fun race(participatingCars: ParticipatingCars, attemptCount: Int) {
-        participatingCars.initRace()
-        participatingCars.startRace(attemptCount)
-    }
-
-    private fun ParticipatingCars.initRace() {
-        outputPort.outputNewLine()
-        this.initRace {
-            outputPort.output(LITERAL_POSITION)
-            outputPort.outputNewLine()
+        eventPublisher.roundEvent().publish(participatingCars.currentEventData(EventState.INIT))
+        repeat(attemptCount) {
+            participatingCars.move()
+            eventPublisher.roundEvent().publish(participatingCars.currentEventData(EventState.PROCESS))
         }
-        outputPort.outputNewLine()
-        Thread.sleep(PER_RACE_SECONDS)
+        eventPublisher.winEvent().publish(participatingCars.announceWinners())
     }
 
-    private fun ParticipatingCars.startRace(attemptCount: Int) {
-        repeat(attemptCount) { this.nextRound() }
+    private fun ParticipatingCars.currentEventData(eventState: EventState): RoundEventCarData {
+        return RoundEventCarData(
+            this.currentPosition().map {
+                CarData(name = it.first, position = it.second)
+            },
+            eventState = eventState
+        )
     }
 
-    private fun ParticipatingCars.nextRound() {
-        this.move { position: Int ->
-            IntRange(start = START_POSITION_NUMBER, endInclusive = position).forEach { _ ->
-                outputPort.output(LITERAL_POSITION)
+    private fun ParticipatingCars.announceWinners(): WinEventCarData {
+        return WinEventCarData(
+            this.winners().map {
+                CarData(name = it.first, position = it.second)
             }
-            outputPort.outputNewLine()
-        }
-        outputPort.outputNewLine()
-        Thread.sleep(PER_RACE_SECONDS)
-    }
-
-    private companion object {
-        private const val RESULT_COMMENT = "처리 결과"
-        private const val LITERAL_POSITION = "-"
-        private const val PER_RACE_SECONDS = 2000L
-        private const val START_POSITION_NUMBER = 0
+        )
     }
 }

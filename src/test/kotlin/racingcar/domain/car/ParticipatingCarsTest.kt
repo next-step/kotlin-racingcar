@@ -23,9 +23,4 @@ class ParticipatingCarsTest : FunSpec({
     test("참여하는 자동차는 자동차 리스트를 인자로 생성한다.") {
         participatingCars.shouldNotBeNull()
     }
-
-    test("레이스 초기화시 출력 함수를 인자로 넘길 수 있다") {
-        val outputFunction: () -> Unit = { println("출력완료") }
-        participatingCars.initRace(outputFunction)
-    }
 })
