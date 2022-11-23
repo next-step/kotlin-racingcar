@@ -1,7 +1,7 @@
 package racingcar
 
 class RacingCar private constructor(private val cars: List<Car>, private val tryCount: Int, private val carHistory: HashMap<Car, ArrayList<Int>> = HashMap()) {
-    constructor(carCount: Int, tryCount: Int) : this((0 until carCount).map { Car() }, tryCount)
+    constructor(carCount: Int, tryCount: Int) : this((0 until carCount).map { Car("자동차") }, tryCount)
 
     private lateinit var moveStrategy: ForwardStrategy
 
