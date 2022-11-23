@@ -10,9 +10,9 @@ class Car(
         }
     }
 
-    fun samePosition(position: Int): Boolean {
-        return this.position == position
-    }
+    fun samePosition(position: Int): Boolean = this.position == position
+
+    fun getPosition(): Int = this.position
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

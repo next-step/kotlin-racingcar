@@ -1,6 +1,6 @@
 package racing.domain
 
-interface Movable {
+fun interface Movable {
 
     fun move(): Boolean
 }
