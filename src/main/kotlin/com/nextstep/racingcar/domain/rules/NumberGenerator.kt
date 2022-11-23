@@ -1,5 +1,5 @@
 package com.nextstep.racingcar.domain.rules
 
-interface NumberGenerator {
+fun interface NumberGenerator {
     fun generate(): Int
 }

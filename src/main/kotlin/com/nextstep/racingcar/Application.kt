@@ -7,8 +7,7 @@ import com.nextstep.racingcar.view.CliInputView
 import com.nextstep.racingcar.view.CliResultView
 
 fun main() {
-    val randomNumberGenerator = RandomNumberGenerator()
-    val numberMoveRule = NumberMoveRule(randomNumberGenerator)
+    val numberMoveRule = NumberMoveRule(RandomNumberGenerator())
     val cliInputView = CliInputView()
     val cliResultView = CliResultView()
     val racingGame = RacingGame(numberMoveRule, cliInputView, cliResultView)

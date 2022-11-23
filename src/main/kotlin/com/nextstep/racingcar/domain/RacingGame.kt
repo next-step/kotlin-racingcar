@@ -1,31 +1,28 @@
 package com.nextstep.racingcar.domain
 
 import com.nextstep.racingcar.domain.rules.MoveRule
-import com.nextstep.racingcar.view.CliResultView
 import com.nextstep.racingcar.view.InputView
+import com.nextstep.racingcar.view.ResultView
 
 class RacingGame(
     private val moveRule: MoveRule,
     private val inputView: InputView,
-    private val resultView: CliResultView
+    private val resultView: ResultView
 ) {
 
     fun start() {
-        val numberOfCars = inputView.inputNumberOfCars()
+        val carNames = inputView.inputCarNames()
         val numberOfRounds = inputView.inputNumberOfRounds()
 
-        val cars = (1..numberOfCars).map { Car() }
+        val cars = Cars(carNames)
 
-        resultView.printResult()
+        resultView.printBeforeResult()
 
-        repeat(numberOfRounds) { play(cars) }
-    }
-
-    private fun play(cars: List<Car>) {
-        cars.map { car ->
-            car.move(moveRule)
-            resultView.printResult(car)
+        repeat(numberOfRounds) {
+            cars.play(moveRule)
+            resultView.printBeforeResult(cars)
         }
-        resultView.printLine()
+
+        resultView.printWinners(cars.findWinners())
     }
 }

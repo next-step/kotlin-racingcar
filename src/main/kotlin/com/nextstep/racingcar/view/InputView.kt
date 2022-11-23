@@ -1,6 +1,7 @@
 package com.nextstep.racingcar.view
 
 interface InputView {
-    fun inputNumberOfCars(): Int
+    fun inputCarNames(): Set<String>
+
     fun inputNumberOfRounds(): Int
 }
