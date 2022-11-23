@@ -1,7 +1,12 @@
 package racingcar
 
-class RacingCar private constructor(private val cars: List<Car>, private val tryCount: Int, private val carHistory: HashMap<Car, ArrayList<Int>> = HashMap()) {
-    constructor(carCount: Int, tryCount: Int) : this((0 until carCount).map { Car("자동차") }, tryCount)
+class RacingCar private constructor(private val cars: ArrayList<Car> = ArrayList(), private val tryCount: Int, private val carHistory: LinkedHashMap<Car, ArrayList<Int>> = LinkedHashMap()) {
+    constructor(carNames: String, tryCount: Int) : this(ArrayList(), tryCount) {
+        val spitNames = carNames.split(",")
+        spitNames.forEach { name ->
+            cars.add(Car(name.trim()))
+        }
+    }
 
     private lateinit var moveStrategy: ForwardStrategy
 
