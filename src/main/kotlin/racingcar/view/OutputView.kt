@@ -1,8 +1,8 @@
-package racingCar.view
+package racingcar.view
 
-import racingCar.domain.Car
-import racingCar.domain.Position
-import racingCar.dto.ResultDto
+import racingcar.domain.Car
+import racingcar.domain.Position
+import racingcar.dto.ResultDto
 
 object OutputView {
 

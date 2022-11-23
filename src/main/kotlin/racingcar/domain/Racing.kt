@@ -1,6 +1,6 @@
-package racingCar.domain
+package racingcar.domain
 
-import racingCar.dto.ResultDto
+import racingcar.dto.ResultDto
 
 class Racing(carNames: List<String>, strategy: MoveStrategy) {
 

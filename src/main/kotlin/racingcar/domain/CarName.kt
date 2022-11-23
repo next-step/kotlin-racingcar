@@ -1,4 +1,4 @@
-package racingCar.domain
+package racingcar.domain
 
 @JvmInline
 value class CarName(val carName: String = DEFAULT_CAR_NANE) {
