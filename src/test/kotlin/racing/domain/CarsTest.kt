@@ -19,7 +19,7 @@ class CarsTest : FreeSpec({
             )
             cars.tryMoveCars()
 
-            cars.cars.map { it.position.value } shouldBe listOf(1, 1, 1)
+            cars.roundInfo.map { it.position.value } shouldBe listOf(1, 1, 1)
         }
     }
 
@@ -27,7 +27,7 @@ class CarsTest : FreeSpec({
 
         "우승자를 출력한다." - {
             val cars = Cars(
-                listOf(Car(CarName("pobi"), Position(value = 1)), Car(CarName("crong"), Position(value = 1))),
+                listOf(Car(CarName("pobi"), Position()), Car(CarName("crong"), Position())),
                 RandomStrategy()
             )
             val winnerNames = cars.winner().map { it.carName.name }
