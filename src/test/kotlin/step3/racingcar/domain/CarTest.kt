@@ -46,7 +46,7 @@ class CarTest : BehaviorSpec({
         }
         `when`("세번째 라운드에 6이 주어지면") {
             car.addRandomNumber(6)
-            car.race(3)
+            car.race(2)
             then("차량 전진 횟수가 1 증가한다.") {
                 car.distance shouldBe 2
             }
