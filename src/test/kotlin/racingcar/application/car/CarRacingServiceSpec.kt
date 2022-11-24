@@ -45,18 +45,18 @@ class CarRacingServiceSpec : BehaviorSpec({
         }
     }
 
-    Given("자동차 경주 게임은") {
+    Given("자동차 경주에서") {
         val findWinners = { finalResult: CarRacingResult ->
             carRacingService.findWinners(finalResult)
         }
-        When("경주 결과가 주어질 때") {
+        When("가장 먼 거리를 이동한 자동차가 하나라면") {
             val finalResultOfCarRacing = mapOf(
                 "pobi" to 3,
                 "crong" to 4,
                 "honux" to 3
             )
 
-            Then("우승자를 찾을 수 있다") {
+            Then("우승자는 한 명이다") {
                 val winners = findWinners(finalResultOfCarRacing)
 
                 winners
@@ -64,14 +64,14 @@ class CarRacingServiceSpec : BehaviorSpec({
                     .first().shouldBe("crong")
             }
         }
-        And("경주 결과에 따라") {
+        When("가장 먼 거리를 이동한 자동차가 여러 개라면") {
             val finalResultOfCarRacing = mapOf(
                 "pobi" to 3,
                 "crong" to 4,
                 "honux" to 4
             )
 
-            Then("우승자는 여러 명일 수 있다") {
+            Then("우승자는 여러 명이다") {
                 val winners = findWinners(finalResultOfCarRacing)
 
                 winners
