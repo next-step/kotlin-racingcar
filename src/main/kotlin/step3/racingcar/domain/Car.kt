@@ -1,12 +1,9 @@
 package step3.racingcar.domain
 
-import java.util.*
-
 private const val CAR_ID_DELIMITER = "-"
 private const val MOVE_CRITERIA = 4
 
-class Car {
-    val id: String = UUID.randomUUID().toString().substringBefore(CAR_ID_DELIMITER)
+class Car(val name: String) {
     private var randomNumbers: RandomNumbers = RandomNumbers()
     var distance = 0
 

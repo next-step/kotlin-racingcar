@@ -14,7 +14,7 @@ class ResultView {
         }
 
         private fun printEachCarRoundResult(car: Car) {
-            println("${car.id} : ${distanceToScore(car.distance)}")
+            println("${car.name} : ${distanceToScore(car.distance)}")
         }
 
         private fun distanceToScore(distance: Int): StringBuilder {
