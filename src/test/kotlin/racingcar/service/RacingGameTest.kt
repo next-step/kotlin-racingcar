@@ -11,7 +11,7 @@ internal class RacingGameTest {
     @ValueSource(ints = [1, 5, 10, 20])
     internal fun `자동차가 N대 생성된다`(carCount: Int) {
         val racingGame = RacingGame.of(carCount)
-        assertThat(racingGame.cars.size).isEqualTo(carCount)
+        assertThat(racingGame.cars.value.size).isEqualTo(carCount)
     }
 
     @Test
@@ -20,9 +20,9 @@ internal class RacingGameTest {
 
         val racingGame = RacingGame.of(carNames)
 
-        val carNameArray = carNames.split(RacingGame.CAR_NAME_DELIMITER).toTypedArray()
-        val carNameArrayInRacingGame = racingGame.cars.map { it.name.value }.toTypedArray()
-        assertThat(carNameArray contentEquals carNameArrayInRacingGame).isTrue
+        val carNameArray = carNames.split(RacingGame.CAR_NAME_DELIMITER)
+        val carNameArrayInRacingGame = racingGame.cars.value.map { it.name.value }
+        assertThat(carNameArray).containsExactlyInAnyOrderElementsOf(carNameArrayInRacingGame)
     }
 
     @ParameterizedTest

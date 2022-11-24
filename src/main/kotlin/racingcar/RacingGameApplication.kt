@@ -15,8 +15,8 @@ object RacingGameApplication {
         ResultView.printHeader()
         repeat(tryCount) {
             racingGame.play()
-            ResultView.printDashBoard(racingGame)
+            ResultView.printDashboard(racingGame)
         }
-        ResultView.printWinner(racingGame)
+        ResultView.printWinners(racingGame)
     }
 }

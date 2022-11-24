@@ -3,6 +3,7 @@ package racingcar.service
 import racingcar.model.Car
 import racingcar.model.Cars
 import racingcar.model.MoveFactor
+import racingcar.model.impl.CarsImpl
 
 class RacingGame(val cars: Cars) {
     fun play() {
@@ -19,12 +20,12 @@ class RacingGame(val cars: Cars) {
 
         fun of(carCount: Int): RacingGame {
             val cars = List(carCount) { Car.of(DEFAULT_NAME_PREFIX + it) }
-            return RacingGame(Cars(cars))
+            return RacingGame(CarsImpl(cars))
         }
 
         fun of(carNames: String): RacingGame {
             val cars = carNames.split(CAR_NAME_DELIMITER).map { Car.of(it) }
-            return RacingGame(Cars(cars))
+            return RacingGame(CarsImpl(cars))
         }
     }
 }
