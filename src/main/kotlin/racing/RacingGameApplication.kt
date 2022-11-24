@@ -1,11 +1,8 @@
 package racing
 
-import racing.application.RacingGame
-import racing.ui.InputView
+import racing.controller.RacingGame
 
 fun main() {
-    val carNames = InputView.getCarNames()
-    val tryCount = InputView.getTryCount()
-
-    RacingGame(tryCount = tryCount, carNames = carNames).runRace()
+    val racingGame = RacingGame()
+    racingGame.runRace()
 }
