@@ -17,11 +17,12 @@ class Racing(private val carNames: List<String>, private val strategy: MoveStrat
     }
 
     private fun sumAllRound(): Cars {
-        return Cars(racing.values
+        val cars = racing.values
             .map { it.cars }
             .flatten()
             .groupBy({ it.name }, { it.position })
-            .map { Car(name = it.key, position = it.value.reduce { x, y -> x + y }) }, this.strategy)
+            .map { Car(name = it.key, position = it.value.reduce { x, y -> x + y }) }
+        return Cars(cars, this.strategy)
     }
 
 }

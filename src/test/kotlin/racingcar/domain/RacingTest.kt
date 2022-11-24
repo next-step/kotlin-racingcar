@@ -9,7 +9,7 @@ class RacingTest {
     fun `레이싱 게임 시작시, 결과를 반환됩니다`() {
         val racing = Racing(listOf("pobi", "crong", "kcs")) { true }
 
-        val result = racing.play()
+        val result = racing.play(1)
 
         assertThat(result.positions)
             .containsAllEntriesOf(
