@@ -8,8 +8,7 @@ import racing.view.OutputView.printCarNameAndPosition
 import racing.view.OutputView.printTitle
 import racing.view.OutputView.printWinnerCars
 
-class RacingGame{
-
+class RacingGame {
     fun runRace() {
         val carNames = InputView.getCarNames()
         val tryCount = InputView.getTryCount()

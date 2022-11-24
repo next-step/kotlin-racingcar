@@ -1,6 +1,6 @@
 package racing.domain
 
-class Position{
+class Position {
     var value: Int = 0
         private set
 
