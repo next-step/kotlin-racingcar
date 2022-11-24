@@ -11,7 +11,7 @@ data class Car(val position: Position = Position(), val name: CarName = CarName(
 
     fun isSamePosition(other: Car) = this.position == other.position
     override fun compareTo(other: Car): Int = this.position - other.position
-    private fun move()  = Car(position.increase(),name)
+    private fun move() = Car(position.increase(), name)
 
     companion object {
         fun from(pos: Int): Car = Car(Position(pos))

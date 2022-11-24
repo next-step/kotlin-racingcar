@@ -2,14 +2,26 @@ package racingcar.domain
 
 import racingcar.dto.ResultDto
 
-class Racing(carNames: List<String>, strategy: MoveStrategy) {
+class Racing(private val carNames: List<String>, private val strategy: MoveStrategy) {
 
-    private val cars = Cars(carNames, strategy)
+    private val racing = mutableMapOf<Round, Cars>()
 
-    fun play(): ResultDto {
-        cars.moveByStrategy()
-        return ResultDto(cars)
+    fun play(roundNumber: Int): ResultDto {
+        val cars = Cars.ofNames(carNames, strategy)
+        racing[Round(roundNumber)] = cars.moveByStrategy()
+        return ResultDto(sumAllRound())
     }
 
-    fun pickWinner(): List<Car> = cars.findWinners()
+    fun findWinners(): List<Car> {
+        return sumAllRound().findWinners()
+    }
+
+    private fun sumAllRound(): Cars {
+        return Cars(racing.values
+            .map { it.cars }
+            .flatten()
+            .groupBy({ it.name }, { it.position })
+            .map { Car(name = it.key, position = it.value.reduce { x, y -> x + y }) }, this.strategy)
+    }
+
 }

@@ -13,9 +13,9 @@ fun main() {
     val tryNumber = InputView.number()
     OutputView.printResultMsg()
     repeat(tryNumber) {
-        val result = racing.play()
+        val result = racing.play(it)
         OutputView.printResult(result)
     }
-    val winners = racing.pickWinner()
+    val winners = racing.findWinners()
     OutputView.printWinners(winners)
 }

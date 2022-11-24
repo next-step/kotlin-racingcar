@@ -1,6 +1,6 @@
 package racingcar.domain
 
-import java.util.Random
+import java.util.*
 
 class RandomStrategy : MoveStrategy {
 
