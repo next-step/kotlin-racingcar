@@ -1,9 +1,9 @@
-package racingCar.controller
+package racingcar.controller
 
-import racingCar.domain.Racing
-import racingCar.domain.RandomStrategy
-import racingCar.view.InputView
-import racingCar.view.OutputView
+import racingcar.domain.Racing
+import racingcar.domain.RandomStrategy
+import racingcar.view.InputView
+import racingcar.view.OutputView
 
 fun main() {
     OutputView.askUsernames()
@@ -13,9 +13,9 @@ fun main() {
     val tryNumber = InputView.number()
     OutputView.printResultMsg()
     repeat(tryNumber) {
-        val result = racing.play()
+        val result = racing.play(it)
         OutputView.printResult(result)
     }
-    val winners = racing.pickWinner()
+    val winners = racing.findWinners()
     OutputView.printWinners(winners)
 }

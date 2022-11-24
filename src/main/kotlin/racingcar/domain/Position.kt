@@ -1,4 +1,4 @@
-package racingCar.domain
+package racingcar.domain
 
 @JvmInline
 value class Position(val position: Int = 0) {
@@ -9,4 +9,5 @@ value class Position(val position: Int = 0) {
     fun increase(): Position = Position(position + 1)
 
     operator fun minus(other: Position): Int = this.position - other.position
+    operator fun plus(other: Position): Position = Position(this.position + other.position)
 }

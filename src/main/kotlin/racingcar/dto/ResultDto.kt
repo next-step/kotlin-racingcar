@@ -1,8 +1,8 @@
-package racingCar.dto
+package racingcar.dto
 
-import racingCar.domain.CarName
-import racingCar.domain.Cars
-import racingCar.domain.Position
+import racingcar.domain.CarName
+import racingcar.domain.Cars
+import racingcar.domain.Position
 
 class ResultDto(cars: Cars) {
 

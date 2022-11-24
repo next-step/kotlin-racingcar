@@ -1,7 +1,6 @@
-package racingCar.view
+package racingcar.view
 
 object InputView {
-
 
     private const val CAR_NAME_SPLITTER = ","
     fun number(): Int {
