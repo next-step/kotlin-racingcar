@@ -24,5 +24,4 @@ class Racing(private val carNames: List<String>, private val strategy: MoveStrat
             .map { Car(name = it.key, position = it.value.reduce { x, y -> x + y }) }
         return Cars(cars, this.strategy)
     }
-
 }
