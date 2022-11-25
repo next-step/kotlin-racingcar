@@ -25,23 +25,18 @@ class RacingCarGame(
 
     private fun proceedRound(cars: List<Car>): List<Car> {
         cars.forEach {
-            it.takeAction()
+            it.action()
         }
         return cars
     }
 
     private fun showWinner(cars: List<Car>) {
         ResultView.printWinner(
-            winner = pickWinner(
-                max = cars.maxOf { car ->
-                    car.distance
-                },
-                cars = cars
-            )
+            winner = Judges(cars).pickWinner()
         )
     }
 
-    fun pickWinner(max: Int, cars: List<Car>): List<Car> = cars.filter { car ->
+    private fun pickWinner(max: Int, cars: List<Car>): List<Car> = cars.filter { car ->
         car.distance == max
     }
 }
