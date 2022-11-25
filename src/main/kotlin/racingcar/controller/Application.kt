@@ -1,7 +1,7 @@
-package racingcar
+package racingcar.controller
 
+import racingcar.domain.GameInfo
 import racingcar.domain.RacingCarGame
-import racingcar.domain.model.GameInfo
 import racingcar.ui.InputView
 
 fun main() {

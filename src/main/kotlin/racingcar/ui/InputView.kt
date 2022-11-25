@@ -1,6 +1,6 @@
 package racingcar.ui
 
-import racingcar.domain.model.CarInfo
+import racingcar.domain.CarInfo
 
 object InputView {
 

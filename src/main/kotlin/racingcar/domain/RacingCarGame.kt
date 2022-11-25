@@ -1,6 +1,5 @@
 package racingcar.domain
 
-import racingcar.domain.model.GameInfo
 import racingcar.ui.ResultView
 
 class RacingCarGame(

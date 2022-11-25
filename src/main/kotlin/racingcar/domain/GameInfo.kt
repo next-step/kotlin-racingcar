@@ -1,4 +1,4 @@
-package racingcar.domain.model
+package racingcar.domain
 
 data class GameInfo(
     val carInfo: CarInfo,

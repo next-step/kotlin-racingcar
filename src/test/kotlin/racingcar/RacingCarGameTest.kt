@@ -2,9 +2,9 @@ package racingcar
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
+import racingcar.domain.CarInfo
+import racingcar.domain.GameInfo
 import racingcar.domain.RacingCarGame
-import racingcar.domain.model.CarInfo
-import racingcar.domain.model.GameInfo
 
 class RacingCarGameTest : BehaviorSpec({
 
