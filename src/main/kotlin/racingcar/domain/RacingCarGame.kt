@@ -1,24 +1,16 @@
 package racingcar.domain
 
-import racingcar.model.GameInfo
-import racingcar.ui.InputView
+import racingcar.domain.model.GameInfo
 import racingcar.ui.ResultView
 
-class RacingCarGame {
-
-    fun run() {
-        startGame(getGameInfo())
+class RacingCarGame(
+    val gameInfo: GameInfo,
+) {
+    val cars: List<Car> = gameInfo.carInfo.names.map { name ->
+        Car(name = name)
     }
 
-    private fun getGameInfo(): GameInfo = GameInfo(
-        carInfo = InputView.getCarInfo(),
-        trialCount = InputView.getTrialCount()
-    )
-
-    private fun startGame(gameInfo: GameInfo) {
-        val cars = gameInfo.carInfo.names.map { name ->
-            Car(name = name)
-        }
+    fun start() {
         showResultOfRounds(gameInfo.trialCount, cars)
         showWinner(cars)
     }
