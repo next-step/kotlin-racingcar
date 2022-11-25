@@ -1,6 +1,6 @@
 package racingcar.domain
 
-import racingcar.ui.ResultView
+import racingcar.view.ResultView
 
 class RacingCarGame(
     val gameInfo: GameInfo,

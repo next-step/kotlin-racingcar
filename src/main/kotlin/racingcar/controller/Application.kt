@@ -2,7 +2,7 @@ package racingcar.controller
 
 import racingcar.domain.GameInfo
 import racingcar.domain.RacingCarGame
-import racingcar.ui.InputView
+import racingcar.view.InputView
 
 fun main() {
     val gameInfo = GameInfo(
