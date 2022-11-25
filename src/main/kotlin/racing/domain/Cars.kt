@@ -1,17 +1,9 @@
 package racing.domain
 
-class Cars : Iterable<Car> {
+class Cars(list: List<Car>) : Iterable<Car> {
 
-    private val list: List<Car>
-
-    constructor(names: String) {
-        list = names.split(SEPARATOR).map {
-            Car.produce(it)
-        }
-    }
-    constructor(carList: List<Car>) {
-        list = carList
-    }
+    private val list = list
+    constructor(names: Array<String>) : this(names.map { Car.produce(it) })
 
     fun count() = list.size
 
@@ -22,8 +14,4 @@ class Cars : Iterable<Car> {
         }
     }
     override fun iterator(): Iterator<Car> = list.iterator()
-
-    companion object {
-        const val SEPARATOR = ","
-    }
 }

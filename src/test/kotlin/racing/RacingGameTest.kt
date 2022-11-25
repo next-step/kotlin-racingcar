@@ -1,6 +1,7 @@
 package racing
 
 import org.assertj.core.api.AssertionsForInterfaceTypes.assertThat
+import org.assertj.core.util.Arrays
 import org.junit.jupiter.api.Test
 import racing.domain.Car
 import racing.domain.CarFactory
@@ -12,7 +13,7 @@ class RacingGameTest {
 
     @Test
     fun `실행결과 출력`() {
-        val names = "lee,kkoks"
+        val names = Arrays.array("lee", "kkoks")
         val cars: Cars = CarFactory.create(names)
         for (car in cars) {
             car.move(4)
@@ -26,11 +27,19 @@ class RacingGameTest {
     }
 
     @Test
+    fun `Racing Game 단독 우승자 출력(차가 한대일경우)`() {
+        val kkoksCar = Car.produce("kkoks", 3)
+        val winner = Winner(Cars(listOf(kkoksCar)))
+        val result = winner.win().joinToString { it.name }
+        assertThat(result).isEqualTo("kkoks")
+    }
+
+    @Test
     fun `Racing Game 단독 우승자 출력`() {
         val leeCar = Car.produce("lee", 5)
         val kkoksCar = Car.produce("kkoks", 3)
-        val winner = Winner(listOf(leeCar, kkoksCar))
-        val result = winner.win()
+        val winner = Winner(Cars(listOf(leeCar, kkoksCar)))
+        val result = winner.win().joinToString { it.name }
         assertThat(result).isEqualTo("lee")
     }
 
@@ -38,8 +47,9 @@ class RacingGameTest {
     fun `Racing Game 공동 우승자 출력`() {
         val leeCar = Car.produce("lee", 5)
         val kkoksCar = Car.produce("kkoks", 5)
-        val winner = Winner(listOf(leeCar, kkoksCar))
-        val result = winner.win()
+        val tesyCar = Car.produce("tesy", 3)
+        val winner = Winner(Cars(listOf(leeCar, kkoksCar, tesyCar)))
+        val result = winner.win().joinToString { it.name }
         assertThat(result).isEqualTo("lee, kkoks")
     }
 }

@@ -22,10 +22,11 @@ class ResultView {
             println(result)
         }
 
-        fun printRacingGameWinner(winner: String) {
+        fun printRacingGameWinner(cars: List<Car>) {
+            val winner = cars.joinToString { it.name }
             println("${winner}가 최종 우승했습니다.")
         }
 
-        const val MARK = "-"
+        private const val MARK = "-"
     }
 }
