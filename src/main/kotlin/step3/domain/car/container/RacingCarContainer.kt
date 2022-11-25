@@ -21,6 +21,10 @@ class RacingCarContainer(
         _carList.add(RacingCar(carName))
     }
 
+    fun getWinnerRacingCarList(): List<RacingCar> {
+        return carList.filter { it.carDistance == carList.maxOf(RacingCar::carDistance) }
+    }
+
     fun isNotFullRacingCar(): Boolean = _carList.size < totalCarCount
 
     fun isFullRacingCar(): Boolean = !isNotFullRacingCar()

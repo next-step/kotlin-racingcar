@@ -1,6 +1,6 @@
 package step3.domain.car.name
 
-class CarName(
+data class CarName(
     val name: String
 ) {
     init {

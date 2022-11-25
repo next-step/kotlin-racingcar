@@ -71,9 +71,7 @@ class RacingGame(
     fun getWinnerRacingCarList(): List<RacingCar> {
         checkCompletedGame()
 
-        return racingCarContainer.carList.filter {
-            it.distance == racingCarContainer.carList.maxOf(RacingCar::distance)
-        }
+        return racingCarContainer.getWinnerRacingCarList()
     }
 
     fun isCompleted() = currentTryCount == totalTryCount

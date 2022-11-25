@@ -23,12 +23,9 @@ class CarNameTest : FunSpec({
         }
     }
 
-    context("빈 문자열의 경우, RacingCar 생성 실패") {
-        withData(
-            nameFn = { "빈 문자열" },
-            listOf("").asSequence()
-        ) { emptyString ->
-            assertThrows<IllegalArgumentException> { RacingCar(emptyString) }
-        }
+    test("빈 문자열의 경우, RacingCar 생성 실패") {
+        val emptyString = ""
+
+        assertThrows<IllegalArgumentException> { RacingCar(emptyString) }
     }
 })

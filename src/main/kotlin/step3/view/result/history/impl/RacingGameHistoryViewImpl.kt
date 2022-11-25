@@ -6,7 +6,7 @@ import step3.view.result.history.RacingGameHistoryView
 class RacingGameHistoryViewImpl : RacingGameHistoryView {
 
     override fun printRacingCarHistory(racingCarHistory: RacingCarHistory) {
-        repeat(racingCarHistory.distance) {
+        repeat(racingCarHistory.carDistance.distance) {
             print("-")
         }
         println()

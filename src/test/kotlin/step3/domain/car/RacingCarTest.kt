@@ -25,13 +25,13 @@ class RacingCarTest : FunSpec({
         ) { methodCallCount ->
             val racingCar = RacingCar(CarNameDataSet.testData())
 
-            val beforeDistance = racingCar.distance
+            val beforeDistance = racingCar.carDistance.distance
 
             repeat(methodCallCount) {
                 racingCar.go()
             }
 
-            val afterDistance = racingCar.distance
+            val afterDistance = racingCar.carDistance.distance
 
             afterDistance shouldBe beforeDistance + methodCallCount
         }

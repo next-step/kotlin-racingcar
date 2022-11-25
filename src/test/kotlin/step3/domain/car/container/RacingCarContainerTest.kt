@@ -11,7 +11,7 @@ import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import step3.domain.car.name.CarNameDataSet
 
-class DefaultRacingCarContainerTest : FunSpec({
+class RacingCarContainerTest : FunSpec({
 
     context("totalCarCount가 1 이상일때, DefaultRacingCarContainer 정상적으로 생성") {
         table(
