@@ -5,6 +5,14 @@ import org.junit.jupiter.api.Test
 
 internal class WinnersTest {
     @Test
+    fun `우승자를 반환한다`() {
+        val racingCars = RacingCars.create(Names(listOf("jay", "pobi", "honux")), forwardStrategy())
+        val winners = Winners(racingCars).getWinners()
+
+        assertThat(winners).containsAll(racingCars.racingCars)
+    }
+
+    @Test
     fun `우승자의 목록을 반환한다`() {
         val racingCars = RacingCars.create(Names(listOf("jay", "pobi", "honux")), forwardStrategy())
         val winnerNames = Winners(racingCars).getWinnerNames()
