@@ -2,7 +2,7 @@ package racing.domain
 
 class CarRacing(
     val numOfMove: Int,
-    namesOfCars: List<String>,
+    namesOfCars: List<Name>,
     moveStrategy: MoveStrategy,
 ) {
     private var currentNumOfMove = 0

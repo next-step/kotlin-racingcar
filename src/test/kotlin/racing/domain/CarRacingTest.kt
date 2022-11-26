@@ -13,7 +13,7 @@ internal class CarRacingTest {
     @Test
     fun `자동차 경주 생성 테스트`() {
         // given
-        val namesOfCars = listOf("car1", "car2", "car3")
+        val namesOfCars = listOf("car1", "car2", "car3").map(::Name)
 
         // when
         val carRacing = CarRacing(
@@ -35,7 +35,7 @@ internal class CarRacingTest {
         Assertions.assertThatThrownBy {
             CarRacing(
                 numOfMove = numOfMove,
-                namesOfCars = listOf("car1", "car2", "car3"),
+                namesOfCars = listOf("car1", "car2", "car3").map(::Name),
                 moveStrategy = moveStrategy,
             )
         }.isInstanceOf(IllegalArgumentException::class.java)
@@ -46,7 +46,7 @@ internal class CarRacingTest {
         // given
         val carRacing = CarRacing(
             numOfMove = 10,
-            namesOfCars = listOf("car1", "car2", "car3"),
+            namesOfCars = listOf("car1", "car2", "car3").map(::Name),
             moveStrategy = moveStrategy,
         )
 
@@ -63,7 +63,7 @@ internal class CarRacingTest {
         // given
         val carRacing = CarRacing(
             numOfMove = numOfMove,
-            namesOfCars = listOf("car1", "car2", "car3"),
+            namesOfCars = listOf("car1", "car2", "car3").map(::Name),
             moveStrategy = moveStrategy,
         )
 
@@ -82,7 +82,7 @@ internal class CarRacingTest {
         // given
         val carRacing = CarRacing(
             numOfMove = numOfMove,
-            namesOfCars = listOf("car1", "car2", "car3"),
+            namesOfCars = listOf("car1", "car2", "car3").map(::Name),
             moveStrategy = moveStrategy,
         )
 
@@ -97,7 +97,7 @@ internal class CarRacingTest {
     @Test
     fun `우승 자동차 목록 반환 테스트`() {
         // given
-        val namesOfCars = listOf("car1", "car2", "car3")
+        val namesOfCars = listOf("car1", "car2", "car3").map(::Name)
         val carRacing = CarRacing(
             numOfMove = 1,
             namesOfCars = namesOfCars,
@@ -118,7 +118,7 @@ internal class CarRacingTest {
         val numOfMove = 10
         val carRacing = CarRacing(
             numOfMove = numOfMove,
-            namesOfCars = listOf("car1", "car2", "car3"),
+            namesOfCars = listOf("car1", "car2", "car3").map(::Name),
             moveStrategy = moveStrategy,
         )
 

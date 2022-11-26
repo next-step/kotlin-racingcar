@@ -1,6 +1,6 @@
 package racing.domain
 
 data class CarInfo(
-    val name: String,
+    val name: Name,
     val position: Int,
 )
