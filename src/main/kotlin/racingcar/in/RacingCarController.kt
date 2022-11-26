@@ -1,8 +1,8 @@
-package racingcar.controller
+package racingcar.`in`
 
-import racingcar.controller.dto.GameResults
 import racingcar.domain.MoveStrategy
 import racingcar.domain.RacingGame
+import racingcar.`in`.dto.GameResults
 import racingcar.view.ConsoleInput
 import racingcar.view.ConsoleOutput
 

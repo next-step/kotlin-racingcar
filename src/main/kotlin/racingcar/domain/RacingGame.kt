@@ -1,5 +1,8 @@
 package racingcar.domain
 
+import racingcar.vo.Position
+import racingcar.vo.Round
+
 class RacingGame(val cars: List<Car>, private var round: Round) {
 
     constructor(countOfCars: Int, round: Int) : this(List(countOfCars) { Car() }, Round(round))

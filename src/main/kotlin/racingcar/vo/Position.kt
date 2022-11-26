@@ -1,4 +1,6 @@
-package racingcar.domain
+package racingcar.vo
+
+import racingcar.domain.MoveStrategy
 
 data class Position(val position: Int = 0) {
     init {

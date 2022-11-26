@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.vo
 
 data class Round(private val round: Int) {
     init {

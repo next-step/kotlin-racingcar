@@ -1,6 +1,6 @@
-package racingcar.controller.dto
+package racingcar.`in`.dto
 
-import racingcar.domain.Position
+import racingcar.vo.Position
 
 class GameResults(positions: List<Position>) {
 

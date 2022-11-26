@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.controller.dto.GameResults
+import racingcar.`in`.dto.GameResults
 
 class ConsoleOutput {
     fun printResults() {

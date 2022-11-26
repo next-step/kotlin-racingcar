@@ -1,7 +1,7 @@
 package racingcar
 
-import racingcar.controller.RacingCarController
 import racingcar.domain.RandomStrategy
+import racingcar.`in`.RacingCarController
 import racingcar.view.ConsoleInput
 import racingcar.view.ConsoleOutput
 
