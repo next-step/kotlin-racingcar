@@ -1,10 +1,10 @@
 package racingcar.controller
 
+import racingcar.controller.dto.GameResults
 import racingcar.domain.MoveStrategy
 import racingcar.domain.RacingGame
 import racingcar.view.ConsoleInput
 import racingcar.view.ConsoleOutput
-import racingcar.controller.dto.GameResults
 
 class RacingCarController(private val input: ConsoleInput, private val output: ConsoleOutput, private val moveStrategy: MoveStrategy) {
     fun race() {

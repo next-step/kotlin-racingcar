@@ -10,11 +10,11 @@ class RacingGame(val cars: List<Car>, private var round: Round) {
     }
 
     private fun validateEmptyCars() {
-        if (cars.size < MIN_CAR_COUNT) throw IllegalArgumentException("at least 2 cars are needed to play")
+        require(cars.size >= MIN_CAR_COUNT) { "at least 2 cars are needed to play" }
     }
 
     private fun validateNoRound() {
-        if (!round.hasNext()) throw IllegalArgumentException("at least 1 round is needed to play")
+        require(round.hasNext()) { "at least 1 round is needed to play" }
     }
 
     fun playNextRound(moveStrategy: MoveStrategy) {
