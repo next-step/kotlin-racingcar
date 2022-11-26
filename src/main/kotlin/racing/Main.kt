@@ -16,5 +16,5 @@ fun main() {
         carRacing.move()
         ResultView.printResult(carRacing.carInfos)
     }
-    ResultView.printWinner(carRacing.winnerCarInfos)
+    ResultView.printWinner(carRacing.electWinners())
 }

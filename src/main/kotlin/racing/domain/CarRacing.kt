@@ -18,19 +18,19 @@ class CarRacing(
     val finish: Boolean
         get() = numOfMove == currentNumOfMove
 
-    val winnerCarInfos: List<CarInfo>
-        get() {
-            check(numOfMove == currentNumOfMove) { "경기가 끝나지 않았습니다." }
-
-            val maxPosition = cars.maxOf(Car::position)
-            return cars.filter { maxPosition == it.position }
-                .map { CarInfo(name = it.name, position = it.position) }
-        }
-
     fun move() {
         check(numOfMove > currentNumOfMove) { "경기가 끝났습니다." }
 
         currentNumOfMove++
         cars.forEach(Car::move)
+    }
+
+    fun electWinners(): List<CarInfo> {
+        check(numOfMove == currentNumOfMove) { "경기가 끝나지 않았습니다." }
+
+        val maxPosition = cars.maxOf(Car::position)
+
+        return cars.filter { maxPosition == it.position }
+            .map { CarInfo(name = it.name, position = it.position) }
     }
 }

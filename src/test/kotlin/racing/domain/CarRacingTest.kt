@@ -106,7 +106,7 @@ internal class CarRacingTest {
         carRacing.move()
 
         // when
-        val winnerCarInfos = carRacing.winnerCarInfos
+        val winnerCarInfos = carRacing.electWinners()
 
         // then
         assertEquals(namesOfCars.sorted(), winnerCarInfos.map(CarInfo::name).sorted())
@@ -128,7 +128,7 @@ internal class CarRacingTest {
 
         // when & then
         Assertions.assertThatThrownBy {
-            carRacing.winnerCarInfos
+            carRacing.electWinners()
         }.isInstanceOf(IllegalStateException::class.java)
     }
 
