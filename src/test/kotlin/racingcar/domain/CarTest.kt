@@ -15,8 +15,8 @@ class CarTest : FunSpec({
     context("moveForward()") {
         test("자동차가 1칸 전진한다.") {
             val car = Car()
-            car.moveForward { true }
-            car.position shouldBe Position(1)
+            val currentPosition = car.moveForward { true }
+            currentPosition.position shouldBe 1
         }
     }
 })

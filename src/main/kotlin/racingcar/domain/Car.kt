@@ -1,11 +1,9 @@
 package racingcar.domain
 
-class Car(position: Position = Position()) {
+class Car(private var position: Position = Position()) {
 
-    var position = position
-        private set
-
-    fun moveForward(moveStrategy: MoveStrategy) {
+    fun moveForward(moveStrategy: MoveStrategy): Position {
         this.position = position.moveForward(moveStrategy)
+        return this.position
     }
 }

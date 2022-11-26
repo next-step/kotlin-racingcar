@@ -15,8 +15,8 @@ class RacingCarController(private val input: ConsoleInput, private val output: C
         output.printResults()
 
         while (racingGame.hasNextRound()) {
-            racingGame.playNextRound(moveStrategy)
-            val gameResults = GameResults.of(racingGame.cars)
+            val carPositions = racingGame.playNextRound(moveStrategy)
+            val gameResults = GameResults(carPositions)
             output.printGameResult(gameResults)
         }
     }

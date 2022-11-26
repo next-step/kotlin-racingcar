@@ -17,9 +17,9 @@ class RacingGame(val cars: List<Car>, private var round: Round) {
         require(round.hasNext()) { "at least 1 round is needed to play" }
     }
 
-    fun playNextRound(moveStrategy: MoveStrategy) {
+    fun playNextRound(moveStrategy: MoveStrategy): List<Position> {
         round = round.next()
-        cars.forEach { it.moveForward(moveStrategy) }
+        return cars.map { it.moveForward(moveStrategy) }
     }
 
     fun hasNextRound() = round.hasNext()

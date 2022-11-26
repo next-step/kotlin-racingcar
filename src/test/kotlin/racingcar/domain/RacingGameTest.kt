@@ -35,15 +35,13 @@ internal class RacingGameTest : FunSpec({
     context("playNextRound()") {
         test("게임에 참여한 자동차들이 경주한다.") {
             val racingGame = RacingGame(2, 1)
-            racingGame.playNextRound { true }
+            val carPositions = racingGame.playNextRound { true }
 
-            with(racingGame) {
-                cars.forAll {
-                    it.position shouldBe Position(1)
-                }
-
-                hasNextRound() shouldBe false
+            carPositions.forAll {
+                it.position shouldBe 1
             }
+
+            racingGame.hasNextRound() shouldBe false
         }
     }
 

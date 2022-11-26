@@ -1,10 +1,8 @@
 package racingcar.controller.dto
 
-import racingcar.domain.Car
+import racingcar.domain.Position
 
-data class GameResults private constructor(val carPositions: List<Int>) {
+class GameResults(positions: List<Position>) {
 
-    companion object {
-        fun of(cars: List<Car>) = GameResults(cars.map { it.position.position })
-    }
+    val carPositions = positions.map { it.position }
 }
