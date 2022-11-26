@@ -2,13 +2,10 @@ package racingcar.domain
 
 import racingcar.view.OutputView
 
-class Cars {
+class Cars(nameOfCars: List<String>, movingConditionStrategy: MovingConditionStrategy) {
     private val cars = mutableListOf<Car>()
-
-    fun make(numberOfCars: List<String>, movingConditionStrategy: MovingConditionStrategy) {
-        for (i in numberOfCars.indices) {
-            cars.add(Car(movingConditionStrategy, numberOfCars[i]))
-        }
+    init {
+        nameOfCars.map { cars.add(Car(movingConditionStrategy, it)) }
     }
 
     fun race(gameInputValue: GameInputValue) {

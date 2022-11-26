@@ -120,32 +120,27 @@ internal class RacingCarTest {
         val gameInputValue = GameInputValue(inputNameOfCars, inputNumberOfTGames)
         assertAll(
             {
-                val cars = Cars()
-                cars.make(inputNameOfCars, MockStrategy(KOREA_CAR_NUMBER))
+                val cars = Cars(inputNameOfCars, MockStrategy(KOREA_CAR_NUMBER))
                 cars.race(gameInputValue)
                 assertEquals("Korea", cars.showResult())
             },
             {
-                val cars = Cars()
-                cars.make(inputNameOfCars, MockStrategy(JAPAN_CAR_NUMBER))
+                val cars = Cars(inputNameOfCars, MockStrategy(JAPAN_CAR_NUMBER))
                 cars.race(gameInputValue)
                 assertEquals("Japan", cars.showResult())
             },
             {
-                val cars = Cars()
-                cars.make(inputNameOfCars, MockStrategy(CHINA_CAR_NUMBER))
+                val cars = Cars(inputNameOfCars, MockStrategy(CHINA_CAR_NUMBER))
                 cars.race(gameInputValue)
                 assertEquals("China", cars.showResult())
             },
             {
-                val cars = Cars()
-                cars.make(inputNameOfCars, MockStrategy(ALL_CAR_STOP_WINNER_NUMBER))
+                val cars = Cars(inputNameOfCars, MockStrategy(ALL_CAR_STOP_WINNER_NUMBER))
                 cars.race(gameInputValue)
                 assertEquals("Korea, Japan, China", cars.showResult())
             },
             {
-                val cars = Cars()
-                cars.make(inputNameOfCars, MockStrategy(ALL_CAR_MOVE_WINNER_NUMBER))
+                val cars = Cars(inputNameOfCars, MockStrategy(ALL_CAR_MOVE_WINNER_NUMBER))
                 cars.race(gameInputValue)
                 assertEquals("Korea, Japan, China", cars.showResult())
             }

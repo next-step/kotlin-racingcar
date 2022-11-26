@@ -1,5 +1,7 @@
 package racingcar.view
 
+import racingcar.domain.Car
+
 class OutputView {
     private var isTitle = true
 
@@ -27,11 +29,11 @@ class OutputView {
         }
     }
 
-    fun showWinner(winnerNames: MutableList<String>): String {
+    fun showWinner(winners: List<Car>): String {
         var winnerName = ""
 
-        for ((winnerNamesIndex, names) in winnerNames.withIndex()) {
-            winnerName += makeWinnerNameFormat(winnerNamesIndex, names, winnerNames.size - 1)
+        for ((carIndex, car) in winners.withIndex()) {
+            winnerName += makeWinnerNameFormat(carIndex, car.name, winners.size - 1)
         }
 
         println("${winnerName}가 최종 우승했습니다.")

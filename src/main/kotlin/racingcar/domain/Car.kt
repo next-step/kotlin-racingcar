@@ -2,8 +2,9 @@ package racingcar.domain
 
 import racingcar.view.OutputView
 
-class Car(private val movingConditionStrategy: MovingConditionStrategy, var name: String = "") {
+class Car(private val movingConditionStrategy: MovingConditionStrategy, val name: String = "") {
     var position = 0
+        private set
 
     fun move() {
         if (movingConditionStrategy.move() >= MOVE_FORWARD) {
@@ -21,7 +22,6 @@ class Car(private val movingConditionStrategy: MovingConditionStrategy, var name
 
     companion object {
         const val MOVE_FORWARD = 4
-        //const val MOVE_MARKER = "- "
         const val MOVE_VALUE = 1
     }
 }
