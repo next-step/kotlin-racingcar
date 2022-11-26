@@ -2,9 +2,9 @@
 
 ## step 4 : 자동차 경주 (우승)
 - 입력
-  - 이름 입력 기능 []
-    - null or empty validation []
-    - 쉼표(,) 기준으로 split []
+  - 이름 입력 기능 [x]
+    - null or empty validation [x]
+    - 쉼표(,) 기준으로 split [x]
 
 - 도메인
   - 이름 객체 생성 [x]
