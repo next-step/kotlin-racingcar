@@ -1,14 +1,10 @@
 package com.jay.racingcar.domain
 
-class Winners(racingCars: RacingCars) {
-    private val winners: List<RacingCar>
-
-    init {
+class Winners(private val racingCars: RacingCars) {
+    fun getWinners(): List<RacingCar> {
         val sortedRacingCarsByPosition = racingCars.racingCars.sorted().groupBy { it.getPosition() }.toMap()
-        winners = sortedRacingCarsByPosition.values.first()
+        return sortedRacingCarsByPosition.values.first()
     }
 
-    fun getWinners(): List<RacingCar> = winners
-
-    fun getWinnerNames(): List<String> = winners.map { it.getNameValue() }.toList()
+    fun getWinnerNames(): List<String> = getWinners().map { it.getNameValue() }
 }
