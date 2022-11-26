@@ -35,6 +35,7 @@ object OutputView {
 
     fun printWinners(winners: List<RacingCar>) {
         print(winners.stream().map { it.getNameValue() }.toList().joinToString(separator = ","))
+        print(winners.joinToString(separator = ",") { it.getNameValue() })
         printWinnerMessage()
     }
 }

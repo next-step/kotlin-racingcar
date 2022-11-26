@@ -3,23 +3,21 @@ package com.jay.racingcar.domain
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-internal class RacingCarsTest {
+internal class WinnersTest {
     @Test
-    fun `자동차들을 생성한다`() {
+    fun `우승자를 반환한다`() {
         val racingCars = RacingCars.create(Names(listOf("jay", "pobi", "honux")), forwardStrategy())
+        val winners = Winners(racingCars).getWinners()
 
-        assertThat(racingCars.racingCars.size).isEqualTo(3)
+        assertThat(winners).containsAll(racingCars.racingCars)
     }
 
     @Test
-    fun `게임을 플레이하면 Strategy에 기반한 위치를 반환한다`() {
+    fun `우승자의 목록을 반환한다`() {
         val racingCars = RacingCars.create(Names(listOf("jay", "pobi", "honux")), forwardStrategy())
+        val winnerNames = Winners(racingCars).getWinnerNames()
 
-        racingCars.play()
-
-        racingCars.racingCars.forEach {
-            assertThat(it.getPosition()).isEqualTo(1)
-        }
+        assertThat(winnerNames).containsAll(listOf("jay", "pobi", "honux"))
     }
 
     private fun forwardStrategy() = object : MovingStrategy {

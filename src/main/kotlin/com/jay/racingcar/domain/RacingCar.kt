@@ -10,7 +10,9 @@ class RacingCar(
     }
 
     fun getPosition(): Int = position
+
     fun getNameValue(): String = name.value
+
     override fun compareTo(other: RacingCar): Int {
         return other.position.compareTo(position)
     }

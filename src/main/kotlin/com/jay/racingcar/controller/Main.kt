@@ -3,6 +3,7 @@ package com.jay.racingcar.controller
 import com.jay.racingcar.domain.Names
 import com.jay.racingcar.domain.RacingCars
 import com.jay.racingcar.domain.RandomStrategy
+import com.jay.racingcar.domain.Winners
 import com.jay.racingcar.view.InputView
 import com.jay.racingcar.view.InputView.CAR_NAMES_DELIMITER
 import com.jay.racingcar.view.OutputView
@@ -24,7 +25,7 @@ fun main() {
         OutputView.printResult(racingCars)
     }
 
-    OutputView.printWinners(racingCars.getWinners())
+    OutputView.printWinners(Winners(racingCars).getWinners())
 }
 
 private fun inputTries(): Int {

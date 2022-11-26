@@ -10,7 +10,7 @@ import java.lang.IllegalArgumentException
 internal class NameTest {
     @ParameterizedTest
     @MethodSource("nameInputs")
-    fun `이름이 정상길이로 초기화된다`(input: String) {
+    fun `이름이 5자 이하로 초기화된다`(input: String) {
         val name = Name(input)
 
         assertThat(name.value).isEqualTo(input)
