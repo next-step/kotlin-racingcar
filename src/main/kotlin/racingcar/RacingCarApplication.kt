@@ -9,5 +9,6 @@ fun main() {
     val input = ConsoleInput()
     val output = ConsoleOutput()
     val moveStrategy = RandomStrategy()
+
     RacingCarController(input, output, moveStrategy).race()
 }
