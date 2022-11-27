@@ -8,10 +8,14 @@ internal class RacingGameTest {
     @Test
     fun `input으로 입력되는 이름들을 가지고 자동차를 만든다`() {
         // given
-        val names = listOf("pobi", "crong", "honux")
+        val cars = listOf(
+            Car("pobi", Position(5)),
+            Car("crong", Position(3)),
+            Car("honux", Position(3)),
+        )
 
         // when
-        val actual = RacingGame.create(names).value.map { it.name } == names
+        val actual = RacingGame.create(cars).value == cars
 
         // then
         assertThat(actual).isTrue
@@ -29,10 +33,10 @@ internal class RacingGameTest {
         )
 
         // when
-        val actual = game.awardsCars()
+        val actual = AwardsStrategy.FIND_WINNERS.awards(game)
 
         // then
-        val result = listOf("pobi")
+        val result = listOf(Car("pobi", Position(5)))
         assertThat(actual).isEqualTo(result)
     }
 
@@ -48,10 +52,13 @@ internal class RacingGameTest {
         )
 
         // when
-        val actual = game.awardsCars()
+        val actual = AwardsStrategy.FIND_WINNERS.awards(game)
 
         // then
-        val result = listOf("pobi", "crong")
+        val result = listOf(
+            Car("pobi", Position(5)),
+            Car("crong", Position(5)),
+        )
         assertThat(actual).isEqualTo(result)
     }
 }

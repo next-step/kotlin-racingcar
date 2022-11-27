@@ -3,7 +3,7 @@ package racingcar.domain
 import java.util.concurrent.ThreadLocalRandom
 
 
-class Car(
+data class Car(
     val name: String,
     val position: Position = Position(POSITION_FIRST),
 ) {
@@ -19,7 +19,7 @@ class Car(
     }
 
     private fun validateNameLength() {
-        if (name.length > 5) throw IllegalArgumentException("자동차 이름은 5글자를 초과할 수 없습니다.")
+        if (name.length > TERMS_CAR_NAME_LENGTH) throw IllegalArgumentException("자동차 이름은 ${TERMS_CAR_NAME_LENGTH}글자를 초과할 수 없습니다.")
     }
 
     private fun isMove(terms: Int): Boolean {
@@ -35,6 +35,8 @@ class Car(
         private const val TERMS_OF_RACING_MAX = 10
 
         private const val TERMS_OF_RACING = 4
+
+        private const val TERMS_CAR_NAME_LENGTH = 5
     }
 
 }
