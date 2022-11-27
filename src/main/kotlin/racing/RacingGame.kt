@@ -14,7 +14,7 @@ class RacingGame(
 
     private val cars: Cars = Cars.create(numberOfCars)
 
-    fun race() = {
+    fun race() {
         cars.move(movable)
         countOfTry--
     }
