@@ -7,7 +7,7 @@ import racing.domain.Car
 import racing.domain.CarFactory
 import racing.domain.Cars
 import racing.domain.Winner
-import racing.ui.ResultView
+import racing.view.ResultView
 
 class RacingGameTest {
 

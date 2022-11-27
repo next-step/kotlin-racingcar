@@ -1,22 +1,19 @@
 package racing.domain
 
-import racing.ui.InputView
-import racing.ui.ResultView
+import racing.view.ResultView
 
 class RacingGame {
 
-    fun start() {
+    fun start(carNames: Array<String>, numberOfGames: Int): List<Car> {
 
-        val carNames = InputView.requireRacingCarNames()
         val cars = CarFactory.create(carNames)
-        var numberOfGames = InputView.requireNumberOfGames()
 
-        ResultView.printRacingGameGuideText()
-        while (numberOfGames-- > 0) {
+        for (i in 1..numberOfGames) {
             cars.race { RandomGenerator.generate() }
             ResultView.printRacingGameResult(ResultView.toRaceResult(cars))
         }
+
         val winner = Winner(cars)
-        ResultView.printRacingGameWinner(winner.win())
+        return winner.win()
     }
 }

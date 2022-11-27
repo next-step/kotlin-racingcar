@@ -1,8 +1,6 @@
 package racing.domain
 
-class Cars(list: List<Car>) : Iterable<Car> {
-
-    private val list = list
+class Cars(private val list: List<Car>) : Iterable<Car> {
     constructor(names: Array<String>) : this(names.map { Car.produce(it) })
 
     fun count() = list.size
@@ -14,7 +12,7 @@ class Cars(list: List<Car>) : Iterable<Car> {
         }
     }
 
-    fun isWinnerPosition() = list.maxOf { it.position }
+    private fun isWinnerPosition() = list.maxOf { it.position }
 
     fun isWinner() = list.filter { it.position == isWinnerPosition() }
 

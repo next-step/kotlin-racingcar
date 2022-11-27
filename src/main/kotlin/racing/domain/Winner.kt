@@ -1,9 +1,6 @@
 package racing.domain
 
-class Winner(cars: Cars) {
-
-    var cars = cars
-        private set
+class Winner(private val cars: Cars) {
 
     fun win(): List<Car> = cars.isWinner()
 }
