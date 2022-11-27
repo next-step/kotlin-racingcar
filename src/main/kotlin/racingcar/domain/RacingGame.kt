@@ -11,11 +11,8 @@ class RacingGame(val value: List<Car> = emptyList()) {
         return racingGame
     }
 
-    fun awardsCars(): List<String> {
-        return value.groupBy {
-            val max = value.maxOf { it.position.value }
-            it.position.value == max
-        }[true]?.map { it.name } ?: value.map { it.name }
+    fun awardsCars(): List<Car> {
+        return value.sortedBy { it.position.value }
     }
 
     private operator fun plus(car: Car): RacingGame {
@@ -23,13 +20,8 @@ class RacingGame(val value: List<Car> = emptyList()) {
     }
 
     companion object {
-        fun create(names: List<String>): RacingGame {
-            var racingGame = RacingGame()
-            names.forEach { name ->
-                racingGame += Car(name)
-            }
-
-            return racingGame
+        fun create(cars: List<Car>): RacingGame {
+            return RacingGame(cars)
         }
     }
 
