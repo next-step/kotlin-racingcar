@@ -31,4 +31,10 @@ internal class ParserTest {
                 parser.validate(elements)
             }
     }
+
+    @Test
+    fun `스트링을 특정 구분자로 나눈다`() {
+        val elements: List<String> = parser.parse("1,2,3", ",")
+        assertThat(elements).asList().isEqualTo(listOf("1", "2", "3"))
+    }
 }

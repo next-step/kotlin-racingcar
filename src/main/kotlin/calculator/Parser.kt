@@ -3,7 +3,7 @@ package calculator
 import calculator.common.isNotNumber
 import calculator.common.isNotOperator
 
-class Parser(private val limit: Int) {
+class Parser(private val limit: Int = 0) {
 
     fun provideElementsIterator(expression: String?): ListIterator<String> {
         requireNotNull(expression) { "expression is null" }
@@ -13,10 +13,14 @@ class Parser(private val limit: Int) {
     }
 
     fun parse(input: String): List<String> {
+        return parse(input = input, delimiter = " ")
+    }
+
+    fun parse(input: String, delimiter: String): List<String> {
         if (input.isBlank()) {
             return emptyList()
         }
-        return input.split(" ")
+        return input.split(delimiter)
     }
 
     @Throws(IllegalArgumentException::class)
