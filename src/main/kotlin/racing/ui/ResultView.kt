@@ -1,5 +1,7 @@
 package racing.ui
 
+private const val DISPLAY_MARK = "-"
+
 object ResultView {
 
     fun printResult() {
@@ -8,7 +10,7 @@ object ResultView {
 
     fun print(positions: List<Int>) {
         positions.forEach { position ->
-            println("-".repeat(position))
+            println(DISPLAY_MARK.repeat(position))
         }
         println()
     }
