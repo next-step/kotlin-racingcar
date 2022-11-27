@@ -5,7 +5,7 @@ class Race(
     private val record: Record,
 ) {
     fun start(carNames: List<String>, tryCount: Int): Record {
-        val cars: List<Car> = carNames.map { Car.from(it) }
+        val cars: List<Car> = carNames.map { Car(it) }
         for (i in 1..tryCount) {
             moveCars(cars)
         }
