@@ -10,7 +10,7 @@ private const val DEFAULT_INCREMENT_DISTANCE = 1
 class RacingCar(
     name: String,
     initDistance: Int = DEFAULT_INIT_DISTANCE
-) {
+) : Comparable<RacingCar> {
 
     val carName: CarName = CarName(name)
 
@@ -19,4 +19,13 @@ class RacingCar(
     fun go() {
         carDistance.increment(DEFAULT_INCREMENT_DISTANCE)
     }
+
+    fun isDraw(otherCar: RacingCar) = carDistance == otherCar.carDistance
+
+    fun isWin(otherCar: RacingCar) = carDistance > otherCar.carDistance
+
+    override fun compareTo(other: RacingCar): Int =
+        if (isDraw(other)) 0
+        else if (isWin(other)) 1
+        else -1
 }

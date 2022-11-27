@@ -22,7 +22,9 @@ class RacingCarContainer(
     }
 
     fun getWinnerRacingCarList(): List<RacingCar> {
-        return carList.filter { it.carDistance == carList.maxOf(RacingCar::carDistance) }
+        val winningCar = carList.maxOrNull() ?: return emptyList()
+
+        return carList.filter { it.isDraw(winningCar) }
     }
 
     fun isNotFullRacingCar(): Boolean = _carList.size < totalCarCount

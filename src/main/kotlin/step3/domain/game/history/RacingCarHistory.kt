@@ -6,7 +6,7 @@ import step3.domain.car.name.CarName
 
 class RacingCarHistory(racingCar: RacingCar) {
 
-    var carName: CarName = racingCar.carName.copy()
+    var carName: CarName = racingCar.carName
 
     val carDistance: CarDistance = racingCar.carDistance.copy()
 }

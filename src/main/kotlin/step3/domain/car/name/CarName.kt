@@ -1,6 +1,7 @@
 package step3.domain.car.name
 
-data class CarName(
+@JvmInline
+value class CarName(
     val name: String
 ) {
     init {
