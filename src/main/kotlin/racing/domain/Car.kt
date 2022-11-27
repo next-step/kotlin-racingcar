@@ -1,8 +1,10 @@
 package racing.domain
 
 class Car(
-    private var position: Int = 0
+    position: Int = 0
 ) {
+    var position: Int = position
+        private set
 
     fun move(movable: Boolean) {
         if (movable) {
@@ -11,8 +13,6 @@ class Car(
     }
 
     fun samePosition(position: Int): Boolean = this.position == position
-
-    fun getPosition(): Int = this.position
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

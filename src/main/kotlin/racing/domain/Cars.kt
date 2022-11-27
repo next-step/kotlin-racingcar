@@ -21,6 +21,6 @@ class Cars(private val cars: List<Car>) {
     }
 
     fun positions(): List<Int> {
-        return cars.map { it.getPosition() }
+        return cars.map { it.position }
     }
 }
