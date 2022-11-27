@@ -35,9 +35,8 @@ internal class RacingGameKoTest : BehaviorSpec() {
             `when`("경주를 시작하였을 때") {
                 beforeEach {
                     racingGame = RacingGame(
-                        inputView = InputView,
-                        resultView = ResultView,
                         racingCarGarage = RacingCarGarage(
+                            carNames = carNames,
                             racingCarsFactory = racingCarsFactory
                         ),
                         racing = racing,

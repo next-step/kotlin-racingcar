@@ -25,26 +25,25 @@ internal class RacingGarageTest {
      */
     @ParameterizedTest
     @MethodSource("provideDrivers")
-    fun `필요한 차량 수 만큼 자동차를 생성한다`(drivers: List<String>) {
+    fun `필요한 차량 수 만큼 자동차를 생성한다`(carNames: List<String>) {
         RacingCarGarage(
+            carNames = carNames.map { CarName(it) },
             racingCarsFactory = racingCarsFactory,
         )
-            .apply { setCarsWithNames(drivers.map { CarName(it) }) }
             .cars
             .count()
             .let(::assertThat)
-            .isEqualTo(drivers.count())
+            .isEqualTo(carNames.count())
     }
 
     @ParameterizedTest
     @MethodSource("provideDrivers")
-    fun `경주차 차고에 1씩 이동된 자동차를 주차하면 이동된 자동차 정보가 저장된다`(drivers: List<String>) {
+    fun `경주차 차고에 1씩 이동된 자동차를 주차하면 이동된 자동차 정보가 저장된다`(carNames: List<String>) {
         // Given
         val racingCarGarage = RacingCarGarage(
+            carNames = carNames.map { CarName(it) },
             racingCarsFactory = racingCarsFactory,
-        ).apply {
-            setCarsWithNames(drivers.map { CarName(it) })
-        }
+        )
         val testCarResult = racingCarGarage.cars
             .map { car -> car.copy(mileage = car.mileage + 1) }
         // When
