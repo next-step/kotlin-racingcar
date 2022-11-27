@@ -1,6 +1,6 @@
 package racingcar.domain
 
-class Car(val name: String, var position: Int = DEFAULT_POSITION) {
+class Car(var position: Int = DEFAULT_POSITION) {
     fun move(number: Int): Int {
         if (number >= 4) position++
 
