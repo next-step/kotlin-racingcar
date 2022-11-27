@@ -18,7 +18,7 @@ object RacingApplication {
         ResultView.printResult()
         while (racingGame.isRacing()) {
             racingGame.race()
-            ResultView.print(racingGame.positions())
+            ResultView.print(racingGame.cars())
         }
     }
 }

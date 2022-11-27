@@ -16,4 +16,6 @@ data class Car(
     }
 
     fun samePosition(position: Int): Boolean = this.position == position
+
+    fun name() = name.value
 }

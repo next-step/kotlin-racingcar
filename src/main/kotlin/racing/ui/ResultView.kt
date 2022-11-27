@@ -1,6 +1,9 @@
 package racing.ui
 
+import racing.domain.Car
+
 private const val DISPLAY_MARK = "-"
+private const val DELIMITER = """:"""
 
 object ResultView {
 
@@ -8,9 +11,9 @@ object ResultView {
         println("실행 결과")
     }
 
-    fun print(positions: List<Int>) {
-        positions.forEach { position ->
-            println(DISPLAY_MARK.repeat(position))
+    fun print(positions: List<Car>) {
+        positions.forEach { car ->
+            println("${car.name()} $DELIMITER ${DISPLAY_MARK.repeat(car.position)}")
         }
         println()
     }

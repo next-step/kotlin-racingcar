@@ -4,10 +4,10 @@ private const val MINIMUM_COUNT_OF_CARS = 2
 
 private const val DELIMITER_OF_NAME = ","
 
-class Cars(private val cars: List<Car>) {
+class Cars(private val value: List<Car>) {
 
     init {
-        require(cars.size >= MINIMUM_COUNT_OF_CARS) {
+        require(value.size >= MINIMUM_COUNT_OF_CARS) {
             "자동차는 최소 ${MINIMUM_COUNT_OF_CARS}대 이상이어야 합니다."
         }
     }
@@ -19,12 +19,12 @@ class Cars(private val cars: List<Car>) {
     }
 
     fun move(movable: Movable) {
-        cars.forEach {
+        value.forEach {
             it.move(movable.canMoveIt())
         }
     }
 
-    fun positions(): List<Int> {
-        return cars.map { it.position }
+    fun value(): List<Car> {
+        return value.map { it.copy() }
     }
 }
