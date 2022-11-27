@@ -12,6 +12,7 @@ object RacingApplication {
 
     fun run() {
         val numberOfCars = InputView.inputNumberOfCars()
+        val namesOfCars = InputView.inputNamesOfCars()
         val countOfTry = InputView.inputCountOfTry()
         val racingGame = RacingGame(Cars.create(numberOfCars), countOfTry)
 
