@@ -24,6 +24,10 @@ class Cars(private val value: List<Car>) {
         }
     }
 
+    fun maxPosition(): Int {
+        return value.maxOf { it.position }
+    }
+
     fun value(): List<Car> {
         return value.map { it.copy() }
     }

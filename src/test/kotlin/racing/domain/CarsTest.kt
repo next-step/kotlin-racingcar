@@ -31,4 +31,14 @@ class CarsTest : StringSpec({
             }
         }
     }
+
+    "자동차들 중 최대 위치 값 구하기" {
+        val testCars = listOf(
+            Car.of("자동차A", 1),
+            Car.of("자동차B", 2),
+            Car.of("자동차C", 3)
+        )
+
+        Cars(testCars).maxPosition() shouldBe 3
+    }
 })
