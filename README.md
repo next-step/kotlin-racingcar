@@ -68,7 +68,7 @@
   - [x] 0 -> FINISHED_COUNT_OF_TRY
 - [x] interface의 move 함수명의 반환 타입을 유추할 수 있게 변경
   - `fun move()` -> `fun canMoveIt()`
-- [ ] 반환하지 않는 함수는 run scope 함수 사용하지 않도록 변경
+- [x] 반환하지 않는 함수는 run scope 함수 사용하지 않도록 변경
   - `fun race() = run {}` -> `fun race() = {}`
 - [ ] 조금 더 의미 있는 변수명을 변경
   - moveCondition -> movingReferencePoint
