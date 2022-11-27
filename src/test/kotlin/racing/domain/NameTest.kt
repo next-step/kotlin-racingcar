@@ -16,4 +16,10 @@ class NameTest : StringSpec({
             }
         }
     }
+
+    "자동차의 이름은 5자를 초과할 수 없다" {
+        shouldThrow<IllegalArgumentException> {
+            Name("123456")
+        }
+    }
 })
