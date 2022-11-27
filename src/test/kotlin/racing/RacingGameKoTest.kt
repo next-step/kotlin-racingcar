@@ -42,7 +42,7 @@ internal class RacingGameKoTest : BehaviorSpec() {
                         racing = racing,
                         racingRecordBoard = racingRecordBoard
                     )
-                    racingGame.start(carNames, roundCount)
+                    racingGame.start(roundCount)
                 }
                 then("차량 3대의 5 라운드 경주 결과를 확인 할 수 있다.") {
                     racingRecordBoard.results.size shouldBe roundCount.value

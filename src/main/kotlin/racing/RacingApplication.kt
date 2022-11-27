@@ -4,15 +4,23 @@ import racing.domain.GoOrStopCarActionImpl
 import racing.domain.RacingCarsFactoryImpl
 import racing.domain.RacingImpl
 import racing.domain.RandomMoveStrategy
+import racing.model.CarName
+import racing.model.RoundCount
 
 class RacingApplication {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
+            val (carNames, roundCount) = InputView.getRaceInfo()
+                .let { (carNames, roundCount) ->
+                    carNames.map { driver -> CarName(driver) } to (roundCount?.let { RoundCount(it) })
+                }
+            require(carNames.isNotEmpty()) { "유효한 자동차 이름이 아닙니다." }
+            requireNotNull(roundCount) { "유효한 시도횟수 입력 값이 아닙니다." }
+
             val racingGame = RacingGame(
-                inputView = InputView,
-                resultView = ResultView,
                 racingCarGarage = RacingCarGarage(
+                    carNames = carNames,
                     racingCarsFactory = RacingCarsFactoryImpl()
                 ),
                 racing = RacingImpl(
@@ -22,10 +30,9 @@ class RacingApplication {
                 ),
                 racingRecordBoard = RacingRecordBoard()
             )
-            val (drivers, roundCount) = racingGame.getRaceInfo()
-            racingGame.start(drivers, roundCount)
+            racingGame.start(roundCount)
             val (result, winners) = racingGame.getRacingResultAndWinners()
-            racingGame.printResult(result, winners)
+            ResultView.printRaceResult(result, winners)
         }
     }
 }
