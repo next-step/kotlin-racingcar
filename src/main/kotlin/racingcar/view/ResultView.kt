@@ -1,7 +1,6 @@
 package racingcar.view
 
 import racingcar.domain.RaceResult
-import racingcar.exception.CannotFindWinnerException
 
 object ResultView {
     fun printResult(raceResult: RaceResult) {
@@ -22,19 +21,13 @@ object ResultView {
     }
 
     private fun printRoundCarPositions(carInfos: List<Pair<String, Int>>) {
-        carInfos.forEach { carInfo -> println("${carInfo.first}: ${"-".repeat(carInfo.second)} \r") }
+        carInfos.forEach { (carName, position) -> println("$carName: ${"-".repeat(position)} \r") }
     }
 
     private fun printWinners(raceResult: RaceResult) {
         val winners = raceResult.getWinners()
+        val winnerNames = winners.joinToString(separator = ", ")
 
-        try {
-            if (winners.isNullOrEmpty()) throw CannotFindWinnerException()
-            val winnerNames = winners.joinToString(separator = ", ")
-
-            println("${winnerNames}가 최종 우승했습니다.")
-        } catch (e: CannotFindWinnerException) {
-            println(e.message)
-        }
+        println("${winnerNames}가 최종 우승했습니다.")
     }
 }

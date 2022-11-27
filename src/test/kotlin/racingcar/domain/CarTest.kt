@@ -3,11 +3,12 @@ package racingcar.domain
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.ints.shouldBeExactly
+import racingcar.exception.CarNameLengthException
 
 class CarTest : DescribeSpec({
     describe("자동차 이동 테스트") {
         it("이름이 5자를 초과하면 IllegalArgument 예외가 throw 된다.") {
-            shouldThrow<IllegalArgumentException> {
+            shouldThrow<CarNameLengthException> {
                 Car("ppororo")
             }
         }

@@ -6,7 +6,7 @@ class Race(private val cars: List<Car>, private val totalCountOfRound: Int) {
     fun run(): RaceResult {
         val roundHistories = ArrayList<RoundHistory>()
 
-        repeat(totalCountOfRound) { roundNumber: Int ->
+        repeat(totalCountOfRound) { roundNumber ->
             val carInfos = cars.map { car -> Pair(car.name, car.move(getNumberToMove())) }
 
             roundHistories.add(RoundHistory(roundNumber, carInfos))
