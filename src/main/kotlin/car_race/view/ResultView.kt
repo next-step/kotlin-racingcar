@@ -4,18 +4,12 @@ import car_race.logic.car.Cars
 
 object ResultView {
 
-    fun resultViewStart() = println("실행 결과")
-
-    fun printEachRound(cars: Cars) {
-        cars.cars.forEach { car ->
-            print("${car.carName.name} : ")
-            println("-".repeat(car.carPosition.position + 1))
+    fun printGameResult(gameLogs: List<Cars>) {
+        println("실행 결과")
+        gameLogs.forEach { log ->
+            log.getResult().forEach { eachResult -> println(eachResult) }
+            println()
         }
-        println()
-    }
-
-    fun printWinners(cars: Cars) {
-        val winnerNames = cars.getWinners().map { car -> car.carName.name }
-        println("${winnerNames.joinToString()}가 최종 우승했습니다.")
+        println(gameLogs.last().getWinners().getResult())
     }
 }

@@ -3,17 +3,18 @@ package car_race.logic.car
 import car_race.logic.system.MovingSystem
 
 class Car(
-    carName: CarName,
-    carPosition: CarPosition = CarPosition()
+    val carName: CarName,
+    val carPosition: CarPosition = CarPosition()
 ) {
-    val carName: CarName = carName
+    fun nextRound(movingSystem: MovingSystem): Car {
+        val movingDistance = movingDistance(movingSystem)
+        return Car(
+            this.carName,
+            CarPosition(this.carPosition.position + movingDistance)
+        )
+    }
 
-    var carPosition: CarPosition = carPosition
-        private set
-
-    fun nextRound(movingSystem: MovingSystem) {
-        if (movingSystem.canMove()) {
-            carPosition = carPosition.move(1)
-        }
+    private fun movingDistance(movingSystem: MovingSystem): Int {
+        return if (movingSystem.canMove()) 1 else 0
     }
 }

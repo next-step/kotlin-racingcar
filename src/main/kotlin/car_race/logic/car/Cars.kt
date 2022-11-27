@@ -2,7 +2,7 @@ package car_race.logic.car
 
 import car_race.logic.system.MovingSystem
 
-class Cars(
+data class Cars(
     val cars: List<Car>
 ) {
     constructor(carNames: CarNames) : this(
@@ -11,14 +11,26 @@ class Cars(
         }
     )
 
-    fun nextRound(movingSystem: MovingSystem) {
-        cars.forEach { car ->
-            car.nextRound(movingSystem)
-        }
+    fun nextRound(movingSystem: MovingSystem): Cars {
+        return Cars(
+            cars.map { car ->
+                car.nextRound(movingSystem)
+            }
+        )
     }
 
-    fun getWinners(): List<Car> {
+    fun getWinners(): Winners {
         val highestScore = cars.maxOf { car -> car.carPosition.position }
-        return cars.filter { car -> car.carPosition.position == highestScore }
+        return Winners(
+            cars.filter { car ->
+                car.carPosition.position == highestScore
+            }
+        )
+    }
+
+    fun getResult(): List<String> {
+        return cars.map { car ->
+            "${car.carName.name} : " + "-".repeat(car.carPosition.position + 1)
+        }
     }
 }

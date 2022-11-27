@@ -14,17 +14,13 @@ class CarTest : FunSpec({
         val defaultPosition = CarPosition(defaultPositionValue)
         val car = Car(defaultCarName, defaultPosition)
 
-        test("fun getPosition(): 현재 위치를 반환한다.") {
-            car.carPosition shouldBe defaultPosition
-        }
-
         test("fun nextRound(): movingSystem.isMove()가 true 면 한 칸 움직인다") {
             val alwaysTrueSystem = object : MovingSystem {
                 override fun canMove() = true
             }
 
-            car.nextRound(alwaysTrueSystem)
-            car.carPosition.position shouldBe defaultPositionValue + 1
+            val nextRoundCar = car.nextRound(alwaysTrueSystem)
+            nextRoundCar.carPosition.position shouldBe defaultPositionValue + 1
         }
 
         test("fun nextRound(): movingSystem.isMove()가 false 면 움직이지 않는다") {
@@ -32,8 +28,8 @@ class CarTest : FunSpec({
                 override fun canMove() = false
             }
 
-            car.nextRound(alwaysFalseSystem)
-            car.carPosition.position shouldBe defaultPositionValue
+            val nextRoundCar = car.nextRound(alwaysFalseSystem)
+            nextRoundCar.carPosition.position shouldBe defaultPositionValue
         }
     }
 })
