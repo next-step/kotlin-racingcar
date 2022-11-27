@@ -31,6 +31,6 @@ class FormularOne {
      * 자동차 경주자 목록 생성
      */
     private fun makeCarRacerList(numberOfCar: Int): List<CarRacer> {
-        return List(numberOfCar) { CarRacer() }
+        return List(numberOfCar) { CarRacer(name = "hjw") }
     }
 }
