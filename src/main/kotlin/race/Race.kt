@@ -6,9 +6,7 @@ class Race(
 ) {
     fun start(carNames: List<String>, tryCount: Int): Record {
         val cars: List<Car> = carNames.map { Car(it) }
-        for (i in 1..tryCount) {
-            moveCars(cars)
-        }
+        repeat(tryCount){ moveCars(cars) }
         return record
     }
 
@@ -17,7 +15,7 @@ class Race(
             val randomNumber = randomGeneratorNumber.generate()
             record.record(
                 carName = car.name,
-                movement = cars.find { it.name == car.name }!!.move(randomNumber)
+                movement = car.move(randomNumber)
             )
         }
 }
