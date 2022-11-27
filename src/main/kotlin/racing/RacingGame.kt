@@ -10,7 +10,7 @@ class RacingGame(
     private val movable: Movable = RandomMove()
 ) {
 
-    private val cars: Cars = Cars(numberOfCars)
+    private val cars: Cars = Cars.create(numberOfCars)
 
     fun race() = run {
         cars.move(movable)

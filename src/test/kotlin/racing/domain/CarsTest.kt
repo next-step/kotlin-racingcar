@@ -10,7 +10,7 @@ class CarsTest : StringSpec({
         (0..1).forEach { numberOfCars ->
             run {
                 shouldThrow<IllegalArgumentException> {
-                    Cars(numberOfCars)
+                    Cars.create(numberOfCars)
                 }
             }
         }
@@ -22,7 +22,7 @@ class CarsTest : StringSpec({
             Movable { false } to listOf(0, 0, 0),
         ).forEach { (movable, expected) ->
             run {
-                val cars = Cars(3)
+                val cars = Cars.create(3)
                 cars.move(movable)
                 cars.positions() shouldBe expected
             }

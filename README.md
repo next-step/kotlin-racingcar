@@ -54,9 +54,9 @@
 - [x] Car의 가변 프로퍼티를 Body에서 정의 후 private setter 선언
   - [x] getPosition 함수 제거. (프로퍼티 접근자 사용)
     - 코틀린에서는 프로퍼티가 getter/setter 역할을 모두 수행할 수 있다.(?)
-- [ ] 자동차 일급 컬렉션에서 정적 팩토리 메서드 활용
-  - [ ] Companion Object를 활용한 정적 팩토리 메서드
-- [ ] 1 ~ n 반복하는 경우 List() 사용
+- [x] 자동차 일급 컬렉션에서 정적 팩토리 메서드 활용
+  - [x] Companion Object를 활용한 정적 팩토리 메서드
+- [x] 1 ~ n 반복하는 경우 List() 사용
 - [ ] 람다 파라미터가 하나인 경우 it으로 변경
 - [ ] readLine() 대신 readln() 사용
   - 차이점

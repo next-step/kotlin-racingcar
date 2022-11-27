@@ -10,9 +10,15 @@ class Cars(private val cars: List<Car>) {
         }
     }
 
-    constructor(numberOfCars: Int) : this(
-        (1..numberOfCars).map { Car() }
+    private constructor(numberOfCars: Int) : this(
+        List(numberOfCars) { Car() }
     )
+
+    companion object {
+        fun create(numberOfCars: Int): Cars {
+            return Cars(numberOfCars)
+        }
+    }
 
     fun move(movable: Movable) {
         cars.forEach { car ->
