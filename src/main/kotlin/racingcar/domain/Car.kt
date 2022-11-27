@@ -3,7 +3,7 @@ package racingcar.domain
 import java.util.concurrent.ThreadLocalRandom
 
 
-class Car(
+data class Car(
     val name: String,
     val position: Position = Position(POSITION_FIRST),
 ) {
