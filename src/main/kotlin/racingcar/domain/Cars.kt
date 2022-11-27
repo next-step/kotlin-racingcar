@@ -2,21 +2,19 @@ package racingcar.domain
 
 import racingcar.view.OutputView
 
-const val MOVE_FORWARD = 4
-
-class Cars {
+class Cars(nameOfCars: List<String>, movingConditionStrategy: MovingConditionStrategy) {
     private val cars = mutableListOf<Car>()
+    init {
+        nameOfCars.map { cars.add(Car(movingConditionStrategy, it)) }
+    }
 
-    fun startRace(gameInputValue: GameInputValue, movingConditionStrategy: MovingConditionStrategy) {
+    fun race(gameInputValue: GameInputValue) {
         val outputView = OutputView()
-        make(gameInputValue.inputNumberOfCars, movingConditionStrategy)
         iterateNumberOfGames(gameInputValue, outputView)
     }
 
-    private fun make(numberOfCar: Int, movingConditionStrategy: MovingConditionStrategy) {
-        for (i in 0 until numberOfCar) {
-            cars.add(Car(movingConditionStrategy))
-        }
+    fun showResult(): String {
+        return OutputView().showWinner(WinnerSelector(cars).selectWinner())
     }
 
     private fun iterateNumberOfGames(gameInputValue: GameInputValue, outputView: OutputView) {
@@ -26,9 +24,9 @@ class Cars {
     }
 
     private fun iterateNumberOfCars(gameInputValue: GameInputValue, outputView: OutputView) {
-        for (numberOfCars in 0 until gameInputValue.inputNumberOfCars) {
+        for (numberOfCars in 0 until gameInputValue.inputNameOfCars.size) {
             moveCar(numberOfCars)
-            showCarPosition(numberOfCars, gameInputValue, outputView)
+            showCarPosition(numberOfCars, gameInputValue.inputNameOfCars.size, outputView)
         }
     }
 
@@ -36,11 +34,11 @@ class Cars {
         cars[numberOfCars].move()
     }
 
-    private fun showCarPosition(numberOfCars: Int, gameInputValue: GameInputValue, outputView: OutputView) {
-        cars[numberOfCars].showPosition(isLastCarCycle(numberOfCars, gameInputValue), outputView)
+    private fun showCarPosition(numberOfCars: Int, nameOfCarsSize: Int, outputView: OutputView) {
+        cars[numberOfCars].showPosition(isLastCarCycle(numberOfCars, nameOfCarsSize), outputView)
     }
 
-    private fun isLastCarCycle(numberOfCar: Int, gameInputValue: GameInputValue): Boolean {
-        return numberOfCar == gameInputValue.inputNumberOfCars - 1
+    private fun isLastCarCycle(numberOfCar: Int, nameOfCarsSize: Int): Boolean {
+        return numberOfCar == nameOfCarsSize - 1
     }
 }
