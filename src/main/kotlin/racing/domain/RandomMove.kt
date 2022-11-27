@@ -3,7 +3,7 @@ package racing.domain
 class RandomMove(
     private val minimumRandomNumber: Int = 0,
     private val maximumRandomNumber: Int = 9,
-    private val moveCondition: Int = 4
+    private val movingReferencePoint: Int = 4
 ) : Movable {
 
     init {
@@ -11,6 +11,6 @@ class RandomMove(
     }
 
     override fun canMoveIt(): Boolean {
-        return (minimumRandomNumber..maximumRandomNumber).random() >= moveCondition
+        return (minimumRandomNumber..maximumRandomNumber).random() >= movingReferencePoint
     }
 }

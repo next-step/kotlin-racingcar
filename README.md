@@ -70,5 +70,5 @@
   - `fun move()` -> `fun canMoveIt()`
 - [x] 반환하지 않는 함수는 run scope 함수 사용하지 않도록 변경
   - `fun race() = run {}` -> `fun race() = {}`
-- [ ] 조금 더 의미 있는 변수명을 변경
-  - moveCondition -> movingReferencePoint
+- [x] 조금 더 의미 있는 변수명을 변경
+  - `moveCondition` -> `movingReferencePoint`
