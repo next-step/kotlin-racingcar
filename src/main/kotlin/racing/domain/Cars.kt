@@ -21,8 +21,8 @@ class Cars(private val cars: List<Car>) {
     }
 
     fun move(movable: Movable) {
-        cars.forEach { car ->
-            car.move(movable.move())
+        cars.forEach {
+            it.move(movable.move())
         }
     }
 

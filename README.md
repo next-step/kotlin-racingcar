@@ -57,7 +57,8 @@
 - [x] 자동차 일급 컬렉션에서 정적 팩토리 메서드 활용
   - [x] Companion Object를 활용한 정적 팩토리 메서드
 - [x] 1 ~ n 반복하는 경우 List() 사용
-- [ ] 람다 파라미터가 하나인 경우 it으로 변경
+- [x] 람다 파라미터가 하나인 경우 it으로 변경
+  - `car -> car.move()` -> `it.move()`
 - [ ] readLine() 대신 readln() 사용
   - 차이점
     - readLine() 은 리턴 타입이 String?. 즉 null을 허용한다.
