@@ -7,10 +7,13 @@ import io.kotest.matchers.shouldBe
 class CarsTest : StringSpec({
 
     "경주에 참가하는 자동차는 2대 이상이어야 한다" {
-        (0..1).forEach { numberOfCars ->
+        listOf(
+            "",
+            "자동차A"
+        ).forEach { names ->
             run {
                 shouldThrow<IllegalArgumentException> {
-                    Cars.create(numberOfCars)
+                    Cars.create(names)
                 }
             }
         }
@@ -22,7 +25,7 @@ class CarsTest : StringSpec({
             Movable { false } to listOf(0, 0, 0),
         ).forEach { (movable, expected) ->
             run {
-                val cars = Cars.create(3)
+                val cars = Cars.create("자동차A, 자동차B, 자동차C")
                 cars.move(movable)
                 cars.positions() shouldBe expected
             }

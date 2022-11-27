@@ -2,6 +2,8 @@ package racing.domain
 
 private const val MINIMUM_COUNT_OF_CARS = 2
 
+private const val DELIMITER_OF_NAME = ","
+
 class Cars(private val cars: List<Car>) {
 
     init {
@@ -10,13 +12,9 @@ class Cars(private val cars: List<Car>) {
         }
     }
 
-    private constructor(numberOfCars: Int) : this(
-        List(numberOfCars) { Car() }
-    )
-
     companion object {
-        fun create(numberOfCars: Int): Cars {
-            return Cars(numberOfCars)
+        fun create(names: String): Cars {
+            return Cars(names.trim().split(DELIMITER_OF_NAME).map { Car.from(it.trim()) })
         }
     }
 
