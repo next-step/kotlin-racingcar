@@ -13,5 +13,10 @@ class Cars(list: List<Car>) : Iterable<Car> {
             car.move(movable())
         }
     }
+
+    fun isWinnerPosition() = list.maxOf { it.position }
+
+    fun isWinner() = list.filter { it.position == isWinnerPosition() }
+
     override fun iterator(): Iterator<Car> = list.iterator()
 }

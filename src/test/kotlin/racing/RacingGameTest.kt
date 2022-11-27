@@ -30,8 +30,8 @@ class RacingGameTest {
     fun `Racing Game 단독 우승자 출력(차가 한대일경우)`() {
         val kkoksCar = Car.produce("kkoks", 3)
         val winner = Winner(Cars(listOf(kkoksCar)))
-        val result = winner.win().joinToString { it.name }
-        assertThat(result).isEqualTo("kkoks")
+        val result = winner.win()
+        assertThat(result).contains(kkoksCar)
     }
 
     @Test
@@ -39,8 +39,8 @@ class RacingGameTest {
         val leeCar = Car.produce("lee", 5)
         val kkoksCar = Car.produce("kkoks", 3)
         val winner = Winner(Cars(listOf(leeCar, kkoksCar)))
-        val result = winner.win().joinToString { it.name }
-        assertThat(result).isEqualTo("lee")
+        val result = winner.win()
+        assertThat(result).contains(leeCar)
     }
 
     @Test
@@ -49,7 +49,7 @@ class RacingGameTest {
         val kkoksCar = Car.produce("kkoks", 5)
         val tesyCar = Car.produce("tesy", 3)
         val winner = Winner(Cars(listOf(leeCar, kkoksCar, tesyCar)))
-        val result = winner.win().joinToString { it.name }
-        assertThat(result).isEqualTo("lee, kkoks")
+        val result = winner.win()
+        assertThat(result).contains(leeCar, kkoksCar)
     }
 }
