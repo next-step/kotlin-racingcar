@@ -59,7 +59,7 @@
 - [x] 1 ~ n 반복하는 경우 List() 사용
 - [x] 람다 파라미터가 하나인 경우 it으로 변경
   - `car -> car.move()` -> `it.move()`
-- [ ] readLine() 대신 readln() 사용
+- [x] readLine() 대신 readln() 사용
   - 차이점
     - readLine() 은 리턴 타입이 String?. 즉 null을 허용한다.
     - readln() 은 리턴 타입이 String. null에 대한 예외 처리가 되어 있다.

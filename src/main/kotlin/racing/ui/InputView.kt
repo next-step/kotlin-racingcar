@@ -7,11 +7,11 @@ object InputView {
 
     fun inputNumberOfCars(): Int {
         println(INPUT_NUMBER_OF_CARS_MESSAGE)
-        return readLine()!!.toInt()
+        return readln().toInt()
     }
 
     fun inputCountOfTry(): Int {
         println(INPUT_COUNT_OF_TRY_MESSAGE)
-        return readLine()!!.toInt()
+        return readln().toInt()
     }
 }
