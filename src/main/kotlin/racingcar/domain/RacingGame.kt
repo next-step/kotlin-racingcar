@@ -28,6 +28,14 @@ class RacingGame(private val cars: List<Car>, private var round: Round) {
 
     fun hasNextRound() = round.hasNext()
 
+    fun findWinnerNames(): List<Name> {
+        val sortedCars = cars.sortedByDescending { it.position }
+        val winner = sortedCars.first()
+
+        return sortedCars.filter { it.position == winner.position }
+            .map { it.name }
+    }
+
     companion object {
         private const val MIN_CAR_COUNT = 2
     }

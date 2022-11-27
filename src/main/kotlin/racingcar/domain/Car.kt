@@ -3,9 +3,12 @@ package racingcar.domain
 import racingcar.vo.Name
 import racingcar.vo.Position
 
-class Car(name: String, private var position: Position = Position()) {
+class Car(name: String, position: Position = Position()) {
 
     val name = Name(name)
+
+    var position = position
+        private set
 
     constructor(name: String, position: Int) : this(name, Position(position))
 

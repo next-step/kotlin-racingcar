@@ -63,4 +63,13 @@ internal class RacingGameTest : FunSpec({
             actual shouldBe false
         }
     }
+
+    context("findWinnerNames()") {
+        test("우승자의 이름 목록을 반환한다.") {
+            val racingGame = RacingGame(listOf(Car("win1", 2), Car("win2", 2), Car("lose1", 1)), Round(1))
+            val names = racingGame.findWinnerNames()
+
+            names shouldContainExactly listOf(Name("win1"), Name("win2"))
+        }
+    }
 })
