@@ -7,7 +7,7 @@ class CarRacingGame(private val carRacers: List<CarRacer>) {
 
     fun race() {
         carRacers.forEach { racer ->
-            racer.moveTo(randomCount = (0..9).random())
+            racer.moveTo(count = (4..9).random())
         }
     }
 
