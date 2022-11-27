@@ -19,5 +19,5 @@ class RacingGame(
 
     fun isRacing() = countOfTry > FINISHED_COUNT_OF_TRY
 
-    fun cars() = cars.value()
+    fun cars() = cars
 }
