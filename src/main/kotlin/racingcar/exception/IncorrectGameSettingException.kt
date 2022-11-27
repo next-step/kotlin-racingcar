@@ -1,3 +1,3 @@
 package racingcar.exception
 
-class IncorrectGameSettingException(message: String = "우승자를 찾을 수 없습니다.") : IllegalArgumentException(message)
+class IncorrectGameSettingException(message: String = "올바르지 않은 게임 세팅값입니다.") : IllegalArgumentException(message)
