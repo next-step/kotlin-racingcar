@@ -22,7 +22,7 @@ object RacingApplication {
 
     private fun printRacingCars(racingGame: RacingGame) {
         ResultView.printResult()
-        while (racingGame.isRacing()) {
+        while (racingGame.isPlaying()) {
             racingGame.race()
             ResultView.print(racingGame.cars())
         }
