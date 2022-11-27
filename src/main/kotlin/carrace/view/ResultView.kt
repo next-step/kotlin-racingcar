@@ -1,6 +1,6 @@
-package car_race.view
+package carrace.view
 
-import car_race.logic.car.Cars
+import carrace.logic.car.Cars
 
 object ResultView {
 

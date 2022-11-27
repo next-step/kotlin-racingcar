@@ -1,4 +1,4 @@
-package car_race.logic.system
+package carrace.logic.system
 
 object RandomMovingSystem : MovingSystem {
     private val DICE_RANGE = (0..9)

@@ -1,4 +1,4 @@
-package car_race.logic.car
+package carrace.logic.car
 
 data class Winners(
     private val cars: List<Car>

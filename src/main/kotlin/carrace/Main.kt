@@ -1,9 +1,9 @@
-package car_race
+package carrace
 
-import car_race.logic.car.Cars
-import car_race.logic.system.RandomMovingSystem
-import car_race.view.InputView
-import car_race.view.ResultView
+import carrace.logic.car.Cars
+import carrace.logic.system.RandomMovingSystem
+import carrace.view.InputView
+import carrace.view.ResultView
 
 fun main() {
     val cars = InputView.inputCars()

@@ -1,6 +1,6 @@
-package car_race.logic.car
+package carrace.logic.car
 
-import car_race.logic.system.MovingSystem
+import carrace.logic.system.MovingSystem
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 

@@ -1,6 +1,6 @@
-package car_race.logic.car
+package carrace.logic.car
 
-import car_race.logic.system.MovingSystem
+import carrace.logic.system.MovingSystem
 
 class Car(
     val carName: CarName,

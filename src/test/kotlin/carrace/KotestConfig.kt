@@ -1,4 +1,4 @@
-package car_race
+package carrace
 
 import io.kotest.core.config.AbstractProjectConfig
 import io.kotest.core.spec.IsolationMode

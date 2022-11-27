@@ -1,4 +1,4 @@
-package car_race.logic
+package carrace.logic
 
 class GameRound private constructor(
     val value: Long

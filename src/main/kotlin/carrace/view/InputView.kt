@@ -1,8 +1,8 @@
-package car_race.view
+package carrace.view
 
-import car_race.logic.GameRound
-import car_race.logic.car.CarNames
-import car_race.logic.car.Cars
+import carrace.logic.GameRound
+import carrace.logic.car.CarNames
+import carrace.logic.car.Cars
 
 object InputView {
 

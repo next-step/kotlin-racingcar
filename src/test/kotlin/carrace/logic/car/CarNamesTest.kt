@@ -1,4 +1,4 @@
-package car_race.logic.car
+package carrace.logic.car
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe

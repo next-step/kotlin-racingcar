@@ -1,4 +1,4 @@
-package car_race.logic.car
+package carrace.logic.car
 
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrowExactly
