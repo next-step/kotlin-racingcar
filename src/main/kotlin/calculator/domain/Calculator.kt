@@ -28,8 +28,8 @@ enum class Operator(
 
     companion object {
         fun calculate(num1: Int, operator: String, num2: Int): Int {
-            return values().firstOrNull { it.operator == operator }?.calculator?.invoke(num1, num2)
-                ?: throw IllegalArgumentException("$operator is invalid operator")
+            val operatorObject = values().firstOrNull { it.operator == operator } ?: throw IllegalArgumentException("$operator is invalid operator")
+            return operatorObject.calculator(num1, num2)
         }
     }
 }

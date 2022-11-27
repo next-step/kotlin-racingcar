@@ -1,4 +1,4 @@
 package calculator.extenstion
 
-fun String.isInt() = toIntOrNull()?.let { true } ?: false
+fun String.isInt() = toIntOrNull() != null
 fun String.isNotInt() = !isInt()
