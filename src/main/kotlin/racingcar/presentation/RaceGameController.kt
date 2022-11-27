@@ -4,12 +4,12 @@ import racingcar.domain.Car
 import racingcar.domain.Race
 import racingcar.domain.RaceResult
 import racingcar.exception.IncorrectGameSettingException
+import racingcar.presentation.view.InputView
+import racingcar.presentation.view.ResultView
 import racingcar.service.CarNameParseService
-import racingcar.view.InputView
-import racingcar.view.ResultView
 
 class RaceGameController {
-    fun main(args: Array<String>) {
+    fun main() {
         val nameOfCarInput = InputView.getNameOfCarInput()
         val totalCountOfRoundInput = InputView.getTotalCountOfRoundInput()
 
