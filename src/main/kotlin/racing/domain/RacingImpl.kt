@@ -2,9 +2,9 @@ package racing.domain
 
 import racing.model.Car
 
-class RacingCarImpl(
+class RacingImpl(
     private val goOrStopCarAction: GoOrStopCarAction
-) : RacingCar {
+) : Racing {
 
     override fun driveCar(car: Car): Car =
         goOrStopCarAction.castCarAction()

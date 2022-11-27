@@ -6,11 +6,11 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 import racing.domain.RacingCarsFactory
 import racing.domain.RacingCarsFactoryImpl
-import racing.model.Driver
+import racing.model.CarName
 import java.util.stream.Stream
 
 
-internal class RacingCarGarageTest {
+internal class RacingGarageTest {
 
     private lateinit var racingCarsFactory: RacingCarsFactory
 
@@ -25,29 +25,30 @@ internal class RacingCarGarageTest {
      */
     @ParameterizedTest
     @MethodSource("provideDrivers")
-    fun `필요한 차량 수 만큼 자동차를 생성한다`(drivers: List<String>) {
+    fun `필요한 차량 수 만큼 자동차를 생성한다`(carNames: List<String>) {
         RacingCarGarage(
-            drivers = drivers.map { Driver(it) },
+            carNames = carNames.map { CarName(it) },
             racingCarsFactory = racingCarsFactory,
         )
             .cars
             .count()
             .let(::assertThat)
-            .isEqualTo(drivers.count())
+            .isEqualTo(carNames.count())
     }
 
     @ParameterizedTest
     @MethodSource("provideDrivers")
-    fun `1 lap 돈 차량을 차고에 주차(저장)한다`(drivers: List<String>) {
+    fun `경주차 차고에 1씩 이동된 자동차를 주차하면 이동된 자동차 정보가 저장된다`(carNames: List<String>) {
+        // Given
         val racingCarGarage = RacingCarGarage(
-            drivers = drivers.map { Driver(it) },
+            carNames = carNames.map { CarName(it) },
             racingCarsFactory = racingCarsFactory,
         )
         val testCarResult = racingCarGarage.cars
-            .mapIndexed { index, car ->
-                if (index % 2 == 0) car.copy(mileage = car.mileage + 1) else car.copy()
-            }
+            .map { car -> car.copy(mileage = car.mileage + 1) }
+        // When
         racingCarGarage.parkCars(testCarResult)
+        // Then
         assertThat(racingCarGarage.cars).isEqualTo(testCarResult)
     }
 

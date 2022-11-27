@@ -2,16 +2,16 @@ package racing
 
 import racing.domain.RacingCarsFactory
 import racing.model.Car
-import racing.model.Driver
+import racing.model.CarName
 
 class RacingCarGarage(
-    private val drivers: List<Driver>,
+    private val carNames: List<CarName>,
     private val racingCarsFactory: RacingCarsFactory,
 ) {
-    private val _cars: MutableList<Car> by lazy {
-        racingCarsFactory.createCars(drivers).toMutableList()
-    }
 
+    private val _cars: MutableList<Car> by lazy {
+        racingCarsFactory.createCars(carNames).toMutableList()
+    }
     val cars: List<Car>
         get() = _cars.toList()
 
@@ -19,4 +19,5 @@ class RacingCarGarage(
         _cars.clear()
         _cars.addAll(cars.map { it.copy() })
     }
+
 }
