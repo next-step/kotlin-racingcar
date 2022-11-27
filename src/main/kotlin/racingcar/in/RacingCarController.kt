@@ -8,9 +8,9 @@ import racingcar.view.ConsoleOutput
 
 class RacingCarController(private val input: ConsoleInput, private val output: ConsoleOutput, private val moveStrategy: MoveStrategy) {
     fun race() {
-        val countOfCars = input.readCountOfCars()
+        val names = input.readNames()
         val round = input.readRoundsToRace()
-        val racingGame = RacingGame(countOfCars, round)
+        val racingGame = RacingGame(names, round)
 
         output.printResults()
 

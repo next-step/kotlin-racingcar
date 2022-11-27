@@ -1,11 +1,12 @@
 package racingcar.domain
 
+import racingcar.vo.Name
 import racingcar.vo.Position
 import racingcar.vo.Round
 
-class RacingGame(val cars: List<Car>, private var round: Round) {
+class RacingGame(private val cars: List<Car>, private var round: Round) {
 
-    constructor(countOfCars: Int, round: Int) : this(List(countOfCars) { Car() }, Round(round))
+    constructor(names: List<String>, round: Int) : this(names.map { Car(it) }, Round(round))
 
     init {
         validateEmptyCars()
