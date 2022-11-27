@@ -22,7 +22,7 @@ class Cars(private val cars: List<Car>) {
 
     fun move(movable: Movable) {
         cars.forEach {
-            it.move(movable.move())
+            it.move(movable.canMoveIt())
         }
     }
 

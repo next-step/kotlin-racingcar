@@ -10,7 +10,7 @@ class RandomMove(
         require(minimumRandomNumber < maximumRandomNumber) { "최소 랜덤 숫자는 최대 랜덤 숫자보다 작아야 합니다." }
     }
 
-    override fun move(): Boolean {
+    override fun canMoveIt(): Boolean {
         return (minimumRandomNumber..maximumRandomNumber).random() >= moveCondition
     }
 }

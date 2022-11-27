@@ -15,12 +15,12 @@ class RandomMoveTest : StringSpec({
     "랜덤 값이 이동 조건 값보다 크거나 같으면 true를 반환한다" {
         val randomMove = RandomMove(5, 9, 4)
 
-        randomMove.move() shouldBe true
+        randomMove.canMoveIt() shouldBe true
     }
 
     "랜덤 값이 이동 조건 값보다 작으면 false를 반환한다" {
         val randomMove = RandomMove(5, 9, 10)
 
-        randomMove.move() shouldBe false
+        randomMove.canMoveIt() shouldBe false
     }
 })

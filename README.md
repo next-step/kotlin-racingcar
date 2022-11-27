@@ -66,8 +66,8 @@
 - [x] 매직 리터럴 상수 치환
   - [x] "-" -> DISPLAY_MARK
   - [x] 0 -> FINISHED_COUNT_OF_TRY
-- [ ] interface의 move 함수명의 반환 타입을 유추할 수 있게 변경
-  - [ ] move -> canMove
+- [x] interface의 move 함수명의 반환 타입을 유추할 수 있게 변경
+  - `fun move()` -> `fun canMoveIt()`
 - [ ] 반환하지 않는 함수는 run scope 함수 사용하지 않도록 변경
   - `fun race() = run {}` -> `fun race() = {}`
 - [ ] 조금 더 의미 있는 변수명을 변경
