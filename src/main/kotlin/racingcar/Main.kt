@@ -1,6 +1,9 @@
 package racingcar
 
-import racingcar.model.CarRacer
+import racingcar.domain.FormularOne
+import racingcar.domain.model.CarRacer
+import racingcar.ui.InputView
+import racingcar.ui.ResultView
 
 fun main() {
     val inputView = InputView()

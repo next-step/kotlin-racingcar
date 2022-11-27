@@ -1,6 +1,6 @@
-package racingcar
+package racingcar.ui
 
-import racingcar.model.CarRacer
+import racingcar.domain.model.CarRacer
 
 class ResultView {
 

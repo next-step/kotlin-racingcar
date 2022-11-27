@@ -1,7 +1,7 @@
-package racingcar
+package racingcar.domain
 
-import racingcar.model.CarRacer
-import racingcar.model.CarRacingGame
+import racingcar.domain.model.CarRacer
+import racingcar.domain.model.CarRacingGame
 
 /**
  * 자동차 경주 대회

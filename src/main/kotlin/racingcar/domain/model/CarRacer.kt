@@ -1,4 +1,4 @@
-package racingcar.model
+package racingcar.domain.model
 
 /**
  * 자동차 경주자

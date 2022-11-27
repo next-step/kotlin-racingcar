@@ -2,6 +2,7 @@ package racingcar.model
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import racingcar.domain.model.CarRacer
 
 internal class CarRacerTest : StringSpec({
     "생성된 카운트가 4이상이면 경로를 생성한다" {
