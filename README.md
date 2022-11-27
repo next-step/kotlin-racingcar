@@ -46,3 +46,28 @@
 - [x] 입력받은 자동차의 대수만큼 자동차를 생성한다
 - [x] 이동 횟수만큼 전진을 시도한다.
 - [x] 자동차의 위치를 화면에 출력
+
+
+### 3단계 피드백
+- [ ] 요구사항 오타 수정
+  - 이동 횟수 -> 시도 횟수 
+- [ ] Car의 가변 프로퍼티를 Body에서 정의 후 private setter 선언
+  - [ ] getPosition 함수 제거. (프로퍼티 접근자 사용)
+    - 코틀린에서는 프로퍼티가 getter/setter 역할을 모두 수행할 수 있다.(?)
+- [ ] 자동차 일급 컬렉션에서 정적 팩토리 메서드 활용
+  - [ ] Companion Object를 활용한 정적 팩토리 메서드
+- [ ] 1 ~ n 반복하는 경우 List() 사용
+- [ ] 람다 파라미터가 하나인 경우 it으로 변경
+- [ ] readLine() 대신 readln() 사용
+  - 차이점
+    - readLine() 은 리턴 타입이 String?. 즉 null을 허용한다.
+    - readln() 은 리턴 타입이 String. null에 대한 예외 처리가 되어 있다.
+- [ ] 매직 리터럴 상수 치환
+  - [ ] "-" -> DISPLAY_MARK
+  - [ ] 0 -> FINISHED_COUNT_OF_TRY
+- [ ] interface의 move 함수명의 반환 타입을 유추할 수 있게 변경
+  - [ ] move -> canMove
+- [ ] 반환하지 않는 함수는 run scope 함수 사용하지 않도록 변경
+  - `fun race() = run {}` -> `fun race() = {}`
+- [ ] 조금 더 의미 있는 변수명을 변경
+  - moveCondition -> movingReferencePoint
