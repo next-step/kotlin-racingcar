@@ -1,21 +1,16 @@
 package racing.domain
 
-class Cars(count: Int) : Iterable<Car> {
+class Cars(list: List<Car>) : Iterable<Car> {
 
-    private val list: List<Car>
-
-    init {
-        list = List(count) {
-            Car()
-        }
-    }
+    private val list = list
+    constructor(names: Array<String>) : this(names.map { Car.produce(it) })
 
     fun count() = list.size
 
     fun race(movable: () -> Int) {
         list.forEach {
             car ->
-            car.move(movable.invoke())
+            car.move(movable())
         }
     }
     override fun iterator(): Iterator<Car> = list.iterator()

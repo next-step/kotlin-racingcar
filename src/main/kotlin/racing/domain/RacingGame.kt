@@ -7,16 +7,16 @@ class RacingGame {
 
     fun start() {
 
-        val carCount = InputView.requireCarsCount()
-        val cars = CarFactory.create(carCount)
+        val carNames = InputView.requireRacingCarNames()
+        val cars = CarFactory.create(carNames)
         var numberOfGames = InputView.requireNumberOfGames()
 
+        ResultView.printRacingGameGuideText()
         while (numberOfGames-- > 0) {
-            cars.race {
-                RandomGenerator.generate()
-            }
+            cars.race { RandomGenerator.generate() }
+            ResultView.printRacingGameResult(ResultView.toRaceResult(cars))
         }
-
-        ResultView.printGameResult(ResultStatistics(cars).toResult())
+        val winner = Winner(cars)
+        ResultView.printRacingGameWinner(winner.win())
     }
 }
