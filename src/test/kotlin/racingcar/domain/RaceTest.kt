@@ -8,7 +8,7 @@ class RaceTest : DescribeSpec({
             val numberOfCar = 4
             val totalCountOfRound = 3
 
-            var cars = List(numberOfCar) { Car() }
+            var cars = List(numberOfCar) { Car("pobi") }
 
             val race = Race(cars, totalCountOfRound)
             race.run()
