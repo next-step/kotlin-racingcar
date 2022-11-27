@@ -5,7 +5,7 @@ package racingcar.model
  */
 class CarRacingGame(private val carRacers: List<CarRacer>) {
 
-    fun start() {
+    fun race() {
         carRacers.forEach { racer ->
             racer.moveTo(randomCount = (0..9).random())
         }
@@ -14,8 +14,7 @@ class CarRacingGame(private val carRacers: List<CarRacer>) {
     fun result(): List<CarRacer> {
         return carRacers
             .map { racer ->
-                CarRacer(racer = racer)
+                CarRacer.ofCarRacer(racer = racer)
             }
-            .toList()
     }
 }

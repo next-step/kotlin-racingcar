@@ -8,27 +8,24 @@ import racingcar.model.CarRacingGame
  */
 class FormularOne {
 
-    private var totalResult: String = ""
-    private var totalList: MutableList<List<CarRacer>> = mutableListOf()
-
     /**
      * 대회 시작
      */
-    fun start(numberOfCar: Int, numberOfGame: Int): String {
-        if (numberOfCar <= 0 || numberOfGame <= 0) return ""
+    fun start(numberOfCar: Int, numberOfGame: Int): List<List<CarRacer>> {
+        val totalList: MutableList<List<CarRacer>> = mutableListOf()
+
+        if (numberOfCar <= 0 || numberOfGame <= 0) return totalList
 
         val carRacers: List<CarRacer> = makeCarRacerList(numberOfCar)
 
-        for (i in 1..numberOfGame) {
+        repeat(numberOfGame) {
             val game = CarRacingGame(carRacers = carRacers)
-            game.start()
+            game.race()
             totalList.add(game.result())
         }
 
-        return totalResult
+        return totalList
     }
-
-    fun result() = totalList
 
     /**
      * 자동차 경주자 목록 생성

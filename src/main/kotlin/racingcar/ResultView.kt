@@ -4,7 +4,7 @@ import racingcar.model.CarRacer
 
 class ResultView {
 
-    fun show(result: MutableList<List<CarRacer>>) {
+    fun show(result: List<List<CarRacer>>) {
         println("")
         println("실행 결과")
         result.forEach {
