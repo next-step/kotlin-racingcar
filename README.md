@@ -72,3 +72,4 @@
   - `fun race() = run {}` -> `fun race() = {}`
 - [x] 조금 더 의미 있는 변수명을 변경
   - `moveCondition` -> `movingReferencePoint`
+- [x] 자동차 대수 대신 자동차들을 주입 받도록 변경
