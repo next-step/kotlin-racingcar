@@ -1,26 +1,15 @@
 package racingcar.view
 
-import racingcar.value.RacingCarGameInput
+object InputView {
+    fun getNumberOfCarInput(): Int {
+        println("자동차 대수는 몇 대인가요?")
 
-class InputView {
-    companion object {
-        fun getInput(): RacingCarGameInput {
-            val numberOfCar = getNumberOfCarInput()
-            val totalCountOfRound = getTotalCountOfRoundInput()
+        return readLine()?.toIntOrNull() ?: 0
+    }
 
-            return RacingCarGameInput(numberOfCar, totalCountOfRound)
-        }
+    fun getTotalCountOfRoundInput(): Int {
+        println("시도할 횟수는 몇 회인가요?")
 
-        private fun getNumberOfCarInput(): Int {
-            println("자동차 대수는 몇 대인가요?")
-
-            return readLine()?.toIntOrNull() ?: 0
-        }
-
-        private fun getTotalCountOfRoundInput(): Int {
-            println("시도할 횟수는 몇 회인가요?")
-
-            return readLine()?.toIntOrNull() ?: 0
-        }
+        return readLine()?.toIntOrNull() ?: 0
     }
 }

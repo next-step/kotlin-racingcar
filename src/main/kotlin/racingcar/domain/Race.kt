@@ -1,29 +1,21 @@
 package racingcar.domain
 
-class Race(private val raceSetting: RaceSetting) {
+import racingcar.RandomNumberUtils
 
-    private val cars: List<Car> = List(raceSetting.numberOfCar) { index ->
-        Car("${index + 1}번째 자동차")
-    }
-
-    private val roundHistories = mutableListOf<RoundHistory>()
-
+class Race(private val cars: List<Car>, private val totalCountOfRound: Int) {
     fun run(): RaceResult {
-        repeat(raceSetting.totalCountOfRound) { roundNumber: Int ->
-            startRound(cars)
-            saveRoundHistory(roundNumber, cars)
+        val roundHistories = ArrayList<RoundHistory>()
+
+        repeat(totalCountOfRound) { roundNumber: Int ->
+            val carPositions = cars.map { car -> car.move(getNumberToMove()) }
+
+            roundHistories.add(RoundHistory(roundNumber, carPositions))
         }
 
         return RaceResult(roundHistories)
     }
 
-    private fun startRound(cars: List<Car>) {
-        Round(cars).start()
-    }
-
-    private fun saveRoundHistory(roundNumber: Int, cars: List<Car>) {
-        cars.forEach { car ->
-            roundHistories.add(RoundHistory(roundNumber, car.name, car.position))
-        }
+    private fun getNumberToMove(): Int {
+        return RandomNumberUtils.getRandomNumber()
     }
 }
