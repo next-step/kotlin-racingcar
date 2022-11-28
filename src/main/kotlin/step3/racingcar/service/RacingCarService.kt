@@ -2,7 +2,6 @@ package step3.racingcar.service
 
 import step3.racingcar.domain.Cars
 import step3.racingcar.domain.PlayInfo
-import step3.racingcar.domain.Winners
 import step3.racingcar.view.ResultView.Companion.printRoundResult
 import step3.racingcar.view.ResultView.Companion.printWinner
 
@@ -11,7 +10,7 @@ class RacingCarService {
         repeat(playInfo.totalRound) {
             playEachRound(it, playInfo.cars)
         }
-        printWinner(Winners.of(playInfo.cars))
+        printWinner(playInfo.cars)
     }
 
     private fun playEachRound(currentRoundIndex: Int, cars: Cars) {

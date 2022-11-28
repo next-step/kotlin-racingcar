@@ -2,7 +2,6 @@ package step3.racingcar.view
 
 import step3.racingcar.domain.Car
 import step3.racingcar.domain.Cars
-import step3.racingcar.domain.Winners
 
 class ResultView {
     companion object {
@@ -32,9 +31,9 @@ class ResultView {
             return result
         }
 
-        fun printWinner(winners: Winners) {
+        fun printWinner(cars: Cars) {
             println()
-            println(WINNER_GUIDE_MESSAGE_FORMAT.format(winners.names))
+            println(WINNER_GUIDE_MESSAGE_FORMAT.format(cars.winnerNames))
         }
     }
 }
