@@ -9,13 +9,12 @@ import step3.racingcar.view.InputView.Companion.inputJoinerCarsGuideMessagePrint
 import step3.racingcar.view.InputView.Companion.inputRoundCountGuideMessagePrinter
 
 class RacingCarController {
-    private val racingCarService: RacingCarService = RacingCarService()
+    private val racingCarService: RacingCarService = RacingCarService(RandomNumberGenerator())
 
     fun gameStart() {
         val carNames = inputJoinerCarsGuideMessagePrinter()
         val totalRound = inputRoundCountGuideMessagePrinter()
         val cars = Cars.of(CarGenerator.generate(carNames))
-        RandomNumberGenerator().generateRandomNumberToCarByRound(cars, totalRound)
         val playInfo = PlayInfo(cars, totalRound)
         racingCarService.play(playInfo)
     }

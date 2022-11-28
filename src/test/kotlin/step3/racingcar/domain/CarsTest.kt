@@ -14,7 +14,7 @@ internal class CarsTest : BehaviorSpec({
             val 참가_차량_목록 = listOf(첫_번째_차량, 두_번째_차량, 세_번째_차량)
             val given = Cars.of(참가_차량_목록)
             then("우승한 차량들의 이름을 반환한다.") {
-                given.winnerNames shouldBe "${두_번째_차량.name}, ${세_번째_차량.name}"
+                given.winnerNames() shouldBe "${두_번째_차량.name}, ${세_번째_차량.name}"
             }
         }
     }

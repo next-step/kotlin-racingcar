@@ -33,7 +33,7 @@ class ResultView {
 
         fun printWinner(cars: Cars) {
             println()
-            println(WINNER_GUIDE_MESSAGE_FORMAT.format(cars.winnerNames))
+            println(WINNER_GUIDE_MESSAGE_FORMAT.format(cars.winnerNames()))
         }
     }
 }
