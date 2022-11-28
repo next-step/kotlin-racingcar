@@ -2,7 +2,6 @@ package step3.racingcar.domain
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import step3.racingcar.fixture.CarFixtureGenerator.Companion.경주를_완료한_차량_생성
 
 internal class CarsTest : BehaviorSpec({
     given("경주를 완료한 자동차 객체 목록이 주어지고") {
@@ -19,3 +18,10 @@ internal class CarsTest : BehaviorSpec({
         }
     }
 })
+private fun 경주를_완료한_차량_생성(carName: String, vararg randomNumbers: Int): Car {
+    val car = Car(carName)
+    randomNumbers.forEach {
+        car.race(it)
+    }
+    return car
+}
