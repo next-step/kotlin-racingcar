@@ -1,6 +1,6 @@
 package racing.view
 
-import racing.Name
+import racing.domain.Name
 
 class OutputView {
     fun printResultString() {

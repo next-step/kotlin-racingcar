@@ -1,5 +1,6 @@
 package racing
 
+import racing.domain.Cars
 import racing.view.InputView
 import racing.view.OutputView
 import java.util.*
