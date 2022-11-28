@@ -1,14 +1,20 @@
 package racingcar.model
 
-import racingcar.model.impl.CarImpl
+private const val MOVE_THRESHOLD = 4
+private const val DEFAULT_SPEED = 1
 
-interface Car {
-    val name: Name
-    val position: Position
-    fun move(factor: MoveFactor)
+class Car(
+    val name: Name,
+    val position: Position = Position()
+) {
+    fun move(factor: MoveFactor) {
+        if (factor.isBiggerThanOrEquals(MOVE_THRESHOLD)) {
+            position.increase(DEFAULT_SPEED)
+        }
+    }
 
     companion object {
-        fun of(name: String) = CarImpl(Name(name))
-        fun of(name: String, position: Int) = CarImpl(Name(name), Position(position))
+        fun of(name: String) = Car(Name(name))
+        fun of(name: String, position: Int) = Car(Name(name), Position(position))
     }
 }
