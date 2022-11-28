@@ -1,3 +1,3 @@
-package racingcar.exception
+package racingcar.domain.exception
 
 class CannotFindWinnerException(message: String = "우승자를 찾을 수 없습니다.") : NoSuchElementException(message)

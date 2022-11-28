@@ -1,12 +1,12 @@
-package racingcar.presentation
+package racingcar.ui
 
 import racingcar.domain.Car
 import racingcar.domain.CarNameParser
 import racingcar.domain.Race
 import racingcar.domain.RaceResult
-import racingcar.exception.IncorrectGameSettingException
-import racingcar.presentation.view.InputView
-import racingcar.presentation.view.ResultView
+import racingcar.domain.exception.IncorrectGameSettingException
+import racingcar.ui.view.InputView
+import racingcar.ui.view.ResultView
 
 class RaceGameController {
     fun main() {

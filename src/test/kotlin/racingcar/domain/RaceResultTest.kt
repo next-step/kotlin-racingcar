@@ -3,7 +3,7 @@ package racingcar.domain
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
-import racingcar.exception.CannotFindWinnerException
+import racingcar.domain.exception.CannotFindWinnerException
 
 class RaceResultTest : DescribeSpec({
     describe("레이싱 자동차 게임 결과") {

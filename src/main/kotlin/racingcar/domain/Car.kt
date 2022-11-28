@@ -1,6 +1,6 @@
 package racingcar.domain
 
-import racingcar.exception.CarNameLengthException
+import racingcar.domain.exception.CarNameLengthException
 
 class Car(var name: String, var position: Int = DEFAULT_POSITION) {
     init {

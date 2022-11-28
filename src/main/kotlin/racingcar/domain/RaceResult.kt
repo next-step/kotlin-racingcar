@@ -1,6 +1,6 @@
 package racingcar.domain
 
-import racingcar.exception.CannotFindWinnerException
+import racingcar.domain.exception.CannotFindWinnerException
 
 data class RaceResult(val roundHistories: List<RoundHistory>) {
     fun getWinners(): List<String> {
