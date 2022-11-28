@@ -18,7 +18,7 @@ internal class CarTest : StringSpec({
 
     "자동차는 위치값을 갖는다" {
         val car = Car(movingEngine)
-        val initPosition = car.currentPosition()
+        val initPosition = car.currentPositionToInt()
         initPosition.shouldNotBeNull()
     }
 
@@ -35,7 +35,7 @@ internal class CarTest : StringSpec({
         val secondCar = Car()
         firstCar.move()
         secondCar.move()
-        firstCar.currentPosition() shouldBe secondCar.currentPosition()
+        firstCar.currentPositionToInt() shouldBe secondCar.currentPositionToInt()
         firstCar shouldNotBe secondCar
     }
 
