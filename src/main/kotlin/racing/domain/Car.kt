@@ -1,8 +1,13 @@
 package racing.domain
 
-class Car(
-    private var position: Int = 0
+data class Car(
+    val name: Name,
+    var position: Int = 0
 ) {
+    companion object {
+        fun from(name: String) = Car(Name(name))
+        fun of(name: String, position: Int) = Car(Name(name), position)
+    }
 
     fun move(movable: Boolean) {
         if (movable) {
@@ -12,20 +17,5 @@ class Car(
 
     fun samePosition(position: Int): Boolean = this.position == position
 
-    fun getPosition(): Int = this.position
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Car
-
-        if (position != other.position) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        return position
-    }
+    fun name() = name.value
 }
