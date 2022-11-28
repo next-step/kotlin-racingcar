@@ -10,7 +10,7 @@ class RacingGame(private val cars: List<Car>, private var round: Round) {
         validateNoRound()
     }
 
-    constructor(names: List<String>, round: Int) : this(names.map { Car(it) }, Round(round))
+    constructor(names: List<String>, round: Int) : this(names.map(::Car), Round(round))
 
     private fun validateEmptyCars() {
         require(cars.size >= MIN_CAR_COUNT) { "at least 2 cars are needed to play" }
