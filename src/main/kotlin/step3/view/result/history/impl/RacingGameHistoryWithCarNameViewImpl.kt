@@ -6,8 +6,8 @@ import step3.view.result.history.RacingGameHistoryView
 class RacingGameHistoryWithCarNameViewImpl : RacingGameHistoryView {
 
     override fun printRacingCarHistory(racingCarHistory: RacingCarHistory) {
-        print("${racingCarHistory.name} : ")
-        repeat(racingCarHistory.distance) {
+        print("${racingCarHistory.carName.name} : ")
+        repeat(racingCarHistory.carDistance.distance) {
             print("-")
         }
         println()

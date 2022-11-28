@@ -1,7 +1,6 @@
 package step3.domain.car
 
 import step3.domain.car.distance.CarDistance
-import step3.domain.car.distance.DefaultCarDistance
 import step3.domain.car.name.CarName
 
 private const val DEFAULT_INIT_DISTANCE = 0
@@ -9,21 +8,24 @@ private const val DEFAULT_INIT_DISTANCE = 0
 private const val DEFAULT_INCREMENT_DISTANCE = 1
 
 class RacingCar(
-    carName: String,
+    name: String,
     initDistance: Int = DEFAULT_INIT_DISTANCE
-) {
+) : Comparable<RacingCar> {
 
-    private val carName: CarName = CarName(carName)
+    val carName: CarName = CarName(name)
 
-    private val carDistance: CarDistance<Int> = DefaultCarDistance(initDistance)
-
-    val name: String
-        get() = carName.name
-
-    val distance: Int
-        get() = carDistance.distance
+    val carDistance: CarDistance = CarDistance(initDistance)
 
     fun go() {
         carDistance.increment(DEFAULT_INCREMENT_DISTANCE)
     }
+
+    fun isDraw(otherCar: RacingCar) = carDistance == otherCar.carDistance
+
+    fun isWin(otherCar: RacingCar) = carDistance > otherCar.carDistance
+
+    override fun compareTo(other: RacingCar): Int =
+        if (isDraw(other)) 0
+        else if (isWin(other)) 1
+        else -1
 }

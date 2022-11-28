@@ -2,15 +2,6 @@ package step3.infra.io
 
 class RacingGameInputReader {
 
-    @Deprecated("since step4")
-    fun readInputForTotalCarCount(): Int {
-        val totalCarCount = readInput().trim().toInt()
-
-        require(totalCarCount > 0) { "totalCarCount should be positive [$totalCarCount]" }
-
-        return totalCarCount
-    }
-
     fun readInputForTotalTryCount(): Int {
         val totalTryCount = readInput().trim().toInt()
 

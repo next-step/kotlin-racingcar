@@ -14,6 +14,7 @@ import step3.view.result.history.impl.RacingGameHistoryWithCarNameViewImpl
 import step3.view.result.winner.impl.RacingGameWinnerViewImpl
 
 class RacingGameConfig {
+
     fun racingGameController(): RacingGameController = RacingGameController(inputView(), resultView(), inputReader())
 
     fun inputView(): InputView = InputViewWithCarNameImpl()

@@ -6,18 +6,19 @@ import io.kotest.data.headers
 import io.kotest.data.row
 import io.kotest.data.table
 import io.kotest.matchers.shouldBe
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.assertThrows
 
-class DefaultCarDistanceTest : FunSpec({
+class CarDistanceTest : FunSpec({
 
-    lateinit var distance: CarDistance<Int>
+    lateinit var carDistance: CarDistance
 
     beforeEach {
-        distance = DefaultCarDistance()
+        carDistance = CarDistance()
     }
 
     test("초기 distance Default 값은 0 이다") {
-        distance.distance shouldBe 0
+        carDistance.distance shouldBe 0
     }
 
     context("초기 distance가 정상적으로 설정된다") {
@@ -26,7 +27,7 @@ class DefaultCarDistanceTest : FunSpec({
             *(1..100).map { row(it) }.toTypedArray()
         ).forAll { initDistance ->
             test("initDistance: $initDistance") {
-                val carDistance = DefaultCarDistance(initDistance)
+                val carDistance = CarDistance(initDistance)
                 carDistance.distance shouldBe initDistance
             }
         }
@@ -38,11 +39,11 @@ class DefaultCarDistanceTest : FunSpec({
             *(1..100).map { row(it) }.toTypedArray()
         ).forAll { addDistance ->
             test("$addDistance 거리 증가") {
-                val beforeDistance = distance.distance
+                val beforeDistance = carDistance.distance
 
-                distance.increment(addDistance)
+                carDistance.increment(addDistance)
 
-                val afterDistance = distance.distance
+                val afterDistance = carDistance.distance
 
                 afterDistance shouldBe beforeDistance + addDistance
             }
@@ -57,9 +58,16 @@ class DefaultCarDistanceTest : FunSpec({
         ).forAll { addDistance ->
             test("$addDistance 거리 증가 예외 처리") {
                 assertThrows<IllegalArgumentException> {
-                    distance.increment(-3)
+                    carDistance.increment(-3)
                 }
             }
         }
+    }
+
+    test("carDistance 비교 가능하다") {
+        val carDistance = CarDistance()
+        val carDistanceMoreThan = CarDistance(1)
+
+        assertThat(carDistance).isLessThan(carDistanceMoreThan)
     }
 })

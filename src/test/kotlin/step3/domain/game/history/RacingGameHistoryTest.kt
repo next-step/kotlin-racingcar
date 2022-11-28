@@ -23,7 +23,5 @@ class RacingGameHistoryTest : FunSpec({
 
         // Then
         racingGameHistory.racingCarHistoryList.size shouldBe racingGame.carList.size
-
-        racingGameHistory.racingCarHistoryList.forEach { println(it) }
     }
 })
