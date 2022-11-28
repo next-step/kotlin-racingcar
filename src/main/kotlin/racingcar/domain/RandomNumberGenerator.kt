@@ -1,6 +1,6 @@
-package racingcar.service
+package racingcar.domain
 
-object RandomNumberGenerateService {
+object RandomNumberGenerator {
     private const val RANDOMIZE_MIN_NUMBER = 0
     private const val RANDOMIZE_MAX_NUMBER = 9
 

@@ -1,7 +1,5 @@
 package racingcar.domain
 
-import racingcar.service.RandomNumberGenerateService
-
 class Race(private val cars: List<Car>, private val totalCountOfRound: Int) {
     fun run(): RaceResult {
         val roundHistories = ArrayList<RoundHistory>()
@@ -16,6 +14,6 @@ class Race(private val cars: List<Car>, private val totalCountOfRound: Int) {
     }
 
     private fun getNumberToMove(): Int {
-        return RandomNumberGenerateService.getRandomNumber()
+        return RandomNumberGenerator.getRandomNumber()
     }
 }

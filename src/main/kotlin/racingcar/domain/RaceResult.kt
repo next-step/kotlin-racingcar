@@ -18,6 +18,7 @@ data class RaceResult(val roundHistories: List<RoundHistory>) {
 
         return lastRoundCarInfos
     }
+
     private fun getLastRoundHistory(): RoundHistory {
         return roundHistories.last()
     }

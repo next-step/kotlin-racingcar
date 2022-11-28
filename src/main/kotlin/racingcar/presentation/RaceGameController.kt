@@ -1,12 +1,12 @@
 package racingcar.presentation
 
 import racingcar.domain.Car
+import racingcar.domain.CarNameParser
 import racingcar.domain.Race
 import racingcar.domain.RaceResult
 import racingcar.exception.IncorrectGameSettingException
 import racingcar.presentation.view.InputView
 import racingcar.presentation.view.ResultView
-import racingcar.service.CarNameParseService
 
 class RaceGameController {
     fun main() {
@@ -25,7 +25,7 @@ class RaceGameController {
     }
 
     private fun initiateCars(nameOfCarInput: String): List<Car> {
-        val parsedCarNames = CarNameParseService.parse(nameOfCarInput)
+        val parsedCarNames = CarNameParser.parse(nameOfCarInput)
 
         return parsedCarNames.map { carName -> Car(carName) }
     }
