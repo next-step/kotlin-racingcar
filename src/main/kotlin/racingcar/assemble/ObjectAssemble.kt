@@ -6,7 +6,7 @@ import racingcar.domain.car.engine.implement.RandomMovingEngine
 import racingcar.interfaces.ui.controller.RacingCarController
 
 object ObjectAssemble {
-    fun start() = racingCarController().input()
+    fun start() = racingCarController().startRace()
 
     private fun racingCarController() = RacingCarController(race = race())
     private fun race() = Race(carFactory = carFactory())

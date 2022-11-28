@@ -10,7 +10,7 @@ class RacingCarController(
     private val race: Race
 ) {
 
-    fun input() {
+    fun startRace() {
         val input = RacingCarInputConsole.input()
         val participatingCars = race.getParticipatingCars(carNames = input.carNames)
 
