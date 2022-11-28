@@ -4,7 +4,7 @@ private const val CAR_ID_DELIMITER = "-"
 private const val MOVE_CRITERIA = 4
 
 class Car(val name: String) {
-    var distance = 0
+    var distance: Int = 0
 
     fun race(randomNumber: Int) {
         if (isMove(randomNumber)) {

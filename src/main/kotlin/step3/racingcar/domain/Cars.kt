@@ -5,20 +5,20 @@ class Cars private constructor(private val elements: List<Car>) {
 
     fun size(): Int = elements.size
 
-    operator fun get(index: Int) = elements[index]
+    operator fun get(index: Int): Car = elements[index]
 
     fun winnerNames(): String =
         findWinnerNames().joinToString(WINNER_NAME_JOINING_SEPARATOR)
 
-    private fun findWinnerNames() =
+    private fun findWinnerNames(): List<String> =
         elements()
             .filter { it.distance == findMaxDistance() }
             .map { it.name }
 
-    private fun findMaxDistance() = elements().maxOf { it.distance }
+    private fun findMaxDistance(): Int = elements().maxOf { it.distance }
 
     companion object {
         private const val WINNER_NAME_JOINING_SEPARATOR = ", "
-        fun of(elements: List<Car>) = Cars(elements)
+        fun of(elements: List<Car>): Cars = Cars(elements)
     }
 }

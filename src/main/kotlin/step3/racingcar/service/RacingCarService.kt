@@ -23,7 +23,7 @@ class RacingCarService(private val randomNumber: RandomNumber) {
         printRoundResult(currentRoundIndex, cars)
     }
 
-    fun playEachRoundByCar(car: Car){
+    fun playEachRoundByCar(car: Car) {
         val randomNumber = randomNumber.value()
         car.race(randomNumber)
     }
