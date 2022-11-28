@@ -9,13 +9,13 @@ object RacingCarOutputConsole {
         print(string)
     }
 
-    fun consolePrintPrepareWin() {
+    fun printPrepareWin() {
         println("우승자 발표")
         println("두구두구두구----")
         println()
     }
 
-    fun consolePrintNewLine() {
+    fun printNewLine() {
         println()
     }
 
