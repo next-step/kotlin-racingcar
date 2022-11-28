@@ -23,8 +23,8 @@ internal class CarsTest {
 
         val carsInLead = racingGame.carsInLead()
 
-        assertThat(carsInLead.value.size).isEqualTo(1)
-        assertThat(carsInLead.value.first().name).isEqualTo(winner.name)
+        assertThat(carsInLead.size).isEqualTo(1)
+        assertThat(carsInLead.first().name).isEqualTo(winner.name)
     }
 
     @Test
@@ -37,6 +37,6 @@ internal class CarsTest {
         val carsInLead = cars.carsInLead()
         val expectedCars = listOf(p1, p2)
 
-        assertThat(carsInLead.value).containsExactlyInAnyOrderElementsOf(expectedCars)
+        assertThat(carsInLead).containsExactlyInAnyOrderElementsOf(expectedCars)
     }
 }

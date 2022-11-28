@@ -1,12 +1,12 @@
 package racingcar.model
 
-class Cars(val value: List<Car>) {
+class Cars(val value: List<Car>) : List<Car> by value {
     fun move(random: () -> MoveFactor) {
-        value.forEach { car -> car.move(random()) }
+        this.forEach { car -> car.move(random()) }
     }
 
     fun carsInLead(): Cars {
-        val winnerPosition = value.maxOf { car -> car.position.value }
-        return Cars(value.filter { car -> car.position.value == winnerPosition })
+        val winnerPosition = this.maxOf { car -> car.position.value }
+        return Cars(this.filter { car -> car.position.value == winnerPosition })
     }
 }

@@ -12,7 +12,7 @@ object ResultView {
     }
 
     fun printDashboard(racingGame: RacingGame) {
-        racingGame.cars.value.forEach { printTraceInfo(it) }
+        racingGame.cars.forEach { printTraceInfo(it) }
         println()
     }
 
@@ -25,7 +25,7 @@ object ResultView {
     }
 
     fun printWinners(racingGame: RacingGame) {
-        val winnerNames = racingGame.winners().value
+        val winnerNames = racingGame.winners()
             .map { it.name.value }
             .reduce { s1, s2 -> "$s1, $s2" }
         println(winnerNames + "가 최종 우승했습니다.")
