@@ -16,8 +16,8 @@ fun main() {
 
     for (i in 0 until tryCount) {
         racingHistory.keys.forEach { car ->
-            resultView.printCarName(car.name)
-            resultView.printCarMove(racingHistory[car]!![i])
+            resultView.printCarName(racingHistory[car]!![i].carName)
+            resultView.printCarMove(racingHistory[car]!![i].moveCount)
         }
 
         resultView.printLineSpacing()

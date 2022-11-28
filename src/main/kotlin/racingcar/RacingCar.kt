@@ -1,6 +1,8 @@
 package racingcar
 
-class RacingCar private constructor(private val cars: ArrayList<Car> = ArrayList(), private val tryCount: Int, private val carHistory: LinkedHashMap<Car, ArrayList<Int>> = LinkedHashMap()) {
+import racingcar.data.MoveInfo
+
+class RacingCar private constructor(private val cars: ArrayList<Car> = ArrayList(), private val tryCount: Int, private val carHistory: LinkedHashMap<Car, ArrayList<MoveInfo>> = LinkedHashMap()) {
     constructor(carNames: String, tryCount: Int) : this(ArrayList(), tryCount) {
         val spitNames = carNames.split(",")
         spitNames.forEach { name ->
@@ -10,7 +12,7 @@ class RacingCar private constructor(private val cars: ArrayList<Car> = ArrayList
 
     private lateinit var moveStrategy: ForwardStrategy
 
-    fun start(moveStrategy: ForwardStrategy): HashMap<Car, ArrayList<Int>> {
+    fun start(moveStrategy: ForwardStrategy): HashMap<Car, ArrayList<MoveInfo>> {
         this.moveStrategy = moveStrategy
 
         for (i in 0 until tryCount) {
@@ -21,7 +23,7 @@ class RacingCar private constructor(private val cars: ArrayList<Car> = ArrayList
 
     private fun moveCars() {
         cars.forEach { car ->
-            val carHistoryItem = carHistory[car] ?: ArrayList<Int>().apply {
+            val carHistoryItem = carHistory[car] ?: ArrayList<MoveInfo>().apply {
                 carHistory[car] = this
             }
 
@@ -34,8 +36,8 @@ class RacingCar private constructor(private val cars: ArrayList<Car> = ArrayList
 
         for (i in tryCount downTo 0) {
             carHistory.keys.forEach { car ->
-                if (i == carHistory[car]!![tryCount - 1]) {
-                    winningCars.add(car.name)
+                if (i == carHistory[car]!![tryCount - 1].moveCount) {
+                    winningCars.add(carHistory[car]!![tryCount - 1].carName)
                 }
             }
 
