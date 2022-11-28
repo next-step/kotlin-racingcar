@@ -12,12 +12,12 @@ fun main() {
     val racingCar = RacingCar(carNames, tryCount)
 
     val racingHistory = racingCar.start(ForwardStrategy.DefaultForward)
-    val winningCarNames = racingCar.getWinningCarNames()
+    val winningCarNames = racingHistory.getWinningCarNames()
 
     for (i in 0 until tryCount) {
-        racingHistory.keys.forEach { car ->
-            resultView.printCarName(racingHistory[car]!![i].carName)
-            resultView.printCarMove(racingHistory[car]!![i].moveCount)
+        racingHistory.getMoveHistory().forEach { moveItem ->
+            resultView.printCarName(moveItem.key)
+            resultView.printCarMove(moveItem.value[i])
         }
 
         resultView.printLineSpacing()
