@@ -1,4 +1,4 @@
-package racingcar.vo
+package racingcar.domain.vo
 
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow

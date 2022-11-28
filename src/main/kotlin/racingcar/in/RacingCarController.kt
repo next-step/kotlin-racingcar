@@ -8,24 +8,26 @@ import racingcar.view.ConsoleOutput
 
 class RacingCarController(private val input: ConsoleInput, private val output: ConsoleOutput, private val moveStrategy: MoveStrategy) {
     fun race() {
-        val countOfCars = input.readCountOfCars()
+        val names = input.readNames()
         val round = input.readRoundsToRace()
-        val racingGame = RacingGame(countOfCars, round)
+        val racingGame = RacingGame(names, round)
 
-        output.printResults()
+        output.printGameStartSignal()
 
-        start(racingGame)
+        start(names, racingGame)
+
+        output.printWinners(racingGame.findWinnerNames().map { it.name })
     }
 
-    private tailrec fun start(racingGame: RacingGame) {
+    private tailrec fun start(names: List<String>, racingGame: RacingGame) {
         if (!racingGame.hasNextRound()) {
             return
         }
 
         val carPositions = racingGame.playNextRound(moveStrategy)
 
-        val gameResults = GameResults(carPositions)
+        val gameResults = GameResults(names, carPositions.map { it.position })
         output.printGameResult(gameResults)
-        start(racingGame)
+        start(names, racingGame)
     }
 }
