@@ -1,8 +1,8 @@
 package racingcar.model
 
 class Cars(val value: List<Car>) : List<Car> by value {
-    fun move(random: () -> MoveFactor) {
-        this.forEach { car -> car.move(random()) }
+    fun move(generate: () -> MoveFactor) {
+        this.forEach { car -> car.move(generate()) }
     }
 
     fun carsInLead(): Cars {
