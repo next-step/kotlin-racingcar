@@ -1,4 +1,6 @@
-package racing
+package racing.domain
+
+import racing.MoveStrategy
 
 data class Cars(private val cars: List<Car>) {
     companion object {
