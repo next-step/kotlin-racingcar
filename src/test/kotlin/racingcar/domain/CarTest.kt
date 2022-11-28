@@ -3,7 +3,7 @@ package racingcar.domain
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.ints.shouldBeExactly
-import racingcar.exception.CarNameLengthException
+import racingcar.domain.exception.CarNameLengthException
 
 class CarTest : DescribeSpec({
     describe("자동차 이동 테스트") {

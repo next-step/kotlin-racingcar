@@ -1,4 +1,4 @@
-package racingcar.presentation.view
+package racingcar.ui.view
 
 object InputView {
     fun getTotalCountOfRoundInput(): Int {
