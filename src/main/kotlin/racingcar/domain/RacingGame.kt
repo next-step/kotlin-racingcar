@@ -28,9 +28,9 @@ class RacingGame(private val cars: List<Car>, private var round: Round) {
     fun hasNextRound() = round.hasNext()
 
     fun findWinnerNames(): List<Name> {
-        val winnerPosition = cars.maxOf { it.position.position }
+        val winnerPosition = cars.maxOf { it.position }
 
-        return cars.filter { it.position.position == winnerPosition }
+        return cars.filter { it.position == winnerPosition }
             .map { it.name }
     }
 
