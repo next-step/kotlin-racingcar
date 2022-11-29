@@ -13,9 +13,10 @@ class FormularOne {
      * 대회 시작
      */
     fun start(carNameStrings: String, numberOfGame: Int): List<List<CarRacer>> {
-        val totalList: MutableList<List<CarRacer>> = mutableListOf()
+        require(numberOfGame > 0)
+        require(carNameStrings.isNotBlank())
 
-        if (carNameStrings.isEmpty() || numberOfGame <= 0) return totalList
+        val totalList: MutableList<List<CarRacer>> = mutableListOf()
 
         val carNames: List<String> = Parser().parse(input = carNameStrings, delimiter = ",")
         val carRacers: List<CarRacer> = makeCarRacerList(carNames)
