@@ -5,20 +5,19 @@ import racingcar.domain.model.CarRacer
 object ResultView {
 
     fun show(result: List<List<CarRacer>>) {
+        showResult(result)
+        showWinners(result.last())
+    }
+
+    private fun showResult(result: List<List<CarRacer>>) {
         println("")
         println("실행 결과")
-        result.forEachIndexed { index, gameResult ->
-            showGameResult(gameResult)
-            showWinners(result.lastIndex, index, gameResult)
-        }
+        result.forEach(::showGameResult)
     }
 
     private fun showWinners(
-        lastIndex: Int,
-        index: Int,
         gameResult: List<CarRacer>
     ) {
-        if (lastIndex != index) return
         println("")
 
         val winners: MutableList<String> = mutableListOf()
