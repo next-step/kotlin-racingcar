@@ -13,8 +13,7 @@ class CarRacer(val name: String, position: Int = 0) {
     }
 
     fun moveTo(count: Int) {
-        if (count < 4) return
-        position++
+        if (count >= 4) position++
     }
 
     companion object {
