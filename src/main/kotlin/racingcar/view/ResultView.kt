@@ -5,13 +5,11 @@ import racingcar.domain.car.CarRacingResult
 
 class ResultView {
 
-    fun show(result: List<CarRacingResult>) {
-        val resultString = StringBuilder()
-
-        resultString.append(makeProgressString(result))
-
-        val winners = findWinners(result.last()).joinToString(", ")
-        resultString.append("${winners}가 최종 우승했습니다.")
+    fun show(result: List<CarRacingResult>, winners: Set<CarName>) {
+        val resultString = buildString {
+            append(makeProgressString(result))
+            append("${winners}가 최종 우승했습니다.")
+        }
 
         println(resultString)
     }
@@ -27,13 +25,5 @@ class ResultView {
         }
 
         return progress
-    }
-
-    companion object {
-        fun findWinners(finalResult: CarRacingResult): Set<CarName> {
-            return finalResult.filter { (_, distance) ->
-                distance == finalResult.maxOf { (_, distance) -> distance }
-            }.keys
-        }
     }
 }

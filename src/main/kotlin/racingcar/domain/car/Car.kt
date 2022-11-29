@@ -7,22 +7,24 @@ class Car(
     private var distance: Int = 0
 
     init {
-        if (name.length > 5) {
+        if (name.length > CAR_NAME_LENGTH_LIMIT) {
             throw InvalidCarNameLengthInput()
         }
     }
 
     fun move(assignedNumber: Int? = null): Int {
         val number = assignedNumber ?: getRandomNumber()
-        if (number >= 4) {
+        if (number >= CAR_MOVE_MINIMUM_THRESHOLD) {
             distance += 1
         }
         return distance
     }
 
-    fun getRandomNumber() = numberRange.random()
+    private fun getRandomNumber() = numberRange.random()
 
     companion object {
+        private const val CAR_NAME_LENGTH_LIMIT = 5
+        private const val CAR_MOVE_MINIMUM_THRESHOLD = 4
         private val numberRange = (0..9)
     }
 }
