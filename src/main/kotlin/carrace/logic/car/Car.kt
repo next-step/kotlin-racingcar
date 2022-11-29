@@ -4,13 +4,15 @@ import carrace.logic.system.MovingSystem
 
 class Car(
     val carName: CarName,
-    val carPosition: CarPosition = CarPosition()
 ) {
-    fun nextRound(movingSystem: MovingSystem): Car {
-        val movingDistance = movingDistance(movingSystem)
-        return Car(
-            this.carName,
-            CarPosition(this.carPosition.position + movingDistance)
+    var carPosition: CarPosition = CarPosition()
+        private set
+
+    fun nextRound(movingSystem: MovingSystem): CarInfo {
+        carPosition = carPosition.move(movingDistance(movingSystem))
+
+        return CarInfo(
+            carName, carPosition
         )
     }
 

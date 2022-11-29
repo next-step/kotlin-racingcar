@@ -8,7 +8,7 @@ import io.kotest.matchers.shouldBe
 /**
  * @see CarName
  */
-class CarNameTest : FunSpec({
+internal class CarNameTest : FunSpec({
 
     context("CarName 단위 테스트") {
 

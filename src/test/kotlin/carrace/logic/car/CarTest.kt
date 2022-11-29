@@ -7,12 +7,11 @@ import io.kotest.matchers.shouldBe
 /**
  * @see Car
  */
-class CarTest : FunSpec({
+internal class CarTest : FunSpec({
     context("Car 단위 테스트") {
         val defaultCarName = CarName("기본 차")
         val defaultPositionValue = 0
-        val defaultPosition = CarPosition(defaultPositionValue)
-        val car = Car(defaultCarName, defaultPosition)
+        val car = Car(defaultCarName)
 
         test("fun nextRound(): movingSystem.isMove()가 true 면 한 칸 움직인다") {
             val alwaysTrueSystem = object : MovingSystem {

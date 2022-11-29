@@ -6,7 +6,7 @@ import io.kotest.matchers.shouldBe
 /**
  * @see CarNames
  */
-class CarNamesTest : FunSpec({
+internal class CarNamesTest : FunSpec({
 
     context("CarNames 단위 테스트") {
         test("이름을 쉼표를 기준으로 구분하여 생성합니다") {

@@ -11,26 +11,15 @@ data class Cars(
         }
     )
 
-    fun nextRound(movingSystem: MovingSystem): Cars {
-        return Cars(
+    fun getWinners(): Winners {
+        return Winners.from(cars)
+    }
+
+    fun nextRound(movingSystem: MovingSystem): CarInfos {
+        return CarInfos(
             cars.map { car ->
                 car.nextRound(movingSystem)
             }
         )
-    }
-
-    fun getWinners(): Winners {
-        val highestScore = cars.maxOf { car -> car.carPosition.position }
-        return Winners(
-            cars.filter { car ->
-                car.carPosition.position == highestScore
-            }
-        )
-    }
-
-    fun getResult(): List<String> {
-        return cars.map { car ->
-            "${car.carName.name} : " + "-".repeat(car.carPosition.position + 1)
-        }
     }
 }

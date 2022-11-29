@@ -1,11 +1,17 @@
 package carrace.logic.car
 
 data class Winners(
-    private val cars: List<Car>
+    val cars: List<Car>
 ) {
-    fun getResult(): String {
-        return "${cars.joinToString { car ->
-            car.carName.name
-        }}가 최종 우승했습니다."
+
+    companion object {
+        fun from(cars: List<Car>): Winners {
+            val highestScore = cars.maxOf { car -> car.carPosition.position }
+            return Winners(
+                cars.filter { car ->
+                    car.carPosition.position == highestScore
+                }
+            )
+        }
     }
 }

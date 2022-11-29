@@ -6,7 +6,7 @@ import io.kotest.matchers.shouldBe
 /**
  * @see Winners
  */
-class WinnersTest : FunSpec({
+internal class WinnersTest : FunSpec({
 
     context("Winners 단위 테스트") {
         val defaultCarName = CarName("car1")
@@ -15,7 +15,7 @@ class WinnersTest : FunSpec({
         test("getResult") {
             val winners = Winners(listOf(defaultCar))
 
-            winners.getResult() shouldBe "car1가 최종 우승했습니다."
+            winners.cars[0] shouldBe defaultCar
         }
     }
 })

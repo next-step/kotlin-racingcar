@@ -7,7 +7,7 @@ import io.kotest.matchers.shouldBe
 /**
  * @see CarPosition
  */
-class CarPositionTest : FunSpec({
+internal class CarPositionTest : FunSpec({
 
     context("CarPosition 단위 테스트") {
         val defaultPosition = 0

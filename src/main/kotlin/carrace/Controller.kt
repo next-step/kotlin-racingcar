@@ -1,22 +1,32 @@
 package carrace
 
+import carrace.logic.car.CarInfos
 import carrace.logic.system.RandomMovingSystem
 import carrace.view.InputView
 import carrace.view.ResultView
 
-class Controller {
+class Controller(
+    private val inputView: InputView,
+    private val resultView: ResultView
+) {
 
     fun startGame() {
-        val cars = InputView.inputCars()
-        val gameRound = InputView.inputGameRound()
+        val cars = inputView.inputCars()
+        val gameRound = inputView.inputGameRound()
 
-        val gameLogs = mutableListOf(cars)
-        for (i in 1..gameRound.value) {
-            gameLogs.add(
-                gameLogs.last().nextRound(RandomMovingSystem)
-            )
+        val gameLog = mutableListOf(CarInfos(cars))
+
+        if (gameRound.value > 1) {
+            for (i in 1..gameRound.value) {
+                gameLog.add(
+                    cars.nextRound(RandomMovingSystem)
+                )
+            }
         }
 
-        ResultView.printGameResult(gameLogs)
+        resultView.displayGameResult(gameLog)
+
+        val winners = cars.getWinners()
+        resultView.displayWinner(CarInfos(winners))
     }
 }

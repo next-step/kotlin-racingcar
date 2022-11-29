@@ -1,15 +1,8 @@
 package carrace.view
 
-import carrace.logic.car.Cars
+import carrace.logic.car.CarInfos
 
-object ResultView {
-
-    fun printGameResult(gameLogs: List<Cars>) {
-        println("실행 결과")
-        gameLogs.forEach { log ->
-            log.getResult().forEach { eachResult -> println(eachResult) }
-            println()
-        }
-        println(gameLogs.last().getWinners().getResult())
-    }
+interface ResultView {
+    fun displayGameResult(gameLog: List<CarInfos>)
+    fun displayWinner(winnersInfos: CarInfos)
 }

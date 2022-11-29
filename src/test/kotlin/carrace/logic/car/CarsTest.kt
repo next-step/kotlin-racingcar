@@ -7,7 +7,7 @@ import io.kotest.matchers.shouldBe
 /**
  * @see Cars
  */
-class CarsTest : FunSpec({
+internal class CarsTest : FunSpec({
 
     val defaultCarNameInput = "car1"
     val defaultCarNames = CarNames(defaultCarNameInput)
@@ -21,9 +21,9 @@ class CarsTest : FunSpec({
                 override fun canMove() = true
             }
 
-            val nextRoundCars = defaultCars.nextRound(alwaysTrueSystem)
+            val nextRoundCarInfos = defaultCars.nextRound(alwaysTrueSystem)
 
-            with(nextRoundCars.cars[0]) {
+            with(nextRoundCarInfos.carInfos[0]) {
                 carName.name shouldBe defaultCarNameInput
                 carPosition.position shouldBe 1
             }
