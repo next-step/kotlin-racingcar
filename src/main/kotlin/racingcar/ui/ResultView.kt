@@ -2,7 +2,7 @@ package racingcar.ui
 
 import racingcar.domain.model.CarRacer
 
-class ResultView {
+object ResultView {
 
     fun show(result: List<List<CarRacer>>) {
         println("")
