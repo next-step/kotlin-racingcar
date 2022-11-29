@@ -11,6 +11,6 @@ class Car(val name: String, var distance: Int = INITIAL_DISTANCE) {
     }
 
     fun isMaximumDistance(maxDistance: Int): Boolean = distance == maxDistance
-
     private fun isMove(randomNumber: Int): Boolean = randomNumber >= MOVE_CRITERIA
+    fun copy(): Car = Car(name, distance)
 }

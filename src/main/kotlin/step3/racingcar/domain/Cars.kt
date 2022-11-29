@@ -1,19 +1,17 @@
 package step3.racingcar.domain
 
-import step3.racingcar.view.ResultView
-
-class Cars private constructor(val elements: List<Car>) {
-    fun elements(): List<Car> = elements
-
+class Cars private constructor(private val elements: List<Car>) {
     fun size(): Int = elements.size
 
     operator fun get(index: Int): Car = elements[index]
 
-    fun race(currentRoundIndex: Int, numberGenerator: NumberGenerator) {
+    fun raceRoundResult(numberGenerator: NumberGenerator): RoundResult {
+        val roundResult = RoundResult()
         elements.forEach {
             it.race(numberGenerator.value())
+            roundResult.add(it)
         }
-        ResultView.printRoundResult(currentRoundIndex, this)
+        return roundResult
     }
 
     fun winnerNames(): List<String> {

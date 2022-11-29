@@ -7,6 +7,7 @@ import step3.racingcar.utils.CarGenerator
 import step3.racingcar.utils.RandomNumberGenerator
 import step3.racingcar.view.InputView.Companion.inputJoinerCarsGuideMessagePrinter
 import step3.racingcar.view.InputView.Companion.inputRoundCountGuideMessagePrinter
+import step3.racingcar.view.ResultView
 
 class RacingCarController {
     private val racingCarService: RacingCarService = RacingCarService(RandomNumberGenerator())
@@ -16,6 +17,7 @@ class RacingCarController {
         val totalRound = inputRoundCountGuideMessagePrinter()
         val cars = Cars.of(CarGenerator.generate(carNames))
         val playInfo = PlayInfo(cars, totalRound)
-        racingCarService.play(playInfo)
+        val playResult = racingCarService.play(playInfo)
+        ResultView.printResult(playResult)
     }
 }

@@ -1,6 +1,7 @@
 package step3.racingcar.service
 
 import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
 import step3.racingcar.domain.Car
 import step3.racingcar.domain.Cars
@@ -30,14 +31,14 @@ internal class RacingCarServiceTest : BehaviorSpec({
 
         `when`("첫번째 라운드에 4이상의 난수가 발생하면") {
             racingCarService = of(4)
-            racingCarService.playEachRound(0, given)
+            racingCarService.playEachRound(given)
             then("차량의 주행거리는 1 누적된다.") {
                 참가_차량.distance shouldBe 1
             }
         }
         `when`("두번째 라운드에 3이하의 난수가 발생하면") {
             racingCarService = of(3)
-            racingCarService.playEachRound(1, given)
+            racingCarService.playEachRound(given)
             then("차량의 주행거리는 누적되지 않는다.") {
                 참가_차량.distance shouldBe 1
             }
@@ -58,7 +59,7 @@ internal class RacingCarServiceTest : BehaviorSpec({
             }
             then("첫번째 차량이 누적거리 1로 우승한다.") {
                 첫번째_참가_차량.distance shouldBe 1
-                given.winnerNames() shouldBe "첫번째_참가_차량"
+                given.winnerNames().shouldContainExactly("첫번째_참가_차량")
             }
         }
     }
@@ -76,7 +77,7 @@ internal class RacingCarServiceTest : BehaviorSpec({
                 it.playEachRoundByCar(두번째_참가_차량)
             }
             then("첫번째 차량을 우승 차량으로 반환한다.") {
-                given.winnerNames() shouldBe "첫번째_참가_차량"
+                given.winnerNames().shouldContainExactly("첫번째_참가_차량")
             }
         }
 
@@ -89,7 +90,7 @@ internal class RacingCarServiceTest : BehaviorSpec({
             }
             then("첫번째 차량이 누적거리 2로 우승한다.") {
                 첫번째_참가_차량.distance shouldBe 2
-                given.winnerNames() shouldBe "첫번째_참가_차량"
+                given.winnerNames().shouldContainExactly("첫번째_참가_차량")
             }
         }
     }
