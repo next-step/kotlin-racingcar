@@ -10,8 +10,7 @@ fun main() {
     inputView.show()
 
     val f1 = FormularOne()
-    val result: List<List<CarRacer>> =
-        f1.start(carNameStrings = inputView.carNamesString, numberOfGame = inputView.numberOfGame)
+    val result: List<List<CarRacer>> = f1.start(carNames = inputView.carNames, numberOfGame = inputView.numberOfGame)
 
     ResultView().show(result = result)
 }

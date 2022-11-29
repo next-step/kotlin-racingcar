@@ -1,6 +1,5 @@
 package racingcar.domain
 
-import calculator.Parser
 import racingcar.domain.model.CarRacer
 import racingcar.domain.model.CarRacingGame
 
@@ -12,13 +11,12 @@ class FormularOne {
     /**
      * 대회 시작
      */
-    fun start(carNameStrings: String, numberOfGame: Int): List<List<CarRacer>> {
+    fun start(carNames: List<String>, numberOfGame: Int): List<List<CarRacer>> {
         require(numberOfGame > 0)
-        require(carNameStrings.isNotBlank())
+        require(carNames.isNotEmpty())
 
         val totalList: MutableList<List<CarRacer>> = mutableListOf()
 
-        val carNames: List<String> = Parser().parse(input = carNameStrings, delimiter = ",")
         val carRacers: List<CarRacer> = makeCarRacerList(carNames)
 
         repeat(numberOfGame) {

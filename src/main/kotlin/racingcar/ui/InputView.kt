@@ -1,14 +1,18 @@
 package racingcar.ui
 
+import calculator.Parser
+
 class InputView {
+
+    var carNames: List<String> = emptyList()
 
     var numberOfGame: Int = 0
         private set
-    var carNamesString: String = ""
-        private set
 
     fun show() {
-        carNamesString = inputCarNames()
+        val carNamesString = inputCarNames()
+        carNames = Parser().parse(input = carNamesString, delimiter = ",")
+
         numberOfGame = inputNumberOfGame()
     }
 
