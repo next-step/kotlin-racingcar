@@ -1,26 +1,31 @@
 package step3.racingcar.domain
 
-class Cars private constructor(private val elements: List<Car>) {
+import step3.racingcar.view.ResultView
+
+class Cars private constructor(val elements: List<Car>) {
     fun elements(): List<Car> = elements
 
     fun size(): Int = elements.size
 
     operator fun get(index: Int): Car = elements[index]
 
-    fun winnerNames(): String =
-        findWinnerNames().joinToString(WINNER_NAME_JOINING_SEPARATOR)
+    fun race(currentRoundIndex: Int, randomNumber: RandomNumber) {
+        elements.forEach {
+            it.race(randomNumber.value())
+        }
+        ResultView.printRoundResult(currentRoundIndex, this)
+    }
 
-    private fun findWinnerNames(): List<String> {
+    fun winnerNames(): List<String> {
         val maxDistance = findMaxDistance()
-        return elements()
+        return elements
             .filter { it.isMaximumDistance(maxDistance) }
             .map { it.name }
     }
 
-    private fun findMaxDistance(): Int = elements().maxOf { it.distance }
+    private fun findMaxDistance(): Int = elements.maxOf { it.distance }
 
     companion object {
-        private const val WINNER_NAME_JOINING_SEPARATOR = ", "
         fun of(elements: List<Car>): Cars = Cars(elements)
     }
 }

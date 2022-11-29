@@ -4,7 +4,6 @@ import step3.racingcar.domain.Car
 import step3.racingcar.domain.Cars
 import step3.racingcar.domain.PlayInfo
 import step3.racingcar.domain.RandomNumber
-import step3.racingcar.view.ResultView.Companion.printRoundResult
 import step3.racingcar.view.ResultView.Companion.printWinner
 
 class RacingCarService(private val randomNumber: RandomNumber) {
@@ -15,13 +14,8 @@ class RacingCarService(private val randomNumber: RandomNumber) {
         printWinner(playInfo.cars)
     }
 
-    fun playEachRound(currentRoundIndex: Int, cars: Cars) {
-        cars.elements().forEach {
-            val randomNumber = randomNumber.value()
-            it.race(randomNumber)
-        }
-        printRoundResult(currentRoundIndex, cars)
-    }
+    fun playEachRound(currentRoundIndex: Int, cars: Cars) =
+        cars.race(currentRoundIndex, randomNumber)
 
     fun playEachRoundByCar(car: Car) {
         val randomNumber = randomNumber.value()
