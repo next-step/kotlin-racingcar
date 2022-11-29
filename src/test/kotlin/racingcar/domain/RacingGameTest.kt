@@ -4,9 +4,7 @@ import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.inspectors.forAll
-import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
-import racingcar.domain.vo.Name
 import racingcar.domain.vo.Round
 
 internal class RacingGameTest : FunSpec({
@@ -65,11 +63,15 @@ internal class RacingGameTest : FunSpec({
     }
 
     context("findWinnerNames()") {
-        test("우승자의 이름 목록을 반환한다.") {
-            val racingGame = RacingGame(listOf(Car("win1", 2), Car("win2", 2), Car("lose1", 1)), Round(1))
-            val names = racingGame.findWinnerNames()
+        test("우승자들을 반환한다.") {
+            val winner1 = Car("win1", 2)
+            val winner2 = Car("win2", 2)
+            val racingGame = RacingGame(listOf(winner1, winner2, Car("lose1", 1)), Round(1))
+            val winners = racingGame.findWinners()
 
-            names shouldContainExactly listOf(Name("win1"), Name("win2"))
+            winners.size shouldBe 2
+            winners[0].name() shouldBe winner1.name
+            winners[1].name() shouldBe winner2.name
         }
     }
 })

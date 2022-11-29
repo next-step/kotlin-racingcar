@@ -1,6 +1,5 @@
 package racingcar.domain
 
-import racingcar.domain.vo.Name
 import racingcar.domain.vo.Position
 import racingcar.domain.vo.Round
 
@@ -27,11 +26,11 @@ class RacingGame(private val cars: List<Car>, private var round: Round) {
 
     fun hasNextRound() = round.hasNext()
 
-    fun findWinnerNames(): List<Name> {
+    fun findWinners(): List<Winner> {
         val winnerPosition = cars.maxOf { it.position }
 
         return cars.filter { it.position == winnerPosition }
-            .map { it.name }
+            .map(::Winner)
     }
 
     companion object {
