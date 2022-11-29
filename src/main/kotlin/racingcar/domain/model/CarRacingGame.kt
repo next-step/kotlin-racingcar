@@ -14,7 +14,7 @@ class CarRacingGame(private val carRacers: List<CarRacer>) {
     fun result(): List<CarRacer> {
         return carRacers
             .map { racer ->
-                CarRacer.ofCarRacer(racer = racer)
+                racer.copy()
             }
     }
 }

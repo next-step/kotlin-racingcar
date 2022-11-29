@@ -16,12 +16,7 @@ class CarRacer(val name: String, position: Int = 0) {
         if (count >= 4) position++
     }
 
-    companion object {
-        fun ofCarRacer(racer: CarRacer): CarRacer {
-            return CarRacer(
-                name = racer.name,
-                position = racer.position
-            )
-        }
+    fun copy(): CarRacer {
+        return CarRacer(name, position)
     }
 }
