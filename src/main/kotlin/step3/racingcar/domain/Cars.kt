@@ -10,10 +10,12 @@ class Cars private constructor(private val elements: List<Car>) {
     fun winnerNames(): String =
         findWinnerNames().joinToString(WINNER_NAME_JOINING_SEPARATOR)
 
-    private fun findWinnerNames(): List<String> =
-        elements()
-            .filter { it.distance == findMaxDistance() }
+    private fun findWinnerNames(): List<String> {
+        val maxDistance = findMaxDistance()
+        return elements()
+            .filter { it.isMaximumDistance(maxDistance) }
             .map { it.name }
+    }
 
     private fun findMaxDistance(): Int = elements().maxOf { it.distance }
 
