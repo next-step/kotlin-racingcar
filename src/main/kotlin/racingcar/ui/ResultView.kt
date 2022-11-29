@@ -1,5 +1,6 @@
 package racingcar.ui
 
+import racingcar.domain.FormularOne
 import racingcar.domain.model.CarRacer
 
 object ResultView {
@@ -19,14 +20,8 @@ object ResultView {
         gameResult: List<CarRacer>
     ) {
         println("")
-
-        val winners: MutableList<String> = mutableListOf()
-        val max: Int = gameResult.maxOf { it.position }
-        gameResult.forEach {
-            if (it.position == max) winners.add(it.name)
-        }
-
-        println("${winners.joinToString(", ")}가 최종 우승했습니다.")
+        val result = FormularOne.findWinners(gameResult)
+        println("${result.joinToString(", ")}가 최종 우승했습니다.")
     }
 
     private fun showGameResult(carRacers: List<CarRacer>) {

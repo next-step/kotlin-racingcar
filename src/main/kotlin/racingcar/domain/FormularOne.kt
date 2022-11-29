@@ -30,4 +30,14 @@ class FormularOne {
     private fun makeCarRacerList(carNames: List<String>): List<CarRacer> {
         return carNames.map { name -> CarRacer(name) }
     }
+
+    companion object {
+
+        fun findWinners(carRacers: List<CarRacer>): List<String> {
+            val max: Int = carRacers.maxOf { it.position }
+            return carRacers
+                .filter { it.position == max }
+                .map { it.name }
+        }
+    }
 }
