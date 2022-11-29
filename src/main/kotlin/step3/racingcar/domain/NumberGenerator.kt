@@ -1,6 +1,6 @@
 package step3.racingcar.domain
 
-interface RandomNumber {
+interface NumberGenerator {
     fun value(): Int
 
     companion object {

@@ -9,9 +9,9 @@ class Cars private constructor(val elements: List<Car>) {
 
     operator fun get(index: Int): Car = elements[index]
 
-    fun race(currentRoundIndex: Int, randomNumber: RandomNumber) {
+    fun race(currentRoundIndex: Int, numberGenerator: NumberGenerator) {
         elements.forEach {
-            it.race(randomNumber.value())
+            it.race(numberGenerator.value())
         }
         ResultView.printRoundResult(currentRoundIndex, this)
     }

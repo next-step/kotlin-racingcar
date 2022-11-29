@@ -74,7 +74,7 @@
   * [x] private 생성자의 `elements` 프로퍼티를 반환하는 getter 제거하고, 해당 프로퍼티를 public 으로 변경 
   * [x] ','를 기준으로 우승자 이름을 묶어내는 `Cars` 도메인의 함수를 View 계층으로 이동
   * [x] Service 계층에서 Cars 도메인의 각 원소(Car)에 접근하여 경주를 진행하는 방식에서 Cars 도메인에 메세지를 보내어 각 원소(Car)의 race() 함수를 호출함으로써 도메인이 메세지를 받아 직접 로직을 처리 하도록 수정
-* [ ] 명확하지 않은 난수 생성기 인터페이스 이름 변경
+* [x] 명확하지 않은 난수 생성기 인터페이스 이름 변경
   * AS-IS : RandomNumber
   * TO-BE : NumberGenerator
 * [ ] Service 계층에 구현된 각 라운드 결과 출력 부를 View 계층으로 이동

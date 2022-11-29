@@ -3,10 +3,10 @@ package step3.racingcar.service
 import step3.racingcar.domain.Car
 import step3.racingcar.domain.Cars
 import step3.racingcar.domain.PlayInfo
-import step3.racingcar.domain.RandomNumber
+import step3.racingcar.domain.NumberGenerator
 import step3.racingcar.view.ResultView.Companion.printWinner
 
-class RacingCarService(private val randomNumber: RandomNumber) {
+class RacingCarService(private val numberGenerator: NumberGenerator) {
     fun play(playInfo: PlayInfo) {
         repeat(playInfo.totalRound) {
             playEachRound(it, playInfo.cars)
@@ -15,10 +15,10 @@ class RacingCarService(private val randomNumber: RandomNumber) {
     }
 
     fun playEachRound(currentRoundIndex: Int, cars: Cars) =
-        cars.race(currentRoundIndex, randomNumber)
+        cars.race(currentRoundIndex, numberGenerator)
 
     fun playEachRoundByCar(car: Car) {
-        val randomNumber = randomNumber.value()
+        val randomNumber = numberGenerator.value()
         car.race(randomNumber)
     }
 }
