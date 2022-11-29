@@ -32,9 +32,9 @@ object ResultView {
 
     private fun showGameResult(carRacers: List<CarRacer>) {
         carRacers.forEach { racer ->
-            var result = "${racer.name} : "
+            var result = ""
             repeat(racer.position) { result += "-" }
-            println(result)
+            println("${racer.name} : $result")
         }
 
         println("")
