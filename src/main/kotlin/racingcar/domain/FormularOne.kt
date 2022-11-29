@@ -15,17 +15,13 @@ class FormularOne {
         require(numberOfGame > 0)
         require(carNames.isNotEmpty())
 
-        val totalList: MutableList<List<CarRacer>> = mutableListOf()
-
         val carRacers: List<CarRacer> = makeCarRacerList(carNames)
 
-        repeat(numberOfGame) {
+        return List(numberOfGame) {
             val game = CarRacingGame(carRacers = carRacers)
             game.race()
-            totalList.add(game.result())
+            game.result()
         }
-
-        return totalList
     }
 
     /**
