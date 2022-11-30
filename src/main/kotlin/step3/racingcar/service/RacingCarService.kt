@@ -18,7 +18,7 @@ class RacingCarService(private val numberGenerator: NumberGenerator) {
     }
 
     fun playEachRound(cars: Cars): RoundResult =
-        cars.raceRoundResult(numberGenerator)
+        cars.race(numberGenerator)
 
     fun playEachRoundByCar(car: Car) {
         val randomNumber = numberGenerator.value()

@@ -5,7 +5,7 @@ class Cars private constructor(private val elements: List<Car>) {
 
     operator fun get(index: Int): Car = elements[index]
 
-    fun raceRoundResult(numberGenerator: NumberGenerator): RoundResult {
+    fun race(numberGenerator: NumberGenerator): RoundResult {
         val roundResult = RoundResult()
         elements.forEach {
             it.race(numberGenerator.value())
