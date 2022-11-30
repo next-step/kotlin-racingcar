@@ -10,6 +10,8 @@ import racingcar.domain.Cars
 import racingcar.domain.GameInputValue
 import racingcar.domain.InputName
 import racingcar.domain.InputNumber
+import racingcar.domain.WinnerSelector
+import racingcar.view.OutputView
 
 internal class RacingCarTest {
     @Test
@@ -118,31 +120,38 @@ internal class RacingCarTest {
         val inputNameOfCars = InputName(names).names
         val inputNumberOfTGames = InputNumber(games).number
         val gameInputValue = GameInputValue(inputNameOfCars, inputNumberOfTGames)
+        val outputView = OutputView()
         assertAll(
             {
                 val cars = Cars(inputNameOfCars, MockStrategy(KOREA_CAR_NUMBER))
-                cars.race(gameInputValue)
-                assertEquals("Korea", cars.showResult())
+                cars.race(gameInputValue) {}
+                assertEquals("Korea", outputView.showWinner(WinnerSelector(cars.getRacingCars()).selectWinner()))
             },
             {
                 val cars = Cars(inputNameOfCars, MockStrategy(JAPAN_CAR_NUMBER))
-                cars.race(gameInputValue)
-                assertEquals("Japan", cars.showResult())
+                cars.race(gameInputValue) {}
+                assertEquals("Japan", outputView.showWinner(WinnerSelector(cars.getRacingCars()).selectWinner()))
             },
             {
                 val cars = Cars(inputNameOfCars, MockStrategy(CHINA_CAR_NUMBER))
-                cars.race(gameInputValue)
-                assertEquals("China", cars.showResult())
+                cars.race(gameInputValue) {}
+                assertEquals("China", outputView.showWinner(WinnerSelector(cars.getRacingCars()).selectWinner()))
             },
             {
                 val cars = Cars(inputNameOfCars, MockStrategy(ALL_CAR_STOP_WINNER_NUMBER))
-                cars.race(gameInputValue)
-                assertEquals("Korea, Japan, China", cars.showResult())
+                cars.race(gameInputValue) {}
+                assertEquals(
+                    "Korea, Japan, China",
+                    outputView.showWinner(WinnerSelector(cars.getRacingCars()).selectWinner())
+                )
             },
             {
                 val cars = Cars(inputNameOfCars, MockStrategy(ALL_CAR_MOVE_WINNER_NUMBER))
-                cars.race(gameInputValue)
-                assertEquals("Korea, Japan, China", cars.showResult())
+                cars.race(gameInputValue) {}
+                assertEquals(
+                    "Korea, Japan, China",
+                    outputView.showWinner(WinnerSelector(cars.getRacingCars()).selectWinner())
+                )
             }
         )
     }

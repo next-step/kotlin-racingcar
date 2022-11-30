@@ -1,6 +1,6 @@
 package racingcar.domain
 
-class WinnerSelector(private val cars: MutableList<Car>) {
+class WinnerSelector(private val cars: List<Car>) {
     fun selectWinner(): List<Car> {
         return cars.filter { it.position == pickWinnerPosition() }
     }

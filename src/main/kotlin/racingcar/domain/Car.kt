@@ -1,12 +1,10 @@
 package racingcar.domain
 
-import racingcar.view.OutputView
-
-class Car(private val movingConditionStrategy: MovingConditionStrategy, val name: String = "") {
+class Car(val name: String = "") {
     var position = 0
         private set
 
-    fun move() {
+    fun move(movingConditionStrategy: MovingConditionStrategy) {
         if (movingConditionStrategy.move() >= MOVE_FORWARD) {
             markCarPosition(MOVE_VALUE)
         }
@@ -16,8 +14,8 @@ class Car(private val movingConditionStrategy: MovingConditionStrategy, val name
         position += value
     }
 
-    fun showPosition(isLastCarCycle: Boolean, outputView: OutputView) {
-        outputView.showRaceState(name, position, isLastCarCycle)
+    fun getCar(): Car {
+        return this
     }
 
     companion object {
