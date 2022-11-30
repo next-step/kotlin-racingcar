@@ -1,23 +1,27 @@
 package step3.racingcar.service
 
+import step3.racingcar.domain.Car
 import step3.racingcar.domain.Cars
+import step3.racingcar.domain.NumberGenerator
 import step3.racingcar.domain.PlayInfo
-import step3.racingcar.domain.Winners
-import step3.racingcar.view.ResultView.Companion.printRoundResult
-import step3.racingcar.view.ResultView.Companion.printWinner
+import step3.racingcar.domain.RoundResult
+import step3.racingcar.domain.RoundResults
 
-class RacingCarService {
-    fun play(playInfo: PlayInfo) {
+class RacingCarService(private val numberGenerator: NumberGenerator) {
+    fun play(playInfo: PlayInfo): RoundResults {
+        val roundResults = RoundResults.of(playInfo)
         repeat(playInfo.totalRound) {
-            playEachRound(it, playInfo.cars)
+            val playEachRoundAndReturn = playEachRound(playInfo.cars)
+            roundResults.add(playEachRoundAndReturn)
         }
-        printWinner(Winners.of(playInfo.cars))
+        return roundResults
     }
 
-    private fun playEachRound(currentRoundIndex: Int, cars: Cars) {
-        cars.elements().forEach {
-            it.race(currentRoundIndex)
-        }
-        printRoundResult(currentRoundIndex, cars)
+    fun playEachRound(cars: Cars): RoundResult =
+        cars.race(numberGenerator)
+
+    fun playEachRoundByCar(car: Car) {
+        val randomNumber = numberGenerator.value()
+        car.race(randomNumber)
     }
 }

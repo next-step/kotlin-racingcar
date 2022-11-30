@@ -1,23 +1,11 @@
 package step3.racingcar.utils
 
-import step3.racingcar.domain.Car
-import step3.racingcar.domain.Cars
+import step3.racingcar.domain.NumberGenerator
+import step3.racingcar.domain.NumberGenerator.Companion.RANGE_END
+import step3.racingcar.domain.NumberGenerator.Companion.RANGE_START
 
-object RandomNumberGenerator {
-    private const val RANGE_START = 1
-    private const val RANGE_END = 9
-
-    fun generateRandomNumberToCarByRound(cars: Cars, totalRound: Int) {
-        cars.elements().forEach {
-            generateRandomNumberToEachCar(it, totalRound)
-        }
-    }
+class RandomNumberGenerator : NumberGenerator {
+    override fun value(): Int = generate()
 
     private fun generate(): Int = (RANGE_START..RANGE_END).random()
-
-    private fun generateRandomNumberToEachCar(car: Car, totalRound: Int) {
-        repeat(totalRound) {
-            car.addRandomNumber(generate())
-        }
-    }
 }
