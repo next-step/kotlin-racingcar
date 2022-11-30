@@ -1,5 +1,7 @@
 package racingcar.domain
 
+import racingcar.RandomNumberUtils
+
 class Race(private val cars: List<Car>, private val totalCountOfRound: Int) {
     fun run(): RaceResult {
         val roundHistories = ArrayList<RoundHistory>()
