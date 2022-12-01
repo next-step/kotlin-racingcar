@@ -1,4 +1,4 @@
-package car_race.logic.car
+package carrace.logic.car
 
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrowExactly
@@ -8,7 +8,7 @@ import io.kotest.matchers.shouldBe
 /**
  * @see CarName
  */
-class CarNameTest : FunSpec({
+internal class CarNameTest : FunSpec({
 
     context("CarName 단위 테스트") {
 

@@ -1,6 +1,6 @@
-package car_race.logic
+package carrace.logic
 
-class GameRound private constructor(
+class GameRound(
     val value: Long
 ) {
 

@@ -1,4 +1,4 @@
-package car_race.logic.car
+package carrace.logic.car
 
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.core.spec.style.FunSpec
@@ -7,7 +7,7 @@ import io.kotest.matchers.shouldBe
 /**
  * @see CarPosition
  */
-class CarPositionTest : FunSpec({
+internal class CarPositionTest : FunSpec({
 
     context("CarPosition 단위 테스트") {
         val defaultPosition = 0

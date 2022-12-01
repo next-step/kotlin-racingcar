@@ -1,4 +1,4 @@
-package car_race.logic.system
+package carrace.logic.system
 
 interface MovingSystem {
     fun canMove(): Boolean
