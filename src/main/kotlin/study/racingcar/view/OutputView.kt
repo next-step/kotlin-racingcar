@@ -1,10 +1,10 @@
-package study.racingcar.io
+package study.racingcar.view
 
 import study.racingcar.domain.racing.RacingResult
 import study.racingcar.domain.racing.Record
 import study.racingcar.domain.racing.Winner
 
-object OutputView {
+class OutputView {
     fun printResult(result: RacingResult) {
         result.rounds
             .forEach { round: List<Record> ->
@@ -21,9 +21,7 @@ object OutputView {
     }
 
     private fun printByRound(round: List<Record>) {
-        round.forEach { record ->
-            println("${record.name} : ${getLocationSymbols(record.location)}")
-        }
+        round.forEach { println("${it.name} : ${getLocationSymbols(it.location)}") }
     }
 
     private fun getLocationSymbols(location: Int): String {
@@ -34,5 +32,7 @@ object OutputView {
         return println()
     }
 
-    private const val LOCATION_SYMBOL = "-"
+    companion object {
+        private const val LOCATION_SYMBOL = "-"
+    }
 }
