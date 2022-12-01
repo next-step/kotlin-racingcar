@@ -1,6 +1,6 @@
-package study.racingcar.racing
+package study.racingcar.domain.racing
 
-import study.racingcar.generator.Generator
+import study.racingcar.domain.generator.Generator
 
 internal class AlwaysStopGenerator : Generator {
     override fun generate(): Int {

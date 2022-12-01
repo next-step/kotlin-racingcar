@@ -1,11 +1,11 @@
 package study.racingcar
 
-import study.racingcar.car.CarFactory
-import study.racingcar.generator.RandomNumberGenerator
+import study.racingcar.domain.car.CarFactory
+import study.racingcar.domain.generator.RandomNumberGenerator
+import study.racingcar.domain.racing.RacingGame
+import study.racingcar.domain.racing.Winner
 import study.racingcar.io.InputView
 import study.racingcar.io.OutputView
-import study.racingcar.racing.RacingGame
-import study.racingcar.racing.Winner
 
 fun main() {
     val names = InputView.getCarsName()

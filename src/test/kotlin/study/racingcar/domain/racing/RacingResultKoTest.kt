@@ -1,4 +1,4 @@
-package study.racingcar.racing
+package study.racingcar.domain.racing
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe

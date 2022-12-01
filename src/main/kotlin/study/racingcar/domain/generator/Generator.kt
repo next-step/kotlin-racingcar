@@ -1,4 +1,4 @@
-package study.racingcar.generator
+package study.racingcar.domain.generator
 
 interface Generator {
     fun generate(): Int

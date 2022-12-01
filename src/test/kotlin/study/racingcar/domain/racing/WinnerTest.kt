@@ -1,9 +1,9 @@
-package study.racingcar.racing
+package study.racingcar.domain.racing
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import study.racingcar.car.Car
-import study.racingcar.car.Power
+import study.racingcar.domain.car.Car
+import study.racingcar.domain.car.Power
 
 internal class WinnerTest : StringSpec({
     "승자를 알 수 있다" {

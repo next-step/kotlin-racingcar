@@ -1,8 +1,8 @@
 package study.racingcar.io
 
-import study.racingcar.racing.RacingResult
-import study.racingcar.racing.Record
-import study.racingcar.racing.Winner
+import study.racingcar.domain.racing.RacingResult
+import study.racingcar.domain.racing.Record
+import study.racingcar.domain.racing.Winner
 
 object OutputView {
     fun printResult(result: RacingResult) {

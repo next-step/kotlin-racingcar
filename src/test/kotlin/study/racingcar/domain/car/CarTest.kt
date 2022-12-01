@@ -1,4 +1,4 @@
-package study.racingcar.car
+package study.racingcar.domain.car
 
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
