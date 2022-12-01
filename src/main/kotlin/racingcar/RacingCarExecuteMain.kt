@@ -7,18 +7,21 @@ fun main() {
     val inputView = InputView()
     val resultView = ResultView()
 
-    val carCount = inputView.inputCarCount()
+    val carNames = inputView.inputCarNames()
     val tryCount = inputView.inputTryCount()
+    val racingCar = RacingCar(carNames, tryCount)
 
-    val racingHistory = RacingCar(carCount, tryCount).start(ForwardStrategy.CarForward)
+    val racingHistory = racingCar.start(ForwardStrategy.DefaultForward)
+    val winningCarNames = racingHistory.getWinningCarNames()
 
     for (i in 0 until tryCount) {
-        racingHistory.keys.forEach { car ->
-            resultView.printCarMove(racingHistory[car]!![i])
+        racingHistory.getMoveHistory().forEach { moveItem ->
+            resultView.printCarName(moveItem.key)
+            resultView.printCarMove(moveItem.value[i])
         }
 
-        if (i < tryCount - 1) {
-            resultView.printLineSpacing()
-        }
+        resultView.printLineSpacing()
     }
+
+    resultView.printWinningCars(winningCarNames)
 }
