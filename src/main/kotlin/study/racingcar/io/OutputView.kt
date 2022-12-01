@@ -2,6 +2,7 @@ package study.racingcar.io
 
 import study.racingcar.racing.RacingResult
 import study.racingcar.racing.Record
+import study.racingcar.racing.Winner
 
 object OutputView {
     fun printResult(result: RacingResult) {
@@ -12,8 +13,8 @@ object OutputView {
             }
     }
 
-    fun printWinners(result: RacingResult) {
-        val winnersName = result.winners()
+    fun printWinners(winner: Winner) {
+        val winnersName = winner.findWinners()
             .joinToString(",") { it.name }
 
         println("${winnersName}가 최종 우승했습니다.")
