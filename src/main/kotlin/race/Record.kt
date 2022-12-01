@@ -1,25 +1,18 @@
 package race
 
-class Record private constructor(
-    val raceRecords: HashMap<String, MutableList<Boolean>>
-) {
-
-    fun record(carName: String, movement: Boolean) {
-        raceRecords[carName]?.add(movement)
-    }
+class Record(raceRecords: List<SnapShot>) {
+    val raceRecords = raceRecords
 
     fun getWinnerCarName(): List<String> {
-        val maxCount = raceRecords.values.maxOfOrNull { raceResult -> raceResult.count { it } } ?: 0
-        return raceRecords.filterValues { raceRecord -> raceRecord.count { it } == maxCount }.keys.toList()
-    }
+        val maxCount = raceRecords
+            .last().movedCars
+            .map { it.movements }
+            .maxOf { movements -> movements.count { it } }
 
-    companion object {
-        fun from(carNames: List<String>): Record {
-            val recordRace = HashMap<String, MutableList<Boolean>>()
-            carNames.forEach {
-                recordRace[it] = mutableListOf()
-            }
-            return Record(recordRace)
-        }
+        return raceRecords
+            .last().movedCars
+            .filter { it.getMovedCount() == maxCount }
+            .map { car -> car.name }
+            .toList()
     }
 }
