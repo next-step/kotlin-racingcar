@@ -14,9 +14,7 @@ object OutputView {
 
     fun printWinners(result: RacingResult) {
         val winnersName = result.winners()
-            .joinToString(",") { winner ->
-                winner.name
-            }
+            .joinToString(",") { it.name }
 
         println("${winnersName}가 최종 우승했습니다.")
     }
