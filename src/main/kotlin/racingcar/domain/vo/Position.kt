@@ -2,7 +2,7 @@ package racingcar.domain.vo
 
 import racingcar.domain.MoveStrategy
 
-data class Position(val position: Int = 0) {
+data class Position(val position: Int = 0) : Comparable<Position> {
     init {
         require(position >= MIN_THRESHOLD) { "The minimum value for position should be greater than $MIN_THRESHOLD" }
     }
@@ -17,5 +17,13 @@ data class Position(val position: Int = 0) {
 
     companion object {
         private const val MIN_THRESHOLD = 0
+    }
+
+    override fun compareTo(other: Position): Int {
+        return when {
+            this.position > other.position -> 1
+            this.position < other.position -> -1
+            else -> return 0
+        }
     }
 }

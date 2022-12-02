@@ -16,7 +16,7 @@ class RacingCarController(private val input: ConsoleInput, private val output: C
 
         start(names, racingGame)
 
-        output.printWinners(racingGame.findWinnerNames().map { it.name })
+        output.printWinners(racingGame.findWinners().map { it.name().name })
     }
 
     private tailrec fun start(names: List<String>, racingGame: RacingGame) {
