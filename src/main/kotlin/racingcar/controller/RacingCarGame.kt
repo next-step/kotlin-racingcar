@@ -1,5 +1,8 @@
-package racingcar.domain
+package racingcar.controller
 
+import racingcar.domain.Car
+import racingcar.domain.GameInfo
+import racingcar.domain.Judges
 import racingcar.view.ResultView
 
 class RacingCarGame(
@@ -33,9 +36,5 @@ class RacingCarGame(
         ResultView.printWinner(
             winner = Judges(cars).pickWinner()
         )
-    }
-
-    private fun pickWinner(max: Int, cars: List<Car>): List<Car> = cars.filter { car ->
-        car.distance == max
     }
 }
