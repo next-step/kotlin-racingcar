@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import racingcar.domain.Cars
-import racingcar.domain.GameInputValue
 import racingcar.domain.InputName
 import racingcar.domain.InputNumber
 import racingcar.domain.WinnerSelector
@@ -118,39 +117,38 @@ internal class RacingCarTest {
     @CsvSource("'Korea,Japan,China', '5'")
     fun `우승자 선택 및 출력한다`(names: String, games: String) {
         val inputNameOfCars = InputName(names).names
-        val inputNumberOfTGames = InputNumber(games).number
-        val gameInputValue = GameInputValue(inputNameOfCars, inputNumberOfTGames)
+        val inputNumberOfGames = InputNumber(games).number
         val outputView = OutputView()
         assertAll(
             {
                 val cars = Cars(inputNameOfCars, MockStrategy(KOREA_CAR_NUMBER))
-                cars.race(gameInputValue) {}
-                assertEquals("Korea", outputView.showWinner(WinnerSelector(cars.getRacingCars()).selectWinner()))
+                cars.race(inputNumberOfGames) {}
+                assertEquals("Korea", outputView.showWinner(WinnerSelector(cars.getRacingCars()).selectWinnerName()))
             },
             {
                 val cars = Cars(inputNameOfCars, MockStrategy(JAPAN_CAR_NUMBER))
-                cars.race(gameInputValue) {}
-                assertEquals("Japan", outputView.showWinner(WinnerSelector(cars.getRacingCars()).selectWinner()))
+                cars.race(inputNumberOfGames) {}
+                assertEquals("Japan", outputView.showWinner(WinnerSelector(cars.getRacingCars()).selectWinnerName()))
             },
             {
                 val cars = Cars(inputNameOfCars, MockStrategy(CHINA_CAR_NUMBER))
-                cars.race(gameInputValue) {}
-                assertEquals("China", outputView.showWinner(WinnerSelector(cars.getRacingCars()).selectWinner()))
+                cars.race(inputNumberOfGames) {}
+                assertEquals("China", outputView.showWinner(WinnerSelector(cars.getRacingCars()).selectWinnerName()))
             },
             {
                 val cars = Cars(inputNameOfCars, MockStrategy(ALL_CAR_STOP_WINNER_NUMBER))
-                cars.race(gameInputValue) {}
+                cars.race(inputNumberOfGames) {}
                 assertEquals(
                     "Korea, Japan, China",
-                    outputView.showWinner(WinnerSelector(cars.getRacingCars()).selectWinner())
+                    outputView.showWinner(WinnerSelector(cars.getRacingCars()).selectWinnerName())
                 )
             },
             {
                 val cars = Cars(inputNameOfCars, MockStrategy(ALL_CAR_MOVE_WINNER_NUMBER))
-                cars.race(gameInputValue) {}
+                cars.race(inputNumberOfGames) {}
                 assertEquals(
                     "Korea, Japan, China",
-                    outputView.showWinner(WinnerSelector(cars.getRacingCars()).selectWinner())
+                    outputView.showWinner(WinnerSelector(cars.getRacingCars()).selectWinnerName())
                 )
             }
         )

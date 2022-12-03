@@ -1,7 +1,17 @@
 package racingcar.domain
 
 class WinnerSelector(private val cars: List<Car>) {
-    fun selectWinner(): List<Car> {
+
+    fun selectWinnerName(): List<String> {
+        val names = mutableListOf<String>()
+        val winners = selectWinnerCar()
+        for (car in winners) {
+            names.add(car.name)
+        }
+        return names
+    }
+
+    private fun selectWinnerCar(): List<Car> {
         return cars.filter { it.position == pickWinnerPosition() }
     }
 

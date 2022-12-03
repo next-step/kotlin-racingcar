@@ -14,8 +14,12 @@ class Car(val name: String = "") {
         position += value
     }
 
-    fun getCar(): Car {
-        return this
+    fun getCarName(): String {
+        return this.name
+    }
+
+    fun getCarPosition(): Int {
+        return this.position
     }
 
     companion object {
