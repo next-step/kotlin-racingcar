@@ -1,21 +1,24 @@
 package race
 
-class Race {
-    private val randomGeneratorNumber = RandomGeneratorNumber()
-    private val THRESHOLD = 4
-    fun start(carCount: Int, tryCount: Int): List<Car> {
-        var cars = List(carCount) { Car() }
-        for (i in 1..tryCount) {
-            moveCars(cars)
+class Race(private val randomGeneratorNumber: RandomNumberGenerator) {
+    fun start(carNames: List<String>, tryCount: Int): List<SnapShot> {
+        val cars: List<Car> = carNames.map { Car(it) }
+        val snapShots = mutableListOf<SnapShot>()
+
+        repeat(tryCount) { round ->
+            val movedCars = moveCars(cars)
+            val snapShot = SnapShot(round, movedCars.map { car -> car.copy() })
+            snapShots.add(snapShot)
         }
-        return cars
+        return snapShots
     }
 
-    private fun moveCars(cars: List<Car>) =
-        repeat(cars.size) { index ->
-            cars[index]
+    private fun moveCars(cars: List<Car>): List<Car> {
+        val movedCars = cars.map { car ->
             val randomNumber = randomGeneratorNumber.generate()
-            val moveCondition = randomNumber >= THRESHOLD
-            cars[index].move(moveCondition)
+            car.move(randomNumber)
+            car
         }
+        return movedCars
+    }
 }

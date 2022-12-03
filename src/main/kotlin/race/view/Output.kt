@@ -1,23 +1,25 @@
 package race.view
 
-import race.Car
-import race.view.Message.RESULT_TITLE
+import race.Record
+import race.SnapShot
+import race.view.Message.WINNER_MESSAGE
 
-class Output {
-    fun printResult(cars: List<Car>) {
-        println(RESULT_TITLE)
-        val raceCount = cars.first().movementByRounds.size
-        for (currentRace in 0 until raceCount) {
-            println("${currentRace + 1}번째 레이스")
-            cars.forEach {
-                val isMovements = it.movementByRounds.slice(0 until currentRace + 1)
-                printCarMovement(isMovements)
-            }
-        }
+object Output {
+
+    fun printResult(record: Record) {
+        record.raceRecords.forEach { printSnapShot(it) }
     }
 
-    private fun printCarMovement(isMovements: List<Boolean>) {
-        val movementCount = isMovements.count { it }
-        println("-".repeat(movementCount))
+    fun printWinner(record: Record) {
+        val winnerNames = record.getWinnerCarName()
+        val joinedWinnerNames = winnerNames.joinToString(separator = ",")
+        println("${joinedWinnerNames}$WINNER_MESSAGE")
+    }
+
+    fun printSnapShot(snapShot: SnapShot) {
+        println("${snapShot.round + 1} 번째 레이스")
+        snapShot.movedCars.forEach { car ->
+            println(car.name + " : " + "-".repeat(car.movements.count { it }))
+        }
     }
 }
