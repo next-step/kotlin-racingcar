@@ -28,6 +28,17 @@ internal class CarTest {
     }
 
     @Test
+    fun `Cars 사이에서 승자임을 알 수 있다`() {
+        val cars = listOf(Car("그렌저"), Car("소나타"), Car("제네시스"))
+        cars[0].move(Power(4))
+        cars[0].move(Power(4))
+
+        assertThat(cars[0].isWin(cars)).isTrue
+        assertThat(cars[1].isWin(cars)).isFalse
+        assertThat(cars[2].isWin(cars)).isFalse
+    }
+
+    @Test
     fun `Car의 이름은 다섯자를 초과할 수 없다`() {
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy {
