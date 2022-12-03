@@ -1,10 +1,12 @@
-package racingcar.ui
+package racingcar.view
 
-import racingcar.model.CarInfo
+import racingcar.domain.CarInfo
+import racingcar.domain.Name
 
 object InputView {
 
     private const val COMMA = ","
+    private const val MAX_LENGTH = 5
 
     fun getCarInfo(): CarInfo {
         println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
@@ -17,10 +19,12 @@ object InputView {
     }
 
     private fun getNamesAndCount(): CarInfo = readLine()?.split(COMMA)?.let { names ->
-        names.forEach { name ->
-            require(name.length <= 5) { throw IllegalArgumentException("자동차 이름은 5자를 초과할 수 없습니다.") }
-        }
-        CarInfo(names = names, count = names.size)
+        CarInfo(
+            names = names.map { name ->
+                Name.of(name)
+            },
+            count = names.size
+        )
     } ?: throw IllegalArgumentException("하나 이상의 자동차 이름을 입력해주세요.")
 
     private fun getCount(): Int = readLine()?.toIntOrNull()?.let {
