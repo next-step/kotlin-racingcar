@@ -6,6 +6,6 @@ data class GameInfo(
 )
 
 data class CarInfo(
-    val names: List<String>,
+    val names: List<Name>,
     val count: Int,
 )

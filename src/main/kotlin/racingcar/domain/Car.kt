@@ -4,7 +4,7 @@ import racingcar.domain.Car.ActionType.GO
 import racingcar.domain.Car.ActionType.STOP
 
 class Car(
-    val name: String,
+    val name: Name,
     distance: Int = 0
 ) {
     var distance: Int = distance

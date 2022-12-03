@@ -4,11 +4,12 @@ import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import racingcar.domain.Car
 import racingcar.domain.Car.ActionType
+import racingcar.domain.Name
 
 class CarTest : BehaviorSpec({
 
     Given("자동차의 액션 타입이 STOP일 때") {
-        val car = Car(name = "yuuuzzzin")
+        val car = Car(name = Name.of("yujin"))
         val actionType = ActionType.STOP
         When("액션을 취하면") {
             car.action(actionType)
@@ -19,7 +20,7 @@ class CarTest : BehaviorSpec({
     }
 
     Given("자동차의 액션 타입이 GO일 때") {
-        val car = Car(name = "yuuuzzzin")
+        val car = Car(name = Name.of("yujin"))
         val actionType = ActionType.GO
         When("액션을 취하면") {
             car.action(actionType)

@@ -13,7 +13,7 @@ class Race(
     fun getWinner() = Judges(cars).pickWinner()
 
     companion object {
-        fun create(names: List<String>): Race = Race(
+        fun create(names: List<Name>): Race = Race(
             names.map { name -> Car(name) }
         )
     }
