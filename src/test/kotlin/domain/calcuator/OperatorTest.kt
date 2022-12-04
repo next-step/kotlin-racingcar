@@ -2,6 +2,7 @@ package domain.calcuator
 
 import domain.caculator.Operator
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -17,15 +18,17 @@ class OperatorTest {
 
     @ParameterizedTest
     @MethodSource("operatorTestFixture")
-    fun `ofTest`(symbol: String, operator: Operator) {
+    fun `정상적인 symbol이 들어오면 Operator를 리턴한다`(symbol: String, operator: Operator) {
         print(operator)
-        assertThat(Operator.of(symbol).get()).isEqualTo(operator)
+        assertThat(Operator.of(symbol)).isEqualTo(operator)
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["1", "=", "[", "]"])
     fun `잘못된 symbol이 들어오면 NULL이 반환된다`(symbol: String) {
-        assertThat(Operator.of(symbol).isEmpty).isTrue
+        assertThatThrownBy { Operator.of(symbol) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining("잘못된 연산자 입니다.")
     }
 
     companion object {

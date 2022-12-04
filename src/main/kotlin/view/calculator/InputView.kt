@@ -1,6 +1,6 @@
 package view.calculator
 
-import java.util.*
+import java.util.Scanner
 
 class InputView {
     companion object {
