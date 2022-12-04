@@ -1,5 +1,6 @@
 package domain.caculator
 
+import java.util.*
 import java.util.function.BinaryOperator
 
 enum class Operator(private val symbol: String, private val calculate: BinaryOperator<Int>) {
@@ -17,8 +18,8 @@ enum class Operator(private val symbol: String, private val calculate: BinaryOpe
         private val OPERRATORS = values().associateBy { it.symbol }
 
         @JvmStatic
-        fun of(symbol: String) {
-            OPERRATORS[symbol]
+        fun of(symbol: String): Optional<Operator> {
+            return Optional.ofNullable(OPERRATORS[symbol])
         }
     }
 
