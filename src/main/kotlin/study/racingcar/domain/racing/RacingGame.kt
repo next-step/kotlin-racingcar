@@ -1,7 +1,7 @@
-package study.racingcar.racing
+package study.racingcar.domain.racing
 
-import study.racingcar.car.Car
-import study.racingcar.generator.Generator
+import study.racingcar.domain.car.Car
+import study.racingcar.domain.generator.Generator
 
 class RacingGame(private val cars: List<Car>, private val round: Int) {
     fun run(generator: Generator): RacingResult {

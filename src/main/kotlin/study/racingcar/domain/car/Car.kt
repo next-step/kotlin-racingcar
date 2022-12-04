@@ -1,4 +1,4 @@
-package study.racingcar.car
+package study.racingcar.domain.car
 
 class Car(val name: String) {
     init {
@@ -16,13 +16,17 @@ class Car(val name: String) {
         }
     }
 
+    fun isWin(cars: List<Car>): Boolean {
+        return currentLocation == cars.maxOf { it.currentLocation }
+    }
+
     private fun canMove(power: Power): Boolean {
         return power.value >= FORWARD_NUMBER
     }
 
     companion object {
         private const val MAX_NAME_LENGTH = 5
-        private const val FORWARD_NUMBER = 4
         private const val INIT_LOCATION = 1
+        private const val FORWARD_NUMBER = 4
     }
 }
