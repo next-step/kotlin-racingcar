@@ -26,6 +26,25 @@ internal class ResultWithNameViewTest {
         |
         |mia : ---
         |comp : --
-        """.trimMargin()
+        |
+        |mia가 최종 우승했습니다.
+        |""".trimMargin()
+    }
+    @Test
+    fun `print winner`() {
+
+        val snapShots = RacingCarGameSnapShots(
+            listOf(
+                RacingCarGameSnapShot(
+                    listOf(CarSnapShot("mia", 1), CarSnapShot("comp", 1))
+                )
+            )
+        )
+        ResultWithNameView.toSnapShotsText(snapShots) shouldBe """
+        |mia : -
+        |comp : -
+        |
+        |mia, comp가 최종 우승했습니다.
+        |""".trimMargin()
     }
 }
