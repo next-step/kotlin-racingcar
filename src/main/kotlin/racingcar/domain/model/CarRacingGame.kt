@@ -1,21 +1,20 @@
-package racingcar.model
+package racingcar.domain.model
 
 /**
  * 자동차 경주
  */
 class CarRacingGame(private val carRacers: List<CarRacer>) {
 
-    fun start() {
+    fun race() {
         carRacers.forEach { racer ->
-            racer.moveTo(randomCount = (0..9).random())
+            racer.moveTo(count = (0..9).random())
         }
     }
 
     fun result(): List<CarRacer> {
         return carRacers
             .map { racer ->
-                CarRacer(racer = racer)
+                racer.copy()
             }
-            .toList()
     }
 }
