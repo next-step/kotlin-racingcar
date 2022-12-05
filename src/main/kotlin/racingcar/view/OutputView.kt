@@ -1,18 +1,18 @@
 package racingcar.view
 
-import racingcar.domain.Car
-
 class OutputView {
     private var isTitle = true
+    private var turnOfCar = 0
 
-    fun showRaceState(name: String, position: Int, isLastCarCycle: Boolean) {
+    fun showRaceState(name: String, position: Int, numberOfCars: Int) {
         addTitle()
         print("$name : ")
-        for (i in 0..position) {
+        for (i in 0 until position) {
             print("$MOVE_MARKER")
         }
         println()
-        addLineForLastCar(isLastCarCycle)
+        turnOfCar++
+        addLineForLastCar(turnOfCar == numberOfCars)
     }
 
     private fun addTitle() {
@@ -26,14 +26,15 @@ class OutputView {
     private fun addLineForLastCar(isLastCarCycle: Boolean) {
         if (isLastCarCycle) {
             println()
+            turnOfCar = 0
         }
     }
 
-    fun showWinner(winners: List<Car>): String {
+    fun showWinner(winners: List<String>): String {
         var winnerName = ""
 
-        for ((carIndex, car) in winners.withIndex()) {
-            winnerName += makeWinnerNameFormat(carIndex, car.name, winners.size - 1)
+        for ((index, name) in winners.withIndex()) {
+            winnerName += makeWinnerNameFormat(index, name, winners.size - 1)
         }
 
         println("${winnerName}가 최종 우승했습니다.")
