@@ -1,0 +1,31 @@
+package racingcar
+
+import io.kotest.matchers.shouldBe
+import org.junit.jupiter.api.Test
+import racingcar.controller.CarSnapShot
+import racingcar.controller.RacingCarGameSnapShot
+import racingcar.controller.RacingCarGameSnapShots
+
+internal class ResultWithNameViewTest {
+    @Test
+    fun `Parse game snapShots to text ( name, position )`() {
+
+        val snapShots = RacingCarGameSnapShots(
+            listOf(
+                RacingCarGameSnapShot(
+                    listOf(CarSnapShot("mia", 1), CarSnapShot("comp", 2))
+                ),
+                RacingCarGameSnapShot(
+                    listOf(CarSnapShot("mia", 3), CarSnapShot("comp", 2))
+                )
+            )
+        )
+        ResultWithNameView.toSnapShotsText(snapShots) shouldBe """
+        |mia : -
+        |comp : --
+        |
+        |mia : ---
+        |comp : --
+        """.trimMargin()
+    }
+}

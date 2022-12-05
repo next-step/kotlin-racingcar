@@ -9,7 +9,7 @@ class Car(val name: String = "-", currentPosition: Int = 0) {
         require(currentPosition >= 0)
     }
 
-    fun move(nextMovement: Int) {
+    fun move(nextMovement: Int = 1) {
         currentPosition += nextMovement
     }
 }

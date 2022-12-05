@@ -2,6 +2,7 @@ package racingcar
 
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
+import racingcar.controller.CarSnapShot
 import racingcar.controller.RacingCarGameSnapShot
 import racingcar.controller.RacingCarGameSnapShots
 
@@ -10,10 +11,10 @@ internal class ResultViewTest {
     fun `Parse game snapShots to text`() {
 
         val snapShots = RacingCarGameSnapShots(
-            RacingCarGameSnapShot(listOf(1, 0)),
-            RacingCarGameSnapShot(listOf(2, 0))
+            RacingCarGameSnapShot(listOf(CarSnapShot(position = 1), CarSnapShot(position = 0))),
+            RacingCarGameSnapShot(listOf(CarSnapShot(position = 2), CarSnapShot(position = 0))),
         )
-        ResultView(snapShots).snapStopText shouldBe """
+        ResultView.toSnapShotsText(snapShots) shouldBe """
             |-
             |
             |

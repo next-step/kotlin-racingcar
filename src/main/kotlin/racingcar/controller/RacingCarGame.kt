@@ -26,7 +26,8 @@ class RacingCarGame(
             it.move(nextMovement)
         }
 
-        val positions = cars.map { it.currentPosition }.toList()
-        return RacingCarGameSnapShot(positions)
+        return RacingCarGameSnapShot(
+            cars.map { CarSnapShot(it.name, it.currentPosition) }.toList()
+        )
     }
 }

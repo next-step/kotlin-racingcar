@@ -14,6 +14,12 @@ internal class CarTest : StringSpec({
 
         car.currentPosition shouldBe 8
     }
+    "move car" {
+        val car = Car(currentPosition = 0)
+        car.move()
+
+        car.currentPosition shouldBe 1
+    }
     "create Car with name, position" {
         validNames.forEach {
             val car = Car(it, 1)

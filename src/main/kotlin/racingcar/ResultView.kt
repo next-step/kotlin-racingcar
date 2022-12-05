@@ -2,18 +2,12 @@ package racingcar
 
 import racingcar.controller.RacingCarGameSnapShots
 
-class ResultView(snapShots: RacingCarGameSnapShots) {
-    val snapStopText: String
-
-    init {
-        this.snapStopText = toSnapShotsText(snapShots)
+object ResultView {
+    fun prettyPrint(snapShots: RacingCarGameSnapShots) {
+        println(toSnapShotsText(snapShots))
     }
 
-    fun prettyPrint() {
-        println(snapStopText)
-    }
-
-    private fun toSnapShotsText(snapShots: RacingCarGameSnapShots): String {
+    fun toSnapShotsText(snapShots: RacingCarGameSnapShots): String {
         return (1..snapShots.getNumberOfTrial())
             .map { prettyPrintATrial(snapShots.getPositions(it)) }
             .joinToString("\n\n")
