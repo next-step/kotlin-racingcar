@@ -8,31 +8,29 @@ import io.kotest.matchers.shouldBe
 
 class RacingCarGameTest : DescribeSpec({
     describe("create RacingCarGame fail") {
-        it("if number of cars is zero or negative") {
-            zeroOrNegative.forEach {
-                val ex = shouldThrow<IllegalArgumentException> { RacingCarGame(it, 10) }
-                ex.message shouldBe "자동차 대수는 1대 이상이여야 합니다"
-            }
+        it("if car names is empty") {
+            val ex = shouldThrow<IllegalArgumentException> { RacingCarGame(listOf(), 10) }
+            ex.message shouldBe "자동차 대수는 1대 이상이여야 합니다"
         }
         it("if number of trial is zero or negative") {
             zeroOrNegative.forEach {
-                val ex = shouldThrow<IllegalArgumentException> { RacingCarGame(10, it) }
+                val ex = shouldThrow<IllegalArgumentException> { RacingCarGame(listOf("test"), it) }
                 ex.message shouldBe "시도 횟수는 1회 이상이여야 합니다"
             }
         }
 
         describe("create RacingCarGame success") {
 
-            it("if valid number of cars, trial") {
+            it("if valid car names, trial") {
                 shouldNotThrowAny {
-                    RacingCarGame(3, 5)
+                    RacingCarGame(listOf("test1", "test2"), 5)
                 }
             }
         }
 
         describe("start game success") {
             it("if number of car : 1, number of trial : 3") {
-                val result = RacingCarGame(1, 3, FixedNumberProvider(9)).startGame()
+                val result = RacingCarGame(listOf("test"), 3, FixedNumberProvider(9)).startGame()
 
                 assertSoftly(result) {
                     it.getPositions(1) shouldBe listOf(1)
@@ -41,12 +39,12 @@ class RacingCarGameTest : DescribeSpec({
                 }
             }
             it("if number of car : 1, number of trial : 1") {
-                val result = RacingCarGame(1, 1, FixedNumberProvider(1)).startGame()
+                val result = RacingCarGame(listOf("test"), 1, FixedNumberProvider(1)).startGame()
                 result.getPositions(1) shouldBe listOf(0)
             }
 
             it("if number of car : 2, number of trial : 5") {
-                val result = RacingCarGame(2, 5, FixedNumberProvider(9)).startGame()
+                val result = RacingCarGame(listOf("test1", "test2"), 5, FixedNumberProvider(9)).startGame()
 
                 assertSoftly(result) {
                     it.getPositions(1) shouldBe listOf(1, 1)

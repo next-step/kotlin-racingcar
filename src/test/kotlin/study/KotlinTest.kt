@@ -39,7 +39,7 @@ class KotlinTest {
 
     @Test
     fun `test parameters`() {
-        foo(1) { println("hello") } //앞부터 채운다, 마지막 lambda 이렇게 표현할 수 있다
+        foo(1) { println("hello") } // 앞부터 채운다, 마지막 lambda 이렇게 표현할 수 있다
 
         bar(baz = 0) { println("hello") }
     }

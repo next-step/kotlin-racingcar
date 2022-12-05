@@ -1,17 +1,18 @@
 package racingcar.controller
 
 class RacingCarGame(
-    numberOfCar: Int,
+    carNames: List<String>,
     private val numberOfTrial: Int,
     private val conditionProvider: ConditionProvider = RandomNumberProvider
 ) {
+
     private val cars: List<Car>
 
     init {
-        require(numberOfCar > 0) { "자동차 대수는 1대 이상이여야 합니다" }
+        require(carNames.isNotEmpty()) { "자동차 대수는 1대 이상이여야 합니다" }
         require(numberOfTrial > 0) { "시도 횟수는 1회 이상이여야 합니다" }
 
-        this.cars = List(numberOfCar) { Car() }
+        this.cars = carNames.map { Car(it) }
     }
 
     fun startGame(): RacingCarGameSnapShots {

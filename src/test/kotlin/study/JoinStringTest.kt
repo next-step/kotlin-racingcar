@@ -8,7 +8,7 @@ class JoinStringTest {
 
     @Test
     fun `test parameters`() {
-        listOf(1,2).joinToString(",", transform = { "t" + it }) shouldBe "t1,t2"
+        listOf(1, 2).joinToString(",", transform = { "t" + it }) shouldBe "t1,t2"
     }
 
     @Test
