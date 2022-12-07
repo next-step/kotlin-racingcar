@@ -6,9 +6,9 @@ class Car(
 ) {
 
     fun move(carMoveNumber: Int): Int {
-       if (CAR_MOVE_CONDITION_NUMBER <= carMoveNumber) moveCount++
+        if (CAR_MOVE_CONDITION_NUMBER <= carMoveNumber) moveCount++
 
-       return moveCount
+        return moveCount
     }
 
     fun getMoveCount(): Int {
