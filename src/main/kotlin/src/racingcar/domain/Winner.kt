@@ -1,4 +1,4 @@
-package src.racingcar
+package src.racingcar.domain
 
 class Winner(
     private val racingCars: List<Car>

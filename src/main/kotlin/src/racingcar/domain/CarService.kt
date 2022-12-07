@@ -1,4 +1,6 @@
-package src.racingcar
+package src.racingcar.domain
+
+import src.racingcar.parseComma
 
 class CarService(
     private val carMoveRandomValue: Int

@@ -2,6 +2,7 @@ package src.racingcar
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import src.racingcar.domain.CarService
 
 class CarServiceTest {
 

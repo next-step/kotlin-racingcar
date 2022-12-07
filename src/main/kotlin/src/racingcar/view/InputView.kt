@@ -1,4 +1,4 @@
-package src.racingcar
+package src.racingcar.view
 
 object InputView {
     fun executeInputScreen(): RacingCarGameInput {

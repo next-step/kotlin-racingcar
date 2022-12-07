@@ -1,4 +1,7 @@
-package src.racingcar
+package src.racingcar.view
+
+import src.racingcar.domain.Car
+import src.racingcar.domain.Winner
 
 object ResultView {
     fun printRacingCarGameResult(tryCount: Int, raceCars: MutableList<Car>) {

@@ -1,4 +1,4 @@
-package src.racingcar
+package src.racingcar.domain
 
 class Race(
     private var cars: MutableList<Car> = mutableListOf()

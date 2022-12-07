@@ -1,8 +1,8 @@
 package src.racingcar
 
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import src.racingcar.domain.Car
 
 class CarTest {
 
