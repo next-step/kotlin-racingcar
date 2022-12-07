@@ -1,11 +1,22 @@
 package src.racingcar
 
-class Car(private var moveCount: Int = 0) {
+class Car(
+    private val name: String,
+    private var moveCount: Int = 0
+) {
 
-    fun move(): Int {
-       if (CAR_MOVE_CONDITION_NUMBER <= getCarMoveRandomValue()) moveCount++
+    fun move(carMoveNumber: Int): Int {
+       if (CAR_MOVE_CONDITION_NUMBER <= carMoveNumber) moveCount++
 
        return moveCount
+    }
+
+    fun getMoveCount(): Int {
+        return moveCount
+    }
+
+    fun getCarName(): String {
+        return name
     }
 
     companion object {

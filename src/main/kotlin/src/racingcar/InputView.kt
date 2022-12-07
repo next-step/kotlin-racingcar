@@ -2,16 +2,16 @@ package src.racingcar
 
 object InputView {
     fun executeInputScreen(): RacingCarGameInput {
-        println("자동차 대수는 몇 대인가요?")
-        val carNumber: String = readln()
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
+        val carNames: String = readln()
         println("시도할 횟수는 몇 회인가요?")
         val tryCount = readln().toInt()
 
-        return RacingCarGameInput(carNumber.toInt(), tryCount)
+        return RacingCarGameInput(carNames, tryCount)
     }
 }
 
 data class RacingCarGameInput(
-    val carNumber: Int,
+    val carNames: String,
     val tryCount: Int
 )

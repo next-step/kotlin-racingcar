@@ -1,17 +1,11 @@
 package src.racingcar
 
-class CarService {
+class CarService(
+    private val carMoveRandomValue: Int
+) {
 
-    fun execute(tryCount: Int, carCount: Int) {
-        (1..tryCount).forEach { _ ->
-            moveCars(carCount)
-        }
-    }
-
-    private fun moveCars(carCount: Int) {
-        (1..carCount).forEach { _ ->
-            ResultView.printRacingCarGameResult(Car().move())
-        }
-        println()
+    fun execute(carNames: String): MutableList<Car> {
+        val race = Race().create(parseComma(carNames))
+        return race.start(carMoveRandomValue)
     }
 }
