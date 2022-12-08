@@ -10,9 +10,6 @@ import io.kotest.data.row
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.throwable.shouldHaveMessage
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.verify
 
 class CarTest : StringSpec({
 
@@ -30,12 +27,10 @@ class CarTest : StringSpec({
 
     "If car is called, car delegate moveRule to move" {
         val car = Car("sujin")
-        val moveRule = mockk<MoveRule>()
-        every { moveRule.move() } returns MOVE
 
-        car.move(moveRule)
+        car.move { MOVE }
 
-        verify(exactly = 1) { moveRule.move() }
+        car.getLocation() shouldBe 1
     }
 
     "Car can give user's history" {
@@ -53,11 +48,9 @@ class CarTest : StringSpec({
 
     "Car can give user's location info" {
         val car = Car("쪼밀리")
-        val movingRule = MoveRule { MOVE }
-        val notMovingRule = MoveRule { NONE }
 
-        car.move(movingRule)
-        car.move(notMovingRule)
+        car.move { MOVE }
+        car.move { NONE }
 
         val location = car.getLocation()
 

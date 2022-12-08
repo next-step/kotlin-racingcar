@@ -2,11 +2,7 @@ package com.nextstep.racingcar.domain
 
 import com.nextstep.racingcar.domain.rules.MoveRule
 
-class Cars(cars: List<Car>) {
-    private val cars: List<Car>
-    init {
-        this.cars = cars
-    }
+class Cars(private val cars: List<Car>) {
 
     constructor(carNames: Set<String>) : this(carNames.map { Car(it) })
 

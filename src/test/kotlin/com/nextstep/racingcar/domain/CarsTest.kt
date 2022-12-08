@@ -2,7 +2,6 @@ package com.nextstep.racingcar.domain
 
 import com.nextstep.racingcar.domain.Movement.MOVE
 import com.nextstep.racingcar.domain.Movement.NONE
-import com.nextstep.racingcar.domain.rules.MoveRule
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldContainExactly
@@ -19,7 +18,6 @@ class CarsTest : StringSpec({
 
     "Cars#play fun move all cars once each" {
         val names = setOf("수진", "쪼밀리", "코틀린")
-        val moveRule = MoveRule { MOVE }
         val cars = Cars(names)
 
         val before = cars.getHistories()
@@ -29,7 +27,7 @@ class CarsTest : StringSpec({
             Pair("코틀린", emptyList())
         )
 
-        cars.play(moveRule)
+        cars.play { MOVE }
 
         val after = cars.getHistories()
         after shouldContainExactly listOf(
@@ -53,15 +51,12 @@ class CarsTest : StringSpec({
     }
 
     "Cars can find winners" {
-        val movingRule = MoveRule { MOVE }
-        val notMovingRule = MoveRule { NONE }
-
         val sujinCar = Car("수진")
         val chomilyCar = Car("쪼밀리")
         val cars = Cars(listOf(sujinCar, chomilyCar))
 
-        sujinCar.move(movingRule)
-        chomilyCar.move(notMovingRule)
+        sujinCar.move { MOVE }
+        chomilyCar.move { NONE }
 
         cars.findWinners() shouldBe listOf(sujinCar)
     }

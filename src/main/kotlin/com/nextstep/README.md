@@ -38,8 +38,8 @@ pobi, honux가 최종 우승했습니다.
 
 ## TODO
 - [ ] Car 객체에 history를 받는 부생성자 추가
-- [ ] Car 객체 require 예외 메세지에 입력값 추가
-- [ ] Cars 에 불필요한 init 블럭 삭제
+- [x] Car 객체 require 예외 메세지에 입력값 추가
+- [x] Cars 에 불필요한 init 블럭 삭제
 - [ ] List<MoveMent> 래핑
-- [ ] MoveRule mocking 대신 car.move에 람다 주입하도록 테스트 수정
-- [ ] RandomNumberGeneratorTest 삭제
+- [x] MoveRule mocking 대신 car.move에 람다 주입하도록 테스트 수정
+- [x] RandomNumberGeneratorTest 삭제

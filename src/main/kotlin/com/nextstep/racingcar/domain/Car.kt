@@ -6,7 +6,7 @@ class Car(val name: String) {
     private val histories = MoveHistory()
 
     init {
-        require(name.isNotBlank() && name.length <= 5) { "car name should be shorter than 6 letters and not empty" }
+        require(name.isNotBlank() && name.length <= 5) { "car name should be shorter than 6 letters and not empty, name: $name" }
     }
 
     fun move(moveRule: MoveRule) {
