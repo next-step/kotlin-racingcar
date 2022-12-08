@@ -37,7 +37,7 @@ pobi, honux가 최종 우승했습니다.
 ```
 
 ## TODO
-- [ ] Car 객체에 history를 받는 부생성자 추가
+- [x] Car 객체에 history를 받는 부생성자 추가
 - [x] Car 객체 require 예외 메세지에 입력값 추가
 - [x] Cars 에 불필요한 init 블럭 삭제
 - [ ] List<MoveMent> 래핑
