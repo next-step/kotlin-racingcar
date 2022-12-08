@@ -37,9 +37,9 @@ pobi, honux가 최종 우승했습니다.
 ```
 
 ## TODO
-- [x] 자동차 이름 입력받는 기능
-  - [x] 자동차 이름은 5글자를 초과할 수 없다
-- [x] 자동차가 이름을 가지도록 수정
-- [x] 실행 결과 출력 시 이름과 함께 출력하는 기능
-- [x] 우승자를 알려주는 기능
-- [x] 부족한 테스트 코드 추가
+- [ ] Car 객체에 history를 받는 부생성자 추가
+- [ ] Car 객체 require 예외 메세지에 입력값 추가
+- [ ] Cars 에 불필요한 init 블럭 삭제
+- [ ] List<MoveMent> 래핑
+- [ ] MoveRule mocking 대신 car.move에 람다 주입하도록 테스트 수정
+- [ ] RandomNumberGeneratorTest 삭제
