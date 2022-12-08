@@ -47,10 +47,8 @@ class CarTest : StringSpec({
     }
 
     "Car can give user's location info" {
-        val moveHistory = MoveHistory()
-        moveHistory.saveHistory(MOVE)
-        moveHistory.saveHistory(MOVE)
-        moveHistory.saveHistory(NONE)
+        val histories = mutableListOf(MOVE, MOVE, NONE)
+        val moveHistory = MoveHistory(histories)
 
         val car = Car("쪼밀리", moveHistory)
 
