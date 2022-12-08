@@ -20,7 +20,7 @@ class CarTest : StringSpec({
         ) { name ->
             shouldThrow<IllegalArgumentException> {
                 Car(name)
-            } shouldHaveMessage "car name should be shorter than 6 letters and not empty"
+            } shouldHaveMessage "car name should be shorter than 6 letters and not empty, name: $name"
         }
     }
 
