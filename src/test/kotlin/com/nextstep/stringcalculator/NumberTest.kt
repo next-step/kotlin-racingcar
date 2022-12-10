@@ -2,6 +2,8 @@ package com.nextstep.stringcalculator
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.ShouldSpec
+import io.kotest.data.forAll
+import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 
 class NumberTest : ShouldSpec({
@@ -11,26 +13,38 @@ class NumberTest : ShouldSpec({
             val operand = Operand("5")
             operand.value shouldBe 5
 
-            shouldThrow<NumberFormatException> { Operand("") }
-            shouldThrow<NumberFormatException> { Operand("+") }
-            shouldThrow<NumberFormatException> { Operand("a") }
+            forAll(
+                row(""),
+                row("+"),
+                row("a")
+            ) { notANumber ->
+                shouldThrow<NumberFormatException> { Operand(notANumber) }
+            }
         }
     }
 
     context("Number operator override") {
-        should("Numbers can be calculated by +, -, *, / operator") {
-            val six = Operand(6)
-            val two = Operand(2)
+        val six = Operand(6)
+        val two = Operand(2)
 
+        should("Number(a) + Number(b) should be Number(a+b)") {
             val eight = six + two
-            val four = six - two
-            val twelve = six * two
-            val three = six / two
+            eight shouldBe Operand(6 + 2)
+        }
 
-            eight shouldBe Operand(8)
-            four shouldBe Operand(4)
-            twelve shouldBe Operand(12)
-            three shouldBe Operand(3)
+        should("Number(a) - Number(b) should be Number(a-b)") {
+            val four = six - two
+            four shouldBe Operand(6 - 2)
+        }
+
+        should("Number(a) * Number(b) should be Number(a*b)") {
+            val twelve = six * two
+            twelve shouldBe Operand(6 * 2)
+        }
+
+        should("Number(a) / Number(b) should be Number(a/b)") {
+            val three = six / two
+            three shouldBe Operand(6 / 2)
         }
     }
 })
