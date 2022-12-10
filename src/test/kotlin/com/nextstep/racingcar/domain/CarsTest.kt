@@ -31,12 +31,12 @@ class CarsTest : StringSpec({
     }
 
     "Cars can find winners" {
-        val sujinCar = Car("수진")
-        val chomilyCar = Car("쪼밀리")
-        val cars = Cars(listOf(sujinCar, chomilyCar))
+        val winnerHistory = MoveHistory(mutableListOf(MOVE, MOVE, NONE))
+        val loserHistory = MoveHistory(mutableListOf(MOVE, NONE, NONE))
 
-        sujinCar.move { MOVE }
-        chomilyCar.move { NONE }
+        val sujinCar = Car("수진", winnerHistory)
+        val chomilyCar = Car("쪼밀리", loserHistory)
+        val cars = Cars(listOf(sujinCar, chomilyCar))
 
         cars.findWinners() shouldBe listOf(sujinCar)
     }

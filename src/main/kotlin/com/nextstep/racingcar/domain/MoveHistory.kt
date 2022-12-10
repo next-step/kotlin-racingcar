@@ -2,7 +2,7 @@ package com.nextstep.racingcar.domain
 
 import com.nextstep.racingcar.domain.Movement.MOVE
 
-class MoveHistory(histories: MutableList<Movement> = mutableListOf()) {
+class MoveHistory(histories: List<Movement> = emptyList()) {
     private val histories = histories.toMutableList()
 
     fun saveHistory(movement: Movement) {
