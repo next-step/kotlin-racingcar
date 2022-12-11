@@ -7,11 +7,8 @@ import io.kotest.matchers.shouldBe
 
 class MoveHistoryTest : StringSpec({
     "MoveHistory can give user's location" {
-        val moveHistory = MoveHistory()
-        moveHistory.saveHistory(MOVE)
-        moveHistory.saveHistory(NONE)
-        moveHistory.saveHistory(MOVE)
-        moveHistory.saveHistory(MOVE)
+        val histories = mutableListOf(MOVE, MOVE, MOVE, NONE)
+        val moveHistory = MoveHistory(histories)
 
         val location = moveHistory.getLocation()
 

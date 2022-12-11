@@ -10,10 +10,10 @@ class CliResultView : ResultView {
 
     override fun printBeforeResult(cars: Cars) {
         val resultView = StringBuilder()
-        cars.getHistories().forEach {
-            resultView.append(it.first)
+        cars.cars.forEach {
+            resultView.append(it.name)
             resultView.append(" : ")
-            resultView.append(convertToView(it.second))
+            resultView.append(convertToView(it.getHistories()))
             resultView.appendLine()
         }
         println(resultView.toString())

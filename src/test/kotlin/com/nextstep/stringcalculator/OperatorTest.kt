@@ -6,83 +6,54 @@ import com.nextstep.stringcalculator.Operator.MULTIPLY
 import com.nextstep.stringcalculator.Operator.PLUS
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.data.forAll
+import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.throwable.shouldHaveMessage
 
 class OperatorTest : BehaviorSpec({
 
     given("Operator.apply(number, number)") {
-        `when`("PLUS and two numbers are provided") {
-            then("plus two numbers") {
-                val result: Operand = PLUS.calculate(Operand(10), Operand(2))
-                result.value shouldBe 12
-            }
-        }
-
-        `when`("MINUS and two numbers are provided") {
-            then("minus two numbers") {
-                val result: Operand = MINUS.calculate(Operand(10), Operand(2))
-                result.value shouldBe 8
-            }
-        }
-
-        `when`("MULTIPLY and two numbers are provided") {
-            then("multiply two numbers") {
-                val result: Operand = MULTIPLY.calculate(Operand(10), Operand(2))
-                result.value shouldBe 20
-            }
-        }
-
-        `when`("DIVIDE and two numbers are provided") {
-            then("divide left number by right number") {
-                val result: Operand = DIVIDE.calculate(Operand(10), Operand(2))
-                result.value shouldBe 5
+        `when`("Operator and two numbers are provided") {
+            then("calculate the expression") {
+                forAll(
+                    row(PLUS, 12),
+                    row(MINUS, 8),
+                    row(MULTIPLY, 20),
+                    row(DIVIDE, 5)
+                ) { operator, expected ->
+                    val actual = operator.calculate(Operand(10), Operand(2))
+                    actual.value shouldBe expected
+                }
             }
         }
     }
 
     given("Operator.find(string input)") {
-        `when`("'+' is passed") {
-            then("PLUS will be returned") {
-                val result: Operator = Operator.find("+")
-                result shouldBe PLUS
+        `when`("string operator is passed") {
+            then("Operator Enum will be returned") {
+                forAll(
+                    row("+", PLUS),
+                    row("-", MINUS),
+                    row("*", MULTIPLY),
+                    row("/", DIVIDE)
+                ) { stringOperator, operator ->
+                    val result: Operator = Operator.find(stringOperator)
+                    result shouldBe operator
+                }
             }
         }
 
-        `when`("'-' is passed") {
-            then("MINUS will be returned") {
-                val result: Operator = Operator.find("-")
-                result shouldBe MINUS
-            }
-        }
-
-        `when`("'*' is passed") {
-            then("MULTIPLY will be returned") {
-                val result: Operator = Operator.find("*")
-                result shouldBe MULTIPLY
-            }
-        }
-
-        `when`("'/' is passed") {
-            then("DIVIDE will be returned") {
-                val result: Operator = Operator.find("/")
-                result shouldBe DIVIDE
-            }
-        }
-
-        `when`("null or empty string is passed") {
+        `when`("empty string or something not defined in Operator is passed") {
             then("IllegalArgumentException will be thrown") {
-                shouldThrow<IllegalArgumentException> {
-                    Operator.find(" ")
-                } shouldHaveMessage "String operator should be one of (+, -, *, /), it was:  "
-            }
-        }
-
-        `when`("what is not defined in Operator is passed") {
-            then("IllegalArgumentException will be thrown") {
-                shouldThrow<IllegalArgumentException> {
-                    Operator.find("#")
-                } shouldHaveMessage "String operator should be one of (+, -, *, /), it was: #"
+                forAll(
+                    row(" "),
+                    row("#")
+                ) { stringOperator ->
+                    shouldThrow<IllegalArgumentException> {
+                        Operator.find(stringOperator)
+                    } shouldHaveMessage "String operator should be one of (+, -, *, /), it was: $stringOperator"
+                }
             }
         }
     }
