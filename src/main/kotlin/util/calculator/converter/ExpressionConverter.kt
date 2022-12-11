@@ -2,7 +2,8 @@ package util.calculator.converter
 
 import domain.caculator.Operator
 
-class ExpressionConverter {
+class ExpressionConverter private constructor() {
+
     companion object {
         fun convert(expressionInput: String) = "+ $expressionInput".split(" ")
             .chunked(2)
