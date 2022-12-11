@@ -12,8 +12,8 @@ class FormularOne {
      * 대회 시작
      */
     fun start(carNames: List<String>, numberOfGame: Int): List<List<CarRacer>> {
-        require(numberOfGame > 0)
-        require(carNames.isNotEmpty())
+        require(numberOfGame > 0) { "경주는 1회 이상이어야 합니다" }
+        require(carNames.isNotEmpty()) { "자동차 이름이 있어야 합니다" }
 
         val carRacers: List<CarRacer> = makeCarRacerList(carNames)
 
