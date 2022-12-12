@@ -1,5 +1,6 @@
 package racingcar.domain
 
+import racingcar.domain.model.CarNames
 import racingcar.domain.model.CarRacer
 import racingcar.domain.model.CarRacingGame
 
@@ -7,7 +8,7 @@ import racingcar.domain.model.CarRacingGame
  * 자동차 경주 대회
  */
 class FormularOne(
-    private val carNames: List<String> = emptyList(),
+    private val carNames: CarNames = CarNames(),
     private val numberOfGame: Int = 0
 ) {
 
@@ -20,7 +21,6 @@ class FormularOne(
      */
     fun start() {
         require(numberOfGame > 0) { "경주는 1회 이상이어야 합니다" }
-        require(carNames.isNotEmpty()) { "자동차 이름이 있어야 합니다" }
 
         val carRacers: List<CarRacer> = makeCarRacerList(carNames)
 
@@ -41,7 +41,7 @@ class FormularOne(
     /**
      * 자동차 경주자 목록 생성
      */
-    private fun makeCarRacerList(carNames: List<String>): List<CarRacer> {
-        return carNames.map { name -> CarRacer(name) }
+    private fun makeCarRacerList(carNames: CarNames): List<CarRacer> {
+        return carNames.carNameList.map { name -> CarRacer(name) }
     }
 }
