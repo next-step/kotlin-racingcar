@@ -29,7 +29,7 @@ object ResultView {
         cars.forEach { racer ->
             var result = ""
             repeat(racer.position) { result += "-" }
-            println("${racer.name} : $result")
+            println("${racer.carName.name} : $result")
         }
 
         println("")

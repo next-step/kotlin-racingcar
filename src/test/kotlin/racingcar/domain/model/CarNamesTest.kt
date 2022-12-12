@@ -5,7 +5,7 @@ import org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-class CarNamesTest {
+internal class CarNamesTest {
 
     @DisplayName("자동차 이름이 있어야 합니다")
     @Test

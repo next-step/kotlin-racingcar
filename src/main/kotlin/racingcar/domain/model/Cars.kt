@@ -13,7 +13,7 @@ class Cars(private val carList: List<Car> = emptyList()) {
     }
 
     fun names(): List<String> {
-        return carList.map { car -> car.name }
+        return carList.map { car -> car.carName.name }
     }
 
     fun race() {
