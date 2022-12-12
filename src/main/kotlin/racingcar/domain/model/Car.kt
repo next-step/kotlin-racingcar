@@ -1,9 +1,6 @@
 package racingcar.domain.model
 
-/**
- * 자동차 경주자
- */
-class CarRacer(val name: String, position: Int = 0) {
+class Car(val name: String, position: Int = 0) {
 
     var position: Int = position
         private set
@@ -16,7 +13,7 @@ class CarRacer(val name: String, position: Int = 0) {
         if (count >= 4) position++
     }
 
-    fun copy(): CarRacer {
-        return CarRacer(name, position)
+    fun copy(): Car {
+        return Car(name, position)
     }
 }

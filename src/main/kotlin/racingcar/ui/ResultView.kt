@@ -1,7 +1,7 @@
 package racingcar.ui
 
 import racingcar.domain.FormularOne
-import racingcar.domain.model.CarRacers
+import racingcar.domain.model.Cars
 
 object ResultView {
 
@@ -10,7 +10,7 @@ object ResultView {
         showWinners(f1)
     }
 
-    private fun showResult(result: List<CarRacers>) {
+    private fun showResult(result: List<Cars>) {
         println("")
         println("실행 결과")
         result.forEach(::showGameResult)
@@ -25,8 +25,8 @@ object ResultView {
         println("${winnerNames.joinToString(", ")}가 최종 우승했습니다.")
     }
 
-    private fun showGameResult(carRacers: CarRacers) {
-        carRacers.forEach { racer ->
+    private fun showGameResult(cars: Cars) {
+        cars.forEach { racer ->
             var result = ""
             repeat(racer.position) { result += "-" }
             println("${racer.name} : $result")

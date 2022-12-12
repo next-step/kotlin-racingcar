@@ -3,13 +3,13 @@ package racingcar.domain.model
 /**
  * 자동차 경주
  */
-class CarRacingGame(private val carRacers: CarRacers) {
+class CarRacingGame(private val cars: Cars) {
 
     fun race() {
-        carRacers.race()
+        cars.race()
     }
 
-    fun result(): CarRacers {
-        return carRacers.copy()
+    fun result(): Cars {
+        return cars.copy()
     }
 }
