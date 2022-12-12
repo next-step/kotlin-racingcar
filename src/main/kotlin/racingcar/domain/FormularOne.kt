@@ -1,7 +1,6 @@
 package racingcar.domain
 
 import racingcar.domain.model.CarNames
-import racingcar.domain.model.CarRacer
 import racingcar.domain.model.CarRacers
 import racingcar.domain.model.CarRacingGame
 
@@ -23,7 +22,7 @@ class FormularOne(
     fun start() {
         require(numberOfGame > 0) { "경주는 1회 이상이어야 합니다" }
 
-        val carRacers = CarRacers.ofCarNames(carNames)
+        val carRacers = carNames.makeCarRacers()
 
         _totalResult = List(numberOfGame) {
             val game = CarRacingGame(carRacers)

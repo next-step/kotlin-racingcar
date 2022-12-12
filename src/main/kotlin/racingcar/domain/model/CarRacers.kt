@@ -30,12 +30,4 @@ class CarRacers(private val carRacerList: List<CarRacer> = emptyList()) {
     fun forEach(eachAction: (CarRacer) -> Unit) {
         carRacerList.forEach(eachAction)
     }
-
-    companion object {
-
-        fun ofCarNames(carNames: CarNames): CarRacers {
-            val carRacerList = carNames.map { name -> CarRacer(name) }
-            return CarRacers(carRacerList)
-        }
-    }
 }
