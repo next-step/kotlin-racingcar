@@ -33,7 +33,7 @@ class CarRacers(private val carRacerList: List<CarRacer> = emptyList()) {
     companion object {
 
         fun ofCarNames(carNames: CarNames): CarRacers {
-            val carRacerList = carNames.carNameList.map { name -> CarRacer(name) }
+            val carRacerList = carNames.map { name -> CarRacer(name) }
             return CarRacers(carRacerList)
         }
     }
