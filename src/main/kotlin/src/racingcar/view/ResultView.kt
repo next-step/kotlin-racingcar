@@ -1,18 +1,22 @@
 package src.racingcar.view
 
 import src.racingcar.domain.Car
+import src.racingcar.domain.Race
 import src.racingcar.domain.Winner
+import src.racingcar.parseComma
 
 object ResultView {
-    fun printRacingCarGameResult(tryCount: Int, raceCars: MutableList<Car>) {
+    fun printRacingCarGameResult(tryCount: Int, carNames: String) {
+        val race = Race().create(parseComma(carNames))
         repeat(tryCount) {
+            val raceCars = race.start()
             printRacing(raceCars)
         }
 
-        printWinner(Winner(raceCars).findWinners())
+        printWinner(Winner(race.cars).findWinners())
     }
 
-    private fun printRacing(raceCars: MutableList<Car>) {
+    private fun printRacing(raceCars: List<Car>) {
         for (raceCar in raceCars) {
             print(raceCar.getCarName())
             print(" : ")

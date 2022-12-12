@@ -1,7 +1,9 @@
 package src.racingcar.domain
 
+import src.racingcar.getCarMoveRandomValue
+
 class Race(
-    private var cars: MutableList<Car> = mutableListOf()
+    val cars: MutableList<Car> = mutableListOf()
 ) {
 
     fun create(carNames: List<String>): Race {
@@ -12,9 +14,9 @@ class Race(
         return this
     }
 
-    fun start(carMoveRandomValue: Int): MutableList<Car> {
+    fun start(): List<Car> {
         for (car in cars) {
-            car.move(carMoveRandomValue)
+            car.move(getCarMoveRandomValue())
         }
         return cars
     }
