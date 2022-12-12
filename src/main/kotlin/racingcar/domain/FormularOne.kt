@@ -2,6 +2,7 @@ package racingcar.domain
 
 import racingcar.domain.model.CarNames
 import racingcar.domain.model.CarRacer
+import racingcar.domain.model.CarRacers
 import racingcar.domain.model.CarRacingGame
 
 /**
@@ -12,8 +13,8 @@ class FormularOne(
     private val numberOfGame: Int = 0
 ) {
 
-    private lateinit var _totalResult: List<List<CarRacer>>
-    val totalResult: List<List<CarRacer>>
+    private lateinit var _totalResult: List<CarRacers>
+    val totalResult: List<CarRacers>
         get() = _totalResult
 
     /**
@@ -22,26 +23,14 @@ class FormularOne(
     fun start() {
         require(numberOfGame > 0) { "경주는 1회 이상이어야 합니다" }
 
-        val carRacers: List<CarRacer> = makeCarRacerList(carNames)
+        val carRacers = CarRacers.ofCarNames(carNames)
 
         _totalResult = List(numberOfGame) {
-            val game = CarRacingGame(carRacers = carRacers)
+            val game = CarRacingGame(carRacers)
             game.race()
             game.result()
         }
     }
 
-    fun findWinners(): List<CarRacer> {
-        val carRacers: List<CarRacer> = totalResult.last()
-        val max: Int = carRacers.maxOf { it.position }
-        return carRacers
-            .filter { it.position == max }
-    }
-
-    /**
-     * 자동차 경주자 목록 생성
-     */
-    private fun makeCarRacerList(carNames: CarNames): List<CarRacer> {
-        return carNames.carNameList.map { name -> CarRacer(name) }
-    }
+    fun findWinners(): CarRacers = totalResult.last().findWinner()
 }
