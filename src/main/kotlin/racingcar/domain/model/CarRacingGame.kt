@@ -10,6 +10,6 @@ class CarRacingGame(private val carRacers: CarRacers) {
     }
 
     fun result(): CarRacers {
-        return CarRacers(carRacerList = carRacers.copy())
+        return carRacers.copy()
     }
 }

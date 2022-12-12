@@ -22,8 +22,9 @@ class CarRacers(private val carRacerList: List<CarRacer> = emptyList()) {
         }
     }
 
-    fun copy(): List<CarRacer> {
-        return carRacerList.map { racer -> racer.copy() }
+    fun copy(): CarRacers {
+        val carRacerList = carRacerList.map { racer -> racer.copy() }
+        return CarRacers(carRacerList)
     }
 
     fun forEach(eachAction: (CarRacer) -> Unit) {
