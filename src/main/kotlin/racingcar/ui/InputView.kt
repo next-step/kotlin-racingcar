@@ -11,7 +11,7 @@ class InputView {
 
     fun show() {
         val carNamesString = inputCarNames()
-        carNames = Parser().parse(input = carNamesString, delimiter = ",")
+        carNames = Parser().parse(text = carNamesString, delimiter = ",")
 
         numberOfGame = inputNumberOfGame()
     }
