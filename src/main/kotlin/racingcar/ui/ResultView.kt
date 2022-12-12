@@ -6,7 +6,7 @@ import racingcar.domain.model.CarRacer
 object ResultView {
 
     fun show(f1: FormularOne) {
-        showResult(f1.result)
+        showResult(f1.totalResult)
         showWinners(f1)
     }
 
