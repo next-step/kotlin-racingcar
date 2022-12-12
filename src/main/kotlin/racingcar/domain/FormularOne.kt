@@ -31,5 +31,5 @@ class FormularOne(
         }
     }
 
-    fun findWinners(): Cars = totalResult.last().findWinner()
+    fun findWinners(): Cars = totalResult.last().findMostFarthestCar()
 }

@@ -6,9 +6,9 @@ class Cars(private val carList: List<Car> = emptyList()) {
         require(carList.isNotEmpty()) { "자동차 경주자가 있어야 합니다." }
     }
 
-    fun findWinner(): Cars {
-        val max: Int = carList.maxOf { car -> car.position }
-        val winnerList = carList.filter { car -> car.position == max }
+    fun findMostFarthestCar(): Cars {
+        val farthestPosition: Int = findMostFarthestPosition()
+        val winnerList: List<Car> = findPositionMatchedCars(farthestPosition)
         return Cars(winnerList)
     }
 
@@ -30,4 +30,8 @@ class Cars(private val carList: List<Car> = emptyList()) {
     fun forEach(eachAction: (Car) -> Unit) {
         carList.forEach(eachAction)
     }
+
+    private fun findPositionMatchedCars(position: Int) = carList.filter { car -> car.position == position }
+
+    private fun findMostFarthestPosition() = carList.maxOf { car -> car.position }
 }
