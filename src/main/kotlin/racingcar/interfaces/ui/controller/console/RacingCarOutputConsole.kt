@@ -4,10 +4,7 @@ object RacingCarOutputConsole {
 
     private const val RESULT_COMMENT = "처리 결과"
     private const val LITERAL_POSITION = "-"
-
-    fun print(string: String) {
-        print(string)
-    }
+    private const val NAME_DELIMITER = ": "
 
     fun printPrepareWin() {
         println("우승자 발표")
@@ -29,5 +26,9 @@ object RacingCarOutputConsole {
 
     fun printlnResult() {
         println(RESULT_COMMENT)
+    }
+
+    fun printName(name: String) {
+        print("$name $NAME_DELIMITER")
     }
 }
