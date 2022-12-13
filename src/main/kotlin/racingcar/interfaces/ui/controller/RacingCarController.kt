@@ -24,7 +24,7 @@ class RacingCarController(
     private fun initRace(participatingCars: ParticipatingCars) {
         val initRoundData = race.currentCarPositions(participatingCars = participatingCars)
         RacingCarOutputConsole.printlnResult()
-        initRoundData.currentData().printCurrent()
+        initRoundData.currentData().viewCurrent()
         RacingCarOutputConsole.printNewLine()
     }
 
@@ -41,13 +41,13 @@ class RacingCarController(
         repeat(attemptCount) {
             participatingCars.move()
             val currentRoundData = race.currentCarPositions(participatingCars = participatingCars)
-            currentRoundData.currentData().printCurrent()
+            currentRoundData.currentData().viewCurrent()
             RacingCarOutputConsole.printNewLine()
         }
         RacingCarOutputConsole.printNewLine()
     }
 
-    private fun RoundCarData.printCurrent() {
+    private fun RoundCarData.viewCurrent() {
         this.carData.forEach {
             RacingCarOutputConsole.printName(it.name)
             repeat(it.position) {
@@ -61,8 +61,7 @@ class RacingCarController(
         val winners = race.win(participatingCars)
         RacingCarOutputConsole.printPrepareWin()
 
-        val winnerNames = mutableListOf<String>()
-        winners.announceWinners().carData.map { winnerNames.add(it.name) }
+        val winnerNames = winners.announceWinners().carData.map { it.name }
         RacingCarOutputConsole.printWinners(winnerNames = winnerNames)
     }
 
