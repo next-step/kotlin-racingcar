@@ -2,6 +2,7 @@ package racingcar.interfaces.ui.controller
 
 import racingcar.application.race.CarData
 import racingcar.application.race.Race
+import racingcar.application.race.RaceData
 import racingcar.application.race.RoundCarData
 import racingcar.application.race.WinCarData
 import racingcar.domain.car.ParticipatingCars
@@ -29,7 +30,7 @@ class RacingCarController(
     }
 
 
-    private fun List<Pair<String, Int>>.currentData(): RoundCarData {
+    private fun List<Pair<String, Int>>.currentData(): RaceData {
         return RoundCarData(
             this.map { (name, position) ->
                 CarData(name = name, position = position)
@@ -47,7 +48,7 @@ class RacingCarController(
         RacingCarOutputConsole.printNewLine()
     }
 
-    private fun RoundCarData.viewCurrent() {
+    private fun RaceData.viewCurrent() {
         this.carData.forEach {
             RacingCarOutputConsole.printName(it.name)
             repeat(it.position) {
