@@ -21,8 +21,8 @@ class Race(
 
     private fun ParticipatingCars.currentData(): RoundCarData {
         return RoundCarData(
-            this.currentPosition().map {
-                CarData(name = it.first, position = it.second)
+            this.currentPosition().map { (name, position) ->
+                CarData(name = name, position = position)
             }
         )
     }
