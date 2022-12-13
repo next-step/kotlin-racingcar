@@ -11,27 +11,11 @@ class Race(
         return carFactory.createByCarNames(carNames = carNames)
     }
 
-    fun currentRace(participatingCars: ParticipatingCars): RoundCarData {
-        return participatingCars.currentData()
+    fun currentCarPositions(participatingCars: ParticipatingCars): List<Pair<String, Int>> {
+        return participatingCars.currentPosition()
     }
 
-    fun win(participatingCars: ParticipatingCars): WinCarData {
-        return participatingCars.announceWinners()
-    }
-
-    private fun ParticipatingCars.currentData(): RoundCarData {
-        return RoundCarData(
-            this.currentPosition().map { (name, position) ->
-                CarData(name = name, position = position)
-            }
-        )
-    }
-
-    private fun ParticipatingCars.announceWinners(): WinCarData {
-        return WinCarData(
-            this.winners().map {
-                CarData(name = it.first, position = it.second)
-            }
-        )
+    fun win(participatingCars: ParticipatingCars): List<Pair<String, Int>> {
+        return participatingCars.winners()
     }
 }
