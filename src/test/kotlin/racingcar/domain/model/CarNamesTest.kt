@@ -12,7 +12,7 @@ internal class CarNamesTest {
     fun createByEmptyList() {
         assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy {
-                CarNames()
+                CarNames(emptyList())
             }
             .withMessage("자동차 이름이 있어야 합니다")
     }

@@ -1,14 +1,14 @@
 package racingcar.domain
 
 import racingcar.domain.model.CarNames
-import racingcar.domain.model.Cars
 import racingcar.domain.model.CarRacingGame
+import racingcar.domain.model.Cars
 
 /**
  * 자동차 경주 대회
  */
 class FormularOne(
-    private val carNames: CarNames = CarNames(),
+    private val carNames: CarNames,
     private val numberOfGame: Int = 0
 ) {
 
