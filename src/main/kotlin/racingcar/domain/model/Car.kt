@@ -1,16 +1,16 @@
 package racingcar.domain.model
 
-class Car(val carName: CarName, position: Position) {
+class Car(val carName: CarName, private var _position: Position) {
 
-    var position: Position = position
-        private set
+    val position: Position
+        get() = _position
 
     fun moveTo(count: Int) {
-        if (count >= 4) position++
+        if (count >= 4) _position++
     }
 
     fun copy(): Car {
-        return Car(carName, position)
+        return Car(carName, _position)
     }
 }
 
