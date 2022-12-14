@@ -4,6 +4,7 @@ class Winner(
     private val racingCars: List<Car>
 ) {
     fun findWinners(): List<Car> {
-        return racingCars.filter { car -> car.getMoveCount() >= racingCars.maxOf { it.getMoveCount() } }
+        val max = racingCars.maxOf { it.moveCount }
+        return racingCars.filter { car -> car.moveCount >= max }
     }
 }

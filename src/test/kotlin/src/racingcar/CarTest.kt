@@ -21,6 +21,6 @@ class CarTest {
     @Test
     fun `차의 이름을 지정할 수 있다`() {
         val car = Car("testName")
-        assertThat(car.getCarName()).isEqualTo("testName")
+        assertThat(car.name).isEqualTo("testName")
     }
 }
