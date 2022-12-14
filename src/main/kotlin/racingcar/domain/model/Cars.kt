@@ -7,7 +7,7 @@ class Cars(private val carList: List<Car>) {
     }
 
     fun findMostFarthestCar(): Cars {
-        val farthestPosition: Int = findMostFarthestPosition()
+        val farthestPosition: Position = findMostFarthestPosition()
         val winnerList: List<Car> = findPositionMatchedCars(farthestPosition)
         return Cars(winnerList)
     }
@@ -31,7 +31,7 @@ class Cars(private val carList: List<Car>) {
         carList.forEach(eachAction)
     }
 
-    private fun findPositionMatchedCars(position: Int) = carList.filter { car -> car.position == position }
+    private fun findPositionMatchedCars(position: Position) = carList.filter { car -> car.position == position }
 
-    private fun findMostFarthestPosition() = carList.maxOf { car -> car.position }
+    private fun findMostFarthestPosition(): Position = Position(carList.maxOf { car -> car.position.count })
 }

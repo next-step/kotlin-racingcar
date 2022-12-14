@@ -20,7 +20,13 @@ internal class CarsTest {
     @DisplayName("자동차 이름을 가져올 수 있습니다")
     @Test
     fun names() {
-        val cars = Cars(listOf(Car(CarName("aaa")), Car(CarName("bbb")), Car(CarName("ccc"))))
+        val cars = Cars(
+            listOf(
+                Car(CarName("aaa"), Position(0)),
+                Car(CarName("bbb"), Position(0)),
+                Car(CarName("ccc"), Position(0))
+            )
+        )
 
         val result = cars.names()
 
@@ -30,7 +36,13 @@ internal class CarsTest {
     @DisplayName("가장 많이 이동한 자동차를 찾습니다")
     @Test
     fun findMaximumPositionCar() {
-        val cars = Cars(listOf(Car(CarName("aaa"), 1), Car(CarName("bbb"), 3), Car(CarName("ccc"), 5)))
+        val cars = Cars(
+            listOf(
+                Car(CarName("aaa"), Position(1)),
+                Car(CarName("bbb"), Position(3)),
+                Car(CarName("ccc"), Position(5))
+            )
+        )
 
         val result = cars.findMostFarthestCar()
 

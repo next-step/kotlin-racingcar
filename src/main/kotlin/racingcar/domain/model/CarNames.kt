@@ -7,7 +7,7 @@ class CarNames(private val carNameList: List<String>) {
     }
 
     fun makeCars(): Cars {
-        val carList = carNameList.map { name -> Car(CarName(name)) }
+        val carList = carNameList.map { name -> Car(CarName(name), Position(0)) }
         return Cars(carList)
     }
 }

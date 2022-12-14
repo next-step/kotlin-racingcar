@@ -1,8 +1,8 @@
 package racingcar.domain.model
 
-class Car(val carName: CarName, position: Int = 0) {
+class Car(val carName: CarName, position: Position) {
 
-    var position: Int = position
+    var position: Position = position
         private set
 
     fun moveTo(count: Int) {
@@ -13,3 +13,4 @@ class Car(val carName: CarName, position: Int = 0) {
         return Car(carName, position)
     }
 }
+
