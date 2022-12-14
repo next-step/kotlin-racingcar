@@ -9,7 +9,7 @@ import racingcar.domain.model.Cars
  */
 class FormularOne(
     private val carNames: CarNames,
-    private val numberOfGame: Int = 0
+    private val tryGames: TryGames
 ) {
 
     private lateinit var _totalResult: List<Cars>
@@ -20,11 +20,9 @@ class FormularOne(
      * 대회 시작
      */
     fun start() {
-        require(numberOfGame > 0) { "경주는 1회 이상이어야 합니다" }
-
         val carRacers = carNames.makeCars()
 
-        _totalResult = List(numberOfGame) {
+        _totalResult = List(tryGames.count) {
             val game = CarRacingGame(carRacers)
             game.race()
             game.result()
