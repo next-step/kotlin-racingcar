@@ -12,22 +12,26 @@ class FormularOne(
     private val tryGames: TryGames
 ) {
 
-    private lateinit var _totalResult: List<Cars>
-    val totalResult: List<Cars>
+    private lateinit var _totalResult: GameResults
+    val totalResult: GameResults
         get() = _totalResult
 
     /**
      * 대회 시작
      */
     fun start() {
-        val cars = carNames.makeCars()
+        val cars: Cars = carNames.makeCars()
 
-        _totalResult = List(tryGames.count) {
-            val game = CarRacingGame(cars)
-            game.race()
-            game.result()
-        }
+        _totalResult = GameResults(
+            List(tryGames.count) {
+                val game = CarRacingGame(cars)
+                game.race()
+                game.result()
+            }
+        )
     }
 
-    fun findWinners(): Cars = totalResult.last().findMostFarthestCar()
+    fun findWinners(): Cars {
+        return totalResult.findMostFarthestCar()
+    }
 }

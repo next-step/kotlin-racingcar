@@ -1,6 +1,7 @@
 package racingcar.ui
 
 import racingcar.domain.FormularOne
+import racingcar.domain.GameResults
 import racingcar.domain.model.Cars
 
 object ResultView {
@@ -10,10 +11,10 @@ object ResultView {
         showWinners(f1)
     }
 
-    private fun showResult(result: List<Cars>) {
+    private fun showResult(result: GameResults) {
         println("")
         println("실행 결과")
-        result.forEach(::showGameResult)
+        result.forEach { cars -> showGameResult(cars) }
     }
 
     private fun showWinners(f1: FormularOne) {
