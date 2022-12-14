@@ -4,6 +4,8 @@ import io.kotest.assertions.assertSoftly
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.collections.shouldContainExactly
+import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import io.kotest.matchers.shouldBe
 
 class RacingCarGameTest : DescribeSpec({
@@ -13,7 +15,7 @@ class RacingCarGameTest : DescribeSpec({
             ex.message shouldBe "자동차 대수는 1대 이상이여야 합니다"
         }
         it("if number of trial is zero or negative") {
-            zeroOrNegative.forEach {
+            listOf(0, -1, -10).forEach {
                 val ex = shouldThrow<IllegalArgumentException> { RacingCarGame(listOf("test"), it) }
                 ex.message shouldBe "시도 횟수는 1회 이상이여야 합니다"
             }
@@ -29,37 +31,34 @@ class RacingCarGameTest : DescribeSpec({
         }
 
         describe("start game success") {
-            it("if number of car : 1, number of trial : 3") {
-                val result = RacingCarGame(listOf("test"), 3, FixedNumberProvider(9)).startGame()
+            it("if number of car : 1, number of trial : 2") {
+                val result = RacingCarGame(listOf("test"), 2, FixedNumberProvider(9)).startGame()
 
                 assertSoftly(result) {
-                    it.getPositions(1) shouldBe listOf(1)
-                    it.getPositions(2) shouldBe listOf(2)
-                    it.getPositions(3) shouldBe listOf(3)
+                    it.snapShots.size shouldBe 2
+                    it.snapShots.shouldContainExactly(
+                        RacingCarGameSnapShot(listOf(CarSnapShot("test", 1))),
+                        RacingCarGameSnapShot(listOf(CarSnapShot("test", 2)))
+                    )
+                    it.getWinnersOfGame() shouldContainExactly listOf("test")
                 }
             }
-            it("if number of car : 1, number of trial : 1") {
-                val result = RacingCarGame(listOf("test"), 1, FixedNumberProvider(1)).startGame()
-                result.getPositions(1) shouldBe listOf(0)
-            }
 
-            it("if number of car : 2, number of trial : 5") {
-                val result = RacingCarGame(listOf("test1", "test2"), 5, FixedNumberProvider(9)).startGame()
-
+            it("if number of car : 2, number of trial : 1") {
+                val result = RacingCarGame(listOf("test1", "test2"), 1, FixedNumberProvider(1)).startGame()
                 assertSoftly(result) {
-                    it.getPositions(1) shouldBe listOf(1, 1)
-                    it.getPositions(2) shouldBe listOf(2, 2)
-                    it.getPositions(3) shouldBe listOf(3, 3)
-                    it.getPositions(4) shouldBe listOf(4, 4)
-                    it.getPositions(5) shouldBe listOf(5, 5)
+                    it.snapShots.size shouldBe 1
+                    it.snapShots.shouldContainExactly(
+                        RacingCarGameSnapShot(listOf(CarSnapShot("test1", 0), CarSnapShot("test2", 0)))
+                    )
+
+                    it.getWinnersOfGame() shouldContainExactlyInAnyOrder listOf("test1", "test2")
                 }
             }
         }
     }
 }) {
     companion object {
-        val zeroOrNegative = listOf(0, -1, -10)
-
         class FixedNumberProvider(private val fixedNumber: Int) : ConditionProvider {
             override fun nextCondition(): Int {
                 return fixedNumber

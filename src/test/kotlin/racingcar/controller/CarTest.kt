@@ -6,27 +6,14 @@ import io.kotest.matchers.shouldBe
 
 internal class CarTest : StringSpec({
 
-    "after moving Car, can get current position" {
-        val car = Car()
-        car.move(1)
-        car.move(3)
-        car.move(4)
-
-        car.currentPosition shouldBe 8
-    }
-    "move car" {
-        val car = Car(currentPosition = 0)
-        car.move()
-
-        car.currentPosition shouldBe 1
-    }
     "create Car with name, position" {
-        validNames.forEach {
-            val car = Car(it, 1)
+        listOf("", "n", "na", "name", "name0")
+            .forEach {
+                val car = Car(it, 1)
 
-            car.name shouldBe it
-            car.currentPosition shouldBe 1
-        }
+                car.name shouldBe it
+                car.currentPosition shouldBe 1
+            }
     }
 
     "cannot create Car with negative position" {
@@ -34,13 +21,26 @@ internal class CarTest : StringSpec({
     }
 
     "Car name should not be longer than 5" {
-        invalidNames.forEach {
-            shouldThrow<IllegalArgumentException> { Car(it) }
-        }
+        listOf("name01 ", " name012 ", " name013 ")
+            .forEach {
+                shouldThrow<IllegalArgumentException> { Car(it) }
+            }
     }
-}) {
-    companion object {
-        val validNames = listOf("", "n", "na", "name", "name0")
-        val invalidNames = listOf("name01 ", " name012 ", " name013 ")
+    "Car moves If condition is equal or greater than 4" {
+        listOf(4, 5, 6, 7, 8, 9, 100)
+            .forEach {
+                val car = Car("test")
+                car.move(it)
+                car.currentPosition shouldBe 1
+            }
     }
-}
+
+    "Car doesn't move If condition is smaller than 4" {
+        listOf(-100, 0, 1, 2, 3)
+            .forEach {
+                val car = Car("test")
+                car.move(it)
+                car.currentPosition shouldBe 0
+            }
+    }
+})

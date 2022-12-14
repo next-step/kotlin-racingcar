@@ -16,14 +16,13 @@ class RacingCarGame(
     }
 
     fun startGame(): RacingCarGameSnapShots {
-        val snapShots = MutableList(numberOfTrial) { move() }
+        val snapShots = List(numberOfTrial) { move() }
         return RacingCarGameSnapShots(snapShots)
     }
 
     private fun move(): RacingCarGameSnapShot {
         cars.forEach {
-            val nextMovement = MovePolicy.decide(conditionProvider.nextCondition())
-            it.move(nextMovement)
+            it.move(conditionProvider.nextCondition())
         }
 
         return RacingCarGameSnapShot(

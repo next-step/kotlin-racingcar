@@ -4,21 +4,24 @@ data class RacingCarGameSnapShots(val snapShots: List<RacingCarGameSnapShot>) {
 
     constructor(vararg snapshot: RacingCarGameSnapShot) : this(snapshot.toList())
 
-    fun getPositions(atTrial: Int): List<Int> {
-        require(atTrial > 0 && atTrial <= getNumberOfTrial()) { "Cannot get position, bigger than number of trial $atTrial" }
-        return snapShots[atTrial - 1].carSnapShots.map { it.position }
+    init {
+        require(snapShots.isNotEmpty())
     }
-
-    fun getNumberOfTrial(): Int {
-        return snapShots.size
-    }
-
-    fun getCarSnapshots(atTrial: Int): List<CarSnapShot> {
-        require(atTrial > 0 && atTrial <= getNumberOfTrial()) { "Cannot get snapshot, bigger than number of trial $atTrial" }
-        return snapShots.get(atTrial).carSnapShots
+    fun getWinnersOfGame(): List<String> {
+        return snapShots.last().getWinners()
     }
 }
 
-data class RacingCarGameSnapShot(val carSnapShots: List<CarSnapShot>)
+data class RacingCarGameSnapShot(val carSnapShots: List<CarSnapShot>) {
+    init {
+        require(carSnapShots.isNotEmpty())
+    }
+
+    fun getWinners(): List<String> {
+        val winnerPosition = carSnapShots.maxOf { it.position }
+
+        return carSnapShots.filter { it.position == winnerPosition }.map { it.name }.toList()
+    }
+}
 
 data class CarSnapShot(val name: String = "", val position: Int)
