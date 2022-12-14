@@ -9,7 +9,7 @@ internal class Car(val name: String = DEFAULT_NAME, currentPosition: Int = 0) {
         require(currentPosition >= MIN_POSITION)
     }
 
-    fun move(condition: Int = 0) {
+    fun move(condition: Int) {
         require(condition in (MIN_BOUND..MAX_BOUND))
 
         if (condition >= THRESHOLD) {
