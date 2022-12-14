@@ -15,7 +15,6 @@ class ParticipatingCars(
         return this.carList
             .filter { it.currentPositionToInt() == winnerPosition }
             .map { it.name to it.currentPositionToInt() }
-            .toList()
     }
 
     fun currentPosition(): List<Pair<String, Int>> = carList.map { it.name to it.currentPositionToInt() }
