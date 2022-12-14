@@ -12,8 +12,8 @@ class Cars(private val carList: List<Car>) {
         return Cars(winnerList)
     }
 
-    fun names(): List<String> {
-        return carList.map { car -> car.carName.name }
+    fun names(): CarNames {
+        return CarNames(carList.map { car -> car.carName.name })
     }
 
     fun race() {

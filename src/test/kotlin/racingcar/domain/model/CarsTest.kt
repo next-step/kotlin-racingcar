@@ -1,6 +1,6 @@
 package racingcar.domain.model
 
-import io.kotest.matchers.collections.shouldContainInOrder
+import io.kotest.matchers.shouldBe
 import org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -30,7 +30,7 @@ internal class CarsTest {
 
         val result = cars.names()
 
-        result shouldContainInOrder listOf("aaa", "bbb", "ccc")
+        result shouldBe CarNames(listOf("aaa", "bbb", "ccc"))
     }
 
     @DisplayName("가장 많이 이동한 자동차를 찾습니다")
@@ -46,6 +46,6 @@ internal class CarsTest {
 
         val result = cars.findMostFarthestCar()
 
-        result.names() shouldContainInOrder listOf("ccc")
+        result.names() shouldBe CarNames(listOf("ccc"))
     }
 }

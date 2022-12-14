@@ -1,6 +1,6 @@
 package racingcar.domain.model
 
-import io.kotest.matchers.collections.shouldContainInOrder
+import io.kotest.matchers.shouldBe
 import org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -24,6 +24,6 @@ internal class CarNamesTest {
 
         val cars = carNames.makeCars()
 
-        cars.names() shouldContainInOrder listOf("aaa", "bbb", "ccc")
+        cars.names() shouldBe CarNames(listOf("aaa", "bbb", "ccc"))
     }
 }
