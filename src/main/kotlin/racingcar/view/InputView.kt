@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.controller.RacingCarGame
+import racingcar.domain.RacingCarGame
 
 object InputView {
     fun receiveInput(): RacingCarGame {

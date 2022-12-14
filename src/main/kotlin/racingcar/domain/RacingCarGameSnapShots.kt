@@ -1,4 +1,4 @@
-package racingcar.controller
+package racingcar.domain
 
 data class RacingCarGameSnapShots(val snapShots: List<RacingCarGameSnapShot>) {
 

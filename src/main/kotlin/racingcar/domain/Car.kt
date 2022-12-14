@@ -1,6 +1,6 @@
-package racingcar.controller
+package racingcar.domain
 
-class Car(val name: String = "-", currentPosition: Int = 0) {
+internal class Car(val name: String = "-", currentPosition: Int = 0) {
     var currentPosition: Int = currentPosition
         private set
 

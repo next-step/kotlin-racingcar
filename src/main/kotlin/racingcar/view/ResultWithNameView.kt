@@ -1,7 +1,7 @@
 package racingcar.view
 
-import racingcar.controller.CarSnapShot
-import racingcar.controller.RacingCarGameSnapShots
+import racingcar.domain.CarSnapShot
+import racingcar.domain.RacingCarGameSnapShots
 
 object ResultWithNameView {
 

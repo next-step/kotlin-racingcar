@@ -1,4 +1,4 @@
-package racingcar.controller
+package racingcar.domain
 
 class RacingCarGame(
     carNames: List<String>,

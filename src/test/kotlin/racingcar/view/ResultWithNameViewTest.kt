@@ -2,9 +2,9 @@ package racingcar.view
 
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
-import racingcar.controller.CarSnapShot
-import racingcar.controller.RacingCarGameSnapShot
-import racingcar.controller.RacingCarGameSnapShots
+import racingcar.domain.CarSnapShot
+import racingcar.domain.RacingCarGameSnapShot
+import racingcar.domain.RacingCarGameSnapShots
 
 internal class ResultWithNameViewTest {
     @Test

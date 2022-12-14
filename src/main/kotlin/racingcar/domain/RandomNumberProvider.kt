@@ -1,4 +1,4 @@
-package racingcar.controller
+package racingcar.domain
 
 object RandomNumberProvider : ConditionProvider {
     override fun nextCondition(): Int {

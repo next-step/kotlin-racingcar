@@ -1,4 +1,4 @@
-package racingcar.controller
+package racingcar.domain
 
 import io.kotest.assertions.assertSoftly
 import io.kotest.assertions.throwables.shouldNotThrowAny
