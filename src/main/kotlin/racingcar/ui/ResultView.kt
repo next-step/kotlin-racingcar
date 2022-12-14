@@ -26,10 +26,10 @@ object ResultView {
     }
 
     private fun showGameResult(cars: Cars) {
-        cars.forEach { racer ->
+        cars.forEach { car ->
             var result = ""
-            repeat(racer.position) { result += "-" }
-            println("${racer.carName.name} : $result")
+            repeat(car.position) { result += "-" }
+            println("${car.carName.name} : $result")
         }
 
         println("")

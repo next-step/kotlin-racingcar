@@ -17,14 +17,14 @@ class Cars(private val carList: List<Car> = emptyList()) {
     }
 
     fun race() {
-        carList.forEach { racer ->
-            racer.moveTo(count = (0..9).random())
+        carList.forEach { car ->
+            car.moveTo(count = (0..9).random())
         }
     }
 
     fun copy(): Cars {
-        val carRacerList = carList.map { car -> car.copy() }
-        return Cars(carRacerList)
+        val cars = carList.map { car -> car.copy() }
+        return Cars(cars)
     }
 
     fun forEach(eachAction: (Car) -> Unit) {

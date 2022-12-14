@@ -20,10 +20,10 @@ class FormularOne(
      * 대회 시작
      */
     fun start() {
-        val carRacers = carNames.makeCars()
+        val cars = carNames.makeCars()
 
         _totalResult = List(tryGames.count) {
-            val game = CarRacingGame(carRacers)
+            val game = CarRacingGame(cars)
             game.race()
             game.result()
         }
