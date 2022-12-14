@@ -27,7 +27,7 @@ internal class CarTest : StringSpec({
             }
     }
     "Car moves If condition is equal or greater than 4" {
-        listOf(4, 5, 6, 7, 8, 9, 100)
+        listOf(4, 5, 6, 7, 8, 9)
             .forEach {
                 val car = Car("test")
                 car.move(it)
@@ -36,11 +36,18 @@ internal class CarTest : StringSpec({
     }
 
     "Car doesn't move If condition is smaller than 4" {
-        listOf(-100, 0, 1, 2, 3)
+        listOf(0, 1, 2, 3)
             .forEach {
                 val car = Car("test")
                 car.move(it)
                 car.currentPosition shouldBe 0
+            }
+    }
+    "Car move fails If condition is not between 0,9" {
+        listOf(-1, -100, 10, 11, 100)
+            .forEach {
+                val car = Car("test")
+                shouldThrow<IllegalArgumentException> { car.move(it) }
             }
     }
 })

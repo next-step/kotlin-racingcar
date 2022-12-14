@@ -1,17 +1,28 @@
 package racingcar.domain
 
-internal class Car(val name: String = "-", currentPosition: Int = 0) {
+internal class Car(val name: String = DEFAULT_NAME, currentPosition: Int = 0) {
     var currentPosition: Int = currentPosition
         private set
 
     init {
-        require(name.length <= 5)
-        require(currentPosition >= 0)
+        require(name.length <= MAX_NAME_LENGTH)
+        require(currentPosition >= MIN_POSITION)
     }
 
     fun move(condition: Int = 0) {
-        if (condition >= 4) {
+        require(condition in (MIN_BOUND..MAX_BOUND))
+
+        if (condition >= THRESHOLD) {
             currentPosition++
         }
+    }
+
+    companion object {
+        private const val DEFAULT_NAME = "-"
+        private const val MAX_NAME_LENGTH = 5
+        private const val MIN_POSITION = 0
+        private const val THRESHOLD = 4
+        const val MAX_BOUND = 9
+        const val MIN_BOUND = 0
     }
 }
