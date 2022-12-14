@@ -1,14 +1,26 @@
 package src.racingcar
 
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import src.racingcar.domain.Car
 
 class CarTest {
 
     @Test
-    fun `자동차는 한번에 두번 이상 움직일 수 없다`() {
-        val moveCount = Car().move()
+    fun `랜덤 값이 4 이상이면 차가 움직인다`() {
+        val moveCount = Car("testName").move(4)
+        assertThat(moveCount).isEqualTo(1)
+    }
 
-        Assertions.assertThat(moveCount).isLessThan(2)
+    @Test
+    fun `랜덤 값이 4 미만이면 차가 움직이지 않는다`() {
+        val moveCount = Car("testName").move(3)
+        assertThat(moveCount).isEqualTo(0)
+    }
+
+    @Test
+    fun `차의 이름을 지정할 수 있다`() {
+        val car = Car("testName")
+        assertThat(car.name).isEqualTo("testName")
     }
 }
