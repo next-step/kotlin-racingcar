@@ -12,7 +12,7 @@ internal class CarsTest {
     fun empty() {
         assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy {
-                Cars()
+                Cars(emptyList())
             }
             .withMessage("자동차 경주자가 있어야 합니다.")
     }

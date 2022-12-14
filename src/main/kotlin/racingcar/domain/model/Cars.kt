@@ -1,6 +1,6 @@
 package racingcar.domain.model
 
-class Cars(private val carList: List<Car> = emptyList()) {
+class Cars(private val carList: List<Car>) {
 
     init {
         require(carList.isNotEmpty()) { "자동차 경주자가 있어야 합니다." }
