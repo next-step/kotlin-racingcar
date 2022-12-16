@@ -15,8 +15,7 @@ fun main() {
     val raceCount = inputView.getRaceCount(GET_RACE_COUNT_MESSAGE)
 
     val race = Race(randomNumberGenerator)
-    val snapShots = race.start(carNames, raceCount)
-    val record = Record(snapShots)
+    val record = race.start(carNames, raceCount)
     printResult(record)
     printWinner(record)
 }

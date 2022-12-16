@@ -17,7 +17,7 @@ class RecordTest {
         )
         val cars: List<Car> = carNames.mapIndexed { index, name -> Car(name, carMoved[index]) }
 
-        val snapShot = SnapShot(round, cars)
+        val snapShot = SnapShot(round, cars.map { it.name }, cars.map { it.movements })
         val record = Record(listOf(snapShot))
 
         // Act & Assert
@@ -36,7 +36,7 @@ class RecordTest {
         )
         val cars: List<Car> = carNames.mapIndexed { index, name -> Car(name, carMoved[index]) }
 
-        val snapShot = SnapShot(round, cars)
+        val snapShot = SnapShot(round, cars.map { it.name }, cars.map { it.movements })
         val record = Record(listOf(snapShot))
 
         // Act & Assert

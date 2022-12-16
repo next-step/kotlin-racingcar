@@ -8,11 +8,14 @@ class RandomTest {
     @Test
     fun `항상 0-9사이의 값이 나온다`() {
         // Arrange
-        val randomGeneratorNumber = RandomNumberGenerator()
+        val randomGeneratorNumber = object : NumberGenerator<Int> {
+            override fun generate(): Int = 1
+        }
+
         // Act
         val generatedNumber = randomGeneratorNumber.generate()
 
         // Assert
-        assertThat(generatedNumber).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(9)
+        assertThat(generatedNumber).isEqualTo(1)
     }
 }

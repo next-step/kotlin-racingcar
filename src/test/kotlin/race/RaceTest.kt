@@ -1,7 +1,9 @@
 package race
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions.assertAll
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.function.Executable
 
 class RaceTest {
 
@@ -15,12 +17,13 @@ class RaceTest {
         val race = Race(randomNumberGenerator)
 
         // Act
-        val snapShots = race.start(carNames, tryCount)
-        val record = Record(snapShots)
+        val record = race.start(carNames, tryCount)
 
         // Assert
-        assertThat(carNames.size).isEqualTo(record.raceRecords.first().movedCars.size)
-        assertThat(tryCount).isEqualTo(record.raceRecords.last().round + 1)
-        assertThat(carNames.first()).isIn(record.raceRecords.first().movedCars.map { it.name })
+        assertAll(
+            Executable { assertThat(carNames.size).isEqualTo(record.raceRecords.first().carNames.size) },
+            Executable { assertThat(tryCount).isEqualTo(record.raceRecords.last().round + 1) },
+            Executable { assertThat(carNames.first()).isIn(record.raceRecords.first().carNames) }
+        )
     }
 }

@@ -16,10 +16,10 @@ object Output {
         println("${joinedWinnerNames}$WINNER_MESSAGE")
     }
 
-    fun printSnapShot(snapShot: SnapShot) {
+    private fun printSnapShot(snapShot: SnapShot) {
         println("${snapShot.round + 1} 번째 레이스")
-        snapShot.movedCars.forEach { car ->
-            println(car.name + " : " + "-".repeat(car.movements.count { it }))
+        snapShot.carNames.forEachIndexed { index, name ->
+            println(name + " : " + "-".repeat(snapShot.carMovements[index].count { it }))
         }
     }
 }
