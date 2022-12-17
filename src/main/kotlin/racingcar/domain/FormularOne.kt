@@ -1,43 +1,37 @@
 package racingcar.domain
 
-import racingcar.domain.model.CarRacer
+import racingcar.domain.model.CarNames
 import racingcar.domain.model.CarRacingGame
+import racingcar.domain.model.Cars
 
 /**
  * 자동차 경주 대회
  */
-class FormularOne {
+class FormularOne(
+    private val carNames: CarNames,
+    private val tryGames: TryGames
+) {
+
+    private lateinit var _totalResult: GameResults
+    val totalResult: GameResults
+        get() = _totalResult
 
     /**
      * 대회 시작
      */
-    fun start(carNames: List<String>, numberOfGame: Int): List<List<CarRacer>> {
-        require(numberOfGame > 0)
-        require(carNames.isNotEmpty())
+    fun start() {
+        val cars: Cars = carNames.makeCars()
 
-        val carRacers: List<CarRacer> = makeCarRacerList(carNames)
-
-        return List(numberOfGame) {
-            val game = CarRacingGame(carRacers = carRacers)
-            game.race()
-            game.result()
-        }
+        _totalResult = GameResults(
+            List(tryGames.count) {
+                val game = CarRacingGame(cars)
+                game.race()
+                game.result()
+            }
+        )
     }
 
-    /**
-     * 자동차 경주자 목록 생성
-     */
-    private fun makeCarRacerList(carNames: List<String>): List<CarRacer> {
-        return carNames.map { name -> CarRacer(name) }
-    }
-
-    companion object {
-
-        fun findWinners(carRacers: List<CarRacer>): List<String> {
-            val max: Int = carRacers.maxOf { it.position }
-            return carRacers
-                .filter { it.position == max }
-                .map { it.name }
-        }
+    fun findWinners(): Cars {
+        return totalResult.findMostFarthestCar()
     }
 }

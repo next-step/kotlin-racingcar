@@ -1,16 +1,19 @@
 package racingcar
 
 import racingcar.domain.FormularOne
-import racingcar.domain.model.CarRacer
+import racingcar.domain.TryGames
+import racingcar.domain.model.CarNames
 import racingcar.ui.InputView
 import racingcar.ui.ResultView
 
 fun main() {
     val inputView = InputView()
-    inputView.show()
 
-    val f1 = FormularOne()
-    val result: List<List<CarRacer>> = f1.start(carNames = inputView.carNames, numberOfGame = inputView.numberOfGame)
+    val carNames = inputView.inputCarNames()
+    val numberOfGame = inputView.inputNumberOfGame()
 
-    ResultView.show(result = result)
+    val f1 = FormularOne(CarNames(carNames), TryGames(count = numberOfGame))
+    f1.start()
+
+    ResultView.show(f1)
 }

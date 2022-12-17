@@ -12,15 +12,15 @@ class Parser(private val limit: Int = 0) {
         return elements.listIterator()
     }
 
-    fun parse(input: String): List<String> {
-        return parse(input = input, delimiter = " ")
+    fun parse(text: String): List<String> {
+        return parse(text = text, delimiter = " ")
     }
 
-    fun parse(input: String, delimiter: String): List<String> {
-        if (input.isBlank()) {
+    fun parse(text: String, delimiter: String): List<String> {
+        if (text.isBlank()) {
             return emptyList()
         }
-        return input.split(delimiter)
+        return text.split(delimiter)
     }
 
     @Throws(IllegalArgumentException::class)
