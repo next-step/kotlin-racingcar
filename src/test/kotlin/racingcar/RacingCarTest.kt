@@ -11,7 +11,7 @@ class RacingCarTest {
 
         val racingHistory = RacingCar(carNames, 1).start(ForwardStrategy.DefaultForward)
 
-        assertTrue(racingHistory.getMoveHistory().size == carNames.split(",").size)
+        assertTrue(racingHistory.moveHistory.size == carNames.split(",").size)
     }
 
     @Test
@@ -21,7 +21,7 @@ class RacingCarTest {
 
         val racingHistory = RacingCar(carNames, tryCount).start(ForwardStrategy.DefaultForward)
 
-        assertTrue(racingHistory.getMoveHistory().values.toList()[0].size == tryCount)
+        assertTrue(racingHistory.moveHistory.values.toList()[0].size == tryCount)
     }
 
     @Test
@@ -31,7 +31,7 @@ class RacingCarTest {
 
         val racingHistory = RacingCar(carNames, tryCount).start(ForwardStrategy.DefaultForward)
 
-        assertTrue(racingHistory.getMoveHistory().size == carNames.split(",").size)
+        assertTrue(racingHistory.moveHistory.size == carNames.split(",").size)
     }
 
     @Test

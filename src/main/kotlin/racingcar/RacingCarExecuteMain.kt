@@ -15,7 +15,7 @@ fun main() {
     val winningCarNames = racingHistory.getWinningCarNames()
 
     for (i in 0 until tryCount) {
-        racingHistory.getMoveHistory().forEach { moveItem ->
+        racingHistory.moveHistory.forEach { moveItem ->
             resultView.printCarName(moveItem.key)
             resultView.printCarMove(moveItem.value[i])
         }

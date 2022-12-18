@@ -14,7 +14,7 @@ class MoveHistoryTest {
 
         moveHistory.addMove(MoveInfo(carName, 1))
 
-        assertTrue(moveHistory.getMoveHistory().size == 1)
+        assertTrue(moveHistory.moveHistory.size == 1)
     }
 
     @Test
@@ -25,7 +25,7 @@ class MoveHistoryTest {
         moveHistory.addMove(MoveInfo(carName, 1))
         moveHistory.addMove(MoveInfo(carName, 1))
 
-        assertTrue(moveHistory.getMoveHistory()[carName]?.size == 2)
+        assertTrue(moveHistory.moveHistory[carName]?.size == 2)
     }
 
     @Test
