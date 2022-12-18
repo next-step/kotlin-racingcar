@@ -1,11 +1,11 @@
 package racingcar.data
 
 class MoveHistory {
-    val moveHistory = LinkedHashMap<String, MutableList<Int>>()
+    val moveHistory: Map<String, MutableList<Int>> = LinkedHashMap()
 
     fun addMove(moveInfo: MoveInfo) {
         val carMoves = moveHistory[moveInfo.carName] ?: mutableListOf<Int>().apply {
-            moveHistory[moveInfo.carName] = this
+            (moveHistory as LinkedHashMap)[moveInfo.carName] = this
         }
 
         carMoves.add(moveInfo.moveCount)
