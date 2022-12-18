@@ -14,14 +14,12 @@ class MoveHistory {
     fun getMoveHistory(): Map<String, List<Int>> = moveHistory
 
     fun getWinningCarNames(): List<String> {
-        val racingCount = moveHistory.values.first().size
-
         val maxMoveCount = moveHistory.values.maxOfOrNull {
-            it[racingCount - 1]
+            it[it.size - 1]
         } ?: 0
 
         return moveHistory.entries.filter {
-            it.value[racingCount - 1] == maxMoveCount
+            it.value[it.value.size - 1] == maxMoveCount
         }.map { it.key }
     }
 }
