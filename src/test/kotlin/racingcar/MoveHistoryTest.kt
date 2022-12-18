@@ -2,8 +2,8 @@ package racingcar
 
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import racingcar.data.MoveHistory
-import racingcar.data.MoveInfo
+import racingcar.domain.MoveHistory
+import racingcar.domain.MoveInfo
 
 class MoveHistoryTest {
 

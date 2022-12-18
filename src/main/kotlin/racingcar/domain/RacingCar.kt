@@ -1,6 +1,4 @@
-package racingcar
-
-import racingcar.data.MoveHistory
+package racingcar.domain
 
 class RacingCar(private val cars: List<Car>, private val tryCount: Int) {
     constructor(carNames: String, tryCount: Int) :

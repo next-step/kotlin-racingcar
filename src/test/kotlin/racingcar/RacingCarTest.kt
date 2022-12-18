@@ -2,6 +2,8 @@ package racingcar
 
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import racingcar.domain.ForwardStrategy
+import racingcar.domain.RacingCar
 
 class RacingCarTest {
 

@@ -1,4 +1,4 @@
-package racingcar.data
+package racingcar.domain
 
 class MoveHistory {
     val moveHistory: Map<String, MutableList<Int>> = LinkedHashMap()

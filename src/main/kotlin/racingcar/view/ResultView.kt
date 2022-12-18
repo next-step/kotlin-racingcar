@@ -1,4 +1,4 @@
-package racingcar.ui
+package racingcar.view
 
 internal class ResultView {
     init {

@@ -1,27 +1,27 @@
 package racingcar
 
-import racingcar.ui.InputView
-import racingcar.ui.ResultView
+import racingcar.view.InputView
+import racingcar.view.ResultView
 
 fun main() {
     val inputView = InputView()
     val resultView = ResultView()
 
-    val carNames = inputView.inputCarNames()
+    val inputCarNames = inputView.inputCarNames()
     val tryCount = inputView.inputTryCount()
-    val racingCar = RacingCar(carNames, tryCount)
+    val controller = Controller(inputCarNames, tryCount)
 
-    val racingHistory = racingCar.start(ForwardStrategy.DefaultForward)
-    val winningCarNames = racingHistory.getWinningCarNames()
+    controller.racingStart()
+    val carNames = controller.carNames()
 
     for (i in 0 until tryCount) {
-        racingHistory.moveHistory.forEach { moveItem ->
-            resultView.printCarName(moveItem.key)
-            resultView.printCarMove(moveItem.value[i])
+        carNames.forEach { carName ->
+            resultView.printCarName(carName)
+            resultView.printCarMove(controller.moveInfo(carName)[i])
         }
 
         resultView.printLineSpacing()
     }
 
-    resultView.printWinningCars(winningCarNames)
+    resultView.printWinningCars(controller.winningCarNames())
 }

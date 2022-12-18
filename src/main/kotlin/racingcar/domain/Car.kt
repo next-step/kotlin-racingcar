@@ -1,6 +1,4 @@
-package racingcar
-
-import racingcar.data.MoveInfo
+package racingcar.domain
 
 class Car(private var moveCount: Int = 0, private val name: String) {
     constructor(name: String) : this(0, name) {
