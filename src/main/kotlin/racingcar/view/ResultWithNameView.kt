@@ -13,7 +13,7 @@ object ResultWithNameView {
         return """
             |${printGame(snapShots)}
             |
-            |${printWinner(snapShots.getWinnersOfGame())}
+            |${printWinner(snapShots.winnerOfGame)}
             |
             """.trimMargin()
     }

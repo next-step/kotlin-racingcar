@@ -40,7 +40,7 @@ class RacingCarGameTest : DescribeSpec({
                         RacingCarGameSnapShot(listOf(CarSnapShot("test", 1))),
                         RacingCarGameSnapShot(listOf(CarSnapShot("test", 2)))
                     )
-                    it.getWinnersOfGame() shouldContainExactly listOf("test")
+                    it.winnerOfGame shouldContainExactly listOf("test")
                 }
             }
 
@@ -52,17 +52,9 @@ class RacingCarGameTest : DescribeSpec({
                         RacingCarGameSnapShot(listOf(CarSnapShot("test1", 0), CarSnapShot("test2", 0)))
                     )
 
-                    it.getWinnersOfGame() shouldContainExactlyInAnyOrder listOf("test1", "test2")
+                    it.winnerOfGame shouldContainExactlyInAnyOrder listOf("test1", "test2")
                 }
             }
         }
     }
-}) {
-    companion object {
-        class FixedNumberProvider(private val fixedNumber: Int) : ConditionProvider {
-            override fun nextCondition(): Int {
-                return fixedNumber
-            }
-        }
-    }
-}
+})
