@@ -15,7 +15,7 @@ class Race(
         return participatingCars.currentPosition()
     }
 
-    fun win(participatingCars: ParticipatingCars): List<Pair<String, Int>> {
+    fun winners(participatingCars: ParticipatingCars): List<Pair<String, Int>> {
         return participatingCars.winners()
     }
 }
