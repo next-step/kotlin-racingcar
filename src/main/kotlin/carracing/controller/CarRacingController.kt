@@ -1,7 +1,7 @@
 package carracing
 
-import carracing.ui.InputView
-import carracing.ui.OutputView
+import carracing.view.InputView
+import carracing.view.OutputView
 
 fun main() {
 

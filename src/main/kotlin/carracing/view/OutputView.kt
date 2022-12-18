@@ -1,4 +1,4 @@
-package carracing.ui
+package carracing.view
 
 import carracing.domain.Car
 import carracing.domain.Cars
@@ -36,7 +36,7 @@ object OutputView {
             lineChange()
         }
 
-        val winners  = Winners(cars).getWinners().joinToString(",") {
+        val winners = Winners(cars).getWinners().joinToString(",") {
             it.getName()
         }
 
