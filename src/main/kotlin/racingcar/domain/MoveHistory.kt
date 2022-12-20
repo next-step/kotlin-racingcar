@@ -1,14 +1,13 @@
 package racingcar.domain
 
 class MoveHistory {
-    val moveHistory: Map<String, MutableList<Int>> = LinkedHashMap()
+    val moveHistory: Map<String, List<Int>> = LinkedHashMap()
 
     fun addMove(moveInfo: MoveInfo) {
-        val carMoves = moveHistory[moveInfo.carName] ?: mutableListOf<Int>().apply {
-            (moveHistory as LinkedHashMap)[moveInfo.carName] = this
-        }
-
-        carMoves.add(moveInfo.moveCount)
+        val moveList = mutableListOf<Int>()
+        moveList.addAll(moveHistory[moveInfo.carName] ?: emptyList())
+        moveList.add(moveInfo.moveCount)
+        (moveHistory as LinkedHashMap)[moveInfo.carName] = moveList
     }
 
     fun getWinningCarNames(): List<String> {
