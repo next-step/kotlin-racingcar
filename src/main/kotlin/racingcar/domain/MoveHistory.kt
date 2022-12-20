@@ -1,7 +1,6 @@
 package racingcar.domain
 
-class MoveHistory {
-    val moveHistory: Map<String, List<Int>> = LinkedHashMap()
+class MoveHistory(val moveHistory: Map<String, List<Int>> = LinkedHashMap()) {
 
     fun addMoveInfos(moveInfos: List<MoveInfo>) {
         moveInfos.forEach {
