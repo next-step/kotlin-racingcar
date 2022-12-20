@@ -1,20 +1,36 @@
 package racingcar
 
 import racingcar.domain.ForwardStrategy
-import racingcar.domain.MoveHistory
 import racingcar.domain.RacingCar
+import racingcar.view.InputView
+import racingcar.view.ResultView
 
-class Controller(carNames: String, tryCount: Int) {
-    private val racingCar = RacingCar(carNames, tryCount)
-    private lateinit var racingHistory: MoveHistory
+class Controller(private val inputView: InputView, private val resultView: ResultView) {
 
-    fun startRacing() {
-        racingHistory = racingCar.start(ForwardStrategy.DefaultForward)
+    fun getCarNames(): String = inputView.inputCarNames()
+
+    fun getTryCount(): Int = inputView.inputTryCount()
+
+    fun startRacing(inputCarNames: String, tryCount: Int) {
+        val racingCar = RacingCar(inputCarNames, tryCount)
+        val moveHistory = racingCar.start(ForwardStrategy.DefaultForward)
+        val historyData = moveHistory.moveHistory
+
+        printRacing(historyData.keys.toList(), historyData, tryCount)
+        printResult(moveHistory.getWinningCarNames())
     }
 
-    fun getWinningCarNames(): List<String> = racingHistory.getWinningCarNames()
+    private fun printRacing(carNames: List<String>, moveHistory: Map<String, List<Int>>, tryCount: Int) {
+        for (i in 0 until tryCount) {
+            carNames.forEach { carName ->
+                resultView.printCarName(carName)
+                resultView.printCarMove(moveHistory[carName]!![i])
+            }
+            resultView.printLineSpacing()
+        }
+    }
 
-    fun getCarNames(): List<String> = racingHistory.moveHistory.keys.toList()
-
-    fun getMoveInfos(name: String): List<Int> = racingHistory.moveHistory[name] ?: mutableListOf()
+    private fun printResult(winningCarNames: List<String>) {
+        resultView.printWinningCars(winningCarNames)
+    }
 }

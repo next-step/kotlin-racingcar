@@ -1,6 +1,6 @@
 package racingcar.view
 
-internal class ResultView {
+class ResultView {
     init {
         println("실행 결과")
     }
