@@ -1,14 +1,14 @@
 package racingcar.domain
 
-import java.security.SecureRandom
-
 sealed class ForwardStrategy {
     abstract fun forward(): Boolean
 
     object DefaultForward : ForwardStrategy() {
-        private const val MINIMUM_BOUND = 4
-        private const val MAXIMUM_BOUND = 10
+        private const val STD_VALUE = 4
+        private const val MINIMUM_BOUND = 0
+        private const val MAXIMUM_BOUND = 9
+        private val RANGE = MINIMUM_BOUND..MAXIMUM_BOUND
 
-        override fun forward(): Boolean = SecureRandom.getInstanceStrong().nextInt(MAXIMUM_BOUND) >= MINIMUM_BOUND
+        override fun forward(): Boolean = RANGE.random() >= STD_VALUE
     }
 }
