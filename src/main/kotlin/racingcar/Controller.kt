@@ -8,13 +8,13 @@ class Controller(carNames: String, tryCount: Int) {
     private val racingCar = RacingCar(carNames, tryCount)
     private lateinit var racingHistory: MoveHistory
 
-    fun racingStart() {
+    fun startRacing() {
         racingHistory = racingCar.start(ForwardStrategy.DefaultForward)
     }
 
-    fun winningCarNames() = racingHistory.getWinningCarNames()
+    fun getWinningCarNames(): List<String> = racingHistory.getWinningCarNames()
 
-    fun carNames() = racingHistory.moveHistory.keys.toList()
+    fun getCarNames(): List<String> = racingHistory.moveHistory.keys.toList()
 
-    fun moveInfo(name: String) = racingHistory.moveHistory[name] ?: mutableListOf()
+    fun getMoveInfos(name: String): List<Int> = racingHistory.moveHistory[name] ?: mutableListOf()
 }

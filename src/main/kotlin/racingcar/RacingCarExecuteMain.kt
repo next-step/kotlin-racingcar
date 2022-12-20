@@ -11,17 +11,17 @@ fun main() {
     val tryCount = inputView.inputTryCount()
     val controller = Controller(inputCarNames, tryCount)
 
-    controller.racingStart()
-    val carNames = controller.carNames()
+    controller.startRacing()
+    val carNames = controller.getCarNames()
 
     for (i in 0 until tryCount) {
         carNames.forEach { carName ->
             resultView.printCarName(carName)
-            resultView.printCarMove(controller.moveInfo(carName)[i])
+            resultView.printCarMove(controller.getMoveInfos(carName)[i])
         }
 
         resultView.printLineSpacing()
     }
 
-    resultView.printWinningCars(controller.winningCarNames())
+    resultView.printWinningCars(controller.getWinningCarNames())
 }
