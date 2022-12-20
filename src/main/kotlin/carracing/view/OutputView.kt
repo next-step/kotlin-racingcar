@@ -2,14 +2,13 @@ package carracing.view
 
 import carracing.domain.Car
 import carracing.domain.Cars
-import carracing.domain.Racing
 
 const val CAR_SYMBOL = "-"
 const val GAME_RESULT_MESSAGE = "실행 결과"
 
 object OutputView {
 
-    private fun printCar(cars: Cars) {
+    fun printCar(cars: Cars) {
         for (element in cars) {
             gameRoundPrint(element)
         }
@@ -19,16 +18,12 @@ object OutputView {
         println("${car.getName()} :  ${CAR_SYMBOL.repeat(car.position)}")
     }
 
-    private fun lineChange() {
+    fun lineChange() {
         println("")
     }
 
-    fun printRacingCar(cars: Cars, attemptCount: Int) {
+    fun printRacingCar() {
         println(GAME_RESULT_MESSAGE)
-        for (round in 1..attemptCount) {
-            printCar(Racing(cars).race())
-            lineChange()
-        }
     }
 
     fun racingResult(winnerNames: String) {
