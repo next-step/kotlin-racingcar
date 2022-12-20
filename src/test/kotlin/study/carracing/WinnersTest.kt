@@ -16,10 +16,7 @@ class WinnersTest {
         val car2 = Car(Name("kim"), moveStrategy = StandardStrategy(3))
         val car3 = Car(Name("park"), moveStrategy = StandardStrategy(6))
         val cars = Cars(listOf(car1, car2, car3))
-        val winners = Winners(Racing(cars).race()).getWinners()
-        val winnerNames = winners.joinToString(",") {
-            it.getName()
-        }
+        val winnerNames = Winners(Racing(cars).race()).getWinners()
         assertThat(winnerNames).isEqualTo("park")
     }
 
@@ -29,10 +26,7 @@ class WinnersTest {
         val car2 = Car(Name("kim"), moveStrategy = StandardStrategy(5))
         val car3 = Car(Name("park"), moveStrategy = StandardStrategy(6))
         val cars = Cars(listOf(car1, car2, car3))
-        val winners = Winners(Racing(cars).race()).getWinners()
-        val winnerNames = winners.joinToString(",") {
-            it.getName()
-        }
+        val winnerNames = Winners(Racing(cars).race()).getWinners()
         assertThat(winnerNames).isEqualTo("kim,park")
     }
 }
