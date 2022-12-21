@@ -5,7 +5,7 @@ import kotlin.random.Random
 class RandomStrategy : MoveStrategy {
 
     override fun isMovable(): Boolean {
-        if (makeRandomNumber() >= 4) {
+        if (makeRandomNumber() >= INCREASE_STANDARD) {
             return true
         }
         return false
@@ -17,5 +17,6 @@ class RandomStrategy : MoveStrategy {
 
     companion object {
         const val MAX_SIZE: Int = 9
+        const val INCREASE_STANDARD: Int = 4
     }
 }
