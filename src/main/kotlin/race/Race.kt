@@ -6,24 +6,19 @@ class Race(private val randomGeneratorNumber: RandomNumberGenerator) {
         val snapShots = mutableListOf<SnapShot>()
 
         repeat(tryCount) { round ->
-            val movedCars = moveCars(cars)
-            val copiedCars = movedCars.map { car -> car.copy() }
-            val snapShot = SnapShot(
-                round = round,
-                carNames = copiedCars.map { car -> car.name },
-                carMovements = copiedCars.map { car -> car.movements }
-            )
-            snapShots.add(snapShot)
+            val finishedRound = startRound(round, cars)
+            finishedRound.forEach { snapShots.add(it) }
         }
         return Record(snapShots)
     }
 
-    private fun moveCars(cars: List<Car>): List<Car> {
-        val movedCars = cars.map { car ->
-            val randomNumber = randomGeneratorNumber.generate()
-            car.move(randomNumber)
-            car
-        }
-        return movedCars
+    private fun startRound(round: Int, cars: List<Car>): List<SnapShot> {
+        return cars.map { moveCar(round, it) }
+    }
+
+    private fun moveCar(round: Int, car: Car): SnapShot {
+        val randomNumber = randomGeneratorNumber.generate()
+        car.move(randomNumber)
+        return SnapShot(round, car.name, car.movements.toList())
     }
 }

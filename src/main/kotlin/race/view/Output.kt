@@ -7,7 +7,10 @@ import race.view.Message.WINNER_MESSAGE
 object Output {
 
     fun printResult(record: Record) {
-        record.raceRecords.forEach { printSnapShot(it) }
+        repeat(record.lastRound + 1) { round ->
+            val snapShots = record.getSnapshotsByRound(round)
+            printRound(round, snapShots)
+        }
     }
 
     fun printWinner(record: Record) {
@@ -16,10 +19,10 @@ object Output {
         println("${joinedWinnerNames}$WINNER_MESSAGE")
     }
 
-    private fun printSnapShot(snapShot: SnapShot) {
-        println("${snapShot.round + 1} 번째 레이스")
-        snapShot.carNames.forEachIndexed { index, name ->
-            println(name + " : " + "-".repeat(snapShot.carMovements[index].count { it }))
+    private fun printRound(round: Int, snapShots: List<SnapShot>) {
+        println("${round + 1} 번째 레이스")
+        snapShots.forEach { snapShot ->
+            println(snapShot.carName + " : " + "-".repeat(snapShot.carMovement.count { it }))
         }
     }
 }
