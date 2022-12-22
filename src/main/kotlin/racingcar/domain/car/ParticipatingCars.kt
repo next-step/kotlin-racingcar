@@ -11,12 +11,11 @@ class ParticipatingCars(
     }
 
     fun winners(): List<Pair<String, Int>> {
-        val winnerPosition = this.carList.maxOf { it.currentPosition().toInt() }
+        val winnerPosition = this.carList.maxOf { it.currentPositionToInt() }
         return this.carList
-            .filter { it.currentPosition().toInt() == winnerPosition }
-            .map { it.name to it.currentPosition().toInt() }
-            .toList()
+            .filter { it.currentPositionToInt() == winnerPosition }
+            .map { it.name to it.currentPositionToInt() }
     }
 
-    fun currentPosition(): List<Pair<String, Int>> = carList.map { it.name to it.currentPosition().toInt() }
+    fun currentPosition(): List<Pair<String, Int>> = carList.map { it.name to it.currentPositionToInt() }
 }

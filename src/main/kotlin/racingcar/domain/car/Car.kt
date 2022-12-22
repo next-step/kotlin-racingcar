@@ -17,7 +17,7 @@ class Car(
         name?.let { require(it.length <= 5) { "자동차 이름의 길이는 5글자를 초과할 수 없습니다." } }
     }
 
-    fun currentPosition() = this.position
+    fun currentPositionToInt() = this.position.toInt()
 
     fun move() {
         checkStop()
