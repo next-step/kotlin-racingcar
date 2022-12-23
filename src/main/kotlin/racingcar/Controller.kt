@@ -12,7 +12,7 @@ class Controller(private val inputView: InputView, private val resultView: Resul
         val tryCount = inputView.inputTryCount()
 
         val racingCar = RacingCar(inputCarNames, tryCount)
-        val moveHistory = racingCar.start(ForwardStrategy.DefaultForward)
+        val moveHistory = racingCar.start(ForwardStrategy.RandomRangeForward)
         val historyData = moveHistory.moveHistory
 
         resultView.printRacing(historyData.keys.toList(), historyData, tryCount)

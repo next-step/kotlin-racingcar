@@ -3,7 +3,7 @@ package racingcar.domain
 sealed class ForwardStrategy {
     abstract fun forward(): Boolean
 
-    object DefaultForward : ForwardStrategy() {
+    object RandomRangeForward : ForwardStrategy() {
         private const val STD_VALUE = 4
         private const val MINIMUM_BOUND = 0
         private const val MAXIMUM_BOUND = 9

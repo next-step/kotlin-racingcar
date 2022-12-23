@@ -11,7 +11,7 @@ class RacingCarTest {
     fun `자동차 경주 자동차 생성 테스트`() {
         val carNames = "자동차1,자동차2,자동차3"
 
-        val racingHistory = RacingCar(carNames, 1).start(ForwardStrategy.DefaultForward)
+        val racingHistory = RacingCar(carNames, 1).start(ForwardStrategy.RandomRangeForward)
 
         assertTrue(racingHistory.moveHistory.size == carNames.split(",").size)
     }
@@ -21,7 +21,7 @@ class RacingCarTest {
         val carNames = "자동차1,자동차2,자동차3"
         val tryCount = 5
 
-        val racingHistory = RacingCar(carNames, tryCount).start(ForwardStrategy.DefaultForward)
+        val racingHistory = RacingCar(carNames, tryCount).start(ForwardStrategy.RandomRangeForward)
 
         assertTrue(racingHistory.moveHistory.values.toList()[0].size == tryCount)
     }
@@ -31,7 +31,7 @@ class RacingCarTest {
         val carNames = "자동차1,자동차2,자동차3"
         val tryCount = 1
 
-        val racingHistory = RacingCar(carNames, tryCount).start(ForwardStrategy.DefaultForward)
+        val racingHistory = RacingCar(carNames, tryCount).start(ForwardStrategy.RandomRangeForward)
 
         assertTrue(racingHistory.moveHistory.size == carNames.split(",").size)
     }
@@ -42,7 +42,7 @@ class RacingCarTest {
         val tryCount = 1
         val racingCar = RacingCar(carNames, tryCount)
 
-        val moveHistory = racingCar.start(ForwardStrategy.DefaultForward)
+        val moveHistory = racingCar.start(ForwardStrategy.RandomRangeForward)
 
         assertTrue(moveHistory.getWinningCarNames().isNotEmpty())
     }
