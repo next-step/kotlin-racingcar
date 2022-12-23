@@ -23,7 +23,7 @@ class RacingCarTest {
 
         val racingHistory = RacingCar(carNames, tryCount).start(ForwardStrategy.RandomRangeForward)
 
-        assertTrue(racingHistory.moveHistory.values.toList()[0].size == tryCount)
+        assertTrue(racingHistory.moveHistory[0].moves.size == tryCount)
     }
 
     @Test

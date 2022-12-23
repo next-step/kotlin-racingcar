@@ -13,9 +13,8 @@ class Controller(private val inputView: InputView, private val resultView: Resul
 
         val racingCar = RacingCar(inputCarNames, tryCount)
         val moveHistory = racingCar.start(ForwardStrategy.RandomRangeForward)
-        val historyData = moveHistory.moveHistory
 
-        resultView.printRacing(historyData.keys.toList(), historyData, tryCount)
+        resultView.printRacing(moveHistory.moveHistory, tryCount)
         resultView.printWinningCars(moveHistory.getWinningCarNames())
     }
 }

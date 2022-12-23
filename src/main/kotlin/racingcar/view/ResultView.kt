@@ -1,5 +1,7 @@
 package racingcar.view
 
+import racingcar.data.CarMoves
+
 class ResultView {
     init {
         println("실행 결과")
@@ -19,11 +21,11 @@ class ResultView {
         println()
     }
 
-    fun printRacing(carNames: List<String>, moveHistory: Map<String, List<Int>>, tryCount: Int) {
+    fun printRacing(carHistory: List<CarMoves>, tryCount: Int) {
         for (i in 0 until tryCount) {
-            carNames.forEach { carName ->
-                printCarName(carName)
-                printCarMove(moveHistory[carName]!![i])
+            carHistory.forEach { carMoves ->
+                printCarName(carMoves.carName)
+                printCarMove(carMoves.moves[i])
             }
             printLineSpacing()
         }
