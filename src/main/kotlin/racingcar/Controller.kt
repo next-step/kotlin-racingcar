@@ -15,21 +15,7 @@ class Controller(private val inputView: InputView, private val resultView: Resul
         val moveHistory = racingCar.start(ForwardStrategy.DefaultForward)
         val historyData = moveHistory.moveHistory
 
-        printRacing(historyData.keys.toList(), historyData, tryCount)
-        printResult(moveHistory.getWinningCarNames())
-    }
-
-    private fun printRacing(carNames: List<String>, moveHistory: Map<String, List<Int>>, tryCount: Int) {
-        for (i in 0 until tryCount) {
-            carNames.forEach { carName ->
-                resultView.printCarName(carName)
-                resultView.printCarMove(moveHistory[carName]!![i])
-            }
-            resultView.printLineSpacing()
-        }
-    }
-
-    private fun printResult(winningCarNames: List<String>) {
-        resultView.printWinningCars(winningCarNames)
+        resultView.printRacing(historyData.keys.toList(), historyData, tryCount)
+        resultView.printWinningCars(moveHistory.getWinningCarNames())
     }
 }
