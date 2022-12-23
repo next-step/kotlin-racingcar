@@ -15,11 +15,8 @@ class RacingCar(private val cars: List<Car>, private val tryCount: Int) {
     }
 
     private fun moveCars(car: Car, moveStrategy: ForwardStrategy): List<MoveInfo> {
-        val moveInfos = mutableListOf<MoveInfo>()
-
-        for (i in 0 until tryCount) {
-            moveInfos.add(car.move(moveStrategy.forward()))
+        return (0 until tryCount).map {
+            car.move(moveStrategy.forward())
         }
-        return moveInfos
     }
 }
