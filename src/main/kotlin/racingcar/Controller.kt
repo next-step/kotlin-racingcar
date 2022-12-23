@@ -7,11 +7,10 @@ import racingcar.view.ResultView
 
 class Controller(private val inputView: InputView, private val resultView: ResultView) {
 
-    fun getCarNames(): String = inputView.inputCarNames()
+    fun startRacing() {
+        val inputCarNames = inputView.inputCarNames()
+        val tryCount = inputView.inputTryCount()
 
-    fun getTryCount(): Int = inputView.inputTryCount()
-
-    fun startRacing(inputCarNames: String, tryCount: Int) {
         val racingCar = RacingCar(inputCarNames, tryCount)
         val moveHistory = racingCar.start(ForwardStrategy.DefaultForward)
         val historyData = moveHistory.moveHistory

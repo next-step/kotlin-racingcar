@@ -8,5 +8,5 @@ fun main() {
     val resultView = ResultView()
     val controller = Controller(inputView, resultView)
 
-    controller.startRacing(controller.getCarNames(), controller.getTryCount())
+    controller.startRacing()
 }
