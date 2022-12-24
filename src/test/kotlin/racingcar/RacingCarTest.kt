@@ -2,6 +2,8 @@ package racingcar
 
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import racingcar.domain.ForwardStrategy
+import racingcar.domain.RacingCar
 
 class RacingCarTest {
 
@@ -9,9 +11,9 @@ class RacingCarTest {
     fun `자동차 경주 자동차 생성 테스트`() {
         val carNames = "자동차1,자동차2,자동차3"
 
-        val racingHistory = RacingCar(carNames, 1).start(ForwardStrategy.DefaultForward)
+        val racingHistory = RacingCar(carNames, 1).start(ForwardStrategy.RandomRangeForward)
 
-        assertTrue(racingHistory.getMoveHistory().size == carNames.split(",").size)
+        assertTrue(racingHistory.moveHistory.size == carNames.split(",").size)
     }
 
     @Test
@@ -19,9 +21,9 @@ class RacingCarTest {
         val carNames = "자동차1,자동차2,자동차3"
         val tryCount = 5
 
-        val racingHistory = RacingCar(carNames, tryCount).start(ForwardStrategy.DefaultForward)
+        val racingHistory = RacingCar(carNames, tryCount).start(ForwardStrategy.RandomRangeForward)
 
-        assertTrue(racingHistory.getMoveHistory().values.toList()[0].size == tryCount)
+        assertTrue(racingHistory.moveHistory[0].moves.size == tryCount)
     }
 
     @Test
@@ -29,9 +31,9 @@ class RacingCarTest {
         val carNames = "자동차1,자동차2,자동차3"
         val tryCount = 1
 
-        val racingHistory = RacingCar(carNames, tryCount).start(ForwardStrategy.DefaultForward)
+        val racingHistory = RacingCar(carNames, tryCount).start(ForwardStrategy.RandomRangeForward)
 
-        assertTrue(racingHistory.getMoveHistory().size == carNames.split(",").size)
+        assertTrue(racingHistory.moveHistory.size == carNames.split(",").size)
     }
 
     @Test
@@ -40,7 +42,7 @@ class RacingCarTest {
         val tryCount = 1
         val racingCar = RacingCar(carNames, tryCount)
 
-        val moveHistory = racingCar.start(ForwardStrategy.DefaultForward)
+        val moveHistory = racingCar.start(ForwardStrategy.RandomRangeForward)
 
         assertTrue(moveHistory.getWinningCarNames().isNotEmpty())
     }
