@@ -18,7 +18,7 @@ class Race(private val randomGeneratorNumber: RandomNumberGenerator) {
 
     private fun moveCar(round: Int, car: Car): SnapShot {
         val randomNumber = randomGeneratorNumber.generate()
-        car.move(randomNumber)
-        return SnapShot(round, car.name, car.movements.toList())
+        val isMoved = car.move(randomNumber)
+        return SnapShot(round, car.name, isMoved)
     }
 }

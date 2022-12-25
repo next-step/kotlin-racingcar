@@ -2,6 +2,7 @@ package race
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import race.view.Output
 
 class RecordTest {
 
@@ -12,25 +13,29 @@ class RecordTest {
         val carA = Car("A")
         val carB = Car("B")
         val carC = Car("C")
-        carA.move(7)
-        carA.move(7)
-        carA.move(7)
 
-        carB.move(7)
-        carB.move(0)
-        carB.move(0)
+        val carARound1 = SnapShot(round, carA.name, true)
+        val carARound2 = SnapShot(round, carA.name, true)
+        val carARound3 = SnapShot(round, carA.name, true)
 
-        carC.move(7)
-        carC.move(0)
-        carC.move(0)
+        val carBRound1 = SnapShot(round, carB.name, true)
+        val carBRound2 = SnapShot(round, carB.name, true)
+        val carBRound3 = SnapShot(round, carB.name, false)
 
-        val carASnapShot = SnapShot(round, carA.name, carA.movements)
-        val carBSnapShot = SnapShot(round, carB.name, carB.movements)
-        val carCSnapShot = SnapShot(round, carC.name, carC.movements)
-        val record = Record(listOf(carASnapShot, carBSnapShot, carCSnapShot))
+        val carCRound1 = SnapShot(round, carC.name, false)
+        val carCRound2 = SnapShot(round, carC.name, false)
+        val carCRound3 = SnapShot(round, carC.name, false)
+
+        val record = Record(
+            listOf(
+                carARound1, carARound2, carARound3,
+                carBRound1, carBRound2, carBRound3,
+                carCRound1, carCRound2, carCRound3
+            )
+        )
 
         // Act & Assert
-        assertThat(listOf("A")).isEqualTo(record.getWinnerCarName())
+        assertThat(listOf("A")).isEqualTo(Output.getWinnerCarName(record))
     }
 
     @Test
@@ -40,24 +45,28 @@ class RecordTest {
         val carA = Car("A")
         val carB = Car("B")
         val carC = Car("C")
-        carA.move(7)
-        carA.move(7)
-        carA.move(7)
 
-        carB.move(7)
-        carB.move(7)
-        carB.move(7)
+        val carARound1 = SnapShot(round, carA.name, true)
+        val carARound2 = SnapShot(round, carA.name, true)
+        val carARound3 = SnapShot(round, carA.name, true)
 
-        carC.move(7)
-        carC.move(0)
-        carC.move(0)
+        val carBRound1 = SnapShot(round, carB.name, true)
+        val carBRound2 = SnapShot(round, carB.name, true)
+        val carBRound3 = SnapShot(round, carB.name, true)
 
-        val carASnapShot = SnapShot(round, carA.name, carA.movements)
-        val carBSnapShot = SnapShot(round, carB.name, carB.movements)
-        val carCSnapShot = SnapShot(round, carC.name, carC.movements)
-        val record = Record(listOf(carASnapShot, carBSnapShot, carCSnapShot))
+        val carCRound1 = SnapShot(round, carC.name, false)
+        val carCRound2 = SnapShot(round, carC.name, false)
+        val carCRound3 = SnapShot(round, carC.name, false)
+
+        val record = Record(
+            listOf(
+                carARound1, carARound2, carARound3,
+                carBRound1, carBRound2, carBRound3,
+                carCRound1, carCRound2, carCRound3
+            )
+        )
 
         // Act & Assert
-        assertThat(listOf("A", "B")).isEqualTo(record.getWinnerCarName())
+        assertThat(listOf("A", "B")).isEqualTo(Output.getWinnerCarName(record))
     }
 }

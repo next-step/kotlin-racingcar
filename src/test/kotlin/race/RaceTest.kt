@@ -21,7 +21,7 @@ class RaceTest {
         // Assert
         assertAll(
             { assertThat(record.lastRound + 1).isEqualTo(tryCount) },
-            { assertThat(record.getSnapshotsByRound(0).size).isEqualTo(carNames.size) }
+            { assertThat(record.raceSnapshots.size).isEqualTo(carNames.size * (tryCount)) }
         )
     }
 }
