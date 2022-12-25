@@ -3,39 +3,27 @@ package racingcar.domain
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
-import racingcar.domain.exception.CannotFindWinnerException
 
 class RaceResultTest : DescribeSpec({
-    describe("레이싱 자동차 게임 결과") {
-        it("마지막 라운드의 단일 우승자를 찾을 수 있다.") {
-            val firstRoundHistory = RoundHistory(1, listOf(Pair("pobi", 1), Pair("crong", 1)))
-            val secondRoundHistory = RoundHistory(1, listOf(Pair("pobi", 2), Pair("crong", 1)))
+    describe("레이스 결과 테스트") {
+        it("경주 히스토리가 없으면 결과를 도출할 수 없다.") {
+            var roundHistories = listOf<RoundHistory>()
 
-            val roundHistories = listOf(firstRoundHistory, secondRoundHistory)
-            val raceResult = RaceResult(roundHistories)
-
-            raceResult.getWinners() shouldBe listOf("pobi")
-        }
-
-        it("마지막 라운드의 복수 우승자를 찾을 수 있다.") {
-            val firstRoundHistory = RoundHistory(1, listOf(Pair("pobi", 1), Pair("crong", 1)))
-            val secondRoundHistory = RoundHistory(1, listOf(Pair("pobi", 2), Pair("crong", 2)))
-
-            val roundHistories = listOf(firstRoundHistory, secondRoundHistory)
-            val raceResult = RaceResult(roundHistories)
-
-            raceResult.getWinners() shouldBe listOf("pobi", "crong")
-        }
-
-        it("라운드 결과가 없을 경우 우승자를 찾을 수 없다.") {
-            val roundHistory = RoundHistory(1, listOf())
-
-            val roundHistories = listOf(roundHistory)
-            val raceResult = RaceResult(roundHistories)
-
-            shouldThrow<CannotFindWinnerException> {
-                raceResult.getWinners()
+            shouldThrow<IllegalArgumentException> {
+                RaceResult(roundHistories)
             }
+        }
+
+        it("최종 승자를 알 수 있다.") {
+            val firstCar = Car("자동차1", 1)
+            val secondCar = Car("자동차2", 2)
+            val cars = Cars(listOf(firstCar, secondCar))
+
+            val raceResult = RaceResult(
+                listOf(RoundHistory(1, cars))
+            )
+
+            raceResult.getFinalRoundWinners() shouldBe listOf(secondCar)
         }
     }
 })

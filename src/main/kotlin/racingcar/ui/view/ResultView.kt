@@ -1,17 +1,19 @@
 package racingcar.ui.view
 
+import racingcar.domain.Car
+import racingcar.domain.Cars
 import racingcar.domain.RaceResult
 
 object ResultView {
-    fun printResult(raceResult: RaceResult) {
+    fun printRaceResult(raceResult: RaceResult, winners: List<Car>) {
         printHistoryByRound(raceResult)
-        printWinners(raceResult)
+        printWinners(winners)
     }
 
     private fun printHistoryByRound(raceResult: RaceResult) {
         raceResult.roundHistories.forEach { roundHistory ->
             printRoundResult(roundHistory.round)
-            printRoundCarPositions(roundHistory.carInfos)
+            printRoundCarPositions(roundHistory.cars)
             println("\n")
         }
     }
@@ -20,13 +22,12 @@ object ResultView {
         println("[${round + 1} 라운드 결과]")
     }
 
-    private fun printRoundCarPositions(carInfos: List<Pair<String, Int>>) {
-        carInfos.forEach { (carName, position) -> println("$carName: ${"-".repeat(position)} \r") }
+    private fun printRoundCarPositions(cars: Cars) {
+        println(cars.toString())
     }
 
-    private fun printWinners(raceResult: RaceResult) {
-        val winners = raceResult.getWinners()
-        val winnerNames = winners.joinToString(separator = ", ")
+    private fun printWinners(winners: List<Car>) {
+        val winnerNames = winners.joinToString(separator = ", ") { it.name }
 
         println("${winnerNames}가 최종 우승했습니다.")
     }

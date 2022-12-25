@@ -1,3 +1,5 @@
 package racingcar.domain
 
-data class RoundHistory(val round: Int, val carInfos: List<Pair<String, Int>>)
+data class RoundHistory(val round: Int, val cars: Cars) {
+    fun getWinners() = cars.getMaxPositionCars()
+}
