@@ -1,6 +1,6 @@
 package view
 
-import racingCar.Entity.Car
+import racingcar.entity.Car
 
 class OutputView {
     fun printResultMsg() {

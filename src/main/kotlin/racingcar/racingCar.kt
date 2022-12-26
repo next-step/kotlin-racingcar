@@ -1,8 +1,8 @@
-package racingCar
+package racingcar
 
-import racingCar.Entity.Car
-import racingCar.common.InputValidation
-import racingCar.domain.Racing
+import racingcar.common.InputValidation
+import racingcar.domain.Racing
+import racingcar.entity.Car
 import view.InputView
 import view.OutputView
 

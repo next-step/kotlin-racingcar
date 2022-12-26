@@ -1,4 +1,4 @@
-package racingCar.common
+package racingcar.common
 
 class InputValidation {
     fun validate(input: String?): Int {

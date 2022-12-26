@@ -1,6 +1,6 @@
-package racingCar.domain
+package racingcar.domain
 
-import racingCar.Entity.Car
+import racingcar.entity.Car
 
 class Racing {
     fun makeCars(num: Int): List<Car> {
