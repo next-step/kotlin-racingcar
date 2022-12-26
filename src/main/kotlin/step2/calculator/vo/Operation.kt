@@ -14,4 +14,12 @@ enum class Operation(
     fun calculate(op1: Number, op2: Number): Number {
         return this.operation.apply(op1, op2)
     }
+
+    companion object {
+        fun from(input: String): Operation {
+            return values().asSequence()
+                .filter { it.value == input }
+                .first()
+        }
+    }
 }
