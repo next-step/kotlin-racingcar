@@ -1,22 +1,14 @@
 package race
 
-class Car(val name: String, var movements: MutableList<Boolean> = mutableListOf()) {
-
-    fun move(condition: Int) {
-        movements.add(condition >= THRESHOLD)
-    }
-
-    fun copy(): Car {
-        val target = movements.toList()
-        return Car(name, target.toMutableList())
-    }
-
-    fun getMovedCount(): Int {
-        return this.movements.count { it == true }
-    }
-
+class Car(val name: String) {
     init {
-        require(name.length < CAR_NAME_LENGTH_BY_RULE) { "차의 이름 길이는 $CAR_NAME_LENGTH_BY_RULE 글자를 넘으면 안됩니다" }
+        require(name.length < CAR_NAME_LENGTH_BY_RULE) {
+            "입력받은 이름: $name, 차의 이름 길이는 $CAR_NAME_LENGTH_BY_RULE 글자를 넘으면 안됩니다"
+        }
+    }
+
+    fun move(condition: Int): Boolean {
+        return condition >= THRESHOLD
     }
 
     companion object {

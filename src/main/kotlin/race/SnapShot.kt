@@ -1,3 +1,3 @@
 package race
 
-data class SnapShot(val round: Int, val movedCars: List<Car>)
+data class SnapShot(val round: Int, val carName: String, val isMovement: Boolean)

@@ -1,6 +1,6 @@
 package race.view
 
-class Input {
+object Input {
 
     fun getRaceCount(message: String): Int {
         println(message)
