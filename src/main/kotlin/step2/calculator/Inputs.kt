@@ -11,12 +11,12 @@ class Inputs(
     private var numbersPosition: Int = 0
     private var operationsPosition: Int = 0
 
-    val hasNextNumberPair: Boolean
+    val hasNextNumber: Boolean
         get() {
-            return numbers.size < numbersPosition
+            return numbers.size > numbersPosition
         }
 
-    val nextNumberP: Number
+    val nextNumber: Number
         get() {
             val result = numbers[numbersPosition]
             numbersPosition += 1
@@ -26,7 +26,7 @@ class Inputs(
 
     val hasNextOperation: Boolean
         get() {
-            return operations.size < operationsPosition
+            return operations.size > operationsPosition
         }
 
     val nextOperation: Operation
