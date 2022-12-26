@@ -6,8 +6,37 @@ import step2.calculator.vo.Operation
 
 class Inputs(
     private val numbers: List<Number>,
-    private val operations: List<Operation>
+    private val operations: List<Operation>,
 ) {
+    private var numbersPosition: Int = 0
+    private var operationsPosition: Int = 0
+
+    val hasNextNumberPair: Boolean
+        get() {
+            return numbers.size < numbersPosition
+        }
+
+    val nextNumberP: Number
+        get() {
+            val result = numbers[numbersPosition]
+            numbersPosition += 1
+
+            return result
+        }
+
+    val hasNextOperation: Boolean
+        get() {
+            return operations.size < operationsPosition
+        }
+
+    val nextOperation: Operation
+        get() {
+            val result = operations[operationsPosition]
+            operationsPosition += 1
+
+            return result
+        }
+
     companion object
 }
 
