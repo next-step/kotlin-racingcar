@@ -9,6 +9,7 @@ fun main() {
     val carAmount = InputView.carAmountInput()
     val trial = InputView.trialInput()
     val game = Game(carAmount, trial)
+
     game.run(RandomNumberGenerator())
 
     OutputView.printResult(game.results)
