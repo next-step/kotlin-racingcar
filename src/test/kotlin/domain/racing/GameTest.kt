@@ -1,6 +1,7 @@
 package domain.racing
 
 import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
@@ -16,7 +17,7 @@ class GameTest {
     }
 
     @Test
-    fun `시도 횟수가 1개 미만이면 에러가 발생한다`() {
+    fun `시도 횟수가 1번 미만이면 에러가 발생한다`() {
         Assertions.assertThatThrownBy { Game(1, 0) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageContaining("시도 횟수는 1번 이상이여야 합니다.")
@@ -36,7 +37,7 @@ class GameTest {
         val result = game.results
 
         result.forEach {
-            it.values.forEach { Assertions.assertThat(it).isEqualTo("-") }
+            it.values.forEach { assertThat(it).isEqualTo("-") }
         }
     }
 
@@ -54,7 +55,7 @@ class GameTest {
         val result = game.results
 
         result.forEach {
-            it.values.forEach { Assertions.assertThat(it).isEqualTo("") }
+            it.values.forEach { assertThat(it).isEqualTo("") }
         }
     }
 }
