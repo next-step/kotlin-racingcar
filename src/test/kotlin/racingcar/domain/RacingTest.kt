@@ -2,26 +2,26 @@ package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.ValueSource
+import org.junit.jupiter.api.Test
+import racingcar.entity.Car
 
 class RacingTest {
     private val racing = Racing()
 
-    @DisplayName(value = "들어온 숫자만큼 car를 움직인다")
-    @ParameterizedTest
-    @ValueSource(ints = [1, 2, 3, 4, 5])
-    fun moveCar(num: Int) {
-        val car = racing.makeCars(1)[0]
-        (1..num).forEach { _ -> racing.move(car) }
-        assertThat(car.distance).isEqualTo("-".repeat(num + 1))
+    @DisplayName(value = "우승자를 찾는다")
+    @Test
+    fun findWiningCar() {
+        val car1 = Car("car1", "---")
+        val car2 = Car("car2", "--")
+        val winingCar = racing.findWinner(listOf(car1, car2))
+        assertThat(winingCar.map { it.name }).isEqualTo(listOf(car1.name))
     }
 
-    @DisplayName(value = "들어온 숫자만큼 car를 만든다")
-    @ParameterizedTest
-    @ValueSource(ints = [1, 2, 3, 4, 5])
-    fun makeCar(num: Int) {
-        val cars = racing.makeCars(num)
-        assertThat(cars.size).isEqualTo(num)
+    @DisplayName(value = "들어온 이름들로 cars를 만든다")
+    @Test
+    fun makeCars() {
+        val carsName = listOf("name1", "name2", "name3", "name4", "name5")
+        val cars = racing.makeCars(carsName)
+        assertThat(cars.map { it.name }).isEqualTo(carsName)
     }
 }

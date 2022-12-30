@@ -42,4 +42,29 @@ class InputValidationTest {
     fun inputIsDigit(input: String) {
         Assertions.assertThat(inputValidation.validate(input)).isEqualTo(input.toInt())
     }
+
+    @ParameterizedTest
+    @DisplayName("input에 빈값이 들어오면 에러를 낸다")
+    @ValueSource(strings = ["", "  "])
+    fun namedCarIsNotAllowedEmpty(input: String?) {
+        Assertions.assertThatThrownBy {
+            inputValidation.namedCarValidation(input)
+        }.isInstanceOf(ExceptionCode.NotAllowNullOrBlank::class.java)
+    }
+
+    @ParameterizedTest
+    @DisplayName("input에 , 구분자가 없으면 에러를 낸다")
+    @ValueSource(strings = ["1;2;3;4", "123451234", "1234512345"])
+    fun namedCarIsNotFindSeparator(input: String) {
+        Assertions.assertThatThrownBy {
+            inputValidation.namedCarValidation(input)
+        }.isInstanceOf(ExceptionCode.NotFindSeparator::class.java)
+    }
+
+    @ParameterizedTest
+    @DisplayName("input가 , 구분자로 split한다")
+    @ValueSource(strings = ["test,test1,test2", "test3,test4,test5"])
+    fun namedCarStringToDigit(input: String) {
+        Assertions.assertThat(inputValidation.namedCarValidation(input)).isEqualTo(input.split(","))
+    }
 }
