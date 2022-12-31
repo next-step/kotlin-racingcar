@@ -13,6 +13,10 @@ enum class Operator(private val symbol: String, private val calculate: BinaryOpe
         number1 / number2
     });
 
+    fun calculate(number1: Int, number2: Int): Int {
+        return this.calculate.apply(number1, number2)
+    }
+
     companion object {
         private val OPERRATORS = values().associateBy { it.symbol }
 
@@ -20,9 +24,5 @@ enum class Operator(private val symbol: String, private val calculate: BinaryOpe
         fun of(symbol: String): Operator {
             return OPERRATORS[symbol] ?: throw IllegalArgumentException("잘못된 연산자 입니다.")
         }
-    }
-
-    fun calculate(number1: Int, number2: Int): Int {
-        return this.calculate.apply(number1, number2)
     }
 }

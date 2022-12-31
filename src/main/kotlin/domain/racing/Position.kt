@@ -2,16 +2,6 @@ package domain.racing
 
 class Position(var position: Int) {
 
-    companion object {
-
-        private const val ZERO_POSITION = 0
-
-        @JvmStatic
-        fun create(): Position {
-            return Position(ZERO_POSITION)
-        }
-    }
-
     fun move() {
         position++
     }
@@ -29,5 +19,14 @@ class Position(var position: Int) {
 
     override fun hashCode(): Int {
         return position
+    }
+
+    companion object {
+        private const val ZERO_POSITION = 0
+
+        @JvmStatic
+        fun create(): Position {
+            return Position(ZERO_POSITION)
+        }
     }
 }
