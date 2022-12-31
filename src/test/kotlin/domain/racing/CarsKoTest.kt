@@ -1,6 +1,7 @@
 package domain.racing
 
 import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 
 class CarsKoTest : DescribeSpec({
@@ -32,6 +33,20 @@ class CarsKoTest : DescribeSpec({
                         it shouldBe ""
                     }
                 }
+            }
+        }
+
+        context("toWinners Test") {
+            it("가장 많이 움직인 차로 우승자를 뽑는다") {
+                val car1 = Car(Name("pobi"), Position(1))
+                val car2 = Car(Name("jason"), Position(2))
+                val car3 = Car(Name("marco"), Position(3))
+                val cars = Cars(listOf(car1, car2, car3))
+
+                val winners = cars.toWinners()
+
+                winners.winners shouldHaveSize 1
+                winners.winners.first().getName() shouldBe "marco"
             }
         }
     }

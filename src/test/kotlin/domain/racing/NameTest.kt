@@ -5,7 +5,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class NameTest {
-
     @ParameterizedTest
     @ValueSource(strings = ["", "  "])
     fun `자동차 이름은 빈값일 수 없다`(name: String) {
