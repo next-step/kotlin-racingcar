@@ -5,7 +5,6 @@ import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.collections.shouldContainExactly
-import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import io.kotest.matchers.shouldBe
 
 class RacingCarGameTest : DescribeSpec({
@@ -31,8 +30,8 @@ class RacingCarGameTest : DescribeSpec({
         }
 
         describe("start game success") {
-            it("if number of car : 1, number of trial : 2") {
-                val result = RacingCarGame(listOf("test"), 2, FixedNumberProvider(9)).startGame()
+            it("if number of car : 1, number of trial : 2 and always move on each trial") {
+                val result = RacingCarGame(listOf("test"), 2, AlwaysMoveConditionProvider()).startGame()
 
                 assertSoftly(result) {
                     it.snapShots.size shouldBe 2
@@ -40,19 +39,16 @@ class RacingCarGameTest : DescribeSpec({
                         RacingCarGameSnapShot(listOf(CarSnapShot("test", 1))),
                         RacingCarGameSnapShot(listOf(CarSnapShot("test", 2)))
                     )
-                    it.winnerOfGame shouldContainExactly listOf("test")
                 }
             }
 
-            it("if number of car : 2, number of trial : 1") {
-                val result = RacingCarGame(listOf("test1", "test2"), 1, FixedNumberProvider(1)).startGame()
+            it("if number of car : 2, number of trial : 1 and never move") {
+                val result = RacingCarGame(listOf("test1", "test2"), 1, NeverMoveConditionProvider()).startGame()
                 assertSoftly(result) {
                     it.snapShots.size shouldBe 1
                     it.snapShots.shouldContainExactly(
                         RacingCarGameSnapShot(listOf(CarSnapShot("test1", 0), CarSnapShot("test2", 0)))
                     )
-
-                    it.winnerOfGame shouldContainExactlyInAnyOrder listOf("test1", "test2")
                 }
             }
         }

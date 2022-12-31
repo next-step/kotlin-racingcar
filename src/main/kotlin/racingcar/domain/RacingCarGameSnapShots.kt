@@ -1,6 +1,6 @@
 package racingcar.domain
 
-data class RacingCarGameSnapShots(val snapShots: List<RacingCarGameSnapShot>, val winnerOfGame: List<String>) {
+data class RacingCarGameSnapShots(val snapShots: List<RacingCarGameSnapShot>, val winnerOfGame: List<Car>) {
 
     init {
         require(snapShots.isNotEmpty())

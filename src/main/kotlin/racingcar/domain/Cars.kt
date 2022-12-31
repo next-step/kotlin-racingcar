@@ -15,8 +15,8 @@ class Cars(private val cars: List<Car>) {
         )
     }
 
-    fun getWinnersOfGame(): List<String> {
-        val winnerPosition = cars.maxOf { it.currentPosition }
-        return cars.filter { it.currentPosition == winnerPosition }.map { it.name }
+    fun getWinnersOfGame(): List<Car> {
+        val winner = cars.sorted().first()
+        return cars.filter { winner.compareTo(it) == 0 }
     }
 }

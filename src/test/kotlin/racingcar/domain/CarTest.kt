@@ -1,5 +1,6 @@
 package racingcar.domain
 
+import io.kotest.assertions.assertSoftly
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
@@ -35,6 +36,12 @@ internal class CarTest : StringSpec({
             }
     }
 
+    "Car moves by 1 from current position If condition is equal or greater than 4" {
+        val car = Car("test", 1)
+        car.move(4)
+        car.currentPosition shouldBe 2
+    }
+
     "Car doesn't move If condition is smaller than 4" {
         listOf(0, 1, 2, 3)
             .forEach {
@@ -49,5 +56,13 @@ internal class CarTest : StringSpec({
                 val car = Car("test")
                 shouldThrow<IllegalArgumentException> { car.move(it) }
             }
+    }
+    "Car is comparable" {
+        val car = Car("test", 2)
+        assertSoftly {
+            car.compareTo(Car("other", 1)) shouldBe -1
+            car.compareTo(Car("other", 2)) shouldBe 0
+            car.compareTo(Car("other", 3)) shouldBe 1
+        }
     }
 })
