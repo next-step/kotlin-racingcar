@@ -1,7 +1,6 @@
 package util.racing.generator
 
-@FunctionalInterface
-interface NumberGenerator {
+fun interface NumberGenerator {
 
     fun generate(): Int
 }

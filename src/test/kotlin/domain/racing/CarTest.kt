@@ -11,7 +11,7 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(ints = [4, 5, 6, 7, 8, 9])
     fun `4이상이 들어오면 차는 움직인다`(moveNumber: Int) {
-        val car = Car()
+        val car = Car(Name("marco"))
 
         car.move(moveNumber)
 
@@ -21,7 +21,7 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3])
     fun `4미만이 들어오면 차는 안움직인다`(moveNumber: Int) {
-        val car = Car()
+        val car = Car(Name("marco"))
 
         car.move(moveNumber)
 

@@ -2,33 +2,39 @@ package domain.racing
 
 import util.racing.generator.NumberGenerator
 
-class Game(carAmount: Int, private val trial: Int) {
+class Game(names: List<Name>, private val trial: Int) {
     private val cars: Cars
-    val results: MutableList<Map<Car, String>>
+    private val results: MutableList<Map<Car, String>>
 
     init {
-        validateCarAmount(carAmount)
+        validateNames(names)
         validateTrial(trial)
-        this.cars = Cars.of(carAmount)
+        this.cars = Cars.of(names)
         this.results = mutableListOf()
     }
 
-    fun run(numberGenerator: NumberGenerator) {
-        for (it in 1..trial) {
+    fun run(numberGenerator: NumberGenerator): Winners {
+        repeat(trial) {
             cars.move(numberGenerator)
             results.add(cars.toResult())
         }
+
+        return cars.toWinners()
     }
 
-    private fun validateCarAmount(carAmount: Int) {
-        if (carAmount < 1) {
-            throw IllegalArgumentException("차 갯수는 1개 이상이여야 합니다.")
-        }
+    fun getWinnerNames(): List<String> {
+        return cars.toWinners().winners.map { it.getName() }
+    }
+
+    fun getResult(): List<Map<Car, String>> {
+        return results
+    }
+
+    private fun validateNames(names: List<Name>) {
+        require(names.isNotEmpty()) { throw IllegalArgumentException("차 갯수는 1개 이상이여야 합니다.") }
     }
 
     private fun validateTrial(trial: Int) {
-        if (trial < 1) {
-            throw IllegalArgumentException("시도 횟수는 1번 이상이여야 합니다.")
-        }
+        require(trial > 0) { throw IllegalArgumentException("시도 횟수는 1번 이상이여야 합니다.") }
     }
 }
