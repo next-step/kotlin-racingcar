@@ -8,9 +8,17 @@ class OutputView private constructor() {
             print("실행결과")
 
             results.forEach { result ->
-                result.values.forEach { it -> println(it) }
+                result.forEach { (key, value) ->
+                    val name = key.getName()
+                    println("$name : $value")
+                }
                 println()
             }
+        }
+
+        fun printWinners(winners: List<String>) {
+            val winnerNames = winners.joinToString(",")
+            println("$winnerNames 가 최종 우승했습니다.")
         }
     }
 }

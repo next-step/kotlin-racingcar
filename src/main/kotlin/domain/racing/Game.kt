@@ -13,11 +13,17 @@ class Game(names: List<Name>, private val trial: Int) {
         this.results = mutableListOf()
     }
 
-    fun run(numberGenerator: NumberGenerator) {
+    fun run(numberGenerator: NumberGenerator): Winners {
         repeat(trial) {
             cars.move(numberGenerator)
             results.add(cars.toResult())
         }
+
+        return cars.toWinners()
+    }
+
+    fun getWinnerNames(): List<String> {
+        return cars.toWinners().winners.map { it.getName() }
     }
 
     private fun validateNames(names: List<Name>) {

@@ -14,6 +14,10 @@ class Car(private val name: Name, private var position: Position) {
         return position.position
     }
 
+    fun getName(): String {
+        return name.name
+    }
+
     companion object {
         private const val MIN_MOVE_NUMBER = 4
     }

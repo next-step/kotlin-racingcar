@@ -14,4 +14,5 @@ fun main() {
     game.run(RandomNumberGenerator())
 
     OutputView.printResult(game.results)
+    OutputView.printWinners(game.getWinnerNames())
 }
