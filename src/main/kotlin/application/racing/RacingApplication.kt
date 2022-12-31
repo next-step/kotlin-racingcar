@@ -13,6 +13,6 @@ fun main() {
 
     game.run(RandomNumberGenerator())
 
-    OutputView.printResult(game.results)
+    OutputView.printResult(game.getResult())
     OutputView.printWinners(game.getWinnerNames())
 }

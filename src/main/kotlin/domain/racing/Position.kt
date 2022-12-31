@@ -1,6 +1,6 @@
 package domain.racing
 
-data class Position(var position: Int) {
+data class Position(internal var position: Int) {
 
     fun move() {
         position++
