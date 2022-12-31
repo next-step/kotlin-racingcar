@@ -2,8 +2,6 @@ package domain.racing
 
 import util.racing.converter.PositionSymbolConverter
 import util.racing.generator.NumberGenerator
-import java.util.stream.IntStream
-import kotlin.streams.toList
 
 class Cars(private val cars: List<Car>) {
 
@@ -16,9 +14,9 @@ class Cars(private val cars: List<Car>) {
     }
 
     companion object {
-        fun of(carAmount: Int): Cars {
-            val cars = IntStream.range(0, carAmount)
-                .mapToObj { Car() }
+        fun of(names: List<Name>): Cars {
+            val cars = names
+                .map { Car(it) }
                 .toList()
 
             return Cars(cars)

@@ -8,7 +8,7 @@ class CarKoTest : DescribeSpec({
         context("run test") {
             listOf(4, 5, 6, 7, 8, 9).forEach {
                 it("4이상이면 차들이 움직인다") {
-                    val car = Car()
+                    val car = Car(Name("marco"))
 
                     car.move(it)
                     car.getPosition() shouldBe 1
@@ -16,7 +16,7 @@ class CarKoTest : DescribeSpec({
             }
 
             listOf(0, 1, 2, 3).forEach {
-                val car = Car()
+                val car = Car(Name("marco"))
 
                 car.move(it)
                 car.getPosition() shouldBe 0

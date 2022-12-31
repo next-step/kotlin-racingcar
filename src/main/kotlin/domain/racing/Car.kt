@@ -1,8 +1,8 @@
 package domain.racing
 
-class Car(private var position: Position) {
+class Car(private val name: Name, private var position: Position) {
 
-    constructor() : this(Position.create())
+    constructor(name: Name) : this(name, Position.create())
 
     fun move(moveNumber: Int) {
         if (moveNumber >= MIN_MOVE_NUMBER) {
