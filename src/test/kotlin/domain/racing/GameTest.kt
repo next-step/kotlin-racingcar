@@ -1,7 +1,7 @@
 package domain.racing
 
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
@@ -11,14 +11,14 @@ class GameTest {
 
     @Test
     fun `차 갯수가 1개 미만이면 에러가 발생한다`() {
-        Assertions.assertThatThrownBy { Game(0, 1) }
+        assertThatThrownBy { Game(0, 1) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageContaining("차 갯수는 1개 이상이여야 합니다.")
     }
 
     @Test
     fun `시도 횟수가 1번 미만이면 에러가 발생한다`() {
-        Assertions.assertThatThrownBy { Game(1, 0) }
+        assertThatThrownBy { Game(1, 0) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageContaining("시도 횟수는 1번 이상이여야 합니다.")
     }
