@@ -1,9 +1,10 @@
 package domain.racing
 
-data class Position(internal var position: Int) {
+@JvmInline
+value class Position(val position: Int) {
 
-    fun move() {
-        position++
+    fun move(): Position {
+        return Position(position + 1)
     }
 
     companion object {

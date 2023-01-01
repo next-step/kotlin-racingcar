@@ -6,7 +6,7 @@ class Car(private val name: Name, private var position: Position) {
 
     fun move(moveNumber: Int) {
         if (moveNumber >= MIN_MOVE_NUMBER) {
-            position.move()
+            position = position.move()
         }
     }
 

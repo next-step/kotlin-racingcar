@@ -7,10 +7,9 @@ class PositionKoTest : DescribeSpec({
     describe("method test") {
         context("move method") {
             it("위치가 이동된다.") {
-                val postion = Position.create()
-                postion.move()
+                val position = Position.create()
 
-                postion.position shouldBe 1
+                position.move().position shouldBe 1
             }
         }
     }
