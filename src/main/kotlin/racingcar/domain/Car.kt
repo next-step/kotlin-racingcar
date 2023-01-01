@@ -1,12 +1,16 @@
 package racingcar.domain
 
-internal class Car(val name: String = DEFAULT_NAME, currentPosition: Int = 0) {
+class Car(val name: String = DEFAULT_NAME, currentPosition: Int = 0) : Comparable<Car> {
     var currentPosition: Int = currentPosition
         private set
 
     init {
         require(name.length <= MAX_NAME_LENGTH)
         require(currentPosition >= MIN_POSITION)
+    }
+
+    override fun compareTo(other: Car): Int {
+        return -1 * this.currentPosition.compareTo(other.currentPosition)
     }
 
     fun move(condition: Int) {
