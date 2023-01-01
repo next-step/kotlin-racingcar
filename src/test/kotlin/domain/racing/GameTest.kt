@@ -28,7 +28,7 @@ class GameTest {
 
         game.run { moveNumber }
 
-        val result = game.getResult()
+        val result = game.results
 
         result.forEach {
             it.values.forEach { assertThat(it).isEqualTo("-") }
@@ -43,7 +43,7 @@ class GameTest {
 
         game.run { moveNumber }
 
-        val result = game.getResult()
+        val result = game.results
 
         result.forEach {
             it.values.forEach { assertThat(it).isEqualTo("") }

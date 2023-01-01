@@ -4,19 +4,21 @@ import util.racing.generator.NumberGenerator
 
 class Game(names: List<Name>, private val trial: Int) {
     private val cars: Cars
-    private val results: MutableList<Map<Car, String>>
+    private var _results: MutableList<Map<Car, String>>
+    val results: List<Map<Car, String>>
+        get() = _results
 
     init {
         validateNames(names)
         validateTrial(trial)
         this.cars = Cars.of(names)
-        this.results = mutableListOf()
+        this._results = mutableListOf()
     }
 
     fun run(numberGenerator: NumberGenerator): Winners {
         repeat(trial) {
             cars.move(numberGenerator)
-            results.add(cars.toResult())
+            _results.add(cars.toResult())
         }
 
         return cars.toWinners()
@@ -24,10 +26,6 @@ class Game(names: List<Name>, private val trial: Int) {
 
     fun getWinnerNames(): List<String> {
         return cars.toWinners().winners.map { it.getName() }
-    }
-
-    fun getResult(): List<Map<Car, String>> {
-        return results
     }
 
     private fun validateNames(names: List<Name>) {

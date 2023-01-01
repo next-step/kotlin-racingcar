@@ -35,7 +35,7 @@ class GameKoTest : DescribeSpec({
 
                     game.run { it }
 
-                    val result = game.getResult()
+                    val result = game.results
 
                     result.forEach {
                         it.values.forEach {
@@ -52,7 +52,7 @@ class GameKoTest : DescribeSpec({
 
                     game.run { it }
 
-                    val result = game.getResult()
+                    val result = game.results
 
                     result.forEach {
                         it.values.forEach {
