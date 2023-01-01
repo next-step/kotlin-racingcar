@@ -23,7 +23,9 @@ object ResultView {
     }
 
     private fun printRoundCarPositions(cars: Cars) {
-        println(cars.toString())
+        cars.getPositions().forEach {
+            println("${it.key}: ${"-".repeat(it.value)}")
+        }
     }
 
     private fun printWinners(winners: List<Car>) {
