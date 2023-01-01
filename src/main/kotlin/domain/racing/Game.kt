@@ -31,10 +31,10 @@ class Game(names: List<Name>, private val trial: Int) {
     }
 
     private fun validateNames(names: List<Name>) {
-        require(names.isNotEmpty()) { throw IllegalArgumentException("차 갯수는 1개 이상이여야 합니다.") }
+        require(names.isNotEmpty()) { "차 갯수는 1개 이상이여야 합니다." }
     }
 
     private fun validateTrial(trial: Int) {
-        require(trial > 0) { throw IllegalArgumentException("시도 횟수는 1번 이상이여야 합니다.") }
+        require(trial > 0) { "시도 횟수는 1번 이상이여야 합니다." }
     }
 }
