@@ -14,10 +14,7 @@ class Cars(private val cars: List<Car>) {
     }
 
     fun toWinners(): Winners {
-        val maxPosition = cars.maxOfOrNull { it.getPosition() }
-        val winners = cars.filter { it.getPosition() == maxPosition }
-
-        return Winners(winners)
+        return Winners.of(cars)
     }
 
     companion object {
