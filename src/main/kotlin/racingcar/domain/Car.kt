@@ -11,7 +11,7 @@ data class Car(
     }
 
     fun move(movableStrategy: MovableStrategy): Car {
-        if (movableStrategy.move()) position++
+        if (movableStrategy.isMovable()) position++
 
         return this
     }

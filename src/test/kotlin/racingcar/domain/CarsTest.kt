@@ -4,8 +4,6 @@ import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.equality.shouldNotBeEqualToComparingFields
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldNotBeSameInstanceAs
-import racingcar.domain.strategy.CanMovableStrategyMock
-import racingcar.domain.strategy.CanNotMovableStrategyMock
 
 class CarsTest : DescribeSpec({
     val listOfCars = List(2) { Car("자동차$it", it) }
@@ -15,7 +13,7 @@ class CarsTest : DescribeSpec({
     describe("자동차 일급 컬렉션 테스트") {
         it("전진조건을 만족하는 경우 자동차들은 이동할 수 있다.") {
             val carPositionsAfterMove = cars
-                .move(CanMovableStrategyMock())
+                .move(movableStrategy = { true })
                 .map { it.position }
 
             carPositions shouldNotBeEqualToComparingFields carPositionsAfterMove
@@ -23,7 +21,7 @@ class CarsTest : DescribeSpec({
 
         it("전진조건을 만족하지 못하는 경우 자동차들은 이동할 수 없다.") {
             val carPositionsAfterMove = cars
-                .move(CanNotMovableStrategyMock())
+                .move(movableStrategy = { false })
                 .map { it.position }
 
             carPositions shouldNotBeEqualToComparingFields carPositionsAfterMove
