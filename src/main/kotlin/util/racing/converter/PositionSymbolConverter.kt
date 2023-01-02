@@ -1,12 +1,9 @@
 package util.racing.converter
 
-class PositionSymbolConverter private constructor() {
+object PositionSymbolConverter {
+    private const val SYMBOL = "-"
 
-    companion object {
-        private const val SYMBOL = "-"
-
-        fun converter(position: Int): String {
-            return SYMBOL.repeat(position)
-        }
+    fun converter(position: Int): String {
+        return SYMBOL.repeat(position)
     }
 }

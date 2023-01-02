@@ -4,19 +4,21 @@ import util.racing.generator.NumberGenerator
 
 class Game(names: List<Name>, private val trial: Int) {
     private val cars: Cars
-    private val results: MutableList<Map<Car, String>>
+    private var _results: MutableList<Map<Car, String>>
+    val results: List<Map<Car, String>>
+        get() = _results
 
     init {
         validateNames(names)
         validateTrial(trial)
         this.cars = Cars.of(names)
-        this.results = mutableListOf()
+        this._results = mutableListOf()
     }
 
     fun run(numberGenerator: NumberGenerator): Winners {
         repeat(trial) {
             cars.move(numberGenerator)
-            results.add(cars.toResult())
+            _results.add(cars.toResult())
         }
 
         return cars.toWinners()
@@ -26,15 +28,11 @@ class Game(names: List<Name>, private val trial: Int) {
         return cars.toWinners().winners.map { it.getName() }
     }
 
-    fun getResult(): List<Map<Car, String>> {
-        return results
-    }
-
     private fun validateNames(names: List<Name>) {
-        require(names.isNotEmpty()) { throw IllegalArgumentException("차 갯수는 1개 이상이여야 합니다.") }
+        require(names.isNotEmpty()) { "차 갯수는 1개 이상이여야 합니다." }
     }
 
     private fun validateTrial(trial: Int) {
-        require(trial > 0) { throw IllegalArgumentException("시도 횟수는 1번 이상이여야 합니다.") }
+        require(trial > 0) { "시도 횟수는 1번 이상이여야 합니다." }
     }
 }
