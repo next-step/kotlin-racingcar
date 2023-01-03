@@ -1,7 +1,7 @@
 package racingcar.domain.strategy
 
 class RandomMovableStrategy : MovableStrategy {
-    override fun move(): Boolean {
+    override fun isMovable(): Boolean {
         return RANDOM_NUMBER_RANGE.random() >= MOVABLE_CONDITION_NUMBER
     }
 

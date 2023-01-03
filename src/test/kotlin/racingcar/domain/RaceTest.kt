@@ -3,7 +3,6 @@ package racingcar.domain
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import racingcar.domain.strategy.CanMovableStrategyMock
 
 class RaceTest : BehaviorSpec({
     given("레이싱 자동차 게임") {
@@ -17,7 +16,7 @@ class RaceTest : BehaviorSpec({
                 val race = Race(cars, totalRound)
 
                 then("경기 결과를 도출할 수 있다.") {
-                    val raceResult = race.run(CanMovableStrategyMock())
+                    val raceResult = race.run { true }
                     raceResult.roundHistories.size shouldBe 2
 
                     val finalWinners = raceResult.getFinalRoundWinners()
