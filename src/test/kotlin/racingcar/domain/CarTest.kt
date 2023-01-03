@@ -15,14 +15,14 @@ class CarTest : DescribeSpec({
         it("전진 조건을 만족하면 이동한다.") {
             val car = Car("pobi")
 
-            car.move(movableStrategy = { true })
+            car.move { true }
             car.position shouldBeExactly 1
         }
 
         it("입력된 숫자가 4 미만이면 멈춰있는다.") {
             val car = Car("pobi")
 
-            car.move(movableStrategy = { false })
+            car.move { false }
             car.position shouldBeExactly 0
         }
     }

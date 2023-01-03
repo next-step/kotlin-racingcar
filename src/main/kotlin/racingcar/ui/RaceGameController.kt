@@ -3,6 +3,7 @@ package racingcar.ui
 import racingcar.domain.Car
 import racingcar.domain.Cars
 import racingcar.domain.Race
+import racingcar.domain.strategy.RandomMovableStrategy
 import racingcar.ui.view.getCarNames
 import racingcar.ui.view.getTotalRound
 import racingcar.ui.view.printRaceResult
@@ -10,9 +11,7 @@ import racingcar.ui.view.printRaceResult
 object RaceGameController {
     fun play() {
         val race = readyForRace()
-        val raceResult = race.run(movableStrategy = {
-            RANDOM_NUMBER_RANGE.random() >= MOVABLE_CONDITION_NUMBER
-        })
+        val raceResult = race.run(RandomMovableStrategy())
         val raceWinners = raceResult.getFinalRoundWinners()
 
         printRaceResult(raceResult, raceWinners)

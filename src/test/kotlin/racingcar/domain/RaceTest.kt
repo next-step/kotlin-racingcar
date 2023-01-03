@@ -16,7 +16,7 @@ class RaceTest : BehaviorSpec({
                 val race = Race(cars, totalRound)
 
                 then("경기 결과를 도출할 수 있다.") {
-                    val raceResult = race.run(movableStrategy = { true })
+                    val raceResult = race.run { true }
                     raceResult.roundHistories.size shouldBe 2
 
                     val finalWinners = raceResult.getFinalRoundWinners()

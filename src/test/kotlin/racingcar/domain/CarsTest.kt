@@ -13,7 +13,7 @@ class CarsTest : DescribeSpec({
     describe("자동차 일급 컬렉션 테스트") {
         it("전진조건을 만족하는 경우 자동차들은 이동할 수 있다.") {
             val carPositionsAfterMove = cars
-                .move(movableStrategy = { true })
+                .move { true }
                 .map { it.position }
 
             carPositions shouldNotBeEqualToComparingFields carPositionsAfterMove
@@ -21,7 +21,7 @@ class CarsTest : DescribeSpec({
 
         it("전진조건을 만족하지 못하는 경우 자동차들은 이동할 수 없다.") {
             val carPositionsAfterMove = cars
-                .move(movableStrategy = { false })
+                .move { false }
                 .map { it.position }
 
             carPositions shouldNotBeEqualToComparingFields carPositionsAfterMove
