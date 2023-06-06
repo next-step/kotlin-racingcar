@@ -11,4 +11,11 @@ class CalculatorTest {
         val actual = calculator.add(1, 2)
         assertThat(actual).isEqualTo(3)
     }
+
+    @Test
+    fun `빼기`() {
+        val calculator = Calculator()
+        val actual = calculator.sub(1, 2)
+        assertThat(actual).isEqualTo(-1)
+    }
 }
