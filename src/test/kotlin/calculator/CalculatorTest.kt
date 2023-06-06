@@ -18,4 +18,11 @@ class CalculatorTest {
         val actual = calculator.sub(1, 2)
         assertThat(actual).isEqualTo(-1)
     }
+
+    @Test
+    fun `곱하기`() {
+        val calculator = Calculator()
+        val actual = calculator.multiply(2, 4)
+        assertThat(actual).isEqualTo(8)
+    }
 }
