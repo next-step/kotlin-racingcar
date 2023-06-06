@@ -7,13 +7,7 @@ fun calculate(input: String): Int {
     val values = input.split(" ")
     validateCalculateFormat(values)
     val number = values.filterIndexed { index, _ -> index % 2 == 1 }
-        .map {
-            try {
-                it.toInt()
-            } catch (_: NumberFormatException) {
-                throw IllegalArgumentException("수식에 숫자가 아닌 값이 입력될 수 없다.")
-            }
-        }
+        .map { parseToNumber(it) }
     return 0
 }
 
@@ -22,3 +16,10 @@ private fun validateCalculateFormat(values: List<String>) {
         throw IllegalArgumentException("올바른 형태로 수식을 입력하여야 한다.")
     }
 }
+
+private fun parseToNumber(it: String) =
+    try {
+        it.toInt()
+    } catch (_: NumberFormatException) {
+        throw IllegalArgumentException("수식에 숫자가 아닌 값이 입력될 수 없다.")
+    }
