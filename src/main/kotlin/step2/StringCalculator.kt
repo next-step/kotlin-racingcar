@@ -1,5 +1,7 @@
-import Operator.Companion.getOperator
-import Operator.Companion.isOperator
+package step2
+
+import step2.Operator.Companion.getOperator
+import step2.Operator.Companion.isOperator
 import java.lang.NumberFormatException
 
 class StringCalculator {
