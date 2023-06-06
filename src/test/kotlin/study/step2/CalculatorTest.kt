@@ -3,10 +3,8 @@ package study.step2
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import org.junit.jupiter.api.Assertions.*
-import java.lang.IllegalArgumentException
 
-class CalculatorTest: StringSpec({
+class CalculatorTest : StringSpec({
     "2 + 3 = 5" {
         val calculator = Calculator()
         val result = calculator.execute("2 + 3")

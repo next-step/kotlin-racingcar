@@ -9,12 +9,12 @@ class Operator private constructor (val value: String) {
             return Operator(value)
         }
     }
-    fun apply(left: Int, right: Int): Int {
+    fun apply(left: Operand, right: Operand): Int {
         return when (value) {
-            "+" -> left + right
-            "-" -> left - right
-            "*" -> left * right
-            "/" -> left / right
+            "+" -> left.value + right.value
+            "-" -> left.value - right.value
+            "*" -> left.value * right.value
+            "/" -> left.value / right.value
             else -> throw IllegalStateException()
         }
     }
