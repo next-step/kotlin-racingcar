@@ -22,4 +22,12 @@ class CalculatorKtTest {
         val exception = shouldThrowExactly<IllegalArgumentException> { calculate(input) }
         exception.message shouldBe "올바른 형태로 수식을 입력하여야 한다."
     }
+
+    @Test
+    fun `홀수번째에 있는 값은 숫자가 입력되지 않는 경우 예외가 발생한다`() {
+        val input = "a + 2"
+
+        val exception = shouldThrowExactly<IllegalArgumentException> { calculate(input) }
+        exception.message shouldBe "수식에 숫자가 아닌 값이 입력될 수 없다."
+    }
 }
