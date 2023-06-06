@@ -25,4 +25,11 @@ class CalculatorTest {
         val actual = calculator.multiply(2, 4)
         assertThat(actual).isEqualTo(8)
     }
+
+    @Test
+    fun `나누기`() {
+        val calculator = Calculator()
+        val actual = calculator.divide(4, 2)
+        assertThat(actual).isEqualTo(2)
+    }
 }
