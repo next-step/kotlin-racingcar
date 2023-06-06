@@ -1,0 +1,4 @@
+package study
+
+class PersonTest {
+}
