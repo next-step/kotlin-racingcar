@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm") version "1.6.21"
-    id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
+    kotlin("jvm") version "1.8.10"
+    id("org.jlleitschuh.gradle.ktlint") version "10.3.0"
 }
 
 group = "camp.nextstep.edu"
@@ -18,10 +18,10 @@ dependencies {
 
 tasks {
     compileKotlin {
-        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.jvmTarget = "11"
     }
     compileTestKotlin {
-        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.jvmTarget = "11"
     }
     test {
         useJUnitPlatform()
