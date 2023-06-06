@@ -26,4 +26,11 @@ class PersonTest {
 
         assertThat(person.nickname).isEqualTo("Guest")
     }
+
+    @Test
+    fun `데이터 클래스`() {
+        val person1 = Person(name = "이현재", age = 30, nickname = "hjjae2")
+        val person2 = Person(name = "이현재", age = 30, nickname = "hjjae2")
+        assertThat(person1).isEqualTo(person2)
+    }
 }
