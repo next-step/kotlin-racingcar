@@ -1,5 +1,3 @@
-package me.devyonghee.racingcar
-
 import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.DisplayName
 import io.kotest.core.spec.style.StringSpec
@@ -26,23 +24,21 @@ class PersonTest : StringSpec({
 
     "nullable type 을 명시할 수 있음" {
         // given
-        val yonghee = Person("한용희", null, null)
+        val yonghee = Person("한용희", 20, null)
         // when & then
         assertSoftly(yonghee) {
             name shouldBe "한용희"
-            age.shouldBeNull()
+            age shouldBe 20
             nickname.shouldBeNull()
         }
     }
 
     "기본 인자로 메소드를 호출할 수 있음" {
         // given
-        val yonghee = Person("한용희")
+        val yonghee = Person(name = "한용희", age = 20)
         // when & then
         assertSoftly(yonghee) {
-            name shouldBe "한용희"
-            age.shouldBeNull()
-            nickname.shouldBeNull()
+            nickname shouldBe "Guest"
         }
     }
 
