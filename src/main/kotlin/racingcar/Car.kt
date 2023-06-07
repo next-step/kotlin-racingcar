@@ -1,5 +1,5 @@
 package racingcar
 
 class Car(
-    val position: Int
+    val position: Int = 0
 )

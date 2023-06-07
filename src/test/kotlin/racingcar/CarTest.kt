@@ -10,4 +10,10 @@ class CarTest {
         val actual = Car(1)
         actual.position shouldBe 1
     }
+
+    @Test
+    fun `자동차의 초기 위치는 0이다`() {
+        val actual = Car()
+        actual.position shouldBe 0
+    }
 }
