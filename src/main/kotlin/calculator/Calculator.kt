@@ -1,8 +1,10 @@
 package calculator
 
+private const val DELIMITER = " "
+
 fun calculate(input: String): Int {
     require(input.isNotBlank()) { "공백은 계산할 수 없다." }
-    val values = input.split(" ")
+    val values = input.split(DELIMITER)
     require(isOdd(values.size)) { "올바른 형태로 수식을 입력하여야 한다." }
 
     val operands = extractOperands(values)
