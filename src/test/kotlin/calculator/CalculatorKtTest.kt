@@ -78,4 +78,13 @@ class CalculatorKtTest {
 
         actual shouldBe expected
     }
+
+    @Test
+    fun `혼합된 연산을 할 수 있다`() {
+        val input = "2 + 3 * 4 / 2"
+
+        val actual = calculate(input)
+
+        actual shouldBe 10
+    }
 }
