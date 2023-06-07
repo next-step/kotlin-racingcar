@@ -4,6 +4,22 @@ import calculator.dto.ExtractDTO
 
 class StringCalculator {
 
+    fun run(input: String?): Double {
+
+        if (input.isNullOrBlank()) {
+            throw IllegalArgumentException("입력값이 null이거나 빈 공백 문자일 수 없습니다")
+        }
+
+        extractNumbersAndOperators(input)
+
+        val extractResult = extractNumbersAndOperators(input)
+
+        val numbers = extractResult.numbers
+        val operators = extractResult.operators
+
+        return calculate(numbers, operators)
+    }
+
     fun extractNumbersAndOperators(input: String): ExtractDTO {
 
         val expression = input.replace("\\s".toRegex(), "")
