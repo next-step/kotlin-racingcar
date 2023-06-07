@@ -1,6 +1,7 @@
 package step2.domain
 
 import step2.model.ErrorCode
+import kotlin.jvm.Throws
 
 enum class Operator(private val command: String) {
     PLUS(command = "+") {
@@ -31,7 +32,8 @@ enum class Operator(private val command: String) {
         private val COMMAND_MAP = Operator.values()
             .associateBy { it.command }
 
-        fun getOperatorByCommand(command: String): Operator = requireNotNull(value = COMMAND_MAP[command]) {
+        @Throws(IllegalArgumentException::class)
+        fun findByCommand(command: String): Operator = requireNotNull(value = COMMAND_MAP[command]) {
             ErrorCode.INVALID_OPERATOR_CODE.message(command)
         }
     }

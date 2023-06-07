@@ -19,7 +19,7 @@ class OperatorTest : DescribeSpec({
             )
 
             withData(ts = parameterized) {
-                Operator.getOperatorByCommand(command = it.first) shouldBe it.second
+                Operator.findByCommand(command = it.first) shouldBe it.second
             }
         }
 
@@ -27,7 +27,7 @@ class OperatorTest : DescribeSpec({
             val invalidCommand = "없는 커맨드"
 
             val exception = shouldThrow<IllegalArgumentException> {
-                Operator.getOperatorByCommand(command = invalidCommand)
+                Operator.findByCommand(command = invalidCommand)
             }
 
             it(name = "IllegalArgumentException 발생한다.") {
