@@ -12,7 +12,7 @@ class NumberTest {
     @ParameterizedTest
     @ValueSource(strings = ["0", "1", "2", "10", "100", "1000", "10000"])
     fun `유효한 타입의 인자를 전달하면 정상적으로 생성된다`(input: String) {
-        val intInput = input.toInt()
+        val intInput = input.toDouble()
         val numberFromString = Number(input)
         val numberFromInt = Number(intInput)
 

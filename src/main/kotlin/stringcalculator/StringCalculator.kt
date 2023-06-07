@@ -1,31 +1,26 @@
 package stringcalculator
 
-import stringcalculator.extractor.OperandListExtractor
-import stringcalculator.extractor.OperatorListExtractor
-import stringcalculator.splitter.BlankSplitter
+import stringcalculator.extractor.Extractor
+import stringcalculator.splitter.Splitter
 
-object StringCalculator {
+class StringCalculator(
+    private val splitter: Splitter<String>,
+    private val operandListExtractor: Extractor<ArrayDeque<Number>>,
+    private val operatorListExtractor: Extractor<ArrayDeque<Operator>>
+) {
 
     fun calculate(input: String?): Number {
-        val validInput = input?.takeIf { it.isNotBlank() }
-            ?: throw IllegalArgumentException("Invalid Input: $input")
+        require(!input.isNullOrBlank()) { "Invalid Input: $input" }
 
-        val splitInput = BlankSplitter.split(validInput).map { it.trim() }
-        val operands = OperandListExtractor.extract(splitInput)
-        val operators = OperatorListExtractor.extract(splitInput)
+        val splitInput = splitter.split(input).map { it.trim() }
+        val operands = operandListExtractor.extract(splitInput)
+        val operators = operatorListExtractor.extract(splitInput)
+        val summary: Number = operands.removeFirst()
 
-        var summery: Number = operands.removeFirst()
+        require(operands.size == operators.size) { "Invalid Input: $input" }
 
-        require(operands.size == operators.size) {
-            throw IllegalArgumentException("Invalid Input: $validInput")
+        return operands.zip(operators).fold(summary) { acc, (operand, operator) ->
+            operator.operate(acc, operand)
         }
-
-        for (operand in operands) {
-            val operator = operators.removeFirst()
-
-            summery = operator.operate(summery, operand)
-        }
-
-        return summery
     }
 }
