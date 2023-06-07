@@ -18,7 +18,7 @@ class Expressions(private val expressions: List<String>) {
         var result = InputNumber(0)
         var operator = Operator.PLUS
         for ((index, expression) in expressions.withIndex()) {
-            if (isNumber(index)) {
+            if (isNumberIndex(index)) {
                 result = operator.evaluate(result, InputNumber.from(expression))
                 continue
             }
@@ -27,5 +27,5 @@ class Expressions(private val expressions: List<String>) {
         return result.toInt()
     }
 
-    private fun isNumber(index: Int) = index % 2 == 0
+    private fun isNumberIndex(index: Int) = index % 2 == 0
 }
