@@ -4,11 +4,12 @@ import step3.entity.RacingCar
 import step3.view.InputView
 import step3.view.OutputView
 import step3.workflow.Race
+import kotlin.random.Random
 
 class Main(
     private val inputView: InputView = InputView(),
     private val outputView: OutputView = OutputView(LINE_SYMBOL),
-    private val race: Race = Race(),
+    private val race: Race = Race { Random.nextInt(0, 10) > 4 },
 ) {
     operator fun invoke() {
         val raceCondition = inputView()
