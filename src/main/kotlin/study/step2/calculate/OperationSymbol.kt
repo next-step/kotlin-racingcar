@@ -2,7 +2,7 @@ package study.step2.calculate
 
 enum class OperationSymbol(
     val value: String,
-    val operation: (Int, Int) -> Int,
+    val operation: (Int, Int) -> Int
 ) {
     PLUS("+", { result, number -> result + number }),
     MINUS("-", { result, number -> result - number }),
@@ -18,8 +18,8 @@ enum class OperationSymbol(
                 ?: throw IllegalArgumentException("${value}는 사칙연산 기호가 아닙니다.")
         }
 
-        fun initPlusSymbol(): String {
-            return PLUS.value
+        fun initPlusSymbol(): OperationSymbol {
+            return PLUS
         }
     }
 
