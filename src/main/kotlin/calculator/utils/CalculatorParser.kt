@@ -7,6 +7,4 @@ class CalculatorParser {
             return text.split(" ")
         }
     }
-
-
 }
