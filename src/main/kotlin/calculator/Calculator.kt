@@ -6,10 +6,11 @@ fun calculate(input: String): Int {
     }
     val values = input.split(" ")
     validateCalculateFormat(values)
-    val number = values.filterIndexed { index, _ -> index % 2 == 0 }
+    val operands = values.filterIndexed { index, _ -> index % 2 == 0 }
         .map { parseToNumber(it) }
     val operators = values.filterIndexed { index, _ -> index % 2 == 1 }
         .map { parseToOperator(it) }
+
     return 0
 }
 
