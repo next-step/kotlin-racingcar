@@ -17,7 +17,10 @@ class InfixCalculator(private val expression: String?) {
             throw IllegalArgumentException("수식은 공백 일 수 없습니다.")
         }
     }
-    fun parse(): InfixOperation {
+
+    fun calculate() = parseExpression().operate()
+
+    private fun parseExpression(): InfixOperation {
         val expressionWithoutSpace = eraseWhiteSpace(expression)
         validateExpressionFormat(expressionWithoutSpace)
 
