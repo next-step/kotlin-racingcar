@@ -2,6 +2,7 @@ package study
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertAll
 
 class PersonTest {
 
@@ -18,5 +19,16 @@ class PersonTest {
             assertThat(it.age).isEqualTo(39)
             assertThat(it.nickname).isEqualTo("제이든")
         }
+    }
+
+    @Test
+    fun `nullable types`() {
+        val person = Person("김진억", null, null)
+
+        assertAll(
+            { assertThat(person.name).isEqualTo("김진억") },
+            { assertThat(person.age).isNull() },
+            { assertThat(person.nickname).isNull() }
+        )
     }
 }
