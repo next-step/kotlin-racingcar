@@ -21,6 +21,14 @@ class StringCalculatorTest {
     }
 
     @ParameterizedTest
+    @CsvSource("1 + 2 * 2, 6", "2 * 2 + 1, 5")
+    fun `calculate 메서드는 입력 값에 따라 계산 순서가 결정된다`(input: String, expected: Int) {
+        val actual = StringCalculator.calculate(input)
+
+        assertThat(actual).isEqualTo(Number(expected))
+    }
+
+    @ParameterizedTest
     @NullAndEmptySource
     fun `calculate 메서드는 공백이나 Null 인자 전달시 예외를 던진다`(input: String?) {
         assertThrows<IllegalArgumentException> {
