@@ -6,7 +6,6 @@ enum class Operator(val symbol: String, val operate: (Number, Number) -> Number)
     TIMES("*", { source, target -> source * target }),
     DIVIDE("/", { source, target -> source / target });
 
-
     companion object {
         private val store = values().associateBy(Operator::symbol)
 

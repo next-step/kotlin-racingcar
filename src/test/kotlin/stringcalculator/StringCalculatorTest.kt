@@ -38,9 +38,8 @@ class StringCalculatorTest {
     @ParameterizedTest
     @ValueSource(strings = ["1+1", "+ 1 / 3", "1+4/", "3 +- 7", "3 + 8 -", "4 + 4 4"])
     fun `calculate 메서드는 유효하지 않은 인자 전달시 예외를 던진다`(input: String) {
-        assertThrows<java.lang.IllegalArgumentException> {
-            val calculate = StringCalculator.calculate(input)
-            println("input:$input, result:$calculate")
+        assertThrows<IllegalArgumentException> {
+            StringCalculator.calculate(input)
         }
     }
 }

@@ -1,21 +1,22 @@
 package stringcalculator
 
-import java.util.LinkedList
-import java.util.Queue
+import stringcalculator.extractor.OperandListExtractor
+import stringcalculator.extractor.OperatorListExtractor
+import stringcalculator.splitter.BlankSplitter
 
 object StringCalculator {
-    fun calculate(input: String?): Number {
 
-        val splitInput = input?.split(" ")
-            ?.map { it.trim() }
+    fun calculate(input: String?): Number {
+        val validInput = input?.takeIf { it.isNotBlank() }
             ?: throw IllegalArgumentException("Invalid Input: $input")
 
-        val operands = extractOperands(splitInput)
-        val operators = extractOperators(splitInput)
+        val splitInput = BlankSplitter.split(validInput).map { it.trim() }
+        val operands = OperandListExtractor.extract(splitInput)
+        val operators = OperatorListExtractor.extract(splitInput)
         var summery: Number = operands.poll()
 
-        require(operands.size != operators.size) {
-            throw IllegalArgumentException("Invalid Input: $input")
+        require(operands.size == operators.size) {
+            throw IllegalArgumentException("Invalid Input: $validInput")
         }
 
         for (operand in operands) {
@@ -25,25 +26,5 @@ object StringCalculator {
         }
 
         return summery
-    }
-
-    private fun extractOperands(splitInput: List<String>): Queue<Number> {
-        val queue = LinkedList<Number>()
-
-        splitInput.indices
-            .filter { it % 2 == 0 }
-            .forEach { queue.add(Number(splitInput[it])) }
-
-        return queue
-    }
-
-    private fun extractOperators(splitInput: List<String>): Queue<Operator> {
-        val queue = LinkedList<Operator>()
-
-        splitInput.indices
-            .filter { it % 2 == 1 }
-            .forEach { queue.add(Operator.findBySymbol(splitInput[it])) }
-
-        return queue
     }
 }
