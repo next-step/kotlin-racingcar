@@ -10,5 +10,4 @@ class StringTest {
         assertThat(" ".isEmpty()).isFalse()
         assertThat("a".isEmpty()).isFalse()
     }
-    
 }

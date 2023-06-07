@@ -48,4 +48,13 @@ class CalculatorApplicationTest {
             main()
         }
     }
+
+    @Test
+    fun `빈값 입력 받음`() {
+        val input = ""
+        setInput(input)
+        assertThrows<IllegalArgumentException> {
+            main()
+        }
+    }
 }
