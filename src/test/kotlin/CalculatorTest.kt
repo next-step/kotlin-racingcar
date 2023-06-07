@@ -52,4 +52,12 @@ class CalculatorTest : StringSpec({
     "더하기 빼기 곱하기의 사칙연산 결과를 반환한다" {
         calculator.calculate("4 * 2 - 10 + 9") shouldBe 7
     }
+
+    "나누기 결과를 반환한다" {
+        calculator.calculate("10 / 2") shouldBe 5
+    }
+
+    "사칙연산이 모두 포함 된 결과를 반환한다" {
+        calculator.calculate("1 + 5 * 10 - 6 / 2") shouldBe 27
+    }
 })

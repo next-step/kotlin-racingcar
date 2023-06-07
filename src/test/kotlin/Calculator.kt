@@ -26,6 +26,10 @@ class Calculator {
         return firstNumber.times((secondNumber))
     }
 
+    private fun divide(firstNumber: Int, secondNumber: Int): Int {
+        return firstNumber.div((secondNumber))
+    }
+
     fun calculate(inputString: String?): Int {
         // validateInput(inputString)
 
@@ -41,6 +45,7 @@ class Calculator {
                 "+" -> sum = plus(sum, parseValidateNumber(strings[i + 1]))
                 "-" -> sum = minus(sum, parseValidateNumber(strings[i + 1]))
                 "*" -> sum = multiply(sum, parseValidateNumber(strings[i + 1]))
+                "/" -> sum = divide(sum, parseValidateNumber(strings[i + 1]))
             }
         }
 
