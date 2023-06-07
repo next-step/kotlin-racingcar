@@ -8,14 +8,14 @@ class Calculator {
 
     companion object {
         private val operations: Map<String, (Int, Int) -> Int> = mapOf(
-            "+" to { result, numericSymbol -> result + numericSymbol },
-            "-" to { result, numericSymbol -> result - numericSymbol },
-            "*" to { result, numericSymbol -> result * numericSymbol },
-            "/" to { result, numericSymbol ->
-                if (numericSymbol == 0) {
+            "+" to { result, number -> result + number },
+            "-" to { result, number -> result - number },
+            "*" to { result, number -> result * number },
+            "/" to { result, number ->
+                if (number == 0) {
                     throw ArithmeticException("0으로 나눌 수 없습니다.")
                 } else {
-                    result / numericSymbol
+                    result / number
                 }
             },
         )
@@ -24,7 +24,7 @@ class Calculator {
     fun calculate(targetStr: String?): Int {
         if (StringUtils.isBlank(targetStr)) throw IllegalArgumentException("문자열을 null 이거나 빈 문자열일 수 없습니다.")
         initCalculator()
-        targetStr?.split(" ")?.map(this::stackValue)
+        targetStr?.split(" ")?.map(this::dealEachSymbol)
 
         return result
     }
@@ -34,10 +34,10 @@ class Calculator {
         result = 0
     }
 
-    private fun stackValue(value: String) {
-        when (val numericSymbol = value.toIntOrNull()) {
+    private fun dealEachSymbol(value: String) {
+        when (val number = value.toIntOrNull()) {
             null -> changeSymbol(value)
-            else -> operations[symbol]?.let { result = it(result, numericSymbol) }
+            else -> operations[symbol]?.let { result = it(result, number) }
         }
     }
 
