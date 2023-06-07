@@ -1,38 +1,57 @@
 package next.step.calculator.domain
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.core.spec.style.FunSpec
+import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.CsvSource
-import org.junit.jupiter.params.provider.ValueSource
 
-class OperatorTest {
+class OperatorTest : FunSpec({
 
-    @CsvSource(value = ["+:PLUS", "-:MINUS", "*:TIMES", "/:DIVIDE"], delimiter = ':')
-    @ParameterizedTest(name = "[{index}] \"{0}\" : Operator.{1}")
-    fun `사칙연산 기호로 Operator 생성`(symbol: String, expected: Operator) {
-        Operator.from(symbol) shouldBe expected
-    }
-
-    @ValueSource(strings = ["", " ", "     "])
-    @ParameterizedTest(name = "[{index}] \"{0}\"")
-    fun `공백으로 Operator 생성시 예외 발생`(spaces: String) {
-        shouldThrow<IllegalArgumentException> {
-            Operator.from(spaces)
+    context("사칙연산 기호로 Operator 생성") {
+        data class SymbolExpected(val symbol: String, val expected: Operator)
+        withData(
+            nameFn = { "\"${it.symbol}\" : Operator.${it.expected}" },
+            SymbolExpected("+", Operator.PLUS),
+            SymbolExpected("-", Operator.MINUS),
+            SymbolExpected("*", Operator.TIMES),
+            SymbolExpected("/", Operator.DIVIDE),
+        ) { (symbol, expected) ->
+            Operator.from(symbol) shouldBe expected
         }
     }
 
-    @ValueSource(strings = ["eng", "한글", "."])
-    @ParameterizedTest(name = "[{index}] \"{0}\"")
-    fun `공백이 아니고 사칙연산 기호가 아니면 Operator 생성시 예외 발생`(invalidSymbol: String) {
-        shouldThrow<IllegalArgumentException> {
-            Operator.from(invalidSymbol)
+    context("공백으로 Operator 생성시 예외 발생") {
+        withData(
+            nameFn = { "\"${it}\"" },
+            listOf("", " ", "      ")
+        ) { spaces ->
+            shouldThrow<IllegalArgumentException> {
+                Operator.from(spaces)
+            }
         }
     }
 
-    @CsvSource(value = ["PLUS:20:10:30", "MINUS:20:10:10", "TIMES:20:10:200", "DIVIDE:20:10:2"], delimiter = ':')
-    @ParameterizedTest(name = "[{index}] {1} {0} {2} = {3}")
-    fun `각 Operator로 사칙연산 수행`(operator: Operator, a: Int, b: Int, expected: Int) {
-        operator.evaluate(InputNumber(a), InputNumber(b)) shouldBe InputNumber(expected)
+    context("공백이 아니고 사칙연산 기호가 아니면 Operator 생성시 예외 발생") {
+        withData(
+            nameFn = { "\"${it}\"" },
+            listOf("eng", "한글", ".")
+        ) { invalidSymbol ->
+            shouldThrow<IllegalArgumentException> {
+                Operator.from(invalidSymbol)
+            }
+        }
     }
-}
+
+    context("각 Operator로 사칙연산 수행") {
+        data class EvaluateExpected(val operator: Operator, val a: Int, val b: Int, val expected: Int)
+        withData(
+            nameFn = { "${it.a} ${it.operator.symbol} ${it.b} = ${it.expected}" },
+            EvaluateExpected(Operator.PLUS, 20, 10, 30),
+            EvaluateExpected(Operator.MINUS, 20, 10, 10),
+            EvaluateExpected(Operator.TIMES, 20, 10, 200),
+            EvaluateExpected(Operator.DIVIDE, 20, 10, 2),
+        ) { (operator, a, b, expected) ->
+            operator.evaluate(InputNumber(a), InputNumber(b)) shouldBe InputNumber(expected)
+        }
+    }
+})
