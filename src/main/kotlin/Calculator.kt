@@ -1,16 +1,16 @@
 class Calculator {
 
-    fun calculate(str : String) : String {
+    fun calculate(str: String): String {
         if(str.isEmpty()) {
             throw IllegalArgumentException()
         }
         val args = str.split(" ")
-        val result = cal(args.reversed().toTypedArray())
+        val result = recerciveCal(args.reversed().toTypedArray())
         println(result)
         return result
     }
 
-    fun cal(str : Array<String>) : String {
+    private fun recerciveCal(str: Array<String>): String {
         if(str.size == 1) {
             return str[0]
         }
@@ -20,29 +20,29 @@ class Calculator {
 
         return when(oeprator) {
             "+" -> {
-                plus(cal(str.sliceArray(2 until str.size)), num)
+                plus(recerciveCal(str.sliceArray(2 until str.size)), num)
             }
             "-" -> {
-                minus(cal(str.sliceArray(2 until str.size)), num)
+                minus(recerciveCal(str.sliceArray(2 until str.size)), num)
             }
             "*" -> {
-                multiple(cal(str.sliceArray(2 until str.size)), num)
+                multiple(recerciveCal(str.sliceArray(2 until str.size)), num)
             }
             "/" -> {
-                divide(cal(str.sliceArray(2 until str.size)), num)
+                divide(recerciveCal(str.sliceArray(2 until str.size)), num)
             }
             else ->
                 throw IllegalArgumentException()
         }
     }
-    fun plus(num1: String, num2: String) : String {
+    fun plus(num1: String, num2: String): String {
         if(!isNum(num1) || !isNum(num2)) {
             throw IllegalArgumentException()
         }
         return (num1.toInt() + num2.toInt()).toString()
     }
 
-    fun minus(num1: String, num2: String) : String {
+    fun minus(num1: String, num2: String): String {
         if(!isNum(num1) || !isNum(num2)) {
             throw IllegalArgumentException()
         }
@@ -63,7 +63,7 @@ class Calculator {
         return (num1.toInt() / num2.toInt()).toString()
     }
 
-    private fun isNum(numberString : String) : Boolean {
+    private fun isNum(numberString : String): Boolean {
         numberString.forEach {
             char ->
 

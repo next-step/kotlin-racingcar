@@ -4,7 +4,7 @@ import Calculator
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
-class CalculatorKoTest : StringSpec( {
+class CalculatorKoTest : StringSpec({
     "덧셈" {
         val cal = Calculator()
         cal.plus("2", "3") shouldBe "5"
