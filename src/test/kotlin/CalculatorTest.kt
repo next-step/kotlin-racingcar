@@ -35,4 +35,13 @@ class CalculatorTest : StringSpec({
     "더하기 결과를 반환한다" {
         calculator.calculate("2 + 2") shouldBe 4
     }
+
+    "빼기 결과를 반환한다" {
+        calculator.calculate("4 - 2") shouldBe 2
+    }
+
+    "더하기 후 빼기 결과를 반환한다" {
+        calculator.calculate("5 + 4 - 2") shouldBe 7
+        calculator.calculate("10 - 4 + 2") shouldBe 8
+    }
 })

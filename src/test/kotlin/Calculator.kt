@@ -7,14 +7,19 @@ class Calculator {
             throw IllegalArgumentException("사칙연산을 할 수 없는 문자열입니다.")
     }
 
-    private fun validateNumber(firstNumber: String, secondNumber: String) {
-        if (!regex.matches(firstNumber) || !regex.matches(secondNumber))
+    private fun parseValidateNumber(number: String): Int {
+        if (!regex.matches(number))
             throw IllegalArgumentException("피연산자 자리에는 숫자가 와야합니다.")
+
+        return Integer.parseInt(number)
     }
 
-    private fun plus(firstNumber: String, secondNumber: String): Int {
-        validateNumber(firstNumber, secondNumber)
-        return Integer.parseInt(firstNumber) + Integer.parseInt(secondNumber)
+    private fun plus(firstNumber: Int, secondNumber: Int): Int {
+        return firstNumber.plus(secondNumber)
+    }
+
+    private fun minus(firstNumber: Int, secondNumber: Int): Int {
+        return firstNumber.minus(secondNumber)
     }
 
     fun calculate(inputString: String?): Int {
@@ -25,11 +30,12 @@ class Calculator {
 
         val strings = inputString.split(SPLIT_SYMBOL)
 
-        var sum = 0
+        var sum = parseValidateNumber(strings[0])
 
-        strings.withIndex().forEach { (index, string) ->
-            when (string) {
-                "+" -> sum += plus(strings[index - 1], strings[index + 1])
+        (1..strings.lastIndex).forEach { i ->
+            when (strings[i]) {
+                "+" -> sum = plus(sum, parseValidateNumber(strings[i + 1]))
+                "-" -> sum = minus(sum, parseValidateNumber(strings[i + 1]))
             }
         }
 
