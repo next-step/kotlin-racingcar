@@ -1,5 +1,6 @@
 package racingcar
 
+import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -35,5 +36,14 @@ class CarTest {
 
         val actual = car.move(input)
         actual shouldBe 1
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [-1, 10])
+    fun `자동차는 0~9 이외의 값이 입력되는 경우 예외가 발생한다`(input: Int) {
+        val car = Car(position = 1)
+
+        val exception = shouldThrowExactly<IllegalArgumentException> { car.move(input) }
+        exception.message shouldBe "자동차는 0~9의 값만 입력받을 수 있다."
     }
 }

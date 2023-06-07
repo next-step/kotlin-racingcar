@@ -10,6 +10,6 @@ class Car(
         if (moveCount in 0..3) {
             return position
         }
-        return position
+        throw IllegalArgumentException("자동차는 0~9의 값만 입력받을 수 있다.")
     }
 }
