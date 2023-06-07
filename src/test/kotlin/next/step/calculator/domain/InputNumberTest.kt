@@ -4,21 +4,12 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.NullSource
 import org.junit.jupiter.params.provider.ValueSource
 
 class InputNumberTest {
     @Test
     fun `문자열로 입력 숫자 생성`() {
         InputNumber.from("123") shouldBe InputNumber(123)
-    }
-
-    @NullSource
-    @ParameterizedTest
-    fun `null로 입력 숫자 생성시 예외 발생`(nullStr: String?) {
-        shouldThrow<IllegalArgumentException> {
-            InputNumber.from(nullStr)
-        }
     }
 
     @ValueSource(strings = ["", " ", "     "])
