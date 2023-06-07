@@ -37,6 +37,39 @@ class StringCalculator {
         )
     }
 
+    fun calculate(
+        numbers: MutableList<Double>,
+        operators: MutableList<Char>
+    ): Double {
+        var currentNum = 0.0
+
+        for (i in 0 until numbers.size - 1) {
+
+            if (i == 0) {
+                currentNum = numbers[i]
+            }
+
+            when (operators[i]) {
+                '+' -> {
+                    currentNum = currentNum.plus(numbers[i + 1])
+                }
+
+                '-' -> {
+                    currentNum = currentNum.minus(numbers[i + 1])
+                }
+
+                '*' -> {
+                    currentNum = currentNum.times(numbers[i + 1])
+                }
+
+                '/' -> {
+                    currentNum = currentNum.div(numbers[i + 1])
+                }
+            }
+        }
+        return currentNum
+    }
+
     private fun valid(numbers: MutableList<Double>, operators: MutableList<Char>) {
         if (numbers.size != operators.size + 1) {
             throw IllegalArgumentException("연산 기호의 수는 연산 숫자의 수보다 무조건 1개 적어야 합니다")
