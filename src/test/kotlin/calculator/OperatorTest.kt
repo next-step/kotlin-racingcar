@@ -59,7 +59,7 @@ class OperatorTest {
     }
 
     @Test
-    fun `나눗셈을 하는 경우 0으로 나누는 경우 예외`() {
+    fun `나눗셈 - 0으로 나누는 경우 예외`() {
         // given
         val left = 2
         val right = 0
