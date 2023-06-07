@@ -2,6 +2,8 @@ package racingcar
 
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class CarTest {
 
@@ -15,5 +17,13 @@ class CarTest {
     fun `자동차의 초기 위치는 0이다`() {
         val actual = Car()
         actual.position shouldBe 0
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [4, 6, 9])
+    fun `자동차는 4~9의 값이 입력되는 경우 1칸 전진한다`(input: Int) {
+        val car = Car(position = 1)
+        val actual = car.move(input)
+        actual.position shouldBe 2
     }
 }
