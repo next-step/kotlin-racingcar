@@ -5,6 +5,7 @@ import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.EmptySource
+import org.junit.jupiter.params.provider.ValueSource
 
 class CalculatorKtTest {
 
@@ -23,7 +24,8 @@ class CalculatorKtTest {
         exception.message shouldBe "올바른 형태로 수식을 입력하여야 한다."
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = ["a + 2", "2 + a"])
     fun `홀수번째에 있는 값은 숫자가 입력되지 않는 경우 예외가 발생한다`() {
         val input = "a + 2"
 
