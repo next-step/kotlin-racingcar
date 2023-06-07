@@ -3,15 +3,13 @@ package study.step2
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import study.step2.calculate.CalculateOperation
 import study.step2.calculate.Calculator
 import java.lang.IllegalArgumentException
 
 class CalculatorTest : BehaviorSpec({
 
     given("계산기 테스트") {
-        val operation = CalculateOperation()
-        val calculator = Calculator(operation)
+        val calculator = Calculator()
 
         `when`("10 + 5") {
             val expression = "10 + 5"
