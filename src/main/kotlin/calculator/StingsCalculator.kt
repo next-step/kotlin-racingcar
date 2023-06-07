@@ -12,16 +12,14 @@ internal class StingsCalculator(strings: List<String>) {
     }
 
     val number: Int
-        get() {
-            return strings.iterator().let {
-                var result: Int = it.next().toInt()
-                while (it.hasNext()) {
-                    val operation: Operation = it.next().numberOperation
-                    val nextNumber: Int = it.next().toInt()
-                    result = operation.calculate(result, nextNumber)
-                }
-                result
+        get() = strings.iterator().let {
+            var result: Int = it.next().toInt()
+            while (it.hasNext()) {
+                val operation: Operation = it.next().numberOperation
+                val nextNumber: Int = it.next().toInt()
+                result = operation.calculate(result, nextNumber)
             }
+            result
         }
 
     companion object {
