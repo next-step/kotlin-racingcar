@@ -5,10 +5,8 @@ fun calculate(input: String): Int {
     val values = input.split(" ")
     require(isOdd(values.size)) { "올바른 형태로 수식을 입력하여야 한다." }
 
-    val operands = values.filterIndexed { index, _ -> isEven(index) }
-        .map { parseToNumber(it) }
-    val operators = values.filterIndexed { index, _ -> isOdd(index) }
-        .map { Operator.from(it) }
+    val operands = extractOperands(values)
+    val operators = extractOperators(values)
 
     var calculatedNumber = operands.first()
 
@@ -20,6 +18,12 @@ fun calculate(input: String): Int {
 
     return calculatedNumber
 }
+
+private fun extractOperators(values: List<String>) = values.filterIndexed { index, _ -> isOdd(index) }
+    .map { Operator.from(it) }
+
+private fun extractOperands(values: List<String>) = values.filterIndexed { index, _ -> isEven(index) }
+    .map { parseToNumber(it) }
 
 private fun isOdd(number: Int) = (number % 2) == 1
 
