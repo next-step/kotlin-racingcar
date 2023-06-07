@@ -2,6 +2,7 @@ package calculator
 
 import calculator.dto.ExtractDTO
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -20,5 +21,18 @@ class StringCalculatorTest {
 
         assertThat(result.numbers).isEqualTo(expected.numbers)
         assertThat(result.operators).isEqualTo(expected.operators)
+    }
+
+    @Test
+    fun `사칙 연산을 무시한 입력 값에 따른 계산`() {
+
+        val setup = ExtractDTO(
+            numbers = mutableListOf(20.0, 1.0, 4.0, 2.0),
+            operators = mutableListOf('+', '*', '/')
+        )
+
+        val result = StringCalculator().calculate(setup.numbers, setup.operators)
+
+        assertThat(result).isEqualTo(42.0)
     }
 }
