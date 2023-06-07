@@ -1,5 +1,7 @@
 package calculator
 
+import calculator.Operator.Companion.parseToOperator
+
 private const val DELIMITER = " "
 
 fun calculate(input: String): Int {
@@ -14,7 +16,7 @@ fun calculate(input: String): Int {
 }
 
 private fun extractOperators(values: List<String>) = values.filterIndexed { index, _ -> isOdd(index) }
-    .map { Operator.parseToOperator(it) }
+    .map { parseToOperator(it) }
 
 private fun extractOperands(values: List<String>) = values.filterIndexed { index, _ -> isEven(index) }
     .map { parseToNumber(it) }
