@@ -22,6 +22,10 @@ class Calculator {
         return firstNumber.minus(secondNumber)
     }
 
+    private fun multiply(firstNumber: Int, secondNumber: Int): Int {
+        return firstNumber.times((secondNumber))
+    }
+
     fun calculate(inputString: String?): Int {
         // validateInput(inputString)
 
@@ -36,6 +40,7 @@ class Calculator {
             when (strings[i]) {
                 "+" -> sum = plus(sum, parseValidateNumber(strings[i + 1]))
                 "-" -> sum = minus(sum, parseValidateNumber(strings[i + 1]))
+                "*" -> sum = multiply(sum, parseValidateNumber(strings[i + 1]))
             }
         }
 

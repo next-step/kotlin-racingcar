@@ -40,8 +40,16 @@ class CalculatorTest : StringSpec({
         calculator.calculate("4 - 2") shouldBe 2
     }
 
-    "더하기 후 빼기 결과를 반환한다" {
+    "더하기 빼기의 사칙연산 결과를 반환한다" {
         calculator.calculate("5 + 4 - 2") shouldBe 7
         calculator.calculate("10 - 4 + 2") shouldBe 8
+    }
+
+    "곱하기 결과를 반환한다" {
+        calculator.calculate("4 * 2") shouldBe 8
+    }
+
+    "더하기 빼기 곱하기의 사칙연산 결과를 반환한다" {
+        calculator.calculate("4 * 2 - 10 + 9") shouldBe 7
     }
 })
