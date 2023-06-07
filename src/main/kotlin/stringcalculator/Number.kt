@@ -1,9 +1,11 @@
 package stringcalculator
 
-data class Number(val value: Int) {
+@JvmInline
+value class Number(val value: Int) {
     constructor(value: String) : this(
-        value.toIntOrNull()
-            ?: throw IllegalArgumentException("Invalid value: $value required number formattable value")
+        requireNotNull(value.toIntOrNull()) {
+            throw IllegalArgumentException("Invalid value: $value required number formattable value")
+        }
     )
 
     operator fun plus(target: Number): Number = Number(value + target.value)

@@ -1,14 +1,13 @@
 package stringcalculator.extractor
 
 import stringcalculator.Operator
-import java.util.LinkedList
-import java.util.Queue
 
-object OperatorListExtractor : Extractor<Queue<Operator>> {
+object OperatorListExtractor : Extractor<ArrayDeque<Operator>> {
     private val isOdd: (Int) -> Boolean = { it % 2 == 1 }
 
-    override fun extract(items: List<String>): Queue<Operator> {
-        return LinkedList(
+    override fun extract(items: List<String>): ArrayDeque<Operator> {
+
+        return ArrayDeque(
             items.indices
                 .filter(isOdd)
                 .map { Operator.findBySymbol(items[it]) }

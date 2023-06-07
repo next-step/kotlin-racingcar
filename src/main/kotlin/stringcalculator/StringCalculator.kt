@@ -13,14 +13,15 @@ object StringCalculator {
         val splitInput = BlankSplitter.split(validInput).map { it.trim() }
         val operands = OperandListExtractor.extract(splitInput)
         val operators = OperatorListExtractor.extract(splitInput)
-        var summery: Number = operands.poll()
+
+        var summery: Number = operands.removeFirst()
 
         require(operands.size == operators.size) {
             throw IllegalArgumentException("Invalid Input: $validInput")
         }
 
         for (operand in operands) {
-            val operator = operators.poll()
+            val operator = operators.removeFirst()
 
             summery = operator.operate(summery, operand)
         }
