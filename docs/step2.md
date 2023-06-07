@@ -10,8 +10,8 @@
 ### 구현 목록
 #### 입력
 - [ ] 사용자로부터 문자열 입력 받기
-    - [ ] 입력 받은 문자열이 `null`이거나 빈 공백 문자일 경우 `IllegalArgumentException` 발생 
-    - [ ] 입력 받은 문자열에 사칙연산 기호가 없는 경우 `IllegalArgumentException` 발생
+    - [x] 입력 받은 문자열이 `null`이거나 빈 공백 문자일 경우 `IllegalArgumentException` 발생 
+    - [x] 입력 받은 문자열에 사칙연산 기호가 없는 경우 `IllegalArgumentException` 발생
 
 #### 기능
 - [ ] 입력 받은 문자열을 사칙연산 기호 기준으로 분리
