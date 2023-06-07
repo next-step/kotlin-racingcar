@@ -26,4 +26,12 @@ class CarTest {
         val actual = car.move(input)
         actual.position shouldBe 2
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = [0, 1, 3])
+    fun `자동차는 0~3의 값이 입력되는 경우 위치가 변하지 않는다`(input: Int) {
+        var car = Car(position = 1)
+        val actual = car.move(input)
+        actual.position shouldBe 1
+    }
 }

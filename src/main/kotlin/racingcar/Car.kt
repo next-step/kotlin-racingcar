@@ -7,6 +7,9 @@ class Car(
         if (moveCount in 4..9) {
             return Car(position + 1)
         }
-        return Car(position)
+        if (moveCount in 0..3) {
+            return Car(position)
+        }
+        return this
     }
 }
