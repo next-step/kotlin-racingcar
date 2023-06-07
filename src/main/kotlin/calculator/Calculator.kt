@@ -6,8 +6,10 @@ fun calculate(input: String): Int {
     }
     val values = input.split(" ")
     validateCalculateFormat(values)
-    val number = values.filterIndexed { index, _ -> index % 2 == 1 }
+    val number = values.filterIndexed { index, _ -> index % 2 == 0 }
         .map { parseToNumber(it) }
+    val operators = values.filterIndexed { index, _ -> index % 2 == 1 }
+        .map { parseToOperator(it) }
     return 0
 }
 
@@ -21,5 +23,12 @@ private fun parseToNumber(it: String) =
     try {
         it.toInt()
     } catch (_: NumberFormatException) {
-        throw IllegalArgumentException("수식에 숫자가 아닌 값이 입력될 수 없다.")
+        throw IllegalArgumentException("올바른 숫자를 입력하여야 한다.")
     }
+
+private fun parseToOperator(it: String): String {
+    if (it != "+" && it != "-" && it != "/" && it != "*") {
+        throw IllegalArgumentException("올바른 연산자를 입력하여야 한다.")
+    }
+    return it
+}

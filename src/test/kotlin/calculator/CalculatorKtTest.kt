@@ -26,10 +26,15 @@ class CalculatorKtTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["a + 2", "2 + a"])
-    fun `홀수번째에 있는 값은 숫자가 입력되지 않는 경우 예외가 발생한다`() {
-        val input = "a + 2"
-
+    fun `홀수번째에 있는 값은 숫자가 입력되지 않는 경우 예외가 발생한다`(input: String) {
         val exception = shouldThrowExactly<IllegalArgumentException> { calculate(input) }
-        exception.message shouldBe "수식에 숫자가 아닌 값이 입력될 수 없다."
+        exception.message shouldBe "올바른 숫자를 입력하여야 한다."
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["2 & 3", "1 # 4"])
+    fun `짝수번째에 있는 값는 연산자가 입력되지 않는 경우 예외가 발생한다`(input: String) {
+        val exception = shouldThrowExactly<IllegalArgumentException> { calculate(input) }
+        exception.message shouldBe "올바른 연산자를 입력하여야 한다."
     }
 }
