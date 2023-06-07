@@ -1,32 +1,36 @@
-package study.step2
-
 import io.kotest.assertions.throwables.shouldThrow
-import io.kotest.core.spec.style.StringSpec
+import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.throwable.shouldHaveMessage
+import study.step2.Formula
 
-class FormulaTest : StringSpec({
-    "Null이 입력될 경우 예외를 반환한다." {
-        shouldThrow<IllegalArgumentException> {
-            Formula(null)
-        }.shouldHaveMessage("잘못된 연산자입니다.")
+class FormulaTest : BehaviorSpec({
+    Given("Null 이 주어졌을 때") {
+        When("객체를 생성할 때") {
+            Then("예외가 발생한다.") {
+                shouldThrow<IllegalArgumentException> {
+                    Formula(null)
+                }.message shouldBe "잘못된 연산식입니다."
+            }
+        }
     }
 
-    "공백 문자열이 입력될 경우 예외를 반환한다." {
-        shouldThrow<IllegalArgumentException> {
-            Formula(" ")
-        }.shouldHaveMessage("잘못된 연산자입니다.")
+    Given("공백 문자열이 주어졌을 때") {
+        When("객체를 생성할 때") {
+            Then("예외를 발생한다.") {
+                shouldThrow<IllegalArgumentException> {
+                    Formula(" ")
+                }.message shouldBe "잘못된 연산식입니다."
+            }
+        }
     }
 
-    "정상적인 식이 입력될 경우 객체가 정상적으로 생성된다" {
-        val formula = Formula("2 + 3 * 4 / 2")
-
-        formula.expression[0] shouldBe "2"
-        formula.expression[1] shouldBe "+"
-        formula.expression[2] shouldBe "3"
-        formula.expression[3] shouldBe "*"
-        formula.expression[4] shouldBe "4"
-        formula.expression[5] shouldBe "/"
-        formula.expression[6] shouldBe "2"
+    Given("정상적인 식이 주어졌을 때") {
+        val input = "2 + 3 * 4 / 2"
+        When("객체를 생성할 때") {
+            val formula = Formula(input)
+            Then("정상적으로 생성된다.") {
+                formula.expression shouldBe listOf("2", "+", "3", "*", "4", "/", "2")
+            }
+        }
     }
 })
