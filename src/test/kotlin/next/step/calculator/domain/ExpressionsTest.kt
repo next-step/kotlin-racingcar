@@ -2,7 +2,6 @@ package next.step.calculator.domain
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
-import next.step.calculator.domain.exception.NotEnoughExpressionCountException
 import org.junit.jupiter.api.Test
 
 class ExpressionsTest {
@@ -13,7 +12,7 @@ class ExpressionsTest {
 
     @Test
     fun `expression 개수가 모자라면 예외 발생`() {
-        shouldThrow<NotEnoughExpressionCountException> {
+        shouldThrow<IllegalArgumentException> {
             Expressions.of(listOf("2", "+", "3", "*", "4", "/"))
         }
     }

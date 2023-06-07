@@ -1,17 +1,13 @@
 package next.step.calculator.domain
 
-import next.step.calculator.domain.exception.NotEnoughExpressionCountException
-
 class Expressions(private val expressions: List<String>) {
     companion object {
         fun of(expressions: List<String>): Expressions {
-            if (isNotEnoughCount(expressions)) {
-                throw NotEnoughExpressionCountException()
-            }
+            require(isEnoughCount(expressions)) { "expression 들은 홀수 개여야 합니다." }
             return Expressions(expressions)
         }
 
-        private fun isNotEnoughCount(expressions: List<String>) = expressions.size % 2 == 0
+        private fun isEnoughCount(expressions: List<String>) = expressions.size % 2 == 1
     }
 
     fun evaluate(): Int {
