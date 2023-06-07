@@ -1,6 +1,7 @@
 package study.step2.calculate
 
 class CalculateOperation {
+
     private val operations: Map<String, (Int, Int) -> Int> = mapOf(
         "+" to { result, number -> result + number },
         "-" to { result, number -> result - number },
@@ -13,10 +14,13 @@ class CalculateOperation {
             }
         },
     )
+
     private var result = 0
+
     fun initOperation() {
         result = 0
     }
+
     fun operateBySymbol(
         symbol: String,
         number: Int,
@@ -25,9 +29,11 @@ class CalculateOperation {
             result = it(result, number)
         }
     }
+
     fun getKeys(): Set<String> {
         return operations.keys
     }
+
     fun getResult(): Int {
         return result
     }

@@ -8,9 +8,11 @@ import study.step2.calculate.Calculator
 import java.lang.IllegalArgumentException
 
 class CalculatorTest : BehaviorSpec({
+
     given("계산기 테스트") {
         val operation = CalculateOperation()
         val calculator = Calculator(operation)
+
         `when`("10 + 5") {
             val expression = "10 + 5"
             val result = calculator.calculate(expression)

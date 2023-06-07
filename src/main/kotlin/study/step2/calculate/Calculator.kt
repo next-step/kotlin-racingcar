@@ -3,9 +3,11 @@ package study.step2.calculate
 import org.apache.commons.lang3.StringUtils
 
 class Calculator(
-    private val calculateOperation: CalculateOperation
+    private val calculateOperation: CalculateOperation,
 ) {
+
     private var symbol = "+"
+
     fun calculate(targetStr: String?): Int {
         if (StringUtils.isBlank(targetStr)) throw IllegalArgumentException("문자열을 null 이거나 빈 문자열일 수 없습니다.")
         initCalculator()
