@@ -2,8 +2,10 @@ package expression
 
 import calculator.Expression
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class ExpressionTest {
     @Test
@@ -38,34 +40,24 @@ class ExpressionTest {
 
     @Test
     fun `입력값이 공백 문자일 경우 throw IllegalArgumentException`() {
-        assertThatThrownBy {
+        assertThatIllegalArgumentException().isThrownBy {
             Expression("")
-        }.isInstanceOf(IllegalArgumentException::class.java)
+        }
     }
 
-    @Test
-    fun `입력값에 숫자 or 사칙연산 기호 이외 문자가 섞인 경우 throw IllegalArgumentException`() {
-        assertThatThrownBy {
-            Expression("1 % 3")
-        }.isInstanceOf(IllegalArgumentException::class.java)
-
-        assertThatThrownBy {
-            Expression("abc")
-        }.isInstanceOf(IllegalArgumentException::class.java)
+    @ParameterizedTest
+    @ValueSource(strings = ["1 % 3", "abc"])
+    fun `입력값에 숫자 or 사칙연산 기호 이외 문자가 섞인 경우 throw IllegalArgumentException`(expressionString: String) {
+        assertThatIllegalArgumentException().isThrownBy {
+            Expression(expressionString)
+        }
     }
 
-    @Test
-    fun `입력값의 연산자와 피연산자 순서가 잘못된 경우 throw IllegalArgumentException`() {
-        assertThatThrownBy {
-            Expression("2 +")
-        }.isInstanceOf(IllegalArgumentException::class.java)
-
-        assertThatThrownBy {
-            Expression("*")
-        }.isInstanceOf(IllegalArgumentException::class.java)
-
-        assertThatThrownBy {
-            Expression("3 3 +")
-        }.isInstanceOf(IllegalArgumentException::class.java)
+    @ParameterizedTest
+    @ValueSource(strings = ["2 +", "*", "3 3 +"])
+    fun `입력값의 연산자와 피연산자 순서가 잘못된 경우 throw IllegalArgumentException`(expressionString: String) {
+        assertThatIllegalArgumentException().isThrownBy {
+            Expression(expressionString)
+        }
     }
 }
