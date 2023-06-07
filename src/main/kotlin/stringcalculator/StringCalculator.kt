@@ -5,8 +5,12 @@ import java.util.Queue
 
 
 object StringCalculator {
-    fun calculate(input: String): Number {
-        val splitInput = input.split(" ").map { it.trim() }
+    fun calculate(input: String?): Number {
+
+        val splitInput = input?.split(" ")
+            ?.map { it.trim() }
+            ?: throw IllegalArgumentException("Invalid Input: $input")
+
         val operands = extractOperands(splitInput)
         val operators = extractOperators(splitInput)
         var summery: Number = operands.poll()
@@ -38,6 +42,6 @@ object StringCalculator {
             .filter { it % 2 == 1 }
             .forEach { queue.add(Operator.findBySymbol(splitInput[it])) }
 
-        return queue
+        return queue;
     }
 }

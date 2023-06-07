@@ -1,11 +1,15 @@
 package stringcalculator
 
+import java.lang.ArithmeticException
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.NullAndEmptySource
 
-@DisplayName("StringCalculator 클래스는")
+@DisplayName("StringCalculator 클래스의")
 class StringCalculatorTest {
 
     @ParameterizedTest
@@ -14,5 +18,20 @@ class StringCalculatorTest {
         val actual = StringCalculator.calculate(input)
 
         assertThat(actual).isEqualTo(Number(expected))
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    fun `calculate 메서드는 공백이나 Null 인자 전달시 예외를 던진다`(input: String?) {
+        assertThrows<IllegalArgumentException> {
+            StringCalculator.calculate(input)
+        }
+    }
+
+    @Test
+    fun `calculate 메서드는 0으로 나누려 하는 인자 전달시 예외를 던진다`() {
+        assertThrows<ArithmeticException> {
+            StringCalculator.calculate("5 / 0")
+        }
     }
 }
