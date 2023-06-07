@@ -8,15 +8,7 @@ fun calculate(input: String): Int {
     val operands = extractOperands(values)
     val operators = extractOperators(values)
 
-    var calculatedNumber = operands.first()
-
-    for (index in operators.indices) {
-        val operand = operands[index + 1]
-        val operator = operators[index]
-        calculatedNumber = operator.operate(calculatedNumber, operand)
-    }
-
-    return calculatedNumber
+    return calculateArithmetic(operands, operators)
 }
 
 private fun extractOperators(values: List<String>) = values.filterIndexed { index, _ -> isOdd(index) }
@@ -35,3 +27,15 @@ private fun parseToNumber(it: String) =
     } catch (_: NumberFormatException) {
         throw IllegalArgumentException("올바른 숫자를 입력하여야 한다.")
     }
+
+private fun calculateArithmetic(operands: List<Int>, operators: List<Operator>): Int {
+    var calculatedNumber = operands.first()
+
+    for (index in operators.indices) {
+        val operand = operands[index + 1]
+        val operator = operators[index]
+        calculatedNumber = operator.operate(calculatedNumber, operand)
+    }
+
+    return calculatedNumber
+}
