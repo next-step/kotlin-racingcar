@@ -52,4 +52,12 @@ class StringCalculatorTest {
             StringCalculator().run(input)
         }
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = [" ", ""])
+    fun `입력 값이 null이거나 빈 공백 문자인 경우`(input: String) {
+        assertThrows<IllegalArgumentException> {
+            StringCalculator().run(input)
+        }
+    }
 }
