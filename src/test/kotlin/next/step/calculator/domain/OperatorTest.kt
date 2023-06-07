@@ -2,7 +2,6 @@ package next.step.calculator.domain
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
-import next.step.calculator.domain.exception.IllegalOperatorFormatException
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.NullSource
@@ -19,7 +18,7 @@ class OperatorTest {
     @NullSource
     @ParameterizedTest
     fun `null로 Operator 생성시 예외 발생`(nullStr: String?) {
-        shouldThrow<IllegalOperatorFormatException> {
+        shouldThrow<IllegalArgumentException> {
             Operator.from(nullStr)
         }
     }
@@ -27,7 +26,7 @@ class OperatorTest {
     @ValueSource(strings = ["", " ", "     "])
     @ParameterizedTest(name = "[{index}] \"{0}\"")
     fun `공백으로 Operator 생성시 예외 발생`(spaces: String) {
-        shouldThrow<IllegalOperatorFormatException> {
+        shouldThrow<IllegalArgumentException> {
             Operator.from(spaces)
         }
     }
@@ -35,7 +34,7 @@ class OperatorTest {
     @ValueSource(strings = ["eng", "한글", "."])
     @ParameterizedTest(name = "[{index}] \"{0}\"")
     fun `공백이 아니고 사칙연산 기호가 아니면 Operator 생성시 예외 발생`(invalidSymbol: String) {
-        shouldThrow<IllegalOperatorFormatException> {
+        shouldThrow<IllegalArgumentException> {
             Operator.from(invalidSymbol)
         }
     }

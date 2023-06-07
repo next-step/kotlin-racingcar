@@ -1,11 +1,8 @@
 package next.step.calculator.domain
 
-import next.step.calculator.domain.exception.IllegalOperatorFormatException
-import java.util.function.BinaryOperator
-
 enum class Operator(
     private val symbol: String,
-    private val operator: BinaryOperator<InputNumber>
+    val evaluate: (a: InputNumber, b: InputNumber) -> InputNumber
 ) {
     PLUS("+", { a, b -> a + b }),
     MINUS("-", { a, b -> a - b }),
@@ -14,9 +11,7 @@ enum class Operator(
 
     companion object {
         fun from(symbol: String?): Operator {
-            return values().find { it.symbol == symbol } ?: throw IllegalOperatorFormatException()
+            return requireNotNull(values().firstOrNull { it.symbol == symbol }) { "잘못된 형식의 연산자입니다." }
         }
     }
-
-    fun evaluate(a: InputNumber, b: InputNumber): InputNumber = operator.apply(a, b)
 }
