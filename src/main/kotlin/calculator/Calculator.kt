@@ -20,6 +20,18 @@ fun calculate(input: String): Int {
         if (operator == "+") {
             calculatedNumber += operand
         }
+        if (operator == "-") {
+            calculatedNumber -= operand
+        }
+        if (operator == "*") {
+            calculatedNumber *= operand
+        }
+        if (operator == "/") {
+            if (operand == 0) {
+                throw IllegalArgumentException("숫자는 0으로 나눌 수 없다.")
+            }
+            calculatedNumber /= operand
+        }
     }
 
     return calculatedNumber

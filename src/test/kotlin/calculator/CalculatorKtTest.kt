@@ -46,4 +46,36 @@ class CalculatorKtTest {
 
         actual shouldBe expected
     }
+
+    @ParameterizedTest
+    @CsvSource(value = ["2 - 1, 1", "10 - 3, 7", "1 - 3, -2", "10 - 3 - 2, 5"])
+    fun `뺄셈 부호를 연산할 수 있다`(input: String, expected: Int) {
+        val actual = calculate(input)
+
+        actual shouldBe expected
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = ["2 * 2, 4", "3 * -1, -3", "4 * 8 * 2, 64"])
+    fun `곱셈 부호를 연산할 수 있다`(input: String, expected: Int) {
+        val actual = calculate(input)
+
+        actual shouldBe expected
+    }
+
+    @Test
+    fun `나눗셈 부호는 0으로 나눌 경우 예외가 발생한다`() {
+        val input = "1 / 0"
+
+        val exception = shouldThrowExactly<IllegalArgumentException> { calculate(input) }
+        exception.message shouldBe "숫자는 0으로 나눌 수 없다."
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = ["4 / 2, 2", "10 / 2, 5", "30 / 3 / 5, 2"])
+    fun `나눗셈 부호를 연산할 수 있다`(input: String, expected: Int) {
+        val actual = calculate(input)
+
+        actual shouldBe expected
+    }
 }
