@@ -11,7 +11,7 @@ enum class Operator(
     ;
 
     companion object {
-        fun from(sign: String): Operator =
+        fun parseToOperator(sign: String): Operator =
             values().firstOrNull { it.sign == sign } ?: throw IllegalArgumentException("올바른 연산자를 입력하여야 한다.")
     }
 }

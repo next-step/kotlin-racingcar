@@ -46,14 +46,14 @@ class OperatorTest {
     @ParameterizedTest
     @CsvSource(value = ["+, PLUS", "-, MINUS", "*, TIMES", "/, DIVIDE"])
     fun `연산자 sign을 입력하면 Operator를 반환한다`(input: String, expected: Operator) {
-        val actual = Operator.from(input)
+        val actual = Operator.parseToOperator(input)
         actual shouldBe expected
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["$", "", " ", "#"])
     fun `존재하지 않는 연산자 sign을 입력하는 경우 예외가 발생한다`(input: String) {
-        val exception = shouldThrowExactly<IllegalArgumentException> { Operator.from(input) }
+        val exception = shouldThrowExactly<IllegalArgumentException> { Operator.parseToOperator(input) }
         exception.message shouldBe "올바른 연산자를 입력하여야 한다."
     }
 }
