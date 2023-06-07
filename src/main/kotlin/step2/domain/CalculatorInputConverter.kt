@@ -17,7 +17,7 @@ object CalculatorInputConverter {
             numbers = (EVEN_START_INDEX until size step STEP).map {
                 val numberString = delimiterSplits[it]
 
-                requireNotNull(value = numberString.toLongOrNull()) {
+                requireNotNull(value = numberString.toDoubleOrNull()) {
                     ErrorCode.INVALID_NUMBER_INPUT.message(numberString)
                 }
             }.run { ArrayDeque(elements = this) },

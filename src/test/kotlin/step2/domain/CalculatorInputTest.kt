@@ -10,7 +10,7 @@ class CalculatorInputTest : DescribeSpec({
 
     describe(name = "CalculatorInput 생성할 때") {
         val numbers = ArrayDeque(
-            elements = listOf(1L, 2L, 3L),
+            elements = listOf(1.0, 2.0, 3.0),
         )
 
         val operators = ArrayDeque(

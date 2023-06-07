@@ -3,7 +3,7 @@ package step2.domain
 import step2.model.ErrorCode
 
 data class CalculatorInput(
-    val numbers: ArrayDeque<Long>,
+    val numbers: ArrayDeque<Double>,
     val operators: ArrayDeque<Operator>,
 ) {
 

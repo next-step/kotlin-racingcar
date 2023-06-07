@@ -2,7 +2,7 @@ package step2.domain
 
 object Calculator {
 
-    fun calculate(calculatorInput: CalculatorInput): Long {
+    fun calculate(calculatorInput: CalculatorInput): Double {
         val operators = calculatorInput.operators
         val numbers = calculatorInput.numbers
 

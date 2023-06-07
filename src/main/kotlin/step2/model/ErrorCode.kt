@@ -10,4 +10,7 @@ enum class ErrorCode(val message: (String) -> String) {
     INVALID_NUMBER_INPUT(
         message = { input -> "연산 입력값 중 홀수 순서는 숫자가 입력되어야 합니다. 입력값 : $input" },
     ),
+    INVALID_NUMBER_INPUT_WHEN_DIVIDE(
+        message = { input -> "나누기일 때 두 번째 숫자는 0일 수 없습니다. 입력값 : $input" },
+    ),
 }
