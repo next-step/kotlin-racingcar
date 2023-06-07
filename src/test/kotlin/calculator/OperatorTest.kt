@@ -7,6 +7,9 @@ import calculator.Operator.TIMES
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.ValueSource
 
 class OperatorTest {
 
@@ -38,5 +41,19 @@ class OperatorTest {
     fun `DIVIDE는 나눗셈 연산을 수행한다`() {
         val actual = DIVIDE.operate(6, 2)
         actual shouldBe 3
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = ["+, PLUS", "-, MINUS", "*, TIMES", "/, DIVIDE"])
+    fun `연산자 sign을 입력하면 Operator를 반환한다`(input: String, expected: Operator) {
+        val actual = Operator.from(input)
+        actual shouldBe expected
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["$", "", " ", "#"])
+    fun `존재하지 않는 연산자 sign을 입력하는 경우 예외가 발생한다`(input: String) {
+        val exception = shouldThrowExactly<IllegalArgumentException> { Operator.from(input) }
+        exception.message shouldBe "올바른 연산자를 입력하여야 한다."
     }
 }
