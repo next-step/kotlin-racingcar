@@ -1,7 +1,7 @@
 package next.step.calculator.domain
 
 enum class Operator(
-    private val symbol: String,
+    val symbol: String,
     val evaluate: (a: InputNumber, b: InputNumber) -> InputNumber
 ) {
     PLUS("+", { a, b -> a + b }),
