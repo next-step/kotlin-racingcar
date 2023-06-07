@@ -8,15 +8,18 @@ class Calculator {
             "*" to { a: Double, b: Double -> a * b },
             "/" to { a: Double, b: Double -> a / b }
         )
-        fun calculate(formula: Formula): Double {
+
+        fun calculate(input: String?): Double {
+            val formula = Formula(input)
             val expression = formula.expression
             var result = expression[0].toDouble()
 
-            for (i in 1 until expression.size step 2) {
-                val operation = operations[expression[i]]
+            expression.drop(1).windowed(2, 2).forEach { (operation, number) ->
+                val operation = operations[operation]
                     ?: throw IllegalArgumentException("유효하지 않은 연산자입니다.")
-                result = operation(result, expression[i + 1].toDouble())
+                result = operation(result, number.toDouble())
             }
+
             return result
         }
     }
