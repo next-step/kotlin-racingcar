@@ -30,7 +30,8 @@ object Calculator {
             }
 
             if (token.isOperator()) {
-                while (stack.isNotEmpty() &&
+                while (
+                    stack.isNotEmpty() &&
                     OperatorType.of(stack.peek()).priority >= OperatorType.of(token).priority
                 ) {
                     queue.add(stack.pop())
