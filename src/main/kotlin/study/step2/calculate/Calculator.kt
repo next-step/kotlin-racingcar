@@ -21,9 +21,9 @@ class Calculator {
         result = 0
     }
 
-    private fun dealEachSymbol(value: String) {
-        when (val number = value.toIntOrNull()) {
-            null -> changeSymbol(value)
+    private fun dealEachSymbol(eachSymbol: String) {
+        when (val number = eachSymbol.toIntOrNull()) {
+            null -> changeSymbol(eachSymbol)
             else -> operateBySymbol(symbol, number)
         }
     }
@@ -36,7 +36,7 @@ class Calculator {
         result = operationSymbol.operate(result, number)
     }
 
-    private fun changeSymbol(value: String) {
-        symbol = OperationSymbol.findBySymbol(value).value
+    private fun changeSymbol(eachSymbol: String) {
+        symbol = OperationSymbol.findBySymbol(eachSymbol).value
     }
 }
