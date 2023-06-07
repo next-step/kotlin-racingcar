@@ -1,15 +1,15 @@
 package racingcar
 
 class Car(
-    val position: Int = 0
+    var position: Int = 0
 ) {
-    fun move(moveCount: Int): Car {
+    fun move(moveCount: Int): Int {
         if (moveCount in 4..9) {
-            return Car(position + 1)
+            return ++position
         }
         if (moveCount in 0..3) {
-            return Car(position)
+            return position
         }
-        return this
+        return position
     }
 }
