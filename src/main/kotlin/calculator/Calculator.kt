@@ -25,9 +25,9 @@ private fun isOdd(number: Int) = (number % 2) == 1
 
 private fun isEven(number: Int) = (number % 2) == 0
 
-private fun parseToNumber(it: String) =
+private fun parseToNumber(number: String) =
     try {
-        it.toInt()
+        number.toInt()
     } catch (_: NumberFormatException) {
         throw IllegalArgumentException("올바른 숫자를 입력하여야 한다.")
     }
