@@ -5,9 +5,17 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 
 class StringCalculatorTest {
+
+    @ParameterizedTest
+    @CsvSource("20 + 1 * 4 / 2,42.0", "2-1+1*2/2,2.0")
+    fun `문자열 계산기를 통한 연산`(input: String, expected: Double) {
+        val result = StringCalculator().run(input)
+        assertThat(result).isEqualTo(expected)
+    }
 
     @ParameterizedTest
     @ValueSource(strings = ["20 + 1 * 4 / 2"])
