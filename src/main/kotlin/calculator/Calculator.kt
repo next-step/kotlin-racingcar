@@ -3,7 +3,7 @@ package calculator
 private const val DELIMITER = " "
 private const val BLANK_EXCEPTION = "입력이 올바르지 않습니다."
 private const val OPERATOR_EXCEPTION = "잘못된 연산자입니다."
-private const val SIZE_EXCEPTION = "입력이 올바르지 않습니다."
+private const val SIZE_EXCEPTION = "계산을 위한 입력이 충분하지 않습니다."
 
 class Calculator {
     companion object {
