@@ -4,7 +4,6 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import org.junit.jupiter.params.provider.NullSource
 import org.junit.jupiter.params.provider.ValueSource
 
 class OperatorTest {
@@ -13,14 +12,6 @@ class OperatorTest {
     @ParameterizedTest(name = "[{index}] \"{0}\" : Operator.{1}")
     fun `사칙연산 기호로 Operator 생성`(symbol: String, expected: Operator) {
         Operator.from(symbol) shouldBe expected
-    }
-
-    @NullSource
-    @ParameterizedTest
-    fun `null로 Operator 생성시 예외 발생`(nullStr: String?) {
-        shouldThrow<IllegalArgumentException> {
-            Operator.from(nullStr)
-        }
     }
 
     @ValueSource(strings = ["", " ", "     "])

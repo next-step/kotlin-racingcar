@@ -10,7 +10,7 @@ enum class Operator(
     DIVIDE("/", { a, b -> a / b });
 
     companion object {
-        fun from(symbol: String?): Operator {
+        fun from(symbol: String): Operator {
             return requireNotNull(values().firstOrNull { it.symbol == symbol }) { "잘못된 형식의 연산자입니다." }
         }
     }
