@@ -1,9 +1,9 @@
 package stringcalculator
 
-data class Number(private val value: Int) {
+data class Number(val value: Int) {
     constructor(value: String) : this(
         value.toIntOrNull()
-            ?: throw IllegalArgumentException("Invalid value: $value")
+            ?: throw IllegalArgumentException("Invalid value: $value required number formattable value")
     )
 
     operator fun plus(target: Number): Number = Number(value + target.value)

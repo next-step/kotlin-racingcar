@@ -3,7 +3,6 @@ package stringcalculator
 import java.util.LinkedList
 import java.util.Queue
 
-
 object StringCalculator {
     fun calculate(input: String?): Number {
 
@@ -15,12 +14,15 @@ object StringCalculator {
         val operators = extractOperators(splitInput)
         var summery: Number = operands.poll()
 
+        require(operands.size != operators.size) {
+            throw IllegalArgumentException("Invalid Input: $input")
+        }
+
         for (operand in operands) {
             val operator = operators.poll()
 
             summery = operator.operate(summery, operand)
         }
-
 
         return summery
     }
@@ -42,6 +44,6 @@ object StringCalculator {
             .filter { it % 2 == 1 }
             .forEach { queue.add(Operator.findBySymbol(splitInput[it])) }
 
-        return queue;
+        return queue
     }
 }
