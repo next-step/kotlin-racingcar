@@ -1,14 +1,19 @@
 package step2
 
+import step2.tokenize.DefaultTokenizer
+import step2.tokenize.Tokenize
+
 class Calculate {
     private val DELIMITER = " "
+    private val validate = Validate()
+    private val tokenize: Tokenize = DefaultTokenizer()
 
     operator fun invoke(equation: String): Double {
         require(equation.isBlank().not()) { "공식은 빈값이 될 수 없습니다." }
-        val tokens = tokenize(equation)
+        val tokens = tokenize(equation, DELIMITER)
         require(tokens.size % 2 != 0) { "올바른 항의 갯수를 입력해주세요." }
-        val numbers = validateNumbers(tokens)
-        val operands = validateOperand(tokens)
+        val numbers = validate.numbers(tokens)
+        val operands = validate.operands(tokens)
         return calculate(numbers, operands)
     }
 
@@ -28,32 +33,4 @@ class Calculate {
             Operator.PLUS -> firstNumber + secondNumber
             Operator.MINUS -> firstNumber - secondNumber
         }
-
-    private fun tokenize(equation: String): List<String> = equation.split(DELIMITER)
-
-    private fun validateNumbers(tokens: List<String>): List<Double> =
-        try {
-            tokens.filterIndexed { index, _ -> index % 2 == 0 }.map { token -> token.toDouble() }
-        } catch (e: NumberFormatException) {
-            throw IllegalArgumentException("숫자 형태를 입력해주세요.")
-        }
-
-    private fun validateOperand(tokens: List<String>): List<Operator> =
-        tokens.filterIndexed { index, _ -> index % 2 != 0 }.map { token -> compareOperand(token) }
-
-    private fun compareOperand(operand: String): Operator =
-        when (operand) {
-            "+" -> Operator.PLUS
-            "-" -> Operator.MINUS
-            "*" -> Operator.MULTIPLY
-            "/" -> Operator.DIVIDE
-            else -> throw IllegalArgumentException("올바른 계산자를 입력해주세요.")
-        }
-}
-
-enum class Operator(val operand: String) {
-    PLUS("+"),
-    MINUS("-"),
-    MULTIPLY("*"),
-    DIVIDE("/");
 }

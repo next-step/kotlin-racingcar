@@ -18,6 +18,12 @@ internal class CalculateTest {
     }
 
     @ParameterizedTest
+    @ValueSource(strings = ["3 a 4", "4 ㅁ 4"])
+    fun `non operand input throws IllegalArgumentException`(input: String) {
+        assertThrows(IllegalArgumentException::class.java) { dut(input) }
+    }
+
+    @ParameterizedTest
     @MethodSource("makePlusOperationTestCase")
     fun `plus operation test with random value`(equation: String, answer: Double) {
         assertEquals(answer, dut(equation))
