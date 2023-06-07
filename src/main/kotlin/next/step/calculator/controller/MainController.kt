@@ -14,12 +14,16 @@ fun main() {
 }
 
 private fun calculate() {
-    try {
+    runCatching {
         val calculationCmd = InputDevice.readCalculationCommand()
         val result = Calculator.calculate(calculationCmd)
-        OutputDevice.showResult(calculationCmd, result)
-    } catch (e: Exception) {
+        Calculation(calculationCmd, result)
+    }.onSuccess {
+        OutputDevice.showResult(it.cmd, it.result)
+    }.onFailure { e ->
         OutputDevice.showError(e.message)
         calculate()
     }
 }
+
+data class Calculation(val cmd: String, val result: Int)
