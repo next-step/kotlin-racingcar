@@ -3,11 +3,14 @@ package study.step2
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
+import study.step2.calculate.CalculateOperation
+import study.step2.calculate.Calculator
 import java.lang.IllegalArgumentException
 
 class CalculatorTest : BehaviorSpec({
     given("계산기 테스트") {
-        val calculator = Calculator()
+        val operation = CalculateOperation()
+        val calculator = Calculator(operation)
         `when`("10 + 5") {
             val expression = "10 + 5"
             val result = calculator.calculate(expression)
@@ -46,7 +49,7 @@ class CalculatorTest : BehaviorSpec({
             then("IllegalArgumentException 에러가 발생한다.") {
                 shouldThrow<IllegalArgumentException> {
                     calculator.calculate(expression)
-                }.message shouldBe "사칙연산 기호가 아닙니다."
+                }.message shouldBe "&는 사칙연산 기호가 아닙니다."
             }
         }
     }
