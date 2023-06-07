@@ -11,7 +11,18 @@ fun calculate(input: String): Int {
     val operators = values.filterIndexed { index, _ -> index % 2 == 1 }
         .map { parseToOperator(it) }
 
-    return 0
+    var calculatedNumber = operands.first()
+
+    for (index in operators.indices) {
+        val operand = operands[index + 1]
+        val operator = operators[index]
+
+        if (operator == "+") {
+            calculatedNumber += operand
+        }
+    }
+
+    return calculatedNumber
 }
 
 private fun validateCalculateFormat(values: List<String>) {

@@ -4,6 +4,7 @@ import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.EmptySource
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -36,5 +37,13 @@ class CalculatorKtTest {
     fun `짝수번째에 있는 값는 연산자가 입력되지 않는 경우 예외가 발생한다`(input: String) {
         val exception = shouldThrowExactly<IllegalArgumentException> { calculate(input) }
         exception.message shouldBe "올바른 연산자를 입력하여야 한다."
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = ["1 + 2, 3", "3 + 4, 7", "1 + 2 + 3, 6"])
+    fun `덧셈 부호를 연산할 수 있다`(input: String, expected: Int) {
+        val actual = calculate(input)
+
+        actual shouldBe expected
     }
 }
