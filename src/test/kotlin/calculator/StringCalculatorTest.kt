@@ -3,6 +3,7 @@ package calculator
 import calculator.dto.ExtractDTO
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -34,5 +35,21 @@ class StringCalculatorTest {
         val result = StringCalculator().calculate(setup.numbers, setup.operators)
 
         assertThat(result).isEqualTo(42.0)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["- 20 + 1 * 4 / 2", "2-1+1*2/2 -"])
+    fun `연산 기호 또는 연산 숫자가 맞지 않는 경우`(input: String) {
+        assertThrows<IllegalArgumentException> {
+            StringCalculator().run(input)
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["20 ^ 1 * 4 / 2", "2~1+1*2/2"])
+    fun `연산 기호의 맞지 않는 기호가 존재하는 경우`(input: String) {
+        assertThrows<IllegalArgumentException> {
+            StringCalculator().run(input)
+        }
     }
 }
