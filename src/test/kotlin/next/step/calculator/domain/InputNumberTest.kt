@@ -2,7 +2,6 @@ package next.step.calculator.domain
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
-import next.step.calculator.domain.exception.IllegalInputNumberFormatException
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.NullSource
@@ -17,7 +16,7 @@ class InputNumberTest {
     @NullSource
     @ParameterizedTest
     fun `null로 입력 숫자 생성시 예외 발생`(nullStr: String?) {
-        shouldThrow<IllegalInputNumberFormatException> {
+        shouldThrow<IllegalArgumentException> {
             InputNumber.from(nullStr)
         }
     }
@@ -25,7 +24,7 @@ class InputNumberTest {
     @ValueSource(strings = ["", " ", "     "])
     @ParameterizedTest(name = "[{index}] \"{0}\"")
     fun `공백으로 입력 숫자 생성시 예외 발생`(spaces: String) {
-        shouldThrow<IllegalInputNumberFormatException> {
+        shouldThrow<IllegalArgumentException> {
             InputNumber.from(spaces)
         }
     }
@@ -33,7 +32,7 @@ class InputNumberTest {
     @ValueSource(strings = ["dfd", "한글", "+"])
     @ParameterizedTest(name = "[{index}] \"{0}\"")
     fun `공백이 아니면서 숫자가 아닌 문자열로 입력 숫자 생성시 예외 발생`(notNumber: String) {
-        shouldThrow<IllegalInputNumberFormatException> {
+        shouldThrow<IllegalArgumentException> {
             InputNumber.from(notNumber)
         }
     }

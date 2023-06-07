@@ -1,18 +1,11 @@
 package next.step.calculator.domain
 
-import next.step.calculator.domain.exception.IllegalInputNumberFormatException
-
 data class InputNumber(private val n: Int) {
     companion object {
         fun from(str: String?): InputNumber {
-            validate(str)
-            return InputNumber(str!!.toInt())
-        }
-
-        private fun validate(str: String?) {
-            if (str.isNullOrBlank() || str.isNotNumeric()) {
-                throw IllegalInputNumberFormatException()
-            }
+            requireNotNull(str)
+            require(str.isNotBlank() && str.isNumeric())
+            return InputNumber(str.toInt())
         }
     }
 
@@ -24,4 +17,4 @@ data class InputNumber(private val n: Int) {
     fun toInt(): Int = n
 }
 
-private fun String.isNotNumeric(): Boolean = this.any { char -> !char.isDigit() }
+private fun String.isNumeric(): Boolean = this.all { char -> char.isDigit() }
