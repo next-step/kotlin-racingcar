@@ -25,13 +25,9 @@ enum class Operator(private val symbol: String) : MathElement {
             return operatorString in symbols()
         }
 
-        fun from(operatorString: String) = when (operatorString) {
-            Addition.symbol -> Addition
-            Subtraction.symbol -> Subtraction
-            Multiplication.symbol -> Multiplication
-            Division.symbol -> Division
-            else -> throw IllegalArgumentException()
-        }
+        fun from(operatorString: String) = values().find {
+            it.symbol == operatorString
+        } ?: throw IllegalArgumentException()
 
         private fun symbols() = values().map {
             it.symbol
