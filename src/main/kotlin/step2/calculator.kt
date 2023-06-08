@@ -4,7 +4,7 @@ import step2.domain.Calculator
 import step2.presentation.InputView
 import step2.presentation.OutputView
 
-fun main() {
+fun calculator() {
     OutputView.printStartCalculator()
 
     val calculateResult = Calculator.calculate(
