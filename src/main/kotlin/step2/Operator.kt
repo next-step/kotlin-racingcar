@@ -1,7 +1,7 @@
 package step2
 
 enum class Operator(
-    private val operator: String
+    val operator: String
 ) {
     PLUS("+"),
     MINUS("-"),
@@ -9,9 +9,13 @@ enum class Operator(
     DIVIDE("/");
 
     companion object {
-        fun isOperator(value: String): Boolean {
-            val operators = Operator.values().map { it.operator }
-            return operators.contains(value)
+        fun calculate(prev: Double, next: Double, operator: Operator): Double {
+            return when (operator) {
+                PLUS -> prev + next
+                MINUS -> prev - next
+                MULTIPLY -> prev * next
+                DIVIDE -> prev / next
+            }
         }
 
         fun getOperator(value: String): Operator {
