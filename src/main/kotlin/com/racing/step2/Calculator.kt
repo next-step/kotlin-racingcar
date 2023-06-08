@@ -1,6 +1,6 @@
 package com.racing.step2
 
-class Calculator {
+object Calculator {
     fun exec(exp: String): Int {
         val expressionList = exp.split(" ")
 
