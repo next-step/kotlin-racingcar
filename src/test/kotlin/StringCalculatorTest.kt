@@ -3,12 +3,12 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 
-class StringCalculateTest {
+class StringCalculatorTest {
     @ParameterizedTest
     @ValueSource(strings = ["2 + 3 * 4 / 2"])
     fun testSquares(input: String) {
 
-        val calculator = StringCalculate()
+        val calculator = StringCalculator()
         val result = calculator.calculate(input)
 
         Assertions.assertEquals(10, result)
@@ -20,7 +20,7 @@ class StringCalculateTest {
         "15 + 100 + 1500 + 1, 1616"
     )
     fun `덧셈`(input: String, expected: Int) {
-        val calculator = StringCalculate()
+        val calculator = StringCalculator()
         val result = calculator.calculate(input)
 
         Assertions.assertEquals(expected, result)
@@ -32,7 +32,7 @@ class StringCalculateTest {
         "100 - 10 - 20 - 5, 65"
     )
     fun `뺄셈`(input: String, expected: Int) {
-        val calculator = StringCalculate()
+        val calculator = StringCalculator()
         val result = calculator.calculate(input)
 
         Assertions.assertEquals(expected, result)
@@ -44,7 +44,7 @@ class StringCalculateTest {
         "100 * 5 * 2, 1000"
     )
     fun `곱셈`(input: String, expected: Int) {
-        val calculator = StringCalculate()
+        val calculator = StringCalculator()
         val result = calculator.calculate(input)
 
         Assertions.assertEquals(expected, result)
@@ -56,7 +56,7 @@ class StringCalculateTest {
         "100 / 5 / 3, 6"
     )
     fun `나눗셈`(input: String, expected: Int) {
-        val calculator = StringCalculate()
+        val calculator = StringCalculator()
         val result = calculator.calculate(input)
 
         Assertions.assertEquals(expected, result)
@@ -68,7 +68,7 @@ class StringCalculateTest {
         "33 + 1 * 2 * 2 - 1111 / 2, -487"
     )
     fun `복합 계산`(input: String, expected: Int) {
-        val calculator = StringCalculate()
+        val calculator = StringCalculator()
         val result = calculator.calculate(input)
 
         Assertions.assertEquals(expected, result)
