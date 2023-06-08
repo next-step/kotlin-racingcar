@@ -59,6 +59,30 @@ class RaceGameTest : DescribeSpec({
             it(name = "게임을 시작하면 자동차 숫자만큼 현재 위치를 반환한다.") {
                 expect.size shouldBe cars.size
             }
+
+            val currentHeadOfRace = raceGame.currentHeadOfRace()
+
+            it(name = "시작 시에는 현재 선두가 모두를 반환한다.") {
+                currentHeadOfRace.size shouldBe cars.size
+            }
+        }
+
+        val headOfRaceCar = CarFactory.createCar(name = "andy", position = 3)
+        val anotherCar = CarFactory.createCar(name = "andy", position = 2)
+        val loserCar = CarFactory.createCar(name = "andy", position = 1)
+
+        context(name = "하나의 차 포지션이 앞서있다면") {
+            val raceGame = RaceGame(
+                cars = listOf(headOfRaceCar, anotherCar, loserCar),
+                round = round,
+            )
+
+            val currentHeadOfRace = raceGame.currentHeadOfRace()
+
+            it(name = "시작 시에는 현재 선두가 모두를 반환한다.") {
+                currentHeadOfRace.size shouldBe 1
+                currentHeadOfRace.firstOrNull() shouldBe headOfRaceCar.name
+            }
         }
     }
 
