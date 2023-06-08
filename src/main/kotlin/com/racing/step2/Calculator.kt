@@ -4,7 +4,9 @@ object Calculator {
     fun exec(exp: String): Int {
         val expressionList = exp.split(" ")
 
-        checkExpressionFormat(expressionList)
+        if (expressionList.size <= 2 || expressionList.size % 2 == 0) {
+            throw IllegalArgumentException("식을 정확하게 입력해주세요")
+        }
 
         var indexPointer = 2
         var result = expressionList[0].toInt()
