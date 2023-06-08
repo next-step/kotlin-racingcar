@@ -48,7 +48,7 @@ class RaceGameInputTest : DescribeSpec({
             }
 
             it(name = "라운드는 숫자형이어야 한다는 에러가 발생한다.") {
-                exception shouldHaveMessage RaceGameErrorCode.INVALID_CAR_COUNT_INPUT.message(invalidString)
+                exception shouldHaveMessage RaceGameErrorCode.INVALID_ROUND_INPUT.message(invalidString)
             }
         }
     }

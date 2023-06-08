@@ -4,42 +4,42 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.throwable.shouldHaveMessage
+import step3.domain.car.Car
+import step3.domain.car.CarFactory
+import step3.domain.formula.BasicRuleMoveFormula
 import step3.model.RaceGameErrorCode
+import java.util.concurrent.atomic.AtomicInteger
 
 class RaceGameTest : DescribeSpec({
 
     describe(name = "레이스 게임 시작할 때") {
-        context(name = "자동차 개수가 지정된 개수보다 낮으면") {
-            val raceGameInfo = RaceGameInfo(
-                carCount = 0,
-                round = 5,
-            )
+        val cars = emptyList<Car>()
+        val round = AtomicInteger(5)
 
+        context(name = "자동차 개수가 지정된 개수보다 낮으면") {
             val exception = shouldThrow<IllegalArgumentException> {
-                RaceGame(raceGameInfo = raceGameInfo)
+                RaceGame(cars = cars, round = round)
             }
 
             it(name = "시작할 수 없다는 에러가 발생한다.") {
-                exception shouldHaveMessage RaceGameErrorCode.INVALID_CAR_COUNT.message("1 ${raceGameInfo.carCount}")
+                exception shouldHaveMessage RaceGameErrorCode.INVALID_CAR_COUNT.message("1 ${cars.size}")
             }
         }
     }
 
     describe(name = "레이스 게임 시작한 후") {
-        context(name = "라운드가 모두 소진되었으면") {
-            val raceGameInfo = RaceGameInfo(
-                carCount = 3,
-                round = 0,
-            )
+        val cars = CarFactory.createCars(count = 3, moveFormula = BasicRuleMoveFormula)
+        val round = AtomicInteger()
 
-            val raceGame = RaceGame(raceGameInfo = raceGameInfo)
+        context(name = "라운드가 모두 소진되었으면") {
+            val raceGame = RaceGame(cars = cars, round = round)
 
             val exception = shouldThrow<IllegalStateException> {
                 raceGame.race()
             }
 
             it(name = "게임을 시작하면 남은 라운드 수가 없다는 에러가 발생한다.") {
-                exception shouldHaveMessage RaceGameErrorCode.NOT_REMAINING_ROUND.message("${raceGameInfo.round}")
+                exception shouldHaveMessage RaceGameErrorCode.NOT_REMAINING_ROUND.message("${round.get()}")
             }
 
             val progress = raceGame.isProgress()
@@ -49,18 +49,15 @@ class RaceGameTest : DescribeSpec({
             }
         }
 
-        context(name = "라운드가 남아있는 상태에서") {
-            val raceGameInfo = RaceGameInfo(
-                carCount = 10,
-                round = 10,
-            )
+        round.addAndGet(10)
 
-            val raceGame = RaceGame(raceGameInfo = raceGameInfo)
+        context(name = "라운드가 남아있는 상태에서") {
+            val raceGame = RaceGame(cars = cars, round = round)
 
             val currentPosition = raceGame.race()
 
             it(name = "게임을 시작하면 자동차 숫자만큼 현재 위치를 반환한다.") {
-                currentPosition.size shouldBe raceGameInfo.carCount
+                currentPosition.size shouldBe cars.size
             }
 
             val progress = raceGame.isProgress()
