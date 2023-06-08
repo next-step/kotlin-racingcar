@@ -1,6 +1,6 @@
 package study.step3.race
 
-import study.step3.race.mock.ActualInputReader
+import study.step3.race.reader.ActualInputReader
 import kotlin.random.Random
 
 fun main() {

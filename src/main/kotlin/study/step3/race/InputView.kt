@@ -1,6 +1,6 @@
 package study.step3.race
 
-import study.step3.race.mock.InputReader
+import study.step3.race.reader.InputReader
 
 class InputView(
     private val inputReader: InputReader,
