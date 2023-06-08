@@ -1,5 +1,7 @@
 package step3.view
 
+import step3.model.RaceConst
+
 object ResultView {
 
     private const val START_RACE_GAME = "실행 결과"
@@ -16,13 +18,8 @@ object ResultView {
         println()
     }
 
-    private fun Int.mark(): String {
-        var result: String = EMPTY
-
-        repeat(this) {
-            result += CAR_POSITION_MARK
-        }
-
-        return result
-    }
+    @OptIn(ExperimentalStdlibApi::class)
+    private fun Int.mark(): String = RaceConst.ZERO
+        .rangeUntil(other = this)
+        .fold(initial = EMPTY) { acc, _ -> acc + CAR_POSITION_MARK }
 }

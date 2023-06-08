@@ -13,7 +13,7 @@ data class RaceGameInput(
         },
 
         round = requireNotNull(value = roundInput.toIntOrNull()) {
-            RaceGameErrorCode.INVALID_CAR_COUNT_INPUT.message(roundInput)
+            RaceGameErrorCode.INVALID_ROUND_INPUT.message(roundInput)
         },
     )
 }
