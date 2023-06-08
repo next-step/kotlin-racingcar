@@ -30,4 +30,13 @@ class RacingGameTest {
         actual.attemptCount shouldBe 1
         actual.cars shouldHaveSize 1
     }
+
+    @Test
+    fun `게임을 실행하면 시도 횟수를 1만큼 차단하고 자동차들을 움직인다`() {
+        val racingGame = RacingGame(attemptCount = 1, cars = listOf(Car { true }))
+        racingGame.run()
+
+        racingGame.attemptCount shouldBe 0
+        racingGame.cars[0].position shouldBe 1
+    }
 }
