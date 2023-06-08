@@ -12,16 +12,16 @@ class StringCalculator(
     fun calculate(input: String?): String {
         val expression = parser.parse(input)
         var result = BigDecimal(expression[0])
-        var operator = ""
+        var expressionOperator = ""
 
         for (index in 1 until expression.size) {
             if (isOperator(expression[index])) {
-                operator = expression[index]
+                expressionOperator = expression[index]
             }
 
             if (!isOperator(expression[index])) {
                 val operand = BigDecimal(expression[index])
-                when (operator) {
+                when (expressionOperator) {
                     "+" -> result = calculator.add(result, operand)
                     "-" -> result = calculator.subtract(result, operand)
                     "/" -> result = calculator.divide(result, operand)
