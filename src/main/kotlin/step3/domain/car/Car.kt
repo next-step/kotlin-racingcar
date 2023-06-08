@@ -14,6 +14,8 @@ class Car internal constructor(
         position.get()
     }
 
+    fun currentPosition(): Int = position.get()
+
     override fun equals(other: Any?): Boolean = when {
         this === other -> true
         javaClass != other?.javaClass -> false

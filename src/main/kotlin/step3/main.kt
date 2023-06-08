@@ -23,4 +23,8 @@ fun main() {
             results = raceResult.map { CarPositionResult(name = it.name, position = it.position) },
         )
     }
+
+    ResultView.printFinalHeadOfRace(
+        headOfRaceCarNames = raceGame.currentHeadOfRace(),
+    )
 }

@@ -20,6 +20,10 @@ class CarTest : DescribeSpec({
             it(name = "지정한 이름으로 생성된다.") {
                 car.name shouldBe name
             }
+
+            it(name = "현재 자동차 위치를 반환한다.") {
+                car.currentPosition() shouldBe position
+            }
         }
     }
 

@@ -75,6 +75,7 @@ class RaceGameTest : DescribeSpec({
             val raceGame = RaceGame(
                 cars = listOf(headOfRaceCar, anotherCar, loserCar),
                 round = round,
+                moveFormula = NotMoveFormula,
             )
 
             val currentHeadOfRace = raceGame.currentHeadOfRace()
