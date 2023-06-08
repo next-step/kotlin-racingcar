@@ -1,6 +1,7 @@
 package step3.domain.game
 
 import step3.domain.car.Car
+import step3.domain.game.formula.BasicRuleMoveFormula
 import step3.domain.generator.NumberGenerator
 import step3.domain.generator.RandomNumberGenerator
 import step3.model.RaceGameErrorCode
@@ -21,15 +22,17 @@ data class RaceGame(
     }
 
     @Throws(IllegalStateException::class)
-    fun race(): List<Int> {
+    fun basicFormulaRace(): List<Int> {
         check(value = round.get() > MINIMUM_ROUND) {
             RaceGameErrorCode.NOT_REMAINING_ROUND.message(round.toString())
         }
 
         round.decrementAndGet()
+        val basicRuleMoveFormula = BasicRuleMoveFormula()
 
         return cars.map {
             it.move(
+                moveFormula = basicRuleMoveFormula,
                 value = numberGenerator.generate(),
             )
         }
