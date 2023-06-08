@@ -5,7 +5,6 @@ import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import racingcar.domain.RacingGame.Companion.createRandomMoveCarRacingGame
-import java.lang.IllegalStateException
 
 class RacingGameTest {
 
@@ -57,5 +56,20 @@ class RacingGameTest {
 
         actual.attemptCount shouldBe 1
         actual.cars shouldHaveSize 2
+    }
+
+    @Test
+    fun `게임이 종료되지 않았다면 false를 반환한다`() {
+        val actual = RacingGame(attemptCount = 1, cars = listOf(Car { true })).isEndGame()
+        actual shouldBe false
+    }
+
+    @Test
+    fun `게임이 종료되었다면 true를 반환한다`() {
+        val racingGame = RacingGame(attemptCount = 1, cars = listOf(Car { true }))
+        racingGame.run()
+
+        val actual = racingGame.isEndGame()
+        actual shouldBe true
     }
 }

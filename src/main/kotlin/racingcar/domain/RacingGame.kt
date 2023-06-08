@@ -17,6 +17,8 @@ class RacingGame(
         cars.forEach { it.move() }
     }
 
+    fun isEndGame(): Boolean = attemptCount == 0
+
     companion object {
         fun createRandomMoveCarRacingGame(attemptCount: Int, carCount: Int): RacingGame {
             return RacingGame(
