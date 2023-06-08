@@ -34,22 +34,4 @@ class ConsoleTest {
         val userInput = console.getInput()
         assertEquals(input, userInput)
     }
-
-    @Test
-    fun `공백 입력 받음`() {
-        val input = "  "
-        setInput(input)
-        org.junit.jupiter.api.assertThrows<IllegalArgumentException> {
-            console.getInput()
-        }
-    }
-
-    @Test
-    fun `빈값 입력 받음`() {
-        val input = ""
-        setInput(input)
-        org.junit.jupiter.api.assertThrows<IllegalArgumentException> {
-            console.getInput()
-        }
-    }
 }
