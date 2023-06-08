@@ -31,6 +31,18 @@ class RaceGameTest {
             }
     }
 
+    @Test
+    fun `RaceResult 내 turns의 첫번째 아이템은 InitialTurn, 그 다음 부터는 Turn이어야 한다`() {
+        val raceStartInformation = RaceStartInformation(numberOfCars = 3, numberOfAttempts = 5)
+
+        CarRaceGame().runCarRace(raceStartInformation)
+            .turns
+            .forEachIndexed { index, turn ->
+                if (index == 0) assertThat(turn is InitialTurn)
+                else assertThat(turn is Turn)
+            }
+    }
+
     @RepeatedTest(10)
     fun `차량의 위치는 이전 위치와 같거나 +1 이어야 한다`() {
         val raceStartInformation = RaceStartInformation(numberOfCars = 3, numberOfAttempts = 5)

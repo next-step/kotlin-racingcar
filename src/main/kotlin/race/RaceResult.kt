@@ -1,16 +1,16 @@
 package race
 
 data class RaceResult(
-    val turns: List<Turn>,
+    val turns: List<TurnInfo>,
 ) {
     fun latestCarPositions() = turns.last()
         .carPositions
 
-    fun appendTurn(turn: Turn) = copy(turns = turns.plus(turn))
+    fun appendTurn(turn: TurnInfo) = copy(turns = turns.plus(turn))
 
     companion object {
         fun getInitialRaceResult(startInformation: RaceStartInformation): RaceResult {
-            return RaceResult(listOf(Turn.getInitialTurn(startInformation)))
+            return RaceResult(listOf(TurnInfo.getInitialTurn(startInformation)))
         }
     }
 }

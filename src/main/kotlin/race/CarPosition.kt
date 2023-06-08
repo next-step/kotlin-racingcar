@@ -7,7 +7,7 @@ data class CarPosition(
 
     companion object {
         fun getInitialCarPosition(): CarPosition {
-            return CarPosition(1)
+            return CarPosition(0)
         }
     }
 }
