@@ -11,10 +11,10 @@ class RacingGame(
         require(cars.isNotEmpty()) { "게임 생성에 필요한 자동차 대수는 1대 이상이어야 한다." }
     }
 
-    fun run() {
+    fun run(): List<Int> {
         check(attemptCount > 0) { "시도 횟수가 남지 않아 게임을 더이상 실행할 수 없다." }
         attemptCount--
-        cars.forEach { it.move() }
+        return cars.map { it.move() }
     }
 
     fun isEndGame(): Boolean = attemptCount == 0
