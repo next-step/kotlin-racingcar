@@ -1,46 +1,28 @@
 package com.racing.step2
 
 class Calculator {
-    companion object {
-        val operationList = listOf<String>("+", "-", "*", "/")
-    }
-
     fun exec(exp: String): Int {
         val expressionList = exp.split(" ")
 
-        validate(expressionList)
+        checkExpressionFormat(expressionList)
 
-        // calc
-        var result = 0
-        var op = ""
-        for (i in expressionList.indices) {
-            if (i == 0) {
-                result = expressionList[i].toInt()
-                continue
-            }
-
-            if (i % 2 == 1) {
-                op = expressionList[i]
-            } else {
-                if (op == "+") {
-                    result += expressionList[i].toInt()
-                } else if (op == "-") {
-                    result -= expressionList[i].toInt()
-                } else if (op == "*") {
-                    result *= expressionList[i].toInt()
-                } else if (expressionList[i].toInt() != 0) {
-                    result /= expressionList[i].toInt()
-                } else {
-                    throw java.lang.IllegalArgumentException("0 으로 값을 나눌 수 없습니다")
-                }
-            }
+        var indexPointer = 2
+        var result = expressionList[0].toInt()
+        while (indexPointer < expressionList.size) {
+            result = operate(result, expressionList[indexPointer].toInt(), expressionList[indexPointer - 1])
+            indexPointer += 2
         }
 
-        // return result
         return result
     }
-    private fun validate(expressionList: List<String>) {
-        checkExpressionFormat(expressionList)
-        checkExpressionOperateIndex(expressionList)
+
+    private fun operate(a: Int, b: Int, op: String): Int {
+        return when (op) {
+            Operator.PLUS.op -> Operator.PLUS.run(a, b)
+            Operator.MINUS.op -> Operator.MINUS.run(a, b)
+            Operator.CROSS.op -> Operator.CROSS.run(a, b)
+            Operator.DIVIDE.op -> Operator.DIVIDE.run(a, b)
+            else -> throw IllegalArgumentException("부호가 잘 못 된 로직입니다")
+        }
     }
 }
