@@ -8,7 +8,8 @@ class StringCalculatorTest {
     @ValueSource(strings = ["2 + 3 * 4 / 2"])
     fun testSquares(input: String) {
 
-        val calculator = StringCalculator()
+        val scanner = StringCalculatorScanner()
+        val calculator = StringCalculator(scanner)
         val result = calculator.calculate(input)
 
         Assertions.assertEquals(10, result)
@@ -20,7 +21,8 @@ class StringCalculatorTest {
         "15 + 100 + 1500 + 1, 1616"
     )
     fun `덧셈`(input: String, expected: Int) {
-        val calculator = StringCalculator()
+        val scanner = StringCalculatorScanner()
+        val calculator = StringCalculator(scanner)
         val result = calculator.calculate(input)
 
         Assertions.assertEquals(expected, result)
@@ -32,7 +34,8 @@ class StringCalculatorTest {
         "100 - 10 - 20 - 5, 65"
     )
     fun `뺄셈`(input: String, expected: Int) {
-        val calculator = StringCalculator()
+        val scanner = StringCalculatorScanner()
+        val calculator = StringCalculator(scanner)
         val result = calculator.calculate(input)
 
         Assertions.assertEquals(expected, result)
@@ -44,7 +47,8 @@ class StringCalculatorTest {
         "100 * 5 * 2, 1000"
     )
     fun `곱셈`(input: String, expected: Int) {
-        val calculator = StringCalculator()
+        val scanner = StringCalculatorScanner()
+        val calculator = StringCalculator(scanner)
         val result = calculator.calculate(input)
 
         Assertions.assertEquals(expected, result)
@@ -56,7 +60,8 @@ class StringCalculatorTest {
         "100 / 5 / 3, 6"
     )
     fun `나눗셈`(input: String, expected: Int) {
-        val calculator = StringCalculator()
+        val scanner = StringCalculatorScanner()
+        val calculator = StringCalculator(scanner)
         val result = calculator.calculate(input)
 
         Assertions.assertEquals(expected, result)
@@ -68,7 +73,8 @@ class StringCalculatorTest {
         "33 + 1 * 2 * 2 - 1111 / 2, -487"
     )
     fun `복합 계산`(input: String, expected: Int) {
-        val calculator = StringCalculator()
+        val scanner = StringCalculatorScanner()
+        val calculator = StringCalculator(scanner)
         val result = calculator.calculate(input)
 
         Assertions.assertEquals(expected, result)
