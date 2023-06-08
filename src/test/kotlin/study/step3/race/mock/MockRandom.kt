@@ -6,7 +6,7 @@ class MockRandom(
     private val value: Int
 ) : Random() {
     override fun nextBits(bitCount: Int): Int {
-        TODO("Not yet implemented")
+        return 0
     }
 
     override fun nextInt(until: Int): Int {
