@@ -1,29 +1,28 @@
 package calculator
 
-import java.lang.IllegalArgumentException
-import java.util.function.BinaryOperator
-import java.util.function.IntBinaryOperator
-
 private const val ZERO_EXCEPTION = "0으로는 나눌 수 없습니다."
+private const val OPERATOR_EXCEPTION = "잘못된 연산자입니다."
 
-enum class Operator : BinaryOperator<Int>, IntBinaryOperator {
-    PLUS {
-        override fun apply(t: Int, u: Int) = t + u
-    },
-    MINUS {
-        override fun apply(t: Int, u: Int) = t - u
-    },
-    MUL {
-        override fun apply(t: Int, u: Int) = t * u
-    },
-    DIV {
-        override fun apply(t: Int, u: Int): Int {
-            if (t == 0 || u == 0) {
-                throw IllegalArgumentException(ZERO_EXCEPTION)
+enum class Operator(
+    val operate: (Int, Int) -> Int,
+) {
+    PLUS({ a, b -> a + b }),
+    MINUS({ a, b -> a - b }),
+    MUL({ a, b -> a * b }),
+    DIV({ a, b ->
+        require(a != 0 && b != 0) { ZERO_EXCEPTION }
+        a / b
+    });
+
+    companion object {
+        fun from(operator: String): Operator {
+            return when (operator) {
+                "+" -> PLUS
+                "-" -> MINUS
+                "*" -> MUL
+                "/" -> DIV
+                else -> throw IllegalArgumentException(OPERATOR_EXCEPTION)
             }
-            return t / u
         }
-    };
-
-    override fun applyAsInt(left: Int, right: Int) = apply(left, right)
+    }
 }
