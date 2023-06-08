@@ -4,26 +4,27 @@ class StringCalculate {
         if (input.isNullOrEmpty())
             throw IllegalArgumentException("문자열을 확인해 주세요")
 
-        var x = ""
-        var y = ""
+        var firstOperand = ""
+        var secondOperand = ""
         var operator: Char? = null
-        var result = 0
+
+        var operateResult = 0
 
         input.forEach { c ->
             when (this.parseChar(c)) {
                 CharType.NUMBER -> {
                     if (operator == null)
-                        x += c
+                        firstOperand += c
 
-                    if (x != "" && operator != null)
-                        y += c
+                    if (firstOperand != "" && operator != null)
+                        secondOperand += c
                 }
 
                 CharType.BLANK -> {
-                    if (x != "" && y != "") {
-                        result = this.operation(x, y, operator!!)
-                        x = result.toString()
-                        y = ""
+                    if (firstOperand != "" && secondOperand != "") {
+                        operateResult = this.operation(firstOperand, secondOperand, operator!!)
+                        firstOperand = operateResult.toString()
+                        secondOperand = ""
                         operator = null
                     }
                 }
@@ -35,8 +36,8 @@ class StringCalculate {
         }
 
         // 마지막 원소 계산
-        result = this.operation(x, y, operator!!)
-        return result
+        operateResult = this.operation(firstOperand, secondOperand, operator!!)
+        return operateResult
     }
 
     private fun parseChar(c: Char): CharType {
