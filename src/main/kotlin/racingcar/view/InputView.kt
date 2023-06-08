@@ -2,13 +2,13 @@ package racingcar.view
 
 fun inputCarCount(): Int {
     println("자동차 대수는 몇 대인가요?")
-    return runCatching { readlnOrNull()!!.toInt() }
+    return runCatching { readln().toInt() }
         .getOrElse { retryInputCarCount() }
 }
 
 fun inputAttemptCount(): Int {
     println("시도할 횟수는 몇 회인가요?")
-    return runCatching { readlnOrNull()!!.toInt() }
+    return runCatching { readln().toInt() }
         .getOrElse { retryInputRaceCount() }
 }
 
