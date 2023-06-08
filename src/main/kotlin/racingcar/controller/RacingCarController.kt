@@ -1,16 +1,33 @@
 package racingcar.controller
 
-import racingcar.view.InputView
+import racingcar.domain.RacingCar
+import racingcar.domain.RacingCarGame
+import racingcar.ui.enterCountOfCars
+import racingcar.ui.enterNumberOfAttempts
+import racingcar.ui.printPosition
+import racingcar.ui.printStart
 
 class RacingCarController {
 
-    private val inputView: InputView = InputView()
-
     fun start() {
-        val countOfCars = inputView.enterCountOfCars()
-        val numberOfAttempts = inputView.enterNumberOfAttempts()
+        val countOfCars = enterCountOfCars()
+        val numberOfAttempts = enterNumberOfAttempts()
 
-        println(countOfCars)
-        println(numberOfAttempts)
+        val racingCarGame = RacingCarGame(createRacingCars(countOfCars), numberOfAttempts)
+
+        printStart()
+
+        while (racingCarGame.racingAttemptsCheck()) {
+            racingCarGame.racing()
+            printPosition(racingCarGame.racingCars)
+        }
+    }
+
+    private fun createRacingCars(racingCarCounts: Int): List<RacingCar> {
+        val racingCars = mutableListOf<RacingCar>()
+        repeat((1..racingCarCounts).count()) {
+            racingCars.add(RacingCar())
+        }
+        return racingCars
     }
 }
