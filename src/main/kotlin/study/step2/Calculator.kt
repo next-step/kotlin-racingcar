@@ -33,13 +33,7 @@ object Calculator {
         forEach { equation ->
             when (equation) {
                 is Equation.Number -> {
-                    when (operator) {
-                        Operator.Plus -> result += equation.value
-                        Operator.Minus -> result -= equation.value
-                        Operator.Multiply -> result *= equation.value
-                        Operator.Divide -> result /= equation.value
-                        null -> result = equation.value
-                    }
+                    result = handleOperator(operator, result, equation)
                 }
 
                 is Operator -> {
@@ -48,5 +42,19 @@ object Calculator {
             }
         }
         return result
+    }
+
+    private fun handleOperator(
+        operator: Operator?,
+        result: Int,
+        equation: Equation.Number
+    ): Int {
+        return when (operator) {
+            Operator.Plus -> result + equation.value
+            Operator.Minus -> result - equation.value
+            Operator.Multiply -> result * equation.value
+            Operator.Divide -> result / equation.value
+            null -> equation.value
+        }
     }
 }
