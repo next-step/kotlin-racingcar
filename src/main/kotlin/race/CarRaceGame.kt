@@ -5,22 +5,22 @@ class CarRaceGame {
         var raceResult = RaceResult.getInitialRaceResult(startInformation)
 
         for (i in 0 until startInformation.numberOfAttempts) {
-            raceResult = runSingleRace(raceResult)
+            raceResult = proceedTurn(raceResult)
         }
 
         return raceResult
     }
 
-    private fun runSingleRace(previousResult: RaceResult): RaceResult {
+    private fun proceedTurn(previousResult: RaceResult): RaceResult {
         return previousResult.latestCarPositions()
             .map {
-                it.turn()
+                it.proceedTurn()
             }.let {
                 previousResult.appendTurn(Turn(it))
             }
     }
 
-    private fun CarPosition.turn(): CarPosition {
+    private fun CarPosition.proceedTurn(): CarPosition {
         if (canMove()) return goForward()
         return this
     }
