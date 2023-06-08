@@ -4,6 +4,7 @@ import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
+import java.lang.IllegalStateException
 
 class RacingGameTest {
 
@@ -38,5 +39,14 @@ class RacingGameTest {
 
         racingGame.attemptCount shouldBe 0
         racingGame.cars[0].position shouldBe 1
+    }
+
+    @Test
+    fun `시도 횟수가 0인데 run하면 예외가 발생한다`() {
+        val racingGame = RacingGame(attemptCount = 1, cars = listOf(Car { true }))
+        racingGame.run()
+
+        val exception = shouldThrowExactly<IllegalStateException> { racingGame.run() }
+        exception.message shouldBe "시도 횟수가 남지 않아 게임을 더이상 실행할 수 없다."
     }
 }

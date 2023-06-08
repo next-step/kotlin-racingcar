@@ -10,6 +10,7 @@ class RacingGame(
     }
 
     fun run() {
+        check(attemptCount > 0) { "시도 횟수가 남지 않아 게임을 더이상 실행할 수 없다." }
         attemptCount--
         cars.forEach { it.move() }
     }
