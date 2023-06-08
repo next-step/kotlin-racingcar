@@ -6,7 +6,7 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
-class CalculatorTest {
+class CalculatorTest() {
     @ParameterizedTest
     @CsvSource(
         "3 + 4 - 1 / 3 + 5,  7",
@@ -16,8 +16,7 @@ class CalculatorTest {
     )
     fun `성공하는 계산 케이스`(input: String, answer: Int) {
         // when
-        val calculator = Calculator()
-        val result = calculator.exec(input)
+        val result = Calculator.exec(input)
 
         // then
         assertThat(result).isEqualTo(answer)
@@ -28,12 +27,9 @@ class CalculatorTest {
         // given
         val input = "3 + 10 - 1 / 0 + 5"
 
-        // when
-        val calculator = Calculator()
-
         // then
         assertThrows<IllegalArgumentException> {
-            calculator.exec(input)
+            Calculator.exec(input)
         }
     }
 
@@ -43,16 +39,13 @@ class CalculatorTest {
         val input = ""
         val input2 = " "
 
-        // when
-        val calculator = Calculator()
-
         // then
         assertThrows<IllegalArgumentException> {
-            calculator.exec(input)
+            Calculator.exec(input)
         }
 
         assertThrows<IllegalArgumentException> {
-            calculator.exec(input2)
+            Calculator.exec(input2)
         }
     }
 
@@ -61,12 +54,9 @@ class CalculatorTest {
         // given
         val input = "intput string"
 
-        // when
-        val calculator = Calculator()
-
         // then
         assertThrows<IllegalArgumentException> {
-            calculator.exec(input)
+            Calculator.exec(input)
         }
     }
 }
