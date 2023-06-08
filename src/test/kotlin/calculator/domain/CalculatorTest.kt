@@ -3,6 +3,7 @@ package calculator.domain
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class CalculatorTest {
 
@@ -26,7 +27,7 @@ class CalculatorTest {
 
         val list = listOf("2", "A", "3", "*", "4", "/", "2")
 
-        org.junit.jupiter.api.assertThrows<IllegalArgumentException> {
+        assertThrows<IllegalArgumentException> {
             calculator.calculate(list)
         }
     }

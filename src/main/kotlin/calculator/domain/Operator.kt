@@ -19,12 +19,12 @@ enum class Operator(val value: String) : Operable {
     };
 
     companion object {
-        fun findOperate(c: Char): Operator {
-            return when (c) {
-                '+' -> PLUS
-                '-' -> MINUS
-                '*' -> TIMES
-                '/' -> DIVIDE
+        fun findOperate(s: String): Operator {
+            return when (s) {
+                "+" -> PLUS
+                "-" -> MINUS
+                "*" -> TIMES
+                "/" -> DIVIDE
                 else -> throw IllegalArgumentException("사칙 연산 기호가 아닌 문자가 존재합니다.")
             }
         }
