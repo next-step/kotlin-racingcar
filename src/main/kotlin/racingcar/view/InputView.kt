@@ -17,7 +17,7 @@ private fun retryInputCarCount(): Int {
     return inputCarCount()
 }
 
-fun retryInputRaceCount(): Int {
+private fun retryInputRaceCount(): Int {
     println("시도할 횟수는 숫자만 입력가능합니다. 다시 입력해주세요.")
     return inputAttemptCount()
 }
