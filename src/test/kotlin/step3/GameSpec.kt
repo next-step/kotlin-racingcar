@@ -25,14 +25,35 @@ class GameSpec : DescribeSpec({
     }
 
     describe("게임 실행") {
-        context("자동차가 2대이고 시도 횟수가 3인 경우") {
-            val game = Game(numberOfCars = 2, numberOfTrials = 3)
+        context("자동차가 n(first)대이고 시도 횟수가 m(second)인 경우") {
+            val cases = listOf(
+                Pair(2, 3),
+                Pair(7, 4),
+                Pair(10, 23),
+            )
 
-            it("3회 시도 결과를 반환한다") {
-                val result = game.process()
+            it("시도 횟수만큼 결과를 반환한다") {
+                cases.forEach {
+                    val numberOfCars = it.first
+                    val numberOfTrials = it.second
 
-                result.size shouldBe 3
-                result.forEach { it.size shouldBe 2 }
+                    val results = Game(numberOfCars = numberOfCars, numberOfTrials = numberOfTrials).process()
+
+                    results.size shouldBe numberOfTrials
+                }
+            }
+
+            it("각 시도 결과에는 자동차 대수만큼 결과가 포함된다") {
+                cases.forEach {
+                    val numberOfCars = it.first
+                    val numberOfTrials = it.second
+
+                    val results = Game(numberOfCars = numberOfCars, numberOfTrials = numberOfTrials).process()
+
+                    results.forEach { result ->
+                        result.size shouldBe numberOfCars
+                    }
+                }
             }
         }
     }

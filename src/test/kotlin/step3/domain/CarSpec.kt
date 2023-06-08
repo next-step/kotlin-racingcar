@@ -4,7 +4,6 @@ import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 
 class CarSpec : DescribeSpec({
-
     describe("자동차 생성") {
         context("자동차가 생성되면") {
             it("자동차의 위치는 0이다.") {
