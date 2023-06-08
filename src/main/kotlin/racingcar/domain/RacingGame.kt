@@ -17,7 +17,7 @@ class RacingGame(
         return cars.map { it.move() }
     }
 
-    fun isEndGame(): Boolean = attemptCount == RUNNABLE_GAME_ATTEMPT_COUNT
+    fun isRunnable(): Boolean = attemptCount != RUNNABLE_GAME_ATTEMPT_COUNT
 
     companion object {
         private const val RUNNABLE_GAME_ATTEMPT_COUNT = 0

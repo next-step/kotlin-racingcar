@@ -59,17 +59,17 @@ class RacingGameTest {
     }
 
     @Test
-    fun `게임이 종료되지 않았다면 false를 반환한다`() {
-        val actual = RacingGame(attemptCount = 1, cars = listOf(Car { true })).isEndGame()
-        actual shouldBe false
+    fun `게임이 실행 가능하면 true를 반환한다`() {
+        val actual = RacingGame(attemptCount = 1, cars = listOf(Car { true })).isRunnable()
+        actual shouldBe true
     }
 
     @Test
-    fun `게임이 종료되었다면 true를 반환한다`() {
+    fun `게임이 실행 불가능하면 false를 반환한다`() {
         val racingGame = RacingGame(attemptCount = 1, cars = listOf(Car { true }))
         racingGame.run()
 
-        val actual = racingGame.isEndGame()
-        actual shouldBe true
+        val actual = racingGame.isRunnable()
+        actual shouldBe false
     }
 }
