@@ -16,8 +16,8 @@ class PersonTest {
     }
 
     @Test
-    fun `널 타입`(){
-            val actual = Person(name = "문창주", age = 19, nickname = null)
+    fun `널 타입`() {
+        val actual = Person(name = "문창주", age = 19, nickname = null)
     }
 
     @Test
