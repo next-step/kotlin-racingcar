@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource
 import java.lang.IllegalArgumentException
 
 class CalculatorTest {
-    private val sut: Calculator = TODO()
+    private val sut = Calculator()
 
     @Test
     fun `문자열을 입력받아 계산을 할 수 있다`() {
@@ -24,7 +24,6 @@ class CalculatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["", "  ", "1)2"])
-    @Test
     fun `입력값이 유효하지 않다면 IllegalArgumentException 가 발생한다`(invalidFormula: String) {
         // given
 

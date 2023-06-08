@@ -1,5 +1,18 @@
 package calculator
 
 class Calculator {
-    fun calculate(formula: String): Int = TODO("should be implemented")
+    private val formulaConverter = FormulaConverter()
+
+    fun calculate(formula: String): Int {
+        return formulaConverter.convert(formula).let {
+            var resultValue = it.startValue
+
+            while (true) {
+                it.nextFormulaElement()?.also { formulaElement ->
+                    resultValue = formulaElement.type.calculation(resultValue, formulaElement.value)
+                } ?: break
+            }
+            resultValue.toInt()
+        }
+    }
 }

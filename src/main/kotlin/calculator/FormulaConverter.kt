@@ -49,8 +49,33 @@ class FormulaConverter {
     }
 }
 
-enum class Operation(val op: String) {
-    PLUS("+"), MINUS("-"), MULTIPLY("*"), DIVIDER("/");
+typealias Calculation = (leftOperand: Double, rightOperand: Double) -> Double
+
+enum class Operation(val op: String, val calculation: Calculation) {
+    PLUS(
+        "+",
+        object : Calculation {
+            override fun invoke(leftOperand: Double, rightOperand: Double): Double = leftOperand + rightOperand
+        }
+    ),
+    MINUS(
+        "-",
+        object : Calculation {
+            override fun invoke(leftOperand: Double, rightOperand: Double): Double = leftOperand - rightOperand
+        }
+    ),
+    MULTIPLY(
+        "*",
+        object : Calculation {
+            override fun invoke(leftOperand: Double, rightOperand: Double): Double = leftOperand * rightOperand
+        }
+    ),
+    DIVIDER(
+        "/",
+        object : Calculation {
+            override fun invoke(leftOperand: Double, rightOperand: Double): Double = leftOperand / rightOperand
+        }
+    );
 
     companion object {
         fun of(operation: String) = values().firstOrNull { it.op == operation }
