@@ -1,28 +1,22 @@
 package calculator
 
-enum class Operator : MathElement {
-    Addition {
-        override val symbol = "+"
+enum class Operator(private val symbol: String) : MathElement {
+    Addition("+") {
         override fun calculate(operand1: Operand, operand2: Operand) =
             Operand(operand1.value + operand2.value)
     },
-    Subtraction {
-        override val symbol = "-"
+    Subtraction("-") {
         override fun calculate(operand1: Operand, operand2: Operand) =
             Operand(operand1.value - operand2.value)
     },
-    Multiplication {
-        override val symbol = "*"
+    Multiplication("*") {
         override fun calculate(operand1: Operand, operand2: Operand) =
             Operand(operand1.value * operand2.value)
     },
-    Division {
-        override val symbol = "/"
+    Division("/") {
         override fun calculate(operand1: Operand, operand2: Operand) =
             Operand(operand1.value / operand2.value)
     };
-
-    abstract val symbol: String
 
     abstract fun calculate(operand1: Operand, operand2: Operand): Operand
 
