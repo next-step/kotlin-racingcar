@@ -21,6 +21,7 @@ class RacingGame(
 
     companion object {
         private const val RUNNABLE_GAME_ATTEMPT_COUNT = 0
+
         fun createRandomMoveCarRacingGame(attemptCount: Int, carCount: Int): RacingGame {
             return RacingGame(
                 attemptCount = attemptCount,
