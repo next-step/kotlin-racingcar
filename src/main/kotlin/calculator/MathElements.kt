@@ -2,8 +2,20 @@ package calculator
 
 class MathElements(private val elements: List<MathElement>) {
 
-    fun forEach(action: (MathElement) -> Unit) {
-        elements.forEach(action)
+    fun calculate(): Float {
+        var result = Operand(0f)
+        var currentOperator: Operator? = null
+
+        elements.forEach { element ->
+            when (element) {
+                is Operator -> currentOperator = element
+                is Operand -> {
+                    result = currentOperator?.calculate(result, element) ?: element
+                }
+            }
+        }
+
+        return result.value
     }
 
     fun isValid(): Boolean {

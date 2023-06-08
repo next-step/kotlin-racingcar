@@ -9,19 +9,7 @@ class Expression(expression: String) {
     }
 
     fun calculate(): Float {
-        var result = Operand(0f)
-        var currentOperator: Operator? = null
-
-        elements.forEach { element ->
-            when (element) {
-                is Operator -> currentOperator = element
-                is Operand -> {
-                    result = currentOperator?.calculate(result, element) ?: element
-                }
-            }
-        }
-
-        return result.value
+        return elements.calculate()
     }
 
     private fun requireValidExpression() {
