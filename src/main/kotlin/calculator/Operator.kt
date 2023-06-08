@@ -27,7 +27,8 @@ enum class Operator(private val symbol: String) : MathElement {
 
         fun from(operatorString: String) = values().find {
             it.symbol == operatorString
-        } ?: throw IllegalArgumentException()
+        }
+            ?: throw IllegalArgumentException("Unsupported operator: $operatorString. Please input a valid operator (+, -, *, /).")
 
         private fun symbols() = values().map {
             it.symbol
