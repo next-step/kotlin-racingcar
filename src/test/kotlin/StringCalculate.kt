@@ -80,3 +80,16 @@ class StringCalculate {
         return Integer.valueOf(x) / Integer.valueOf(y)
     }
 }
+
+enum class Operator(val operator: Char) {
+    PLUS('+'),
+    MINUS('-'),
+    MULTIPLY('*'),
+    DIVISION('/')
+}
+
+enum class CharType {
+    NUMBER,
+    BLANK,
+    OPERATOR,
+}
