@@ -1,6 +1,7 @@
 package calculator
 
 import calculator.dto.ExtractDTO
+import calculator.enums.OperatorsEnum
 
 class StringCalculator {
 
@@ -63,23 +64,8 @@ class StringCalculator {
                 currentNum = numbers[i]
             }
 
-            when (operators[i]) {
-                '+' -> {
-                    currentNum = currentNum.plus(numbers[i + 1])
-                }
-
-                '-' -> {
-                    currentNum = currentNum.minus(numbers[i + 1])
-                }
-
-                '*' -> {
-                    currentNum = currentNum.times(numbers[i + 1])
-                }
-
-                '/' -> {
-                    currentNum = currentNum.div(numbers[i + 1])
-                }
-            }
+            val operator = OperatorsEnum.fromChar(operators[i])
+            currentNum = operator?.calculate(currentNum, numbers[i + 1])!!
         }
         return currentNum
     }
