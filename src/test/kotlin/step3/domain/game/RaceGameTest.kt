@@ -59,7 +59,7 @@ class RaceGameTest : DescribeSpec({
 
             val currentPosition = raceGame.race()
 
-            it(name = " 게임을 시작하면 자동차 숫자만큼 현재 위치를 반환한다.") {
+            it(name = "게임을 시작하면 자동차 숫자만큼 현재 위치를 반환한다.") {
                 currentPosition.size shouldBe raceGameInfo.carCount
             }
 
