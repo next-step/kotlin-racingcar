@@ -1,6 +1,15 @@
 package step2
 
 import java.math.BigDecimal
+import java.math.MathContext
+
+fun String.toBigDecimal(): BigDecimal {
+    return try {
+        this.toBigDecimal(MathContext.DECIMAL128)
+    } catch (ex: NumberFormatException) {
+        throw IllegalArgumentException("Invalid operand : $this")
+    }
+}
 
 class StringCalculator(
     val parser: StringCalculatorInputParser,
@@ -11,42 +20,22 @@ class StringCalculator(
 
     fun calculate(input: String?): String {
         val expression = parser.parse(input)
-        var result = BigDecimal(expression[0])
-        var expressionOperator = ""
+        var result = expression[0].toBigDecimal()
 
-        for (index in 1 until expression.size) {
-            if (isOperator(expression[index])) {
-                expressionOperator = expression[index]
-            }
+        for (index in 1 until expression.size step(2)) {
+            val expressionOperator = expression[index]
+            val operand = expression[index + 1].toBigDecimal()
 
-            if (!isOperator(expression[index])) {
-                val operand = if (isOperand(expression[index]))
-                    BigDecimal(expression[index])
-                else
-                    throw IllegalArgumentException("Invalid operand : ${expression[index]}")
-
-                result = when (expressionOperator) {
-                    "+" -> calculator.add(result, operand)
-                    "-" -> calculator.subtract(result, operand)
-                    "/" -> calculator.divide(result, operand)
-                    "*" -> calculator.multiply(result, operand)
-                    else -> throw IllegalArgumentException("Invalid operator : $expressionOperator")
-                }
+            result = when (expressionOperator) {
+                "+" -> calculator.add(result, operand)
+                "-" -> calculator.subtract(result, operand)
+                "/" -> calculator.divide(result, operand)
+                "*" -> calculator.multiply(result, operand)
+                else -> throw IllegalArgumentException("Invalid operator : $expressionOperator")
             }
         }
 
         return result.toString()
-    }
-
-    private fun isOperator(input: String): Boolean = operators.contains(input)
-
-    private fun isOperand(input: String): Boolean {
-        return try {
-            BigDecimal(input)
-            true
-        } catch (ex: NumberFormatException) {
-            false
-        }
     }
 }
 
