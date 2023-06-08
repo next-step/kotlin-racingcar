@@ -10,8 +10,6 @@ class StringCalculator {
             throw IllegalArgumentException("입력값이 null이거나 빈 공백 문자일 수 없습니다")
         }
 
-        extractNumbersAndOperators(input)
-
         val extractResult = extractNumbersAndOperators(input)
 
         val numbers = extractResult.numbers
