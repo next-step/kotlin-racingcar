@@ -1,5 +1,7 @@
 package calculator
 
+import enums.OperatorSign
+
 class Calculator(
     val inputData: String
 ) {
@@ -12,26 +14,23 @@ class Calculator(
     }
 
     private fun checkIsNotSign(sign: String): Boolean {
-        if (sign == "+" || sign == "-" || sign == "*" || sign == "/")
-            return true
-        else
-            return false
+        return (sign == OperatorSign.SUM.code || sign == OperatorSign.SUBSTRACT.code || sign == OperatorSign.MULTIPLY.code || sign == OperatorSign.DIVIDE.code)
     }
     private fun splitNumberAndSign(inputData: String) {
         val splitData = inputData.split(" ")
 
         splitData.forEach {
-            try {
-                numberList.add(it.toInt())
-            } catch (e: Exception) {
-                signList.add(it)
-            }
+            kotlin.runCatching {
+                numberList.add((it.toInt()))
+            }.onFailure { e -> signList.add(it) }
         }
     }
 
     fun calculate(): Int {
-        if (checkInputDataIsNullOrBlank(inputData))
-            throw IllegalArgumentException("입력값이 null 이거나 공백 입니다.")
+        // check(), require()을 통해 제한을 걸 수 있다.
+        require(!checkInputDataIsNullOrBlank(inputData)) {
+            "입력값이 null 이거나 공백 입니다."
+        }
 
         splitNumberAndSign(inputData)
 
@@ -46,17 +45,15 @@ class Calculator(
     }
 
     private fun checkSignAndCalculate(sign: String, number1: Int, number2: Int): Int {
-        if (!checkIsNotSign(sign))
-            throw IllegalArgumentException("사칙연산의 기호가 아닙니다.")
-
-        return if (sign.equals("+")) {
-            sum(number1, number2)
-        } else if (sign.equals("-")) {
-            substract(number1, number2)
-        } else if (sign.equals("*")) {
-            multiply(number1, number2)
-        } else {
-            divide(number1, number2)
+        require(checkIsNotSign(sign)) {
+            "사칙연산의 기호가 아닙니다."
+        }
+        return when (sign) {
+            OperatorSign.SUM.code -> sum(number1, number2)
+            OperatorSign.SUBSTRACT.code -> substract(number1, number2)
+            OperatorSign.MULTIPLY.code -> multiply(number1, number2)
+            OperatorSign.DIVIDE.code -> divide(number1, number2)
+            else -> 0
         }
     }
 
