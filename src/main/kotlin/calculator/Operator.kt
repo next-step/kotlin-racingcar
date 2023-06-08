@@ -7,18 +7,17 @@ enum class Operator(private val operator: String) {
     DIV("/");
 
     companion object {
+        @Throws(IllegalArgumentException::class)
         fun valueOfString(operator: String): Operator {
-            return when (operator) {
-                ADD.operator -> ADD
-                SUB.operator -> SUB
-                MUL.operator -> MUL
-                DIV.operator -> DIV
-                else -> throw IllegalArgumentException("Invalid operator: $operator")
+            return try {
+                Operator.values().first { it.operator == operator }
+            } catch (e: NoSuchElementException) {
+                throw IllegalArgumentException("Invalid operator: $operator")
             }
         }
     }
 
-    fun execute(a: Int, b: Int): Int = when (this) {
+    fun execute(a: Double, b: Double): Double = when (this) {
         ADD -> a + b
         SUB -> a - b
         MUL -> a * b

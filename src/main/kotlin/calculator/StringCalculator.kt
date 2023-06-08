@@ -1,24 +1,25 @@
 package calculator
 
-fun calculateFromString(input: String): Int {
-    val inputArray = input.split(" ".toRegex())
-        .dropLastWhile { it.isEmpty() }
-        .toTypedArray()
-    require(inputArray.size >= 3)
-    return calculate(inputArray)
-}
+class StringCalculator {
+    @Throws(IllegalArgumentException::class)
+    fun calculateFromString(input: String): Double {
+        val inputList = input.split(" ".toRegex())
+            .dropLastWhile { it.isEmpty() }
+            .toList()
+        require(inputList.size >= 3)
+        return calculate(inputList)
+    }
 
-fun calculate(arr: Array<String>): Int {
-    val size = arr.size
-    val num1 = arr[size - 3].toInt()
-    val operator = Operator.valueOfString(arr[size - 2])
-    val num2 = arr[size - 1].toInt()
+    @Throws(IllegalArgumentException::class)
+    private fun calculate(inputList: List<String>): Double {
+        val list = inputList.takeLast(3)
+        val num1 = list[0].toDouble()
+        val operator = Operator.valueOfString(list[1])
+        val num2 = list[2].toDouble()
 
-    return when (size) {
-        3 -> operator.execute(num1, num2)
-        else -> {
-            val answer = calculate(arr.copyOfRange(0, size - 2))
-            return operator.execute(answer, num2)
+        return when (inputList.size) {
+            3 -> operator.execute(num1, num2)
+            else -> operator.execute(calculate(inputList.dropLast(2)), num2)
         }
     }
 }
