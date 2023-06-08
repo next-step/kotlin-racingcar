@@ -3,33 +3,32 @@ package step2
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class StringCalculatorTest {
     private val stringCalculator = StringCalculator()
 
     @Test
-    fun `입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException throw`() {
+    fun `입력값이 null인 경우 IllegalArgumentException throw`() {
         assertThrows<IllegalArgumentException> {
             stringCalculator.execute(null)
         }
+    }
 
+    @ParameterizedTest
+    @ValueSource(strings = ["", " "])
+    fun `입력값이 빈 공백 문자일 경우 IllegalArgumentException throw`(givenText: String) {
         assertThrows<IllegalArgumentException> {
-            stringCalculator.execute("")
-        }
-
-        assertThrows<IllegalArgumentException> {
-            stringCalculator.execute(" ")
+            stringCalculator.execute(givenText)
         }
     }
 
-    @Test
-    fun `사칙연산 기호가 아닌 경우 IllegalArgumentException throw`() {
+    @ParameterizedTest
+    @ValueSource(strings = ["1 & 2", "1 + 2 @ 3"])
+    fun `사칙연산 기호가 아닌 경우 IllegalArgumentException throw`(givenText: String) {
         assertThrows<IllegalArgumentException> {
-            stringCalculator.execute("1 & 2")
-        }
-
-        assertThrows<IllegalArgumentException> {
-            stringCalculator.execute("1 + 2 @ 3")
+            stringCalculator.execute(givenText)
         }
     }
 

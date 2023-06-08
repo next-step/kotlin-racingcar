@@ -1,6 +1,6 @@
 package step2
 
-import step2.enums.Operator
+import step2.enums.StringOperator
 
 class StringCalculator {
     fun execute(expression: String?): Int {
@@ -13,27 +13,38 @@ class StringCalculator {
         return calculateAll(numbers, operators)
     }
 
-    private fun splitListByIndex(givenList: List<String>): Pair<List<Int>, List<Operator>> {
-        val numberList = mutableListOf<Int>()
-        val operatorList = mutableListOf<Operator>()
+    private fun splitListByIndex(givenList: List<String>): SplitResult {
+        val numbers = mutableListOf<Int>()
+        val stringOperators = mutableListOf<StringOperator>()
 
         for ((index, element) in givenList.withIndex()) {
             if (index % 2 == 0) {
-                numberList.add(element.toInt())
+                numbers.add(element.toInt())
             } else {
-                operatorList.add(Operator.from(element))
+                stringOperators.add(StringOperator.from(element))
             }
         }
 
-        return Pair(numberList, operatorList)
+        return SplitResult(
+            numbers = numbers,
+            stringOperators = stringOperators
+        )
     }
 
-    private fun calculateAll(numbers: List<Int>, operators: List<Operator>): Int {
+    private data class SplitResult(
+        val numbers: List<Int>,
+        val stringOperators: List<StringOperator>
+    )
+
+    private fun calculateAll(
+        numbers: List<Int>,
+        stringOperators: List<StringOperator>
+    ): Int {
         var result = numbers[0]
 
         for (index in 1 until numbers.size) {
-            val operator = operators[index - 1]
-            result = operator.operation(result, numbers[index])
+            val stringOperator = stringOperators[index - 1]
+            result = stringOperator.operation(result, numbers[index])
         }
 
         return result

@@ -1,6 +1,6 @@
 package step2.enums
 
-enum class Operator(
+enum class StringOperator(
     val symbol: String,
     val operation: (Int, Int) -> Int
 ) {
@@ -10,7 +10,7 @@ enum class Operator(
     DIVIDE("/", { a, b -> a / b });
 
     companion object {
-        fun from(symbol: String): Operator {
+        fun from(symbol: String): StringOperator {
             return values().firstOrNull { it.symbol == symbol } ?: throw IllegalArgumentException()
         }
     }
