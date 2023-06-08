@@ -20,7 +20,7 @@ class RaceGameTest {
     }
 
     @Test
-    fun `RaceResult 내 positions 길이는 입력된 시도 횟수 + 1 이어야 한다`() {
+    fun `RaceResult 내 turns 길이는 입력된 시도 횟수 + 1 이어야 한다`() {
         val raceStartInformation = RaceStartInformation(numberOfCars = 3, numberOfAttempts = 5)
 
         CarRaceGame().runCarRace(raceStartInformation)
@@ -37,13 +37,14 @@ class RaceGameTest {
 
         CarRaceGame().runCarRace(raceStartInformation)
             .turns
-            .reduce { prevPosition, currentPosition ->
-                prevPosition.carPositions
+            .reduce { previousPosition, currentPosition ->
+                previousPosition.carPositions
                     .zip(currentPosition.carPositions)
-                    .forEach {
-                        val distance = it.second.position - it.first.position
+                    .forEach { (previousCarPosition, currentCarPosition) ->
+                        val distance = currentCarPosition.position - previousCarPosition.position
                         assertThat(distance == 0 || distance == 1).isTrue()
                     }
+
                 currentPosition
             }
     }
