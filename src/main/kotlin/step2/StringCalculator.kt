@@ -21,11 +21,12 @@ class StringCalculator(
 
             if (!isOperator(expression[index])) {
                 val operand = BigDecimal(expression[index])
-                when (expressionOperator) {
-                    "+" -> result = calculator.add(result, operand)
-                    "-" -> result = calculator.subtract(result, operand)
-                    "/" -> result = calculator.divide(result, operand)
-                    "*" -> result = calculator.multiply(result, operand)
+                result = when (expressionOperator) {
+                    "+" -> calculator.add(result, operand)
+                    "-" -> calculator.subtract(result, operand)
+                    "/" -> calculator.divide(result, operand)
+                    "*" -> calculator.multiply(result, operand)
+                    else -> throw IllegalArgumentException("Invalid operator : $expressionOperator")
                 }
             }
         }
