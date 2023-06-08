@@ -1,9 +1,9 @@
-package study.step3.race
+package study.racinggame.race
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import study.step3.race.mock.MockInputReader
-import study.step3.race.mock.MockRandom
+import study.racinggame.race.mock.MockInputReader
+import study.racinggame.race.mock.MockRandom
 
 class RaceTest : StringSpec({
     val mockInputReader = MockInputReader(listOf("3", "5"))

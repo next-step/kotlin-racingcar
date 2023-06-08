@@ -1,9 +1,9 @@
-package study.step3.race
+package study.racinggame.race
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import study.step3.race.mock.MockInputReader
+import study.racinggame.race.mock.MockInputReader
 import java.lang.IllegalArgumentException
 
 class InputViewTest : BehaviorSpec({

@@ -1,8 +1,8 @@
-package study.step3.race
+package study.racinggame.race
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import study.step3.domain.CarResponse
+import study.racinggame.domain.CarResponse
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 

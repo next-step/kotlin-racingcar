@@ -1,6 +1,6 @@
-package study.step3.race
+package study.racinggame.race
 
-import study.step3.race.reader.InputReader
+import study.racinggame.race.reader.InputReader
 
 class InputView(
     private val inputReader: InputReader,

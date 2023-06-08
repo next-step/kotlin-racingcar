@@ -1,4 +1,4 @@
-package study.step3.domain
+package study.racinggame.domain
 
 data class CarResponse(
     var position: Int = 0,

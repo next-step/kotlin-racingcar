@@ -1,4 +1,4 @@
-package study.step3.race.reader
+package study.racinggame.race.reader
 
 fun interface InputReader {
     fun raedLine(): String?

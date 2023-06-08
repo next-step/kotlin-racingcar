@@ -1,9 +1,9 @@
-package study.step3.race.mock
+package study.racinggame.race.mock
 
-import study.step3.race.reader.InputReader
+import study.racinggame.race.reader.InputReader
 
 class MockInputReader(
-    private val inputs: List<String>,
+    private val inputs: List<String>
 ) : InputReader {
 
     private var index = 0

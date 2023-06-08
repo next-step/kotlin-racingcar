@@ -1,6 +1,6 @@
-package study.step3.race
+package study.racinggame.race
 
-import study.step3.race.reader.ActualInputReader
+import study.racinggame.race.reader.ActualInputReader
 import kotlin.random.Random
 
 fun main() {
