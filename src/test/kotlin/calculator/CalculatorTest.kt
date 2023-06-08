@@ -13,7 +13,7 @@ class CalculatorTest {
     @Test
     fun `문자열을 입력받아 계산을 할 수 있다`() {
         // given
-        val tFormula = "2+3*4/2"
+        val tFormula = "2 + 3 * 4 / 2"
 
         // when
         val result = sut.calculate(tFormula)
