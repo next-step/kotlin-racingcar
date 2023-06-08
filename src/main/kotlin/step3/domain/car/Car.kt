@@ -4,6 +4,7 @@ import step3.domain.formula.MoveFormula
 import java.util.concurrent.atomic.AtomicInteger
 
 class Car internal constructor(
+    val name: String,
     private val position: AtomicInteger = AtomicInteger(),
 ) {
 

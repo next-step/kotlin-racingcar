@@ -30,7 +30,10 @@ class RaceGameTest : DescribeSpec({
     }
 
     describe(name = "레이스 게임 시작한 후") {
-        val cars = CarFactory.createCars(count = 3)
+        val cars = CarFactory.createCars(
+            carNames = listOf("test1", "test2", "test3")
+        )
+
         val round = AtomicInteger()
 
         context(name = "라운드가 모두 소진되었으면") {
@@ -49,7 +52,7 @@ class RaceGameTest : DescribeSpec({
 
         context(name = "라운드가 남아있는 상태에서") {
             val raceGame = RaceGame(cars = cars, round = round, moveFormula = NotMoveFormula)
-            val expect = mutableListOf<Int>()
+            val expect = mutableListOf<RaceGameResult>()
 
             raceGame.race { raceResult -> expect.addAll(elements = raceResult) }
 
@@ -61,7 +64,8 @@ class RaceGameTest : DescribeSpec({
 
     describe(name = "기본 룰로 게임을 시작할 때") {
         val position = AtomicInteger()
-        val cars = CarFactory.createCars(count = 1, position = position.get())
+        val carNames = listOf("test1")
+        val cars = CarFactory.createCars(carNames = carNames, position = position.get())
 
         context(name = "4미만일 때") {
             val round = AtomicInteger(1)
@@ -74,12 +78,12 @@ class RaceGameTest : DescribeSpec({
                 ),
             )
 
-            val expect = mutableListOf<Int>()
+            val expect = mutableListOf<RaceGameResult>()
 
             raceGame.race { raceResult -> expect.addAll(elements = raceResult) }
 
             it(name = "움직이지 않는다.") {
-                expect.firstOrNull() shouldBe position.get()
+                expect.firstOrNull()?.position shouldBe position.get()
             }
         }
 
@@ -94,12 +98,12 @@ class RaceGameTest : DescribeSpec({
                 ),
             )
 
-            val expect = mutableListOf<Int>()
+            val expect = mutableListOf<RaceGameResult>()
 
             raceGame.race { raceResult -> expect.addAll(elements = raceResult) }
 
             it(name = "한 칸 앞으로 간다.") {
-                expect.firstOrNull() shouldBe position.incrementAndGet()
+                expect.firstOrNull()?.position shouldBe position.incrementAndGet()
             }
         }
     }

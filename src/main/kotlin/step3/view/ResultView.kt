@@ -6,12 +6,13 @@ object ResultView {
     private const val CAR_POSITION_MARK = "-"
     private const val EMPTY = ""
     private const val ZERO = 0
+    private const val SEPARATOR = ":"
 
     fun printStartGame() = print(message = START_RACE_GAME)
 
-    fun printCarsPosition(carsPosition: List<Int>) {
-        carsPosition.forEach {
-            println(it.mark())
+    fun printCarPositionResults(results: List<CarPositionResult>) {
+        results.forEach {
+            println("${it.name} $SEPARATOR ${it.position.mark()}")
         }
 
         println()

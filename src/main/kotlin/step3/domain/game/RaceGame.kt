@@ -20,14 +20,19 @@ class RaceGame(
     }
 
     @Throws(IllegalStateException::class)
-    fun race(raceResultProcess: (List<Int>) -> Unit) {
+    fun race(raceResultProcess: (List<RaceGameResult>) -> Unit) {
         check(value = round.get() > MINIMUM_ROUND) {
             RaceGameErrorCode.NOT_REMAINING_ROUND.message(round.toString())
         }
 
         while (round.getAndDecrement() > MINIMUM_ROUND) {
             raceResultProcess(
-                cars.map { it.move(moveFormula = moveFormula) }
+                cars.map {
+                    RaceGameResult(
+                        name = it.name,
+                        position = it.move(moveFormula = moveFormula),
+                    )
+                }
             )
         }
     }
