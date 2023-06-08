@@ -14,7 +14,7 @@ class CarTest : BehaviorSpec({
         }
 
         `when`(name = "전진 조건이 false를 반환하면") {
-            val actual = Car().apply { move { true } }
+            val actual = Car().apply { move { false } }
 
             then(name = "위치 정보는 그대로 유지된다.") {
                 actual shouldBe Car(Distance.ZERO)

@@ -5,6 +5,9 @@ import racing.domain.strategy.MoveStrategy
 class Car(private var distance: Distance) : Movable {
     constructor() : this(Distance(0L))
 
+    val getDistance: Distance
+        get() = distance
+
     override fun move(strategy: MoveStrategy) {
         if (strategy.movable()) {
             distance += MOVING_DISTANCE
