@@ -1,16 +1,19 @@
 package step3.controller
 
 import step3.model.Car
+import step3.model.NumberGenerator
 import step3.model.RacingGame
 import step3.model.RandomNumberGenerator
 import step3.view.InputView
 import step3.view.OutputView
 
-class GameController {
+class GameController(
+    private val numberOfCars: Int = InputView.requestNumberOfCars(),
+    private val totalTrialCount: Int = InputView.requestCountOfTrial(),
+    private val numberGenerator: NumberGenerator = RandomNumberGenerator()
+) {
+
     fun start() {
-        val numberOfCars = InputView.requestNumberOfCars()
-        val totalTrialCount = InputView.requestCountOfTrial()
-        val numberGenerator = RandomNumberGenerator()
         val cars = createCars(numberOfCars)
         val racingGame = RacingGame(numberGenerator, cars)
 
