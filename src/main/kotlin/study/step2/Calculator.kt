@@ -12,15 +12,14 @@ class Calculator {
         fun calculate(input: String?): Double {
             val formula = Formula(input)
             val expression = formula.expression
-            var result = expression[0].toDouble()
+            val first = expression.first().toDouble()
 
-            expression.drop(1).windowed(2, 2).forEach { (operation, number) ->
-                val operation = operations[operation]
-                    ?: throw IllegalArgumentException("유효하지 않은 연산자입니다.")
-                result = operation(result, number.toDouble())
-            }
-
-            return result
+            return expression.drop(1)
+                .windowed(2, 2)
+                .fold(first) { result, (operation, number) ->
+                    val op = operations[operation] ?: throw IllegalArgumentException("유효하지 않은 연산자입니다.")
+                    op(result, number.toDouble())
+                }
         }
     }
 }

@@ -9,18 +9,18 @@ class CalculatorTest : StringSpec({
         val result = Calculator.calculate("2 + 3 * 4 / 2")
         result shouldBe 10.0
     }
-    "유효하지 않은 연산자가 포함된 식이 주어졌을 때 예외가 발생한다" {
+    "유효하지 않은 연산자가 포함된 식이 주어졌을 때 IllegalArgumentException 이 발생한다" {
         shouldThrow<IllegalArgumentException> {
             Calculator.calculate("2 $ 3 * 4 / 2")
         }.message shouldBe "유효하지 않은 연산자입니다."
     }
-    "숫자가 아닌 문자열이 포함된 경우 예외가 발생한다" {
+    "숫자가 아닌 문자열이 포함된 경우 NumberFormatException 이 발생한다" {
         shouldThrow<NumberFormatException> {
             Calculator.calculate("One + Two")
         }.message shouldBe "유효한 숫자가 아닙니다."
     }
-    "숫자와 연산자 사이의 공백이 여러 개인 경우 예외가 발생한다." {
-        shouldThrow<IllegalArgumentException> {
+    "숫자와 연산자 사이의 공백이 여러 개인 경우 NumberFormatException 이 발생한다." {
+        shouldThrow<NumberFormatException> {
             Calculator.calculate("1    + 2")
         }.message shouldBe "유효한 숫자가 아닙니다."
     }
