@@ -9,23 +9,23 @@ class RaceTest : StringSpec({
     val mockInputReader = MockInputReader(listOf("3", "5"))
     val inputView = InputView(mockInputReader)
 
-    "startRace 호출 시 moveCarsIfPossible 동작 테스트" {
+    "모든 차가 앞으로 나가는 경우 테스트" {
         val mockRandom = MockRandom(Int.MAX_VALUE)
         val race = Race(inputView, mockRandom)
         race.startRace()
 
-        for (car in inputView.carStorage()) {
-            car shouldBe 5 // 모든 차량이 5번 전진했어야 함
+        for (car in race.carStorage) {
+            car.position shouldBe 5
         }
     }
 
-    "아무도 앞으로 나가지 못하는 경우" {
+    "모든 차가 앞으로 나가지 못한 테스트" {
         val mockRandom = MockRandom(Int.MIN_VALUE)
         val race = Race(inputView, mockRandom)
         race.startRace()
 
-        for (car in inputView.carStorage()) {
-            car shouldBe 0
+        for (car in race.carStorage) {
+            car.position shouldBe 0
         }
     }
 })

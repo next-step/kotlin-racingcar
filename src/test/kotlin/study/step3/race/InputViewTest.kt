@@ -14,7 +14,7 @@ class InputViewTest : BehaviorSpec({
             val inputView = InputView(mockInputReader)
             inputView.setCommand()
             then("정상적으로 값이 입력된다") {
-                inputView.carStorage().size shouldBe 3
+                inputView.carCount() shouldBe 3
                 inputView.raceTryCnt() shouldBe 5
             }
         }
