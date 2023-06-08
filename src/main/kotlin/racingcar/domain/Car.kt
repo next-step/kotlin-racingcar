@@ -1,5 +1,7 @@
 package racingcar.domain
 
+import java.util.Random
+
 class Car(
     var position: Int = 0,
     private val movable: () -> Boolean,
@@ -9,5 +11,16 @@ class Car(
             return ++position
         }
         return position
+    }
+
+    companion object {
+        private const val MAX_RANDOM_MOVE_INPUT = 9
+        private const val MOVABLE_VALUE = 4
+        private val random = Random()
+
+        fun createRandomMoveCar(position: Int): Car {
+            val movable = random.nextInt(MAX_RANDOM_MOVE_INPUT) >= MOVABLE_VALUE
+            return Car(position = position) { movable }
+        }
     }
 }
