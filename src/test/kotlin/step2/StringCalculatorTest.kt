@@ -25,41 +25,56 @@ class StringCalculatorTest {
 
     @Test
     fun `덧셈이 가능하다`() {
+        // given
         val input = "5 + 3"
-        val actual = calculator.execute(input)
         val expected = 8.0
+        // when
+        val actual = calculator.execute(input)
+        // then
         assertThat(actual).isEqualTo(expected)
     }
 
     @Test
     fun `뺄셈이 가능하다`() {
+        // given
         val input = "5 - 3"
+        // when
         val expected = 2.0
+        // then
         val actual = calculator.execute(input)
         assertThat(actual).isEqualTo(expected)
     }
 
     @Test
     fun `곱셈이 가능하다`() {
+        // given
         val input = "5 * 3"
         val expected = 15.0
+        // when
         val actual = calculator.execute(input)
+        // then
         assertThat(actual).isEqualTo(expected)
     }
 
     @Test
     fun `나눗셈이 가능하다`() {
+        // given
         val input = "4 / 2"
         val expected = 2.0
+        // when
         val actual = calculator.execute(input)
+        // then
         assertThat(actual).isEqualTo(expected)
     }
 
     @Test
     fun `사칙 연산이 모두 가능하다`() {
+        // given
         val input = "2 + 3 * 4 / 2"
-        val actual = calculator.execute(input)
         val expected = 10.0
+        // when
+        val actual = calculator.execute(input)
+        // then
         assertThat(actual).isEqualTo(expected)
     }
 }
