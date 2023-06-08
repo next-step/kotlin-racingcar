@@ -3,9 +3,9 @@ package race
 class CarRaceResultView {
     fun printCurrentState(raceResult: RaceResult) {
         println("\n실행 결과")
-        raceResult.positions
+        raceResult.turns
             .forEach {
-                it.positions.forEach {
+                it.carPositions.forEach {
                     println("-".repeat(it.position))
                 }
                 println()

@@ -10,9 +10,9 @@ class RaceGameTest {
         val raceStartInformation = RaceStartInformation(numberOfCars = 3, numberOfAttempts = 5)
 
         CarRaceGame().runCarRace(raceStartInformation)
-            .positions
+            .turns
             .map {
-                it.positions
+                it.carPositions
                     .size
             }.forEach {
                 assertThat(it).isEqualTo(raceStartInformation.numberOfCars)
@@ -24,7 +24,7 @@ class RaceGameTest {
         val raceStartInformation = RaceStartInformation(numberOfCars = 3, numberOfAttempts = 5)
 
         CarRaceGame().runCarRace(raceStartInformation)
-            .positions
+            .turns
             .size
             .let {
                 assertThat(it).isEqualTo(raceStartInformation.numberOfAttempts + 1)
@@ -36,10 +36,10 @@ class RaceGameTest {
         val raceStartInformation = RaceStartInformation(numberOfCars = 3, numberOfAttempts = 5)
 
         CarRaceGame().runCarRace(raceStartInformation)
-            .positions
+            .turns
             .reduce { prevPosition, currentPosition ->
-                prevPosition.positions
-                    .zip(currentPosition.positions)
+                prevPosition.carPositions
+                    .zip(currentPosition.carPositions)
                     .forEach {
                         val distance = it.second.position - it.first.position
                         assertThat(distance == 0 || distance == 1).isTrue()

@@ -10,8 +10,8 @@ class CarRaceGame {
     }
 
     private fun runSingleRace(previousResult: RaceResult): RaceResult {
-        return previousResult.latestPosition()
-            .positions
+        return previousResult.latestTurn()
+            .carPositions
             .map {
                 if (Math.random() * 10 > 4) {
                     it.goForward()
@@ -19,7 +19,7 @@ class CarRaceGame {
                     it
                 }
             }.let {
-                previousResult.appendPositions(CarPositions(it))
+                previousResult.appendTurn(Turn(it))
             }
     }
 }

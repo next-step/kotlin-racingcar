@@ -1,18 +1,18 @@
 package race
 
 data class RaceResult(
-    val positions: List<CarPositions>,
+    val turns: List<Turn>,
 ) {
-    fun latestPosition() = positions.last()
+    fun latestTurn() = turns.last()
 
-    fun appendPositions(carPositions: CarPositions) = copy(positions = positions.plus(carPositions))
+    fun appendTurn(turn: Turn) = copy(turns = turns.plus(turn))
 
     companion object {
         fun getInitialRaceResult(startInformation: RaceStartInformation): RaceResult {
             return (0 until startInformation.numberOfCars).map {
                 CarPosition(1)
             }.let {
-                RaceResult(listOf(CarPositions(it)))
+                RaceResult(listOf(Turn(it)))
             }
         }
     }
