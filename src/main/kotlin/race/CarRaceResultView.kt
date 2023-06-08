@@ -1,7 +1,7 @@
 package race
 
 class CarRaceResultView {
-    fun printCurrentState(raceResult: RaceResult) {
+    fun printRaceResult(raceResult: RaceResult) {
         println("\n실행 결과")
         raceResult.turns
             .filter { it !is InitialTurn }
