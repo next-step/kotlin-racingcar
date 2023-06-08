@@ -15,7 +15,7 @@ object Calculator {
             operator.calculate(acc, next)
         }
 
-        require(remainingOperators.isEmpty()) { "올바르지 않은 연산식 입니다." }
+        check(remainingOperators.isEmpty()) { "올바르지 않은 연산식 입니다." }
         return result
     }
 }
