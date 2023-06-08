@@ -1,5 +1,7 @@
 package racingcar.domain
 
+import racingcar.domain.Car.Companion.createRandomMoveCar
+
 class RacingGame(
     var attemptCount: Int,
     val cars: List<Car>
@@ -13,5 +15,14 @@ class RacingGame(
         check(attemptCount > 0) { "시도 횟수가 남지 않아 게임을 더이상 실행할 수 없다." }
         attemptCount--
         cars.forEach { it.move() }
+    }
+
+    companion object {
+        fun createRandomMoveCarRacingGame(attemptCount: Int, carCount: Int): RacingGame {
+            return RacingGame(
+                attemptCount = attemptCount,
+                cars = (0 until carCount).map { createRandomMoveCar() }
+            )
+        }
     }
 }
