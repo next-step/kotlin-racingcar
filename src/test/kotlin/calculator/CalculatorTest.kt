@@ -19,7 +19,7 @@ class CalculatorTest {
         val result = Calculator.calculate(expression)
 
         // then
-        assertThat(result).isEqualTo(left + right)
+        assertThat(result).isEqualTo(20)
     }
 
     @Test
@@ -33,7 +33,7 @@ class CalculatorTest {
         val result = Calculator.calculate(expression)
 
         // then
-        assertThat(result).isEqualTo(left - right)
+        assertThat(result).isEqualTo(10)
     }
 
     @Test
@@ -47,7 +47,7 @@ class CalculatorTest {
         val result = Calculator.calculate(expression)
 
         // then
-        assertThat(result).isEqualTo(left * right)
+        assertThat(result).isEqualTo(100)
     }
 
     @Test
@@ -61,7 +61,7 @@ class CalculatorTest {
         val result = Calculator.calculate(expression)
 
         // then
-        assertThat(result).isEqualTo(left / right)
+        assertThat(result).isEqualTo(2)
     }
 
     @Test

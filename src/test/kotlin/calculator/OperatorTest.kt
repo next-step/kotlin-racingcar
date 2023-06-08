@@ -16,7 +16,7 @@ class OperatorTest {
         val result = Operator.ADDITION.calculate(left, right)
 
         // then
-        assertThat(result).isEqualTo(left + right)
+        assertThat(result).isEqualTo(3)
     }
 
     @Test
@@ -29,7 +29,7 @@ class OperatorTest {
         val result = Operator.SUBTRACTION.calculate(left, right)
 
         // then
-        assertThat(result).isEqualTo(left - right)
+        assertThat(result).isEqualTo(1)
     }
 
     @Test
@@ -42,7 +42,7 @@ class OperatorTest {
         val result = Operator.MULTIPLICATION.calculate(left, right)
 
         // then
-        assertThat(result).isEqualTo(left * right)
+        assertThat(result).isEqualTo(2)
     }
 
     @Test
@@ -55,7 +55,7 @@ class OperatorTest {
         val result = Operator.DIVISION.calculate(left, right)
 
         // then
-        assertThat(result).isEqualTo(left / right)
+        assertThat(result).isEqualTo(2)
     }
 
     @Test
