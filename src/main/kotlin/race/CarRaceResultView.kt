@@ -5,11 +5,19 @@ class CarRaceResultView {
         println("\n실행 결과")
         raceResult.turns
             .filter { it !is InitialTurn }
-            .forEach {
-                it.carPositions.forEach {
-                    println("-".repeat(it.position))
-                }
-                println()
-            }
+            .forEach { it.print() }
+    }
+
+    private fun TurnInfo.print() {
+        carPositions.print()
+        println()
+    }
+
+    private fun List<CarPosition>.print() {
+        forEach { it.print() }
+    }
+
+    private fun CarPosition.print() {
+        println("-".repeat(position))
     }
 }
