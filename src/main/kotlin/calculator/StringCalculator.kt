@@ -26,22 +26,16 @@ class StringCalculator {
         val numbers = mutableListOf<Double>()
         val operators = mutableListOf<Char>()
 
-        var currentNumber = StringBuilder()
-        for (char in expression) {
-            if (char.isDigit()) {
-                currentNumber.append(char)
-            } else {
-                if (currentNumber.isNotEmpty()) {
-                    numbers.add(currentNumber.toString().toDouble())
-                    currentNumber = StringBuilder()
-                }
+        val seperatedNumbersAndOperators = expression.replace(Regex("(\\d+)"), " $1 ")
+            .replace(Regex("([-+*/])"), " $1 ")
+            .trim()
+            .split("\\s+".toRegex())
 
-                operators.add(char)
+        seperatedNumbersAndOperators.forEach {
+            when {
+                it.matches(Regex("\\d+")) -> numbers.add(it.toDouble())
+                else -> operators.add(it.first())
             }
-        }
-
-        if (currentNumber.isNotEmpty()) {
-            numbers.add(currentNumber.toString().toDouble())
         }
 
         valid(numbers, operators)

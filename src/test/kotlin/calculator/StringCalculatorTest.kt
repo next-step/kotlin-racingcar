@@ -68,4 +68,25 @@ class StringCalculatorTest {
             StringCalculator().run(input)
         }
     }
+
+    @Test
+    fun `정규식을 이용한 분리`() {
+        val input = "10-3/2*123-1"
+        val result = input.replace(Regex("(\\d+)"), " $1 ")
+            .replace(Regex("([-+*/])"), " $1 ")
+            .trim()
+            .split("\\s+".toRegex())
+
+        val numbers = mutableListOf<Double>()
+        val operators = mutableListOf<Char>()
+
+        result.forEach {
+            when {
+                it.matches(Regex("\\d+")) -> numbers.add(it.toDouble())
+                else -> operators.add(it.first())
+            }
+        }
+
+        println("$numbers, $operators")
+    }
 }
