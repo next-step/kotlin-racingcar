@@ -1,12 +1,18 @@
 package step2
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.math.BigDecimal
 
 class CalculatorTest {
 
-    private val calculator = Calculator()
+    private lateinit var calculator: Calculator
+
+    @BeforeEach
+    fun setup() {
+        calculator = Calculator()
+    }
 
     @Test
     fun `1 add 1`() {

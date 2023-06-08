@@ -2,16 +2,22 @@ package step2
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 
 class StringCalculatorTest {
 
-    private val stringCalculator = StringCalculator(
-        parser = StringCalculatorInputParser(),
-        calculator = Calculator()
-    )
+    private lateinit var stringCalculator: StringCalculator
+
+    @BeforeEach
+    fun setup() {
+        stringCalculator = StringCalculator(
+            parser = StringCalculatorInputParser(),
+            calculator = Calculator()
+        )
+    }
 
     @ParameterizedTest
     @CsvSource(

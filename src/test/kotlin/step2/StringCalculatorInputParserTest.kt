@@ -2,13 +2,19 @@ package step2
 
 import io.kotest.assertions.throwables.shouldThrow
 import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class StringCalculatorInputParserTest {
 
-    private val parser = StringCalculatorInputParser()
+    private lateinit var parser: StringCalculatorInputParser
+
+    @BeforeEach
+    fun setup() {
+        parser = StringCalculatorInputParser()
+    }
 
     @ParameterizedTest
     @ValueSource(strings = ["", "  ", "null"])
