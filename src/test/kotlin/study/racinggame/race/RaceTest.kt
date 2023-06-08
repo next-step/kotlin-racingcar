@@ -7,14 +7,14 @@ import study.racinggame.race.mock.MockRandom
 
 class RaceTest : StringSpec({
     val mockInputReader = MockInputReader(listOf("3", "5"))
-    val inputView = InputView(mockInputReader)
+    val inputView = InputView().initInputView(mockInputReader)
 
     "모든 차가 앞으로 나가는 경우 테스트" {
         val mockRandom = MockRandom(Int.MAX_VALUE)
         val race = Race(inputView, mockRandom)
         race.startRace()
 
-        for (car in race.carStorage) {
+        for (car in race.carStorage()) {
             car.position shouldBe 5
         }
     }
@@ -24,7 +24,7 @@ class RaceTest : StringSpec({
         val race = Race(inputView, mockRandom)
         race.startRace()
 
-        for (car in race.carStorage) {
+        for (car in race.carStorage()) {
             car.position shouldBe 0
         }
     }

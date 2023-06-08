@@ -11,8 +11,7 @@ class InputViewTest : BehaviorSpec({
 
         `when`("3과 5가 정확하게 입력한 경우") {
             val mockInputReader = MockInputReader(listOf("3", "5"))
-            val inputView = InputView(mockInputReader)
-            inputView.setCommand()
+            val inputView = InputView().initInputView(mockInputReader)
             then("정상적으로 값이 입력된다") {
                 inputView.carCount() shouldBe 3
                 inputView.raceTryCnt() shouldBe 5
@@ -21,22 +20,20 @@ class InputViewTest : BehaviorSpec({
 
         `when`("자동차 대수을 숫자가 아닌 문자로 입력된 경우") {
             val mockInputReader = MockInputReader(listOf("!!!", "@"))
-            val inputView = InputView(mockInputReader)
 
             then("IllegalArgumentException 에러가 발생한다.") {
                 shouldThrow<IllegalArgumentException> {
-                    inputView.setCommand()
+                    InputView().initInputView(mockInputReader)
                 }.message shouldBe "자동차 대수를 숫자로 입력해주세요."
             }
         }
 
         `when`("시도할 값을 숫자가 아닌 문자로 입력된 경우") {
             val mockInputReader = MockInputReader(listOf("3", "@"))
-            val inputView = InputView(mockInputReader)
 
             then("IllegalArgumentException 에러가 발생한다.") {
                 shouldThrow<IllegalArgumentException> {
-                    inputView.setCommand()
+                    InputView().initInputView(mockInputReader)
                 }.message shouldBe "시도할 횟수를 숫자로 입력해주세요."
             }
         }
