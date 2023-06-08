@@ -18,10 +18,10 @@ object Calculator {
                 "-" -> Operator.Minus
                 "*" -> Operator.Multiply
                 "/" -> Operator.Divide
-                else -> runCatching<Equation.Number> {
-                    Equation.Number(it.toInt())
-                }.getOrElse {
-                    throw IllegalArgumentException()
+                else -> {
+                    val number = it.toIntOrNull()
+                    requireNotNull(number) { "input must be number" }
+                    Equation.Number(number)
                 }
             }
         }
