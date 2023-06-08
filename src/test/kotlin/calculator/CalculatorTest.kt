@@ -1,3 +1,5 @@
+package calculator
+
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.data.blocking.forAll
@@ -40,17 +42,8 @@ class CalculatorTest : StringSpec({
         calculator.calculate("4 - 2") shouldBe 2
     }
 
-    "더하기 빼기의 사칙연산 결과를 반환한다" {
-        calculator.calculate("5 + 4 - 2") shouldBe 7
-        calculator.calculate("10 - 4 + 2") shouldBe 8
-    }
-
     "곱하기 결과를 반환한다" {
         calculator.calculate("4 * 2") shouldBe 8
-    }
-
-    "더하기 빼기 곱하기의 사칙연산 결과를 반환한다" {
-        calculator.calculate("4 * 2 - 10 + 9") shouldBe 7
     }
 
     "나누기 결과를 반환한다" {
@@ -58,6 +51,13 @@ class CalculatorTest : StringSpec({
     }
 
     "사칙연산이 모두 포함 된 결과를 반환한다" {
-        calculator.calculate("1 + 5 * 10 - 6 / 2") shouldBe 27
+        forAll(
+            row("5 + 4 - 2", 7),
+            row("10 - 4 + 2", 8),
+            row("4 * 2 - 10 + 9", 7),
+            row("1 + 5 * 10 - 6 / 2", 27),
+        ) { inputString, result ->
+            calculator.calculate(inputString) shouldBe result
+        }
     }
 })
