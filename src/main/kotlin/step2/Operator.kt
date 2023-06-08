@@ -12,7 +12,10 @@ enum class Operator(private val symbol: String) {
         override fun calculate(input1: Int, input2: Int) = input1 * input2
     },
     DIVISION("/") {
-        override fun calculate(input1: Int, input2: Int) = input1 / input2
+        override fun calculate(input1: Int, input2: Int): Int {
+            require(input2 != 0) { "0으로 나눌 수 없습니다." }
+            return input1 / input2
+        }
     };
 
     fun satisfy(input: String) = input == symbol
