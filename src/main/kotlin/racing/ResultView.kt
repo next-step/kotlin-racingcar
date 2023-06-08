@@ -6,7 +6,7 @@ private const val MOVE_STRING = "-"
 
 object ResultView {
 
-    fun startResultOutput() {
+    fun startPrintGame() {
         println(RESULT_START_STRING)
     }
 

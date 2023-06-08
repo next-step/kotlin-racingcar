@@ -3,10 +3,10 @@ package racing
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class RacingGameTest{
+class RacingGameTest {
     @Test
     internal fun `랜덤값이 4이상일 때 전진이 나온다`() {
-       assertThat(RacingGame.isMove(4)).isEqualTo(1)
+        assertThat(RacingGame.isMove(4)).isEqualTo(1)
     }
 
     @Test
