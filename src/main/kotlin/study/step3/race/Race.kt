@@ -1,15 +1,15 @@
 package study.step3.race
 
+import study.step3.domain.Car
 import kotlin.random.Random
 
 class Race(
-    inputView: InputView,
+    private val inputView: InputView,
     private val random: Random
 ) {
 
-    private val carStorage = inputView.carStorage()
-    private val totalRaceCount = inputView.raceTryCnt()
-    private val drawView = DrawView(totalRaceCount)
+    val carCount = inputView.carCount()
+    val carStorage = Array(carCount) { Car() }
 
     companion object {
         private const val RANDOM_BOUND = 10
@@ -17,16 +17,20 @@ class Race(
     }
 
     fun startRace() {
-        for (raceIdx in 1..totalRaceCount) {
+        val raceCount = inputView.raceTryCnt()
+        val drawView = DrawView(raceCount)
+
+        for (raceIdx in 1..raceCount) {
             moveCarsIfPossible()
-            drawView.drawCarState(carStorage, raceIdx)
+            val carResponses = carStorage.map(Car::toResponseByCar)
+            drawView.drawCarState(carResponses, raceIdx)
         }
     }
 
     private fun moveCarsIfPossible() {
-        for (carIdx in carStorage.indices) {
+        for (car in carStorage) {
             val randomNumber = random.nextInt(RANDOM_BOUND)
-            if (randomNumber > FORWARD_THRESHOLD) carStorage[carIdx] += 1
+            if (randomNumber > FORWARD_THRESHOLD) car.move()
         }
     }
 }
