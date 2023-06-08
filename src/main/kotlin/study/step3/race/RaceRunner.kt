@@ -10,8 +10,8 @@ fun main() {
 
 fun init(): Race {
     val inputReader = ActualInputReader()
-    val command = Command(inputReader)
+    val inputView = InputView(inputReader)
     val random = Random
-    command.setCommand()
-    return Race(command, random)
+    inputView.setCommand()
+    return Race(inputView, random)
 }

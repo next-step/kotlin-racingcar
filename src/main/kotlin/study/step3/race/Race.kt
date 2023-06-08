@@ -3,12 +3,12 @@ package study.step3.race
 import kotlin.random.Random
 
 class Race(
-    command: Command,
+    inputView: InputView,
     private val random: Random
 ) {
 
-    private val carStorage = command.carStorage()
-    private val totalRaceCount = command.raceTryCnt()
+    private val carStorage = inputView.carStorage()
+    private val totalRaceCount = inputView.raceTryCnt()
     private val drawView = DrawView(totalRaceCount)
 
     companion object {

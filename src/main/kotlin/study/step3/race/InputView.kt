@@ -2,7 +2,7 @@ package study.step3.race
 
 import study.step3.race.mock.InputReader
 
-class Command(
+class InputView(
     private val inputReader: InputReader,
 ) {
 
