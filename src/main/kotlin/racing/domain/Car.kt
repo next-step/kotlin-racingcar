@@ -2,11 +2,13 @@ package racing.domain
 
 import racing.domain.strategy.MoveStrategy
 
-class Car(private var distance: Distance) : Movable {
-    constructor() : this(Distance(0L))
+class Car(private var id: Long? = null, private var distance: Distance = Distance.ZERO) : Movable, Comparable<Car> {
 
     val getDistance: Distance
         get() = distance
+
+    val getId: Long?
+        get() = id
 
     override fun move(strategy: MoveStrategy) {
         if (strategy.movable()) {
@@ -26,6 +28,8 @@ class Car(private var distance: Distance) : Movable {
     override fun hashCode(): Int {
         return distance.hashCode()
     }
+
+    override fun compareTo(other: Car): Int = distance.compareTo(other.distance)
 
     companion object {
         private val MOVING_DISTANCE: Distance = Distance(1L)
