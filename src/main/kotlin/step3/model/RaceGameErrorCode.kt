@@ -7,4 +7,10 @@ enum class RaceGameErrorCode(val message: (String) -> String) {
     NOT_REMAINING_ROUND(
         message = { input -> "라운드 수가 남아있지 않습니다. 남은 라운드 수 : $input" },
     ),
+    INVALID_CAR_COUNT_INPUT(
+        message = { input -> "자동차 대수는 숫자형이어야 합니다. 입력값 : $input" },
+    ),
+    INVALID_ROUND_INPUT(
+        message = { input -> "라운드는 숫자형이어야 합니다. 입력값 : $input" },
+    ),
 }
