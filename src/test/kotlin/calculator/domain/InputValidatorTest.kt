@@ -18,7 +18,7 @@ class InputValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = ["2 + 3 * 4 / 2"])
     fun `올바른 값 입력`(input: String) {
-        assertThat(inputValidator.validate(input)).isEqualTo(input)
+        assertThat(inputValidator.validate(input)).isTrue()
     }
 
     @ParameterizedTest

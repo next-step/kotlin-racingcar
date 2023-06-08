@@ -7,10 +7,12 @@ class Calculator {
     private val inputValidator: InputValidator = InputValidator()
 
     fun run(input: String?) {
-        val validatedInput = inputValidator.validate(input)
-        val extractedList = CalculatorParser.extract(validatedInput)
-        val result = calculate(extractedList)
-        println(result)
+        if (inputValidator.validate(input)) {
+            val validatedInput: String = input ?: ""
+            val extractedList = CalculatorParser.extract(validatedInput)
+            val result = calculate(extractedList)
+            println(result)
+        }
     }
 
     /**

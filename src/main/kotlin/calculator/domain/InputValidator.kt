@@ -5,12 +5,12 @@ package calculator.domain
  */
 class InputValidator {
 
-    fun validate(text: String?): String {
+    fun validate(text: String?): Boolean {
         return validateNullOrBlank(text)
     }
 
-    private fun validateNullOrBlank(text: String?): String {
+    private fun validateNullOrBlank(text: String?): Boolean {
         if (text.isNullOrBlank()) throw IllegalArgumentException("입력값이 Blank이거나 null이 되면 안됩니다.")
-        return text
+        return true
     }
 }
