@@ -6,9 +6,9 @@ object GameCommandInterface {
     fun play() {
         val input = InputInterface.input()
 
-        val result =
+        val results =
             Game(numberOfCars = input.numberOfCars, numberOfTrials = input.numberOfTrials).process()
 
-        ResultInterface.output(result)
+        ResultInterface.output(results)
     }
 }

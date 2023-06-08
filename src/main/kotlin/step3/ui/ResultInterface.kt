@@ -3,10 +3,10 @@ package step3.ui
 object ResultInterface {
     private const val PRINTING_SYMBOL = "-"
 
-    fun output(result: List<List<Int>>) {
+    fun output(results: List<List<Int>>) {
         println("실행 결과")
-        result.forEach {
-            it.forEach { position -> position.printPositionStatus() }
+        results.forEach { result ->
+            result.forEach { position -> position.printPositionStatus() }
             println()
         }
     }
