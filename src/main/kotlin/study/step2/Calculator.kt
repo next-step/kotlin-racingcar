@@ -6,8 +6,8 @@ import study.step2.equation.Equation.Operator
 object Calculator {
 
     fun calculate(input: String?): Int {
-        requireNotNull(input)
-        require(input.isNotBlank())
+        requireNotNull(input) { "input must not be null" }
+        require(input.isNotBlank()) { "input must not be blank" }
         return input.parse().join()
     }
 
