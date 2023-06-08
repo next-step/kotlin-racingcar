@@ -20,7 +20,11 @@ class StringCalculator(
             }
 
             if (!isOperator(expression[index])) {
-                val operand = BigDecimal(expression[index])
+                val operand = if (isOperand(expression[index]))
+                    BigDecimal(expression[index])
+                else
+                    throw IllegalArgumentException("Invalid operand : ${expression[index]}")
+
                 result = when (expressionOperator) {
                     "+" -> calculator.add(result, operand)
                     "-" -> calculator.subtract(result, operand)
@@ -35,6 +39,15 @@ class StringCalculator(
     }
 
     private fun isOperator(input: String): Boolean = operators.contains(input)
+
+    private fun isOperand(input: String): Boolean {
+        return try {
+            BigDecimal(input)
+            true
+        } catch (ex: NumberFormatException) {
+            false
+        }
+    }
 }
 
 fun main() {
