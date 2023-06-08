@@ -38,7 +38,7 @@ class StringCalculatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["", "  ", "null", "2 k 2"])
+    @ValueSource(strings = ["", "  ", "null", "2 k 2", "2 + a"])
     fun `Invalid input`(testValue: String?) {
         shouldThrow<IllegalArgumentException> {
             val input = if (testValue.equals("null")) null else testValue
