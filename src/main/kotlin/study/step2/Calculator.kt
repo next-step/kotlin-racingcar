@@ -1,31 +1,24 @@
 package study.step2
 
 class Calculator {
-    val operands: MutableList<Operand> = mutableListOf()
-    val operators: MutableList<Operator> = mutableListOf()
-    fun execute(operation: String? = null): Int {
-        parse(operation)
+
+    fun execute(expression: String? = null): Int {
+        val operation = Operation.parse(expression)
         var result = 0
-        for (index in 0 until operators.size) {
-            result = operators[index].apply(operands[index], operands[index + 1])
-        }
+
+        var left: Operand? = operation.pollOperand()
+        var right: Operand? = operation.pollOperand()
+        var operator: Operator? = operation.pollOperator()
+
+        do {
+            result = operator!!.apply(left!!, right!!)
+
+            left = Operand.of(result.toString())
+            right = operation.pollOperand()
+            operator = operation.pollOperator()
+
+        } while(right != null)
 
         return result
-    }
-    private fun parse(operation: String? = null) {
-        if (operation.isNullOrBlank()) {
-            throw IllegalArgumentException()
-        }
-        val splitted: List<String> = operation.split(" ")
-        splitted.forEachIndexed { index, it ->
-            if (index % 2 == 0) {
-                operands.add(Operand.of(it))
-            } else {
-                operators.add(Operator.of(it))
-            }
-        }
-        if (operators.size + 1 != operands.size) {
-            throw IllegalArgumentException()
-        }
     }
 }

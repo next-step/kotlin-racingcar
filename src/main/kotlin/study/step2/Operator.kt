@@ -1,21 +1,44 @@
 package study.step2
 
-class Operator private constructor (val value: String) {
-    companion object {
-        fun of(value: String): Operator {
-            if (!listOf("+", "-", "*", "/").contains(value)) {
+enum class Operator {
+
+    PLUS {
+
+        override fun apply(left: Operand, right: Operand): Int {
+            return left.value + right.value
+        }
+    },
+    MINUS {
+        override fun apply(left: Operand, right: Operand): Int {
+            return left.value - right.value
+        }
+    },
+    MULTIPLY {
+        override fun apply(left: Operand, right: Operand): Int {
+            return left.value * right.value
+        }
+    },
+    DIVIDE {
+        override fun apply(left: Operand, right: Operand): Int {
+            if (right.value == 0) {
                 throw IllegalArgumentException()
             }
-            return Operator(value)
+            return left.value / right.value
+        }
+    };
+
+    companion object {
+        fun of(value: String): Operator {
+            return when (value) {
+                "+" -> PLUS
+                "-" -> MINUS
+                "*" -> MULTIPLY
+                "/" -> DIVIDE
+                else -> throw IllegalArgumentException()
+            }
         }
     }
-    fun apply(left: Operand, right: Operand): Int {
-        return when (value) {
-            "+" -> left.value + right.value
-            "-" -> left.value - right.value
-            "*" -> left.value * right.value
-            "/" -> left.value / right.value
-            else -> throw IllegalStateException()
-        }
-    }
+
+    abstract fun apply(left: Operand, right: Operand): Int
+
 }
