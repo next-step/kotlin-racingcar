@@ -48,8 +48,8 @@ class RaceGameInputTest : DescribeSpec({
                 )
             }
 
-            it(name = "자동차 이름은 정해진 글자 수를 초과할 수 없다는 에러가 발생한다.") {
-                exception shouldHaveMessage RaceGameErrorCode.INVALID_CAR_NAME_INPUT.message("5")
+            it(name = "자동차 이름은 빈 공백이거나, 정해진 글자 수를 초과할 수 없다는 에러가 발생한다.") {
+                exception shouldHaveMessage RaceGameErrorCode.INVALID_CAR_NAME_INPUT.message("$invalidString, 5")
             }
         }
 

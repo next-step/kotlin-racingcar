@@ -9,9 +9,9 @@ data class RaceGameInput(
 
     constructor(carNamesInput: String, roundInput: String) : this(
         carNames = carNamesInput.split(DELIMITER)
-            .also {
-                require(value = it.none { name -> name.length > MAX_NAME_SIZE }) {
-                    RaceGameErrorCode.INVALID_CAR_NAME_INPUT.message(MAX_NAME_SIZE.toString())
+            .onEach { name ->
+                require(value = name.length <= MAX_NAME_SIZE && name.isNotBlank()) {
+                    RaceGameErrorCode.INVALID_CAR_NAME_INPUT.message("$name$DELIMITER $MAX_NAME_SIZE")
                 }
             },
 

@@ -8,7 +8,7 @@ object ResultView {
     private const val ZERO = 0
     private const val SEPARATOR = ":"
 
-    fun printStartGame() = print(message = START_RACE_GAME)
+    fun printStartGame() = println(message = START_RACE_GAME)
 
     fun printCarPositionResults(results: List<CarPositionResult>) {
         results.forEach {
