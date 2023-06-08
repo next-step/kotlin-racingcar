@@ -10,7 +10,7 @@ class RacingGameTest {
     @Test
     fun `시도 횟수가 1보다 작으면 예외가 발생한다`() {
         val exception = shouldThrowExactly<IllegalArgumentException> {
-            RacingGame(attemptCount = 0, cars = listOf(Car()))
+            RacingGame(attemptCount = 0, cars = listOf(Car { true }))
         }
         exception.message shouldBe "게임 생성에 필요한 시도 횟수는 1회 이상이어야 한다."
     }
@@ -25,7 +25,7 @@ class RacingGameTest {
 
     @Test
     fun `게임을 생성할 수 있다`() {
-        val actual = RacingGame(attemptCount = 1, cars = listOf(Car()))
+        val actual = RacingGame(attemptCount = 1, cars = listOf(Car { true }))
 
         actual.attemptCount shouldBe 1
         actual.cars shouldHaveSize 1

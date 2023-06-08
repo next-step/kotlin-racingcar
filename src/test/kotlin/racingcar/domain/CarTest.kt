@@ -1,49 +1,33 @@
 package racingcar.domain
 
-import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.ValueSource
 
 class CarTest {
 
     @Test
     fun `자동차는 현재 위치를 가진다`() {
-        val actual = Car(1)
+        val actual = Car(1) { true }
         actual.position shouldBe 1
     }
 
     @Test
     fun `자동차의 초기 위치는 0이다`() {
-        val actual = Car()
+        val actual = Car { true }
         actual.position shouldBe 0
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = [4, 6, 9])
-    fun `자동차는 4~9의 값이 입력되는 경우 1칸 전진한다`(input: Int) {
-        val car = Car(position = 1)
-
-        val actual = car.move(input)
+    @Test
+    fun `movable이 true면 전진한다`() {
+        val car = Car(1) { true }
+        val actual = car.move()
         actual shouldBe 2
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = [0, 1, 3])
-    fun `자동차는 0~3의 값이 입력되는 경우 위치가 변하지 않는다`(input: Int) {
-        val car = Car(position = 1)
-
-        val actual = car.move(input)
+    @Test
+    fun `movable이 false면 움직이지 않는다`() {
+        val car = Car(1) { false }
+        val actual = car.move()
         actual shouldBe 1
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = [-1, 10])
-    fun `자동차는 0~9 이외의 값이 입력되는 경우 예외가 발생한다`(input: Int) {
-        val car = Car(position = 1)
-
-        val exception = shouldThrowExactly<IllegalArgumentException> { car.move(input) }
-        exception.message shouldBe "자동차는 0~9의 값만 입력받을 수 있다."
     }
 }
