@@ -6,9 +6,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.io.ByteArrayInputStream
 
-/**
- * CalculatorApplicationTest와 겹치는 부분이 많은데 어떻게 만드는 게 좋은 코드일까요?
- */
 class ConsoleTest {
 
     private lateinit var console: Console

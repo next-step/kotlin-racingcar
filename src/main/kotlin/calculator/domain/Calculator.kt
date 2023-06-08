@@ -1,6 +1,19 @@
 package calculator.domain
 
+import calculator.io.Console
+import calculator.utils.CalculatorParser
+
 class Calculator {
+
+    private val console: Console = Console()
+
+    fun run() {
+        val input = console.getInput()
+        val extractedList = CalculatorParser.extract(input)
+        val result = calculate(extractedList)
+        println(result)
+    }
+
 
     /**
      * 추출한 문자열 계산
