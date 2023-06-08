@@ -4,8 +4,8 @@ import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import java.lang.IllegalArgumentException
 
-class FormulaParserValidatorTest {
-    val sut = FormulaParserValidator
+class FormulaConverterValidatorTest {
+    private val sut = FormulaConverterValidator
 
     @Test
     fun `빈 문자열이 전달된다면 예외가 발생한다`() {
@@ -28,7 +28,6 @@ class FormulaParserValidatorTest {
             sut.checkValidateFormulaOrThrows(noFormulaString)
         }.isInstanceOf(IllegalArgumentException::class.java)
     }
-
 
     @Test
     fun `공백을 기준으로 문자열을 분리했을 때 짝수번째 위치한 값이 수가 아니라면 예외가 발생한다`() {
