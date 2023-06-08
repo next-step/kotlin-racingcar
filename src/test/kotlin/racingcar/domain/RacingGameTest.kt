@@ -11,6 +11,6 @@ class RacingGameTest {
         val exception = shouldThrowExactly<IllegalArgumentException> {
             RacingGame(attemptCount = 0, cars = listOf(Car()))
         }
-        exception.message shouldBe "게임 생성에 필요한 자동차는 1대 이상이어야 한다."
+        exception.message shouldBe "게임 생성에 필요한 시도횟수는 1회 이상이어야 한다."
     }
 }
