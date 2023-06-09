@@ -1,10 +1,13 @@
 package calculator
 
-data class Calculator(
-    val input: String
+class Calculator(
+    private val input: String
 ) {
-    fun run(): Double {
+    init {
         validate()
+    }
+
+    fun run(): Double {
         return calculate()
     }
 
