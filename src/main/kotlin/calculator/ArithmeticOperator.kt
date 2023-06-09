@@ -1,3 +1,5 @@
+package calculator
+
 import kotlin.IllegalArgumentException
 
 enum class ArithmeticOperator(

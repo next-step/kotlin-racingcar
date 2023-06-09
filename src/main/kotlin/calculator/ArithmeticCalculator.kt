@@ -1,3 +1,5 @@
+package calculator
+
 class ArithmeticCalculator {
 
     @Throws(
