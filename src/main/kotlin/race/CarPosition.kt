@@ -1,9 +1,10 @@
 package race
 
-data class CarPosition(
+@JvmInline
+value class CarPosition(
     val position: Int,
 ) {
-    fun goForward() = copy(position = position + 1)
+    fun goForward() = CarPosition(position = position + 1)
 
     companion object {
         fun getInitialCarPosition(): CarPosition {
