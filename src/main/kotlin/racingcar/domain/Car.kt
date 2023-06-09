@@ -7,6 +7,10 @@ class Car(
     val name: String,
     private val movable: () -> Boolean,
 ) {
+    init {
+        require(name.length < 5) { "자동차의 이름을 5자를 초과할 수 없다" }
+    }
+
     fun move(): Int {
         if (movable()) {
             return ++position
