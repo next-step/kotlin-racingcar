@@ -4,7 +4,7 @@ class CarRaceGame {
     fun runCarRace(startInformation: RaceStartInformation): RaceResult {
         var raceResult = RaceResult.getInitialRaceResult(startInformation)
 
-        for (i in 0 until startInformation.numberOfAttempts) {
+        repeat(startInformation.numberOfAttempts) {
             raceResult = raceResult.proceedNextTurn()
         }
 
