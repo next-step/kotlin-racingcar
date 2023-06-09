@@ -6,7 +6,7 @@ import study.step2.Operator.MUL
 import study.step2.Operator.NONE
 import study.step2.Operator.SUB
 
-class StringCalculator {
+class ArithmeticCalculator {
 
     private fun add(operand1: Int, operand2: Int) = operand1 + operand2
     private fun sub(operand1: Int, operand2: Int) = operand1 - operand2
