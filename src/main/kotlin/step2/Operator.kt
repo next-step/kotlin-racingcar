@@ -18,7 +18,7 @@ enum class Operator(private val symbol: String) {
         }
     };
 
-    fun satisfy(input: String) = input == symbol
+    private fun satisfy(input: String) = input == symbol
     abstract fun calculate(input1: Int, input2: Int): Int
 
     companion object {

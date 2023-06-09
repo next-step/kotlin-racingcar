@@ -4,14 +4,18 @@ class ExpressionParser(private val expression: List<String>) {
 
     fun getOperands(): List<Int> {
         return expression
-            .filterIndexed { index, _ -> index % 2 == 0 }
+            .filterIndexed { index, _ -> !isOdd(index) }
             .map { it.toInt() }
     }
 
     fun getOperators(): List<Operator> {
         return expression
-            .filterIndexed { index, _ -> index % 2 == 1 }
+            .filterIndexed { index, _ -> isOdd(index) }
             .map { Operator.of(it) ?: throw IllegalArgumentException() }
+    }
+
+    private fun isOdd(index: Int): Boolean {
+        return index % 2 == 1
     }
 
     companion object {
