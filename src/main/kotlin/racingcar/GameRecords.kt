@@ -1,4 +1,4 @@
-package racing
+package racingcar
 
 data class GameRecords(val records: IntArray) {
     override fun equals(other: Any?): Boolean {

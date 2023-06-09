@@ -1,4 +1,4 @@
-package racing
+package racingcar
 
 private const val CARNUM_STRING = "자동차 대수는 몇 대인가요?"
 

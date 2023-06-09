@@ -1,4 +1,4 @@
-package racing
+package racingcar
 
 fun main() {
     val carNum = InputView.getCarNum()

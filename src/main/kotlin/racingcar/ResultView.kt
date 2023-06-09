@@ -1,4 +1,4 @@
-package racing
+package racingcar
 
 private const val RESULT_START_STRING = "\n실행 결과"
 
