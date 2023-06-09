@@ -16,19 +16,17 @@ class CarRaceInputView {
         return readInt()
     }
 
-    private fun readInt(): Int {
-        while (true) {
-            val enteredInt = readln().toIntOrNull()
-            if (enteredInt != null) return enteredInt
-            println("다시 입력해 주세요.")
-        }
+    private tailrec fun readInt(): Int {
+        val enteredInt = readln().toIntOrNull()
+        if (enteredInt != null) return enteredInt
+        println("다시 입력해 주세요.")
+        return readInt()
     }
 
-    private fun readCommaSeparatedStrings(): List<String> {
-        while (true) {
-            val enteredString = readlnOrNull()
-            if (enteredString != null) return enteredString.split(",")
-            println("다시 입력해 주세요.")
-        }
+    private tailrec fun readCommaSeparatedStrings(): List<String> {
+        val enteredString = readlnOrNull()
+        if (enteredString != null) return enteredString.split(",")
+        println("다시 입력해 주세요.")
+        return readCommaSeparatedStrings()
     }
 }
