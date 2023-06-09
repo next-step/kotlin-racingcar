@@ -1,0 +1,29 @@
+package study.step3.domain
+
+import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.shouldBe
+
+class CarTest : StringSpec({
+
+    "자동차 엔진이 움직이는데 성공하면 자동차의 위치가 변경 된다." {
+        // given
+        val car = Car(NormalEngine())
+
+        // when
+        car.move()
+
+        // then
+        car.position shouldBe 2
+    }
+
+    "자동차 엔진이 움직이는데 실패하면 자동차의 위치가 변경 되지 않는다." {
+        // given
+        val car = Car(BrokenEngine())
+
+        // when
+        car.move()
+
+        // then
+        car.position shouldBe 1
+    }
+})
