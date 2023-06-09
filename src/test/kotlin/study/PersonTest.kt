@@ -31,7 +31,7 @@ internal class PersonTest{
 
     @Test
     fun `data classes`() {
-        val person1 = Person("옥종훈", 29, "테d")
+        val person1 = Person("옥종훈", 29, "테오")
         val person2 = Person("옥종훈", 29, "테오")
         assertThat(person1).isEqualTo(person2)
     }
