@@ -15,4 +15,10 @@ object ResultView {
             .forEach { println("${it.name} : ${MOVE_STRING.repeat(gameResult.cars[it]!!.score)}") }
         println()
     }
+
+    fun printGameWinner(gameResult: GameRecords) {
+        val max = gameResult.cars.values.maxBy { it.score }
+        val winners = gameResult.cars.filter { it.value == max }.map { it.key.name }
+        println("${winners.joinToString(", ")}가 최종 우승했습니다.")
+    }
 }
