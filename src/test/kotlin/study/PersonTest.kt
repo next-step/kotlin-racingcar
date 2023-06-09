@@ -8,10 +8,8 @@ class PersonTest {
     @Test
     fun `이름 붙인 인자`() {
         Person("홍길동", 20, "Hong")
-        //이름 붙인 인자
         Person(name = "홍길동", age = 20, nickname = "Hong")
 
-        //이름을 붙이게 되면 순서를 변경해도 상관 없음
         val actual = Person(name = "홍길동", nickname = "Hong", age = 20)
         assertThat(actual.name).isEqualTo("홍길동")
         assertThat(actual.nickname).isEqualTo("Hong")
