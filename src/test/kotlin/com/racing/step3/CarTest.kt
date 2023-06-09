@@ -9,18 +9,18 @@ import java.util.Random
 class CarTest {
     @ParameterizedTest
     @CsvSource(
-        "4, 4",
-        "5, 5",
-        "6, 6",
-        "7, 7",
-        "8, 8",
-        "9, 9"
+        "4, 1",
+        "5, 1",
+        "6, 1",
+        "7, 1",
+        "8, 1",
+        "9, 1"
     )
     fun `랜덤으로 4 이상의 값이 입력되면 position이 증가`(input: Int, answer: Int) {
         // given
-        val car = Car()
+        var car = Car()
         // when
-        car.move { input }
+        car = car.move { input }
 
         // then
         Assertions.assertThat(car.position).isEqualTo(answer)

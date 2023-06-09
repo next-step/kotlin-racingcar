@@ -4,7 +4,7 @@ import com.racing.step3.view.InputView
 import com.racing.step3.view.OutputView
 import kotlin.random.Random
 
-object MainController {
+object Controller {
     fun work() {
         var carNum = 0
         var stageNum = 0
