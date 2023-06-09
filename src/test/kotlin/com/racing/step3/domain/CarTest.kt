@@ -1,4 +1,4 @@
-package com.racing.step3
+package com.racing.step3.domain
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.RepeatedTest

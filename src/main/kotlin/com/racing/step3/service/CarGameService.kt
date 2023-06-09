@@ -1,6 +1,6 @@
 package com.racing.step3.service
 
-import com.racing.step3.Car
+import com.racing.step3.domain.Car
 import kotlin.random.Random
 
 object CarGameService {

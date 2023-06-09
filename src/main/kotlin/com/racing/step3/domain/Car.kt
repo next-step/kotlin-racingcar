@@ -1,4 +1,4 @@
-package com.racing.step3
+package com.racing.step3.domain
 
 class Car(
     var position: Int = 0
