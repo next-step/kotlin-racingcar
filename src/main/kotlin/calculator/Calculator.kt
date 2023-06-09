@@ -23,7 +23,7 @@ class Calculator(
 
         var current = numbers[0]
 
-        for (index in 0 until numbers.size - 1) {
+        for (index in 0 until numbers.lastIndex) {
             current = operators[index].calculate(current, numbers[index + 1])
         }
 
