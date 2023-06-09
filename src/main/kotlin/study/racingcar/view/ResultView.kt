@@ -11,7 +11,7 @@ object ResultView {
     }
     private fun printCarState(raceResult: RaceResult) {
         raceResult.attemptResults.forEach { carState ->
-            println("${carState.name} : ${carState.position}")
+            println("${carState.name} : ${carState.getVisualPosition()}")
         }
         println()
     }

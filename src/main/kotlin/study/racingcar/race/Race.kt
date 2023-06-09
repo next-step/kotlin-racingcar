@@ -7,18 +7,10 @@ class Race(
     private val numberOfAttempts: Int
 ) {
     fun startRace(): RaceSummary {
-        val raceResults = mutableListOf<RaceResult>()
-
-        repeat(numberOfAttempts) {
-            raceResults.add(runSingleAttempt())
-        }
-
-        return RaceSummary(raceResults)
+        return RaceSummary((1..numberOfAttempts).map { runSingleAttempt() })
     }
     private fun runSingleAttempt(): RaceResult {
-        cars.forEach { car ->
-            car.move()
-        }
+        cars.forEach(Car::move)
         return RaceResult(cars.map { it.getCurrentState() })
     }
 }

@@ -28,16 +28,16 @@ class RaceTest : BehaviorSpec({
                 val expectedResults = listOf(
                     RaceResult(
                         listOf(
-                            CarState("car1", "-"),
-                            CarState("car2", "-"),
-                            CarState("car3", "-")
+                            CarState("car1", 1),
+                            CarState("car2", 1),
+                            CarState("car3", 1)
                         )
                     ),
                     RaceResult(
                         listOf(
-                            CarState("car1", "--"),
-                            CarState("car2", "--"),
-                            CarState("car3", "--")
+                            CarState("car1", 2),
+                            CarState("car2", 2),
+                            CarState("car3", 2)
                         )
                     )
                 )
@@ -60,16 +60,16 @@ class RaceTest : BehaviorSpec({
                 val expectedResults = listOf(
                     RaceResult(
                         listOf(
-                            CarState("car1", ""),
-                            CarState("car2", ""),
-                            CarState("car3", "")
+                            CarState("car1", 0),
+                            CarState("car2", 0),
+                            CarState("car3", 0)
                         )
                     ),
                     RaceResult(
                         listOf(
-                            CarState("car1", ""),
-                            CarState("car2", ""),
-                            CarState("car3", "")
+                            CarState("car1", 0),
+                            CarState("car2", 0),
+                            CarState("car3", 0)
                         )
                     )
                 )
