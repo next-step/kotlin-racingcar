@@ -6,8 +6,9 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.throwable.shouldHaveMessage
 import step3.domain.car.Car
 import step3.domain.car.CarFactory
-import step3.domain.generator.MustFourNumberGenerator
-import step3.domain.generator.MustZeroNumberGenerator
+import step3.domain.formula.BasicRuleMoveFormula
+import step3.domain.formula.NotMoveFormula
+import step3.domain.generator.MockNumberGenerator
 import step3.model.RaceGameErrorCode
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -19,7 +20,7 @@ class RaceGameTest : DescribeSpec({
 
         context(name = "자동차 개수가 지정된 개수보다 낮으면") {
             val exception = shouldThrow<IllegalArgumentException> {
-                RaceGame(cars = cars, round = round)
+                RaceGame(cars = cars, round = round, moveFormula = NotMoveFormula)
             }
 
             it(name = "시작할 수 없다는 에러가 발생한다.") {
@@ -33,10 +34,10 @@ class RaceGameTest : DescribeSpec({
         val round = AtomicInteger()
 
         context(name = "라운드가 모두 소진되었으면") {
-            val raceGame = RaceGame(cars = cars, round = round)
+            val raceGame = RaceGame(cars = cars, round = round, moveFormula = NotMoveFormula)
 
             val exception = shouldThrow<IllegalStateException> {
-                raceGame.basicFormulaRace()
+                raceGame.race()
             }
 
             it(name = "게임을 시작하면 남은 라운드 수가 없다는 에러가 발생한다.") {
@@ -53,9 +54,9 @@ class RaceGameTest : DescribeSpec({
         round.addAndGet(10)
 
         context(name = "라운드가 남아있는 상태에서") {
-            val raceGame = RaceGame(cars = cars, round = round)
+            val raceGame = RaceGame(cars = cars, round = round, moveFormula = NotMoveFormula)
 
-            val currentPosition = raceGame.basicFormulaRace()
+            val currentPosition = raceGame.race()
 
             it(name = "게임을 시작하면 자동차 숫자만큼 현재 위치를 반환한다.") {
                 currentPosition.size shouldBe cars.size
@@ -78,11 +79,13 @@ class RaceGameTest : DescribeSpec({
             val raceGame = RaceGame(
                 cars = cars,
                 round = round,
-                numberGenerator = MustZeroNumberGenerator,
+                moveFormula = BasicRuleMoveFormula(
+                    numberGenerator = MockNumberGenerator(value = 0),
+                ),
             )
 
             it(name = "움직이지 않는다.") {
-                raceGame.basicFormulaRace().firstOrNull() shouldBe position.get()
+                raceGame.race().firstOrNull() shouldBe position.get()
             }
         }
 
@@ -90,11 +93,13 @@ class RaceGameTest : DescribeSpec({
             val raceGame = RaceGame(
                 cars = cars,
                 round = round,
-                numberGenerator = MustFourNumberGenerator,
+                moveFormula = BasicRuleMoveFormula(
+                    numberGenerator = MockNumberGenerator(value = 4),
+                ),
             )
 
             it(name = "한 칸 앞으로 간다.") {
-                raceGame.basicFormulaRace().firstOrNull() shouldBe position.incrementAndGet()
+                raceGame.race().firstOrNull() shouldBe position.incrementAndGet()
             }
         }
     }

@@ -13,7 +13,7 @@ class CarTest : DescribeSpec({
             val car = CarFactory.createCar(position = position)
 
             it(name = "지정한 위치로 생성된다.") {
-                car.move(value = position, moveFormula = NotMoveFormula) shouldBe position
+                car.move(moveFormula = NotMoveFormula) shouldBe position
             }
         }
     }

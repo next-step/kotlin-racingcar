@@ -1,16 +1,14 @@
 package step3.domain.game
 
 import step3.domain.car.Car
-import step3.domain.game.formula.BasicRuleMoveFormula
-import step3.domain.generator.NumberGenerator
-import step3.domain.generator.RandomNumberGenerator
+import step3.domain.formula.MoveFormula
 import step3.model.RaceGameErrorCode
 import java.util.concurrent.atomic.AtomicInteger
 
 data class RaceGame(
     private val cars: List<Car>,
     private val round: AtomicInteger,
-    private val numberGenerator: NumberGenerator = RandomNumberGenerator,
+    private val moveFormula: MoveFormula,
 ) {
 
     init {
@@ -22,19 +20,15 @@ data class RaceGame(
     }
 
     @Throws(IllegalStateException::class)
-    fun basicFormulaRace(): List<Int> {
+    fun race(): List<Int> {
         check(value = round.get() > MINIMUM_ROUND) {
             RaceGameErrorCode.NOT_REMAINING_ROUND.message(round.toString())
         }
 
         round.decrementAndGet()
-        val basicRuleMoveFormula = BasicRuleMoveFormula()
 
         return cars.map {
-            it.move(
-                moveFormula = basicRuleMoveFormula,
-                value = numberGenerator.generate(),
-            )
+            it.move(moveFormula = moveFormula)
         }
     }
 
