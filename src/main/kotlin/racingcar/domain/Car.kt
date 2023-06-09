@@ -1,8 +1,12 @@
 package racingcar.domain
 
 internal class Car {
-    var score = 0
+    var position = 0
         private set
 
-    fun go() = score++
+    fun go(moveState: MoveState) {
+        if (moveState.isMovable) {
+            position++
+        }
+    }
 }

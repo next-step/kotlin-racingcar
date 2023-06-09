@@ -15,7 +15,7 @@ class StringCalculator {
         val result = inputList.first().toDouble()
 
         return inputList.drop(1)
-            .windowed(2, 2)
+            .chunked(2) // .windowed(2,2)
             .fold(result) { acc, (operator, number) ->
                 Operator.valueOfString(operator).execute(acc, number.toDouble())
             }
