@@ -15,7 +15,7 @@ class ArithmeticCalculator {
 
     fun calculate(input: String?): Int {
         requireNotNull(input)
-        check(input.isNotEmpty())
+        require(input.isNotEmpty())
 
         var result = 0
         var operator = NONE
