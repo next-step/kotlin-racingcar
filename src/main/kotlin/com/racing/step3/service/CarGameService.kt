@@ -12,8 +12,7 @@ object CarGameService {
 
     fun moveCar(carList: List<Car>): List<Car> {
         return carList.map {
-            car ->
-            car.move { Random.nextInt(10) }
+            it.move { Random.nextInt(10) }
         }.toList()
     }
 }

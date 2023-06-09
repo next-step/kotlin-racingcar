@@ -15,16 +15,4 @@ internal class CarGameServiceTest {
         // then
         Assertions.assertThat(createCarList.size).isEqualTo(totalCarNum)
     }
-
-    @Test
-    fun `자동차를 이동시키는 로직`() {
-        // given
-        val totalCarNum = 10
-        val stage = 2
-        // when
-        val createCarList = CarGameService.createCarList(totalCarNum)
-
-        // then
-        Assertions.assertThat(createCarList.size).isEqualTo(totalCarNum)
-    }
 }
