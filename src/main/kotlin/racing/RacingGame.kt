@@ -12,11 +12,7 @@ object RacingGame {
         return records
     }
 
-    fun isMove(randomNum: Int): Int {
-        return if (randomNum >= MOVE_VALUE) 1 else 0
-    }
+    fun isMove(randomNum: Int): Int = if (randomNum >= MOVE_VALUE) 1 else 0
 
-    private fun getRandomNum(): Int {
-        return Random.nextInt(10)
-    }
+    private fun getRandomNum(): Int = Random.nextInt(10)
 }
