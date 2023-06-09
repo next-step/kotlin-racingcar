@@ -9,7 +9,7 @@ data class RaceResult(
 
     companion object {
         fun getInitialRaceResult(startInformation: RaceStartInformation): RaceResult {
-            return RaceResult(listOf(TurnInfo.getInitialTurn(startInformation)))
+            return RaceResult(listOf(InitialTurn(startInformation)))
         }
     }
 }
