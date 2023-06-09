@@ -1,20 +1,12 @@
 package calculator
 
-enum class Operator(private val s: String) {
-    PLUS("+") {
-        override fun operation(x: Int, y: Int) = x + y
-    },
-    MINUS("-") {
-        override fun operation(x: Int, y: Int) = x - y
-    },
-    MULTIPLY("*") {
-        override fun operation(x: Int, y: Int) = x * y
-    },
-    DIVIDE("/") {
-        override fun operation(x: Int, y: Int) = x / y
-    };
+enum class Operator(private val s: String, val operation: (Int, Int) -> Int) {
+    PLUS("+", { x, y -> x + y }),
+    MINUS("-", { x, y -> x - y }),
+    MULTIPLY("*", { x, y -> x * y }),
+    DIVIDE("/", { x, y -> x / y });
 
-    abstract fun operation(x: Int, y: Int): Int
+    // abstract fun operation(x: Int, y: Int): Int
 
     companion object {
         fun of(symbol: String): Operator {
