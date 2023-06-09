@@ -1,15 +1,14 @@
 
 fun main(args: Array<String>) {
 
-    val inputView = InputView()
-    inputView.doInput()
+    val inputData = InputView.doInput()
+    val carNumber = inputData.first
+    val actionCount = inputData.second
 
-    val carList = ArrayList<Car>()
-    for(i in 0 until inputView.carNumber) {
+    val carList = mutableListOf<Car>()
+    for (i in 0 until carNumber) {
         carList.add(Car())
     }
 
-    ResultView().showResult(carList, inputView.actionCount)
-
-
+    ResultView.showResult(carList, actionCount)
 }

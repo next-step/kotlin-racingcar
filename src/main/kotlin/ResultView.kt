@@ -1,12 +1,13 @@
-class ResultView {
+object ResultView {
 
-    fun showResult(carList : ArrayList<Car>, actionCount : Int) {
+    private const val NEXT_LINE = "\n"
+    fun showResult(carList: MutableList<Car>, actionCount: Int) {
         println("실행 결과")
-        for(i in 0 until actionCount) {
+        for (i in 0 until actionCount) {
             carList.forEach {
                 println(it.getCarProgress())
             }
-            print("\n")
+            print(NEXT_LINE)
         }
     }
 }
