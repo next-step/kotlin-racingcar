@@ -1,24 +1,24 @@
 package step3.domain
 
-class GameResult(private val initialPositions: CarPositions, private val result: MutableList<CarPositions>) {
+class GameResult(private val initialPositions: CarPositions, private val positionsResult: MutableList<CarPositions>) {
     fun getLastPositions(): CarPositions {
-        if (result.isEmpty()) {
+        if (positionsResult.isEmpty()) {
             return initialPositions
         }
-        return result.last()
+        return positionsResult.last()
     }
 
-    fun getResult(): List<CarPositions> {
-        return result.toList()
+    fun getPositionsResult(): List<CarPositions> {
+        return positionsResult.toList()
     }
 
     fun add(cars: CarPositions) {
-        this.result.add(cars)
+        this.positionsResult.add(cars)
     }
 
     companion object {
         fun of(carPositions: CarPositions): GameResult {
-            return GameResult(initialPositions = carPositions, result = mutableListOf())
+            return GameResult(initialPositions = carPositions, positionsResult = mutableListOf())
         }
     }
 }
