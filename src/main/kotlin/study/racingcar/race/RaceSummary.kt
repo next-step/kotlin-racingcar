@@ -7,7 +7,7 @@ data class RaceSummary(
     fun determineWinners(): List<String> {
         val finalCarStates = getFinalCarStates()
         val maxPosition = getMaxPosition(finalCarStates)
-        return finalCarStates.filter { it.position.length == maxPosition }.map { it.name }
+        return finalCarStates.filter { it.getPositionLength() == maxPosition }.map { it.name }
     }
 
     private fun getFinalCarStates(): List<CarState> {
@@ -15,6 +15,6 @@ data class RaceSummary(
     }
 
     private fun getMaxPosition(finalCarStates: List<CarState>): Int {
-        return finalCarStates.maxByOrNull { it.position.length }?.position?.length ?: 0
+        return finalCarStates.maxByOrNull { it.getPositionLength() }?.getPositionLength() ?: 0
     }
 }
