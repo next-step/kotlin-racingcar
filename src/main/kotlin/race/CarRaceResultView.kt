@@ -9,15 +9,15 @@ class CarRaceResultView {
     }
 
     private fun TurnInfo.print() {
-        carPositions.print()
+        cars.print()
         println()
     }
 
-    private fun List<CarPosition>.print() {
+    private fun List<Car>.print() {
         forEach { it.print() }
     }
 
-    private fun CarPosition.print() {
+    private fun Car.print() {
         println("-".repeat(position))
     }
 }

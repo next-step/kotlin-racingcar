@@ -11,7 +11,7 @@ class RaceGameTest {
         CarRaceGame(RandomUtilImpl).runCarRace(raceStartInformation)
             .turns
             .map {
-                it.carPositions
+                it.cars
                     .size
             }.forEach {
                 assertThat(it).isEqualTo(raceStartInformation.nameOfCars.size)
@@ -53,7 +53,7 @@ class RaceGameTest {
         val (positionBeforeTurn, positionAfterTurn) = CarRaceGame(number3Generator).runCarRace(raceStartInformation)
             .turns
             .map {
-                it.carPositions
+                it.cars
                     .first()
                     .position
             }.let {
@@ -74,7 +74,7 @@ class RaceGameTest {
         val (positionBeforeTurn, positionAfterTurn) = CarRaceGame(number4Generator).runCarRace(raceStartInformation)
             .turns
             .map {
-                it.carPositions
+                it.cars
                     .first()
                     .position
             }.let {

@@ -16,14 +16,14 @@ class CarRaceGame(private val randomUtil: RandomUtil) {
     }
 
     private fun TurnInfo.proceedNextTurn(): TurnInfo {
-        return Turn(carPositions.proceedNextTurn())
+        return Turn(cars.proceedNextTurn())
     }
 
-    private fun List<CarPosition>.proceedNextTurn(): List<CarPosition> {
+    private fun List<Car>.proceedNextTurn(): List<Car> {
         return map { it.proceedNextTurn() }
     }
 
-    private fun CarPosition.proceedNextTurn(): CarPosition {
+    private fun Car.proceedNextTurn(): Car {
         if (canMove()) return goForward()
         return this
     }
