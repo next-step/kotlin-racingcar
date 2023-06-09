@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 class RaceGameTest {
     @Test
     fun `입력된 자동차 수와 RaceResult의 자동차 수가 동일해야 한다`() {
-        val raceStartInformation = RaceStartInformation(numberOfCars = 3, numberOfAttempts = 5)
+        val raceStartInformation = RaceStartInformation(nameOfCars = List(3) { it.toString() }, numberOfAttempts = 5)
 
         CarRaceGame(RandomUtilImpl).runCarRace(raceStartInformation)
             .turns
@@ -14,13 +14,13 @@ class RaceGameTest {
                 it.carPositions
                     .size
             }.forEach {
-                assertThat(it).isEqualTo(raceStartInformation.numberOfCars)
+                assertThat(it).isEqualTo(raceStartInformation.nameOfCars.size)
             }
     }
 
     @Test
     fun `RaceResult 내 turns 길이는 입력된 시도 횟수 + 1 이어야 한다`() {
-        val raceStartInformation = RaceStartInformation(numberOfCars = 3, numberOfAttempts = 5)
+        val raceStartInformation = RaceStartInformation(nameOfCars = List(3) { it.toString() }, numberOfAttempts = 5)
 
         CarRaceGame(RandomUtilImpl).runCarRace(raceStartInformation)
             .turns
@@ -32,7 +32,7 @@ class RaceGameTest {
 
     @Test
     fun `RaceResult 내 turns의 첫번째 아이템은 InitialTurn, 그 다음 부터는 Turn이어야 한다`() {
-        val raceStartInformation = RaceStartInformation(numberOfCars = 3, numberOfAttempts = 5)
+        val raceStartInformation = RaceStartInformation(nameOfCars = List(3) { it.toString() }, numberOfAttempts = 5)
 
         CarRaceGame(RandomUtilImpl).runCarRace(raceStartInformation)
             .turns
@@ -48,7 +48,7 @@ class RaceGameTest {
             override fun generateRandomSingleDigit() = 3
         }
 
-        val raceStartInformation = RaceStartInformation(numberOfCars = 1, numberOfAttempts = 1)
+        val raceStartInformation = RaceStartInformation(nameOfCars = listOf("1"), numberOfAttempts = 1)
 
         val (positionBeforeTurn, positionAfterTurn) = CarRaceGame(number3Generator).runCarRace(raceStartInformation)
             .turns
@@ -69,7 +69,7 @@ class RaceGameTest {
             override fun generateRandomSingleDigit() = 4
         }
 
-        val raceStartInformation = RaceStartInformation(numberOfCars = 1, numberOfAttempts = 1)
+        val raceStartInformation = RaceStartInformation(nameOfCars = listOf("1"), numberOfAttempts = 1)
 
         val (positionBeforeTurn, positionAfterTurn) = CarRaceGame(number4Generator).runCarRace(raceStartInformation)
             .turns

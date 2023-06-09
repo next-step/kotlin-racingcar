@@ -1,6 +1,6 @@
 package race
 
 data class RaceStartInformation(
-    val numberOfCars: Int,
+    val nameOfCars: List<String>,
     val numberOfAttempts: Int,
 )
