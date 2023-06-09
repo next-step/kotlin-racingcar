@@ -2,10 +2,6 @@ package study.step2
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
-import io.kotest.data.headers
-import io.kotest.data.row
-import io.kotest.data.table
-import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldNotBe
 
 class OperationTest : StringSpec({
@@ -74,5 +70,4 @@ class OperationTest : StringSpec({
         shouldThrow<IllegalArgumentException> { Operation.parse(postfix1) }
         shouldThrow<IllegalArgumentException> { Operation.parse(postfix2) }
     }
-
 })
