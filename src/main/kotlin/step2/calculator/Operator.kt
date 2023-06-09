@@ -3,7 +3,7 @@ package step2.calculator
 import java.util.function.BiFunction
 
 enum class Operator(
-    val symbol: String,
+    private val symbol: String,
     private val operation: BiFunction<Int, Int, Int>
 ) {
     PLUS("+", { op1, op2 -> op1 + op2 }),
@@ -16,10 +16,10 @@ enum class Operator(
         op1 / op2
     });
 
+    fun operate(op1: Int, op2: Int) = operation.apply(op1, op2)
+
     companion object {
         fun findOperator(symbol: String): Operator =
-            values().find { it.symbol == symbol } ?: throw IllegalArgumentException()
+            values().find { it.symbol == symbol } ?: throw IllegalArgumentException("올바른 기호가 아닙니다.")
     }
-
-    fun operate(op1: Int, op2: Int) = operation.apply(op1, op2)
 }
