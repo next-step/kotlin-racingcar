@@ -9,8 +9,8 @@ data class Car(val pos: Position) {
             return Car(Position(0))
         }
 
-        fun at(pos: Int): Car {
-            return Car(Position(pos))
+        fun at(pos: Position): Car {
+            return Car(pos)
         }
     }
 }

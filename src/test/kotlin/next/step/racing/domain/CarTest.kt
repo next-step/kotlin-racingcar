@@ -18,7 +18,7 @@ class CarTest : FunSpec({
             StrategyExpected(10, { 1 }, 11),
             StrategyExpected(20, { 5 }, 25)
         ) { (init, strategy, expected) ->
-            Car.at(init).move(strategy) shouldBe Car.at(expected)
+            Car.at(Position(init)).move(strategy) shouldBe Car.at(Position(expected))
         }
     }
 })
