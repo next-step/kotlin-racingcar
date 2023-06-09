@@ -6,79 +6,68 @@ object Calculator {
     private const val NUMBER_POSITION = 0
     private const val OPERATOR_POSITION = 1
 
-    enum class Operator(val operator: String) {
-        PLUS("+"),
-        MINUS("-"),
-        TIMES("*"),
-        DIVIDE("/");
-
-        companion object {
-            fun findOperator(operator: String): Operator? = values().firstOrNull { it.operator == operator }
-        }
-    }
-
-    fun calculate(str: String): String {
-        if (str.isEmpty()) {
+    fun calculate(formulaString: String): String {
+        if (formulaString.isEmpty()) {
             throw IllegalArgumentException("Input value is empty")
         }
-        val args = str.split(SPERATOR)
-        val result = recursiveCalculator(args.reversed())
-        println(result)
-        return result
+        val formulaList = formulaString.split(SPERATOR)
+        val resultValue = recursiveCalculator(formulaList.reversed())
+        println(resultValue)
+        return resultValue
     }
 
-    private fun recursiveCalculator(str: List<String>): String {
-        if (str.size == LAST_INDEX) {
-            return str[NUMBER_POSITION]
+    private fun recursiveCalculator(formulaList: List<String>): String {
+        if (formulaList.size == LAST_INDEX) {
+            return formulaList[NUMBER_POSITION]
         }
 
-        val operator = str[OPERATOR_POSITION]
-        val num = str[NUMBER_POSITION]
+        val operator = formulaList[OPERATOR_POSITION]
+        val number = formulaList[NUMBER_POSITION]
 
         return when (Operator.findOperator(operator)) {
             Operator.PLUS -> {
-                plus(recursiveCalculator(str.slice(NEXT_PART_INDEX until str.size)), num)
+                plus(recursiveCalculator(formulaList.slice(NEXT_PART_INDEX until formulaList.size)), number)
             }
             Operator.MINUS -> {
-                minus(recursiveCalculator(str.slice(NEXT_PART_INDEX until str.size)), num)
+                minus(recursiveCalculator(formulaList.slice(NEXT_PART_INDEX until formulaList.size)), number)
             }
             Operator.TIMES -> {
-                times(recursiveCalculator(str.slice(NEXT_PART_INDEX until str.size)), num)
+                times(recursiveCalculator(formulaList.slice(NEXT_PART_INDEX until formulaList.size)), number)
             }
             Operator.DIVIDE -> {
-                divide(recursiveCalculator(str.slice(NEXT_PART_INDEX until str.size)), num)
+                divide(recursiveCalculator(formulaList.slice(NEXT_PART_INDEX until formulaList.size)), number)
             }
             else -> {
                 throw IllegalArgumentException("Cannot find operator")
             }
         }
     }
-    fun plus(num1: String, num2: String): String {
-        if (!isNum(num1) || !isNum(num2)) {
+    fun plus(preNumber: String, postNumber: String): String {
+        if (!isNum(preNumber) || !isNum(postNumber)) {
             throw IllegalArgumentException("Value must be Number.")
         }
-        return (num1.toInt() + num2.toInt()).toString()
+        return (preNumber.toInt() + postNumber.toInt()).toString()
     }
 
-    fun minus(num1: String, num2: String): String {
-        if (!isNum(num1) || !isNum(num2)) {
+    fun minus(preNumber: String, postNumber: String): String {
+        if (!isNum(preNumber) || !isNum(postNumber)) {
             throw IllegalArgumentException()
         }
-        return (num1.toInt() - num2.toInt()).toString()
+        return (preNumber.toInt() - postNumber.toInt()).toString()
     }
 
-    fun times(num1: String, num2: String): String {
-        if (!isNum(num1) || !isNum(num2)) {
+    fun times(preNumber: String, postNumber: String): String {
+        if (!isNum(preNumber) || !isNum(postNumber)) {
             throw IllegalArgumentException()
         }
-        return (num1.toInt() * num2.toInt()).toString()
+        return (preNumber.toInt() * postNumber.toInt()).toString()
     }
 
-    fun divide(num1: String, num2: String): String {
-        if (!isNum(num1) || !isNum(num2)) {
+    fun divide(preNumber: String, postNumber: String): String {
+        if (!isNum(preNumber) || !isNum(postNumber)) {
             throw IllegalArgumentException()
         }
-        return (num1.toInt() / num2.toInt()).toString()
+        return (preNumber.toInt() / postNumber.toInt()).toString()
     }
 
     private fun isNum(numberString: String): Boolean {
