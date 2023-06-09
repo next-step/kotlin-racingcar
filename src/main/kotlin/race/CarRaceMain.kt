@@ -2,7 +2,7 @@ package race
 
 fun main() {
     CarRaceResultView().printRaceResult(
-        CarRaceGame().runCarRace(
+        CarRaceGame(RandomUtil).runCarRace(
             CarRaceInputView().getStartInformation()
         )
     )
