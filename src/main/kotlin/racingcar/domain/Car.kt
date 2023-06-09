@@ -7,7 +7,7 @@ class Car(
     private val movable: () -> Boolean,
 ) {
     fun move(): Int {
-        if (movable.invoke()) {
+        if (movable()) {
             return ++position
         }
         return position
