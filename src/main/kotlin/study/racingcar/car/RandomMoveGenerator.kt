@@ -1,4 +1,4 @@
-package study.step3.race
+package study.racingcar.car
 
 class RandomMoveGenerator : MoveGenerator {
     override fun canMove(): Boolean {
