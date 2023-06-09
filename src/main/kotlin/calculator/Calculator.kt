@@ -1,5 +1,9 @@
 package calculator
 
+fun main() {
+    print(Calculator("2 - 3").run())
+}
+
 class Calculator(
     private val input: String
 ) {
@@ -32,7 +36,7 @@ class Calculator(
 
     private fun extractNumbers(): List<Double> {
         val inputWithoutBlank = input.replace(" ", "")
-        val numberStrings = inputWithoutBlank.split(*arrayOf("+", "-", "*", "/"))
+        val numberStrings = inputWithoutBlank.split(*Operator.values().map { it.sign }.toCharArray())
         return numberStrings.map(String::toDouble)
     }
 
