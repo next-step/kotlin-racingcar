@@ -38,8 +38,8 @@ class RaceGameTest {
         CarRaceGame().runCarRace(raceStartInformation)
             .turns
             .forEachIndexed { index, turn ->
-                if (index == 0) assertThat(turn is InitialTurn)
-                else assertThat(turn is Turn)
+                if (index == 0) assertThat(turn is InitialTurn).isTrue()
+                else assertThat(turn is Turn).isTrue()
             }
     }
 
