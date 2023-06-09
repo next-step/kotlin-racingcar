@@ -17,5 +17,3 @@ class Calculator {
         return (num1 / num2)
     }
 }
-
-// 질문 - Float, Int 모두 지원하게 해야할지

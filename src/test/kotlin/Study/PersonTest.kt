@@ -17,9 +17,10 @@ class PersonTest {
         val actual = Person("홍길동", 20, null)
         assertThat(actual.nickname).isNull()
     }
+
     @Test
     fun `기본인자`() {
-        val actual = Person(name = "홍길동", age = 20,)
+        val actual = Person(name = "홍길동", age = 20)
         assertThat(actual.nickname).isEqualTo("Guest")
     }
 
