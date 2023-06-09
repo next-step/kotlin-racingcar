@@ -18,13 +18,9 @@ class CarRaceInputView {
 
     private fun readInt(): Int {
         while (true) {
-            runCatching {
-                readln().toInt()
-            }.onSuccess {
-                return it
-            }.onFailure {
-                println("다시 입력해 주세요.")
-            }
+            val enteredInt = readln().toIntOrNull()
+            if (enteredInt != null) return enteredInt
+            println("다시 입력해 주세요.")
         }
     }
 }
