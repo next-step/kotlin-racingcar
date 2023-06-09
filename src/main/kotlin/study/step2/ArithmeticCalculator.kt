@@ -49,6 +49,6 @@ class ArithmeticCalculator {
             "-" -> SUB
             "*" -> MUL
             "/" -> DIV
-            else -> NONE
+            else -> throw IllegalArgumentException()
         }
 }
