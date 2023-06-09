@@ -1,5 +1,7 @@
 package step3.domain
 
+typealias CarPositionList = List<Int>
+
 class Game(
     numberOfCars: Int,
     private val numberOfTrials: Int,
@@ -13,8 +15,8 @@ class Game(
         cars = List(numberOfCars) { Car() }
     }
 
-    fun process(): List<List<Int>> {
-        val result: MutableList<List<Int>> = mutableListOf()
+    fun process(): List<CarPositionList> {
+        val result: MutableList<CarPositionList> = mutableListOf()
 
         repeat(numberOfTrials) {
             result.add(doProcess())
@@ -23,7 +25,7 @@ class Game(
         return result
     }
 
-    private fun doProcess(): List<Int> {
+    private fun doProcess(): CarPositionList {
         cars.forEach { it.moveForwardRandomly() }
 
         return cars.map { it.position }
