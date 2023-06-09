@@ -13,6 +13,6 @@ class OperandListExtractorTest {
         val items = listOf("1", "2", "3", "4", "5", "6")
 
         val actual = OperandListExtractor.extract(items)
-        assertThat(actual).containsExactly(Number(1), Number(3), Number(5))
+        assertThat(actual).containsExactly(Number(1.0), Number(3.0), Number(5.0))
     }
 }
