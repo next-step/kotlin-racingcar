@@ -2,20 +2,27 @@ import kotlin.random.Random
 
 class Car {
 
-    var progreessString = StringBuffer("-")
+    companion object {
+        const val PROGRESS_STRING = "-"
+        const val MIN_RANGE = 0
+        const val MAX_RANGE = 10
+        const val CAN_GO_CONDITION_INT = 4
+    }
 
-    fun getCarProgress() : String {
-        if(checkCanGo()) {
-            progreessString.append("-")
+    private var progressString = StringBuffer(PROGRESS_STRING)
+
+    fun getCarProgress(): String {
+        if (checkCanGo()) {
+            progressString.append(PROGRESS_STRING)
         }
-        return progreessString.toString()
+        return progressString.toString()
     }
 
-    fun checkCanGo() : Boolean {
-        return getRandomInt() >= 4
+    fun checkCanGo(): Boolean {
+        return getRandomInt() >= CAN_GO_CONDITION_INT
     }
 
-    fun getRandomInt() : Int{
-        return Random.nextInt(0, 10)
+    fun getRandomInt(): Int {
+        return Random.nextInt(MIN_RANGE, MAX_RANGE)
     }
 }
