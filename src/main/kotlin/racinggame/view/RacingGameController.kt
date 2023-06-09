@@ -1,8 +1,14 @@
 package racinggame.view
 
+import racinggame.domain.RacingGame
+import racinggame.domain.employee.GameGuide
+import racinggame.domain.game.GameRule
+import racinggame.domain.player.User
+
 class RacingGameController(
     private val inputView: RacingGameInputView,
     private val outputView: RacingGameOutputView,
+    private val racingGame: RacingGame,
 ) {
 
     fun start() {
@@ -15,6 +21,13 @@ class RacingGameController(
             displayErrorFinishMessage()
             return
         }
+
+        val gameGuide = GameGuide(
+            users = List(participantsCount) { index -> User(id = index.toString()) },
+            gameRule = GameRule(gamePlayCount),
+        )
+
+        racingGame.enter(gameGuide)
     }
 
     private fun receiveParticipantsCountOrNull(): Int? {
