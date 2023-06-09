@@ -4,9 +4,12 @@ import java.util.Random
 
 class Car(
     var position: Int = INIT_POSITION,
-    val name: CarName,
+    val carName: CarName,
     private val movable: () -> Boolean,
 ) {
+    val name: String
+        get() = carName.value
+
     fun move(): Int {
         if (movable()) {
             return ++position
@@ -20,6 +23,6 @@ class Car(
         private const val MOVABLE_VALUE = 4
         private val random = Random()
 
-        fun createRandomMoveCar() = Car(name = CarName("tmp")) { random.nextInt(MAX_RANDOM_MOVE_INPUT) >= MOVABLE_VALUE }
+        fun createRandomMoveCar() = Car(carName = CarName("tmp")) { random.nextInt(MAX_RANDOM_MOVE_INPUT) >= MOVABLE_VALUE }
     }
 }

@@ -24,6 +24,6 @@ class CarNameTest {
     @Test
     fun `자동차의 이름을 저장한다`() {
         val actual = CarName("pobi")
-        actual.name shouldBe "pobi"
+        actual.value shouldBe "pobi"
     }
 }

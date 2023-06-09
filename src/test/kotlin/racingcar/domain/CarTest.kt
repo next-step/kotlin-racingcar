@@ -7,14 +7,14 @@ class CarTest {
 
     @Test
     fun `자동차는 현재 위치와 이름을 가진다`() {
-        val actual = Car(position = 1, name = CarName("pobi")) { true }
+        val actual = Car(position = 1, carName = CarName("pobi")) { true }
         actual.position shouldBe 1
-        actual.name shouldBe CarName("pobi")
+        actual.name shouldBe "pobi"
     }
 
     @Test
     fun `자동차의 초기 위치는 0이다`() {
-        val actual = Car(name = CarName("pobi")) { true }
+        val actual = Car(carName = CarName("pobi")) { true }
         actual.position shouldBe 0
     }
 
