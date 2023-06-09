@@ -4,6 +4,8 @@ private const val RESULT_START_STRING = "\n실행 결과"
 
 private const val MOVE_STRING = "-"
 
+private const val WINNER_STRING = "가 최종 우승했습니다."
+
 object ResultView {
 
     fun startPrintGame() {
@@ -19,6 +21,6 @@ object ResultView {
     fun printGameWinner(gameResult: GameRecords) {
         val max = gameResult.cars.values.maxBy { it.score }
         val winners = gameResult.cars.filter { it.value == max }.map { it.key.name }
-        println("${winners.joinToString(", ")}가 최종 우승했습니다.")
+        println("${winners.joinToString(", ")}$WINNER_STRING")
     }
 }
