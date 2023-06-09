@@ -83,4 +83,15 @@ class RaceGameTest {
 
         assertThat(positionAfterTurn - positionBeforeTurn).isEqualTo(1)
     }
+
+    @Test
+    fun `RaceResult의 frontrunner() 함수는 맨 앞의 차량들을 반환한다`() {
+        val frontrunner1 = Car(position = 3, name = "")
+        val frontrunner2 = Car(position = 3, name = "")
+        val car1 = Car(position = 0, name = "")
+        val car2 = Car(position = 1, name = "")
+        val cars = listOf(frontrunner1, car1, car2, frontrunner2)
+
+        assertThat(RaceResult(listOf(Turn(cars))).frontrunners()).isEqualTo(setOf(frontrunner2, frontrunner1))
+    }
 }
