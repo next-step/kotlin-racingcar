@@ -17,8 +17,7 @@ fun main() {
     val raceGame = RaceGame(cars = cars, round = AtomicInteger(round), moveFormula = basicRuleMoveFormula)
     ResultView.printStartGame()
 
-    while (raceGame.isProgress()) {
-        val carsPosition = raceGame.race()
-        ResultView.printCarsPosition(carsPosition = carsPosition)
+    raceGame.race { raceResult ->
+        ResultView.printCarsPosition(carsPosition = raceResult)
     }
 }

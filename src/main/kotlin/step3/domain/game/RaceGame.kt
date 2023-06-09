@@ -20,19 +20,17 @@ class RaceGame(
     }
 
     @Throws(IllegalStateException::class)
-    fun race(): List<Int> {
+    fun race(raceResultProcess: (List<Int>) -> Unit) {
         check(value = round.get() > MINIMUM_ROUND) {
             RaceGameErrorCode.NOT_REMAINING_ROUND.message(round.toString())
         }
 
-        round.decrementAndGet()
-
-        return cars.map {
-            it.move(moveFormula = moveFormula)
+        while (round.getAndDecrement() > MINIMUM_ROUND) {
+            raceResultProcess(
+                cars.map { it.move(moveFormula = moveFormula) }
+            )
         }
     }
-
-    fun isProgress(): Boolean = round.get() > MINIMUM_ROUND
 
     companion object {
         private const val MINIMUM_ROUND = 0

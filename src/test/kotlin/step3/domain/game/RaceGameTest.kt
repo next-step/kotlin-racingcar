@@ -37,35 +37,24 @@ class RaceGameTest : DescribeSpec({
             val raceGame = RaceGame(cars = cars, round = round, moveFormula = NotMoveFormula)
 
             val exception = shouldThrow<IllegalStateException> {
-                raceGame.race()
+                raceGame.race { }
             }
 
             it(name = "게임을 시작하면 남은 라운드 수가 없다는 에러가 발생한다.") {
                 exception shouldHaveMessage RaceGameErrorCode.NOT_REMAINING_ROUND.message("${round.get()}")
             }
-
-            val progress = raceGame.isProgress()
-
-            it(name = "진행 여부를 호출하면 진행 중이지 않음을 반환한다.") {
-                progress shouldBe false
-            }
         }
 
-        round.addAndGet(10)
+        round.incrementAndGet()
 
         context(name = "라운드가 남아있는 상태에서") {
             val raceGame = RaceGame(cars = cars, round = round, moveFormula = NotMoveFormula)
+            val expect = mutableListOf<Int>()
 
-            val currentPosition = raceGame.race()
+            raceGame.race { raceResult -> expect.addAll(elements = raceResult) }
 
             it(name = "게임을 시작하면 자동차 숫자만큼 현재 위치를 반환한다.") {
-                currentPosition.size shouldBe cars.size
-            }
-
-            val progress = raceGame.isProgress()
-
-            it(name = "진행 여부를 호출하면 진행 중임을 반환한다.") {
-                progress shouldBe true
+                expect.size shouldBe cars.size
             }
         }
     }
@@ -73,9 +62,10 @@ class RaceGameTest : DescribeSpec({
     describe(name = "기본 룰로 게임을 시작할 때") {
         val position = AtomicInteger()
         val cars = CarFactory.createCars(count = 1, position = position.get())
-        val round = AtomicInteger(10)
 
         context(name = "4미만일 때") {
+            val round = AtomicInteger(1)
+
             val raceGame = RaceGame(
                 cars = cars,
                 round = round,
@@ -84,12 +74,18 @@ class RaceGameTest : DescribeSpec({
                 ),
             )
 
+            val expect = mutableListOf<Int>()
+
+            raceGame.race { raceResult -> expect.addAll(elements = raceResult) }
+
             it(name = "움직이지 않는다.") {
-                raceGame.race().firstOrNull() shouldBe position.get()
+                expect.firstOrNull() shouldBe position.get()
             }
         }
 
         context(name = "4이상일 때") {
+            val round = AtomicInteger(1)
+
             val raceGame = RaceGame(
                 cars = cars,
                 round = round,
@@ -98,8 +94,12 @@ class RaceGameTest : DescribeSpec({
                 ),
             )
 
+            val expect = mutableListOf<Int>()
+
+            raceGame.race { raceResult -> expect.addAll(elements = raceResult) }
+
             it(name = "한 칸 앞으로 간다.") {
-                raceGame.race().firstOrNull() shouldBe position.incrementAndGet()
+                expect.firstOrNull() shouldBe position.incrementAndGet()
             }
         }
     }
