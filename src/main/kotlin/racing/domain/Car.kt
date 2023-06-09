@@ -2,12 +2,12 @@ package racing.domain
 
 import racing.domain.strategy.MoveStrategy
 
-class Car(private var id: Long? = null, private var distance: Distance = Distance.ZERO) : Movable, Comparable<Car> {
+class Car(private var id: Int, private var distance: Distance = Distance.ZERO) : Movable, Comparable<Car> {
 
     val getDistance: Distance
         get() = distance
 
-    val getId: Long?
+    val getId: Int
         get() = id
 
     override fun move(strategy: MoveStrategy) {

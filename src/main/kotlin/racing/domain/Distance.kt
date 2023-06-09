@@ -6,6 +6,9 @@ value class Distance(private val value: Long) : Comparable<Distance> {
 
     override operator fun compareTo(other: Distance): Int = value.compareTo(other.value)
 
+    val getValue
+        get() = value
+
     companion object {
         val ZERO = Distance(0L)
     }
