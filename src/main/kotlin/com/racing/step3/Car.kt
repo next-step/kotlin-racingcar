@@ -5,6 +5,6 @@ class Car(
 ) {
     fun move(randomFunc: () -> Int) {
         val randomNum = randomFunc()
-        position = if (randomNum >= 4) position + randomNum else position
+        position = if (randomNum >= 4) position + 1 else position
     }
 }
