@@ -1,15 +1,15 @@
 package step3
 
 class RandomDriveCar(
-    val carNumber: Long,
+    override val carNumber: Long,
     private val randomNumberGenerator: RandomNumberGenerator,
     private val minDriveRandomNumber: Long
-): Car {
+) : Car {
 
-    var position: Long = 0
+    override var position: Long = 0
         private set
     override fun drive() {
-        if (isDrive()){
+        if (isDrive()) {
             position += 1
         }
     }
