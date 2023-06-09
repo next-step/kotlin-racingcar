@@ -1,9 +1,8 @@
-package step3
+package step3.domain
 
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
-import step3.domain.Game
 
 class GameSpec : DescribeSpec({
     describe("게임 세팅(초기화)") {
@@ -37,21 +36,21 @@ class GameSpec : DescribeSpec({
                     val numberOfCars = it.first
                     val numberOfTrials = it.second
 
-                    val results = Game(numberOfCars = numberOfCars, numberOfTrials = numberOfTrials).process()
+                    val trials = Game(numberOfCars = numberOfCars, numberOfTrials = numberOfTrials).process()
 
-                    results.size shouldBe numberOfTrials
+                    trials.size shouldBe numberOfTrials
                 }
             }
 
-            it("각 시도 결과에는 자동차 대수만큼 결과가 포함된다") {
+            it("각 시도 결과에는 자동차의 각 위치 목록을 반환한다") {
                 cases.forEach {
                     val numberOfCars = it.first
                     val numberOfTrials = it.second
 
-                    val results = Game(numberOfCars = numberOfCars, numberOfTrials = numberOfTrials).process()
+                    val trials = Game(numberOfCars = numberOfCars, numberOfTrials = numberOfTrials).process()
 
-                    results.forEach { result ->
-                        result.size shouldBe numberOfCars
+                    trials.forEach { trial ->
+                        trial.size shouldBe numberOfCars
                     }
                 }
             }
