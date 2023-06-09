@@ -5,7 +5,7 @@ import step3.domain.formula.MoveFormula
 import step3.model.RaceGameErrorCode
 import java.util.concurrent.atomic.AtomicInteger
 
-data class RaceGame(
+class RaceGame(
     private val cars: List<Car>,
     private val round: AtomicInteger,
     private val moveFormula: MoveFormula,
