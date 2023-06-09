@@ -5,7 +5,7 @@ class Operand(val value: Float) : MathElement {
         fun from(numberString: String) = runCatching {
             Operand(numberString.toFloat())
         }.getOrElse {
-            throw IllegalArgumentException()
+            throw IllegalArgumentException("Unsupported operand: $numberString. Only numbers are allowed.")
         }
     }
 }

@@ -1,28 +1,22 @@
 package calculator
 
-enum class Operator : MathElement {
-    Addition {
-        override val symbol = "+"
+enum class Operator(private val symbol: String) : MathElement {
+    Addition("+") {
         override fun calculate(operand1: Operand, operand2: Operand) =
             Operand(operand1.value + operand2.value)
     },
-    Subtraction {
-        override val symbol = "-"
+    Subtraction("-") {
         override fun calculate(operand1: Operand, operand2: Operand) =
             Operand(operand1.value - operand2.value)
     },
-    Multiplication {
-        override val symbol = "*"
+    Multiplication("*") {
         override fun calculate(operand1: Operand, operand2: Operand) =
             Operand(operand1.value * operand2.value)
     },
-    Division {
-        override val symbol = "/"
+    Division("/") {
         override fun calculate(operand1: Operand, operand2: Operand) =
             Operand(operand1.value / operand2.value)
     };
-
-    abstract val symbol: String
 
     abstract fun calculate(operand1: Operand, operand2: Operand): Operand
 
@@ -31,13 +25,10 @@ enum class Operator : MathElement {
             return operatorString in symbols()
         }
 
-        fun from(operatorString: String) = when (operatorString) {
-            Addition.symbol -> Addition
-            Subtraction.symbol -> Subtraction
-            Multiplication.symbol -> Multiplication
-            Division.symbol -> Division
-            else -> throw IllegalArgumentException()
+        fun from(operatorString: String) = values().find {
+            it.symbol == operatorString
         }
+            ?: throw IllegalArgumentException("Unsupported operator: $operatorString. Please input a valid operator (+, -, *, /).")
 
         private fun symbols() = values().map {
             it.symbol
