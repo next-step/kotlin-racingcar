@@ -1,7 +1,9 @@
-package step2
+package step2.parser
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import step2.expression.Operand
+import step2.expression.Operator
 
 internal class ExpressionParserTest {
     @Test

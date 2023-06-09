@@ -1,4 +1,4 @@
-package step2
+package step2.validator
 
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Assertions.assertDoesNotThrow

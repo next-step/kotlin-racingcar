@@ -1,4 +1,4 @@
-package step2
+package step2.tokenizer
 
 /**
  * ### 연산식을 토큰화시키시는 역할을 담당하는 클래스 입니다.

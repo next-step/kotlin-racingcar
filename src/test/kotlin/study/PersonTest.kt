@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 
 internal class PersonTest {
 
-    //백틱 ` 이용시 언더스코어 없어도 한글로 메서드 명 짓기 가능
+    // 백틱 ` 이용시 언더스코어 없어도 한글로 메서드 명 짓기 가능
     @Test
     internal fun `이름 붙인 인자`() {
         val actual = Person(name = "한맹희", age = 30, nickname = "맹귄")

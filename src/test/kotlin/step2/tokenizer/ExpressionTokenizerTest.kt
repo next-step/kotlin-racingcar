@@ -1,4 +1,4 @@
-package step2
+package step2.tokenizer
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test

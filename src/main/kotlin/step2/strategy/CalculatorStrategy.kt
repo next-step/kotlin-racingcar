@@ -1,4 +1,8 @@
-package step2
+package step2.strategy
+
+import step2.expression.ExpressionItem
+import step2.expression.Operand
+import step2.expression.Operator
 
 /**
  * ### 연산식을 어떻게 연산할지 결정하는 전략 클래스입니다.
