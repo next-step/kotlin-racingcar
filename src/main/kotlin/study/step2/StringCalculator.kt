@@ -1,5 +1,11 @@
 package study.step2
 
+import study.step2.Operator.ADD
+import study.step2.Operator.DIV
+import study.step2.Operator.MUL
+import study.step2.Operator.NONE
+import study.step2.Operator.SUB
+
 class StringCalculator {
 
     private fun add(operand1: Int, operand2: Int) = operand1 + operand2
@@ -12,7 +18,7 @@ class StringCalculator {
         check(input.isNotEmpty())
 
         var result = 0
-        var operator = OPERATOR.NONE
+        var operator = NONE
 
         input.split(" ").forEach {
             it.toIntOrNull()?.let { operand ->
@@ -26,27 +32,23 @@ class StringCalculator {
     }
 
     private fun operate(
-        inputOperator: OPERATOR,
+        inputOperator: Operator,
         operand: Int,
         result: Int
     ) = when (inputOperator) {
-        OPERATOR.ADD -> add(result, operand)
-        OPERATOR.SUB -> sub(result, operand)
-        OPERATOR.MUL -> mul(result, operand)
-        OPERATOR.DIV -> div(result, operand)
-        OPERATOR.NONE -> operand
+        ADD -> add(result, operand)
+        SUB -> sub(result, operand)
+        MUL -> mul(result, operand)
+        DIV -> div(result, operand)
+        NONE -> operand
     }
 
     private fun setOperator(inputOperator: String) =
         when (inputOperator) {
-            "+" -> OPERATOR.ADD
-            "-" -> OPERATOR.SUB
-            "*" -> OPERATOR.MUL
-            "/" -> OPERATOR.DIV
-            else -> OPERATOR.NONE
+            "+" -> ADD
+            "-" -> SUB
+            "*" -> MUL
+            "/" -> DIV
+            else -> NONE
         }
-}
-
-enum class OPERATOR {
-    NONE, ADD, SUB, MUL, DIV
 }
