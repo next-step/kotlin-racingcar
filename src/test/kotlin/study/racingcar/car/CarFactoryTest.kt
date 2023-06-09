@@ -22,7 +22,7 @@ class CarFactoryTest : BehaviorSpec({
 
             And("모든 Car 인스턴스의 초기 상태는 0이어야 한다") {
                 cars.forEach { car ->
-                    car.getVisualPosition() shouldBe ""
+                    car.getCurrentState().position shouldBe 0
                 }
             }
         }

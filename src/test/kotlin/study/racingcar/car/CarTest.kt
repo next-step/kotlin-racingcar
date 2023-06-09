@@ -19,7 +19,7 @@ class CarTest : BehaviorSpec({
             car.move()
 
             Then("위치는 0이어야 한다") {
-                car.getVisualPosition() shouldBe ""
+                car.getCurrentState().position shouldBe 0
             }
         }
     }
@@ -30,7 +30,7 @@ class CarTest : BehaviorSpec({
             car.move()
 
             Then("위치는 1이어야 한다") {
-                car.getVisualPosition() shouldBe "-"
+                car.getCurrentState().position shouldBe 1
             }
         }
     }
