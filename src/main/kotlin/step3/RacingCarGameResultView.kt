@@ -7,22 +7,18 @@ class RacingCarGameResultView {
         const val OUTPUT_CHARACTER = "-"
     }
 
-    fun print(racingCarDriveResults: List<RacingCarDriveResult>, totalRound: Long) {
-        val roundDriveResultMap = racingCarDriveResults.groupBy { it.round }
-
+    fun print(racingCarRoundResult: List<RacingCarRoundResult>, totalRound: Long) {
         println(RESULT_TITLE)
 
-        for(round in RacingCarGame.START_ROUND .. totalRound) {
-            val carDriveResults = roundDriveResultMap[round]
-
-            carDriveResults?.sortedBy { it.carNumber }?.forEach {
+        racingCarRoundResult.sortedBy { it.round }.forEach { roundResult ->
+            roundResult.carDriveResults.sortedBy { it.carNumber }.forEach {
                 repeat(it.position.toInt()) {
                     print(OUTPUT_CHARACTER)
                 }
                 println()
             }
 
-            if (round < totalRound) {
+            if (roundResult.round < totalRound) {
                 println()
             }
         }

@@ -9,29 +9,19 @@ class RacingCarGame {
         const val START_ROUND = 1
     }
 
-    fun execute() {
-        val inputView = RacingCarGameInputView()
-        val totalCarCount = inputView.totalCarCount
-        val totalRound = inputView.totalRound
-
-        val racingCarDriveResults = progressGame(totalCarCount = totalCarCount, totalRound = totalRound)
-
-        val resultView = RacingCarGameResultView()
-        resultView.print(racingCarDriveResults = racingCarDriveResults, totalRound = totalRound)
-    }
-
-    private fun progressGame(totalCarCount: Long, totalRound: Long): List<RacingCarDriveResult> {
+    fun progressGame(totalCarCount: Long, totalRound: Long): List<RacingCarRoundResult> {
         val randomNumberGenerator = RandomNumberGenerator(RANDOM_NUMBER_BASE, RANDOM_NUMBER_LIMIT)
         val cars = generateCars(totalCarCount, randomNumberGenerator)
 
         return (START_ROUND..totalRound)
             .map { round ->
-                cars.map { car ->
+                val racingCarDriveResults = cars.map { car ->
                     car.drive()
-                    RacingCarDriveResult(round, car.carNumber, car.position)
+                    RacingCarDriveResult(car.carNumber, car.position)
                 }
+                    .toList()
+                RacingCarRoundResult(round, racingCarDriveResults)
             }
-            .flatten()
             .toList()
     }
 
@@ -51,6 +41,13 @@ class RacingCarGame {
 
 fun main() {
     val racingCarGame = RacingCarGame()
+    val inputView = RacingCarGameInputView()
+    val resultView = RacingCarGameResultView()
 
-    racingCarGame.execute()
+    val totalCarCount = inputView.totalCarCount
+    val totalRound = inputView.totalRound
+
+    val roundResults = racingCarGame.progressGame(totalCarCount = totalCarCount, totalRound = totalRound)
+
+    resultView.print(racingCarRoundResult = roundResults, totalRound = totalRound)
 }
