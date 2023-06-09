@@ -5,7 +5,7 @@ class Cars(count: Int) {
 
     fun attempt() {
         for (car in cars) {
-            car.go(RandomState())
+            car.go(RandomCondition())
         }
     }
 
