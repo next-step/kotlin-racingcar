@@ -5,9 +5,9 @@ data class Racing(
     private val attemptCount: Int
 ) {
 
-    fun start() = (0 until attemptCount).map {
-        cars.race().map { car ->
-            car.getDistance()
-        }
-    }.map { RacingPhasedRecord(it) }
+    fun start(): List<RacingPhaseRecords> {
+        return (0 until attemptCount)
+            .map { cars.race() }
+            .map { RacingPhaseRecords(it) }
+    }
 }

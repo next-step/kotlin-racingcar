@@ -5,14 +5,14 @@ class Car(
     private val forwardCondition: ForwardCondition
 ) {
 
-    fun move() {
+    fun move(): Int {
         val forwardCondition = forwardCondition.getForwardCondition()
         if (forwardCondition) {
             ++distance
         }
-    }
 
-    fun getDistance() = distance
+        return distance
+    }
 
     companion object {
         const val INITIAL_DISTANCE = 1

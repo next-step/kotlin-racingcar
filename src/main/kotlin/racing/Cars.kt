@@ -13,8 +13,9 @@ class Cars(
         }
     }
 
-    fun race(): List<Car> {
-        cars.forEach { car -> car.move() }
+    fun race(): List<RacingPhaseRecord> {
         return cars
+            .map { it.move() }
+            .map { RacingPhaseRecord(it) }
     }
 }

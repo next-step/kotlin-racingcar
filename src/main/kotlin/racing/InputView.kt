@@ -4,7 +4,7 @@ object InputView {
 
     private const val ERROR_MESSAGE = "0 이상의 정수를 입력해주세요."
 
-    fun input(): RacingInputDto {
+    fun read(): RacingInputDto {
         println("자동차 대수는 몇 대인가요?")
         val carCount = readlnOrNull()?.toInt() ?: throw IllegalArgumentException(ERROR_MESSAGE)
 

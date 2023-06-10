@@ -12,10 +12,10 @@ class CarTest {
         val car = Car(forwardCondition = FakeForwardCondition(false))
 
         // when
-        car.move()
+        val distance = car.move()
 
         // then
-        assertThat(car.getDistance()).isEqualTo(Car.INITIAL_DISTANCE)
+        assertThat(distance).isEqualTo(Car.INITIAL_DISTANCE)
     }
 
     @Test
@@ -24,9 +24,9 @@ class CarTest {
         val car = Car(forwardCondition = FakeForwardCondition(true))
 
         // when
-        car.move()
+        val distance = car.move()
 
         // then
-        assertThat(car.getDistance()).isEqualTo(Car.INITIAL_DISTANCE + 1)
+        assertThat(distance).isEqualTo(Car.INITIAL_DISTANCE + 1)
     }
 }

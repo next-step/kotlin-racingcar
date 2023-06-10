@@ -2,11 +2,11 @@ package racing
 
 object OutputView {
 
-    fun output(racingPhasedRecords: List<RacingPhasedRecord>) {
+    fun print(racingPhaseRecords: List<RacingPhaseRecords>) {
         println("실행 결과")
-        racingPhasedRecords.forEach { phaseRecord ->
+        racingPhaseRecords.forEach { phaseRecord ->
             phaseRecord.records.forEach { record ->
-                println("-".repeat(record))
+                println("-".repeat(record.distance))
             }
             println()
         }
