@@ -15,7 +15,7 @@ value class Capacity(val value: Int) : Iterable<Int>, Comparable<Capacity> {
 
     override fun iterator(): Iterator<Int> = (0 until value).iterator()
 
-    override fun compareTo(other: Capacity): Int = value.compareTo(other.value)
+    override fun compareTo(other: Capacity): Int = value compareTo other.value
 
     companion object {
         val ZERO = Capacity(0)

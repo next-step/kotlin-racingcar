@@ -1,7 +1,7 @@
 package racing.domain
 
-import racing.domain.strategy.MoveStrategy
+import racing.domain.strategy.MovableStrategy
 
 fun interface Movable {
-    fun move(strategy: MoveStrategy)
+    fun move(strategy: MovableStrategy)
 }

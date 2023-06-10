@@ -1,5 +1,7 @@
 package racing.domain.strategy
 
+import racing.domain.Distance
+
 fun interface MoveStrategy {
-    fun movable(): Boolean
+    fun move(movableStrategy: MovableStrategy, baseDistance: Distance): Distance
 }

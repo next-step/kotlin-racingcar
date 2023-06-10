@@ -1,16 +1,11 @@
 package racing.domain
 
-import racing.domain.strategy.MoveStrategy
+import racing.domain.strategy.MovableStrategy
 
-class Cars(private val values: List<Car>) : Iterable<Car> {
+class Cars(private val values: List<Car>) : List<Car> by values {
     constructor(capacity: Capacity) : this(createCarList(capacity))
 
-    fun notifyMoving(moveStrategy: MoveStrategy): Unit = values.forEach { it.move(strategy = moveStrategy) }
-
-    fun <K, V> toMap(keyMapper: (Car) -> K, valueMapper: (Car) -> V): Map<K, V> =
-        values.associateBy(keyMapper, valueMapper)
-
-    override fun iterator(): Iterator<Car> = values.iterator()
+    fun notifyMoving(movableStrategy: MovableStrategy): Unit = values.forEach { it.move(strategy = movableStrategy) }
 
     companion object {
         private fun createCarList(capacity: Capacity): List<Car> {

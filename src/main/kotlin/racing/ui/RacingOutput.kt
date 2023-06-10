@@ -1,5 +1,6 @@
 package racing.ui
 
+import racing.domain.Distance
 import racing.domain.RacingHistory
 
 object RacingOutput {
@@ -7,19 +8,18 @@ object RacingOutput {
     private const val SEPARATOR = ""
 
     fun printRacingHistories(histories: List<RacingHistory>) {
-        val stringBuilder = StringBuilder()
+        val result = buildString {
+            histories.forEach { appendSkidMarkByRound(it) }
+        }
 
-        histories.forEach { appendSkidMarkByRound(it, stringBuilder) }
-
-        println(stringBuilder.toString())
+        println(result)
     }
 
-    private fun appendSkidMarkByRound(history: RacingHistory, stringBuilder: StringBuilder) {
-
+    private fun StringBuilder.appendSkidMarkByRound(history: RacingHistory) {
         history.records.forEach {
-            stringBuilder.append(
-                (0 until it.value.getValue).joinToString(separator = SEPARATOR) { SKID_MARK }
-            ).append("\n")
+            append("${SKID_MARK.repeat(it.value.toInt())}\n")
         }
     }
 }
+
+private fun Distance.toInt(): Int = this.toInt()
