@@ -1,10 +1,13 @@
 package study.racinggame.domain
 
 data class CarResponse(
-    val position: Int = 0
+    val position: Int = 0,
+    val name: String
 ) {
+
     fun getPositionRepresentation(): String {
-        return "-".repeat(position)
+        val positionRepresentation = "-".repeat(position)
+        return "$name : $positionRepresentation"
     }
 
     companion object {
