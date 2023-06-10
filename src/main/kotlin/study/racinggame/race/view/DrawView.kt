@@ -16,6 +16,6 @@ class DrawView {
     }
 
     fun drawRaceWinner(winnerName: String) {
-        println("${winnerName}가 최종 우승했습니다.")
+        println("${winnerName}님이 최종 우승했습니다.")
     }
 }
