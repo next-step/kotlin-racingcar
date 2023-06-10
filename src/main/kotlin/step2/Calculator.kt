@@ -10,15 +10,15 @@ object Calculator {
     }
 
     private fun calculate(tokenContainer: ClassifiedTokenContainer): Operand {
-        val iterators = tokenContainer.tokens()
-        val operands = iterators.operands
-        val operators = iterators.operators
+        val tokens = tokenContainer.tokens()
+        val operands = tokens.operands
+        val operators = tokens.operators
 
-        var calculated = operands.next()
-        operators.forEach {
-            val nextOperand = operands.next()
-            calculated = it.operate(calculated, nextOperand)
-        }
-        return calculated
+        val firstOperand = operands[0]
+        return operators
+            .zip(operands.subList(1, operands.size))
+            .fold(firstOperand) { prev, (operator, next) ->
+                operator.operate(prev, next)
+            }
     }
 }

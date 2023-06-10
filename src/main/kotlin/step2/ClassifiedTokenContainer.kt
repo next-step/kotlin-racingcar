@@ -6,8 +6,8 @@ class ClassifiedTokenContainer private constructor(
 ) {
     fun tokens(): Tokens {
         return Tokens(
-            operands = operands.iterator(),
-            operators = operators.iterator()
+            operands = operands,
+            operators = operators
         )
     }
 
@@ -43,7 +43,7 @@ class ClassifiedTokenContainer private constructor(
     }
 
     data class Tokens(
-        val operands: Iterator<Operand>,
-        val operators: Iterator<Operator>
+        val operands: List<Operand>,
+        val operators: List<Operator>
     )
 }
