@@ -31,4 +31,16 @@ class CarTest {
         val actual = car.move()
         actual shouldBe 1
     }
+
+    companion object {
+        fun aCar(
+            position: Int = 0,
+            carName: CarName = CarName("pobi"),
+            movable: () -> Boolean = { true }
+        ) = Car(
+            position = position,
+            carName = carName,
+            movable = movable
+        )
+    }
 }

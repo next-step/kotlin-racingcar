@@ -4,6 +4,7 @@ import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
+import racingcar.domain.CarTest.Companion.aCar
 import racingcar.domain.RacingGame.Companion.createRandomMoveCarRacingGame
 
 class RacingGameTest {
@@ -11,7 +12,7 @@ class RacingGameTest {
     @Test
     fun `시도 횟수가 1보다 작으면 예외가 발생한다`() {
         val exception = shouldThrowExactly<IllegalArgumentException> {
-            RacingGame(attemptCount = 0, cars = listOf(Car(carName = CarName("pobi")) { true }))
+            RacingGame(attemptCount = 0, cars = listOf(aCar()))
         }
         exception.message shouldBe "게임 생성에 필요한 시도 횟수는 0보다 커야 한다."
     }
@@ -26,7 +27,7 @@ class RacingGameTest {
 
     @Test
     fun `게임을 생성할 수 있다`() {
-        val actual = RacingGame(attemptCount = 1, cars = listOf(Car(carName = CarName("pobi")) { true }))
+        val actual = RacingGame(attemptCount = 1, cars = listOf(aCar()))
 
         actual.attemptCount shouldBe 1
         actual.cars shouldHaveSize 1
@@ -34,7 +35,7 @@ class RacingGameTest {
 
     @Test
     fun `게임을 실행하면 시도 횟수를 1만큼 차단하고 자동차들을 움직인다`() {
-        val racingGame = RacingGame(attemptCount = 1, cars = listOf(Car(carName = CarName("pobi")) { true }))
+        val racingGame = RacingGame(attemptCount = 1, cars = listOf(aCar(position = 0)))
         racingGame.run()
 
         racingGame.attemptCount shouldBe 0
@@ -43,7 +44,7 @@ class RacingGameTest {
 
     @Test
     fun `시도 횟수가 0인데 run하면 예외가 발생한다`() {
-        val racingGame = RacingGame(attemptCount = 1, cars = listOf(Car(carName = CarName("pobi")) { true }))
+        val racingGame = RacingGame(attemptCount = 1, cars = listOf(aCar()))
         racingGame.run()
 
         val exception = shouldThrowExactly<IllegalStateException> { racingGame.run() }
@@ -60,13 +61,13 @@ class RacingGameTest {
 
     @Test
     fun `게임이 실행 가능하면 true를 반환한다`() {
-        val actual = RacingGame(attemptCount = 1, cars = listOf(Car(carName = CarName("pobi")) { true })).isRunnable()
+        val actual = RacingGame(attemptCount = 1, cars = listOf(aCar())).isRunnable()
         actual shouldBe true
     }
 
     @Test
     fun `게임이 실행 불가능하면 false를 반환한다`() {
-        val racingGame = RacingGame(attemptCount = 1, cars = listOf(Car(carName = CarName("pobi")) { true }))
+        val racingGame = RacingGame(attemptCount = 1, cars = listOf(aCar()))
         racingGame.run()
 
         val actual = racingGame.isRunnable()
