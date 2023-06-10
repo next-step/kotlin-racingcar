@@ -1,6 +1,7 @@
 package calculator
 
 import java.math.BigDecimal
+import java.math.RoundingMode
 
 enum class Operation(val execute: (BigDecimal, BigDecimal) -> BigDecimal) {
     ADD({ num1, num2 ->
@@ -17,6 +18,6 @@ enum class Operation(val execute: (BigDecimal, BigDecimal) -> BigDecimal) {
 
     DIVIDE({ num1, num2 ->
         require(num2 != BigDecimal.ZERO) { "Not divisible by zero" }
-        num1.divide(num2)
+        num1.divide(num2, 6, RoundingMode.HALF_UP)
     }),
 }
