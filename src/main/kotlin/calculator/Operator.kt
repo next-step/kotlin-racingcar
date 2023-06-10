@@ -9,11 +9,8 @@ enum class Operator(private val operator: String) {
     companion object {
         @Throws(IllegalArgumentException::class)
         fun valueOfString(operator: String): Operator {
-            return try {
-                Operator.values().first { it.operator == operator }
-            } catch (e: NoSuchElementException) {
-                throw IllegalArgumentException("Invalid operator: $operator")
-            }
+            return Operator.values().firstOrNull { it.operator == operator }
+                ?: throw IllegalArgumentException("Invalid operator: $operator")
         }
     }
 

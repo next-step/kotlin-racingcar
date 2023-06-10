@@ -12,14 +12,12 @@ class StringCalculator {
 
     @Throws(IllegalArgumentException::class)
     private fun calculate(inputList: List<String>): Double {
-        val list = inputList.takeLast(3)
-        val num1 = list[0].toDouble()
-        val operator = Operator.valueOfString(list[1])
-        val num2 = list[2].toDouble()
+        val result = inputList.first().toDouble()
 
-        return when (inputList.size) {
-            3 -> operator.execute(num1, num2)
-            else -> operator.execute(calculate(inputList.dropLast(2)), num2)
-        }
+        return inputList.drop(1)
+            .chunked(2) // .windowed(2,2)
+            .fold(result) { acc, (operator, number) ->
+                Operator.valueOfString(operator).execute(acc, number.toDouble())
+            }
     }
 }
