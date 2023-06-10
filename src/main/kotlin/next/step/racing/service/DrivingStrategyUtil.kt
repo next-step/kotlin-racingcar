@@ -2,7 +2,8 @@ package next.step.racing.service
 
 import kotlin.random.Random
 
-object DrivingStrategy {
+object DrivingStrategyUtil {
+
     fun random(randomAlgorithm: () -> Int): () -> Int {
         return {
             if (randomAlgorithm() >= 4) 1 else 0
