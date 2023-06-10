@@ -21,11 +21,11 @@ class RacingTest : FreeSpec(
             sut.race()
 
             racingCars shouldMatchInOrder listOf(
-                { it.showMovedDistance() shouldBe Distance(1) },
-                { it.showMovedDistance() shouldBe Distance(0) },
-                { it.showMovedDistance() shouldBe Distance(1) },
-                { it.showMovedDistance() shouldBe Distance(1) },
-                { it.showMovedDistance() shouldBe Distance(0) }
+                { it.movedDistance shouldBe Distance(1) },
+                { it.movedDistance shouldBe Distance(0) },
+                { it.movedDistance shouldBe Distance(1) },
+                { it.movedDistance shouldBe Distance(1) },
+                { it.movedDistance shouldBe Distance(0) }
             )
             "경주 중인 차들의 이동 상태를 확인할 수 있다." - {
                 val status = sut.showCurrentStatus()

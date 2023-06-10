@@ -16,7 +16,7 @@ class CarTest : FreeSpec(
 
                 repeat(moveCount) { sut.move() }
 
-                sut.showMovedDistance() shouldBe Distance(moveCount)
+                sut.movedDistance shouldBe Distance(moveCount)
             }
         }
 
@@ -29,7 +29,7 @@ class CarTest : FreeSpec(
 
                 repeat(moveCount) { sut.move() }
 
-                sut.showMovedDistance() shouldBe Distance(0)
+                sut.movedDistance shouldBe Distance(0)
             }
         }
     }

@@ -9,8 +9,4 @@ class Car(
     fun move() {
         movedDistance += engine.move()
     }
-
-    fun showMovedDistance(): Distance {
-        return movedDistance
-    }
 }
