@@ -7,7 +7,7 @@ class Car(
         if (randomNumber > FORWARD_THRESHOLD) position += 1
     }
 
-    companion object {
-        private const val FORWARD_THRESHOLD = 3
+    fun moveForward(moveAble: Boolean) {
+        if (moveAble) position += 1
     }
 }
