@@ -1,6 +1,6 @@
 package step3
 
-data class RacingCarDriveResult(
+class RacingCarDriveResult(
     val carNumber: Long,
     val position: Long
 )
