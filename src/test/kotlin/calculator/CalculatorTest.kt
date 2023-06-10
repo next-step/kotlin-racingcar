@@ -1,8 +1,8 @@
 package calculator
 
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class CalculatorTest {
     @Test
@@ -37,19 +37,17 @@ class CalculatorTest {
 
     @Test
     fun `입력값이 빈 공백 문자일 경우 IllegalArgumentException`() {
-        assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy {
-                val input = ""
-                Calculator(input).run()
-            }
+        assertThrows<IllegalArgumentException> {
+            val input = ""
+            Calculator(input).run()
+        }
     }
 
     @Test
     fun `사칙연산 기호가 아닌 경우 IllegalArgumentException`() {
-        assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy {
-                val input = "2 - 3 & 2"
-                Calculator(input).run()
-            }
+        assertThrows<IllegalArgumentException> {
+            val input = "2 - 3 & 2"
+            Calculator(input).run()
+        }
     }
 }
