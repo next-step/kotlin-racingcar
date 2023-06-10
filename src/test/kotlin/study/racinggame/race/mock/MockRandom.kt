@@ -5,6 +5,7 @@ import kotlin.random.Random
 class MockRandom(
     private val value: Int
 ) : Random() {
+
     override fun nextBits(bitCount: Int): Int {
         return 0
     }

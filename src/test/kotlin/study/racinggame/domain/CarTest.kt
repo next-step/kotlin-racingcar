@@ -11,7 +11,7 @@ class CarTest : BehaviorSpec({
             car.moveForward(true)
             then("위치 값은 기존 값 보다 1증가한다.") {
                 oldPosition shouldBe 0
-                car.position shouldBe oldPosition + 1
+                car.position() shouldBe oldPosition + 1
             }
         }
     }

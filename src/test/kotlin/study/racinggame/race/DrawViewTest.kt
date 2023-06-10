@@ -3,6 +3,7 @@ package study.racinggame.race
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import study.racinggame.domain.CarResponse
+import study.racinggame.race.view.DrawView
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 
