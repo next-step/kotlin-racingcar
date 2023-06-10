@@ -4,13 +4,19 @@ import next.step.racing.domain.car.CarRecord
 import next.step.racing.service.to.RacingResult
 
 object OutputDevice {
+
     private const val UNKNOWN_ERR_MSG = "알 수 없는 에러가 발생했습니다."
     private const val RESULT_TITLE = "실행 결과"
+
     fun showResult(result: RacingResult) {
-        println()
-        println(RESULT_TITLE)
+        showTitle()
         showRecords(result.records)
         showWinners(result.winners)
+    }
+
+    private fun showTitle() {
+        println()
+        println(RESULT_TITLE)
     }
 
     private fun showRecords(allRecords: List<List<CarRecord>>) {
