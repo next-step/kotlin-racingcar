@@ -2,8 +2,7 @@ package step2
 
 object Calculator {
     fun calculate(input: String): Double {
-        val tokens = input.trim().split(Regex("\\s+"))
-        val classifiedTokens = ClassifiedTokenContainer.from(tokens)
+        val classifiedTokens = ClassifiedTokenContainer.from(input)
 
         val calculated = calculate(classifiedTokens)
 

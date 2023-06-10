@@ -12,7 +12,9 @@ class ClassifiedTokenContainer private constructor(
     }
 
     companion object {
-        fun from(tokens: List<String>): ClassifiedTokenContainer {
+        fun from(input: String): ClassifiedTokenContainer {
+            val tokens = input.trim().split(Regex("\\s+"))
+
             val operands = mutableListOf<Operand>()
             val operators = mutableListOf<Operator>()
 
