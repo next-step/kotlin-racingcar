@@ -5,17 +5,17 @@ import next.step.racing.util.DrivingStrategy
 data class Cars(var cars: List<Car>) {
 
     fun move(drivingStrategy: DrivingStrategy): Cars {
-        cars.forEach { car -> car.move(drivingStrategy) }
+        cars.forEach { it.move(drivingStrategy) }
         return this
     }
 
-    fun records(): List<CarRecord> = cars.map { car -> CarRecord(car.name(), car.position()) }
+    fun records(): List<CarRecord> = cars.map { CarRecord(it.name(), it.position()) }
 
-    fun winners(): List<String> = fastest().map { car -> car.name() }
+    fun winners(): List<String> = fastest().map { it.name() }
 
-    private fun fastest(): List<Car> = cars.filter { car -> car.isAt(maxPosition()) }
+    private fun fastest(): List<Car> = cars.filter { it.isAt(maxPosition()) }
 
-    private fun maxPosition() = cars.maxOf { car -> car.pos }
+    private fun maxPosition() = cars.maxOf { it.pos }
 
     companion object {
         private val DEFAULT_POSITION = CarPosition(0)

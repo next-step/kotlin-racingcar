@@ -16,4 +16,4 @@ value class StepCount(val cnt: Int) {
 }
 
 private fun String.isNumeric(): Boolean =
-    this.all { char -> char.isDigit() } || (this.startsWith("-") && this.substring(1).all { char -> char.isDigit() })
+    this.all { it.isDigit() } || (this.startsWith("-") && this.substring(1).all { it.isDigit() })

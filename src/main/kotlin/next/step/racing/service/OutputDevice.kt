@@ -10,7 +10,7 @@ object OutputDevice {
 
     fun showResult(result: RacingResult) {
         showTitle()
-        showRecords(result.records)
+        showAllRecords(result.records)
         showWinners(result.winners)
     }
 
@@ -19,13 +19,13 @@ object OutputDevice {
         println(RESULT_TITLE)
     }
 
-    private fun showRecords(allRecords: List<List<CarRecord>>) {
-        for (records in allRecords) {
-            for (record in records) {
-                println("${record.name} : ${"-".repeat(record.pos)}")
-            }
-            println()
-        }
+    private fun showAllRecords(allRecords: List<List<CarRecord>>) {
+        allRecords.forEach { showRecords(it) }
+    }
+
+    private fun showRecords(records: List<CarRecord>) {
+        records.forEach { println("${it.name} : ${"-".repeat(it.pos)}") }
+        println()
     }
 
     private fun showWinners(winners: List<String>) {
@@ -34,5 +34,6 @@ object OutputDevice {
 
     fun showError(msg: String?) {
         println(msg ?: UNKNOWN_ERR_MSG)
+        println()
     }
 }
