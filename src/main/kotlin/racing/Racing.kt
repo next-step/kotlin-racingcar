@@ -24,25 +24,18 @@ class Racing {
         repeat(tryCount) {
             for (car in cars) {
                 val randomNumber = DefaultRandomNumberGenerator().nextInt(10)
-                moveAndStop(car, randomNumber)
+                val distance = moveAndStop(car, randomNumber)
+                ResultView.printDistance(distance)
             }
             println()
         }
     }
 
-    fun moveAndStop(car: Car, randomNumber: Int) {
+    fun moveAndStop(car: Car, randomNumber: Int): String {
         if (car.moveCheck(randomNumber)) {
             car.move()
-            val distance = "-".repeat(car.position)
-            ResultView.printDistance(distance)
-            return
         }
 
-        if (car.position == 0) {
-            println()
-        } else {
-            val distance = "-".repeat(car.position)
-            ResultView.printDistance(distance)
-        }
+        return "-".repeat(car.position)
     }
 }
