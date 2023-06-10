@@ -35,10 +35,7 @@ object Controller {
         var createdCarList = CarGameService.createCarList(carNum)
         for (i in 1..stageNum) {
             createdCarList = CarGameService.moveCar(createdCarList, randomMoveCarStrategy())
-            createdCarList.forEach() {
-                OutputView.showCarPosition(it.position)
-            }
-            OutputView.showBlank()
+            OutputView.showRaceStage(createdCarList.map { it.position })
         }
     }
 }

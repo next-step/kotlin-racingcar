@@ -5,14 +5,17 @@ object OutputView : View<String>() {
         exec("실행 결과") {}
     }
 
-    fun showCarPosition(position: Int) {
-        for (i in 1..position) {
-            print("-")
+    fun showRaceStage(carPosition: List<Int>) {
+        carPosition.forEach {
+            showCarPosition(it)
         }
-        showBlank()
+        println()
     }
 
-    fun showBlank() {
+    private fun showCarPosition(position: Int) {
+        repeat(position) {
+            print("-")
+        }
         println()
     }
 }
