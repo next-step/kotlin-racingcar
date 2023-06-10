@@ -14,5 +14,4 @@ object RacingGameCarFactory {
                 minDriveRandomNumber = minDriveRandomNumber,
             )
         }
-        .toList()
 }
