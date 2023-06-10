@@ -1,31 +1,15 @@
-class StringCalculatorScanner(
-    var firstOperand: String = "",
-    var secondOperand: String = "",
-    var operator: Char? = null,
-    private var operateResult: Int = 0
-) {
+class StringCalculatorScanner {
+    fun scan(input: String): Int {
+        val stringOperator = StringOperator()
 
-    fun scan(input: String) {
         input.forEach { c ->
-            val charTypeProcessStrategy: CharTypeProcessStrategy =
-                when (CharParser.parseChar(c)) {
-                    CharType.NUMBER -> NumberCharTypeProcessStrategy()
-                    CharType.BLANK -> BlankCharTypeProcessStrategy()
-                    CharType.OPERATOR -> OperatorCharTypeProcessStrategy()
-                }
-
-            charTypeProcessStrategy.execute(this, c)
-        }
-    }
-
-    fun operate(): Int {
-        if (firstOperand.isNotBlank() && secondOperand.isNotBlank()) {
-            operateResult = Operation.operation(firstOperand, secondOperand, operator!!)
-            firstOperand = operateResult.toString()
-            secondOperand = ""
-            operator = null
+            when (CharParser.parseChar(c)) {
+                CharType.NUMBER -> stringOperator.numberProcess(c)
+                CharType.BLANK -> stringOperator.blankProcess()
+                CharType.OPERATOR -> stringOperator.operatorProcess(c)
+            }
         }
 
-        return operateResult
+        return stringOperator.getResult()
     }
 }
