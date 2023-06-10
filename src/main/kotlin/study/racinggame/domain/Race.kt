@@ -9,11 +9,12 @@ class Race(
     private val raceRule: RaceRule
 ) {
 
-    private val carCount = inputView.carCount()
-    private val carStorage = Array(carCount) { Car() }
+    private var carStorage: List<Car> = inputView.carNames()
+        .map { carName -> Car(name = carName) }
+    private val drawView: DrawView = DrawView()
 
     fun startRace() {
-        {
+        repeat(inputView.raceTryCnt()) {
             moveCarsIfPossible()
             val carResponses = carStorage.map(CarResponse.Companion::of)
             DrawView().drawCarState(carResponses)
