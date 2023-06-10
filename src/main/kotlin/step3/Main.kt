@@ -9,12 +9,12 @@ import kotlin.random.Random
 class Main(
     private val inputView: InputView = InputView(),
     private val outputView: OutputView = OutputView(LINE_SYMBOL),
-    private val race: Race = Race { Random.nextInt(0, 10) > 4 },
+    private val race: Race = Race { Random.nextInt(MIN_VALUE, MAX_VALUE) > MOVE_FORWARD_VALUE },
 ) {
     operator fun invoke() {
         val raceCondition = inputView()
         var racingCars = makeCars(raceCondition.numberOfCars)
-        (0 until raceCondition.numberOfLabs).forEach {
+        repeat(raceCondition.numberOfLabs) {
             racingCars = doLabs(racingCars)
             outputView(racingCars)
         }
@@ -27,7 +27,10 @@ class Main(
         cars.map { race(it) }
 
     companion object {
-        private val LINE_SYMBOL = "-"
+        private const val LINE_SYMBOL = "-"
+        private const val MAX_VALUE = 10
+        private const val MIN_VALUE = 0
+        private const val MOVE_FORWARD_VALUE = 4
     }
 }
 

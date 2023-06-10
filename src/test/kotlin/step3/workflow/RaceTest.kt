@@ -14,7 +14,7 @@ internal class RaceTest {
     }
 
     @Test
-    fun `if condition is false, then move forward`() {
+    fun `if condition is false, then it does not move`() {
         val race = Race { false }
         val racingCar = RacingCar()
         val movedRacingCar = race(racingCar)
