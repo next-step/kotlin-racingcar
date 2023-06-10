@@ -6,8 +6,7 @@ class StringCalculator(
         if (input.isNullOrEmpty())
             throw IllegalArgumentException("문자열을 확인해 주세요")
 
-        input.forEach { c -> stringCalculatorScanner.scan(c) }
-
+        stringCalculatorScanner.scan(input)
         return stringCalculatorScanner.operate()
     }
 }

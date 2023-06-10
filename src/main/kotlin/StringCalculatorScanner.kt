@@ -5,15 +5,17 @@ class StringCalculatorScanner(
     private var operateResult: Int = 0
 ) {
 
-    fun scan(c: Char) {
-        val charTypeProcessStrategy: CharTypeProcessStrategy =
-            when (CharParser.parseChar(c)) {
-                CharType.NUMBER -> NumberCharTypeProcessStrategy()
-                CharType.BLANK -> BlankCharTypeProcessStrategy()
-                CharType.OPERATOR -> OperatorCharTypeProcessStrategy()
-            }
+    fun scan(input: String) {
+        input.forEach { c ->
+            val charTypeProcessStrategy: CharTypeProcessStrategy =
+                when (CharParser.parseChar(c)) {
+                    CharType.NUMBER -> NumberCharTypeProcessStrategy()
+                    CharType.BLANK -> BlankCharTypeProcessStrategy()
+                    CharType.OPERATOR -> OperatorCharTypeProcessStrategy()
+                }
 
-        charTypeProcessStrategy.execute(this, c)
+            charTypeProcessStrategy.execute(this, c)
+        }
     }
 
     fun operate(): Int {
