@@ -18,7 +18,7 @@ class Racing {
         carRacing(tryCount, cars)
     }
 
-    fun createCars(carCount: Int): List<Car> = (1 until carCount + 1).map { Car() }
+    fun createCars(carCount: Int): List<Car> = (0 until carCount).map { Car() }
 
     fun carRacing(tryCount: Int, cars: List<Car>) {
         repeat(tryCount) {
