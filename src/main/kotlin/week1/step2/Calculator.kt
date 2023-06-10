@@ -5,7 +5,7 @@ class Calculator {
     private val operatorArray: Array<String> = arrayOf("+", "-", "*", "/")
     fun calculate(input: String): Float {
         if (input == "") {
-            throw IllegalArgumentException()
+            throw IllegalArgumentException("유효한 형식이 아닙니다.")
         }
 
         val inputArray = input.split(" ")
@@ -17,14 +17,13 @@ class Calculator {
                 try {
                     numberQueue.add(value.toFloat())
                 } catch (e: IllegalArgumentException) {
-                    println("유효한 숫자 형식이 아닙니다.")
+                    throw IllegalArgumentException("유효한 형식이 아닙니다.")
                 }
             } else {
                 if (value in operatorArray) {
                     operatorQueue.add(value)
                 } else {
-                    println("유효한 연산자 형식이 아닙니다.")
-                    throw IllegalArgumentException()
+                    throw IllegalArgumentException("유효한 형식이 아닙니다.")
                 }
             }
         }
@@ -47,7 +46,7 @@ class Calculator {
         return (num1 / num2)
     }
 
-    fun execute(numArr: ArrayList<Float>, opArr: ArrayList<String>): Float {
+    private fun execute(numArr: ArrayList<Float>, opArr: ArrayList<String>): Float {
         var result = numArr[0]
         var opArrayIdx = 0
 
