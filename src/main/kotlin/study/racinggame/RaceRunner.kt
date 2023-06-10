@@ -1,19 +1,10 @@
-package study.racinggame
+package study.racinggame // ktlint-disable filename
 
-import study.racinggame.domain.Race
-import study.racinggame.race.RaceRule
+import study.racinggame.controller.RaceController
 import study.racinggame.race.reader.ActualInputReader
-import study.racinggame.race.view.InputView
 
 fun main() {
-    val race = init()
-    race.startRace()
-    race.noticeRaceWinner()
-}
-
-fun init(): Race {
     val inputReader = ActualInputReader()
-    val raceRule = RaceRule()
-    val inputView = InputView().initInputView(inputReader)
-    return Race(inputView, raceRule)
+    val controller = RaceController(inputReader)
+    controller.startRace()
 }
