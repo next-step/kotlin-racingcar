@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.model.RacingCar
+import racingcar.model.RacingCars
 import racingcar.model.RacingHistory
 
 fun printResult(history: RacingHistory) {
@@ -11,7 +11,7 @@ fun printResult(history: RacingHistory) {
     }
 }
 
-private fun printCars(cars: Collection<RacingCar>) {
+private fun printCars(cars: RacingCars) {
     cars.forEach {
         println(DISTANCE_SIGN.repeat(it.wentDistance))
     }

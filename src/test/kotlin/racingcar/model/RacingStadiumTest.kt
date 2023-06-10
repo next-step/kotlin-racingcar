@@ -26,14 +26,19 @@ class RacingStadiumTest : StringSpec({
 
     "주어진 자동차들은 바퀴 수 만큼 경기 내용을 기록" {
         // given
-        val onlyGoCars: List<RacingCar> = (1..3).map { (RacingCar(OnlyGoMoveStrategy)) }
+        val onlyGoCars = RacingCars((1..3).map { (RacingCar(OnlyGoMoveStrategy)) })
         val oneLabsStadium = RacingStadium(1)
         // when
         val history: RacingHistory = oneLabsStadium racing onlyGoCars
         // then
         assertSoftly(history) {
             it shouldHaveSize 1
-            it.first().forAll { car -> car shouldBe RacingCar(OnlyGoMoveStrategy, listOf(MovingStatus.GO)) }
+            it.first().cars.forAll { car ->
+                car shouldBe RacingCar(
+                    OnlyGoMoveStrategy,
+                    MovingStatuses(listOf(MovingStatus.GO))
+                )
+            }
         }
     }
 })

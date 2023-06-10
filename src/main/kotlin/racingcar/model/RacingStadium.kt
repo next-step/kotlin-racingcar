@@ -1,16 +1,14 @@
 package racingcar.model
 
-import racingcar.model.RacingCar.Companion.nextMoved
-
 data class RacingStadium(private val labs: Int) {
 
     init {
         require(labs >= 0) { "labs must be positive. but provided `$labs`" }
     }
 
-    infix fun racing(cars: Collection<RacingCar>): RacingHistory {
-        val history = mutableListOf<Collection<RacingCar>>()
-        var currentCars: Collection<RacingCar> = cars
+    infix fun racing(cars: RacingCars): RacingHistory {
+        val history = mutableListOf<RacingCars>()
+        var currentCars: RacingCars = cars
         repeat(labs) {
             currentCars = currentCars.nextMoved
             history.add(currentCars)
@@ -19,4 +17,4 @@ data class RacingStadium(private val labs: Int) {
     }
 }
 
-typealias RacingHistory = Collection<Collection<RacingCar>>
+typealias RacingHistory = Collection<RacingCars>
