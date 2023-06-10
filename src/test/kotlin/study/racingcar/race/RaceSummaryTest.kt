@@ -2,6 +2,7 @@ package study.racingcar.race
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldContainExactly
+import study.racingcar.car.CarState
 
 class RaceSummaryTest : StringSpec({
     "우승자는 position 이 가장 높은 자동차이다." {

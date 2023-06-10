@@ -1,4 +1,4 @@
-package study.racingcar.race
+package study.racingcar.car
 
 data class CarState(
     val name: String,

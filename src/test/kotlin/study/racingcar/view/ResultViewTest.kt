@@ -2,7 +2,7 @@ package study.racingcar.view
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import study.racingcar.race.CarState
+import study.racingcar.car.CarState
 import study.racingcar.race.RaceResult
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream

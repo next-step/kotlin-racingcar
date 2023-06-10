@@ -1,5 +1,7 @@
 package study.racingcar.race
 
+import study.racingcar.car.CarState
+
 data class RaceSummary(
     val raceResults: List<RaceResult>
 ) {
