@@ -5,7 +5,7 @@ import next.step.racing.util.DrivingStrategy
 data class Cars(var cars: List<Car>) {
 
     fun move(drivingStrategy: DrivingStrategy): Cars {
-        cars = cars.map { car -> car.move(drivingStrategy) }
+        cars.forEach { car -> car.move(drivingStrategy) }
         return this
     }
 
