@@ -28,11 +28,3 @@ class Race(
         }
     }
 }
-
-fun (() -> Unit).repeat(n: Int) {
-    require(n >= 0) { "Count 'n' must be non-negative, but was $n." }
-
-    for (i in 0 until n) {
-        this.invoke()
-    }
-}
