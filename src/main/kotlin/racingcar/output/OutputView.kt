@@ -7,6 +7,8 @@ class OutputView {
         private val CAR: String = "-"
     }
 
+    fun announceResult() = println("실행 결과")
+
     fun printCars(cars: List<Car>) {
         cars
             .asSequence()

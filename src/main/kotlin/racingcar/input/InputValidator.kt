@@ -1,5 +1,5 @@
 package racingcar.input
 
 class InputValidator {
-    fun isNumber(value: String) = value.matches("\\d".toRegex())
+    fun isNumber(value: String) = value.matches("\\d+".toRegex())
 }

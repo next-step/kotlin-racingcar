@@ -16,7 +16,7 @@ class RacingCarController {
         val cars = CarFactory.getCars(numberOfCars)
         val racingGame = RacingGame(cars)
 
-        println("실행 결과")
+        outputView.announceResult()
         repeat(numberOfRounds) {
             outputView.announceRoundStart(it)
             racingGame.startRound()
