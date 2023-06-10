@@ -26,8 +26,7 @@ class StringCalculator {
         val numbers = mutableListOf<Double>()
         val operators = mutableListOf<Char>()
 
-        val seperatedNumbersAndOperators = expression.replace(Regex("(\\d+)"), " $1 ")
-            .replace(Regex("([-+*/])"), " $1 ")
+        val seperatedNumbersAndOperators = expression.replace(Regex("([-+*/])"), " $1 ")
             .trim()
             .split("\\s+".toRegex())
 
