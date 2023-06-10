@@ -3,10 +3,6 @@ package racingcar.output
 import racingcar.car.Car
 
 class OutputView {
-    companion object {
-        private val CAR: String = "-"
-    }
-
     fun announceResult() = println("실행 결과")
 
     fun printCars(cars: List<Car>) {
@@ -18,5 +14,9 @@ class OutputView {
 
     fun announceRoundStart(round: Int) {
         println("$round 라운드 시작")
+    }
+
+    companion object {
+        private const val CAR: String = "-"
     }
 }

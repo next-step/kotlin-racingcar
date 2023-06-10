@@ -17,7 +17,7 @@ class RacingGameTest {
 
         val game = RacingGame(cars)
 
-        // when영
+        // when
         game.startRound()
 
         // then
