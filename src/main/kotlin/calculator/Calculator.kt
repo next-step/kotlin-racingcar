@@ -1,20 +1,6 @@
 package calculator
 
 object Calculator {
-    fun add(num1: Int, num2: Int): Int = num1 + num2
-
-    fun subtract(num1: Int, num2: Int): Int = num1 - num2
-
-    fun multiply(num1: Int, num2: Int): Int = num1 * num2
-
-    @Throws(IllegalArgumentException::class)
-    fun divide(num1: Int, num2: Int): Int {
-        if (num2 == 0) {
-            throw IllegalArgumentException("Not divisible by zero")
-        }
-        return num1 / num2
-    }
-
     @Throws(IllegalArgumentException::class)
     fun calculate(input: String): Int {
         if (input.isBlank()) {
@@ -34,12 +20,7 @@ object Calculator {
                 continue
             }
 
-            result = when (elements[i].toOperation()) {
-                Operation.ADD -> add(result, elements[i + 1].toInt())
-                Operation.SUBTRACT -> subtract(result, elements[i + 1].toInt())
-                Operation.MULTIPLY -> multiply(result, elements[i + 1].toInt())
-                Operation.DIVIDE -> divide(result, elements[i + 1].toInt())
-            }
+            result = elements[i].toOperation().execute(result, elements[i + 1].toInt())
         }
         return result
     }
@@ -69,8 +50,4 @@ object Calculator {
         "/" -> Operation.DIVIDE
         else -> throw IllegalArgumentException("$this cannot convert to Operation")
     }
-}
-
-enum class Operation {
-    ADD, SUBTRACT, MULTIPLY, DIVIDE
 }
