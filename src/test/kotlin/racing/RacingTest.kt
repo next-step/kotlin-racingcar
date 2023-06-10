@@ -26,7 +26,8 @@ class RacingTest {
     @ParameterizedTest
     @CsvSource("3")
     fun `자동차 입력 수 만큼 객체 생성 검증`(carCount: Int) {
-        assertThat(Racing().createCars(carCount).size).isEqualTo(carCount)
+        val cars = Racing().createCars(carCount)
+        assertThat(cars.size).isEqualTo(carCount)
     }
 
     @ParameterizedTest
