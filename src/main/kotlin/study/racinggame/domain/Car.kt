@@ -1,7 +1,7 @@
 package study.racinggame.domain
 
 class Car(
-    _position: Int = 0,
+    _position: Int = 1,
     val name: String
 ) {
 
