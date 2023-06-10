@@ -6,7 +6,7 @@ import io.kotest.matchers.shouldBe
 
 class DrivingStrategyUtilTest : FunSpec({
     context("random") {
-        data class RandomExpected(val algorithm: () -> Int, val expected: Int)
+        data class RandomExpected(val algorithm: RandomAlgorithm, val expected: Int)
         withData(
             RandomExpected({ 0 }, 0),
             RandomExpected({ 1 }, 0),

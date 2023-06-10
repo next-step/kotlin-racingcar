@@ -3,6 +3,7 @@ package next.step.racing.domain
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
+import next.step.racing.service.DrivingStrategy
 
 class CarTest : FunSpec({
     context("position") {
@@ -12,7 +13,7 @@ class CarTest : FunSpec({
     }
 
     context("move by strategy") {
-        data class StrategyExpected(val init: Int, val strategy: () -> Int, val expected: Int)
+        data class StrategyExpected(val init: Int, val strategy: DrivingStrategy, val expected: Int)
         withData(
             StrategyExpected(0, { 1 }, 1),
             StrategyExpected(10, { 1 }, 11),

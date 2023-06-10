@@ -1,5 +1,7 @@
 package next.step.racing.domain
 
+import next.step.racing.service.DrivingStrategy
+
 data class Cars(val cars: List<Car>) {
     companion object {
         private val DEFAULT_POSITION = Position(0)
@@ -8,7 +10,7 @@ data class Cars(val cars: List<Car>) {
         }
     }
 
-    fun move(drivingStrategy: () -> Int): Cars {
+    fun move(drivingStrategy: DrivingStrategy): Cars {
         return Cars(
             cars.map { car ->
                 car.move(drivingStrategy)
