@@ -9,7 +9,7 @@ class CarPositions(private val positions: List<CarPosition>) {
     fun getPositions(): List<Int> = this.positions.map { it.position }
 
     companion object {
-        fun of(size: Int, initialPosition: Int): CarPositions {
+        fun of(size: Int, initialPosition: Int = 0): CarPositions {
             val carPositions = List(size) { CarPosition(initialPosition) }
             return CarPositions(carPositions)
         }

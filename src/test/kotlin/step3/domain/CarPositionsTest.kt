@@ -5,7 +5,7 @@ import io.kotest.matchers.collections.shouldContainExactly
 
 class CarPositionsTest : BehaviorSpec({
     given("[moveBy 테스트] 자동차의 초기 위치가 0일 ") {
-        val positions = CarPositions.of(size = 3, initialPosition = 0)
+        val positions = CarPositions.of(size = 3)
 
         `when`("movable이 true인 경우") {
             val movable: () -> Boolean = { true }
