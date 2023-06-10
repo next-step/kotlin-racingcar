@@ -6,16 +6,16 @@ import racing.domain.Name
 import racing.domain.RacingHistory
 import racing.domain.RacingResult
 import racing.domain.dto.RacingGameRequest
-import racing.domain.strategy.MovableStrategy
+import racing.domain.strategy.Navigator
 
-class RacingService(private val movableStrategy: MovableStrategy) {
+class RacingService(private val navigator: Navigator) {
 
     fun racing(request: RacingGameRequest): RacingResult {
         val round = Capacity(request.numberOfRound)
         val cars = Cars(request.carNames)
 
-        val racingHistories = round.map { currentRound ->
-            cars.notifyMoving(movableStrategy = movableStrategy)
+        val racingHistories = round.availableRange.map { currentRound ->
+            cars.notifyMoving(navigator = navigator)
             RacingHistory(round = currentRound, records = cars.associateBy({ it.name }, { it.distance }))
         }
 
@@ -29,6 +29,7 @@ class RacingService(private val movableStrategy: MovableStrategy) {
         val lastHistory = racingHistories.last().records
         val winnerDistance = lastHistory.maxBy { it.value }.value
 
-        return lastHistory.filter { winnerDistance == it.value }.map { it.key }
+        return lastHistory.filter { winnerDistance == it.value }
+            .map { it.key }
     }
 }

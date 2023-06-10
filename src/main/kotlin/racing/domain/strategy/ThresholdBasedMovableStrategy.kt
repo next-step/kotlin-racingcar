@@ -2,9 +2,9 @@ package racing.domain.strategy
 
 import racing.domain.DirectionType
 
-class ThresholdBasedMovableStrategy(private val numberGenerator: Generator<Int>) : MovableStrategy {
+class ThresholdBasedMovableStrategy(private val numberGenerator: Generator<Int>) : Navigator {
 
-    override fun movable(): DirectionType =
+    override fun navigate(): DirectionType =
         if (numberGenerator.generate() >= THRESHOLD) DirectionType.STRAIGHT else DirectionType.STOP
 
     companion object {

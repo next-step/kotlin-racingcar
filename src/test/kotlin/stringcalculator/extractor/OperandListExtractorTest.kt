@@ -3,7 +3,7 @@ package stringcalculator.extractor
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import stringcalculator.Number as Number
+import stringcalculator.Number
 
 @DisplayName("OperandListExtractor 클래스")
 class OperandListExtractorTest {

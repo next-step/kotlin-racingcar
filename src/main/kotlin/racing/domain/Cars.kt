@@ -1,12 +1,12 @@
 package racing.domain
 
-import racing.domain.strategy.MovableStrategy
+import racing.domain.strategy.Navigator
 
 class Cars(private val values: Set<Car>) : Set<Car> by values {
     constructor(capacity: Capacity) : this(createCarList(capacity))
     constructor(names: List<String>) : this(createCarList(names))
 
-    fun notifyMoving(movableStrategy: MovableStrategy): Unit = values.forEach { it.move(strategy = movableStrategy) }
+    fun notifyMoving(navigator: Navigator): Unit = values.forEach { it.move(navigator = navigator) }
 
     companion object {
         const val DELIMITER = ","
@@ -27,8 +27,14 @@ class Cars(private val values: Set<Car>) : Set<Car> by values {
 
         private fun createCarList(capacity: Capacity): Set<Car> {
             require(capacity > Capacity.ZERO) { "Invalid Size: ${capacity.value} required 0 over size" }
+            return buildSet {
+                repeat(capacity.value) {
+                    add(Car(id = it))
+                }
+            }
 
-            return capacity.map { Car(id = it) }.toSet()
+            return capacity.availableRange.map { Car(id = it) }
+                .toSet()
         }
     }
 }

@@ -1,7 +1,7 @@
 package racing.domain
 
-import racing.domain.strategy.MovableStrategy
 import racing.domain.strategy.MoveStrategy
+import racing.domain.strategy.Navigator
 import racing.domain.strategy.StopOrStraightMoveStrategy
 
 class Car(
@@ -20,8 +20,8 @@ class Car(
     var name = name
         private set
 
-    override fun move(strategy: MovableStrategy) {
-        distance = moveStrategy.move(baseDistance = distance, movableStrategy = strategy)
+    override fun move(navigator: Navigator) {
+        distance = moveStrategy.move(baseDistance = distance, navigator = navigator)
     }
 
     override fun equals(other: Any?): Boolean {

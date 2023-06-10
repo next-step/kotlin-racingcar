@@ -15,7 +15,7 @@ class StopOrStraightMoveStrategyTest : BehaviorSpec({
             val strategy = StopOrStraightMoveStrategy(Distance(1L))
 
             And("이동 타입이 STRAIGHT 인 경우") {
-                val actual = strategy.move(movableStrategy = { DirectionType.STRAIGHT }, baseDistance = Distance.ZERO)
+                val actual = strategy.move(navigator = { DirectionType.STRAIGHT }, baseDistance = Distance.ZERO)
 
                 Then("이동 거리는 1만큼 증가한다") {
                     actual shouldBe Distance(1L)
@@ -24,7 +24,7 @@ class StopOrStraightMoveStrategyTest : BehaviorSpec({
 
             listOf(STOP, BACK, LEFT, RIGHT).forEach {
                 And("이동 타입이 $it 인 경우") {
-                    val actual = strategy.move(movableStrategy = { it }, baseDistance = Distance.ZERO)
+                    val actual = strategy.move(navigator = { it }, baseDistance = Distance.ZERO)
 
                     Then("멈춰 있는다.") {
                         actual shouldBe Distance.ZERO

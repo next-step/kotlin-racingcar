@@ -9,12 +9,13 @@ import racing.domain.Name
 import racing.domain.dto.RacingGameRequest
 
 class RacingServiceTest : BehaviorSpec({
-    Given("racing 메서드를 호출할 때 ") {
-        When("전진 전략이 항상 전진을 반환하고") {
+    Given("유효한 횟수와 자동차 참가자가 제공된다.") {
+        val info = RacingGameRequest(numberOfRound = 5, carNames = listOf("a", "b", "c", "d", "e"))
+
+        And("전진 전략이 항상 전진을 반환한다.") {
             val racingService = RacingService { DirectionType.STRAIGHT }
 
-            And("유효한 횟수와 자동차 참가자를 인자로 전달할 경우 ") {
-                val info = RacingGameRequest(numberOfRound = 5, carNames = listOf("a", "b", "c", "d", "e"))
+            When("경주를 진행 했을 경우") {
                 val actual = racingService.racing(info)
 
                 Then("전달받은 자동차 대수만큼 자동차를 생성하고 결과를 반환한다.") {
