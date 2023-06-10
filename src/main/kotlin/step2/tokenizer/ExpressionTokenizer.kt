@@ -5,9 +5,13 @@ package step2.tokenizer
  */
 class ExpressionTokenizer {
 
+    companion object {
+        private val pattern = """\d+|[+\-*/]""".toRegex()
+    }
+
     fun tokenize(expression: String): List<String> {
-        return expression.split("")
-            .filter { it.isNotBlank() }
+        return pattern.findAll(expression)
+            .map { it.value }
             .toList()
     }
 }

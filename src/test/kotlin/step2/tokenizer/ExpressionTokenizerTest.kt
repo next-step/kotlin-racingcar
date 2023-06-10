@@ -10,4 +10,11 @@ internal class ExpressionTokenizerTest {
         val result = sut.tokenize(" 1 +2 *  3/4")
         assertThat(result).containsExactly("1", "+", "2", "*", "3", "/", "4")
     }
+
+    @Test
+    internal fun `자릿 수에 구애받지 않고 토큰화`() {
+        val sut = ExpressionTokenizer()
+        val result = sut.tokenize(" 1000 +2 *  3999/4")
+        assertThat(result).containsExactly("1000", "+", "2", "*", "3999", "/", "4")
+    }
 }

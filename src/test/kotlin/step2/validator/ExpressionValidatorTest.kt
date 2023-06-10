@@ -48,4 +48,10 @@ internal class ExpressionValidatorTest {
         val sut = ExpressionValidator()
         assertDoesNotThrow { sut.validate(" 1 + 2-   3 / 4") }
     }
+
+    @Test
+    internal fun `숫자 자릿 수는 두 자리 이상 가능`() {
+        val sut = ExpressionValidator()
+        assertDoesNotThrow { sut.validate(" 10000 + 22-   330000 / 4") }
+    }
 }

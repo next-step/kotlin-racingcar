@@ -9,7 +9,9 @@ import java.util.regex.Pattern
  */
 class ExpressionValidator {
 
-    private val patternThatAllowWhiteSpace = Pattern.compile("(\\s*(\\d)\\s*([+\\-*/])\\s*)+(\\d)\\s*")
+    companion object {
+        private val patternThatAllowWhiteSpace = Pattern.compile("(\\s*(\\d*)\\s*([+\\-*/])\\s*)+(\\d*)\\s*")
+    }
 
     fun validate(expression: String?) {
         require(!expression.isNullOrEmpty()) { "Expression must not be a null or empty" }
