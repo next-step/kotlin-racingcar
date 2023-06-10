@@ -27,7 +27,7 @@ class RacingGameController(
             gameRule = GameRule(gamePlayCount),
         )
 
-        racingGame.execute(gameGuide)
+        val racingResult = racingGame.execute(gameGuide)
     }
 
     private fun receiveParticipantsCountOrNull(): Int? {

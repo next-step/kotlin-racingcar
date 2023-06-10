@@ -15,13 +15,17 @@ class RealRacingGame(
     private val racingCarFactory: RacingCarFactory,
 ) : RacingGame {
 
-    override fun execute(gameGuide: GameGuide) {
+    override fun execute(gameGuide: GameGuide): RacingGameResult {
         val racingCars = gameGuide.users.getInRacingCars()
         val racingRecordBook = startRacingGame(
             racingCars = racingCars,
             gameRule = gameGuide.gameRule,
         )
         racingCars.getOffAllRacer()
+
+        return RacingGameResult(
+            racingRecordBook = racingRecordBook,
+        )
     }
 
     private fun List<User>.getInRacingCars(): List<RacingCar> {
