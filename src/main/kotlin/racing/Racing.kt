@@ -3,7 +3,6 @@ package racing
 import racing.domain.Car
 import racing.view.InputView
 import racing.view.ResultView
-import java.util.Random
 
 class Racing {
 
@@ -30,9 +29,8 @@ class Racing {
     }
 
     private fun moveAndStop(car: Car) {
-        val moveFlag = Random().nextInt(10) >= 4
-        if (moveFlag) {
-            car.position = car.position.plus(1)
+        if (car.moveCheck()) {
+            car.move()
             val distance = "-".repeat(car.position)
             ResultView.printDistance(distance)
             return
