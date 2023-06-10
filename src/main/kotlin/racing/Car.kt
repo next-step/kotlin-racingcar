@@ -5,13 +5,13 @@ class Car(
     private val forwardCondition: ForwardCondition
 ) {
 
-    fun move(): Int {
+    fun move(): RacingPhaseRecord {
         val forwardCondition = forwardCondition.getForwardCondition()
         if (forwardCondition) {
             ++distance
         }
 
-        return distance
+        return RacingPhaseRecord(distance)
     }
 
     companion object {
