@@ -11,15 +11,3 @@ class RandomSeedEngine : CarEngine {
         return if (Random.nextInt(0, 10) > 4) 1 else 0
     }
 }
-
-class BrokenEngine : CarEngine {
-    override fun run(): Int {
-        return 0
-    }
-}
-
-class NormalEngine : CarEngine {
-    override fun run(): Int {
-        return 1
-    }
-}

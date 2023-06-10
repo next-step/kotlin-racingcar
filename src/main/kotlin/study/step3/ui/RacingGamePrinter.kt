@@ -5,12 +5,9 @@ import study.step3.domain.Car
 interface RacingGamePrinter {
     fun print(cars: List<Car>)
 }
-class CommandLineRacingGamePrinter : RacingGamePrinter {
+object CommandLineRacingGamePrinter : RacingGamePrinter {
     override fun print(cars: List<Car>) {
-        cars.forEach {
-            (0 until it.position).forEach { position -> print('-') }
-            println()
-        }
+        cars.forEach { it.printPosition(HyphenCarPositionPrinter) }
         println()
     }
 }
