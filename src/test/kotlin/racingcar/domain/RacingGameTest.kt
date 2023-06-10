@@ -13,39 +13,31 @@ class RacingGameTest {
     @Test
     fun `시도 횟수가 1보다 작으면 예외가 발생한다`() {
         val exception = shouldThrowExactly<IllegalArgumentException> {
-            RacingGame(attemptCount = 0, cars = listOf(aCar()))
+            RacingGame(attemptCount = 0, cars = Cars(listOf(aCar())))
         }
         exception.message shouldBe "게임 생성에 필요한 시도 횟수는 0보다 커야 한다."
     }
 
     @Test
-    fun `자동차 대수가 1보다 작으면 예외가 발생한다`() {
-        val exception = shouldThrowExactly<IllegalArgumentException> {
-            RacingGame(attemptCount = 1, cars = listOf())
-        }
-        exception.message shouldBe "게임 생성에 필요한 자동차 대수는 1대 이상이어야 한다."
-    }
-
-    @Test
     fun `게임을 생성할 수 있다`() {
-        val actual = RacingGame(attemptCount = 1, cars = listOf(aCar()))
+        val actual = RacingGame(attemptCount = 1, cars = Cars(listOf(aCar())))
 
         actual.attemptCount shouldBe 1
-        actual.cars shouldHaveSize 1
+        actual.cars.values shouldHaveSize 1
     }
 
     @Test
     fun `게임을 실행하면 시도 횟수를 1만큼 차단하고 자동차들을 움직인다`() {
-        val racingGame = RacingGame(attemptCount = 1, cars = listOf(aCar(position = 0)))
+        val racingGame = RacingGame(attemptCount = 1, cars = Cars(listOf(aCar(position = 0))))
         racingGame.run()
 
         racingGame.attemptCount shouldBe 0
-        racingGame.cars[0].position shouldBe 1
+        racingGame.cars.values[0].position shouldBe 1
     }
 
     @Test
     fun `시도 횟수가 0인데 run하면 예외가 발생한다`() {
-        val racingGame = RacingGame(attemptCount = 1, cars = listOf(aCar()))
+        val racingGame = RacingGame(attemptCount = 1, cars = Cars(listOf(aCar())))
         racingGame.run()
 
         val exception = shouldThrowExactly<IllegalStateException> { racingGame.run() }
@@ -57,18 +49,18 @@ class RacingGameTest {
         val actual = createRandomMoveCarRacingGame(attemptCount = 1, listOf("pobi", "crong", "honux"))
 
         actual.attemptCount shouldBe 1
-        actual.cars shouldHaveSize 3
+        actual.cars.values shouldHaveSize 3
     }
 
     @Test
     fun `게임이 실행 가능하면 true를 반환한다`() {
-        val actual = RacingGame(attemptCount = 1, cars = listOf(aCar())).isRunnable()
+        val actual = RacingGame(attemptCount = 1, cars = Cars(listOf(aCar()))).isRunnable()
         actual shouldBe true
     }
 
     @Test
     fun `게임이 실행 불가능하면 false를 반환한다`() {
-        val racingGame = RacingGame(attemptCount = 1, cars = listOf(aCar()))
+        val racingGame = RacingGame(attemptCount = 1, cars = Cars(listOf(aCar())))
         racingGame.run()
 
         val actual = racingGame.isRunnable()
@@ -77,7 +69,7 @@ class RacingGameTest {
 
     @Test
     fun `게임이 종료되지 않았는데 우승자를 확인하면 예외가 발생한다`() {
-        val racingGame = RacingGame(attemptCount = 1, cars = listOf(aCar()))
+        val racingGame = RacingGame(attemptCount = 1, cars = Cars(listOf(aCar())))
 
         val exception = shouldThrowExactly<IllegalStateException> { racingGame.winner() }
         exception.message shouldBe "게임이 종료되지 않아 우승자를 확인할 수 없다"
@@ -87,10 +79,12 @@ class RacingGameTest {
     fun `우승자의 이름을 확인할 수 있다`() {
         val racingGame = RacingGame(
             attemptCount = 1,
-            cars = listOf(
-                aCar(carName = CarName("win1")) { true },
-                aCar(carName = CarName("win2")) { true },
-                aCar(carName = CarName("loser")) { false },
+            cars = Cars(
+                listOf(
+                    aCar(carName = CarName("win1")) { true },
+                    aCar(carName = CarName("win2")) { true },
+                    aCar(carName = CarName("loser")) { false },
+                )
             )
         )
         racingGame.run()
