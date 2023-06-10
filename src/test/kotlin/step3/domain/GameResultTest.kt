@@ -10,4 +10,17 @@ class GameResultTest : StringSpec({
 
         gameResult.getLastPositions() shouldBe initialPositions
     }
+
+    "GameResult 내부 리스트는 외부에서 변경할 수 없다." {
+        val carPositions = CarPositions(positions = listOf())
+        val list = mutableListOf(carPositions)
+        val gameResult = GameResult(
+            initialPositions = carPositions,
+            positionsResult = list
+        )
+
+        list.clear()
+
+        gameResult.getPositionsResult().size shouldBe 1
+    }
 })

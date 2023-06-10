@@ -2,8 +2,14 @@ package step3.domain
 
 class GameResult(
     private val initialPositions: CarPositions,
-    private val positionsResult: MutableList<CarPositions> = mutableListOf()
+    positionsResult: MutableList<CarPositions> = mutableListOf()
 ) {
+    private val positionsResult: MutableList<CarPositions>
+
+    init {
+        this.positionsResult = positionsResult.toMutableList()
+    }
+
     fun getLastPositions(): CarPositions {
         if (positionsResult.isEmpty()) {
             return initialPositions
