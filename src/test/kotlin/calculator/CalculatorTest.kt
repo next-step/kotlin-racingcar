@@ -28,19 +28,28 @@ class CalculatorTest : StringSpec({
         forAll(
             row(""),
             row(" "),
-        ) { input ->
+        ) { expression ->
             val exception = shouldThrow<IllegalArgumentException> {
-                Calculator().calculate(input)
+                Calculator().calculate(expression)
             }
             exception.message shouldBe "입력값이 공백입니다."
         }
     }
 
     "사칙연산 기호가 아니면 예외 발생" {
-        val exception = shouldThrow<IllegalArgumentException> {
-            Calculator().calculate("1 ^ 2")
+        forAll(
+            row("1 ! 2"),
+            row("1 % 2"),
+            row("1 ^ 2"),
+            row("1 & 2"),
+        ) { expression ->
+            val exception = shouldThrow<IllegalArgumentException> {
+                Calculator().calculate(expression)
+            }
+
+            val operator = expression[2]
+            exception.message shouldBe "사칙연산 기호가 올바르지 않습니다. : $operator"
         }
-        exception.message shouldBe "사칙연산 기호가 올바르지 않습니다."
     }
 
     "입력 여러 개일 때 계산" {
@@ -48,8 +57,8 @@ class CalculatorTest : StringSpec({
             row("2 + 3 * 4 / 2", 10),
             row("2 * 3 - 4 / 2", 1),
             row("2 - 3 / 4 + 2", 2),
-        ) { input, answer ->
-            Calculator().calculate(input) shouldBe answer
+        ) { expression, answer ->
+            Calculator().calculate(expression) shouldBe answer
         }
     }
 })
