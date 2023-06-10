@@ -7,9 +7,9 @@ import race.model.Race
 
 class RacingCarTest : StringSpec({
     "Car 움직임 2번 테스트" {
-        val car = Car()
-        car.move()
-        car.move()
+        val car = Car(engine = EngineTest(10))
+        car.go()
+        car.go()
         car.position shouldBe 2
     }
 
@@ -18,14 +18,13 @@ class RacingCarTest : StringSpec({
         race.cars.size shouldBe 5
     }
 
-    "Car 4 이상일 경우 움직임" {
-        val race = Race(1)
-        race.go(number = 3)
-        race.cars.first().position shouldBe 0
-        race.go(number = 4)
-        race.cars.first().position shouldBe 1
-        race.go(number = 4)
-        race.cars.first().position shouldBe 2
-    }
+    "Car power 4 이상일 경우 움직임" {
+        val lowCar = Car(engine = EngineTest(1))
+        lowCar.go()
+        lowCar.position shouldBe 0
 
+        val highCar = Car(engine = EngineTest(4))
+        highCar.go()
+        highCar.position shouldBe 1
+    }
 })
