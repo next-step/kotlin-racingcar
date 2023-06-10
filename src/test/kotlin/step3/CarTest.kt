@@ -12,7 +12,7 @@ class CarTest : FreeSpec(
                 row(1),
                 row(1000)
             ) { moveCount ->
-                val sut = Car(SingleDistanceMovingCarEngine)
+                val sut = Car(ConditionalOperatingCarEngine { true })
 
                 repeat(moveCount) { sut.move() }
 
@@ -25,7 +25,7 @@ class CarTest : FreeSpec(
                 row(1),
                 row(1000)
             ) { moveCount ->
-                val sut = Car(ZeroDistanceMovingCarEngine)
+                val sut = Car(ConditionalOperatingCarEngine { false })
 
                 repeat(moveCount) { sut.move() }
 
@@ -34,15 +34,3 @@ class CarTest : FreeSpec(
         }
     }
 )
-
-private object SingleDistanceMovingCarEngine : CarEngine {
-    override fun move(): Distance {
-        return Distance(1)
-    }
-}
-
-private object ZeroDistanceMovingCarEngine : CarEngine {
-    override fun move(): Distance {
-        return Distance(0)
-    }
-}
