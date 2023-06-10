@@ -1,6 +1,7 @@
 package racing
 
 import racing.domain.Car
+import racing.generator.DefaultRandomNumberGenerator
 import racing.view.InputView
 import racing.view.ResultView
 
@@ -22,14 +23,15 @@ class Racing {
     fun carRacing(tryCount: Int, cars: List<Car>) {
         repeat(tryCount) {
             for (car in cars) {
-                moveAndStop(car)
+                val randomNumber = DefaultRandomNumberGenerator().nextInt(10)
+                moveAndStop(car, randomNumber)
             }
             println()
         }
     }
 
-    private fun moveAndStop(car: Car) {
-        if (car.moveCheck()) {
+    fun moveAndStop(car: Car, randomNumber: Int) {
+        if (car.moveCheck(randomNumber)) {
             car.move()
             val distance = "-".repeat(car.position)
             ResultView.printDistance(distance)
