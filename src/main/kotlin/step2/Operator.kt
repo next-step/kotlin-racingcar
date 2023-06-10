@@ -11,13 +11,14 @@ enum class Operator(val symbol: String) {
         override fun execute(operand1: Int, operand2: Int): Int = operand1 * operand2
     },
     DIVIDE("/") {
-        override fun execute(operand1: Int, operand2: Int): Int = operand1 / operand2
+        override fun execute(operand1: Int, operand2: Int): Int {
+            require(operand2 != 0) { "divide by zero" }
+            return operand1 / operand2
+        }
     };
 
     companion object {
-        fun bySymbol(symbol: String): Operator? {
-            return Operator.values().find { it.symbol == symbol }
-        }
+        fun bySymbol(symbol: String): Operator? = Operator.values().find { it.symbol == symbol }
     }
     abstract fun execute(operand1: Int, operand2: Int): Int
 }
