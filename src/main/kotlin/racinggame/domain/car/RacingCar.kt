@@ -11,11 +11,11 @@ class RacingCar(
     engine: Engine,
 ) {
 
-    var onWheelsSpinListener: ((DrivableDistance) -> Unit)? = null
+    var onWheelsSpinListener: ((RacingCar, DrivableDistance) -> Unit)? = null
 
     private val racingCarSystem = RacingCarSystem(
         engine = engine,
-        moveAction = { drivableDistance -> onWheelsSpinListener?.invoke(drivableDistance) }
+        moveAction = { drivableDistance -> onWheelsSpinListener?.invoke(this, drivableDistance) }
     )
 
     var racer: Racer? = null
