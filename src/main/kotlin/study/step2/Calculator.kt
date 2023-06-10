@@ -16,8 +16,7 @@ class Calculator {
             left = Operand.of(result.toString())
             right = operation.pollOperand()
             operator = operation.pollOperator()
-
-        } while(right != null)
+        } while (right != null)
 
         return result
     }

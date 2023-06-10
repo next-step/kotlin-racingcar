@@ -52,6 +52,4 @@ class CalculatorTest : StringSpec({
         // then
         result shouldBe 20
     }
-
-
 })

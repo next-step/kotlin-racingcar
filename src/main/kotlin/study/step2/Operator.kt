@@ -40,5 +40,4 @@ enum class Operator {
     }
 
     abstract fun apply(left: Operand, right: Operand): Int
-
 }
