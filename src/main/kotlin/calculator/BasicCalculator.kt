@@ -3,26 +3,28 @@ package calculator
 import java.lang.IllegalArgumentException
 
 class BasicCalculator : Calculator {
-    private var currOperationSymbol = OperationSymbol.ADD
+    private var currentOperationSymbol = OperationSymbol.ADD
     private var result = 0
     override fun calculate(operation: String?): Int {
         validateOperation(operation)
         initCalculator()
 
-        operation!!.split(" ")
+        splitOperation(operation)
             .forEach { op ->
                 if (isNumeric(op)) {
-                    result = currOperationSymbol.execute(result, op.toInt())
+                    result = currentOperationSymbol.execute(result, op.toInt())
                     return@forEach
                 }
-                currOperationSymbol = OperationSymbol.bySymbol(op)
+                currentOperationSymbol = OperationSymbol.bySymbol(op)
             }
 
         return result
     }
 
+    private fun splitOperation(operation: String?) = operation!!.split(" ")
+
     private fun initCalculator() {
-        currOperationSymbol = OperationSymbol.ADD
+        currentOperationSymbol = OperationSymbol.ADD
         result = 0
     }
 
