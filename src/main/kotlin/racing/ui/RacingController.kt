@@ -3,6 +3,7 @@ package racing.ui
 import racing.application.RacingInfo
 import racing.application.RacingService
 import racing.domain.Capacity
+import racing.domain.Cars
 
 class RacingController(
     private val racingService: RacingService,
@@ -11,12 +12,12 @@ class RacingController(
 ) {
 
     fun startRacing() {
-        val carCapacity = racingInput.requestNumberOfCars()
+        val cars = Cars(racingInput.requestCarNames())
         val numberOfRound = racingInput.requestNumberOfRound()
 
-        val racingHistories =
-            racingService.racing(RacingInfo(round = Capacity(numberOfRound), capacity = Capacity(carCapacity)))
+        val racingResult =
+            racingService.racing(RacingInfo(round = Capacity(numberOfRound), cars = cars))
 
-        racingOutput.printRacingHistories(racingHistories)
+        racingOutput.printRacingResult(racingResult)
     }
 }

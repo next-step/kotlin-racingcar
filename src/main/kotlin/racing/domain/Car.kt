@@ -6,6 +6,7 @@ import racing.domain.strategy.StopOrStraightMoveStrategy
 
 class Car(
     id: Int,
+    name: Name = Name.ANONY,
     distance: Distance = Distance.ZERO,
     private val moveStrategy: MoveStrategy = StopOrStraightMoveStrategy(MOVING_DISTANCE) /*이동 전략은 현재는 다른 전략을 가지지 않기에 default 전략을 설정한다.*/
 ) : Movable, Comparable<Car> {
@@ -16,8 +17,11 @@ class Car(
     var id: Int = id
         internal set
 
+    var name = name
+        private set
+
     override fun move(strategy: MovableStrategy) {
-        distance = moveStrategy.move(movableStrategy = strategy, baseDistance = distance)
+        distance = moveStrategy.move(baseDistance = distance, movableStrategy = strategy)
     }
 
     override fun equals(other: Any?): Boolean {

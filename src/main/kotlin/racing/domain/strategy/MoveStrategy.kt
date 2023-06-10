@@ -3,5 +3,5 @@ package racing.domain.strategy
 import racing.domain.Distance
 
 fun interface MoveStrategy {
-    fun move(movableStrategy: MovableStrategy, baseDistance: Distance): Distance
+    fun move(baseDistance: Distance, movableStrategy: MovableStrategy): Distance
 }
