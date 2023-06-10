@@ -32,7 +32,7 @@ class CarsTest {
                 aCar(position = 2, CarName("2"))
             )
         )
-        val actual = cars.leadCarsName()
+        val actual = cars.leadCarNames()
 
         actual shouldBe listOf("2")
     }

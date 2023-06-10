@@ -11,7 +11,7 @@ class Cars(
 
     fun run() = values.forEach { it.move() }
 
-    fun leadCarsName(): List<String> {
+    fun leadCarNames(): List<String> {
         val leadPosition = values.maxOf { it.position }
         return values.filter { it.position == leadPosition }
             .map { it.name }

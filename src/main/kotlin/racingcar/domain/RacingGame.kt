@@ -25,7 +25,7 @@ class RacingGame(
 
     fun winner(): List<String> {
         check(isRunnable().not()) { "게임이 종료되지 않아 우승자를 확인할 수 없다" }
-        return cars.leadCarsName()
+        return cars.leadCarNames()
     }
 
     companion object {
