@@ -12,7 +12,8 @@ fun main() {
 
     printResultTitle()
     while (racingGame.isRunnable()) {
-        printCurrentResult(racingGame.run())
+        racingGame.run()
+        printCurrentResult(racingGame.currentGameInfo())
     }
     printWinner(racingGame.winner())
 }

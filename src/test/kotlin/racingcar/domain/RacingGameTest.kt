@@ -68,6 +68,21 @@ class RacingGameTest {
     }
 
     @Test
+    fun `현재 게임의 정보를 반환한다`() {
+        val givenPosition = 0
+        val givenCarName = CarName("pobi")
+        val racingGame = RacingGame(
+            attemptCount = 1,
+            cars = Cars(listOf(aCar(position = givenPosition, carName = givenCarName)))
+        )
+
+        val actual = racingGame.currentGameInfo()
+
+        actual[0].first shouldBe givenCarName.value
+        actual[0].second shouldBe givenPosition
+    }
+
+    @Test
     fun `게임이 종료되지 않았는데 우승자를 확인하면 예외가 발생한다`() {
         val racingGame = RacingGame(attemptCount = 1, cars = Cars(listOf(aCar())))
 
