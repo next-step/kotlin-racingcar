@@ -6,7 +6,6 @@ import org.junit.jupiter.params.provider.CsvSource
 import step2.parser.ExpressionParser
 import step2.strategy.CalculatorStrategy
 import step2.tokenizer.ExpressionTokenizer
-import step2.validator.ExpressionValidator
 
 internal class CalculatorTest {
     @ParameterizedTest
@@ -18,7 +17,6 @@ internal class CalculatorTest {
     )
     internal fun 성공(expression: String, expected: String) {
         val sut = Calculator(
-            expressionValidator = ExpressionValidator(),
             expressionTokenizer = ExpressionTokenizer(),
             expressionParser = ExpressionParser(),
             calculatorStrategy = CalculatorStrategy()
