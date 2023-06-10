@@ -1,19 +1,24 @@
 package step3
 
+import io.mockk.every
+import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class RandomDriveCarTest {
 
+    private val randomNumberGenerator: RandomNumberGenerator = mockk()
+
     @Test
     fun `drive car`() {
-        val alwaysOneGenerator = RandomNumberGenerator(randomLimit = 1, randomBase = 1)
         val minDriveRandomNumber: Long = 1
         val car = RandomDriveCar(
             carNumber = 1,
-            randomNumberGenerator = alwaysOneGenerator,
+            randomNumberGenerator = randomNumberGenerator,
             minDriveRandomNumber = minDriveRandomNumber,
         )
+
+        every { randomNumberGenerator.generate() } returns minDriveRandomNumber
 
         car.drive()
 
@@ -22,13 +27,14 @@ class RandomDriveCarTest {
 
     @Test
     fun `stop car`() {
-        val alwaysOneGenerator = RandomNumberGenerator(randomLimit = 1, randomBase = 1)
-        val minDriveRandomNumber: Long = 3
+        val minDriveRandomNumber: Long = 20
         val car = RandomDriveCar(
             carNumber = 1,
-            randomNumberGenerator = alwaysOneGenerator,
+            randomNumberGenerator = randomNumberGenerator,
             minDriveRandomNumber = minDriveRandomNumber,
         )
+
+        every { randomNumberGenerator.generate() } returns minDriveRandomNumber - 1
 
         car.drive()
 
