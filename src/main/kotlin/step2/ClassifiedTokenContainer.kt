@@ -11,34 +11,36 @@ class ClassifiedTokenContainer private constructor(
         )
     }
 
+    init {
+        require(operators.size + 1 == operands.size) { "피연산자의 개수가 부족합니다." }
+    }
+
     companion object {
         fun from(input: String): ClassifiedTokenContainer {
-            val tokens = input.trim().split(Regex("\\s+"))
+            val tokenStrings = input.trim().split(Regex("\\s+"))
 
-            val operands = mutableListOf<Operand>()
-            val operators = mutableListOf<Operator>()
+            val (operands, operators) = transform(tokenStrings)
 
-            populate(tokens, operands, operators)
-
-            require(operators.size + 1 == operands.size) { "피연산자의 개수가 부족합니다." }
             return ClassifiedTokenContainer(operands = operands, operators = operators)
         }
 
-        private fun populate(
-            tokens: List<String>,
-            operands: MutableList<Operand>,
-            operators: MutableList<Operator>
-        ) {
-            for (index in tokens.indices) {
-                val token = tokens[index]
+        private fun transform(
+            tokenStrings: List<String>,
+        ): Tokens {
+            val operands = mutableListOf<Operand>()
+            val operators = mutableListOf<Operator>()
+
+            tokenStrings.forEachIndexed { index, token ->
                 if (index % 2 == 0) {
                     val operand = Operand.from(token) ?: throw IllegalArgumentException()
                     operands.add(operand)
-                    continue
+                    return@forEachIndexed
                 }
                 val operator = Operator.from(token) ?: throw IllegalArgumentException()
                 operators.add(operator)
             }
+
+            return Tokens(operands, operators)
         }
     }
 
