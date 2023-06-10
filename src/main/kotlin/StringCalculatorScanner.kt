@@ -19,7 +19,7 @@ class StringCalculatorScanner(
     }
 
     fun operate(): Int {
-        if (firstOperand != "" && secondOperand != "") {
+        if (firstOperand.isNotBlank() && secondOperand.isNotBlank()) {
             operateResult = Operation.operation(firstOperand, secondOperand, operator!!)
             firstOperand = operateResult.toString()
             secondOperand = ""
