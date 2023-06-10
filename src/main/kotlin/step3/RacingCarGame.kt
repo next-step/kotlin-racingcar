@@ -12,7 +12,6 @@ class RacingCarGame {
                     .toList()
                 RacingCarRoundResult(round, racingCarDriveResults)
             }
-            .toList()
     }
 
     companion object {
