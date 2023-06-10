@@ -3,12 +3,15 @@ package racingcar.domain
 import java.util.Random
 
 class Car(
-    var position: Int = INIT_POSITION,
-    val carName: CarName,
+    position: Int = INIT_POSITION,
+    private val carName: CarName,
     private val movable: () -> Boolean,
 ) {
     val name: String
         get() = carName.value
+
+    var position: Int = position
+        private set
 
     fun move(): Int {
         if (movable()) {
