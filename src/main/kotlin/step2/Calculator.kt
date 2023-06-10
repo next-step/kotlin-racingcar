@@ -4,12 +4,10 @@ object Calculator {
     fun calculate(input: String): Double {
         val classifiedTokens = ClassifiedTokenContainer.from(input)
 
-        val calculated = calculate(classifiedTokens)
-
-        return calculated.double
+        return calculate(classifiedTokens)
     }
 
-    private fun calculate(tokenContainer: ClassifiedTokenContainer): Operand {
+    private fun calculate(tokenContainer: ClassifiedTokenContainer): Double {
         val tokens = tokenContainer.tokens()
         val operands = tokens.operands
         val operators = tokens.operators

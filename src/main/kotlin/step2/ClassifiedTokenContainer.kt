@@ -1,7 +1,7 @@
 package step2
 
 class ClassifiedTokenContainer private constructor(
-    private val operands: List<Operand>,
+    private val operands: List<Double>,
     private val operators: List<Operator>
 ) {
     fun tokens(): Tokens {
@@ -27,12 +27,12 @@ class ClassifiedTokenContainer private constructor(
         private fun transform(
             tokenStrings: List<String>,
         ): Tokens {
-            val operands = mutableListOf<Operand>()
+            val operands = mutableListOf<Double>()
             val operators = mutableListOf<Operator>()
 
             tokenStrings.forEachIndexed { index, token ->
                 if (index % 2 == 0) {
-                    val operand = Operand.from(token) ?: throw IllegalArgumentException()
+                    val operand = token.toDoubleOrNull() ?: throw IllegalArgumentException()
                     operands.add(operand)
                     return@forEachIndexed
                 }
@@ -45,7 +45,7 @@ class ClassifiedTokenContainer private constructor(
     }
 
     data class Tokens(
-        val operands: List<Operand>,
+        val operands: List<Double>,
         val operators: List<Operator>
     )
 }

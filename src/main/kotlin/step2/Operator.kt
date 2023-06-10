@@ -2,7 +2,7 @@ package step2
 
 enum class Operator(
     private val value: String,
-    private val operation: (Operand, Operand) -> Operand
+    private val operation: (Double, Double) -> Double
 ) {
 
     PLUS("+", { a, b -> a + b }),
@@ -10,8 +10,8 @@ enum class Operator(
     MULTIPLY("*", { a, b -> a * b }),
     DIVIDE("/", { a, b -> a / b });
 
-    fun operate(operand1: Operand, operand2: Operand): Operand {
-        return operation.invoke(operand1, operand2)
+    fun operate(num1: Double, num2: Double): Double {
+        return operation.invoke(num1, num2)
     }
 
     companion object {
