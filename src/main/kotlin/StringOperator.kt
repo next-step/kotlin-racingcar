@@ -4,7 +4,7 @@ class StringOperator(
     private var operator: Char? = null,
     private var operateResult: Int = 0
 ) {
-    fun operate(): Int {
+    private fun operate(): Int {
         if (firstOperand.isNotBlank() &&
             secondOperand.isNotBlank() &&
             operator != null
