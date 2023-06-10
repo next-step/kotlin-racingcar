@@ -9,28 +9,35 @@ import io.kotest.matchers.shouldBe
 class CalculatorTest : StringSpec({
 
     "덧셈" {
-        Calculator().calculate("1 + 2") shouldBe 3
+        Calculator.calculate("1 + 2") shouldBe 3
     }
 
     "뺄셈" {
-        Calculator().calculate("1 - 2") shouldBe -1
+        Calculator.calculate("1 - 2") shouldBe -1
     }
 
     "곱셈" {
-        Calculator().calculate("1 * 2") shouldBe 2
+        Calculator.calculate("1 * 2") shouldBe 2
     }
 
     "나눗셈" {
-        Calculator().calculate("1 / 2") shouldBe 0
+        Calculator.calculate("1 / 2") shouldBe 0
+    }
+
+    "0으로 나누면 에외 발생" {
+        val exception = shouldThrow<IllegalArgumentException> {
+            Calculator.calculate("1 / 0")
+        }
+        exception.message shouldBe "0으로 나눌 수 없습니다."
     }
 
     "입력값이 공백이면 예외 발생" {
         forAll(
             row(""),
             row(" "),
-        ) { expression ->
+        ) {
             val exception = shouldThrow<IllegalArgumentException> {
-                Calculator().calculate(expression)
+                Calculator.calculate(it)
             }
             exception.message shouldBe "입력값이 공백입니다."
         }
@@ -42,12 +49,12 @@ class CalculatorTest : StringSpec({
             row("1 % 2"),
             row("1 ^ 2"),
             row("1 & 2"),
-        ) { expression ->
+        ) {
             val exception = shouldThrow<IllegalArgumentException> {
-                Calculator().calculate(expression)
+                Calculator.calculate(it)
             }
 
-            val operator = expression[2]
+            val operator = it[2]
             exception.message shouldBe "사칙연산 기호가 올바르지 않습니다. : $operator"
         }
     }
@@ -58,7 +65,7 @@ class CalculatorTest : StringSpec({
             row("2 * 3 - 4 / 2", 1),
             row("2 - 3 / 4 + 2", 2),
         ) { expression, answer ->
-            Calculator().calculate(expression) shouldBe answer
+            Calculator.calculate(expression) shouldBe answer
         }
     }
 })
