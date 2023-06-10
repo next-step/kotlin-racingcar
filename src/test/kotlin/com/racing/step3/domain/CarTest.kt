@@ -7,6 +7,10 @@ import org.junit.jupiter.params.provider.CsvSource
 class CarTest {
     @ParameterizedTest
     @CsvSource(
+        "1, 0",
+        "2, 0",
+        "3, 0",
+        "0, 0",
         "4, 1",
         "5, 1",
         "6, 1",
@@ -14,28 +18,11 @@ class CarTest {
         "8, 1",
         "9, 1"
     )
-    fun `랜덤으로 4 이상의 값이 입력되면 position이 증가`(input: Int, answer: Int) {
+    fun `4 라는 숫자를 기준으로 자동차가 움직이는지 테스트`(input: Int, answer: Int) {
         // given
         var car = Car()
         // when
         car = car.move { input }
-
-        // then
-        Assertions.assertThat(car.position).isEqualTo(answer)
-    }
-
-    @ParameterizedTest
-    @CsvSource(
-        "1, 0",
-        "2, 0",
-        "3, 0",
-        "0, 0"
-    )
-    fun `랜덤으로 4 미만의 값이 입력되면 position이 증가`(input: Int, answer: Int) {
-        // given
-        val car = Car()
-        // when
-        car.move { input }
 
         // then
         Assertions.assertThat(car.position).isEqualTo(answer)

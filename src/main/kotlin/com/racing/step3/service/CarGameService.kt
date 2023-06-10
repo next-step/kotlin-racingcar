@@ -11,7 +11,7 @@ object CarGameService {
 
     fun moveCar(carList: List<Car>, moveCarStrategy: () -> Int): List<Car> {
         return carList.map {
-            it.move { moveCarStrategy() }
+            it.move(moveCarStrategy)
         }.toList()
     }
 }
