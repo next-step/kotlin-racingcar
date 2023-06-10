@@ -1,26 +1,27 @@
 package racing.ui
 
-import java.lang.NumberFormatException
-
 object RacingInput {
 
-    fun requestNumberOfCars(): Int {
-        return try {
-            println("자동차 대수는 몇 대인가요?")
-            return readln().toInt()
-        } catch (e: NumberFormatException) {
-            println("숫자를 입력해주세요.")
+    tailrec fun requestNumberOfCars(): Int {
+        val numberOfCar = promptAndReadNumber("자동차 대수는 몇 대인가요?")
+
+        return if (numberOfCar != null) numberOfCar else {
+            println("숫자를 입력해 주세요.")
             requestNumberOfCars()
         }
     }
 
-    fun requestNumberOfRound(): Int {
-        return try {
-            println("시도할 횟수는 몇 회인가요?")
-            return readln().toInt()
-        } catch (e: NumberFormatException) {
-            println("숫자를 입력해주세요.")
+    tailrec fun requestNumberOfRound(): Int {
+        val numberOfCar = promptAndReadNumber("시도할 횟수는 몇 회인가요?")
+
+        return if (numberOfCar != null) numberOfCar else {
+            println("숫자를 입력해 주세요.")
             requestNumberOfRound()
         }
+    }
+
+    private fun promptAndReadNumber(prompt: String): Int? {
+        println(prompt)
+        return readlnOrNull()?.toIntOrNull()
     }
 }
