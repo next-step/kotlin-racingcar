@@ -1,4 +1,4 @@
-package study.racinggame.race
+package study.racinggame.race.view
 
 import study.racinggame.domain.CarResponse
 

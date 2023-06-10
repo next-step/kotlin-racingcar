@@ -1,7 +1,9 @@
-package study.racinggame.race
+package study.racinggame
 
+import study.racinggame.domain.Race
+import study.racinggame.race.RaceRule
 import study.racinggame.race.reader.ActualInputReader
-import kotlin.random.Random
+import study.racinggame.race.view.InputView
 
 fun main() {
     val race = init()
@@ -10,7 +12,7 @@ fun main() {
 
 fun init(): Race {
     val inputReader = ActualInputReader()
-    val random = Random
+    val raceRule = RaceRule()
     val inputView = InputView().initInputView(inputReader)
-    return Race(inputView, random)
+    return Race(inputView, raceRule)
 }

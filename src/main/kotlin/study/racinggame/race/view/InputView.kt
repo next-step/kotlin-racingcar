@@ -1,4 +1,4 @@
-package study.racinggame.race
+package study.racinggame.race.view
 
 import study.racinggame.race.reader.InputReader
 
@@ -19,8 +19,8 @@ class InputView {
     private fun getIntInput(prompt: String, errorMsg: String): Int {
         println(prompt)
         val input = reader.raedLine()
-        require(input?.toIntOrNull() != null) { errorMsg }
-        return input!!.toInt()
+        require(input.toIntOrNull() != null) { errorMsg }
+        return input.toInt()
     }
 
     fun carCount(): Int {
