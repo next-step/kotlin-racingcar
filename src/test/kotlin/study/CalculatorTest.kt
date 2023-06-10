@@ -35,7 +35,7 @@ class CalculatorTest {
     fun `입력 값 널이거나 빈 공백`() {
         assertThatThrownBy {
             Calculator().calculate("")
-        }.isInstanceOf(IllegalArgumentException::class.java).hasMessage("Input value is null or empty")
+        }.isInstanceOf(IllegalArgumentException::class.java).hasMessage("Input value is empty")
     }
 
     @Test
@@ -43,5 +43,12 @@ class CalculatorTest {
         assertThatThrownBy {
             Calculator().calculate("4 / 2 # 3 ")
         }.isInstanceOf(IllegalArgumentException::class.java).hasMessage("Not an arithmetic operator")
+    }
+
+    @Test
+    fun `첫 번째 값이 숫자가 아닌 문자인 경우`() {
+        assertThatThrownBy {
+            Calculator().calculate("o / 2 # 3 ")
+        }.isInstanceOf(NumberFormatException::class.java).hasMessage("The first value is not a number.")
     }
 }
