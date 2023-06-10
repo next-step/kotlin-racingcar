@@ -2,11 +2,6 @@ package step3
 
 class RacingCarGameResultView {
 
-    companion object {
-        const val RESULT_TITLE = "실행 결과"
-        const val OUTPUT_CHARACTER = "-"
-    }
-
     fun print(racingCarRoundResult: List<RacingCarRoundResult>, totalRound: Long) {
         println(RESULT_TITLE)
 
@@ -22,5 +17,10 @@ class RacingCarGameResultView {
                 println()
             }
         }
+    }
+
+    companion object {
+        const val RESULT_TITLE = "실행 결과"
+        const val OUTPUT_CHARACTER = "-"
     }
 }
