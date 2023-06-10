@@ -2,14 +2,18 @@ package racinggame.view
 
 class TestRacingGameOutputView : RacingGameOutputView {
 
-    private val _captures = mutableListOf<RacingGameMessage>()
-    val captures: List<RacingGameMessage> = _captures
+    private val _fixedMessagesCapture = mutableListOf<RacingGameFixedMessage>()
+    val fixedMessagesCapture: List<RacingGameFixedMessage> = _fixedMessagesCapture
 
     fun clear() {
-        _captures.clear()
+        _fixedMessagesCapture.clear()
     }
 
-    override fun displayMessage(racingGameMessage: RacingGameMessage) {
-        _captures.add(racingGameMessage)
+    override fun display(racingGameFixedMessage: RacingGameFixedMessage) {
+        _fixedMessagesCapture.add(racingGameFixedMessage)
+    }
+
+    override fun display(racingCarMoveDistance: RacingCarMoveDistance) {
+
     }
 }

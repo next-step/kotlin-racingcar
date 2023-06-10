@@ -25,7 +25,7 @@ class RacingGameControllerTest : BehaviorSpec({
                 testRacingGame
             ).start()
 
-            testRacingGameOutputView.captures[0] shouldBe RacingGameMessage.PARTICIPANTS_INPUT
+            testRacingGameOutputView.fixedMessagesCapture[0] shouldBe RacingGameFixedMessage.PARTICIPANTS_INPUT
         }
     }
 
@@ -43,7 +43,7 @@ class RacingGameControllerTest : BehaviorSpec({
                         testRacingGame
                     ).start()
 
-                    testRacingGameOutputView.captures[1] shouldBe RacingGameMessage.FINISH_WITH_NOT_POSITIVE_INTEGER
+                    testRacingGameOutputView.fixedMessagesCapture[1] shouldBe RacingGameFixedMessage.FINISH_WITH_NOT_POSITIVE_INTEGER
                 }
             }
         }
@@ -56,7 +56,7 @@ class RacingGameControllerTest : BehaviorSpec({
                     testRacingGame
                 ).start()
 
-                testRacingGameOutputView.captures[1] shouldBe RacingGameMessage.GAME_PLAY_COUNT_INPUT
+                testRacingGameOutputView.fixedMessagesCapture[1] shouldBe RacingGameFixedMessage.GAME_PLAY_COUNT_INPUT
             }
         }
     }
@@ -75,7 +75,7 @@ class RacingGameControllerTest : BehaviorSpec({
                         testRacingGame
                     ).start()
 
-                    testRacingGameOutputView.captures[2] shouldBe RacingGameMessage.FINISH_WITH_NOT_POSITIVE_INTEGER
+                    testRacingGameOutputView.fixedMessagesCapture[2] shouldBe RacingGameFixedMessage.FINISH_WITH_NOT_POSITIVE_INTEGER
                 }
             }
         }

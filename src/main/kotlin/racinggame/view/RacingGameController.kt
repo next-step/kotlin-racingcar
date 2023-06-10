@@ -1,6 +1,7 @@
 package racinggame.view
 
 import racinggame.domain.RacingGame
+import racinggame.domain.RacingGameResult
 import racinggame.domain.employee.GameGuide
 import racinggame.domain.employee.GameRule
 import racinggame.domain.player.User
@@ -27,16 +28,19 @@ class RacingGameController(
             gameRule = GameRule(gamePlayCount),
         )
 
+        outputView.display(RacingGameFixedMessage.BLANK)
+
         val racingResult = racingGame.execute(gameGuide)
+        displayRacingGameResult(racingResult)
     }
 
     private fun receiveParticipantsCountOrNull(): Int? {
-        outputView.displayMessage(RacingGameMessage.PARTICIPANTS_INPUT)
+        outputView.display(RacingGameFixedMessage.PARTICIPANTS_INPUT)
         return receivePositiveIntegerFromViewOrNull()
     }
 
     private fun receiveGamePlayCountOrNull(): Int? {
-        outputView.displayMessage(RacingGameMessage.GAME_PLAY_COUNT_INPUT)
+        outputView.display(RacingGameFixedMessage.GAME_PLAY_COUNT_INPUT)
         return receivePositiveIntegerFromViewOrNull()
     }
 
@@ -47,6 +51,20 @@ class RacingGameController(
     }
 
     private fun displayErrorFinishMessage() {
-        outputView.displayMessage(RacingGameMessage.FINISH_WITH_NOT_POSITIVE_INTEGER)
+        outputView.display(RacingGameFixedMessage.FINISH_WITH_NOT_POSITIVE_INTEGER)
+    }
+
+    private fun displayRacingGameResult(racingGameResult: RacingGameResult) {
+        outputView.display(RacingGameFixedMessage.EXECUTE_RESULT)
+
+        racingGameResult.racingRecordBook
+            .totalRacingRecordPaperList
+            .forEach {racingRecordPaperList ->
+                racingRecordPaperList.list
+                    .map { racingRecordPaper -> RacingCarMoveDistance(racingRecordPaper.moveDistance.distance) }
+                    .forEach { racingCarMoveDistance -> outputView.display(racingCarMoveDistance) }
+
+                outputView.display(RacingGameFixedMessage.BLANK)
+        }
     }
 }

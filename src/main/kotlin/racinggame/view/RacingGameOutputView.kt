@@ -2,5 +2,6 @@ package racinggame.view
 
 interface RacingGameOutputView {
 
-    fun displayMessage(racingGameMessage: RacingGameMessage)
+    fun display(racingGameFixedMessage: RacingGameFixedMessage)
+    fun display(racingCarMoveDistance: RacingCarMoveDistance)
 }
