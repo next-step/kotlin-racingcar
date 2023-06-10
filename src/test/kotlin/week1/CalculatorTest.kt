@@ -31,4 +31,11 @@ class CalculatorTest {
         val result = calculator.divide(3F, 5F)
         assertEquals(0.6F, result)
     }
+
+    @Test
+    fun `Calculator E2E 테스트`() {
+        val calculator = Calculator()
+        val result = calculator.calculate("2 + 3 * 4 / 2")
+        assertEquals(10F, result)
+    }
 }
