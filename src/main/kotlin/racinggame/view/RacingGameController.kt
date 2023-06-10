@@ -59,12 +59,12 @@ class RacingGameController(
 
         racingGameResult.racingRecordBook
             .totalRacingRecordPaperList
-            .forEach {racingRecordPaperList ->
+            .forEach { racingRecordPaperList ->
                 racingRecordPaperList.list
                     .map { racingRecordPaper -> RacingCarMoveDistance(racingRecordPaper.moveDistance.distance) }
                     .forEach { racingCarMoveDistance -> outputView.display(racingCarMoveDistance) }
 
                 outputView.display(RacingGameFixedMessage.BLANK)
-        }
+            }
     }
 }
