@@ -3,12 +3,12 @@ package step3.workflow
 import step3.entity.RacingCar
 
 class Race(
-    private val condition: () -> Boolean
+    private val condition: () -> Boolean,
 ) {
     operator fun invoke(racingCar: RacingCar): RacingCar =
         if (condition().not()) {
-            RacingCar(racingCar.position)
+            RacingCar(name = racingCar.name, position = racingCar.position)
         } else {
-            RacingCar(racingCar.position + 1)
+            RacingCar(name = racingCar.name, position = racingCar.position + 1)
         }
 }

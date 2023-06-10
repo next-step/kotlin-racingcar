@@ -1,5 +1,6 @@
 package step3.entity
 
 class RacingCar(
-    val position: Int = 0
+    val name: String,
+    val position: Int = 0,
 )

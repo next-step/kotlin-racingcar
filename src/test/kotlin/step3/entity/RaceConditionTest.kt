@@ -44,7 +44,7 @@ internal class RaceConditionTest {
     @MethodSource("makeRaceCondition")
     fun `if value is number of string then make race condition`(numberOfCars: String, numberOfLabs: String) {
         val raceCondition = RaceCondition.of(numberOfCars, numberOfLabs)
-        assertEquals(numberOfCars.toInt(), raceCondition.numberOfCars)
+        assertEquals(numberOfCars.toInt(), raceCondition.nameOfCars)
         assertEquals(numberOfLabs.toInt(), raceCondition.numberOfLabs)
     }
 

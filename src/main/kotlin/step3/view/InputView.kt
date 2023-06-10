@@ -4,12 +4,12 @@ import step3.entity.RaceCondition
 
 class InputView {
     operator fun invoke(): RaceCondition {
-        val numberOfCars = getNumberInput("자동차 대수는 몇 대인가요?")
-        val numberOfLabs = getNumberInput("시도할 횟수는 몇 회인가요?")
-        return RaceCondition.of(numberOfCars, numberOfLabs)
+        val nameOfCars = getInput("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
+        val numberOfLabs = getInput("시도할 횟수는 몇 회인가요?")
+        return RaceCondition.of(nameOfCars, numberOfLabs)
     }
 
-    private fun getNumberInput(msg: String): String? {
+    private fun getInput(msg: String): String? {
         println(msg)
         return readLine()
     }

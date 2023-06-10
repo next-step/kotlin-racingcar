@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource
 import step3.entity.RacingCar
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
+import java.util.UUID
 import kotlin.random.Random
 
 internal class OutputViewTest {
@@ -29,15 +30,15 @@ internal class OutputViewTest {
     fun `test output exact number of line symbols`(lineSymbol: String) {
         val outputView = OutputView(lineSymbol)
         val racingCars = listOf(
-            RacingCar(Random.nextInt(0, 100)),
-            RacingCar(Random.nextInt(0, 100)),
-            RacingCar(Random.nextInt(0, 100)),
+            RacingCar(UUID.randomUUID().toString(), Random.nextInt(0, 100)),
+            RacingCar(UUID.randomUUID().toString(), Random.nextInt(0, 100)),
+            RacingCar(UUID.randomUUID().toString(), Random.nextInt(0, 100)),
         )
         var expected = ""
         racingCars.forEach {
             expected += "${lineSymbol.repeat(it.position)}\n"
         }
-        outputView(racingCars)
+        outputView.forLabs(racingCars)
         assertEquals(expected.dropLast(1), outputStreamCaptor.toString().trim())
     }
 }
