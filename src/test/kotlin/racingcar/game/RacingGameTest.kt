@@ -24,4 +24,25 @@ class RacingGameTest {
         assertThat(cars).extracting({ it.distance })
             .containsExactly(tuple(0), tuple(1), tuple(1))
     }
+
+    @Test
+    fun `현시점 우승자를 가져온다`() {
+        // given
+        val engine1 = MockEngine(3)
+        val engine2 = MockEngine(4)
+        val engine3 = MockEngine(5)
+        val car1 = Car("car1", engine1)
+        val car2 = Car("car2", engine2)
+        val car3 = Car("car3", engine3)
+        val cars = listOf(car1, car2, car3)
+
+        val game = RacingGame(cars)
+        game.startRound()
+
+        // when
+        val result = game.getWinnerCars()
+
+        // then
+        assertThat(result).containsExactly(car2, car3)
+    }
 }

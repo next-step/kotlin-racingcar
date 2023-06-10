@@ -22,6 +22,8 @@ class RacingCarController {
             racingGame.startRound()
             outputView.printCars(cars)
         }
+        val winners = racingGame.getWinnerCars()
+        outputView.printWinner(winners)
     }
 }
 
