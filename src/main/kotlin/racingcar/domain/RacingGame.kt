@@ -3,9 +3,12 @@ package racingcar.domain
 import racingcar.domain.Cars.Companion.createRandomMoveCars
 
 class RacingGame(
-    var attemptCount: Int,
+    attemptCount: Int,
     val cars: Cars
 ) {
+    var attemptCount = attemptCount
+        private set
+
     init {
         require(attemptCount > RUNNABLE_GAME_ATTEMPT_COUNT) { "게임 생성에 필요한 시도 횟수는 0보다 커야 한다." }
     }
