@@ -33,7 +33,7 @@ object Controller {
 
     private fun showResult(carNum: Int, stageNum: Int) {
         var createdCarList = CarGameService.createCarList(carNum)
-        for (i in 1..stageNum) {
+        repeat(stageNum) {
             createdCarList = CarGameService.moveCar(createdCarList, randomMoveCarStrategy())
             OutputView.showRaceStage(createdCarList.map { it.position })
         }
