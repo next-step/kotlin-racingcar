@@ -21,14 +21,14 @@ class CarTest {
 
     @Test
     fun `movable이 true면 전진한다`() {
-        val car = Car(1, CarName("pobi")) { true }
+        val car = Car(position = 1, carName = CarName("pobi")) { true }
         val actual = car.move()
         actual shouldBe 2
     }
 
     @Test
     fun `movable이 false면 움직이지 않는다`() {
-        val car = Car(1, CarName("pobi")) { false }
+        val car = Car(position = 1, carName = CarName("pobi")) { false }
         val actual = car.move()
         actual shouldBe 1
     }
@@ -44,7 +44,7 @@ class CarTest {
     companion object {
         fun aCar(
             position: Int = 0,
-            carName: CarName = CarName("pobi"),
+            carName: CarName = CarName(value = "pobi"),
             movable: () -> Boolean = { true }
         ) = Car(
             position = position,
