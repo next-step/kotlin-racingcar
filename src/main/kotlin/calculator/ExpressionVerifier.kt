@@ -5,7 +5,7 @@ object ExpressionVerifier {
     fun verify(input: String) {
         require(input.isNotBlank()) { "Input is blank" }
 
-        val elements = ExpressionFormatter.format(input)
+        val elements = ExpressionParser.parse(input)
         for (i in elements.indices) {
             if (i % 2 == 0) {
                 try {

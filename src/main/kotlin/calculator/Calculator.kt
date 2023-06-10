@@ -7,7 +7,7 @@ object Calculator {
     fun calculate(input: String): BigDecimal {
         ExpressionVerifier.verify(input)
 
-        val elements = ExpressionFormatter.format(input)
+        val elements = ExpressionParser.parse(input)
 
         var result = elements[0].toBigDecimal()
 
