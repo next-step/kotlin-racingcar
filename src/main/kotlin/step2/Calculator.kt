@@ -1,6 +1,7 @@
 package step2
 
 import step2.expression.ExpressionItem
+import step2.expression.ExpressionToken
 import step2.parser.ExpressionParser
 import step2.strategy.CalculatorStrategy
 import step2.tokenizer.ExpressionTokenizer
@@ -18,7 +19,7 @@ class Calculator(
 
     fun calculate(expression: String?): String {
         expressionValidator.validate(expression)
-        val expressionTokens: List<String> = expressionTokenizer.tokenize(expression!!)
+        val expressionTokens: List<ExpressionToken> = expressionTokenizer.tokenize(expression!!)
         val expressionItems: List<ExpressionItem> = expressionParser.parse(expressionTokens)
         return calculatorStrategy.apply(expressionItems)
     }
