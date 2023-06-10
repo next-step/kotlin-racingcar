@@ -1,6 +1,7 @@
 package racingcar.domain
 
 import io.kotest.assertions.throwables.shouldThrowExactly
+import io.kotest.matchers.collections.shouldContainAll
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
@@ -80,5 +81,21 @@ class RacingGameTest {
 
         val exception = shouldThrowExactly<IllegalStateException> { racingGame.winner() }
         exception.message shouldBe "게임이 종료되지 않아 우승자를 확인할 수 없다"
+    }
+
+    @Test
+    fun `우승자의 이름을 확인할 수 있다`() {
+        val racingGame = RacingGame(
+            attemptCount = 1,
+            cars = listOf(
+                aCar(carName = CarName("win1")) { true },
+                aCar(carName = CarName("win2")) { true },
+                aCar(carName = CarName("loser")) { false },
+            )
+        )
+        racingGame.run()
+
+        val actual = racingGame.winner()
+        actual shouldContainAll listOf("win1", "win2")
     }
 }

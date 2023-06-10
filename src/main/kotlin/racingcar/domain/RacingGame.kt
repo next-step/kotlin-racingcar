@@ -19,8 +19,11 @@ class RacingGame(
 
     fun isRunnable(): Boolean = attemptCount != RUNNABLE_GAME_ATTEMPT_COUNT
 
-    fun winner() {
+    fun winner(): List<String> {
         check(!isRunnable()) { "게임이 종료되지 않아 우승자를 확인할 수 없다" }
+        val winnerPosition = cars.maxOf { it.position }
+        return cars.filter { it.position == winnerPosition }
+            .map { it.name }
     }
 
     companion object {
