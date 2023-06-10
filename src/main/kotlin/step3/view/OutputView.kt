@@ -9,10 +9,7 @@ object OutputView {
 
     fun showStatus(distanceResult: List<Distance>) {
         distanceResult.forEach {
-            val distanceView = StringBuilder()
-            repeat(it.toInt()) {
-                distanceView.append("-")
-            }
+            val distanceView = "-".repeat(it.toInt())
             println(distanceView)
         }
         println()

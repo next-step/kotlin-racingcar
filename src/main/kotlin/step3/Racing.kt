@@ -11,7 +11,7 @@ class Racing(
 
     fun showCurrentStatus(): List<Distance> {
         return cars.map {
-            it.showMovedDistance()
+            it.movedDistance
         }
     }
 }

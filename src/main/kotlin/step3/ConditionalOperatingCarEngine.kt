@@ -1,5 +1,7 @@
 package step3
 
+import kotlin.random.Random
+
 class ConditionalOperatingCarEngine(
     private val conditionChecker: () -> Boolean
 ) {
@@ -11,6 +13,6 @@ class ConditionalOperatingCarEngine(
     }
 
     companion object {
-        val RANDOM = ConditionalOperatingCarEngine { (Math.random() * 10).toInt() >= 4 }
+        val RANDOM = ConditionalOperatingCarEngine { Random.nextInt(0, 10) >= 4 }
     }
 }
