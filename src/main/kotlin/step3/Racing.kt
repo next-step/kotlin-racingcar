@@ -8,4 +8,10 @@ class Racing(
             it.move()
         }
     }
+
+    fun showCurrentStatus(): List<Distance> {
+        return cars.map {
+            it.showMovedDistance()
+        }
+    }
 }

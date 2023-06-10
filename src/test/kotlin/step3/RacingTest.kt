@@ -6,7 +6,7 @@ import io.kotest.matchers.shouldBe
 
 class RacingTest : FreeSpec(
     {
-        "경주를 수행하면 소속된 자동차들이 이동 명령을 수행한다" {
+        "경주를 수행하면 소속된 자동차들이 이동 명령을 수행한다" - {
             val racingCars = listOf(
                 buildAlwaysOperatingCar(),
                 buildStationaryCar(),
@@ -27,6 +27,19 @@ class RacingTest : FreeSpec(
                 { it.showMovedDistance() shouldBe Distance(1) },
                 { it.showMovedDistance() shouldBe Distance(0) }
             )
+            "경주 중인 차들의 이동 상태를 확인할 수 있다." - {
+                val status = sut.showCurrentStatus()
+
+                status shouldBe listOf(Distance(1), Distance(0), Distance(1), Distance(1), Distance(0))
+
+                "추가 이동 2회" {
+                    repeat(2) { sut.race() }
+
+                    val secondStatus = sut.showCurrentStatus()
+
+                    secondStatus shouldBe listOf(Distance(3), Distance(0), Distance(3), Distance(3), Distance(0))
+                }
+            }
         }
     }
 )
