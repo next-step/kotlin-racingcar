@@ -3,6 +3,9 @@ package step3
 class RacingCarGame {
 
     fun progressGame(totalRound: Long, cars: List<Car>): List<RacingCarRoundResult> {
+        require(totalRound >= 1) { "시도 횟수는 1 이상이어야 합니다." }
+        require(cars.isNotEmpty()) { "자동차 대수는 1 이성이어야 합니다." }
+
         return (START_ROUND..totalRound)
             .map { round ->
                 val racingCarDriveResults = cars.map { car ->
