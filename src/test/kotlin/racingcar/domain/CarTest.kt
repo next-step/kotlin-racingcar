@@ -2,6 +2,7 @@ package racingcar.domain
 
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
+import racingcar.domain.Car.Companion.createRandomMoveCar
 
 class CarTest {
 
@@ -30,6 +31,14 @@ class CarTest {
         val car = Car(1, CarName("pobi")) { false }
         val actual = car.move()
         actual shouldBe 1
+    }
+
+    @Test
+    fun `랜덤하게 움직이는 차를 이름을 받아 생성한다`() {
+        val actual = createRandomMoveCar(name = "pobi")
+
+        actual.name shouldBe "pobi"
+        actual.position shouldBe 0
     }
 
     companion object {

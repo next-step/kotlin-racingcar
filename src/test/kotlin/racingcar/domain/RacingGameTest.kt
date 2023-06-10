@@ -53,11 +53,11 @@ class RacingGameTest {
     }
 
     @Test
-    fun `시도 횟수와 자동차 대수를 받아 게임을 생성한다`() {
-        val actual = createRandomMoveCarRacingGame(attemptCount = 1, carCount = 2)
+    fun `시도 횟수와 자동차 이름을 받아 게임을 생성한다`() {
+        val actual = createRandomMoveCarRacingGame(attemptCount = 1, listOf("pobi", "crong", "honux"))
 
         actual.attemptCount shouldBe 1
-        actual.cars shouldHaveSize 2
+        actual.cars shouldHaveSize 3
     }
 
     @Test

@@ -29,10 +29,10 @@ class RacingGame(
     companion object {
         private const val RUNNABLE_GAME_ATTEMPT_COUNT = 0
 
-        fun createRandomMoveCarRacingGame(attemptCount: Int, carCount: Int): RacingGame {
+        fun createRandomMoveCarRacingGame(attemptCount: Int, carNames: List<String>): RacingGame {
             return RacingGame(
                 attemptCount = attemptCount,
-                cars = (0 until carCount).map { createRandomMoveCar() }
+                cars = carNames.map { createRandomMoveCar(it) }
             )
         }
     }

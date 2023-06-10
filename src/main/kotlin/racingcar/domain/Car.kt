@@ -26,6 +26,7 @@ class Car(
         private const val MOVABLE_VALUE = 4
         private val random = Random()
 
-        fun createRandomMoveCar() = Car(carName = CarName("tmp")) { random.nextInt(MAX_RANDOM_MOVE_INPUT) >= MOVABLE_VALUE }
+        fun createRandomMoveCar(name: String) =
+            Car(carName = CarName(name)) { random.nextInt(MAX_RANDOM_MOVE_INPUT) >= MOVABLE_VALUE }
     }
 }
