@@ -5,8 +5,8 @@ import kotlin.random.Random
 
 object CarGameService {
     fun createCarList(num: Int): List<Car> {
-        return (1..num).map {
-            Car()
+        return buildList(num) {
+            for (i in 1..num) add(Car())
         }
     }
 

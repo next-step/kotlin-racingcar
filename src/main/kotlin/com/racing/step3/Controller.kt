@@ -17,7 +17,7 @@ object Controller {
     private fun carNumberSetting(): Int {
         var carNum = 0
         InputView.readCarNumber {
-            carNum = readLine()!!.toInt()
+            carNum = readln().toInt()
         }
         return carNum
     }
@@ -25,7 +25,7 @@ object Controller {
     private fun stageNumSetting(): Int {
         var stageNum = 0
         InputView.readStageNumber {
-            stageNum = readLine()!!.toInt()
+            stageNum = readln().toInt()
         }
         return stageNum
     }

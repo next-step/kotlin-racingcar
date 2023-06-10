@@ -1,10 +1,9 @@
 package com.racing.step3.domain
 
 class Car(
-    var position: Int = 0
+    val position: Int = 0
 ) {
-    fun move(randomFunc: () -> Int): Car {
-        val randomNum = randomFunc()
-        return if (randomNum >= 4) Car(position + 1) else this
+    fun move(moveTrigger: () -> Int): Car {
+        return if (moveTrigger() >= 4) Car(position + 1) else this
     }
 }
