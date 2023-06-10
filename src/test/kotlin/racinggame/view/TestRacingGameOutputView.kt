@@ -14,6 +14,5 @@ class TestRacingGameOutputView : RacingGameOutputView {
     }
 
     override fun display(racingCarMoveDistance: RacingCarMoveDistance) {
-
     }
 }
