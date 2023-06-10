@@ -1,6 +1,6 @@
 package com.racing.step4.view
 
-class OutputView {
+object OutputView {
     fun showRacingResultDashboard(stageResultList: List<String>) {
         println("실행 결과")
         stageResultList.forEach {

@@ -1,8 +1,10 @@
 package com.racing.step4.domain
 
 class RacingParticipation(
-    var cars: List<Car>
+    var cars: List<Car> = listOf()
 ) {
+    constructor(participationNames: String) : this(participationNames.split(",").map { Car(it) }.toList())
+
     fun turnAround(moveTriggerFunc: () -> Int) {
         cars = cars.map { it.move(moveTriggerFunc) }
             .toList()
