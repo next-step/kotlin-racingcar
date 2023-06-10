@@ -22,7 +22,7 @@ class CarTest : DescribeSpec({
             }
 
             it(name = "현재 자동차 위치를 반환한다.") {
-                car.currentPosition() shouldBe position
+                car.position shouldBe position
             }
         }
     }

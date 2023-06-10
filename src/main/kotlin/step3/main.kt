@@ -7,7 +7,6 @@ import step3.domain.generator.RandomNumberGenerator
 import step3.view.CarPositionResult
 import step3.view.InputView
 import step3.view.ResultView
-import java.util.concurrent.atomic.AtomicInteger
 
 fun main() {
     val (carNames, round) = InputView.readStartInput()
@@ -15,7 +14,7 @@ fun main() {
     val cars = CarFactory.createCars(carNames = carNames)
     val basicRuleMoveFormula = BasicRuleMoveFormula(numberGenerator = RandomNumberGenerator)
 
-    val raceGame = RaceGame(cars = cars, round = AtomicInteger(round), moveFormula = basicRuleMoveFormula)
+    val raceGame = RaceGame(cars = cars, round = round, moveFormula = basicRuleMoveFormula)
     ResultView.printStartGame()
 
     raceGame.race { raceResult ->

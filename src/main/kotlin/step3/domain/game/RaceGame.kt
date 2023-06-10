@@ -3,11 +3,10 @@ package step3.domain.game
 import step3.domain.car.Car
 import step3.domain.formula.MoveFormula
 import step3.model.RaceGameErrorCode
-import java.util.concurrent.atomic.AtomicInteger
 
 class RaceGame(
     private val cars: List<Car>,
-    private val round: AtomicInteger,
+    private var round: Int,
     private val moveFormula: MoveFormula,
 ) {
 
@@ -19,13 +18,14 @@ class RaceGame(
         }
     }
 
+    @Synchronized
     @Throws(IllegalStateException::class)
     fun race(raceResultProcess: (List<RaceGameResult>) -> Unit) {
-        check(value = round.get() > MINIMUM_ROUND) {
+        check(value = round > MINIMUM_ROUND) {
             RaceGameErrorCode.NOT_REMAINING_ROUND.message(round.toString())
         }
 
-        while (round.getAndDecrement() > MINIMUM_ROUND) {
+        while (round > MINIMUM_ROUND) {
             raceResultProcess(
                 cars.map {
                     RaceGameResult(
@@ -34,14 +34,16 @@ class RaceGame(
                     )
                 }
             )
+
+            round--
         }
     }
 
-    fun currentHeadOfRace(): List<String> {
-        val headOfRaceCurrentPosition = cars.maxOf { it.currentPosition() }
-        return cars.filter { it.currentPosition() == headOfRaceCurrentPosition }
-            .map { it.name }
-    }
+    fun currentHeadOfRace(): List<String> = cars.maxOf { it.position }
+        .run {
+            cars.filter { it.position == this }
+                .map { it.name }
+        }
 
     companion object {
         private const val MINIMUM_ROUND = 0

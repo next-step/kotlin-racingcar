@@ -1,29 +1,33 @@
 package step3.domain.car
 
 import step3.domain.formula.MoveFormula
-import java.util.concurrent.atomic.AtomicInteger
 
 class Car internal constructor(
     val name: String,
-    private val position: AtomicInteger = AtomicInteger(),
+    position: Int,
 ) {
 
-    fun move(moveFormula: MoveFormula): Int = if (moveFormula.move()) {
-        position.incrementAndGet()
-    } else {
-        position.get()
-    }
+    var position: Int = position
+        private set
 
-    fun currentPosition(): Int = position.get()
+    @Synchronized
+    fun move(moveFormula: MoveFormula): Int = if (moveFormula.move()) {
+        ++position
+    } else {
+        position
+    }
 
     override fun equals(other: Any?): Boolean = when {
         this === other -> true
-        javaClass != other?.javaClass -> false
-        position != (other as Car).position -> false
+        other !is Car -> false
+        name != other.name -> false
+        position != other.position -> false
         else -> true
     }
 
     override fun hashCode(): Int {
-        return position.hashCode()
+        var result = name.hashCode()
+        result = 31 * result + position
+        return result
     }
 }
