@@ -5,6 +5,9 @@ class Game(
     private val numberOfTrials: Int,
 ) {
     private val cars: List<Car>
+    private val gameLogs: MutableList<List<CarDto>> = mutableListOf()
+    private val isPlayed: Boolean
+        get() = gameLogs.isNotEmpty()
 
     init {
         require(nameOfCars.isNotEmpty()) { "자동차는 1대 이상이어야 합니다." }
@@ -13,14 +16,10 @@ class Game(
         cars = nameOfCars.map { Car(it.trim()) }
     }
 
-    fun process(): List<List<CarDto>> {
-        val result: MutableList<List<CarDto>> = mutableListOf()
-
+    fun process() {
         repeat(numberOfTrials) {
-            result.add(doProcess())
+            gameLogs.add(doProcess())
         }
-
-        return result
     }
 
     private fun doProcess(): List<CarDto> {
@@ -30,10 +29,18 @@ class Game(
     }
 
     fun getWinners(): List<CarDto> {
+        check(isPlayed) { "게임이 진행되지 않았습니다." }
+
         val longestPosition = cars.maxByOrNull { it.position }!!.position
 
         return cars
             .filter { it.position == longestPosition }
             .map { CarDto.of(it) }
+    }
+
+    fun getGameLogs(): List<List<CarDto>> {
+        check(isPlayed) { "게임이 진행되지 않았습니다." }
+
+        return gameLogs
     }
 }

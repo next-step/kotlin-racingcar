@@ -30,27 +30,45 @@ class GameSpec : DescribeSpec({
                 Pair(listOf("john", "mike", "lucas"), 7),
             )
 
-            it("시도 횟수만큼 결과를 반환한다") {
+            it("시도 횟수만큼 게임 기록 결과를 반환한다") {
                 cases.forEach {
                     val nameOfCars = it.first
                     val numberOfTrials = it.second
 
-                    val trials = Game(nameOfCars = nameOfCars, numberOfTrials = numberOfTrials).process()
+                    val game = Game(nameOfCars = nameOfCars, numberOfTrials = numberOfTrials)
+                    game.process()
 
-                    trials.size shouldBe numberOfTrials
+                    game.getGameLogs().size shouldBe numberOfTrials
                 }
             }
 
-            it("각 시도 결과에는 현재 자동차의 정보를 반환한다") {
+            it("각 게임 기록에는 자동차들의 정보를 모두 반환한다") {
                 cases.forEach {
                     val nameOfCars = it.first
                     val numberOfTrials = it.second
 
-                    val trials = Game(nameOfCars = nameOfCars, numberOfTrials = numberOfTrials).process()
+                    val game = Game(nameOfCars = nameOfCars, numberOfTrials = numberOfTrials)
+                    game.process()
 
-                    trials.forEach { cars ->
-                        cars.size shouldBe nameOfCars.size
+                    game.getGameLogs().forEach { gameLog ->
+                        gameLog.size shouldBe nameOfCars.size
                     }
+                }
+            }
+        }
+
+        context("게임이 실행되지 않았다면") {
+            val game = Game(nameOfCars = listOf("john", "mike"), numberOfTrials = 3)
+
+            it("게임 기록 결과 반환 시 IllegalStateException 이 발생한다") {
+                shouldThrowExactly<IllegalStateException> {
+                    game.getGameLogs()
+                }
+            }
+
+            it("우승자 반환 시 IllegalStateException 이 발생한다") {
+                shouldThrowExactly<IllegalStateException> {
+                    game.getWinners()
                 }
             }
         }
