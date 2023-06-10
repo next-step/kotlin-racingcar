@@ -1,9 +1,9 @@
 package racingcar.domain
 
 class CarRace(
-    private val participantCount: Long,
+    participantCount: Long,
     private var maxRound: Long,
-    private val raceMoveRule: RaceMoveRule
+    private val raceMoveRule: RaceMoveRule = RandomRaceMoveRule(DefaultRandomGenerator())
 ) {
     private val cars: List<Car> = MutableList(participantCount.toInt()) { CarFactory.newCar() }
     private var currentRound = 0L
