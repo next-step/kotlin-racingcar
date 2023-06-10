@@ -13,7 +13,7 @@ class RacingGameTest {
         val engine1 = MockEngine(2)
         val engine2 = MockEngine(4)
         val engine3 = MockEngine(10)
-        val cars = listOf(Car(engine1), Car(engine2), Car(engine3))
+        val cars = listOf(Car("car1", engine1), Car("car2", engine2), Car("car3", engine3))
 
         val game = RacingGame(cars)
 

@@ -10,10 +10,10 @@ class RacingCarController {
     private val outputView: OutputView = OutputView()
 
     fun start() {
-        val numberOfCars = inputView.getNumberOfCars()
+        val carNames = inputView.getCarNames()
         val numberOfRounds = inputView.getNumberOfRounds()
 
-        val cars = CarFactory.getCars(numberOfCars)
+        val cars = CarFactory.getCars(carNames)
         val racingGame = RacingGame(cars)
 
         outputView.announceResult()
