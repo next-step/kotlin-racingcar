@@ -1,6 +1,7 @@
 package com.racing.step3
 
 import com.racing.step3.service.CarGameService
+import com.racing.step3.util.randomMoveCarStrategy
 import com.racing.step3.view.InputView
 import com.racing.step3.view.OutputView
 
@@ -33,7 +34,7 @@ object Controller {
     private fun showResult(carNum: Int, stageNum: Int) {
         var createdCarList = CarGameService.createCarList(carNum)
         for (i in 1..stageNum) {
-            createdCarList = CarGameService.moveCar(createdCarList)
+            createdCarList = CarGameService.moveCar(createdCarList, randomMoveCarStrategy())
             createdCarList.forEach() {
                 OutputView.showCarPosition(it.position)
             }

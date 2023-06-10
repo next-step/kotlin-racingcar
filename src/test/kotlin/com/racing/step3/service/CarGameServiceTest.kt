@@ -1,6 +1,7 @@
 package com.racing.step3.service
 
-import org.assertj.core.api.Assertions
+import com.racing.step3.util.fixedMoveCareStrategy
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 internal class CarGameServiceTest {
@@ -13,6 +14,23 @@ internal class CarGameServiceTest {
         val createCarList = CarGameService.createCarList(totalCarNum)
 
         // then
-        Assertions.assertThat(createCarList.size).isEqualTo(totalCarNum)
+        assertThat(createCarList.size).isEqualTo(totalCarNum)
+    }
+
+    @Test
+    fun `자동차 객체 이동 확인`() {
+        // given
+        val fixedMoveCarStrategy = fixedMoveCareStrategy()
+        val totalCarNum = 3
+        var createdCarList = CarGameService.createCarList(totalCarNum)
+
+        // when
+        createdCarList = CarGameService.moveCar(createdCarList, fixedMoveCarStrategy)
+
+        // then
+        assertThat(createdCarList.size).isEqualTo(totalCarNum)
+        createdCarList.forEach {
+            assertThat(it.position).isEqualTo(1)
+        }
     }
 }
