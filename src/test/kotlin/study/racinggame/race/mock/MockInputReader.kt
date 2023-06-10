@@ -8,5 +8,5 @@ class MockInputReader(
 
     private var index = 0
 
-    override fun raedLine(): String? = if (index < inputs.size) inputs[index++] else null
+    override fun raedLine(): String = if (index < inputs.size) inputs[index++] else ""
 }
