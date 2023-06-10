@@ -7,7 +7,7 @@ import io.kotest.matchers.shouldBe
 class CarTest : FunSpec({
     context("position") {
         test("차의 시작 위치는 0") {
-            Car.init().position() shouldBe 0
+            Car(Position(1)).position() shouldBe Position(1)
         }
     }
 
@@ -17,8 +17,8 @@ class CarTest : FunSpec({
             StrategyExpected(0, { 1 }, 1),
             StrategyExpected(10, { 1 }, 11),
             StrategyExpected(20, { 5 }, 25)
-        ) { (init, strategy, expected) ->
-            Car.at(Position(init)).move(strategy) shouldBe Car.at(Position(expected))
+        ) { (pos, strategy, expected) ->
+            Car(Position(pos)).move(strategy) shouldBe Car(Position(expected))
         }
     }
 })
