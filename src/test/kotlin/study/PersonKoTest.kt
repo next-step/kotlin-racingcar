@@ -2,7 +2,6 @@ package study
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.types.shouldBeSameInstanceAs
 
 class PersonKoTest : StringSpec({
     "이름 붙인 인자" {
@@ -26,6 +25,5 @@ class PersonKoTest : StringSpec({
         val person1 = Person(name = "홍길동", age = 20, nickname = "Hong")
         val person2 = Person(name = "홍길동", age = 20, nickname = "Hong")
         person1 shouldBe person2
-
     }
 })
