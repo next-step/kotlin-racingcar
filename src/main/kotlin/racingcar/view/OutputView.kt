@@ -1,13 +1,15 @@
 package racingcar.view
 
+import racingcar.domain.CarGamePosition
+
 private const val RESULT_TITLE = "실행 결과"
 private const val POSITION = "-"
 private const val WINNER_DELIMITER = ","
 
 fun printResultTitle() = println(RESULT_TITLE)
 
-fun printCurrentResult(carPositions: List<Pair<String, Int>>) {
-    carPositions.forEach { println("${it.first} : ${POSITION.repeat(it.second)}") }
+fun printCurrentResult(carGamePositions: List<CarGamePosition>) {
+    carGamePositions.forEach { println("${it.name} : ${POSITION.repeat(it.position)}") }
     println()
 }
 

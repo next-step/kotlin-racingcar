@@ -78,8 +78,7 @@ class RacingGameTest {
 
         val actual = racingGame.currentGameInfo()
 
-        actual[0].first shouldBe givenCarName.value
-        actual[0].second shouldBe givenPosition
+        actual[0] shouldBe CarGamePosition(name = givenCarName.value, position = givenPosition)
     }
 
     @Test

@@ -21,7 +21,7 @@ class RacingGame(
 
     fun isRunnable(): Boolean = attemptCount != RUNNABLE_GAME_ATTEMPT_COUNT
 
-    fun currentGameInfo() = cars.map { Pair(it.name, it.position) }
+    fun currentGameInfo() = cars.map { CarGamePosition(it.name, it.position) }
 
     fun winner(): List<String> {
         check(isRunnable().not()) { "게임이 종료되지 않아 우승자를 확인할 수 없다" }
