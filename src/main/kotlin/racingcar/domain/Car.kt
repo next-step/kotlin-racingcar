@@ -1,6 +1,8 @@
 package racingcar.domain
 
-internal class Car {
+class Car(name: String) {
+    private val carName = CarName(name)
+
     var position = 0
         private set
 
@@ -8,5 +10,9 @@ internal class Car {
         if (moveCondition.isMovable()) {
             position++
         }
+    }
+
+    fun getCarNameString(): String {
+        return carName.name
     }
 }

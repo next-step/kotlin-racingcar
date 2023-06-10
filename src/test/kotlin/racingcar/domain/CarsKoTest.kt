@@ -1,22 +1,40 @@
 package racingcar.domain
 
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.ints.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.shouldNotBe
 
 class CarsKoTest : StringSpec({
+    val carNames = listOf("AA", "BB", "cc")
+
+    val moveCondition = object : MoveCondition {
+        override fun isMovable(): Boolean {
+            return true
+        }
+    }
+
     "주어진 개수만큼 자동차 객체가 생성되어야한다" {
-        val cars = Cars(3)
+        val cars = Cars(carNames)
         cars.countCars() shouldBe 3
     }
 
-    "시도 후 점수가 달라져야한다." {
-        val cars = Cars(3)
-        val before = cars.scores
-        for (i in 0..4) {
-            cars.attempt()
+    "시도한 횟수만큼 위치가 증가한다." {
+        val attemptCount = 3
+        val cars = Cars(carNames)
+        repeat(attemptCount) {
+            cars.attempt(moveCondition)
         }
-        val after = cars.scores
-        after shouldNotBe before
+        cars.carList.forEach {
+            it.position shouldBe attemptCount
+        }
+    }
+
+    "우승자가 한명 이상 존재한다." {
+        val attemptCount = 3
+        val cars = Cars(carNames)
+        repeat(attemptCount) {
+            cars.attempt(moveCondition)
+        }
+        cars.getWinners().size shouldBeGreaterThan 0
     }
 })

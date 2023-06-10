@@ -1,16 +1,21 @@
 package racingcar.domain
 
-class Cars(count: Int) {
-    private val cars: List<Car> = List(count) { Car() }
+class Cars(names: List<String>) {
+    val carList: List<Car> = List(names.size) { Car(names[it]) }
 
-    fun attempt() {
-        for (car in cars) {
-            car.go(RandomCondition())
+    fun attempt(moveCondition: MoveCondition) {
+        for (car in carList) {
+            car.go(moveCondition)
         }
     }
 
-    fun countCars() = cars.size
+    fun countCars() = carList.size
 
-    val scores: List<Int>
-        get() = cars.map(Car::position)
+    fun getWinners(): List<String> {
+        val maxScore: Int = carList.stream()
+            .mapToInt { car -> car.position }
+            .max()
+            .orElse(0)
+        return carList.filter { it.position == maxScore }.map { it.getCarNameString() }
+    }
 }
