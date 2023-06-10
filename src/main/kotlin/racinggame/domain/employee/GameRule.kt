@@ -1,4 +1,4 @@
-package racinggame.domain.game
+package racinggame.domain.employee
 
 data class GameRule(
     val playCount: Int,

@@ -2,7 +2,7 @@ package racinggame.view
 
 import racinggame.domain.RacingGame
 import racinggame.domain.employee.GameGuide
-import racinggame.domain.game.GameRule
+import racinggame.domain.employee.GameRule
 import racinggame.domain.player.User
 
 class RacingGameController(
