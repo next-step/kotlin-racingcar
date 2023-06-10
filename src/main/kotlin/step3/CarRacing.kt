@@ -1,12 +1,6 @@
 package step3
 
 class CarRacing {
-    companion object {
-        private const val RANDOM_RANGE = 10
-    }
-
-    private val raceRule = RaceRule()
-
     fun execute(
         carCount: Int,
         executeCount: Int,
@@ -33,19 +27,15 @@ class CarRacing {
     ) {
         repeat(executeCount) {
             cars.forEach { car ->
-                val raceNumber = RaceNumber.from(buildRandomNumber())
-                if (raceRule.isGo(raceNumber)) {
-                    car.progress()
-                }
-
-                car.showPosition()
+                car.progress()
+                showPosition(car.positionValue)
             }
 
             println()
         }
     }
 
-    private fun buildRandomNumber(): Int {
-        return (Math.random() * RANDOM_RANGE).toInt()
+    private fun showPosition(position: Int) {
+        println("-".repeat(position))
     }
 }

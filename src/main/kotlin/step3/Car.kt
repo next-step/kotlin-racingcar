@@ -1,13 +1,23 @@
 package step3
 
 class Car(
-    var position: Int = 1,
+    private var position: Int = 1,
 ) {
+    val positionValue: Int
+        get() = this.position
+
     fun progress() {
-        this.position += 1
+        val raceNumber = RaceNumber.from(buildRandomNumber())
+        if (RaceRule.isGo(raceNumber)) {
+            this.position += 1
+        }
     }
 
-    fun showPosition() {
-        println("-".repeat(position))
+    private fun buildRandomNumber(): Int {
+        return (Math.random() * RANDOM_RANGE).toInt()
+    }
+
+    companion object {
+        private const val RANDOM_RANGE = 10
     }
 }
