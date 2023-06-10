@@ -9,9 +9,9 @@ object GameController {
         val game = Game(nameOfCars = input.nameOfCars, numberOfTrials = input.numberOfTrials)
         game.process()
 
-        val gameLogs = game.getGameLogs()
-        val winners = game.getWinners()
-
-        OutputController.output(gameLogs, winners)
+        OutputController.output(
+            gameLogs = game.getGameLogs(),
+            winners = game.getWinners(),
+        )
     }
 }
