@@ -11,5 +11,8 @@ class ConsoleRaceOutputViewer : RaceOutputViewer {
         raceStatus.cars.forEach {
             println("-".repeat(it.location.location.toInt()))
         }
+        newline()
     }
+
+    private fun newline() = println("")
 }

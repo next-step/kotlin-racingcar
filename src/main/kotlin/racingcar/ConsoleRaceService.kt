@@ -14,7 +14,6 @@ class ConsoleRaceService {
     fun startCarRace() {
         with(raceInput.input()) {
             CarRace(this).run {
-                raceStatus().view()
                 while (!finished()) {
                     doRace().view()
                 }
