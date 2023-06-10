@@ -4,6 +4,7 @@ import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 
 class CarsTest : FunSpec({
+
     context("move") {
         test("모든 차가 전략에 따라 이동한다.") {
             val cars = Cars(listOf(car("GV1", 5), car("GV3", 3), car("GV80", 10)))

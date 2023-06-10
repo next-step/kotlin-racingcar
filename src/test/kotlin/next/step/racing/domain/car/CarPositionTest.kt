@@ -5,6 +5,7 @@ import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
 
 class CarPositionTest : FunSpec({
+
     context("move") {
         data class MoveExpected(val init: Int, val dx: Int, val expected: Int)
 

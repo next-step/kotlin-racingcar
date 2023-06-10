@@ -6,6 +6,7 @@ import next.step.racing.service.Racing
 import next.step.racing.util.DrivingStrategyUtil
 
 fun main() {
+
     runCatching {
         val carNames = InputDevice.readCarNames()
         val stepCnt = InputDevice.readStepCount()

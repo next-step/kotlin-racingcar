@@ -8,6 +8,7 @@ import next.step.racing.service.to.StepCount
 import next.step.racing.util.DrivingStrategy
 
 object Racing {
+
     fun race(carNames: CarNames, stepCnt: StepCount, drivingStrategy: DrivingStrategy): RacingResult {
         val cars = Cars.from(names = carNames)
         val records = mutableListOf<List<CarRecord>>()

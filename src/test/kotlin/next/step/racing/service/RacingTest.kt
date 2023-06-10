@@ -8,6 +8,7 @@ import next.step.racing.service.to.RacingResult
 import next.step.racing.service.to.StepCount
 
 class RacingTest : FunSpec({
+
     context("race") {
         test("제공된 차의 개수와 횟수만큼 주어진 이동전략을 통해 경주를 하고 전체 차의 위치정보를 제공한다") {
             Racing.race(CarNames.from("GV1,GV3,GV5"), StepCount(5)) { 1 } shouldBe RacingResult(

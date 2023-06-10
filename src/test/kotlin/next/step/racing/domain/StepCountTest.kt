@@ -7,6 +7,7 @@ import io.kotest.matchers.shouldBe
 import next.step.racing.service.to.StepCount
 
 class StepCountTest : FunSpec({
+
     test("문자열로 입력 숫자 생성") {
         StepCount.from("123") shouldBe StepCount(123)
     }

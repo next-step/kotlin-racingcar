@@ -6,9 +6,13 @@ import io.kotest.matchers.shouldBe
 import next.step.racing.util.DrivingStrategy
 
 class CarTest : FunSpec({
+
     val name = CarName("GV80")
+
     context("position") {
+
         val car = Car(name = name, pos = CarPosition(1))
+
         test("차의 시작 위치는 0") {
             car.position() shouldBe 1
         }
@@ -22,6 +26,7 @@ class CarTest : FunSpec({
 
     context("move by strategy") {
         data class StrategyExpected(val init: Int, val strategy: DrivingStrategy, val expected: Int)
+
         withData(
             StrategyExpected(0, { 1 }, 1),
             StrategyExpected(10, { 1 }, 11),

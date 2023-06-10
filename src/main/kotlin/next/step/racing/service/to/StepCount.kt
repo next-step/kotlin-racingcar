@@ -1,6 +1,7 @@
 package next.step.racing.service.to
 
 data class StepCount(val cnt: Int) {
+
     companion object {
         fun from(str: String): StepCount {
             require(str.isNotBlank()) { "공백이 아니어야 합니다." }

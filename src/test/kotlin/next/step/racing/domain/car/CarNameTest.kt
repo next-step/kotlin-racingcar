@@ -4,6 +4,7 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 
 class CarNameTest : StringSpec({
+
     "차 이름이 공백이면 예외 발생" {
         shouldThrow<IllegalArgumentException> { CarName("") }
     }
