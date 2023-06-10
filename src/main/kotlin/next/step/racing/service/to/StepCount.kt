@@ -1,6 +1,7 @@
 package next.step.racing.service.to
 
-data class StepCount(val cnt: Int) {
+@JvmInline
+value class StepCount(val cnt: Int) {
 
     companion object {
         fun from(str: String): StepCount {

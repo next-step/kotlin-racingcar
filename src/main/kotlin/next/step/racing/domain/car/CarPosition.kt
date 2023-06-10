@@ -1,6 +1,7 @@
 package next.step.racing.domain.car
 
-data class CarPosition(val x: Int) : Comparable<CarPosition> {
+@JvmInline
+value class CarPosition(val x: Int) : Comparable<CarPosition> {
 
     fun move(dx: Int): CarPosition = CarPosition(x + dx)
 

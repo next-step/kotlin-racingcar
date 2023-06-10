@@ -1,6 +1,7 @@
 package next.step.racing.domain.car
 
-data class CarName(val name: String) {
+@JvmInline
+value class CarName(val name: String) {
 
     init {
         require(name.isNotBlank()) { "차 이름은 공백이 아니어야 합니다." }
