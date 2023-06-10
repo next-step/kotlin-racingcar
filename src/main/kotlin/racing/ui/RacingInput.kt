@@ -1,11 +1,16 @@
 package racing.ui
 
+import racing.domain.Cars
+import racing.domain.dto.RacingGameRequest
+
 object RacingInput {
 
-    tailrec fun requestCarNames(): String {
+    tailrec fun requestCarNames(): List<String> {
         val carNames = promptAndRead("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
 
-        return if (carNames != null) carNames else {
+        return if (carNames != null) {
+            carNames.split(Cars.DELIMITER).map { it.trim() }
+        } else {
             println("유효한 자동차 이름을 입력하세요. Input: $carNames")
             requestCarNames()
         }
@@ -14,7 +19,9 @@ object RacingInput {
     tailrec fun requestNumberOfRound(): Int {
         val numberOfCar = promptAndReadNumber("시도할 횟수는 몇 회인가요?")
 
-        return if (numberOfCar != null) numberOfCar else {
+        return if (numberOfCar != null) {
+            numberOfCar
+        } else {
             println("숫자를 입력해 주세요.")
             requestNumberOfRound()
         }
@@ -27,5 +34,12 @@ object RacingInput {
     private fun promptAndRead(prompt: String): String? {
         println(prompt)
         return readlnOrNull()
+    }
+
+    fun requestRacingGameInfo(): RacingGameRequest {
+        return RacingGameRequest(
+            carNames = requestCarNames(),
+            numberOfRound = requestNumberOfRound()
+        )
     }
 }

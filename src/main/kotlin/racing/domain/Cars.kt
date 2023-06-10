@@ -4,22 +4,21 @@ import racing.domain.strategy.MovableStrategy
 
 class Cars(private val values: Set<Car>) : Set<Car> by values {
     constructor(capacity: Capacity) : this(createCarList(capacity))
-    constructor(names: String) : this(createCarList(names))
+    constructor(names: List<String>) : this(createCarList(names))
 
     fun notifyMoving(movableStrategy: MovableStrategy): Unit = values.forEach { it.move(strategy = movableStrategy) }
 
     companion object {
-        private const val DELIMITER = ","
+        const val DELIMITER = ","
 
-        private fun createCarList(names: String): Set<Car> {
-            val splitNames = names.split(DELIMITER)
-            val result = splitNames.distinct()
+        private fun createCarList(names: List<String>): Set<Car> {
+            val result = names.distinct()
                 .map { it.trim() }
                 .mapIndexed { idx, name ->
-                Car(id = idx, name = Name(name))
-            }.toSet()
+                    Car(id = idx, name = Name(name))
+                }.toSet()
 
-            require( splitNames.size == result.size ) {
+            require(names.size == result.size) {
                 "자동차 이름은 중복될 수 없습니다."
             }
 

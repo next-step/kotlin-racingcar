@@ -1,9 +1,6 @@
 package racing.ui
 
-import racing.application.RacingInfo
 import racing.application.RacingService
-import racing.domain.Capacity
-import racing.domain.Cars
 
 class RacingController(
     private val racingService: RacingService,
@@ -12,11 +9,10 @@ class RacingController(
 ) {
 
     fun startRacing() {
-        val cars = Cars(racingInput.requestCarNames())
-        val numberOfRound = racingInput.requestNumberOfRound()
+        val racingGameRequest = racingInput.requestRacingGameInfo()
 
         val racingResult =
-            racingService.racing(RacingInfo(round = Capacity(numberOfRound), cars = cars))
+            racingService.racing(racingGameRequest)
 
         racingOutput.printRacingResult(racingResult)
     }

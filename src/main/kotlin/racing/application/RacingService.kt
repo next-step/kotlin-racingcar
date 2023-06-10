@@ -1,17 +1,22 @@
 package racing.application
 
+import racing.domain.Capacity
+import racing.domain.Cars
 import racing.domain.Name
 import racing.domain.RacingHistory
 import racing.domain.RacingResult
+import racing.domain.dto.RacingGameRequest
 import racing.domain.strategy.MovableStrategy
 
 class RacingService(private val movableStrategy: MovableStrategy) {
 
-    fun racing(racingInfo: RacingInfo): RacingResult {
+    fun racing(request: RacingGameRequest): RacingResult {
+        val round = Capacity(request.numberOfRound)
+        val cars = Cars(request.carNames)
 
-        val racingHistories = racingInfo.round.map { currentRound ->
-            racingInfo.cars.notifyMoving(movableStrategy = movableStrategy)
-            RacingHistory(round = currentRound, records = racingInfo.cars.associateBy({ it.name }, { it.distance }))
+        val racingHistories = round.map { currentRound ->
+            cars.notifyMoving(movableStrategy = movableStrategy)
+            RacingHistory(round = currentRound, records = cars.associateBy({ it.name }, { it.distance }))
         }
 
         return RacingResult(
