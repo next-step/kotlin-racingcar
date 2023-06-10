@@ -11,9 +11,9 @@ data class Cars(var cars: List<Car>) {
 
     fun records(): List<CarRecord> = cars.map { car -> CarRecord(car.name(), car.position()) }
 
-    fun winners(): List<String> = mostFast().map { car -> car.name() }
+    fun winners(): List<String> = fastest().map { car -> car.name() }
 
-    private fun mostFast(): List<Car> = cars.filter { car -> car.isAt(maxPosition()) }
+    private fun fastest(): List<Car> = cars.filter { car -> car.isAt(maxPosition()) }
 
     private fun maxPosition() = cars.maxOf { car -> car.pos }
 
