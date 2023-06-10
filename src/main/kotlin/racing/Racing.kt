@@ -32,17 +32,17 @@ class Racing {
     private fun moveAndStop(car: Car) {
         val moveFlag = Random().nextInt(10) >= 4
         if (moveFlag) {
-            car.position = car.position?.plus(1)
-            val distance = car.position?.let { "-".repeat(it) }
-            println(distance)
+            car.position = car.position.plus(1)
+            val distance = "-".repeat(car.position)
+            ResultView.printDistance(distance)
             return
         }
 
         if (car.position == 0) {
             println()
         } else {
-            val distance = car.position?.let { "-".repeat(it) }
-            println(distance)
+            val distance = "-".repeat(car.position)
+            ResultView.printDistance(distance)
         }
     }
 }
