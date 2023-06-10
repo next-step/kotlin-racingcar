@@ -1,4 +1,4 @@
-package next.step.racing.service
+package next.step.racing.util
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.datatest.withData

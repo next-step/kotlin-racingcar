@@ -1,9 +1,9 @@
 package next.step.racing.controller
 
-import next.step.racing.service.DrivingStrategyUtil
 import next.step.racing.service.InputDevice
 import next.step.racing.service.OutputDevice
 import next.step.racing.service.Racing
+import next.step.racing.util.DrivingStrategyUtil
 
 fun main() {
     runCatching {
