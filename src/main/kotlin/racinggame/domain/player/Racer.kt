@@ -4,6 +4,7 @@ import racinggame.domain.car.system.RacingCarSystem
 
 class Racer(
     val id: String,
+    val ordinal: Int,
 ) {
 
     private var racingCarSystem: RacingCarSystem? = null

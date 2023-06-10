@@ -4,6 +4,9 @@ data class User(
     val id: String,
 )
 
-fun User.toRacer() = Racer(
+fun User.toRacer(
+    ordinal: Int,
+) = Racer(
     id = id,
+    ordinal = ordinal,
 )
