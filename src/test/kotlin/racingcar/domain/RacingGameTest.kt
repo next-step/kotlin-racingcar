@@ -73,4 +73,12 @@ class RacingGameTest {
         val actual = racingGame.isRunnable()
         actual shouldBe false
     }
+
+    @Test
+    fun `게임이 종료되지 않았는데 우승자를 확인하면 예외가 발생한다`() {
+        val racingGame = RacingGame(attemptCount = 1, cars = listOf(aCar()))
+
+        val exception = shouldThrowExactly<IllegalStateException> { racingGame.winner() }
+        exception.message shouldBe "게임이 종료되지 않아 우승자를 확인할 수 없다"
+    }
 }

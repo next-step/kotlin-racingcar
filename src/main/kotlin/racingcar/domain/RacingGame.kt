@@ -19,6 +19,10 @@ class RacingGame(
 
     fun isRunnable(): Boolean = attemptCount != RUNNABLE_GAME_ATTEMPT_COUNT
 
+    fun winner() {
+        check(!isRunnable()) { "게임이 종료되지 않아 우승자를 확인할 수 없다" }
+    }
+
     companion object {
         private const val RUNNABLE_GAME_ATTEMPT_COUNT = 0
 
