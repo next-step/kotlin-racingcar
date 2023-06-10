@@ -8,7 +8,7 @@ import racingcar.car.MockEngine
 
 class RacingGameTest {
     @Test
-    fun `게임 한 라운드가 진행 되면 차가 움직이거나 움직이지 않는다`() {
+    fun `게임 한 라운드가 진행`() {
         // given
         val engine1 = MockEngine(2)
         val engine2 = MockEngine(4)

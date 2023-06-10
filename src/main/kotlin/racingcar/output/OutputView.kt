@@ -7,7 +7,6 @@ class OutputView {
 
     fun printCars(cars: List<Car>) {
         cars
-            .asSequence()
             .map { CAR.repeat(it.distance) }
             .forEach { println(it) }
     }

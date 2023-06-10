@@ -20,7 +20,7 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = [5, 6, 7, 8, 9])
+    @ValueSource(ints = [4, 5, 6, 7, 8, 9])
     fun `차가 움직일 때 테스트`(givenRpm: Int) {
         // given
         val engine = MockEngine(givenRpm)
