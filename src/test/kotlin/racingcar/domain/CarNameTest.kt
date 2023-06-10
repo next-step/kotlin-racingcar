@@ -10,7 +10,7 @@ class CarNameTest {
 
     @Test
     fun `자동차의 이름이 5자를 초과할 경우 예외가 발생한다`() {
-        val exception = shouldThrowExactly<IllegalArgumentException> { CarName("12345") }
+        val exception = shouldThrowExactly<IllegalArgumentException> { CarName("123456") }
         exception.message shouldBe "자동차의 이름을 5 자를 초과할 수 없다"
     }
 
