@@ -21,7 +21,7 @@ class RacingCarGameTest {
         val car = RandomDriveCar(
             carNumber = 1,
             randomNumberGenerator = alwaysOneGenerator,
-            minDriveRandomNumber = minDriveRandomNumber
+            minDriveRandomNumber = minDriveRandomNumber,
         )
 
         val result = racingCarGame.progressGame(totalRound = totalRound, cars = listOf(car))

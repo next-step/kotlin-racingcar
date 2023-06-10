@@ -17,7 +17,7 @@ class RacingGameCarFactoryTest {
         val cars = RacingGameCarFactory.createRandomDriveCars(
             totalCarCount = totalCarCount,
             randomNumberGenerator = RandomNumberGenerator(randomLimit = 1, randomBase = 1),
-            minDriveRandomNumber = 1
+            minDriveRandomNumber = 1,
         )
 
         Assertions.assertThat(cars).hasSize(expected.toInt())

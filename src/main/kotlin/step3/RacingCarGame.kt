@@ -35,13 +35,13 @@ fun main() {
 
     val randomNumberGenerator = RandomNumberGenerator(
         randomBase = RacingCarGame.RANDOM_NUMBER_BASE,
-        randomLimit = RacingCarGame.RANDOM_NUMBER_LIMIT
+        randomLimit = RacingCarGame.RANDOM_NUMBER_LIMIT,
     )
 
     val cars = RacingGameCarFactory.createRandomDriveCars(
         totalCarCount = totalCarCount,
         randomNumberGenerator = randomNumberGenerator,
-        RacingCarGame.MIN_RANDOM_DRIVE_NUMBER
+        RacingCarGame.MIN_RANDOM_DRIVE_NUMBER,
     )
 
     val roundResults = racingCarGame.progressGame(totalRound = totalRound, cars = cars)

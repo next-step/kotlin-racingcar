@@ -12,7 +12,7 @@ class RacingGameCarFactory {
                 RandomDriveCar(
                     carNumber = it,
                     randomNumberGenerator = randomNumberGenerator,
-                    minDriveRandomNumber = minDriveRandomNumber
+                    minDriveRandomNumber = minDriveRandomNumber,
                 )
             }
             .toList()

@@ -12,7 +12,7 @@ class RandomDriveCarTest {
         val car = RandomDriveCar(
             carNumber = 1,
             randomNumberGenerator = alwaysOneGenerator,
-            minDriveRandomNumber = minDriveRandomNumber
+            minDriveRandomNumber = minDriveRandomNumber,
         )
 
         car.drive()
@@ -27,7 +27,7 @@ class RandomDriveCarTest {
         val car = RandomDriveCar(
             carNumber = 1,
             randomNumberGenerator = alwaysOneGenerator,
-            minDriveRandomNumber = minDriveRandomNumber
+            minDriveRandomNumber = minDriveRandomNumber,
         )
 
         car.drive()
