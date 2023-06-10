@@ -1,9 +1,5 @@
 package study
 
-fun main() {
-    Calculator().calculate("o / 0")
-}
-
 class Calculator {
 
     fun calculate(expression: String): Int {
