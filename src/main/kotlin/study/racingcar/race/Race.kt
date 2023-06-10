@@ -7,7 +7,8 @@ class Race(
     private val numberOfAttempts: Int
 ) {
     fun startRace(): RaceSummary {
-        return RaceSummary((1..numberOfAttempts).map { runSingleAttempt() })
+        val raceResults = (1..numberOfAttempts).map { runSingleAttempt() }
+        return RaceSummary(raceResults)
     }
     private fun runSingleAttempt(): RaceResult {
         cars.forEach(Car::move)

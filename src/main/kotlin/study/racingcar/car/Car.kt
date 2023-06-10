@@ -1,7 +1,5 @@
 package study.racingcar.car
 
-import study.racingcar.race.CarState
-
 class Car(
     private val name: String,
     private val moveGenerator: MoveGenerator

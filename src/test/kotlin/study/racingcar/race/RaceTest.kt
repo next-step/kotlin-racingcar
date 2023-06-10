@@ -2,6 +2,7 @@ package study.racingcar.race
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
+import study.racingcar.car.CarState
 import study.racingcar.car.DefaultCarFactory
 import study.racingcar.car.MoveGenerator
 
