@@ -66,3 +66,8 @@ pobi, honux가 최종 우승했습니다.
 * OutputView
 > * 실행결과를 표시해주는 함수를 가진다
 > * 우승자를 표시해주는 함수를 가진다
+
+* Controller
+> * 게임을 지배하는 메인 함수를 가짐 
+> * 어떤 전략으로 자동차가 움직일수 있게 하는지 Trigger 람다식을 반환
+> * InputView, OutputView 를 적절히 활용해서 게임을 진행
