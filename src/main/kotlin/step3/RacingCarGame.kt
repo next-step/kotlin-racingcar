@@ -2,13 +2,6 @@ package step3
 
 class RacingCarGame {
 
-    companion object {
-        const val MIN_RANDOM_DRIVE_NUMBER: Long = 4
-        const val RANDOM_NUMBER_BASE: Long = 0
-        const val RANDOM_NUMBER_LIMIT: Long = 9
-        const val START_ROUND = 1
-    }
-
     fun progressGame(totalRound: Long, cars: List<Car>): List<RacingCarRoundResult> {
         return (START_ROUND..totalRound)
             .map { round ->
@@ -20,6 +13,13 @@ class RacingCarGame {
                 RacingCarRoundResult(round, racingCarDriveResults)
             }
             .toList()
+    }
+
+    companion object {
+        const val MIN_RANDOM_DRIVE_NUMBER: Long = 4
+        const val RANDOM_NUMBER_BASE: Long = 0
+        const val RANDOM_NUMBER_LIMIT: Long = 9
+        const val START_ROUND = 1
     }
 }
 
