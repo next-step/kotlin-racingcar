@@ -9,7 +9,7 @@ class CarTest {
         // given
 
         // when
-        val sut = Car()
+        val sut = Car(0)
 
         // then
         assertThat(sut.location()).isEqualTo(0.toLocation())
@@ -18,7 +18,7 @@ class CarTest {
     @Test
     fun `차는 앞으로 이동할 수 있다`() {
         // given
-        val sut = Car()
+        val sut = Car(0)
 
         // when
         sut.moveForward()
