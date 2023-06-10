@@ -15,7 +15,9 @@ object Calculator {
             operator.calculate(acc, next)
         }
 
-        check(remainingOperators.isEmpty()) { "올바르지 않은 연산식 입니다." }
+        if (remainingOperators.isNotEmpty()) {
+            throw IllegalStateException("올바르지 않은 연산식 입니다.")
+        }
         return result
     }
 }
