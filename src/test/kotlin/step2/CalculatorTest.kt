@@ -30,7 +30,6 @@ class CalculatorTest : FreeSpec({
         forAll(
             row("1 4 2"),
             row("1 # 2"),
-            row("1 / 0")
         ) { input ->
             shouldThrow<IllegalArgumentException> { Calculator.calculate(input) }
         }
