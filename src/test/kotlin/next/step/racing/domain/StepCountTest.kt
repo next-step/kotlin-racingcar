@@ -4,10 +4,11 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
+import next.step.racing.service.to.StepCount
 
-class InputCountTest : FunSpec({
+class StepCountTest : FunSpec({
     test("문자열로 입력 숫자 생성") {
-        InputCount.from("123") shouldBe InputCount(123)
+        StepCount.from("123") shouldBe StepCount(123)
     }
 
     context("공백으로 입력 숫자 생성시 예외 발생") {
@@ -16,7 +17,7 @@ class InputCountTest : FunSpec({
             listOf("", " ", "      ")
         ) { spaces ->
             shouldThrow<IllegalArgumentException> {
-                InputCount.from(spaces)
+                StepCount.from(spaces)
             }
         }
     }
@@ -27,7 +28,7 @@ class InputCountTest : FunSpec({
             "dfd", "한글", "+"
         ) { notNumber ->
             shouldThrow<IllegalArgumentException> {
-                InputCount.from(notNumber)
+                StepCount.from(notNumber)
             }
         }
     }
@@ -38,7 +39,7 @@ class InputCountTest : FunSpec({
             listOf("-100", "-10", "0")
         ) { spaces ->
             shouldThrow<IllegalArgumentException> {
-                InputCount.from(spaces)
+                StepCount.from(spaces)
             }
         }
     }
