@@ -1,11 +1,11 @@
 package racing
 
 fun main() {
-    val (carCount, attemptCount) = InputView.input()
+    val racingInputDto = InputView.input()
 
-    val cars = Cars.of(carCount, RandomNumberForwardCondition())
-    val racing = Racing(cars, attemptCount)
-    racing.start()
+    val cars = Cars.of(racingInputDto.carCount, RandomNumberForwardCondition())
+    val racing = Racing(cars, racingInputDto.attemptCount)
+    val racingPhasedRecords = racing.start()
 
-    OutputView.output(racing)
+    OutputView.output(racingPhasedRecords)
 }

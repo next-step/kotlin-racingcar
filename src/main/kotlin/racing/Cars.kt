@@ -1,7 +1,7 @@
 package racing
 
 class Cars(
-    val cars: List<Car>
+    private val cars: List<Car>
 ) {
 
     companion object {
@@ -13,7 +13,8 @@ class Cars(
         }
     }
 
-    fun racing() {
+    fun race(): List<Car> {
         cars.forEach { car -> car.move() }
+        return cars
     }
 }

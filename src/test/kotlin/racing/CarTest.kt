@@ -15,7 +15,7 @@ class CarTest {
         car.move()
 
         // then
-        assertThat(car.distance).isEqualTo(Car.INITIAL_DISTANCE)
+        assertThat(car.getDistance()).isEqualTo(Car.INITIAL_DISTANCE)
     }
 
     @Test
@@ -27,6 +27,6 @@ class CarTest {
         car.move()
 
         // then
-        assertThat(car.distance).isEqualTo(Car.INITIAL_DISTANCE + 1)
+        assertThat(car.getDistance()).isEqualTo(Car.INITIAL_DISTANCE + 1)
     }
 }

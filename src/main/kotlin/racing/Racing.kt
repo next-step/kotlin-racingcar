@@ -5,18 +5,9 @@ data class Racing(
     private val attemptCount: Int
 ) {
 
-    val racingPhasedRecords: MutableList<RacingPhasedRecord> = mutableListOf()
-
-    fun start() {
-        repeat(attemptCount) {
-            cars.racing()
-            addRacingPhasedRecords(cars)
+    fun start() = (0 until attemptCount).map {
+        cars.race().map { car ->
+            car.getDistance()
         }
-    }
-
-    private fun addRacingPhasedRecords(cars: Cars) {
-        RacingPhasedRecord(cars.cars.map { it.distance }).also {
-            racingPhasedRecords.add(it)
-        }
-    }
+    }.map { RacingPhasedRecord(it) }
 }

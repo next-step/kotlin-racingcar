@@ -14,6 +14,6 @@ class CarsTest {
         val cars = Cars.of(carCount, RandomNumberForwardCondition())
 
         // then
-        assertThat(cars.cars.size).isEqualTo(carCount)
+        assertThat(cars.race().size).isEqualTo(carCount)
     }
 }

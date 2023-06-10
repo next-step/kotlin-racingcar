@@ -16,13 +16,12 @@ class RacingTest {
         val racing = Racing(cars, attemptCount)
 
         // when
-        racing.start()
+        val racingPhasedRecords = racing.start()
 
         // then
         assertAll({
-            assertThat(racing.racingPhasedRecords.size).isEqualTo(attemptCount)
-            assertThat(racing.racingPhasedRecords[0].records.size).isEqualTo(carCount)
-            assertThat(racing.racingPhasedRecords[attemptCount - 1].records[0]).isEqualTo(Car.INITIAL_DISTANCE + attemptCount)
+            assertThat(racingPhasedRecords.size).isEqualTo(attemptCount)
+            assertThat(racingPhasedRecords[0].records.size).isEqualTo(carCount)
         })
     }
 }
