@@ -4,15 +4,12 @@ class Calculator {
     private val formulaConverter = FormulaConverter()
 
     fun calculate(formula: String): Int {
-        return formulaConverter.convert(formula).let {
-            var resultValue = it.startValue
-
+        return formulaConverter.convert(formula).run {
+            var resultValue = startValue
             while (true) {
-                it.nextFormulaElement()?.also { formulaElement ->
-                    resultValue = formulaElement.type.calculation(resultValue, formulaElement.value)
-                } ?: break
+                nextFormulaElement()?.also { resultValue = it.operator.calculation(resultValue, it.operand) } ?: break
             }
-            resultValue.toInt()
+            resultValue.value.toInt()
         }
     }
 }

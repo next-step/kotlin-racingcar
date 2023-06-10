@@ -1,83 +1,48 @@
 package calculator
 
-typealias FormulaConverterValidator = FormulaConverter.Validator
+import calculator.Operand.Companion.toOperand
 
 class FormulaConverter {
     fun convert(formula: String): FormulaElements {
-        formula.shouldValidateFormula()
+        formula.shouldValidInput()
 
-        val formulas = formula.split(Validator.formulaDelimiter).iterator()
-        return FormulaElements(
-            formulas.next().toDouble(),
-            formulas.asSequence().toList().chunked(2).map {
-                FormulaElement(
-                    type = Operation.of(it[0])!!,
-                    value = it[1].toDouble()
-                )
-            }
-        )
+        return FormulaElements(formula.split(formulaDelimiter))
     }
 
-    private fun String.shouldValidateFormula() = Validator.checkValidateFormulaOrThrows(this)
+    private fun String.shouldValidInput() = Validator.checkValidInputOrThrows(this)
 
     object Validator {
-        const val formulaDelimiter = " "
-
-        fun checkValidateFormulaOrThrows(formula: String) {
-            formula.shouldNotEmpty()
-            formula.shouldContainNumber()
-            formula.numbersShouldValidPositions()
-            formula.operationsShouldValidPositions()
-            formula.shouldOddNumberDivided()
+        fun checkValidInputOrThrows(formula: String) {
+            require(formula.isNotEmpty())
         }
+    }
 
-        private fun String.shouldNotEmpty() = require(isNotEmpty())
-
-        private fun String.shouldContainNumber() = require(split().any { it.toDoubleOrNull() != null })
-
-        private fun String.numbersShouldValidPositions() = split().filterIndexed { index, _ -> index.isEven() }
-            .forEach { require(it.toDoubleOrNull() != null) }
-
-        private fun String.operationsShouldValidPositions() = split().filterIndexed { index, _ -> !index.isEven() }
-            .forEach { require(Operation.of(it) != null) }
-
-        private fun String.shouldOddNumberDivided() = require((split().size % 2) == 1)
-
-        private fun String.split() = split(formulaDelimiter)
-
-        private fun Int.isEven() = (this % 2) == 0
+    companion object {
+        private const val formulaDelimiter = " "
     }
 }
 
-typealias Calculation = (leftOperand: Double, rightOperand: Double) -> Double
+typealias Calculation = (leftOperand: Operand, rightOperand: Operand) -> Operand
 
-enum class Operation(val op: String, val calculation: Calculation) {
+enum class Operation(val symbol: String, val calculation: Calculation) {
     PLUS(
         "+",
-        object : Calculation {
-            override fun invoke(leftOperand: Double, rightOperand: Double): Double = leftOperand + rightOperand
-        }
+        { leftOperand, rightOperand -> (leftOperand.value + rightOperand.value).toOperand() }
     ),
     MINUS(
         "-",
-        object : Calculation {
-            override fun invoke(leftOperand: Double, rightOperand: Double): Double = leftOperand - rightOperand
-        }
+        { leftOperand, rightOperand -> (leftOperand.value - rightOperand.value).toOperand() }
     ),
     MULTIPLY(
         "*",
-        object : Calculation {
-            override fun invoke(leftOperand: Double, rightOperand: Double): Double = leftOperand * rightOperand
-        }
+        { leftOperand, rightOperand -> (leftOperand.value * rightOperand.value).toOperand() }
     ),
     DIVIDER(
         "/",
-        object : Calculation {
-            override fun invoke(leftOperand: Double, rightOperand: Double): Double = leftOperand / rightOperand
-        }
+        { leftOperand, rightOperand -> (leftOperand.value / rightOperand.value).toOperand() }
     );
 
     companion object {
-        fun of(operation: String) = values().firstOrNull { it.op == operation }
+        fun of(operation: String): Operation? = values().find { it.symbol == operation }
     }
 }
