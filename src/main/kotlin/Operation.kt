@@ -5,10 +5,10 @@ class Operation {
                 ?: throw IllegalArgumentException("+ - * / 를 제외한 다른 연산자가 포함되어 있습니다.")
 
             return when (operator) {
-                Operator.PLUS -> this.add(x, y)
-                Operator.MINUS -> this.sub(x, y)
-                Operator.MULTIPLY -> this.mul(x, y)
-                Operator.DIVISION -> this.div(x, y)
+                Operator.PLUS -> add(x, y)
+                Operator.MINUS -> sub(x, y)
+                Operator.MULTIPLY -> mul(x, y)
+                Operator.DIVISION -> div(x, y)
             }
         }
 
