@@ -13,9 +13,14 @@ class RacingController(
     private val cars = mutableListOf<Car>()
 
     fun play() {
-        val (carCount, turnCount) = view.input()
+        val (names, turnCount) = try {
+            view.input()
+        } catch (e: IllegalArgumentException) {
+            view.printMessage("입력 값이 잘못되어 프로그램을 종료합니다")
+            return
+        }
 
-        initialize(carCount)
+        initialize(names)
 
         for (turn in 1..turnCount) {
             playTurn()
@@ -23,8 +28,8 @@ class RacingController(
         }
     }
 
-    private fun initialize(carCount: Int) {
-        repeat(carCount) {
+    private fun initialize(names: List<String>) {
+        for (name in names) {
             cars.add(Car(rule))
         }
     }
