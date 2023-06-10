@@ -1,8 +1,8 @@
 package com.racing.step3.view
 
-object OutputView : View<String>() {
+object OutputView {
     fun showResultKeyword() {
-        exec("실행 결과") {}
+        println("실행 결과")
     }
 
     fun showRaceStage(carPosition: List<Int>) {

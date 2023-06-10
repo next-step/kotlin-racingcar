@@ -7,31 +7,11 @@ import com.racing.step3.view.OutputView
 
 object Controller {
     fun work() {
-        var carNum = carNumberSetting()
-        var stageNum = stageNumSetting()
+        val carNum = InputView.readCarNumber()
+        val stageNum = InputView.readStageNumber()
 
         OutputView.showResultKeyword()
 
-        showResult(carNum, stageNum)
-    }
-
-    private fun carNumberSetting(): Int {
-        var carNum = 0
-        InputView.readCarNumber {
-            carNum = readln().toInt()
-        }
-        return carNum
-    }
-
-    private fun stageNumSetting(): Int {
-        var stageNum = 0
-        InputView.readStageNumber {
-            stageNum = readln().toInt()
-        }
-        return stageNum
-    }
-
-    private fun showResult(carNum: Int, stageNum: Int) {
         var createdCarList = CarGameService.createCarList(carNum)
         repeat(stageNum) {
             createdCarList = CarGameService.moveCar(createdCarList, randomMoveCarStrategy())
