@@ -1,6 +1,7 @@
 package racing.domain.car
 
 import racing.domain.formula.MoveFormula
+import racing.domain.formula.MoveState
 
 class Car internal constructor(
     val name: String,
@@ -11,10 +12,9 @@ class Car internal constructor(
         private set
 
     @Synchronized
-    fun move(moveFormula: MoveFormula): Int = if (moveFormula.move()) {
-        ++position
-    } else {
-        position
+    fun move(moveFormula: MoveFormula): Int = when (moveFormula.move()) {
+        MoveState.GO -> ++position
+        MoveState.STOP -> position
     }
 
     override fun equals(other: Any?): Boolean = when {
