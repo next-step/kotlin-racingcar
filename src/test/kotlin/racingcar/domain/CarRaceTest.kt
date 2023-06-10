@@ -10,7 +10,7 @@ class CarRaceTest {
         // given
         val tCarCount = 3L
         val tMaxRaceRound = 5L
-        val sut = CarRace(tCarCount, tMaxRaceRound, alwaysGoForwardRaceMoveRule())
+        val sut = CarRace(carRaceProperties(tCarCount, tMaxRaceRound, alwaysGoForwardRaceMoveRule()))
 
         // when
 
@@ -23,7 +23,7 @@ class CarRaceTest {
         // given
         val tCarCount = 3L
         val tMaxRaceRound = 5L
-        val sut = CarRace(tCarCount, tMaxRaceRound, alwaysGoForwardRaceMoveRule())
+        val sut = CarRace(carRaceProperties(tCarCount, tMaxRaceRound, alwaysGoForwardRaceMoveRule()))
 
         // when
 
@@ -40,7 +40,7 @@ class CarRaceTest {
         // given
         val tCarCount = 3L
         val tMaxRaceRound = 5L
-        val sut = CarRace(tCarCount, tMaxRaceRound, alwaysGoForwardRaceMoveRule())
+        val sut = CarRace(carRaceProperties(tCarCount, tMaxRaceRound, alwaysGoForwardRaceMoveRule()))
 
         // when
         val beforeRace = sut.finished()
@@ -57,7 +57,7 @@ class CarRaceTest {
         // given
         val tCarCount = 1L
         val tMaxRaceRound = 5L
-        val sut = CarRace(tCarCount, tMaxRaceRound, alwaysGoForwardRaceMoveRule())
+        val sut = CarRace(carRaceProperties(tCarCount, tMaxRaceRound, alwaysGoForwardRaceMoveRule()))
 
         // when
         val initialStatus = sut.raceStatus()
@@ -71,6 +71,12 @@ class CarRaceTest {
     }
 
     private fun alwaysGoForwardRaceMoveRule(): RaceMoveRule = AlwaysGoForwardRaceMoveRule()
+
+    private fun carRaceProperties(participantCount: Long, maxRound: Long, raceMoveRule: RaceMoveRule) = CarRaceProperties(
+        participantCount = participantCount,
+        maxRound = maxRound,
+        raceMoveRule = raceMoveRule
+    )
 }
 
 internal class AlwaysGoForwardRaceMoveRule : RaceMoveRule {
