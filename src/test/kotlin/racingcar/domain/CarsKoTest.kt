@@ -1,6 +1,7 @@
 package racingcar.domain
 
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.ints.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
 
 class CarsKoTest : StringSpec({
@@ -26,5 +27,14 @@ class CarsKoTest : StringSpec({
         cars.carList.forEach {
             it.position shouldBe attemptCount
         }
+    }
+
+    "우승자가 한명 이상 존재한다." {
+        val attemptCount = 3
+        val cars = Cars(carNames)
+        repeat(attemptCount) {
+            cars.attempt(moveCondition)
+        }
+        cars.getWinners().size shouldBeGreaterThan 0
     }
 })

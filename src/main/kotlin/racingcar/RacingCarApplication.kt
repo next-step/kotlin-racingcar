@@ -1,4 +1,5 @@
 package racingcar
+
 import racingcar.service.RacingCarService
 
 object RacingCarApplication {

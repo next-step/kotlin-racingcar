@@ -22,5 +22,7 @@ class RacingCarService {
             }
             println()
         }
+
+        outputView.printWinners(cars)
     }
 }

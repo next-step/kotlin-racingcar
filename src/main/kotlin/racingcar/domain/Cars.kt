@@ -10,4 +10,12 @@ class Cars(names: List<String>) {
     }
 
     fun countCars() = carList.size
+
+    fun getWinners(): List<String> {
+        val maxScore: Int = carList.stream()
+            .mapToInt { car -> car.position }
+            .max()
+            .orElse(0)
+        return carList.filter { it.position == maxScore }.map { it.getCarNameString() }
+    }
 }
