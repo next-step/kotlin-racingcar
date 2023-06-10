@@ -4,6 +4,8 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
 class CarsKoTest : StringSpec({
+    val carNames = listOf("AA", "BB", "cc")
+
     val moveCondition = object : MoveCondition {
         override fun isMovable(): Boolean {
             return true
@@ -11,16 +13,18 @@ class CarsKoTest : StringSpec({
     }
 
     "주어진 개수만큼 자동차 객체가 생성되어야한다" {
-        val cars = Cars(3)
+        val cars = Cars(carNames)
         cars.countCars() shouldBe 3
     }
 
     "시도한 횟수만큼 위치가 증가한다." {
         val attemptCount = 3
-        val cars = Cars(1)
+        val cars = Cars(carNames)
         repeat(attemptCount) {
             cars.attempt(moveCondition)
         }
-        cars.positions shouldBe listOf(attemptCount)
+        cars.carList.forEach {
+            it.position shouldBe attemptCount
+        }
     }
 })

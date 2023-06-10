@@ -1,16 +1,13 @@
 package racingcar.domain
 
-class Cars(count: Int) {
-    private val cars: List<Car> = List(count) { Car() }
+class Cars(names: List<String>) {
+    val carList: List<Car> = List(names.size) { Car(names[it]) }
 
     fun attempt(moveCondition: MoveCondition) {
-        for (car in cars) {
+        for (car in carList) {
             car.go(moveCondition)
         }
     }
 
-    fun countCars() = cars.size
-
-    val positions: List<Int>
-        get() = cars.map(Car::position)
+    fun countCars() = carList.size
 }

@@ -10,15 +10,15 @@ class RacingCarService {
     private val outputView = OutputView()
 
     fun play() {
-        val numberOfCars = inputView.numberOfCar()
-        val cars = Cars(numberOfCars)
+        val namesOfCars = inputView.namesOfCars()
+        val cars = Cars(namesOfCars)
         val numberOfAttempts = inputView.numberOfAttempts()
 
         outputView.printResult()
         repeat(numberOfAttempts) {
             cars.attempt(RandomCondition())
-            cars.positions.forEach { position ->
-                outputView.printPosition(position)
+            cars.carList.forEach { car ->
+                outputView.printCarPosition(car)
             }
             println()
         }
