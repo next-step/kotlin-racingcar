@@ -6,4 +6,10 @@ data class CarResponse(
     fun getPositionRepresentation(): String {
         return "-".repeat(position)
     }
+
+    companion object {
+        fun of(car: Car): CarResponse {
+            return CarResponse(car.position())
+        }
+    }
 }
