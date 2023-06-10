@@ -5,7 +5,7 @@ private const val POSITION = "-"
 
 fun printResultTitle() = println(RESULT_TITLE)
 
-fun printCurrentResult(positions: List<Int>) {
-    positions.forEach { println(POSITION.repeat(it)) }
+fun printCurrentResult(carPositions: List<Pair<String, Int>>) {
+    carPositions.forEach { println("${it.first} : ${POSITION.repeat(it.second)}") }
     println()
 }
