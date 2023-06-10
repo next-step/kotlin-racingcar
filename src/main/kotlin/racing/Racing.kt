@@ -9,15 +9,13 @@ class Racing {
 
     fun run() {
 
-        InputView.printInputCar()
-        val n = readLine()?.toInt() ?: throw IllegalArgumentException("입력 값은 null 값이 올 수 없습니다")
-        InputView.printInputCount()
-        val count = readLine()?.toInt() ?: throw IllegalArgumentException("입력 값은 null 값이 올 수 없습니다")
+        val carCount = InputView.printInputCar()
+        val tryCount = InputView.printInputCount()
 
         ResultView.printResult()
 
-        val cars = createCars(n)
-        carRacing(count, cars)
+        val cars = createCars(carCount)
+        carRacing(tryCount, cars)
     }
 
     fun createCars(n: Int): List<Car> = (1 until n + 1).map { Car() }
