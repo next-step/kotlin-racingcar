@@ -27,7 +27,7 @@ class RacingGameController(
             gameRule = GameRule(gamePlayCount),
         )
 
-        racingGame.enter(gameGuide)
+        racingGame.execute(gameGuide)
     }
 
     private fun receiveParticipantsCountOrNull(): Int? {

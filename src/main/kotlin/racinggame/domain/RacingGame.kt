@@ -4,5 +4,5 @@ import racinggame.domain.employee.GameGuide
 
 interface RacingGame {
 
-    fun enter(gameGuide: GameGuide)
+    fun execute(gameGuide: GameGuide)
 }

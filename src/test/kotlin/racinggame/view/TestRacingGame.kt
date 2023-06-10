@@ -3,7 +3,7 @@ package racinggame.view
 import racinggame.domain.RacingGame
 import racinggame.domain.employee.GameGuide
 
-class TestRacingGame: RacingGame {
+class TestRacingGame : RacingGame {
 
     var gameGuideCapture: GameGuide? = null
 
@@ -11,7 +11,7 @@ class TestRacingGame: RacingGame {
         gameGuideCapture = null
     }
 
-    override fun enter(gameGuide: GameGuide) {
+    override fun execute(gameGuide: GameGuide) {
         gameGuideCapture = gameGuide
     }
 }

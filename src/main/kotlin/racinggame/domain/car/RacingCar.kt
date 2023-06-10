@@ -32,3 +32,9 @@ class RacingCar(
         return racer.also { racer = null }
     }
 }
+
+fun List<RacingCar>.getOffAllRacer() {
+    forEach { racingCar ->
+        racingCar.getOffRacer()
+    }
+}
