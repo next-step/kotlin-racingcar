@@ -4,21 +4,17 @@ import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Assertions.assertDoesNotThrow
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
 import java.lang.IllegalArgumentException
 
 internal class ExpressionValidatorTest {
-    @Test
-    internal fun `null 인 경우 예외 발생`() {
-        val sut = ExpressionValidator()
-        assertThatThrownBy { sut.validate(null) }
-            .isInstanceOf(IllegalArgumentException::class.java)
-    }
 
-    @Test
-    internal fun `빈값 인 경우 예외 발생`() {
+    @ParameterizedTest
+    @NullAndEmptySource
+    internal fun `연산식이 null or 빈값 인 경우 예외 발생`(expression: String?) {
         val sut = ExpressionValidator()
-        assertThatThrownBy { sut.validate("") }
+        assertThatThrownBy { sut.validate(expression) }
             .isInstanceOf(IllegalArgumentException::class.java)
     }
 
