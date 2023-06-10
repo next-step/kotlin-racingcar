@@ -1,6 +1,6 @@
 package study.step2
 
-enum class Operator(
+enum class ArithmeticOperator(
     val symbol: String,
     val operation: (Int, Int) -> Int
 ) {
