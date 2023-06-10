@@ -1,4 +1,4 @@
-package step3.domain.strategy
+package carGame.domain.strategy
 
 interface MoveStrategy {
     fun movable(): Boolean

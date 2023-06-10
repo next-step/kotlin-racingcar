@@ -1,4 +1,4 @@
-package step3.view
+package carGame.view
 
 object InputView {
     fun getCarCount(): Int {

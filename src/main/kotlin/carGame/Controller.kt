@@ -1,8 +1,8 @@
-package step3
+package carGame
 
-import step3.domain.CarGame
-import step3.view.InputView
-import step3.view.OutputView
+import carGame.domain.CarGame
+import carGame.view.InputView
+import carGame.view.OutputView
 
 fun main() {
     val carCount = InputView.getCarCount()

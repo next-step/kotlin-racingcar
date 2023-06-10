@@ -1,4 +1,4 @@
-package step3.domain
+package carGame.domain
 
 class GameResult(
     private val initialPositions: CarPositions,

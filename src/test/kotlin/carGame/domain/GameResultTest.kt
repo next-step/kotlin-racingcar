@@ -1,4 +1,4 @@
-package step3.domain
+package carGame.domain
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe

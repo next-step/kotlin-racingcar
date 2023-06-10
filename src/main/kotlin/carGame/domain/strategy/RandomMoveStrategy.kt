@@ -1,4 +1,4 @@
-package step3.domain.strategy
+package carGame.domain.strategy
 
 object RandomMoveStrategy : MoveStrategy {
     private const val MIN_RANDOM_NUMBER = 0

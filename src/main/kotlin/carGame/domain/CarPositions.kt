@@ -1,4 +1,4 @@
-package step3.domain
+package carGame.domain
 
 class CarPositions(private val positions: List<CarPosition>) {
     fun moveBy(movable: () -> Boolean): CarPositions {

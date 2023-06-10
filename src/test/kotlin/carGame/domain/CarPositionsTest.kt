@@ -1,4 +1,4 @@
-package step3.domain
+package carGame.domain
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.collections.shouldContainExactly
@@ -13,7 +13,6 @@ class CarPositionsTest : BehaviorSpec({
             then("전진한다.") {
                 val result = positions.moveBy(movable)
                 result.getPositions() shouldContainExactly listOf(1, 1, 1)
-
             }
         }
 

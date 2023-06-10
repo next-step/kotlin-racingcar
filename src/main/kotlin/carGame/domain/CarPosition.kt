@@ -1,4 +1,4 @@
-package step3.domain
+package carGame.domain
 
 class CarPosition(val position: Int = 0) {
     fun move(): CarPosition {

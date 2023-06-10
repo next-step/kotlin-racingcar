@@ -1,7 +1,7 @@
-package step3.view
+package carGame.view
 
-import step3.domain.CarPositions
-import step3.domain.GameResult
+import carGame.domain.CarPositions
+import carGame.domain.GameResult
 
 object OutputView {
     fun printResult(gameResult: GameResult) {
