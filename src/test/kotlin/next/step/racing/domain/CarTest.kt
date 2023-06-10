@@ -3,7 +3,7 @@ package next.step.racing.domain
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
-import next.step.racing.service.DrivingStrategy
+import next.step.racing.util.DrivingStrategy
 
 class CarTest : FunSpec({
     context("position") {

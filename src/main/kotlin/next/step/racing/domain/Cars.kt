@@ -1,6 +1,6 @@
 package next.step.racing.domain
 
-import next.step.racing.service.DrivingStrategy
+import next.step.racing.util.DrivingStrategy
 
 data class Cars(val cars: List<Car>) {
     companion object {
