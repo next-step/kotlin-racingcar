@@ -1,10 +1,10 @@
-package study.racinggame.controller
+package study.racinggame.presentation
 
 import study.racinggame.domain.Race
-import study.racinggame.race.RaceRule
-import study.racinggame.race.reader.InputReader
-import study.racinggame.race.view.DrawView
-import study.racinggame.race.view.InputView
+import study.racinggame.presentation.view.DrawView
+import study.racinggame.presentation.view.InputView
+import study.racinggame.service.RaceRule
+import study.racinggame.service.reader.InputReader
 import kotlin.random.Random
 
 class RaceController(

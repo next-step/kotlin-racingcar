@@ -1,9 +1,9 @@
-package study.racinggame.controller
+package study.racinggame.presentation
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import study.racinggame.race.mock.MockInputReader
-import study.racinggame.race.mock.MockRandom
+import study.racinggame.service.mock.MockInputReader
+import study.racinggame.service.mock.MockRandom
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 

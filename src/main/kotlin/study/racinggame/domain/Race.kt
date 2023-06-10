@@ -1,6 +1,6 @@
 package study.racinggame.domain
 
-import study.racinggame.race.RaceRule
+import study.racinggame.service.RaceRule
 
 class Race(
     private val carStorage: List<Car>,

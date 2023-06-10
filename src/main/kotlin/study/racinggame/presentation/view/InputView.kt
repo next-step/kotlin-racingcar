@@ -1,7 +1,7 @@
-package study.racinggame.race.view
+package study.racinggame.presentation.view
 
 import study.racinggame.domain.Car
-import study.racinggame.race.reader.InputReader
+import study.racinggame.service.reader.InputReader
 
 class InputView {
 

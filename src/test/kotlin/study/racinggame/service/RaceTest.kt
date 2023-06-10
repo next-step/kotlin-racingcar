@@ -1,10 +1,10 @@
-package study.racinggame.race
+package study.racinggame.service
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import study.racinggame.domain.Car
 import study.racinggame.domain.Race
-import study.racinggame.race.mock.MockRandom
+import study.racinggame.service.mock.MockRandom
 
 class RaceTest : StringSpec({
     "모든 차가 앞으로 나가는 경우 테스트" {

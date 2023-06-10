@@ -1,4 +1,4 @@
-package study.racinggame.race.mock
+package study.racinggame.service.mock
 
 import kotlin.random.Random
 

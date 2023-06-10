@@ -1,12 +1,11 @@
-package study.racinggame.race
+package study.racinggame.service
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import study.racinggame.domain.Car
-import study.racinggame.race.mock.MockInputReader
-import study.racinggame.race.view.InputView
-import java.lang.IllegalArgumentException
+import study.racinggame.presentation.view.InputView
+import study.racinggame.service.mock.MockInputReader
 
 class InputViewTest : BehaviorSpec({
     given("커맨드 입력 테스트") {

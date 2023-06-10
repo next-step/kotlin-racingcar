@@ -1,4 +1,4 @@
-package study.racinggame.race
+package study.racinggame.service
 
 import kotlin.random.Random
 

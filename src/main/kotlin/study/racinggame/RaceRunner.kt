@@ -1,7 +1,7 @@
 package study.racinggame // ktlint-disable filename
 
-import study.racinggame.controller.RaceController
-import study.racinggame.race.reader.ActualInputReader
+import study.racinggame.presentation.RaceController
+import study.racinggame.service.reader.ActualInputReader
 
 fun main() {
     val inputReader = ActualInputReader()

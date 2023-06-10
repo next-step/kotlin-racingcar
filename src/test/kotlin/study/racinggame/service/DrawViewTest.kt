@@ -1,9 +1,9 @@
-package study.racinggame.race
+package study.racinggame.service
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import study.racinggame.domain.CarResponse
-import study.racinggame.race.view.DrawView
+import study.racinggame.presentation.view.DrawView
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 
