@@ -8,6 +8,7 @@ import study.racinggame.race.view.InputView
 fun main() {
     val race = init()
     race.startRace()
+    race.noticeRaceWinner()
 }
 
 fun init(): Race {

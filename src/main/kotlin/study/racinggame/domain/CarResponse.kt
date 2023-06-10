@@ -12,7 +12,7 @@ data class CarResponse(
 
     companion object {
         fun of(car: Car): CarResponse {
-            return CarResponse(car.position())
+            return CarResponse(car.position(), car.name)
         }
     }
 }

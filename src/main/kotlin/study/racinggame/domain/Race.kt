@@ -17,8 +17,18 @@ class Race(
         repeat(inputView.raceTryCnt()) {
             moveCarsIfPossible()
             val carResponses = carStorage.map(CarResponse.Companion::of)
-            DrawView().drawCarState(carResponses)
-        }.repeat(inputView.raceTryCnt())
+
+            drawView.drawCarState(carResponses)
+        }
+    }
+
+    fun noticeRaceWinner() {
+        val maxValue: Int = carStorage.maxOf { each -> each.position() }
+
+        val winnerName: String = carStorage.filter { each -> each.position() == maxValue }
+            .joinToString(", ") { winner -> winner.name }
+
+        drawView.drawRaceWinner(winnerName)
     }
 
     fun carStorage() = carStorage
