@@ -20,8 +20,8 @@ class CarsTest {
         val cars = Cars(listOf(aCar(position = 0) { true }, aCar(position = 0) { true }))
         cars.run()
 
-        cars.values[0].position shouldBe 1
-        cars.values[1].position shouldBe 1
+        cars[0].position shouldBe 1
+        cars[1].position shouldBe 1
     }
 
     @Test
@@ -41,6 +41,6 @@ class CarsTest {
     fun `랜덤하게 움직이는 자동차를 생성한다`() {
         val actual = createRandomMoveCars(listOf("pobi", "crong", "honux"))
 
-        actual.values shouldHaveSize 3
+        actual shouldHaveSize 3
     }
 }

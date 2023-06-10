@@ -4,7 +4,7 @@ import racingcar.domain.Car.Companion.createRandomMoveCar
 
 class Cars(
     val values: List<Car>
-) {
+) : List<Car> by values {
     init {
         require(values.isNotEmpty()) { "게임 생성에 필요한 자동차 대수는 1대 이상이어야 한다." }
     }

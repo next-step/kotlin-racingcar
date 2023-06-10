@@ -23,7 +23,7 @@ class RacingGameTest {
         val actual = RacingGame(attemptCount = 1, cars = Cars(listOf(aCar())))
 
         actual.attemptCount shouldBe 1
-        actual.cars.values shouldHaveSize 1
+        actual.cars shouldHaveSize 1
     }
 
     @Test
@@ -32,7 +32,7 @@ class RacingGameTest {
         racingGame.run()
 
         racingGame.attemptCount shouldBe 0
-        racingGame.cars.values[0].position shouldBe 1
+        racingGame.cars[0].position shouldBe 1
     }
 
     @Test
@@ -49,7 +49,7 @@ class RacingGameTest {
         val actual = createRandomMoveCarRacingGame(attemptCount = 1, listOf("pobi", "crong", "honux"))
 
         actual.attemptCount shouldBe 1
-        actual.cars.values shouldHaveSize 3
+        actual.cars shouldHaveSize 3
     }
 
     @Test
