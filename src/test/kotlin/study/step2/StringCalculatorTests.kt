@@ -1,4 +1,4 @@
-package study
+package study.step2
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.assertThrows

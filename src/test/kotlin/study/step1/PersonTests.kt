@@ -1,9 +1,9 @@
-package study
+package study.step1
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class PersonTest {
+class PersonTests {
 
     @Test
     fun `이름 붙인 인자`() {
