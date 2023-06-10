@@ -5,17 +5,21 @@ import step4.domain.CarDto
 object OutputController {
     private const val PRINTING_SYMBOL = "-"
 
-    fun output(results: List<List<CarDto>>, winners: List<CarDto>) {
+    fun output(gameLogs: List<List<CarDto>>, winners: List<CarDto>) {
         println("실행 결과")
-        results.forEach { cars ->
-            cars.forEach { car -> car.printCarStatus() }
+        gameLogs.forEach { logs ->
+            logs.printLog()
             println()
         }
 
         println("${winners.joinToString { it.name }}가 최종 우승했습니다.")
     }
 
-    private fun CarDto.printCarStatus() {
+    private fun List<CarDto>.printLog() {
+        this.forEach { car -> car.printNameAndPosition() }
+    }
+
+    private fun CarDto.printNameAndPosition() {
         print("$name : ${PRINTING_SYMBOL.repeat(this.position)}")
         println()
     }

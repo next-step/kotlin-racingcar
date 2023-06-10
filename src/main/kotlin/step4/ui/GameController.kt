@@ -7,9 +7,11 @@ object GameController {
         val input = InputController.input()
 
         val game = Game(nameOfCars = input.nameOfCars, numberOfTrials = input.numberOfTrials)
-        val processResults = game.process()
+        game.process()
+
+        val gameLogs = game.getGameLogs()
         val winners = game.getWinners()
 
-        OutputController.output(processResults, winners)
+        OutputController.output(gameLogs, winners)
     }
 }
