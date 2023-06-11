@@ -1,7 +1,5 @@
 package racingcar.domain
 
-import racingcar.Car
-
 class RandomDriveCar(
     override val carNumber: Long,
     override val name: String,
