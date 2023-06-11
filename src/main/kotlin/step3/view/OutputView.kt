@@ -1,20 +1,9 @@
 package step3.view
 
-import step3.Distance
+import step3.CurrentCarStatus
 
-object OutputView {
-    fun showResultTitle() {
-        println("\n실행 결과")
-    }
-
-    fun showStatus(distanceResult: List<Distance>) {
-        distanceResult.forEach {
-            val distanceView = StringBuilder()
-            repeat(it.toInt()) {
-                distanceView.append("-")
-            }
-            println(distanceView)
-        }
-        println()
-    }
+interface OutputView {
+    fun showResultTitle()
+    fun showStatus(carStatuses: List<CurrentCarStatus>)
+    fun showWinner(winnerNames: List<String>)
 }
