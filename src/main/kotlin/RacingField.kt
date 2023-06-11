@@ -16,8 +16,9 @@ class RacingField(
         return gameCount
     }
 
-    fun gameStart() {
+    fun gameStart(): MutableList<Car> {
         moveCars()
+        return cars
     }
 
     private fun moveCars() {
