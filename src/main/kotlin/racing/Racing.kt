@@ -22,7 +22,7 @@ class Racing {
 
     fun carRacing(tryCount: Int, cars: List<Car>) {
         repeat(tryCount) {
-            for (car in cars) {
+            cars.forEach { car ->
                 val randomNumber = DefaultRandomNumberGenerator().nextInt(10)
                 val distance = moveAndStop(car, randomNumber)
                 ResultView.printDistance(distance)
