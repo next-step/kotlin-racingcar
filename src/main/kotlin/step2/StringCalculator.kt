@@ -24,7 +24,7 @@ class StringCalculator {
                 operator = getOperator(value)
             }
             if (isNumber(value)) {
-                result = Operator.calculate(prev = result, next = value.toDouble(), operator = operator)
+                result = operator.calculate(prev = result, next = value.toDouble())
             }
         }
 

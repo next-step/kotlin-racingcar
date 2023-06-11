@@ -9,10 +9,11 @@ enum class Operator(
     MULTIPLY("*", { x, y -> x * y }),
     DIVIDE("/", { x, y -> x / y });
 
+    fun calculate(prev: Double, next: Double): Double {
+        return this.operation(prev, next)
+    }
+
     companion object {
-        fun calculate(prev: Double, next: Double, operator: Operator): Double {
-            return operator.operation(prev, next)
-        }
 
         fun getOperator(value: String): Operator {
             return Operator.values().find { it.operator == value }
