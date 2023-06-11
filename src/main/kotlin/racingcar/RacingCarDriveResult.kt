@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 class RacingCarDriveResult(
     val carNumber: Long,

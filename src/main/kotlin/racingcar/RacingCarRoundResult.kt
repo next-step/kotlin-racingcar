@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 class RacingCarRoundResult(
     val round: Long,

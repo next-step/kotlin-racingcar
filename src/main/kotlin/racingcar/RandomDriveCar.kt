@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 class RandomDriveCar(
     override val carNumber: Long,

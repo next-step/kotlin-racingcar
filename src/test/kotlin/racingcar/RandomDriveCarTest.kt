@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 import io.mockk.every
 import io.mockk.mockk

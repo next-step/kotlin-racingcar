@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
