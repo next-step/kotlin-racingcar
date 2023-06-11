@@ -10,7 +10,7 @@ class RacingCarGame {
             .map { round ->
                 val racingCarDriveResults = cars.map { car ->
                     car.drive()
-                    RacingCarDriveResult(car.carNumber, car.position)
+                    RacingCarDriveResult(car.carNumber, car.position, car.name)
                 }
                     .toList()
                 RacingCarRoundResult(round, racingCarDriveResults)
