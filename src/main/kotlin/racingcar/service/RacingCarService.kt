@@ -8,10 +8,10 @@ class RacingCarService {
     private val outputView = OutputView()
 
     fun play(names: List<String>, attempts: Int): List<String> {
-        val cars = Cars(names)
+        val cars = Cars(names, RandomCondition())
 
         repeat(attempts) {
-            cars.attempt(RandomCondition())
+            cars.attempt()
             outputView.printCarsPosition(cars)
         }
         return cars.getWinners()

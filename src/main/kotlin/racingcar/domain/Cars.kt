@@ -1,11 +1,11 @@
 package racingcar.domain
 
-class Cars(names: List<String>) {
-    val carList: List<Car> = names.map { Car(it) }
+class Cars(names: List<String>, moveCondition: MoveCondition) {
+    val carList: List<Car> = names.map { Car(it, moveCondition) }
 
-    fun attempt(moveCondition: MoveCondition) {
+    fun attempt() {
         for (car in carList) {
-            car.go(moveCondition)
+            car.go()
         }
     }
 
