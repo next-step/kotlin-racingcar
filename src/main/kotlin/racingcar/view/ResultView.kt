@@ -8,5 +8,7 @@ interface ResultView {
 
     fun printMessage(message: String)
 
-    fun output(turn: Int, cars: List<Car>)
+    fun printTurn(turn: Int, cars: List<Car>)
+
+    fun printResult(winner: String)
 }

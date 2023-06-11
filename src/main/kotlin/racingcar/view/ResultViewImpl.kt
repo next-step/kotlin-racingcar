@@ -18,7 +18,7 @@ class ResultViewImpl : ResultView {
 
     override fun printMessage(message: String) = println(message)
 
-    override fun output(turn: Int, cars: List<Car>) {
+    override fun printTurn(turn: Int, cars: List<Car>) {
         println(if (turn == 1) "실행 결과" else "")
         cars.forEach {
             print("${it.name} : ")
@@ -27,5 +27,9 @@ class ResultViewImpl : ResultView {
             }
             println()
         }
+    }
+
+    override fun printResult(winner: String) {
+        println("\n${winner}가 최종 우승했습니다.")
     }
 }

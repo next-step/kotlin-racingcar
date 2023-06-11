@@ -24,8 +24,10 @@ class RacingController(
 
         for (turn in 1..turnCount) {
             playTurn()
-            view.output(turn, cars)
+            view.printTurn(turn, cars)
         }
+        val winners = rule.getWinners(cars)
+        view.printResult(winners.joinToString())
     }
 
     private fun initialize(names: List<String>) {
