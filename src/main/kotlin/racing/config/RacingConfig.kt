@@ -2,9 +2,9 @@ package racing.config
 
 import racing.application.RacingService
 import racing.domain.strategy.Generator
-import racing.domain.strategy.MoveStrategy
+import racing.domain.strategy.Navigator
 import racing.domain.strategy.RandomNumberGenerator
-import racing.domain.strategy.ThresholdBasedMoveStrategy
+import racing.domain.strategy.ThresholdBasedMovableStrategy
 import racing.ui.RacingController
 import racing.ui.RacingInput
 import racing.ui.RacingOutput
@@ -20,7 +20,7 @@ object RacingConfig {
     }
     val racingOutput: RacingOutput by lazy { RacingOutput }
     val racingInput: RacingInput by lazy { RacingInput }
-    val racingService: RacingService by lazy { RacingService(moveStrategy = moveStrategy) }
-    val moveStrategy: MoveStrategy by lazy { ThresholdBasedMoveStrategy(numberGenerator = generator) }
+    val racingService: RacingService by lazy { RacingService(navigator = navigator) }
+    val navigator: Navigator by lazy { ThresholdBasedMovableStrategy(numberGenerator = generator) }
     val generator: Generator<Int> by lazy { RandomNumberGenerator }
 }

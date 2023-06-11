@@ -1,7 +1,7 @@
 package racing.domain
 
 @JvmInline
-value class Capacity(val value: Int) : Iterable<Int>, Comparable<Capacity> {
+value class Capacity(val value: Int) : Comparable<Capacity> {
     constructor(value: String?) : this(
         value?.toIntOrNull()
             ?: throw IllegalArgumentException("Invalid value: $value required number formattable value")
@@ -9,15 +9,17 @@ value class Capacity(val value: Int) : Iterable<Int>, Comparable<Capacity> {
 
     init {
         require(value >= 0) {
-            "Invalid value: $value required positive number"
+            "$INVALID_CAPACITY_MESSAGE $value"
         }
     }
 
-    override fun iterator(): Iterator<Int> = (0 until value).iterator()
+    val availableRange: IntRange get() = 0 until value
 
-    override fun compareTo(other: Capacity): Int = value.compareTo(other.value)
+    override fun compareTo(other: Capacity): Int = value compareTo other.value
 
     companion object {
+        const val INVALID_CAPACITY_MESSAGE = "Required positive number. Invalid value:"
+
         val ZERO = Capacity(0)
     }
 }
