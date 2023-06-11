@@ -1,8 +1,8 @@
 package racingcar.rule
 
-import racingcar.util.Generator
+import racingcar.util.RandomGenerator
 
-class RacingRuleImpl(private val randomGenerator: Generator) : RacingRule {
+class RacingRuleImpl(private val randomGenerator: RandomGenerator) : RacingRule {
     override fun canMove(): Boolean {
         val randomValue = randomGenerator.value
         return randomValue >= LIMIT_VALUE
