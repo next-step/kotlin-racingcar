@@ -1,4 +1,4 @@
-package study.step3.veiw
+package study.step3.resultview
 
 import study.step3.Car
 

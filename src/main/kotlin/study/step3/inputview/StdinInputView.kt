@@ -1,4 +1,4 @@
-package study.step3.veiw
+package study.step3.inputview
 
 class StdinInputView : InputView {
 

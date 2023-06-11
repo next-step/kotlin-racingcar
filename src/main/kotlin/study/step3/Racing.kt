@@ -1,7 +1,7 @@
 package study.step3
 
-import study.step3.veiw.InputView
-import study.step3.veiw.ResultView
+import study.step3.inputview.InputView
+import study.step3.resultview.ResultView
 
 class Racing(
     private val inputView: InputView,

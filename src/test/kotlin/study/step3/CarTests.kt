@@ -1,39 +1,49 @@
 package study.step3
 
+import io.kotest.core.spec.style.StringSpec
+import io.kotest.data.forAll
+import io.kotest.data.headers
+import io.kotest.data.row
+import io.kotest.data.table
+import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.ValueSource
 
-class CarTests {
+class CarTests : StringSpec({
 
-    @Test
-    fun `차의 초기 트레이스는 한 칸이다`() {
+    "Car 의 초기 트레이스는 한 칸이다" {
         val sut = Car(RandomMovementConditionGenerator())
-        assertEquals(sut.getMovementTrace(), "")
+        sut.getMovementTrace() shouldBe ""
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = [4, 5, 6, 7, 8, 9])
-    fun `4 미만의 조건에 대해서는 제자리에 있는다`(generatedNumber: Int) {
-        val sut = Car(object : MovementConditionGenerator {
-            override fun run(): Int {
-                return generatedNumber
-            }
-        })
-        sut.move()
-        assertEquals(sut.getMovementTrace(), "-")
+    "4 미만의 조건에 대해서는 제자리에 있는다" {
+        table(
+            headers("generatedNumber"),
+            row(0),
+            row(3)
+        ).forAll { generatedNumber ->
+            val sut = Car(object : MovementConditionGenerator {
+                override fun run(): Int {
+                    return generatedNumber
+                }
+            })
+            sut.move()
+            sut.getMovementTrace() shouldBe ""
+        }
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = [1, 2, 3])
-    fun `4 이상의 조건에 대해서는 한 칸 전진한다`(generatedNumber: Int) {
-        val sut = Car(object : MovementConditionGenerator {
-            override fun run(): Int {
-                return generatedNumber
-            }
-        })
-        sut.move()
-        assertEquals(sut.getMovementTrace(), "")
+    "4 이상의 조건에 대해서는 한 칸 전진한다" {
+        table(
+            headers("generatedNumber"),
+            row(4),
+            row(9)
+        ).forAll { generatedNumber ->
+            val sut = Car(object : MovementConditionGenerator {
+                override fun run(): Int {
+                    return generatedNumber
+                }
+            })
+            sut.move()
+            assertEquals(sut.getMovementTrace(), "-")
+        }
     }
-}
+})
