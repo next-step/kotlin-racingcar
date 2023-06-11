@@ -1,9 +1,12 @@
 package racingcar.domain
 
-class CarName(val name: String) {
-    private val maxNameLength = 5
-
+@JvmInline
+value class CarName(val name: String) {
     init {
         require(name.length <= maxNameLength)
+    }
+
+    companion object {
+        private const val maxNameLength = 5
     }
 }

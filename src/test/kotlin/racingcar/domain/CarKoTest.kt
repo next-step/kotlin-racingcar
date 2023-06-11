@@ -11,8 +11,8 @@ class CarKoTest : StringSpec({
     }
 
     "한번 이동하면 position이 1 올라간다." {
-        val car = Car("test")
-        car.go(moveCondition)
+        val car = Car("test", moveCondition)
+        car.go()
         car.position shouldBe 1
     }
 })
