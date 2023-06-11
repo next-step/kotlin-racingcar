@@ -2,9 +2,12 @@ package race
 
 import kotlin.random.Random
 
-class Car {
-    var position: Int = 0
-        private set
+class Car private constructor(var position: Int) {
+    constructor() : this(0)
+
+    fun copy(): Car {
+        return Car(this.position)
+    }
 
     fun move() {
         if (canGoStraight()) {

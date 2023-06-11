@@ -3,7 +3,16 @@ package race.view
 import race.Car
 
 class ResultView {
-    fun showAllPosition(cars: List<Car>) {
+    fun run(resultData: ResultData) {
+        val records = resultData.records
+
+        println("실행 결과")
+        for (record in records) {
+            showAllPosition(record)
+        }
+    }
+
+    private fun showAllPosition(cars: List<Car>) {
         for (car in cars) {
             show(car)
         }

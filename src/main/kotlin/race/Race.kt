@@ -1,21 +1,24 @@
 package race
 
 import race.controller.RaceController
+import race.view.ResultData
 import race.view.ResultView
 
 class Race(
     private val cars: List<Car>,
     private val numberOfTry: Int
 ) {
-    private val resultView = ResultView()
-
-    fun run() {
-        println("실행 결과")
+    fun run(): ResultData {
+        val records = mutableListOf<List<Car>>()
 
         repeat(numberOfTry) {
             cars.forEach { it.move() }
-            resultView.showAllPosition(cars)
+
+            val copiedCars = cars.map { it.copy() }
+            records.add(copiedCars)
         }
+
+        return ResultData(records)
     }
 }
 
@@ -25,5 +28,7 @@ fun main() {
     val cars = raceRequest.cars
     val numberOfTry = raceRequest.numberOfTry
 
-    Race(cars, numberOfTry).run()
+    val result = Race(cars, numberOfTry).run()
+
+    ResultView().run(result)
 }
