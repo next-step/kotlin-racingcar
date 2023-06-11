@@ -5,27 +5,25 @@ class Race(
     private val numberOfRace: Int
 ) {
 
-    private val _cars = mutableListOf<Car>().apply {
+    private val cars = mutableListOf<Car>().apply {
         raceCars.forEach {
-            Car(it)
+            add(Car(it))
         }
-
     }
 
-    val cars: List<Car> get() = _cars.toList()
+    fun getCarSize() = cars.size
 
     private fun carsMove() {
-        _cars.forEach {
+        cars.forEach {
             it.go()
         }
     }
 
-    fun startRacing(update: ((List<Int>) -> Unit)? = null) {
+    fun startRacing(update: ((List<Pair<String, Int>>) -> Unit)? = null) {
         repeat(numberOfRace) {
             carsMove()
-            val carPositionList = _cars.map { it.position }
-            update?.invoke(carPositionList)
+            val result = cars.map { it.name to it.position }
+            update?.invoke(result)
         }
     }
 }
-

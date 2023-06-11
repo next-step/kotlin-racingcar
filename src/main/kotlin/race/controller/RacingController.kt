@@ -12,10 +12,10 @@ class RacingController(
     fun start() {
         val racers = inputView.inputRacers()
         val numberOfRace = inputView.inputNumberOfRace()
+
         val race = Race(racers, numberOfRace)
 
         resultView.showResult()
-        // resultView.showRacing(racing.cars)
 
         race.startRacing {
             resultView.showRacing(it)

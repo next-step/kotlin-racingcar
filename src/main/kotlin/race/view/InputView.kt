@@ -17,8 +17,8 @@ object InputView {
         return readln().toInt()
     }
 
-    private fun String.validRacerName(){
-        require(this.length > 5){
+    private fun String.validRacerName() {
+        require(this.length <= 5) {
             "자동차 이름은 5자를 초과할 수 없다."
         }
     }
