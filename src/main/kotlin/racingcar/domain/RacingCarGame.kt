@@ -1,26 +1,15 @@
 package racingcar.domain
 
-import racingcar.util.randomNumber
+import racingcar.util.NumberGenerator
 
 class RacingCarGame(
     val racingCars: List<RacingCar>,
-    private val numberOfAttempts: Int,
-    private var currentNumber: Int = 0
 ) {
 
-    fun racing() {
+    fun racing(generator: NumberGenerator) {
         racingCars.forEach {
-            it.move(randomNumber())
+            it.move(generator.generateNumber())
         }
-    }
-
-    fun racingAttemptsCheck(): Boolean {
-        if (currentNumber >= numberOfAttempts) {
-            return false
-        }
-
-        currentNumber++
-        return true
     }
 
     fun winners(): String {
@@ -29,22 +18,12 @@ class RacingCarGame(
     }
 
     private fun maxPosition(): Int {
-        var maxPosition = 0;
-        racingCars
-            .asSequence()
-            .filter { it.position() > maxPosition }
-            .forEach { maxPosition = it.position() }
-
-        return maxPosition;
+        return racingCars
+            .maxOf { it.position }
     }
 
-    private fun createWinners(maxPosition: Int): String {
-        val winners = mutableListOf<String>()
+    private fun createWinners(maxPosition: Int): String =
         racingCars
-            .asSequence()
-            .filter { it.position() == maxPosition }
-            .forEach { winners.add(it.name()) }
-
-        return winners.joinToString { it }
-    }
+            .filter { it.position == maxPosition }
+            .joinToString { it.name }
 }

@@ -10,7 +10,7 @@ import racingcar.domain.RacingCar
 class RacingCarTest : StringSpec({
     val racingCar = RacingCar("raceC")
 
-    "1 ~ 9 까지의 입력 중 4 이하일 경우 차가 전진할 수 없다." {
+    "1 ~ 9 까지의 입력 중 4 미만일 경우 차가 전진할 수 없다." {
         forAll(
             row(0),
             row(1),
@@ -18,7 +18,7 @@ class RacingCarTest : StringSpec({
             row(3),
         ) { input ->
             racingCar.move(input)
-            racingCar.position() shouldBe 0
+            racingCar.position shouldBe 0
         }
     }
 
@@ -32,7 +32,7 @@ class RacingCarTest : StringSpec({
             row(9, 6),
         ) { input, position ->
             racingCar.move(input)
-            racingCar.position() shouldBe position
+            racingCar.position shouldBe position
         }
     }
 
