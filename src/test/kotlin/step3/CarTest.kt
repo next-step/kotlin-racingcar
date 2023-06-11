@@ -12,7 +12,7 @@ class CarTest : FreeSpec(
                 row(1),
                 row(1000)
             ) { moveCount ->
-                val sut = Car(ConditionalOperatingCarEngine { true })
+                val sut = Car(ConditionalOperatingCarEngine { true }, "test")
 
                 repeat(moveCount) { sut.move() }
 
@@ -25,7 +25,7 @@ class CarTest : FreeSpec(
                 row(1),
                 row(1000)
             ) { moveCount ->
-                val sut = Car(ConditionalOperatingCarEngine { false })
+                val sut = Car(ConditionalOperatingCarEngine { false }, "test")
 
                 repeat(moveCount) { sut.move() }
 

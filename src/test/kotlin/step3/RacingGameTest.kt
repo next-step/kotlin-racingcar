@@ -8,14 +8,14 @@ import step3.view.InputView
 import step3.view.OutputView
 
 class RacingGameTest : FreeSpec({
-    "자동차 경주 요구 사항을 입력받아 경주 수행 결과물을 요구사항(차량, 시도 횟수)에 맞게 출력한다." - {
+    "자동차 경주 요구 사항을 입력받아 경주 수행 결과물을 요구사항(차량 이름, 시도 횟수)에 맞게 출력한다." - {
         forAll(
-            row(3, 5),
-            row(4, 100)
-        ) { numberOfCars, numberOfTrials ->
-            val fakeInputView = FakeInputView(numberOfCars, numberOfTrials)
-            val fakeOutputView = FakeOutputView(numberOfCars)
-            val sut = RacingGame(
+            row(listOf("minsu", "hello"), 5),
+            row(listOf("name", "magin", "rudra", "pizza"), 100)
+        ) { carNames, numberOfTrials ->
+            val fakeInputView = FakeInputView(carNames, numberOfTrials)
+            val fakeOutputView = FakeOutputView(carNames)
+            val sut = RacingManager(
                 inputView = fakeInputView,
                 outputView = fakeOutputView
             )
@@ -29,16 +29,16 @@ class RacingGameTest : FreeSpec({
 })
 
 private class FakeInputView(
-    private val numberOfCars: Int,
+    private val carNames: List<String>,
     private val numberOfTrials: Int
 ) : InputView {
     override fun askRequirement(): RacingRequirement {
-        return RacingRequirement(numberOfCars, numberOfTrials)
+        return RacingRequirement(carNames, numberOfTrials)
     }
 }
 
 private class FakeOutputView(
-    private val numberOfCars: Int
+    private val testInputCarNames: List<String>
 ) : OutputView {
     var showResultTitleCalledCount = 0
         private set
@@ -49,8 +49,8 @@ private class FakeOutputView(
         showResultTitleCalledCount++
     }
 
-    override fun showStatus(distanceResult: List<Distance>) {
-        if (distanceResult.size != numberOfCars) return
+    override fun showStatus(carStatuses: List<CurrentCarStatus>) {
+        if (testInputCarNames != carStatuses.map { it.carName }) return
         showCurrentStatusCalledWithRightNumberOfCarsCount++
     }
 }
