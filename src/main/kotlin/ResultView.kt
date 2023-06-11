@@ -1,5 +1,5 @@
 class ResultView {
-    fun carsDistanceDisplay(distance: Int) {
+    fun distanceDisplay(distance: Int) {
         var displayString = ""
         for (i in 1..distance) {
             displayString = "$displayString-"
