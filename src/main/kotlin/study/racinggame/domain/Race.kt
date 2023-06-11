@@ -25,4 +25,8 @@ class Race(
             car.moveForward(raceRule.canMove())
         }
     }
+
+    companion object {
+        const val WINNER_SEPARATOR: String = ", "
+    }
 }

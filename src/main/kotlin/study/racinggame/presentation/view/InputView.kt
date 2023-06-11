@@ -1,7 +1,7 @@
 package study.racinggame.presentation.view
 
 import study.racinggame.domain.Car
-import study.racinggame.service.reader.InputReader
+import study.racinggame.reader.InputReader
 
 class InputView {
 
@@ -20,7 +20,7 @@ class InputView {
     private fun getCarNames(prompt: String): List<Car> {
         println(prompt)
         val input = reader.raedLine()
-        return input.split(",").map { carName -> Car(name = carName) }
+        return input.split(CAR_SEPARATOR).map { carName -> Car(name = carName) }
     }
 
     private fun getIntInput(prompt: String, errorMsg: String): Int {
@@ -36,5 +36,9 @@ class InputView {
 
     fun raceTryCnt(): Int {
         return raceTryCnt
+    }
+
+    companion object {
+        const val CAR_SEPARATOR: String = ","
     }
 }
