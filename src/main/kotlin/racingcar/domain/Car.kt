@@ -3,11 +3,18 @@ package racingcar.domain
 import java.util.Random
 
 class Car(
-    var position: Int = INIT_POSITION,
+    position: Int = INIT_POSITION,
+    private val carName: CarName,
     private val movable: () -> Boolean,
 ) {
+    val name: String
+        get() = carName.value
+
+    var position: Int = position
+        private set
+
     fun move(): Int {
-        if (movable.invoke()) {
+        if (movable()) {
             return ++position
         }
         return position
@@ -19,6 +26,7 @@ class Car(
         private const val MOVABLE_VALUE = 4
         private val random = Random()
 
-        fun createRandomMoveCar() = Car { random.nextInt(MAX_RANDOM_MOVE_INPUT) >= MOVABLE_VALUE }
+        fun createRandomMoveCar(name: String) =
+            Car(carName = CarName(name)) { random.nextInt(MAX_RANDOM_MOVE_INPUT) >= MOVABLE_VALUE }
     }
 }
