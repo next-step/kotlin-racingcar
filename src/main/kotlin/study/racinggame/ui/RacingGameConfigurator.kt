@@ -1,6 +1,6 @@
-package study.step3.ui
+package study.racinggame.ui
 
-import study.step3.domain.RacingGameConfiguration
+import study.racinggame.domain.RacingGameConfiguration
 
 interface RacingGameConfigurator {
     fun run(): RacingGameConfiguration

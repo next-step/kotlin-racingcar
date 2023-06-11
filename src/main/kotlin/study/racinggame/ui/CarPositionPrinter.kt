@@ -1,4 +1,4 @@
-package study.step3.ui
+package study.racinggame.ui
 
 interface CarPositionPrinter {
     fun print(position: Int)

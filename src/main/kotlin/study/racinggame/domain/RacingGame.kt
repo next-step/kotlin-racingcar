@@ -1,6 +1,6 @@
-package study.step3.domain
+package study.racinggame.domain
 
-import study.step3.ui.RacingGamePrinter
+import study.racinggame.ui.RacingGamePrinter
 
 class RacingGame(
     val cars: List<Car>,

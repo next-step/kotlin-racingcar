@@ -1,4 +1,4 @@
-package study.step3.domain
+package study.racinggame.domain
 
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldThrow

@@ -1,6 +1,6 @@
-package study.step3.ui
+package study.racinggame.ui
 
-import study.step3.domain.Car
+import study.racinggame.domain.Car
 
 interface RacingGamePrinter {
     fun print(cars: List<Car>)

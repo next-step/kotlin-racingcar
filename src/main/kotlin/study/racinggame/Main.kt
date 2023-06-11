@@ -1,7 +1,7 @@
-package study.step3
+package study.racinggame
 
-import study.step3.ui.CommandLineRacingGameConfigurator
-import study.step3.ui.CommandLineRacingGamePrinter
+import study.racinggame.ui.CommandLineRacingGameConfigurator
+import study.racinggame.ui.CommandLineRacingGamePrinter
 
 fun main() {
     val racingGameConfigurator = CommandLineRacingGameConfigurator()

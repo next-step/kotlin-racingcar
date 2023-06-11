@@ -1,6 +1,6 @@
-package study.step3.domain
+package study.racinggame.domain
 
-import study.step3.ui.CarPositionPrinter
+import study.racinggame.ui.CarPositionPrinter
 
 class Car(private val engine: CarEngine) {
     private var position: Int = 1

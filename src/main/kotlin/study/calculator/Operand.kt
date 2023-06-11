@@ -1,4 +1,4 @@
-package study.step2
+package study.calculator
 
 class Operand private constructor(val value: Int) {
     companion object {

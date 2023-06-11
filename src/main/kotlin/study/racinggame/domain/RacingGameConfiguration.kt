@@ -1,4 +1,4 @@
-package study.step3.domain
+package study.racinggame.domain
 
 class RacingGameConfiguration private constructor(
     val numberOfCars: Int,
