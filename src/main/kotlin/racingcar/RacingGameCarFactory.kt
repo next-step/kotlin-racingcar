@@ -5,7 +5,7 @@ object RacingGameCarFactory {
     fun createRandomDriveCars(
         totalCarCount: Long,
         randomNumberGenerator: RandomNumberGenerator,
-        minDriveRandomNumber: Long
+        minDriveRandomNumber: Long,
     ) = (1..totalCarCount)
         .map {
             createRandomDriveCar(
@@ -19,7 +19,7 @@ object RacingGameCarFactory {
     fun createRandomDriveCars(
         carNames: List<String>,
         randomNumberGenerator: RandomNumberGenerator,
-        minDriveRandomNumber: Long
+        minDriveRandomNumber: Long,
     ) = carNames.mapIndexed { index, carName ->
         createRandomDriveCar(
             carNumber = index.toLong() + 1,
@@ -33,7 +33,7 @@ object RacingGameCarFactory {
         carNumber: Long,
         randomNumberGenerator: RandomNumberGenerator,
         minDriveRandomNumber: Long,
-        carName: String = "UNKNOWN"
+        carName: String = "UNKNOWN",
     ) = RandomDriveCar(
         carNumber = carNumber,
         randomNumberGenerator = randomNumberGenerator,

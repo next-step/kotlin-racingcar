@@ -2,5 +2,5 @@ package racingcar
 
 class RacingCarGameResult(
     val winnerNames: List<String>,
-    val gameRoundResults: List<RacingCarRoundResult>
+    val gameRoundResults: List<RacingCarRoundResult>,
 )
