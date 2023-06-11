@@ -10,20 +10,26 @@ import io.kotest.matchers.shouldBe
 class RacingCarTest : StringSpec({
 
     "초기 움직임 상태들로 생성 가능" {
-        shouldNotThrowAny { RacingCar(OnlyGoMoveStrategy, MovingStatuses(listOf(MovingStatus.GO, MovingStatus.STOP))) }
+        shouldNotThrowAny {
+            RacingCar(
+                SAMPLE_NAME,
+                OnlyGoMoveStrategy,
+                MovingStatuses(listOf(MovingStatus.GO, MovingStatus.STOP))
+            )
+        }
     }
 
     "초기 기록이 없다면 움직인 기록은 없음" {
-        RacingCar(OnlyGoMoveStrategy) shouldBe RacingCar(OnlyGoMoveStrategy, MovingStatuses())
+        RacingCar(SAMPLE_NAME, OnlyGoMoveStrategy) shouldBe RacingCar(SAMPLE_NAME, OnlyGoMoveStrategy, MovingStatuses())
     }
 
     "다음 움직임 상태 추가" {
         // given
-        val emptyMovedStatues = RacingCar(OnlyGoMoveStrategy)
+        val emptyMovedStatues = RacingCar(SAMPLE_NAME, OnlyGoMoveStrategy)
         // when
         val nextMoved: RacingCar = emptyMovedStatues.nextMoved
         // then
-        nextMoved shouldBe RacingCar(OnlyGoMoveStrategy, MovingStatuses(listOf(MovingStatus.GO)))
+        nextMoved shouldBe RacingCar(SAMPLE_NAME, OnlyGoMoveStrategy, MovingStatuses(listOf(MovingStatus.GO)))
     }
 
     "움직인 횟수만큼 반환" {
@@ -32,7 +38,10 @@ class RacingCarTest : StringSpec({
             MovingStatuses(listOf(MovingStatus.GO, MovingStatus.STOP)) to 1,
             MovingStatuses(listOf(MovingStatus.GO, MovingStatus.GO)) to 2,
         ).forAll { (movedStatuses, expectedWentSize) ->
-            RacingCar(OnlyGoMoveStrategy, movedStatuses).wentDistance shouldBe expectedWentSize
+            RacingCar(SAMPLE_NAME, OnlyGoMoveStrategy, movedStatuses).wentDistance shouldBe expectedWentSize
         }
     }
 })
+
+val ONLY_GO_RACING_CAR: RacingCar = RacingCar(SAMPLE_NAME, OnlyGoMoveStrategy)
+val ONLY_STOP_RACING_CAR: RacingCar = RacingCar(SAMPLE_NAME, OnlyStopMoveStrategy)
