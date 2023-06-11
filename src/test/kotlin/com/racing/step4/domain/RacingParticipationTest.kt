@@ -5,11 +5,9 @@ import org.junit.jupiter.api.Test
 
 class RacingParticipationTest {
     @Test
-    fun `레이싱 참여한 자동차가 전진하는 로직이 제대로 동작하는지 확인`() {
+    fun `레이싱 참여한 자동차들을 한 칸 강제로 이동시킨다`() {
         // given
-        val car1 = Car("goofy1")
-        val car2 = Car("goofy2")
-        val carList = listOf<Car>(car1, car2)
+        val carList = listOf<String>("car1", "car2")
         val racingParticipation = RacingParticipation(carList)
 
         // when
@@ -23,11 +21,9 @@ class RacingParticipationTest {
     }
 
     @Test
-    fun `최종 우승자가 제대로 동작하는지 확인한다`() {
+    fun `레이싱 참여한 자동차들이 동일한 위치에 존재하는 경우, 공동 우승을 보여준다`() {
         // given
-        val car1 = Car("goofy1")
-        val car2 = Car("goofy2")
-        val carList = listOf<Car>(car1, car2)
+        val carList = listOf<String>("car1", "car2")
         val racingParticipation = RacingParticipation(carList)
 
         // when
@@ -39,15 +35,13 @@ class RacingParticipationTest {
     }
 
     @Test
-    fun `레이스 참가중인 자동차의 현재상태를 표시해주는 toString()`() {
+    fun `레이스 참가중인 자동차의 현재상태를 표시해준다`() {
         // given
-        val car1 = Car("goofy1")
-        val car2 = Car("goofy2")
-        val carList = listOf<Car>(car1, car2)
+        val carList = listOf<String>("car1", "car2")
         val racingParticipation = RacingParticipation(carList)
         val result = """
-            goofy1 : --
-            goofy2 : --
+            car1 : --
+            car2 : --
             
         """.trimIndent()
 
