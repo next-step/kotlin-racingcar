@@ -1,6 +1,7 @@
 package race.model
 
 data class Car(
+    private val name: String? = null,
     private var _position: Int = START_POSITION,
     private val engine: Engine = RandomEngine()
 ) {

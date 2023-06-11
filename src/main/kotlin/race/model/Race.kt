@@ -1,16 +1,15 @@
 package race.model
 
-import javax.imageio.event.IIOReadUpdateListener
-
 class Race(
-    private val numberOfCar: Int,
+    private val raceCars: List<String>,
     private val numberOfRace: Int
 ) {
 
     private val _cars = mutableListOf<Car>().apply {
-        repeat(numberOfCar) {
-            add(Car())
+        raceCars.forEach {
+            Car(it)
         }
+
     }
 
     val cars: List<Car> get() = _cars.toList()
@@ -21,7 +20,7 @@ class Race(
         }
     }
 
-    fun startRacing(update: ((List<Int>) -> Unit)? = null){
+    fun startRacing(update: ((List<Int>) -> Unit)? = null) {
         repeat(numberOfRace) {
             carsMove()
             val carPositionList = _cars.map { it.position }
