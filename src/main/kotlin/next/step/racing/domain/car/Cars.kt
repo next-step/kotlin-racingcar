@@ -11,11 +11,11 @@ data class Cars(private val cars: List<Car>) : List<Car> by cars {
 
     fun records(): List<CarRecord> = map { CarRecord(it.name(), it.position()) }
 
-    fun winners(): List<String> = fastest().map { it.name() }
+    fun winners(): List<String> = maxBy { it.pos }.map { it.name() }
 
-    private fun fastest(): List<Car> = filter { it.isAt(maxPosition()) }
-
-    private fun maxPosition() = maxOf { it.pos }
+    private fun <R : Comparable<R>> maxBy(selector: (Car) -> R): List<Car> {
+        return groupBy(selector).maxBy { it.key }.value
+    }
 
     companion object {
         private val DEFAULT_POSITION = CarPosition(0)
