@@ -13,9 +13,8 @@ class RacingHistoryRecoder {
     fun capture(racingFieldMiniMap: RacingFieldMiniMap) {
         val racingHistories = racingFieldMiniMap.racingFieldMap
             .values
-            .map { field -> field.racingCar.racer to field.moveDistance }
-            .sortedBy { (racer, _) -> racer.ordinal }
-            .map { (racer, moveDistance) -> RacingRecordPaper(racer.toUser(), moveDistance) }
+            .sortedBy { field -> field.racingCar.racer.ordinal }
+            .map { field -> RacingRecordPaper(field.racingCar.racer.toUser(), field.moveDistance) }
         totalRacingRecordPaperList.add(RacingRecordPaperList(racingHistories))
     }
 
