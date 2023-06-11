@@ -9,7 +9,8 @@ fun printStart() {
 }
 
 fun printPosition(racingCars: List<RacingCar>) {
-    racingCars.forEach {
+    for (it in racingCars) {
+        print(it.name + " : ")
         printPosition(it.position)
     }
 
@@ -21,4 +22,8 @@ fun printPosition(position: Int) {
         print(PRINT_SYMBOL)
     }
     println()
+}
+
+fun printWinner(winners: String) {
+    println(winners + "가 최종 우승했습니다.")
 }

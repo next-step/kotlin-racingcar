@@ -2,6 +2,8 @@ package racingcar.util
 
 import kotlin.random.Random
 
-fun randomNumber() : Int {
-    return Random.nextInt(0, 10)
+class RandomGenerator : NumberGenerator {
+    override fun generateNumber(): Int {
+        return Random.nextInt(0, 10)
+    }
 }

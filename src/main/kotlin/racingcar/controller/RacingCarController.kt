@@ -1,33 +1,33 @@
 package racingcar.controller
 
-import racingcar.domain.RacingCar
-import racingcar.domain.RacingCarGame
-import racingcar.ui.enterCountOfCars
+import racingcar.domain.RacingCarGame.Companion.from
+import racingcar.ui.enterCarNames
 import racingcar.ui.enterNumberOfAttempts
 import racingcar.ui.printPosition
 import racingcar.ui.printStart
+import racingcar.ui.printWinner
+import racingcar.util.RandomGenerator
 
 class RacingCarController {
 
     fun start() {
-        val countOfCars = enterCountOfCars()
+        val carNames = enterCarNames().trim()
         val numberOfAttempts = enterNumberOfAttempts()
+        val numberGenerator = RandomGenerator()
 
-        val racingCarGame = RacingCarGame(createRacingCars(countOfCars), numberOfAttempts)
+        val racingCarGame = from(carNames)
 
         printStart()
 
-        while (racingCarGame.racingAttemptsCheck()) {
-            racingCarGame.racing()
+        for (i in 1..numberOfAttempts) {
+            racingCarGame.racing(numberGenerator)
             printPosition(racingCarGame.racingCars)
         }
+
+        printWinner(racingCarGame.winners())
     }
 
-    private fun createRacingCars(racingCarCounts: Int): List<RacingCar> {
-        val racingCars = mutableListOf<RacingCar>()
-        repeat((1..racingCarCounts).count()) {
-            racingCars.add(RacingCar())
-        }
-        return racingCars
+    companion object {
+        const val CAR_NAME_SPLIT_SYMBOL = ","
     }
 }
