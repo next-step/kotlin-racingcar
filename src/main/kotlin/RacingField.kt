@@ -7,7 +7,7 @@ class RacingField(
         this.gameCount = gameCount
     }
 
-    fun createCars(count: Int) {
+    private fun createCars(count: Int) {
         for (i in 1..count) {
             cars.add(Car())
         }
@@ -24,5 +24,9 @@ class RacingField(
 
     private fun moveCars() {
         cars.forEach { it.move() }
+    }
+
+    fun getCarCount(): Int {
+        return cars.size
     }
 }
