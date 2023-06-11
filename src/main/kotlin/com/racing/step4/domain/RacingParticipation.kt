@@ -17,8 +17,4 @@ class RacingParticipation {
         val largestCar = cars.maxByOrNull { it.position } ?: return emptyList()
         return cars.filter { it.position == largestCar.position }
     }
-
-    override fun toString(): String {
-        return cars.joinToString("") { it.toString() }
-    }
 }
