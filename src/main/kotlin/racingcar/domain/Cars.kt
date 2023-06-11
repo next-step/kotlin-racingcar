@@ -1,7 +1,7 @@
 package racingcar.domain
 
 class Cars(names: List<String>) {
-    val carList: List<Car> = List(names.size) { Car(names[it]) }
+    val carList: List<Car> = names.map { Car(it) }
 
     fun attempt(moveCondition: MoveCondition) {
         for (car in carList) {
@@ -12,10 +12,7 @@ class Cars(names: List<String>) {
     fun countCars() = carList.size
 
     fun getWinners(): List<String> {
-        val maxScore: Int = carList.stream()
-            .mapToInt { car -> car.position }
-            .max()
-            .orElse(0)
-        return carList.filter { it.position == maxScore }.map { it.getCarNameString() }
+        val maxScore: Int = carList.maxOfOrNull { car -> car.position } ?: 0
+        return carList.filter { it.position == maxScore }.map { it.getName() }
     }
 }

@@ -1,7 +1,7 @@
 package racingcar.domain
 
 import io.kotest.core.spec.style.StringSpec
-import io.kotest.matchers.ints.shouldBeGreaterThan
+import io.kotest.matchers.collections.shouldHaveAtLeastSize
 import io.kotest.matchers.shouldBe
 
 class CarsKoTest : StringSpec({
@@ -35,6 +35,6 @@ class CarsKoTest : StringSpec({
         repeat(attemptCount) {
             cars.attempt(moveCondition)
         }
-        cars.getWinners().size shouldBeGreaterThan 0
+        cars.getWinners() shouldHaveAtLeastSize 1
     }
 })

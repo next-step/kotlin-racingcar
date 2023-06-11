@@ -12,7 +12,7 @@ class Car(name: String) {
         }
     }
 
-    fun getCarNameString(): String {
+    fun getName(): String {
         return carName.name
     }
 }

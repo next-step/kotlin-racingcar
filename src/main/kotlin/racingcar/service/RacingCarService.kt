@@ -2,27 +2,18 @@ package racingcar.service
 
 import racingcar.domain.Cars
 import racingcar.domain.RandomCondition
-import racingcar.view.InputView
 import racingcar.view.OutputView
 
 class RacingCarService {
-    private val inputView = InputView()
     private val outputView = OutputView()
 
-    fun play() {
-        val namesOfCars = inputView.namesOfCars()
-        val cars = Cars(namesOfCars)
-        val numberOfAttempts = inputView.numberOfAttempts()
+    fun play(names: List<String>, attempts: Int): List<String> {
+        val cars = Cars(names)
 
-        outputView.printResult()
-        repeat(numberOfAttempts) {
+        repeat(attempts) {
             cars.attempt(RandomCondition())
-            cars.carList.forEach { car ->
-                outputView.printCarPosition(car)
-            }
-            println()
+            outputView.printCarsPosition(cars)
         }
-
-        outputView.printWinners(cars)
+        return cars.getWinners()
     }
 }
