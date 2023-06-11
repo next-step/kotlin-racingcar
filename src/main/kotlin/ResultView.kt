@@ -1,9 +1,14 @@
 class ResultView {
-    fun distanceDisplay(distance: Int) {
-        var displayString = ""
-        for (i in 1..distance) {
-            displayString = "$displayString-"
+    fun resultMessage() {
+        println("실행 결과")
+    }
+
+    fun carDistanceDisplay(cars: List<Car>) {
+        val displayString = "-"
+
+        cars.forEach { car ->
+            println(displayString.repeat(car.distance))
         }
-        println(displayString)
+        println()
     }
 }
