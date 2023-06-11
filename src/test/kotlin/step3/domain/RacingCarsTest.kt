@@ -10,8 +10,8 @@ internal class RacingCarsTest {
     internal fun `레이싱 테스트`() {
         // given : 항상 전진하는 1개의 자동차와 항상 전진하지 않는 1개의 자동차 준비
         val cars = listOf(
-            Car(AlwaysMoveCondition()),
-            Car(NeverMoveCondition())
+            Car(carMovingStrategy = AlwaysMoveCondition()),
+            Car(carMovingStrategy = NeverMoveCondition())
         )
         val racingCars = RacingCars(cars)
 

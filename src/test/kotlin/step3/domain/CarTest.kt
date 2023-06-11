@@ -21,21 +21,22 @@ internal class CarTest {
         boundUntil: Int,
         expectedPosition: Int
     ) {
-        val sut = Car(RandomMoveCondition(threshold = threshold, boundFrom = boundFrom, boundUntil = boundUntil))
+        val carMovingStrategy = RandomMoveCondition(threshold = threshold, boundFrom = boundFrom, boundUntil = boundUntil)
+        val sut = Car(carMovingStrategy = carMovingStrategy)
         sut.move()
         assertThat(sut.position).isEqualTo(expectedPosition)
     }
 
     @Test
     internal fun `AlwaysMoveCondition을 가진 자동차는 항상 전진한다`() {
-        val sut = Car(AlwaysMoveCondition())
+        val sut = Car(carMovingStrategy = AlwaysMoveCondition())
         sut.move()
         assertThat(sut.position).isEqualTo(1)
     }
 
     @Test
     internal fun `NeverMoveCondition을 가진 자동차는 전진하지 않는다`() {
-        val sut = Car(NeverMoveCondition())
+        val sut = Car(carMovingStrategy = NeverMoveCondition())
         sut.move()
         assertThat(sut.position).isEqualTo(0)
     }

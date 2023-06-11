@@ -9,6 +9,7 @@ import step3.domain.strategy.RandomMoveCondition
  * 외부에서 넘겨받은 전진 조건에 따라 전진 여부를 결정합니다.
  */
 class Car(
+    private val name: String = "car1",
     private val carMovingStrategy: CarMovingCondition = RandomMoveCondition(threshold = 4, boundFrom = 0, boundUntil = 10)
 ) {
 
