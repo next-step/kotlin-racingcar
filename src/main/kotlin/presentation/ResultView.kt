@@ -1,22 +1,22 @@
-package step3.presentation
+package presentation
 
-import step3.domain.MoveCarUseCase
+import domain.CarRace
 
 class ResultView {
 
     private val inputView = InputView()
-    private val moveCarUseCase = MoveCarUseCase()
+    private val carRace = CarRace()
 
     fun executeCarRace() {
         val carCount = inputView.inputData()
         val retryCount = inputView.inputData()
         var num = retryCount
 
-        moveCarUseCase.initCarMovementCountList(carCount = carCount)
+        carRace.initCarMovementCountList(carCount = carCount)
 
         while (num > 0) {
             for (i in 0 until carCount) {
-                println("-".repeat(moveCarUseCase.moveCar(i)))
+                println("-".repeat(carRace.moveCar(i)))
             }
             println()
             num--

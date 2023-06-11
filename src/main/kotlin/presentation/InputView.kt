@@ -1,4 +1,4 @@
-package step3.presentation
+package presentation
 
 class InputView {
 

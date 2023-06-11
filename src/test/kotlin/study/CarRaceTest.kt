@@ -1,30 +1,30 @@
-package study.step3
+package study
 
+import domain.CarRace
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import step3.domain.MoveCarUseCase
 
-class MoveCarUseCaseTest {
+class CarRaceTest {
 
-    private lateinit var moveCarUseCase: MoveCarUseCase
+    private lateinit var carRace: CarRace
 
     @BeforeEach
-    fun `MoveCarUseCae 초기 설정`() {
-        moveCarUseCase = MoveCarUseCase()
-        moveCarUseCase.initCarMovementCountList(1)
+    fun `CarRace 초기 설정`() {
+        carRace = CarRace()
+        carRace.initCarMovementCountList(1)
     }
 
     @Test
     fun `carCount 에 해당하는 count 확인`() {
-        assertThat(moveCarUseCase.moveCar(0)).isEqualTo(moveCarUseCase.getCarMovementCountList(0).count)
+        assertThat(carRace.moveCar(0)).isEqualTo(carRace.getCarMovementCountList(0).count)
     }
 
     @Test
     fun `경주 자동차가 없는 경우`() {
         assertThatThrownBy {
-            MoveCarUseCase().moveCar(0)
+            CarRace().moveCar(0)
         }.isInstanceOf(IndexOutOfBoundsException::class.java).hasMessage("The car does not exist.")
     }
 }

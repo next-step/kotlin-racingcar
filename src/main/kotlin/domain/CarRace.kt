@@ -1,11 +1,11 @@
-package step3.domain
+package domain
 
 import java.lang.Exception
 import java.util.Random
 
-class MoveCarUseCase {
+class CarRace {
 
-    private val carMovementCountList = arrayListOf<CarMovementCount>()
+    private val carMovementCountList = arrayListOf<Car>()
 
     fun moveCar(carCount: Int): Int {
         if (carMovementCountList.size == 0 || carMovementCountList.size - 1 < carCount) throw IndexOutOfBoundsException(
@@ -22,12 +22,12 @@ class MoveCarUseCase {
     fun initCarMovementCountList(carCount: Int) {
         try {
             repeat(carCount) {
-                carMovementCountList.add(CarMovementCount(it))
+                carMovementCountList.add(Car(it))
             }
         } catch (e: Exception) {
             println(e.message)
         }
     }
 
-    fun getCarMovementCountList(carCount: Int): CarMovementCount = carMovementCountList[carCount]
+    fun getCarMovementCountList(carCount: Int): Car = carMovementCountList[carCount]
 }
