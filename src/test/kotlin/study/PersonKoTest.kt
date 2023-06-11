@@ -10,5 +10,4 @@ class PersonKoTest : StringSpec({
         actual.age shouldBe 20
         actual.nickname shouldBe "oh"
     }
-}) {
-}
+})
