@@ -26,8 +26,7 @@ class StringCalculator {
         val numbers = mutableListOf<Double>()
         val operators = mutableListOf<Char>()
 
-        val seperatedNumbersAndOperators = expression.replace(Regex("(\\d+)"), " $1 ")
-            .replace(Regex("([-+*/])"), " $1 ")
+        val seperatedNumbersAndOperators = expression.replace(Regex("([-+*/])"), " $1 ")
             .trim()
             .split("\\s+".toRegex())
 
@@ -59,8 +58,8 @@ class StringCalculator {
             }
 
             val operator = OperatorsEnum.fromChar(operators[i])
-            currentNum = operator?.calculate(currentNum, numbers[i + 1])
-                ?: throw throw IllegalArgumentException("연산 기호의 맞지 않는 기호가 존재합니다")
+            currentNum = operator?.calculate?.invoke(currentNum, numbers[i + 1])
+                ?: throw IllegalArgumentException("연산 기호의 맞지 않는 기호가 존재합니다")
         }
         return currentNum
     }

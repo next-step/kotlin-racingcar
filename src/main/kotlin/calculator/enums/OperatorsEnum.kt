@@ -1,29 +1,11 @@
 package calculator.enums
 
-enum class OperatorsEnum {
+enum class OperatorsEnum(val calculate: (Double, Double) -> Double) {
 
-    PLUS {
-        override fun calculate(left: Double, right: Double): Double {
-            return left + right
-        }
-    },
-    MINUS {
-        override fun calculate(left: Double, right: Double): Double {
-            return left - right
-        }
-    },
-    MULTIPLY {
-        override fun calculate(left: Double, right: Double): Double {
-            return left * right
-        }
-    },
-    DIVIDE {
-        override fun calculate(left: Double, right: Double): Double {
-            return left / right
-        }
-    };
-
-    abstract fun calculate(left: Double, right: Double): Double
+    PLUS({ left, right -> left + right }),
+    MINUS({ left, right -> left - right }),
+    MULTIPLY({ left, right -> left * right }),
+    DIVIDE({ left, right -> left / right });
 
     companion object {
         private val charToOperator = mapOf(
