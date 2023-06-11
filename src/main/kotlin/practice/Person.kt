@@ -1,4 +1,4 @@
-package week1.step1
+package practice
 
 data class Person(
     val name: String,

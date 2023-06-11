@@ -1,4 +1,4 @@
-package week1.step2
+package calculator
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows

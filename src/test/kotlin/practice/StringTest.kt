@@ -1,4 +1,4 @@
-package week1.step1
+package practice
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test

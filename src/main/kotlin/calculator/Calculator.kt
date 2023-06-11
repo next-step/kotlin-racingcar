@@ -1,4 +1,4 @@
-package week1.step2
+package calculator
 
 class Calculator {
 
