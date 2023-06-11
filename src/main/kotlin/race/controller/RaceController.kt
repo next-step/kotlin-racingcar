@@ -20,7 +20,7 @@ class RaceController {
             cars.add(Car(carName, condition))
         }
 
-        val result = Race(cars, numberOfTry).run()
+        val result = Race().run(cars, numberOfTry)
 
         ResultView().run(result)
     }

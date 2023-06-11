@@ -16,7 +16,7 @@ class RaceTest {
         val condition2 = FixedMoveCondition(false)
         val car2 = Car("car2", condition2)
 
-        val records = Race(listOf(car1, car2), 2).run().records
+        val records = Race().run(listOf(car1, car2), 2).records
         assertAll(
             { assertThat(records[0][0].position).isEqualTo(1) },
             { assertThat(records[0][1].position).isEqualTo(0) },
