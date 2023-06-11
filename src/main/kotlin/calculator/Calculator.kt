@@ -2,8 +2,6 @@ package calculator
 
 class Calculator {
 
-    val operatorArray: Array<String> = arrayOf("+", "-", "*", "/")
-
     inline fun <reified T : Number> convertStringToNumber(input: String): T {
         return when (T::class) {
             Int::class -> input.toInt() as T
@@ -29,7 +27,7 @@ class Calculator {
                     throw IllegalArgumentException("유효한 형식이 아닙니다.")
                 }
             } else {
-                if (value in operatorArray) {
+                if (value in Operators.operatorArray) {
                     operatorQueue.add(value)
                 } else {
                     throw IllegalArgumentException("유효한 형식이 아닙니다.")
