@@ -25,6 +25,6 @@ internal class RacingCarsTest {
         assertThat(racingRecord).isEqualTo(expectedRacingRecord)
 
         // then : 우승자는 항상 전진하는 자동차
-        assertThat(racingRecord.getWinners()).containsExactly("car1")
+        assertThat(racingRecord.winners).containsExactly("car1")
     }
 }
