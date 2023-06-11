@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class RacingCarDriveResult(
     val carNumber: Long,

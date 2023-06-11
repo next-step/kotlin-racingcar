@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class RandomDriveCar(
     override val carNumber: Long,

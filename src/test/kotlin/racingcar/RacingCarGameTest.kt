@@ -4,6 +4,9 @@ import io.kotest.assertions.throwables.shouldThrow
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import racingcar.domain.RacingCarGame
+import racingcar.domain.RandomDriveCar
+import racingcar.domain.RandomNumberGenerator
 
 class RacingCarGameTest {
 
@@ -23,7 +26,7 @@ class RacingCarGameTest {
             carNumber = 1,
             randomNumberGenerator = alwaysOneGenerator,
             minDriveRandomNumber = minDriveRandomNumber,
-            name = "UNKNOWN",
+            name = "name",
         )
 
         val result = racingCarGame.progressGame(totalRound = totalRound, cars = listOf(car))
@@ -44,7 +47,7 @@ class RacingCarGameTest {
             carNumber = 1,
             randomNumberGenerator = alwaysOneGenerator,
             minDriveRandomNumber = minDriveRandomNumber,
-            name = "UNKNOWN",
+            name = "12345",
         )
 
         shouldThrow<IllegalArgumentException> {
@@ -58,6 +61,23 @@ class RacingCarGameTest {
 
         shouldThrow<IllegalArgumentException> {
             racingCarGame.progressGame(totalRound = totalRound, cars = emptyList())
+        }
+    }
+
+    @Test
+    fun `exceed car name length`() {
+        val totalRound: Long = 0
+        val alwaysOneGenerator = RandomNumberGenerator(randomLimit = 1, randomBase = 1)
+        val minDriveRandomNumber: Long = 1
+        val car = RandomDriveCar(
+            carNumber = 1,
+            randomNumberGenerator = alwaysOneGenerator,
+            minDriveRandomNumber = minDriveRandomNumber,
+            name = "123456",
+        )
+
+        shouldThrow<IllegalArgumentException> {
+            racingCarGame.progressGame(totalRound = totalRound, cars = listOf(car))
         }
     }
 }

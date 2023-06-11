@@ -1,4 +1,8 @@
-package racingcar
+package racingcar.view
+
+import racingcar.domain.RacingCarDriveResult
+import racingcar.domain.RacingCarGameWinnerFinder
+import racingcar.domain.RacingCarRoundResult
 
 class RacingCarGameResultView {
 
