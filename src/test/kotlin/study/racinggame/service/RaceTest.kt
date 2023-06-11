@@ -4,6 +4,7 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import study.racinggame.domain.Car
 import study.racinggame.domain.Race
+import study.racinggame.domain.RaceRule
 import study.racinggame.service.mock.MockRandom
 
 class RaceTest : StringSpec({
