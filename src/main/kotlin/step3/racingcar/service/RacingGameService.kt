@@ -28,7 +28,7 @@ class RacingGameService {
     }
 
     fun play() {
-        for (i in 0 until attemptCount) {
+        repeat(attemptCount) {
             cars.move()
             cars.getPosition()
             OutputView.print()
