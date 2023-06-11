@@ -1,0 +1,50 @@
+package racinggame.domain.game
+
+import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.matchers.shouldBe
+import racinggame.domain.car.RacingCar
+import racinggame.domain.car.engine.DrivableDistance
+import racinggame.domain.car.engine.MockEngine
+import racinggame.domain.car.factory.RacingCarFactory
+import racinggame.domain.car.factory.RacingCarUniqueKey
+import racinggame.domain.player.Racer
+import racinggame.domain.player.User
+
+class RealRacingGameTest : BehaviorSpec({
+
+    Given("참가자들과 게임 룰이 준비 되었을 때") {
+        val users = List(2) { index ->
+            User(id = "user$index")
+        }
+        val playCount = 2
+        When("레이싱 게임을 실행하면") {
+            val racingGame = RealRacingGame(object : RacingCarFactory {
+                override fun create(racer: Racer): RacingCar {
+                    return RacingCar(
+                        uniqueKey = RacingCarUniqueKey(value = racer.id),
+                        racer = racer,
+                        engine = MockEngine(fixedDrivableDistance = DrivableDistance(1)),
+                    )
+                }
+            })
+            val result = racingGame.execute(
+                gameGuide = GameGuide(
+                    users = users,
+                    gameRule = GameRule(playCount = playCount),
+                )
+            )
+            Then("게임 룰 만큼의 경주 기록을 반환한다") {
+                result.racingRecordBook.totalRacingRecordPaperList.size shouldBe playCount
+            }
+            Then("참가한 참가자들의 순서대로 경주 기록을 반환한다") {
+                result.racingRecordBook
+                    .totalRacingRecordPaperList
+                    .forEach { racingRecordPaperList ->
+                        val actual = racingRecordPaperList.list
+                            .map { racingRecordPaper -> racingRecordPaper.user }
+                        actual shouldBe users
+                    }
+            }
+        }
+    }
+})
