@@ -1,9 +1,9 @@
 package racing.domain
 
-import racing.generator.DefaultRandomMoveCheckGenerator
+import racing.generator.RandomGenerator
 
 class Car(
-    val moveFlag: DefaultRandomMoveCheckGenerator
+    val moveFlag: RandomGenerator
 ) {
 
     var currentPosition: Int = 0
@@ -17,5 +17,5 @@ class Car(
             return currentPosition
         }
 
-    private fun moveCheck(): Boolean = this.moveFlag.moveCheck(10)
+    private fun moveCheck(): Boolean = this.moveFlag.getRandomNumber(10) >= 4
 }

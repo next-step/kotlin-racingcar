@@ -1,7 +1,7 @@
 package racing
 
 import racing.domain.Car
-import racing.generator.DefaultRandomMoveCheckGenerator
+import racing.generator.DefaultRandomGenerator
 import racing.view.InputView
 import racing.view.ResultView
 
@@ -18,7 +18,7 @@ class Racing {
         carRacing(tryCount, cars)
     }
 
-    fun createCars(carCount: Int): List<Car> = (0 until carCount).map { Car(moveFlag = DefaultRandomMoveCheckGenerator()) }
+    fun createCars(carCount: Int): List<Car> = (0 until carCount).map { Car(moveFlag = DefaultRandomGenerator()) }
 
     private fun carRacing(tryCount: Int, cars: List<Car>) {
         repeat(tryCount) {
