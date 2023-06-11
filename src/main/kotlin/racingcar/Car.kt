@@ -8,9 +8,4 @@ class Car(
     fun drive() {
         if (CarRandomGenerator.canGo()) position++
     }
-
-    fun printPosition() {
-        repeat(position) { print("-") }
-        println()
-    }
 }
