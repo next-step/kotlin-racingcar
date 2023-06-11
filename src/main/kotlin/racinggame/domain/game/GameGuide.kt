@@ -1,4 +1,4 @@
-package racinggame.domain.employee
+package racinggame.domain.game
 
 import racinggame.domain.player.User
 

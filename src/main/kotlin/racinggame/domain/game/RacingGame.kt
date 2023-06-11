@@ -1,6 +1,4 @@
-package racinggame.domain
-
-import racinggame.domain.employee.GameGuide
+package racinggame.domain.game
 
 interface RacingGame {
 

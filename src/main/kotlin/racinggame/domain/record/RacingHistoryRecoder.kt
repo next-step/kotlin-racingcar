@@ -1,10 +1,7 @@
-package racinggame.domain.employee
+package racinggame.domain.record
 
 import racinggame.domain.field.RacingFieldMiniMap
 import racinggame.domain.player.toUser
-import racinggame.domain.record.RacingRecordBook
-import racinggame.domain.record.RacingRecordPaper
-import racinggame.domain.record.RacingRecordPaperList
 
 class RacingHistoryRecoder {
 

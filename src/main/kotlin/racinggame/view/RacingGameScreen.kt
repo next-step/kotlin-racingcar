@@ -1,6 +1,6 @@
 package racinggame.view
 
-import racinggame.domain.RealRacingGame
+import racinggame.domain.game.RealRacingGame
 import racinggame.domain.car.factory.RealRacingCarFactory
 
 fun startRacingGameScreen() {

@@ -1,4 +1,4 @@
-package racinggame.domain
+package racinggame.domain.game
 
 import racinggame.domain.record.RacingRecordBook
 
