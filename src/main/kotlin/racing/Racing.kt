@@ -27,7 +27,7 @@ class Racing {
                 val distance = moveAndStop(car, randomNumber)
                 ResultView.printDistance(distance)
             }
-            println()
+            ResultView.printEnter()
         }
     }
 

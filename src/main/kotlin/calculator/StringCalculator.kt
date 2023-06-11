@@ -58,7 +58,7 @@ class StringCalculator {
             }
 
             val operator = OperatorsEnum.fromChar(operators[i])
-            currentNum = operator?.calculate(currentNum, numbers[i + 1])
+            currentNum = operator?.calculate?.let { it(currentNum, numbers[i + 1]) }
                 ?: throw IllegalArgumentException("연산 기호의 맞지 않는 기호가 존재합니다")
         }
         return currentNum

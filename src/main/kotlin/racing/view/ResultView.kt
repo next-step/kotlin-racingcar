@@ -9,4 +9,8 @@ object ResultView {
     fun printDistance(distance: String) {
         println(distance)
     }
+
+    fun printEnter() {
+        println()
+    }
 }
