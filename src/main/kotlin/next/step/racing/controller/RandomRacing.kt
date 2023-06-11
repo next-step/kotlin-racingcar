@@ -6,10 +6,11 @@ import next.step.racing.service.Racing
 import next.step.racing.util.DrivingStrategyUtil
 
 fun main() {
+
     runCatching {
-        val carCnt = InputDevice.readCarCount()
+        val carNames = InputDevice.readCarNames()
         val stepCnt = InputDevice.readStepCount()
-        Racing.race(carCnt.cnt, stepCnt.cnt, DrivingStrategyUtil.defaultRandom())
+        Racing.race(carNames, stepCnt, DrivingStrategyUtil.defaultRandom())
     }.onSuccess {
         OutputDevice.showResult(it)
     }.onFailure { e ->
