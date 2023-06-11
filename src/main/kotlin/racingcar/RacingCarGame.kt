@@ -3,14 +3,18 @@ package racingcar
 class RacingCarGame {
 
     fun progressGame(totalRound: Long, cars: List<Car>): List<RacingCarRoundResult> {
-        require(totalRound >= 1) { "시도 횟수는 1 이상이어야 합니다." }
-        require(cars.isNotEmpty()) { "자동차 대수는 1 이상이어야 합니다." }
+        validate(totalRound, cars)
 
         return (START_ROUND..totalRound)
             .map { round ->
                 val roundResult = progressRound(cars)
                 RacingCarRoundResult(round, roundResult)
             }
+    }
+
+    private fun validate(totalRound: Long, cars: List<Car>) {
+        require(totalRound >= 1) { "시도 횟수는 1 이상이어야 합니다." }
+        require(cars.isNotEmpty()) { "자동차 대수는 1 이상이어야 합니다." }
     }
 
     private fun progressRound(cars: List<Car>): List<RacingCarDriveResult> {
