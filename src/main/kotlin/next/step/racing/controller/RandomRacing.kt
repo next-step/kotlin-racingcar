@@ -1,20 +1,20 @@
 package next.step.racing.controller
 
-import next.step.racing.service.InputDevice
-import next.step.racing.service.OutputDevice
-import next.step.racing.service.Racing
+import next.step.racing.domain.racing.Racing
 import next.step.racing.util.DrivingStrategyUtil
+import next.step.racing.view.InputView
+import next.step.racing.view.OutputView
 
 fun main() {
 
     runCatching {
-        val carNames = InputDevice.readCarNames()
-        val stepCnt = InputDevice.readStepCount()
+        val carNames = InputView.readCarNames()
+        val stepCnt = InputView.readStepCount()
         Racing.race(carNames, stepCnt, DrivingStrategyUtil.defaultRandom())
     }.onSuccess {
-        OutputDevice.showResult(it)
+        OutputView.showResult(it)
     }.onFailure { e ->
-        OutputDevice.showError(e.message)
+        OutputView.showError(e.message)
         main()
     }
 }

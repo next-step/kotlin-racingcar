@@ -1,9 +1,9 @@
-package next.step.racing.service
+package next.step.racing.view
 
 import next.step.racing.domain.car.CarNames
-import next.step.racing.service.to.StepCount
+import next.step.racing.domain.racing.StepCount
 
-object InputDevice {
+object InputView {
 
     private const val ENTER_CAR_NAMES = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
     private const val ENTER_STEP_COUNT = "시도할 횟수는 몇 회인가요?"
@@ -17,7 +17,7 @@ object InputDevice {
             println(enterMsg)
             constructor(readln())
         } catch (e: Exception) {
-            OutputDevice.showError(e.message)
+            OutputView.showError(e.message)
             read(enterMsg, constructor)
         }
     }
