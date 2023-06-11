@@ -17,7 +17,7 @@ class RacingCarTest : StringSpec({
             row(3),
         ) { input ->
             racingCar.move(input)
-            racingCar.position shouldBe 0
+            racingCar.position() shouldBe 0
         }
     }
 
@@ -31,7 +31,7 @@ class RacingCarTest : StringSpec({
             row(9, 6),
         ) { input, position ->
             racingCar.move(input)
-            racingCar.position shouldBe position
+            racingCar.position() shouldBe position
         }
     }
 })

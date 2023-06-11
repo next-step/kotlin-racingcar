@@ -9,8 +9,8 @@ class RacingCarGame(
 ) {
 
     fun racing() {
-        racingCars.forEach { racingCar ->
-            racingCar.move(randomNumber())
+        racingCars.forEach {
+            it.move(randomNumber())
         }
     }
 

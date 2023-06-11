@@ -1,17 +1,21 @@
 package racingcar.domain
 
 class RacingCar(
-    var position: Int = 0
+    private var position: Int = 0
 ) {
-    companion object {
-        private const val MOVE_POSSIBLE_NUMBER = 4;
-    }
-
     fun move(input: Int) {
         if (movePossible(input)) {
-            position++;
+            position++
         }
     }
 
-    private fun movePossible(input: Int) = input >= MOVE_POSSIBLE_NUMBER
+    fun position(): Int {
+        return position
+    }
+
+    private fun movePossible(input: Int): Boolean = input >= MOVE_POSSIBLE_NUMBER
+
+    companion object {
+        private const val MOVE_POSSIBLE_NUMBER = 4
+    }
 }

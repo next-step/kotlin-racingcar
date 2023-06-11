@@ -9,8 +9,8 @@ fun printStart() {
 }
 
 fun printPosition(racingCars: List<RacingCar>) {
-    racingCars.forEach {
-        printPosition(it.position)
+    for (it in racingCars) {
+        printPosition(it.position())
     }
 
     println()
