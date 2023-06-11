@@ -19,6 +19,6 @@ data class Cars(private val cars: List<Car>) : List<Car> by cars {
         private val DEFAULT_POSITION = CarPosition(0)
 
         fun of(names: CarNames, pos: CarPosition = DEFAULT_POSITION): Cars =
-            Cars(names.names.map { Car(name = it, pos = pos) })
+            Cars(names.map { Car(name = it, pos = pos) })
     }
 }
