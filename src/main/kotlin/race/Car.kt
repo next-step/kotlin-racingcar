@@ -12,8 +12,6 @@ class Car private constructor(var position: Int) {
     fun move() {
         if (canGoStraight()) {
             straight()
-        } else {
-            back()
         }
     }
 
@@ -23,9 +21,5 @@ class Car private constructor(var position: Int) {
 
     private fun straight() {
         position++
-    }
-
-    private fun back() {
-        position = (position - 1).coerceAtLeast(0)
     }
 }
