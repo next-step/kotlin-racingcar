@@ -18,7 +18,7 @@ class RacingCars(private val cars: List<Car>) {
 
     private fun attemptToMoveCars(): List<Int> {
         return cars.map { car ->
-            car.move(RandomGenerator.next0To9())
+            car.move()
             car.position
         }
     }
