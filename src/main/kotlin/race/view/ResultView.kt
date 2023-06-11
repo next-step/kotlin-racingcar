@@ -15,4 +15,8 @@ object ResultView {
         }
         println()
     }
+
+    fun showWinner(winner: String) {
+        println("$winner 가 최종우승했습니다.")
+    }
 }

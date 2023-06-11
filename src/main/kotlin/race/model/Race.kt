@@ -1,15 +1,9 @@
 package race.model
 
 class Race(
-    private val raceCars: List<String>,
+    private val cars: List<Car>,
     private val numberOfRace: Int
 ) {
-
-    private val cars = mutableListOf<Car>().apply {
-        raceCars.forEach {
-            add(Car(it))
-        }
-    }
 
     fun getCarSize() = cars.size
 
@@ -24,6 +18,19 @@ class Race(
             carsMove()
             val result = cars.map { it.name to it.position }
             update?.invoke(result)
+        }
+    }
+
+    fun getWinner(): String {
+        val max = cars.maxOf { it.position }
+        return cars.filter { it.position == max }.joinToString { it.name }
+    }
+
+    companion object {
+        fun createCars(carRacers: List<String>, engine: Engine = RandomEngine()) = mutableListOf<Car>().apply {
+            carRacers.forEach {
+                add(Car(_name = it, engine = engine))
+            }
         }
     }
 }

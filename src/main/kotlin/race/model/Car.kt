@@ -2,11 +2,12 @@ package race.model
 
 data class Car(
     private val _name: String,
-    private var _position: Int = START_POSITION,
     private val engine: Engine = RandomEngine()
 ) {
 
     val name: String get() = _name
+
+    private var _position: Int = START_POSITION
     val position: Int get() = _position
 
     private fun move() {
