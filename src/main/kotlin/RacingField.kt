@@ -17,9 +17,7 @@ class RacingField(
     }
 
     fun gameStart() {
-        for (i in 1..gameCount) {
-            moveCars()
-        }
+        moveCars()
     }
 
     private fun moveCars() {
