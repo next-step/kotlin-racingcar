@@ -3,13 +3,19 @@ package racing.domain
 import racing.generator.DefaultRandomMoveCheckGenerator
 
 class Car(
-    var position: Int = 0,
     val moveFlag: DefaultRandomMoveCheckGenerator
 ) {
 
-    fun moveCheck(): Boolean = this.moveFlag.moveCheck(10)
+    var currentPosition: Int = 0
+        private set
 
-    fun move() {
-        this.position = this.position.plus(1)
-    }
+    val position: Int
+        get() {
+            if (moveCheck()) {
+                currentPosition++
+            }
+            return currentPosition
+        }
+
+    private fun moveCheck(): Boolean = this.moveFlag.moveCheck(10)
 }

@@ -42,7 +42,6 @@ class RacingTest {
     fun `4 이상의 랜덤 숫자가 나와 자동차 이동 검증`(randomNumber: Int) {
 
         val car = Car(moveFlag = DefaultRandomMoveCheckGenerator(randomNumber))
-        Racing().getCarPosition(car)
         assertThat(car.position).isEqualTo(1)
     }
 
@@ -51,7 +50,6 @@ class RacingTest {
     fun `4 이상의 랜덤 숫자가 나오지 않을 시 자동차 정지 검증`(randomNumber: Int) {
 
         val car = Car(moveFlag = DefaultRandomMoveCheckGenerator(randomNumber))
-        Racing().getCarPosition(car)
         assertThat(car.position).isEqualTo(0)
     }
 }

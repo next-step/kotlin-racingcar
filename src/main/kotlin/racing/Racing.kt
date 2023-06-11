@@ -23,18 +23,10 @@ class Racing {
     private fun carRacing(tryCount: Int, cars: List<Car>) {
         repeat(tryCount) {
             cars.forEach { car ->
-                val position = getCarPosition(car)
+                val position = car.position
                 ResultView.printDistance(position)
             }
             ResultView.printEnter()
         }
-    }
-
-    fun getCarPosition(car: Car): Int {
-        if (car.moveCheck()) {
-            car.move()
-        }
-
-        return car.position
     }
 }
