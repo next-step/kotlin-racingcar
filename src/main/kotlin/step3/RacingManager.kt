@@ -3,7 +3,7 @@ package step3
 import step3.view.InputView
 import step3.view.OutputView
 
-class RacingGame(
+class RacingManager(
     private val inputView: InputView,
     private val outputView: OutputView,
 ) {
@@ -18,15 +18,11 @@ class RacingGame(
         outputView.showResultTitle()
         repeat(requirement.numberOfTrials) {
             racing.race()
-            outputView.showStatus(racing.showCurrentStatus())
+            outputView.showStatus(racing.currentStatus)
         }
     }
 
     private fun arrangeCars(requirement: RacingRequirement): List<Car> {
-        val cars = mutableListOf<Car>()
-        repeat(requirement.numberOfCars) {
-            cars.add(Car(ConditionalOperatingCarEngine.RANDOM))
-        }
-        return cars
+        return requirement.carNames.map { Car(ConditionalOperatingCarEngine.RANDOM, it) }
     }
 }

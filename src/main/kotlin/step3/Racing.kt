@@ -9,9 +9,8 @@ class Racing(
         }
     }
 
-    fun showCurrentStatus(): List<Distance> {
-        return cars.map {
-            it.movedDistance
+    val currentStatus: List<CurrentCarStatus>
+        get() = cars.map {
+            CurrentCarStatus(it.name, it.movedDistance)
         }
-    }
 }

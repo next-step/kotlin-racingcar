@@ -1,8 +1,8 @@
 package step3.view
 
-import step3.Distance
+import step3.CurrentCarStatus
 
 interface OutputView {
     fun showResultTitle()
-    fun showStatus(distanceResult: List<Distance>)
+    fun showStatus(carStatuses: List<CurrentCarStatus>)
 }
