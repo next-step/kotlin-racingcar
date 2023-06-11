@@ -1,13 +1,13 @@
 package study.racinggame.ui
 
-import study.racinggame.domain.Car
+import study.racinggame.domain.RacingGameResult
 
 interface RacingGamePrinter {
-    fun print(cars: List<Car>)
+    fun print(racingGameResult: RacingGameResult)
 }
 object CommandLineRacingGamePrinter : RacingGamePrinter {
-    override fun print(cars: List<Car>) {
-        cars.forEach { it.printPosition(HyphenCarPositionPrinter) }
+    override fun print(racingGameResult: RacingGameResult) {
+        racingGameResult.positionOfCars.forEach { HyphenCarPositionPrinter.print(it) }
         println()
     }
 }

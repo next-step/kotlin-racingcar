@@ -11,5 +11,7 @@ fun main() {
 
     println("실행 결과")
 
-    racingGame.start(CommandLineRacingGamePrinter)
+    val racingGameResults = racingGame.start()
+
+    racingGameResults.forEach { CommandLineRacingGamePrinter.print(it) }
 }
