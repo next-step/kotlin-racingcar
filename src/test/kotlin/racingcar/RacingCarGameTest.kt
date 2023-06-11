@@ -32,14 +32,13 @@ class RacingCarGameTest : StringSpec({
         }
     }
 
-    // "자동차 경주의 최종 우승자를 가져온다." {
-    //     val finishedRacingCarGame = RacingCarGame(
-    //         listOf(RacingCar("1등"), RacingCar("2등"))
-    //     )
-    //
-    //     finishedRacingCarGame.racing(5)
-    //     finishedRacingCarGame.racing(4)
-    //
-    //     finishedRacingCarGame.winners() shouldBe "1등"
-    // }
+    "자동차 경주의 최종 우승자를 가져온다." {
+        val finishedRacingCarGame = RacingCarGame(
+            listOf(RacingCar("1등"), RacingCar("2등"))
+        )
+
+        finishedRacingCarGame.racing(CarStopNumberGenerator())
+
+        finishedRacingCarGame.winners() shouldBe "1등, 2등"
+    }
 })
