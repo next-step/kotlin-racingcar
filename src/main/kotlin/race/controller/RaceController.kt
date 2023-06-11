@@ -11,12 +11,14 @@ class RaceController {
         val inputView = InputView()
         val inputData = inputView.input()
 
-        val numberOfCar = inputData.numberOfCar
+        val carNames = inputData.carNames
         val numberOfTry = inputData.numberOfTry
 
         val cars = mutableListOf<Car>()
         val condition = RandomMoveCondition()
-        List(numberOfCar) { Car(condition) }
+        for (carName in carNames) {
+            cars.add(Car(carName, condition))
+        }
 
         val result = Race(cars, numberOfTry).run()
 

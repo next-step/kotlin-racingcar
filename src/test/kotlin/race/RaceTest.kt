@@ -8,10 +8,10 @@ class RaceTest {
     @Test
     fun `경주 결과`() {
         val condition1 = FixedMoveCondition(true)
-        val car1 = Car(condition1)
+        val car1 = Car("car1", condition1)
 
         val condition2 = FixedMoveCondition(false)
-        val car2 = Car(condition2)
+        val car2 = Car("car2", condition2)
 
         val records = Race(listOf(car1, car2), 2).run().records
         assertAll(

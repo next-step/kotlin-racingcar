@@ -1,6 +1,6 @@
 package race.view
 
 class RaceRequest(
-    val numberOfCar: Int,
+    val carNames: List<String>,
     val numberOfTry: Int
 )
