@@ -1,5 +1,6 @@
 package study
 
+import Person
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
