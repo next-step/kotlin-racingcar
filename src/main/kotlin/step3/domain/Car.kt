@@ -1,19 +1,22 @@
 package step3.domain
 
 class Car(
-    private val number: Int,
-    private var position: Int = FIRST_POSITION
+    val name: String,
+    private var position: Int = INIT_POSITION,
+    private val condition: MoveCondition = CarMoveCondition()
 ) {
 
-    companion object {
-        const val FIRST_POSITION = 1
-    }
-
     fun move() {
-        position += 1
+        if (condition.isMovable()) {
+            position += 1
+        }
     }
 
     fun getPosition(): Int {
         return position
+    }
+
+    companion object {
+        const val INIT_POSITION = 1
     }
 }
