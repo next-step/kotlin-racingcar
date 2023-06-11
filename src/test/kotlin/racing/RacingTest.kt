@@ -4,23 +4,28 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import racing.domain.Car
-import racing.view.InputView
-import racing.view.ResultView
+import java.io.ByteArrayInputStream
+import java.io.InputStream
 
 class RacingTest {
 
     @ParameterizedTest
     @CsvSource("3,3")
-    fun `자동차 경주 결과 출력`(carCount: Int, tryCount: Int) {
+    fun `자동차 경주 입력 검증`(carCount: String, tryCount: String) {
 
-        InputView.printInputCar()
-        println(carCount)
-        InputView.printInputCount()
-        println(tryCount)
+        System.setIn(getInputStream(carCount))
+        val inputCar = readln()
 
-        val cars = Racing().createCars(carCount)
-        ResultView.printResult()
-        Racing().carRacing(tryCount, cars)
+        System.setIn(getInputStream(tryCount))
+        val inputTry = readln()
+
+        assertThat(inputCar).isEqualTo(carCount)
+        assertThat(inputTry).isEqualTo(tryCount)
+    }
+
+    private fun getInputStream(input: String): InputStream {
+        val inputBytes = input.toByteArray()
+        return ByteArrayInputStream(inputBytes)
     }
 
     @ParameterizedTest
