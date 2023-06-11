@@ -2,7 +2,6 @@ package racinggame.domain
 
 import racinggame.domain.car.RacingCar
 import racinggame.domain.car.factory.RacingCarFactory
-import racinggame.domain.car.getOffAllRacer
 import racinggame.domain.employee.GameGuide
 import racinggame.domain.employee.GameRule
 import racinggame.domain.employee.RacingHistoryRecoder
@@ -16,21 +15,19 @@ class RealRacingGame(
 ) : RacingGame {
 
     override fun execute(gameGuide: GameGuide): RacingGameResult {
-        val racingCars = gameGuide.users.getInRacingCars()
         val racingRecordBook = startRacingGame(
-            racingCars = racingCars,
+            racingCars = gameGuide.users.assignUsersToRacingCars(),
             gameRule = gameGuide.gameRule,
         )
-        racingCars.getOffAllRacer()
 
         return RacingGameResult(
             racingRecordBook = racingRecordBook,
         )
     }
 
-    private fun List<User>.getInRacingCars(): List<RacingCar> {
+    private fun List<User>.assignUsersToRacingCars(): List<RacingCar> {
         return mapIndexed { index, user -> user.toRacer(ordinal = index) }
-            .map { racer -> racingCarFactory.create().apply { getIn(racer) } }
+            .map { racer -> racingCarFactory.create(racer) }
     }
 
     private fun startRacingGame(
