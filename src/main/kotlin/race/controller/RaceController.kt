@@ -2,6 +2,7 @@ package race.controller
 
 import race.Car
 import race.Race
+import race.RandomMoveCondition
 import race.view.InputView
 import race.view.ResultView
 
@@ -14,8 +15,9 @@ class RaceController {
         val numberOfTry = inputData.numberOfTry
 
         val cars = mutableListOf<Car>()
+        val condition = RandomMoveCondition()
         repeat(numberOfCar) {
-            cars.add(Car())
+            cars.add(Car(condition))
         }
 
         val result = Race(cars, numberOfTry).run()

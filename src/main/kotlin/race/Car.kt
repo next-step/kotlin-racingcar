@@ -1,8 +1,8 @@
 package race
 
-import kotlin.random.Random
-
-class Car {
+class Car(
+    private val moveCondition: MoveCondition
+) {
 
     var position: Int = 0
         private set
@@ -12,13 +12,9 @@ class Car {
     }
 
     fun move() {
-        if (canGoStraight()) {
+        if (moveCondition.canGoStraight()) {
             straight()
         }
-    }
-
-    private fun canGoStraight(): Boolean {
-        return 4 <= Random.nextInt(10)
     }
 
     private fun straight() {
