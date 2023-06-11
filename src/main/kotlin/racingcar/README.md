@@ -64,3 +64,5 @@ val value: String? = readLine()
 val value: String = readLine()!!
 val number = readLine()!!.toInt()
 ```
+- 사용자가 입력한 이름의 숫자 만큼 자동차 대수를 생성한다.
+- 자동차는 자동차 이름과 위치 정보를 가지는 Car 객체를 추가해 구현한다.
