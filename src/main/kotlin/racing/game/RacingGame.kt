@@ -1,28 +1,38 @@
 package racing.game
 
-import racing.car.RacingCar
+import racing.car.Car
+import racing.car.RacingCars
 import racing.condition.MovingCondition
 import racing.view.ResultView
 
-class RacingGame {
+class RacingGame(
+    private val carCount: Int
+) {
 
-    private val racingCar: MutableList<RacingCar> = mutableListOf()
+    var cars: RacingCars
+        private set
 
-    fun racingGameCarInit(carCount: Int): List<RacingCar> {
-        repeat(carCount) {
-            racingCar.add(RacingCar())
-        }
-        return racingCar
+    init {
+        this.cars = racingGameCarInit(carCount)
     }
 
-    fun executeGame(retryCount: Int, racingCars: List<RacingCar>) {
+    fun racingGameCarInit(carCount: Int): RacingCars {
+        val cars = List(carCount) { Car() }
+        return RacingCars(cars)
+    }
+
+    fun executeGame(retryCount: Int, cars: RacingCars) {
         repeat(retryCount) {
-            racingCars.forEach {
-                if (MovingCondition().getRandomValue() >= 4) {
-                    it.move()
-                }
+            isMoving(cars)
+            ResultView().showGameBoard(cars)
+        }
+    }
+
+    fun isMoving(cars: RacingCars) {
+        cars.racingCars.forEach {
+            if (MovingCondition().canMove()) {
+                it.move()
             }
-            ResultView().showGameBoard(racingCars)
         }
     }
 }

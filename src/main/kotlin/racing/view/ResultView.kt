@@ -1,18 +1,19 @@
 package racing.view
 
-import racing.car.RacingCar
+import racing.car.Car
+import racing.car.RacingCars
 
 class ResultView {
     private val RACING_MARK = '-'
-    fun showGameBoard(racingCars: List<RacingCar>) {
-        racingCars.forEach {
+    fun showGameBoard(cars: RacingCars) {
+        cars.racingCars.forEach {
             show(it)
         }
         println()
     }
 
-    fun show(racingCar: RacingCar) {
-        repeat(racingCar.position) {
+    fun show(car: Car) {
+        repeat(car.position) {
             print(RACING_MARK)
         }
         println()

@@ -17,12 +17,12 @@ class Calculator(
         return (sign == OperatorSign.SUM.code || sign == OperatorSign.SUBSTRACT.code || sign == OperatorSign.MULTIPLY.code || sign == OperatorSign.DIVIDE.code)
     }
     private fun splitNumberAndSign(inputData: String) {
-        val splitData = inputData.split(" ")
+        val splitDatas = inputData.split(" ")
 
-        splitData.forEach {
+        splitDatas.forEach { splitData ->
             kotlin.runCatching {
-                numberList.add((it.toInt()))
-            }.onFailure { _ -> signList.add(it) }
+                numberList.add((splitData.toInt()))
+            }.onFailure { signList.add(splitData) }
         }
     }
 

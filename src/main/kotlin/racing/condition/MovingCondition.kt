@@ -1,13 +1,16 @@
 package racing.condition
 
+import racing.util.RandomValueGenerator
 import kotlin.random.Random
 
 class MovingCondition {
 
-    private var randomValue = 0
+    companion object {
+        const val LIMIT_VALUE = 4
+    }
 
-    fun getRandomValue(): Int {
-        randomValue = Random.nextInt(0, 10)
-        return this.randomValue
+    fun canMove(): Boolean {
+        val randomValue = RandomValueGenerator().getRandomValue()
+        return randomValue >= LIMIT_VALUE
     }
 }
