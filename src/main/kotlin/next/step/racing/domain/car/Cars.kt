@@ -20,7 +20,7 @@ data class Cars(private val cars: List<Car>) : List<Car> by cars {
     companion object {
         private val DEFAULT_POSITION = CarPosition(0)
 
-        fun from(names: CarNames, pos: CarPosition = DEFAULT_POSITION): Cars =
+        fun of(names: CarNames, pos: CarPosition = DEFAULT_POSITION): Cars =
             Cars(names.names.map { Car(name = it, pos = pos) })
     }
 }
