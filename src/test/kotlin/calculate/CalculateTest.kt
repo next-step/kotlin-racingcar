@@ -13,6 +13,31 @@ class CalculateTest : WordSpec({
             val actual = sut.calculate("1+2+3+4")
             actual shouldBe 10
         }
+        "뺄셈" {
+            val actual = sut.calculate("1-2-3-4")
+            actual shouldBe -8
+        }
+        "곱셈" {
+            val actual = sut.calculate("1*2*3*4")
+            actual shouldBe 24
+        }
+        "곱셈 - 0인 값을 곱할때" {
+            val actual = sut.calculate("1*2*0*4")
+            actual shouldBe 0
+        }
+        "나눗셈" {
+            val actual = sut.calculate("5/2")
+            actual shouldBe 2
+        }
+        "나눗셈 - 0으로 나눌때" {
+            shouldThrow<IllegalArgumentException> {
+                sut.calculate("5/0") shouldBe 0
+            }.message shouldBe "0으로 나눌 수 없습니다."
+        }
+        "나눗셈 - 대상값이 0일때" {
+            val actual = sut.calculate("0/5")
+            actual shouldBe 0
+        }
         "입력값이 empty 인 경우 예외를 발생한다" {
             listOf("", " ").forAll { a ->
                 shouldThrow<IllegalArgumentException> {
