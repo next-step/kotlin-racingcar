@@ -20,9 +20,6 @@ class ResultView {
     }
 
     private fun show(car: Car) {
-        repeat(car.position) {
-            print('-')
-        }
-        println()
+        println("-".repeat(car.position))
     }
 }
