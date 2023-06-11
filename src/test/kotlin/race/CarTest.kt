@@ -12,10 +12,15 @@ class CarTest {
     }
 
     @Test
-    fun `한 번 이동한 경우 위치는 0(후진) 또는 1(직진)`() {
-        val condition = RandomMoveCondition()
+    fun `한 번 이동하면 위치는 1`() {
+        val condition = object : MoveCondition {
+            override fun canGoStraight(): Boolean {
+                return true
+            }
+        }
+
         val car = Car(condition)
         car.move()
-        assertThat(car.position).isIn(0, 1)
+        assertThat(car.position).isEqualTo(1)
     }
 }
