@@ -11,7 +11,7 @@ class ResultView {
     }
 
     private fun show(car: Car) {
-        repeat(car.getPosition()) {
+        repeat(car.position) {
             print('-')
         }
         println()

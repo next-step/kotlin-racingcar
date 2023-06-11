@@ -3,9 +3,8 @@ package race
 import kotlin.random.Random
 
 class Car {
-    private var position = 0
-
-    fun getPosition(): Int = position
+    var position: Int = 0
+        private set
 
     fun move() {
         if (canGoStraight()) {
