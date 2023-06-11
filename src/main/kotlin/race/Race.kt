@@ -1,32 +1,15 @@
 package race
 
-import race.view.InputView
+import race.controller.RaceController
 import race.view.ResultView
 
-class Race {
-    private val inputView = InputView()
+class Race(
+    private val cars: List<Car>,
+    private val numberOfTry: Int
+) {
     private val resultView = ResultView()
 
-    private val cars = mutableListOf<Car>()
-    private var numberOfTry = 0
-
     fun run() {
-        prepare()
-        start()
-    }
-
-    private fun prepare() {
-        val inputData = inputView.input()
-
-        val numberOfCar = inputData.numberOfCar
-        numberOfTry = inputData.numberOfTry
-
-        repeat(numberOfCar) {
-            cars.add(Car())
-        }
-    }
-
-    private fun start() {
         println("실행 결과")
 
         repeat(numberOfTry) {
@@ -37,5 +20,10 @@ class Race {
 }
 
 fun main() {
-    Race().run()
+    val raceRequest = RaceController().run()
+
+    val cars = raceRequest.cars
+    val numberOfTry = raceRequest.numberOfTry
+
+    Race(cars, numberOfTry).run()
 }
