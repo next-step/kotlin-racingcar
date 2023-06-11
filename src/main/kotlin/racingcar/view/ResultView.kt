@@ -1,9 +1,10 @@
 package racingcar.view
 
 import racingcar.model.Car
+import racingcar.model.InputResult
 
 interface ResultView {
-    fun input(): Pair<Int, Int>
+    fun input(): InputResult
 
     fun output(carList: List<Car>)
 }
