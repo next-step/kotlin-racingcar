@@ -1,21 +1,23 @@
 package racing.domain
 
-import racing.generator.RandomGenerator
+import racing.generator.NumberGenerator
 
 class Car(
-    val moveFlag: RandomGenerator
+    name: String? = null,
+    val moveFlag: NumberGenerator
 ) {
+    val carName = CarName(name)
 
-    var currentPosition: Int = 0
+    var position: Int = 0
         private set
 
-    val position: Int
-        get() {
-            if (moveCheck()) {
-                currentPosition++
-            }
-            return currentPosition
+    fun move() {
+        if (moveCheck()) {
+            position++
         }
+    }
 
-    private fun moveCheck(): Boolean = this.moveFlag.getRandomNumber(10) >= 4
+    private fun moveCheck(): Boolean {
+        return this.moveFlag.nextInt(10) >= 4
+    }
 }
