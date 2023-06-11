@@ -1,4 +1,4 @@
-package step3.model
+package step3.domain
 
 class RacingGame(
     private val numberGenerator: NumberGenerator,

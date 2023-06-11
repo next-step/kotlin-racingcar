@@ -1,4 +1,4 @@
-package step3.model
+package step3.domain
 
 class Car(
     private val number: Int,

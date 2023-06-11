@@ -1,6 +1,6 @@
 package step3.fake
 
-import step3.model.NumberGenerator
+import step3.domain.NumberGenerator
 
 class NumberGeneratorGreaterThan4 : NumberGenerator {
     override fun generate(): Int {

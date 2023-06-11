@@ -1,9 +1,9 @@
 package step3.controller
 
-import step3.model.Car
-import step3.model.NumberGenerator
-import step3.model.RacingGame
-import step3.model.RandomNumberGenerator
+import step3.domain.Car
+import step3.domain.NumberGenerator
+import step3.domain.RacingGame
+import step3.domain.RandomNumberGenerator
 import step3.view.InputView
 import step3.view.OutputView
 

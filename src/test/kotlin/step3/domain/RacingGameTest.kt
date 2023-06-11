@@ -1,4 +1,4 @@
-package step3.model
+package step3.domain
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.collections.shouldContainOnly
