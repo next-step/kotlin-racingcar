@@ -5,19 +5,15 @@ object ExpressionVerifier {
     fun verify(input: String) {
         require(input.isNotBlank()) { "Input is blank" }
 
-        val elements = ExpressionFormatter.format(input)
+        val elements = ExpressionParser.parse(input)
         for (i in elements.indices) {
             if (i % 2 == 0) {
-                try {
-                    elements[i].toInt()
-                } catch (e: NumberFormatException) {
-                    throw IllegalArgumentException("Input is incorrect")
-                }
+                elements[i].toBigDecimalOrNull() ?: throw IllegalArgumentException("Input is incorrect")
             } else {
-                when (elements[i]) {
-                    "+", "-", "*", "/" -> continue
-                    else -> throw IllegalArgumentException("Input is incorrect")
+                if (elements[i] in setOf("+", "-", "*", "/")) {
+                    continue
                 }
+                throw IllegalArgumentException("Input is incorrect")
             }
         }
     }
