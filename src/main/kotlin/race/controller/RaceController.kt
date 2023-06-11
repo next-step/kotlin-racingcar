@@ -1,10 +1,12 @@
 package race.controller
 
 import race.Car
+import race.Race
 import race.view.InputView
+import race.view.ResultView
 
 class RaceController {
-    fun run(): RaceRequest {
+    fun run() {
         val inputView = InputView()
         val inputData = inputView.input()
 
@@ -16,6 +18,12 @@ class RaceController {
             cars.add(Car())
         }
 
-        return RaceRequest(numberOfTry, cars)
+        val result = Race(cars, numberOfTry).run()
+
+        ResultView().run(result)
     }
+}
+
+fun main() {
+    RaceController().run()
 }
