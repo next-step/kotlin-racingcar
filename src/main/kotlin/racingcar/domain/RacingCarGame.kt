@@ -22,4 +22,29 @@ class RacingCarGame(
         currentNumber++
         return true
     }
+
+    fun winners(): String {
+        val maxPosition = maxPosition()
+        return createWinners(maxPosition)
+    }
+
+    private fun maxPosition(): Int {
+        var maxPosition = 0;
+        racingCars
+            .asSequence()
+            .filter { it.position() > maxPosition }
+            .forEach { maxPosition = it.position() }
+
+        return maxPosition;
+    }
+
+    private fun createWinners(maxPosition: Int): String {
+        val winners = mutableListOf<String>()
+        racingCars
+            .asSequence()
+            .filter { it.position() == maxPosition }
+            .forEach { winners.add(it.name()) }
+
+        return winners.joinToString { it }
+    }
 }

@@ -6,6 +6,7 @@ import racingcar.ui.enterCarNames
 import racingcar.ui.enterNumberOfAttempts
 import racingcar.ui.printPosition
 import racingcar.ui.printStart
+import racingcar.ui.printWinner
 
 class RacingCarController {
 
@@ -21,6 +22,8 @@ class RacingCarController {
             racingCarGame.racing()
             printPosition(racingCarGame.racingCars)
         }
+
+        printWinner(racingCarGame.winners())
     }
 
     private fun createRacingCars(racingCarNames: String): List<RacingCar> {

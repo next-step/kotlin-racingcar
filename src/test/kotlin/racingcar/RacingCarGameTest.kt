@@ -18,4 +18,12 @@ class RacingCarGameTest : StringSpec({
             endRacingCarGame.racingAttemptsCheck() shouldBe result
         }
     }
+
+    "자동차 경주의 최종 우승자를 가져온다." {
+        val racingCarGame = RacingCarGame(
+            listOf(RacingCar("1등", 3), RacingCar("2등", 2)),
+            3, 3)
+
+        racingCarGame.winners() shouldBe "1등"
+    }
 })

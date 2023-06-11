@@ -6,7 +6,7 @@ class RacingCar(
 ) {
     init {
         require(name.length <= 5) {
-            throw IllegalArgumentException("자동차 이름은 5자 까지 사용 가능 합니다. 입력하신 차의 이름은 : $name 입니다.");
+            throw IllegalArgumentException("자동차 이름은 5자 까지 사용 가능 합니다. 입력하신 차의 이름은 : $name 입니다.")
         }
     }
 
@@ -19,7 +19,6 @@ class RacingCar(
     fun name(): String {
         return name
     }
-
 
     fun position(): Int {
         return position

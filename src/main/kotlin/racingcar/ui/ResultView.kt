@@ -23,3 +23,7 @@ fun printPosition(position: Int) {
     }
     println()
 }
+
+fun printWinner(winners: String) {
+    println(winners + "가 최종 우승했습니다.")
+}
