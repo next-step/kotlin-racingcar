@@ -1,7 +1,7 @@
 package step3.view
 
-import step3.CarName
-import step3.RacingRequirement
+import step3.domain.CarName
+import step3.domain.RacingRequirement
 
 class ConsoleInputView : InputView {
     override fun askRequirement(): RacingRequirement {

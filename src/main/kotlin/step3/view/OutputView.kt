@@ -1,7 +1,7 @@
 package step3.view
 
-import step3.CarName
-import step3.CurrentCarStatus
+import step3.domain.CarName
+import step3.domain.CurrentCarStatus
 
 interface OutputView {
     fun showResultTitle()

@@ -4,6 +4,9 @@ import io.kotest.core.spec.style.FreeSpec
 import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
+import step3.domain.CarName
+import step3.domain.CurrentCarStatus
+import step3.domain.RacingRequirement
 import step3.test.toCarName
 import step3.view.InputView
 import step3.view.OutputView
