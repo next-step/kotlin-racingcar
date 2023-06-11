@@ -10,31 +10,25 @@ import kotlin.random.Random
 class Main(
     private val inputView: InputView = InputView(),
     private val outputView: OutputView = OutputView(LINE_SYMBOL),
-    private val race: Race = Race { Random.nextInt(MIN_VALUE, MAX_VALUE) > MOVE_FORWARD_VALUE },
+    private val race: Race = Race { Random.nextInt(MIN_VALUE, MAX_VALUE) > THRESHOLD },
     private val getWinners: GetWinners = GetWinners(),
 ) {
     operator fun invoke() {
         val raceCondition = inputView()
-        var racingCars = makeCars(raceCondition.nameOfCars)
+        var racingCars = RacingCar.makeCars(raceCondition.nameOfCars)
         repeat(raceCondition.numberOfLabs) {
-            racingCars = doLabs(racingCars)
+            racingCars = race(racingCars)
             outputView.forLabs(racingCars)
         }
         val winners = getWinners(racingCars)
         outputView.forWinners(winners)
     }
 
-    private fun makeCars(nameOfCars: List<String>): List<RacingCar> =
-        nameOfCars.map { RacingCar(name = it) }
-
-    private fun doLabs(cars: List<RacingCar>): List<RacingCar> =
-        cars.map { race(it) }
-
     companion object {
         private const val LINE_SYMBOL = "-"
         private const val MAX_VALUE = 10
         private const val MIN_VALUE = 0
-        private const val MOVE_FORWARD_VALUE = 4
+        private const val THRESHOLD = 4
     }
 }
 

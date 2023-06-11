@@ -9,16 +9,16 @@ internal class RaceTest {
     @Test
     fun `if condition is true, then move forward`() {
         val race = Race { true }
-        val racingCar = RacingCar(UUID.randomUUID().toString())
+        val racingCar = listOf(RacingCar(UUID.randomUUID().toString()))
         val movedRacingCar = race(racingCar)
-        assertEquals(1, movedRacingCar.position)
+        assertEquals(1, movedRacingCar[0].position)
     }
 
     @Test
     fun `if condition is false, then it does not move`() {
         val race = Race { false }
-        val racingCar = RacingCar(UUID.randomUUID().toString())
+        val racingCar = listOf(RacingCar(UUID.randomUUID().toString()))
         val movedRacingCar = race(racingCar)
-        assertEquals(0, movedRacingCar.position)
+        assertEquals(0, movedRacingCar[0].position)
     }
 }

@@ -7,19 +7,19 @@ class RaceCondition private constructor(
     companion object {
         private const val DELIMITER = ","
 
-        fun of(nameOfCars: String?, numberOfLabs: String?): RaceCondition =
-            RaceCondition(validateString(nameOfCars, DELIMITER), validateNumbers(numberOfLabs))
+        fun of(nameOfCars: String, numberOfLabs: String): RaceCondition =
+            RaceCondition(validateString(nameOfCars), validateNumbers(numberOfLabs))
 
-        private fun validateNumbers(number: String?): Int {
-            require(!number.isNullOrBlank()) { "입력은 반드시 필요합니다. 숫자를 입력해주세요." }
+        private fun validateNumbers(number: String): Int {
+            require(number.isNotBlank()) { "입력은 반드시 필요합니다. 숫자를 입력해주세요." }
             val intValue = number.toIntOrNull() ?: throw IllegalArgumentException("숫자만 입력해주세요.")
             require(intValue > 0) { "숫자는 반드시 양수여야 합니다." }
             return intValue
         }
 
-        private fun validateString(nameOfCars: String?, delimiter: String): List<String> {
-            require(!nameOfCars.isNullOrBlank()) { "입력은 반드시 필요합니다. ,로 구분되는 자동차 이름을 입력해주세요." }
-            return nameOfCars.split(delimiter)
+        private fun validateString(nameOfCars: String): List<String> {
+            require(nameOfCars.isNotBlank()) { "입력은 반드시 필요합니다. ,로 구분되는 자동차 이름을 입력해주세요." }
+            return nameOfCars.split(DELIMITER)
         }
     }
 }

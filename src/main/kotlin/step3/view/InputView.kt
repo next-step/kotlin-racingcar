@@ -9,8 +9,8 @@ class InputView {
         return RaceCondition.of(nameOfCars, numberOfLabs)
     }
 
-    private fun getInput(msg: String): String? {
+    private fun getInput(msg: String): String {
         println(msg)
-        return readLine()
+        return readln()
     }
 }

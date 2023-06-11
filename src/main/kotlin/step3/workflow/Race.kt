@@ -5,7 +5,10 @@ import step3.entity.RacingCar
 class Race(
     private val condition: () -> Boolean,
 ) {
-    operator fun invoke(racingCar: RacingCar): RacingCar =
+    operator fun invoke(cars: List<RacingCar>): List<RacingCar> =
+        cars.map { race(it) }
+
+    private fun race(racingCar: RacingCar): RacingCar =
         if (condition().not()) {
             RacingCar(name = racingCar.name, position = racingCar.position)
         } else {
