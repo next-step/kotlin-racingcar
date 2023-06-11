@@ -1,4 +1,4 @@
-package study.racinggame.service.reader
+package study.racinggame.reader
 
 fun interface InputReader {
     fun raedLine(): String

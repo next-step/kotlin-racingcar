@@ -1,4 +1,4 @@
-package study.racinggame.service
+package study.racinggame.domain
 
 import kotlin.random.Random
 

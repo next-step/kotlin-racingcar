@@ -1,4 +1,6 @@
-package study.racinggame.domain
+package study.racinggame.presentation.dto
+
+import study.racinggame.domain.Car
 
 data class CarResponse(
     val position: Int = 1,
