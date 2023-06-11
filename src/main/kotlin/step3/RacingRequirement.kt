@@ -1,7 +1,7 @@
 package step3
 
 data class RacingRequirement(
-    val carNames: List<String>,
+    val carNames: List<CarName>,
     val numberOfTrials: Int,
 ) {
     init {

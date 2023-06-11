@@ -1,5 +1,6 @@
 package step3.view
 
+import step3.CarName
 import step3.CurrentCarStatus
 
 class ConsoleOutputView : OutputView {
@@ -15,7 +16,7 @@ class ConsoleOutputView : OutputView {
         println()
     }
 
-    override fun showWinner(winnerNames: List<String>) {
+    override fun showWinner(winnerNames: List<CarName>) {
         println("${winnerNames.joinToString()}가 최종 우승했습니다.")
     }
 }

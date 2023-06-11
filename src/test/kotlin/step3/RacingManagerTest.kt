@@ -4,14 +4,15 @@ import io.kotest.core.spec.style.FreeSpec
 import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
+import step3.test.toCarName
 import step3.view.InputView
 import step3.view.OutputView
 
 class RacingManagerTest : FreeSpec({
     "자동차 경주 요구 사항을 입력받아 경주 수행 결과물을 요구사항(차량 이름, 시도 횟수, 우승자)에 맞게 출력한다." - {
         forAll(
-            row(listOf("minsu", "hello"), 5),
-            row(listOf("name", "magin", "rudra", "pizza"), 100)
+            row(listOf("minsu".toCarName(), "hello".toCarName()), 5),
+            row(listOf("name".toCarName(), "magin".toCarName(), "rudra".toCarName(), "pizza".toCarName()), 100)
         ) { carNames, numberOfTrials ->
             val fakeInputView = FakeInputView(carNames, numberOfTrials)
             val fakeOutputView = FakeOutputView(carNames)
@@ -30,7 +31,7 @@ class RacingManagerTest : FreeSpec({
 })
 
 private class FakeInputView(
-    private val carNames: List<String>,
+    private val carNames: List<CarName>,
     private val numberOfTrials: Int
 ) : InputView {
     override fun askRequirement(): RacingRequirement {
@@ -39,7 +40,7 @@ private class FakeInputView(
 }
 
 private class FakeOutputView(
-    private val testInputCarNames: List<String>
+    private val testInputCarNames: List<CarName>
 ) : OutputView {
     var showResultTitleCalledCount = 0
         private set
@@ -57,7 +58,7 @@ private class FakeOutputView(
         showCurrentStatusCalledWithRightNumberOfCarsCount++
     }
 
-    override fun showWinner(winnerNames: List<String>) {
+    override fun showWinner(winnerNames: List<CarName>) {
         if (winnerNames.isEmpty()) return
         showWinnerCalledCount++
     }

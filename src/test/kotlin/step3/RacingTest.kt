@@ -3,6 +3,7 @@ package step3
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.collections.shouldMatchInOrder
 import io.kotest.matchers.shouldBe
+import step3.test.toCarName
 
 class RacingTest : FreeSpec(
     {
@@ -31,11 +32,11 @@ class RacingTest : FreeSpec(
                 val status = sut.currentStatus
 
                 status shouldBe listOf(
-                    CurrentCarStatus("5", Distance(1)),
-                    CurrentCarStatus("3", Distance(0)),
-                    CurrentCarStatus("2", Distance(1)),
-                    CurrentCarStatus("4", Distance(1)),
-                    CurrentCarStatus("1", Distance(0))
+                    CurrentCarStatus("5".toCarName(), Distance(1)),
+                    CurrentCarStatus("3".toCarName(), Distance(0)),
+                    CurrentCarStatus("2".toCarName(), Distance(1)),
+                    CurrentCarStatus("4".toCarName(), Distance(1)),
+                    CurrentCarStatus("1".toCarName(), Distance(0))
                 )
 
                 "추가 이동 2회" {
@@ -44,11 +45,11 @@ class RacingTest : FreeSpec(
                     val secondStatus = sut.currentStatus
 
                     secondStatus shouldBe listOf(
-                        CurrentCarStatus("5", Distance(3)),
-                        CurrentCarStatus("3", Distance(0)),
-                        CurrentCarStatus("2", Distance(3)),
-                        CurrentCarStatus("4", Distance(3)),
-                        CurrentCarStatus("1", Distance(0))
+                        CurrentCarStatus("5".toCarName(), Distance(3)),
+                        CurrentCarStatus("3".toCarName(), Distance(0)),
+                        CurrentCarStatus("2".toCarName(), Distance(3)),
+                        CurrentCarStatus("4".toCarName(), Distance(3)),
+                        CurrentCarStatus("1".toCarName(), Distance(0))
                     )
                 }
             }
@@ -63,5 +64,5 @@ class RacingTest : FreeSpec(
     }
 )
 
-private fun buildAlwaysOperatingCar(name: String): Car = Car(ConditionalOperatingCarEngine { true }, name)
-private fun buildStationaryCar(name: String): Car = Car(ConditionalOperatingCarEngine { false }, name)
+private fun buildAlwaysOperatingCar(name: String): Car = Car(ConditionalOperatingCarEngine { true }, name.toCarName())
+private fun buildStationaryCar(name: String): Car = Car(ConditionalOperatingCarEngine { false }, name.toCarName())

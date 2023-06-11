@@ -1,5 +1,6 @@
 package step3.view
 
+import step3.CarName
 import step3.RacingRequirement
 
 class ConsoleInputView : InputView {
@@ -12,7 +13,7 @@ class ConsoleInputView : InputView {
         val numberOfTrials = readlnOrNull()?.toInt() ?: throw IllegalArgumentException("숫자를 입력해 주세요")
 
         return RacingRequirement(
-            carNames = carNameString.split(","),
+            carNames = carNameString.split(",").map { CarName(it) },
             numberOfTrials = numberOfTrials
         )
     }
