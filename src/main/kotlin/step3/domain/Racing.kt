@@ -1,4 +1,4 @@
-package step3
+package step3.domain
 
 class Racing(
     private val cars: List<Car>
@@ -14,7 +14,7 @@ class Racing(
             CurrentCarStatus(it.name, it.movedDistance)
         }
 
-    fun findCurrentWinnerNames(): List<String> {
+    fun findCurrentWinnerNames(): List<CarName> {
         val currentBestDistance = cars.maxOf { it.movedDistance }
         return cars.filter { it.movedDistance == currentBestDistance }.map { it.name }
     }

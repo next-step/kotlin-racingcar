@@ -1,4 +1,4 @@
-package step3
+package step3.domain
 
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.data.forAll
@@ -22,5 +22,3 @@ class ConditionalOperatingCarEngineTest : FreeSpec(
         }
     }
 )
-
-

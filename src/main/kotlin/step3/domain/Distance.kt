@@ -1,4 +1,4 @@
-package step3
+package step3.domain
 
 data class Distance(
     private val value: Int

@@ -1,7 +1,7 @@
-package step3
+package step3.domain
 
 data class RacingRequirement(
-    val carNames: List<String>,
+    val carNames: List<CarName>,
     val numberOfTrials: Int,
 ) {
     init {

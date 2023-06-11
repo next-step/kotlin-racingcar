@@ -1,5 +1,9 @@
 package step3
 
+import step3.domain.Car
+import step3.domain.ConditionalOperatingCarEngine
+import step3.domain.Racing
+import step3.domain.RacingRequirement
 import step3.view.InputView
 import step3.view.OutputView
 

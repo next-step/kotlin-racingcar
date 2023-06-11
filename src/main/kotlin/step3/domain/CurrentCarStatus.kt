@@ -1,6 +1,6 @@
-package step3
+package step3.domain
 
 data class CurrentCarStatus(
-    val carName: String,
+    val carName: CarName,
     val movedDistance: Distance
 )
