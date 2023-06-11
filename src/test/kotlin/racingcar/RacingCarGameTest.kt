@@ -4,6 +4,9 @@ import io.kotest.assertions.throwables.shouldThrow
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import racingcar.domain.RacingCarGame
+import racingcar.domain.RandomDriveCar
+import racingcar.domain.RandomNumberGenerator
 
 class RacingCarGameTest {
 

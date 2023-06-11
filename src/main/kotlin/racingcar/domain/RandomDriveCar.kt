@@ -1,4 +1,6 @@
-package racingcar
+package racingcar.domain
+
+import racingcar.Car
 
 class RandomDriveCar(
     override val carNumber: Long,

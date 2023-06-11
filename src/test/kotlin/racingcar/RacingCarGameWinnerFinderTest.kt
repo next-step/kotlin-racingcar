@@ -2,6 +2,9 @@ package racingcar
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import racingcar.domain.RacingCarDriveResult
+import racingcar.domain.RacingCarGameWinnerFinder
+import racingcar.domain.RacingCarRoundResult
 
 class RacingCarGameWinnerFinderTest {
 
