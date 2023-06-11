@@ -19,7 +19,7 @@ class PersonTest {
     }
 
     @Test
-    fun `기본인자`() {
+    fun 기본인자() {
         val actual = Person(name = "홍길동", age = 20)
         assertThat(actual.nickname).isEqualTo("Guest")
     }
