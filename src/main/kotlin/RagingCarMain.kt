@@ -1,5 +1,5 @@
 
-fun main(args: Array<String>) {
+fun main() {
 
     val inputData = InputView.doInput()
     val carNumber = inputData.first
