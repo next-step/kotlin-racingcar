@@ -8,12 +8,11 @@ class InfixExpressionParser {
     private val infixExpressionFormatValidator: InfixExpressionFormatValidator = InfixExpressionFormatValidator()
 
     fun parse(expression: String?): InfixOperation {
-        infixExpressionFormatValidator.validateExpressionBlankOrNull(expression)
-        expression!!
+        require(expression?.isNotBlank() ?: throw IllegalArgumentException("수식은 null 일 수 없습니다.")) { "수식은 공백 일 수 없습니다." }
         infixExpressionFormatValidator.validateExpressionFormat(expression)
 
-        val operands = getOperands(expression)
-        val operators = getOperators(expression)
+        val operands = Operator.splitOperands(expression).apply(::println)
+        val operators = Operator.splitOperators(expression).apply(::println)
 
         infixExpressionFormatValidator.validateNumberOfOperands(operands, operators)
 
@@ -24,18 +23,4 @@ class InfixExpressionParser {
 
         return result
     }
-
-    private fun getOperators(expression: String): List<String> =
-        expression
-            .replace("\\d".toRegex(), "")
-            .asSequence()
-            .map { it.toString() }
-            .toList()
-
-    private fun getOperands(expression: String): List<String> =
-        expression
-            .split("[+\\-*/]".toRegex())
-            .asSequence()
-            .filter { it.isNotBlank() }
-            .toList()
 }

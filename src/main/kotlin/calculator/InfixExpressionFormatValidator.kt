@@ -1,12 +1,10 @@
 package calculator
 
-class InfixExpressionFormatValidator {
-    fun validateExpressionBlankOrNull(expression: String?) {
-        require(expression?.isNotBlank() ?: throw IllegalArgumentException("수식은 null 일 수 없습니다.")) { "수식은 공백 일 수 없습니다." }
-    }
+import calculator.operation.Operator
 
+class InfixExpressionFormatValidator {
     fun validateExpressionFormat(expression: String) {
-        require(expression.matches("[\\d+\\-*/]+".toRegex())) { "수식은 사칙연산과 숫자만 가능합니다." }
+        require(expression.matches(Operator.OPERATOR_AND_OPERAND_REGEX)) { "수식은 사칙연산과 숫자만 가능합니다." }
     }
 
     fun validateNumberOfOperands(operands: List<String>, operators: List<String>) {
