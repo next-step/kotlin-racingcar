@@ -1,8 +1,8 @@
 package step2
 
 interface Calculator {
-    fun plus(first: Double, second: Double): Double
-    fun minus(first: Double, second: Double): Double
-    fun divide(first: Double, second: Double): Double
-    fun multiply(first: Double, second: Double): Double
+    fun plus(first: Int, second: Int): Int
+    fun minus(first: Int, second: Int): Int
+    fun divide(first: Int, second: Int): Int
+    fun multiply(first: Int, second: Int): Int
 }
