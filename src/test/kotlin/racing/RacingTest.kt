@@ -12,7 +12,7 @@ import java.io.InputStream
 class RacingTest {
 
     @ParameterizedTest
-    @CsvSource("3")
+    @CsvSource("3,3")
     fun `자동차 경주 입력 (자동차 수, 시도 수) 검증`(inputCar: String, inputTry: String) {
 
         System.setIn(getInputStream(inputCar))
