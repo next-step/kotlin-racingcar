@@ -21,5 +21,4 @@ class CarFactory {
         val maxPosition = cars.maxOf { it.position }
         return cars.filter { it.position == maxPosition }
     }
-
 }
