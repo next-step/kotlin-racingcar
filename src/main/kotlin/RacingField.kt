@@ -14,6 +14,10 @@ class RacingField(
         gameCount = count
     }
 
+    fun getGameCount(): Int {
+        return gameCount
+    }
+
     fun gameStart() {
         resultView.resultMessage()
 

@@ -14,11 +14,7 @@ class RacingFieldTest {
         val racingField = RacingField()
         racingField.setGameCount(5)
 
-        val field = racingField.javaClass.getDeclaredField("gameCount")
-        field.trySetAccessible()
-
-        val value = field[racingField] as Int
-        assertThat(value).isEqualTo(5)
+        assertThat(racingField.getGameCount()).isEqualTo(5)
     }
 
     @Test
