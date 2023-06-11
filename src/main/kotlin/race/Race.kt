@@ -1,12 +1,12 @@
 package race
 
-import race.view.ResultData
+import race.view.RaceResult
 
 class Race(
     private val cars: List<Car>,
     private val numberOfTry: Int
 ) {
-    fun run(): ResultData {
+    fun run(): RaceResult {
         val records = mutableListOf<List<CarRecord>>()
 
         repeat(numberOfTry) {
@@ -16,6 +16,6 @@ class Race(
             records.add(copiedCars)
         }
 
-        return ResultData(records)
+        return RaceResult(records)
     }
 }

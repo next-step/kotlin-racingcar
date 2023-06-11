@@ -13,11 +13,7 @@ class CarTest {
 
     @Test
     fun `한 번 이동하면 위치는 1`() {
-        val condition = object : MoveCondition {
-            override fun canGoStraight(): Boolean {
-                return true
-            }
-        }
+        val condition = FixedMoveCondition(true)
 
         val car = Car(condition)
         car.move()
