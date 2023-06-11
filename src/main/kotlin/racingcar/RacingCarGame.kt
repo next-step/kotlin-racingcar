@@ -2,20 +2,47 @@ package racingcar
 
 class RacingCarGame {
 
-    fun progressGame(totalRound: Long, cars: List<Car>): List<RacingCarRoundResult> {
+    fun progressGame(totalRound: Long, cars: List<Car>): RacingCarGameResult {
         require(totalRound >= 1) { "시도 횟수는 1 이상이어야 합니다." }
         require(cars.isNotEmpty()) { "자동차 대수는 1 이상이어야 합니다." }
 
-        return (START_ROUND..totalRound)
+        val gameRoundResults = (START_ROUND..totalRound)
             .map { round ->
-                val racingCarDriveResults = cars.map { car ->
-                    car.drive()
-                    RacingCarDriveResult(car.carNumber, car.position, car.name)
-                }
-                    .toList()
-                RacingCarRoundResult(round, racingCarDriveResults)
+                val roundResult = progressRound(cars)
+                RacingCarRoundResult(round, roundResult)
             }
+
+        val winnerNames = findWinner(gameRoundResults = gameRoundResults, lastRound = totalRound)
+
+        return RacingCarGameResult(winnerNames, gameRoundResults)
     }
+
+    private fun progressRound(cars: List<Car>): List<RacingCarDriveResult> {
+        return cars.map { car ->
+            car.drive()
+            RacingCarDriveResult(car.carNumber, car.position, car.name)
+        }
+    }
+
+    private fun findWinner(gameRoundResults: List<RacingCarRoundResult>, lastRound: Long): List<String> {
+        val lastRoundResults = getLastRoundResult(gameRoundResults, lastRound)
+
+        val maxPositionCarResult = lastRoundResults.maxBy { it.position }
+
+        return lastRoundResults.asSequence()
+            .filter { it.position == maxPositionCarResult.position }
+            .map { it.carName }
+            .toList()
+    }
+
+    private fun getLastRoundResult(
+        gameRoundResults: List<RacingCarRoundResult>,
+        lastRound: Long
+    ) = gameRoundResults.asSequence()
+        .filter { it.round == lastRound }
+        .map { it.carDriveResults }
+        .flatten()
+        .toList()
 
     companion object {
         const val MIN_RANDOM_DRIVE_NUMBER: Long = 4
@@ -44,7 +71,7 @@ fun main() {
         RacingCarGame.MIN_RANDOM_DRIVE_NUMBER,
     )
 
-    val roundResults = racingCarGame.progressGame(totalRound = totalRound, cars = cars)
+    val gameResult = racingCarGame.progressGame(totalRound = totalRound, cars = cars)
 
-    resultView.print(racingCarRoundResult = roundResults, totalRound = totalRound)
+    resultView.print(gameResult = gameResult, totalRound = totalRound)
 }
