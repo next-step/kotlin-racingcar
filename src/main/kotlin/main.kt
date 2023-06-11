@@ -1,15 +1,12 @@
 fun main() {
     val inputIO = InputIO()
-    val racingField = RacingField()
+    val carCount = inputIO.inputNumber(InputType.CAR_COUNT)
+    val gameCount = inputIO.inputNumber(InputType.GAME_COUNT)
+
+    val racingField = RacingField(carCount, gameCount)
+
     val resultView = ResultView()
-
-    racingField.createCars(
-        inputIO.inputNumber(InputType.CAR_COUNT)
-    )
-
-    racingField.setGameCount(
-        inputIO.inputNumber(InputType.GAME_COUNT)
-    )
+    resultView.resultMessage()
 
     for (i in 1..racingField.getGameCount()) {
         resultView.carDistanceDisplay(racingField.gameStart())
