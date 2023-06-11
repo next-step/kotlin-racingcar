@@ -15,11 +15,8 @@ enum class Operator(
 
     companion object {
         fun of(symbol: String): Operator {
-            return values().filter { it.symbol == symbol }
-                .run {
-                    require(isNotEmpty()) { "사칙연산 기호가 올바르지 않습니다. : $symbol" }
-                    first()
-                }
+            return values().find { it.symbol == symbol }
+                ?: throw IllegalArgumentException("사칙연산 기호가 올바르지 않습니다. : $symbol")
         }
     }
 }
