@@ -1,35 +1,20 @@
 package step3.controller
 
-import step3.domain.Car
-import step3.domain.NumberGenerator
+import step3.domain.CarFactory
 import step3.domain.RacingGame
-import step3.domain.RandomNumberGenerator
 import step3.view.InputView
 import step3.view.OutputView
 
-class GameController(
-    private val numberOfCars: Int = InputView.requestNumberOfCars(),
-    private val totalTrialCount: Int = InputView.requestCountOfTrial(),
-    private val numberGenerator: NumberGenerator = RandomNumberGenerator()
-) {
+class GameController {
 
     fun start() {
-        val cars = createCars(numberOfCars)
-        val racingGame = RacingGame(numberGenerator, cars)
+        val nameOfCars = InputView.requestNameOfCars()
+        val totalTrialCount: Int = InputView.requestCountOfTrial()
+        val cars = nameOfCars.map { CarFactory.create(it) }
 
-        OutputView.printResult()
-        while (racingGame.getCurrentTrialCount() < totalTrialCount) {
-            racingGame.run()
-            val results = racingGame.getResult()
-            OutputView.printByResults(results)
-        }
-    }
+        val racingGame = RacingGame(cars, totalTrialCount)
+        racingGame.run()
 
-    private fun createCars(numberOfCars: Int): List<Car> {
-        val cars = mutableListOf<Car>()
-        for (i in 1..numberOfCars) {
-            cars.add(Car(number = i))
-        }
-        return cars.toList()
+        OutputView.printWinner(racingGame.getCars())
     }
 }
