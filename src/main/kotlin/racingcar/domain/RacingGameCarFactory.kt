@@ -3,20 +3,6 @@ package racingcar.domain
 object RacingGameCarFactory {
 
     fun createRandomDriveCars(
-        totalCarCount: Long,
-        randomNumberGenerator: RandomNumberGenerator,
-        minDriveRandomNumber: Long,
-    ) = (1..totalCarCount)
-        .map {
-            createRandomDriveCar(
-                carNumber = it,
-                randomNumberGenerator = randomNumberGenerator,
-                minDriveRandomNumber = minDriveRandomNumber,
-                carName = "UNKNOWN",
-            )
-        }
-
-    fun createRandomDriveCars(
         carNames: List<String>,
         randomNumberGenerator: RandomNumberGenerator,
         minDriveRandomNumber: Long,
