@@ -18,6 +18,6 @@ enum class Operation(val execute: (BigDecimal, BigDecimal) -> BigDecimal) {
 
     DIVIDE({ num1, num2 ->
         require(num2 != BigDecimal.ZERO) { "Not divisible by zero" }
-        num1.divide(num2, 6, RoundingMode.HALF_UP)
+        num1.divide(num2, 6, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString().toBigDecimal()
     }),
 }
