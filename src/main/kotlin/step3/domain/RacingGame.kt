@@ -1,35 +1,25 @@
 package step3.domain
 
+import step3.view.OutputView
+import step3.view.OutputView.printResult
+
 class RacingGame(
-    private val numberGenerator: NumberGenerator,
     private val cars: List<Car>,
-    private var currentTrialCount: Int = 0
+    private val totalTrialCount: Int
 ) {
-    companion object {
-        private const val FORWARD_CONDITION = 4
-    }
 
     fun run() {
-        cars.forEach { car ->
-            val randomNumber = numberGenerator.generate()
-            if (randomNumber >= FORWARD_CONDITION) {
+        printResult()
+
+        repeat(totalTrialCount) {
+            cars.forEach { car ->
                 car.move()
             }
-        }
-        increaseCount()
-    }
-
-    fun getCurrentTrialCount(): Int {
-        return currentTrialCount
-    }
-
-    fun getResult(): List<Int> {
-        return cars.map { car ->
-            car.getPosition()
+            OutputView.printPositionOfCars(cars)
         }
     }
 
-    private fun increaseCount() {
-        currentTrialCount += 1
+    fun getCars(): List<Car> {
+        return cars
     }
 }
