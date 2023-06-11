@@ -11,7 +11,7 @@ data class Car(
         _position += 1
     }
 
-    private fun isMove() = engine.create() >= MOVING_NUMBER
+    private fun isMove() = engine.cycle() >= MOVING_NUMBER
 
     fun go() {
         if (isMove()) {

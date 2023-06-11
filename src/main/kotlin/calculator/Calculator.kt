@@ -4,12 +4,12 @@ object Calculator {
 
     private const val DELIMITER = " "
 
-    fun execute(str: String?): Int {
-        val s = CalculatorValidate.input(str)
+    fun execute(str: String?, validate: CalculatorValidate = CalculatorValidate): Int {
+        val s = validate.input(str)
 
         val args = s.split(DELIMITER)
 
-        val nums = args.filterIndexed { index, _ -> index.rem(2) == 0 }.map { CalculatorValidate.number(it) }
+        val nums = args.filterIndexed { index, _ -> index.rem(2) == 0 }.map { validate.number(it) }
         val operators = args.filterIndexed { index, _ -> index.rem(2) == 1 }.map { Operator.of(it) }
 
         return calculate(nums, operators)
