@@ -1,12 +1,10 @@
 package racingcar.domain
 
-import kotlin.random.Random
-
 class RacingCar(
     val progress: Int = 1
 ) {
-    fun carProgress(): RacingCar {
-        if (checkCanGo { Random.nextInt(RANDOM_MAX_NUMBER) }) {
+    fun carProgress(randomNumber: () -> Int): RacingCar {
+        if (checkCanGo { randomNumber() }) {
             return RacingCar(1 + progress)
         }
         return RacingCar(progress)
@@ -17,7 +15,6 @@ class RacingCar(
     }
 
     companion object {
-        private const val RANDOM_MAX_NUMBER = 10
         private const val RESTRICT_NUMBER = 4
     }
 }
