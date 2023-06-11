@@ -1,29 +1,30 @@
 object InputView {
 
-    const val DEFAULT_INPUT = 0
-    const val MINIMUM_INPUT = 1
+    private const val DEFAULT_INPUT = 0
+    private const val MINIMUM_INPUT = 1
+
+    private const val INPUT_CAR_PREFIX = "자동차 대수는 "
+    private const val INPUT_ACTION_PREFIX = "시도할 횟수는 "
 
     fun doInput(): Pair<Int, Int> {
-        var carNumber = 0
-        var actionCount = 0
-        println("자동차 대수는 몇 대인가요?")
-        runCatching {
-            carNumber = readlnOrNull()?.toInt() ?: DEFAULT_INPUT
-        }.getOrElse {
-            throw NumberFormatException("숫자 입력해야함")
-        }
-        if (carNumber < MINIMUM_INPUT) {
-            throw IllegalArgumentException("자동차 대수는 ${MINIMUM_INPUT}대 이상이어야 함")
-        }
-        println("시도할 횟수는 몇 회인가요?")
-        runCatching {
-            actionCount = readlnOrNull()?.toInt() ?: DEFAULT_INPUT
-        }.getOrElse {
-            throw NumberFormatException("숫자 입력해야함")
-        }
-        if (actionCount < MINIMUM_INPUT) {
-            throw IllegalArgumentException("시도할 횟수는 ${MINIMUM_INPUT}회 이상이어야 함")
-        }
+
+        println("$INPUT_CAR_PREFIX 몇 대인가요?")
+        val carNumber = getInputNumber(INPUT_CAR_PREFIX)
+        println("$INPUT_ACTION_PREFIX 몇 회인가요?")
+        val actionCount = getInputNumber(INPUT_ACTION_PREFIX)
+
         return Pair(carNumber, actionCount)
+    }
+
+    private fun getInputNumber(prefix: String): Int {
+        return runCatching {
+            (readlnOrNull()?.toInt() ?: DEFAULT_INPUT).apply {
+                if (this < MINIMUM_INPUT) {
+                    throw IllegalArgumentException("$prefix ${MINIMUM_INPUT}대 이상이어야 함")
+                }
+            }
+        }.getOrElse {
+            throw NumberFormatException("숫자 입력해야함")
+        }
     }
 }

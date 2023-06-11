@@ -11,7 +11,6 @@ class CarBehaviorTest : BehaviorSpec({
             val randomInt = car.getRandomInt()
             Then("데이터는 0~9여야 한다") {
                 randomInt shouldBeInRange 0..9
-
             }
         }
     }

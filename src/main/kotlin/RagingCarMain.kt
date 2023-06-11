@@ -5,10 +5,10 @@ fun main(args: Array<String>) {
     val carNumber = inputData.first
     val actionCount = inputData.second
 
-    val carList = mutableListOf<Car>()
-    for (i in 0 until carNumber) {
-        carList.add(Car())
+    val cars = mutableListOf<Car>()
+    repeat(carNumber) {
+        cars.add(Car())
     }
 
-    ResultView.showResult(carList, actionCount)
+    ResultView.showResult(cars, actionCount)
 }
