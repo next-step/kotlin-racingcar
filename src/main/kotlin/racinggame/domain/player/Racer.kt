@@ -1,26 +1,9 @@
 package racinggame.domain.player
 
-import racinggame.domain.car.system.RacingCarSystem
-
-class Racer(
+data class Racer(
     val id: String,
     val ordinal: Int,
-) {
-
-    private var racingCarSystem: RacingCarSystem? = null
-
-    fun connect(racingCarSystem: RacingCarSystem) {
-        this.racingCarSystem = racingCarSystem
-    }
-
-    fun disconnectRacingCarSystem() {
-        racingCarSystem = null
-    }
-
-    fun notifyGo() {
-        racingCarSystem?.pressAccelerator()
-    }
-}
+)
 
 fun Racer.toUser(): User {
     return User(

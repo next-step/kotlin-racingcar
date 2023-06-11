@@ -1,7 +1,6 @@
 package racinggame.domain.field
 
 import racinggame.domain.car.RacingCar
-import racinggame.domain.car.engine.DrivableDistance
 import racinggame.domain.car.factory.RacingCarUniqueKey
 
 class RacingField : RacingFieldMiniMap {
@@ -9,21 +8,15 @@ class RacingField : RacingFieldMiniMap {
     private val _racingFieldMap = mutableMapOf<RacingCarUniqueKey, Field>()
     override val racingFieldMap: Map<RacingCarUniqueKey, Field> = _racingFieldMap
 
-    private val onWheelsSpinListener: ((RacingCar, DrivableDistance) -> Unit) = { racingCar, drivableDistance ->
-        racingCar.move(drivableDistance.value)
-    }
-
     fun ready(racingCars: List<RacingCar>) {
         setUpStartPosition(racingCars)
-        startObserveRagingCarsWheelSpin()
     }
 
     fun publishGoSignal() {
-        notifyGoSignalToRacers()
+        notifyGoSignalToRacingCars()
     }
 
     fun clear() {
-        stopObserveRagingCarsWheelSpin()
         _racingFieldMap.clear()
     }
 
@@ -39,22 +32,11 @@ class RacingField : RacingFieldMiniMap {
         }
     }
 
-    private fun startObserveRagingCarsWheelSpin() {
+    private fun notifyGoSignalToRacingCars() {
         _racingFieldMap.values
             .map { field -> field.racingCar }
-            .forEach { racingCar -> racingCar.onWheelsSpinListener = onWheelsSpinListener }
-    }
-
-    private fun notifyGoSignalToRacers() {
-        _racingFieldMap.values
-            .mapNotNull { field -> field.racingCar.racer }
-            .forEach { racer -> racer.notifyGo() }
-    }
-
-    private fun stopObserveRagingCarsWheelSpin() {
-        _racingFieldMap.values
-            .map { field -> field.racingCar }
-            .forEach { racingCar -> racingCar.onWheelsSpinListener = null }
+            .map { racingCar -> racingCar to racingCar.tryRun() }
+            .forEach { (racingCar, drivableDistance) -> racingCar.move(drivableDistance.value) }
     }
 
     private fun RacingCar.move(moveDistance: Int) {
