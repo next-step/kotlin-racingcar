@@ -6,7 +6,7 @@ import racingcar.domain.RandomNumberGenerator
 import racingcar.view.RacingCarGameInputView
 import racingcar.view.RacingCarGameResultView
 
-class RacingCarController(
+class RacingCarGameController(
     private val racingCarGame: RacingCarGame,
     private val racingCarGameInputView: RacingCarGameInputView,
     private val racingCarGameResultView: RacingCarGameResultView,
