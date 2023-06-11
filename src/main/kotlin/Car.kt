@@ -1,6 +1,6 @@
 import kotlin.random.Random
 
-class Car {
+class Car(val name : String) {
 
     private var progress = 0
 

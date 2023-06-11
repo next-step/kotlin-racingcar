@@ -10,7 +10,7 @@ object ResultView {
                 repeat(it.getCarProgress()) {
                     progressString.append(PROGRESS_STRING)
                 }
-                println(progressString.toString())
+                println("${it.name} : ${progressString.toString()}")
             }
             print(NEXT_LINE)
         }

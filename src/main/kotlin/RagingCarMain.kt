@@ -6,8 +6,8 @@ fun main() {
     val actionCount = inputData.second
 
     val cars = mutableListOf<Car>()
-    repeat(carNumber) {
-        cars.add(Car())
+    carNumber.forEach {
+        cars.add(Car(it))
     }
 
     ResultView.showResult(cars, actionCount)
