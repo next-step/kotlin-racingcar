@@ -1,4 +1,4 @@
-package next.step.racing.service.to
+package next.step.racing.domain.racing
 
 @JvmInline
 value class StepCount(val cnt: Int) {

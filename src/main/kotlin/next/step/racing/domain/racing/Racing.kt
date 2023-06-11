@@ -1,10 +1,8 @@
-package next.step.racing.service
+package next.step.racing.domain.racing
 
 import next.step.racing.domain.car.CarNames
 import next.step.racing.domain.car.CarRecord
 import next.step.racing.domain.car.Cars
-import next.step.racing.service.to.RacingResult
-import next.step.racing.service.to.StepCount
 import next.step.racing.util.DrivingStrategy
 
 object Racing {

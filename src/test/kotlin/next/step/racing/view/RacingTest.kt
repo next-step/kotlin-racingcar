@@ -1,11 +1,12 @@
-package next.step.racing.service
+package next.step.racing.view
 
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 import next.step.racing.domain.car.CarNames
 import next.step.racing.domain.car.CarRecord
-import next.step.racing.service.to.RacingResult
-import next.step.racing.service.to.StepCount
+import next.step.racing.domain.racing.Racing
+import next.step.racing.domain.racing.RacingResult
+import next.step.racing.domain.racing.StepCount
 
 class RacingTest : DescribeSpec({
 
