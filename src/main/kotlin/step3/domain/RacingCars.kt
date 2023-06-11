@@ -17,11 +17,6 @@ class RacingCars(private val cars: List<Car>) {
     }
 
     private fun attemptToMoveCars(): RacingAttempt {
-        return cars.map { car ->
-            car.move()
-            car.getCurrentState()
-        }.let { carStates: List<CarState> ->
-            RacingAttempt(carStates)
-        }
+        return RacingAttempt(cars.map(Car::move))
     }
 }

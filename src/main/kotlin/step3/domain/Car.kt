@@ -16,14 +16,14 @@ class Car(
     var position: Int = 0
         private set
 
-    fun move() {
+    val state: CarState
+        get() = CarState(name, position)
+
+    fun move(): CarState {
         if (carMovingStrategy.canMove()) {
             position++
         }
-    }
-
-    fun getCurrentState(): CarState {
-        return CarState(name, position)
+        return state
     }
 }
 
