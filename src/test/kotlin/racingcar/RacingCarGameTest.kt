@@ -14,7 +14,7 @@ class RacingCarGameTest : StringSpec({
             row(1, 0, true),
             row(1, 1, false),
         ) { numberOfAttempts, currentNumber, result ->
-            val endRacingCarGame = RacingCarGame(listOf(RacingCar()), numberOfAttempts, currentNumber)
+            val endRacingCarGame = RacingCarGame(listOf(RacingCar("race")), numberOfAttempts, currentNumber)
             endRacingCarGame.racingAttemptsCheck() shouldBe result
         }
     }

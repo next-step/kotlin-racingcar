@@ -2,7 +2,7 @@ package racingcar.controller
 
 import racingcar.domain.RacingCar
 import racingcar.domain.RacingCarGame
-import racingcar.ui.enterCountOfCars
+import racingcar.ui.enterCarNames
 import racingcar.ui.enterNumberOfAttempts
 import racingcar.ui.printPosition
 import racingcar.ui.printStart
@@ -10,10 +10,10 @@ import racingcar.ui.printStart
 class RacingCarController {
 
     fun start() {
-        val countOfCars = enterCountOfCars()
+        val carNames = enterCarNames().trim()
         val numberOfAttempts = enterNumberOfAttempts()
 
-        val racingCarGame = RacingCarGame(createRacingCars(countOfCars), numberOfAttempts)
+        val racingCarGame = RacingCarGame(createRacingCars(carNames), numberOfAttempts)
 
         printStart()
 
@@ -23,11 +23,14 @@ class RacingCarController {
         }
     }
 
-    private fun createRacingCars(racingCarCounts: Int): List<RacingCar> {
+    private fun createRacingCars(racingCarNames: String): List<RacingCar> {
         val racingCars = mutableListOf<RacingCar>()
-        repeat((1..racingCarCounts).count()) {
-            racingCars.add(RacingCar())
-        }
+        val carNameSplit = racingCarNames.split(CAR_NAME_SPLIT_SYMBOL)
+        carNameSplit.mapTo(racingCars) { RacingCar(it) }
         return racingCars
+    }
+
+    companion object {
+        const val CAR_NAME_SPLIT_SYMBOL = ","
     }
 }

@@ -10,6 +10,7 @@ fun printStart() {
 
 fun printPosition(racingCars: List<RacingCar>) {
     for (it in racingCars) {
+        print(it.name() + " : ")
         printPosition(it.position())
     }
 
