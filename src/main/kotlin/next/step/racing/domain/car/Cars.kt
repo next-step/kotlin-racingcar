@@ -1,7 +1,5 @@
 package next.step.racing.domain.car
 
-import next.step.racing.util.DrivingStrategy
-
 data class Cars(private val cars: List<Car>) : List<Car> by cars {
 
     fun move(drivingStrategy: DrivingStrategy): Cars {

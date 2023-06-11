@@ -1,7 +1,9 @@
-package next.step.racing.domain.car
+package next.step.racing.domain
 
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
+import next.step.racing.domain.car.CarName
+import next.step.racing.domain.car.CarNames
 
 class CarNamesTest : DescribeSpec({
 
