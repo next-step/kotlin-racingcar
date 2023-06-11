@@ -30,7 +30,7 @@ fun main() {
     val inputView = RacingCarGameInputView()
     val resultView = RacingCarGameResultView()
 
-    val totalCarCount = inputView.totalCarCount
+    val carNames = inputView.carNames
     val totalRound = inputView.totalRound
 
     val randomNumberGenerator = RandomNumberGenerator(
@@ -39,7 +39,7 @@ fun main() {
     )
 
     val cars = RacingGameCarFactory.createRandomDriveCars(
-        totalCarCount = totalCarCount,
+        carNames = carNames,
         randomNumberGenerator = randomNumberGenerator,
         RacingCarGame.MIN_RANDOM_DRIVE_NUMBER,
     )

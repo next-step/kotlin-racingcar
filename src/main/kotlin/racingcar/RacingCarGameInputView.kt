@@ -14,11 +14,11 @@ class RacingCarGameInputView {
     }
 
     val totalRound: Long by lazy {
-        println("시도할 횟수는 몇 대인가요?")
+        println("시도할 횟수는 몇 회인가요?")
         readln().toLong()
     }
 
     companion object {
-        const val INPUT_DELIMITERS = " "
+        const val INPUT_DELIMITERS = ","
     }
 }
