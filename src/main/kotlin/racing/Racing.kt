@@ -1,7 +1,7 @@
 package racing
 
 import racing.domain.Car
-import racing.generator.DefaultRandomNumberGenerator
+import racing.generator.DefaultRandomMoveCheckGenerator
 import racing.view.InputView
 import racing.view.ResultView
 
@@ -18,21 +18,20 @@ class Racing {
         carRacing(tryCount, cars)
     }
 
-    fun createCars(carCount: Int): List<Car> = (0 until carCount).map { Car() }
+    fun createCars(carCount: Int): List<Car> = (0 until carCount).map { Car(moveFlag = DefaultRandomMoveCheckGenerator()) }
 
-    fun carRacing(tryCount: Int, cars: List<Car>) {
+    private fun carRacing(tryCount: Int, cars: List<Car>) {
         repeat(tryCount) {
             cars.forEach { car ->
-                val randomNumber = DefaultRandomNumberGenerator().nextInt(10)
-                val distance = moveAndStop(car, randomNumber)
+                val distance = moveAndStop(car)
                 ResultView.printDistance(distance)
             }
             ResultView.printEnter()
         }
     }
 
-    fun moveAndStop(car: Car, randomNumber: Int): String {
-        if (car.moveCheck(randomNumber)) {
+    fun moveAndStop(car: Car): String {
+        if (car.moveCheck()) {
             car.move()
         }
 
