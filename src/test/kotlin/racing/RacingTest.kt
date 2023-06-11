@@ -1,6 +1,7 @@
 package racing
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import racing.domain.Car
@@ -52,5 +53,21 @@ class RacingTest {
         val car = Car(name = "test", moveFlag = DefaultNumberGenerator(randomNumber))
         car.move()
         assertThat(car.position).isEqualTo(0)
+    }
+
+    @Test
+    fun `제일 많이 움직인 자동차 (중복 허용)조회(포지션 값이 제일 높은)`() {
+
+        val cars = listOf(
+            Car(name = "test1", moveFlag = DefaultNumberGenerator(1)),
+            Car(name = "test2", moveFlag = DefaultNumberGenerator(1)),
+            Car(name = "test3", moveFlag = DefaultNumberGenerator(5)),
+            Car(name = "test4", moveFlag = DefaultNumberGenerator(5)),
+        )
+
+        cars.forEach { it.move() }
+
+        val winners = CarFactory().getRaceWinnerCars(cars)
+        assertThat(winners.size).isEqualTo(2)
     }
 }
