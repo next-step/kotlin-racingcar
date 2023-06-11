@@ -1,8 +1,5 @@
 package racingcar.domain
 
-import racingcar.view.RacingCarGameInputView
-import racingcar.view.RacingCarGameResultView
-
 class RacingCarGame {
 
     fun progressGame(totalRound: Long, cars: List<Car>): List<RacingCarRoundResult> {
@@ -36,28 +33,4 @@ class RacingCarGame {
         const val RANDOM_NUMBER_LIMIT: Long = 9
         const val START_ROUND = 1
     }
-}
-
-fun main() {
-    val racingCarGame = RacingCarGame()
-    val inputView = RacingCarGameInputView()
-    val resultView = RacingCarGameResultView()
-
-    val carNames = inputView.carNames
-    val totalRound = inputView.totalRound
-
-    val randomNumberGenerator = RandomNumberGenerator(
-        randomBase = RacingCarGame.RANDOM_NUMBER_BASE,
-        randomLimit = RacingCarGame.RANDOM_NUMBER_LIMIT,
-    )
-
-    val cars = RacingGameCarFactory.createRandomDriveCars(
-        carNames = carNames,
-        randomNumberGenerator = randomNumberGenerator,
-        RacingCarGame.MIN_RANDOM_DRIVE_NUMBER,
-    )
-
-    val gameResult = racingCarGame.progressGame(totalRound = totalRound, cars = cars)
-
-    resultView.print(gameResult = gameResult, totalRound = totalRound)
 }
