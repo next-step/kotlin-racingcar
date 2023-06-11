@@ -1,9 +1,8 @@
-package next.step.racing.domain
+package next.step.racing.domain.car
 
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
-import next.step.racing.domain.car.CarPosition
 
 class CarPositionTest : DescribeSpec({
 

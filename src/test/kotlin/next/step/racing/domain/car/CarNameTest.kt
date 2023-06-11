@@ -1,8 +1,7 @@
-package next.step.racing.domain
+package next.step.racing.domain.car
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
-import next.step.racing.domain.car.CarName
 
 class CarNameTest : DescribeSpec({
 

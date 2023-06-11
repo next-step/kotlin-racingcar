@@ -1,10 +1,9 @@
-package next.step.racing.domain
+package next.step.racing.domain.racing
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
-import next.step.racing.domain.racing.StepCount
 
 class StepCountTest : DescribeSpec({
 
