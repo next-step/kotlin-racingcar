@@ -5,23 +5,24 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import racing.domain.Car
 import racing.generator.DefaultRandomMoveCheckGenerator
+import racing.view.InputView
 import java.io.ByteArrayInputStream
 import java.io.InputStream
 
 class RacingTest {
 
     @ParameterizedTest
-    @CsvSource("3,3")
-    fun `자동차 경주 입력 검증`(carCount: String, tryCount: String) {
+    @CsvSource("3")
+    fun `자동차 경주 입력 (자동차 수, 시도 수) 검증`(inputCar: String, inputTry: String) {
 
-        System.setIn(getInputStream(carCount))
-        val inputCar = readln()
+        System.setIn(getInputStream(inputCar))
+        val carCount = InputView.printInputCar()
 
-        System.setIn(getInputStream(tryCount))
-        val inputTry = readln()
+        System.setIn(getInputStream(inputTry))
+        val tryCount = InputView.printInputCount()
 
-        assertThat(inputCar).isEqualTo(carCount)
-        assertThat(inputTry).isEqualTo(tryCount)
+        assertThat(carCount).isEqualTo(inputCar.toInt())
+        assertThat(tryCount).isEqualTo(inputTry.toInt())
     }
 
     private fun getInputStream(input: String): InputStream {
