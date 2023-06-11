@@ -16,8 +16,8 @@ class ResultViewImpl : ResultView {
         return InputResult(carCount, turnCount)
     }
 
-    override fun output(carList: List<Car>) {
-        println("실행 결과")
+    override fun output(turn: Int, carList: List<Car>) {
+        println(if (turn == 1) "실행 결과" else "")
         carList.forEach {
             for (i in 0..it.position) {
                 print("-")

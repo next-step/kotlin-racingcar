@@ -12,9 +12,9 @@ class RacingController(private val view: ResultView, private val rule: RacingRul
 
         initialize(carCount)
 
-        repeat(turnCount) {
+        for (turn in 1..turnCount) {
             playTurn()
-            view.output(carList)
+            view.output(turn, carList)
         }
     }
 
