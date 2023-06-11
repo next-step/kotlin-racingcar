@@ -1,7 +1,7 @@
 package racingcar.domain
 
 class Car {
-    private var location = 1
+    private var location = 0
     private val BASE_NUMBER_TO_MOVE = 4
 
     fun isMoveOrStop() {
