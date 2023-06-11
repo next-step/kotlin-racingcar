@@ -8,18 +8,20 @@ package step3.domain
 class RacingCars(private val cars: List<Car>) {
 
     fun race(attemptCount: Int): RacingRecord {
-        val record = mutableListOf<List<Int>>()
+        val record = mutableListOf<RacingAttempt>()
         repeat(attemptCount) {
-            val tryResult: List<Int> = attemptToMoveCars()
-            record.add(tryResult)
+            val racingAttempt: RacingAttempt = attemptToMoveCars()
+            record.add(racingAttempt)
         }
         return RacingRecord(record)
     }
 
-    private fun attemptToMoveCars(): List<Int> {
+    private fun attemptToMoveCars(): RacingAttempt {
         return cars.map { car ->
             car.move()
-            car.position
+            car.getCurrentState()
+        }.let { carStates: List<CarState> ->
+            RacingAttempt(carStates)
         }
     }
 }

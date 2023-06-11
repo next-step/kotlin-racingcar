@@ -10,16 +10,18 @@ internal class RacingCarsTest {
     internal fun `레이싱 테스트`() {
         // given : 항상 전진하는 1개의 자동차와 항상 전진하지 않는 1개의 자동차 준비
         val cars = listOf(
-            Car(carMovingStrategy = AlwaysMoveCondition()),
-            Car(carMovingStrategy = NeverMoveCondition())
+            Car(name = "car1", carMovingStrategy = AlwaysMoveCondition()),
+            Car(name = "car2", carMovingStrategy = NeverMoveCondition())
         )
-        val racingCars = RacingCars(cars)
+        val sut = RacingCars(cars)
 
         // when : 2번의 전진 시도를 가지고 레이싱 수행
-        val racingRecord = racingCars.race(2)
+        val racingRecord = sut.race(2)
 
         // then : 항상 전진하는 자동차는 2번 전진, 항상 전진하지 않는 자동차는 0번 전진
-        val expectedRacingRecord = listOf(listOf(1, 0), listOf(2, 0))
-        assertThat(racingRecord.record).containsExactlyElementsOf(expectedRacingRecord)
+        val firstAttempt = RacingAttempt(listOf(CarState("car1", 1), CarState("car2", 0)))
+        val secondAttempt = RacingAttempt(listOf(CarState("car1", 2), CarState("car2", 0)))
+        val expectedRacingRecord = RacingRecord(listOf(firstAttempt, secondAttempt))
+        assertThat(racingRecord).isEqualTo(expectedRacingRecord)
     }
 }

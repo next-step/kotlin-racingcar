@@ -21,4 +21,13 @@ class Car(
             position++
         }
     }
+
+    fun getCurrentState(): CarState {
+        return CarState(name, position)
+    }
 }
+
+/**
+ * ### 자동차의 현재 상태를 표현하기 위한 클래스 입니다.
+ */
+data class CarState(val name: String, val position: Int)
