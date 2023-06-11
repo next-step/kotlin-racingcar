@@ -22,7 +22,7 @@ class Calculator(
         splitData.forEach {
             kotlin.runCatching {
                 numberList.add((it.toInt()))
-            }.onFailure { e -> signList.add(it) }
+            }.onFailure { _ -> signList.add(it) }
         }
     }
 

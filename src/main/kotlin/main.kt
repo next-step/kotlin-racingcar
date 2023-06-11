@@ -1,7 +1,5 @@
-import calculator.Calculator
 import racing.game.RacingGame
 import racing.view.InputView
-import java.util.Scanner
 
 fun main() {
     // step2
