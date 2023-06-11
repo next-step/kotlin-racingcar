@@ -13,6 +13,16 @@ class Race {
             records.add(copiedCars)
         }
 
-        return RaceResult(records)
+        val winners = findWinners(records.last())
+
+        return RaceResult(records, winners)
+    }
+
+    private fun findWinners(lastRecords: List<CarRecord>): List<CarRecord> {
+        val sorted = lastRecords.sorted()
+        val winnerPosition = sorted.last().position
+
+        return sorted
+            .filter { it.position == winnerPosition }
     }
 }

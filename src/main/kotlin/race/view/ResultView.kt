@@ -11,7 +11,7 @@ class ResultView {
             showAllPosition(it)
         }
 
-        showWinners(records.last())
+        showWinners(raceResult.winners)
     }
 
     private fun showAllPosition(cars: List<CarRecord>) {
@@ -25,17 +25,8 @@ class ResultView {
         println("${car.name} : " + "-".repeat(car.position))
     }
 
-    private fun findWinnerNames(lastRecords: List<CarRecord>): String {
-        val sorted = lastRecords.sorted()
-        val winnerPosition = sorted.last().position
-
-        return sorted
-            .filter { it.position == winnerPosition }
-            .joinToString(", ") { it.name }
-    }
-
-    private fun showWinners(lastRecords: List<CarRecord>) {
-        val winnerNames = findWinnerNames(lastRecords)
+    private fun showWinners(winners: List<CarRecord>) {
+        val winnerNames = winners.joinToString(", ") { it.name }
         println("${winnerNames}가 최종 우승했습니다.")
     }
 }
