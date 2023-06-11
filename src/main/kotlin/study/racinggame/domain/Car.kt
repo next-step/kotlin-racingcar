@@ -9,9 +9,10 @@ class Car(
         require(name.length <= MAX_NAME_LENGTH) { "자동차 이름은 5자를 초과할 수 없습니다." }
     }
 
-    private var position = _position
+    var position = _position
+        private set
 
-    fun moveForward(moveAble: Boolean) {
+    fun move(moveAble: Boolean) {
         if (moveAble) position += 1
     }
 

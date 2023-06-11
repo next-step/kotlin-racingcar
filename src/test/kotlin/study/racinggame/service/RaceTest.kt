@@ -14,7 +14,7 @@ class RaceTest : StringSpec({
         race.runTrack()
 
         for (car in race.carStorage()) {
-            car.position() shouldBe 2
+            car.position shouldBe 2
         }
     }
 
@@ -25,7 +25,7 @@ class RaceTest : StringSpec({
         race.runTrack()
 
         for (car in race.carStorage()) {
-            car.position() shouldBe 1
+            car.position shouldBe 1
         }
     }
 
