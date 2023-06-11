@@ -1,4 +1,4 @@
-package next.step.racing.service.to
+package next.step.racing.domain.racing
 
 import next.step.racing.domain.car.CarRecord
 

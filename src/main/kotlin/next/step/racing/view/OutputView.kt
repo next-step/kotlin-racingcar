@@ -1,9 +1,9 @@
-package next.step.racing.service
+package next.step.racing.view
 
 import next.step.racing.domain.car.CarRecord
-import next.step.racing.service.to.RacingResult
+import next.step.racing.domain.racing.RacingResult
 
-object OutputDevice {
+object OutputView {
 
     private const val UNKNOWN_ERR_MSG = "알 수 없는 에러가 발생했습니다."
     private const val RESULT_TITLE = "실행 결과"

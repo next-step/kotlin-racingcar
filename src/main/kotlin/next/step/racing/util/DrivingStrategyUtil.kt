@@ -1,8 +1,8 @@
 package next.step.racing.util
 
+import next.step.racing.domain.car.DrivingStrategy
 import kotlin.random.Random
 
-typealias DrivingStrategy = () -> Int
 typealias RandomAlgorithm = () -> Int
 
 object DrivingStrategyUtil {

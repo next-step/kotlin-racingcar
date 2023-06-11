@@ -1,6 +1,6 @@
 package next.step.racing.domain.car
 
-import next.step.racing.util.DrivingStrategy
+typealias DrivingStrategy = () -> Int
 
 data class Car(val name: CarName, var pos: CarPosition) {
 
