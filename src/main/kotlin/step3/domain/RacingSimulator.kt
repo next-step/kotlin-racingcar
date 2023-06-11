@@ -6,7 +6,7 @@ package step3.domain
 class RacingSimulator {
 
     fun race(raceRequest: RacingRequest): RacingRecord {
-        val cars = List(raceRequest.carNames.size) { Car() }
+        val cars = raceRequest.carNames.map { Car(it) }
         val racingCars = RacingCars(cars)
         return racingCars.race(raceRequest.attemptCount)
     }

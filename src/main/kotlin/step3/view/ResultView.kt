@@ -4,10 +4,10 @@ import step3.domain.RacingRecord
 
 class ResultView {
     fun outputRacingResult(racingRecord: RacingRecord) {
-        racingRecord.record.forEach { attempt ->
+        racingRecord.attempts.forEach { attempt ->
             println("####")
-            attempt.forEach { position ->
-                println("-".repeat(position))
+            attempt.carStates.forEach { carState ->
+                println("${carState.name} : ${"-".repeat(carState.position)}")
             }
         }
     }
