@@ -23,6 +23,6 @@ class Car {
     }
 
     private fun back() {
-        position = maxOf(0, position - 1)
+        position = (position - 1).coerceAtLeast(0)
     }
 }
