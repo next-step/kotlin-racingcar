@@ -1,7 +1,7 @@
 package race.view
 
-import race.Car
+import race.CarRecord
 
 class ResultData(
-    val records: List<List<Car>>
+    val records: List<List<CarRecord>>
 )

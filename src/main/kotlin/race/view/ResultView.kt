@@ -1,6 +1,6 @@
 package race.view
 
-import race.Car
+import race.CarRecord
 
 class ResultView {
     fun run(resultData: ResultData) {
@@ -12,14 +12,14 @@ class ResultView {
         }
     }
 
-    private fun showAllPosition(cars: List<Car>) {
+    private fun showAllPosition(cars: List<CarRecord>) {
         for (car in cars) {
             show(car)
         }
         println()
     }
 
-    private fun show(car: Car) {
+    private fun show(car: CarRecord) {
         println("-".repeat(car.position))
     }
 }

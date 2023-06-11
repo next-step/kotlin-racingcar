@@ -2,11 +2,13 @@ package race
 
 import kotlin.random.Random
 
-class Car private constructor(var position: Int) {
-    constructor() : this(0)
+class Car {
 
-    fun copy(): Car {
-        return Car(this.position)
+    var position: Int = 0
+        private set
+
+    fun copyRecord(): CarRecord {
+        return CarRecord(position)
     }
 
     fun move() {
