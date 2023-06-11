@@ -2,20 +2,6 @@ package racingcar.view
 
 import racingcar.domain.Cars
 
-class OutputView {
-    fun printResultMsg() {
-        println("실행 결과")
-    }
-
-    fun printCarsPosition(cars: Cars) {
-        cars.carList.forEach { car ->
-            print("${car.getName()} : ")
-            println("-".repeat(car.position))
-        }
-        println()
-    }
-
-    fun printWinners(winners: List<String>) {
-        print("${winners}가 최종 우승했습니다.")
-    }
+interface OutputView {
+    fun printCarsPosition(cars: Cars)
 }

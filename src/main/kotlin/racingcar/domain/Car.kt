@@ -1,14 +1,13 @@
 package racingcar.domain
 
-class Car(name: String, moveCondition: MoveCondition) {
+class Car(name: String, private val moveCondition: MoveCondition) {
     private val _carName = CarName(name)
-    private val _moveCondition = moveCondition
 
     var position = 0
         private set
 
     fun go() {
-        if (this._moveCondition.isMovable()) {
+        if (this.moveCondition.isMovable()) {
             position++
         }
     }
