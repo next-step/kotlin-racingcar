@@ -12,7 +12,7 @@ class RacingCarGame {
                 RacingCarRoundResult(round, roundResult)
             }
 
-        val winnerNames = findWinner(gameRoundResults = gameRoundResults, lastRound = totalRound)
+        val winnerNames = findWinnerNames(gameRoundResults = gameRoundResults, lastRound = totalRound)
 
         return RacingCarGameResult(winnerNames, gameRoundResults)
     }
@@ -24,7 +24,7 @@ class RacingCarGame {
         }
     }
 
-    private fun findWinner(gameRoundResults: List<RacingCarRoundResult>, lastRound: Long): List<String> {
+    private fun findWinnerNames(gameRoundResults: List<RacingCarRoundResult>, lastRound: Long): List<String> {
         val lastRoundResults = getLastRoundResults(gameRoundResults, lastRound)
 
         val maxPositionCarResult = lastRoundResults.maxBy { it.position }
