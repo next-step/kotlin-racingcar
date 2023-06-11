@@ -15,7 +15,11 @@ class Car {
         return (0..9).random()
     }
 
-    fun getLocation(): Int {
-        return location
+    fun printLocation() {
+        for (i in 0 until location) {
+            print("-")
+        }
+        println()
     }
+
 }

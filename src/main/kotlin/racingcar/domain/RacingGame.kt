@@ -14,7 +14,7 @@ class RacingGame {
     fun start() {
         val (carNumber, roundNumber) = getInput()
         initCars(cars = cars, carNumber = carNumber)
-        startRound(cars = cars, roundNumber = roundNumber)
+        startEachRound(cars = cars, roundNumber = roundNumber)
     }
 
     private fun getInput(): Pair<Int, Int> {
@@ -28,9 +28,9 @@ class RacingGame {
             cars.add(Car())
     }
 
-    private fun startRound(cars: ArrayList<Car>, roundNumber: Int) {
+    private fun startEachRound(cars: ArrayList<Car>, roundNumber: Int) {
         for (i in 0 until roundNumber) {
-            round.executeRound(cars)
+            round.execute(cars)
         }
     }
 }
