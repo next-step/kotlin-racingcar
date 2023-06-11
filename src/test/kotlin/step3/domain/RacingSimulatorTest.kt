@@ -14,6 +14,6 @@ internal class RacingSimulatorTest {
         val racingRecord = sut.race(racingRequest)
 
         // then : size 2인 기록 반환
-        assertThat(racingRecord.record.size).isEqualTo(2)
+        assertThat(racingRecord.attempts.size).isEqualTo(2)
     }
 }

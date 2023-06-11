@@ -5,7 +5,15 @@ package step3.domain
  *
  * 경주 기록은 전진 시도 했던 기록으로 세분화 됩니다.
  */
-data class RacingRecord(val attempts: List<RacingAttempt>)
+data class RacingRecord(val attempts: List<RacingAttempt>) {
+    fun getWinners(): List<String> {
+        val lastAttempt = attempts.last()
+        val maxPosition = lastAttempt.carStates.maxOf { it.position }
+        return lastAttempt.carStates
+            .filter { it.position == maxPosition }
+            .map { it.name }
+    }
+}
 
 /**
  * ### 자동차별 전진 시도를 표현하는 클래스입니다.

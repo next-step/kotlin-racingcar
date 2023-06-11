@@ -23,5 +23,8 @@ internal class RacingCarsTest {
         val secondAttempt = RacingAttempt(listOf(CarState("car1", 2), CarState("car2", 0)))
         val expectedRacingRecord = RacingRecord(listOf(firstAttempt, secondAttempt))
         assertThat(racingRecord).isEqualTo(expectedRacingRecord)
+
+        // then : 우승자는 항상 전진하는 자동차
+        assertThat(racingRecord.getWinners()).containsExactly("car1")
     }
 }
