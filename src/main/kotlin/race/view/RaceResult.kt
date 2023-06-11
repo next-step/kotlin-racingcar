@@ -1,6 +1,6 @@
 package race.view
 
-import race.CarRecord
+import race.model.CarRecord
 
 class RaceResult(
     val records: List<List<CarRecord>>

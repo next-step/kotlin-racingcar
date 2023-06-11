@@ -3,6 +3,9 @@ package race
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
+import race.model.Car
+import race.model.FixedMoveCondition
+import race.model.Race
 
 class RaceTest {
     @Test

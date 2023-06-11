@@ -1,4 +1,4 @@
-package race
+package race.model
 
 class Car(
     private val name: String,
