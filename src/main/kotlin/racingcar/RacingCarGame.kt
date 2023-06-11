@@ -15,6 +15,9 @@ class RacingCarGame {
     private fun validate(totalRound: Long, cars: List<Car>) {
         require(totalRound >= 1) { "시도 횟수는 1 이상이어야 합니다." }
         require(cars.isNotEmpty()) { "자동차 대수는 1 이상이어야 합니다." }
+
+        val existsExceedNameLength = cars.any { it.name.length > 5 }
+        require(!existsExceedNameLength) { "자동차 이름은 5자를 초과할 수 없습니다." }
     }
 
     private fun progressRound(cars: List<Car>): List<RacingCarDriveResult> {
