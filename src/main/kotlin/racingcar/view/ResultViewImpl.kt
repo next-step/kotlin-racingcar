@@ -21,6 +21,7 @@ class ResultViewImpl : ResultView {
     override fun output(turn: Int, cars: List<Car>) {
         println(if (turn == 1) "실행 결과" else "")
         cars.forEach {
+            print("${it.name} : ")
             for (i in 0..it.position) {
                 print("-")
             }
