@@ -1,11 +1,19 @@
 package com.racing.step4.view
 
 object OutputView {
-    fun showRacingResultDashboard(stageResultList: List<String>) {
+    fun showStartMessage() {
         println("실행 결과")
-        stageResultList.forEach {
-            println(it)
+    }
+
+    fun showRacingResultDashboard(carPosition: Map<String, Int>) {
+        carPosition.forEach {
+            print(it.key + " : ")
+            repeat(it.value) {
+                print("-")
+            }
+            println()
         }
+        println()
     }
 
     fun showWinner(winners: String) {

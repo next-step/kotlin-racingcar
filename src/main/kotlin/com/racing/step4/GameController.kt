@@ -9,17 +9,14 @@ object GameController {
     fun exec() {
         val readCarNames = InputView.readCarNames()
         val stageNum = InputView.readStageNumber()
-
         val racingParticipation = RacingParticipation(readCarNames)
-        val carStageSnapshot = mutableListOf<String>()
 
+        OutputView.showStartMessage()
         repeat(stageNum) {
             racingParticipation.turnAround { Random.nextInt(10) }
-            carStageSnapshot.add(racingParticipation.toString())
+            OutputView.showRacingResultDashboard(racingParticipation.cars.associate { it.name to it.position })
         }
         val winner = racingParticipation.findWinner()
-
-        OutputView.showRacingResultDashboard(carStageSnapshot)
-        OutputView.showWinner(winner.map { it.name }.joinToString(","))
+        OutputView.showWinner(winner.joinToString(",") { it.name })
     }
 }
