@@ -3,7 +3,7 @@ package racingcar.model
 import racingcar.rule.RacingRule
 import racingcar.rule.RacingRuleImpl
 
-class Car(private val rule: RacingRule = RacingRuleImpl()) {
+class Car(val name: String, private val rule: RacingRule = RacingRuleImpl()) {
     var position: Int = 0
         private set
 

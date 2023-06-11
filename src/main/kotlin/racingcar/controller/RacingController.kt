@@ -30,7 +30,7 @@ class RacingController(
 
     private fun initialize(names: List<String>) {
         for (name in names) {
-            cars.add(Car(rule))
+            cars.add(Car(name, rule))
         }
     }
 
