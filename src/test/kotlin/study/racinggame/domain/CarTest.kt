@@ -19,23 +19,25 @@ class CarTest : StringSpec({
 
     "자동차 엔진이 움직이는데 성공하면 자동차의 위치가 변경 된다." {
         // given
-        val car = Car(NormalEngine())
+        val car = Car("Porsche", NormalEngine())
 
         // when
         val currentPosition = car.move()
 
         // then
-        currentPosition shouldBe 2
+        currentPosition.name shouldBe "Porsche"
+        currentPosition.position shouldBe 2
     }
 
     "자동차 엔진이 움직이는데 실패하면 자동차의 위치가 변경 되지 않는다." {
         // given
-        val car = Car(BrokenEngine())
+        val car = Car("Morning", BrokenEngine())
 
         // when
         val currentPosition = car.move()
 
         // then
-        currentPosition shouldBe 1
+        currentPosition.name shouldBe "Morning"
+        currentPosition.position shouldBe 1
     }
 })

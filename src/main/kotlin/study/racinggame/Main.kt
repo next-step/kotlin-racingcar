@@ -1,17 +1,16 @@
 package study.racinggame
 
 import study.racinggame.ui.CommandLineRacingGameConfigurator
-import study.racinggame.ui.CommandLineRacingGamePrinter
+import study.racinggame.ui.CommandLineRacingGameStagePrinter
+import study.racinggame.ui.RacingGameResultPrinter
 
 fun main() {
-    val racingGameConfigurator = CommandLineRacingGameConfigurator()
-    val racingGameConfiguration = racingGameConfigurator.run()
-
+    val racingGameConfiguration = CommandLineRacingGameConfigurator.run()
     val racingGame = racingGameConfiguration.build()
 
     println("실행 결과")
 
-    val racingGameResults = racingGame.start()
+    val racingGameResult = racingGame.start()
 
-    racingGameResults.forEach { CommandLineRacingGamePrinter.print(it) }
+    RacingGameResultPrinter.print(racingGameResult)
 }

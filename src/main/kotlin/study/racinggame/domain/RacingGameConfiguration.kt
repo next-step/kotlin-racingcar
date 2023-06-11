@@ -1,25 +1,25 @@
 package study.racinggame.domain
 
 class RacingGameConfiguration private constructor(
-    val numberOfCars: Int,
-    val numberOfTries: Int,
+    val nameOfCars: List<String>,
+    val numberOfStages: Int,
 ) {
 
     fun build(): RacingGame {
-        val cars = (0 until numberOfCars).map { Car(RandomSeedEngine()) }
-        return RacingGame(cars, numberOfTries)
+        val cars = nameOfCars.map { Car(it, RandomSeedEngine()) }
+        return RacingGame(cars, numberOfStages)
     }
 
     companion object {
-        fun of(numberOfCars: Int, numberOfTries: Int): RacingGameConfiguration {
-            if (numberOfCars < 2) {
+        fun of(nameOfCars: List<String>, numberOfStages: Int): RacingGameConfiguration {
+            if (nameOfCars.size < 2) {
                 throw IllegalArgumentException()
             }
-            if (numberOfTries < 1) {
+            if (numberOfStages < 1) {
                 throw IllegalArgumentException()
             }
 
-            return RacingGameConfiguration(numberOfCars, numberOfTries)
+            return RacingGameConfiguration(nameOfCars, numberOfStages)
         }
     }
 }
