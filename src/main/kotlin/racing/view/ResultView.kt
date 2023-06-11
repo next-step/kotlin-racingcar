@@ -6,7 +6,8 @@ object ResultView {
         println("실행 결과")
     }
 
-    fun printDistance(distance: String) {
+    fun printDistance(position: Int) {
+        val distance = "-".repeat(position)
         println(distance)
     }
 
