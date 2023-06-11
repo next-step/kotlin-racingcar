@@ -1,11 +1,15 @@
 package step3
 
 class CarRacing {
+
     fun execute(
         carCount: Int,
         executeCount: Int,
     ) {
-        val cars = prepareCars(carCount)
+        val cars = mutableListOf<Car>()
+        repeat(carCount) {
+            cars.add(Car.build())
+        }
 
         race(
             cars = cars,
@@ -13,29 +17,23 @@ class CarRacing {
         )
     }
 
-    private fun prepareCars(carCount: Int): List<Car> {
-        val cars = mutableListOf<Car>()
-        repeat(carCount) {
-            cars.add(Car())
-        }
-        return cars
-    }
-
     private fun race(
         cars: List<Car>,
         executeCount: Int
     ) {
+        ResultView.start()
         repeat(executeCount) {
-            cars.forEach { car ->
-                car.progress()
-                showPosition(car.positionValue)
-            }
-
+            cars.run()
             println()
         }
     }
 
-    private fun showPosition(position: Int) {
-        println("-".repeat(position))
+    private fun List<Car>.run() {
+        this.forEach { car ->
+            car.progress(
+                raceNumber = RaceNumber.from(RaceNumber.generateRandomNumber())
+            )
+            ResultView.showPosition(car.positionValue)
+        }
     }
 }

@@ -1,23 +1,22 @@
 package step3
 
-class Car(
-    private var position: Int = 1,
+class Car private constructor(
+    private var position: Int = INITIAL_POSITION,
 ) {
     val positionValue: Int
         get() = this.position
 
-    fun progress() {
-        val raceNumber = RaceNumber.from(buildRandomNumber())
+    fun progress(raceNumber: RaceNumber) {
         if (RaceRule.isGo(raceNumber)) {
             this.position += 1
         }
     }
 
-    private fun buildRandomNumber(): Int {
-        return (Math.random() * RANDOM_RANGE).toInt()
-    }
-
     companion object {
-        private const val RANDOM_RANGE = 10
+        private const val INITIAL_POSITION = 1
+
+        fun build(): Car {
+            return Car()
+        }
     }
 }
