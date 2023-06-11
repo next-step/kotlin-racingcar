@@ -2,7 +2,6 @@ package racingcar.view
 
 import racingcar.model.Car
 import racingcar.model.InputResult
-import java.lang.IllegalStateException
 
 class ResultViewImpl : ResultView {
     override fun input(): InputResult {

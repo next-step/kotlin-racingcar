@@ -11,7 +11,7 @@ class RacingRuleTest {
     fun `4 ~ 9 일 때 이동 가능한지 테스트`() {
         // 랜덤 값에 의존하기 때문에 정확한 검증이 어려워 일정 횟수만 테스트한다
 
-        val randomSetting = object: RandomSetting {
+        val randomSetting = object : RandomSetting {
             override val from: Int
                 get() = 4
             override val until: Int
@@ -28,7 +28,7 @@ class RacingRuleTest {
     fun `0 ~ 3 일 때 이동이 불가능한지 테스트`() {
         // 랜덤 값에 의존하기 때문에 정확한 검증이 어려워 일정 횟수만 테스트한다
 
-        val randomSetting = object: RandomSetting {
+        val randomSetting = object : RandomSetting {
             override val from: Int
                 get() = 0
             override val until: Int

@@ -3,14 +3,11 @@ package racingcar
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import racingcar.model.Car
-import racingcar.rule.RacingRuleImpl
-import racingcar.util.RandomGenerator
 
 class CarTest {
     @Test
     fun `최초 생성 시 0에서 시작하는지 확인`() {
-        val rule = RacingRuleImpl(RandomGenerator())
-        val car = Car(rule)
+        val car = Car()
         Assertions.assertThat(car.position).isEqualTo(0)
     }
 

@@ -2,9 +2,14 @@ package racingcar.controller
 
 import racingcar.model.Car
 import racingcar.rule.RacingRule
+import racingcar.rule.RacingRuleImpl
 import racingcar.view.ResultView
+import racingcar.view.ResultViewImpl
 
-class RacingController(private val view: ResultView, private val rule: RacingRule) {
+class RacingController(
+    private val view: ResultView = ResultViewImpl(),
+    private val rule: RacingRule = RacingRuleImpl(),
+) {
     private val cars = mutableListOf<Car>()
 
     fun play() {
