@@ -1,11 +1,11 @@
 package racingcar.domain
 
+import racingcar.controller.RacingCarController
 import racingcar.util.NumberGenerator
 
 class RacingCarGame(
     val racingCars: List<RacingCar>,
 ) {
-
     fun racing(generator: NumberGenerator) {
         racingCars.forEach {
             it.move(generator.generateNumber())
@@ -26,4 +26,13 @@ class RacingCarGame(
         racingCars
             .filter { it.position == maxPosition }
             .joinToString { it.name }
+
+    companion object {
+        fun from(racingCarNames: String): RacingCarGame {
+            val racingCars = mutableListOf<RacingCar>()
+            val carNameSplit = racingCarNames.split(RacingCarController.CAR_NAME_SPLIT_SYMBOL)
+            carNameSplit.mapTo(racingCars) { RacingCar(it) }
+            return RacingCarGame(racingCars)
+        }
+    }
 }

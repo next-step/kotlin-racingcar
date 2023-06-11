@@ -1,7 +1,6 @@
 package racingcar.controller
 
-import racingcar.domain.RacingCar
-import racingcar.domain.RacingCarGame
+import racingcar.domain.RacingCarGame.Companion.from
 import racingcar.ui.enterCarNames
 import racingcar.ui.enterNumberOfAttempts
 import racingcar.ui.printPosition
@@ -16,7 +15,7 @@ class RacingCarController {
         val numberOfAttempts = enterNumberOfAttempts()
         val numberGenerator = RandomGenerator()
 
-        val racingCarGame = RacingCarGame(createRacingCars(carNames))
+        val racingCarGame = from(carNames)
 
         printStart()
 
@@ -26,13 +25,6 @@ class RacingCarController {
         }
 
         printWinner(racingCarGame.winners())
-    }
-
-    private fun createRacingCars(racingCarNames: String): List<RacingCar> {
-        val racingCars = mutableListOf<RacingCar>()
-        val carNameSplit = racingCarNames.split(CAR_NAME_SPLIT_SYMBOL)
-        carNameSplit.mapTo(racingCars) { RacingCar(it) }
-        return racingCars
     }
 
     companion object {
