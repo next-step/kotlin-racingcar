@@ -4,6 +4,7 @@ import racingcar.model.CarName
 import racingcar.model.MoveStrategy
 import racingcar.model.RacingCar
 import racingcar.model.RacingCars
+import racingcar.model.RacingHistory
 import racingcar.model.RacingReferee
 import racingcar.model.RacingStadium
 import racingcar.model.RandomMoveStrategy
@@ -16,7 +17,7 @@ fun main() {
     val moveStrategy: MoveStrategy = RandomMoveStrategy()
     val cars = RacingCars(inputCarNames.map { RacingCar(CarName(it), moveStrategy) })
 
-    val history: Collection<RacingCars> = RacingStadium(inputLabs) racing cars
+    val history: RacingHistory = RacingStadium(inputLabs) racing cars
     printResult(history)
     printWinners(RacingReferee(history))
 }
