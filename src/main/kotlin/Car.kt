@@ -1,7 +1,10 @@
 class Car(
-    val FORWARD_CONDITIONS: Int = 4,
     var distance: Int = 0
 ) {
+    companion object {
+        const val FORWARD_CONDITIONS: Int = 4
+    }
+
     fun move() {
         if (checkForwardCondition())
             distance++
