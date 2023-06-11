@@ -1,4 +1,4 @@
-package study.racinggame.race
+package study.racinggame.presentation.view
 
 import study.racinggame.domain.CarResponse
 
@@ -13,5 +13,9 @@ class DrawView {
             println(response.getPositionRepresentation())
         }
         println()
+    }
+
+    fun drawRaceWinner(winnerName: String) {
+        println("${winnerName}님이 최종 우승했습니다.")
     }
 }
