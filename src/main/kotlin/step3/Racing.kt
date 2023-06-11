@@ -13,4 +13,9 @@ class Racing(
         get() = cars.map {
             CurrentCarStatus(it.name, it.movedDistance)
         }
+
+    fun findCurrentWinnerNames(): List<String> {
+        val currentBestDistance = cars.maxOf { it.movedDistance }
+        return cars.filter { it.movedDistance == currentBestDistance }.map { it.name }
+    }
 }

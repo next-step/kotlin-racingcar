@@ -52,6 +52,13 @@ class RacingTest : FreeSpec(
                     )
                 }
             }
+            "현재 게임의 우승자 이름을 확인할 수 있다" - {
+                val winnerNames = sut.findCurrentWinnerNames()
+
+                winnerNames shouldBe listOf(
+                    "5", "2", "4"
+                )
+            }
         }
     }
 )

@@ -14,4 +14,8 @@ class ConsoleOutputView : OutputView {
         }
         println()
     }
+
+    override fun showWinner(winnerNames: List<String>) {
+        println("${winnerNames.joinToString()}가 최종 우승했습니다.")
+    }
 }

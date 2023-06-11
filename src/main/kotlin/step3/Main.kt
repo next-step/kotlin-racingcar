@@ -7,5 +7,5 @@ fun main() {
     RacingManager(
         inputView = ConsoleInputView(),
         outputView = ConsoleOutputView()
-    ).run()
+    ).startRacing()
 }

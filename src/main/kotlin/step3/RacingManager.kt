@@ -8,7 +8,7 @@ class RacingManager(
     private val outputView: OutputView,
 ) {
 
-    fun run() {
+    fun startRacing() {
         val requirement = inputView.askRequirement()
 
         val cars = arrangeCars(requirement)
@@ -20,6 +20,8 @@ class RacingManager(
             racing.race()
             outputView.showStatus(racing.currentStatus)
         }
+
+        outputView.showWinner(racing.findCurrentWinnerNames())
     }
 
     private fun arrangeCars(requirement: RacingRequirement): List<Car> {

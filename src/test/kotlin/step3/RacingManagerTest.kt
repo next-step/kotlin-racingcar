@@ -7,8 +7,8 @@ import io.kotest.matchers.shouldBe
 import step3.view.InputView
 import step3.view.OutputView
 
-class RacingGameTest : FreeSpec({
-    "자동차 경주 요구 사항을 입력받아 경주 수행 결과물을 요구사항(차량 이름, 시도 횟수)에 맞게 출력한다." - {
+class RacingManagerTest : FreeSpec({
+    "자동차 경주 요구 사항을 입력받아 경주 수행 결과물을 요구사항(차량 이름, 시도 횟수, 우승자)에 맞게 출력한다." - {
         forAll(
             row(listOf("minsu", "hello"), 5),
             row(listOf("name", "magin", "rudra", "pizza"), 100)
@@ -20,10 +20,11 @@ class RacingGameTest : FreeSpec({
                 outputView = fakeOutputView
             )
 
-            sut.run()
+            sut.startRacing()
 
             fakeOutputView.showResultTitleCalledCount shouldBe 1
             fakeOutputView.showCurrentStatusCalledWithRightNumberOfCarsCount shouldBe numberOfTrials
+            fakeOutputView.showWinnerCalledCount shouldBe 1
         }
     }
 })
@@ -44,6 +45,8 @@ private class FakeOutputView(
         private set
     var showCurrentStatusCalledWithRightNumberOfCarsCount = 0
         private set
+    var showWinnerCalledCount = 0
+        private set
 
     override fun showResultTitle() {
         showResultTitleCalledCount++
@@ -52,5 +55,10 @@ private class FakeOutputView(
     override fun showStatus(carStatuses: List<CurrentCarStatus>) {
         if (testInputCarNames != carStatuses.map { it.carName }) return
         showCurrentStatusCalledWithRightNumberOfCarsCount++
+    }
+
+    override fun showWinner(winnerNames: List<String>) {
+        if (winnerNames.isEmpty()) return
+        showWinnerCalledCount++
     }
 }
