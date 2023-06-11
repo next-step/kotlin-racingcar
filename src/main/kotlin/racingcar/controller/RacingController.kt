@@ -5,7 +5,7 @@ import racingcar.rule.RacingRule
 import racingcar.view.ResultView
 
 class RacingController(private val view: ResultView, private val rule: RacingRule) {
-    private val carList = mutableListOf<Car>()
+    private val cars = mutableListOf<Car>()
 
     fun play() {
         val (carCount, turnCount) = view.input()
@@ -14,18 +14,18 @@ class RacingController(private val view: ResultView, private val rule: RacingRul
 
         for (turn in 1..turnCount) {
             playTurn()
-            view.output(turn, carList)
+            view.output(turn, cars)
         }
     }
 
     private fun initialize(carCount: Int) {
         repeat(carCount) {
-            carList.add(Car(rule))
+            cars.add(Car(rule))
         }
     }
 
     private fun playTurn() {
-        carList.forEach { car ->
+        cars.forEach { car ->
             car.move()
         }
     }
