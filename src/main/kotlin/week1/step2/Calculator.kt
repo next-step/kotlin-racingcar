@@ -2,20 +2,29 @@ package week1.step2
 
 class Calculator {
 
-    private val operatorArray: Array<String> = arrayOf("+", "-", "*", "/")
-    fun calculate(input: String): Float {
+    val operatorArray: Array<String> = arrayOf("+", "-", "*", "/")
+
+    inline fun <reified T : Number> convertStringToNumber(input: String): T {
+        return when (T::class) {
+            Int::class -> input.toInt() as T
+            Double::class -> input.toDouble() as T
+            else -> throw IllegalArgumentException("지원하지 않는 숫자 형식입니다.")
+        }
+    }
+
+    inline fun <reified T : Number> calculate(input: String): T {
         if (input == "") {
             throw IllegalArgumentException("유효한 형식이 아닙니다.")
         }
 
         val inputArray = input.split(" ")
-        val numberQueue = ArrayList<Float>()
+        val numberQueue = ArrayList<T>()
         val operatorQueue = ArrayList<String>()
 
         inputArray.forEachIndexed { index, value ->
             if (index % 2 == 0) {
                 try {
-                    numberQueue.add(value.toFloat())
+                    numberQueue.add(convertStringToNumber(value))
                 } catch (e: IllegalArgumentException) {
                     throw IllegalArgumentException("유효한 형식이 아닙니다.")
                 }
@@ -30,23 +39,39 @@ class Calculator {
         return execute(numberQueue, operatorQueue)
     }
 
-    fun plus(num1: Float, num2: Float): Float {
-        return num1 + num2
+    fun <T : Number> plus(num1: T, num2: T): T {
+        return when (num1) {
+            is Int -> (num1.toInt() + num2.toInt()) as T
+            is Double -> (num1.toDouble() + num2.toDouble()) as T
+            else -> throw IllegalArgumentException("지원하지 않는 숫자 형식입니다.")
+        }
     }
 
-    fun minus(num1: Float, num2: Float): Float {
-        return num1 - num2
+    fun <T : Number> minus(num1: T, num2: T): T {
+        return when (num1) {
+            is Int -> (num1.toInt() - num2.toInt()) as T
+            is Double -> (num1.toDouble() - num2.toDouble()) as T
+            else -> throw IllegalArgumentException("지원하지 않는 숫자 형식입니다.")
+        }
     }
 
-    fun multiply(num1: Float, num2: Float): Float {
-        return num1 * num2
+    fun <T : Number> multiply(num1: T, num2: T): T {
+        return when (num1) {
+            is Int -> (num1.toInt() * num2.toInt()) as T
+            is Double -> (num1.toDouble() * num2.toDouble()) as T
+            else -> throw IllegalArgumentException("지원하지 않는 숫자 형식입니다.")
+        }
     }
 
-    fun divide(num1: Float, num2: Float): Float {
-        return (num1 / num2)
+    fun <T : Number> divide(num1: T, num2: T): T {
+        return when (num1) {
+            is Int -> (num1.toInt() / num2.toInt()) as T
+            is Double -> (num1.toDouble() / num2.toDouble()) as T
+            else -> throw IllegalArgumentException("지원하지 않는 숫자 형식입니다.")
+        }
     }
 
-    private fun execute(numArr: ArrayList<Float>, opArr: ArrayList<String>): Float {
+    fun <T : Number> execute(numArr: ArrayList<T>, opArr: ArrayList<String>): T {
         var result = numArr[0]
         var opArrayIdx = 0
 
