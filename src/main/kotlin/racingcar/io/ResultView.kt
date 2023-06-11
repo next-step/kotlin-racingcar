@@ -8,7 +8,7 @@ import racingcar.racing.Racing
 class ResultView {
 
     fun printGame(input: Input) {
-        println("실행 결과")
+        println(RESULT_MESSAGE)
 
         val racing = Racing(input, printResult = ::printRound)
         racing.start()
@@ -22,6 +22,11 @@ class ResultView {
     }
 
     private fun printRow(car: Car) {
-        println("-".repeat(car.getPosition()))
+        println(MOVE_MARK.repeat(car.getPosition()))
+    }
+
+    companion object {
+        private const val RESULT_MESSAGE = "실행 결과"
+        private const val MOVE_MARK = "-"
     }
 }
