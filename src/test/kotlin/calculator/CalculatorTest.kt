@@ -1,4 +1,4 @@
-package step2
+package calculator
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
@@ -30,7 +30,7 @@ class CalculatorTest : StringSpec({
         shouldThrow<IllegalArgumentException> {
             Calculator.calculate("2 * * 3 2")
         }
-        shouldThrow<IllegalArgumentException> {
+        shouldThrow<IllegalStateException> {
             Calculator.calculate("2 * 3 -")
         }
     }
@@ -48,6 +48,12 @@ class CalculatorTest : StringSpec({
     "사칙연산 기호가 아닌 경우 예외를 던진다." {
         shouldThrow<IllegalArgumentException> {
             Calculator.calculate("1 & 2")
+        }
+    }
+
+    "0으로 나눌 경우 예외를 던진다." {
+        shouldThrow<java.lang.IllegalArgumentException> {
+            Calculator.calculate("1 / 0")
         }
     }
 })
