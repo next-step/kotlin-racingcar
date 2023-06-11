@@ -59,7 +59,7 @@ class CalculatorTest : BehaviorSpec({
         }
     }
 
-    given("calcExpression메소드에서") {
+    given("calculateExpression메소드에서") {
         forAll(
             table(
                 headers("expression", "expected exception"),
@@ -71,7 +71,7 @@ class CalculatorTest : BehaviorSpec({
         ) { expression: String, expectedException: KClass<out Throwable> ->
             `when`("`$expression`라는 식이 들어오면") {
                 then("예외가 던져진다") {
-                    val exception = shouldThrow<Throwable> { sut.calcExpression(expression) }
+                    val exception = shouldThrow<Throwable> { sut.calculateExpression(expression) }
                     exception::class shouldBe expectedException
                 }
             }
@@ -88,7 +88,7 @@ class CalculatorTest : BehaviorSpec({
         ) { expression: String, result: Long ->
             `when`("`$expression`라는 식이 들어오면") {
                 then("${result}를 반환한다") {
-                    sut.calcExpression(expression) shouldBe result
+                    sut.calculateExpression(expression) shouldBe result
                 }
             }
         }

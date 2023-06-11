@@ -1,7 +1,7 @@
 package calculator
 
 class Calculator {
-    fun calcExpression(expression: String?): Long {
+    fun calculateExpression(expression: String?): Long {
         val splits = splitExpression(expression)
         var result = splits[0].toLong()
         val (operators, operands) = parseExpression(splits)

@@ -1,12 +1,12 @@
 package calculator
 
 enum class Operator(private val value: String, val operate: (Long, Long) -> Long) {
-    PLUS("+", { op1, op2 -> op1 + op2 }),
-    MINUS("-", { op1, op2 -> op1 - op2 }),
-    MUL("*", { op1, op2 -> op1 * op2 }),
-    DIV("/", { op1, op2 -> op1 / op2 });
+    PLUS("+", { operand1, operand2 -> operand1 + operand2 }),
+    MINUS("-", { operand1, operand2 -> operand1 - operand2 }),
+    MUL("*", { operand1, operand2 -> operand1 * operand2 }),
+    DIV("/", { operand1, operand2 -> operand1 / operand2 });
 
-    operator fun invoke(op1: Long, op2: Long): Long = operate(op1, op2)
+    operator fun invoke(operand1: Long, operand2: Long): Long = operate(operand1, operand2)
 
     companion object {
         fun getOperator(value: String): Operator =
