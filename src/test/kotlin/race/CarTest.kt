@@ -3,7 +3,6 @@ package race
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import race.model.Car
-import race.model.Race
 
 class CarTest : BehaviorSpec({
 
