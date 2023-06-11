@@ -45,6 +45,20 @@ class CalculateTest : WordSpec({
                 }.message shouldBe "입력값이 empty이면 안됨!"
             }
         }
+        "대상값중 공백이 포함되어 있거나, 2개이상의 연상자가 포함되어 있을 때 예외가 발생한다." {
+            listOf("1+2-3* 4", "1+ 2-3* 4", "1+2-3**4").forAll { a ->
+                shouldThrow<IllegalArgumentException> {
+                    sut.calculate(a)
+                }.message shouldBe "연산자는 한번에 1개만 가능합니다"
+            }
+        }
+        "사칙연산 기호가 아닌 경우 예외가 발생한다." {
+            listOf("1+2-3^4", "1+2-3?4", "1!3?4").forAll { a ->
+                shouldThrow<IllegalArgumentException> {
+                    sut.calculate(a)
+                }.message shouldBe "지원하지 않는 연산자입니다."
+            }
+        }
     }
 }
 )
