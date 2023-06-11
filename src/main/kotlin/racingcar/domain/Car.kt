@@ -16,8 +16,8 @@ data class Car(private val numberGenerator: NumberGenerator) {
     fun getPosition(): Int = position
 
     companion object {
-        private const val START_POSITION = 1
-        private const val STEP = 1
-        private const val MOVE_THRESHOLD = 4
+        const val START_POSITION = 1
+        const val STEP = 1
+        const val MOVE_THRESHOLD = 4
     }
 }
