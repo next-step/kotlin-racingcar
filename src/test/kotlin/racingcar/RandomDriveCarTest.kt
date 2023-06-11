@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 import io.mockk.every
 import io.mockk.mockk
@@ -16,6 +16,7 @@ class RandomDriveCarTest {
             carNumber = 1,
             randomNumberGenerator = randomNumberGenerator,
             minDriveRandomNumber = minDriveRandomNumber,
+            name = "UNKNOWN",
         )
 
         every { randomNumberGenerator.generate() } returns minDriveRandomNumber
@@ -32,6 +33,7 @@ class RandomDriveCarTest {
             carNumber = 1,
             randomNumberGenerator = randomNumberGenerator,
             minDriveRandomNumber = minDriveRandomNumber,
+            name = "UNKNOWN",
         )
 
         every { randomNumberGenerator.generate() } returns minDriveRandomNumber - 1

@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 import kotlin.random.Random
 
@@ -10,5 +10,4 @@ class RandomNumberGenerator(
     fun generate(): Long {
         return Random.nextLong(randomBase, randomLimit + 1)
     }
-
 }

@@ -1,20 +1,27 @@
-package step3
+package racingcar
 
 class RacingCarGame {
 
     fun progressGame(totalRound: Long, cars: List<Car>): List<RacingCarRoundResult> {
-        require(totalRound >= 1) { "시도 횟수는 1 이상이어야 합니다." }
-        require(cars.isNotEmpty()) { "자동차 대수는 1 이성이어야 합니다." }
+        validate(totalRound, cars)
 
         return (START_ROUND..totalRound)
             .map { round ->
-                val racingCarDriveResults = cars.map { car ->
-                    car.drive()
-                    RacingCarDriveResult(car.carNumber, car.position)
-                }
-                    .toList()
-                RacingCarRoundResult(round, racingCarDriveResults)
+                val roundResult = progressRound(cars)
+                RacingCarRoundResult(round, roundResult)
             }
+    }
+
+    private fun validate(totalRound: Long, cars: List<Car>) {
+        require(totalRound >= 1) { "시도 횟수는 1 이상이어야 합니다." }
+        require(cars.isNotEmpty()) { "자동차 대수는 1 이상이어야 합니다." }
+    }
+
+    private fun progressRound(cars: List<Car>): List<RacingCarDriveResult> {
+        return cars.map { car ->
+            car.drive()
+            RacingCarDriveResult(car.carNumber, car.position, car.name)
+        }
     }
 
     companion object {
@@ -30,7 +37,7 @@ fun main() {
     val inputView = RacingCarGameInputView()
     val resultView = RacingCarGameResultView()
 
-    val totalCarCount = inputView.totalCarCount
+    val carNames = inputView.carNames
     val totalRound = inputView.totalRound
 
     val randomNumberGenerator = RandomNumberGenerator(
@@ -39,12 +46,12 @@ fun main() {
     )
 
     val cars = RacingGameCarFactory.createRandomDriveCars(
-        totalCarCount = totalCarCount,
+        carNames = carNames,
         randomNumberGenerator = randomNumberGenerator,
         RacingCarGame.MIN_RANDOM_DRIVE_NUMBER,
     )
 
-    val roundResults = racingCarGame.progressGame(totalRound = totalRound, cars = cars)
+    val gameResult = racingCarGame.progressGame(totalRound = totalRound, cars = cars)
 
-    resultView.print(racingCarRoundResult = roundResults, totalRound = totalRound)
+    resultView.print(gameResult = gameResult, totalRound = totalRound)
 }
