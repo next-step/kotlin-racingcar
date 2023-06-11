@@ -2,18 +2,16 @@ package racingcar
 
 class RacingCarGameResultView {
 
-    fun print(gameResult: RacingCarGameResult, totalRound: Long) {
+    fun print(gameResult: List<RacingCarRoundResult>, totalRound: Long) {
         println()
         println(RESULT_TITLE)
 
-        printRoundResults(gameResult, totalRound)
+        printRoundResults(racingCarRoundResult = gameResult, totalRound = totalRound)
 
-        printGameWinners(winnerNames = gameResult.winnerNames)
+        printGameWinners(racingCarRoundResult = gameResult, lastRound = totalRound)
     }
 
-    private fun printRoundResults(gameResult: RacingCarGameResult, totalRound: Long) {
-        val racingCarRoundResult = gameResult.gameRoundResults
-
+    private fun printRoundResults(racingCarRoundResult: List<RacingCarRoundResult>, totalRound: Long) {
         racingCarRoundResult.sortedBy { it.round }.forEach { roundResult ->
             printRoundResult(roundResult, totalRound)
         }
@@ -41,8 +39,10 @@ class RacingCarGameResultView {
         println()
     }
 
-    private fun printGameWinners(winnerNames: List<String>) {
+    private fun printGameWinners(racingCarRoundResult: List<RacingCarRoundResult>, lastRound: Long) {
+        val winnerNames = RacingCarGameWinnerFinder.findWinnerNames(racingCarRoundResult, lastRound)
         val result = winnerNames.joinToString(separator = ", ")
+
         println()
         println("$result 가 최종 우승했습니다.")
     }
