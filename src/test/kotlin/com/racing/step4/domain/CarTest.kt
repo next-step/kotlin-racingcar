@@ -19,7 +19,7 @@ internal class CarTest {
         "goofy, 8, 1",
         "goofy, 9, 1"
     )
-    fun `4(trigger) 기준으로 자동차가 움직이는지 테스트`(name: String, input: Int, answer: Int) {
+    fun `자동차는 4 이상의 숫자가 들어오면 한 칸 전진한다`(name: String, input: Int, answer: Int) {
         // given
         var car = Car()
         // when
