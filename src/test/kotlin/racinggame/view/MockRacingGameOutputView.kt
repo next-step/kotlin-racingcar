@@ -1,6 +1,6 @@
 package racinggame.view
 
-class TestRacingGameOutputView : RacingGameOutputView {
+class MockRacingGameOutputView : RacingGameOutputView {
 
     private val _fixedMessagesCapture = mutableListOf<RacingGameFixedMessage>()
     val fixedMessagesCapture: List<RacingGameFixedMessage> = _fixedMessagesCapture

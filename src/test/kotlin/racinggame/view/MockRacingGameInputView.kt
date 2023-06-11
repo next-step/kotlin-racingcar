@@ -3,7 +3,7 @@ package racinggame.view
 import java.util.LinkedList
 import java.util.Queue
 
-class TestRacingGameInputView : RacingGameInputView {
+class MockRacingGameInputView : RacingGameInputView {
 
     private val queue: Queue<String> = LinkedList()
 

@@ -5,7 +5,7 @@ import racinggame.domain.game.RacingGameResult
 import racinggame.domain.game.GameGuide
 import racinggame.domain.record.RacingRecordBook
 
-class TestRacingGame : RacingGame {
+class MockRacingGame : RacingGame {
 
     var gameGuideCapture: GameGuide? = null
     var racingGameResultDelegator: (() -> RacingGameResult)? = null

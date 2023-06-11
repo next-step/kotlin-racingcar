@@ -7,25 +7,25 @@ import io.kotest.matchers.shouldBe
 
 class RacingGameControllerTest : BehaviorSpec({
 
-    val testRacingGameInputView = TestRacingGameInputView()
-    val testRacingGameOutputView = TestRacingGameOutputView()
-    val testRacingGame = TestRacingGame()
+    val mockRacingGameInputView = MockRacingGameInputView()
+    val mockRacingGameOutputView = MockRacingGameOutputView()
+    val mockRacingGame = MockRacingGame()
 
     beforeTest {
-        testRacingGameInputView.clear()
-        testRacingGameOutputView.clear()
-        testRacingGame.clear()
+        mockRacingGameInputView.clear()
+        mockRacingGameOutputView.clear()
+        mockRacingGame.clear()
     }
 
     Given("화면에 진입하면") {
         Then("자동차 수를 입력 받기 위한 안내 메시지가 출력된다") {
             RacingGameController(
-                testRacingGameInputView.apply { setUp("1", "1") },
-                testRacingGameOutputView,
-                testRacingGame
+                mockRacingGameInputView.apply { setUp("1", "1") },
+                mockRacingGameOutputView,
+                mockRacingGame
             ).start()
 
-            testRacingGameOutputView.fixedMessagesCapture[0] shouldBe RacingGameFixedMessage.PARTICIPANTS_INPUT
+            mockRacingGameOutputView.fixedMessagesCapture[0] shouldBe RacingGameFixedMessage.PARTICIPANTS_INPUT
         }
     }
 
@@ -38,12 +38,12 @@ class RacingGameControllerTest : BehaviorSpec({
             ) { noPositiveInteger ->
                 Then("에러로 인한 종료 메시지가 출력된다") {
                     RacingGameController(
-                        testRacingGameInputView.apply { setUp(noPositiveInteger) },
-                        testRacingGameOutputView,
-                        testRacingGame
+                        mockRacingGameInputView.apply { setUp(noPositiveInteger) },
+                        mockRacingGameOutputView,
+                        mockRacingGame
                     ).start()
 
-                    testRacingGameOutputView.fixedMessagesCapture[1] shouldBe RacingGameFixedMessage.FINISH_WITH_NOT_POSITIVE_INTEGER
+                    mockRacingGameOutputView.fixedMessagesCapture[1] shouldBe RacingGameFixedMessage.FINISH_WITH_NOT_POSITIVE_INTEGER
                 }
             }
         }
@@ -51,12 +51,12 @@ class RacingGameControllerTest : BehaviorSpec({
         When("양의 정수를 입력하면") {
             Then("게임 횟수를 입력 받기 위한 안내 메시지가 출력된다") {
                 RacingGameController(
-                    testRacingGameInputView.apply { setUp("1", "1") },
-                    testRacingGameOutputView,
-                    testRacingGame
+                    mockRacingGameInputView.apply { setUp("1", "1") },
+                    mockRacingGameOutputView,
+                    mockRacingGame
                 ).start()
 
-                testRacingGameOutputView.fixedMessagesCapture[1] shouldBe RacingGameFixedMessage.GAME_PLAY_COUNT_INPUT
+                mockRacingGameOutputView.fixedMessagesCapture[1] shouldBe RacingGameFixedMessage.GAME_PLAY_COUNT_INPUT
             }
         }
     }
@@ -70,12 +70,12 @@ class RacingGameControllerTest : BehaviorSpec({
             ) { positiveInteger, noPositiveInteger ->
                 Then("에러로 인한 종료 메시지가 출력된다") {
                     RacingGameController(
-                        testRacingGameInputView.apply { setUp(positiveInteger, noPositiveInteger) },
-                        testRacingGameOutputView,
-                        testRacingGame
+                        mockRacingGameInputView.apply { setUp(positiveInteger, noPositiveInteger) },
+                        mockRacingGameOutputView,
+                        mockRacingGame
                     ).start()
 
-                    testRacingGameOutputView.fixedMessagesCapture[2] shouldBe RacingGameFixedMessage.FINISH_WITH_NOT_POSITIVE_INTEGER
+                    mockRacingGameOutputView.fixedMessagesCapture[2] shouldBe RacingGameFixedMessage.FINISH_WITH_NOT_POSITIVE_INTEGER
                 }
             }
         }
@@ -88,13 +88,13 @@ class RacingGameControllerTest : BehaviorSpec({
             ) { participantsCount, gamePlayCount ->
                 Then("입력된 데이터로 게임에 입장한다") {
                     RacingGameController(
-                        testRacingGameInputView.apply { setUp(participantsCount, gamePlayCount) },
-                        testRacingGameOutputView,
-                        testRacingGame
+                        mockRacingGameInputView.apply { setUp(participantsCount, gamePlayCount) },
+                        mockRacingGameOutputView,
+                        mockRacingGame
                     ).start()
 
-                    testRacingGame.gameGuideCapture?.users?.size shouldBe participantsCount.toInt()
-                    testRacingGame.gameGuideCapture?.gameRule?.playCount shouldBe gamePlayCount.toInt()
+                    mockRacingGame.gameGuideCapture?.users?.size shouldBe participantsCount.toInt()
+                    mockRacingGame.gameGuideCapture?.gameRule?.playCount shouldBe gamePlayCount.toInt()
                 }
             }
         }
