@@ -1,8 +1,6 @@
 import java.lang.NumberFormatException
 
 class InputIO {
-    private lateinit var inputView: InputView
-
     fun inputNumber(numberType: InputType): Int {
         inputView(numberType)
 
@@ -14,12 +12,7 @@ class InputIO {
     }
 
     private fun inputView(numberType: InputType) {
-        inputView =
-            when (numberType) {
-                InputType.CAR_COUNT -> CarCountMessage()
-                InputType.GAME_COUNT -> GameCountMessage()
-            }
-        inputView.displayMessage()
+        numberType.display()
     }
 
     private fun checkNumber(inputString: String?): Int? {
