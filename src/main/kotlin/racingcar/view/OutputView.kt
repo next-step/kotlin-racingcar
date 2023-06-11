@@ -8,6 +8,7 @@ class OutputView {
         for (car in cars) {
             car.printLocation()
         }
+        println()
     }
 
 }
