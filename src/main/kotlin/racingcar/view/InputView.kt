@@ -1,6 +1,6 @@
 package racingcar.view
 
-class InputView : InputViewProtocol{
+class InputView : InputViewProtocol {
     private fun getInput(): Int {
         return readln().toInt()
     }

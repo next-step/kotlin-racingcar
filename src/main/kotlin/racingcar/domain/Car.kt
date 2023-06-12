@@ -15,7 +15,7 @@ class Car {
 
     private fun conditionToMove(randomNum: Int) = randomNum >= BASE_NUMBER_TO_MOVE
 
-    private fun generateRandomNum(): Int {
+    fun generateRandomNum(): Int {
 
         val randomValue: Int = (RANDOM_MINIMUM..RANDOM_MAXIMUM).random()
         if (randomValue < RANDOM_MINIMUM || randomValue > RANDOM_MAXIMUM) {
@@ -24,10 +24,7 @@ class Car {
         return randomValue
     }
 
-    fun printLocation() {
-        for (i in 0 until location) {
-            print("-")
-        }
-        println()
+    fun getLocation() :Int {
+        return location
     }
 }

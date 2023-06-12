@@ -4,7 +4,5 @@ interface InputViewProtocol {
 
     fun getCarNumber(): Int
 
-    fun getRoundNumber() : Int
-
-
+    fun getRoundNumber(): Int
 }
