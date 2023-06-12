@@ -1,10 +1,10 @@
-package racingcar.game
+package racingcar.domain.game
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.tuple
 import org.junit.jupiter.api.Test
-import racingcar.car.Car
-import racingcar.car.MockEngine
+import racingcar.domain.car.Car
+import racingcar.domain.car.MockEngine
 
 class RacingGameTest {
     @Test
@@ -26,7 +26,28 @@ class RacingGameTest {
     }
 
     @Test
-    fun `현시점 우승자를 가져온다`() {
+    fun `현시점 우승자가 한명일 때`() {
+        // given
+        val engine1 = MockEngine(3)
+        val engine2 = MockEngine(2)
+        val engine3 = MockEngine(5)
+        val car1 = Car("car1", engine1)
+        val car2 = Car("car2", engine2)
+        val car3 = Car("car3", engine3)
+        val cars = listOf(car1, car2, car3)
+
+        val game = RacingGame(cars)
+        game.startRound()
+
+        // when
+        val result = game.getWinnerCars()
+
+        // then
+        assertThat(result).containsExactly(car3)
+    }
+
+    @Test
+    fun `현시점 우승자가 두명일 때`() {
         // given
         val engine1 = MockEngine(3)
         val engine2 = MockEngine(4)

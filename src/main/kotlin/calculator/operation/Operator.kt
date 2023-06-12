@@ -7,23 +7,17 @@ enum class Operator(val symbol: String) {
     DIV("/");
 
     companion object {
-        val OPERATOR_REGEX = "[+\\-*/]".toRegex()
-        val OPERAND_REGEX = "\\d".toRegex()
-        val OPERATOR_AND_OPERAND_REGEX = "[\\d+\\-*/]+".toRegex()
+        private val OPERATOR_SYMBOLS = Operator.values().map { it.symbol }.toSet()
 
-        fun splitOperators(expression: String): List<String> =
-            expression
-                .replace(OPERAND_REGEX, "")
-                .asSequence()
-                .map { it.toString() }
-                .toList()
+        fun isOperator(value: String): Boolean = OPERATOR_SYMBOLS.contains(value)
 
-        fun splitOperands(expression: String): List<String> =
-            expression
-                .split(OPERATOR_REGEX)
-                .asSequence()
-                .filter { it.isNotBlank() }
-                .toList()
+        fun splitOperators(expression: String): List<String> {
+            return expression.filter { it.toString() in OPERATOR_SYMBOLS }.map { it.toString() }
+        }
+
+        fun splitOperands(expression: String): List<String> {
+            return expression.split(*OPERATOR_SYMBOLS.toTypedArray()).filter { it.isNotBlank() }
+        }
 
         fun getOperator(input: String, leftOperation: InfixOperation, rightOperation: InfixOperation) =
             when (input) {
