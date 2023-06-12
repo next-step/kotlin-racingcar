@@ -36,7 +36,7 @@ class Calculator {
     }
 
     companion object {
-        const val EXPRESSION_GROUP_SIZE = 2
-        const val EXPRESSION_START_PADDING = 1
+        private const val EXPRESSION_GROUP_SIZE = 2
+        private const val EXPRESSION_START_PADDING = 1
     }
 }
