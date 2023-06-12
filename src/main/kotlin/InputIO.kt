@@ -4,11 +4,7 @@ class InputIO {
     fun inputNumber(numberType: InputType): Int {
         inputView(numberType)
 
-        val inputValue = checkNumber(readlnOrNull())
-        if (inputValue != null)
-            return inputValue
-
-        return inputNumber(numberType)
+        return checkNumber(readlnOrNull()) ?: return inputNumber(numberType)
     }
 
     private fun inputView(numberType: InputType) {
