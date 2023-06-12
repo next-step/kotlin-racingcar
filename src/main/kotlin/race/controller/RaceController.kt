@@ -16,9 +16,7 @@ class RaceController {
 
         val cars = mutableListOf<Car>()
         val condition = RandomMoveCondition()
-        for (carName in carNames) {
-            cars.add(Car(carName, condition))
-        }
+        cars.addAll(carNames.map { carName -> Car(carName, condition) })
 
         val result = Race().run(cars, numberOfTry)
 
