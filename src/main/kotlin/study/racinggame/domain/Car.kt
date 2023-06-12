@@ -1,19 +1,23 @@
 package study.racinggame.domain
 
 class Car(
-    _position: Int = 1,
+    _position: Int = DEFAULT_POSITION,
     val name: String
 ) {
 
     init {
-        require(name.length <= 5) { "자동차 이름은 5자를 초과할 수 없습니다." }
+        require(name.length <= MAX_NAME_LENGTH) { "자동차 이름은 5자를 초과할 수 없습니다." }
     }
 
-    private var position = _position
+    var position = _position
+        private set
 
-    fun moveForward(moveAble: Boolean) {
+    fun move(moveAble: Boolean) {
         if (moveAble) position += 1
     }
 
-    fun position() = position
+    companion object {
+        private const val DEFAULT_POSITION: Int = 1
+        private const val MAX_NAME_LENGTH: Int = 5
+    }
 }

@@ -1,6 +1,6 @@
 package study.racinggame.service.mock
 
-import study.racinggame.service.reader.InputReader
+import study.racinggame.reader.InputReader
 
 class MockInputReader(
     private val inputs: List<String>

@@ -4,6 +4,7 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import study.racinggame.domain.Car
 import study.racinggame.domain.Race
+import study.racinggame.domain.RaceRule
 import study.racinggame.service.mock.MockRandom
 
 class RaceTest : StringSpec({
@@ -14,7 +15,7 @@ class RaceTest : StringSpec({
         race.runTrack()
 
         for (car in race.carStorage()) {
-            car.position() shouldBe 2
+            car.position shouldBe 2
         }
     }
 
@@ -25,7 +26,7 @@ class RaceTest : StringSpec({
         race.runTrack()
 
         for (car in race.carStorage()) {
-            car.position() shouldBe 1
+            car.position shouldBe 1
         }
     }
 
