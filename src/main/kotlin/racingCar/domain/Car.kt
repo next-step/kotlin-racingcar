@@ -1,5 +1,10 @@
 package racingCar.domain
 
 class Car {
-    val mileage: Int = 0
+    var position: Int = 0
+        private set
+
+    fun move() {
+        position += 1
+    }
 }
