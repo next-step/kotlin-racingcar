@@ -7,16 +7,29 @@ import kotlin.random.Random
 
 object GameController {
     fun exec() {
-        val readCarNames = InputView.readCarNames()
-        val stageNum = InputView.readStageNumber()
-        val racingParticipation = RacingParticipation(readCarNames)
+        val participation = setParticipation()
+        gameStart(participation)
+        notifyWinner(participation)
+    }
 
+    private fun setParticipation(): RacingParticipation {
+        val readCarNames = InputView.readCarNames()
+        return RacingParticipation(readCarNames)
+    }
+
+    private fun gameStart(participation: RacingParticipation) {
+        val stageNum = InputView.readStageNumber()
         OutputView.showStartMessage()
         repeat(stageNum) {
-            racingParticipation.turnAround { Random.nextInt(10) }
-            OutputView.showRacingResultDashboard(racingParticipation.cars.associate { it.name to it.position })
+            participation.turnAround(moveTrigger())
+            OutputView.showRacingResultDashboard(participation.cars.associate { it.name to it.position })
         }
-        val winner = racingParticipation.findWinner()
+    }
+
+    private fun notifyWinner(participation: RacingParticipation) {
+        val winner = participation.findWinner()
         OutputView.showWinner(winner.joinToString(",") { it.name })
     }
+
+    private fun moveTrigger(): () -> Int = { Random.nextInt(10) }
 }
