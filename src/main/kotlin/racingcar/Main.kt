@@ -9,7 +9,7 @@ fun main() {
     ResultView.startPrintGame()
 
     for (i in 0 until tryNum) {
-        records = RacingGame.play(carNum, records)
+        records = RacingGame.play(carNum, records, RandomNumStrategy())
         ResultView.printGameResult(records)
     }
 }
