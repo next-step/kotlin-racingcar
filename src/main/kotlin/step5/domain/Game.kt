@@ -33,7 +33,7 @@ class Game(
         check(cars.isNotEmpty()) { "자동차가 존재하지 않습니다." }
 
         val longestPosition = cars.maxByOrNull { it.position }?.position
-            ?: return emptyList()
+            .also { requireNotNull(it) { "가장 멀리 위치한 자동차의 위치(position) 값을 구할 수 없습니다." } }
 
         return cars
             .filter { it.position == longestPosition }
