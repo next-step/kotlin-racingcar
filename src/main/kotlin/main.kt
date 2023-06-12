@@ -8,7 +8,7 @@ fun main() {
     val resultView = ResultView()
     resultView.resultMessage()
 
-    for (i in 1..racingField.getGameCount()) {
+    repeat(racingField.getGameCount()) {
         resultView.carDistanceDisplay(racingField.gameStart())
     }
 }

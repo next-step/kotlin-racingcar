@@ -7,7 +7,7 @@ class RacingField(
     }
 
     private fun createCars(count: Int) {
-        for (i in 1..count) {
+        repeat(count) {
             cars.add(Car())
         }
     }

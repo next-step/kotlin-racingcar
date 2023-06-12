@@ -21,7 +21,7 @@ class RacingFieldTest {
         val gameCount = 100
         val racingField = RacingField(carCount, gameCount)
 
-        for (i in 1..gameCount) {
+        repeat(gameCount) {
             val carDistances = racingField.gameStart().map { it.getDistance() }
             assertThat(carDistances.stream().allMatch { it in 0..gameCount })
         }
