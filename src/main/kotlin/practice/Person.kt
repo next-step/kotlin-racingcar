@@ -1,4 +1,4 @@
-package study
+package practice
 
 data class Person(
     val name: String,
