@@ -1,4 +1,4 @@
-package race.model
+package race.domain
 
 import race.view.RaceResult
 

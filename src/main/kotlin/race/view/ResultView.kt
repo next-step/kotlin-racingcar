@@ -1,6 +1,6 @@
 package race.view
 
-import race.model.Car
+import race.domain.Car
 
 class ResultView {
     fun run(raceResult: RaceResult) {

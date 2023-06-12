@@ -1,4 +1,4 @@
-package race.model
+package race.domain
 
 interface MoveCondition {
     fun canGoStraight(): Boolean
