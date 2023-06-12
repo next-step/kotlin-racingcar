@@ -5,13 +5,17 @@ object OutputView {
         println("실행 결과")
     }
 
-    fun showRacingResultDashboard(carPosition: Map<String, Int>) {
-        carPosition.forEach {
-            print(it.key + " : ")
-            repeat(it.value) {
-                print("-")
-            }
-            println()
+    fun showRacingResultDashboard(carPositionByCarName: Map<String, Int>) {
+        carPositionByCarName.forEach {
+            showCarNameWithPosition(it.key, it.value)
+        }
+        println()
+    }
+
+    private fun showCarNameWithPosition(name: String, position: Int) {
+        print("$name : ")
+        repeat(position) {
+            print("-")
         }
         println()
     }
