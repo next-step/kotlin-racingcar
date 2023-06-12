@@ -1,30 +1,29 @@
 package stringcalculator
 
-private const val OPERATOR_REGEX = "[+\\-*/]"
-
-private const val NUMBER_REGEX = "\\d+"
 
 class StringCalculator {
     companion object {
         fun calculate(input: String?): Int {
             require(!input.isNullOrBlank())
-            require(input.contains(Regex(OPERATOR_REGEX)))
 
-            val numbers = input.split(Regex(OPERATOR_REGEX)).map { it.toInt() }
-            val operators = input.split(Regex(NUMBER_REGEX)).filter { it.isNotEmpty() }
-
-            require(numbers.size == operators.size + 1)
+            val stringParser = StringParser(input)
+            val numbers = stringParser.numbers()
+            val operators = stringParser.operators()
 
             val result = numbers[0]
             for (i in operators.indices) {
-                when (operators[i]) {
-                    "+" -> Operator.PLUS
-                    "-" -> Operator.MINUS
-                    "*" -> Operator.TIMES
-                    "/" -> Operator.DIVIDE
-                }
+                calculateOperator(operators, i)
             }
             return result
+        }
+
+        private fun calculateOperator(operators: List<String>, i: Int) {
+            when (operators[i]) {
+                "+" -> Operator.PLUS
+                "-" -> Operator.MINUS
+                "*" -> Operator.TIMES
+                "/" -> Operator.DIVIDE
+            }
         }
     }
 }

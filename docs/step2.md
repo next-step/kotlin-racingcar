@@ -14,12 +14,12 @@
     - [x] 입력 받은 문자열에 사칙연산 기호가 없는 경우 `IllegalArgumentException` 발생
 
 #### 기능
-- [ ] 입력 받은 문자열을 사칙연산 기호 기준으로 분리
-    - [ ] 사칙연산 기호가 아닌 경우 `IllegalArgumentException` 발생 
-    - [ ] 연속된 사칙연산 기호가 있는 경우 `IllegalArgumentException` 발생
-- [ ] 분리된 문자열을 숫자로 변환
-    - [ ] 숫자 변환 실패 시 `IllegalArgumentException` 발생
-- [ ] 사칙연산 기호에 따라 계산
+- [x] 입력 받은 문자열을 사칙연산 기호 기준으로 분리
+    - [x] 사칙연산 기호가 아닌 경우 `IllegalArgumentException` 발생 
+    - [x] 연속된 사칙연산 기호가 있는 경우 `IllegalArgumentException` 발생
+- [x] 분리된 문자열을 숫자로 변환
+    - [x] 숫자 변환 실패 시 `IllegalArgumentException` 발생
+- [x] 사칙연산 기호에 따라 계산
     - [x] 덧셈
     - [x] 뺄셈
     - [x] 곱셈
