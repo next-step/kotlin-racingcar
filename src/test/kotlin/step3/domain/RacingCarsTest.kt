@@ -19,8 +19,14 @@ internal class RacingCarsTest {
         val racingRecord = sut.race(2)
 
         // then : 항상 전진하는 자동차는 2번 전진, 항상 전진하지 않는 자동차는 0번 전진
-        val firstAttempt = RacingAttempt(listOf(CarState("car1", 1), CarState("car2", 0)))
-        val secondAttempt = RacingAttempt(listOf(CarState("car1", 2), CarState("car2", 0)))
+        val firstAttempt = RacingAttempt(
+            carStates = listOf(CarState("car1", 1), CarState("car2", 0)),
+            order = 0
+        )
+        val secondAttempt = RacingAttempt(
+            carStates = listOf(CarState("car1", 2), CarState("car2", 0)),
+            order = 1
+        )
         val expectedRacingRecord = RacingRecord(listOf(firstAttempt, secondAttempt))
         assertThat(racingRecord).isEqualTo(expectedRacingRecord)
 
