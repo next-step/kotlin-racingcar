@@ -6,15 +6,27 @@ import racingCar.RacingField
 
 class RacingFieldTest {
     @Test
-    fun `자동차 수 설정 테스트`() {
+    fun `자동차 수 테스트`() {
         val racingField = RacingField(3, 0)
         assertThat(racingField.getCarCount()).isEqualTo(3)
+    }
+
+    @Test
+    fun `자동차 수 음수 테스트`() {
+        val racingField = RacingField(-3, 0)
+        assertThat(racingField.getCarCount()).isEqualTo(1)
     }
 
     @Test
     fun `경기 실행 수 설정 테스트`() {
         val racingField = RacingField(0, 5)
         assertThat(racingField.getGameCount()).isEqualTo(5)
+    }
+
+    @Test
+    fun `경기 실행 수 음수 테스트`() {
+        val racingField = RacingField(0, -5)
+        assertThat(racingField.getGameCount()).isEqualTo(1)
     }
 
     @Test
