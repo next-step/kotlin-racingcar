@@ -1,5 +1,7 @@
 package calculator
 
+const val DELIMITER = " "
+
 class Calculator {
 
     inline fun <reified T : Number> convertStringToNumber(input: String): T {
@@ -15,7 +17,7 @@ class Calculator {
             throw IllegalArgumentException("유효한 형식이 아닙니다.")
         }
 
-        val inputArray = input.split(" ")
+        val inputArray = input.split(DELIMITER)
         val numberQueue = ArrayList<T>()
         val operatorQueue = ArrayList<String>()
 
