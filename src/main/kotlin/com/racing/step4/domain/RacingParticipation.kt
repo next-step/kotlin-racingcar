@@ -2,15 +2,16 @@ package com.racing.step4.domain
 
 class RacingParticipation {
     var cars: List<Car> = emptyList<Car>()
-        private set
+        private set(value) {
+            field = value.toList()
+        }
 
     constructor(participationNames: List<String>) {
-        cars = participationNames.map { Car(it) }.toList()
+        cars = participationNames.map { Car(it) }
     }
 
     fun turnAround(moveTriggerFunc: () -> Int) {
         cars = cars.map { it.move(moveTriggerFunc) }
-            .toList()
     }
 
     fun findWinner(): List<Car> {

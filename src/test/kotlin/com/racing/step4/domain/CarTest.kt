@@ -8,20 +8,18 @@ import org.junit.jupiter.params.provider.CsvSource
 internal class CarTest {
     @ParameterizedTest
     @CsvSource(
-        "goofy, 1, 0",
-        "goofy, 2, 0",
-        "goofy, 3, 0",
-        "goofy, 0, 0",
-        "goofy, 4, 1",
-        "goofy, 5, 1",
-        "goofy, 6, 1",
-        "goofy, 7, 1",
-        "goofy, 8, 1",
-        "goofy, 9, 1"
+        "1, 0",
+        "2, 0",
+        "3, 0",
+        "4, 1",
+        "5, 1",
+        "6, 1",
+        "7, 1",
+        "9, 1"
     )
-    fun `4(trigger) 기준으로 자동차가 움직이는지 테스트`(name: String, input: Int, answer: Int) {
+    fun `자동차는 4 이상의 숫자가 들어와야 한 칸 전진한다`(input: Int, answer: Int) {
         // given
-        var car = Car()
+        var car = Car("$input")
         // when
         car = car.move { input }
 
