@@ -12,7 +12,7 @@ class InputIO {
     }
 
     private fun inputView(numberType: InputType) {
-        numberType.display()
+        println(numberType.message)
     }
 
     private fun checkNumber(inputString: String?): Int? {
