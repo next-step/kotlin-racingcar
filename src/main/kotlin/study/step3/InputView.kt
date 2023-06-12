@@ -1,6 +1,6 @@
 package study.step3
 
-class InputView {
+object InputView {
 
     fun requestCarCount(): Int =
         request("자동차 대수는 몇 대인가요?").getOrElse {
