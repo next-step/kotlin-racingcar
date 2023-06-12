@@ -1,3 +1,3 @@
 package racingcar.model
 
-data class InputResult(val names: List<String>, val turnCount: Int)
+data class InputResult(val names: String?, val turnCount: String?)

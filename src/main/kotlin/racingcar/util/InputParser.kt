@@ -1,9 +1,10 @@
 package racingcar.util
 
 object InputParser {
+    private const val COMMA = ","
+
     @Throws(IllegalArgumentException::class)
-    fun parseCarNames(input: String): List<String> {
-        require(input.isNotBlank()) { "이름을 한 개 이상 입력해주세요" }
-        return input.split(",")
+    fun parseCarNames(input: String, separator: String = COMMA): List<String> {
+        return input.split(separator)
     }
 }
