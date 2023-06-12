@@ -1,17 +1,20 @@
 package stringcalculator
 
-private const val OPERATOR_REGEX = "[+\\-*/]"
-private const val NUMBER_REGEX = "\\d+"
-
 class StringParser(input: String) {
+
+    companion object {
+        private val OPERATOR_REGEX = Regex("[+\\-*/]")
+        private val NUMBER_REGEX = Regex("\\d+")
+    }
+
     private val numbers: List<Int>
     private val operators: List<String>
 
     init {
         validateInput(input)
 
-        numbers = input.split(Regex(OPERATOR_REGEX)).map { it.toInt() }
-        operators = input.split(Regex(NUMBER_REGEX)).filter { it.isNotEmpty() }
+        numbers = input.split(OPERATOR_REGEX).map { it.toInt() }
+        operators = input.split(NUMBER_REGEX).filter { it.isNotEmpty() }
 
         validateSize()
     }
@@ -29,7 +32,7 @@ class StringParser(input: String) {
     }
 
     private fun validateInput(input: String) {
-        require(input.isNotBlank())
-        require(input.contains(Regex(OPERATOR_REGEX)))
+        require(input.isNotBlank()) { "Input cannot be blank" }
+        require(input.contains(OPERATOR_REGEX)) { "Input must contain at least one operator" }
     }
 }

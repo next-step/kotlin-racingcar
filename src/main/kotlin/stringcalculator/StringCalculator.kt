@@ -20,7 +20,7 @@ class StringCalculator {
                 val operand = numbers[i + 1]
 
                 val operator = Operator.findBy(operatorSign)
-                operator.calculate(result, operand)
+                result = operator.calculate(result, operand)
             }
 
             return result
