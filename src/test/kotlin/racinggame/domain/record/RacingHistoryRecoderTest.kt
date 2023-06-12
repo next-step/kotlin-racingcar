@@ -23,10 +23,7 @@ class RacingHistoryRecoderTest : BehaviorSpec({
                 engine = MockEngine(fixedDrivableDistance = DrivableDistance(0)),
             )
         }
-        val fixedMoveDistance = MoveDistance(
-            startPosition = 0,
-            currentPosition = 1
-        )
+        val fixedMoveDistance = MoveDistance(1)
         val racingFieldMiniMap = object : RacingFieldMiniMap {
             override val racingFieldMap: Map<UserUniqueId, Field> = buildMap {
                 racingCars.forEach { racingCar ->

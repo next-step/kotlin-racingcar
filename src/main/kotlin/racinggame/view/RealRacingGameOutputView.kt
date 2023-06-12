@@ -13,7 +13,7 @@ class RealRacingGameOutputView : RacingGameOutputView {
             .totalRacingRecordPaperList
             .forEach { racingRecordPaperList ->
                 racingRecordPaperList.list
-                    .map { racingRecordPaper -> racingRecordPaper.moveDistance.distance }
+                    .map { racingRecordPaper -> racingRecordPaper.moveDistance.value }
                     .forEach { racingCarMoveDistance -> println("-".repeat(racingCarMoveDistance)) }
                 println()
             }

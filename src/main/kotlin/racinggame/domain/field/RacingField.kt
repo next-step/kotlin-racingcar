@@ -24,10 +24,7 @@ class RacingField : RacingFieldMiniMap {
         racingCars.forEach { racingCar ->
             _racingFieldMap[racingCar.user.id] = Field(
                 racingCar = racingCar,
-                moveDistance = MoveDistance(
-                    startPosition = FIXED_START_POSITION,
-                    currentPosition = FIXED_START_POSITION,
-                ),
+                moveDistance = MoveDistance(FIXED_START_POSITION),
             )
         }
     }
@@ -43,8 +40,7 @@ class RacingField : RacingFieldMiniMap {
         val old = _racingFieldMap[user.id] ?: return
         val new = run {
             val oldMoveDistance = old.moveDistance
-            val currentPosition = oldMoveDistance.currentPosition + moveDistance
-            val newMoveDistance = oldMoveDistance.copy(currentPosition = currentPosition)
+            val newMoveDistance = MoveDistance(oldMoveDistance.value + moveDistance)
             old.copy(moveDistance = newMoveDistance)
         }
         _racingFieldMap[user.id] = new

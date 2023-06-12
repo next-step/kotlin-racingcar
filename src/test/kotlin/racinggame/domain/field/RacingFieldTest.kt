@@ -33,10 +33,7 @@ class RacingFieldTest : BehaviorSpec({
                 val actual = racingField.racingFieldMap
                     .getValue(racingCar.user.id)
                     .moveDistance
-                val expected = MoveDistance(
-                    startPosition = 0,
-                    currentPosition = 0
-                )
+                val expected = MoveDistance(0)
                 actual shouldBe expected
             }
         }
@@ -47,10 +44,7 @@ class RacingFieldTest : BehaviorSpec({
                     val actual = racingField.racingFieldMap
                         .getValue(racingCar.user.id)
                         .moveDistance
-                    val expected = MoveDistance(
-                        startPosition = 0,
-                        currentPosition = racingCar.tryRun().value
-                    )
+                    val expected = MoveDistance(racingCar.tryRun().value)
                     actual shouldBe expected
                 }
             }
