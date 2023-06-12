@@ -1,6 +1,6 @@
-package racingcar.game
+package racingcar.domain.game
 
-import racingcar.car.Car
+import racingcar.domain.car.Car
 
 class RacingGame(private val cars: List<Car>) {
     fun startRound() = cars.forEach { it.move() }

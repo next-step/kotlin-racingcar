@@ -1,4 +1,4 @@
-package racingcar.input
+package racingcar.ui.input
 
 class InputView {
     private val inputValidator: InputValidator = InputValidator()

@@ -1,6 +1,6 @@
-package racingcar.output
+package racingcar.ui.output
 
-import racingcar.car.Car
+import racingcar.domain.car.Car
 
 class OutputView {
     fun announceResult() = println("실행 결과")
@@ -11,7 +11,7 @@ class OutputView {
             .forEach { println(it) }
     }
 
-    private fun getCarsPosition(it: Car) = POS.repeat(it.distance)
+    private fun getCarsPosition(it: Car) = POSITION.repeat(it.distance)
 
     fun announceRoundStart(round: Int) {
         println("$round 라운드 시작")
@@ -23,6 +23,6 @@ class OutputView {
     }
 
     companion object {
-        private const val POS: String = "-"
+        private const val POSITION: String = "-"
     }
 }

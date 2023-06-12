@@ -1,9 +1,9 @@
 package racingcar
 
-import racingcar.car.CarFactory
-import racingcar.game.RacingGame
-import racingcar.input.InputView
-import racingcar.output.OutputView
+import racingcar.domain.car.CarFactory
+import racingcar.domain.game.RacingGame
+import racingcar.ui.input.InputView
+import racingcar.ui.output.OutputView
 
 class RacingCarController {
     private val inputView: InputView = InputView()
