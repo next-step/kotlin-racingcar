@@ -18,21 +18,20 @@ class StringCalculator {
         }
 
         val splitedExpression = splitByBlank(arithmeticExpression)
-        val numbers = splitedExpression.filter { isNumber(it) }
+        val numbers: List<Float> = splitedExpression.filter { isNumber(it) }.map { it.toFloat() }
         val arithmeticSymbols = splitedExpression.filter { isOperator(it) }
 
         validate(splitedExpression, numbers, arithmeticSymbols)
 
-        val result = numbers.map { it.toFloat() }
-            .reduceIndexed { index, acc, s ->
-                doCalculate(acc, s, arithmeticSymbols[index - 1])
-            }
+        val result = numbers.reduceIndexed { index, acc, s ->
+            doCalculate(acc, s, arithmeticSymbols[index - 1])
+        }
 
         println(result)
         return result
     }
 
-    private fun validate(splitedExpression: List<String>, numbers: List<String>, arithmeticSymbols: List<String>) {
+    private fun validate(splitedExpression: List<String>, numbers: List<Float>, arithmeticSymbols: List<String>) {
         if (splitedExpression.any { it !in allowedCharacter }) {
             throw IllegalExpressionException("숫자와 기호외의 문자가 포함되었습니다.")
         }
