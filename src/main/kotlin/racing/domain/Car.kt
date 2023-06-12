@@ -4,7 +4,7 @@ import racing.generator.NumberGenerator
 
 class Car(
     name: String = "car",
-    val moveFlag: NumberGenerator
+    val moveNumber: NumberGenerator
 ) {
     val carName = CarName(name)
 
@@ -18,6 +18,6 @@ class Car(
     }
 
     private fun moveCheck(): Boolean {
-        return this.moveFlag.nextInt(10) >= 4
+        return this.moveNumber.nextInt(10) >= 4
     }
 }
