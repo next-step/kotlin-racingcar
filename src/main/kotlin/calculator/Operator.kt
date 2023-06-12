@@ -1,7 +1,7 @@
 package calculator
 
 enum class Operator(
-    val opName: String,
+    val operatorName: String,
     val exec: (Int, Int) -> Int
 ) {
 
@@ -12,7 +12,7 @@ enum class Operator(
 
     companion object {
         fun of(symbol: String): Operator {
-            return values().find { it.opName == symbol }
+            return values().find { it.operatorName == symbol }
                 ?: throw IllegalArgumentException("사칙연산 기호를 사용하지 않았습니다.")
         }
     }

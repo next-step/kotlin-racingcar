@@ -2,10 +2,12 @@ package calculator
 
 object Calculator {
 
+    private const val SPACE = " "
+
     fun execute(inp: String?): Int {
         val str = Validator.validate(inp)
 
-        val args = str.split(" ")
+        val args = str.split(SPACE)
 
         val (numbers, operators) = args.withIndex().partition { it.index % 2 == 0 }.let { (numbers, operators) ->
             numbers.map { it.value.toInt() } to operators.map { Operator.of(it.value) }
@@ -19,8 +21,7 @@ object Calculator {
         return nums.drop(1).fold(nums.first()) { acc, i ->
             val operator = operators[operatorIndex]
             operatorIndex++
-            val result = operator.exec(acc, i)
-            result
+            operator.exec(acc, i)
         }
     }
 }
