@@ -3,13 +3,14 @@ package racingcar.domain.car
 import racingcar.domain.record.CarRecord
 
 class Car(
-    val lineNumber: Int
+    val lineNumber: Int,
+    private val carEngine: CarEngine = RandomCarEngine
 ) {
     var position: Int = 0
         private set
 
     fun move() {
-        if (CarRandomGenerator.canGo()) position++
+        if (carEngine.canGo()) position++
     }
 
     fun race(tryCount: Int): CarRecord {
