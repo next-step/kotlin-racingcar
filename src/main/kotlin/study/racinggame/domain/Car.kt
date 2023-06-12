@@ -17,7 +17,7 @@ class Car(
     }
 
     companion object {
-        const val DEFAULT_POSITION: Int = 1
-        const val MAX_NAME_LENGTH: Int = 5
+        private const val DEFAULT_POSITION: Int = 1
+        private const val MAX_NAME_LENGTH: Int = 5
     }
 }

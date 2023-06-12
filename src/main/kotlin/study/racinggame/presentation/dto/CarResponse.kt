@@ -16,7 +16,7 @@ data class CarResponse(
         fun of(car: Car): CarResponse {
             return CarResponse(car.position, car.name)
         }
-        const val DEFAULT_POSITION: Int = 1
-        const val POSITION_REPRESENT: String = "-"
+        private const val DEFAULT_POSITION: Int = 1
+        private const val POSITION_REPRESENT: String = "-"
     }
 }

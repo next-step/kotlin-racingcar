@@ -16,7 +16,7 @@ class RaceRule(
     }
 
     companion object {
-        const val DEFAULT_RANDOM_BOUND = 10
-        const val DEFAULT_FORWARD_THRESHOLD = 3
+        private const val DEFAULT_RANDOM_BOUND = 10
+        private const val DEFAULT_FORWARD_THRESHOLD = 3
     }
 }

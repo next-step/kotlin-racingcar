@@ -39,6 +39,6 @@ class InputView {
     }
 
     companion object {
-        const val CAR_SEPARATOR: String = ","
+        private const val CAR_SEPARATOR: String = ","
     }
 }

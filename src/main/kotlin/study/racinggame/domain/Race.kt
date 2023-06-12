@@ -27,6 +27,6 @@ class Race(
     }
 
     companion object {
-        const val WINNER_SEPARATOR: String = ", "
+        private const val WINNER_SEPARATOR: String = ", "
     }
 }
