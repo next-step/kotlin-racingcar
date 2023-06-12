@@ -5,7 +5,7 @@ import io.kotest.matchers.shouldBe
 import racingcar.domain.Car.Companion.MOVE_THRESHOLD
 import racingcar.domain.Car.Companion.START_POSITION
 import racingcar.domain.Car.Companion.STEP
-import racingcar.domain.Input
+import racingcar.domain.RacingGameParam
 import racingcar.util.NumberGenerator.Companion.MAX_GENERATED_NUMBER
 import racingcar.util.NumberGenerator.Companion.MIN_GENERATED_NUMBER
 import racingcar.util.OrderNumberGenerator
@@ -17,7 +17,7 @@ class RacingTest : BehaviorSpec({
 
     beforeEach {
         sut = RacingGame(
-            Input(carCount, rounds),
+            RacingGameParam(carCount, rounds),
             OrderNumberGenerator(*(MIN_GENERATED_NUMBER..MAX_GENERATED_NUMBER).toList().toIntArray())
         )
     }

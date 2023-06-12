@@ -1,13 +1,13 @@
 package racingcar.io
 
-import racingcar.domain.Input
+import racingcar.domain.RacingGameParam
 
 class InputView {
-    fun getInput(): Input {
+    fun getGameParam(): RacingGameParam {
         val carCount = getCarCount()
         val rounds = getRoundCount()
 
-        return Input(carCount, rounds)
+        return RacingGameParam(carCount, rounds)
     }
 
     private fun getCarCount(): Int {

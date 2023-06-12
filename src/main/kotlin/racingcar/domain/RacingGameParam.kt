@@ -1,6 +1,6 @@
 package racingcar.domain
 
-data class Input(
+data class RacingGameParam(
     val carCount: Int,
     val rounds: Int
 )

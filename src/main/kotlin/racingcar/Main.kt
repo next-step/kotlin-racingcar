@@ -4,6 +4,6 @@ import racingcar.io.InputView
 import racingcar.racing.RacingGame
 
 fun main() {
-    val input = InputView().getInput()
-    RacingGame(input).start()
+    val gamaParam = InputView().getGameParam()
+    RacingGame(gamaParam).start()
 }

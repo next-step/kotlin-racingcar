@@ -1,20 +1,20 @@
 package racingcar.racing
 
 import racingcar.domain.Cars
-import racingcar.domain.Input
+import racingcar.domain.RacingGameParam
 import racingcar.io.ResultView
 import racingcar.util.NumberGenerator
 import racingcar.util.RandomNumberGenerator
 
 class RacingGame(
-    private val input: Input,
+    private val gameParam: RacingGameParam,
     numberGenerator: NumberGenerator = RandomNumberGenerator()
 ) {
-    val cars: Cars = Cars(numberGenerator, input.carCount)
+    val cars: Cars = Cars(numberGenerator, gameParam.carCount)
 
     fun start() {
         ResultView.printResultMessage()
-        repeat(input.rounds) {
+        repeat(gameParam.rounds) {
             runRound()
         }
     }
