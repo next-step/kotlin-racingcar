@@ -30,7 +30,17 @@ internal class RaceConditionTest {
     fun `if value is minus number then throw IllegalArgumentException`() {
         assertThrows<IllegalArgumentException> {
             RaceCondition.of(
+                "jeff",
                 Random.nextInt(Int.MIN_VALUE, 0).toString(),
+            )
+        }
+    }
+
+    @Test
+    fun `if value is longer than 5 letters then throw IllegalArgumentException`() {
+        assertThrows<IllegalArgumentException> {
+            RaceCondition.of(
+                "jeff.42",
                 Random.nextInt(Int.MIN_VALUE, 0).toString(),
             )
         }

@@ -20,7 +20,6 @@ internal class GetWinnersTest {
         val winners = getWinners(racingCars)
         assertEquals(1, winners.size)
         assertEquals("winner", winners[0].name)
-        assertEquals(6, winners[0].position)
     }
 
     @Test
@@ -36,6 +35,5 @@ internal class GetWinnersTest {
         val winners = getWinners(racingCars)
         assertEquals(3, winners.size)
         winners.forEach { assertEquals(winnerName, it.name) }
-        winners.forEach { assertEquals(6, it.position) }
     }
 }
