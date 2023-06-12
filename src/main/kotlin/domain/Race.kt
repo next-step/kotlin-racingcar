@@ -1,12 +1,5 @@
 package domain
 
-class Race(
-    private val carList: List<Car>
-) {
-
-    fun moveCar() {
-        for (car in carList) {
-            car.move()
-        }
-    }
+class Race {
+    fun carRace(car: Car, isMoving: Boolean): Int = car.move(isMoving)
 }

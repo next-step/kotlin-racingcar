@@ -2,17 +2,14 @@ package domain
 
 import kotlin.random.Random
 
-class Car(
-    private val _carId: Int
-) {
-
-    val carId = _carId
+class Car {
     var position = 0
         private set
 
-    fun move() {
-        if (canMove()) position += 1
+    fun move(isMoving: Boolean): Int {
+        if (isMoving) position += 1
+        return position
     }
 
-    private fun canMove(): Boolean = Random.nextInt(9) >= 4
+    fun isMoving(): Boolean = Random.nextInt(9) >= 4
 }

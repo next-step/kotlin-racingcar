@@ -1,28 +1,37 @@
 package presentation.view
 
 import domain.Car
-import domain.Race
 
 class InputView {
 
-    private lateinit var carList: List<Car>
+    private var carList: List<Car> = listOf()
     private var retryCount: Int = 0
-    private lateinit var race: Race
 
     fun getRetryCount(): Int = retryCount
 
     fun getCarList(): List<Car> = carList
 
     fun inputCarCount() {
-        val carCount = readln().toInt()
-        val list = mutableListOf<Car>()
-        repeat(carCount) {
-            list.add(Car(it))
+        runCatching {
+            readln().toInt()
+        }.onSuccess {
+            val list = mutableListOf<Car>()
+            repeat(it) {
+                list.add(Car())
+            }
+            carList = list.toList()
+        }.onFailure {
+            println("Error: ${it.message}")
         }
-        carList = list.toList()
     }
 
     fun inputRetryRetryCount() {
-        retryCount = readln().toInt()
+        runCatching {
+            readln().toInt()
+        }.onSuccess {
+            retryCount = it
+        }.onFailure {
+            println("Error: ${it.message}")
+        }
     }
 }

@@ -4,17 +4,15 @@ import domain.Race
 
 class ResultView {
 
-    private val inputView = InputView()
-    private lateinit var race: Race
-
     fun result() {
+        val race = Race()
+        val inputView = InputView()
         inputView.inputCarCount()
         inputView.inputRetryRetryCount()
-        race = Race(inputView.getCarList())
+        if (inputView.getRetryCount() == 0 || inputView.getCarList().isEmpty()) throw Exception("retryCount() == 0 || carList.isEmpty()")
         repeat(inputView.getRetryCount()) {
-            inputView.getCarList().map {
-                race.moveCar()
-                println("-".repeat(it.position))
+            inputView.getCarList().map { car ->
+                println("-".repeat(race.carRace(car, car.isMoving())))
             }
             println()
         }
