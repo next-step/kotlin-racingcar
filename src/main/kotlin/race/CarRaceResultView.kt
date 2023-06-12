@@ -19,10 +19,8 @@ class CarRaceResultView {
     }
 
     private fun Car.print() {
-        println("$name : ${positionString(position)}")
+        println("$name : ${positionString()}")
     }
-
-    private fun positionString(position: Int): String = "-".repeat(position)
 
     private fun printWinners(raceResult: RaceResult) {
         println("${winnersString(raceResult)}가 최종 우승했습니다.")

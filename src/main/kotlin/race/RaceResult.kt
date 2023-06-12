@@ -4,17 +4,17 @@ data class RaceResult(
     val turns: List<TurnInfo>,
 ) {
     fun frontrunners(): Set<Car> {
-        val positionOfFrontrunner = positionOfFrontrunner()
+        val frontrunner = frontrunner()
         return latestTurn().cars
             .filter {
-                it.position == positionOfFrontrunner
+                frontrunner.isDraw(it)
             }.toSet()
     }
 
-    private fun positionOfFrontrunner(): Int {
+    private fun frontrunner(): Car {
         return latestTurn().cars
-            .maxOf {
-                it.position
+            .reduce { frontrunner, car ->
+                Car.winner(frontrunner, car)
             }
     }
 

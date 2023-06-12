@@ -50,17 +50,16 @@ class RaceGameTest {
 
         val raceStartInformation = RaceStartInformation(nameOfCars = listOf("1"), numberOfAttempts = 1)
 
-        val (positionBeforeTurn, positionAfterTurn) = CarRaceGame(number3Generator).runCarRace(raceStartInformation)
+        val (before, after) = CarRaceGame(number3Generator).runCarRace(raceStartInformation)
             .turns
             .map {
                 it.cars
                     .first()
-                    .position
             }.let {
                 it.first() to it.last()
             }
 
-        assertThat(positionAfterTurn - positionBeforeTurn).isEqualTo(0)
+        assertThat(before.isDraw(after)).isTrue()
     }
 
     @Test
@@ -71,17 +70,14 @@ class RaceGameTest {
 
         val raceStartInformation = RaceStartInformation(nameOfCars = listOf("1"), numberOfAttempts = 1)
 
-        val (positionBeforeTurn, positionAfterTurn) = CarRaceGame(number4Generator).runCarRace(raceStartInformation)
+        val after = CarRaceGame(number4Generator).runCarRace(raceStartInformation)
             .turns
             .map {
                 it.cars
                     .first()
-                    .position
-            }.let {
-                it.first() to it.last()
-            }
+            }.last()
 
-        assertThat(positionAfterTurn - positionBeforeTurn).isEqualTo(1)
+        assertThat(after.isDraw(Car(1, ""))).isTrue()
     }
 
     @Test
