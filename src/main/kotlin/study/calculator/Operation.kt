@@ -1,4 +1,4 @@
-package study.step2
+package study.calculator
 
 class Operation private constructor(
     val operands: MutableList<Operand>,
