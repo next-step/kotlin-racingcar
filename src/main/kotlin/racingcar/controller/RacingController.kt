@@ -1,10 +1,10 @@
 package racingcar.controller
 
-import racingcar.model.Car
-import racingcar.model.GameSetting
-import racingcar.model.InputResult
-import racingcar.rule.RacingRule
-import racingcar.rule.RacingRuleImpl
+import racingcar.domain.model.Car
+import racingcar.domain.model.GameSetting
+import racingcar.domain.model.InputResult
+import racingcar.domain.rule.RacingRule
+import racingcar.domain.rule.RacingRuleImpl
 import racingcar.util.InputParser
 import racingcar.util.InputValidator
 import racingcar.view.ResultView

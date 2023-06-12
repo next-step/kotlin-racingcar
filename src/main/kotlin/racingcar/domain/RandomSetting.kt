@@ -1,4 +1,4 @@
-package racingcar.util
+package racingcar.domain
 
 interface RandomSetting {
     val from: Int

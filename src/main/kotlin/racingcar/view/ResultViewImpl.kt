@@ -1,7 +1,7 @@
 package racingcar.view
 
-import racingcar.model.Car
-import racingcar.model.InputResult
+import racingcar.domain.model.Car
+import racingcar.domain.model.InputResult
 
 class ResultViewImpl : ResultView {
     override fun input(): InputResult {

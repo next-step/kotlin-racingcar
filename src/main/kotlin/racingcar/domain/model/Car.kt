@@ -1,7 +1,7 @@
-package racingcar.model
+package racingcar.domain.model
 
-import racingcar.rule.RacingRule
-import racingcar.rule.RacingRuleImpl
+import racingcar.domain.rule.RacingRule
+import racingcar.domain.rule.RacingRuleImpl
 
 class Car(val name: String, private val rule: RacingRule = RacingRuleImpl()) {
     var position: Int = 0

@@ -1,6 +1,6 @@
-package racingcar.rule
+package racingcar.domain.rule
 
-import racingcar.model.Car
+import racingcar.domain.model.Car
 
 interface RacingRule {
     fun canMove(): Boolean
