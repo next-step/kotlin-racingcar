@@ -40,7 +40,7 @@ class StringCalculator {
     }
 
     private fun isOperator(input: String): Boolean {
-        return input == "+" || input == "-" || input == "*" || input == "/"
+        return input in listOf("+", "-", "*", "/")
     }
 
     private fun doCalculate(num1: Float, num2: Float, operator: String): Float {
