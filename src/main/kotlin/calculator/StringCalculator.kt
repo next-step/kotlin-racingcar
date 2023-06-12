@@ -1,6 +1,13 @@
 package calculator
 
 class StringCalculator {
+    private val symbolToFunctionMap = mapOf(
+        "+" to this::add,
+        "-" to this::subtract,
+        "*" to this::multiply,
+        "/" to this::divide
+    )
+
     fun calculate(arithmeticExpression: String): Float {
         if (arithmeticExpression.isBlank()) {
             throw IllegalArgumentException("문자열이 비어있습니다.")
@@ -40,17 +47,12 @@ class StringCalculator {
     }
 
     private fun isOperator(input: String): Boolean {
-        return input in listOf("+", "-", "*", "/")
+        return input in symbolToFunctionMap
     }
 
     private fun doCalculate(num1: Float, num2: Float, operator: String): Float {
-        return when (operator) {
-            "+" -> add(num1, num2)
-            "-" -> subtract(num1, num2)
-            "*" -> multiply(num1, num2)
-            "/" -> divide(num1, num2)
-            else -> throw IllegalArgumentException("기호가 올바르지 않습니다.")
-        }
+        val operatorFunction = symbolToFunctionMap[operator] ?: throw IllegalArgumentException("기호가 올바르지 않습니다.")
+        return operatorFunction.invoke(num1, num2)
     }
 
     fun add(num1: Float, num2: Float) = num1 + num2
