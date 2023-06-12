@@ -19,10 +19,9 @@ class Race {
     }
 
     private fun findWinners(lastRecords: List<CarRecord>): List<CarRecord> {
-        val sorted = lastRecords.sorted()
-        val winnerPosition = sorted.last().position
+        val winnerPosition = lastRecords.maxByOrNull { it.position }?.position
 
-        return sorted
+        return lastRecords
             .filter { it.position == winnerPosition }
     }
 }
