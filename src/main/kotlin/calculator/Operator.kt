@@ -52,7 +52,7 @@ enum class Operator(val operator: String) {
 
 private fun String.isNum(): Boolean {
     this.forEach {
-        char ->
+            char ->
 
         val charConvertedToCode = char.code
 
