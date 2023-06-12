@@ -17,7 +17,7 @@ class Calculator {
             throw IllegalArgumentException("유효한 형식이 아닙니다.")
         }
 
-        val inputArray = input.split(DELIMITER)
+        val inputArray = splitExpression(input)
         val numberQueue = ArrayList<T>()
         val operatorQueue = ArrayList<String>()
 
@@ -37,6 +37,10 @@ class Calculator {
             }
         }
         return execute(numberQueue, operatorQueue)
+    }
+
+    fun splitExpression(expression: String): List<String> {
+        return expression.split(DELIMITER)
     }
 
     fun <T : Number> plus(num1: T, num2: T): T {
