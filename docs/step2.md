@@ -9,7 +9,7 @@
 
 ### 구현 목록
 #### 입력
-- [ ] 사용자로부터 문자열 입력 받기
+- [x] 사용자로부터 문자열 입력 받기
     - [x] 입력 받은 문자열이 `null`이거나 빈 공백 문자일 경우 `IllegalArgumentException` 발생 
     - [x] 입력 받은 문자열에 사칙연산 기호가 없는 경우 `IllegalArgumentException` 발생
 
@@ -27,4 +27,4 @@
       - [x] 0으로 나누는 경우 `IllegalArgumentException` 발생
 
 #### 출력
-- [ ] 계산 결과 출력
+- [x] 계산 결과 출력
