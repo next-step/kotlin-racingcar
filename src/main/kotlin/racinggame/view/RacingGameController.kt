@@ -28,8 +28,6 @@ class RacingGameController(
             gameRule = GameRule(gamePlayCount),
         )
 
-        outputView.display(RacingGameFixedMessage.BLANK)
-
         val racingResult = racingGame.execute(gameGuide)
         displayRacingGameResult(racingResult)
     }
@@ -55,16 +53,8 @@ class RacingGameController(
     }
 
     private fun displayRacingGameResult(racingGameResult: RacingGameResult) {
+        outputView.display(RacingGameFixedMessage.BLANK)
         outputView.display(RacingGameFixedMessage.EXECUTE_RESULT)
-
-        racingGameResult.racingRecordBook
-            .totalRacingRecordPaperList
-            .forEach { racingRecordPaperList ->
-                racingRecordPaperList.list
-                    .map { racingRecordPaper -> RacingCarMoveDistance(racingRecordPaper.moveDistance.distance) }
-                    .forEach { racingCarMoveDistance -> outputView.display(racingCarMoveDistance) }
-
-                outputView.display(RacingGameFixedMessage.BLANK)
-            }
+        outputView.display(racingGameResult)
     }
 }

@@ -2,9 +2,9 @@ package racinggame.domain.game
 
 import racinggame.domain.car.RacingCar
 import racinggame.domain.car.factory.RacingCarFactory
-import racinggame.domain.record.RacingHistoryRecoder
 import racinggame.domain.field.RacingField
 import racinggame.domain.player.User
+import racinggame.domain.record.RacingHistoryRecoder
 import racinggame.domain.record.RacingRecordBook
 
 class RealRacingGame(
