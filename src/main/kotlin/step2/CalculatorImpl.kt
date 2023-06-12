@@ -34,17 +34,17 @@ class CalculatorImpl : Calculator {
 
     fun calculateString(input: String?): Int {
         val inputs = input?.split(" ") ?: throw IllegalArgumentException()
-        var flag = true
+        var isSymbol = true
         var result = inputs[0].toInt()
         var symbol = ""
 
         inputs.drop(1).forEach {
-            if (flag && checkSymbol(it)) {
+            if (isSymbol && checkSymbol(it)) {
                 symbol = it
             } else {
                 result = calculate(result, symbol, it.toInt())
             }
-            flag = !flag
+            isSymbol = !isSymbol
         }
         return result
     }
