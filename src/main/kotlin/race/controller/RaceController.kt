@@ -1,8 +1,8 @@
 package race.controller
 
-import race.Car
-import race.Race
-import race.RandomMoveCondition
+import race.model.Car
+import race.model.Race
+import race.model.RandomMoveCondition
 import race.view.InputView
 import race.view.ResultView
 
@@ -11,16 +11,14 @@ class RaceController {
         val inputView = InputView()
         val inputData = inputView.input()
 
-        val numberOfCar = inputData.numberOfCar
+        val carNames = inputData.carNames
         val numberOfTry = inputData.numberOfTry
 
         val cars = mutableListOf<Car>()
         val condition = RandomMoveCondition()
-        repeat(numberOfCar) {
-            cars.add(Car(condition))
-        }
+        cars.addAll(carNames.map { carName -> Car(carName, condition) })
 
-        val result = Race(cars, numberOfTry).run()
+        val result = Race().run(cars, numberOfTry)
 
         ResultView().run(result)
     }

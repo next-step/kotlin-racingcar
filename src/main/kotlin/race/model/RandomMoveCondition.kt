@@ -1,4 +1,4 @@
-package race
+package race.model
 
 import kotlin.random.Random
 

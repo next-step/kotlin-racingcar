@@ -7,6 +7,6 @@ class StringTest {
     @Test
     fun isEmpty() {
         assertThat("".isEmpty()).isTrue()
-        assertThat(" ".isEmpty()).isTrue()
+        assertThat(" ".isEmpty()).isFalse()
     }
 }
