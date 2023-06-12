@@ -10,20 +10,20 @@ import step3.domain.strategy.RandomMoveCondition
  */
 class Car(
     private val name: String = "car1",
-    private val carMovingStrategy: CarMovingCondition = RandomMoveCondition(threshold = 4, boundFrom = 0, boundUntil = 10)
+    private val carMovingStrategy: CarMovingCondition = RandomMoveCondition.default(),
 ) {
 
     var position: Int = 0
         private set
 
-    fun move() {
+    val state: CarState
+        get() = CarState(name, position)
+
+    fun move(): CarState {
         if (carMovingStrategy.canMove()) {
             position++
         }
-    }
-
-    fun getCurrentState(): CarState {
-        return CarState(name, position)
+        return state
     }
 }
 

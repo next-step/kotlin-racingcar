@@ -1,5 +1,6 @@
 package step3.view
 
+import step3.domain.CarRequest
 import step3.domain.RacingRequest
 
 class InputView {
@@ -8,6 +9,6 @@ class InputView {
         val carNames = readln().split(",")
         println("시도할 횟수는 몇 회인가요?")
         val attemptCount = readln().toInt()
-        return RacingRequest(carNames, attemptCount)
+        return RacingRequest(carNames.map { CarRequest(it) }, attemptCount)
     }
 }

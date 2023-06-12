@@ -9,19 +9,17 @@ class RacingCars(private val cars: List<Car>) {
 
     fun race(attemptCount: Int): RacingRecord {
         val record = mutableListOf<RacingAttempt>()
-        repeat(attemptCount) {
-            val racingAttempt: RacingAttempt = attemptToMoveCars()
+        repeat(attemptCount) { index ->
+            val racingAttempt: RacingAttempt = attemptToMoveCars(index)
             record.add(racingAttempt)
         }
         return RacingRecord(record)
     }
 
-    private fun attemptToMoveCars(): RacingAttempt {
-        return cars.map { car ->
-            car.move()
-            car.getCurrentState()
-        }.let { carStates: List<CarState> ->
-            RacingAttempt(carStates)
-        }
+    private fun attemptToMoveCars(attemptOrder: Int): RacingAttempt {
+        return RacingAttempt(
+            carStates = cars.map(Car::move),
+            order = attemptOrder,
+        )
     }
 }

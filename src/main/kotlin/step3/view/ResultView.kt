@@ -19,7 +19,7 @@ class ResultView {
     }
 
     private fun printWinner(racingRecord: RacingRecord) {
-        val winnerText = racingRecord.getWinners().joinToString()
+        val winnerText = racingRecord.winners.joinToString()
         println("$winnerText 가 최종 우승했습니다.")
     }
 }
