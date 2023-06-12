@@ -27,7 +27,7 @@ class Calculator {
                     throw IllegalArgumentException("유효한 형식이 아닙니다.")
                 }
             } else {
-                if (value in Operators.operatorArray) {
+                if (Operators.findBySymbol(value)) {
                     operatorQueue.add(value)
                 } else {
                     throw IllegalArgumentException("유효한 형식이 아닙니다.")
