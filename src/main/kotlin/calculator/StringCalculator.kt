@@ -29,7 +29,7 @@ class StringCalculator {
     }
 
     private fun validate(splitedExpression: List<String>, numbers: List<String>, arithmeticSymbols: List<String>) {
-        if (splitedExpression.size != numbers.size + arithmeticSymbols.size) {
+        if (splitedExpression.any { it !in allowedCharacter }) {
             throw IllegalArgumentException("숫자와 기호외의 문자가 포함되었습니다.")
         }
 
@@ -72,5 +72,6 @@ class StringCalculator {
     companion object {
         val blankRegex = Regex(" +")
         val numberRegex = Regex("\\d+(\\.\\d+)?")
+        val allowedCharacter = listOf("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "*", "/")
     }
 }
