@@ -37,7 +37,7 @@ class Racing {
         val tryCount = InputView.printInputCount()
         carNameViewRacing(tryCount, cars)
 
-        val winners = CarFactory().getRaceWinnerCars(cars)
+        val winners = RacingManager().getRaceWinnerCars(cars)
         ResultView.printWinnerNames(winners)
     }
 

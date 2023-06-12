@@ -73,7 +73,7 @@ class RacingTest {
 
         cars.forEach { it.move() }
 
-        val winners = CarFactory().getRaceWinnerCars(cars)
+        val winners = RacingManager().getRaceWinnerCars(cars)
         assertThat(winners.size).isEqualTo(2)
     }
 

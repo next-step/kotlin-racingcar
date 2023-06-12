@@ -16,9 +16,4 @@ class CarFactory {
             Car(moveNumber = DefaultNumberGenerator(), name = carName)
         }
     }
-
-    fun getRaceWinnerCars(cars: List<Car>): List<Car> {
-        val maxPosition = cars.maxOf { it.position }
-        return cars.filter { it.position == maxPosition }
-    }
 }
