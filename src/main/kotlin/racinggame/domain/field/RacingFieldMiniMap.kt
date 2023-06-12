@@ -1,8 +1,8 @@
 package racinggame.domain.field
 
-import racinggame.domain.car.factory.RacingCarUniqueKey
+import racinggame.domain.player.UserUniqueId
 
 interface RacingFieldMiniMap {
 
-    val racingFieldMap: Map<RacingCarUniqueKey, Field>
+    val racingFieldMap: Map<UserUniqueId, Field>
 }

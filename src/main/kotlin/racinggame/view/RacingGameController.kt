@@ -5,6 +5,7 @@ import racinggame.domain.game.RacingGameResult
 import racinggame.domain.game.GameGuide
 import racinggame.domain.game.GameRule
 import racinggame.domain.player.User
+import racinggame.domain.player.UserUniqueId
 
 class RacingGameController(
     private val inputView: RacingGameInputView,
@@ -24,7 +25,12 @@ class RacingGameController(
         }
 
         val gameGuide = GameGuide(
-            users = List(participantsCount) { index -> User(id = index.toString(), ordinal = index) },
+            users = List(participantsCount) { index ->
+                User(
+                    id = UserUniqueId.create(),
+                    ordinal = index,
+                )
+            },
             gameRule = GameRule(gamePlayCount),
         )
 

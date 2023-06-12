@@ -2,11 +2,9 @@ package racinggame.domain.car
 
 import racinggame.domain.car.engine.DrivableDistance
 import racinggame.domain.car.engine.Engine
-import racinggame.domain.car.factory.RacingCarUniqueKey
 import racinggame.domain.player.User
 
 class RacingCar(
-    val uniqueKey: RacingCarUniqueKey,
     val user: User,
     private val engine: Engine,
 ) {

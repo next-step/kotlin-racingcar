@@ -4,8 +4,8 @@ import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import racinggame.domain.car.engine.DrivableDistance
 import racinggame.domain.car.engine.MockEngine
-import racinggame.domain.car.factory.RacingCarUniqueKey
 import racinggame.domain.player.User
+import racinggame.domain.player.UserUniqueId
 
 class RacingCarTest : BehaviorSpec({
 
@@ -13,8 +13,7 @@ class RacingCarTest : BehaviorSpec({
         drivableDistance: DrivableDistance,
     ): RacingCar {
         return RacingCar(
-            uniqueKey = RacingCarUniqueKey(value = "test"),
-            user = User(id = "test", ordinal = 0),
+            user = User(id = UserUniqueId.create(), ordinal = 0),
             engine = MockEngine(drivableDistance),
         )
     }

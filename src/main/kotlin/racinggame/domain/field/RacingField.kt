@@ -1,12 +1,12 @@
 package racinggame.domain.field
 
 import racinggame.domain.car.RacingCar
-import racinggame.domain.car.factory.RacingCarUniqueKey
+import racinggame.domain.player.UserUniqueId
 
 class RacingField : RacingFieldMiniMap {
 
-    private val _racingFieldMap = mutableMapOf<RacingCarUniqueKey, Field>()
-    override val racingFieldMap: Map<RacingCarUniqueKey, Field> = _racingFieldMap
+    private val _racingFieldMap = mutableMapOf<UserUniqueId, Field>()
+    override val racingFieldMap: Map<UserUniqueId, Field> = _racingFieldMap
 
     fun ready(racingCars: List<RacingCar>) {
         setUpStartPosition(racingCars)
@@ -22,7 +22,7 @@ class RacingField : RacingFieldMiniMap {
 
     private fun setUpStartPosition(racingCars: List<RacingCar>) {
         racingCars.forEach { racingCar ->
-            _racingFieldMap[racingCar.uniqueKey] = Field(
+            _racingFieldMap[racingCar.user.id] = Field(
                 racingCar = racingCar,
                 moveDistance = MoveDistance(
                     startPosition = FIXED_START_POSITION,
@@ -40,14 +40,14 @@ class RacingField : RacingFieldMiniMap {
     }
 
     private fun RacingCar.move(moveDistance: Int) {
-        val old = _racingFieldMap[uniqueKey] ?: return
+        val old = _racingFieldMap[user.id] ?: return
         val new = run {
             val oldMoveDistance = old.moveDistance
             val currentPosition = oldMoveDistance.currentPosition + moveDistance
             val newMoveDistance = oldMoveDistance.copy(currentPosition = currentPosition)
             old.copy(moveDistance = newMoveDistance)
         }
-        _racingFieldMap[uniqueKey] = new
+        _racingFieldMap[user.id] = new
     }
 
     companion object {

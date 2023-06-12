@@ -5,20 +5,19 @@ import io.kotest.matchers.shouldBe
 import racinggame.domain.car.RacingCar
 import racinggame.domain.car.engine.DrivableDistance
 import racinggame.domain.car.engine.MockEngine
-import racinggame.domain.car.factory.RacingCarUniqueKey
 import racinggame.domain.field.Field
 import racinggame.domain.field.MoveDistance
 import racinggame.domain.field.RacingFieldMiniMap
 import racinggame.domain.player.User
+import racinggame.domain.player.UserUniqueId
 
 class RacingHistoryRecoderTest : BehaviorSpec({
 
     Given("레이싱 필드 맵에 데이터가 존재할 때") {
         val racingCars = List(2) { index ->
             RacingCar(
-                uniqueKey = RacingCarUniqueKey(index.toString()),
                 user = User(
-                    id = index.toString(),
+                    id = UserUniqueId.create(),
                     ordinal = index,
                 ),
                 engine = MockEngine(fixedDrivableDistance = DrivableDistance(0)),
@@ -29,10 +28,10 @@ class RacingHistoryRecoderTest : BehaviorSpec({
             currentPosition = 1
         )
         val racingFieldMiniMap = object : RacingFieldMiniMap {
-            override val racingFieldMap: Map<RacingCarUniqueKey, Field> = buildMap {
+            override val racingFieldMap: Map<UserUniqueId, Field> = buildMap {
                 racingCars.forEach { racingCar ->
                     put(
-                        key = racingCar.uniqueKey,
+                        key = racingCar.user.id,
                         value = Field(
                             racingCar = racingCar,
                             moveDistance = fixedMoveDistance

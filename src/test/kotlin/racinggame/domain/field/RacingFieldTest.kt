@@ -5,8 +5,8 @@ import io.kotest.matchers.shouldBe
 import racinggame.domain.car.RacingCar
 import racinggame.domain.car.engine.DrivableDistance
 import racinggame.domain.car.engine.MockEngine
-import racinggame.domain.car.factory.RacingCarUniqueKey
 import racinggame.domain.player.User
+import racinggame.domain.player.UserUniqueId
 
 class RacingFieldTest : BehaviorSpec({
 
@@ -15,8 +15,7 @@ class RacingFieldTest : BehaviorSpec({
         fixedDrivableDistance: Int = 0
     ): RacingCar {
         return RacingCar(
-            uniqueKey = RacingCarUniqueKey(value = id),
-            user = User(id = id, ordinal = 0),
+            user = User(id = UserUniqueId.create(), ordinal = 0),
             engine = MockEngine(fixedDrivableDistance = DrivableDistance(fixedDrivableDistance))
         )
     }
@@ -32,7 +31,7 @@ class RacingFieldTest : BehaviorSpec({
         Then("자동차들의 시작 위치와 현재 위치가 0 이어야 한다") {
             racingCars.forEach { racingCar ->
                 val actual = racingField.racingFieldMap
-                    .getValue(racingCar.uniqueKey)
+                    .getValue(racingCar.user.id)
                     .moveDistance
                 val expected = MoveDistance(
                     startPosition = 0,
@@ -46,7 +45,7 @@ class RacingFieldTest : BehaviorSpec({
             Then("자동차들의 이동 가능 거리만큼 필드에서 이동한다") {
                 racingCars.forEach { racingCar ->
                     val actual = racingField.racingFieldMap
-                        .getValue(racingCar.uniqueKey)
+                        .getValue(racingCar.user.id)
                         .moveDistance
                     val expected = MoveDistance(
                         startPosition = 0,
