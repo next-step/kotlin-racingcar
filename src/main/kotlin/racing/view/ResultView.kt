@@ -20,7 +20,7 @@ object ResultView {
     }
 
     fun printWinnerNames(cars: List<Car>) {
-        val winnerNames = cars.joinToString(", ") { it.carName.name!! }
+        val winnerNames = cars.joinToString(", ") { it.carName.name }
         println("${winnerNames}가 최종 우승했습니다.")
     }
 

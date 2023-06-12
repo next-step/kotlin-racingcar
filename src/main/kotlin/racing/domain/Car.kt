@@ -3,7 +3,7 @@ package racing.domain
 import racing.generator.NumberGenerator
 
 class Car(
-    name: String? = null,
+    name: String = "car",
     val moveFlag: NumberGenerator
 ) {
     val carName = CarName(name)
