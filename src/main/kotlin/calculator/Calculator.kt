@@ -4,13 +4,6 @@ const val DELIMITER = " "
 
 class Calculator {
 
-    inline fun <reified T : Number> convertStringToNumber(input: String): T {
-        return when (T::class) {
-            Int::class -> input.toInt() as T
-            Double::class -> input.toDouble() as T
-            else -> throw IllegalArgumentException("지원하지 않는 숫자 형식입니다.")
-        }
-    }
 
     inline fun <reified T : Number> calculate(input: String): T {
         if (input.isEmpty()) {
@@ -18,25 +11,8 @@ class Calculator {
         }
 
         val inputArray = splitExpression(input)
-        val numberQueue = ArrayList<T>()
-        val operatorQueue = ArrayList<String>()
-
-        inputArray.forEachIndexed { index, value ->
-            if (index % 2 == 0) {
-                try {
-                    numberQueue.add(convertStringToNumber(value))
-                } catch (e: IllegalArgumentException) {
-                    throw IllegalArgumentException("유효한 형식이 아닙니다.")
-                }
-            } else {
-                if (Operators.findBySymbol(value)) {
-                    operatorQueue.add(value)
-                } else {
-                    throw IllegalArgumentException("유효한 형식이 아닙니다.")
-                }
-            }
-        }
-        return execute(numberQueue, operatorQueue)
+        val extractor = Extractor()
+        return execute(extractor.extractOperands(inputArray), extractor.extractOperators(inputArray))
     }
 
     fun splitExpression(expression: String): List<String> {
