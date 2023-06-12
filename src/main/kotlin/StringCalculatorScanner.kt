@@ -1,12 +1,11 @@
 class StringCalculatorScanner {
-    fun scan(input: String): Int {
+    fun scan(input: List<String>): Int {
         val stringOperator = StringOperator()
 
-        input.forEach { c ->
-            when (CharParser.parseChar(c)) {
-                CharType.NUMBER -> stringOperator.numberProcess(c)
-                CharType.BLANK -> stringOperator.blankProcess()
-                CharType.OPERATOR -> stringOperator.operatorProcess(c)
+        input.forEach { str ->
+            when (StringParser.parseString(str)) {
+                StringType.NUMBER -> stringOperator.numberProcess(str)
+                StringType.OPERATOR -> stringOperator.operatorProcess(str)
             }
         }
 

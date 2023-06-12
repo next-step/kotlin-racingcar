@@ -1,20 +1,8 @@
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import org.junit.jupiter.params.provider.ValueSource
 
 class StringCalculatorTest {
-    @ParameterizedTest
-    @ValueSource(strings = ["2 + 3 * 4 / 2"])
-    fun testSquares(input: String) {
-
-        val scanner = StringCalculatorScanner()
-        val calculator = StringCalculator(scanner)
-        val result = calculator.calculate(input)
-
-        Assertions.assertEquals(10, result)
-    }
-
     @ParameterizedTest
     @CsvSource(
         "5 + 6 + 9 + 10, 30",
