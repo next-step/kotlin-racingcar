@@ -17,7 +17,6 @@ object StringCalculator {
             doCalculate(acc, s, expression.arithmeticSymbols[index - 1])
         }
 
-        println(result)
         return result
     }
 
