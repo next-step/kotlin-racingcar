@@ -8,6 +8,7 @@ import racing.domain.Car
 import racing.view.InputView
 import java.io.ByteArrayInputStream
 import java.io.InputStream
+import java.nio.charset.StandardCharsets
 
 class RacingTest {
 
@@ -28,6 +29,11 @@ class RacingTest {
     private fun getInputStream(input: String): InputStream {
         val inputBytes = input.toByteArray()
         return ByteArrayInputStream(inputBytes)
+    }
+
+    private fun getInputArrayStream(vararg inputValues: String): ByteArrayInputStream {
+        val input = inputValues.joinToString(System.lineSeparator())
+        return ByteArrayInputStream(input.toByteArray(StandardCharsets.UTF_8))
     }
 
     @ParameterizedTest
@@ -69,5 +75,17 @@ class RacingTest {
 
         val winners = CarFactory().getRaceWinnerCars(cars)
         assertThat(winners.size).isEqualTo(2)
+    }
+
+    @Test
+    fun `레이싱 경주 출력 결과`() {
+        System.setIn(getInputArrayStream("3", "3"))
+        Racing().racingGame()
+    }
+
+    @Test
+    fun `레이싱 경주(우승자) 출력 결과`() {
+        System.setIn(getInputArrayStream("car1,car2,car3", "3"))
+        Racing().determineRaceWinner()
     }
 }
