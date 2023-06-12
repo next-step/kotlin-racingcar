@@ -4,7 +4,7 @@ import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import racingcar.domain.Car
 import racingcar.domain.RacingGameParam
-import racingcar.util.Constant
+import racingcar.util.NumberGenerator
 import racingcar.util.OrderNumberGenerator
 
 class RacingTest : BehaviorSpec({
@@ -15,7 +15,9 @@ class RacingTest : BehaviorSpec({
     beforeEach {
         systemUnderTest = RacingGame(
             RacingGameParam((0 until carCount).map { it.toString() }, rounds),
-            OrderNumberGenerator(*(Constant.MIN_GENERATED_NUMBER..Constant.MAX_GENERATED_NUMBER).toList().toIntArray()),
+            OrderNumberGenerator(
+                *(NumberGenerator.MIN_GENERATED_NUMBER..NumberGenerator.MAX_GENERATED_NUMBER).toList().toIntArray(),
+            ),
         )
     }
 
@@ -44,8 +46,8 @@ class RacingTest : BehaviorSpec({
     given("getWinner 메소드") {
         `when`("움직인 여부가 다르면") {
             then("승패가 정해진다") {
-                target.start()
-                target.getWinners().size shouldBe 6
+                systemUnderTest.start()
+                systemUnderTest.getWinners().size shouldBe (NumberGenerator.MIN_GENERATED_NUMBER..NumberGenerator.MAX_GENERATED_NUMBER).count { it >= Car.MOVE_THRESHOLD }
             }
         }
     }

@@ -22,9 +22,9 @@ class CarsTest : BehaviorSpec({
 
     given("getWinner 메소드") {
         val carCount = 3
-        val cars = Cars(
+        val cars = Cars.createCars(
             (0 until carCount).map { it.toString() },
-            OrderNumberGenerator(Car.MOVE_THRESHOLD, Car.MOVE_THRESHOLD - 1)
+            OrderNumberGenerator(Car.MOVE_THRESHOLD, Car.MOVE_THRESHOLD - 1),
         )
         `when`("움직인 여부가 다르면") {
             then("승패가 정해진다") {
