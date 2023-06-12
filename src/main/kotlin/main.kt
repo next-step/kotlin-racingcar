@@ -6,9 +6,9 @@ fun main() {
     val racingField = RacingField(carCount, gameCount)
 
     val resultView = ResultView()
-    resultView.resultMessage()
 
-    repeat(racingField.getGameCount()) {
-        resultView.carDistanceDisplay(racingField.gameStart())
+    repeat(gameCount) {
+        racingField.gameStart()
+        resultView.racingResultDisplay(racingField.getCarsDistance())
     }
 }

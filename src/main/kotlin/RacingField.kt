@@ -8,9 +8,8 @@ class RacingField(
         return gameCount
     }
 
-    fun gameStart(): List<Car> {
+    fun gameStart() {
         moveCars()
-        return cars
     }
 
     private fun moveCars() {
@@ -19,5 +18,9 @@ class RacingField(
 
     fun getCarCount(): Int {
         return cars.size
+    }
+
+    fun getCarsDistance(): List<Int> {
+        return cars.map { it.getDistance() }
     }
 }

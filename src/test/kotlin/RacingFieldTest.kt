@@ -1,4 +1,3 @@
-
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -22,8 +21,8 @@ class RacingFieldTest {
         val racingField = RacingField(carCount, gameCount)
 
         repeat(gameCount) {
-            val carDistances = racingField.gameStart().map { it.getDistance() }
-            assertThat(carDistances.stream().allMatch { it in 0..gameCount })
+            racingField.gameStart()
+            assertThat(racingField.getCarsDistance().stream().allMatch { it in 0..gameCount })
         }
     }
 }

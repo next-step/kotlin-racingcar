@@ -1,14 +1,21 @@
 class ResultView {
-    fun resultMessage() {
+
+    companion object {
+        const val DISPLAY_STRING = "-"
+    }
+
+    private fun resultMessage() {
         println("실행 결과")
     }
 
-    fun carDistanceDisplay(cars: List<Car>) {
-        val displayString = "-"
-
-        cars.forEach { car ->
-            println(displayString.repeat(car.getDistance()))
+    private fun carsDistanceDisplay(distances: List<Int>) {
+        distances.forEach { distance ->
+            println(DISPLAY_STRING.repeat(distance))
         }
-        println()
+    }
+
+    fun racingResultDisplay(distances: List<Int>) {
+        resultMessage()
+        carsDistanceDisplay(distances)
     }
 }
