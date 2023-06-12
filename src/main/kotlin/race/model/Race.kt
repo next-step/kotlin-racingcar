@@ -8,15 +8,9 @@ class Race {
         var currentCars = cars.toMutableList()
 
         repeat(numberOfTry) {
-            val movedCars = mutableListOf<Car>()
-
-            currentCars.forEach {
-                val moved = it.move()
-                movedCars.add(moved)
-            }
-
+            val movedCars = currentCars.map { it.move() }
             records.add(movedCars)
-            currentCars = movedCars
+            currentCars = movedCars.toMutableList()
         }
 
         val winners = findWinners(records.last())
