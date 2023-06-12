@@ -6,19 +6,19 @@ class RacingGameConfiguration private constructor(
 ) {
 
     fun build(): RacingGame {
-        val cars = nameOfCars.map { Car(it, RandomSeedEngine()) }
+        val cars = nameOfCars.map(::Participant)
+            .map { Car(it, RandomSeedEngine, Position()) }
         return RacingGame(cars, numberOfStages)
     }
 
     companion object {
         fun of(nameOfCars: List<String>, numberOfStages: Int): RacingGameConfiguration {
             if (nameOfCars.size < 2) {
-                throw IllegalArgumentException()
+                throw InsufficientCarsException(nameOfCars.size)
             }
             if (numberOfStages < 1) {
-                throw IllegalArgumentException()
+                throw InsufficientStagesException(numberOfStages)
             }
-
             return RacingGameConfiguration(nameOfCars, numberOfStages)
         }
     }

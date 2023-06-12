@@ -1,18 +1,14 @@
 package study.racinggame.domain
 
-class Car(val name: String, private val engine: CarEngine) {
-    private var position: Int = 1
-
-    init {
-        if (name.isBlank() || name.length > 5) {
-            throw IllegalArgumentException()
-        }
-    }
+class Car (
+    private val participant: Participant,
+    private val engine: CarEngine,
+    private var position: Position
+) {
 
     fun move(): CarPosition {
-        position += engine.run()
-        return CarPosition(name, position)
+        this.position = position.move(engine.run())
+        return CarPosition(participant, position)
     }
 }
-
-data class CarPosition(val name: String, val position: Int)
+data class CarPosition(val participant: Participant, val position: Position)

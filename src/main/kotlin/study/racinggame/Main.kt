@@ -1,7 +1,7 @@
 package study.racinggame
 
+import study.racinggame.domain.RacingGameResult
 import study.racinggame.ui.CommandLineRacingGameConfigurator
-import study.racinggame.ui.CommandLineRacingGameStagePrinter
 import study.racinggame.ui.RacingGameResultPrinter
 
 fun main() {
@@ -10,7 +10,7 @@ fun main() {
 
     println("실행 결과")
 
-    val racingGameResult = racingGame.start()
+    val racingGameResult: RacingGameResult = racingGame.start()
 
     RacingGameResultPrinter.print(racingGameResult)
 }

@@ -21,7 +21,7 @@ class RacingGameConfigurationTest : StringSpec({
         val numberOfTries = 3
 
         // when & then
-        shouldThrow<IllegalArgumentException> { RacingGameConfiguration.of(nameOfCars, numberOfTries) }
+        shouldThrow<InsufficientCarsException> { RacingGameConfiguration.of(nameOfCars, numberOfTries) }
     }
 
     "생성 시 시도 횟수가 1회 이상이면 정상적으로 생성 된다." {
@@ -39,7 +39,7 @@ class RacingGameConfigurationTest : StringSpec({
         val numberOfTries = 0
 
         // when & then
-        shouldThrow<IllegalArgumentException> { RacingGameConfiguration.of(nameOfCars, numberOfTries) }
+        shouldThrow<InsufficientStagesException> { RacingGameConfiguration.of(nameOfCars, numberOfTries) }
     }
 
     "자동차 게임을 정상적으로 생성 한다." {

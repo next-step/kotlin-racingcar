@@ -6,29 +6,33 @@ class RacingGame(
 ) {
 
     fun start(): RacingGameResult {
-        val racingGameStages = (0 until numberOfStages)
+        val racingGameStages: List<RacingGameStage> = (0 until numberOfStages)
             .map { stage ->
                 val positionOfCars = cars.map { it.move() }
                 RacingGameStage(stage, positionOfCars)
             }
+        val winners: List<Participant> = chooseWinner(racingGameStages)
+        return RacingGameResult(racingGameStages, winners)
+    }
 
+    private fun chooseWinner(racingGameStages: List<RacingGameStage>): List<Participant> {
         val lastStageCarPositions = racingGameStages.last().positionOfCars
         val maxPosition = lastStageCarPositions.map { it.position }
-            .maxBy { it }
-        val winners: List<String> = lastStageCarPositions
+            .maxBy { it.value }
+        return lastStageCarPositions
             .filter { it.position == maxPosition }
-            .map { it.name }
-
-        return RacingGameResult(racingGameStages, winners)
+            .map { it.participant }
     }
 }
 
 data class RacingGameResult(
     val racingGameStages: List<RacingGameStage>,
-    val winners: List<String>
+    val winners: List<Participant>
 )
 data class RacingGameStage(
     val stage: Int,
     val positionOfCars: List<CarPosition>,
-
 )
+
+class InsufficientCarsException(numberOfCars: Int) : RuntimeException("최소 2대 이상의 자동차가 필요 합니다. (numberOfCars = $numberOfCars")
+class InsufficientStagesException(numberOfStages: Int) : RuntimeException("최소 1번 이상의 스테이지거 팔요 합니다. (numberOfStages = $numberOfStages")
