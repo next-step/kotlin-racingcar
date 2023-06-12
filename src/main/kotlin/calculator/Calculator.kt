@@ -13,7 +13,7 @@ class Calculator {
     }
 
     inline fun <reified T : Number> calculate(input: String): T {
-        if (input == "") {
+        if (input.isEmpty()) {
             throw IllegalArgumentException("유효한 형식이 아닙니다.")
         }
 
