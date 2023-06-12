@@ -30,8 +30,6 @@ class StringCalculator {
         if (numbers.size != arithmeticSymbols.size + 1) {
             throw IllegalArgumentException("숫자는 기호보다 1개 많아야 합니다.")
         }
-
-
     }
 
     private fun splitByBlank(arithmeticExpression: String): List<String> {
