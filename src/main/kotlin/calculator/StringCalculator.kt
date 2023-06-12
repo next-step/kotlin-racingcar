@@ -1,5 +1,9 @@
 package calculator
 
+import calculator.exception.DivideByZeroException
+import calculator.exception.IllegalExpressionException
+import calculator.exception.IllegalSymbolException
+
 class StringCalculator {
     private val symbolToFunctionMap = mapOf(
         "+" to this::add,
@@ -10,7 +14,7 @@ class StringCalculator {
 
     fun calculate(arithmeticExpression: String): Float {
         if (arithmeticExpression.isBlank()) {
-            throw IllegalArgumentException("문자열이 비어있습니다.")
+            throw IllegalExpressionException("표현식이 비어있습니다.")
         }
 
         val splitedExpression = splitByBlank(arithmeticExpression)
@@ -30,11 +34,11 @@ class StringCalculator {
 
     private fun validate(splitedExpression: List<String>, numbers: List<String>, arithmeticSymbols: List<String>) {
         if (splitedExpression.any { it !in allowedCharacter }) {
-            throw IllegalArgumentException("숫자와 기호외의 문자가 포함되었습니다.")
+            throw IllegalExpressionException("숫자와 기호외의 문자가 포함되었습니다.")
         }
 
         if (numbers.size != arithmeticSymbols.size + 1) {
-            throw IllegalArgumentException("숫자는 기호보다 1개 많아야 합니다.")
+            throw IllegalExpressionException("숫자는 기호보다 1개 많아야 합니다.")
         }
     }
 
@@ -51,7 +55,7 @@ class StringCalculator {
     }
 
     private fun doCalculate(num1: Float, num2: Float, operator: String): Float {
-        val operatorFunction = symbolToFunctionMap[operator] ?: throw IllegalArgumentException("기호가 올바르지 않습니다.")
+        val operatorFunction = symbolToFunctionMap[operator] ?: throw IllegalSymbolException()
         return operatorFunction.invoke(num1, num2)
     }
 
@@ -63,7 +67,7 @@ class StringCalculator {
 
     fun divide(num1: Float, num2: Float): Float {
         if (num2 == 0F) {
-            throw IllegalArgumentException("0으로 나눌 수 없습니다.")
+            throw DivideByZeroException()
         }
 
         return num1 / num2
