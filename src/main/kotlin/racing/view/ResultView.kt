@@ -18,4 +18,9 @@ class ResultView {
         print("$carName : $distance")
         println()
     }
+
+    fun showWinner(carName: List<String>) {
+        val winnerName = carName.toTypedArray()
+        print("${winnerName.contentToString()} 가 최종 우승했습니다.")
+    }
 }

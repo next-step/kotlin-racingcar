@@ -9,4 +9,5 @@ fun main() {
     val racingGame = RacingGame(carCount)
 
     racingGame.executeGame(retryCount, racingGame.cars)
+    racingGame.findWinner(racingGame.cars)
 }

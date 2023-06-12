@@ -37,4 +37,10 @@ class RacingGame(
             }
         }
     }
+
+    fun findWinner(cars: RacingCars) {
+        val maxPosition = cars.racingCars.maxOf { it.getPosition() }
+        val winner = cars.racingCars.filter { it.getPosition() == maxPosition }.map { it.getName() }
+        ResultView().showWinner(winner)
+    }
 }
