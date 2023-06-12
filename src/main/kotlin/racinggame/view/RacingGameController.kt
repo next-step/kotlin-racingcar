@@ -1,9 +1,9 @@
 package racinggame.view
 
-import racinggame.domain.game.RacingGame
-import racinggame.domain.game.RacingGameResult
 import racinggame.domain.game.GameGuide
 import racinggame.domain.game.GameRule
+import racinggame.domain.game.RacingGame
+import racinggame.domain.game.RacingGameResult
 import racinggame.domain.player.User
 import racinggame.domain.player.UserUniqueId
 

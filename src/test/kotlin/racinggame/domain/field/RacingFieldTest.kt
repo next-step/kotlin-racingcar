@@ -11,7 +11,6 @@ import racinggame.domain.player.UserUniqueId
 class RacingFieldTest : BehaviorSpec({
 
     fun mockRacingCar(
-        id: String,
         fixedDrivableDistance: Int = 0
     ): RacingCar {
         return RacingCar(
@@ -22,8 +21,8 @@ class RacingFieldTest : BehaviorSpec({
 
     Given("자동차들을 레이싱 필드에 대기 시켰을 때") {
         val racingCars = listOf(
-            mockRacingCar(id = "car1", fixedDrivableDistance = 1),
-            mockRacingCar(id = "car2", fixedDrivableDistance = 2),
+            mockRacingCar(fixedDrivableDistance = 1),
+            mockRacingCar(fixedDrivableDistance = 2),
         )
         val racingField = RacingField().apply {
             ready(racingCars)

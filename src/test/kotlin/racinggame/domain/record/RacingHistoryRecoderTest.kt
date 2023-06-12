@@ -3,8 +3,7 @@ package racinggame.domain.record
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import racinggame.domain.car.RacingCar
-import racinggame.domain.car.engine.DrivableDistance
-import racinggame.domain.car.engine.MockEngine
+import racinggame.domain.car.engine.MockNotMoveEngine
 import racinggame.domain.field.Field
 import racinggame.domain.field.MoveDistance
 import racinggame.domain.field.RacingFieldMiniMap
@@ -20,7 +19,7 @@ class RacingHistoryRecoderTest : BehaviorSpec({
                     id = UserUniqueId.create(),
                     ordinal = index,
                 ),
-                engine = MockEngine(fixedDrivableDistance = DrivableDistance(0)),
+                engine = MockNotMoveEngine(),
             )
         }
         val fixedMoveDistance = MoveDistance(1)

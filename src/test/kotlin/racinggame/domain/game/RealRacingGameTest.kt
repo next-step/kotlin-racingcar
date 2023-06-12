@@ -3,8 +3,7 @@ package racinggame.domain.game
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import racinggame.domain.car.RacingCar
-import racinggame.domain.car.engine.DrivableDistance
-import racinggame.domain.car.engine.MockEngine
+import racinggame.domain.car.engine.MockOneSpaceMovementEngine
 import racinggame.domain.car.factory.RacingCarFactory
 import racinggame.domain.player.User
 import racinggame.domain.player.UserUniqueId
@@ -21,7 +20,7 @@ class RealRacingGameTest : BehaviorSpec({
                 override fun create(user: User): RacingCar {
                     return RacingCar(
                         user = user,
-                        engine = MockEngine(fixedDrivableDistance = DrivableDistance(1)),
+                        engine = MockOneSpaceMovementEngine(),
                     )
                 }
             })
