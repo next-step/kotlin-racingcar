@@ -9,9 +9,9 @@ object ResultView {
         println("실행 결과")
     }
 
-    fun showRacing(cars: List<Pair<String, Int>>) {
+    fun showRacing(cars: List<Car>) {
         cars.forEach {
-            println("${it.first} : ${CAR_POSITION.repeat(it.second)}")
+            println("${it.name} : ${CAR_POSITION.repeat(it.position)}")
         }
         println()
     }

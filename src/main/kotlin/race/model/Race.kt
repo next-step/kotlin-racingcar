@@ -5,7 +5,14 @@ class Race(
     private val numberOfRace: Int
 ) {
 
-    fun getCarSize() = cars.size
+    fun startRacing(update: ((List<Car>) -> Unit)? = null): String {
+        repeat(numberOfRace) {
+            carsMove()
+            update?.invoke(cars)
+        }
+
+        return getWinner()
+    }
 
     private fun carsMove() {
         cars.forEach {
@@ -13,24 +20,13 @@ class Race(
         }
     }
 
-    fun startRacing(update: ((List<Pair<String, Int>>) -> Unit)? = null) {
-        repeat(numberOfRace) {
-            carsMove()
-            val result = cars.map { it.name to it.position }
-            update?.invoke(result)
+    private fun getWinner(): String = cars.maxOf { it.position }.let {
+            cars.filter { car -> car.position == it }.joinToString { it.name }
         }
-    }
-
-    fun getWinner(): String {
-        val max = cars.maxOf { it.position }
-        return cars.filter { it.position == max }.joinToString { it.name }
-    }
 
     companion object {
-        fun createCars(carRacers: List<String>, engine: Engine = RandomEngine()) = mutableListOf<Car>().apply {
-            carRacers.forEach {
-                add(Car(_name = it, engine = engine))
-            }
+        fun createCars(carRacers: List<String>, engine: Engine = RandomEngine()) = carRacers.map {
+            Car(_name = it, engine = engine)
         }
     }
 }

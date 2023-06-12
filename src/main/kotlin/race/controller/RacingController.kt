@@ -9,19 +9,26 @@ class RacingController(
     private val resultView: ResultView = ResultView,
 ) {
 
-    fun start() {
+    fun ready() {
         val racers = inputView.inputRacers()
         val numberOfRace = inputView.inputNumberOfRace()
 
         val cars = Race.createCars(carRacers = racers)
         val race = Race(cars, numberOfRace)
 
-        resultView.showResult()
+        start(race)
+    }
 
-        race.startRacing {
+    private fun start(race: Race) {
+        resultView.showResult()
+        val winner = race.startRacing {
             resultView.showRacing(it)
         }
 
-        resultView.showWinner(race.getWinner())
+        result(winner)
+    }
+
+    private fun result(winner: String) {
+        resultView.showWinner(winner)
     }
 }
