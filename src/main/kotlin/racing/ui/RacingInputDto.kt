@@ -1,4 +1,4 @@
-package racing
+package racing.ui
 
 data class RacingInputDto(
     val carCount: Int,

@@ -1,4 +1,4 @@
-package racing
+package racing.domain
 
 class Car(
     private var distance: Int = INITIAL_DISTANCE,

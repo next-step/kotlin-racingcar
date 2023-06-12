@@ -1,6 +1,6 @@
 package racing.mock
 
-import racing.ForwardCondition
+import racing.domain.ForwardCondition
 
 class FakeForwardCondition(
     private val condition: Boolean

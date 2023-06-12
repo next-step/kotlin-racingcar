@@ -3,6 +3,8 @@ package racing
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
+import racing.domain.Cars
+import racing.domain.Racing
 import racing.mock.FakeForwardCondition
 
 class RacingTest {
