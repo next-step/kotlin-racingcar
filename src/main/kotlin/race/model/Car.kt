@@ -8,7 +8,9 @@ class Car(
         private set
 
     init {
-        validate()
+        require(name.length < MAX_LENGTH) {
+            "자동차 이름은 5자를 초과할 수 없습니다."
+        }
     }
 
     fun copyRecord(): CarRecord {
@@ -21,13 +23,11 @@ class Car(
         }
     }
 
-    private fun validate() {
-        if (5 < name.length) {
-            throw IllegalArgumentException("자동차 이름은 5자를 초과할 수 없습니다.")
-        }
-    }
-
     private fun straight() {
         position++
+    }
+
+    companion object {
+        const val MAX_LENGTH = 5
     }
 }
