@@ -4,7 +4,7 @@ fun main() {
     val carNum = InputView.getCarNum()
     val tryNum = InputView.getTryNum()
 
-    var records = GameRecords(IntArray(carNum) { 0 })
+    var records = GameRecords(CarFactory.manufacture(carNum))
 
     ResultView.startPrintGame()
 
