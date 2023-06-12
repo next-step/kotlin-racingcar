@@ -4,13 +4,16 @@ import calculator.exception.DivideByZeroException
 import calculator.exception.IllegalExpressionException
 import calculator.exception.IllegalSymbolException
 
-class StringCalculator {
+object StringCalculator {
     private val symbolToFunctionMap = mapOf(
         "+" to this::add,
         "-" to this::subtract,
         "*" to this::multiply,
         "/" to this::divide
     )
+    private val blankRegex = Regex(" +")
+    private val numberRegex = Regex("\\d+(\\.\\d+)?")
+    private val allowedCharacter = listOf("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "*", "/")
 
     fun calculate(arithmeticExpression: String): Float {
         if (arithmeticExpression.isBlank()) {
@@ -70,11 +73,5 @@ class StringCalculator {
         }
 
         return num1 / num2
-    }
-
-    companion object {
-        val blankRegex = Regex(" +")
-        val numberRegex = Regex("\\d+(\\.\\d+)?")
-        val allowedCharacter = listOf("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "*", "/")
     }
 }
