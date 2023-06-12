@@ -25,11 +25,11 @@ object StringCalculator {
         return operatorFunction.invoke(num1, num2)
     }
 
-    fun add(num1: Float, num2: Float) = num1 + num2
+    fun add(num1: Float, num2: Float): Float = num1 + num2
 
-    fun subtract(num1: Float, num2: Float) = num1 - num2
+    fun subtract(num1: Float, num2: Float): Float = num1 - num2
 
-    fun multiply(num1: Float, num2: Float) = num1 * num2
+    fun multiply(num1: Float, num2: Float): Float = num1 * num2
 
     fun divide(num1: Float, num2: Float): Float {
         if (num2 == 0F) {
