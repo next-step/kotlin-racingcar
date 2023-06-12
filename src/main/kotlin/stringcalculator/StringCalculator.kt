@@ -10,20 +10,20 @@ class StringCalculator {
             val numbers = stringParser.numbers()
             val operators = stringParser.operators()
 
-            val result = numbers[0]
-            for (i in operators.indices) {
-                calculateOperator(operators, i)
-            }
-            return result
+            return performOperations(numbers, operators)
         }
 
-        private fun calculateOperator(operators: List<String>, i: Int) {
-            when (operators[i]) {
-                "+" -> Operator.PLUS
-                "-" -> Operator.MINUS
-                "*" -> Operator.TIMES
-                "/" -> Operator.DIVIDE
+        private fun performOperations(numbers: List<Int>, operators: List<String>): Int {
+            var result = numbers[0]
+
+            for (i in operators.indices) {
+                val operatorSign = operators[i]
+                val operand = numbers[i + 1]
+
+                result = Operator.executeOperation(operatorSign, result, operand)
             }
+
+            return result;
         }
     }
 }

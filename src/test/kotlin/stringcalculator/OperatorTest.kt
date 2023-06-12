@@ -2,35 +2,64 @@ package stringcalculator
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 
 class OperatorTest {
-    @Test
-    fun `더한다`() {
-        val result = Operator.PLUS.operation.invoke(5, 3)
-        assertThat(result).isEqualTo(8)
+    @ParameterizedTest
+    @CsvSource(
+        "1, 2, 3",
+        "2, 5, 7",
+        "3, 9, 12",
+    )
+    fun `+ 연산자가 있으면 두 수를 더한다`(first: Int, second: Int, expected: Int) {
+        val result = Operator.executeOperation("+", first, second)
+        assertThat(result).isEqualTo(expected)
     }
 
-    @Test
-    fun `뺀다`() {
-        val result = Operator.MINUS.operation.invoke(10, 4)
-        assertThat(result).isEqualTo(6)
+    @ParameterizedTest
+    @CsvSource(
+        "1, 5, -4",
+        "10, 5, 5",
+        "1, 1, 0",
+        "100, 1, 99"
+    )
+    fun `- 연산자가 있으면 두 수를 뺀다`(first: Int, second: Int, expected: Int) {
+        val result = Operator.executeOperation("-", first, second)
+        assertThat(result).isEqualTo(expected)
     }
 
-    @Test
-    fun `곱한다`() {
-        val result = Operator.TIMES.operation.invoke(7, 2)
-        assertThat(result).isEqualTo(14)
+    @ParameterizedTest
+    @CsvSource(
+        "1, 5, 5",
+        "100, 0, 0",
+        "10, -10, -100"
+    )
+    fun `* 연산자가 있으면 두 수를 곱한다`(first: Int, second: Int, expected: Int) {
+        val result = Operator.executeOperation("*", first, second)
+        assertThat(result).isEqualTo(expected)
     }
 
-    @Test
-    fun `나눈다`() {
-        val result = Operator.DIVIDE.operation.invoke(10, 2)
-        assertThat(result).isEqualTo(5)
+    @ParameterizedTest
+    @CsvSource(
+        "5, 1, 5",
+        "10, 10, 1",
+        "200, 100, 2"
+    )
+    fun `슬래시 연산자가 있으면 두 수를 나눈다`(first: Int, second: Int, expected: Int) {
+        val result = Operator.executeOperation("/", first, second)
+        assertThat(result).isEqualTo(expected)
     }
 
-    @Test
-    fun `0으로 나누면 IllegalArgumentException 발생`() {
-        assertThatIllegalArgumentException().isThrownBy { Operator.DIVIDE.operation.invoke(10, 0) }
+    @ParameterizedTest
+    @CsvSource(
+        "100, 0",
+        "100000, 0",
+        "0, 0",
+        "1, 0"
+    )
+    fun `0으로 나누면 IllegalArgumentException 발생`(first: Int, second: Int) {
+        assertThatIllegalArgumentException()
+            .isThrownBy { Operator.executeOperation("/", first, second)}
     }
 }
