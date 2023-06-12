@@ -1,6 +1,6 @@
 package race
 
-class CarRaceGame(private val randomUtil: RandomUtil) {
+class CarRaceGame(private val randomUtil: DigitGenerator) {
     fun runCarRace(startInformation: RaceStartInformation): RaceResult {
         var raceResult = RaceResult.getInitialRaceResult(startInformation)
 
@@ -16,20 +16,20 @@ class CarRaceGame(private val randomUtil: RandomUtil) {
     }
 
     private fun TurnInfo.proceedNextTurn(): TurnInfo {
-        return Turn(carPositions.proceedNextTurn())
+        return Turn(cars.proceedNextTurn())
     }
 
-    private fun List<CarPosition>.proceedNextTurn(): List<CarPosition> {
+    private fun List<Car>.proceedNextTurn(): List<Car> {
         return map { it.proceedNextTurn() }
     }
 
-    private fun CarPosition.proceedNextTurn(): CarPosition {
+    private fun Car.proceedNextTurn(): Car {
         if (canMove()) return goForward()
         return this
     }
 
     private fun canMove(): Boolean {
-        return randomUtil.generateRandomSingleDigit() >= MOVE_THRESHOLD
+        return randomUtil() >= MOVE_THRESHOLD
     }
 
     companion object {

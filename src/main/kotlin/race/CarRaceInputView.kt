@@ -3,12 +3,12 @@ package race
 class CarRaceInputView {
 
     fun getStartInformation(): RaceStartInformation {
-        return RaceStartInformation(getNumberOfCars(), getNumberOfAttempts())
+        return RaceStartInformation(getCarNames(), getNumberOfAttempts())
     }
 
-    private fun getNumberOfCars(): Int {
-        println("자동차 대수는 몇 대인가요?")
-        return readInt()
+    private fun getCarNames(): List<String> {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
+        return readCommaSeparatedStrings()
     }
 
     private fun getNumberOfAttempts(): Int {
@@ -16,11 +16,17 @@ class CarRaceInputView {
         return readInt()
     }
 
-    private fun readInt(): Int {
-        while (true) {
-            val enteredInt = readln().toIntOrNull()
-            if (enteredInt != null) return enteredInt
-            println("다시 입력해 주세요.")
-        }
+    private tailrec fun readInt(): Int {
+        val enteredInt = readln().toIntOrNull()
+        if (enteredInt != null) return enteredInt
+        println("다시 입력해 주세요.")
+        return readInt()
+    }
+
+    private tailrec fun readCommaSeparatedStrings(): List<String> {
+        val enteredString = readlnOrNull()
+        if (enteredString != null) return enteredString.split(",")
+        println("다시 입력해 주세요.")
+        return readCommaSeparatedStrings()
     }
 }

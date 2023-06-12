@@ -1,13 +1,14 @@
 package race
 
 interface TurnInfo {
-    val carPositions: List<CarPosition>
+    val cars: List<Car>
 }
 
-data class Turn(override val carPositions: List<CarPosition>) : TurnInfo
+data class Turn(override val cars: List<Car>) : TurnInfo
 
 class InitialTurn(startInformation: RaceStartInformation) : TurnInfo {
-    override val carPositions: List<CarPosition> = List(startInformation.numberOfCars) {
-        CarPosition.getInitialCarPosition()
-    }
+    override val cars: List<Car> = startInformation.nameOfCars
+        .map {
+            Car.getInitialCar(it)
+        }
 }
