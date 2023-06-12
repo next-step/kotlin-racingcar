@@ -4,7 +4,7 @@ import calculator.exception.DivideByZeroException
 import calculator.exception.IllegalSymbolException
 
 object StringCalculator {
-    val symbolToFunctionMap = mapOf(
+    val symbolToFunction = mapOf(
         "+" to this::add,
         "-" to this::subtract,
         "*" to this::multiply,
@@ -21,7 +21,7 @@ object StringCalculator {
     }
 
     private fun doCalculate(num1: Float, num2: Float, operator: String): Float {
-        val operatorFunction = symbolToFunctionMap[operator] ?: throw IllegalSymbolException()
+        val operatorFunction = symbolToFunction[operator] ?: throw IllegalSymbolException()
         return operatorFunction.invoke(num1, num2)
     }
 

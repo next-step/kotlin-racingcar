@@ -31,7 +31,7 @@ class Expression(expression: String) {
     }
 
     private fun isOperator(input: String): Boolean {
-        return input in StringCalculator.symbolToFunctionMap
+        return input in StringCalculator.symbolToFunction
     }
 
     private fun validate() {
