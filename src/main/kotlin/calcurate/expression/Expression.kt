@@ -13,7 +13,7 @@ data class Expression(val expression: String? = null) {
     init {
         if (expression.isNullOrBlank()) throw IllegalArgumentException(ErrorCode.INVALID_EXPRESSION.msg)
 
-        val expressionArray = expression.split(delimiter)
+        val expressionArray = expression.split(DELIMITER)
         with(expressionArray) {
             numArray = this
                 .filterIndexed { index, _ -> index % 2 == 0 }
@@ -35,6 +35,6 @@ data class Expression(val expression: String? = null) {
     }
 
     companion object {
-        const val delimiter = " "
+        private const val DELIMITER = " "
     }
 }
