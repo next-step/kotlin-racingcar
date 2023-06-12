@@ -13,8 +13,8 @@ class ResultView {
     }
 
     fun show(car: Car) {
-        val distance = RACING_MARK.repeat(car.getPosition())
-        val carName = car.getName()
+        val distance = RACING_MARK.repeat(car.position)
+        val carName = car.name
         print("$carName : $distance")
         println()
     }

@@ -6,7 +6,7 @@ import racing.condition.MovingCondition
 import racing.view.ResultView
 
 class RacingGame(
-    private val carName: List<String>
+    carName: List<String>
 ) {
 
     var cars: RacingCars
@@ -39,8 +39,8 @@ class RacingGame(
     }
 
     fun findWinner(cars: RacingCars) {
-        val maxPosition = cars.racingCars.maxOf { it.getPosition() }
-        val winner = cars.racingCars.filter { it.getPosition() == maxPosition }.map { it.getName() }
+        val maxPosition = cars.racingCars.maxOf { it.position }
+        val winner = cars.racingCars.filter { it.position == maxPosition }.map { it.name }
         ResultView().showWinner(winner)
     }
 }

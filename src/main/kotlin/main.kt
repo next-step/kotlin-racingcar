@@ -3,10 +3,10 @@ import racing.view.InputView
 
 fun main() {
     val input = InputView()
-    val carCount = input.inputCarName()
+    val carName = input.inputCarName()
     val retryCount = input.inputRetryCount()
 
-    val racingGame = RacingGame(carCount)
+    val racingGame = RacingGame(carName)
 
     racingGame.executeGame(retryCount, racingGame.cars)
     racingGame.findWinner(racingGame.cars)
