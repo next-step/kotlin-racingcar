@@ -2,7 +2,7 @@ package racing
 
 import kotlin.random.Random
 
-class Car(val name : String) {
+class Car(val name: String) {
 
     init {
         require(name.length <= MAXIMUM_NAME_LENGTH) {

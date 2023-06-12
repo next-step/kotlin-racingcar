@@ -5,8 +5,6 @@ object InputView {
     private const val DEFAULT_INPUT = 0
     private const val MINIMUM_INPUT = 1
 
-
-
     private const val INPUT_SEPERATOR = ","
 
     private const val INPUT_ACTION_PREFIX = "시도할 횟수는 "
@@ -25,7 +23,7 @@ object InputView {
 
     private fun getInputCars(): List<String> {
         return runCatching {
-            (readlnOrNull()?:"").split(INPUT_SEPERATOR)
+            (readlnOrNull() ?: "").split(INPUT_SEPERATOR)
         }.getOrElse {
             throw IllegalArgumentException("형식에 맞는 타입을 입력해야함")
         }

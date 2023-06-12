@@ -14,21 +14,19 @@ object ResultView {
         print("${showWinner(cars)}가 최종 우승했습니다.")
     }
 
-    private fun showWinner(cars: List<Car>) : String{
+    private fun showWinner(cars: List<Car>): String {
         val firstGradePosition = cars.maxOf(Car::progress)
         return cars.filter {
             it.progress == firstGradePosition
         }.joinToString(SEPERATOR, transform = Car::name)
-
     }
 
-    private fun gameStart(cars : List<Car>) {
+    private fun gameStart(cars: List<Car>) {
         cars.forEach {
             car ->
             car.moveCar()
             showSkidMarks(car)
         }
-
     }
 
     private fun showSkidMarks(car: Car) {
