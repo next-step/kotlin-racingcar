@@ -26,9 +26,9 @@ internal class CalculatorTest {
         "2 * 3 * 4, 24",
         "100 / 5, 20",
     )
-    fun calculateSuccessTest(input: String, output: String) {
+    fun calculateSuccessTest(input: String, output: Double) {
         val result = calculator.calculate(input)
-        assertThat(result).isEqualTo(output.toDouble())
+        assertThat(result).isEqualTo(output)
     }
 
     @ParameterizedTest
