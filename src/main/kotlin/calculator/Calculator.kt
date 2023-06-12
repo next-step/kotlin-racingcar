@@ -1,40 +1,22 @@
 package calculator
 
+const val DELIMITER = " "
+
 class Calculator {
 
-    inline fun <reified T : Number> convertStringToNumber(input: String): T {
-        return when (T::class) {
-            Int::class -> input.toInt() as T
-            Double::class -> input.toDouble() as T
-            else -> throw IllegalArgumentException("지원하지 않는 숫자 형식입니다.")
-        }
-    }
 
     inline fun <reified T : Number> calculate(input: String): T {
-        if (input == "") {
+        if (input.isEmpty()) {
             throw IllegalArgumentException("유효한 형식이 아닙니다.")
         }
 
-        val inputArray = input.split(" ")
-        val numberQueue = ArrayList<T>()
-        val operatorQueue = ArrayList<String>()
+        val inputArray = splitExpression(input)
+        val extractor = Extractor()
+        return execute(extractor.extractOperands(inputArray), extractor.extractOperators(inputArray))
+    }
 
-        inputArray.forEachIndexed { index, value ->
-            if (index % 2 == 0) {
-                try {
-                    numberQueue.add(convertStringToNumber(value))
-                } catch (e: IllegalArgumentException) {
-                    throw IllegalArgumentException("유효한 형식이 아닙니다.")
-                }
-            } else {
-                if (value in Operators.operatorArray) {
-                    operatorQueue.add(value)
-                } else {
-                    throw IllegalArgumentException("유효한 형식이 아닙니다.")
-                }
-            }
-        }
-        return execute(numberQueue, operatorQueue)
+    fun splitExpression(expression: String): List<String> {
+        return expression.split(DELIMITER)
     }
 
     fun <T : Number> plus(num1: T, num2: T): T {

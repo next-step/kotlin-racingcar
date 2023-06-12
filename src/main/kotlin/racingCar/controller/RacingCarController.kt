@@ -18,5 +18,4 @@ class RacingCarController {
     fun IsMovingForward(value: Int, ref: Int): Boolean {
         return value >= ref
     }
-
 }
