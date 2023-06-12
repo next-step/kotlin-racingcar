@@ -1,9 +1,7 @@
 package racing
 
-import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.ints.shouldBeInRange
-import java.lang.IllegalArgumentException
 
 class CarTest : AnnotationSpec() {
 
