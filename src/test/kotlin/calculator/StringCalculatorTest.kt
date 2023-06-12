@@ -3,6 +3,9 @@ package calculator
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.ValueSource
 
 class StringCalculatorTest {
     private val stringCalculator = StringCalculator()
@@ -22,8 +25,9 @@ class StringCalculatorTest {
         assertThat(result).isEqualTo(13F)
     }
 
-    @Test
-    fun `기본 뺄셈 테스트`() {
+    @ParameterizedTest
+    @CsvSource("1F,12F", "12F,1F")
+    fun `기본 뺄셈 테스트`(num1: Float, num2: Float) {
         val result1 = stringCalculator.subtract(1F, 12F)
         val result2 = stringCalculator.subtract(12F, 1F)
 
@@ -31,8 +35,9 @@ class StringCalculatorTest {
         assertThat(result2).isEqualTo(11F)
     }
 
-    @Test
-    fun `기본 곱셈 테스트`() {
+    @ParameterizedTest
+    @CsvSource("1F,12F", "1F,0F", "3F,0.5F")
+    fun `기본 곱셈 테스트`(num1: Float, num2:Float) {
         val result1 = stringCalculator.multiply(1F, 12F)
         val result2 = stringCalculator.multiply(1F, 0F)
         val result3 = stringCalculator.multiply(3F, 0.5F)
@@ -42,8 +47,9 @@ class StringCalculatorTest {
         assertThat(result3).isEqualTo(1.5F)
     }
 
-    @Test
-    fun `기본 나눗셈 테스트`() {
+    @ParameterizedTest
+    @CsvSource("10F,5F", "3F,2F")
+    fun `기본 나눗셈 테스트`(num1: Float, num2:Float) {
         val result1 = stringCalculator.divide(10F, 5F)
         val result2 = stringCalculator.divide(3F, 2F)
 
@@ -66,13 +72,16 @@ class StringCalculatorTest {
     }
 
     @Test
-    fun `올바르지 않은 표현식은 에러가 발생한다`() {
+    fun `숫자와 사칙연산 기호외의 문자는 포함될 수 없다`() {
         val invalidExpression1 = "2 + 3 * 4 ? 2"
 
         assertThatIllegalArgumentException()
             .isThrownBy { stringCalculator.calculate(invalidExpression1) }
             .withMessageContaining("숫자와 기호외의 문자가 포함되었습니다.")
+    }
 
+    @Test
+    fun `숫자는 기호보다 1개 많아야 한다`() {
         val invalidExpression2 = "2 + 3 * 4 + 2 +"
 
         assertThatIllegalArgumentException()
