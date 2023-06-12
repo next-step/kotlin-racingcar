@@ -4,7 +4,7 @@ import racing.car.Car
 import racing.car.RacingCars
 
 class ResultView {
-    private val RACING_MARK = '-'
+    private val RACING_MARK = "-"
     fun showGameBoard(cars: RacingCars) {
         cars.racingCars.forEach {
             show(it)
@@ -13,9 +13,9 @@ class ResultView {
     }
 
     fun show(car: Car) {
-        repeat(car.getPosition()) {
-            print(RACING_MARK)
-        }
+        val distance = RACING_MARK.repeat(car.getPosition())
+        val carName = car.getName()
+        print("$carName : $distance")
         println()
     }
 }
