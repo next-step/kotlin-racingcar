@@ -32,11 +32,11 @@ class StringCalculator {
     }
 
     private fun splitByBlank(arithmeticExpression: String): List<String> {
-        return arithmeticExpression.split(Regex(" +"))
+        return arithmeticExpression.split(blankRegex)
     }
 
     private fun isNumber(input: String): Boolean {
-        return Regex("\\d+(\\.\\d+)?").matches(input)
+        return numberRegex.matches(input)
     }
 
     private fun isOperator(input: String): Boolean {
@@ -65,5 +65,10 @@ class StringCalculator {
         }
 
         return num1 / num2
+    }
+
+    companion object {
+        val blankRegex = Regex(" +")
+        val numberRegex = Regex("\\d+(\\.\\d+)?")
     }
 }
