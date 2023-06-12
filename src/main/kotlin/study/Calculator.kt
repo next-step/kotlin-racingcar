@@ -1,10 +1,8 @@
 package study
 
-class Calculator(
-    val inputString: String
-) {
-    fun calculate(inputString: String): Double {
-        validateAll(inputString)
+class Calculator {
+    fun calculate(input: String?): Double {
+        val inputString = validateInput(input)
 
         val parts = inputString.split(" ")
         var result = parts[0].toDouble();
@@ -24,10 +22,11 @@ class Calculator(
     /**
      * 입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException throw
      */
-    fun validateAll(input: String?) {
+    fun validateInput(input: String?): String {
         if (input == null || input.trim().isEmpty()) {
             throw IllegalArgumentException("입력값이 null이거나 빈 공백 문자입니다.")
         }
+        return input
     }
 
     /**
