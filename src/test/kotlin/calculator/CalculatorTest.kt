@@ -10,7 +10,6 @@ import io.kotest.matchers.shouldBe
 import kotlin.reflect.KClass
 
 class CalculatorTest : BehaviorSpec({
-    // System Under Test 라는 의미이며 테스트 대상을 의미한다
     val target = Calculator()
 
     given("SplitExpression메소드에서") {
