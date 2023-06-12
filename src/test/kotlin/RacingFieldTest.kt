@@ -22,7 +22,7 @@ class RacingFieldTest {
         val racingField = RacingField(carCount, gameCount)
 
         for (i in 1..gameCount) {
-            val carDistances = racingField.gameStart().map { it.distance }
+            val carDistances = racingField.gameStart().map { it.getDistance() }
             assertThat(carDistances.stream().allMatch { it in 0..gameCount })
         }
     }

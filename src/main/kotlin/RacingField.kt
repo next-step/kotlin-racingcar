@@ -1,10 +1,9 @@
 class RacingField(
     private val cars: MutableList<Car>,
-    private var gameCount: Int
+    private val gameCount: Int
 ) {
-    constructor(carCount: Int, gameCount: Int) : this(mutableListOf(), 0) {
+    constructor(carCount: Int, gameCount: Int) : this(mutableListOf(), gameCount) {
         createCars(carCount)
-        this.gameCount = gameCount
     }
 
     private fun createCars(count: Int) {

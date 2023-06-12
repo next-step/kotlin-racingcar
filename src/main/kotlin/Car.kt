@@ -1,5 +1,5 @@
 class Car(
-    var distance: Int = 0
+    private var distance: Int = 0
 ) {
     companion object {
         const val FORWARD_CONDITIONS: Int = 4
@@ -12,5 +12,9 @@ class Car(
 
     private fun checkForwardCondition(): Boolean {
         return RandomNumberGenerator.getRandomNumber() >= FORWARD_CONDITIONS
+    }
+
+    fun getDistance(): Int {
+        return distance
     }
 }

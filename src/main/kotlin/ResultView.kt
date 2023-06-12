@@ -7,7 +7,7 @@ class ResultView {
         val displayString = "-"
 
         cars.forEach { car ->
-            println(displayString.repeat(car.distance))
+            println(displayString.repeat(car.getDistance()))
         }
         println()
     }
