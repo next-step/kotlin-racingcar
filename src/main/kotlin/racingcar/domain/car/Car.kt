@@ -6,7 +6,7 @@ class Car(
     val lineNumber: Int,
     private val carEngine: CarEngine = RandomCarEngine
 ) {
-    var position: Int = 0
+    var position: Int = START_POSITION
         private set
 
     fun move() {
@@ -21,5 +21,9 @@ class Car(
         }
 
         return CarRecord(this, record)
+    }
+
+    companion object {
+        const val START_POSITION = 0
     }
 }
