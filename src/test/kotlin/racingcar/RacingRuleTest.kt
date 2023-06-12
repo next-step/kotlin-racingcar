@@ -2,6 +2,7 @@ package racingcar
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
+import racingcar.model.Car
 import racingcar.rule.RacingRuleImpl
 import racingcar.util.RandomGenerator
 import racingcar.util.RandomSetting
@@ -39,5 +40,42 @@ class RacingRuleTest {
         repeat(100) {
             Assertions.assertThat(rule.canMove()).isEqualTo(false)
         }
+    }
+
+    @Test
+    fun `단독 우승 테스트`() {
+        val alwaysMoveRule = AlwaysMoveRule()
+        val neverMoveRule = NeverMoveRule()
+        val racingRule = RacingRuleImpl()
+        val cars = listOf(Car("car1", alwaysMoveRule), Car("Car2", neverMoveRule), Car("Car3", neverMoveRule))
+
+        repeat(5) {
+            cars.forEach {
+                it.move()
+            }
+        }
+
+        val winners = racingRule.getWinners(cars)
+        Assertions.assertThat(winners.size).isEqualTo(1)
+        Assertions.assertThat(winners[0]).isEqualTo(cars[0].name)
+    }
+
+    @Test
+    fun `공동 우승 테스트`() {
+        val alwaysMoveRule = AlwaysMoveRule()
+        val neverMoveRule = NeverMoveRule()
+        val racingRule = RacingRuleImpl()
+        val cars = listOf(Car("car1", alwaysMoveRule), Car("Car2", neverMoveRule), Car("Car3", alwaysMoveRule))
+
+        repeat(5) {
+            cars.forEach {
+                it.move()
+            }
+        }
+
+        val winners = racingRule.getWinners(cars)
+        Assertions.assertThat(winners.size).isEqualTo(2)
+        Assertions.assertThat(winners[0]).isEqualTo(cars[0].name)
+        Assertions.assertThat(winners[1]).isEqualTo(cars[2].name)
     }
 }

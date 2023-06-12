@@ -6,5 +6,9 @@ import racingcar.model.InputResult
 interface ResultView {
     fun input(): InputResult
 
-    fun output(turn: Int, cars: List<Car>)
+    fun printMessage(message: String)
+
+    fun printTurn(turn: Int, cars: List<Car>)
+
+    fun printResult(winner: String)
 }

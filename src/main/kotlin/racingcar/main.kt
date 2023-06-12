@@ -5,5 +5,5 @@ import racingcar.controller.RacingController
 fun main() {
     val controller = RacingController()
 
-    controller.play()
+    controller.start()
 }
