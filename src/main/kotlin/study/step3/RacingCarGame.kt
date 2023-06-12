@@ -4,9 +4,9 @@ class RacingCarGame {
 
     private val carList: MutableList<Car> = mutableListOf()
 
-    fun play(racingRequest: Pair<Int, Int>) {
-        prepareRacingCars(racingRequest)
-        startRace(racingRequest.second)
+    fun play(racingRequest: RacingRequest) {
+        prepareRacingCars(racingRequest.carCount)
+        startRace(racingRequest.tryCount)
     }
 
     private fun startRace(tryCount: Int) {
@@ -15,12 +15,10 @@ class RacingCarGame {
         }
     }
 
-    private fun prepareRacingCars(racingRequest: Pair<Int, Int>) {
+    private fun prepareRacingCars(carCount: Int) {
         carList.addAll(
             buildList {
-                repeat(racingRequest.first) {
-                    add(Car())
-                }
+                repeat(carCount) { add(Car()) }
             }
         )
     }
