@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.ValueSource
 import racing.domain.Car
 import racing.view.InputView
 import java.io.ByteArrayInputStream
@@ -41,6 +42,17 @@ class RacingTest {
     fun `자동차 입력 수 만큼 객체 생성 검증`(carCount: Int) {
         val cars = CarFactory().createCarsByInputCount(carCount)
         assertThat(cars.size).isEqualTo(carCount)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["car1,car2,car3"])
+    fun `입력 받은 자동차 정보 객체 생성 검증`(inputCarName: String) {
+
+        val cars = CarFactory().createCarsByInputCarName(inputCarName)
+        assertThat(cars.size).isEqualTo(3)
+        assertThat(cars[0].carName.name).isEqualTo("car1")
+        assertThat(cars[1].carName.name).isEqualTo("car2")
+        assertThat(cars[2].carName.name).isEqualTo("car3")
     }
 
     @ParameterizedTest
@@ -86,6 +98,6 @@ class RacingTest {
     @Test
     fun `레이싱 경주(우승자) 출력 결과`() {
         System.setIn(getInputArrayStream("car1,car2,car3", "3"))
-        Racing().determineRaceWinner()
+        Racing().racingGame()
     }
 }
