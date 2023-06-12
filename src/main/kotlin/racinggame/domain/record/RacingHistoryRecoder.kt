@@ -1,7 +1,6 @@
 package racinggame.domain.record
 
 import racinggame.domain.field.RacingFieldMiniMap
-import racinggame.domain.player.toUser
 
 class RacingHistoryRecoder {
 
@@ -10,8 +9,8 @@ class RacingHistoryRecoder {
     fun capture(racingFieldMiniMap: RacingFieldMiniMap) {
         val racingHistories = racingFieldMiniMap.racingFieldMap
             .values
-            .sortedBy { field -> field.racingCar.racer.ordinal }
-            .map { field -> RacingRecordPaper(field.racingCar.racer.toUser(), field.moveDistance) }
+            .sortedBy { field -> field.racingCar.user.ordinal }
+            .map { field -> RacingRecordPaper(field.racingCar.user, field.moveDistance) }
         totalRacingRecordPaperList.add(RacingRecordPaperList(racingHistories))
     }
 

@@ -3,16 +3,16 @@ package racinggame.domain.car.factory
 import racinggame.domain.car.RacingCar
 import racinggame.domain.car.engine.RandomEnergyEngine
 import racinggame.domain.car.engine.RealRandomNumberGenerator
-import racinggame.domain.player.Racer
+import racinggame.domain.player.User
 
 class RealRacingCarFactory : RacingCarFactory {
 
     private var version = 0
 
-    override fun create(racer: Racer): RacingCar {
+    override fun create(user: User): RacingCar {
         return RacingCar(
             uniqueKey = RacingCarUniqueKey("$KEY_PREFIX${version++}"),
-            racer = racer,
+            user = user,
             engine = RandomEnergyEngine(RealRandomNumberGenerator())
         )
     }

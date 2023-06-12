@@ -24,7 +24,7 @@ class RacingGameController(
         }
 
         val gameGuide = GameGuide(
-            users = List(participantsCount) { index -> User(id = index.toString()) },
+            users = List(participantsCount) { index -> User(id = index.toString(), ordinal = index) },
             gameRule = GameRule(gamePlayCount),
         )
 

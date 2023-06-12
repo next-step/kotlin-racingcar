@@ -5,7 +5,6 @@ import racinggame.domain.car.factory.RacingCarFactory
 import racinggame.domain.record.RacingHistoryRecoder
 import racinggame.domain.field.RacingField
 import racinggame.domain.player.User
-import racinggame.domain.player.toRacer
 import racinggame.domain.record.RacingRecordBook
 
 class RealRacingGame(
@@ -24,8 +23,7 @@ class RealRacingGame(
     }
 
     private fun List<User>.assignUsersToRacingCars(): List<RacingCar> {
-        return mapIndexed { index, user -> user.toRacer(ordinal = index) }
-            .map { racer -> racingCarFactory.create(racer) }
+        return map { user -> racingCarFactory.create(user) }
     }
 
     private fun startRacingGame(

@@ -1,8 +1,8 @@
 package racinggame.view
 
+import racinggame.domain.game.GameGuide
 import racinggame.domain.game.RacingGame
 import racinggame.domain.game.RacingGameResult
-import racinggame.domain.game.GameGuide
 import racinggame.domain.record.RacingRecordBook
 
 class MockRacingGame : RacingGame {
