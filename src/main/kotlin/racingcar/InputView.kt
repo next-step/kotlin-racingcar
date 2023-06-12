@@ -7,11 +7,11 @@ private const val TRYNUM_STRING = "시도할 횟수는 몇 회인가요?"
 object InputView {
     fun getCarNum(): Int {
         println(CARNUM_STRING)
-        return readLine()!!.toInt()
+        return readln().toInt()
     }
 
     fun getTryNum(): Int {
         println(TRYNUM_STRING)
-        return readLine()!!.toInt()
+        return readln().toInt()
     }
 }
