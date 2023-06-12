@@ -19,16 +19,22 @@ object InputView {
 
 object ResultView {
     private const val CAR_POSITION = "-"
+    private const val WINNER_DELIMITER = ", "
 
     fun printHeader() {
         println("\n실행 결과")
     }
 
     fun printRacingResult(cars: Cars) {
-        for (car in cars.cars) {
+        for (car in cars) {
             val carPosition = CAR_POSITION.repeat(car.position)
             println("${car.name} : $carPosition")
         }
         println()
+    }
+
+    fun printWinners(cars: Cars) {
+        val winners = cars.winners().joinToString(WINNER_DELIMITER)
+        println("${winners}가 최종 우승했습니다.")
     }
 }
