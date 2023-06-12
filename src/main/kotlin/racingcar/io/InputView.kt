@@ -4,13 +4,20 @@ import racingcar.domain.Input
 
 class InputView {
     fun getInput(): Input {
-        println(CAR_COUNT_INPUT_MESSAGE)
-        val carCount = readlnOrNull()!!.toInt()
-
-        println(ROUND_COUNT_INPUT_MESSAGE)
-        val rounds = readlnOrNull()!!.toInt()
+        val carCount = getCarCount()
+        val rounds = getRoundCount()
 
         return Input(carCount, rounds)
+    }
+
+    private fun getCarCount(): Int {
+        println(CAR_COUNT_INPUT_MESSAGE)
+        return readlnOrNull()!!.toInt()
+    }
+
+    private fun getRoundCount(): Int {
+        println(ROUND_COUNT_INPUT_MESSAGE)
+        return readlnOrNull()!!.toInt()
     }
 
     companion object {
