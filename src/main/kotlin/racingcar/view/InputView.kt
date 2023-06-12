@@ -1,4 +1,6 @@
-package racingcar
+package racingcar.view
+
+import racingcar.domain.racing.RacingCondition
 
 object InputView {
 
@@ -18,5 +20,12 @@ object InputView {
             println("필수로 입력해야 하는 값입니다.")
             inputTryCount()
         }
+    }
+
+    fun inputRacingCondition(): RacingCondition {
+        val carCount = inputCarCount()
+        val tryCount = inputTryCount()
+
+        return RacingCondition(carCount, tryCount)
     }
 }

@@ -4,6 +4,8 @@ import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
+import racingcar.domain.car.Car
+import racingcar.domain.car.CarRandomGenerator
 
 internal class CarTest : BehaviorSpec({
 
@@ -14,7 +16,7 @@ internal class CarTest : BehaviorSpec({
         When("drive 성공 시") {
             val carRandomGenerator = mockk<CarRandomGenerator>()
             every { carRandomGenerator.canGo() } returns true
-            car.drive()
+            car.move()
 
             Then("position 1 증가") {
                 car.position shouldBe previousPosition + 1
