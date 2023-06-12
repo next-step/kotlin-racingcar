@@ -9,7 +9,7 @@ class CheckNumberTest {
     fun `입력값이 음수일 경우 null 을 리턴한다`() {
         val inputIO = InputIO()
         val negativeValue = inputIO.checkNumber("-1")
-        assertThat(negativeValue).isEqualTo(null)
+        assertThat(negativeValue).isNull()
     }
 
     @Test
