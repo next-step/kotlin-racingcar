@@ -10,17 +10,18 @@ class RacingController(
 ) {
 
     fun start() {
-        val numberOfCar = inputView.inputNumberOfCar()
+        val racers = inputView.inputRacers()
         val numberOfRace = inputView.inputNumberOfRace()
-        val race = Race(numberOfCar)
+
+        val cars = Race.createCars(carRacers = racers)
+        val race = Race(cars, numberOfRace)
 
         resultView.showResult()
-        // resultView.showRacing(racing.cars)
 
-        repeat(numberOfRace) {
-            race.carsMove()
-            val cars = race.cars.map { it.position }
-            resultView.showRacing(cars)
+        race.startRacing {
+            resultView.showRacing(it)
         }
+
+        resultView.showWinner(race.getWinner())
     }
 }
