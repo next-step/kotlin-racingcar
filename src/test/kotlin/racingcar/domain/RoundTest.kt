@@ -1,24 +1,21 @@
 package racingcar.domain
 
-import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 import racingcar.view.OutputView
-import kotlin.collections.ArrayList
 
+@ExtendWith()
 class RoundTest {
 
     private lateinit var round: Round
-
     private lateinit var cars: ArrayList<Car>
 
     @BeforeEach
     fun setUp() {
         round = Round(outputView = OutputView())
         cars = ArrayList()
-    }
-
-    fun `라운드 시작`() {
-        assertThat(cars)
+        initCars()
     }
 
     private fun initCars() {
@@ -26,5 +23,10 @@ class RoundTest {
         for (i in 0 until TEST_CAR_NUMBER) {
             cars.add(Car())
         }
+    }
+
+    @Test
+    fun `라운드 결과`() {
+        round.execute(cars)
     }
 }
