@@ -1,7 +1,15 @@
-class RandomNumberGenerator {
-    companion object {
-        fun getRandomNumber(): Int {
-            return (0..9).random()
-        }
+interface RandomNumber {
+    fun getRandomNumber(): Int
+}
+
+class RandomNumberGenerator : RandomNumber {
+    override fun getRandomNumber(): Int {
+        return (0..9).random()
+    }
+}
+
+class FixedNumberGenerator : RandomNumber {
+    override fun getRandomNumber(): Int {
+        return 7
     }
 }

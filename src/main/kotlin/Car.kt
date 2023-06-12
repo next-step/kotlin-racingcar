@@ -11,10 +11,19 @@ class Car(
     }
 
     private fun checkForwardCondition(): Boolean {
-        return RandomNumberGenerator.getRandomNumber() >= FORWARD_CONDITIONS
+        var randomNumber: RandomNumber = RandomNumberGenerator()
+
+        if (System.getenv("OPERATE_MODE").equals("test"))
+            randomNumber = FixedNumberGenerator()
+
+        return randomNumber.getRandomNumber() >= FORWARD_CONDITIONS
     }
 
     fun getDistance(): Int {
         return distance
     }
+}
+
+fun getRandomNumber(): Int {
+    return (0..9).random()
 }
