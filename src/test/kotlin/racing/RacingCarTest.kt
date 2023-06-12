@@ -17,7 +17,7 @@ class RacingCarTest : BehaviorSpec({
         }
 
         Then("자동차의 위치는 0에서 움직여서 1이다") {
-            car.position shouldBe 1
+            car.getPosition() shouldBe 1
         }
     }
 })

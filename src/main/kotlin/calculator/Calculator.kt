@@ -49,12 +49,16 @@ class Calculator(
             "사칙연산의 기호가 아닙니다."
         }
         return when (sign) {
-            OperatorSign.SUM.code -> sum(number1, number2)
-            OperatorSign.SUBSTRACT.code -> substract(number1, number2)
-            OperatorSign.MULTIPLY.code -> multiply(number1, number2)
-            OperatorSign.DIVIDE.code -> divide(number1, number2)
+            OperatorSign.SUM.code -> calculate(number1, number2) { x, y -> x + y }
+            OperatorSign.SUBSTRACT.code -> calculate(number1, number2) { x, y -> x - y }
+            OperatorSign.MULTIPLY.code -> calculate(number1, number2) { x, y -> x * y }
+            OperatorSign.DIVIDE.code -> calculate(number1, number2) { x, y -> x / y }
             else -> 0
         }
+    }
+
+    private fun calculate(number1: Int, number2: Int, operation: (Int, Int) -> Int): Int {
+        return operation(number1, number2)
     }
 
     private fun sum(number1: Int, number2: Int): Int {
