@@ -1,11 +1,9 @@
-package racingcar
+package racingcar.domain
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
-import racingcar.model.Car
-import racingcar.rule.RacingRuleImpl
-import racingcar.util.RandomGenerator
-import racingcar.util.RandomSetting
+import racingcar.domain.model.Car
+import racingcar.domain.rule.RacingRuleImpl
 
 class RacingRuleTest {
     @Test

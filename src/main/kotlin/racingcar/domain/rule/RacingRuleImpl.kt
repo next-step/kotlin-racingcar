@@ -1,7 +1,7 @@
-package racingcar.rule
+package racingcar.domain.rule
 
-import racingcar.model.Car
-import racingcar.util.RandomGenerator
+import racingcar.domain.RandomGenerator
+import racingcar.domain.model.Car
 
 class RacingRuleImpl(private val randomGenerator: RandomGenerator = RandomGenerator()) : RacingRule {
     override fun canMove(): Boolean {
