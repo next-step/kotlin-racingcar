@@ -1,15 +1,17 @@
 package step2
 
-class Calculator {
+class Calculator(
+    val validator: Validator
+) {
     fun calculate(input: String?): Double {
-        val inputString = validateInput(input)
+        validator.validateInput(input)
 
-        val parts = inputString.split(" ")
+        val parts = input!!.split(" ")
         var result = parts[0].toDouble();
 
         for (i in 1 until parts.size step 2) {
             val operator = parts[i]
-            validateOperator(operator)
+            validator.validateOperator(operator)
 
             val nextNumber = parts[i + 1].toDouble()
 
@@ -17,25 +19,6 @@ class Calculator {
         }
 
         return result
-    }
-
-    /**
-     * 입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException throw
-     */
-    fun validateInput(input: String?): String {
-        if (input == null || input.trim().isEmpty()) {
-            throw IllegalArgumentException("입력값이 null이거나 빈 공백 문자입니다.")
-        }
-        return input
-    }
-
-    /**
-     * 사칙연산 기호가 아닌 경우 IllegalArgumentException throw
-     */
-    fun validateOperator(operator: String) {
-        if (!operator.matches("[+\\-*/]".toRegex())) {
-            throw IllegalArgumentException("주어진 문자열은 사칙연산 기호가 아닙니다.")
-        }
     }
 
     /**
