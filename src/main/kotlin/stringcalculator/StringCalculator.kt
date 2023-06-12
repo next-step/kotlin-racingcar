@@ -15,13 +15,13 @@ class StringCalculator {
 
             require(numbers.size == operators.size + 1)
 
-            var result = numbers[0]
+            val result = numbers[0]
             for (i in operators.indices) {
                 when (operators[i]) {
-                    "+" -> result += numbers[i + 1]
-                    "-" -> result -= numbers[i + 1]
-                    "*" -> result *= numbers[i + 1]
-                    "/" -> result /= numbers[i + 1]
+                    "+" -> Operator.PLUS
+                    "-" -> Operator.MINUS
+                    "*" -> Operator.TIMES
+                    "/" -> Operator.DIVIDE
                 }
             }
             return result
