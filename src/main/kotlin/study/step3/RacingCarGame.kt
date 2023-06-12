@@ -11,7 +11,10 @@ class RacingCarGame {
 
     private fun startRace(tryCount: Int) {
         repeat(tryCount) {
-            carList.forEach { car -> car.move() }
+            carList.forEach { car ->
+                val randomValue = RandomGenerator().generateRandomValue()
+                car.move(randomValue >= 4)
+            }
         }
     }
 

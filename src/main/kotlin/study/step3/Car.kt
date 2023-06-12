@@ -4,8 +4,8 @@ class Car {
     val stateList: MutableList<Int> = mutableListOf()
     private var state = 0
 
-    fun move() {
-        if (randomValue() >= MOVE_CONDITION) {
+    fun move(moveCondition: Boolean) {
+        if (moveCondition) {
             state++
         }
         addCarState()
@@ -13,11 +13,5 @@ class Car {
 
     private fun addCarState() {
         stateList.add(state)
-    }
-
-    private fun randomValue() = (0..9).random()
-
-    companion object {
-        private const val MOVE_CONDITION = 4
     }
 }
