@@ -24,7 +24,7 @@ class Calculator(
     /**
      * 주어진 숫자와 연산자로 사칙연산을 수행
      */
-    fun operate(num1: Double, num2: Double, operator: String):Double {
+    fun operate(num1: Double, num2: Double, operator: String): Double {
         return when (operator) {
             "+" -> num1 + num2
             "-" -> num1 - num2
