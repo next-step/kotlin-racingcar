@@ -1,36 +1,20 @@
 package calculator
 
-import java.lang.IllegalArgumentException
+import calculator.operationtoken.Operand
+import calculator.operationtoken.OperationToken
+import calculator.operationtoken.Operator
 
-class BasicCalculator : Calculator {
-    private var currentOperationSymbol = OperationSymbol.ADD
-    private var result = 0
-    override fun calculate(operation: String?): Int {
-        validateOperation(operation)
-        initCalculator()
+class BasicCalculator() : Calculator {
 
-        splitOperation(operation)
-            .forEach { op ->
-                if (isNumeric(op)) {
-                    result = currentOperationSymbol.execute(result, op.toInt())
-                    return@forEach
-                }
-                currentOperationSymbol = OperationSymbol.bySymbol(op)
-            }
+    override fun calculate(operation: List<OperationToken>): Operand {
+        // FIXME: as를 최소화 할 순 없을까?
+        var result = operation.first() as Operand
+        for (i in 1 until operation.size step 2) {
+            val operator = operation[i] as Operator
+            val operand = operation[i + 1] as Operand
+            result = operator.execute(result, operand)
+        }
 
         return result
-    }
-
-    private fun splitOperation(operation: String?) = operation!!.split(" ")
-
-    private fun initCalculator() {
-        currentOperationSymbol = OperationSymbol.ADD
-        result = 0
-    }
-
-    private fun isNumeric(op: String) = op.toIntOrNull() != null
-
-    private fun validateOperation(operation: String?) {
-        if (operation.isNullOrEmpty()) throw IllegalArgumentException("Operation is null or empty")
     }
 }
