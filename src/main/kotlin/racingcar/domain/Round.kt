@@ -1,15 +1,25 @@
 package racingcar.domain
 
 import racingcar.view.OutputView
+import racingcar.view.OutputViewProtocol
 
-class Round() {
+class Round(private val outputView: OutputViewProtocol) {
 
-    private val outputView: OutputView = OutputView()
 
     fun execute(cars: ArrayList<Car>) {
+        controlEachCar(cars)
+        printRound(cars)
+    }
+
+    private fun controlEachCar(cars: ArrayList<Car>) {
         for (car in cars) {
             car.isMoveOrStop()
         }
-        outputView.printRound(cars)
+    }
+
+    private fun printRound(cars: ArrayList<Car>) {
+        for (car in cars) {
+            outputView.printValue(car.getLocation())
+        }
     }
 }

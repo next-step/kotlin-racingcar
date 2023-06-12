@@ -1,14 +1,18 @@
 package racingcar.domain
 
 import racingcar.view.InputView
+import racingcar.view.InputViewProtocol
+import racingcar.view.OutputViewProtocol
 
 /**
  * 자동차 게임 지휘자 객체
  */
-class RacingGame {
+class RacingGame(
+    private val inputView: InputViewProtocol,
+    outputView: OutputViewProtocol
+) {
 
-    private val inputView: InputView = InputView()
-    private val round: Round = Round()
+    private val round: Round = Round(outputView)
     private val cars: ArrayList<Car> = ArrayList()
 
     fun start() {
