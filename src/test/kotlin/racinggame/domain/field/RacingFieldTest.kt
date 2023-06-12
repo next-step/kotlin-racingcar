@@ -6,7 +6,7 @@ import racinggame.domain.car.RacingCar
 import racinggame.domain.car.engine.DrivableDistance
 import racinggame.domain.car.engine.MockEngine
 import racinggame.domain.car.factory.RacingCarUniqueKey
-import racinggame.domain.player.Racer
+import racinggame.domain.player.User
 
 class RacingFieldTest : BehaviorSpec({
 
@@ -16,7 +16,7 @@ class RacingFieldTest : BehaviorSpec({
     ): RacingCar {
         return RacingCar(
             uniqueKey = RacingCarUniqueKey(value = id),
-            racer = Racer(id = id, ordinal = 0),
+            user = User(id = id, ordinal = 0),
             engine = MockEngine(fixedDrivableDistance = DrivableDistance(fixedDrivableDistance))
         )
     }

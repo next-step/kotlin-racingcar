@@ -7,22 +7,21 @@ import racinggame.domain.car.engine.DrivableDistance
 import racinggame.domain.car.engine.MockEngine
 import racinggame.domain.car.factory.RacingCarFactory
 import racinggame.domain.car.factory.RacingCarUniqueKey
-import racinggame.domain.player.Racer
 import racinggame.domain.player.User
 
 class RealRacingGameTest : BehaviorSpec({
 
     Given("참가자들과 게임 룰이 준비 되었을 때") {
         val users = List(2) { index ->
-            User(id = "user$index")
+            User(id = "user$index", ordinal = index)
         }
         val playCount = 2
         When("레이싱 게임을 실행하면") {
             val racingGame = RealRacingGame(object : RacingCarFactory {
-                override fun create(racer: Racer): RacingCar {
+                override fun create(user: User): RacingCar {
                     return RacingCar(
-                        uniqueKey = RacingCarUniqueKey(value = racer.id),
-                        racer = racer,
+                        uniqueKey = RacingCarUniqueKey(value = user.id),
+                        user = user,
                         engine = MockEngine(fixedDrivableDistance = DrivableDistance(1)),
                     )
                 }

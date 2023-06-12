@@ -9,8 +9,7 @@ import racinggame.domain.car.factory.RacingCarUniqueKey
 import racinggame.domain.field.Field
 import racinggame.domain.field.MoveDistance
 import racinggame.domain.field.RacingFieldMiniMap
-import racinggame.domain.player.Racer
-import racinggame.domain.player.toUser
+import racinggame.domain.player.User
 
 class RacingHistoryRecoderTest : BehaviorSpec({
 
@@ -18,7 +17,7 @@ class RacingHistoryRecoderTest : BehaviorSpec({
         val racingCars = List(2) { index ->
             RacingCar(
                 uniqueKey = RacingCarUniqueKey(index.toString()),
-                racer = Racer(
+                user = User(
                     id = index.toString(),
                     ordinal = index,
                 ),
@@ -54,7 +53,7 @@ class RacingHistoryRecoderTest : BehaviorSpec({
                         RacingRecordPaperList(
                             list = racingCars.map { racingCar ->
                                 RacingRecordPaper(
-                                    user = racingCar.racer.toUser(),
+                                    user = racingCar.user,
                                     moveDistance = fixedMoveDistance
                                 )
                             }
