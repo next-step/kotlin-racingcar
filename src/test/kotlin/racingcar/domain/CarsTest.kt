@@ -19,4 +19,18 @@ class CarsTest : BehaviorSpec({
             }
         }
     }
+
+    given("getWinner 메소드") {
+        val carCount = 3
+        val cars = Cars(
+            (0 until carCount).map { it.toString() },
+            OrderNumberGenerator(Car.MOVE_THRESHOLD, Car.MOVE_THRESHOLD - 1)
+        )
+        `when`("움직인 여부가 다르면") {
+            then("승패가 정해진다") {
+                cars.moveAll()
+                cars.getWinners() shouldBe listOf(cars.first(), cars.last())
+            }
+        }
+    }
 })

@@ -1,5 +1,6 @@
 package racingcar.racing
 
+import racingcar.domain.Car
 import racingcar.domain.Cars
 import racingcar.domain.RacingGameParam
 import racingcar.io.ResultView
@@ -17,10 +18,13 @@ class RacingGame(
         repeat(gameParam.rounds) {
             runRound()
         }
+        ResultView.printWinners(getWinners())
     }
 
     fun runRound() {
         cars.moveAll()
         ResultView.printRound(cars)
     }
+
+    fun getWinners(): List<Car> = cars.getWinners()
 }

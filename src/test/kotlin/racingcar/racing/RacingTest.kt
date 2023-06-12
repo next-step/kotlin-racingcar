@@ -40,4 +40,13 @@ class RacingTest : BehaviorSpec({
             }
         }
     }
+
+    given("getWinner 메소드") {
+        `when`("움직인 여부가 다르면") {
+            then("승패가 정해진다") {
+                target.start()
+                target.getWinners().size shouldBe 6
+            }
+        }
+    }
 })
