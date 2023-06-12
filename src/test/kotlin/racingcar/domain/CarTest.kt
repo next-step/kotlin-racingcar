@@ -6,11 +6,7 @@ import io.kotest.data.headers
 import io.kotest.data.row
 import io.kotest.data.table
 import io.kotest.matchers.shouldBe
-import racingcar.domain.Car.Companion.MOVE_THRESHOLD
-import racingcar.domain.Car.Companion.START_POSITION
-import racingcar.domain.Car.Companion.STEP
-import racingcar.util.Constant.MAX_GENERATED_NUMBER
-import racingcar.util.Constant.MIN_GENERATED_NUMBER
+import racingcar.util.Constant
 import racingcar.util.OrderNumberGenerator
 
 class CarTest : BehaviorSpec({
@@ -18,8 +14,8 @@ class CarTest : BehaviorSpec({
         forAll(
             table(
                 headers("number", "expected"),
-                *(MIN_GENERATED_NUMBER until MOVE_THRESHOLD).map { row(it, false) }.toTypedArray(),
-                *(MOVE_THRESHOLD..MAX_GENERATED_NUMBER).map { row(it, true) }.toTypedArray()
+                *(Constant.MIN_GENERATED_NUMBER until Car.MOVE_THRESHOLD).map { row(it, false) }.toTypedArray(),
+                *(Car.MOVE_THRESHOLD..Constant.MAX_GENERATED_NUMBER).map { row(it, true) }.toTypedArray()
             )
         ) { number, expected ->
             `when`("${number}가 나오면") {
@@ -33,18 +29,18 @@ class CarTest : BehaviorSpec({
 
     given("move 메소드") {
         `when`("movable이 true를 반환하면") {
-            then("position을 ${STEP}만큼 증가시킨다") {
-                val car = Car(OrderNumberGenerator(MOVE_THRESHOLD))
+            then("position을 ${Car.STEP}만큼 증가시킨다") {
+                val car = Car(OrderNumberGenerator(Car.MOVE_THRESHOLD))
                 car.move()
-                car.getPosition() shouldBe START_POSITION + STEP
+                car.getPosition() shouldBe Car.START_POSITION + Car.STEP
             }
         }
 
         `when`("movable이 false를 반환하면") {
             then("position을 증가시키지 않는다") {
-                val car = Car(OrderNumberGenerator(MOVE_THRESHOLD - 1))
+                val car = Car(OrderNumberGenerator(Car.MOVE_THRESHOLD - 1))
                 car.move()
-                car.getPosition() shouldBe START_POSITION
+                car.getPosition() shouldBe Car.START_POSITION
             }
         }
     }

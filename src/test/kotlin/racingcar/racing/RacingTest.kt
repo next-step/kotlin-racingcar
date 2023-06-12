@@ -2,12 +2,9 @@ package racingcar.racing
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import racingcar.domain.Car.Companion.MOVE_THRESHOLD
-import racingcar.domain.Car.Companion.START_POSITION
-import racingcar.domain.Car.Companion.STEP
+import racingcar.domain.Car
 import racingcar.domain.RacingGameParam
-import racingcar.util.Constant.MAX_GENERATED_NUMBER
-import racingcar.util.Constant.MIN_GENERATED_NUMBER
+import racingcar.util.Constant
 import racingcar.util.OrderNumberGenerator
 
 class RacingTest : BehaviorSpec({
@@ -18,7 +15,7 @@ class RacingTest : BehaviorSpec({
     beforeEach {
         target = RacingGame(
             RacingGameParam(carCount, rounds),
-            OrderNumberGenerator(*(MIN_GENERATED_NUMBER..MAX_GENERATED_NUMBER).toList().toIntArray())
+            OrderNumberGenerator(*(Constant.MIN_GENERATED_NUMBER..Constant.MAX_GENERATED_NUMBER).toList().toIntArray())
         )
     }
 
@@ -27,7 +24,7 @@ class RacingTest : BehaviorSpec({
             then("전진여부가 달라진다") {
                 target.runRound()
                 target.cars.forEachIndexed { index, car ->
-                    car.getPosition() shouldBe if (index < MOVE_THRESHOLD) START_POSITION else START_POSITION + STEP
+                    car.getPosition() shouldBe if (index < Car.MOVE_THRESHOLD) Car.START_POSITION else Car.START_POSITION + Car.STEP
                 }
             }
         }
@@ -38,7 +35,7 @@ class RacingTest : BehaviorSpec({
             then("전진여부가 달라진다") {
                 target.start()
                 target.cars.forEachIndexed { index, car ->
-                    car.getPosition() shouldBe if (index < MOVE_THRESHOLD) START_POSITION else START_POSITION + STEP * rounds
+                    car.getPosition() shouldBe if (index < Car.MOVE_THRESHOLD) Car.START_POSITION else Car.START_POSITION + Car.STEP * rounds
                 }
             }
         }
