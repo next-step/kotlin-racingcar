@@ -1,9 +1,9 @@
 package racingcar
 
 import racingcar.io.InputView
-import racingcar.io.ResultView
+import racingcar.racing.RacingGame
 
 fun main() {
     val input = InputView().getInput()
-    ResultView().printGame(input)
+    RacingGame(input).start()
 }

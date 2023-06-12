@@ -13,9 +13,10 @@ import racingcar.util.OrderNumberGenerator
 class RacingTest : BehaviorSpec({
     val carCount = 10
     val rounds = 10
-    lateinit var sut: Racing
+    lateinit var sut: RacingGame
+
     beforeEach {
-        sut = Racing(
+        sut = RacingGame(
             Input(carCount, rounds),
             OrderNumberGenerator(*(MIN_GENERATED_NUMBER..MAX_GENERATED_NUMBER).toList().toIntArray())
         )
@@ -25,7 +26,7 @@ class RacingTest : BehaviorSpec({
         `when`("생성되는 숫자가 다르면") {
             then("전진여부가 달라진다") {
                 sut.runRound()
-                sut.getCars().withIndex().forEach { (index, car) ->
+                sut.cars.forEachIndexed { index, car ->
                     car.getPosition() shouldBe if (index < MOVE_THRESHOLD) START_POSITION else START_POSITION + STEP
                 }
             }
@@ -36,7 +37,7 @@ class RacingTest : BehaviorSpec({
         `when`("생성되는 숫자가 다르면") {
             then("전진여부가 달라진다") {
                 sut.start()
-                sut.getCars().withIndex().forEach { (index, car) ->
+                sut.cars.forEachIndexed { index, car ->
                     car.getPosition() shouldBe if (index < MOVE_THRESHOLD) START_POSITION else START_POSITION + STEP * rounds
                 }
             }
