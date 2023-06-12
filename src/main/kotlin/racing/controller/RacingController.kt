@@ -1,23 +1,28 @@
-package racing
+package racing.controller
 
+import racing.CarFactory
+import racing.RacingManager
 import racing.domain.Car
 import racing.view.InputView
 import racing.view.ResultView
 
-class Racing {
+class RacingController(
+    private val inputView: InputView,
+    private val resultView: ResultView
+) {
 
     fun racingGame() {
 
-        val inputCarName = InputView.printInputCarNames()
+        val inputCarName = inputView.printInputCarNames()
 
-        ResultView.printResult()
+        resultView.printResult()
 
         val cars = CarFactory().createCarsByInputCarName(inputCarName)
-        val tryCount = InputView.printInputCount()
+        val tryCount = inputView.printInputCount()
         carNameViewRacing(tryCount, cars)
 
         val winners = RacingManager().getRaceWinnerCars(cars)
-        ResultView.printWinnerNames(winners)
+        resultView.printWinnerNames(winners)
     }
 
     private fun carNameViewRacing(tryCount: Int, cars: List<Car>) {
@@ -26,7 +31,7 @@ class Racing {
                 car.move()
                 ResultView.printNameAndDistance(car)
             }
-            ResultView.printEnter()
+            resultView.printEnter()
         }
     }
 
@@ -34,9 +39,9 @@ class Racing {
         repeat(tryCount) {
             cars.forEach { car ->
                 car.move()
-                ResultView.printDistance(car.position)
+                resultView.printDistance(car.position)
             }
-            ResultView.printEnter()
+            resultView.printEnter()
         }
     }
 }

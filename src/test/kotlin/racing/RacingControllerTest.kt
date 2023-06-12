@@ -5,13 +5,15 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
+import racing.controller.RacingController
 import racing.domain.Car
 import racing.view.InputView
+import racing.view.ResultView
 import java.io.ByteArrayInputStream
 import java.io.InputStream
 import java.nio.charset.StandardCharsets
 
-class RacingTest {
+class RacingControllerTest {
 
     @ParameterizedTest
     @CsvSource("3,3")
@@ -92,12 +94,12 @@ class RacingTest {
     @Test
     fun `레이싱 경주 출력 결과`() {
         System.setIn(getInputArrayStream("3", "3"))
-        Racing().racingGame()
+        RacingController(InputView, ResultView).racingGame()
     }
 
     @Test
     fun `레이싱 경주(우승자) 출력 결과`() {
         System.setIn(getInputArrayStream("car1,car2,car3", "3"))
-        Racing().racingGame()
+        RacingController(InputView, ResultView).racingGame()
     }
 }
