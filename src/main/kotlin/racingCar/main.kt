@@ -1,3 +1,5 @@
+package racingCar
+
 fun main() {
     val inputIO = InputIO()
     val carCount = inputIO.inputNumber(InputType.CAR_COUNT)

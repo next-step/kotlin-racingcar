@@ -1,3 +1,5 @@
+package racingCar
+
 class Car(
     private var distance: Int = 0,
     private val randomNumber: RandomNumber

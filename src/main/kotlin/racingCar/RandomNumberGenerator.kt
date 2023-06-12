@@ -1,3 +1,5 @@
+package racingCar
+
 interface RandomNumber {
     fun getRandomNumber(): Int
 }

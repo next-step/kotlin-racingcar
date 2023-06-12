@@ -1,5 +1,8 @@
+package racingCarTest
+
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import racingCar.InputIO
 
 class CheckNumberTest {
     @Test

@@ -1,3 +1,5 @@
+package racingCar
+
 class ResultView {
 
     companion object {

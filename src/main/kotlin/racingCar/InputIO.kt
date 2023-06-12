@@ -1,3 +1,5 @@
+package racingCar
+
 import java.lang.NumberFormatException
 
 class InputIO {
