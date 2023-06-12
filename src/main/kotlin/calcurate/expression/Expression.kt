@@ -3,17 +3,15 @@ package calcurate.expression
 import calcurate.ErrorCode
 import calcurate.factory.CalcStrategyFactory
 import calcurate.strategy.CalcStrategy
-import java.util.LinkedList
-import java.util.Queue
 
 data class Expression(val expression: String? = null) {
     private val numArray: List<Double>
     private val symbolArray: List<CalcStrategy>
 
     init {
-        if (expression.isNullOrBlank()) throw IllegalArgumentException(ErrorCode.INVALID_EXPRESSION.msg)
+        require(!expression.isNullOrBlank()) { ErrorCode.INVALID_EXPRESSION.msg }
 
-        val expressionArray = expression.split(delimiter)
+        val expressionArray = expression.split(DELIMITER)
         with(expressionArray) {
             numArray = this
                 .filterIndexed { index, _ -> index % 2 == 0 }
@@ -26,15 +24,11 @@ data class Expression(val expression: String? = null) {
     }
 
     fun calculation(): Double {
-        val symbolQueue = convertListToQueue(symbolArray)
-        return numArray.reduce { prev, next -> symbolQueue.poll().calc(prev, next) }
-    }
-
-    private inline fun <reified T> convertListToQueue(list: List<T>): Queue<T> {
-        return LinkedList(list)
+        val symbolList = symbolArray.toMutableList()
+        return numArray.reduce { prev, next -> symbolList.removeFirst().calc(prev, next) }
     }
 
     companion object {
-        const val delimiter = " "
+        private const val DELIMITER = " "
     }
 }
