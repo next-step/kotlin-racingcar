@@ -1,5 +1,6 @@
 class Car(
-    private var distance: Int = 0
+    private var distance: Int = 0,
+    private val randomNumber: RandomNumber
 ) {
     companion object {
         const val FORWARD_CONDITIONS: Int = 4
@@ -11,18 +12,6 @@ class Car(
     }
 
     private fun checkForwardCondition(): Boolean {
-        var randomNumber: RandomNumber = RandomNumberGenerator()
-
-        val env =
-            try {
-                System.getenv("OPERATE_MODE")
-            } catch (e: NullPointerException) {
-                null
-            }
-
-        if (env == "test")
-            randomNumber = FixedNumberGenerator()
-
         return randomNumber.getRandomNumber() >= FORWARD_CONDITIONS
     }
 

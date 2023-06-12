@@ -2,7 +2,7 @@ class RacingField(
     private val cars: List<Car>,
     private val gameCount: Int
 ) {
-    constructor(carCount: Int, gameCount: Int) : this(List(carCount) { Car() }, gameCount)
+    constructor(carCount: Int, gameCount: Int) : this(List(carCount) { Car(randomNumber = RandomNumberGenerator()) }, gameCount)
 
     fun getGameCount(): Int {
         return gameCount

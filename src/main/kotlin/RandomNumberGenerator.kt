@@ -7,9 +7,3 @@ class RandomNumberGenerator : RandomNumber {
         return (0..9).random()
     }
 }
-
-class FixedNumberGenerator : RandomNumber {
-    override fun getRandomNumber(): Int {
-        return 7
-    }
-}
