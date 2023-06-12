@@ -1,6 +1,5 @@
 package racingcar.domain
 
-import racingcar.view.InputView
 import racingcar.view.InputViewProtocol
 import racingcar.view.OutputViewProtocol
 

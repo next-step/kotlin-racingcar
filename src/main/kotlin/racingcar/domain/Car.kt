@@ -8,9 +8,11 @@ class Car {
     private val RANDOM_MINIMUM = 0
     private val RANDOM_MAXIMUM = 9
 
-    fun isMoveOrStop() {
+    fun isMoveOrStop(): Boolean {
         val randomNum = generateRandomNum()
-        if (conditionToMove(randomNum)) location++
+        val conditionToMove = conditionToMove(randomNum)
+        if (conditionToMove) location++
+        return conditionToMove
     }
 
     private fun conditionToMove(randomNum: Int) = randomNum >= BASE_NUMBER_TO_MOVE
@@ -24,7 +26,7 @@ class Car {
         return randomValue
     }
 
-    fun getLocation() :Int {
+    fun getLocation(): Int {
         return location
     }
 }

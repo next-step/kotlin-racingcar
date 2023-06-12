@@ -1,6 +1,7 @@
 package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assumptions.assumeTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -16,9 +17,20 @@ class CarTest {
     }
 
     @Test
-    fun `0부터 9사이 랜덤값 생성`() {
+    fun `자동차는 위치가 0으로 초기화`() {
+        assertThat(car.getLocation()).isEqualTo(0)
+    }
+
+    @Test
+    fun `자동차 이동 조건 숫자는 0부터 9사이 랜덤값 생성`() {
         assertThat(car.generateRandomNum())
-            .isGreaterThanOrEqualTo(RANDOM_MINIMUM)
-            .isLessThanOrEqualTo(RANDOM_MAXIMUM)
+            .isBetween(RANDOM_MINIMUM, RANDOM_MAXIMUM)
+    }
+
+    @Test
+    fun `자동차 이동 조건을 만족하면 0에서 1로 이동한다`() {
+        assumeTrue(car.isMoveOrStop())
+
+        assertThat(car.getLocation()).isEqualTo(1)
     }
 }
