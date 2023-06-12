@@ -1,5 +1,7 @@
 package racingcar.domain
 
+import io.kotest.assertions.throwables.shouldNotThrow
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.data.forAll
 import io.kotest.data.headers
@@ -8,8 +10,35 @@ import io.kotest.data.table
 import io.kotest.matchers.shouldBe
 import racingcar.util.Constant
 import racingcar.util.OrderNumberGenerator
+import racingcar.util.RandomNumberGenerator
 
 class CarTest : BehaviorSpec({
+    given("Car생성시") {
+        `when`("이름이 5자를 초과하면") {
+            then("예외가 던져진다") {
+                shouldThrow<IllegalArgumentException> {
+                    Car("123456", RandomNumberGenerator())
+                }
+            }
+        }
+        `when`("이름이 비어있으면") {
+            then("예외가 던져진다") {
+                shouldThrow<IllegalArgumentException> {
+                    Car(" ", RandomNumberGenerator())
+                }
+            }
+        }
+        for (size in 1..5) {
+            `when`("이름이 ${size}글자면") {
+                then("Car가 생성된다") {
+                    shouldNotThrow<Throwable> {
+                        Car("a".repeat(size), RandomNumberGenerator())
+                    }
+                }
+            }
+        }
+    }
+
     given("movable 메소드") {
         forAll(
             table(
@@ -20,7 +49,7 @@ class CarTest : BehaviorSpec({
         ) { number, expected ->
             `when`("${number}가 나오면") {
                 then("${expected}를 반환한다") {
-                    val car = Car(OrderNumberGenerator(number))
+                    val car = Car(number.toString(), OrderNumberGenerator(number))
                     car.movable() shouldBe expected
                 }
             }
@@ -30,7 +59,7 @@ class CarTest : BehaviorSpec({
     given("move 메소드") {
         `when`("movable이 true를 반환하면") {
             then("position을 ${Car.STEP}만큼 증가시킨다") {
-                val car = Car(OrderNumberGenerator(Car.MOVE_THRESHOLD))
+                val car = Car(TEST_CAR_NAME, OrderNumberGenerator(Car.MOVE_THRESHOLD))
                 car.move()
                 car.getPosition() shouldBe Car.START_POSITION + Car.STEP
             }
@@ -38,10 +67,14 @@ class CarTest : BehaviorSpec({
 
         `when`("movable이 false를 반환하면") {
             then("position을 증가시키지 않는다") {
-                val car = Car(OrderNumberGenerator(Car.MOVE_THRESHOLD - 1))
+                val car = Car(TEST_CAR_NAME, OrderNumberGenerator(Car.MOVE_THRESHOLD - 1))
                 car.move()
                 car.getPosition() shouldBe Car.START_POSITION
             }
         }
     }
-})
+}) {
+    companion object {
+        private const val TEST_CAR_NAME = "car"
+    }
+}

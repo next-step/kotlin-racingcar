@@ -2,8 +2,14 @@ package racingcar.domain
 
 import racingcar.util.NumberGenerator
 
-data class Car(private val numberGenerator: NumberGenerator) {
+data class Car(val name: String, private val numberGenerator: NumberGenerator) {
     private var position = START_POSITION
+
+    init {
+        if (name.trim().length !in 1..5) {
+            throw IllegalArgumentException("자동차 이름은 1~5자만 가능합니다.")
+        }
+    }
 
     fun move() {
         if (movable()) {

@@ -1,7 +1,9 @@
 package racingcar.domain
 
+import racingcar.util.NumberGenerator
+
 data class Cars(
-    private val cars: Array<Car>
+    private val cars: List<Car>,
 ) : Iterable<Car> {
 
     fun moveAll() {
@@ -10,4 +12,12 @@ data class Cars(
 
     override fun iterator(): Iterator<Car> =
         cars.iterator()
+
+    companion object {
+        fun createCars(carNameList: List<String>, numberGenerator: NumberGenerator): Cars = Cars(
+            carNameList.map { name ->
+                Car(name, numberGenerator)
+            },
+        )
+    }
 }
