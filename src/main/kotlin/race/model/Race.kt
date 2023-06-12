@@ -4,13 +4,19 @@ import race.view.RaceResult
 
 class Race {
     fun run(cars: List<Car>, numberOfTry: Int): RaceResult {
-        val records = mutableListOf<List<CarRecord>>()
+        val records = mutableListOf<List<Car>>()
+        var currentCars = cars.toMutableList()
 
         repeat(numberOfTry) {
-            cars.forEach { it.move() }
+            val movedCars = mutableListOf<Car>()
 
-            val copiedCars = cars.map { it.copyRecord() }
-            records.add(copiedCars)
+            currentCars.forEach {
+                val moved = it.move()
+                movedCars.add(moved)
+            }
+
+            records.add(movedCars)
+            currentCars = movedCars
         }
 
         val winners = findWinners(records.last())
@@ -18,7 +24,7 @@ class Race {
         return RaceResult(records, winners)
     }
 
-    private fun findWinners(lastRecords: List<CarRecord>): List<CarRecord> {
+    private fun findWinners(lastRecords: List<Car>): List<Car> {
         val winnerPosition = lastRecords.maxByOrNull { it.position }?.position
 
         return lastRecords

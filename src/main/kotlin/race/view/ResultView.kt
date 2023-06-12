@@ -1,6 +1,6 @@
 package race.view
 
-import race.model.CarRecord
+import race.model.Car
 
 class ResultView {
     fun run(raceResult: RaceResult) {
@@ -14,18 +14,16 @@ class ResultView {
         showWinners(raceResult.winners)
     }
 
-    private fun showAllPosition(cars: List<CarRecord>) {
-        cars.forEach {
-            show(it)
-        }
+    private fun showAllPosition(cars: List<Car>) {
+        cars.forEach { show(it) }
         println()
     }
 
-    private fun show(car: CarRecord) {
+    private fun show(car: Car) {
         println("${car.name} : " + "-".repeat(car.position))
     }
 
-    private fun showWinners(winners: List<CarRecord>) {
+    private fun showWinners(winners: List<Car>) {
         val winnerNames = winners.joinToString(", ") { it.name }
         println("${winnerNames}가 최종 우승했습니다.")
     }

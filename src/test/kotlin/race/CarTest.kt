@@ -19,8 +19,7 @@ class CarTest {
     fun `한 번 이동하면 위치는 1`() {
         val condition = FixedMoveCondition(true)
         val car = Car("myCar", condition)
-        car.move()
-        assertThat(car.position).isEqualTo(1)
+        assertThat(car.move().position).isEqualTo(1)
     }
 
     @Test

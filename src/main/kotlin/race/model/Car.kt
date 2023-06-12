@@ -1,11 +1,12 @@
 package race.model
 
 class Car(
-    private val name: String,
+    val name: String,
+    val position: Int,
     private val moveCondition: MoveCondition,
 ) {
-    var position: Int = 0
-        private set
+
+    constructor(name: String, moveCondition: MoveCondition) : this(name, 0, moveCondition)
 
     init {
         require(name.length <= MAX_LENGTH) {
@@ -13,18 +14,15 @@ class Car(
         }
     }
 
-    fun copyRecord(): CarRecord {
-        return CarRecord(name, position)
-    }
-
-    fun move() {
+    fun move(): Car {
         if (moveCondition.canGoStraight()) {
-            straight()
+            return straight()
         }
+        return this
     }
 
-    private fun straight() {
-        position++
+    private fun straight(): Car {
+        return Car(name, position + 1, moveCondition)
     }
 
     companion object {
