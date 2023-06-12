@@ -1,13 +1,23 @@
 package study.step3
 
 class Car {
-    private var state: Int = 1
+    val stateList: MutableList<Int> = mutableListOf()
+    private var state = 0
 
     fun move() {
-        state += 1
+        if (randomValue() >= MOVE_CONDITION) {
+            state++
+        }
+        addCarState()
     }
 
-    fun getState(): Int {
-        return state
+    private fun addCarState() {
+        stateList.add(state)
+    }
+
+    private fun randomValue() = (0..9).random()
+
+    companion object {
+        private const val MOVE_CONDITION = 4
     }
 }
