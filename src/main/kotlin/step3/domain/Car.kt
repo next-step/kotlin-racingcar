@@ -10,7 +10,7 @@ import step3.domain.strategy.RandomMoveCondition
  */
 class Car(
     private val name: String = "car1",
-    private val carMovingStrategy: CarMovingCondition = RandomMoveCondition(threshold = 4, boundFrom = 0, boundUntil = 10),
+    private val carMovingStrategy: CarMovingCondition = RandomMoveCondition.default(),
 ) {
 
     var position: Int = 0

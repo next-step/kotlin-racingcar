@@ -35,4 +35,14 @@ class RandomMoveCondition(
     override fun canMove(): Boolean {
         return Random.nextInt(boundFrom, boundUntil) >= threshold
     }
+
+    companion object {
+        fun default(): RandomMoveCondition {
+            return RandomMoveCondition(
+                threshold = 4,
+                boundFrom = 0,
+                boundUntil = 10,
+            )
+        }
+    }
 }
