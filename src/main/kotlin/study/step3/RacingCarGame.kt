@@ -2,31 +2,28 @@ package study.step3
 
 class RacingCarGame {
 
-    fun startRace(racingRequest: Pair<Int, Int>) {
-        val cars = prepareRacingCars(racingRequest)
+    private val carList: MutableList<Car> = mutableListOf()
 
-        println("실행결과")
+    fun play(racingRequest: Pair<Int, Int>) {
+        prepareRacingCars(racingRequest)
+        startRace(racingRequest.second)
+    }
 
-        val attempt = racingRequest.second
-        repeat(attempt) {
-            cars.forEach { car ->
-                val randomValue = randomValue()
-                if (randomValue >= 4) {
-                    car.move()
+    private fun startRace(tryCount: Int) {
+        repeat(tryCount) {
+            carList.forEach { car -> car.move() }
+        }
+    }
+
+    private fun prepareRacingCars(racingRequest: Pair<Int, Int>) {
+        carList.addAll(
+            buildList {
+                repeat(racingRequest.first) {
+                    add(Car())
                 }
-                println("-".repeat(car.getState()))
             }
-            println()
-        }
+        )
     }
 
-    private fun prepareRacingCars(
-        racingRequest: Pair<Int, Int>
-    ): List<Car> = buildList {
-        repeat(racingRequest.first) {
-            add(Car())
-        }
-    }
-
-    private fun randomValue() = (0..9).random()
+    fun getCurrentCars(): List<Car> = carList
 }
