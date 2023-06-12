@@ -13,7 +13,6 @@ class StringCalculator {
         validate(splitedExpression, numbers, arithmeticSymbols)
 
         val result = numbers.map { it.toFloat() }
-            .toTypedArray()
             .reduceIndexed { index, acc, s ->
                 doCalculate(acc, s, arithmeticSymbols[index - 1])
             }
