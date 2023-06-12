@@ -1,22 +1,19 @@
 package step2
 
 enum class Operator(
-    val operator: String
+    val operator: String,
+    val operation: (x: Double, y: Double) -> Double
 ) {
-    PLUS("+"),
-    MINUS("-"),
-    MULTIPLY("*"),
-    DIVIDE("/");
+    PLUS("+", { x, y -> x + y }),
+    MINUS("-", { x, y -> x - y }),
+    MULTIPLY("*", { x, y -> x * y }),
+    DIVIDE("/", { x, y -> x / y });
+
+    fun calculate(prev: Double, next: Double): Double {
+        return this.operation(prev, next)
+    }
 
     companion object {
-        fun calculate(prev: Double, next: Double, operator: Operator): Double {
-            return when (operator) {
-                PLUS -> prev + next
-                MINUS -> prev - next
-                MULTIPLY -> prev * next
-                DIVIDE -> prev / next
-            }
-        }
 
         fun getOperator(value: String): Operator {
             return Operator.values().find { it.operator == value }
