@@ -38,7 +38,7 @@ class RaceTest {
         val car3 = Car("car3", trueCondition)
 
         val raceResult = Race().run(listOf(car1, car2, car3), 2)
-        val winners = raceResult.winners
+        val winners = raceResult.findWinners()
         assertThat(winners[0].name).isEqualTo("car1")
         assertThat(winners[1].name).isEqualTo("car3")
     }
