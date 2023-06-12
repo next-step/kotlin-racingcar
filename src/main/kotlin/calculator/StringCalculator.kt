@@ -1,4 +1,4 @@
-package study
+package calculator
 
 class StringCalculator {
     fun calculate(arithmeticExpression: String): Float {
