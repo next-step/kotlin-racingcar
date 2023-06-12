@@ -3,8 +3,6 @@ package calcurate.expression
 import calcurate.ErrorCode
 import calcurate.factory.CalcStrategyFactory
 import calcurate.strategy.CalcStrategy
-import java.util.LinkedList
-import java.util.Queue
 
 data class Expression(val expression: String? = null) {
     private val numArray: List<Double>
@@ -26,12 +24,8 @@ data class Expression(val expression: String? = null) {
     }
 
     fun calculation(): Double {
-        val symbolQueue = convertListToQueue(symbolArray)
-        return numArray.reduce { prev, next -> symbolQueue.poll().calc(prev, next) }
-    }
-
-    private inline fun <reified T> convertListToQueue(list: List<T>): Queue<T> {
-        return LinkedList(list)
+        val symbolList = symbolArray.toMutableList()
+        return numArray.reduce { prev, next -> symbolList.removeFirst().calc(prev, next) }
     }
 
     companion object {
