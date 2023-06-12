@@ -20,11 +20,11 @@
 - [ ] 분리된 문자열을 숫자로 변환
     - [ ] 숫자 변환 실패 시 `IllegalArgumentException` 발생
 - [ ] 사칙연산 기호에 따라 계산
-    - [ ] 덧셈
-    - [ ] 뺄셈
-    - [ ] 곱셈
-    - [ ] 나눗셈
-      - [ ] 0으로 나누는 경우 `IllegalArgumentException` 발생
+    - [x] 덧셈
+    - [x] 뺄셈
+    - [x] 곱셈
+    - [x] 나눗셈
+      - [x] 0으로 나누는 경우 `IllegalArgumentException` 발생
 
 #### 출력
 - [ ] 계산 결과 출력
