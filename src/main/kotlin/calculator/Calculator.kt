@@ -1,7 +1,8 @@
+package calculator
 
 object Calculator {
 
-    private const val SPERATOR = " "
+    private const val SEPERATOR = " "
     private const val LAST_INDEX = 1
     private const val NEXT_PART_INDEX = 2
     private const val NUMBER_POSITION = 0
@@ -11,7 +12,7 @@ object Calculator {
         if (formulaString.isEmpty()) {
             throw IllegalArgumentException("Input value is empty")
         }
-        val formulaList = formulaString.split(SPERATOR)
+        val formulaList = formulaString.split(SEPERATOR)
         val resultValue = recursiveCalculator(formulaList.reversed())
         println(resultValue)
         return resultValue

@@ -1,3 +1,5 @@
+package calculator
+
 enum class Operator(val operator: String) {
     PLUS("+") {
         override fun calculate(preNumber: String, postNumber: String): String {
@@ -50,7 +52,7 @@ enum class Operator(val operator: String) {
 
 private fun String.isNum(): Boolean {
     this.forEach {
-        char ->
+            char ->
 
         val charConvertedToCode = char.code
 

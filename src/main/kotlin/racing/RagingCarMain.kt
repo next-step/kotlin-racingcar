@@ -1,14 +1,11 @@
-
+package racing
 fun main() {
-
     val inputData = InputView.doInput()
-    val carNumber = inputData.first
+    val carNames = inputData.first
     val actionCount = inputData.second
-
     val cars = mutableListOf<Car>()
-    carNumber.forEach {
+    carNames.forEach {
         cars.add(Car(it))
     }
-
     ResultView.showResult(cars, actionCount)
 }
