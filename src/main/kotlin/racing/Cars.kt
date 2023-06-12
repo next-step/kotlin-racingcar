@@ -11,8 +11,8 @@ value class Cars(
     }
 
     companion object {
-        fun of(carCount: Int): Cars {
-            return Cars(List(carCount) { Car() })
+        fun of(carNames: List<String>): Cars {
+            return Cars(carNames.map { Car(it) })
         }
     }
 }

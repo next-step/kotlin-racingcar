@@ -1,11 +1,12 @@
 package racing
 
 object InputView {
-    fun readCarCount(): Int {
-        println("자동차 대수는 몇 대인가요?")
-        val carCount = readlnOrNull()?.toInt() ?: 0
-        require(carCount >= 0) { "자동차 대수가 음수입니다." }
-        return carCount
+    private const val CAR_NAME_DELIMITER = ","
+
+    fun readCarNames(): List<String> {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
+        val names = readlnOrNull() ?: throw IllegalArgumentException("한 대이상 자동차가 필요합니다.")
+        return names.split(CAR_NAME_DELIMITER)
     }
 
     fun readTryCount(): Int {
@@ -17,13 +18,16 @@ object InputView {
 }
 
 object ResultView {
+    private const val CAR_POSITION = "-"
+
     fun printHeader() {
         println("\n실행 결과")
     }
 
     fun printRacingResult(cars: Cars) {
         for (car in cars.cars) {
-            println("-".repeat(car.position))
+            val carPosition = CAR_POSITION.repeat(car.position)
+            println("${car.name} : $carPosition")
         }
         println()
     }

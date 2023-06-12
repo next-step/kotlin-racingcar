@@ -1,10 +1,10 @@
 package racing
 
 fun main() {
-    val carCount = InputView.readCarCount()
+    val carNames = InputView.readCarNames()
     val tryCount = InputView.readTryCount()
 
-    val cars = Cars.of(carCount)
+    val cars = Cars.of(carNames)
     val randomMovePolicy = RandomMovePolicy()
 
     ResultView.printHeader()

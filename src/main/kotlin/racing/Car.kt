@@ -1,7 +1,8 @@
 package racing
 
 class Car(
-    var position: Int = 0
+    val name: String,
+    var position: Int = 0,
 ) {
     fun move(movePolicy: MovePolicy) {
         if (movePolicy.isMovable()) {
