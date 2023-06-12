@@ -30,7 +30,7 @@ class NeverMoveCondition : CarMovingCondition {
 class RandomMoveCondition(
     private val threshold: Int,
     private val boundFrom: Int,
-    private val boundUntil: Int
+    private val boundUntil: Int,
 ) : CarMovingCondition {
     override fun canMove(): Boolean {
         return Random.nextInt(boundFrom, boundUntil) >= threshold

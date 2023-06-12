@@ -19,7 +19,7 @@ class RacingCars(private val cars: List<Car>) {
     private fun attemptToMoveCars(attemptOrder: Int): RacingAttempt {
         return RacingAttempt(
             carStates = cars.map(Car::move),
-            order = attemptOrder
+            order = attemptOrder,
         )
     }
 }

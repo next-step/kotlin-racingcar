@@ -2,7 +2,7 @@ package step3.domain
 
 data class RacingRequest(
     val carNames: List<String>,
-    val attemptCount: Int
+    val attemptCount: Int,
 ) {
     init {
         require(carNames.isNotEmpty()) { "carName must be empty" }
