@@ -9,7 +9,7 @@ data class Expression(val expression: String? = null) {
     private val symbolArray: List<CalcStrategy>
 
     init {
-        if (expression.isNullOrBlank()) throw IllegalArgumentException(ErrorCode.INVALID_EXPRESSION.msg)
+        require(!expression.isNullOrBlank()) { ErrorCode.INVALID_EXPRESSION.msg }
 
         val expressionArray = expression.split(DELIMITER)
         with(expressionArray) {
