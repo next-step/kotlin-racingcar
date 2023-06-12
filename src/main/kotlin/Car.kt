@@ -13,7 +13,14 @@ class Car(
     private fun checkForwardCondition(): Boolean {
         var randomNumber: RandomNumber = RandomNumberGenerator()
 
-        if (System.getenv("OPERATE_MODE").equals("test"))
+        val env =
+            try {
+                System.getenv("OPERATE_MODE")
+            } catch (e: NullPointerException) {
+                null
+            }
+
+        if (env == "test")
             randomNumber = FixedNumberGenerator()
 
         return randomNumber.getRandomNumber() >= FORWARD_CONDITIONS
