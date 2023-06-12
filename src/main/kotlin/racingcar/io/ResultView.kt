@@ -19,6 +19,6 @@ object ResultView {
     }
 
     private fun printRow(car: Car) {
-        println(MOVE_MARK.repeat(car.getPosition()))
+        println("${car.name} : ${MOVE_MARK.repeat(car.getPosition())}")
     }
 }
