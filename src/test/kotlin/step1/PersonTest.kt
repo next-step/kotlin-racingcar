@@ -14,7 +14,7 @@ internal class PersonTest {
         )
         assertThat(people).allSatisfy {
             assertThat(it.name).isEqualTo("박제헌")
-            assertThat(it.age).isEqualTo(29)
+            assertThat(it.age).isEqualTo(31)
             assertThat(it.nickname).isEqualTo("jeff.42")
         }
     }

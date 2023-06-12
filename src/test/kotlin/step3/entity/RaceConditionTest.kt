@@ -6,15 +6,11 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.ValueSource
 import java.util.UUID
 import kotlin.random.Random
 
 internal class RaceConditionTest {
-    @Test
-    fun `if value is null then throw IllegalArgumentException`() {
-        assertThrows<IllegalArgumentException> { RaceCondition.of(null, null) }
-    }
-
     @Test
     fun `if value is empty string then throw IllegalArgumentException`() {
         assertThrows<IllegalArgumentException> { RaceCondition.of("", "") }
@@ -34,7 +30,17 @@ internal class RaceConditionTest {
     fun `if value is minus number then throw IllegalArgumentException`() {
         assertThrows<IllegalArgumentException> {
             RaceCondition.of(
+                "jeff",
                 Random.nextInt(Int.MIN_VALUE, 0).toString(),
+            )
+        }
+    }
+
+    @Test
+    fun `if value is longer than 5 letters then throw IllegalArgumentException`() {
+        assertThrows<IllegalArgumentException> {
+            RaceCondition.of(
+                "jeff.42",
                 Random.nextInt(Int.MIN_VALUE, 0).toString(),
             )
         }
@@ -42,10 +48,19 @@ internal class RaceConditionTest {
 
     @ParameterizedTest
     @MethodSource("makeRaceCondition")
-    fun `if value is number of string then make race condition`(numberOfCars: String, numberOfLabs: String) {
-        val raceCondition = RaceCondition.of(numberOfCars, numberOfLabs)
-        assertEquals(numberOfCars.toInt(), raceCondition.numberOfCars)
+    fun `if value is number of string then make race condition`(nameOfCars: String, numberOfLabs: String) {
+        val raceCondition = RaceCondition.of(nameOfCars, numberOfLabs)
+        assertEquals(nameOfCars, raceCondition.nameOfCars[0])
         assertEquals(numberOfLabs.toInt(), raceCondition.numberOfLabs)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["jeff,hoodie,clo,champ,binary,keith", "hi,hello,my,name,is"])
+    fun `string split test`(names: String) {
+        val raceCondition = RaceCondition.of(names, "4")
+        names.split(",").forEachIndexed { index, name ->
+            assertEquals(name, raceCondition.nameOfCars[index])
+        }
     }
 
     companion object {
@@ -53,7 +68,7 @@ internal class RaceConditionTest {
         fun makeRaceCondition(): List<Arguments> {
             return (0..20).map {
                 Arguments.of(
-                    Random.nextInt(1, Int.MAX_VALUE).toString(),
+                    UUID.randomUUID().toString(),
                     Random.nextInt(1, Int.MAX_VALUE).toString(),
                 )
             }
