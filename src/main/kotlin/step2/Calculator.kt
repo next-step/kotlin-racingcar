@@ -1,17 +1,15 @@
 package step2
 
-class Calculator(
-    val validator: Validator
-) {
+class Calculator {
     fun calculate(input: String?): Double {
-        validator.validateInput(input)
+        Validator.validateInput(input)
 
         val parts = input!!.split(" ")
         var result = parts[0].toDouble();
 
         for (i in 1 until parts.size step 2) {
             val operator = parts[i]
-            validator.validateOperator(operator)
+            Validator.validateOperator(operator)
 
             val nextNumber = parts[i + 1].toDouble()
 
