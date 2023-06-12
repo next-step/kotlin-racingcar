@@ -10,12 +10,12 @@ class CarsTest {
     @Test
     fun `n 개 car를 생성한다`() {
         // given
-        val carCount = 5
+        val carNames = listOf("carName1", "carName2")
 
         // when
-        val cars = Cars.of(carCount, RandomNumberForwardCondition())
+        val cars = Cars.of(carNames, RandomNumberForwardCondition())
 
         // then
-        assertThat(cars.race().size).isEqualTo(carCount)
+        assertThat(cars.race().size).isEqualTo(carNames.size)
     }
 }

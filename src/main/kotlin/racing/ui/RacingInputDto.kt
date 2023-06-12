@@ -1,6 +1,6 @@
 package racing.ui
 
 data class RacingInputDto(
-    val carCount: Int,
+    val carNames: List<String>,
     val attemptCount: Int
 )

@@ -10,7 +10,7 @@ class CarTest {
     @Test
     fun `전진조건이 false 인 경우 distance 는 증가하지 않는다`() {
         // given
-        val car = Car(forwardCondition = FakeForwardCondition(false))
+        val car = Car(name = "car", forwardCondition = FakeForwardCondition(false))
 
         // when
         val racingPhaseRecord = car.move()
@@ -22,7 +22,7 @@ class CarTest {
     @Test
     fun `전진조건이 true 인 경우 distance 는 증가한다`() {
         // given
-        val car = Car(forwardCondition = FakeForwardCondition(true))
+        val car = Car(name = "car", forwardCondition = FakeForwardCondition(true))
 
         // when
         val racingPhaseRecord = car.move()

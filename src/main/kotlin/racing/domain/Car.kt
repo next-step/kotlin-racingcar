@@ -1,6 +1,7 @@
 package racing.domain
 
 class Car(
+    private val name: String,
     private var distance: Int = INITIAL_DISTANCE,
     private val forwardCondition: ForwardCondition
 ) {
@@ -11,7 +12,7 @@ class Car(
             ++distance
         }
 
-        return RacingPhaseRecord(distance)
+        return RacingPhaseRecord(name, distance)
     }
 
     companion object {

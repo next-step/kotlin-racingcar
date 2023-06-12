@@ -12,9 +12,9 @@ class RacingTest {
     @Test
     fun `start 시 racingPhasedRecords 가 추가된다`() {
         // given
-        val carCount = 5
+        val carNames = listOf("carName1", "carName2")
         val attemptCount = 3
-        val cars = Cars.of(carCount, FakeForwardCondition(true))
+        val cars = Cars.of(carNames, FakeForwardCondition(true))
         val racing = Racing(cars, attemptCount)
 
         // when
@@ -23,7 +23,7 @@ class RacingTest {
         // then
         assertAll({
             assertThat(racingPhasedRecords.size).isEqualTo(attemptCount)
-            assertThat(racingPhasedRecords[0].records.size).isEqualTo(carCount)
+            assertThat(racingPhasedRecords[0].records.size).isEqualTo(carNames.size)
         })
     }
 }

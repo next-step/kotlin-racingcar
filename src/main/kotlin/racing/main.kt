@@ -9,7 +9,7 @@ import racing.ui.OutputView
 fun main() {
     val racingInputDto = InputView.read()
 
-    val cars = Cars.of(racingInputDto.carCount, RandomNumberForwardCondition())
+    val cars = Cars.of(racingInputDto.carNames, RandomNumberForwardCondition())
     val racing = Racing(cars, racingInputDto.attemptCount)
     val racingPhasedRecords = racing.start()
 
