@@ -1,4 +1,4 @@
-package study
+package step2
 
 class Calculator {
     fun calculate(input: String?): Double {
