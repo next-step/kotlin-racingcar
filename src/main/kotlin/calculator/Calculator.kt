@@ -1,17 +1,14 @@
 package calculator
 
-class Calculator(private val firstElement: Int, private val operator: Char, private val secondElement: Int) {
-
-    fun calcuate() = when (operator) {
-        '+' -> add()
-        '-' -> subtract()
-        '*' -> multiply()
-        '/' -> divide()
-        else -> throw IllegalArgumentException(" 사칙연산기호 확인 ")
+class Calculator(private val firstElement: Int, private val operator: String, private val secondElement: Int) {
+    fun calculate() = when (operator) {
+        "+" -> firstElement + secondElement
+        "-" -> firstElement - secondElement
+        "*" -> firstElement * secondElement
+        "/" -> {
+            if (secondElement == 0) throw IllegalArgumentException(" 나눗셈 분모 0 발생 ")
+            firstElement / secondElement
+        }
+        else -> throw IllegalArgumentException(" 사칙연산기호 확인 ( $operator ) ")
     }
-
-    private fun add() = firstElement + secondElement
-    private fun subtract() = firstElement + secondElement
-    private fun multiply() = firstElement * secondElement
-    private fun divide() = firstElement / secondElement
 }
