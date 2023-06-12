@@ -3,8 +3,8 @@ package calculator
 import calculator.exception.DivideByZeroException
 import calculator.exception.IllegalExpressionException
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
@@ -25,63 +25,51 @@ class StringCalculatorTest {
     }
 
     @ParameterizedTest
-    @CsvSource("1F,12F", "12F,1F")
-    fun `기본 뺄셈 테스트`(num1: Float, num2: Float) {
-        val result1 = StringCalculator.subtract(1F, 12F)
-        val result2 = StringCalculator.subtract(12F, 1F)
+    @CsvSource("1F,12F,-11F", "12F,1F,11F")
+    fun `기본 뺄셈 테스트`(num1: Float, num2: Float, expect: Float) {
+        val result = StringCalculator.subtract(num1, num2)
 
-        assertThat(result1).isEqualTo(-11F)
-        assertThat(result2).isEqualTo(11F)
+        assertThat(result).isEqualTo(expect)
     }
 
     @ParameterizedTest
-    @CsvSource("1F,12F", "1F,0F", "3F,0.5F")
-    fun `기본 곱셈 테스트`(num1: Float, num2: Float) {
-        val result1 = StringCalculator.multiply(1F, 12F)
-        val result2 = StringCalculator.multiply(1F, 0F)
-        val result3 = StringCalculator.multiply(3F, 0.5F)
+    @CsvSource("1F,12F,12F", "1F,0F,0F", "3F,0.5F,1.5F")
+    fun `기본 곱셈 테스트`(num1: Float, num2: Float, expect: Float) {
+        val result = StringCalculator.multiply(num1, num2)
 
-        assertThat(result1).isEqualTo(12F)
-        assertThat(result2).isEqualTo(0F)
-        assertThat(result3).isEqualTo(1.5F)
+        assertThat(result).isEqualTo(expect)
     }
 
     @ParameterizedTest
-    @CsvSource("10F,5F", "3F,2F")
-    fun `기본 나눗셈 테스트`(num1: Float, num2: Float) {
-        val result1 = StringCalculator.divide(10F, 5F)
-        val result2 = StringCalculator.divide(3F, 2F)
+    @CsvSource("10F,5F,2F", "3F,2F,1.5F")
+    fun `기본 나눗셈 테스트`(num1: Float, num2: Float, expect: Float) {
+        val result = StringCalculator.divide(num1, num2)
 
-        assertThat(result1).isEqualTo(2F)
-        assertThat(result2).isEqualTo(1.5F)
+        assertThat(result).isEqualTo(expect)
     }
 
     @Test
     fun `0으로 나누면 에러가 발생한다`() {
-        assertThatExceptionOfType(DivideByZeroException::class.java)
-            .isThrownBy { StringCalculator.divide(1F, 0F) }
+        assertThrows<DivideByZeroException> { StringCalculator.divide(1F, 0F) }
     }
 
     @Test
     fun `입력값이 빈 공백 문자열인 경우 에러가 발생한다`() {
-        assertThatExceptionOfType(IllegalExpressionException::class.java)
-            .isThrownBy { StringCalculator.calculate("   ") }
+        assertThrows<IllegalExpressionException> { StringCalculator.calculate("   ") }
     }
 
     @Test
     fun `숫자와 사칙연산 기호외의 문자는 포함될 수 없다`() {
         val invalidExpression = "2 + 3 * 4 ? 2"
 
-        assertThatExceptionOfType(IllegalExpressionException::class.java)
-            .isThrownBy { StringCalculator.calculate(invalidExpression) }
+        assertThrows<IllegalExpressionException> { StringCalculator.calculate(invalidExpression) }
     }
 
     @Test
     fun `숫자는 기호보다 1개 많아야 한다`() {
         val invalidExpression = "2 + 3 * 4 + 2 +"
 
-        assertThatExceptionOfType(IllegalExpressionException::class.java)
-            .isThrownBy { StringCalculator.calculate(invalidExpression) }
+        assertThrows<IllegalExpressionException> { StringCalculator.calculate(invalidExpression) }
     }
 
     @Test
