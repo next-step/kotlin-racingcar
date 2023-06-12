@@ -13,7 +13,7 @@ class ResultView {
     }
 
     fun show(car: Car) {
-        repeat(car.position) {
+        repeat(car.getPosition()) {
             print(RACING_MARK)
         }
         println()
