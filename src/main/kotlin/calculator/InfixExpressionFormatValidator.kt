@@ -4,7 +4,12 @@ import calculator.operation.Operator
 
 class InfixExpressionFormatValidator {
     fun validateExpressionFormat(expression: String) {
-        require(expression.matches(Operator.OPERATOR_AND_OPERAND_REGEX)) { "수식은 사칙연산과 숫자만 가능합니다." }
+        expression
+            .asSequence()
+            .map { it.toString() }
+            .forEach {
+                require(Operator.isOperator(it) || it.matches("\\d".toRegex())) { "수식은 사칙연산과 숫자만 가능합니다." }
+            }
     }
 
     fun validateNumberOfOperands(operands: List<String>, operators: List<String>) {
