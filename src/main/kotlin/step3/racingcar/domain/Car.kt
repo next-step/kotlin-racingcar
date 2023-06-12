@@ -2,9 +2,9 @@ package step3.racingcar.domain
 
 import step3.racingcar.domain.condition.Condition
 
-data class Car(
+class Car(
     var position: Int,
-    var condition: Condition
+    private val condition: Condition
 ) {
     fun move() {
         if (condition.canMove()) {

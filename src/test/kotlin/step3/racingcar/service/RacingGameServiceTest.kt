@@ -10,7 +10,7 @@ class RacingGameServiceTest : StringSpec({
         val count = 0
 
         shouldThrow<IllegalArgumentException> {
-            racingGameService.initAttemptCount(count)
+            racingGameService.initRound(count)
         }
     }
 })

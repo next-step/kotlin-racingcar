@@ -1,6 +1,7 @@
 package step3.racingcar.domain
 
 import step3.racingcar.view.Messages
+import step3.racingcar.view.OutputView
 import java.lang.IllegalArgumentException
 
 class Cars(
@@ -22,7 +23,7 @@ class Cars(
 
     fun getPosition() {
         cars.forEach { car ->
-            println("-".repeat(car.position))
+            OutputView.printPosition(car.position)
         }
     }
 }

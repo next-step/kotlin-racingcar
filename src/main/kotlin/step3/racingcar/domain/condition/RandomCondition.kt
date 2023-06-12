@@ -2,7 +2,7 @@ package step3.racingcar.domain.condition
 
 import step3.racingcar.utils.RandomUtils
 
-class RandomCondition : Condition {
+object RandomCondition : Condition {
     private val START_RANDOM_NUM = 0
     private val END_RANDOM_NUM = 9
     private val MIN_NUMBER = 4
