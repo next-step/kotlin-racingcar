@@ -6,18 +6,15 @@ object OutputView {
     }
 
     fun showRacingResultDashboard(carPositionByCarName: Map<String, Int>) {
-        carPositionByCarName.forEach {
-            showCarNameWithPosition(it.key, it.value)
+        carPositionByCarName.forEach { (key, value) ->
+            showCarNameWithPosition(key, value)
         }
         println()
     }
 
     private fun showCarNameWithPosition(name: String, position: Int) {
-        print("$name : ")
-        repeat(position) {
-            print("-")
-        }
-        println()
+        val positionMark = "-".repeat(position)
+        println("$name : $positionMark")
     }
 
     fun showWinner(winners: String) {
