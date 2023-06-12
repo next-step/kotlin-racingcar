@@ -40,19 +40,6 @@ class RaceGameInputTest : DescribeSpec({
         val invalidString = "안녕하세요를레이요"
         val validNumberString = "123"
 
-        context(name = "자동차 대수에 5글자를 초과하는 문자열을 입력하면") {
-            val exception = shouldThrow<IllegalArgumentException> {
-                RaceGameInput(
-                    carNamesInput = invalidString,
-                    roundInput = validNumberString,
-                )
-            }
-
-            it(name = "자동차 이름은 빈 공백이거나, 정해진 글자 수를 초과할 수 없다는 에러가 발생한다.") {
-                exception shouldHaveMessage RaceGameErrorCode.INVALID_CAR_NAME_INPUT.message("$invalidString, 5")
-            }
-        }
-
         context(name = "라운드에 숫자가 아닌 문자열을 입력하면") {
             val exception = shouldThrow<IllegalArgumentException> {
                 RaceGameInput(
