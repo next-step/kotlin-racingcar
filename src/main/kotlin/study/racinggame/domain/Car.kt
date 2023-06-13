@@ -7,8 +7,10 @@ class Car (
 ) {
 
     fun move(): CarPosition {
-        this.position = position.move(engine.run())
+        val moveAmount = engine.run()
+        this.position = Position(position.value + moveAmount)
         return CarPosition(participant, position)
     }
 }
+
 data class CarPosition(val participant: Participant, val position: Position)

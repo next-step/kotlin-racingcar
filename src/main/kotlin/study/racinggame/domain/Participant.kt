@@ -1,6 +1,6 @@
 package study.racinggame.domain
-
-data class Participant(val name: String) {
+@JvmInline
+value class Participant(val name: String) {
     init {
         if (name.isBlank() || name.length > 5) {
             throw InvalidParticipantNameException(name)

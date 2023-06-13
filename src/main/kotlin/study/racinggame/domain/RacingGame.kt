@@ -11,24 +11,19 @@ class RacingGame(
                 val positionOfCars = cars.map { it.move() }
                 RacingGameStage(stage, positionOfCars)
             }
-        val winners: List<Participant> = chooseWinner(racingGameStages)
+        val winners = Winners(racingGameStages)
         return RacingGameResult(racingGameStages, winners)
-    }
-
-    private fun chooseWinner(racingGameStages: List<RacingGameStage>): List<Participant> {
-        val lastStageCarPositions = racingGameStages.last().positionOfCars
-        val maxPosition = lastStageCarPositions.map { it.position }
-            .maxBy { it.value }
-        return lastStageCarPositions
-            .filter { it.position == maxPosition }
-            .map { it.participant }
     }
 }
 
 data class RacingGameResult(
     val racingGameStages: List<RacingGameStage>,
-    val winners: List<Participant>
-)
+    val winners: Winners
+) {
+    fun nameOfWinners(): List<String> {
+        return winners.names()
+    }
+}
 data class RacingGameStage(
     val stage: Int,
     val positionOfCars: List<CarPosition>,

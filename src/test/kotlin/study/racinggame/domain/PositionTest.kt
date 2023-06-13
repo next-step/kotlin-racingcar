@@ -12,16 +12,4 @@ class PositionTest : StringSpec({
         // when & then
         shouldThrow<CanNotNegativePositionException> { Position(value) }
     }
-
-    "위치를 이동하면 이동하고자 하는 크기 만큼 이동한 위치가 반환 된다." {
-        // given
-        val position = Position(2)
-        val amountOfMove = 3
-
-        // when
-        val movedPosition = position.move(amountOfMove)
-
-        // then
-        movedPosition.value shouldBe 5
-    }
 })
