@@ -14,13 +14,11 @@ class RacingController(
     fun racingGame() {
 
         val inputCarName = inputView.printInputCarNames()
-
-        resultView.printResult()
-
         val cars = CarFactory().createCarsByInputCarName(inputCarName)
         val tryCount = inputView.printInputCount()
-        carNameViewRacing(tryCount, cars)
 
+        resultView.printResult()
+        carNameViewRacing(tryCount, cars)
         val winners = RacingManager().getRaceWinnerCars(cars)
         resultView.printWinnerNames(winners)
     }
