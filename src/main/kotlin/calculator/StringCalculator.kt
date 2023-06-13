@@ -1,41 +1,15 @@
 package calculator
 
-import calculator.exception.DivideByZeroException
-import calculator.exception.IllegalSymbolException
-
 object StringCalculator {
-    val symbolToFunction = mapOf(
-        "+" to this::add,
-        "-" to this::subtract,
-        "*" to this::multiply,
-        "/" to this::divide
-    )
+    private val blankRegex = Regex(" +")
+    private val allowedNumberCharacters = listOf("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
 
     fun calculate(arithmeticExpression: String): Float {
-        val expression = Expression(arithmeticExpression)
-        val result = expression.numbers.reduceIndexed { index, acc, s ->
-            doCalculate(acc, s, expression.arithmeticSymbols[index - 1])
-        }
+        val splitedExpression = arithmeticExpression.split(blankRegex)
+        val numbers = splitedExpression.filter { it in allowedNumberCharacters }.map { it.toFloat() }
+        val symbols = splitedExpression.filter { Operator.isOperatorSymbol(it) }.map { Operator.findBySymbol(it) }
+        val expression = Expression(numbers, symbols)
 
-        return result
-    }
-
-    private fun doCalculate(num1: Float, num2: Float, operator: String): Float {
-        val operatorFunction = symbolToFunction[operator] ?: throw IllegalSymbolException()
-        return operatorFunction.invoke(num1, num2)
-    }
-
-    fun add(num1: Float, num2: Float): Float = num1 + num2
-
-    fun subtract(num1: Float, num2: Float): Float = num1 - num2
-
-    fun multiply(num1: Float, num2: Float): Float = num1 * num2
-
-    fun divide(num1: Float, num2: Float): Float {
-        if (num2 == 0F) {
-            throw DivideByZeroException()
-        }
-
-        return num1 / num2
+        return expression.sum()
     }
 }

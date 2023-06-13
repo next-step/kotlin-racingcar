@@ -1,3 +1,3 @@
 package calculator.exception
 
-class IllegalSymbolException : IllegalArgumentException("기호가 올바르지 않습니다.")
+class IllegalSymbolException(symbol: String) : IllegalArgumentException("기호가 올바르지 않습니다. symbol:$symbol")
