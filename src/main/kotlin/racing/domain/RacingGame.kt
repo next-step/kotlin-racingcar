@@ -1,4 +1,4 @@
-package racing
+package racing.domain
 
 class RacingGame(
     private val cars: Cars,

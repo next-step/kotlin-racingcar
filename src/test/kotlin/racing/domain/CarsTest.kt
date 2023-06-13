@@ -1,4 +1,4 @@
-package racing
+package racing.domain
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldContainExactly
@@ -9,7 +9,7 @@ class CarsTest : StringSpec({
     "자동차들이 자동차 수에 맞게 생성된다" {
         val cars = Cars.of(listOf("name1", "name2", "name3"))
 
-        cars.cars shouldHaveSize 3
+        cars shouldHaveSize 3
     }
 
     "자동차들이 경주하면 모든 자동차가 움직인다" {

@@ -1,9 +1,12 @@
-package racing
+package racing.domain
 
 class Car(
     val name: String,
-    var position: Int = 0,
+    position: Int = 0,
 ) {
+    var position: Int = position
+        private set
+
     init {
         require(name.length <= MAX_NAME_LENGTH) { "자동차 이름은 ${MAX_NAME_LENGTH}자 이하여야 합니다" }
     }

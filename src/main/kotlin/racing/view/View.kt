@@ -1,4 +1,6 @@
-package racing
+package racing.view
+
+import racing.domain.Cars
 
 object InputView {
     private const val CAR_NAME_DELIMITER = ","
