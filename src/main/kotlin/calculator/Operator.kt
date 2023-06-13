@@ -1,4 +1,4 @@
-package step2.calculator
+package calculator
 
 import java.util.function.BiFunction
 

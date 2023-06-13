@@ -1,4 +1,4 @@
-package step2.calculator
+package calculator
 
 interface Expression {
     fun generate(): List<String>

@@ -1,4 +1,4 @@
-package step2.calculator
+package calculator
 
 object Output {
     fun printResult(result: Int) = println(result)

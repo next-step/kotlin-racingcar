@@ -1,4 +1,4 @@
-package step2.calculator
+package calculator
 
 fun main(args: Array<String>) {
     val inputData = Input.inputData()

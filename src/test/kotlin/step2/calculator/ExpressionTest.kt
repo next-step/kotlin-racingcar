@@ -1,5 +1,6 @@
 package step2.calculator
 
+import calculator.TokenizedExpression
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
