@@ -1,21 +1,30 @@
 package racingCar.controller
 
+import racingCar.domain.Car
+import racingCar.domain.Race
 import racingCar.view.InputView
-import kotlin.random.Random
+import racingCar.view.printResult
+import racingCar.view.printStart
 
 class RacingCarController {
     fun main() {
-        val numberOfCar = InputView.getNumberOfTrial()
-        val count = InputView.getNumberOfTrial()
+        val numberOfCar = InputView.getNumberOfCar()
+        val numberOfRace = InputView.getNumberOfTrial()
 
-        print("$numberOfCar, $count")
+        val cars = createCars(numberOfCar)
+        printStart()
+        for (i in 1..numberOfRace) {
+            val race = Race(cars)
+            race.racing()
+            printResult(cars)
+        }
     }
 
-    fun generateRandomNum(gt: Int, lt: Int): Int {
-        return Random.nextInt(gt, lt)
-    }
-
-    fun IsMovingForward(value: Int, ref: Int): Boolean {
-        return value >= ref
+    private fun createCars(count: Int): List<Car> {
+        val cars = mutableListOf<Car>()
+        repeat((1..count).count()) {
+            cars.add(Car())
+        }
+        return cars
     }
 }
