@@ -22,7 +22,3 @@ class Car(
         return randomNumber.getRandomNumber() >= FORWARD_CONDITIONS
     }
 }
-
-fun getRandomNumber(): Int {
-    return (0..9).random()
-}
