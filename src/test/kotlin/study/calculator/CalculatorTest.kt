@@ -36,7 +36,9 @@ class CalculatorTest : StringSpec({
 
     "사칙연산 모두 포함" {
         Calculator.calculate("2 + 3 * 4 / 2") shouldBe 10
+    }
 
+    "입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException을 발생시킨다" {
         assertThatThrownBy { Calculator.calculate("2 + 3 @ 4 / 2") }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageContaining("question was null or empty.")
@@ -44,7 +46,9 @@ class CalculatorTest : StringSpec({
         assertThatThrownBy { Calculator.calculate("") }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageContaining("question was null or empty.")
+    }
 
+    "사칙연산 기호가 아닌 경우 IllegalArgumentException을 발생시킨다" {
         assertThatThrownBy { Calculator.calculate("null") }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageContaining("question allows only integer or +, -, * and /.")
