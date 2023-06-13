@@ -10,7 +10,7 @@ class CarTest {
     @Test
     fun `자동차의 초기 위치는 0이다`() {
         val car = Car(ManualMoveStrategy())
-        assertThat(car.position).isZero()
+        assertThat(car.getPosition()).isZero()
     }
 
     @ParameterizedTest
@@ -20,6 +20,6 @@ class CarTest {
         for (i: Int in 1.rangeTo(moveCount)) {
             car.move()
         }
-        assertThat(car.position).isEqualTo(moveCount)
+        assertThat(car.getPosition()).isEqualTo(moveCount)
     }
 }

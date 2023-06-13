@@ -1,7 +1,8 @@
 package racingcar.car
 
 class Car(private val moveStrategy: MoveStrategy) {
-    var position: Int = 0
+
+    private var position: Position = Position(DEFAULT_POSITION_VALUE)
 
     fun move() {
         if (moveStrategy.movable) {
@@ -9,7 +10,16 @@ class Car(private val moveStrategy: MoveStrategy) {
         }
     }
 
-    private fun moveForward() {
-        position += 1
+    fun getPosition(): Int {
+        return position.getPosition()
     }
+
+    private fun moveForward() {
+        position.add()
+    }
+
+    companion object {
+        private const val DEFAULT_POSITION_VALUE = 0
+    }
+
 }
