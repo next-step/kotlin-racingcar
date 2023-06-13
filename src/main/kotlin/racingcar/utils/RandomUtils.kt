@@ -1,4 +1,4 @@
-package step3.racingcar.utils
+package racingcar.utils
 
 object RandomUtils {
     fun generate(start: Int, end: Int): Int {

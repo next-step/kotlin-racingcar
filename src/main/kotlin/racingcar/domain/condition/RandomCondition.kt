@@ -1,6 +1,6 @@
-package step3.racingcar.domain.condition
+package racingcar.domain.condition
 
-import step3.racingcar.utils.RandomUtils
+import racingcar.utils.RandomUtils
 
 object RandomCondition : Condition {
     private val START_RANDOM_NUM = 0
