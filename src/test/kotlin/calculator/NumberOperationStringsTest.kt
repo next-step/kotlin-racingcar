@@ -7,7 +7,7 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldBe
 
-@DisplayName("문자열 계산기")
+@DisplayName("숫자 연산자 문자열들")
 class NumberOperationStringsTest : StringSpec({
 
     "문자열 리스트로 생성 가능" {
