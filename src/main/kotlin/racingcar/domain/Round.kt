@@ -1,6 +1,6 @@
-package step3.racingcar.domain
+package racingcar.domain
 
-import step3.racingcar.view.Messages
+import racingcar.view.Messages
 
 data class Round(
     var attemptCount: Int
@@ -10,8 +10,12 @@ data class Round(
     }
 
     private fun validateAttemptCount(count: Int) {
-        if (count < 1) {
+        if (count < MINIMUM_ATTEMPT_COUNT) {
             throw IllegalArgumentException(Messages.MESSAGE_CONDITION_ATTEMPT_COUNT)
         }
+    }
+
+    companion object {
+        const val MINIMUM_ATTEMPT_COUNT = 1
     }
 }

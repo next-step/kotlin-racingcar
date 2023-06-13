@@ -1,9 +1,10 @@
-package step3.racingcar.domain
+package racingcar.domain
 
-import step3.racingcar.domain.condition.Condition
+import racingcar.domain.condition.Condition
 
-class Car(
+data class Car(
     var position: Int,
+    val carName: CarName,
     private val condition: Condition
 ) {
     fun move() {
