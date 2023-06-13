@@ -8,7 +8,7 @@ enum class Operator(
     MINUS("-", { a, b -> a - b }),
     TIMES("*", { a, b -> a * b }),
     DIVIDE("/", { a, b ->
-        require(b == 0) { "Division by zero is not allowed" }
+        require(b != 0) { "Division by zero is not allowed" }
         a / b
     });
 
