@@ -32,10 +32,8 @@ class CarRacingGameApplication(
     }
 
     private fun createCars(numberOfCar: Int): List<Car> {
-        return buildList {
-            repeat(numberOfCar) {
-                add(Car())
-            }
+        return List(numberOfCar) {
+            Car()
         }
     }
 }
