@@ -6,7 +6,7 @@ import io.kotest.matchers.collections.shouldContainExactly
 
 class CarsTest : BehaviorSpec({
     given("[moveBy 테스트] 자동차의 초기 위치가 0일 때") {
-        val cars = FakeGenerator.genearteCars(size = 3, position = 0)
+        val cars = FakeGenerator.generateCars(size = 3, position = 0)
 
         `when`("movable이 true인 경우") {
             val movable: () -> Boolean = { true }
