@@ -1,7 +1,7 @@
 package study.step3
 
 class Car {
-    val stateList: MutableList<Int> = mutableListOf()
+    private val states: MutableList<Int> = mutableListOf()
     private var state = 0
 
     fun move(moveCondition: Boolean) {
@@ -12,6 +12,10 @@ class Car {
     }
 
     private fun addCarState() {
-        stateList.add(state)
+        states.add(state)
     }
+
+    fun getStateList(): List<Int> = states
+
+    fun getStateByIndex(index: Int): Int = states[index]
 }

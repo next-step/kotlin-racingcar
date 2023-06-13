@@ -9,7 +9,7 @@ object ResultView {
         println("실행결과")
         (0 until tryCount).forEach { count ->
             carList.forEach { car ->
-                val state = car.stateList[count]
+                val state = car.getStateByIndex(count)
                 println("-".repeat(state))
             }
             println()

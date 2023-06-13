@@ -9,7 +9,7 @@ class RacingCarGameTest {
     fun `입력한 자동차 대수만큼 자동차들이 준비되었는지 확인`() {
         val actualInputCarCount = 3
         val actualRacingRequest = RacingRequest(actualInputCarCount, 5)
-        val game = RacingCarGame()
+        val game = RacingCarGame(actualRacingRequest)
         game.play(actualRacingRequest)
 
         assertThat(game.getCurrentCars().size).isEqualTo(3)
@@ -19,11 +19,11 @@ class RacingCarGameTest {
     fun `입력한 시도 횟수만큼 자동차들의 상태가 저장되었는지 확인`() {
         val actualInputTryCount = 5
         val actualRacingRequest = RacingRequest(3, actualInputTryCount)
-        val game = RacingCarGame()
+        val game = RacingCarGame(actualRacingRequest)
         game.play(actualRacingRequest)
 
         game.getCurrentCars().forEach { car ->
-            assertThat(car.stateList.size).isEqualTo(actualInputTryCount)
+            assertThat(car.getStateList().size).isEqualTo(actualInputTryCount)
         }
     }
 
@@ -34,7 +34,7 @@ class RacingCarGameTest {
 
         actualCar.move(randomValue >= 4)
         if (randomValue >= 4) {
-            assertThat(actualCar.stateList.last()).isEqualTo(1)
+            assertThat(actualCar.getStateList().last()).isEqualTo(1)
         }
     }
 }
