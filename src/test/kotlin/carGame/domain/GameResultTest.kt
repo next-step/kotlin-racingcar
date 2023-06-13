@@ -1,26 +1,19 @@
 package carGame.domain
 
+import carGame.test.FakeGenerator
 import io.kotest.core.spec.style.StringSpec
-import io.kotest.matchers.shouldBe
+import io.kotest.matchers.collections.shouldContainExactly
 
 class GameResultTest : StringSpec({
-    "[getLastPositions 테스트] 결과가 없으면 초기 위치를 리턴한다." {
-        val initialPositions = CarPositions.of(size = 3)
-        val gameResult = GameResult(initialPositions)
+    "[getWinners 테스트] 가장 멀리간 자동차를 리턴한다." {
+        val car1 = FakeGenerator.generateCar(position = 3)
+        val car2 = FakeGenerator.generateCar(position = 3)
+        val car3 = FakeGenerator.generateCar(position = 2)
+        val cars = Cars(listOf(car1, car2, car3))
+        val result = GameResult(history = listOf(cars))
 
-        gameResult.getLastPositions() shouldBe initialPositions
-    }
+        val winners = result.getWinners()
 
-    "GameResult 내부 리스트는 외부에서 변경할 수 없다." {
-        val carPositions = CarPositions(positions = listOf())
-        val list = mutableListOf(carPositions)
-        val gameResult = GameResult(
-            initialPositions = carPositions,
-            positionsResult = list
-        )
-
-        list.clear()
-
-        gameResult.getPositionsResult().size shouldBe 1
+        winners shouldContainExactly listOf(car1, car2)
     }
 })
