@@ -1,11 +1,11 @@
-package race
+package race.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import race.model.Car
-import race.model.FixedMoveCondition
-import race.model.RandomMoveCondition
+import race.domain.Car
+import race.domain.FixedMoveCondition
+import race.domain.RandomMoveCondition
 
 class CarTest {
     @Test

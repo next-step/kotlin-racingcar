@@ -1,8 +1,8 @@
 package race.controller
 
-import race.model.Car
-import race.model.Race
-import race.model.RandomMoveCondition
+import race.domain.Car
+import race.domain.Race
+import race.domain.RandomMoveCondition
 import race.view.InputView
 import race.view.ResultView
 

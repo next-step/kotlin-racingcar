@@ -1,6 +1,7 @@
 package race.view
 
-import race.model.Car
+import race.domain.Car
+import race.domain.RaceResult
 
 class ResultView {
     fun run(raceResult: RaceResult) {
@@ -11,7 +12,8 @@ class ResultView {
             showAllPosition(it)
         }
 
-        showWinners(raceResult.winners)
+        val winners = raceResult.findWinners()
+        showWinners(winners)
     }
 
     private fun showAllPosition(cars: List<Car>) {
