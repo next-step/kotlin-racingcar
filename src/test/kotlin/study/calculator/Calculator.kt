@@ -17,7 +17,7 @@ object Calculator {
                     s.toIntOrNull() ?: throw IllegalArgumentException("question allows only integer or +, -, * and /.")
                     result
                 }
-            }.let { result = it }
+            }.run { result = this }
         }
 
         return result
