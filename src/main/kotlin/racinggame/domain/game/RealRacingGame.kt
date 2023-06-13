@@ -3,6 +3,7 @@ package racinggame.domain.game
 import racinggame.domain.car.RacingCar
 import racinggame.domain.car.factory.RacingCarFactory
 import racinggame.domain.field.RacingField
+import racinggame.domain.judge.Judge
 import racinggame.domain.player.User
 import racinggame.domain.record.RacingHistoryRecoder
 import racinggame.domain.record.RacingRecordBook
@@ -16,9 +17,11 @@ class RealRacingGame(
             racingCars = gameGuide.users.assignUsersToRacingCars(),
             gameRule = gameGuide.gameRule,
         )
+        val evaluationResult = Judge().evaluate(racingRecordBook)
 
         return RacingGameResult(
             racingRecordBook = racingRecordBook,
+            winners = evaluationResult.winners,
         )
     }
 

@@ -16,6 +16,6 @@ class MockRacingGame : RacingGame {
 
     override fun execute(gameGuide: GameGuide): RacingGameResult {
         gameGuideCapture = gameGuide
-        return racingGameResultDelegator?.invoke() ?: RacingGameResult(RacingRecordBook(emptyList()))
+        return racingGameResultDelegator?.invoke() ?: RacingGameResult(RacingRecordBook(emptyList()), emptyList())
     }
 }
