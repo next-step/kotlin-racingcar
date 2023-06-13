@@ -1,4 +1,4 @@
-package racing
+package racing.domain
 
 interface ForwardCondition {
 
