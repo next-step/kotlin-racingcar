@@ -14,9 +14,7 @@ object ResultView {
         println()
     }
 
-    fun printGameWinner(gameResult: RacingGame) {
-        val max = gameResult.cars.maxBy { it.score }.score
-        val winners = gameResult.cars.filter { it.score == max }.map { it.name }
-        println("${winners.joinToString(", ")}$WINNER_STRING")
+    fun printGameWinner(winners: List<Car>) {
+        println("${winners.joinToString(", ") { it.name }}$WINNER_STRING")
     }
 }
