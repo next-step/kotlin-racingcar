@@ -1,8 +1,7 @@
 package racingcar
 
-object RacingGame {
-    fun play(records: GameRecords, randomNumStrategy: MoveStrategy): GameRecords {
-        records.cars.forEach { it.move(randomNumStrategy) }
-        return records
+data class RacingGame(val cars: List<Car>) {
+    fun play(randomNumStrategy: MoveStrategy) {
+        this.cars.forEach { it.move(randomNumStrategy) }
     }
 }

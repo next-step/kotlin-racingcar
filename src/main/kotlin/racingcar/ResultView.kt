@@ -8,13 +8,13 @@ object ResultView {
 
     fun startPrintGame() = println(RESULT_START_STRING)
 
-    fun printGameResult(gameResult: GameRecords) {
+    fun printGameResult(gameResult: RacingGame) {
         gameResult.cars
             .forEach { println("${it.name} : ${MOVE_STRING.repeat(it.score)}") }
         println()
     }
 
-    fun printGameWinner(gameResult: GameRecords) {
+    fun printGameWinner(gameResult: RacingGame) {
         val max = gameResult.cars.maxBy { it.score }.score
         val winners = gameResult.cars.filter { it.score == max }.map { it.name }
         println("${winners.joinToString(", ")}$WINNER_STRING")
