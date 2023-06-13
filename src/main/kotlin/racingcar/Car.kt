@@ -8,7 +8,7 @@ class Car(val name: String, score: Int = 0) {
         private set
 
     init {
-        require(name.length <= MAXIMUM_NAME_LENGTH) { "자동차이름은 5자를 초과할 수 없습니다." }
+        require(name.length < MAXIMUM_NAME_LENGTH) { "자동차이름은 5자를 초과할 수 없습니다." }
     }
 
     fun move(strategy: MoveStrategy) {

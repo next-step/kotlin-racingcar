@@ -28,9 +28,9 @@ class CarTest {
     }
 
     @Test
-    internal fun `이름이 5글자 이상이면 오류가 발생한다`() {
+    internal fun `이름이 5글자 초과면 오류가 발생한다`() {
         assertThrows<IllegalArgumentException> {
-            Car("rabbit")
+            Car("rabbi")
         }
     }
 }
