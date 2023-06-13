@@ -1,16 +1,14 @@
-package racing
+package racing.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import racing.domain.Cars
-import racing.domain.RandomNumberForwardCondition
 
 class CarsTest {
 
     @Test
     fun `n 개 car를 생성한다`() {
         // given
-        val carNames = listOf("carName1", "carName2")
+        val carNames = listOf("car1", "car2")
 
         // when
         val cars = Cars.of(carNames, RandomNumberForwardCondition())

@@ -1,7 +1,6 @@
 package racing.ui
 
 import racing.domain.RacingPhaseRecords
-import racing.domain.Winner
 
 object OutputView {
 
@@ -23,7 +22,7 @@ object OutputView {
     }
 
     private fun printWinners(racingPhaseRecords: List<RacingPhaseRecords>) {
-        val winners = Winner.getWinners(racingPhaseRecords)
+        val winners = racingPhaseRecords.last().getWinners()
         println("${winners.joinToString(",")}가 최종 우승했습니다.")
     }
 }

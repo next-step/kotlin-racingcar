@@ -1,8 +1,8 @@
-package racing
+package racing.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import racing.domain.Car
+import org.junit.jupiter.api.assertThrows
 import racing.mock.FakeForwardCondition
 
 class CarTest {
@@ -29,5 +29,13 @@ class CarTest {
 
         // then
         assertThat(racingPhaseRecord.distance).isEqualTo(Car.INITIAL_DISTANCE + 1)
+    }
+
+    @Test
+    fun `carName 이 5자를 초과하는 경우 예외 발생한다`() {
+        // expect
+        assertThrows<IllegalArgumentException> {
+            Car(name = "123456", forwardCondition = FakeForwardCondition(true))
+        }
     }
 }

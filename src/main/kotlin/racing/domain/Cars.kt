@@ -4,9 +4,12 @@ class Cars(
     private val cars: List<Car>
 ) {
 
-    fun race(): List<RacingPhaseRecord> = cars.map { it.move() }
+    fun race(): RacingPhaseRecords {
+        val racingPhaseRecords = cars.map { it.move() }
+        return RacingPhaseRecords(racingPhaseRecords)
+    }
 
-    fun size() = this.cars.size
+    fun size(): Int = this.cars.size
 
     companion object {
         fun of(carNames: List<String>, forwardCondition: ForwardCondition): Cars {
