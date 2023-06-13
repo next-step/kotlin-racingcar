@@ -16,7 +16,7 @@ class CarTest {
         val racingPhaseRecord = car.move()
 
         // then
-        assertThat(racingPhaseRecord.distance).isEqualTo(Car.INITIAL_DISTANCE)
+        assertThat(racingPhaseRecord.distance).isEqualTo(1)
     }
 
     @Test
@@ -28,7 +28,7 @@ class CarTest {
         val racingPhaseRecord = car.move()
 
         // then
-        assertThat(racingPhaseRecord.distance).isEqualTo(Car.INITIAL_DISTANCE + 1)
+        assertThat(racingPhaseRecord.distance).isEqualTo(2)
     }
 
     @Test
@@ -37,5 +37,14 @@ class CarTest {
         assertThrows<IllegalArgumentException> {
             Car(name = "123456", forwardCondition = FakeForwardCondition(true))
         }
+    }
+
+    @Test
+    fun `car 의 초기 distance 는 1이다`() {
+        // when
+        val car = Car(name = "car", forwardCondition = FakeForwardCondition(true))
+
+        // then
+        assertThat(car.distance).isEqualTo(1)
     }
 }
