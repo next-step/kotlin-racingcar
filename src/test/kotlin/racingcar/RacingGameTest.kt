@@ -8,8 +8,7 @@ internal class RacingGameTest {
     @Test
     internal fun `모든 자동차의 게임결과가 전진이 나왔을 때 score가 전부 1이 되었는지 확인`() {
         val records = RacingGame.play(
-            3,
-            GameRecords(CarFactory.manufacture(3)),
+            GameRecords(CarFactory.manufacture(listOf("aaa", "bbb", "abc"))),
             object : MoveStrategy {
                 override fun move(): Boolean {
                     return true
@@ -28,8 +27,7 @@ internal class RacingGameTest {
     @Test
     internal fun `모든 자동차의 게임 결과가 전진이 나오지 않았을 때 score가 전부 0이 되었는지 확인`() {
         val records = RacingGame.play(
-            2,
-            GameRecords(CarFactory.manufacture(2)),
+            GameRecords(CarFactory.manufacture(listOf("aaa", "bbb"))),
             object : MoveStrategy {
                 override fun move(): Boolean {
                     return false
