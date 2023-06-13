@@ -6,7 +6,7 @@ import step3.fake.FakeNumberGenerator
 
 class CarMoveConditionTest : FunSpec({
 
-    test("전진 조건을 충족하는 경우 isMovable 은 true 를 반환한다.") {
+    test("4 이상의 수가 제공될 경우 isMovable 은 true 를 반환한다.") {
         // given
         val numberGenerator = FakeNumberGenerator(4)
         val carMoveCondition = CarMoveCondition(numberGenerator)
@@ -15,7 +15,7 @@ class CarMoveConditionTest : FunSpec({
         carMoveCondition.isMovable() shouldBe true
     }
 
-    test("전진 조건을 충족하지 않는 경우 isMovable 은 false 를 반환한다.") {
+    test("4 미만의 수가 제공될 경우 isMovable 은 false 를 반환한다.") {
         // given
         val numberGenerator = FakeNumberGenerator(2)
         val carMoveCondition = CarMoveCondition(numberGenerator)

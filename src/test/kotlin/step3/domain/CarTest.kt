@@ -18,7 +18,7 @@ class CarTest : FunSpec({
         car.move()
 
         // then
-        car.getPosition() shouldBe expectedPosition
+        car.position shouldBe expectedPosition
     }
 
     test("전진 조건을 충족하지 않는 car 는 전진할 수 없다.") {
@@ -34,6 +34,6 @@ class CarTest : FunSpec({
         car.move()
 
         // then
-        car.getPosition() shouldBe expectedPosition
+        car.position shouldBe expectedPosition
     }
 })
