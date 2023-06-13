@@ -13,8 +13,9 @@ internal enum class Operation(private val sign: String, private val calculator: 
     fun calculate(first: Int, second: Int): Int = calculator(first, second)
 
     companion object {
-        val String.numberOperation: Operation
-            get() = values().find { it.sign == this }
-                ?: throw IllegalArgumentException("not supported operation. (`$this`)")
+        fun signOf(sign: String): Operation {
+            return values().find { sign == it.sign }
+                ?: throw IllegalArgumentException("not supported operation. (`$sign`)")
+        }
     }
 }

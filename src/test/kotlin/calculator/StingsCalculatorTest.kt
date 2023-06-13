@@ -17,7 +17,7 @@ class StingsCalculatorTest : StringSpec({
             listOf("1", "*", "5"),
         ).forAll {
             shouldNotThrowAny {
-                StingsCalculator(it)
+                NumberOperationStrings(it)
             }
         }
     }
@@ -28,7 +28,7 @@ class StingsCalculatorTest : StringSpec({
             listOf("1", "", "2"),
         ).forAll {
             shouldThrowExactly<IllegalArgumentException> {
-                StingsCalculator(it)
+                NumberOperationStrings(it)
             }
         }
     }
@@ -39,17 +39,17 @@ class StingsCalculatorTest : StringSpec({
             listOf("1", "+"),
         ).forAll {
             shouldThrowExactly<IllegalArgumentException> {
-                StingsCalculator(it)
+                NumberOperationStrings(it)
             }
         }
     }
 
     "숫자 문자열들의 사칙 연산을 수행할 수 있음" {
         listOf(
-            StingsCalculator(listOf("2", "+", "3", "*", "4", "/", "2")) to 10,
-            StingsCalculator(listOf("5", "-", "1", "/", "2", "+", "3", "*", "3")) to 15
+            NumberOperationStrings(listOf("2", "+", "3", "*", "4", "/", "2")) to 10,
+            NumberOperationStrings(listOf("5", "-", "1", "/", "2", "+", "3", "*", "3")) to 15
         ).forAll {
-            it.first.number shouldBe it.second
+            it.first.calculatedNumber shouldBe it.second
         }
     }
 })
