@@ -62,7 +62,7 @@ class OperatorTest : BehaviorSpec({
     given("DIV에서") {
         `when`("0으로 나눌때") {
             then("예외가 던져진다") {
-                shouldThrow<ArithmeticException> {
+                shouldThrow<IllegalArgumentException> {
                     Operator.DIV(6, 0)
                 }
             }
