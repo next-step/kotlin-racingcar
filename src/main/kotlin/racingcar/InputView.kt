@@ -5,9 +5,9 @@ private const val CARNAME_STRING = "경주할 자동차 이름을 입력하세�
 private const val TRYNUM_STRING = "시도할 횟수는 몇 회인가요?"
 
 object InputView {
-    fun getCarName(): Int {
+    fun getCarName(): String {
         println(CARNAME_STRING)
-        return readln().toInt()
+        return readln()
     }
 
     fun getTryNum(): Int {

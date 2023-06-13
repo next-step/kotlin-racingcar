@@ -1,7 +1,9 @@
 package racingcar
 
 object CarFactory {
-    fun manufacture(carNum: Int): List<Car> {
-        return List(carNum) { Car() }
+    fun manufacture(carNames: List<String>): List<Car> {
+        return carNames.map {
+            Car(it)
+        }
     }
 }

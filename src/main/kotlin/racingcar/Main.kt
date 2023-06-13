@@ -1,10 +1,12 @@
 package racingcar
 
+private const val DRIVER_NAME_DELIMITER = ","
+
 fun main() {
-    val carNum = InputView.getCarNum()
+    val carNames: List<String> = InputView.getCarName().split(DRIVER_NAME_DELIMITER)
+    var records = GameRecords(CarFactory.manufacture(carNames))
     val tryNum = InputView.getTryNum()
 
-    var records = GameRecords(CarFactory.manufacture(carNum))
 
     ResultView.startPrintGame()
 
