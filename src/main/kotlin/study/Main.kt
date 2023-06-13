@@ -11,7 +11,7 @@ fun main() {
         InputView.requestTryCount()
     )
 
-    val game = RacingCarGame()
+    val game = RacingCarGame(racingRequest)
     game.play(racingRequest)
 
     val carList = game.getCurrentCars()

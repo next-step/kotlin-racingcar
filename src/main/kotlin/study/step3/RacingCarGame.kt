@@ -1,11 +1,14 @@
 package study.step3
 
-class RacingCarGame {
+class RacingCarGame(racingRequest: RacingRequest) {
 
-    private val carList: MutableList<Car> = mutableListOf()
+    private val carList: List<Car>
+
+    init {
+        carList = prepareRacingCars(racingRequest.carCount)
+    }
 
     fun play(racingRequest: RacingRequest) {
-        prepareRacingCars(racingRequest.carCount)
         startRace(racingRequest.tryCount)
     }
 
@@ -18,13 +21,10 @@ class RacingCarGame {
         }
     }
 
-    private fun prepareRacingCars(carCount: Int) {
-        carList.addAll(
-            buildList {
-                repeat(carCount) { add(Car()) }
-            }
-        )
-    }
+    private fun prepareRacingCars(carCount: Int) =
+        buildList {
+            repeat(carCount) { add(Car()) }
+        }
 
     fun getCurrentCars(): List<Car> = carList
 }
