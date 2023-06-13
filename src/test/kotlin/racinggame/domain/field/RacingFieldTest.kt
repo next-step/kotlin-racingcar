@@ -19,7 +19,7 @@ class RacingFieldTest : BehaviorSpec({
                 id = UserUniqueId.create(),
                 carName = CarName("test"),
                 ordinal = 0,
-                ),
+            ),
             engine = MockEngine(fixedDrivableDistance = DrivableDistance(fixedDrivableDistance))
         )
     }
