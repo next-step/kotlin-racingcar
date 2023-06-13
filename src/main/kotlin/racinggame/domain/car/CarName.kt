@@ -6,7 +6,7 @@ value class CarName(
 ) {
     init {
         require(value.isNotBlank() && value.length <= MAX_CAR_NAME_LENGTH) {
-            "The name cannot be blank and must be up to 5 characters. you input name : $value"
+            "The name cannot be blank and must be up to $MAX_CAR_NAME_LENGTH characters. you input name : $value"
         }
     }
 
