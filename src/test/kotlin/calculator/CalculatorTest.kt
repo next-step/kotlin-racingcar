@@ -1,7 +1,5 @@
-package step2.calculator
+package calculator
 
-import calculator.Calculator
-import calculator.TokenizedExpression
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.data.blocking.forAll
