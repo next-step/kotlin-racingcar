@@ -4,7 +4,7 @@ data class Car(
     val position: Int,
     val name: String,
 ) {
-    fun goForward() = copy(position = position + 1)
+    fun goForward(): Car = copy(position = position + 1)
 
     fun isDraw(otherCar: Car): Boolean {
         return this.position == otherCar.position

@@ -18,9 +18,9 @@ data class RaceResult(
             }
     }
 
-    fun latestTurn() = turns.last()
+    fun latestTurn(): TurnInfo = turns.last()
 
-    fun appendTurn(turn: TurnInfo) = copy(turns = turns.plus(turn))
+    fun appendTurn(turn: TurnInfo): RaceResult = copy(turns = turns.plus(turn))
 
     companion object {
         fun getInitialRaceResult(startInformation: RaceStartInformation): RaceResult {
