@@ -10,8 +10,8 @@ data class Round(
     }
 
     private fun validateAttemptCount(count: Int) {
-        if (count < MINIMUM_ATTEMPT_COUNT) {
-            throw IllegalArgumentException(Messages.MESSAGE_CONDITION_ATTEMPT_COUNT)
+        require(count < MINIMUM_ATTEMPT_COUNT) {
+            Messages.MESSAGE_CONDITION_ATTEMPT_COUNT
         }
     }
 

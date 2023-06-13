@@ -13,8 +13,8 @@ value class CarName(
     }
 
     private fun validateNameLength() {
-        if (name.length > CAR_NAME_LENGTH_THRESHOLD) {
-            throw IllegalArgumentException("자동차 이름은 ${CAR_NAME_LENGTH_THRESHOLD}자를 초과할 수 없습니다.")
+        require(name.length > CAR_NAME_LENGTH_THRESHOLD) {
+            "자동차 이름은 ${CAR_NAME_LENGTH_THRESHOLD}자를 초과할 수 없습니다."
         }
     }
 }

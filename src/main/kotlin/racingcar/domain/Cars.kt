@@ -2,7 +2,6 @@ package racingcar.domain
 
 import racingcar.view.Messages
 import racingcar.view.OutputView
-import java.lang.IllegalArgumentException
 
 class Cars(
     private val cars: List<Car>
@@ -13,15 +12,15 @@ class Cars(
     }
 
     private fun validateEmptyCars(cars: List<Car>) {
-        if (cars.isEmpty()) {
-            throw IllegalArgumentException(Messages.MESSAGE_CONDITION_CAR_COUNT)
+        require(cars.isEmpty()) {
+            Messages.MESSAGE_CONDITION_CAR_COUNT
         }
     }
 
     private fun validateDuplicatedCarNames(cars: List<Car>) {
         val carNames = cars.map { it.carName.name }
-        if (carNames.stream().distinct().count().toInt() != carNames.size) {
-            throw IllegalArgumentException(Messages.MESSAGE_DUPLICATED_CAR_NAMES)
+        require(carNames.stream().distinct().count().toInt() != carNames.size) {
+            Messages.MESSAGE_DUPLICATED_CAR_NAMES
         }
     }
 
