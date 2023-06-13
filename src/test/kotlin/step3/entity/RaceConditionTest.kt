@@ -40,7 +40,7 @@ internal class RaceConditionTest {
     fun `if value is longer than 5 letters then throw IllegalArgumentException`() {
         assertThrows<IllegalArgumentException> {
             RaceCondition.of(
-                "jeff.42",
+                "jeff",
                 Random.nextInt(Int.MIN_VALUE, 0).toString(),
             )
         }
@@ -55,7 +55,7 @@ internal class RaceConditionTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["jeff,hoodie,clo,champ,binary,keith", "hi,hello,my,name,is"])
+    @ValueSource(strings = ["jeff,hoodi,clo,champ,binar,keith", "hi,hello,my,name,is"])
     fun `string split test`(names: String) {
         val raceCondition = RaceCondition.of(names, "4")
         names.split(",").forEachIndexed { index, name ->
@@ -68,7 +68,7 @@ internal class RaceConditionTest {
         fun makeRaceCondition(): List<Arguments> {
             return (0..20).map {
                 Arguments.of(
-                    UUID.randomUUID().toString(),
+                    UUID.randomUUID().toString().substring(0, 5),
                     Random.nextInt(1, Int.MAX_VALUE).toString(),
                 )
             }

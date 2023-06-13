@@ -28,8 +28,10 @@ class RaceCondition private constructor(
 
         private fun validateString(nameOfCars: String): List<String> {
             require(nameOfCars.isNotBlank()) { "입력은 반드시 필요합니다. ,로 구분되는 자동차 이름을 입력해주세요." }
-            require(nameOfCars.length <= 5) { "자동차의 이름은 5자를 초과할 수 없습니다." }
-            return nameOfCars.split(DELIMITER)
+            return nameOfCars.split(DELIMITER).map {
+                require(it.length <= 5) { "자동차의 이름은 5자를 초과할 수 없습니다." }
+                it
+            }
         }
     }
 }
