@@ -1,8 +1,8 @@
-package step3.racingcar.view
+package racingcar.view
 
 object OutputView {
     fun printRequestCarCount() {
-        println(Messages.MESSAGE_REQUEST_CAR_COUNT)
+        println(Messages.MESSAGE_REQUEST_CAR_NAME)
     }
 
     fun printRequestAttemptCount() {
@@ -13,8 +13,13 @@ object OutputView {
         println(Messages.MESSAGE_EXECUTION_RESULT)
     }
 
-    fun printPosition(position: Int) {
+    fun printCarNameAndPosition(carName: String, position: Int) {
+        print("$carName : ")
         println("-".repeat(position))
+    }
+
+    fun printWinnerNames(winnerNames: String) {
+        println("${winnerNames}이(가) 최종 우승했습니다.")
     }
 
     fun print() {
