@@ -14,7 +14,11 @@ class RacingCarTest : BehaviorSpec({
         engine: Engine,
     ): RacingCar {
         return RacingCar(
-            user = User(id = UserUniqueId.create(), ordinal = 0),
+            user = User(
+                id = UserUniqueId.create(),
+                carName = CarName("test"),
+                ordinal = 0,
+            ),
             engine = engine,
         )
     }

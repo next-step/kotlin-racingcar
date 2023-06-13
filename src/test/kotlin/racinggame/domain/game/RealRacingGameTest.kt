@@ -2,6 +2,7 @@ package racinggame.domain.game
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
+import racinggame.domain.car.CarName
 import racinggame.domain.car.RacingCar
 import racinggame.domain.car.engine.MockOneSpaceMovementEngine
 import racinggame.domain.car.factory.RacingCarFactory
@@ -12,7 +13,11 @@ class RealRacingGameTest : BehaviorSpec({
 
     Given("참가자들과 게임 룰이 준비 되었을 때") {
         val users = List(2) { index ->
-            User(id = UserUniqueId.create(), ordinal = index)
+            User(
+                id = UserUniqueId.create(),
+                carName = CarName("test"),
+                ordinal = index,
+            )
         }
         val playCount = 2
         When("레이싱 게임을 실행하면") {

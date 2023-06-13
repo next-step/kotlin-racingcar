@@ -2,6 +2,7 @@ package racinggame.domain.record
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
+import racinggame.domain.car.CarName
 import racinggame.domain.car.RacingCar
 import racinggame.domain.car.engine.MockNotMoveEngine
 import racinggame.domain.field.Field
@@ -17,6 +18,7 @@ class RacingHistoryRecoderTest : BehaviorSpec({
             RacingCar(
                 user = User(
                     id = UserUniqueId.create(),
+                    carName = CarName("test"),
                     ordinal = index,
                 ),
                 engine = MockNotMoveEngine(),

@@ -21,7 +21,8 @@ class RealRacingGameOutputView : RacingGameOutputView {
 
     private fun display(racingRecordPaperList: RacingRecordPaperList) {
         racingRecordPaperList.list
-            .map { racingRecordPaper -> racingRecordPaper.moveDistance.value }
-            .forEach { racingCarMoveDistance -> println("-".repeat(racingCarMoveDistance)) }
+            .map { racingRecordPaper -> racingRecordPaper.user.carName to racingRecordPaper.moveDistance }
+            .map { (carName, moveDistance) -> carName.value to "-".repeat(moveDistance.value) }
+            .forEach { (carName, moveDistanceLine) -> println("$carName : $moveDistanceLine") }
     }
 }

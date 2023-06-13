@@ -2,6 +2,7 @@ package racinggame.domain.field
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
+import racinggame.domain.car.CarName
 import racinggame.domain.car.RacingCar
 import racinggame.domain.car.engine.DrivableDistance
 import racinggame.domain.car.engine.MockEngine
@@ -14,7 +15,11 @@ class RacingFieldTest : BehaviorSpec({
         fixedDrivableDistance: Int = 0
     ): RacingCar {
         return RacingCar(
-            user = User(id = UserUniqueId.create(), ordinal = 0),
+            user = User(
+                id = UserUniqueId.create(),
+                carName = CarName("test"),
+                ordinal = 0,
+                ),
             engine = MockEngine(fixedDrivableDistance = DrivableDistance(fixedDrivableDistance))
         )
     }
