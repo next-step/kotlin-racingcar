@@ -1,7 +1,5 @@
 package step3.entity
 
-import java.lang.NumberFormatException
-
 class RaceCondition private constructor(
     val nameOfCars: List<String>,
     val numberOfLabs: Int,
@@ -9,13 +7,6 @@ class RaceCondition private constructor(
     companion object {
         private const val DELIMITER = ","
 
-        private fun validateNumbers(number: String?): Int {
-            require(!number.isNullOrBlank()) { "입력은 반드시 필요합니다. 숫자를 입력해주세요." }
-            val intValue = try {
-                number.toInt()
-            } catch (e: NumberFormatException) {
-                throw IllegalArgumentException("숫자만 입력해주세요.")
-            }
         fun of(nameOfCars: String, numberOfLabs: String): RaceCondition =
             RaceCondition(validateString(nameOfCars), validateNumbers(numberOfLabs))
 
