@@ -11,6 +11,6 @@ enum class RaceGameErrorCode(val message: (String) -> String) {
         message = { input -> "라운드는 숫자형이어야 합니다. 입력값 : $input" },
     ),
     INVALID_CAR_NAME_INPUT(
-        message = { input -> "자동차 이름은 빈 공백이거나, 정해진 글자 수를 초과할 수 없습니다. (입력값, 제한값) : $input" },
+        message = { input -> "자동차 이름은 빈 공백이거나, 정해진 글자 수를 초과할 수 없습니다. (입력값 제한값) : $input" },
     ),
 }

@@ -2,11 +2,18 @@ package racing.domain.car
 
 import racing.domain.formula.MoveFormula
 import racing.domain.formula.MoveState
+import racing.model.RaceGameErrorCode
 
 class Car internal constructor(
     val name: String,
     position: Int,
 ) {
+
+    init {
+        require(value = name.length <= MAX_NAME_SIZE && name.isNotBlank()) {
+            RaceGameErrorCode.INVALID_CAR_NAME_INPUT.message("$name $MAX_NAME_SIZE")
+        }
+    }
 
     var position: Int = position
         private set
@@ -29,5 +36,9 @@ class Car internal constructor(
         var result = name.hashCode()
         result = 31 * result + position
         return result
+    }
+
+    companion object {
+        private const val MAX_NAME_SIZE = 5
     }
 }
