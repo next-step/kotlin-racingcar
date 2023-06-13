@@ -23,7 +23,9 @@ object InputView {
 
     private fun getInputCars(): List<String> {
         return runCatching {
-            (readlnOrNull() ?: "").split(INPUT_SEPERATOR)
+            val inputCars = (readlnOrNull() ?: "")
+            if (inputCars.isEmpty()) throw IllegalArgumentException("이름은 한글자 이상이어야 함")
+            inputCars.split(INPUT_SEPERATOR)
         }.getOrElse {
             throw IllegalArgumentException("형식에 맞는 타입을 입력해야함")
         }
