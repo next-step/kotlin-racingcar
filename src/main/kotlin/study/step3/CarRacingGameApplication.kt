@@ -11,15 +11,13 @@ class CarRacingGameApplication(
     private val scoreboard = Scoreboard()
 
     fun run() {
-        with(view) {
-            numberOfCarView { numberOfCar ->
-                cars.addAll(createCars(numberOfCar))
-            }
-            numberOfRoundView { numberOfRound ->
-                startGame(cars, scoreboard, numberOfRound)
-            }
-            resultView(scoreboard)
+        view.numberOfCarView { numberOfCar ->
+            cars.addAll(createCars(numberOfCar))
         }
+        view.numberOfRoundView { numberOfRound ->
+            startGame(cars, scoreboard, numberOfRound)
+        }
+        view.resultView(scoreboard)
     }
 
     private fun startGame(cars: MutableList<Car>, scoreboard: Scoreboard, numberOfRound: Int) {
