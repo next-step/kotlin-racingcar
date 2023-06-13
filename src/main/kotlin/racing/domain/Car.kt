@@ -7,9 +7,7 @@ class Car(
 ) {
 
     init {
-        if (name.length > 5) {
-            throw IllegalArgumentException(CAR_NAME_ERROR_MESSAGE)
-        }
+        require(name.length <= 5) { CAR_NAME_ERROR_MESSAGE }
     }
 
     fun move(): RacingPhaseRecord {

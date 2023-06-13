@@ -4,8 +4,9 @@ class RacingPhaseRecords(
     val records: List<RacingPhaseRecord>
 ) {
 
+    private val maxDistanceRecords = records.maxBy { it.distance }
+
     fun getWinners(): List<String> {
-        val maxDistanceRecords = records.maxBy { it.distance }
         val winnerRecords = records
             .filter { it.distance == maxDistanceRecords.distance }
 
