@@ -8,7 +8,7 @@ import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldBe
 
 @DisplayName("문자열 계산기")
-class StingsCalculatorTest : StringSpec({
+class NumberOperationStringsTest : StringSpec({
 
     "문자열 리스트로 생성 가능" {
         listOf(
