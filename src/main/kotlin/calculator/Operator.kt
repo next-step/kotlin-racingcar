@@ -1,3 +1,5 @@
+package calculator
+
 enum class Operator(val operator: String) {
     PLUS("+") {
         override fun calculate(preNumber: String, postNumber: String): String {
