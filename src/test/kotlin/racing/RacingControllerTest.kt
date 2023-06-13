@@ -92,12 +92,6 @@ class RacingControllerTest {
     }
 
     @Test
-    fun `레이싱 경주 출력 결과`() {
-        System.setIn(getInputArrayStream("3", "3"))
-        RacingController(InputView, ResultView).racingGame()
-    }
-
-    @Test
     fun `레이싱 경주(우승자) 출력 결과`() {
         System.setIn(getInputArrayStream("car1,car2,car3", "3"))
         RacingController(InputView, ResultView).racingGame()
