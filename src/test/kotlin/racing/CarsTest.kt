@@ -17,20 +17,22 @@ class CarsTest : StringSpec({
 
         cars.play(movePolicy = { true })
 
-        for (car in cars.cars) {
-            car.position shouldBe 1
+        cars.forEach {
+            it.position shouldBe 1
         }
     }
 
     "자동차 경주 우승자들을 반환한다" {
-        val cars = Cars(
-            listOf(
-                Car(name = "name1", position = 1),
-                Car(name = "name2", position = 4),
-                Car(name = "name3", position = 4),
-            )
-        )
+        val cars = cars()
 
         cars.getWinners() shouldContainExactly listOf("name2", "name3")
     }
 })
+
+fun cars() = Cars(
+    listOf(
+        Car(name = "name1", position = 1),
+        Car(name = "name2", position = 4),
+        Car(name = "name3", position = 4),
+    )
+)
