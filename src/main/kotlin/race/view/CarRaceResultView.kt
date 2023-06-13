@@ -1,4 +1,9 @@
-package race
+package race.view
+
+import race.domain.Car
+import race.domain.InitialTurn
+import race.domain.RaceResult
+import race.domain.TurnInfo
 
 class CarRaceResultView {
     fun printRaceResult(raceResult: RaceResult) {

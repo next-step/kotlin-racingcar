@@ -12,5 +12,5 @@
 
 ## Step5: 자동차 경주 (리팩터링)
 [To Do]
-- [ ] domain, view 패키지 만들어 코드 이동시키기
+- [X] domain, view 패키지 만들어 코드 이동시키기
 - [ ] Step4 리뷰 반영

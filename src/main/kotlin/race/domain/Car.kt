@@ -1,4 +1,4 @@
-package race
+package race.domain
 
 data class Car(
     private val position: Int,

@@ -1,4 +1,6 @@
-package race
+package race.view
+
+import race.domain.RaceStartInformation
 
 class CarRaceInputView {
 
