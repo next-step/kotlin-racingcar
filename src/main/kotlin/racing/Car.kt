@@ -11,15 +11,15 @@ class Car(val name: String) {
         }
     }
 
-    fun moveCar(randomNumber: Int): Int {
-        if (randomNumber >= GO_RESTRICT_NUMBER) {
+    fun moveCar(pedalStrength: Int): Int {
+        if (pedalStrength >= GO_RESTRICT_STRENGTH) {
             progress++
         }
         return progress
     }
 
     companion object {
-        const val GO_RESTRICT_NUMBER = 4
+        const val GO_RESTRICT_STRENGTH = 4
         const val MAXIMUM_NAME_LENGTH = 5
     }
 }

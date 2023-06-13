@@ -3,21 +3,27 @@ package racing
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.ints.shouldBeInRange
+import io.kotest.matchers.shouldBe
 
 class CarTest : AnnotationSpec() {
 
     @Test
     fun `자동차_이름이_5자가_넘는경우`() {
-        Car("minhyukseul")
         shouldThrow<IllegalArgumentException> {
-            "이름이 5자 넘어야함"
-        }
+            Car("minhyukseul")
+        }.message shouldBe "자동차 이름은 ${Car.MAXIMUM_NAME_LENGTH}자를 초과할 수 없다."
+    }
+
+    @Test
+    fun `랜덤한 숫자를 생성하여 범위내에 들어오는지 확인`() {
+        CarRandomGenerator.createRandom(10) shouldBeInRange 0..9
     }
 
     @Test
     fun `자동차가 움직일 경우 위치가 0이거나 1인지 확인`() {
         val car = Car("pobi")
-        car.moveCar(CarRandomGenerator.createRandom(10)) shouldBeInRange 0..1
+        car.moveCar(4) shouldBe 1
+        car.moveCar(3) shouldBe 1
     }
 
     @Test
