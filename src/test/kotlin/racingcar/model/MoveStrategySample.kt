@@ -5,5 +5,5 @@ object OnlyGoMoveStrategy : MoveStrategy {
 }
 
 object OnlyStopMoveStrategy : MoveStrategy {
-    override val movedStatus: MovingStatus = MovingStatus.GO
+    override val movedStatus: MovingStatus = MovingStatus.STOP
 }

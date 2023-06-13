@@ -9,7 +9,7 @@ import io.kotest.matchers.shouldBe
 class RacingCarsTest : StringSpec({
 
     "자동차들로 생성" {
-        shouldNotThrowAny { RacingCars(listOf(RacingCar(OnlyGoMoveStrategy), RacingCar(OnlyGoMoveStrategy))) }
+        shouldNotThrowAny { RacingCars(listOf(ONLY_GO_RACING_CAR, ONLY_GO_RACING_CAR)) }
     }
 
     "빈 자동차들로 생성" {
@@ -18,10 +18,10 @@ class RacingCarsTest : StringSpec({
 
     "다음 이동한 상태들 반환" {
         // given
-        val initializedCars = RacingCars(listOf(RacingCar(OnlyGoMoveStrategy)))
+        val initializedCars = RacingCars(listOf(ONLY_GO_RACING_CAR))
         // when
         val movedCars: RacingCars = initializedCars.nextMoved
         // then
-        movedCars shouldBe RacingCars(listOf(RacingCar(OnlyGoMoveStrategy, MovingStatuses(listOf(MovingStatus.GO)))))
+        movedCars shouldBe RacingCars(listOf(RacingCar(SAMPLE_NAME, OnlyGoMoveStrategy, MovingStatuses(listOf(MovingStatus.GO)))))
     }
 })

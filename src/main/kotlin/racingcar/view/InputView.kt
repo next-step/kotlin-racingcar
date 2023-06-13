@@ -1,11 +1,13 @@
 package racingcar.view
 
-val inputCarsCount: Int
+private const val DELIMITER = ","
+
+val inputCarNames: List<String>
     get() {
-        println("자동차 대수는 몇 대인가요?")
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표($DELIMITER)를 기준으로 구분).")
         val readLine: String = readln()
-        require(readLine.isNotBlank()) { "racing car count is required" }
-        return readLine.toInt()
+        require(readLine.isNotBlank()) { "racing car is required" }
+        return readLine.split(DELIMITER)
     }
 
 val inputLabs: Int

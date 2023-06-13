@@ -26,7 +26,7 @@ class RacingStadiumTest : StringSpec({
 
     "주어진 자동차들은 바퀴 수 만큼 경기 내용을 기록" {
         // given
-        val onlyGoCars = RacingCars((1..3).map { (RacingCar(OnlyGoMoveStrategy)) })
+        val onlyGoCars = RacingCars((1..3).map { (RacingCar(SAMPLE_NAME, OnlyGoMoveStrategy)) })
         val oneLabsStadium = RacingStadium(1)
         // when
         val history: RacingHistory = oneLabsStadium racing onlyGoCars
@@ -35,6 +35,7 @@ class RacingStadiumTest : StringSpec({
             it shouldHaveSize 1
             it.first().cars.forAll { car ->
                 car shouldBe RacingCar(
+                    SAMPLE_NAME,
                     OnlyGoMoveStrategy,
                     MovingStatuses(listOf(MovingStatus.GO))
                 )
