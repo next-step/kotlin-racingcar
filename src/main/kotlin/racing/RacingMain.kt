@@ -1,14 +1,19 @@
 package racing
 
 fun main() {
-    val carCount = InputView.readCarCount()
+    val carNames = InputView.readCarNames()
+    val cars = Cars.of(carNames)
+
     val tryCount = InputView.readTryCount()
 
-    val cars = Cars.of(carCount)
-
     ResultView.printHeader()
+
+    val randomMovePolicy = RandomMovePolicy()
     for (i in 0 until tryCount) {
-        cars.play(RandomMovePolicy())
+        cars.play(randomMovePolicy)
+
         ResultView.printRacingResult(cars)
     }
+
+    ResultView.printWinners(cars)
 }
