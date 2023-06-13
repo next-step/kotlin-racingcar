@@ -1,6 +1,6 @@
 package study.calculator
 
-class Calculator {
+object Calculator {
     fun calculate(question: String?): Int {
         if (question.isNullOrEmpty()) throw IllegalArgumentException("question was null or empty.")
 
