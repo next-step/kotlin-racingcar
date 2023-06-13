@@ -15,6 +15,6 @@ class GameController {
         val racingGame = RacingGame(cars, totalTrialCount)
         racingGame.run()
 
-        OutputView.printWinner(racingGame.getCars())
+        OutputView.printWinner(racingGame.getWinners())
     }
 }
