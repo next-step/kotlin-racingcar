@@ -9,9 +9,8 @@ object ResultView {
     fun startPrintGame() = println(RESULT_START_STRING)
 
     fun printGameResult(gameResult: GameRecords) {
-        for (car in gameResult.cars) {
-            println(MOVE_STRING.repeat(car.score))
-        }
+        gameResult.cars
+            .forEach { println("${it.name} : ${MOVE_STRING.repeat(it.score)}") }
         println()
     }
 }

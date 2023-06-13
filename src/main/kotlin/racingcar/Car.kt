@@ -2,7 +2,7 @@ package racingcar
 
 private const val MAXIMUM_NAME_LENGTH = 5
 
-class Car(name: String, score: Int = 0) {
+class Car(val name: String, score: Int = 0) {
 
     var score: Int = score
         private set
