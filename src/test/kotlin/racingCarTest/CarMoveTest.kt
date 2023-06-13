@@ -9,13 +9,13 @@ class CarMoveTest {
     fun `전진 조건이 맞지 않는 경우`() {
         val car = Car(randomNumber = FixedNumberGenerator(3))
         car.move()
-        assertThat(car.getDistance()).isEqualTo(0)
+        assertThat(car.readOnlyDistance).isEqualTo(0)
     }
 
     @Test
     fun `전진 조건이 맞는 경우`() {
         val car = Car(randomNumber = FixedNumberGenerator(7))
         car.move()
-        assertThat(car.getDistance()).isEqualTo(1)
+        assertThat(car.readOnlyDistance).isEqualTo(1)
     }
 }

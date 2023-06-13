@@ -26,6 +26,6 @@ class RacingField(
     }
 
     fun getCarsDistance(): List<Int> {
-        return cars.map { it.getDistance() }
+        return cars.map { it.readOnlyDistance }
     }
 }
