@@ -17,6 +17,9 @@ class RealRacingGameOutputView : RacingGameOutputView {
                 println()
             }
         println()
+
+        val winners = racingGameResult.winners.joinToString(", ") { it.carName.value }
+        println("${winners}가 최종 우승했습니다.")
     }
 
     private fun display(racingRecordPaperList: RacingRecordPaperList) {
