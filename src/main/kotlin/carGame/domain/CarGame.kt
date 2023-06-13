@@ -3,14 +3,23 @@ package carGame.domain
 import carGame.domain.strategy.MoveStrategy
 
 class CarGame(private val moveStrategy: MoveStrategy) {
-    fun play(carCount: Int, tryCount: Int): GameResult {
-        val carPositions = CarPositions.of(carCount)
-        val result = GameResult.of(carPositions)
+    fun play(carNames: List<CarName>, tryCount: Int): GameResult {
+        val initialCars = Cars.atZeroPosition(carNames)
+        val history = playRounds(initialCars, tryCount)
+        return GameResult(history)
+    }
 
+    private fun playRounds(initialCars: Cars, tryCount: Int): List<Cars> {
+        val history = mutableListOf(initialCars)
         repeat(tryCount) {
-            val movedPosition = result.getLastPositions().moveBy { moveStrategy.movable() }
-            result.add(movedPosition)
+            val roundHistory = playRound(history.last())
+            history.add(roundHistory)
         }
-        return result
+        history.removeFirst()
+        return history
+    }
+
+    private fun playRound(cars: Cars): Cars {
+        return cars.moveBy { moveStrategy.movable() }
     }
 }
