@@ -4,8 +4,9 @@ object ResultView {
     private const val NEXT_LINE = "\n"
     private const val PROGRESS_STRING = "-"
     private const val SEPERATOR = ", "
+    private const val MAX_RANGE = 10
 
-    fun showResult(cars: MutableList<Car>, actionCount: Int) {
+    fun showResult(cars: List<Car>, actionCount: Int) {
         println("실행 결과")
         repeat(actionCount) {
             gameStart(cars)
@@ -24,7 +25,7 @@ object ResultView {
     private fun gameStart(cars: List<Car>) {
         cars.forEach {
             car ->
-            car.moveCar()
+            car.moveCar(CarRandomGenerator.createRandom(MAX_RANGE))
             showSkidMarks(car)
         }
     }
