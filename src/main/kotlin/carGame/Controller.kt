@@ -5,11 +5,12 @@ import carGame.view.InputView
 import carGame.view.OutputView
 
 fun main() {
-    val carCount = InputView.getCarCount()
+    val carNames = InputView.getCarNames()
     val tryCount = InputView.getTryCount()
 
     val carGame = CarGame(Configuration.moveStrategy())
-    val result = carGame.play(carCount = carCount, tryCount = tryCount)
+    val result = carGame.play(carNames = carNames, tryCount = tryCount)
 
-    OutputView.printResult(result)
+    OutputView.printHistory(result.history)
+    OutputView.printWinner(result.getWinners())
 }
