@@ -1,6 +1,9 @@
 package study.step3
 
-class RacingCarGame(racingRequest: RacingRequest) {
+class RacingCarGame(
+    racingRequest: RacingRequest,
+    private val carRandomMove: RandomGenerator
+) {
 
     private val carList: List<Car>
 
@@ -15,8 +18,7 @@ class RacingCarGame(racingRequest: RacingRequest) {
     private fun startRace(tryCount: Int) {
         repeat(tryCount) {
             carList.forEach { car ->
-                val randomValue = RandomGenerator().generateRandomValue()
-                car.move(randomValue >= 4)
+                car.move(carRandomMove.randomValue())
             }
         }
     }

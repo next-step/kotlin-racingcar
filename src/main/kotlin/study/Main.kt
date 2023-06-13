@@ -1,5 +1,6 @@
 package study
 
+import study.step3.CarRandomMove
 import study.step3.InputView
 import study.step3.RacingCarGame
 import study.step3.RacingRequest
@@ -11,7 +12,7 @@ fun main() {
         InputView.requestTryCount()
     )
 
-    val game = RacingCarGame(racingRequest)
+    val game = RacingCarGame(racingRequest, CarRandomMove())
     game.play(racingRequest)
 
     val carList = game.getCurrentCars()

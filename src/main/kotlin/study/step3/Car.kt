@@ -4,8 +4,8 @@ class Car {
     private val states: MutableList<Int> = mutableListOf()
     private var state = 0
 
-    fun move(moveCondition: Boolean) {
-        if (moveCondition) {
+    fun move(condition: Int) {
+        if (condition >= 4) {
             state++
         }
         addCarState()
