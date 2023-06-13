@@ -10,7 +10,7 @@ value class Cars(
         }
     }
 
-    fun winners(): List<String> {
+    fun getWinners(): List<String> {
         val winner = cars.maxByOrNull { it.position } ?: return emptyList()
         return cars.filter { it.hasSamePosition(winner) }
             .map { it.name }

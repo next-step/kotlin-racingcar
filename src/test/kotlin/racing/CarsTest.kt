@@ -23,12 +23,14 @@ class CarsTest : StringSpec({
     }
 
     "자동차 경주 우승자들을 반환한다" {
-        val cars = Cars(listOf(
-            Car(name = "name1", position = 1),
-            Car(name = "name2", position = 4),
-            Car(name = "name3", position = 4),
-        ))
+        val cars = Cars(
+            listOf(
+                Car(name = "name1", position = 1),
+                Car(name = "name2", position = 4),
+                Car(name = "name3", position = 4),
+            )
+        )
 
-        cars.winners() shouldContainExactly listOf("name2", "name3")
+        cars.getWinners() shouldContainExactly listOf("name2", "name3")
     }
 })
