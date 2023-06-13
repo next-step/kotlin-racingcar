@@ -1,4 +1,4 @@
-package race
+package race.domain
 
 interface TurnInfo {
     val cars: List<Car>

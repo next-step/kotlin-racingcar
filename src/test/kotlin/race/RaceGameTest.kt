@@ -2,6 +2,14 @@ package race
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import race.domain.Car
+import race.domain.CarRaceGame
+import race.domain.DigitGenerator
+import race.domain.InitialTurn
+import race.domain.RaceResult
+import race.domain.RaceStartInformation
+import race.domain.RandomSingleDigitGenerator
+import race.domain.Turn
 
 class RaceGameTest {
     @Test

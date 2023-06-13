@@ -1,4 +1,9 @@
-package race
+package race.view
+
+import race.domain.Car
+import race.domain.InitialTurn
+import race.domain.RaceResult
+import race.domain.TurnInfo
 
 class CarRaceResultView {
     fun printRaceResult(raceResult: RaceResult) {
@@ -21,6 +26,8 @@ class CarRaceResultView {
     private fun Car.print() {
         println("$name : ${positionString()}")
     }
+
+    private fun Car.positionString(): String = "-".repeat(position)
 
     private fun printWinners(raceResult: RaceResult) {
         println("${winnersString(raceResult)}가 최종 우승했습니다.")

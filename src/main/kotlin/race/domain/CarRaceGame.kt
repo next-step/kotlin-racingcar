@@ -1,4 +1,4 @@
-package race
+package race.domain
 
 class CarRaceGame(private val randomUtil: DigitGenerator) {
     fun runCarRace(startInformation: RaceStartInformation): RaceResult {
