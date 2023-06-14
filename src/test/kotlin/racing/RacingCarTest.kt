@@ -7,8 +7,7 @@ import io.kotest.matchers.ints.shouldBeInRange
 import io.kotest.matchers.shouldBe
 import racing.domain.Car
 import racing.domain.RacingGame
-import racing.view.InputView
-
+import racing.view.ResultView
 
 
 class RacingCarTest : AnnotationSpec() {
@@ -64,8 +63,7 @@ class RacingCarTest : AnnotationSpec() {
     fun `전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다`() {
         val carNames = "pobi,crong,honux"
         val cars = InputParser.parse(carNames).map { Car(it) }
-
-        RacingGame.gameStart(cars)
-
+        RacingGame.raceStart(cars)
+        ResultView.showSkidMarks(cars)
     }
 }

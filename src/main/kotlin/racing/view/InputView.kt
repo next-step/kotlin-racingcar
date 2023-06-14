@@ -8,7 +8,6 @@ object InputView {
     private const val MINIMUM_INPUT = 1
 
 
-
     private const val INPUT_ACTION_PREFIX = "시도할 횟수는 "
 
     fun doInput(): Pair<List<String>, Int> {
@@ -20,7 +19,7 @@ object InputView {
         if (actionCount < MINIMUM_INPUT) {
             throw IllegalArgumentException("$INPUT_ACTION_PREFIX ${MINIMUM_INPUT}대 이상이어야 함")
         }
-        return Pair(carNames, actionCount)
+        return carNames to actionCount
     }
 
     private fun getInputCars(): List<String> {
@@ -32,7 +31,6 @@ object InputView {
             throw IllegalArgumentException("형식에 맞는 타입을 입력해야함")
         }
     }
-
 
 
     private fun getInputNumber(): Int {
