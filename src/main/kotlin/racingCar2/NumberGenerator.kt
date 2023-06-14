@@ -1,6 +1,6 @@
 package racingCar2
 
-interface NumberGenerator {
+fun interface NumberGenerator {
     fun getRandomNumber(): Int
 }
 

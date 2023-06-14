@@ -11,6 +11,5 @@ fun main() {
     val inputNumber = inputIO.inputGameCount()
 
     val racingField = RacingField(inputNames, inputNumber)
-
-    println("racingField: ${racingField.carNames}, ${racingField.gameCount}")
+    racingField.racingStart(RandomNumberGenerator())
 }
