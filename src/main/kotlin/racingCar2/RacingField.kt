@@ -17,7 +17,7 @@ class RacingField(
             resultView.showGameResult(cars)
         }
 
-        val winners = this.getWinners()
+        val winners = this.findWinners()
         resultView.showWinners(winners)
 
         return winners
@@ -27,7 +27,7 @@ class RacingField(
         cars.forEach { it.move(numberGenerator.getRandomNumber()) }
     }
 
-    private fun getWinners(): List<String> {
+    private fun findWinners(): List<String> {
         val maxPosition = cars.maxOf { it.position }
         return cars.filter { it.position == maxPosition }.map { it.name }
     }
