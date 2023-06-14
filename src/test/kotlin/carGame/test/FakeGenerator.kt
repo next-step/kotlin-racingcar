@@ -5,8 +5,13 @@ import carGame.domain.CarName
 import carGame.domain.Cars
 
 object FakeGenerator {
-    fun genearteCars(size: Int, position: Int = 0): Cars {
+    fun generateCars(size: Int, position: Int = 0): Cars {
         val cars = List(size) { generateCarName() }.map { Car(name = it, position = position) }
+        return Cars(cars)
+    }
+
+    fun generateCarsOfPositions(positions: List<Int>): Cars {
+        val cars = positions.map { generateCar(position = it) }
         return Cars(cars)
     }
 
