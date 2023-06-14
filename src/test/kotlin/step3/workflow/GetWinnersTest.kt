@@ -11,23 +11,23 @@ internal class GetWinnersTest {
     @Test
     fun `there is only one winner, then return one winner`() {
         val racingCars = listOf(
-            RacingCar(UUID.randomUUID().toString(), 0),
-            RacingCar("winner", 6),
-            RacingCar(UUID.randomUUID().toString(), 5),
-            RacingCar(UUID.randomUUID().toString(), 3),
-            RacingCar(UUID.randomUUID().toString(), 2),
+            RacingCar(makeRandomName(), 0),
+            RacingCar("winne", 6),
+            RacingCar(makeRandomName(), 5),
+            RacingCar(makeRandomName(), 3),
+            RacingCar(makeRandomName(), 2),
         )
         val winners = getWinners(racingCars)
         assertEquals(1, winners.size)
-        assertEquals("winner", winners[0].name)
+        assertEquals("winne", winners[0].name)
     }
 
     @Test
     fun `there is several winners, then return several winner`() {
-        val winnerName = UUID.randomUUID().toString()
+        val winnerName = makeRandomName()
         val racingCars = listOf(
-            RacingCar(UUID.randomUUID().toString(), 0),
-            RacingCar(UUID.randomUUID().toString(), 2),
+            RacingCar(makeRandomName(), 0),
+            RacingCar(makeRandomName(), 2),
             RacingCar(winnerName, 6),
             RacingCar(winnerName, 6),
             RacingCar(winnerName, 6),
@@ -36,4 +36,6 @@ internal class GetWinnersTest {
         assertEquals(3, winners.size)
         winners.forEach { assertEquals(winnerName, it.name) }
     }
+
+    private fun makeRandomName(): String = UUID.randomUUID().toString().substring(0, 5)
 }
