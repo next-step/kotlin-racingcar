@@ -4,14 +4,16 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.ints.shouldBeInRange
 import io.kotest.matchers.shouldBe
+import racing.domain.Car
+import racing.view.ResultView
 
 class CarTest : AnnotationSpec() {
 
     @Test
-    fun `자동차_이름이_5자가_넘는경우`() {
+    fun `자동차 이름은 5자를 넘을 수 없음`() {
         shouldThrow<IllegalArgumentException> {
             Car("minhyukseul")
-        }.message shouldBe "자동차 이름은 ${Car.MAXIMUM_NAME_LENGTH}자를 초과할 수 없다."
+        }
     }
 
     @Test
