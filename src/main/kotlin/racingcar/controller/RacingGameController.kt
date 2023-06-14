@@ -29,7 +29,7 @@ class RacingGameController(
             racingGameService.play()
             OutputView.print()
         }
-        val winnerNames = racingGameService.getWinners().joinToString { it.carName.name }
-        OutputView.printWinnerNames(winnerNames)
+        val winners = racingGameService.getWinners()
+        OutputView.printWinners(winners)
     }
 }

@@ -1,5 +1,7 @@
 package racingcar.view
 
+import racingcar.domain.Car
+
 object OutputView {
     fun printRequestCarCount() {
         println(Messages.MESSAGE_REQUEST_CAR_NAME)
@@ -18,7 +20,8 @@ object OutputView {
         println("-".repeat(position))
     }
 
-    fun printWinnerNames(winnerNames: String) {
+    fun printWinners(winners: List<Car>) {
+        val winnerNames = winners.joinToString { it.carName.name }
         println("${winnerNames}이(가) 최종 우승했습니다.")
     }
 
