@@ -11,7 +11,7 @@ class RacingGame {
         prepare()
     }
 
-    fun prepare() {
+    private fun prepare() {
         val carsSize = InputView.receiveCarsSize()
         cars = Cars(List(carsSize) { Car() })
         tryCount = InputView.receiveTryCount()
