@@ -2,6 +2,8 @@ package step2
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.data.forAll
+import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 
 class CalculatorTest : StringSpec({
@@ -12,14 +14,14 @@ class CalculatorTest : StringSpec({
     }
 
     "입력값 공백과 null 테스트" {
-        shouldThrow<IllegalArgumentException> {
-            calculator.calculateString("")
-        }
-        shouldThrow<IllegalArgumentException> {
-            calculator.calculateString(" ")
-        }
-        shouldThrow<IllegalArgumentException> {
-            calculator.calculateString(null)
+        forAll(
+            row(""),
+            row(" "),
+            row(null),
+        ) {
+            shouldThrow<IllegalArgumentException> {
+                calculator.calculateString(it)
+            }
         }
     }
 
@@ -34,20 +36,16 @@ class CalculatorTest : StringSpec({
     }
 
     "사칙 연산 순서 이상하게 나올 경우 예외 테스트" {
-        shouldThrow<IllegalArgumentException> {
-            calculator.calculateString("1 1 1")
-        }
-        shouldThrow<IllegalArgumentException> {
-            calculator.calculateString("1 * 1 1")
-        }
-        shouldThrow<IllegalArgumentException> {
-            calculator.calculateString("1 1 * 1")
-        }
-        shouldThrow<IllegalArgumentException> {
-            calculator.calculateString("* 1 * 1")
-        }
-        shouldThrow<IllegalArgumentException> {
-            calculator.calculateString("1 * * 1")
+        forAll(
+            row("1 1 1"),
+            row("1 * 1 1"),
+            row("1 1 * 1"),
+            row("* 1 * 1"),
+            row("1 * * 1")
+        ) {
+            shouldThrow<IllegalArgumentException> {
+                calculator.calculateString(it)
+            }
         }
     }
 })
