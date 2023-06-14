@@ -1,4 +1,4 @@
-package step3
+package racingcar
 
 class RacingCar {
     var position: Int = 0
