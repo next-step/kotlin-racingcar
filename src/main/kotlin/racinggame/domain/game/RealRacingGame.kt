@@ -5,7 +5,6 @@ import racinggame.domain.car.factory.RacingCarFactory
 import racinggame.domain.field.RacingField
 import racinggame.domain.player.User
 import racinggame.domain.record.RacingHistoryRecoder
-import racinggame.domain.record.RacingRecordBook
 
 class RealRacingGame(
     private val racingCarFactory: RacingCarFactory,
