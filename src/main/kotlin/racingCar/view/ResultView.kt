@@ -20,4 +20,3 @@ object ResultView {
         println()
     }
 }
-
