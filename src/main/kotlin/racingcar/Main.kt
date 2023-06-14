@@ -1,15 +1,15 @@
 package racingcar
 
 fun main() {
-    val carNum = InputView.getCarNum()
+    val carNames: List<String> = InputView.getCarName()
+    var game = RacingGame(CarFactory.manufacture(carNames))
     val tryNum = InputView.getTryNum()
-
-    var records = GameRecords(CarFactory.manufacture(carNum))
 
     ResultView.startPrintGame()
 
     for (i in 0 until tryNum) {
-        records = RacingGame.play(carNum, records, RandomNumStrategy())
-        ResultView.printGameResult(records)
+        game.play(RandomNumStrategy())
+        ResultView.printGameResult(game)
     }
+    ResultView.printGameWinner(game.getWinners())
 }
