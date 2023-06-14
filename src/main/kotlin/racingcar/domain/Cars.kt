@@ -12,14 +12,14 @@ class Cars(
     }
 
     private fun validateEmptyCars(cars: List<Car>) {
-        require(cars.isEmpty()) {
+        require(cars.isNotEmpty()) {
             Messages.MESSAGE_CONDITION_CAR_COUNT
         }
     }
 
     private fun validateDuplicatedCarNames(cars: List<Car>) {
         val carNames = cars.map { it.carName.name }
-        require(carNames.stream().distinct().count().toInt() != carNames.size) {
+        require(carNames.stream().distinct().count().toInt() == carNames.size) {
             Messages.MESSAGE_DUPLICATED_CAR_NAMES
         }
     }
