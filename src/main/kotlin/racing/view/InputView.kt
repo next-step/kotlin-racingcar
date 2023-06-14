@@ -1,11 +1,13 @@
 package racing.view
 
+import racing.InputParser
+
 object InputView {
 
     private const val DEFAULT_INPUT = 0
     private const val MINIMUM_INPUT = 1
 
-    private const val INPUT_SEPERATOR = ","
+
 
     private const val INPUT_ACTION_PREFIX = "시도할 횟수는 "
 
@@ -23,13 +25,15 @@ object InputView {
 
     private fun getInputCars(): List<String> {
         return runCatching {
-            val inputCars = (readlnOrNull() ?: "")
-            if (inputCars.isEmpty()) throw IllegalArgumentException("이름은 한글자 이상이어야 함")
-            inputCars.split(INPUT_SEPERATOR)
+            val inputCars = readlnOrNull()
+            if (inputCars.isNullOrEmpty()) throw IllegalArgumentException("이름은 한글자 이상이어야 함")
+            InputParser.parse(inputCars)
         }.getOrElse {
             throw IllegalArgumentException("형식에 맞는 타입을 입력해야함")
         }
     }
+
+
 
     private fun getInputNumber(): Int {
         return runCatching {
