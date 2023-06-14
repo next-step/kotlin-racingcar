@@ -26,8 +26,8 @@ class RacingFieldTest {
         val carNames = arrayOf("BMW", "Benz", "Audi")
         val gameCount = 3
         val racingField = RacingField(carNames, gameCount)
-        racingField.racingStart(FixedNumberGenerator(7))
+        val winners = racingField.racingStart(FixedNumberGenerator(7))
 
-        racingField.winners shouldBe carNames
+        winners shouldBe carNames
     }
 }
