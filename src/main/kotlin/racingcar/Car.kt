@@ -1,6 +1,6 @@
 package racingcar
 
-class Car(position: Int = 1) {
+class Car(position: Int = DEFAULT_POSITION) {
     var position = position
         private set
 
@@ -8,5 +8,9 @@ class Car(position: Int = 1) {
         if (condition >= 4) {
             position++
         }
+    }
+
+    companion object {
+        const val DEFAULT_POSITION = 1
     }
 }
