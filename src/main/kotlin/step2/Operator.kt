@@ -1,28 +1,14 @@
 package step2
 
-enum class Operator(symbol: String) {
-    PLUS("*"),
-    MINUS("-"),
-    MULTIPLY("*"),
-    DIVIDE("/"),
-}
+enum class Operator(val sign: String, val operate: (Int, Int) -> (Int)) {
 
-fun checkOperator(): Boolean {
-    return true
-}
+    PLUS("+", { first: Int, second: Int -> first + second }),
+    MINUS("-", { first: Int, second: Int -> first - second }),
+    MULTIPLY("*", { first: Int, second: Int -> first * second }),
+    DIVIDE("/", { first: Int, second: Int -> first / second });
 
-fun plus(first: Int, second: Int): Int {
-    return first + second
-}
-
-fun minus(first: Int, second: Int): Int {
-    return first - second
-}
-
-fun divide(first: Int, second: Int): Int {
-    return first / second
-}
-
-fun multiply(first: Int, second: Int): Int {
-    return first * second
+    companion object {
+        fun getBySymbol(input: String): Operator =
+            Operator.values().find { it.sign == input } ?: throw IllegalArgumentException()
+    }
 }
