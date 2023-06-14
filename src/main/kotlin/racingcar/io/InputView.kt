@@ -1,27 +1,18 @@
 package racingcar.io
 
-import racingcar.domain.RacingGameParam
+object InputView {
+    private const val CAR_NAME_INPUT_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
+    private const val ROUND_COUNT_INPUT_MESSAGE = "시도할 횟수는 몇 회인가요?"
+    private const val SEPARATOR = ","
+    private const val INPUT_ERROR_MESSAGE = "입력이 올바르지 않습니다"
 
-class InputView {
-    fun getGameParam(): RacingGameParam {
-        val carCount = getCarCount()
-        val rounds = getRoundCount()
-
-        return RacingGameParam(carCount, rounds)
+    fun getCarNames(): List<String> {
+        println(CAR_NAME_INPUT_MESSAGE)
+        return readlnOrNull()?.run { split(SEPARATOR) } ?: throw IllegalArgumentException(INPUT_ERROR_MESSAGE)
     }
 
-    private fun getCarCount(): Int {
-        println(CAR_COUNT_INPUT_MESSAGE)
-        return readlnOrNull()!!.toInt()
-    }
-
-    private fun getRoundCount(): Int {
+    fun getRoundCount(): Int {
         println(ROUND_COUNT_INPUT_MESSAGE)
-        return readlnOrNull()!!.toInt()
-    }
-
-    companion object {
-        private const val CAR_COUNT_INPUT_MESSAGE = "자동차 대수는 몇 대인가요?"
-        private const val ROUND_COUNT_INPUT_MESSAGE = "시도할 횟수는 몇 회인가요?"
+        return readlnOrNull()?.run { toInt() } ?: throw IllegalArgumentException(INPUT_ERROR_MESSAGE)
     }
 }
