@@ -14,16 +14,18 @@ class Racing(
     private val afterRacingFinishedResultView: ResultView
 ) {
 
-    fun start(numOfRace: Int) {
-        runStages(numOfRace, carFactory.create())
+    fun start(numOfRace: Int): List<Car> {
+        return runStages(numOfRace, carFactory.create())
     }
 
-    private fun runStages(totalRounds: Int, cars: List<Car>) {
+    private fun runStages(totalRounds: Int, cars: List<Car>): List<Car> {
         println("실행 결과")
-        (0..totalRounds).forEach { _ ->
+        (0 until totalRounds).forEach { _ ->
             cars.forEach { it.move(movementConditionGenerator.execute()) }
             racingProgressResultView.printResult(cars)
         }
-        afterRacingFinishedResultView.printResult(carRanker.getWinners(cars))
+        val winners = carRanker.getWinners(cars)
+        afterRacingFinishedResultView.printResult(winners)
+        return winners
     }
 }
