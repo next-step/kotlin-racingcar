@@ -1,4 +1,7 @@
-package racing
+package racing.view
+
+import racing.domain.Car
+import racing.CarRandomGenerator
 
 object ResultView {
     private const val NEXT_LINE = "\n"
@@ -16,9 +19,9 @@ object ResultView {
     }
 
     private fun showWinner(cars: List<Car>): String {
-        val firstGradePosition = cars.maxOf(Car::progress)
+        val firstGradePosition = cars.maxOf(Car::position)
         return cars.filter {
-            it.progress == firstGradePosition
+            it.position == firstGradePosition
         }.joinToString(SEPERATOR, transform = Car::name)
     }
 
@@ -32,7 +35,7 @@ object ResultView {
 
     private fun showSkidMarks(car: Car) {
         val progressString = StringBuffer()
-        repeat(car.progress) {
+        repeat(car.position) {
             progressString.append(PROGRESS_STRING)
         }
         println("${car.name} : $progressString")
