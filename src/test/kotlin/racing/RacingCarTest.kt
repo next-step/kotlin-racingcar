@@ -3,8 +3,10 @@ package racing
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.collections.shouldHaveSize
+import io.kotest.matchers.ints.shouldBeInRange
 import io.kotest.matchers.shouldBe
 import racing.domain.Car
+import racing.domain.RacingGame
 import racing.view.InputView
 
 
@@ -49,5 +51,21 @@ class RacingCarTest : AnnotationSpec() {
     fun `자동차 이름은 쉼표로 구분함`() {
         val carNames = "pobi,crong,honux"
         InputParser.parse(carNames) shouldHaveSize(3)
+    }
+
+    @Test
+    fun `0에서 9 사이에서 무작위 값을 구한다`() {
+        repeat(5) {
+            CarRandomGenerator.createRandom(RacingGame.MAX_BOUND) shouldBeInRange 0..9
+        }
+    }
+
+    @Test
+    fun `전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다`() {
+        val carNames = "pobi,crong,honux"
+        val cars = InputParser.parse(carNames).map { Car(it) }
+
+        RacingGame.gameStart(cars)
+
     }
 }
