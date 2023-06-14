@@ -20,4 +20,14 @@ class RacingFieldTest {
 
         racingField.gameCount shouldBe 3
     }
+
+    @Test
+    fun `경주를 진행하고 최종 우승자를 찾는다`() {
+        val carNames = arrayOf("BMW", "Benz", "Audi")
+        val gameCount = 3
+        val racingField = RacingField(carNames, gameCount)
+        racingField.racingStart(FixedNumberGenerator(7))
+
+        racingField.winners shouldBe carNames
+    }
 }

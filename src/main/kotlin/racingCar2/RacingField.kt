@@ -7,6 +7,11 @@ class RacingField(
     private val resultView = ResultView()
     val carNames: List<String> get() = cars.map { it.name }
     val gameCount: Int get() = _gameCount
+    val winners: List<String>
+        get(): List<String> {
+            val maxPosition = cars.maxOf { it.position }
+            return cars.filter { it.position == maxPosition }.map { it.name }
+        }
 
     constructor(carNames: Array<String>, gameCount: Int) : this(List(carNames.size) { Car(carNames[it]) }, gameCount)
 
@@ -16,6 +21,8 @@ class RacingField(
             this.gameStart(numberGenerator)
             resultView.showGameResult(cars)
         }
+
+        resultView.showWinners(winners)
     }
 
     private fun gameStart(numberGenerator: NumberGenerator) {
