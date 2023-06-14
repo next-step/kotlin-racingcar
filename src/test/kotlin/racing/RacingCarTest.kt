@@ -8,8 +8,6 @@ import io.kotest.matchers.shouldBe
 import racing.domain.Car
 import racing.domain.RacingGame
 import racing.view.ResultView
-
-
 class RacingCarTest : AnnotationSpec() {
 
     @Test
@@ -34,7 +32,6 @@ class RacingCarTest : AnnotationSpec() {
         numbers.forEach {
             car.moveCar(it) shouldBe true
         }
-
     }
 
     @Test
@@ -74,6 +71,4 @@ class RacingCarTest : AnnotationSpec() {
         RacingGame.raceStart(cars)
         ResultView.showWinner(cars)
     }
-
-
 }

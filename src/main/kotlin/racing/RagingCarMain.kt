@@ -12,6 +12,7 @@ fun main() {
     val cars = carNames.map {
         Car(it)
     }
+
     repeat(actionCount) {
         RacingGame.raceStart(cars)
         ResultView.showSkidMarks(cars)
