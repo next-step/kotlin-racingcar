@@ -1,9 +1,10 @@
 package racingCar.controller
 
 import racingCar.domain.Car
-import racingCar.domain.Race
 import racingCar.view.InputView
 import racingCar.view.ResultView
+import kotlin.random.Random
+import kotlin.random.nextInt
 
 class RacingCarController {
     fun main() {
@@ -12,11 +13,17 @@ class RacingCarController {
 
         val cars = createCars(numberOfCar)
         ResultView.printStart()
+
         repeat(numberOfRace) {
-            val race = Race(cars)
-            race.racing()
+            cars.forEach { car ->
+                car.move(randomNumberGenerator())
+            }
             ResultView.printResult(cars)
         }
+    }
+
+    private fun randomNumberGenerator(): Int {
+        return Random.nextInt(0..9)
     }
 
     private fun createCars(count: Int): List<Car> {
