@@ -45,4 +45,10 @@ class CalculatorTest {
         val actual = Calculator.calculate("2 + 3 * 4 / 2")
         assertThat(actual).isEqualTo(10)
     }
+
+    @Test
+    internal fun `입력값의 순서 보장`() {
+        assertThatThrownBy { Calculator.calculate("2 3 +") }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { Calculator.calculate("2 + + 4 +") }.isInstanceOf(IllegalArgumentException::class.java)
+    }
 }
