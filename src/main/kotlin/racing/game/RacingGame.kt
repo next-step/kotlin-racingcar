@@ -6,19 +6,18 @@ import racing.condition.MovingCondition
 import racing.view.ResultView
 
 class RacingGame(
-    carName: List<String>
+    carNames: List<String>
 ) {
 
-    var cars: RacingCars
-        private set
+    val cars: RacingCars
 
     init {
-        this.cars = racingGameCarInit(carName)
+        this.cars = racingGameCarInit(carNames)
     }
 
     fun racingGameCarInit(carName: List<String>): RacingCars {
         val cars = carName.map {
-            Car(name = it, position = 0)
+            Car(name = it)
         }
         return RacingCars(cars)
     }
@@ -36,11 +35,5 @@ class RacingGame(
                 it.move()
             }
         }
-    }
-
-    fun findWinner(cars: RacingCars) {
-        val maxPosition = cars.racingCars.maxOf { it.position }
-        val winner = cars.racingCars.filter { it.position == maxPosition }.map { it.name }
-        ResultView().showWinner(winner)
     }
 }

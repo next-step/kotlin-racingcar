@@ -67,32 +67,7 @@ class CalculatorTest {
     }
 
     private fun checkSignAndCalculate(sign: String, number1: Int, number2: Int): Int {
-        return when (sign) {
-            OperatorSign.SUM.code -> calculate(number1, number2) { x,y -> x+y }
-            OperatorSign.SUBSTRACT.code -> calculate(number1, number2) { x,y -> x-y }
-            OperatorSign.MULTIPLY.code -> calculate(number1, number2) { x,y -> x*y }
-            OperatorSign.DIVIDE.code -> calculate(number1, number2) { x,y -> x/y }
-            else -> 0
-        }
-    }
-
-    private fun calculate(number1: Int, number2: Int, operation: (Int, Int) -> Int): Int {
-        return operation(number1, number2)
-    }
-
-    private fun sum(number1: Int, number2: Int): Int {
-        return number1 + number2
-    }
-
-    private fun substract(number1: Int, number2: Int): Int {
-        return number1 - number2
-    }
-
-    private fun multiply(number1: Int, number2: Int): Int {
-        return number1 * number2
-    }
-
-    private fun divide(number1: Int, number2: Int): Int {
-        return number1 / number2
+        val operatorSign = OperatorSign.values().find { it.code == sign }!!
+        return operatorSign.calculate(number1, number2)
     }
 }
