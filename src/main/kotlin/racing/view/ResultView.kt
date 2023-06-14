@@ -5,8 +5,7 @@ import racing.domain.Car
 object ResultView {
     private const val PROGRESS_STRING = "-"
     private const val SEPERATOR = ", "
-
-
+    
     fun showWinner(cars: List<Car>) {
         val firstGradePosition = cars.maxOf(Car::position)
         val winners = cars.filter {

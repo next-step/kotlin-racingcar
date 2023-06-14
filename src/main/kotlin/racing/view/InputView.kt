@@ -7,7 +7,6 @@ object InputView {
     private const val DEFAULT_INPUT = 0
     private const val MINIMUM_INPUT = 1
 
-
     private const val INPUT_ACTION_PREFIX = "시도할 횟수는 "
 
     fun doInput(): Pair<List<String>, Int> {
@@ -31,7 +30,6 @@ object InputView {
             throw IllegalArgumentException("형식에 맞는 타입을 입력해야함")
         }
     }
-
 
     private fun getInputNumber(): Int {
         return runCatching {
