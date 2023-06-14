@@ -6,7 +6,7 @@ import racinggame.domain.game.RealRacingGame
 fun startRacingGameScreen() {
     RacingGameController(
         inputView = RealRacingGameInputView(),
-        outputView = RealRacingGameOutputView(),
+        resultView = RealRacingGameResultView(),
         racingGame = RealRacingGame(
             racingCarFactory = RealRacingCarFactory(),
         ),

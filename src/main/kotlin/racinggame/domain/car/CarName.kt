@@ -13,7 +13,3 @@ value class CarName(val value: String) {
         private const val MAX_CAR_NAME_LENGTH = 5
     }
 }
-
-fun List<String>.toCarNames(): List<CarName> {
-    return map { name -> CarName(name) }
-}

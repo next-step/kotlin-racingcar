@@ -2,8 +2,7 @@ package racinggame.view
 
 import racinggame.domain.game.RacingGameResult
 
-interface RacingGameOutputView {
+interface RacingGameResultView {
 
-    fun display(racingGameFixedMessage: RacingGameFixedMessage)
     fun display(racingGameResult: RacingGameResult)
 }
