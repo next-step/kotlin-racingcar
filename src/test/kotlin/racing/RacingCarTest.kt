@@ -66,4 +66,14 @@ class RacingCarTest : AnnotationSpec() {
         RacingGame.raceStart(cars)
         ResultView.showSkidMarks(cars)
     }
+
+    @Test
+    fun ` 자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다`() {
+        val carNames = "pobi,crong,honux"
+        val cars = InputParser.parse(carNames).map { Car(it) }
+        RacingGame.raceStart(cars)
+        ResultView.showWinner(cars)
+    }
+
+
 }
