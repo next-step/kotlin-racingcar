@@ -1,8 +1,10 @@
 package racing.domain
 
-class RacingGame {
+object RacingGame {
 
-    fun generatePedalStrength() {
+    const val MAX_BOUND = 10
+
+    fun gameStart(cars: List<Car>) {
 
     }
 }
