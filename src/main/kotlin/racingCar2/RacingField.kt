@@ -2,8 +2,10 @@ package racingCar2
 
 class RacingField(
     private val cars: List<Car>,
+    private val _gameCount: Int,
 ) {
-    constructor(vararg carNames: String) : this(cars = List(carNames.size) { Car(carNames[it]) })
+    constructor(carNames: Array<String>, gameCount: Int) : this(List(carNames.size) { Car(carNames[it]) }, gameCount)
 
     val carNames: List<String> get() = cars.map { it.name }
+    val gameCount: Int get() = _gameCount
 }

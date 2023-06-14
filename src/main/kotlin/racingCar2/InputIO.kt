@@ -1,9 +1,9 @@
 package racingCar2
 
 class InputIO {
-    fun inputCarNames(inputString: String? = readlnOrNull()): List<String> {
+    fun inputCarNames(inputString: String? = readlnOrNull()): Array<String> {
         requireNotNull(inputString) { "자동차 이름을 입력해 주세요" }
-        return inputString.split(",")
+        return inputString.split(",").toTypedArray()
     }
 
     fun inputGameCount(inputNumber: Int? = readlnOrNull()?.toInt()): Int {

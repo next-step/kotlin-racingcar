@@ -9,4 +9,8 @@ fun main() {
 
     inputView.show(InputMessage.GAME_COUNT)
     val inputNumber = inputIO.inputGameCount()
+
+    val racingField = RacingField(inputNames, inputNumber)
+
+    println("racingField: ${racingField.carNames}, ${racingField.gameCount}")
 }
