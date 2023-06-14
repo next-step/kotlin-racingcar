@@ -1,10 +1,10 @@
 package racingCar2
 
-interface RandomNumber {
+interface NumberGenerator {
     fun getRandomNumber(): Int
 }
 
-class RandomNumberGenerator : RandomNumber {
+class RandomNumberGenerator : NumberGenerator {
     override fun getRandomNumber(): Int {
         return (0..9).random()
     }
