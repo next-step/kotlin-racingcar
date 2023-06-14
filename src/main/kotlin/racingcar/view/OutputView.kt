@@ -1,6 +1,7 @@
 package racingcar.view
 
 import racingcar.domain.Car
+import racingcar.domain.Cars
 
 object OutputView {
     fun printRequestCarCount() {
@@ -15,9 +16,11 @@ object OutputView {
         println(Messages.MESSAGE_EXECUTION_RESULT)
     }
 
-    fun printCarNameAndPosition(carName: String, position: Int) {
-        print("$carName : ")
-        println("-".repeat(position))
+    fun printCarNameAndPosition(cars: Cars) {
+        cars.getCars().stream().forEach { car ->
+            print("${car.carName.name} : ")
+            println("-".repeat(car.position))
+        }
     }
 
     fun printWinners(winners: List<Car>) {

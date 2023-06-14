@@ -1,7 +1,6 @@
 package racingcar.domain
 
 import racingcar.view.Messages
-import racingcar.view.OutputView
 
 class Cars(
     private val cars: List<Car>
@@ -28,11 +27,7 @@ class Cars(
         cars.forEach(Car::move)
     }
 
-    fun getPosition() {
-        cars.forEach { car ->
-            OutputView.printCarNameAndPosition(car.carName.name, car.position)
-        }
-    }
+    fun getCars(): List<Car> = cars
 
     fun getWinners(): List<Car> {
         val maxPosition = cars.maxBy { it.position }.position

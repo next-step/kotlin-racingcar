@@ -9,19 +9,14 @@ class RacingGameService {
     private val defaultPosition = 0
     private lateinit var cars: Cars
 
-    fun initCars(inputCarNames: String, condition: Condition) {
-        val carNames = inputCarNames.split(DELIMITER)
-        cars = Cars(carNames.map { Car(defaultPosition, CarName(it), condition) })
+    fun initCars(inputCarNames: List<String>, condition: Condition) {
+        cars = Cars(inputCarNames.map { Car(defaultPosition, CarName(it), condition) })
     }
 
-    fun play() {
+    fun play(): Cars {
         cars.move()
-        cars.getPosition()
+        return cars
     }
 
     fun getWinners() = cars.getWinners()
-
-    companion object {
-        private const val DELIMITER = ","
-    }
 }

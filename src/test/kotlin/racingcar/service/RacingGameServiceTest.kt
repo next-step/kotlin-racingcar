@@ -9,7 +9,7 @@ class RacingGameServiceTest : StringSpec({
 
     "게임 진행 할 때, 올바른 우승자가 반환된다." {
         racingGameService.initCars(
-            "gray,jenny,gold",
+            listOf("gray", "jenny", "gold"),
             object : Condition {
                 override fun canMove(): Boolean = true
             }

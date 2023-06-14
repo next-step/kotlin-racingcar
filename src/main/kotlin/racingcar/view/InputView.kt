@@ -1,6 +1,8 @@
 package racingcar.view
 
 object InputView {
-    fun inputName(): String = readln()
+    private const val DELIMITER = ","
+
+    fun inputName(): List<String> = readln().split(DELIMITER)
     fun inputNumber(): Int = readln().toInt()
 }

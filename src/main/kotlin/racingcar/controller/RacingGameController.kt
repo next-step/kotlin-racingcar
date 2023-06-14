@@ -20,13 +20,14 @@ class RacingGameController(
         play(Round(inputAttemptCount))
     }
 
-    private fun init(carNames: String) {
+    private fun init(carNames: List<String>) {
         racingGameService.initCars(carNames, RandomCondition)
     }
 
     private fun play(round: Round) {
         repeat(round.attemptCount) {
-            racingGameService.play()
+            val playCars = racingGameService.play()
+            OutputView.printCarNameAndPosition(playCars)
             OutputView.print()
         }
         val winners = racingGameService.getWinners()
