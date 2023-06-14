@@ -1,9 +1,9 @@
-package study.step3
+package study.racing.movement.condition
 
 import kotlin.random.Random
 
 class RandomMovementConditionGenerator : MovementConditionGenerator {
-    override fun run(): Int {
+    override fun execute(): Int {
         return Random.nextInt(0, 10)
     }
 }
