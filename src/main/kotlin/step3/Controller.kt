@@ -1,7 +1,7 @@
 package step3
 
 import step3.domain.car.CarFactory
-import step3.domain.car.RandomMovePointDecider
+import step3.domain.car.RandomMovingEngine
 import step3.domain.race.RaceGame
 import step3.view.ConsoleInputView
 import step3.view.ConsoleResultView
@@ -13,7 +13,7 @@ fun main() {
     val carCount = inputView.getCarCount()
     val roundCount = inputView.getRoundCount()
 
-    val carList = CarFactory.createCars(carCount, RandomMovePointDecider())
+    val carList = CarFactory.createCars(carCount, RandomMovingEngine())
 
     val raceResult = RaceGame(carList).execute(roundCount)
 

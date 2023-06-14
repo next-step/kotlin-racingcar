@@ -1,11 +1,11 @@
 package step3.domain.race
 
-data class RaceResult(val roundResultList: List<RaceRoundResult>) {
+data class RaceResult(val roundResults: List<RaceRoundResult>) {
 
-    fun getRoundCount(): Int = roundResultList.size
+    val roundCount: Int = roundResults.size
 
     fun getRoundResult(roundIndex: Int): RaceRoundResult {
-        require(roundIndex >= 0 && roundIndex < getRoundCount())
-        return roundResultList[roundIndex]
+        require(roundIndex in 0 until roundCount) { " 유효하지 않은 round 번호 입니다" }
+        return roundResults[roundIndex]
     }
 }

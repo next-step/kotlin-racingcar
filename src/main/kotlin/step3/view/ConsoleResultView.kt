@@ -5,11 +5,11 @@ import step3.domain.race.RaceResult
 class ConsoleResultView : ResultView {
     override fun drawResult(raceResult: RaceResult) {
         println("실행결과")
-        raceResult.roundResultList.forEach {
-            carList ->
-            carList.carStatusList.forEach {
+        raceResult.roundResults.forEach {
+            raceRoundResult ->
+            raceRoundResult.carStatuses.forEach {
                 car ->
-                println("[${car.id}]" + "-".repeat(car.position))
+                println("[${car.key}]" + "-".repeat(car.value.position))
             }
             println()
         }
