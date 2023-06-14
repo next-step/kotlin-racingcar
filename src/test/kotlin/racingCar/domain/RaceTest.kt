@@ -15,5 +15,4 @@ class RaceTest {
         assertTrue(car1.position >= 0)
         assertTrue(car2.position >= 0)
     }
-
 }

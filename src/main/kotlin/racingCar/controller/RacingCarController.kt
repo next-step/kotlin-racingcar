@@ -3,8 +3,7 @@ package racingCar.controller
 import racingCar.domain.Car
 import racingCar.domain.Race
 import racingCar.view.InputView
-import racingCar.view.printResult
-import racingCar.view.printStart
+import racingCar.view.ResultView
 
 class RacingCarController {
     fun main() {
@@ -12,11 +11,11 @@ class RacingCarController {
         val numberOfRace = InputView.getNumberOfTrial()
 
         val cars = createCars(numberOfCar)
-        printStart()
+        ResultView.printStart()
         for (i in 1..numberOfRace) {
             val race = Race(cars)
             race.racing()
-            printResult(cars)
+            ResultView.printResult(cars)
         }
     }
 
