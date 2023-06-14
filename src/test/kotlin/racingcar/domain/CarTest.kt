@@ -28,4 +28,22 @@ class CarTest : StringSpec({
         car.move()
         car.position shouldBe 0
     }
+
+    "Car 이름이 동일한 경우, condition, position 상관 없이 같은 Car이다." {
+        val car1 = Car(
+            0,
+            CarName("test"),
+            object : Condition {
+                override fun canMove(): Boolean = false
+            }
+        )
+        val car2 = Car(
+            10,
+            CarName("test"),
+            object : Condition {
+                override fun canMove(): Boolean = true
+            }
+        )
+        car1 shouldBe car2
+    }
 })
