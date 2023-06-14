@@ -1,7 +1,7 @@
-package step3.domain.car
+package racing_car.domain.car
 
 class Car(
-    val id: Int,
+    val id: String,
     private val engine: Engine,
     position: Int = 0
 ) {
@@ -16,4 +16,4 @@ class Car(
     }
 }
 
-data class CarStatus(val id: Int, val position: Int)
+data class CarStatus(val id: String, val position: Int)

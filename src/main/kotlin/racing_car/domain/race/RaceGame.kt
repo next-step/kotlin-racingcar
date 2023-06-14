@@ -1,7 +1,6 @@
-package step3.domain.race
+package racing_car.domain.race
 
-import step3.domain.car.Car
-import step3.domain.car.CarStatus
+import racing_car.domain.car.Car
 
 class RaceGame(private val carList: List<Car>) {
 

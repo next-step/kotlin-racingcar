@@ -1,6 +1,6 @@
-package step3.view
+package racing_car.view
 
-import step3.domain.race.RaceResult
+import racing_car.domain.race.RaceResult
 
 interface ResultView {
     fun drawResult(raceResult: RaceResult)

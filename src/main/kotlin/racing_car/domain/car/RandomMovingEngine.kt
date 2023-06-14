@@ -1,4 +1,4 @@
-package step3.domain.car
+package racing_car.domain.car
 
 class RandomMovingEngine(
     private val minRandomValue: Int = 0,

@@ -1,9 +1,9 @@
-package step3.view
+package racing_car.view
 
 class ConsoleInputView : InputView {
-    override fun getCarCount(): Int {
-        print("자동차 대수는 몇 대인가요?")
-        return readln().toInt()
+    override fun getCarNames(): List<String> {
+        print("자동차 이름들을 입력해주세요. (,로 구분)")
+        return readln().split(",")
     }
 
     override fun getRoundCount(): Int {
