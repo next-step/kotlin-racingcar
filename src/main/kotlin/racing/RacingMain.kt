@@ -12,11 +12,10 @@ fun main() {
 
     val tryCount = InputView.readTryCount()
 
-    val racingGame = RacingGame(cars)
-    val randomMovePolicy = RandomMovePolicy()
-    val raceResult = racingGame.race(tryCount, randomMovePolicy)
+    val racingGame = RacingGame(cars, tryCount)
+    val raceResult = racingGame.race(RandomMovePolicy())
 
     ResultView.printHeader()
     ResultView.printRacingResult(raceResult)
-    ResultView.printWinners(raceResult.last())
+    ResultView.printWinners(raceResult.last().getWinners())
 }
