@@ -1,11 +1,9 @@
 package calculator
 
-import calculator.Expression.Companion.isEven
+class Expression(input: Input) {
 
-class Expression(private val input: Input) {
-
-    private var operands: List<Number>
-    private var operators: List<Operator>
+    private val operands: List<Operand>
+    private val operators: List<Operator>
 
     init {
         val values = input.split(DELIMITER)
@@ -19,7 +17,7 @@ class Expression(private val input: Input) {
         require(operands.size == operators.size + 1) { "수식이 올바르지 않습니다. $input" }
     }
 
-    fun calculate(): Number {
+    fun calculate(): Operand {
         val seed = operands.first()
         return operators
             .zip(operands.drop(1))
@@ -33,9 +31,9 @@ class Expression(private val input: Input) {
 
         private fun List<*>.isOddSize(): Boolean = this.size % 2 == 1
         private fun IndexedValue<*>.isEven(): Boolean = this.index % 2 == 0
-        private fun List<String>.parseExpression(): Pair<List<Number>, List<Operator>> {
+        private fun List<String>.parseExpression(): Pair<List<Operand>, List<Operator>> {
             val (evenIndexed, oddIndexed) = this.withIndex().partition { it.isEven() }
-            val operands = evenIndexed.map { Number(it.value) }
+            val operands = evenIndexed.map { Operand(it.value) }
             val operators = oddIndexed.map { Operator.of(it.value) }
             return Pair(operands, operators)
         }

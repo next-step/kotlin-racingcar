@@ -1,8 +1,6 @@
 package calculator
 
-import java.lang.IllegalArgumentException
-
-enum class Operator(private val symbol: String, val operate: (Number, Number) -> Number) {
+enum class Operator(private val symbol: String, val operate: (Operand, Operand) -> Operand) {
 
     PLUS("+", { a, b -> a + b }),
     MINUS("-", { a, b -> a - b }),

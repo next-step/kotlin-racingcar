@@ -15,7 +15,7 @@ class StringCalculatorTest : FunSpec({
         ) { (input, expected) ->
             val calculator = StringCalculator(Input(input))
             val result = calculator.calculate()
-            result shouldBe Number(expected)
+            result shouldBe Operand(expected)
         }
     }
 
