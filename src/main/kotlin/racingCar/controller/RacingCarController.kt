@@ -7,12 +7,12 @@ import racingCar.view.ResultView
 
 class RacingCarController {
     fun main() {
-        val numberOfCar = InputView.getNumberOfCar()
-        val numberOfRace = InputView.getNumberOfTrial()
+        val numberOfCar: Int = InputView.getNumberOfCar()
+        val numberOfRace: Int = InputView.getNumberOfTrial()
 
         val cars = createCars(numberOfCar)
         ResultView.printStart()
-        for (i in 1..numberOfRace) {
+        repeat(numberOfRace) {
             val race = Race(cars)
             race.racing()
             ResultView.printResult(cars)
@@ -20,10 +20,6 @@ class RacingCarController {
     }
 
     private fun createCars(count: Int): List<Car> {
-        val cars = mutableListOf<Car>()
-        repeat((1..count).count()) {
-            cars.add(Car())
-        }
-        return cars
+        return List(count) { Car() }
     }
 }
