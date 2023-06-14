@@ -1,5 +1,7 @@
 package racinggame.view
 
+import racinggame.domain.car.CarName
+import racinggame.domain.car.toCarNames
 import racinggame.domain.game.GameGuide
 import racinggame.domain.game.GameRule
 import racinggame.domain.game.RacingGame
@@ -14,20 +16,21 @@ class RacingGameController(
 ) {
 
     fun start() {
-        val participantsCount = receiveParticipantsCountOrNull() ?: run {
-            displayErrorFinishMessage()
+        val carNames = receiveCarNamesOrNull() ?: run {
+            outputView.display(RacingGameFixedMessage.FINISH_WITH_INVALID_NAME)
             return
         }
 
         val gamePlayCount = receiveGamePlayCountOrNull() ?: run {
-            displayErrorFinishMessage()
+            outputView.display(RacingGameFixedMessage.FINISH_WITH_NOT_POSITIVE_INTEGER)
             return
         }
 
         val gameGuide = GameGuide(
-            users = List(participantsCount) { index ->
+            users = carNames.mapIndexed { index, carName ->
                 User(
                     id = UserUniqueId.create(),
+                    carName = carName,
                     ordinal = index,
                 )
             },
@@ -38,29 +41,29 @@ class RacingGameController(
         displayRacingGameResult(racingResult)
     }
 
-    private fun receiveParticipantsCountOrNull(): Int? {
-        outputView.display(RacingGameFixedMessage.PARTICIPANTS_INPUT)
-        return receivePositiveIntegerFromViewOrNull()
+    private fun receiveCarNamesOrNull(): List<CarName>? {
+        outputView.display(RacingGameFixedMessage.CAR_NAMES_INPUT)
+        return inputView.readLine()
+            .split(USER_NAMES_DELIMITER)
+            .let { inputNames -> runCatching { inputNames.toCarNames() } }
+            .getOrNull()
     }
 
     private fun receiveGamePlayCountOrNull(): Int? {
         outputView.display(RacingGameFixedMessage.GAME_PLAY_COUNT_INPUT)
-        return receivePositiveIntegerFromViewOrNull()
-    }
-
-    private fun receivePositiveIntegerFromViewOrNull(): Int? {
         return inputView.readLine()
             .toIntOrNull()
             ?.takeIf { it > 0 }
-    }
-
-    private fun displayErrorFinishMessage() {
-        outputView.display(RacingGameFixedMessage.FINISH_WITH_NOT_POSITIVE_INTEGER)
     }
 
     private fun displayRacingGameResult(racingGameResult: RacingGameResult) {
         outputView.display(RacingGameFixedMessage.BLANK)
         outputView.display(RacingGameFixedMessage.EXECUTE_RESULT)
         outputView.display(racingGameResult)
+    }
+
+    companion object {
+
+        private const val USER_NAMES_DELIMITER = ","
     }
 }

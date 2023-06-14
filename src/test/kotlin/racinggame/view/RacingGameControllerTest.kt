@@ -18,40 +18,43 @@ class RacingGameControllerTest : BehaviorSpec({
     }
 
     Given("화면에 진입하면") {
-        Then("자동차 수를 입력 받기 위한 안내 메시지가 출력된다") {
+        Then("자동차 이름들을 입력 받기 위한 안내 메시지가 출력된다") {
             RacingGameController(
                 mockRacingGameInputView.apply { setUp("1", "1") },
                 mockRacingGameOutputView,
                 mockRacingGame
             ).start()
 
-            mockRacingGameOutputView.fixedMessagesCapture[0] shouldBe RacingGameFixedMessage.PARTICIPANTS_INPUT
+            mockRacingGameOutputView.fixedMessagesCapture[0] shouldBe RacingGameFixedMessage.CAR_NAMES_INPUT
         }
     }
 
-    Given("자동차 수를 입력 받기 위한 안내 메시지 출력 후") {
-        When("양의 정수가 아닌 문자를 입력하면") {
+    Given("자동차 이름들을 입력 받기 위한 안내 메시지 출력 후") {
+        When("빈칸이거나 5자르 초과하는 이름이 한개라도 입력되면") {
             forAll(
-                row("a"),
-                row("-1"),
-                row("0"),
-            ) { noPositiveInteger ->
+                row(",a,a"),
+                row("a,,a"),
+                row("a,a,"),
+                row("123456,a,a"),
+                row("a,123456,a"),
+                row("a,a,123456"),
+            ) { userNames ->
                 Then("에러로 인한 종료 메시지가 출력된다") {
                     RacingGameController(
-                        mockRacingGameInputView.apply { setUp(noPositiveInteger) },
+                        mockRacingGameInputView.apply { setUp(userNames) },
                         mockRacingGameOutputView,
                         mockRacingGame
                     ).start()
 
-                    mockRacingGameOutputView.fixedMessagesCapture[1] shouldBe RacingGameFixedMessage.FINISH_WITH_NOT_POSITIVE_INTEGER
+                    mockRacingGameOutputView.fixedMessagesCapture[1] shouldBe RacingGameFixedMessage.FINISH_WITH_INVALID_NAME
                 }
             }
         }
 
-        When("양의 정수를 입력하면") {
+        When("빈칸도 아니며 5자 이내인 이름으로 모두 입력되면") {
             Then("게임 횟수를 입력 받기 위한 안내 메시지가 출력된다") {
                 RacingGameController(
-                    mockRacingGameInputView.apply { setUp("1", "1") },
+                    mockRacingGameInputView.apply { setUp("a,b", "1") },
                     mockRacingGameOutputView,
                     mockRacingGame
                 ).start()
@@ -64,13 +67,13 @@ class RacingGameControllerTest : BehaviorSpec({
     Given("게임 횟수를 입력 받기 위한 안내 메시지 출력 후") {
         When("양의 정수가 아닌 문자를 입력하면") {
             forAll(
-                row("1", "a"),
-                row("1", "-1"),
-                row("1", "0"),
-            ) { positiveInteger, noPositiveInteger ->
+                row("a,b", "a"),
+                row("a,b", "-1"),
+                row("a,b", "0"),
+            ) { userNames, noPositiveInteger ->
                 Then("에러로 인한 종료 메시지가 출력된다") {
                     RacingGameController(
-                        mockRacingGameInputView.apply { setUp(positiveInteger, noPositiveInteger) },
+                        mockRacingGameInputView.apply { setUp(userNames, noPositiveInteger) },
                         mockRacingGameOutputView,
                         mockRacingGame
                     ).start()
@@ -82,18 +85,18 @@ class RacingGameControllerTest : BehaviorSpec({
 
         When("양의 정수를 입력하면") {
             forAll(
-                row("1", "1"),
-                row("2", "2"),
-                row("3", "3"),
-            ) { participantsCount, gamePlayCount ->
+                row("a,b", "1"),
+                row("a,b", "2"),
+                row("a,b", "3"),
+            ) { userNames, gamePlayCount ->
                 Then("입력된 데이터로 게임에 입장한다") {
                     RacingGameController(
-                        mockRacingGameInputView.apply { setUp(participantsCount, gamePlayCount) },
+                        mockRacingGameInputView.apply { setUp(userNames, gamePlayCount) },
                         mockRacingGameOutputView,
                         mockRacingGame
                     ).start()
 
-                    mockRacingGame.gameGuideCapture?.users?.size shouldBe participantsCount.toInt()
+                    mockRacingGame.gameGuideCapture?.users?.map { it.carName.value } shouldBe listOf("a", "b")
                     mockRacingGame.gameGuideCapture?.gameRule?.playCount shouldBe gamePlayCount.toInt()
                 }
             }
