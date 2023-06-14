@@ -3,16 +3,16 @@ package racing.view
 import racing.domain.Car
 
 object ResultView {
-    private const val NEXT_LINE = "\n"
     private const val PROGRESS_STRING = "-"
     private const val SEPERATOR = ", "
-    private const val MAX_RANGE = 10
 
-    fun showWinner(cars: List<Car>): String {
+
+    fun showWinner(cars: List<Car>) {
         val firstGradePosition = cars.maxOf(Car::position)
-        return cars.filter {
+        val winners = cars.filter {
             it.position == firstGradePosition
         }.joinToString(SEPERATOR, transform = Car::name)
+        print("${winners}가 최종 우승했습니다.")
     }
 
     fun showSkidMarks(cars: List<Car>) {
@@ -23,5 +23,9 @@ object ResultView {
             }
             println("${car.name} : $progressString")
         }
+    }
+
+    fun printEnter() {
+        println()
     }
 }
