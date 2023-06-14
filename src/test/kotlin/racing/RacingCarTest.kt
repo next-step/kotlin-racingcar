@@ -2,8 +2,12 @@ package racing
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.AnnotationSpec
+import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import racing.domain.Car
+import racing.view.InputView
+
+
 
 class RacingCarTest : AnnotationSpec() {
 
@@ -39,5 +43,11 @@ class RacingCarTest : AnnotationSpec() {
         numbers.forEach {
             car.moveCar(it) shouldBe false
         }
+    }
+
+    @Test
+    fun `자동차 이름은 쉼표로 구분함`() {
+        val carNames = "pobi,crong,honux"
+        InputParser.parse(carNames) shouldHaveSize(3)
     }
 }
