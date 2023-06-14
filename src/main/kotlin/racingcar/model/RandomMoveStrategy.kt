@@ -5,7 +5,7 @@ import kotlin.random.Random
 data class RandomMoveStrategy(private val random: Random = Random.Default) : MoveStrategy {
 
     override val movedStatus: MovingStatus
-        get() = if (random.nextInt(MAX_NUMBER) >= MOVABLE_LIMIT) {
+        get() = if (MOVABLE_LIMIT <= random.nextInt(MAX_NUMBER)) {
             MovingStatus.GO
         } else {
             MovingStatus.STOP

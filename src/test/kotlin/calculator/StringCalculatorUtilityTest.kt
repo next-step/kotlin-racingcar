@@ -1,6 +1,6 @@
 package calculator
 
-import calculator.StringCalculatorUtility.Companion.calculatedNumber
+import calculator.StringCalculatorUtility.calculate
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.DisplayName
 import io.kotest.core.spec.style.StringSpec
@@ -15,14 +15,14 @@ class StringCalculatorUtilityTest : StringSpec({
             "2 + 3 * 4 / 2" to 10,
             "5 - 1 / 2 + 3 * 3" to 15
         ).forAll {
-            it.first.calculatedNumber() shouldBe it.second
+            calculate(it.first) shouldBe it.second
         }
     }
 
     "입력 값이 null 이거나 빈 공백이면 IllegalArgumentException" {
         listOf(null, "").forAll {
             shouldThrowExactly<IllegalArgumentException> {
-                it.calculatedNumber()
+                calculate(it)
             }
         }
     }
@@ -30,7 +30,7 @@ class StringCalculatorUtilityTest : StringSpec({
     "사칙 연산 기호가 아니라면 IllegalArgumentException" {
         listOf("1 ! 1", "1 @ 1", "1 # 1", "1 = 1").forAll {
             shouldThrowExactly<IllegalArgumentException> {
-                it.calculatedNumber()
+                calculate(it)
             }
         }
     }

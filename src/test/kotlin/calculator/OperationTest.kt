@@ -1,6 +1,5 @@
 package calculator
 
-import calculator.Operation.Companion.numberOperation
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.DisplayName
 import io.kotest.core.spec.style.StringSpec
@@ -17,7 +16,7 @@ class OperationTest : StringSpec({
             "*" to Operation.MULTIPLY,
             "/" to Operation.DIVIDE,
         ).forAll {
-            it.first.numberOperation shouldBe it.second
+            Operation.signOf(it.first) shouldBe it.second
         }
     }
 
@@ -25,7 +24,7 @@ class OperationTest : StringSpec({
         listOf("!", "@", "#", "=")
             .forAll {
                 shouldThrowExactly<IllegalArgumentException> {
-                    it.numberOperation
+                    Operation.signOf(it)
                 }
             }
     }
