@@ -1,7 +1,7 @@
 package racingCar2
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 class CarTest {
@@ -14,7 +14,7 @@ class CarTest {
 
     @Test
     fun `자동차의 이름은 5자를 초과할 수 없다`() {
-        Assertions.assertThrows(IllegalStateException::class.java) {
+        shouldThrow<IllegalStateException> {
             Car("잘생긴 김태훈", 1)
         }
     }
