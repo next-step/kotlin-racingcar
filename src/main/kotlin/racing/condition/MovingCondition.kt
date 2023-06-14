@@ -1,7 +1,6 @@
 package racing.condition
 
 import racing.util.RandomValueGenerator
-import kotlin.random.Random
 
 class MovingCondition {
 

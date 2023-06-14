@@ -6,18 +6,19 @@ import racing.condition.MovingCondition
 import racing.view.ResultView
 
 class RacingGame(
-    private val carCount: Int
+    carNames: List<String>
 ) {
 
-    var cars: RacingCars
-        private set
+    val cars: RacingCars
 
     init {
-        this.cars = racingGameCarInit(carCount)
+        this.cars = racingGameCarInit(carNames)
     }
 
-    fun racingGameCarInit(carCount: Int): RacingCars {
-        val cars = List(carCount) { Car() }
+    fun racingGameCarInit(carName: List<String>): RacingCars {
+        val cars = carName.map {
+            Car(name = it)
+        }
         return RacingCars(cars)
     }
 

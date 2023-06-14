@@ -2,10 +2,10 @@ package enums
 
 enum class OperatorSign(
     val code: String,
-    val desc: String
+    val calculate: (Int, Int) -> Int
 ) {
-    SUM("+", "덧셈"),
-    SUBSTRACT("-", "뺄셈"),
-    MULTIPLY("*", "곱셈"),
-    DIVIDE("/", "나눗셈")
+    SUM("+", { x, y -> x + y }),
+    SUBSTRACT("-", { x, y -> x - y }),
+    MULTIPLY("*", { x, y -> x * y }),
+    DIVIDE("/", { x, y -> x / y });
 }

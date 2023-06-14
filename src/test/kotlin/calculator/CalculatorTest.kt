@@ -1,5 +1,6 @@
 package calculator
 
+import enums.OperatorSign
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
@@ -66,30 +67,7 @@ class CalculatorTest {
     }
 
     private fun checkSignAndCalculate(sign: String, number1: Int, number2: Int): Int {
-        return if (sign.equals("+")) {
-            sum(number1, number2)
-        } else if (sign.equals("-")) {
-            substract(number1, number2)
-        } else if (sign.equals("*")) {
-            multiply(number1, number2)
-        } else {
-            divide(number1, number2)
-        }
-    }
-
-    private fun sum(number1: Int, number2: Int): Int {
-        return number1 + number2
-    }
-
-    private fun substract(number1: Int, number2: Int): Int {
-        return number1 - number2
-    }
-
-    private fun multiply(number1: Int, number2: Int): Int {
-        return number1 * number2
-    }
-
-    private fun divide(number1: Int, number2: Int): Int {
-        return number1 / number2
+        val operatorSign = OperatorSign.values().find { it.code == sign }!!
+        return operatorSign.calculate(number1, number2)
     }
 }

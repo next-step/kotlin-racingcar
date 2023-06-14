@@ -48,28 +48,7 @@ class Calculator(
         require(checkIsNotSign(sign)) {
             "사칙연산의 기호가 아닙니다."
         }
-        return when (sign) {
-            OperatorSign.SUM.code -> sum(number1, number2)
-            OperatorSign.SUBSTRACT.code -> substract(number1, number2)
-            OperatorSign.MULTIPLY.code -> multiply(number1, number2)
-            OperatorSign.DIVIDE.code -> divide(number1, number2)
-            else -> 0
-        }
-    }
-
-    private fun sum(number1: Int, number2: Int): Int {
-        return number1 + number2
-    }
-
-    private fun substract(number1: Int, number2: Int): Int {
-        return number1 - number2
-    }
-
-    private fun multiply(number1: Int, number2: Int): Int {
-        return number1 * number2
-    }
-
-    private fun divide(number1: Int, number2: Int): Int {
-        return number1 / number2
+        val operatorSign = OperatorSign.values().find { it.name == sign }!!
+        return operatorSign.calculate(number1, number2)
     }
 }
