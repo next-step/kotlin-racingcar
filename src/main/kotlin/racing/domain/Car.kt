@@ -1,8 +1,8 @@
-package racing
+package racing.domain
 
 class Car(val name: String) {
 
-    var progress = 0
+    var position = DEFAULT_POSITION
         private set
 
     init {
@@ -11,14 +11,16 @@ class Car(val name: String) {
         }
     }
 
-    fun moveCar(pedalStrength: Int): Int {
+    fun moveCar(pedalStrength: Int): Boolean {
         if (pedalStrength >= GO_RESTRICT_STRENGTH) {
-            progress++
+            position++
+            return true
         }
-        return progress
+        return false
     }
 
     companion object {
+        const val DEFAULT_POSITION = 0
         const val GO_RESTRICT_STRENGTH = 4
         const val MAXIMUM_NAME_LENGTH = 5
     }
