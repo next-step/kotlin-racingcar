@@ -8,22 +8,14 @@ class CarTest {
     @Test
     internal fun `MoveStrategy의 값이 true일때는 전진한다`() {
         val car = Car("aaa")
-        car.move(object : MoveStrategy {
-            override fun move(): Boolean {
-                return true
-            }
-        })
+        car.move(TestMoveStrategy(true))
         assertThat(car.score).isEqualTo(1)
     }
 
     @Test
     internal fun `MoveStrategy의 값이 false때는 전진하지 않는다`() {
         val car = Car("bbb")
-        car.move(object : MoveStrategy {
-            override fun move(): Boolean {
-                return false
-            }
-        })
+        car.move(TestMoveStrategy(false))
         assertThat(car.score).isEqualTo(0)
     }
 
