@@ -13,10 +13,10 @@ class RacingTest {
         val carNames = listOf("car1", "car2")
         val attemptCount = 3
         val cars = Cars.of(carNames, FakeForwardCondition(true))
-        val racing = Racing(cars, attemptCount)
+        val racing = Racing(cars)
 
         // when
-        val racingPhaseRecords = racing.start()
+        val racingPhaseRecords = racing.start(attemptCount)
 
         // then
         assertAll({

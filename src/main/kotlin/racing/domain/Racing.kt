@@ -1,12 +1,21 @@
 package racing.domain
 
 data class Racing(
-    val cars: Cars,
-    private val attemptCount: Int
+    val cars: Cars
 ) {
 
-    fun start(): List<RacingPhaseRecords> {
+    fun start(attemptCount: Int): List<RacingPhaseRecords> {
         return (0 until attemptCount)
             .map { cars.race() }
+    }
+
+    companion object {
+        fun of(carNames: List<String>): Racing {
+            val cars = carNames.map {
+                Car(name = it, forwardCondition = RandomNumberForwardCondition())
+            }
+
+            return Racing(Cars(cars))
+        }
     }
 }
