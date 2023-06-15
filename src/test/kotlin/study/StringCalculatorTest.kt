@@ -9,7 +9,7 @@ import io.kotest.matchers.shouldBe
 
 class StringCalculatorTest : FunSpec({
 
-    context("수식을 계산합니다") {
+    context("문자열 계산기는 사칙 연산의 계산 우선순위가 아닌 입력 값에 따라 계산 순서가 결정된다") {
         withData(
             "2 + 3 * 4 / 2" to 10,
             "3 + 3 * 4 / 2" to 12,
@@ -22,7 +22,7 @@ class StringCalculatorTest : FunSpec({
     context("사칙연산 기호가 아닌 경우 IllegalArgumentException throw") {
         withData(
             "2 X 3" to "X",
-            "2 % 3" to "%"
+            "2 % 3" to "%",
         ) { (input, operator) ->
             val stringCalculator = StringCalculator()
             val exception = shouldThrow<IllegalArgumentException> {
