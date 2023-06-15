@@ -19,7 +19,8 @@ class RacingField(
             gameRecords.add(this.playGame(numberGenerator))
         }
 
-        val winners = this.findWinners()
+        val racingPlayers = RacingPlayers(cars)
+        val winners = racingPlayers.getWinners()
         resultView.showRacingResult(gameRecords, winners)
 
         return winners
@@ -34,10 +35,5 @@ class RacingField(
         }
 
         return GameResult(gameResult)
-    }
-
-    private fun findWinners(): List<String> {
-        val maxPosition = cars.maxOf { it.position }
-        return cars.filter { it.position == maxPosition }.map { it.name }
     }
 }
