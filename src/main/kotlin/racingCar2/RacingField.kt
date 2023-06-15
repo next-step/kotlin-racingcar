@@ -13,20 +13,27 @@ class RacingField(
     constructor(carNames: Array<String>, gameCount: Int) : this(List(carNames.size) { Car(carNames[it]) }, gameCount)
 
     fun racingStart(numberGenerator: NumberGenerator): List<String> {
-        resultView.showResultMessage()
+        val gameRecords = mutableListOf<GameResult>()
+
         repeat(_gameCount) {
-            this.gameStart(numberGenerator)
-            resultView.showGameResult(cars)
+            gameRecords.add(this.playGame(numberGenerator))
         }
 
         val winners = this.findWinners()
-        resultView.showWinners(winners)
+        resultView.showRacingResult(gameRecords, winners)
 
         return winners
     }
 
-    private fun gameStart(numberGenerator: NumberGenerator) {
-        cars.forEach { it.move(numberGenerator.getRandomNumber()) }
+    private fun playGame(numberGenerator: NumberGenerator): GameResult {
+        val gameResult = mutableListOf<Player>()
+
+        cars.forEach {
+            it.move(numberGenerator.getRandomNumber())
+            gameResult.add(Player(it.name, it.position))
+        }
+
+        return GameResult(gameResult)
     }
 
     private fun findWinners(): List<String> {
