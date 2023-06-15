@@ -17,18 +17,15 @@ object OutputView {
     }
 
     fun printCarNameAndPosition(cars: Cars) {
-        cars.getCars().stream().forEach { car ->
+        cars.cars.stream().forEach { car ->
             print("${car.carName.name} : ")
             println("-".repeat(car.position))
         }
+        println()
     }
 
     fun printWinners(winners: List<Car>) {
         val winnerNames = winners.joinToString { it.carName.name }
         println("${winnerNames}이(가) 최종 우승했습니다.")
-    }
-
-    fun print() {
-        println()
     }
 }

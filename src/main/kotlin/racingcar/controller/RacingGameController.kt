@@ -28,7 +28,6 @@ class RacingGameController(
         repeat(round.attemptCount) {
             val playCars = racingGameService.play()
             OutputView.printCarNameAndPosition(playCars)
-            OutputView.print()
         }
         val winners = racingGameService.getWinners()
         OutputView.printWinners(winners)
