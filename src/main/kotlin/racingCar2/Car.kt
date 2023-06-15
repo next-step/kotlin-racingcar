@@ -4,8 +4,10 @@ class Car(
     private val _name: String,
 ) {
     private var _position: Int = DEFAULT_POSITION
-    val name: String get() = _name
-    val position: Int get() = _position
+    val name: String
+        get() = _name
+    val position: Int
+        get() = _position
 
     init {
         check(name.length < MAX_NAME_LENGTH) { "자동차의 이름은 5자를 초과할 수 없습니다." }

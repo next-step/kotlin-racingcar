@@ -20,11 +20,24 @@ class CarTest {
         car.position shouldBe 0
     }
 
-    @Test
-    fun `자동차의 이름은 5자를 초과할 수 없다`() {
+    @ParameterizedTest
+    @CsvSource(
+        "훈태김태훈",
+        "잘생긴김태훈"
+    )
+    fun `자동차의 이름은 5자를 초과할 수 없다`(name: String) {
         shouldThrow<IllegalStateException> {
-            Car("잘생긴 김태훈")
+            Car(name)
         }
+    }
+
+    @ParameterizedTest
+    @CsvSource(
+        "다리우스",
+        "드레이븐"
+    )
+    fun `자동차의 이름은 4자 까지 가능하다`(name: String) {
+        Car(name)
     }
 
     @ParameterizedTest

@@ -5,8 +5,10 @@ class RacingField(
     private val _gameCount: Int,
 ) {
     private val resultView = ResultView()
-    val carNames: List<String> get() = cars.map { it.name }
-    val gameCount: Int get() = _gameCount
+    val carNames: List<String>
+        get() = cars.map { it.name }
+    val gameCount: Int
+        get() = _gameCount
 
     constructor(carNames: Array<String>, gameCount: Int) : this(List(carNames.size) { Car(carNames[it]) }, gameCount)
 
