@@ -28,7 +28,7 @@ class RacingGame(
 
     private fun initCars(cars: ArrayList<Car>, carNumber: Int) {
         for (i in 0 until carNumber)
-            cars.add(Car())
+            cars.add(Car(RandomMoveStrategy()))
     }
 
     private fun startEachRound(cars: ArrayList<Car>, roundNumber: Int) {
