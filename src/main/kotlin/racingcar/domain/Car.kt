@@ -1,6 +1,6 @@
 package racingcar.domain
 
-class Car(position: Int = 0, private val moveStrategy: MoveStrategy) {
+class Car(val name: String, position: Int = 0, private val moveStrategy: MoveStrategy = MoveStrategy { true }) {
 
     var position = position
         private set

@@ -6,7 +6,7 @@ class CarRacingGame(
     private val moveStrategy: MoveStrategy
 ) {
     private var currentRound: Int = 0
-    val cars: List<Car> = (1..carCount).map { Car(moveStrategy = moveStrategy) }
+    val cars: List<Car> = (1..carCount).map { Car("$it", moveStrategy = moveStrategy) }
 
     fun race(raceResultHandler: (RacingResult) -> Unit) {
         while (hasNextRound()) {
