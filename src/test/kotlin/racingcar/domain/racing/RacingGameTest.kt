@@ -12,8 +12,14 @@ internal class RacingGameTest : BehaviorSpec({
             val racingGame = RacingGame(CarList.of(racingCondition.carCount), racingCondition)
             val racingRecord = racingGame.start()
 
-            Then("start()의 반환값 RacingRecord.carRecords.size == carCount ") {
+            Then("반환값 RacingRecord.carRecords.size == carCount ") {
                 racingRecord.carRecords.size shouldBe racingCondition.carCount
+            }
+
+            Then("반환값 RacingRecord.carRecords[].carRecord.record.size == tryCount ") {
+                racingRecord.carRecords.forEach { carRecord ->
+                    carRecord.record.size shouldBe racingCondition.tryCount
+                }
             }
         }
     }

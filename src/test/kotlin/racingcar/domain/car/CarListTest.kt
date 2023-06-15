@@ -10,20 +10,17 @@ internal class CarListTest : BehaviorSpec({
             val carList = CarList.of(5)
 
             Then("cars == lineNumber 0~4인 Car 5개 리스트") {
-                carList.cars.forEachIndexed { index, car -> car.lineNumber shouldBe index }
+                carList.cars.size shouldBe 5
             }
         }
 
         When("carCount == 3, tryCount == 5일 때") {
             val carList = CarList.of(3)
-            val racingRecord = carList.race(5)
-
-            Then("racingRecord.size == carCount") {
-                racingRecord.carRecords.size shouldBe carList.cars.size
-            }
-
-            Then("racingRecord.carRecords[0].records.size == tryCount") {
-                racingRecord.carRecords.first().records.size shouldBe 5
+            carList.race(5)
+            Then("모든 Car가 race() 실행") {
+                carList.cars.forEach { car ->
+                    car.carRecord.record.size shouldBe 5
+                }
             }
         }
     }

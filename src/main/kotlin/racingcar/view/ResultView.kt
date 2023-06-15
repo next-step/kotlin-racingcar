@@ -4,19 +4,18 @@ import racingcar.domain.record.RacingRecord
 
 object ResultView {
 
-    fun outputPosition(carPosition: Int) {
-        print("-".repeat(carPosition))
-        println()
+    private fun outputPosition(carPosition: Int) {
+        println("-".repeat(carPosition))
     }
 
     fun outputResult(racingRecord: RacingRecord) {
         val carCount = racingRecord.carRecords.size
-        val tryCount = racingRecord.carRecords.first().records.size
+        val tryCount = racingRecord.carRecords.first().record.size
 
         println("실행 결과")
         (0 until tryCount).forEach { lap ->
             racingRecord.carRecords.forEach { carRecord ->
-                println("-".repeat(carRecord.records[lap]))
+                outputPosition(carRecord.record[lap])
             }
             println()
         }

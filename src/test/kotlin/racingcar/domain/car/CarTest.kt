@@ -9,7 +9,7 @@ internal class CarTest : BehaviorSpec({
     Given("Car") {
         When("move() 성공 시") {
             val carEngine = object : CarEngine { override fun canGo(): Boolean = true }
-            val car = Car(lineNumber = 0, carEngine)
+            val car = Car(carEngine)
             val previousPosition = car.position
             car.move()
 
@@ -18,13 +18,24 @@ internal class CarTest : BehaviorSpec({
             }
         }
 
+        When("move() 실패 시") {
+            val carEngine = object : CarEngine { override fun canGo(): Boolean = false }
+            val car = Car(carEngine)
+            val previousPosition = car.position
+            car.move()
+
+            Then("position 1 증가") {
+                car.position shouldBe previousPosition
+            }
+        }
+
         When("move() = true, tryCount = 5 일 때 race()") {
             val carEngine = object : CarEngine { override fun canGo(): Boolean = true }
-            val car = Car(lineNumber = 0, carEngine)
-            val carRecord = car.race(5)
+            val car = Car(carEngine)
+            car.race(5)
 
             Then("CarRecord.records == {1, 2, 3, 4, 5}") {
-                carRecord.records shouldContainInOrder listOf(1, 2, 3, 4, 5)
+                car.carRecord.record shouldContainInOrder listOf(1, 2, 3, 4, 5)
             }
         }
     }

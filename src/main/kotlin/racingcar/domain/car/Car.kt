@@ -3,24 +3,20 @@ package racingcar.domain.car
 import racingcar.domain.record.CarRecord
 
 class Car(
-    val lineNumber: Int,
-    private val carEngine: CarEngine = RandomCarEngine
+    private val carEngine: CarEngine = RandomCarEngine,
+    position: Int = START_POSITION
 ) {
-    var position: Int = START_POSITION
+    var position: Int = position
         private set
+    val carRecord = CarRecord(arrayListOf())
 
     fun move() {
         if (carEngine.canGo()) position++
+        carRecord.record.add(position)
     }
 
-    fun race(tryCount: Int): CarRecord {
-        val record = arrayListOf<Int>()
-        repeat(tryCount) {
-            move()
-            record.add(this.position)
-        }
-
-        return CarRecord(this, record)
+    fun race(tryCount: Int) {
+        repeat(tryCount) { move() }
     }
 
     companion object {
