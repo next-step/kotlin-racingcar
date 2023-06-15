@@ -12,7 +12,7 @@ class Car(
     }
 
     fun move(number: Int) {
-        if (number > FORWARD_CONDITIONS)
+        if (number >= FORWARD_CONDITIONS)
             _position++
     }
 

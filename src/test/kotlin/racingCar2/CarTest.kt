@@ -29,7 +29,7 @@ class CarTest {
 
     @ParameterizedTest
     @CsvSource(
-        "10, 1",
+        "4, 1",
         "3, 0"
     )
     fun `랜덤 숫자가 4 이상이면 자동차는 이동할 수 있다`(randomNumber: Int, expected: Int) {
