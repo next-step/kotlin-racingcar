@@ -144,5 +144,5 @@ pobi, honux가 최종 우승했습니다.
 
 ### Todo
 
-- [ ] domain 패키지, view 패키지를를 생성한다. 
-- [ ] domain 패키지 객체가 view 패키지 객체에 의존하지 않는지 확인한다. 
+- [x] domain 패키지, view 패키지를를 생성한다. 
+- [x] domain 패키지 객체가 view 패키지 객체에 의존하지 않는지 확인한다. 

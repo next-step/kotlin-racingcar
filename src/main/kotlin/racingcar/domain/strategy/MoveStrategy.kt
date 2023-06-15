@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain.strategy
 
 import kotlin.random.Random
 

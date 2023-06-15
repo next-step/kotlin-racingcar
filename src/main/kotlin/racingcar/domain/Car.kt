@@ -1,4 +1,6 @@
-package racingcar
+package racingcar.domain
+
+import racingcar.domain.strategy.MoveStrategy
 
 private const val MAXIMUM_NAME_LENGTH = 5
 

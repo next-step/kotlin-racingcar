@@ -1,5 +1,11 @@
 package racingcar
 
+import racingcar.domain.CarFactory
+import racingcar.domain.RacingGame
+import racingcar.domain.strategy.RandomNumStrategy
+import racingcar.view.InputView
+import racingcar.view.ResultView
+
 fun main() {
     val carNames: List<String> = InputView.getCarName()
     var game = RacingGame(CarFactory.manufacture(carNames))

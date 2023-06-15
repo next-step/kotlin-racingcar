@@ -1,4 +1,7 @@
-package racingcar
+package racingcar.view
+
+import racingcar.domain.Car
+import racingcar.domain.RacingGame
 
 private const val RESULT_START_STRING = "\n실행 결과"
 private const val MOVE_STRING = "-"
