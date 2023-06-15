@@ -19,9 +19,7 @@ class Car(
 
         other as Car
 
-        if (carName != other.carName) return false
-
-        return true
+        return carName == other.carName
     }
 
     override fun hashCode(): Int {
