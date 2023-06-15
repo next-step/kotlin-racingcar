@@ -1,4 +1,4 @@
-package racing.car
+package racing.domain
 
 class RacingCars(
     cars: List<Car>

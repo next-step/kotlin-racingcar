@@ -1,4 +1,4 @@
-package enums
+package calculator.enums
 
 enum class OperatorSign(
     val code: String,

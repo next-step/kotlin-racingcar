@@ -1,7 +1,7 @@
 package racing.view
 
-import racing.car.Car
-import racing.car.RacingCars
+import racing.domain.Car
+import racing.domain.RacingCars
 
 class ResultView {
     private val RACING_MARK = "-"

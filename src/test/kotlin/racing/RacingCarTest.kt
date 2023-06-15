@@ -2,7 +2,7 @@ package racing
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import racing.car.Car
+import racing.domain.Car
 
 class RacingCarTest : BehaviorSpec({
     val car = Car()

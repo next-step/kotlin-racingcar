@@ -1,6 +1,6 @@
-package racing.condition
+package racing.domain
 
-import racing.util.RandomValueGenerator
+import calculator.util.RandomValueGenerator
 
 class MovingCondition {
 

@@ -1,8 +1,5 @@
-package racing.game
+package racing.domain
 
-import racing.car.Car
-import racing.car.RacingCars
-import racing.condition.MovingCondition
 import racing.view.ResultView
 
 class RacingGame(
