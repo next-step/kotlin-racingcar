@@ -2,7 +2,7 @@ package step3.view
 
 import step3.domain.Car
 
-object OutputView {
+class OutputView {
     fun printResult() {
         println("\n실행 결과")
     }
