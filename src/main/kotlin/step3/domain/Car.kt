@@ -2,20 +2,24 @@ package step3.domain
 
 class Car(
     val name: String,
-    private var _position: Int = INIT_POSITION,
+    position: Int = DEFAULT_POSITION,
     private val condition: MoveCondition = CarMoveCondition()
 ) {
+    init {
+        require(name.length <= 5) { "자동차의 이름은 5글자를 넘을 수 없습니다." }
+    }
+
+    var position: Int = position
+        private set
 
     fun move() {
         if (condition.isMovable()) {
-            _position += MOVING_STEP
+            position += MOVING_STEP
         }
     }
 
-    val position get() = _position
-
     companion object {
-        const val INIT_POSITION = 1
+        const val DEFAULT_POSITION = 1
         const val MOVING_STEP = 1
     }
 }
