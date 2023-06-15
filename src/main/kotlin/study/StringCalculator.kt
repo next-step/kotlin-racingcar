@@ -23,7 +23,7 @@ class StringCalculator {
             "-" -> left - right
             "*" -> left * right
             "/" -> left / right
-            else -> throw IllegalArgumentException("지원하지 않는 연산자입니다.")
+            else -> throw IllegalArgumentException("${operator}는 지원하지 않는 연산자입니다.")
         }
     }
 }
