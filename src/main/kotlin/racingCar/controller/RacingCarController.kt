@@ -21,10 +21,6 @@ class RacingCarController {
     }
 
     private fun createCars(count: Int): List<Car> {
-        val cars = mutableListOf<Car>()
-        repeat((1..count).count()) {
-            cars.add(Car())
-        }
-        return cars
+        return List(count) { Car() }
     }
 }
