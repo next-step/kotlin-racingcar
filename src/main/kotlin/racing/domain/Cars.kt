@@ -1,8 +1,8 @@
-package racing
+package racing.domain
 
 @JvmInline
 value class Cars(
-    val cars: List<Car>,
+    private val cars: List<Car>,
 ) : List<Car> by cars {
     fun play(movePolicy: MovePolicy) {
         cars.forEach {
@@ -10,7 +10,7 @@ value class Cars(
         }
     }
 
-    fun winners(): List<String> {
+    fun getWinners(): List<String> {
         val winner = cars.maxByOrNull { it.position } ?: return emptyList()
         return cars.filter { it.hasSamePosition(winner) }
             .map { it.name }

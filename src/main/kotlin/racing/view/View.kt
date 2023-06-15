@@ -1,4 +1,6 @@
-package racing
+package racing.view
+
+import racing.domain.Cars
 
 object InputView {
     private const val CAR_NAME_DELIMITER = ","
@@ -25,16 +27,21 @@ object ResultView {
         println("\n실행 결과")
     }
 
-    fun printRacingResult(cars: Cars) {
-        for (car in cars) {
-            val carPosition = CAR_POSITION.repeat(car.position)
-            println("${car.name} : $carPosition")
+    fun printRacingResult(raceResult: List<Cars>) {
+        raceResult.forEach {
+            printCars(it)
         }
-        println()
     }
 
-    fun printWinners(cars: Cars) {
-        val winners = cars.winners().joinToString(WINNER_DELIMITER)
-        println("${winners}가 최종 우승했습니다.")
+    fun printWinners(winners: List<String>) {
+        println("${winners.joinToString(WINNER_DELIMITER)}가 최종 우승했습니다.")
+    }
+
+    private fun printCars(cars: Cars) {
+        cars.forEach {
+            val carPosition = CAR_POSITION.repeat(it.position)
+            println("${it.name} : $carPosition")
+        }
+        println()
     }
 }
