@@ -9,8 +9,9 @@ data class CarList(
 
     companion object {
 
-        fun of(carCount: Int) = CarList(
-            cars = (0 until carCount).map { Car() }
-        )
+        fun of(carNames: String) =
+            CarList(
+                cars = CarNameParser.parse(carNames).map { carName -> Car(carName) }
+            )
     }
 }

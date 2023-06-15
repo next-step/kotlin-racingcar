@@ -1,21 +1,23 @@
 package racingcar.view
 
-import racingcar.domain.record.RacingRecord
+import racingcar.domain.car.Car
+import racingcar.domain.racing.RacingGame
 
 object ResultView {
 
-    private fun outputPosition(carPosition: Int) {
-        println("-".repeat(carPosition))
+    private fun outputPosition(car: Car) {
+        print("${car.name}: ")
+        println("-".repeat(car.position))
     }
 
-    fun outputResult(racingRecord: RacingRecord) {
-        val carCount = racingRecord.carRecords.size
-        val tryCount = racingRecord.carRecords.first().record.size
+    fun outputResult(racingGame: RacingGame) {
+        val tryCount = racingGame.racingCondition.tryCount
+        val cars = racingGame.carList.cars
 
         println("실행 결과")
         (0 until tryCount).forEach { lap ->
-            racingRecord.carRecords.forEach { carRecord ->
-                outputPosition(carRecord.record[lap])
+            cars.forEach { car ->
+                outputPosition(car)
             }
             println()
         }

@@ -6,10 +6,10 @@ import racingcar.view.InputView
 import racingcar.view.ResultView
 
 fun main() {
-    val racingCondition = InputView.inputRacingCondition()
-    val carList = CarList.of(racingCondition.carCount)
-    val racingGame = RacingGame(carList, racingCondition)
+    val racingInputData = InputView.inputRacingData()
+    val carList = CarList.of(racingInputData.carNames)
+    val racingGame = RacingGame(carList, racingInputData.racingCondition)
 
-    val racingRecord = racingGame.start()
-    ResultView.outputResult(racingRecord)
+    racingGame.start()
+    ResultView.outputResult(racingGame)
 }
