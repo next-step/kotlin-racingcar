@@ -1,5 +1,5 @@
-import racing.car.RacingCars
-import racing.game.RacingGame
+import racing.domain.RacingCars
+import racing.domain.RacingGame
 import racing.view.InputView
 import racing.view.ResultView
 

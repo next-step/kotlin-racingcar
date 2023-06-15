@@ -1,4 +1,4 @@
-package racing.util
+package calculator.util
 
 import kotlin.random.Random
 

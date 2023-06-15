@@ -1,6 +1,6 @@
 package calculator
 
-import enums.OperatorSign
+import calculator.enums.OperatorSign
 
 class Calculator(
     val inputData: String
