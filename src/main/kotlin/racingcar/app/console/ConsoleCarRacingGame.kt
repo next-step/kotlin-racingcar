@@ -14,9 +14,5 @@ fun main() {
     val carRacingGame = CarRacingGame(carCount, round, RandomMoveStrategy())
 
     outputView.writeMessage("실행 결과")
-    while (carRacingGame.hasNextRound()) {
-        carRacingGame.runRound()
-        outputView.writeCars(carRacingGame.cars)
-        if (carRacingGame.hasNextRound()) outputView.writeLineBreak()
-    }
+    carRacingGame.race { outputView.writeCars(it) }
 }

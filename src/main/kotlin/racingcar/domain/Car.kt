@@ -1,11 +1,12 @@
 package racingcar.domain
 
-class Car(position: Int = 0) {
+class Car(position: Int = 0, private val moveStrategy: MoveStrategy) {
 
     var position = position
         private set
 
     fun move() {
-        position++
+        if (moveStrategy.isMovable())
+            position++
     }
 }

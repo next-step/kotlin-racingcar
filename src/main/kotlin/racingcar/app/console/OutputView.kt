@@ -1,6 +1,6 @@
 package racingcar.app.console
 
-import racingcar.domain.Car
+import racingcar.domain.RacingResult
 
 class OutputView {
 
@@ -8,11 +8,12 @@ class OutputView {
         println(message)
     }
 
-    fun writeCars(cars: List<Car>) {
-        cars.forEach { println(MOVE_SIGN.repeat(it.position)) }
+    fun writeCars(racingResult: RacingResult) {
+        racingResult.cars.forEach { println(MOVE_SIGN.repeat(it.position)) }
+        if (!racingResult.end) writeLineBreak()
     }
 
-    fun writeLineBreak() {
+    private fun writeLineBreak() {
         println()
     }
 

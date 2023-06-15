@@ -6,19 +6,24 @@ class CarRacingGame(
     private val moveStrategy: MoveStrategy
 ) {
     private var currentRound: Int = 0
-    val cars: List<Car> = (1..carCount).map { Car() }
+    val cars: List<Car> = (1..carCount).map { Car(moveStrategy = moveStrategy) }
 
-    fun runRound() {
+    fun race(raceResultHandler: (RacingResult) -> Unit) {
+        while (hasNextRound()) {
+            runRound()
+            raceResultHandler.invoke(RacingResult(cars, hasNextRound()))
+        }
+    }
+
+    private fun runRound() {
         check(hasNextRound()) { "경주가 종료되었습니다." }
         moveCars()
         currentRound++
     }
 
-    fun hasNextRound(): Boolean = currentRound < round
+    private fun hasNextRound(): Boolean = currentRound < round
 
     private fun moveCars() {
-        cars.forEach {
-            if (moveStrategy.isMovable()) it.move()
-        }
+        cars.forEach { it.move() }
     }
 }
