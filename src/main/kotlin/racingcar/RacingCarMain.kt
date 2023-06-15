@@ -1,5 +1,8 @@
 package racingcar
 
+import racingcar.RacingCar.Companion.MAXIMUM_POWER_NUMBER
+import racingcar.RacingCar.Companion.MINIMUM_POWER_NUMBER
+
 fun main() {
     RacingCarView.printCarsInputView()
     val carCount = getIntValue()
@@ -11,13 +14,17 @@ fun main() {
     }
     RacingCarView.printResultView()
     while (attemptNumber-- > 0) {
-        run(cars)
+        runCars(cars)
         RacingCarView.printCarsPosition(cars)
     }
 }
 
-fun getIntValue(): Int = readlnOrNull()?.toInt() ?: throw IllegalArgumentException("숫자값을 입력하세요")
+fun getIntValue(): Int {
+    val input = readlnOrNull()
+    require(!input.isNullOrBlank() && (input.toInt() > MINIMUM_POWER_NUMBER)) { "0 보다 큰 숫자값을 입력하세요" }
+    return input.toInt()
+}
 
-private fun run(cars: List<RacingCar>) {
-    cars.forEach { it.tryMove(getZeroToRange(9)) }
+private fun runCars(cars: List<RacingCar>) {
+    cars.forEach { it.tryMove(getZeroToRange(MAXIMUM_POWER_NUMBER)) }
 }
