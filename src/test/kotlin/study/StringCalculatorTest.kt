@@ -21,14 +21,22 @@ class StringCalculatorTest : FunSpec({
 
     context("사칙연산 기호가 아닌 경우 IllegalArgumentException throw") {
         withData(
-            "2 X 3" to "X",
-            "2 % 3" to "%",
-        ) { (input, operator) ->
+            "+" to true,
+            "-" to true,
+            "*" to true,
+            "/" to true,
+            "X" to false,
+            "%" to false,
+        ) { (operator, expected) ->
             val stringCalculator = StringCalculator()
-            val exception = shouldThrow<IllegalArgumentException> {
-                stringCalculator.calculate(input)
+            if (expected) {
+                stringCalculator.getOperator(operator)
+            } else {
+                val exception = shouldThrow<IllegalArgumentException> {
+                    stringCalculator.getOperator(operator)
+                }
+                exception.message shouldBe "${operator}는 지원하지 않는 연산자입니다."
             }
-            exception.message shouldBe "${operator}는 지원하지 않는 연산자입니다."
         }
     }
 
