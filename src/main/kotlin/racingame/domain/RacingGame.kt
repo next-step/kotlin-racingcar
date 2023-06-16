@@ -9,14 +9,17 @@ class RacingGame(
 
     fun run(): Winner {
         repeat(totalTrialCount) {
-            val currentHistories = Cars()
-            cars.values.forEach { car ->
-                car.move()
-                currentHistories.add(car)
-            }
-            positionHistories = positionHistories + currentHistories
+            race()
         }
-
         return Winner(cars)
+    }
+
+    private fun race() {
+        val currentHistories = Cars()
+        cars.values.forEach { car ->
+            car.move()
+            currentHistories.add(car)
+        }
+        positionHistories = positionHistories + currentHistories
     }
 }

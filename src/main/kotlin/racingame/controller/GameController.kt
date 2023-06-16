@@ -16,8 +16,8 @@ class GameController(
         val totalTrialCount: Int = inputView.requestCountOfTrial()
         val cars = Cars(nameOfCars.map { Car(it) })
 
-        val racingGame = RacingGame(cars, totalTrialCount)
         outputView.printResult()
+        val racingGame = RacingGame(cars, totalTrialCount)
         val winner = racingGame.run()
 
         OutputView().printPositionOfCars(racingGame.positionHistories)
