@@ -1,17 +1,19 @@
 package step3.view
 
-import step3.domain.Car
+import step3.domain.Cars
 
 class OutputView {
     fun printResult() {
         println("\n실행 결과")
     }
 
-    fun printPositionOfCars(cars: List<Car>) {
-        cars.map { car ->
-            println("${car.name} : ${"-".repeat(car.position)}")
+    fun printPositionOfCars(carHistories: List<Cars>) {
+        carHistories.forEach { history ->
+            history.values.forEach { car ->
+                println("${car.name} : ${"-".repeat(car.position)}")
+            }
+            println()
         }
-        println()
     }
 
     fun printWinner(winners: List<String>) {
