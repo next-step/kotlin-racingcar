@@ -20,8 +20,7 @@ class RacingGame {
     fun run() {
         ResultView.init()
         repeat(tryCount) {
-            cars.moveAll()
-            ResultView.printResult(cars.getPositions())
+            ResultView.printResult(cars.moveAll())
         }
     }
 }
