@@ -1,4 +1,6 @@
-package racingcar
+package racingcar.domain
+
+import racingcar.domain.strategy.MoveStrategy
 
 data class RacingGame(val cars: List<Car>) {
     fun play(randomNumStrategy: MoveStrategy) {

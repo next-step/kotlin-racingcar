@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 object CarFactory {
     fun manufacture(carNames: List<String>): List<Car> {
