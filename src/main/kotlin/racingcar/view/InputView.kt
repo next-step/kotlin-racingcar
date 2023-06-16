@@ -1,19 +1,20 @@
 package racingcar.view
 
 import racingcar.domain.racing.RacingCondition
+import racingcar.domain.racing.RacingInputData
 
 object InputView {
 
-    fun inputCarCount(): Int {
-        println("자동차 대수는 몇 대인가요?")
+    private fun inputCarNames(): String {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
 
-        return readlnOrNull()?.toInt() ?: run {
+        return readlnOrNull() ?: run {
             println("필수로 입력해야 하는 값입니다.")
-            inputCarCount()
+            inputCarNames()
         }
     }
 
-    fun inputTryCount(): Int {
+    private fun inputTryCount(): Int {
         println("시도할 횟수는 몇 회인가요?")
 
         return readlnOrNull()?.toInt() ?: run {
@@ -22,10 +23,8 @@ object InputView {
         }
     }
 
-    fun inputRacingCondition(): RacingCondition {
-        val carCount = inputCarCount()
-        val tryCount = inputTryCount()
-
-        return RacingCondition(carCount, tryCount)
-    }
+    fun inputRacingData() = RacingInputData(
+        carNames = inputCarNames(),
+        racingCondition = RacingCondition(inputTryCount())
+    )
 }

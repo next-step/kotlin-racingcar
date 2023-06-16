@@ -1,19 +1,23 @@
 package racingcar.domain.racing
 
 import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldBe
 import racingcar.domain.car.CarList
 
 internal class RacingGameTest : BehaviorSpec({
 
     Given("RacingGame") {
-        When("racingCondition.carCount = 3, tryCount = 5일 때") {
-            val racingCondition = RacingCondition(3, 5)
-            val racingGame = RacingGame(CarList.of(racingCondition.carCount), racingCondition)
-            val racingRecord = racingGame.start()
+        val carList = CarList.of("1, 2, 3, 4, 5")
+        When("CarList.size = 5, tryCount = 5일 때") {
+            val racingCondition = RacingCondition(5)
+            val racingGame = RacingGame(carList, racingCondition)
+            racingGame.start()
 
-            Then("start()의 반환값 RacingRecord.carRecords.size == carCount ") {
-                racingRecord.carRecords.size shouldBe racingCondition.carCount
+            Then("반환값 RacingRecord.carRecords[].carRecord.record.size == tryCount ") {
+                racingGame.carList.cars.forAll { car ->
+                    car.carRecord.record.size shouldBe racingCondition.tryCount
+                }
             }
         }
     }

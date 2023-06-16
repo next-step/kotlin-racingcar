@@ -1,16 +1,26 @@
 package racingcar.domain.car
 
-import racingcar.domain.record.RacingRecord
-
 data class CarList(
     val cars: List<Car>
 ) {
-    fun race(tryCount: Int) = RacingRecord(cars.map { car -> car.race(tryCount) })
+    fun race(tryCount: Int) {
+        cars.forEach { car -> car.race(tryCount) }
+    }
+
+    fun getWinner(): CarList {
+        val maxPosition = cars.maxOf { it.position }
+        return CarList(cars.filter { it.position == maxPosition })
+    }
+
+    override fun toString(): String {
+        return cars.joinToString(", ") { it.name }
+    }
 
     companion object {
 
-        fun of(carCount: Int) = CarList(
-            cars = (0 until carCount).map { Car(it) }
-        )
+        fun of(carNames: String) =
+            CarList(
+                cars = CarNameParser.parse(carNames).map { carName -> Car(carName) }
+            )
     }
 }

@@ -1,12 +1,15 @@
 package racingcar.domain.racing
 
 import racingcar.domain.car.CarList
-import racingcar.domain.record.RacingRecord
 
 class RacingGame(
-    private val carList: CarList,
-    private val racingCondition: RacingCondition
+    val carList: CarList,
+    val racingCondition: RacingCondition
 ) {
 
-    fun start(): RacingRecord = carList.race(racingCondition.tryCount)
+    fun start() {
+        carList.race(racingCondition.tryCount)
+    }
+
+    fun getWinner() = carList.getWinner()
 }
