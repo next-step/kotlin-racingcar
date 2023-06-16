@@ -1,6 +1,7 @@
 package race.controller
 
 import race.model.Race
+import race.model.Winner
 import race.view.InputView
 import race.view.ResultView
 
@@ -21,14 +22,14 @@ class RacingController(
 
     private fun start(race: Race) {
         resultView.showResult()
-        val winner = race.startRacing {
+        val winner = race.start {
             resultView.showRacing(it)
         }
 
         result(winner)
     }
 
-    private fun result(winner: String) {
-        resultView.showWinner(winner)
+    private fun result(winner: Winner) {
+        resultView.showWinner(winner.getWinner())
     }
 }
