@@ -17,7 +17,7 @@ class Round(private val outputView: OutputViewProtocol) {
 
     private fun printRound(cars: ArrayList<Car>) {
         for (car in cars) {
-            outputView.printValue(car.getLocation())
+            outputView.printValue(car.location)
         }
         println()
     }

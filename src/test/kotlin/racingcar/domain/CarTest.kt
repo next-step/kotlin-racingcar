@@ -8,29 +8,20 @@ import org.junit.jupiter.api.Test
 class CarTest {
 
     private lateinit var car: Car
-    private val RANDOM_MINIMUM = 0
-    private val RANDOM_MAXIMUM = 9
 
     @BeforeEach
     fun setUp() {
-        car = Car()
+        car = Car(RandomMoveStrategy())
     }
 
     @Test
     fun `자동차는 위치가 0으로 초기화`() {
-        assertThat(car.getLocation()).isEqualTo(0)
-    }
-
-    @Test
-    fun `자동차 이동 조건 숫자는 0부터 9사이 랜덤값 생성`() {
-        assertThat(car.generateRandomNum())
-            .isBetween(RANDOM_MINIMUM, RANDOM_MAXIMUM)
+        assertThat(car.location).isEqualTo(0)
     }
 
     @Test
     fun `자동차 이동 조건을 만족하면 0에서 1로 이동한다`() {
         assumeTrue(car.isMoveOrStop())
-
-        assertThat(car.getLocation()).isEqualTo(1)
+        assertThat(car.location).isEqualTo(1)
     }
 }

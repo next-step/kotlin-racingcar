@@ -21,8 +21,8 @@ class RandomMoveStrategy : Movable {
     }
 
     companion object {
-        private val BASE_NUMBER_TO_MOVE = 4
-        private val RANDOM_MINIMUM = 0
-        private val RANDOM_MAXIMUM = 9
+        const val BASE_NUMBER_TO_MOVE = 4
+        const val RANDOM_MINIMUM = 0
+        const val RANDOM_MAXIMUM = 9
     }
 }
