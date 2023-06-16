@@ -8,10 +8,10 @@ import racingcar.view.OutputViewProtocol
  */
 class RacingGame(
     private val inputView: InputViewProtocol,
-    outputView: OutputViewProtocol
+    private val outputView: OutputViewProtocol
 ) {
 
-    private val round: Round = Round(outputView)
+    private val round: Round = Round()
     private val cars: ArrayList<Car> = ArrayList()
 
     fun start() {
@@ -34,6 +34,14 @@ class RacingGame(
     private fun startEachRound(cars: ArrayList<Car>, roundNumber: Int) {
         for (i in 0 until roundNumber) {
             round.execute(cars)
+            printResult(cars)
         }
+    }
+
+    private fun printResult(cars: ArrayList<Car>) {
+        for (car in cars) {
+            outputView.printValue(car.location)
+        }
+        println()
     }
 }
