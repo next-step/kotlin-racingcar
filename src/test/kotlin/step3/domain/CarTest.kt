@@ -5,7 +5,7 @@ import io.kotest.matchers.shouldBe
 import step3.fake.FakeNumberGenerator
 
 class CarTest : FunSpec({
-    test("전진 조건을 충족하는 car 는 전진할 수 있다.") {
+    test("4 이상의 값을 가지는 car 는 전진할 수 있다.") {
         // given
         val fakeNumberGenerator = FakeNumberGenerator(5)
         val carMoveCondition = CarMoveCondition(fakeNumberGenerator)
@@ -21,7 +21,7 @@ class CarTest : FunSpec({
         car.position shouldBe expectedPosition
     }
 
-    test("전진 조건을 충족하지 않는 car 는 전진할 수 없다.") {
+    test("4 미만의 값을 가지는 car 는 전진할 수 없다.") {
         // given
         val fakeNumberGenerator = FakeNumberGenerator(3)
         val carMoveCondition = CarMoveCondition(fakeNumberGenerator)
