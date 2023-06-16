@@ -1,5 +1,6 @@
 package racingcar.domain
 
+import racingcar.domain.move.RandomMoveStrategy
 import racingcar.view.InputViewProtocol
 import racingcar.view.OutputViewProtocol
 

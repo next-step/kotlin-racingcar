@@ -2,7 +2,7 @@ package racingcar.utils
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import racingcar.domain.RandomMoveStrategy
+import racingcar.domain.move.RandomMoveStrategy
 
 class RandomGeneratorTest {
 

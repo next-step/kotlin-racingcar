@@ -1,9 +1,9 @@
 package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Assumptions.assumeTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import racingcar.domain.move.StaticMoveStrategy
 
 class CarTest {
 
@@ -11,7 +11,7 @@ class CarTest {
 
     @BeforeEach
     fun setUp() {
-        car = Car(RandomMoveStrategy())
+        car = Car(StaticMoveStrategy())
     }
 
     @Test
@@ -21,7 +21,7 @@ class CarTest {
 
     @Test
     fun `자동차 이동 조건을 만족하면 0에서 1로 이동한다`() {
-        assumeTrue(car.isMoveOrStop())
+        car.isMoveOrStop()
         assertThat(car.location).isEqualTo(1)
     }
 }
