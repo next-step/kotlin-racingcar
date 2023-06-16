@@ -1,15 +1,15 @@
 package step3.domain
 
 class Winner(
-    private val cars: List<Car>
+    private val cars: Cars
 ) {
-    val names: List<String>
+    val winnerNames: List<String>
         get() = findWinners()
 
     private fun findWinners(): List<String> {
-        val maxPosition = cars.maxOf { it.position }
+        val maxPosition = cars.values.maxOf { it.position }
 
-        return cars.filter { it.position == maxPosition }
+        return cars.values.filter { it.position == maxPosition }
             .map { it.name }
     }
 }
