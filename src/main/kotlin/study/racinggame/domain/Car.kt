@@ -1,6 +1,6 @@
 package study.racinggame.domain
 
-class Car (
+class Car(
     private val participant: Participant,
     private val engine: CarEngine,
     private var position: Position
