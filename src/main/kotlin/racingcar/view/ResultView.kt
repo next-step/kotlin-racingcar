@@ -5,9 +5,12 @@ import racingcar.domain.racing.RacingGame
 
 object ResultView {
 
-    private fun outputPosition(car: Car) {
-        print("${car.name}: ")
-        println("-".repeat(car.position))
+    private fun outputLapResult(cars: List<Car>) {
+        cars.forEach { car ->
+            print("${car.name}: ")
+            println("-".repeat(car.position))
+        }
+        println()
     }
 
     fun outputResult(racingGame: RacingGame) {
@@ -16,10 +19,7 @@ object ResultView {
 
         println("실행 결과")
         (0 until tryCount).forEach { lap ->
-            cars.forEach { car ->
-                outputPosition(car)
-            }
-            println()
+            outputLapResult(cars)
         }
         outputWinner(racingGame)
     }
