@@ -26,8 +26,9 @@ class CarTest : AnnotationSpec() {
         val numbers = listOf(4, 5, 6, 7, 8, 9)
         val car = Car("Poby")
         numbers.forEach {
-            car.moveCar(it) shouldBe true
+            car.moveCar(it)
         }
+        car.position shouldBe numbers.size
     }
 
     @Test
@@ -35,7 +36,8 @@ class CarTest : AnnotationSpec() {
         val numbers = listOf(0, 1, 2, 3)
         val car = Car("Poby")
         numbers.forEach {
-            car.moveCar(it) shouldBe false
+            car.moveCar(it)
         }
+        car.position shouldBe 0
     }
 }

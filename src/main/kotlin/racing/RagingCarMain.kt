@@ -15,7 +15,6 @@ fun main() {
     repeat(actionCount) {
         RacingGame.raceStart(cars)
         ResultView.showSkidMarks(cars)
-        ResultView.printEnter()
     }
     ResultView.showWinner(cars)
 }

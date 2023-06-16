@@ -1,8 +1,7 @@
-package racing
+package racing.domain
 
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.ints.shouldBeInRange
-import racing.domain.RacingGame
 
 class CarRandomGeneratorTest : AnnotationSpec() {
 

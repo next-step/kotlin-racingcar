@@ -11,12 +11,10 @@ class Car(val name: String) {
         }
     }
 
-    fun moveCar(pedalStrength: Int): Boolean {
+    fun moveCar(pedalStrength: Int) {
         if (pedalStrength >= GO_RESTRICT_STRENGTH) {
             position++
-            return true
         }
-        return false
     }
 
     companion object {

@@ -4,10 +4,10 @@ import racing.domain.Car
 
 object ResultView {
     private const val PROGRESS_STRING = "-"
-    private const val SEPERATOR = ", "
-    
+    private const val SEPERATOR = ","
+
     fun showWinner(cars: List<Car>) {
-        val firstGradePosition = cars.maxOf(Car::position)
+        val firstGradePosition = cars.maxOf { it.position }
         val winners = cars.filter {
             it.position == firstGradePosition
         }.joinToString(SEPERATOR, transform = Car::name)
@@ -16,15 +16,8 @@ object ResultView {
 
     fun showSkidMarks(cars: List<Car>) {
         cars.forEach { car ->
-            val progressString = StringBuffer()
-            repeat(car.position) {
-                progressString.append(PROGRESS_STRING)
-            }
-            println("${car.name} : $progressString")
+            println("${car.name} : ${PROGRESS_STRING.repeat(car.position)}")
         }
-    }
-
-    fun printEnter() {
         println()
     }
 }

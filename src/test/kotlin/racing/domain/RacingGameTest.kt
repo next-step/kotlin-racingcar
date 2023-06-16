@@ -1,24 +1,19 @@
 package racing.domain
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.AnnotationSpec
 import racing.InputParser
-import racing.view.ResultView
 
 class RacingGameTest : AnnotationSpec() {
 
     @Test
-    fun `전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다`() {
+    fun `자동차가 한대 이상일 경우 경기를 진행할 수 있다 없는 경우 진행 불가`() {
         val carNames = "pobi,crong,honux"
         val cars = InputParser.parse(carNames).map { Car(it) }
         RacingGame.raceStart(cars)
-        ResultView.showSkidMarks(cars)
-    }
 
-    @Test
-    fun ` 자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다`() {
-        val carNames = "pobi,crong,honux"
-        val cars = InputParser.parse(carNames).map { Car(it) }
-        RacingGame.raceStart(cars)
-        ResultView.showWinner(cars)
+        shouldThrow<IllegalArgumentException> {
+            RacingGame.raceStart(listOf())
+        }
     }
 }
