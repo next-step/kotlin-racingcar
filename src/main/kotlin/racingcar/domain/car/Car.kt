@@ -11,7 +11,8 @@ class Car(
 ) {
     var position: Int = position
         private set
-    val carRecord = CarRecord(arrayListOf())
+    var carRecord = CarRecord(listOf())
+        private set
 
     init {
         require(name.length <= 5) { NAME_LIMIT_ERROR_MESSAGE }
@@ -19,7 +20,7 @@ class Car(
 
     fun move() {
         if (carEngine.canGo()) position++
-        carRecord.record.add(position)
+        carRecord.record += position
     }
 
     fun race(tryCount: Int) {

@@ -21,5 +21,10 @@ object ResultView {
             }
             println()
         }
+        outputWinner(racingGame)
+    }
+
+    private fun outputWinner(racingGame: RacingGame) {
+        println("${racingGame.getWinner()}가 최종 우승했습니다.")
     }
 }

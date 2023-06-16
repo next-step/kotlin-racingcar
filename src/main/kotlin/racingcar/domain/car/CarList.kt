@@ -7,6 +7,15 @@ data class CarList(
         cars.forEach { car -> car.race(tryCount) }
     }
 
+    fun getWinner(): CarList {
+        val maxPosition = cars.maxOf { it.position }
+        return CarList(cars.filter { it.position == maxPosition })
+    }
+
+    override fun toString(): String {
+        return cars.joinToString(", ") { it.name }
+    }
+
     companion object {
 
         fun of(carNames: String) =
