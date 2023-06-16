@@ -1,5 +1,10 @@
 package racingcar
 
+import racingcar.view.InputView
+
 fun main() {
-    RacingGame().run()
+    val carsSize = InputView.receiveCarsSize()
+    val tryCount = InputView.receiveTryCount()
+    val cars = Cars.from(carsSize)
+    RacingGame(cars, tryCount).run()
 }
