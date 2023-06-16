@@ -15,6 +15,6 @@ class WinnerTest : FunSpec({
         val actual = Winner(cars)
 
         // then
-        actual.winnerNames.shouldBe(expected)
+        actual.nameOfWinners.shouldBe(expected)
     }
 })

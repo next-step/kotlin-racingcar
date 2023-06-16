@@ -3,7 +3,7 @@ package racingame.domain
 class Winner(
     private val cars: Cars
 ) {
-    val winnerNames: List<String>
+    val nameOfWinners: List<String>
         get() = findWinners()
 
     private fun findWinners(): List<String> {

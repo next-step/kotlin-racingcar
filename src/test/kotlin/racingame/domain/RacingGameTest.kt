@@ -15,6 +15,6 @@ class RacingGameTest : FunSpec({
         val actual = racingGame.run()
 
         // then
-        actual.winnerNames shouldHaveAtLeastSize 1
+        actual.nameOfWinners shouldHaveAtLeastSize 1
     }
 })

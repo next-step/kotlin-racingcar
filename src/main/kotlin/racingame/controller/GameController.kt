@@ -21,6 +21,6 @@ class GameController(
         val winner = racingGame.run()
 
         OutputView().printPositionOfCars(racingGame.positionHistories)
-        outputView.printWinner(winner.winnerNames)
+        outputView.printWinner(winner.nameOfWinners)
     }
 }
