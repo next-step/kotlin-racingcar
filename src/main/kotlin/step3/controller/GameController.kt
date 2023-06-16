@@ -1,20 +1,26 @@
 package step3.controller
 
 import step3.domain.Car
+import step3.domain.Cars
 import step3.domain.RacingGame
 import step3.view.InputView
 import step3.view.OutputView
 
-class GameController {
+class GameController(
+    private val inputView: InputView,
+    private val outputView: OutputView
+) {
 
     fun start() {
-        val nameOfCars = InputView.requestNameOfCars()
-        val totalTrialCount: Int = InputView.requestCountOfTrial()
-        val cars = nameOfCars.map { Car(it) }
+        val nameOfCars = inputView.requestNameOfCars()
+        val totalTrialCount: Int = inputView.requestCountOfTrial()
+        val cars = Cars(nameOfCars.map { Car(it) })
 
         val racingGame = RacingGame(cars, totalTrialCount)
-        racingGame.run()
+        outputView.printResult()
+        val winner = racingGame.run()
 
-        OutputView.printWinner(racingGame.getWinners())
+        OutputView().printPositionOfCars(racingGame.positionHistories)
+        outputView.printWinner(winner.winnerNames)
     }
 }

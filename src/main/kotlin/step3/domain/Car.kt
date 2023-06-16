@@ -19,7 +19,7 @@ class Car(
     }
 
     companion object {
-        const val DEFAULT_POSITION = 1
+        const val DEFAULT_POSITION = 0
         const val MOVING_STEP = 1
     }
 }
