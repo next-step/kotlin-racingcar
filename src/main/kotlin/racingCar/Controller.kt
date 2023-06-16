@@ -1,12 +1,12 @@
-package racing_car
+package racingCar
 
-import racing_car.domain.car.CarFactory
-import racing_car.domain.car.RandomMovingEngine
-import racing_car.domain.race.RaceGame
-import racing_car.view.ConsoleInputView
-import racing_car.view.ConsoleResultView
-import racing_car.view.InputView
-import racing_car.view.ResultView
+import racingCar.domain.car.CarFactory
+import racingCar.domain.car.RandomMovingEngine
+import racingCar.domain.race.RaceGame
+import racingCar.view.ConsoleInputView
+import racingCar.view.ConsoleResultView
+import racingCar.view.InputView
+import racingCar.view.ResultView
 
 fun main() {
     val inputView: InputView = ConsoleInputView()

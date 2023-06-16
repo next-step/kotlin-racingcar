@@ -1,5 +1,5 @@
-package racing_car.domain.race
+package racingCar.domain.race
 
-import racing_car.domain.car.CarStatus
+import racingCar.domain.car.CarStatus
 
 data class RaceRoundResult(val carStatuses: Map<String, CarStatus>)

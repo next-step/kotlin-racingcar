@@ -1,4 +1,4 @@
-package racing_car.domain.car
+package racingCar.domain.car
 
 class Car(
     val id: String,

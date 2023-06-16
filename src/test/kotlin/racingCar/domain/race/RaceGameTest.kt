@@ -1,12 +1,12 @@
-package racing_car.domain.race
+package racingCar.domain.race
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import racing_car.domain.car.Car
-import racing_car.domain.car.CarFactory
-import racing_car.domain.car.FixedMovingEngine
-import racing_car.domain.car.RandomMovingEngine
+import racingCar.domain.car.Car
+import racingCar.domain.car.CarFactory
+import racingCar.domain.car.FixedMovingEngine
+import racingCar.domain.car.RandomMovingEngine
 
 class RaceGameTest : StringSpec({
     "주어진 round 숫자만큼 racingGame이 진행된다 " {

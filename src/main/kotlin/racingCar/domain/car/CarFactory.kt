@@ -1,4 +1,4 @@
-package racing_car.domain.car
+package racingCar.domain.car
 
 object CarFactory {
     fun createCars(carNames: List<String>, engine: Engine): List<Car> {

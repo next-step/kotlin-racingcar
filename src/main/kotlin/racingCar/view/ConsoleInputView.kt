@@ -1,4 +1,4 @@
-package racing_car.view
+package racingCar.view
 
 class ConsoleInputView : InputView {
     override fun getCarNames(): List<String> {
