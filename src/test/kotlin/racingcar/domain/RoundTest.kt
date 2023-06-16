@@ -3,7 +3,6 @@ package racingcar.domain
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import racingcar.view.OutputView
 
 @ExtendWith()
 class RoundTest {
@@ -13,7 +12,7 @@ class RoundTest {
 
     @BeforeEach
     fun setUp() {
-        round = Round(outputView = OutputView())
+        round = Round()
         cars = ArrayList()
         initCars()
     }
