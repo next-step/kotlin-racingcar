@@ -1,12 +1,13 @@
 package racingcar
 
-import racingcar.view.ResultView
-
 class RacingGame(private val cars: Cars, private val tryCount: Int) {
-    fun run() {
-        ResultView.init()
+    private val gameResult: MutableList<PositionHistory> = mutableListOf()
+
+    fun run(): RacingGameResult {
         repeat(tryCount) {
-            ResultView.printResult(cars.moveAll())
+            gameResult.add(PositionHistory(cars.moveAll()))
         }
+
+        return RacingGameResult(gameResult)
     }
 }
