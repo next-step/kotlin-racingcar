@@ -1,8 +1,10 @@
 package calculrate
 
 import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.NullAndEmptySource
 
 class CalculatorTest {
@@ -20,5 +22,12 @@ class CalculatorTest {
         Assertions.assertThatThrownBy {
             Operator.of("!")
         }.isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    @ParameterizedTest
+    @CsvSource("2 + 3,5", "2 + 3 + 3,8", "2 + 3 + 10,15")
+    fun `덧셈`(input: String, expected: Int?) {
+        val actual = Calculator.calculate(input)
+        assertThat(actual).isEqualTo(expected)
     }
 }
