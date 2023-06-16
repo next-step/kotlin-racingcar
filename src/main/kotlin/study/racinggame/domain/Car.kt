@@ -7,10 +7,20 @@ class Car(
 ) {
 
     fun move(): CarPosition {
-        val moveAmount = engine.run()
-        this.position = Position(position.value + moveAmount)
+        if (engine.run()) {
+            this.position = this.position.next()
+        }
         return CarPosition(participant, position)
     }
 }
 
-data class CarPosition(val participant: Participant, val position: Position)
+data class CarPosition(val participant: Participant, val position: Position) : Comparable<CarPosition> {
+
+    fun isEqualPosition(other: CarPosition): Boolean {
+        return position == other.position
+    }
+
+    override fun compareTo(other: CarPosition): Int {
+        return position.compareTo(other.position)
+    }
+}
