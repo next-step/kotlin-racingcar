@@ -19,8 +19,6 @@ class SimpleExpressionParser : ExpressionParser {
             operators.add(Operator.bySymbol(token) ?: throw IllegalArgumentException("지원하지 않는 연산자 기호가 포함되어 있습니다 [$token]"))
         }
 
-        require(operands.size == operators.size + 1) { "operand 개수는 항상 operator 보다 1개 더 많아야 합니다" }
-
         return Expression(operands, operators)
     }
 
