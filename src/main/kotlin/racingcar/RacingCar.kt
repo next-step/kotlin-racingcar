@@ -10,13 +10,6 @@ class RacingCar {
             else -> position
         }
 
-    fun printPosition() {
-        for (i in 0 until position) {
-            print("-")
-        }
-        println()
-    }
-
     companion object {
         const val MINIMUM_POWER_NUMBER = 0
         const val MAXIMUM_POWER_NUMBER = 9

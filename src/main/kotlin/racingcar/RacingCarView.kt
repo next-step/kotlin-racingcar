@@ -22,3 +22,10 @@ class RacingCarView {
         }
     }
 }
+
+fun RacingCar.printPosition() {
+    for (i in 0 until position) {
+        print("-")
+    }
+    println()
+}
