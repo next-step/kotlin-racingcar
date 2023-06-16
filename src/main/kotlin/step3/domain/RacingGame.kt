@@ -1,32 +1,22 @@
 package step3.domain
 
-import step3.view.OutputView
-import step3.view.OutputView.printResult
-
 class RacingGame(
-    private val cars: List<Car>,
+    private val cars: Cars,
     private val totalTrialCount: Int
 ) {
+    var positionHistories: List<Cars> = listOf()
+        private set
 
-    fun run() {
-        printResult()
-
+    fun run(): Winner {
         repeat(totalTrialCount) {
-            cars.forEach { car ->
+            val currentHistories = Cars()
+            cars.values.forEach { car ->
                 car.move()
+                currentHistories.add(car)
             }
-            OutputView.printPositionOfCars(cars)
+            positionHistories = positionHistories + currentHistories
         }
-    }
 
-    fun getWinners(): List<String> {
-        val maxPosition = cars.maxOf { it.position }
-
-        return cars.filter { it.position == maxPosition }
-            .map { it.name }
-    }
-
-    fun getCars(): List<Car> {
-        return cars
+        return Winner(cars)
     }
 }
