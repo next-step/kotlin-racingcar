@@ -25,11 +25,11 @@ class RaceGameTest : StringSpec({
 
         val raceResult = RaceGame(listOf(car1, car2)).execute(2)
 
-        raceResult.getRoundResult(0).getCarStatus("A").position shouldBe 1
-        raceResult.getRoundResult(0).getCarStatus("B").position shouldBe 1
+        raceResult.roundResults[0].carStatuses["A"]?.position shouldBe 1
+        raceResult.roundResults[0].carStatuses["B"]?.position shouldBe 1
 
-        raceResult.getRoundResult(1).getCarStatus("A").position shouldBe 2
-        raceResult.getRoundResult(1).getCarStatus("B").position shouldBe 2
+        raceResult.roundResults[1].carStatuses["A"]?.position shouldBe 2
+        raceResult.roundResults[1].carStatuses["B"]?.position shouldBe 2
     }
 
     "매 Round별 각 차가 각자 고정된 값만큼 움직일때, racingGame의 결과가 정상적으로 반환된다 " {
@@ -38,11 +38,11 @@ class RaceGameTest : StringSpec({
 
         val raceResult = RaceGame(listOf(car1, car2)).execute(2)
 
-        raceResult.getRoundResult(0).getCarStatus("A").position shouldBe 1
-        raceResult.getRoundResult(0).getCarStatus("B").position shouldBe 2
+        raceResult.roundResults[0].carStatuses["A"]?.position shouldBe 1
+        raceResult.roundResults[0].carStatuses["B"]?.position shouldBe 2
 
-        raceResult.getRoundResult(1).getCarStatus("A").position shouldBe 2
-        raceResult.getRoundResult(1).getCarStatus("B").position shouldBe 4
+        raceResult.roundResults[1].carStatuses["A"]?.position shouldBe 2
+        raceResult.roundResults[1].carStatuses["B"]?.position shouldBe 4
     }
 
     " Car이 RacingGame으로 전달되지 않는 경우, 예외가 throw 된다" {
