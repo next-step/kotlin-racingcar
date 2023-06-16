@@ -4,14 +4,14 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
 class BrokenEngine : CarEngine {
-    override fun run(): Int {
-        return 0
+    override fun run(): Boolean {
+        return false
     }
 }
 
 class NormalEngine : CarEngine {
-    override fun run(): Int {
-        return 1
+    override fun run(): Boolean {
+        return true
     }
 }
 

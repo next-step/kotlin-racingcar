@@ -1,8 +1,8 @@
 package study.racinggame
 
 import study.racinggame.domain.RacingGameResult
-import study.racinggame.ui.CommandLineRacingGameConfigurator
-import study.racinggame.ui.RacingGameResultPrinter
+import study.racinggame.view.CommandLineRacingGameConfigurator
+import study.racinggame.view.RacingGameResultPrinter
 
 fun main() {
     val racingGameConfiguration = CommandLineRacingGameConfigurator.run()

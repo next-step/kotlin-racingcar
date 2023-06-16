@@ -34,6 +34,6 @@ class RacingGameTest : StringSpec({
         val racingGameResult = racingGame.start()
 
         // then
-        racingGameResult.winners[0] shouldBe lulla
+        racingGameResult.nameOfWinners() shouldBe listOf(lulla.name)
     }
 })
