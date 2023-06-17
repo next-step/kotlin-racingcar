@@ -6,6 +6,9 @@ enum class Operator(val char: String) {
     },
     MINUS("-") {
         override fun operation(first: Int, second: Int): Int = first - second
+    },
+    MULTIPLICATION("*") {
+        override fun operation(first: Int, second: Int): Int = first * second
     };
 
     abstract fun operation(first: Int, second: Int): Int
