@@ -14,22 +14,25 @@ class RacingGame(
 ) {
 
     fun start() {
-        val (carNumber, roundNumber) = getInput()
-        val cars = initCars(carNumber = carNumber)
+        val (carNameList, roundNumber) = getInput()
+        val cars = initCars(carNameList = carNameList)
         startEachRound(cars = cars, roundNumber = roundNumber)
     }
 
     private fun getInput(): RaceRequest {
-        val carNumber = inputView.getCarNumber()
+        val carNameList = inputView.getCarNames()
         val roundNumber = inputView.getRoundNumber()
-        return RaceRequest(carNumber = carNumber, roundNumber = roundNumber)
+        return RaceRequest(carNameList = carNameList, roundNumber = roundNumber)
     }
 
-    private fun initCars(carNumber: Int): List<Car> {
+    private fun initCars(carNameList: List<String>): List<Car> {
         val cars: MutableList<Car> = mutableListOf()
-        for (i in 0 until carNumber) {
+
+        for (carName in carNameList) {
+
             cars.add(Car(RandomMoveStrategy()))
         }
+
         return cars.toList()
     }
 

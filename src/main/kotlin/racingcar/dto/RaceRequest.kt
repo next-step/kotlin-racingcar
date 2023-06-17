@@ -1,3 +1,3 @@
 package racingcar.dto
 
-data class RaceRequest(val carNumber: Int, val roundNumber: Int)
+data class RaceRequest(val carNameList: List<String>, val roundNumber: Int)
