@@ -12,6 +12,6 @@ fun main() {
 
     repeat(inputValue.trials) {
         racingCars = RacingCarService.race(racingCars.list)
-        ResultView.showRacingStage(racingCars.list.map { it.progress })
+        ResultView.showRacingStage(racingCars)
     }
 }
