@@ -40,15 +40,21 @@ class RacingGame(
         println()
         for (i in 0 until roundNumber) {
             round.execute(cars)
-            printResult(cars)
+            printEachRoundResult(cars)
         }
     }
 
-    private fun printResult(cars: List<Car>) {
+    private fun printEachRoundResult(cars: List<Car>) {
         for (car in cars) {
             outputView.printName(car.name)
             outputView.printLocation(car.location)
         }
         println()
+    }
+
+    private fun printGameResult(cars: List<Car>) {
+        val raceResultEstimator = RaceResultEstimator()
+        raceResultEstimator.estimate(cars)
+        outputView
     }
 }
