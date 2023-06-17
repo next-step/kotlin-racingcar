@@ -1,11 +1,13 @@
 package racingcar.view
 
-import java.lang.IllegalArgumentException
-
 class InputView : InputViewProtocol {
+
+    private val inputValidator: InputValidator = InputValidator()
+
     private fun getCarInput(): String {
         val str = readLine()
-        return requireNotNull(str) { throw IllegalArgumentException("입력된 문자열이 null입니다.") }
+        inputValidator.validate(str)
+        return str.toString()
     }
 
     override fun getCarNames(): List<String> {

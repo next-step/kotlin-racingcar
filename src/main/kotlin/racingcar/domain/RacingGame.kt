@@ -37,6 +37,7 @@ class RacingGame(
 
     private fun startEachRound(cars: List<Car>, roundNumber: Int) {
         val round = Round()
+        println()
         for (i in 0 until roundNumber) {
             round.execute(cars)
             printResult(cars)
