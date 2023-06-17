@@ -12,6 +12,5 @@ object ResultView {
 
     private fun showProgress(progress: Int) {
         println(PROGRESS_STRING.repeat(progress))
-        println()
     }
 }

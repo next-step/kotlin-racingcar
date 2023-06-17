@@ -1,6 +1,8 @@
 package racingcar.service
 
 import racingcar.domain.RacingCar
+import racingcar.domain.RacingCars
+import racingcar.domain.toRacingCars
 import kotlin.random.Random
 
 object RacingCarService {
@@ -10,7 +12,7 @@ object RacingCarService {
     fun race(
         cars: List<RacingCar>,
         randomNumber: () -> Int = { Random.nextInt(RANDOM_MAX_NUMBER) }
-    ): List<RacingCar> {
-        return cars.map { it.carProgress(randomNumber) }
+    ): RacingCars {
+        return cars.map { it.carProgress(randomNumber) }.toRacingCars()
     }
 }

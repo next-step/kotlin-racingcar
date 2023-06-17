@@ -1,13 +1,24 @@
 package racingcar.domain
 
+class RacingCars(
+    var list: List<RacingCar>
+) {
+    companion object {
+        fun of(drivers: List<String>): RacingCars {
+            return drivers.map { RacingCar(progress = 1, driver = it) }.toRacingCars()
+        }
+    }
+}
+
 class RacingCar(
-    val progress: Int = 1
+    val progress: Int = 1,
+    val driver: String
 ) {
     fun carProgress(randomNumber: () -> Int): RacingCar {
         if (checkCanGo { randomNumber() }) {
-            return RacingCar(progress.progressNext())
+            return RacingCar(progress.progressNext(), driver)
         }
-        return RacingCar(progress)
+        return RacingCar(progress, driver)
     }
 
     private fun checkCanGo(randomNumber: () -> Int): Boolean {
@@ -20,3 +31,4 @@ class RacingCar(
 }
 
 private fun Int.progressNext() = this + 1
+fun List<RacingCar>.toRacingCars() = RacingCars(this)
