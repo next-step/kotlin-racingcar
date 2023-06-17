@@ -8,7 +8,7 @@ class RaceResultEstimator {
     }
 
     private fun findMaxLocation(cars: List<Car>): Int {
-        var maxLocation: Int = 0
+        var maxLocation = 0
         for (car in cars) {
             if (car.location > maxLocation)
                 maxLocation = car.location
