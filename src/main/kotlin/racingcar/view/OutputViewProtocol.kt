@@ -1,5 +1,7 @@
 package racingcar.view
 
 interface OutputViewProtocol {
-    fun printValue(value: Int)
+    fun printLocation(value: Int)
+
+    fun printName(value: String)
 }

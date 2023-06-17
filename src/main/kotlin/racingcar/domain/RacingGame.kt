@@ -45,7 +45,8 @@ class RacingGame(
 
     private fun printResult(cars: List<Car>) {
         for (car in cars) {
-            outputView.printValue(car.location)
+            outputView.printName(car.name)
+            outputView.printLocation(car.location)
         }
         println()
     }
