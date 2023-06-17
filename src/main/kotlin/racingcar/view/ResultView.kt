@@ -3,8 +3,8 @@ package racingcar.view
 object ResultView {
     private const val PROGRESS_STRING = "-"
 
-    fun showRacingStage(carProgress: List<Int>) {
-        carProgress.forEach {
+    fun showRacingStage(carProgresses: List<Int>) {
+        carProgresses.forEach {
             showProgress(it)
         }
         println()
