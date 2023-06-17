@@ -20,6 +20,11 @@ class RacingCarView {
             }
             println()
         }
+
+        fun printWinnerCars(racingCars: List<RacingCar>) {
+            val winningCars = racingCars.joinToString(", ") { it.name }
+            println(winningCars + "가 최종 우승했습니다.")
+        }
     }
 }
 
