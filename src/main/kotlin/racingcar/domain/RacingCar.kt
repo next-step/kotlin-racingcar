@@ -5,7 +5,7 @@ class RacingCar(
 ) {
     fun carProgress(randomNumber: () -> Int): RacingCar {
         if (checkCanGo { randomNumber() }) {
-            return RacingCar(1 + progress)
+            return RacingCar(progress.progressNext())
         }
         return RacingCar(progress)
     }
@@ -18,3 +18,5 @@ class RacingCar(
         private const val RESTRICT_NUMBER = 4
     }
 }
+
+private fun Int.progressNext() = this + 1
