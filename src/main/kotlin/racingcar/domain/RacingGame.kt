@@ -29,8 +29,7 @@ class RacingGame(
         val cars: MutableList<Car> = mutableListOf()
 
         for (carName in carNameList) {
-
-            cars.add(Car(RandomMoveStrategy()))
+            cars.add(Car(name = carName, movable = RandomMoveStrategy()))
         }
 
         return cars.toList()
