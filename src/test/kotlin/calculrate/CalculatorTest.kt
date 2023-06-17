@@ -51,4 +51,11 @@ class CalculatorTest {
         val actual = Calculator.calculate(input)
         assertThat(actual).isEqualTo(expected)
     }
+
+    @ParameterizedTest
+    @CsvSource("10 * 2 + 2 - 5,17", "2 + 3 - 1 / 2,2", "20 + 1 - 11 / 2,5")
+    fun `사칙 연신을 모두 포함하는 기능 구현`(input: String, expected: Int?) {
+        val actual = Calculator.calculate(input)
+        assertThat(actual).isEqualTo(expected)
+    }
 }
