@@ -12,4 +12,14 @@ class OutputView : OutputViewProtocol {
     override fun printName(name: String) {
         print("$name : ")
     }
+
+    override fun printRaceResult(result: Set<String>) {
+        result.forEachIndexed { index, str ->
+            print(str)
+            if (index != result.size - 1) {
+                print(", ")
+            }
+        }
+        println("가 최종 우승했습니다.")
+    }
 }

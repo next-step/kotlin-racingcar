@@ -17,6 +17,7 @@ class RacingGame(
         val (carNameList, roundNumber) = getInput()
         val cars = initCars(carNameList = carNameList)
         startEachRound(cars = cars, roundNumber = roundNumber)
+        printGameResult(cars)
     }
 
     private fun getInput(): RaceRequest {
@@ -54,7 +55,7 @@ class RacingGame(
 
     private fun printGameResult(cars: List<Car>) {
         val raceResultEstimator = RaceResultEstimator()
-        raceResultEstimator.estimate(cars)
-        outputView
+        val raceResult = raceResultEstimator.estimate(cars)
+        outputView.printRaceResult(raceResult)
     }
 }
