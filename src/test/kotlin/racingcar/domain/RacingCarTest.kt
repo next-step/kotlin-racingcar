@@ -16,4 +16,26 @@ class RacingCarTest : StringSpec({
         val result = racingCar.carProgress { 5 }
         result.progress shouldBe 2
     }
+
+    "getWinners는 progress가 가장 높은 driver를 반환한다." {
+        val racingCars = RacingCars(
+            listOf(
+                RacingCar(progress = 3, driver = "tony"),
+                RacingCar(progress = 2, driver = "dana"),
+                RacingCar(progress = 1, driver = "bako"),
+            )
+        )
+        racingCars.getWinners() shouldBe listOf("tony")
+    }
+
+    "getWinners는 progress가 가장 높은 동점의 driver를 반환한다." {
+        val racingCars = RacingCars(
+            listOf(
+                RacingCar(progress = 3, driver = "tony"),
+                RacingCar(progress = 3, driver = "dana"),
+                RacingCar(progress = 1, driver = "bako"),
+            )
+        )
+        racingCars.getWinners() shouldBe listOf("tony", "dana")
+    }
 })

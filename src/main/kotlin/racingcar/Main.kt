@@ -14,4 +14,5 @@ fun main() {
         racingCars = RacingCarService.race(racingCars.list)
         ResultView.showRacingStage(racingCars)
     }
+    ResultView.showWinners(racingCars.getWinners())
 }

@@ -13,6 +13,9 @@ object ResultView {
         println()
     }
 
+    fun showWinners(winners: List<String>) {
+        println("${winners.joinToString()}가 최종 우승했습니다.")
+    }
     private fun showProgress(racingCar: RacingCar) {
 
         println("${racingCar.driver} : ${PROGRESS_STRING.repeat(racingCar.progress)}")
