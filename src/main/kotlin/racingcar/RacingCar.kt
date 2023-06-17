@@ -1,6 +1,7 @@
 package racingcar
 
-class RacingCar(position: Int = 0) {
+class RacingCar(val name: String, position: Int = DEFAULT_POSITION_NUMBER) {
+
     var position: Int = position
         private set
 
@@ -14,5 +15,6 @@ class RacingCar(position: Int = 0) {
         const val MINIMUM_POWER_NUMBER = 0
         const val MAXIMUM_POWER_NUMBER = 9
         const val FORWARD_POWER_NUMBER = 4
+        const val DEFAULT_POSITION_NUMBER = 0
     }
 }

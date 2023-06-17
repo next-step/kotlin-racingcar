@@ -10,7 +10,7 @@ fun main() {
     var attemptNumber = getIntValue()
     val cars = mutableListOf<RacingCar>()
     for (i in 0 until carCount) {
-        cars.add(RacingCar())
+        cars.add(RacingCar("car"))
     }
     RacingCarView.printResultView()
     while (attemptNumber-- > 0) {
