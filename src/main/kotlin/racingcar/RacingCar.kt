@@ -1,7 +1,7 @@
 package racingcar
 
-class RacingCar {
-    var position: Int = 0
+class RacingCar(position: Int = 0) {
+    var position: Int = position
         private set
 
     fun tryMove(number: Int) =
