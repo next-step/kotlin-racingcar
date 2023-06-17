@@ -24,6 +24,7 @@ class RacingCarView {
 }
 
 fun RacingCar.printPosition() {
+    print("$name : ")
     for (i in 0 until position) {
         print("-")
     }
