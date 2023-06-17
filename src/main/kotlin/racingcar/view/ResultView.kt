@@ -11,9 +11,7 @@ object ResultView {
     }
 
     private fun showProgress(progress: Int) {
-        repeat(progress) {
-            print(PROGRESS_STRING)
-        }
+        println(PROGRESS_STRING.repeat(progress))
         println()
     }
 }
