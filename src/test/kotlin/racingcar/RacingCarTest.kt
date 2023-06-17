@@ -1,5 +1,6 @@
 package racingcar
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldBe
@@ -34,6 +35,14 @@ class RacingCarTest : BehaviorSpec({
             racingCar.tryMove(4)
             Then("자동차의 위치값이 1증가한다.")
             racingCar.position shouldBe 1
+        }
+    }
+
+    Given("자동차의 이름은 5글자를 넘는 경우 예외가 발생한다.") {
+        When("자동차의 이름이 5글자를 넘을 경우") {
+            shouldThrow<IllegalArgumentException> {
+                RacingCar("다섯글자가넘는자동차")
+            }
         }
     }
 })
