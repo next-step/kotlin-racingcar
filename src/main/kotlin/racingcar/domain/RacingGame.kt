@@ -1,6 +1,7 @@
 package racingcar.domain
 
 import racingcar.domain.move.RandomMoveStrategy
+import racingcar.dto.RaceRequest
 import racingcar.view.InputViewProtocol
 import racingcar.view.OutputViewProtocol
 
@@ -18,10 +19,10 @@ class RacingGame(
         startEachRound(cars = cars, roundNumber = roundNumber)
     }
 
-    private fun getInput(): Pair<Int, Int> {
+    private fun getInput(): RaceRequest {
         val carNumber = inputView.getCarNumber()
         val roundNumber = inputView.getRoundNumber()
-        return Pair(carNumber, roundNumber)
+        return RaceRequest(carNumber = carNumber, roundNumber = roundNumber)
     }
 
     private fun initCars(carNumber: Int): List<Car> {
