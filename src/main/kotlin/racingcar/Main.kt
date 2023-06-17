@@ -6,11 +6,11 @@ import racingcar.view.InputView
 import racingcar.view.ResultView
 
 fun main() {
-    val inp = InputView.input()
+    val inputValue = InputView.input()
 
-    var cars = List(inp.carNumbers) { RacingCar() }
+    var cars = List(inputValue.carNumbers) { RacingCar() }
 
-    repeat(inp.trials) {
+    repeat(inputValue.trials) {
         cars = RacingCarService.race(cars)
         ResultView.showRacingStage(cars.map { it.progress })
     }
