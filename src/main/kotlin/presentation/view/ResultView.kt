@@ -1,20 +1,35 @@
 package presentation.view
 
-import domain.Race
+import domain.Car
+import domain.RacingGame
+import domain.Winner
 
 class ResultView {
+    private val inputView = InputView()
+    private val cars = inputView.inputCarNames().split(",").map {
+        Car(it, 0)
+    }
 
-    fun result() {
-        val race = Race()
-        val inputView = InputView()
-        inputView.inputCarCount()
-        inputView.inputRetryRetryCount()
-        if (inputView.getRetryCount() == 0 || inputView.getCarList().isEmpty()) throw Exception("retryCount() == 0 || carList.isEmpty()")
-        repeat(inputView.getRetryCount()) {
-            inputView.getCarList().map { car ->
-                println("-".repeat(race.carRace(car, car.isMoving())))
-            }
-            println()
+    fun start() {
+        val retryCount = inputView.inputRetryCount()
+
+        val race = RacingGame(cars)
+        repeat(retryCount) {
+            race.racing()
+            printRacingResult(race.getCars())
         }
+        printWinner()
+    }
+
+    private fun printRacingResult(cars: List<Car>) {
+        cars.map {
+            println("${it.name} : " + "-".repeat(it.position))
+        }
+        println()
+    }
+
+    private fun printWinner() {
+        val result = Winner(cars).getWinner()
+        println(result + "가 최종 우승했습니다.")
     }
 }
