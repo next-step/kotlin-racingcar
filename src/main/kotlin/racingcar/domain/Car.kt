@@ -6,9 +6,8 @@ class Car(private val movable: Movable) {
     var location = 0
         private set
 
-    fun isMoveOrStop(): Boolean {
+    fun isMoveOrStop() {
         val isMove = movable.move()
         if (isMove) location++
-        return isMove
     }
 }
