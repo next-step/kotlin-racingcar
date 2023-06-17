@@ -12,12 +12,9 @@ class RacingGame(
     private val outputView: OutputViewProtocol
 ) {
 
-    private val round: Round = Round()
-    private val cars: MutableList<Car> = mutableListOf()
-
     fun start() {
         val (carNumber, roundNumber) = getInput()
-        initCars(cars = cars, carNumber = carNumber)
+        val cars = initCars(carNumber = carNumber)
         startEachRound(cars = cars, roundNumber = roundNumber)
     }
 
@@ -27,19 +24,23 @@ class RacingGame(
         return Pair(carNumber, roundNumber)
     }
 
-    private fun initCars(cars: MutableList<Car>, carNumber: Int) {
-        for (i in 0 until carNumber)
+    private fun initCars(carNumber: Int): List<Car> {
+        val cars: MutableList<Car> = mutableListOf()
+        for (i in 0 until carNumber) {
             cars.add(Car(RandomMoveStrategy()))
+        }
+        return cars.toList()
     }
 
-    private fun startEachRound(cars: MutableList<Car>, roundNumber: Int) {
+    private fun startEachRound(cars: List<Car>, roundNumber: Int) {
+        val round = Round()
         for (i in 0 until roundNumber) {
             round.execute(cars)
             printResult(cars)
         }
     }
 
-    private fun printResult(cars: MutableList<Car>) {
+    private fun printResult(cars: List<Car>) {
         for (car in cars) {
             outputView.printValue(car.location)
         }
