@@ -30,4 +30,11 @@ class CalculatorTest {
         val actual = Calculator.calculate(input)
         assertThat(actual).isEqualTo(expected)
     }
+
+    @ParameterizedTest
+    @CsvSource("10 - 2 - 3,5", "2 - 2,0")
+    fun `뺄셈`(input: String, expected: Int?) {
+        val actual = Calculator.calculate(input)
+        assertThat(actual).isEqualTo(expected)
+    }
 }

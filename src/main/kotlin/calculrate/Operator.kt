@@ -3,6 +3,9 @@ package calculrate
 enum class Operator(val char: String) {
     PLUS("+") {
         override fun operation(first: Int, second: Int): Int = first + second
+    },
+    MINUS("-") {
+        override fun operation(first: Int, second: Int): Int = first - second
     };
 
     abstract fun operation(first: Int, second: Int): Int
