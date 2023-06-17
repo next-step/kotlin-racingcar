@@ -7,7 +7,7 @@ import race.model.Car
 class CarTest : BehaviorSpec({
 
     given(" 붕붕 카는 항상 이동하는 엔진으로") {
-        var car = Car(_name = "붕붕")
+        var car = Car(name = "붕붕")
         `when`("카 2번 이동하면 ") {
             car = car.move(4)
             car = car.move(4)
@@ -21,7 +21,7 @@ class CarTest : BehaviorSpec({
     }
 
     given(" 사이클이 3이하 엔진으로 ") {
-        val car = Car(_name = "bb")
+        val car = Car(name = "bb")
         `when`("카를 움직이면") {
             car.move(3)
             then(" 카의 위치는 변하지 않는다.")

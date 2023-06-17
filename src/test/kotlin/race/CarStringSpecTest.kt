@@ -13,7 +13,7 @@ class CarStringSpecTest : StringSpec({
         ).forAll {
             val name = it.first
             val position = it.second
-            val actual = Car(_name = name, _position = position)
+            val actual = Car(name = name, position = position)
             actual.name shouldBe name
             actual.position shouldBe position
         }

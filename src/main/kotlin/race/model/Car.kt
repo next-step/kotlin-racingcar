@@ -1,8 +1,8 @@
 package race.model
 
 data class Car(
-    private val _name: String,
-    private var _position: Int = START_POSITION
+    val name: String,
+    val position: Int = START_POSITION
 ) {
 
     init {
@@ -11,11 +11,8 @@ data class Car(
         }
     }
 
-    val name: String get() = _name
-    val position: Int get() = _position
-
     fun move(count: Int): Car = if (count >= MOVE_CONDITION) {
-        Car(_name = name, _position = position + 1)
+        this.copy(position = position + 1)
     } else {
         this
     }

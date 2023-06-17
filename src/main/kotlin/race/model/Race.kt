@@ -22,9 +22,8 @@ class Race(
 
     companion object {
 
-        const val MOVE_RANGE = 10
         fun createCars(carRacers: List<String>) = carRacers.map {
-            Car(_name = it)
+            Car(name = it)
         }
     }
 }

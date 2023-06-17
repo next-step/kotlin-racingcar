@@ -29,21 +29,4 @@ class RaceTest : BehaviorSpec({
             count shouldBe 3
         }
     }
-
-    // given("a,b,c,d,e 차가 있다") {
-    //     val fiveCars = mutableListOf<Car>().apply {
-    //         add(Car("a"))
-    //         add(Car("b"))
-    //         add(Car("c"))
-    //         add(Car("e"))
-    //         add(Car("d"))
-    //     }
-    //     val race = Race(cars = fiveCars, numberOfRace = 3)
-    //     `when`("우승자는") {
-    //         then("d 이다") {
-    //             val winner = race.start()
-    //             winner shouldBe "d"
-    //         }
-    //     }
-    // }
 })
