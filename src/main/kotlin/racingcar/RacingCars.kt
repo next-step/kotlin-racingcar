@@ -4,7 +4,7 @@ class RacingCars(input: String = "") {
     val cars = mutableListOf<RacingCar>()
 
     init {
-        val inputs = input.split(",")
+        val inputs = input.split(DELIMITER)
         (inputs.indices).forEach {
             addCar(RacingCar(inputs[it]))
         }
@@ -35,5 +35,9 @@ class RacingCars(input: String = "") {
 
     fun runCars() {
         cars.forEach { it.tryMove(getZeroToRange(RacingCar.MAXIMUM_POWER_NUMBER)) }
+    }
+
+    companion object {
+        const val DELIMITER = ","
     }
 }

@@ -43,6 +43,7 @@ class RacingCarGameTest : BehaviorSpec({
             val loserCar = RacingCar("loser", 1)
             racingCars.addCar(pavloCar)
             racingCars.addCar(wadeCar)
+            racingCars.addCar(loserCar)
             Then("우승자는 pavlo,wade 이다") {
                 racingCars.getWinners() shouldContain pavloCar
                 racingCars.getWinners() shouldContain wadeCar
