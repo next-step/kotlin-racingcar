@@ -32,4 +32,8 @@ class RacingCars(input: String = "") {
         }
         return winners
     }
+
+    fun runCars() {
+        cars.forEach { it.tryMove(getZeroToRange(RacingCar.MAXIMUM_POWER_NUMBER)) }
+    }
 }
