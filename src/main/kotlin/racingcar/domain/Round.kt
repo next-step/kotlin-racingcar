@@ -8,7 +8,7 @@ class Round() {
 
     private fun controlEachCar(cars: List<Car>) {
         for (car in cars) {
-            car.isMoveOrStop()
+            car.move()
         }
     }
 }

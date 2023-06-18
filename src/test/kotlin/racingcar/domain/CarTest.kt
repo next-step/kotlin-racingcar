@@ -26,7 +26,7 @@ class CarTest {
 
     @Test
     fun `자동차 이동 조건을 만족하면 0에서 1로 이동한다`() {
-        car.isMoveOrStop()
+        car.move()
         assertThat(car.location).isEqualTo(1)
     }
 }
