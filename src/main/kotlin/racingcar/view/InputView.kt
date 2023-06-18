@@ -32,7 +32,7 @@ object InputView {
     }
 
     private fun readCars(condition: String): List<String> {
-        val res: List<String> = readLine()?.run { split(",") } ?: throw IllegalArgumentException("자동차 이름을 잘못 입력했습니다.")
+        val res: List<String> = readLine()?.split(",") ?: throw IllegalArgumentException("자동차 이름을 잘못 입력했습니다.")
         if (res.size == MINIMUM_INPUT) {
             throw IllegalArgumentException("${condition}는 1 이상이어야 합니다.")
         }
