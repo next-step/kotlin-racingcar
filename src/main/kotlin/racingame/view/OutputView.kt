@@ -7,13 +7,17 @@ class OutputView {
         println("\n실행 결과")
     }
 
-    fun printPositionOfCars(histories: List<RacingHistory>) {
+    fun printRacingHistories(histories: List<RacingHistory>) {
         histories.forEach { racingHistory ->
-            racingHistory.history.forEach { car ->
-                println("${car.name} : ${"-".repeat(car.position)}")
-            }
-            println()
+            printPositionOfCars(racingHistory)
         }
+    }
+
+    private fun printPositionOfCars(racingHistory: RacingHistory) {
+        racingHistory.history.forEach { car ->
+            println("${car.name} : ${"-".repeat(car.position)}")
+        }
+        println()
     }
 
     fun printWinner(winners: List<String>) {
