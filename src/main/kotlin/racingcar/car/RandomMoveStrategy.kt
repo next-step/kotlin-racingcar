@@ -2,7 +2,7 @@ package racingcar.car
 
 import java.util.Random
 
-class RandomMoveStrategy(private val random: Random): MoveStrategy {
+class RandomMoveStrategy(private val random: Random = Random()): MoveStrategy {
 
     override val movable: Boolean
         get() = random.nextInt(MAXIMUM_MOVABLE_NUMBER) >= MINIMUM_MOVABLE_NUMBER
