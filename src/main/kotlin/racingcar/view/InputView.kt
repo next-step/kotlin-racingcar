@@ -4,11 +4,10 @@ class InputView {
 
     fun inputCarsCount(): Int {
         printInputCarCountMessage()
-        
         return readln().toInt()
     }
 
-    fun inputTryCount(): Int {
+    fun inputRoundCount(): Int {
         printInputTryCountMessage()
         return readln().toInt()
     }

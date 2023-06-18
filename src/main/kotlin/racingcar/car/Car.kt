@@ -14,6 +14,10 @@ class Car(private val moveStrategy: MoveStrategy) {
         return position.getPosition()
     }
 
+    fun getPathString(): String {
+        return position.getPath()
+    }
+
     private fun moveForward() {
         position.add()
     }

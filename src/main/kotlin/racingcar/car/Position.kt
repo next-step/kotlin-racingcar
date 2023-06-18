@@ -1,5 +1,7 @@
 package racingcar.car
 
+private const val PATH_SIGN = "-"
+
 data class Position(private var position: Int) {
 
     init {
@@ -12,5 +14,9 @@ data class Position(private var position: Int) {
 
     fun getPosition(): Int {
         return position
+    }
+
+    fun getPath(): String {
+        return PATH_SIGN.repeat(position + 1)
     }
 }

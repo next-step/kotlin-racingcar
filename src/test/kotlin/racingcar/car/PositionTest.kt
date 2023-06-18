@@ -4,6 +4,8 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatCode
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 
 class PositionTest {
 
@@ -25,5 +27,20 @@ class PositionTest {
         val position = Position(0)
         position.add()
         assertThat(position.getPosition()).isEqualTo(1)
+    }
+
+    @ParameterizedTest
+    @CsvSource(
+        value = [
+            "0,-",
+            "1,--",
+            "2,---",
+            "3,----",
+            "4,-----"
+        ], delimiter = ','
+    )
+    fun `포지션에 따라 경로를 반환한다`(position: Int, expected: String) {
+        val actual = Position(position).getPath()
+        assertThat(actual).isEqualTo(expected)
     }
 }
