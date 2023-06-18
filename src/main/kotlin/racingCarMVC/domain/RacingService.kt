@@ -6,6 +6,6 @@ import racingCarMVC.domain.dto.InputData
 class RacingService {
     fun racingStart(inputData: InputData): List<GameResult> {
         val racingField = RacingField(inputData.carNames.toTypedArray(), inputData.gameCount)
-        return racingField.racingStart(RandomNumberGenerator())
+        return racingField.startRacing(RandomNumberGenerator())
     }
 }

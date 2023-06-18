@@ -36,6 +36,6 @@ class RacingFieldTest {
             GameResult(listOf(Player("BMW", 3), Player("Benz", 3), Player("Audi", 3))),
         )
 
-        racingField.racingStart(FixedNumberGenerator(7)) shouldBe gameResult
+        racingField.startRacing(FixedNumberGenerator(7)) shouldBe gameResult
     }
 }

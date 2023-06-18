@@ -14,7 +14,7 @@ class RacingField(
 
     constructor(carNames: Array<String>, gameCount: Int) : this(List(carNames.size) { Car(carNames[it]) }, gameCount)
 
-    fun racingStart(numberGenerator: NumberGenerator): List<GameResult> {
+    fun startRacing(numberGenerator: NumberGenerator): List<GameResult> {
         return List(gameCount) { this.playGame(numberGenerator) }
     }
 
