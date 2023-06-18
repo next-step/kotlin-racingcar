@@ -15,7 +15,7 @@ class RacingCars(
     }
     companion object {
         fun of(drivers: List<String>): RacingCars {
-            return drivers.map { RacingCar(progress = 1, driver = it) }.toRacingCars()
+            return drivers.map { RacingCar(driver = it) }.toRacingCars()
         }
     }
 }
