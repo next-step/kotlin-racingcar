@@ -5,12 +5,11 @@ package racingcar.view
  */
 class InputValidator {
 
-    fun validate(text: String?): Boolean {
-        return validateNullOrBlank(text)
+    fun validate(text: String?) {
+        validateNullOrBlank(text)
     }
 
-    private fun validateNullOrBlank(text: String?): Boolean {
+    private fun validateNullOrBlank(text: String?) {
         if (text.isNullOrBlank()) throw IllegalArgumentException("입력값이 Blank이거나 null이 되면 안됩니다.")
-        return true
     }
 }
