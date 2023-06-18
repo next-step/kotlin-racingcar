@@ -1,12 +1,13 @@
 package racingame.domain
 
 class Cars(
-    values: List<Car> = emptyList()
+    private val values: List<Car> = emptyList()
 ) {
-    var values = values
-        private set
+    val history get() = values.map { it.copy() }
 
-    fun add(car: Car) {
-        values = values + Car(name = car.name, position = car.position)
+    fun race() {
+        values.forEach {
+            it.move()
+        }
     }
 }
