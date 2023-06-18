@@ -32,15 +32,15 @@ class RacingCar(
         }
     }
 
-    fun carProgress(randomNumber: () -> Int): RacingCar {
-        if (checkCanGo { randomNumber() }) {
+    fun carProgress(randomNumberGenerator: () -> Int): RacingCar {
+        if (checkCanGo(randomNumberGenerator())) {
             return RacingCar(progress.progressNext(), driver)
         }
         return RacingCar(progress, driver)
     }
 
-    private fun checkCanGo(randomNumber: () -> Int): Boolean {
-        return randomNumber() >= RESTRICT_NUMBER
+    private fun checkCanGo(number: Int): Boolean {
+        return number >= RESTRICT_NUMBER
     }
 
     companion object {
