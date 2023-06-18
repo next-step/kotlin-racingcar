@@ -1,5 +1,6 @@
 package racingcar.domain
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
@@ -15,6 +16,12 @@ class RacingCarTest : StringSpec({
         val racingCar = RacingCar(1, "tony")
         val result = racingCar.carProgress { 5 }
         result.progress shouldBe 2
+    }
+
+    "driver는 5자 이하여아 한다." {
+        shouldThrow<IllegalArgumentException> {
+            RacingCar(driver = "tonytony")
+        }.message shouldBe "문자열의 길이가 6자 이상인 항목이 있습니다."
     }
 
     "getWinners는 progress가 가장 높은 driver를 반환한다." {

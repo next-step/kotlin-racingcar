@@ -33,9 +33,6 @@ object InputView {
 
     private fun readCars(condition: String): List<String> {
         val res: List<String> = readLine()?.run { split(",") } ?: throw IllegalArgumentException("자동차 이름을 잘못 입력했습니다.")
-        if (res.any { it.length > 5 }) {
-            throw Exception("문자열의 길이가 6자 이상인 항목이 있습니다.")
-        }
         if (res.size == MINIMUM_INPUT) {
             throw IllegalArgumentException("${condition}는 1 이상이어야 합니다.")
         }
