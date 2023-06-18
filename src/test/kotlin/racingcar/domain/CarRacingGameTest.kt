@@ -31,4 +31,10 @@ class CarRacingGameTest : StringSpec({
             }
         }
     }
+
+    "자동가 이름을 입력 받는다." {
+        val carNames = listOf("제이든1", "제이든2", "제이든3", "제이든4")
+        val carRacingGame = CarRacingGame(carNames, 1) { -> true }
+        carRacingGame.cars.size shouldBe carNames.size
+    }
 })

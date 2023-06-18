@@ -1,12 +1,15 @@
 package racingcar.domain
 
 class CarRacingGame(
-    carCount: Int,
+    carNames: List<String>,
     private val round: Int,
     private val moveStrategy: MoveStrategy
 ) {
     private var currentRound: Int = 0
-    val cars: List<Car> = (1..carCount).map { Car("$it", moveStrategy = moveStrategy) }
+    val cars: List<Car> = carNames.map { Car(it, moveStrategy = moveStrategy) }
+
+    constructor(carCount: Int, round: Int, moveStrategy: MoveStrategy) :
+        this((1..carCount).map { it.toString() }, round, moveStrategy)
 
     fun race(raceResultHandler: (RacingResult) -> Unit) {
         while (hasNextRound()) {
