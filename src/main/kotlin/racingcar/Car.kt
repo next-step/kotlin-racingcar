@@ -8,7 +8,7 @@ class Car(position: Int = DEFAULT_POSITION, val conditionGenerateStrategy: Condi
         private set
 
     fun move(): Int {
-        if (conditionGenerateStrategy.generate() >= THRESHOLD) {
+        if (conditionGenerateStrategy.generate()) {
             position++
         }
 
@@ -17,6 +17,5 @@ class Car(position: Int = DEFAULT_POSITION, val conditionGenerateStrategy: Condi
 
     companion object {
         const val DEFAULT_POSITION = 1
-        const val THRESHOLD = 4
     }
 }
