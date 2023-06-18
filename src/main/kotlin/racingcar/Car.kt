@@ -3,10 +3,9 @@ package racingcar
 import racingcar.strategy.ConditionGenerateStrategy
 import racingcar.strategy.RandomStrategy
 
-class Car(position: Int = DEFAULT_POSITION) {
+class Car(position: Int = DEFAULT_POSITION, val conditionGenerateStrategy: ConditionGenerateStrategy = RandomStrategy()) {
     var position = position
         private set
-    var conditionGenerateStrategy: ConditionGenerateStrategy = RandomStrategy()
 
     fun move(): Int {
         if (conditionGenerateStrategy.generate() >= THRESHOLD) {

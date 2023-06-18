@@ -11,8 +11,7 @@ class CarsTest {
         val carsSize = 3
         val cars = Cars(
             List(carsSize) {
-                val car = Car()
-                car.conditionGenerateStrategy = manualStrategy
+                val car = Car(conditionGenerateStrategy = manualStrategy)
                 car
             }
         )
@@ -26,8 +25,7 @@ class CarsTest {
         val carsSize = 3
         val cars = Cars(
             List(carsSize) {
-                val car = Car()
-                car.conditionGenerateStrategy = manualStrategy
+                val car = Car(conditionGenerateStrategy = manualStrategy)
                 car
             }
         )
