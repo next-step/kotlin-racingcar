@@ -3,6 +3,8 @@ package racingCarMVC
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import racingCarMVC.domain.RacingField
+import racingCarMVC.domain.dto.GameResult
+import racingCarMVC.domain.dto.Player
 
 class RacingFieldTest {
     @Test
@@ -23,12 +25,17 @@ class RacingFieldTest {
     }
 
     @Test
-    fun `경주를 진행하고 최종 우승자를 찾는다`() {
+    fun `경주를 진행하고 경기 결과를 리턴한다`() {
         val carNames = arrayOf("BMW", "Benz", "Audi")
         val gameCount = 3
         val racingField = RacingField(carNames, gameCount)
-        val winners = racingField.racingStart(FixedNumberGenerator(7))
 
-        winners shouldBe carNames
+        val gameResult = listOf(
+            GameResult(listOf(Player("BMW", 1), Player("Benz", 1), Player("Audi", 1))),
+            GameResult(listOf(Player("BMW", 2), Player("Benz", 2), Player("Audi", 2))),
+            GameResult(listOf(Player("BMW", 3), Player("Benz", 3), Player("Audi", 3))),
+        )
+
+        racingField.racingStart(FixedNumberGenerator(7)) shouldBe gameResult
     }
 }

@@ -1,4 +1,4 @@
-package racingCarMVC.domain
+package racingCarMVC.view
 
 class InputIO {
     fun inputCarNames(inputString: String? = readlnOrNull()): List<String> {

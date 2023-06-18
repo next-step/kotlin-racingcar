@@ -3,7 +3,7 @@ package racingCarMVC
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
-import racingCarMVC.domain.InputIO
+import racingCarMVC.view.InputIO
 
 class InputIOTest {
     @Test
