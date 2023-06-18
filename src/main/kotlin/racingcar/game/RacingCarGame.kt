@@ -2,6 +2,7 @@ package racingcar.game
 
 import racingcar.car.Cars
 import racingcar.car.MoveStrategy
+import racingcar.car.RoundCount
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
@@ -15,8 +16,8 @@ class RacingCarGame(
 
     fun play() {
         getCars()
-        val roundCount = inputView.inputRoundCount()
-        repeat(roundCount) {
+        val roundCount = RoundCount(inputView.inputCarsCount())
+        repeat(roundCount.value()) {
             cars.move()
             printResult()
         }
