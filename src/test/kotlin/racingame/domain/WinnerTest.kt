@@ -12,7 +12,7 @@ class WinnerTest : FunSpec({
         val expected = listOf("green")
 
         // when
-        val actual = Winner(cars)
+        val actual = Winner(cars.history)
 
         // then
         actual.nameOfWinners.shouldBe(expected)
