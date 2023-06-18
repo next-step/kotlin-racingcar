@@ -18,6 +18,8 @@ class Car(
         }
     }
 
+    fun copy() = Car(name, position)
+
     companion object {
         const val DEFAULT_POSITION = 0
         const val MOVING_STEP = 1
