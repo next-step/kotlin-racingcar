@@ -5,5 +5,5 @@ interface OutputViewProtocol {
 
     fun printName(name: String)
 
-    fun printRaceResult(result: Set<String>)
+    fun printRaceWinner(result: Set<String>)
 }

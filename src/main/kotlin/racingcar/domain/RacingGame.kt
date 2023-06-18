@@ -56,6 +56,6 @@ class RacingGame(
     private fun printGameResult(cars: List<Car>) {
         val raceResultEstimator = RaceResultEstimator()
         val raceResult = raceResultEstimator.estimate(cars)
-        outputView.printRaceResult(raceResult)
+        outputView.printRaceWinner(raceResult)
     }
 }

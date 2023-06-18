@@ -13,7 +13,7 @@ class OutputView : OutputViewProtocol {
         print("$name : ")
     }
 
-    override fun printRaceResult(result: Set<String>) {
+    override fun printRaceWinner(result: Set<String>) {
         result.forEachIndexed { index, str ->
             print(str)
             if (index != result.size - 1) {
