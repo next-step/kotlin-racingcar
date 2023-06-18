@@ -25,15 +25,15 @@ class CarJunitTest {
 
     @Test
     fun `자동차는 무작위 값이 4 이상일 경우 이동할 수 있다`() {
-        val actual = Car(name = "홍길동")
-        actual.move(4)
-        actual.position shouldBe 2
+        var actual = Car(name = "홍길동")
+        actual = actual.move(4)
+        actual.position shouldBe 1
     }
 
     @Test
     fun `자동차는 무작위 값이 4 미만일 경우 정지한다`() {
         var actual = Car(name = "홍길동")
         actual = actual.move(1)
-        actual.position shouldBe 1
+        actual.position shouldBe 0
     }
 }

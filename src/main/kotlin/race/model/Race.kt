@@ -3,6 +3,7 @@ package race.model
 class Race(
     private var cars: List<Car>,
     private val numberOfRace: Int,
+    private val engine: Engine = RandomEngine()
 ) {
 
     fun start(update: ((List<Car>) -> Unit)? = null): Winner {
@@ -16,7 +17,7 @@ class Race(
 
     private fun racing() {
         cars = cars.map {
-            it.move(RandomEngine().cycle())
+            it.move(engine.cycle())
         }
     }
 
