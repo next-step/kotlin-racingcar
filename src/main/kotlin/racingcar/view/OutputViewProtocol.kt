@@ -8,4 +8,6 @@ interface OutputViewProtocol {
     fun printName(name: String)
 
     fun printRaceWinner(raceResult: RaceResult)
+
+    fun printNextLine()
 }

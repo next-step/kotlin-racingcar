@@ -14,13 +14,13 @@ class RacingGame(
 ) {
 
     fun start() {
-        val (carNameList, roundNumber) = getInput()
+        val (carNameList, roundNumber) = createRaceRequest()
         val cars = initCars(carNameList = carNameList)
         startEachRound(cars = cars, roundNumber = roundNumber)
-        printGameResult(cars)
+        printRaceResult(cars)
     }
 
-    private fun getInput(): RaceRequest {
+    private fun createRaceRequest(): RaceRequest {
         val carNameList = inputView.getCarNames()
         val roundNumber = inputView.getRoundNumber()
         return RaceRequest(carNameList = carNameList, roundNumber = roundNumber)
@@ -38,7 +38,7 @@ class RacingGame(
 
     private fun startEachRound(cars: List<Car>, roundNumber: Int) {
         val round = Round()
-        println()
+        outputView.printNextLine()
         for (i in 0 until roundNumber) {
             round.execute(cars)
             printEachRoundResult(cars)
@@ -50,10 +50,10 @@ class RacingGame(
             outputView.printName(car.name)
             outputView.printLocation(car.location)
         }
-        println()
+        outputView.printNextLine()
     }
 
-    private fun printGameResult(cars: List<Car>) {
+    private fun printRaceResult(cars: List<Car>) {
         val raceResultEstimator = RaceResultEstimator()
         val raceResult = raceResultEstimator.estimate(cars)
         outputView.printRaceWinner(raceResult)

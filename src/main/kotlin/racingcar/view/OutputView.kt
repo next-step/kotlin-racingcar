@@ -25,4 +25,8 @@ class OutputView : OutputViewProtocol {
         }
         println("가 최종 우승했습니다.")
     }
+
+    override fun printNextLine() {
+        println()
+    }
 }

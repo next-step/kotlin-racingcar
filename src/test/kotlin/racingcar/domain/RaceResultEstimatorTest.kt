@@ -34,10 +34,10 @@ class RaceResultEstimatorTest {
         round.execute(cars)
 
         // when
-        val result = raceResultEstimator.estimate(cars)
+        val result = raceResultEstimator.estimate(cars).winnerNameSet
 
         // then
-        // Assertions.assertThat(result).hasSize(2)
+        Assertions.assertThat(result).hasSize(2)
         Assertions.assertThat(result.toString()).isEqualTo("[Winner1, Winner2]")
     }
 }
