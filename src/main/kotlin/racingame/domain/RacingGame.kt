@@ -4,22 +4,14 @@ class RacingGame(
     private val cars: Cars,
     private val totalTrialCount: Int
 ) {
-    var positionHistories: List<Cars> = listOf()
+    var racingHistories: List<RacingHistory> = emptyList()
         private set
 
     fun run(): Winner {
         repeat(totalTrialCount) {
-            race()
+            cars.race()
+            racingHistories = racingHistories + RacingHistory(cars.history)
         }
-        return Winner(cars)
-    }
-
-    private fun race() {
-        val currentHistories = Cars()
-        cars.values.forEach { car ->
-            car.move()
-            currentHistories.add(car)
-        }
-        positionHistories = positionHistories + currentHistories
+        return Winner(cars.history)
     }
 }
