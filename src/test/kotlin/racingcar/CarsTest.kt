@@ -7,11 +7,10 @@ import racingcar.strategy.ManualStrategy
 class CarsTest {
     @Test
     fun `condition이 true 이면 모든 Car의 position이 1 증가한다`() {
-        val manualStrategy = ManualStrategy(true)
         val carsSize = 3
         val cars = Cars(
             List(carsSize) {
-                val car = Car(conditionGenerateStrategy = manualStrategy)
+                val car = Car(conditionGenerateStrategy = ManualStrategy(true))
                 car
             }
         )
@@ -21,11 +20,10 @@ class CarsTest {
 
     @Test
     fun `condition이 false 이면 모든 Car의 position은 그대로다`() {
-        val manualStrategy = ManualStrategy(false)
         val carsSize = 3
         val cars = Cars(
             List(carsSize) {
-                val car = Car(conditionGenerateStrategy = manualStrategy)
+                val car = Car(conditionGenerateStrategy = ManualStrategy(false))
                 car
             }
         )
