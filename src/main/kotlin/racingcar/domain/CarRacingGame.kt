@@ -14,7 +14,7 @@ class CarRacingGame(
     fun race(raceResultHandler: (RacingResult) -> Unit) {
         while (hasNextRound()) {
             runRound()
-            raceResultHandler.invoke(RacingResult(cars, hasNextRound()))
+            raceResultHandler.invoke(RacingResult(cars, !hasNextRound()))
         }
     }
 

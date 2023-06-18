@@ -15,6 +15,22 @@ class Car(val name: String, position: Int = 0, private val moveStrategy: MoveStr
             position++
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Car
+
+        if (name != other.name) return false
+        return position == other.position
+    }
+
+    override fun hashCode(): Int {
+        var result = name.hashCode()
+        result = 31 * result + position
+        return result
+    }
+
     companion object {
         private const val CAR_NAME_LENGTH_LIMIT = 5
     }

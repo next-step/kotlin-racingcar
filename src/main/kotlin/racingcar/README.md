@@ -119,4 +119,4 @@ pobi, honux가 최종 우승했습니다.
   - 자동차의 이름은 공백일 수 없다. - Car
 - [x] 자동차의 이름도 같이 출력한다. - Car, RacingResult
 - [x] 자동차의 이름은 쉼표(,)를 기준으로 구분한다. - Input, CarRacingGame
-- [ ] 경주 완료 후 우승자를 알려 준다. 우승자는 1명 이상 일 수 있다. - RacingResult
+- [x] 경주 완료 후 우승자를 알려 준다. 우승자는 1명 이상 일 수 있다. - RacingResult
