@@ -3,7 +3,7 @@ package racingCarMVC
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import racingCarMVC.domain.dto.Player
-import racingCarMVC.domain.dto.RacingPlayers
+import racingCarMVC.domain.RacingPlayers
 
 class RacingPlayersTest {
     @Test

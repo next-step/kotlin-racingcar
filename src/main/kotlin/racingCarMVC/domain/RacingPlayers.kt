@@ -1,4 +1,6 @@
-package racingCarMVC.domain.dto
+package racingCarMVC.domain
+
+import racingCarMVC.domain.dto.Player
 
 class RacingPlayers(
     private val players: List<Player>

@@ -2,7 +2,7 @@ package racingCarMVC.controller
 
 import racingCarMVC.domain.RacingService
 import racingCarMVC.domain.dto.InputData
-import racingCarMVC.domain.dto.RacingPlayers
+import racingCarMVC.domain.RacingPlayers
 import racingCarMVC.view.InputIO
 import racingCarMVC.view.InputMessage
 import racingCarMVC.view.InputView
