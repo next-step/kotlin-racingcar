@@ -1,10 +1,13 @@
 package racingcar.domain
 
+import racingcar.dto.RaceResult
+
 class RaceResultEstimator {
 
-    fun estimate(cars: List<Car>): Set<String> {
+    fun estimate(cars: List<Car>): RaceResult {
         val maxLocation: Int = findMaxLocation(cars)
-        return findWinnerName(cars = cars, maxLocation = maxLocation)
+        val winnerNameSet = findWinnerName(cars = cars, maxLocation = maxLocation)
+        return RaceResult(winnerNameSet = winnerNameSet)
     }
 
     private fun findMaxLocation(cars: List<Car>): Int {

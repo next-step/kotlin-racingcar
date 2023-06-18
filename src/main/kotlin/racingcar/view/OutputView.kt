@@ -1,5 +1,7 @@
 package racingcar.view
 
+import racingcar.dto.RaceResult
+
 class OutputView : OutputViewProtocol {
 
     override fun printLocation(location: Int) {
@@ -13,7 +15,8 @@ class OutputView : OutputViewProtocol {
         print("$name : ")
     }
 
-    override fun printRaceWinner(result: Set<String>) {
+    override fun printRaceWinner(raceResult: RaceResult) {
+        val result = raceResult.winnerNameSet
         result.forEachIndexed { index, str ->
             print(str)
             if (index != result.size - 1) {
