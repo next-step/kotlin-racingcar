@@ -23,7 +23,7 @@ class ResultView {
     }
 
     private fun showCarPosition(gameResult: GameResult) {
-        gameResult.players.forEach { player ->
+        gameResult.gameRecord.forEach { player ->
             println("${player.name} : ${DISPLAY_STRING.repeat(player.position)}")
         }
     }

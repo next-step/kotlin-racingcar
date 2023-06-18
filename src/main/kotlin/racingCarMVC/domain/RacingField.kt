@@ -1,7 +1,7 @@
 package racingCarMVC.domain
 
 import racingCarMVC.domain.dto.GameResult
-import racingCarMVC.domain.dto.Player
+import racingCarMVC.domain.dto.GameRecord
 
 class RacingField(
     private val cars: List<Car>,
@@ -22,7 +22,7 @@ class RacingField(
         return GameResult(
             cars.map {
                 it.move(numberGenerator.getRandomNumber())
-                Player(it.name, it.position)
+                GameRecord(it.name, it.position)
             }
         )
     }

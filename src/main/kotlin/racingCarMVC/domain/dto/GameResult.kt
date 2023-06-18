@@ -1,10 +1,10 @@
 package racingCarMVC.domain.dto
 
 data class GameResult(
-    val players: List<Player>
+    val gameRecord: List<GameRecord>
 )
 
-data class Player(
+data class GameRecord(
     val name: String,
     val position: Int,
 )

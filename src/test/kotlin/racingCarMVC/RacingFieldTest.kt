@@ -4,7 +4,7 @@ import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import racingCarMVC.domain.RacingField
 import racingCarMVC.domain.dto.GameResult
-import racingCarMVC.domain.dto.Player
+import racingCarMVC.domain.dto.GameRecord
 
 class RacingFieldTest {
     @Test
@@ -31,9 +31,9 @@ class RacingFieldTest {
         val racingField = RacingField(carNames, gameCount)
 
         val gameResult = listOf(
-            GameResult(listOf(Player("BMW", 1), Player("Benz", 1), Player("Audi", 1))),
-            GameResult(listOf(Player("BMW", 2), Player("Benz", 2), Player("Audi", 2))),
-            GameResult(listOf(Player("BMW", 3), Player("Benz", 3), Player("Audi", 3))),
+            GameResult(listOf(GameRecord("BMW", 1), GameRecord("Benz", 1), GameRecord("Audi", 1))),
+            GameResult(listOf(GameRecord("BMW", 2), GameRecord("Benz", 2), GameRecord("Audi", 2))),
+            GameResult(listOf(GameRecord("BMW", 3), GameRecord("Benz", 3), GameRecord("Audi", 3))),
         )
 
         racingField.startRacing(FixedNumberGenerator(7)) shouldBe gameResult
