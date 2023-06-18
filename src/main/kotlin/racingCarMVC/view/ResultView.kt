@@ -1,21 +1,21 @@
 package racingCarMVC.view
 
 import racingCarMVC.domain.dto.GameResult
+import racingCarMVC.domain.dto.RacingResult
 
 class ResultView {
     private fun showResultMessage() {
         println("실행 결과")
     }
 
-    fun showRacingResult(gameRecords: List<GameResult>, winners: List<String>) {
+    fun showRacingResult(racingResult: RacingResult) {
         this.showResultMessage()
 
-        gameRecords.forEach {
-            showCarPosition(it)
-            println()
+        racingResult.gameResults.forEach {
+            this.showCarPosition(it)
         }
 
-        this.showWinners(winners)
+        this.showWinners(racingResult.winners)
     }
 
     private fun showWinners(winners: List<String>) {
@@ -26,6 +26,7 @@ class ResultView {
         gameResult.gameRecord.forEach { player ->
             println("${player.name} : ${DISPLAY_STRING.repeat(player.position)}")
         }
+        println()
     }
 
     companion object {

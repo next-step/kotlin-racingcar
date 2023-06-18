@@ -2,6 +2,7 @@ package racingCarMVC.domain
 
 import racingCarMVC.domain.dto.GameResult
 import racingCarMVC.domain.dto.GameRecord
+import racingCarMVC.domain.dto.RacingResult
 
 class RacingField(
     private val cars: List<Car>,
@@ -14,8 +15,9 @@ class RacingField(
 
     constructor(carNames: Array<String>, gameCount: Int) : this(List(carNames.size) { Car(carNames[it]) }, gameCount)
 
-    fun startRacing(numberGenerator: NumberGenerator): List<GameResult> {
-        return List(gameCount) { this.playGame(numberGenerator) }
+    fun startRacing(numberGenerator: NumberGenerator): RacingResult {
+        val gameResults = List(gameCount) { this.playGame(numberGenerator) }
+        return RacingResult(gameResults, RacingGameResult(gameResults.last().gameRecord).getWinners())
     }
 
     private fun playGame(numberGenerator: NumberGenerator): GameResult {

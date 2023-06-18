@@ -2,7 +2,6 @@ package racingCarMVC.controller
 
 import racingCarMVC.domain.RacingService
 import racingCarMVC.domain.dto.InputData
-import racingCarMVC.domain.RacingGameResult
 import racingCarMVC.view.InputIO
 import racingCarMVC.view.InputMessage
 import racingCarMVC.view.InputView
@@ -26,8 +25,6 @@ class RacingController {
 
     fun racingStart(inputData: InputData) {
         val racingResult = racingService.racingStart(inputData)
-        val winners = RacingGameResult(racingResult.last().gameRecord).getWinners()
-
-        resultView.showRacingResult(racingResult, winners)
+        resultView.showRacingResult(racingResult)
     }
 }
