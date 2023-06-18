@@ -1,10 +1,9 @@
 package stringcalculator
 
-
 class StringCalculator {
     companion object {
         fun calculate(input: String?): Int {
-            require(!input.isNullOrBlank())
+            require(!input.isNullOrBlank()) { "Input cannot be null or blank" }
 
             val stringParser = StringParser(input)
             val numbers = stringParser.numbers()
@@ -20,10 +19,11 @@ class StringCalculator {
                 val operatorSign = operators[i]
                 val operand = numbers[i + 1]
 
-                result = Operator.executeOperation(operatorSign, result, operand)
+                val operator = Operator.findBy(operatorSign)
+                result = operator.calculate(result, operand)
             }
 
-            return result;
+            return result
         }
     }
 }
