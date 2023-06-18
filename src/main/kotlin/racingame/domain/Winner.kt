@@ -1,15 +1,15 @@
 package racingame.domain
 
 class Winner(
-    private val cars: Cars
+    private val cars: List<Car>
 ) {
     val nameOfWinners: List<String>
         get() = findWinners()
 
     private fun findWinners(): List<String> {
-        val maxPosition = cars.values.maxOf { it.position }
+        val maxPosition = cars.maxOf { it.position }
 
-        return cars.values.filter { it.position == maxPosition }
+        return cars.filter { it.position == maxPosition }
             .map { it.name }
     }
 }

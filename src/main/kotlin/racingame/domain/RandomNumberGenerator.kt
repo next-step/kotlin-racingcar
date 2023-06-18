@@ -1,16 +1,14 @@
 package racingame.domain
 
-import java.util.Random
-
 class RandomNumberGenerator : NumberGenerator {
     private val randomNumber: Int
-        get() = Random().nextInt(MAX)
+        get() = (1..MAX).random()
 
     override fun generate(): Int {
         return randomNumber
     }
 
     companion object {
-        private const val MAX = 10
+        private const val MAX = 9
     }
 }
