@@ -1,9 +1,10 @@
 package study.racing.car.factory
 
 import study.racing.car.Car
+import study.racing.car.CarList
 
-class NameBasedCarFactory(
+class NameBasedCarListFactory(
     private val carNames: List<String>
-) : CarFactory {
-    override fun create() = carNames.map { Car(it) }
+) : CarListFactory {
+    override fun create() = CarList(carNames.map { Car(it) })
 }

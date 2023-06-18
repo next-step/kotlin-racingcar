@@ -1,20 +1,18 @@
 package study.racing
 
 import study.racing.car.CarRanker
-import study.racing.car.factory.NameBasedCarFactory
+import study.racing.car.factory.NameBasedCarListFactory
 import study.racing.inputview.CarNameBasedInputView
-import study.racing.movement.condition.RandomMovementConditionGenerator
+import study.racing.movement.condition.DefaultMovementCondition
 import study.racing.renderer.StdoutRenderer
-import study.racing.resultview.CarNameDisplayedResultView
-import study.racing.resultview.RankedResultView
+import study.racing.resultview.RacingResultView
 
 fun main() {
     val result = CarNameBasedInputView().receive()
-    val carFactory =
-        NameBasedCarFactory(result.carNames)
-    val progressResultView = CarNameDisplayedResultView("-", StdoutRenderer())
-    val rankedResultView = RankedResultView(StdoutRenderer())
+    val CarListFactory =
+        NameBasedCarListFactory(result.carNames)
+    val resultView = RacingResultView("-", StdoutRenderer())
     val racing =
-        Racing(carFactory, RandomMovementConditionGenerator(), CarRanker(), progressResultView, rankedResultView)
+        Racing(CarListFactory, CarRanker(), DefaultMovementCondition(), resultView)
     racing.start(result.numOfAttempt)
 }

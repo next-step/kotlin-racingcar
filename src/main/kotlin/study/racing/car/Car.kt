@@ -1,15 +1,15 @@
 package study.racing.car
 
+import study.racing.movement.condition.MovementCondition
+
 class Car(
     val name: String,
-    totalMoved: Int? = 0
+    totalMoved: Int = 0
 ) {
-    var totalMoved = totalMoved ?: 0
+    var totalMoved = totalMoved
         private set
 
-    fun move(condition: Int) {
-        if (condition >= 4) {
-            totalMoved += 1
-        }
+    fun move(movementCondition: MovementCondition) {
+        totalMoved += movementCondition.drive()
     }
 }

@@ -2,30 +2,29 @@ package study.racing
 
 import study.racing.car.Car
 import study.racing.car.CarRanker
-import study.racing.car.factory.CarFactory
-import study.racing.movement.condition.MovementConditionGenerator
+import study.racing.car.factory.CarListFactory
+import study.racing.movement.condition.MovementCondition
 import study.racing.resultview.ResultView
 
 class Racing(
-    private val carFactory: CarFactory,
-    private val movementConditionGenerator: MovementConditionGenerator,
+    private val CarListFactory: CarListFactory,
     private val carRanker: CarRanker,
-    private val racingProgressResultView: ResultView,
-    private val afterRacingFinishedResultView: ResultView
+    private val movementCondition: MovementCondition,
+    private val resultView: ResultView,
 ) {
 
     fun start(numOfRace: Int): List<Car> {
-        return runStages(numOfRace, carFactory.create())
+        return runStages(numOfRace, CarListFactory.create())
     }
 
     private fun runStages(totalRounds: Int, cars: List<Car>): List<Car> {
-        println("실행 결과")
-        (0 until totalRounds).forEach { _ ->
-            cars.forEach { it.move(movementConditionGenerator.execute()) }
-            racingProgressResultView.printResult(cars)
+        resultView.printMessage()
+        repeat(totalRounds) { _ ->
+            cars.forEach { it.move(movementCondition) }
+            resultView.printRoundResult(cars)
         }
         val winners = carRanker.getWinners(cars)
-        afterRacingFinishedResultView.printResult(winners)
+        resultView.printWinners(winners)
         return winners
     }
 }

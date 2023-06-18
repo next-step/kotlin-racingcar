@@ -1,7 +1,7 @@
 package study.racing.car.factory
 
-import study.racing.car.Car
+import study.racing.car.CarList
 
-fun interface CarFactory {
-    fun create(): List<Car>
+fun interface CarListFactory {
+    fun create(): CarList
 }
