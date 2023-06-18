@@ -2,7 +2,7 @@ package racingcar.view
 
 interface InputViewProtocol {
 
-    fun getCarNumber(): Int
+    fun getCarNames(): List<String>
 
     fun getRoundNumber(): Int
 }

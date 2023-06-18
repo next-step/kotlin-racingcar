@@ -22,7 +22,7 @@ class RoundTest {
     private fun initCars() {
         val TEST_CAR_NUMBER = 5
         for (i in 0 until TEST_CAR_NUMBER) {
-            cars.add(Car(StaticMoveStrategy()))
+            cars.add(Car(name = "name", movable = StaticMoveStrategy()))
         }
     }
 

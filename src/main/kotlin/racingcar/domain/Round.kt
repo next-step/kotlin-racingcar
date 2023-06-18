@@ -2,13 +2,13 @@ package racingcar.domain
 
 class Round() {
 
-    fun execute(cars: MutableList<Car>) {
+    fun execute(cars: List<Car>) {
         controlEachCar(cars)
     }
 
-    private fun controlEachCar(cars: MutableList<Car>) {
+    private fun controlEachCar(cars: List<Car>) {
         for (car in cars) {
-            car.isMoveOrStop()
+            car.move()
         }
     }
 }

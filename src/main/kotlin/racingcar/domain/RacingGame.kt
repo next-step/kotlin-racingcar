@@ -1,6 +1,7 @@
 package racingcar.domain
 
 import racingcar.domain.move.RandomMoveStrategy
+import racingcar.dto.RaceRequest
 import racingcar.view.InputViewProtocol
 import racingcar.view.OutputViewProtocol
 
@@ -12,37 +13,49 @@ class RacingGame(
     private val outputView: OutputViewProtocol
 ) {
 
-    private val round: Round = Round()
-    private val cars: MutableList<Car> = mutableListOf()
-
     fun start() {
-        val (carNumber, roundNumber) = getInput()
-        initCars(cars = cars, carNumber = carNumber)
+        val (carNameList, roundNumber) = createRaceRequest()
+        val cars = initCars(carNameList = carNameList)
         startEachRound(cars = cars, roundNumber = roundNumber)
+        printRaceResult(cars)
     }
 
-    private fun getInput(): Pair<Int, Int> {
-        val carNumber = inputView.getCarNumber()
+    private fun createRaceRequest(): RaceRequest {
+        val carNameList = inputView.getCarNames()
         val roundNumber = inputView.getRoundNumber()
-        return Pair(carNumber, roundNumber)
+        return RaceRequest(carNameList = carNameList, roundNumber = roundNumber)
     }
 
-    private fun initCars(cars: MutableList<Car>, carNumber: Int) {
-        for (i in 0 until carNumber)
-            cars.add(Car(RandomMoveStrategy()))
+    private fun initCars(carNameList: List<String>): List<Car> {
+        val cars: MutableList<Car> = mutableListOf()
+
+        for (carName in carNameList) {
+            cars.add(Car(name = carName, movable = RandomMoveStrategy()))
+        }
+
+        return cars.toList()
     }
 
-    private fun startEachRound(cars: MutableList<Car>, roundNumber: Int) {
+    private fun startEachRound(cars: List<Car>, roundNumber: Int) {
+        val round = Round()
+        outputView.printNextLine()
         for (i in 0 until roundNumber) {
             round.execute(cars)
-            printResult(cars)
+            printEachRoundResult(cars)
         }
     }
 
-    private fun printResult(cars: MutableList<Car>) {
+    private fun printEachRoundResult(cars: List<Car>) {
         for (car in cars) {
-            outputView.printValue(car.location)
+            outputView.printName(car.name)
+            outputView.printLocation(car.location)
         }
-        println()
+        outputView.printNextLine()
+    }
+
+    private fun printRaceResult(cars: List<Car>) {
+        val raceResultEstimator = RaceResultEstimator()
+        val raceResult = raceResultEstimator.estimate(cars)
+        outputView.printRaceWinner(raceResult)
     }
 }

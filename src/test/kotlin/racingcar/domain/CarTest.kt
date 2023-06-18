@@ -11,7 +11,7 @@ class CarTest {
 
     @BeforeEach
     fun setUp() {
-        car = Car(StaticMoveStrategy())
+        car = Car(name = "name", movable = StaticMoveStrategy())
     }
 
     @Test
@@ -20,8 +20,13 @@ class CarTest {
     }
 
     @Test
+    fun `자동차는 이름이 name으로 초기화`() {
+        assertThat(car.name).isEqualTo("name")
+    }
+
+    @Test
     fun `자동차 이동 조건을 만족하면 0에서 1로 이동한다`() {
-        car.isMoveOrStop()
+        car.move()
         assertThat(car.location).isEqualTo(1)
     }
 }
