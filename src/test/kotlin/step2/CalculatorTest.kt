@@ -1,11 +1,11 @@
-package study
+package step2
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import org.junit.jupiter.params.provider.NullSource
+import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
 
 
@@ -26,9 +26,9 @@ internal class CalculatorTest {
         "2 * 3 * 4, 24",
         "100 / 5, 20",
     )
-    fun calculateSuccessTest(input: String, output: String) {
+    fun `주어진 사칙연산을 성공적으로 수행하는지`(input: String, output: Double) {
         val result = calculator.calculate(input)
-        assertThat(result).isEqualTo(output.toDouble())
+        assertThat(result).isEqualTo(output)
     }
 
     @ParameterizedTest
@@ -36,19 +36,14 @@ internal class CalculatorTest {
         "2 + 3 * 4 | 2 ",
         "100 ! 5"
     ])
-    fun notOperatorTest(input: String) {
+    fun `사칙연산 기호가 아닌 경우 IllegalArgumentException가 던져지는지`(input: String) {
         assertThrows<IllegalArgumentException> { calculator.calculate(input) }
     }
 
     @ParameterizedTest
-    @ValueSource(strings = [""," "])
-    fun caluateFailTest(input: String?) {
-        assertThrows<IllegalArgumentException> { calculator.calculate(input) }
-    }
-
-    @ParameterizedTest
-    @NullSource
-    fun calculateNullTest(input: String?) {
+    @NullAndEmptySource
+    @ValueSource(strings = [" ", "  "])
+    fun `Null이나 빈 공백 문자열에 IllegalArgumentException가 던져지는지`(input: String?) {
         assertThrows<IllegalArgumentException> { calculator.calculate(input) }
     }
 

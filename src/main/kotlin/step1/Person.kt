@@ -1,4 +1,4 @@
-package study
+package step1
 
 //Person.java를 코틀린으로 변환
 data class Person (
