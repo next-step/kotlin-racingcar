@@ -7,7 +7,7 @@ class RacingGame(
     carNum: Int,
     private val conditionGenerator: ConditionGenerator = RandomConditionGenerator(),
 ) {
-    private val cars = mutableListOf<Car>()
+    private val cars = Cars()
 
     init {
         repeat(carNum) {
@@ -17,18 +17,13 @@ class RacingGame(
 
     fun start(tryNum: Int) {
         repeat(tryNum) {
-            for (car in cars) {
-                conditionGenerator.generate().let { condition ->
-                    car.move(condition)
-                }
-            }
-            ResultView().printResult(cars)
+            cars.moveAllCars(conditionGenerator)
+            ResultView().printResult(cars.getPositionOfCars())
         }
     }
 
     fun getWinners(): List<Car> {
-        val maxPosition = cars.maxOf { it.position }
-        return cars.filter { it.position == maxPosition }
+        return cars.getWinners()
     }
 }
 
@@ -53,9 +48,9 @@ class InputView {
 }
 
 class ResultView {
-    fun printResult(cars: List<Car>) {
-        for (car in cars) {
-            println("-".repeat(car.position))
+    fun printResult(positionsOfCars: List<Int>) {
+        for (position in positionsOfCars) {
+            println("-".repeat(position))
         }
         println()
     }
