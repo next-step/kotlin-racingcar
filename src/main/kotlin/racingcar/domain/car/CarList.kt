@@ -1,10 +1,13 @@
 package racingcar.domain.car
 
+import racingcar.domain.racing.RacingCondition
+
 data class CarList(
     val cars: List<Car>
 ) {
-    fun race(tryCount: Int) {
-        cars.forEach { car -> car.race(tryCount) }
+
+    fun race(racingCondition: RacingCondition) {
+        cars.forEach { car -> car.race(racingCondition) }
     }
 
     fun getWinner(): CarList {
@@ -13,7 +16,7 @@ data class CarList(
     }
 
     override fun toString(): String {
-        return cars.joinToString(", ") { it.name }
+        return cars.joinToString { it.name }
     }
 
     companion object {

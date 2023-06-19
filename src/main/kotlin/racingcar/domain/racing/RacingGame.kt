@@ -8,7 +8,7 @@ class RacingGame(
 ) {
 
     fun start() {
-        carList.race(racingCondition.tryCount)
+        carList.race(racingCondition)
     }
 
     fun getWinner() = carList.getWinner()

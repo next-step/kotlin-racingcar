@@ -2,6 +2,7 @@ package racingcar.domain.car
 
 import racingcar.domain.car.carengine.CarEngine
 import racingcar.domain.car.carengine.RandomCarEngine
+import racingcar.domain.racing.RacingCondition
 import racingcar.domain.record.CarRecord
 
 class Car(
@@ -15,21 +16,21 @@ class Car(
         private set
 
     init {
-        require(name.length <= 5) { NAME_LIMIT_ERROR_MESSAGE }
+        require(name.length <= NAME_LENGTH_LIMIT) { NAME_LIMIT_ERROR_MESSAGE }
     }
 
-    fun move() {
+    fun move(carEngine: CarEngine) {
         if (carEngine.canGo()) position++
-        carRecord.record += position
+        carRecord = carRecord.copy(record = carRecord.record.plus(position))
     }
 
-    fun race(tryCount: Int) {
-        repeat(tryCount) { move() }
+    fun race(racingCondition: RacingCondition) {
+        repeat(racingCondition.tryCount) { move(racingCondition.carEngine) }
     }
 
     companion object {
         const val START_POSITION = 0
-        const val NAME_LENGTH_LIMIT = 5
+        private const val NAME_LENGTH_LIMIT = 5
         const val NAME_LIMIT_ERROR_MESSAGE = "자동차 이름은 ${NAME_LENGTH_LIMIT}을 넘을 수 없습니다."
     }
 }

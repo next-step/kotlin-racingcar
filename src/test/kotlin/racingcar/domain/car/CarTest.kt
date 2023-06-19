@@ -6,6 +6,7 @@ import io.kotest.inspectors.forAll
 import io.kotest.matchers.collections.shouldContainInOrder
 import io.kotest.matchers.shouldBe
 import racingcar.domain.car.carengine.CarEngine
+import racingcar.domain.racing.RacingCondition
 
 internal class CarTest : BehaviorSpec({
 
@@ -33,9 +34,9 @@ internal class CarTest : BehaviorSpec({
 
         When("move() 성공 시") {
             val carEngine = object : CarEngine { override fun canGo(): Boolean = true }
-            val car = Car("test", carEngine)
+            val car = Car("test")
             val previousPosition = car.position
-            car.move()
+            car.move(carEngine)
 
             Then("position 1 증가") {
                 car.position shouldBe previousPosition + 1
@@ -44,21 +45,23 @@ internal class CarTest : BehaviorSpec({
 
         When("move() 실패 시") {
             val carEngine = object : CarEngine { override fun canGo(): Boolean = false }
-            val car = Car("test", carEngine)
+            val car = Car("test")
             val previousPosition = car.position
-            car.move()
+            car.move(carEngine)
 
-            Then("position 1 증가") {
+            Then("position 유지") {
                 car.position shouldBe previousPosition
             }
         }
 
-        When("move() = true, tryCount = 5 일 때 race()") {
+        When("racingCondition(tryCount = 5, carEngine.canGo() = true 일 때") {
+            val tryCount = 5
             val carEngine = object : CarEngine { override fun canGo(): Boolean = true }
+            val racingCondition = RacingCondition(tryCount, carEngine)
             val car = Car("test", carEngine)
-            car.race(5)
+            car.race(racingCondition)
 
-            Then("CarRecord.records == {1, 2, 3, 4, 5}") {
+            Then("race(racingCondition) 이후 Car.CarRecord.records == {1, 2, 3, 4, 5}") {
                 car.carRecord.record shouldContainInOrder listOf(1, 2, 3, 4, 5)
             }
         }
