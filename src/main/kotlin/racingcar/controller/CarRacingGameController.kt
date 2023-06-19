@@ -1,7 +1,9 @@
-package racingcar.app.console
+package racingcar.controller
 
 import racingcar.domain.CarRacingGame
 import racingcar.domain.RandomMoveStrategy
+import racingcar.view.InputView
+import racingcar.view.OutputView
 
 fun main() {
 
