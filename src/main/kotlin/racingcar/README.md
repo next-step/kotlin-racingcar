@@ -16,21 +16,25 @@
 4. 각 라운드마다 자동차 객체들은 움직일지 말지를 결정한다.
 5. 라운드가 끝나면 자동자 경주 객체는 ResultView 객체에게 라운드 결과를 출력을 요청한다.
 
+
+
 ## step4) 자동차 경주(우승자) 요구 사항 정리
 
 ### 추가된 책임 리스트
 
 * 자동차의 이름을 입력받는다. -> 기존 InputView 객체의 책임에 추가
-    * 입력 받은 값의 유효성을 검증한다. -> InputValidation 객체
+  * 입력 받은 값의 유효성을 검증한다. -> InputValidation 객체
 * 각 라운드 결과 출력시 자동차의 이름을 포함해서 출력한다. -> 기존 OutputView 객체의 책임에 추가
 * 자동차 경주 최종 결과를 출력한다.
-    * 자동차 경주 결과를 집계한다. -> RaceResultEsimator 객체
-    * 집계된 결과를 출력한다. -> OutputView 객체의 책임에 추가
+  * 자동차 경주 결과를 집계한다. -> RaceResultEsimator 객체
+  * 집계된 결과를 출력한다. -> OutputView 객체의 책임에 추가
+
+
 
 ## step3)에서 받은 피드백 적용 사항
 
 * RacingGame 안의 맴버변수로 Cars, Round 객체가 있던 이슈
-    * RacingGame의 start()가 여러번 호출되면 Cars, Round 객체가 각각
-    * 이전에 호출한 메서드의 정보를 가질 수 있게 되는 문제가 생긴다.
-* 해결책 : cars, Round를 start() 메서드 내부의 지역변수로 만들어서
+  * RacingGame의 start()가 여러번 호출되면 Cars, Round 객체가 각각 
+  * 이전에 호출한 메서드의 정보를 가질 수 있게 되는 문제가 생긴다.
+* 해결책 : cars, Round를 start() 메서드 내부의 지역변수로 만들어서 
 * start() 메서드와 생명주기를 같이 하도록 수정

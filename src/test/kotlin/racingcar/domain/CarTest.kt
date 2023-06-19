@@ -3,6 +3,7 @@ package racingcar.domain
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import racingcar.domain.move.StaticMoveStrategy
 
 class CarTest {
@@ -22,6 +23,13 @@ class CarTest {
     @Test
     fun `자동차는 이름이 name으로 초기화`() {
         assertThat(car.name).isEqualTo("name")
+    }
+
+    @Test
+    fun `자동차는 이름이 5글자 미만이여야 한다`() {
+        assertThrows<IllegalArgumentException> {
+            Car(name = "5글자넘어가는이름", movable = StaticMoveStrategy())
+        }
     }
 
     @Test
