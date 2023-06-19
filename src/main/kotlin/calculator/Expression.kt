@@ -26,16 +26,18 @@ class Expression(input: Input) {
             }
     }
 
+    private fun List<*>.isOddSize(): Boolean = this.size % 2 == 1
+
+    private fun IndexedValue<*>.isEven(): Boolean = this.index % 2 == 0
+
+    private fun List<String>.parseExpression(): Pair<List<Operand>, List<Operator>> {
+        val (evenIndexed, oddIndexed) = this.withIndex().partition { it.isEven() }
+        val operands = evenIndexed.map { Operand(it.value) }
+        val operators = oddIndexed.map { Operator.of(it.value) }
+        return Pair(operands, operators)
+    }
+
     companion object {
         private const val DELIMITER = " "
-
-        private fun List<*>.isOddSize(): Boolean = this.size % 2 == 1
-        private fun IndexedValue<*>.isEven(): Boolean = this.index % 2 == 0
-        private fun List<String>.parseExpression(): Pair<List<Operand>, List<Operator>> {
-            val (evenIndexed, oddIndexed) = this.withIndex().partition { it.isEven() }
-            val operands = evenIndexed.map { Operand(it.value) }
-            val operators = oddIndexed.map { Operator.of(it.value) }
-            return Pair(operands, operators)
-        }
     }
 }
