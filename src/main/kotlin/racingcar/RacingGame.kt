@@ -18,7 +18,7 @@ class RacingGame(
     fun start(tryNum: Int) {
         repeat(tryNum) {
             cars.moveAllCars(conditionGenerator)
-            ResultView().printResult(cars.getPositionOfCars())
+            ResultView().printResult(cars.getNameAndPositionOfCars())
         }
     }
 
@@ -48,9 +48,9 @@ class InputView {
 }
 
 class ResultView {
-    fun printResult(positionsOfCars: List<Int>) {
-        for (position in positionsOfCars) {
-            println("-".repeat(position))
+    fun printResult(nameAndPositionOfCars: List<Pair<String, Int>>) {
+        for (nameAndPosition in nameAndPositionOfCars) {
+            println(nameAndPosition.first + " : " + "-".repeat(nameAndPosition.second))
         }
         println()
     }

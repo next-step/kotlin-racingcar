@@ -11,6 +11,10 @@ class Cars {
         return cars.map { it.position }
     }
 
+    fun getNameAndPositionOfCars(): List<Pair<String, Int>> {
+        return cars.map { Pair(it.name, it.position) }
+    }
+
     fun getWinners(): List<Car> {
         val maxPosition = cars.maxOf { it.position }
         return cars.filter { it.position == maxPosition }
