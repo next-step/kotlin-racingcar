@@ -1,17 +1,18 @@
 package racingcar
 
-import racingcar.domain.RacingCar
+import racingcar.domain.RacingCars
 import racingcar.service.RacingCarService
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
 fun main() {
-    val inp = InputView.input()
+    val inputValue = InputView.input()
 
-    var cars = List(inp.carNumbers) { RacingCar() }
+    var racingCars = RacingCars.of(inputValue.drivers)
 
-    repeat(inp.trials) {
-        cars = RacingCarService.race(cars)
-        ResultView.showRacingStage(cars.map { it.progress })
+    repeat(inputValue.trials) {
+        racingCars = RacingCarService.race(racingCars.list)
+        ResultView.showRacingStage(racingCars)
     }
+    ResultView.showWinners(racingCars.getWinners())
 }

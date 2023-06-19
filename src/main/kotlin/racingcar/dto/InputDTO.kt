@@ -1,6 +1,6 @@
 package racingcar.dto
 
 data class InputDTO(
-    val carNumbers: Int,
+    val drivers: List<String>,
     val trials: Int
 )
