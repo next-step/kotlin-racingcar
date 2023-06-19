@@ -3,6 +3,8 @@ package racingcar.domain.car
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldBe
+import racingcar.domain.car.carengine.RandomCarEngine
+import racingcar.domain.racing.RacingCondition
 
 internal class CarListTest : BehaviorSpec({
 
@@ -20,11 +22,13 @@ internal class CarListTest : BehaviorSpec({
             }
         }
 
-        When("race(5) 실행 시") {
+        When("race(racingCondition) 실행 시") {
             val tryCount = 5
+            val carEngine = RandomCarEngine
+            val racingCondition = RacingCondition(tryCount, carEngine)
             val carList = CarList.of("1, 2, 3, 4, 5")
-            Then("모든 Car가 race() 실행") {
-                carList.race(tryCount)
+            Then("모든 Car가 race(racingCondition) 실행") {
+                carList.race(racingCondition)
                 carList.cars.forAll { car -> car.carRecord.record.size shouldBe tryCount }
             }
         }

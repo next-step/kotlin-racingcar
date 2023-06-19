@@ -2,6 +2,7 @@ package racingcar.domain.car
 
 import racingcar.domain.car.carengine.CarEngine
 import racingcar.domain.car.carengine.RandomCarEngine
+import racingcar.domain.racing.RacingCondition
 import racingcar.domain.record.CarRecord
 
 class Car(
@@ -18,13 +19,13 @@ class Car(
         require(name.length <= NAME_LENGTH_LIMIT) { NAME_LIMIT_ERROR_MESSAGE }
     }
 
-    fun move() {
+    fun move(carEngine: CarEngine) {
         if (carEngine.canGo()) position++
         carRecord = carRecord.copy(record = carRecord.record.plus(position))
     }
 
-    fun race(tryCount: Int) {
-        repeat(tryCount) { move() }
+    fun race(racingCondition: RacingCondition) {
+        repeat(racingCondition.tryCount) { move(racingCondition.carEngine) }
     }
 
     companion object {
