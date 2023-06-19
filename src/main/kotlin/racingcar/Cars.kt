@@ -1,8 +1,8 @@
 package racingcar
 
 class Cars(private val cars: List<Car>) {
-    fun moveAll(): List<Int> {
-        return cars.map { it.move() }
+    fun moveAll(): List<Pair<String, Int>> {
+        return cars.map { it.name to it.move() }
     }
 
     fun size(): Int {

@@ -15,7 +15,7 @@ object ResultView {
     }
 
     private fun printResult(positionsHistory: PositionHistory) {
-        positionsHistory.positions.forEach { println(POSITION_CHARACTER.repeat(it)) }
+        positionsHistory.positions.forEach { println("${it.first}: ${POSITION_CHARACTER.repeat(it.second)}") }
         println()
     }
 }
