@@ -2,6 +2,12 @@ package racingcar.strategy
 
 class RandomStrategy : ConditionGenerateStrategy {
     override fun generate(): Boolean {
-        return (ConditionGenerateStrategy.MIN_CONDITION_VALUE..ConditionGenerateStrategy.MAX_CONDITION_VALUE).random() >= ConditionGenerateStrategy.THRESHOLD
+        return (MIN_CONDITION_VALUE..MAX_CONDITION_VALUE).random() >= THRESHOLD
+    }
+
+    companion object {
+        const val THRESHOLD = 4
+        const val MIN_CONDITION_VALUE = 0
+        const val MAX_CONDITION_VALUE = 9
     }
 }
