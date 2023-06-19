@@ -3,6 +3,8 @@ package racingcar.domain
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import racingcar.domain.exception.NoWinnerException
 import racingcar.domain.move.StaticMoveStrategy
 import racingcar.domain.move.StaticMovingStopStrategy
 
@@ -39,5 +41,14 @@ class RaceResultEstimatorTest {
         // then
         Assertions.assertThat(result).hasSize(2)
         Assertions.assertThat(result.toString()).isEqualTo("[Winner1, Winner2]")
+    }
+
+    @Test
+    fun `경주 우승자가 없으면 NoWinnerException을 발생`() {
+        val cars: List<Car> = listOf()
+
+        assertThrows<NoWinnerException> {
+            raceResultEstimator.estimate(cars)
+        }
     }
 }
