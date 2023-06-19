@@ -1,5 +1,5 @@
 package racingcar.car
 
-interface MoveStrategy {
-    val movable: Boolean
+fun interface MoveStrategy {
+    fun movable(): Boolean
 }

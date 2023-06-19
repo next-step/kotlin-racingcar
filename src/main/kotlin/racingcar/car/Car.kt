@@ -2,10 +2,10 @@ package racingcar.car
 
 class Car(private val moveStrategy: MoveStrategy) {
 
-    private var position: Position = Position(DEFAULT_POSITION_VALUE)
+    private var position: Position = Position()
 
     fun move() {
-        if (moveStrategy.movable) {
+        if (moveStrategy.movable()) {
             moveForward()
         }
     }

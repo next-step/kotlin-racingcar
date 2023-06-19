@@ -1,13 +1,12 @@
 package racingcar.game
 
 import racingcar.car.Cars
-import racingcar.car.MoveStrategy
+import racingcar.car.RandomMoveStrategy
 import racingcar.car.RoundCount
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
 class RacingCarGame(
-    private val moveStrategy: MoveStrategy,
     private var inputView: InputView = InputView(),
     private var resultView: ResultView = ResultView()
 ) {
@@ -17,7 +16,7 @@ class RacingCarGame(
     fun play() {
         getCars()
         val roundCount = RoundCount(inputView.inputCarsCount())
-        repeat(roundCount.value()) {
+        repeat(roundCount.count) {
             cars.move()
             printResult()
         }
@@ -30,6 +29,6 @@ class RacingCarGame(
 
     private fun getCars() {
         val carCounts = inputView.inputCarsCount()
-        cars = Cars(moveStrategy, carCounts)
+        cars = Cars(RandomMoveStrategy(), carCounts)
     }
 }

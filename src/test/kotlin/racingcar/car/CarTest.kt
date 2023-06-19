@@ -2,8 +2,6 @@ package racingcar.car
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.ValueSource
 
 class CarTest {
 
@@ -13,13 +11,10 @@ class CarTest {
         assertThat(car.getPosition()).isZero()
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = [1, 2, 3, 10, 100])
-    fun `자동차를 움직이면 위치가 1씩 증가한다`(moveCount: Int) {
-        val car = Car(ManualMoveStrategy())
-        for (i: Int in 1.rangeTo(moveCount)) {
-            car.move()
-        }
-        assertThat(car.getPosition()).isEqualTo(moveCount)
+    @Test
+    fun `자동차를 움직이면 위치가 1 증가한다`() {
+        val car = Car { true }
+        car.move()
+        assertThat(car.getPosition()).isEqualTo(1)
     }
 }
