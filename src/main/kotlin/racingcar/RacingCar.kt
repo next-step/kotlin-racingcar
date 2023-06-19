@@ -7,24 +7,21 @@ fun main() {
 const val MOVE_CONDITION_NUMBER = 4
 
 object RacingCar {
-    var randomNumber = (0..9).random()
+    fun gameStart() = race(InputView.getRace())
 
-    fun gameStart() = with(InputView) {
-        race(getNumberOfCars(), getNumberOfRounds())
-            .run { ResultView.showRaceResult(this) }
-    }
-
-    private fun race(numberOfCars: Int, numberOfRounds: Int): IntArray {
-        val score = IntArray(numberOfCars)
+    private fun race(race: Race) = with(race) {
+        val cars = List(size = numberOfCars) { Car() }
 
         repeat(numberOfRounds) { _ ->
             repeat(numberOfCars) { car ->
-                if (checkMoveAvailable(randomNumber)) score[car]++
+                if (checkMoveAvailable(randomNumber())) cars[car].position++
             }
-        }
 
-        return score
+            ResultView.showRaceResult(cars)
+        }
     }
+
+    private fun randomNumber() = (0..9).random()
 
     fun checkMoveAvailable(condition: Int) = condition >= MOVE_CONDITION_NUMBER
 }
