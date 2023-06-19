@@ -1,8 +1,14 @@
 package racingcar
 
-class Car {
+class Car(var name: String) {
     var position: Int = DEFAULT_POSITION
         private set
+
+    init {
+        if (name.length > 5) {
+            throw IllegalArgumentException("자동차 이름은 5자를 초과할 수 없습니다.")
+        }
+    }
 
     fun move(condition: Int) {
         if (condition >= MOVE_CONDITION) {
