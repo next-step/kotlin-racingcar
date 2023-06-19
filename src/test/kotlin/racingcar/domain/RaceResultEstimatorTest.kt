@@ -1,6 +1,6 @@
 package racingcar.domain
 
-import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -24,9 +24,14 @@ class RaceResultEstimatorTest {
 
         // given
         val initalList: MutableList<Car> = mutableListOf()
+        val anserSet: MutableSet<String> = mutableSetOf()
+
         for (i in 1 until 3) {
-            initalList.add(Car(movable = StaticMoveStrategy(), name = "Winner$i"))
+            val car = Car(movable = StaticMoveStrategy(), name = "Winner$i")
+            initalList.add(car)
+            anserSet.add(car.name)
         }
+
         for (i in 3 until 6) {
             initalList.add(Car(movable = StaticMovingStopStrategy(), name = "Loser$i"))
         }
@@ -39,8 +44,7 @@ class RaceResultEstimatorTest {
         val result = raceResultEstimator.estimate(cars).winnerNameSet
 
         // then
-        Assertions.assertThat(result).hasSize(2)
-        Assertions.assertThat(result.toString()).isEqualTo("[Winner1, Winner2]")
+        assertTrue(result == anserSet)
     }
 
     @Test
