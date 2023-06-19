@@ -5,9 +5,13 @@ class Cars(private val cars: List<Car>) {
         return cars.map { it.move() }
     }
 
+    fun size(): Int {
+        return cars.size
+    }
+
     companion object {
-        fun from(size: Int): Cars {
-            return Cars(List(size) { Car() })
+        fun from(carNames: List<String>): Cars {
+            return Cars(carNames.map { Car(it) })
         }
     }
 }

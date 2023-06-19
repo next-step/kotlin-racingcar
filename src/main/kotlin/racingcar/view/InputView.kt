@@ -1,25 +1,31 @@
 package racingcar.view
 
 object InputView {
-    fun receiveCarsSize(): Int {
-        println("자동차 대수는 몇 대인가요?")
+    fun receiveCarNames(): List<String> {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
 
         return receive()
+            .split(",")
     }
 
     fun receiveTryCount(): Int {
         println("시도할 횟수는 몇 회인가요?")
 
-        return receive()
-    }
-
-    private fun receive(): Int {
-        var value: Int?
+        var tryCount: Int?
 
         do {
-            val input = readlnOrNull()
-            value = input?.toIntOrNull()
-        } while (value == null || value < 1)
+            tryCount = receive().toIntOrNull()
+        } while (tryCount == null)
+
+        return tryCount
+    }
+
+    private fun receive(): String {
+        var value: String?
+
+        do {
+            value = readlnOrNull()
+        } while (value.isNullOrBlank())
 
         return value
     }
