@@ -22,9 +22,13 @@ class Cars {
 
     fun moveAllCars(conditionGenerator: ConditionGenerator) {
         for (car in cars) {
-            conditionGenerator.generate().let { condition ->
-                car.move(condition)
-            }
+            moveCar(conditionGenerator, car)
+        }
+    }
+
+    private fun moveCar(conditionGenerator: ConditionGenerator, car: Car) {
+        conditionGenerator.generate().let { condition ->
+            car.move(condition)
         }
     }
 }
