@@ -24,7 +24,6 @@ enum class Operator(private val symbol: String) : OperationToken {
         }
     };
 
-    override val isOperator = true
     abstract fun execute(operand1: Operand, operand2: Operand): Operand
 
     companion object {

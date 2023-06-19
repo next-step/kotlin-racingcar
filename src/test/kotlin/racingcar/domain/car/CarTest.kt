@@ -48,7 +48,7 @@ internal class CarTest : BehaviorSpec({
             val previousPosition = car.position
             car.move()
 
-            Then("position 1 증가") {
+            Then("position 유지") {
                 car.position shouldBe previousPosition
             }
         }

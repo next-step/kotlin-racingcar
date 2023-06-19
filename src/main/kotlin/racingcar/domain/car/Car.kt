@@ -15,12 +15,12 @@ class Car(
         private set
 
     init {
-        require(name.length <= 5) { NAME_LIMIT_ERROR_MESSAGE }
+        require(name.length <= NAME_LENGTH_LIMIT) { NAME_LIMIT_ERROR_MESSAGE }
     }
 
     fun move() {
         if (carEngine.canGo()) position++
-        carRecord.record += position
+        carRecord = carRecord.copy(record = carRecord.record.plus(position))
     }
 
     fun race(tryCount: Int) {
@@ -29,7 +29,7 @@ class Car(
 
     companion object {
         const val START_POSITION = 0
-        const val NAME_LENGTH_LIMIT = 5
+        private const val NAME_LENGTH_LIMIT = 5
         const val NAME_LIMIT_ERROR_MESSAGE = "자동차 이름은 ${NAME_LENGTH_LIMIT}을 넘을 수 없습니다."
     }
 }

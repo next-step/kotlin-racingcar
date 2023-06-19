@@ -7,7 +7,7 @@ import io.kotest.matchers.shouldBe
 internal class CarListTest : BehaviorSpec({
 
     Given("CarList") {
-        When("정상적인 carNames 입력될 때") {
+        When("길이가 5이하인 carNames 입력될 때") {
             val inputData = listOf(
                 "one,two,three" to 3,
                 "소나타,벤츠,네시스,케딜락,에쿠스" to 5

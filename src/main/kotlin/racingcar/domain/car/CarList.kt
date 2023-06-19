@@ -13,7 +13,7 @@ data class CarList(
     }
 
     override fun toString(): String {
-        return cars.joinToString(", ") { it.name }
+        return cars.joinToString { it.name }
     }
 
     companion object {
