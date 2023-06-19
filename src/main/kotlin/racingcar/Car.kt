@@ -1,14 +1,14 @@
 package racingcar
 
-import racingcar.strategy.ConditionGenerateStrategy
+import racingcar.strategy.MoveStrategy
 import racingcar.strategy.RandomStrategy
 
-class Car(position: Int = DEFAULT_POSITION, val conditionGenerateStrategy: ConditionGenerateStrategy = RandomStrategy()) {
+class Car(position: Int = DEFAULT_POSITION, val moveStrategy: MoveStrategy = RandomStrategy()) {
     var position = position
         private set
 
     fun move(): Int {
-        if (conditionGenerateStrategy.generate()) {
+        if (moveStrategy.canMove()) {
             position++
         }
 

@@ -15,7 +15,7 @@ class CarTest {
 
     @Test
     fun `condition이 true 이면 Car의 position이 1 증가한다`() {
-        val car = Car(conditionGenerateStrategy = ManualStrategy(true))
+        val car = Car(moveStrategy = ManualStrategy(true))
         car.move()
 
         car.position shouldBe DEFAULT_POSITION + 1
@@ -23,7 +23,7 @@ class CarTest {
 
     @Test
     fun `condition이 false 이면 Car의 position은 변하지 않는다`() {
-        val car = Car(conditionGenerateStrategy = ManualStrategy(false))
+        val car = Car(moveStrategy = ManualStrategy(false))
         car.move()
 
         car.position shouldBe DEFAULT_POSITION

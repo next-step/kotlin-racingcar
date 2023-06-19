@@ -1,7 +1,7 @@
 package racingcar.strategy
 
-class RandomStrategy : ConditionGenerateStrategy {
-    override fun generate(): Boolean {
+class RandomStrategy : MoveStrategy {
+    override fun canMove(): Boolean {
         return (MIN_CONDITION_VALUE..MAX_CONDITION_VALUE).random() >= THRESHOLD
     }
 
