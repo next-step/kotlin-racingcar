@@ -1,7 +1,6 @@
 package racingcar.domain
 
 import racingcar.controller.RacingCarController
-import racingcar.util.NumberGenerator
 
 class RacingCarGame(
     val racingCars: List<RacingCar>,

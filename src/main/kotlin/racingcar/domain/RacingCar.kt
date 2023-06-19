@@ -8,7 +8,7 @@ class RacingCar(
 
     init {
         require(name.length <= CAR_NAME_MAX_LENGTH) {
-            "자동차 이름은 5자 까지 사용 가능 합니다. 입력하신 차의 이름은 : $name 입니다."
+            "자동차 이름은 ${CAR_NAME_MAX_LENGTH}자 까지 사용 가능 합니다. 입력하신 차의 이름은 : $name 입니다."
         }
     }
 
