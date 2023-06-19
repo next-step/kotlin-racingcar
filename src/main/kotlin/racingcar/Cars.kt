@@ -7,11 +7,11 @@ class Cars {
         cars.add(car)
     }
 
-    fun getPositionOfCars(): List<Int> {
-        return cars.map { it.position }
+    fun getSize(): Int {
+        return cars.size
     }
 
-    fun getNameAndPositionOfCars(): List<Pair<String, Int>> {
+    fun getNamesAndPositions(): List<Pair<String, Int>> {
         return cars.map { Pair(it.name, it.position) }
     }
 
