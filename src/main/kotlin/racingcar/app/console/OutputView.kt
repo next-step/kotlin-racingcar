@@ -9,11 +9,13 @@ class OutputView {
         println(message)
     }
 
-    fun writeCars(racingResult: RacingResult) {
-        racingResult.cars.forEach { writeCar(it) }
+    fun writeCars(cars: List<Car>) {
+        cars.forEach { writeCar(it) }
         writeLineBreak()
-        if (racingResult.end)
-            writeWinners(racingResult.winners())
+    }
+
+    fun writeRacingResult(racingResult: RacingResult) {
+        writeWinners(racingResult.cars)
     }
 
     private fun writeCar(car: Car) {
