@@ -1,11 +1,11 @@
 package racingcar.view
 
-import racingcar.dto.RaceResult
+import racingcar.dto.RaceWinner
 
 interface OutputViewProtocol {
     fun printCar(name: String, location: Int)
 
-    fun printRaceWinner(raceResult: RaceResult)
+    fun printRaceWinner(raceResult: RaceWinner)
 
     fun printNextLine()
 }

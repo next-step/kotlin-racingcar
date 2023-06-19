@@ -1,14 +1,14 @@
-package racingcar.domain
+package racingcar.controller
 
+import racingcar.domain.Car
+import racingcar.domain.RaceResultEstimator
+import racingcar.domain.Round
 import racingcar.domain.move.RandomMoveStrategy
 import racingcar.dto.RaceRequest
 import racingcar.view.InputViewProtocol
 import racingcar.view.OutputViewProtocol
 
-/**
- * 자동차 게임 지휘자 객체
- */
-class RacingGame(
+class RacingGameController(
     private val inputView: InputViewProtocol,
     private val outputView: OutputViewProtocol
 ) {
@@ -17,7 +17,7 @@ class RacingGame(
         val (carNameList, roundNumber) = createRaceRequest()
         val cars = initCars(carNameList = carNameList)
         startEachRound(cars = cars, roundNumber = roundNumber)
-        printRaceResult(cars)
+        printRaceWinner(cars)
     }
 
     private fun createRaceRequest(): RaceRequest {
@@ -50,7 +50,7 @@ class RacingGame(
         outputView.printNextLine()
     }
 
-    private fun printRaceResult(cars: List<Car>) {
+    private fun printRaceWinner(cars: List<Car>) {
         val raceResultEstimator = RaceResultEstimator()
         val raceResult = raceResultEstimator.estimate(cars)
         outputView.printRaceWinner(raceResult)

@@ -1,14 +1,14 @@
 package racingcar.domain
 
 import racingcar.domain.exception.NoWinnerException
-import racingcar.dto.RaceResult
+import racingcar.dto.RaceWinner
 
 class RaceResultEstimator {
 
-    fun estimate(cars: List<Car>): RaceResult {
+    fun estimate(cars: List<Car>): RaceWinner {
         val winnerCar = findWinnerCar(cars)
         val winnerNameSet = findWinnerName(cars = cars, winnerCar = winnerCar)
-        return RaceResult(winnerNameSet = winnerNameSet)
+        return RaceWinner(winnerNameSet = winnerNameSet)
     }
 
     private fun findWinnerCar(cars: List<Car>): Car {
