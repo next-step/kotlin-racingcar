@@ -29,9 +29,7 @@ class RacingGame(
     private fun initCars(carNameList: List<String>): List<Car> {
         val cars: MutableList<Car> = mutableListOf()
 
-        for (carName in carNameList) {
-            cars.add(Car(name = carName, movable = RandomMoveStrategy()))
-        }
+        carNameList.map { cars.add(Car(name = it, movable = RandomMoveStrategy())) }
 
         return cars.toList()
     }
@@ -47,8 +45,7 @@ class RacingGame(
 
     private fun printEachRoundResult(cars: List<Car>) {
         for (car in cars) {
-            outputView.printName(car.name)
-            outputView.printLocation(car.location)
+            outputView.printCar(name = car.name, location = car.location)
         }
         outputView.printNextLine()
     }
