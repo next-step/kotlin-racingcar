@@ -9,20 +9,10 @@ class StringCalculator {
             .drop(1)
             .chunked(2)
             .fold(numbersAndOperands.first().toInt()) { acc, window ->
-                val operator = getOperator(window[0])
+                val operator = Operator.getOperator(window[0])
                 val right = window[1].toInt()
                 operator.calculate(acc, right)
             }
-    }
-
-    fun getOperator(operator: String): Operator {
-        return when (operator) {
-            "+" -> Operator.Plus
-            "-" -> Operator.Minus
-            "*" -> Operator.Multiply
-            "/" -> Operator.Divide
-            else -> throw IllegalArgumentException("${operator}는 지원하지 않는 연산자입니다.")
-        }
     }
 }
 
@@ -43,5 +33,17 @@ sealed class Operator {
 
     object Divide : Operator() {
         override fun calculate(left: Int, right: Int): Int = left / right
+    }
+
+    companion object {
+        fun getOperator(operator: String): Operator {
+            return when (operator) {
+                "+" -> Plus
+                "-" -> Minus
+                "*" -> Multiply
+                "/" -> Divide
+                else -> throw IllegalArgumentException("${operator}는 지원하지 않는 연산자입니다.")
+            }
+        }
     }
 }

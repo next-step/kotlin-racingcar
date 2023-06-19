@@ -28,12 +28,11 @@ class StringCalculatorTest : FunSpec({
             "X" to false,
             "%" to false,
         ) { (operator, expected) ->
-            val stringCalculator = StringCalculator()
             if (expected) {
-                stringCalculator.getOperator(operator)
+                Operator.getOperator(operator)
             } else {
                 val exception = shouldThrow<IllegalArgumentException> {
-                    stringCalculator.getOperator(operator)
+                    Operator.getOperator(operator)
                 }
                 exception.message shouldBe "${operator}는 지원하지 않는 연산자입니다."
             }
