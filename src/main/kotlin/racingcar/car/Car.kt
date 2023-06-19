@@ -1,6 +1,6 @@
 package racingcar.car
 
-class Car(private val moveStrategy: MoveStrategy) {
+class Car(carName: String, private val moveStrategy: MoveStrategy) {
 
     private var position: Position = Position()
 

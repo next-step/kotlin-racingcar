@@ -1,7 +1,6 @@
 package racingcar.game
 
 import racingcar.car.Cars
-import racingcar.car.RandomMoveStrategy
 import racingcar.car.RoundCount
 import racingcar.view.InputView
 import racingcar.view.ResultView
@@ -29,6 +28,7 @@ class RacingCarGame(
 
     private fun getCars() {
         val carCounts = inputView.inputCarsCount()
-        cars = Cars(RandomMoveStrategy(), carCounts)
+        // todo : inputView.inputCarNames()를 통해 자동차 이름을 입력받아 Cars를 생성하세요.
+        // cars = Cars("", carCounts)
     }
 }

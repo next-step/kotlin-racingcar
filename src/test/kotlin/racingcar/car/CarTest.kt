@@ -7,13 +7,13 @@ class CarTest {
 
     @Test
     fun `자동차의 초기 위치는 0이다`() {
-        val car = Car(ManualMoveStrategy())
+        val car = Car("name", ManualMoveStrategy())
         assertThat(car.getPosition()).isZero()
     }
 
     @Test
     fun `자동차를 움직이면 위치가 1 증가한다`() {
-        val car = Car { true }
+        val car = Car("name") { true }
         car.move()
         assertThat(car.getPosition()).isEqualTo(1)
     }

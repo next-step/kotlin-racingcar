@@ -1,17 +1,8 @@
 package racingcar.car
 
-class Cars(
-    private val moveStrategy: MoveStrategy,
-    carCount: Int
-){
+class Cars(cars: Collection<Car> = emptyList()) {
 
-    private val cars: MutableList<Car> = mutableListOf()
-    init {
-        require(carCount > 0) { "자동차는 1대 이상이어야 합니다." }
-        repeat(carCount) {
-            cars.add(Car(moveStrategy))
-        }
-    }
+    private val cars: Collection<Car> = cars.toList()
 
     fun move() {
         cars.forEach { it.move() }
