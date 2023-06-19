@@ -3,7 +3,10 @@ package racingcar
 import kotlin.random.Random
 import kotlin.random.nextInt
 
-class RacingGame(carNum: Int) {
+class RacingGame(
+    carNum: Int,
+    private val conditionGenerator: ConditionGenerator = RandomConditionGenerator(),
+) {
     private val cars = mutableListOf<Car>()
 
     init {
@@ -15,14 +18,27 @@ class RacingGame(carNum: Int) {
     fun start(tryNum: Int) {
         repeat(tryNum) {
             for (car in cars) {
-                Random.nextInt(0..9).let { randomNumber ->
-                    car.move(randomNumber)
+                conditionGenerator.generate().let { condition ->
+                    car.move(condition)
                 }
             }
             ResultView().printResult(cars)
         }
     }
+
+    fun getWinners(): List<Car> {
+        val maxPosition = cars.maxOf { it.position }
+        return cars.filter { it.position == maxPosition }
+    }
 }
+
+interface ConditionGenerator {
+    fun generate(): Int {
+        return Random.nextInt(0..9)
+    }
+}
+
+class RandomConditionGenerator : ConditionGenerator
 
 class InputView {
     fun inputCarNum(): Int {
