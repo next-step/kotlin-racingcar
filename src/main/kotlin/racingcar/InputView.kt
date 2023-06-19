@@ -1,6 +1,6 @@
 package racingcar
 
-class InputView {
+object InputView {
     fun getNumberOfCars(): Int {
         println("자동차 대수는 몇 대인가요?")
         return readln().toIntOrNull() ?: throw NullPointerException("number of cars was null")
