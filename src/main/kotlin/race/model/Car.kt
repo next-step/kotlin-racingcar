@@ -1,29 +1,25 @@
 package race.model
 
 data class Car(
-    private val _name: String,
-    private val engine: Engine = RandomEngine()
+    val name: String,
+    val position: Int = START_POSITION
 ) {
 
-    val name: String get() = _name
-
-    private var _position: Int = START_POSITION
-    val position: Int get() = _position
-
-    private fun move() {
-        _position += 1
+    init {
+        require(name.length < MAXIMUM_NAME_LENGTH) {
+            "자동차 이름은 5자를 초과할 수 없다."
+        }
     }
 
-    private fun isMove() = engine.cycle() >= MOVING_NUMBER
-
-    fun go() {
-        if (isMove()) {
-            move()
-        }
+    fun move(count: Int): Car = if (count >= MOVE_CONDITION) {
+        this.copy(position = position + 1)
+    } else {
+        this
     }
 
     companion object {
         const val START_POSITION = 0
-        const val MOVING_NUMBER = 4
+        const val MOVE_CONDITION = 4
+        const val MAXIMUM_NAME_LENGTH = 5
     }
 }

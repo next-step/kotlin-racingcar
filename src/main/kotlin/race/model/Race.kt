@@ -1,36 +1,30 @@
 package race.model
 
 class Race(
-    private val cars: List<Car>,
-    private val numberOfRace: Int
+    private var cars: List<Car>,
+    private val numberOfRace: Int,
+    private val engine: Engine = RandomEngine()
 ) {
 
-    fun getCarSize() = cars.size
-
-    private fun carsMove() {
-        cars.forEach {
-            it.go()
-        }
-    }
-
-    fun startRacing(update: ((List<Pair<String, Int>>) -> Unit)? = null) {
+    fun start(update: ((List<Car>) -> Unit)? = null): Winner {
         repeat(numberOfRace) {
-            carsMove()
-            val result = cars.map { it.name to it.position }
-            update?.invoke(result)
+            racing()
+            update?.invoke(cars)
         }
+
+        return Winner(cars)
     }
 
-    fun getWinner(): String {
-        val max = cars.maxOf { it.position }
-        return cars.filter { it.position == max }.joinToString { it.name }
+    private fun racing() {
+        cars = cars.map {
+            it.move(engine.cycle())
+        }
     }
 
     companion object {
-        fun createCars(carRacers: List<String>, engine: Engine = RandomEngine()) = mutableListOf<Car>().apply {
-            carRacers.forEach {
-                add(Car(_name = it, engine = engine))
-            }
+
+        fun createCars(carRacers: List<String>) = carRacers.map {
+            Car(name = it)
         }
     }
 }

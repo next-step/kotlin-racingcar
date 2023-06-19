@@ -1,6 +1,7 @@
 package race.controller
 
 import race.model.Race
+import race.model.Winner
 import race.view.InputView
 import race.view.ResultView
 
@@ -9,19 +10,26 @@ class RacingController(
     private val resultView: ResultView = ResultView,
 ) {
 
-    fun start() {
+    fun ready() {
         val racers = inputView.inputRacers()
         val numberOfRace = inputView.inputNumberOfRace()
 
         val cars = Race.createCars(carRacers = racers)
         val race = Race(cars, numberOfRace)
 
-        resultView.showResult()
+        start(race)
+    }
 
-        race.startRacing {
+    private fun start(race: Race) {
+        resultView.showResult()
+        val winner = race.start {
             resultView.showRacing(it)
         }
 
-        resultView.showWinner(race.getWinner())
+        result(winner)
+    }
+
+    private fun result(winner: Winner) {
+        resultView.showWinner(winner.getWinner())
     }
 }
