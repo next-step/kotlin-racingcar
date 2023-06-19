@@ -20,6 +20,7 @@ class RacingGame(
             cars.moveAllCars(conditionGenerator)
             ResultView().printResult(cars.getNameAndPositionOfCars())
         }
+        ResultView().printWinners(cars.getWinners())
     }
 
     fun getWinners(): List<Car> {
@@ -54,11 +55,16 @@ class ResultView {
         }
         println()
     }
+
+    fun printWinners(winners: List<Car>) {
+        winners.map { it.name }.joinToString(", ").let {
+            println(it + "가 최종 우승했습니다.")
+        }
+    }
 }
 
 fun main() {
     val carNames = InputView().inputCarNames()
-    val carNum = carNames.size
     val tryNum = InputView().inputTryNum()
 
     val racingGame = RacingGame(carNames)
