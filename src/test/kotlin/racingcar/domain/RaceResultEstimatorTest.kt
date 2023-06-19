@@ -23,28 +23,23 @@ class RaceResultEstimatorTest {
     fun `경주 결과로 Winner1, Winner2를 출력`() {
 
         // given
-        val initalList: MutableList<Car> = mutableListOf()
-        val anserSet: MutableSet<String> = mutableSetOf()
+        val cars = listOf(
+            Car(movable = StaticMoveStrategy(), name = "Win1"),
+            Car(movable = StaticMoveStrategy(), name = "Win2"),
+            Car(movable = StaticMovingStopStrategy(), name = "Lose1"),
+            Car(movable = StaticMovingStopStrategy(), name = "Lose2"),
+            Car(movable = StaticMovingStopStrategy(), name = "Lose3"),
+        )
 
-        for (i in 1 until 3) {
-            val car = Car(movable = StaticMoveStrategy(), name = "Winner$i")
-            initalList.add(car)
-            anserSet.add(car.name)
-        }
-
-        for (i in 3 until 6) {
-            initalList.add(Car(movable = StaticMovingStopStrategy(), name = "Loser$i"))
-        }
-
-        val cars = initalList.toList()
+        val carNames = setOf("Win1", "Win2")
 
         round.execute(cars)
 
         // when
-        val result = raceResultEstimator.estimate(cars).winnerNameSet
+        val actual = raceResultEstimator.estimate(cars).winnerNameSet
 
         // then
-        assertTrue(result == anserSet)
+        assertTrue(actual == carNames)
     }
 
     @Test

@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.dto.RaceWinner
+import racingcar.dto.RaceResult
 
 class OutputView : OutputViewProtocol {
 
@@ -20,7 +20,7 @@ class OutputView : OutputViewProtocol {
         print("$name : ")
     }
 
-    override fun printRaceWinner(raceResult: RaceWinner) {
+    override fun printRaceWinner(raceResult: RaceResult) {
         val result = raceResult.winnerNameSet
         result.forEachIndexed { index, str ->
             print(str)
