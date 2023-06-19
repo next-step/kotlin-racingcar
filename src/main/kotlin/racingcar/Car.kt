@@ -2,6 +2,7 @@ package racingcar
 
 class Car {
     var position: Int = DEFAULT_POSITION
+        private set
 
     fun move(condition: Int) {
         if (condition >= MOVE_CONDITION) {
