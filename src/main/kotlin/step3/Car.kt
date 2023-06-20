@@ -1,9 +1,17 @@
 package step3
 
 class Car(
-    var position: Int = 0
+    private val carMover: CarMover
 ) {
-    fun move(distance: Int) {
-        this.position += distance
+    var position: Int = 0
+
+    fun move() {
+        if (carMover.movable()) {
+            this.position += DISTANCE
+        }
+    }
+
+    companion object {
+        private const val DISTANCE = 1
     }
 }

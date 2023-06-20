@@ -3,15 +3,12 @@ package step3
 import step3.view.DisplayView
 import step3.view.InputView
 
-class CarRace {
-    private val carList: List<Car>
-    private val carMover: CarMover = CarMover()
+class CarRace(
+    private val carMover: CarMover
+) {
     private val numOfCar: Int = InputView.inputNumOfCar()
     private val numOfMove: Int = InputView.inputNumOfGame()
-
-    init {
-        carList = List(numOfCar) { Car() }
-    }
+    private val carList: List<Car> = List(numOfCar) { Car(carMover) }
 
     fun race() {
         DisplayView.displayHeader()

@@ -17,9 +17,7 @@ object DisplayView {
      * 한 번 진행이 될 때마다 자동차의 상태를 화면에 출력한다.
      */
     fun displayRaceProgress(carList: List<Car>) {
-        for (car in carList) {
-            displayCar(car)
-        }
+        carList.forEach { displayCar(it) }
         println()
     }
 
