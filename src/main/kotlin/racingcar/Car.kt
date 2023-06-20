@@ -1,6 +1,10 @@
 package racingcar
 
-class Car(position: Int) {
-    var position: Int = position
+class Car {
+    var position: Int = DEFAULT_POSITION
         private set
+
+    companion object {
+        private const val DEFAULT_POSITION = 0
+    }
 }
