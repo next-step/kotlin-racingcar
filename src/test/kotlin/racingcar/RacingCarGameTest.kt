@@ -31,6 +31,18 @@ class RacingCarGameTest : StringSpec({
         }
     }
 
+    "1 ~ 9 까지의 입력 중 4 미만일 경우 차가 전진할 수 없다.(from을 통하여 생성한 RacingCar)" {
+        val racingCarGame = RacingCarGame.from("test") { 0 }
+        racingCarGame.racing()
+        racingCarGame.racingCars[0].position shouldBe 0
+    }
+
+    "1 ~ 9 까지의 입력 중 4 이상일 경우 차가 전진한다.(from을 통하여 생성한 RacingCar)" {
+        val racingCarGame = RacingCarGame.from("test") { 9 }
+        racingCarGame.racing()
+        racingCarGame.racingCars[0].position shouldBe 1
+    }
+
     "자동차 경주의 최종 우승자를 가져온다." {
         val finishedRacingCarGame = RacingCarGame(
             listOf(RacingCar("1등") { 0 }, RacingCar("2등") { 0 })
