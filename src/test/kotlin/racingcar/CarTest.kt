@@ -3,6 +3,7 @@ package racingcar
 import io.kotest.matchers.collections.shouldBeIn
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
+import racingcar.movingstrategy.MovingStrategy
 
 class CarTest {
 
