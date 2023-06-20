@@ -1,9 +1,11 @@
 package calculator
 
+import java.math.BigDecimal
 
-class Expression(private val operators: List<Operator>, private val numbers: List<Int>) {
 
-    fun getResult(): Int {
+class Expression(private val operators: List<Operator>, private val numbers: List<BigDecimal>) {
+
+    fun getResult(): BigDecimal {
         val operatorQueue = ArrayDeque(operators)
 
         return numbers.reduce { acc, i -> operatorQueue.removeFirst().apply(acc, i) }
@@ -22,7 +24,7 @@ class Expression(private val operators: List<Operator>, private val numbers: Lis
                 .map { v -> Operator.from(v) }
 
             val numbers = values.filterIndexed { index, _ -> index % 2 == 0 }
-                .map { number -> number.toInt() }
+                .map { number -> number.toBigDecimal() }
 
             return Expression(operators, numbers)
         }

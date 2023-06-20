@@ -1,34 +1,35 @@
 package calculator
 
-import java.util.Arrays
+import java.math.BigDecimal
+import java.util.*
 import java.util.function.BinaryOperator
 
 enum class Operator(
     private val symbol: String,
-    private val binaryOperator: BinaryOperator<Int>
+    private val binaryOperator: BinaryOperator<BigDecimal>
 ) {
     ADD(
         "+",
-        BinaryOperator { x: Int, y: Int -> x + y }
+        BinaryOperator { x, y -> x + y }
     ),
     SUB(
         "-",
-        BinaryOperator { x: Int, y: Int -> x - y }
+        BinaryOperator { x, y -> x - y }
     ),
     MULTIPLY(
         "*",
-        BinaryOperator { x: Int, y: Int -> x * y }
+        BinaryOperator { x, y -> x * y }
     ),
     DIVIDE(
         "/",
-        BinaryOperator { x: Int, y: Int ->
-            require(y != 0) { "0으로 나눌 수 없습니다." }
-            x / y
+        BinaryOperator { x, y ->
+            require(y != BigDecimal.ZERO) { "0으로 나눌 수 없습니다." }
+            x.divide(y)
         }
     ),
     ;
 
-    fun apply(x: Int, y: Int): Int {
+    fun apply(x: BigDecimal, y: BigDecimal): BigDecimal {
         return binaryOperator.apply(x, y)
     }
 
