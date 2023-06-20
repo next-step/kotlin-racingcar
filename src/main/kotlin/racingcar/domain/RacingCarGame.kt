@@ -1,13 +1,14 @@
 package racingcar.domain
 
 import racingcar.controller.RacingCarController
+import kotlin.random.Random
 
 class RacingCarGame(
     val racingCars: List<RacingCar>,
 ) {
-    fun racing(generator: NumberGenerator) {
+    fun racing() {
         racingCars.forEach {
-            it.move(generator.generateNumber())
+            it.move()
         }
     }
 
@@ -28,9 +29,9 @@ class RacingCarGame(
 
     companion object {
         fun from(racingCarNames: String): RacingCarGame {
-            val racingCars = mutableListOf<RacingCar>()
-            val carNameSplit = racingCarNames.split(RacingCarController.CAR_NAME_SPLIT_SYMBOL)
-            carNameSplit.mapTo(racingCars) { RacingCar(it) }
+            val racingCars = racingCarNames
+                .split(RacingCarController.CAR_NAME_SPLIT_SYMBOL)
+                .map { RacingCar(it) { Random.nextInt(0, 10) } }
             return RacingCarGame(racingCars)
         }
     }
