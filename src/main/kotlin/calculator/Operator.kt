@@ -37,7 +37,7 @@ enum class Operator(
             return Arrays.stream(values())
                 .filter { v: Operator -> v.symbol == symbol }
                 .findAny()
-                .orElseThrow { IllegalArgumentException() }
+                .orElseThrow { InvalidSymbolException("유효한 연산자가 아닙니다. [$symbol]") }
         }
     }
 }

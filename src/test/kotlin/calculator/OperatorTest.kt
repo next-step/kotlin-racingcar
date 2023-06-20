@@ -18,7 +18,7 @@ class OperatorTest {
     @Test
     fun `사칙연산이 아닌경우 예외가 발생한다`() {
         assertThatThrownBy { Operator.from("&") }
-            .isInstanceOf(IllegalArgumentException::class.java)
+            .isInstanceOf(InvalidSymbolException::class.java)
     }
 
     @Test
