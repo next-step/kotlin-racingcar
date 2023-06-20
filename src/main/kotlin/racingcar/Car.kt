@@ -1,13 +1,12 @@
 package racingcar
 
-import racingcar.movingstrategy.DefaultMovingStrategy
 import racingcar.movingstrategy.MovingStrategy
 
 class Car {
     var position: Int = DEFAULT_POSITION
         private set
 
-    fun move(movingStrategy: MovingStrategy = DefaultMovingStrategy()) {
+    fun move(movingStrategy: MovingStrategy) {
         if (movingStrategy.isMovable()) {
             position++
         }
