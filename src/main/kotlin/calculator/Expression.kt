@@ -24,9 +24,14 @@ class Expression(private val operators: List<Operator>, private val numbers: Lis
                 .map { v -> Operator.from(v) }
 
             val numbers = values.filterIndexed { index, _ -> index % 2 == 0 }
-                .map { number -> number.toBigDecimal() }
+                .map { number -> toNumber(number) }
 
             return Expression(operators, numbers)
+        }
+
+        private fun toNumber(number: String): BigDecimal {
+            require(number.toBigDecimalOrNull() != null) { "숫자가 아닙니다. [$number]" }
+            return number.toBigDecimal()
         }
 
         private fun validLength(size: Int) = size >= 3 || size % 2 == 1

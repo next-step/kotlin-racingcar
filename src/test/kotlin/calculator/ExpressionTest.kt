@@ -26,4 +26,10 @@ class ExpressionTest {
         Assertions.assertThatThrownBy { Expression.from("") }
             .isInstanceOf(IllegalArgumentException::class.java)
     }
+
+    @Test
+    fun `숫자가 아닌 경우 예외가 발생한다`() {
+        Assertions.assertThatThrownBy { Expression.from("1 + @") }
+            .isInstanceOf(IllegalArgumentException::class.java)
+    }
 }

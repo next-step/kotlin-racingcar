@@ -1,7 +1,7 @@
 package calculator
 
 import java.math.BigDecimal
-import java.util.*
+import java.util.Arrays
 import java.util.function.BinaryOperator
 
 enum class Operator(
