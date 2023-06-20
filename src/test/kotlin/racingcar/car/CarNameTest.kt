@@ -9,15 +9,8 @@ import org.junit.jupiter.params.provider.ValueSource
 class CarNameTest {
 
     @ParameterizedTest
-    @ValueSource(strings = ["abcde", "abcdef", "abcdefg", "abcdefgh"])
+    @ValueSource(strings = ["abcdef", "abcdefg", "abcdefgh", "abcdefghi"])
     fun `자동차의 이름이 5자보다 많으면 에러 발생`(name: String) {
-        assertThatIllegalArgumentException()
-            .isThrownBy { CarName(name) }
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = ["a", "b", "c"])
-    fun `자동차의 이름이 1글자이면 에러 발생`(name: String) {
         assertThatIllegalArgumentException()
             .isThrownBy { CarName(name) }
     }

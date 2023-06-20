@@ -1,6 +1,6 @@
 package racingcar.car
 
-class Car(carName: String, private val moveStrategy: MoveStrategy) {
+class Car(val carName: CarName, private val moveStrategy: MoveStrategy) {
 
     private var position: Position = Position()
 
@@ -21,9 +21,4 @@ class Car(carName: String, private val moveStrategy: MoveStrategy) {
     private fun moveForward() {
         position.add()
     }
-
-    companion object {
-        private const val DEFAULT_POSITION_VALUE = 0
-    }
-
 }

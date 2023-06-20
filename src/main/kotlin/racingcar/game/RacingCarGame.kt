@@ -17,11 +17,11 @@ class RacingCarGame(
         val roundCount = RoundCount(inputView.inputRoundCount())
         repeat(roundCount.count) {
             cars.move()
-            printResult(cars)
+            printResults(cars)
         }
     }
 
-    private fun printResult(cars: Cars) {
+    private fun printResults(cars: Cars) {
         val result: List<String> = cars.getPathStrings()
         resultView.printResult(result)
     }

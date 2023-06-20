@@ -7,7 +7,7 @@ class CarsGenerator(
 
     fun generate(): Cars {
         val carNames = getCarNames()
-        val cars = carNames.map { Car(it.name, moveStrategy) }
+        val cars = carNames.map { Car(it, moveStrategy) }
         return Cars(cars)
     }
 

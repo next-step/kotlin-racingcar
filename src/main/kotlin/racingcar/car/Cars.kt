@@ -9,6 +9,6 @@ class Cars(cars: Collection<Car> = emptyList()) {
     }
 
     fun getPathStrings(): List<String> {
-        return cars.map { it.getPathString() }
+        return cars.map { "${it.carName} : ${it.getPathString()}" }
     }
 }

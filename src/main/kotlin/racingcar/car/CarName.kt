@@ -13,7 +13,6 @@ class CarName(val name: String) {
         private const val MIN_NAME_LENGTH = 1
     }
 
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -24,5 +23,9 @@ class CarName(val name: String) {
 
     override fun hashCode(): Int {
         return name.hashCode()
+    }
+
+    override fun toString(): String {
+        return name
     }
 }
