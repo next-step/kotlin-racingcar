@@ -1,6 +1,6 @@
 package racingcar.domain
 
-class Car(val name: String, position: Int = 0, private val moveStrategy: MoveStrategy = MoveStrategy { true }) {
+class Car(val name: String, position: Int = 0, private val moveStrategy: MoveStrategy = RandomMoveStrategy()) {
 
     init {
         require(name.isNotBlank()) { "자동차의 이름은 공백일 수 없습니다." }

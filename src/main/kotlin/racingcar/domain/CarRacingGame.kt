@@ -8,14 +8,13 @@ class CarRacingGame(
     private var currentRound: Int = 0
     val cars: List<Car> = carNames.map { Car(it, moveStrategy = moveStrategy) }
 
-    constructor(carCount: Int, round: Int, moveStrategy: MoveStrategy) :
-        this((1..carCount).map { it.toString() }, round, moveStrategy)
-
-    fun race(raceResultHandler: (RacingResult) -> Unit) {
+    fun race(raceResultHandler: (List<Car>) -> Unit): RacingResult {
         while (hasNextRound()) {
             runRound()
-            raceResultHandler.invoke(RacingResult(cars, !hasNextRound()))
+            raceResultHandler.invoke(cars)
         }
+
+        return RacingResult(cars)
     }
 
     private fun runRound() {
@@ -28,5 +27,12 @@ class CarRacingGame(
 
     private fun moveCars() {
         cars.forEach { it.move() }
+    }
+
+    companion object {
+
+        fun of(carCount: Int, round: Int, moveStrategy: MoveStrategy): CarRacingGame {
+            return CarRacingGame((1..carCount).map { it.toString() }, round, moveStrategy)
+        }
     }
 }

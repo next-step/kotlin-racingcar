@@ -1,4 +1,4 @@
-package racingcar.app.console
+package racingcar.view
 
 class InputView {
 

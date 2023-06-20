@@ -15,7 +15,7 @@ class CarTest : FreeSpec({
     }
 
     "자동차는 이동할 수 있다." {
-        val car = Car("제이든")
+        val car = Car("제이든", moveStrategy = MoveStrategy { true })
         car.move()
         car.position shouldBe 1
     }
