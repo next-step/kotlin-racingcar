@@ -4,14 +4,19 @@ import racingcar.dto.RaceResult
 
 class OutputView : OutputViewProtocol {
 
-    override fun printLocation(location: Int) {
+    override fun printCar(name: String, location: Int) {
+        printName(name)
+        printLocation(location)
+    }
+
+    private fun printLocation(location: Int) {
         for (i in 0 until location) {
             print("-")
         }
         println()
     }
 
-    override fun printName(name: String) {
+    private fun printName(name: String) {
         print("$name : ")
     }
 

@@ -3,9 +3,7 @@ package racingcar.view
 import racingcar.dto.RaceResult
 
 interface OutputViewProtocol {
-    fun printLocation(location: Int)
-
-    fun printName(name: String)
+    fun printCar(name: String, location: Int)
 
     fun printRaceWinner(raceResult: RaceResult)
 

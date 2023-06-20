@@ -1,6 +1,6 @@
 package racingcar
 
-import racingcar.domain.RacingGame
+import racingcar.controller.RacingGameController
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -8,16 +8,12 @@ fun main() {
     RacingGameApplication().run()
 }
 
-class RacingGameApplication(private val racingGame: RacingGame) {
-
-    constructor() : this(
-        racingGame = RacingGame(
+class RacingGameApplication {
+    fun run() {
+        val racingGameController = RacingGameController(
             inputView = InputView(),
             outputView = OutputView()
         )
-    )
-
-    fun run() {
-        racingGame.start()
+        racingGameController.start()
     }
 }

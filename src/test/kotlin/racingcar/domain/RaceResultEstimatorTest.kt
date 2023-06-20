@@ -1,8 +1,10 @@
 package racingcar.domain
 
-import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import racingcar.domain.exception.NoWinnerException
 import racingcar.domain.move.StaticMoveStrategy
 import racingcar.domain.move.StaticMovingStopStrategy
 
@@ -21,23 +23,31 @@ class RaceResultEstimatorTest {
     fun `경주 결과로 Winner1, Winner2를 출력`() {
 
         // given
-        val initalList: MutableList<Car> = mutableListOf()
-        for (i in 1 until 3) {
-            initalList.add(Car(movable = StaticMoveStrategy(), name = "Winner$i"))
-        }
-        for (i in 3 until 6) {
-            initalList.add(Car(movable = StaticMovingStopStrategy(), name = "Loser$i"))
-        }
+        val cars = listOf(
+            Car(movable = StaticMoveStrategy(), name = "Win1"),
+            Car(movable = StaticMoveStrategy(), name = "Win2"),
+            Car(movable = StaticMovingStopStrategy(), name = "Lose1"),
+            Car(movable = StaticMovingStopStrategy(), name = "Lose2"),
+            Car(movable = StaticMovingStopStrategy(), name = "Lose3"),
+        )
 
-        val cars = initalList.toList()
+        val carNames = setOf("Win1", "Win2")
 
         round.execute(cars)
 
         // when
-        val result = raceResultEstimator.estimate(cars).winnerNameSet
+        val actual = raceResultEstimator.estimate(cars).winnerNameSet
 
         // then
-        Assertions.assertThat(result).hasSize(2)
-        Assertions.assertThat(result.toString()).isEqualTo("[Winner1, Winner2]")
+        assertTrue(actual == carNames)
+    }
+
+    @Test
+    fun `경주 우승자가 없으면 NoWinnerException을 발생`() {
+        val cars: List<Car> = listOf()
+
+        assertThrows<NoWinnerException> {
+            raceResultEstimator.estimate(cars)
+        }
     }
 }

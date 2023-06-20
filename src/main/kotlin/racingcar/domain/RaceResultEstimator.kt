@@ -11,7 +11,7 @@ class RaceResultEstimator {
         return RaceResult(winnerNameSet = winnerNameSet)
     }
 
-    private fun findWinnerCar(cars: List<Car>) : Car {
+    private fun findWinnerCar(cars: List<Car>): Car {
         return cars.maxByOrNull { it.location } ?: throw NoWinnerException("경주 우승자가 없습니다. Car들을 확인하세요.")
     }
 
