@@ -1,7 +1,6 @@
 package step3
 
 import step3.domain.Car
-import step3.domain.CarMaker
 import step3.domain.CarMover
 import step3.domain.RandomCarMover
 import step3.view.DisplayView
@@ -11,14 +10,9 @@ class CarRace(
     private val carMover: CarMover,
     private val input: InputView
 ) {
-    private val carInfos: List<String> = input.inputNameOfCar()
+    private val carNames: List<String> = input.inputNameOfCar()
     private val numOfMove: Int = input.inputNumOfGame()
-    private val carList: List<Car>
-
-    init {
-        val carMaker = CarMaker(carMover)
-        carList = carMaker.make(carInfos)
-    }
+    private val carList: List<Car> = createCars(carNames)
 
     fun race() {
         DisplayView.displayHeader()
@@ -28,6 +22,10 @@ class CarRace(
         }
         val winners = getWinners(carList)
         DisplayView.displayRaceResult(winners)
+    }
+
+    private fun createCars(carNames: List<String>): List<Car> {
+        return carNames.map { Car(carMover, it) }
     }
 
     private fun getWinners(carList: List<Car>): List<Car> {
