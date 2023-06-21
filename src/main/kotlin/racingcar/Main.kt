@@ -1,9 +1,8 @@
 package racingcar
 
-import racingcar.car.RandomMoveStrategy
-import racingcar.game.RacingCarGame
+import racingcar.controller.RacingCarGame
 
 fun main() {
-    val racingGame = RacingCarGame(RandomMoveStrategy())
+    val racingGame = RacingCarGame()
     racingGame.play()
 }

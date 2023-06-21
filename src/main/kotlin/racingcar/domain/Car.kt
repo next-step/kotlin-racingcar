@@ -1,11 +1,11 @@
-package racingcar.car
+package racingcar.domain
 
-class Car(private val moveStrategy: MoveStrategy) {
+class Car(val carName: CarName, private val moveStrategy: MoveStrategy) {
 
-    private var position: Position = Position(DEFAULT_POSITION_VALUE)
+    private var position: Position = Position()
 
     fun move() {
-        if (moveStrategy.movable) {
+        if (moveStrategy.movable()) {
             moveForward()
         }
     }
@@ -21,9 +21,4 @@ class Car(private val moveStrategy: MoveStrategy) {
     private fun moveForward() {
         position.add()
     }
-
-    companion object {
-        private const val DEFAULT_POSITION_VALUE = 0
-    }
-
 }
