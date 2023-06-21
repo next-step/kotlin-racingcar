@@ -1,4 +1,4 @@
-package racingcar.numbergenerator
+package racingcar.domain.numbergenerator
 
 import io.kotest.matchers.ints.shouldBeBetween
 import org.junit.jupiter.api.RepeatedTest

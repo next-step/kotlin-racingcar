@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test

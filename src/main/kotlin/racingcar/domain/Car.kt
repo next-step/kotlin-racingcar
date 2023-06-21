@@ -1,6 +1,6 @@
-package racingcar
+package racingcar.domain
 
-import racingcar.movingstrategy.MovingStrategy
+import racingcar.domain.movingstrategy.MovingStrategy
 
 class Car {
     var position: Int = DEFAULT_POSITION

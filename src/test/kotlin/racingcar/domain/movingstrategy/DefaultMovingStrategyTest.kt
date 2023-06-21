@@ -1,9 +1,9 @@
-package racingcar.movingstrategy
+package racingcar.domain.movingstrategy
 
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import racingcar.numbergenerator.NumberGenerator
+import racingcar.domain.numbergenerator.NumberGenerator
 
 class DefaultMovingStrategyTest {
 

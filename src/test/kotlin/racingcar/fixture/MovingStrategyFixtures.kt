@@ -1,6 +1,6 @@
 package racingcar.fixture
 
-import racingcar.movingstrategy.MovingStrategy
+import racingcar.domain.movingstrategy.MovingStrategy
 
 val ALWAYS_MOVING_STRATEGY = object : MovingStrategy {
     override fun isMovable(): Boolean {

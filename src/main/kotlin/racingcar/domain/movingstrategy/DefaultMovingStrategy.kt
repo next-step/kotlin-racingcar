@@ -1,7 +1,7 @@
-package racingcar.movingstrategy
+package racingcar.domain.movingstrategy
 
-import racingcar.numbergenerator.NumberGenerator
-import racingcar.numbergenerator.RandomNumberGenerator
+import racingcar.domain.numbergenerator.NumberGenerator
+import racingcar.domain.numbergenerator.RandomNumberGenerator
 
 class DefaultMovingStrategy(private val numberGenerator: NumberGenerator = RandomNumberGenerator()) : MovingStrategy {
     override fun isMovable(): Boolean {

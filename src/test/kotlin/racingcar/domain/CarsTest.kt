@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
