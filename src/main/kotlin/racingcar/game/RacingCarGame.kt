@@ -19,6 +19,12 @@ class RacingCarGame(
             cars.move()
             printResults(cars)
         }
+        val winners = cars.getWinners()
+        printWinners(winners)
+    }
+
+    private fun printWinners(winners: Cars) {
+        resultView.printWinnersName(winners.names)
     }
 
     private fun printResults(cars: Cars) {
