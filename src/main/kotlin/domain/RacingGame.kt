@@ -3,15 +3,22 @@ package domain
 import util.RandomNumber
 
 class RacingGame(
-    private var cars: List<Car>
+    val cars: List<Car>
 ) {
 
-    fun getCars() = cars
-
-    fun racing(): List<Car> {
-        cars.map { car ->
-            car.move(RandomNumber().getRandomNumber())
+    fun start(): List<Car> {
+        cars.forEach {
+            it.move()
         }
         return cars
+    }
+
+    companion object {
+        fun create(carNames: String, randomNumber: RandomNumber): RacingGame {
+            val cars = carNames.split(",").map {
+                Car(it, randomNumber)
+            }
+            return RacingGame(cars)
+        }
     }
 }

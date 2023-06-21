@@ -5,31 +5,24 @@ import domain.RacingGame
 import domain.Winner
 
 class ResultView {
-    private val inputView = InputView()
-    private val cars = inputView.inputCarNames().split(",").map {
-        Car(it, 0)
-    }
 
-    fun start() {
-        val retryCount = inputView.inputRetryCount()
-
-        val race = RacingGame(cars)
+    fun printRacingGame(retryCount: Int, carNames: String) {
+        val race = RacingGame.create(carNames) { (0..9).random() }
         repeat(retryCount) {
-            race.racing()
-            printRacingResult(race.getCars())
+            printRacingResult(race.start())
         }
-        printWinner()
+        printWinner(Winner(race.cars).getWinner())
     }
 
     private fun printRacingResult(cars: List<Car>) {
-        cars.map {
+        cars.forEach {
             println("${it.name} : " + "-".repeat(it.position))
         }
         println()
     }
 
-    private fun printWinner() {
-        val result = Winner(cars).getWinner()
-        println(result + "가 최종 우승했습니다.")
+    private fun printWinner(winners: List<Car>) {
+        print(winners.joinToString { car -> car.name })
+        print("가 최종 우승 했습니다.")
     }
 }

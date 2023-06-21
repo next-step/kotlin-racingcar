@@ -1,15 +1,20 @@
 package domain
 
-class Car(val name: String, position: Int) {
+import util.RandomNumber
 
-    var position: Int = position
+class Car(
+    val name: String,
+    private val randomNumber: RandomNumber
+) {
+
+    var position: Int = 0
         private set
 
     init {
         require(name.length < CAR_NAME_MAX_LENGTH) { throw IllegalArgumentException("자동차 이름은 5자를 초과할 수 없습니다.") }
     }
 
-    fun move(number: Int) {
+    fun move(number: Int = randomNumber.getRandomNumber()) {
         if (isMoving(number)) position++
     }
 
