@@ -1,7 +1,7 @@
 package step3.domain
 
 class Car(
-    private val carMover: CarMover,
+    private val carMover: CarMovable,
     val name: String="",
     var position: Int = 0
 ) {
