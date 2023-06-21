@@ -1,4 +1,4 @@
-package racingcar.car
+package racingcar.domain
 
 class CarsGenerator(
     private val inputCarNames: String,

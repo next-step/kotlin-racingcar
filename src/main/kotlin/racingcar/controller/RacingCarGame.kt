@@ -1,9 +1,9 @@
-package racingcar.game
+package racingcar.controller
 
-import racingcar.car.Cars
-import racingcar.car.CarsGenerator
-import racingcar.car.RandomMoveStrategy
-import racingcar.car.RoundCount
+import racingcar.domain.Cars
+import racingcar.domain.CarsGenerator
+import racingcar.domain.RandomMoveStrategy
+import racingcar.domain.RoundCount
 import racingcar.view.InputView
 import racingcar.view.ResultView
 

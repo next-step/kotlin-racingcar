@@ -1,4 +1,4 @@
-package racingcar.car
+package racingcar.domain
 
 class Car(val carName: CarName, private val moveStrategy: MoveStrategy) {
 

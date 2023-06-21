@@ -1,4 +1,4 @@
-package racingcar.car
+package racingcar.domain
 
 fun interface MoveStrategy {
     fun movable(): Boolean

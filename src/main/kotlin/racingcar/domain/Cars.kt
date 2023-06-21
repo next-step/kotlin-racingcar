@@ -1,4 +1,4 @@
-package racingcar.car
+package racingcar.domain
 
 class Cars(cars: Collection<Car> = emptyList()) {
 

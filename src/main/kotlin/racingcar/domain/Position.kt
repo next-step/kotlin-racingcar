@@ -1,4 +1,4 @@
-package racingcar.car
+package racingcar.domain
 
 private const val DEFAULT_POSITION: Int = 0
 private const val PATH_SIGN = "-"

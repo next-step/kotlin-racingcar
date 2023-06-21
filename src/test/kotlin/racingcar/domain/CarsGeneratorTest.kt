@@ -1,4 +1,4 @@
-package racingcar.car
+package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
