@@ -30,7 +30,9 @@ class CarRace(
         @JvmStatic
         fun main(args: Array<String>) {
             val input = InputView()
-            val carMaker = CarMaker(input, RandomCarMovable())
+
+            val carNames = input.inputNameOfCar()
+            val carMaker = CarMaker(carNames, RandomCarMovable())
             val carRace = CarRace(carMaker.createCars(), input.inputNumOfGame())
             carRace.race()
         }
