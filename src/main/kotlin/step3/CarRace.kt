@@ -26,8 +26,13 @@ class CarRace(
             carMover.move(carList)
             DisplayView.displayRaceProgress(carList)
         }
-        val winners = carList.filter{ it.position == carList.maxOf { car -> car.position } }
+        val winners = getWinners(carList)
         DisplayView.displayRaceResult(winners)
+    }
+
+    private fun getWinners(carList: List<Car>): List<Car> {
+        val maxPosition = carList.maxOf { car -> car.position }
+        return carList.filter{ it.position == maxPosition }
     }
 
     companion object {
