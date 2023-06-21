@@ -1,6 +1,6 @@
 package step3.domain
 
-class ManualCarMovable : CarMovable {
+class CarMustMove : CarMovable {
 
     /**
      * 우선 무조건 움직일 수 있도록
