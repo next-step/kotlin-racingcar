@@ -22,4 +22,13 @@ class CarsTest {
         assertThat(cars.getPathStrings())
             .containsExactly("a : --", "b : --", "c : --", "d : --", "e : --")
     }
+
+    @Test
+    fun `현재 위치가 가장 큰 자동차들이 우승자가 된다`() {
+        val generator = CarsGenerator("a,b,c,d,e") { true }
+        val cars = generator.generate()
+        cars.move()
+        assertThat(cars.getWinners().names.joinToString(","))
+            .isEqualTo("a,b,c,d,e")
+    }
 }
