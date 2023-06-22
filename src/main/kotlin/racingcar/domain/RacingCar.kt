@@ -1,17 +1,17 @@
 package racingcar.domain
 
 class RacingCars(
-    var list: List<RacingCar>
-) {
+    list: List<RacingCar>
+) : List<RacingCar> by list {
 
     fun getWinners(): List<String> {
         return getMaxProgress().let { maxProgress ->
-            list.filter { car -> car.progress == maxProgress }.map { it.driver }
+            filter { car -> car.progress == maxProgress }.map { it.driver }
         }
     }
 
     private fun getMaxProgress(): Int {
-        return list.maxOf { it.progress }
+        return maxOf { it.progress }
     }
 
     companion object {

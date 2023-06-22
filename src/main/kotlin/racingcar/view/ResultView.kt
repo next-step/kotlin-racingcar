@@ -7,7 +7,7 @@ object ResultView {
     private const val PROGRESS_STRING = "-"
 
     fun showRacingStage(racingCars: RacingCars) {
-        racingCars.list.forEach {
+        racingCars.forEach {
             showProgress(it)
         }
         println()
