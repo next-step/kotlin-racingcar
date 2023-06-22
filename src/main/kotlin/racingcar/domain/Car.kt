@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class Car(name: String) {
     var position: Int = DEFAULT_POSITION

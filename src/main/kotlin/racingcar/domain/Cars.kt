@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class Cars(carNames: List<String>) {
     val cars: List<Car>
