@@ -1,3 +1,3 @@
 package calculator
 
-class InvalidSymbolException(message: String) : RuntimeException(message)
+class InvalidSymbolException(message: String, e: Throwable) : RuntimeException(message, e)

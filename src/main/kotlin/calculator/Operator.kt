@@ -1,7 +1,6 @@
 package calculator
 
 import java.math.BigDecimal
-import java.util.Arrays
 import java.util.function.BinaryOperator
 
 enum class Operator(
@@ -35,10 +34,11 @@ enum class Operator(
 
     companion object {
         fun from(symbol: String): Operator {
-            return Arrays.stream(values())
-                .filter { v: Operator -> v.symbol == symbol }
-                .findAny()
-                .orElseThrow { InvalidSymbolException("유효한 연산자가 아닙니다. [$symbol]") }
+            return try {
+                values().first { v: Operator -> v.symbol == symbol }
+            } catch (e: NoSuchElementException) {
+                throw InvalidSymbolException("유효한 연산자가 아닙니다. [$symbol]", e)
+            }
         }
     }
 }
