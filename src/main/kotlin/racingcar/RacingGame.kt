@@ -43,8 +43,8 @@ class InputView {
 
 class ResultView {
     fun printResult(namesAndPositionsOfCars: List<Pair<String, Int>>) {
-        for (nameAndPosition in namesAndPositionsOfCars) {
-            println(nameAndPosition.first + " : " + "-".repeat(nameAndPosition.second))
+        for ((name, position) in namesAndPositionsOfCars) {
+            println("$name : ${"-".repeat(position)}")
         }
         println()
     }
