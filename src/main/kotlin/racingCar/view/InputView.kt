@@ -1,4 +1,4 @@
-package step3.view
+package racingCar.view
 
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract

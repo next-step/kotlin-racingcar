@@ -1,4 +1,4 @@
-package step3.domain
+package racingCar.domain
 
 class Car(
     private val carMover: CarMovable,

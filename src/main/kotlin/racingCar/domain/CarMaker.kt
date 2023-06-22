@@ -1,4 +1,4 @@
-package step3.domain
+package racingCar.domain
 
 class CarMaker(
     private val carNames: List<String>,

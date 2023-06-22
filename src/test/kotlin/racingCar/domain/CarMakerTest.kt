@@ -1,4 +1,4 @@
-package step3.domain
+package racingCar.domain
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test

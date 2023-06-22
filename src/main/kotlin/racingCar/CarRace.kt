@@ -1,10 +1,10 @@
-package step3
+package racingCar
 
-import step3.domain.Car
-import step3.domain.CarMaker
-import step3.domain.RandomCarMovable
-import step3.view.DisplayView
-import step3.view.InputView
+import racingCar.domain.Car
+import racingCar.domain.CarMaker
+import racingCar.domain.RandomCarMovable
+import racingCar.view.DisplayView
+import racingCar.view.InputView
 
 class CarRace(
     private val carList: List<Car>,
