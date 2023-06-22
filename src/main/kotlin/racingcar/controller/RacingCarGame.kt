@@ -7,6 +7,8 @@ import racingcar.domain.RoundCount
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
+private const val WINNER_NAMES_DELIMITER = ", "
+
 class RacingCarGame(
     private var inputView: InputView = InputView(),
     private var resultView: ResultView = ResultView()
@@ -26,7 +28,8 @@ class RacingCarGame(
     }
 
     private fun printWinners(winners: Cars) {
-        resultView.printWinnersName(winners.names)
+        val winnerNames = winners.names.joinToString(WINNER_NAMES_DELIMITER)
+        resultView.printWinnersName(winnerNames)
     }
 
     private fun printResults(cars: Cars) {
