@@ -2,7 +2,6 @@ package calculator
 
 import java.math.BigDecimal
 
-
 class Expression(private val operators: List<Operator>, private val numbers: List<BigDecimal>) {
 
     fun getResult(): BigDecimal {
@@ -30,8 +29,11 @@ class Expression(private val operators: List<Operator>, private val numbers: Lis
         }
 
         private fun toNumber(number: String): BigDecimal {
-            require(number.toBigDecimalOrNull() != null) { "숫자가 아닙니다. [$number]" }
-            return number.toBigDecimal()
+            return try {
+                number.toBigDecimal()
+            } catch (e: NumberFormatException) {
+                throw IllegalArgumentException("숫자가 아닙니다. [$number]", e)
+            }
         }
 
         private fun validLength(size: Int) = size >= 3 || size % 2 == 1
