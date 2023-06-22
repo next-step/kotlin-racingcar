@@ -1,10 +1,7 @@
 package racingCar.domain
 
-class CarMaker(
-    private val carNames: List<String>,
-    private val carMover: CarMovable
-) {
-    fun createCars(): List<Car> {
+object CarMaker {
+    fun createCars(carNames: List<String>, carMover: CarMovable): List<Car> {
         return carNames.map { Car(carMover, it) }
     }
 }

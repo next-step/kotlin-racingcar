@@ -7,13 +7,12 @@ import racingCar.view.DisplayView
 import racingCar.view.InputView
 
 fun main() {
-    val input = InputView()
+    val carNames = InputView.inputNameOfCar()
+    val numOfGame = InputView.inputNumOfGame()
 
-    val carNames = input.inputNameOfCar()
-    val carMaker = CarMaker(carNames, RandomCarMovable())
-    val carRace = CarRace(carMaker.createCars(), input.inputNumOfGame())
+    val cars = CarMaker.createCars(carNames, RandomCarMovable())
 
     DisplayView.displayHeader()
-    val raceResult = carRace.start()
+    val raceResult = CarRace.start(cars, numOfGame)
     DisplayView.displayRaceResult(raceResult)
 }

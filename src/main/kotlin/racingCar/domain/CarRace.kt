@@ -1,11 +1,8 @@
 package racingCar.domain
 
-class CarRace(
-    private val carList: List<Car>,
-    private val numOfMove: Int
-) {
+object CarRace {
 
-    fun start(): RaceLog {
+    fun start(carList: List<Car>, numOfMove: Int): RaceLog {
         val raceLog = RaceLog()
 
         repeat(numOfMove) {
