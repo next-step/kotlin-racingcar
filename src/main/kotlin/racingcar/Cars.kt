@@ -12,7 +12,7 @@ class Cars {
     }
 
     fun getNamesAndPositions(): List<Pair<String, Int>> {
-        return cars.map { Pair(it.name, it.position) }
+        return cars.map { Pair(it.carName.name, it.position) }
     }
 
     fun getWinners(): List<Car> {

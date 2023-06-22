@@ -33,7 +33,7 @@ class CarTest : FunSpec({
 
     context("자동차 이름을 지정해 줄 수 있다.") {
         val car = Car("홍길동")
-        car.name shouldBe "홍길동"
+        car.carName.name shouldBe "홍길동"
     }
 
     context("자동차 이름은 5자를 초과할 수 없다.") {

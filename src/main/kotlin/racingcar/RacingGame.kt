@@ -57,7 +57,7 @@ class ResultView {
     }
 
     fun printWinners(winners: List<Car>) {
-        winners.map { it.name }.joinToString(", ").let {
+        winners.map { it.carName.name }.joinToString(", ").let {
             println(it + "가 최종 우승했습니다.")
         }
     }
