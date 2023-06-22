@@ -11,7 +11,7 @@ fun main() {
     var racingCars = RacingCars.of(inputValue.drivers)
 
     repeat(inputValue.trials) {
-        racingCars = RacingCarService.race(racingCars.list)
+        racingCars = RacingCarService.race(racingCars)
         ResultView.showRacingStage(racingCars)
     }
     ResultView.showWinners(racingCars.getWinners())
