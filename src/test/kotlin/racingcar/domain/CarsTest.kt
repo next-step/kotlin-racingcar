@@ -10,15 +10,15 @@ class CarsTest {
 
     @Test
     fun `숫자를 받아 자동차 목록을 생성한다`() {
-        val cars = Cars.createCountOf(5)
+        val cars = Cars.createCountOf(5, ALWAYS_MOVING_STRATEGY)
 
         cars.shouldNotBeNull()
     }
 
     @Test
     fun `성공하는 전략을 주입받아 자동차들을 이동한다`() {
-        val cars = Cars.createCountOf(5)
-        cars.moveAll(ALWAYS_MOVING_STRATEGY)
+        val cars = Cars.createCountOf(5, ALWAYS_MOVING_STRATEGY)
+        cars.moveAll()
 
         val positions = cars.getPositions()
 
@@ -27,8 +27,8 @@ class CarsTest {
 
     @Test
     fun `실패하는 전략을 주입받아 자동차들을 정지한다`() {
-        val cars = Cars.createCountOf(5)
-        cars.moveAll(NEVER_MOVING_STRATEGY)
+        val cars = Cars.createCountOf(5, NEVER_MOVING_STRATEGY)
+        cars.moveAll()
 
         val positions = cars.getPositions()
 

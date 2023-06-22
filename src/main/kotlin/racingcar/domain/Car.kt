@@ -2,11 +2,11 @@ package racingcar.domain
 
 import racingcar.domain.movingstrategy.MovingStrategy
 
-class Car {
+class Car(private val movingStrategy: MovingStrategy) {
     var position: Int = DEFAULT_POSITION
         private set
 
-    fun move(movingStrategy: MovingStrategy) {
+    fun move() {
         if (movingStrategy.isMovable()) {
             position++
         }

@@ -11,9 +11,9 @@ class RacingGame(
     private var histories: MutableList<RoundHistory> = mutableListOf()
 
     fun run() {
-        val cars = Cars.createCountOf(numberOfCars)
+        val cars = Cars.createCountOf(numberOfCars, movingStrategy)
         repeat(round) { currentRound ->
-            cars.moveAll(movingStrategy)
+            cars.moveAll()
             val roundHistory = RoundHistory(currentRound, cars.getPositions())
             histories.add(roundHistory)
         }

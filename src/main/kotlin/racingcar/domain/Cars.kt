@@ -4,8 +4,8 @@ import racingcar.domain.movingstrategy.MovingStrategy
 
 class Cars(private val cars: List<Car>) {
 
-    fun moveAll(movingStrategy: MovingStrategy) {
-        cars.forEach { car -> car.move(movingStrategy) }
+    fun moveAll() {
+        cars.forEach { car -> car.move() }
     }
 
     fun getPositions(): List<Int> {
@@ -13,8 +13,8 @@ class Cars(private val cars: List<Car>) {
     }
 
     companion object {
-        fun createCountOf(count: Int): Cars {
-            val cars = List(count) { Car() }
+        fun createCountOf(count: Int, movingStrategy: MovingStrategy): Cars {
+            val cars = List(count) { Car(movingStrategy) }
             return Cars(cars)
         }
     }
