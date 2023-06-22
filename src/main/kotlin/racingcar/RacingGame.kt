@@ -7,13 +7,7 @@ class RacingGame(
     carNames: List<String>,
     private val conditionGenerator: ConditionGenerator = RandomConditionGenerator(),
 ) {
-    private val cars = Cars()
-
-    init {
-        for (carName in carNames) {
-            cars.add(Car(carName))
-        }
-    }
+    private val cars: Cars = Cars(carNames)
 
     fun start(tryNum: Int) {
         repeat(tryNum) {

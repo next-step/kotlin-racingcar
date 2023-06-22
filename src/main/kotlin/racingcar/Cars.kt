@@ -1,10 +1,10 @@
 package racingcar
 
-class Cars {
-    private val cars = mutableListOf<Car>()
+class Cars(carNames: List<String>) {
+    val cars: List<Car>
 
-    fun add(car: Car) {
-        cars.add(car)
+    init {
+        this.cars = carNames.map { Car(it) }
     }
 
     fun getSize(): Int {
