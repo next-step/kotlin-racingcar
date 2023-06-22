@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class Cars(private val cars: List<Car>) {
     fun moveAll(): List<PositionHistory> {

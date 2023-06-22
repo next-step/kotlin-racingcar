@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 object RacingGame {
     fun run(cars: Cars, tryCount: Int): RacingGameResult {

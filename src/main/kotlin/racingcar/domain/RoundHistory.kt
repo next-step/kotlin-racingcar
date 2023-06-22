@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class RoundHistory(val positionHistories: List<PositionHistory>) {
     init {

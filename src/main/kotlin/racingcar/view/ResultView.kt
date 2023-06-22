@@ -1,7 +1,7 @@
 package racingcar.view
 
-import racingcar.RoundHistory
-import racingcar.RacingGameResult
+import racingcar.domain.RoundHistory
+import racingcar.domain.RacingGameResult
 
 object ResultView {
     private const val POSITION_CHARACTER = "-"

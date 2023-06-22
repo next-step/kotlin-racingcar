@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 data class RacingGameResult(val roundHistories: List<RoundHistory>) {
     fun getWinnerNames(): List<String> {
