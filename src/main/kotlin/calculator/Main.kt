@@ -1,6 +1,6 @@
 package calculator
 
-fun main(args: Array<String>) {
+fun main() {
     val calculator = Calculator()
 
     while (true) {
