@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.PositionHistory
+import racingcar.RoundHistory
 import racingcar.RacingGameResult
 
 object ResultView {
@@ -11,14 +11,14 @@ object ResultView {
     }
 
     fun printResult(result: RacingGameResult) {
-        result.positionHistories.forEach { printResult(it) }
+        result.roundHistories.map { printResult(it) }
 
         val winnerNames = result.getWinnerNames()
         println("${winnerNames.joinToString(", ")}가 최종 우승했습니다.")
     }
 
-    private fun printResult(positionsHistory: PositionHistory) {
-        positionsHistory.positions.forEach { println("${it.name}: ${POSITION_CHARACTER.repeat(it.position)}") }
+    private fun printResult(positionsHistory: RoundHistory) {
+        positionsHistory.positionHistories.forEach { println("${it.name}: ${POSITION_CHARACTER.repeat(it.position)}") }
         println()
     }
 }

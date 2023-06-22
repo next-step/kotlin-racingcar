@@ -1,11 +1,9 @@
 package racingcar
 
-data class RacingGameResult(val positionHistories: List<PositionHistory>) {
+data class RacingGameResult(val roundHistories: List<RoundHistory>) {
     fun getWinnerNames(): List<String> {
-        val finalHistory = positionHistories.last()
-        val winnerPosition = finalHistory.positions.maxBy { it.position }.position
-        val winnerNames = finalHistory.positions.filter { it.position == winnerPosition }.map { it.name }
+        val finalRoundHistory = roundHistories.last()
 
-        return winnerNames
+        return finalRoundHistory.getWinnerNames()
     }
 }

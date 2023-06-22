@@ -1,8 +1,8 @@
 package racingcar
 
 class Cars(private val cars: List<Car>) {
-    fun moveAll(): List<CarPositionSnapshot> {
-        return cars.map { CarPositionSnapshot(it.name, it.move()) }
+    fun moveAll(): List<PositionHistory> {
+        return cars.map { PositionHistory(it.name, it.move()) }
     }
 
     fun size(): Int {
