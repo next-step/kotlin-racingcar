@@ -17,7 +17,7 @@ class RacingGame(
             cars.moveAllCars(conditionGenerator)
             ResultView().printResult(cars.namesAndPositions)
         }
-        ResultView().printWinners(winners)
+        ResultView().printWinners(winners.map { it.carName.name })
     }
 }
 
@@ -49,10 +49,8 @@ class ResultView {
         println()
     }
 
-    fun printWinners(winners: List<Car>) {
-        winners.joinToString(", ") { it.carName.name }.let {
-            println(it + "가 최종 우승했습니다.")
-        }
+    fun printWinners(nameOfWinners: List<String>) {
+        println("${nameOfWinners.joinToString(", ")}가 최종 우승했습니다.")
     }
 }
 
