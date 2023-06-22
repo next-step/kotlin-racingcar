@@ -8,7 +8,7 @@ class PositionHistoryTest {
     fun `position은 1이상이어야 한다`() {
         shouldThrow<IllegalArgumentException> {
             PositionHistory(
-                listOf("test1" to 0,)
+                listOf(CarPositionSnapshot("test", 0))
             )
         }
     }
