@@ -8,10 +8,20 @@ import org.junit.jupiter.params.provider.CsvSource
 import java.math.BigDecimal
 
 class OperatorTest {
-
     @ParameterizedTest(name = "{0} {1} {2} = {3}")
-    @CsvSource(value = ["1, +, 2, 3", "1, -, 2, -1", "3, *, 4, 12", "4, /, 2, 2", "5, /, 2, 2.5"])
-    fun apply(left: BigDecimal, symbol: String, right: BigDecimal, expected: BigDecimal) {
+    @CsvSource(
+        value = [
+            "1, +, 2, 3",
+            "1.2, +, 2.3, 3.5",
+            "1, -, 2, -1",
+            "1.2, -, 2.3, -1.1",
+            "3, *, 4, 12",
+            "1.5, *, 2.5, 3.75 ",
+            "4, /, 2, 2",
+            "5, /, 2, 2.5",
+        ]
+    )
+    fun `숫자를 받아 계산 결과를 반환한다`(left: BigDecimal, symbol: String, right: BigDecimal, expected: BigDecimal) {
         val customOperator = Operator.from(symbol)
 
         val result = customOperator.apply(left, right)

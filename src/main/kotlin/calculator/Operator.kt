@@ -10,15 +10,15 @@ enum class Operator(
 ) {
     ADD(
         "+",
-        BinaryOperator { x, y -> x + y }
+        BinaryOperator { x, y -> x.plus(y) }
     ),
     SUB(
         "-",
-        BinaryOperator { x, y -> x - y }
+        BinaryOperator { x, y -> x.minus(y) }
     ),
     MULTIPLY(
         "*",
-        BinaryOperator { x, y -> x * y }
+        BinaryOperator { x, y -> x.multiply(y) }
     ),
     DIVIDE(
         "/",
