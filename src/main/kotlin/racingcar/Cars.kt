@@ -2,23 +2,23 @@ package racingcar
 
 class Cars(carNames: List<String>) {
     val cars: List<Car>
+    val size: Int
+        get() = cars.size
 
     init {
         this.cars = carNames.map { Car(it) }
     }
 
-    fun getSize(): Int {
-        return cars.size
-    }
+    val namesAndPositions: List<Pair<String, Int>>
+        get() {
+            return cars.map { Pair(it.carName.name, it.position) }
+        }
 
-    fun getNamesAndPositions(): List<Pair<String, Int>> {
-        return cars.map { Pair(it.carName.name, it.position) }
-    }
-
-    fun getWinners(): List<Car> {
-        val maxPosition = cars.maxOf { it.position }
-        return cars.filter { it.position == maxPosition }
-    }
+    val winners: List<Car>
+        get() {
+            val maxPosition = cars.maxOf { it.position }
+            return cars.filter { it.position == maxPosition }
+        }
 
     fun moveAllCars(conditionGenerator: ConditionGenerator) {
         for (car in cars) {

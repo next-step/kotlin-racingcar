@@ -6,12 +6,12 @@ import io.kotest.matchers.shouldBe
 class CarsTest : FunSpec({
     context("자동차들을 추가할 수 있다") {
         val cars = Cars(listOf("pobi", "crong", "honux"))
-        cars.getSize() shouldBe 3
+        cars.size shouldBe 3
     }
 
     context("자동차들의 이름과 위치를 구할수 있다") {
         val cars = Cars(listOf("pobi", "crong", "honux"))
-        cars.getNamesAndPositions() shouldBe listOf(
+        cars.namesAndPositions shouldBe listOf(
             Pair("pobi", 0),
             Pair("crong", 0),
             Pair("honux", 0),
@@ -20,10 +20,10 @@ class CarsTest : FunSpec({
 
     context("자동차들 중 승자를 구할 수 있다") {
         val cars = Cars(listOf("pobi", "crong", "honux"))
-        val firstCar = cars.cars[0]
+        val firstCar = cars.cars.first()
         firstCar.move(4)
 
-        cars.getWinners() shouldBe listOf(
+        cars.winners shouldBe listOf(
             firstCar,
         )
     }
@@ -37,7 +37,7 @@ class CarsTest : FunSpec({
             }
         })
 
-        cars.getNamesAndPositions() shouldBe listOf(
+        cars.namesAndPositions shouldBe listOf(
             Pair("pobi", 1),
             Pair("crong", 1),
             Pair("honux", 1),

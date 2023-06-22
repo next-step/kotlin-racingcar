@@ -9,16 +9,15 @@ class RacingGame(
 ) {
     private val cars: Cars = Cars(carNames)
 
+    val winners: List<Car>
+        get() = cars.winners
+
     fun start(tryNum: Int) {
         repeat(tryNum) {
             cars.moveAllCars(conditionGenerator)
-            ResultView().printResult(cars.getNamesAndPositions())
+            ResultView().printResult(cars.namesAndPositions)
         }
-        ResultView().printWinners(cars.getWinners())
-    }
-
-    fun getWinners(): List<Car> {
-        return cars.getWinners()
+        ResultView().printWinners(winners)
     }
 }
 
