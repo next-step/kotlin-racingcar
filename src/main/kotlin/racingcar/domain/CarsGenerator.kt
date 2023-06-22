@@ -1,17 +1,16 @@
 package racingcar.domain
 
 class CarsGenerator(
-    private val inputCarNames: String,
     private val moveStrategy: MoveStrategy
 ) {
 
-    fun generate(): Cars {
-        val carNames = getCarNames()
+    fun generate(inputCarNames: String): Cars {
+        val carNames = getCarNames(inputCarNames)
         val cars = carNames.map { Car(it, moveStrategy) }
         return Cars(cars)
     }
 
-    private fun getCarNames(): List<CarName> {
+    private fun getCarNames(inputCarNames: String): List<CarName> {
         val carNamesString = inputCarNames.split(CAR_NAME_DELIMITER)
         require(carNamesString.isNotEmpty()) { "자동차 이름은 1개 이상이어야 합니다." }
         val carNames = carNamesString.map { CarName(it.trim()) }.toList()

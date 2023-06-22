@@ -1,8 +1,8 @@
 package racingcar.domain
 
-class Cars(cars: Collection<Car> = emptyList()) {
+class Cars(cars: List<Car> = emptyList()) {
 
-    private val cars: Collection<Car> = cars.toList()
+    private val cars: List<Car> = cars.toList()
 
     val names: Collection<CarName> get() = cars.map { it.carName }
 

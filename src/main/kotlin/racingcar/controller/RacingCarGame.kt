@@ -12,6 +12,8 @@ class RacingCarGame(
     private var resultView: ResultView = ResultView()
 ) {
 
+    private val carsGenerator = CarsGenerator(RandomMoveStrategy())
+
     fun play() {
         val cars = getCars()
         val roundCount = RoundCount(inputView.inputRoundCount())
@@ -34,7 +36,6 @@ class RacingCarGame(
 
     private fun getCars(): Cars {
         val carNames = inputView.inputCarsNames()
-        val carsGenerator = CarsGenerator(carNames, RandomMoveStrategy())
-        return carsGenerator.generate()
+        return carsGenerator.generate(carNames)
     }
 }
