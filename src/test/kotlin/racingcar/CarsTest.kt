@@ -13,7 +13,7 @@ class CarsTest {
             carNames.map { Car(name = it, moveStrategy = ManualStrategy(true)) }
         )
 
-        cars.moveAll().map { it.second } shouldBe List(cars.size()) { 2 }
+        cars.moveAll().map { it.second } shouldBe listOf(2, 2, 2)
     }
 
     @Test
@@ -22,6 +22,6 @@ class CarsTest {
             carNames.map { Car(name = it, moveStrategy = ManualStrategy(false)) }
         )
 
-        cars.moveAll().map { it.second } shouldBe List(cars.size()) { 1 }
+        cars.moveAll().map { it.second } shouldBe listOf(1, 1, 1)
     }
 }
