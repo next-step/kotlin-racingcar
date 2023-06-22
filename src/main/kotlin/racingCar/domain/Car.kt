@@ -3,8 +3,11 @@ package racingCar.domain
 class Car(
     private val carMover: CarMovable,
     val name: String="",
-    var position: Int = 0
+    initialPosition: Int = 0
 ) {
+    var position: Int = initialPosition
+        private set
+
     fun move() {
         if (carMover.movable()) {
             this.position += DISTANCE
