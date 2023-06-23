@@ -1,4 +1,4 @@
-package step3.view
+package racingCar.view
 
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
@@ -6,7 +6,7 @@ import kotlin.contracts.contract
 /**
  * 사용자는 몇 대의 자동차로 몇 번의 이동을 할 것인지를 입력할 수 있어야 한다.
  */
-class InputView {
+object InputView {
 
     fun inputNumOfGame(): Int {
         println("시도할 횟수는 몇 회인가요?")

@@ -1,10 +1,12 @@
-package step3.domain
+package racingCar.domain
 
 class Car(
-    private val carMover: CarMover,
-    val name: String=""
+    private val carMover: CarMovable,
+    val name: String="",
+    initialPosition: Int = 0
 ) {
-    var position: Int = 0
+    var position: Int = initialPosition
+        private set
 
     fun move() {
         if (carMover.movable()) {

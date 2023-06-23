@@ -1,4 +1,4 @@
-package step2
+package calculator
 
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
