@@ -18,8 +18,8 @@ class CarTest : ShouldSpec({
             row(9),
         ) { expected ->
             val actual = sut.move(expected)
-            sut.position shouldBe 0
-            actual.position shouldBe 1
+            sut.position shouldBe 1
+            actual.position shouldBe 2
         }
     }
 })

@@ -1,7 +1,7 @@
 package racingcar.domain
 
 data class Car(
-    val position: Int = 0,
+    val position: Int = 1,
 ) {
 
     fun move(point: Int): Car {
