@@ -6,21 +6,18 @@ import racingcar.ui.enterNumberOfAttempts
 import racingcar.ui.printPosition
 import racingcar.ui.printStart
 import racingcar.ui.printWinner
-import racingcar.util.RandomGenerator
 
 class RacingCarController {
 
     fun start() {
         val carNames = enterCarNames().trim()
         val numberOfAttempts = enterNumberOfAttempts()
-        val numberGenerator = RandomGenerator()
-
         val racingCarGame = from(carNames)
 
         printStart()
 
-        for (i in 1..numberOfAttempts) {
-            racingCarGame.racing(numberGenerator)
+        repeat(numberOfAttempts) {
+            racingCarGame.racing()
             printPosition(racingCarGame.racingCars)
         }
 
