@@ -1,10 +1,7 @@
 package racingcar.domain
 
-import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.ValueSource
 import racingcar.domain.Car.Companion.DEFAULT_POSITION
 import racingcar.strategy.ManualStrategy
 
