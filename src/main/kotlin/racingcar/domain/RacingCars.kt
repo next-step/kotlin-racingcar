@@ -1,8 +1,8 @@
 package racingcar.domain
 
 class RacingCars(
-    list: List<RacingCar>
-) : List<RacingCar> by list {
+    cars: List<RacingCar>
+) : List<RacingCar> by cars {
 
     fun getWinners(): List<String> {
         return getMaxProgress().let { maxProgress ->
