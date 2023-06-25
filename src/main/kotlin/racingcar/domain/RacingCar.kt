@@ -2,7 +2,7 @@ package racingcar.domain
 
 class RacingCar(
     val name: String,
-    private val racingCarEngine: RacingCarEngine
+    private val engine: Engine = RacingCarEngine()
 ) {
     var position: Int = 0
         private set
@@ -14,7 +14,7 @@ class RacingCar(
     }
 
     fun move() {
-        if (racingCarEngine.movePossible()) {
+        if (engine.movePossible()) {
             position++
         }
     }

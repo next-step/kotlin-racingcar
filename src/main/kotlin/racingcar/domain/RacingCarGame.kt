@@ -27,10 +27,10 @@ class RacingCarGame(
             .joinToString { it.name }
 
     companion object {
-        fun from(racingCarNames: String, racingCarEngine: RacingCarEngine): RacingCarGame {
+        fun from(racingCarNames: String, engine: Engine = RacingCarEngine()): RacingCarGame {
             val racingCars = racingCarNames
                 .split(RacingCarController.CAR_NAME_SPLIT_SYMBOL)
-                .map { RacingCar(it, racingCarEngine) }
+                .map { RacingCar(it, engine) }
             return RacingCarGame(racingCars)
         }
     }
