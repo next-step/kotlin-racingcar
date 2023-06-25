@@ -6,6 +6,7 @@ import io.kotest.data.blocking.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 import racingcar.domain.RacingCar
+import racingcar.domain.RacingCar.Companion.MOVE_POSSIBLE_NUMBER
 
 class RacingCarTest : StringSpec({
     "1 ~ 9 까지의 입력 중 4 미만일 경우 차가 전진할 수 없다." {
@@ -15,7 +16,7 @@ class RacingCarTest : StringSpec({
             row(2),
             row(3),
         ) { input ->
-            val racingCar = RacingCar("raceC") { input }
+            val racingCar = RacingCar("raceC") { input >= MOVE_POSSIBLE_NUMBER }
             racingCar.move()
             racingCar.position shouldBe 0
         }
@@ -30,7 +31,7 @@ class RacingCarTest : StringSpec({
             row(8),
             row(9),
         ) { input ->
-            val racingCar = RacingCar("raceC") { input }
+            val racingCar = RacingCar("raceC") { input >= MOVE_POSSIBLE_NUMBER }
             racingCar.move()
             racingCar.position shouldBe 1
         }
@@ -38,7 +39,7 @@ class RacingCarTest : StringSpec({
 
     "자동차의 이름이 5글자 초과할 경우 exception을 발생시킨다." {
         val name = "isLong"
-        val exception = shouldThrow<IllegalArgumentException> { RacingCar(name) { 0 } }
+        val exception = shouldThrow<IllegalArgumentException> { RacingCar(name) { true } }
 
         exception.message shouldBe "자동차 이름은 5자 까지 사용 가능 합니다. 입력하신 차의 이름은 : $name 입니다."
     }

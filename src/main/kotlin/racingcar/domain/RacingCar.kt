@@ -2,7 +2,7 @@ package racingcar.domain
 
 class RacingCar(
     val name: String,
-    private val numberGenerator: NumberGenerator
+    private val racingCarEngine: RacingCarEngine
 ) {
     var position: Int = 0
         private set
@@ -14,15 +14,13 @@ class RacingCar(
     }
 
     fun move() {
-        if (movePossible(numberGenerator.generateNumber())) {
+        if (racingCarEngine.movePossible()) {
             position++
         }
     }
 
-    private fun movePossible(input: Int): Boolean = input >= MOVE_POSSIBLE_NUMBER
-
     companion object {
-        private const val MOVE_POSSIBLE_NUMBER = 4
         private const val CAR_NAME_MAX_LENGTH = 5
+        const val MOVE_POSSIBLE_NUMBER = 4
     }
 }

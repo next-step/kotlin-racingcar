@@ -5,18 +5,19 @@ import io.kotest.data.blocking.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 import racingcar.domain.RacingCar
+import racingcar.domain.RacingCar.Companion.MOVE_POSSIBLE_NUMBER
 import racingcar.domain.RacingCarGame
 
 class RacingCarGameTest : StringSpec({
 
     "1 ~ 9 까지의 입력 중 4 미만일 경우 차가 전진할 수 없다." {
-        val racingCarGame = RacingCarGame(listOf(RacingCar("test") { 0 }))
+        val racingCarGame = RacingCarGame(listOf(RacingCar("test") { 0 >= MOVE_POSSIBLE_NUMBER }))
         racingCarGame.racing()
         racingCarGame.racingCars[0].position shouldBe 0
     }
 
     "1 ~ 9 까지의 입력 중 4 이상일 경우 차가 전진한다." {
-        val racingCarGame = RacingCarGame(listOf(RacingCar("test") { 4 }))
+        val racingCarGame = RacingCarGame(listOf(RacingCar("test") { 4 >= MOVE_POSSIBLE_NUMBER }))
 
         forAll(
             row(1),
@@ -32,20 +33,20 @@ class RacingCarGameTest : StringSpec({
     }
 
     "1 ~ 9 까지의 입력 중 4 미만일 경우 차가 전진할 수 없다.(from을 통하여 생성한 RacingCar)" {
-        val racingCarGame = RacingCarGame.from("test") { 0 }
+        val racingCarGame = RacingCarGame.from("test") { 0 >= MOVE_POSSIBLE_NUMBER }
         racingCarGame.racing()
         racingCarGame.racingCars[0].position shouldBe 0
     }
 
     "1 ~ 9 까지의 입력 중 4 이상일 경우 차가 전진한다.(from을 통하여 생성한 RacingCar)" {
-        val racingCarGame = RacingCarGame.from("test") { 9 }
+        val racingCarGame = RacingCarGame.from("test") { 4 >= MOVE_POSSIBLE_NUMBER }
         racingCarGame.racing()
         racingCarGame.racingCars[0].position shouldBe 1
     }
 
     "자동차 경주의 최종 우승자를 가져온다." {
         val finishedRacingCarGame = RacingCarGame(
-            listOf(RacingCar("1등") { 0 }, RacingCar("2등") { 0 })
+            listOf(RacingCar("1등") { false }, RacingCar("2등") { false })
         )
 
         finishedRacingCarGame.racing()
