@@ -1,6 +1,6 @@
 package racingcar.domain
 
 data class PositionHistory(
-    val name: String,
+    val name: CarName,
     val position: Int
 )

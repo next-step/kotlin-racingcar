@@ -1,7 +1,7 @@
 package racingcar.view
 
-import racingcar.domain.RoundHistory
 import racingcar.domain.RacingGameResult
+import racingcar.domain.RoundHistory
 
 object ResultView {
     private const val POSITION_CHARACTER = "-"
@@ -18,7 +18,7 @@ object ResultView {
     }
 
     private fun printResult(positionsHistory: RoundHistory) {
-        positionsHistory.positionHistories.forEach { println("${it.name}: ${POSITION_CHARACTER.repeat(it.position)}") }
+        positionsHistory.positionHistories.forEach { println("${it.name.value}: ${POSITION_CHARACTER.repeat(it.position)}") }
         println()
     }
 }
