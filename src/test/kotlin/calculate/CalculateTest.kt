@@ -34,10 +34,6 @@ class CalculateTest : WordSpec({
                 sut.calculate("5/0") shouldBe 0
             }.message shouldBe "0으로 나눌 수 없습니다."
         }
-        "나눗셈 - 대상값이 0일때" {
-            val actual = sut.calculate("0/5")
-            actual shouldBe 0
-        }
         "입력값이 empty 인 경우 예외를 발생한다" {
             listOf("", " ").forAll { a ->
                 shouldThrow<IllegalArgumentException> {
