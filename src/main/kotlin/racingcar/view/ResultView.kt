@@ -18,7 +18,7 @@ object ResultView {
     }
 
     private fun printResult(positionsHistory: RoundHistory) {
-        positionsHistory.positionHistories.forEach { println("${it.name.value}: ${POSITION_CHARACTER.repeat(it.position)}") }
+        positionsHistory.positionHistories.forEach { println("${it.name.value}: ${POSITION_CHARACTER.repeat(it.position.value)}") }
         println()
     }
 }

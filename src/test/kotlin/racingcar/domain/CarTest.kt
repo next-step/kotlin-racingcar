@@ -2,7 +2,7 @@ package racingcar.domain
 
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
-import racingcar.domain.Car.Companion.DEFAULT_POSITION
+import racingcar.domain.Position.Companion.DEFAULT_POSITION
 import racingcar.strategy.ManualStrategy
 
 class CarTest {
@@ -11,7 +11,7 @@ class CarTest {
         val name = "test1"
         val car = Car(CarName(name))
 
-        car.position shouldBe DEFAULT_POSITION
+        car.position.value shouldBe DEFAULT_POSITION
     }
 
     @Test
@@ -20,7 +20,7 @@ class CarTest {
         val car = Car(name = CarName(name), moveStrategy = ManualStrategy(true))
         car.move()
 
-        car.position shouldBe DEFAULT_POSITION + 1
+        car.position.value shouldBe DEFAULT_POSITION + 1
     }
 
     @Test
@@ -29,6 +29,6 @@ class CarTest {
         val car = Car(name = CarName(name), moveStrategy = ManualStrategy(false))
         car.move()
 
-        car.position shouldBe DEFAULT_POSITION
+        car.position.value shouldBe DEFAULT_POSITION
     }
 }
