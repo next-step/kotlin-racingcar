@@ -4,7 +4,7 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
-class RacingCarTest : StringSpec({
+class RacingCarsTest : StringSpec({
 
     "random 결과가 4 미만일 경우 전진을 하지 못한다." {
         val racingCar = RacingCar(1, "tony")
