@@ -32,8 +32,8 @@ class RacingCar(
         }
     }
 
-    fun carProgress(randomNumberGenerator: () -> Int): RacingCar {
-        if (checkCanGo(randomNumberGenerator())) {
+    fun carProgress(number: Int): RacingCar {
+        if (checkCanGo(number)) {
             return RacingCar(progress.progressNext(), driver)
         }
         return RacingCar(progress, driver)
