@@ -13,8 +13,12 @@ class Cars(private val cars: List<Car>) {
     }
 
     companion object {
-        fun createCountOf(count: Int, movingStrategy: MovingStrategy): Cars {
-            val cars = List(count) { Car(movingStrategy) }
+        private const val NAME_SPLIT_DELIMITER = ","
+
+        fun of(names: String, movingStrategy: MovingStrategy): Cars {
+            val splitCarNames = names.split(NAME_SPLIT_DELIMITER)
+
+            val cars = List(splitCarNames.size) { Car(movingStrategy, splitCarNames[it]) }
             return Cars(cars)
         }
     }
