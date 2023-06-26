@@ -2,6 +2,7 @@ package racingcar.domain
 
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
+import racingcar.fixture.ALWAYS_MOVING_STRATEGY
 import racingcar.fixture.NEVER_MOVING_STRATEGY
 
 class RacingGameTest {
@@ -16,6 +17,18 @@ class RacingGameTest {
         val histories = racingGame.getHistories()
 
         histories shouldBe List(round) { createRoundHistory(it, carNames.split(",")) }
+    }
+
+    @Test
+    fun `레이싱 게임을 실행하면 우승자를 알 수 있다`() {
+        val carNames = "a,b,c"
+        val round = 5
+        val racingGame = RacingGame(round, carNames, ALWAYS_MOVING_STRATEGY)
+        racingGame.run()
+
+        val winners = racingGame.getWinnerNames()
+
+        winners shouldBe listOf("a", "b", "c")
     }
 
     private fun createRoundHistory(it: Int, names: List<String>) =
