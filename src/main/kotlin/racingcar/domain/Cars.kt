@@ -10,8 +10,8 @@ class Cars(private val cars: List<Car>) {
     }
 
     companion object {
-        fun from(carNames: List<String>): Cars {
-            return Cars(carNames.map { Car(it) })
+        fun from(carNames: CarNames): Cars {
+            return Cars(carNames.value.map { Car(it) })
         }
     }
 }

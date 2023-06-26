@@ -1,10 +1,13 @@
 package racingcar.view
 
+import racingcar.domain.CarName
+import racingcar.domain.CarNames
+
 object InputView {
-    fun receiveCarNames(): List<String> {
+    fun receiveCarNames(): CarNames {
         println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
 
-        return receive().split(",")
+        return CarNames(receive().split(",").map { CarName(it) })
     }
 
     fun receiveTryCount(): Int {

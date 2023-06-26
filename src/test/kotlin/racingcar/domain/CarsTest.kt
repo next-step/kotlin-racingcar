@@ -10,18 +10,18 @@ class CarsTest {
     @Test
     fun `condition이 true 이면 모든 Car의 position이 1 증가한다`() {
         val cars = Cars(
-            carNames.map { Car(name = it, moveStrategy = ManualStrategy(true)) }
+            carNames.map { Car(name = CarName(it), moveStrategy = ManualStrategy(true)) }
         )
 
-        cars.moveAll().map { it.position } shouldBe listOf(2, 2, 2)
+        cars.moveAll().map { it.position.value } shouldBe listOf(2, 2, 2)
     }
 
     @Test
     fun `condition이 false 이면 모든 Car의 position은 그대로다`() {
         val cars = Cars(
-            carNames.map { Car(name = it, moveStrategy = ManualStrategy(false)) }
+            carNames.map { Car(name = CarName(it), moveStrategy = ManualStrategy(false)) }
         )
 
-        cars.moveAll().map { it.position } shouldBe listOf(1, 1, 1)
+        cars.moveAll().map { it.position.value } shouldBe listOf(1, 1, 1)
     }
 }
