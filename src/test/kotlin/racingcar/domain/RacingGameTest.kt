@@ -15,8 +15,9 @@ class RacingGameTest {
 
         val histories = racingGame.getHistories()
 
-        histories shouldBe List(round) { createRoundHistory(it, carNames.split(",").size) }
+        histories shouldBe List(round) { createRoundHistory(it, carNames.split(",")) }
     }
 
-    private fun createRoundHistory(it: Int, numberOfCars: Int) = RoundHistory(it, List(numberOfCars) { 0 })
+    private fun createRoundHistory(it: Int, names: List<String>) =
+        RoundHistory(it, List(names.size) { CarInfo(names[it], 0) })
 }

@@ -39,12 +39,19 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(strings = ["", " ", "asdfgh"])
     fun `자동차 이름이 1자 미만, 5자 초과이면 예외가 발생한다`(name: String) {
-        shouldThrow<IllegalArgumentException> { Car.of(name, ALWAYS_MOVING_STRATEGY) }
+        shouldThrow<IllegalArgumentException> { Car.of(ALWAYS_MOVING_STRATEGY, name) }
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["hello", "w"])
     fun `자동차 이름이 1자 이상, 5자 이하이면 예외가 발생하지 않는다`(name: String) {
-        shouldNotThrowAny { Car.of(name, ALWAYS_MOVING_STRATEGY) }
+        shouldNotThrowAny { Car.of(ALWAYS_MOVING_STRATEGY, name) }
+    }
+
+    @Test
+    fun `현재 자동차 정보를 요청하면 이름과 포지션을 반환한다`() {
+        val car = Car.of(ALWAYS_MOVING_STRATEGY, "hello")
+
+        car.getCurrentInfo() shouldBe CarInfo("hello", 0)
     }
 }

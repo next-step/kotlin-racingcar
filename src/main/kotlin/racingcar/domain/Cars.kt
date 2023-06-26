@@ -12,6 +12,10 @@ class Cars(private val cars: List<Car>) {
         return cars.map(Car::position)
     }
 
+    fun getCurrentInfos(): List<CarInfo> {
+        return cars.map(Car::getCurrentInfo)
+    }
+
     companion object {
         private const val NAME_SPLIT_DELIMITER = ","
 

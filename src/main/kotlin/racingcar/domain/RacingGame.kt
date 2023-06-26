@@ -14,7 +14,7 @@ class RacingGame(
         val cars = Cars.of(carNames, movingStrategy)
         repeat(round) { currentRound ->
             cars.moveAll()
-            val roundHistory = RoundHistory(currentRound, cars.getPositions())
+            val roundHistory = RoundHistory(currentRound, cars.getCurrentInfos())
             histories.add(roundHistory)
         }
     }
