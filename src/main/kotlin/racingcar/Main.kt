@@ -13,4 +13,7 @@ fun main() {
 
     val histories = racingGame.getHistories()
     ResultView.printHistory(histories)
+
+    val winners = racingGame.getWinnerNames()
+    ResultView.printWinners(winners)
 }

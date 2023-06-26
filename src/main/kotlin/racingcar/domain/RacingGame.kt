@@ -8,18 +8,22 @@ class RacingGame(
     private val carNames: String,
     private val movingStrategy: MovingStrategy = DefaultMovingStrategy(),
 ) {
-    private var histories: MutableList<RoundHistory> = mutableListOf()
+    private val gameHistory: RacingGameHistory = RacingGameHistory()
 
     fun run() {
         val cars = Cars.of(carNames, movingStrategy)
         repeat(round) { currentRound ->
             cars.moveAll()
             val roundHistory = RoundHistory(currentRound, cars.getCurrentInfos())
-            histories.add(roundHistory)
+            gameHistory.addHistory(roundHistory)
         }
     }
 
     fun getHistories(): List<RoundHistory> {
-        return histories.toList()
+        return gameHistory.getHistories()
+    }
+
+    fun getWinnerNames(): List<String> {
+        return gameHistory.getWinnerNames()
     }
 }
