@@ -8,12 +8,12 @@ data class CarName(val name: String) {
         require(name.isNotBlank()) { "자동차 이름은 공백이 아니어야 합니다." }
     }
 
+    override fun toString(): String {
+        return name
+    }
+
     companion object {
         private const val MAX_NAME_LENGTH = 5
         private const val MIN_NAME_LENGTH = 1
-    }
-
-    override fun toString(): String {
-        return name
     }
 }

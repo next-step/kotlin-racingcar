@@ -4,7 +4,7 @@ class Cars(cars: List<Car> = emptyList()) {
 
     private val cars: List<Car> = cars.toList()
 
-    val names: Collection<CarName> get() = cars.map { it.carName }
+    val names: List<CarName> get() = cars.map { it.carName }
 
     fun move() {
         cars.forEach { it.move() }
