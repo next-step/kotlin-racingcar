@@ -10,7 +10,7 @@ class RacingCarGameMachine(private val numberGenerate: NumberGenerateStrategy) {
         var cars = List(carCount) { Car() }
         return (1..tryCount).map { stage ->
             cars = cars.map { car -> car.move(numberGenerate.generate()) }
-            cars.let { cars -> GameResultDto(stage, cars) }
+            GameResultDto(stage, cars)
         }
     }
 }

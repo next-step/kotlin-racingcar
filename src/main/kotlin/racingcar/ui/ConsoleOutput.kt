@@ -2,7 +2,7 @@ package racingcar.ui
 
 import racingcar.service.dto.GameResultDto
 
-class ConsoleOutput {
+object ConsoleOutput {
 
     fun printGameResults(gameResults: List<GameResultDto>) {
         println("실행 결과")

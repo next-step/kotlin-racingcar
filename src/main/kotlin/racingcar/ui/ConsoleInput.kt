@@ -1,6 +1,6 @@
 package racingcar.ui
 
-class ConsoleInput {
+object ConsoleInput {
     fun getCarCount(): Int {
         println("자동차 대수는 몇 대 인가요?")
         return readln().toInt()

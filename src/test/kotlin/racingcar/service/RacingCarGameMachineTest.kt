@@ -1,6 +1,7 @@
 package racingcar.service
 
 import io.kotest.core.spec.style.ShouldSpec
+import io.kotest.inspectors.forAll
 import io.kotest.inspectors.forAtLeastOne
 import io.kotest.matchers.shouldBe
 import racingcar.service.strategy.NumberNineGenerate
@@ -29,7 +30,7 @@ class RacingCarGameMachineTest : ShouldSpec({
 
             actual.size shouldBe expectedTryCount
             actual.forAtLeastOne { result ->
-                result.cars.forAtLeastOne { car ->
+                result.cars.forAll { car ->
                     car.position shouldBe 6
                 }
             }
@@ -44,7 +45,7 @@ class RacingCarGameMachineTest : ShouldSpec({
 
             actual.size shouldBe expectedTryCount
             actual.forAtLeastOne { result ->
-                result.cars.forAtLeastOne { car ->
+                result.cars.forAll { car ->
                     car.position shouldBe 1
                 }
             }

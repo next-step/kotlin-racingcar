@@ -2,7 +2,7 @@ package racingcar.service.strategy
 
 import kotlin.random.Random
 
-interface NumberGenerateStrategy {
+fun interface NumberGenerateStrategy {
     fun generate(): Int
 }
 
