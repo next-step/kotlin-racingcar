@@ -9,7 +9,7 @@ class ResultView {
     fun printRacingGame(retryCount: Int, carNames: String) {
         val race = RacingGame.create(carNames) { (0..9).random() }
         repeat(retryCount) {
-            printRacingResult(race.start())
+            printRacingResult(race.cars)
         }
         printWinner(Winner(race.cars).getWinner())
     }

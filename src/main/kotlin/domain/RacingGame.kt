@@ -6,11 +6,10 @@ class RacingGame(
     val cars: List<Car>
 ) {
 
-    fun start(): List<Car> {
+    fun start() {
         cars.forEach {
             it.move()
         }
-        return cars
     }
 
     companion object {

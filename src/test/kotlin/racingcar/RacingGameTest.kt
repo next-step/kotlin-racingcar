@@ -17,11 +17,11 @@ class RacingGameTest {
     @Test
     fun `자동차 게임이 끝나면 우승자를 알려준다`() {
         val race = RacingGame.create("A,B,C") { 0 }
-        val cars = race.start()
-        cars[0].move(5)
-        cars[1].move(3)
-        cars[2].move(3)
+        race.start()
+        race.cars[0].move(5)
+        race.cars[1].move(3)
+        race.cars[2].move(3)
 
-        assertThat(Winner(cars).getWinner()[0].name).isEqualTo("A")
+        assertThat(Winner(race.cars).getWinner()[0].name).isEqualTo("A")
     }
 }
