@@ -18,7 +18,7 @@ class RacingGameTest : FunSpec({
             },
         )
         racingGame.start(tryNum)
-        val winners = racingGame.winners
-        winners.size shouldBe carNames.size
+        val countWinners = racingGame.countWinners
+        countWinners shouldBe carNames.size
     }
 })

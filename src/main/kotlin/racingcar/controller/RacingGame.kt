@@ -12,8 +12,11 @@ class RacingGame(
 ) {
     private val cars: Cars = Cars(carNames)
 
-    val winners: List<Car>
+    private val winners: List<Car>
         get() = cars.winners
+
+    val countWinners: Int
+        get() = winners.size
 
     fun start(tryNum: Int) {
         repeat(tryNum) {
