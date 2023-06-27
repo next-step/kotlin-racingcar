@@ -1,14 +1,16 @@
 package racing.model
 
 class Car {
-    fun run() = getMoving()
+    private var moving: Int = 0
+    fun run(): Int {
+        val randomNumber: Int = (RANDOM_MIN_NUMBER..RANDOM_MAX_NUMBER).random()
+        if (randomNumber >= LIMIT_ADVANCE) moving++
+        return moving
+    }
 
     companion object {
-        private fun getMoving(): Int {
-            var moving: Int = (0..9).random()
-            moving = if (moving >= 4) moving
-            else 0
-            return moving
-        }
+        private const val RANDOM_MIN_NUMBER: Int = 0
+        private const val RANDOM_MAX_NUMBER: Int = 9
+        private const val LIMIT_ADVANCE: Int = 4
     }
 }
