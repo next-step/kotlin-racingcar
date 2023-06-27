@@ -1,6 +1,6 @@
 package domain
 
-import util.RandomNumber
+import util.Engine
 
 class RacingGame(
     val cars: List<Car>
@@ -14,9 +14,9 @@ class RacingGame(
     }
 
     companion object {
-        fun create(carNames: String, randomNumber: RandomNumber): RacingGame {
+        fun create(carNames: String, engine: Engine): RacingGame {
             val cars = carNames.split(",").map {
-                Car(it, randomNumber)
+                Car(it, engine)
             }
             return RacingGame(cars)
         }

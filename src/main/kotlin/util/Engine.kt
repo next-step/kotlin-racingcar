@@ -1,5 +1,5 @@
 package util
 
-fun interface RandomNumber {
+fun interface Engine {
     fun getRandomNumber(): Int
 }

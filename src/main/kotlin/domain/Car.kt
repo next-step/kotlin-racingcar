@@ -1,10 +1,10 @@
 package domain
 
-import util.RandomNumber
+import util.Engine
 
 class Car(
     val name: String,
-    private val randomNumber: RandomNumber
+    private val engine: Engine
 ) {
 
     var position: Int = 0
@@ -14,7 +14,7 @@ class Car(
         require(name.length < CAR_NAME_MAX_LENGTH) { throw IllegalArgumentException("자동차 이름은 5자를 초과할 수 없습니다.") }
     }
 
-    fun move(number: Int = randomNumber.getRandomNumber()) {
+    fun move(number: Int = engine.getRandomNumber()) {
         if (isMoving(number)) position++
     }
 
