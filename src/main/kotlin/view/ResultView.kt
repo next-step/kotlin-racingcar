@@ -1,7 +1,7 @@
-package presentation.view
+package view
 
 import domain.Car
-import domain.RacingGame
+import controller.RacingGame
 import domain.Winner
 
 class ResultView {

@@ -1,5 +1,5 @@
-import presentation.view.InputView
-import presentation.view.ResultView
+import view.InputView
+import view.ResultView
 
 fun main() {
     val inputView = InputView()

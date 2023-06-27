@@ -1,11 +1,9 @@
 package racingcar
 
-import domain.RacingGame
+import controller.RacingGame
 import domain.Winner
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.ValueSource
 
 class RacingGameTest {
 

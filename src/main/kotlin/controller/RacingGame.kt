@@ -1,4 +1,7 @@
-package domain
+package controller
+
+import domain.Car
+import domain.Engine
 
 class RacingGame(
     val cars: List<Car>
