@@ -1,7 +1,5 @@
 package domain
 
-import util.Engine
-
 class Car(
     val name: String,
     private val engine: Engine

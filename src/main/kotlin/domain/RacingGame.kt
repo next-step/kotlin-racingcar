@@ -1,7 +1,5 @@
 package domain
 
-import util.Engine
-
 class RacingGame(
     val cars: List<Car>
 ) {
