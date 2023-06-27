@@ -4,6 +4,8 @@ import domain.RacingGame
 import domain.Winner
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class RacingGameTest {
 
@@ -16,12 +18,17 @@ class RacingGameTest {
 
     @Test
     fun `자동차 게임이 끝나면 우승자를 알려준다`() {
-        val race = RacingGame.create("A,B,C") { 0 }
+        val race = RacingGame.create("A,B,C") { 5 }
         race.start()
-        race.cars[0].move(5)
-        race.cars[1].move(3)
-        race.cars[2].move(3)
 
         assertThat(Winner(race.cars).getWinner()[0].name).isEqualTo("A")
+    }
+
+    @Test
+    fun `자동차 게임이 끝나면 우승자가 총 몇 명인지 알려준다`() {
+        val race = RacingGame.create("A,B,C") { 5 }
+        race.start()
+
+        assertThat(Winner(race.cars).getWinner().size).isEqualTo(3)
     }
 }
