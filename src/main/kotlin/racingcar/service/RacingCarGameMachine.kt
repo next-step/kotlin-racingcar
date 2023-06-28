@@ -6,8 +6,8 @@ import racingcar.service.strategy.NumberGenerateStrategy
 
 class RacingCarGameMachine(private val numberGenerate: NumberGenerateStrategy) {
 
-    fun play(carCount: Int, tryCount: Int): List<GameResultDto> {
-        var cars = List(carCount) { Car() }
+    fun play(carNames: List<String>, tryCount: Int): List<GameResultDto> {
+        var cars = carNames.map { name -> Car(name) }
         return (1..tryCount).map { stage ->
             cars = cars.map { car -> car.move(numberGenerate.generate()) }
             GameResultDto(stage, cars)

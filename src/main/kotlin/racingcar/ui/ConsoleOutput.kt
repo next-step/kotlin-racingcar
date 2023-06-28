@@ -8,7 +8,7 @@ object ConsoleOutput {
         println("실행 결과")
         gameResults.forEach { gameResult ->
             gameResult.cars.forEach { car ->
-                println("-".repeat(car.position))
+                println("${car.name}: ${"-".repeat(car.position)}")
             }
             println()
         }

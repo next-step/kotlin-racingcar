@@ -13,20 +13,20 @@ class RacingCarGameMachineTest : ShouldSpec({
     context("게임을 진행한다.") {
         should("일반적인 게임을 진행한다.") {
             val sut = RacingCarGameMachine(RandomNumberZeroToNineGenerate())
-            val expectedCarCount = 3
+            val expectedCarNames = listOf("pobi", "gump", "jason")
             val expectedTryCount = 5
 
-            val actual = sut.play(expectedCarCount, expectedTryCount)
+            val actual = sut.play(expectedCarNames, expectedTryCount)
 
             actual.size shouldBe expectedTryCount
         }
 
         should("전체 이동되는 게임을 진행한다.") {
             val sut = RacingCarGameMachine(NumberNineGenerate())
-            val expectedCarCount = 3
+            val expectedCarNames = listOf("pobi", "gump", "jason")
             val expectedTryCount = 5
 
-            val actual = sut.play(expectedCarCount, expectedTryCount)
+            val actual = sut.play(expectedCarNames, expectedTryCount)
 
             actual.size shouldBe expectedTryCount
             actual.forAtLeastOne { result ->
@@ -38,10 +38,10 @@ class RacingCarGameMachineTest : ShouldSpec({
 
         should("전체 멈춰있는 게임을 진행한다.") {
             val sut = RacingCarGameMachine(NumberZeroGenerate())
-            val expectedCarCount = 3
+            val expectedCarNames = listOf("pobi", "gump", "jason")
             val expectedTryCount = 5
 
-            val actual = sut.play(expectedCarCount, expectedTryCount)
+            val actual = sut.play(expectedCarNames, expectedTryCount)
 
             actual.size shouldBe expectedTryCount
             actual.forAtLeastOne { result ->

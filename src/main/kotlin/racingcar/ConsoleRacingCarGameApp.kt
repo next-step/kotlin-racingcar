@@ -10,9 +10,9 @@ class RacingCarGameApp
 fun main() {
     val racingCarGame = RacingCarGameMachine(RandomNumberZeroToNineGenerate())
 
-    val carCount = ConsoleInput.getCarCount()
+    val carNames = ConsoleInput.getCarNames()
     val tryCount = ConsoleInput.getTryCount()
 
-    val gameResults = racingCarGame.play(carCount, tryCount)
+    val gameResults = racingCarGame.play(carNames, tryCount)
     ConsoleOutput.printGameResults(gameResults)
 }
