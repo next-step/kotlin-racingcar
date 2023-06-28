@@ -4,6 +4,8 @@ import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.inspectors.forAll
 import io.kotest.inspectors.forAtLeastOne
 import io.kotest.matchers.shouldBe
+import racingcar.domain.Car
+import racingcar.service.dto.GameResultDto
 import racingcar.service.strategy.NumberNineGenerate
 import racingcar.service.strategy.NumberZeroGenerate
 import racingcar.service.strategy.RandomNumberZeroToNineGenerate
@@ -49,6 +51,18 @@ class RacingCarGameMachineTest : ShouldSpec({
                     car.position shouldBe 1
                 }
             }
+        }
+    }
+
+    context("결과를 확인한다") {
+        should("우승자를 확인한다") {
+            val sut = RacingCarGameMachine(NumberZeroGenerate())
+            val expected = listOf(
+                GameResultDto(1, listOf(Car("pobi", 1), Car("gump", 1), Car("jason", 1))),
+                GameResultDto(2, listOf(Car("pobi", 1), Car("gump", 1), Car("jason", 1))),
+                GameResultDto(3, listOf(Car("pobi", 4), Car("gump", 3), Car("jason", 4))),
+            )
+            sut.getWinners(expected).map { it }.shouldBe(listOf("pobi", "jason"))
         }
     }
 })

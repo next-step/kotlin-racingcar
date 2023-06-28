@@ -15,4 +15,7 @@ fun main() {
 
     val gameResults = racingCarGame.play(carNames, tryCount)
     ConsoleOutput.printGameResults(gameResults)
+    racingCarGame.getWinners(gameResults).let { winners ->
+        ConsoleOutput.printWinners(winners)
+    }
 }

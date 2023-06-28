@@ -13,4 +13,10 @@ class RacingCarGameMachine(private val numberGenerate: NumberGenerateStrategy) {
             GameResultDto(stage, cars)
         }
     }
+
+    fun getWinners(gameResults: List<GameResultDto>): List<String> {
+        val lastStage = gameResults.sortedBy { it.stage }.last()
+        val maxPosition = lastStage.cars.maxOfOrNull { it.position } ?: 0
+        return lastStage.cars.filter { it.position == maxPosition }.map { it.name }
+    }
 }
