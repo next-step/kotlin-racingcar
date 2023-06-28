@@ -1,8 +1,11 @@
 package racingcar.service
 
 import io.kotest.core.spec.style.ShouldSpec
+import io.kotest.inspectors.forAll
 import io.kotest.inspectors.forAtLeastOne
 import io.kotest.matchers.shouldBe
+import racingcar.domain.Car
+import racingcar.service.dto.GameResultDto
 import racingcar.service.strategy.NumberNineGenerate
 import racingcar.service.strategy.NumberZeroGenerate
 import racingcar.service.strategy.RandomNumberZeroToNineGenerate
@@ -12,24 +15,24 @@ class RacingCarGameMachineTest : ShouldSpec({
     context("게임을 진행한다.") {
         should("일반적인 게임을 진행한다.") {
             val sut = RacingCarGameMachine(RandomNumberZeroToNineGenerate())
-            val expectedCarCount = 3
+            val expectedCarNames = listOf("pobi", "gump", "jason")
             val expectedTryCount = 5
 
-            val actual = sut.play(expectedCarCount, expectedTryCount)
+            val actual = sut.play(expectedCarNames, expectedTryCount)
 
             actual.size shouldBe expectedTryCount
         }
 
         should("전체 이동되는 게임을 진행한다.") {
             val sut = RacingCarGameMachine(NumberNineGenerate())
-            val expectedCarCount = 3
+            val expectedCarNames = listOf("pobi", "gump", "jason")
             val expectedTryCount = 5
 
-            val actual = sut.play(expectedCarCount, expectedTryCount)
+            val actual = sut.play(expectedCarNames, expectedTryCount)
 
             actual.size shouldBe expectedTryCount
             actual.forAtLeastOne { result ->
-                result.cars.forAtLeastOne { car ->
+                result.cars.forAll { car ->
                     car.position shouldBe 6
                 }
             }
@@ -37,17 +40,29 @@ class RacingCarGameMachineTest : ShouldSpec({
 
         should("전체 멈춰있는 게임을 진행한다.") {
             val sut = RacingCarGameMachine(NumberZeroGenerate())
-            val expectedCarCount = 3
+            val expectedCarNames = listOf("pobi", "gump", "jason")
             val expectedTryCount = 5
 
-            val actual = sut.play(expectedCarCount, expectedTryCount)
+            val actual = sut.play(expectedCarNames, expectedTryCount)
 
             actual.size shouldBe expectedTryCount
             actual.forAtLeastOne { result ->
-                result.cars.forAtLeastOne { car ->
+                result.cars.forAll { car ->
                     car.position shouldBe 1
                 }
             }
+        }
+    }
+
+    context("결과를 확인한다") {
+        should("우승자를 확인한다") {
+            val sut = RacingCarGameMachine(NumberZeroGenerate())
+            val expected = listOf(
+                GameResultDto(1, listOf(Car("pobi", 1), Car("gump", 1), Car("jason", 1))),
+                GameResultDto(2, listOf(Car("pobi", 1), Car("gump", 1), Car("jason", 1))),
+                GameResultDto(3, listOf(Car("pobi", 4), Car("gump", 3), Car("jason", 4))),
+            )
+            sut.getWinners(expected).map { it }.shouldBe(listOf("pobi", "jason"))
         }
     }
 })

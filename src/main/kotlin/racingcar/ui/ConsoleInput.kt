@@ -1,9 +1,9 @@
 package racingcar.ui
 
-class ConsoleInput {
-    fun getCarCount(): Int {
-        println("자동차 대수는 몇 대 인가요?")
-        return readln().toInt()
+object ConsoleInput {
+    fun getCarNames(): List<String> {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
+        return readln().split(",").map(String::trim)
     }
 
     fun getTryCount(): Int {
