@@ -14,8 +14,8 @@ class CarsTest : BehaviorSpec({
         `when`("생성되는 숫자가 다르면") {
             then("전진여부가 달라진다") {
                 cars.moveAll()
-                cars.first().getPosition() shouldBe Car.START_POSITION
-                cars.last().getPosition() shouldBe Car.START_POSITION + Car.STEP
+                cars.first().position shouldBe Car.START_POSITION
+                cars.last().position shouldBe Car.START_POSITION + Car.STEP
             }
         }
     }

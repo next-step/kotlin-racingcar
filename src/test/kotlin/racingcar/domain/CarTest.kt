@@ -17,14 +17,14 @@ class CarTest : BehaviorSpec({
         `when`("이름이 ${Car.MAX_NAME_LENGTH}자를 초과하면") {
             then("예외가 던져진다") {
                 shouldThrow<IllegalArgumentException> {
-                    Car("a".repeat(Car.MAX_NAME_LENGTH + 1), RandomNumberGenerator())
+                    Car("a".repeat(Car.MAX_NAME_LENGTH + 1), RandomNumberGenerator)
                 }
             }
         }
         `when`("이름이 비어있으면") {
             then("예외가 던져진다") {
                 shouldThrow<IllegalArgumentException> {
-                    Car(" ", RandomNumberGenerator())
+                    Car(" ", RandomNumberGenerator)
                 }
             }
         }
@@ -32,7 +32,7 @@ class CarTest : BehaviorSpec({
             `when`("이름이 ${size}글자면") {
                 then("Car가 생성된다") {
                     shouldNotThrow<Throwable> {
-                        Car("a".repeat(size), RandomNumberGenerator())
+                        Car("a".repeat(size), RandomNumberGenerator)
                     }
                 }
             }
@@ -61,7 +61,7 @@ class CarTest : BehaviorSpec({
             then("position을 ${Car.STEP}만큼 증가시킨다") {
                 val car = Car(TEST_CAR_NAME, OrderNumberGenerator(Car.MOVE_THRESHOLD))
                 car.move()
-                car.getPosition() shouldBe Car.START_POSITION + Car.STEP
+                car.position shouldBe Car.START_POSITION + Car.STEP
             }
         }
 
@@ -69,7 +69,7 @@ class CarTest : BehaviorSpec({
             then("position을 증가시키지 않는다") {
                 val car = Car(TEST_CAR_NAME, OrderNumberGenerator(Car.MOVE_THRESHOLD - 1))
                 car.move()
-                car.getPosition() shouldBe Car.START_POSITION
+                car.position shouldBe Car.START_POSITION
             }
         }
     }
