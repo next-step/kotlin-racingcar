@@ -8,11 +8,11 @@ object InputView {
 
     fun getCarNames(): List<String> {
         println(CAR_NAME_INPUT_MESSAGE)
-        return readlnOrNull()?.run { split(SEPARATOR) } ?: throw IllegalArgumentException(INPUT_ERROR_MESSAGE)
+        return requireNotNull(readlnOrNull()?.run { split(SEPARATOR) }) { INPUT_ERROR_MESSAGE }
     }
 
     fun getRoundCount(): Int {
         println(ROUND_COUNT_INPUT_MESSAGE)
-        return readlnOrNull()?.run { toInt() } ?: throw IllegalArgumentException(INPUT_ERROR_MESSAGE)
+        return requireNotNull(readlnOrNull()?.run { toInt() }) { INPUT_ERROR_MESSAGE }
     }
 }

@@ -3,12 +3,11 @@ package racingcar.domain
 import racingcar.util.NumberGenerator
 
 data class Car(val name: String, private val numberGenerator: NumberGenerator) {
-    private var position = START_POSITION
+    var position = START_POSITION
+        private set
 
     init {
-        if (name.trim().length !in MIN_NAME_LENGTH..MAX_NAME_LENGTH) {
-            throw IllegalArgumentException(NAME_ERROR_MESSAGE)
-        }
+        require(name.trim().length in MIN_NAME_LENGTH..MAX_NAME_LENGTH) { NAME_ERROR_MESSAGE }
     }
 
     fun move() {
@@ -18,8 +17,6 @@ data class Car(val name: String, private val numberGenerator: NumberGenerator) {
     }
 
     fun movable(): Boolean = numberGenerator.getNumber() >= MOVE_THRESHOLD
-
-    fun getPosition(): Int = position
 
     companion object {
         const val START_POSITION = 1

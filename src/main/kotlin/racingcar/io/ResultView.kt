@@ -21,7 +21,7 @@ object ResultView {
     }
 
     private fun printRow(car: Car) {
-        println("${car.name} : ${MOVE_MARK.repeat(car.getPosition())}")
+        println("${car.name} : ${MOVE_MARK.repeat(car.position)}")
     }
 
     fun printWinners(winners: List<Car>) {

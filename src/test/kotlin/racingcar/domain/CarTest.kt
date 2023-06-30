@@ -61,7 +61,7 @@ class CarTest : BehaviorSpec({
             then("position을 ${Car.STEP}만큼 증가시킨다") {
                 val car = Car(TEST_CAR_NAME, OrderNumberGenerator(Car.MOVE_THRESHOLD))
                 car.move()
-                car.getPosition() shouldBe Car.START_POSITION + Car.STEP
+                car.position shouldBe Car.START_POSITION + Car.STEP
             }
         }
 
@@ -69,7 +69,7 @@ class CarTest : BehaviorSpec({
             then("position을 증가시키지 않는다") {
                 val car = Car(TEST_CAR_NAME, OrderNumberGenerator(Car.MOVE_THRESHOLD - 1))
                 car.move()
-                car.getPosition() shouldBe Car.START_POSITION
+                car.position shouldBe Car.START_POSITION
             }
         }
     }
