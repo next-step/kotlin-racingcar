@@ -10,7 +10,7 @@ class RacingGameHistory {
     fun getWinnerNames(): List<String> {
         val lastRoundCarInfos = histories.last().carInfos
         val ranks = lastRoundCarInfos.sortedByDescending { it.position }
-        val maxPosition = ranks.first().position
+        val maxPosition = ranks.maxOf { it.position }
 
         return ranks.filter { it.position == maxPosition }
             .map { it.name }
