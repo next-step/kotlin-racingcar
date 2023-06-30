@@ -1,17 +1,13 @@
 package racingcar.domain
 
-class Cars(cars: Collection<Car> = emptyList()) {
+class Cars(cars: List<Car> = emptyList()) {
 
-    private val cars: Collection<Car> = cars.toList()
+    private val cars: List<Car> = cars.toList()
 
-    val names: Collection<CarName> get() = cars.map { it.carName }
+    val names: List<CarName> get() = cars.map { it.carName }
 
     fun move() {
         cars.forEach { it.move() }
-    }
-
-    fun getPathStrings(): List<String> {
-        return cars.map { "${it.carName} : ${it.getPathString()}" }
     }
 
     fun getWinners(): Cars {
@@ -22,4 +18,7 @@ class Cars(cars: Collection<Car> = emptyList()) {
     private fun getMaxPosition(): Int {
         return cars.maxOfOrNull { it.getPosition() } ?: 0
     }
+
+    fun forEach(function: (Car) -> Unit) = cars.forEach(function)
+
 }

@@ -10,12 +10,9 @@ class Car(val carName: CarName, private val moveStrategy: MoveStrategy) {
         }
     }
 
-    fun getPosition(): Int {
+    fun getPosition(): Int
+    {
         return position.getPosition()
-    }
-
-    fun getPathString(): String {
-        return position.getPath()
     }
 
     private fun moveForward() {
