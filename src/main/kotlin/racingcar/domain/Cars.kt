@@ -4,17 +4,11 @@ import racingcar.domain.movingstrategy.MovingStrategy
 
 class Cars(private val cars: List<Car>) {
 
-    fun moveAll() {
-        cars.forEach { car -> car.move() }
-    }
+    fun moveAll() = cars.forEach { car -> car.move() }
 
-    fun getPositions(): List<Int> {
-        return cars.map(Car::position)
-    }
+    fun getPositions() = cars.map(Car::position)
 
-    fun getCurrentInfos(): List<CarInfo> {
-        return cars.map(Car::getCurrentInfo)
-    }
+    fun getCurrentInfos() = cars.map(Car::getCurrentInfo)
 
     companion object {
         private const val NAME_SPLIT_DELIMITER = ","

@@ -19,11 +19,7 @@ class RacingGame(
         }
     }
 
-    fun getHistories(): List<RoundHistory> {
-        return gameHistory.getHistories()
-    }
+    fun getHistories() = gameHistory.getHistories()
 
-    fun getWinnerNames(): List<String> {
-        return gameHistory.getWinnerNames()
-    }
+    fun getWinnerNames() = gameHistory.getWinnerNames()
 }

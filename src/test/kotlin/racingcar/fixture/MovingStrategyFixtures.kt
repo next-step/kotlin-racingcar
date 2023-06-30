@@ -2,14 +2,6 @@ package racingcar.fixture
 
 import racingcar.domain.movingstrategy.MovingStrategy
 
-val ALWAYS_MOVING_STRATEGY = object : MovingStrategy {
-    override fun isMovable(): Boolean {
-        return true
-    }
-}
+val ALWAYS_MOVING_STRATEGY = MovingStrategy { true }
 
-val NEVER_MOVING_STRATEGY = object : MovingStrategy {
-    override fun isMovable(): Boolean {
-        return false
-    }
-}
+val NEVER_MOVING_STRATEGY = MovingStrategy { false }

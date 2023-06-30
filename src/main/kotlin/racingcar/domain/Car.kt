@@ -15,9 +15,7 @@ class Car(
         }
     }
 
-    fun getCurrentInfo(): CarInfo {
-        return CarInfo(name, position)
-    }
+    fun getCurrentInfo() = CarInfo(name, position)
 
     companion object {
         private const val DEFAULT_POSITION = 0

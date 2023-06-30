@@ -16,7 +16,5 @@ class RacingGameHistory {
             .map { it.name }
     }
 
-    fun getHistories(): List<RoundHistory> {
-        return histories.toList()
-    }
+    fun getHistories() = histories.toList()
 }
