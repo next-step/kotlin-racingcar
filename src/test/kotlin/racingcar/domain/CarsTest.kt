@@ -9,29 +9,33 @@ import racingcar.fixture.NEVER_MOVING_STRATEGY
 class CarsTest {
 
     @Test
-    fun `숫자를 받아 자동차 목록을 생성한다`() {
-        val cars = Cars.createCountOf(5, ALWAYS_MOVING_STRATEGY)
+    fun `자동차 이름 문자열을 받아 자동차 목록을 생성한다`() {
+        val names = listOf("a", "b", "c")
+
+        val cars = Cars.of(ALWAYS_MOVING_STRATEGY, names)
 
         cars.shouldNotBeNull()
     }
 
     @Test
     fun `성공하는 전략을 주입받아 자동차들을 이동한다`() {
-        val cars = Cars.createCountOf(5, ALWAYS_MOVING_STRATEGY)
+        val names = listOf("a", "b", "c")
+        val cars = Cars.of(ALWAYS_MOVING_STRATEGY, names)
         cars.moveAll()
 
         val positions = cars.getPositions()
 
-        positions.shouldBe(List(5) { 1 })
+        positions.shouldBe(List(3) { 1 })
     }
 
     @Test
     fun `실패하는 전략을 주입받아 자동차들을 정지한다`() {
-        val cars = Cars.createCountOf(5, NEVER_MOVING_STRATEGY)
+        val names = listOf("a", "b", "c")
+        val cars = Cars.of(NEVER_MOVING_STRATEGY, names)
         cars.moveAll()
 
         val positions = cars.getPositions()
 
-        positions.shouldBe(List(5) { 0 })
+        positions.shouldBe(List(3) { 0 })
     }
 }

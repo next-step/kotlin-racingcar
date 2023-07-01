@@ -4,17 +4,15 @@ import racingcar.domain.movingstrategy.MovingStrategy
 
 class Cars(private val cars: List<Car>) {
 
-    fun moveAll() {
-        cars.forEach { car -> car.move() }
-    }
+    fun moveAll() = cars.forEach { car -> car.move() }
 
-    fun getPositions(): List<Int> {
-        return cars.map(Car::position)
-    }
+    fun getPositions() = cars.map(Car::position)
+
+    fun getCurrentInfos() = cars.map(Car::getCurrentInfo)
 
     companion object {
-        fun createCountOf(count: Int, movingStrategy: MovingStrategy): Cars {
-            val cars = List(count) { Car(movingStrategy) }
+        fun of(movingStrategy: MovingStrategy, names: List<String>): Cars {
+            val cars = List(names.size) { Car(movingStrategy, names[it]) }
             return Cars(cars)
         }
     }

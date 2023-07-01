@@ -5,21 +5,23 @@ import racingcar.domain.movingstrategy.MovingStrategy
 
 class RacingGame(
     private val round: Int,
-    private val numberOfCars: Int,
+    private val carNames: String,
     private val movingStrategy: MovingStrategy = DefaultMovingStrategy(),
+    private val nameParser: NameParser = NameParser()
 ) {
-    private var histories: MutableList<RoundHistory> = mutableListOf()
+    private val gameHistory: RacingGameHistory = RacingGameHistory()
 
     fun run() {
-        val cars = Cars.createCountOf(numberOfCars, movingStrategy)
+        val parsedNames = nameParser.parse(carNames)
+        val cars = Cars.of(movingStrategy, parsedNames)
         repeat(round) { currentRound ->
             cars.moveAll()
-            val roundHistory = RoundHistory(currentRound, cars.getPositions())
-            histories.add(roundHistory)
+            val roundHistory = RoundHistory(currentRound, cars.getCurrentInfos())
+            gameHistory.addHistory(roundHistory)
         }
     }
 
-    fun getHistories(): List<RoundHistory> {
-        return histories.toList()
-    }
+    fun getHistories() = gameHistory.getHistories()
+
+    fun getWinnerNames() = gameHistory.getWinnerNames()
 }
