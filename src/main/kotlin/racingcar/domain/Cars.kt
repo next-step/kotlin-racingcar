@@ -2,8 +2,6 @@ package racingcar.domain
 
 class Cars(carNames: List<String>) {
     val cars: List<Car>
-    val size: Int
-        get() = cars.size
 
     init {
         this.cars = carNames.map { Car(it) }
