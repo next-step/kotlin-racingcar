@@ -2,7 +2,7 @@ package domain
 
 class Car(
     val name: String,
-    private val engine: Engine
+    private val engine: Engine = RacingCarEngine()
 ) {
 
     var position: Int = 0
