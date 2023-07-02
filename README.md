@@ -11,4 +11,4 @@
 [X] Winner 클래스와 RacingCars 서로 메시지를 주고 받기
 [?] tryMove의 함수와 getZeroToRange를 합쳐서 자동차의 엔진을 만들기
 [X] 레이싱 게임을 실행시키고 나서 우승자가 나오도록 변경하기
-[] RacingCars 테스트도 만들기
+[X] RacingCars 테스트도 만들기

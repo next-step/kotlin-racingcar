@@ -1,43 +1,14 @@
 package racingcar
 
-class RacingCars(input: String = "") {
-    val cars = mutableListOf<RacingCar>()
+import kotlin.random.Random
 
-    init {
-        val inputs = input.split(DELIMITER)
-        (inputs.indices).forEach {
-            addCar(RacingCar(inputs[it]))
-        }
-    }
+class RacingCars(val cars: MutableList<RacingCar> = mutableListOf()) {
 
-    fun addCar(car: RacingCar) {
-        cars.add(car)
-    }
-
-    fun getWinners(): List<RacingCar> {
-        val winners = mutableListOf<RacingCar>()
-        var winnerPosition = 0
-        cars.forEach {
-            when {
-                winnerPosition < it.position -> {
-                    winners.clear()
-                    winners.add(it)
-                    winnerPosition = it.position
-                }
-
-                winnerPosition == it.position -> {
-                    winners.add(it)
-                }
-            }
-        }
-        return winners
+    fun addCars(racingCars: List<RacingCar>) {
+        cars.addAll(racingCars)
     }
 
     fun runCars() {
-        cars.forEach { it.tryMove(getZeroToRange(RacingCar.MAXIMUM_POWER_NUMBER)) }
-    }
-
-    companion object {
-        const val DELIMITER = ","
+        cars.forEach { it.tryMove(Random.nextInt(RacingCar.MAXIMUM_POWER_NUMBER + 1)) }
     }
 }
