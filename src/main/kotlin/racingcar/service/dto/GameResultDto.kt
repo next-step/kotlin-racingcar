@@ -1,5 +1,5 @@
 package racingcar.service.dto
 
-import racingcar.domain.Car
+import racingcar.domain.Cars
 
-data class GameResultDto(val stage: Int, val cars: List<Car>)
+data class GameResultDto(val stage: Int, val cars: Cars)
