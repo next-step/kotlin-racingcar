@@ -1,5 +1,6 @@
 package domain
 
-fun interface Engine {
+interface Engine {
     fun getRandomNumber(): Int
+    fun isMoving(number: Int): Boolean
 }

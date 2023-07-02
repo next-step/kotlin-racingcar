@@ -7,7 +7,7 @@ import domain.Winner
 class ResultView {
 
     fun printRacingGame(retryCount: Int, carNames: String) {
-        val race = RacingGame.create(carNames) { (0..9).random() }
+        val race = RacingGame.create(carNames)
         repeat(retryCount) {
             printRacingResult(race.cars)
         }

@@ -1,7 +1,6 @@
 package controller
 
 import domain.Car
-import domain.Engine
 
 class RacingGame(
     val cars: List<Car>
@@ -14,9 +13,9 @@ class RacingGame(
     }
 
     companion object {
-        fun create(carNames: String, engine: Engine): RacingGame {
+        fun create(carNames: String): RacingGame {
             val cars = carNames.split(",").map {
-                Car(it, engine)
+                Car(it)
             }
             return RacingGame(cars)
         }
