@@ -19,10 +19,14 @@ class RacingGame(
         get() = winners.size
 
     fun start(tryNum: Int) {
-        repeat(tryNum) {
+        (1..tryNum).map {
             cars.moveAllCars(conditionGenerator)
-            ResultView().printResult(cars.namesAndPositions)
-        }
+            ResultView().makeResultString(cars.namesAndPositions)
+        }.joinToString("\n\n")
+            .run {
+                println(this + "\n")
+            }
+
         ResultView().printWinners(winners.map { it.carName.name })
     }
 }
