@@ -1,17 +1,23 @@
 package racing.model
 
-class Racing(carCount: Int, val tryGameCount: Int) {
-    var cars: List<Car> =
-        List(carCount) { Car() }
+class Racing(carNames: List<String>, val tryGameCount: Int) {
+    var cars: MutableList<Car> = mutableListOf()
+
+    init {
+        for (carName in carNames) {
+            cars.add(Car(carName))
+        }
+    }
+
     fun play() {
         repeat(tryGameCount) {
             cars.forEach { car ->
                 val moving = car.run()
-                println(car.CAR_SYMBOL.repeat(moving))
+                print("${car.name} : ")
+                println(Car.CAR_SYMBOL.repeat(moving))
             }
             println()
         }
         println()
     }
-
 }

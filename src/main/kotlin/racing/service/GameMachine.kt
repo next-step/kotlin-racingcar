@@ -1,21 +1,18 @@
 package racing.service
 
+import racing.model.Car
 import racing.model.Racing
 
 object GameMachine {
-    private const val RESULT_SENTENCE = "실행 결과"
-    fun askCounting(question: String): Int {
-        println(question)
-        return readln().orEmpty().toInt()
+
+    fun getWinningCarName(racing: Racing): List<Car> {
+        val maxPosition = racing.cars.maxOf { it.position }
+        return racing.cars.filter { it.position == maxPosition }.toMutableList()
     }
 
-    fun printResult(carCount: Int, tryGameCount: Int) {
-        println(RESULT_SENTENCE)
-        play(carCount, tryGameCount)
-    }
-
-    fun play(carCount: Int, tryGameCount: Int) {
-        val racing = Racing(carCount, tryGameCount)
+    fun play(carNames: String, tryGameCount: Int): Racing {
+        val racing = Racing(carNames.split(","), tryGameCount)
         racing.play()
+        return racing
     }
 }
