@@ -11,15 +11,3 @@ class RandomNumberZeroToNineGenerate : NumberGenerateStrategy {
         return Random.nextInt(10)
     }
 }
-
-class NumberZeroGenerate : NumberGenerateStrategy {
-    override fun generate(): Int {
-        return 0
-    }
-}
-
-class NumberNineGenerate : NumberGenerateStrategy {
-    override fun generate(): Int {
-        return 9
-    }
-}

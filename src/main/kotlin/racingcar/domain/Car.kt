@@ -13,7 +13,7 @@ data class Car(
 
     fun move(point: Int): Car {
         if (point >= 4) {
-            return Car(this.name, position + 1)
+            return copy(position = position + 1)
         }
         return this
     }
