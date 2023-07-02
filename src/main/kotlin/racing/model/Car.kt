@@ -1,11 +1,12 @@
 package racing.model
 
 class Car {
-    private var moving: Int = 0
+    val CAR_SYMBOL = "-"
+    private var position: Int = 0
     fun run(): Int {
         val randomNumber: Int = (RANDOM_MIN_NUMBER..RANDOM_MAX_NUMBER).random()
-        if (randomNumber >= LIMIT_ADVANCE) moving++
-        return moving
+        if (randomNumber >= LIMIT_ADVANCE) position++
+        return position
     }
 
     companion object {
