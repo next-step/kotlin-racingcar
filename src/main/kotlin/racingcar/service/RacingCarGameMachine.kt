@@ -15,7 +15,7 @@ class RacingCarGameMachine(private val numberGenerate: NumberGenerateStrategy) {
     }
 
     fun getWinners(gameResults: List<GameResultDto>): List<String> {
-        val lastStage = gameResults.sortedBy { it.stage }.last()
+        val lastStage = gameResults.maxByOrNull { it.stage } ?: throw IllegalStateException("게임 결과가 없습니다.")
         val maxPosition = lastStage.cars.maxOfOrNull { it.position } ?: 0
         return lastStage.cars.filter { it.position == maxPosition }.map { it.name }
     }

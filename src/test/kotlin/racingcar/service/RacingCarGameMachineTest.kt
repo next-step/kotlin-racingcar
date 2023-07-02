@@ -6,7 +6,6 @@ import io.kotest.inspectors.forAtLeastOne
 import io.kotest.matchers.shouldBe
 import racingcar.domain.Car
 import racingcar.service.dto.GameResultDto
-import racingcar.service.strategy.NumberNineGenerate
 import racingcar.service.strategy.NumberZeroGenerate
 import racingcar.service.strategy.RandomNumberZeroToNineGenerate
 
@@ -24,7 +23,7 @@ class RacingCarGameMachineTest : ShouldSpec({
         }
 
         should("전체 이동되는 게임을 진행한다.") {
-            val sut = RacingCarGameMachine(NumberNineGenerate())
+            val sut = RacingCarGameMachine { 9 }
             val expectedCarNames = listOf("pobi", "gump", "jason")
             val expectedTryCount = 5
 
@@ -39,7 +38,7 @@ class RacingCarGameMachineTest : ShouldSpec({
         }
 
         should("전체 멈춰있는 게임을 진행한다.") {
-            val sut = RacingCarGameMachine(NumberZeroGenerate())
+            val sut = RacingCarGameMachine { 0 }
             val expectedCarNames = listOf("pobi", "gump", "jason")
             val expectedTryCount = 5
 
