@@ -1,11 +1,7 @@
 package racingcar.domain
 
 class Cars(carNames: List<String>) {
-    val cars: List<Car>
-
-    init {
-        this.cars = carNames.map { Car(it) }
-    }
+    val cars: List<Car> = carNames.map { Car(it) }
 
     val namesAndPositions: List<Pair<String, Int>>
         get() {
