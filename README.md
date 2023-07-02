@@ -9,6 +9,6 @@
 [X] 우승자는 한 명 이상일 수 있다.
 [X] Winner class로 분리하여 RacingCars class과 역할과 책임을 나누기
 [X] Winner 클래스와 RacingCars 서로 메시지를 주고 받기
-[] tryMove의 함수와 getZeroToRange를 합쳐서 자동차의 엔진을 만들기
+[?] tryMove의 함수와 getZeroToRange를 합쳐서 자동차의 엔진을 만들기
 [] 레이싱 게임을 실행시키고 나서 우승자가 나오도록 변경하기
 [] RacingCars 테스트도 만들기
