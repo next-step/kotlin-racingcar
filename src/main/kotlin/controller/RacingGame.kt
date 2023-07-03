@@ -1,22 +1,21 @@
-package domain
+package controller
 
-import util.RandomNumber
+import domain.Car
 
 class RacingGame(
     val cars: List<Car>
 ) {
 
-    fun start(): List<Car> {
+    fun start() {
         cars.forEach {
             it.move()
         }
-        return cars
     }
 
     companion object {
-        fun create(carNames: String, randomNumber: RandomNumber): RacingGame {
+        fun create(carNames: String): RacingGame {
             val cars = carNames.split(",").map {
-                Car(it, randomNumber)
+                Car(it)
             }
             return RacingGame(cars)
         }

@@ -1,4 +1,4 @@
-package presentation.view
+package view
 
 class InputView {
 
