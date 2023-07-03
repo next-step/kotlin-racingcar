@@ -2,6 +2,8 @@ package racingcar.domain
 
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
+import racingcar.domain.car.CarInfo
+import racingcar.domain.history.RoundHistory
 import racingcar.fixture.ALWAYS_MOVING_STRATEGY
 import racingcar.fixture.NEVER_MOVING_STRATEGY
 

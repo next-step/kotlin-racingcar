@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.history
 
 class RacingGameHistory {
     private val histories: MutableList<RoundHistory> = mutableListOf()

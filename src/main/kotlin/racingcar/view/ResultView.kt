@@ -1,7 +1,7 @@
 package racingcar.view
 
-import racingcar.domain.CarInfo
-import racingcar.domain.RoundHistory
+import racingcar.domain.car.CarInfo
+import racingcar.domain.history.RoundHistory
 
 class ResultView {
     companion object {

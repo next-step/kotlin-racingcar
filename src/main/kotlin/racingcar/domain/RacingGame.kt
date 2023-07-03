@@ -1,5 +1,8 @@
 package racingcar.domain
 
+import racingcar.domain.car.Cars
+import racingcar.domain.history.RacingGameHistory
+import racingcar.domain.history.RoundHistory
 import racingcar.domain.movingstrategy.DefaultMovingStrategy
 import racingcar.domain.movingstrategy.MovingStrategy
 

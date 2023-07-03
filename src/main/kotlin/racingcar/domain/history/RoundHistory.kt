@@ -1,4 +1,6 @@
-package racingcar.domain
+package racingcar.domain.history
+
+import racingcar.domain.car.CarInfo
 
 data class RoundHistory(
     val round: Int,

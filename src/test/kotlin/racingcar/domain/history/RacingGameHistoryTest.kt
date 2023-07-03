@@ -1,7 +1,8 @@
-package racingcar.domain
+package racingcar.domain.history
 
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
+import racingcar.domain.car.CarInfo
 
 class RacingGameHistoryTest {
 
