@@ -7,8 +7,10 @@ class Car(name: String) {
     var carName: CarName = CarName(name)
         private set
 
+    var isWinner: Boolean = false
+
     fun move(condition: Int) {
-        if (condition >= MOVE_CONDITION) {
+        if (isWinner || condition >= MOVE_CONDITION) {
             position++
         }
     }
@@ -19,9 +21,7 @@ class Car(name: String) {
     }
 }
 
-class CarName(name: String) {
-    var name: String = name
-        private set
+class CarName(val name: String) {
 
     init {
         require(name.length <= MAX_LENGTH) { "자동차 이름은 5자를 초과할 수 없습니다." }

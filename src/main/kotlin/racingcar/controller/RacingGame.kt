@@ -10,6 +10,9 @@ class RacingGame(
     carNames: List<String>,
     private val conditionGenerator: ConditionGenerator = RandomConditionGenerator(),
 ) {
+    val winnerNames: List<String>
+        get() = winners.map { it.carName.name }
+
     private val cars: Cars = Cars(carNames)
 
     private val winners: List<Car>
@@ -28,5 +31,9 @@ class RacingGame(
             }
 
         ResultView().printWinners(winners.map { it.carName.name })
+    }
+
+    fun makeWinner(carName: String) {
+        cars.makeWinner(carName)
     }
 }

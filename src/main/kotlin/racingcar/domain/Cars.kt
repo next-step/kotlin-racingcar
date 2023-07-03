@@ -25,4 +25,8 @@ class Cars(carNames: List<String>) {
             car.move(condition)
         }
     }
+
+    fun makeWinner(carName: String) {
+        cars.find { it.carName.name == carName }?.isWinner = true
+    }
 }
