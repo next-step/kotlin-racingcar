@@ -9,6 +9,9 @@ class Car(
     var position: Int = DEFAULT_POSITION
         private set
 
+    val currentInfo: CarInfo
+        get() = CarInfo(name.value, position)
+
     constructor(movingStrategy: MovingStrategy, name: String) : this(movingStrategy, CarName(name))
 
     fun move() {
@@ -16,8 +19,6 @@ class Car(
             position++
         }
     }
-
-    fun getCurrentInfo() = CarInfo(name.value, position)
 
     companion object {
         private const val DEFAULT_POSITION = 0

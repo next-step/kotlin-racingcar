@@ -52,6 +52,6 @@ class CarTest {
     fun `현재 자동차 정보를 요청하면 이름과 포지션을 반환한다`() {
         val car = Car(ALWAYS_MOVING_STRATEGY, "hello")
 
-        car.getCurrentInfo() shouldBe CarInfo("hello", 0)
+        car.currentInfo shouldBe CarInfo("hello", 0)
     }
 }

@@ -8,7 +8,7 @@ class Cars(private val cars: List<Car>) {
 
     fun getPositions() = cars.map(Car::position)
 
-    fun getCurrentInfos() = cars.map(Car::getCurrentInfo)
+    fun getCurrentInfos() = cars.map(Car::currentInfo)
 
     companion object {
         fun of(movingStrategy: MovingStrategy, names: List<String>): Cars {
