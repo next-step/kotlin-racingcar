@@ -1,5 +1,6 @@
 package racingcar.domain
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import racingcar.domain.car.CarInfo
@@ -8,6 +9,11 @@ import racingcar.fixture.ALWAYS_MOVING_STRATEGY
 import racingcar.fixture.NEVER_MOVING_STRATEGY
 
 class RacingGameTest {
+
+    @Test
+    fun `라운드가 1보다 작은 레이싱 게임을 생성하면 예외가 발생한다`() {
+        shouldThrow<IllegalArgumentException> { RacingGame(0, "a,b,c") }
+    }
 
     @Test
     fun `레이싱 게임을 실행하면 라운드별로 결과를 기록한다`() {
