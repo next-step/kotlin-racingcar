@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.car
 
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
@@ -25,7 +25,7 @@ class CarsTest {
 
         val positions = cars.getPositions()
 
-        positions.shouldBe(List(3) { 1 })
+        positions.shouldBe(List(3) { Position(1) })
     }
 
     @Test
@@ -36,6 +36,6 @@ class CarsTest {
 
         val positions = cars.getPositions()
 
-        positions.shouldBe(List(3) { 0 })
+        positions.shouldBe(List(3) { Position(0) })
     }
 }

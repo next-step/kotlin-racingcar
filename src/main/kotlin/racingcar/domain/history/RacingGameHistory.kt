@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.history
 
 class RacingGameHistory {
     private val histories: MutableList<RoundHistory> = mutableListOf()
@@ -8,11 +8,8 @@ class RacingGameHistory {
     }
 
     fun getWinnerNames(): List<String> {
-        val lastRoundCarInfos = histories.last().carInfos
-        val ranks = lastRoundCarInfos.sortedByDescending { it.position }
-        val maxPosition = ranks.maxOf { it.position }
-
-        return ranks.filter { it.position == maxPosition }
+        return histories.last()
+            .maxPositionCarInfos()
             .map { it.name }
     }
 

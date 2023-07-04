@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.car
 
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
@@ -15,7 +15,7 @@ class CarTest {
     fun `자동차의 기본 위치는 0이다`() {
         val car = Car(ALWAYS_MOVING_STRATEGY, "hello")
 
-        car.position shouldBe 0
+        car.position.value shouldBe 0
     }
 
     @Test
@@ -24,7 +24,7 @@ class CarTest {
 
         car.move()
 
-        car.position shouldBe 1
+        car.position.value shouldBe 1
     }
 
     @Test
@@ -33,7 +33,7 @@ class CarTest {
 
         car.move()
 
-        car.position shouldBe 0
+        car.position.value shouldBe 0
     }
 
     @ParameterizedTest
@@ -52,6 +52,6 @@ class CarTest {
     fun `현재 자동차 정보를 요청하면 이름과 포지션을 반환한다`() {
         val car = Car(ALWAYS_MOVING_STRATEGY, "hello")
 
-        car.getCurrentInfo() shouldBe CarInfo("hello", 0)
+        car.currentInfo shouldBe CarInfo("hello", 0)
     }
 }
