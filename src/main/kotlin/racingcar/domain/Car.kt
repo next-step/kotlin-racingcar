@@ -1,15 +1,19 @@
 package racingcar.domain
 
-class Car(name: String) {
+class Car(carName: CarName, private val conditionGenerator: ConditionGenerator = RandomConditionGenerator()) {
+    constructor(name: String) : this(CarName(name))
+    constructor(name: String, conditionGenerator: ConditionGenerator) : this(CarName(name), conditionGenerator)
+
     var position: Int = DEFAULT_POSITION
         private set
 
-    var carName: CarName = CarName(name)
+    var carName: CarName = CarName(carName.name)
         private set
 
-    var isWinner: Boolean = false
+    private var isWinner: Boolean = false
 
-    fun move(condition: Int) {
+    fun move() {
+        val condition = conditionGenerator.generate()
         if (isWinner || condition >= MOVE_CONDITION) {
             position++
         }
@@ -18,16 +22,5 @@ class Car(name: String) {
     companion object {
         private const val DEFAULT_POSITION: Int = 0
         private const val MOVE_CONDITION: Int = 4
-    }
-}
-
-class CarName(val name: String) {
-
-    init {
-        require(name.length <= MAX_LENGTH) { "자동차 이름은 5자를 초과할 수 없습니다." }
-    }
-
-    companion object {
-        private const val MAX_LENGTH: Int = 5
     }
 }

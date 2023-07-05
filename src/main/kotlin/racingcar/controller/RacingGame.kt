@@ -2,19 +2,11 @@ package racingcar.controller
 
 import racingcar.domain.Car
 import racingcar.domain.Cars
-import racingcar.domain.ConditionGenerator
-import racingcar.domain.RandomConditionGenerator
 import racingcar.view.ResultView
 
 class RacingGame(
-    carNames: List<String>,
-    private val conditionGenerator: ConditionGenerator = RandomConditionGenerator(),
+    private val cars: Cars,
 ) {
-    val winnerNames: List<String>
-        get() = winners.map { it.carName.name }
-
-    private val cars: Cars = Cars(carNames)
-
     private val winners: List<Car>
         get() = cars.winners
 
@@ -23,7 +15,7 @@ class RacingGame(
 
     fun start(tryNum: Int) {
         (1..tryNum).map {
-            cars.moveAllCars(conditionGenerator)
+            cars.moveAllCars()
             ResultView().makeResultString(cars.namesAndPositions)
         }.joinToString("\n\n")
             .run {
@@ -31,9 +23,5 @@ class RacingGame(
             }
 
         ResultView().printWinners(winners.map { it.carName.name })
-    }
-
-    fun makeWinner(carName: String) {
-        cars.makeWinner(carName)
     }
 }

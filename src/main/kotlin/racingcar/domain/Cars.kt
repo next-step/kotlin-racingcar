@@ -1,7 +1,6 @@
 package racingcar.domain
 
-class Cars(carNames: List<String>) {
-    val cars: List<Car> = carNames.map { Car(it) }
+class Cars(val cars: List<Car>) {
 
     val namesAndPositions: List<Pair<String, Int>>
         get() {
@@ -14,19 +13,13 @@ class Cars(carNames: List<String>) {
             return cars.filter { it.position == maxPosition }
         }
 
-    fun moveAllCars(conditionGenerator: ConditionGenerator) {
+    fun moveAllCars() {
         for (car in cars) {
-            moveCar(conditionGenerator, car)
+            moveCar(car)
         }
     }
 
-    private fun moveCar(conditionGenerator: ConditionGenerator, car: Car) {
-        conditionGenerator.generate().let { condition ->
-            car.move(condition)
-        }
-    }
-
-    fun makeWinner(carName: String) {
-        cars.find { it.carName.name == carName }?.isWinner = true
+    private fun moveCar(car: Car) {
+        car.move()
     }
 }
