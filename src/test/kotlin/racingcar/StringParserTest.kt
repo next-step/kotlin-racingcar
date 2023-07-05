@@ -10,7 +10,7 @@ class StringParserTest : BehaviorSpec({
         When("자동차 이름이 n개와 쉼표(,)로 구성된 문자열 입력이 들어온다.") {
             val racingCars = StringParser.parseRacingCarString("pobi,crong,honux")
             Then("각각의 이름을 가진 자동차 n개가 생성된다.") {
-                racingCars shouldContainAll listOf(RacingCar("pobi"), RacingCar("crong"), RacingCar("honux"))
+                racingCars shouldContainAll listOf(RacingCar.of("pobi"), RacingCar.of("crong"), RacingCar.of("honux"))
             }
         }
     }

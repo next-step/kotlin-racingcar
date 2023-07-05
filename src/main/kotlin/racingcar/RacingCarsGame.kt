@@ -2,9 +2,9 @@ package racingcar
 
 object RacingCarsGame {
     fun startGame(racingCars: RacingCars, numberOfGameRun: Int) {
-        for (i in 0 until numberOfGameRun) {
+        repeat(numberOfGameRun) {
             racingCars.runCars()
-            RacingCarView.printCarsPosition(racingCars.getCars())
+            RacingCarView.printCarsPosition(racingCars.cars)
         }
     }
 }
@@ -18,6 +18,6 @@ fun main() {
     val attemptNumber = StringParser.getIntValue(readln())
     RacingCarView.printResultView()
     RacingCarsGame.startGame(racingCars, attemptNumber)
-    val winners = Winners(racingCars.getCars())
+    val winners = Winners(racingCars.cars)
     RacingCarView.printWinnerCars(winners.cars)
 }

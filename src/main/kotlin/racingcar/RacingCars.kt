@@ -1,14 +1,9 @@
 package racingcar
 
-import kotlin.random.Random
-
-class RacingCars private constructor(private val cars: List<RacingCar>) {
-    fun getCars(): List<RacingCar> {
-        return cars
-    }
+class RacingCars private constructor(val cars: List<RacingCar>) {
 
     fun runCars() {
-        cars.forEach { it.tryMove(Random.nextInt(RacingCar.MAXIMUM_POWER_NUMBER + 1)) }
+        cars.forEach { it.tryMove() }
     }
 
     companion object {
