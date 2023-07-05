@@ -10,7 +10,7 @@ class OperatorTest : FunSpec({
             Pair(2, 3) to 5,
             Pair(1, 1) to 2,
         ) { (nums, expected) ->
-            Operator.Plus.calculate(nums.first, nums.second) shouldBe expected
+            Operator.PLUS.calculate(nums.first, nums.second) shouldBe expected
         }
     }
 
@@ -19,7 +19,7 @@ class OperatorTest : FunSpec({
             Pair(2, 3) to -1,
             Pair(1, 1) to 0,
         ) { (nums, expected) ->
-            Operator.Minus.calculate(nums.first, nums.second) shouldBe expected
+            Operator.MINUS.calculate(nums.first, nums.second) shouldBe expected
         }
     }
 
@@ -28,7 +28,7 @@ class OperatorTest : FunSpec({
             Pair(2, 3) to 6,
             Pair(1, 1) to 1,
         ) { (nums, expected) ->
-            Operator.Multiply.calculate(nums.first, nums.second) shouldBe expected
+            Operator.MULTIPLY.calculate(nums.first, nums.second) shouldBe expected
         }
     }
 
@@ -37,7 +37,7 @@ class OperatorTest : FunSpec({
             Pair(6, 3) to 2,
             Pair(1, 1) to 1,
         ) { (nums, expected) ->
-            Operator.Divide.calculate(nums.first, nums.second) shouldBe expected
+            Operator.DIVIDE.calculate(nums.first, nums.second) shouldBe expected
         }
     }
 })

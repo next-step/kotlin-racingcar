@@ -16,34 +16,22 @@ class StringCalculator {
     }
 }
 
-sealed class Operator {
-    abstract fun calculate(left: Int, right: Int): Int
+enum class Operator(
+    private val value: String,
+    private val calculator: (Int, Int) -> Int,
+) {
+    PLUS("+", { left, right -> left + right }),
+    MINUS("-", { left, right -> left - right }),
+    MULTIPLY("*", { left, right -> left * right }),
+    DIVIDE("/", { left, right -> left / right }),
+    ;
 
-    object Plus : Operator() {
-        override fun calculate(left: Int, right: Int): Int = left + right
-    }
-
-    object Minus : Operator() {
-        override fun calculate(left: Int, right: Int): Int = left - right
-    }
-
-    object Multiply : Operator() {
-        override fun calculate(left: Int, right: Int): Int = left * right
-    }
-
-    object Divide : Operator() {
-        override fun calculate(left: Int, right: Int): Int = left / right
-    }
+    fun calculate(left: Int, right: Int): Int = calculator(left, right)
 
     companion object {
         fun getOperator(operator: String): Operator {
-            return when (operator) {
-                "+" -> Plus
-                "-" -> Minus
-                "*" -> Multiply
-                "/" -> Divide
-                else -> throw IllegalArgumentException("${operator}는 지원하지 않는 연산자입니다.")
-            }
+            return values().find { it.value == operator }
+                ?: throw IllegalArgumentException("${operator}는 지원하지 않는 연산자입니다.")
         }
     }
 }
