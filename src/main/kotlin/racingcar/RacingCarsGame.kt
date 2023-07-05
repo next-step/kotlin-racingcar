@@ -1,29 +1,23 @@
 package racingcar
 
-import racingcar.RacingCar.Companion.MINIMUM_POWER_NUMBER
+object RacingCarsGame {
+    fun startGame(racingCars: RacingCars, numberOfGameRun: Int) {
+        for (i in 0 until numberOfGameRun) {
+            racingCars.runCars()
+            RacingCarView.printCarsPosition(racingCars.getCars())
+        }
+    }
+}
 
 fun main() {
     RacingCarView.printCarsInputView()
     val inputString = readln()
     val cars = StringParser.parseRacingCarString(inputString)
-    val racingCars = RacingCars()
-    racingCars.addCars(cars)
+    val racingCars = RacingCars.of(cars)
     RacingCarView.printAttemptInputView()
-    val attemptNumber = getIntValue(readln())
+    val attemptNumber = StringParser.getIntValue(readln())
     RacingCarView.printResultView()
-    startGame(racingCars, attemptNumber)
-    val winners = Winners(racingCars.cars)
+    RacingCarsGame.startGame(racingCars, attemptNumber)
+    val winners = Winners(racingCars.getCars())
     RacingCarView.printWinnerCars(winners.cars)
-}
-
-fun startGame(racingCars: RacingCars, numberOfGameRun: Int) {
-    for (i in 0 until numberOfGameRun) {
-        racingCars.runCars()
-        RacingCarView.printCarsPosition(racingCars.cars)
-    }
-}
-
-fun getIntValue(input: String): Int {
-    require(input.isNotBlank() && (input.toInt() > MINIMUM_POWER_NUMBER)) { "0 보다 큰 숫자값을 입력하세요" }
-    return input.toInt()
 }
