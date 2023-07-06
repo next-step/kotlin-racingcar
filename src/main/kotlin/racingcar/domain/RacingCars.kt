@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class RacingCars private constructor(val cars: List<RacingCar>) {
 
