@@ -12,3 +12,7 @@
 [?] tryMove의 함수와 getZeroToRange를 합쳐서 자동차의 엔진을 만들기
 [X] 레이싱 게임을 실행시키고 나서 우승자가 나오도록 변경하기
 [X] RacingCars 테스트도 만들기
+
+Step5
+[] Modal View Controller 패키지 나누기
+[X] RacingCarEngine 구현체 구현하기
