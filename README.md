@@ -14,5 +14,5 @@
 [X] RacingCars 테스트도 만들기
 
 Step5
-[] Modal View Controller 패키지 나누기
+[X] Modal View Controller 패키지 나누기
 [X] RacingCarEngine 구현체 구현하기
