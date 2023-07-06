@@ -20,7 +20,7 @@ class RacingCarTest : BehaviorSpec({
     Given("자동차는 들어오는 값이 4이상일 경우 이동할 수 있다") {
         When("주어진 값이 4이상일떄") {
             listOf(4, 5, 6, 7, 8, 9).forAll {
-                val racingCar = RacingCar.of("자동차")
+                val racingCar = RacingCar("자동차") { it }
                 racingCar.tryMove()
                 Then("자동차의 위치값이 1증가한다.") {
                     racingCar.position shouldBe 1
@@ -30,7 +30,7 @@ class RacingCarTest : BehaviorSpec({
 
         When("주어진 값이 4미만일떄") {
             listOf(0, 1, 2, 3).forAll {
-                val racingCar = RacingCar.of("자동차")
+                val racingCar = RacingCar("자동차") { it }
                 racingCar.tryMove()
                 Then("자동차의 위치값이 증가하지 않는다.") {
                     racingCar.position shouldBe 0

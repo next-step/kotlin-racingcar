@@ -7,7 +7,7 @@ data class RacingCar(val name: String, var position: Int = DEFAULT_POSITION_NUMB
     }
 
     fun tryMove() {
-        if (engine.power() > FORWARD_POWER_NUMBER) position++
+        if (engine.power() >= FORWARD_POWER_NUMBER) position++
     }
 
     companion object {
