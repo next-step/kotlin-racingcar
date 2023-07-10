@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.domain.RacingCar
+import racingcar.domain.car.RacingCar
 
 object RacingCarView {
     fun printCarsInputView() {

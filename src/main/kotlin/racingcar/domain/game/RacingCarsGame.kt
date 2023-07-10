@@ -1,7 +1,7 @@
-package racingcar.controller
+package racingcar.domain.game
 
-import racingcar.domain.RacingCars
-import racingcar.domain.Winners
+import racingcar.domain.car.RacingCars
+import racingcar.domain.car.Winners
 import racingcar.util.StringParser
 import racingcar.view.RacingCarView
 

@@ -1,8 +1,10 @@
-package racingcar.domain
+package racingcar.domain.game
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import racingcar.controller.RacingCarsGame
+import racingcar.domain.car.RacingCar
+import racingcar.domain.car.RacingCars
+import racingcar.domain.car.Winners
 
 class RacingCarGameTest : BehaviorSpec({
 

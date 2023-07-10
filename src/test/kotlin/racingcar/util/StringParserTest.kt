@@ -4,7 +4,7 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.collections.shouldContainAll
-import racingcar.domain.RacingCar
+import racingcar.domain.car.RacingCar
 
 class StringParserTest : BehaviorSpec({
     Given("자동차 이름은 쉼표(,)를 기준으로 구분한다.") {
