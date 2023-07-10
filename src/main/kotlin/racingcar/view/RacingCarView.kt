@@ -1,4 +1,6 @@
-package racingcar
+package racingcar.view
+
+import racingcar.domain.car.RacingCar
 
 object RacingCarView {
     fun printCarsInputView() {
@@ -15,7 +17,7 @@ object RacingCarView {
 
     fun printCarsPosition(cars: List<RacingCar>) {
         cars.forEach {
-            it.printPosition()
+            printCar(it)
         }
         println()
     }
@@ -24,12 +26,12 @@ object RacingCarView {
         val winningCars = racingCars.joinToString(", ") { it.name }
         println(winningCars + "가 최종 우승했습니다.")
     }
-}
 
-fun RacingCar.printPosition() {
-    print("$name : ")
-    for (i in 0 until position) {
-        print("-")
+    private fun printCar(car: RacingCar) {
+        print("${car.name} : ")
+        repeat(car.position) {
+            print("-")
+        }
+        println()
     }
-    println()
 }

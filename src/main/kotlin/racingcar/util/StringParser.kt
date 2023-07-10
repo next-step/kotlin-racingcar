@@ -1,4 +1,6 @@
-package racingcar
+package racingcar.util
+
+import racingcar.domain.car.RacingCar
 
 object StringParser {
     fun parseRacingCarString(input: String): List<RacingCar> {

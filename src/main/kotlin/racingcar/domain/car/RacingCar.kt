@@ -1,6 +1,4 @@
-package racingcar
-
-import kotlin.random.Random
+package racingcar.domain.car
 
 data class RacingCar(val name: String, var position: Int = DEFAULT_POSITION_NUMBER, private val engine: Engine) {
 
@@ -9,18 +7,17 @@ data class RacingCar(val name: String, var position: Int = DEFAULT_POSITION_NUMB
     }
 
     fun tryMove() {
-        if (engine.power() > FORWARD_POWER_NUMBER) position++
+        if (engine.power() >= FORWARD_POWER_NUMBER) position++
     }
 
     companion object {
         const val MINIMUM_POWER_NUMBER = 0
-        private const val MAXIMUM_POWER_NUMBER = 9
         const val FORWARD_POWER_NUMBER = 4
         const val DEFAULT_POSITION_NUMBER = 0
         private const val MAXIMUM_NAME_LENGTH = 5
 
         fun of(name: String, position: Int = 0): RacingCar {
-            return RacingCar(name, position) { Random.nextInt(MAXIMUM_POWER_NUMBER) + 1 }
+            return RacingCar(name, position, RacingCarEngine())
         }
     }
 }

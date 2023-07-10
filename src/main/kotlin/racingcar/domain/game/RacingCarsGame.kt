@@ -1,4 +1,9 @@
-package racingcar
+package racingcar.domain.game
+
+import racingcar.domain.car.RacingCars
+import racingcar.domain.car.Winners
+import racingcar.util.StringParser
+import racingcar.view.RacingCarView
 
 object RacingCarsGame {
     fun startGame(racingCars: RacingCars, numberOfGameRun: Int) {
