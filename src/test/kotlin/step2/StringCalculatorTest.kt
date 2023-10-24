@@ -80,4 +80,14 @@ class StringCalculatorTest {
             // then
             .isInstanceOf(IllegalArgumentException::class.java)
     }
+
+    @ParameterizedTest
+    @CsvSource(value = ["2 + 3 + 4:9", "3 + 5 + 7:15", "1 + 3 + 5:9"], delimiter = ':')
+    fun `덧셈 2개 이상`(input: String, expect: Int) {
+        // when
+        val actual = StringCalculator.calculate(input)
+
+        // then
+        assertThat(actual).isEqualTo(expect)
+    }
 }
