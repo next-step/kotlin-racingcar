@@ -37,15 +37,13 @@ class StringCalculator {
         private fun getNextValue(it: List<String>, operatorIndex: Int) = it[operatorIndex + OPERAND_OFFSET].toInt()
 
         private fun applyOperation(currentResult: Int, nextValue: Int, operation: String): Int {
-            var result = currentResult
-            when (operation) {
-                PLUS -> result += nextValue
-                MINUS -> result -= nextValue
-                MULTIPLY -> result *= nextValue
-                DIVIDE -> result /= nextValue
+            return when (operation) {
+                PLUS -> currentResult + nextValue
+                MINUS -> currentResult - nextValue
+                MULTIPLY -> currentResult * nextValue
+                DIVIDE -> currentResult / nextValue
                 else -> throw IllegalArgumentException(UNSUPPORTED_OPERATOR_MESSAGE)
             }
-            return result
         }
     }
 }
