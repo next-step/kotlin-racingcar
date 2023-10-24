@@ -35,4 +35,14 @@ class StringCalculatorTest {
         // then
         assertThat(actual).isEqualTo(expect)
     }
+
+    @ParameterizedTest
+    @CsvSource(value = ["2 / 3:0", "3 / 5:0", "1 / 3:0"], delimiter = ':')
+    fun `나눗셈`(input: String, expect: Int) {
+        // when
+        val actual = StringCalculator.calculate(input)
+
+        // then
+        assertThat(actual).isEqualTo(expect)
+    }
 }
