@@ -1,8 +1,10 @@
 package step2
 
+import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.ValueSource
 
 class StringCalculatorTest {
 
@@ -44,5 +46,16 @@ class StringCalculatorTest {
 
         // then
         assertThat(actual).isEqualTo(expect)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["", " "])
+    fun `입력값이 빈 공백 문자일 경우 IllegalArgumentException throw`(input: String) {
+        Assertions.assertThatThrownBy {
+            // when
+            StringCalculator.calculate(input)
+        }
+            // then
+            .isInstanceOf(IllegalArgumentException::class.java)
     }
 }

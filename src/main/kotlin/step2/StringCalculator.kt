@@ -3,6 +3,8 @@ package step2
 class StringCalculator {
     companion object {
         fun calculate(input: String): Int {
+            require(input.isNotBlank()) { "입력값이 빈 공백 문자일 경우 IllegalArgumentException throw" }
+
             input.split(" ").let {
                 it[1].let { operator ->
                     return when (operator) {
