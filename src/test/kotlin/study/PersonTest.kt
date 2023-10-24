@@ -30,6 +30,15 @@ class PersonTest {
     }
 
     @Test
+    fun `데이터 클래스`() {
+        val person1 = Person("홍길동", 100)
+        val person2 = Person("홍길동", 100, "홍")
+        assertThat(person1).isNotEqualTo(person2)
+        person2.nickname = person2.name
+        assertThat(person1).isEqualTo(person2)
+    }
+
+    @Test
     fun copy() {
         val person = Person(name = "홍길동", age = 100)
 
