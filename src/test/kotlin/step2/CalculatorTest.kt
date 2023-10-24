@@ -1,5 +1,6 @@
 package step2
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
@@ -27,5 +28,26 @@ class CalculatorTest: StringSpec({
         val calculator = Calculator("2 + 4 + 10")
         val result = calculator.calculate()
         result shouldBe 16
+    }
+
+    "수식이 존재하지 않는 경우 테스트" {
+        val calculator = Calculator("     ")
+        shouldThrow<IllegalArgumentException> {
+            calculator.calculate()
+        }
+    }
+
+    "수식에 올바른 연사자가 아닌 경우 테스트" {
+        val calculator = Calculator("2 + 3 * 4 ^ 2")
+        shouldThrow<IllegalArgumentException> {
+            calculator.calculate()
+        }
+    }
+
+    "수식에 숫자말고 다른 문자가 포함된 경우 테스트" {
+        val calculator = Calculator("2 + 3 * 4 / 2 + a")
+        shouldThrow<IllegalArgumentException> {
+            calculator.calculate()
+        }
     }
 })
