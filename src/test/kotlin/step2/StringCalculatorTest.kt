@@ -150,4 +150,47 @@ class StringCalculatorTest {
         // then
         assertThat(actual).isEqualTo(expect)
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["a + b", "! + 4", "a + 4", "2 + b", "2 + 3 + b", "2 + 3 + 4 + b", "2 + 3 + 4 + 5 + b"])
+    fun `값의 위치에 수자 아닐 때 IllegalArgumentException throw`(input: String) {
+        Assertions.assertThatThrownBy {
+            // when
+            StringCalculator.calculate(input)
+        }
+            // then
+            .isInstanceOf(NumberFormatException::class.java)
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = ["-2 + 3:1", "3 + -5:-2", "1 + -3:-2", "-3 + -3 + 90:84"], delimiter = ':')
+    fun `값이 음수 일 때도 정상적으로 계산된다`(input: String, expect: Int) {
+        // when
+        val actual = StringCalculator.calculate(input)
+
+        // then
+        assertThat(actual).isEqualTo(expect)
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = ["2 + 3 +", "3 + 5 +", "1 + 3 + 4 *", "1 + 3 + 4 /"])
+    fun `마지막 값이 연산자일 경우 IllegalArgumentException throw`(input: String) {
+        Assertions.assertThatThrownBy {
+            // when
+            StringCalculator.calculate(input)
+        }
+            // then
+            .isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = ["2 +", "3", "1 +"])
+    fun `길이가 3보다 작을 경우 IllegalArgumentException throw`(input: String) {
+        Assertions.assertThatThrownBy {
+            // when
+            StringCalculator.calculate(input)
+        }
+            // then
+            .isInstanceOf(IllegalArgumentException::class.java)
+    }
 }
