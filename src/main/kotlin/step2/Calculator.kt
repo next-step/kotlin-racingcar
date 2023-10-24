@@ -9,8 +9,11 @@ class Calculator(private val expr: String) {
         var result = 0
         while(tokens.isNotEmpty()) {
             var token = tokens.poll()
-            if (token != "+" && token != "-" && token != "*" && token != "/") {
+            if (isNumber(token) and !isOperator(token)) {
                 result = token.toInt()
+            }
+            if (!isNumber(token) and !isOperator(token)) {
+                throw IllegalArgumentException("수식에 올바른 연산자가 아닙니다.")
             }
             if (token == "+") {
                 token = tokens.poll()
@@ -32,7 +35,18 @@ class Calculator(private val expr: String) {
         return result
     }
 
+    private fun isOperator(token: String): Boolean {
+        return token == "+" || token == "-" || token == "*" || token == "/"
+    }
+
+    private fun isNumber(token: String): Boolean {
+        return token.toIntOrNull() != null
+    }
+
     private fun parse(): Queue<String> {
+        if (expr.isBlank()) {
+            throw IllegalArgumentException("수식이 존재하지 않습니다.")
+        }
         return LinkedList(
             expr.split(" ")
                 .toList()
