@@ -11,4 +11,3 @@ class PersonKoTest : StringSpec({
         actual.nickname shouldBe "dding94"
     }
 })
-
