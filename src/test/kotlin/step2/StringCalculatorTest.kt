@@ -69,4 +69,15 @@ class StringCalculatorTest {
             // then
             .isInstanceOf(IllegalArgumentException::class.java)
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["2 ^ 3", "3 ^ 5", "1 ^ 3"])
+    fun `사칙연산 기호가 아닌 경우 IllegalArgumentException throw`(input: String) {
+        Assertions.assertThatThrownBy {
+            // when
+            StringCalculator.calculate(input)
+        }
+            // then
+            .isInstanceOf(IllegalArgumentException::class.java)
+    }
 }

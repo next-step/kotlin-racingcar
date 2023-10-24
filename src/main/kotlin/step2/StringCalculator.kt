@@ -11,7 +11,8 @@ class StringCalculator {
                         "+" -> it[0].toInt() + it[2].toInt()
                         "-" -> it[0].toInt() - it[2].toInt()
                         "*" -> it[0].toInt() * it[2].toInt()
-                        else -> it[0].toInt() / it[2].toInt()
+                        "/" -> it[0].toInt() / it[2].toInt()
+                        else -> throw IllegalArgumentException("지원하지 않는 연산자입니다.")
                     }
                 }
             }
