@@ -2,6 +2,7 @@ package step2
 
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
@@ -54,6 +55,16 @@ class StringCalculatorTest {
         Assertions.assertThatThrownBy {
             // when
             StringCalculator.calculate(input)
+        }
+            // then
+            .isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    @Test
+    fun `입력값이 null일 경우 IllegalArgumentException throw`() {
+        Assertions.assertThatThrownBy {
+            // when
+            StringCalculator.calculate(null)
         }
             // then
             .isInstanceOf(IllegalArgumentException::class.java)
