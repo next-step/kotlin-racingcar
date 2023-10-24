@@ -4,7 +4,12 @@ class StringCalculator {
     companion object {
         fun calculate(input: String): Int {
             input.split(" ").let {
-                return it[0].toInt() + it[2].toInt()
+                it[1].let { operator ->
+                    return when (operator) {
+                        "+" -> it[0].toInt() + it[2].toInt()
+                        else -> it[0].toInt() - it[2].toInt()
+                    }
+                }
             }
         }
     }

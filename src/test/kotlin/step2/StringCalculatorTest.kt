@@ -15,4 +15,14 @@ class StringCalculatorTest {
         // then
         assertThat(actual).isEqualTo(expect)
     }
+
+    @ParameterizedTest
+    @CsvSource(value = ["2 - 3:-1", "3 - 5:-2", "1 - 3:-2"], delimiter = ':')
+    fun `뺄셈`(input: String, expect: Int) {
+        // when
+        val actual = StringCalculator.calculate(input)
+
+        // then
+        assertThat(actual).isEqualTo(expect)
+    }
 }
