@@ -7,7 +7,8 @@ class StringCalculator {
                 it[1].let { operator ->
                     return when (operator) {
                         "+" -> it[0].toInt() + it[2].toInt()
-                        else -> it[0].toInt() - it[2].toInt()
+                        "-" -> it[0].toInt() - it[2].toInt()
+                        else -> it[0].toInt() * it[2].toInt()
                     }
                 }
             }
