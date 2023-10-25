@@ -1,55 +1,71 @@
 package study.step2
 
-import io.kotest.assertions.throwables.shouldThrow
-import io.kotest.core.spec.style.BehaviorSpec
-import io.kotest.matchers.shouldBe
-import java.lang.IllegalArgumentException
+import org.assertj.core.api.Assertions.*
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
-class CalculatorTest : BehaviorSpec({
+class CalculatorTest {
 
-    Given("계산기가 주어졌을 때") {
+    val calculator = Calculator()
+
+    @Test
+    fun `덧셈`() {
         val calculator = Calculator()
-
-        When("덧셈 연산을 수행하면") {
-            val result = calculator.add(5, 3)
-            Then("결과는 두 숫자의 합이어야 한다") {
-                result shouldBe 8
-            }
-        }
-
-        When("뺄셈 연산을 수행하면") {
-            val result = calculator.subtract(5, 3)
-            Then("결과는 첫 번째 숫자에서 두 번째 숫자를 뺀 값이어야 한다") {
-                result shouldBe 2
-            }
-        }
-
-        When("곱셈 연산을 수행하면") {
-            val result = calculator.multiply(5, 3)
-            Then("결과는 두 숫자의 곱이어야 한다") {
-                result shouldBe 15
-            }
-        }
-
-        When("나눗셈 연산을 수행하면") {
-            val result = calculator.divide(6, 3)
-            Then("결과는 첫 번째 숫자를 두 번째 숫자로 나눈 값이어야 한다") {
-                result shouldBe 2
-            }
-        }
-
-        When("0으로 나누려고 하면") {
-            Then("IllegalArgumentException 예외가 발생한다.") {
-                shouldThrow<IllegalArgumentException> { calculator.divide(6, 0) }
-            }
-        }
-
-        When("문자열 수식이 제공되면") {
-            val expression = "2 + 3 * 4 / 2"
-            Then("결과는 연산자 우선순위가 아닌 입력 순서에 따라 계산되어야 한다") {
-                val result = calculator.calculate(expression)
-                result shouldBe 10
-            }
-        }
+        val actual = calculator.add(1, 2)
+        assertThat(actual).isEqualTo(3)
     }
-})
+
+    @Test
+    fun `뺄셈`() {
+        val calculator = Calculator()
+        val actual = calculator.subtract(2, 1)
+        assertThat(actual).isEqualTo(1)
+    }
+
+    @Test
+    fun `곱셈`() {
+        val calculator = Calculator()
+        val actual = calculator.multiply(2, 3)
+        assertThat(actual).isEqualTo(6)
+    }
+
+    @Test
+    fun `나눗셈`() {
+        val calculator = Calculator()
+        val actual = calculator.divide(6, 3)
+        assertThat(actual).isEqualTo(2)
+    }
+
+    @Test
+    fun `나눗셈_예외`() {
+        val calculator = Calculator()
+        assertThatThrownBy { calculator.divide(6, 0) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("0으로 나눌 수 없습니다.")
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["", " "])
+    fun `공백 문자열 예외 테스트`(input: String) {
+        assertThatThrownBy { calculator.calculate(input) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("입력값이 비어있습니다.")
+    }
+
+    @Test
+    fun `올바르지 않은 입력값 예외 테스트`() {
+        val input = "a + 2"
+        assertThatThrownBy { calculator.calculate(input) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("올바르지 않는 입력값입니다.")
+    }
+
+    @Test
+    fun `올바르지 않은 연산자 예외 테스트`() {
+        val input = "1 $#@$) 2"
+        assertThatThrownBy { calculator.calculate(input) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("연산자는 +, -, *, / 중 하나여야 합니다.")
+    }
+}

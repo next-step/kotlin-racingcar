@@ -17,21 +17,23 @@ class Calculator() {
             throw IllegalArgumentException("입력값이 비어있습니다.")
         }
 
-        val element = input.split(" ")
-        var result = element[0].toInt()
+        val elements = input.split(" ")
+        var result = elements[0].toIntOrNull() ?: throw IllegalArgumentException("올바르지 않는 입력값입니다.")
 
-        for (i in 1 until element.size step 2) {
-            val operator = element[i]
-            val operand = element[i + 1].toInt()
+        for (i in 1 until elements.size step 2) {
+            val operator = elements[i]
+            val operand = elements[i + 1].toIntOrNull() ?: throw IllegalArgumentException("올바르지 않는 입력값입니다.")
 
-            result = when (operator) {
-                "+" -> result + operand
-                "-" -> result - operand
-                "*" -> result * operand
-                "/" -> result / operand
-                else -> throw IllegalArgumentException("연산자는 +, -, *, / 중 하나여야 합니다.")
-            }
+            result = operand(operator, result, operand)
         }
         return result
+    }
+
+    private fun operand(operator: String, result: Int, operand: Int) = when (operator) {
+        "+" -> result + operand
+        "-" -> result - operand
+        "*" -> result * operand
+        "/" -> result / operand
+        else -> throw IllegalArgumentException("연산자는 +, -, *, / 중 하나여야 합니다.")
     }
 }
