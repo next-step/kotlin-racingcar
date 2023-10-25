@@ -1,18 +1,10 @@
 package step2
 
-import java.util.LinkedList
-import java.util.Queue
-
-class Calculator(private val expr: String) {
-
-    init {
-        if (expr.isBlank()) {
-            throw IllegalArgumentException("수식이 존재하지 않습니다.")
-        }
-    }
+class Calculator(private val expr: Expression) {
+    constructor(expr: String) : this(Expression(expr))
 
     fun calculate(): Int {
-        val tokens = parse()
+        val tokens = expr.parse()
         var result = 0
         while (tokens.isNotEmpty()) {
             val token = tokens.poll()
@@ -28,12 +20,5 @@ class Calculator(private val expr: String) {
 
     private fun isNumber(token: String): Boolean {
         return token.toIntOrNull() != null
-    }
-
-    private fun parse(): Queue<String> {
-        return LinkedList(
-            expr.split(" ")
-                .toList()
-        )
     }
 }

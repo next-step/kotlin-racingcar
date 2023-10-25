@@ -30,12 +30,6 @@ class CalculatorTest : StringSpec({
         result shouldBe 16
     }
 
-    "수식이 존재하지 않는 경우 테스트" {
-        shouldThrow<IllegalArgumentException> {
-            Calculator("     ")
-        }
-    }
-
     "수식에 숫자말고 다른 문자가 포함된 경우 테스트" {
         val calculator = Calculator("2 + 3 * 4 / 2 + a")
         shouldThrow<IllegalArgumentException> {
