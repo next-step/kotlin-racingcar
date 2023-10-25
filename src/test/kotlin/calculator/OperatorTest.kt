@@ -29,4 +29,10 @@ internal class OperatorTest {
     fun `나눗셈 연산이 잘 계산된다`(x: Int, y: Int, result: Int) {
         assertEquals(result, Operator.DIVISION.operation(x, y))
     }
+
+    @ParameterizedTest
+    @CsvSource(value = ["+,PLUS", "-,MINUS", "*,TIMES", "/,DIVISION"])
+    fun `연산자가 잘 매핑된다`(symbol: String, operator: Operator) {
+        assertEquals(operator, Operator.from(symbol))
+    }
 }
