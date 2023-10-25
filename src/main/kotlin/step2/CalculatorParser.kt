@@ -7,4 +7,5 @@ object CalculatorParser {
     fun split(input: String): List<String> = input.split(INPUT_DELIMITER)
 
     fun List<String>.getNextValue(operatorIndex: Int) = this[operatorIndex + OPERAND_OFFSET].toInt()
+    fun List<String>.getFirstValue() = this.first().toInt()
 }

@@ -1,5 +1,6 @@
 package step2
 
+import step2.CalculatorParser.getFirstValue
 import step2.CalculatorParser.getNextValue
 
 object ExpressionCalculator {
@@ -14,7 +15,7 @@ object ExpressionCalculator {
 
         CalculatorValidator.validateSize(elements.size)
 
-        var result = elements.first().toInt()
+        var result = elements.getFirstValue()
         var operatorIndex = FIRST_OPERATOR_INDEX
         while (operatorIndex < elements.size) {
             val nextValue = elements.getNextValue(operatorIndex)
