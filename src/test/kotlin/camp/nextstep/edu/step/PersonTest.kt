@@ -1,5 +1,6 @@
 package camp.nextstep.edu.step
 
+import camp.nextstep.edu.step.person.Person
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
