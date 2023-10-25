@@ -1,5 +1,7 @@
 package step2
 
+import step2.CalculatorParser.getFirstValue
+import step2.CalculatorParser.getNextValue
 import step2.CalculatorValidator.validateSize
 
 object StringCalculator {
@@ -7,17 +9,14 @@ object StringCalculator {
     private const val MINUS = "-"
     private const val MULTIPLY = "*"
     private const val DIVIDE = "/"
-    private const val OPERAND_OFFSET = 1
     private const val FIRST_OPERATOR_INDEX = 1
     private const val OPERATOR_GAP = 2
-    private const val FIRST_VALUE_INDEX = 0
     private const val NULL_OR_BLANK_ERROR_MSG = "입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException throw"
     private const val UNSUPPORTED_OPERATOR_MSG = "지원하지 않는 연산자입니다."
-    private const val INPUT_DELIMITER = " "
 
     fun calculate(input: String?): Int {
         require(!input.isNullOrBlank()) { NULL_OR_BLANK_ERROR_MSG }
-        val elements = input.split(INPUT_DELIMITER)
+        val elements = CalculatorParser.split(input)
         return calculate(elements)
     }
 
@@ -33,10 +32,6 @@ object StringCalculator {
         }
         return result
     }
-
-    private fun getFirstValue(elements: List<String>) = elements[FIRST_VALUE_INDEX].toInt()
-
-    private fun getNextValue(it: List<String>, operatorIndex: Int) = it[operatorIndex + OPERAND_OFFSET].toInt()
 
     private fun applyOperation(currentResult: Int, nextValue: Int, operation: String): Int {
         return when (operation) {
