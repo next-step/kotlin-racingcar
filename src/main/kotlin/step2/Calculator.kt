@@ -4,9 +4,9 @@ import java.lang.IllegalArgumentException
 
 class Calculator {
     private val checker: CalculatorChecker = CalculatorChecker()
-    fun calculate(input: String?): Int {
-        if (!checker.isInputValid(input)) throw IllegalArgumentException()
-        val formulaQueue = input!!.split(Regex("\\s+"))
+    fun calculate(input: Input): Int {
+        val formula = input.text!!
+        val formulaQueue = formula.split(Regex("\\s+"))
 
         return operate(formulaQueue)
     }
