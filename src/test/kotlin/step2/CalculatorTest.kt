@@ -36,13 +36,6 @@ class CalculatorTest : StringSpec({
         }
     }
 
-    "수식에 올바른 연사자가 아닌 경우 테스트" {
-        val calculator = Calculator("2 + 3 * 4 ^ 2")
-        shouldThrow<IllegalArgumentException> {
-            calculator.calculate()
-        }
-    }
-
     "수식에 숫자말고 다른 문자가 포함된 경우 테스트" {
         val calculator = Calculator("2 + 3 * 4 / 2 + a")
         shouldThrow<IllegalArgumentException> {

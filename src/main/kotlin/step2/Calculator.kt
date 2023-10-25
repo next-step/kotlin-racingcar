@@ -15,35 +15,15 @@ class Calculator(private val expr: String) {
         val tokens = parse()
         var result = 0
         while (tokens.isNotEmpty()) {
-            var token = tokens.poll()
-            if (isNumber(token) and !isOperator(token)) {
+            val token = tokens.poll()
+            if (isNumber(token)) {
                 result = token.toInt()
             }
-            if (!isNumber(token) and !isOperator(token)) {
-                throw IllegalArgumentException("수식에 올바른 연산자가 아닙니다.")
-            }
-            if (token == "+") {
-                token = tokens.poll()
-                result += token.toInt()
-            }
-            if (token == "-") {
-                token = tokens.poll()
-                result -= token.toInt()
-            }
-            if (token == "*") {
-                token = tokens.poll()
-                result *= token.toInt()
-            }
-            if (token == "/") {
-                token = tokens.poll()
-                result /= token.toInt()
+            if (!isNumber(token)) {
+                result = Operator.getOperator(token).applyAsInt(result, tokens.poll().toInt())
             }
         }
         return result
-    }
-
-    private fun isOperator(token: String): Boolean {
-        return token == "+" || token == "-" || token == "*" || token == "/"
     }
 
     private fun isNumber(token: String): Boolean {
