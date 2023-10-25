@@ -29,7 +29,7 @@ class CalculatorTest {
 
     @Test
     fun `연산자 종합 테스트`() {
-        assertThat(Calculator().run("1 + 3 / 2 * 4")).isEqualTo(8)
+        assertThat(Calculator().run("1 + 3 / 2 * 4 - 1")).isEqualTo(7)
     }
 
     @Test
