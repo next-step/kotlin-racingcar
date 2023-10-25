@@ -1,5 +1,6 @@
 package calculator
 
+import calculator.model.Arithmetic
 import calculator.model.Operand
 import calculator.model.Operator
 
@@ -7,18 +8,18 @@ class StringCalculator {
 
     fun calculate(input: String?): Int {
         val inputString: String = validate(input)
-        val formula: Pair<List<Operator>, List<Operand>> = parseToFormula(inputString)
-        return arithmeticAct(formula.first, formula.second)
+        val arithmetic: Arithmetic = parseToFormula(inputString)
+        return arithmetic.act()
     }
 
     private fun arithmeticAct(first: List<Operator>, second: List<Operand>): Int {
         TODO("Not yet implemented")
     }
 
-    private fun parseToFormula(inputString: String): Pair<List<Operator>, List<Operand>> {
+    private fun parseToFormula(inputString: String): Arithmetic {
         val operators: List<Operator> = Operator.parseOperators(inputString)
         val operands: List<Operand> = Operand.parseOperand(inputString)
-        return Pair(operators, operands)
+        return Arithmetic(operators, operands)
     }
 
     private fun validate(input: String?): String {
