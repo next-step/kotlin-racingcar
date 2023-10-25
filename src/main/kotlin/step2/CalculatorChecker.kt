@@ -1,14 +1,8 @@
 package step2
 
-import java.lang.IllegalArgumentException
-
 class CalculatorChecker {
     private fun isNumber(str: String): Boolean {
         return str.toIntOrNull() != null
-    }
-
-    private fun isExpression(str: String): Boolean {
-        return str == "+" || str == "-" || str == "*" || str == "/"
     }
 
     fun isEven(idx: Int) = idx % 2 == 0
@@ -17,9 +11,13 @@ class CalculatorChecker {
     fun isFormulaValid(formulaQueue: List<String>): Boolean {
         formulaQueue.forEachIndexed { index, str ->
             if (isEven(index) && !isNumber(str)) return false
-            if (isOdd(index) && (!isExpression(str) || index == formulaQueue.size - 1)) return false
+            if (isOdd(index) && (!isArithmeticExpression(str) || index == formulaQueue.size - 1)) return false
         }
 
         return true
+    }
+
+    private fun isArithmeticExpression(str: String): Boolean {
+        return Arithmetic.values().find { str == it.expr } != null
     }
 }

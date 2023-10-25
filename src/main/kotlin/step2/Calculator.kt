@@ -6,32 +6,41 @@ class Calculator {
     private val checker: CalculatorChecker = CalculatorChecker()
     fun calculate(input: Input): Int {
         val formulaList = input.text!!.split(Regex("\\s+"))
-        if (!checker.isFormulaValid(formulaList)) throw IllegalArgumentException()
+        val (numberList, arithmeticList) = splitList(formulaList)
 
-        return operate(formulaList)
+        return operate(numberList, arithmeticList)
     }
 
-    private fun operate(formulaQueue: List<String>): Int {
-        var result = 0
-        var expression = ""
-        formulaQueue.forEachIndexed { index, str ->
-            if (checker.isEven(index)) {
-                val number = str.toInt()
-                result = if (index == 0) {
-                    number
-                } else {
-                    when (expression) {
-                        "+" -> result.add(number)
-                        "-" -> result.subtract(number)
-                        "*" -> result.multiply(number)
-                        "/" -> result.divide(number)
-                        else -> throw IllegalArgumentException()
-                    }
-                }
-            } else {
-                expression = str
+    private fun splitList(formulaList: List<String>): Pair<List<Int>, List<Arithmetic>> {
+        if (!checker.isFormulaValid(formulaList)) throw IllegalArgumentException()
+
+        val numberList = mutableListOf<Int>()
+        val arithmeticList = mutableListOf<Arithmetic>()
+        formulaList.forEachIndexed { index, str ->
+            if (checker.isEven(index))
+                numberList.add(str.toInt())
+            else
+                arithmeticList.add(Arithmetic.values().find { str == it.expr }!!)
+        }
+
+        return Pair(numberList, arithmeticList)
+    }
+
+
+    private fun operate(numberList: List<Int>, arithmeticList: List<Arithmetic>): Int {
+        var result = numberList[0]
+
+        val expressionCount = arithmeticList.size
+        for (i in 0 until expressionCount) {
+            val operand = numberList[i + 1]
+            result = when (arithmeticList[i]) {
+                Arithmetic.PLUS -> result.add(operand)
+                Arithmetic.MINUS -> result.subtract(operand)
+                Arithmetic.TIMES -> result.multiply(operand)
+                Arithmetic.DIVIDE -> result.divide(operand)
             }
         }
+
         return result
     }
 
