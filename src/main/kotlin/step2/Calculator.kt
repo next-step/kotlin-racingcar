@@ -4,10 +4,17 @@ import java.util.LinkedList
 import java.util.Queue
 
 class Calculator(private val expr: String) {
+
+    init {
+        if (expr.isBlank()) {
+            throw IllegalArgumentException("수식이 존재하지 않습니다.")
+        }
+    }
+
     fun calculate(): Int {
         val tokens = parse()
         var result = 0
-        while(tokens.isNotEmpty()) {
+        while (tokens.isNotEmpty()) {
             var token = tokens.poll()
             if (isNumber(token) and !isOperator(token)) {
                 result = token.toInt()
@@ -44,9 +51,6 @@ class Calculator(private val expr: String) {
     }
 
     private fun parse(): Queue<String> {
-        if (expr.isBlank()) {
-            throw IllegalArgumentException("수식이 존재하지 않습니다.")
-        }
         return LinkedList(
             expr.split(" ")
                 .toList()
