@@ -12,10 +12,6 @@ class StringCalculator {
         return arithmetic.act()
     }
 
-    private fun arithmeticAct(first: List<Operator>, second: List<Operand>): Int {
-        TODO("Not yet implemented")
-    }
-
     private fun parseToFormula(inputString: String): Arithmetic {
         val operators: List<Operator> = Operator.parseOperators(inputString)
         val operands: List<Operand> = Operand.parseOperand(inputString)
