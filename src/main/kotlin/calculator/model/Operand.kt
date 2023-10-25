@@ -3,9 +3,18 @@ package calculator.model
 data class Operand(
     val value: Int,
 ) {
+    constructor(string: String) : this(string.toInt())
+
     companion object {
-        fun parseOperand(inputString: String): List<Operand> {
-            TODO("Not yet implemented")
+        fun parseOperands(inputString: String): List<Operand> {
+            return Tokenizer(inputString).toTokens()
+                .filter { isOperand(it) }
+                .map { Operand(it) }
+                .toList()
+        }
+
+        fun isOperand(it: String): Boolean {
+            return it.chars().allMatch { Character.isDigit(it) }
         }
     }
 }

@@ -14,7 +14,7 @@ class StringCalculator {
 
     private fun parseToFormula(inputString: String): Arithmetic {
         val operators: List<Operator> = Operator.parseOperators(inputString)
-        val operands: List<Operand> = Operand.parseOperand(inputString)
+        val operands: List<Operand> = Operand.parseOperands(inputString)
         return Arithmetic(operators, operands)
     }
 
