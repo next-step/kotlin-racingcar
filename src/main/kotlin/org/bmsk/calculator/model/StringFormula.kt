@@ -7,17 +7,21 @@ import java.util.Stack
 data class StringFormula(val str: String) {
 
     fun calculate(): Float {
-        require(str.isNotBlank())
+        require(str.isNotBlank()) { "공백은 계산할 수 없음" }
 
         val numStack = Stack<String>()
         val operatorStack = Stack<Operator>()
 
         str.split(" ").forEach { token ->
-            if (token.isOperator()) {
-                applyPendingOperation(numStack, operatorStack)
-                operatorStack.push(token.toOperator())
-            } else {
-                numStack.push(token)
+            when {
+                token.isOperator() -> {
+                    applyPendingOperation(numStack, operatorStack)
+                    operatorStack.push(token.toOperator())
+                }
+                token.isNumeric() -> {
+                    numStack.push(token)
+                }
+                else -> throw IllegalArgumentException("적절하지 않은 문자열: $token")
             }
         }
 
@@ -31,6 +35,13 @@ data class StringFormula(val str: String) {
         Operator.Times.symbol,
         Operator.Division.symbol,
     )
+
+    private fun String.isNumeric(): Boolean = try {
+        this.toFloat()
+        true
+    } catch (e: NumberFormatException) {
+        false
+    }
 
     private fun applyPendingOperation(numStack: Stack<String>, operatorStack: Stack<Operator>) {
         if (operatorStack.isNotEmpty()) {
