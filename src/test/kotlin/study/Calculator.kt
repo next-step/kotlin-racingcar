@@ -7,7 +7,7 @@ import study.ArithMeticSymbol.PLUS
 
 class Calculator(val input: String?) {
     fun calculate(): Double {
-        val inputValues = input?.split(" ") ?: listOf()
+        val inputValues = input?.split(" ") ?: throw IllegalArgumentException("입력값이 null 입니다.")
 
         checkInputValid(inputValues)
 
