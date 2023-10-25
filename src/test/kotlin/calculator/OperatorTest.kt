@@ -23,4 +23,10 @@ internal class OperatorTest {
     fun `곱셈 연산이 잘 계산된다`(x: Int, y: Int, result: Int) {
         assertEquals(result, Operator.TIMES.operation(x, y))
     }
+
+    @ParameterizedTest
+    @CsvSource(value = ["2,1,2", "2,2,1", "3,4,0"])
+    fun `나눗셈 연산이 잘 계산된다`(x: Int, y: Int, result: Int) {
+        assertEquals(result, Operator.DIVISION.operation(x, y))
+    }
 }
