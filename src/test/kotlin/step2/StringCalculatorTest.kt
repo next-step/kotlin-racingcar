@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
+import step2.CalculatorValidator.NULL_OR_BLANK_ERROR_MSG
+import step2.CalculatorValidator.ODD_SIZE_REQUIREMENT_MSG
+import step2.StringCalculator.UNSUPPORTED_OPERATOR_MSG
 
 class StringCalculatorTest {
 
@@ -58,6 +61,7 @@ class StringCalculatorTest {
         }
             // then
             .isInstanceOf(IllegalArgumentException::class.java)
+            .message().isEqualTo(NULL_OR_BLANK_ERROR_MSG)
     }
 
     @Test
@@ -68,6 +72,7 @@ class StringCalculatorTest {
         }
             // then
             .isInstanceOf(IllegalArgumentException::class.java)
+            .message().isEqualTo(NULL_OR_BLANK_ERROR_MSG)
     }
 
     @ParameterizedTest
@@ -79,6 +84,7 @@ class StringCalculatorTest {
         }
             // then
             .isInstanceOf(IllegalArgumentException::class.java)
+            .message().isEqualTo(UNSUPPORTED_OPERATOR_MSG)
     }
 
     @ParameterizedTest
@@ -181,6 +187,7 @@ class StringCalculatorTest {
         }
             // then
             .isInstanceOf(IllegalArgumentException::class.java)
+            .message().isEqualTo(ODD_SIZE_REQUIREMENT_MSG)
     }
 
     @ParameterizedTest
@@ -192,5 +199,6 @@ class StringCalculatorTest {
         }
             // then
             .isInstanceOf(IllegalArgumentException::class.java)
+            .message().isEqualTo(ODD_SIZE_REQUIREMENT_MSG)
     }
 }
