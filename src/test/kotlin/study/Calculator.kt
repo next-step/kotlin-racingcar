@@ -1,5 +1,10 @@
 package study
 
+import study.ArithMeticSymbol.DIVIDE
+import study.ArithMeticSymbol.MINUS
+import study.ArithMeticSymbol.MULTIPLY
+import study.ArithMeticSymbol.PLUS
+
 class Calculator(val input: String?) {
     fun calculate(): Double {
         val inputValues = input?.split(" ") ?: listOf()
@@ -7,18 +12,18 @@ class Calculator(val input: String?) {
         checkInputValid(inputValues)
 
         var current = inputValues[0].toDouble()
-        var arithMeticSymbol = ""
+        var arithMeticSymbol: ArithMeticSymbol? = null
         for (inputValue in inputValues.subList(1, inputValues.size)) {
             if (inputValue.isNumeric()) {
                 current = when (arithMeticSymbol) {
-                    "+" -> plus(current, inputValue.toDouble())
-                    "-" -> minus(current, inputValue.toDouble())
-                    "/" -> divide(current, inputValue.toDouble())
-                    "*" -> multiply(current, inputValue.toDouble())
+                    PLUS -> plus(current, inputValue.toDouble())
+                    MINUS -> minus(current, inputValue.toDouble())
+                    DIVIDE -> divide(current, inputValue.toDouble())
+                    MULTIPLY -> multiply(current, inputValue.toDouble())
                     else -> throw IllegalArgumentException()
                 }
             }
-            arithMeticSymbol = inputValue
+            arithMeticSymbol = ArithMeticSymbol.of(inputValue)
         }
         return current
     }
@@ -34,6 +39,19 @@ class Calculator(val input: String?) {
     private fun checkInputValid(inputValues: List<String>) {
         if (inputValues.size < 3) {
             throw IllegalArgumentException()
+        }
+    }
+}
+
+private enum class ArithMeticSymbol(val symbol: String) {
+    PLUS("+"),
+    MINUS("-"),
+    DIVIDE("/"),
+    MULTIPLY("*"), ;
+
+    companion object {
+        fun of(symbol: String): ArithMeticSymbol {
+            return values().find { it.symbol == symbol } ?: throw IllegalArgumentException()
         }
     }
 }
