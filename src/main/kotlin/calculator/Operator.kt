@@ -1,13 +1,13 @@
 package calculator
 
 enum class Operator(private val operator: String, private val operation: (Int, Int) -> Int) {
-    PLUS("+", { left, right -> left + right }),
-    MINUS("-", { left, right -> left - right }),
-    MULTIPLY("*", { left, right -> left * right }),
-    DIVIDE("/", { left, right -> left / right });
+    PLUS("+", { x, y -> x + y }),
+    MINUS("-", { x, y -> x - y }),
+    MULTIPLY("*", { x, y -> x * y }),
+    DIVIDE("/", { x, y -> x / y });
 
-    fun calculate(left: Int, right: Int): Int {
-        return operation(left, right)
+    fun calculate(x: Int, y: Int): Int {
+        return operation(x, y)
     }
 
     companion object {
