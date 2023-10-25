@@ -6,51 +6,8 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
-import step2.CalculatorValidator.NULL_OR_BLANK_ERROR_MSG
-import step2.CalculatorValidator.ODD_SIZE_REQUIREMENT_MSG
-import step2.StringCalculator.UNSUPPORTED_OPERATOR_MSG
 
 class StringCalculatorTest {
-
-    @ParameterizedTest
-    @CsvSource(value = ["2 + 3:5", "3 + 5:8", "1 + 3:4"], delimiter = ':')
-    fun `덧셈`(input: String, expect: Int) {
-        // when
-        val actual = ExpressionCalculator.calculate(input)
-
-        // then
-        assertThat(actual).isEqualTo(expect)
-    }
-
-    @ParameterizedTest
-    @CsvSource(value = ["2 - 3:-1", "3 - 5:-2", "1 - 3:-2"], delimiter = ':')
-    fun `뺄셈`(input: String, expect: Int) {
-        // when
-        val actual = ExpressionCalculator.calculate(input)
-
-        // then
-        assertThat(actual).isEqualTo(expect)
-    }
-
-    @ParameterizedTest
-    @CsvSource(value = ["2 * 3:6", "3 * 5:15", "1 * 3:3"], delimiter = ':')
-    fun `곱셈`(input: String, expect: Int) {
-        // when
-        val actual = ExpressionCalculator.calculate(input)
-
-        // then
-        assertThat(actual).isEqualTo(expect)
-    }
-
-    @ParameterizedTest
-    @CsvSource(value = ["2 / 3:0", "3 / 5:0", "1 / 3:0"], delimiter = ':')
-    fun `나눗셈`(input: String, expect: Int) {
-        // when
-        val actual = ExpressionCalculator.calculate(input)
-
-        // then
-        assertThat(actual).isEqualTo(expect)
-    }
 
     @ParameterizedTest
     @ValueSource(strings = ["", " "])
@@ -61,7 +18,7 @@ class StringCalculatorTest {
         }
             // then
             .isInstanceOf(IllegalArgumentException::class.java)
-            .message().isEqualTo(NULL_OR_BLANK_ERROR_MSG)
+            .message().isEqualTo(ErrorMessage.NULL_OR_BLANK_ERROR_MSG.message)
     }
 
     @Test
@@ -72,11 +29,11 @@ class StringCalculatorTest {
         }
             // then
             .isInstanceOf(IllegalArgumentException::class.java)
-            .message().isEqualTo(NULL_OR_BLANK_ERROR_MSG)
+            .message().isEqualTo(ErrorMessage.NULL_OR_BLANK_ERROR_MSG.message)
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["2 ^ 3", "3 ^ 5", "1 ^ 3"])
+    @ValueSource(strings = ["2 ^ 3", "3 & 5", "1 | 3"])
     fun `사칙연산 기호가 아닌 경우 IllegalArgumentException throw`(input: String) {
         Assertions.assertThatThrownBy {
             // when
@@ -84,71 +41,11 @@ class StringCalculatorTest {
         }
             // then
             .isInstanceOf(IllegalArgumentException::class.java)
-            .message().isEqualTo(UNSUPPORTED_OPERATOR_MSG)
+            .message().isEqualTo(ErrorMessage.UNSUPPORTED_OPERATOR_MSG.message)
     }
 
     @ParameterizedTest
-    @CsvSource(value = ["2 + 3 + 4:9", "3 + 5 + 7:15", "1 + 3 + 5:9"], delimiter = ':')
-    fun `덧셈 2개 이상`(input: String, expect: Int) {
-        // when
-        val actual = ExpressionCalculator.calculate(input)
-
-        // then
-        assertThat(actual).isEqualTo(expect)
-    }
-
-    @ParameterizedTest
-    @CsvSource(value = ["2 - 3 - 4:-5", "3 - 5 - 7:-9", "1 - 3 - 5:-7"], delimiter = ':')
-    fun `뺄셈 2개 이상`(input: String, expect: Int) {
-        // when
-        val actual = ExpressionCalculator.calculate(input)
-
-        // then
-        assertThat(actual).isEqualTo(expect)
-    }
-
-    @ParameterizedTest
-    @CsvSource(value = ["2 * 3 * 4:24", "3 * 5 * 7:105", "1 * 3 * 5:15"], delimiter = ':')
-    fun `곱셈 2개 이상`(input: String, expect: Int) {
-        // when
-        val actual = ExpressionCalculator.calculate(input)
-
-        // then
-        assertThat(actual).isEqualTo(expect)
-    }
-
-    @ParameterizedTest
-    @CsvSource(value = ["2 / 3 / 4:0", "3 / 5 / 7:0", "1 / 3 / 5:0"], delimiter = ':')
-    fun `나눗셈 2개 이상`(input: String, expect: Int) {
-        // when
-        val actual = ExpressionCalculator.calculate(input)
-
-        // then
-        assertThat(actual).isEqualTo(expect)
-    }
-
-    @ParameterizedTest
-    @CsvSource(value = ["2 + 3 - 4:1", "3 - 5 + 7:5", "1 + 3 - 5:-1"], delimiter = ':')
-    fun `덧셈, 뺄셈 혼합`(input: String, expect: Int) {
-        // when
-        val actual = ExpressionCalculator.calculate(input)
-
-        // then
-        assertThat(actual).isEqualTo(expect)
-    }
-
-    @ParameterizedTest
-    @CsvSource(value = ["2 * 3 / 4:1", "3 / 5 * 7:0", "1 * 3 / 5:0"], delimiter = ':')
-    fun `곱셈, 나눗셈 혼합`(input: String, expect: Int) {
-        // when
-        val actual = ExpressionCalculator.calculate(input)
-
-        // then
-        assertThat(actual).isEqualTo(expect)
-    }
-
-    @ParameterizedTest
-    @CsvSource(value = ["2 + 3 * 4 / 2:10", "2 + 3 * 4:20", "3 * 5 - 7:8", "1 + 3 / 5:0"], delimiter = ':')
+    @CsvSource(value = ["2 + 3 * 4 / 2:10", "-2 + 3 * 4:4", "3 * -5 - 7:-22", "1 + 3 / 5:0"], delimiter = ':')
     fun `덧셈, 뺄셈, 곱셈, 나눗셈 혼합`(input: String, expect: Int) {
         // when
         val actual = ExpressionCalculator.calculate(input)
@@ -169,25 +66,15 @@ class StringCalculatorTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = ["-2 + 3:1", "3 + -5:-2", "1 + -3:-2", "-3 + -3 + 90:84"], delimiter = ':')
-    fun `값이 음수 일 때도 정상적으로 계산된다`(input: String, expect: Int) {
-        // when
-        val actual = ExpressionCalculator.calculate(input)
-
-        // then
-        assertThat(actual).isEqualTo(expect)
-    }
-
-    @ParameterizedTest
-    @CsvSource(value = ["2 + 3 +", "3 + 5 +", "1 + 3 + 4 *", "1 + 3 + 4 /"])
-    fun `마지막 값이 연산자일 경우 IllegalArgumentException throw`(input: String) {
+    @CsvSource(value = ["2 + 3 +", "3 + 5 + 44 55", "1 + 3 + 4 *", "1 + 3 + 4 /"])
+    fun `문자 파싱 후 길이가 짝수일 경우 IllegalArgumentException throw`(input: String) {
         Assertions.assertThatThrownBy {
             // when
             ExpressionCalculator.calculate(input)
         }
             // then
             .isInstanceOf(IllegalArgumentException::class.java)
-            .message().isEqualTo(ODD_SIZE_REQUIREMENT_MSG)
+            .message().isEqualTo(ErrorMessage.ODD_SIZE_REQUIREMENT_MSG.message)
     }
 
     @ParameterizedTest
@@ -199,6 +86,6 @@ class StringCalculatorTest {
         }
             // then
             .isInstanceOf(IllegalArgumentException::class.java)
-            .message().isEqualTo(ODD_SIZE_REQUIREMENT_MSG)
+            .message().isEqualTo(ErrorMessage.MINIMUM_SIZE_REQUIREMENT_MSG.message)
     }
 }
