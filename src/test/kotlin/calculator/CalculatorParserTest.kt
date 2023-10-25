@@ -4,7 +4,6 @@ import calculator.CalculatorParser.getFirstValue
 import calculator.CalculatorParser.getNextValue
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
@@ -36,15 +35,16 @@ class CalculatorParserTest {
     }
 
     @DisplayName("첫번째 값을 int로 변환하고 가져온다.")
-    @Test
-    fun getFirstValue() {
+    @ParameterizedTest
+    @CsvSource(value = ["1", "2", "3", "4", "5"], delimiter = ':')
+    fun getFirstValue(first: String) {
         // given
-        val input = listOf("1", "2", "3", "4", "5")
+        val input = listOf(first, "2", "3", "4", "5")
 
         // when
         val actual = input.getFirstValue()
 
         // then
-        assertThat(actual).isEqualTo(1)
+        assertThat(actual).isEqualTo(first.toInt())
     }
 }
