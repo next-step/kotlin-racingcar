@@ -67,6 +67,13 @@ class StringCalculatorTest {
         assertThat(calculator.calculate(input)).isEqualTo(result)
     }
 
+    @ParameterizedTest(name = "{0} = {1}")
+    @MethodSource("getCalculatorTestData")
+    fun `전체 기능 테스트`(input: String, result: Int) {
+        val calculator = StringCalculator()
+        assertThat(calculator.calculate(input)).isEqualTo(result)
+    }
+
     companion object {
         @JvmStatic
         fun getPlusTestData(): List<Arguments> {
@@ -125,6 +132,17 @@ class StringCalculatorTest {
                 Arguments.of(
                     "12 * 1", 12
                 )
+            )
+        }
+        @JvmStatic
+        fun getCalculatorTestData(): List<Arguments> {
+            return listOf(
+                Arguments.of(
+                    "2 + 3 * 4 / 2", 10
+                ),
+                Arguments.of(
+                    "1 * 3 + 4 / 1", 7
+                ),
             )
         }
     }
