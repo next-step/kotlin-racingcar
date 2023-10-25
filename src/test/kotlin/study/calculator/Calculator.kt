@@ -19,6 +19,11 @@ class Calculator {
     fun createFormula(inputData: String): List<String> {
         val formulaComponent = inputData.split(" ")
 
+        // 입력값이 공백인 경우
+        if (inputData.isBlank()) {
+            throw IllegalArgumentException("입력 값이 공백입니다.")
+        }
+
         // 수식의 마지막은 숫자.
         if (formulaComponent.size % 2 == 0) {
             throw IllegalArgumentException("수식의 구성이 잘못됐습니다.")
