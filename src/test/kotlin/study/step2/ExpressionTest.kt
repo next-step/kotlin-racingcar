@@ -6,7 +6,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.MethodSource
-import org.junit.jupiter.params.provider.NullAndEmptySource
 
 class ExpressionTest {
 
@@ -47,7 +46,7 @@ class ExpressionTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = ["1234","+1"])
+    @CsvSource(value = ["1234", "+1"])
     fun `입력받은 수식에 숫자나 연산자가 누락된 경우 에러를 반환한다`(
         mathExpression: String
     ) {
