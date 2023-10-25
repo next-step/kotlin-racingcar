@@ -5,10 +5,10 @@ import java.lang.IllegalArgumentException
 class Calculator {
     private val checker: CalculatorChecker = CalculatorChecker()
     fun calculate(input: Input): Int {
-        val formula = input.text!!
-        val formulaQueue = formula.split(Regex("\\s+"))
+        val formulaList = input.text!!.split(Regex("\\s+"))
+        if (!checker.isFormulaValid(formulaList)) throw IllegalArgumentException()
 
-        return operate(formulaQueue)
+        return operate(formulaList)
     }
 
     private fun operate(formulaQueue: List<String>): Int {
@@ -16,7 +16,6 @@ class Calculator {
         var expression = ""
         formulaQueue.forEachIndexed { index, str ->
             if (checker.isEven(index)) {
-                if (!checker.isNumber(str)) throw IllegalArgumentException()
                 val number = str.toInt()
                 result = if (index == 0) {
                     number
@@ -30,8 +29,6 @@ class Calculator {
                     }
                 }
             } else {
-                if (!checker.isExpression(str)) throw IllegalArgumentException()
-                if (index == formulaQueue.size - 1) throw IllegalArgumentException()
                 expression = str
             }
         }
