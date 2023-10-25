@@ -1,7 +1,7 @@
 package calculator.unit.view
 
 import calculator.view.InputViewImpl
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 
@@ -11,7 +11,9 @@ class InputViewImplTest {
     fun `들어온 값을 원소로 분리한다`() {
         val inputView = InputViewImpl(readlnOrNull = { "1 + 2 * 3 - 4 / 5" })
         val result = inputView.inputFormula()
-        assertEquals(listOf("1", "+", "2", "*", "3", "-", "4", "/", "5"), result)
+        assertThat(result).containsExactly(
+            "1", "+", "2", "*", "3", "-", "4", "/", "5"
+        )
     }
 
     @Test
