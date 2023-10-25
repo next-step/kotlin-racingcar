@@ -3,9 +3,12 @@ package step3.domain
 import java.util.Random
 
 object TryMoving {
-    fun isSuccessfullyMoved(): Boolean {
+    private fun getRandom(): Int {
         val random = Random()
-        val num = random.nextInt(10)
-        return num >= 4
+        return random.nextInt(10)
+    }
+
+    fun isSuccessfullyMoved(random: Int = getRandom()): Boolean {
+        return random >= 4
     }
 }
