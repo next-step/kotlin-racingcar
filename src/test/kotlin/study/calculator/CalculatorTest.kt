@@ -43,7 +43,8 @@ class CalculatorTest {
         val calculator = Calculator()
 
         // when : 잘못된 수식을 calculate()에 넣어 호출한다.
-        val actual = runCatching { calculator.createFormula(formula) }.exceptionOrNull()
+        val formulaComponent = formula.split(" ")
+        val actual = runCatching { calculator.checkFormula(formulaComponent) }.exceptionOrNull()
 
         // then : 에러를 배출한다.
         assertThat(actual).isInstanceOf(expected::class.java)

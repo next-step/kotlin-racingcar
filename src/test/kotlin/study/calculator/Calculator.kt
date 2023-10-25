@@ -2,25 +2,26 @@ package study.calculator
 
 class Calculator {
 
-    fun calculate(inputData: String): Int {
-        val formula = createFormula(inputData)
+    fun calculate(formula: String): Int {
+        val formulaComponent = formula.split(" ")
 
-        var result = formula[0].toInt()
+        checkFormula(formulaComponent)
 
-        for (i in 1 until formula.size step 2) {
-            val operator = Operator.from(formula[i])
-            val num = formula[i + 1]
+        var result = formulaComponent[0].toInt()
+
+        for (i in 1 until formulaComponent.size step 2) {
+            val operator = Operator.from(formulaComponent[i])
+            val num = formulaComponent[i + 1]
 
             result = operator.operation(result, num.toInt())
         }
         return result
     }
 
-    fun createFormula(inputData: String): List<String> {
-        val formulaComponent = inputData.split(" ")
+    fun checkFormula(formulaComponent: List<String>){
 
         // 입력값이 공백인 경우
-        if (inputData.isBlank()) {
+        if (formulaComponent.filterNot{it.isBlank()}.isEmpty()) {
             throw IllegalArgumentException("입력 값이 공백입니다.")
         }
 
@@ -38,7 +39,5 @@ class Calculator {
         for (i in 1 until formulaComponent.size step 2) {
             Operator.from(formulaComponent[i])
         }
-
-        return formulaComponent
     }
 }
