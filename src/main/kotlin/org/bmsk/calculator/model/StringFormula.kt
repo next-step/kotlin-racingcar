@@ -7,6 +7,8 @@ import java.util.Stack
 data class StringFormula(val str: String) {
 
     fun calculate(): Float {
+        require(str.isNotBlank())
+
         val numStack = Stack<String>()
         val operatorStack = Stack<Operator>()
 
