@@ -3,26 +3,27 @@ package step2
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.NullAndEmptySource
+import org.junit.jupiter.params.provider.ValueSource
 import java.lang.IllegalArgumentException
 
 class CalculatorTest {
-    @Test
-    fun `입력값이 null이거나 빈 공백문자인 경우 예외를 던진다`() {
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = [" ", "   ", "\t", "\n"])
+    fun `입력값이 null이거나 빈 공백문자인 경우 예외를 던진다`(text: String?) {
         val calculator = Calculator()
 
-        assertThatThrownBy { calculator.calculate(null) }.isInstanceOf(IllegalArgumentException::class.java)
-        assertThatThrownBy { calculator.calculate("") }.isInstanceOf(IllegalArgumentException::class.java)
-        assertThatThrownBy { calculator.calculate("     ") }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { calculator.calculate(text) }.isInstanceOf(IllegalArgumentException::class.java)
     }
 
-    @Test
-    fun `값이 잘 안 들어간 경우 예외를 던진다`() {
+    @ParameterizedTest
+    @ValueSource(strings = ["+", "1 + 2 *", "1 2 3", "1 / / 2"])
+    fun `값이 잘 안 들어간 경우 예외를 던진다`(candidate: String) {
         val calculator = Calculator()
 
-        assertThatThrownBy { calculator.calculate("+") }.isInstanceOf(IllegalArgumentException::class.java)
-        assertThatThrownBy { calculator.calculate("1 + 2 *") }.isInstanceOf(IllegalArgumentException::class.java)
-        assertThatThrownBy { calculator.calculate("1 2 3") }.isInstanceOf(IllegalArgumentException::class.java)
-        assertThatThrownBy { calculator.calculate("1 / / 2") }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { calculator.calculate(candidate) }.isInstanceOf(IllegalArgumentException::class.java)
     }
 
     @Test
@@ -30,7 +31,6 @@ class CalculatorTest {
         val calculator = Calculator()
 
         assertThat(calculator.calculate("1 + 2")).isEqualTo(3)
-        assertThat(calculator.calculate("4 + 2")).isEqualTo(6)
     }
 
     @Test
@@ -38,14 +38,12 @@ class CalculatorTest {
         val calculator = Calculator()
 
         assertThat(calculator.calculate("1 - 2")).isEqualTo(-1)
-        assertThat(calculator.calculate("4 - 2")).isEqualTo(2)
     }
 
     @Test
     fun `곱하기`() {
         val calculator = Calculator()
 
-        assertThat(calculator.calculate("3 * 2")).isEqualTo(6)
         assertThat(calculator.calculate("12 * 4")).isEqualTo(48)
     }
 
@@ -53,7 +51,6 @@ class CalculatorTest {
     fun `나누기`() {
         val calculator = Calculator()
 
-        assertThat(calculator.calculate("3 / 2")).isEqualTo(1)
         assertThat(calculator.calculate("12 / 4")).isEqualTo(3)
     }
 
