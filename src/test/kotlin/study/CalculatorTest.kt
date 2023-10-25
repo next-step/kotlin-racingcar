@@ -10,7 +10,7 @@ import java.util.stream.Stream
 class CalculatorTest {
     @ParameterizedTest
     @MethodSource("arrangePlusTest")
-    fun 덧셈(input: String, expected: Double) {
+    fun `덧셈`(input: String, expected: Double) {
         val calculator = Calculator(input)
         val actual = calculator.calculate()
         assertThat(actual).isEqualTo(expected)
@@ -18,7 +18,7 @@ class CalculatorTest {
 
     @ParameterizedTest
     @MethodSource("arrangeMinusTest")
-    fun 뺄셈(input: String, expected: Double) {
+    fun `뺄셈`(input: String, expected: Double) {
         val calculator = Calculator(input)
         val actual = calculator.calculate()
         assertThat(actual).isEqualTo(expected)
@@ -26,7 +26,7 @@ class CalculatorTest {
 
     @ParameterizedTest
     @MethodSource("arrangeMultiplyTest")
-    fun 곱셈(input: String, expected: Double) {
+    fun `곱셈`(input: String, expected: Double) {
         val calculator = Calculator(input)
         val actual = calculator.calculate()
         assertThat(actual).isEqualTo(expected)
@@ -34,7 +34,7 @@ class CalculatorTest {
 
     @ParameterizedTest
     @MethodSource("arrangeDivideTest")
-    fun 나눗셈(input: String, expected: Double) {
+    fun `나눗셈`(input: String, expected: Double) {
         val calculator = Calculator(input)
         val actual = calculator.calculate()
         assertThat(actual).isEqualTo(expected)
