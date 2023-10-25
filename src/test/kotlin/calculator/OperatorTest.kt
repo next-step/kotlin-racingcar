@@ -11,4 +11,10 @@ internal class OperatorTest {
     fun `덧셈 연산이 잘 계산된다`(x: Int, y: Int, result: Int) {
         assertEquals(result, Operator.PLUS.operation(x, y))
     }
+
+    @ParameterizedTest
+    @CsvSource(value = ["1,2,-1", "2,3,-1", "3,4,-1"])
+    fun `뺄셈 연산이 잘 계산된다`(x: Int, y: Int, result: Int) {
+        assertEquals(result, Operator.MINUS.operation(x, y))
+    }
 }
