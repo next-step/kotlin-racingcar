@@ -1,4 +1,4 @@
-package study
+package step2
 
 class CalculatorChecker {
     fun isNumber(str: String): Boolean {
