@@ -7,34 +7,6 @@ import org.junit.jupiter.api.Test
 class CalculatorTest {
 
     @Test
-    fun `덧셈에 성공한다`() {
-        val calculator = Calculator()
-        val result = calculator.calculate("1 + 2")
-        assertEquals(3, result)
-    }
-
-    @Test
-    fun `뺄셈에 성공한다`() {
-        val calculator = Calculator()
-        val result = calculator.calculate("1 - 2")
-        assertEquals(-1, result)
-    }
-
-    @Test
-    fun `곱셈에 성공한다`() {
-        val calculator = Calculator()
-        val result = calculator.calculate("1 * 2")
-        assertEquals(2, result)
-    }
-
-    @Test
-    fun `나눗셈에 성공한다`() {
-        val calculator = Calculator()
-        val result = calculator.calculate("1 / 2")
-        assertEquals(0, result)
-    }
-
-    @Test
     fun `사칙연산의 순서는 무시한다`() {
         val calculator = Calculator()
         val result = calculator.calculate("1 + 2 * 3 - 4 / 5")

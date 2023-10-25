@@ -10,13 +10,7 @@ class Calculator {
             val operator = elements[i]
             val operand = elements[i + 1].toInt()
 
-            result = when (operator) {
-                "+" -> result + operand
-                "-" -> result - operand
-                "*" -> result * operand
-                "/" -> result / operand
-                else -> throw IllegalArgumentException("Unknown operator: $operator")
-            }
+            result = Operator.from(operator).calculate(result, operand)
         }
 
         return result
