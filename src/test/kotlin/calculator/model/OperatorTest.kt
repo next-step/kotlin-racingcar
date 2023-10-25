@@ -1,10 +1,13 @@
 package calculator.model
 
-import org.junit.jupiter.api.Test
+import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.core.spec.style.StringSpec
 
-class OperatorTest {
+class OperatorTest : StringSpec({
 
-    @Test
-    fun `사칙연산 기호가 아닌 경우 IllegalArgumentException throw`() {
+    "사칙연산 기호가 아닌 경우 IllegalArgumentException throw" {
+        shouldThrow<IllegalArgumentException> {
+            Operator.parseOperators("1+2#4-33")
+        }
     }
-}
+})
