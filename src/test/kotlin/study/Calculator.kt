@@ -11,7 +11,7 @@ class Calculator(val input: String?) {
 
         checkInputValid(inputValues)
 
-        var current = inputValues[0].toDouble()
+        var current = runCatching { inputValues[0].toDouble() }.getOrElse { throw IllegalArgumentException() }
         var arithMeticSymbol: ArithMeticSymbol? = null
         for (inputValue in inputValues.subList(1, inputValues.size)) {
             if (inputValue.isNumeric()) {
