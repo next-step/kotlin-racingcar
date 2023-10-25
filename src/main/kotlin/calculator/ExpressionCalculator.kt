@@ -1,7 +1,7 @@
-package step2
+package calculator
 
-import step2.CalculatorParser.getFirstValue
-import step2.CalculatorParser.getNextValue
+import calculator.CalculatorParser.getFirstValue
+import calculator.CalculatorParser.getNextValue
 
 object ExpressionCalculator {
 

@@ -1,4 +1,4 @@
-package step2
+package calculator
 
 object StringCalculator {
     private const val PLUS = "+"

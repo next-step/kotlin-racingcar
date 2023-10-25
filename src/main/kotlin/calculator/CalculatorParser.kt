@@ -1,4 +1,4 @@
-package step2
+package calculator
 
 object CalculatorParser {
     private const val INPUT_DELIMITER = " "

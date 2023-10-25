@@ -1,4 +1,4 @@
-package step2
+package calculator
 
 enum class ErrorMessage(val message: String) {
     MINIMUM_SIZE_REQUIREMENT_MSG("문자열 사이즈가 3보다 커야 한다"),
