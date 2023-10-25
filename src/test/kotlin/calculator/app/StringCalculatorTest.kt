@@ -1,4 +1,4 @@
-package calculator
+package calculator.app
 
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -18,9 +18,5 @@ class StringCalculatorTest {
 
     @Test
     fun `입력이 공백 문자열이면 IllegalArgumentException throw`() {
-    }
-
-    @Test
-    fun `사칙연산 기호가 아닌 경우 IllegalArgumentException throw`() {
     }
 }

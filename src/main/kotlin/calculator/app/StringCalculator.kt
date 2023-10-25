@@ -1,4 +1,4 @@
-package calculator
+package calculator.app
 
 import calculator.model.Arithmetic
 import calculator.model.Operand
