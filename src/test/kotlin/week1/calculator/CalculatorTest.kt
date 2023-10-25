@@ -1,6 +1,6 @@
 package week1.calculator
 
-import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 class CalculatorTest {
@@ -33,5 +33,33 @@ class CalculatorTest {
     fun `나누기`() {
         assertThat(calculator.divide(1, 2)).isEqualTo(0)
         assertThat(calculator.divide(100, 9)).isEqualTo(11)
+    }
+
+    @Test
+    fun `입력 내용 검증`() {
+        assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
+            calculator.checkInput("")
+            calculator.checkInput(" ")
+            calculator.checkInput("  ")
+            calculator.checkInput("\n")
+        }
+        assertThatCode {
+            calculator.checkInput("123")
+            calculator.checkInput("3+2*4-1/2")
+        }
+    }
+
+    @Test
+    fun `연산자 검증`() {
+        assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
+            calculator.checkOperatorType("_")
+            calculator.checkOperatorType("@")
+            calculator.checkOperatorType("#")
+        }
+        assertThatCode {
+            OperatorType.values().forEach {
+                calculator.checkOperatorType(it.type)
+            }
+        }
     }
 }
