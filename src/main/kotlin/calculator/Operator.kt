@@ -14,3 +14,8 @@ enum class Operator(val symbol: String) {
             DIVIDE -> number1 / number2
         }
 }
+
+fun String.findOperator(): Operator {
+    return Operator.values().firstOrNull() { it.symbol == this }
+        ?: throw IllegalArgumentException("사칙 연산 기호가 아닙니다")
+}
