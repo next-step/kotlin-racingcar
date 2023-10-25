@@ -3,13 +3,13 @@ package study.calculator
 class Calculator {
 
     fun calculate(inputData: String): Int {
-        val numAndOperator = createFormula(inputData)
+        val formula = createFormula(inputData)
 
-        var result = numAndOperator[0].toInt()
+        var result = formula[0].toInt()
 
-        for (i in 1 until numAndOperator.size step 2) {
-            val operator = Operator.from(numAndOperator[i])
-            val num = numAndOperator[i + 1]
+        for (i in 1 until formula.size step 2) {
+            val operator = Operator.from(formula[i])
+            val num = formula[i + 1]
 
             result = operator.operation(result, num.toInt())
         }
@@ -18,11 +18,6 @@ class Calculator {
 
     fun createFormula(inputData: String): List<String> {
         val formulaComponent = inputData.split(" ")
-
-        // 입력값이 공백인 경우
-        if (inputData.isBlank()) {
-            throw IllegalArgumentException("입력 값이 공백입니다.")
-        }
 
         // 수식의 마지막은 숫자.
         if (formulaComponent.size % 2 == 0) {
