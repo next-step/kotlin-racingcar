@@ -2,16 +2,70 @@ package calculator
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.DisplayNameGeneration
+import org.junit.jupiter.api.DisplayNameGenerator
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
 
 @DisplayName("계산기 테스트 (JUnit 5)")
 class CalculatorTest {
 
-    @ParameterizedTest
-    @ValueSource(strings = ["2 + 3 * 4 / 2"])
-    fun `문자열 계산기 테스트`(input: String) {
-        val actual = execute(input)
-        assertThat(actual).isEqualTo(10)
+    @Nested
+    @DisplayNameGeneration(DisplayNameGenerator.Standard::class)
+    class `정상적인 입력값일 경우` {
+
+        @ParameterizedTest
+        @ValueSource(strings = ["2 + 3 * 4 / 2"])
+        fun `사칙 연산 우선 순서 상관 없이 입력 값 순서대로 계산되어 반환한다`(input: String) {
+            val actual = execute(input)
+            assertThat(actual).isEqualTo(10)
+        }
+    }
+
+    @Nested
+    @DisplayNameGeneration(DisplayNameGenerator.Standard::class)
+    class `비정상적인 입력값일 때` {
+
+        @Nested
+        @DisplayNameGeneration(DisplayNameGenerator.Standard::class)
+        class `입력값이 null이거나 빈 공백 문자일 경우` {
+
+            @ParameterizedTest
+            @NullAndEmptySource
+            fun `IllegalArgumentException 예외를 던진다`(input: String?) {
+                assertThrows<IllegalArgumentException> {
+                    execute(input)
+                }
+            }
+        }
+
+        @Nested
+        @DisplayNameGeneration(DisplayNameGenerator.Standard::class)
+        class `사칙연산 기호가 아닌 경우` {
+
+            @ParameterizedTest
+            @ValueSource(strings = ["2 & 7", "2 ^ 7", "2 \\ 3"])
+            fun `IllegalArgumentException 예외를 던진다`(input: String) {
+                assertThrows<IllegalArgumentException> {
+                    execute(input)
+                }
+            }
+        }
+
+        @Nested
+        @DisplayNameGeneration(DisplayNameGenerator.Standard::class)
+        class `첫번째 입력값이 숫자가 아닌 경우` {
+
+            @ParameterizedTest
+            @ValueSource(strings = ["/ 3", "^ 7", "\\ 3"])
+            fun `IllegalArgumentException 예외를 던진다`(input: String) {
+                assertThrows<IllegalArgumentException> {
+                    execute(input)
+                }
+            }
+        }
     }
 }

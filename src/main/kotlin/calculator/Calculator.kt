@@ -1,25 +1,42 @@
 package calculator
 
-fun execute(input: String): Int {
+fun execute(input: String?): Int {
+    if (input.isNullOrBlank()) {
+        throw IllegalArgumentException("입력값을 제대로 기입해주세요.")
+    }
+
     val inputChars = input.toCharArray()
         .filterNot { it.isWhitespace() }
 
-    var result = inputChars[0].toString().toInt()
+    var result = 0
     var currentOperator: Char? = null
 
     for (inputChar in inputChars) {
+        validateChar(inputChar)
+
+        if (result == 0) {
+            result = inputChar.toString().toInt()
+            continue
+        }
+
         if (isMathOperator(inputChar)) {
             currentOperator = inputChar
             continue
         }
-        
-        if(isCalculable(currentOperator, inputChar)) {
+
+        if (isCalculable(currentOperator, inputChar)) {
             result = calculate(currentOperator!!, result, inputChar.toString().toInt())
             currentOperator = null
         }
     }
-    
+
     return result
+}
+
+private fun validateChar(inputChar: Char) {
+    require(isMathOperator(inputChar) || inputChar.isDigit()) {
+        "입력값은 숫자와 사칙연산('+', '-', '*', '/')만 기입해주세요."
+    }
 }
 
 private fun isMathOperator(inputChar: Char): Boolean {
