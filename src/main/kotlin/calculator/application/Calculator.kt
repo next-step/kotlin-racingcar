@@ -1,7 +1,5 @@
 package calculator.application
 
-import java.lang.Exception
-
 class Calculator(
     private val console: Console,
     private val engine: Engine,
