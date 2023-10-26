@@ -4,18 +4,23 @@ import java.io.InputStream
 import java.io.OutputStream
 import java.io.PrintStream
 
-fun main() {
-    Calculator(
-        System.`in`,
-        System.out
-    ).run()
-}
-
 class Calculator(private val inputStream: InputStream, private val outputStream: OutputStream) {
+    companion object {
+        val validOperator = charArrayOf('+', '-', '*', '/')
+    }
+
+    inner class Operation(val operator: Char, val operand: Int) {
+        init {
+            if (!validOperator.contains(operator)) {
+                throw IllegalArgumentException()
+            }
+        }
+    }
+
     fun run() {
         val expression = readInput()
 
-        PrintStream(outputStream).println(calculate(expression))
+        PrintStream(outputStream).print(calculate(expression))
     }
 
     private fun readInput(): String {
@@ -28,27 +33,42 @@ class Calculator(private val inputStream: InputStream, private val outputStream:
         return expression
     }
 
+    private fun parseExpression(expression: String): List<Operation> {
+        val operationList = arrayListOf<Operation>()
+        val parsedExpression = "+ $expression".split(" ").chunked(2).map { it -> Pair(it[0], it[1]) }
+
+        for (operationItem in parsedExpression) {
+            operationList.add(Operation(operationItem.first[0], operationItem.second.toInt()))
+        }
+
+        return operationList.toList()
+    }
+
     private fun calculate(expression: String): Int {
-        throw NotImplementedError()
+        var result: Int = 0
+        val parsedOperationList = parseExpression(expression)
+
+        for (operation in parsedOperationList) {
+            when (operation.operator) {
+                '+' -> result = calculateAdd(result, operation.operand)
+                '-' -> result = calculateSubtract(result, operation.operand)
+                '*' -> result = calculateMultiply(result, operation.operand)
+                '/' -> result = calculateDivide(result, operation.operand)
+            }
+        }
+
+        return result
     }
 
-    private fun parseExpression(expression: String): Int {
-        throw NotImplementedError()
-    }
+    private fun calculateAdd(x: Int, y: Int): Int =
+        x + y
 
-    private fun calculateAdd(): Int {
-        throw NotImplementedError()
-    }
+    private fun calculateSubtract(x: Int, y: Int): Int =
+        x - y
 
-    private fun calculateSubtract(): Int {
-        throw NotImplementedError()
-    }
+    private fun calculateMultiply(x: Int, y: Int): Int =
+        x * y
 
-    private fun calculateMultiply(): Int {
-        throw NotImplementedError()
-    }
-
-    private fun calculateDivide(): Int {
-        throw NotImplementedError()
-    }
+    private fun calculateDivide(x: Int, y: Int): Int =
+        x / y
 }
