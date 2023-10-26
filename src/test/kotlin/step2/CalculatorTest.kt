@@ -75,10 +75,20 @@ class CalculatorTest {
 
     @ParameterizedTest
     @CsvSource(
-        value = ["2+3*4/2=10", "3*4-2*2=20"], delimiter = '='
+        value = ["2+3*4/2=10", "3*4-2*2=20", "0/3*4+3=3"], delimiter = '='
     )
     fun 슈퍼_사칙_연산(input: String, expected: String) {
         val result = Calculator().calculate(input)
         assertThat(result).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @CsvSource(
+        value = ["2+3/0*4"]
+    )
+    fun Zero로_나누기(input: String) {
+        assertThatThrownBy {
+            Calculator().calculate(input)
+        }.isInstanceOf(IllegalStateException::class.java)
     }
 }

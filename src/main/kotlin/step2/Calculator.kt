@@ -65,7 +65,9 @@ class Calculator {
             total
         } else {
             val firstOperand = total.toBigDecimal()
-            val secondOperand = next.replace(next.first().toString(), "").toBigDecimal()
+            val checkSecondOperand = next.replace(next.first().toString(), "")
+            check(checkSecondOperand.toDouble() != 0.0) { DO_NOT_DIVIDE_ZERO }
+            val secondOperand = checkSecondOperand.toBigDecimal()
             val operator = getArithmeticOperationFromString(next.first())
 
             calculate(firstOperand, secondOperand, operator).toString()
@@ -136,5 +138,6 @@ class Calculator {
         private const val NULL_PARAM = "문자열은 null일 수 없어요"
         private const val EMPTY_STRING_MESSAGE = "계산기의 값은 공백일 수 없어요"
         private const val WRONG_STRING = "잘못 된 식 이예요"
+        private const val DO_NOT_DIVIDE_ZERO = "0으로 나누지 마세요"
     }
 }
