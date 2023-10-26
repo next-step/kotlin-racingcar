@@ -1,15 +1,17 @@
 package racingCar.view
 
+import racingCar.error.ErrorMessage.*
+
 class InputView {
     fun inputNumber(): Int {
         try {
             return readLine()!!.toInt()
         } catch (e: NullPointerException) {
-            throw IllegalArgumentException("null이에욤!!!!!!")
+            throw IllegalArgumentException(NULL_MESSAGE.message)
         } catch (e: NumberFormatException) {
-            throw IllegalArgumentException("이노옴~~~ 숫자만 입력해야지!!")
+            throw IllegalArgumentException(INPUT_NUMBER_MESSAGE.message)
         } catch (e: Throwable) {
-            throw IllegalArgumentException("Input Error")
+            throw IllegalArgumentException(INPUT_ERROR.message)
         }
     }
 }
