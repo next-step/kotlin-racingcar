@@ -24,11 +24,15 @@ class Calculator(
             Operator.MINUS -> operand1 - operand2
             Operator.MULTIPLY -> operand1 * operand2
             Operator.DIVIDE -> {
-                if (operand2 == 0.0) {
-                    throw ArithmeticException("Division by zero.")
-                }
+                throwIfDivideByZero(operand2)
                 operand1 / operand2
             }
+        }
+    }
+
+    private fun throwIfDivideByZero(divisor: Double) {
+        if (divisor == 0.0) {
+            throw ArithmeticException("Division by zero.")
         }
     }
 }
