@@ -1,7 +1,5 @@
 package calculator
 
-import java.lang.IllegalArgumentException
-
 object IntCalculator {
     fun calculate(expression: IntExpression): Int {
         if (expression.operations.isEmpty()) return expression.initialNumber
@@ -25,7 +23,7 @@ object IntCalculator {
     private fun multiply(base: Int, value: Int): Int = base * value
 
     private fun divide(base: Int, value: Int): Int {
-        if (value == 0) throw IllegalArgumentException("0으로 나눌 수는 없습니다")
+        require(value != 0) { "0으로 나눌 수는 없습니다" }
         return base / value
     }
 }

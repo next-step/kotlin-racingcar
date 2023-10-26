@@ -15,16 +15,15 @@ data class IntExpression(
         }
 
         private fun validateInput(input: String): String = input.apply {
-            if (input.isBlank()) throw IllegalArgumentException("빈 문자열은 식이 될 수 없습니다")
+            require(this.isNotBlank()) { "빈 문자열은 식이 될 수 없습니다" }
         }
 
         private fun splitByDelimiter(validatedInput: String): List<String> =
             validatedInput.split(DELIMITER).filter { it.isNotBlank() }
 
-        private fun validateSplitInput(splitInput: List<String>): List<String> =
-            splitInput.apply {
-                if (this.size % 2 == 0) throw IllegalArgumentException("식을 구성할 수 없는 문자열 입니다")
-            }
+        private fun validateSplitInput(splitInput: List<String>): List<String> = splitInput.apply {
+            require(this.size % 2 != 0) { "식을 구성할 수 없는 문자열 입니다" }
+        }
 
         private fun toExpression(validatedSplitInput: List<String>): IntExpression {
             val initialNumber = extractInitialNumber(validatedSplitInput)
