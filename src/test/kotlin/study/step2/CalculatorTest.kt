@@ -12,38 +12,50 @@ class CalculatorTest {
 
     @Test
     fun `덧셈`() {
-        val calculator = Calculator()
-        val actual = calculator.add(1, 2)
-        assertThat(actual).isEqualTo(3)
+        val input = "1 + 2"
+        val expected = 3
+        val actual = calculator.calculate(input)
+        assertThat(actual).isEqualTo(expected)
     }
 
     @Test
     fun `뺄셈`() {
-        val calculator = Calculator()
-        val actual = calculator.subtract(2, 1)
-        assertThat(actual).isEqualTo(1)
+        val input = "2 - 1"
+        val expected = 1
+        val actual = calculator.calculate(input)
+        assertThat(actual).isEqualTo(expected)
     }
 
     @Test
     fun `곱셈`() {
-        val calculator = Calculator()
-        val actual = calculator.multiply(2, 3)
-        assertThat(actual).isEqualTo(6)
+        val input = "2 * 3"
+        val expected = 6
+        val actual = calculator.calculate(input)
+        assertThat(actual).isEqualTo(expected)
     }
 
     @Test
     fun `나눗셈`() {
-        val calculator = Calculator()
-        val actual = calculator.divide(6, 3)
-        assertThat(actual).isEqualTo(2)
+        val input = "6 / 3"
+        val expected = 2
+        val actual = calculator.calculate(input)
+        assertThat(actual).isEqualTo(expected)
     }
 
     @Test
-    fun `나눗셈_예외`() {
-        val calculator = Calculator()
-        assertThatThrownBy { calculator.divide(6, 0) }
+    fun `나눗셈_예외 테스트`() {
+        val input = "6 / 0"
+        assertThatThrownBy { calculator.calculate(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("0으로 나눌 수 없습니다.")
+    }
+
+    @Test
+    fun `복잡한 연산 테스트`() {
+        val input = "2 + 3 * 4 / 2"
+        val expected = 10
+        val acutal = calculator.calculate(input)
+        assertThat(acutal).isEqualTo(expected)
     }
 
     @ParameterizedTest
