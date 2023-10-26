@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test
 
 class PersonTest {
     @Test
-    fun `이름 붙인 인자`(){
-        val actual = Person(name="김도훈", age=20, nickname = "김")
+    fun `이름 붙인 인자`() {
+        val actual = Person(name = "김도훈", age = 20, nickname = "김")
         assertThat(actual.name).isEqualTo("김도훈")
         assertThat(actual.age).isEqualTo(20)
         assertThat(actual.nickname).isEqualTo("김")
