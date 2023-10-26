@@ -8,10 +8,6 @@ class CalculatorTest {
     private val calculator = Calculator()
 
     @Test
-    fun calculate() {
-    }
-
-    @Test
     fun `더하기`() {
         assertThat(calculator.add(1, 2)).isEqualTo(3)
         assertThat(calculator.add(123000, 456)).isEqualTo(123456)
@@ -46,20 +42,6 @@ class CalculatorTest {
         assertThatCode {
             calculator.checkInput("123")
             calculator.checkInput("3+2*4-1/2")
-        }
-    }
-
-    @Test
-    fun `연산자 검증`() {
-        assertThatExceptionOfType(IllegalArgumentException::class.java).isThrownBy {
-            calculator.checkOperatorType("_")
-            calculator.checkOperatorType("@")
-            calculator.checkOperatorType("#")
-        }
-        assertThatCode {
-            OperatorType.values().forEach {
-                calculator.checkOperatorType(it.type)
-            }
         }
     }
 

@@ -10,8 +10,8 @@ enum class OperatorType(
     ;
 
     companion object {
-        fun from(value: String): OperatorType? {
-            return OperatorType.values().firstOrNull { it.value == value }
+        fun from(value: String): OperatorType {
+            return OperatorType.values().firstOrNull { it.value == value } ?: throw IllegalArgumentException()
         }
     }
 }

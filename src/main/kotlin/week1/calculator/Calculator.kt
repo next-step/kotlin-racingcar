@@ -10,11 +10,8 @@ class Calculator {
         val numbers = mutableListOf<Int>()
         val operators = mutableListOf<OperatorType>()
         input.split(' ').forEach {
-            println("it = [$it]")
-            if (it.length == 1 && isOperatorType(it)) {
-                OperatorType.from(it)?.let { type ->
-                    operators.add(type)
-                }
+            if (it.length == 1 && !isDigit(it)) {
+                operators.add(OperatorType.from(it))
             } else {
                 numbers.add(it.toInt())
             }
@@ -33,7 +30,7 @@ class Calculator {
             }
         }
 
-        println(result)
+        println("식 계산 결과 = [$result]")
         return result
     }
 
@@ -57,8 +54,11 @@ class Calculator {
         if (input.isNullOrBlank()) throw IllegalArgumentException()
     }
 
-    fun isOperatorType(candidate: String): Boolean {
-        return OperatorType.values().any { it.value == candidate }
+    private fun isDigit(candidate: String): Boolean {
+        return digits.contains(candidate)
     }
 
+    companion object {
+        private val digits = listOf("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
+    }
 }
