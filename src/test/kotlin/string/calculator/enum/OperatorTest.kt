@@ -1,6 +1,7 @@
 package string.calculator.enum
 
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 internal class OperatorTest {
     @Test
@@ -12,6 +13,15 @@ internal class OperatorTest {
             val result = Operator.of(input)
 
             assert(result == operators[index])
+        }
+    }
+
+    @Test
+    fun `지원하지 않는 연산자를 입력하면 예외를 발생시킨다`() {
+        val input = "a"
+
+        assertThrows<IllegalArgumentException> {
+            Operator.of(input)
         }
     }
 }
