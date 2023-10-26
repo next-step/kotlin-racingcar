@@ -1,7 +1,7 @@
 package calculator
 
-class Calculator(private val input: String?) {
-    fun calculate(): Int {
+object Calculator {
+    fun calculate(input: String?): Int {
         require(!input.isNullOrBlank()) { throw IllegalArgumentException("입력값이 없습니다.") }
         val strings = input.split(" ")
         val numbers = strings.filterIndexed { index, _ -> index % 2 == 0 }
