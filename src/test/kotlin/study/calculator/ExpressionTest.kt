@@ -35,6 +35,6 @@ class ExpressionTest {
     @ParameterizedTest
     @MethodSource("provideExpressionEvaluateSources")
     fun `Expression 계산`(operand: Int, expression: Expression, result: Int) {
-        assertEquals(result, expression.evaluate(operand))
+        assertEquals(result, expression.operator.evaluate(operand, expression.number))
     }
 }

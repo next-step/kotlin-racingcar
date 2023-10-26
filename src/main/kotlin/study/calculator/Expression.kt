@@ -12,16 +12,12 @@ class Expression(private val operatorToken: String, private val numberToken: Str
     val number: Int = numberToken.toIntOrNull()
         ?: throw IllegalArgumentException("invalid number")
 
-    fun evaluate(operand: Int): Int {
-        return when (operator) {
-            Operator.ADD -> operand + number
-            Operator.SUBTRACT -> operand - number
-            Operator.MULTIPLY -> operand * number
-            Operator.DIVIDE -> operand / number
-        }
-    }
-
-    enum class Operator {
-        ADD, SUBTRACT, MULTIPLY, DIVIDE
+    enum class Operator(
+        val evaluate: (Int, Int) -> Int
+    ) {
+        ADD({ number1, number2 -> number1 + number2 }),
+        SUBTRACT({ number1, number2 -> number1 - number2 }),
+        MULTIPLY({ number1, number2 -> number1 * number2 }),
+        DIVIDE({ number1, number2 -> number1 / number2 });
     }
 }

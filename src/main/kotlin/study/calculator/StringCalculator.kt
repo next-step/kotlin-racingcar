@@ -2,14 +2,13 @@ package study.calculator
 
 object StringCalculator {
     fun calculate(input: String?): String {
-        var result: Int = 0
-        input
+        return input
             .validateNotNullOrBlank()
             .tokenize()
             .preprocess()
             .map { it.recognize() }
-            .forEach { result = it.evaluate(result) }
-        return result.toString()
+            .fold(0) { result, expression -> expression.operator.evaluate(result, expression.number) }
+            .toString()
     }
 
     private fun String?.validateNotNullOrBlank() = takeUnless { isNullOrBlank() }
