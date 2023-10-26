@@ -10,7 +10,7 @@ class ArithmeticTest : StringSpec({
             listOf(Operator.PLUS, Operator.MULTI),
             listOf(OperandFixture.one, OperandFixture.two, OperandFixture.four)
         ).act()
-        actual shouldBe 9
+        actual shouldBe 12
     }
 
     "덧셈 기능이 동작 해야 한다" {
@@ -18,7 +18,7 @@ class ArithmeticTest : StringSpec({
             listOf(Operator.PLUS),
             listOf(OperandFixture.one, OperandFixture.two)
         ).act()
-        actual shouldBe 5
+        actual shouldBe 3
     }
 
     "뻴셈 기능이 동작 해야 한다"() {
@@ -31,7 +31,7 @@ class ArithmeticTest : StringSpec({
 
     "곱셈 기능이 동작 해야 한다"() {
         val actual = Arithmetic(
-            listOf(Operator.PLUS),
+            listOf(Operator.MULTI),
             listOf(OperandFixture.three, OperandFixture.two)
         ).act()
         actual shouldBe 6
@@ -39,7 +39,7 @@ class ArithmeticTest : StringSpec({
 
     "나눗셈 기능이 동작 해야 한다"() {
         val actual = Arithmetic(
-            listOf(Operator.PLUS),
+            listOf(Operator.DIVIDE),
             listOf(OperandFixture.four, OperandFixture.two)
         ).act()
         actual shouldBe 2
