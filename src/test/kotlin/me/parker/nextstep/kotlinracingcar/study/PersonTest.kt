@@ -1,4 +1,4 @@
-package study
+package me.parker.nextstep.kotlinracingcar.study
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
