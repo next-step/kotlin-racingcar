@@ -1,9 +1,11 @@
 package calculator
 
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.io.ByteArrayOutputStream
 import java.io.OutputStream
+import java.lang.IllegalArgumentException
 
 class CalculatorTest {
     private fun setUpCalculator(expression: String, outputStream: OutputStream): Calculator =
@@ -55,5 +57,23 @@ class CalculatorTest {
         setUpCalculator("20 / 4 + 10 * 6", outputStream).also { it.run() }
 
         assertEquals(String(outputStream.toByteArray()), "90")
+    }
+
+    @Test
+    fun testInvalidOperator() {
+        val outputStream = ByteArrayOutputStream()
+
+        assertThatThrownBy {
+            setUpCalculator("1 ? 2", outputStream).also { it.run() }
+        }.isInstanceOf(IllegalArgumentException::class.java).hasMessage("Wrong operator!")
+    }
+
+    @Test
+    fun testEmptyExpression() {
+        val outputStream = ByteArrayOutputStream()
+
+        assertThatThrownBy {
+            setUpCalculator("", outputStream).also { it.run() }
+        }.isInstanceOf(IllegalArgumentException::class.java).hasMessage("Empty expression!")
     }
 }

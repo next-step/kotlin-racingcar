@@ -12,7 +12,7 @@ class Calculator(private val inputStream: InputStream, private val outputStream:
     inner class Operation(val operator: Char, val operand: Int) {
         init {
             if (!validOperator.contains(operator)) {
-                throw IllegalArgumentException()
+                throw IllegalArgumentException("Wrong operator!")
             }
         }
     }
@@ -27,7 +27,7 @@ class Calculator(private val inputStream: InputStream, private val outputStream:
         val expression = inputStream.reader().buffered().readLine()
 
         if (expression.isNullOrEmpty()) {
-            throw IllegalArgumentException()
+            throw IllegalArgumentException("Empty expression!")
         }
 
         return expression
@@ -45,7 +45,7 @@ class Calculator(private val inputStream: InputStream, private val outputStream:
     }
 
     private fun calculate(expression: String): Int {
-        var result: Int = 0
+        var result = 0
         val parsedOperationList = parseExpression(expression)
 
         for (operation in parsedOperationList) {
