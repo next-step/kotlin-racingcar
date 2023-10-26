@@ -7,19 +7,19 @@ import org.assertj.core.api.Assertions.assertThatThrownBy
 
 class StringCalculatorTest : StringSpec({
     "plusTest" {
-        assertThat(StringCalculator.plus(1, 2) == 3).isTrue()
+        assertThat(StringCalculator.Operator.plus(1, 2) == 3).isTrue()
     }
 
     "minusTest" {
-        assertThat(StringCalculator.plus(5, 2) == 3).isTrue()
+        assertThat(StringCalculator.Operator.minus(5, 2) == 3).isTrue()
     }
 
     "multiplyTest" {
-        assertThat(StringCalculator.plus(4, 2) == 8).isTrue()
+        assertThat(StringCalculator.Operator.multiply(4, 2) == 8).isTrue()
     }
 
     "divideTest" {
-        assertThat(StringCalculator.plus(16, 2) == 8).isTrue()
+        assertThat(StringCalculator.Operator.divide(16, 2) == 8).isTrue()
     }
 
     "formulaTest" {
