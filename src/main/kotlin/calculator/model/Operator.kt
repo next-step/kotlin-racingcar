@@ -9,6 +9,15 @@ enum class Operator(
     DIVIDE("/"),
     ;
 
+    fun operate(first: Int, second: Int): Int {
+        return when (this) {
+            PLUS -> first + second
+            MINUS -> first - second
+            MULTI -> first * second
+            DIVIDE -> first / second
+        }
+    }
+
     companion object {
         fun parseOperators(inputString: String): List<Operator> {
             return Tokenizer(inputString).toTokens()
