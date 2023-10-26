@@ -19,7 +19,7 @@ object ExpressionCalculator {
         var operatorIndex = FIRST_OPERATOR_INDEX
         while (operatorIndex < elements.size) {
             val nextValue = elements.getNextValue(operatorIndex)
-            val operation = elements[operatorIndex]
+            val operation = Operation.fromString(elements[operatorIndex])
             result = StringCalculator.applyOperation(result, nextValue, operation)
             operatorIndex += OPERATOR_GAP
         }
