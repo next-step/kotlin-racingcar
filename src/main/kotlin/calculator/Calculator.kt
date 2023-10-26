@@ -4,15 +4,12 @@ class Calculator(
     private val arithmeticOperation: ArithmeticOperation,
     private val calculatorValidator: CalculatorValidator,
 ) {
-    companion object {
-        const val INITIAL_VALUE = 0.0
-    }
 
     fun calculateExpression(expression: String): Double {
         calculatorValidator.expressionValidate(expression)
 
         val tokens = expression.split(" ")
-        var result = INITIAL_VALUE
+        var result = Number.ZERO
         var currentOperator: (Double, Double) -> Double = arithmeticOperation::addition
 
         tokens.forEach { token ->
