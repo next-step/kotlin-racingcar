@@ -38,6 +38,7 @@ class StringCalculatorTest {
         assertThatThrownBy {
             StringCalculator.calculate(input)
         }.isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageMatching("입력 값이 null 이거나 빈 공백 문자입니다.")
     }
 
     @ParameterizedTest
@@ -46,6 +47,7 @@ class StringCalculatorTest {
         assertThatThrownBy {
             StringCalculator.calculate(input)
         }.isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageMatching("입력 값이 null 이거나 빈 공백 문자입니다.")
     }
 
     @ParameterizedTest
@@ -54,6 +56,7 @@ class StringCalculatorTest {
         assertThatThrownBy {
             StringCalculator.calculate(input)
         }.isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageMatching("입력 값에 사칙 연산이 아닌 기호가 포함되었습니다.")
     }
 
     @ParameterizedTest
@@ -62,6 +65,7 @@ class StringCalculatorTest {
         assertThatThrownBy {
             StringCalculator.calculate(input)
         }.isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageMatching("올바른 계산식이 아닙니다.")
     }
 
     @ParameterizedTest
