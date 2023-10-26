@@ -17,6 +17,6 @@
 
 ### 학습한 것들
 - [x] 코틀린 플러그인 업데이트 후 코틀린 추적 안될때는 인텔리제이 캐시 무효화를 해보자
-- [x] reduce, fold, all, withIndex, isBlank, isEmpty, contains
+- [x] reduce, fold, all, withIndex, isBlank, isEmpty, contains, firstOrNull
 - [x] 코틀린의 람다 사용법
 - [x] when 사용법
