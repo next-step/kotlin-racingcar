@@ -1,6 +1,6 @@
 package calculator
 
-class Expression(val number: Number, private val arithmetic: Arithmetic? = null) {
+data class Expression(val number: Number, private val arithmetic: Arithmetic? = null) {
 
     fun put(string: String): Expression {
         if (Number.isNumber(string)) {
