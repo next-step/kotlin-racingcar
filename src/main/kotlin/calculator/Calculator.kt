@@ -3,6 +3,10 @@ package calculator
 class Calculator(private val formulas: List<String>) {
 
     init {
+        if (formulas.isEmpty()) {
+            throw IllegalArgumentException("수식을 입력해 주세요.")
+        }
+
         for (index in formulas.indices) {
             validateIsNumber(index, formulas[index])
             validateIsArithmetic(index, formulas[index])
@@ -10,13 +14,13 @@ class Calculator(private val formulas: List<String>) {
     }
 
     private fun validateIsNumber(index: Int, formula: String) {
-        if (index % 2 == 0 && !Number.isNumber(formula)) {
+        if (index % 2 == 1 && !Number.isNumber(formula)) {
             throw IllegalArgumentException("수식을 확인해 주세요.")
         }
     }
 
     private fun validateIsArithmetic(index: Int, formula: String) {
-        if (index % 2 == 1 && !Arithmetic.isArithmetic(formula)) {
+        if (index % 2 == 0 && !Arithmetic.isArithmetic(formula)) {
             throw IllegalArgumentException("수식을 확인해 주세요.")
         }
     }
