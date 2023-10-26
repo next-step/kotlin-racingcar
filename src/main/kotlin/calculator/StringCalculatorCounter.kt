@@ -3,6 +3,28 @@ package calculator
 import java.util.*
 
 class StringCalculatorCounter(private val formula: List<String>) {
+    init {
+        if (formula.isEmpty()){
+            throw IllegalArgumentException("Please Check the Input")
+        }
+        for ((index, element) in formula.withIndex()) {
+            validateNumber(index, element)
+            validateSymbol(index, element)
+        }
+
+    }
+    fun validateNumber(index : Int, element : String){
+        if (index % 2 == 0 && !element.matches(Regex("^\\d+$"))){
+            throw IllegalArgumentException("Please Check the Input")
+        }
+    }
+
+    fun validateSymbol(index : Int, element: String){
+        if (index % 2 == 1 && !element.matches(Regex("^[+/\\-*]+$"))){
+            throw IllegalArgumentException("Please Check the Input")
+        }
+    }
+
 
     fun calculate(): Double {
         val basicOperationsCalculator = BasicOperationsCalculator()
