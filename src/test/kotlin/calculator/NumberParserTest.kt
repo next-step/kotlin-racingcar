@@ -9,7 +9,7 @@ internal class NumberParserTest {
 
     @ParameterizedTest
     @CsvSource(value = ["1,1", "2,2", "3,3"])
-    fun `숫자를 잘 파싱한다`(value: String, result: Int) {
+    fun `문자열이 들어오면 숫자로 변환할 수 있다`(value: String, result: Int) {
         assertEquals(result, NumberParser.parse(value))
     }
 
