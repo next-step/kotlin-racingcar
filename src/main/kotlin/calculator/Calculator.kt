@@ -10,32 +10,26 @@ class Calculator(val formula: List<String>) {
     }
 
     private fun validateIsNumber(index: Int, formula: String) {
-        if (index % 2 != 0) {
-            return
+        if (index % 2 == 0 && !Number.isNumber(formula)) {
+            throw IllegalArgumentException("수식을 확인해 주세요.")
         }
-        formula.toIntOrNull() ?: throw IllegalArgumentException()
     }
 
     private fun validateIsArithmetic(index: Int, formula: String) {
-        if (index % 2 != 1) {
-            return
-        }
-        try {
-            Arithmetic.of(formula)
-        } catch (e: NoSuchElementException) {
-            throw IllegalArgumentException()
+        if (index % 2 == 1 && !Arithmetic.isArithmetic(formula)) {
+            throw IllegalArgumentException("수식을 확인해 주세요.")
         }
     }
 
-    fun calculate(): Int {
-        var result = 0
+    fun calculate(): Number {
+        var result = Number(0)
         for (i: Int in 0..formula.size step (2)) {
             if (i == 0) {
-                result += formula[i].toInt()
+                result = result.sum(Number(formula[i]))
                 continue
             }
             val arithmetic = Arithmetic.of(formula[i - 1])
-            result = arithmetic.operation(result, formula[i].toInt())
+            result = arithmetic.operation(result, Number(formula[i]))
         }
         return result
     }
