@@ -1,6 +1,6 @@
 package calculator.enums
 
-import calculator.enums.ErrorMessages.INVALID_OPERATOR_EXCEPTION
+import calculator.enums.ErrorMessages.NOT_SUPPORTED_OPERATOR
 import java.lang.IllegalArgumentException
 import java.util.function.BiFunction
 
@@ -16,7 +16,7 @@ enum class Operators(val symbol: String, private val operation: BiFunction<Int, 
 
     companion object {
         fun findValue(symbol: String): Operators {
-            return values().find { it.symbol == symbol } ?: throw IllegalArgumentException(INVALID_OPERATOR_EXCEPTION.message)
+            return values().find { it.symbol == symbol } ?: throw IllegalArgumentException(NOT_SUPPORTED_OPERATOR.message)
         }
     }
 }
