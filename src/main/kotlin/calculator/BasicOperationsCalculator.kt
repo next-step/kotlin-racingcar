@@ -1,7 +1,5 @@
 package calculator
 
-import java.lang.IllegalArgumentException
-
 class BasicOperationsCalculator {
     fun add(a: Double, b: Double) : Double = a+b
     fun subtract(a: Double, b: Double) : Double = a-b
