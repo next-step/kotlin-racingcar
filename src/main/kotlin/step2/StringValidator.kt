@@ -5,30 +5,34 @@ object StringValidator {
      * 문자열이 유효한지 한번에 체크
      */
     fun validateString(string: String) {
-        validateFirstAndLast(string)
-        validateDuplicatedOperation(string)
+        string.validateFirstAndLast()
+        string.validateDuplicatedOperation()
     }
 
     /**
      * 문자열의 처음과 끝이 * / 연산이면 IllegalArgumentException
      */
-    private fun validateFirstAndLast(string: String) {
+    private fun String.validateFirstAndLast() {
         require(
-            string.first().isMultiplyOrDivide().not() &&
-                string.last().isMultiplyOrDivide().not()
+            first().isMultiplyOrDivide().not() &&
+                last().isMultiplyOrDivide().not()
         ) { START_STRING_CAN_NOT_BE_OPERATION }
     }
 
     /**
      * 연산자가 두개 이상 동시에 들어오는 경우
      */
-    private fun validateDuplicatedOperation(string: String) {
-        string.mapIndexed { index, char ->
+    private fun String.validateDuplicatedOperation() {
+        mapIndexed { index, char ->
             if (index != 0) { // 1~마지막
-                if (char.isFourArithmeticCalculation() && string[index - 1].isFourArithmeticCalculation()) {
-                    error(DUPLICATED_OPERATION)
-                }
+                validateDuplicate(char, index)
             }
+        }
+    }
+
+    private fun String.validateDuplicate(char: Char, index: Int) {
+        if (char.isFourArithmeticCalculation() && this[index - 1].isFourArithmeticCalculation()) {
+            error(DUPLICATED_OPERATION)
         }
     }
 
