@@ -1,16 +1,14 @@
 package calculator
 
-class Number(val number: Int) {
-    companion object {
-        fun of(input: String): Number {
-            if (!isNumber(input)) {
-                throw IllegalArgumentException("숫자가 아닙니다.")
-            }
-            return Number(input.toInt())
-        }
+@JvmInline
+value class Number(private val number: String) {
 
-        private fun isNumber(value: String): Boolean {
-            return value.matches(Regex("[0-9]+"))
-        }
+    init {
+        require(number.isNumber()) { "숫자가 아닙니다." }
     }
+
+    private fun String.isNumber(): Boolean {
+        return this.matches(Regex("[0-9]+"))
+    }
+    fun getNumber() = number.toInt()
 }
