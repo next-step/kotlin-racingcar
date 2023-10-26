@@ -8,7 +8,6 @@ import step2.FourArithmeticOperation.MULTIPLY
 import step2.FourArithmeticOperation.PLUS
 import java.math.BigDecimal
 import kotlin.math.floor
-import kotlin.math.roundToLong
 
 class Calculator {
     fun calculate(string: String?): String {
@@ -31,25 +30,32 @@ class Calculator {
 
     /**
      * 이 계산기의 Double값은 소숫점 첫째 자리까지만 계산합니다.
-     * 이 때, 첫째 자리 값 이후의 값을 버린 값과 기존의 값이 같다면,
+     * 이 때, 첫째 자리 값 이후의 값을 버린 값과 기존의 값이 같다면, 이 값을 Long으로 보여줄지, Double로 보여줄지 결정합니다.
      */
-    private fun convertResultToLongOrDouble(result: Double, floorResult: Double) =
+    private fun convertResultToLongOrDouble(result: Double, floorResult: Double): String =
         if (result == floorResult) {
+            /**
+             * 1, 1 의 경우 1을
+             * 1.1, 1.1의 경우 1.1을 보여 줍니다.
+             */
             checkNeedToUseDouble(result)
         } else {
-            ((floor(result * 10)).roundToLong().toDouble() / 10).toString()
+            /**
+             * 1.2 1.0로 값이 다른 경우 에는 result 값을 소수점 첫째 까지인 1.2로 보여 줍니다.
+             */
+            removeTwoDigitAfterDecimalPoint(result).toString()
         }
 
     /**
-     * 결과 값을 Double로 보여줄 지, Long으로 보여줄지 계산합니다.
-     * ex) 1.1 -> 올림 = 2.0 즉, 소수점 첫째자리가 반드시 0 인경우에만 Long으로 변환하고 아닌 경우 그대로 result 값을 사용합니다.
+     * 결과 값을 Double로 보여줄 지, Long으로 보여줄지 값 올림을 통해 계산합니다. (0.1이라도 높으면 올림)
+     * ex) 1.1 -> 올림 = 2.0 즉, 소수점 첫째자리가 반드시 0 인경우에만 Long으로 변환하고 아닌 경우 그대로 double인 result 값을 사용합니다.
      * 예시로, 1.1-0.1 = 1.0 -> 1 로 변경해줍니다.
      */
     private fun checkNeedToUseDouble(result: Double) =
         if (result == kotlin.math.ceil(result)) result.toLong().toString() else result.toString()
 
-    // 소수점 둘째 자리에서 반올림
-    private fun removeTwoDigitAfterDecimalPoint(result: Double) = (floor(result * 10)).roundToLong().toDouble() / 10
+    // 소수점 둘째 자리에서 올림
+    private fun removeTwoDigitAfterDecimalPoint(result: Double) = (floor(result * 10) / 10)
 
     /**
      * 연산을 차례 대로 진행 합니다.
