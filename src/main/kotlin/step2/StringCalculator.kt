@@ -2,9 +2,7 @@ package step2
 
 object StringCalculator {
     fun calculate(input: String?): Int {
-        if (input.isNullOrBlank()) {
-            throw IllegalArgumentException("input must not be blank")
-        }
+        require(!input.isNullOrBlank())
 
         val tokens = tokenize(input)
         return calculateByIterator(tokens)
@@ -12,25 +10,34 @@ object StringCalculator {
 
     private fun tokenize(input: String): List<String> {
         val tokens = input.trim().split(" ")
-        if (tokens.size % 2 == 0) {
-            throw IllegalArgumentException("invalid input")
-        }
+        require(tokens.size % 2 != 0)
 
         return tokens
     }
 
     private fun calculateByIterator(tokens: List<String>): Int {
-        var sum = tokens[0].toInt()
-        for (i in 1 until tokens.size step 2) {
-            when (tokens[i]) {
-                "+" -> sum += tokens[i + 1].toInt()
-                "-" -> sum -= tokens[i + 1].toInt()
-                "*" -> sum *= tokens[i + 1].toInt()
-                "/" -> sum /= tokens[i + 1].toInt()
-                else -> throw IllegalArgumentException("invalid operator")
+        var lazyFunc: (Int, Int) -> Int = { _, _ -> 0 }
+        return tokens.reduceIndexed { index, acc, s ->
+            if (index % 2 == 1) {
+                lazyFunc = Symbol.of(s).calc
+                acc
+            } else {
+                lazyFunc(acc.toInt(), s.toInt()).toString()
             }
-        }
+        }.toInt()
+    }
+}
 
-        return sum
+enum class Symbol(val value: String, val calc: (Int, Int) -> Int) {
+    PLUS("+", { a, b -> a + b }),
+    MINUS("-", { a, b -> a - b }),
+    MULTIPLY("*", { a, b -> a * b }),
+    DIVIDE("/", { a, b -> a / b });
+
+    companion object {
+        fun of(value: String): Symbol {
+            return values().find { it.value == value }
+                ?: throw IllegalArgumentException("invalid operator")
+        }
     }
 }

@@ -4,19 +4,19 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.NullAndEmptySource
+import org.junit.jupiter.params.provider.ValueSource
 
 class StringCalculatorTest {
 
-    @Test
-    fun `입력값이 null이거나 빈 공백 문자일 경우 예외 발생`() {
+    @ParameterizedTest
+    @ValueSource(strings = ["", " ", "  ", "\n", "\t", "\r", "\r\n"])
+    @NullAndEmptySource
+    fun `입력값이 null이거나 빈 공백 문자일 경우 예외 발생`(input: String?) {
         assertThatIllegalArgumentException().isThrownBy {
-            StringCalculator.calculate(null)
-        }
-        assertThatIllegalArgumentException().isThrownBy {
-            StringCalculator.calculate("")
-        }
-        assertThatIllegalArgumentException().isThrownBy {
-            StringCalculator.calculate(" ")
+            StringCalculator.calculate(input)
         }
     }
 
@@ -35,26 +35,39 @@ class StringCalculatorTest {
         assertThatIllegalArgumentException().isThrownBy {
             StringCalculator.calculate("1 +")
         }
+        assertThatIllegalArgumentException().isThrownBy {
+            StringCalculator.calculate("1 * - + 2")
+        }
     }
 
-    @Test
-    fun `정상 동작`() {
-        assertThat(StringCalculator.calculate("1")).isEqualTo(1)
-        assertThat(StringCalculator.calculate("1 + 2")).isEqualTo(3)
-        assertThat(StringCalculator.calculate("1 - 3")).isEqualTo(-2)
-        assertThat(StringCalculator.calculate("2 * 3")).isEqualTo(6)
-        assertThat(StringCalculator.calculate("4 / 2")).isEqualTo(2)
-        assertThat(StringCalculator.calculate("1 + 2 - 3 * 4 / 2")).isEqualTo(0)
+    @ParameterizedTest
+    @CsvSource(
+        value = [
+            "1, 1",
+            "1 + 2, 3",
+            "1 - 3, -2",
+            "2 * 3, 6",
+            "4 / 2, 2",
+            "1 + 2 - 3 * 4 / 2, 0",
+        ]
+    )
+    fun `정상 동작`(input: String, expected: Int) {
+        assertThat(StringCalculator.calculate(input)).isEqualTo(expected)
     }
 
-    @Test
-    fun `수식 앞 뒤로 공백이 붙어도 정상 동작`() {
-        assertThat(StringCalculator.calculate(" 1 ")).isEqualTo(1)
-        assertThat(StringCalculator.calculate(" 1 + 2 ")).isEqualTo(3)
-        assertThat(StringCalculator.calculate(" 1 - 3 ")).isEqualTo(-2)
-        assertThat(StringCalculator.calculate(" 2 * 3 ")).isEqualTo(6)
-        assertThat(StringCalculator.calculate(" 4 / 2 ")).isEqualTo(2)
-        assertThat(StringCalculator.calculate(" 1 + 2 - 3 * 4 / 2 ")).isEqualTo(0)
+    @ParameterizedTest
+    @CsvSource(
+        value = [
+            " 1 , 1",
+            " 1 + 2 , 3",
+            " 1 - 3 , -2",
+            " 2 * 3 , 6",
+            " 4 / 2 , 2",
+            " 1 + 2 - 3 * 4 / 2 , 0",
+        ]
+    )
+    fun `수식 앞 뒤로 공백이 붙어도 정상 동작`(input: String, expected: Int) {
+        assertThat(StringCalculator.calculate(input)).isEqualTo(expected)
     }
 
     @Test
