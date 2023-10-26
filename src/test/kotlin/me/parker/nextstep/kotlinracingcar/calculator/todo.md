@@ -2,8 +2,10 @@
   - split() 메서드에서 양쪽에 `""`이 생겨서 빈 문자는 제거해야 했음.
 - [x] 입력 문자열에 빈 공백이 포함되어 있는 경우 삭제 처리
 - [x] 뺄셈 계산 테스트
-- [ ] 곱셈 계산 테스트
-- [ ] 나눗셈 계산 테스트 
+- [x] 곱셈 계산 테스트
+- [x] 나눗셈 계산 테스트 
 - [ ] 입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException throw 
-- [ ] 사칙연산 기호가 아닌 경우 IllegalArgumentException throw 
-- [ ] 사칙 연산을 모두 포함하는 기능 구현
+- [ ] 사칙연산 기호가 아닌 경우 IllegalArgumentException throw
+- [ ] ParameterizedTest로 여러 입력값에 대한 테스트 추가하기
+- [ ] Nested 구조로 사칙연산 테스트 분리하기
+- [ ] 사칙연산이 추가될 수 있도록 유연한 구조로 변경하기

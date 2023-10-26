@@ -33,5 +33,17 @@ class CalculatorTest {
         assertThat(result).isEqualTo(-1);
     }
 
+    @Test
+    fun `두 수의 곱하기 계산`() {
+        val result = Calculator.calculate("1*2");
 
+        assertThat(result).isEqualTo(2);
+    }
+
+    @Test
+    fun `두 수의 나누기 계산`() {
+        val result = Calculator.calculate("1/2");
+
+        assertThat(result).isEqualTo(0);
+    }
 }
