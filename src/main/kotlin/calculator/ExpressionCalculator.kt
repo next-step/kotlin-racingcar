@@ -13,8 +13,6 @@ object ExpressionCalculator {
 
         val elements = CalculatorParser.split(validatedInput)
 
-        CalculatorValidator.validateSize(elements.size)
-
         var result = elements.getFirstValue()
         var operatorIndex = FIRST_OPERATOR_INDEX
         while (operatorIndex < elements.size) {

@@ -31,26 +31,24 @@ class CalculatorValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = [4, 6, 20])
-    fun `사이즈가 짝수일 경우 예외를 던진다`(size: Int) {
-        Assertions.assertThatThrownBy {
-            // when
-            CalculatorValidator.validateSize(size)
-        }
-            // then
-            .isInstanceOf(IllegalArgumentException::class.java)
-            .message().isEqualTo(ErrorMessage.ODD_SIZE_REQUIREMENT_MSG.message)
+    @ValueSource(strings = ["1 + 2", "1 + 2 * 3 / 4", "1 + 2 * 3 / 4 - 5"])
+    fun `입력값이 유효한 경우 입력값을 그대로 반환한다`(input: String) {
+        // when
+        val actual = CalculatorValidator.validateInput(input)
+
+        // then
+        Assertions.assertThat(actual).isEqualTo(input)
     }
 
     @ParameterizedTest
-    @ValueSource(ints = [0, 1, 2])
-    fun `길이가 3보다 작을 경우 예외를 던진다`(size: Int) {
+    @ValueSource(strings = ["1 + 2 * 3 / 4 - 5 +", "1 + 2 * 3 / 4 - 5 + 6 /", "1 + 2 * 3 / 4 - 5 + 6 / 7 *"])
+    fun `입력값이 유효하지 않은 경우 예외를 던진다`(input: String) {
         Assertions.assertThatThrownBy {
             // when
-            CalculatorValidator.validateSize(size)
+            CalculatorValidator.validateInput(input)
         }
             // then
             .isInstanceOf(IllegalArgumentException::class.java)
-            .message().isEqualTo(ErrorMessage.MINIMUM_SIZE_REQUIREMENT_MSG.message)
+            .message().isEqualTo(ErrorMessage.INVALID_INPUT_ERROR_MSG.message)
     }
 }
