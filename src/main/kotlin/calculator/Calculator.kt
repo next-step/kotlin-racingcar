@@ -1,11 +1,11 @@
 package calculator
 
-class Calculator(val formula: List<String>) {
+class Calculator(private val formulas: List<String>) {
 
     init {
-        for (index in formula.indices) {
-            validateIsNumber(index, formula[index])
-            validateIsArithmetic(index, formula[index])
+        for (index in formulas.indices) {
+            validateIsNumber(index, formulas[index])
+            validateIsArithmetic(index, formulas[index])
         }
     }
 
@@ -22,16 +22,11 @@ class Calculator(val formula: List<String>) {
     }
 
     fun calculate(): Number {
-        var result = Number(0)
-        for (i: Int in 0..formula.size step (2)) {
-            if (i == 0) {
-                result = result.sum(Number(formula[i]))
-                continue
-            }
-            val arithmetic = Arithmetic.of(formula[i - 1])
-            result = arithmetic.operation(result, Number(formula[i]))
+        var result = Expression(Number(0))
+        for (i: Int in 0..formulas.size) {
+            result = result.put(formulas[i])
         }
-        return result
+        return result.number
     }
 
     constructor(formula: String) : this(formula.split(" "))
