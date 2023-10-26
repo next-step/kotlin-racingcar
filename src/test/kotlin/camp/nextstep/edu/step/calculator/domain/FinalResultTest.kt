@@ -6,20 +6,20 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
 @DisplayName("계산 결과는")
-class ResultTest {
+class FinalResultTest {
 
     @Nested
     class `생성 시` {
         @Test
         fun `계산 결과를 가진다`() {
             // given
-            val calculationResult = 10L
+            val midCalculatorResult = MedianResult.of(medianResult= 10L)
 
             // when
-            val result = Result(calculationResult = calculationResult)
+            val finalResult = FinalResult.of(medianResult = midCalculatorResult)
 
             // then
-            assertThat(result.calculationResult).isEqualTo(10L)
+            assertThat(finalResult.calculationResult).isEqualTo(10L)
         }
     }
 }
