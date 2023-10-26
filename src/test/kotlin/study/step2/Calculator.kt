@@ -2,34 +2,39 @@ package study.step2
 
 class Calculator() {
 
-    fun calculate(input: String): Int {
-        input.takeIf { it.isNotBlank() } ?: throw IllegalArgumentException("입력값이 비어있습니다.")
+    fun calculate(input: String): Double {
+        validateInput(input)
 
         val elements = input.split(" ")
-        var result = elements[0].toIntOrNull() ?: throw IllegalArgumentException("올바르지 않는 입력값입니다.")
+        var result = validateNumber(elements[0])
 
         for (i in 1 until elements.size step 2) {
-            val operation = elements[i]
-            val operand = elements[i + 1].toIntOrNull() ?: throw IllegalArgumentException("올바르지 않는 입력값입니다.")
+            val operation = Operator.fromSymbol(elements[i])
+            val operand = validateNumber(elements[i + 1])
 
-            result = calculate(operation, result, operand)
+            result = operation.operation(result, operand)
         }
         return result
     }
 
-    private fun calculate(operator: String, result: Int, operand: Int): Int = when (operator) {
-        "+" -> add(result, operand)
-        "-" -> subtract(result, operand)
-        "*" -> multiply(result, operand)
-        "/" -> divide(result, operand)
-        else -> throw IllegalArgumentException("연산자는 +, -, *, / 중 하나여야 합니다.")
+    private fun validateInput(input: String) {
+        require(input.isNotBlank()) { "입력값이 비어있습니다." }
     }
 
-    private fun add(a: Int, b: Int) = a + b
-    private fun subtract(a: Int, b: Int) = a - b
-    private fun multiply(a: Int, b: Int) = a * b
-    private fun divide(a: Int, b: Int): Int {
-        b.takeIf { it != 0 } ?: throw IllegalArgumentException("0으로 나눌 수 없습니다.")
-        return a / b
+    private fun validateNumber(input: String): Double {
+        return input.toDoubleOrNull() ?: throw IllegalArgumentException("올바르지 않는 입력값입니다.")
+    }
+
+    enum class Operator(val symbol: String, val operation: (Double, Double) -> Double) {
+        ADD("+", { a, b -> a + b }),
+        SUBTRACT("-", { a, b -> a - b }),
+        MULTIPLY("*", { a, b -> a * b }),
+        DIVIDE("/", { a, b -> if (b != 0.0) a / b else throw IllegalArgumentException("0으로 나눌 수 없습니다.") });
+
+        companion object {
+            fun fromSymbol(symbol: String): Operator {
+                return values().find { it.symbol == symbol } ?: throw IllegalArgumentException("연산자는 +, -, *, / 중 하나여야 합니다.")
+            }
+        }
     }
 }

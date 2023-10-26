@@ -13,7 +13,7 @@ class CalculatorTest {
     @Test
     fun `덧셈`() {
         val input = "1 + 2"
-        val expected = 3
+        val expected = 3.0
         val actual = calculator.calculate(input)
         assertThat(actual).isEqualTo(expected)
     }
@@ -21,7 +21,7 @@ class CalculatorTest {
     @Test
     fun `뺄셈`() {
         val input = "2 - 1"
-        val expected = 1
+        val expected = 1.0
         val actual = calculator.calculate(input)
         assertThat(actual).isEqualTo(expected)
     }
@@ -29,7 +29,7 @@ class CalculatorTest {
     @Test
     fun `곱셈`() {
         val input = "2 * 3"
-        val expected = 6
+        val expected = 6.0
         val actual = calculator.calculate(input)
         assertThat(actual).isEqualTo(expected)
     }
@@ -37,9 +37,17 @@ class CalculatorTest {
     @Test
     fun `나눗셈`() {
         val input = "6 / 3"
-        val expected = 2
+        val expected = 2.0
         val actual = calculator.calculate(input)
         assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun `실수 테스트`() {
+        val input = "5 + 2 / 2"
+        val exppected = 3.5
+        val actual = calculator.calculate(input)
+        assertThat(actual).isEqualTo(exppected)
     }
 
     @Test
@@ -53,7 +61,7 @@ class CalculatorTest {
     @Test
     fun `복잡한 연산 테스트`() {
         val input = "2 + 3 * 4 / 2"
-        val expected = 10
+        val expected = 10.0
         val acutal = calculator.calculate(input)
         assertThat(acutal).isEqualTo(expected)
     }
