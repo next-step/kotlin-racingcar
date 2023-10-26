@@ -60,4 +60,24 @@ class BasicOperationsCalculatorTest {
         // then
         assertThat(result).isEqualTo(firstNum / secondNum)
     }
+
+    @Test
+    fun operation(){
+        // given
+        val firstNum: Double = 10.0
+        val secondNum: Double = 5.0
+
+        // when
+        val basicOperationsCalculator = BasicOperationsCalculator()
+        val plusResult = basicOperationsCalculator.operation(firstNum, secondNum, "+")
+        val minusResult = basicOperationsCalculator.operation(firstNum, secondNum, "-")
+        val multiplyResult = basicOperationsCalculator.operation(firstNum, secondNum, "*")
+        val divideResult = basicOperationsCalculator.operation(firstNum, secondNum, "/")
+
+        // then
+        assertThat(plusResult).isEqualTo(firstNum + secondNum)
+        assertThat(minusResult).isEqualTo(firstNum - secondNum)
+        assertThat(multiplyResult).isEqualTo(firstNum * secondNum)
+        assertThat(divideResult).isEqualTo(firstNum / secondNum)
+    }
 }
