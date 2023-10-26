@@ -1,22 +1,21 @@
 package calculator.app
 
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
+import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.core.spec.style.StringSpec
 
-class StringCalculatorTest {
+class StringCalculatorTest : StringSpec({
 
-    private var calculator = StringCalculator()
-
-    @BeforeEach
-    fun beforeEach() {
-        calculator = StringCalculator()
+    "입력이 null 이면 IllegalArgumentException throw" {
+        val calculator = StringCalculator()
+        shouldThrow<IllegalArgumentException> {
+            calculator.calculate(null)
+        }
     }
 
-    @Test
-    fun `입력이 null 이면 IllegalArgumentException throw`() {
+    "입력이 공백 문자열이면 IllegalArgumentException throw" {
+        val calculator = StringCalculator()
+        shouldThrow<IllegalArgumentException> {
+            calculator.calculate("")
+        }
     }
-
-    @Test
-    fun `입력이 공백 문자열이면 IllegalArgumentException throw`() {
-    }
-}
+})
