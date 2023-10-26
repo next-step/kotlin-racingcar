@@ -25,10 +25,14 @@ class StringCalculator {
     }
 
     private fun assertNotEmpty(input: String?) {
-        TODO("Not yet implemented")
+        if (input.isNullOrEmpty()) {
+            throw IllegalArgumentException()
+        }
     }
 
     private fun assertNotNull(input: String?) {
-        TODO("Not yet implemented")
+        if (input == null) {
+            throw IllegalArgumentException()
+        }
     }
 }
