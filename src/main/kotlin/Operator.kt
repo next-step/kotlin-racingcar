@@ -1,6 +1,4 @@
-package study.calculator
-
-enum class Operator(val operator: String, val operation: (Int, Int) -> Int) {
+enum class Operator(val operator: String, val operation: (Float, Float) -> Float) {
     PLUS("+", { a, b -> a + b }),
     MINUS("-", { a, b -> a - b }),
     DIVISION("/", { a, b -> a / b }),
