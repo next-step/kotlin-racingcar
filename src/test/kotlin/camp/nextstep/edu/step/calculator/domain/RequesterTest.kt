@@ -42,7 +42,7 @@ class RequesterTest {
         @Test
         fun `예외가 발생한다`() {
             // when & then
-            assertThatThrownBy { Requester().validate() }
+            assertThatThrownBy { Requester() }
                 .isInstanceOf(IllegalArgumentException::class.java)
                 .hasMessage("수식이 비어있습니다.")
         }
