@@ -1,5 +1,8 @@
 package org.bmsk.calculator
 
+import org.bmsk.calculator.ErrorMessage.DIVISION_BY_ZERO
+import org.bmsk.calculator.ErrorMessage.NOT_A_NUMBER
+
 internal object StringCalculator {
 
     fun plus(operand1: String, operand2: String): String {
@@ -24,7 +27,7 @@ internal object StringCalculator {
         val num1 = operand1.safelyConvertToFloat()
         val num2 = operand2.safelyConvertToFloat()
         if (num2 == 0f) {
-            throw IllegalArgumentException("적절하지 않은 입력: 0으로 나눗셈을 시도함.")
+            throw IllegalArgumentException(DIVISION_BY_ZERO)
         }
         return (num1 / num2).toString()
     }
@@ -33,7 +36,7 @@ internal object StringCalculator {
         return try {
             this.toFloat()
         } catch (e: NumberFormatException) {
-            throw IllegalArgumentException("적절하지 않은 입력: '$this'는 유효한 숫자가 아님.")
+            throw IllegalArgumentException(NOT_A_NUMBER)
         }
     }
 }

@@ -2,17 +2,19 @@ package org.bmsk.calculator.model
 
 import org.bmsk.calculator.StringCalculator
 import org.bmsk.calculator.mapper.toOperator
+import org.bmsk.calculator.util.isNumeric
+import org.bmsk.calculator.util.isOperator
+import org.bmsk.calculator.validator.StringFormulaValidator
 import java.util.Stack
 
-data class StringFormula(val str: String) {
+data class StringFormula(val formula: String) {
 
     fun calculate(): Float {
-        require(str.isNotBlank()) { "공백은 계산할 수 없음" }
+        StringFormulaValidator.validate(this)
 
         val numStack = Stack<String>()
         val operatorStack = Stack<Operator>()
-
-        str.split(" ").forEach { token ->
+        formula.split(" ").forEach { token ->
             when {
                 token.isOperator() -> {
                     applyPendingOperation(numStack, operatorStack)
@@ -21,26 +23,10 @@ data class StringFormula(val str: String) {
                 token.isNumeric() -> {
                     numStack.push(token)
                 }
-                else -> throw IllegalArgumentException("적절하지 않은 문자열: $token")
             }
         }
-
         applyAllPendingOperations(numStack, operatorStack)
         return numStack.pop().toFloat()
-    }
-
-    private fun String.isOperator() = this in listOf(
-        Operator.Plus.symbol,
-        Operator.Minus.symbol,
-        Operator.Times.symbol,
-        Operator.Division.symbol,
-    )
-
-    private fun String.isNumeric(): Boolean = try {
-        this.toFloat()
-        true
-    } catch (e: NumberFormatException) {
-        false
     }
 
     private fun applyPendingOperation(numStack: Stack<String>, operatorStack: Stack<Operator>) {
