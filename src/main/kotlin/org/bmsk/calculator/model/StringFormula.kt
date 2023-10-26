@@ -20,6 +20,7 @@ data class StringFormula(val formula: String) {
                     applyPendingOperation(numStack, operatorStack)
                     operatorStack.push(token.toOperator())
                 }
+
                 token.isNumeric() -> {
                     numStack.push(token)
                 }
