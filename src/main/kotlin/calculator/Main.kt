@@ -1,7 +1,12 @@
 package calculator
 
 fun main() {
-    val input = readln()
-    val calculator = Calculator(input.split(" "))
-    println(calculator.calculate())
+    readln().split(" ")
+        .fold(OperandCalculatorState(0, Operator.PLUS)) { acc: CalculatorState, string ->
+            acc.input(string)
+        }
+        .result()
+        .let {
+            println(it)
+        }
 }
