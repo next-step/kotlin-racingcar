@@ -12,10 +12,10 @@ class View {
             inputValidation(word)
             scanner.close()
 
-            return word.replace(" ","")
+            return word.replace(" ", "")
         }
 
-        fun inputValidation(input: String?) {
+        private fun inputValidation(input: String?) {
             if (input.isNullOrBlank()) {
                 throw IllegalArgumentException("입력된 수식이 올바르지 않습니다")
             }
@@ -23,7 +23,7 @@ class View {
 
         fun printResultView(score: Double) {
             println("------------------------------------")
-            println("결과 : " + score)
+            println("결과 : $score")
             println("------------------------------------")
         }
     }
