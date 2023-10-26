@@ -19,6 +19,13 @@ internal class OperandCalculatorStateTest {
     }
 
     @Test
+    fun `숫자가 아닌 값이 들어오면 예외가 발생한다`() {
+        val operandCalculatorState = OperandCalculatorState(0, Operator.PLUS)
+
+        assertThrows<IllegalArgumentException> { operandCalculatorState.input("+") }
+    }
+
+    @Test
     fun `결과를 반환하면 예외가 발생한다`() {
         val operandCalculatorState = OperandCalculatorState(0, Operator.PLUS)
         assertThrows<IllegalStateException>("수식이 완성되지 않았습니다.") {
