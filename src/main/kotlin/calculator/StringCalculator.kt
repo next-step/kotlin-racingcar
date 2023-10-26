@@ -3,7 +3,7 @@ package calculator
 class StringCalculator {
 
     fun calculate(input: String?): Int {
-        input?: throw IllegalArgumentException("input 값 비어 있어!!!")
+        input ?: throw IllegalArgumentException("input 값 비어 있어!!!")
 
         val split = input.split(" ")
         val remainingElements = split.drop(1)
