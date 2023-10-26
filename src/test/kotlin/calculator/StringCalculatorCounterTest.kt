@@ -1,7 +1,10 @@
 package calculator
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import java.lang.IllegalArgumentException
 
 class StringCalculatorCounterTest {
 
@@ -16,5 +19,19 @@ class StringCalculatorCounterTest {
 
         // then
         assertThat(result).isEqualTo(10.0)
+    }
+
+
+    @Test
+    fun invalidInput(){
+        // given
+        val input : String = "1 + + 2"
+
+        // when // then
+        val exception = assertThrows<IllegalArgumentException> {
+            val stringCalculatorCounter = StringCalculatorCounter(input)
+            val result = stringCalculatorCounter.calculate()
+        }
+        assertThat(exception.message).isEqualTo("Please Check the Input")
     }
 }
