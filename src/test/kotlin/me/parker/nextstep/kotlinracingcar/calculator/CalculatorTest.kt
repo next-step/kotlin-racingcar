@@ -25,4 +25,13 @@ class CalculatorTest {
 
         assertThat(result).isEqualTo(3);
     }
+
+    @Test
+    fun `두 수의 빼기 계산`() {
+        val result = Calculator.calculate("1-2");
+
+        assertThat(result).isEqualTo(-1);
+    }
+
+
 }
