@@ -4,6 +4,11 @@ class Tokenizer(
     private val input: String,
 ) {
     fun toTokens(): List<String> {
-        return input.split("(?=[+\\-*/])|(?<=[+\\-*/])".toRegex())
+        return removeWhitespace(input)
+            .split("(?=[+\\-*/])|(?<=[+\\-*/])".toRegex())
+    }
+
+    private fun removeWhitespace(string: String): String {
+        return string.replace("\\s".toRegex(), "")
     }
 }

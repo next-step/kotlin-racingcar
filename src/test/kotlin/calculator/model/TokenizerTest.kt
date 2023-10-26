@@ -22,4 +22,19 @@ class TokenizerTest : StringSpec({
         tokens shouldContain "/"
         tokens shouldContain "*"
     }
+
+    "화이트스페이스는 동작에 영향을 주지 않는다" {
+        val leftWhitespace = Tokenizer("1   -2 + 3    / 4").toTokens()
+        leftWhitespace shouldHaveSize 7
+        leftWhitespace shouldContain "1"
+        leftWhitespace shouldContain "+"
+        leftWhitespace shouldContain "2"
+
+        val rightWhitespace = Tokenizer("3+     4-   22 * 77").toTokens()
+        rightWhitespace shouldHaveSize 7
+        rightWhitespace shouldContain "3"
+        rightWhitespace shouldContain "4"
+        rightWhitespace shouldContain "77"
+        rightWhitespace shouldContain "22"
+    }
 })
