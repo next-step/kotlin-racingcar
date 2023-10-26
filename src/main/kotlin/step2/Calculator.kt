@@ -15,17 +15,24 @@ class Calculator {
         requireNotNull(string) { NULL_PARAM }
         require(string.isNotBlank()) { EMPTY_STRING_MESSAGE }
 
-        val notContainedWhiteSpaceString = string.replace(" ", "")
-        val addOperatorFirstPlace = replaceOperatorFirstPlace(notContainedWhiteSpaceString)
+        val removedWhiteSpaceString = removeWhiteSpace(string)
+        val addOperatorFirstPlace = replaceOperatorFirstPlace(removedWhiteSpaceString)
 
-        validateString(addOperatorFirstPlace)
-        val splitStringList = splitString(addOperatorFirstPlace)
-        val result = calculate(splitStringList)
+        StringValidator.validateString(addOperatorFirstPlace)
+
+        val separatedStringList = splitString(addOperatorFirstPlace)
+        val result = calculate(separatedStringList)
         val floorResult = removeTwoDigitAfterDecimalPoint(result)
 
         return convertResultToLongOrDouble(result, floorResult)
     }
 
+    private fun removeWhiteSpace(string: String) = string.replace(" ", "")
+
+    /**
+     * 이 계산기의 Double값은 소숫점 첫째 자리까지만 계산합니다.
+     * 이 때, 첫째 자리 값 이후의 값을 버린 값과 기존의 값이 같다면,
+     */
     private fun convertResultToLongOrDouble(result: Double, floorResult: Double) =
         if (result == floorResult) {
             checkNeedToUseDouble(result)
@@ -33,36 +40,46 @@ class Calculator {
             ((floor(result * 10)).roundToLong().toDouble() / 10).toString()
         }
 
+    /**
+     * 결과 값을 Double로 보여줄 지, Long으로 보여줄지 계산합니다.
+     * ex) 1.1 -> 올림 = 2.0 즉, 소수점 첫째자리가 반드시 0 인경우에만 Long으로 변환하고 아닌 경우 그대로 result 값을 사용합니다.
+     * 예시로, 1.1-0.1 = 1.0 -> 1 로 변경해줍니다.
+     */
     private fun checkNeedToUseDouble(result: Double) =
-        if (result == kotlin.math.ceil(result)) result.toLong().toString() else result.toDouble().toString()
+        if (result == kotlin.math.ceil(result)) result.toLong().toString() else result.toString()
 
     // 소수점 둘째 자리에서 반올림
     private fun removeTwoDigitAfterDecimalPoint(result: Double) = (floor(result * 10)).roundToLong().toDouble() / 10
 
-    private fun calculate(list: List<String>): Double {
-        val result = list.reduceIndexed { index, total, next ->
-            if (index == 0) {
-                total
-            } else {
-                val firstOperand = total.toBigDecimal()
-                val secondOperand = next.replace(next.first().toString(), "").toBigDecimal()
-                val operator = getArithmeticOperationFromString(next.first())
+    /**
+     * 연산을 차례 대로 진행 합니다.
+     */
+    private fun calculate(list: List<String>) = list.reduceIndexed { index, total, next ->
+        if (index == 0) {
+            total
+        } else {
+            val firstOperand = total.toBigDecimal()
+            val secondOperand = next.replace(next.first().toString(), "").toBigDecimal()
+            val operator = getArithmeticOperationFromString(next.first())
 
-                calculate(
-                    firstOperand,
-                    secondOperand,
-                    operator
-                )
-            }.toString()
+            calculate(firstOperand, secondOperand, operator).toString()
         }
-        return result.toDouble()
-    }
+    }.toDouble()
 
+    /**
+     * 문자+숫자형식으로 문자열을 자릅니다
+     */
     private fun splitString(addOperatorFirstPlace: String): List<String> {
         val regex = "((?=[+\\-*/]))".toRegex()
         return addOperatorFirstPlace.split(regex).filter { it.isNotBlank() }
     }
 
+    /**
+     * 가장 첫번째 문자열에 + 를 붙여줍니다 ex) 2+3 => +2+3
+     * 다만, 첫번째 문자열이 0~9 인 경우에만 붙여주고
+     * -가 붙어 있거나, +가 이미 있는 경우엔 문자열 그대로 사용합니다.
+     * 또한 * / # 와 같이 첫번째 자리에 붙을 수 없는 값들은 IllgealStateException을 뱉습니다
+     */
     private fun replaceOperatorFirstPlace(notContainedWhiteSpaceString: String) =
         when {
             notContainedWhiteSpaceString.first().isNumber() -> "+$notContainedWhiteSpaceString"
@@ -109,56 +126,9 @@ class Calculator {
         }
     }
 
-    private fun Char.isMultiplyOrDivide() =
-        this.toString() == getArithmeticOperation(MULTIPLY) || this.toString() == getArithmeticOperation(DIVIDE)
-
-    private fun Char.isFourArithmeticCalculation(): Boolean {
-        return when (this@isFourArithmeticCalculation.toString()) {
-            getArithmeticOperation(PLUS),
-            getArithmeticOperation(MINUS),
-            getArithmeticOperation(MULTIPLY),
-            getArithmeticOperation(DIVIDE) -> true
-
-            else -> false
-        }
-    }
-
-    /**
-     * 문자열이 유효한지 한번에 체크
-     */
-    private fun validateString(string: String) {
-        validateFirstAndLast(string)
-        validateDuplicatedOperation(string)
-    }
-
-    /**
-     * 문자열의 처음과 끝이 * / 연산이면 IllegalArgumentException
-     */
-    private fun validateFirstAndLast(string: String) {
-        require(
-            string.first().isMultiplyOrDivide().not() &&
-                string.last().isMultiplyOrDivide().not()
-        ) { START_STRING_CAN_NOT_BE_OPERATION }
-    }
-
-    /**
-     * 연산자가 두개 이상 동시에 들어오는 경우
-     */
-    private fun validateDuplicatedOperation(string: String) {
-        string.mapIndexed { index, char ->
-            if (index != 0) { // 1~마지막
-                if (char.isFourArithmeticCalculation() && string[index - 1].isFourArithmeticCalculation()) {
-                    error(DUPLICATED_OPERATION)
-                }
-            }
-        }
-    }
-
     companion object {
         private const val NULL_PARAM = "문자열은 null일 수 없어요"
         private const val EMPTY_STRING_MESSAGE = "계산기의 값은 공백일 수 없어요"
-        private const val START_STRING_CAN_NOT_BE_OPERATION = "문자열의 시작, 끝은 \"*, /\" 일 수 없어요"
-        private const val DUPLICATED_OPERATION = "연산자가 2개 이상 연속으로 사용됐어요"
         private const val WRONG_STRING = "잘못 된 식 이예요"
     }
 }
