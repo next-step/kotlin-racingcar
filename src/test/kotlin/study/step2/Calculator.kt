@@ -17,7 +17,7 @@ class Calculator() {
         return result
     }
 
-    private fun calculate(operator: String, result: Int, operand: Int) = when (operator) {
+    private fun calculate(operator: String, result: Int, operand: Int): Int = when (operator) {
         "+" -> add(result, operand)
         "-" -> subtract(result, operand)
         "*" -> multiply(result, operand)
