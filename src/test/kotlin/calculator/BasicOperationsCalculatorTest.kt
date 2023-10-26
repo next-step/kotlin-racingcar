@@ -62,7 +62,7 @@ class BasicOperationsCalculatorTest {
     }
 
     @Test
-    fun operation(){
+    fun operation() {
         // given
         val firstNum: Double = 10.0
         val secondNum: Double = 5.0
