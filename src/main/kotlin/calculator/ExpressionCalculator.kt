@@ -18,7 +18,7 @@ object ExpressionCalculator {
         while (operatorIndex < elements.size) {
             val nextValue = elements.getNextValue(operatorIndex)
             val operation = Operation.fromString(elements[operatorIndex])
-            result = StringCalculator.applyOperation(result, nextValue, operation)
+            result = Calculator.applyOperation(result, nextValue, operation)
             operatorIndex += OPERATOR_GAP
         }
         return result
