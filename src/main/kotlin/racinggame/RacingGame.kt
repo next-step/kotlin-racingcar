@@ -14,5 +14,5 @@ class RacingGame(
         }
     }
 
-    fun currentPositions(): List<Int> = cars.map { it.currentPosition() }
+    fun currentPositions(): List<Int> = cars.map { it.position }
 }
