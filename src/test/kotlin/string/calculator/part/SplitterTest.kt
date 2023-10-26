@@ -3,7 +3,7 @@ package string.calculator.part
 import org.junit.jupiter.api.Test
 import string.calculator.enum.Operator
 
-class SplitterTest {
+internal class SplitterTest {
 
     @Test
     fun `공백을 기준으로 분해가 되는지 확인 한다`() {
