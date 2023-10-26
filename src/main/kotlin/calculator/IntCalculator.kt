@@ -2,7 +2,7 @@ package calculator
 
 object IntCalculator {
     fun calculate(expression: IntExpression): Int {
-        if (expression.operations.isEmpty()) return expression.initialNumber
+        if (expression.hasNoOperations()) return expression.initialNumber
         return expression.operations.fold(expression.initialNumber) { base, operation ->
             executeOperation(base, operation)
         }

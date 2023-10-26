@@ -4,6 +4,8 @@ data class IntExpression(
     val initialNumber: Int,
     val operations: List<Operation>
 ) {
+    fun hasNoOperations(): Boolean = operations.isEmpty()
+
     companion object {
         private const val DELIMITER = " "
 
