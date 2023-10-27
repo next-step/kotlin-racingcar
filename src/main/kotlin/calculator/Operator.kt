@@ -16,5 +16,11 @@ enum class Operator(private val operator: String, private val operation: (Int, I
                 it.operator == operator
             } ?: throw IllegalArgumentException("알 수 없는 Operator 발생 : $operator")
         }
+
+        fun isOperator(operator: String): Boolean {
+            return values().any {
+                it.operator == operator
+            }
+        }
     }
 }
