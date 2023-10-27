@@ -8,11 +8,11 @@ import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.EmptySource
 import org.junit.jupiter.params.provider.ValueSource
 
-class CalculatorTest {
+class StringCalculatorTest {
 
     @Test
     fun `두 수의 더하기 계산`() {
-        val result = Calculator.calculate("1+2")
+        val result = StringCalculator.calculate("1+2")
 
         assertThat(result).isEqualTo(3)
     }
@@ -20,28 +20,28 @@ class CalculatorTest {
     @ParameterizedTest
     @ValueSource(strings = [" 1 + 2 ", "  1 +     2 "])
     fun `두 수의 더하기 계산 - 공백을 포함한 문자열 입력`(input: String) {
-        val result = Calculator.calculate(input)
+        val result = StringCalculator.calculate(input)
 
         assertThat(result).isEqualTo(3)
     }
 
     @Test
     fun `두 수의 빼기 계산`() {
-        val result = Calculator.calculate("1-2")
+        val result = StringCalculator.calculate("1-2")
 
         assertThat(result).isEqualTo(-1)
     }
 
     @Test
     fun `두 수의 곱하기 계산`() {
-        val result = Calculator.calculate("1*2")
+        val result = StringCalculator.calculate("1*2")
 
         assertThat(result).isEqualTo(2)
     }
 
     @Test
     fun `두 수의 나누기 계산`() {
-        val result = Calculator.calculate("1/2")
+        val result = StringCalculator.calculate("1/2")
 
         assertThat(result).isEqualTo(0)
     }
@@ -52,7 +52,7 @@ class CalculatorTest {
         delimiter = '='
     )
     fun `세 개 이상의 인자 계산`(input: String, expected: String) {
-        val result = Calculator.calculate(input)
+        val result = StringCalculator.calculate(input)
 
         assertThat(result).isEqualTo(expected.toInt())
     }
@@ -60,7 +60,7 @@ class CalculatorTest {
     @ParameterizedTest
     @EmptySource
     fun `입력값이 비어있는 경우 예외 발생`(input: String) {
-        assertThatThrownBy { Calculator.calculate(input) }
+        assertThatThrownBy { StringCalculator.calculate(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("입력값이 비어있습니다.")
     }
@@ -68,7 +68,7 @@ class CalculatorTest {
     @ParameterizedTest
     @ValueSource(strings = ["1#10", "123%23", "444+12^4", "1*(1", "1@+1"])
     fun `사칙연산 기호가 아닌 경우 예외 발생`(input: String) {
-        assertThatThrownBy { Calculator.calculate(input) }
+        assertThatThrownBy { StringCalculator.calculate(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("계산식이 올바르지 않습니다.")
     }
@@ -76,7 +76,7 @@ class CalculatorTest {
     @ParameterizedTest
     @ValueSource(strings = ["1+", "/1", "1+2+3+", "1+2+3+4+", "1 1", "1 1 1", "1 1 1 1", "123#", "123/+"])
     fun `사칙연산 기호가 없거나 식이 성립될 수 없는 경우 예외 발생`(input: String) {
-        assertThatThrownBy { Calculator.calculate(input) }
+        assertThatThrownBy { StringCalculator.calculate(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("계산식이 올바르지 않습니다.")
     }

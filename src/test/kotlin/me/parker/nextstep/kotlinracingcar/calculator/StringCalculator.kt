@@ -2,7 +2,7 @@ package me.parker.nextstep.kotlinracingcar.calculator
 
 import org.assertj.core.util.Strings
 
-class Calculator {
+class StringCalculator {
     companion object {
         fun calculate(input: String): Int {
             if (Strings.isNullOrEmpty(input))
@@ -15,11 +15,10 @@ class Calculator {
             for ((index, token) in tokens.withIndex()) {
                 if (index == 0) continue
 
-                if (isNumber(token)) {
-                    result = calculate(result, operator, token.toInt())
-                } else {
+                if (isNumber(token))
+                    result = OperatorType.calculate(operator, result, token.toInt())
+                else
                     operator = token
-                }
             }
 
             return result
@@ -35,40 +34,34 @@ class Calculator {
             for (token in tokens) {
                 if (isNumber(token)) {
                     number += token
-                } else {
+                }
+
+                if (isNumber(token).not() && number.isNotEmpty()) {
                     results.add(number)
                     number = ""
+                }
 
-                    if (isValidOperator(token).not())
-                        throw IllegalArgumentException("계산식이 올바르지 않습니다.")
-
+                if (isNumber(token).not()) {
                     results.add(token)
                 }
             }
             results.add(number)
 
-            if (isValidFormula(results).not())
+            if (isValidFormulaOrder(results).not())
                 throw IllegalArgumentException("계산식이 올바르지 않습니다.")
 
             return results
         }
 
-        private fun isValidOperator(token: String): Boolean {
-            return token == "+" || token == "-" || token == "*" || token == "/"
-        }
-
-        private fun isValidFormula(arguments: MutableList<String>): Boolean {
+        private fun isValidFormulaOrder(arguments: MutableList<String>): Boolean {
             for ((index, arg) in arguments.withIndex()) {
-                if (index % 2 == 0 && isNumber(arg).not()) {
+                if (index % 2 == 0 && isNumber(arg).not())
                     return false
-                }
-                if (index % 2 != 0 && isValidOperator(arg).not()) {
+                if (index % 2 != 0 && OperatorType.of(arg).not())
                     return false
-                }
 
-                if (index < arguments.size - 1 && isNumber(arg) && isNumber(arguments[index + 1])) {
+                if (index < arguments.size - 1 && isNumber(arg) && isNumber(arguments[index + 1]))
                     return false
-                }
             }
 
             return arguments.size > 1
@@ -80,28 +73,6 @@ class Calculator {
                 true
             } catch (e: NumberFormatException) {
                 false
-            }
-        }
-
-        private fun calculate(left: Int, operator: String, right: Int): Int {
-            return when (operator) {
-                "+" -> {
-                    left + right
-                }
-
-                "-" -> {
-                    left - right
-                }
-
-                "*" -> {
-                    left * right
-                }
-
-                "/" -> {
-                    left / right
-                }
-
-                else -> throw IllegalArgumentException("잘못된 연산자입니다. input operator = $operator")
             }
         }
     }
