@@ -1,5 +1,4 @@
-package step2
-
+package caculator
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
