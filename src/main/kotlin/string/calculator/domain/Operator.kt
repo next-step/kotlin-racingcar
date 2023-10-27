@@ -1,4 +1,4 @@
-package string.calculator.enum
+package string.calculator.domain
 
 enum class Operator {
     PLUS,

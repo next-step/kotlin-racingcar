@@ -1,6 +1,6 @@
 package string.calculator.part
 
-import string.calculator.enum.Operator
+import string.calculator.domain.Operator
 
 class Validator {
     fun validateInput(numbers: MutableList<Long>, operators: MutableList<Operator>) {

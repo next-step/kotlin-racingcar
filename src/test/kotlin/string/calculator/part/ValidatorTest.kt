@@ -2,7 +2,7 @@ package string.calculator.part
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import string.calculator.enum.Operator
+import string.calculator.domain.Operator
 
 internal class ValidatorTest {
     @Test

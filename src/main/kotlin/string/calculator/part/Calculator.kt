@@ -1,6 +1,6 @@
 package string.calculator.part
 
-import string.calculator.enum.Operator
+import string.calculator.domain.Operator
 
 class Calculator {
     fun calculate(numbers: MutableList<Long>, operator: MutableList<Operator>): Long {

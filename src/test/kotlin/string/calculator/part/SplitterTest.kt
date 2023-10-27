@@ -1,7 +1,7 @@
 package string.calculator.part
 
 import org.junit.jupiter.api.Test
-import string.calculator.enum.Operator
+import string.calculator.domain.Operator
 
 internal class SplitterTest {
 

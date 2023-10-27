@@ -1,7 +1,7 @@
 package string.calculator.part
 
 import string.calculator.dto.SplitInput
-import string.calculator.enum.Operator
+import string.calculator.domain.Operator
 import string.calculator.util.isEven
 import string.calculator.util.isOdd
 
