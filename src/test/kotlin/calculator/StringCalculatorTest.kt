@@ -7,7 +7,8 @@ import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 
 class StringCalculatorTest : FunSpec({
-    val calculator = StringCalculator()
+    val stringExpressionTokenFactor = StringExpressionTokenFactory()
+    val calculator = StringCalculator(stringExpressionTokenFactor)
 
     context("test validation") {
         test("calculate with invalid expression") {

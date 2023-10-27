@@ -1,18 +1,25 @@
 package calculator
 
-class StringCalculator {
+class StringCalculator(
+    private val stringExpressionTokenFactory: StringExpressionTokenFactory
+) {
     fun calculate(expression: StringExpression): Int {
         val tokens = expression.tokenize()
 
-        val firstNumber = StringExpressionOperand(tokens.first())
+        val firstNumber = stringExpressionTokenFactory.createStringExpressionOperand(
+            operand = tokens.first()
+        )
 
         return tokens
             .drop(1)
             .chunked(2)
             .fold(firstNumber) { acc, cur ->
-                StringExpressionOperator(cur[0]).apply(
-                    acc,
-                    StringExpressionOperand(cur[1])
+                val number2 = stringExpressionTokenFactory.createStringExpressionOperand(cur[1])
+                val operator = stringExpressionTokenFactory.createStringExpressionOperator(cur[0])
+
+                operator.apply(
+                    number1 = acc,
+                    number2 = number2
                 )
             }
             .number
