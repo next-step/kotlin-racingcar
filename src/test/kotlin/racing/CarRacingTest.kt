@@ -12,10 +12,10 @@ class CarRacingTest : BehaviorSpec({
     }
 
     given("0에서 9 사이에서 무작위 값을 구한 후") {
-        val random = CarRacing.random(0..9)
+        val random = Car.random(0..9)
         `when`("무작위 값이 4 이상인 경우") {
             then("전진할 수 있는가") {
-                CarRacing.isMove { random }.shouldBe(random >= 4)
+                Car.isMove { random }.shouldBe(random >= 4)
             }
         }
     }
