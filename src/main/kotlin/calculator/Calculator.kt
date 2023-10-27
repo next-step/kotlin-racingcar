@@ -1,9 +1,8 @@
 package calculator
 
-import calculator.enums.Operators
+import calculator.model.Numbers
+import calculator.model.Operators
 import calculator.validator.InputValidator
-import calculator.validator.NumberValidator
-import calculator.validator.OperatorValidator
 
 object Calculator {
     private const val DELIMITER = " "
@@ -12,28 +11,28 @@ object Calculator {
     fun execute(input: String?): Int {
         val expression = InputValidator.validateInput(input)
 
-        val numbers = makeNumberList(expression)
+        val numbers = Numbers.of(makeNumberList(expression))
         val operators = makeOperatorList(expression)
 
-        InputValidator.validateSize(numbers, operators)
+        InputValidator.validateSize(numbers.size(), operators.size)
 
         return calculate(numbers, operators)
     }
 
-    private fun makeNumberList(expression: String): MutableList<Int> {
+    private fun makeNumberList(expression: String): List<String> {
         return expression.split(DELIMITER).filterIndexed { index, _ -> index % 2 == 0 }
-            .map { NumberValidator.validateNumber(it) }.toMutableList()
     }
 
     private fun makeOperatorList(expression: String): List<Operators> {
         return expression.split(DELIMITER).filterIndexed { index, _ -> index % 2 == 1 }
-            .map { OperatorValidator.validateOperator(it) }
+            .map { Operators.validateOperator(it) }
     }
 
-    private fun calculate(numbers: MutableList<Int>, operators: List<Operators>): Int {
-        var result = numbers.removeAt(FIRST_INDEX)
-        for (index in FIRST_INDEX..numbers.lastIndex) {
-            result = operators[index].operate(result, numbers[index])
+    private fun calculate(numbers: Numbers, operators: List<Operators>): Int {
+        var result = numbers.first()
+        val adjustNumbers = numbers.getNumbersExcludingFirst()
+        for (index in FIRST_INDEX..adjustNumbers.lastIndex) {
+            result = operators[index].operate(result, adjustNumbers[index])
         }
         return result
     }
