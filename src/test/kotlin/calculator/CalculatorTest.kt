@@ -140,6 +140,25 @@ class CalculatorTest {
         }
     }
 
+    @Test
+    fun `숫자 하나만 있을 땐 그대로 반환한다`() {
+        val calculator = Calculator()
+
+        val actual = calculator.calculate("1")
+        val result = 1
+
+        assertThat(actual).isEqualTo(result)
+    }
+
+    @Test
+    fun `연산자 하나만 있을 땐 에러가 발생한다`() {
+        val calculator = Calculator()
+
+        assertThrows<IllegalArgumentException> {
+            calculator.calculate("+")
+        }
+    }
+
     @ParameterizedTest
     @ValueSource(
         strings = [
