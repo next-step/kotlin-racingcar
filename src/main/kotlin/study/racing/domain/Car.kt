@@ -5,7 +5,7 @@ class Car {
     private val distance: Distance = Distance()
 
     fun getCarDistance(): Int {
-        return this.distance.getDistance()
+        return this.distance.moveDistance
     }
 
     fun tryMoveTheCar(isMoving: Boolean) {

@@ -10,7 +10,7 @@ class DistanceTest {
 
     @Test
     fun `객체 생성시 기본 거리값이 0으로 생성된다`() {
-        assertThat(Distance().getDistance()).isEqualTo(0)
+        assertThat(Distance().moveDistance).isEqualTo(0)
     }
 
     @ParameterizedTest
@@ -28,7 +28,7 @@ class DistanceTest {
         }
 
         // Then
-        assertThat(actual.getDistance()).isEqualTo(expectedDistance)
+        assertThat(actual.moveDistance).isEqualTo(expectedDistance)
     }
 
     companion object {
