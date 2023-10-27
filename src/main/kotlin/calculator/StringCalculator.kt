@@ -1,9 +1,5 @@
 package calculator
 
-private const val CALCULATOR_REGEX = "^[+\\-*/\\d]*$"
-private const val OPERATOR_REGEX = "^[+\\-*/]*\$"
-private const val NUMBER_REGEX = "^\\d*\$"
-
 class StringCalculator private constructor(
     private val numbers: MutableList<Int>,
     private val operators: List<Operator>
@@ -17,6 +13,10 @@ class StringCalculator private constructor(
     }
 
     companion object {
+        private const val CALCULATOR_REGEX = "^[+\\-*/\\d]*$"
+        private const val OPERATOR_REGEX = "^[+\\-*/]*\$"
+        private const val NUMBER_REGEX = "^\\d*\$"
+
         fun calculate(input: String?): Int {
             val pair = validate(input)
             return StringCalculator(pair.first, pair.second).calculate()
