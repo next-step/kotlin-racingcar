@@ -13,7 +13,7 @@ class Racing {
         val round = Round(roundCount)
         val racingCars = Cars.from(carCount)
 
-        repeat(round.getRoundCount()) {
+        repeat(round.roundCount) {
             racingCars.moveTheCars()
             RacingView.printRacingResult(racingCars.getCarsMoveDistance())
         }

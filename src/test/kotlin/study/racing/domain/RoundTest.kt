@@ -14,7 +14,7 @@ class RoundTest {
         // When
 
         // Then
-        assertThat(actual.getRoundCount()).isEqualTo(1)
+        assertThat(actual.roundCount).isEqualTo(1)
     }
 
     @Test
