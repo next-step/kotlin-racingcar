@@ -12,7 +12,7 @@ class AppConfig {
     }
 
     private fun engine(): Engine {
-        return Engine(tokenizer(), converter())
+        return Engine(tokenizer = tokenizer(), converter = converter())
     }
 
     private fun console(): Console {
