@@ -3,11 +3,11 @@ package step2
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
-class OperatorTest : StringSpec({
+class MathOperatorTest : StringSpec({
 
     "덧셈 테스트" {
         // given
-        val operator = Operator.from("+")
+        val operator = MathOperator.from("+")
 
         // when
         val actual = operator?.calculate(2, 3)
@@ -18,7 +18,7 @@ class OperatorTest : StringSpec({
 
     "뺄셈 테스트" {
         // given
-        val operator = Operator.from("-")
+        val operator = MathOperator.from("-")
 
         // when
         val actual = operator?.calculate(2, 3)
@@ -29,7 +29,7 @@ class OperatorTest : StringSpec({
 
     "곱셈 테스트" {
         // given
-        val operator = Operator.from("*")
+        val operator = MathOperator.from("*")
 
         // when
         val actual = operator?.calculate(2, 3)
@@ -40,7 +40,7 @@ class OperatorTest : StringSpec({
 
     "나눗셈 테스트" {
         // given
-        val operator = Operator.from("/")
+        val operator = MathOperator.from("/")
 
         // when
         val actual = operator?.calculate(6, 2)

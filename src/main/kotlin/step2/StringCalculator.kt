@@ -15,7 +15,7 @@ class StringCalculator {
         var result = parseList[0].toInt()
         for (i in 1 until parseList.size step (2)) {
             val num = parseList[i + 1].toInt()
-            val operator = Operator.from(parseList[i]) ?: throw IllegalArgumentException(OPERATOR_ERROR_MESSAGE)
+            val operator = MathOperator.from(parseList[i]) ?: throw IllegalArgumentException(OPERATOR_ERROR_MESSAGE)
             result = operator.calculate(result, num)
         }
         return result
