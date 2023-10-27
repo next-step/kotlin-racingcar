@@ -2,7 +2,7 @@ package study
 
 import io.kotest.core.spec.style.StringSpec
 
-class LeanArrayDeque : StringSpec({
+class LearnArrayDeque : StringSpec({
 
     "ArrayDeque 를 생성해서 CRUD 해본다" {
         val arrayDeque = ArrayDeque<Int>()
