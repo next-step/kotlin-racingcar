@@ -19,16 +19,12 @@ class StringCalculator {
     }
 
     private fun validate(input: String?): String {
-        assertNotNull(input)
+        requireNotNull(input) { "null 입력은 허용되지 않습니다" }
         assertNotEmpty(input)
-        return input!!
+        return input
     }
 
-    private fun assertNotEmpty(input: String?) {
-        require(input.isNullOrEmpty())
-    }
-
-    private fun assertNotNull(input: String?) {
-        require(input != null)
+    private fun assertNotEmpty(input: String) {
+        require(input.isNotEmpty())
     }
 }

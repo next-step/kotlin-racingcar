@@ -23,13 +23,10 @@ enum class Operator(
         }
 
         private fun toOperator(string: String): Operator {
-            return when (string) {
-                PLUS.value -> PLUS
-                MINUS.value -> MINUS
-                MULTI.value -> MULTI
-                DIVIDE.value -> DIVIDE
-                else -> throw IllegalArgumentException(String.format("잘뭇된 문자 [%s] 가 입력됨", string))
-            }
+            return requireNotNull(
+                Operator.values()
+                    .first { it.value.equals(string) }
+            )
         }
 
         private fun isOperator(string: String): Boolean {
