@@ -20,7 +20,7 @@ class CarTest : WordSpec({
 
                 if (i >= 4) {
                     newPosition.xPos shouldBe testPosition.xPos + 1
-                    testPosition = newPosition // update for next iteration
+                    testPosition = newPosition
                 } else {
                     newPosition.xPos shouldBe testPosition.xPos
                 }
