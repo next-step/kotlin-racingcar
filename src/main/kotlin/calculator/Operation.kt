@@ -9,7 +9,7 @@ enum class Operation(val symbol: String) {
     companion object {
         fun fromSymbol(symbol: String): Operation {
             return values().find { it.symbol == symbol }
-                ?: throw IllegalArgumentException("Not Valid Form")
+                ?: throw IllegalArgumentException("Please Check the Input")
         }
     }
 }

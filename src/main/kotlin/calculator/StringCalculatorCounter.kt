@@ -2,51 +2,42 @@ package calculator
 
 import java.util.*
 
-class StringCalculatorCounter(private val formula: List<String>) {
-    init {
-        if (formula.isEmpty()){
-            throw IllegalArgumentException("Please Check the Input")
-        }
-        for ((index, element) in formula.withIndex()) {
-            validateNumber(index, element)
-            validateSymbol(index, element)
-        }
-
-    }
-    private fun validateNumber(index : Int, element : String){
-        if (index % 2 == 0 && !element.matches(Regex("^\\d+$"))){
+class StringCalculatorCounter() {
+    private fun validateNumber(element : String){
+        if (!element.matches(Regex("^\\d+$"))){
             throw IllegalArgumentException("Please Check the Input")
         }
     }
 
-    private fun validateSymbol(index : Int, element: String){
-        if (index % 2 == 1 && !element.matches(Regex("^[+/\\-*]+$"))){
+    private fun validateSymbol(element: String){
+        if (!element.matches(Regex("^[+/\\-*]+$"))){
             throw IllegalArgumentException("Please Check the Input")
         }
     }
 
-
-    fun calculate(): Double {
+    fun calculate(input: String): Double {
+        val formula = input.split(" ")
         val basicOperationsCalculator = BasicOperationsCalculator()
         val queue: Queue<String> = LinkedList(formula)
+        validateNumber(queue.peek())
         var curNum = queue.poll().toDouble()
 
         while (queue.isNotEmpty()) {
+            validateSymbol(queue.peek())
             val symbol = queue.poll()
+            validateNumber(queue.peek())
             val num = queue.poll().toDouble()
             curNum = basicOperationsCalculator.operation(curNum, num, symbol)
         }
 
         return curNum
     }
-
-    constructor(input: String) : this(input.split(" "))
 }
 
 fun main() {
     print("수식을 입력하세요: ") // 사용자에게 메시지 출력
     val formula: String? = readLine() // 사용자 입력 받기
-    val stringCalculatorCounter = StringCalculatorCounter(formula.toString())
-    val result = stringCalculatorCounter.calculate()
+    val stringCalculatorCounter = StringCalculatorCounter()
+    val result = stringCalculatorCounter.calculate(formula.toString())
     println("결과값: $result!") // 수식 값 출력
 }
