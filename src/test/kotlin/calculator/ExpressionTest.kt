@@ -5,23 +5,26 @@ import io.kotest.matchers.shouldBe
 
 class ExpressionTest : BehaviorSpec({
     given("숫자가 와 수식이 주어짐") {
-        var expression = Expression(Number(0))
+        val expression = Expression(Number(0))
         `when`("숫자 추가 시") {
-            expression = expression.put("1")
+            val addOne = expression.put("1")
             then("숫자가 추가됨") {
-                expression.number shouldBe Number(1)
+                addOne.number shouldBe Number(1)
             }
         }
         `when`("덧셈 추가 시") {
-            expression = expression.put("+")
+            val addPlus = expression.put("1")
+                .put("+")
             then("덧셈이 추가됨") {
-                expression shouldBe Expression(Number(1), Arithmetic.PLUS)
+                addPlus shouldBe Expression(Number(1), Arithmetic.PLUS)
             }
         }
         `when`("다른 숫자 추가 시") {
-            expression = expression.put("2")
+            val addTwo = expression.put("1")
+                .put("+")
+                .put("2")
             then("덧셈이 계산됨") {
-                expression shouldBe Expression(Number(3))
+                addTwo shouldBe Expression(Number(3))
             }
         }
     }
