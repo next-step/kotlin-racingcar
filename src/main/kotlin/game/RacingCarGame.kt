@@ -10,7 +10,7 @@ class RacingCarGame() {
         val carCount = ConsoleInputReader.readInput().toInt()
         ConsoleTextPrinter.printText(retryCountQuestion)
         val retryCount = ConsoleInputReader.readInput().toInt()
-        val cars = Cars.fromCarCount(carCount, RandomAdvanceCountGenerator())
+        val cars = Cars.fromCarCount(carCount, RandomMoveConditionGenerator())
         cars.advance(retryCount)
     }
 }

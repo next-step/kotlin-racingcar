@@ -2,12 +2,12 @@ package game
 
 class Cars private constructor(
     private val cars: List<Car>,
-    private val advanceCountGenerator: AdvanceCountGenerator
+    private val moveConditionGenerator: MoveConditionGenerator
 ) {
 
     private fun advance() {
         cars.forEach { car ->
-            val movement = advanceCountGenerator.generate()
+            val movement = moveConditionGenerator.generate()
             car.move(movement)
             val currentPosition = CarPositionRenderer.makePosition(car)
             ConsoleTextPrinter.printText(currentPosition)
@@ -18,7 +18,7 @@ class Cars private constructor(
     fun advance(retryCount: Int) = repeat(retryCount) { advance() }
 
     companion object {
-        fun fromCarCount(carCount: Int, advanceCountGenerator: AdvanceCountGenerator): Cars =
-            Cars(1.rangeTo(carCount).map { Car() }, advanceCountGenerator)
+        fun fromCarCount(carCount: Int, moveConditionGenerator: MoveConditionGenerator): Cars =
+            Cars(1.rangeTo(carCount).map { Car() }, moveConditionGenerator)
     }
 }

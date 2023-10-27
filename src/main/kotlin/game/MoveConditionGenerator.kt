@@ -1,5 +1,5 @@
 package game
 
-fun interface AdvanceCountGenerator {
+fun interface MoveConditionGenerator {
     fun generate(): Int
 }

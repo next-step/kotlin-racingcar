@@ -1,6 +1,6 @@
 package game
 
-class RandomAdvanceCountGenerator : AdvanceCountGenerator {
+class RandomMoveConditionGenerator : MoveConditionGenerator {
     private val minValue = 0
     private val maxValue = 9
 
