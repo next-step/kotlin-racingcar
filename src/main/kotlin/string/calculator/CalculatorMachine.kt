@@ -10,8 +10,7 @@ class CalculatorMachine(private val calculator: Calculator, private val validato
         try {
             run()
         } catch (e: IllegalArgumentException) {
-            println(OCCURS_ERROR)
-            println("오류 메시지: ${e.message}\n")
+            userInterface.occurError(e.message.orEmpty())
             start()
         }
     }
@@ -26,10 +25,6 @@ class CalculatorMachine(private val calculator: Calculator, private val validato
             userInterface.showResult(result)
             isRunning = userInterface.isContinue()
         }
-    }
-
-    companion object {
-        const val OCCURS_ERROR = "오류가 발생했습니다. 다시 안내에 따라 다시 시도해주세요."
     }
 }
 
