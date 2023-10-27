@@ -28,7 +28,8 @@ class StringCalculatorTest : StringSpec({
         forAll(
             row(null),
             row(" "),
-            row("2 ? 3")
+            row("2 ? 3"),
+            row("2 / 0")
         ) { wrongInput ->
             shouldThrow<IllegalArgumentException> {
                 stringCalculator.calculate(wrongInput)
