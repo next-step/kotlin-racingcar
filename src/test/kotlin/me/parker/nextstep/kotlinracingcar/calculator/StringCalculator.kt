@@ -4,33 +4,38 @@ import org.assertj.core.util.Strings
 
 class StringCalculator {
     companion object {
+        private const val EMPTY_STRING = ""
+
         fun calculate(input: String): Int {
             if (Strings.isNullOrEmpty(input))
                 throw IllegalArgumentException("입력값이 비어있습니다.")
 
             val tokens: List<String> = separateOperandAndOperator(input)
 
-            var result = tokens[0].toInt()
-            var operator = ""
-            for ((index, token) in tokens.withIndex()) {
+            return calculateFormula(tokens)
+        }
+
+        private fun calculateFormula(formulaTokens: List<String>): Int {
+            var result = formulaTokens[0].toInt()
+            for ((index, token) in formulaTokens.withIndex()) {
                 if (index == 0) continue
 
-                if (isNumber(token))
+                if (isEvenNumber(index)) {
+                    val operator = formulaTokens[index - 1]
                     result = OperatorType.calculate(operator, result, token.toInt())
-                else
-                    operator = token
+                }
             }
 
             return result
         }
 
         private fun separateOperandAndOperator(input: String): List<String> {
-            val tokens = input.split("")
+            val tokens = input.split(EMPTY_STRING)
                 .filter { !Strings.isNullOrEmpty(it) && it != " " }
 
             val results = mutableListOf<String>()
 
-            var number = ""
+            var number = EMPTY_STRING
             for (token in tokens) {
                 if (isNumber(token)) {
                     number += token
@@ -38,7 +43,7 @@ class StringCalculator {
 
                 if (isNumber(token).not() && number.isNotEmpty()) {
                     results.add(number)
-                    number = ""
+                    number = EMPTY_STRING
                 }
 
                 if (isNumber(token).not()) {
@@ -55,9 +60,9 @@ class StringCalculator {
 
         private fun isValidFormulaOrder(arguments: MutableList<String>): Boolean {
             for ((index, arg) in arguments.withIndex()) {
-                if (index % 2 == 0 && isNumber(arg).not())
+                if (isEvenNumber(index) && isNumber(arg).not())
                     return false
-                if (index % 2 != 0 && OperatorType.of(arg).not())
+                if (isEvenNumber(index).not() && OperatorType.exist(arg).not())
                     return false
 
                 if (index < arguments.size - 1 && isNumber(arg) && isNumber(arguments[index + 1]))
@@ -66,6 +71,8 @@ class StringCalculator {
 
             return arguments.size > 1
         }
+
+        private fun isEvenNumber(num: Int) = num % 2 == 0
 
         private fun isNumber(str: String): Boolean {
             return try {

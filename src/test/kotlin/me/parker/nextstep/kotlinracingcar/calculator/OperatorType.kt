@@ -20,7 +20,7 @@ enum class OperatorType(val symbol: String, val calculate: (Int, Int) -> Int) {
             }
         }
 
-        fun of(operator: String): Boolean {
+        fun exist(operator: String): Boolean {
             return values().any { it.symbol == operator }
         }
     }

@@ -1,12 +1,12 @@
 - [x] 덧셈 계산 테스트
-  - split() 메서드에서 양쪽에 `""`이 생겨서 빈 문자는 제거해야 했음.
+    - split() 메서드에서 양쪽에 `""`이 생겨서 빈 문자는 제거해야 했음.
 - [x] 입력 문자열에 빈 공백이 포함되어 있는 경우 삭제 처리
 - [x] 뺄셈 계산 테스트
 - [x] 곱셈 계산 테스트
 - [x] 나눗셈 계산 테스트
 - [x] 숫자가 2자리 이상인 경우 처리
 - [x] ParameterizedTest로 여러 입력값에 대한 테스트 추가하기 (+ 3개 이상 인자 계산)
-- [x] 입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException throw 
+- [x] 입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException throw
 - [x] 사칙연산 기호가 아닌 경우 IllegalArgumentException throw
 - [x] 아래 구현 전에, 0으로 나눈 경우는 나누기 계산에 책임이 있으므로 계산별로 분리하는 리팩토링과 전체 코드 리팩토링
 - [x] 0으로 나누기를 시도한 경우 IllegalArgumentException throw
