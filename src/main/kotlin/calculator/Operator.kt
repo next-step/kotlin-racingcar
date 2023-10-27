@@ -11,7 +11,10 @@ enum class Operator(private val operator: String) {
         override fun calculate(a: Int, b: Int) = a * b
     },
     DIV("/") {
-        override fun calculate(a: Int, b: Int) = a / b
+        override fun calculate(a: Int, b: Int): Int {
+            require(b != 0) { "0으로 나눌 수 없습니다." }
+            return a / b
+        }
     },
     ;
 
