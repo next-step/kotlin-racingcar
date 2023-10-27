@@ -7,11 +7,11 @@ private const val DELIMITER = " "
 class StringCalculator {
 
     fun calculate(input: String?): Int {
-        val parseList = parse(input)
-        var result = parseList[0].toInt()
-        for (i in 1 until parseList.size step (2)) {
-            val num = parseList[i + 1].toInt()
-            val operator = MathOperator.from(parseList[i])
+        val elements = parse(input)
+        var result = elements[0].toInt()
+        for (i in 1 until elements.size step (2)) {
+            val num = elements[i + 1].toInt()
+            val operator = MathOperator.from(elements[i])
             result = operator.calculate(result, num)
         }
         return result
