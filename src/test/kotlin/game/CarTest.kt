@@ -6,8 +6,8 @@ import org.junit.jupiter.params.provider.CsvSource
 
 class CarTest {
     @ParameterizedTest
-    @CsvSource(value = ["1:2:3", "4:5:9", "0:8:8"], delimiter = ':')
-    fun `자동차는 주어지 숫자만큼 전진`(position: Int, movement: Int, expected: Int) {
+    @CsvSource(value = ["1:4:5", "4:5:9", "0:9:9"], delimiter = ':')
+    fun `자동차는 4이상 9이하일때 전진한다`(position: Int, movement: Int, expected: Int) {
         // given
         var car = Car(position)
 
