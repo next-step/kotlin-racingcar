@@ -1,19 +1,13 @@
 package racing
 
 import io.kotest.core.spec.style.BehaviorSpec
-import io.kotest.data.forAll
-import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 
 class CarRacingTest : BehaviorSpec({
-    given("몇 대의 자동차로 몇 번의 이동을 할 것인지를 전달하면") {
-        then("그에 맞는 이차원 배열이 생성되는가") {
-            forAll(
-                row(3, 5),
-                row(5, 5)
-            ) { carCount, tryCount ->
-                CarRacing.create(tryCount to carCount) shouldBe List(tryCount) { List(carCount) { Car() } }
-            }
+    given("몇 대의 자동차로 경주를 할 것인지를 전달하면") {
+        val carCount = 3
+        then("그에 맞는 배열이 생성되는가") {
+            CarRacing.createCars(carCount) shouldBe List(carCount) { Car() }
         }
     }
 
@@ -27,17 +21,14 @@ class CarRacingTest : BehaviorSpec({
     }
 
     given("자동차가 이동한 횟수만큼") {
+        val moveCount = 3
         then("실행 결과인 '-'가 반복 되는가") {
-            forAll(
-                row(3)
-            ) { moveCount ->
-                val car = Car()
-                car.getResult() shouldBe "-"
-                for (i in 0 until moveCount) {
-                    car.move()
-                }
-                car.getResult() shouldBe "----"
+            val car = Car()
+            car.getResult() shouldBe "-"
+            for (i in 0 until moveCount) {
+                car.move()
             }
+            car.getResult() shouldBe "----"
         }
     }
 })

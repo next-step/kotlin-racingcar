@@ -5,17 +5,15 @@ import kotlin.random.Random
 
 object CarRacing {
     @VisibleForTesting
-    fun create(input: Pair<Int, Int>): List<List<Car>> {
-        return List(input.first) { List(input.second) { Car() } }
-    }
+    fun createCars(carCount: Int) = List(carCount) { Car() }
 
-    fun race(input: Pair<Int, Int>): List<List<String>> {
-        val list = create(input)
-        return list.mapIndexed { tryIndex, cars ->
-            cars.forEachIndexed { carIndex, _ ->
+    fun race(tryCount: Int, carCount: Int): List<List<String>> {
+        val cars = createCars(carCount)
+        return List(tryCount) {
+            cars.forEach { car ->
                 val isMove = isMove { random(0..9) }
                 if (isMove) {
-                    move(list, tryIndex, carIndex)
+                    car.move()
                 }
             }
             cars.map { it.getResult() }
@@ -27,10 +25,4 @@ object CarRacing {
 
     @VisibleForTesting
     fun isMove(intSupplier: () -> Int) = intSupplier() >= 4
-
-    private fun move(input: List<List<Car>>, tryIndex: Int, carIndex: Int) {
-        for (i in tryIndex until input.size) {
-            input[i][carIndex].move()
-        }
-    }
 }
