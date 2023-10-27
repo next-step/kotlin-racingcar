@@ -9,7 +9,7 @@ class CalculatorExceptionTest {
     @Test
     fun null체크() {
         Assertions.assertThatThrownBy {
-            Calculator().calculate(null)
+            Calculator.calculate(null)
         }.isInstanceOf(IllegalArgumentException::class.java)
     }
 
@@ -19,7 +19,7 @@ class CalculatorExceptionTest {
     )
     fun 문자열이_맨앞으로_올_때(input: String) {
         Assertions.assertThatThrownBy {
-            Calculator().calculate(input)
+            Calculator.calculate(input)
         }.isInstanceOf(IllegalArgumentException::class.java)
     }
 
@@ -29,17 +29,14 @@ class CalculatorExceptionTest {
     )
     fun 사칙연산이_아닐_때(input: String) {
         Assertions.assertThatThrownBy {
-            Calculator().calculate(input)
-        }.isInstanceOf(IllegalArgumentException::class.java)
+            Calculator.calculate(input)
+        }.isInstanceOf(IllegalStateException::class.java)
     }
 
-    @ParameterizedTest
-    @CsvSource(
-        value = ["2+3/0*4"]
-    )
-    fun Zero로_나누기(input: String) {
+    @Test
+    fun Zero로_나누기() {
         Assertions.assertThatThrownBy {
-            Calculator().calculate(input)
+            Calculator.calculate("2+3/0*4")
         }.isInstanceOf(IllegalStateException::class.java)
     }
 }
