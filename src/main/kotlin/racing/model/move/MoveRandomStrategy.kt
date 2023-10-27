@@ -3,7 +3,7 @@ package racing.model.move
 import racing.model.generator.Generator
 
 class MoveRandomStrategy(
-    private val generator: Generator
+    private val generator: Generator,
 ) : MoveStrategy {
     override fun goNext(): Boolean {
         return movingPolicy(generator.generate())
