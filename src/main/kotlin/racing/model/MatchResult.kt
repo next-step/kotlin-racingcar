@@ -1,6 +1,6 @@
 package racing.model
 
-class MatchResult(
+data class MatchResult(
     val result: List<Car>
 ) {
     fun consolePresent(): String {
