@@ -28,9 +28,5 @@ enum class Operator(
                     .first { it.value.equals(string) }
             )
         }
-
-        private fun isOperator(string: String): Boolean {
-            return values().any { it.value == string }
-        }
     }
 }
