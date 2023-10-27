@@ -1,20 +1,20 @@
 package calculator
 
-sealed interface ExpressionType {
-    fun isSameType(other: ExpressionType): Boolean
+sealed interface ExpressionElement {
+    fun isSameType(other: ExpressionElement): Boolean
 
-    enum class Operator : ExpressionType {
+    enum class Operator : ExpressionElement {
         Add,
         Sub,
         Multi,
         Div;
 
-        override fun isSameType(other: ExpressionType): Boolean {
+        override fun isSameType(other: ExpressionElement): Boolean {
             return other is Operator
         }
     }
 
-    data class Term(val value: Int) : ExpressionType {
+    data class Term(val value: Int) : ExpressionElement {
         operator fun plus(other: Term): Term {
             val result = value + other.value
 
@@ -39,7 +39,7 @@ sealed interface ExpressionType {
             return Term(result)
         }
 
-        override fun isSameType(other: ExpressionType): Boolean {
+        override fun isSameType(other: ExpressionElement): Boolean {
             return other is Term
         }
     }

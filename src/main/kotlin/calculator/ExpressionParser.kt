@@ -3,7 +3,7 @@ package calculator
 import java.lang.IllegalArgumentException
 
 class ExpressionParser {
-    fun parse(expression: String?): List<ExpressionType> {
+    fun parse(expression: String?): List<ExpressionElement> {
         if (expression.isNullOrBlank()) {
             throw IllegalArgumentException("Expression cannot be null or blank")
         }
@@ -15,18 +15,18 @@ class ExpressionParser {
         }
     }
 
-    private fun String.toExpression(): ExpressionType {
+    private fun String.toExpression(): ExpressionElement {
         val isDigit = all { it.isDigit() }
 
         if (isDigit) {
-            return ExpressionType.Term(toInt())
+            return ExpressionElement.Term(toInt())
         }
 
         return when (this) {
-            "+" -> ExpressionType.Operator.Add
-            "-" -> ExpressionType.Operator.Sub
-            "*" -> ExpressionType.Operator.Multi
-            "/" -> ExpressionType.Operator.Div
+            "+" -> ExpressionElement.Operator.Add
+            "-" -> ExpressionElement.Operator.Sub
+            "*" -> ExpressionElement.Operator.Multi
+            "/" -> ExpressionElement.Operator.Div
 
             else -> throw IllegalArgumentException("Not supported operator")
         }
