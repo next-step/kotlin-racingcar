@@ -1,7 +1,7 @@
 package calculator
 
 class StringCalculator {
-    fun calculate(input: String): String{
+    fun calculate(input: String): String {
         val inputList: List<String> = InputValidateParser.parse(input)
         val chunkStringCalculator = ChunkStringCalculator(inputList)
 

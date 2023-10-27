@@ -19,10 +19,12 @@ class InputValidateParserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = [
-        "a + b - 0",
-        "1 ㅍ 1 + 2",
-    ])
+    @ValueSource(
+        strings = [
+            "a + b - 0",
+            "1 ㅍ 1 + 2",
+        ]
+    )
     fun `validate - 입력값이 모두 숫자 혹은 사칙 연산 부호로 구성되지 않는 경우 IllegalArgumentException 발생`(input: String) {
         assertThrows<IllegalArgumentException> {
             InputValidateParser.validate(input)

@@ -1,6 +1,6 @@
 package calculator
 
-import java.util.*
+import java.util.LinkedList
 
 class ChunkStringCalculator(wholeElements: List<String>) {
     private val calculationDeque = LinkedList<String>()
