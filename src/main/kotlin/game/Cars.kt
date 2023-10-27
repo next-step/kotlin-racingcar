@@ -1,19 +1,20 @@
 package game
 
 class Cars private constructor(
-    private val cars: List<Car>, private val moveConditionGenerator: MoveConditionGenerator
+    val carList: List<Car>,
+    private val moveConditionGenerator: MoveConditionGenerator
 ) {
 
     private fun advance() {
-        cars.forEach { car ->
+        carList.forEach { car ->
             val movement = moveConditionGenerator.generate()
             car.move(movement)
         }
     }
 
     fun advance(retryCount: Int) = repeat(retryCount) {
-        advance();
-        UserMessageDisplay.display(cars)
+        advance()
+        UserMessageDisplay.display(carList)
     }
 
     companion object {
