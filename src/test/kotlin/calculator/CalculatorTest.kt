@@ -78,6 +78,33 @@ class CalculatorTest {
     }
 
     @Test
+    fun `식이 비어있으면 에러가 발생한다`() {
+        val calculator = Calculator()
+
+        assertThrows<IllegalArgumentException> {
+            calculator.calculate("")
+        }
+    }
+
+    @Test
+    fun `식이 공백이면 에러가 발생한다`() {
+        val calculator = Calculator()
+
+        assertThrows<IllegalArgumentException> {
+            calculator.calculate(" ")
+        }
+    }
+
+    @Test
+    fun `식이 null 이면 에러가 발생한다`() {
+        val calculator = Calculator()
+
+        assertThrows<IllegalArgumentException> {
+            calculator.calculate(null)
+        }
+    }
+
+    @Test
     fun `식의 맨 앞이 숫자가 아니면 에러가 발생한다`() {
         val calculator = Calculator()
 

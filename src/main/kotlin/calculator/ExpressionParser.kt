@@ -4,8 +4,8 @@ import java.lang.IllegalArgumentException
 
 class ExpressionParser {
     fun parse(expression: String?): List<ExpressionType> {
-        if (expression.isNullOrEmpty()) {
-            throw IllegalArgumentException("Expression cannot be null or empty")
+        if (expression.isNullOrBlank()) {
+            throw IllegalArgumentException("Expression cannot be null or blank")
         }
 
         val splits = expression.split(" ")
