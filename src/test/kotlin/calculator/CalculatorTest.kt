@@ -15,13 +15,13 @@ class CalculatorTest : StringSpec({
         val exception = shouldThrow<IllegalArgumentException> {
             Calculator("")
         }
-        exception.message shouldBe "수식을 확인해 주세요."
+        exception.message shouldBe "수식을 입력해 주세요."
     }
 
     "순서가 맞지 않는 수식 입력 시 오류 발생" {
         val exception = shouldThrow<IllegalArgumentException> {
             Calculator("1 + 2 +")
         }
-        exception.message shouldBe "수식을 확인해 주세요."
+        exception.message shouldBe "수식의 마지막은 숫자여야 합니다."
     }
 })
