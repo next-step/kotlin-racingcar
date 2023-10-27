@@ -25,14 +25,10 @@ class StringCalculator {
     }
 
     private fun assertNotEmpty(input: String?) {
-        if (input.isNullOrEmpty()) {
-            throw IllegalArgumentException()
-        }
+        require(input.isNullOrEmpty())
     }
 
     private fun assertNotNull(input: String?) {
-        if (input == null) {
-            throw IllegalArgumentException()
-        }
+        require(input != null)
     }
 }
