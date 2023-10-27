@@ -2,20 +2,16 @@ package calculator.model
 
 enum class Operator(
     val value: String,
+    val action: (Int, Int) -> Int
 ) {
-    PLUS("+"),
-    MINUS("-"),
-    MULTI("*"),
-    DIVIDE("/"),
+    PLUS("+", { a, b -> a + b }),
+    MINUS("-", { a, b -> a - b }),
+    MULTI("*", { a, b -> a * b }),
+    DIVIDE("/", { a, b -> a / b }),
     ;
 
     fun operate(first: Int, second: Int): Int {
-        return when (this) {
-            PLUS -> first + second
-            MINUS -> first - second
-            MULTI -> first * second
-            DIVIDE -> first / second
-        }
+        return this.action(first, second)
     }
 
     companion object {
