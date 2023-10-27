@@ -3,8 +3,8 @@ package racinggame
 import java.util.Random
 
 fun main() {
-    val carCount = InputView.input("자동차 대수는 몇 대인가요?")
-    val tryCount = InputView.input("시도할 횟수는 몇 회인가요?")
+    val carCount = InputView.getCarCount()
+    val tryCount = InputView.getTryCount()
 
     val game = RacingGame(
         (1..carCount).map { Car() },
