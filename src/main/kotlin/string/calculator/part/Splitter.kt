@@ -7,18 +7,11 @@ import string.calculator.util.isOdd
 
 class Splitter {
     fun split(input: String): SplitInput {
-        val numbers = mutableListOf<Long>()
-        val operators = mutableListOf<Operator>()
         val splitInput = input.split(DELIMITER)
-
-        for (i in splitInput.indices) {
-            if (i.isEven()) {
-                numbers.add(splitInput[i].toLong())
-            }
-            if (i.isOdd()) {
-                operators.add(Operator.of(splitInput[i]))
-            }
-        }
+        val numbers = splitInput.filterIndexed { index, _ -> index.isEven() }
+            .map { it.toLong() }.toMutableList()
+        val operators = splitInput.filterIndexed { index, _ -> index.isOdd() }
+            .map { Operator.of(it) }.toMutableList()
 
         return SplitInput(numbers, operators)
     }
