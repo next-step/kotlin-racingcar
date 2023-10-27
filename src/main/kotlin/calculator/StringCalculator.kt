@@ -1,22 +1,20 @@
 package calculator
 
 class StringCalculator {
-    companion object {
-        fun calculate(expression: StringExpression): Int {
-            val tokens = expression.tokenize()
+    fun calculate(expression: StringExpression): Int {
+        val tokens = expression.tokenize()
 
-            val firstNumber = StringExpressionOperand(tokens.first())
+        val firstNumber = StringExpressionOperand(tokens.first())
 
-            return tokens
-                .drop(1)
-                .chunked(2)
-                .fold(firstNumber) { acc, cur ->
-                    StringExpressionOperator(cur[0]).apply(
-                        acc,
-                        StringExpressionOperand(cur[1])
-                    )
-                }
-                .number
-        }
+        return tokens
+            .drop(1)
+            .chunked(2)
+            .fold(firstNumber) { acc, cur ->
+                StringExpressionOperator(cur[0]).apply(
+                    acc,
+                    StringExpressionOperand(cur[1])
+                )
+            }
+            .number
     }
 }

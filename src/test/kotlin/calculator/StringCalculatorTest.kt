@@ -7,6 +7,8 @@ import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 
 class StringCalculatorTest : FunSpec({
+    val calculator = StringCalculator()
+
     context("test validation") {
         test("calculate with invalid expression") {
             forAll(
@@ -23,7 +25,7 @@ class StringCalculatorTest : FunSpec({
                 shouldThrow<IllegalArgumentException> {
                     val expression = StringExpression(it)
 
-                    StringCalculator.calculate(expression)
+                    calculator.calculate(expression)
                 }
             }
         }
@@ -33,7 +35,7 @@ class StringCalculatorTest : FunSpec({
         test("add ") {
             val expression = StringExpression("2 + 3")
 
-            val result = StringCalculator.calculate(expression)
+            val result = calculator.calculate(expression)
 
             result shouldBe 5
         }
@@ -41,7 +43,7 @@ class StringCalculatorTest : FunSpec({
         test("minus") {
             val expression = StringExpression("3 - 2")
 
-            val result = StringCalculator.calculate(expression)
+            val result = calculator.calculate(expression)
 
             result shouldBe 1
         }
@@ -49,7 +51,7 @@ class StringCalculatorTest : FunSpec({
         test("multiply") {
             val expression = StringExpression("2 * 3")
 
-            val result = StringCalculator.calculate(expression)
+            val result = calculator.calculate(expression)
 
             result shouldBe 6
         }
@@ -57,7 +59,7 @@ class StringCalculatorTest : FunSpec({
         test("divide") {
             val expression = StringExpression("6 / 3")
 
-            val result = StringCalculator.calculate(expression)
+            val result = calculator.calculate(expression)
 
             result shouldBe 2
         }
@@ -70,7 +72,7 @@ class StringCalculatorTest : FunSpec({
             ) { input, result ->
                 val expression = StringExpression(input)
 
-                StringCalculator.calculate(expression) shouldBe result
+                calculator.calculate(expression) shouldBe result
             }
         }
     }
