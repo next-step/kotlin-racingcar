@@ -15,6 +15,12 @@ class CarRacing(
     }
 
     private fun canGo(): Boolean {
-        return nextInt(from = 0, until = 10) >= 4
+        return nextInt(from = FROM_ZERO, until = UNTIL_TEN) >= CAN_GO_NUMBER
+    }
+
+    companion object {
+        private const val FROM_ZERO = 0
+        private const val UNTIL_TEN = 10
+        private const val CAN_GO_NUMBER = 4
     }
 }

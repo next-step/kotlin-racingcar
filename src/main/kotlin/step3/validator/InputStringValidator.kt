@@ -27,10 +27,11 @@ object InputStringValidator {
     }
 
     private fun String.checkNumberIsMoreThanOne() {
-        check(this.toDouble().toInt() > 0) { VALUE_MUST_BE_MORE_THAN_ONE }
+        check(this.toDouble().toInt() > MINIMUM_STRING_LENGTH) { VALUE_MUST_BE_MORE_THAN_ONE }
     }
 
     private const val VALUE_CAN_NOT_BE_NULL = "값이 입력되지 않았습니다"
     private const val VALUE_MUST_BE_NUMBER = "유효한 값이 입력되지 않았습니다"
     private const val VALUE_MUST_BE_MORE_THAN_ONE = "1 이상의 값을 입력해주세요"
+    private const val MINIMUM_STRING_LENGTH = 0
 }
