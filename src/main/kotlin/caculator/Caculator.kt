@@ -26,7 +26,7 @@ object Caculator {
                         Token.Symbol.DIVISION -> result / curToken.value
                         null -> curToken.value
                     }
-                    if (!result.isFinite()) throw IllegalArgumentException()
+                    require(result.isFinite())
                     curSymbol = null
                 }
                 is Token.Symbol -> {
@@ -40,15 +40,15 @@ object Caculator {
 
     @Throws(IllegalArgumentException::class)
     private fun String?.toExpression(): Queue<Token> {
-        if (this.isNullOrEmpty()) throw IllegalArgumentException()
+        require(!this.isNullOrBlank())
 
         return this.split(" ").filter {
             it.isNotEmpty()
         }.mapIndexed { i, s ->
             s.toTokenOrNull()?.let {
-                if ((i % 2 == 0 && it is Token.Number || i % 2 == 1 && it is Token.Symbol).not()) throw IllegalArgumentException()
+                require(i % 2 == 0 && it is Token.Number || i % 2 == 1 && it is Token.Symbol)
                 it
-            } ?: throw IllegalArgumentException()
+            } ?: throw IllegalArgumentException("잘못된 계산식입니다.")
         }.let {
             LinkedList(it)
         }
