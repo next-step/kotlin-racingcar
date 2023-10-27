@@ -7,7 +7,7 @@ class StringCalculator private constructor(
     private fun calculate(): Int {
         var result = numbers.removeAt(0)
         numbers.zip(operators) { number, operator ->
-            result = operator.calculate(result, number)
+            result = operator.operation(result, number)
         }
         return result
     }

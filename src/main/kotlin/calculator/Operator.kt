@@ -1,24 +1,17 @@
 package calculator
 
-enum class Operator(private val operator: String) {
-    PLUS("+") {
-        override fun calculate(a: Int, b: Int) = a + b
-    },
-    MINUS("-") {
-        override fun calculate(a: Int, b: Int) = a - b
-    },
-    TIMES("*") {
-        override fun calculate(a: Int, b: Int) = a * b
-    },
-    DIV("/") {
-        override fun calculate(a: Int, b: Int): Int {
-            require(b != 0) { "0으로 나눌 수 없습니다." }
-            return a / b
-        }
-    },
+enum class Operator(
+    private val operator: String,
+    val operation: (Int, Int) -> Int
+) {
+    PLUS("+", { a, b -> a + b }),
+    MINUS("-", { a, b -> a - b }),
+    TIMES("*", { a, b -> a * b }),
+    DIV("/", { a, b ->
+        require(b != 0) { "0으로 나눌 수 없습니다." }
+        a / b
+    }),
     ;
-
-    abstract fun calculate(a: Int, b: Int): Int
 
     companion object {
         fun from(operator: String): Operator =
