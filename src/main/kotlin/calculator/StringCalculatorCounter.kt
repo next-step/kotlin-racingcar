@@ -3,31 +3,57 @@ package calculator
 import java.util.*
 
 class StringCalculatorCounter() {
+    private val queue: Queue<String>
+    private val basicOperationsCalculator : BasicOperationsCalculator
+
+    init {
+        queue = LinkedList()
+        basicOperationsCalculator = BasicOperationsCalculator()
+    }
+
     private fun validateNumber(element : String){
         if (!element.matches(Regex("^\\d+$"))){
+            queue.clear()
             throw IllegalArgumentException("Please Check the Input")
         }
     }
 
     private fun validateSymbol(element: String){
         if (!element.matches(Regex("^[+/\\-*]+$"))){
+            queue.clear()
+            throw IllegalArgumentException("Please Check the Input")
+        }
+    }
+
+    private fun getSymbol(): String{
+        val symbol = queue.poll()
+        validateSymbol(symbol)
+        return symbol
+    }
+
+    private fun getNumber(): Double{
+        val number = queue.poll()
+        validateNumber(number)
+        return number.toDouble()
+    }
+
+    private fun basicOperation(firstNum: Double, secondNum: Double, symbol: String): Double{
+        try {
+            return basicOperationsCalculator.operation(firstNum, secondNum, symbol)
+        } catch (e: IllegalArgumentException) {
+            queue.clear()
             throw IllegalArgumentException("Please Check the Input")
         }
     }
 
     fun calculate(input: String): Double {
-        val formula = input.split(" ")
-        val basicOperationsCalculator = BasicOperationsCalculator()
-        val queue: Queue<String> = LinkedList(formula)
-        validateNumber(queue.peek())
-        var curNum = queue.poll().toDouble()
+        queue.addAll(input.split(" "))
+        var curNum = getNumber()
 
         while (queue.isNotEmpty()) {
-            validateSymbol(queue.peek())
-            val symbol = queue.poll()
-            validateNumber(queue.peek())
-            val num = queue.poll().toDouble()
-            curNum = basicOperationsCalculator.operation(curNum, num, symbol)
+            var symbol = getSymbol()
+            var num = getNumber()
+            curNum = basicOperation(curNum, num, symbol)
         }
 
         return curNum
