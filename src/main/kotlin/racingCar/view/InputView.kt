@@ -2,7 +2,7 @@ package racingCar.view
 
 import racingCar.error.ErrorMessage.*
 
-class InputView {
+object InputView {
     fun inputNumber(): Int {
         try {
             return readLine()!!.toInt()
