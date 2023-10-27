@@ -12,12 +12,12 @@ object Caculator {
      * @throws IllegalArgumentException If the [input] is not a correct mathematical expression.
      */
     fun calculate(input: String?): Double {
-        val expression: Queue<Token> = input.toExpression()
+        val expression = input.toExpression()
 
-        var result: Double = 0.0
+        var result = 0.0
         var curSymbol: Token.Symbol? = null
         while (expression.peek() != null) {
-            when (val curToken: Token = expression.poll()) {
+            when (val curToken = expression.poll()) {
                 is Token.Number -> {
                     result = when (curSymbol) {
                         Token.Symbol.PLUS -> result + curToken.value
@@ -44,7 +44,7 @@ object Caculator {
 
         return this.split(" ").filter {
             it.isNotEmpty()
-        }.mapIndexed { i: Int, s: String ->
+        }.mapIndexed { i, s ->
             s.toTokenOrNull()?.let {
                 if ((i % 2 == 0 && it is Token.Number || i % 2 == 1 && it is Token.Symbol).not()) throw IllegalArgumentException()
                 it
