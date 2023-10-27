@@ -13,11 +13,14 @@ class CalculateSimpleFactoryTest : BehaviorSpec({
     Given("문자열 수식이 주어지고") {
         val stringExpression = Requester(expression = "2 + 3 * 4 / 2").splitExpression()
 
-        When("문자열 수식을 계산하면") {
-            val result = stubCalculateSimpleFactory.calculateByStringExpressionNumbers(numbers = stringExpression)
+        When("팩토리 내 계산을 수행하면") {
+            val branchProcessingResult = stubCalculateSimpleFactory.calculateByStringExpressionNumbers(numbers = stringExpression)
+            val functionalProcessingResult = stubCalculateSimpleFactory.calculateStringExpressionNumbersByOperators(numbers = stringExpression)
 
-            Then("계산 결과를 반환한다") {
-                result shouldBe MedianResult.of(medianResult = 10L)
+            Then("동일한 계산 결과를 반환한다") {
+                branchProcessingResult shouldBe MedianResult.of(medianResult = 10L)
+                functionalProcessingResult shouldBe MedianResult.of(medianResult = 10L)
+                branchProcessingResult shouldBe functionalProcessingResult
             }
         }
     }
