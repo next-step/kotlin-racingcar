@@ -1,5 +1,8 @@
 package calculator
 
+import calculator.expression.StringExpression
+import calculator.expression.StringExpressionTokenFactory
+
 class StringCalculator(
     private val stringExpressionTokenFactory: StringExpressionTokenFactory
 ) {

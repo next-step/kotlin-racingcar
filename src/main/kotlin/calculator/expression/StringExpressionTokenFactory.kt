@@ -1,4 +1,4 @@
-package calculator
+package calculator.expression
 
 class StringExpressionTokenFactory {
     fun createStringExpressionOperand(operand: String): StringExpressionOperand {

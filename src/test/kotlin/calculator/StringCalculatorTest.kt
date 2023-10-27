@@ -1,5 +1,7 @@
 package calculator
 
+import calculator.expression.StringExpression
+import calculator.expression.StringExpressionTokenFactory
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.data.forAll

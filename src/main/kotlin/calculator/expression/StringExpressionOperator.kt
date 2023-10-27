@@ -1,4 +1,4 @@
-package calculator
+package calculator.expression
 
 class StringExpressionOperator(
     private val operator: String

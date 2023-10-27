@@ -1,4 +1,4 @@
-package calculator
+package calculator.expression
 
 class StringExpressionOperand(
     val number: Int
