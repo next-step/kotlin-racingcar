@@ -1,9 +1,9 @@
 package calculator
 
-enum class Operator(private val op: String) {
+enum class Operator(private val operator: String) {
     PLUS("+"), MINUS("-"), TIMES("*"), DIV("/");
 
     companion object {
-        fun from(operator: String): Operator? = values().find { it.op == operator }
+        fun from(operator: String): Operator? = values().find { it.operator == operator }
     }
 }
