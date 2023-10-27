@@ -12,7 +12,7 @@ class CalculatorTest {
         delimiter = '='
     )
     fun `더하기`(input: String, expected: String) {
-        val result = Calculator().calculate(input)
+        val result = Calculator.calculate(input)
         assertThat(result).isEqualTo(expected)
     }
 
@@ -22,7 +22,7 @@ class CalculatorTest {
         delimiter = '='
     )
     fun 빼기(input: String, expected: String) {
-        val result = Calculator().calculate(input)
+        val result = Calculator.calculate(input)
         assertThat(result).isEqualTo(expected)
     }
 
@@ -31,7 +31,7 @@ class CalculatorTest {
         value = ["1/2=0", "4/2= 2", "4.0/3.0=1.3"], delimiter = '='
     )
     fun 나누기(input: String, expected: String) {
-        val result = Calculator().calculate(input)
+        val result = Calculator.calculate(input)
         assertThat(result).isEqualTo(expected)
     }
 
@@ -40,7 +40,7 @@ class CalculatorTest {
         value = ["1*2=2", "0*2=0", "4.0*3.0=12"], delimiter = '='
     )
     fun 곱하기(input: String, expected: String) {
-        val result = Calculator().calculate(input)
+        val result = Calculator.calculate(input)
         assertThat(result).isEqualTo(expected)
     }
 
@@ -49,7 +49,7 @@ class CalculatorTest {
         value = ["2+3*4/2=10", "3*4-2*2=20", "0/3*4+3=3"], delimiter = '='
     )
     fun 슈퍼_사칙_연산(input: String, expected: String) {
-        val result = Calculator().calculate(input)
+        val result = Calculator.calculate(input)
         assertThat(result).isEqualTo(expected)
     }
 }

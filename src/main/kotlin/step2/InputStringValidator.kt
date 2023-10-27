@@ -1,6 +1,6 @@
 package step2
 
-object StringValidator {
+object InputStringValidator {
     /**
      * 문자열이 유효한지 한번에 체크
      */
@@ -23,7 +23,7 @@ object StringValidator {
      * 연산자가 두개 이상 동시에 들어오는 경우
      */
     private fun String.validateDuplicatedOperation() {
-        mapIndexed { index, char ->
+        forEachIndexed { index, char ->
             if (index != 0) { // 1~마지막
                 validateDuplicate(char, index)
             }
@@ -31,25 +31,15 @@ object StringValidator {
     }
 
     private fun String.validateDuplicate(char: Char, index: Int) {
-        if (char.isFourArithmeticCalculation() && this[index - 1].isFourArithmeticCalculation()) {
-            error(DUPLICATED_OPERATION)
-        }
+        check((char.isFourArithmeticCalculation() && this[index - 1].isFourArithmeticCalculation()).not()) { DUPLICATED_OPERATION }
     }
 
     private fun Char.isMultiplyOrDivide() =
-        this.toString() == FourArithmeticOperation.getArithmeticOperation(FourArithmeticOperation.MULTIPLY) || this.toString() == FourArithmeticOperation.getArithmeticOperation(
-            FourArithmeticOperation.DIVIDE
-        )
+        this.toString() == FourArithmeticOperation.MULTIPLY.operation || this.toString() == FourArithmeticOperation.DIVIDE.operation
 
     private fun Char.isFourArithmeticCalculation(): Boolean {
-        return when (this@isFourArithmeticCalculation.toString()) {
-            FourArithmeticOperation.getArithmeticOperation(FourArithmeticOperation.PLUS),
-            FourArithmeticOperation.getArithmeticOperation(FourArithmeticOperation.MINUS),
-            FourArithmeticOperation.getArithmeticOperation(FourArithmeticOperation.MULTIPLY),
-            FourArithmeticOperation.getArithmeticOperation(FourArithmeticOperation.DIVIDE) -> true
-
-            else -> false
-        }
+        FourArithmeticOperation.getArithmeticOperationFromString(this)
+        return true
     }
 
     private const val START_STRING_CAN_NOT_BE_OPERATION = "문자열의 시작, 끝은 \"*, /\" 일 수 없어요"
