@@ -80,4 +80,12 @@ class StringCalculatorTest {
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("계산식이 올바르지 않습니다.")
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["1/0", "123/10/0", "1+2*200/0", "1+2*200/0+1"])
+    fun `0으로 나누는 경우 예외 발생`(input: String) {
+        assertThatThrownBy { StringCalculator.calculate(input) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("0으로 나눌 수 없습니다.")
+    }
 }

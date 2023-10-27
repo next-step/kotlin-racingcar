@@ -9,4 +9,4 @@
 - [x] 입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException throw 
 - [x] 사칙연산 기호가 아닌 경우 IllegalArgumentException throw
 - [x] 아래 구현 전에, 0으로 나눈 경우는 나누기 계산에 책임이 있으므로 계산별로 분리하는 리팩토링과 전체 코드 리팩토링
-- [ ] 0으로 나누기를 시도한 경우 IllegalArgumentException throw
+- [x] 0으로 나누기를 시도한 경우 IllegalArgumentException throw
