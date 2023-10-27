@@ -1,8 +1,6 @@
 package step2
 
-private const val INPUT_NULL_ERROR_MESSAGE = "입력 값은 null일 수 없습니다."
-
-private const val INPUT_BLANK_ERROR_MESSAGE = "입력 값은 공백일 수 없습니다."
+private const val INPUT_NULL_OR_BLANK_ERROR_MESSAGE = "입력 값은 null 이거나 공백일 수 없습니다."
 
 private const val DELIMITER = " "
 
@@ -20,12 +18,8 @@ class StringCalculator {
     }
 
     private fun parse(input: String?): List<String> {
-        if (input == null) {
-            throw IllegalArgumentException(INPUT_NULL_ERROR_MESSAGE)
-        }
-
-        if (input.isBlank()) {
-            throw IllegalArgumentException(INPUT_BLANK_ERROR_MESSAGE)
+        if (input.isNullOrBlank()) {
+            throw IllegalArgumentException(INPUT_NULL_OR_BLANK_ERROR_MESSAGE)
         }
 
         return input.split(DELIMITER)
