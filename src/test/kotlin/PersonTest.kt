@@ -19,6 +19,7 @@ internal class PersonTest : StringSpec({
         }
     }
 
+
     "널 타입 테스트" {
         val person = Person("박재성", null, null)
 
