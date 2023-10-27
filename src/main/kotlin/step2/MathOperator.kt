@@ -1,5 +1,7 @@
 package step2
 
+private const val OPERATOR_ERROR_MESSAGE = "올바른 사칙연산 기호를 입력해주세요."
+
 enum class MathOperator(val symbol: String, val operation: (Int, Int) -> Int) {
     PLUS(symbol = "+", operation = { x, y -> x + y }),
     MINUS(symbol = "-", operation = { x, y -> x - y }),
@@ -7,8 +9,8 @@ enum class MathOperator(val symbol: String, val operation: (Int, Int) -> Int) {
     DIVIDE(symbol = "/", operation = { x, y -> x / y });
 
     companion object {
-        fun from(operator: String): MathOperator? {
-            return values().find { it.symbol == operator }
+        fun from(operator: String): MathOperator {
+            return values().find { it.symbol == operator } ?: throw IllegalArgumentException(OPERATOR_ERROR_MESSAGE)
         }
     }
 
