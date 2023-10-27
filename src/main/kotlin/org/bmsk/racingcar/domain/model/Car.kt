@@ -8,7 +8,7 @@ data class Car(
     val name: String = "",
     val position: Position = Position(xPos = 0),
 ) {
-    fun getTheMovedCar(): Car = this.copy(
+    fun getMovedCar(): Car = this.copy(
         name = name,
         position = movementPolicy.move(position),
     )
