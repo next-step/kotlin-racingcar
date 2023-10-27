@@ -8,7 +8,7 @@ import io.kotest.matchers.shouldBe
 
 class StringCalculatorTest : StringSpec({
 
-    "문자열 계산기 테스트" {
+    "입력받은 값을 계산하여 결과값을 반환한다." {
         // given
         val stringCalculator = StringCalculator()
         val input = "2 + 3 * 4 / 2"
@@ -20,7 +20,7 @@ class StringCalculatorTest : StringSpec({
         actual shouldBe 10
     }
 
-    "문자열 계산기 테스트 - 잘못된 입력값을 넣으면 에러가 발생한다." {
+    "잘못된 입력값을 넣으면 에러가 발생한다." {
         // given
         val stringCalculator = StringCalculator()
 
