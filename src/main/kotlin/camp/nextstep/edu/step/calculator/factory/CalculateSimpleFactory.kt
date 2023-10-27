@@ -1,5 +1,6 @@
 package camp.nextstep.edu.step.calculator.factory
 
+import camp.nextstep.edu.step.calculator.Operator
 import camp.nextstep.edu.step.calculator.domain.MedianResult
 
 /**
@@ -22,6 +23,21 @@ object CalculateSimpleFactory {
                 "/" -> divide(midResult, rngNumber)
                 else -> throw IllegalArgumentException("지원하지 않는 연산자입니다.")
             }
+        }
+        return MedianResult.of(medianResult = midResult)
+    }
+
+    /**
+     * @description : Enum Class를 활용한 연산처리 방법
+     */
+    fun calculateStringExpressionNumbersByOperators(numbers: List<String>): MedianResult {
+        var midResult = toLong(numbers[0])
+
+        for (i in 1 until numbers.size step 2) {
+            val operationSymbols = Operator.of(numbers[i])
+            val rngNumber = toLong(numbers[i + 1])
+
+            midResult = operationSymbols.calculate(midResult, rngNumber)
         }
         return MedianResult.of(medianResult = midResult)
     }
