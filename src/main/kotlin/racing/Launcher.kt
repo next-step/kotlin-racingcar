@@ -5,8 +5,6 @@ import racing.model.Racing
 import racing.view.InputView
 import racing.view.OutputView
 
-class Launcher
-
 fun main() {
     val racing = Racing()
     val inputView = InputView()
