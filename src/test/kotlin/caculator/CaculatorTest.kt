@@ -28,7 +28,7 @@ class CaculatorTest {
         ],
         delimiter = '='
     )
-    fun test(input: String, result: Double) {
+    fun calculate(input: String, result: Double) {
         assertThat(Caculator.calculate(input)).isEqualTo(result)
     }
 }
