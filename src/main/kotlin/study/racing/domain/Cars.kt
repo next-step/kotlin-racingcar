@@ -4,11 +4,15 @@ import study.racing.strategy.MoveStrategy
 import study.racing.strategy.RandomMoveStrategy
 
 class Cars private constructor(
-    private var cars: List<Car>,
-    private val strategy: MoveStrategy
+    private var cars: List<Car> = listOf(),
+    private val strategy: MoveStrategy = RandomMoveStrategy()
 ) {
 
-    constructor(cars: List<Car>) : this(cars, RandomMoveStrategy())
+    init {
+        require(cars.isNotEmpty()) {
+            "차량은 최소 1대 이상 요청해 주세요."
+        }
+    }
 
     fun moveTheCars() {
         cars.forEach { car ->
@@ -24,9 +28,6 @@ class Cars private constructor(
         fun from(
             carCount: Int
         ): Cars {
-
-            validationCarCount(carCount)
-
             return Cars(
                 createCountOfCars(carCount)
             )
@@ -36,27 +37,18 @@ class Cars private constructor(
             carCount: Int,
             strategy: MoveStrategy
         ): Cars {
-
-            validationCarCount(carCount)
-
             return Cars(
                 createCountOfCars(carCount),
                 strategy
             )
         }
 
-        private fun createCountOfCars(carCount: Int): MutableList<Car> {
+        private fun createCountOfCars(carCount: Int): List<Car> {
             val cars = mutableListOf<Car>()
             repeat(carCount) {
                 cars.add(Car())
             }
             return cars
-        }
-
-        private fun validationCarCount(carCount: Int) {
-            require(carCount > 0) {
-                "차량은 최소 1대 이상 요청해 주세요."
-            }
         }
     }
 }
