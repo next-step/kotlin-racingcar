@@ -21,7 +21,9 @@ class StringCalculatorTest : FunSpec({
                 row("1 2 - 2"),
             ) {
                 shouldThrow<IllegalArgumentException> {
-                    StringCalculator.calculate(it)
+                    val expression = StringExpression(it)
+
+                    StringCalculator.calculate(expression)
                 }
             }
         }
@@ -29,25 +31,33 @@ class StringCalculatorTest : FunSpec({
 
     context("test calculation") {
         test("add ") {
-            val result = StringCalculator.calculate("2 + 3")
+            val expression = StringExpression("2 + 3")
+
+            val result = StringCalculator.calculate(expression)
 
             result shouldBe 5
         }
 
         test("minus") {
-            val result = StringCalculator.calculate("3 - 2")
+            val expression = StringExpression("3 - 2")
+
+            val result = StringCalculator.calculate(expression)
 
             result shouldBe 1
         }
 
         test("multiply") {
-            val result = StringCalculator.calculate("2 * 3")
+            val expression = StringExpression("2 * 3")
+
+            val result = StringCalculator.calculate(expression)
 
             result shouldBe 6
         }
 
         test("divide") {
-            val result = StringCalculator.calculate("6 / 3")
+            val expression = StringExpression("6 / 3")
+
+            val result = StringCalculator.calculate(expression)
 
             result shouldBe 2
         }
@@ -57,7 +67,9 @@ class StringCalculatorTest : FunSpec({
                 row("2 + 3 * 4 / 2 - 5", 5),
                 row("2 + 2 * 2 / 2 - 2", 2),
                 row("2 + 10 * 3 / 3 - 2", 10),
-            ) { expression, result ->
+            ) { input, result ->
+                val expression = StringExpression(input)
+
                 StringCalculator.calculate(expression) shouldBe result
             }
         }

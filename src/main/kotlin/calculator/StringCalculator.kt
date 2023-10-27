@@ -2,16 +2,13 @@ package calculator
 
 class StringCalculator {
     companion object {
-        private const val DELIMITER = " "
         private const val PLUS = "+"
         private const val MINUS = "-"
         private const val MULTIPLY = "*"
         private const val DIVIDE = "/"
 
-        fun calculate(expression: String?): Int {
-            val tokens = StringExpression
-                .validate(expression)
-                .split(DELIMITER)
+        fun calculate(expression: StringExpression): Int {
+            val tokens = expression.tokenize()
 
             val firstNumber = tokens
                 .first()
