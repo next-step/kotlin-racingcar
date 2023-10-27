@@ -1,10 +1,10 @@
 package calculator
 
 class BasicOperationsCalculator {
-    fun add(a: Double, b: Double): Double = a + b
-    fun subtract(a: Double, b: Double): Double = a - b
-    fun multiply(a: Double, b: Double): Double = a * b
-    fun divide(a: Double, b: Double): Double = a / b
+    private fun add(a: Double, b: Double): Double = a + b
+    private fun subtract(a: Double, b: Double): Double = a - b
+    private fun multiply(a: Double, b: Double): Double = a * b
+    private fun divide(a: Double, b: Double): Double = a / b
 
     fun operation(a: Double, b: Double, symbol: String): Double {
         if (symbol == "+") {
