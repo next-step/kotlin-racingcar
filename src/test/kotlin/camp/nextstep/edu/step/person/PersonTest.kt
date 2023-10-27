@@ -1,4 +1,4 @@
-package camp.nextstep.edu.step
+package camp.nextstep.edu.step.person
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
