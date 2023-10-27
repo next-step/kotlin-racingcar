@@ -4,12 +4,14 @@ private const val INPUT_NULL_OR_BLANK_ERROR_MESSAGE = "입력 값은 null 이거
 
 private const val DELIMITER = " "
 
+private const val TWO = 2
+
 class StringCalculator {
 
     fun calculate(input: String?): Int {
         val elements = parse(input)
         var result = elements[0].toInt()
-        for (i in 1 until elements.size step (2)) {
+        for (i in 1 until elements.size step TWO) {
             val num = elements[i + 1].toInt()
             val operator = MathOperator.from(elements[i])
             result = operator.calculate(result, num)
