@@ -13,13 +13,13 @@ class StringCalculatorCounter(private val formula: List<String>) {
         }
 
     }
-    fun validateNumber(index : Int, element : String){
+    private fun validateNumber(index : Int, element : String){
         if (index % 2 == 0 && !element.matches(Regex("^\\d+$"))){
             throw IllegalArgumentException("Please Check the Input")
         }
     }
 
-    fun validateSymbol(index : Int, element: String){
+    private fun validateSymbol(index : Int, element: String){
         if (index % 2 == 1 && !element.matches(Regex("^[+/\\-*]+$"))){
             throw IllegalArgumentException("Please Check the Input")
         }
