@@ -1,12 +1,12 @@
 class StringCalculator constructor(private val calculatorString: String?) {
 
     private val numberArgs by lazy {
-        require(!calculatorString.isNullOrEmpty()) { throw IllegalArgumentException()}
-        calculatorString.split("").filter { it.isNotBlank() }.filter { it.toIntOrNull() != null }.map { it.toInt() }
+        require(!calculatorString.isNullOrBlank()) { throw IllegalArgumentException()}
+        calculatorString.split(" ").filter { it.isNotBlank() }.filter { it.toIntOrNull() != null }.map { it.toInt() }
     }
     private val operatorArgs by lazy {
-        require(!calculatorString.isNullOrEmpty()) { throw IllegalArgumentException()}
-        calculatorString.split("").filter { it.isNotBlank() }.filter { it.toIntOrNull() == null }.toMutableList()
+        require(!calculatorString.isNullOrBlank()) { throw IllegalArgumentException()}
+        calculatorString.split(" ").filter { it.isNotBlank() }.filter { it.toIntOrNull() == null }.toMutableList()
     }
 
     @Throws(IllegalArgumentException::class)
