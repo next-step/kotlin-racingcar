@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource
 class InputValidateParserTest {
     @ParameterizedTest
     @NullAndEmptySource
-    fun `validate - 입력값이 빈 공백 문자이거나 Null일 경우 IllegalArgumentException 발생`(input: String?) {
+    fun `입력값이 빈 공백 문자이거나 Null일 경우 IllegalArgumentException 발생`(input: String?) {
         assertThrows<IllegalArgumentException> {
             InputValidateParser.validate(input)
         }.also {
@@ -25,7 +25,7 @@ class InputValidateParserTest {
             "1 ㅍ 1 + 2",
         ]
     )
-    fun `validate - 입력값이 모두 숫자 혹은 사칙 연산 부호로 구성되지 않는 경우 IllegalArgumentException 발생`(input: String) {
+    fun `입력값이 모두 숫자 혹은 사칙 연산 부호로 구성되지 않는 경우 IllegalArgumentException 발생`(input: String) {
         assertThrows<IllegalArgumentException> {
             InputValidateParser.validate(input)
         }.also {
@@ -34,7 +34,7 @@ class InputValidateParserTest {
     }
 
     @Test
-    fun `parse - 입력값을 피연산자와 연산자로 구분하여 List로 반환`() {
+    fun `입력값을 피연산자와 연산자로 구분하여 List로 반환`() {
         // given
         val input = " 1 + 2 - 3 * 4 / 5   "
         val expected = listOf("1", "+", "2", "-", "3", "*", "4", "/", "5")

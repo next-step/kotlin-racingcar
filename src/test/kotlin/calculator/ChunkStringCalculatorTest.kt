@@ -15,7 +15,7 @@ class ChunkStringCalculatorTest {
         "1 * 2, 2",
         "1 / 2, 0"
     )
-    fun `calculate - 피연산자와 연산자 순서가 맞았을 경우`(input: String, expected: String) {
+    fun `피연산자와 연산자 순서가 맞았을 경우`(input: String, expected: String) {
         // given
         val wholeElements = InputValidateParser.parse(input)
         val chunkStringCalculator = ChunkStringCalculator(wholeElements)
@@ -36,7 +36,7 @@ class ChunkStringCalculatorTest {
             "+ 1 + "
         ]
     )
-    fun `calculate - 피연산자가 Int형이 아닌 경우 NumberFormatException 발생`(input: String) {
+    fun `피연산자가 Int형이 아닌 경우 NumberFormatException 발생`(input: String) {
         // given
         val wholeElements = InputValidateParser.parse(input)
         val chunkStringCalculator = ChunkStringCalculator(wholeElements)
@@ -57,7 +57,7 @@ class ChunkStringCalculatorTest {
             "1 -- 1"
         ]
     )
-    fun `calculate - 지원하는 연산자가 아닌 경우 IllegalArgumentException 발생`(input: String) {
+    fun `지원하는 연산자가 아닌 경우 IllegalArgumentException 발생`(input: String) {
         // given
         val wholeElements = InputValidateParser.parse(input)
         val chunkStringCalculator = ChunkStringCalculator(wholeElements)
