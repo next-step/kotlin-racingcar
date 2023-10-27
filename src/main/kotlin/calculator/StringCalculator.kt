@@ -29,7 +29,7 @@ class StringCalculator private constructor(
                 it
             }
             val numbers = splits.filter { it.matches(Regex(NUMBER_REGEX)) }.mapTo(mutableListOf()) { it.toInt() }
-            val operators = splits.filter { it.matches(Regex(OPERATOR_REGEX)) }.mapNotNull { Operator.from(it) }
+            val operators = splits.filter { it.matches(Regex(OPERATOR_REGEX)) }.map { Operator.from(it) }
             require(numbers.size == operators.size + 1) { "올바른 계산식이 아닙니다." }
             return numbers to operators
         }
