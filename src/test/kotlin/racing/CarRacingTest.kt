@@ -12,7 +12,7 @@ class CarRacingTest : BehaviorSpec({
                 row(3, 5),
                 row(5, 5)
             ) { carCount, tryCount ->
-                InputView.create(tryCount, carCount) shouldBe List(tryCount) { List(carCount) { Car() } }
+                CarRacing.create(tryCount to carCount) shouldBe List(tryCount) { List(carCount) { Car() } }
             }
         }
     }

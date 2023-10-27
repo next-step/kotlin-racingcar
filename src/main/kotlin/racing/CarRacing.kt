@@ -3,19 +3,19 @@ package racing
 import org.assertj.core.util.VisibleForTesting
 import kotlin.random.Random
 
-fun main() {
-    val input = InputView.inputForRacing()
-    val result = CarRacing.race(input)
-    ResultView.printRacingResult(result)
-}
-
 object CarRacing {
-    fun race(input: List<List<Car>>): List<List<String>> {
-        return input.mapIndexed { tryIndex, cars ->
+    @VisibleForTesting
+    fun create(input: Pair<Int, Int>): List<List<Car>> {
+        return List(input.first) { List(input.second) { Car() } }
+    }
+
+    fun race(input: Pair<Int, Int>): List<List<String>> {
+        val list = create(input)
+        return list.mapIndexed { tryIndex, cars ->
             cars.forEachIndexed { carIndex, _ ->
                 val isMove = isMove { random(0..9) }
                 if (isMove) {
-                    move(input, tryIndex, carIndex)
+                    move(list, tryIndex, carIndex)
                 }
             }
             cars.map { it.getResult() }
