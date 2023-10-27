@@ -64,4 +64,20 @@ class CalculatorTest {
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("입력값이 비어있습니다.")
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["1#10", "123%23", "444+12^4", "1*(1", "1@+1"])
+    fun `사칙연산 기호가 아닌 경우 예외 발생`(input: String) {
+        assertThatThrownBy { Calculator.calculate(input) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("계산식이 올바르지 않습니다.")
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["1+", "/1", "1+2+3+", "1+2+3+4+", "1 1", "1 1 1", "1 1 1 1", "123#", "123/+"])
+    fun `사칙연산 기호가 없거나 식이 성립될 수 없는 경우 예외 발생`(input: String) {
+        assertThatThrownBy { Calculator.calculate(input) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("계산식이 올바르지 않습니다.")
+    }
 }
