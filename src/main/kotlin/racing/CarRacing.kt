@@ -1,42 +1,36 @@
 package racing
 
+import org.assertj.core.util.VisibleForTesting
 import kotlin.random.Random
 
 fun main() {
-    val input = inputView()
-    move(input)
-    resultView(input)
+    val input = InputView.inputForRacing()
+    val result = CarRacing.race(input)
+    ResultView.printRacingResult(result)
 }
 
-private fun inputView(): List<MutableList<Int>> {
-    println("자동차 대수는 몇 대인가요?")
-    val carSize = readln().toInt()
-    println("시도할 횟수는 몇 회인가요?")
-    val tryCount = readln().toInt()
-    return List(tryCount) { MutableList(carSize) { 1 } }
-}
-
-private fun move(input: List<MutableList<Int>>) {
-    input.forEachIndexed { i, cars ->
-        cars.forEachIndexed { i1, _ ->
-            Random.nextInt(10).takeIf { it >= 4 }?.let {
-                for (i2 in i until input.size) {
-                    input[i2][i1] += 1
+object CarRacing {
+    fun race(input: List<List<Car>>): List<List<String>> {
+        return input.mapIndexed { tryIndex, cars ->
+            cars.forEachIndexed { carIndex, _ ->
+                val isMove = isMove { random(0..9) }
+                if (isMove) {
+                    move(input, tryIndex, carIndex)
                 }
             }
+            cars.map { it.getResult() }
         }
     }
-}
 
-private fun resultView(input: List<List<Int>>) {
-    println("실행 결과")
-    input.forEach { cars ->
-        cars.forEach { location ->
-            for (i in 0 until location) {
-                print("-")
-            }
-            println()
+    @VisibleForTesting
+    fun random(range: IntRange) = Random.nextInt(range.first, range.last)
+
+    @VisibleForTesting
+    fun isMove(intSupplier: () -> Int) = intSupplier() >= 4
+
+    private fun move(input: List<List<Car>>, tryIndex: Int, carIndex: Int) {
+        for (i in tryIndex until input.size) {
+            input[i][carIndex].move()
         }
-        println()
     }
 }
