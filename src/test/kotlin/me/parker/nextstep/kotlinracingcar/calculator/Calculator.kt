@@ -5,6 +5,9 @@ import org.assertj.core.util.Strings
 class Calculator {
     companion object {
         fun calculate(input: String): Int {
+            if (Strings.isNullOrEmpty(input))
+                throw IllegalArgumentException("입력값이 비어있습니다.")
+
             val tokens: List<String> = separateNumAndOperator(input)
 
             var result = tokens[0].toInt()

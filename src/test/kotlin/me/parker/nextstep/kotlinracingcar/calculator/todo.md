@@ -5,7 +5,7 @@
 - [x] 곱셈 계산 테스트
 - [x] 나눗셈 계산 테스트
 - [x] 숫자가 2자리 이상인 경우 처리
-- [ ] ParameterizedTest로 여러 입력값에 대한 테스트 추가하기 (+ 3개 이상 인자 계산)
+- [x] ParameterizedTest로 여러 입력값에 대한 테스트 추가하기 (+ 3개 이상 인자 계산)
 - [ ] 입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException throw 
 - [ ] 사칙연산 기호가 아닌 경우 IllegalArgumentException throw
 - [ ] 0으로 나누기를 시도한 경우 IllegalArgumentException throw
