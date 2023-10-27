@@ -2,6 +2,8 @@ package step2
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.data.forAll
+import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 
 class StringCalculatorTest : StringSpec({
@@ -18,36 +20,19 @@ class StringCalculatorTest : StringSpec({
         actual shouldBe 10
     }
 
-    "문자열 계산기 테스트 - 입력값이 null이면 에러가 발생한다." {
+    "문자열 계산기 테스트 - 잘못된 입력값을 넣으면 에러가 발생한다." {
         // given
         val stringCalculator = StringCalculator()
-        val input = null
 
         // when & then
-        shouldThrow<IllegalArgumentException> {
-            stringCalculator.calculate(input)
-        }
-    }
-
-    "문자열 계산기 테스트 - 입력값이 공백이면 에러가 발생한다." {
-        // given
-        val stringCalculator = StringCalculator()
-        val input = " "
-
-        // when & then
-        shouldThrow<IllegalArgumentException> {
-            stringCalculator.calculate(input)
-        }
-    }
-
-    "문자열 계산기 테스트 - 올바른 사칙연산을 입력하지 않으면 에러가 발생한다." {
-        // given
-        val stringCalculator = StringCalculator()
-        val input = "2 ? 3"
-
-        // when & then
-        shouldThrow<IllegalArgumentException> {
-            stringCalculator.calculate(input)
+        forAll(
+            row(null),
+            row(" "),
+            row("2 ? 3")
+        ) { wrongInput ->
+            shouldThrow<IllegalArgumentException> {
+                stringCalculator.calculate(wrongInput)
+            }
         }
     }
 })

@@ -1,51 +1,26 @@
 package step2
 
-import io.kotest.core.spec.style.StringSpec
+import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.data.forAll
+import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 
-class MathOperatorTest : StringSpec({
+class MathOperatorTest : BehaviorSpec({
 
-    "덧셈 테스트" {
-        // given
-        val operator = MathOperator.from("+")
-
-        // when
-        val actual = operator?.calculate(2, 3)
-
-        // then
-        actual shouldBe 5
-    }
-
-    "뺄셈 테스트" {
-        // given
-        val operator = MathOperator.from("-")
-
-        // when
-        val actual = operator?.calculate(2, 3)
-
-        // then
-        actual shouldBe -1
-    }
-
-    "곱셈 테스트" {
-        // given
-        val operator = MathOperator.from("*")
-
-        // when
-        val actual = operator?.calculate(2, 3)
-
-        // then
-        actual shouldBe 6
-    }
-
-    "나눗셈 테스트" {
-        // given
-        val operator = MathOperator.from("/")
-
-        // when
-        val actual = operator?.calculate(6, 2)
-
-        // then
-        actual shouldBe 3
+    Given("2개의 수가 주어졌을 때") {
+        val x = 6
+        val y = 2
+        When("각 symbol에 맞는 연산을 수행하면") {
+            Then("결과값이 반환된다.") {
+                forAll(
+                    row("+", 8),
+                    row("-", 4),
+                    row("*", 12),
+                    row("/", 3)
+                ) { symbol, expected ->
+                    MathOperator.from(symbol)?.calculate(x, y) shouldBe expected
+                }
+            }
+        }
     }
 })
