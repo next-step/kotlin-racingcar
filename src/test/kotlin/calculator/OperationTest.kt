@@ -26,4 +26,14 @@ class OperationTest {
             .isInstanceOf(IllegalArgumentException::class.java)
             .message().isEqualTo(ErrorMessage.UNSUPPORTED_OPERATOR_MSG.message)
     }
+
+    @ParameterizedTest
+    @CsvSource(value = ["2:3:PLUS:5", "3:5:MINUS:-2", "1:3:MULTIPLY:3", "3:5:DIVIDE:0"], delimiter = ':')
+    fun `덧셈, 뺄셈, 곱셈, 나눗셈`(currentResult: Int, nextValue: Int, operator: Operation, expect: Int) {
+        // when
+        val actual = operator.calculate(currentResult, nextValue)
+
+        // then
+        assertThat(actual).isEqualTo(expect)
+    }
 }
