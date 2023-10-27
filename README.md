@@ -43,7 +43,7 @@ pobi, honux가 최종 우승했습니다.
 ## 사전 구현 계획
 
 - 위치 클래스 `Position`
-    - 프로퍼티: `xPos`, `yPos`,
+    - 프로퍼티: `xPos`,
 
 - 자동차 클래스 `Car`
     - 프로퍼티: `Name`, `Position`,
