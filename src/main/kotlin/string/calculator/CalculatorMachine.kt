@@ -5,7 +5,12 @@ import string.calculator.part.Splitter
 import string.calculator.part.UserInterface
 import string.calculator.part.Validator
 
-class CalculatorMachine(private val calculator: Calculator, private val validator: Validator, private val splitter: Splitter, private val userInterface: UserInterface) {
+class CalculatorMachine(
+    private val calculator: Calculator,
+    private val validator: Validator,
+    private val splitter: Splitter,
+    private val userInterface: UserInterface
+) {
     fun start() {
         try {
             run()
