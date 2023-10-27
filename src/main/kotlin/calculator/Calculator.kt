@@ -11,9 +11,9 @@ class Calculator(private val formulas: List<String>) {
             throw IllegalArgumentException("수식의 마지막은 숫자여야 합니다.")
         }
 
-        for (index in formulas.indices) {
-            validateIsNumber(index, formulas[index])
-            validateIsArithmetic(index, formulas[index])
+        formulas.forEachIndexed { index, formula ->
+            validateIsNumber(index, formula)
+            validateIsArithmetic(index, formula)
         }
     }
 
