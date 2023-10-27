@@ -6,55 +6,61 @@ import java.util.Stack
 import kotlin.IllegalArgumentException
 
 class Calculator {
-    fun calculate(expression: String): Int {
-        val expressionParser = ExpressionParser()
+    fun calculate(expression: String?): Int {
+        val expressions = ExpressionParser().parse(expression)
 
-        val expressions = expressionParser.parse(expression)
-
-        val queue: Queue<ExpressionType> = LinkedList(expressions)
-
-        val firstItem = queue.poll()
-
-        val stack = Stack<ExpressionType>()
-
-        if (firstItem !is ExpressionType.Term) {
-            throw IllegalArgumentException("First type must be number")
-        }
-
-        stack.push(firstItem)
-
-        while (queue.isNotEmpty()) {
-            val item = queue.poll()
-
-            if (item.isSameType(stack.peek())) {
-                throw IllegalArgumentException("Same type cannot appear twice")
-            }
-
-            if (stack.peek() is ExpressionType.Operator) {
-                val operator = stack.pop() as ExpressionType.Operator
-                val firstTerm = stack.pop() as ExpressionType.Term
-                val secondTerm = item as ExpressionType.Term
-
-                val result = operate(operator, firstTerm, secondTerm)
-
-                stack.push(result)
-                continue
-            }
-
-            stack.push(item)
-        }
-
-        return when (val result = stack.pop()) {
+        return when (val result = performCalculation(expressions)) {
             is ExpressionType.Term -> result.value
             is ExpressionType.Operator -> throw IllegalArgumentException("Last type must be number")
         }
     }
 
+    private fun performCalculation(expressions: List<ExpressionType>): ExpressionType {
+        val expressionQueue: Queue<ExpressionType> = LinkedList(expressions)
+
+        val firstItem = expressionQueue.poll()
+        if (firstItem !is ExpressionType.Term) {
+            throw IllegalArgumentException("First type must be number")
+        }
+
+        val expressionStack = Stack<ExpressionType>()
+
+        expressionStack.push(firstItem)
+
+        while (expressionQueue.isNotEmpty()) {
+            throwIfSameType(
+                expressionQueue.peek(),
+                expressionStack.peek(),
+            )
+
+            val result = operate(expressionStack, expressionQueue.poll())
+
+            expressionStack.push(result)
+        }
+
+        return expressionStack.pop()
+    }
+
+    private fun throwIfSameType(o1: ExpressionType, o2: ExpressionType) {
+        if (o1.isSameType(o2)) {
+            throw IllegalArgumentException("Not allow same type continuous")
+        }
+    }
+
     private fun operate(
-        operator: ExpressionType.Operator,
-        firstTerm: ExpressionType.Term,
-        secondTerm: ExpressionType.Term,
-    ): ExpressionType.Term {
+        expressionStack: Stack<ExpressionType>,
+        currentItem: ExpressionType,
+    ): ExpressionType {
+        val peek = expressionStack.peek()
+
+        if (peek is ExpressionType.Term) {
+            return currentItem
+        }
+
+        val operator = expressionStack.pop() as ExpressionType.Operator
+        val firstTerm = expressionStack.pop() as ExpressionType.Term
+        val secondTerm = currentItem as ExpressionType.Term
+
         return when (operator) {
             ExpressionType.Operator.Add -> add(firstTerm, secondTerm)
             ExpressionType.Operator.Sub -> sub(firstTerm, secondTerm)
