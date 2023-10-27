@@ -2,6 +2,8 @@ package string.calculator.part
 
 import string.calculator.dto.SplitInput
 import string.calculator.enum.Operator
+import string.calculator.util.isEven
+import string.calculator.util.isOdd
 
 class Splitter {
     fun split(input: String): SplitInput {
@@ -10,9 +12,10 @@ class Splitter {
         val splitInput = input.split(DELIMITER)
 
         for (i in splitInput.indices) {
-            if (i % 2 == 0) {
+            if (i.isEven()) {
                 numbers.add(splitInput[i].toLong())
-            } else {
+            }
+            if (i.isOdd()) {
                 operators.add(Operator.of(splitInput[i]))
             }
         }

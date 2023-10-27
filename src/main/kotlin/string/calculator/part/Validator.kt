@@ -11,7 +11,7 @@ class Validator {
     }
 
     fun validateContinue(input: String) {
-        require(!(input != "Y" && input != "N")) { throw IllegalArgumentException(CONTINUE_IS_NOT_VALID) }
+        require(input == "Y" || input == "N") { throw IllegalArgumentException(CONTINUE_IS_NOT_VALID) }
     }
 
     companion object {
