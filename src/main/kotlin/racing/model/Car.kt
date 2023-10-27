@@ -2,7 +2,7 @@ package racing.model
 
 import racing.model.move.MoveStrategy
 
-class Car(
+data class Car(
     val id: Int,
     val position: Int,
 ) {
