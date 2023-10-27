@@ -23,10 +23,8 @@ enum class Operator(
         }
 
         private fun toOperator(string: String): Operator {
-            return requireNotNull(
-                Operator.values()
-                    .first { it.value.equals(string) }
-            )
+            require(values().any { it.value == string })
+            return Operator.valueOf(string)
         }
     }
 }
