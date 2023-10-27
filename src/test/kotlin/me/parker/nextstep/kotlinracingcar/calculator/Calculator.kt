@@ -5,8 +5,7 @@ import org.assertj.core.util.Strings
 class Calculator {
     companion object {
         fun calculate(input: String): Int {
-            val tokens = input.split("")
-                .filter { !Strings.isNullOrEmpty(it) && it != " " }
+            val tokens: List<String> = separateNumAndOperator(input)
 
             var result = tokens[0].toInt()
             var operator = ""
@@ -21,6 +20,28 @@ class Calculator {
             }
 
             return result
+        }
+
+        private fun separateNumAndOperator(input: String): List<String> {
+            val tokens = input.split("")
+                .filter { !Strings.isNullOrEmpty(it) && it != " " }
+
+            var results = mutableListOf<String>()
+
+            var number = ""
+            for (token in tokens) {
+                if (isNumber(token)) {
+                    number += token
+                } else {
+                    results.add(number)
+                    number = ""
+
+                    results.add(token)
+                }
+            }
+            results.add(number)
+
+            return results
         }
 
         private fun isNumber(str: String): Boolean {
