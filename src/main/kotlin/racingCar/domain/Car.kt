@@ -1,7 +1,9 @@
 package racingCar.domain
 
 class Car {
-    fun moveCar() {
-        TODO("Not yet implemented")
-    }
+
+    var moveCount: Int = 0
+
+    fun move(): Int = moveCount++
 }
+

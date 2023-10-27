@@ -10,11 +10,9 @@ import racingCar.error.ErrorMessage
 class InputViewTest {
     @Test
     fun inputStringTest() {
-        val inputView = InputView()
-
         val assertThrows = assertThrows<IllegalArgumentException> {
             System.setIn("no_number".byteInputStream())
-            inputView.inputNumber()
+            InputView.inputNumber()
         }
         assertEquals(assertThrows.message, ErrorMessage.INPUT_NUMBER_MESSAGE.message)
     }
@@ -22,11 +20,9 @@ class InputViewTest {
     @ParameterizedTest
     @NullSource
     fun inputNullTest(setInput: String?) {
-        val inputView = InputView()
-
         val assertThrows = assertThrows<IllegalArgumentException> {
             System.setIn(setInput?.byteInputStream())
-            inputView.inputNumber()
+            InputView.inputNumber()
         }
         assertEquals(assertThrows.message, ErrorMessage.NULL_MESSAGE.message)
     }

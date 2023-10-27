@@ -1,10 +1,10 @@
 package racingCar.controller
 
+import racingCar.domain.Cars
 import racingCar.domain.Car
-import racingCar.domain.service.MoveStrategy
-import racingCar.domain.serviceImpl.RandomStrategy
 import racingCar.view.InputView
 import racingCar.view.OutputView
+import java.util.Arrays
 
 fun main() {
     OutputView.printCarCount()
@@ -13,14 +13,16 @@ fun main() {
     val tryCount = InputView.inputNumber()
     OutputView.printExecuteResult()
 
-    var cars: List<String> = ArrayList()
-
-    val moveStrategy: MoveStrategy = RandomStrategy()
-
+    // carList 초기화
+    val carList: MutableList<Car> = ArrayList()
     for (i in 0 until carCount) {
-        if (moveStrategy.isMove()) {
-            val car = Car()
-            car.moveCar()
-        }
+        val car = Car()
+        carList.add(car)
+    }
+
+    val cars = Cars()
+    for (i in 0 until tryCount) {
+        cars.moveCar(carList)
+        OutputView.printCar(carList)
     }
 }

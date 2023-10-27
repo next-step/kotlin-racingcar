@@ -1,6 +1,6 @@
-package racingCar.domain.serviceImpl
+package racingCar.domain.strategyImpl
 
-import racingCar.domain.service.MoveStrategy
+import racingCar.domain.strategy.MoveStrategy
 import kotlin.random.Random
 
 class RandomStrategy: MoveStrategy {
