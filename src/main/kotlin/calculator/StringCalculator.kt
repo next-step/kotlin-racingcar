@@ -9,7 +9,7 @@ object StringCalculator {
 
     @Throws(IllegalArgumentException::class)
     fun calc(input: String) : Any {
-        if (isAvailableInput(input)) throw IllegalArgumentException("유효하지 않은 입력입니다.")
+        if (isNotAvailableInput(input)) throw IllegalArgumentException("유효하지 않은 입력입니다.")
 
         val split = input.split(" ")
         var acc: Int = -1
@@ -23,6 +23,6 @@ object StringCalculator {
         }
         return acc
     }
-    private fun isAvailableInput(input: String): Boolean = !input.matches(EXPRESSION)
+    private fun isNotAvailableInput(input: String): Boolean = !input.matches(EXPRESSION)
     private fun parse(input: String) = input.toIntOrNull() ?: Operator.of(input)
 }
