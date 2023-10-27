@@ -23,9 +23,9 @@ class Calculator {
             throw IllegalArgumentException("First type must be number")
         }
 
-        val expressionStack = Stack<ExpressionElement>()
-
-        expressionStack.push(firstItem)
+        val expressionStack = Stack<ExpressionElement>().apply {
+            push(firstItem)
+        }
 
         while (expressionQueue.isNotEmpty()) {
             throwIfSameType(
