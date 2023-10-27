@@ -1,11 +1,11 @@
 package calculator
 
-import calculator.view.InputViewImpl
+import calculator.view.InputView
 
 fun main() {
-    val calculator = Calculator(InputViewImpl(readlnOrNull = { readlnOrNull() }))
+    val formula = Formula(InputView.input { readln() })
 
-    val result = calculator.calculate()
+    val result = formula.calculateFormula()
 
     println("result = $result")
 }

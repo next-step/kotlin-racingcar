@@ -12,12 +12,9 @@ enum class Operator(private val operator: String, private val operation: (Int, I
 
     companion object {
         fun from(operator: String): Operator {
-            values().forEach {
-                if (it.operator == operator) {
-                    return it
-                }
-            }
-            throw IllegalArgumentException("알 수 없는 Operator 발생 : $operator")
+            return values().find {
+                it.operator == operator
+            } ?: throw IllegalArgumentException("알 수 없는 Operator 발생 : $operator")
         }
     }
 }

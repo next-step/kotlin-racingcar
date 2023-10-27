@@ -1,10 +1,8 @@
 package calculator
 
-import calculator.view.InputView
-
-class Calculator (private val inputView: InputView){
-    fun calculate(): Int {
-        val elements = inputView.inputFormula()
+object Calculator {
+    fun calculate(formula: Formula): Int {
+        val elements = formula.elements
         var result = elements[0].toInt()
 
         for (i in 1 until elements.size step 2) {

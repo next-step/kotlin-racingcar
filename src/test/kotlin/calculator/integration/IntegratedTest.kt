@@ -1,15 +1,15 @@
 package calculator.integration
 
-import calculator.Calculator
-import calculator.view.InputViewImpl
+import calculator.Formula
+import calculator.view.InputView
 import org.junit.jupiter.api.Test
 
 class IntegratedTest {
     @Test
     fun `통합 테스트`() {
-        val calculator = Calculator(InputViewImpl(readlnOrNull = { readlnOrNull() }))
+        val formula = Formula(InputView.input { readln() })
 
-        val result = calculator.calculate()
+        val result = formula.calculateFormula()
 
         println("result = $result")
     }
