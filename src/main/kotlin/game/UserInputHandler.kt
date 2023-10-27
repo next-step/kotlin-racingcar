@@ -7,12 +7,12 @@ object UserInputHandler {
 
     fun askForCarCount(): Int {
         println(CAR_COUNT_QUESTION)
-        return readInput().toIntOrNull() ?: throw IllegalArgumentException(ErrorMessage.INVALID_INPUT_ERROR_MSG.message)
+        return readInput().let { InputValidator.validateInput(it); it.toInt() }
     }
 
     fun askForRetryCount(): Int {
         println(RETRY_COUNT_QUESTION)
-        return readInput().toIntOrNull() ?: throw IllegalArgumentException(ErrorMessage.INVALID_INPUT_ERROR_MSG.message)
+        return readInput().let { InputValidator.validateInput(it); it.toInt() }
     }
 
     private fun readInput(): String {

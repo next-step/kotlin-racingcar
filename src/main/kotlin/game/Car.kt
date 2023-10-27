@@ -2,8 +2,6 @@ package game
 
 class Car(var position: Int = 0) {
 
-    private val positionMarker = "-"
-
     fun move(moveCondition: Int) {
         when {
             canMove(moveCondition) -> advance()
@@ -15,8 +13,4 @@ class Car(var position: Int = 0) {
     }
 
     private fun canMove(moveCondition: Int) = moveCondition in 4..9
-
-    fun drawPosition(): String {
-        return positionMarker.repeat(position)
-    }
 }
