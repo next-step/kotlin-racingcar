@@ -1,8 +1,8 @@
 package calculator.model
 
 class Arithmetic(
-    val operators: List<Operator>,
-    val operands: List<Operand>,
+    private val operators: List<Operator>,
+    private val operands: List<Operand>,
 ) {
     fun act(): Int {
         assertFormula(operators.size, operands.size)
