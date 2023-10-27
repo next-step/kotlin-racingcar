@@ -1,23 +1,42 @@
 package calculator
 
+import java.util.*
+
 class ChunkStringCalculator(wholeElements: List<String>) {
-    val calculationDeque = ArrayDeque<String>()
+    private val calculationDeque = LinkedList<String>()
 
     init {
-        wholeElements.forEach {
-            calculationDeque.addFirst(it)
+        calculationDeque.addAll(wholeElements)
+    }
+
+    fun calculate(): String {
+        val operand1: String = calculationDeque.pollFirst()
+        val operator: String = calculationDeque.pollFirst()
+        val operand2: String = calculationDeque.pollFirst()
+
+        try {
+            operand1.toInt()
+            operand2.toInt()
+        } catch (e: NumberFormatException) {
+            throw NumberFormatException("숫자형이 아닌 피연산자가 들어왔다.")
         }
+
+        val chunkResult = when (Operator.fromSymbol(operator)) {
+            Operator.PLUS -> Operator.PLUS.calcFunc(operand1.toInt(), operand2.toInt())
+            Operator.MINUS -> Operator.MINUS.calcFunc(operand1.toInt(), operand2.toInt())
+            Operator.MULTIPLY -> Operator.MULTIPLY.calcFunc(operand1.toInt(), operand2.toInt())
+            Operator.DIVIDE -> Operator.DIVIDE.calcFunc(operand1.toInt(), operand2.toInt())
+        }.toString()
+
+        calculationDeque.addFirst(chunkResult)
+        return chunkResult
     }
 
-    fun chunk(wholeElements: List<String>): List<String> {
-        TODO("chunk elements which have valid format for operation")
+    fun isContinued(): Boolean {
+        return calculationDeque.size >= 3
     }
 
-    fun calculate(chunkElements: List<String>): String {
-        TODO("calculate based on operator. converting string to int is needed")
-    }
-
-    fun isCalculationStopped(chunkElements: List<String>): Boolean {
-        TODO("stop calculate if no element exists")
+    fun isValidResult(): Boolean {
+        return calculationDeque.size == 1
     }
 }
