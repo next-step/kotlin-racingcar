@@ -32,6 +32,15 @@ class StringCalculatorTest {
         assertThat(StringCalculator.calculate(input)).isEqualTo(2)
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = ["4 / 0"])
+    fun `0 으로 나누는 경우 IllegalArgumentException throw`(input: String) {
+        assertThatThrownBy {
+            StringCalculator.calculate(input)
+        }.isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageMatching("0으로 나눌 수 없습니다.")
+    }
+
     @Test
     fun `입력 값이 null 인 경우 IllegalArgumentException throw`() {
         val input = null
