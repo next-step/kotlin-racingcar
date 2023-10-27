@@ -15,6 +15,6 @@ class CarRacing(
     }
 
     private fun canGo(): Boolean {
-        return nextInt(0, 10) >= 4
+        return nextInt(from = 0, until = 10) >= 4
     }
 }
