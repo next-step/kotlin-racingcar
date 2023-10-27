@@ -6,10 +6,16 @@ object CarRacing {
     fun race(tryCount: Int, carCount: Int): List<List<Int>> {
         val cars = createCars(carCount)
         return List(tryCount) {
-            cars.forEach { car ->
-                car.moveOrStop()
-            }
-            cars.map { it.position }
+            cars.racePerRound()
         }
     }
+
+    private fun List<Car>.racePerRound(): List<Int> {
+        forEach { car ->
+            car.moveOrStop()
+        }
+        return recordResult()
+    }
+
+    private fun List<Car>.recordResult() = map { it.position }
 }
