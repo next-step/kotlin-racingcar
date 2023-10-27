@@ -1,8 +1,8 @@
-package racing.model.move
+package racing.model.generator
 
 import kotlin.random.Random
 
-class RandomEngine {
+class RandomGenerator {
     private val random = Random(99)
     fun generate(): Int {
         return random.nextInt(1, 9)

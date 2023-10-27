@@ -3,7 +3,7 @@ package racing.model.move
 import io.kotest.assertions.fail
 import io.kotest.core.spec.style.StringSpec
 
-class MoveDocileStrategyTest : StringSpec({
+class MoveRandomStrategyTest : StringSpec({
 
     "4이상일 경우 전진한다" {
         fail("")
