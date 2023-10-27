@@ -6,8 +6,6 @@ class LearnArrayDeque : StringSpec({
 
     "ArrayDeque 를 생성해서 CRUD 해본다" {
         val arrayDeque = ArrayDeque<Int>()
-
-        // 원소 추가
         arrayDeque.add(1)
         arrayDeque.add(1)
         arrayDeque.add(2)
