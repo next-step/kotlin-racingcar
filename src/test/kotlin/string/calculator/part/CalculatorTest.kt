@@ -10,7 +10,7 @@ internal class CalculatorTest {
         val numbers = mutableListOf(1L, 2L, 1L, 4L, 5L)
         val operators = mutableListOf(Operator.PLUS, Operator.MINUS, Operator.MULTIPLY, Operator.DIVIDE)
 
-        val result = Calculator().calculate(numbers, operators)
+        val result = Calculator.calculate(numbers, operators)
 
         assert(result == 1L)
     }

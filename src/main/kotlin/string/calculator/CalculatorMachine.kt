@@ -34,6 +34,6 @@ class CalculatorMachine(
 }
 
 fun main() {
-    val calculatorMachine = CalculatorMachine(Calculator(), Validator(), Splitter(), UserInterface(Validator()))
+    val calculatorMachine = CalculatorMachine(Calculator, Validator(), Splitter(), UserInterface(Validator()))
     calculatorMachine.start()
 }
