@@ -8,23 +8,10 @@ class StringCalculator private constructor(
     private val numbers: MutableList<Int>,
     private val operators: List<Operator>
 ) {
-    private fun plus(a: Int, b: Int) = a + b
-
-    private fun minus(a: Int, b: Int) = a - b
-
-    private fun times(a: Int, b: Int) = a * b
-
-    private fun div(a: Int, b: Int) = a / b
-
     private fun calculate(): Int {
         var result = numbers.removeAt(0)
         numbers.zip(operators) { number, operator ->
-            result = when (operator) {
-                Operator.PLUS -> plus(result, number)
-                Operator.MINUS -> minus(result, number)
-                Operator.TIMES -> times(result, number)
-                Operator.DIV -> div(result, number)
-            }
+            result = operator.calculate(result, number)
         }
         return result
     }
