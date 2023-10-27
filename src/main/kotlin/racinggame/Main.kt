@@ -21,5 +21,5 @@ fun main() {
         }
     }
 
-    OutputView.output(result)
+    OutputView.printRacingResult(result)
 }
