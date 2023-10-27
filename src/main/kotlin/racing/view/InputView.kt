@@ -2,10 +2,12 @@ package racing.view
 
 class InputView {
     fun participate(): Int {
-        throw RuntimeException("Not Yet Implemented")
+        println("자동차 대수는 몇 대인가요? ")
+        return readln().toInt()
     }
 
     fun repeat(): Int {
-        throw RuntimeException("Not Yet Implemented")
+        println("시도할 횟수는 몇 회인가요?")
+        return readln().toInt()
     }
 }
