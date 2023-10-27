@@ -5,12 +5,14 @@ import racing.model.move.MoveRandomStrategy
 import java.util.stream.IntStream
 
 class Racing {
+    private val strategy = MoveRandomStrategy(RandomGenerator())
+
     fun race(participate: Int, repeat: Int): List<MatchResult> {
-        val mat: MatchResult = ready(participate)
+        var current: MatchResult = ready(participate)
         val list: MutableList<MatchResult> = mutableListOf()
         for (i in 1..repeat) {
-            val roundResult = roundGo(mat)
-            list.add(roundResult)
+            current = roundGo(current.copy())
+            list.add(current)
         }
         return list
     }
@@ -28,7 +30,7 @@ class Racing {
         return MatchResult(
             preMatchResult.result
                 .stream()
-                .map { it.start(MoveRandomStrategy(RandomGenerator())) }
+                .map { it.start(strategy).copy() }
                 .toList()
         )
     }
