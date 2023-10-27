@@ -1,27 +1,34 @@
 package calculator
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import org.assertj.core.util.Strings
+import org.junit.jupiter.api.assertAll
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class BasicOperationsCalculatorTest {
 
-    @Test
-    fun operation() {
+    @ParameterizedTest()
+    @ValueSource(strings = ["+", "-", "*", "/"])
+    fun operation(symbol: String) {
         // given
         val firstNum: Double = 10.0
         val secondNum: Double = 5.0
 
         // when
         val basicOperationsCalculator = BasicOperationsCalculator()
-        val plusResult = basicOperationsCalculator.operation(firstNum, secondNum, "+")
-        val minusResult = basicOperationsCalculator.operation(firstNum, secondNum, "-")
-        val multiplyResult = basicOperationsCalculator.operation(firstNum, secondNum, "*")
-        val divideResult = basicOperationsCalculator.operation(firstNum, secondNum, "/")
+        val result = basicOperationsCalculator.operation(firstNum, secondNum, symbol)
 
         // then
-        assertThat(plusResult).isEqualTo(firstNum + secondNum)
-        assertThat(minusResult).isEqualTo(firstNum - secondNum)
-        assertThat(multiplyResult).isEqualTo(firstNum * secondNum)
-        assertThat(divideResult).isEqualTo(firstNum / secondNum)
+        assertAll(
+            {
+                when(symbol) {
+                    "+" -> assertThat(result).isEqualTo(firstNum + secondNum)
+                    "-" -> assertThat(result).isEqualTo(firstNum - secondNum)
+                    "*" -> assertThat(result).isEqualTo(firstNum * secondNum)
+                    "/" -> assertThat(result).isEqualTo(firstNum / secondNum)
+                }
+            }
+        )
     }
 }
