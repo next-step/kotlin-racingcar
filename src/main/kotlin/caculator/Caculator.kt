@@ -19,14 +19,7 @@ object Caculator {
         while (expression.peek() != null) {
             when (val curToken = expression.poll()) {
                 is Token.Number -> {
-                    result = when (curSymbol) {
-                        Token.Symbol.PLUS -> result + curToken.value
-                        Token.Symbol.MINUS -> result - curToken.value
-                        Token.Symbol.TIMES -> result * curToken.value
-                        Token.Symbol.DIVISION -> result / curToken.value
-                        null -> curToken.value
-                    }
-                    require(result.isFinite())
+                    result = calculateDouble(result, curSymbol, curToken.value)
                     curSymbol = null
                 }
                 is Token.Symbol -> {
@@ -63,6 +56,18 @@ object Caculator {
             Token.Symbol.TIMES.strValue -> Token.Symbol.TIMES
             Token.Symbol.DIVISION.strValue -> Token.Symbol.DIVISION
             else -> null
+        }
+    }
+
+    private fun calculateDouble(num1: Double, symbol: Token.Symbol?, num2: Double): Double {
+        return when (symbol) {
+            Token.Symbol.PLUS -> num1 + num2
+            Token.Symbol.MINUS -> num1 - num2
+            Token.Symbol.TIMES -> num1 * num2
+            Token.Symbol.DIVISION -> num1 / num2
+            null -> num2
+        }.also {
+            require(it.isFinite())
         }
     }
 
