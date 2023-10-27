@@ -24,11 +24,11 @@ class CarRacingTest : BehaviorSpec({
         val moveCount = 3
         then("실행 결과인 '-'가 반복 되는가") {
             val car = Car()
-            car.getResult() shouldBe "-"
+            ResultView.transformResult(car.position) shouldBe "-"
             for (i in 0 until moveCount) {
                 car.move()
             }
-            car.getResult() shouldBe "----"
+            ResultView.transformResult(car.position) shouldBe "----"
         }
     }
 })

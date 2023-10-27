@@ -2,8 +2,8 @@ package racing
 
 import kotlin.random.Random
 
-data class Car(private var position: Int = 1) {
-    fun getResult(): String = (1..position).map { "-" }.reduce { a, b -> a + b }
+data class Car(private var _position: Int = 1) {
+    val position get() = _position
 
     fun moveOrStop() {
         val isMove = isMove { random(0..9) }
@@ -13,7 +13,7 @@ data class Car(private var position: Int = 1) {
     }
 
     fun move() {
-        position += 1
+        _position += 1
     }
 
     companion object {

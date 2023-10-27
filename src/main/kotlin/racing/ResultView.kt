@@ -1,13 +1,17 @@
 package racing
 
 object ResultView {
-    fun printRacingResult(racingResult: List<List<String>>) {
+    fun printRacingResult(racingResults: List<List<Int>>) {
         println("실행 결과")
-        racingResult.forEach { cars ->
-            cars.forEach {
-                println(it)
+        racingResults.forEach { cars ->
+            cars.forEach { position ->
+                println(transformResult(position))
             }
             println()
         }
+    }
+
+    fun transformResult(position: Int): String {
+        return (0 until position).map { "-" }.reduce { a, b -> a + b }
     }
 }
