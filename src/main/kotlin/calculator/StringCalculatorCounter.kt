@@ -40,8 +40,7 @@ class StringCalculatorCounter(private val formula: List<String>) {
         return curNum
     }
 
-    constructor(input: String) : this(input.split(
-        " "))
+    constructor(input: String) : this(input.split(" "))
 }
 
 fun main() {
