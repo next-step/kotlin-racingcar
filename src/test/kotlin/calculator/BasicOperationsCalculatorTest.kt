@@ -1,7 +1,6 @@
 package calculator
 
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.util.Strings
 import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
@@ -22,7 +21,7 @@ class BasicOperationsCalculatorTest {
         // then
         assertAll(
             {
-                when(symbol) {
+                when (symbol) {
                     "+" -> assertThat(result).isEqualTo(firstNum + secondNum)
                     "-" -> assertThat(result).isEqualTo(firstNum - secondNum)
                     "*" -> assertThat(result).isEqualTo(firstNum * secondNum)

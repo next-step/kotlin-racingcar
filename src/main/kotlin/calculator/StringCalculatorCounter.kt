@@ -1,43 +1,44 @@
 package calculator
 
-import java.util.*
+import java.util.LinkedList
+import java.util.Queue
 
 class StringCalculatorCounter() {
     private val queue: Queue<String>
-    private val basicOperationsCalculator : BasicOperationsCalculator
+    private val basicOperationsCalculator: BasicOperationsCalculator
 
     init {
         queue = LinkedList()
         basicOperationsCalculator = BasicOperationsCalculator()
     }
 
-    private fun validateNumber(element : String){
-        if (!element.matches(Regex("^\\d+$"))){
+    private fun validateNumber(element: String) {
+        if (!element.matches(Regex("^\\d+$"))) {
             queue.clear()
             throw IllegalArgumentException("Please Check the Input")
         }
     }
 
-    private fun validateSymbol(element: String){
-        if (!element.matches(Regex("^[+/\\-*]+$"))){
+    private fun validateSymbol(element: String) {
+        if (!element.matches(Regex("^[+/\\-*]+$"))) {
             queue.clear()
             throw IllegalArgumentException("Please Check the Input")
         }
     }
 
-    private fun getSymbol(): String{
+    private fun getSymbol(): String {
         val symbol = queue.poll()
         validateSymbol(symbol)
         return symbol
     }
 
-    private fun getNumber(): Double{
+    private fun getNumber(): Double {
         val number = queue.poll()
         validateNumber(number)
         return number.toDouble()
     }
 
-    private fun basicOperation(firstNum: Double, secondNum: Double, symbol: String): Double{
+    private fun basicOperation(firstNum: Double, secondNum: Double, symbol: String): Double {
         try {
             return basicOperationsCalculator.operation(firstNum, secondNum, symbol)
         } catch (e: IllegalArgumentException) {
