@@ -7,7 +7,7 @@ enum class Operator {
     DIVIDE;
 
     companion object {
-        const val NOT_SUPPORTED_OPERATOR = "지원하지 않는 연산자입니다."
+        private const val NOT_SUPPORTED_OPERATOR = "지원하지 않는 연산자입니다."
 
         fun of(operator: String): Operator = when (operator) {
             "+" -> PLUS
