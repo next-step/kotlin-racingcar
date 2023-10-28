@@ -13,17 +13,22 @@ import racingcar.view.CarRacingInputView
 object CarRacingRunner {
     fun run() {
         val input = getInput()
+        val game = setGame(input)
+        val result = game.run()
+    }
+
+    private fun getInput(): CarRacingInput = CarRacingInputView.getInputForStart()
+
+    private fun setGame(input: CarRacingInput): CarRacingGame {
         val configuration = createConfiguration(input)
         val result = createResult(configuration)
         val moveRule = createRandomMoveRule()
-        val game = createGame(
+        return createGame(
             configuration = configuration,
             result = result,
             moveRule = moveRule
         )
     }
-
-    private fun getInput(): CarRacingInput = CarRacingInputView.getInputForStart()
 
     private fun createConfiguration(input: CarRacingInput): CarRacingConfiguration =
         CarRacingConfiguration.of(input)

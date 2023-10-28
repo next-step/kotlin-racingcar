@@ -6,4 +6,8 @@ class Car(
 ) {
     var position: Int = position
         private set
+
+    fun move(distance: Int) {
+        position += distance
+    }
 }
