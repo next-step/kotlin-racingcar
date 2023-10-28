@@ -1,16 +1,18 @@
 class StringCalculator (private val calculatorString: String?) {
 
-    private val numberArgs by lazy {
+    init {
         require(!calculatorString.isNullOrBlank()) { throw IllegalArgumentException()}
-        calculatorString.split(" ").filter { it.isNotBlank() }.filter { it.toIntOrNull() != null }.map { it.toInt() }
-    }
-    private val operatorArgs by lazy {
-        require(!calculatorString.isNullOrBlank()) { throw IllegalArgumentException()}
-        calculatorString.split(" ").filter { it.isNotBlank() }.filter { it.toIntOrNull() == null }.toMutableList()
     }
 
-    fun calculating(): Int = numberArgs.reduce { acc, next ->
-        when (operatorArgs.removeFirst()) {
+    private val numberArgs by lazy {
+        calculatorString?.split(" ")?.filter { it.isNotBlank() }?.filter { it.toIntOrNull() != null }?.map { it.toInt() }
+    }
+    private val operatorArgs by lazy {
+        calculatorString?.split(" ")?.filter { it.isNotBlank() }?.filter { it.toIntOrNull() == null }?.toMutableList()
+    }
+
+    fun calculating(): Int? = numberArgs?.reduce { acc, next ->
+        when (operatorArgs?.removeFirst()) {
             "+" -> plus(acc, next)
             "-" -> minus(acc, next)
             "*" -> multiple(acc, next)
