@@ -3,6 +3,9 @@ package racingcar
 import racingcar.domain.CarRacingConfiguration
 import racingcar.domain.CarRacingGame
 import racingcar.domain.CarRacingResult
+import racingcar.domain.MoveRule
+import racingcar.domain.RandomMoveRule
+import racingcar.domain.RandomNumberGeneratorInBound
 import racingcar.domain.RoundResult
 import racingcar.view.CarRacingInput
 import racingcar.view.CarRacingInputView
@@ -12,7 +15,12 @@ object CarRacingRunner {
         val input = getInput()
         val configuration = createConfiguration(input)
         val result = createResult(configuration)
-        val game = createGame(configuration, result)
+        val moveRule = createRandomMoveRule()
+        val game = createGame(
+            configuration = configuration,
+            result = result,
+            moveRule = moveRule
+        )
     }
 
     private fun getInput(): CarRacingInput = CarRacingInputView.getInputForStart()
@@ -26,9 +34,16 @@ object CarRacingRunner {
             createInitialRoundResult = { RoundResult.createInitialResult(configuration.getRoundResultConfiguration()) },
         )
 
-    private fun createGame(configuration: CarRacingConfiguration, result: CarRacingResult): CarRacingGame =
+    private fun createRandomMoveRule(): RandomMoveRule = RandomMoveRule(RandomNumberGeneratorInBound())
+
+    private fun createGame(
+        configuration: CarRacingConfiguration,
+        result: CarRacingResult,
+        moveRule: MoveRule,
+    ): CarRacingGame =
         CarRacingGame.set(
             configuration = configuration.getCarRacingGameConfiguration(),
-            result = result
+            result = result,
+            moveRule = moveRule,
         )
 }
