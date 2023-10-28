@@ -7,8 +7,15 @@ import io.kotest.matchers.shouldBe
 
 class CalculatorKoTestBehavior : BehaviorSpec({
     Given("정상적인 입력값이 주어질 때") {
-        Then("사칙 연산 우선 순서 상관 없이 입력 값 순서대로 계산되어 반환한다") {
-            execute("2 + 3 * 4 / 2") shouldBe 10
+        When("한자리 숫자들로만 입력될 경우") {
+            Then("사칙 연산 우선 순서 상관 없이 입력 값 순서대로 계산되어 반환한다") {
+                execute("2 + 3 * 4 / 2") shouldBe 10
+            }
+        }
+        When("두자리 이상인 숫자들로 입력될 경우") {
+            Then("사칙 연산 우선 순서 상관 없이 입력 값 순서대로 계산되어 반환한다") {
+                execute("23 + 227 * 2 / 10") shouldBe 50
+            }
         }
     }
 
@@ -31,7 +38,7 @@ class CalculatorKoTestBehavior : BehaviorSpec({
             Then("IllegalArgumentException 예외를 던진다") {
                 shouldThrow<IllegalArgumentException> {
                     execute("& 7")
-                }.message shouldBe "입력값은 숫자와 사칙연산('+', '-', '*', '/')만 기입해주세요."
+                }.message shouldBe "입력값의 첫 문자는 숫자여야 합니다."
             }
         }
     }
