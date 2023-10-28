@@ -1,6 +1,6 @@
 package game
 
 interface UserInputHandler {
-    fun askForCarCount(): Int
+    fun askForCarNames(): String
     fun askForRetryCount(): Int
 }
