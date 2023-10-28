@@ -22,7 +22,7 @@
 
 - 객체간 협력은 어떻게 이뤄지는가? 메시지를 주고받는다고? 그게 뭔데?
     - 서로 메시지를 전달해서 역할과 책임을 위임하면서 진행한다
-        - 나의 구현 : action을 dispatch하고 구독하고있는 handler를 하는 형태로 구현
+        - 나의 구현 : action을 dispatch하고 구독하고있는 handler를 하는 형태로 구현 (삭제)
         - GPT의 예제 : 주입해서 호출
             ```kotlin
             class Person(val mobile: Mobile) {
@@ -60,3 +60,4 @@
     - 정리하자면, private 메서드를 직접 테스트하기보다는 해당 메서드를 사용하는 public 메서드를 테스트하여 간접적으로 검증해야 합니다.
 
 - dispatch를 이용할 경우 함수들이 모두 private이 될수가 있다 이 경우는 테스트를 어떻게 하는가
+  - dispatch 로직 삭제 하자.. 
