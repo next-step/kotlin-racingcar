@@ -9,6 +9,7 @@ class CarRacingGame private constructor(
     fun run(): CarRacingResult {
         roundRange.forEach { roundNumber ->
             runRound()
+            record(roundNumber)
         }
         return result
     }
@@ -19,6 +20,10 @@ class CarRacingGame private constructor(
             moveRule = moveRule,
         )
         round.run()
+    }
+
+    private fun record(roundNumber: Int) {
+        result.record(roundNumber, cars)
     }
 
     companion object {

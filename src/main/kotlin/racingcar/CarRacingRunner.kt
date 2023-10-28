@@ -13,15 +13,27 @@ import racingcar.view.CarRacingInputView
 object CarRacingRunner {
     fun run() {
         val input = getInput()
-        val game = setGame(input)
-        val result = game.run()
+        val configuration = createConfiguration(input)
+        val result = setResult(configuration)
+        val game = setGame(
+            configuration = configuration,
+            result = result
+        )
+        game.run()
     }
 
     private fun getInput(): CarRacingInput = CarRacingInputView.getInputForStart()
 
-    private fun setGame(input: CarRacingInput): CarRacingGame {
-        val configuration = createConfiguration(input)
-        val result = createResult(configuration)
+    private fun setResult(configuration: CarRacingConfiguration): CarRacingResult =
+        CarRacingResult.createInitialResult(
+            configuration = configuration.getCarRacingResultConfiguration(),
+            createInitialRoundResult = { RoundResult.createInitialResult(configuration.getRoundResultConfiguration()) },
+        )
+
+    private fun setGame(
+        configuration: CarRacingConfiguration,
+        result: CarRacingResult,
+    ): CarRacingGame {
         val moveRule = createRandomMoveRule()
         return createGame(
             configuration = configuration,
@@ -32,12 +44,6 @@ object CarRacingRunner {
 
     private fun createConfiguration(input: CarRacingInput): CarRacingConfiguration =
         CarRacingConfiguration.of(input)
-
-    private fun createResult(configuration: CarRacingConfiguration): CarRacingResult =
-        CarRacingResult.createInitialResult(
-            configuration = configuration.getCarRacingResultConfiguration(),
-            createInitialRoundResult = { RoundResult.createInitialResult(configuration.getRoundResultConfiguration()) },
-        )
 
     private fun createRandomMoveRule(): RandomMoveRule = RandomMoveRule(RandomNumberGeneratorInBound())
 

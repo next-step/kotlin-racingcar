@@ -61,7 +61,7 @@ class CarRacingConfigurationTest : FunSpec({
 
             val result = configuration.getCarRacingResultConfiguration()
 
-            result.rounds shouldBe 1..tryCount
+            result.roundRange shouldBe 1..tryCount
         }
     }
 

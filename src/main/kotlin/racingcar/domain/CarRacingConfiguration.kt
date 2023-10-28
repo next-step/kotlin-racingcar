@@ -18,7 +18,7 @@ class CarRacingConfiguration(
 
     fun getCarRacingResultConfiguration(): CarRacingResultConfiguration =
         CarRacingResultConfiguration(
-            rounds = rounds,
+            roundRange = rounds,
         )
 
     fun getRoundResultConfiguration(): RoundResultConfiguration =
@@ -50,7 +50,7 @@ data class CarRacingGameConfiguration(
 )
 
 data class CarRacingResultConfiguration(
-    val rounds: IntRange,
+    val roundRange: IntRange,
 )
 
 data class RoundResultConfiguration(
