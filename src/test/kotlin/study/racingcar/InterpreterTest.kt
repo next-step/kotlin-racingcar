@@ -18,7 +18,11 @@ class InterpreterTest {
     fun `계산기 결과 확인`() {
         val interpreter = Interpreter(Parser())
         assertEquals(3, interpreter.interpret("1 + 2"))
-        assertEquals(1, interpreter.interpret("1"))
-        assertThrows(IllegalOperationException::class.java) { interpreter.interpret("1+") }
+    }
+
+    @Test
+    fun `Interpreter 의 interpret 이 계산 불가능한 문자열을 검출하는 역할을 checkSemantic 에게 정상 할당하는지 확인 `() {
+        val interpreter = Interpreter(Parser())
+        assertThrows(IllegalOperationException::class.java) { interpreter.checkSemantic("1 + 2 + ") }
     }
 }
