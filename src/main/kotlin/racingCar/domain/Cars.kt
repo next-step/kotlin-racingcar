@@ -13,4 +13,9 @@ class Cars(private val moveStrategy: MoveStrategy = RandomStrategy()) {
             OutputView.printCar(cars)
         }
     }
+
+    fun getCars(inputCars: String): List<Car> {
+        val carsNames: List<String> = inputCars.split(",")
+        return carsNames.map { Car(it) }
+    }
 }
