@@ -19,8 +19,8 @@ class Racing {
     private fun ready(participate: Int): MatchResult {
         return MatchResult(
             ArrayDeque(
-                (1..participate).map { Car(it, 0) }
-                    .toList()
+                (1..participate)
+                    .map { Car(it, 0) }
             )
         )
     }
@@ -29,9 +29,7 @@ class Racing {
         return MatchResult(
             ArrayDeque(
                 preMatchResult.result
-                    .stream()
                     .map { it.start(strategy).copy() }
-                    .toList()
             )
         )
     }
