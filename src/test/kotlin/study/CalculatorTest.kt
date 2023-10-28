@@ -2,8 +2,8 @@ package study
 
 import StringCalculator
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class CalculatorTest {
 
@@ -39,33 +39,22 @@ class CalculatorTest {
 
     @Test
     fun `사직연산 예외 테스트`() {
-        assertThatThrownBy {
-            StringCalculator("1 z 2 - 0 + 0").calculating()
-        }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThrows<IllegalArgumentException> { StringCalculator("1 z 2 - 0 + 0").calculating() }
     }
 
     @Test
     fun `숫자가 없는 사직연산 예외 테스트`() {
-        assertThatThrownBy {
-            StringCalculator("1 + 2 + 3 + 4 + - + * / + + +").calculating()
-        }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThrows<IllegalArgumentException> { StringCalculator("1 + 2 + 3 + 4 + - + * / + + +").calculating() }
     }
 
     @Test
     fun `Null 테스트`() {
-        assertThatThrownBy {
-            StringCalculator(null).calculating()
-        }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThrows<IllegalArgumentException> { StringCalculator(null).calculating() }
     }
 
     @Test
     fun `공백 테스트`() {
-        assertThatThrownBy {
-            StringCalculator("").calculating()
-        }.isInstanceOf(IllegalArgumentException::class.java)
-
-        assertThatThrownBy {
-            StringCalculator(" ").calculating()
-        }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThrows<IllegalArgumentException> { StringCalculator("").calculating() }
+        assertThrows<IllegalArgumentException> { StringCalculator(" ").calculating() }
     }
 }
