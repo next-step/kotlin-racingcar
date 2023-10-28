@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -13,10 +14,16 @@ class `계산기 테스트(JUnit 5)` {
     class `정상적인 입력값일 경우` {
 
         @ParameterizedTest
-        @ValueSource(strings = ["2 + 3 * 4 / 2"])
-        fun `사칙 연산 우선 순서 상관 없이 입력 값 순서대로 계산되어 반환한다`(input: String) {
+        @CsvSource(
+            value = [
+                "2 + 3 * 4 / 2 = 10",
+                "23 + 227 * 2 / 10 = 50"
+            ],
+            delimiter = '='
+        )
+        fun `사칙 연산 우선 순서 상관 없이 입력 값 순서대로 계산되어 반환한다`(input: String, expected: Int) {
             val actual = execute(input)
-            assertThat(actual).isEqualTo(10)
+            assertThat(actual).isEqualTo(expected)
         }
     }
 
