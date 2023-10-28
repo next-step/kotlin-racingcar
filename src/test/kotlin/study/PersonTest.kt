@@ -39,4 +39,11 @@ class PersonTest {
             { assertThat(person.nickname).isNull() }
         )
     }
+
+    @Test
+    fun `data classes`() {
+        val person1 = Person("홍길동", 29, "의적")
+        val person2 = Person("홍길동", 29, "의적")
+        assertThat(person1).isEqualTo(person2)
+    }
 }
