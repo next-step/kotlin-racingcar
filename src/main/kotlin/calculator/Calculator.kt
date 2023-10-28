@@ -21,9 +21,7 @@ enum class Calculator(val symbol: String) {
     companion object {
         private val map = Calculator.values().associateBy { it.symbol }
         operator fun get(symbol: String): Calculator {
-            if (map[symbol] == null) throw IllegalArgumentException("Invalid operator : $symbol")
-
-            return map[symbol]!!
+            return map[symbol] ?: throw IllegalArgumentException("Invalid operator : $symbol")
         }
     }
 }
