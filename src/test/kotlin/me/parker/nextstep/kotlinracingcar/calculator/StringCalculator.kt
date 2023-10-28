@@ -15,12 +15,15 @@ object StringCalculator {
 
     private fun calculateFormula(formulaTokens: List<String>): Int {
         var result = formulaTokens[0].toInt()
-        for ((index, token) in formulaTokens.withIndex()) {
-            if (index == 0) continue
+        formulaTokens.forEachIndexed { index, token ->
+            run {
+                // index가 0이면 continue
+                if (index == 0) return@run
 
-            if (isEvenNumber(index)) {
-                val operator = formulaTokens[index - 1]
-                result = OperatorType.calculate(operator, result, token.toInt())
+                if (isEvenNumber(index)) {
+                    val operator = formulaTokens[index - 1]
+                    result = OperatorType.calculate(operator, result, token.toInt())
+                }
             }
         }
 
@@ -56,11 +59,13 @@ object StringCalculator {
     }
 
     private fun isValidFormulaOrder(arguments: MutableList<String>): Boolean {
-        for ((index, arg) in arguments.withIndex()) {
-            if (isEvenNumber(index) && isNumber(arg).not()) return false
-            if (isEvenNumber(index).not() && OperatorType.exist(arg).not()) return false
+        arguments.forEachIndexed { index, arg ->
+            run {
+                if (isEvenNumber(index) && isNumber(arg).not()) return false
+                if (isEvenNumber(index).not() && OperatorType.exist(arg).not()) return false
 
-            if (index < arguments.size - 1 && isNumber(arg) && isNumber(arguments[index + 1])) return false
+                if (index < arguments.size - 1 && isNumber(arg) && isNumber(arguments[index + 1])) return false
+            }
         }
 
         return arguments.size > 1
