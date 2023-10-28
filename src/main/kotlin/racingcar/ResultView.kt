@@ -2,7 +2,17 @@ package racingcar
 
 object ResultView {
 
-    fun printResult(cars: List<Car>) {
+    private const val HYPHEN = "-"
+    private const val RESULT = "실행 결과"
+
+    fun printResult(cars: Cars, operationCount: Int) {
+        println(RESULT)
+        repeat(operationCount) {
+            cars.operateCars()
+            printCarResult(cars.carList)
+        }
+    }
+    private fun printCarResult(cars: List<Car>) {
         cars.forEach { car ->
             println(print(car))
         }
@@ -10,6 +20,6 @@ object ResultView {
     }
 
     private fun print(car: Car): String {
-        return "-".repeat(car.position)
+        return HYPHEN.repeat(car.position)
     }
 }
