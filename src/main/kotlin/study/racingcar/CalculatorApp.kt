@@ -2,7 +2,7 @@ package study.racingcar
 
 class CalculatorApp
 
-fun main(args: Array<String>) {
+fun main() {
     val parser = Parser()
     val interpreter = Interpreter(parser)
 
@@ -16,10 +16,9 @@ fun main(args: Array<String>) {
         }
 
         try {
-            interpreter.semanticAnalysis(input)
             println("결과: ${interpreter.interpret(input)}")
-        } catch (e: IllegalOperationException) {
-            println(e.message)
+        } catch (e: Exception) {
+            println("[$e] 입력 문자열을 확인해주세요.")
         }
     }
 }
