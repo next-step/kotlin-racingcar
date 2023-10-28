@@ -1,10 +1,10 @@
 package game
 
-class RacingCarGame() {
+class RacingCarGame(private val userInputHandler: UserInputHandler = ConsoleInputHandler()) {
 
     fun start() {
-        val carCount = UserInputHandler.askForCarCount()
-        val retryCount = UserInputHandler.askForRetryCount()
+        val carCount = userInputHandler.askForCarCount()
+        val retryCount = userInputHandler.askForRetryCount()
         val cars = Cars.fromCarCount(carCount, RandomMoveConditionGenerator())
         cars.advance(retryCount, UserMessageDisplay::display)
     }
