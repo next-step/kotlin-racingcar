@@ -35,7 +35,7 @@ class ExpressionParserTest {
     }
 
     @Test
-    fun `알수 없는 문자는 에러를 발생한다`() {
+    fun `숫자 혹은 연산자가 아닌 문자는 에러가 발생한다`() {
         assertThrows<IllegalArgumentException> {
             ExpressionParser.parse("a")
         }
