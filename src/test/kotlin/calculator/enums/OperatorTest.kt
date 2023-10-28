@@ -18,6 +18,7 @@ class OperatorTest {
     @Test
     fun `성공 - 숫자 나누기`() {
         assertThat(Operator.DIVIDE.sum(1, 2)).isEqualTo(0)
+        assertThat(Operator.DIVIDE.sum(4, 2)).isEqualTo(2)
     }
 
     @Test
