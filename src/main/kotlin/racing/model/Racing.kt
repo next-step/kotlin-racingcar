@@ -17,17 +17,22 @@ class Racing {
     }
 
     private fun ready(participate: Int): MatchResult {
-        val cars = (1..participate)
-            .map { Car(it, 0) }
-            .toList()
-        return MatchResult(ArrayDeque(cars))
+        return MatchResult(
+            ArrayDeque(
+                (1..participate).map { Car(it, 0) }
+                    .toList()
+            )
+        )
     }
 
     private fun roundGo(preMatchResult: MatchResult): MatchResult {
-        val cars = preMatchResult.result
-            .stream()
-            .map { it.start(strategy).copy() }
-            .toList()
-        return MatchResult(ArrayDeque(cars))
+        return MatchResult(
+            ArrayDeque(
+                preMatchResult.result
+                    .stream()
+                    .map { it.start(strategy).copy() }
+                    .toList()
+            )
+        )
     }
 }
