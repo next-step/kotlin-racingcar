@@ -3,8 +3,6 @@ package calculator
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import java.lang.ArithmeticException
-import java.lang.IllegalArgumentException
 
 class StringCalculatorTest {
     @Test
@@ -50,32 +48,38 @@ class StringCalculatorTest {
     }
 
     @Test
-    fun `입력 값이 null`() {
+    fun `입력 값이 null인 경우 IllegalArgumentException 발생한다`() {
         val stringCalculator = StringCalculator()
         assertThrows<IllegalArgumentException> { stringCalculator.calculate(null) }
     }
 
     @Test
-    fun `입력 값이 empty`() {
+    fun `입력 값이 empty인 경우 IllegalArgumentException 발생한다`() {
         val stringCalculator = StringCalculator()
         assertThrows<IllegalArgumentException> { stringCalculator.calculate("") }
     }
 
     @Test
-    fun `입력 값이 잘못된 문자열`() {
+    fun `입력 값이 잘못된 문자열인 경우 IllegalArgumentException 발생한다`() {
         val stringCalculator = StringCalculator()
         assertThrows<IllegalArgumentException> { stringCalculator.calculate("1 + 2 +") }
     }
 
     @Test
-    fun `사칙연산 기호가 아닌 것이 포함됨`() {
+    fun `입력 값에 띄어쓰기를 포함한 숫자가 있는 경우 띄어쓰기를 무시하고 계산된다`() {
+        val stringCalculator = StringCalculator()
+        assertThat(stringCalculator.calculate("1 + 2 + 3 3 4 5 6")).isEqualTo(33459)
+    }
+
+    @Test
+    fun `사칙연산 기호가 아닌 것이 포함되는 경우 IllegalArgumentException 발생한다`() {
         val stringCalculator = StringCalculator()
         assertThrows<IllegalArgumentException> { stringCalculator.calculate("1 + 2 & 10") }
     }
 
     @Test
-    fun `0으로 나눔`() {
+    fun `0으로 나눌 경우 IllegalArgumentException 발생한다`() {
         val stringCalculator = StringCalculator()
-        assertThrows<ArithmeticException> { stringCalculator.calculate("10/0") }
+        assertThrows<IllegalArgumentException> { stringCalculator.calculate("10/0") }
     }
 }
