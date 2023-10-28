@@ -7,6 +7,7 @@ class CarTest {
     val successTestCondition = DriveCondition { true }
     val failTestCondition = DriveCondition { false }
     val startDistance: Int = 1
+
     @Test
     fun `자동차는 조건에 맞으면 전진할 수 있다`() {
         val car = Car(1, successTestCondition)

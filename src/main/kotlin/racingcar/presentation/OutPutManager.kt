@@ -1,7 +1,6 @@
 package racingcar.presentation
 
 import racingcar.domain.Car
-import racingcar.domain.DriveConditionImpl
 
 class OutPutManager {
 
@@ -9,6 +8,7 @@ class OutPutManager {
         carList.forEach {
             println("-".repeat(it.distance))
         }
+        println()
     }
 
     fun printBeginResultMessage() {
