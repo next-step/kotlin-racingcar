@@ -26,6 +26,11 @@ class CarRacingConfiguration(
             cars = cars
         )
 
+    fun getOutputConfiguration(): OutputConfiguration =
+        OutputConfiguration(
+            rounds = rounds,
+        )
+
     private fun setCars(): List<Car> = CarGenerator.createInOrder(carCount)
 
     private fun setRounds(): IntRange = (CAR_RACING_INITIAL_ROUND..roundCount)
@@ -55,4 +60,8 @@ data class CarRacingResultConfiguration(
 
 data class RoundResultConfiguration(
     val cars: List<Car>
+)
+
+data class OutputConfiguration(
+    val rounds: IntRange,
 )

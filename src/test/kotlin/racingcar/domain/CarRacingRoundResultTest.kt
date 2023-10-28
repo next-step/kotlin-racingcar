@@ -47,4 +47,22 @@ class CarRacingRoundResultTest : BehaviorSpec({
             }
         }
     }
+
+    Given("자동차 경주 라운드 결과를 기록하고") {
+        val roundResult = CarRacingRoundResult.createInitialResult(
+            RoundResultConfiguration(
+                cars = listOf(Car(0, 0), Car(1, 0))
+            )
+        )
+        val movedCar1 = Car(0, 1)
+        val movedCar2 = Car(1, 2)
+        val movedCars = listOf(movedCar1, movedCar2)
+        roundResult.record(movedCars)
+        When("자동차 경주 라운드 결과 값 리스트를 조회하면") {
+            val result = roundResult.getCarPositionsInorder()
+            Then("기록된 라운드 결과가 리스트로 조회된다") {
+                result shouldBe listOf(1, 2)
+            }
+        }
+    }
 })

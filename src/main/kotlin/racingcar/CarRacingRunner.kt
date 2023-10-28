@@ -5,10 +5,13 @@ import racingcar.domain.CarRacingGame
 import racingcar.domain.CarRacingResult
 import racingcar.domain.CarRacingRoundResult
 import racingcar.domain.MoveRule
+import racingcar.domain.OutputConfiguration
 import racingcar.domain.RandomMoveRule
 import racingcar.domain.RandomNumberGeneratorInBound
 import racingcar.view.CarRacingInput
 import racingcar.view.CarRacingInputView
+import racingcar.view.CarRacingOutputView
+import racingcar.view.CarRacingRoundOutput
 
 object CarRacingRunner {
     fun run() {
@@ -20,6 +23,10 @@ object CarRacingRunner {
             result = result
         )
         game.run()
+        drawOutput(
+            configuration = configuration,
+            result = result,
+        )
     }
 
     private fun getInput(): CarRacingInput = CarRacingInputView.getInputForStart()
@@ -57,4 +64,24 @@ object CarRacingRunner {
             result = result,
             moveRule = moveRule,
         )
+
+    private fun drawOutput(
+        configuration: CarRacingConfiguration,
+        result: CarRacingResult,
+    ) {
+        val outputConfiguration = configuration.getOutputConfiguration()
+        val output = getCarRacingGameOutput(outputConfiguration, result)
+        CarRacingOutputView.draw(output)
+    }
+
+    private fun getCarRacingGameOutput(
+        configuration: OutputConfiguration,
+        result: CarRacingResult,
+    ) = buildList {
+        configuration.rounds.forEach { round ->
+            val roundResult = result.getRoundResult(round)
+            val output = CarRacingRoundOutput.from(roundResult)
+            add(output)
+        }
+    }
 }
