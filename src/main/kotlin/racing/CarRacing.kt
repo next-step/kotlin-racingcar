@@ -1,5 +1,7 @@
 package racing
 
+import kotlin.random.Random
+
 class CarRacing private constructor(carCount: Int) {
     private val cars = List(carCount) { Car() }
 
@@ -12,9 +14,11 @@ class CarRacing private constructor(carCount: Int) {
 
     private fun List<Car>.racePerRound() {
         forEach { car ->
-            car.moveOrStop()
+            car.moveOrStop(random(0..9))
         }
     }
+
+    private fun random(range: IntRange) = Random.nextInt(range.first, range.last)
 
     private fun List<Car>.recordRacingResultPerRound() = map { it.position }
 

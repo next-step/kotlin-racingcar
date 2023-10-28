@@ -1,24 +1,17 @@
 package racing
 
-import kotlin.random.Random
-
 data class Car(private var _position: Int = 1) {
     val position get() = _position
 
-    fun moveOrStop() {
-        val isMove = isMove { random(0..9) }
-        if (isMove) {
+    fun moveOrStop(random: Int) {
+        if (isMove(random)) {
             move()
         }
     }
 
-    fun move() {
+    private fun isMove(random: Int) = random >= 4
+
+    private fun move() {
         _position += 1
-    }
-
-    companion object {
-        fun random(range: IntRange) = Random.nextInt(range.first, range.last)
-
-        fun isMove(intSupplier: () -> Int) = intSupplier() >= 4
     }
 }
