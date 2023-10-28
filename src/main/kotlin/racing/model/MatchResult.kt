@@ -1,12 +1,12 @@
 package racing.model
 
 data class MatchResult(
-    val result: List<Car>
+    val result: ArrayDeque<Car>
 ) {
     fun consolePresent(): String {
         val presents = result.stream()
             .map { "-".repeat(it.position) }
-            .toList()
+            .toArray()
         return presents.joinToString(separator = "\n")
     }
 }

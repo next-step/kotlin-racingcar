@@ -18,20 +18,18 @@ class Racing {
     }
 
     private fun ready(participate: Int): MatchResult {
-        return MatchResult(
-            IntStream.rangeClosed(1, participate)
-                .boxed()
-                .map { Car(it, 0) }
-                .toList()
-        )
+        val cars = IntStream.rangeClosed(1, participate)
+            .boxed()
+            .map { Car(it, 0) }
+            .toList()
+        return MatchResult(ArrayDeque(cars))
     }
 
     private fun roundGo(preMatchResult: MatchResult): MatchResult {
-        return MatchResult(
-            preMatchResult.result
-                .stream()
-                .map { it.start(strategy).copy() }
-                .toList()
-        )
+        val cars = preMatchResult.result
+            .stream()
+            .map { it.start(strategy).copy() }
+            .toList()
+        return MatchResult(ArrayDeque(cars))
     }
 }
