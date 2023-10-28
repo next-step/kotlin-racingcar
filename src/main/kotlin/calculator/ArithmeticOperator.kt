@@ -7,7 +7,10 @@ enum class ArithmeticOperator(
     PLUS("+", { operand1, operand2 -> operand1 + operand2 }),
     MINUS("-", { operand1, operand2 -> operand1 - operand2 }),
     MULTIPLY("*", { operand1, operand2 -> operand1 * operand2 }),
-    DIVIDE("/", { operand1, operand2 -> operand1 / operand2 }),
+    DIVIDE("/", { operand1, operand2 ->
+        require(operand2 != 0L) { "0으로 나눌 수 없습니다." }
+        operand1 / operand2
+    }),
     ;
 
     companion object {

@@ -2,26 +2,35 @@ package calculator
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
+import io.kotest.datatest.WithDataTestName
 import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
 
 class StringCalculatorTest : FunSpec({
 
     context("사칙연산") {
-        test("덧셈") {
-            StringCalculator.calculate("1 + 2") shouldBe 3
+        withData(
+            StringCalculatorTestData("1 + 2", 3),
+            StringCalculatorTestData("1 - 2", -1),
+            StringCalculatorTestData("3 * 2", 6),
+            StringCalculatorTestData("6 / 2", 3),
+            StringCalculatorTestData("6 / 2 + 20 - 4 * 10", 190),
+        ) { (input, result) ->
+            StringCalculator.calculate(input) shouldBe result
         }
-        test("뺄셈") {
-            StringCalculator.calculate("1 - 2") shouldBe -1
-        }
-        test("곱셈") {
-            StringCalculator.calculate("3 * 2") shouldBe 6
-        }
-        test("나눗셈") {
-            StringCalculator.calculate("6 / 2") shouldBe 3
-        }
-        test("사칙 연산을 모두 포함") {
-            StringCalculator.calculate("6 / 2 + 20 - 4 * 10") shouldBe 190
+    }
+
+    context("0으로 나누는 경우 IllegalArgumentException throw") {
+        withData(
+            nameFn = { "input : $it" },
+            "2 / 0",
+            "0 / 0",
+            "1 / 0",
+        ) { input ->
+            val exception = shouldThrow<IllegalArgumentException> {
+                StringCalculator.calculate(input)
+            }
+            exception.localizedMessage shouldBe "0으로 나눌 수 없습니다."
         }
     }
 
@@ -54,3 +63,7 @@ class StringCalculatorTest : FunSpec({
         }
     }
 })
+
+data class StringCalculatorTestData(val input: String, val result: Long) : WithDataTestName {
+    override fun dataTestName(): String = "$input = $result"
+}
