@@ -1,20 +1,19 @@
 package racingcar.model
 
 import racingcar.strategy.MovingStrategy
-import racingcar.view.ResultView
 
 class RacingCarGame(
     private val strategy: MovingStrategy,
     private val numbersOfCar: Int,
     private val numbersOfTry: Int
 ) {
-    fun start() {
+    fun start(): List<Car> {
         val cars = createCars(numbersOfCar)
 
         repeat(numbersOfTry) {
             run(cars)
-            printResult(cars)
         }
+        return cars
     }
 
     private fun createCars(numbersOfCar: Int): List<Car> {
@@ -29,12 +28,5 @@ class RacingCarGame(
         for (car in cars) {
             car.stepForward(strategy.canMove())
         }
-    }
-
-    private fun printResult(cars: List<Car>) {
-        for (car in cars) {
-            ResultView.printResult(car.name, car.position)
-        }
-        ResultView.printEmptyLine()
     }
 }
