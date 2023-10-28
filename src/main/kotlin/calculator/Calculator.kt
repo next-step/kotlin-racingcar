@@ -65,27 +65,6 @@ class Calculator {
         val firstTerm = expressionStack.pop() as ExpressionElement.Term
         val secondTerm = element as ExpressionElement.Term
 
-        return when (operator) {
-            ExpressionElement.Operator.Add -> add(firstTerm, secondTerm)
-            ExpressionElement.Operator.Sub -> sub(firstTerm, secondTerm)
-            ExpressionElement.Operator.Multi -> multi(firstTerm, secondTerm)
-            ExpressionElement.Operator.Div -> div(firstTerm, secondTerm)
-        }
-    }
-
-    private fun add(firstTerm: ExpressionElement.Term, secondTerm: ExpressionElement.Term): ExpressionElement.Term {
-        return firstTerm + secondTerm
-    }
-
-    private fun sub(firstTerm: ExpressionElement.Term, secondTerm: ExpressionElement.Term): ExpressionElement.Term {
-        return firstTerm - secondTerm
-    }
-
-    private fun multi(firstTerm: ExpressionElement.Term, secondTerm: ExpressionElement.Term): ExpressionElement.Term {
-        return firstTerm * secondTerm
-    }
-
-    private fun div(firstTerm: ExpressionElement.Term, secondTerm: ExpressionElement.Term): ExpressionElement.Term {
-        return firstTerm / secondTerm
+        return operator.operate(firstTerm, secondTerm)
     }
 }

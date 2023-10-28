@@ -1,15 +1,13 @@
 package calculator
 
-import java.lang.IllegalArgumentException
-
 sealed interface ExpressionElement {
     fun isSameType(other: ExpressionElement): Boolean
 
-    enum class Operator : ExpressionElement {
-        Add,
-        Sub,
-        Multi,
-        Div;
+    enum class Operator(val operate: (Term, Term) -> Term) : ExpressionElement {
+        Add({ first, second -> first + second }),
+        Sub({ first, second -> first - second }),
+        Multi({ first, second -> first * second }),
+        Div({ first, second -> first / second });
 
         override fun isSameType(other: ExpressionElement): Boolean {
             return other is Operator
