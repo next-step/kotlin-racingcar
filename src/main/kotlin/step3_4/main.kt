@@ -23,4 +23,5 @@ fun main() {
     racing.doRacing(numberOfRounds, carList) { result ->
         ResultView.showResult(result)
     }
+    ResultView.showLastResult(carList)
 }
