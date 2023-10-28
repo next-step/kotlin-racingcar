@@ -22,7 +22,7 @@
 
 - 객체간 협력은 어떻게 이뤄지는가? 메시지를 주고받는다고? 그게 뭔데?
     - 서로 메시지를 전달해서 역할과 책임을 위임하면서 진행한다
-        - 나의 구현 : action을 dispatch하고 구독하고있는 handler를 하는 형태로 구현 (삭제)
+        - 나의 구현 : action을 dispatch하고 구독하고있는 handler를 하는 형태로 구현 -> 테스트 코드가 짜기 어려워서 삭제
         - GPT의 예제 : 주입해서 호출
             ```kotlin
             class Person(val mobile: Mobile) {
@@ -61,3 +61,49 @@
 
 - dispatch를 이용할 경우 함수들이 모두 private이 될수가 있다 이 경우는 테스트를 어떻게 하는가
   - dispatch 로직 삭제 하자.. 
+  - println, Random 등과 같은 모듈을 사용하는 경우의 테스트
+    - 메서드에 인터페이스를 이용해서 모킹으로 주입 받자
+  - GPT의 예제
+    ```kotlin
+    interface OutputWriter {
+        fun print(s: String)
+    }
+  
+    class ConsoleOutputWriter : OutputWriter {
+        override fun print(s: String) {
+            kotlin.io.print(s)
+        }
+    }
+  
+    fun renderCarPosition(outputWriter: OutputWriter, car: Car) {  
+        for (position in 0 until car.curPosition) {  
+            outputWriter.print('-')
+        }  
+        outputWriter.print("\n")
+    }  
+  
+    class Car(val curPosition: Int)
+  
+    class MockOutputWriter : OutputWriter {
+        private val output = StringBuilder()
+  
+        override fun print(s: String) {
+            output.append(s)
+        }
+  
+        fun getOutput(): String {
+            return output.toString()
+        }
+    }
+  
+    class YourTest : StringSpec({
+        "renderCarPosition method will in MockOutputWriter print the correct string" {
+            var car = Car(4)
+            val mockWriter = MockOutputWriter()
+            renderCarPosition(mockWriter, car)
+  
+            mockWriter.getOutput() shouldBe "----\n"
+        }
+    })
+  
+    ```
