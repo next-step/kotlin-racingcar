@@ -1,4 +1,4 @@
-package calculator.application
+package calculator.application.service
 
 class Tokenizer {
     private val DELIMITER = " "
