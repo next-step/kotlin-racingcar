@@ -10,12 +10,13 @@ class CarsBehaviorTest : BehaviorSpec({
         TestCondition(5, 8, 9),
         TestCondition(6, 4, 10),
     )
+    var userOutputHandler = UserMessageDisplay()
 
     testConditions.forEach { (carCount, retryCount, moveConditionCount) ->
         Given("자동차 수 ${carCount}와 시도할 횟수 $retryCount 입력받고") {
             When("고정 이동조건 ${moveConditionCount}이면") {
                 val cars = Cars.fromCarCount(carCount, FixedMoveConditionGenerator(moveConditionCount))
-                cars.advance(retryCount, UserMessageDisplay::display)
+                cars.advance(retryCount, userOutputHandler::display)
                 val expect = expectedPosition(moveConditionCount, retryCount)
                 Then("자동차는 ${carCount}개 생성되고 모든 자동차는 ${expect}만큼 이동한다") {
                     cars.carList.forEach { car ->

@@ -12,9 +12,10 @@ class CarsTest {
     fun `조건이 모두 4이상 9이하이면 시도할 횟수만큼 이동한다`(carCount: Int, fixedMoveCondition: Int, retryCount: Int) {
         // given
         val cars = Cars.fromCarCount(carCount, FixedMoveConditionGenerator(fixedMoveCondition))
+        val userMessageDisplay = UserMessageDisplay()
 
         // when
-        cars.advance(retryCount, UserMessageDisplay::display)
+        cars.advance(retryCount, userMessageDisplay::display)
         val carList = cars.carList
 
         // then
@@ -29,9 +30,10 @@ class CarsTest {
     fun `조건이 모두 4미만 혹은 9초과이면 시도회수와 관계없이 움직이지 않는다`(carCount: Int, fixedMoveCondition: Int, retryCount: Int) {
         // given
         val cars = Cars.fromCarCount(carCount, FixedMoveConditionGenerator(fixedMoveCondition))
+        val userMessageDisplay = UserMessageDisplay()
 
         // when
-        cars.advance(retryCount, UserMessageDisplay::display)
+        cars.advance(retryCount, userMessageDisplay::display)
         val carList = cars.carList
 
         // then
