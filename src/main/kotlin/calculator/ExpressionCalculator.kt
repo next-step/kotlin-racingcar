@@ -13,14 +13,12 @@ object ExpressionCalculator {
 
         val elements = CalculatorParser.split(validatedInput)
 
-        CalculatorValidator.validateSize(elements.size)
-
         var result = elements.getFirstValue()
         var operatorIndex = FIRST_OPERATOR_INDEX
         while (operatorIndex < elements.size) {
             val nextValue = elements.getNextValue(operatorIndex)
-            val operation = elements[operatorIndex]
-            result = StringCalculator.applyOperation(result, nextValue, operation)
+            val operation = Operation.fromString(elements[operatorIndex])
+            result = operation.calculate(result, nextValue)
             operatorIndex += OPERATOR_GAP
         }
         return result
