@@ -62,6 +62,20 @@ class StringCalculatorTest : FunSpec({
             exception.localizedMessage shouldBe "사용 가능한 사칙연산 기호는 [+, -, *, /]입니다."
         }
     }
+
+    context("피연산자 자리에 수가 들어오지 않은 경우 IllegalArgumentException throw") {
+        withData(
+            nameFn = { "input : $it" },
+            "2 / +",
+            "+ 0 + ",
+            "* / 1",
+        ) { input ->
+            val exception = shouldThrow<IllegalArgumentException> {
+                StringCalculator.calculate(input)
+            }
+            exception.localizedMessage shouldBe "사칙연산의 피연산자는 숫자여야합니다."
+        }
+    }
 })
 
 data class StringCalculatorTestData(val input: String, val result: Long) : WithDataTestName {

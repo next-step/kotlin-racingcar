@@ -7,13 +7,15 @@ object StringCalculator {
     fun calculate(input: String?): Long {
         val parsedInput: Queue<String> = ArithmeticExpressionParser.parse(input)
 
-        var result = parsedInput.poll().toLong()
+        var result = ArithmeticOperand.of(parsedInput.poll())
+
         while (parsedInput.isNotEmpty()) {
             val operator = ArithmeticOperator.of(parsedInput.poll())
-            val operand = parsedInput.poll().toLong()
+            val operand = ArithmeticOperand.of(parsedInput.poll())
+
             result = operator.operate(result, operand)
         }
 
-        return result
+        return result.value
     }
 }
