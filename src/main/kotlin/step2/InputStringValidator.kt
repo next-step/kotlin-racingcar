@@ -26,7 +26,6 @@ object InputStringValidator {
      */
     private fun String.validateDuplicatedOperation() {
         forEachIndexed { index, char ->
-            println("char is $char and isNumber? = ${char.isNumber()}")
             if (index != 0) { // 1~마지막
                 validateDuplicate(char, index)
             }
