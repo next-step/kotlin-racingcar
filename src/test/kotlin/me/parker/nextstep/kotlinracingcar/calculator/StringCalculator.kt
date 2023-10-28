@@ -8,7 +8,7 @@ object StringCalculator {
     fun calculate(input: String): Int {
         if (Strings.isNullOrEmpty(input)) throw IllegalArgumentException("입력값이 비어있습니다.")
 
-        val tokens: List<String> = separateOperandAndOperator(input)
+        val tokens: List<String> = parseOperandAndOperator(input)
 
         return calculateFormula(tokens)
     }
@@ -30,26 +30,21 @@ object StringCalculator {
         return result
     }
 
-    private fun separateOperandAndOperator(input: String): List<String> {
-        val tokens = input.split(EMPTY_STRING)
-            .filter { !Strings.isNullOrEmpty(it) && it != " " }
+    private fun parseOperandAndOperator(input: String): List<String> {
+        val separatedTokens = input.split(EMPTY_STRING)
 
         val results = mutableListOf<String>()
 
         var number = EMPTY_STRING
-        for (token in tokens) {
-            if (isNumber(token)) {
-                number += token
-            }
+        for (token in separatedTokens) {
+            if (Strings.isNullOrEmpty(token) || token == " ") continue
 
+            if (isNumber(token)) number += token
             if (isNumber(token).not() && number.isNotEmpty()) {
                 results.add(number)
                 number = EMPTY_STRING
             }
-
-            if (isNumber(token).not()) {
-                results.add(token)
-            }
+            if (isNumber(token).not()) results.add(token)
         }
         results.add(number)
 
