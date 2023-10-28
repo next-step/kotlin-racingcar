@@ -4,7 +4,6 @@ import java.util.Random
 
 class DriveConditionImpl : DriveCondition {
 
-
     companion object {
         const val IS_DRIVE: Int = 4
     }
