@@ -63,11 +63,12 @@ class CalculatorTest {
     @ParameterizedTest
     @CsvSource(
         value = [
-            "1 + 2 * 3, 9",
-            "1 - 2 * 3, -3",
-            "1 * 2 * 3, 6",
-            "1 / 2 * 3, 0",
-        ]
+            "1 + 2 * 3 = 9",
+            "1 - 2 * 3 = -3",
+            "1 * 2 * 3 = 6",
+            "1 / 2 * 3 = 0",
+        ],
+        delimiter = '='
     )
     fun `연산자의 종류와는 상관 없이 무조건 앞의 연산자 부터 계산한다`(expression: String, result: Int) {
         val calculator = Calculator()
