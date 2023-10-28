@@ -1,18 +1,22 @@
 package racing
 
 object ResultView {
-    fun printRacingResult(racingResults: List<List<Int>>) {
+    fun printRacingResult(racingResults: List<List<Car>>) {
         println("실행 결과")
         racingResults.forEach { cars ->
             cars.printRacingResultPerRound()
         }
     }
 
-    private fun List<Int>.printRacingResultPerRound() {
-        forEach { position ->
-            println(transformResult(position))
+    private fun List<Car>.printRacingResultPerRound() {
+        forEach { car ->
+            car.printRacingResultPerRound()
         }
         println()
+    }
+
+    private fun Car.printRacingResultPerRound() {
+        println("$name : ${transformResult(position)}")
     }
 
     fun transformResult(position: Int): String {

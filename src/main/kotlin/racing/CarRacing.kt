@@ -5,7 +5,7 @@ import kotlin.random.Random
 class CarRacing private constructor(carNames: List<String>) {
     private val cars = carNames.map { Car(it) }
 
-    private fun race(tryCount: Int): List<List<Int>> {
+    private fun race(tryCount: Int): List<List<Car>> {
         return List(tryCount) {
             cars.racePerRound()
             cars.recordRacingResultPerRound()
@@ -20,10 +20,10 @@ class CarRacing private constructor(carNames: List<String>) {
 
     private fun random(range: IntRange) = Random.nextInt(range.first, range.last)
 
-    private fun List<Car>.recordRacingResultPerRound() = map { it.position }
+    private fun List<Car>.recordRacingResultPerRound() = map { it.copy() }
 
     companion object {
-        fun race(carNames: List<String>, tryCount: Int): List<List<Int>> {
+        fun race(carNames: List<String>, tryCount: Int): List<List<Car>> {
             return CarRacing(carNames).race(tryCount)
         }
     }
