@@ -7,9 +7,7 @@ object StringCalculator {
     fun calculate(input: String?): String =
         input
             .requireNotNullOrBlank() { "Input value cannot be null or blank" }
-            .toExpressions()
+            .let { convertToExpressions(it) }
             .fold(0) { result, expression -> expression.operator.evaluate(result, expression.number) }
             .toString()
-
-    private fun String.toExpressions() = convertToExpressions(this)
 }
