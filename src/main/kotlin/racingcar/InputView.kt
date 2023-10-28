@@ -1,6 +1,6 @@
 package racingcar
 
-class InputView {
+object InputView {
     fun getCarCount(): Int {
         println("자동차 대수는 몇 대인가요?")
 
