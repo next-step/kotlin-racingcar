@@ -12,37 +12,16 @@ class StringCalculatorTest {
     @ParameterizedTest
     @CsvSource(
         "1 + 1,2",
-        "100 + 2545 + 2,2647"
-    )
-    fun `덧셈`(input: String, output: String) {
-        assertEquals(output, StringCalculator.calculate(input))
-    }
-
-    @ParameterizedTest
-    @CsvSource(
+        "100 + 2545 + 2,2647",
         "1 - 1,0",
         "10 - 100,-90",
-        "5 - 3 - 1,1"
-    )
-    fun `뺄셈`(input: String, output: String) {
-        assertEquals(output, StringCalculator.calculate(input))
-    }
-
-    @ParameterizedTest
-    @CsvSource(
+        "5 - 3 - 1,1",
         "1 * 2,2",
-        "100 * 24 * 4,9600"
-    )
-    fun `곱셈`(input: String?, output: String) {
-        assertEquals(output, StringCalculator.calculate(input))
-    }
-
-    @ParameterizedTest
-    @CsvSource(
+        "100 * 24 * 4,9600",
         "1 / 1,1",
         "100 / 24,4"
     )
-    fun `나눗셈`(input: String?, output: String) {
+    fun `사칙연산`(input: String, output: String) {
         assertEquals(output, StringCalculator.calculate(input))
     }
 
