@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
 import java.lang.IllegalArgumentException
 
@@ -96,12 +97,13 @@ class CalculatorTest {
         }
     }
 
-    @Test
-    fun `식이 null 이면 에러가 발생한다`() {
+    @ParameterizedTest
+    @NullAndEmptySource
+    fun `식이 null 이거나 공백이면 에러가 발생한다`(emptyString: String?) {
         val calculator = Calculator()
 
         assertThrows<IllegalArgumentException> {
-            calculator.calculate(null)
+            calculator.calculate(emptyString)
         }
     }
 
