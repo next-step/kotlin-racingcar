@@ -5,11 +5,7 @@ import java.io.OutputStream
 import java.io.PrintStream
 
 class Calculator(private val inputStream: InputStream, private val outputStream: OutputStream) {
-    companion object {
-        val validOperator = charArrayOf('+', '-', '*', '/')
-    }
-
-    inner class Operation(val operator: Char, val operand: Int)
+    inner class Operation(val operator: Operator, val operand: Int)
 
     fun run() {
         val expression = readInput()
@@ -26,12 +22,10 @@ class Calculator(private val inputStream: InputStream, private val outputStream:
 
     private fun parseExpression(expression: String): List<Operation> {
         val operationList = arrayListOf<Operation>()
-        val parsedExpression = "+ $expression".split(" ").chunked(2).map { it -> Pair(it[0], it[1]) }
+        val parsedExpression = "+ $expression".split(" ").chunked(2).map { Pair(Operator from it[0], it[1]) }
 
         for (operationItem in parsedExpression) {
-            require(validOperator.contains(operationItem.first[0])) { "Wrong operator!" }
-
-            operationList.add(Operation(operationItem.first[0], operationItem.second.toInt()))
+            operationList.add(Operation(operationItem.first, operationItem.second.toInt()))
         }
 
         return operationList.toList()
@@ -42,11 +36,11 @@ class Calculator(private val inputStream: InputStream, private val outputStream:
         val parsedOperationList = parseExpression(expression)
 
         for (operation in parsedOperationList) {
-            when (operation.operator) {
-                '+' -> result = calculateAdd(result, operation.operand)
-                '-' -> result = calculateSubtract(result, operation.operand)
-                '*' -> result = calculateMultiply(result, operation.operand)
-                '/' -> result = calculateDivide(result, operation.operand)
+            result = when (operation.operator) {
+                Operator.PLUS -> calculateAdd(result, operation.operand)
+                Operator.MINUS -> calculateSubtract(result, operation.operand)
+                Operator.MULTIPLY -> calculateMultiply(result, operation.operand)
+                Operator.DIVIDE -> calculateDivide(result, operation.operand)
             }
         }
 
