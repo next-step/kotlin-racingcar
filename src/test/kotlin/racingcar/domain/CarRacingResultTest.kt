@@ -11,7 +11,7 @@ class CarRacingResultTest : BehaviorSpec({
         val racingResult = CarRacingResult.createInitialResult(
             configuration = CarRacingResultConfiguration(roundRange),
             createInitialRoundResult = {
-                RoundResult.createInitialResult(RoundResultConfiguration(listOf(car1, car2)))
+                CarRacingRoundResult.createInitialResult(RoundResultConfiguration(listOf(car1, car2)))
             }
         )
         When("라운드별 결과를 조회하면") {
@@ -32,7 +32,7 @@ class CarRacingResultTest : BehaviorSpec({
         val racingResult = CarRacingResult.createInitialResult(
             configuration = CarRacingResultConfiguration(roundRange),
             createInitialRoundResult = {
-                RoundResult.createInitialResult(RoundResultConfiguration(listOf(car1, car2)))
+                CarRacingRoundResult.createInitialResult(RoundResultConfiguration(listOf(car1, car2)))
             }
         )
         And("자동차 경주 라운드 결과 값을 기록한 후") {

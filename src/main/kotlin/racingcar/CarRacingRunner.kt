@@ -3,10 +3,10 @@ package racingcar
 import racingcar.domain.CarRacingConfiguration
 import racingcar.domain.CarRacingGame
 import racingcar.domain.CarRacingResult
+import racingcar.domain.CarRacingRoundResult
 import racingcar.domain.MoveRule
 import racingcar.domain.RandomMoveRule
 import racingcar.domain.RandomNumberGeneratorInBound
-import racingcar.domain.RoundResult
 import racingcar.view.CarRacingInput
 import racingcar.view.CarRacingInputView
 
@@ -27,7 +27,7 @@ object CarRacingRunner {
     private fun setResult(configuration: CarRacingConfiguration): CarRacingResult =
         CarRacingResult.createInitialResult(
             configuration = configuration.getCarRacingResultConfiguration(),
-            createInitialRoundResult = { RoundResult.createInitialResult(configuration.getRoundResultConfiguration()) },
+            createInitialRoundResult = { CarRacingRoundResult.createInitialResult(configuration.getRoundResultConfiguration()) },
         )
 
     private fun setGame(

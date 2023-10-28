@@ -2,7 +2,7 @@ package racingcar.domain
 
 import java.lang.IllegalArgumentException
 
-class RoundResult private constructor(
+class CarRacingRoundResult private constructor(
     private val positionsByCarOrder: MutableMap<Int, Int>
 ) {
     fun record(cars: List<Car>) {
@@ -15,10 +15,10 @@ class RoundResult private constructor(
         positionsByCarOrder[carOrder] ?: throw IllegalArgumentException("기록된 자동차가 아닙니다")
 
     companion object {
-        fun createInitialResult(configuration: RoundResultConfiguration): RoundResult {
+        fun createInitialResult(configuration: RoundResultConfiguration): CarRacingRoundResult {
             val positionsByCarOrder = mutableMapOf<Int, Int>()
             configuration.cars.forEach { positionsByCarOrder[it.order] = it.position }
-            return RoundResult(positionsByCarOrder = positionsByCarOrder)
+            return CarRacingRoundResult(positionsByCarOrder = positionsByCarOrder)
         }
     }
 }
