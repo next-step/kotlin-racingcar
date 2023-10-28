@@ -9,12 +9,12 @@ class Racing {
 
     fun race(participate: Int, repeat: Int): List<MatchResult> {
         var current: MatchResult = ready(participate)
-        val list: MutableList<MatchResult> = mutableListOf()
+        val matchResults = ArrayDeque<MatchResult>()
         for (i in 1..repeat) {
             current = roundGo(current.copy())
-            list.add(current)
+            matchResults.add(current)
         }
-        return list
+        return matchResults.toList()
     }
 
     private fun ready(participate: Int): MatchResult {
