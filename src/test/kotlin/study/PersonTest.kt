@@ -43,4 +43,5 @@ class PersonTest {
         assertThat(actual.age).isEqualTo(38)
         assertThat(actual.nickname).isEqualTo("ironelder")
     }
+
 }
