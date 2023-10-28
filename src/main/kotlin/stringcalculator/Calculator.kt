@@ -1,9 +1,9 @@
 package stringcalculator
 
 data class Calculator(
-    var number: Int = 0,
+    var number: Int = DEFAULT_VALUE,
     var operator: Operator? = null,
-    var result: Int = 0,
+    var result: Int = DEFAULT_VALUE,
 ) {
     fun calculate() {
         when (operator) {
@@ -15,5 +15,9 @@ data class Calculator(
         }.also {
             result = it
         }
+    }
+
+    companion object {
+        private const val DEFAULT_VALUE = 0
     }
 }

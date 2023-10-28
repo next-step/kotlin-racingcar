@@ -4,8 +4,9 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
-import util.KnownException
+import util.CalculatorException
 
 class StringCalculatorTest {
 
@@ -60,11 +61,12 @@ class StringCalculatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["", "  "])
-    fun isBlank_ShouldReturnTrueForNullOrBlankStrings(input: String) {
+    @NullAndEmptySource
+    @ValueSource(strings = ["", "  ", "\t", "\n"])
+    fun nullOrBlankStrings(input: String?) {
         assertThatThrownBy {
             StringCalculator().execute(input)
         }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(KnownException.INVALID_INPUT.message)
+            .hasMessage(CalculatorException.INVALID_INPUT.message)
     }
 }

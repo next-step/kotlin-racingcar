@@ -1,6 +1,6 @@
 package stringcalculator
 
-import util.KnownException
+import util.CalculatorException
 
 enum class Operator(val value: String) {
     PLUS("+"),
@@ -12,7 +12,7 @@ enum class Operator(val value: String) {
     companion object {
         fun of(value: String): Operator {
             return values().find { it.value == value }
-                ?: throw IllegalArgumentException(KnownException.INVALID_OPERATOR.message)
+                ?: throw IllegalArgumentException(CalculatorException.INVALID_OPERATOR.message)
         }
     }
 }
