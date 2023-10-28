@@ -22,4 +22,10 @@ class Cars(private val moveStrategy: MoveStrategy = RandomStrategy()) {
         val carsNames: List<String> = split
         return carsNames.map { Car(it) }
     }
+
+    fun getWinners(carList: List<Car>): String {
+        val maxMoveCount = carList.maxByOrNull { it.moveCount }?.moveCount
+        val winners: List<Car> = carList.filter { it.moveCount == maxMoveCount }
+        return winners.joinToString(", ") { it.name }
+    }
 }

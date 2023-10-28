@@ -1,6 +1,7 @@
 package racingCar.view
 
 import racingCar.domain.Car
+import racingCar.domain.Cars
 
 object OutputView {
 
@@ -21,9 +22,8 @@ object OutputView {
     }
 
     fun printWinner(carList: List<Car>) {
-        val maxMoveCount = carList.maxByOrNull { it.moveCount }?.moveCount
-        val winners: List<Car> = carList.filter { it.moveCount == maxMoveCount }
-        val winnerNames: String = winners.joinToString(", ") { it.name }
-        println(winnerNames + WINNER_MESSAGE)
+        val cars = Cars()
+        val winners = cars.getWinners(carList)
+        println(winners + WINNER_MESSAGE)
     }
 }

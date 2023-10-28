@@ -1,10 +1,8 @@
 package racingCar.domain
 
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.NullAndEmptySource
 import racingCar.domain.strategy.MoveStrategy
 
 class CarsTest {
@@ -24,7 +22,7 @@ class CarsTest {
         cars.moveCar(carList, TRY_COUNT)
 
         val car = carList[0]
-        Assertions.assertEquals(car.moveCount, 5)
+        assertEquals(car.moveCount, 5)
     }
 
     @Test
@@ -32,7 +30,7 @@ class CarsTest {
         val cars = Cars()
         val carList = cars.getCars(CARS);
 
-        Assertions.assertEquals(3, carList.size)
+        assertEquals(3, carList.size)
     }
 
     @Test
@@ -41,5 +39,15 @@ class CarsTest {
         assertThrows<IllegalArgumentException> {
             cars.getCars(LENGTH_OVER_CARS);
         }
+    }
+
+    @Test
+    fun getWinnerTest() {
+        val moveStrategy = MoveStrategy { true }
+        val cars = Cars(moveStrategy)
+        val carList: List<Car> = cars.getCars(CARS)
+        val winners = cars.getWinners(carList)
+
+        assertEquals("pobi, crong, honux", winners)
     }
 }
