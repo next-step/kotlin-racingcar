@@ -1,6 +1,6 @@
 package racingCar.domain
 
-class Car {
+class Car(val name: String) {
 
     var moveCount: Int = 0
         private set
