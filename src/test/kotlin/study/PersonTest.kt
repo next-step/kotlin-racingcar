@@ -2,30 +2,37 @@ package study
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertAll
 
 class PersonTest {
     @Test
     fun `이름 붙인 인자`() {
         val actual: Person = Person(name = "Lim JunYeong", age = 21, nickname = "JunYeong")
-        assertThat(actual.name).isEqualTo("Lim JunYeong")
-        assertThat(actual.age).isEqualTo(21)
-        assertThat(actual.nickname).isEqualTo("JunYeong")
+        assertAll(
+            { assertThat(actual.name).isEqualTo("Lim JunYeong") },
+            { assertThat(actual.age).isEqualTo(21) },
+            { assertThat(actual.nickname).isEqualTo("JunYeong") }
+        )
     }
 
     @Test
     fun `널 타입`() {
         val actual: Person = Person(name = "Lim JunYeong", age = 21, nickname = null)
-        assertThat(actual.name).isEqualTo("Lim JunYeong")
-        assertThat(actual.age).isEqualTo(21)
-        assertThat(actual.nickname).isNull()
+        assertAll(
+            { assertThat(actual.name).isEqualTo("Lim JunYeong") },
+            { assertThat(actual.age).isEqualTo(21) },
+            { assertThat(actual.nickname).isNull() }
+        )
     }
 
     @Test
     fun `기본 인자`() {
         val actual: Person = Person(name = "Lim JunYeong", age = 21)
-        assertThat(actual.name).isEqualTo("Lim JunYeong")
-        assertThat(actual.age).isEqualTo(21)
-        assertThat(actual.nickname).isEqualTo("Lim JunYeong")
+        assertAll(
+            { assertThat(actual.name).isEqualTo("Lim JunYeong") },
+            { assertThat(actual.age).isEqualTo(21) },
+            { assertThat(actual.nickname).isEqualTo("Lim JunYeong") }
+        )
     }
 
     @Test
@@ -41,8 +48,10 @@ class PersonTest {
         assertThat(person.nickname).isEqualTo("Lim JunYeong")
 
         val actual: Person = person.copy(nickname = "JunYeong")
-        assertThat(actual.name).isEqualTo("Lim JunYeong")
-        assertThat(actual.age).isEqualTo(21)
-        assertThat(actual.nickname).isEqualTo("JunYeong")
+        assertAll(
+            { assertThat(actual.name).isEqualTo("Lim JunYeong") },
+            { assertThat(actual.age).isEqualTo(21) },
+            { assertThat(actual.nickname).isEqualTo("JunYeong") }
+        )
     }
 }
