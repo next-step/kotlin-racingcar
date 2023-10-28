@@ -6,7 +6,7 @@ class DriveConditionImpl : DriveCondition {
 
     override fun checkDriveCondition(): Boolean {
         var randomNumber = Random()
-        return randomNumber.nextInt(10) == IS_DRIVE
+        return randomNumber.nextInt(10) >= IS_DRIVE
     }
 
     companion object {
