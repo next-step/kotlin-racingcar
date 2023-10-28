@@ -1,6 +1,6 @@
 package racing.model.generator
 
-class DocileGenerator(
+class ObedientGenerator(
     private val value: Int,
 ) : Generator {
     override fun generate(): Int {
