@@ -3,6 +3,7 @@ package org.bmsk.racingcar.ui
 import org.bmsk.racingcar.ui.input.RacingCarInputView
 import org.bmsk.racingcar.ui.result.RacingCarResultView
 import org.bmsk.racingcar.ui.string.CarShape
+import org.bmsk.racingcar.ui.string.GuideMessage
 import kotlin.properties.Delegates
 
 class RacingCarView(
@@ -12,35 +13,29 @@ class RacingCarView(
     private var numberOfAttempts by Delegates.notNull<Int>()
 
     fun run() {
-        initRoad()
+        initNumberOfCars()
+        initNumberOfAttempts()
         println()
         printExecutionResults()
     }
 
     private fun initNumberOfCars() {
-        println("자동차 대수는 몇 대인가요?")
+        println(GuideMessage.ASK_CAR_COUNT)
         racingCarInputView.inputNumberOfCars().let { numberOfCars ->
             racingCarResultView.initRacingCarRoad(numberOfCars)
         }
     }
 
     private fun initNumberOfAttempts() {
-        println("시도할 횟수는 몇 회인가요?")
+        println(GuideMessage.ASK_TRY_COUNT)
         numberOfAttempts = racingCarInputView.inputNumberOfAttempts()
     }
 
-    private fun initRoad() {
-        initNumberOfCars()
-        initNumberOfAttempts()
-    }
-
     private fun printExecutionResults() {
-        println("실행 결과")
+        println(GuideMessage.RESULT)
         racingCarResultView.getCarRaceResult(numberOfAttempts).forEach { racingCarRoad ->
             racingCarRoad.cars.forEach { car ->
-                repeat(car.position.xPos) {
-                    print(CarShape.BAR_SHAPE)
-                }
+                repeat(car.position.xPos) { print(CarShape.BAR_SHAPE) }
                 println()
             }
             println()
