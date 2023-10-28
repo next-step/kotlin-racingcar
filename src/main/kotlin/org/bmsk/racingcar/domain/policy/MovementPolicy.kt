@@ -11,11 +11,15 @@ sealed interface MovementPolicy {
 
         override fun move(position: Position): Position {
             val distance = randomGenerator.generate()
-            return if (distance >= 4) {
+            return if (distance >= DISTANCE_CONDITIONS) {
                 position.copy(xPos = position.xPos + 1)
             } else {
                 position
             }
+        }
+
+        companion object {
+            private const val DISTANCE_CONDITIONS = 4
         }
     }
 }
