@@ -3,22 +3,52 @@ package calculator
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class ExpressionParserTest {
-    @Test
-    fun `숫자는 Term으로 파싱한다`() {
-        val actual = ExpressionParser.parse("1").first()
-        val expected = ExpressionElement.Term(1)
+    @ParameterizedTest
+    @ValueSource(strings = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"])
+    fun `숫자는 Term으로 파싱한다`(number: String) {
+        val actual = ExpressionParser.parse(number).first()
 
-        assertThat(actual).isEqualTo(expected)
+        assertThat(actual).isInstanceOf(ExpressionElement.Term::class.java)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["+", "-", "*", "/"])
+    fun `연산자는 Operator로 파싱한다`(operatorExpression: String) {
+        val actual = ExpressionParser.parse(operatorExpression).first()
+
+        assertThat(actual).isInstanceOf(ExpressionElement.Operator::class.java)
     }
 
     @Test
-    fun `연산자는 Operator로 파싱한다`() {
+    fun `식에서 +는 Add로 파싱한다`() {
         val actual = ExpressionParser.parse("+").first()
-        val expected = ExpressionElement.Operator.Add
 
-        assertThat(actual).isEqualTo(expected)
+        assertThat(actual).isEqualTo(ExpressionElement.Operator.Add)
+    }
+
+    @Test
+    fun `식에서 -는 Sub로 파싱한다`() {
+        val actual = ExpressionParser.parse("-").first()
+
+        assertThat(actual).isEqualTo(ExpressionElement.Operator.Sub)
+    }
+
+    @Test
+    fun `식에서 *는 Multi로 파싱한다`() {
+        val actual = ExpressionParser.parse("*").first()
+
+        assertThat(actual).isEqualTo(ExpressionElement.Operator.Multi)
+    }
+
+    @Test
+    fun `식에서 slash는 Div로 파싱한다`() {
+        val actual = ExpressionParser.parse("/").first()
+
+        assertThat(actual).isEqualTo(ExpressionElement.Operator.Div)
     }
 
     @Test
