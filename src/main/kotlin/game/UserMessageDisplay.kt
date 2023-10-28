@@ -1,8 +1,8 @@
 package game
 
-object UserMessageDisplay {
+class UserMessageDisplay : UserOutputHandler {
 
-    fun display(cars: List<Car>) {
+    override fun display(cars: List<Car>) {
         cars.forEach(::display)
         println()
     }
