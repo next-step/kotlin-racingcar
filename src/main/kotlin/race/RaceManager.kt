@@ -1,7 +1,7 @@
 package race
 
-class SimpleCarRace(cars: Int, val moves: Int) {
-    val carList = mutableListOf<SimpleCar>()
+class RaceManager(cars: Int, private val moves: Int) {
+    private val carList = mutableListOf<SimpleCar>()
 
     init {
         repeat(cars) { carList.add(SimpleCar()) }
@@ -9,7 +9,7 @@ class SimpleCarRace(cars: Int, val moves: Int) {
 
     fun start() {
         repeat(moves) {
-            carList.forEach { it.dice() }
+            carList.forEach { it.move() }
             ResultView().printResult(carList)
         }
     }
