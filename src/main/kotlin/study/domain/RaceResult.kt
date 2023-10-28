@@ -7,7 +7,7 @@ data class RaceResult internal constructor(private val result: MutableMap<Int, L
 
     fun getRounds() = result.keys.toList()
 
-    fun getCarPositions(round: Int) = result[round]?.map { it.getPosition() }
+    fun getCarPositions(round: Int) = result[round]?.map { it.position }
 
     companion object {
         fun empty(): RaceResult {

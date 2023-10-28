@@ -1,9 +1,25 @@
 package study.domain
 
-data class RaceCar(private var position: Int = 0) {
+class RaceCar(position: Int = 0) {
+    var position: Int = position
+        private set
+
     fun move() {
         position++
     }
 
-    fun getPosition() = position
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as RaceCar
+
+        if (position != other.position) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return position
+    }
 }
