@@ -1,21 +1,14 @@
-package calculator.application
+package calculator.application.service
 
 import calculator.utill.ValidationRegex
 
-class Console {
-    fun enterExpression(): String {
-        println("입력해 주세요.")
-        val input: String = readln()
+class CalculateCommand(val expr: String?) {
 
-        isValidInput(input)
-        return input
+    init {
+        isValidInput(expr)
     }
 
-    fun out(result: String) {
-        println(result)
-    }
-
-    fun isValidInput(input: String?) {
+    private fun isValidInput(input: String?) {
         if (input.isNullOrBlank()) {
             throw IllegalArgumentException("입력 값이 없습니다.")
         }
