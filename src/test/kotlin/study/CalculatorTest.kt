@@ -45,6 +45,13 @@ class CalculatorTest {
     }
 
     @Test
+    fun `숫자가 없는 사직연산 예외 테스트`() {
+        assertThatThrownBy {
+            StringCalculator("1 + 2 + 3 + 4 + - + * / + + +").calculating()
+        }.isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    @Test
     fun `Null 테스트`() {
         assertThatThrownBy {
             StringCalculator(null).calculating()
