@@ -5,14 +5,15 @@ import step3_4.validator.RoundNumberValidator
 
 object InputView {
 
-    fun enterNumberOfCars(): Int {
+    fun enteredCarInformation(): List<String> {
         val input = readlnOrNull().orEmpty()
-        val carNameList = input.split(DELIMITERS)
+        val removeWhiteSpaceInput = input.replace(" ", "")
+        val carNameList = removeWhiteSpaceInput.split(DELIMITERS)
         CarNameValidator.checkValidate(carNameList)
-        return carNameList.count()
+        return carNameList
     }
 
-    fun enterNumberOfRounds(): Int {
+    fun enteredNumberOfRounds(): Int {
         val input = readlnOrNull().orEmpty()
         RoundNumberValidator.checkValidate(input)
         return input.toInt()
