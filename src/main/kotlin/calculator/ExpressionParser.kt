@@ -3,11 +3,7 @@ package calculator
 import java.lang.IllegalArgumentException
 
 class ExpressionParser {
-    fun parse(expression: String?): List<ExpressionElement> {
-        if (expression.isNullOrBlank()) {
-            throw IllegalArgumentException("Expression cannot be null or blank")
-        }
-
+    fun parse(expression: String): List<ExpressionElement> {
         val splits = expression.split(" ")
 
         return splits.map {

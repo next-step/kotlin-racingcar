@@ -7,6 +7,10 @@ import kotlin.IllegalArgumentException
 
 class Calculator {
     fun calculate(expression: String?): Int {
+        if (expression.isNullOrBlank()) {
+            throw java.lang.IllegalArgumentException("Expression cannot be null or blank")
+        }
+
         val expressions = ExpressionParser().parse(expression)
 
         return when (val result = performCalculation(expressions)) {
