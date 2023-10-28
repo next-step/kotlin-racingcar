@@ -9,9 +9,7 @@ class RacingGame(
     fun play() = (1..tryCount).map {
         cars.map { car ->
             val num = Dice.pitch(diceStrategy)
-            if (num >= 4) {
-                car.forward()
-            }
+            car.move(num)
             car.position
         }
     }
