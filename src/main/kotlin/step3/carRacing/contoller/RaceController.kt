@@ -2,6 +2,7 @@ package step3.carRacing.contoller
 
 import step3.carRacing.model.Car
 import step3.carRacing.view.OutputView
+import step3.carRacing.view.SystemPrint
 import kotlin.random.Random
 
 class RaceController {
@@ -14,9 +15,8 @@ class RaceController {
     fun startRace(tryCount: Int, cars: List<Car>) {
         for (i in 0 until tryCount) {
             tryRound(cars)
-            OutputView.renderRace(i, cars)
+            OutputView.renderRace(i, cars, SystemPrint())
             Thread.sleep(1000)
         }
-
     }
 }
