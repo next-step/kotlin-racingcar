@@ -17,8 +17,8 @@ class RacingGameTest : BehaviorSpec({
             ) { 4 }
             val result = game.play()
             Then("모든 자동차가 앞으로 움직여야 한다") {
-                result.forEach {
-                    it.forEach {
+                result.forEach { round ->
+                    round.forEach {
                         it shouldBeGreaterThan 0
                     }
                 }
