@@ -1,11 +1,12 @@
 package racing
 
 object ResultView {
-    fun printRacingResult(racingResults: List<List<Car>>) {
+    fun printRacingResult(results: List<List<Car>>, winners: List<String>) {
         println("실행 결과")
-        racingResults.forEach { cars ->
+        results.forEach { cars ->
             cars.printRacingResultPerRound()
         }
+        winners.printRacingWinner()
     }
 
     private fun List<Car>.printRacingResultPerRound() {
@@ -21,5 +22,9 @@ object ResultView {
 
     fun transformResult(position: Int): String {
         return (0 until position).map { "-" }.reduce { a, b -> a + b }
+    }
+
+    private fun List<String>.printRacingWinner() {
+        println("${joinToString { it }}가 최종 우승했습니다.")
     }
 }

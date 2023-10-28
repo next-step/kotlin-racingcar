@@ -22,9 +22,17 @@ class CarRacing private constructor(carNames: List<String>) {
 
     private fun List<Car>.recordRacingResultPerRound() = map { it.copy() }
 
+    private fun findWinners(): List<String> {
+        val maxPosition = cars.maxBy { it.position }.position
+        return cars.filter { car -> car.position == maxPosition }.map { it.name }
+    }
+
     companion object {
-        fun race(carNames: List<String>, tryCount: Int): List<List<Car>> {
-            return CarRacing(carNames).race(tryCount)
+        fun race(carNames: List<String>, tryCount: Int): Pair<List<List<Car>>, List<String>> {
+            val carRacing = CarRacing(carNames)
+            val racingResult = carRacing.race(tryCount)
+            val winners = carRacing.findWinners()
+            return racingResult to winners
         }
     }
 }
