@@ -22,7 +22,7 @@ class RacingCarGameServiceTest : BehaviorSpec({
         racingCarGameService.init(3)
         val fixedNumGenerator = FixedNumGenerator()
         When("모든 플레이어들은") {
-            racingCarGameService.run(fixedNumGenerator)
+            racingCarGameService.race(fixedNumGenerator)
             Then("각자 나온 숫자에 따라 전진하거나 정지한다.") {
                 racingCarGameService.racers.shouldForAll {
                     it.count shouldBe 1

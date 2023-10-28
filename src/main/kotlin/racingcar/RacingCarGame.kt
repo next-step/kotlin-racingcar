@@ -15,7 +15,7 @@ fun main() {
     ResultView.printInitMessage()
     repeat(countOfRacing) {
         val randomNumGenerator = RandomNumGenerator()
-        racingCarGameService.run(randomNumGenerator)
+        racingCarGameService.race(randomNumGenerator)
         ResultView.printResult(racingCarGameService.racers)
     }
 }

@@ -15,7 +15,7 @@ class RacingCarGameService(
         }
     }
 
-    fun run(numGenerator: NumGenerator) {
+    fun race(numGenerator: NumGenerator) {
         val newRacers = mutableListOf<Racer>()
         for (racer in racers) {
             val randomNum = numGenerator.getNextInt(RANDOM_NUM_BOUND)
