@@ -3,12 +3,12 @@ package racinggame
 class RacingGame(
     private val cars: List<Car>,
     private val tryCount: Int,
-    private val diceStrategy: () -> Int
+    private val dice: Dice
 ) {
 
     fun play() = (1..tryCount).map {
         cars.map { car ->
-            val num = Dice.pitch(diceStrategy)
+            val num = dice.pitch()
             car.move(num)
             car.position
         }
