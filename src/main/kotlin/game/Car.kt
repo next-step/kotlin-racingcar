@@ -15,12 +15,18 @@ class Car private constructor(private var position: Int = 0, private val name: S
     }
 
     private fun canMove(moveCondition: Int) = moveCondition in 4..9
+
     fun draw(): String {
-        return POSITION_MARKER.repeat(position)
+        return buildString {
+            append(name)
+            append(DELIMITER)
+            append(POSITION_MARKER.repeat(position))
+        }
     }
 
     companion object {
         private const val POSITION_MARKER = "-"
+        private const val DELIMITER = " : "
 
         fun of(name: String): Car {
             return Car(name = name)
