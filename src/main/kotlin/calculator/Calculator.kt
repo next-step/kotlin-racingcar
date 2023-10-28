@@ -1,5 +1,5 @@
 package calculator
 
 interface Calculator {
-    fun calculate(input: UserInput): Int
+    fun calculate(number: UserInput): Int
 }

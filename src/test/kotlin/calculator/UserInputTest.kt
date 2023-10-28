@@ -12,7 +12,7 @@ class UserInputTest {
         val userInput = UserInput("2 + 3 * 4 / 2")
         userInput.validate()
 
-        assertThat(userInput.input).isEqualTo("2 + 3 * 4 / 2")
+        assertThat(userInput.inputString).isEqualTo("2 + 3 * 4 / 2")
     }
 
     @Test
