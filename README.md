@@ -13,12 +13,12 @@
 
 ## 3. 구현 목록
 
-1. [ ] 덧셈
-2. [ ] 뺄셈
-3. [ ] 곱셈
-4. [ ] 나눗셈
-5. [ ] 입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException throw
-6. [ ] 사칙연산 기호가 아닌 경우 IllegalArgumentException throw
-7. [ ] 사칙 연산을 모두 포함하는 기능 구현
+1. [x] 덧셈
+2. [x] 뺄셈
+3. [x] 곱셈
+4. [x] 나눗셈
+5. [x] 입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException throw
+6. [x] 사칙연산 기호가 아닌 경우 IllegalArgumentException throw
+7. [x] 사칙 연산을 모두 포함하는 기능 구현
 
 ---
