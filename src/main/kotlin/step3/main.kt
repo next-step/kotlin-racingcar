@@ -8,7 +8,7 @@ import step3.view.ResultView
 
 fun main() {
     val carList = mutableListOf<Car>()
-    val racing = CarRacing(ResultView)
+    val racing = CarRacing()
 
     OutputView.printEnterNumberOfCarsMessage()
     val numberOfCars = InputView.enterNumberOfCars()
@@ -20,5 +20,7 @@ fun main() {
         carList.add(Car())
     }
 
-    racing.doRacing(numberOfRounds, carList)
+    racing.doRacing(numberOfRounds, carList) { result ->
+        ResultView.showResult(result)
+    }
 }

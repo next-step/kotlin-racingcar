@@ -5,11 +5,10 @@ object InputStringValidator {
      * 3.3과 같이 Double 값이 입력되는 경우 NumberforamtException을 throw 합니다.
      * Double로 변경 후에 Int로 변경해줍니다
      */
-    fun checkValidate(inputString: String?): Int {
-        requireNotNull(inputString) { VALUE_CAN_NOT_BE_NULL }
+    fun checkValidate(inputString: String): Int {
         require(inputString.isNotBlank()) { VALUE_CAN_NOT_BE_NULL }
         inputString.checkStringIsNumber()
-        inputString.checkNumberIsMoreThanOne()
+        inputString.checkNumberIsMoreThanMinimum()
         return inputString.toInt()
     }
 
@@ -26,12 +25,12 @@ object InputStringValidator {
         }
     }
 
-    private fun String.checkNumberIsMoreThanOne() {
-        check(this.toDouble().toInt() > MINIMUM_STRING_LENGTH) { VALUE_MUST_BE_MORE_THAN_ONE }
+    private fun String.checkNumberIsMoreThanMinimum() {
+        check(this.toDouble().toInt() >= MINIMUM_VALUE) { VALUE_MUST_BE_MORE_THAN_ONE }
     }
 
     private const val VALUE_CAN_NOT_BE_NULL = "값이 입력되지 않았습니다"
     private const val VALUE_MUST_BE_NUMBER = "유효한 값이 입력되지 않았습니다"
     private const val VALUE_MUST_BE_MORE_THAN_ONE = "1 이상의 값을 입력해주세요"
-    private const val MINIMUM_STRING_LENGTH = 0
+    private const val MINIMUM_VALUE = 1
 }

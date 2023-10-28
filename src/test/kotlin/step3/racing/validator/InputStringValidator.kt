@@ -32,7 +32,7 @@ class InputStringValidator : StringSpec({
         // when
         // then
         shouldThrowWithMessage<IllegalArgumentException>(expectedMessage) {
-            InputStringValidator.checkValidate(input)
+            InputStringValidator.checkValidate(input ?: "")
         }
     }
     "음수를 입력하면 에러가 발생한다" {
