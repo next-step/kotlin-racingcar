@@ -1,5 +1,6 @@
 package calculator.application.service
 
+import calculator.application.port.`in`.CalculateCommand
 import calculator.application.port.`in`.CalculateUseCase
 import calculator.application.service.Operator.ADD
 import calculator.application.service.Operator.DIV

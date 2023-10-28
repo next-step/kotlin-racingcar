@@ -1,6 +1,6 @@
 package calculator.application
 
-import calculator.application.service.CalculateCommand
+import calculator.application.port.`in`.CalculateCommand
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 

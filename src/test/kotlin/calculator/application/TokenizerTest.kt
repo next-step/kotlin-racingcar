@@ -10,13 +10,13 @@ class TokenizerTest {
 
     @Test
     fun 토큰나이징() {
-        //given
+        // given
         val input = "1 + 1 - 3"
 
-        //when
+        // when
         val actual: List<String> = tokenizer.tokenize(input)
 
-        //then
+        // then
         assertThat(actual).isNotNull
         assertThat(actual).isNotEmpty
         assertThat(actual).isEqualTo(listOf("1", "+", "1", "-", "3"))

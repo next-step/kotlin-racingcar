@@ -1,6 +1,6 @@
 package calculator.application
 
-import calculator.application.service.CalculateCommand
+import calculator.application.port.`in`.CalculateCommand
 import calculator.application.service.Engine
 import calculator.application.service.Tokenizer
 import org.assertj.core.api.Assertions
