@@ -14,8 +14,15 @@ class CarNameValidatorTest : StringSpec({
         }
     }
     "공백 제거" {
-        val input = listOf("sery", "")
+        val input = listOf("pita", "")
         val expectedMessage = "이름을 제대로 입력해 주세요."
+        shouldThrowWithMessage<IllegalStateException>(expectedMessage) {
+            CarNameValidator.checkValidate(input)
+        }
+    }
+    "중복 요소 판단" {
+        val input = listOf("pita", "pita", "poby")
+        val expectedMessage = "중복 요소가 존재 합니다"
         shouldThrowWithMessage<IllegalStateException>(expectedMessage) {
             CarNameValidator.checkValidate(input)
         }
