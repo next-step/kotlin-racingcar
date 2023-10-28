@@ -11,13 +11,13 @@ fun main() {
     val racing = CarRacing()
 
     OutputView.printEnterNumberOfCarsMessage()
-    val numberOfCars = InputView.enterNumberOfCars()
+    val numberOfCars = InputView.enteredCarInformation()
 
     OutputView.printEnterNumberOfRoundMessage()
-    val numberOfRounds = InputView.enterNumberOfRounds()
+    val numberOfRounds = InputView.enteredNumberOfRounds()
 
-    for (i in 1..numberOfCars) {
-        carList.add(Car())
+    for (name in numberOfCars) {
+        carList.add(Car(carName = name))
     }
 
     racing.doRacing(numberOfRounds, carList) { result ->

@@ -3,6 +3,7 @@ package step3_4.racing
 import kotlin.random.Random
 
 class Car(
+    val carName: String,
     private var step: Int = DEFAULT_VALUE
 ) {
     fun moveForward() {

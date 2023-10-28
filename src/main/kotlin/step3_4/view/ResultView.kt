@@ -12,6 +12,7 @@ object ResultView {
     }
 
     private fun showSingleCarRacingResult(car: Car) {
+        print("${car.carName} : ")
         for (i in MINIMUM_STEP..car.currentStep()) {
             print("-")
         }
