@@ -3,7 +3,7 @@ package calculator
 class StringCalculator {
 
     fun calculate(input: String?): Int {
-        input?: throw IllegalArgumentException("input 값 비어 있어!!!")
+        require(!input.isNullOrBlank()) { throw IllegalArgumentException("input 값 비어 있어!!!") }
 
         val split = input.split(" ")
         val remainingElements = split.drop(1)
@@ -18,7 +18,11 @@ class StringCalculator {
     }
 
     private fun applyOperation(currentValue: Int, operation: String, operand: Int): Int {
-        val operator = Operation.values().find { it.operation == operation }
-        return operator?.apply(currentValue, operand) ?: throw IllegalArgumentException("사칙 연산 기호가 아니야~~!!!")
+        try {
+            val operator = Operation.values().first { it.operation == operation }
+            return operator.operate(currentValue, operand)
+        } catch (e: NoSuchElementException) {
+            throw IllegalArgumentException()
+        }
     }
 }
