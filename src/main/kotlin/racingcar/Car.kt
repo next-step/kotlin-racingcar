@@ -1,12 +1,13 @@
 package racingcar
 
-class Car(private val position: Int = 0) {
+class Car(val position: Int = 0) {
 
-    fun move(): Car {
-        return Car(position + 1)
+    fun move(random: Int): Car {
+        if (isMove(random)) return Car(position + 1)
+        return this
     }
 
-    fun print(): String {
-        return "-".repeat(position)
+    private fun isMove(random: Int): Boolean {
+        return random >= 4
     }
 }

@@ -2,11 +2,14 @@ package racingcar
 
 object ResultView {
 
-    fun printResult(cars: List<Car>): List<Car> {
+    fun printResult(cars: List<Car>) {
         cars.forEach { car ->
-            println(car.print())
+            println(print(car))
         }
         println()
-        return cars
+    }
+
+    private fun print(car: Car): String {
+        return "-".repeat(car.position)
     }
 }
