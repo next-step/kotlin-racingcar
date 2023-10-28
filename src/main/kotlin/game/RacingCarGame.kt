@@ -6,7 +6,7 @@ class RacingCarGame() {
         val carCount = UserInputHandler.askForCarCount()
         val retryCount = UserInputHandler.askForRetryCount()
         val cars = Cars.fromCarCount(carCount, RandomMoveConditionGenerator())
-        cars.advance(retryCount)
+        cars.advance(retryCount, UserMessageDisplay::display)
     }
 }
 

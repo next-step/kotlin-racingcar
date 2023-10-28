@@ -12,9 +12,9 @@ class Cars private constructor(
         }
     }
 
-    fun advance(retryCount: Int) = repeat(retryCount) {
+    fun advance(retryCount: Int, action: (List<Car>) -> Unit) = repeat(retryCount) {
         advance()
-        UserMessageDisplay.display(carList)
+        carList.let(action)
     }
 
     companion object {

@@ -14,7 +14,7 @@ class CarsTest {
         val cars = Cars.fromCarCount(carCount, FixedMoveConditionGenerator(fixedMoveCondition))
 
         // when
-        cars.advance(retryCount)
+        cars.advance(retryCount, UserMessageDisplay::display)
         val carList = cars.carList
 
         // then
@@ -31,7 +31,7 @@ class CarsTest {
         val cars = Cars.fromCarCount(carCount, FixedMoveConditionGenerator(fixedMoveCondition))
 
         // when
-        cars.advance(retryCount)
+        cars.advance(retryCount, UserMessageDisplay::display)
         val carList = cars.carList
 
         // then
