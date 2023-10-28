@@ -1,6 +1,6 @@
 package step3_4.validator
 
-object InputStringValidator {
+object RoundNumberValidator {
     /**
      * 3.3과 같이 Double 값이 입력되는 경우 NumberforamtException을 throw 합니다.
      * Double로 변경 후에 Int로 변경해줍니다
