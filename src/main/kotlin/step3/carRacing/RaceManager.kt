@@ -1,6 +1,6 @@
 package step3.carRacing
 
-class RaceManager(private var dispatchHandler: DispatchHandler<Payload>) {
+class RaceManager(private var dispatchHandler: DispatchHandler<Action, Payload>) {
     private var carCount: Int = 0
     private var tryCount: Int = 0
 
