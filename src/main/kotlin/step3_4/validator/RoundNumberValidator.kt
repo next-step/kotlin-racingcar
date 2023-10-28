@@ -5,11 +5,10 @@ object RoundNumberValidator {
      * 3.3과 같이 Double 값이 입력되는 경우 NumberforamtException을 throw 합니다.
      * Double로 변경 후에 Int로 변경해줍니다
      */
-    fun checkValidate(inputString: String): Int {
+    fun checkValidate(inputString: String) {
         require(inputString.isNotBlank()) { VALUE_CAN_NOT_BE_NULL }
         inputString.checkStringIsNumber()
         inputString.checkNumberIsMoreThanMinimum()
-        return inputString.toInt()
     }
 
     /**
