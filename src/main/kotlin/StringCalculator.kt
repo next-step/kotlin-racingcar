@@ -9,7 +9,6 @@ class StringCalculator (private val calculatorString: String?) {
         calculatorString.split(" ").filter { it.isNotBlank() }.filter { it.toIntOrNull() == null }.toMutableList()
     }
 
-    @Throws(IllegalArgumentException::class)
     fun calculating(): Int = numberArgs.reduce { acc, next ->
         when (operatorArgs.removeFirst()) {
             "+" -> plus(acc, next)
