@@ -22,7 +22,7 @@ value class Operand(
 
     companion object {
         fun of(value: String): Operand {
-            val operand = value.toDoubleOrNull() ?: throw IllegalArgumentException("숫자가 아닙니다.")
+            val operand = value.toDoubleOrNull() ?: throw IllegalArgumentException("숫자가 아닙니다. 현재 입력값: $value")
             return Operand(operand)
         }
     }
