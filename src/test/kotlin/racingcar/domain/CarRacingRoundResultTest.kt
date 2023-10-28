@@ -7,11 +7,7 @@ class CarRacingRoundResultTest : BehaviorSpec({
     Given("자동차 경주 라운드 결과 초기값만 세팅하고") {
         val car1 = Car(0, 0)
         val car2 = Car(1, 0)
-        val roundResult = CarRacingRoundResult.createInitialResult(
-            RoundResultConfiguration(
-                cars = listOf(car1, car2)
-            )
-        )
+        val roundResult = CarRacingRoundResult.createInitialResult(listOf(car1, car2))
         When("자동차 경주 라운드 결과 값을 조회하면") {
             val car1Result = roundResult.getCarPosition(0)
             val car2Result = roundResult.getCarPosition(1)
@@ -26,11 +22,7 @@ class CarRacingRoundResultTest : BehaviorSpec({
         val initialCar1 = Car(0, 0)
         val initialCar2 = Car(1, 0)
         val initialCars = listOf(initialCar1, initialCar2)
-        val roundResult = CarRacingRoundResult.createInitialResult(
-            RoundResultConfiguration(
-                cars = initialCars
-            )
-        )
+        val roundResult = CarRacingRoundResult.createInitialResult(initialCars)
         And("자동차 경주 라운드 결과 값을 기록한 후") {
             val movedCar1 = Car(0, 1)
             val movedCar2 = Car(1, 2)
@@ -49,11 +41,7 @@ class CarRacingRoundResultTest : BehaviorSpec({
     }
 
     Given("자동차 경주 라운드 결과를 기록하고") {
-        val roundResult = CarRacingRoundResult.createInitialResult(
-            RoundResultConfiguration(
-                cars = listOf(Car(0, 0), Car(1, 0))
-            )
-        )
+        val roundResult = CarRacingRoundResult.createInitialResult(listOf(Car(0, 0), Car(1, 0)))
         val movedCar1 = Car(0, 1)
         val movedCar2 = Car(1, 2)
         val movedCars = listOf(movedCar1, movedCar2)

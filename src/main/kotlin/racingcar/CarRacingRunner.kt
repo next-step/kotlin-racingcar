@@ -3,15 +3,13 @@ package racingcar
 import racingcar.domain.CarRacingConfiguration
 import racingcar.domain.CarRacingGame
 import racingcar.domain.CarRacingResult
-import racingcar.domain.CarRacingRoundResult
 import racingcar.domain.MoveRule
-import racingcar.domain.OutputConfiguration
 import racingcar.domain.RandomMoveRule
 import racingcar.domain.RandomNumberGeneratorInBound
 import racingcar.view.CarRacingInput
 import racingcar.view.CarRacingInputView
+import racingcar.view.CarRacingOutput
 import racingcar.view.CarRacingOutputView
-import racingcar.view.CarRacingRoundOutput
 
 object CarRacingRunner {
     fun run() {
@@ -23,10 +21,7 @@ object CarRacingRunner {
             result = result
         )
         game.run()
-        drawOutput(
-            configuration = configuration,
-            result = result,
-        )
+        drawOutput(result)
     }
 
     private fun getInput(): CarRacingInput = CarRacingInputView.getInputForStart()
@@ -34,7 +29,6 @@ object CarRacingRunner {
     private fun setResult(configuration: CarRacingConfiguration): CarRacingResult =
         CarRacingResult.createInitialResult(
             configuration = configuration.getCarRacingResultConfiguration(),
-            createInitialRoundResult = { CarRacingRoundResult.createInitialResult(configuration.getRoundResultConfiguration()) },
         )
 
     private fun setGame(
@@ -66,22 +60,10 @@ object CarRacingRunner {
         )
 
     private fun drawOutput(
-        configuration: CarRacingConfiguration,
         result: CarRacingResult,
     ) {
-        val outputConfiguration = configuration.getOutputConfiguration()
-        val output = getCarRacingGameOutput(outputConfiguration, result)
+        val roundResult = result.showCarPositionsByRoundInOrder()
+        val output = CarRacingOutput(roundResult)
         CarRacingOutputView.draw(output)
-    }
-
-    private fun getCarRacingGameOutput(
-        configuration: OutputConfiguration,
-        result: CarRacingResult,
-    ) = buildList {
-        configuration.rounds.forEach { round ->
-            val roundResult = result.getRoundResult(round)
-            val output = CarRacingRoundOutput.from(roundResult)
-            add(output)
-        }
     }
 }

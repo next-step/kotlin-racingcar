@@ -9,31 +9,25 @@ class CarRacingResultTest : BehaviorSpec({
         val car1 = Car(0, 0)
         val car2 = Car(1, 0)
         val racingResult = CarRacingResult.createInitialResult(
-            configuration = CarRacingResultConfiguration(roundRange),
-            createInitialRoundResult = {
-                CarRacingRoundResult.createInitialResult(RoundResultConfiguration(listOf(car1, car2)))
-            }
+            configuration = CarRacingResultConfiguration(listOf(car1, car2), roundRange),
         )
-        When("라운드별 결과를 조회하면") {
-            roundRange.forEach { roundNumber ->
-                val roundResult = racingResult.getRoundResult(roundNumber)
-                Then("라운드 결과가 조횐된다") {
-                    roundResult.getCarPosition(0) shouldBe 0
-                    roundResult.getCarPosition(1) shouldBe 0
+        When("라운드별 자동차 위치를 조회하면") {
+            val result = racingResult.showCarPositionsByRoundInOrder()
+            Then("라운드 별 자동차 위치가 조횐된다") {
+                roundRange.forEach { round ->
+                    val index = round - 1
+                    result[index] shouldBe listOf(0, 0)
                 }
             }
         }
     }
 
     Given("자동차 경주 결과 초기값을 세팅하고") {
-        val roundRange = 1..1
+        val roundRange = 1..2
         val car1 = Car(0, 0)
         val car2 = Car(1, 0)
         val racingResult = CarRacingResult.createInitialResult(
-            configuration = CarRacingResultConfiguration(roundRange),
-            createInitialRoundResult = {
-                CarRacingRoundResult.createInitialResult(RoundResultConfiguration(listOf(car1, car2)))
-            }
+            configuration = CarRacingResultConfiguration(listOf(car1, car2), roundRange),
         )
         And("자동차 경주 라운드 결과 값을 기록한 후") {
             val movedCar1 = Car(0, 1)
@@ -41,11 +35,13 @@ class CarRacingResultTest : BehaviorSpec({
             val movedCars = listOf(movedCar1, movedCar2)
             racingResult.record(1, movedCars)
         }
-        When("라운드별 결과를 조회하면") {
-            val roundResult = racingResult.getRoundResult(1)
+        When("라운드별 자동차 위치를 조회하면") {
+            val result = racingResult.showCarPositionsByRoundInOrder()
             Then("기록된 라운드 결과가 조횐된다") {
-                roundResult.getCarPosition(0) shouldBe 1
-                roundResult.getCarPosition(1) shouldBe 2
+                result[0] shouldBe listOf(1, 2)
+            }
+            Then("기록되지 않은 라운드는 초기값이 조회된다") {
+                result[1] shouldBe listOf(0, 0)
             }
         }
     }

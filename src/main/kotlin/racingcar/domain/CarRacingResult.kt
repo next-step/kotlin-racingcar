@@ -10,17 +10,20 @@ class CarRacingResult private constructor(
         roundResult.record(cars)
     }
 
-    fun getRoundResult(roundNumber: Int): CarRacingRoundResult =
-        resultByRoundNumber[roundNumber] ?: throw IllegalArgumentException("기록된 경기가 아닙니다")
+    fun showCarPositionsByRoundInOrder(): List<List<Int>> {
+        val roundResultsInOrder = resultByRoundNumber.entries.sortedBy { it.key }.map { it.value }
+        return roundResultsInOrder.map { it.getCarPositionsInorder() }
+    }
 
     companion object {
         fun createInitialResult(
             configuration: CarRacingResultConfiguration,
-            createInitialRoundResult: () -> CarRacingRoundResult,
         ): CarRacingResult {
             val resultByRound = mutableMapOf<Int, CarRacingRoundResult>()
-            configuration.roundRange.forEach { round ->
-                resultByRound[round] = createInitialRoundResult()
+            val roundRange = configuration.roundRange
+            val cars = configuration.cars
+            roundRange.forEach { roundNumber ->
+                resultByRound[roundNumber] = CarRacingRoundResult.createInitialResult(cars)
             }
             return CarRacingResult(resultByRound)
         }

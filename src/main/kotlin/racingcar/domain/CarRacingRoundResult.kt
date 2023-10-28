@@ -18,9 +18,9 @@ class CarRacingRoundResult private constructor(
         positionsByCarOrder.entries.sortedBy { it.key }.map { it.value }
 
     companion object {
-        fun createInitialResult(configuration: RoundResultConfiguration): CarRacingRoundResult {
+        fun createInitialResult(cars: List<Car>): CarRacingRoundResult {
             val positionsByCarOrder = mutableMapOf<Int, Int>()
-            configuration.cars.forEach { positionsByCarOrder[it.order] = it.position }
+            cars.forEach { positionsByCarOrder[it.order] = it.position }
             return CarRacingRoundResult(positionsByCarOrder = positionsByCarOrder)
         }
     }
