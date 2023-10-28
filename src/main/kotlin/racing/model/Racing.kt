@@ -10,8 +10,8 @@ class Racing {
         var current: MatchResult = ready(participate)
         val matchResults = ArrayDeque<MatchResult>()
         for (i in 1..repeat) {
-            current = roundGo(current.copy())
-            matchResults.add(current)
+            current = roundGo(current)
+            matchResults.add(current.copy())
         }
         return matchResults
     }
