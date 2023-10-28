@@ -9,8 +9,10 @@ fun main() {
     val inputView = InputView()
     val outputView = OutputView()
 
-    val participate = inputView.participate()
-    val repeat = inputView.repeat()
-    val matchResults = racing.race(participate, repeat)
-    outputView.printResults(matchResults)
+    outputView.printResults(
+        racing.race(
+            inputView.participate(),
+            inputView.repeat()
+        )
+    )
 }
