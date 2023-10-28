@@ -12,7 +12,6 @@ object InputView {
         return input.toInt()
     }
 
-
     fun getNumbersOfTry(): Int {
         println(TRY_INPUT_MESSAGE)
         val input = readlnOrNull()
