@@ -1,7 +1,9 @@
 package calculator.operator
 
+import calculator.operand.Operand
+
 object PlusOperator : Operator {
-    override fun operate(left: Double, right: Double): Double {
+    override fun operate(left: Operand, right: Operand): Double {
         return (left + right)
     }
 
