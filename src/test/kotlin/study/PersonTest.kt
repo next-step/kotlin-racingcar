@@ -30,4 +30,13 @@ class PersonTest {
         )
     }
 
+    @Test
+    fun `default arguments`() {
+        val person = Person("홍길동")
+        assertAll(
+            { assertThat(person.name).isEqualTo("홍길동") },
+            { assertThat(person.age).isNull() },
+            { assertThat(person.nickname).isNull() }
+        )
+    }
 }
