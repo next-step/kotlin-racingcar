@@ -1,4 +1,4 @@
-class StringCalculator constructor(private val calculatorString: String?) {
+class StringCalculator (private val calculatorString: String?) {
 
     private val numberArgs by lazy {
         require(!calculatorString.isNullOrBlank()) { throw IllegalArgumentException()}
