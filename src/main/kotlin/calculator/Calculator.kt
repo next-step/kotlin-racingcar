@@ -1,29 +1,29 @@
 package calculator
 
-class Calculator {
-    private fun add(a: Int, b: Int): Int {
-        return a + b
-    }
+import java.lang.IllegalArgumentException
 
-    private fun subtract(a: Int, b: Int): Int {
-        return a - b
-    }
+enum class Calculator(val symbol: String) {
+    ADD("+") {
+        override fun operation(a: Int, b: Int): Int = a + b
+    },
+    SUBTRACT("-") {
+        override fun operation(a: Int, b: Int): Int = a - b
+    },
+    MULTIPLY("*") {
+        override fun operation(a: Int, b: Int): Int = a * b
+    },
+    DIVIDE("/") {
+        override fun operation(a: Int, b: Int): Int = a / b
+    };
 
-    private fun multiply(a: Int, b: Int): Int {
-        return a * b
-    }
+    abstract fun operation(a: Int, b: Int): Int
 
-    private fun divide(a: Int, b: Int): Int {
-        return a / b
-    }
+    companion object {
+        private val map = Calculator.values().associateBy { it.symbol }
+        operator fun get(symbol: String): Calculator {
+            if (map[symbol] == null) throw IllegalArgumentException("Invalid operator : $symbol")
 
-    fun calculate(a: Int, op: String, b: Int): Int {
-        return when (op) {
-            "+" -> add(a, b)
-            "-" -> subtract(a, b)
-            "*" -> multiply(a, b)
-            "/" -> divide(a, b)
-            else -> throw IllegalArgumentException("Invalid operator : $op")
+            return map[symbol]!!
         }
     }
 }

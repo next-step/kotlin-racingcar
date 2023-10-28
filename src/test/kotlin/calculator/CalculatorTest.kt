@@ -9,27 +9,27 @@ class CalculatorTest {
 
     @Test
     fun `덧셈 테스트`() {
-        assertThat(Calculator().calculate(1, "+", 3)).isEqualTo(4)
+        assertThat(Calculator.ADD.operation(1, 3)).isEqualTo(4)
     }
 
     @Test
     fun `뺄셈 테스트`() {
-        assertThat(Calculator().calculate(1, "-", 3)).isEqualTo(-2)
+        assertThat(Calculator.SUBTRACT.operation(1, 3)).isEqualTo(-2)
     }
 
     @Test
     fun `곱셈 테스트`() {
-        assertThat(Calculator().calculate(1, "*", 3)).isEqualTo(3)
+        assertThat(Calculator.MULTIPLY.operation(1, 3)).isEqualTo(3)
     }
 
     @Test
     fun `나눗셈 테스트`() {
-        assertThat(Calculator().calculate(1, "/", 3)).isEqualTo(0)
+        assertThat(Calculator.DIVIDE.operation(1, 3)).isEqualTo(0)
     }
 
     @Test
     fun `미지원 연산자 테스트`() {
-        assertThatThrownBy { Calculator().calculate(3, "%", 7) }
+        assertThatThrownBy { Calculator["%"].operation(3, 7) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageContaining("Invalid operator : %")
     }
