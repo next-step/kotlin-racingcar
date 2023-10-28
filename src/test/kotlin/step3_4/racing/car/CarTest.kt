@@ -1,8 +1,8 @@
-package step3.racing.car
+package step3_4.racing.car
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import step3.racing.Car
+import step3_4.racing.Car
 
 class CarTest : StringSpec({
     "current_step이 기본 값을 잘 반환한다" {

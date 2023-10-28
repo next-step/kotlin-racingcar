@@ -1,6 +1,6 @@
-package step3.view
+package step3_4.view
 
-import step3.validator.InputStringValidator
+import step3_4.validator.InputStringValidator
 
 object InputView {
 

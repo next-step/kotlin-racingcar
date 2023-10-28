@@ -1,10 +1,10 @@
-package step3
+package step3_4
 
-import step3.racing.Car
-import step3.racing.CarRacing
-import step3.view.InputView
-import step3.view.OutputView
-import step3.view.ResultView
+import step3_4.racing.Car
+import step3_4.racing.CarRacing
+import step3_4.view.InputView
+import step3_4.view.OutputView
+import step3_4.view.ResultView
 
 fun main() {
     val carList = mutableListOf<Car>()

@@ -1,6 +1,6 @@
-package step3.view
+package step3_4.view
 
-import step3.racing.Car
+import step3_4.racing.Car
 
 object ResultView {
     fun showResult(carList: List<Car>) {

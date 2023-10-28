@@ -1,8 +1,8 @@
-package step3.racing.validator
+package step3_4.racing.validator
 
 import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.core.spec.style.StringSpec
-import step3.validator.InputStringValidator
+import step3_4.validator.InputStringValidator
 
 class InputStringValidator : StringSpec({
     "숫자가 아닌 값을 입력하면 에러가 발생한다" {

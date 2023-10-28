@@ -1,4 +1,4 @@
-package step3.racing
+package step3_4.racing
 
 class CarRacing {
 

@@ -1,4 +1,4 @@
-package step3.validator
+package step3_4.validator
 
 object InputStringValidator {
     /**
