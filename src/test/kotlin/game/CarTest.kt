@@ -65,4 +65,18 @@ class CarTest {
         // then
         assertThat(actual).isEqualTo(expected)
     }
+
+    @ParameterizedTest
+    @CsvSource(value = ["0:1", "1:1", "2:2"], delimiter = ':')
+    fun `자동차 위치를 비교하여 더 큰 위치를 반환한다`(position: Int, expected: Int) {
+        // given
+        var car = Car.of("honux")
+        car.move(advanceCount)
+
+        // when
+        val actual = car.maxPosition(position)
+
+        // then
+        assertThat(actual).isEqualTo(expected)
+    }
 }

@@ -1,6 +1,6 @@
 package game
 
-class Car private constructor(private var position: Int = 0, private val name: String) {
+class Car private constructor(private var position: Int = 0, val name: String) {
 
     fun move(moveCondition: Int) {
         when {
@@ -22,6 +22,10 @@ class Car private constructor(private var position: Int = 0, private val name: S
             append(DELIMITER)
             append(POSITION_MARKER.repeat(position))
         }
+    }
+
+    fun maxPosition(position: Int): Int {
+        return maxOf(position, this.position)
     }
 
     companion object {
