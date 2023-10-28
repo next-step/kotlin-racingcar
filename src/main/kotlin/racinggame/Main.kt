@@ -8,18 +8,10 @@ fun main() {
 
     val game = RacingGame(
         (1..carCount).map { Car() },
+        tryCount
     ) { Random().nextInt() }
 
-    val result = (1..tryCount).map { _ ->
-        game.play()
-        game.currentPositions().map {
-            (0..it).map {
-                "-"
-            }.reduce { s1, s2 ->
-                s1 + s2
-            }
-        }
-    }
+    val result = game.play().translate()
 
     OutputView.printRacingResult(result)
 }

@@ -7,16 +7,20 @@ class RacingGameTest : BehaviorSpec({
 
     Given("자동차 게임 시작") {
         When("4이상의 숫자가 나온 경우") {
+            val tryCount = 1
             val game = RacingGame(
                 listOf(
                     Car(),
                     Car()
-                )
+                ),
+                tryCount
             ) { 4 }
-            game.play()
+            val result = game.play()
             Then("모든 자동차가 앞으로 움직여야 한다") {
-                game.currentPositions().forEach {
-                    it shouldBeGreaterThan 0
+                result.forEach {
+                    it.forEach {
+                        it shouldBeGreaterThan 0
+                    }
                 }
             }
         }
