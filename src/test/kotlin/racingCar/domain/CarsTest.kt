@@ -13,7 +13,7 @@ class CarsTest {
 
     @Test
     fun moveCarTest() {
-        val carList: List<Car> = List(CAR_SIZE) { Car() }
+        val carList: List<Car> = List(CAR_SIZE) { Car("testCar") }
         val moveStrategy = MoveStrategy { true }
         val cars = Cars(moveStrategy)
         cars.moveCar(carList, TRY_COUNT)

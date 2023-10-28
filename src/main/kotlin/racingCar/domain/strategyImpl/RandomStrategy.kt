@@ -3,7 +3,7 @@ package racingCar.domain.strategyImpl
 import racingCar.domain.strategy.MoveStrategy
 import kotlin.random.Random
 
-class RandomStrategy: MoveStrategy {
+class RandomStrategy : MoveStrategy {
 
     override fun isMove(): Boolean {
         val randomValue = Random.nextInt(LIMIT_NUMBER)

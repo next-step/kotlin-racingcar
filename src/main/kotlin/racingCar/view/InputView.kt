@@ -14,4 +14,10 @@ object InputView {
             throw IllegalArgumentException(ErrorMessage.INPUT_ERROR.message)
         }
     }
+
+    fun inputCars(): String {
+        val input = readLine()
+        require(!input.isNullOrEmpty()) { ErrorMessage.NULL_EMPTY_MESSAGE.message }
+        return input
+    }
 }

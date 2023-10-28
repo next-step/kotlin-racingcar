@@ -6,15 +6,13 @@ import racingCar.view.InputView
 import racingCar.view.OutputView
 
 fun main() {
-    OutputView.printCarCount()
-    val carCount = InputView.inputNumber()
+    OutputView.printCarName()
+    val inputCars = InputView.inputCars()
     OutputView.printTryCount()
     val tryCount = InputView.inputNumber()
     OutputView.printExecuteResult()
 
-    // List factory 함수 사용
-    val carList: List<Car> = List(carCount) { Car() }
-
     val cars = Cars()
+    val carList: List<Car> = cars.getCars(inputCars)
     cars.moveCar(carList, tryCount)
 }
