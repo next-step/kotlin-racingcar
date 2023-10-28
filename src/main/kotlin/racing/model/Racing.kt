@@ -7,14 +7,14 @@ import java.util.stream.IntStream
 class Racing {
     private val strategy = MoveRandomStrategy(RandomGenerator())
 
-    fun race(participate: Int, repeat: Int): List<MatchResult> {
+    fun race(participate: Int, repeat: Int): ArrayDeque<MatchResult> {
         var current: MatchResult = ready(participate)
         val matchResults = ArrayDeque<MatchResult>()
         for (i in 1..repeat) {
             current = roundGo(current.copy())
             matchResults.add(current)
         }
-        return matchResults.toList()
+        return matchResults
     }
 
     private fun ready(participate: Int): MatchResult {

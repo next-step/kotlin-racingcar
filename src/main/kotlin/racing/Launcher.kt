@@ -1,6 +1,5 @@
 package racing
 
-import racing.model.MatchResult
 import racing.model.Racing
 import racing.view.InputView
 import racing.view.OutputView
@@ -10,8 +9,8 @@ fun main() {
     val inputView = InputView()
     val outputView = OutputView()
 
-    val participate: Int = inputView.participate()
-    val repeat: Int = inputView.repeat()
-    val results: List<MatchResult> = racing.race(participate, repeat)
-    outputView.printResults(results)
+    val participate = inputView.participate()
+    val repeat = inputView.repeat()
+    val matchResults = racing.race(participate, repeat)
+    outputView.printResults(matchResults)
 }
