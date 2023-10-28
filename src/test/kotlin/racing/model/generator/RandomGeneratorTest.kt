@@ -3,7 +3,6 @@ package racing.model.generator
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.ints.shouldBeInRange
-import java.util.stream.IntStream
 
 class RandomGeneratorTest : StringSpec({
 
@@ -20,8 +19,7 @@ class RandomGeneratorTest : StringSpec({
 
     "1에서 9 까지의 모든 숫자가 나와야한다" {
         val generator = RandomGenerator()
-        val acutal: Set<Int> = IntStream.range(1, 100)
-            .boxed()
+        val acutal: Set<Int> = (1..100)
             .map { generator.generate() }
             .toList()
             .toSet()

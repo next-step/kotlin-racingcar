@@ -2,7 +2,6 @@ package racing.model
 
 import racing.model.generator.RandomGenerator
 import racing.model.move.MoveRandomStrategy
-import java.util.stream.IntStream
 
 class Racing {
     private val strategy = MoveRandomStrategy(RandomGenerator())
@@ -18,8 +17,7 @@ class Racing {
     }
 
     private fun ready(participate: Int): MatchResult {
-        val cars = IntStream.rangeClosed(1, participate)
-            .boxed()
+        val cars = (1..participate)
             .map { Car(it, 0) }
             .toList()
         return MatchResult(ArrayDeque(cars))
