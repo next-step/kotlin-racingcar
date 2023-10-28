@@ -1,7 +1,8 @@
-package step3.carRacing
+package step3.carRacing.model
 
-import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
+import step3.carRacing.CarGenerator
 
 internal class CarGeneratorTest{
     @Test
