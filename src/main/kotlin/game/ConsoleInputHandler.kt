@@ -7,9 +7,9 @@ class ConsoleInputHandler : UserInputHandler {
         return readInput()
     }
 
-    override fun askForRetryCount(): Int {
+    override fun askForRetryCount(): String {
         println(RETRY_COUNT_QUESTION)
-        return readInput().let { InputValidator.validateInput(it); it.toInt() }
+        return readInput()
     }
 
     private fun readInput(): String {

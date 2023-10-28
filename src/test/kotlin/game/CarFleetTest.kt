@@ -41,9 +41,10 @@ class CarFleetTest {
         val honux = Car.of("honux")
         val cars = listOf(pobi, crong, honux)
         val carFleet = CarFleet.from(cars)
+        val userMessageDisplay = UserMessageDisplay()
 
         // when
-        carFleet.advance(retryCount, FixedMoveConditionGenerator(4))
+        carFleet.advance(retryCount, FixedMoveConditionGenerator(4), userMessageDisplay::display)
 
         // then
         assertThat(pobi.getPosition()).isEqualTo(retryCount)

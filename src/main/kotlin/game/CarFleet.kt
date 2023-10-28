@@ -7,9 +7,10 @@ class CarFleet private constructor(private val cars: List<Car>) {
         return cars.filter { it.isSamePosition(maxPosition) }.map { it.name }
     }
 
-    fun advance(retryCount: Int, moveConditionGenerator: MoveConditionGenerator) {
+    fun advance(retryCount: Int, moveConditionGenerator: MoveConditionGenerator, action: (List<Car>) -> Unit) {
         repeat(retryCount) {
             cars.forEach { car -> car.move(moveConditionGenerator.generate()) }
+            action(cars)
         }
     }
 

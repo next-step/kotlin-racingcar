@@ -7,14 +7,17 @@ class RacingCarGame(
 ) {
 
     fun start() {
-        val carCount = userInputHandler.askForCarCount()
-        val retryCount = userInputHandler.askForRetryCount()
-        val cars = Cars.fromCarCount(carCount, moveConditionGenerator)
-        cars.advance(retryCount, userOutputHandler::display)
+        val cars = getCars()
+        val retryCount = getRetryCount()
+        cars.let {
+            it.advance(retryCount, moveConditionGenerator, userOutputHandler::display)
+            userOutputHandler.displayWinners(it.findWinner())
+        }
     }
-}
 
-fun main() {
-    val racingCarGame = RacingCarGame()
-    racingCarGame.start()
+    private fun getRetryCount(): Int =
+        userInputHandler.askForRetryCount().let { InputValidator.validateCount(it); it.toInt() }
+
+    private fun getCars(): CarFleet = userInputHandler.askForCarNames().let { CarNameParser.parse(it) }
+        .let { CarNameValidator.validate(it); CarFleet.of(it) }
 }
