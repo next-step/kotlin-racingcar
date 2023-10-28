@@ -11,38 +11,38 @@ class Calculator {
             throw java.lang.IllegalArgumentException("Expression cannot be null or blank")
         }
 
-        val expressions = ExpressionParser().parse(expression)
+        val expressionElements = ExpressionParser().parse(expression)
 
-        return when (val result = performCalculation(expressions)) {
+        return when (val result = performCalculation(expressionElements)) {
             is ExpressionElement.Term -> result.value
             is ExpressionElement.Operator -> throw IllegalArgumentException("Last type must be number")
         }
     }
 
     private fun performCalculation(expressionElements: List<ExpressionElement>): ExpressionElement {
-        val expressionQueue: Queue<ExpressionElement> = LinkedList(expressionElements)
+        val remainedElements: Queue<ExpressionElement> = LinkedList(expressionElements)
 
-        val firstItem = expressionQueue.poll()
-        if (firstItem !is ExpressionElement.Term) {
+        val firstElement = remainedElements.poll()
+        if (firstElement !is ExpressionElement.Term) {
             throw IllegalArgumentException("First type must be number")
         }
 
-        val expressionStack = Stack<ExpressionElement>().apply {
-            push(firstItem)
+        val calculateStack = Stack<ExpressionElement>().apply {
+            push(firstElement)
         }
 
-        while (expressionQueue.isNotEmpty()) {
+        while (remainedElements.isNotEmpty()) {
             throwIfSameType(
-                expressionQueue.peek(),
-                expressionStack.peek(),
+                remainedElements.peek(),
+                calculateStack.peek(),
             )
 
-            val result = operate(expressionStack, expressionQueue.poll())
+            val result = operate(calculateStack, remainedElements.poll())
 
-            expressionStack.push(result)
+            calculateStack.push(result)
         }
 
-        return expressionStack.pop()
+        return calculateStack.pop()
     }
 
     private fun throwIfSameType(o1: ExpressionElement, o2: ExpressionElement) {
