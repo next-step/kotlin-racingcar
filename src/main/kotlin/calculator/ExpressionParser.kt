@@ -1,6 +1,6 @@
 package calculator
 
-class ExpressionParser {
+object ExpressionParser {
     fun parse(expression: String): List<ExpressionElement> {
         val splits = expression.split(" ")
 
