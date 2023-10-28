@@ -9,13 +9,7 @@ class Calculator(private val inputStream: InputStream, private val outputStream:
         val validOperator = charArrayOf('+', '-', '*', '/')
     }
 
-    inner class Operation(val operator: Char, val operand: Int) {
-        init {
-            if (!validOperator.contains(operator)) {
-                throw IllegalArgumentException("Wrong operator!")
-            }
-        }
-    }
+    inner class Operation(val operator: Char, val operand: Int)
 
     fun run() {
         val expression = readInput()
@@ -25,10 +19,7 @@ class Calculator(private val inputStream: InputStream, private val outputStream:
 
     private fun readInput(): String {
         val expression = inputStream.reader().buffered().readLine()
-
-        if (expression.isNullOrEmpty()) {
-            throw IllegalArgumentException("Empty expression!")
-        }
+        require(!expression.isNullOrEmpty()) { "Empty expression!" }
 
         return expression
     }
@@ -38,6 +29,8 @@ class Calculator(private val inputStream: InputStream, private val outputStream:
         val parsedExpression = "+ $expression".split(" ").chunked(2).map { it -> Pair(it[0], it[1]) }
 
         for (operationItem in parsedExpression) {
+            require(validOperator.contains(operationItem.first[0])) { "Wrong operator!" }
+
             operationList.add(Operation(operationItem.first[0], operationItem.second.toInt()))
         }
 
@@ -60,15 +53,11 @@ class Calculator(private val inputStream: InputStream, private val outputStream:
         return result
     }
 
-    private fun calculateAdd(x: Int, y: Int): Int =
-        x + y
+    private fun calculateAdd(x: Int, y: Int): Int = x + y
 
-    private fun calculateSubtract(x: Int, y: Int): Int =
-        x - y
+    private fun calculateSubtract(x: Int, y: Int): Int = x - y
 
-    private fun calculateMultiply(x: Int, y: Int): Int =
-        x * y
+    private fun calculateMultiply(x: Int, y: Int): Int = x * y
 
-    private fun calculateDivide(x: Int, y: Int): Int =
-        x / y
+    private fun calculateDivide(x: Int, y: Int): Int = x / y
 }
