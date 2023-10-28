@@ -10,7 +10,7 @@ internal class ValidatorTest {
         val numbers = mutableListOf<Long>()
 
         assertThrows<IllegalArgumentException> {
-            Validator().validateInput(numbers, mutableListOf(Operator.PLUS))
+            UserInterface.validateInput(numbers, mutableListOf(Operator.PLUS))
         }
     }
 
@@ -19,7 +19,7 @@ internal class ValidatorTest {
         val operators = mutableListOf<Operator>()
 
         assertThrows<IllegalArgumentException> {
-            Validator().validateInput(mutableListOf(1L), operators)
+            UserInterface.validateInput(mutableListOf(1L), operators)
         }
     }
 
@@ -29,7 +29,7 @@ internal class ValidatorTest {
         val operators = mutableListOf(Operator.PLUS)
 
         assertThrows<IllegalArgumentException> {
-            Validator().validateInput(numbers, operators)
+            UserInterface.validateInput(numbers, operators)
         }
     }
 
@@ -39,7 +39,7 @@ internal class ValidatorTest {
         val operators = mutableListOf(Operator.PLUS, Operator.MINUS)
 
         assertThrows<IllegalArgumentException> {
-            Validator().validateInput(numbers, operators)
+            UserInterface.validateInput(numbers, operators)
         }
     }
 
@@ -48,7 +48,7 @@ internal class ValidatorTest {
         val input = "a"
 
         assertThrows<IllegalArgumentException> {
-            Validator().validateContinue(input)
+            UserInterface.validateContinue(input)
         }
     }
 }
