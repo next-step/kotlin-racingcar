@@ -10,7 +10,7 @@ class RacingCarGameService(
 ) {
 
     fun init(countOfRacer: Int) {
-        for (i in 1..countOfRacer) {
+        repeat(countOfRacer) {
             racers.add(Racer())
         }
     }
