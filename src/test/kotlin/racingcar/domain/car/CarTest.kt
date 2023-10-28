@@ -1,7 +1,8 @@
-package racingcar.domain
+package racingcar.domain.car
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
+import racingcar.domain.car.Car
 
 class CarTest : FunSpec({
     context("이동") {

@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.rule
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe

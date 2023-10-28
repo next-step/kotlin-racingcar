@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.rule
 
 class RandomNumberGeneratorInBound: RandomNumberGenerator {
     private val randomNumberRange = (0..9)

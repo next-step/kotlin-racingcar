@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.car
 
 object CarGenerator {
     fun createInOrder(count: Int): List<Car> =

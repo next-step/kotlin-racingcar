@@ -1,11 +1,11 @@
 package racingcar
 
-import racingcar.domain.CarRacingConfiguration
-import racingcar.domain.CarRacingGame
-import racingcar.domain.CarRacingResult
-import racingcar.domain.MoveRule
-import racingcar.domain.RandomMoveRule
-import racingcar.domain.RandomNumberGeneratorInBound
+import racingcar.domain.configuration.CarRacingConfiguration
+import racingcar.domain.game.CarRacingGame
+import racingcar.domain.result.CarRacingResult
+import racingcar.domain.rule.MoveRule
+import racingcar.domain.rule.RandomMoveRule
+import racingcar.domain.rule.RandomNumberGeneratorInBound
 import racingcar.view.CarRacingInput
 import racingcar.view.CarRacingInputView
 import racingcar.view.CarRacingOutput

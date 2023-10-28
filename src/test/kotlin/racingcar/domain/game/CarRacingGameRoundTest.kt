@@ -1,9 +1,12 @@
-package racingcar.domain
+package racingcar.domain.game
 
 import io.kotest.core.spec.style.ExpectSpec
 import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.booleans.shouldBeTrue
+import racingcar.domain.rule.RandomNumberGeneratorMock
+import racingcar.domain.car.Car
+import racingcar.domain.rule.RandomMoveRule
 
 class CarRacingGameRoundTest : ExpectSpec({
     expect("라운드 생성시 전달된 자동차와 이동 규칙으로 라운드가 진행된다") {

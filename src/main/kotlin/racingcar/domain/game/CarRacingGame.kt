@@ -1,4 +1,9 @@
-package racingcar.domain
+package racingcar.domain.game
+
+import racingcar.domain.car.Car
+import racingcar.domain.configuration.CarRacingGameConfiguration
+import racingcar.domain.result.CarRacingResult
+import racingcar.domain.rule.MoveRule
 
 class CarRacingGame private constructor(
     private val cars: List<Car>,

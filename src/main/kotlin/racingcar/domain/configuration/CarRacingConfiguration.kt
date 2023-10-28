@@ -1,5 +1,7 @@
-package racingcar.domain
+package racingcar.domain.configuration
 
+import racingcar.domain.car.Car
+import racingcar.domain.car.CarGenerator
 import racingcar.view.CarRacingInput
 import java.lang.IllegalArgumentException
 

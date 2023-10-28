@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.rule
 
 import io.kotest.core.spec.style.ExpectSpec
 import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual

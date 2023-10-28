@@ -1,4 +1,7 @@
-package racingcar.domain
+package racingcar.domain.game
+
+import racingcar.domain.rule.MoveRule
+import racingcar.domain.car.Car
 
 class CarRacingGameRound(
     private val cars: List<Car>,

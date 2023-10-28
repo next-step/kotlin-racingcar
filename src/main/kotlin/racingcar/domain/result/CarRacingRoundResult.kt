@@ -1,5 +1,6 @@
-package racingcar.domain
+package racingcar.domain.result
 
+import racingcar.domain.car.Car
 import java.lang.IllegalArgumentException
 
 class CarRacingRoundResult private constructor(

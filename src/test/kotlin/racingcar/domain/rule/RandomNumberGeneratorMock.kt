@@ -1,4 +1,6 @@
-package racingcar.domain
+package racingcar.domain.rule
+
+import racingcar.domain.rule.RandomNumberGenerator
 
 class RandomNumberGeneratorMock(
     private val number: Int,

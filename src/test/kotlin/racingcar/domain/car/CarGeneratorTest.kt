@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.domain.car
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.booleans.shouldBeTrue

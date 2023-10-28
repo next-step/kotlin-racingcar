@@ -1,7 +1,9 @@
-package racingcar.domain
+package racingcar.domain.result
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
+import racingcar.domain.configuration.CarRacingResultConfiguration
+import racingcar.domain.car.Car
 
 class CarRacingResultTest : BehaviorSpec({
     Given("자동차 경주 결과 초기값만 세팅하고") {
