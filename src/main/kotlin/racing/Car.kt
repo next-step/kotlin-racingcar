@@ -1,6 +1,6 @@
 package racing
 
-data class Car(private var _position: Int = 1) {
+data class Car(val name: String, private var _position: Int = 1) {
     val position get() = _position
 
     fun moveOrStop(random: Int) {

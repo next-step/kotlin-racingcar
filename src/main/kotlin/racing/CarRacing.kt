@@ -2,8 +2,8 @@ package racing
 
 import kotlin.random.Random
 
-class CarRacing private constructor(carCount: Int) {
-    private val cars = List(carCount) { Car() }
+class CarRacing private constructor(carNames: List<String>) {
+    private val cars = carNames.map { Car(it) }
 
     private fun race(tryCount: Int): List<List<Int>> {
         return List(tryCount) {
@@ -23,8 +23,8 @@ class CarRacing private constructor(carCount: Int) {
     private fun List<Car>.recordRacingResultPerRound() = map { it.position }
 
     companion object {
-        fun race(carCount: Int, tryCount: Int): List<List<Int>> {
-            return CarRacing(carCount).race(tryCount)
+        fun race(carNames: List<String>, tryCount: Int): List<List<Int>> {
+            return CarRacing(carNames).race(tryCount)
         }
     }
 }

@@ -6,7 +6,7 @@ import io.kotest.matchers.shouldBe
 class CarTest : BehaviorSpec({
     given("무작위 값이 4 이상일 때 1만큼 전진하는 자동차의 현재 위치가 1이다") {
         var position = 1
-        val car = Car(_position = position)
+        val car = Car("name", _position = position)
         `when`("무작위 값이 4라고 하면") {
             val random = 4
             car.moveOrStop(random)
