@@ -8,10 +8,11 @@ class CarRaceGame {
     init {
         viewer.inputCars()
         viewer.inputRound()
-        carRace = CarRace(viewer.getCars())
+        carRace = CarRace(viewer.getCarsCount())
     }
 
     fun startGame() {
+        viewer.showResultWords()
         viewer.showCarStatus(carRace.getCarStatus())
         repeat(viewer.getRound()) {
             carRace.doRound()

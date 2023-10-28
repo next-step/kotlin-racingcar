@@ -2,17 +2,16 @@ package step3
 
 class Viewer {
 
-    private var cars: Int = 0
+    private var carsCount: Int = 0
     private var round: Int = 0
-    private var result = false
 
-    fun getCars() = cars
+    fun getCarsCount() = carsCount
 
     fun getRound() = round
 
     fun inputCars() {
         println("자동차 대수는 몇 대 인가요?")
-        cars = readln().toInt()
+        carsCount = readln().toInt()
     }
 
     fun inputRound() {
@@ -21,13 +20,13 @@ class Viewer {
     }
 
     fun showCarStatus(carStatus: List<Int>) {
-        if (!result) {
-            result = true
-            println("\n실행 결과")
-        }
         carStatus.forEach {
             println("-".repeat(it))
         }
         println()
+    }
+
+    fun showResultWords() {
+        println("\n실행 결과")
     }
 }

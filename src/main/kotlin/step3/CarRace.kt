@@ -1,17 +1,13 @@
 package step3
 
 class CarRace(
-    cars: Int,
+    carsCount: Int,
 ) {
-    private val carStatus = MutableList(cars) { 1 }
+    private val carsStatus = MutableList(carsCount) { Car() }
 
-    fun getCarStatus() = carStatus
-
-    private fun isForward() = (0..9).random() >= 4
+    fun getCarStatus() = carsStatus.map { it.getPosition() }.toList()
 
     fun doRound() {
-        carStatus.indices.forEach {
-            if (isForward()) carStatus[it]++
-        }
+        carsStatus.forEach { it.doForwardOrNot() }
     }
 }
