@@ -1,4 +1,5 @@
 package study.step3.inteface
 
-interface MoveStrategy {
+fun interface MoveStrategy {
+    fun shouldMove(): Boolean
 }
