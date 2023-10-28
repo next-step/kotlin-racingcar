@@ -4,7 +4,7 @@ fun execute(input: String?): Int {
     validateInput(input)
 
     val numbers: List<Int> = extractNumbers(input!!)
-    val operators: List<Char> = extractOperators(input)
+    val operators: List<Operator> = extractOperators(input)
 
     return calculate(numbers, operators)
 }
@@ -21,22 +21,19 @@ private fun extractNumbers(input: String) = input.split("[+\\-*/]".toRegex())
             ?: throw IllegalArgumentException("입력값은 숫자와 사칙연산('+', '-', '*', '/')만 기입해주세요.")
     }
 
-private fun extractOperators(input: String) = input.filter { it in "+-*/" }
-    .toList()
+private fun extractOperators(input: String): List<Operator> {
+    return input.filter { it in "+-*/" }
+        .map { Operator.of(it.toString()) }
+}
 
 private fun calculate(
     numbers: List<Int>,
-    operators: List<Char>
+    operators: List<Operator>
 ): Int {
     var result: Int = numbers[0]
 
     for (i in 1 until numbers.size) {
-        when (operators[i - 1]) {
-            '+' -> result = add(result, numbers[i])
-            '-' -> result = subtract(result, numbers[i])
-            '*' -> result = multiply(result, numbers[i])
-            '/' -> result = divide(result, numbers[i])
-        }
+        result = operators[i - 1].operation(result, numbers[i])
     }
 
     return result

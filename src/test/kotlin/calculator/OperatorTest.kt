@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 @DisplayName("계산 기능 단위 테스트")
-class CalculateTest {
+class OperatorTest {
 
     @Test
     fun `덧셈 테스트`() {
