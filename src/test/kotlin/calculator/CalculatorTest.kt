@@ -9,46 +9,27 @@ class CalculatorTest {
 
     @Test
     fun `덧셈 테스트`() {
-        assertThat(Calculator().run("1 + 3")).isEqualTo(4)
+        assertThat(Calculator().calculate(1, "+", 3)).isEqualTo(4)
     }
 
     @Test
     fun `뺄셈 테스트`() {
-        assertThat(Calculator().run("1 - 3")).isEqualTo(-2)
+        assertThat(Calculator().calculate(1, "-", 3)).isEqualTo(-2)
     }
 
     @Test
     fun `곱셈 테스트`() {
-        assertThat(Calculator().run("1 * 3")).isEqualTo(3)
+        assertThat(Calculator().calculate(1, "*", 3)).isEqualTo(3)
     }
 
     @Test
     fun `나눗셈 테스트`() {
-        assertThat(Calculator().run("1 / 3")).isEqualTo(0)
-    }
-
-    @Test
-    fun `연산자 종합 테스트`() {
-        assertThat(Calculator().run("1 + 3 / 2 * 4 - 1")).isEqualTo(7)
-    }
-
-    @Test
-    fun `빈 문자열 전달 테스트`() {
-        assertThatThrownBy { Calculator().run("  ") }
-            .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining("Formula should not be null or empty")
-    }
-
-    @Test
-    fun `Null 전달 테스트`() {
-        assertThatThrownBy { Calculator().run(null) }
-            .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining("Formula should not be null or empty")
+        assertThat(Calculator().calculate(1, "/", 3)).isEqualTo(0)
     }
 
     @Test
     fun `미지원 연산자 테스트`() {
-        assertThatThrownBy { Calculator().run("3 + 6 % 7") }
+        assertThatThrownBy { Calculator().calculate(3, "%", 7) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageContaining("Invalid operator : %")
     }
