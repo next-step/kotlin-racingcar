@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
 class CarTest {
-    val testCondition = DriveCondition { number: Int -> number == 1 }
+    val testCondition = DriveCondition { true }
     val startDistance: Int = 1
     @Test
     fun `자동차는 조건에 맞으면 전진할 수 있다`() {
