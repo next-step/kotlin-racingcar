@@ -5,7 +5,7 @@ import step3.carRacing.Car
 import step3.carRacing.DispatchHandler
 import step3.carRacing.Payload
 
-class OutputView(private val dispatchHandler: DispatchHandler<Payload>) {
+class OutputView(private val dispatchHandler: DispatchHandler<Action, Payload>) {
     init {
         dispatchHandler.subscribe(Action.FINISH_RACE) { renderRace(it) }
     }

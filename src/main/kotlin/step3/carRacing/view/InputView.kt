@@ -4,7 +4,7 @@ import step3.carRacing.Action
 import step3.carRacing.DispatchHandler
 import step3.carRacing.Payload
 
-class InputView(private val dispatchHandler: DispatchHandler<Payload>) {
+class InputView(private val dispatchHandler: DispatchHandler<Action, Payload>) {
 
     private fun input(): Pair<Int, Int> { // private 메서드는 어떻게 테스트하지?!
         println("경주할 자동차 대수를 입력하세요")
