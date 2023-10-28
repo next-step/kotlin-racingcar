@@ -4,6 +4,7 @@ import org.assertj.core.util.Strings
 
 object StringCalculator {
     private const val EMPTY_STRING = ""
+    private const val FORMULA_REGEX = """^\s*\d+(\s*[+\-*/]\s*\d+)*\s*$"""
 
     fun calculate(input: String): Int {
         if (Strings.isNullOrEmpty(input)) throw IllegalArgumentException("입력값이 비어있습니다.")
@@ -17,7 +18,6 @@ object StringCalculator {
         var result = formulaTokens[0].toInt()
         formulaTokens.forEachIndexed { index, token ->
             run {
-                // index가 0이면 continue
                 if (index == 0) return@run
 
                 if (isEvenNumber(index)) {
@@ -48,22 +48,15 @@ object StringCalculator {
         }
         results.add(number)
 
-        if (isValidFormulaOrder(results).not()) throw IllegalArgumentException("계산식이 올바르지 않습니다.")
+        if (isValidFormulaOrder(input, results).not()) throw IllegalArgumentException("계산식이 올바르지 않습니다.")
 
         return results
     }
 
-    private fun isValidFormulaOrder(arguments: MutableList<String>): Boolean {
-        arguments.forEachIndexed { index, arg ->
-            run {
-                if (isEvenNumber(index) && isNumber(arg).not()) return false
-                if (isEvenNumber(index).not() && OperatorType.exist(arg).not()) return false
+    private fun isValidFormulaOrder(input:String, parsedOperandAndOperator: MutableList<String>): Boolean {
+        val regex = Regex(FORMULA_REGEX)
 
-                if (index < arguments.size - 1 && isNumber(arg) && isNumber(arguments[index + 1])) return false
-            }
-        }
-
-        return arguments.size > 1
+        return regex.matches(input) && parsedOperandAndOperator.size > 1
     }
 
     private fun isEvenNumber(num: Int) = num % 2 == 0
