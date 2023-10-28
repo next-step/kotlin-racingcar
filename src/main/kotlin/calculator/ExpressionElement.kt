@@ -1,5 +1,7 @@
 package calculator
 
+import java.lang.IllegalArgumentException
+
 sealed interface ExpressionElement {
     fun isSameType(other: ExpressionElement): Boolean
 
@@ -11,6 +13,19 @@ sealed interface ExpressionElement {
 
         override fun isSameType(other: ExpressionElement): Boolean {
             return other is Operator
+        }
+
+        companion object {
+            fun find(value: String): Operator {
+                return when (value) {
+                    "+" -> ExpressionElement.Operator.Add
+                    "-" -> ExpressionElement.Operator.Sub
+                    "*" -> ExpressionElement.Operator.Multi
+                    "/" -> ExpressionElement.Operator.Div
+
+                    else -> throw IllegalArgumentException("Not supported operator")
+                }
+            }
         }
     }
 

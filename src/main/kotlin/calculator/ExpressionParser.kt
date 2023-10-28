@@ -1,7 +1,5 @@
 package calculator
 
-import java.lang.IllegalArgumentException
-
 class ExpressionParser {
     fun parse(expression: String): List<ExpressionElement> {
         val splits = expression.split(" ")
@@ -18,13 +16,6 @@ class ExpressionParser {
             return ExpressionElement.Term(toInt())
         }
 
-        return when (this) {
-            "+" -> ExpressionElement.Operator.Add
-            "-" -> ExpressionElement.Operator.Sub
-            "*" -> ExpressionElement.Operator.Multi
-            "/" -> ExpressionElement.Operator.Div
-
-            else -> throw IllegalArgumentException("Not supported operator")
-        }
+        return ExpressionElement.Operator.find(this)
     }
 }
