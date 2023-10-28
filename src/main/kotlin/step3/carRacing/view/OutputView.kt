@@ -1,6 +1,6 @@
 package step3.carRacing.view
 
-import step3.carRacing.Car
+import step3.carRacing.model.Car
 
 class OutputView {
 

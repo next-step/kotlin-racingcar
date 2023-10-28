@@ -1,6 +1,5 @@
 package step3.carRacing.model
 
-import step3.carRacing.CarGenerator
 import step3.carRacing.contoller.RaceController
 import step3.carRacing.view.InputView
 

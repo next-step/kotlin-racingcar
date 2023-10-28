@@ -1,6 +1,5 @@
-package step3.carRacing
+package step3.carRacing.model
 
-import kotlin.random.Random
 
 class CarGenerator {
     companion object {
@@ -11,9 +10,7 @@ class CarGenerator {
 class Car {
     var curPosition = 0
 
-    fun tryRace() {
-        val randomNumber = Random.nextInt(0, 10)
-
+    fun tryRace(randomNumber: Number) {
         if (randomNumber in 4 until 10) { // NOTE: 4 이상 일 경우 이동
             curPosition++
         }
