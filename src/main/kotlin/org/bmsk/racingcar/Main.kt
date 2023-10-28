@@ -1,5 +1,7 @@
 package org.bmsk.racingcar
 
-fun main() {
+import org.bmsk.racingcar.ui.RacingCarView
 
+fun main() {
+    RacingCarView().run()
 }
