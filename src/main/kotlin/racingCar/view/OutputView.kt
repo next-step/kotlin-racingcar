@@ -9,6 +9,7 @@ object OutputView {
     private const val EXECUTE_RESULT = "\n실행 결과"
     private const val CAR = "="
     private const val COLON = " : "
+    private const val WINNER_MESSAGE = "가 최종 우승 하였습니다"
 
     fun printCarName() = println(ENTER_CARS_NAME)
     fun printTryCount() = println(ASK_TRY_COUNT)
@@ -17,5 +18,12 @@ object OutputView {
     fun printCar(carList: List<Car>) {
         carList.forEach { car: Car -> println(car.name + COLON + CAR.repeat(car.moveCount)) }
         println()
+    }
+
+    fun printWinner(carList: List<Car>) {
+        val maxMoveCount = carList.maxByOrNull { it.moveCount }?.moveCount
+        val winners: List<Car> = carList.filter { it.moveCount == maxMoveCount }
+        val winnerNames: String = winners.joinToString(", ") { it.name }
+        println(winnerNames + WINNER_MESSAGE)
     }
 }

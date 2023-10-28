@@ -15,4 +15,5 @@ fun main() {
     val cars = Cars()
     val carList: List<Car> = cars.getCars(inputCars)
     cars.moveCar(carList, tryCount)
+    OutputView.printWinner(carList)
 }
