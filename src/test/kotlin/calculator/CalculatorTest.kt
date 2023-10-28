@@ -1,20 +1,15 @@
 package calculator
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.DisplayNameGeneration
-import org.junit.jupiter.api.DisplayNameGenerator
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
 
-@DisplayName("계산기 테스트 (JUnit 5)")
-class CalculatorTest {
+class `계산기 테스트(JUnit 5)` {
 
     @Nested
-    @DisplayNameGeneration(DisplayNameGenerator.Standard::class)
     class `정상적인 입력값일 경우` {
 
         @ParameterizedTest
@@ -26,11 +21,9 @@ class CalculatorTest {
     }
 
     @Nested
-    @DisplayNameGeneration(DisplayNameGenerator.Standard::class)
     class `비정상적인 입력값일 때` {
 
         @Nested
-        @DisplayNameGeneration(DisplayNameGenerator.Standard::class)
         class `입력값이 null이거나 빈 공백 문자일 경우` {
 
             @ParameterizedTest
@@ -43,7 +36,6 @@ class CalculatorTest {
         }
 
         @Nested
-        @DisplayNameGeneration(DisplayNameGenerator.Standard::class)
         class `사칙연산 기호가 아닌 경우` {
 
             @ParameterizedTest
@@ -56,7 +48,6 @@ class CalculatorTest {
         }
 
         @Nested
-        @DisplayNameGeneration(DisplayNameGenerator.Standard::class)
         class `첫번째 입력값이 숫자가 아닌 경우` {
 
             @ParameterizedTest
