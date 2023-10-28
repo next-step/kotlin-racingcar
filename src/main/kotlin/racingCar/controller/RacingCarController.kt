@@ -4,7 +4,6 @@ import racingCar.domain.Cars
 import racingCar.domain.Car
 import racingCar.view.InputView
 import racingCar.view.OutputView
-import java.util.Arrays
 
 fun main() {
     OutputView.printCarCount()
@@ -13,16 +12,9 @@ fun main() {
     val tryCount = InputView.inputNumber()
     OutputView.printExecuteResult()
 
-    // carList 초기화
-    val carList: MutableList<Car> = ArrayList()
-    for (i in 0 until carCount) {
-        val car = Car()
-        carList.add(car)
-    }
+    // List factory 함수 사용
+    val carList: List<Car> = List(carCount) { Car() }
 
     val cars = Cars()
-    for (i in 0 until tryCount) {
-        cars.moveCar(carList)
-        OutputView.printCar(carList)
-    }
+    cars.moveCar(carList, tryCount)
 }

@@ -2,20 +2,23 @@ package racingCar.domain
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import racingCar.domain.strategy.MoveStrategy
 
 class CarsTest {
 
+    companion object {
+        private const val CAR_SIZE = 1
+        private const val TRY_COUNT = 5
+    }
+
     @Test
-    fun moveCarsTest() {
-        val carList: MutableList<Car> = ArrayList()
-        val car = Car()
-        carList.add(car)
+    fun moveCarTest() {
+        val carList: List<Car> = List(CAR_SIZE) { Car() }
+        val moveStrategy = MoveStrategy { true }
+        val cars = Cars(moveStrategy)
+        cars.moveCar(carList, TRY_COUNT)
 
-        for (i in 1..100) {
-            val cars = Cars()
-            cars.moveCar(carList)
-        }
-
-        Assertions.assertNotEquals(car.moveCount, 0)
+        val car = carList[0]
+        Assertions.assertEquals(car.moveCount, 5)
     }
 }

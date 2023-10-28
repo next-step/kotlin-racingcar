@@ -17,5 +17,4 @@ object OutputView {
         carList.forEach { car: Car -> println(CAR.repeat(car.moveCount)) }
         println()
     }
-
 }
