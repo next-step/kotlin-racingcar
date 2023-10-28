@@ -2,6 +2,7 @@ package racingCar.domain
 
 import racingCar.domain.strategy.MoveStrategy
 import racingCar.domain.strategyImpl.RandomStrategy
+import racingCar.error.ErrorMessage
 import racingCar.view.OutputView
 
 class Cars(private val moveStrategy: MoveStrategy = RandomStrategy()) {
@@ -15,7 +16,10 @@ class Cars(private val moveStrategy: MoveStrategy = RandomStrategy()) {
     }
 
     fun getCars(inputCars: String): List<Car> {
-        val carsNames: List<String> = inputCars.split(",")
+        val split = inputCars.split(",")
+        split.forEach { require(it.length <= 5) { ErrorMessage.NAME_TOO_LOAD } }
+
+        val carsNames: List<String> = split
         return carsNames.map { Car(it) }
     }
 }
