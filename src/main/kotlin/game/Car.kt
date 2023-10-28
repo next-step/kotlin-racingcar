@@ -14,6 +14,10 @@ class Car private constructor(private var position: Int = 0, val name: String) {
         position += 1
     }
 
+    fun getPosition(): Int {
+        return position
+    }
+
     private fun canMove(moveCondition: Int) = moveCondition in 4..9
 
     fun draw(): String {
@@ -22,10 +26,6 @@ class Car private constructor(private var position: Int = 0, val name: String) {
             append(DELIMITER)
             append(POSITION_MARKER.repeat(position))
         }
-    }
-
-    fun maxPosition(position: Int): Int {
-        return maxOf(position, this.position)
     }
 
     companion object {
