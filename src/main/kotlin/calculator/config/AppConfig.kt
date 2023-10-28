@@ -1,29 +1,19 @@
 package calculator.config
 
-import calculator.application.Calculator
-import calculator.application.Console
-import calculator.application.Converter
-import calculator.application.Engine
-import calculator.application.Tokenizer
+import calculator.adapter.`in`.console.Console
+import calculator.application.service.Engine
+import calculator.application.service.Tokenizer
 
 class AppConfig {
-    fun calculator(): Calculator {
-        return Calculator(engine = engine(), console = console())
+    fun console(): Console {
+        return Console(engine())
     }
 
     private fun engine(): Engine {
-        return Engine(tokenizer = tokenizer(), converter = converter())
-    }
-
-    private fun console(): Console {
-        return Console()
+        return Engine(tokenizer())
     }
 
     private fun tokenizer(): Tokenizer {
         return Tokenizer()
-    }
-
-    private fun converter(): Converter {
-        return Converter()
     }
 }
