@@ -1,6 +1,6 @@
 package game
 
-class Car(private var position: Int = 0) {
+class Car private constructor(private var position: Int = 0, private val name: String) {
 
     fun move(moveCondition: Int) {
         when {
@@ -21,5 +21,9 @@ class Car(private var position: Int = 0) {
 
     companion object {
         private const val POSITION_MARKER = "-"
+
+        fun of(name: String): Car {
+            return Car(name = name)
+        }
     }
 }
