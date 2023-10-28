@@ -1,10 +1,9 @@
 package racing
 
-object CarRacing {
-    fun createCars(carCount: Int) = List(carCount) { Car() }
+class CarRacing private constructor(carCount: Int) {
+    private val cars = List(carCount) { Car() }
 
-    fun race(tryCount: Int, carCount: Int): List<List<Int>> {
-        val cars = createCars(carCount)
+    private fun race(tryCount: Int): List<List<Int>> {
         return List(tryCount) {
             cars.racePerRound()
             cars.recordRacingResultPerRound()
@@ -18,4 +17,10 @@ object CarRacing {
     }
 
     private fun List<Car>.recordRacingResultPerRound() = map { it.position }
+
+    companion object {
+        fun race(carCount: Int, tryCount: Int): List<List<Int>> {
+            return CarRacing(carCount).race(tryCount)
+        }
+    }
 }

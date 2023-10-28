@@ -4,8 +4,8 @@ class CarRacingApplication {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val (tryCount, carCount) = InputView.inputForRacing()
-            val result = CarRacing.race(tryCount, carCount)
+            val (carCount, tryCount) = InputView.inputForRacing()
+            val result = CarRacing.race(carCount, tryCount)
             ResultView.printRacingResult(result)
         }
     }
