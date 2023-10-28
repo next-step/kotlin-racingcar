@@ -6,8 +6,7 @@ object StringCalculator {
     private const val EMPTY_STRING = ""
 
     fun calculate(input: String): Int {
-        if (Strings.isNullOrEmpty(input))
-            throw IllegalArgumentException("입력값이 비어있습니다.")
+        if (Strings.isNullOrEmpty(input)) throw IllegalArgumentException("입력값이 비어있습니다.")
 
         val tokens: List<String> = separateOperandAndOperator(input)
 
@@ -51,21 +50,17 @@ object StringCalculator {
         }
         results.add(number)
 
-        if (isValidFormulaOrder(results).not())
-            throw IllegalArgumentException("계산식이 올바르지 않습니다.")
+        if (isValidFormulaOrder(results).not()) throw IllegalArgumentException("계산식이 올바르지 않습니다.")
 
         return results
     }
 
     private fun isValidFormulaOrder(arguments: MutableList<String>): Boolean {
         for ((index, arg) in arguments.withIndex()) {
-            if (isEvenNumber(index) && isNumber(arg).not())
-                return false
-            if (isEvenNumber(index).not() && OperatorType.exist(arg).not())
-                return false
+            if (isEvenNumber(index) && isNumber(arg).not()) return false
+            if (isEvenNumber(index).not() && OperatorType.exist(arg).not()) return false
 
-            if (index < arguments.size - 1 && isNumber(arg) && isNumber(arguments[index + 1]))
-                return false
+            if (index < arguments.size - 1 && isNumber(arg) && isNumber(arguments[index + 1])) return false
         }
 
         return arguments.size > 1
