@@ -15,12 +15,12 @@ class CarsTest {
 
         // when
         cars.advance(retryCount)
-        val positions = cars.carList.map(Car::position)
+        val carList = cars.carList
 
         // then
         Assertions.assertAll(
-            { assertThat(positions).hasSize(carCount) },
-            { assertThat(positions).containsOnly(retryCount) }
+            { assertThat(carList).hasSize(carCount) },
+            { assertThat(carList.filter { car: Car -> car.isSamePosition(retryCount) }).hasSize(carCount) }
         )
     }
 
@@ -32,9 +32,12 @@ class CarsTest {
 
         // when
         cars.advance(retryCount)
-        val positions = cars.carList.map(Car::position)
+        val carList = cars.carList
 
         // then
-        Assertions.assertAll({ assertThat(positions).hasSize(carCount) }, { assertThat(positions).containsOnly(0) })
+        Assertions.assertAll(
+            { assertThat(carList).hasSize(carCount) },
+            { assertThat(carList.filter { car: Car -> car.isSamePosition(0) }).hasSize(carCount) }
+        )
     }
 }

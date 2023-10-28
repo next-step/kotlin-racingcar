@@ -15,7 +15,7 @@ class CarTest {
         car.move(moveCondition)
 
         // then
-        assertThat(car.position).isEqualTo(expected)
+        assertThat(car.isSamePosition(expected)).isTrue()
     }
 
     @ParameterizedTest
@@ -28,6 +28,6 @@ class CarTest {
         car.move(moveCondition)
 
         // then
-        assertThat(car.position).isEqualTo(position)
+        assertThat(car.isSamePosition(position)).isTrue()
     }
 }
