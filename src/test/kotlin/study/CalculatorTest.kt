@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test
 
 class CalculatorTest {
 
-
     @Test
     fun `덧셈 테스트`() {
         val plusTest = StringCalculator("1 + 2 + 3 + 4").calculating()

@@ -1,7 +1,7 @@
-class StringCalculator (private val calculatorString: String?) {
+class StringCalculator(private val calculatorString: String?) {
 
     init {
-        require(!calculatorString.isNullOrBlank()) { throw IllegalArgumentException()}
+        require(!calculatorString.isNullOrBlank()) { throw IllegalArgumentException() }
     }
 
     private val numberArgs by lazy {
@@ -25,7 +25,6 @@ class StringCalculator (private val calculatorString: String?) {
     private fun minus(first: Int, second: Int): Int = first - second
     private fun multiple(first: Int, second: Int): Int = first * second
     private fun divide(first: Int, second: Int): Int = first / second
-
 }
 
 fun main() {
@@ -33,5 +32,4 @@ fun main() {
     StringCalculator("2 + 3 * 4 / 2").apply {
         println("result = ${calculating()}")
     }
-
 }
