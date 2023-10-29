@@ -6,7 +6,7 @@ import racing.model.move.MoveRandomStrategy
 class RacingCar {
     private val strategy = MoveRandomStrategy(RandomGenerator())
 
-    fun race(participate: Int, roundCount: Int): ArrayDeque<MatchResult> {
+    fun racing(participate: Int, roundCount: Int): ArrayDeque<MatchResult> {
         var current: MatchResult = ready(participate)
         val matchResults = ArrayDeque<MatchResult>()
         for (i in 1..roundCount) {

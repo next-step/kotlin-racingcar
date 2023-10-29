@@ -10,7 +10,7 @@ fun main() {
     val outputView = OutputView()
 
     outputView.printResults(
-        racingCar.race(
+        racingCar.racing(
             inputView.participate(),
             inputView.roundCount()
         )
