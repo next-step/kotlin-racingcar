@@ -7,7 +7,7 @@ class Calculator(private val formulas: List<String>) {
             throw IllegalArgumentException("수식을 입력해 주세요.")
         }
 
-        if (!Number.isNumber(formulas[formulas.size-1])) {
+        if (!Number.isNumber(formulas[formulas.size - 1])) {
             throw IllegalArgumentException("수식의 마지막은 숫자여야 합니다.")
         }
 
@@ -30,10 +30,7 @@ class Calculator(private val formulas: List<String>) {
     }
 
     fun calculate(): Number {
-        var result = Expression(Number(0))
-        for (element in formulas) {
-            result = result.put(element)
-        }
+        val result = formulas.fold(Expression(Number(0))) { acc, element -> acc.put(element) }
         return result.number
     }
 
