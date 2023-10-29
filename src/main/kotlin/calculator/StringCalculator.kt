@@ -5,6 +5,12 @@ class StringCalculator {
     fun calculate(input: String?): Long {
         require(!input.isNullOrBlank()) { throw IllegalArgumentException("입력값이 없습니다.") }
 
+        try {
+            return input.toLong()
+        } catch (formatException: NumberFormatException) {
+            // do nothing
+        }
+
         val expressionList: List<Expression> = ExpressionParser().parse(input)
         val firstExpression: Expression = expressionList.first()
         val withOutFirstExpression: List<Expression> = expressionList.drop(1)
