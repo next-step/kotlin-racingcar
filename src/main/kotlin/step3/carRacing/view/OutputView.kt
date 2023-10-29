@@ -17,21 +17,19 @@ class SystemPrint: Print{
     }
 }
 
-class OutputView {
+object OutputView {
 
-    companion object {
-        private fun renderCarPosition(car: Car, printer: Print) {
-            for (position in 0 until car.curPosition) {
-                printer.print("-")
-            }
-            printer.print("\n")
+    private fun renderCarPosition(car: Car, printer: Print) {
+        for (position in 0 until car.curPosition) {
+            printer.print("-")
         }
+        printer.print("\n")
+    }
 
-        fun renderRace(round: Int, cars: List<Car>, printer:Print) {
-            printer.println("<-------------- ${round + 1} Round Race 🏎️ -------------->")
-            for (car in cars) {
-                renderCarPosition(car, printer)
-            }
+    fun renderRace(round: Int, cars: List<Car>, printer:Print) {
+        printer.println("<-------------- ${round + 1} Round Race 🏎️ -------------->")
+        for (car in cars) {
+            renderCarPosition(car, printer)
         }
     }
 

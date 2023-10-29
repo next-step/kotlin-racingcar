@@ -9,17 +9,14 @@ class SystemInputReader : InputReader {
         return readLine()!!.toInt()
     }
 }
-class InputView() {
+object InputView {
 
-    companion object{
-        fun getInputInfo(inputReader: InputReader): Pair<Int, Int> {
-            println("경주할 자동차 대수를 입력하세요")
-            val carCount = inputReader.readInput()
-            println("시도할 회수는 몇회인가요?")
-            val tryCount = inputReader.readInput()
+    fun getInputInfo(inputReader: InputReader): Pair<Int, Int> {
+        println("경주할 자동차 대수를 입력하세요")
+        val carCount = inputReader.readInput()
+        println("시도할 회수는 몇회인가요?")
+        val tryCount = inputReader.readInput()
 
-            return Pair(carCount, tryCount)
-        }
+        return Pair(carCount, tryCount)
     }
-
 }

@@ -1,18 +1,16 @@
-package step3.carRacing.contoller
+package step3.carRacing.model
 
-import step3.carRacing.model.Car
 import step3.carRacing.view.OutputView
 import step3.carRacing.view.SystemPrint
 import kotlin.random.Random
 
-class RaceController {
+class RaceOrganizer(private val cars: List<Car>) {
+
     private fun tryRound(cars: List<Car>) {
-        for (car in cars) {
-            car.tryRace(Random.nextInt(0, 10))
-        }
+        this.cars.forEach { it.tryRace(Random.nextInt(0, 10)) }
     }
 
-    fun startRace(tryCount: Int, cars: List<Car>) {
+    fun startRace(tryCount: Int) {
         for (i in 0 until tryCount) {
             tryRound(cars)
             OutputView.renderRace(i, cars, SystemPrint())
