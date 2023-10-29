@@ -1,9 +1,14 @@
-package step3_4_5.racing
+package step3_4_5.domain.racing
 
 class CarRacing(
     private val carList: List<Car>,
-    private val numberOfRounds: Int
+    private val numberOfRounds: Int,
+    private val randomNumberGenerator: RandomNumberGenerator = RandomNumberGenerator
 ) {
+
+    private val randomNumber
+        get() = randomNumberGenerator.generateNumber()
+
     init {
         val carNameList = carList.map { it.carName }
         require(carNameList.count() == carNameList.toSet().count()) { error(DUPLICATE_ELEMENT_IS_EXIST) }
@@ -11,7 +16,7 @@ class CarRacing(
 
     fun doRacing(showResult: (List<Car>) -> Unit) {
         repeat(numberOfRounds) {
-            carList.forEach { car -> if (car.canGo()) car.moveForward() }
+            carList.forEach { car -> if (car.canGo(randomNumber)) car.moveForward() }
             showResult(carList)
         }
     }
