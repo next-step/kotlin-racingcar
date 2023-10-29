@@ -26,11 +26,11 @@ class CarRacing private constructor(carNames: List<String>) {
     companion object {
         private val movableRange = 0..9
 
-        fun race(carNames: List<String>, tryCount: Int): Pair<List<List<Car>>, List<String>> {
+        fun race(carNames: List<String>, tryCount: Int): CarRacingResult {
             val carRacing = CarRacing(carNames)
-            val racingResult = carRacing.race(tryCount)
+            val results = carRacing.race(tryCount)
             val winners = carRacing.findWinners()
-            return racingResult to winners
+            return CarRacingResult(results, winners)
         }
     }
 }

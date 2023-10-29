@@ -1,8 +1,12 @@
 package racing
 
 object ResultView {
-    fun printRacingResult(results: List<List<Car>>, winners: List<String>) {
+    fun printRacingResult(result: CarRacingResult) {
         println("실행 결과")
+        result.printRacingResults()
+    }
+
+    private fun CarRacingResult.printRacingResults() {
         results.forEach { cars ->
             cars.printRacingResultPerRound()
         }
