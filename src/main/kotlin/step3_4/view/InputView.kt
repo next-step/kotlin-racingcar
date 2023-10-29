@@ -6,7 +6,7 @@ import step3_4.validator.RoundNumberValidator
 object InputView {
 
     fun processEnteredCarInformation(): List<String> {
-        val input = readlnOrNull().orEmpty()
+        val input = readln()
         val carNameList = splitEnteredCarInformation(input)
         CarNamesDuplicateValidator.checkValidate(carNameList)
         return carNameList
