@@ -3,7 +3,7 @@ package calculator
 class StringCalculator {
     fun calculate(input: String): String {
         val inputList: List<String> = Tokenizer.tokenize(input)
-        val chunkStringCalculator = ChunkStringCalculator(inputList)
+        val chunkStringCalculator = ChunkStringCalculator.create(inputList)
 
         var result: String = ""
         while (chunkStringCalculator.isContinued()) {

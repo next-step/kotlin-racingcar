@@ -2,13 +2,7 @@ package calculator
 
 import java.util.LinkedList
 
-class ChunkStringCalculator(wholeElements: List<String>) {
-    private val calculationDeque = LinkedList<String>()
-
-    init {
-        calculationDeque.addAll(wholeElements)
-    }
-
+class ChunkStringCalculator private constructor(private val calculationDeque: LinkedList<String>) {
     fun calculate(): String {
         val operand1: String = calculationDeque.pollFirst()
         val operator: String = calculationDeque.pollFirst()
@@ -26,7 +20,7 @@ class ChunkStringCalculator(wholeElements: List<String>) {
             Operator.MINUS -> Operator.MINUS.calcFunc(operand1.toInt(), operand2.toInt())
             Operator.MULTIPLY -> Operator.MULTIPLY.calcFunc(operand1.toInt(), operand2.toInt())
             Operator.DIVIDE -> Operator.DIVIDE.calcFunc(operand1.toInt(), operand2.toInt())
-        }.toString()
+        }.toString() // wholeElements: List<String> 를 지워라
 
         calculationDeque.addFirst(chunkResult)
         return chunkResult
@@ -38,5 +32,13 @@ class ChunkStringCalculator(wholeElements: List<String>) {
 
     fun isValidResult(): Boolean {
         return calculationDeque.size == 1
+    }
+
+    companion object {
+        fun create(wholeElements: Collection<String>): ChunkStringCalculator {
+            val calculationDeque = LinkedList<String>()
+            calculationDeque.addAll(wholeElements)
+            return ChunkStringCalculator(calculationDeque)
+        }
     }
 }
