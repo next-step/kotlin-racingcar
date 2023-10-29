@@ -34,5 +34,9 @@ class CarFleet private constructor(
         fun from(cars: List<Car>, moveConditionGenerator: MoveConditionGenerator): CarFleet {
             return CarFleet(cars, moveConditionGenerator)
         }
+
+        fun of(cars: List<Car>): CarFleet {
+            return CarFleet(cars)
+        }
     }
 }

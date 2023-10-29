@@ -15,15 +15,12 @@ class CarFleetTest {
     @MethodSource("winner")
     fun `자동차들에서 우승자를 찾는다`(pobiCount: Int, crongCount: Int, honuxCount: Int, expected: List<String>) {
         // given
-        val pobi = Car.of("pobi")
-        val crong = Car.of("crong")
-        val honux = Car.of("honux")
-        repeat(pobiCount) { pobi.move(advance) }
-        repeat(crongCount) { crong.move(advance) }
-        repeat(honuxCount) { honux.move(advance) }
+        val pobi = Car.of("pobi", pobiCount)
+        val crong = Car.of("crong", crongCount)
+        val honux = Car.of("honux", honuxCount)
 
         val cars = listOf(pobi, crong, honux)
-        val carFleet = CarFleet.from(cars, FixedMoveConditionGenerator(advance))
+        val carFleet = CarFleet.of(cars)
 
         // when
         val actual = carFleet.findWinner()

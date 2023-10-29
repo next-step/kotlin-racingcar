@@ -28,5 +28,9 @@ class Car private constructor(private var _position: Int = 0, val name: String) 
         fun of(name: String): Car {
             return Car(name = name)
         }
+
+        fun of(name: String, position: Int): Car {
+            return Car(position, name)
+        }
     }
 }
