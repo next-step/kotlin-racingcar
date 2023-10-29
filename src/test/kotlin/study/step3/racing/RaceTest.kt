@@ -15,6 +15,7 @@ class RaceTest {
         val race = Race(3, 5, alwaysMove)
         race.run()
         val expectedPositions = listOf(5, 5, 5)
-        assertEquals(expectedPositions, race.getCarPositions())
+        val actualPositions = race.getCars().map { it.getPosition() }
+        assertEquals(expectedPositions, actualPositions)
     }
 }

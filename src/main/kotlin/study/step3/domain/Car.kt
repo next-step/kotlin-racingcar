@@ -1,7 +1,7 @@
 package study.step3.domain
 
 class Car {
-    var position = 0
+    private var position = 0
 
     fun move(shouldMove: Boolean) {
         if (shouldMove) {
@@ -9,7 +9,7 @@ class Car {
         }
     }
 
-    fun displayPosition(): String {
-        return "-".repeat(position)
+    fun getPosition(): Int {
+        return position
     }
 }

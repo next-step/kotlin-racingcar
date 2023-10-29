@@ -6,8 +6,12 @@ object ResultView {
     fun displayCars(cars: List<Car>) {
         println("실행 결과")
         cars.forEach { car ->
-            println(car.displayPosition())
+            displayPosition(car)
         }
         println()
+    }
+
+    private fun displayPosition(car: Car): String {
+        return "-".repeat(car.getPosition())
     }
 }

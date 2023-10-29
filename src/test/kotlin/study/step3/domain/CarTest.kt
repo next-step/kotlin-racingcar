@@ -11,7 +11,7 @@ class CarTest {
     fun `move should increment position when shouldMove is true`() {
         val car = Car()
         car.move(true)
-        assertEquals(1, car.position)
+        assertEquals(1, car.getPosition())
     }
 
     @Test
@@ -19,14 +19,6 @@ class CarTest {
     fun `move should not increment position when shouldMove is false`() {
         val car = Car()
         car.move(false)
-        assertEquals(0, car.position)
-    }
-
-    @Test
-    @DisplayName("위치를 표시하는 문자열은 위치만큼 -로 구성되어야 한다")
-    fun `displayPosition should return correct string`() {
-        val car = Car()
-        car.move(true)
-        assertEquals("-", car.displayPosition())
+        assertEquals(0, car.getPosition())
     }
 }
