@@ -56,7 +56,7 @@ object Calculator {
      * */
     fun calculate(inputStr: String?): Int {
 
-        val splitFormulaList: List<String> = inputStr!!.split(DELIMITER)
+        val splitFormulaList: List<String> = inputStr?.split(DELIMITER) ?: emptyList()
 
         checkError(splitFormulaList)
 
