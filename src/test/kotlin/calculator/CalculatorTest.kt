@@ -1,41 +1,21 @@
 package calculator
 
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import io.kotest.core.spec.style.FunSpec
+import io.kotest.datatest.withData
+import io.kotest.matchers.shouldBe
 
-class CalculatorTest {
-    @Test
-    fun `덧셈 테스트`() {
-        val actual = Calculator.execute("1 + 2")
+class CalculatorTest : FunSpec({
+    context("calculator execute test") {
+        data class Input(val expression: String, val result: Int)
 
-        assertThat(3).isEqualTo(actual)
+        withData(
+            Input("1 + 2", 3),
+            Input("2 - 1", 1),
+            Input("2 * 3", 6),
+            Input("4 / 2", 2),
+            Input("4 * 2 + 2 / 10", 1)
+        ) { (expression, result) ->
+            Calculator.execute(expression) shouldBe result
+        }
     }
-
-    @Test
-    fun `뺄셈 테스트`() {
-        val actual = Calculator.execute("2 - 1")
-
-        assertThat(1).isEqualTo(actual)
-    }
-
-    @Test
-    fun `곱셈 테스트`() {
-        val actual = Calculator.execute("2 * 3")
-
-        assertThat(6).isEqualTo(actual)
-    }
-
-    @Test
-    fun `나눗셈 테스트`() {
-        val actual = Calculator.execute("4 / 2")
-
-        assertThat(2).isEqualTo(actual)
-    }
-
-    @Test
-    fun `사칙연산 테스트`() {
-        val actual = Calculator.execute("4 * 2 + 2 / 10")
-
-        assertThat(1).isEqualTo(actual)
-    }
-}
+})

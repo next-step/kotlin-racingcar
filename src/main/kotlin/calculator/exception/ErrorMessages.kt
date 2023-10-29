@@ -1,4 +1,4 @@
-package calculator.enums
+package calculator.exception
 
 enum class ErrorMessages(val message: String) {
     INVALID_INPUT_EXCEPTION("유효하지 않은 입력입니다."),

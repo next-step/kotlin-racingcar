@@ -1,7 +1,6 @@
 package calculator.validator
 
-import calculator.enums.ErrorMessages.INVALID_INPUT_EXCEPTION
-import calculator.enums.Operators
+import calculator.exception.ErrorMessages.INVALID_INPUT_EXCEPTION
 
 object InputValidator {
     private const val MINIMUM_VALUE = 3
@@ -12,10 +11,10 @@ object InputValidator {
         return input
     }
 
-    fun validateSize(numbers: List<Int>, operators: List<Operators>) {
-        require(isNumbersSizeEven(numbers.size)) { INVALID_INPUT_EXCEPTION.message }
-        require(isNumberOneMoreThanOperator(numbers.size, operators.size)) { INVALID_INPUT_EXCEPTION.message }
-        require(exceedsMinimumValue(numbers.size + operators.size)) { INVALID_INPUT_EXCEPTION.message }
+    fun validateSize(numbersSize: Int, operatorsSize: Int) {
+        require(isNumbersSizeEven(numbersSize)) { INVALID_INPUT_EXCEPTION.message }
+        require(isNumberOneMoreThanOperator(numbersSize, operatorsSize)) { INVALID_INPUT_EXCEPTION.message }
+        require(exceedsMinimumValue(numbersSize + operatorsSize)) { INVALID_INPUT_EXCEPTION.message }
     }
 
     private fun isNumbersSizeEven(size: Int): Boolean {
