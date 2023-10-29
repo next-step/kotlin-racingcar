@@ -20,12 +20,24 @@ class RacingCarGameServiceTest : BehaviorSpec({
     Given("자동차 경주 게임이 한 차례 진행되면") {
         val racingCarGameService = RacingCarGameService()
         racingCarGameService.init(3)
-        val fixedNumGenerator = FixedNumGenerator()
         When("모든 플레이어들은") {
-            racingCarGameService.race(fixedNumGenerator)
-            Then("각자 나온 숫자에 따라 전진하거나 정지한다.") {
+            Then("4 이상이 나오면 전진한다.") {
+                racingCarGameService.race { 4 }
                 racingCarGameService.racers.shouldForAll {
                     it.count shouldBe 1
+                }
+            }
+        }
+    }
+
+    Given("자동차 경주 게임에서") {
+        val racingCarGameService = RacingCarGameService()
+        racingCarGameService.init(3)
+        When("모든 플레이어들은") {
+            Then("4 미만이 나오면 정지한다.") {
+                racingCarGameService.race { 3 }
+                racingCarGameService.racers.shouldForAll {
+                    it.count shouldBe 0
                 }
             }
         }
