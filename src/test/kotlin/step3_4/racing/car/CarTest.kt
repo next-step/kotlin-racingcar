@@ -47,4 +47,19 @@ class CarTest : StringSpec({
             Car("")
         }
     }
+    "4 이상의 숫자 진입 시 canGo 함수는 true" {
+        val expected = true
+        val input = 4
+        val car = Car("pita")
+
+        car.canGo(input) shouldBe expected
+    }
+
+    "4 미만의 숫자 진입 시 canGo 함수는 false" {
+        val expected = false
+        val input = 3
+        val car = Car("pita")
+
+        car.canGo(input) shouldBe expected
+    }
 })
