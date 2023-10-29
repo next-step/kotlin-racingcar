@@ -8,13 +8,13 @@ class ExpressionParser {
             val expressionList: List<Expression> = listOf<Expression>().plus(
                 Expression(
                     splitParseTarget[0].toLong(),
-                    Operator.valueOf(splitParseTarget[1]),
+                    findOperator(splitParseTarget[1]),
                     splitParseTarget[2].toLong()
                 )
             )
 
             for (idx: Int in 3 until splitParseTarget.size step 2) {
-                val operator: Operator = Operator.valueOf(splitParseTarget[idx + 1])
+                val operator: Operator = findOperator(splitParseTarget[idx + 1])
                 val right: Long = splitParseTarget[idx + 2].toLong()
 
                 expressionList.plus(Expression(null, operator, right))
@@ -23,8 +23,10 @@ class ExpressionParser {
             return expressionList
         } catch (formatException: NumberFormatException) {
             throw IllegalArgumentException("숫자만 입력 가능합니다.")
-        } catch (notFoundException: NoSuchElementException) {
-            throw IllegalArgumentException("사칙연산 기호만 입력 가능합니다.")
         }
+    }
+
+    fun findOperator(operator: String): Operator {
+        return Operator.values().find { it.operator == operator } ?: throw IllegalArgumentException("사칙연산 기호만 입력 가능합니다.")
     }
 }
