@@ -11,7 +11,7 @@ class CarRacingConfiguration(
 ) {
     companion object {
         fun of(input: CarRacingInput): CarRacingConfiguration {
-            val carCount = CarRacingInputValidator.validateCount(input.carCount)
+            val carCount = CarRacingInputValidator.validateCount(input.carNames.size)
             val roundCount = CarRacingInputValidator.validateCount(input.tryCount)
             return CarRacingConfiguration(
                 cars = setCars(carCount),
