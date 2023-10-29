@@ -1,8 +1,10 @@
 package racingcar
 
 import racingcar.domain.Car
+import racingcar.domain.CarCount
 import racingcar.domain.Cars
 import racingcar.domain.Race
+import racingcar.domain.TryCount
 import racingcar.ui.InputView
 import racingcar.ui.RaceResultStorage
 import racingcar.ui.ResultView
@@ -24,14 +26,14 @@ class Application {
             race.start()
         }
 
-        private fun makeCars(carCount: Int): Cars {
+        private fun makeCars(carCount: CarCount): Cars {
             return Cars(
-                cars = List(carCount) { Car() },
+                cars = List(carCount.value) { Car() },
                 numberGenerator = CarPowerGenerator
             )
         }
 
-        private fun makeRace(tryCount: Int, cars: Cars): Race {
+        private fun makeRace(tryCount: TryCount, cars: Cars): Race {
             return Race(
                 tryCount = tryCount,
                 cars = cars,

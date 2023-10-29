@@ -11,7 +11,7 @@ class RaceTest : DescribeSpec({
         val car = Car(position = CarPosition(2))
 
         val race = Race(
-            tryCount = 2,
+            tryCount = TryCount(2),
             cars = Cars(
                 cars = listOf(car),
                 numberGenerator = CarFixture.makeFakeCarPowerGenerator(5)

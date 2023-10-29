@@ -1,24 +1,27 @@
 package racingcar.ui
 
+import racingcar.domain.CarCount
+import racingcar.domain.TryCount
+
 object InputView {
 
     private const val CAR_COUNT_MESSAGE = "자동차 대수는 몇 대인가요?"
     private const val TRY_COUNT_MESSAGE = "시도할 횟수는 몇 회인가요?"
 
-    fun readCarCount(): Int {
+    fun readCarCount(): CarCount {
         println(CAR_COUNT_MESSAGE)
         val userInput = readlnOrNull()
         validateIsNullOrBlank(userInput)
         validateNumeric(userInput!!)
-        return userInput.toInt()
+        return CarCount(userInput.toInt())
     }
 
-    fun readTryCount(): Int {
+    fun readTryCount(): TryCount {
         println(TRY_COUNT_MESSAGE)
         val userInput = readlnOrNull()
         validateIsNullOrBlank(userInput)
         validateNumeric(userInput!!)
-        return userInput.toInt()
+        return TryCount(userInput.toInt())
     }
 
     private fun validateIsNullOrBlank(userInput: String?) {
