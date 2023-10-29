@@ -17,6 +17,6 @@ object RacingCarController {
         )
         val raceResult = race.start()
 
-        RacingCarResultView.printResult(raceResult.resultPerRound)
+        RacingCarResultView.printResult(raceResult.resultPerRound, racingCarInput.carNames)
     }
 }
