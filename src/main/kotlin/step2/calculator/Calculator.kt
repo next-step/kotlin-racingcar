@@ -8,7 +8,21 @@ object Calculator {
     private const val DELIMITER = " "
 
     enum class CalculatorSign(val signStr: String) {
-        PLUS("+"), MINUS("-"), MULTIPLY("*"), DIVIDE("/")
+        PLUS("+"), MINUS("-"), MULTIPLY("*"), DIVIDE("/");
+
+        /**
+         * 숫자 두개와 부호로 계산한 값을 반환
+         *
+         * @param num1 입력 값1
+         * @param num2 입력 값2
+         * @return 계산된 값
+         * */
+        fun calculate(num1: Int, num2: Int): Int = when (this) {
+            PLUS -> num1 + num2
+            MINUS -> num1 - num2
+            MULTIPLY -> num1 * num2
+            DIVIDE -> num1 / num2
+        }
     }
 
     private fun checkError(splitFormulaList: List<String>) {
@@ -55,17 +69,10 @@ object Calculator {
             result = if (index == 0) {
                 number
             } else {
-                unitCalculate(result, number, signList[index - 1])
+                val calculatorSign = CalculatorSign.values().first { it.signStr == signList[index - 1] }
+                calculatorSign.calculate(result, number)
             }
         }
         return result
-    }
-
-    private fun unitCalculate(num1: Int, num2: Int, sign: String): Int = when (sign) {
-        CalculatorSign.PLUS.signStr -> num1 + num2
-        CalculatorSign.MINUS.signStr -> num1 - num2
-        CalculatorSign.MULTIPLY.signStr -> num1 * num2
-        CalculatorSign.DIVIDE.signStr -> num1 / num2
-        else -> throw IllegalArgumentException()
     }
 }
