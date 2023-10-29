@@ -10,6 +10,6 @@ data class Car(
         if (moveStrategy.movable()) {
             return Car(id, position + 1)
         }
-        return Car(id, position)
+        return this
     }
 }
