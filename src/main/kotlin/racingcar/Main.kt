@@ -6,7 +6,7 @@ fun main() {
 
     val cars = Array(carCount) { Car() }.toList()
 
-    val moveCondition = MinimumAboveNumberMoveCondition {
+    val moveCondition = CarMoveCondition {
         (0..10).random()
     }
 
