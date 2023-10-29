@@ -6,8 +6,8 @@ object ResultView {
         println("실행 결과")
     }
 
-    fun printPositions(cars: List<Car>) {
-        val positions = cars.joinToString(separator = "\n", postfix = "\n") { "-".repeat(it.position()) }
-        println(positions)
+    fun printPositions(positions: List<Int>) {
+        val progressBar = positions.joinToString(separator = "\n", postfix = "\n") { "-".repeat(it) }
+        println(progressBar)
     }
 }

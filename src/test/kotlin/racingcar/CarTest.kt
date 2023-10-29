@@ -9,22 +9,22 @@ class CarTest {
 
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3])
-    fun `자동차 정지`(value: Int) {
+    fun `4 미만인 경우 정지한다`(value: Int) {
         val car = Car()
 
         car.move(value)
 
-        assertThat(car.position()).isEqualTo(0)
+        assertThat(car.position).isEqualTo(0)
     }
 
     @ParameterizedTest
     @ValueSource(ints = [4, 5, 6, 7, 8, 9])
-    fun `자동차 이동`(value: Int) {
+    fun `4 이상인 경우 이동한다`(value: Int) {
         val car = Car()
 
         car.move(value)
 
-        assertThat(car.position()).isEqualTo(1)
+        assertThat(car.position).isEqualTo(1)
     }
 
     @Test
@@ -36,7 +36,7 @@ class CarTest {
         car.move(6)
         car.move(7)
 
-        assertThat(car.position()).isEqualTo(4)
+        assertThat(car.position).isEqualTo(4)
     }
 
     @Test
@@ -48,7 +48,7 @@ class CarTest {
         car.move(2)
         car.move(3)
 
-        assertThat(car.position()).isEqualTo(0)
+        assertThat(car.position).isEqualTo(0)
     }
 
     @Test
@@ -62,6 +62,6 @@ class CarTest {
         car.move(6)
         car.move(2)
 
-        assertThat(car.position()).isEqualTo(3)
+        assertThat(car.position).isEqualTo(3)
     }
 }
