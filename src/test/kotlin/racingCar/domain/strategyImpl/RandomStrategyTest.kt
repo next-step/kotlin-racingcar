@@ -1,18 +1,21 @@
 package racingCar.domain.strategyImpl
 
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import racingCar.domain.strategy.MoveStrategy
 
 class RandomStrategyTest {
 
-    private val moveStrategy: MoveStrategy = RandomStrategy()
+    @Test
+    fun isMoveTrueTest() {
+        val randomStrategy = RandomStrategy()
+        val isMove = randomStrategy.isMove(4)
+        Assertions.assertTrue(isMove)
+    }
 
     @Test
-    fun isMoveTest() {
-        for (i in 1..100) {
-            val result = moveStrategy.isMove()
-            assertTrue(result == true || result == false)
-        }
+    fun isMoveFalseTest() {
+        val randomStrategy = RandomStrategy()
+        val isMove = randomStrategy.isMove(3)
+        Assertions.assertFalse(isMove)
     }
 }
