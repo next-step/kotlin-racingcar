@@ -24,8 +24,10 @@ class CarRacing {
     private fun List<Car>.recordRacingResultPerRound(): List<Car> = map { it.copy() }
 
     private fun findWinners(cars: List<Car>): List<String> {
-        val maxPosition = cars.maxBy { it.position }.position
-        return cars.filter { car -> car.position == maxPosition }.map { it.name }
+        val maxPosition = cars.maxBy { it.position }
+            .position
+        return cars.filter { car -> car.position == maxPosition }
+            .map { it.name }
     }
 
     companion object {
