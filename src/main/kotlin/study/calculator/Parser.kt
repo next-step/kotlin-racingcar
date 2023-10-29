@@ -1,4 +1,4 @@
-package study.racingcar
+package study.calculator
 
 /**
  * Parser 는 입력받은 문자열을 의미있는 단위(Token)로 파싱 & 검증 후, 계산에 필요한 타입으로 반환합니다.

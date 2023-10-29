@@ -1,4 +1,4 @@
-package study.racingcar
+package study.calculator
 
 class CalculatorApp
 
