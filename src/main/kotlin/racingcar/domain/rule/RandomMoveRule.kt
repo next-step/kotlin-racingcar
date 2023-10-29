@@ -1,7 +1,7 @@
 package racingcar.domain.rule
 
 class RandomMoveRule(
-    private val randomNumberGenerator: RandomNumberGenerator,
+    private val randomNumberGenerator: RandomNumberGeneratorInBound = RandomNumberGeneratorInBound.default()
 ) : MoveRule {
     override fun determineMoveDistance(): Int {
         val randomNumber = randomNumberGenerator.getNumber()

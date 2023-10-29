@@ -8,7 +8,7 @@ import racingcar.domain.configuration.CarRacingGameConfiguration
 import racingcar.domain.configuration.CarRacingResultConfiguration
 import racingcar.domain.result.CarRacingResult
 import racingcar.domain.rule.RandomMoveRule
-import racingcar.domain.rule.RandomNumberGeneratorMock
+import racingcar.domain.rule.RandomNumberGeneratorInBound
 
 class CarRacingGameTest : BehaviorSpec({
     Given("자동차 경주 게임이 생성되었을 때") {
@@ -30,7 +30,7 @@ class CarRacingGameTest : BehaviorSpec({
                     roundRange = roundRange,
                 ),
                 result = result,
-                moveRule = RandomMoveRule(RandomNumberGeneratorMock(4))
+                moveRule = RandomMoveRule(RandomNumberGeneratorInBound(4..4))
             ),
             recordPrivateCalls = true,
         )

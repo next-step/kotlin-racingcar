@@ -1,7 +1,13 @@
 package racingcar.domain.rule
 
-class RandomNumberGeneratorInBound: RandomNumberGenerator {
-    private val randomNumberRange = (0..9)
+class RandomNumberGeneratorInBound(
+    private val range: IntRange,
+) {
+    fun getNumber(): Int = range.random()
 
-    override fun getNumber(): Int = randomNumberRange.random()
+    companion object {
+        fun default(): RandomNumberGeneratorInBound = RandomNumberGeneratorInBound(
+            range = 0..9
+        )
+    }
 }

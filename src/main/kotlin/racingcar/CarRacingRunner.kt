@@ -5,7 +5,6 @@ import racingcar.domain.game.CarRacingGame
 import racingcar.domain.result.CarRacingResult
 import racingcar.domain.rule.MoveRule
 import racingcar.domain.rule.RandomMoveRule
-import racingcar.domain.rule.RandomNumberGeneratorInBound
 import racingcar.view.CarRacingInput
 import racingcar.view.CarRacingInputView
 import racingcar.view.CarRacingOutput
@@ -46,7 +45,7 @@ object CarRacingRunner {
     private fun createConfiguration(input: CarRacingInput): CarRacingConfiguration =
         CarRacingConfiguration.of(input)
 
-    private fun createRandomMoveRule(): RandomMoveRule = RandomMoveRule(RandomNumberGeneratorInBound())
+    private fun createRandomMoveRule(): RandomMoveRule = RandomMoveRule()
 
     private fun createGame(
         configuration: CarRacingConfiguration,
