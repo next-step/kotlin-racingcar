@@ -7,7 +7,7 @@ data class Car(
     val position: Int,
 ) {
     private val velocity = 1
-    fun start(moveStrategy: MoveStrategy): Car {
+    fun move(moveStrategy: MoveStrategy): Car {
         if (moveStrategy.movable()) {
             return Car(id, position + velocity)
         }
