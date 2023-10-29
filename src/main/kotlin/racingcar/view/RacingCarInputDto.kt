@@ -1,6 +1,6 @@
 package racingcar.view
 
-data class RacingCarInput(
+data class RacingCarInputDto(
     val carNames: List<String>,
     val totalRound: Int,
 )
