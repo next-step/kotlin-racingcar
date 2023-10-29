@@ -1,11 +1,14 @@
 package racingCar.domain
 
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import racingCar.domain.container.Container
 import racingCar.domain.strategy.MoveStrategy
 
 class CarsTest {
+    private val moveStrategy = Container.getMoveStrategy()
+    private val testMoveStrategy = MoveStrategy { true }
 
     companion object {
         private const val CAR_SIZE = 1
@@ -17,8 +20,7 @@ class CarsTest {
     @Test
     fun moveCarTest() {
         val carList: List<Car> = List(CAR_SIZE) { Car("testCar") }
-        val moveStrategy = MoveStrategy { true }
-        val cars = Cars(moveStrategy)
+        val cars = Cars(testMoveStrategy)
         cars.moveCar(carList, TRY_COUNT)
 
         val car = carList[0]
@@ -27,24 +29,23 @@ class CarsTest {
 
     @Test
     fun getCarsTest() {
-        val cars = Cars()
-        val carList = cars.getCars(CARS);
+        val cars = Cars(moveStrategy)
+        val carList = cars.getCars(CARS)
 
         assertEquals(3, carList.size)
     }
 
     @Test
     fun `자동차 Name의 길이는 5 초과가 되어선 안된다`() {
-        val cars = Cars()
+        val cars = Cars(moveStrategy)
         assertThrows<IllegalArgumentException> {
-            cars.getCars(LENGTH_OVER_CARS);
+            cars.getCars(LENGTH_OVER_CARS)
         }
     }
 
     @Test
     fun getWinnerTest() {
-        val moveStrategy = MoveStrategy { true }
-        val cars = Cars(moveStrategy)
+        val cars = Cars(testMoveStrategy)
         val carList: List<Car> = cars.getCars(CARS)
         val winners = cars.getWinners(carList)
 
