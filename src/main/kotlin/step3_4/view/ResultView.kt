@@ -11,9 +11,9 @@ object ResultView {
     }
 
     private fun showSingleCarRacingResult(car: Car) {
-        print("${car.carName} : ")
+        print("${car.carName} $DELIMITER ")
         for (i in MINIMUM_STEP..car.currentStep()) {
-            print("-")
+            print(MOVED_DISTANCE)
         }
         println()
     }
@@ -25,7 +25,9 @@ object ResultView {
         println("$winnersCarName$IS_FINAL_WINNER")
     }
 
+    private const val DELIMITER = ":"
     private const val MINIMUM_STEP = 1
+    private const val MOVED_DISTANCE = "-"
     private const val IS_FINAL_WINNER = "(이)가 최종 우승했습니다."
     private const val SEPARATOR = ","
 }
