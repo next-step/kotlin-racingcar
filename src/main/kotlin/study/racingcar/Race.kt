@@ -8,9 +8,10 @@ class Race(
     var cars: Cars = Cars(List(numberOfCars) { Car() })
         private set
 
-    fun run() {
+    fun run(onRoundFinished: (Cars) -> Unit) {
         repeat(rounds) {
             cars = cars.moveAll(randomValueGenerator)
+            onRoundFinished(cars)
         }
     }
 }

@@ -9,7 +9,7 @@ class RaceTest {
     fun `race runs for given rounds`() {
         val random = 5
         val race = Race(3, 5) { random }
-        race.run()
+        race.run {}
         assertThat(race.cars.list.all { it.position == 5 }).isTrue
     }
 }
