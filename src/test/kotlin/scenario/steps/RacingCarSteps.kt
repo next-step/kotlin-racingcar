@@ -3,6 +3,7 @@ package scenario.steps
 import game.Car
 import game.ConsoleInputHandler
 import game.FixedMoveConditionGenerator
+import game.History
 import game.MoveConditionGenerator
 import game.RacingCarGame
 import game.UserInputHandler
@@ -65,6 +66,10 @@ class RacingCarSteps {
 
             override fun displayWinners(winners: List<String>) {
                 result = winners.joinToString()
+            }
+
+            override fun displayHistory(history: History) {
+                history.rounds.forEach { display(it) }
             }
         }
     }

@@ -19,6 +19,10 @@ class Car private constructor(private var _position: Int = 0, val name: String) 
 
     private fun canMove(moveCondition: Int) = moveCondition in 4..9
 
+    fun copy(): Car {
+        return Car(_position, name)
+    }
+
     companion object {
 
         fun of(name: String): Car {

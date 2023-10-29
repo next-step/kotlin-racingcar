@@ -10,7 +10,8 @@ class RacingCarGame(
         val cars = getCars()
         val retryCount = getRetryCount()
         cars.let {
-            it.advance(retryCount, moveConditionGenerator, userOutputHandler::display)
+            val history = it.advance(retryCount)
+            userOutputHandler.displayHistory(history)
             userOutputHandler.displayWinners(it.findWinner())
         }
     }
@@ -19,5 +20,5 @@ class RacingCarGame(
         userInputHandler.askForRetryCount().let { InputValidator.validateCount(it); it.toInt() }
 
     private fun getCars(): CarFleet = userInputHandler.askForCarNames().let { CarNameParser.parse(it) }
-        .let { CarNameValidator.validate(it); CarFleet.of(it) }
+        .let { CarNameValidator.validate(it); CarFleet.of(it, moveConditionGenerator) }
 }

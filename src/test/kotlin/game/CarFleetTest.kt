@@ -23,7 +23,7 @@ class CarFleetTest {
         repeat(honuxCount) { honux.move(advance) }
 
         val cars = listOf(pobi, crong, honux)
-        val carFleet = CarFleet.from(cars)
+        val carFleet = CarFleet.from(cars, FixedMoveConditionGenerator(advance))
 
         // when
         val actual = carFleet.findWinner()
@@ -40,11 +40,10 @@ class CarFleetTest {
         val crong = Car.of("crong")
         val honux = Car.of("honux")
         val cars = listOf(pobi, crong, honux)
-        val carFleet = CarFleet.from(cars)
-        val userMessageDisplay = UserMessageDisplay()
+        val carFleet = CarFleet.from(cars, FixedMoveConditionGenerator(advance))
 
         // when
-        carFleet.advance(retryCount, FixedMoveConditionGenerator(4), userMessageDisplay::display)
+        carFleet.advance(retryCount)
 
         // then
         assertThat(pobi.position).isEqualTo(retryCount)
