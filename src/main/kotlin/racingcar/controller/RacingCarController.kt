@@ -11,7 +11,7 @@ object RacingCarController {
         val racingCarInput = RacingCarInputView.readInput()
 
         val race = Race(
-            cars = CarFactory.createCars(racingCarInput.totalCarCount),
+            cars = CarFactory.createCars(racingCarInput.carNames),
             totalRound = racingCarInput.totalRound,
             racePolicy = RandomRacePolicy,
         )
