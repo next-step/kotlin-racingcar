@@ -4,7 +4,7 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import racing.model.generator.ObedientGenerator
 
-class MoveRandomStrategyTest : StringSpec({
+class MoveThresholdStrategyTest : StringSpec({
 
     "4 미만인 경우 정지한다" {
         MoveThresholdStrategy(ObedientGenerator(1)).movable() shouldBe false
