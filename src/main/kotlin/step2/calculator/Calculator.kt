@@ -11,20 +11,18 @@ object Calculator {
         PLUS("+"), MINUS("-"), MULTIPLY("*"), DIVIDE("/")
     }
 
-    private fun checkError(inputStr: String?) {
+    private fun checkError(splitFormulaList: List<String>) {
 
-        val inputStrSplitList = inputStr?.split(DELIMITER) ?: emptyList()
-
-        require(!inputStr.isNullOrEmpty()) {
-            "Invalid Expression: $inputStr"
+        require(splitFormulaList.isNotEmpty()) {
+            "Invalid Expression: $splitFormulaList"
         }
 
-        require(inputStrSplitList.all { it.isNotBlank() }) {
-            "Invalid Expression: $inputStr"
+        require(splitFormulaList.all { it.isNotBlank() }) {
+            "Invalid Expression: $splitFormulaList"
         }
 
-        require(isCheckIndexValue(inputStrSplitList)) {
-            "Invalid Expression: $inputStr"
+        require(isCheckIndexValue(splitFormulaList)) {
+            "Invalid Expression: $splitFormulaList"
         }
     }
 
@@ -44,9 +42,10 @@ object Calculator {
      * */
     fun calculate(inputStr: String?): Int {
 
-        checkError(inputStr)
+        val splitFormulaList: List<String> = inputStr!!.split(DELIMITER)
 
-        val splitFormulaList = inputStr!!.split(DELIMITER)
+        checkError(splitFormulaList)
+
         val numberList = splitFormulaList.filter { value -> value.toIntOrNull() != null }.map { it.toInt() }
         val signList = splitFormulaList.filter { value -> value.toIntOrNull() == null }
 
