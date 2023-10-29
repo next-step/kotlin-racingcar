@@ -6,13 +6,17 @@ object RacingCarResultView {
         println("실행 결과")
 
         result.resultPerRound.forEach { roundResult ->
-            roundResult.forEachIndexed { index, position ->
-                printPosition(result.carNames[index], position)
-            }
+            printRoundResult(result.carNames, roundResult)
             println()
         }
 
         printWinners(result.winners)
+    }
+
+    private fun printRoundResult(carNames: List<String>, roundResult: List<Int>) {
+        roundResult.forEachIndexed { index, position ->
+            printPosition(carNames[index], position)
+        }
     }
 
     private fun printPosition(name: String, position: Int) {

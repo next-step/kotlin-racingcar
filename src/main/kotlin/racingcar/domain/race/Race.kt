@@ -25,13 +25,17 @@ class Race(
         val roundResult = mutableListOf<Int>()
 
         cars.forEach {
-            if (racePolicy.moveCondition.invoke()) {
-                it.move(racePolicy.moveAmount)
-            }
+            moveIfCan(it, racePolicy)
             roundResult.add(it.position)
         }
 
         return roundResult
+    }
+
+    private fun moveIfCan(car: Car, racePolicy: RacePolicy) {
+        if (racePolicy.moveCondition.invoke()) {
+            car.move(racePolicy.moveAmount)
+        }
     }
 
     private fun getWinners(): List<String> {
