@@ -6,12 +6,12 @@ class StringCalculator {
         val removeSpaceInput = input!!.replace(" ", "")
 
         val numbers =
-            removeSpaceInput.split(OPERATOR_REGEX).filter { it.isNotBlank() }.map { it.toInt() }.toMutableList()
+            removeSpaceInput.split(Operator.OPERATOR_REGEX).filter { it.isNotBlank() }.map { it.toInt() }
         val operators = removeSpaceInput.split(NUMBER_REGEX).filter { it.isNotBlank() }.map { it.single() }
-            .mapNotNull { Operator.from(it) }.toMutableList()
+            .mapNotNull { Operator.from(it) }
 
         if (numbers.size != operators.size + 1) {
-            throw IllegalArgumentException()
+            throw IllegalArgumentException("계산할 수 없는 문자열입니다. input=$input, 숫자=${numbers.size}, 연산자=${operators.size}")
         }
 
         var result = numbers[0]
@@ -22,18 +22,16 @@ class StringCalculator {
     }
 
     private fun validate(input: String?) {
-        if (input.isNullOrBlank() || hasNotArithmeticOperator(input)) {
-            throw IllegalArgumentException()
-        }
+        require(!input.isNullOrBlank()) { "입력값은 null이거나 빈 문자열일 수 없습니다." }
+        require(hasArithmeticOperator(input)) { "입력값은 사칙연산만을 허용합니다." }
     }
 
-    private fun hasNotArithmeticOperator(input: String) = !EXPRESSION_REGEX.matches(input)
+    private fun hasArithmeticOperator(input: String) = EXPRESSION_REGEX.matches(input)
 
     private fun calculate(operator: Operator, left: Int, right: Int) = operator.operate(left, right)
 
     companion object {
         private val EXPRESSION_REGEX = "[0-9+\\-*/\\s]+".toRegex()
         private val NUMBER_REGEX = "[0-9]+".toRegex()
-        private val OPERATOR_REGEX = "[+\\-*/]".toRegex()
     }
 }
