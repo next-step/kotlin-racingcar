@@ -1,29 +1,27 @@
-package racingcar.service
+package racingcar.domain
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.inspectors.shouldForAll
 import io.kotest.matchers.shouldBe
 
-class RacingCarGameServiceTest : BehaviorSpec({
+class RacingCarGameTest : BehaviorSpec({
 
     Given("자동차 경주 게임은") {
-        val countOfRacer = 3
-        val racingCarGameService = RacingCarGameService()
+        val racers = listOf(Racer(), Racer(), Racer())
         When("처음 시작하면") {
-            racingCarGameService.init(countOfRacer)
+            val racingCarGame = RacingCarGame.init(racers)
             Then("레이서의 수만큼 레이서가 만들어진다.") {
-                racingCarGameService.racers.count() shouldBe countOfRacer
+                racingCarGame.racers.count() shouldBe racers.count()
             }
         }
     }
 
     Given("자동차 경주 게임이 한 차례 진행되면") {
-        val racingCarGameService = RacingCarGameService()
-        racingCarGameService.init(3)
+        val racingCarGame = RacingCarGame.init(listOf(Racer(), Racer(), Racer()))
         When("모든 플레이어들은") {
             Then("4 이상이 나오면 전진한다.") {
-                racingCarGameService.race { 4 }
-                racingCarGameService.racers.shouldForAll {
+                val nextRacingCarGame = racingCarGame.race { 4 }
+                nextRacingCarGame.racers.shouldForAll {
                     it.count shouldBe 1
                 }
             }
@@ -31,12 +29,11 @@ class RacingCarGameServiceTest : BehaviorSpec({
     }
 
     Given("자동차 경주 게임에서") {
-        val racingCarGameService = RacingCarGameService()
-        racingCarGameService.init(3)
+        val racingCarGame = RacingCarGame.init(listOf(Racer(), Racer(), Racer()))
         When("모든 플레이어들은") {
             Then("4 미만이 나오면 정지한다.") {
-                racingCarGameService.race { 3 }
-                racingCarGameService.racers.shouldForAll {
+                val nextRacingCarGame = racingCarGame.race { 3 }
+                nextRacingCarGame.racers.shouldForAll {
                     it.count shouldBe 0
                 }
             }

@@ -1,27 +1,26 @@
-package racingcar.service
+package racingcar.domain
 
-import racingcar.domain.Racer
 import racingcar.util.NumGenerator
 
 private const val RANDOM_NUM_BOUND = 10
 
-class RacingCarGameService(
-    var racers: MutableList<Racer> = mutableListOf()
+class RacingCarGame(
+    val racers: List<Racer>
 ) {
 
-    fun init(countOfRacer: Int) {
-        repeat(countOfRacer) {
-            racers.add(Racer())
+    companion object {
+        fun init(racers: List<Racer>): RacingCarGame {
+            return RacingCarGame(racers)
         }
     }
 
-    fun race(numGenerator: NumGenerator) {
+    fun race(numGenerator: NumGenerator): RacingCarGame {
         val newRacers = mutableListOf<Racer>()
         for (racer in racers) {
             val randomNum = numGenerator.getNextInt(RANDOM_NUM_BOUND)
             val nextStepRacer = racer.run(randomNum)
             newRacers.add(nextStepRacer)
         }
-        racers = newRacers
+        return RacingCarGame(newRacers)
     }
 }
