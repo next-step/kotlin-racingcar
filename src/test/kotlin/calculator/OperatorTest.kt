@@ -34,8 +34,8 @@ class OperatorTest {
     )
     fun `지원하지 않는 연산자가 들어왔을 경우 IllegalArgumentException가 발생`(input: String) {
         // given - input
-        assertThrows<IllegalArgumentException> {
-            Operator.fromSymbol(input).calcFunc(1, 2).toString()
+        assertThrows<IllegalArgumentException> { // then
+            Operator.fromSymbol(input).calcFunc(1, 2).toString() // when
         }.also {
             assertEquals("지원하지 않는 연산자가 들어왔다.", it.message)
         }
