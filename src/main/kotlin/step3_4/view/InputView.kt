@@ -18,7 +18,7 @@ object InputView {
     }
 
     fun processEnteredNumberOfRounds(): Int {
-        val input = readlnOrNull().orEmpty()
+        val input = readln()
         RoundNumberValidator.checkValidate(input)
         return input.toInt()
     }
