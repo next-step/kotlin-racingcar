@@ -17,6 +17,7 @@ class Race(
 
         return RaceResult(
             resultPerRound = roundResults,
+            winners = getWinners(),
         )
     }
 
@@ -31,5 +32,23 @@ class Race(
         }
 
         return roundResult
+    }
+
+    private fun getWinners(): List<String> {
+        val winners = mutableListOf<String>()
+
+        var maxPosition = 0
+
+        cars.forEach {
+            if (it.position > maxPosition) {
+                winners.clear()
+                winners.add(it.name)
+                maxPosition = it.position
+            } else if (it.position == maxPosition) {
+                winners.add(it.name)
+            }
+        }
+
+        return winners
     }
 }
