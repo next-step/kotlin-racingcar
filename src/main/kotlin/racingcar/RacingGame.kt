@@ -1,25 +1,18 @@
 package racingcar
 
 class RacingGame {
-    fun play() {
-        val carCount = InputView.getCarCount()
-        val tryMoveCount = InputView.getTryMoveCount()
-
-        val cars = Array(carCount) { Car() }
-
+    fun play(cars: Array<Car>, tryMoveCount: Int, moveCondition: MoveCondition) {
         println("실행 결과")
 
         repeat(tryMoveCount) {
-            playEachRound(cars)
+            playEachRound(cars, moveCondition)
             println()
         }
     }
 
-    private fun playEachRound(cars: Array<Car>) {
+    private fun playEachRound(cars: Array<Car>, moveCondition: MoveCondition) {
         cars.forEach { car ->
-            val random = (0..10).random()
-
-            car.tryMove(MinimumAboveNumberMoveCondition { random })
+            car.tryMove(moveCondition)
 
             ResultView.printSkid(car.position)
         }
