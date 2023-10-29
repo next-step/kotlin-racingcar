@@ -18,6 +18,7 @@ class CarFleet private constructor(
             advanceAll()
             history.addRound(cars)
         }
+        history.setWinners(findWinner())
         return history
     }
 

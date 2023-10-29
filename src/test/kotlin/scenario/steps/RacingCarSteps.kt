@@ -60,14 +60,11 @@ class RacingCarSteps {
     fun `우승자를 저장한다면`() {
         userOutputHandler = object : UserOutputHandler {
 
-            override fun displayWinners(winners: List<String>) {
-                result = winners.joinToString()
-            }
-
             override fun displayHistory(history: History) {
                 history.rounds.lastIndex.let { it ->
                     advanceCount = history.rounds[it].maxOf { it.position }
                 }
+                result = history.winners.joinToString()
             }
         }
     }

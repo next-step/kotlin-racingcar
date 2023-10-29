@@ -16,9 +16,10 @@ class UserMessageDisplay : UserOutputHandler {
 
     override fun displayHistory(history: History) {
         history.rounds.forEach { display(it) }
+        displayWinners(history.winners)
     }
 
-    override fun displayWinners(winners: List<String>) {
+    private fun displayWinners(winners: List<String>) {
         println("${winners.joinToString()}가 최종 우승했습니다.")
     }
 

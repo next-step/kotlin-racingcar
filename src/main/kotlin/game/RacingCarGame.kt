@@ -12,7 +12,6 @@ class RacingCarGame(
         cars.let {
             val history = it.advance(retryCount)
             userOutputHandler.displayHistory(history)
-            userOutputHandler.displayWinners(it.findWinner())
         }
     }
 

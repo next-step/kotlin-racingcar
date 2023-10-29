@@ -1,6 +1,5 @@
 package game
 
-interface UserOutputHandler {
-    fun displayWinners(winners: List<String>)
+fun interface UserOutputHandler {
     fun displayHistory(history: History)
 }
