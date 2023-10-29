@@ -1,10 +1,10 @@
 package racing.view
 
-import racing.model.MatchResult
+import racing.model.RacingHistory
 
 class ConsoleRender {
-    fun consolePresent(matchResult: MatchResult): String {
-        return matchResult.result
+    fun consolePresent(racingHistory: RacingHistory): String {
+        return racingHistory.result
             .map { "-".repeat(it.position) }
             .joinToString(separator = "\n")
     }

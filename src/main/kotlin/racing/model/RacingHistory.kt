@@ -1,5 +1,5 @@
 package racing.model
 
-data class MatchResult(
+data class RacingHistory(
     val result: ArrayDeque<Car>
 )
