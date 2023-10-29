@@ -7,7 +7,7 @@ import racingcar.strategy.RandomNumberMovingStrategy
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
-class RacingCarController() {
+class RacingCarController {
     fun startGame() {
         val strategy: MovingStrategy = RandomNumberMovingStrategy()
         val numbersOfCar = InputView.getNumbersOfCars()

@@ -7,7 +7,7 @@ class CarTest {
 
     @Test
     fun run() {
-        val car = Car(name = "myCar", 0)
+        val car = Car(name = "myCar")
         car.stepForward(true)
         assertThat(car.position).isEqualTo(1)
     }
