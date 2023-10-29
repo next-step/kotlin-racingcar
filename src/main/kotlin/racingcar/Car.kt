@@ -1,9 +1,14 @@
 package racingcar
 
-class Car(val position: Int = 0) {
+class Car(
+    val carName: String,
+    val position: Int = 0
+) {
+
+    private val name: String = carName
 
     fun move(random: Int): Car {
-        if (isMove(random)) return Car(position + 1)
+        if (isMove(random)) return Car(name, position + 1)
         return this
     }
 

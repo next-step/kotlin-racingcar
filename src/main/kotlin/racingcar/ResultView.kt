@@ -4,6 +4,7 @@ object ResultView {
 
     private const val HYPHEN = "-"
     private const val RESULT = "실행 결과"
+    private const val SEMICOLON = " : "
 
     fun printResult(cars: Cars, operationCount: Int) {
         println(RESULT)
@@ -11,6 +12,7 @@ object ResultView {
             cars.operateCars()
             printCarResult(cars.carList)
         }
+        printWinner(cars.isWinner())
     }
     private fun printCarResult(cars: List<Car>) {
         cars.forEach { car ->
@@ -20,6 +22,10 @@ object ResultView {
     }
 
     private fun print(car: Car): String {
-        return HYPHEN.repeat(car.position)
+        return car.carName + SEMICOLON + HYPHEN.repeat(car.position)
+    }
+
+    private fun printWinner(winners: List<String>) {
+        println(winners.joinToString(",") + "가 최종 우승했습니다.")
     }
 }
