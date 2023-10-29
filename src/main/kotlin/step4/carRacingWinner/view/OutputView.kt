@@ -22,6 +22,7 @@ object SystemPrint: Print{
 object OutputView {
 
     private fun renderCarPosition(car: CarData, printer: Print) {
+        printer.print("${car.name} : ")
         for (position in 0 until car.curPosition) {
             printer.print("-")
         }

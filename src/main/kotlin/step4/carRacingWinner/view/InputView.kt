@@ -23,7 +23,7 @@ object InputView {
     }
 
     private fun getCarInfo(inputReader: InputReader): List<Car> =
-        getInput(inputReader, "경주할 자동차의 이름을 입력하세요 (',' 구분 필요, 5자 이하)").split(",").let {
+        getInput(inputReader, "경주할 자동차의 이름을 입력하세요 (',' 구분 필요, 5자 이하)").split(",").map { it.trim() }.let {
             InputRule.validateCarNames(it)
         }.let {
             CarGenerator.generate(it)
