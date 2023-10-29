@@ -22,18 +22,6 @@ class CarTest : StringSpec({
         // then
         carWithDefault.carName shouldBe "pita"
     }
-    "Move Forward 함수가 잘 작동한다" {
-        val carWithDefault = Car("pita")
-        val carWithAnotherValue = Car("pita", 2)
-        val expectedWithDefault = 1
-        val expectedWithAnother = 3
-
-        carWithDefault.moveForward()
-        carWithAnotherValue.moveForward()
-
-        carWithDefault.currentStep() shouldBe expectedWithDefault
-        carWithAnotherValue.currentStep() shouldBe expectedWithAnother
-    }
     "이름 5자 초과 에러 테스트" {
         val expectedMessage = "이름을 5자 이상 초과할 수 없어요."
 
@@ -47,19 +35,23 @@ class CarTest : StringSpec({
             Car("")
         }
     }
-    "4 이상의 숫자 진입 시 canGo 함수는 true" {
-        val expected = true
-        val input = 4
-        val car = Car("pita")
+    "4 이상의 숫자가 주어졌을 때, moveForward 후에 current + 1" {
+        val expected = 4
+        val input = 4 // 랜덤 함수 숫자
+        val car = Car("pita", 3, FakeNumberGenerator(input, input + 1))
 
-        car.canGo(input) shouldBe expected
+        car.moveForward()
+
+        car.currentStep() shouldBe expected
     }
 
-    "4 미만의 숫자 진입 시 canGo 함수는 false" {
-        val expected = false
-        val input = 3
-        val car = Car("pita")
+    "4 미만의 숫자 진입 시 , moveForward 후에 current는 그대로" {
+        val expected = 3
+        val input = 3 // 랜덤 함수 숫자
+        val car = Car("pita", 3, FakeNumberGenerator(input, input + 1))
 
-        car.canGo(input) shouldBe expected
+        car.moveForward()
+
+        car.currentStep() shouldBe expected
     }
 })

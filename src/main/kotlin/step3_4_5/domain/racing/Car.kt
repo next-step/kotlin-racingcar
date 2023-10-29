@@ -2,12 +2,16 @@ package step3_4_5.domain.racing
 
 class Car(
     val carName: String,
-    private var step: Int = DEFAULT_VALUE
+    private var step: Int = DEFAULT_VALUE,
+    private val randomNumberGenerator: NumberGenerator = RandomNumberGenerator
 ) {
 
     init {
         checkValidate(carName)
     }
+
+    private val randomNumber
+        get() = randomNumberGenerator.generateNumber()
 
     private fun checkValidate(carName: String) {
         require(carName.isNotBlank()) { error(PLEASE_ENTER_THE_NAME) }
@@ -15,12 +19,12 @@ class Car(
     }
 
     fun moveForward() {
-        step += ONE_STEP
+        if (canGo(randomNumber)) step += ONE_STEP
     }
 
     fun currentStep(): Int = step
 
-    fun canGo(randomNumber: Int): Boolean {
+    private fun canGo(randomNumber: Int): Boolean {
         return randomNumber >= CAN_GO_NUMBER
     }
 
