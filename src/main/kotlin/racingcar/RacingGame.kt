@@ -19,7 +19,7 @@ class RacingGame {
         cars.forEach { car ->
             val random = (0..10).random()
 
-            car.tryMove(MinimumAboveNumberMoveCondition(random))
+            car.tryMove(MinimumAboveNumberMoveCondition { random })
 
             ResultView.printSkid(car.position)
         }
