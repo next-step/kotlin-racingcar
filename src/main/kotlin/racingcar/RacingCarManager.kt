@@ -6,8 +6,8 @@ import racingcar.presentation.InputManager
 import racingcar.presentation.OutPutManager
 
 class RacingCarManager(
-    val inputManager: InputManager,
-    val outPutManager: OutPutManager
+    private val inputManager: InputManager,
+    private val outPutManager: OutPutManager
 ) {
     fun startGame() {
         val numberOfCar = inputManager.inputNumberOfCar()
