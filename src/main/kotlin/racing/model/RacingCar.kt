@@ -1,10 +1,11 @@
 package racing.model
 
 import racing.model.generator.RandomGenerator
-import racing.model.move.MoveRandomStrategy
+import racing.model.move.MoveThresholdStrategy
 
 class RacingCar {
-    private val strategy = MoveRandomStrategy(RandomGenerator())
+
+    private val strategy = MoveThresholdStrategy(RandomGenerator())
 
     fun racing(participate: Int, roundCount: Int): ArrayDeque<MatchResult> {
         var current: MatchResult = ready(participate)

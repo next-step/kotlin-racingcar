@@ -2,15 +2,15 @@ package racing.model.move
 
 import racing.model.generator.Generator
 
-class MoveRandomStrategy(
+class MoveThresholdStrategy(
     private val generator: Generator,
 ) : MoveStrategy {
     private val threshold = 4
     override fun movable(): Boolean {
-        return movingPolicy(generator.generate())
+        return isOverThreshold(generator.generate())
     }
 
-    private fun movingPolicy(value: Int): Boolean {
+    private fun isOverThreshold(value: Int): Boolean {
         return value >= threshold
     }
 }
