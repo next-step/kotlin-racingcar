@@ -11,9 +11,10 @@ repositories {
 }
 
 dependencies {
+    implementation("junit:junit:4.13.1")
     testImplementation("org.junit.jupiter", "junit-jupiter", "5.8.2")
     testImplementation("org.assertj", "assertj-core", "3.22.0")
-    testImplementation("io.kotest", "kotest-runner-junit5", "5.2.3")
+    testImplementation("io.kotest", "kotest-runner-junit5", "5.3.2")
 }
 
 tasks {
