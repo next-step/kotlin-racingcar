@@ -14,11 +14,7 @@ class CarTest {
     @Test
     fun `MoveCondition의 canForward 조건이 참이면 차가 움직일 수 있다`() {
         val car = Car()
-        val moveCondition = object : MoveCondition {
-            override fun canForward(): Boolean {
-                return true
-            }
-        }
+        val moveCondition = OnlyTrueMoveCondition()
 
         car.tryMove(moveCondition)
 
@@ -28,11 +24,7 @@ class CarTest {
     @Test
     fun `MoveCondition의 canForward 조건이 거짓이면 차가 움직일 수 있다`() {
         val car = Car()
-        val moveCondition = object : MoveCondition {
-            override fun canForward(): Boolean {
-                return false
-            }
-        }
+        val moveCondition = OnlyFalseMoveCondition()
 
         car.tryMove(moveCondition)
 
