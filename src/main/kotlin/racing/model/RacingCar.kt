@@ -20,8 +20,7 @@ class RacingCar {
     private fun ready(participate: Int): RacingHistory {
         return RacingHistory(
             ArrayDeque(
-                (1..participate)
-                    .map { Car(it, 0) }
+                Car.listOf(participate)
             )
         )
     }
