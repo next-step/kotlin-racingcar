@@ -1,6 +1,6 @@
 package calculator
 
-data class Formula(private val input: String) {
+class Formula(input: String) {
 
     val tokens: List<FormulaToken>
     val initValue: Int
@@ -9,7 +9,7 @@ data class Formula(private val input: String) {
         require(input.isNotBlank()) { "공백 문자를 사용할 수 없습니다." }
         require(input[0].isDigit()) { "첫글자는 숫자만 입력할 수 있습니다." }
 
-        val chars = this.input.replace(WHITE_SPACE_REGEX, WHITE_SPACE_REPLACE_CHARACTER)
+        val chars = input.replace(WHITE_SPACE_REGEX, WHITE_SPACE_REPLACE_CHARACTER)
             .let { TOKEN_SEPARATE_REGEX.findAll(it) }
             .map { it.groupValues[0] }
             .toList()
