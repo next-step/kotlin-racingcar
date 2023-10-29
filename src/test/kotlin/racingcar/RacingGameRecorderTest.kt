@@ -8,17 +8,20 @@ class RacingGameRecorderTest {
     fun `자동차의 위치를 기록할 수 있다`() {
         val recorder = RacingGameRecorder()
         val car = Car()
+        val cars = listOf(car)
         val carPositions = ArrayList<Int>()
 
-        recorder.record(car)
+        recorder.recordRound(cars)
         carPositions.add(car.position)
 
         car.tryMove(OnlyTrueMoveCondition())
 
-        recorder.record(car)
+        recorder.recordRound(cars)
         carPositions.add(car.position)
 
-        assertThat(recorder.positionBoard[car]).isEqualTo(CarPositionRecord(carPositions))
+        val actual = recorder.gameResultRecord.raceResults.map { it.positions.first() }
+
+        assertThat(actual).isEqualTo(carPositions)
     }
 
     @Test
@@ -27,10 +30,10 @@ class RacingGameRecorderTest {
 
         val cars = listOf(Car(), Car())
 
-        cars.forEach { car ->
-            recorder.record(car)
-        }
+        recorder.recordRound(cars)
 
-        assertThat(recorder.positionBoard.size).isEqualTo(cars.size)
+        val recordedCarSize = recorder.gameResultRecord.raceResults.first().positions.size
+
+        assertThat(recordedCarSize).isEqualTo(cars.size)
     }
 }

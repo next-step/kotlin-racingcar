@@ -1,14 +1,23 @@
 package racingcar
 
 object ResultView {
-    fun printResult() {
+    fun printGameResult(gameResultRecord: GameResultRecord) {
         println("실행 결과")
+
+        gameResultRecord.raceResults
+            .forEach {
+                printRaceResult(it)
+            }
     }
 
-    fun printSkid(distance: Int) {
-        repeat(distance) {
-            print("-")
-        }
+    private fun printRaceResult(raceResultRecord: RaceResultRecord) {
+        raceResultRecord.positions
+            .forEach { position ->
+                val skidMark = "-".repeat(position)
+
+                println(skidMark)
+            }
+
         println()
     }
 }

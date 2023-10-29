@@ -10,7 +10,8 @@ class RacingGame {
     private fun playEachRound(cars: List<Car>, moveCondition: MoveCondition, racingGameRecorder: RacingGameRecorder) {
         cars.forEach { car ->
             car.tryMove(moveCondition)
-            racingGameRecorder.record(car)
         }
+
+        racingGameRecorder.recordRound(cars)
     }
 }

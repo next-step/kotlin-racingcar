@@ -1,16 +1,22 @@
 package racingcar
 
 class RacingGameRecorder {
-    private val _positionBoard = HashMap<Car, CarPositionRecord>()
-    val positionBoard: Map<Car, CarPositionRecord> get() = _positionBoard.toMap()
+    private val raceResultRecords = ArrayList<RaceResultRecord>()
+    val gameResultRecord: GameResultRecord get() = GameResultRecord(raceResultRecords.toList())
 
-    fun record(car: Car) {
-        val record = _positionBoard.getOrDefault(car, CarPositionRecord(emptyList()))
+    fun recordRound(cars: List<Car>) {
+        val round = raceResultRecords.size + 1
+        val positions = cars.map { it.position }
 
-        _positionBoard[car] = record.copy(positions = record.positions + car.position)
+        raceResultRecords.add(RaceResultRecord(round, positions))
     }
 }
 
-data class CarPositionRecord(
+data class RaceResultRecord(
+    val round: Int,
     val positions: List<Int>,
+)
+
+data class GameResultRecord(
+    val raceResults: List<RaceResultRecord>,
 )
