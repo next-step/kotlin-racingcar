@@ -5,3 +5,9 @@
   - StringCalculator 클래스 내 문자열 식 토큰화 로직 책임 분리
   - 문자열 식 내 토큰 Operator, Operand 분리 및 계산 로직 책임 분리
   - main 함수 생성 및 StringCalculator를 객체로 사용할 수 있도록 변경
+## Step 3
+- 23.10.29 
+  - Car 클래스 구현
+  - RacingcarGame 클래스 구현
+  - InputView, ResultView 클래스 구현
+  - RacingcarGameApplication 클래스 구현
