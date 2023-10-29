@@ -1,4 +1,4 @@
-package study.racingcar
+package study.calculator
 
 enum class Operator(
     val symbol: String,

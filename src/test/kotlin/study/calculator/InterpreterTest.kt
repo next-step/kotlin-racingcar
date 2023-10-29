@@ -1,10 +1,13 @@
-package study.racingcar
+package study.calculator
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import study.calculator.IllegalOperationException
+import study.calculator.Interpreter
+import study.calculator.Parser
 
 class InterpreterTest {
     @ParameterizedTest

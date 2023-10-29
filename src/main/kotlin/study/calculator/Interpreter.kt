@@ -1,4 +1,4 @@
-package study.racingcar
+package study.calculator
 
 /**
  * Interpreter 는 Parser 를 주입받아서, 문자열 파싱 후, 이를 의미있는 단위로 해석(계산) 합니다.
