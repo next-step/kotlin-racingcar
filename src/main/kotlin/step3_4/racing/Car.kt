@@ -17,12 +17,12 @@ class Car(
     }
 
     fun moveForward() {
-        if (canGo()) step += ONE_STEP
+        step += ONE_STEP
     }
 
     fun currentStep(): Int = step
 
-    private fun canGo(): Boolean {
+    fun canGo(): Boolean {
         return Random.nextInt(from = FROM_ZERO, until = UNTIL_TEN) >= CAN_GO_NUMBER
     }
 

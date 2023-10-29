@@ -21,4 +21,16 @@ class CarTest : StringSpec({
         // then
         carWithDefault.carName shouldBe "pita"
     }
+    "Move Forward 함수가 잘 작동한다" {
+        val carWithDefault = Car("pita")
+        val carWithAnotherValue = Car("pita", 2)
+        val expectedWithDefault = 1
+        val expectedWithAnother = 3
+
+        carWithDefault.moveForward()
+        carWithAnotherValue.moveForward()
+
+        carWithDefault.currentStep() shouldBe expectedWithDefault
+        carWithAnotherValue.currentStep() shouldBe expectedWithAnother
+    }
 })

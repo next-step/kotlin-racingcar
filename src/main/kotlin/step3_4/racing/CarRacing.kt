@@ -7,7 +7,7 @@ class CarRacing(
 
     fun doRacing(showResult: (List<Car>) -> Unit) {
         repeat(numberOfRounds) {
-            carList.forEach { car -> car.moveForward() }
+            carList.forEach { car -> if (car.canGo()) car.moveForward() }
             showResult(carList)
         }
     }
