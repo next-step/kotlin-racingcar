@@ -12,8 +12,9 @@ class RacingGameTest {
         val cars = arrayOf(Car())
         val tryMoveCount: Int = count
         val moveCondition = OnlyTrueMoveCondition()
+        val gameRecorder = RacingGameRecorder()
 
-        RacingGame().play(cars, tryMoveCount, moveCondition)
+        RacingGame().play(cars, tryMoveCount, moveCondition, gameRecorder)
 
         assertThat(cars.first().position).isEqualTo(count)
     }
@@ -23,10 +24,11 @@ class RacingGameTest {
         val cars = arrayOf(Car())
         val tryMoveCount = 0
         val moveCondition = OnlyTrueMoveCondition()
+        val gameRecorder = RacingGameRecorder()
 
         val originalCarPosition = cars.first().position
 
-        RacingGame().play(cars, tryMoveCount, moveCondition)
+        RacingGame().play(cars, tryMoveCount, moveCondition, gameRecorder)
 
         val movedCarPosition = cars.first().position
 
@@ -38,25 +40,10 @@ class RacingGameTest {
         val cars = arrayOf(Car(), Car())
         val tryMoveCount = 1
         val moveCondition = OnlyFirstConditionTrueMoveCondition()
+        val gameRecorder = RacingGameRecorder()
 
-        RacingGame().play(cars, tryMoveCount, moveCondition)
+        RacingGame().play(cars, tryMoveCount, moveCondition, gameRecorder)
 
         assertThat(cars[0].position).isNotEqualTo(cars[1].position)
-    }
-
-    private class OnlyTrueMoveCondition : MoveCondition {
-        override fun canForward(): Boolean {
-            return true
-        }
-    }
-
-    private class OnlyFirstConditionTrueMoveCondition : MoveCondition {
-        var condition = true
-        override fun canForward(): Boolean {
-            val originCondition = condition
-            condition = false
-
-            return originCondition
-        }
     }
 }

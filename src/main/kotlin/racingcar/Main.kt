@@ -6,10 +6,24 @@ fun main() {
 
     val cars = Array(carCount) { Car() }
 
-    val game = RacingGame()
     val moveCondition = MinimumAboveNumberMoveCondition {
         (0..10).random()
     }
 
-    game.play(cars, tryMoveCount, moveCondition)
+    val gameRecorder = RacingGameRecorder()
+
+    RacingGame().play(cars, tryMoveCount, moveCondition, gameRecorder)
+
+    ResultView.printResult()
+
+    val positions = gameRecorder.positionBoard
+        .entries
+        .map { it.value.positions }
+
+    for (i in 0 until tryMoveCount) {
+        for (j in positions.indices) {
+            ResultView.printSkid(positions[j][i])
+        }
+        println()
+    }
 }

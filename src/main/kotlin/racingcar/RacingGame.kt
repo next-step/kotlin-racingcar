@@ -1,20 +1,16 @@
 package racingcar
 
 class RacingGame {
-    fun play(cars: Array<Car>, tryMoveCount: Int, moveCondition: MoveCondition) {
-        println("실행 결과")
-
+    fun play(cars: Array<Car>, tryMoveCount: Int, moveCondition: MoveCondition, racingGameRecorder: RacingGameRecorder) {
         repeat(tryMoveCount) {
-            playEachRound(cars, moveCondition)
-            println()
+            playEachRound(cars, moveCondition, racingGameRecorder)
         }
     }
 
-    private fun playEachRound(cars: Array<Car>, moveCondition: MoveCondition) {
+    private fun playEachRound(cars: Array<Car>, moveCondition: MoveCondition, racingGameRecorder: RacingGameRecorder) {
         cars.forEach { car ->
             car.tryMove(moveCondition)
-
-            ResultView.printSkid(car.position)
+            racingGameRecorder.record(car)
         }
     }
 }
