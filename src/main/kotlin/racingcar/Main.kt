@@ -13,7 +13,8 @@ fun main(args: Array<String>) {
     val result = CarStadium(
         numberOfCars,
         numberOfTrials,
-        IntRandomGenerator(CarMove.CAR_RACING_RANDOM_START, CarMove.CAR_RACING_RANDOM_END)
+        CarMove(IntRandomGenerator(CarMove.CAR_RACING_RANDOM_START, CarMove.CAR_RACING_RANDOM_END))
     ).gameStart()
-    ResultView.print(result)
+
+    ResultView.racingResultPrint(result)
 }
