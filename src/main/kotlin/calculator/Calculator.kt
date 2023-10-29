@@ -15,7 +15,7 @@ object Calculator {
     private fun numberOperation(numbers: List<Number>, operators: List<Operator>): Int {
         return numbers.foldIndexed(0) { index, acc, value ->
             if (index == 0) {
-                 return@foldIndexed value.getNumber()
+                return@foldIndexed value.getNumber()
             }
             operators[index - 1].operate(Number(acc.toString()), value).getNumber()
         }

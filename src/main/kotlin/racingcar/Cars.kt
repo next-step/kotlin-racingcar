@@ -16,7 +16,7 @@ class Cars(carNames: List<String>) {
 
     fun operateCars(): Cars {
         carList = carList.map { car ->
-            car.move(generate())
+            car.move()
         }
         return this
     }

@@ -7,8 +7,8 @@ class Car(
 
     private val name: String = carName
 
-    fun move(random: Int): Car {
-        if (isMove(random)) return Car(name, position + 1)
+    fun move(): Car {
+        if (isMove(generate())) return Car(name, position + 1)
         return this
     }
 

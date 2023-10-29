@@ -4,7 +4,7 @@ enum class Operator(
     val operator: String,
     val operation: (Number, Number) -> Number
 ) {
-    PLUS("+", { a, b -> Number((a.getNumber() + b.getNumber()).toString())}),
+    PLUS("+", { a, b -> Number((a.getNumber() + b.getNumber()).toString()) }),
     MINUS("-", { a, b -> Number((a.getNumber() - b.getNumber()).toString()) }),
     MULTIPLY("*", { a, b -> Number((a.getNumber() * b.getNumber()).toString()) }),
     DIVIDE("/", { a, b -> Number((a.getNumber() / b.getNumber()).toString()) }),
