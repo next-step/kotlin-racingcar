@@ -6,9 +6,5 @@ class RacingCarGame(
     val cars: List<Car>,
     private val strategy: MovingStrategy,
 ) {
-    fun run() {
-        for (car in cars) {
-            car.stepForward(strategy.canMove())
-        }
-    }
+    fun run() = cars.forEach { it.stepForward(strategy.canMove()) }
 }
