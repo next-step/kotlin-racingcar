@@ -7,9 +7,25 @@ package study.racingcar
  *    3. 피연산자는 Int 범위의 양의 정수로 이루어져 있으며, 연산 가능한 숫자여야 한다.
  * */
 class Token(
-    var operator: String = "",
-    var operand: String = ""
+    private var operator: String = "",
+    private var operand: String = ""
 ) {
+
+    fun getOperator(): String {
+        return operator
+    }
+
+    fun getOperand(): String {
+        return operand
+    }
+
+    fun setOperator(newOperator: String) {
+        operator = newOperator
+    }
+
+    fun setOperand(newOperand: String) {
+        operand = newOperand
+    }
 
     /**
      * 주어진 문자가 연산 가능한(Int) 범위인지 확인합니다.
