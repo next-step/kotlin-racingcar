@@ -7,11 +7,11 @@ class CarStadium(
     private val numberOfTrials: Int
 ) {
 
-    private val cars: List<Car> = IntRange(1, numberOfCars).map(::Car)
+    private val cars: List<Car> = List(numberOfCars) { Car(it) }
 
     fun gameStart() : String = buildString {
         this.append(RACE_RESULT_FIRST_LINE.message)
-       repeat(numberOfTrials) {
+        repeat(numberOfTrials) {
             moving()
             this.append(getMovingResult())
         }
@@ -19,7 +19,7 @@ class CarStadium(
 
     private fun getMovingResult(symbol : Char = '-'): String = buildString {
         cars.forEach {
-            repeat(it.getMoveForwardCount()) { this.append(symbol) }
+            repeat(it.moveForwardCount) { this.append(symbol) }
             this.append("\n")
         }
         this.append("\n")
