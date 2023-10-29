@@ -38,7 +38,7 @@ class CarRacingGame private constructor(
             moveRule: MoveRule,
         ): CarRacingGame = CarRacingGame(
             cars = configuration.cars,
-            roundRange = configuration.rounds,
+            roundRange = configuration.roundRange,
             result = result,
             moveRule = moveRule,
         )

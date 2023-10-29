@@ -49,7 +49,7 @@ class CarRacingConfigurationTest : FunSpec({
                 car.order shouldBe index
                 car.position shouldBe 0
             }
-            result.rounds shouldBe 1..tryCount
+            result.roundRange shouldBe 1..tryCount
         }
     }
 

@@ -1,9 +1,10 @@
 package racingcar.domain.result
 
+import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import racingcar.domain.configuration.CarRacingResultConfiguration
 import racingcar.domain.car.Car
+import racingcar.domain.configuration.CarRacingResultConfiguration
 
 class CarRacingResultTest : BehaviorSpec({
     Given("자동차 경주 결과 초기값만 세팅하고") {
@@ -44,6 +45,20 @@ class CarRacingResultTest : BehaviorSpec({
             }
             Then("기록되지 않은 라운드는 초기값이 조회된다") {
                 result[1] shouldBe listOf(0, 0)
+            }
+        }
+    }
+
+    Given("자동차 결과를 생성하고") {
+        val roundRange = 1..2
+        val racingResult = CarRacingResult.createInitialResult(
+            configuration = CarRacingResultConfiguration(listOf(Car(0, 0), Car(1, 0)), roundRange),
+        )
+        When("등록하지 않은 라운드 기록을 요청하면") {
+            Then("조회에 실패한다") {
+                shouldThrowExactly<IllegalArgumentException> {
+                    racingResult.record(3, listOf(Car(0, 1), Car(1, 2)))
+                }
             }
         }
     }

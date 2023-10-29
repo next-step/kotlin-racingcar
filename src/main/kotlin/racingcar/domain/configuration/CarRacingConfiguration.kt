@@ -3,7 +3,6 @@ package racingcar.domain.configuration
 import racingcar.domain.car.Car
 import racingcar.domain.car.CarGenerator
 import racingcar.view.CarRacingInput
-import java.lang.IllegalArgumentException
 
 class CarRacingConfiguration(
     val carCount: Int,
@@ -15,7 +14,7 @@ class CarRacingConfiguration(
     fun getCarRacingGameConfiguration(): CarRacingGameConfiguration =
         CarRacingGameConfiguration(
             cars = cars,
-            rounds = rounds,
+            roundRange = rounds,
         )
 
     fun getCarRacingResultConfiguration(): CarRacingResultConfiguration =
@@ -36,7 +35,7 @@ class CarRacingConfiguration(
         )
 
         private fun validateCount(input: Int): Int {
-            require(input > 0) { throw IllegalArgumentException("갯수는 0보다 커야 합니다") }
+            require(input > 0) { "갯수는 0보다 커야 합니다" }
             return input
         }
     }
@@ -44,7 +43,7 @@ class CarRacingConfiguration(
 
 data class CarRacingGameConfiguration(
     val cars: List<Car>,
-    val rounds: IntRange,
+    val roundRange: IntRange,
 )
 
 data class CarRacingResultConfiguration(

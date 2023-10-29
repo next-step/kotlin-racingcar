@@ -1,9 +1,9 @@
 package racingcar.domain.result
 
+import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import racingcar.domain.car.Car
-import racingcar.domain.result.CarRacingRoundResult
 
 class CarRacingRoundResultTest : BehaviorSpec({
     Given("자동차 경주 라운드 결과 초기값만 세팅하고") {
@@ -16,6 +16,19 @@ class CarRacingRoundResultTest : BehaviorSpec({
             Then("세팅된 초기값이 조회된다") {
                 car1Result shouldBe 0
                 car2Result shouldBe 0
+            }
+        }
+    }
+
+    Given("자동차 경주 라운드 결과를 셍성하고") {
+        val car1 = Car(0, 0)
+        val car2 = Car(1, 0)
+        val roundResult = CarRacingRoundResult.createInitialResult(listOf(car1, car2))
+        When("등록되지 않은 자동차 경주 결과 값을 조회하면") {
+            Then("조회에 실패한다") {
+                shouldThrowExactly<IllegalArgumentException> {
+                    roundResult.getCarPosition(2)
+                }
             }
         }
     }
