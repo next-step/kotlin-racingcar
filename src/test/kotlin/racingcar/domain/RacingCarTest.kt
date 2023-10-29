@@ -5,7 +5,7 @@ import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 
-class RacerTest : BehaviorSpec({
+class RacingCarTest : BehaviorSpec({
 
     Given("레이서는") {
         When("숫자가 입력받았을 때") {
@@ -22,7 +22,7 @@ class RacerTest : BehaviorSpec({
                     row(8, 1),
                     row(9, 1)
                 ) { num, expected ->
-                    Racer().moveOrStop(num).count shouldBe expected
+                    RacingCar("pobi").moveOrStop(num).count shouldBe expected
                 }
             }
         }
