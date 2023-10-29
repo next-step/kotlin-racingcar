@@ -126,7 +126,7 @@ object Calculator {
      * 문자+숫자형식으로 문자열을 자릅니다
      */
 
-    private fun Char.isNumber(): Boolean {
+    fun Char.isNumber(): Boolean {
         return when (this) {
             in '0'..'9' -> true
             else -> false

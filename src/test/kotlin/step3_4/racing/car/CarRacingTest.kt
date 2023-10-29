@@ -1,4 +1,4 @@
-package step3.racing.car
+package step3_4.racing.car
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.ints.shouldBeLessThan

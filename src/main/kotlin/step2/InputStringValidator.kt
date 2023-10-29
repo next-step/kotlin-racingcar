@@ -1,5 +1,7 @@
 package step2
 
+import step2.Calculator.isNumber
+
 object InputStringValidator {
     /**
      * 문자열이 유효한지 한번에 체크
@@ -38,8 +40,14 @@ object InputStringValidator {
         this.toString() == FourArithmeticOperation.MULTIPLY.operation || this.toString() == FourArithmeticOperation.DIVIDE.operation
 
     private fun Char.isFourArithmeticCalculation(): Boolean {
-        FourArithmeticOperation.getArithmeticOperationFromString(this)
-        return true
+        return if (this == '.') {
+            true
+        } else if (isNumber().not()) {
+            FourArithmeticOperation.getArithmeticOperationFromString(this)
+            true
+        } else {
+            false
+        }
     }
 
     private const val START_STRING_CAN_NOT_BE_OPERATION = "문자열의 시작, 끝은 \"*, /\" 일 수 없어요"
