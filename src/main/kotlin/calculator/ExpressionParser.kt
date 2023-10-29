@@ -22,7 +22,7 @@ class ExpressionParser {
 
             return expressionList
         } catch (formatException: NumberFormatException) {
-            throw IllegalArgumentException("숫자만 입력 가능합니다.")
+            throw IllegalArgumentException("숫자 형식이 아닙니다.")
         }
     }
 
