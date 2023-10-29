@@ -7,20 +7,16 @@ import step3_4.view.OutputView
 import step3_4.view.ResultView
 
 fun main() {
-    val carList = mutableListOf<Car>()
-    val racing = CarRacing()
-
     OutputView.printEnterNumberOfCarsMessage()
     val numberOfCars = InputView.processEnteredCarInformation()
-
-    for (name in numberOfCars) {
-        carList.add(Car(carName = name))
-    }
 
     OutputView.printEnterNumberOfRoundMessage()
     val numberOfRounds = InputView.processEnteredNumberOfRounds()
 
-    racing.doRacing(numberOfRounds, carList) { result ->
+    val carList = numberOfCars.map { Car(it) }
+    val racing = CarRacing(carList, numberOfRounds)
+
+    racing.doRacing { result ->
         ResultView.showResult(result)
     }
     ResultView.showLastResult(carList)
