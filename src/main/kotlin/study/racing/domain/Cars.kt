@@ -1,10 +1,11 @@
 package study.racing.domain
 
 import study.racing.strategy.MoveStrategy
+import study.racing.strategy.RandomMoveStrategy
 
 class Cars private constructor(
     private val cars: List<Car> = listOf(),
-) {
+) : List<Car> by cars {
 
     init {
         require(cars.isNotEmpty()) {
@@ -24,24 +25,40 @@ class Cars private constructor(
 
     companion object {
         fun from(
-            carCount: Int
+            carNames: String
         ): Cars {
-            return Cars(
-                createCountOfCars(carCount)
-            )
+            return Cars(createEachCarNameOfCars(splitCarNames(carNames)))
+        }
+
+        private fun splitCarNames(carNames: String): List<CarName> {
+
+            require(carNames.isNotEmpty()) {
+                "차량 이름을 정상적으로 등록해 주세요. 여러대 등록시 ',' 로 구분해서 작성해 주세요."
+            }
+
+            return carNames.trim()
+                .split(",")
+                .map {
+                    CarName(it)
+                }
         }
 
         fun of(
-            carCount: Int,
+            carNames: String,
             strategy: MoveStrategy
         ): Cars {
             return Cars(
-                createCountOfCars(carCount, strategy),
+                createEachCarNameOfCars(splitCarNames(carNames), strategy),
             )
         }
 
-        private fun createCountOfCars(carCount: Int): List<Car> = List(carCount) { Car() }
-        private fun createCountOfCars(carCount: Int, strategy: MoveStrategy): List<Car> =
-            List(carCount) { Car(strategy) }
+        private fun createEachCarNameOfCars(carNames: List<CarName>): List<Car> = List(carNames.size) {
+            Car(RandomMoveStrategy(), carNames[it])
+        }
+
+        private fun createEachCarNameOfCars(carNames: List<CarName>, strategy: MoveStrategy): List<Car> =
+            List(carNames.size) {
+                Car(strategy, carNames[it])
+            }
     }
 }
