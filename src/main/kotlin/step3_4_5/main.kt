@@ -1,10 +1,10 @@
-package step3_4
+package step3_4_5
 
-import step3_4.racing.Car
-import step3_4.racing.CarRacing
-import step3_4.view.InputView
-import step3_4.view.OutputView
-import step3_4.view.ResultView
+import step3_4_5.racing.Car
+import step3_4_5.racing.CarRacing
+import step3_4_5.view.InputView
+import step3_4_5.view.OutputView
+import step3_4_5.view.ResultView
 
 fun main() {
     OutputView.printEnterNumberOfCarsMessage()
