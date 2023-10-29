@@ -1,14 +1,31 @@
 package calculator.model
 
 class Arithmetic(
-    val operators: List<Operator>,
-    val operands: List<Operand>,
+    private val operators: List<Operator>,
+    private val operands: List<Operand>,
 ) {
     fun act(): Int {
         assertFormula(operators.size, operands.size)
+        // return accumulatorV1()
+        return accumulatorV2()
+    }
+
+    private fun accumulatorV1(): Int {
         var result = operands[0].value
         for (i in 0 until operators.size) {
             result = operators[i].operate(result, operands[i + 1].value)
+        }
+        return result
+    }
+
+    private fun accumulatorV2(): Int {
+        val combinedList = operators.zip(
+            operands.drop(1)
+        ) { op, operand -> op to operand.value }
+        val result = combinedList.fold(
+            operands.first().value
+        ) { acc, (op, value) ->
+            op.operate(acc, value)
         }
         return result
     }

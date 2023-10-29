@@ -2,20 +2,16 @@ package calculator.model
 
 enum class Operator(
     val value: String,
+    val action: (Int, Int) -> Int
 ) {
-    PLUS("+"),
-    MINUS("-"),
-    MULTI("*"),
-    DIVIDE("/"),
+    PLUS("+", { a, b -> a + b }),
+    MINUS("-", { a, b -> a - b }),
+    MULTI("*", { a, b -> a * b }),
+    DIVIDE("/", { a, b -> a / b }),
     ;
 
     fun operate(first: Int, second: Int): Int {
-        return when (this) {
-            PLUS -> first + second
-            MINUS -> first - second
-            MULTI -> first * second
-            DIVIDE -> first / second
-        }
+        return this.action(first, second)
     }
 
     companion object {
@@ -27,17 +23,8 @@ enum class Operator(
         }
 
         private fun toOperator(string: String): Operator {
-            return when (string) {
-                PLUS.value -> PLUS
-                MINUS.value -> MINUS
-                MULTI.value -> MULTI
-                DIVIDE.value -> DIVIDE
-                else -> throw IllegalArgumentException(String.format("잘뭇된 문자 [%s] 가 입력됨", string))
-            }
-        }
-
-        private fun isOperator(string: String): Boolean {
-            return values().any { it.value == string }
+            require(values().any { it.value == string })
+            return Operator.valueOf(string)
         }
     }
 }

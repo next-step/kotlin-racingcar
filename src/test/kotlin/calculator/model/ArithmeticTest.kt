@@ -1,5 +1,6 @@
 package calculator.model
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
@@ -43,5 +44,14 @@ class ArithmeticTest : StringSpec({
             listOf(OperandFixture.four, OperandFixture.two)
         ).act()
         actual shouldBe 2
+    }
+
+    "계산이 불가능한 수식이 입력되면 IllegalArgumentException throw" {
+        shouldThrow<IllegalArgumentException> {
+            Arithmetic(
+                listOf(Operator.DIVIDE, Operator.DIVIDE, Operator.DIVIDE),
+                listOf(OperandFixture.four, OperandFixture.two)
+            ).act()
+        }
     }
 })
