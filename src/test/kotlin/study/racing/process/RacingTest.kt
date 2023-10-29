@@ -2,31 +2,33 @@ package study.racing.process
 
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.ValueSource
 
 class RacingTest {
 
     @ParameterizedTest
-    @MethodSource("racingFailArgumentProvider")
-    fun `자동차 차량수, 라운드수 입력시 1이상의 정수가 아닌 경우 에러를 반환한다`(
-        carCount: Int,
+    @ValueSource(
+        strings = [
+            "aasdf", "a,bbbbbbbb", ",33f", "afsf,55555", " , ", "  a  1 , b    5 "
+        ]
+    )
+    fun `자동차 이름이 4글자이하가 아니거나 공백인 경우 에러를 반환한다`(
+        carNames: String
+    ) {
+        assertThrows<IllegalArgumentException> {
+            val racing = Racing()
+            racing.playRacing(carNames, 1)
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [0, -1, -11, -111])
+    fun `라운드수 입력시 1이상의 정수가 아닌 경우 에러를 반환한다`(
         roundCount: Int
     ) {
         assertThrows<IllegalArgumentException> {
             val racing = Racing()
-            racing.playRacing(carCount, roundCount)
+            racing.playRacing("a,b,c,d", roundCount)
         }
-    }
-
-    companion object {
-        @JvmStatic
-        fun racingFailArgumentProvider() = listOf(
-            Arguments.of(0, 1),
-            Arguments.of(1, 0),
-            Arguments.of(-1, 1),
-            Arguments.of(1, -1),
-            Arguments.of(0, -1),
-        )
     }
 }

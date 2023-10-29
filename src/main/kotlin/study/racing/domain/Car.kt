@@ -1,16 +1,29 @@
 package study.racing.domain
 
-class Car {
+import study.racing.strategy.MoveStrategy
+import study.racing.strategy.RandomMoveStrategy
 
-    private val distance: Distance = Distance()
+class Car(
+    private val strategy: MoveStrategy = RandomMoveStrategy(),
+    name: CarName
+) {
+
+    var distance: Distance = Distance()
+        private set
+    var carName: CarName = name
+        private set
 
     fun getCarDistance(): Int {
         return this.distance.moveDistance
     }
 
-    fun tryMoveTheCar(isMoving: Boolean) {
-        if (isMoving) {
+    fun tryMoveTheCar() {
+        if (strategy.isMoving()) {
             this.distance.moveForward()
         }
+    }
+
+    fun getCarName(): String {
+        return this.carName.name
     }
 }

@@ -7,15 +7,19 @@ import study.racing.view.RacingView
 class Racing {
 
     fun playRacing(
-        carCount: Int,
+        carNames: String,
         roundCount: Int
     ) {
         val round = Round(roundCount)
-        val racingCars = Cars.from(carCount)
+        val racingCars = Cars.from(carNames)
+
+        RacingView.printRacingGameTitle()
 
         repeat(round.roundCount) {
             racingCars.moveTheCars()
-            RacingView.printRacingResult(racingCars.getCarsMoveDistance())
+            RacingView.printRacingResult(racingCars)
         }
+
+        RacingView.printRacingWinner(racingCars.getRacingWinnerNames())
     }
 }
