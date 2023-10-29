@@ -55,6 +55,33 @@ class CarRacingRoundResultTest : BehaviorSpec({
         }
     }
 
+    Given("자동차 경주 결과에 차를 등록했을 때") {
+        val initialCar1 = Car(0, 0)
+        val initialCar2 = Car(1, 0)
+        val initialCars = listOf(initialCar1, initialCar2)
+        val roundResult = CarRacingRoundResult.createInitialResult(initialCars)
+        When("등록한 차가 아닌 다른 차의 자동차 경주 라운드 결과 값을 기록하면") {
+            val movedCars = listOf(
+                Car(0, 1),
+                Car(1, 2),
+                Car(2, 1),
+            )
+            Then("기록에 실패한다") {
+                shouldThrowExactly<IllegalArgumentException> {
+                    roundResult.record(movedCars)
+                }
+            }
+        }
+        When("자동차 경주 라운드 결과 값을 자동차 별로 조회하면") {
+            val car1Result = roundResult.getCarPosition(0)
+            val car2Result = roundResult.getCarPosition(1)
+            Then("기록된 라운드 결과가 조회된다") {
+                car1Result shouldBe 1
+                car2Result shouldBe 2
+            }
+        }
+    }
+
     Given("자동차 경주 라운드 결과를 기록하고") {
         val roundResult = CarRacingRoundResult.createInitialResult(listOf(Car(0, 0), Car(1, 0)))
         val movedCar1 = Car(0, 1)

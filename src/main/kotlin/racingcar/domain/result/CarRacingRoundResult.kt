@@ -8,6 +8,7 @@ class CarRacingRoundResult private constructor(
 ) {
     fun record(cars: List<Car>) {
         cars.forEach { car ->
+            require(positionsByCarOrder[car.order] != null) { "등록된 자동차가 아닙니다" }
             positionsByCarOrder[car.order] = car.position
         }
     }
