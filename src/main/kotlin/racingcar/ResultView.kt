@@ -8,6 +8,10 @@ object ResultView {
             .forEach {
                 printRaceResult(it)
             }
+
+        gameResultRecord.winners?.let { winners ->
+            printWinners(winners)
+        }
     }
 
     private fun printRaceResult(raceResultRecord: RaceResultRecord) {
@@ -20,5 +24,11 @@ object ResultView {
             }
 
         println()
+    }
+
+    private fun printWinners(winners: Winners) {
+        val winnersName = winners.names.joinToString()
+
+        println("${winnersName}가 최종 우승했습니다.")
     }
 }

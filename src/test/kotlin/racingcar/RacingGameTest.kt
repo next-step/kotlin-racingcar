@@ -48,4 +48,20 @@ class RacingGameTest {
 
         assertThat(cars[0].position).isNotEqualTo(cars[1].position)
     }
+
+    @Test
+    fun `가장 많이 움직인 차가 우승한다`() {
+        val cars = listOf(
+            Car(OnlyTrueMoveCondition(), "winner"),
+            Car(OnlyFalseMoveCondition(), "a"),
+        )
+        val tryMoveCount = 1
+        val gameRecorder = RacingGameRecorder()
+
+        RacingGame().play(cars, tryMoveCount, gameRecorder)
+
+        val winnersName = gameRecorder.gameResultRecord.winners?.names
+
+        assertThat(winnersName).isEqualTo(listOf("winner"))
+    }
 }

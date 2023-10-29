@@ -5,6 +5,8 @@ class RacingGame {
         repeat(tryMoveCount) {
             playEachRound(cars, racingGameRecorder)
         }
+
+        selectWinners(racingGameRecorder)
     }
 
     private fun playEachRound(cars: List<Car>, racingGameRecorder: RacingGameRecorder) {
@@ -13,5 +15,20 @@ class RacingGame {
         }
 
         racingGameRecorder.recordRound(cars)
+    }
+
+    private fun selectWinners(racingGameRecorder: RacingGameRecorder) {
+        val finalRaceResult = racingGameRecorder.gameResultRecord
+            .finalRaceResult
+            ?: return
+
+        val maxDistance = finalRaceResult.carPositions
+            .maxOfOrNull { it.position }
+
+        val winnersName = finalRaceResult.carPositions
+            .filter { it.position == maxDistance }
+            .map { it.name }
+
+        racingGameRecorder.recordWinners(winnersName)
     }
 }

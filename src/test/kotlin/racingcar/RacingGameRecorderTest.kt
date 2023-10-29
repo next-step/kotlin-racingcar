@@ -39,4 +39,20 @@ class RacingGameRecorderTest {
 
         assertThat(recordedCarSize).isEqualTo(cars.size)
     }
+
+    @Test
+    fun `우승자를 기록하지 않으면 우승자가 존재하지 않는다`() {
+        val recorder = RacingGameRecorder()
+
+        assertThat(recorder.gameResultRecord.winners).isNull()
+    }
+
+    @Test
+    fun `우승자를 기록하면 gameResultRecord에 우승자가 남는다`() {
+        val recorder = RacingGameRecorder()
+
+        recorder.recordWinners(listOf("a", "b"))
+
+        assertThat(recorder.gameResultRecord.winners).isEqualTo(Winners(listOf("a", "b")))
+    }
 }
