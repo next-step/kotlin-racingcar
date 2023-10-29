@@ -2,7 +2,6 @@ package racingCar.view
 
 import racingCar.domain.Car
 import racingCar.domain.Cars
-import racingCar.domain.container.Container
 
 object OutputView {
 
@@ -12,8 +11,6 @@ object OutputView {
     private const val CAR = "="
     private const val COLON = " : "
     private const val WINNER_MESSAGE = "가 최종 우승 하였습니다"
-
-    private val moveStrategy = Container.getMoveStrategy()
 
     fun printCarName() = println(ENTER_CARS_NAME)
     fun printTryCount() = println(ASK_TRY_COUNT)
@@ -25,7 +22,7 @@ object OutputView {
     }
 
     fun printWinner(carList: List<Car>) {
-        val cars = Cars(moveStrategy)
+        val cars = Cars()
         val winners = cars.getWinners(carList)
         println(winners + WINNER_MESSAGE)
     }

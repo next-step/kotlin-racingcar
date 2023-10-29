@@ -3,11 +3,9 @@ package racingCar.domain
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import racingCar.domain.container.Container
 import racingCar.domain.strategy.MoveStrategy
 
 class CarsTest {
-    private val moveStrategy = Container.getMoveStrategy()
     private val testMoveStrategy = MoveStrategy { true }
 
     companion object {
@@ -29,7 +27,7 @@ class CarsTest {
 
     @Test
     fun getCarsTest() {
-        val cars = Cars(moveStrategy)
+        val cars = Cars()
         val carList = cars.getCars(CARS)
 
         assertEquals(3, carList.size)
@@ -37,7 +35,7 @@ class CarsTest {
 
     @Test
     fun `자동차 Name의 길이는 5 초과가 되어선 안된다`() {
-        val cars = Cars(moveStrategy)
+        val cars = Cars()
         assertThrows<IllegalArgumentException> {
             cars.getCars(LENGTH_OVER_CARS)
         }
