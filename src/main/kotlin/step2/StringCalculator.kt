@@ -19,7 +19,7 @@ object StringCalculator {
         var lazyFunc: (Int, Int) -> Int = { _, _ -> 0 }
         return tokens.reduceIndexed { index, acc, s ->
             if (index % 2 == 1) {
-                lazyFunc = Symbol.of(s).calc
+                lazyFunc = Symbol.from(s).calc
                 acc
             } else {
                 lazyFunc(acc.toInt(), s.toInt()).toString()
@@ -35,7 +35,7 @@ enum class Symbol(val value: String, val calc: (Int, Int) -> Int) {
     DIVIDE("/", { a, b -> a / b });
 
     companion object {
-        fun of(value: String): Symbol {
+        fun from(value: String): Symbol {
             return values().find { it.value == value }
                 ?: throw IllegalArgumentException("invalid operator")
         }
