@@ -9,7 +9,7 @@ class RacingGameTest {
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4, 5])
     fun `moveCondition이 항상 참이면 tryMoveCount 만큼 차가 이동한다`(count: Int) {
-        val cars = arrayOf(Car())
+        val cars = listOf(Car())
         val tryMoveCount: Int = count
         val moveCondition = OnlyTrueMoveCondition()
         val gameRecorder = RacingGameRecorder()
@@ -21,7 +21,7 @@ class RacingGameTest {
 
     @Test
     fun `이동 횟수가 0인 경우 차는 이동하지 않는다`() {
-        val cars = arrayOf(Car())
+        val cars = listOf(Car())
         val tryMoveCount = 0
         val moveCondition = OnlyTrueMoveCondition()
         val gameRecorder = RacingGameRecorder()
@@ -37,7 +37,7 @@ class RacingGameTest {
 
     @Test
     fun `moveCondition에 따라 각각 차의 이동 거리가 다를 수 있다`() {
-        val cars = arrayOf(Car(), Car())
+        val cars = listOf(Car(), Car())
         val tryMoveCount = 1
         val moveCondition = OnlyFirstConditionTrueMoveCondition()
         val gameRecorder = RacingGameRecorder()

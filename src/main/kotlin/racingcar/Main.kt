@@ -4,7 +4,7 @@ fun main() {
     val carCount = InputView.getCarCount()
     val tryMoveCount = InputView.getTryMoveCount()
 
-    val cars = Array(carCount) { Car() }
+    val cars = Array(carCount) { Car() }.toList()
 
     val moveCondition = MinimumAboveNumberMoveCondition {
         (0..10).random()
