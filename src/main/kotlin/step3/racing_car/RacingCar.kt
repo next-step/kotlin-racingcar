@@ -38,14 +38,14 @@ object RacingCar {
         val roundCnt = readln()
         errorCheck(roundCnt)
 
-        var carsResultList: List<List<Int>> = List(numberCars.toInt()) { listOf(USERS_START_VALUE) }
+        var carsCurrentPositionList: List<List<Int>> = List(numberCars.toInt()) { listOf(USERS_START_VALUE) }
 
         val resultView = ResultView()
         resultView.drawRacingResultMsg()
 
         repeat(roundCnt.toInt()) {
-            carsResultList = playRound(carsResultList)
-            resultView.drawRacingResult(carsResultList.map { it.last() })
+            carsCurrentPositionList = playRound(carsCurrentPositionList)
+            resultView.drawRacingResult(carsCurrentPositionList.map { it.last() })
         }
     }
 
@@ -55,8 +55,8 @@ object RacingCar {
         }
     }
 
-    fun playRound(userList: List<List<Int>>): List<List<Int>> {
-        return userList.map { positionList ->
+    fun playRound(carsCurrentPositionList: List<List<Int>>): List<List<Int>> {
+        return carsCurrentPositionList.map { positionList ->
             if (isAdvance(RANDOM_RANGE.random())) {
                 positionList + listOf(positionList.last() + MoveType.ADVANCE.moveSpace)
             } else {
