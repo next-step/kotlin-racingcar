@@ -12,9 +12,7 @@ class RacingCarManager(
     fun startGame() {
         val numberOfCar = inputManager.inputNumberOfCar()
         val numberOfCount = inputManager.inputNumberOfCount()
-        val cars: MutableList<Car> = mutableListOf()
-
-        setCarList(numberOfCar, cars)
+        val cars: List<Car> = createCars(numberOfCar)
 
         outPutManager.printBeginResultMessage()
 
@@ -23,18 +21,13 @@ class RacingCarManager(
         }
     }
 
-    private fun race(carList: MutableList<Car>) {
+    private fun race(carList: List<Car>) {
         carList.forEach { it.drive() }
         outPutManager.printCarList(carList)
     }
 
-    private fun setCarList(
-        numberOfCar: Int,
-        carList: MutableList<Car>,
-    ) {
-        repeat(numberOfCar) {
-            carList.add(Car(it, DriveConditionImpl()))
-        }
+    private fun createCars(numberOfCars: Int): List<Car> {
+        return List(numberOfCars) { Car(it, DriveConditionImpl()) }
     }
 }
 
