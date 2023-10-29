@@ -73,11 +73,64 @@ class CarsTest {
         )
     }
 
+    @ParameterizedTest
+    @MethodSource("carsMaxMovingProvider")
+    fun `가장 멀리 이동한 차들의 수, 이름을 알 수 있다`(
+        carNames: String,
+        expectedMaxMovingCarNames: List<String>,
+        expectedMaxMovingDistance: Int
+    ) {
+        // Given
+        val strategyDouble = RandomMoveStrategyDouble(true)
+        val actual = Cars.of(carNames, strategyDouble)
+        makeWinner(actual, expectedMaxMovingCarNames, expectedMaxMovingDistance)
+
+        // When
+        val winner = actual.getRacingWinnerNames()
+
+        // Then
+        assertAll(
+            {
+                val expectWinnerCount = expectedMaxMovingCarNames.size
+                assertThat(winner.size).isEqualTo(expectWinnerCount)
+            },
+            {
+                assertThat(winner).isEqualTo(expectedMaxMovingCarNames)
+            },
+        )
+    }
+
+    private fun makeWinner(
+        candidateCars: Cars,
+        winnerCarNames: List<String>,
+        winnerDistance: Int
+    ) {
+        candidateCars.filter {
+            winnerCarNames.contains(it.getCarName())
+        }.forEach { car ->
+            repeat(times = winnerDistance) {
+                car.tryMoveTheCar()
+            }
+        }
+    }
+
     companion object {
         @JvmStatic
         fun carsMovingProvider() = listOf(
             Arguments.of("a,b,c,d", false, 0),
             Arguments.of("a,b,c,d", true, 1),
+        )
+
+        @JvmStatic
+        fun carsMaxMovingProvider() = listOf(
+            Arguments.of("a,b,c,d", listOf("a"), 1),
+            Arguments.of("a,b,c,d", listOf("a"), 10),
+            Arguments.of("a,b,c,d", listOf("a", "b"), 2),
+            Arguments.of("a,b,c,d", listOf("a", "b"), 10),
+            Arguments.of("a,b,c,d", listOf("a", "b", "c"), 3),
+            Arguments.of("a,b,c,d", listOf("a", "b", "c"), 10),
+            Arguments.of("a,b,c,d", listOf("a", "b", "c", "d"), 4),
+            Arguments.of("a,b,c,d", listOf("a", "b", "c", "d"), 10),
         )
     }
 }

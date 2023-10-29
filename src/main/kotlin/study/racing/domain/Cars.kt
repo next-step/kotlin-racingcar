@@ -23,6 +23,16 @@ class Cars private constructor(
         it.getCarDistance()
     }.toList()
 
+    fun getRacingWinnerNames(): List<String> {
+        return cars.filter {
+            it.getCarDistance() == this.maxOf { car ->
+                car.getCarDistance()
+            }
+        }.map {
+            it.getCarName()
+        }
+    }
+
     companion object {
         fun from(
             carNames: String
