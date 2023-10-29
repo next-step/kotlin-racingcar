@@ -10,4 +10,32 @@ class CarTest {
 
         assertThat(car.position).isEqualTo(0)
     }
+
+    @Test
+    fun `MoveCondition의 canForward 조건이 참이면 차가 움직일 수 있다`() {
+        val car = Car()
+        val moveCondition = object : MoveCondition {
+            override fun canForward(): Boolean {
+                return true
+            }
+        }
+
+        car.tryMove(moveCondition)
+
+        assertThat((car.position)).isEqualTo(1)
+    }
+
+    @Test
+    fun `MoveCondition의 canForward 조건이 거짓이면 차가 움직일 수 있다`() {
+        val car = Car()
+        val moveCondition = object : MoveCondition {
+            override fun canForward(): Boolean {
+                return false
+            }
+        }
+
+        car.tryMove(moveCondition)
+
+        assertThat((car.position)).isEqualTo(0)
+    }
 }

@@ -4,8 +4,8 @@ class Car {
     var position: Int = 0
         private set
 
-    fun tryMove(number: Int) {
-        if (number >= 4) {
+    fun tryMove(moveCondition: MoveCondition) {
+        if (moveCondition.canForward()) {
             position++
         }
     }
