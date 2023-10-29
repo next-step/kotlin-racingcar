@@ -29,7 +29,6 @@ object InputView {
      * 입력으로 문자열을 받고 1 이상의 정수형의 숫자인지 검증 후 Int 로 변환해서 반환한다.
      * @throws IllegalArgumentException 입력 값이 null 이거나 적절한 정수형의 숫자가 아닌 경우
      * */
-    @Throws(IllegalArgumentException::class)
     private fun String.checkIsProperIntFormat(): Int {
         val num = try {
             toInt()
@@ -49,7 +48,6 @@ object InputView {
      * @param prompt 입력을 유도하는 문자열
      * @throws IllegalArgumentException 입력 값이 null 이거나 적절한 정수형의 숫자가 아닌 경우
      * */
-    @Throws(IllegalArgumentException::class)
     private fun inputNumber(prompt: String): Int {
         while (true) {
             try {
