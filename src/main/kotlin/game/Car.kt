@@ -1,6 +1,9 @@
 package game
 
-class Car private constructor(private var position: Int = 0, val name: String) {
+class Car private constructor(private var _position: Int = 0, val name: String) {
+
+    val position: Int
+        get() = _position
 
     fun move(moveCondition: Int) {
         when {
@@ -8,14 +11,10 @@ class Car private constructor(private var position: Int = 0, val name: String) {
         }
     }
 
-    fun isSamePosition(position: Int) = this.position == position
+    fun isSamePosition(position: Int) = this._position == position
 
     private fun advance() {
-        position += 1
-    }
-
-    fun getPosition(): Int {
-        return position
+        _position += 1
     }
 
     private fun canMove(moveCondition: Int) = moveCondition in 4..9
@@ -24,7 +23,7 @@ class Car private constructor(private var position: Int = 0, val name: String) {
         return buildString {
             append(name)
             append(DELIMITER)
-            append(POSITION_MARKER.repeat(position))
+            append(POSITION_MARKER.repeat(_position))
         }
     }
 

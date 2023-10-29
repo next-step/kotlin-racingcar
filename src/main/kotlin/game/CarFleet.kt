@@ -3,7 +3,7 @@ package game
 class CarFleet private constructor(private val cars: List<Car>) {
 
     fun findWinner(): List<String> {
-        val maxPosition = cars.maxOf { it.getPosition() }
+        val maxPosition = cars.maxOf { it.position }
         return cars.filter { it.isSamePosition(maxPosition) }.map { it.name }
     }
 

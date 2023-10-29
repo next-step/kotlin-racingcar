@@ -47,9 +47,9 @@ class CarFleetTest {
         carFleet.advance(retryCount, FixedMoveConditionGenerator(4), userMessageDisplay::display)
 
         // then
-        assertThat(pobi.getPosition()).isEqualTo(retryCount)
-        assertThat(crong.getPosition()).isEqualTo(retryCount)
-        assertThat(honux.getPosition()).isEqualTo(retryCount)
+        assertThat(pobi.position).isEqualTo(retryCount)
+        assertThat(crong.position).isEqualTo(retryCount)
+        assertThat(honux.position).isEqualTo(retryCount)
     }
 
     companion object {
