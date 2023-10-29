@@ -27,10 +27,11 @@ class CarTest {
         expectedDistance: Int
     ) {
         // Given
-        val actual = Car()
+        val strategyDouble = RandomMoveStrategyDouble(isMoving)
+        val actual = Car(strategyDouble)
 
         // When
-        actual.tryMoveTheCar(isMoving)
+        actual.tryMoveTheCar()
 
         // Then
         assertThat(actual.getCarDistance()).isEqualTo(expectedDistance)

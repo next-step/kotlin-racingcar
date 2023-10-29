@@ -1,11 +1,9 @@
 package study.racing.domain
 
 import study.racing.strategy.MoveStrategy
-import study.racing.strategy.RandomMoveStrategy
 
 class Cars private constructor(
-    private var cars: List<Car> = listOf(),
-    private val strategy: MoveStrategy = RandomMoveStrategy()
+    private val cars: List<Car> = listOf(),
 ) {
 
     init {
@@ -16,7 +14,7 @@ class Cars private constructor(
 
     fun moveTheCars() {
         cars.forEach { car ->
-            car.tryMoveTheCar(strategy.isMoving())
+            car.tryMoveTheCar()
         }
     }
 
@@ -38,17 +36,12 @@ class Cars private constructor(
             strategy: MoveStrategy
         ): Cars {
             return Cars(
-                createCountOfCars(carCount),
-                strategy
+                createCountOfCars(carCount, strategy),
             )
         }
 
-        private fun createCountOfCars(carCount: Int): List<Car> {
-            val cars = mutableListOf<Car>()
-            repeat(carCount) {
-                cars.add(Car())
-            }
-            return cars
-        }
+        private fun createCountOfCars(carCount: Int): List<Car> = List(carCount) { Car() }
+        private fun createCountOfCars(carCount: Int, strategy: MoveStrategy): List<Car> =
+            List(carCount) { Car(strategy) }
     }
 }

@@ -1,6 +1,11 @@
 package study.racing.domain
 
-class Car {
+import study.racing.strategy.MoveStrategy
+import study.racing.strategy.RandomMoveStrategy
+
+class Car(
+    private val strategy: MoveStrategy = RandomMoveStrategy()
+) {
 
     private val distance: Distance = Distance()
 
@@ -8,8 +13,8 @@ class Car {
         return this.distance.moveDistance
     }
 
-    fun tryMoveTheCar(isMoving: Boolean) {
-        if (isMoving) {
+    fun tryMoveTheCar() {
+        if (strategy.isMoving()) {
             this.distance.moveForward()
         }
     }

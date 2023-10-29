@@ -8,7 +8,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
-import study.racing.strategy.MoveStrategy
 
 class CarsTest {
 
@@ -24,20 +23,9 @@ class CarsTest {
         val actual = Cars.from(count)
 
         // Then
-        val expected = createCarsExpected(count, strategyDouble)
+        val expected = Cars.of(count, strategyDouble)
         assertThat(actual).usingRecursiveComparison()
             .isEqualTo(expected)
-    }
-
-    private fun createCarsExpected(
-        count: Int,
-        strategy: MoveStrategy
-    ): Cars {
-        val carList = mutableListOf<Car>()
-        repeat(count) {
-            carList.add(Car())
-        }
-        return Cars.of(count, strategy)
     }
 
     @Test
