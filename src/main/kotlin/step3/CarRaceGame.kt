@@ -13,10 +13,10 @@ class CarRaceGame {
 
     fun startGame() {
         viewer.showResultWords()
-        viewer.showCarStatus(carRace.getCarStatus())
+        viewer.showCarStatus(carRace.getCarsPosition())
         repeat(viewer.getRound()) {
             carRace.doRound()
-            viewer.showCarStatus(carRace.getCarStatus())
+            viewer.showCarStatus(carRace.getCarsPosition())
         }
     }
 }

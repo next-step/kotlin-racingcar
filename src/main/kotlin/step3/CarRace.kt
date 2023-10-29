@@ -5,7 +5,7 @@ class CarRace(
 ) {
     private val carsStatus = MutableList(carsCount) { Car() }
 
-    fun getCarStatus() = carsStatus.map { it.getPosition() }.toList()
+    fun getCarsPosition() = carsStatus.map { it.getPosition() }.toList()
 
     fun doRound() {
         carsStatus.forEach { it.doForwardOrNot() }
