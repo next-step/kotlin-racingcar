@@ -3,7 +3,7 @@ package racing.model
 import racing.model.generator.RandomGenerator
 import racing.model.move.MoveRandomStrategy
 
-class Racing {
+class RacingCar {
     private val strategy = MoveRandomStrategy(RandomGenerator())
 
     fun race(participate: Int, roundCount: Int): ArrayDeque<MatchResult> {
