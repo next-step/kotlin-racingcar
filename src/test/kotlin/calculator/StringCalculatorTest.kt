@@ -4,10 +4,13 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.TestInstance
+import org.junit.jupiter.api.TestInstance.Lifecycle
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 
+@TestInstance(Lifecycle.PER_CLASS)
 class StringCalculatorTest {
 
     private lateinit var calculator: StringCalculator
@@ -91,14 +94,14 @@ class StringCalculatorTest {
 
     @ParameterizedTest
     @DisplayName("사칙연산 기호가 아닌 경우 IllegalArgumentException이 발생한다")
-    @ValueSource(strings = ["@", "&", "#"])
+    @ValueSource(strings = ["1 @ 2", "3 & 4", "5 # 6"])
     fun inputFailedInvalidOperator(input: String) {
         // given.
 
         // when. & then.
         assertThatThrownBy { calculator.execute(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("유효하지 않은 연산 기호가 포함되어 있습니다")
+            .hasMessage("지원하지 않는 연산자입니다")
     }
 
     @BeforeAll
