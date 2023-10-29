@@ -18,7 +18,7 @@ class RacingCarManager(
 
         outPutManager.printBeginResultMessage()
 
-        for(i in 0 until numberOfCount) {
+        for (i in 0 until numberOfCount) {
             race(carList)
         }
     }
