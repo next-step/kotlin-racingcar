@@ -18,7 +18,7 @@ object CarRacingRunner {
         drawOutput(result)
     }
 
-    private fun getInput(): CarRacingInput = CarRacingInputView.getInputForStart()
+    private fun getInput(): CarRacingInput = CarRacingInputView.getInput()
 
     private fun createConfiguration(input: CarRacingInput): CarRacingConfiguration =
         CarRacingConfiguration.of(input)
