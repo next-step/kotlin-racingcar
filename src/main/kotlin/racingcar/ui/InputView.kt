@@ -9,18 +9,22 @@ object InputView {
     fun inputNames(): List<String> {
         println(INPUT_RACING_CAR_NAME_MESSAGE)
         val inputNames = readln().split(RACING_CAR_NAME_DELIMITER)
-        val limitOverNames = inputNames.filter { inputName -> inputName.length > RACING_CAR_NAME_LENGTH_LIMIT }
-        return printLimitOverNames(limitOverNames, inputNames)
+        return validateNames(inputNames)
     }
 
-    private fun printLimitOverNames(
-        limitOverNames: List<String>,
-        inputNames: List<String>
-    ) = if (limitOverNames.isEmpty()) {
-        inputNames
-    } else {
-        println(limitOverNames.joinToString(RACING_CAR_NAME_DELIMITER) + " : 자동차 이름은 " + RACING_CAR_NAME_LENGTH_LIMIT + "글자를 초과하여 입력할 수 없습니다.")
-        inputNames()
+    private fun validateNames(inputNames: List<String>): List<String> {
+        val limitOverNames = inputNames.filter { inputName -> inputName.length > RACING_CAR_NAME_LENGTH_LIMIT }
+        val blankNames = inputNames.filter { inputName -> inputName.isBlank() }
+
+        if (limitOverNames.isNotEmpty()) {
+            println(limitOverNames.joinToString(RACING_CAR_NAME_DELIMITER) + " : 자동차 이름은 " + RACING_CAR_NAME_LENGTH_LIMIT + "글자를 초과하여 입력할 수 없습니다.")
+            return inputNames()
+        }
+        if (blankNames.isNotEmpty()) {
+            println("자동차 이름은 공백을 입력할 수 없습니다.")
+            return inputNames()
+        }
+        return inputNames
     }
 
     fun inputCount(): Int {
