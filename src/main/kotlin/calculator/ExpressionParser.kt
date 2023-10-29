@@ -5,7 +5,7 @@ class ExpressionParser {
     fun parse(parseTarget: String): List<Expression> {
         try {
             val splitParseTarget: List<String> = parseTarget.split(" ")
-            val expressionList: List<Expression> = listOf<Expression>().plus(
+            val expressionList: MutableList<Expression> = mutableListOf<Expression>(
                 Expression(
                     splitParseTarget[0].toLong(),
                     findOperator(splitParseTarget[1]),
@@ -17,7 +17,7 @@ class ExpressionParser {
                 val operator: Operator = findOperator(splitParseTarget[idx])
                 val right: Long = splitParseTarget[idx + 1].toLong()
 
-                expressionList.plus(Expression(null, operator, right))
+                expressionList.add(Expression(null, operator, right))
             }
 
             return expressionList
