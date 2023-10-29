@@ -7,4 +7,6 @@ class Car(private var curPosition: Int = 0) {
             curPosition++
         }
     }
+
+    fun getCurPosition () = this.curPosition
 }
