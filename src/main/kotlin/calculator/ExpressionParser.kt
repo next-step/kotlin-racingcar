@@ -14,8 +14,8 @@ class ExpressionParser {
             )
 
             for (idx: Int in 3 until splitParseTarget.size step 2) {
-                val operator: Operator = findOperator(splitParseTarget[idx + 1])
-                val right: Long = splitParseTarget[idx + 2].toLong()
+                val operator: Operator = findOperator(splitParseTarget[idx])
+                val right: Long = splitParseTarget[idx + 1].toLong()
 
                 expressionList.plus(Expression(null, operator, right))
             }
@@ -26,7 +26,8 @@ class ExpressionParser {
         }
     }
 
-    fun findOperator(operator: String): Operator {
-        return Operator.values().find { it.operator == operator } ?: throw IllegalArgumentException("사칙연산 기호만 입력 가능합니다.")
+    private fun findOperator(operator: String): Operator {
+        return Operator.values().find { it.operator == operator }
+            ?: throw IllegalArgumentException("사칙연산 기호만 입력 가능합니다.")
     }
 }

@@ -66,4 +66,13 @@ class StringCalculatorTest {
 
         assertThat(stringCalculator.calculate(input)).isEqualTo(3)
     }
+
+    @Test
+    fun `입력값에 계산식이 여러개라면 모든 계산식을 계산한 결과를 반환합니다`() {
+        val input: String = "1 + 2 * 3 / 3"
+
+        val stringCalculator: StringCalculator = StringCalculator()
+
+        assertThat(stringCalculator.calculate(input)).isEqualTo(3)
+    }
 }
