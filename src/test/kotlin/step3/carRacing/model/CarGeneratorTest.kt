@@ -5,7 +5,6 @@ import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeInstanceOf
 
-
 class CarGeneratorTest : StringSpec({
     "자동차를 정해진 사이즈만큼 생성한다" {
         val cars = CarGenerator.generate(5)
