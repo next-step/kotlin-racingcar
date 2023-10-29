@@ -3,12 +3,10 @@ package racingCar.domain
 import racingCar.domain.strategy.MoveStrategy
 import racingCar.domain.strategyImpl.RandomStrategy
 
-class Car(val name: String) {
+class Car(val name: String, private val moveStrategy: MoveStrategy = RandomStrategy()) {
 
     var moveCount: Int = 0
         private set
-
-    private val moveStrategy: MoveStrategy = RandomStrategy()
 
     fun conditionalMove() {
         val randomValue = RandomNumberGenerator.getRandomNumber()
