@@ -1,8 +1,7 @@
 package game
 
 class UserMessageDisplay : UserOutputHandler {
-
-    override fun display(cars: List<Car>) {
+    private fun display(cars: List<Car>) {
         cars.forEach(::display)
         println()
     }

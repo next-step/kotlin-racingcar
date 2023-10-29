@@ -25,5 +25,5 @@ Feature: RacingCar Game
     Examples:
       | CarName1 | CarName2 | CarName3 | 회수 | 조건1 | 조건2 | 조건3 | 우승자        | 이동거리 |
       | pobi     | crong    | poror    | 5  | 4   | 3   | 5   | pobi,poror | 5    |
-      | jk       | kg       | sun      | 4  | 3   | 4   | 5   | kg,sun     | 5    |
+      | jk       | kg       | sun      | 4  | 3   | 4   | 5   | kg,sun     | 4    |
       | jk       | kg       | sun      | 4  | 4   | 3   | 3   | jk         | 4    |
