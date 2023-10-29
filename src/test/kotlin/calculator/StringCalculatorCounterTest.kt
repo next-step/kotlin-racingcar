@@ -10,10 +10,10 @@ class StringCalculatorCounterTest {
     fun calculate() {
         // given
         val input: String = "2 + 3 * 4 / 2"
-
+        val stringCalculatorCounter = StringCalculatorCounter()
         // when
-        val stringCalculatorCounter = StringCalculatorCounter(input)
-        val result = stringCalculatorCounter.calculate()
+
+        val result = stringCalculatorCounter.calculate(input)
 
         // then
         assertThat(result).isEqualTo(10.0)
@@ -23,10 +23,10 @@ class StringCalculatorCounterTest {
     fun invalidInput() {
         // given
         val input: String = "1 + + 2"
+        val stringCalculatorCounter = StringCalculatorCounter()
         // when // then
         val exception = assertThrows<IllegalArgumentException> {
-            val stringCalculatorCounter = StringCalculatorCounter(input)
-            val result = stringCalculatorCounter.calculate()
+            val result = stringCalculatorCounter.calculate(input)
         }
         assertThat(exception.message).isEqualTo("Please Check the Input")
     }
@@ -35,11 +35,12 @@ class StringCalculatorCounterTest {
     fun invalidInputIncludeNotSymbol() {
         // given
         val input: String = "1 + 2 A 3"
+        val stringCalculatorCounter = StringCalculatorCounter()
 
         // when // then
         val exception = assertThrows<IllegalArgumentException> {
-            val stringCalculatorCounter = StringCalculatorCounter(input)
-            val result = stringCalculatorCounter.calculate()
+
+            val result = stringCalculatorCounter.calculate(input)
         }
         assertThat(exception.message).isEqualTo("Please Check the Input")
     }

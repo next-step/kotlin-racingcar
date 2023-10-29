@@ -1,28 +1,19 @@
 package calculator
 
 class BasicOperationsCalculator {
-    fun add(a: Double, b: Double): Double = a + b
-    fun subtract(a: Double, b: Double): Double = a - b
-    fun multiply(a: Double, b: Double): Double = a * b
-    fun divide(a: Double, b: Double): Double = a / b
+    private fun add(a: Double, b: Double): Double = a + b
+    private fun subtract(a: Double, b: Double): Double = a - b
+    private fun multiply(a: Double, b: Double): Double = a * b
+    private fun divide(a: Double, b: Double): Double = a / b
 
     fun operation(a: Double, b: Double, symbol: String): Double {
-        if (symbol == "+") {
-            return add(a, b)
-        }
+        val operation = Operation.fromSymbol(symbol)
 
-        if (symbol == "-") {
-            return subtract(a, b)
+        return when (operation) {
+            Operation.ADD -> add(a, b)
+            Operation.SUBTRACT -> subtract(a, b)
+            Operation.MULTIPLY -> multiply(a, b)
+            Operation.DIVIDE -> divide(a, b)
         }
-
-        if (symbol == "*") {
-            return multiply(a, b)
-        }
-
-        if (symbol == "/") {
-            return divide(a, b)
-        }
-
-        throw IllegalArgumentException("Not Valid Form")
     }
 }
