@@ -21,8 +21,8 @@ class Parser() {
             .split(" ")
             .mapIndexed { index, element ->
                 val t = Token()
-                if (index % 2 == 0) t.operand = element
-                else t.operator = element
+                if (index % 2 == 0) t.setOperand(element)
+                else t.setOperator(element)
                 t
             }
 
@@ -37,7 +37,7 @@ class Parser() {
      */
     fun getInterpretableNumber(num: Token): Int {
         if (num.isInterpretableNumber()) {
-            return num.operand.toInt()
+            return num.getOperand().toInt()
         } else {
             throw IllegalArgumentException()
         }
@@ -51,7 +51,7 @@ class Parser() {
      */
     fun getInterpretableOperator(op: Token): String {
         if (op.isInterpretableOperator()) {
-            return op.operator
+            return op.getOperator()
         } else {
             throw IllegalArgumentException()
         }
