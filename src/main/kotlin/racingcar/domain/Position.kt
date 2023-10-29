@@ -5,7 +5,7 @@ value class Position(val value: Int) {
 
     init {
         require(value in MIN_POSITION..MAX_POSITION) {
-            "$MIN_POSITION ~ $MAX_POSITION 사이의 표지션만 입력할 수 있습니다."
+            "$MIN_POSITION ~ $MAX_POSITION 사이의 포지션만 입력할 수 있습니다."
         }
     }
 
