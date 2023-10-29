@@ -47,7 +47,7 @@ class Token(
      * @return 연산 가능한 연산자인 경우 true, 그렇지 않은 경우 false를 반환합니다.
      */
     fun isInterpretableOperator(): Boolean {
-        return Operator.TOATAL.symbol.contains(operator) && (operator.length == 1)
+        return Operator.CHECK.isValid(operator) && (operator.length == 1)
     }
 
     override fun toString(): String {
