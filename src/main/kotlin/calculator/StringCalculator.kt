@@ -2,8 +2,8 @@ package calculator
 
 class StringCalculator {
 
-    fun calculate(input: String): Long {
-        require(input.isNotBlank()) { throw IllegalArgumentException("입력값이 없습니다.") }
+    fun calculate(input: String?): Long {
+        require(!input.isNullOrBlank()) { throw IllegalArgumentException("입력값이 없습니다.") }
 
         val expressionList: List<Expression> = ExpressionParser().parse(input)
         val firstExpression: Expression = expressionList.first()
