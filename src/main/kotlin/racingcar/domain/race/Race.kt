@@ -13,15 +13,11 @@ class Race(
     }
 
     fun start(): RaceResult {
-        val roundResults = mutableListOf<List<Int>>()
-
-        repeat(totalRound) {
-            val roundResult = doRound()
-            roundResults.add(roundResult)
-        }
+        val roundResults = List(totalRound) { doRound() }
 
         return RaceResult(
             resultPerRound = roundResults,
+            winners = getWinners(),
         )
     }
 
@@ -29,12 +25,34 @@ class Race(
         val roundResult = mutableListOf<Int>()
 
         cars.forEach {
-            if (racePolicy.moveCondition.invoke()) {
-                it.move(racePolicy.moveAmount)
-            }
+            moveIfCan(it, racePolicy)
             roundResult.add(it.position)
         }
 
         return roundResult
+    }
+
+    private fun moveIfCan(car: Car, racePolicy: RacePolicy) {
+        if (racePolicy.moveCondition.invoke()) {
+            car.move(racePolicy.moveAmount)
+        }
+    }
+
+    private fun getWinners(): List<String> {
+        val winners = mutableListOf<String>()
+
+        var maxPosition = 0
+
+        cars.forEach {
+            if (it.position > maxPosition) {
+                winners.clear()
+                winners.add(it.name)
+                maxPosition = it.position
+            } else if (it.position == maxPosition) {
+                winners.add(it.name)
+            }
+        }
+
+        return winners
     }
 }

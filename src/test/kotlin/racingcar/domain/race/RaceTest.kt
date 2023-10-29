@@ -2,6 +2,7 @@ package racingcar.domain.race
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.matchers.collections.shouldHaveAtLeastSize
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.throwable.shouldHaveMessage
@@ -31,7 +32,7 @@ class RaceTest : BehaviorSpec({
     }
 
     Given("주어진 라운드가 1보다 작을 때") {
-        val cars = listOf(Car())
+        val cars = listOf(Car(name = "a"))
         val totalRound = 0
 
         When("레이스가 생성되면") {
@@ -50,7 +51,7 @@ class RaceTest : BehaviorSpec({
     }
 
     Given("레이스가 주어졌을 때") {
-        val cars = listOf(Car(), Car())
+        val cars = listOf(Car(name = "a"), Car(name = "a"))
         val totalRound = 3
 
         val race = Race(
@@ -62,11 +63,12 @@ class RaceTest : BehaviorSpec({
         When("레이스가 시작되면") {
             val result = race.start()
 
-            Then("라운드별 자동차들의 레이스 결과가 반환된다") {
+            Then("라운드별 자동차들의 레이스 결과와 우승자가 반환된다") {
                 result.resultPerRound shouldHaveSize totalRound
                 result.resultPerRound.forEach {
                     it shouldHaveSize cars.size
                 }
+                result.winners shouldHaveAtLeastSize 1
             }
         }
     }
@@ -77,7 +79,7 @@ class RaceTest : BehaviorSpec({
         mockkObject(RandomNumberGenerator)
 
         When("무작위 숫자가 4 이상일 경우") {
-            val cars = listOf(Car())
+            val cars = listOf(Car(name = "a"))
             val totalRound = 1
 
             val race = Race(
@@ -102,7 +104,7 @@ class RaceTest : BehaviorSpec({
         }
 
         When("무작위 숫자가 4 미만일 경우") {
-            val cars = listOf(Car())
+            val cars = listOf(Car(name = "a"))
             val totalRound = 1
 
             val race = Race(

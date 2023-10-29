@@ -4,6 +4,7 @@ import racingcar.domain.car.CarFactory
 import racingcar.domain.race.Race
 import racingcar.domain.race.RandomRacePolicy
 import racingcar.view.RacingCarInputView
+import racingcar.view.RacingCarResultDto
 import racingcar.view.RacingCarResultView
 
 object RacingCarController {
@@ -11,12 +12,18 @@ object RacingCarController {
         val racingCarInput = RacingCarInputView.readInput()
 
         val race = Race(
-            cars = CarFactory.createCars(racingCarInput.totalCarCount),
+            cars = CarFactory.createCars(racingCarInput.carNames),
             totalRound = racingCarInput.totalRound,
             racePolicy = RandomRacePolicy,
         )
         val raceResult = race.start()
 
-        RacingCarResultView.printResult(raceResult.resultPerRound)
+        RacingCarResultView.printResult(
+            RacingCarResultDto(
+                carNames = racingCarInput.carNames,
+                resultPerRound = raceResult.resultPerRound,
+                winners = raceResult.winners,
+            )
+        )
     }
 }
