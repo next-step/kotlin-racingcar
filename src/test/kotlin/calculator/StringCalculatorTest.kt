@@ -25,4 +25,15 @@ class StringCalculatorTest {
             stringCalculator.calculate(input)
         }
     }
+
+    @Test
+    fun `입력값이 공백이라면 IllegalArgumentException이 발생합니다`() {
+        val input: String? = " ";
+
+        val stringCalculator: StringCalculator = StringCalculator()
+
+        assertThrows<IllegalArgumentException> {
+            stringCalculator.calculate(input)
+        }
+    }
 }
