@@ -43,10 +43,15 @@ class CarsTest {
 
     @Test
     fun getWinnerTest() {
-        val cars = Cars(testMoveStrategy)
-        val carList: List<Car> = cars.getCars(CARS)
+
+        val car1 = Car("car1").apply { move(); move(); move() }
+        val car2 = Car("car2").apply { move(); move() }
+        val car3 = Car("car3").apply { move(); move(); move() }
+
+        val cars = Cars()
+        val carList = listOf(car1, car2, car3)
         val winners = cars.getWinners(carList)
 
-        assertEquals("pobi, crong, honux", winners)
+        assertEquals("car1, car3", winners)
     }
 }
