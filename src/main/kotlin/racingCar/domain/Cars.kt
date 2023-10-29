@@ -1,17 +1,13 @@
 package racingCar.domain
 
-import racingCar.domain.strategy.MoveStrategy
-import racingCar.domain.strategyImpl.RandomStrategy
 import racingCar.error.ErrorMessage
 import racingCar.view.OutputView
 
-class Cars(private val moveStrategy: MoveStrategy = RandomStrategy()) {
+class Cars {
 
     fun moveCar(cars: List<Car>, tryCount: Int) {
         repeat(tryCount) {
-            val randomValue = RandomNumberGenerator.generateRandomNumber()
-            val movingCars = cars.filter { moveStrategy.isMove(randomValue) }
-            movingCars.forEach { it.move() }
+            cars.forEach { it.conditionalMove() }
             OutputView.printCar(cars)
         }
     }
