@@ -7,8 +7,8 @@ private const val MOVE_FORWARD_COUNT = 1
 data class Racer(
     val count: Int = INIT_COUNT
 ) {
-    fun run(num: Int): Racer {
-        if (num >= MOVE_FORWARD_START_NUM) {
+    fun moveOrStop(checkNum: Int): Racer {
+        if (checkNum >= MOVE_FORWARD_START_NUM) {
             return Racer(count + MOVE_FORWARD_COUNT)
         }
         return Racer(count)

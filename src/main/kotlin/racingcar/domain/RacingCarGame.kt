@@ -18,7 +18,7 @@ class RacingCarGame(
         val newRacers = mutableListOf<Racer>()
         for (racer in racers) {
             val randomNum = numGenerator.getNextInt(RANDOM_NUM_BOUND)
-            val nextStepRacer = racer.run(randomNum)
+            val nextStepRacer = racer.moveOrStop(randomNum)
             newRacers.add(nextStepRacer)
         }
         return RacingCarGame(newRacers)

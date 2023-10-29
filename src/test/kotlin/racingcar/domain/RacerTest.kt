@@ -22,7 +22,7 @@ class RacerTest : BehaviorSpec({
                     row(8, 1),
                     row(9, 1)
                 ) { num, expected ->
-                    Racer().run(num).count shouldBe expected
+                    Racer().moveOrStop(num).count shouldBe expected
                 }
             }
         }
