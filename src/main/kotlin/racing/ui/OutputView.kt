@@ -1,0 +1,30 @@
+package racing.ui
+
+import racing.domain.Car
+
+object OutputView {
+    private const val ERROR_MESSAGE = "[ERROR]"
+    private const val ROAD = "-"
+    fun printGameResult() {
+        println("실행 결과")
+    }
+
+    fun printResultPerRace(cars: List<Car>) {
+        for (car in cars) {
+            System.out.printf("%s\n", locationToRoad(car.location))
+        }
+        println()
+    }
+
+    private fun locationToRoad(location: Int): String {
+        val stringBuilder = StringBuilder()
+        for (i in 0 until location) {
+            stringBuilder.append(ROAD)
+        }
+        return stringBuilder.toString()
+    }
+
+    fun printIllegalArgumentException(e: IllegalArgumentException) {
+        System.out.printf("%s%s\n", ERROR_MESSAGE, e.message)
+    }
+}
