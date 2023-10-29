@@ -5,10 +5,11 @@ object RacingCarResultView {
         println()
         println("실행 결과")
 
-        result.resultPerRound.forEach { roundResult ->
-            printRoundResult(result.carNames, roundResult)
-            println()
-        }
+        result.resultPerRound
+            .forEach { roundResult ->
+                printRoundResult(result.carNames, roundResult)
+                println()
+            }
 
         printWinners(result.winners)
     }
