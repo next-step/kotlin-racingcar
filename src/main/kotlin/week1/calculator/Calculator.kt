@@ -18,6 +18,7 @@ object Calculator {
         }
 
         var result = numbers.first()
+
         operators.forEachIndexed { idx, operator ->
             val a = result
             val b = numbers[idx + 1]
