@@ -69,14 +69,10 @@ class RacingCarSteps {
         }
     }
 
-    // <CarName1>는 전진조건이 <조건1>이고 <CarName2>는 전진조건이 <조건2>이며 <CarName3>는 전진조건이 <조건3>라고 가정하고
     @And("{string}는 전진조건이 {int}이고 {string}는 전진조건이 {int}이며 {string}는 전진조건이 {int}라고 가정하고")
     fun `{CarName1}는 전진조건이 {조건1}이고 {CarName2}는 전진조건이 {조건2}이며 {CarName3}는 전진조건이 {조건3}라고 가정하고`(
-        carName1: String,
         condition1: Int,
-        carName2: String,
         condition2: Int,
-        carName3: String,
         condition3: Int
     ) {
         class CyclingMoveConditionGenerator : MoveConditionGenerator {
@@ -100,7 +96,7 @@ class RacingCarSteps {
     }
 
     @Then("모든 자동차는 우승자이며 {int}만큼 전진한다")
-    fun `모든 자동차는 우승자이며 {이동거리}만큼 전진한다`(moveCondition: Int) {
+    fun `모든 자동차는 우승자이며 {이동거리}만큼 전진한다`() {
         Assertions.assertAll(
             { assertThat(result).contains(inputCarName1, inputCarName2, inputCarName3) },
             { assertThat(advanceCount).isEqualTo(retryCount) }
@@ -108,7 +104,7 @@ class RacingCarSteps {
     }
 
     @Then("우승자는 {string}이며 {int}만큼 전진한다")
-    fun `우승자는 {우승자}"이며 {이동거리}만큼 전진한다`(winner: String, moveCondition: Int) {
+    fun `우승자는 {우승자}"이며 {이동거리}만큼 전진한다`(winner: String) {
         Assertions.assertAll(
             { assertThat(result).contains(winner.split(",")) },
             { assertThat(advanceCount).isEqualTo(retryCount) }
