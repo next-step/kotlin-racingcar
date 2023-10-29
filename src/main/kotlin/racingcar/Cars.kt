@@ -1,6 +1,6 @@
 package racingcar
 
-class Cars(val cars: List<Car>, val powerGenerator: PowerGenerator) {
+class Cars(val cars: List<Car>, private val powerGenerator: PowerGenerator) {
 
     companion object {
 
@@ -8,7 +8,7 @@ class Cars(val cars: List<Car>, val powerGenerator: PowerGenerator) {
         fun initializeWithNumberOfCars(numberOfCars: Int, powerGenerator: PowerGenerator): Cars {
             val cars = mutableListOf<Car>()
             for (i in 1..numberOfCars) {
-                cars.add(Car(0))
+                cars.add(Car())
             }
             return Cars(cars, powerGenerator)
         }
