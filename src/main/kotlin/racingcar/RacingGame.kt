@@ -1,8 +1,5 @@
 package racingcar
 
-import java.util.UUID
-import kotlin.random.Random
-
 class RacingGame {
     fun play() {
         val carCount = InputView.getCarCount()
@@ -20,8 +17,7 @@ class RacingGame {
 
     private fun playEachRound(cars: Array<Car>) {
         cars.forEach { car ->
-            val seed = UUID.randomUUID().hashCode()
-            val random = Random(seed).nextInt(10)
+            val random = (0..10).random()
 
             car.tryMove(random)
 
