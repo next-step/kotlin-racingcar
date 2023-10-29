@@ -6,8 +6,8 @@ import io.kotest.matchers.shouldBe
 class MoveNeverStrategyTest : StringSpec({
     "모든 경우에 이동 하지 않아야 한다" {
         val strategy = MoveNeverStrategy()
-        strategy.goNext() shouldBe false
-        strategy.goNext() shouldBe false
-        strategy.goNext() shouldBe false
+        strategy.movable() shouldBe false
+        strategy.movable() shouldBe false
+        strategy.movable() shouldBe false
     }
 })

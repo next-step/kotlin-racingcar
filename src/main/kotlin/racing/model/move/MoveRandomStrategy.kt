@@ -5,7 +5,7 @@ import racing.model.generator.Generator
 class MoveRandomStrategy(
     private val generator: Generator,
 ) : MoveStrategy {
-    override fun goNext(): Boolean {
+    override fun movable(): Boolean {
         return movingPolicy(generator.generate())
     }
 

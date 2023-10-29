@@ -1,7 +1,7 @@
 package racing.model.move
 
 class MoveNeverStrategy : MoveStrategy {
-    override fun goNext(): Boolean {
+    override fun movable(): Boolean {
         return false
     }
 }
