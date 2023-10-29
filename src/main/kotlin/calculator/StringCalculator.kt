@@ -2,7 +2,7 @@ package calculator
 
 class StringCalculator {
     fun calculate(input: String): String {
-        val inputList: List<String> = InputValidateParser.parse(input)
+        val inputList: List<String> = Tokenizer.tokenize(input)
         val chunkStringCalculator = ChunkStringCalculator(inputList)
 
         var result: String = ""

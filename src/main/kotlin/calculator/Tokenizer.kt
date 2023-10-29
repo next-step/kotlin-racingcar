@@ -1,6 +1,6 @@
 package calculator
 
-object InputValidateParser {
+object Tokenizer {
     private const val validInputRegex = "[\\d+\\-*/\\s]*"
 
     fun validate(input: String?) {
@@ -8,10 +8,10 @@ object InputValidateParser {
         require(input.matches(Regex(validInputRegex)), { "입력값은 숫자, 사칙연산자, 공백만 들어올 수 있다." })
     }
 
-    fun parse(input: String, delimiterRegex: String = "\\s+"): List<String> {
+    fun tokenize(input: String, pattern: String = "\\s+"): List<String> {
         this.validate(input)
         return input
-            .split(Regex(delimiterRegex))
+            .split(Regex(pattern))
             .map { it.trim() }
             .filter { it.isNotEmpty() }
     }
