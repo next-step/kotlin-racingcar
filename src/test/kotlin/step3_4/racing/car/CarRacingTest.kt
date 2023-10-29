@@ -3,8 +3,8 @@ package step3_4.racing.car
 import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.ints.shouldBeLessThan
-import step3_4_5.racing.Car
-import step3_4_5.racing.CarRacing
+import step3_4_5.domain.racing.Car
+import step3_4_5.domain.racing.CarRacing
 import kotlin.random.Random.Default.nextInt
 
 class CarRacingTest : BehaviorSpec({

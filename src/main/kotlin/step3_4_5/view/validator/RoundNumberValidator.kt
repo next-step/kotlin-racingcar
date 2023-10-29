@@ -1,4 +1,4 @@
-package step3_4_5.validator
+package step3_4_5.view.validator
 
 object RoundNumberValidator {
     /**

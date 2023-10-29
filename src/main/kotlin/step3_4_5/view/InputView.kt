@@ -1,6 +1,6 @@
 package step3_4_5.view
 
-import step3_4_5.validator.RoundNumberValidator
+import step3_4_5.view.validator.RoundNumberValidator
 
 object InputView {
 
