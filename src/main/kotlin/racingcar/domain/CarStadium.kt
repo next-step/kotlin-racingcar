@@ -11,7 +11,7 @@ class CarStadium(
 
     fun gameStart() : String = buildString {
         this.append(RACE_RESULT_FIRST_LINE.message)
-        for (count in 0 until numberOfTrials) {
+       repeat(numberOfTrials) {
             moving()
             this.append(getMovingResult())
         }
