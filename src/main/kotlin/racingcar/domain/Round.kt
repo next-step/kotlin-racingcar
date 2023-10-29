@@ -11,6 +11,8 @@ value class Round(val value: Int) {
 
     fun next(): Round = Round(this.value + 1)
 
+    fun isOver(other: Round): Boolean = this.value >= other.value
+
     companion object {
         private const val MIN_ROUND = 1
         private const val MAX_ROUND = 100

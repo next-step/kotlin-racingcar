@@ -9,10 +9,10 @@ value class Position(val value: Int) {
         }
     }
 
+    fun plus(other: Position): Position = Position(this.value + other.value)
+
     companion object {
         private const val MIN_POSITION = 0
         private const val MAX_POSITION = Int.MAX_VALUE
     }
 }
-
-infix fun Position.plus(other: Position): Position = Position(this.value + other.value)
