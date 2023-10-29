@@ -9,17 +9,17 @@ class RacingGameRecorderTest {
         val recorder = RacingGameRecorder()
         val car = Car()
         val cars = listOf(car)
-        val carPositions = ArrayList<Int>()
+        val carPositions = ArrayList<CarPositionRecord>()
 
         recorder.recordRound(cars)
-        carPositions.add(car.position)
+        carPositions.add(CarPositionRecord(car.name, car.position))
 
         car.tryMove(OnlyTrueMoveCondition())
 
         recorder.recordRound(cars)
-        carPositions.add(car.position)
+        carPositions.add(CarPositionRecord(car.name, car.position))
 
-        val actual = recorder.gameResultRecord.raceResults.map { it.positions.first() }
+        val actual = recorder.gameResultRecord.raceResults.map { it.carPositions.first() }
 
         assertThat(actual).isEqualTo(carPositions)
     }
@@ -32,7 +32,7 @@ class RacingGameRecorderTest {
 
         recorder.recordRound(cars)
 
-        val recordedCarSize = recorder.gameResultRecord.raceResults.first().positions.size
+        val recordedCarSize = recorder.gameResultRecord.raceResults.first().carPositions.size
 
         assertThat(recordedCarSize).isEqualTo(cars.size)
     }

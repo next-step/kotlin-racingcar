@@ -1,9 +1,8 @@
 package racingcar
 
 fun main() {
-    val tryMoveCount = InputView.getTryMoveCount()
-
     val cars = InputView.getCars()
+    val tryMoveCount = InputView.getTryMoveCount()
 
     val moveCondition = CarMoveCondition {
         (0..10).random()

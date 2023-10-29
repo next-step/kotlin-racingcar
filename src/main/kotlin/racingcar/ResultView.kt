@@ -11,11 +11,12 @@ object ResultView {
     }
 
     private fun printRaceResult(raceResultRecord: RaceResultRecord) {
-        raceResultRecord.positions
-            .forEach { position ->
-                val skidMark = "-".repeat(position)
+        raceResultRecord.carPositions
+            .forEach { carPositionRecord ->
+                val carName = carPositionRecord.name
+                val skidMark = "-".repeat(carPositionRecord.position)
 
-                println(skidMark)
+                println("$carName : $skidMark")
             }
 
         println()

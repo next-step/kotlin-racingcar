@@ -6,15 +6,22 @@ class RacingGameRecorder {
 
     fun recordRound(cars: List<Car>) {
         val round = raceResultRecords.size + 1
-        val positions = cars.map { it.position }
+        val positions = cars.map { car ->
+            CarPositionRecord(car.name, car.position)
+        }
 
         raceResultRecords.add(RaceResultRecord(round, positions))
     }
 }
 
+data class CarPositionRecord(
+    val name: String,
+    val position: Int,
+)
+
 data class RaceResultRecord(
     val round: Int,
-    val positions: List<Int>,
+    val carPositions: List<CarPositionRecord>,
 )
 
 data class GameResultRecord(
