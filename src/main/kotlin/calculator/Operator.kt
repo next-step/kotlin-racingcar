@@ -2,12 +2,12 @@ package calculator
 
 enum class Operator(
     val operator: String,
-    val operation: (Int, Int) -> Int
+    val operation: (Number, Number) -> Number
 ) {
-    PLUS("+", { a, b -> a + b }),
-    MINUS("-", { a, b -> a - b }),
-    MULTIPLY("*", { a, b -> a * b }),
-    DIVIDE("/", { a, b -> a / b }),
+    PLUS("+", { a, b -> Number((a.getNumber() + b.getNumber()).toString())}),
+    MINUS("-", { a, b -> Number((a.getNumber() - b.getNumber()).toString()) }),
+    MULTIPLY("*", { a, b -> Number((a.getNumber() * b.getNumber()).toString()) }),
+    DIVIDE("/", { a, b -> Number((a.getNumber() / b.getNumber()).toString()) }),
     ;
 
     companion object {
@@ -16,7 +16,7 @@ enum class Operator(
         }
     }
 
-    fun operate(a: Int, b: Int): Int {
+    fun operate(a: Number, b: Number): Number {
         return operation(a, b)
     }
 }
