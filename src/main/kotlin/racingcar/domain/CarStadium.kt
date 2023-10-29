@@ -1,16 +1,14 @@
 package racingcar.domain
 
-import racingcar.util.Message.*
-
 class CarStadium(
     numberOfCars: Int,
-    private val numberOfTrials: Int
+    private val numberOfTrials: Int,
+    private val random: RandomGenerator<Int>
 ) {
 
     private val cars: List<Car> = List(numberOfCars) { Car(it) }
 
     fun gameStart() : String = buildString {
-        this.append(RACE_RESULT_FIRST_LINE.message)
         repeat(numberOfTrials) {
             moving()
             this.append(getMovingResult())
@@ -26,7 +24,7 @@ class CarStadium(
     }
 
     private fun moving() {
-        cars.filter { CarMove.canMoveForward() }
+        cars.filter { CarMove.canMoveForward(random.generate()) }
             .forEach(Car::moveForward)
     }
 
