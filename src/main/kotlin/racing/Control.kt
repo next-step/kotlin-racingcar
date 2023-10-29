@@ -12,7 +12,7 @@ fun main() {
     outputView.printResults(
         racing.race(
             inputView.participate(),
-            inputView.repeat()
+            inputView.roundCount()
         )
     )
 }

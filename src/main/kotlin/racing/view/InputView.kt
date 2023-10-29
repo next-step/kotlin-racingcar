@@ -6,7 +6,7 @@ class InputView {
         return readln().toInt()
     }
 
-    fun repeat(): Int {
+    fun roundCount(): Int {
         println("시도할 횟수는 몇 회인가요?")
         return readln().toInt()
     }
