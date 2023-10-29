@@ -12,14 +12,14 @@ class RacingCarManager(
     fun startGame() {
         val numberOfCar = inputManager.inputNumberOfCar()
         val numberOfCount = inputManager.inputNumberOfCount()
-        val carList: MutableList<Car> = mutableListOf()
+        val cars: MutableList<Car> = mutableListOf()
 
-        setCarList(numberOfCar, carList)
+        setCarList(numberOfCar, cars)
 
         outPutManager.printBeginResultMessage()
 
         for (i in 0 until numberOfCount) {
-            race(carList)
+            race(cars)
         }
     }
 
