@@ -12,18 +12,18 @@ class OperandTest : StringSpec({
     }
 
     "더하기 기능 테스트" {
-        Operand.of("1.0") + Operand.of("2.0") shouldBe 3.0
+        Operand.of("1.0") + Operand.of("2.0") shouldBe Operand.of(3.0)
     }
 
     "빼기 기능 테스트" {
-        Operand.of("2.0") - Operand.of("1.0") shouldBe 1.0
+        Operand.of("2.0") - Operand.of("1.0") shouldBe Operand.of(1.0)
     }
 
     "곱하기 기능 테스트" {
-        Operand.of("5.0") * Operand.of("2.0") shouldBe 10.0
+        Operand.of("5.0") * Operand.of("2.0") shouldBe Operand.of(10.0)
     }
 
     "나누기 기능 테스트" {
-        Operand.of("10.0") / Operand.of("2.0") shouldBe 5.0
+        Operand.of("10.0") / Operand.of("2.0") shouldBe Operand.of(5.0)
     }
 })
