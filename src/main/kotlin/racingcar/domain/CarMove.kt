@@ -9,5 +9,5 @@ class CarMove(
         private const val CAR_MOVE_FORWARD_CONDITION = 4
     }
 
-    fun canMoveForward(): Boolean = CAR_MOVE_FORWARD_CONDITION >= random.generate()
+    fun canMoveForward(): Boolean = CAR_MOVE_FORWARD_CONDITION <= random.generate()
 }

@@ -11,7 +11,7 @@ class CarTest : BehaviorSpec({
         When("앞으로 전진할 수 있으며") {
             car.moveForward()
             Then("내부 필드인 전진 횟수를 증가한다.") {
-                car.getMoveForwardCount() shouldBe 1
+                car.moveForwardCount shouldBe 1
             }
         }
     }
