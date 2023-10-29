@@ -8,8 +8,19 @@ private const val RACING_CAR_NAME_DELIMITER = ","
 object InputView {
     fun inputNames(): List<String> {
         println(INPUT_RACING_CAR_NAME_MESSAGE)
-        val inputNames = readln()
-        return inputNames.split(RACING_CAR_NAME_DELIMITER)
+        val inputNames = readln().split(RACING_CAR_NAME_DELIMITER)
+        val limitOverNames = inputNames.filter { inputName -> inputName.length > 5 }
+        return printLimitOverNames(limitOverNames, inputNames)
+    }
+
+    private fun printLimitOverNames(
+        limitOverNames: List<String>,
+        inputNames: List<String>
+    ) = if (limitOverNames.isEmpty()) {
+        inputNames
+    } else {
+        println(limitOverNames.joinToString(RACING_CAR_NAME_DELIMITER) + " : 자동차 이름은 5글자를 초과하여 입력할 수 없습니다.")
+        inputNames()
     }
 
     fun inputCount(): Int {
