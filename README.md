@@ -15,15 +15,23 @@
 ## 기능사항
 ### Car
 - 자동차의 현재 Step 상태와, 앞으로 갈 수 있는지에 대한 클래스입니다.
+- 자동차는 moveForward() 함수를 통해 +1씩 이동합니다.
+- 자동차는 Random 함수를 통해 0~9의 숫자중 4 이상인 경우 이동합니다.
+- 자동차는 5자를 넘을 수 없으며, 공백의 경우 입력실패로 간주합니다.
 ### CarRacing
 - 자동차의 경주를 구현합니다. 정해진 횟수동안 반복 진행합니다.
+- 자동차 경주 이후, 결과를 보여줍니다.
 ### InputView
 - 사용자의 입력을 받는 클래스입니다.
+- 입력을 받아 공백을 제거해줍니다.
+- 입력한 값을 Validate하는 곳과 연결해줍니다. (RoundNumberValidator, CarNamesDuplicateValidator)
 ### OutputView
 - 사용자에게 보여줄 String을 가진 클래스입니다.
 - 자동차 경주의 결과를 보여주는 기능을 가지고 있습니다.
-### InputStringValidator
+### RoundNumberValidator
 - 사용자의 입력된 문자가 올바른지 판별합니다. ex) 숫자가 0인지, 음수 값인지, Double형 실수를 입력했는지 등
+### CarNamesDuplicateValidator
+- 사용자의 입력된 문자가 올바른지 판별합니다. ex) 중복된 값을 입력했는지
 
 ## Patch note - Step 4: 우승자 기능 추가
 - 익명의 자동차 대수가 아닌 이름으로 자동차를 분별합니다.
