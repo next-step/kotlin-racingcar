@@ -7,7 +7,7 @@ class Calculator {
         }
 
         val processor = CalculateProcessor()
-        val expressionElements = ExpressionParser().parse(expression)
+        val expressionElements = ExpressionParser.parse(expression)
 
         return when (val result = processor.performCalculate(expressionElements)) {
             is ExpressionElement.Term -> result.value

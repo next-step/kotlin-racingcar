@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
 import java.lang.IllegalArgumentException
 
@@ -63,11 +64,12 @@ class CalculatorTest {
     @ParameterizedTest
     @CsvSource(
         value = [
-            "1 + 2 * 3, 9",
-            "1 - 2 * 3, -3",
-            "1 * 2 * 3, 6",
-            "1 / 2 * 3, 0",
-        ]
+            "1 + 2 * 3 = 9",
+            "1 - 2 * 3 = -3",
+            "1 * 2 * 3 = 6",
+            "1 / 2 * 3 = 0",
+        ],
+        delimiter = '='
     )
     fun `연산자의 종류와는 상관 없이 무조건 앞의 연산자 부터 계산한다`(expression: String, result: Int) {
         val calculator = Calculator()
@@ -95,12 +97,13 @@ class CalculatorTest {
         }
     }
 
-    @Test
-    fun `식이 null 이면 에러가 발생한다`() {
+    @ParameterizedTest
+    @NullAndEmptySource
+    fun `식이 null 이거나 공백이면 에러가 발생한다`(emptyString: String?) {
         val calculator = Calculator()
 
         assertThrows<IllegalArgumentException> {
-            calculator.calculate(null)
+            calculator.calculate(emptyString)
         }
     }
 

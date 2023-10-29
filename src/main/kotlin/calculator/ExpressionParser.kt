@@ -1,6 +1,6 @@
 package calculator
 
-class ExpressionParser {
+object ExpressionParser {
     fun parse(expression: String): List<ExpressionElement> {
         val splits = expression.split(" ")
 
@@ -10,12 +10,10 @@ class ExpressionParser {
     }
 
     private fun String.toExpression(): ExpressionElement {
-        val isDigit = all { it.isDigit() }
+        val digit = this.toIntOrNull()
 
-        if (isDigit) {
-            return ExpressionElement.Term(toInt())
-        }
-
-        return ExpressionElement.Operator.find(this)
+        return digit
+            ?.let { ExpressionElement.Term(it) }
+            ?: ExpressionElement.Operator.find(this)
     }
 }
