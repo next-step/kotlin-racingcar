@@ -70,10 +70,10 @@ class Interpreter(
             val operator: String = parser.getInterpretableOperator(operators.first())
             operators = operators.drop(1)
             when (operator) {
-                Operator.PLUS.symbol -> acc + parser.getInterpretableNumber(num)
-                Operator.MINUS.symbol -> acc - parser.getInterpretableNumber(num)
-                Operator.MULTIPLY.symbol -> acc * parser.getInterpretableNumber(num)
-                Operator.DIVIDE.symbol -> acc / parser.getInterpretableNumber(num)
+                Operator.PLUS.symbol -> Operator.PLUS.calcFunc(acc, parser.getInterpretableNumber(num))
+                Operator.MINUS.symbol -> Operator.MINUS.calcFunc(acc, parser.getInterpretableNumber(num))
+                Operator.MULTIPLY.symbol -> Operator.MULTIPLY.calcFunc(acc, parser.getInterpretableNumber(num))
+                Operator.DIVIDE.symbol -> Operator.DIVIDE.calcFunc(acc, parser.getInterpretableNumber(num))
                 else -> throw IllegalArgumentException()
             }
         }
