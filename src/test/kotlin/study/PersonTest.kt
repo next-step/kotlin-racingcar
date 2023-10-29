@@ -1,3 +1,5 @@
+package study
+
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.nulls.shouldBeNull
@@ -18,7 +20,6 @@ internal class PersonTest : StringSpec({
             it.nickname shouldBe "제이슨"
         }
     }
-
 
     "널 타입 테스트" {
         val person = Person("박재성", null, null)
