@@ -9,7 +9,8 @@ class Cars(private val moveStrategy: MoveStrategy = RandomStrategy()) {
 
     fun moveCar(cars: List<Car>, tryCount: Int) {
         repeat(tryCount) {
-            val movingCars = cars.filter { moveStrategy.isMove() }
+            val randomValue = RandomNumberGenerator.generateRandomNumber()
+            val movingCars = cars.filter { moveStrategy.isMove(randomValue) }
             movingCars.forEach { it.move() }
             OutputView.printCar(cars)
         }
