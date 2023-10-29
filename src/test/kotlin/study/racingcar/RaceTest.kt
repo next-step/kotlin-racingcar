@@ -10,6 +10,6 @@ class RaceTest {
         val random = 5
         val race = Race(3, 5) { random }
         race.run()
-        assertThat(race.cars.all { it.position == 5 }).isTrue
+        assertThat(race.cars.list.all { it.position == 5 }).isTrue
     }
 }
