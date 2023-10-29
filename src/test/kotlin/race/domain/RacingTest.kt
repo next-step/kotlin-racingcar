@@ -1,5 +1,6 @@
 package race.domain
 
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
@@ -57,5 +58,29 @@ class RacingTest {
         racingCarList.forEach {
             assertEquals(0, it.space)
         }
+    }
+
+    @ParameterizedTest
+    @CsvSource(
+        value = [
+            "1, -3",
+            "2, -4",
+            "3, -5"
+        ]
+    )
+    fun `시도 횟수가 음수인 경우 에러 발생`(numberOfCar: Int, round: Int) {
+        val mockedReviewView = mock<ResultView>()
+        val racingCarList = List(numberOfCar) { RacingCar() }
+
+        fun alwaysGo() = true
+
+        Assertions.assertThatThrownBy {
+            Racing(
+                racingCarList = racingCarList,
+                round = round,
+                goRule = { alwaysGo() },
+                resultView = mockedReviewView,
+            ).startRace()
+        }.isInstanceOf(IllegalArgumentException::class.java).hasMessage("Must be at least one round!")
     }
 }

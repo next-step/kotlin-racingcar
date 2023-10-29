@@ -10,6 +10,10 @@ class Racing(
     },
     private val resultView: ResultView,
 ) {
+    init {
+        require(round > 0) { "Must be at least one round!" }
+    }
+
     fun startRace() {
         resultView.showStart()
         for (i in 1..round) {
