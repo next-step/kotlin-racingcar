@@ -9,7 +9,7 @@ fun main() {
     OutputView.printResultTitle()
 
     var movedCars = cars
-    for (i in 1..numberOfMoves) {
+    repeat(numberOfMoves) {
         movedCars = movedCars.move()
         OutputView.printResult(movedCars.cars)
     }
