@@ -7,4 +7,8 @@ class Car(val name: String) {
     fun stepForward(move: Boolean) {
         if (move) position++
     }
+
+    fun moveTo(position: Int) {
+        this.position = position
+    }
 }

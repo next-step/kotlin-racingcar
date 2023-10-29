@@ -15,10 +15,7 @@ class RacingCarController {
         val cars = CarInitializer.createCars(numbersOfCar)
         val game = RacingCarGame(cars, strategy)
         ResultView.printInitial()
-        for (i in 1..numbersOfTry) {
-            game.run()
-            ResultView.printResult(game.cars)
-            ResultView.printEmptyLine()
-        }
+        val racingHistories = game.run(numbersOfTry)
+        ResultView.printResult(racingHistories)
     }
 }
