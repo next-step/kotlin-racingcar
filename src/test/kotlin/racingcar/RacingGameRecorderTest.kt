@@ -7,14 +7,14 @@ class RacingGameRecorderTest {
     @Test
     fun `자동차의 위치를 기록할 수 있다`() {
         val recorder = RacingGameRecorder()
-        val car = Car()
+        val car = Car(OnlyTrueMoveCondition())
         val cars = listOf(car)
         val carPositions = ArrayList<CarPositionRecord>()
 
         recorder.recordRound(cars)
         carPositions.add(CarPositionRecord(car.name, car.position))
 
-        car.tryMove(OnlyTrueMoveCondition())
+        car.tryMove()
 
         recorder.recordRound(cars)
         carPositions.add(CarPositionRecord(car.name, car.position))
@@ -28,7 +28,10 @@ class RacingGameRecorderTest {
     fun `여러대의 자동차를 기록할 수 있다`() {
         val recorder = RacingGameRecorder()
 
-        val cars = listOf(Car(), Car())
+        val cars = listOf(
+            Car(OnlyTrueMoveCondition()),
+            Car(OnlyTrueMoveCondition()),
+        )
 
         recorder.recordRound(cars)
 

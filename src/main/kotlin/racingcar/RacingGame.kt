@@ -1,15 +1,15 @@
 package racingcar
 
 class RacingGame {
-    fun play(cars: List<Car>, tryMoveCount: Int, moveCondition: MoveCondition, racingGameRecorder: RacingGameRecorder) {
+    fun play(cars: List<Car>, tryMoveCount: Int, racingGameRecorder: RacingGameRecorder) {
         repeat(tryMoveCount) {
-            playEachRound(cars, moveCondition, racingGameRecorder)
+            playEachRound(cars, racingGameRecorder)
         }
     }
 
-    private fun playEachRound(cars: List<Car>, moveCondition: MoveCondition, racingGameRecorder: RacingGameRecorder) {
+    private fun playEachRound(cars: List<Car>, racingGameRecorder: RacingGameRecorder) {
         cars.forEach { car ->
-            car.tryMove(moveCondition)
+            car.tryMove()
         }
 
         racingGameRecorder.recordRound(cars)
