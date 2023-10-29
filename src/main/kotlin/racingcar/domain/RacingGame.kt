@@ -1,19 +1,26 @@
 package racingcar.domain
 
 class RacingGame(
-    private val gameRule: GameRule,
-    private val gameRound: Round,
-    val cars: List<RacingCar>
+    val cars: List<RacingCar>,
+    val gameRule: GameRule,
+    totalRound: Int
 ) {
 
-    private var progressRound: Round = Round(1)
+    private val gameRound = GameRound(totalRound)
 
-    fun nextRound() {
-        require(hasNextRound()) { "게임이 종료되었습니다." }
-
-        this.cars.forEach { it.move(gameRule.getMovingDirection()) }
-        this.progressRound = this.progressRound.next()
+    init {
+        require(cars.isNotEmpty()) { "자동차는 최소 한 대 이상이어야 합니다." }
     }
 
-    fun hasNextRound() = this.gameRound.isOver(this.progressRound)
+    fun start() {
+        cars.forEach { it.applyGameRule(gameRule) }
+
+        while (hasNextRound()) {
+            gameRound.next(cars)
+        }
+    }
+
+    private fun hasNextRound() = !this.gameRound.isFinished()
+
+    fun getRoundResults(): List<GameRoundResult> = this.gameRound.getResults()
 }
