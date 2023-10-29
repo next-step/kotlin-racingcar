@@ -7,7 +7,7 @@ data class Car(
     val position: Int,
 ) {
     fun start(moveStrategy: MoveStrategy): Car {
-        if (moveStrategy.goNext()) {
+        if (moveStrategy.movable()) {
             return Car(id, position + 1)
         }
         return Car(id, position)
