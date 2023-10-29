@@ -34,4 +34,13 @@ object RacingView {
     private fun roundDivisionBlankLine() {
         println()
     }
+
+    fun printRacingWinner(winners: List<String>) {
+        println("${winners.joinToString(", ")}가 최종우승 했습니다.")
+    }
+
+    fun printRacingGameTitle() {
+        roundDivisionBlankLine()
+        println("실행 결과")
+    }
 }
