@@ -8,10 +8,9 @@ import step4.carRacingWinner.view.SystemPrint
 
 
 class CarRacing {
-
     fun start() {
-        val (carCount, tryCount) = InputView.getInputInfo(SystemInputReader())
-        val raceOrganizer = RaceOrganizer(cars = CarGenerator.generate(carCount))
+        val (cars, tryCount) = InputView.getInputInfo(inputReader = SystemInputReader())
+        val raceOrganizer = RaceOrganizer(cars)
         raceOrganizer.startRace(tryCount) { RaceRule.over4CanGo }
         OutputView.renderRace(raceOrganizer.getRaceResult(), SystemPrint)
     }
