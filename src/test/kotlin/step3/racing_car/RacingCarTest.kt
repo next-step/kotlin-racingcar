@@ -2,13 +2,9 @@ package step3.racing_car
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
-import step3.racing_car.ui.InputView
 
 /**
  * 자동차 경주 단위 테스트 클래스
- *
- * @author KimJungSik
- * @since 2023/10/28
  * */
 class RacingCarTest: FunSpec({
 

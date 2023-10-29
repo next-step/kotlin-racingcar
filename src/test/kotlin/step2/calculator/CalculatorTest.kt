@@ -5,9 +5,6 @@ import io.kotest.matchers.shouldBe
 
 /**
  * 문자열 계산기 테스트
- *
- * @since 2023/10/27
- * @author KimJungSik
  * */
 
 class CalculatorTest : FunSpec({

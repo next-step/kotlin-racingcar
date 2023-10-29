@@ -2,9 +2,6 @@ package step3.racing_car.ui
 
 /**
  * 자동차 경주의 결과를 그리는 클래스
- *
- * @author KimJungSik
- * @since 2023/10/28
  * */
 class ResultView {
 
