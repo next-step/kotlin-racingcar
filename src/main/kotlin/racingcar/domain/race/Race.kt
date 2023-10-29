@@ -13,12 +13,7 @@ class Race(
     }
 
     fun start(): RaceResult {
-        val roundResults = mutableListOf<List<Int>>()
-
-        repeat(totalRound) {
-            val roundResult = doRound()
-            roundResults.add(roundResult)
-        }
+        val roundResults = List(totalRound) { doRound() }
 
         return RaceResult(
             resultPerRound = roundResults,
