@@ -7,6 +7,7 @@ enum class Operation(val value: String) {
     DIVIDE("/"), ;
 
     companion object {
+        val VALID_NUMBER_PATTERN = "^-?\\d+( [+\\-*/] -?\\d+)+\$".toRegex()
         fun fromString(element: String): Operation = values().find { it.value == element }
             ?: throw IllegalArgumentException(ErrorMessage.UNSUPPORTED_OPERATOR_MSG.message)
     }

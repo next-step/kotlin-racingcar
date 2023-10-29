@@ -1,15 +1,15 @@
 package game
 
-object UserMessageDisplay {
+class UserMessageDisplay : UserOutputHandler {
 
-    private const val POSITION_MARKER = "-"
-
-    fun display(cars: List<Car>) {
+    override fun display(cars: List<Car>) {
         cars.forEach(::display)
         println()
     }
 
-    private fun display(car: Car) = println(draw(car))
+    private fun display(car: Car) = println(car.draw())
 
-    private fun draw(car: Car) = POSITION_MARKER.repeat(car.position)
+    override fun displayWinners(winners: List<String>) {
+        println("${winners.joinToString()}가 최종 우승했습니다.")
+    }
 }

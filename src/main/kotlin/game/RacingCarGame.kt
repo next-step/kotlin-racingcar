@@ -1,16 +1,23 @@
 package game
 
-class RacingCarGame() {
+class RacingCarGame(
+    private val userInputHandler: UserInputHandler = ConsoleInputHandler(),
+    private val userOutputHandler: UserOutputHandler = UserMessageDisplay(),
+    private val moveConditionGenerator: MoveConditionGenerator = RandomMoveConditionGenerator()
+) {
 
     fun start() {
-        val carCount = UserInputHandler.askForCarCount()
-        val retryCount = UserInputHandler.askForRetryCount()
-        val cars = Cars.fromCarCount(carCount, RandomMoveConditionGenerator())
-        cars.advance(retryCount)
+        val cars = getCars()
+        val retryCount = getRetryCount()
+        cars.let {
+            it.advance(retryCount, moveConditionGenerator, userOutputHandler::display)
+            userOutputHandler.displayWinners(it.findWinner())
+        }
     }
-}
 
-fun main() {
-    val racingCarGame = RacingCarGame()
-    racingCarGame.start()
+    private fun getRetryCount(): Int =
+        userInputHandler.askForRetryCount().let { InputValidator.validateCount(it); it.toInt() }
+
+    private fun getCars(): CarFleet = userInputHandler.askForCarNames().let { CarNameParser.parse(it) }
+        .let { CarNameValidator.validate(it); CarFleet.of(it) }
 }
