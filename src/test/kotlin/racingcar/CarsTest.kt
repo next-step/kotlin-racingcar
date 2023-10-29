@@ -1,6 +1,7 @@
 package racingcar
 
 import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual
 import io.kotest.matchers.shouldBe
 
 class CarsTest : BehaviorSpec({
@@ -13,6 +14,13 @@ class CarsTest : BehaviorSpec({
                 cars.carList.forEach { car ->
                     (0..1).contains(car.position) shouldBe true
                 }
+            }
+        }
+
+        `when`("우승자를 구한다.") {
+            val winners = cars.isWinner()
+            then("우승자가 존재한다.") {
+                winners.size shouldBeGreaterThanOrEqual 1
             }
         }
     }

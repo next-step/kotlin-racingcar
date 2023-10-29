@@ -22,7 +22,7 @@ class Cars(carNames: List<String>) {
     }
 
     fun isWinner(): List<String> {
-        val maxPosition = carList.maxByOrNull { it.position }?.position
+        val maxPosition = carList.maxOf { it.position }
         return carList.filter { it.position == maxPosition }.map { it.carName }
     }
 }
