@@ -1,6 +1,6 @@
 package step3_4.view
 
-import step3_4.validator.CarNameValidator
+import step3_4.validator.CarNamesDuplicateValidator
 import step3_4.validator.RoundNumberValidator
 
 object InputView {
@@ -8,7 +8,7 @@ object InputView {
     fun processEnteredCarInformation(): List<String> {
         val input = readlnOrNull().orEmpty()
         val carNameList = splitEnteredCarInformation(input)
-        CarNameValidator.checkValidate(carNameList)
+        CarNamesDuplicateValidator.checkValidate(carNameList)
         return carNameList
     }
 

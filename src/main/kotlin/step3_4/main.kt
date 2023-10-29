@@ -13,12 +13,12 @@ fun main() {
     OutputView.printEnterNumberOfCarsMessage()
     val numberOfCars = InputView.processEnteredCarInformation()
 
-    OutputView.printEnterNumberOfRoundMessage()
-    val numberOfRounds = InputView.processEnteredNumberOfRounds()
-
     for (name in numberOfCars) {
         carList.add(Car(carName = name))
     }
+
+    OutputView.printEnterNumberOfRoundMessage()
+    val numberOfRounds = InputView.processEnteredNumberOfRounds()
 
     racing.doRacing(numberOfRounds, carList) { result ->
         ResultView.showResult(result)
