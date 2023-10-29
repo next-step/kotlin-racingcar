@@ -25,6 +25,7 @@ object InputView {
         return InputValue(carTotalNum, tryCount)
     }
 
+    // TODO : 검증역할을 별도의 객체로 분리하는게 SRP 관점에서 더 적합할 것 같습니다.
     /**
      * 입력으로 문자열을 받고 1 이상의 정수형의 숫자인지 검증 후 Int 로 변환해서 반환한다.
      * @throws IllegalArgumentException 입력 값이 null 이거나 적절한 정수형의 숫자가 아닌 경우
