@@ -3,6 +3,7 @@ package camp.nextstep.edu.step.racing.service
 import camp.nextstep.edu.step.racing.domain.Car
 import camp.nextstep.edu.step.racing.domain.Tournament
 import camp.nextstep.edu.step.racing.domain.TournamentFinishStatus
+import camp.nextstep.edu.step.racing.dto.CreateTonamentDto
 import camp.nextstep.edu.step.racing.ui.ResultView
 import java.util.stream.Collectors
 
@@ -11,21 +12,18 @@ class TournamentService(
     private val racingTrackService: RacingTrackService
 ) {
     fun createTournament(
-        carNames: String,
-        racingTrackName: String,
-        tournamentName: String,
-        tryCount: Int
+        createTonament: CreateTonamentDto
     ): Tournament {
-        val participateCars = splitCarNameAndCreateCar(carNames = carNames)
+        val participateCars = splitCarNameAndCreateCar(carNames = createTonament.carName)
 
-        val racingTrack = racingTrackService.createRacingTrack(trackName = racingTrackName)
+        val racingTrack = racingTrackService.createRacingTrack(trackName = createTonament.racingTrackName)
 
         return Tournament(
-            tournamentName = tournamentName,
+            tournamentName = createTonament.tournamentName,
             track = racingTrack,
             tournamentInformation = Tournament.TournamentInformation(
                 cars = participateCars,
-                tryCount = tryCount
+                tryCount = createTonament.tryCount
             )
         )
     }

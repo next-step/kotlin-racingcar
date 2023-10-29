@@ -1,5 +1,6 @@
 package camp.nextstep.edu.step.racing
 
+import camp.nextstep.edu.step.racing.dto.CreateTonamentDto
 import camp.nextstep.edu.step.racing.service.CarService
 import camp.nextstep.edu.step.racing.service.RacingTrackService
 import camp.nextstep.edu.step.racing.service.TournamentService
@@ -13,15 +14,17 @@ fun main() {
     val inputTournamentName = InputView.inputTournamentName()
     val inputTrackName = InputView.inputTrackName()
 
+    val createTonamentDto = CreateTonamentDto(
+        carName = inputCarNames,
+        racingTrackName = inputTrackName,
+        tournamentName = inputTournamentName,
+        tryCount = inputTryCount
+    )
+
     val createTournament = TournamentService(
         CarService(RandomMoveStrategy()),
         RacingTrackService
-    ).createTournament(
-        carNames = inputCarNames,
-        racingTrackName = inputTrackName,
-        tryCount = inputTryCount,
-        tournamentName = inputTournamentName
-    )
+    ).createTournament(createTonament = createTonamentDto)
 
     TournamentService(
         CarService(RandomMoveStrategy()),

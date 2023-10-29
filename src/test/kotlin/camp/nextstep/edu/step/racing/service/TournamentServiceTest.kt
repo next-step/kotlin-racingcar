@@ -1,6 +1,7 @@
 package camp.nextstep.edu.step.racing.service
 
 import camp.nextstep.edu.step.racing.domain.TournamentFinishStatus
+import camp.nextstep.edu.step.racing.dto.CreateTonamentDto
 import camp.nextstep.edu.step.racing.strategy.RandomMoveStrategy
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
@@ -19,13 +20,15 @@ class TournamentServiceTest : BehaviorSpec({
         val tournamentName = "넥스트스텝 자동차 경주대회"
         val tryCount = 5
 
+        val tonamentRequest = CreateTonamentDto(
+            carName = carNames,
+            racingTrackName = racingTrackName,
+            tournamentName = tournamentName,
+            tryCount = tryCount
+        )
+
         When("대회 생성을 요청하면") {
-            val tournament = tournamentService.createTournament(
-                carNames = carNames,
-                racingTrackName = racingTrackName,
-                tournamentName = tournamentName,
-                tryCount = tryCount
-            )
+            val tournament = tournamentService.createTournament(createTonament = tonamentRequest)
 
             Then("요청값과 같은 대회가 생성된다") {
                 tournament.tournamentName shouldBe "넥스트스텝 자동차 경주대회"
@@ -47,11 +50,15 @@ class TournamentServiceTest : BehaviorSpec({
         val tournamentName = "넥스트스텝 자동차 경주대회"
         val tryCount = 5
 
-        val tournament = tournamentService.createTournament(
-            carNames = carNames,
+        val tonamentRequest = CreateTonamentDto(
+            carName = carNames,
             racingTrackName = racingTrackName,
             tournamentName = tournamentName,
             tryCount = tryCount
+        )
+
+        val tournament = tournamentService.createTournament(
+            createTonament = tonamentRequest
         )
 
         When("경기가 시작되고 성공적으로 마무리가 되면") {
