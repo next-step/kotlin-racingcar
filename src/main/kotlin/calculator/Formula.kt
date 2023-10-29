@@ -10,7 +10,7 @@ class Formula(private val formula: String) {
 
     private fun initElements(): List<String> {
         formula.split(DELIMITER).let {
-            ValidationFormula.validateFormula(it)
+            FormulaValidator.validateFormula(it)
             return it
         }
     }

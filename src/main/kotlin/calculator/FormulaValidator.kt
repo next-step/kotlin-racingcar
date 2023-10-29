@@ -1,6 +1,6 @@
 package calculator
 
-object ValidationFormula {
+object FormulaValidator {
 
     fun validateFormula(elements: List<String>) {
 
