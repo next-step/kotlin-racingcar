@@ -27,7 +27,7 @@ fun main(args: Array<String>) {
     }
 
     // tryCount 만큼 게임을 수행한다.
-    (1..tryCount).map { 회차 ->
+    (1..tryCount).map { _ ->
         racingCars.forEach { x ->
             when (game.play()) {
                 true -> x.moveForward()
@@ -35,7 +35,6 @@ fun main(args: Array<String>) {
             }
         }
 
-        println("$회차 회차")
         showResult(racingCars)
     }
 }

@@ -10,5 +10,6 @@ object ResultView {
         racingCars.forEach {
             println("${it.id} : ${"-".repeat(it.position)}")
         }
+        println()
     }
 }
