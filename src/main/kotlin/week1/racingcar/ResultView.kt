@@ -1,13 +1,18 @@
 package week1.racingcar
 
-class ResultView(
-    private val numberOfCars: Int,
-    private val timesToRace: Int,
-) {
-    fun showResult() {
+class ResultView {
 
+    init {
+        println("실행 결과")
     }
 
-    fun showBlankLine() {
+    fun showResult(cars: List<Car>) {
+        cars.forEach {
+            (0 until it.mileage).forEach { _ ->
+                print("-")
+            }
+            println()
+        }
+        println()
     }
 }
