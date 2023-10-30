@@ -2,9 +2,9 @@ package racinggame
 
 object OutputView {
 
-    fun printRacingResult(racingResult: List<List<String>>) {
+    fun printRacingResult(racingResult: RacingGameResult) {
         println("실행 결과")
-        racingResult.forEach { result ->
+        racingResult.translate().forEach { result ->
             result.forEach {
                 println(it)
             }
