@@ -10,7 +10,7 @@ class RandomMovingStrategy: MovingStrategy {
     }
 
     companion object {
-        private const val MOVABLE_CONDITION = 4
-        private const val MAX_CONDITION = 10
+        const val MOVABLE_CONDITION = 4
+        const val MAX_CONDITION = 10
     }
 }

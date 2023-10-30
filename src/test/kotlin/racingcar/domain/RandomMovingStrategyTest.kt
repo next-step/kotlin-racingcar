@@ -15,6 +15,6 @@ class RandomMovingStrategyTest {
         val randomNumber = strategy.generateRandomNumber()
 
         // then
-        assert(randomNumber in 0..10)
+        assert(randomNumber in 0..RandomMovingStrategy.MAX_CONDITION)
     }
 }
