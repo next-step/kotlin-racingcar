@@ -2,8 +2,8 @@ package org.bmsk.racingcar.ui.result
 
 import org.bmsk.racingcar.domain.model.Car
 import org.bmsk.racingcar.domain.model.RacingCarRoad
-import org.bmsk.racingcar.domain.policy.MovementPolicy
-import org.bmsk.racingcar.domain.policy.RandomMovementImpl
+import org.bmsk.racingcar.domain.policy.movement.MovementPolicy
+import org.bmsk.racingcar.domain.policy.movement.RandomMovementImpl
 
 class RacingCarResultView(
     private val movementPolicy: MovementPolicy = RandomMovementImpl(),

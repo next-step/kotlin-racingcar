@@ -1,4 +1,4 @@
-package org.bmsk.racingcar.domain.policy
+package org.bmsk.racingcar.domain.policy.movement
 
 import org.bmsk.racingcar.domain.random.RandomGenerator
 import org.bmsk.racingcar.domain.random.ZeroToNineRandomGenerator

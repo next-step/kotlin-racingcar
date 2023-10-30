@@ -2,7 +2,7 @@ package org.bmsk.racingcar.domain.model
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
-import org.bmsk.racingcar.domain.policy.RandomMovementImpl
+import org.bmsk.racingcar.domain.policy.movement.RandomMovementImpl
 import org.bmsk.racingcar.domain.random.RandomGenerator
 import org.bmsk.racingcar.model.Position
 

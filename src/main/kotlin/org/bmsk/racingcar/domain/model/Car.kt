@@ -1,6 +1,6 @@
 package org.bmsk.racingcar.domain.model
 
-import org.bmsk.racingcar.domain.policy.MovementPolicy
+import org.bmsk.racingcar.domain.policy.movement.MovementPolicy
 import org.bmsk.racingcar.model.Position
 
 data class Car(

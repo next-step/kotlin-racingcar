@@ -3,7 +3,7 @@ package org.bmsk.racingcar.domain.model
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.ints.shouldBeInRange
 import io.kotest.matchers.shouldBe
-import org.bmsk.racingcar.domain.policy.RandomMovementImpl
+import org.bmsk.racingcar.domain.policy.movement.RandomMovementImpl
 
 class RacingCarRoadTest : FunSpec({
     context("RaccingCarRoad의 차들이") {
