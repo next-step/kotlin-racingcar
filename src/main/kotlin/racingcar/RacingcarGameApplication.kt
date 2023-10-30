@@ -9,7 +9,7 @@ class RacingcarGameApplication {
     fun play() {
         val input = inputView.getInput()
 
-        val manager = createRacingcarGameManager(input)
+        val manager = createRacingcarGameContext(input)
 
         println("실행 결과")
 
@@ -19,7 +19,7 @@ class RacingcarGameApplication {
         }
     }
 
-    private fun createRacingcarGameManager(input: RacingcarGameInput): RacingcarGameContext {
+    private fun createRacingcarGameContext(input: RacingcarGameInput): RacingcarGameContext {
         return RacingcarGameContext.create(input)
     }
 
