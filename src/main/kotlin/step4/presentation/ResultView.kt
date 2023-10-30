@@ -5,7 +5,7 @@ import step4.domain.RacingCars
 
 object ResultView {
     fun showCarMoveView(cars: RacingCars) {
-        for (car in cars.racingCars) {
+        for (car in cars.carList) {
             println(getCarMoveView(car))
         }
         println()

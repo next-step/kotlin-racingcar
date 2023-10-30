@@ -1,9 +1,9 @@
 package step4.domain
 
-data class RacingCars(val racingCars: List<RacingCar>) {
+data class RacingCars(val carList: List<RacingCar>) {
     val winner
         get() = run {
-            val maxMove = racingCars.maxOf { it.moveCount }
-            racingCars.filter { it.moveCount == maxMove }
+            val maxMove = carList.maxOf { it.moveCount }
+            carList.filter { it.moveCount == maxMove }
         }
 }

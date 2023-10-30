@@ -4,10 +4,10 @@ data class RacingCourse(
     val tryCount: Int,
     val racingCars: RacingCars
 ) {
-    fun moveCars(afterOneTry: (RacingCars) -> Unit) {
+    fun moveCars(moveStrategy: MoveStrategy = RandomStrategy(), afterOneTry: (RacingCars) -> Unit) {
         repeat(tryCount) {
-            for (car in racingCars.racingCars) {
-                car.tryMoving()
+            for (car in racingCars.carList) {
+                car.tryMoving(moveStrategy)
             }
 
             afterOneTry(racingCars)

@@ -4,8 +4,8 @@ data class RacingCar(
     val name: String,
     var moveCount: Int = 0
 ) {
-    fun tryMoving() {
-        if (TryMoving.isSuccessfullyMoved()) {
+    fun tryMoving(moveStrategy: MoveStrategy) {
+        if (moveStrategy.isMoveSuccess()) {
             moveCount += 1
         }
     }
