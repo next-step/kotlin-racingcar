@@ -1,24 +1,17 @@
 package racingcar
 
-class Cars(
-    private val randomGenerator: RandomGenerator,
-    private val carsListener: CarsListener,
-    size: Int,
-) {
+class Cars(private val randomGenerator: RandomGenerator, names: List<String>) {
     private val cars: List<Car>
 
     init {
-        cars = List(size) { Car() }
+        cars = names.map { Car(it) }
     }
 
-    fun move(tryCount: Int) {
-        repeat(tryCount) {
-            cars.forEach { it.move(randomGenerator.generate()) }
-            carsListener.listen(this)
-        }
+    fun move() {
+        cars.forEach { it.move(randomGenerator.generate()) }
     }
 
-    fun positions(): List<Int> {
-        return cars.map { it.position }
+    fun positions(): List<Position> {
+        return cars.map { Position(it.name, it.position) }
     }
 }
