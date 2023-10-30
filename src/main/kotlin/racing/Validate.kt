@@ -1,4 +1,4 @@
-package racingcar
+package racing
 
 object Validate {
     fun validateInputData(inputCarCnt: String, inputRacingCnt: String) {

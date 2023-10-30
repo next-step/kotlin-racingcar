@@ -1,4 +1,4 @@
-# kotlin-racingcar
+# kotlin-racing
 
 ## Step 2 - 문자열 계산기
 
