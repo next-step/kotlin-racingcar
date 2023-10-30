@@ -32,7 +32,7 @@ class RacingService {
     private fun nextRound(preRoundHistory: RoundHistory): RoundHistory {
         return RoundHistory(
             ArrayDeque(
-                preRoundHistory.result
+                preRoundHistory.results
                     .map { it.move(strategy).copy() }
             )
         )

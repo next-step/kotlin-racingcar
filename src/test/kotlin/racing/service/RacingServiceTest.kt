@@ -10,23 +10,23 @@ class RacingServiceTest : StringSpec({
         val actual1 = RacingService()
             .racing(ArrayDeque(listOf("1")), 1)
             .roundHistories
-        actual1[0].result shouldHaveSize 1
+        actual1[0].results shouldHaveSize 1
         actual1 shouldHaveSize 1
 
         val actual2 = RacingService()
             .racing(ArrayDeque(listOf("1", "2", "3")), 5)
             .roundHistories
-        actual2[0].result shouldHaveSize 3
-        actual2[2].result shouldHaveSize 3
+        actual2[0].results shouldHaveSize 3
+        actual2[2].results shouldHaveSize 3
         actual2 shouldHaveSize 5
 
         val actual3 = RacingService()
             .racing(CarFixture.carFixtureOfBeforeStart, 17)
             .roundHistories
         val participateCount = CarFixture.carFixtureOfBeforeStart.size
-        actual3[0].result shouldHaveSize participateCount
-        actual3[4].result shouldHaveSize participateCount
-        actual3[16].result shouldHaveSize participateCount
+        actual3[0].results shouldHaveSize participateCount
+        actual3[4].results shouldHaveSize participateCount
+        actual3[16].results shouldHaveSize participateCount
         actual3 shouldHaveSize 17
     }
 })

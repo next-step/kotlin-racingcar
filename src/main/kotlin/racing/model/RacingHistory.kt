@@ -9,11 +9,11 @@ class RacingHistory(
     fun winners(): Set<Car> {
         val largestPosition = requireNotNull(
             roundHistories.last()
-                .result
+                .results
                 .maxOfOrNull { it.position }
         )
         return roundHistories.last()
-            .result
+            .results
             .filter { it.position >= largestPosition }
             .toSet()
     }

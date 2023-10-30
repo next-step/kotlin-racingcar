@@ -7,7 +7,7 @@ class ConsoleRender {
 
     companion object {
         fun roundRendering(roundHistory: RoundHistory): String {
-            return roundHistory.result
+            return roundHistory.results
                 .map { carRendering(it) }
                 .joinToString(separator = "\n")
         }
