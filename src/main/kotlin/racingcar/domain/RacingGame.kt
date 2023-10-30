@@ -22,5 +22,5 @@ class RacingGame(
 
     private fun hasNextRound() = !this.gameRound.isFinished()
 
-    fun getRoundResults(): List<GameRoundResult> = this.gameRound.getResults()
+    fun getRoundResults(): List<GameRoundResult> = this.gameRound.results
 }

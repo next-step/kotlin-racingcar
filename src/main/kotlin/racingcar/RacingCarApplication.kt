@@ -13,7 +13,7 @@ fun main(args: Array<String>) {
     val racingCarGame = RacingGame(
         gameRule = RandomGameRule,
         totalRound = totalRound,
-        cars = (1..carCount).map { RacingCar() }
+        cars = List(carCount) { RacingCar() }
     )
 
     racingCarGame.start()

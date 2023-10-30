@@ -46,6 +46,6 @@ class RoundTest : ExpectSpec({
 
         repeat(totalRound) { gameRound.next(cars) }
 
-        gameRound.getResults().size shouldBe totalRound
+        gameRound.results.size shouldBe totalRound
     }
 })
