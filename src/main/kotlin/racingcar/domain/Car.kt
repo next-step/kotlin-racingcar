@@ -1,26 +1,22 @@
 package racingcar.domain
 
-class Car private constructor(private val moveCondition: MoveCondition) {
+class Car private constructor(private val strategy: MoveStrategy) {
     var state = ""
         private set
 
     fun move() {
-        if (moveCondition.strategy.isMovable()) {
+        if (strategy.isMovable()) {
             forward()
         }
     }
 
     private fun forward() {
-        state += STATE_UNIT.repeat(moveCondition.moveCnt)
+        state += STATE_UNIT
     }
 
     companion object {
         fun ofRandom(): Car {
-            val randomMoveCondition = MoveCondition(
-                strategy = RandomMoveStrategy,
-                moveCnt = 1
-            )
-            return Car(randomMoveCondition)
+            return Car(RandomMoveStrategy)
         }
 
         const val STATE_UNIT = "-"
