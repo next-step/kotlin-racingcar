@@ -8,12 +8,6 @@ class RacingCarGame(
     var racingCars: List<RacingCar>
 ) {
 
-    companion object {
-        fun init(racingCars: List<RacingCar>): RacingCarGame {
-            return RacingCarGame(racingCars)
-        }
-    }
-
     fun race(numGenerator: NumGenerator) {
         val newRacingCars = mutableListOf<RacingCar>()
         for (racingCar in racingCars) {
@@ -27,5 +21,11 @@ class RacingCarGame(
     fun calculateWinners(): List<RacingCar> {
         val maxCount = racingCars.maxBy { racingCar -> racingCar.count }.count
         return racingCars.filter { racingCar -> racingCar.count == maxCount }
+    }
+
+    companion object {
+        fun init(racingCars: List<RacingCar>): RacingCarGame {
+            return RacingCarGame(racingCars)
+        }
     }
 }
