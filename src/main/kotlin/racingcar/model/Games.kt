@@ -1,23 +1,20 @@
 package racingcar.model
 
-import racingcar.view.OutputView
-
-data class Games(
-    private val gameCount: Int,
-    private val dashboard: OutputView,
-    private val moveStrategy: MoveStrategy,
+class Games(
+    private val cars: Cars,
+    private val moveCondition: MoveCondition,
 ) {
-    fun play(cars: Cars) {
-        dashboard.printHeader()
+    fun play(): List<Car> {
+        return cars.move(moveCondition)
+    }
 
-        repeat(gameCount) {
-            dashboard.showProgress(cars.move(moveStrategy))
-        }
+    fun getWinner(): List<Car> {
+        return cars.getWinner()
     }
 
     companion object {
-        fun of(gameCount: Int, dashboard: OutputView, numberGenerator: NumberGenerator): Games {
-            return Games(gameCount, dashboard, MoveStrategy(numberGenerator))
+        fun of(input: String, moveCondition: MoveCondition): Games {
+            return Games(Cars.from(input), moveCondition)
         }
     }
 }
