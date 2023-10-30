@@ -10,4 +10,12 @@ class ResultView {
         }
         println()
     }
+
+    fun makeResultViewWithName(cars: Cars) {
+        val carList = cars.carList
+        carList.forEach { car ->
+            val positionGraph = "-".repeat(car.currentPosition)
+            println("$car.name : $positionGraph")
+        }
+    }
 }
