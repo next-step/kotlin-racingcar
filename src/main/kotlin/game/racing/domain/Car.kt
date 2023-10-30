@@ -22,7 +22,7 @@ class Car {
     companion object {
         const val MIN_RANDOM_VALUE = 0
         const val MAX_RANDOM_VALUE = 9
-        private const val MIN_POSITION = 1
+        const val MIN_POSITION = 0
         private const val MIN_MOVE_THRESHOLD = 4
     }
 }

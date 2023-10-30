@@ -9,6 +9,7 @@ class RacingGame(private val carManger: CarManger) {
         carManger.generateCarByNumberOfCar(numberOfCar)
         val tryNumber = InputView.inputTryNumber()
 
+        ResultView.printResultIntroduction()
         repeat(tryNumber) {
             carManger.moveCars()
             ResultView.printResult(carManger.cars)
