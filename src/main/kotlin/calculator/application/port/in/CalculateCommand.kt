@@ -2,7 +2,8 @@ package calculator.application.port.`in`
 
 import calculator.utill.ValidationRegex
 
-class CalculateCommand(val expr: String?) {
+@JvmInline
+value class CalculateCommand(val expr: String?) {
 
     init {
         isValidInput(expr)
