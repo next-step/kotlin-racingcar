@@ -13,7 +13,7 @@ class StringCalculator {
             throw IllegalArgumentException("첫번째 입력값이 숫자가 아닙니다.")
         }
 
-        val expressionList: List<Expression> = ExpressionParser().parse(input)
+        val expressionList: List<Expression> = ExpressionParser.parse(input)
         val firstExpression: Expression = expressionList.first()
         val withOutFirstExpression: List<Expression> = expressionList.drop(1)
 

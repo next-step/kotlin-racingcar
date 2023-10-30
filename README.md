@@ -42,7 +42,7 @@ data class Expression(
 * 좌항이 없는 수식이 생성되는 것을 막을 수 있음.
 * calculate() 함수를 호출할 때 **Exception이 발생하지 않을 것이라는 신뢰 보장** 가능.
 
-#### 2. ExpressionParser.kt
+#### ~~2. ExpressionParser.kt~~
 ```kotlin
 package calculator
 

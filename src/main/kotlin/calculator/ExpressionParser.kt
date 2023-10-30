@@ -1,6 +1,6 @@
 package calculator
 
-class ExpressionParser {
+object ExpressionParser {
 
     fun parse(parseTarget: String): List<Expression> {
         try {
