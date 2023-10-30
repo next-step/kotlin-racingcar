@@ -1,6 +1,6 @@
 package racing
 
-class Car(private var position: Int = START_POSITION) {
+class Car(private var position: Int = START_POSITION, val name: String = "kotlin") {
 
     companion object {
         const val START_POSITION = 1
