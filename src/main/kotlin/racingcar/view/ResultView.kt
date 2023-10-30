@@ -1,22 +1,26 @@
 package racingcar.view
 
-import racingcar.model.Cars
+import racingcar.model.Car
 
-class ResultView : OutputView {
-    override fun printHeader() {
-        println()
+object ResultView {
+    private const val COLON_SEPARATOR = " : "
+    private const val MOVE_GRAPHIC = "-"
+    private const val COMMA_SEPARATOR = ", "
+    private const val RESULT_MESSAGE = "\n실행 결과"
+    private const val WINNER_MESSAGE = "가 최종 우승했습니다."
+
+    fun printHeader() {
         println(RESULT_MESSAGE)
     }
 
-    override fun showProgress(result: Cars) {
-        for (car in result.cars) {
-            println(MOVE_GRAPHIC.repeat(car.position))
+    fun showProgress(cars: List<Car>) {
+        for (car in cars) {
+            println(car.name + COLON_SEPARATOR + MOVE_GRAPHIC.repeat(car.position))
         }
         println()
     }
 
-    companion object {
-        private const val MOVE_GRAPHIC = "-"
-        private const val RESULT_MESSAGE = "실행 결과"
+    fun showWinner(cars: List<Car>) {
+        println(cars.joinToString(COMMA_SEPARATOR) { it.name } + WINNER_MESSAGE)
     }
 }
