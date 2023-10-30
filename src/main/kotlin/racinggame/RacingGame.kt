@@ -6,12 +6,14 @@ class RacingGame(
     private val dice: Dice
 ) {
 
+    private fun roundPlay(cars: List<Car>) = cars.map { car ->
+        val num = dice.pitch()
+        car.move(num)
+        Car(car.name, car.position)
+    }
+
     fun play() = (1..tryCount).map {
-        cars.map { car ->
-            val num = dice.pitch()
-            car.move(num)
-            car.position
-        }
+        roundPlay(cars)
     }.map { round ->
         PlayResult(round)
     }.let {
