@@ -3,7 +3,7 @@ package racing.model
 class RacingHistory(
     val roundHistories: ArrayDeque<RoundHistory>,
 ) {
-    fun winner(): Set<Car> {
+    fun winners(): Set<Car> {
         val largestPosition = requireNotNull(
             roundHistories.last()
                 .result.maxOfOrNull { it.position }

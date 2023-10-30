@@ -17,7 +17,7 @@ class RacingHistoryTest : StringSpec({
                 )
             )
         )
-        val actual = racingHist.winner()
+        val actual = racingHist.winners()
         actual shouldHaveSize 1
         actual shouldContain Car("빨간토마토", 10)
     }
@@ -38,7 +38,7 @@ class RacingHistoryTest : StringSpec({
                 )
             )
         )
-        val actual = racingHist.winner()
+        val actual = racingHist.winners()
         actual shouldHaveSize 3
         actual shouldContain Car("honux", 5)
         actual shouldContain Car("pobi", 5)
