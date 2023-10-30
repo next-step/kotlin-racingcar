@@ -6,6 +6,22 @@ value class Number(private val number: String) {
         require(number.isNumber()) { "숫자가 아닙니다." }
     }
 
+    operator fun plus(other: Number): Number {
+        return Number((this.getNumber() + other.getNumber()).toString())
+    }
+
+    operator fun minus(other: Number): Number {
+        return Number((this.getNumber() - other.getNumber()).toString())
+    }
+
+    operator fun times(other: Number): Number {
+        return Number((this.getNumber() * other.getNumber()).toString())
+    }
+
+    operator fun div(other: Number): Number {
+        return Number((this.getNumber() / other.getNumber()).toString())
+    }
+
     private fun String.isNumber(): Boolean {
         return this.matches(REGEX)
     }
