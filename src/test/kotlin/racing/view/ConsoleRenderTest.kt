@@ -11,10 +11,10 @@ class ConsoleRenderTest : StringSpec({
         val racingHistory = RacingHistory(
             ArrayDeque(
                 listOf(
-                    Car(1, 3),
-                    Car(2, 2),
-                    Car(3, 1),
-                    Car(4, 5)
+                    Car("1", 3),
+                    Car("2", 2),
+                    Car("3", 1),
+                    Car("4", 5)
                 ),
             )
         )
