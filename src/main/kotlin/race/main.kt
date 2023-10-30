@@ -10,8 +10,8 @@ fun main() {
     val resultView = ResultView()
 
     Racing(
-        racingCarList = List(inputView.state.car!!) { RacingCar() },
-        round = inputView.state.round!!,
+        racingCarList = List(inputView.state.car) { RacingCar() },
+        round = inputView.state.round,
         resultView = resultView,
     ).startRace()
 }
