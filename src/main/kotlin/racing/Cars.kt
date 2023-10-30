@@ -1,11 +1,17 @@
 package racing
 
-class Cars(private val carNumber: Int) {
+class Cars {
+    val carList: List<Car>
+    constructor() {
+        carList = listOf()
+    }
 
-    val carList: List<Car> = List(carNumber) { Car() }
+    constructor(carNumber : Int) {
+        carList = List(carNumber) { Car() }
+    }
 
     fun moveAll(){
         carList.forEach { car -> car.moveForward() }
     }
-
 }
+
