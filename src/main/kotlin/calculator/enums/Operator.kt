@@ -1,6 +1,6 @@
 package calculator.enums
 
-enum class Operator(val operator: String, val sum: (num1: Int, num2: Int) -> Int) {
+enum class Operator(val operator: String, val operation: (num1: Int, num2: Int) -> Int) {
     PLUS("+", { num1, num2 -> num1 + num2 }),
     MINUS("-", { num1, num2 -> num1 - num2 }),
     MULTIPLY("*", { num1, num2 -> num1 * num2 }),

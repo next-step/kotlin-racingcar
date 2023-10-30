@@ -3,30 +3,30 @@ package calculator
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+import java.util.stream.Stream
 
 class CalculatorTest {
-    @Test
-    fun `성공 - 4개 숫자 연산`() {
-        val userInput = UserInput("2 + 3 * 4 / 2")
-        val result = CalculatorImpl().calculate(userInput)
 
-        assertThat(result).isEqualTo(10)
+    companion object {
+        @JvmStatic
+        fun calculatorHappyTestFixture(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of("2 + 3", 5),
+                Arguments.of("2 + 3 * 4", 20),
+                Arguments.of("2 + 3 * 4 / 2", 10),
+            )
+        }
     }
 
-    @Test
-    fun `성공 - 3개 숫자 연산`() {
-        val userInput = UserInput("2 + 3 * 4")
+    @ParameterizedTest
+    @MethodSource("calculatorHappyTestFixture")
+    fun `성공 - 2, 3, 4개 숫자 연산`(input: String, expected: Int) {
+        val userInput = UserInput(input)
         val result = CalculatorImpl().calculate(userInput)
-
-        assertThat(result).isEqualTo(20)
-    }
-
-    @Test
-    fun `성공 - 2개 숫자 연산`() {
-        val userInput = UserInput("2 + 3")
-        val result = CalculatorImpl().calculate(userInput)
-
-        assertThat(result).isEqualTo(5)
+        assertThat(result).isEqualTo(expected)
     }
 
     @Test

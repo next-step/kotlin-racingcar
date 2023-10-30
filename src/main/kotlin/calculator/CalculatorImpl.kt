@@ -8,31 +8,25 @@ class CalculatorImpl : Calculator {
     override fun calculate(input: UserInput): Int {
         input.validate()
 
-        val items: List<String> = input.inputString!!.split(" ")
+        val items: List<String> = input.inputString.split(" ")
 
         val numberList = mutableListOf<Int>()
         val operatorList = mutableListOf<String>()
-        for (i in items) {
-            if (regexForNumber.matches(i)) {
-                numberList.add(i.toInt())
-            }
-
-            if (regexForOperator.matches(i)) {
-                operatorList.add(i)
+        for (item in items) {
+            when {
+                regexForNumber.matches(item) -> numberList.add(item.toInt())
+                regexForOperator.matches(item) -> operatorList.add(item)
             }
         }
+
         if (operatorList.isNullOrEmpty()) {
             throw IllegalArgumentException("계산식에 사칙연산 기호가 포함되어 있지 않습니다")
         }
 
-        var sum = 0
-        for (i in operatorList) {
-            if (sum == 0) {
-                sum = Operator.find(i).sum(numberList[0], numberList[1])
-                continue
-            }
-            sum = Operator.find(i).sum(sum, numberList[operatorList.indexOf(i) + 1])
+        var result = Operator.find(operatorList.first()).operation(numberList[0], numberList[1])
+        for (index in 1 until operatorList.size) {
+            result = Operator.find(operatorList[index]).operation(result, numberList[index + 1])
         }
-        return sum
+        return result
     }
 }

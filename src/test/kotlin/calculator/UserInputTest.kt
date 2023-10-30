@@ -3,33 +3,22 @@ package calculator
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.EmptySource
 class UserInputTest {
 
     @Test
     fun `성공 - 올바른 계산식 입력`() {
-
         val userInput = UserInput("2 + 3 * 4 / 2")
         userInput.validate()
-
         assertThat(userInput.inputString).isEqualTo("2 + 3 * 4 / 2")
     }
 
-    @Test
-    fun `실패 - 계산식 공백, null, whitespace 입력`() {
-
-        val blankInput = UserInput("")
+    @ParameterizedTest
+    @EmptySource
+    fun `실패 - 계산식 공백, null, whitespace 입력`(input: String) {
+        val blankInput = UserInput(input)
         Assertions.assertThatThrownBy { blankInput.validate() }
-            .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("계산식이 비어있습니다")
-
-        val nullInput = UserInput(null)
-        Assertions.assertThatThrownBy { nullInput.validate() }
-            .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("계산식이 비어있습니다")
-
-        val whitespaceInput = UserInput("   ")
-        Assertions.assertThatThrownBy { whitespaceInput.validate() }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("계산식이 비어있습니다")
     }
