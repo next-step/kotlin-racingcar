@@ -18,7 +18,7 @@ class ConsoleRenderTest : StringSpec({
                 ),
             )
         )
-        val actual = ConsoleRender().consolePresent(racingHistory)
+        val actual = ConsoleRender.consolePresent(racingHistory)
         actual shouldBe "---\n--\n-\n-----"
     }
 
