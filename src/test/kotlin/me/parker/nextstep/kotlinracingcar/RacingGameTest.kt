@@ -20,6 +20,28 @@ class RacingGameTest {
     fun `레이싱 게임을 시작하면, 그 결과로 전체 자동차를 반환`() {
         val racingGame = RacingGame(3, 5, RandomRacingGameMoveRule())
 
-        // val movedRacingCars = racingGame.start()
+        val movedRacingCars = racingGame.start()
+
+        assertThat(movedRacingCars).hasSize(3)
+    }
+
+    @Test
+    fun `레이싱 게임을 시작하면, 그 결과로 전체 자동차를 반환 - 전체 자동차가 모두 5번 앞으로 이동`() {
+        val racingGame = RacingGame(3, 5, TestRacingGameMoveRule(true))
+
+        val movedRacingCars = racingGame.start()
+
+        assertThat(movedRacingCars).hasSize(3)
+        movedRacingCars.forEach { assertThat(it.position).isEqualTo(5) }
+    }
+
+    @Test
+    fun `레이싱 게임을 시작하면, 그 결과로 전체 자동차를 반환 - 전체 자동차가 모든 시도에서 정지`() {
+        val racingGame = RacingGame(3, 5, TestRacingGameMoveRule(false))
+
+        val movedRacingCars = racingGame.start()
+
+        assertThat(movedRacingCars).hasSize(3)
+        movedRacingCars.forEach { assertThat(it.position).isEqualTo(0) }
     }
 }
