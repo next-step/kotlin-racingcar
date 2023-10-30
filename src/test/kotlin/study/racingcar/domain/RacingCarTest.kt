@@ -1,79 +1,22 @@
 package study.racingcar.domain
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 class RacingCarTest {
 
     @Test
+    @DisplayName("position 1 인 RacingCar 객체에서 moveForward() 호출 시 2가 반환되는지 확인")
     fun moveForward() {
         // given
         val racingCar = RacingCar("test", 1)
+        val fourOrMoreGameRule = FourOrMoreGameRule()
 
         // when
-        racingCar.moveForward()
+        racingCar.moveForward(fourOrMoreGameRule)
 
         // then
-        assertEquals(2, racingCar.position)
-    }
-
-    @Test
-    fun moveBackward() {
-        // given
-        val racingCar = RacingCar("test", 2)
-
-        // when
-        racingCar.moveBackward()
-
-        // then
-        assertEquals(1, racingCar.position)
-    }
-
-    @Test
-    fun moveBackWardWhenPositionIsOne() {
-        // given
-        val racingCar = RacingCar("test", 1)
-
-        // when
-        racingCar.moveBackward()
-
-        // then
-        assertEquals(1, racingCar.position)
-    }
-
-    @Test
-    fun getId() {
-        // given
-        val racingCar = RacingCar("test", 1)
-
-        // when
-        val id = racingCar.id
-
-        // then
-        assertEquals("test", id)
-    }
-
-    @Test
-    fun getPosition() {
-        // given
-        val racingCar = RacingCar("test", 1)
-
-        // when
-        val position = racingCar.position
-
-        // then
-        assertEquals(1, position)
-    }
-
-    @Test
-    fun setPosition() {
-        // given
-        val racingCar = RacingCar("test", 1)
-
-        // when
-        racingCar.position = 2
-
-        // then
-        assertEquals(2, racingCar.position)
+        assertEquals(2, racingCar.currentPosition)
     }
 }

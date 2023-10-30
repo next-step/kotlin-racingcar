@@ -10,12 +10,12 @@ class RacingCar(
     val id: String,
     var position: Int
 ) {
-    fun moveForward() {
-        position += 1
-    }
+    val currentPosition: Int
+        get() = position
 
-    fun moveBackward() {
-        if (position <= 1) return
-        position -= 1
+    fun moveForward(gameRule: GameRule) {
+        if (gameRule.getResult()) {
+            position += 1
+        }
     }
 }
