@@ -2,8 +2,6 @@ package racingcar.component
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
-import racingcar.component.CarMovementManager
-import racingcar.component.RacingcarGameContext
 import racingcar.model.Car
 
 class RacingcarGameContextTest : FunSpec({
