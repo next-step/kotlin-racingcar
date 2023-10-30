@@ -2,7 +2,6 @@ package scenario.steps
 
 import game.ConsoleInputHandler
 import game.FixedMoveConditionGenerator
-import game.History
 import game.MoveConditionGenerator
 import game.RacingCarGame
 import game.UserInputHandler
@@ -58,14 +57,11 @@ class RacingCarSteps {
 
     @And("우승자를 저장한다면")
     fun `우승자를 저장한다면`() {
-        userOutputHandler = object : UserOutputHandler {
-
-            override fun displayHistory(history: History) {
-                history.rounds.lastIndex.let { it ->
-                    advanceCount = history.rounds[it].maxOf { it.position }
-                }
-                result = history.winners.joinToString()
+        userOutputHandler = UserOutputHandler { history ->
+            history.rounds.lastIndex.let { it ->
+                advanceCount = history.rounds[it].maxOf { it.position }
             }
+            result = history.winners.joinToString()
         }
     }
 
