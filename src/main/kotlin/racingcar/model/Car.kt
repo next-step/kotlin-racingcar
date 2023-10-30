@@ -1,15 +1,18 @@
 package racingcar.model
 
+import java.lang.IllegalArgumentException
+
 data class Car(
-    var position: Int = 0,
+    val name: String,
 ) {
-    fun move() {
-        position++
+    var position: Int = 0
+        private set
+
+    init {
+        require(name.length <= 5) { throw IllegalArgumentException("자동차 이름은 5자를 초과할 수 없습니다.") }
     }
 
-    companion object {
-        fun of(): Car {
-            return Car()
-        }
+    fun move() {
+        position++
     }
 }
