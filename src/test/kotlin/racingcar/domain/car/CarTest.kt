@@ -9,7 +9,8 @@ class CarTest : FunSpec({
             val initialPosition = 0
             val car = Car(
                 order = 1,
-                position = initialPosition
+                name = CarName("test"),
+                position = initialPosition,
             )
 
             val moveDistance = 3
@@ -23,11 +24,12 @@ class CarTest : FunSpec({
         test("현재 상태를 캡쳐해서 반환한다") {
             val order = 0
             val position = 1
-            val car = Car(order, position)
+            val car = Car(order, CarName("test"), position)
 
             val result = car.capture()
 
             result.order shouldBe order
+            result.name shouldBe car.name
             result.position shouldBe position
         }
     }

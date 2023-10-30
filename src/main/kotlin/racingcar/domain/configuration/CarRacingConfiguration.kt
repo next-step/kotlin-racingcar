@@ -1,8 +1,8 @@
 package racingcar.domain.configuration
 
-import racingcar.domain.CarRacingInputValidator
 import racingcar.domain.car.Car
 import racingcar.domain.car.CarGenerator
+import racingcar.domain.car.CarName
 import racingcar.view.CarRacingInput
 
 class CarRacingConfiguration(
@@ -11,14 +11,12 @@ class CarRacingConfiguration(
 ) {
     companion object {
         fun of(input: CarRacingInput): CarRacingConfiguration {
-            val carCount = CarRacingInputValidator.validateCount(input.carNames.size)
-            val roundCount = CarRacingInputValidator.validateCount(input.tryCount)
             return CarRacingConfiguration(
-                cars = setCars(carCount),
-                round = roundCount,
+                cars = setCars(input.carNames),
+                round = input.tryCount,
             )
         }
 
-        private fun setCars(carCount: Int): List<Car> = CarGenerator.createInOrder(carCount)
+        private fun setCars(carNames: List<CarName>): List<Car> = CarGenerator.create(carNames)
     }
 }

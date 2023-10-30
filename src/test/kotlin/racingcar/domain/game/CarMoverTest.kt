@@ -5,6 +5,7 @@ import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.booleans.shouldBeTrue
 import racingcar.domain.car.Car
+import racingcar.domain.car.CarName
 import racingcar.domain.rule.RandomMoveRule
 import racingcar.domain.rule.RandomNumberGeneratorInBound
 
@@ -14,7 +15,7 @@ class CarMoverTest : ExpectSpec({
             row(true),
             row(false),
         ) { shouldMove ->
-            val cars = listOf(Car(0, 0), Car(1, 0))
+            val cars = listOf(Car(0, CarName("name1"), 0), Car(1, CarName("name2"), 0))
             val randomNumber = if (shouldMove) 4 else 0
             val moveRule = RandomMoveRule(RandomNumberGeneratorInBound(randomNumber..randomNumber))
             val round = CarMover(moveRule)
