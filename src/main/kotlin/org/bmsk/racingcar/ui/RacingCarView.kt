@@ -1,8 +1,8 @@
 package org.bmsk.racingcar.ui
 
+import org.bmsk.racingcar.model.CarShape.BAR_SHAPE
 import org.bmsk.racingcar.ui.input.RacingCarInputView
 import org.bmsk.racingcar.ui.result.RacingCarResultView
-import org.bmsk.racingcar.model.CarShape.BAR_SHAPE
 import org.bmsk.racingcar.ui.string.GuideMessage
 import kotlin.properties.Delegates
 
