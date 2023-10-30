@@ -1,7 +1,6 @@
-package string.calculator.part
+package string.calculator.domain
 
 import string.calculator.dto.SplitInput
-import string.calculator.domain.Operator
 import string.calculator.util.isEven
 import string.calculator.util.isOdd
 

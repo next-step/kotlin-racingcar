@@ -3,6 +3,7 @@ package string.calculator.part
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import string.calculator.domain.Operator
+import string.calculator.domain.UserInterface
 
 internal class ValidatorTest {
     @Test

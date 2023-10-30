@@ -2,6 +2,7 @@ package string.calculator.part
 
 import org.junit.jupiter.api.Test
 import string.calculator.domain.Operator
+import string.calculator.domain.Splitter
 
 internal class SplitterTest {
 

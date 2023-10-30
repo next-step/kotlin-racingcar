@@ -1,6 +1,4 @@
-package string.calculator.part
-
-import string.calculator.domain.Operator
+package string.calculator.domain
 
 object UserInterface {
     private const val ENTER_CALCULATION_INPUT = "계산할 식을 입력해주세요."

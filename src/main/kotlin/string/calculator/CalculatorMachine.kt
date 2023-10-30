@@ -1,8 +1,8 @@
 package string.calculator
 
-import string.calculator.part.Calculator
-import string.calculator.part.Splitter
-import string.calculator.part.UserInterface
+import string.calculator.domain.Calculator
+import string.calculator.domain.Splitter
+import string.calculator.domain.UserInterface
 
 class CalculatorMachine(
     private val calculator: Calculator,
