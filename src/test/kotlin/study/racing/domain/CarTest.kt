@@ -61,7 +61,7 @@ class CarTest {
         actual.tryMoveTheCar()
 
         // Then
-        assertThat(actual.distance.moveDistance).isEqualTo(expectedDistance)
+        assertThat(actual.getCarDistance()).isEqualTo(expectedDistance)
     }
 
     companion object {

@@ -24,13 +24,18 @@ class Cars private constructor(
     }.toList()
 
     fun getRacingWinnerNames(): List<String> {
+
+        val maxDistance = findMaxDistance()
+
         return cars.filter {
-            it.getCarDistance() == this.maxOf { car ->
-                car.getCarDistance()
-            }
+            it.getCarDistance() == maxDistance
         }.map {
             it.getCarName()
         }
+    }
+
+    private fun findMaxDistance(): Int = cars.maxOf {
+        it.getCarDistance()
     }
 
     companion object {

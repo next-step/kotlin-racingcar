@@ -8,10 +8,8 @@ class Car(
     name: CarName
 ) {
 
-    var distance: Distance = Distance()
-        private set
-    var carName: CarName = name
-        private set
+    val distance: Distance = Distance()
+    val carName: CarName = name
 
     fun getCarDistance(): Int {
         return this.distance.moveDistance
