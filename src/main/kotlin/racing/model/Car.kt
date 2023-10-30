@@ -8,14 +8,18 @@ data class Car(
 ) {
 
     init {
-        require(name.length <= 5) { "자동차 이름은 5자를 초과할 수 없다 : [$name] 은 [${name.length}] 자 입니다" }
+        require(name.length <= MAX_NAME_LENGTH) { "자동차 이름은 5자를 초과할 수 없다 : [$name] 은 [${name.length}] 자 입니다" }
     }
 
-    private val velocity = 1
     fun move(moveStrategy: MoveStrategy): Car {
         if (moveStrategy.movable()) {
-            return Car(name, position + velocity)
+            return Car(name, position + VELOCITY)
         }
         return this
+    }
+
+    companion object {
+        private const val VELOCITY = 1
+        private const val MAX_NAME_LENGTH = 5
     }
 }
