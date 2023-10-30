@@ -11,6 +11,7 @@ class RacingCarManager(
 ) {
     fun startGame() {
         val numberOfCar = inputManager.inputNumberOfCar()
+        val carNames = inputManager.inputCarNames()
         val numberOfCount = inputManager.inputNumberOfCount()
         val cars = createCars(numberOfCar)
 
