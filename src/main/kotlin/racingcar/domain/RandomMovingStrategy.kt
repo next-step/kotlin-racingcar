@@ -1,6 +1,6 @@
 package racingcar.domain
 
-class RandomMovingStrategy: MovingStrategy {
+class RandomMovingStrategy : MovingStrategy {
     override fun isMovable(): Boolean {
         return generateRandomNumber() >= MOVABLE_CONDITION
     }

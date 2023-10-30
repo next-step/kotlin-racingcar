@@ -2,7 +2,7 @@ package racingcar.domain
 
 class StubRandomMovingStrategy(
     private var condition: Int = 0,
-): MovingStrategy {
+) : MovingStrategy {
     override fun isMovable(): Boolean {
         return condition >= RandomMovingStrategy.MOVABLE_CONDITION
     }
