@@ -1,4 +1,9 @@
 package me.parker.nextstep.kotlinracingcar
 
-class RacingGame(val numOfRacingCar: Int, val numOfAttempts: Int) {
+import me.parker.nextstep.kotlinracingcar.rule.RacingGameMoveRule
+
+class RacingGame(
+    val numOfRacingCar: Int, val numOfAttempts: Int,
+    val racingGameMoveRule: RacingGameMoveRule
+) {
 }
