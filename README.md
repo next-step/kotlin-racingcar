@@ -84,10 +84,9 @@
     - 테스트 가능한 부분과 테스트하기 힘든 부분을 분리해 테스트 가능한 부분에 대해서만 단위 테스트를 진행한다.
 
 - 기능적 요구사항(추가&피드백)
-    - 자동차 이름이 5글자 이상인경우 exception throw
-    - 자동차 이름이 공백인경우 예외를 던져야 한다
-    - 자동차 이름이 null인경우 예외를 던져야 한다
-    - 자동차 이름의 중복을 허용하지 않아야한다 
+    - 자동차 이름이 공백인 경우 IllegalArgumentException throw
+    - 자동차 이름이 null인 경우 IllegalArgumentException throw
+    - 자동차 이름은 중복되선 안된다, 중복시 IllegalArgumentException throw 
 
 - 이외
     - kotlin의 Delegation 을 학습하고 활용하자 (RoundHistory.kt)
