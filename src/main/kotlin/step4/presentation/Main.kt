@@ -1,10 +1,12 @@
 package step4.presentation
 
+import step4.domain.ConsoleInputSupplier
 import step4.domain.RacingGame
 
 fun main() {
-    val racingCars = InputView.enterCars()
-    val tryCount = InputView.enterTryCount()
+    val inputView = InputView(ConsoleInputSupplier())
+    val racingCars = inputView.enterCars()
+    val tryCount = inputView.enterTryCount()
 
     val racingGame = RacingGame(tryCount, racingCars)
 
