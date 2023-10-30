@@ -4,9 +4,9 @@ import racingcar.domain.Car
 
 class OutPutManager {
 
-    fun printCarList(carList: List<Car>) {
-        carList.forEach {
-            println("-".repeat(it.distance))
+    fun printCarList(cars: List<Car>) {
+        cars.forEach {
+            println(it.name.value + ":" + "-".repeat(it.distance))
         }
         println()
     }
