@@ -10,8 +10,9 @@ class Cars {
         this.carList = List(carNumber) { Car() }
     }
 
-    constructor(carNames: List<String>) {
-        this.carList = carNames.map { Car(name = it) }
+    constructor(carNames: String) {
+        this.carList = carNames.split(",")
+            .map { Car(name = it) }
     }
 
     fun moveAll(moveProvider: () -> Int) {
