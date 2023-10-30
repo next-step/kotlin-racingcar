@@ -3,50 +3,35 @@ package racingcar.domain
 import io.mockk.every
 import io.mockk.mockkObject
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.api.Test
 
 class CarTest {
 
-    @ParameterizedTest
-    @CsvSource(
-        "1, -",
-        "2, --",
-        "3, ---",
-    )
-    fun `RandomMoveStrategy의 isMovable이 true일 때 차는 1칸 앞으로 전진한다`(input: String, expected: String) {
+    @Test
+    fun `RandomMoveStrategy의 isMovable이 true일 때 차는 1칸 앞으로 전진한다`() {
         // given
         mockkObject(RandomMoveStrategy)
         every { RandomMoveStrategy.isMovable() } returns true
 
         // when
         val car = Car.ofRandom()
-        repeat(input.toInt()) {
-            car.move()
-        }
+        car.move()
 
         // then
-        assertEquals(expected, car.state)
+        assertEquals(1, car.location)
     }
 
-    @ParameterizedTest
-    @CsvSource(
-        "1",
-        "2",
-        "3",
-    )
-    fun `RandomMoveStrategy의 isMovable이 false일 때 차는 그대로 멈춰있다`(input: String) {
+    @Test
+    fun `RandomMoveStrategy의 isMovable이 false일 때 차는 그대로 멈춰있다`() {
         // given
         mockkObject(RandomMoveStrategy)
         every { RandomMoveStrategy.isMovable() } returns false
 
         // when
         val car = Car.ofRandom()
-        repeat(input.toInt()) {
-            car.move()
-        }
+        car.move()
 
         // then
-        assertEquals("", car.state)
+        assertEquals(0, car.location)
     }
 }

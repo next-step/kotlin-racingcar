@@ -1,7 +1,7 @@
 package racingcar.domain
 
 class Car private constructor(private val strategy: MoveStrategy) {
-    var state = ""
+    var location: Int = 0
         private set
 
     fun move() {
@@ -11,7 +11,7 @@ class Car private constructor(private val strategy: MoveStrategy) {
     }
 
     private fun forward() {
-        state += STATE_UNIT
+        location += MOVE_CNT
     }
 
     companion object {
@@ -19,6 +19,6 @@ class Car private constructor(private val strategy: MoveStrategy) {
             return Car(RandomMoveStrategy)
         }
 
-        const val STATE_UNIT = "-"
+        private const val MOVE_CNT = 1
     }
 }

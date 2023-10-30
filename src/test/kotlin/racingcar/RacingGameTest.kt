@@ -4,7 +4,6 @@ import io.mockk.every
 import io.mockk.mockkObject
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import racingcar.domain.Car
 import racingcar.domain.RandomMoveStrategy
 
 class RacingGameTest {
@@ -12,7 +11,7 @@ class RacingGameTest {
     private val racingGame = RacingGame.of(NUM_OF_CARS, NUM_OF_ATTEMPTS)
 
     @Test
-    fun `NUM_OF_CARS 대의 차가 NUM_OF_ATTEMPTS 만큼 모두 전진할 경우`() {
+    fun `NUM_OF_CARS 대의 차가 NUM_OF_ATTEMPTS 만큼 1칸씩 전진할 경우`() {
         // given
         mockkObject(RandomMoveStrategy)
         every { RandomMoveStrategy.isMovable() } returns true
@@ -23,7 +22,7 @@ class RacingGameTest {
 
         // then
         cars.forEach {
-            assertEquals(Car.STATE_UNIT.repeat(NUM_OF_ATTEMPTS), it.state)
+            assertEquals(NUM_OF_ATTEMPTS, it.location)
         }
     }
 
@@ -39,7 +38,7 @@ class RacingGameTest {
 
         // then
         cars.forEach {
-            assertEquals("", it.state)
+            assertEquals(0, it.location)
         }
     }
 
