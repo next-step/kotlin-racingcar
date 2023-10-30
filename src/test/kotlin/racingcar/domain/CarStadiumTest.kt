@@ -8,14 +8,8 @@ import racingcar.util.Message
 import racingcar.util.Message.*
 
 class CarStadiumTest : BehaviorSpec({
-    val fourOrMoreGenerator = object: RandomGenerator<Int>(4, 9) {
-        override fun generate(start: Int, end: Int): Int =
-            IntRange(start, end).random()
-    }
-    val underFourGenerator = object: RandomGenerator<Int>(0, 3) {
-        override fun generate(start: Int, end: Int): Int =
-            IntRange(start, end).random()
-    }
+    val alwaysFourGenerator = { _:Int, _: Int -> 4 }
+    val alwaysZeroGenerator = { _: Int, _: Int -> 0 }
 
     Given("자동차의 대수와 전진 시도 횟수가 정수로 주어지고") {
         val numberOfCars = 5
@@ -24,7 +18,7 @@ class CarStadiumTest : BehaviorSpec({
             val result = CarStadium(
                 numberOfCars,
                 numberOfTrials,
-                CarMove(fourOrMoreGenerator)
+                CarMove(alwaysFourGenerator)
             ).gameStart()
             Then("시도 횟수만큼 결과 리스트를 반환하며 매 라운드마다 전진한다.") {
                 val histories = result.getRacingHistories()
@@ -40,7 +34,7 @@ class CarStadiumTest : BehaviorSpec({
             val result = CarStadium(
                 numberOfCars,
                 numberOfTrials,
-                CarMove(underFourGenerator)
+                CarMove(alwaysZeroGenerator)
             ).gameStart()
             Then("시도 횟수만큼 결과 리스트를 반환하며 전진 횟수는 항상 0이다.") {
                 val histories = result.getRacingHistories()
