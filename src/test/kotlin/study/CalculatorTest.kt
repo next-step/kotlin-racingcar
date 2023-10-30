@@ -48,5 +48,15 @@ class CalculatorTest {
         shouldThrow<IllegalArgumentException> {
             calculator.calculate()
         }
+
+        val calculator2 = Calculator("2 + 3 * 4 / * 1")
+        shouldThrow<IllegalArgumentException> {
+            calculator2.calculate()
+        }
+
+        val calculator3 = Calculator("2 + 3 * 4 2 0")
+        shouldThrow<IllegalArgumentException> {
+            calculator3.calculate()
+        }
     }
 }

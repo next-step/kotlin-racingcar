@@ -1,45 +1,25 @@
-class Calculator(val formula: String) {
-    val formulas = formula.split(" ").toMutableList()
-
-    enum class operator(val op: String) {
-        PLUS("+"),
-        MINUS("-"),
-        MULTIPLY("*"),
-        DIVIDE("/")
+class Constant {
+    companion object {
+        const val CALCULATE_DELIMETER = " "
     }
+}
 
-    val numberPattern = Regex("\\d+")
+class Calculator(val formula: String) {
+    private val formulas = formula.split(Constant.CALCULATE_DELIMETER).toMutableList()
+    private val numberPattern = Regex("\\d+")
 
     fun calculate(): Int {
-        if (
-            formulas.any {
-                !(
-                    it in operator.values().map { it.op } ||
-                        numberPattern.matches(it)
-                    )
-            }
-        ) {
-            throw IllegalArgumentException("잘못된 입력입니다.")
-        }
+        CaculatorValidator.validate(formulas)
 
         var prev = 0
         while (formulas.isNotEmpty()) {
             val word = formulas.removeFirst()
             if (numberPattern.matches(word)) {
                 prev = word.toInt()
-            } else if (word in operator.values().map { it.op }) {
+            } else {
                 val first = prev
                 val second = formulas.removeFirst().toInt()
-                first - second
-                val result = when (word) {
-                    operator.PLUS.op -> prev = first + second
-                    operator.MINUS.op -> prev = first - second
-                    operator.MULTIPLY.op -> prev = first * second
-                    operator.DIVIDE.op -> prev = first / second
-                    else -> throw IllegalArgumentException("잘못된 입력입니다.")
-                }
-            } else {
-                throw IllegalArgumentException("잘못된 입력입니다.")
+                prev = Operator(Operator.OperatorSymbol.of(word)).operate(first, second)
             }
         }
 
