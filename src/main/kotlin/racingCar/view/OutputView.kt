@@ -26,6 +26,7 @@ object OutputView {
         val moveStrategy = RandomStrategy()
         val cars = Cars(moveStrategy)
         val winners = cars.getWinners(carList)
-        println(winners + WINNER_MESSAGE)
+        val formatWinner = winners.joinToString(", ") { it.name }
+        println(formatWinner + WINNER_MESSAGE)
     }
 }

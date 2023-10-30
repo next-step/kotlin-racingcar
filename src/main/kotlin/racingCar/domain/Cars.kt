@@ -21,10 +21,9 @@ class Cars(private val moveStrategy: MoveStrategy) {
         return carsNames.map { Car(name = it, moveStrategy = moveStrategy) }
     }
 
-    fun getWinners(carList: List<Car>): String {
+    fun getWinners(carList: List<Car>): List<Car> {
         val maxMoveCount = carList.maxByOrNull { it.moveCount }?.moveCount
-        val winners: List<Car> = carList.filter { it.moveCount == maxMoveCount }
-        return winners.joinToString(", ") { it.name }
+        return carList.filter { it.moveCount == maxMoveCount }
     }
 
     companion object {

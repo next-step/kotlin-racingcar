@@ -1,6 +1,6 @@
 package racingCar.domain
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -21,7 +21,7 @@ class CarsTest {
     fun `각 자동차 Name 이 ","를 기준으로 List 에 반환된다`() {
         val carList = cars.getCars(CARS)
         val expectedNames = listOf("pobi", "crong", "honux")
-        assertEquals(expectedNames, carList.map { it.name })
+        assertThat(carList.map { it.name }).containsExactlyElementsOf(expectedNames)
     }
 
     @Test
@@ -39,8 +39,7 @@ class CarsTest {
 
         val carList = listOf(car1, car2, car3)
         val winners = cars.getWinners(carList)
-
-        assertEquals("car1, car3", winners)
+        assertThat(winners).containsExactly(car1, car3)
     }
 
     companion object {
