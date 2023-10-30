@@ -32,4 +32,22 @@ class RacingCarTest {
 
         assertThat(racingCar.position).isEqualTo(0)
     }
+
+    @Test
+    fun `자동차는 이동할 때마다 자신의 기록을 담는다`() {
+        val racingCar = RacingCar(TestRacingGameMoveRule(true))
+
+        racingCar.moveForward()
+
+        assertThat(racingCar.position).isEqualTo(1)
+        assertThat(racingCar.moveRecords).hasSize(1)
+        assertThat(racingCar.moveRecords[0]).isEqualTo(1)
+
+        racingCar.moveForward()
+
+        assertThat(racingCar.position).isEqualTo(2)
+        assertThat(racingCar.moveRecords).hasSize(2)
+        assertThat(racingCar.moveRecords[0]).isEqualTo(1)
+        assertThat(racingCar.moveRecords[1]).isEqualTo(2)
+    }
 }
