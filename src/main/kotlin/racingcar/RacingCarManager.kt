@@ -12,7 +12,7 @@ class RacingCarManager(
     fun startGame() {
         val numberOfCar = inputManager.inputNumberOfCar()
         val numberOfCount = inputManager.inputNumberOfCount()
-        val cars: List<Car> = createCars(numberOfCar)
+        val cars = createCars(numberOfCar)
 
         outPutManager.printBeginResultMessage()
 
