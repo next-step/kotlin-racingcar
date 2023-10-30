@@ -1,25 +1,26 @@
 package study
 
-import StringCalculator
+import calculator.StringCalculator
+import calculator.ArithmeticOperation
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import org.assertj.core.api.Assertions.assertThatThrownBy
 
 class StringCalculatorTest : StringSpec({
     "plusTest" {
-        StringCalculator.Operator.plus(1, 2).shouldBe(3)
+        ArithmeticOperation.Plus.run(1, 2).shouldBe(3)
     }
 
     "minusTest" {
-        StringCalculator.Operator.minus(5, 2).shouldBe(3)
+        ArithmeticOperation.Minus.run(5, 2).shouldBe(3)
     }
 
     "multiplyTest" {
-        StringCalculator.Operator.multiply(4, 2).shouldBe(8)
+        ArithmeticOperation.Multiply.run(4, 2).shouldBe(8)
     }
 
     "divideTest" {
-        StringCalculator.Operator.divide(16, 2).shouldBe(8)
+        ArithmeticOperation.Divide.run(16, 2).shouldBe(8)
     }
 
     "formulaTest" {
