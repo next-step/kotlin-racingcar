@@ -13,7 +13,7 @@ class RacingCircuit {
         val cars = Cars(racingCars)
 
         println("레이스 스타트")
-        RandomCarRace().move(cars, carNumber, resultView)
+        RandomCarRace().move(cars, tryNumber, resultView)
     }
 }
 
