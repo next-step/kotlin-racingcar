@@ -1,16 +1,51 @@
 package racingcar
 
 class RacingGameRecorder {
-    private val _positionBoard = HashMap<Car, CarPositionRecord>()
-    val positionBoard: Map<Car, CarPositionRecord> get() = _positionBoard.toMap()
+    private val raceResultRecords = ArrayList<RaceResultRecord>()
 
-    fun record(car: Car) {
-        val record = _positionBoard.getOrDefault(car, CarPositionRecord(emptyList()))
+    val gameResultRecord: GameResultRecord get() = GameResultRecord(raceResultRecords.toList())
 
-        _positionBoard[car] = record.copy(positions = record.positions + car.position)
+    fun recordRound(cars: List<Car>) {
+        val round = raceResultRecords.size + 1
+        val positions = cars.map { car ->
+            CarPositionRecord(car.name, car.position)
+        }
+
+        raceResultRecords.add(RaceResultRecord(round, positions))
     }
 }
 
-data class CarPositionRecord(
-    val positions: List<Int>,
+data class Winners(
+    val names: List<String>,
 )
+
+data class CarPositionRecord(
+    val name: String,
+    val position: Int,
+)
+
+data class RaceResultRecord(
+    val round: Int,
+    val carPositions: List<CarPositionRecord>,
+)
+
+data class GameResultRecord(
+    val raceResults: List<RaceResultRecord>,
+) {
+    val finalRaceResult: RaceResultRecord?
+        get() = raceResults.lastOrNull()
+
+    val winners: Winners
+        get() {
+            val result = finalRaceResult ?: throw IllegalStateException("Never played racing game")
+
+            val maxDistance = result.carPositions
+                .maxOfOrNull { it.position }
+
+            val winnersName = result.carPositions
+                .filter { it.position == maxDistance }
+                .map { it.name }
+
+            return Winners(winnersName)
+        }
+}

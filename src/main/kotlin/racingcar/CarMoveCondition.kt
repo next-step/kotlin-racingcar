@@ -1,6 +1,6 @@
 package racingcar
 
-class MinimumAboveNumberMoveCondition(
+class CarMoveCondition(
     private val number: () -> Int,
 ) : MoveCondition {
     override fun canForward(): Boolean {

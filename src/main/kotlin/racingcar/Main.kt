@@ -1,29 +1,22 @@
 package racingcar
 
 fun main() {
-    val carCount = InputView.getCarCount()
+    val carsName = InputView.getCarsName()
     val tryMoveCount = InputView.getTryMoveCount()
 
-    val cars = Array(carCount) { Car() }
-
-    val moveCondition = MinimumAboveNumberMoveCondition {
+    val moveCondition = CarMoveCondition {
         (0..10).random()
+    }
+
+    val cars = carsName.map { name ->
+        Car(moveCondition, name)
     }
 
     val gameRecorder = RacingGameRecorder()
 
-    RacingGame().play(cars, tryMoveCount, moveCondition, gameRecorder)
+    RacingGame().play(cars, tryMoveCount, gameRecorder)
 
-    ResultView.printResult()
+    val gameResult = gameRecorder.gameResultRecord
 
-    val positions = gameRecorder.positionBoard
-        .entries
-        .map { it.value.positions }
-
-    for (i in 0 until tryMoveCount) {
-        for (j in positions.indices) {
-            ResultView.printSkid(positions[j][i])
-        }
-        println()
-    }
+    ResultView.printGameResult(gameResult)
 }

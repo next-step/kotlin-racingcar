@@ -11,13 +11,3 @@ class OnlyFalseMoveCondition : MoveCondition {
         return false
     }
 }
-
-class OnlyFirstConditionTrueMoveCondition : MoveCondition {
-    private var condition = true
-    override fun canForward(): Boolean {
-        val originCondition = condition
-        condition = false
-
-        return originCondition
-    }
-}
