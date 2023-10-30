@@ -2,10 +2,11 @@ package racing
 
 class CarRacing {
     private val recorder = CarRacingRecorder
-    fun race(cars: List<Car>, tryCount: Int): CarRacingResult {
+    fun race(carNames: List<String>, tryCount: Int): CarRacingResult {
+        val cars = carNames.map { Car(it) }
         val results = raceWithRecordResult(cars, tryCount)
         val winners = recorder.findWinners(cars)
-        return CarRacingResult(results, winners)
+        return CarRacingResult(cars, results, winners)
     }
 
     private fun raceWithRecordResult(cars: List<Car>, tryCount: Int): List<List<Car>> {

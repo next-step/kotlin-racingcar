@@ -5,8 +5,7 @@ class CarRacingApplication {
         @JvmStatic
         fun main(args: Array<String>) {
             val (carNames, tryCount) = InputView.inputForRacing()
-            val cars = CarRacingStarter().ready(carNames)
-            val result = CarRacing().race(cars, tryCount)
+            val result = CarRacing().race(carNames, tryCount)
             ResultView.printRacingResult(result)
         }
     }
