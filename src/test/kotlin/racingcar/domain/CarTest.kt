@@ -10,14 +10,14 @@ class CarTest {
 
     @Test
     fun `자동차는 조건에 맞으면 전진할 수 있다`() {
-        val car = Car(1, successTestCondition)
+        val car = Car(CarName("test1"), successTestCondition)
         car.drive()
         Assertions.assertThat(car.distance).isEqualTo(startDistance + 1)
     }
 
     @Test
     fun `자동차는 조건에 맞지 않으면 전진할 수 있다`() {
-        val car = Car(1, failTestCondition)
+        val car = Car(CarName("test1"), failTestCondition)
         car.drive()
         Assertions.assertThat(car.distance).isEqualTo(startDistance)
     }
