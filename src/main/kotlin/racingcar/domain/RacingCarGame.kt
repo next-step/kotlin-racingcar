@@ -4,7 +4,7 @@ import racingcar.util.NumGenerator
 
 private const val RANDOM_NUM_BOUND = 10
 
-class RacingCarGame(
+class RacingCarGame private constructor(
     var racingCars: List<RacingCar>
 ) {
 
