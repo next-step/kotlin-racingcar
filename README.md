@@ -218,7 +218,7 @@ class OperatorTest {
 ##### effect
 * 테스트 코드의 가독성이 향상됨.
 
-#### 6. StringCalculatorTest.kt
+#### ~~6. StringCalculatorTest.kt~~
 ```kotlin
 package calculator
 
