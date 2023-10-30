@@ -10,8 +10,8 @@ internal class CalculatorTest {
     fun `숫자와 연산자를 입력하면 계산 결과를 반환한다`() {
         val numbers = mutableListOf(1L, 2L, 1L, 4L, 5L)
         val operators = mutableListOf(Operator.PLUS, Operator.MINUS, Operator.MULTIPLY, Operator.DIVIDE)
-
-        val result = Calculator.calculate(numbers, operators)
+        val calculator = Calculator(numbers, operators)
+        val result = calculator.calculate()
 
         assert(result == 1L)
     }
