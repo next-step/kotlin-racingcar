@@ -11,10 +11,8 @@ class ResultViewTest {
     @Test
     fun `display start title`() {
         val resultView = ResultView(outputReceiver)
-        val cars = Cars(listOf(Car(3), Car(1), Car(2)))
         resultView.startDisplayResult()
-        resultView.displayRound(cars)
-        verify(outputReceiver).receive("---\n-\n--\n")
+        verify(outputReceiver).receive("실행 결과")
     }
 
     @Test
