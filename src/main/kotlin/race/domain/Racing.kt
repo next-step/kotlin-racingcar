@@ -25,11 +25,9 @@ class Racing(
     }
 
     private fun startRound() {
-        racingCarList.forEach { racingCar ->
-            run {
-                if (goRule()) {
-                    racingCar.go()
-                }
+        racingCarList.forEach {
+            if (goRule()) {
+                it.go()
             }
         }
     }
