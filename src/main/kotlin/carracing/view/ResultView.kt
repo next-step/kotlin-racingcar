@@ -3,10 +3,10 @@ package carracing.view
 import carracing.dto.RacingRound
 
 class ResultView {
-    fun printResult(list: List<RacingRound>) {
+    fun printResult(racingResult: List<RacingRound>) {
         println(INIT_RESULT)
-        list.forEach {
-            it.result.forEach {
+        racingResult.forEach { racing ->
+            racing.result.forEach {
                 println(DASH.repeat(it.position))
             }
             println()
@@ -15,6 +15,6 @@ class ResultView {
 
     companion object {
         private const val DASH = "-"
-        private const val INIT_RESULT = "실행 결과"
+        private const val INIT_RESULT = "\n실행 결과"
     }
 }

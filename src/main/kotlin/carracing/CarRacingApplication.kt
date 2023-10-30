@@ -12,7 +12,6 @@ fun main(args: Array<String>) {
     val racingGame = RacingGame(carCount, racingCount)
     val racingResult = racingGame.start()
 
-    println()
     val resultView = ResultView()
     resultView.printResult(racingResult)
 }
