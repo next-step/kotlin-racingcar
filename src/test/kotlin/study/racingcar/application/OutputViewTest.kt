@@ -3,7 +3,7 @@ package study.racingcar.application
 import org.junit.jupiter.api.Test
 import study.racingcar.domain.RacingCar
 
-class ResultViewTest {
+class OutputViewTest {
 
     @Test
     fun showResult() {
@@ -15,7 +15,7 @@ class ResultViewTest {
         )
 
         // when
-        ResultView.showResult(racingCars)
+        OutputView().showResult(racingCars)
 
         // then
         // no exception
