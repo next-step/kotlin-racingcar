@@ -1,5 +1,6 @@
 package me.parker.nextstep.kotlinracingcar.view
 
+import me.parker.nextstep.kotlinracingcar.RacingCar
 import me.parker.nextstep.kotlinracingcar.RacingGame
 import me.parker.nextstep.kotlinracingcar.rule.RandomRacingGameMoveRule
 
@@ -18,5 +19,20 @@ fun main(args: Array<String>) {
 
     println()
     println("실행 결과")
-    print(movedRacingCars)
+    for (attempt in 0 until numOfAttempts.toInt()) {
+        printCurrentRacingCars(numOfRacingCar, movedRacingCars, attempt)
+
+        println("==============================")
+    }
+    print("Result: $movedRacingCars")
+}
+
+private fun printCurrentRacingCars(
+    numOfRacingCar: String,
+    movedRacingCars: List<RacingCar>,
+    attempt: Int
+) {
+    for (i in 0 until numOfRacingCar.toInt()) {
+        println("-".repeat(movedRacingCars[i].moveRecords[attempt]))
+    }
 }
