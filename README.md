@@ -74,17 +74,10 @@ pobi, honux가 최종 우승했습니다.
     - `interface SingleWinnerOnly`
         - `class SingleWinnerOnlyImpl`
 
-### Determiner
-
-#### 순위
-
-- `class RacingCarRankingDeterminer`
-    - 프로퍼티: `RankingPolicy` 구현체
-
 ### RacingCarRoad
 
-- `class RacingCarRoad`: 자동차들 위치를 알고 순위를 관리
-    - 프로퍼티: `Cars`, `RacingCarRankingDeterminer`
+- `data class RacingCarRoad`: 자동차들 위치를 알고 순위를 관리
+    - 프로퍼티: `Cars`, `RankingPolicy` 구현체
 
 
 - UI 로직 구현
