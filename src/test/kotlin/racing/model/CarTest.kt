@@ -17,4 +17,12 @@ class CarTest : StringSpec({
         unstoppableCar.id shouldBe car.id
         unstoppableCar.position shouldBe car.position + 1
     }
+
+    "각 자동차에 이름을 부여할 수 있다" {
+        TODO()
+    }
+
+    "자동차 이름은 5자를 초과할 수 없다" {
+        TODO()
+    }
 })

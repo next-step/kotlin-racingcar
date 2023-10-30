@@ -21,4 +21,8 @@ class ConsoleRenderTest : StringSpec({
         val actual = ConsoleRender().consolePresent(racingHistory)
         actual shouldBe "---\n--\n-\n-----"
     }
+
+    "전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다" {
+        TODO()
+    }
 })
