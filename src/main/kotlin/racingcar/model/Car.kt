@@ -10,4 +10,16 @@ class Car(
     fun currentDistance(): Int {
         return distance
     }
+
+    companion object {
+        fun create(carNumber: Int): List<Car> {
+            val cars: MutableList<Car> = mutableListOf()
+
+            for(i: Int in 0 until carNumber) {
+                cars.add(Car())
+            }
+
+            return cars.toList()
+        }
+    }
 }

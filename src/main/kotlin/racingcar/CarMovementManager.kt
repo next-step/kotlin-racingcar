@@ -4,7 +4,7 @@ import racingcar.model.Car
 import kotlin.random.Random.Default.nextInt
 
 class CarMovementManager(
-    private val condition: () -> Boolean = { nextInt(0, 10) >= 4 }
+    private val condition: () -> Boolean = DEFAULT_MOVEMENT_CONDITION
 ) {
     fun moveCarsWithCondition(cars: List<Car>) {
         cars
@@ -12,5 +12,9 @@ class CarMovementManager(
             .forEach {
                 it.move()
             }
+    }
+
+    companion object {
+        val DEFAULT_MOVEMENT_CONDITION = { nextInt(0, 10) >= 4 }
     }
 }

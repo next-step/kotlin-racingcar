@@ -1,10 +1,11 @@
 package racingcar
 
 import racingcar.model.Car
+import racingcar.model.RacingcarGameInput
 
 class RacingcarGameManager(
     val cars: List<Car>,
-    private val carMovementManager: CarMovementManager
+    private val carMovementManager: CarMovementManager = CarMovementManager()
 ) {
 
     fun doRound() {
@@ -18,6 +19,16 @@ class RacingcarGameManager(
 
         return cars.filter {
             it.currentDistance() == winnerCar.currentDistance()
+        }
+    }
+
+    companion object {
+        fun create(input: RacingcarGameInput): RacingcarGameManager {
+            val carNumber = input.carNumber
+
+            return RacingcarGameManager(
+                cars = Car.create(carNumber)
+            )
         }
     }
 }
