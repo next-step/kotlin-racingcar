@@ -8,7 +8,7 @@ class RacingGame private constructor(
     private val numOfCars: Int,
     private val numOfAttempts: Int
 ) {
-    private val racingCars: List<Car> =  List(numOfCars) {Car.ofRandom()}
+    val racingCars: List<Car> =  List(numOfCars) {Car.ofRandom()}
 
     fun start(): List<Car> {
         ResultView.printResultText()

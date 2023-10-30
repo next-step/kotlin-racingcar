@@ -16,11 +16,10 @@ class RacingGameTest {
         // given
         mockkObject(RandomMoveStrategy)
         every { RandomMoveStrategy.isMovable() } returns true
-
-        val cars = List(NUM_OF_CARS) { Car.ofRandom() }
+        val cars = racingGame.racingCars
 
         // when
-        racingGame.start(cars)
+        racingGame.start()
 
         // then
         cars.forEach {
@@ -33,11 +32,10 @@ class RacingGameTest {
         // given
         mockkObject(RandomMoveStrategy)
         every { RandomMoveStrategy.isMovable() } returns false
-
-        val cars = List(NUM_OF_CARS) { Car.ofRandom() }
+        val cars = racingGame.racingCars
 
         // when
-        racingGame.start(cars)
+        racingGame.start()
 
         // then
         cars.forEach {
