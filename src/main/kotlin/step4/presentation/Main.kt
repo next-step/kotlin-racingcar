@@ -1,7 +1,10 @@
 package step4.presentation
 
 fun main() {
-    val racingCourse = InputView.enterTryCount(InputView.enterCars())
+    InputView.showEnterCarIntro()
+    val racingCar = InputView.enterCars()
+    InputView.showTryCountIntro()
+    val racingCourse = InputView.enterTryCount(racingCar)
 
     ResultView.showResultTitle()
     racingCourse.run(
