@@ -4,7 +4,7 @@ class CarFleet private constructor(
     private val _cars: List<Car>,
     private val moveConditionGenerator: MoveConditionGenerator = RandomMoveConditionGenerator(),
 ) {
-    private val cars: List<Car>
+    val cars: List<Car>
         get() = _cars.toList()
 
     fun findWinner(): List<String> {

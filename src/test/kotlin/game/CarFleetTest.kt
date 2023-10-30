@@ -1,6 +1,7 @@
 package game
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -46,6 +47,18 @@ class CarFleetTest {
         assertThat(pobi.position).isEqualTo(retryCount)
         assertThat(crong.position).isEqualTo(retryCount)
         assertThat(honux.position).isEqualTo(retryCount)
+    }
+
+    @Test
+    fun `자동차 이름으로 자동차들을 생성한다`() {
+        // given
+        val carNames = listOf("pobi", "crong", "honux")
+
+        // when
+        val carFleet = CarFleet.of(carNames, FixedMoveConditionGenerator(advance))
+
+        // then
+        assertThat(carFleet.cars.map { it.name }).containsExactly("pobi", "crong", "honux")
     }
 
     companion object {
