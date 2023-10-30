@@ -1,6 +1,7 @@
 package game.racing.domain
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -19,5 +20,14 @@ internal class CarTest {
         val car = Car()
 
         assertThat(car.isMovePossible(value)).isFalse()
+    }
+
+    @Test
+    fun `0부터 9사이의 랜덤값을 반환한다`() {
+        val car = Car()
+
+        for (i in 0..10) {
+            assertThat(car.getRandomValue()).isBetween(0, 9)
+        }
     }
 }
