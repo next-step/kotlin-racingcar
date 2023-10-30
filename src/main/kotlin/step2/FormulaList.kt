@@ -17,5 +17,4 @@ class FormulaList(private val formulaList: List<String>) {
     }
 
     private fun isLast(index: Int) = index == formulaList.size - 1
-
 }
