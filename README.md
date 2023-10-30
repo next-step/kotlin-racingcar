@@ -152,7 +152,7 @@ class StringCalculator {
 ##### effect
 * require() 함수 람다식에서 throw를 하게 되면 require의 Exception이 아닌 Exception이 나타나 불필요한 중복 로직이 발생함.
 
-#### 5. OperatorTest.kt
+#### ~~5. OperatorTest.kt~~
 ```kotlin
 package calculator
 
