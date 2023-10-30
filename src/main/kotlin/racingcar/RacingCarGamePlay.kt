@@ -12,12 +12,12 @@ fun main() {
 
     ResultView.printInitMessage()
     val randomNumGenerator = RandomNumGenerator()
-    var currentRacingCarGame = RacingCarGame.init(initRacingCars(racingCarNames))
+    val racingCarGame = RacingCarGame.init(initRacingCars(racingCarNames))
     repeat(countOfRacing) {
-        currentRacingCarGame = currentRacingCarGame.race(randomNumGenerator)
-        ResultView.printResult(currentRacingCarGame)
+        racingCarGame.race(randomNumGenerator)
+        ResultView.printResult(racingCarGame)
     }
-    val winners = currentRacingCarGame.calculateWinners()
+    val winners = racingCarGame.calculateWinners()
     ResultView.printWinners(winners)
 }
 

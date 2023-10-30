@@ -20,9 +20,9 @@ class RacingCarGameTest : BehaviorSpec({
     Given("자동차 경주 게임이 한 차례 진행되면") {
         val racingCarGame = RacingCarGame.init(createRacingCars())
         When("모든 플레이어들은 4 이상이 나오면") {
-            val nextRacingCarGame = racingCarGame.race { 4 }
+            racingCarGame.race { 4 }
             Then("전진한다.") {
-                nextRacingCarGame.racingCars.shouldForAll {
+                racingCarGame.racingCars.shouldForAll {
                     it.count shouldBe 1
                 }
             }
@@ -32,9 +32,9 @@ class RacingCarGameTest : BehaviorSpec({
     Given("자동차 경주 게임에서") {
         val racingCarGame = RacingCarGame.init(createRacingCars())
         When("모든 플레이어들은 4 미만이 나오면") {
-            val nextRacingCarGame = racingCarGame.race { 3 }
+            racingCarGame.race { 3 }
             Then("정지한다.") {
-                nextRacingCarGame.racingCars.shouldForAll {
+                racingCarGame.racingCars.shouldForAll {
                     it.count shouldBe 0
                 }
             }
