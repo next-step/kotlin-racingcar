@@ -8,20 +8,18 @@ class RacingGame private constructor(
     private val numOfCars: Int,
     private val numOfAttempts: Int
 ) {
-    fun setUpCars(): List<Car> {
-        return List(numOfCars) { Car.ofRandom() }
-    }
+    private val racingCars: List<Car> =  List(numOfCars) {Car.ofRandom()}
 
-    fun start(cars: List<Car>): List<Car> {
+    fun start(): List<Car> {
         ResultView.printResultText()
         repeat(numOfAttempts) {
-            cars.forEach { it.move() }
-            ResultView.printResultState(cars)
+            racingCars.forEach { it.move() }
+            ResultView.printResultState(racingCars)
         }
-        return cars
+        return racingCars
     }
 
-    companion object of {
+    companion object {
         fun of(numOfCars: Int, numOfAttempts: Int): RacingGame {
             return RacingGame(numOfCars, numOfAttempts)
         }
@@ -31,6 +29,5 @@ class RacingGame private constructor(
 fun main() {
     val inputs = InputView.gatherUserInput()
     val racingGame = RacingGame.of(inputs.numOfCars, inputs.numOfAttempts)
-    val racingCars = racingGame.setUpCars()
-    racingGame.start(racingCars)
+    racingGame.start()
 }
