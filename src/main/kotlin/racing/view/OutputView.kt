@@ -1,13 +1,13 @@
 package racing.view
 
-import racing.model.RoundHistory
+import racing.model.RacingHistory
 
 class OutputView {
 
-    fun printResults(results: ArrayDeque<RoundHistory>) {
+    fun printResults(racingHistory: RacingHistory) {
         println("실행 결과")
-        for (matchResult in results) {
-            println(ConsoleRender.consolePresent(matchResult) + "\n")
+        for (history in racingHistory.roundHistories) {
+            println(ConsoleRender.consolePresent(history) + "\n")
         }
     }
 }
