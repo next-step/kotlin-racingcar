@@ -6,13 +6,13 @@ import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual
 class RacingGameTest : BehaviorSpec({
 
     Given("자동차 게임 시작") {
-        When("4이상의 숫자가 나온 경우") {
+        When("1번 시도의 4이상의 숫자가 나온 경우") {
             val tryCount = 1
 
             val game = RacingGame(
                 listOf(
-                    Car(),
-                    Car()
+                    Car("name1"),
+                    Car("name2")
                 ),
                 tryCount,
                 ForwardDice()
