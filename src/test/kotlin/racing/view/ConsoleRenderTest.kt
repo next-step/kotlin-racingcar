@@ -19,7 +19,7 @@ class ConsoleRenderTest : StringSpec({
                 ),
             )
         )
-        val actual = ConsoleRender.consolePresent(roundHistory)
+        val actual = ConsoleRender.roundRendering(roundHistory)
         actual shouldBe "1 : ---\n2 : --\n3 : -\n4 : -----"
     }
 
@@ -35,7 +35,7 @@ class ConsoleRenderTest : StringSpec({
             )
         )
 
-        val actual = ConsoleRender.consolePresent(roundHistory)
+        val actual = ConsoleRender.roundRendering(roundHistory)
         actual shouldContain "코틀린"
         actual shouldContain "자바"
         actual shouldContain "고랭"

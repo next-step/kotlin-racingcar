@@ -10,11 +10,9 @@ fun main() {
     val inputView = InputView()
     val outputView = OutputView()
 
-    outputView.printResults(
+    outputView.printRacingHistory(
         racingService.racing(
-            CarTokenizer.tokenize(
-                inputView.participates()
-            ),
+            CarTokenizer.tokenize(inputView.participates()),
             inputView.roundCount()
         )
     )

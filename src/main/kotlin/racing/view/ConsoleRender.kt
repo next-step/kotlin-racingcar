@@ -5,7 +5,7 @@ import racing.model.RoundHistory
 
 class ConsoleRender {
     companion object {
-        fun consolePresent(roundHistory: RoundHistory): String {
+        fun roundRendering(roundHistory: RoundHistory): String {
             return roundHistory.result
                 .map { carRendering(it) }
                 .joinToString(separator = "\n")
