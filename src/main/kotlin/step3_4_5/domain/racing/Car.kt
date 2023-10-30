@@ -10,16 +10,13 @@ class Car(
         checkValidate(carName)
     }
 
-    private val randomNumber
-        get() = randomNumberGenerator.generateNumber()
-
     private fun checkValidate(carName: String) {
         require(carName.isNotBlank()) { error(PLEASE_ENTER_THE_NAME) }
         require(carName.length <= CAR_NAME_MAXIMUM_LENGTH) { CAR_NAME_CAN_NOT_EXCEED_MAXIMUM_LENGTH }
     }
 
     fun moveForward() {
-        if (canGo(randomNumber)) step += ONE_STEP
+        if (canGo(randomNumberGenerator.generateNumber())) step += ONE_STEP
     }
 
     fun currentStep(): Int = step
