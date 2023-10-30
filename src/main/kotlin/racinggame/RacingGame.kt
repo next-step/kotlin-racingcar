@@ -12,15 +12,10 @@ class RacingGame(
             car.move(num)
             car.position
         }
+    }.map { round ->
+        PlayResult(round)
+    }.let {
+        RacingGameResult(it)
     }
 }
 
-fun List<List<Int>>.translate() = this.map { round ->
-    round.map {
-        (0..it).map {
-            "-"
-        }.reduce { s1, s2 ->
-            s1 + s2
-        }
-    }
-}

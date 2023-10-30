@@ -10,7 +10,7 @@ fun main() {
         RandomDice()
     )
 
-    val result = game.play().translate()
+    val result = game.play()
 
     OutputView.printRacingResult(result)
 }
