@@ -2,6 +2,7 @@ package racing.view
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContain
 import racing.model.Car
 import racing.model.RacingHistory
 
@@ -19,10 +20,25 @@ class ConsoleRenderTest : StringSpec({
             )
         )
         val actual = ConsoleRender.consolePresent(racingHistory)
-        actual shouldBe "---\n--\n-\n-----"
+        actual shouldBe "1 : ---\n2 : --\n3 : -\n4 : -----"
     }
 
     "전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다" {
-        TODO()
+        val racingHistory = RacingHistory(
+            ArrayDeque(
+                listOf(
+                    Car("코틀린", 0),
+                    Car("자바", 0),
+                    Car("고랭", 0),
+                    Car("TS", 0),
+                ),
+            )
+        )
+
+        val actual = ConsoleRender.consolePresent(racingHistory)
+        actual shouldContain "코틀린"
+        actual shouldContain "자바"
+        actual shouldContain "고랭"
+        actual shouldContain "TS"
     }
 })
