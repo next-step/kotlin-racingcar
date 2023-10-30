@@ -1,9 +1,11 @@
 package racing
 
+import kotlin.random.Random
+
 class Cars {
     val carList: List<Car>
-    constructor() {
-        carList = listOf()
+    constructor(carList: List<Car>) {
+        this.carList = carList
     }
 
     constructor(carNumber : Int) {
@@ -11,7 +13,8 @@ class Cars {
     }
 
     fun moveAll(){
-        carList.forEach { car -> car.moveForward() }
+        val randomMove = Random.nextInt(10)
+        carList.forEach { car -> car.moveForward(randomMove) }
     }
 }
 

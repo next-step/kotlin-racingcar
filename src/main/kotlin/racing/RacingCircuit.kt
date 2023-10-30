@@ -9,7 +9,9 @@ class RacingCircuit {
         val resultView = ResultView()
         val (carNumber, tryNumber) = inputView.getInputView()
 
-        val cars = Cars(carNumber)
+        val racingCars = List(carNumber) { Car() }
+        val cars = Cars(racingCars)
+
         println("레이스 스타트")
         for (i in 1..tryNumber) {
             cars.moveAll()
