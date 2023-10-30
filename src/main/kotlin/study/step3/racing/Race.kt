@@ -9,6 +9,11 @@ class Race private constructor(private val cars: List<Car>, private val moveCoun
     constructor(carCount: Int, moveCount: Int, moveStrategy: MoveStrategy) :
         this(List(carCount) { Car() }, moveCount, moveStrategy)
 
+    init {
+        require(cars.isNotEmpty()) { "자동차 대수는 1대 이상이어야 합니다." }
+        require(moveCount > 0) { "시도할 횟수는 1회 이상이어야 합니다." }
+    }
+
     fun run() {
         repeat(moveCount) {
             cars.forEach { car ->

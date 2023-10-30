@@ -11,7 +11,7 @@ class CarTest {
     fun `move should increment position when shouldMove is true`() {
         val car = Car()
         car.move(true)
-        assertEquals(1, car.getPosition())
+        assertEquals(1, car.position)
     }
 
     @Test
@@ -19,6 +19,6 @@ class CarTest {
     fun `move should not increment position when shouldMove is false`() {
         val car = Car()
         car.move(false)
-        assertEquals(0, car.getPosition())
+        assertEquals(0, car.position)
     }
 }
