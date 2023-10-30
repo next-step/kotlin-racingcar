@@ -11,7 +11,7 @@ fun main() {
 
     outputView.printResults(
         racingCar.racing(
-            inputView.participate(),
+            inputView.participates(),
             inputView.roundCount()
         )
     )

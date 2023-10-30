@@ -7,8 +7,8 @@ class RacingCar {
 
     private val strategy = MoveThresholdStrategy(RandomGenerator())
 
-    fun racing(participate: Int, roundCount: Int): ArrayDeque<RacingHistory> {
-        var current: RacingHistory = ready(participate)
+    fun racing(participates: ArrayDeque<String>, roundCount: Int): ArrayDeque<RacingHistory> {
+        var current: RacingHistory = ready(participates)
         val racingHistories = ArrayDeque<RacingHistory>()
         for (i in 1..roundCount) {
             current = roundStart(current)
@@ -17,10 +17,12 @@ class RacingCar {
         return racingHistories
     }
 
-    private fun ready(participate: Int): RacingHistory {
+    private fun ready(participates: ArrayDeque<String>): RacingHistory {
         return RacingHistory(
             ArrayDeque(
-                Car.listOf(participate)
+                participates.map {
+                    Car(it, 0)
+                }
             )
         )
     }
