@@ -11,8 +11,8 @@ fun main() {
     val countOfRacing = InputView.inputCount()
 
     ResultView.printInitMessage()
-    val randomNumGenerator = RandomNumGenerator()
     val racingCarGame = RacingCarGame.init(initRacingCars(racingCarNames))
+    val randomNumGenerator = RandomNumGenerator()
     repeat(countOfRacing) {
         racingCarGame.race(randomNumGenerator)
         ResultView.printResult(racingCarGame)
