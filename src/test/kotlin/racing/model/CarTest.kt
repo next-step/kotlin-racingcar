@@ -43,10 +43,14 @@ class CarTest : StringSpec({
     }
 
     "자동차 이름이 공백 인경우 IllegalArgumentException throw" {
-        TODO()
+        shouldThrow<IllegalArgumentException> {
+            Car("", 101)
+        }.shouldHaveMessage("자동차의 이름은 빈 문자열이 허용되지 않는다")
     }
 
     "자동차 이름이 null 인경우 IllegalArgumentException throw" {
-        TODO()
+        """
+            Car(null, 101) 해당 코드는 실행조차 되지 않는다!
+        """.trimIndent()
     }
 })
