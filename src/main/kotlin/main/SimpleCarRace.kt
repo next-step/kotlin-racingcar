@@ -5,7 +5,7 @@ import race.RaceManager
 
 class SimpleCarRace {
     fun main() {
-        val cars = InputView().askCarNum()
+        val cars = InputView().askCarList()
         val moves = InputView().askMoveNum()
 
         RaceManager(cars, moves).start()
