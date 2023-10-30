@@ -18,7 +18,7 @@ class RacingCarGame private constructor(
         racingCars = newRacingCars
     }
 
-    fun calculateWinners(): List<RacingCar> {
+    fun findWinners(): List<RacingCar> {
         val maxCount = racingCars.maxBy { racingCar -> racingCar.count }.count
         return racingCars.filter { racingCar -> racingCar.count == maxCount }
     }

@@ -45,7 +45,7 @@ class RacingCarGameTest : BehaviorSpec({
         val racingCarGame =
             RacingCarGame.init(listOf(RacingCar("pobi", 3), RacingCar("crong", 2), RacingCar("honux", 1)))
         When("가장 높은 count를 가진 자동차가") {
-            val winners = racingCarGame.calculateWinners()
+            val winners = racingCarGame.findWinners()
             Then("우승한다.") {
                 winners.get(0).name shouldBe "pobi"
             }
@@ -56,7 +56,7 @@ class RacingCarGameTest : BehaviorSpec({
         val racingCarGame =
             RacingCarGame.init(listOf(RacingCar("pobi", 3), RacingCar("crong", 3), RacingCar("honux", 3)))
         When("가장 높은 count를 가진 자동차가 여러명이면") {
-            val winners = racingCarGame.calculateWinners()
+            val winners = racingCarGame.findWinners()
             Then("공동 우승한다.") {
                 winners shouldHaveSize 3
             }

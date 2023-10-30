@@ -17,7 +17,7 @@ fun main() {
         racingCarGame.race(randomNumGenerator)
         ResultView.printResult(racingCarGame)
     }
-    val winners = racingCarGame.calculateWinners()
+    val winners = racingCarGame.findWinners()
     ResultView.printWinners(winners)
 }
 
