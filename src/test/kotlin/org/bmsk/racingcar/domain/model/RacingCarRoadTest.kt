@@ -1,12 +1,21 @@
 package org.bmsk.racingcar.domain.model
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.ints.shouldBeInRange
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.throwable.shouldHaveMessage
+import org.bmsk.racingcar.domain.error.RacingCarErrorMessage
 import org.bmsk.racingcar.domain.policy.movement.RandomMovementImpl
 
 class RacingCarRoadTest : FunSpec({
-    context("RaccingCarRoad의 차들이") {
+    test("RacingCarRoad를 빈 리스트로 초기화 할 수 없다.") {
+        shouldThrow<IllegalArgumentException> {
+            RacingCarRoad(emptyList())
+        }.shouldHaveMessage(RacingCarErrorMessage.LIST_OF_CARS_CANNOT_BE_EMPTY.message)
+    }
+
+    context("RacingCarRoad의 차들이") {
         context("RandomMovement 정책을 따를 때") {
             val randomMovement = RandomMovementImpl()
             val fakeRandomMovement1 = RandomMovementImpl(FakeRandomGenerator(1))
