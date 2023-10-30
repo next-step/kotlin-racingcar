@@ -22,7 +22,7 @@ class CalculatorMachine(
         while (isRunning) {
             val input = userInterface.introduce()
             val splitInput = splitter.split(input)
-            val calculator = Calculator(splitInput.numbers, splitInput.operators)
+            val calculator = Calculator(splitInput.first, splitInput.second)
             userInterface.showResult(calculator.calculate())
             isRunning = userInterface.isContinue()
         }

@@ -11,7 +11,7 @@ internal class SplitterTest {
         val input = "1 + 2 - 1 * 4 / 5"
         val result = Splitter().split(input)
 
-        assert(result.numbers == mutableListOf(1L, 2L, 1L, 4L, 5L))
-        assert(result.operators == mutableListOf(Operator.PLUS, Operator.MINUS, Operator.MULTIPLY, Operator.DIVIDE))
+        assert(result.first == mutableListOf(1L, 2L, 1L, 4L, 5L))
+        assert(result.second == mutableListOf(Operator.PLUS, Operator.MINUS, Operator.MULTIPLY, Operator.DIVIDE))
     }
 }

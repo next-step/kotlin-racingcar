@@ -6,13 +6,9 @@ class Calculator(private val numbers: MutableList<Long>, private val operators: 
     }
 
     fun calculate(): Long {
-        var result = numbers.removeFirst()
-
-        for (i in operators.indices) {
-            result = operators[i].operate(result, numbers[i])
+        return operators.foldIndexed(numbers.first()) { index, acc, operator ->
+            operator.operate(acc, numbers[index + 1])
         }
-
-        return result
     }
 
     private fun validateInput(numbers: MutableList<Long>, operators: MutableList<Operator>) {
