@@ -18,20 +18,21 @@ class CarsTest {
     }
 
     @Test
-    fun getCarsTest() {
+    fun `각 자동차 Name 이 ","를 기준으로 List 에 반환된다`() {
         val carList = cars.getCars(CARS)
-        assertEquals(3, carList.size)
+        val expectedNames = listOf("pobi", "crong", "honux")
+        assertEquals(expectedNames, carList.map { it.name })
     }
 
     @Test
-    fun `자동차 Name의 길이는 5 초과가 되어선 안된다`() {
+    fun `자동차 Name 의 길이는 5 초과가 되어선 안된다`() {
         assertThrows<IllegalArgumentException> {
             cars.getCars(LENGTH_OVER_CARS)
         }
     }
 
     @Test
-    fun getWinnerTest() {
+    fun `moveCount 가 제일 높은 Car 의 Names 을 출력 한다`() {
         val car1 = Car("car1", 3, moveStrategy)
         val car2 = Car("car2", 2, moveStrategy)
         val car3 = Car("car3", 3, moveStrategy)
