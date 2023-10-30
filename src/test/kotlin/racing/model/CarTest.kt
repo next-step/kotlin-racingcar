@@ -1,7 +1,9 @@
 package racing.model
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.throwable.shouldHaveMessage
 import racing.model.move.MoveAlwaysStrategy
 import racing.model.move.MoveNeverStrategy
 
@@ -19,10 +21,24 @@ class CarTest : StringSpec({
     }
 
     "각 자동차에 이름을 부여할 수 있다" {
-        TODO()
+
+        val namedLength4Car = Car("강한친구", 101)
+        val namedLength5Car = Car("강한자동차", 707)
+
+        namedLength4Car.name shouldBe "강한친구"
+        namedLength4Car.name.length shouldBe 4
+        namedLength5Car.name shouldBe "강한자동차"
+        namedLength5Car.name.length shouldBe 5
     }
 
     "자동차 이름은 5자를 초과할 수 없다" {
-        TODO()
+
+        shouldThrow<IllegalArgumentException> {
+            Car("자동차자동차", 101)
+        }.shouldHaveMessage("자동차 이름은 5자를 초과할 수 없다 : [자동차자동차] 은 [6] 자 입니다")
+
+        shouldThrow<IllegalArgumentException> {
+            Car("힘이세고강한친구", 101)
+        }.shouldHaveMessage("자동차 이름은 5자를 초과할 수 없다 : [힘이세고강한친구] 은 [8] 자 입니다")
     }
 })
