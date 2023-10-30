@@ -1,5 +1,8 @@
-package racing.model
+package racing.service
 
+import racing.model.Car
+import racing.model.RacingHistory
+import racing.model.RoundHistory
 import racing.model.generator.RandomGenerator
 import racing.model.move.MoveThresholdStrategy
 

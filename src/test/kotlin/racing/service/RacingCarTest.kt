@@ -1,4 +1,4 @@
-package racing.model
+package racing.service
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldHaveSize

@@ -19,10 +19,29 @@ class RacingHistoryTest : StringSpec({
         )
         val actual = racingHist.winner()
         actual shouldHaveSize 1
-        actual shouldContain Car("잘익은토마토", 10)
+        actual shouldContain Car("빨간토마토", 10)
     }
 
     "우승자는 한명 이상일 수 있다" {
-        TODO()
+        val racingHist = RacingHistory(
+            ArrayDeque(
+                listOf(
+                    RoundHistory(
+                        ArrayDeque(
+                            listOf(
+                                Car("honux", 5),
+                                Car("pobi", 5),
+                                Car("crong", 5),
+                            )
+                        )
+                    )
+                )
+            )
+        )
+        val actual = racingHist.winner()
+        actual shouldHaveSize 3
+        actual shouldContain Car("honux", 5)
+        actual shouldContain Car("pobi", 5)
+        actual shouldContain Car("crong", 5)
     }
 })

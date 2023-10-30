@@ -1,6 +1,6 @@
 package racing
 
-import racing.model.RacingCar
+import racing.service.RacingCar
 import racing.view.CarTokenizer
 import racing.view.InputView
 import racing.view.OutputView
