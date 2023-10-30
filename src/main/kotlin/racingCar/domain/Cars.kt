@@ -2,16 +2,8 @@ package racingCar.domain
 
 import racingCar.domain.strategy.MoveStrategy
 import racingCar.error.ErrorMessage
-import racingCar.view.OutputView
 
 class Cars(private val moveStrategy: MoveStrategy) {
-
-    fun moveCar(cars: List<Car>, tryCount: Int) {
-        repeat(tryCount) {
-            cars.forEach { it.moveByStrategy() }
-            OutputView.printCar(cars)
-        }
-    }
 
     fun getCars(inputCars: String): List<Car> {
         val split = inputCars.split(",")

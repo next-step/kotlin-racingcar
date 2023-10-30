@@ -17,6 +17,9 @@ fun main() {
     val moveStrategy: MoveStrategy = RandomStrategy()
     val cars = Cars(moveStrategy)
     val carList: List<Car> = cars.getCars(inputCars)
-    cars.moveCar(carList, tryCount)
+    repeat(tryCount) {
+        carList.forEach { it.moveByStrategy() }
+        OutputView.printCar(carList)
+    }
     OutputView.printWinner(carList)
 }
