@@ -17,9 +17,9 @@ class CarFixture {
 
         val carFixtureStep1: ArrayDeque<Car> = ArrayDeque(
             listOf(
-                Car("까망베르", 0),
-                Car("적양파", 1),
-                Car("살치살", 0),
+                Car("치즈", 0),
+                Car("양파", 1),
+                Car("소고기", 0),
                 Car("신선양상추", 0),
                 Car("빨간토마토", 1),
             )
@@ -27,9 +27,9 @@ class CarFixture {
 
         val carFixtureStep2: ArrayDeque<Car> = ArrayDeque(
             listOf(
-                Car("까망베르", 1),
-                Car("적양파", 2),
-                Car("살치살", 3),
+                Car("치즈", 1),
+                Car("양파", 2),
+                Car("소고기", 3),
                 Car("신선양상추", 4),
                 Car("빨간토마토", 5),
             )
@@ -37,11 +37,11 @@ class CarFixture {
 
         val carFixtureOfAfterFinish: ArrayDeque<Car> = ArrayDeque(
             listOf(
-                Car("까망베르", 2),
-                Car("적양파", 4),
-                Car("살치살", 6),
-                Car("신선한양상추", 8),
-                Car("잘익은토마토", 10),
+                Car("치즈", 2),
+                Car("양파", 4),
+                Car("소고기", 6),
+                Car("신선양상추", 8),
+                Car("빨간토마토", 10),
             )
         )
     }
