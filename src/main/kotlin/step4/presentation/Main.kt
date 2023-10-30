@@ -1,17 +1,17 @@
 package step4.presentation
 
-import step4.data.RacingGame
+import step4.domain.RacingGame
 
 fun main() {
     val racingCar = InputView.enterCars()
     val tryCount = InputView.enterTryCount()
 
-    val racingCourse = RacingGame(tryCount, racingCar)
+    val racingGame = RacingGame(tryCount, racingCar)
 
     println("실행 결과")
-    racingCourse.run(
+    racingGame.run(
         afterTrying = { println(ResultView.getCarMoveView(it)) },
         afterOneRepeat = { println() }
     )
-    println(ResultView.getFinalResultView(racingCourse.getWinnerList()))
+    println(ResultView.getFinalResultView(racingGame.getWinnerList()))
 }

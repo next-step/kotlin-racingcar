@@ -1,8 +1,6 @@
-package step4.data
+package step4.domain
 
-import step4.domain.GetWinnerList
-
-data class RacingGame(
+class RacingGame(
     val tryCount: Int,
     val racingCars: List<RacingCar>
 ) {
@@ -22,6 +20,5 @@ data class RacingGame(
             afterTrying(car)
         }
     }
-
     fun getWinnerList(): List<RacingCar> = GetWinnerList.getWinnerList(racingCars)
 }

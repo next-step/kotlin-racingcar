@@ -1,6 +1,6 @@
 package step4.presentation
 
-import step4.data.RacingCar
+import step4.domain.RacingCar
 
 object InputView {
     fun enterCars(): List<RacingCar> {

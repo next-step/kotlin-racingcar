@@ -1,8 +1,6 @@
-package step4.data
+package step4.domain
 
-import step4.domain.TryMoving
-
-data class RacingCar(
+class RacingCar(
     val name: String,
     var moveCount: Int = 0
 ) {
