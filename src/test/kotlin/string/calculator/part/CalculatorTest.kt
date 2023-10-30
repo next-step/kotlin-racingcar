@@ -1,5 +1,6 @@
 package string.calculator.part
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import string.calculator.domain.Calculator
 import string.calculator.domain.Operator
@@ -13,6 +14,6 @@ internal class CalculatorTest {
         val calculator = Calculator(numbers, operators)
         val result = calculator.calculate()
 
-        assert(result == 1L)
+        assertThat(result).isEqualTo(1L)
     }
 }
