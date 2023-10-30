@@ -1,39 +1,36 @@
 package calculator
 
-import java.util.LinkedList
-import java.util.Queue
-
 class StringCalculatorCounter() {
-    private val queue: Queue<String>
+    private val mutableList: MutableList<String>
     private val basicOperationsCalculator: BasicOperationsCalculator
 
     init {
-        queue = LinkedList()
+        mutableList = mutableListOf()
         basicOperationsCalculator = BasicOperationsCalculator()
     }
 
     private fun validateNumber(element: String) {
         if (!element.matches(Regex("^\\d+$"))) {
-            queue.clear()
+            mutableList.clear()
             throw IllegalArgumentException("Please Check the Input")
         }
     }
 
     private fun validateSymbol(element: String) {
         if (!element.matches(Regex("^[+/\\-*]+$"))) {
-            queue.clear()
+            mutableList.clear()
             throw IllegalArgumentException("Please Check the Input")
         }
     }
 
     private fun getSymbol(): String {
-        val symbol = queue.poll()
+        val symbol = mutableList.removeAt(0)
         validateSymbol(symbol)
         return symbol
     }
 
     private fun getNumber(): Double {
-        val number = queue.poll()
+        val number = mutableList.removeAt(0)
         validateNumber(number)
         return number.toDouble()
     }
@@ -42,16 +39,16 @@ class StringCalculatorCounter() {
         try {
             return basicOperationsCalculator.operation(firstNum, secondNum, symbol)
         } catch (e: IllegalArgumentException) {
-            queue.clear()
+            mutableList.clear()
             throw IllegalArgumentException("Please Check the Input")
         }
     }
 
     fun calculate(input: String): Double {
-        queue.addAll(input.split(" "))
+        mutableList.addAll(input.split(" "))
         var curNum = getNumber()
 
-        while (queue.isNotEmpty()) {
+        while (mutableList.isNotEmpty()) {
             var symbol = getSymbol()
             var num = getNumber()
             curNum = basicOperation(curNum, num, symbol)
