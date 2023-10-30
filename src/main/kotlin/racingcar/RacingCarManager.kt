@@ -1,6 +1,7 @@
 package racingcar
 
 import racingcar.domain.Car
+import racingcar.domain.CarNames
 import racingcar.domain.DriveConditionImpl
 import racingcar.presentation.InputManager
 import racingcar.presentation.OutPutManager
@@ -10,25 +11,32 @@ class RacingCarManager(
     private val outPutManager: OutPutManager
 ) {
     fun startGame() {
-        val numberOfCar = inputManager.inputNumberOfCar()
         val carNames = inputManager.inputCarNames()
         val numberOfCount = inputManager.inputNumberOfCount()
-        val cars = createCars(numberOfCar)
+        val cars = createCars(carNames)
 
         outPutManager.printBeginResultMessage()
 
         for (i in 0 until numberOfCount) {
             race(cars)
         }
+
+        outPutManager.printWinner(getWinners(cars))
     }
 
-    private fun race(carList: List<Car>) {
-        carList.forEach { it.drive() }
-        outPutManager.printCarList(carList)
+    private fun race(cars: List<Car>) {
+        cars.forEach { it.drive() }
+        outPutManager.printCars(cars)
     }
 
-    private fun createCars(numberOfCars: Int): List<Car> {
-        return List(numberOfCars) { Car(it, DriveConditionImpl()) }
+    private fun createCars(carNames: CarNames): List<Car> {
+        return List(carNames.getSize()) { Car(carNames.findNameByIndex(it), DriveConditionImpl()) }
+    }
+
+    private fun getWinners(cars: List<Car>): String {
+        val maxPosition = cars.maxOf { it.distance }
+        val winners = cars.filter { it.distance == maxPosition }
+        return winners.joinToString(",") { it.name.value }
     }
 }
 

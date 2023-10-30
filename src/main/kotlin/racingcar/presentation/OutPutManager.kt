@@ -4,11 +4,16 @@ import racingcar.domain.Car
 
 class OutPutManager {
 
-    fun printCarList(cars: List<Car>) {
+    fun printCars(cars: List<Car>) {
         cars.forEach {
             println(it.name.value + ":" + "-".repeat(it.distance))
         }
         println()
+    }
+
+    fun printWinner(winner: String) {
+
+        println("$winner 가 최종 우승했습니다.")
     }
 
     fun printBeginResultMessage() {
