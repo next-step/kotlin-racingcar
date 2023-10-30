@@ -3,7 +3,7 @@ package race
 import java.lang.IllegalArgumentException
 
 class SimpleCar(val name: String) {
-    private var location = ""
+    private var location = 0
 
     init {
         if (name.length > 5) {
@@ -13,7 +13,7 @@ class SimpleCar(val name: String) {
 
     fun getCurrentlocation() = location
 
-    fun move() {
-        if ((0..9).random() > 3) location += "-"
+    fun move(value: Int) {
+        if (value > 3) location++
     }
 }

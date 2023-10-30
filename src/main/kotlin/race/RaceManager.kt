@@ -16,7 +16,7 @@ class RaceManager(cars: String, private val moves: Int) {
 
     fun start() {
         repeat(moves) {
-            carList.forEach { it.move() }
+            carList.forEach { it.move((0..9).random()) }
             ResultView().printResult(carList)
         }
     }
