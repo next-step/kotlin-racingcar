@@ -5,7 +5,7 @@ import org.bmsk.racingcar.domain.random.ZeroToNineRandomGenerator
 import org.bmsk.racingcar.model.Position
 
 class RandomMovementImpl(
-    private val randomGenerator: RandomGenerator = ZeroToNineRandomGenerator()
+    private val randomGenerator: RandomGenerator = ZeroToNineRandomGenerator(),
 ) : MovementPolicy.RandomMovement {
 
     override fun move(position: Position): Position {
