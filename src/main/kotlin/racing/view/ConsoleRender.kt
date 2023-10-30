@@ -4,6 +4,7 @@ import racing.model.Car
 import racing.model.RoundHistory
 
 class ConsoleRender {
+
     companion object {
         fun roundRendering(roundHistory: RoundHistory): String {
             return roundHistory.result
