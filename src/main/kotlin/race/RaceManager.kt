@@ -17,7 +17,15 @@ class RaceManager(cars: String, private val moves: Int) {
     fun start() {
         repeat(moves) {
             carList.forEach { it.move((0..9).random()) }
-            ResultView().printResult(carList)
+            ResultView().printStatus(carList)
         }
+
+        ResultView().printResult(findWinners())
+    }
+
+    fun findWinners(): List<SimpleCar> {
+        val max = carList.maxBy { it.getLocation() }
+
+        return carList.filter { it.getLocation() == max.getLocation() }
     }
 }

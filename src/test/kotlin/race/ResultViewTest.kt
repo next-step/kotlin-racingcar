@@ -5,12 +5,12 @@ import org.junit.jupiter.api.Test
 class ResultViewTest {
 
     @Test
-    fun visualizeLocation() {
+    fun `location 시각화 테스트`() {
         val car = SimpleCar("test")
 
         assertThat(ResultView().visualizeLocation(car)).isEqualTo("")
 
-        repeat(3) { car.move(4) }
+        repeat(3) { car.move(SimpleCar.MOVE_THRESHOLD) }
         assertThat(ResultView().visualizeLocation(car)).isEqualTo("---")
     }
 }

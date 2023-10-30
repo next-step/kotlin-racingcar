@@ -11,9 +11,13 @@ class SimpleCar(val name: String) {
         }
     }
 
-    fun getCurrentlocation() = location
+    fun getLocation() = location
 
     fun move(value: Int) {
-        if (value > 3) location++
+        if (value >= MOVE_THRESHOLD) location++
+    }
+
+    companion object {
+        const val MOVE_THRESHOLD = 4
     }
 }
