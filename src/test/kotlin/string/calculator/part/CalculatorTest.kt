@@ -1,6 +1,7 @@
 package string.calculator.part
 
 import org.junit.jupiter.api.Test
+import string.calculator.domain.Calculator
 import string.calculator.domain.Operator
 
 internal class CalculatorTest {
