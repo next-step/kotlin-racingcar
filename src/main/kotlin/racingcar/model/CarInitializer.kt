@@ -1,5 +1,5 @@
 package racingcar.model
 
 object CarInitializer {
-    fun createCars(numbersOfCar: Int): List<Car> = List(numbersOfCar) { Car(it.toString()) }
+    fun createCars(namesOfCars: List<String>): List<Car> = namesOfCars.map { Car(name = it) }
 }

@@ -10,9 +10,9 @@ import racingcar.view.ResultView
 class RacingCarController {
     fun startGame() {
         val strategy: MovingStrategy = RandomNumberMovingStrategy()
-        val numbersOfCar = InputView.getNumbersOfCars()
+        val namesOfCars = InputView.getNamesOfCars()
         val numbersOfTry = InputView.getNumbersOfTry()
-        val cars = CarInitializer.createCars(numbersOfCar)
+        val cars = CarInitializer.createCars(namesOfCars)
         val game = RacingCarGame(cars, strategy)
         ResultView.printInitial()
         val racingHistories = game.run(numbersOfTry)
