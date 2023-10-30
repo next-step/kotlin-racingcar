@@ -14,7 +14,8 @@ class Car {
         return value >= MIN_MOVE_THRESHOLD
     }
 
-    private fun getRandomValue(): Int {
+//    TODO private 함수로 만들고 싶다.. 현재는 테스트를 위해 public으로 두었다..
+    fun getRandomValue(): Int {
         return (MIN_RANDOM_VALUE..MAX_RANDOM_VALUE).random()
     }
 
