@@ -91,7 +91,7 @@ class ExpressionParser {
 * Singleton으로 변경되어, 객체 생성에 대한 부담이 사라짐.
 * 예외 메시지에 입력 값에 대한 정보를 포함하여, 디버깅에 용이.
 
-#### 3. Operator.kt
+#### ~~3. Operator.kt~~
 ```kotlin
 package calculator
 
