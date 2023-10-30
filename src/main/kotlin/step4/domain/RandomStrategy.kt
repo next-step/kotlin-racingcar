@@ -1,6 +1,6 @@
 package step4.domain
 
-import java.util.*
+import java.util.Random
 
 class RandomStrategy : MoveStrategy {
     override val count: Int
