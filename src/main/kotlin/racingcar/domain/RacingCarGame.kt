@@ -2,15 +2,13 @@ package racingcar.domain
 
 import racingcar.util.NumGenerator
 
-private const val RANDOM_NUM_BOUND = 10
-
 class RacingCarGame private constructor(
     var racingCars: List<RacingCar>
 ) {
 
     fun race(numGenerator: NumGenerator) {
         racingCars = racingCars.map {
-            val randomNum = numGenerator.getNextInt(RANDOM_NUM_BOUND)
+            val randomNum = numGenerator.getNextInt()
             it.moveOrStop(randomNum)
         }
     }

@@ -7,10 +7,9 @@ class RandomNumGeneratorTest : BehaviorSpec({
 
     Given("getNextInt 메서드는") {
         val randomNumGenerator = RandomNumGenerator()
-        When("bound를 입력받으면") {
-            val bound = 10
+        When("내부에 정의된 bound를 통해") {
             Then("0 이상 bound 미만의 숫자만 생성한다.") {
-                randomNumGenerator.getNextInt(bound) shouldBeLessThan bound
+                randomNumGenerator.getNextInt() shouldBeLessThan 10
             }
         }
     }
