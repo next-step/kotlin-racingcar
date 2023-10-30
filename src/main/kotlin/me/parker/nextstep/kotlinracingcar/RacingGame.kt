@@ -1,4 +1,4 @@
 package me.parker.nextstep.kotlinracingcar
 
-class RacingGame {
+class RacingGame(val numOfRacingCar: Int, val numOfAttempts: Int) {
 }
