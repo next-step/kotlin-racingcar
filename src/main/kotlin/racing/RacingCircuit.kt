@@ -13,10 +13,7 @@ class RacingCircuit {
         val cars = Cars(racingCars)
 
         println("레이스 스타트")
-        for (i in 1..tryNumber) {
-            cars.moveAll()
-            resultView.makeResultView(cars)
-        }
+        RandomCarRace().move(cars, carNumber, resultView)
     }
 }
 
