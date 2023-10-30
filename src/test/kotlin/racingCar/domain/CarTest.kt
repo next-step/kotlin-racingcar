@@ -12,7 +12,7 @@ class CarTest {
     @Test
     fun `isMove 함수가 true 일 경우 moveCount 증가`() {
         val car = Car("testCar", moveStrategy = moveStrategyAlwaysTrue)
-        car.moveByStrategy()
+        car.move()
 
         Assertions.assertEquals(car.moveCount, 1)
     }
@@ -20,7 +20,7 @@ class CarTest {
     @Test
     fun `isMove 함수가 false 일 경우 moveCount 유지`() {
         val car = Car("testCar", moveStrategy = moveStrategyAlwaysFalse)
-        car.moveByStrategy()
+        car.move()
 
         Assertions.assertEquals(car.moveCount, 0)
     }

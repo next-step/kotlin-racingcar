@@ -7,7 +7,7 @@ class Car(val name: String, moveCount: Int = 0, private val moveStrategy: MoveSt
     var moveCount: Int = moveCount
         private set
 
-    fun moveByStrategy() {
+    fun move() {
         if (moveStrategy.isMove()) { ++moveCount }
     }
 }
