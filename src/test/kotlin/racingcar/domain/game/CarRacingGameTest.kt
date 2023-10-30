@@ -5,20 +5,18 @@ import io.kotest.matchers.shouldBe
 import racingcar.domain.car.Car
 import racingcar.domain.car.CarName
 import racingcar.domain.configuration.CarRacingConfiguration
-import racingcar.domain.rule.RandomMoveRule
-import racingcar.domain.rule.RandomNumberGeneratorInBound
+import racingcar.domain.rule.AlwaysMoveRule
 
 class CarRacingGameTest : BehaviorSpec({
     Given("자동차 경주 게임이 생성되었을 때") {
         val cars = listOf(Car(CarName("name1"), 0), Car(CarName("name2"), 0))
         val roundCount = 2
-        val roundRange = 1..roundCount
         val game = CarRacingGame.set(
             configuration = CarRacingConfiguration(
                 cars = cars,
                 round = roundCount,
             ),
-            moveRule = RandomMoveRule(RandomNumberGeneratorInBound(4..4))
+            moveRule = AlwaysMoveRule(distance = 1)
         )
 
         When("게임을 실행하면") {
