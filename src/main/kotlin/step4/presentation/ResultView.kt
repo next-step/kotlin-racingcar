@@ -12,7 +12,7 @@ object ResultView {
     }
 
     fun getCarMoveView(car: RacingCar): String {
-        return "${car.name} : ${visualizeMoveCount(car.moveCount)}}"
+        return "${car.name} : ${visualizeMoveCount(car.moveCount)}"
     }
 
     private fun visualizeMoveCount(moveCount: Int): String {
