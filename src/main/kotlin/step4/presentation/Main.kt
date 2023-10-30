@@ -6,10 +6,10 @@ fun main() {
     InputView.showTryCountIntro()
     val racingCourse = InputView.enterTryCount(racingCar)
 
-    ResultView.showResultTitle()
+    println("실행 결과")
     racingCourse.run(
-        afterTrying = { ResultView.showCarMove(it) },
-        afterOneRepeat = { ResultView.lineBreak() }
+        afterTrying = { println(ResultView.getCarMoveView(it)) },
+        afterOneRepeat = { println() }
     )
-    ResultView.showFinalResult(racingCourse.getWinnerList())
+    println(ResultView.getFinalResultView(racingCourse.getWinnerList()))
 }

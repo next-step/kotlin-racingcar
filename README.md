@@ -8,9 +8,8 @@
 
 ### ResultView
 
-- ```showCarMove()```: 중간중간 차 하나하나의 움직임을 ```"${car.name} : $visualizedMoveCount"``` 형태로 출력
-- ```showWinners(winnerList: List<RacingCar>)```: 승리자 정보들을 받아 "pobi, honux가 최종 우승했습니다." 형태로 출력
-- ```visualizeMoveCount(moveCount: Int)```: moveCount를 "---" 형태로 바꿔주는 로직
+- ```getCarMoveView()```: 중간중간 차 하나하나의 움직임을 ```"${car.name} : $visualizedMoveCount"``` 형태로 출력
+- ```getFinalResultView(winnerList: List<RacingCar>)```: 승리자 정보들을 받아 "pobi, honux가 최종 우승했습니다." 형태로 출력
 
 ## data
 
