@@ -34,13 +34,7 @@ class Engine(
             ADD.operator -> ADD.calculate(leftOperand, rightOperand)
             SUB.operator -> SUB.calculate(leftOperand, rightOperand)
             MUL.operator -> MUL.calculate(leftOperand, rightOperand)
-            DIV.operator -> {
-                if (rightOperand == 0) {
-                    throw ArithmeticException("나누기 연산의 오른쪽 피연산자가 0입니다.")
-                }
-                DIV.calculate(leftOperand, rightOperand)
-            }
-
+            DIV.operator -> DIV.calculate(leftOperand, rightOperand)
             else -> throw IllegalArgumentException()
         }
     }
