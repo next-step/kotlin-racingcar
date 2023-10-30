@@ -15,7 +15,7 @@ class Car(
         fun create(carNumber: Int): List<Car> {
             val cars: MutableList<Car> = mutableListOf()
 
-            for(i: Int in 0 until carNumber) {
+            for (i: Int in 0 until carNumber) {
                 cars.add(Car())
             }
 
