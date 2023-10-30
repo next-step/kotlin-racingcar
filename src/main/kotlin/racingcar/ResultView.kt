@@ -9,9 +9,7 @@ object ResultView {
                 printRaceResult(it)
             }
 
-        gameResultRecord.winners?.let { winners ->
-            printWinners(winners)
-        }
+        printWinners(gameResultRecord.winners)
     }
 
     private fun printRaceResult(raceResultRecord: RaceResultRecord) {

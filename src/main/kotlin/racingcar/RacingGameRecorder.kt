@@ -2,9 +2,8 @@ package racingcar
 
 class RacingGameRecorder {
     private val raceResultRecords = ArrayList<RaceResultRecord>()
-    private var winners: Winners? = null
 
-    val gameResultRecord: GameResultRecord get() = GameResultRecord(raceResultRecords.toList(), winners)
+    val gameResultRecord: GameResultRecord get() = GameResultRecord(raceResultRecords.toList())
 
     fun recordRound(cars: List<Car>) {
         val round = raceResultRecords.size + 1
@@ -13,10 +12,6 @@ class RacingGameRecorder {
         }
 
         raceResultRecords.add(RaceResultRecord(round, positions))
-    }
-
-    fun recordWinners(names: List<String>) {
-        winners = Winners(names)
     }
 }
 
@@ -36,8 +31,21 @@ data class RaceResultRecord(
 
 data class GameResultRecord(
     val raceResults: List<RaceResultRecord>,
-    val winners: Winners?,
 ) {
     val finalRaceResult: RaceResultRecord?
         get() = raceResults.lastOrNull()
+
+    val winners: Winners
+        get() {
+            val result = finalRaceResult ?: throw IllegalStateException("Never played racing game")
+
+            val maxDistance = result.carPositions
+                .maxOfOrNull { it.position }
+
+            val winnersName = result.carPositions
+                .filter { it.position == maxDistance }
+                .map { it.name }
+
+            return Winners(winnersName)
+        }
 }

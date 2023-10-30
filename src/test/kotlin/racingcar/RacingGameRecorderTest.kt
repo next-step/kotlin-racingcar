@@ -2,6 +2,7 @@ package racingcar
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class RacingGameRecorderTest {
     @Test
@@ -44,15 +45,17 @@ class RacingGameRecorderTest {
     fun `우승자를 기록하지 않으면 우승자가 존재하지 않는다`() {
         val recorder = RacingGameRecorder()
 
-        assertThat(recorder.gameResultRecord.winners).isNull()
+        assertThrows<IllegalStateException> {
+            recorder.gameResultRecord.winners
+        }
     }
 
     @Test
     fun `우승자를 기록하면 gameResultRecord에 우승자가 남는다`() {
         val recorder = RacingGameRecorder()
 
-        recorder.recordWinners(listOf("a", "b"))
+        recorder.recordRound(listOf(Car(OnlyTrueMoveCondition(), "a")))
 
-        assertThat(recorder.gameResultRecord.winners).isEqualTo(Winners(listOf("a", "b")))
+        assertThat(recorder.gameResultRecord.winners).isEqualTo(Winners(listOf("a")))
     }
 }
