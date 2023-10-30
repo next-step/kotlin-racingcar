@@ -18,6 +18,12 @@ class ResultView {
         }
     }
 
+    fun showWinner(
+        winningCars: List<RacingCar>,
+    ) {
+        println("${winningCars.joinToString(",") { it.name }}가 최종 우승했습니다.")
+    }
+
     private fun showNewLine() = println("")
 
     private fun showSpace(car: RacingCar) = println("${car.name} : " + "-".repeat(car.space))
