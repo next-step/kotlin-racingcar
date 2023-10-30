@@ -17,7 +17,6 @@ class CarGeneratorTest : BehaviorSpec({
             }
             And("전달된 이름으로 자동차가 생성된다") {
                 result.forEachIndexed { index, car ->
-                    car.order shouldBe index
                     car.name shouldBe names[index]
                 }
             }

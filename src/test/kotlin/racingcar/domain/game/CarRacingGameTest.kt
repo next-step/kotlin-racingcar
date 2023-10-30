@@ -10,7 +10,7 @@ import racingcar.domain.rule.RandomNumberGeneratorInBound
 
 class CarRacingGameTest : BehaviorSpec({
     Given("자동차 경주 게임이 생성되었을 때") {
-        val cars = listOf(Car(0, CarName("name1"), 0), Car(0, CarName("name2"), 0))
+        val cars = listOf(Car(CarName("name1"), 0), Car(CarName("name2"), 0))
         val roundCount = 2
         val roundRange = 1..roundCount
         val game = CarRacingGame.set(

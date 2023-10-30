@@ -15,7 +15,7 @@ class CarMoverTest : ExpectSpec({
             row(true),
             row(false),
         ) { shouldMove ->
-            val cars = listOf(Car(0, CarName("name1"), 0), Car(1, CarName("name2"), 0))
+            val cars = listOf(Car(CarName("name1"), 0), Car(CarName("name2"), 0))
             val randomNumber = if (shouldMove) 4 else 0
             val moveRule = RandomMoveRule(RandomNumberGeneratorInBound(randomNumber..randomNumber))
             val round = CarMover(moveRule)

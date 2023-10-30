@@ -14,7 +14,6 @@ class CarRacingConfigurationTest : FunSpec({
 
             result.cars.size shouldBe carNames.size
             result.cars.forEachIndexed { index, car ->
-                car.order shouldBe index
                 car.name.value shouldBe carNames[index]
                 car.position shouldBe 0
             }
