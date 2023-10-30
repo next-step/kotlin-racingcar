@@ -33,3 +33,6 @@
 
 - ```isSuccessfullyMoved(random: Int)```: 4 이상이면 성공을 가져오는 로직
 - ```getRandom(): Int```: 0 ~ 10 사이의 값을 랜덤으로 꺼내오는 로직
+
+### GetWinnerList
+- ```getWinnerList(racingCars: List<RacingCar>)```: RacingCar 리스트에서 제일 많이 간 차 리스트를 뽑아주는 로직
