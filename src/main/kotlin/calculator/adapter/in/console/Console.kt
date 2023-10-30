@@ -1,7 +1,7 @@
 package calculator.adapter.`in`.console
 
-import calculator.application.port.`in`.CalculateUseCase
 import calculator.application.port.`in`.CalculateCommand
+import calculator.application.port.`in`.CalculateUseCase
 
 class Console(
     private val calculateUseCase: CalculateUseCase,

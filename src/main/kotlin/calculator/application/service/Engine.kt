@@ -2,10 +2,6 @@ package calculator.application.service
 
 import calculator.application.port.`in`.CalculateCommand
 import calculator.application.port.`in`.CalculateUseCase
-import calculator.application.service.Operator.ADD
-import calculator.application.service.Operator.DIV
-import calculator.application.service.Operator.MUL
-import calculator.application.service.Operator.SUB
 
 class Engine(
     private val tokenizer: Tokenizer,
@@ -14,28 +10,22 @@ class Engine(
     override fun compute(calculateCommand: CalculateCommand): String {
         val infixTokens: List<String> = tokenizer.tokenize(calculateCommand.expr!!)
 
-        var result: Int = infixTokens[0].toInt()
+        var result: Operand = Operand.fromString(infixTokens[0])
         for (i in 1 until infixTokens.size step 2) {
             result = calculate(
                 leftOperand = result,
-                rightOperand = infixTokens[i + 1].toInt(),
-                operator = infixTokens[i],
+                rightOperand = Operand.fromString(infixTokens[i + 1]),
+                operator = Operator.findByString(infixTokens[i]),
             )
         }
-        return result.toString()
+        return result.value.toString()
     }
 
     private fun calculate(
-        leftOperand: Int,
-        rightOperand: Int,
-        operator: String,
-    ): Int {
-        return when (operator) {
-            ADD.operator -> ADD.calculate(leftOperand, rightOperand)
-            SUB.operator -> SUB.calculate(leftOperand, rightOperand)
-            MUL.operator -> MUL.calculate(leftOperand, rightOperand)
-            DIV.operator -> DIV.calculate(leftOperand, rightOperand)
-            else -> throw IllegalArgumentException()
-        }
+        leftOperand: Operand,
+        rightOperand: Operand,
+        operator: Operator,
+    ): Operand {
+        return operator.calculate(leftOperand, rightOperand)
     }
 }
