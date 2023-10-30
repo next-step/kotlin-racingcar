@@ -6,9 +6,9 @@ package study.racingcar.domain
  *    - 앞뒤로 이동해서 위치값 상태를 수정하는 함수를 제공한다.
  *    - 초기 위치보다 뒤로 이동하지는 않는다.
  * */
-class RacingCar(
+data class RacingCar(
     val id: String,
-    var position: Int
+    private var position: Int
 ) {
     val currentPosition: Int
         get() = position
