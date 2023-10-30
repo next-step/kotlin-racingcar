@@ -5,8 +5,8 @@ import racingcar.ResultView.printResult
 
 fun main() {
     val carNames = inputRacingCar()
+    val cars = Cars(carNames)
     val operationCount = inputOperationCar()
 
-    val cars = Cars(carNames)
     printResult(cars, operationCount)
 }
