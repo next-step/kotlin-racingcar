@@ -5,7 +5,6 @@ import string.calculator.domain.Splitter
 import string.calculator.domain.UserInterface
 
 class CalculatorMachine(
-    private val calculator: Calculator,
     private val splitter: Splitter,
     private val userInterface: UserInterface
 ) {
@@ -23,14 +22,14 @@ class CalculatorMachine(
         while (isRunning) {
             val input = userInterface.introduce()
             val splitInput = splitter.split(input)
-            val result = calculator.calculate(splitInput.numbers, splitInput.operators)
-            userInterface.showResult(result)
+            val calculator = Calculator(splitInput.numbers, splitInput.operators)
+            userInterface.showResult(calculator.calculate())
             isRunning = userInterface.isContinue()
         }
     }
 }
 
 fun main() {
-    val calculatorMachine = CalculatorMachine(Calculator, Splitter(), UserInterface)
+    val calculatorMachine = CalculatorMachine(Splitter(), UserInterface)
     calculatorMachine.start()
 }
