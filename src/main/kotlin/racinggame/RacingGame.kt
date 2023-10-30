@@ -17,5 +17,17 @@ class RacingGame(
     }.let {
         RacingGameResult(it)
     }
+
+    fun getWinners() = cars.sortedByDescending { car ->
+        car.position
+    }.let { sortedCars ->
+        getJointWinner(sortedCars)
+    }.let {
+        PlayWinners(it)
+    }
+
+    private fun getJointWinner(winners: List<Car>) = winners.filter { car ->
+        car.position == winners.first().position
+    }
 }
 

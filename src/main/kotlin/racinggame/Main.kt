@@ -11,6 +11,7 @@ fun main() {
     )
 
     val result = game.play()
+    val winners = game.getWinners()
 
     OutputView.printRacingResult(result)
 }
