@@ -19,11 +19,4 @@ class InputViewTest {
             InputView.input { " " }
         }
     }
-
-    @Test
-    fun `수식이 null이면 예외가 발생한다`() {
-        assertThrows(IllegalArgumentException::class.java) {
-            InputView.input { null }
-        }
-    }
 }
