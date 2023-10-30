@@ -6,7 +6,7 @@ import racing.model.RoundHistory
 import racing.model.generator.RandomGenerator
 import racing.model.move.MoveThresholdStrategy
 
-class RacingCar {
+class RacingService {
 
     private val strategy = MoveThresholdStrategy(RandomGenerator())
 
