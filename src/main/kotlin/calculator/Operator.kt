@@ -1,10 +1,10 @@
 package calculator
 
 enum class Operator(val symbol: String, val operation: (Int, Int) -> Int) {
-    PLUS("+", ::add),
-    MINUS("-", ::subtract),
-    MULTIPLY("*", ::multiply),
-    DIVIDE("/", ::divide),
+    PLUS("+", { a, b -> a + b }),
+    MINUS("-", { a, b -> a - b }),
+    MULTIPLY("*", { a, b -> a * b }),
+    DIVIDE("/", { a, b -> a / b }),
     ;
 
     companion object {
@@ -14,8 +14,3 @@ enum class Operator(val symbol: String, val operation: (Int, Int) -> Int) {
         }
     }
 }
-
-fun add(a: Int, b: Int): Int = a + b
-fun subtract(a: Int, b: Int): Int = a - b
-fun multiply(a: Int, b: Int): Int = a * b
-fun divide(a: Int, b: Int): Int = a / b

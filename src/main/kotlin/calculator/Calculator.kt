@@ -1,17 +1,18 @@
 package calculator
 
 fun execute(input: String?): Int {
-    validateInput(input)
+    val validatedInput: String = validateInput(input)
 
-    val numbers: List<Int> = extractNumbers(input!!)
-    val operators: List<Operator> = extractOperators(input)
+    val numbers: List<Int> = extractNumbers(validatedInput)
+    val operators: List<Operator> = extractOperators(validatedInput)
 
     return calculate(numbers, operators)
 }
 
-private fun validateInput(input: String?) {
+private fun validateInput(input: String?): String {
     require(!input.isNullOrBlank()) { "입력값을 제대로 기입해주세요." }
     require(input[0].isDigit()) { "입력값의 첫 문자는 숫자여야 합니다." }
+    return input
 }
 
 private fun extractNumbers(input: String) = input.split("[+\\-*/]".toRegex())
