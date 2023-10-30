@@ -1,7 +1,7 @@
 package racing
 
 class CarRacing {
-    private val recorder = CarRacingRecorder()
+    private val recorder = CarRacingRecorder
     fun race(cars: List<Car>, tryCount: Int): CarRacingResult {
         val results = raceWithRecordResult(cars, tryCount)
         val winners = recorder.findWinners(cars)

@@ -1,6 +1,6 @@
 package racing
 
-class CarRacingRecorder {
+object CarRacingRecorder {
     fun recordRacingResultPerRound(cars: List<Car>): List<Car> = cars.map { it.copy() }
 
     fun findWinners(cars: List<Car>): List<String> {

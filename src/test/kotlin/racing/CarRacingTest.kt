@@ -14,7 +14,7 @@ class CarRacingTest : BehaviorSpec({
                 results shouldBeSameSizeAs List(tryCount) { carNames }
             }
             then("우승자는 가장 많이 움직인 자동차와 같다.") {
-                winners shouldBe CarRacingRecorder().findWinners(cars)
+                winners shouldBe CarRacingRecorder.findWinners(cars)
             }
         }
     }
