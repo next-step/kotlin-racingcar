@@ -1,4 +1,4 @@
-package CarRacing.Service
+package carRacing.Service
 
 interface MovementController {
     fun isMove(): Boolean

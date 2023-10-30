@@ -1,6 +1,6 @@
-package CarRacing.ServiceImpl
+package carRacing.ServiceImpl
 
-import CarRacing.Service.MovementController
+import carRacing.Service.MovementController
 
 class RandomMovementController : MovementController {
     override fun isMove(): Boolean = (Math.random() * 10).toInt() >= 4

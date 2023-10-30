@@ -1,4 +1,4 @@
-package CarRacing.Domain
+package carRacing.Domain
 
 class Racing {
     fun start() {

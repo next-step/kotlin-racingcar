@@ -1,6 +1,6 @@
-package CarRacing.Domain
+package carRacing.Domain
 
-import CarRacing.Service.MovementController
+import carRacing.Service.MovementController
 
 class Car(private val movementController: MovementController, position: Int = 0) {
     private var position: Int = position
