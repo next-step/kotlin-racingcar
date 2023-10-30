@@ -1,7 +1,7 @@
 package game.racing.domain
 
 class Car {
-    private var position = MIN_POSITION
+    var position = MIN_POSITION
 
     fun move() {
         if (isMovePossible(getRandomValue())) {
@@ -22,7 +22,7 @@ class Car {
     companion object {
         const val MIN_RANDOM_VALUE = 0
         const val MAX_RANDOM_VALUE = 9
-        private const val MIN_POSITION = 0
+        private const val MIN_POSITION = 1
         private const val MIN_MOVE_THRESHOLD = 4
     }
 }
