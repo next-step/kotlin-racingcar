@@ -25,7 +25,7 @@ class RacingGame(
     }
 
     fun winners(): List<String> {
-        val winnerPosition = positions().reduce { p1, p2 -> if (p1.position > p2.position) p1 else p2 }
+        val winnerPosition = positions().max()
 
         return positions()
             .filter { winnerPosition.position == it.position }
