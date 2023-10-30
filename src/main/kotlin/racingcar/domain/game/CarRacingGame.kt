@@ -1,7 +1,7 @@
 package racingcar.domain.game
 
 import racingcar.domain.car.Car
-import racingcar.domain.configuration.CarRacingGameConfiguration
+import racingcar.domain.configuration.CarRacingConfiguration
 import racingcar.domain.result.CarRacingResult
 import racingcar.domain.rule.MoveRule
 
@@ -32,7 +32,7 @@ class CarRacingGame private constructor(
 
     companion object {
         fun set(
-            configuration: CarRacingGameConfiguration,
+            configuration: CarRacingConfiguration,
             moveRule: MoveRule,
         ): CarRacingGame {
             val carMover = CarMover(
@@ -41,7 +41,7 @@ class CarRacingGame private constructor(
             return CarRacingGame(
                 cars = configuration.cars,
                 carMover = carMover,
-                roundRange = configuration.roundRange,
+                roundRange = configuration.rounds,
             )
         }
     }

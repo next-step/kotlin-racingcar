@@ -20,6 +20,9 @@ object CarRacingRunner {
 
     private fun getInput(): CarRacingInput = CarRacingInputView.getInputForStart()
 
+    private fun createConfiguration(input: CarRacingInput): CarRacingConfiguration =
+        CarRacingConfiguration.of(input)
+
     private fun setGame(
         configuration: CarRacingConfiguration,
     ): CarRacingGame {
@@ -30,9 +33,6 @@ object CarRacingRunner {
         )
     }
 
-    private fun createConfiguration(input: CarRacingInput): CarRacingConfiguration =
-        CarRacingConfiguration.of(input)
-
     private fun createRandomMoveRule(): RandomMoveRule = RandomMoveRule()
 
     private fun createGame(
@@ -40,7 +40,7 @@ object CarRacingRunner {
         moveRule: MoveRule,
     ): CarRacingGame =
         CarRacingGame.set(
-            configuration = configuration.getCarRacingGameConfiguration(),
+            configuration = configuration,
             moveRule = moveRule,
         )
 
