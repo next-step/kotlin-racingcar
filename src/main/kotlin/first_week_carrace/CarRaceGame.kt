@@ -1,4 +1,4 @@
-package step4
+package first_week_carrace
 
 class CarRaceGame {
 

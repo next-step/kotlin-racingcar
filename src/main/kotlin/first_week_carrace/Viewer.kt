@@ -1,4 +1,4 @@
-package step4
+package first_week_carrace
 
 class Viewer {
 
@@ -19,9 +19,9 @@ class Viewer {
         round = readln().toInt()
     }
 
-    fun showCarsPosition(carStatus: List<String>) {
+    fun showCarsPosition(carStatus: List<Pair<String, Int>>) {
         carStatus.forEach {
-            println(it)
+            println("""%-5s : ${"-".repeat(it.second)}""".format(it.first))
         }
         println()
     }
