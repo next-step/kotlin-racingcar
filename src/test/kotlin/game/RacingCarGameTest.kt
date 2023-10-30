@@ -1,5 +1,9 @@
 package game
 
+import game.domain.History
+import game.domain.MoveConditionGenerator
+import game.view.UserInputHandler
+import game.view.UserOutputHandler
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.params.ParameterizedTest

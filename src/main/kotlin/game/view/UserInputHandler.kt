@@ -1,4 +1,4 @@
-package game
+package game.view
 
 interface UserInputHandler {
     fun askForCarNames(): String

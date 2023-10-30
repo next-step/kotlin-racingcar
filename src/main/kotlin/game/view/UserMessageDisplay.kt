@@ -1,4 +1,7 @@
-package game
+package game.view
+
+import game.domain.Car
+import game.domain.History
 
 class UserMessageDisplay : UserOutputHandler {
     private fun display(cars: List<Car>) {

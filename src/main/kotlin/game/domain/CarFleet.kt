@@ -1,4 +1,4 @@
-package game
+package game.domain
 
 class CarFleet private constructor(
     private val _cars: List<Car>,

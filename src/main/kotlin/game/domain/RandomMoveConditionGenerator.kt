@@ -1,4 +1,4 @@
-package game
+package game.domain
 
 class RandomMoveConditionGenerator : MoveConditionGenerator {
     private val minValue = 0

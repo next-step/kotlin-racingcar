@@ -1,5 +1,6 @@
-package game
+package game.view
 
+import game.domain.ErrorMessage
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test

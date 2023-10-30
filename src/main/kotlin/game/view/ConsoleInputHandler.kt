@@ -1,4 +1,6 @@
-package game
+package game.view
+
+import game.domain.ErrorMessage
 
 class ConsoleInputHandler(private val inputWrapper: InputWrapper = ConsoleInputWrapper()) : UserInputHandler {
 

@@ -1,4 +1,4 @@
-package game
+package game.domain
 
 object CarNameParser {
     fun parse(input: String): List<String> {

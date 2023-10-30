@@ -1,5 +1,7 @@
-package game
+package game.view
 
+import game.domain.Car
+import game.domain.History
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach

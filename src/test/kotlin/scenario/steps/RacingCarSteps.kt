@@ -1,12 +1,12 @@
 package scenario.steps
 
-import game.ConsoleInputHandler
-import game.FixedMoveConditionGenerator
-import game.MoveConditionGenerator
 import game.RacingCarGame
-import game.UserInputHandler
-import game.UserMessageDisplay
-import game.UserOutputHandler
+import game.domain.FixedMoveConditionGenerator
+import game.domain.MoveConditionGenerator
+import game.view.ConsoleInputHandler
+import game.view.UserInputHandler
+import game.view.UserMessageDisplay
+import game.view.UserOutputHandler
 import io.cucumber.java.en.And
 import io.cucumber.java.en.Given
 import io.cucumber.java.en.Then

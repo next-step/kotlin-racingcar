@@ -1,4 +1,4 @@
-package game
+package game.domain
 
 class History(
     private val _rounds: MutableList<List<Car>> = mutableListOf(),

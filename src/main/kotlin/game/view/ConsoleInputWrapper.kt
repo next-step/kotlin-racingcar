@@ -1,4 +1,4 @@
-package game
+package game.view
 
 class ConsoleInputWrapper : InputWrapper {
     override fun readlnOrNull(): String? {

@@ -1,4 +1,4 @@
-package game
+package game.domain
 
 object InputValidator {
     private const val DIGIT_PATTERN = "[1-9][0-9]*"

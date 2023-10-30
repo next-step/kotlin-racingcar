@@ -1,4 +1,4 @@
-package game
+package game.domain
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.params.ParameterizedTest

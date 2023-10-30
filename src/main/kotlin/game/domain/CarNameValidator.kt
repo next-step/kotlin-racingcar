@@ -1,4 +1,4 @@
-package game
+package game.domain
 
 object CarNameValidator {
     fun validate(carNames: List<String>) {

@@ -1,4 +1,4 @@
-package game
+package game.domain
 
 class Car private constructor(private var _position: Int = 0, val name: String) {
 
