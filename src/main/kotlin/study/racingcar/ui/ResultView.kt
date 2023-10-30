@@ -1,12 +1,12 @@
-package study.step3.ui
+package study.racingcar.ui
 
-import study.step3.domain.Car
+import study.racingcar.domain.Car
 
 object ResultView {
     fun displayCars(cars: List<Car>) {
         println("실행 결과")
         cars.forEach { car ->
-            println(displayPosition(car))
+            println("${car.name} : ${displayPosition(car)}")
         }
         println()
     }

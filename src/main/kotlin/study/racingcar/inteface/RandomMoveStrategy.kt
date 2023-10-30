@@ -1,4 +1,4 @@
-package study.step3.inteface
+package study.racingcar.inteface
 
 class RandomMoveStrategy : MoveStrategy {
     companion object {
