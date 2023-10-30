@@ -115,7 +115,7 @@ enum class Operator(val operator: String, val operation: (Long, Long) -> Long) {
 * **불필요 layer 제거.** or 외부에서 직접 접근할 수 없도록 변경
 
 
-#### 4. StringCalculator.kt
+#### ~~4. StringCalculator.kt~~
 ```kotlin
 package calculator
 
