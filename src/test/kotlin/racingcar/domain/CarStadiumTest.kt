@@ -31,7 +31,7 @@ class CarStadiumTest : BehaviorSpec({
                 histories.size shouldBe numberOfTrials
 
                 histories.forEachIndexed { index, racingHistories ->
-                    racingHistories.all { it.getMovingSymbol(CAR_RACING_MOVING_SYMBOL.message) == CAR_RACING_MOVING_SYMBOL.message.repeat(index + 1)} shouldBe true
+                    racingHistories.all { CAR_RACING_MOVING_SYMBOL.message.repeat(it.move) == CAR_RACING_MOVING_SYMBOL.message.repeat(index + 1)} shouldBe true
                 }
             }
         }
@@ -47,7 +47,7 @@ class CarStadiumTest : BehaviorSpec({
                 histories.size shouldBe numberOfTrials
 
                 histories.forEach { racingHistories ->
-                    racingHistories.all { it.getMovingSymbol(CAR_RACING_MOVING_SYMBOL.message) == CAR_RACING_MOVING_SYMBOL.message.repeat(0)} shouldBe true
+                    racingHistories.all { CAR_RACING_MOVING_SYMBOL.message.repeat(it.move) == CAR_RACING_MOVING_SYMBOL.message.repeat(0)} shouldBe true
                 }
             }
         }

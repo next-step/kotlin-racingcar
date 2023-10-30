@@ -31,7 +31,7 @@ object ResultView {
         val result = buildString {
             this.append(RACE_RESULT_FIRST_LINE.message).append("\n")
             racingHistories.getRacingHistories().forEach { racingHistory ->
-                this.append(racingHistory.joinToString("\n") { it.getMovingSymbol(CAR_RACING_MOVING_SYMBOL.message) })
+                this.append(racingHistory.joinToString("\n") { CAR_RACING_MOVING_SYMBOL.message.repeat(it.move) })
                     .append("\n\n")
             }
         }
