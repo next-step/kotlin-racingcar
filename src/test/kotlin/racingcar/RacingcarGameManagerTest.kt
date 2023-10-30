@@ -3,7 +3,7 @@ package racingcar
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import racingcar.component.CarMovementManager
-import racingcar.component.RacingcarGameManager
+import racingcar.component.RacingcarGameContext
 import racingcar.model.Car
 
 class RacingcarGameManagerTest : FunSpec({
@@ -11,13 +11,13 @@ class RacingcarGameManagerTest : FunSpec({
         test("distance changed after some rounds") {
             val car = Car()
             val carMovementManager = CarMovementManager { true }
-            val racingcarGameManager = RacingcarGameManager(
+            val racingcarGameContext = RacingcarGameContext(
                 listOf(car),
                 carMovementManager
             )
 
             for (i: Int in 0..2) {
-                racingcarGameManager.doRound()
+                racingcarGameContext.doRound()
             }
 
             car.currentDistance() shouldBe 3
@@ -28,12 +28,12 @@ class RacingcarGameManagerTest : FunSpec({
                 Car(1), Car(1)
             )
             val carMovementManager = CarMovementManager { true }
-            val racingcarGameManager = RacingcarGameManager(
+            val racingcarGameContext = RacingcarGameContext(
                 cars,
                 carMovementManager
             )
 
-            val result = racingcarGameManager.getWinners()
+            val result = racingcarGameContext.getWinners()
 
             result.size shouldBe 2
         }

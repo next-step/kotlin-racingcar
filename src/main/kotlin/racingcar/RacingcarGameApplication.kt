@@ -1,6 +1,6 @@
 package racingcar
 
-import racingcar.component.RacingcarGameManager
+import racingcar.component.RacingcarGameContext
 import racingcar.model.RacingcarGameInput
 import racingcar.view.RacingcarGameInputView
 import racingcar.view.RacingcarGameResultView
@@ -19,8 +19,8 @@ class RacingcarGameApplication {
         }
     }
 
-    private fun createRacingcarGameManager(input: RacingcarGameInput): RacingcarGameManager {
-        return RacingcarGameManager.create(input)
+    private fun createRacingcarGameManager(input: RacingcarGameInput): RacingcarGameContext {
+        return RacingcarGameContext.create(input)
     }
 
     companion object {

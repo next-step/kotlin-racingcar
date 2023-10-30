@@ -3,7 +3,7 @@ package racingcar.component
 import racingcar.model.Car
 import racingcar.model.RacingcarGameInput
 
-class RacingcarGameManager(
+class RacingcarGameContext(
     val cars: List<Car>,
     private val carMovementManager: CarMovementManager = CarMovementManager()
 ) {
@@ -23,10 +23,10 @@ class RacingcarGameManager(
     }
 
     companion object {
-        fun create(input: RacingcarGameInput): RacingcarGameManager {
+        fun create(input: RacingcarGameInput): RacingcarGameContext {
             val carNumber = input.carNumber
 
-            return RacingcarGameManager(
+            return RacingcarGameContext(
                 cars = Car.create(carNumber)
             )
         }
