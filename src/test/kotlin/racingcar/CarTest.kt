@@ -17,9 +17,9 @@ class CarTest {
         val moveCondition = OnlyTrueMoveCondition()
         val car = Car(moveCondition)
 
-        car.tryMove()
+        val movedCar = car.tryMove()
 
-        assertThat((car.position)).isEqualTo(1)
+        assertThat((movedCar.position)).isEqualTo(1)
     }
 
     @Test
@@ -27,8 +27,8 @@ class CarTest {
         val moveCondition = OnlyFalseMoveCondition()
         val car = Car(moveCondition)
 
-        car.tryMove()
+        val movedCar = car.tryMove()
 
-        assertThat((car.position)).isEqualTo(0)
+        assertThat((movedCar.position)).isEqualTo(0)
     }
 }

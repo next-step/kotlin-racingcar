@@ -16,23 +16,21 @@ class RacingGameTest {
 
         RacingGame().play(cars, tryMoveCount, gameRecorder)
 
-        assertThat(cars.first().position).isEqualTo(count)
+        val carPosition = gameRecorder.gameResultRecord.finalRaceResult?.carPositions?.first()?.position
+
+        assertThat(carPosition).isEqualTo(count)
     }
 
     @Test
-    fun `이동 횟수가 0인 경우 차는 이동하지 않는다`() {
+    fun `이동 횟수가 0인 경우 라운드 기록이 남지 않는다`() {
         val moveCondition = OnlyTrueMoveCondition()
         val cars = listOf(Car(moveCondition))
         val tryMoveCount = 0
         val gameRecorder = RacingGameRecorder()
 
-        val originalCarPosition = cars.first().position
-
         RacingGame().play(cars, tryMoveCount, gameRecorder)
 
-        val movedCarPosition = cars.first().position
-
-        assertThat(originalCarPosition).isEqualTo(movedCarPosition)
+        assertThat(gameRecorder.gameResultRecord.raceResults.size).isEqualTo(0)
     }
 
     @Test
@@ -46,7 +44,11 @@ class RacingGameTest {
 
         RacingGame().play(cars, tryMoveCount, gameRecorder)
 
-        assertThat(cars[0].position).isNotEqualTo(cars[1].position)
+        val carPositions = gameRecorder.gameResultRecord.finalRaceResult?.carPositions
+        val firstCarPosition = carPositions?.get(0)?.position
+        val secondCarPosition = carPositions?.get(1)?.position
+
+        assertThat(firstCarPosition).isNotEqualTo(secondCarPosition)
     }
 
     @Test

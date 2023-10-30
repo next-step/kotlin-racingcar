@@ -2,19 +2,23 @@ package racingcar
 
 class RacingGame {
     fun play(cars: List<Car>, tryMoveCount: Int, racingGameRecorder: RacingGameRecorder) {
-        repeat(tryMoveCount) {
-            playEachRound(cars, racingGameRecorder)
+        (0 until tryMoveCount).fold(cars) { acc, _ ->
+            val movedCars = playEachRound(acc)
+
+            racingGameRecorder.recordRound(movedCars)
+
+            movedCars
         }
 
         selectWinners(racingGameRecorder)
     }
 
-    private fun playEachRound(cars: List<Car>, racingGameRecorder: RacingGameRecorder) {
-        cars.forEach { car ->
+    private fun playEachRound(cars: List<Car>): List<Car> {
+        val movedCars = cars.map { car ->
             car.tryMove()
         }
 
-        racingGameRecorder.recordRound(cars)
+        return movedCars
     }
 
     private fun selectWinners(racingGameRecorder: RacingGameRecorder) {

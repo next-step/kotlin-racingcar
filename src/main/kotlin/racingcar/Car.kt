@@ -1,15 +1,15 @@
 package racingcar
 
-class Car(
-    val moveCondition: MoveCondition,
+data class Car(
+    private val moveCondition: MoveCondition,
     val name: String = "no name",
+    val position: Int = 0,
 ) {
-    var position: Int = 0
-        private set
-
-    fun tryMove() {
+    fun tryMove(): Car {
         if (moveCondition.canForward()) {
-            position++
+            return copy(position = position + 1)
         }
+
+        return this
     }
 }
