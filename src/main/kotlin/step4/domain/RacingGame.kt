@@ -1,25 +1,20 @@
 package step4.domain
 
+import step4.presentation.InputView
+import step4.presentation.ResultView
+
 data class RacingGame(
-    val tryCount: Int,
-    val racingCars: RacingCars
+    val inputView: InputView,
+    val resultView: ResultView
 ) {
-    fun run(
-        afterTrying: (RacingCar) -> Unit,
-        afterOneRepeat: () -> Unit,
-    ) {
-        repeat(tryCount) {
-            moveCarsInOneTry(afterTrying)
-            afterOneRepeat()
-        }
-    }
+    fun run() {
+        val racingCars = inputView.enterCars()
+        val tryCount = inputView.enterTryCount()
+        val racingCourse = RacingCourse(tryCount, racingCars)
 
-    private fun moveCarsInOneTry(afterTrying: (RacingCar) -> Unit) {
-        for (car in racingCars.racingCars) {
-            car.tryMoving()
-            afterTrying(car)
+        racingCourse.moveCars {
+            resultView.showCarMoveView(it)
         }
+        resultView.showFinalResultView(racingCars.winner)
     }
-
-    fun getWinnerList(): List<RacingCar> = racingCars.winner
 }
