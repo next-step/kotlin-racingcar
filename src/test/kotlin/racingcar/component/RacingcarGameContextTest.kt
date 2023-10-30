@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.component
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
@@ -6,7 +6,7 @@ import racingcar.component.CarMovementManager
 import racingcar.component.RacingcarGameContext
 import racingcar.model.Car
 
-class RacingcarGameManagerTest : FunSpec({
+class RacingcarGameContextTest : FunSpec({
     context("test round") {
         test("distance changed after some rounds") {
             val car = Car()
