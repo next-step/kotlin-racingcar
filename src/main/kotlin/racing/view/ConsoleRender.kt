@@ -1,11 +1,23 @@
 package racing.view
 
-import racing.model.RacingHistory
+import racing.model.Car
+import racing.model.RoundHistory
 
 class ConsoleRender {
-    fun consolePresent(racingHistory: RacingHistory): String {
-        return racingHistory.result
-            .map { "-".repeat(it.position) }
-            .joinToString(separator = "\n")
+
+    companion object {
+        fun roundRendering(roundHistory: RoundHistory): String {
+            return roundHistory.result
+                .map { carRendering(it) }
+                .joinToString(separator = "\n")
+        }
+
+        private fun carRendering(car: Car): String {
+            return String.format("%s : %s", car.name, distanceRendering(car))
+        }
+
+        private fun distanceRendering(car: Car): String {
+            return "-".repeat(car.position)
+        }
     }
 }

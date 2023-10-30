@@ -3,21 +3,23 @@ package racing.model
 import racing.model.move.MoveStrategy
 
 data class Car(
-    val id: Int,
+    val name: String,
     val position: Int,
 ) {
-    private val velocity = 1
+
+    init {
+        require(name.length <= MAX_NAME_LENGTH) { "자동차 이름은 5자를 초과할 수 없다 : [$name] 은 [${name.length}] 자 입니다" }
+    }
+
     fun move(moveStrategy: MoveStrategy): Car {
         if (moveStrategy.movable()) {
-            return Car(id, position + velocity)
+            return Car(name, position + VELOCITY)
         }
         return this
     }
 
     companion object {
-        fun listOf(capacity: Int): List<Car> {
-            return (1..capacity)
-                .map { Car(it, 0) }
-        }
+        private const val VELOCITY = 1
+        private const val MAX_NAME_LENGTH = 5
     }
 }

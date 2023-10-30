@@ -1,18 +1,19 @@
 package racing
 
-import racing.model.RacingCar
+import racing.service.RacingService
+import racing.view.CarTokenizer
 import racing.view.InputView
 import racing.view.OutputView
 
 fun main() {
-    val racingCar = RacingCar()
+    val racingService = RacingService()
     val inputView = InputView()
     val outputView = OutputView()
 
-    outputView.printResults(
-        racingCar.racing(
-            inputView.participate(),
-            inputView.roundCount()
-        )
+    val racingHistory = racingService.racing(
+        CarTokenizer.tokenize(inputView.participates()),
+        inputView.roundCount()
     )
+    outputView.printRacingHistory(racingHistory)
+    outputView.printWinner(racingHistory)
 }

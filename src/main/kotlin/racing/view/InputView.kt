@@ -1,9 +1,9 @@
 package racing.view
 
 class InputView {
-    fun participate(): Int {
-        println("자동차 대수는 몇 대인가요? ")
-        return readln().toInt()
+    fun participates(): String {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
+        return requireNotNull(readlnOrNull()) { "공백은 허용되지 않습니다" }
     }
 
     fun roundCount(): Int {

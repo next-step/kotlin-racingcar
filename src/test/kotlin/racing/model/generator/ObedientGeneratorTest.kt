@@ -18,6 +18,12 @@ class ObedientGeneratorTest : StringSpec({
         ObedientGenerator(9).generate() shouldBe 9
     }
 
+    "랜덤값을 테스트할수 있도록 인터페이스화한다_slim" {
+        (1..9).forEach {
+            ObedientGenerator(it).generate() shouldBe it
+        }
+    }
+
     "문제 요구사항의 지정범위를 초과하면 IllegalArgumentException throw" {
         shouldThrow<IllegalArgumentException> {
             ObedientGenerator(0).generate()
