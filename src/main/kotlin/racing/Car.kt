@@ -5,6 +5,12 @@ private const val MOVABLE_MINIMUM = 4
 private const val MOVING_DISTANCE = 1
 
 data class Car(val name: String, private var _position: Int = DEFAULT_POSITION) {
+    init {
+        require(name.length <= 5) {
+            "자동차 이름은 5자를 초과할 수 없습니다."
+        }
+    }
+
     val position: Int
         get() = _position
 

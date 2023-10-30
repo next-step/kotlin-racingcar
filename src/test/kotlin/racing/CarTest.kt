@@ -1,9 +1,21 @@
 package racing
 
+import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 
 class CarTest : BehaviorSpec({
+    given("자동차 이름이") {
+        val carName = "abcdefg"
+        `when`("5자를 초과한 경우") {
+            then("IllegalArgumentException throw") {
+                shouldThrowWithMessage<IllegalArgumentException>("자동차 이름은 5자를 초과할 수 없습니다.") {
+                    Car(carName)
+                }
+            }
+        }
+    }
+
     given("무작위 값이 4 이상일 때 1만큼 전진하는 자동차의 현재 위치가 1이다") {
         var position = 1
         val car = Car("name", _position = position)
