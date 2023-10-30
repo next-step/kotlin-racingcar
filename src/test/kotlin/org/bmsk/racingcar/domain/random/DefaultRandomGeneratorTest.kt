@@ -5,7 +5,7 @@ import io.kotest.matchers.ints.shouldBeBetween
 
 class DefaultRandomGeneratorTest : FunSpec({
 
-    val randomGenerator = DefaultRandomGenerator()
+    val randomGenerator = ZeroToNineRandomGenerator()
     test("generate 함수는 0부터 9까지의 숫자를 무작위로 반환한다.") {
         val countMap = mutableMapOf<Int, Int>().apply {
             (0..9).forEach { put(it, 0) }
