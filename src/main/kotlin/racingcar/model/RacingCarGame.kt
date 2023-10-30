@@ -10,12 +10,9 @@ class RacingCarGame(
         List(numbersOfTry) { index -> RacingHistory(index, processOneStep()) }
 
     private fun processOneStep(): List<Car> {
-        val carHistories = mutableListOf<Car>()
-        cars.forEach {
+        return cars.map {
             it.stepForward(strategy.canMove())
-            val movedCar = it.copy()
-            carHistories.add(movedCar)
+            it.copy()
         }
-        return carHistories
     }
 }
