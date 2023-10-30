@@ -2,11 +2,7 @@ package study.calculator
 
 class Calculator {
     fun evaluate(expression: String?): Double {
-        if (expression.isNullOrBlank()) {
-            throw IllegalArgumentException(
-                "Expression cannot be null or blank"
-            )
-        }
+        require(!expression.isNullOrBlank()) { "Expression cannot be null or blank" }
 
         val tokens = expression.split(" ")
         var result = tokens[0].toDoubleOrNull()
