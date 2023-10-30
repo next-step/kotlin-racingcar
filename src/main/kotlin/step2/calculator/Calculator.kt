@@ -7,7 +7,7 @@ object Calculator {
 
     private const val DELIMITER = " "
 
-    enum class CalculatorSign(val signStr: String) {
+    enum class CalculatorSign(val sign: String) {
         PLUS("+"), MINUS("-"), MULTIPLY("*"), DIVIDE("/");
 
         /**
@@ -44,7 +44,7 @@ object Calculator {
         if (index % 2 == 0) {
             s.toIntOrNull() != null
         } else {
-            CalculatorSign.values().any { sign -> sign.signStr == s }
+            CalculatorSign.values().any { sign -> sign.sign == s }
         }
     }.all { it }
 
@@ -60,19 +60,9 @@ object Calculator {
 
         checkError(splitFormulaList)
 
-        val numberList = splitFormulaList.filter { value -> value.toIntOrNull() != null }.map { it.toInt() }
-        val signList = splitFormulaList.filter { value -> value.toIntOrNull() == null }
+        val numberList = splitFormulaList.filterIndexed { index, _ -> index % 2 == 0 }.map { it.toInt() }
+        val signList = splitFormulaList.filterIndexed { index, _ -> index % 2 == 1 }.map { sign -> CalculatorSign.values().first { sign == it.sign } }
 
-        var result = 0
-
-        numberList.forEachIndexed { index, number ->
-            result = if (index == 0) {
-                number
-            } else {
-                val calculatorSign = CalculatorSign.values().first { it.signStr == signList[index - 1] }
-                calculatorSign.calculate(result, number)
-            }
-        }
-        return result
+        return signList.zip(numberList.drop(1)).fold(numberList.first()) { acc, pair -> pair.first.calculate(acc, pair.second) }
     }
 }
