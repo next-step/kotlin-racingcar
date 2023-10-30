@@ -14,4 +14,5 @@ fun main() {
     val winners = game.getWinners()
 
     OutputView.printRacingResult(result)
+    OutputView.printWinners(winners)
 }

@@ -11,4 +11,8 @@ object OutputView {
             println()
         }
     }
+
+    fun printWinners(winners: PlayWinners) {
+        println("${winners.translate()} 가 최종 우승했습니다.")
+    }
 }
