@@ -11,5 +11,6 @@ object ResultView {
         cars.forEach {
             println(POSITION_DELIMITER.repeat(it.position))
         }
+        println()
     }
 }
