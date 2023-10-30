@@ -1,12 +1,9 @@
 package racing.view
 
 class InputView {
-    fun participates(): ArrayDeque<String> {
+    fun participates(): String {
         println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
-        return ArrayDeque(
-            requireNotNull(readlnOrNull()) { "공백은 허용되지 않습니다" }
-                .split(",")
-        )
+        return requireNotNull(readlnOrNull()) { "공백은 허용되지 않습니다" }
     }
 
     fun roundCount(): Int {

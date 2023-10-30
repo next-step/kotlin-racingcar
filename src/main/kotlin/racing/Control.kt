@@ -1,6 +1,7 @@
 package racing
 
 import racing.model.RacingCar
+import racing.view.CarTokenizer
 import racing.view.InputView
 import racing.view.OutputView
 
@@ -11,7 +12,9 @@ fun main() {
 
     outputView.printResults(
         racingCar.racing(
-            inputView.participates(),
+            CarTokenizer.tokenize(
+                inputView.participates()
+            ),
             inputView.roundCount()
         )
     )
