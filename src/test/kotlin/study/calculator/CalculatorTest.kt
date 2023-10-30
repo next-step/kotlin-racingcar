@@ -46,6 +46,17 @@ class CalculatorTest {
     }
 
     @Test
+    fun `throws IllegalArgumentException for invalid operand`() {
+        assertThatThrownBy { calculator.evaluate("2z * 3") }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining("Invalid operand")
+
+        assertThatThrownBy { calculator.evaluate("2 * 3z") }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining("Invalid operand")
+    }
+
+    @Test
     fun `evaluates expression with all operators`() {
         assertThat(calculator.evaluate("2 + 3 * 4 / 2")).isEqualTo(10.toDouble())
     }
