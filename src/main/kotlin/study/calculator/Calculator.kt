@@ -4,35 +4,30 @@ class Calculator {
     fun evaluate(expression: String?): Double {
         require(!expression.isNullOrBlank()) { "Expression cannot be null or blank" }
 
+        var index = 0
         val tokens = expression.split(" ")
-        var result = tokens[0].toDoubleOrNull()
-            ?: throw IllegalArgumentException("Invalid operand: ${tokens[0]}")
+        var result = parseOperand(tokens[index++])
 
-        var index = 1
         while (index < tokens.size) {
-            val operator = tokens[index]
-            val operand = tokens[index + 1].toDoubleOrNull()
-                ?: throw IllegalArgumentException("Invalid operand: ${tokens[index + 1]}")
-
-            result = when (operator) {
-                "+" -> add(result, operand)
-                "-" -> subtract(result, operand)
-                "*" -> multiply(result, operand)
-                "/" -> divide(result, operand)
-                else -> throw IllegalArgumentException("Invalid operator: $operator")
-            }
-
-            index += 2
+            result = calculateNextOperation(result, tokens[index++], tokens[index++])
         }
 
         return result
     }
 
-    fun add(a: Double, b: Double): Double = a + b
+    private fun calculateNextOperation(result: Double, operator: String, operand: String): Double {
+        val nextOperand = parseOperand(operand)
+        return when (operator) {
+            "+" -> Operations.add(result, nextOperand)
+            "-" -> Operations.subtract(result, nextOperand)
+            "*" -> Operations.multiply(result, nextOperand)
+            "/" -> Operations.divide(result, nextOperand)
+            else -> throw IllegalArgumentException("Invalid operator: $operator")
+        }
+    }
 
-    fun subtract(a: Double, b: Double): Double = a - b
-
-    fun multiply(a: Double, b: Double): Double = a * b
-
-    fun divide(a: Double, b: Double): Double = a / b
+    private fun parseOperand(operand: String): Double {
+        return operand.toDoubleOrNull()
+            ?: throw IllegalArgumentException("Invalid operand: $operand")
+    }
 }
