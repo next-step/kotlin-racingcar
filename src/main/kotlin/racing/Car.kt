@@ -1,24 +1,21 @@
 package racing
 
-import kotlin.random.Random
+private const val DEFAULT_POSITION = 1
+private const val MINIMUM = 4
+private const val MOVING_DISTANCE = 1
 
-data class Car(private var _position: Int = 1) {
-    val position get() = _position
+data class Car(val name: String, private var _position: Int = DEFAULT_POSITION) {
+    val position: Int get() = _position
 
-    fun moveOrStop() {
-        val isMove = isMove { random(0..9) }
-        if (isMove) {
+    fun moveOrStop(random: Int) {
+        if (isMove(random)) {
             move()
         }
     }
 
-    fun move() {
-        _position += 1
-    }
+    private fun isMove(random: Int): Boolean = random >= MINIMUM
 
-    companion object {
-        fun random(range: IntRange) = Random.nextInt(range.first, range.last)
-
-        fun isMove(intSupplier: () -> Int) = intSupplier() >= 4
+    private fun move() {
+        _position += MOVING_DISTANCE
     }
 }

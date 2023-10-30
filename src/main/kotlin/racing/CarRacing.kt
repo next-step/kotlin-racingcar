@@ -1,21 +1,27 @@
 package racing
 
-object CarRacing {
-    fun createCars(carCount: Int) = List(carCount) { Car() }
+class CarRacing {
+    private val recorder = CarRacingRecorder()
+    fun race(cars: List<Car>, tryCount: Int): CarRacingResult {
+        val results = cars.race(tryCount)
+        val winners = recorder.findWinners(cars)
+        return CarRacingResult(results, winners)
+    }
 
-    fun race(tryCount: Int, carCount: Int): List<List<Int>> {
-        val cars = createCars(carCount)
+    private fun List<Car>.race(tryCount: Int): List<List<Car>> {
         return List(tryCount) {
-            cars.racePerRound()
-            cars.recordRacingResultPerRound()
+            racePerRound()
+            recorder.recordRacingResultPerRound(cars = this)
         }
     }
 
     private fun List<Car>.racePerRound() {
         forEach { car ->
-            car.moveOrStop()
+            car.moveOrStop(movableRange.random())
         }
     }
 
-    private fun List<Car>.recordRacingResultPerRound() = map { it.position }
+    companion object {
+        private val movableRange = 0..9
+    }
 }
