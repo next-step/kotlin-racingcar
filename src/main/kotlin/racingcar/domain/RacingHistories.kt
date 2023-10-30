@@ -4,6 +4,7 @@ class RacingHistories {
     private val histories: MutableList<List<RacingHistory>> = mutableListOf()
 
     data class RacingHistory(
+        val name: String,
         val move: Int
     )
 
@@ -12,4 +13,5 @@ class RacingHistories {
     }
 
     fun getRacingHistories() = histories.toList()
+    fun getRacingLastHistory() = histories.last()
 }
