@@ -3,7 +3,7 @@ package calculator
 class StringCalculator {
 
     fun calculate(input: String?): Long {
-        require(!input.isNullOrBlank()) { throw IllegalArgumentException("입력값이 없습니다.") }
+        require(!input.isNullOrBlank()) { "입력값이 없습니다." }
 
         if (input.toLongOrNull() != null) {
             return input.toLong()
