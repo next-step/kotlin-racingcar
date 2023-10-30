@@ -9,13 +9,10 @@ class RacingCarGame private constructor(
 ) {
 
     fun race(numGenerator: NumGenerator) {
-        val newRacingCars = mutableListOf<RacingCar>()
-        for (racingCar in racingCars) {
+        racingCars = racingCars.map {
             val randomNum = numGenerator.getNextInt(RANDOM_NUM_BOUND)
-            val nextStepRacingCar = racingCar.moveOrStop(randomNum)
-            newRacingCars.add(nextStepRacingCar)
+            it.moveOrStop(randomNum)
         }
-        racingCars = newRacingCars
     }
 
     fun findWinners(): List<RacingCar> {
