@@ -5,7 +5,8 @@ private const val MOVABLE_MINIMUM = 4
 private const val MOVING_DISTANCE = 1
 
 data class Car(val name: String, private var _position: Int = DEFAULT_POSITION) {
-    val position: Int get() = _position
+    val position: Int
+        get() = _position
 
     fun moveOrStop(random: Int) {
         if (isMove(random)) {
