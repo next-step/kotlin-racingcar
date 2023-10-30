@@ -5,8 +5,8 @@ import racingCar.error.ErrorMessage
 
 class Cars(private val moveStrategy: MoveStrategy) {
 
-    fun getCars(inputCars: String): List<Car> {
-        val split = inputCars.split(",")
+    fun getCars(inputCars: String, delimiter: String = ","): List<Car> {
+        val split = inputCars.split(delimiter)
         split.forEach { require(it.length <= LIMIT_CAR_NAME) { ErrorMessage.NAME_TOO_LONG } }
 
         val carsNames: List<String> = split
