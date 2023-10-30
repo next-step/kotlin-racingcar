@@ -11,7 +11,7 @@ class ResultView {
         currentRacing: List<RacingCar>,
         isLast: Boolean = false,
     ) {
-        currentRacing.forEach { showSpace(it.space) }
+        currentRacing.forEach { showSpace(car = it) }
 
         if (!isLast) {
             showNewLine()
@@ -20,5 +20,5 @@ class ResultView {
 
     private fun showNewLine() = println("")
 
-    private fun showSpace(space: Int) = println("-".repeat(space))
+    private fun showSpace(car: RacingCar) = println("${car.name} : " + "-".repeat(car.space))
 }

@@ -1,6 +1,6 @@
 package race.ui
 
 data class InputState(
-    var car: Int,
-    var round: Int,
+    val carNames: List<String>,
+    val round: Int,
 )

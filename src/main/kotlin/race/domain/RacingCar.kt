@@ -1,6 +1,6 @@
 package race.domain
 
-class RacingCar {
+class RacingCar(val name: String) {
     var space = 0
         private set
 
