@@ -9,7 +9,7 @@ class CarTest : BehaviorSpec({
         val car = Car()
         When("앞으로 가야할 경우") {
             val originPosition = car.position
-            car.move(4)
+            car.move(DiceResult.FORWARD)
             Then("1칸 앞으로 이동 해야 한다") {
                 car.position shouldBe originPosition + 1
             }
