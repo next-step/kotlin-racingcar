@@ -12,4 +12,13 @@ class CarTest {
         assertThat(car).isNotNull
         assertThat(car.position).isEqualTo(0)
     }
+
+    @Test
+    fun `자동차 앞으로 이동`() {
+        val car = Car()
+
+        car.moveForward()
+
+        assertThat(car.position).isEqualTo(1)
+    }
 }

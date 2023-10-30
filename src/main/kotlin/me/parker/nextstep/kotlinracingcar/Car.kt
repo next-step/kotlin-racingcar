@@ -1,6 +1,9 @@
 package me.parker.nextstep.kotlinracingcar
 
 class Car {
+    fun moveForward() {
+        position++
+    }
 
-    val position: Int = 0
+    var position: Int = 0
 }
