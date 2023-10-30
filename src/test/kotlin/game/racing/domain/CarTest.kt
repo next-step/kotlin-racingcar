@@ -26,8 +26,8 @@ internal class CarTest {
     fun `0부터 9사이의 랜덤값을 반환한다`() {
         val car = Car()
 
-        for (i in 0..10) {
-            assertThat(car.getRandomValue()).isBetween(0, 9)
+        repeat(10) {
+            assertThat(car.getRandomValue()).isBetween(Car.MIN_RANDOM_VALUE, Car.MAX_RANDOM_VALUE)
         }
     }
 }
