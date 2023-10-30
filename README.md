@@ -14,6 +14,13 @@
 
 ### 💻 Step 2, Feedback
 
+* [ ] 1.Expression.kt
+* [x] 2.ExpressionParser.kt
+* [x] 3.Operator.kt
+* [x] 4.StringCalculator.kt
+* [x] 5.OperatorTest.kt
+* [x] 6.StringCalculatorTest.kt
+
 #### 1. Expression.kt
 ```kotlin
 package calculator
