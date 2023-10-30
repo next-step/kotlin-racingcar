@@ -20,7 +20,7 @@ class CalculatorMachine(
     private fun run() {
         var isRunning = true
         while (isRunning) {
-            val input = userInterface.introduce()
+            val input = userInterface.inputExpression()
             val splitInput = splitter.split(input)
             val calculator = Calculator(splitInput.first, splitInput.second)
             userInterface.showResult(calculator.calculate())

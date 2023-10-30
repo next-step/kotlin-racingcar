@@ -7,7 +7,7 @@ object UserInterface {
     private const val OCCURS_ERROR = "오류가 발생했습니다. 다시 안내에 따라 다시 시도해주세요."
     private const val CONTINUE_IS_NOT_VALID = "계속 여부는 Y 또는 N만 입력 가능합니다."
 
-    fun introduce(): String {
+    fun inputExpression(): String {
         println(ENTER_CALCULATION_INPUT)
         return readlnOrNull().orEmpty()
     }
