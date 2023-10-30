@@ -5,8 +5,6 @@ import step3.carRacing.view.InputView
 import step3.carRacing.view.OutputView
 import step3.carRacing.view.SystemInputReader
 import step3.carRacing.view.SystemPrint
-import kotlin.random.Random
-
 
 class CarRacing {
 

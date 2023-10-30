@@ -1,8 +1,8 @@
 package step4.carRacingWinner.view
 
+import step4.carRacingWinner.model.CarGenerator
 import step4.carRacingWinner.InputRule
 import step4.carRacingWinner.model.Car
-import step4.carRacingWinner.model.CarGenerator
 
 
 interface InputReader {
