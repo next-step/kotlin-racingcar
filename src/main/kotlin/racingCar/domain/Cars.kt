@@ -1,9 +1,10 @@
 package racingCar.domain
 
 import racingCar.domain.strategy.MoveStrategy
+import racingCar.domain.strategyImpl.RandomStrategy
 import racingCar.error.ErrorMessage
 
-class Cars(private val moveStrategy: MoveStrategy) {
+class Cars(private val moveStrategy: MoveStrategy = RandomStrategy()) {
 
     fun getCars(inputCars: String, delimiter: String = ","): List<Car> {
         val split = inputCars.split(delimiter)
