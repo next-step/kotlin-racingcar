@@ -1,5 +1,6 @@
 package racingcar
 
+import racingcar.component.RacingcarGameManager
 import racingcar.model.RacingcarGameInput
 import racingcar.view.RacingcarGameInputView
 import racingcar.view.RacingcarGameResultView
