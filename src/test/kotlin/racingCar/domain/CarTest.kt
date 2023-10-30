@@ -10,26 +10,18 @@ class CarTest {
     private val moveStrategyFalse: MoveStrategy = MoveStrategy { false }
 
     @Test
-    fun conditionalMoveTrueTest() {
-        val car = Car("testCar", moveStrategyTrue)
-        car.conditionalMove()
+    fun moveTrueTest() {
+        val car = Car("testCar", moveStrategy = moveStrategyTrue)
+        car.moveByStrategy()
 
         Assertions.assertEquals(car.moveCount, 1)
     }
 
     @Test
-    fun conditionalMoveFalseTest() {
-        val car = Car("testCar", moveStrategyFalse)
-        car.conditionalMove()
+    fun moveFalseTest() {
+        val car = Car("testCar", moveStrategy = moveStrategyFalse)
+        car.moveByStrategy()
 
         Assertions.assertEquals(car.moveCount, 0)
-    }
-
-    @Test
-    fun moveTest() {
-        val car = Car("testCar")
-        val moveCount = car.move()
-
-        Assertions.assertEquals(moveCount, 1)
     }
 }

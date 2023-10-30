@@ -2,6 +2,7 @@ package racingCar.view
 
 import racingCar.domain.Car
 import racingCar.domain.Cars
+import racingCar.domain.strategyImpl.RandomStrategy
 
 object OutputView {
 
@@ -22,7 +23,8 @@ object OutputView {
     }
 
     fun printWinner(carList: List<Car>) {
-        val cars = Cars()
+        val moveStrategy = RandomStrategy()
+        val cars = Cars(moveStrategy)
         val winners = cars.getWinners(carList)
         println(winners + WINNER_MESSAGE)
     }
