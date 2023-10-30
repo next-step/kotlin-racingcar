@@ -9,12 +9,14 @@ class Calculator {
         }
 
         val tokens = expression.split(" ")
-        var result = tokens[0].toDouble()
+        var result = tokens[0].toDoubleOrNull()
+            ?: throw IllegalArgumentException("Invalid operand: ${tokens[0]}")
 
         var index = 1
         while (index < tokens.size) {
             val operator = tokens[index]
-            val operand = tokens[index + 1].toDouble()
+            val operand = tokens[index + 1].toDoubleOrNull()
+                ?: throw IllegalArgumentException("Invalid operand: ${tokens[index + 1]}")
 
             result = when (operator) {
                 "+" -> add(result, operand)
