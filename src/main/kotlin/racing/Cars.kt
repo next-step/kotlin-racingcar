@@ -10,11 +10,16 @@ class Cars {
         this.carList = List(carNumber) { Car() }
     }
 
-    fun moveAll(moveProvider: () -> Int){
+    fun moveAll(moveProvider: () -> Int) {
         carList.forEach { car ->
             val moveSteps = moveProvider()
             car.moveForward(moveSteps)
         }
+    }
+
+    fun getWinner(): List<Car> {
+        val maxPosition = carList.maxByOrNull { it.currentPosition }?.currentPosition
+        return carList.filter { it.currentPosition == maxPosition }
     }
 }
 
