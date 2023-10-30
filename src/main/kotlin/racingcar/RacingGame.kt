@@ -12,10 +12,8 @@ class RacingGame {
     }
 
     private fun playEachRound(cars: List<Car>): List<Car> {
-        val movedCars = cars.map { car ->
+        return cars.map { car ->
             car.tryMove()
         }
-
-        return movedCars
     }
 }
