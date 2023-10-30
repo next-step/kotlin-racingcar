@@ -1,14 +1,11 @@
 package step4.presentation
 
 import step4.data.RacingCar
-import step4.data.RacingCourse
 
 object InputView {
-    fun showEnterCarIntro() {
+    fun enterCars(): List<RacingCar> {
         println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
-    }
-
-    fun enterCars(line: String = readln()): List<RacingCar> {
+        val line = readln()
         return parseLine(line)
     }
 
@@ -16,11 +13,8 @@ object InputView {
         return line.split(",").map { RacingCar(it) }
     }
 
-    fun showTryCountIntro() {
+    fun enterTryCount(): Int {
         println("시도할 횟수는 몇 회인가요?")
-    }
-
-    fun enterTryCount(racingCars: List<RacingCar>, tryCount: Int = readln().toInt()): RacingCourse {
-        return RacingCourse(tryCount, racingCars)
+        return readln().toInt()
     }
 }
