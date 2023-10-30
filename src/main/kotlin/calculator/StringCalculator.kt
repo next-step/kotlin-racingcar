@@ -13,11 +13,22 @@ class StringCalculator {
             throw IllegalArgumentException("첫번째 입력값이 숫자가 아닙니다.")
         }
 
-        val expressionList: List<Expression> = ExpressionParser.parse(input)
-        val firstExpression: Expression = expressionList.first()
-        val withOutFirstExpression: List<Expression> = expressionList.drop(1)
+        val parseList: List<Map<String, Any?>> = ExpressionParser.parse(input)
+        val firstParse: Map<String, Any?> = parseList.first()
+        val withOutFirstParse: List<Map<String, Any?>> = parseList.drop(1)
 
-        return withOutFirstExpression.fold(firstExpression.calculate()) { expressionResult: Long, expression: Expression ->
+        val firstExpression: Expression = Expression(
+            firstParse["left"].toString().toLong(),
+            firstParse["operator"] as Operator,
+            firstParse["right"].toString().toLong()
+        )
+        return withOutFirstParse.fold(firstExpression.calculate()) { expressionResult: Long, parse: Map<String, Any?> ->
+            val expression: Expression = Expression(
+                expressionResult,
+                parse["operator"] as Operator,
+                parse["right"].toString().toLong()
+            )
+
             expression.calculate(expressionResult)
         }
     }
