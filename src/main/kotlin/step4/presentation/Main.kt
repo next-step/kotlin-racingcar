@@ -1,12 +1,12 @@
 package step4.presentation
 
-import step4.data.RacingCourse
+import step4.data.RacingGame
 
 fun main() {
     val racingCar = InputView.enterCars()
     val tryCount = InputView.enterTryCount()
 
-    val racingCourse = RacingCourse(tryCount, racingCar)
+    val racingCourse = RacingGame(tryCount, racingCar)
 
     println("실행 결과")
     racingCourse.run(

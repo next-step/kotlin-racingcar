@@ -2,7 +2,7 @@ package step4.data
 
 import step4.domain.GetWinnerList
 
-data class RacingCourse(
+data class RacingGame(
     val tryCount: Int,
     val racingCars: List<RacingCar>
 ) {
