@@ -11,7 +11,7 @@ class RandomMovementImpl(
     override fun move(position: Position): Position {
         val distance = randomGenerator.generate()
         return if (distance >= DISTANCE_CONDITIONS) {
-            position.copy(xPos = position.xPos + 1)
+            Position(xPos = position.xPos + 1)
         } else {
             position
         }
