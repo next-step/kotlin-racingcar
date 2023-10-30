@@ -10,4 +10,9 @@ class Car(
     fun move(distance: Int) {
         position += distance
     }
+
+    fun capture(): Car = Car(
+        order = order,
+        position = position,
+    )
 }

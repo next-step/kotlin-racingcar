@@ -7,31 +7,32 @@ import racingcar.domain.rule.MoveRule
 
 class CarRacingGame private constructor(
     private val roundRange: IntRange,
-    private val result: CarRacingResult,
     private val cars: List<Car>,
     private val carMover: CarMover,
+    private val result: MutableList<CarRacingResult> = mutableListOf(),
 ) {
-    fun run(): CarRacingResult {
-        roundRange.forEach { roundNumber ->
+    fun run(): List<CarRacingResult> {
+        roundRange.forEach { _ ->
             runRound()
-            record(roundNumber)
+            record()
         }
-        return result
+        return result.toList()
     }
 
     private fun runRound() {
         carMover.move(cars)
     }
 
-    private fun record(roundNumber: Int) {
-        TODO()
-        // result.record(roundNumber, cars)
-    }
+    private fun record() =
+        result.add(
+            CarRacingResult(
+                cars = cars.map { it.capture() }
+            )
+        )
 
     companion object {
         fun set(
             configuration: CarRacingGameConfiguration,
-            result: CarRacingResult,
             moveRule: MoveRule,
         ): CarRacingGame {
             val carMover = CarMover(
@@ -41,7 +42,6 @@ class CarRacingGame private constructor(
                 cars = configuration.cars,
                 carMover = carMover,
                 roundRange = configuration.roundRange,
-                result = result,
             )
         }
     }

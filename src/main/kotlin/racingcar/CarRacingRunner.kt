@@ -7,37 +7,25 @@ import racingcar.domain.rule.MoveRule
 import racingcar.domain.rule.RandomMoveRule
 import racingcar.view.CarRacingInput
 import racingcar.view.CarRacingInputView
-import racingcar.view.CarRacingOutput
 import racingcar.view.CarRacingOutputView
 
 object CarRacingRunner {
     fun run() {
         val input = getInput()
         val configuration = createConfiguration(input)
-        val result = setResult(configuration)
-        val game = setGame(
-            configuration = configuration,
-            result = result
-        )
-        game.run()
+        val game = setGame(configuration)
+        val result = game.run()
         drawOutput(result)
     }
 
     private fun getInput(): CarRacingInput = CarRacingInputView.getInputForStart()
 
-    private fun setResult(configuration: CarRacingConfiguration): CarRacingResult =
-        CarRacingResult.createInitialResult(
-            configuration = configuration.getCarRacingResultConfiguration(),
-        )
-
     private fun setGame(
         configuration: CarRacingConfiguration,
-        result: CarRacingResult,
     ): CarRacingGame {
         val moveRule = createRandomMoveRule()
         return createGame(
             configuration = configuration,
-            result = result,
             moveRule = moveRule
         )
     }
@@ -49,20 +37,16 @@ object CarRacingRunner {
 
     private fun createGame(
         configuration: CarRacingConfiguration,
-        result: CarRacingResult,
         moveRule: MoveRule,
     ): CarRacingGame =
         CarRacingGame.set(
             configuration = configuration.getCarRacingGameConfiguration(),
-            result = result,
             moveRule = moveRule,
         )
 
     private fun drawOutput(
-        result: CarRacingResult,
+        result: List<CarRacingResult>,
     ) {
-        val roundResult = result.showCarPositionsByRoundInOrder()
-        val output = CarRacingOutput(roundResult)
-        CarRacingOutputView.draw(output)
+        CarRacingOutputView.draw(result)
     }
 }

@@ -2,7 +2,6 @@ package racingcar.domain.car
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
-import racingcar.domain.car.Car
 
 class CarTest : FunSpec({
     context("이동") {
@@ -17,6 +16,19 @@ class CarTest : FunSpec({
             car.move(moveDistance)
 
             car.position shouldBe initialPosition + moveDistance
+        }
+    }
+
+    context("현재 상태 캡쳐") {
+        test("현재 상태를 캡쳐해서 반환한다") {
+            val order = 0
+            val position = 1
+            val car = Car(order, position)
+
+            val result = car.capture()
+
+            result.order shouldBe order
+            result.position shouldBe position
         }
     }
 })
