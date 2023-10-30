@@ -8,8 +8,8 @@ import racingcar.domain.car.Car
 import racingcar.domain.rule.RandomMoveRule
 import racingcar.domain.rule.RandomNumberGeneratorInBound
 
-class CarRacingGameRoundTest : ExpectSpec({
-    expect("라운드 생성시 전달된 자동차와 이동 규칙으로 라운드가 진행된다") {
+class CarMoverTest : ExpectSpec({
+    expect("이동 규칙에 따라 차를 움직인다") {
         forAll(
             row(true),
             row(false),
@@ -17,9 +17,9 @@ class CarRacingGameRoundTest : ExpectSpec({
             val cars = listOf(Car(0, 0), Car(1, 0))
             val randomNumber = if (shouldMove) 4 else 0
             val moveRule = RandomMoveRule(RandomNumberGeneratorInBound(randomNumber..randomNumber))
-            val round = CarRacingGameRound(cars, moveRule)
+            val round = CarMover(moveRule)
 
-            round.run()
+            round.move(cars)
 
             val expectPosition = if (shouldMove) 1 else 0
             cars.all { it.position == expectPosition }.shouldBeTrue()
