@@ -3,15 +3,15 @@ package racing
 class CarRacing {
     private val recorder = CarRacingRecorder()
     fun race(cars: List<Car>, tryCount: Int): CarRacingResult {
-        val results = cars.race(tryCount)
+        val results = raceWithRecordResult(cars, tryCount)
         val winners = recorder.findWinners(cars)
         return CarRacingResult(results, winners)
     }
 
-    private fun List<Car>.race(tryCount: Int): List<List<Car>> {
+    private fun raceWithRecordResult(cars: List<Car>, tryCount: Int): List<List<Car>> {
         return List(tryCount) {
-            racePerRound()
-            recorder.recordRacingResultPerRound(cars = this)
+            cars.racePerRound()
+            recorder.recordRacingResultPerRound(cars)
         }
     }
 
