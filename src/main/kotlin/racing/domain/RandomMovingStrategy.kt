@@ -1,10 +1,8 @@
 package racing.domain
 
-import java.util.Random
-import java.util.concurrent.ThreadLocalRandom
+import kotlin.random.Random
 
 class RandomMovingStrategy : MovingStrategy {
-    private val random: Random = ThreadLocalRandom.current()
 
     companion object {
         private const val RANDOM_BOUND = 9
@@ -12,6 +10,6 @@ class RandomMovingStrategy : MovingStrategy {
     }
 
     override fun isMovable(): Boolean {
-        return random.nextInt(RANDOM_BOUND) >= TARGET_NUMBER
+        return Random.nextInt(RANDOM_BOUND) >= TARGET_NUMBER
     }
 }
