@@ -30,7 +30,7 @@ class RacingGame private constructor(
 
 fun main() {
     val inputs = InputView.gatherUserInput()
-    val racingGame = RacingGame.of(inputs.first, inputs.second)
+    val racingGame = RacingGame.of(inputs.numOfCars, inputs.numOfAttempts)
     val racingCars = racingGame.setUpCars()
     racingGame.start(racingCars)
 }
