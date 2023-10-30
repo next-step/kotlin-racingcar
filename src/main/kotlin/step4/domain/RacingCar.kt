@@ -1,6 +1,6 @@
 package step4.domain
 
-class RacingCar(
+data class RacingCar(
     val name: String,
     var moveCount: Int = 0
 ) {

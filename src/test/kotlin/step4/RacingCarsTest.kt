@@ -3,9 +3,9 @@ package step4
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import step4.domain.RacingCar
-import step4.domain.GetWinnerList
+import step4.domain.RacingCars
 
-class GetWinnerListTest {
+class RacingCarsTest {
     @Test
     fun `가장 높은 moveCount를 가진 차의 리스트를 뽑아준다`() {
         val racingCars1 = listOf(
@@ -13,7 +13,7 @@ class GetWinnerListTest {
             RacingCar("2", 2),
             RacingCar("3", 3)
         )
-        Assertions.assertThat(GetWinnerList.getWinnerList(racingCars1))
+        Assertions.assertThat(RacingCars(racingCars1).winner)
             .isEqualTo(listOf(RacingCar("3", 3)))
     }
 
@@ -24,7 +24,7 @@ class GetWinnerListTest {
             RacingCar("2", 3),
             RacingCar("3", 1)
         )
-        Assertions.assertThat(GetWinnerList.getWinnerList(racingCars1))
+        Assertions.assertThat(RacingCars(racingCars1).winner)
             .isEqualTo(
                 listOf(
                     RacingCar("1", 3),

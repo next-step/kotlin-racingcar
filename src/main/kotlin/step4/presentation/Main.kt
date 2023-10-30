@@ -3,10 +3,10 @@ package step4.presentation
 import step4.domain.RacingGame
 
 fun main() {
-    val racingCar = InputView.enterCars()
+    val racingCars = InputView.enterCars()
     val tryCount = InputView.enterTryCount()
 
-    val racingGame = RacingGame(tryCount, racingCar)
+    val racingGame = RacingGame(tryCount, racingCars)
 
     println("실행 결과")
     racingGame.run(

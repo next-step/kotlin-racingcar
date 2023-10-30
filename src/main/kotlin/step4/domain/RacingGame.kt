@@ -1,8 +1,8 @@
 package step4.domain
 
-class RacingGame(
+data class RacingGame(
     val tryCount: Int,
-    val racingCars: List<RacingCar>
+    val racingCars: RacingCars
 ) {
     fun run(
         afterTrying: (RacingCar) -> Unit,
@@ -15,10 +15,11 @@ class RacingGame(
     }
 
     private fun moveCarsInOneTry(afterTrying: (RacingCar) -> Unit) {
-        for (car in racingCars) {
+        for (car in racingCars.racingCars) {
             car.tryMoving()
             afterTrying(car)
         }
     }
-    fun getWinnerList(): List<RacingCar> = GetWinnerList.getWinnerList(racingCars)
+
+    fun getWinnerList(): List<RacingCar> = racingCars.winner
 }
