@@ -1,4 +1,4 @@
-package step3_4.view
+package step3_4_5.view
 
 object OutputView {
     fun printEnterNumberOfCarsMessage() = println(NUMBER_OF_CARS)

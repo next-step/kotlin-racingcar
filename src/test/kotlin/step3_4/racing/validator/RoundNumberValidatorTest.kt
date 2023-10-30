@@ -2,7 +2,7 @@ package step3_4.racing.validator
 
 import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.core.spec.style.StringSpec
-import step3_4.validator.RoundNumberValidator
+import step3_4_5.view.validator.RoundNumberValidator
 
 class RoundNumberValidatorTest : StringSpec({
     "숫자가 아닌 값을 입력하면 에러가 발생한다" {
