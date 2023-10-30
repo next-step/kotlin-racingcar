@@ -1,7 +1,7 @@
 package racing
 
 private const val DEFAULT_POSITION = 1
-private const val MINIMUM = 4
+private const val MOVABLE_MINIMUM = 4
 private const val MOVING_DISTANCE = 1
 
 data class Car(val name: String, private var _position: Int = DEFAULT_POSITION) {
@@ -13,7 +13,7 @@ data class Car(val name: String, private var _position: Int = DEFAULT_POSITION) 
         }
     }
 
-    private fun isMove(random: Int): Boolean = random >= MINIMUM
+    private fun isMove(random: Int): Boolean = random >= MOVABLE_MINIMUM
 
     private fun move() {
         _position += MOVING_DISTANCE
