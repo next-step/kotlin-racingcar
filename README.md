@@ -42,14 +42,50 @@ pobi, honux가 최종 우승했습니다.
 
 ## 사전 구현 계획
 
-- 위치 클래스 `Position`
+### 위치
+
+- `class Position`
     - 프로퍼티: `xPos`,
 
-- 자동차 클래스 `Car`
+### 자동차
+
+- `class Car`
     - 프로퍼티: `Name`, `Position`,
 
-- 자동차들 위치를 알고 순위를 관리하는 `Road` 클래스
-    - 프로퍼티: `Cars`,
+### Winner
+
+- `sealed interface RacingCarWinner`
+    - `data class SingleWinner`
+    - `data class MultipleWinner`
+
+### Policy
+
+#### 이동
+
+- `sealed interface MovementPolicy`
+    - `interface RandomMovement`
+        - `class RandomMovementImpl`
+
+#### 순위
+
+- `sealed interface RankingPolicy`
+    - `interface MultipleWinnersAllowed`
+        - `class MultipleWinnersAllowedImpl`
+    - `interface SingleWinnerOnly`
+        - `class SingleWinnerOnlyImpl`
+
+### Determiner
+
+#### 순위
+
+- `class RacingCarRankingDeterminer`
+    - 프로퍼티: `RankingPolicy` 구현체
+
+### RacingCarRoad
+
+- `class RacingCarRoad`: 자동차들 위치를 알고 순위를 관리
+    - 프로퍼티: `Cars`, `RacingCarRankingDeterminer`
+
 
 - UI 로직 구현
     - `InputView class`, `ResultView class`
