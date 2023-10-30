@@ -12,7 +12,6 @@ object OutputView {
     private const val EXECUTE_RESULT = "\n실행 결과"
     private const val CAR = "="
     private const val COLON = " : "
-    private const val COMMA = ", "
 
     fun printCarName() = println(ENTER_CARS_NAME)
     fun printTryCount() = println(ASK_TRY_COUNT)
@@ -27,7 +26,7 @@ object OutputView {
         val moveStrategy = RandomStrategy()
         val cars = Cars(moveStrategy)
         val winners = cars.getWinners(carList)
-        val formatWinner = winners.joinToString(COMMA) { it.name }
+        val formatWinner = winners.joinToString { it.name }
         println(formatWinner + WINNER_MESSAGE)
     }
 }
