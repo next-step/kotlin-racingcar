@@ -6,13 +6,13 @@ import racingcar.domain.result.CarRacingResult
 import racingcar.domain.rule.MoveRule
 
 class CarRacingGame private constructor(
-    private val roundRange: IntRange,
+    private val round: Int,
     private val cars: List<Car>,
     private val carMover: CarMover,
     private val result: MutableList<CarRacingResult> = mutableListOf(),
 ) {
     fun run(): List<CarRacingResult> {
-        roundRange.forEach { _ ->
+        repeat(round) {
             runRound()
             record()
         }
@@ -41,7 +41,7 @@ class CarRacingGame private constructor(
             return CarRacingGame(
                 cars = configuration.cars,
                 carMover = carMover,
-                roundRange = configuration.rounds,
+                round = configuration.round,
             )
         }
     }

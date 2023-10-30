@@ -7,21 +7,18 @@ import racingcar.view.CarRacingInput
 
 class CarRacingConfiguration(
     val cars: List<Car>,
-    val rounds: IntRange
+    val round: Int,
 ) {
     companion object {
-        private const val CAR_RACING_INITIAL_ROUND = 1
         fun of(input: CarRacingInput): CarRacingConfiguration {
             val carCount = CarRacingInputValidator.validateCount(input.carCount)
             val roundCount = CarRacingInputValidator.validateCount(input.tryCount)
             return CarRacingConfiguration(
                 cars = setCars(carCount),
-                rounds = setRounds(roundCount),
+                round = roundCount,
             )
         }
 
         private fun setCars(carCount: Int): List<Car> = CarGenerator.createInOrder(carCount)
-
-        private fun setRounds(roundCount: Int): IntRange = (CAR_RACING_INITIAL_ROUND..roundCount)
     }
 }

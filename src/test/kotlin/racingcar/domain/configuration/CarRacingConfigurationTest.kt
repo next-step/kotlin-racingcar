@@ -40,33 +40,15 @@ class CarRacingConfigurationTest : FunSpec({
         test("자동차 경주 게임 설정 정보가 생성된다") {
             val carCount = 4
             val tryCount = 2
-            val configuration = CarRacingConfiguration.of(CarRacingInput(carCount, tryCount))
 
-            val result = configuration.getCarRacingGameConfiguration()
-
-            result.cars.size shouldBe carCount
-            result.cars.forEachIndexed { index, car ->
-                car.order shouldBe index
-                car.position shouldBe 0
-            }
-            result.roundRange shouldBe 1..tryCount
-        }
-    }
-
-    context("자동차 경주 결과 설정 정보 생성") {
-        test("자동차 경주 결과 설정 정보가 생성된다") {
-            val carCount = 4
-            val tryCount = 2
-            val configuration = CarRacingConfiguration.of(CarRacingInput(carCount, tryCount))
-
-            val result = configuration.getCarRacingResultConfiguration()
+            val result = CarRacingConfiguration.of(CarRacingInput(carCount, tryCount))
 
             result.cars.size shouldBe carCount
             result.cars.forEachIndexed { index, car ->
                 car.order shouldBe index
                 car.position shouldBe 0
             }
-            result.roundRange shouldBe 1..tryCount
+            result.round shouldBe tryCount
         }
     }
 })

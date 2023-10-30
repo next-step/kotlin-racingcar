@@ -3,7 +3,7 @@ package racingcar.domain.game
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import racingcar.domain.car.Car
-import racingcar.domain.configuration.CarRacingGameConfiguration
+import racingcar.domain.configuration.CarRacingConfiguration
 import racingcar.domain.rule.RandomMoveRule
 import racingcar.domain.rule.RandomNumberGeneratorInBound
 
@@ -13,9 +13,9 @@ class CarRacingGameTest : BehaviorSpec({
         val roundCount = 2
         val roundRange = 1..roundCount
         val game = CarRacingGame.set(
-            configuration = CarRacingGameConfiguration(
+            configuration = CarRacingConfiguration(
                 cars = cars,
-                roundRange = roundRange,
+                round = roundCount,
             ),
             moveRule = RandomMoveRule(RandomNumberGeneratorInBound(4..4))
         )
