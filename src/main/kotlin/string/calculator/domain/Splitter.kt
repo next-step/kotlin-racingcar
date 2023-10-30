@@ -1,21 +1,20 @@
 package string.calculator.domain
 
-import string.calculator.dto.SplitInput
 import string.calculator.util.isEven
 import string.calculator.util.isOdd
 
 class Splitter {
-    fun split(input: String): SplitInput {
+    fun split(input: String): Pair<MutableList<Long>, MutableList<Operator>> {
         val splitInput = input.split(DELIMITER)
         val numbers = splitInput.filterIndexed { index, _ -> index.isEven() }
             .map { it.toLong() }.toMutableList()
         val operators = splitInput.filterIndexed { index, _ -> index.isOdd() }
             .map { Operator.of(it) }.toMutableList()
 
-        return SplitInput(numbers, operators)
+        return numbers to operators
     }
 
     companion object {
-        const val DELIMITER = " "
+        private const val DELIMITER = " "
     }
 }
