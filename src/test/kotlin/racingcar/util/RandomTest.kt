@@ -1,8 +1,7 @@
-package racingcar
+package racingcar.util
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import racingcar.util.generate
 
 class RandomTest : StringSpec({
     "랜덤 숫자를 생성한다." {
