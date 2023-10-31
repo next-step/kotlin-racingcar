@@ -11,3 +11,10 @@
   - RacingcarGame 클래스 구현
   - InputView, ResultView 클래스 구현
   - RacingcarGameApplication 클래스 구현
+- 23.10.31 피드백 적용 방안
+  - RacingcarGameContext 및 CarMovementManager 클래스 구조 리팩토링 및 오류 수정
+  - RacingcarGameContext 내 출력 기능 ResultView으로 이동
+  - View 클래스 object 선언으로 변경
+  - currentDistance 함수 이름 동사로 변경 
+  - RacingcarGameApplication -> RacingcarGame 명칭 변경 및 main 함수와 분리 
+  - 테스트 이름 한글화 및 기능 명세 단위 분리
