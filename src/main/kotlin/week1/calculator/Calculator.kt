@@ -4,29 +4,26 @@ object Calculator {
 
     private const val DELIMITER = ' '
 
-    fun process(input: String?): Int {
-        require(!input.isNullOrBlank()) {
-            if (input == null) "식이 null입니다." else "비어 있는 식입니다."
-        }
+    fun calculate(expression: String?): Int {
+        require(!expression.isNullOrBlank()) { "입력 값은 null 또는 빈 문자열을 허용하지 않습니다. - expression: [$expression]" }
 
         val numbers = mutableListOf<Int>()
-        val operators = mutableListOf<OperatorType>()
-        input.split(DELIMITER).forEach { chunk ->
-            if (OperatorType.isOperatorSymbol(chunk)) {
-                OperatorType.from(chunk)?.let {
-                    operators.add(it)
-                }
+        val operators = mutableListOf<Operator>()
+        expression.split(DELIMITER).forEach { chunk ->
+            if (Operator.isOperatorSymbol(chunk)) {
+                operators.add(Operator.from(chunk))
             } else {
                 numbers.add(chunk.toInt())
             }
         }
 
         var result = numbers.first()
-        operators.forEachIndexed { idx, operatorType ->
+
+        operators.forEachIndexed { idx, operator ->
             val a = result
             val b = numbers[idx + 1]
 
-            result = operatorType.execute(a, b)
+            result = operator.execute(a, b)
         }
         return result
     }

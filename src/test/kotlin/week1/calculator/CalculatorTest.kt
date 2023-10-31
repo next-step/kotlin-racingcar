@@ -9,7 +9,7 @@ class CalculatorTest {
 
     @Test
     fun `식 계산`() {
-        assertThat(calculator.process("2 + 3 * 4 / 2")).isEqualTo(10)
-        assertThat(calculator.process("1 + 2 + 3 + 4 + 5")).isEqualTo(15)
+        assertThat(calculator.calculate("2 + 3 * 4 / 2")).isEqualTo(10)
+        assertThat(calculator.calculate("1 + 2 + 3 + 4 + 5")).isEqualTo(15)
     }
 }
