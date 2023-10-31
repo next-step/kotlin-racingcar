@@ -1,54 +1,49 @@
 package racinggame
 
 import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.data.forAll
+import io.kotest.data.row
 import io.kotest.matchers.collections.shouldContainAll
 import io.kotest.matchers.shouldBe
 
 class RacingGameTest : BehaviorSpec({
 
     Given("자동차 게임 시작") {
-        When("1번 시도의 4이상의 숫자가 나온 경우") {
-            val tryCount = 1
-
-            val game = RacingGame(
-                listOf(
-                    Car("name1"),
-                    Car("name2")
-                ),
-                tryCount,
-                ForwardDice()
-            )
-            val result = game.play()
+        When("N번 시도의 4이상의 숫자가 나온 경우") {
             Then("모든 자동차가 앞으로 움직여야 한다") {
-                result.racingResult.forEach {
-                    it.result.forEach { playResult ->
-                        playResult.position shouldBe 1
-                    }
-                }
-            }
-        }
-        When("2번 시도의 4이상의 숫자가 나온 경우") {
-            val tryCount = 2
+                forAll(
+                    row(1),
+                    row(2)
+                ) { tryCount ->
+                    val game = RacingGame(
+                        listOf(
+                            Car("name1"),
+                            Car("name2")
+                        ),
+                        tryCount,
+                        ForwardDice()
+                    )
+                    val result = game.play()
 
-            val game = RacingGame(
-                listOf(
-                    Car("name1"),
-                    Car("name2")
-                ),
-                tryCount,
-                ForwardDice()
-            )
-            val result = game.play()
-            Then("모든 자동차가 앞으로 움직여야 한다") {
-                result.racingResult.forEachIndexed { index, racingResult ->
-                    if (index == 0) {
-                        racingResult.result.forEach { playResult ->
-                            playResult.position shouldBe 1
+                    if (tryCount == 1) {
+                        result.racingResult.forEach {
+                            it.result.forEach { playResult ->
+                                playResult.position shouldBe 1
+                            }
                         }
                     }
-                    if (index == 1) {
-                        racingResult.result.forEach { playResult ->
-                            playResult.position shouldBe 2
+                    if (tryCount == 2) {
+                        result.racingResult.forEachIndexed { index, racingResult ->
+                            if (index == 0) {
+                                racingResult.result.forEach { playResult ->
+                                    playResult.position shouldBe 1
+                                }
+                            }
+                            if (index == 1) {
+                                racingResult.result.forEach { playResult ->
+                                    playResult.position shouldBe 2
+                                }
+                            }
                         }
                     }
                 }
