@@ -1,6 +1,6 @@
 package racingcar.domain
 
-class Position(initValue: Int = MIN_POSITION) {
+class Position(initValue: Int = MIN_POSITION) : Comparable<Position> {
 
     var value: Int = initValue
         private set
@@ -15,6 +15,8 @@ class Position(initValue: Int = MIN_POSITION) {
         this.value += other.value
     }
 
+    override fun compareTo(other: Position) = this.value.compareTo(other.value)
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is Position) return false
@@ -24,9 +26,7 @@ class Position(initValue: Int = MIN_POSITION) {
         return true
     }
 
-    override fun hashCode(): Int {
-        return value
-    }
+    override fun hashCode() = value
 
     companion object {
         private const val MIN_POSITION = 0

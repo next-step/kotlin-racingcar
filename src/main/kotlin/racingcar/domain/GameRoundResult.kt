@@ -5,7 +5,7 @@ data class GameRoundResult(
     val cars: List<RacingCar>
 ) {
     fun getRoundWinners(): List<RacingCar> {
-        val maxPosition = this.cars.maxOf { it.position.value }
-        return this.cars.filter { it.position.value == maxPosition }
+        val maxPosition = this.cars.maxOf { it.position }
+        return this.cars.filter { it.position == maxPosition }
     }
 }
