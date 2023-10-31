@@ -2,17 +2,11 @@ package week1.racingcar
 
 class ResultView {
 
-    init {
-        println("실행 결과")
-    }
-
     fun showResult(cars: List<Car>) {
+        println("실행 결과")
         cars.forEach {
             print("${it.name} : ")
-            (0 until it.mileage).forEach { _ ->
-                print("-")
-            }
-            println()
+            println("-".repeat(it.mileage))
         }
         println()
     }
