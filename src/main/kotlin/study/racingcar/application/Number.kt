@@ -1,7 +1,7 @@
 package study.racingcar.application
 
 /**
- * 입력받은 문자열이 1 이상의 정수형의 숫자인지 검증한다.
+ * 게임 반복 횟수를 나타내는 숫자를 입력받는 객체이다.
  * */
 data class Number(val value: String) {
 
@@ -9,7 +9,7 @@ data class Number(val value: String) {
      * 입력으로 문자열을 받고 1 이상의 정수형의 숫자인지 검증 후 Int 로 변환해서 반환한다.
      * @throws IllegalArgumentException 입력 값이 null 이거나 적절한 정수형의 숫자가 아닌 경우
      * */
-    fun checkIsProperIntFormat(): Int {
+    fun getProperFormatNumber(): Int {
         val num = try {
             value.toInt()
         } catch (e: NumberFormatException) {
