@@ -1,12 +1,12 @@
 import racingcar.Cars
-import racingcar.InputView.inputHowManyCar
 import racingcar.InputView.inputOperationCar
+import racingcar.InputView.inputRacingCar
 import racingcar.ResultView.printResult
 
 fun main() {
-    val carCount = inputHowManyCar()
+    val carNames = inputRacingCar()
+    val cars = Cars(carNames)
     val operationCount = inputOperationCar()
 
-    val cars = Cars(carCount)
     printResult(cars, operationCount)
 }

@@ -2,7 +2,7 @@ package calculator
 
 enum class Operator(
     val operator: String,
-    val operation: (Int, Int) -> Int
+    val operation: (Number, Number) -> Number
 ) {
     PLUS("+", { a, b -> a + b }),
     MINUS("-", { a, b -> a - b }),
@@ -10,13 +10,13 @@ enum class Operator(
     DIVIDE("/", { a, b -> a / b }),
     ;
 
+    fun operate(a: Number, b: Number): Number {
+        return operation(a, b)
+    }
+
     companion object {
         fun of(operator: String): Operator {
             return values().find { it.operator == operator } ?: throw IllegalArgumentException("연산자가 아닙니다.")
         }
-    }
-
-    fun operate(a: Int, b: Int): Int {
-        return operation(a, b)
     }
 }
