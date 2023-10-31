@@ -1,4 +1,4 @@
-package racing
+package racing.controller
 
 import racing.car.Car
 import racing.car.CarRace
