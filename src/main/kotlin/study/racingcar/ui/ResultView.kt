@@ -11,6 +11,12 @@ object ResultView {
         println()
     }
 
+    fun displayWinners(cars: List<Car>) {
+        val maxPosition = cars.maxByOrNull { it.position }?.position ?: 0
+        val winners = cars.filter { it.position == maxPosition }.joinToString { it.name.name }
+        println("최종 우승자: $winners")
+    }
+
     private fun displayPosition(car: Car): String {
         return "-".repeat(car.position)
     }
