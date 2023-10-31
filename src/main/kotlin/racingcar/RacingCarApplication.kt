@@ -7,13 +7,13 @@ import racingcar.view.InputView
 import racingcar.view.ResultView
 
 fun main(args: Array<String>) {
-    val carCount = InputView.readCarCount()
+    val nicknames = InputView.readNicknames()
     val totalRound = InputView.readTotalRound()
 
     val racingCarGame = RacingGame(
         gameRule = RandomGameRule,
         totalRound = totalRound,
-        cars = List(carCount) { RacingCar() }
+        cars = nicknames.map { RacingCar(it) }
     )
 
     racingCarGame.start()
