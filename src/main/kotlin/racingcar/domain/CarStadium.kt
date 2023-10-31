@@ -1,6 +1,6 @@
 package racingcar.domain
 
-import racingcar.domain.RacingHistories.*
+import racingcar.domain.RacingResult.*
 
 class CarStadium(
     nameOfCars: String,
@@ -10,7 +10,7 @@ class CarStadium(
 
     private val cars: List<Car> = nameOfCars.split(",").map(::Car)
 
-    fun gameStart() = RacingHistories().apply {
+    fun gameStart() = RacingResult().apply {
         repeat(numberOfTrials) {
             moving()
             this.addRacingHistories(racingResult())
@@ -22,5 +22,5 @@ class CarStadium(
             .forEach(Car::moveForward)
     }
 
-    private fun racingResult() = cars.map { RacingHistory(it.name, it.moveForwardCount) }
+    private fun racingResult(): List<RacingHistory> = cars.map { RacingHistory(it.name, it.position) }
 }

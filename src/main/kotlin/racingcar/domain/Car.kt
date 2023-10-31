@@ -1,8 +1,7 @@
 package racingcar.domain
 
-class Car(val name: String) {
-    private var _moveForwardCount: Int = 0
-    val moveForwardCount: Int
-        get() = _moveForwardCount
-    fun moveForward() = this._moveForwardCount++
+class Car(val name: String, position: Int = 0) {
+    var position: Int = position
+        private set
+    fun moveForward() = this.position++
 }

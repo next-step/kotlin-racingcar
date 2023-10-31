@@ -1,10 +1,7 @@
 package racingcar.domain
 
 import io.kotest.core.spec.style.BehaviorSpec
-import io.kotest.core.spec.style.FunSpec
-import io.kotest.matchers.should
 import io.kotest.matchers.shouldBe
-import racingcar.util.Message
 import racingcar.util.Message.*
 
 class CarStadiumTest : BehaviorSpec({
@@ -21,7 +18,7 @@ class CarStadiumTest : BehaviorSpec({
                 CarMove(alwaysFourGenerator)
             ).gameStart()
             Then("시도 횟수만큼 결과 리스트를 반환하며 매 라운드마다 전진한다.") {
-                val histories = result.getRacingHistories()
+                val histories = result.allRounds
                 histories.size shouldBe numberOfTrials
 
                 histories.forEachIndexed { index, racingHistories ->
@@ -37,7 +34,7 @@ class CarStadiumTest : BehaviorSpec({
                 CarMove(alwaysZeroGenerator)
             ).gameStart()
             Then("시도 횟수만큼 결과 리스트를 반환하며 전진 횟수는 항상 0이다.") {
-                val histories = result.getRacingHistories()
+                val histories = result.allRounds
                 histories.size shouldBe numberOfTrials
 
                 histories.forEach { racingHistories ->

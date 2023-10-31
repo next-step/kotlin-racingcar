@@ -1,7 +1,7 @@
 package racingcar.domain
 
 class CarMove(
-    private val random: RandomGenerator<Int>
+    private val random: NumberGenerator<Int>
 ) {
     companion object {
         const val CAR_RACING_RANDOM_START = 0
