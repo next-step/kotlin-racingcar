@@ -2,8 +2,11 @@ package step2
 
 import java.lang.IllegalArgumentException
 
-data class Input(val text: String?) {
+data class Input(val _text: String?) {
     init {
-        checkNotNull(text) { throw IllegalArgumentException() }
+        checkNotNull(_text) { throw IllegalArgumentException() }
     }
+
+    val text: String
+        get() = _text!!
 }
