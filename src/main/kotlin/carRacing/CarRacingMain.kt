@@ -1,14 +1,17 @@
 package carRacing
 
+import carRacing.domain.MessageGenerator
+import carRacing.enum.Message
 import carRacing.view.InputView
 
 fun main() {
     val inputView = InputView()
+    val messageGenerator: MessageGenerator = MessageGenerator()
 
-    val carCount: Int = inputView.readLineNumber("자동차 대수는 몇 대인가요?")
+    val carCount: Int = inputView.readLineNumber(messageGenerator.getMessage(Message.CAR_COUNT_QUESTION))
 
-    val tryCount: Int = inputView.readLineNumber("시도할 횟수는 몇 회인가요?")
+    val tryCount: Int = inputView.readLineNumber(messageGenerator.getMessage(Message.TRY_COUNT_QUESTION))
 
     println()
-    println("실행 결과")
+    println(messageGenerator.getMessage(Message.RESULT))
 }
