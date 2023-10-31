@@ -1,3 +1,3 @@
 package carRacing.view
 
-class inputView
+class OutputView
