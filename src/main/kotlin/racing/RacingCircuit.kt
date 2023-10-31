@@ -19,7 +19,10 @@ class RacingCircuit {
         val resultView = ResultView()
         val (carNames, tryNumber) = inputView.getInputViewWithName()
 
-        val cars = Cars(carNames)
+        val carList = carNames.split(",")
+            .map { Car(name = it) }
+
+        val cars = Cars(carList)
 
         println("실행 결과")
         RandomCarRace().move(cars, tryNumber, resultView::makeResultViewWithName)
