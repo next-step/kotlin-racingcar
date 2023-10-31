@@ -1,15 +1,11 @@
 package racingcar
 
 fun main() {
-    val carSize = InputView.inputCarSize()
+    val names = InputView.inputCarNames()
     val tryCount = InputView.inputTryCount()
-    val cars = Cars(createRandomGenerator(), carSize)
+    val racingGame = RacingGame(ResultView, createRandomGenerator(), names)
 
-    ResultView.printPositionsHeader()
-    repeat(tryCount) {
-        cars.move()
-        ResultView.printPositions(cars.list())
-    }
+    racingGame.start(tryCount)
 }
 
 private fun createRandomGenerator(): RandomGenerator {

@@ -1,14 +1,16 @@
 package racingcar
 
-class Car(private var position: Int = 0) {
-
-    fun position(): Int {
-        return position
-    }
+class Car(val name: String = "") {
+    var position: Int = 0
+        private set
 
     fun move(value: Int) {
-        if (value >= 4) {
+        if (value >= MOVING_THRESHOLD) {
             position++
         }
+    }
+
+    companion object {
+        private const val MOVING_THRESHOLD = 4
     }
 }

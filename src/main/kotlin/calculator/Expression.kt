@@ -7,9 +7,7 @@ import java.util.Queue
 class Expression(private val value: String) {
 
     init {
-        if (!isValidExpression(value)) {
-            throw IllegalArgumentException("${value}은 올바른 수식이 아닙니다.")
-        }
+        require(isValidExpression(value)) { "${value}은 올바른 수식이 아닙니다." }
     }
 
     private fun isValidExpression(str: String): Boolean {
