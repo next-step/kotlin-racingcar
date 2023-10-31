@@ -14,3 +14,8 @@ interface Parser<T, R> {
     fun parse(inputStr: T): Try<R>
     fun validate(inputStr: R): Try<R>
 }
+
+data class ParserOutput<numberType, operandType>(
+    val numbers: List<numberType>,
+    val operands: List<operandType>
+)

@@ -1,21 +1,20 @@
 package calculator
 
 import calculator.enum.Op
-import calculator.parser.InputParser
-import calculator.parser.InputParserOutput
 import calculator.parser.Parser
+import calculator.parser.ParserOutput
 
 class Calculator(
-    val parser: Parser<String, InputParserOutput> = InputParser
+    private val parser: Parser<String, ParserOutput<Double, String>>
 ) {
     fun run(input: String?): Double {
         val pairNumbersAndOperators = parser.apply(input).getOrThrow()
-        val inputNumbers = pairNumbersAndOperators.first
-        val inputOperators = pairNumbersAndOperators.second.map { Op.match(it) }
+        val inputNumbers = pairNumbersAndOperators.numbers
+        val inputOperators = pairNumbersAndOperators.operands.map { Op.match(it) }
 
         return inputNumbers.reduceIndexed {
-            index, front, back ->
-            inputOperators[index - 1].run(front, back)
+            index, currentValue, accumulator ->
+            inputOperators[index - 1].run(currentValue, accumulator)
         }
     }
 }

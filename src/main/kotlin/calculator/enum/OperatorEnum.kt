@@ -10,7 +10,7 @@ sealed class Op {
                 "-" -> Subtract()
                 "*" -> Multiply()
                 "/" -> Divide()
-                else -> throw IllegalArgumentException("")
+                else -> throw IllegalArgumentException("연산자의 형태가 유효하지 않습니다.")
             }
         }
     }
@@ -43,6 +43,3 @@ class Divide : Op() {
         return operation.divide(front, back)
     }
 }
-
-
-
