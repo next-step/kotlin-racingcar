@@ -24,22 +24,36 @@ object RacingView {
         }
     }
 
-    fun printRacingResult(cars: Cars) {
+    private fun printRacingResultByRound(cars: Cars) {
         cars.forEach {
             println("${it.getCarName()} : ${PROGRESS_BAR.repeat(it.getCarDistance())}")
         }
         roundDivisionBlankLine()
     }
 
+    private fun printRacingAllRecord(labRecord: List<Cars>) {
+        labRecord.forEach {
+            printRacingResultByRound(it)
+        }
+    }
+
     private fun roundDivisionBlankLine() {
         println()
     }
 
-    fun printRacingWinner(winners: List<String>) {
+    private fun printRacingWinner(winners: List<String>) {
         println("${winners.joinToString(", ")}가 최종우승 했습니다.")
     }
 
-    fun printRacingGameTitle() {
+    fun printRacingResult(racingCars: List<Cars>) {
+        printRacingGameTitle()
+        printRacingAllRecord(racingCars)
+        printRacingWinner(
+            racingCars.last().getRacingWinnerNames()
+        )
+    }
+
+    private fun printRacingGameTitle() {
         roundDivisionBlankLine()
         println("실행 결과")
     }
