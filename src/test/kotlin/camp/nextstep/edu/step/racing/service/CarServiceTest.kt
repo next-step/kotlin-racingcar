@@ -14,8 +14,8 @@ class CarServiceTest : BehaviorSpec ({
         val kiaCarName = "기아자동차"
 
         When("자동차를 생성하면") {
-            val hyundaiCar = carService.createCarByInput(carName = hyundaiCarName)
-            val kiaCar = carService.createCarByInput(carName = kiaCarName)
+            val hyundaiCar = carService.createCarByInput(inputCarValue = hyundaiCarName)
+            val kiaCar = carService.createCarByInput(inputCarValue = kiaCarName)
 
             Then("요청한 이름의 자동차가 생성된다") {
                 hyundaiCar.carName shouldBe "현대자동차"
