@@ -1,5 +1,6 @@
 package carRacing.model
 
+import carRacing.utils.Validation
 import carRacing.RaceRuleType
 
 class Car(curPosition: Int = 0, carName: String = "") {
@@ -15,4 +16,9 @@ class Car(curPosition: Int = 0, carName: String = "") {
         }
     }
 
+    companion object{
+        val validateCarName = { carName: String ->
+            Validation.validate<String>(carName, { it.length < 6 }, "자동차 이름은 5자를 초과할 수 없습니다")
+        }
+    }
 }
