@@ -3,9 +3,13 @@ package carRacing.Domain
 import carRacing.ServiceImpl.SimpleCarController
 
 class Racing {
-    fun start(carCount: Int, tryCount: Int) {
+    fun process(carCount: Int): List<Car> {
         val carList: List<Car> = SimpleCarController().createCars(carCount)
 
-        TODO("Not yet implemented")
+        for (car in carList) {
+            car.move()
+        }
+
+        return carList
     }
 }
