@@ -1,11 +1,13 @@
 package racing
 
+import racing.moveprovider.MoveProvider
+
 class Cars(val carList: List<Car>) {
     constructor(carNumber: Int): this(List(carNumber) { Car() })
 
-    fun moveAll(moveProvider: () -> Int) {
+    fun moveAll(moveProvider: MoveProvider) {
         carList.forEach { car ->
-            val moveSteps = moveProvider()
+            val moveSteps = moveProvider.getMove()
             car.moveForward(moveSteps)
         }
     }
