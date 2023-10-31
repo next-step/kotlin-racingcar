@@ -42,7 +42,8 @@ class Cars private constructor(
         return Cars(
             this.cars.map {
                 it.copy()
-            })
+            }
+        )
     }
 
     companion object {
