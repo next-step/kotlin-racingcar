@@ -1,4 +1,4 @@
-package step3
+package first_week_carrace
 
 class CarRaceGame {
 
@@ -8,15 +8,16 @@ class CarRaceGame {
     init {
         viewer.inputCars()
         viewer.inputRound()
-        carRace = CarRace(viewer.getCarsCount())
+        carRace = CarRace(viewer.getCarsName())
     }
 
     fun startGame() {
         viewer.showResultWords()
-        viewer.showCarStatus(carRace.getCarsPosition())
+        viewer.showCarsPosition(carRace.getCarsPosition())
         repeat(viewer.getRound()) {
             carRace.doRound()
-            viewer.showCarStatus(carRace.getCarsPosition())
+            viewer.showCarsPosition(carRace.getCarsPosition())
         }
+        viewer.showWinners(carRace.getWinners())
     }
 }
