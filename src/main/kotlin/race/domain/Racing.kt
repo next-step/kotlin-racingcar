@@ -20,15 +20,25 @@ class Racing(
             startRound()
             resultView.showResult(currentRacing = racingCarList, isLast = i == round)
         }
+
+        finishRace()
     }
 
     private fun startRound() {
-        racingCarList.forEach { racingCar ->
-            run {
-                if (goRule()) {
-                    racingCar.go()
-                }
+        racingCarList.forEach {
+            if (goRule()) {
+                it.go()
             }
         }
+    }
+
+    private fun finishRace() {
+        val winnerSpace = racingCarList.maxOf { it.space }
+        racingCarList.forEach {
+            if (it.space == winnerSpace) {
+                it.win()
+            }
+        }
+        resultView.showWinner(winningCars = racingCarList.filter { it.isWinner })
     }
 }

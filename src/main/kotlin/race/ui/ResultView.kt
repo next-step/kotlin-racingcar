@@ -11,14 +11,20 @@ class ResultView {
         currentRacing: List<RacingCar>,
         isLast: Boolean = false,
     ) {
-        currentRacing.forEach { showSpace(it.space) }
+        currentRacing.forEach { showSpace(car = it) }
 
         if (!isLast) {
             showNewLine()
         }
     }
 
+    fun showWinner(
+        winningCars: List<RacingCar>,
+    ) {
+        println("${winningCars.joinToString(",") { it.name }}가 최종 우승했습니다.")
+    }
+
     private fun showNewLine() = println("")
 
-    private fun showSpace(space: Int) = println("-".repeat(space))
+    private fun showSpace(car: RacingCar) = println("${car.name} : " + "-".repeat(car.space))
 }

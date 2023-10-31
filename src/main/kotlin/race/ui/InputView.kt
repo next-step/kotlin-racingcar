@@ -1,21 +1,22 @@
 package race.ui
 
-class InputView {
-    var state: InputState = InputState()
-        private set
+class InputView() {
+    var state: InputState
 
     init {
-        readCar()
-        readRound()
+        val carNames = readCarNames()
+        val round = readRound()
+
+        state = InputState(carNames = carNames.split(','), round = round)
     }
 
-    private fun readCar() {
-        println("자동차 대수는 몇 대인가요?")
-        state = state.copy(car = readln().toInt())
+    private fun readCarNames(): String {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
+        return readln()
     }
 
-    private fun readRound() {
+    private fun readRound(): Int {
         println("시도할 횟수는 몇 회인가요?")
-        state = state.copy(round = readln().toInt())
+        return readln().toInt()
     }
 }
