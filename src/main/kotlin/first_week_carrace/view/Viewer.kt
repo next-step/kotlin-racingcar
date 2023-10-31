@@ -1,4 +1,4 @@
-package first_week_carrace
+package first_week_carrace.view
 
 class Viewer {
 

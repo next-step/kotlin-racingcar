@@ -1,4 +1,7 @@
-package first_week_carrace
+package first_week_carrace.controller
+
+import first_week_carrace.model.CarRace
+import first_week_carrace.view.Viewer
 
 class CarRaceGame {
 

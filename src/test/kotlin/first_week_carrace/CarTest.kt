@@ -1,5 +1,6 @@
 package first_week_carrace
 
+import first_week_carrace.model.Car
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
