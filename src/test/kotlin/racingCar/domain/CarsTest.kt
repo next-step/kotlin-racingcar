@@ -1,8 +1,8 @@
-package racingcar.domain
+package racingCar.domain
 
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
-import racingcar.helper.CarFixture
+import racingCar.helper.CarFixture
 
 class CarsTest : DescribeSpec({
 

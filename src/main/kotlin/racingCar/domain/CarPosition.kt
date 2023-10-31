@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingCar.domain
 
 @JvmInline
 value class CarPosition(

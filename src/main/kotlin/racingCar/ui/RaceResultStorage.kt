@@ -1,7 +1,7 @@
-package racingcar.ui
+package racingCar.ui
 
-import racingcar.domain.Cars
-import racingcar.domain.RaceResult
+import racingCar.domain.Cars
+import racingCar.domain.RaceResult
 
 class RaceResultStorage(
     results: List<CarMove> = emptyList()

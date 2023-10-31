@@ -1,9 +1,9 @@
-package racingcar.ui
+package racingCar.ui
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import racingcar.domain.Cars
-import racingcar.helper.CarFixture
+import racingCar.domain.Cars
+import racingCar.helper.CarFixture
 
 class RaceResultStorageTest : BehaviorSpec({
 

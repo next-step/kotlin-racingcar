@@ -1,14 +1,14 @@
-package racingcar
+package racingCar
 
-import racingcar.domain.Car
-import racingcar.domain.CarCount
-import racingcar.domain.Cars
-import racingcar.domain.Race
-import racingcar.domain.TryCount
-import racingcar.ui.InputView
-import racingcar.ui.RaceResultStorage
-import racingcar.ui.ResultView
-import racingcar.util.CarPowerGenerator
+import racingCar.domain.Car
+import racingCar.domain.CarCount
+import racingCar.domain.Cars
+import racingCar.domain.Race
+import racingCar.domain.TryCount
+import racingCar.ui.InputView
+import racingCar.ui.RaceResultStorage
+import racingCar.ui.ResultView
+import racingCar.util.CarPowerGenerator
 
 class Application {
 

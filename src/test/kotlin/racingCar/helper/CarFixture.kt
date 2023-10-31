@@ -1,7 +1,7 @@
-package racingcar.helper
+package racingCar.helper
 
-import racingcar.domain.Car
-import racingcar.util.NumberGenerator
+import racingCar.domain.Car
+import racingCar.util.NumberGenerator
 
 object CarFixture {
 

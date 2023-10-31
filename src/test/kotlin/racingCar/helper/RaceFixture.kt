@@ -1,7 +1,7 @@
-package racingcar.helper
+package racingCar.helper
 
-import racingcar.domain.Cars
-import racingcar.domain.RaceResult
+import racingCar.domain.Cars
+import racingCar.domain.RaceResult
 
 object RaceFixture {
     fun makeFakeRaceResult() = object : RaceResult {

@@ -1,6 +1,6 @@
-package racingcar.domain
+package racingCar.domain
 
-import racingcar.util.NumberGenerator
+import racingCar.util.NumberGenerator
 
 class Cars(
     private val cars: List<Car>,

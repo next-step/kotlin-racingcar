@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingCar.domain
 
 private const val MOVE_MINIMUM_POWER = 4
 

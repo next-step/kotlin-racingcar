@@ -1,4 +1,4 @@
-package racingcar.ui
+package racingCar.ui
 
 object ResultView {
 

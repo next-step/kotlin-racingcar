@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingCar.domain
 
 import io.kotest.assertions.throwables.shouldNotThrowAnyUnit
 import io.kotest.assertions.throwables.shouldThrowWithMessage

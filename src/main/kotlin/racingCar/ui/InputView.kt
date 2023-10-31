@@ -1,7 +1,7 @@
-package racingcar.ui
+package racingCar.ui
 
-import racingcar.domain.CarCount
-import racingcar.domain.TryCount
+import racingCar.domain.CarCount
+import racingCar.domain.TryCount
 
 object InputView {
 

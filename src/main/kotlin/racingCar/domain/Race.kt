@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingCar.domain
 
 class Race(
     private val tryCount: TryCount,
