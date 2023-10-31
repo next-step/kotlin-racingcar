@@ -9,7 +9,7 @@ class CarStadiumTest : BehaviorSpec({
     val alwaysZeroGenerator = { _: Int, _: Int -> 0 }
 
     Given("자동차의 대수와 전진 시도 횟수가 정수로 주어지고") {
-        val nameOfCars = "a,b,c"
+        val nameOfCars = "a,b,c".split(",")
         val numberOfTrials = 3
         When("항상 전진할 수 있는 게임을 시작한다면") {
             val result = CarStadium(
