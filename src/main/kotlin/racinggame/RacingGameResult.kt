@@ -1,14 +1,14 @@
 package racinggame
 
 data class RacingGameResult(
-    val racingResult: List<PlayResult>
+    val racingResult: List<RoundResult>
 ) : Result<List<List<String>>> {
     override fun translate() = racingResult.map { round ->
         round.translate()
     }
 }
 
-data class PlayResult(
+data class RoundResult(
     val result: List<Car>
 ) : Result<List<String>> {
     override fun translate() = result.map { car ->

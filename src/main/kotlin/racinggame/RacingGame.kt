@@ -15,7 +15,7 @@ class RacingGame(
     fun play() = (1..tryCount).map {
         roundPlay(cars)
     }.map { round ->
-        PlayResult(round)
+        RoundResult(round)
     }.let {
         RacingGameResult(it)
     }
