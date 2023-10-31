@@ -1,4 +1,4 @@
-package carRacing.view
+package carRacing.View
 
 import java.lang.IllegalStateException
 
