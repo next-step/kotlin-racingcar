@@ -1,3 +1,5 @@
+package calculator
+
 class Constant {
     companion object {
         const val CALCULATE_DELIMETER = " "
