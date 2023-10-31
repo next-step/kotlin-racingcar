@@ -9,13 +9,13 @@ class RacingcarGameContextTest : FunSpec({
         test("distance changed after some rounds") {
             val car = Car()
             val carMovementManager = CarMovementManager { true }
-            val racingcarGameContext = RacingcarGameContext(
+            val racingcarGameManager = RacingcarGameManager(
                 listOf(car),
                 carMovementManager
             )
 
             for (i: Int in 0..2) {
-                racingcarGameContext.doRound()
+                racingcarGameManager.doRound()
             }
 
             car.getDistance() shouldBe 3
@@ -26,12 +26,12 @@ class RacingcarGameContextTest : FunSpec({
                 Car(1), Car(1)
             )
             val carMovementManager = CarMovementManager { true }
-            val racingcarGameContext = RacingcarGameContext(
+            val racingcarGameManager = RacingcarGameManager(
                 cars,
                 carMovementManager
             )
 
-            val result = racingcarGameContext.getWinners()
+            val result = racingcarGameManager.getWinners()
 
             result.size shouldBe 2
         }

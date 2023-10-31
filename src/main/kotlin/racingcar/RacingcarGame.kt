@@ -1,13 +1,13 @@
 package racingcar
 
 import racingcar.component.CarMovementManager
-import racingcar.component.RacingcarGameContext
+import racingcar.component.RacingcarGameManager
 import racingcar.model.Car
 import racingcar.view.RacingcarGameInputView
 import racingcar.view.RacingcarGameResultView
 
 class RacingcarGame(
-    private val racingcarGameContext: RacingcarGameContext,
+    private val racingcarGameManager: RacingcarGameManager,
     private val carMovementManager: CarMovementManager
 ) {
     fun play() {

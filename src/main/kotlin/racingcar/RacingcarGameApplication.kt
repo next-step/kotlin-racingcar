@@ -1,14 +1,14 @@
 package racingcar
 
 import racingcar.component.CarMovementManager
-import racingcar.component.RacingcarGameContext
+import racingcar.component.RacingcarGameManager
 
 fun main() {
-    val racingcarGameContext = RacingcarGameContext()
+    val racingcarGameManager = RacingcarGameManager()
     val carMovementManager = CarMovementManager()
 
     val application = RacingcarGame(
-        racingcarGameContext = racingcarGameContext,
+        racingcarGameManager = racingcarGameManager,
         carMovementManager = carMovementManager
     )
 
