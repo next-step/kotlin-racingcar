@@ -37,7 +37,6 @@ class OperatorTest {
         assertThat(Operator.isOperatorSymbol(invalidOperator)).isTrue()
     }
 
-
     companion object {
         @JvmStatic
         fun `연산을 한다`() = listOf(
