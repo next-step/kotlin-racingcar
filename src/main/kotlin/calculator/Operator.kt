@@ -1,4 +1,4 @@
-package step2.stringCalculator
+package calculator
 
 enum class Operator(
     val operator: String
