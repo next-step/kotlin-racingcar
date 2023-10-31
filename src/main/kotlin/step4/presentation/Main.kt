@@ -4,6 +4,6 @@ import step4.domain.ConsoleInputSupplier
 import step4.domain.RacingGame
 
 fun main() {
-    val racingGame = RacingGame(InputView(ConsoleInputSupplier()), ResultView)
+    val racingGame = RacingGame(RacingGameInputView(ConsoleInputSupplier()), ResultView)
     racingGame.run()
 }

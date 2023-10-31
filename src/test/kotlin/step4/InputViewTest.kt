@@ -7,16 +7,10 @@ import step4.domain.CarName
 import step4.domain.InputSupplier
 import step4.domain.RacingCar
 import step4.domain.RacingCars
-import step4.presentation.InputView
+import step4.presentation.RacingGameInputView
 import java.lang.IllegalArgumentException
 
 class InputViewTest {
-    private val testInputSupplier1 = object : InputSupplier {
-        override fun read(): String {
-            return "kotlin,pytho,java"
-        }
-    }
-
     @Test
     fun `차 이름들을 적으면 리스트로 뽑아준다`() {
         val testInputSupplier1 = object : InputSupplier {
@@ -25,7 +19,7 @@ class InputViewTest {
             }
         }
 
-        assertThat(InputView(testInputSupplier1).enterCars()).isEqualTo(
+        assertThat(RacingGameInputView(testInputSupplier1).enterCars()).isEqualTo(
             RacingCars(
                 listOf(
                     RacingCar(CarName("kot")),
@@ -44,7 +38,7 @@ class InputViewTest {
             }
         }
 
-        Assertions.assertThatThrownBy { InputView(testInputSupplier).enterCars() }
+        Assertions.assertThatThrownBy { RacingGameInputView(testInputSupplier).enterCars() }
             .isInstanceOf(IllegalArgumentException::class.java)
     }
 }
