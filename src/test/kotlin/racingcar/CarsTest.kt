@@ -3,6 +3,7 @@ package racingcar
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual
 import io.kotest.matchers.shouldBe
+import racingcar.domain.Cars
 
 class CarsTest : BehaviorSpec({
 

@@ -1,4 +1,6 @@
-package racingcar
+package racingcar.domain
+
+import racingcar.util.generate
 
 class Cars(carNames: List<String>) {
 

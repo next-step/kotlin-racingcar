@@ -1,7 +1,7 @@
-import racingcar.Cars
-import racingcar.InputView.inputOperationCar
-import racingcar.InputView.inputRacingCar
-import racingcar.ResultView.printResult
+import racingcar.domain.Cars
+import racingcar.view.InputView.inputOperationCar
+import racingcar.view.InputView.inputRacingCar
+import racingcar.view.ResultView.printResult
 
 fun main() {
     val carNames = inputRacingCar()
