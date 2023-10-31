@@ -11,7 +11,7 @@ object ResultView {
     }
 
     private fun printCarPosition(car: Car) {
-        println(POSITION_DELIMITER.repeat(car.position))
+        println("${car.name} : ${POSITION_DELIMITER.repeat(car.position)}")
     }
 
     fun printResult(cars: List<Car>) {
