@@ -3,14 +3,21 @@ package carRacing.domain
 import carRacing.serviceimpl.SimpleCarController
 
 class Racing {
-    fun start(carCount: Int, tryCount: Int): List<Car> {
-        var carList: List<Car> = SimpleCarController().createCars(carCount)
+
+    private fun getRaceResult(carCount: Int, tryCount: Int): List<Car> {
+        val carList: List<Car> = SimpleCarController().createCars(carCount)
+
+        return start(carList, tryCount)
+    }
+
+    private fun start(carList: List<Car>, tryCount: Int): List<Car> {
+        var copyCarList = carList.toList()
 
         for (i in 0 until tryCount) {
-            carList = process(carList)
+            copyCarList = process(carList)
         }
 
-        return carList
+        return copyCarList
     }
 
     private fun process(carList: List<Car>): List<Car> {
