@@ -1,15 +1,14 @@
 package camp.nextstep.edu.step.racing.ui
 
 import camp.nextstep.edu.step.racing.domain.Car
+import camp.nextstep.edu.step.racing.domain.Cars
 import camp.nextstep.edu.step.racing.domain.Tournament
 
 object ResultView {
 
-    fun disPlayCarMoveResult(cars: List<Car>) {
+    fun disPlayCarMoveResult(cars: Cars) {
         println("치열하게 경쟁중!")
-        cars.forEach { car ->
-            println("${car.displayCarsNameAndPosition()}")
-        }
+        cars.cars.forEach { car -> displayCarsNameAndPosition(car = car) }
         println()
     }
 
@@ -25,6 +24,10 @@ object ResultView {
             println("🥇 공동우승자 우승자: ${car.carName} 축하합니다!")
         }
         println()
+    }
+
+    private fun displayCarsNameAndPosition(car: Car) {
+        println("${car.carName} : ${"-".repeat(car.position)}")
     }
 
 }
