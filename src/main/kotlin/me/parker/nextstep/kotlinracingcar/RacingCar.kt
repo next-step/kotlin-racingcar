@@ -8,8 +8,7 @@ class RacingCar(private val racingGameMoveRule: RacingGameMoveRule) {
     val moveRecords: MutableList<Int> = mutableListOf()
 
     fun moveForward() {
-        if (racingGameMoveRule.isForward())
-            position++
+        if (racingGameMoveRule.isForward()) position++
 
         moveRecords.add(position)
     }
