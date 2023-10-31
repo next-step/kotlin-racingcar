@@ -10,9 +10,9 @@ class Players(val players: List<Car>) {
         }
     }
 
-    fun move(movingStrategy: MovingStrategy?) {
+    fun move(movingStrategy: MovingStrategy) {
         for (player in players) {
-            player.move(movingStrategy!!)
+            player.move(movingStrategy)
         }
     }
 
