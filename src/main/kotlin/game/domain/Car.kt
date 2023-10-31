@@ -6,9 +6,8 @@ class Car private constructor(private var _position: Int = 0, val name: String) 
         get() = _position
 
     fun move(moveCondition: Int) {
-        when {
-            canMove(moveCondition) -> advance()
-        }
+        if (canMove(moveCondition))
+            advance()
     }
 
     fun isSamePosition(position: Int) = this._position == position
