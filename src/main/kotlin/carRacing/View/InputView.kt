@@ -1,15 +1,19 @@
 package carRacing.View
 
+import carRacing.Domain.MessageGenerator
+import carRacing.Enum.ErrorCode
 import java.lang.IllegalStateException
 
 class InputView(private val maxTryCount: Int = 3) {
+
+    private val messageGenerator: MessageGenerator = MessageGenerator()
 
     fun readLineNumber(question: String?, count: Int = 0): Int {
         try {
             val input: String = readLine(question, count)
 
             if (input.toIntOrNull() == null) {
-                throw IllegalArgumentException("숫자를 입력해주세요.")
+                throw IllegalArgumentException(messageGenerator.getErrorMessage(ErrorCode.INPUT_IS_NOT_NUMBER))
             }
 
             return input.toInt()
@@ -22,26 +26,25 @@ class InputView(private val maxTryCount: Int = 3) {
     private fun readLine(question: String?, count: Int = 0): String {
         if (question != null) {
             if (count > 0) {
-                val leftCount: Int = maxTryCount - count
-                println("잘못된 입력입니다. ${leftCount}번 더 입력할 수 있습니다.")
+                val leftCount: String = (maxTryCount - count).toString()
+                println("${messageGenerator.getErrorMessage(ErrorCode.OVER_INPUT_TRY_LEFT, leftCount)}")
             }
 
             println(question)
         }
 
         try {
-            return readlnOrNull() ?: throw IllegalArgumentException("입력값이 없습니다.")
+            return readlnOrNull() ?: throw IllegalArgumentException(messageGenerator.getErrorMessage(ErrorCode.INPUT_EMPTY))
         } catch (wrongInputException: IllegalArgumentException) {
             println(wrongInputException.message)
 
             if (count < this.maxTryCount) {
                 return this.readLine(question, count + 1)
             } else {
-                throw IllegalStateException("입력 횟수를 초과하였습니다.")
+                throw IllegalStateException(messageGenerator.getErrorMessage(ErrorCode.OVER_INPUT_TRY))
             }
         } catch (overTryException: IllegalStateException) {
-            println(overTryException.message)
-            throw IllegalStateException("입력 횟수를 초과하였습니다.")
+            throw IllegalStateException(overTryException.message)
         }
     }
 }

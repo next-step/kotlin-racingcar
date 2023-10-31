@@ -9,11 +9,11 @@ class MessageGenerator {
         var message = errorCode.message
 
         if (getVariableCount(message) != variables.size) {
-            throw IllegalArgumentException("변수의 개수가 일치하지 않습니다.")
+            throw IllegalArgumentException(getErrorMessage(ErrorCode.MISMATCHED_VARIABLE_COUNT))
         }
 
         for ((idx, variable) in variables.withIndex()) {
-            message.replace("[$idx]", variable)
+            message = message.replace("[$idx]", variable)
         }
 
         return message
