@@ -1,10 +1,6 @@
 package racingcar.domain
 
-abstract class RandomGenerator<TYPE>(
-    private val start: TYPE,
-    private val end: TYPE
-) {
-    fun generate() = generate(start, end)
+fun interface RandomGenerator<TYPE> {
 
-    abstract fun generate(start: TYPE, end: TYPE) : TYPE
+    fun apply(start: TYPE, end: TYPE): TYPE
 }
