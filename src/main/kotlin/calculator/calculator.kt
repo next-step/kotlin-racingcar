@@ -1,4 +1,4 @@
-package step2.stringCalculator
+package calculator
 
 val calculateResult = { input: String ->
     var operator = Operator.PLUS

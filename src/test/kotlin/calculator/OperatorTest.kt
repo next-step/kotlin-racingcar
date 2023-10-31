@@ -1,24 +1,27 @@
-package step2.stringCalculator
+package calculator
 
-import org.junit.jupiter.api.Assertions.*
+import calculator.Operator
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class OperatorTest {
     @Test
-    fun isInEnumTest(){
+    fun isInEnumTest() {
         assertEquals(true, Operator.isInEnum("+"))
         assertEquals(false, Operator.isInEnum("%"))
     }
+
     @Test
-    fun fromValueTest(){
+    fun fromValueTest() {
         assertEquals(Operator.PLUS, Operator.fromValue("+"))
         assertEquals(Operator.MINUS, Operator.fromValue("-"))
         assertEquals(Operator.DIVIDE, Operator.fromValue("/"))
         assertEquals(Operator.MULTIPLY, Operator.fromValue("*"))
         assertEquals(null, Operator.fromValue("123"))
     }
+
     @Test
-    fun operateTest(){
+    fun operateTest() {
         assertEquals(3.0, Operator.operate(Operator.PLUS, 1.0, 2.0))
         assertEquals(-1.0, Operator.operate(Operator.MINUS, 1.0, 2.0))
         assertEquals(0.5, Operator.operate(Operator.DIVIDE, 1.0, 2.0))

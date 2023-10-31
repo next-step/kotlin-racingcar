@@ -1,4 +1,4 @@
-package step2.stringCalculator
+package calculator
 
 fun isOdd(number: Int) = number % 2 == 1
 fun isEven(number: Int) = number % 2 == 0

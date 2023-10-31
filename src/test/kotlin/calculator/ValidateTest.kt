@@ -1,5 +1,6 @@
-package step2.stringCalculator
+package calculator
 
+import calculator.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
