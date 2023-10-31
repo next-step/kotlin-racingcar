@@ -4,7 +4,7 @@ import study.racing.strategy.MoveStrategy
 import study.racing.strategy.RandomMoveStrategy
 
 class Cars private constructor(
-    private val cars: List<Car> = listOf(),
+    private val cars: List<Car> = listOf()
 ) : List<Car> by cars {
 
     init {
@@ -14,7 +14,7 @@ class Cars private constructor(
     }
 
     fun moveTheCars() {
-        cars.forEach { car ->
+        this.cars.forEach { car ->
             car.tryMoveTheCar()
         }
     }
@@ -27,15 +27,22 @@ class Cars private constructor(
 
         val maxDistance = findMaxDistance()
 
-        return cars.filter {
+        return this.cars.filter {
             it.getCarDistance() == maxDistance
         }.map {
             it.getCarName()
         }
     }
 
-    private fun findMaxDistance(): Int = cars.maxOf {
+    private fun findMaxDistance(): Int = this.cars.maxOf {
         it.getCarDistance()
+    }
+
+    fun copy(): Cars {
+        return Cars(
+            this.cars.map {
+                it.copy()
+            })
     }
 
     companion object {

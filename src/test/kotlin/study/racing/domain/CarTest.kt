@@ -64,6 +64,25 @@ class CarTest {
         assertThat(actual.getCarDistance()).isEqualTo(expectedDistance)
     }
 
+    @Test
+    fun `자동차 객체를 복사하면 해쉬값이 다르고 값은 같은 객체가 생성된다`() {
+        // Given
+        val strategyDouble = RandomMoveStrategyDouble(true)
+        val originalCar = Car(strategyDouble, CarName("a"))
+
+        // When
+        val copyCar = originalCar.copy()
+
+        // Then
+        assertAll(
+            { assertThat(originalCar).isNotEqualTo(copyCar) },
+            {
+                assertThat(originalCar).usingRecursiveComparison()
+                    .isEqualTo(copyCar)
+            }
+        )
+    }
+
     companion object {
         @JvmStatic
         fun carMovingProvider() = listOf(

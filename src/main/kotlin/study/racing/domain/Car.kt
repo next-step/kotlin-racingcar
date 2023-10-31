@@ -5,11 +5,9 @@ import study.racing.strategy.RandomMoveStrategy
 
 class Car(
     private val strategy: MoveStrategy = RandomMoveStrategy(),
-    name: CarName
-) {
-
+    val carName: CarName,
     val distance: Distance = Distance()
-    val carName: CarName = name
+) {
 
     fun getCarDistance(): Int {
         return this.distance.moveDistance
@@ -23,5 +21,13 @@ class Car(
 
     fun getCarName(): String {
         return this.carName.name
+    }
+
+    fun copy(): Car {
+        return Car(
+            strategy = this.strategy,
+            carName = this.carName,
+            distance = Distance(this.getCarDistance())
+        )
     }
 }

@@ -1,5 +1,7 @@
 package study.racing.process
 
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
@@ -30,5 +32,33 @@ class RacingTest {
             val racing = Racing()
             racing.playRacing("a,b,c,d", roundCount)
         }
+    }
+
+    @Test
+    fun `레이싱 게임 실행시 매라운드 진행상황을 알 수 있다`() {
+        // Given
+        val carNames = "a,b,c,d"
+        val roundCount = 2
+        val racing = Racing()
+
+        // When
+        val actual = racing.playRacing(carNames, roundCount)
+
+        // Then
+        assertThat(actual.size).isEqualTo(roundCount)
+    }
+
+    @Test
+    fun `레이싱 매 라운드별 결과를 정상적으로 복사 되었다면 각각 다른 해쉬값을 가진다`() {
+        // Given
+        val carNames = "a,b,c,d"
+        val roundCount = 2
+        val racing = Racing()
+
+        // When
+        val actual = racing.playRacing(carNames, roundCount)
+
+        // Then
+        assertThat(actual.first().hashCode()).isNotEqualTo(actual.last().hashCode())
     }
 }

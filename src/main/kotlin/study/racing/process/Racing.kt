@@ -2,24 +2,22 @@ package study.racing.process
 
 import study.racing.domain.Cars
 import study.racing.domain.Round
-import study.racing.view.RacingView
 
 class Racing {
 
     fun playRacing(
         carNames: String,
         roundCount: Int
-    ) {
+    ): List<Cars> {
         val round = Round(roundCount)
         val racingCars = Cars.from(carNames)
 
-        RacingView.printRacingGameTitle()
-
+        val copyCars = mutableListOf<Cars>()
         repeat(round.roundCount) {
             racingCars.moveTheCars()
-            RacingView.printRacingResult(racingCars)
+            copyCars.add(racingCars.copy())
         }
 
-        RacingView.printRacingWinner(racingCars.getRacingWinnerNames())
+        return copyCars
     }
 }
