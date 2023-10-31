@@ -13,7 +13,7 @@ class RacingcarGame {
 
         RacingcarGameResultView.printGameStart()
 
-        for (round: Int in 0..input.roundNumber) {
+        repeat(input.roundNumber) {
             manager.doRound()
             RacingcarGameResultView.printCarsDistance(manager.cars)
         }
