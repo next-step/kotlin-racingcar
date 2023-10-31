@@ -22,14 +22,10 @@ class Race(
     }
 
     private fun doRound(): List<Int> {
-        val roundResult = mutableListOf<Int>()
-
-        cars.forEach {
+        return cars.map {
             moveIfCan(it, racePolicy)
-            roundResult.add(it.position)
+            it.position
         }
-
-        return roundResult
     }
 
     private fun moveIfCan(car: Car, racePolicy: RacePolicy) {
@@ -39,20 +35,9 @@ class Race(
     }
 
     private fun getWinners(): List<String> {
-        val winners = mutableListOf<String>()
+        val maxPosition = cars.maxOf { it.position }
 
-        var maxPosition = 0
-
-        cars.forEach {
-            if (it.position > maxPosition) {
-                winners.clear()
-                winners.add(it.name)
-                maxPosition = it.position
-            } else if (it.position == maxPosition) {
-                winners.add(it.name)
-            }
-        }
-
-        return winners
+        return cars.filter { it.position == maxPosition }
+            .map { it.name }
     }
 }

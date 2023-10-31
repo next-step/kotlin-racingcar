@@ -2,8 +2,7 @@ package racingcar.view
 
 object RacingCarResultView {
     fun printResult(result: RacingCarResultDto) {
-        println()
-        println("실행 결과")
+        println("\n실행 결과")
 
         result.resultPerRound
             .forEach { roundResult ->
