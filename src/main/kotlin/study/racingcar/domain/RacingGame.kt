@@ -12,14 +12,14 @@ class RacingGame(
 ) {
     fun run() {
         val input = inputView.getInput()
-        val carTotalNum = input.carTotalNum
+        val carNames = input.carNames
         val tryCount = input.tryCount
 
         val gameRule = FourOrMoreGameRule()
 
         // carTotalNum 만큼 RacingCar 를 생성하고, 초기 포지션 설정 후, 자료구조에 넣어 둔다.
-        val racingCars: List<RacingCar> = List(carTotalNum) { index ->
-            RacingCar((index + 100).toString(), 1)
+        val racingCars: List<RacingCar> = carNames.map { name ->
+            RacingCar(name, 1)
         }
 
         // tryCount 만큼 게임을 수행한다.
@@ -30,5 +30,8 @@ class RacingGame(
 
             outputView.showResult(racingCars)
         }
+
+        // 최종 결과 출력
+        outputView.showWinners(racingCars)
     }
 }

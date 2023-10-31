@@ -7,7 +7,7 @@ package study.racingcar.domain
  *    - 초기 위치보다 뒤로 이동하지는 않는다.
  * */
 data class RacingCar(
-    val id: String,
+    val name: String,
     private var position: Int
 ) {
     val currentPosition: Int
