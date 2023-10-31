@@ -23,8 +23,6 @@ class RacingCarSteps {
     private var moveConditionGenerator: MoveConditionGenerator = FixedMoveConditionGenerator(0)
     private var userInputHandler: UserInputHandler = ConsoleInputHandler()
     private var userOutputHandler: UserOutputHandler = UserMessageDisplay()
-    private var result: String = ""
-    private var advanceCount: Int = 0
     private var history: History = History()
 
     @Given("자동차 이름 {string},{string},{string}를 입력하고")
@@ -50,11 +48,6 @@ class RacingCarSteps {
                 return retryCount.toString()
             }
         }
-    }
-
-    @And("모든 자동차가 전진조건이 고정 {int}라고 가정하고")
-    fun `모든 자동차가 전진조건이 고정 {조건}라고 가정하고`(moveCondition: Int) {
-        moveConditionGenerator = FixedMoveConditionGenerator(moveCondition)
     }
 
     @And("우승자를 저장한다면")
@@ -89,15 +82,6 @@ class RacingCarSteps {
     @When("게임을 진행한다")
     fun `게임을 진행한다`() {
         RacingCarGame(userInputHandler, userOutputHandler, moveConditionGenerator).start()
-    }
-
-    @Then("모든 자동차는 우승자이며 {int}만큼 전진한다")
-    fun `모든 자동차는 우승자이며 {이동거리}만큼 전진한다`(retryCount: Int) {
-        val allMatch = history.rounds.last().stream().allMatch { car -> car.position == retryCount }
-        Assertions.assertAll(
-            { assertThat(history.winners).contains(inputCarName1, inputCarName2, inputCarName3) },
-            { assertThat(allMatch).isTrue() }
-        )
     }
 
     @Then("우승자는 {string}이며 {int}만큼 전진한다")
