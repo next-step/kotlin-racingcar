@@ -2,7 +2,7 @@ package carRacing.domain
 
 import carRacing.service.MovementController
 
-class Car(private val movementController: MovementController, position: Int = 0) {
+class Car(private val movementController: MovementController, position: Int = 1) {
     var position: Int = position
         private set
 
@@ -11,4 +11,6 @@ class Car(private val movementController: MovementController, position: Int = 0)
             position++
         }
     }
+
+    fun getPosition(): String = "-".repeat(position)
 }
