@@ -1,4 +1,4 @@
-package carRacing.Enum
+package carRacing.enum
 
 enum class ErrorCode(val code: Int, val message: String) {
     OVER_INPUT_TRY(1000, "입력 횟수를 초과하였습니다."),

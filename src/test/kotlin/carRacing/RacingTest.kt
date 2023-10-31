@@ -1,7 +1,7 @@
 package carRacing
 
-import carRacing.Domain.Car
-import carRacing.Domain.Racing
+import carRacing.domain.Car
+import carRacing.domain.Racing
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource

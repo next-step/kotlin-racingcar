@@ -1,6 +1,6 @@
-package carRacing.Domain
+package carRacing.domain
 
-import carRacing.Enum.ErrorCode
+import carRacing.enum.ErrorCode
 
 val VARIABLE_PATTERN: Regex = Regex("\\[\\d+\\]")
 

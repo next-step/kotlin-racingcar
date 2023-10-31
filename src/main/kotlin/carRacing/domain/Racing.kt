@@ -1,6 +1,6 @@
-package carRacing.Domain
+package carRacing.domain
 
-import carRacing.ServiceImpl.SimpleCarController
+import carRacing.serviceimpl.SimpleCarController
 
 class Racing {
     fun process(carCount: Int): List<Car> {

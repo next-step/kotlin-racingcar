@@ -1,7 +1,7 @@
-package carRacing.View
+package carRacing.view
 
-import carRacing.Domain.MessageGenerator
-import carRacing.Enum.ErrorCode
+import carRacing.domain.MessageGenerator
+import carRacing.enum.ErrorCode
 import java.lang.IllegalStateException
 
 class InputView(private val maxTryCount: Int = 3) {

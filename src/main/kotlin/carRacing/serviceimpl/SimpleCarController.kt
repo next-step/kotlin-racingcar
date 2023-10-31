@@ -1,7 +1,7 @@
-package carRacing.ServiceImpl
+package carRacing.serviceimpl
 
-import carRacing.Domain.Car
-import carRacing.Service.CarController
+import carRacing.domain.Car
+import carRacing.service.CarController
 
 class SimpleCarController : CarController {
     override fun createCars(carCount: Int): List<Car> = List(carCount) { Car(RandomMovementController()) }

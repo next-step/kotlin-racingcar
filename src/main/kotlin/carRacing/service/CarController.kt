@@ -1,6 +1,6 @@
-package carRacing.Service
+package carRacing.service
 
-import carRacing.Domain.Car
+import carRacing.domain.Car
 
 interface CarController {
     fun createCars(carCount: Int): List<Car>
