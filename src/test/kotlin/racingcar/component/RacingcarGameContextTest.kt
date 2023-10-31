@@ -18,7 +18,7 @@ class RacingcarGameContextTest : FunSpec({
                 racingcarGameContext.doRound()
             }
 
-            car.currentDistance() shouldBe 3
+            car.getDistance() shouldBe 3
         }
 
         test("check multiple winners") {

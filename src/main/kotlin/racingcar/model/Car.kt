@@ -7,7 +7,7 @@ class Car(
         distance += offset
     }
 
-    fun currentDistance(): Int {
+    fun getDistance(): Int {
         return distance
     }
 

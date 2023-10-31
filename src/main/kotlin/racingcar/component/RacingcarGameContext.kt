@@ -14,11 +14,11 @@ class RacingcarGameContext(
 
     fun getWinners(): List<Car> {
         val winnerCar = cars.maxBy {
-            it.currentDistance()
+            it.getDistance()
         }
 
         return cars.filter {
-            it.currentDistance() == winnerCar.currentDistance()
+            it.getDistance() == winnerCar.getDistance()
         }
     }
 
