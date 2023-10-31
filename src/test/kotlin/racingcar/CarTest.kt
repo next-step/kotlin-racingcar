@@ -15,7 +15,6 @@ class CarTest : StringSpec({
         unmockkObject(Random)
     }
 
-
     "전진하는 조건을 만족하면 자동차는 전진한다. " {
         val car = Car.create()
         every { Random.nextInt(Car.getRandomRange()) } returns Car.getMoveThreshold()
