@@ -8,8 +8,6 @@ import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import org.mockito.Mockito.mock
-import org.mockito.kotlin.given
 
 class RacingCarGameTest {
 
@@ -23,9 +21,7 @@ class RacingCarGameTest {
         expect: String
     ) {
         // given
-        val userInputHandler = mock(UserInputHandler::class.java)
-        given(userInputHandler.askForCarNames()).willReturn("pobi,crong,honux")
-        given(userInputHandler.askForRetryCount()).willReturn(retryCount.toString())
+        val userInputHandler = TestUserInputHandler("pobi,crong,honux", retryCount.toString())
 
         var expectHistory = History()
         val userOutputHandler = UserOutputHandler { history -> expectHistory = history }
@@ -52,6 +48,16 @@ class RacingCarGameTest {
             val condition = conditions[currentIndex]
             currentIndex = (currentIndex + 1) % conditions.size
             return condition
+        }
+    }
+
+    class TestUserInputHandler(private val carNames: String, private val retryCount: String) : UserInputHandler {
+        override fun askForCarNames(): String {
+            return carNames
+        }
+
+        override fun askForRetryCount(): String {
+            return retryCount
         }
     }
 }

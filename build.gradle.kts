@@ -16,7 +16,6 @@ dependencies {
     testImplementation("io.kotest", "kotest-runner-junit5", "5.3.2")
     testImplementation("io.cucumber", "cucumber-java", "7.14.0")
     testImplementation("io.cucumber", "cucumber-junit", "7.14.0")
-    testImplementation("org.mockito.kotlin", "mockito-kotlin", "5.1.0")
 }
 
 tasks {
