@@ -28,15 +28,13 @@ class UserMessageDisplayTest {
     fun displayHistory() {
         // given
         val userMessageDisplay = UserMessageDisplay()
+        var history = History()
+        history = history.addRound(listOf(Car.of("a", 1), Car.of("b", 1)))
+        history = history.addRound(listOf(Car.of("a", 1), Car.of("b", 2)))
+        history = history.setWinners(listOf("b"))
 
         // when
-        userMessageDisplay.displayHistory(
-            History().apply {
-                addRound(listOf(Car.of("a", 1), Car.of("b", 1)))
-                addRound(listOf(Car.of("a", 1), Car.of("b", 2)))
-                setWinners(listOf("b"))
-            }
-        )
+        userMessageDisplay.displayHistory(history)
 
         // then
         assertThat(outputStreamCaptor.toString().trim()).isEqualTo(

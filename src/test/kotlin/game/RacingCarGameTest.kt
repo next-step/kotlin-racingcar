@@ -28,11 +28,7 @@ class RacingCarGameTest {
         given(userInputHandler.askForRetryCount()).willReturn(retryCount.toString())
 
         var expectHistory = History()
-        val userOutputHandler = UserOutputHandler { history ->
-            history.rounds.lastIndex.let {
-                expectHistory = history
-            }
-        }
+        val userOutputHandler = UserOutputHandler { history -> expectHistory = history }
 
         val moveConditionGenerator = CyclingMoveConditionGenerator(pobiCondition, crongCondition, honuxCondition)
 

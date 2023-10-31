@@ -11,14 +11,14 @@ class HistoryTest {
         val history = History()
 
         // when
-        history.addRound(listOf(Car.of("a"), Car.of("b")))
+        val newHistory = history.addRound(listOf(Car.of("a"), Car.of("b")))
 
         // then
         assertAll(
-            { assert(history.rounds.size == 1) },
-            { assert(history.rounds[0].size == 2) },
-            { assert(history.rounds[0][0].name == "a") },
-            { assert(history.rounds[0][1].name == "b") }
+            { assert(newHistory.rounds.size == 1) },
+            { assert(newHistory.rounds[0].size == 2) },
+            { assert(newHistory.rounds[0][0].name == "a") },
+            { assert(newHistory.rounds[0][1].name == "b") }
         )
     }
 
@@ -28,13 +28,13 @@ class HistoryTest {
         val history = History()
 
         // when
-        history.setWinners(listOf("a", "b"))
+        val newHistory = history.setWinners(listOf("a", "b"))
 
         // then
         assertAll(
-            { assert(history.winners.size == 2) },
-            { assert(history.winners[0] == "a") },
-            { assert(history.winners[1] == "b") }
+            { assert(newHistory.winners.size == 2) },
+            { assert(newHistory.winners[0] == "a") },
+            { assert(newHistory.winners[1] == "b") }
         )
     }
 }

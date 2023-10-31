@@ -12,10 +12,10 @@ class CarFleet private constructor(
         var history = History()
         repeat(retryCount) {
             advanceAll()
-            history.addRound(cars)
+            history = history.addRound(cars)
         }
         val winner = winnerFinder.findWinner(cars)
-        history.setWinners(winner)
+        history = history.setWinners(winner)
         return history
     }
 
