@@ -22,7 +22,7 @@ object ResultView {
     }
 
     private fun print(car: Car): String {
-        return car.carName + SEMICOLON + HYPHEN.repeat(car.position)
+        return car.name + SEMICOLON + HYPHEN.repeat(car.position)
     }
 
     private fun printWinner(winners: List<String>) {

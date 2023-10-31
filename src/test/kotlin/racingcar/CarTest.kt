@@ -1,9 +1,17 @@
 package racingcar
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 
 class CarTest : FunSpec({
+
+    test("자동차 이름은 5자 이하만 가능합니다.") {
+        val exception = shouldThrow<IllegalArgumentException> {
+            Car("car1234")
+        }
+        exception.message shouldBe "자동차 이름은 5자 이하만 가능합니다."
+    }
 
     test("자동차를 움직인다") {
         val car = Car("car1")
