@@ -1,9 +1,11 @@
 package racingCar.domain
 
+private const val INIT_POSITION = 1
 private const val MOVE_MINIMUM_POWER = 4
 
 class Car(
-    position: CarPosition = CarPosition(1)
+    val name: CarName,
+    position: CarPosition = CarPosition(INIT_POSITION)
 ) {
 
     var position: CarPosition = position

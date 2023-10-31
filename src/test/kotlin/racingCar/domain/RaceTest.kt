@@ -8,7 +8,7 @@ import racingCar.helper.RaceFixture
 class RaceTest : DescribeSpec({
 
     describe("start") {
-        val car = Car(position = CarPosition(2))
+        val car = Car(name = CarName("테스트"), position = CarPosition(2))
 
         val race = Race(
             tryCount = TryCount(2),
