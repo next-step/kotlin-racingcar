@@ -22,10 +22,10 @@ class BasicOperationsCalculatorTest {
         assertAll(
             {
                 when (symbol) {
-                    "+" -> assertThat(result).isEqualTo(firstNum + secondNum)
-                    "-" -> assertThat(result).isEqualTo(firstNum - secondNum)
-                    "*" -> assertThat(result).isEqualTo(firstNum * secondNum)
-                    "/" -> assertThat(result).isEqualTo(firstNum / secondNum)
+                    "+" -> assertThat(result).isEqualTo(15.0)
+                    "-" -> assertThat(result).isEqualTo(5.0)
+                    "*" -> assertThat(result).isEqualTo(50.0)
+                    "/" -> assertThat(result).isEqualTo(2.0)
                 }
             }
         )

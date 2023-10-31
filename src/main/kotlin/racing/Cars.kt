@@ -1,13 +1,30 @@
 package racing
 
-class Cars(private val carNumber: Int) {
+class Cars {
+    val carList: List<Car>
+    constructor(carList: List<Car>) {
+        this.carList = carList
+    }
 
-    val carList: List<Car> = List(carNumber) { Car() }
+    constructor(carNumber: Int) {
+        this.carList = List(carNumber) { Car() }
+    }
 
-    fun moveAll(){
-        for (car in carList) {
-            car.moveForward()
+    constructor(carNames: String) {
+        this.carList = carNames.split(",")
+            .map { Car(name = it) }
+    }
+
+    fun moveAll(moveProvider: () -> Int) {
+        carList.forEach { car ->
+            val moveSteps = moveProvider()
+            car.moveForward(moveSteps)
         }
     }
 
+    fun getWinner(): List<Car> {
+        val maxPosition = carList.maxByOrNull { it.currentPosition }?.currentPosition
+        return carList.filter { it.currentPosition == maxPosition }
+    }
 }
+
