@@ -2,7 +2,7 @@ package racingcar.view
 
 import racingcar.model.RacingcarGameInput
 
-class RacingcarGameInputView {
+object RacingcarGameInputView {
     fun getInput(): RacingcarGameInput {
         val carNumber = getInput("자동차 대수는 몇 대인가요?")?.toIntOrNull()
 

@@ -2,7 +2,7 @@ package racingcar.view
 
 import racingcar.model.Car
 
-class RacingcarGameResultView {
+object RacingcarGameResultView {
     fun printCarsDistance(cars: List<Car>) {
         cars.forEach { printCarDistance(it) }
         println()

@@ -7,7 +7,7 @@ import racingcar.view.RacingcarGameResultView
 
 class RacingcarGame {
     fun play() {
-        val input = inputView.getInput()
+        val input = RacingcarGameInputView.getInput()
 
         val manager = createRacingcarGameContext(input)
 
@@ -15,16 +15,11 @@ class RacingcarGame {
 
         for (round: Int in 0..input.roundNumber) {
             manager.doRound()
-            resultView.printCarsDistance(manager.cars)
+            RacingcarGameResultView.printCarsDistance(manager.cars)
         }
     }
 
     private fun createRacingcarGameContext(input: RacingcarGameInput): RacingcarGameContext {
         return RacingcarGameContext.create(input)
-    }
-
-    companion object {
-        private val inputView: RacingcarGameInputView = RacingcarGameInputView()
-        private val resultView: RacingcarGameResultView = RacingcarGameResultView()
     }
 }
