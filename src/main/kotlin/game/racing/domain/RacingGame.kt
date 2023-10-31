@@ -11,6 +11,7 @@ class RacingGame(private val racingManager: RacingManager, private val tryNumber
             racingManager.moveCars(List(racingManager.cars.size) { getRandomValue() })
             ResultView.printResult(racingManager.cars)
         }
+        ResultView.printWinner(racingManager.getWinners())
     }
 }
 
