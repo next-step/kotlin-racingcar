@@ -10,10 +10,12 @@ class CarNames(private val value: String) {
      *    - 이름은 중복될 수 없다. (사용자 정의)
      *    - 자동차 이름의 길이는 5자 이하이어야 한다.
      *    - 자동차 대수와 시도 횟수는 1 이상이어야 한다. (사용자 정의)
+     *    - 자동차 이름은 공백이 될 수 없다. (사용자 정의)
      * @throws IllegalArgumentException 입력 값이 null 이거나 적절한 정수형의 숫자가 아닌 경우
      * */
     fun getProperFormatCarNames(): List<String> {
         val carNames = value.split(",")
+
         if (carNames.isEmpty()) {
             throw IllegalArgumentException("자동차 대수는 1 이상이어야 합니다.")
         }
@@ -24,6 +26,10 @@ class CarNames(private val value: String) {
 
         if (carNames.size != carNames.distinct().size) {
             throw IllegalArgumentException("자동차 이름은 중복될 수 없습니다.")
+        }
+
+        if (carNames[0].isBlank()) {
+            throw IllegalArgumentException("자동차 이름은 공백이 될 수 없습니다.")
         }
 
         return carNames
