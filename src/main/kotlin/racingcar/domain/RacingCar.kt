@@ -1,6 +1,9 @@
 package racingcar.domain
 
-class RacingCar(private var gameRule: GameRule = RandomGameRule) {
+class RacingCar(
+    val nickname: Nickname,
+    private var gameRule: GameRule = RandomGameRule
+) {
 
     var position: Position = Position()
         private set
@@ -14,7 +17,7 @@ class RacingCar(private var gameRule: GameRule = RandomGameRule) {
         this.position.plus(direction.position)
     }
 
-    fun copy(): RacingCar = RacingCar(this.gameRule).apply {
+    fun copy(): RacingCar = RacingCar(this.nickname, this.gameRule).apply {
         this.position = Position(this@RacingCar.position.value)
     }
 }
