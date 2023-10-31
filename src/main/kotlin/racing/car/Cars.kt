@@ -1,4 +1,4 @@
-package racing
+package racing.car
 
 import racing.moveprovider.MoveProvider
 

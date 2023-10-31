@@ -1,4 +1,4 @@
-package racing
+package racing.car
 
 class Car(private var position: Int = START_POSITION, val name: String = "kotlin") {
     val currentPosition: Int

@@ -1,5 +1,6 @@
 package racing
 
+import racing.car.Cars
 import racing.moveprovider.RandomMoveProvider
 
 class CarRace {

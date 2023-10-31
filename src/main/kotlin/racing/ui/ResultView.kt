@@ -1,6 +1,6 @@
 package racing.ui
 
-import racing.Cars
+import racing.car.Cars
 
 class ResultView {
     fun makeResultView(cars: Cars) {

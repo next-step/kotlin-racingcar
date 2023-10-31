@@ -2,6 +2,7 @@ package racing
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
+import racing.car.Car
 
 class CarTest : BehaviorSpec({
     var car = Car()
