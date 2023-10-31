@@ -5,15 +5,18 @@ import me.parker.nextstep.kotlinracingcar.rule.RacingGameMoveRule
 class RacingCar(private val racingGameMoveRule: RacingGameMoveRule) {
     var position: Int = 0
         private set
-    val moveRecords: MutableList<Int> = mutableListOf()
 
     fun moveForward() {
         if (racingGameMoveRule.isForward()) position++
-
-        moveRecords.add(position)
     }
 
     override fun toString(): String {
         return "RacingCar(position=$position)"
+    }
+
+    fun copy(): RacingCar {
+        val racingCar = RacingCar(racingGameMoveRule)
+        racingCar.position = position
+        return racingCar
     }
 }

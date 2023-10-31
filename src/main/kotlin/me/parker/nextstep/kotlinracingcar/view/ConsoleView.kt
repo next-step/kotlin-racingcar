@@ -1,6 +1,7 @@
 package me.parker.nextstep.kotlinracingcar.view
 
-import me.parker.nextstep.kotlinracingcar.RacingCar
+import me.parker.nextstep.kotlinracingcar.RacingCarGameRound
+import me.parker.nextstep.kotlinracingcar.RacingGame
 
 object ConsoleView {
     fun inputNumOfRacingCar(): Int {
@@ -15,24 +16,23 @@ object ConsoleView {
         return readln().toInt()
     }
 
-    fun outputResult(numOfRacingCar: Int, numOfAttempts: Int, movedRacingCars: List<RacingCar>) {
+    fun outputResult(racingGame: RacingGame, racingCarGameRounds: List<RacingCarGameRound>) {
         println()
         println("실행 결과")
-        for (attempt in 0 until numOfAttempts) {
-            printCurrentRacingCars(numOfRacingCar, movedRacingCars, attempt)
+        for (attempt in 0 until racingGame.numOfAttempts) {
+            printCurrentRacingCars(racingGame.numOfRacingCar, racingCarGameRounds[attempt])
 
             println("==============================")
         }
-        print("Result: $movedRacingCars")
+        print("Result: ${racingGame.resultOfRacingCars}")
     }
 
     private fun printCurrentRacingCars(
         numOfRacingCar: Int,
-        movedRacingCars: List<RacingCar>,
-        attempt: Int
+        racingCarGameRound: RacingCarGameRound,
     ) {
         for (i in 0 until numOfRacingCar) {
-            println("-".repeat(movedRacingCars[i].moveRecords[attempt]))
+            println("-".repeat(racingCarGameRound.currentRacingCars[i].position))
         }
     }
 }

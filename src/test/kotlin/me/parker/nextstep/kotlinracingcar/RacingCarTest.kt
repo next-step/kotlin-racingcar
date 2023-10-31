@@ -34,20 +34,21 @@ class RacingCarTest {
     }
 
     @Test
-    fun `자동차는 이동할 때마다 자신의 기록을 담는다`() {
+    fun `copy시 같은 정보의 다른 객체를 반환`() {
         val racingCar = RacingCar(TestRacingGameMoveRule(true))
 
+        val copiedRacingCar = racingCar.copy()
+
+        assertThat(racingCar).isNotSameAs(copiedRacingCar)
+        assertThat(racingCar.position).isEqualTo(copiedRacingCar.position)
+
         racingCar.moveForward()
 
-        assertThat(racingCar.position).isEqualTo(1)
-        assertThat(racingCar.moveRecords).hasSize(1)
-        assertThat(racingCar.moveRecords[0]).isEqualTo(1)
+        val copiedRacingCar2 = racingCar.copy()
 
-        racingCar.moveForward()
-
-        assertThat(racingCar.position).isEqualTo(2)
-        assertThat(racingCar.moveRecords).hasSize(2)
-        assertThat(racingCar.moveRecords[0]).isEqualTo(1)
-        assertThat(racingCar.moveRecords[1]).isEqualTo(2)
+        assertThat(racingCar).isNotSameAs(copiedRacingCar2)
+        assertThat(racingCar.position).isEqualTo(copiedRacingCar2.position)
+        assertThat(copiedRacingCar).isNotSameAs(copiedRacingCar2)
+        assertThat(copiedRacingCar.position + 1).isEqualTo(copiedRacingCar2.position)
     }
 }

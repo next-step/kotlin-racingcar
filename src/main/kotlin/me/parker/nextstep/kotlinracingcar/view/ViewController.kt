@@ -8,7 +8,7 @@ fun main(args: Array<String>) {
     val numOfAttempts: Int = ConsoleView.inputNumOfAttempts()
 
     val racingGame = RacingGame(numOfRacingCar, numOfAttempts, RandomRacingGameMoveRule())
-    val movedRacingCars = racingGame.start()
+    val racingCarGameRounds = racingGame.start()
 
-    ConsoleView.outputResult(numOfRacingCar, numOfAttempts, movedRacingCars)
+    ConsoleView.outputResult(racingGame, racingCarGameRounds)
 }

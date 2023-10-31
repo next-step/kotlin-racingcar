@@ -17,31 +17,41 @@ class RacingGameTest {
     }
 
     @Test
-    fun `레이싱 게임을 시작하면, 그 결과로 전체 자동차를 반환`() {
+    fun `레이싱 게임을 시작하면, 그 결과로 전체 라운드들을 반환`() {
         val racingGame = RacingGame(3, 5, RandomRacingGameMoveRule())
 
-        val movedRacingCars = racingGame.start()
+        val racingCarRecords = racingGame.start()
 
-        assertThat(movedRacingCars).hasSize(3)
+        assertThat(racingCarRecords).hasSize(5)
     }
 
     @Test
-    fun `레이싱 게임을 시작하면, 그 결과로 전체 자동차를 반환 - 전체 자동차가 모두 5번 앞으로 이동`() {
-        val racingGame = RacingGame(3, 5, TestRacingGameMoveRule(true))
+    fun `레이싱 게임을 시작하면, 그 결과로 전체 라운드들을 반환 - 전체 자동차가 모두 5번 앞으로 이동`() {
+        val numOfAttempts = 5
+        val racingGame = RacingGame(3, numOfAttempts, TestRacingGameMoveRule(true))
 
-        val movedRacingCars = racingGame.start()
+        val racingCarRecords = racingGame.start()
 
-        assertThat(movedRacingCars).hasSize(3)
-        movedRacingCars.forEach { assertThat(it.position).isEqualTo(5) }
+        assertThat(racingCarRecords).hasSize(5)
+        for (attempt in 0 until numOfAttempts) {
+            val currentRound = racingCarRecords[attempt]
+            assertThat(currentRound.roundNumber).isEqualTo(attempt + 1)
+            currentRound.currentRacingCars.forEach { assertThat(it.position).isEqualTo(attempt + 1) }
+        }
     }
 
     @Test
-    fun `레이싱 게임을 시작하면, 그 결과로 전체 자동차를 반환 - 전체 자동차가 모든 시도에서 정지`() {
+    fun `레이싱 게임을 시작하면, 그 결과로 전체 라운드들을 반환 - 전체 자동차가 모든 시도에서 정지`() {
+        val numOfAttempts = 5
         val racingGame = RacingGame(3, 5, TestRacingGameMoveRule(false))
 
-        val movedRacingCars = racingGame.start()
+        val racingCarRecords = racingGame.start()
 
-        assertThat(movedRacingCars).hasSize(3)
-        movedRacingCars.forEach { assertThat(it.position).isEqualTo(0) }
+        assertThat(racingCarRecords).hasSize(5)
+        for (attempt in 0 until numOfAttempts) {
+            val currentRound = racingCarRecords[attempt]
+            assertThat(currentRound.roundNumber).isEqualTo(attempt + 1)
+            currentRound.currentRacingCars.forEach { assertThat(it.position).isEqualTo(0) }
+        }
     }
 }

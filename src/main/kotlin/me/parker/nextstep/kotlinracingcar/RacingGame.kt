@@ -6,13 +6,24 @@ class RacingGame(
     val numOfRacingCar: Int, val numOfAttempts: Int,
     private val racingGameMoveRule: RacingGameMoveRule
 ) {
-    fun start(): List<RacingCar> {
-        val racingCar = List(numOfRacingCar) { RacingCar(racingGameMoveRule) }
+    var resultOfRacingCars: List<RacingCar> = emptyList()
+        private set
 
+    fun start(): List<RacingCarGameRound> {
+        resultOfRacingCars = List(numOfRacingCar) { RacingCar(racingGameMoveRule) }
+
+        val racingCarGameRound: MutableList<RacingCarGameRound> = mutableListOf()
+        var round = 1
         repeat(numOfAttempts) {
-            racingCar.forEach { it.moveForward() }
+            val movedRacingCars: MutableList<RacingCar> = mutableListOf()
+            resultOfRacingCars.forEach {
+                it.moveForward()
+                movedRacingCars.add(it.copy())
+            }
+
+            racingCarGameRound.add(RacingCarGameRound(round++, movedRacingCars))
         }
 
-        return racingCar
+        return racingCarGameRound
     }
 }
