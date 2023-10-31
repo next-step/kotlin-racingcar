@@ -1,5 +1,6 @@
 package racingcar.view
 
+import racingcar.model.Car
 import racingcar.model.RacingHistory
 
 object ResultView {
@@ -12,6 +13,11 @@ object ResultView {
             racingHistory.cars.forEach { printResult(it.name, it.position) }
             println()
         }
+    }
+
+    fun printWinner(cars: List<Car>) {
+        val names = cars.map { it.name }
+        println("${names.joinToString(separator = ", ")}가 최종 우승했습니다.")
     }
 
     private fun printResult(name: String, count: Int) {

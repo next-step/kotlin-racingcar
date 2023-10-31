@@ -6,19 +6,13 @@ class RacingCarGame(
     val cars: List<Car>,
     private val strategy: MovingStrategy,
 ) {
-    fun run(numbersOfTry: Int): List<RacingHistory> {
-        val racingHistories = mutableListOf<RacingHistory>()
-        for (i in 1..numbersOfTry) {
-            val carHistories = mutableListOf<Car>()
-            cars.forEach {
-                it.stepForward(strategy.canMove())
-                val movedCar = Car(it.name)
-                movedCar.moveTo(it.position)
-                carHistories.add(movedCar)
-            }
-            racingHistories.add(RacingHistory(i, carHistories))
-        }
+    fun run(numbersOfTry: Int): List<RacingHistory> =
+        List(numbersOfTry) { index -> RacingHistory(index, processOneStep()) }
 
-        return racingHistories
+    private fun processOneStep(): List<Car> {
+        return cars.map {
+            it.stepForward(strategy.canMove())
+            it.copy()
+        }
     }
 }

@@ -8,7 +8,7 @@ class RacingCarGameTest {
     @Test
     fun `1회 전진 시 RacingCarGame에 참가한 Car들이 모두 1칸 전진한다`() {
         // given
-        val cars = arrayListOf(Car("myCar"), Car("secondCar"))
+        val cars = arrayListOf(Car("car1"), Car("car2"))
         val strategy = FakeMovingStrategy(true)
         val racingCarGame = RacingCarGame(cars, strategy)
         // when
@@ -21,7 +21,7 @@ class RacingCarGameTest {
     }
 
     @Test
-    fun `시행 횟수만큼 RacingHistory 가 생성된다`() {
+    fun `RacingHistory의 round는 0부터 총 횟수 - 1 까지 생성된다`() {
         // given
         val cars = arrayListOf(Car("myCar"))
         val strategy = FakeMovingStrategy(true)
@@ -31,6 +31,7 @@ class RacingCarGameTest {
         val racingHistories = racingCarGame.run(numbersOfTry)
         // then
         assertThat(racingHistories.size).isEqualTo(numbersOfTry)
-        assertThat(racingHistories.last().round).isEqualTo(numbersOfTry)
+        assertThat(racingHistories.first().round).isEqualTo(0)
+        assertThat(racingHistories.last().round).isEqualTo(numbersOfTry - 1)
     }
 }

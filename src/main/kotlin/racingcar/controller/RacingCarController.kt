@@ -1,6 +1,6 @@
 package racingcar.controller
 
-import racingcar.model.CarInitializer
+import racingcar.model.CarUtil
 import racingcar.model.RacingCarGame
 import racingcar.strategy.MovingStrategy
 import racingcar.strategy.RandomNumberMovingStrategy
@@ -10,12 +10,13 @@ import racingcar.view.ResultView
 class RacingCarController {
     fun startGame() {
         val strategy: MovingStrategy = RandomNumberMovingStrategy()
-        val numbersOfCar = InputView.getNumbersOfCars()
+        val namesOfCars = InputView.getNamesOfCars()
         val numbersOfTry = InputView.getNumbersOfTry()
-        val cars = CarInitializer.createCars(numbersOfCar)
+        val cars = CarUtil.createCars(namesOfCars)
         val game = RacingCarGame(cars, strategy)
         ResultView.printInitial()
         val racingHistories = game.run(numbersOfTry)
         ResultView.printResult(racingHistories)
+        ResultView.printWinner(CarUtil.getWinner(racingHistories))
     }
 }
