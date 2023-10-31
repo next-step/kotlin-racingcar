@@ -1,7 +1,7 @@
 package step4.domain
 
 data class RacingCar(
-    val name: String,
+    val carName: CarName,
     var moveCount: Int = 0
 ) {
     fun tryMoving(moveStrategy: MoveStrategy) {

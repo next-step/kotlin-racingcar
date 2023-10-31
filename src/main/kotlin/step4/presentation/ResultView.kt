@@ -12,7 +12,7 @@ object ResultView {
     }
 
     fun getCarMoveView(car: RacingCar): String {
-        return "${car.name} : ${visualizeMoveCount(car.moveCount)}"
+        return "${car.carName.name} : ${visualizeMoveCount(car.moveCount)}"
     }
 
     private fun visualizeMoveCount(moveCount: Int): String {
@@ -26,7 +26,7 @@ object ResultView {
     fun getFinalResultView(winnerList: List<RacingCar>): String {
         return StringBuilder().apply {
             winnerList.forEachIndexed { index, car ->
-                append(car.name)
+                append(car.carName.name)
                 append(getCommaIfNotLast(index != winnerList.size - 1))
             }
             append("가 최종 우승했습니다.")

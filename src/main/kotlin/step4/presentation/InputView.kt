@@ -1,5 +1,6 @@
 package step4.presentation
 
+import step4.domain.CarName
 import step4.domain.InputSupplier
 import step4.domain.RacingCar
 import step4.domain.RacingCars
@@ -11,7 +12,7 @@ class InputView(private val inputSupplier: InputSupplier) {
     }
 
     private fun parseLine(line: String): List<RacingCar> {
-        return line.split(",").map { RacingCar(it) }
+        return line.split(",").map { RacingCar(CarName(it)) }
     }
 
     fun enterTryCount(): Int {
