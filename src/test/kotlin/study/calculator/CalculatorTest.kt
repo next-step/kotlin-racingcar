@@ -1,6 +1,6 @@
-package study
+package study.calculator
 
-import Calculator
+import calculator.Calculator
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -8,24 +8,11 @@ import org.junit.jupiter.params.provider.MethodSource
 
 class CalculatorTest {
 
-    companion object {
-        @JvmStatic
-        fun calculateTestData() = listOf(
-            arrayOf("2 + 3 * 4 / 2", 10.0f),
-            arrayOf("4 - 1 + 3 * 2", 12.0f),
-            arrayOf("19 * 2 + 18 - 20", 36.0f),
-            arrayOf("3 / 2", 1.5f)
-        )
-    }
-
     @ParameterizedTest
     @MethodSource("calculateTestData")
-    fun `Calculator()를 생성하고, 올바른 수식을 calculate()에 넣어 호출하면, 올바른 결과값이 나온다`(formula: String, expected: Float) {
-        // given : Calculator()를 생성한다.
-        val calculator = Calculator()
-
+    fun `, 올바른 수식을 Calculator의 calculate()에 넣어 호출하면, 올바른 결과값이 나온다`(formula: String, expected: String) {
         // when : 올바른 수식을 calculate()에 넣어 호출한다.
-        val actual = calculator.calculate(formula)
+        val actual = Calculator.calculate(formula)
 
         // then : 올바른 결과값이 나온다.
         assertThat(actual).isEqualTo(expected)
@@ -45,5 +32,15 @@ class CalculatorTest {
             strA = strA.substring(0, strA.length - 2)
         }
         println(strA)
+    }
+
+    companion object {
+        @JvmStatic
+        fun calculateTestData() = listOf(
+            arrayOf("2 + 3 * 4 / 2", "10"),
+            arrayOf("4 - 1 + 3 * 2", "12"),
+            arrayOf("19 * 2 + 18 - 20", "36"),
+            arrayOf("3 / 2", "1.5")
+        )
     }
 }

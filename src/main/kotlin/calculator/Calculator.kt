@@ -1,13 +1,12 @@
-class Calculator {
+package calculator
 
-    companion object {
-        const val OPERATION_COMPONENT_INTERVAL = 2
-        const val UNNECESSARY_DECIMAL = '0'
-        const val DECIMAL_LENGTH = 2
-    }
+object Calculator {
+    private const val OPERATION_COMPONENT_INTERVAL = 2
+    private const val UNNECESSARY_DECIMAL = '0'
+    private const val DECIMAL_LENGTH = 2
 
     fun calculate(formula: String): String {
-        val formulaComponents = FormulaParser().parse(formula)
+        val formulaComponents = FormulaParser.parse(formula)
 
         val result = calculateResult(formulaComponents)
 
