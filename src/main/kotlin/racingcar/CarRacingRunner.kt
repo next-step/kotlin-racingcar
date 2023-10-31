@@ -1,7 +1,9 @@
 package racingcar
 
+import racingcar.domain.car.Car
 import racingcar.domain.configuration.CarRacingConfiguration
 import racingcar.domain.game.CarRacingGame
+import racingcar.domain.result.CarRacingReferee
 import racingcar.domain.result.CarRacingResult
 import racingcar.domain.rule.MoveRule
 import racingcar.domain.rule.RandomMoveRule
@@ -15,10 +17,11 @@ object CarRacingRunner {
         val configuration = createConfiguration(input)
         val game = setGame(configuration)
         val result = game.run()
-        drawOutput(result)
+        val winner = CarRacingReferee.getWinners(result)
+        drawOutput(result, winner)
     }
 
-    private fun getInput(): CarRacingInput = CarRacingInputView.getInputForStart()
+    private fun getInput(): CarRacingInput = CarRacingInputView.getInput()
 
     private fun createConfiguration(input: CarRacingInput): CarRacingConfiguration =
         CarRacingConfiguration.of(input)
@@ -46,7 +49,8 @@ object CarRacingRunner {
 
     private fun drawOutput(
         result: List<CarRacingResult>,
+        winners: List<Car>,
     ) {
-        CarRacingOutputView.draw(result)
+        CarRacingOutputView.draw(result, winners.map { it.name })
     }
 }

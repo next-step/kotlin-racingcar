@@ -1,7 +1,7 @@
 package racingcar.domain.car
 
 class Car(
-    val order: Int,
+    val name: CarName,
     position: Int = 0,
 ) {
     var position: Int = position
@@ -12,7 +12,7 @@ class Car(
     }
 
     fun capture(): Car = Car(
-        order = order,
+        name = name,
         position = position,
     )
 }
