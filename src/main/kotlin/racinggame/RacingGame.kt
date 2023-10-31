@@ -22,7 +22,7 @@ class RacingGame(
 
     fun getWinners() = cars.sortedByDescending { car ->
         car.position
-    }.let { sortedCars ->
+    }.also { sortedCars ->
         getJointWinner(sortedCars)
     }.let {
         PlayWinners(it)
