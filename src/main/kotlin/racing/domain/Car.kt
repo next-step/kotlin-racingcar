@@ -1,7 +1,7 @@
 package racing.domain
 
-class Car(val _location: Location = Location()) {
-    var location: Location = _location
+class Car(val name: CarName, location: Location = Location()) {
+    var location: Location = location
         private set
 
     fun move(movingStrategy: MovingStrategy) {
@@ -16,10 +16,10 @@ class Car(val _location: Location = Location()) {
 
         other as Car
 
-        return location == other.location
+        return name == other.name
     }
 
     override fun hashCode(): Int {
-        return location.hashCode()
+        return name.hashCode()
     }
 }

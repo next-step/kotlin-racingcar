@@ -1,6 +1,7 @@
 package racing.ui
 
 import racing.domain.Car
+import racing.domain.Location
 
 object OutputView {
     private const val ERROR_MESSAGE = "[ERROR]"
@@ -11,14 +12,14 @@ object OutputView {
 
     fun printResultPerRace(cars: List<Car>) {
         for (car in cars) {
-            System.out.printf("%s\n", locationToRoad(car.location.location))
+            println("%s: %s".format(car.name, locationToRoad(car.location)))
         }
         println()
     }
 
-    private fun locationToRoad(location: Int): String {
+    private fun locationToRoad(location: Location): String {
         val stringBuilder = StringBuilder()
-        for (i in 0 until location) {
+        for (i in 0 until location.location) {
             stringBuilder.append(ROAD)
         }
         return stringBuilder.toString()

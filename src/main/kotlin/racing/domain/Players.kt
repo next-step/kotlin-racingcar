@@ -2,11 +2,14 @@ package racing.domain
 
 class Players(val players: List<Car>) {
 
-    constructor(playerCount: Int) : this(createPlayerList(playerCount))
+    constructor(players: String) : this(createPlayerList(players))
 
     companion object {
-        private fun createPlayerList(playerCount: Int): List<Car> {
-            return List(playerCount) { Car() }
+        private const val PLAYER_SEPARATOR = ","
+
+        private fun createPlayerList(players: String): List<Car> {
+            val split = players.split(PLAYER_SEPARATOR)
+            return split.fold(ArrayList()) { acc, s -> acc.add(Car(CarName(s))); acc }
         }
     }
 
