@@ -19,4 +19,14 @@ class PlayersTest : StringSpec({
         players.players[2].name shouldBe CarName("honux")
         players.players[3].name shouldBe CarName("jk")
     }
+
+    "우승자 확인" {
+        val players = Players(listOf(Car("pobi", 1), Car("crong", 2), Car("honux", 3)))
+        players.winners shouldBe listOf(Car("honux", 3))
+    }
+
+    "공동 우승자 확인" {
+        val players = Players(listOf(Car("pobi", 1), Car("crong", 2), Car("honux", 2)))
+        players.winners shouldBe listOf(Car("crong", 2), Car("honux", 2))
+    }
 })

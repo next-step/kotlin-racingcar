@@ -1,7 +1,9 @@
 package racing.ui
 
 import racing.domain.Car
+import racing.domain.CarName
 import racing.domain.Location
+import java.util.StringJoiner
 
 object OutputView {
     private const val ERROR_MESSAGE = "[ERROR]"
@@ -27,5 +29,13 @@ object OutputView {
 
     fun printIllegalArgumentException(e: IllegalArgumentException) {
         System.out.printf("%s%s\n", ERROR_MESSAGE, e.message)
+    }
+
+    fun printWinner(winners: List<CarName>) {
+        val stringJoiner = StringJoiner(",")
+        for (winner in winners) {
+            stringJoiner.add(winner.name)
+        }
+        println("최종 우승자 : %s".format(stringJoiner.toString()))
     }
 }

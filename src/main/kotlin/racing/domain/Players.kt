@@ -2,6 +2,12 @@ package racing.domain
 
 class Players(val players: List<Car>) {
 
+    val winners: List<Car>
+        get() {
+            val maxLocation = players.maxOf { it.location.location }
+            return players.filter { it.location.location == maxLocation }
+        }
+
     constructor(players: String) : this(createPlayerList(players))
 
     companion object {
