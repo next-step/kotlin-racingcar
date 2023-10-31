@@ -8,8 +8,16 @@ import study.racingcar.domain.RacingCar
 class OutputView {
     fun showResult(racingCars: List<RacingCar>) {
         racingCars.forEach {
-            println("${it.id} : ${"-".repeat(it.currentPosition)}")
+            println("${it.name} : ${"-".repeat(it.currentPosition)}")
         }
         println()
+    }
+
+    fun showWinners(racingCars: List<RacingCar>) {
+        val winner = racingCars.maxBy { it.currentPosition }!!
+        racingCars
+            .filter { it.currentPosition == winner.currentPosition }
+            .joinToString(",") { it.name }
+            .let { println("$it 가 최종 우승했습니다.") }
     }
 }
