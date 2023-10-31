@@ -1,29 +1,37 @@
 package game.domain
 
 class CarFleet private constructor(
-    private var _cars: List<Car>,
+    var cars: List<Car> = listOf(),
     private val moveConditionGenerator: MoveConditionGenerator = RandomMoveConditionGenerator(),
     private val winnerFinder: WinnerFinder = DefaultWinnerFinder()
 ) {
-    val cars: List<Car>
-        get() = _cars.toList()
 
     fun advance(retryCount: Int): History {
         var history = History()
+        var carFleet = this
         repeat(retryCount) {
-            advanceAll()
-            history = history.addRound(cars)
+            carFleet = carFleet.advanceAll()
+            history = history.addRound(carFleet.cars)
         }
-        val winner = winnerFinder.findWinner(cars)
+        val winner = winnerFinder.findWinner(carFleet.cars)
         history = history.setWinners(winner)
         return history
     }
 
-    private fun advanceAll() {
-        _cars = _cars.map { car -> car.move(moveConditionGenerator.generate()) }
+    private fun advanceAll(): CarFleet {
+        val carList = cars.map { car -> car.move(moveConditionGenerator.generate()) }
+        return of(carList, moveConditionGenerator, winnerFinder)
     }
 
     companion object {
+        fun of(
+            cars: List<Car>,
+            moveConditionGenerator: MoveConditionGenerator,
+            winnerFinder: WinnerFinder
+        ): CarFleet {
+            return CarFleet(cars, moveConditionGenerator, winnerFinder)
+        }
+
         fun of(carNames: List<String>, moveConditionGenerator: MoveConditionGenerator): CarFleet {
             return CarFleet(carNames.map { Car.of(it) }, moveConditionGenerator)
         }

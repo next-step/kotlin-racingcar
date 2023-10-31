@@ -2,6 +2,7 @@ package scenario.steps
 
 import game.RacingCarGame
 import game.domain.FixedMoveConditionGenerator
+import game.domain.History
 import game.domain.MoveConditionGenerator
 import game.view.ConsoleInputHandler
 import game.view.UserInputHandler
@@ -24,6 +25,7 @@ class RacingCarSteps {
     private var userOutputHandler: UserOutputHandler = UserMessageDisplay()
     private var result: String = ""
     private var advanceCount: Int = 0
+    private var history: History = History()
 
     @Given("자동차 이름 {string},{string},{string}를 입력하고")
     fun `자동차 이름 {CarName1},{CarName2},{CarName3}를 입력하고`(
@@ -58,10 +60,7 @@ class RacingCarSteps {
     @And("우승자를 저장한다면")
     fun `우승자를 저장한다면`() {
         userOutputHandler = UserOutputHandler { history ->
-            history.rounds.lastIndex.let { it ->
-                advanceCount = history.rounds[it].maxOf { it.position }
-            }
-            result = history.winners.joinToString()
+            this.history = history
         }
     }
 
@@ -89,24 +88,23 @@ class RacingCarSteps {
 
     @When("게임을 진행한다")
     fun `게임을 진행한다`() {
-        RacingCarGame(userInputHandler, userOutputHandler, moveConditionGenerator).let {
-            it.start()
-        }
+        RacingCarGame(userInputHandler, userOutputHandler, moveConditionGenerator).start()
     }
 
     @Then("모든 자동차는 우승자이며 {int}만큼 전진한다")
     fun `모든 자동차는 우승자이며 {이동거리}만큼 전진한다`(retryCount: Int) {
+        val allMatch = history.rounds.last().stream().allMatch { car -> car.position == retryCount }
         Assertions.assertAll(
-            { assertThat(result).contains(inputCarName1, inputCarName2, inputCarName3) },
-            { assertThat(advanceCount).isEqualTo(retryCount) }
+            { assertThat(history.winners).contains(inputCarName1, inputCarName2, inputCarName3) },
+            { assertThat(allMatch).isTrue() }
         )
     }
 
     @Then("우승자는 {string}이며 {int}만큼 전진한다")
     fun `우승자는 {우승자}"이며 {이동거리}만큼 전진한다`(winner: String, retryCount: Int) {
         Assertions.assertAll(
-            { assertThat(result).contains(winner.split(",")) },
-            { assertThat(advanceCount).isEqualTo(retryCount) }
+            { assertThat(history.winners.joinToString()).contains(winner.split(",")) },
+            { assertThat(history.rounds.size).isEqualTo(retryCount) }
         )
     }
 }
