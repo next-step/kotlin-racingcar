@@ -2,7 +2,6 @@ package step4
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
-import step4.domain.FixedStrategy
 import step4.domain.RacingCar
 
 class RacingCarTest {
