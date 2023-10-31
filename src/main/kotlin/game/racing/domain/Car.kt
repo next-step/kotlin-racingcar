@@ -1,6 +1,9 @@
 package game.racing.domain
 
-class Car(val name: String, var position: Int = MIN_POSITION) {
+class Car(val name: String) {
+    var position = MIN_POSITION
+        private set
+
     init {
         require(name.length in MIN_CAR_NAME_LENGTH..MAX_CAR_NAME_LENGTH) { NOT_VALID_CAR_NAME_MESSAGE }
     }
