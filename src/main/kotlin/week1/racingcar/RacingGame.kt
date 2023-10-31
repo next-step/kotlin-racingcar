@@ -4,12 +4,16 @@ import kotlin.random.Random
 
 class RacingGame {
 
-    fun start() {
-        InputView().startInput().also { result ->
-            val cars = result.cars.map { Car(it) }
-            val timesToRace = result.timesToRace
-            race(cars, timesToRace)
+    fun getInputResult(): InputResult {
+        return InputView().let {
+            it.getValidateRaceInfo(it.startInput())
         }
+    }
+
+    fun startGame(inputResult: InputResult) {
+        val cars = inputResult.cars.map { Car(it) }
+        val timesToRace = inputResult.timesToRace
+        race(cars, timesToRace)
     }
 
     private fun race(cars: List<Car>, timesToRace: Int) {
@@ -51,5 +55,8 @@ class RacingGame {
 }
 
 fun main() {
-    RacingGame().start()
+    RacingGame().run {
+        val info = getInputResult()
+        startGame(info)
+    }
 }
