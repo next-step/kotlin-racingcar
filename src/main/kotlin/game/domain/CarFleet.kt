@@ -3,14 +3,10 @@ package game.domain
 class CarFleet private constructor(
     private val _cars: List<Car>,
     private val moveConditionGenerator: MoveConditionGenerator = RandomMoveConditionGenerator(),
+    private val winnerFinder: WinnerFinder = DefaultWinnerFinder()
 ) {
     val cars: List<Car>
         get() = _cars.toList()
-
-    fun findWinner(): List<String> {
-        val maxPosition = cars.maxOf { it.position }
-        return cars.filter { it.isSamePosition(maxPosition) }.map { it.name }
-    }
 
     fun advance(retryCount: Int): History {
         var history = History()
@@ -18,7 +14,8 @@ class CarFleet private constructor(
             advanceAll()
             history.addRound(cars)
         }
-        history.setWinners(findWinner())
+        val winner = winnerFinder.findWinner(cars)
+        history.setWinners(winner)
         return history
     }
 
