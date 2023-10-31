@@ -2,8 +2,8 @@ package carRacing.model
 
 import carRacing.RaceRuleType
 
-data class CarData(val name: String = "", val curPosition: Int)
-data class RaceResult(val round: Int, val carData: List<CarData>)
+data class CarStatus(val name: String = "", val curPosition: Int)
+data class RaceResult(val round: Int, val CarStatus: List<CarStatus>)
 
 class RaceOrganizer(private val cars: List<Car>) {
     private var results: MutableList<RaceResult> = mutableListOf();
@@ -14,7 +14,7 @@ class RaceOrganizer(private val cars: List<Car>) {
     fun startRace(tryCount: Int, rule: RaceRuleType) {
         for (i in 0 until tryCount) {
             tryRound(cars, rule)
-            val result = RaceResult(round = i + 1, carData = cars.map { CarData(curPosition = it.getCurPosition(), name = it.getCarName()) })
+            val result = RaceResult(round = i + 1, CarStatus = cars.map { CarStatus(curPosition = it.curPosition, name = it.carName) })
             results.add(result)
         }
     }

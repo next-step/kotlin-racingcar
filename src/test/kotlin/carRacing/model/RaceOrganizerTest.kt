@@ -13,7 +13,7 @@ class RaceOrganizerTest : BehaviorSpec({
             }
             Then("5라운드 때 stevy 차량의 위치는 5여야 한다") {
                 raceOrganizer.getRaceResult()
-                    .first { it.round == 5 }.carData.first { it.name === "stevy" }.curPosition shouldBe 5
+                    .first { it.round == 5 }.CarStatus.first { it.name === "stevy" }.curPosition shouldBe 5
             }
         }
     }
