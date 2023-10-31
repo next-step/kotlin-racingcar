@@ -1,7 +1,7 @@
 package racingcar.domain
 
 class RacingCar(
-    var nickname: Nickname,
+    val nickname: Nickname,
     private var gameRule: GameRule = RandomGameRule
 ) {
 

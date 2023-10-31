@@ -22,7 +22,7 @@ class RoundTest : ExpectSpec({
 
     expect("총 라운드가 종료되면 isFinished 는 true 를 반환한다.") {
         val gameRound = GameRound(2)
-        val cars = listOf(RacingCar())
+        val cars = listOf(RacingCar(Nickname("test")))
 
         gameRound.next(cars)
         gameRound.next(cars)
@@ -32,7 +32,7 @@ class RoundTest : ExpectSpec({
 
     expect("총 라운드가 종료되지 않으면 isFinished 는 flase 를 반환한다.") {
         val gameRound = GameRound(2)
-        val cars = listOf(RacingCar())
+        val cars = listOf(RacingCar(Nickname("test")))
 
         gameRound.next(cars)
 
@@ -42,7 +42,7 @@ class RoundTest : ExpectSpec({
     expect("라운드 결과는 라운드 진행 횟수만큼 기록된다.") {
         val totalRound = 10
         val gameRound = GameRound(totalRound)
-        val cars = listOf(RacingCar())
+        val cars = listOf(RacingCar(Nickname("test")))
 
         repeat(totalRound) { gameRound.next(cars) }
 

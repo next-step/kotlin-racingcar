@@ -19,4 +19,5 @@ fun main(args: Array<String>) {
     racingCarGame.start()
 
     ResultView.writeRoundResults(racingCarGame.getRoundResults())
+    ResultView.writeWinners(racingCarGame.getWinners())
 }

@@ -3,8 +3,8 @@ package racingcar.domain
 class GameRound(val totalRound: Int) {
 
     private var progressRound: Int = 1
-    private val _results: MutableList<GameRoundResult> = mutableListOf()
 
+    private val _results: MutableList<GameRoundResult> = mutableListOf()
     val results: List<GameRoundResult>
         get() = this._results
 
