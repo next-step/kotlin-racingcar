@@ -11,7 +11,7 @@ object ResultView {
         println(RESULT_TITLE)
         gameRoundResults.forEach { roundResult ->
             roundResult.cars.forEach {
-                println(CAR_POSITION_INDICATOR.repeat(it.position.value))
+                println("${it.nickname.value} : ${CAR_POSITION_INDICATOR.repeat(it.position.value)}")
             }
             println()
         }
