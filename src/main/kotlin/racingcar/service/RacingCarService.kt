@@ -1,27 +1,28 @@
 package racingcar.service
 
 import racingcar.domain.Cars
+import racingcar.dto.CarsDto
 import racingcar.dto.RacingCarResult
 
 class RacingCarService(private val carName: List<String>, private val operateCount: Int) {
 
     fun startRacing(): RacingCarResult {
         val cars = Cars(carName)
-        val (carsList, winners) = racingOperation(cars)
-        return RacingCarResult(carsList, winners)
+        val (carsDto, winners) = racingOperation(cars)
+        return RacingCarResult(carsDto, winners)
     }
 
-    private fun racingOperation(cars: Cars): Pair<List<Cars>, List<String>> {
-        val carsList = mutableListOf<Cars>()
+    private fun racingOperation(cars: Cars): Pair<List<CarsDto>, List<String>> {
+        val carsDto = mutableListOf<CarsDto>()
         repeat(operateCount) {
-            carsList.add(cars.operateCars())
+            carsDto.add(CarsDto(cars.operateCars().carList))
         }
-        return Pair(carsList, findWinner(carsList.last()))
+        return Pair(carsDto, findWinner(carsDto.last()))
     }
 
-    private fun findWinner(cars: Cars): List<String> {
-        val carList = cars.carList
-        val maxPosition = carList.maxOf { it.position }
-        return carList.filter { it.position == maxPosition }.map { it.name }
+    private fun findWinner(carsDto: CarsDto): List<String> {
+        val cars = carsDto.cars
+        val maxPosition = cars.maxOf { it.position }
+        return cars.filter { it.position == maxPosition }.map { it.name }
     }
 }

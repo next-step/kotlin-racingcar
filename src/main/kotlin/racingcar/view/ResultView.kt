@@ -1,7 +1,8 @@
 package racingcar.view
 
 import racingcar.domain.Car
-import racingcar.domain.Cars
+import racingcar.dto.CarsDto
+import racingcar.dto.RacingCarResult
 
 object ResultView {
 
@@ -9,19 +10,25 @@ object ResultView {
     private const val RESULT = "실행 결과"
     private const val SEMICOLON = " : "
 
-    fun printResult(cars: Cars, operationCount: Int) {
+    fun printResult(racingCarResult: RacingCarResult) {
+        val carsList = racingCarResult.carsList
+        val winners = racingCarResult.winners
         println(RESULT)
-        repeat(operationCount) {
-            cars.operateCars()
-            printCarResult(cars.carList)
-        }
-        printWinner(cars.isWinner())
+        printCarsResult(carsList)
+        printWinner(winners)
     }
-    private fun printCarResult(cars: List<Car>) {
-        cars.forEach { car ->
-            println(print(car))
+
+    private fun printCarsResult(cars: List<CarsDto>) {
+        cars.forEach {
+            printCarResult(it.cars)
+            println()
         }
-        println()
+    }
+
+    private fun printCarResult(cars: List<Car>) {
+        cars.forEach {
+            println(print(it))
+        }
     }
 
     private fun print(car: Car): String {

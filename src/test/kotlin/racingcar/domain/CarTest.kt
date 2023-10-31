@@ -3,7 +3,6 @@ package racingcar.domain
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
-import racingcar.domain.Car
 import racingcar.util.generate
 
 class CarTest : FunSpec({
