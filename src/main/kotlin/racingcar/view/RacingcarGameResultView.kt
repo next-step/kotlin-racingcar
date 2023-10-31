@@ -3,6 +3,10 @@ package racingcar.view
 import racingcar.model.Car
 
 object RacingcarGameResultView {
+    fun printGameStart() {
+        println("실행 결과")
+    }
+
     fun printCarsDistance(cars: List<Car>) {
         cars.forEach { printCarDistance(it) }
         println()

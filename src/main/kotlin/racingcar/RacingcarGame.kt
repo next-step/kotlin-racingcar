@@ -11,7 +11,7 @@ class RacingcarGame {
 
         val manager = createRacingcarGameContext(input)
 
-        println("실행 결과")
+        RacingcarGameResultView.printGameStart()
 
         for (round: Int in 0..input.roundNumber) {
             manager.doRound()
