@@ -1,9 +1,23 @@
 package race
 
-class SimpleCar(private var location: String = "") {
-    fun getCurrentlocation() = location
+import java.lang.IllegalArgumentException
 
-    fun move() {
-        if ((0..9).random() > 3) location += "-"
+class SimpleCar(val name: String) {
+    private var location = 0
+
+    init {
+        if (name.length > 5) {
+            throw IllegalArgumentException("자동차 이름은 5자를 초과할 수 없습니다")
+        }
+    }
+
+    fun getLocation() = location
+
+    fun move(value: Int) {
+        if (value >= MOVE_THRESHOLD) location++
+    }
+
+    companion object {
+        const val MOVE_THRESHOLD = 4
     }
 }
