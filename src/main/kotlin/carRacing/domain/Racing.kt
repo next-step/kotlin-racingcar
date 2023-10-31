@@ -1,12 +1,12 @@
 package carRacing.domain
 
-import carRacing.serviceimpl.SimpleCarController
+import carRacing.service.CarController
 import carRacing.view.OutputView
 
-class Racing {
+class Racing(private val carController: CarController) {
 
     fun getRaceResult(carCount: Int, tryCount: Int): List<Car> {
-        val carList: List<Car> = SimpleCarController().createCars(carCount)
+        val carList: List<Car> = carController.createCars(carCount)
 
         return start(carList, tryCount)
     }

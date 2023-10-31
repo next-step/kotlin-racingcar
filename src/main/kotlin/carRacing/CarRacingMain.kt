@@ -1,11 +1,10 @@
 package carRacing
 
-import carRacing.domain.Car
 import carRacing.domain.MessageGenerator
 import carRacing.domain.Racing
 import carRacing.enum.Message
+import carRacing.serviceimpl.SimpleCarController
 import carRacing.view.InputView
-import carRacing.view.OutputView
 
 fun main() {
     val inputView = InputView()
@@ -18,6 +17,6 @@ fun main() {
     println()
     println(messageGenerator.getMessage(Message.RESULT))
 
-    val racing = Racing()
+    val racing = Racing(SimpleCarController())
     racing.getRaceResult(carCount, tryCount)
 }
