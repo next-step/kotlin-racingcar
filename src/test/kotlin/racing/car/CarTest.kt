@@ -10,14 +10,14 @@ class CarTest : BehaviorSpec({
         `when`("RadomInt 가 4 보다 작을 때에는") {
             car.moveForward(3)
             then("정지") {
-                car.currentPosition shouldBe 1
+                car.position shouldBe 1
             }
         }
 
         `when`("RandomInt 가 4 이상일 때에는") {
             car.moveForward(5)
             then("전진") {
-                car.currentPosition shouldBe 2
+                car.position shouldBe 2
             }
         }
     }

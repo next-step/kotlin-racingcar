@@ -13,7 +13,7 @@ class Cars(val carList: List<Car>) {
     }
 
     fun getWinner(): List<Car> {
-        val maxPosition = carList.maxByOrNull { it.currentPosition }?.currentPosition
-        return carList.filter { it.currentPosition == maxPosition }
+        val maxPosition = carList.maxByOrNull { it.position }?.position
+        return carList.filter { it.position == maxPosition }
     }
 }

@@ -12,7 +12,7 @@ class CarsTest : BehaviorSpec({
             cars.moveAll(StopMoveProvider())
             then("모두 함께 정지한다.") {
                 cars.carList.forEach { car ->
-                    car.currentPosition shouldBe 1
+                    car.position shouldBe 1
                 }
             }
         }
@@ -21,7 +21,7 @@ class CarsTest : BehaviorSpec({
             cars.moveAll(MoveForwardProvider())
             then("모두 함께 움직인다.") {
                 cars.carList.forEach { car ->
-                    car.currentPosition shouldBe 2
+                    car.position shouldBe 2
                 }
             }
         }
@@ -35,7 +35,7 @@ class CarsTest : BehaviorSpec({
             val winner: List<Car> = cars.getWinner()
             then("position 이 5인 객체들이다.") {
                 winner.forEach { car ->
-                    car.currentPosition shouldBe 5
+                    car.position shouldBe 5
                 }
             }
         }

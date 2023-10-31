@@ -7,7 +7,7 @@ class ResultView {
     fun makeResultView(cars: Cars) {
         val carList = cars.carList
         carList.forEach { car ->
-            val positionGraph = "-".repeat(car.currentPosition)
+            val positionGraph = "-".repeat(car.position)
             println("${car.name} : $positionGraph")
         }
         println()
@@ -16,7 +16,7 @@ class ResultView {
     fun makeResultViewWithName(cars: Cars) {
         val carList = cars.carList
         carList.forEach { car ->
-            val positionGraph = "-".repeat(car.currentPosition)
+            val positionGraph = "-".repeat(car.position)
             println("${car.name} : $positionGraph")
         }
         println()

@@ -1,12 +1,11 @@
 package racing.car
 
-class Car(private var position: Int = START_POSITION, val name: String = "kotlin") {
-    val currentPosition: Int
-        get() = position
-
+class Car(position: Int = START_POSITION, val name: String = "kotlin") {
+    var position: Int = position
+        private set
     fun moveForward(forwardSteps: Int) {
         if (forwardSteps >= 4) {
-            position += 1
+            this.position += 1
         }
     }
 
