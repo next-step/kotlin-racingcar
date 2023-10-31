@@ -8,61 +8,72 @@ import io.kotest.matchers.shouldBe
  * */
 class RacingCarTest: FunSpec({
 
-    test("자동차 대수나 횟수를 입력하지 않은 경우 에러가 발생하는지 확인한다") {
-        RacingCar.errorCheck("")
+    test("자동차 게임 시작 파라미터의 자동차 대수와 라운드 횟수에 문자열을 전달할 경우 예외를 던진다.") {
+        RacingGame.run("", "") { }
     }
 
-    test("자동차 대수나 횟수에 문자를 입력하는 경우 에러가 발생하는지 확인한다") {
-        RacingCar.errorCheck("셋")
+    test("자동차 게임 시작 파라미터의 자동차 대수에 빈문자열을 입력하는 경우 예외를 던진다.") {
+        RacingGame.run("", "1") { }
     }
 
-    test("자동차 대수나 횟수를 0으로 입력하는 경우 에러가 발생하는지 확인한다") {
-        RacingCar.errorCheck("0")
+    test("자동차 게임 시작 파라미터의 라운드 횟수에 빈문자열을 입력하는 경우 예외를 던진다.") {
+        RacingGame.run("1", "") { }
     }
 
-    test("자동차 대수나 횟수를 음수로 입력하는 경우 에러가 발생하는지 확인한다") {
-        RacingCar.errorCheck("-1")
+    test("자동차 게임 시작 파라미터의 자동차 대수에 유효하지 않은 문자를 입력하는 경우 예외를 던진다.") {
+        RacingGame.run("일", "1") { }
     }
 
-    test("자동차 대수나 횟수를 2147483647 보다 높게 입력하는 경우 에러가 발생하는지 확인한다") {
-        RacingCar.errorCheck("2147483648")
+    test("자동차 게임 시작 파라미터의 라운드 횟수에 유효하지 않은 문자를 입력하는 경우 예외를 던진다.") {
+        RacingGame.run("1", "ㅁ") { }
     }
 
-    test("자동차 대수나 횟수를 2147483647 보다 낮게 입력하는 경우 정상 동작을 하는지 확인한다") {
-        RacingCar.errorCheck("1")
-        RacingCar.errorCheck("128367")
-        RacingCar.errorCheck("2147483646")
+    test("자동차 게임 시작 파라미터의 자동차 대수와 라운드 횟수에 숫자 0을 전달할 경우 예외를 던진다.") {
+        RacingGame.run("0", "0") { }
     }
 
-    test("0이상 4이하 일 때 false(대기)로 나오는지 확인한다") {
+    test("자동차 게임 시작 파라미터의 자동차 대수에 숫자 0을 전달할 경우 예외를 던진다.") {
+        RacingGame.run("0", "1") { }
+    }
+
+    test("자동차 게임 시작 파라미터의 라운드 횟수에 숫자 0을 전달할 경우 예외를 던진다.") {
+        RacingGame.run("1", "0") { }
+    }
+
+    test("자동차 게임 시작 파라미터의 자동차 대수에 음수를 전달할 경우 예외를 던진다.") {
+        RacingGame.run("-1", "1") { }
+    }
+
+    test("자동차 게임 시작 파라미터의 라운드 횟수에 음수를 전달할 경우 예외를 던진다.") {
+        RacingGame.run("1", "-1") { }
+    }
+
+    test("자동차를 움직일 때 무작위 값이 0미만 이라면 예외를 던진다.") {
+        val car = Car(0)
+        car.move(-1)
+        car.position shouldBe 0
+    }
+
+    test("자동차를 움직일 때 무작위 값이 9초과 라면 예외를 던진다.") {
+        val car = Car(0)
+        car.move(10)
+        car.position shouldBe 0
+    }
+
+    test("자동차를 움직일 때 무작위 값이 0이상 3이하 라면 정지로 나와야 한다") {
         (0 until 4).forEach {
-            RacingCar.isAdvance(it) shouldBe false
+            val car = Car(0)
+            car.move(it)
+            car.position shouldBe 0
         }
     }
 
-    test("5이상 9이하 일 때 true(전진)로 나오는지 확인한다") {
+    test("자동차를 움직일 때 무작위 값이 4이상 9이하 라면 전진으로 나와야 한다") {
         (5 until 9).forEach {
-            RacingCar.isAdvance(it) shouldBe true
+            val car = Car(0)
+            car.move(it)
+            car.position shouldBe 1
         }
-    }
-
-    test("자동차 레이싱 1 라운드 실행시 결과 값에 1이 추가 되었는지 확인한다") {
-        val list = listOf(listOf(1), listOf(1), listOf(1))
-        val resultList = RacingCar.playRound(list)
-        resultList[0].size shouldBe 2
-        resultList[1].size shouldBe 2
-        resultList[2].size shouldBe 2
-    }
-
-    test("자동차 레이싱 20 라운드 실행시 결과 값에 20이 추가 되었는지 확인한다") {
-        val list = listOf(listOf(1), listOf(1), listOf(1))
-        var resultList: List<List<Int>> = list
-        repeat(20) {
-            resultList = RacingCar.playRound(resultList)
-        }
-        resultList[0].size shouldBe 21
-        resultList[1].size shouldBe 21
-        resultList[2].size shouldBe 21
     }
 
 })
