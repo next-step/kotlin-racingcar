@@ -11,7 +11,7 @@ object OutputView {
 
     fun printResultPerRace(cars: List<Car>) {
         for (car in cars) {
-            System.out.printf("%s\n", locationToRoad(car.location))
+            System.out.printf("%s\n", locationToRoad(car.location.location))
         }
         println()
     }

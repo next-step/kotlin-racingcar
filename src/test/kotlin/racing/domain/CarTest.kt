@@ -8,6 +8,6 @@ class CarTest : StringSpec({
         val car = Car()
         val movingStrategy = AlwaysMovingStrategy()
         car.move(movingStrategy)
-        Assertions.assertThat(car.location).isEqualTo(1)
+        Assertions.assertThat(car.location.location).isEqualTo(1)
     }
 })

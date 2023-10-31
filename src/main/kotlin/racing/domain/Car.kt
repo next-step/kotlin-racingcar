@@ -1,9 +1,12 @@
 package racing.domain
 
-class Car(private var _location: Location = Location()) {
+class Car(val _location: Location = Location()) {
+    var location: Location = _location
+        private set
+
     fun move(movingStrategy: MovingStrategy) {
         if (movingStrategy.isMovable()) {
-            _location = _location.add()
+            location = location.add()
         }
     }
 
@@ -13,13 +16,10 @@ class Car(private var _location: Location = Location()) {
 
         other as Car
 
-        return _location == other._location
+        return location == other.location
     }
 
     override fun hashCode(): Int {
-        return _location.hashCode()
+        return location.hashCode()
     }
-
-    val location: Int
-        get() = _location.location
 }
