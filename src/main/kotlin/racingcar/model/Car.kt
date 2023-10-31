@@ -10,19 +10,7 @@ class Car(
         return position
     }
 
-    fun generateResult(): CharSequence {
-        return StringBuilder().apply {
-            repeat(position.toInt()) {
-                append(ROAD)
-            }
-        }
-    }
-
     fun getPosition(): Long {
         return position
-    }
-
-    companion object {
-        const val ROAD = "-"
     }
 }

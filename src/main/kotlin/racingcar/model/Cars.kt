@@ -15,8 +15,4 @@ class Cars(
     fun getCars(): List<Car> {
         return cars
     }
-
-    fun generateResult(): String {
-        return cars.joinToString(separator = "\n") { it.generateResult() }
-    }
 }

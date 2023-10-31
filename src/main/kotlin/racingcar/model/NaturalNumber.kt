@@ -1,6 +1,7 @@
 package racingcar.model
 
-class NaturalNumber(val number: Int) {
+@JvmInline
+value class NaturalNumber(val number: Int) {
 
     init {
         validateNumber(number)
