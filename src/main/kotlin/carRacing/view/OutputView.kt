@@ -9,9 +9,15 @@ class OutputView {
 
     fun printMessagesInBox(vararg messages: String) {
         println("====================================")
+        printMessages(*messages)
+        println("====================================")
+    }
+
+    fun printMessages(vararg messages: String) {
         for (message in messages) {
             println(message)
         }
-        println("====================================")
+
+        println()
     }
 }
