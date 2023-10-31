@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource
 class BasicOperationsCalculatorTest {
 
     @ParameterizedTest()
-    @CsvSource("10.0,5.0,+,15.0", "10.0,5.0,-,5.0",  "10.0,5.0,*,50.0",  "10.0,5.0,/,2.0")
+    @CsvSource("10.0,5.0,+,15.0", "10.0,5.0,-,5.0", "10.0,5.0,*,50.0", "10.0,5.0,/,2.0")
     fun operation(firstNum: Double, secondNum: Double, symbol: String, expected: Double) {
         // given when
         val basicOperationsCalculator = BasicOperationsCalculator()

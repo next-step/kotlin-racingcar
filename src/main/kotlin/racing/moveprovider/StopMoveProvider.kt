@@ -1,6 +1,6 @@
 package racing.moveprovider
 
-class StopMoveProvider: MoveProvider {
+class StopMoveProvider : MoveProvider {
     override fun getMove(): Int {
         return 0
     }

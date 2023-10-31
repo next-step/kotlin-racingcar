@@ -5,7 +5,7 @@ import io.kotest.matchers.shouldBe
 import racing.moveprovider.MoveForwardProvider
 import racing.moveprovider.StopMoveProvider
 
-class CarsTest : BehaviorSpec ({
+class CarsTest : BehaviorSpec({
     given("Cars 객체는") {
         val cars = Cars(3)
         `when`("4 미만의 일정한 값이 주어졌을 때") {
@@ -17,9 +17,9 @@ class CarsTest : BehaviorSpec ({
             }
         }
 
-        `when`("4 이상의 일정한 값이 주어졌을 때"){
+        `when`("4 이상의 일정한 값이 주어졌을 때") {
             cars.moveAll(MoveForwardProvider())
-            then("모두 함께 움직인다."){
+            then("모두 함께 움직인다.") {
                 cars.carList.forEach { car ->
                     car.currentPosition shouldBe 2
                 }
@@ -39,7 +39,5 @@ class CarsTest : BehaviorSpec ({
                 }
             }
         }
-
     }
-
 })
