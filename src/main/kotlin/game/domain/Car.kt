@@ -1,26 +1,19 @@
 package game.domain
 
-class Car private constructor(private var _position: Int = 0, val name: String) {
+class Car private constructor(val position: Int = 0, val name: String) {
 
-    val position: Int
-        get() = _position
-
-    fun move(moveCondition: Int) {
-        if (canMove(moveCondition))
-            advance()
+    fun move(moveCondition: Int): Car {
+        return when (canMove(moveCondition)) {
+            true -> advance()
+            false -> this
+        }
     }
 
-    fun isSamePosition(position: Int) = this._position == position
+    fun isSamePosition(position: Int) = this.position == position
 
-    private fun advance() {
-        _position += 1
-    }
+    private fun advance(): Car = Car(position + 1, name)
 
     private fun canMove(moveCondition: Int) = moveCondition in 4..9
-
-    fun copy(): Car {
-        return Car(_position, name)
-    }
 
     companion object {
 

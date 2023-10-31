@@ -16,7 +16,7 @@ class CarTest {
         var car = Car.of("honux")
 
         // when
-        car.move(moveCondition)
+        car = car.move(moveCondition)
 
         // then
         assertThat(car.isSamePosition(1)).isTrue()
@@ -40,7 +40,7 @@ class CarTest {
     fun `자동차 위치와 비교하여 같으면 true를 반환하고 다르면 false를 반환한다`(position: Int, expected: Boolean) {
         // given
         var car = Car.of("honux")
-        car.move(advanceCount)
+        car = car.move(advanceCount)
 
         // when
         val actual = car.isSamePosition(position)

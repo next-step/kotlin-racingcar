@@ -20,12 +20,10 @@ class CarFleetTest {
         val carFleet = CarFleet.from(cars, FixedMoveConditionGenerator(advance))
 
         // when
-        carFleet.advance(retryCount)
+        val history = carFleet.advance(retryCount)
 
         // then
-        assertThat(pobi.position).isEqualTo(retryCount)
-        assertThat(crong.position).isEqualTo(retryCount)
-        assertThat(honux.position).isEqualTo(retryCount)
+        assertThat(history.rounds.size).isEqualTo(retryCount)
     }
 
     @Test

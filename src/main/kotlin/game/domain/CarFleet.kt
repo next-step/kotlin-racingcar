@@ -1,7 +1,7 @@
 package game.domain
 
 class CarFleet private constructor(
-    private val _cars: List<Car>,
+    private var _cars: List<Car>,
     private val moveConditionGenerator: MoveConditionGenerator = RandomMoveConditionGenerator(),
     private val winnerFinder: WinnerFinder = DefaultWinnerFinder()
 ) {
@@ -20,7 +20,7 @@ class CarFleet private constructor(
     }
 
     private fun advanceAll() {
-        _cars.forEach { car -> car.move(moveConditionGenerator.generate()) }
+        _cars = _cars.map { car -> car.move(moveConditionGenerator.generate()) }
     }
 
     companion object {

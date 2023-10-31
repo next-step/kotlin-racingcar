@@ -6,7 +6,7 @@ class History(
 ) {
     fun addRound(cars: List<Car>): History {
         var newRounds = rounds.toMutableList()
-        newRounds.add(cars.map { it.copy() })
+        newRounds.add(cars)
         return History(newRounds, winners)
     }
 
