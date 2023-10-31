@@ -11,6 +11,7 @@ class Racing(private val carController: CarController) {
         return start(carList, tryCount)
     }
 
+    // 사용하지는 않으나 미리 구현, 테스트는 X
     fun getWinners(carList: List<Car>): List<Car> {
         val maxPosition: Int = carList.maxBy { it.position }.position
 
