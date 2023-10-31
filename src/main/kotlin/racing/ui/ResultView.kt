@@ -2,6 +2,7 @@ package racing.ui
 
 import racing.car.Cars
 
+typealias ResultViewAction = (Cars) -> Unit
 class ResultView {
     fun makeResultView(cars: Cars) {
         val carList = cars.carList
