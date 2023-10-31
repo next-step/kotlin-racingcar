@@ -23,7 +23,10 @@ class RacingGame {
                     it.go()
                 }
             }
-            resultView.showResult(cars)
+            resultView.run {
+                showResult(cars)
+                showWinner(getWinners(cars))
+            }
         }
     }
 
