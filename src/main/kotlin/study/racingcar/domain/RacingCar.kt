@@ -6,16 +6,16 @@ package study.racingcar.domain
  *    - 앞뒤로 이동해서 위치값 상태를 수정하는 함수를 제공한다.
  *    - 초기 위치보다 뒤로 이동하지는 않는다.
  * */
-class RacingCar(
-    val id: String,
-    var position: Int
+data class RacingCar(
+    val name: String,
+    private var position: Int
 ) {
-    fun moveForward() {
-        position += 1
-    }
+    val currentPosition: Int
+        get() = position
 
-    fun moveBackward() {
-        if (position <= 1) return
-        position -= 1
+    fun moveForward(gameRule: GameRule) {
+        if (gameRule.getResult()) {
+            position += 1
+        }
     }
 }

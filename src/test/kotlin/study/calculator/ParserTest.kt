@@ -15,7 +15,7 @@ class ParserTest {
         val parsed = parser.parse(input)
 
         assertEquals(
-            parsed[0].operand + " " + parsed[1].operator + " " + parsed[2].operand,
+            parsed[0].getOperand() + " " + parsed[1].getOperator() + " " + parsed[2].getOperand(),
             input
         )
     }

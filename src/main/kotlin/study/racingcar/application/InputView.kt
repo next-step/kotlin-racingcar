@@ -1,60 +1,55 @@
 package study.racingcar.application
 
-import kotlin.jvm.Throws
-
 /**
- * 기능
- *    - 값을 입력 받는다.
+ * 값을 입력 받는다.
  * */
-data class InputValue(val carTotalNum: Int, val tryCount: Int)
+data class InputValue(val carNames: List<String>, val tryCount: Int)
 
-object InputView {
+class InputView(
+    val reader: Reader) {
 
-    // TODO-리뷰 요청 : private 함수로 역할을 나눠서 분리했지만, 결과적으로 getInput 함수의 역할이 많습니다. SRP 에 위반되는건 아닌지 궁금합니다.
     /**
      * stdin 으로 입력을 받고, 입력받은 값을 검증해서 InputValue 로 반환한다.
+     * @param 입력을 받는 Reader 객체
      * @throws IllegalArgumentException 입력 값이 null 이거나 적절한 정수형의 숫자가 아닌 경우
      * */
     fun getInput(): InputValue {
-        val carTotalNum: Int = inputNumber("자동차 대수를 입력하세요: ")
+        val carNames: List<String> = inputString("자동차 이름을 입력하세요: ")
         val tryCount: Int = inputNumber("시도할 횟수를 입력하세요: ")
 
-        if (carTotalNum < 1 || tryCount < 1) {
-            throw IllegalArgumentException("자동차 대수와 시도 횟수는 1 이상이어야 합니다.")
-        }
-        return InputValue(carTotalNum, tryCount)
-    }
+        val inputValue = InputValue(carNames, tryCount)
 
-    // TODO : 검증역할을 별도의 객체로 분리하는게 SRP 관점에서 더 적합할 것 같습니다.
-    /**
-     * 입력으로 문자열을 받고 1 이상의 정수형의 숫자인지 검증 후 Int 로 변환해서 반환한다.
-     * @throws IllegalArgumentException 입력 값이 null 이거나 적절한 정수형의 숫자가 아닌 경우
-     * */
-    private fun String.checkIsProperIntFormat(): Int {
-        val num = try {
-            toInt()
-        } catch (e: NumberFormatException) {
-            throw IllegalArgumentException("입력 값이 정수형의 숫자가 아닙니다. 숫자를 입력해주세요.")
-        }
-
-        if (num < 1) {
-            throw IllegalArgumentException("입력 값을 확인해주세요. 1 이상의 숫자만 입력 가능합니다.")
-        }
-
-        return num
+        return inputValue
     }
 
     /**
-     * 입력으로 받은 문자열을 정수형으로 변환해서 반환한다.
-     * @param prompt 입력을 유도하는 문자열
-     * @throws IllegalArgumentException 입력 값이 null 이거나 적절한 정수형의 숫자가 아닌 경우
+     * 자동차 이름의 문자열 배열을 입력받는다.
+     * @param prompt N 개의 자동차 이름 문자열을 유도하는 문자열
+     * @throws IllegalArgumentException 입력 값이 null 이거나 적절한 문자열이 아닌 경우
      * */
-    private fun inputNumber(prompt: String): Int {
+    fun inputString(prompt: String) : List<String>{
         while (true) {
             try {
                 print(prompt)
-                val input: String = readlnOrNull() ?: throw IllegalArgumentException("입력 값이 null 입니다.")
-                return input.checkIsProperIntFormat()
+                val input: String = reader.read() ?: throw IllegalArgumentException("입력 값이 null 입니다.")
+                return CarNames(input).getProperFormatCarNames()
+            } catch (e: Exception) {
+                println("[$e] 입력 문자열을 확인해주세요.")
+            }
+        }
+    }
+
+    /**
+     * 정수형 숫자를 입력 받는다.
+     * @param prompt 입력을 유도하는 문자열
+     * @throws IllegalArgumentException 입력 값이 null 이거나 적절한 정수형의 숫자가 아닌 경우
+     * */
+    fun inputNumber(prompt: String): Int {
+        while (true) {
+            try {
+                print(prompt)
+                val input: String = reader.read() ?: throw IllegalArgumentException("입력 값이 null 입니다.")
+                return Number(input).getProperFormatNumber()
             } catch (e: Exception) {
                 println("[$e] 입력 숫자를 확인해주세요.")
             }
