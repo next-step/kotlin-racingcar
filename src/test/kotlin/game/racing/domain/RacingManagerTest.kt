@@ -10,19 +10,19 @@ import java.util.stream.Stream
 internal class RacingManagerTest {
 
     @ParameterizedTest
-    @ValueSource(ints = [1, 2, 3, 4, 5])
-    fun `인자 숫자만큼 자동차를 생성한다`(numberOfCar: Int) {
-        val generateCarByNumberOfCar = CarFactory.generateCarByNumberOfCar(numberOfCar)
+    @ValueSource(strings = ["TEST1", "TEST2", "TEST3"])
+    fun `인자로 받은 이름을 가진 자동차를 생성한다`(carName: String) {
+        val car = CarFactory.generateCarByCarNames(carName)[0]
 
-        assertThat(generateCarByNumberOfCar.size).isEqualTo(numberOfCar)
+        assertThat(car.name).isEqualTo(carName)
     }
 
     @ParameterizedTest
     @MethodSource("provideParameters")
-    fun `자동차들의 위치를 이동시킨다`(numberOfCar: Int, speed: Int) {
-        val cars = CarFactory.generateCarByNumberOfCar(numberOfCar)
+    fun `자동차들의 위치를 이동시킨다`(carNames: String, speed: Int) {
+        val cars = CarFactory.generateCarByCarNames(carNames)
         val racingManager = RacingManager(cars)
-        val speedList = List(numberOfCar) { speed }
+        val speedList = List(cars.size) { speed }
         racingManager.moveCars(speedList)
 
         assertThat(cars).allMatch {
@@ -34,7 +34,7 @@ internal class RacingManagerTest {
         @JvmStatic
         fun provideParameters(): Stream<Arguments> {
             return Stream.of(
-                Arguments.of(5, 1), Arguments.of(5, 4), Arguments.of(5, 7)
+                Arguments.of("TEST,TEST1", 1), Arguments.of("TEST,TEST1", 4), Arguments.of("TEST,TEST1", 7)
             )
         }
     }

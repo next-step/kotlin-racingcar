@@ -15,7 +15,7 @@ class RacingGame(private val racingManager: RacingManager, private val tryNumber
 }
 
 fun main() {
-    val cars = CarFactory.generateCarByNumberOfCar(InputView.inputNumberOfCar())
+    val cars = CarFactory.generateCarByCarNames(InputView.inputCarNames())
     val racingGame = RacingGame(RacingManager(cars), InputView.inputTryNumber())
     racingGame.start()
 }
