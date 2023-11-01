@@ -1,5 +1,9 @@
 package racing_car
 
+import racing_car.domain.Car
+import racing_car.view.InputView
+import racing_car.view.ResultView
+
 fun main() {
 
     // 자동차 대수는 몇 대인가요??
