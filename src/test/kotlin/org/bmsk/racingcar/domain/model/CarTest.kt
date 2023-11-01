@@ -1,7 +1,10 @@
 package org.bmsk.racingcar.domain.model
 
+import io.kotest.assertions.throwables.shouldNotThrow
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
+import org.bmsk.racingcar.domain.policy.movement.MovementPolicy
 import org.bmsk.racingcar.domain.policy.movement.RandomMovementImpl
 import org.bmsk.racingcar.domain.random.RandomGenerator
 import org.bmsk.racingcar.model.Position
@@ -12,6 +15,17 @@ class FakeRandomGenerator(private val value: Int) : RandomGenerator {
 
 class CarTest : FunSpec({
     context("Car 클래스는") {
+        test("생성할 때 이름이 5글자를 초과하면 예외를 던진다.") {
+            shouldThrow<IllegalArgumentException> {
+                Car(movementPolicy = RandomMovementImpl(), name = "123456")
+            }
+        }
+        test("생성할 때 이름이 5글자 이내면 예외를 던지지 않는다.") {
+            shouldNotThrow<IllegalArgumentException> {
+                Car(movementPolicy = RandomMovementImpl(), name = "12345")
+            }
+        }
+
         context("랜덤 움직임 정책의") {
             context("랜덤으로 만들어진 수가") {
                 val testPosition = Position(xPos = 0)
