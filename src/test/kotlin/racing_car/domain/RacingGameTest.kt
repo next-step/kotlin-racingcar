@@ -3,7 +3,7 @@ package racing_car.domain
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.datatest.withData
-import io.kotest.matchers.ints.shouldBeGreaterThan
+import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldBe
 
 class RacingGameTest : FunSpec({
@@ -14,7 +14,8 @@ class RacingGameTest : FunSpec({
             2, 13, 12, 1000,
         ) { numberOfCars ->
 
-            val racingGame = RacingGame(numberOfCars = numberOfCars, racingRound = 10)
+            val cars = List(numberOfCars) { Car() }
+            val racingGame = RacingGame(_cars = cars, _racingRound = 10)
 
             racingGame.cars.size shouldBe numberOfCars
         }
@@ -23,51 +24,98 @@ class RacingGameTest : FunSpec({
     context("자동차 대수가 2대 보다 작은 경우 IllegalArgumentException throw") {
         withData(
             nameFn = { "numberOfCars : $it" },
-            0, 1, -12, -1000,
+            0, 1,
         ) { numberOfCars ->
-
-            shouldThrow<IllegalArgumentException> { RacingGame(numberOfCars = numberOfCars, racingRound = 10) }
+            val cars = List(numberOfCars) { Car() }
+            shouldThrow<IllegalArgumentException> { RacingGame(_cars = cars, _racingRound = 10) }
         }
     }
 
     context("입력된 수만큼 레이싱을 진행한다.") {
         withData(
-            nameFn = { "numberOfMove : $it" },
-            1, 13, 12, 30,
-        ) { numberOfMove ->
+            nameFn = { "racingRound : $it" },
+            2, 13, 12, 30,
+        ) { racingRound ->
 
-            val racingGame = RacingGame(numberOfCars = 10, racingRound = numberOfMove)
+            val cars = List(racingRound) { Car() }
+            val racingGame = RacingGame(_cars = cars, _racingRound = racingRound)
 
-            var actualNumberOfMove = 0
+            var actualRacingRound = 0
             while (racingGame.isContinuable) {
                 racingGame.move()
-                actualNumberOfMove++
+                actualRacingRound++
             }
 
-            actualNumberOfMove shouldBe numberOfMove
+            actualRacingRound shouldBe racingRound
+        }
+    }
+
+    context("주어진 시도횟수보다 더 많이 시도하는 경우 IllegalStateException throw") {
+        val racingRound = 5
+        withData(
+            nameFn = { "racingRound : $racingRound, actualMove : $it" },
+            6, 10,
+        ) { actualMove ->
+
+            val cars = List(10) { Car() }
+            val racingGame = RacingGame(_cars = cars, _racingRound = racingRound)
+
+            shouldThrow<IllegalStateException> {
+                for (i in 1..actualMove) {
+                    racingGame.move()
+                }
+            }
         }
     }
 
     context("시도할 횟수가 1보다 작은 경우 IllegalArgumentException throw") {
         withData(
-            nameFn = { "numberOfMove : $it" },
+            nameFn = { "racingRound : $it" },
             0, -1, -13, -30,
-        ) { numberOfMove ->
-            shouldThrow<IllegalArgumentException> { RacingGame(numberOfCars = 10, racingRound = numberOfMove) }
+        ) { racingRound ->
+            shouldThrow<IllegalArgumentException> {
+                val cars = List(10) { Car() }
+                RacingGame(_cars = cars, _racingRound = racingRound)
+            }
         }
     }
 
     context("자동차 경주에 포함된 자동차들이 올바르게 이동한다.") {
 
-        // TODO : 개선 필요
-        val racingGame = RacingGame(numberOfCars = 10, racingRound = 10)
+        val racingRound = 10
+        val cars = List(10) { Car(_moveStrategy = alwaysMoveStrategy) }
+        val racingGame = RacingGame(_cars = cars, _racingRound = racingRound)
 
-        for (i in 1..3) {
+        for (i in 1..racingRound) {
+            racingGame.move()
+            racingGame.cars.forEach {
+                it.position shouldBe i
+            }
+        }
+    }
+
+    context("부정행위가 통하지 않는다.(racingGame 외부에서 자동차를 변경시키지 못한다.") {
+        val actualMove = 5
+        val racingGame = RacingGame(
+            _cars = List(10) { Car(_moveStrategy = alwaysMoveStrategy) },
+            _racingRound = 10
+        )
+        for (i in 1..actualMove) {
             racingGame.move()
         }
 
+        // 부정행위!!!
         racingGame.cars.forEach {
-            it.position shouldBeGreaterThan 0
+            it.move()
+            it.move()
+        }
+
+        racingGame.cars.forAll {
+            it.position shouldBe actualMove
         }
     }
-})
+}) {
+    companion object {
+        val alwaysMoveStrategy = MoveStrategy { true }
+    }
+}

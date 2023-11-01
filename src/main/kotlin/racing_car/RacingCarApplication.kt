@@ -7,11 +7,10 @@ import racing_car.view.ResultView
 fun main() {
 
     val racingGame = RacingGame(
-        numberOfCars = InputView.inputNumberOfCars(),
-        racingRound = InputView.inputRacingRound()
+        _cars = InputView.inputCars(),
+        _racingRound = InputView.inputRacingRound(),
     )
 
-    // 실행 결과
     ResultView.printResultTitle()
     while (racingGame.isContinuable) {
         racingGame.move()
