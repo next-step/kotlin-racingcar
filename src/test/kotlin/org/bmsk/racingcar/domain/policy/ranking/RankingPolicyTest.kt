@@ -6,12 +6,14 @@ import io.kotest.data.headers
 import io.kotest.data.row
 import io.kotest.data.table
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.types.shouldBeInstanceOf
 import org.bmsk.racingcar.domain.model.Car
 import org.bmsk.racingcar.domain.model.RacingCarRoad
+import org.bmsk.racingcar.domain.model.RacingCarWinner
 import org.bmsk.racingcar.domain.policy.movement.RandomMovementImpl
 import org.bmsk.racingcar.model.Position
 
-class MultipleWinnersAllowedImplTest : BehaviorSpec({
+class RankingPolicyTest : BehaviorSpec({
     given("가장 멀리 간 자동차가 한 대이다.") {
         val cars = List(10) {
             Car(movementPolicy = RandomMovementImpl(), position = Position(xPos = 0))
@@ -45,8 +47,14 @@ class MultipleWinnersAllowedImplTest : BehaviorSpec({
             val racingCarRoad = RacingCarRoad(cars = cars)
             `when`("다수의 우승자를 허락하는 정책이다.") {
                 val rankingPolicy = MultipleWinnersAllowedImpl()
-                then("우승자는 $numberOfWinners 대이다.") {
+                then("우승자는 ${numberOfWinners}명이다.") {
                     rankingPolicy.determineWinner(racingCarRoad).cars.size shouldBe numberOfWinners
+                }
+            }
+            `when`("하나의 우승자만 허락하는 정책이다.") {
+                val rankingPolicy = SingleWinnerOnlyImpl()
+                then("우승자는 1명이다.") {
+                    rankingPolicy.determineWinner(racingCarRoad).shouldBeInstanceOf<RacingCarWinner.SingleWinner>()
                 }
             }
         }
