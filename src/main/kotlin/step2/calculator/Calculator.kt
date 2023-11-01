@@ -1,14 +1,17 @@
 package step2.calculator
 
+private const val DELIMITER = " "
+
 /**
  * 문자열 계산기
  * */
 object Calculator {
 
-    private const val DELIMITER = " "
-
     enum class CalculatorSign(val sign: String) {
-        PLUS("+"), MINUS("-"), MULTIPLY("*"), DIVIDE("/");
+        PLUS("+") { override fun calculate(num1: Int, num2: Int): Int = num1 + num2 },
+        MINUS("-") {override fun calculate(num1: Int, num2: Int): Int = num1 - num2 },
+        MULTIPLY("*") { override fun calculate(num1: Int, num2: Int): Int = num1 * num2 },
+        DIVIDE("/") {override fun calculate(num1: Int, num2: Int): Int = num1 / num2 };
 
         /**
          * 숫자 두개와 부호로 계산한 값을 반환
@@ -17,12 +20,7 @@ object Calculator {
          * @param num2 입력 값2
          * @return 계산된 값
          * */
-        fun calculate(num1: Int, num2: Int): Int = when (this) {
-            PLUS -> num1 + num2
-            MINUS -> num1 - num2
-            MULTIPLY -> num1 * num2
-            DIVIDE -> num1 / num2
-        }
+        abstract fun calculate(num1: Int, num2: Int): Int
     }
 
     private fun checkError(splitFormulaList: List<String>) {
@@ -40,11 +38,11 @@ object Calculator {
         }
     }
 
-    private fun isCheckIndexValue(inputStrSplitList: List<String>): Boolean = inputStrSplitList.mapIndexed { index, s ->
+    private fun isCheckIndexValue(inputStrSplitList: List<String>): Boolean = inputStrSplitList.mapIndexed { index, value ->
         if (index % 2 == 0) {
-            s.toIntOrNull() != null
+            value.toIntOrNull() != null
         } else {
-            CalculatorSign.values().any { sign -> sign.sign == s }
+            CalculatorSign.values().any { sign -> sign.sign == value }
         }
     }.all { it }
 
