@@ -16,20 +16,7 @@ class CarsTest : DescribeSpec({
             cars.move()
 
             it("차의 위치는 변한다.") {
-                cars.getPositions() shouldBe listOf(CarPosition(2), CarPosition(2))
-            }
-        }
-    }
-
-    describe("getPositions") {
-        val cars = Cars(
-            cars = CarFixture.makeCars(2),
-            numberGenerator = CarFixture.makeFakeCarPowerGenerator(1)
-        )
-
-        context("모든 차들의 위치를 가져오면") {
-            it("차의 위치를 반환한다.") {
-                cars.getPositions() shouldBe listOf(CarPosition(1), CarPosition(1))
+                cars.cars.map { it.position } shouldBe listOf(CarPosition(2), CarPosition(2))
             }
         }
     }

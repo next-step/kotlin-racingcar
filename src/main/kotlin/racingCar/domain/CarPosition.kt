@@ -2,10 +2,10 @@ package racingCar.domain
 
 @JvmInline
 value class CarPosition(
-    val position: Int
+    val value: Int
 ) {
 
     fun add(): CarPosition {
-        return CarPosition(position + 1)
+        return CarPosition(value + 1)
     }
 }
