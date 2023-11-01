@@ -19,15 +19,6 @@ class Car(
         }
     }
 
-    fun tryMoveTheCar(
-        carIndex: Int,
-        roundIndex: Int,
-    ) {
-        if (strategy.isMoving(carIndex, roundIndex)) {
-            move()
-        }
-    }
-
     private fun move() {
         this.distance.moveForward()
     }

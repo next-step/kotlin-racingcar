@@ -8,8 +8,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.EmptySource
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
-import study.racing.strategy.RandomMoveStrategyDouble
-import study.racing.strategy.SoloWinnerMoveStrategy
+import study.racing.strategy.RandomMoveStrategyDouble2
 
 class CarsTest {
 
@@ -19,7 +18,7 @@ class CarsTest {
         carNamesString: String
     ) {
         // Given
-        val strategyDouble = RandomMoveStrategyDouble(true)
+        val strategyDouble = RandomMoveStrategyDouble2(listOf(true))
         val carNames = carNamesString.split(",")
             .map {
                 CarName(it)
@@ -57,7 +56,7 @@ class CarsTest {
         expectedDistance: Int
     ) {
         // Given
-        val strategyDouble = RandomMoveStrategyDouble(isMoving)
+        val strategyDouble = RandomMoveStrategyDouble2(listOf(isMoving))
         val carNames = carNamesString.split(",")
             .map {
                 CarName(it)
@@ -87,7 +86,7 @@ class CarsTest {
         expectedMaxMovingDistance: Int
     ) {
         // Given
-        val strategyDouble = RandomMoveStrategyDouble(true)
+        val strategyDouble = RandomMoveStrategyDouble2(listOf(true))
         val carNames = carNamesString.split(",")
             .map {
                 CarName(it)
@@ -107,34 +106,6 @@ class CarsTest {
             {
                 assertThat(winner).isEqualTo(expectedMaxMovingCarNames)
             },
-        )
-    }
-
-    @ParameterizedTest
-    @MethodSource("carsSoloMovingProvider")
-    fun `단독 우승 전략을 사용시 반드시 단독 우승자가 나온다`(
-        roundCount: Int,
-        carNames: List<CarName>,
-        shuffleCarIndex: List<Int>,
-        winnerNames: List<String>,
-    ) {
-        // Given
-        val strategy = SoloWinnerMoveStrategy(
-            roundCount,
-            carNames.size,
-            shuffleCarIndex
-        )
-        val actual = Cars.of(carNames, strategy)
-
-        // When
-        repeat(roundCount) {
-            actual.moveTheCars(it)
-        }
-
-        // Then
-        assertAll(
-            { assertThat(actual.getRacingWinnerNames().size).isEqualTo(1) },
-            { assertThat(actual.getRacingWinnerNames()).isEqualTo(winnerNames) },
         )
     }
 
@@ -169,34 +140,6 @@ class CarsTest {
             Arguments.of("a,b,c,d", listOf("a", "b", "c"), 10),
             Arguments.of("a,b,c,d", listOf("a", "b", "c", "d"), 4),
             Arguments.of("a,b,c,d", listOf("a", "b", "c", "d"), 10),
-        )
-
-        @JvmStatic
-        fun carsSoloMovingProvider() = listOf(
-            Arguments.of(
-                2,
-                listOf(CarName("a"), CarName("b"), CarName("c")),
-                listOf(0, 1, 2),
-                listOf("a")
-            ),
-            Arguments.of(
-                3,
-                listOf(CarName("a"), CarName("b"), CarName("c"), CarName("d")),
-                listOf(0, 1, 2, 3),
-                listOf("a")
-            ),
-            Arguments.of(
-                2,
-                listOf(CarName("a"), CarName("b"), CarName("c")),
-                listOf(1, 0, 2),
-                listOf("b")
-            ),
-            Arguments.of(
-                3,
-                listOf(CarName("a"), CarName("b"), CarName("c"), CarName("d")),
-                listOf(3, 2, 1, 0),
-                listOf("d")
-            ),
         )
     }
 }

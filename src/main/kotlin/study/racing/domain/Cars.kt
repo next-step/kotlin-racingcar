@@ -19,14 +19,6 @@ class Cars private constructor(
         }
     }
 
-    fun moveTheCars(
-        roundIndex: Int,
-    ) {
-        this.cars.forEachIndexed { index, car ->
-            car.tryMoveTheCar(index, roundIndex)
-        }
-    }
-
     fun getCarsMoveDistance(): List<Int> = this.cars.map {
         it.getCarDistance()
     }.toList()

@@ -2,6 +2,7 @@ package study.racing.controller
 
 import study.racing.domain.Cars
 import study.racing.process.Racing
+import study.racing.strategy.RandomMoveStrategy
 
 class RacingController(
     private val racing: Racing = Racing()
@@ -11,6 +12,6 @@ class RacingController(
         carNames: String,
         roundCount: Int
     ): List<Cars> {
-        return racing.playRacing(carNames, roundCount)
+        return racing.playRacing(carNames, roundCount, RandomMoveStrategy())
     }
 }

@@ -4,7 +4,10 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
+import study.racing.strategy.RandomMoveStrategyDouble2
 
 class RacingTest {
 
@@ -60,5 +63,40 @@ class RacingTest {
 
         // Then
         assertThat(actual.first().hashCode()).isNotEqualTo(actual.last().hashCode())
+    }
+
+    @ParameterizedTest
+    @MethodSource("winnerProvider")
+    fun `우승자가 한명이여야 한다`(
+        carNamesString: String,
+        roundCount: Int,
+        isMovingEachCars: List<Boolean>,
+        winnerName: String,
+    ) {
+        // Given
+        val racing = Racing()
+
+        // When
+        val actual = racing.playRacing(
+            carNamesString,
+            roundCount,
+            RandomMoveStrategyDouble2(isMovingEachCars)
+        )
+
+        // Then
+        assertThat(
+            actual.last().getRacingWinnerNames()
+                .first()
+        ).isEqualTo(winnerName)
+    }
+
+    companion object {
+        @JvmStatic
+        fun winnerProvider() = listOf(
+            Arguments.of("a,b", 1, listOf(true, false), "a"),
+            Arguments.of("a,b,c", 2, listOf(false, false, true, true, false, true), "c"),
+            Arguments.of("a,b,c", 3, listOf(false, true, false, false, true, false, false, true, false), "b"),
+            Arguments.of("a,b,c", 1, listOf(false, true, false), "b"),
+        )
     }
 }

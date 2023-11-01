@@ -3,33 +3,27 @@ package study.racing.process
 import study.racing.domain.CarName
 import study.racing.domain.Cars
 import study.racing.domain.Round
-import study.racing.strategy.SoloWinnerMoveStrategy
+import study.racing.strategy.MoveStrategy
+import study.racing.strategy.RandomMoveStrategy
 
 class Racing {
 
     fun playRacing(
         carNamesString: String,
-        roundCount: Int
+        roundCount: Int,
+        strategy: MoveStrategy = RandomMoveStrategy(),
     ): List<Cars> {
         val round = Round(roundCount)
         val carNames = splitForMakeCarNames(carNamesString)
 
-        val shuffledCarIndex = List(carNames.size) {
-            it
-        }.shuffled()
-
         val racingCars = Cars.of(
             carNames,
-            SoloWinnerMoveStrategy(
-                round.roundCount,
-                carNames.size,
-                shuffledCarIndex
-            )
+            strategy
         )
 
         val copyCars = mutableListOf<Cars>()
-        repeat(round.roundCount) { roundIndex ->
-            racingCars.moveTheCars(roundIndex)
+        repeat(round.roundCount) {
+            racingCars.moveTheCars()
             copyCars.add(racingCars.copy())
         }
 
