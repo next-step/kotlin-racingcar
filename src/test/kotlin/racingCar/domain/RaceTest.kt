@@ -19,11 +19,22 @@ class RaceTest : DescribeSpec({
             raceResult = RaceFixture.makeFakeRaceResult()
         )
 
-        context("레이스 경주를 시작하면") {
+        context("경주를 시작하면") {
             race.start()
 
             it("주어진 시도 횟수만큼 차들이 경주를 시작한다.") {
                 car.position shouldBe CarPosition(4)
+            }
+
+            it("경주가 끝났다고 판단한다.") {
+                race.isFinished shouldBe true
+            }
+        }
+
+        context("경주를 시작하지 않으면") {
+
+            it("경주가 끝났다고 판단하지 않는다.") {
+                race.isFinished shouldBe false
             }
         }
     }
