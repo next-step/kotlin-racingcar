@@ -30,11 +30,13 @@ class CalculatorTest : DescribeSpec({
             }
         }
 
-        context("수식의 개수가 3개라면") {
-            val expressions = listOf("10", "+", "5")
+        context("사칙연산 기호가 아닌 다른 연산자가 들어왔다면") {
+            val expressions = listOf("1", "?", "3")
 
-            it("계산 결과를 반환한다.") {
-                Calculator.calculate(expressions) shouldBe Operand.of(15.0)
+            it("예외가 발생한다.") {
+                shouldThrowMessage("지원하지 않는 연산자입니다.") {
+                    Calculator.calculate(expressions)
+                }
             }
         }
 
