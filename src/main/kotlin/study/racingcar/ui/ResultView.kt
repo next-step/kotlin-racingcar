@@ -1,6 +1,5 @@
 package study.racingcar.ui
 
-import study.racingcar.domain.Car
 import study.racingcar.dto.RacingCarState
 
 object ResultView {

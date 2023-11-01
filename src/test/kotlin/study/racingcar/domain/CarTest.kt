@@ -34,7 +34,6 @@ class CarTest {
         }
     }
 
-
     @Test
     @DisplayName("자동차 이름이 빈 문자열일 때 예외를 던져야 한다")
     fun `should throw exception when name is blank`() {

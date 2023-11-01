@@ -2,7 +2,6 @@ package study.racingcar.domain
 
 import study.racingcar.dto.RacingCarState
 import study.racingcar.inteface.MoveStrategy
-import study.racingcar.ui.ResultView
 
 class Race private constructor(
     val cars: List<Car>,
