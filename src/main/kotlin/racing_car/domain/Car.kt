@@ -1,15 +1,14 @@
 package racing_car.domain
 
-import kotlin.random.Random
-
-class Car {
+class Car(
+    private val moveStrategy: MoveStrategy = RandomAboveThresholdMoveStrategy()
+) {
 
     var position = 0
         private set
 
     fun move() {
-        val randomInt = Random.nextInt(0, 10)
-        if (randomInt >= 4) {
+        if (moveStrategy.canMove()) {
             position++
         }
     }
