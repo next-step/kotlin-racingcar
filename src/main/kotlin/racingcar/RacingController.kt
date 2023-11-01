@@ -1,8 +1,8 @@
 package racingcar
 
+import racingcar.domain.RacingResult
 import racingcar.domain.RacingRule
 import racingcar.domain.RacingStadium
-import racingcar.domain.RacingResult
 import racingcar.util.Message
 
 class RacingController(
@@ -22,5 +22,4 @@ class RacingController(
             rule
         ).gameStart()
     }
-
 }

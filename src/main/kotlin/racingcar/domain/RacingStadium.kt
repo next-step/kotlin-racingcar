@@ -1,6 +1,6 @@
 package racingcar.domain
 
-import racingcar.domain.RacingResult.*
+import racingcar.domain.RacingResult.RacingHistory
 
 class RacingStadium(
     nameOfCars: List<String>,

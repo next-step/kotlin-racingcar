@@ -1,15 +1,11 @@
 package calculator
 
 import io.kotest.assertions.throwables.shouldThrow
-import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
-import org.junit.jupiter.api.Test
 import java.lang.IllegalArgumentException
 
-class StringCalculatorTest: StringSpec ({
+class StringCalculatorTest : StringSpec({
 
     "숫자,기호,숫자 순서로 입력된 문자열은 정상적으로 계산한다." {
         val inputs = listOf(

@@ -6,10 +6,10 @@ import racingcar.Racing
 
 class RacingRuleTest : BehaviorSpec({
 
-    val intRandomGenerator = { start: Int , end: Int -> IntRange(start, end).random() }
+    val intRandomGenerator = { start: Int, end: Int -> IntRange(start, end).random() }
     val stubValidation = { _: List<String> -> true }
-    val alwaysForward = RacingProperty(5,9, Racing.MOVE_FORWARD_CONDITION)
-    val cantMove = RacingProperty(0,3, Racing.MOVE_FORWARD_CONDITION)
+    val alwaysForward = RacingProperty(5, 9, Racing.MOVE_FORWARD_CONDITION)
+    val cantMove = RacingProperty(0, 3, Racing.MOVE_FORWARD_CONDITION)
 
     Given("RacingRule 객체는") {
         val positiveRacingRule = RacingRule(intRandomGenerator, stubValidation, alwaysForward)

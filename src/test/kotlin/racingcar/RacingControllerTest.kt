@@ -2,20 +2,18 @@ package racingcar
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
-import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import racingcar.domain.NameValidation
 import racingcar.domain.RacingProperty
-import racingcar.domain.RacingResult
-import racingcar.domain.RacingResult.*
+import racingcar.domain.RacingResult.RacingHistory
 import racingcar.domain.RacingRule
 import java.lang.IllegalArgumentException
 
 class RacingControllerTest : BehaviorSpec({
-    val intRandomGenerator = { start: Int , end: Int -> IntRange(start, end).random() }
-    val isNotNameLengthOver = { names: List<String> -> names.all { it.length <= NameValidation.NAME_MAX_LENGTH }}
-    val alwaysForward = RacingProperty(5,9, Racing.MOVE_FORWARD_CONDITION)
-    val cantMove = RacingProperty(0,3, Racing.MOVE_FORWARD_CONDITION)
+    val intRandomGenerator = { start: Int, end: Int -> IntRange(start, end).random() }
+    val isNotNameLengthOver = { names: List<String> -> names.all { it.length <= NameValidation.NAME_MAX_LENGTH } }
+    val alwaysForward = RacingProperty(5, 9, Racing.MOVE_FORWARD_CONDITION)
+    val cantMove = RacingProperty(0, 3, Racing.MOVE_FORWARD_CONDITION)
 
     Given("자동차 이름과 시도 횟수, 경기 규칙을 준비하여") {
         val nameOfCars = "aaa,bbb,ccc"

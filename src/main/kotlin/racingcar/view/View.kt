@@ -1,9 +1,8 @@
 package racingcar.view
 
 import racingcar.domain.RacingResult
-import racingcar.domain.RacingResult.*
+import racingcar.domain.RacingResult.RacingHistory
 import racingcar.util.Message
-import racingcar.util.Message.*
 import java.lang.IllegalArgumentException
 
 object View {
@@ -37,9 +36,9 @@ object ResultView {
 
     fun racingResultPrint(racingResult: RacingResult) {
         val result =
-        """
-        |${RACE_RESULT_FIRST_LINE.message}
-        |${getRacingHistoryPrintFormat(racingResult, CAR_RACING_MOVING_SYMBOL.message)}
+            """
+        |${Message.RACE_RESULT_FIRST_LINE.message}
+        |${getRacingHistoryPrintFormat(racingResult, Message.CAR_RACING_MOVING_SYMBOL.message)}
         |
         |${getRacingWinnerPrintFormat(racingResult)}
         """.trimMargin()
@@ -56,6 +55,5 @@ object ResultView {
     private fun getRacingWinnerPrintFormat(result: RacingResult): String =
         result.getRacingWinners()
             .joinToString(", ") { it.name }
-            .plus(WINNER_LINE.message)
-
+            .plus(Message.WINNER_LINE.message)
 }

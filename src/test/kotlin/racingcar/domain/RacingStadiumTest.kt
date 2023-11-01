@@ -3,13 +3,13 @@ package racingcar.domain
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import racingcar.Racing
-import racingcar.util.Message.*
+import racingcar.util.Message.CAR_RACING_MOVING_SYMBOL
 
 class RacingStadiumTest : BehaviorSpec({
-    val intRandomGenerator = { start: Int , end: Int -> IntRange(start, end).random() }
+    val intRandomGenerator = { start: Int, end: Int -> IntRange(start, end).random() }
     val stubValidation = { _: List<String> -> true }
-    val alwaysForward = RacingProperty(5,9, Racing.MOVE_FORWARD_CONDITION)
-    val cantMove = RacingProperty(0,3, Racing.MOVE_FORWARD_CONDITION)
+    val alwaysForward = RacingProperty(5, 9, Racing.MOVE_FORWARD_CONDITION)
+    val cantMove = RacingProperty(0, 3, Racing.MOVE_FORWARD_CONDITION)
 
     Given("자동차의 대수와 전진 시도 횟수가 정수로 주어지고") {
         val nameOfCars = "a,b,c".split(",")
@@ -25,7 +25,7 @@ class RacingStadiumTest : BehaviorSpec({
                 histories.size shouldBe numberOfTrials
 
                 histories.forEachIndexed { index, racingHistories ->
-                    racingHistories.all { CAR_RACING_MOVING_SYMBOL.message.repeat(it.move) == CAR_RACING_MOVING_SYMBOL.message.repeat(index + 1)} shouldBe true
+                    racingHistories.all { CAR_RACING_MOVING_SYMBOL.message.repeat(it.move) == CAR_RACING_MOVING_SYMBOL.message.repeat(index + 1) } shouldBe true
                 }
             }
         }
@@ -41,10 +41,9 @@ class RacingStadiumTest : BehaviorSpec({
                 histories.size shouldBe numberOfTrials
 
                 histories.forEach { racingHistories ->
-                    racingHistories.all { CAR_RACING_MOVING_SYMBOL.message.repeat(it.move) == CAR_RACING_MOVING_SYMBOL.message.repeat(0)} shouldBe true
+                    racingHistories.all { CAR_RACING_MOVING_SYMBOL.message.repeat(it.move) == CAR_RACING_MOVING_SYMBOL.message.repeat(0) } shouldBe true
                 }
             }
         }
     }
-
 })
