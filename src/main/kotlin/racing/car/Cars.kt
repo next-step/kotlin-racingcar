@@ -16,4 +16,8 @@ class Cars(val carList: List<Car>) {
         val maxPosition = carList.maxByOrNull { it.position }?.position
         return carList.filter { it.position == maxPosition }
     }
+    fun copy(): Cars {
+        val copyList = carList.map { it.copy() }
+        return Cars(copyList)
+    }
 }

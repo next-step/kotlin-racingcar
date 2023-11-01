@@ -9,6 +9,10 @@ class Car(position: Int = START_POSITION, val name: String = "kotlin") {
         }
     }
 
+    fun copy(): Car {
+        return Car(position, name)
+    }
+
     companion object {
         private const val START_POSITION = 1
         private const val FORWARD_THRESHOLD = 4
