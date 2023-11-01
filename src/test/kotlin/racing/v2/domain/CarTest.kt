@@ -1,5 +1,6 @@
 package racing.v2.domain
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
@@ -8,6 +9,17 @@ class `자동차 프러퍼티 테스트` : StringSpec({
     "자동차 위치의 초기 값은 0이다." {
         val car = Car()
         car.position shouldBe 0
+    }
+
+    "자동차 이름의 초기 값은 \"이름없음\"이다." {
+        val car = Car()
+        car.name shouldBe "이름없음"
+    }
+
+    "자동차의 이름이 5글자가 초과하면 예외가 발생한다." {
+        shouldThrow<IllegalArgumentException> {
+            Car("페라리람보르기니")
+        }.message shouldBe "자동차 이름은 5자를 초과할 수 없습니다."
     }
 })
 
