@@ -3,7 +3,7 @@ package calculator
 import calculator.type.Operator
 import calculator.validator.OperationValidator
 
-class Calculator {
+object Calculator {
     fun calculate(expression: String): Int {
         val expressionList = extractExpressionList(expression)
 
@@ -21,11 +21,7 @@ class Calculator {
 
     private fun extractExpressionList(expression: String): List<String> {
         val expressionList = expression.split(" ")
-        if (OperationValidator.hasValidSize(expressionList).not()) throw IllegalArgumentException("잘못된 입력입니다.")
+        require(OperationValidator.hasValidSize(expressionList)) { "잘못된 입력입니다." }
         return expressionList
-    }
-
-    private fun performOperation(left: Int, right: Int, operator: Operator): Int {
-        return operator.operationFunction(left, right)
     }
 }
