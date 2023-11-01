@@ -1,4 +1,4 @@
-package result
+package racingcar.domain.result
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.collections.shouldBeIn

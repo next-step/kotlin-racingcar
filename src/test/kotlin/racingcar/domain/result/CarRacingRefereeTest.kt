@@ -1,12 +1,10 @@
-package result
+package racingcar.domain.result
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.collections.shouldBeIn
 import io.kotest.matchers.shouldBe
 import racingcar.domain.car.Car
 import racingcar.domain.car.CarName
-import racingcar.domain.result.CarRacingReferee
-import racingcar.domain.result.CarRacingResult
 
 class CarRacingRefereeTest : FunSpec({
 

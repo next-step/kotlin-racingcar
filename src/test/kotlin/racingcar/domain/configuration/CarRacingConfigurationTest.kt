@@ -2,7 +2,7 @@ package racingcar.domain.configuration
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
-import racingcar.view.CarRacingInput
+import racingcar.controller.CarRacingRequest
 
 class CarRacingConfigurationTest : FunSpec({
     context("자동차 경주 게임 설정 정보 생성") {
@@ -10,7 +10,7 @@ class CarRacingConfigurationTest : FunSpec({
             val carNames = listOf("name1", "name2")
             val tryCount = 2
 
-            val result = CarRacingConfiguration.of(CarRacingInput(tryCount, carNames))
+            val result = CarRacingConfiguration.of(CarRacingRequest(tryCount, carNames))
 
             result.cars.size shouldBe carNames.size
             result.cars.forEachIndexed { index, car ->
