@@ -5,8 +5,6 @@ import game.racing.view.ResultView
 
 class RacingGame(private val carManger: CarManger) {
     fun start() {
-        val numberOfCar = InputView.inputNumberOfCar()
-        carManger.generateCarByNumberOfCar(numberOfCar)
         val tryNumber = InputView.inputTryNumber()
 
         ResultView.printResultIntroduction()
@@ -18,6 +16,6 @@ class RacingGame(private val carManger: CarManger) {
 }
 
 fun main() {
-    val racingGame = RacingGame(CarManger())
+    val racingGame = RacingGame(CarManger(CarFactory.generateCarByNumberOfCar(InputView.inputNumberOfCar())))
     racingGame.start()
 }
