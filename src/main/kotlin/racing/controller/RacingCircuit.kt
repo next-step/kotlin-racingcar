@@ -9,19 +9,18 @@ import racing.ui.ResultView
 
 class RacingCircuit {
     private val carRace: CarRace = CarRace()
+    private val inputView = InputView()
+    private val resultView = ResultView()
     fun race() {
-        val inputView = InputView()
-        val resultView = ResultView()
         val (carNumber, tryNumber) = inputView.getInputView()
         val cars = Cars(carNumber)
 
         println("레이스 스타트")
-        carRace.start(cars, tryNumber, RandomMoveProvider())
+        val roundCars: MutableList<Cars> = carRace.start(cars, tryNumber, RandomMoveProvider())
+        resultView.resultViewWithoutName(roundCars)
     }
 
     fun raceWithWinner() {
-        val inputView = InputView()
-        val resultView = ResultView()
         val (carNames, tryNumber) = inputView.getInputViewWithName()
 
         val carList = carNames.split(",")
@@ -31,6 +30,7 @@ class RacingCircuit {
 
         println("실행 결과")
         val roundCars: MutableList<Cars> = carRace.start(cars, tryNumber, RandomMoveProvider())
+        resultView.resultViewWithWinner(roundCars)
     }
 }
 
