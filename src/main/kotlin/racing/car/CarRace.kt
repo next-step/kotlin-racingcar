@@ -4,9 +4,9 @@ import racing.moveprovider.RandomMoveProvider
 import racing.ui.ResultViewAction
 
 class CarRace {
-    fun start(cars: Cars, tryNumber: Int, resultViewAction: ResultViewAction): Cars {
+    fun start(cars: Cars, tryNumber: Int, moveProvider: RandomMoveProvider, resultViewAction: ResultViewAction): Cars {
         repeat(tryNumber) {
-            cars.moveAll(RandomMoveProvider())
+            cars.moveAll(moveProvider)
             resultViewAction(cars)
         }
         return cars
