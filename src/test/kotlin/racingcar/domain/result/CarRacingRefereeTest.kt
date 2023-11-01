@@ -3,7 +3,7 @@ package racingcar.domain.result
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.collections.shouldBeIn
 import io.kotest.matchers.shouldBe
-import racingcar.domain.car.Car
+import racingcar.domain.car.CapturedCar
 import racingcar.domain.car.CarName
 
 class CarRacingRefereeTest : FunSpec({
@@ -12,9 +12,21 @@ class CarRacingRefereeTest : FunSpec({
         val farthestCarName = CarName("test1")
         val farthestPosition = 10
         val racingResult1 =
-            CarRacingResult(listOf(Car(farthestCarName, 1), Car(CarName("test2"), 3), Car(CarName("test3"), 3)))
+            CarRacingResult(
+                listOf(
+                    CapturedCar(farthestCarName, 1),
+                    CapturedCar(CarName("test2"), 3),
+                    CapturedCar(CarName("test3"), 3)
+                )
+            )
         val racingResult2 =
-            CarRacingResult(listOf(Car(farthestCarName, 10), Car(CarName("test2"), 5), Car(CarName("test3"), 3)))
+            CarRacingResult(
+                listOf(
+                    CapturedCar(farthestCarName, 10),
+                    CapturedCar(CarName("test2"), 5),
+                    CapturedCar(CarName("test3"), 3)
+                )
+            )
 
         val result = CarRacingReferee.getWinners(listOf(racingResult1, racingResult2))
 
@@ -29,19 +41,19 @@ class CarRacingRefereeTest : FunSpec({
         val racingResult1 =
             CarRacingResult(
                 listOf(
-                    Car(farthestCarNames[0], 3),
-                    Car(farthestCarNames[1], 1),
-                    Car(CarName("test3"), 3),
-                    Car(CarName("test4"), 3)
+                    CapturedCar(farthestCarNames[0], 3),
+                    CapturedCar(farthestCarNames[1], 1),
+                    CapturedCar(CarName("test3"), 3),
+                    CapturedCar(CarName("test4"), 3)
                 )
             )
         val racingResult2 =
             CarRacingResult(
                 listOf(
-                    Car(farthestCarNames[0], farthestPosition),
-                    Car(farthestCarNames[1], farthestPosition),
-                    Car(CarName("test3"), 5),
-                    Car(CarName("test4"), 3)
+                    CapturedCar(farthestCarNames[0], farthestPosition),
+                    CapturedCar(farthestCarNames[1], farthestPosition),
+                    CapturedCar(CarName("test3"), 5),
+                    CapturedCar(CarName("test4"), 3)
                 )
             )
 

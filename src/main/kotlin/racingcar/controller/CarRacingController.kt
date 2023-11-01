@@ -1,11 +1,10 @@
 package racingcar.controller
 
-import racingcar.domain.car.Car
+import racingcar.domain.car.CapturedCar
 import racingcar.domain.configuration.CarRacingConfiguration
 import racingcar.domain.game.CarRacingGame
 import racingcar.domain.result.CarRacingReferee
 import racingcar.domain.result.CarRacingResult
-import racingcar.domain.rule.RandomMoveRule
 
 object CarRacingController {
     fun run(request: CarRacingRequest): CarRacingResponse {
@@ -14,22 +13,19 @@ object CarRacingController {
     }
 
     private fun createConfiguration(request: CarRacingRequest): CarRacingConfiguration =
-        CarRacingConfiguration.of(request)
+        CarRacingConfiguration.of(request.roundCount, request.carNames)
 
     private fun createGame(
         configuration: CarRacingConfiguration,
-    ): CarRacingGame = CarRacingGame.set(
-        configuration = configuration,
-        moveRule = RandomMoveRule(),
-    )
+    ): CarRacingGame = CarRacingGame.set(configuration)
 
     private fun startGame(game: CarRacingGame) = game.run()
 
-    private fun getWinner(result: List<CarRacingResult>): List<Car> = CarRacingReferee.getWinners(result)
+    private fun getWinner(result: List<CarRacingResult>): List<CapturedCar> = CarRacingReferee.getWinners(result)
 
     private fun createResponse(
         result: List<CarRacingResult>,
-        winners: List<Car>,
+        winners: List<CapturedCar>,
     ): CarRacingResponse =
         CarRacingResponse(
             results = result,

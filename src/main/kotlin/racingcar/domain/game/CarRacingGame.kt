@@ -1,18 +1,19 @@
 package racingcar.domain.game
 
 import racingcar.domain.car.Car
+import racingcar.domain.car.capture
 import racingcar.domain.configuration.CarRacingConfiguration
 import racingcar.domain.result.CarRacingResult
-import racingcar.domain.rule.MoveRule
 
 class CarRacingGame private constructor(
-    private val round: Int,
+    private val round: RoundCount,
     private val cars: List<Car>,
     private val carMover: CarMover,
     private val result: MutableList<CarRacingResult> = mutableListOf(),
 ) {
+
     fun run(): List<CarRacingResult> {
-        repeat(round) {
+        repeat(round.value) {
             runRound()
             record()
         }
@@ -33,16 +34,11 @@ class CarRacingGame private constructor(
     companion object {
         fun set(
             configuration: CarRacingConfiguration,
-            moveRule: MoveRule,
-        ): CarRacingGame {
-            val carMover = CarMover(
-                moveRule = moveRule,
-            )
-            return CarRacingGame(
+        ): CarRacingGame =
+            CarRacingGame(
                 cars = configuration.cars,
-                carMover = carMover,
-                round = configuration.round,
+                carMover = CarMover(configuration.moveRule),
+                round = configuration.roundCount
             )
-        }
     }
 }

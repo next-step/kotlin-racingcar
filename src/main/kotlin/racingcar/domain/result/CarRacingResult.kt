@@ -1,11 +1,11 @@
 package racingcar.domain.result
 
-import racingcar.domain.car.Car
+import racingcar.domain.car.CapturedCar
 
 class CarRacingResult(
-    val cars: List<Car>,
+    val cars: List<CapturedCar>,
 ) {
-    fun getFarthestCar(): List<Car> {
+    fun getFarthestCar(): List<CapturedCar> {
         val maxPosition = getMaxPosition()
         return cars.filter { it.position == maxPosition }
     }

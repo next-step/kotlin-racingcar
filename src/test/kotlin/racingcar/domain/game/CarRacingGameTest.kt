@@ -2,23 +2,20 @@ package racingcar.domain.game
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import racingcar.domain.car.Car
-import racingcar.domain.car.CarName
 import racingcar.domain.configuration.CarRacingConfiguration
 import racingcar.domain.rule.AlwaysMoveRule
 
 class CarRacingGameTest : BehaviorSpec({
     Given("자동차 경주 게임이 생성되었을 때") {
-        val cars = listOf(Car(CarName("name1"), 0), Car(CarName("name2"), 0))
+        val carNames = listOf("name1", "name2")
         val roundCount = 2
         val game = CarRacingGame.set(
-            configuration = CarRacingConfiguration(
-                cars = cars,
-                round = roundCount,
+            configuration = CarRacingConfiguration.of(
+                roundCount = roundCount,
+                carNames = carNames,
+                moveRule = AlwaysMoveRule(),
             ),
-            moveRule = AlwaysMoveRule(distance = 1)
         )
-
         When("게임을 실행하면") {
             val result = game.run()
             Then("라운드 횟수만큼 라운드가 실행된다") {
