@@ -13,8 +13,6 @@
 
 ### 리뷰 반영
 - [x] car name validate Car 내부로 넣기
-- [ ] rule 여러 형태로 받을 수 있게 하기
-- [ ] rule 도 Car 내부로 넣기
 - [x] repeat 함수 쓰기
 
 ### 학습한 것들
