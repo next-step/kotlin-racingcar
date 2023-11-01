@@ -1,4 +1,4 @@
-package racing
+package racing.domain
 
 data class CarRacingResult(
     val cars: List<Car>,

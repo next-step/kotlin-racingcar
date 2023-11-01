@@ -1,4 +1,4 @@
-package racing
+package racing.view
 
 object InputView {
     fun inputForRacing(): Pair<List<String>, Int> {

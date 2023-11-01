@@ -1,5 +1,9 @@
 package racing
 
+import racing.domain.CarRacing
+import racing.view.InputView
+import racing.view.ResultView
+
 class CarRacingApplication {
     companion object {
         @JvmStatic

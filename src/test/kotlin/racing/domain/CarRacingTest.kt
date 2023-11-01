@@ -1,4 +1,4 @@
-package racing
+package racing.domain
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.collections.shouldBeSameSizeAs

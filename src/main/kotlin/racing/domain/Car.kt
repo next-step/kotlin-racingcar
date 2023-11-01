@@ -1,4 +1,4 @@
-package racing
+package racing.domain
 
 private const val MAXIMUM_NAME_LENGTH = 5
 private const val DEFAULT_POSITION = 1

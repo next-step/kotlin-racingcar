@@ -1,4 +1,4 @@
-package racing
+package racing.domain
 
 object CarRacingRecorder {
     fun recordRacingResultPerRound(cars: List<Car>): List<Car> = cars.map { it.copy() }

@@ -1,8 +1,9 @@
-package racing
+package racing.domain
 
 import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
+import racing.view.ResultView
 
 class CarTest : BehaviorSpec({
     given("자동차 이름이") {
