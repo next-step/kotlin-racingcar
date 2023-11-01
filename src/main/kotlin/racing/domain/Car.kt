@@ -15,13 +15,13 @@ data class Car(val name: String, private var _position: Int = DEFAULT_POSITION) 
     val position: Int
         get() = _position
 
-    fun moveOrStop(random: Int) {
-        if (isMove(random)) {
+    fun moveOrStop(condition: Int) {
+        if (isMove(condition)) {
             move()
         }
     }
 
-    private fun isMove(random: Int): Boolean = random >= MOVABLE_MINIMUM
+    private fun isMove(condition: Int): Boolean = condition >= MOVABLE_MINIMUM
 
     private fun move() {
         _position += MOVING_DISTANCE

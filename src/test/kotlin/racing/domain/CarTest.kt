@@ -3,48 +3,63 @@ package racing.domain
 import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import racing.view.ResultView
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
-class CarTest : BehaviorSpec({
-    given("자동차 이름이") {
-        val carName = "abcdefg"
-        `when`("5자를 초과한 경우") {
-            then("IllegalArgumentException throw") {
-                shouldThrowWithMessage<IllegalArgumentException>("자동차 이름은 5자를 초과할 수 없습니다.") {
-                    Car(carName)
+class CarTest : BehaviorSpec() {
+
+    @ValueSource(strings = ["pobi", "crong", "honux"])
+    @ParameterizedTest
+    fun `자동차는 이름을 가진다`(name: String) {
+        val car = Car(name)
+        car.name shouldBe name
+    }
+
+    @Test
+    fun `자동차의 이름이 5자를 초과하면 예외가 발생한다`() {
+        shouldThrowWithMessage<IllegalArgumentException>("자동차 이름은 5자를 초과할 수 없습니다.") {
+            Car("pobicronghonux")
+        }
+    }
+
+    @Test
+    fun `자동차의 초기 위치는 1이다`() {
+        val car = Car("pobi")
+        car.position shouldBe 1
+    }
+
+    @Test
+    fun `자동차는 위치를 가진다`() {
+        val car = Car("pobi", _position = 10)
+        car.position shouldBe 10
+    }
+
+    @ValueSource(ints = [4, 5, 6, 7, 8, 9])
+    @ParameterizedTest
+    fun `자동차는 무작위 값이 4 이상일 경우 움직인다`(condition: Int) {
+        given("자동차는") {
+            val car = Car("pobi")
+            `when`("무작위 값이 4 이상일 경우") {
+                car.moveOrStop(condition)
+                then("움직인다") {
+                    car.position shouldBe 2
                 }
             }
         }
     }
 
-    given("무작위 값이 4 이상일 때 1만큼 전진하는 자동차의 현재 위치가 1이다") {
-        var position = 1
-        val car = Car("name", _position = position)
-        `when`("무작위 값이 4라고 하면") {
-            val random = 4
-            car.moveOrStop(random)
-            then("자동차는 1만큼 전진하였는가") {
-                position += 1
-                car.position.shouldBe(position)
-            }
-        }
-
-        `when`("무작위 값이 2라고 하면") {
-            val random = 2
-            car.moveOrStop(random)
-            then("자동차의 위치는 직전과 동일한가") {
-                car.position.shouldBe(position)
-            }
-        }
-
-        `when`("직전 상태에서 자동차가 2번 이동했다고 할때") {
-            for (i in 0 until 2) {
-                car.moveOrStop(4)
-                position += 1
-            }
-            then("이동 횟수만큼 실행 결과인 '-'가 반복 되는가") {
-                ResultView.transformResult(car.position) shouldBe "----"
+    @ValueSource(ints = [0, 1, 2, 3])
+    @ParameterizedTest
+    fun `자동차는 무작위 값이 3 이하일 경우 정지한다`(condition: Int) {
+        given("자동차가 주어진다.") {
+            val car = Car("pobi")
+            `when`("무작위 값이 3 이하일 경우") {
+                car.moveOrStop(condition)
+                then("정지한다") {
+                    car.position shouldBe 1
+                }
             }
         }
     }
-})
+}

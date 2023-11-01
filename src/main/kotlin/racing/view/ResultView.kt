@@ -27,7 +27,7 @@ object ResultView {
         println("$name : ${transformResult(position)}")
     }
 
-    fun transformResult(position: Int): String {
+    private fun transformResult(position: Int): String {
         return (0 until position).map { "-" }.reduce { a, b -> a + b }
     }
 
