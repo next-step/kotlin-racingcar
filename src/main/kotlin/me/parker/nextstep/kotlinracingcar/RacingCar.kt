@@ -2,7 +2,7 @@ package me.parker.nextstep.kotlinracingcar
 
 import me.parker.nextstep.kotlinracingcar.rule.RacingGameMoveRule
 
-class RacingCar(private val racingGameMoveRule: RacingGameMoveRule) {
+class RacingCar(val name: String, private val racingGameMoveRule: RacingGameMoveRule) {
     var position: Int = 0
         private set
 
@@ -15,7 +15,7 @@ class RacingCar(private val racingGameMoveRule: RacingGameMoveRule) {
     }
 
     fun copy(): RacingCar {
-        val racingCar = RacingCar(racingGameMoveRule)
+        val racingCar = RacingCar(name, racingGameMoveRule)
         racingCar.position = position
         return racingCar
     }

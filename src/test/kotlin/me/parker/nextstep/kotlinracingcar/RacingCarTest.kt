@@ -9,7 +9,7 @@ class RacingCarTest {
 
     @Test
     fun `자동차 생성 - 최초 위치가 0인지 검증`() {
-        val racingCar = RacingCar(RandomRacingGameMoveRule())
+        val racingCar = RacingCar("parker", RandomRacingGameMoveRule())
 
         assertThat(racingCar).isNotNull
         assertThat(racingCar.position).isEqualTo(0)
@@ -17,7 +17,7 @@ class RacingCarTest {
 
     @Test
     fun `자동차 앞으로 이동`() {
-        val racingCar = RacingCar(TestRacingGameMoveRule(true))
+        val racingCar = RacingCar("parker", TestRacingGameMoveRule(true))
 
         racingCar.moveForward()
 
@@ -26,7 +26,7 @@ class RacingCarTest {
 
     @Test
     fun `자동차 앞으로 이동할 수 없음`() {
-        val racingCar = RacingCar(TestRacingGameMoveRule(false))
+        val racingCar = RacingCar("parker", TestRacingGameMoveRule(false))
 
         racingCar.moveForward()
 
@@ -35,11 +35,12 @@ class RacingCarTest {
 
     @Test
     fun `copy시 같은 정보의 다른 객체를 반환`() {
-        val racingCar = RacingCar(TestRacingGameMoveRule(true))
+        val racingCar = RacingCar("parker", TestRacingGameMoveRule(true))
 
         val copiedRacingCar = racingCar.copy()
 
         assertThat(racingCar).isNotSameAs(copiedRacingCar)
+        assertThat(racingCar.name).isEqualTo(copiedRacingCar.name)
         assertThat(racingCar.position).isEqualTo(copiedRacingCar.position)
 
         racingCar.moveForward()
