@@ -21,8 +21,6 @@ object ConsoleView {
         println("실행 결과")
         for (attempt in 0 until racingGame.numOfAttempts) {
             printCurrentRacingCars(racingGame.numOfRacingCar, racingCarGameRounds[attempt])
-
-            println("==============================")
         }
         print("Result: ${racingGame.resultOfRacingCars}")
     }
