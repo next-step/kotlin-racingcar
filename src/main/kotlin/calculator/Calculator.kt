@@ -5,13 +5,13 @@ import calculator.validator.OperationValidator
 
 object Calculator {
     fun calculate(expression: String): Int {
-        val expressionList = extractExpressionList(expression)
+        val expressions: List<String> = extract(expression)
 
-        var result = expressionList[0].toInt()
-        for (index in 1 until expressionList.size step 2) {
-            val operator = Operator.of(expressionList[index])
+        var result = expressions[0].toInt()
+        for (index in 1 until expressions.size step 2) {
+            val operator = Operator.of(expressions[index])
             if (operator != Operator.NONE) {
-                val rightOperand = expressionList.getOrNull(index + 1)?.toIntOrNull() ?: continue
+                val rightOperand = expressions.getOrNull(index + 1)?.toIntOrNull() ?: continue
                 result = operator.operate(result, rightOperand)
             }
         }
@@ -19,7 +19,7 @@ object Calculator {
         return result
     }
 
-    private fun extractExpressionList(expression: String): List<String> {
+    private fun extract(expression: String): List<String> {
         val expressionList = expression.split(" ")
         require(OperationValidator.hasValidSize(expressionList)) { "잘못된 입력입니다." }
         return expressionList
