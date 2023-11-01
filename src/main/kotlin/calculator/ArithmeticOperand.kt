@@ -2,26 +2,23 @@ package calculator
 
 @JvmInline
 value class ArithmeticOperand(
-    private val _value: Long,
+    val value: Long,
 ) {
 
-    val value: Long
-        get() = _value
-
     operator fun plus(operand: ArithmeticOperand): ArithmeticOperand {
-        return ArithmeticOperand(_value + operand._value)
+        return ArithmeticOperand(value + operand.value)
     }
 
     operator fun minus(operand: ArithmeticOperand): ArithmeticOperand {
-        return ArithmeticOperand(_value - operand._value)
+        return ArithmeticOperand(value - operand.value)
     }
 
     operator fun times(operand: ArithmeticOperand): ArithmeticOperand {
-        return ArithmeticOperand(_value * operand._value)
+        return ArithmeticOperand(value * operand.value)
     }
 
     operator fun div(operand: ArithmeticOperand): ArithmeticOperand {
-        return ArithmeticOperand(_value / operand._value)
+        return ArithmeticOperand(value / operand.value)
     }
 
     companion object {
