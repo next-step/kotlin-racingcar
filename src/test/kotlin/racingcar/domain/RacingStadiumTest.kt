@@ -2,20 +2,23 @@ package racingcar.domain
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
+import racingcar.Racing
 import racingcar.util.Message.*
 
-class CarStadiumTest : BehaviorSpec({
-    val alwaysFourGenerator = { _:Int, _: Int -> 4 }
-    val alwaysZeroGenerator = { _: Int, _: Int -> 0 }
+class RacingStadiumTest : BehaviorSpec({
+    val intRandomGenerator = { start: Int , end: Int -> IntRange(start, end).random() }
+    val stubValidation = { _: List<String> -> true }
+    val alwaysForward = RacingProperty(5,9, Racing.MOVE_FORWARD_CONDITION)
+    val cantMove = RacingProperty(0,3, Racing.MOVE_FORWARD_CONDITION)
 
     Given("자동차의 대수와 전진 시도 횟수가 정수로 주어지고") {
         val nameOfCars = "a,b,c".split(",")
         val numberOfTrials = 3
         When("항상 전진할 수 있는 게임을 시작한다면") {
-            val result = CarStadium(
+            val result = RacingStadium(
                 nameOfCars,
                 numberOfTrials,
-                CarMove(alwaysFourGenerator)
+                RacingRule(intRandomGenerator, stubValidation, alwaysForward)
             ).gameStart()
             Then("시도 횟수만큼 결과 리스트를 반환하며 매 라운드마다 전진한다.") {
                 val histories = result.allRounds
@@ -28,10 +31,10 @@ class CarStadiumTest : BehaviorSpec({
         }
 
         When("항상 전진할 수 없는 게임을 시작한다면") {
-            val result = CarStadium(
+            val result = RacingStadium(
                 nameOfCars,
                 numberOfTrials,
-                CarMove(alwaysZeroGenerator)
+                RacingRule(intRandomGenerator, stubValidation, cantMove)
             ).gameStart()
             Then("시도 횟수만큼 결과 리스트를 반환하며 전진 횟수는 항상 0이다.") {
                 val histories = result.allRounds
