@@ -4,7 +4,7 @@ import org.bmsk.racingcar.domain.model.RacingCarRoad
 import org.bmsk.racingcar.domain.model.RacingCarWinner
 import org.bmsk.racingcar.domain.policy.tie.RacingCarTiebreakerPolicy
 
-class SingleWinnerOnlyImpl(
+internal class SingleWinnerOnlyImpl(
     private val tiebreaker: RacingCarTiebreakerPolicy = RacingCarTiebreakerPolicy.FirstCarWins,
 ) : RankingPolicy.SingleWinnerOnly {
 
