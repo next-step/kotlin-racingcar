@@ -7,6 +7,7 @@ import racing.ui.InputView
 import racing.ui.ResultView
 
 class RacingCircuit {
+    private val carRace: CarRace = CarRace()
     fun race() {
         val inputView = InputView()
         val resultView = ResultView()
@@ -14,7 +15,7 @@ class RacingCircuit {
         val cars = Cars(carNumber)
 
         println("레이스 스타트")
-        CarRace().randomMove(cars, tryNumber, resultView::makeResultView)
+        carRace.randomMove(cars, tryNumber, resultView::makeResultView)
     }
 
     fun raceWithWinner() {
@@ -28,7 +29,7 @@ class RacingCircuit {
         val cars = Cars(carList)
 
         println("실행 결과")
-        CarRace().randomMove(cars, tryNumber, resultView::makeResultViewWithName)
+        carRace.randomMove(cars, tryNumber, resultView::makeResultViewWithName)
         resultView.makeWinnerView(cars)
     }
 }
