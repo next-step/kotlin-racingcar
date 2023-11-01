@@ -24,6 +24,26 @@ class CarTest {
     }
 
     @Test
+    @DisplayName("자동차 이름이 1자 이상 5자 이하일 때 객체 생성이 성공해야 한다")
+    fun `should create CarName object when name length is between 1 and 5`() {
+        val validNames = listOf("Car1", "Car2", "Car3", "Car4", "Car5")
+
+        validNames.forEach { name ->
+            val carName = CarName(name)
+            assertEquals(name, carName.name)
+        }
+    }
+
+
+    @Test
+    @DisplayName("자동차 이름이 빈 문자열일 때 예외를 던져야 한다")
+    fun `should throw exception when name is blank`() {
+        assertThrows<IllegalArgumentException> {
+            CarName("")
+        }
+    }
+
+    @Test
     @DisplayName("자동차 이름이 5자를 초과할 때 예외를 던져야 한다.")
     fun `should throw exception when car name is longer than 5 characters`() {
         assertThrows<IllegalArgumentException> {

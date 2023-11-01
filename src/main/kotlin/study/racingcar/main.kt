@@ -14,6 +14,7 @@ fun main() {
     val moveCount = InputView.getMoveCount()
     val randomMoveStrategy = RandomMoveStrategy()
     val race = Race.create(cars, moveCount, randomMoveStrategy)
-    race.run()
-    ResultView.displayWinners(race.cars)
+    val raceResult = race.run()
+    ResultView.displayCars(raceResult)
+    ResultView.displayWinners(raceResult)
 }
