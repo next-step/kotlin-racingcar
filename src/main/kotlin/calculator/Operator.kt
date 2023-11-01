@@ -5,6 +5,4 @@ enum class Operator(val operator: String, val operation: (Long, Long) -> Long) {
     MINUS("-", { left: Long, right: Long -> left - right }),
     MULTIPLY("*", { left: Long, right: Long -> left * right }),
     DIVIDE("/", { left: Long, right: Long -> left / right });
-
-    fun operate(left: Long, right: Long): Long = operation(left, right)
 }
