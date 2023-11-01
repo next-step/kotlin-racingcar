@@ -16,8 +16,10 @@ class RaceGame internal constructor(
                     car.move()
                 }
             }
-            raceResult.recordRound(round + 1, raceCars.map { RaceCar(it.position) })
+            raceResult.recordRound(round + 1, raceCars.map { RaceCar(it.name, it.position) })
         }
+        val winners = pickWinners(raceCars)
+        raceResult.recordWinners(winners)
         return raceResult
     }
 
@@ -42,10 +44,15 @@ class RaceGame internal constructor(
     }
 
     companion object {
-        fun of(carCount: Int, totalRound: Int): RaceGame {
-            val raceCars = List(carCount) { RaceCar() }
+        fun of(carCount: Int, totalRound: Int, carNames: List<String>): RaceGame {
+            val raceCars = List(carCount) { index -> RaceCar(carNames[index]) }
             return RaceGame(raceCars, totalRound)
         }
+    }
+
+    private fun pickWinners(raceCars: List<RaceCar>): List<RaceCar> {
+        val winnerPosition = raceCars.maxBy { it.position }.position
+        return raceCars.filter { it.position == winnerPosition }.toList()
     }
 }
 
