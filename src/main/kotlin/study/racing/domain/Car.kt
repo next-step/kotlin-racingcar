@@ -15,8 +15,21 @@ class Car(
 
     fun tryMoveTheCar() {
         if (strategy.isMoving()) {
-            this.distance.moveForward()
+            move()
         }
+    }
+
+    fun tryMoveTheCar(
+        carIndex: Int,
+        roundIndex: Int,
+    ) {
+        if (strategy.isMoving(carIndex, roundIndex)) {
+            move()
+        }
+    }
+
+    private fun move() {
+        this.distance.moveForward()
     }
 
     fun getCarName(): String {

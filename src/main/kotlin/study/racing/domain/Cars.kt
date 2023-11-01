@@ -19,6 +19,14 @@ class Cars private constructor(
         }
     }
 
+    fun moveTheCars(
+        roundIndex: Int,
+    ) {
+        this.cars.forEachIndexed { index, car ->
+            car.tryMoveTheCar(index, roundIndex)
+        }
+    }
+
     fun getCarsMoveDistance(): List<Int> = this.cars.map {
         it.getCarDistance()
     }.toList()
@@ -48,30 +56,17 @@ class Cars private constructor(
 
     companion object {
         fun from(
-            carNames: String
+            carNames: List<CarName>,
         ): Cars {
-            return Cars(createEachCarNameOfCars(splitCarNames(carNames)))
-        }
-
-        private fun splitCarNames(carNames: String): List<CarName> {
-
-            require(carNames.isNotEmpty()) {
-                "차량 이름을 정상적으로 등록해 주세요. 여러대 등록시 ',' 로 구분해서 작성해 주세요."
-            }
-
-            return carNames.trim()
-                .split(",")
-                .map {
-                    CarName(it)
-                }
+            return Cars(createEachCarNameOfCars(carNames))
         }
 
         fun of(
-            carNames: String,
-            strategy: MoveStrategy
+            carNames: List<CarName>,
+            strategy: MoveStrategy,
         ): Cars {
             return Cars(
-                createEachCarNameOfCars(splitCarNames(carNames), strategy),
+                createEachCarNameOfCars(carNames, strategy)
             )
         }
 
