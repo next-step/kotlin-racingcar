@@ -4,7 +4,6 @@ import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
-import org.bmsk.racingcar.domain.policy.movement.MovementPolicy
 import org.bmsk.racingcar.domain.policy.movement.RandomMovementImpl
 import org.bmsk.racingcar.domain.random.RandomGenerator
 import org.bmsk.racingcar.model.Position
