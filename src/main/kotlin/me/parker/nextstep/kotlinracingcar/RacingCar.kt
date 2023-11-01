@@ -6,6 +6,11 @@ class RacingCar(val name: String, private val racingGameMoveRule: RacingGameMove
     var position: Int = 0
         private set
 
+    init {
+        require(name.isNotBlank()) { "자동차 이름은 공백일 수 없습니다." }
+        require(name.length in 1..5) { "자동차 이름은 1~5자만 가능합니다." }
+    }
+
     fun moveForward() {
         if (racingGameMoveRule.isForward()) position++
     }

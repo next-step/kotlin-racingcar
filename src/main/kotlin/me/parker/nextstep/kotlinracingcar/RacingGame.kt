@@ -7,7 +7,7 @@ class RacingGame(
     private val racingGameMoveRule: RacingGameMoveRule
 ) {
     fun start(): List<RacingCarGameRound> {
-        val resultOfRacingCars = List(numOfRacingCar) { RacingCar("parker", racingGameMoveRule) }
+        val resultOfRacingCars = List(numOfRacingCar) { RacingCar("crong", racingGameMoveRule) }
 
         val racingCarGameRound: MutableList<RacingCarGameRound> = mutableListOf()
         var round = START_ROUND
