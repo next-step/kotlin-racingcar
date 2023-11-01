@@ -13,7 +13,7 @@ class RacingGame(
         resultOfRacingCars = List(numOfRacingCar) { RacingCar(racingGameMoveRule) }
 
         val racingCarGameRound: MutableList<RacingCarGameRound> = mutableListOf()
-        var round = 1
+        var round = START_ROUND
         repeat(numOfAttempts) {
             val movedRacingCars: MutableList<RacingCar> = mutableListOf()
             resultOfRacingCars.forEach {
@@ -25,5 +25,9 @@ class RacingGame(
         }
 
         return racingCarGameRound
+    }
+
+    companion object {
+        const val START_ROUND = 1
     }
 }
