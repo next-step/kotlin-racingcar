@@ -22,7 +22,7 @@ class RacingGameTest : BehaviorSpec({
                 roundResults[0].cars.forEach { it.position shouldBe Position(1) }
             }
 
-            then("우승자는 Wooddy 이다.") {
+            then("우승자는 AA 이다.") {
                 val winners = racingGame.getWinners()
 
                 winners.size shouldBe 1
@@ -45,7 +45,7 @@ class RacingGameTest : BehaviorSpec({
                 }
             }
 
-            then("우승자는 Wooddy1, Wooddy2 이다.") {
+            then("우승자는 AA, BB 이다.") {
                 val winners = racingGame.getWinners()
 
                 winners.size shouldBe 2

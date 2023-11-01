@@ -25,6 +25,8 @@ class GameRound(val totalRound: Int) {
 
     fun isFinished(): Boolean = this.totalRound < this.progressRound
 
+    fun getLastRoundResult(): GameRoundResult = this._results.last()
+
     companion object {
         private const val MIN_ROUND = 1
         private const val MAX_ROUND = 100
