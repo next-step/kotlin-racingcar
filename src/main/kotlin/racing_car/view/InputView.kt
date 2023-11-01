@@ -7,7 +7,7 @@ object InputView {
         return readln().toInt()
     }
 
-    fun inputNumberOfRounds(): Int {
+    fun inputRacingRound(): Int {
         println("시도할 횟수는 몇 회인가요?")
         return readln().toInt()
     }
