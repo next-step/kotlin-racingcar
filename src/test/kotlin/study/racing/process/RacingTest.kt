@@ -7,7 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
-import study.racing.strategy.RandomMoveStrategyDouble2
+import study.racing.strategy.RandomMoveStrategyDouble
 
 class RacingTest {
 
@@ -80,7 +80,7 @@ class RacingTest {
         val actual = racing.playRacing(
             carNamesString,
             roundCount,
-            RandomMoveStrategyDouble2(isMovingEachCars)
+            RandomMoveStrategyDouble(isMovingEachCars)
         )
 
         // Then

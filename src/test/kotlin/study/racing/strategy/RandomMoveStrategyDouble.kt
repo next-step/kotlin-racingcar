@@ -3,7 +3,7 @@ package study.racing.strategy
 import java.util.LinkedList
 import java.util.Queue
 
-class RandomMoveStrategyDouble2(
+class RandomMoveStrategyDouble(
     movable: List<Boolean>
 ) : MoveStrategy {
 

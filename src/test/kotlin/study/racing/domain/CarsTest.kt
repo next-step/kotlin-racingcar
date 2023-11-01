@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.EmptySource
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
-import study.racing.strategy.RandomMoveStrategyDouble2
+import study.racing.strategy.RandomMoveStrategyDouble
 
 class CarsTest {
 
@@ -18,7 +18,7 @@ class CarsTest {
         carNamesString: String
     ) {
         // Given
-        val strategyDouble = RandomMoveStrategyDouble2(listOf(true))
+        val strategyDouble = RandomMoveStrategyDouble(listOf(true))
         val carNames = carNamesString.split(",")
             .map {
                 CarName(it)
@@ -56,7 +56,7 @@ class CarsTest {
         expectedDistance: Int
     ) {
         // Given
-        val strategyDouble = RandomMoveStrategyDouble2(listOf(isMoving))
+        val strategyDouble = RandomMoveStrategyDouble(listOf(isMoving))
         val carNames = carNamesString.split(",")
             .map {
                 CarName(it)
@@ -86,7 +86,7 @@ class CarsTest {
         expectedMaxMovingDistance: Int
     ) {
         // Given
-        val strategyDouble = RandomMoveStrategyDouble2(listOf(true))
+        val strategyDouble = RandomMoveStrategyDouble(listOf(true))
         val carNames = carNamesString.split(",")
             .map {
                 CarName(it)
