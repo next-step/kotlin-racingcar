@@ -26,5 +26,5 @@ class ResultView {
 
     private fun showNewLine() = println("")
 
-    private fun showSpace(car: RacingCar) = println("${car.name} : " + "-".repeat(car.space))
+    private fun showSpace(car: RacingCar) = println("${car.name} : ${"-".repeat(car.space)}")
 }

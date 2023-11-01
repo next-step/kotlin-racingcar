@@ -6,12 +6,12 @@ import race.ui.InputView
 import race.ui.ResultView
 
 fun main() {
-    val inputView = InputView()
+    val inputState = InputView().getInputState()
     val resultView = ResultView()
 
     Racing(
-        racingCarList = inputView.state.carNames.map { RacingCar(name = it) },
-        round = inputView.state.round,
+        racingCarList = inputState.carNames.map { RacingCar(name = it) },
+        round = inputState.round,
         resultView = resultView,
     ).startRace()
 }

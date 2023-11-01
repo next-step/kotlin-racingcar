@@ -1,13 +1,11 @@
 package race.ui
 
 class InputView() {
-    var state: InputState
-
-    init {
-        val carNames = readCarNames()
-        val round = readRound()
-
-        state = InputState(carNames = carNames.split(','), round = round)
+    fun getInputState(): InputState {
+        return InputState(
+            carNames = readCarNames().split(","),
+            round = readRound()
+        )
     }
 
     private fun readCarNames(): String {
