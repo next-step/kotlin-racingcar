@@ -1,12 +1,9 @@
 package calculator
-fun main(args: Array<String>) {
+
+fun main() {
     print("input : ")
-    var input : String? = readLine()
+    var input: String? = readLine()
 
     val num = Calculator.calculate(input)
     println("계산 결과 : $num")
 }
-
-
-
-

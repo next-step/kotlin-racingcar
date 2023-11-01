@@ -1,7 +1,5 @@
 package calculator
 
-import com.sun.org.apache.xpath.internal.operations.Plus
-
 enum class Operator(val op: String) {
     PLUS("+"),
     MINUS("-"),
@@ -19,7 +17,7 @@ enum class Operator(val op: String) {
             return result
         }
 
-        fun checkOperator(op : String): Operator {
+        fun checkOperator(op: String): Operator {
             val result = when (op) {
                 "+" -> PLUS
                 "-" -> MINUS
@@ -30,9 +28,8 @@ enum class Operator(val op: String) {
             return result
         }
 
-        fun operateTo(op : String): Operator? {
-            return values().find{it.op == op}
+        fun operateTo(op: String): Operator? {
+            return values().find { it.op == op }
         }
-}
-
+    }
 }

@@ -4,6 +4,9 @@ import io.kotest.matchers.shouldBe
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.NullAndEmptySource
+import org.junit.jupiter.params.provider.ValueSource
 
 class CalculatorTest {
     @Test
@@ -41,12 +44,13 @@ class CalculatorTest {
         Assertions.assertThat(result).isEqualTo(10)
     }
 
-    @Test
-    fun `입력값이 null인 경우`() {
-        val input = null
+    @ParameterizedTest
+    @ValueSource(strings = [" ", ""])
+    @NullAndEmptySource
+    fun `입력값이 null인 경우`(str: String?) {
         assertThrows<IllegalArgumentException> {
-            Calculator.calculate(input)
-        }.localizedMessage shouldBe "입력값이 없습니다!!"
+            Calculator.calculate(str)
+        }
     }
 
     @Test
