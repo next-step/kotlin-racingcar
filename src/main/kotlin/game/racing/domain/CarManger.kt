@@ -1,22 +1,12 @@
 package game.racing.domain
 
-class CarManger {
-    val cars = mutableListOf<Car>()
+import game.racing.util.getRandomValue
 
-    fun generateCarByNumberOfCar(numberOfCar: Int) {
-        resetCars()
-        repeat(numberOfCar) {
-            cars.add(Car())
-        }
-    }
-
-    private fun resetCars() {
-        cars.clear()
-    }
+class CarManger(val cars: List<Car> = mutableListOf()) {
 
     fun moveCars() {
         cars.forEach {
-            it.move()
+            it.move(getRandomValue())
         }
     }
 }

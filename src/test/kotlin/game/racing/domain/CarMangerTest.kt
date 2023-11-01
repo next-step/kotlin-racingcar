@@ -9,10 +9,8 @@ internal class CarMangerTest {
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4, 5])
     fun `인자 숫자만큼 자동차를 생성한다`(numberOfCar: Int) {
-        val carManager = CarManger()
+        val generateCarByNumberOfCar = CarFactory.generateCarByNumberOfCar(numberOfCar)
 
-        carManager.generateCarByNumberOfCar(numberOfCar)
-
-        assertThat(carManager.cars.size).isEqualTo(numberOfCar)
+        assertThat(generateCarByNumberOfCar.size).isEqualTo(numberOfCar)
     }
 }
