@@ -2,8 +2,8 @@ package calculator.validator
 
 object OperationValidator {
     private val regexValidCharacter = """^[0-9+\-*/\s]+$""".toRegex() // 숫자나 +, -, *, /, 공백만 허용
-    private val regexEndWithNumber = """[0-9]$""".toRegex()           // 마지막 문자가 숫자인지 확인
-    private val regexDuplicateOperator = """[+\-*/]{2,}""".toRegex()  // 연산자가 연속으로 나오는 경우 확인
+    private val regexEndWithNumber = """[0-9]$""".toRegex() // 마지막 문자가 숫자인지 확인
+    private val regexDuplicateOperator = """[+\-*/]{2,}""".toRegex() // 연산자가 연속으로 나오는 경우 확인
 
     fun isCorrectExpression(expression: String): Boolean {
         if (expression.isEmpty()) return false
