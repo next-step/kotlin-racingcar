@@ -5,6 +5,7 @@ import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
+import racing.v1.InputView
 
 class `입력 객체 유효성 검사 테스트` : BehaviorSpec({
     Given("비정상적인 입력값이 주어질 때") {

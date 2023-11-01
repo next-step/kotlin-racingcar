@@ -1,4 +1,4 @@
-package racing
+package racing.v1
 
 class DrivingPolicy {
     companion object {
