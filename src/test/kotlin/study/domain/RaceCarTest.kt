@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 class RaceCarTest {
     @Test
     fun move() {
-        val raceCar = RaceCar()
+        val raceCar = RaceCar("name")
         raceCar.move()
         assertThat(raceCar.position).isOne
     }
