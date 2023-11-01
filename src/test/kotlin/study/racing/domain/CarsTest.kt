@@ -52,11 +52,11 @@ class CarsTest {
     @MethodSource("carsMovingProvider")
     fun `이동여부에 따라 차량들의 각각 이동을 할 수 있다`(
         carNamesString: String,
-        isMoving: Boolean,
-        expectedDistance: Int
+        isMoving: List<Boolean>,
+        expectedDistance: List<Int>
     ) {
         // Given
-        val strategyDouble = RandomMoveStrategyDouble(listOf(isMoving))
+        val strategyDouble = RandomMoveStrategyDouble(isMoving)
         val carNames = carNamesString.split(",")
             .map {
                 CarName(it)
@@ -67,79 +67,43 @@ class CarsTest {
         actual.moveTheCars()
 
         // Then
-        val firstCar = actual.getCarsMoveDistance()
-            .first()
-        val lastCar = actual.getCarsMoveDistance()
-            .last()
-
-        assertAll(
-            { assertThat(firstCar).isEqualTo(expectedDistance) },
-            { assertThat(lastCar).isEqualTo(expectedDistance) },
-        )
+        assertThat(actual.getCarsMoveDistance()).isEqualTo(expectedDistance)
     }
 
     @ParameterizedTest
     @MethodSource("carsMaxMovingProvider")
-    fun `가장 멀리 이동한 차들의 수, 이름을 알 수 있다`(
+    fun `가장 멀리 이동한 차들의 이름을 알 수 있다`(
         carNamesString: String,
-        expectedMaxMovingCarNames: List<String>,
-        expectedMaxMovingDistance: Int
+        isMoving: List<Boolean>,
+        winnerName: String
     ) {
         // Given
-        val strategyDouble = RandomMoveStrategyDouble(listOf(true))
+        val strategyDouble = RandomMoveStrategyDouble(isMoving)
         val carNames = carNamesString.split(",")
             .map {
                 CarName(it)
             }
-        val actual = Cars.of(carNames, strategyDouble)
-        makeWinner(actual, expectedMaxMovingCarNames, expectedMaxMovingDistance)
+        val cars = Cars.of(carNames, strategyDouble)
+        cars.moveTheCars()
 
         // When
-        val winner = actual.getRacingWinnerNames()
+        val actual = cars.getRacingWinnerNames()
 
         // Then
-        assertAll(
-            {
-                val expectWinnerCount = expectedMaxMovingCarNames.size
-                assertThat(winner.size).isEqualTo(expectWinnerCount)
-            },
-            {
-                assertThat(winner).isEqualTo(expectedMaxMovingCarNames)
-            },
-        )
-    }
-
-    private fun makeWinner(
-        candidateCars: Cars,
-        winnerCarNames: List<String>,
-        winnerDistance: Int
-    ) {
-        candidateCars.filter {
-            winnerCarNames.contains(it.getCarName())
-        }.forEach { car ->
-            repeat(times = winnerDistance) {
-                car.tryMoveTheCar()
-            }
-        }
+        assertThat(actual.first()).isEqualTo(winnerName)
     }
 
     companion object {
         @JvmStatic
         fun carsMovingProvider() = listOf(
-            Arguments.of("a,b,c,d", false, 0),
-            Arguments.of("a,b,c,d", true, 1),
+            Arguments.of("a,b,c,d", listOf(false, true, true, false), listOf(0, 1, 1, 0)),
+            Arguments.of("a,b,c,d", listOf(true, true, true, false), listOf(1, 1, 1, 0)),
+            Arguments.of("a,b,c", listOf(false, true, false), listOf(0, 1, 0)),
         )
 
         @JvmStatic
         fun carsMaxMovingProvider() = listOf(
-            Arguments.of("a,b,c,d", listOf("a"), 1),
-            Arguments.of("a,b,c,d", listOf("a"), 10),
-            Arguments.of("a,b,c,d", listOf("a", "b"), 2),
-            Arguments.of("a,b,c,d", listOf("a", "b"), 10),
-            Arguments.of("a,b,c,d", listOf("a", "b", "c"), 3),
-            Arguments.of("a,b,c,d", listOf("a", "b", "c"), 10),
-            Arguments.of("a,b,c,d", listOf("a", "b", "c", "d"), 4),
-            Arguments.of("a,b,c,d", listOf("a", "b", "c", "d"), 10),
+            Arguments.of("a,b", listOf(false, true, false, true), "b"),
         )
     }
 }
