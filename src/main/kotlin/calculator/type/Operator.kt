@@ -14,4 +14,8 @@ enum class Operator(val symbol: String, val operationFunction: (a: Int, b: Int) 
             return values().find { it.symbol == symbol } ?: NONE
         }
     }
+
+    fun operate(left: Int, right: Int): Int {
+        return this.operationFunction(left, right)
+    }
 }

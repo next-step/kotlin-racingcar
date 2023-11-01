@@ -12,7 +12,7 @@ object Calculator {
             val operator = Operator.of(expressionList[index])
             if (operator != Operator.NONE) {
                 val rightOperand = expressionList.getOrNull(index + 1)?.toIntOrNull() ?: continue
-                result = performOperation(result, rightOperand, operator)
+                result = operator.operate(result, rightOperand)
             }
         }
 
