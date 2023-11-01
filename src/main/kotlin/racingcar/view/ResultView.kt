@@ -1,4 +1,8 @@
-package racingcar
+package racingcar.view
+
+import racingcar.domain.GameResultRecord
+import racingcar.domain.RaceResultRecord
+import racingcar.domain.Winners
 
 object ResultView {
     fun printGameResult(gameResultRecord: GameResultRecord) {

@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class RacingGame {
     fun play(cars: List<Car>, tryMoveCount: Int, racingGameRecorder: RacingGameRecorder) {

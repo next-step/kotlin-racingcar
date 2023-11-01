@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 data class Car(
     private val moveCondition: MoveCondition,
