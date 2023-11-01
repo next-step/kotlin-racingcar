@@ -1,16 +1,10 @@
 package race.domain
 
-class RacingCar(val name: String) {
-    var space = 0
-        private set
-    var isWinner = false
+class RacingCar(val name: String, space: Int = 0) {
+    var space = space
         private set
 
     fun go() {
         space += 1
-    }
-
-    fun win() {
-        isWinner = true
     }
 }

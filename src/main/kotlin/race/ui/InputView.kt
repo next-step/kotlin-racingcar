@@ -1,10 +1,13 @@
 package race.ui
 
-class InputView() {
-    fun getInputState(): InputState {
-        return InputState(
-            carNames = readCarNames().split(","),
-            round = readRound()
+class InputView(private val controller: RacingController) {
+    fun submitInput() {
+        controller.sendEvent(
+            RacingEvent.START,
+            InputState(
+                carNames = readCarNames().split(","),
+                round = readRound()
+            ),
         )
     }
 

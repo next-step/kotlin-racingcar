@@ -32,13 +32,4 @@ class RacingCarTest {
 
         assertEquals(input, car.space)
     }
-
-    @Test
-    fun `자동차가 우승`() {
-        val car = RacingCar(name = "")
-
-        car.win()
-
-        assertEquals(true, car.isWinner)
-    }
 }
