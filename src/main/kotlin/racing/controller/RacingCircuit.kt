@@ -29,8 +29,8 @@ class RacingCircuit {
         val cars = Cars(carList)
 
         println("실행 결과")
-        carRace.randomMove(cars, tryNumber, resultView::makeResultViewWithName)
-        resultView.makeWinnerView(cars)
+        val movedCars = carRace.randomMove(cars, tryNumber, resultView::makeResultViewWithName)
+        resultView.makeWinnerView(movedCars)
     }
 }
 
