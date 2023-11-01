@@ -1,7 +1,7 @@
 package racingcar.view
 
 import racingcar.domain.Car
-import racingcar.dto.CarsDto
+import racingcar.domain.Cars
 import racingcar.dto.RacingCarResult
 
 object ResultView {
@@ -18,7 +18,7 @@ object ResultView {
         printWinner(winners)
     }
 
-    private fun printCarsResult(cars: List<CarsDto>) {
+    private fun printCarsResult(cars: List<Cars>) {
         cars.forEach {
             printCarResult(it.cars)
             println()

@@ -2,11 +2,11 @@ package racingcar.domain
 
 class Car(
     carName: String,
-    val position: Int = 0
+    val position: Int = DEFAULT_POSITION
 ) {
 
     init {
-        require(carName.carNameCheck()) { "자동차 이름은 5자 이하만 가능합니다." }
+        require(carName.carNameCheck()) { "자동차 이름은 ${CAR_NAME_MAX_LENGTH}자 이하만 가능합니다." }
     }
 
     val name: String = carName
@@ -16,11 +16,17 @@ class Car(
         return this
     }
 
-    private fun isMove(random: Int): Boolean {
-        return random >= 4
+    private fun isMove(value: Int): Boolean {
+        return value >= MOVE_CONDITION
     }
 
     private fun String.carNameCheck(): Boolean {
-        return this.length <= 5
+        return this.length <= CAR_NAME_MAX_LENGTH
+    }
+
+    companion object {
+        private const val CAR_NAME_MAX_LENGTH = 5
+        private const val MOVE_CONDITION = 4
+        private const val DEFAULT_POSITION = 0
     }
 }
