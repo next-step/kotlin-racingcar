@@ -1,25 +1,21 @@
 package racinggame
 
-class Car(position: Int = 0) {
+class Car(
+    val name: String,
+    position: Int = 0
+) {
+
+    init {
+        require(name.length in 1..5) {
+            "자동차 이름은 1~5자만 가능합니다."
+        }
+    }
+
     var position: Int = position
         private set
 
-    fun move(diceResult: Int) {
-        position = CarCondition.getCondition(diceResult).apply(position)
+    fun move(diceResult: DiceResult) {
+        position = diceResult.apply(position)
     }
 }
 
-enum class CarCondition(val apply: (Int) -> Int) {
-    STOP({ it }),
-    FORWARD({ it + 1 });
-
-    companion object {
-        fun getCondition(diceResult: Int) = diceResult.let {
-            if (it >= 4) {
-                FORWARD
-            } else {
-                STOP
-            }
-        }
-    }
-}

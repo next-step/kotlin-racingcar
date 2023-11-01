@@ -7,20 +7,29 @@ class RacingGame(
 ) {
 
     fun play() = (1..tryCount).map {
-        cars.map { car ->
-            val num = dice.pitch()
-            car.move(num)
-            car.position
-        }
+        roundPlay(cars)
+    }.map { round ->
+        RoundResult(round)
+    }.let {
+        RacingGameResult(it)
+    }
+
+    private fun roundPlay(cars: List<Car>) = cars.map { car ->
+        val num = dice.pitch()
+        car.move(num)
+        Car(car.name, car.position)
+    }
+
+    fun getWinners() = cars.sortedByDescending { car ->
+        car.position
+    }.also { sortedCars ->
+        getJointWinner(sortedCars)
+    }.let {
+        PlayWinners(it)
+    }
+
+    private fun getJointWinner(winners: List<Car>) = winners.filter { car ->
+        car.position == winners.first().position
     }
 }
 
-fun List<List<Int>>.translate() = this.map { round ->
-    round.map {
-        (0..it).map {
-            "-"
-        }.reduce { s1, s2 ->
-            s1 + s2
-        }
-    }
-}

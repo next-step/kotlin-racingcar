@@ -1,16 +1,18 @@
 package racinggame
 
 fun main() {
-    val carCount = InputView.getCarCount()
+    val carNames = InputView.getCarNames()
     val tryCount = InputView.getTryCount()
 
     val game = RacingGame(
-        (1..carCount).map { Car() },
+        carNames.map { Car(name = it) },
         tryCount,
         RandomDice()
     )
 
-    val result = game.play().translate()
+    val result = game.play()
+    val winners = game.getWinners()
 
     OutputView.printRacingResult(result)
+    OutputView.printWinners(winners)
 }
