@@ -6,7 +6,7 @@ import org.assertj.core.api.Assertions
 class RaceTest : StringSpec({
     "경주를 진행하고 경주 결과를 반환" {
         val race = Race(
-            Players(2),
+            Players("pobi,crong"),
             GameCount(1),
             AlwaysMovingStrategy()
         )
@@ -14,15 +14,15 @@ class RaceTest : StringSpec({
         Assertions.assertThat(cars)
             .isEqualTo(
                 listOf(
-                    Car(Location(1)),
-                    Car(Location(1))
+                    Car(CarName("pobi"), Location(1)),
+                    Car(CarName("crong"), Location(1))
                 )
             )
     }
 
     "경주 진행 여부를 확인한다" {
         val race = Race(
-            Players(2),
+            Players("pobi,crong"),
             GameCount(1),
             AlwaysMovingStrategy()
         )

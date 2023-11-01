@@ -19,6 +19,7 @@ class RacingCarController {
         while (race.onPlay()) {
             OutputView.printResultPerRace(race.run())
         }
+        OutputView.printWinner(race.winners)
     }
 
     private fun getGameCount(): GameCount {
