@@ -2,7 +2,7 @@ package study.domain
 
 import kotlin.random.Random
 
-data class RaceGame internal constructor(
+class RaceGame internal constructor(
     private val raceCars: List<RaceCar>,
     private val totalRound: Int,
     private val moveStrategy: () -> Boolean = fun(): Boolean =
@@ -21,13 +21,29 @@ data class RaceGame internal constructor(
         return raceResult
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as RaceGame
+
+        if (raceCars != other.raceCars) return false
+        if (totalRound != other.totalRound) return false
+        if (moveStrategy != other.moveStrategy) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = raceCars.hashCode()
+        result = 31 * result + totalRound
+        result = 31 * result + moveStrategy.hashCode()
+        return result
+    }
+
     companion object {
         fun of(carCount: Int, totalRound: Int): RaceGame {
-            val raceCars = buildList(carCount) {
-                repeat(carCount) {
-                    add(RaceCar())
-                }
-            }
+            val raceCars = List(carCount) { RaceCar() }
             return RaceGame(raceCars, totalRound)
         }
     }
