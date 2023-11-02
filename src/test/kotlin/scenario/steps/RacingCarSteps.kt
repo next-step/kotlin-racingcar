@@ -2,6 +2,7 @@ package scenario.steps
 
 import game.RacingCarGame
 import game.domain.FixedMoveConditionGenerator
+import game.domain.GameResult
 import game.domain.History
 import game.domain.MoveConditionGenerator
 import game.view.ConsoleInputHandler
@@ -23,7 +24,7 @@ class RacingCarSteps {
     private var moveConditionGenerator: MoveConditionGenerator = FixedMoveConditionGenerator(0)
     private var userInputHandler: UserInputHandler = ConsoleInputHandler()
     private var userOutputHandler: UserOutputHandler = UserMessageDisplay()
-    private var history: History = History()
+    private var gameResult: GameResult = GameResult(History(), emptyList())
 
     @Given("자동차 이름 {string},{string},{string}를 입력하고")
     fun `자동차 이름 {CarName1},{CarName2},{CarName3}를 입력하고`(
@@ -52,8 +53,8 @@ class RacingCarSteps {
 
     @And("우승자를 저장한다면")
     fun `우승자를 저장한다면`() {
-        userOutputHandler = UserOutputHandler { history ->
-            this.history = history
+        userOutputHandler = UserOutputHandler { gameResult ->
+            this.gameResult = gameResult
         }
     }
 
@@ -87,8 +88,8 @@ class RacingCarSteps {
     @Then("우승자는 {string}이며 {int}만큼 전진한다")
     fun `우승자는 {우승자}"이며 {이동거리}만큼 전진한다`(winner: String, retryCount: Int) {
         Assertions.assertAll(
-            { assertThat(history.winners.joinToString()).contains(winner.split(",")) },
-            { assertThat(history.rounds.size).isEqualTo(retryCount) }
+            { assertThat(gameResult.winners.joinToString()).contains(winner.split(",")) },
+            { assertThat(gameResult.history.rounds.size).isEqualTo(retryCount) }
         )
     }
 }

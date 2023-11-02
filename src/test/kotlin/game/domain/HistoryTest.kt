@@ -21,20 +21,4 @@ class HistoryTest {
             { assert(newHistory.rounds[0][1].name == "b") }
         )
     }
-
-    @Test
-    fun `winner를 세팅한다`() {
-        // given
-        val history = History()
-
-        // when
-        val newHistory = history.setWinners(listOf("a", "b"))
-
-        // then
-        assertAll(
-            { assert(newHistory.winners.size == 2) },
-            { assert(newHistory.winners[0] == "a") },
-            { assert(newHistory.winners[1] == "b") }
-        )
-    }
 }

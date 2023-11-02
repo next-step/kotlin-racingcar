@@ -20,10 +20,10 @@ class CarFleetTest {
         val carFleet = CarFleet.from(cars, FixedMoveConditionGenerator(advance))
 
         // when
-        val history = carFleet.advance(retryCount)
+        val gameResult = carFleet.advance(retryCount)
 
         // then
-        assertThat(history.rounds.size).isEqualTo(retryCount)
+        assertThat(gameResult.history.rounds.size).isEqualTo(retryCount)
     }
 
     @Test

@@ -1,6 +1,7 @@
 package game.view
 
 import game.domain.Car
+import game.domain.GameResult
 import game.domain.History
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
@@ -31,10 +32,10 @@ class UserMessageDisplayTest {
         var history = History()
         history = history.addRound(listOf(Car.of("a", 1), Car.of("b", 1)))
         history = history.addRound(listOf(Car.of("a", 1), Car.of("b", 2)))
-        history = history.setWinners(listOf("b"))
+        val gameResult = GameResult(history, listOf("b"))
 
         // when
-        userMessageDisplay.displayHistory(history)
+        userMessageDisplay.displayResult(gameResult)
 
         // then
         assertThat(outputStreamCaptor.toString().trim()).isEqualTo(

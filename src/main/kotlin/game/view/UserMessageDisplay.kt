@@ -1,7 +1,7 @@
 package game.view
 
 import game.domain.Car
-import game.domain.History
+import game.domain.GameResult
 
 class UserMessageDisplay : UserOutputHandler {
     private fun display(cars: List<Car>) {
@@ -17,9 +17,9 @@ class UserMessageDisplay : UserOutputHandler {
         }
     )
 
-    override fun displayHistory(history: History) {
-        history.rounds.forEach { display(it) }
-        displayWinners(history.winners)
+    override fun displayResult(gameResult: GameResult) {
+        gameResult.history.rounds.forEach { display(it) }
+        displayWinners(gameResult.winners)
     }
 
     private fun displayWinners(winners: List<String>) {

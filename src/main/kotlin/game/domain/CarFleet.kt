@@ -6,7 +6,7 @@ class CarFleet private constructor(
     private val winnerFinder: WinnerFinder = DefaultWinnerFinder()
 ) {
 
-    fun advance(retryCount: Int): History {
+    fun advance(retryCount: Int): GameResult {
         var history = History()
         var carFleet = this
         repeat(retryCount) {
@@ -14,8 +14,7 @@ class CarFleet private constructor(
             history = history.addRound(carFleet.cars)
         }
         val winner = winnerFinder.findWinner(carFleet.cars)
-        history = history.setWinners(winner)
-        return history
+        return GameResult(history, winner)
     }
 
     private fun advanceAll(): CarFleet {

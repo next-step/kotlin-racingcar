@@ -21,7 +21,7 @@ class RacingCarGame(
         val cars = getCars()
         val retryCount = getRetryCount()
         val history = cars.advance(retryCount)
-        userOutputHandler.displayHistory(history)
+        userOutputHandler.displayResult(history)
     }
 
     private fun getRetryCount(): Int =

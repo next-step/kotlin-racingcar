@@ -1,7 +1,7 @@
 package game.view
 
-import game.domain.History
+import game.domain.GameResult
 
 fun interface UserOutputHandler {
-    fun displayHistory(history: History)
+    fun displayResult(gameResult: GameResult)
 }

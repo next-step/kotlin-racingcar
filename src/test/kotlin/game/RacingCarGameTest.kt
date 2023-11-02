@@ -1,5 +1,6 @@
 package game
 
+import game.domain.GameResult
 import game.domain.History
 import game.domain.MoveConditionGenerator
 import game.view.UserInputHandler
@@ -23,8 +24,8 @@ class RacingCarGameTest {
         // given
         val userInputHandler = TestUserInputHandler("pobi,crong,honux", retryCount.toString())
 
-        var expectHistory = History()
-        val userOutputHandler = UserOutputHandler { history -> expectHistory = history }
+        var actualGameResult = GameResult(History(), emptyList())
+        val userOutputHandler = UserOutputHandler { gameResult -> actualGameResult = gameResult }
 
         val moveConditionGenerator = CyclingMoveConditionGenerator(pobiCondition, crongCondition, honuxCondition)
 
@@ -35,8 +36,8 @@ class RacingCarGameTest {
 
         // then
         assertAll(
-            { Assertions.assertThat(expectHistory.rounds.size).isEqualTo(retryCount) },
-            { Assertions.assertThat(expectHistory.winners).usingRecursiveComparison().isEqualTo(expect.split(",")) }
+            { Assertions.assertThat(actualGameResult.history.rounds.size).isEqualTo(retryCount) },
+            { Assertions.assertThat(actualGameResult.winners).usingRecursiveComparison().isEqualTo(expect.split(",")) }
         )
     }
 
