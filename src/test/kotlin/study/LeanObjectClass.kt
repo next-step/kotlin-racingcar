@@ -1,6 +1,7 @@
 package study
 
 import io.kotest.core.spec.style.StringSpec
+import racing.model.Car
 
 class LeanObjectClass : StringSpec({
 
@@ -19,6 +20,8 @@ class LeanObjectClass : StringSpec({
         """.trimIndent()
 
         println(helloWorld.toString())
+        val car = CarFactory.makeCar("foo")
+        println(car)
     }
 })
 
@@ -26,4 +29,10 @@ val helloWorld = object {
     val hello = "Object "
     val world = "expressions"
     override fun toString() = "$hello $world"
+}
+
+object CarFactory {
+    fun makeCar(name: String): Car {
+        return Car("1", 0)
+    }
 }
