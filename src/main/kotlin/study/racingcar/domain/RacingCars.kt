@@ -1,0 +1,28 @@
+package study.racingcar.domain
+
+import study.racingcar.application.OutputView
+
+/**
+ * RacingCar 을 Wrapping 하는 일급 컬렉션
+ * */
+data class RacingCars(private val _racingCars: List<RacingCar>) {
+    val racingCars: List<RacingCar>
+        get() = _racingCars
+
+    val curWinners: String
+        get() {
+            val winner = _racingCars.maxBy { it.currentPosition }!!
+            return _racingCars
+                .filter { it.currentPosition == winner.currentPosition }
+                .joinToString(",") { it.name.toString() }
+        }
+
+    fun playGame(tryCount: Int, gameRule: GameRule) {
+        (1..tryCount).map { _ ->
+            _racingCars.forEach { rc ->
+                rc.moveForward(gameRule)
+            }
+            OutputView.showResult(_racingCars)
+        }
+    }
+}
