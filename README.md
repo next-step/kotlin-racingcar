@@ -377,3 +377,14 @@ class StringCalculatorTest {
 
 ##### effect
 - 역할이 명확해짐.
+
+#### 2. MovementController.kt
+
+##### Problem
+- getMoveCount 메서드는 아직 사용하지 않는 메서드임. = 불필요한 메서드임.
+
+##### Solution
+- getMoveCount 메서드 제거.
+
+##### effect
+- 불필요한 구현 제거 및 오버 엔지니어링 방지.
