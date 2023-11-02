@@ -20,5 +20,9 @@ class RacingcarGame(
             carMovementManager.moveCarsWithCondition(cars)
             RacingcarGameResultView.printCarsDistance(cars)
         }
+
+        val winners = racingcarGameManager.getWinners(cars)
+
+        RacingcarGameResultView.printGameWinners(winners)
     }
 }

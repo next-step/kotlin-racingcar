@@ -17,4 +17,10 @@ object RacingcarGameResultView {
 
         println("${car.name} : " + "-".repeat(distance))
     }
+
+    fun printGameWinners(cars: List<Car>) {
+        val winnersNameString = cars.joinToString(", ") { it.name }
+
+        println("${winnersNameString}가 최종 우승했습니다.\n")
+    }
 }
