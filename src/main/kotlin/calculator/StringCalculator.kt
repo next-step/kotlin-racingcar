@@ -14,16 +14,10 @@ object StringCalculator {
             val operationString = elements[i * 2]
             val operand = elements[i * 2 + 1].toInt()
 
-            ans = performOperation(ans, getOperation(operationString), operand)
+            ans = performOperation(ans, ArithmeticOperation.getOperation(operationString), operand)
         }
 
         return ans
-    }
-
-    private fun getOperation(operationString: String): ArithmeticOperation {
-        return ArithmeticOperation.values().firstOrNull {
-            it.operationString == operationString
-        } ?: throw IllegalArgumentException("invalid operation: `$operationString`")
     }
 
     private fun performOperation(currentValue: Int, operation: ArithmeticOperation, operand: Int): Int =
