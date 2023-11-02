@@ -8,7 +8,7 @@ class CarMovementManagerTest : FunSpec({
     test("1회 자동차를 이동시켰을 때 1만큼 자동차의 거리가 증가했는지 테스트") {
         val carMovementManager = CarMovementManager { true }
         val round = 1
-        val car = Car(0)
+        val car = Car("dummy")
         val cars = listOf(car)
 
         repeat(round) {

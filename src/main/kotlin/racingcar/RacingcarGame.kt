@@ -12,7 +12,7 @@ class RacingcarGame(
 ) {
     fun play() {
         val input = RacingcarGameInputView.getInput()
-        val cars = Car.create(input.carNumber)
+        val cars = Car.create(input.carNames)
 
         RacingcarGameResultView.printGameStart()
 

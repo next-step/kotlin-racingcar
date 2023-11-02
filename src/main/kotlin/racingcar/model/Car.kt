@@ -1,6 +1,7 @@
 package racingcar.model
 
 class Car(
+    val name: String,
     private var distance: Int = 0
 ) {
     fun move(offset: Int = 1) {
@@ -12,14 +13,10 @@ class Car(
     }
 
     companion object {
-        fun create(carNumber: Int): List<Car> {
-            val cars: MutableList<Car> = mutableListOf()
-
-            for (i: Int in 0 until carNumber) {
-                cars.add(Car())
+        fun create(carNames: List<String>): List<Car> {
+            return carNames.map {
+                Car(it)
             }
-
-            return cars.toList()
         }
     }
 }

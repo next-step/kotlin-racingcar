@@ -9,8 +9,8 @@ class RacingcarGameManagerTest : FunSpec({
 
     test("우승자가 다수일 경우 정확한 우승자 수를 반환하는지 테스트") {
         val winners = listOf(
-            Car(1),
-            Car(1)
+            Car("dummy1"),
+            Car("dummy2")
         )
 
         val result = racingcarGameManager.getWinners(winners)
