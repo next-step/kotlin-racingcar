@@ -1,14 +1,15 @@
 package racingcar.view
 
+import racingcar.component.RacingcarGameInputValidator
 import racingcar.model.RacingcarGameInput
 
 object RacingcarGameInputView {
     fun getInput(): RacingcarGameInput {
         val carNamesString = getInput("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
-        val carNames = validateCarNamesString(carNamesString)
+        val carNames = RacingcarGameInputValidator.validateCarNamesString(carNamesString)
 
         val roundNumberString = getInput("시도할 횟수는 몇 회인가요?")
-        val roundNumber = validateRoundNumber(roundNumberString)
+        val roundNumber = RacingcarGameInputValidator.validateRoundNumber(roundNumberString)
 
         return RacingcarGameInput(
             carNames = carNames,
@@ -20,38 +21,5 @@ object RacingcarGameInputView {
         println(message)
 
         return readlnOrNull()
-    }
-
-    private fun validateCarNamesString(carNamesString: String?): List<String> {
-        require(carNamesString != null) {
-            "자동차 이름은 null이거나 공백일 수 없습니다."
-        }
-
-        return carNamesString
-            .split(",")
-            .map { it.trim() }
-            .map { validateCarName(it) }
-    }
-
-    private fun validateCarName(carName: String): String {
-        require(carName.isNotBlank() && carName.length <= 5) {
-            "자동차 이름은 공백이거나 5자를 초과할 수 없습니다."
-        }
-
-        return carName
-    }
-
-    private fun validateRoundNumber(roundNumberString: String?): Int {
-        require(!roundNumberString.isNullOrBlank()) {
-            "시도 횟수는 null 또는 공백일 수 없습니다."
-        }
-
-        val roundNumber = roundNumberString.toInt()
-
-        require(roundNumber > 0) {
-            "시도 횟수는 자연수만 가능합니다."
-        }
-
-        return roundNumber
     }
 }
