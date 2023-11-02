@@ -22,7 +22,7 @@ class RacingCarTest : BehaviorSpec({
                     row(8, 1),
                     row(9, 1)
                 ) { num, expected ->
-                    RacingCar("pobi").moveOrStop(num).count shouldBe expected
+                    RacingCar("pobi").moveOrStop(num).position shouldBe expected
                 }
             }
         }

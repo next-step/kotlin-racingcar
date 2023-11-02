@@ -23,7 +23,7 @@ class RacingCarGameTest : BehaviorSpec({
             racingCarGame.race { 4 }
             Then("전진한다.") {
                 racingCarGame.racingCars.shouldForAll {
-                    it.count shouldBe 1
+                    it.position shouldBe 1
                 }
             }
         }
@@ -35,7 +35,7 @@ class RacingCarGameTest : BehaviorSpec({
             racingCarGame.race { 3 }
             Then("정지한다.") {
                 racingCarGame.racingCars.shouldForAll {
-                    it.count shouldBe 0
+                    it.position shouldBe 0
                 }
             }
         }

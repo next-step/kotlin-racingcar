@@ -18,7 +18,7 @@ object ResultView {
     }
 
     private fun printEachResult(racingCar: RacingCar) {
-        println("${racingCar.name}${RACING_CAR_RESULT_DELIMITER}${"-".repeat(racingCar.count)}")
+        println("${racingCar.name}${RACING_CAR_RESULT_DELIMITER}${"-".repeat(racingCar.position)}")
     }
 
     fun printWinners(winners: List<RacingCar>) {
