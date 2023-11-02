@@ -15,6 +15,6 @@ object RacingcarGameResultView {
     private fun printCarDistance(car: Car) {
         val distance = car.getDistance() + 1
 
-        println("-".repeat(distance))
+        println("${car.name} : " + "-".repeat(distance))
     }
 }
