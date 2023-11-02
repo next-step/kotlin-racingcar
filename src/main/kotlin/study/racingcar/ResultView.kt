@@ -18,7 +18,7 @@ class ResultView(private val outputReceiver: OutputReceiver) {
     private fun displayPosition(car: Car): String = "${car.name} : " + "-".repeat(car.position)
 
     fun displayWinners(winners: Cars) {
-        val winnerNames = winners.list.joinToString(", ")
+        val winnerNames = winners.list.joinToString(", ") { it.name }
         outputReceiver.receive("$winnerNames 가 최종 우승했습니다.")
     }
 }
