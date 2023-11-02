@@ -24,5 +24,9 @@ class Car private constructor(val position: Int = 0, val name: String) {
         fun of(name: String, position: Int): Car {
             return Car(position, name)
         }
+
+        fun from(carNames: List<String>): List<Car> {
+            return carNames.map { carName -> of(carName) }
+        }
     }
 }
