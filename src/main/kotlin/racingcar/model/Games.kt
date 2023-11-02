@@ -2,10 +2,13 @@ package racingcar.model
 
 class Games(
     private val cars: Cars,
-    private val moveCondition: MoveCondition,
 ) {
-    fun play(): List<Car> {
-        return cars.move(moveCondition)
+    fun play() {
+        cars.move()
+    }
+
+    fun result(): List<Car> {
+        return cars.cars
     }
 
     fun getWinner(): List<Car> {
@@ -13,8 +16,8 @@ class Games(
     }
 
     companion object {
-        fun of(input: String, moveCondition: MoveCondition): Games {
-            return Games(Cars.from(input), moveCondition)
+        fun from(input: List<String>): Games {
+            return Games(Cars.from(input))
         }
     }
 }

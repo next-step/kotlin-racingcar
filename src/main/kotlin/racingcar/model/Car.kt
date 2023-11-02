@@ -2,10 +2,12 @@ package racingcar.model
 
 import java.lang.IllegalArgumentException
 
-data class Car(
+class Car(
     val name: String,
+    position: Int = 0,
+    private val moveCondition: MoveCondition = RandomMovement(),
 ) {
-    var position: Int = 0
+    var position: Int = position
         private set
 
     init {
@@ -13,6 +15,8 @@ data class Car(
     }
 
     fun move() {
-        position++
+        if (moveCondition.isMovable()) {
+            position++
+        }
     }
 }
