@@ -15,7 +15,7 @@ class Players(val players: List<Car>) {
 
         private fun createPlayerList(players: String): List<Car> {
             val split = players.split(PLAYER_SEPARATOR)
-            return split.fold(ArrayList()) { acc, s -> acc.add(Car(CarName(s))); acc }
+            return split.map { name -> Car(CarName(name)) }.toList()
         }
     }
 
