@@ -1,8 +1,9 @@
 package study.racing.domain
 
-class Distance {
-
-    var moveDistance: Int = 0
+class Distance(
+    distance: Int = 0
+) {
+    var moveDistance = distance
         private set
 
     fun moveForward() {

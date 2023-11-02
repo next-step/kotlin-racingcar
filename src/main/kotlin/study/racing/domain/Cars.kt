@@ -4,7 +4,7 @@ import study.racing.strategy.MoveStrategy
 import study.racing.strategy.RandomMoveStrategy
 
 class Cars private constructor(
-    private val cars: List<Car> = listOf(),
+    private val cars: List<Car> = listOf()
 ) : List<Car> by cars {
 
     init {
@@ -14,7 +14,7 @@ class Cars private constructor(
     }
 
     fun moveTheCars() {
-        cars.forEach { car ->
+        this.cars.forEach { car ->
             car.tryMoveTheCar()
         }
     }
@@ -24,41 +24,41 @@ class Cars private constructor(
     }.toList()
 
     fun getRacingWinnerNames(): List<String> {
-        return cars.filter {
-            it.getCarDistance() == this.maxOf { car ->
-                car.getCarDistance()
-            }
+
+        val maxDistance = findMaxDistance()
+
+        return this.cars.filter {
+            it.getCarDistance() == maxDistance
         }.map {
             it.getCarName()
         }
     }
 
+    private fun findMaxDistance(): Int = this.cars.maxOf {
+        it.getCarDistance()
+    }
+
+    fun copy(): Cars {
+        return Cars(
+            this.cars.map {
+                it.copy()
+            }
+        )
+    }
+
     companion object {
         fun from(
-            carNames: String
+            carNames: List<CarName>,
         ): Cars {
-            return Cars(createEachCarNameOfCars(splitCarNames(carNames)))
-        }
-
-        private fun splitCarNames(carNames: String): List<CarName> {
-
-            require(carNames.isNotEmpty()) {
-                "차량 이름을 정상적으로 등록해 주세요. 여러대 등록시 ',' 로 구분해서 작성해 주세요."
-            }
-
-            return carNames.trim()
-                .split(",")
-                .map {
-                    CarName(it)
-                }
+            return Cars(createEachCarNameOfCars(carNames))
         }
 
         fun of(
-            carNames: String,
-            strategy: MoveStrategy
+            carNames: List<CarName>,
+            strategy: MoveStrategy,
         ): Cars {
             return Cars(
-                createEachCarNameOfCars(splitCarNames(carNames), strategy),
+                createEachCarNameOfCars(carNames, strategy)
             )
         }
 

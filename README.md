@@ -147,3 +147,16 @@
   * 우승자를 ','를 구분으로 한줄의 문자열로 출력해야 한다.
 
 ![step4_result.png](step4_result.png)
+
+Step5(kotlin-racingcar-리팩터링)
+## 요구사항
+* 핵심 비지니스 로직을 가지는 객체를 domain 패키지, UI 관련한 객체를 view 패키지에 구현한다.
+* MVC 패턴 기반으로 리팩토링해 view 패키지의 객체가 domain 패키지 객체에 의존할 수 있지만, domain 패키지의 객체는 view 패키지 객체에 의존하지 않도록 구현한다.
+![img.png](step5_result.png)
+
+## 그외 추가 요구사항
+Racing class의 playRacing()를 테스트 케이스로 작성해보는 건 어떨까합니다. 이렇게 되면, view에 대한 영역도 분리가 되어야되겠죠?
+조건은 아래와 같습니다.
+
+* RacingGame에 참가한 자동차들의 거리는 모두 다르도록 한다.
+* 우승자는 한명으로 지정한다.

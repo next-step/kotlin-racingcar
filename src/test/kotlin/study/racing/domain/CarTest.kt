@@ -8,13 +8,14 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.EmptySource
 import org.junit.jupiter.params.provider.MethodSource
+import study.racing.strategy.RandomMoveStrategyDouble
 
 class CarTest {
 
     @Test
     fun `차를 최초 생성 시, 차량이름과 이동거리 0을 가지고 생성된다`() {
         // Given
-        val randomMoveStrategyDouble = RandomMoveStrategyDouble(true)
+        val randomMoveStrategyDouble = RandomMoveStrategyDouble(listOf(true))
         val carName = CarName("abcd")
 
         // When
@@ -39,7 +40,7 @@ class CarTest {
         name: String
     ) {
         // Given
-        val randomMoveStrategyDouble = RandomMoveStrategyDouble(true)
+        val randomMoveStrategyDouble = RandomMoveStrategyDouble(listOf(true))
 
         // When & Then
         assertThrows<IllegalArgumentException> {
@@ -54,14 +55,33 @@ class CarTest {
         expectedDistance: Int
     ) {
         // Given
-        val strategyDouble = RandomMoveStrategyDouble(isMoving)
+        val strategyDouble = RandomMoveStrategyDouble(listOf(isMoving))
         val actual = Car(strategyDouble, CarName("abcd"))
 
         // When
         actual.tryMoveTheCar()
 
         // Then
-        assertThat(actual.distance.moveDistance).isEqualTo(expectedDistance)
+        assertThat(actual.getCarDistance()).isEqualTo(expectedDistance)
+    }
+
+    @Test
+    fun `자동차 객체를 복사하면 해쉬값이 다르고 값은 같은 객체가 생성된다`() {
+        // Given
+        val strategyDouble = RandomMoveStrategyDouble(listOf(true))
+        val originalCar = Car(strategyDouble, CarName("a"))
+
+        // When
+        val copyCar = originalCar.copy()
+
+        // Then
+        assertAll(
+            { assertThat(originalCar).isNotEqualTo(copyCar) },
+            {
+                assertThat(originalCar).usingRecursiveComparison()
+                    .isEqualTo(copyCar)
+            }
+        )
     }
 
     companion object {
