@@ -15,13 +15,34 @@ class RacingCar(val name: String, private val racingGameMoveRule: RacingGameMove
         if (racingGameMoveRule.isForward()) position++
     }
 
-    override fun toString(): String {
-        return "RacingCar(position=$position)"
-    }
 
     fun copy(): RacingCar {
         val racingCar = RacingCar(name, racingGameMoveRule)
         racingCar.position = position
         return racingCar
+    }
+
+    override fun toString(): String {
+        return "RacingCar(name='$name', position=$position)"
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as RacingCar
+
+        if (name != other.name) return false
+        if (racingGameMoveRule != other.racingGameMoveRule) return false
+        if (position != other.position) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = name.hashCode()
+        result = 31 * result + racingGameMoveRule.hashCode()
+        result = 31 * result + position
+        return result
     }
 }
