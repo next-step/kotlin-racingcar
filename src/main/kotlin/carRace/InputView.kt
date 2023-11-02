@@ -1,12 +1,12 @@
 package carRace
 
-sealed class InputView(val raceRegulationProvider: RaceRegulationProvider)
+sealed class InputView(val carsProvider: CarsProvider)
 
 class ManualInputView(carCount: Int, iterationCount: Int) : InputView(
-    RaceRegulationProvider.Manual(
+    CarsProvider.Manual(
         carCount,
         iterationCount
     )
 )
 
-class UserInputView : InputView(RaceRegulationProvider.UserInput)
+class UserInputView : InputView(CarsProvider.UserInput)
