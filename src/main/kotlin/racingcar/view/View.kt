@@ -37,11 +37,11 @@ object ResultView {
     fun racingResultPrint(racingResult: RacingResult) {
         val result =
             """
-        |${Message.RACE_RESULT_FIRST_LINE.message}
-        |${getRacingHistoryPrintFormat(racingResult, Message.CAR_RACING_MOVING_SYMBOL.message)}
-        |
-        |${getRacingWinnerPrintFormat(racingResult)}
-        """.trimMargin()
+            |${Message.RACE_RESULT_FIRST_LINE.message}
+            |${getRacingHistoryPrintFormat(racingResult, Message.CAR_RACING_MOVING_SYMBOL.message)}
+            |
+            |${getRacingWinnerPrintFormat(racingResult)}
+            """.trimMargin()
         println(result)
     }
 

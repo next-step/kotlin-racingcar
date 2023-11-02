@@ -6,8 +6,8 @@ import io.kotest.matchers.shouldBe
 import racingcar.domain.NameValidation
 import racingcar.domain.RacingPlayers
 import racingcar.domain.RacingProperty
-import racingcar.domain.RacingResult.RacingHistory
 import racingcar.domain.RacingRule
+import racingcar.domain.RacingWinner
 import java.lang.IllegalArgumentException
 
 class RacingControllerTest : BehaviorSpec({
@@ -25,9 +25,9 @@ class RacingControllerTest : BehaviorSpec({
             val result = RacingController(racingPlayers, isNotNameLengthOver).start(racingRule)
             Then("경기 결과를 반환하며 우승자를 확인할 수 있다.") {
                 result.getRacingWinners() shouldBe listOf(
-                    RacingHistory("aaa", 5),
-                    RacingHistory("bbb", 5),
-                    RacingHistory("ccc", 5)
+                    RacingWinner("aaa"),
+                    RacingWinner("bbb"),
+                    RacingWinner("ccc")
                 )
 
                 result.allRounds.size shouldBe 5

@@ -9,11 +9,13 @@ class RacingStadium(
 
     private val cars: List<Car> = racingPlayers.names.map(::Car)
 
-    fun gameStart(): RacingResult = RacingResult().apply {
+    fun gameStart(): RacingResult {
+        val result: MutableList<List<RacingHistory>> = mutableListOf<List<RacingHistory>>()
         repeat(racingPlayers.numberOfTrials) {
             moving()
-            this.addRacingHistories(racingResult())
+            result.add(racingResult())
         }
+        return RacingResult(result)
     }
 
     private fun moving() {
