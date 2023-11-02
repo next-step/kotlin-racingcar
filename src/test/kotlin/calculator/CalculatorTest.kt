@@ -30,16 +30,6 @@ class CalculatorTest : DescribeSpec({
             }
         }
 
-        context("사칙연산 기호가 아닌 다른 연산자가 들어왔다면") {
-            val expressions = listOf("1", "?", "3")
-
-            it("예외가 발생한다.") {
-                shouldThrowMessage("지원하지 않는 연산자입니다.") {
-                    Calculator.calculate(expressions)
-                }
-            }
-        }
-
         makeSampleExpressions().forEach { (expressions, result) ->
             context("수식이 주어지면 (수식: $expressions)") {
                 it("계산 결과를 반환한다.") {

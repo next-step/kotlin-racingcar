@@ -1,20 +1,9 @@
 package calculator
 
 import calculator.operand.Operand
-import calculator.operator.DivideOperator
-import calculator.operator.MinusOperator
-import calculator.operator.MultiplyOperator
 import calculator.operator.OperatorSymbol
-import calculator.operator.PlusOperator
 
 object Calculator {
-
-    private val operators = mapOf(
-        OperatorSymbol.PLUS to PlusOperator,
-        OperatorSymbol.MINUS to MinusOperator,
-        OperatorSymbol.MULTIPLY to MultiplyOperator,
-        OperatorSymbol.DIVIDE to DivideOperator
-    )
 
     fun calculate(expressions: List<String>): Operand {
         validateExpression(expressions)
@@ -41,8 +30,7 @@ object Calculator {
         val operatorSymbol = expressions[1]
         val rightOperand = Operand.of(expressions[2])
 
-        val targetSymbol = OperatorSymbol.getOperatorSymbol(operatorSymbol)
-        val targetOperator = operators[targetSymbol] ?: throw IllegalArgumentException("지원하지 않는 연산자입니다.")
+        val targetOperator = OperatorSymbol.getOperator(operatorSymbol)
         return targetOperator.operate(leftOperand, rightOperand)
     }
 }

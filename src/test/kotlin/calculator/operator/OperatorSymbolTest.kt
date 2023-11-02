@@ -9,7 +9,7 @@ class OperatorSymbolTest : DescribeSpec({
         context("허용하지 않는 연산자가 주어진다면") {
             it("예외가 발생한다.") {
                 shouldThrowMessage("지원하지 않는 연산자입니다.") {
-                    OperatorSymbol.getOperatorSymbol("%")
+                    OperatorSymbol.getOperator("%")
                 }
             }
         }
