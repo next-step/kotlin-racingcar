@@ -10,4 +10,8 @@ class Car(
     fun move(distance: Int) {
         position += distance
     }
+
+    fun isWin(other: Car): Boolean = position > other.position
+
+    fun isDraw(other: Car): Boolean = position == other.position
 }
