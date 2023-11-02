@@ -1,5 +1,7 @@
 package racingCar.ui
 
+import racingCar.domain.RaceResult
+
 object ResultView {
 
     private const val RESULT_MESSAGE = "실행 결과"
@@ -7,8 +9,7 @@ object ResultView {
     private const val RACE_RESULT_FORMAT = "%s : %s"
     private const val WINNER_MESSAGE_FORMAT = "%s가 최종 우승했습니다."
 
-    fun printRaceResult(isRaceFinished: Boolean, roundResults: List<RoundResult>) {
-        validateRaceFinished(isRaceFinished)
+    fun printRaceResult(roundResults: List<RaceResult.RoundResult>) {
         println(RESULT_MESSAGE)
 
         roundResults.forEach { result ->
@@ -18,20 +19,14 @@ object ResultView {
         }
     }
 
-    private fun validateRaceFinished(isRaceFinished: Boolean) {
-        check(isRaceFinished) {
-            "아직 경기가 종료되지 않아 결과를 출력할 수 없습니다."
-        }
-    }
-
-    private fun printResultByRound(result: RoundResult) {
+    private fun printResultByRound(result: RaceResult.RoundResult) {
         result.results.forEach {
             val moveResult = CAR_TRACK.repeat(it.position)
             println(String.format(RACE_RESULT_FORMAT, it.name, moveResult))
         }
     }
 
-    fun printWinners(winners: List<CarMoveResult>) {
+    fun printWinners(winners: List<RaceResult.CarMoveResult>) {
         winners.joinToString(", ") { it.name }.also { name ->
             println(String.format(WINNER_MESSAGE_FORMAT, name))
         }

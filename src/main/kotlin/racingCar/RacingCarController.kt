@@ -6,7 +6,6 @@ import racingCar.domain.Cars
 import racingCar.domain.Race
 import racingCar.domain.TryCount
 import racingCar.ui.InputView
-import racingCar.ui.RaceResultStorage
 import racingCar.ui.ResultView
 import racingCar.util.CarPowerGenerator
 
@@ -20,13 +19,15 @@ class RacingCarController {
             val tryCount = InputView.readTryCount()
 
             val cars = makeCars(carNames)
-            val raceResultStorage = RaceResultStorage()
-            val race = makeRace(tryCount, cars, raceResultStorage)
+            val race = makeRace(tryCount, cars)
 
             race.start()
 
-            ResultView.printRaceResult(race.finished, raceResultStorage.getRoundResults())
-            ResultView.printWinners(raceResultStorage.getWinners())
+            val roundResults = race.getRoundResults()
+            ResultView.printRaceResult(roundResults)
+
+            val winners = race.getWinners()
+            ResultView.printWinners(winners)
         }
 
         private fun makeCars(carNames: CarNames): Cars {
@@ -36,11 +37,10 @@ class RacingCarController {
             )
         }
 
-        private fun makeRace(tryCount: TryCount, cars: Cars, raceResultStorage: RaceResultStorage): Race {
+        private fun makeRace(tryCount: TryCount, cars: Cars): Race {
             return Race(
                 tryCount = tryCount,
                 cars = cars,
-                raceResult = raceResultStorage
             )
         }
     }
