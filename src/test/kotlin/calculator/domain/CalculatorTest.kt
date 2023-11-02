@@ -1,4 +1,4 @@
-package calculator
+package calculator.domain
 
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Assertions.assertEquals

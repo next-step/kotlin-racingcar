@@ -1,4 +1,4 @@
-package calculator
+package calculator.domain
 
 class Calculator(
     private val number1: Int,
