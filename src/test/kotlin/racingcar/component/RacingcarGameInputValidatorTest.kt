@@ -39,9 +39,17 @@ class RacingcarGameInputValidatorTest : FunSpec({
             }
         }
 
-        test("게임 횟수 문자열이 자연수가 아닌 경우") {
+        test("게임 횟수 문자열이 0인 경우") {
             shouldThrow<IllegalArgumentException> {
                 val roundNumberString = "0"
+
+                RacingcarGameInputValidator.validateRoundNumberString(roundNumberString)
+            }
+        }
+
+        test("게임 횟수 문자열이 음수인 경우") {
+            shouldThrow<IllegalArgumentException> {
+                val roundNumberString = "-1"
 
                 RacingcarGameInputValidator.validateRoundNumberString(roundNumberString)
             }
