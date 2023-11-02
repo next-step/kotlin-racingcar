@@ -22,9 +22,5 @@ fun main() {
 }
 
 private fun initRacingCars(racingCarNames: List<String>): List<RacingCar> {
-    val initRacingCars = mutableListOf<RacingCar>()
-    for (racingCarName in racingCarNames) {
-        initRacingCars.add(RacingCar(name = racingCarName))
-    }
-    return initRacingCars
+    return racingCarNames.map { RacingCar(name = it) }
 }
