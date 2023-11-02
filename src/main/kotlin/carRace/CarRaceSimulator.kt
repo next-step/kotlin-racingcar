@@ -9,7 +9,7 @@ class CarRaceSimulator(
 
         val carList = CarList(MutableList(carCount) { Car(0, carMovingStrategy) })
 
-        for (i in 0 until iterationCount) {
+        repeat(iterationCount) {
             carList.driveCars()
         }
         resultView.printCars(carList.cars)
