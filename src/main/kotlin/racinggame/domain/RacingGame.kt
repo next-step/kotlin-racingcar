@@ -20,12 +20,10 @@ class RacingGame(
         Car(car.name, car.position)
     }
 
-    fun getWinners() = cars.sortedByDescending { car ->
+    private fun getWinners() = cars.sortedByDescending { car ->
         car.position
-    }.also { sortedCars ->
+    }.let { sortedCars ->
         getJointWinner(sortedCars)
-    }.let {
-        PlayWinners(it)
     }
 
     private fun getJointWinner(winners: List<Car>) = winners.filter { car ->
