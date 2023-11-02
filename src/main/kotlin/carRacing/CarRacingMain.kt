@@ -1,6 +1,6 @@
 package carRacing
 
-import carRacing.domain.MessageGenerator
+import carRacing.view.MessageGenerator
 import carRacing.domain.Racing
 import carRacing.enum.Message
 import carRacing.serviceimpl.SimpleCarFactory

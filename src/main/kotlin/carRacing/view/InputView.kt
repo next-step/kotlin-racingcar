@@ -1,6 +1,5 @@
 package carRacing.view
 
-import carRacing.domain.MessageGenerator
 import carRacing.enum.ErrorCode
 import java.lang.IllegalStateException
 
