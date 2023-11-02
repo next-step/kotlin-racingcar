@@ -1,4 +1,4 @@
 package me.parker.nextstep.kotlinracingcar
 
-class RacingGameResult(val rounds: List<RacingCarGameRound>, val winners: Winners) {
+data class RacingGameResult(val rounds: List<RacingCarGameRound>, val winners: Winners) {
 }
