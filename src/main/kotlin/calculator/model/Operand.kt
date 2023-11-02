@@ -7,7 +7,7 @@ data class Operand(
 
     companion object {
         fun parseOperands(inputString: String): List<Operand> {
-            return Tokenizer(inputString).toTokens()
+            return Tokenizer.toTokens(inputString)
                 .filter { isOperand(it) }
                 .map { Operand(it) }
                 .toList()

@@ -16,7 +16,7 @@ enum class Operator(
 
     companion object {
         fun parseOperators(inputString: String): List<Operator> {
-            return Tokenizer(inputString).toTokens()
+            return Tokenizer.toTokens(inputString)
                 .filter { !Operand.isOperand(it) }
                 .map { Operator.toOperator(it) }
                 .toList()

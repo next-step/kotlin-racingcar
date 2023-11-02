@@ -1,9 +1,7 @@
 package calculator.model
 
-class Tokenizer(
-    private val input: String,
-) {
-    fun toTokens(): List<String> {
+object Tokenizer {
+    fun toTokens(input: String): List<String> {
         return removeWhitespace(input)
             .split("(?=[+\\-*/])|(?<=[+\\-*/])".toRegex())
     }
