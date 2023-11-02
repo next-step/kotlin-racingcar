@@ -1,32 +1,49 @@
 package study
 
 class Calculator(
-    var value: Int = 0,
-    var result: Int = 0,
+    private var value: Int = 0,
+    private var result: Double = 0.0,
+
 ) {
     companion object {
+        private const val CHECK_ZERO = 0
+        private const val CHECK_POINT_ONE = 1
+        private const val PROCESS_KEYWORD_NUMBER = "number"
+        private const val PROCESS_KEYWORD_OPERATOR = "operator"
+
         private val regex1 = "\\s+".toRegex()
         private val regex2 = "\\D+".toRegex()
         private val regex3 = "[\\+\\-\\*\\/]".toRegex()
     }
 
-    fun addition() {
-        this.result += this.value
+    fun getResult(): Any {
+        return if (! (this.result % CHECK_POINT_ONE > CHECK_ZERO)) {
+            this.result.toInt()
+        } else {
+            this.result
+        }
     }
 
-    fun subtraction() {
-        this.result -= this.value
+    private fun addition() {
+        this.result += this.value.toDouble()
     }
 
-    fun multiplication() {
-        this.result *= this.value
+    private fun subtraction() {
+        this.result -= this.value.toDouble()
     }
 
-    fun division() {
-        this.result /= this.value
+    private fun multiplication() {
+        this.result *= this.value.toDouble()
     }
 
-    fun operation(operator: String) {
+    private fun division() {
+        if (this.value == CHECK_ZERO) {
+            throw IllegalArgumentException()
+        }
+        this.result /= this.value.toDouble()
+    }
+
+    private fun operation(operator: String) {
         when (operator) {
             "+" -> addition()
             "-" -> subtraction()
@@ -36,7 +53,7 @@ class Calculator(
         }
     }
 
-    fun input(): String {
+    private fun input(): String {
         print("계산기 입력 값: ")
         val text = readlnOrNull()
         println(text)
@@ -47,7 +64,7 @@ class Calculator(
         return text
     }
 
-    fun validateText(text: String) {
+    private fun validateText(text: String) {
         if (text.toIntOrNull() == null) {
             if (!text.contains(regex3)) {
                 throw IllegalArgumentException()
@@ -70,25 +87,25 @@ class Calculator(
 
             when {
                 regex2.matches(result) -> {
-                    if (presentStage == "operator") {
+                    if (presentStage == PROCESS_KEYWORD_OPERATOR) {
                         throw IllegalArgumentException()
                     }
 
                     operator = result
-                    presentStage = "operator"
+                    presentStage = PROCESS_KEYWORD_OPERATOR
                 }
                 else -> {
-                    if (presentStage == "number") {
+                    if (presentStage == PROCESS_KEYWORD_NUMBER) {
                         throw IllegalArgumentException()
                     }
 
                     if (operator.isEmpty()) {
-                        this.result = result.toInt()
+                        this.result = result.toDouble()
                     } else {
                         this.value = result.toInt()
                         this.operation(operator)
                     }
-                    presentStage = "number"
+                    presentStage = PROCESS_KEYWORD_NUMBER
                 }
             }
         }
