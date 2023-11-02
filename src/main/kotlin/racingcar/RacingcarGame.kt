@@ -14,9 +14,13 @@ class RacingcarGame(
         val input = RacingcarGameInputView.getInput()
         val cars = Car.create(input.carNames)
 
+        startGame(cars, input.roundNumber)
+    }
+
+    private fun startGame(cars: List<Car>, round: Int) {
         RacingcarGameResultView.printGameStart()
 
-        repeat(input.roundNumber) {
+        repeat(round) {
             carMovementManager.moveCarsWithCondition(cars)
             RacingcarGameResultView.printCarsDistance(cars)
         }
