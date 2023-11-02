@@ -1,7 +1,7 @@
 package racingcar.domain.game
 
+import racingcar.domain.car.CapturedCar
 import racingcar.domain.car.Car
-import racingcar.domain.car.capture
 import racingcar.domain.result.CarRacingResult
 import racingcar.domain.rule.MoveRule
 
@@ -24,7 +24,7 @@ class CarRacingGame private constructor(
     }
 
     private fun record(): CarRacingResult =
-        CarRacingResult(cars.map { it.capture() })
+        CarRacingResult(cars.map { CapturedCar(it) })
 
     companion object {
         fun set(
