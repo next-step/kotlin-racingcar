@@ -28,6 +28,4 @@ object StringCalculator {
 
     private fun performOperation(currentValue: Int, operation: ArithmeticOperation, operand: Int): Int =
         operation.run(currentValue, operand)
-
 }
-
