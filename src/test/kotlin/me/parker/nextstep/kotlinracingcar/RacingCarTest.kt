@@ -13,9 +13,11 @@ class RacingCarTest {
 
     @Test
     fun `자동차 생성 - 최초 위치가 0인지 검증`() {
-        val racingCar = RacingCar("crong", RandomRacingGameMoveRule())
+        val name = "crong"
+        val racingCar = RacingCar(name, RandomRacingGameMoveRule())
 
         assertThat(racingCar).isNotNull
+        assertThat(racingCar.name).isEqualTo(name)
         assertThat(racingCar.position).isEqualTo(0)
     }
 

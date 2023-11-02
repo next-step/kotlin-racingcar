@@ -6,10 +6,10 @@ import me.parker.nextstep.kotlinracingcar.view.ConsoleInput
 import me.parker.nextstep.kotlinracingcar.view.ConsoleResult
 
 fun main(args: Array<String>) {
-    val numOfRacingCar: Int = ConsoleInput.inputNumOfRacingCar()
+    val namesOfRacingCar: String = ConsoleInput.inputNamesOfRacingCar()
     val numOfAttempts: Int = ConsoleInput.inputNumOfAttempts()
 
-    val racingGame = RacingGame(numOfRacingCar, numOfAttempts, RandomRacingGameMoveRule())
+    val racingGame = RacingGame(namesOfRacingCar, numOfAttempts, RandomRacingGameMoveRule())
     val racingCarGameRounds = racingGame.start()
 
     ConsoleResult.outputGameResult(racingCarGameRounds)
