@@ -5,6 +5,5 @@ import race.ui.RacingController
 import race.ui.ResultView
 
 fun main() {
-    val racingController = RacingController(ResultView())
-    InputView(racingController).submitInput()
+    RacingController(InputView(), ResultView())
 }
