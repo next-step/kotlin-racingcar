@@ -10,7 +10,6 @@ import game.domain.GameResult
 import game.domain.InputValidator
 import game.domain.MoveConditionGenerator
 import game.domain.RandomMoveConditionGenerator
-import game.domain.WinnerFinder
 import game.view.ConsoleInputHandler
 import game.view.UserInputHandler
 import game.view.UserMessageDisplay
@@ -20,7 +19,6 @@ class RacingCarGame(
     private val userInputHandler: UserInputHandler = ConsoleInputHandler(),
     private val userOutputHandler: UserOutputHandler = UserMessageDisplay(),
     private val moveConditionGenerator: MoveConditionGenerator = RandomMoveConditionGenerator(),
-    private val winnerFinder: WinnerFinder = WinnerFinder(),
     private val gameController: GameController = GameController(),
     private val carNameValidator: CarNameValidator = CarNameValidator(),
     private val inputValidator: InputValidator = InputValidator(),
@@ -31,7 +29,7 @@ class RacingCarGame(
         val retryCount = getRetryCount()
         val carFleet = getCarFleet(carNames)
         val history = gameController.playGame(retryCount, carFleet)
-        val winners = winnerFinder.findWinner(history.rounds.last())
+        val winners = history.findWinners()
         userOutputHandler.displayResult(GameResult(history, winners))
     }
 

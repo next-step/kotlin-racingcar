@@ -10,8 +10,8 @@ class CarFleetTest {
         // given
         val carFleet = CarFleet(Cars(Car.from(listOf("a", "b", "c"))), FixedMoveConditionGenerator(5))
         // when
-        val advancedCarFleet = carFleet.advanceAll()
+        carFleet.advanceAll()
         // then
-        assertThat(advancedCarFleet.cars.carList.all { it.position == 1 }).isTrue()
+        assertThat(carFleet.cars.carList.all { it.position == 1 }).isTrue()
     }
 }
