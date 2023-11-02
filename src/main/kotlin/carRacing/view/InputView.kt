@@ -8,7 +8,7 @@ class InputView(private val maxTryCount: Int = 3) {
     private val messageGenerator: MessageGenerator = MessageGenerator()
 
     fun readLineNumber(question: String?, count: Int = 0): Int {
-        kotlin.runCatching {
+        val inputResult: Result<Int> = runCatching {
             val input: String = readLine(question, count)
 
             if (input.toIntOrNull() == null) {
@@ -22,11 +22,13 @@ class InputView(private val maxTryCount: Int = 3) {
             if (it is IllegalArgumentException) {
                 return this.readLineNumber(question, count + 1)
             }
-        }.getOrThrow()
+        }
+
+        return inputResult.getOrThrow()
     }
 
     private fun readLine(question: String?, count: Int = 0): String {
-        return runCatching {
+        val inputResult: Result<String> = runCatching {
             if (count >= this.maxTryCount) {
                 throw IllegalStateException(messageGenerator.getErrorMessage(ErrorCode.OVER_INPUT_TRY))
             }
@@ -47,6 +49,8 @@ class InputView(private val maxTryCount: Int = 3) {
             }
 
             throw IllegalStateException(messageGenerator.getErrorMessage(ErrorCode.OVER_INPUT_TRY))
-        }.getOrThrow()
+        }
+
+        return inputResult.getOrThrow()
     }
 }
