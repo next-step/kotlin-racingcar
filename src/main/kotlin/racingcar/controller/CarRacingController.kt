@@ -1,25 +1,26 @@
 package racingcar.controller
 
 import racingcar.domain.car.CapturedCar
-import racingcar.domain.configuration.CarRacingConfiguration
+import racingcar.domain.car.Car
+import racingcar.domain.car.CarGenerator
 import racingcar.domain.game.CarRacingGame
+import racingcar.domain.game.RoundCount
 import racingcar.domain.result.CarRacingReferee
 import racingcar.domain.result.CarRacingResult
+import racingcar.domain.rule.RandomMoveRule
 
 object CarRacingController {
     fun run(request: CarRacingRequest): CarRacingResponse {
-        val gameResult = startGame(createGame(createConfiguration(request)))
-        return createResponse(gameResult, getWinner(gameResult))
+        val game = CarRacingGame.set(
+            roundCount = RoundCount(request.roundCount),
+            cars = createCars(request.carNames),
+            moveRule = RandomMoveRule()
+        )
+        val result = game.run()
+        return createResponse(result, getWinner(result))
     }
 
-    private fun createConfiguration(request: CarRacingRequest): CarRacingConfiguration =
-        CarRacingConfiguration.of(request.roundCount, request.carNames)
-
-    private fun createGame(
-        configuration: CarRacingConfiguration,
-    ): CarRacingGame = CarRacingGame.set(configuration)
-
-    private fun startGame(game: CarRacingGame) = game.run()
+    private fun createCars(carNames: List<String>): List<Car> = CarGenerator.create(carNames)
 
     private fun getWinner(result: List<CarRacingResult>): List<CapturedCar> = CarRacingReferee.getWinners(result)
 
