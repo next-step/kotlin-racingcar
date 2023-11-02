@@ -1,18 +1,15 @@
 package racingcar.component
 
 object RacingcarGameInputValidator {
-    fun validateCarNamesString(carNamesString: String?): List<String> {
+    fun validateCarNamesString(carNamesString: String?): String {
         require(carNamesString != null) {
             "자동차 이름은 null이거나 공백일 수 없습니다."
         }
 
         return carNamesString
-            .split(",")
-            .map { it.trim() }
-            .map { validateCarName(it) }
     }
 
-    private fun validateCarName(carName: String): String {
+    fun validateCarName(carName: String): String {
         require(carName.isNotBlank() && carName.length <= 5) {
             "자동차 이름은 공백이거나 5자를 초과할 수 없습니다."
         }
