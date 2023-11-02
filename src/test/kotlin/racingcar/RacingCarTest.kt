@@ -1,47 +1,32 @@
 package racingcar
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.CsvSource
-import racingcar.domain.Game
-import racingcar.domain.Rule
+import org.junit.jupiter.params.provider.ValueSource
+import racingcar.domain.Car
 
 class RacingCarTest {
 
+    @Test
+    fun `자동차의 초기 위치는 0 이다`() {
+        val car = Car()
+        assertThat(car.position).isEqualTo(0)
+    }
+
     @ParameterizedTest
-    @CsvSource(
-        value = [
-            "carSize:(3)|attemptSize:(3)|carsToMove:(0/1 1/2 0/1/2)|history:(1/1/0 1/2/1 2/3/2)",
-            "carSize:(4)|attemptSize:(3)|carsToMove:(0/1/2 1/2/3 0/1/3)|history:(1/1/1/0 1/2/2/1 2/3/2/2)",
-            "carSize:(5)|attemptSize:(3)|carsToMove:(3/4 1/2/4 0/1/2/4)|history:(0/0/0/1/1 0/1/1/1/2 1/2/2/1/3)"
-        ]
-    )
-    fun `carSize, attemptSize, carsToMove 로 만들어지는 history 가 실제 게임의 history 와 동일한지 검사`(input: String) {
-        val testSplitInput = input.split("|")
+    @ValueSource(ints = [4, 5, 6, 7, 8, 9])
+    fun `랜덤 숫자 값이 4 이상인 경우 자동차는 움직인다`(condition: Int) {
+        val car = Car()
+        car.move(condition)
+        assertThat(car.position).isEqualTo(1)
+    }
 
-        val testCarSize = testSplitInput[0].substringAfter("carSize:(").substringBefore(")").toInt()
-        val testAttemptSize = testSplitInput[1].substringAfter("attemptSize:(").substringBefore(")").toInt()
-        val testCarsToMove: List<List<Int>> = buildList {
-            testSplitInput[2].substringAfter("carsToMove:(").substringBefore(")").split(" ").forEach {
-                add(it.split("/").map { it.toInt() })
-            }
-        }
-        val testHistory: List<List<Int>> = buildList {
-            testSplitInput[3].substringAfter("history:(").substringBefore(")").split(" ").forEach {
-                add(it.split("/").map { it.toInt() })
-            }
-        }
-
-        val game = Game(object : Rule {
-            override val carSize: Int = testCarSize
-            override val attemptSize: Int = testAttemptSize
-            override val moveOrNot: Rule.MoveOrNot? = null
-        })
-
-        repeat(game.rule.attemptSize) {
-            game.attemptToMove(*testCarsToMove[it].toIntArray())
-        }
-
-        assertThat(testHistory).isEqualTo(game.history)
+    @ParameterizedTest
+    @ValueSource(ints = [0, 1, 2, 3])
+    fun `랜덤 숫자 값이 4 미만인 경우 자동차는 움직이지 않는다`(condition: Int) {
+        val car = Car()
+        car.move(condition)
+        assertThat(car.position).isEqualTo(0)
     }
 }
