@@ -7,11 +7,8 @@ object RacingcarGameInputView {
         val carNamesString = getInput("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
         val carNames = validateCarNamesString(carNamesString)
 
-        val roundNumber = getInput("시도할 횟수는 몇 회인가요?")?.toIntOrNull()
-
-        require(roundNumber != null && roundNumber > 0) {
-            "시도 횟수는 자연수만 가능합니다."
-        }
+        val roundNumberString = getInput("시도할 횟수는 몇 회인가요?")
+        val roundNumber = validateRoundNumber(roundNumberString)
 
         return RacingcarGameInput(
             carNames = carNames,
@@ -42,5 +39,19 @@ object RacingcarGameInputView {
         }
 
         return carName
+    }
+
+    private fun validateRoundNumber(roundNumberString: String?): Int {
+        require(!roundNumberString.isNullOrBlank()) {
+            "시도 횟수는 null 또는 공백일 수 없습니다."
+        }
+
+        val roundNumber = roundNumberString.toInt()
+
+        require(roundNumber > 0) {
+            "시도 횟수는 자연수만 가능합니다."
+        }
+
+        return roundNumber
     }
 }
