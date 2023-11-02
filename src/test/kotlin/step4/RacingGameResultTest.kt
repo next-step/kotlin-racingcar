@@ -14,30 +14,30 @@ class RacingGameResultTest {
         result.saveRacingResult(
             RacingCars(
                 listOf(
-                    RacingCar(CarName("fac"), 4),
-                    RacingCar(CarName("fac2"), 3)
+                    RacingCar(CarName(name = "fac"), moveCount = 4),
+                    RacingCar(CarName(name = "fac2"), moveCount = 3)
                 )
             )
         )
         result.saveRacingResult(
             RacingCars(
                 listOf(
-                    RacingCar(CarName("fac"), 5),
-                    RacingCar(CarName("fac2"), 4)
+                    RacingCar(CarName(name = "fac"), moveCount = 5),
+                    RacingCar(CarName(name = "fac2"), moveCount = 4)
                 )
             )
         )
 
         Assertions.assertThat(result.racingResultList[0].carList).isEqualTo(
             listOf(
-                RacingCar(CarName("fac"), 4),
-                RacingCar(CarName("fac2"), 3)
+                RacingCar(CarName(name = "fac"), moveCount = 4),
+                RacingCar(CarName(name = "fac2"), moveCount = 3)
             )
         )
         Assertions.assertThat(result.racingResultList[1].carList).isEqualTo(
             listOf(
-                RacingCar(CarName("fac"), 5),
-                RacingCar(CarName("fac2"), 4)
+                RacingCar(CarName(name = "fac"), moveCount = 5),
+                RacingCar(CarName(name = "fac2"), moveCount = 4)
             )
         )
     }

@@ -10,7 +10,7 @@ import step4.domain.RacingCars
 import step4.presentation.RacingGameInputView
 import java.lang.IllegalArgumentException
 
-class InputViewTest {
+class RacingGameInputViewTest {
     @Test
     fun `차 이름들을 적으면 리스트로 뽑아준다`() {
         val testInputSupplier1 = object : InputSupplier {
@@ -22,9 +22,9 @@ class InputViewTest {
         assertThat(RacingGameInputView(testInputSupplier1).enterCars()).isEqualTo(
             RacingCars(
                 listOf(
-                    RacingCar(CarName("kot")),
-                    RacingCar(CarName("pyt")),
-                    RacingCar(CarName("java"))
+                    RacingCar(CarName(name = "kot")),
+                    RacingCar(CarName(name = "pyt")),
+                    RacingCar(CarName(name = "java"))
                 )
             )
         )

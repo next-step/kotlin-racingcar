@@ -15,8 +15,8 @@ class RacingCourseTest {
         racingCourse.moveCars(FixedStrategy(4)) {}
         assertThat(racingCourse.racingCars.carList).isEqualTo(
             listOf(
-                RacingCar(CarName("fac"), 4),
-                RacingCar(CarName("fac1"), 5)
+                RacingCar(CarName(name = "fac"), moveCount = 4),
+                RacingCar(CarName(name = "fac1"), moveCount = 5)
             )
         )
     }
@@ -28,8 +28,8 @@ class RacingCourseTest {
         racingCourse.moveCars(FixedStrategy(3)) {}
         assertThat(racingCourse.racingCars.carList).isEqualTo(
             listOf(
-                RacingCar(CarName("fac"), 0),
-                RacingCar(CarName("fac1"), 1)
+                RacingCar(CarName(name = "fac"), moveCount = 0),
+                RacingCar(CarName(name = "fac1"), moveCount = 1)
             )
         )
     }
