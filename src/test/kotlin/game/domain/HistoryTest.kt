@@ -16,14 +16,14 @@ class HistoryTest {
         val history = History()
 
         // when
-        val newHistory = history.addRound(listOf(Car.of("a"), Car.of("b")))
+        history.addRound(listOf(Car.of("a"), Car.of("b")))
 
         // then
         assertAll(
-            { assert(newHistory.rounds.size == 1) },
-            { assert(newHistory.rounds[0].size == 2) },
-            { assert(newHistory.rounds[0][0].name == "a") },
-            { assert(newHistory.rounds[0][1].name == "b") }
+            { assert(history.rounds.size == 1) },
+            { assert(history.rounds[0].carList.size == 2) },
+            { assert(history.rounds[0].carList[0].name == "a") },
+            { assert(history.rounds[0].carList[1].name == "b") }
         )
     }
 
@@ -36,10 +36,10 @@ class HistoryTest {
         val crong = Car.of("crong", crongCount)
         val honux = Car.of("honux", honuxCount)
         val cars = listOf(pobi, crong, honux)
-        val targetHistory = history.addRound(cars)
+        history.addRound(cars)
 
         // when
-        val actual = targetHistory.findWinners()
+        val actual = history.findWinners()
 
         // then
         Assertions.assertThat(actual).containsExactlyElementsOf(expected)

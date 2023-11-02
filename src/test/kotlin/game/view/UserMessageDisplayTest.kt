@@ -29,9 +29,9 @@ class UserMessageDisplayTest {
     fun displayHistory() {
         // given
         val userMessageDisplay = UserMessageDisplay()
-        var history = History()
-        history = history.addRound(listOf(Car.of("a", 1), Car.of("b", 1)))
-        history = history.addRound(listOf(Car.of("a", 1), Car.of("b", 2)))
+        val history = History()
+        history.addRound(listOf(Car.of("a", 1), Car.of("b", 1)))
+        history.addRound(listOf(Car.of("a", 1), Car.of("b", 2)))
         val gameResult = GameResult(history, listOf("b"))
 
         // when

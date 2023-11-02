@@ -4,8 +4,8 @@ class CarFleet(
     private var _cars: Cars,
     private val moveConditionGenerator: MoveConditionGenerator = RandomMoveConditionGenerator()
 ) {
-    val cars: Cars
-        get() = _cars
+    val carList: List<Car>
+        get() = _cars.carList
 
     fun advanceAll() {
         this._cars = _cars.carList

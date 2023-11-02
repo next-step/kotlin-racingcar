@@ -6,10 +6,10 @@ class GameController {
         retryCount: Int,
         carFleet: CarFleet,
     ): History {
-        var history = History()
+        val history = History()
         repeat(retryCount) {
             carFleet.advanceAll()
-            history = history.addRound(carFleet.cars.carList)
+            history.addRound(carFleet.carList)
         }
         return history
     }

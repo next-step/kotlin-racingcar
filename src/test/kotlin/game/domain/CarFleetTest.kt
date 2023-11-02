@@ -12,6 +12,6 @@ class CarFleetTest {
         // when
         carFleet.advanceAll()
         // then
-        assertThat(carFleet.cars.carList.all { it.position == 1 }).isTrue()
+        assertThat(carFleet.carList.all { it.position == 1 }).isTrue()
     }
 }

@@ -1,17 +1,19 @@
 package game.domain
 
 class History(
-    val rounds: List<List<Car>> = listOf()
+    private var _rounds: List<Round> = listOf()
 ) {
-    fun addRound(cars: List<Car>): History {
-        var newRounds = rounds.toMutableList()
-        newRounds.add(cars)
-        return History(newRounds)
+    val rounds: List<Round>
+        get() = _rounds
+
+    fun addRound(cars: List<Car>) {
+        var updatedRound = _rounds.toMutableList()
+        updatedRound.add(Round(cars))
+        _rounds = updatedRound.toList()
     }
 
     fun findWinners(): List<String> {
-        val lastRound = rounds.last()
-        val maxPosition = lastRound.maxOf { it.position }
-        return lastRound.filter { it.isSamePosition(maxPosition) }.map { it.name }
+        val lastRound = _rounds.last()
+        return lastRound.findWinners()
     }
 }

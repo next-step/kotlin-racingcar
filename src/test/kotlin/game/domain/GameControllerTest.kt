@@ -18,9 +18,9 @@ class GameControllerTest {
         // then
         assertAll(
             { assertThat(history.rounds.size).isEqualTo(3) },
-            { assertThat(history.rounds[0].all { it.position == 1 }).isTrue() },
-            { assertThat(history.rounds[1].all { it.position == 2 }).isTrue() },
-            { assertThat(history.rounds[2].all { it.position == 3 }).isTrue() },
+            { assertThat(history.rounds[0].carList.all { it.position == 1 }).isTrue() },
+            { assertThat(history.rounds[1].carList.all { it.position == 2 }).isTrue() },
+            { assertThat(history.rounds[2].carList.all { it.position == 3 }).isTrue() },
         )
     }
 }

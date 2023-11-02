@@ -18,7 +18,7 @@ class UserMessageDisplay : UserOutputHandler {
     )
 
     override fun displayResult(gameResult: GameResult) {
-        gameResult.history.rounds.forEach { display(it) }
+        gameResult.history.rounds.forEach { display(it.carList) }
         displayWinners(gameResult.winners)
     }
 
