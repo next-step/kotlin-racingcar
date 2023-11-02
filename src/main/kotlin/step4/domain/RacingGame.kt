@@ -2,16 +2,15 @@ package step4.domain
 
 data class RacingGame(
     val inputView: InputView<RacingCourse>,
-    val resultView: ResultView<RacingGameResultText>
+    val resultView: ResultView<RacingGameResult>
 ) {
     fun run() {
         val racingCourse = inputView.enter()
 
-        val resultText = RacingGameResultText()
+        val gameResult = RacingGameResult()
         racingCourse.moveCars {
-            resultText.saveMiddleResult(it)
+            gameResult.saveRacingResult(it)
         }
-        resultText.saveFinalResultView(racingCourse.racingCars.winner)
-        resultView.showResult(resultText)
+        resultView.showResult(gameResult)
     }
 }
