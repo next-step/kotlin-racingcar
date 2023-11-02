@@ -25,7 +25,7 @@ class RacingCarController {
 
             race.start()
 
-            ResultView.printRaceResult(race.isFinished, raceResultStorage.getRoundResults())
+            ResultView.printRaceResult(race.finished, raceResultStorage.getRoundResults())
             ResultView.printWinners(raceResultStorage.getWinners())
         }
 

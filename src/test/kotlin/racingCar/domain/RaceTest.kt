@@ -27,14 +27,14 @@ class RaceTest : DescribeSpec({
             }
 
             it("경주가 끝났다고 판단한다.") {
-                race.isFinished shouldBe true
+                race.finished shouldBe true
             }
         }
 
         context("경주를 시작하지 않으면") {
 
             it("경주가 끝났다고 판단하지 않는다.") {
-                race.isFinished shouldBe false
+                race.finished shouldBe false
             }
         }
     }

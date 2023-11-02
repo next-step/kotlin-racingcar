@@ -6,15 +6,14 @@ class Race(
     private val raceResult: RaceResult
 ) {
 
-    private var _isFinished = false
-    val isFinished: Boolean
-        get() = _isFinished
+    var finished: Boolean = false
+        private set
 
     fun start() {
         repeat(tryCount.value) {
             cars.move()
             raceResult.save(cars)
         }
-        _isFinished = true
+        finished = true
     }
 }
