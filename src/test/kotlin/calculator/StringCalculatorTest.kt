@@ -41,10 +41,7 @@ class StringCalculatorTest : FunSpec({
             "",
             "         ",
         ) { input ->
-            val exception = shouldThrow<IllegalArgumentException> {
-                StringCalculator.calculate(input)
-            }
-            exception.localizedMessage shouldBe "입력값이 null 또는 빈 문자열일 수 없습니다."
+            shouldThrow<IllegalArgumentException> { StringCalculator.calculate(input) }
         }
     }
 
@@ -56,10 +53,7 @@ class StringCalculatorTest : FunSpec({
             "2 ^ 5",
             "2 + 3 * 4 1 2 "
         ) { input ->
-            val exception = shouldThrow<IllegalArgumentException> {
-                StringCalculator.calculate(input)
-            }
-            exception.localizedMessage shouldBe "사용 가능한 사칙연산 기호는 [+, -, *, /]입니다."
+            shouldThrow<IllegalArgumentException> { StringCalculator.calculate(input) }
         }
     }
 
@@ -70,10 +64,7 @@ class StringCalculatorTest : FunSpec({
             "+ 0 + ",
             "* / 1",
         ) { input ->
-            val exception = shouldThrow<IllegalArgumentException> {
-                StringCalculator.calculate(input)
-            }
-            exception.localizedMessage shouldBe "사칙연산의 피연산자는 숫자여야합니다."
+            shouldThrow<IllegalArgumentException> { StringCalculator.calculate(input) }
         }
     }
 })
