@@ -39,7 +39,6 @@ class StringCalculatorCounterTest {
 
         // when // then
         val exception = assertThrows<IllegalArgumentException> {
-
             val result = stringCalculatorCounter.calculate(input)
         }
         assertThat(exception.message).isEqualTo("Please Check the Input")
