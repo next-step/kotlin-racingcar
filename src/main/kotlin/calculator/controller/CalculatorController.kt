@@ -4,6 +4,7 @@ import calculator.domain.Calculator
 
 class CalculatorController(
     private val words: List<String>,
+    private val calculator: Calculator,
 ) {
 
     fun getResult(): Int {
@@ -12,7 +13,7 @@ class CalculatorController(
         for (i in 1 until words.size step 2) {
             val operator = getOperator(i)
             val operand = getNextOperand(i)
-            result = Calculator(result, operator, operand).calculate()
+            result = calculator.calculate(result, operator, operand)
         }
 
         return result

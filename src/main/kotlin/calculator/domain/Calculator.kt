@@ -1,12 +1,8 @@
 package calculator.domain
 
-class Calculator(
-    private val number1: Int,
-    private val operator: Char,
-    private val number2: Int,
-) {
+class Calculator {
 
-    fun calculate(): Int {
+    fun calculate(number1: Int, operator: Char, number2: Int): Int {
         return when (operator) {
             '+' -> {
                 number1 + number2
