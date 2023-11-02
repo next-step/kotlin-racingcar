@@ -1,6 +1,7 @@
 package racingcar
 
 import racingcar.domain.NameValidation
+import racingcar.domain.RacingPlayers
 import racingcar.domain.RacingProperty
 import racingcar.domain.RacingRule
 import racingcar.util.Message
@@ -16,13 +17,15 @@ object Racing {
 fun main() {
     val nameOfCars = View.printAndGetLine(Message.NAME_OF_CARS_INPUT, Message.INPUT_EXCEPTION)
     val numberOfTrials = View.printAndGetLineToInt(Message.NUMBER_OF_TRIALS_INPUT, Message.INPUT_NUMBER_EXCEPTION)
+    val players = RacingPlayers(nameOfCars, numberOfTrials)
+
     val isNotNameLengthOver = { names: List<String> -> names.all { it.length <= NameValidation.NAME_MAX_LENGTH } }
     val intRandomGenerator = { start: Int, end: Int -> IntRange(start, end).random() }
     val property = RacingProperty(Racing.RANDOM_START, Racing.RANDOM_END, Racing.MOVE_FORWARD_CONDITION)
 
-    val racingRule = RacingRule(intRandomGenerator, isNotNameLengthOver, property)
+    val racingRule = RacingRule(intRandomGenerator, property)
 
-    val result = RacingController(nameOfCars, numberOfTrials).start(racingRule)
+    val result = RacingController(players, isNotNameLengthOver).start(racingRule)
 
     ResultView.racingResultPrint(result)
 }

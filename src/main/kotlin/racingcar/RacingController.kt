@@ -1,25 +1,22 @@
 package racingcar
 
+import racingcar.domain.NameValidation
+import racingcar.domain.RacingPlayers
 import racingcar.domain.RacingResult
 import racingcar.domain.RacingRule
 import racingcar.domain.RacingStadium
 import racingcar.util.Message
 
 class RacingController(
-    private val nameOfCars: String,
-    private val numberOfTrials: Int
+    private val racingPlayers: RacingPlayers,
+    nameValidation: NameValidation
 ) {
-
-    fun start(rule: RacingRule): RacingResult {
-        val names = nameOfCars.split(",")
-        require(rule.nameValidate(names)) {
+    init {
+        require(nameValidation.validate(racingPlayers.names)) {
             Message.CAR_NAME_LENGTH_EXCEPTION.message
         }
-
-        return RacingStadium(
-            names,
-            numberOfTrials,
-            rule
-        ).gameStart()
     }
+
+    fun start(rule: RacingRule): RacingResult =
+        RacingStadium(racingPlayers, rule).gameStart()
 }

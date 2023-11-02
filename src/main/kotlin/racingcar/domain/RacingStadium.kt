@@ -3,15 +3,14 @@ package racingcar.domain
 import racingcar.domain.RacingResult.RacingHistory
 
 class RacingStadium(
-    nameOfCars: List<String>,
-    private val numberOfTrials: Int,
+    private val racingPlayers: RacingPlayers,
     private val racingRule: RacingRule
 ) {
 
-    private val cars: List<Car> = nameOfCars.map(::Car)
+    private val cars: List<Car> = racingPlayers.names.map(::Car)
 
     fun gameStart(): RacingResult = RacingResult().apply {
-        repeat(numberOfTrials) {
+        repeat(racingPlayers.numberOfTrials) {
             moving()
             this.addRacingHistories(racingResult())
         }
