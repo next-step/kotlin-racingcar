@@ -8,4 +8,3 @@ object ResultView {
         println()
     }
 }
-

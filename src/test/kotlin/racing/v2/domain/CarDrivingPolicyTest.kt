@@ -5,7 +5,7 @@ import io.kotest.data.blocking.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 
-class `자동차 전진 정책 테스트` : StringSpec({
+class CarDrivingPolicyTest : StringSpec({
     "임의의 수가 4 이상일 경우 자동차는 전진할 수 있다." {
         forAll(
             row(4),

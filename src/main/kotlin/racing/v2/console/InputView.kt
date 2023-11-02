@@ -12,7 +12,6 @@ fun main() {
 
     val carGame = InputView.createCarGame(carsStr, tryCountStr)
     carGame.start()
-    
 }
 
 object InputView {
@@ -25,12 +24,10 @@ object InputView {
 
         return CarGame(cars, tryCount)
     }
-    
     private fun validateCars(carsStr: String?): List<Car> {
         return carsStr?.split(",")?.map { name -> Car(name) }
             ?: throw IllegalArgumentException(CAR_COUNT_ERROR_MESSAGE)
     }
-
     private fun validateTryCount(tryCountStr: String?): Int {
         return tryCountStr?.toIntOrNull() ?: throw IllegalArgumentException(TRY_COUNT_ERROR_MESSAGE)
     }

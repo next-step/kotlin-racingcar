@@ -7,7 +7,7 @@ import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 import racing.v1.InputView
 
-class `입력 객체 유효성 검사 테스트` : BehaviorSpec({
+class InputViewTest : BehaviorSpec({
     Given("비정상적인 입력값이 주어질 때") {
         When("자동차 대수 입력값을 null이거나 빈 문자열을 입력한 경우") {
             Then("IllegalArgumentException 예외를 던진다") {
@@ -38,4 +38,3 @@ class `입력 객체 유효성 검사 테스트` : BehaviorSpec({
         }
     }
 })
-
