@@ -8,7 +8,7 @@ class RaceOrganizer(private val cars: List<Car>) {
         this.cars.forEach { it.tryRace(rule) }
     }
 
-    fun startRace(tryCount: Int, rule: RaceRuleType): MutableList<RaceResult> {
+    fun startRace(tryCount: Int, rule: RaceRuleType): List<RaceResult> {
         repeat(tryCount) { index ->
             tryRound(cars, rule)
             val result = RaceResult(
@@ -17,6 +17,6 @@ class RaceOrganizer(private val cars: List<Car>) {
             results.add(result)
         }
 
-        return results
+        return results.toList()
     }
 }

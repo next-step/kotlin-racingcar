@@ -23,7 +23,7 @@ object OutputView {
 
     private fun renderCarPosition(car: CarRecord, printer: Print) {
         printer.print("${car.name} : ")
-        repeat(car.curPosition) { printer.print("-") }
+        printer.print("-".repeat(car.curPosition))
         printer.print("\n")
     }
 

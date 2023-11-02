@@ -42,6 +42,7 @@
     runFunction(intFunc, "hello") // 출력: 5
     runFunction(boolFunc, "hello") // 출력: true
     ```
+- require 써보기 
 
 ### 고민한 것들
 - TDD로 개발한다면 객체사이의 협력보다는 개별 역할과 책임에 중심이 되어 개발이 진행되지 않을까
