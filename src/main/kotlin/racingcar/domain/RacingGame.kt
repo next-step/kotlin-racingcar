@@ -25,7 +25,7 @@ class RacingGame(
     fun getRoundResults(): List<GameRoundResult> = this.gameRound.results
 
     fun getWinners(): List<RacingCar> {
-        val lastRoundResult = this.gameRound.results.last()
+        val lastRoundResult = this.gameRound.getLastRoundResult()
         return lastRoundResult.getRoundWinners()
     }
 }
