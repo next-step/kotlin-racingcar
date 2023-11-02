@@ -1,7 +1,7 @@
 package game.domain
 
 class CarFleet private constructor(
-    var cars: List<Car> = listOf(),
+    val cars: List<Car> = listOf(),
     private val moveConditionGenerator: MoveConditionGenerator = RandomMoveConditionGenerator(),
     private val winnerFinder: WinnerFinder = DefaultWinnerFinder()
 ) {
@@ -22,10 +22,6 @@ class CarFleet private constructor(
 
         fun of(carNames: List<String>, moveConditionGenerator: MoveConditionGenerator): CarFleet {
             return CarFleet(carNames.map { Car.of(it) }, moveConditionGenerator)
-        }
-
-        fun from(cars: List<Car>, moveConditionGenerator: MoveConditionGenerator): CarFleet {
-            return CarFleet(cars, moveConditionGenerator)
         }
 
         fun of(cars: List<Car>): CarFleet {
