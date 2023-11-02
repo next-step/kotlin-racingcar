@@ -1,7 +1,7 @@
-package step3.racing_car
+package racing_car
 
-import step3.racing_car.interfaces.Movable
-import step3.racing_car.model.Car
+import racing_car.interfaces.Movable
+import racing_car.model.Car
 
 /**
  * 자동차 경주 게임

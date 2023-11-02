@@ -1,8 +1,8 @@
-package step3.main
+package racing_car
 
-import step3.racing_car.RacingGame
-import step3.racing_car.ui.InputView
-import step3.racing_car.ui.ResultView
+import racing_car.RacingGame
+import racing_car.ui.InputView
+import racing_car.ui.ResultView
 
 fun main() {
     InputView.draw(InputView.InputType.CAR)

@@ -1,8 +1,8 @@
-package step3.racing_car
+package racing_car
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
-import step3.racing_car.model.Car
+import racing_car.model.Car
 
 /**
  * 자동차 경주 단위 테스트 클래스

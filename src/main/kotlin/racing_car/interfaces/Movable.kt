@@ -1,4 +1,4 @@
-package step3.racing_car.interfaces
+package racing_car.interfaces
 
 /**
  * 자동차 경주시 이동할 수 있는 객체에 사용

@@ -1,4 +1,4 @@
-package step2.calculator
+package calculator
 
 private const val DELIMITER = " "
 

@@ -1,5 +1,6 @@
-package step2.calculator
+package calculator
 
+import calculator.Calculator
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 

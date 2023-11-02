@@ -1,6 +1,6 @@
-package step3.racing_car.model
+package racing_car.model
 
-import step3.racing_car.interfaces.Movable
+import racing_car.interfaces.Movable
 
 /**
  * 자동차 경주의 자동차로 사용

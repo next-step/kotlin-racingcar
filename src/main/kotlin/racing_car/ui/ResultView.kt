@@ -1,7 +1,6 @@
-package step3.racing_car.ui
+package racing_car.ui
 
-import step3.racing_car.interfaces.Movable
-import kotlin.text.StringBuilder
+import racing_car.interfaces.Movable
 
 private const val PLAY_RESULT_MSG = "실행 결과\n"
 private const val MOVE_VIEW = "-"
