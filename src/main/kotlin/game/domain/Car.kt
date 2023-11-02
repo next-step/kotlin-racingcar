@@ -3,10 +3,8 @@ package game.domain
 class Car private constructor(val position: Int = 0, val name: String) {
 
     fun move(moveCondition: Int): Car {
-        return when (canMove(moveCondition)) {
-            true -> advance()
-            false -> this
-        }
+        return if (canMove(moveCondition)) advance()
+        else this
     }
 
     fun isSamePosition(position: Int) = this.position == position
