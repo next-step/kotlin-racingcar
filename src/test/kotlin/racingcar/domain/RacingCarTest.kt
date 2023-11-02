@@ -1,5 +1,6 @@
 package racingcar.domain
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.data.forAll
 import io.kotest.data.row
@@ -24,6 +25,23 @@ class RacingCarTest : BehaviorSpec({
                 ) { num, expected ->
                     RacingCar("pobi").moveOrStop(num).position shouldBe expected
                 }
+            }
+        }
+    }
+
+    Given("공백이나 5글자가 넘는 이름을 입력받으면") {
+        When("레이싱카를 생성할 때") {
+            Then("에러가 발생한다.") {
+                forAll(
+                    row("yeong1"),
+                    row(""),
+                    row(" ")
+                ) { name ->
+                    shouldThrow<IllegalArgumentException> {
+                        RacingCar(name)
+                    }
+                }
+
             }
         }
     }
