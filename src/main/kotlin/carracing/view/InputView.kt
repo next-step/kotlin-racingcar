@@ -1,6 +1,6 @@
 package carracing.view
 
-object InputTemplate {
+object InputView {
     fun getNumberOfCar(): String? {
         println("자동차 대수는 몇 대인가요?")
         return readlnOrNull()

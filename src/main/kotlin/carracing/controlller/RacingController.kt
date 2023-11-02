@@ -3,28 +3,26 @@ package carracing.controlller
 import carracing.model.model.Racing
 import carracing.model.model.Snapshot
 import carracing.model.service.RacingService
-import carracing.view.InputTemplate
-import carracing.view.OutputTemplate
-// import study.util.requireNotNullOrBlank
+import carracing.util.toIntOrThrow
+import carracing.view.InputView
+import carracing.view.OutputView
 
 class RacingController {
-    val RacingService = RacingService()
+    private val racingService = RacingService()
 
     fun create(): Racing {
-        val numberOfCar = InputTemplate.getNumberOfCar()!!
-            // .requireNotNullOrBlank { "'numberOfCar' must be a number" }
-            .toInt()
-        return RacingService.create(numberOfCar)
+        val numberOfCar = InputView.getNumberOfCar()
+            .toIntOrThrow { "'numberOfCar' must be a number" }
+        return racingService.create(numberOfCar)
     }
 
     fun play(racing: Racing): List<Snapshot> {
-        val numberOfAttempt = InputTemplate.getNumberOfAttempt()!!
-            // .requireNotNullOrBlank { "'numberOfAttempt' must be a number" }
-            .toInt()
-        return RacingService.play(racing, numberOfAttempt)
+        val numberOfAttempt = InputView.getNumberOfAttempt()
+            .toIntOrThrow { "'numberOfAttempt' must be a number" }
+        return racingService.play(racing, numberOfAttempt)
     }
 
     fun printSnapshots(snapshots: List<Snapshot>) {
-        OutputTemplate.printResult(snapshots)
+        OutputView.printResult(snapshots)
     }
 }
