@@ -1,3 +1,5 @@
+package calculator
+
 class CaculatorValidator {
     companion object {
         private val numberPattern = Regex("\\d+")
@@ -13,15 +15,17 @@ class CaculatorValidator {
                 throw IllegalArgumentException("연산식을 잘못 입력하셨습니다.")
             }
             if (formulas.any {
-                    try {
-                        Operator.OperatorSymbol.of(it)
-                    } catch (e: IllegalArgumentException) {
-                        if (!numberPattern.matches(it)) {
-                            return@any true
-                        }
+                try {
+                    Operator.OperatorSymbol.of(it)
+                } catch (e: IllegalArgumentException) {
+                    if (!numberPattern.matches(it)) {
+                        return@any true
                     }
-                    return@any false
-                }) {
+                }
+
+                return@any false
+            }
+            ) {
                 throw IllegalArgumentException("연산식을 잘못 입력하셨습니다.")
             }
 

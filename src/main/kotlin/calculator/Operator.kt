@@ -1,5 +1,4 @@
-import java.util.function.BinaryOperator
-import java.util.function.IntBinaryOperator
+package calculator
 
 class Operator(val sign: OperatorSymbol) {
     fun operate(first: Int, second: Int): Int = when (sign.op) {
@@ -29,4 +28,3 @@ class Operator(val sign: OperatorSymbol) {
         }
     }
 }
-
