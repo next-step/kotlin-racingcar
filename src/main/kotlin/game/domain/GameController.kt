@@ -9,7 +9,7 @@ class GameController {
         val history = History()
         repeat(retryCount) {
             carFleet.advanceAll()
-            history.addRound(carFleet.carList)
+            history.addRound(Round(carFleet.carList))
         }
         return history
     }

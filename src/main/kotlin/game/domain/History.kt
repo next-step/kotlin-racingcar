@@ -6,9 +6,9 @@ class History(
     val rounds: List<Round>
         get() = _rounds
 
-    fun addRound(cars: List<Car>) {
+    fun addRound(round: Round) {
         var updatedRound = _rounds.toMutableList()
-        updatedRound.add(Round(cars))
+        updatedRound.add(round)
         _rounds = updatedRound.toList()
     }
 

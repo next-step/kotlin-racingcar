@@ -16,7 +16,7 @@ class HistoryTest {
         val history = History()
 
         // when
-        history.addRound(listOf(Car.of("a"), Car.of("b")))
+        history.addRound(Round(listOf(Car.of("a"), Car.of("b"))))
 
         // then
         assertAll(
@@ -29,14 +29,28 @@ class HistoryTest {
 
     @ParameterizedTest
     @MethodSource("winner")
-    fun `자동차들에서 우승자를 찾는다`(pobiCount: Int, crongCount: Int, honuxCount: Int, expected: List<String>) {
+    fun `마지막 자동차기록으로 자동차들에서 우승자를 찾는다`(
+        lastPobiCount: Int,
+        lastCrongCount: Int,
+        lastHonuxCount: Int,
+        expected: List<String>
+    ) {
         // given
-        val pobi = Car.of("pobi", pobiCount)
         val history = History()
-        val crong = Car.of("crong", crongCount)
-        val honux = Car.of("honux", honuxCount)
-        val cars = listOf(pobi, crong, honux)
-        history.addRound(cars)
+
+        var pobi = Car.of("pobi", 0)
+        var crong = Car.of("crong", 0)
+        var honux = Car.of("honux", 0)
+        var cars = listOf(pobi, crong, honux)
+
+        history.addRound(Round(cars))
+
+        pobi = Car.of("pobi", lastPobiCount)
+        crong = Car.of("crong", lastCrongCount)
+        honux = Car.of("honux", lastHonuxCount)
+        cars = listOf(pobi, crong, honux)
+
+        history.addRound(Round(cars))
 
         // when
         val actual = history.findWinners()

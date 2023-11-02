@@ -3,6 +3,7 @@ package game.view
 import game.domain.Car
 import game.domain.GameResult
 import game.domain.History
+import game.domain.Round
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
@@ -30,8 +31,8 @@ class UserMessageDisplayTest {
         // given
         val userMessageDisplay = UserMessageDisplay()
         val history = History()
-        history.addRound(listOf(Car.of("a", 1), Car.of("b", 1)))
-        history.addRound(listOf(Car.of("a", 1), Car.of("b", 2)))
+        history.addRound(Round(listOf(Car.of("a", 1), Car.of("b", 1))))
+        history.addRound(Round(listOf(Car.of("a", 1), Car.of("b", 2))))
         val gameResult = GameResult(history, listOf("b"))
 
         // when
