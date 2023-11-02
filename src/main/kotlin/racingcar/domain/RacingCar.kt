@@ -3,11 +3,23 @@ package racingcar.domain
 private const val START_POSITION = 0
 private const val MOVE_FORWARD_START_NUM = 4
 private const val MOVE_FORWARD_COUNT = 1
+private const val NAME_LENGTH_LIMIT = 5
 
 data class RacingCar(
     val name: String,
     val position: Int = START_POSITION
 ) {
+
+    init {
+        if (name.length > NAME_LENGTH_LIMIT) {
+            println("$name : 자동차 이름은 ${NAME_LENGTH_LIMIT}글자를 초과하여 입력할 수 없습니다.")
+            throw IllegalArgumentException()
+        }
+        if (name.isBlank()) {
+            println("$name : 자동차 이름은 공백을 입력할 수 없습니다.")
+            throw IllegalArgumentException()
+        }
+    }
 
     fun moveOrStop(checkNum: Int): RacingCar {
         if (checkNum >= MOVE_FORWARD_START_NUM) {
