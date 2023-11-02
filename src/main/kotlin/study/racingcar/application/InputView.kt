@@ -3,7 +3,7 @@ package study.racingcar.application
 /**
  * 값을 입력 받는다.
  * */
-data class InputValue(val carNames: List<String>, val tryCount: Int)
+data class InputValue(val carNames: List<CarName>, val tryCount: Int)
 
 class InputView(
     val reader: Reader) {
@@ -14,7 +14,7 @@ class InputView(
      * @throws IllegalArgumentException 입력 값이 null 이거나 적절한 정수형의 숫자가 아닌 경우
      * */
     fun getInput(): InputValue {
-        val carNames: List<String> = inputString("자동차 이름을 입력하세요: ")
+        val carNames: List<CarName> = inputString("자동차 이름을 입력하세요: ")
         val tryCount: Int = inputNumber("시도할 횟수를 입력하세요: ")
 
         val inputValue = InputValue(carNames, tryCount)
@@ -27,7 +27,7 @@ class InputView(
      * @param prompt N 개의 자동차 이름 문자열을 유도하는 문자열
      * @throws IllegalArgumentException 입력 값이 null 이거나 적절한 문자열이 아닌 경우
      * */
-    fun inputString(prompt: String) : List<String>{
+    fun inputString(prompt: String) : List<CarName>{
         while (true) {
             try {
                 print(prompt)
@@ -49,7 +49,7 @@ class InputView(
             try {
                 print(prompt)
                 val input: String = reader.read() ?: throw IllegalArgumentException("입력 값이 null 입니다.")
-                return Number(input).getProperFormatNumber()
+                return Number(input).toInt()
             } catch (e: Exception) {
                 println("[$e] 입력 숫자를 확인해주세요.")
             }

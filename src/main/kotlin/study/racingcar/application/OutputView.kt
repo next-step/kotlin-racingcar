@@ -17,7 +17,7 @@ class OutputView {
         val winner = racingCars.maxBy { it.currentPosition }!!
         racingCars
             .filter { it.currentPosition == winner.currentPosition }
-            .joinToString(",") { it.name }
+            .joinToString(",") { it.name.toString() }
             .let { println("$it 가 최종 우승했습니다.") }
     }
 }

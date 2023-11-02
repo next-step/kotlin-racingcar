@@ -12,9 +12,9 @@ class OutputViewTest {
     fun showResult() {
         // given
         val racingCars = listOf(
-            RacingCar("test1", 1),
-            RacingCar("test2", 2),
-            RacingCar("test3", 3)
+            RacingCar(CarName("test1"), 1),
+            RacingCar(CarName("test2"), 2),
+            RacingCar(CarName("test3"), 3)
         )
 
         // when
@@ -29,9 +29,9 @@ class OutputViewTest {
     fun showWinners() {
         // given
         val racingCars = listOf(
-            RacingCar("car1", 3),
-            RacingCar("car2", 2),
-            RacingCar("car3", 3)
+            RacingCar(CarName("test1"), 1),
+            RacingCar(CarName("test2"), 2),
+            RacingCar(CarName("test3"), 3)
         )
 
         // when

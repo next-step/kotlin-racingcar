@@ -18,19 +18,18 @@ class CarNamesTest {
         val actual = carNames.getProperFormatCarNames()
 
         // then
-        assertEquals(listOf("car1", "car2", "car3"), actual)
+        assertEquals(listOf("car1", "car2", "car3").map { CarName(it) }, actual)
     }
 
     @Test
     @DisplayName("5자가 넘어가는 자동차 이름의 문자열을 입력 받았을때 / 예외를 반환한다.")
     fun `getProperFormatCarNames exception case1`() {
         // given
-        val input = "car1,car2,          car3"
-        val carNames = CarNames(input)
+        val input = "carNameExceedsFive"
 
         // when
         // then
-        assertThrows(IllegalArgumentException::class.java) { carNames.getProperFormatCarNames() }
+        assertThrows(IllegalArgumentException::class.java) { CarName(input) }
     }
 
     @Test

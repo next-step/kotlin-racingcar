@@ -21,8 +21,8 @@ class RacingGame(
         val gameRule = FourOrMoreGameRule()
 
         // carTotalNum 만큼 RacingCar 를 생성하고, 초기 포지션 설정 후, 자료구조에 넣어 둔다.
-        val racingCars: List<RacingCar> = carNames.map { name ->
-            RacingCar(name, 1)
+        val racingCars: List<RacingCar> = carNames.map { carName ->
+            RacingCar(carName)
         }
 
         // tryCount 만큼 게임을 수행한다.
