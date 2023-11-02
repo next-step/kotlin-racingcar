@@ -1,8 +1,8 @@
 package carRacing
 
+import carRacing.enum.ErrorCode
 import carRacing.view.MessageGenerator
 import carRacing.view.VARIABLE_PATTERN
-import carRacing.enum.ErrorCode
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

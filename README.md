@@ -360,7 +360,7 @@ class StringCalculatorTest {
 
 * [X] 1.CarFactory.kt
 * [X] 2.MovementController.kt
-* [ ] 3.SimpleCarFactory.kt
+* [ ] 3.RandomMovementCarFactory.kt
 * [ ] 4.InputView.kt
 * [ ] 5.OperatorTest.kt
 * [X] 6.CarTest.kt
@@ -389,7 +389,7 @@ class StringCalculatorTest {
 ##### effect
 - 불필요한 구현 제거 및 오버 엔지니어링 방지.
 
-#### 3. SimpleCarFactory.kt
+#### 3. RandomMovementCarFactory.kt
 
 ##### Problem
 - 다른 움직임 전략을 자동차에게 전달하고자 더 유연하게 만들어야 함.
