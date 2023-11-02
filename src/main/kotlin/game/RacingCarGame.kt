@@ -23,6 +23,7 @@ class RacingCarGame(
     private val winnerFinder: WinnerFinder = WinnerFinder(),
     private val gameController: GameController = GameController(),
     private val carNameValidator: CarNameValidator = CarNameValidator(),
+    private val inputValidator: InputValidator = InputValidator(),
 ) {
 
     fun start() {
@@ -34,15 +35,14 @@ class RacingCarGame(
         userOutputHandler.displayResult(GameResult(history, winners))
     }
 
-    private fun getCarFleet(carNames: List<String>) =
-        CarFleet(getCars(carNames), moveConditionGenerator)
+    private fun getCarFleet(carNames: List<String>) = CarFleet(getCars(carNames), moveConditionGenerator)
 
     private fun getCars(carNames: List<String>) = Cars(getCarList(carNames))
 
     private fun getCarList(carNames: List<String>) = Car.from(carNames.let { carNameValidator.validate(it); it })
 
-    private fun getRetryCount(): Int =
-        userInputHandler.askForRetryCount().let { InputValidator.validateCount(it); it.toInt() }
+    private fun getRetryCount(): Int = userInputHandler.askForRetryCount()
+        .let { inputValidator.validateCount(it); it.toInt() }
 
     private fun getCarNames(): List<String> = userInputHandler.askForCarNames().let { CarNameParser.parse(it) }
 }
