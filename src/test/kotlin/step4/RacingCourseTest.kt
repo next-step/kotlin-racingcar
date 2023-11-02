@@ -11,7 +11,15 @@ class RacingCourseTest {
     @Test
     fun `RacingCourse의 MoveStrategy가 항상 성공할 시 tryCount만큼 움직인다`() {
         val racingCourse =
-            RacingCourse(4, RacingCars(listOf(RacingCar(CarName("fac"), 0), RacingCar(CarName("fac1"), 1))))
+            RacingCourse(
+                tryCount = 4,
+                racingCars = RacingCars(
+                    listOf(
+                        RacingCar(CarName(name = "fac"), moveCount = 0),
+                        RacingCar(CarName(name = "fac1"), moveCount = 1)
+                    )
+                )
+            )
         racingCourse.moveCars(FixedStrategy(4)) {}
         assertThat(racingCourse.racingCars.carList).isEqualTo(
             listOf(
