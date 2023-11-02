@@ -17,7 +17,7 @@ object RacingcarGameInputValidator {
         return carName
     }
 
-    fun validateRoundNumber(roundNumberString: String?): Int {
+    fun validateRoundNumberString(roundNumberString: String?): Int {
         require(!roundNumberString.isNullOrBlank()) {
             "시도 횟수는 null 또는 공백일 수 없습니다."
         }

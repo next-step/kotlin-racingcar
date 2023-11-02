@@ -12,7 +12,7 @@ object RacingcarGameInputView {
             .map { RacingcarGameInputValidator.validateCarName(it) }
 
         val roundNumberString = getInput("시도할 횟수는 몇 회인가요?")
-        val roundNumber = RacingcarGameInputValidator.validateRoundNumber(roundNumberString)
+        val roundNumber = RacingcarGameInputValidator.validateRoundNumberString(roundNumberString)
 
         return RacingcarGameInput(
             carNames = carNames,
