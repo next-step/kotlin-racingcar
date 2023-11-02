@@ -1,5 +1,7 @@
 package study.racingcar.domain
 
+import study.racingcar.application.CarName
+import study.racingcar.application.InputValue
 import study.racingcar.application.InputView
 import study.racingcar.application.OutputView
 
@@ -10,14 +12,12 @@ class RacingGame(
     private val inputView: InputView,
     private val outputView: OutputView
 ) {
-    // TODO-review : RacingGaem 에서 run 을 많은 일을 수행하는 것으로 보이지만,
-    // InputView / RacingCar / OutputView 에게 메시지를 던져서 오케스트레이션 하는 것으로 설계를 했습니다.
-    // 적합한 설계인지 코멘트 부탁드립니다!
-    fun run() {
-        val input = inputView.getInput()
-        val carNames = input.carNames
-        val tryCount = input.tryCount
 
+    private val input: InputValue = inputView.getInput()
+    private val carNames: List<CarName> = input.carNames
+    private val tryCount: Int = input.tryCount
+
+    fun run() {
         val gameRule = FourOrMoreGameRule()
 
         // carTotalNum 만큼 RacingCar 를 생성하고, 초기 포지션 설정 후, 자료구조에 넣어 둔다.
