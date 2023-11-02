@@ -6,26 +6,24 @@ import org.junit.jupiter.api.Test
 class CarTest {
 
     @Test
-    fun `randomNumber가 4 이상일 때 차는 1칸 앞으로 전진한다`() {
+    fun `movable한 차는 1칸 앞으로 전진한다`() {
         // given
-        val randomNumber = 5
+        val car = Car.of(AlwaysMoveStrategy)
 
         // when
-        val car = Car()
-        TODO("차에 전진하는 기능을 추가한다.")
+        car.move()
 
         // then
         assertEquals(1, car.location)
     }
 
     @Test
-    fun `randomNumber가 4 미만일 때 차는 그대로 멈춰있다`() {
+    fun `movable하지 않은 차는 그대로 멈춰있다`() {
         // given
-        val randomNumber = 1
+        val car = Car.of(AlwaysNotMoveStrategy)
 
         // when
-        val car = Car()
-        TODO("차에 전진하는 기능을 추가한다.")
+        car.move()
 
         // then
         assertEquals(0, car.location)
