@@ -5,6 +5,9 @@ import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.collections.shouldContainAll
 import io.kotest.matchers.shouldBe
+import racinggame.domain.Car
+import racinggame.domain.ForwardDice
+import racinggame.domain.RacingGame
 
 class RacingGameTest : BehaviorSpec({
 

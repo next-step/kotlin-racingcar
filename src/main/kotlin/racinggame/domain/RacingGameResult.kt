@@ -1,4 +1,4 @@
-package racinggame
+package racinggame.domain
 
 data class RacingGameResult(
     val racingResult: List<RoundResult>

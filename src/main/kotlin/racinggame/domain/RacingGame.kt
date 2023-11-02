@@ -1,4 +1,4 @@
-package racinggame
+package racinggame.domain
 
 class RacingGame(
     private val cars: List<Car>,

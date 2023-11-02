@@ -3,6 +3,8 @@ package racinggame
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
+import racinggame.domain.Car
+import racinggame.domain.DiceResult
 
 class CarTest : BehaviorSpec({
 

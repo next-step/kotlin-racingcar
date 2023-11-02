@@ -1,4 +1,4 @@
-package racinggame
+package racinggame.domain
 
 interface Dice {
     fun pitch(): DiceResult
