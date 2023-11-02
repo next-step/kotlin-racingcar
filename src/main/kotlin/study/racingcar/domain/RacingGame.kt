@@ -1,6 +1,6 @@
 package study.racingcar.domain
 
-import study.racingcar.application.CarName
+import study.racingcar.application.CarNames
 import study.racingcar.application.InputValue
 import study.racingcar.application.InputView
 import study.racingcar.application.OutputView
@@ -10,31 +10,23 @@ import study.racingcar.application.OutputView
  * */
 class RacingGame(
     private val inputView: InputView,
-    private val outputView: OutputView
 ) {
 
     private val input: InputValue = inputView.getInput()
-    private val carNames: List<CarName> = input.carNames
+    private val carNames: CarNames = input.carNames
     private val tryCount: Int = input.tryCount
 
     fun run() {
-        val gameRule = FourOrMoreGameRule()
+        val gameRule =
+            FourOrMoreGameRule() // TODO-review : 테스트 하기 어려운 객체를 객체 그래프의 최상단으로 끌어올렸습니다. (racingCar 에게 gamerule 을 주입하는 형태로 테스트를 하기 위해.)
 
-        // carTotalNum 만큼 RacingCar 를 생성하고, 초기 포지션 설정 후, 자료구조에 넣어 둔다.
-        val racingCars: List<RacingCar> = carNames.map { carName ->
-            RacingCar(carName)
-        }
+        // 1. carNames 에게 메시지 (RacingCars 를 생성 요청) 던진다.
+        val racingCars = carNames.prepareForRace()
 
-        // tryCount 만큼 게임을 수행한다.
-        (1..tryCount).map { _ ->
-            racingCars.forEach { racingCar ->
-                racingCar.moveForward(gameRule)
-            }
+        // 2. racingCars 에게 메시지 (game 수행 요청) 던진다.
+        racingCars.playGame(tryCount, gameRule)
 
-            outputView.showResult(racingCars)
-        }
-
-        // 최종 결과 출력
-        outputView.showWinners(racingCars)
+        // 3. outputView 에게 메시지 (우승자 출력 요청) 던진다.
+        OutputView.showWinners(racingCars)
     }
 }

@@ -11,18 +11,27 @@ import study.racingcar.application.CarName
 
 data class RacingCar(
     val name: CarName,
-    private var position: Int = DEFAULT_POSITION
+    private var _position: Int = DEFAULT_POSITION
 ) {
     val currentPosition: Int
-        get() = position
+        get() = _position
 
     fun moveForward(gameRule: GameRule) {
+        gameRule.setGameRule(getRandomNumber())  // 주입 받은 GameRule 의 상태를 모든 racingCar 마다 변경합니다.
+
         if (gameRule.getResult()) {
-            position += 1
+            _position += 1
         }
     }
 
+    // TODO-review : 테스트 하기 어려운 random 을 객체 그래프에서 최대한 높은 곳으로 끌어올려 봤습니다.
+    // 하지만, 여전히 RacingGame, MainUI 는 테스트 하기 어려운데요.
+    // 이럴 경우, 설계를 다시 해야할지 / 테스트를 포기해야할지 고민이 됩니다.
+    private fun getRandomNumber(): Int {
+        return (0..9).random()
+    }
+
     companion object {
-        private const val DEFAULT_POSITION = 0
+        const val DEFAULT_POSITION = 0
     }
 }
