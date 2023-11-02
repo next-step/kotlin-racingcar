@@ -12,7 +12,7 @@ class WinnersTest {
         val winners = Winners(listOf(RacingCar("park", RandomRacingGameMoveRule())))
 
         assertThat(winners).isNotNull()
-        assertThat(winners.winners).hasSize(1)
+        assertThat(winners.racingCars).hasSize(1)
     }
 
     @Test
@@ -25,8 +25,8 @@ class WinnersTest {
         val winners = Winners(listOf(racingCar1, racingCar2, racingCar3))
 
         assertThat(winners).isNotNull()
-        assertThat(winners.winners).hasSize(1)
-        assertThat(winners.winners[0]).isEqualTo(racingCar3)
+        assertThat(winners.racingCars).hasSize(1)
+        assertThat(winners.racingCars[0]).isEqualTo(racingCar3)
     }
 
     @Test
@@ -40,7 +40,7 @@ class WinnersTest {
         val winners = Winners(listOf(racingCar1, racingCar2, racingCar3))
 
         assertThat(winners).isNotNull()
-        assertThat(winners.winners).hasSize(2)
+        assertThat(winners.racingCars).hasSize(2)
     }
 
     @Test
@@ -55,6 +55,6 @@ class WinnersTest {
         val winners = Winners(listOf(racingCar1, racingCar2, racingCar3))
 
         assertThat(winners).isNotNull()
-        assertThat(winners.winners).hasSize(3)
+        assertThat(winners.racingCars).hasSize(3)
     }
 }

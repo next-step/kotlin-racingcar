@@ -14,7 +14,9 @@ object ConsoleResult {
             printCurrentRacingCars(numOfRacingCar, rounds[attempt])
             println()
         }
-        println("${racingGameResult.winners.winners.joinToString(", ") { it.name }}가 최종 우승했습니다.")
+
+        val winners = racingGameResult.winners
+        println("${winners.racingCars.joinToString(", ") { it.name }}가 최종 우승했습니다.")
     }
 
     private fun printCurrentRacingCars(
