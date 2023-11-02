@@ -1,12 +1,13 @@
-package first_week_carrace
+package first_week_carrace.model
 
+import first_week_carrace.utils.MAX_NAME_LENGTH
 import java.lang.Integer.max
 
 class CarRace(
     carNames: List<String>,
 ) {
     private val carsStatus = carNames.map {
-        require(it.length <= 5)
+        require(it.length <= MAX_NAME_LENGTH)
         Car(it)
     }
     private var maxPosition = 1
