@@ -1,11 +1,10 @@
 package string.calculator
 
-import string.calculator.part.Calculator
-import string.calculator.part.Splitter
-import string.calculator.part.UserInterface
+import string.calculator.domain.Calculator
+import string.calculator.domain.Splitter
+import string.calculator.domain.UserInterface
 
 class CalculatorMachine(
-    private val calculator: Calculator,
     private val splitter: Splitter,
     private val userInterface: UserInterface
 ) {
@@ -21,16 +20,16 @@ class CalculatorMachine(
     private fun run() {
         var isRunning = true
         while (isRunning) {
-            val input = userInterface.introduce()
+            val input = userInterface.inputExpression()
             val splitInput = splitter.split(input)
-            val result = calculator.calculate(splitInput.numbers, splitInput.operators)
-            userInterface.showResult(result)
+            val calculator = Calculator(splitInput.first, splitInput.second)
+            userInterface.showResult(calculator.calculate())
             isRunning = userInterface.isContinue()
         }
     }
 }
 
 fun main() {
-    val calculatorMachine = CalculatorMachine(Calculator, Splitter(), UserInterface)
+    val calculatorMachine = CalculatorMachine(Splitter(), UserInterface)
     calculatorMachine.start()
 }
