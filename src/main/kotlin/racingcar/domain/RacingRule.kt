@@ -6,5 +6,5 @@ class RacingRule(
     private val property: RacingProperty
 ) {
     fun canMoveForward(): Boolean = property.forwardCondition <= random.apply(property.start, property.end)
-    fun nameValidate(names: List<String>): Boolean = validation.test(names)
+    fun nameValidate(names: List<String>): Boolean = validation.validate(names)
 }
