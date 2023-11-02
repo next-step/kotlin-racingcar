@@ -1,6 +1,8 @@
 package race.domain
 
-data class RacingResult(val rounds: List<List<RacingCar>>) {
+typealias RacingRound = List<RacingCar>
+
+data class RacingResult(val rounds: List<RacingRound>) {
     fun getWinners(): List<RacingCar> {
         val racingResult = rounds.last()
         val winnerSpace = racingResult.maxOf { it.space }
