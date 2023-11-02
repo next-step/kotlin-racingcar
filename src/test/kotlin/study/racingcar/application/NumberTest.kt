@@ -15,23 +15,23 @@ class NumberTest {
     @DisplayName("입력받은 문자열로 Number 객체를 선언하고 / 정수형 숫자인지 검증 후 / 반환한다.")
     fun getProperFormatNumber() {
         //given
-        val number = Number("1")
+        val inputString = "1"
 
         // when
-        val result = number.getProperFormatNumber()
+        val number = Number(inputString).toInt()
 
         // then
-        assertEquals(1, result)
+        assertEquals(1, number)
     }
 
     @Test
     @DisplayName("입력받은 문자열로 Number 객체를 선언하고 / 정수형 숫자인지 검증 후 / 반환한다.")
     fun `getProperFormatNumber exception case1`() {
         //given
-        val number = Number("가나라다")
+        val inputString = "가나라다"
 
         // when
         // then
-        assertThrows(IllegalArgumentException::class.java) { number.getProperFormatNumber() }
+        assertThrows(IllegalArgumentException::class.java) { Number(inputString).toInt() }
     }
 }
