@@ -1,6 +1,6 @@
 package carRace
 
-class CarList(val cars: MutableList<Car>) {
+class CarList(val cars: List<Car>) {
     fun driveCars() {
         cars.forEach {
             it.drive()
