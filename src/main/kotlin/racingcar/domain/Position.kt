@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 data class Position(val name: String, val position: Int) : Comparable<Position> {
 

@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 fun createStubRandomGenerator(vararg values: Int): RandomGenerator {
     val numbers = values.iterator()

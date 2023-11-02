@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class Cars(private val randomGenerator: RandomGenerator, names: List<String>) {
     private val cars: List<Car>

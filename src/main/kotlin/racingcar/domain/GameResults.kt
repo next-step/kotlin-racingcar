@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 data class GameResults(val positions: List<Positions>) {
     val winners: List<String>
