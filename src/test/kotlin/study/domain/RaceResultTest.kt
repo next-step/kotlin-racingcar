@@ -12,19 +12,22 @@ class RaceResultTest {
     @Test
     fun recordRound() {
         val raceResult = RaceResult.empty()
-        raceResult.recordRound(1, listOf(RaceCar()))
-        assertThat(raceResult).isEqualTo(RaceResult(mutableMapOf(1 to listOf(RaceCar()))))
+        raceResult.recordRound(1, listOf(RaceCar("name")))
+        assertThat(raceResult).isEqualTo(RaceResult(result = mutableMapOf(1 to listOf(RaceCar("name")))))
     }
 
     @Test
-    fun getRounds() {
-        val raceResult = RaceResult(mutableMapOf(1 to listOf(RaceCar())))
-        assertThat(raceResult.getRounds()).isEqualTo(listOf(1))
+    fun getResults() {
+        val resultMap = mutableMapOf(1 to listOf(RaceCar("name")))
+        val raceResult = RaceResult(result = resultMap)
+        assertThat(raceResult.getResult()).isEqualTo(resultMap.toMap())
     }
 
     @Test
-    fun getCarPositions() {
-        val raceResult = RaceResult(mutableMapOf(1 to listOf(RaceCar())))
-        assertThat(raceResult.getCarPositions(1)).isEqualTo(listOf(0))
+    fun recordWinners() {
+        val raceResult = RaceResult.empty()
+        val winners = listOf(RaceCar("name"))
+        raceResult.recordWinners(winners)
+        assertThat(raceResult.winners).isEqualTo(winners)
     }
 }
