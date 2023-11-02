@@ -359,7 +359,7 @@ class StringCalculatorTest {
 ### 💻 Step 3, Feedback
 
 * [X] 1.CarFactory.kt
-* [ ] 2.MovementController.kt
+* [X] 2.MovementController.kt
 * [ ] 3.SimpleCarFactory.kt
 * [ ] 4.InputView.kt
 * [ ] 5.OperatorTest.kt
@@ -388,3 +388,61 @@ class StringCalculatorTest {
 
 ##### effect
 - 불필요한 구현 제거 및 오버 엔지니어링 방지.
+
+#### 3. SimpleCarFactory.kt
+
+##### Problem
+- 다른 움직임 전략을 자동차에게 전달하고자 더 유연하게 만들어야 함.
+
+##### Solution
+
+##### effect
+
+#### 4. InputView.kt
+
+##### Problem
+- if -> require()로 변경.
+- try-catch -> runCatching()으로 변경.
+
+##### Solution
+- if -> require()로 변경.
+- try-catch -> runCatching()으로 변경.
+
+##### effect
+- Kotlin 문법 활용 가능.
+
+#### 5. OperatorTest.kt
+
+##### Problem
+- ParameterizedTest에서 사용 가능한 CsvSource를 활용 못함.
+
+##### Solution
+- ParameterizedTest에서 사용 가능한 CsvSource를 활용하여 operator와 expected를 파라미터로 받아 테스트 코드 작성.
+
+##### effect
+- 테스트 코드의 가독성이 향상됨.
+- 테스트 코드의 중복이 제거됨.
+
+#### 6. CarTest.kt
+
+##### Problem
+- CarTest에서 사용한 ParameterizedTest는 불필요한 사용임. = 다회 시도할 필요가 없는 테스트만 수행하기 때문.
+- 같이 사용한 CsvSource 또한 쉼표로 구분된 데이터를 사용하겠단 뜻이지만, 해당 테스트에서는 단순 숫자만 사용하고 있음.
+
+##### Solution
+- ParameterizedTest 제거.
+
+##### effect
+- 테스트 코드의 가독성이 향상됨.
+- 불필요한 테스트를 줄일 수 있음.
+
+#### 7. RacingTest.kt
+
+##### Problem
+- 레이싱 결과에 대한 테스트가 존재 X.
+
+##### Solution
+- RacingTest에 레이싱 결과에 대한 테스트 코드 작성.
+
+##### effect
+- 레이싱 결과에 대한 테스트 코드가 추가됨.
