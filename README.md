@@ -363,7 +363,7 @@ class StringCalculatorTest {
 * [ ] 3.SimpleCarFactory.kt
 * [ ] 4.InputView.kt
 * [ ] 5.OperatorTest.kt
-* [ ] 6.CarTest.kt
+* [X] 6.CarTest.kt
 * [ ] 7.RacingTest.kt
 
 
