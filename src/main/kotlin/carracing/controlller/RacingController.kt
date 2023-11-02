@@ -7,8 +7,9 @@ import carracing.util.toIntOrThrow
 import carracing.view.InputView
 import carracing.view.OutputView
 
+private val racingService = RacingService()
+
 class RacingController {
-    private val racingService = RacingService()
 
     fun create(): Racing {
         val numberOfCar = InputView.getNumberOfCar()

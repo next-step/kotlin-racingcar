@@ -7,13 +7,13 @@ typealias CarTrace = String
 private const val MOVEMENT = "-"
 
 data class Car(val carNumber: Int) {
-    private var countOfMoveInRacing = 0
+    private var countOfMovementInRacing = 0
 
     fun move() {
         if (Random.nextInt(10) > 4) {
-            countOfMoveInRacing++
+            countOfMovementInRacing++
         }
     }
 
-    fun getTrace(): CarTrace = MOVEMENT.repeat(countOfMoveInRacing)
+    fun getTrace(): CarTrace = MOVEMENT.repeat(countOfMovementInRacing)
 }
