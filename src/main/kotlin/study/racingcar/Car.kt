@@ -9,6 +9,4 @@ class Car(position: Int = 0) {
             position += 1
         }
     }
-
-    fun displayPosition(): String = "-".repeat(position)
 }

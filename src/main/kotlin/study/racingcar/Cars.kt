@@ -11,8 +11,4 @@ data class Cars(private val cars: List<Car>) {
             },
         )
     }
-
-    fun displayPositions(): List<String> {
-        return cars.map { it.displayPosition() }
-    }
 }
