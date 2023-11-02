@@ -8,7 +8,7 @@ class CarTest {
     @Test
     fun `movable한 차는 1칸 앞으로 전진한다`() {
         // given
-        val car = Car.of(AlwaysMoveStrategy)
+        val car = Car.of(AlwaysMoveStrategy, "pobi")
 
         // when
         car.move()
@@ -20,7 +20,7 @@ class CarTest {
     @Test
     fun `movable하지 않은 차는 그대로 멈춰있다`() {
         // given
-        val car = Car.of(AlwaysNotMoveStrategy)
+        val car = Car.of(AlwaysNotMoveStrategy, "pobi")
 
         // when
         car.move()
