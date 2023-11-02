@@ -1,6 +1,6 @@
 package study.racingcar
 
-import study.racingcar.application.InputView
+import study.racingcar.view.InputView
 import study.racingcar.application.StdinReader
 import study.racingcar.domain.RacingGame
 

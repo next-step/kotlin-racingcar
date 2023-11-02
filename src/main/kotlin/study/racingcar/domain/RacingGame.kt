@@ -1,9 +1,9 @@
 package study.racingcar.domain
 
 import study.racingcar.application.CarNames
-import study.racingcar.application.InputValue
-import study.racingcar.application.InputView
-import study.racingcar.application.OutputView
+import study.racingcar.view.InputValue
+import study.racingcar.view.InputView
+import study.racingcar.view.OutputView
 
 /**
  * view 를 통해 입력받은 데이터를 가지고 게임을 진행한다.

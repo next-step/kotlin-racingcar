@@ -1,7 +1,8 @@
-package study.racingcar.application
+package study.racingcar.view
 
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import study.racingcar.application.Reader
 
 class InputViewTest {
 

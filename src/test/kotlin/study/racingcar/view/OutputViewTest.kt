@@ -1,6 +1,7 @@
-package study.racingcar.application
+package study.racingcar.view
 
 import org.junit.jupiter.api.Test
+import study.racingcar.application.CarName
 import study.racingcar.domain.RacingCar
 import study.racingcar.domain.RacingCars
 

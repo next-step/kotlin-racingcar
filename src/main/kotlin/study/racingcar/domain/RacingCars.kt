@@ -1,6 +1,6 @@
 package study.racingcar.domain
 
-import study.racingcar.application.OutputView
+import study.racingcar.view.OutputView
 
 /**
  * RacingCar 을 Wrapping 하는 일급 컬렉션

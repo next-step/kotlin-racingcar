@@ -1,4 +1,4 @@
-package study.racingcar.application
+package study.racingcar.view
 
 import study.racingcar.domain.RacingCar
 import study.racingcar.domain.RacingCars
