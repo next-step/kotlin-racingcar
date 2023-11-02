@@ -12,4 +12,16 @@ data class UserInput(
             "시도 횟수는 1 이상만 가능합니다."
         }
     }
+
+    companion object {
+        fun from(carNames: String, numOfAttempts: String): UserInput {
+            require(numOfAttempts.toIntOrNull() != null) {
+                "시도 횟수는 숫자여야 합니다."
+            }
+            return UserInput(
+                carNames = carNames.split(","),
+                numOfAttempts = numOfAttempts.toInt()
+            )
+        }
+    }
 }
