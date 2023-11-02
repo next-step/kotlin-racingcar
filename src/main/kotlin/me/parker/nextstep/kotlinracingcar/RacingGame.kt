@@ -3,14 +3,14 @@ package me.parker.nextstep.kotlinracingcar
 import me.parker.nextstep.kotlinracingcar.rule.RacingGameMoveRule
 
 class RacingGame(
-    val namesOfRacingCar: String, val numOfAttempts: Int,
+    private val namesOfRacingCar: String, private val numOfAttempts: Int,
     private val racingGameMoveRule: RacingGameMoveRule
 ) {
     init {
         require(namesOfRacingCar.isNotBlank()) { "자동차 이름 입력은 공백일 수 없습니다." }
     }
 
-    fun start(): List<RacingCarGameRound> {
+    fun start(): RacingGameResult {
         val resultOfRacingCars = namesOfRacingCar.split(",")
             .map { RacingCar(it, racingGameMoveRule) }
 
@@ -26,7 +26,7 @@ class RacingGame(
             racingCarGameRound.add(RacingCarGameRound(round++, movedRacingCars))
         }
 
-        return racingCarGameRound
+        return RacingGameResult(racingCarGameRound, Winners(resultOfRacingCars))
     }
 
     companion object {

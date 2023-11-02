@@ -10,7 +10,7 @@ fun main(args: Array<String>) {
     val numOfAttempts: Int = ConsoleInput.inputNumOfAttempts()
 
     val racingGame = RacingGame(namesOfRacingCar, numOfAttempts, RandomRacingGameMoveRule())
-    val racingCarGameRounds = racingGame.start()
+    val racingGameResult = racingGame.start()
 
-    ConsoleResult.outputGameResult(racingCarGameRounds)
+    ConsoleResult.outputGameResult(racingGameResult)
 }

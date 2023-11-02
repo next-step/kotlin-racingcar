@@ -28,24 +28,26 @@ class RacingGameTest {
     }
 
     @Test
-    fun `레이싱 게임을 시작하면, 그 결과로 전체 라운드들을 반환`() {
+    fun `레이싱 게임을 시작하면, 그 결과로 게임 결과를 반환`() {
         val racingGame = RacingGame(testNamesOfRacingCar, 5, RandomRacingGameMoveRule())
 
-        val racingCarRecords = racingGame.start()
+        val racingGameResult = racingGame.start()
 
-        assertThat(racingCarRecords).hasSize(5)
+        assertThat(racingGameResult).isNotNull()
+        assertThat(racingGameResult.rounds).hasSize(5)
     }
 
     @Test
-    fun `레이싱 게임을 시작하면, 그 결과로 전체 라운드들을 반환 - 전체 자동차가 모두 5번 앞으로 이동`() {
+    fun `레이싱 게임을 시작하면, 그 결과로 게임 결과를 반환 - 전체 자동차가 모두 5번 앞으로 이동`() {
         val numOfAttempts = 5
         val racingGame = RacingGame(testNamesOfRacingCar, numOfAttempts, TestRacingGameMoveRule(true))
 
-        val racingCarRecords = racingGame.start()
+        val racingGameResult = racingGame.start()
 
-        assertThat(racingCarRecords).hasSize(5)
+        assertThat(racingGameResult).isNotNull()
+        assertThat(racingGameResult.rounds).hasSize(5)
         for (attempt in 0 until numOfAttempts) {
-            val currentRound = racingCarRecords[attempt]
+            val currentRound = racingGameResult.rounds[attempt]
             assertThat(currentRound.roundNumber).isEqualTo(attempt + 1)
             currentRound.currentRacingCars.forEach {
                 assertThat(it.name).isNotEmpty()
@@ -59,11 +61,12 @@ class RacingGameTest {
         val numOfAttempts = 5
         val racingGame = RacingGame(testNamesOfRacingCar, 5, TestRacingGameMoveRule(false))
 
-        val racingCarRecords = racingGame.start()
+        val racingGameResult = racingGame.start()
 
-        assertThat(racingCarRecords).hasSize(5)
+        assertThat(racingGameResult).isNotNull()
+        assertThat(racingGameResult.rounds).hasSize(5)
         for (attempt in 0 until numOfAttempts) {
-            val currentRound = racingCarRecords[attempt]
+            val currentRound = racingGameResult.rounds[attempt]
             assertThat(currentRound.roundNumber).isEqualTo(attempt + 1)
             currentRound.currentRacingCars.forEach {
                 assertThat(it.name).isNotEmpty()
