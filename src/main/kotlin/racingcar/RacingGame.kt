@@ -1,7 +1,6 @@
 package racingcar
 
 class RacingGame(
-    private val racingGameEventListener: RacingGameEventListener,
     randomGenerator: RandomGenerator,
     names: List<String>,
 ) {
@@ -11,24 +10,12 @@ class RacingGame(
         cars = Cars(randomGenerator, names)
     }
 
-    fun start(tryCount: Int) {
-        racingGameEventListener.notify(RacingGameEvent.STARTED, this)
+    fun start(tryCount: Int): GameResults {
+        val positions = mutableListOf<Positions>()
         repeat(tryCount) {
             cars.move()
-            racingGameEventListener.notify(RacingGameEvent.MOVED, this)
+            positions.add(cars.positions)
         }
-        racingGameEventListener.notify(RacingGameEvent.FINISHED, this)
-    }
-
-    fun positions(): List<Position> {
-        return cars.positions()
-    }
-
-    fun winners(): List<String> {
-        val winnerPosition = positions().max()
-
-        return positions()
-            .filter { winnerPosition.position == it.position }
-            .map { it.name }
+        return GameResults(positions)
     }
 }

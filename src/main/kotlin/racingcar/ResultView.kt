@@ -1,13 +1,13 @@
 package racingcar
 
-object ResultView : RacingGameEventListener {
+object ResultView {
 
-    override fun notify(event: RacingGameEvent, racingGame: RacingGame) {
-        when (event) {
-            RacingGameEvent.STARTED -> printPositionsHeader()
-            RacingGameEvent.MOVED -> printPositions(racingGame.positions())
-            RacingGameEvent.FINISHED -> printWinners(racingGame.winners())
+    fun printGameResults(gameResults: GameResults) {
+        printPositionsHeader()
+        for (position in gameResults.positions) {
+            printPositions(position.values)
         }
+        printWinners(gameResults.winners)
     }
 
     private fun printPositionsHeader() {

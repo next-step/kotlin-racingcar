@@ -9,14 +9,15 @@ class CarsTest {
     fun `여러 차량 생성`() {
         val cars = Cars(createStubRandomGenerator(), listOf("a", "b", "c", "d", "e"))
 
-        Assertions.assertThat(cars.positions())
-            .hasSize(5)
-            .containsExactly(
-                Position("a", 0),
-                Position("b", 0),
-                Position("c", 0),
-                Position("d", 0),
-                Position("e", 0),
+        Assertions.assertThat(cars.positions)
+            .isEqualTo(
+                Positions(
+                    Position("a", 0),
+                    Position("b", 0),
+                    Position("c", 0),
+                    Position("d", 0),
+                    Position("e", 0),
+                )
             )
     }
 
@@ -26,11 +27,13 @@ class CarsTest {
 
         cars.move()
 
-        Assertions.assertThat(cars.positions())
-            .containsExactly(
-                Position("a", 1),
-                Position("b", 0),
-                Position("c", 1)
+        Assertions.assertThat(cars.positions)
+            .isEqualTo(
+                Positions(
+                    Position("a", 1),
+                    Position("b", 0),
+                    Position("c", 1),
+                )
             )
     }
 
@@ -42,11 +45,13 @@ class CarsTest {
         cars.move()
         cars.move()
 
-        Assertions.assertThat(cars.positions())
-            .containsExactly(
-                Position("a", 2),
-                Position("b", 1),
-                Position("c", 3)
+        Assertions.assertThat(cars.positions)
+            .isEqualTo(
+                Positions(
+                    Position("a", 2),
+                    Position("b", 1),
+                    Position("c", 3),
+                )
             )
     }
 }
