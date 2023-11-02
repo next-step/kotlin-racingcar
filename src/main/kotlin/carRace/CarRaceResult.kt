@@ -10,7 +10,7 @@ class CarRaceResult(val currentCars: List<Car>) {
         history.add(
             CarLapResult(
                 lap,
-                currentCars
+                currentCars.map { it.copy() }
             )
         )
     }
