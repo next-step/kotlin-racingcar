@@ -10,6 +10,7 @@ object ConsoleResult {
         val numOfRacingCar = racingCarGameRounds[0].currentRacingCars.size
         for (attempt in 0 until numOfAttempts) {
             printCurrentRacingCars(numOfRacingCar, racingCarGameRounds[attempt])
+            println()
         }
     }
 
@@ -18,7 +19,9 @@ object ConsoleResult {
         racingCarGameRound: RacingCarGameRound,
     ) {
         for (i in 0 until numOfRacingCar) {
-            println("-".repeat(racingCarGameRound.currentRacingCars[i].position))
+            val currentRacingCar = racingCarGameRound.currentRacingCars[i]
+            print(currentRacingCar.name + " : ")
+            println("-".repeat(currentRacingCar.position))
         }
     }
 }
