@@ -11,17 +11,10 @@ class Racing(
         require(round > 0) { "Must be at least one round!" }
     }
 
-    fun startRace(): RacingResult {
-        val roundResult = mutableListOf<List<RacingCar>>()
-
-        for (i in 1..round) {
-            startRound()
-
-            roundResult.add(racingCarList.map { RacingCar(name = it.name, space = it.space) })
-        }
-
-        return RacingResult(rounds = roundResult)
-    }
+    fun startRace(): RacingResult = RacingResult(rounds = List(size = round) {
+        startRound()
+        racingCarList.map { RacingCar(name = it.name, space = it.space) }
+    })
 
     private fun startRound() {
         racingCarList.forEach {
