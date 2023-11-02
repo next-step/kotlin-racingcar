@@ -11,6 +11,8 @@ fun main() {
     val tryCountStr: String? = readLine()
 
     val carGame = InputView.createCarGame(carsStr, tryCountStr)
+    carGame.start()
+    
 }
 
 object InputView {
