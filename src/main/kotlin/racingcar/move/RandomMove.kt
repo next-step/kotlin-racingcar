@@ -1,4 +1,4 @@
-package car_racing.move
+package racingcar.move
 
 class RandomMove : Move {
     override fun isMove(): Boolean {
