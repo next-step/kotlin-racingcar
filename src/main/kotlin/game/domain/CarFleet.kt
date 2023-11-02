@@ -1,13 +1,15 @@
 package game.domain
 
 class CarFleet(
-    val cars: Cars,
+    private var _cars: Cars,
     private val moveConditionGenerator: MoveConditionGenerator = RandomMoveConditionGenerator()
 ) {
-    fun advanceAll(): CarFleet {
-        val cars = cars.carList
+    val cars: Cars
+        get() = _cars
+
+    fun advanceAll() {
+        this._cars = _cars.carList
             .map { car -> car.move(moveConditionGenerator.generate()) }
             .let { Cars(it) }
-        return CarFleet(cars, moveConditionGenerator)
     }
 }
