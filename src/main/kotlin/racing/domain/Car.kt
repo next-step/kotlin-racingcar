@@ -1,6 +1,6 @@
 package racing.domain
 
-class Car(val name: CarName) {
+class Car(val name: CarName) : Comparable<Car> {
     var location: Location = Location(0)
         private set
 
@@ -16,6 +16,14 @@ class Car(val name: CarName) {
         if (movingStrategy.isMovable()) {
             location = location.add()
         }
+    }
+
+    fun isDraw(otherCar: Car): Boolean {
+        return location == otherCar.location
+    }
+
+    override fun compareTo(otehrCar: Car): Int {
+        return location.compareTo(otehrCar.location)
     }
 
     override fun equals(other: Any?): Boolean {
