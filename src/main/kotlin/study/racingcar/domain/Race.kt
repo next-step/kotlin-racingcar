@@ -20,10 +20,18 @@ class Race private constructor(
                 val shouldMove = moveStrategy.shouldMove()
                 car.move(shouldMove)
             }
-            result.addAll(cars.map { RacingCarState(it.name.name, it.position) })
+            result.addAll(cars.map { it.toRacingCarState() })
         }
         return result
     }
+
+    fun getWinners(): List<RacingCarState> {
+        val maxPosition = cars.maxByOrNull { it.position }?.position ?: 0
+        val winningCars = cars.filter { it.position == maxPosition }
+        return winningCars.map { it.toRacingCarState() }
+    }
+
+    private fun Car.toRacingCarState() = RacingCarState(this.name.name, this.position)
 
     companion object {
         fun create(cars: List<Car>, moveCount: Int, moveStrategy: MoveStrategy): Race {

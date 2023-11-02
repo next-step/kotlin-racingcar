@@ -16,5 +16,5 @@ fun main() {
     val race = Race.create(cars, moveCount, randomMoveStrategy)
     val raceResult = race.run()
     ResultView.displayCars(raceResult)
-    ResultView.displayWinners(raceResult)
+    ResultView.displayWinners(race)
 }

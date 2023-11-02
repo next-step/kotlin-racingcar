@@ -1,5 +1,6 @@
 package study.racingcar.ui
 
+import study.racingcar.domain.Race
 import study.racingcar.dto.RacingCarState
 
 object ResultView {
@@ -11,9 +12,8 @@ object ResultView {
         println()
     }
 
-    fun displayWinners(cars: List<RacingCarState>) {
-        val maxPosition = cars.maxByOrNull { it.position }?.position ?: 0
-        val winners = cars.filter { it.position == maxPosition }.joinToString { it.name }
+    fun displayWinners(race: Race) {
+        val winners = race.getWinners().joinToString { it.name }
         println("최종 우승자: $winners")
     }
 

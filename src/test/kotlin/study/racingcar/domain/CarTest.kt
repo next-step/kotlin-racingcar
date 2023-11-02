@@ -26,7 +26,7 @@ class CarTest {
     @Test
     @DisplayName("자동차 이름이 1자 이상 5자 이하일 때 객체 생성이 성공해야 한다")
     fun `should create CarName object when name length is between 1 and 5`() {
-        val validNames = listOf("Car1", "Car2", "Car3", "Car4", "Car5")
+        val validNames = listOf("1", "12", "123", "1234", "12345")
 
         validNames.forEach { name ->
             val carName = CarName(name)
