@@ -1,18 +1,13 @@
 package racingcar.model
 
-import racingcar.model.creator.CarCreator
+class Cars {
+    val cars: MutableList<Car> = mutableListOf()
 
-class Cars(
-    carCreator: CarCreator,
-    numberOfCar: NaturalNumber,
-) {
-    private val cars = List(numberOfCar.number) { carCreator.createCar() }
+    fun addCar(car: Car) {
+        cars.add(car)
+    }
 
     fun move() {
         cars.forEach { it.move() }
-    }
-
-    fun getCars(): List<Car> {
-        return cars
     }
 }
