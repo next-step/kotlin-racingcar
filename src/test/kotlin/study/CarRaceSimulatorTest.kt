@@ -30,7 +30,7 @@ class CarRaceSimulatorTest : StringSpec({
         val simulator = CarRaceSimulator(ManualInputView(drivers, iterationCount))
         val result = simulator.simulate(AlwaysMovingStrategy)
 
-        result.cars.forEach {
+        result.currentCars.forEach {
             it.traveled.shouldBe(iterationCount)
         }
     }
@@ -40,7 +40,7 @@ class CarRaceSimulatorTest : StringSpec({
         val simulator = CarRaceSimulator(ManualInputView(drivers, iterationCount))
         val result = simulator.simulate(AlwaysNotMovingStrategy)
 
-        result.cars.forEach {
+        result.currentCars.forEach {
             it.traveled.shouldBe(0)
         }
     }
