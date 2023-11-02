@@ -3,14 +3,22 @@ package carRacing.serviceimpl
 import carRacing.domain.Car
 import carRacing.service.CarFactory
 import carRacing.service.MovementController
+import carRacing.view.CarInfo
 
 open class DefaultCarFactory : CarFactory {
     override fun createCars(carCount: Int): List<Car> = throw NotImplementedError()
 
-    override fun createCars(carInfoList: List<Map<String, Any>>): List<Car> {
+    /*
+    * CarInfo의 movementController는 null이 넘어오지 않도록 DefaultCarFactory를 상속받는 클래스에서 구현해야 한다.
+    * Ex) RandomMovementCarFactory
+     */
+    override fun createCars(carInfoList: List<CarInfo>): List<Car> {
         val carList = mutableListOf<Car>()
         for (carInfo in carInfoList) {
-            carList.add(Car(carInfo["movementController"] as MovementController))
+            val name: String = carInfo.name
+            val movementController: MovementController = carInfo.movementController!!
+
+            carList.add(Car(name, movementController))
         }
 
         return carList

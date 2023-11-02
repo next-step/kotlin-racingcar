@@ -395,8 +395,10 @@ class StringCalculatorTest {
 - 다른 움직임 전략을 자동차에게 전달하고자 더 유연하게 만들어야 함.
 
 ##### Solution
+- DefaultCarFactory를 생성하여, 자동차에게 움직임 전략을 전달할 수 있는 함수 생성.
 
 ##### effect
+- 다른 움직임 전략을 자동차에게 전달할 수 있음.
 
 #### 4. InputView.kt
 

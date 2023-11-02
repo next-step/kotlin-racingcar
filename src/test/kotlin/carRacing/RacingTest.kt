@@ -17,4 +17,13 @@ class RacingTest {
 
         assertThat(result.size).isEqualTo(carCount)
     }
+
+    @ParameterizedTest
+    @CsvSource("2, 1", "2, 2")
+    fun `무조건 움직이는 전략과 무조건 멈추는 전략을 사용하는 자동차가 경주를 완료하면 무조건 움직이는 전략을 사용하는 자동차가 더 먼거리를 이동한다`(carCount: Int, tryCount: Int) {
+        val moveRacing = Racing(RandomMovementCarFactory())
+        val result: List<Car> = moveRacing.getRaceResult(carCount, tryCount)
+
+        assertThat(result[0].position).isEqualTo(result[1].position)
+    }
 }

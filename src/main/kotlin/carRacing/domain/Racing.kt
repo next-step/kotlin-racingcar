@@ -1,12 +1,13 @@
 package carRacing.domain
 
 import carRacing.service.CarFactory
+import carRacing.view.CarInfo
 import carRacing.view.OutputView
 
 class Racing(private val carFactory: CarFactory) {
 
-    fun getRaceResult(carCount: Int, tryCount: Int): List<Car> {
-        val carList: List<Car> = carFactory.createCars(carCount)
+    fun getRaceResult(carCount: Int, tryCount: Int, carInfoList: List<CarInfo>): List<Car> {
+        val carList: List<Car> = carFactory.createCars(carInfoList)
 
         return start(carList, tryCount)
     }
@@ -19,7 +20,7 @@ class Racing(private val carFactory: CarFactory) {
     }
 
     private fun start(carList: List<Car>, tryCount: Int): List<Car> {
-        var copyCarList = carList.toList()
+        var copyCarList = carList.map { it }
 
         for (i in 0 until tryCount) {
             copyCarList = process(carList)
