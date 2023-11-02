@@ -8,36 +8,14 @@ import racing_car.model.Car
  * */
 const val MIN_RANDOM_VALUE = 0
 const val MAX_RANDOM_VALUE = 9
+const val CAR_NAME_DELIMITER = ','
 
 object RacingGame {
 
     /**
      * 게임 시작
-     * @param elements first: 자동차 대수, seconds: 라운드 횟수, third: Movable 타입의 객체
+     * @param movableList 자동차 리스트
+     * @return 자동차 경주 한 라운드 결과를 가지고 있는 자동차 리스트
      * */
-    fun run(elements: Triple<String, String, (List<Movable>) -> Unit>) {
-
-        errorCheck(elements.first)
-        errorCheck(elements.second)
-
-        var carList: List<Movable> = List(elements.first.toInt()) { Car() }
-
-        repeat(elements.second.toInt()) {
-            carList = playRound(carList)
-            elements.third(carList)
-        }
-    }
-
-    private fun errorCheck(inputStr: String?) {
-        require(inputStr?.isNotEmpty() == true && Int.MAX_VALUE.toString().length >= inputStr.length && inputStr.toIntOrNull() != null && inputStr.toInt() > 0) {
-            "Invalid Expression: $inputStr"
-        }
-    }
-
-    private fun playRound(carList: List<Movable>): List<Movable> {
-        return carList.map {
-            it.move((MIN_RANDOM_VALUE..MAX_RANDOM_VALUE).random())
-            it
-        }
-    }
+    fun playRound(movableList: List<Movable>): List<Movable> = movableList.map { it.move((MIN_RANDOM_VALUE..MAX_RANDOM_VALUE).random()); it }
 }

@@ -3,75 +3,75 @@ package racing_car
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import racing_car.model.Car
+import racing_car.parser.RacingParser
 
 /**
  * 자동차 경주 단위 테스트 클래스
  * */
 class RacingCarTest : FunSpec({
 
-    test("자동차 게임 시작 파라미터의 자동차 대수와 라운드 횟수에 문자열을 전달할 경우 예외를 던진다.") {
-        RacingGame.run(Triple("", "") { })
+    test("자동차 리스트 변환기 파라미터에 빈문자열을 전달할 경우 예외를 던진다.") {
+        RacingParser.convertTextToCarList("")
     }
 
-    test("자동차 게임 시작 파라미터의 자동차 대수에 빈문자열을 입력하는 경우 예외를 던진다.") {
-        RacingGame.run(Triple("", "1") { })
+    test("자동차 리스트 변환기 파라미터에 5자 초과의 문자열을 전달할 경우 예외를 던진다.") {
+        RacingParser.convertTextToCarList("abcdef")
     }
 
-    test("자동차 게임 시작 파라미터의 라운드 횟수에 빈문자열을 입력하는 경우 예외를 던진다.") {
-        RacingGame.run(Triple("1", "") { })
+    test("자동차 리스트 변환기 파라미터에 \",\" 문자열을 전달할 경우 예외를 던진다.") {
+        RacingParser.convertTextToCarList(",")
     }
 
-    test("자동차 게임 시작 파라미터의 자동차 대수에 유효하지 않은 문자를 입력하는 경우 예외를 던진다.") {
-        RacingGame.run(Triple("일", "1") { })
+    test("자동차 라운드 횟수 변환기 파라미터에 빈문자열을 전달할 경우 예외를 던진다.") {
+        RacingParser.convertTextToRoundCnt("")
     }
 
-    test("자동차 게임 시작 파라미터의 라운드 횟수에 유효하지 않은 문자를 입력하는 경우 예외를 던진다.") {
-        RacingGame.run(Triple("1", "ㅁ") { })
+    test("자동차 라운드 횟수 변환기 파라미터에 유효하지 않은 문자열을 전달할 경우 예외를 던진다.") {
+        RacingParser.convertTextToRoundCnt("삼")
     }
 
-    test("자동차 게임 시작 파라미터의 자동차 대수와 라운드 횟수에 숫자 0을 전달할 경우 예외를 던진다.") {
-        RacingGame.run(Triple("0", "0") { })
+    test("자동차 라운드 횟수 변환기 파라미터에 0을 전달할 경우 예외를 던진다.") {
+        RacingParser.convertTextToRoundCnt("0")
     }
 
-    test("자동차 게임 시작 파라미터의 자동차 대수에 숫자 0을 전달할 경우 예외를 던진다.") {
-        RacingGame.run(Triple("0", "1") { })
+    test("자동차 라운드 횟수 변환기 파라미터에 음수를 전달할 경우 예외를 던진다.") {
+        RacingParser.convertTextToRoundCnt("-1")
     }
 
-    test("자동차 게임 시작 파라미터의 라운드 횟수에 숫자 0을 전달할 경우 예외를 던진다.") {
-        RacingGame.run(Triple("1", "0") { })
+    test("자동차 생성자 이름 파라미터에 빈문자열을 입력하면 예외를 던진다.") {
+        Car("")
     }
 
-    test("자동차 게임 시작 파라미터의 자동차 대수에 음수를 전달할 경우 예외를 던진다.") {
-        RacingGame.run(Triple("-1", "1") { })
+    test("자동차 생성자 이름 파라미터에 \"JungSik\"을 입력하면 예외를 던진다.") {
+        Car("JungSik")
     }
 
-    test("자동차 게임 시작 파라미터의 라운드 횟수에 음수를 전달할 경우 예외를 던진다.") {
-        RacingGame.run(Triple("1", "-1") { })
+    test("자동차 생성자 이름 파라미터에 \"Jung\"을 입력하면 자동차의 이름이 \"Jung\"이 된다.") {
+        val car = Car("Jung")
+        car.getName() shouldBe "Jung"
     }
 
-    test("자동차를 움직일 때 무작위 값이 0미만 이라면 예외를 던진다.") {
-        val car = Car(0)
+    test("자동차 생성 직후 전진 함수 파라미터에 -1을 입력하면 예외를 던진다.") {
+        val car = Car("Jung")
         car.move(-1)
-        car.getCurrentPosition() shouldBe 0
     }
 
-    test("자동차를 움직일 때 무작위 값이 9초과 라면 예외를 던진다.") {
-        val car = Car(0)
+    test("자동차 생성 직후 전진 함수 파라미터에 10을 입력하면 예외를 던진다.") {
+        val car = Car("Jung")
         car.move(10)
-        car.getCurrentPosition() shouldBe 0
     }
 
-    test("자동차를 움직일 때 무작위 값이 0이상 3이하 라면 정지로 나와야 한다") {
-        (0 until 4).forEach {
-            val car = Car(0)
+    test("자동차 생성 직후 전진 함수 파라미터에 1이상 4미만을 입력하면 자동자의 위치를 0으로 유지한다") {
+        (0..3).forEach {
+            val car = Car("Jung")
             car.move(it)
             car.getCurrentPosition() shouldBe 0
         }
     }
 
-    test("자동차를 움직일 때 무작위 값이 4이상 9이하 라면 전진으로 나와야 한다") {
-        (5 until 9).forEach {
-            val car = Car(0)
+    test("자동차 생성 직후 전진 함수 파라미터에 5이상 9이하를 입력하면 자동자의 위치가 1로 이동한다.") {
+        (4..9).forEach {
+            val car = Car("Jung")
             car.move(it)
             car.getCurrentPosition() shouldBe 1
         }

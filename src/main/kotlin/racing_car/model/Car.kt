@@ -5,7 +5,20 @@ import racing_car.interfaces.Movable
 /**
  * 자동차 경주의 자동차로 사용
  * */
-data class Car(private var position: Int = DEFAULT_POSITION): Movable {
+class Car(private val name: String, private var position: Int = DEFAULT_POSITION): Movable {
+    init {
+        require(name.isNotBlank() && name.length < 6)
+    }
+
+    /**
+     * 자동차의 위치를 반환
+     * */
+    override fun getCurrentPosition() = position
+
+    /**
+     * 자동차의 이름을 반환
+     * */
+    override fun getName(): String = name
 
     /**
      * 자동차의 위치를 변경
@@ -16,11 +29,6 @@ data class Car(private var position: Int = DEFAULT_POSITION): Movable {
             position++
         }
     }
-
-    /**
-     * 자동차의 위치를 반환
-     * */
-    override fun getCurrentPosition() = position
 
     companion object {
         private const val ADVANCE_MIN_VALUE = 4

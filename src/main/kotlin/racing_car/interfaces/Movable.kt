@@ -6,4 +6,5 @@ package racing_car.interfaces
 interface Movable {
     fun move(condition: Int)
     fun getCurrentPosition(): Int
+    fun getName(): String
 }
