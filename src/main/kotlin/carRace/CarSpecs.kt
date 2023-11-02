@@ -1,6 +1,6 @@
 package carRace
 
 data class CarSpecs(
-    val carCount: Int,
+    val carNames: List<String>,
     val iterationCount: Int,
 )

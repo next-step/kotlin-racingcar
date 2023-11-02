@@ -2,9 +2,9 @@ package carRace
 
 sealed class InputView(val carsProvider: CarsProvider)
 
-class ManualInputView(carCount: Int, iterationCount: Int) : InputView(
+class ManualInputView(carNames: List<String>, iterationCount: Int) : InputView(
     CarsProvider.Manual(
-        carCount,
+        carNames,
         iterationCount
     )
 )

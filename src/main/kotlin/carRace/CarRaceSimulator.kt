@@ -5,9 +5,11 @@ class CarRaceSimulator(
     private val resultView: ResultView = ResultView()
 ) {
     fun simulate(carMovingStrategy: CarMovingStrategy = RandomMovingStrategy()): CarList {
-        val (carCount, iterationCount) = inputView.carsProvider.provide()
+        val (carNames, iterationCount) = inputView.carsProvider.provide()
 
-        val carList = CarList(MutableList(carCount) { Car(0, carMovingStrategy) })
+        val carList = CarList(
+            carNames.map { Car(it, 0, carMovingStrategy) }
+        )
 
         repeat(iterationCount) {
             carList.driveCars()
