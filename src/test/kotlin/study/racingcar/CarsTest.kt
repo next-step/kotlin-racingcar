@@ -8,8 +8,8 @@ class CarsTest {
     @Test
     fun `moveAll should move all cars based on the provided random values`() {
         val initialCars = listOf(
-            Car(),
-            Car(),
+            Car("hong"),
+            Car("lee"),
         )
 
         val cars = Cars(initialCars)

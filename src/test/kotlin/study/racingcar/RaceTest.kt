@@ -1,6 +1,8 @@
 package study.racingcar
 
 import org.assertj.core.api.Java6Assertions.assertThat
+import org.assertj.core.api.Java6Assertions.assertThatThrownBy
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
@@ -19,8 +21,16 @@ class RaceTest {
         ],
     )
     fun `race runs for given rounds`(randomValue: Int, rounds: Int, expectedPosition: Int) {
-        val race = Race(3, rounds) { randomValue }
+        val race = Race(listOf("hong", "lee", "kim"), rounds) { randomValue }
         race.run {}
         assertThat(race.cars.list.all { it.position == expectedPosition }).isTrue
+    }
+
+    @Test
+    fun `should throw exception when number of rounds is negative`() {
+        assertThatThrownBy {
+            Race(listOf("hong", "lee", "kim"), -5)
+        }.isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("Number of rounds must be positive")
     }
 }

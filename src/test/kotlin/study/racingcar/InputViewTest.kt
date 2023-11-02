@@ -23,4 +23,12 @@ class InputViewTest {
         val numberOfRounds = inputView.getNumberOfRounds()
         assertThat(numberOfRounds).isEqualTo(5)
     }
+
+    @Test
+    fun `get car names from user`() {
+        val inputView = InputView(inputProvider)
+        doReturn("hong,lee,kim").`when`(inputProvider).provideInput()
+        val carNames = inputView.getCarNames()
+        assertThat(carNames).isEqualTo(listOf("hong", "lee", "kim"))
+    }
 }
