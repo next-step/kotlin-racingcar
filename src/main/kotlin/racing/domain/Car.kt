@@ -1,10 +1,16 @@
 package racing.domain
 
-class Car(val name: CarName, private val _location: Location = Location()) {
-    var location: Location = this._location
+class Car(val name: CarName) {
+    var location: Location = Location(0)
         private set
 
-    constructor(name: String, location: Int) : this(CarName(name), Location(location))
+    constructor(name: CarName, location: Location) : this(name) {
+        this.location = location
+    }
+
+    constructor(name: String, location: Int) : this(CarName(name)) {
+        this.location = Location(location)
+    }
 
     fun move(movingStrategy: MovingStrategy) {
         if (movingStrategy.isMovable()) {
