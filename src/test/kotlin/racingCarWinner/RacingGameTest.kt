@@ -42,7 +42,7 @@ class RacingGameTest {
     }
 
     @Test
-    fun `모든 자동차는 numOfAttempts 번의 경주에서 모두 멈춰있다`() {
+    fun `모든 자동차가 movable하지 않을 때 numOfAttempts번의 경주에서 모두 멈춰있다`() {
         // given
         val racingGame = RacingGame.of(
             carNames = carNames,
