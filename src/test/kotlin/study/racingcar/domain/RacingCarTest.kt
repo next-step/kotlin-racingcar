@@ -12,10 +12,10 @@ class RacingCarTest {
     fun `RacingCar 는 무작위 값이 4 이상일 경우, 한칸 전진한다`(num: Int) {
         // given
         val racingCar = RacingCar(CarName("test"))
-        val fourOrMoreGameRule = FourOrMoreGameRule(num)
+        val fourOrMoreGameRule = FourOrMoreGameRule()
 
         // when
-        racingCar.moveForward(fourOrMoreGameRule)
+        racingCar.moveForward(fourOrMoreGameRule, num)
 
         // then
         assertEquals(1, racingCar.currentPosition)
@@ -28,6 +28,6 @@ class RacingCarTest {
         val racingCar = RacingCar(CarName("test"))
 
         // when
-        racingCar.moveForward(FourOrMoreGameRule(num))
+        racingCar.moveForward(FourOrMoreGameRule(), num)
     }
 }

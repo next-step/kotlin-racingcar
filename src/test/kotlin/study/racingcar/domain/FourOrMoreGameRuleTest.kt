@@ -9,10 +9,10 @@ class FourOrMoreGameRuleTest {
     @ParameterizedTest
     fun `무작위 값이 3이하일 경우 false 를 반환한다`(num: Int) {
         // given
-        val fourOrMoreGameRule = FourOrMoreGameRule(num)
+        val fourOrMoreGameRule = FourOrMoreGameRule()
 
         // when
-        val result = fourOrMoreGameRule.getResult()
+        val result = fourOrMoreGameRule.getResult(num)
 
         // then
         assert(!result)
@@ -22,9 +22,9 @@ class FourOrMoreGameRuleTest {
     @ParameterizedTest
     fun `FourOrMoreGameRule 객체를 선언하고 getResult() 실행시 예외 없이 정상 동작한다`(num: Int) {
         // given
-        val fourOrMoreGameRule = FourOrMoreGameRule(num)
+        val fourOrMoreGameRule = FourOrMoreGameRule()
 
         // when
-        val result = fourOrMoreGameRule.getResult()
+        val result = fourOrMoreGameRule.getResult(num)
     }
 }

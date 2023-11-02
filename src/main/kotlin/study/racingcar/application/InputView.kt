@@ -29,7 +29,7 @@ class InputView(
      * @param prompt N 개의 자동차 이름 문자열을 유도하는 문자열
      * @throws IllegalArgumentException 입력 값이 null 이거나 적절한 문자열이 아닌 경우
      * */
-    fun inputString(prompt: String): CarNames {
+    private fun inputString(prompt: String): CarNames {
         while (true) {
             try {
                 print(prompt)

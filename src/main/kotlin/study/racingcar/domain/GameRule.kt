@@ -2,11 +2,9 @@ package study.racingcar.domain
 
 interface GameRule {
 
-    // TODO-review : RacingCar 는 GameRule 을 구현한 객체를 주입받아 사용합니다.
-    //  setGameRule 은 4이상의 숫자가 나올경우 이기는 gameRule 을 위해 선언되었습니다. (FourOrMoreGameRule)
-    //  만약 다른 gameRule 이 적용될 경우, setGameRule 은 불필요한 선언이 될 수도 있는데요.
-    //  이렇게 GameRule 중에 특정 케이스에만 속하는 경우, 인터페이스를 주입받아 동작하는 로직에서 에러가 나는데요.
-    //  설계를 어떻게 해야할지 고민이 됩니다.
-    fun setGameRule(num: Int)
-    fun getResult(): Boolean
+    // TODO-review : interface 로 규격을 만들고 싶었습니다.
+    //  하지만, 만약 새로운 게임룰은 결과를 받을때, int 가 아닌 다른 타입을 받아야 한다면, interface 에 새로운 fun 이 추가되어야 합니다.
+    //  이렇듯 새로운 기능이 추가될때마다 interface 를 수정하는건 best-practice 가 아닌것 같은데요.
+    //  이를 해결하기 위한 방법이 있을까요? 조언 부탁드립니다.
+    fun getResult(num: Int): Boolean
 }
