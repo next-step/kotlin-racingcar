@@ -8,10 +8,18 @@ private const val DELIMITER = " "
 object Calculator {
 
     enum class CalculatorSign(val sign: String) {
-        PLUS("+") { override fun calculate(num1: Int, num2: Int): Int = num1 + num2 },
-        MINUS("-") {override fun calculate(num1: Int, num2: Int): Int = num1 - num2 },
-        MULTIPLY("*") { override fun calculate(num1: Int, num2: Int): Int = num1 * num2 },
-        DIVIDE("/") {override fun calculate(num1: Int, num2: Int): Int = num1 / num2 };
+        PLUS("+") {
+            override fun calculate(num1: Int, num2: Int): Int = num1 + num2
+        },
+        MINUS("-") {
+            override fun calculate(num1: Int, num2: Int): Int = num1 - num2
+        },
+        MULTIPLY("*") {
+            override fun calculate(num1: Int, num2: Int): Int = num1 * num2
+        },
+        DIVIDE("/") {
+            override fun calculate(num1: Int, num2: Int): Int = num1 / num2
+        };
 
         /**
          * 숫자 두개와 부호로 계산한 값을 반환
@@ -38,13 +46,14 @@ object Calculator {
         }
     }
 
-    private fun isCheckIndexValue(inputStrSplitList: List<String>): Boolean = inputStrSplitList.mapIndexed { index, value ->
-        if (index % 2 == 0) {
-            value.toIntOrNull() != null
-        } else {
-            CalculatorSign.values().any { sign -> sign.sign == value }
-        }
-    }.all { it }
+    private fun isCheckIndexValue(inputStrSplitList: List<String>): Boolean =
+        inputStrSplitList.mapIndexed { index, value ->
+            if (index % 2 == 0) {
+                value.toIntOrNull() != null
+            } else {
+                CalculatorSign.values().any { sign -> sign.sign == value }
+            }
+        }.all { it }
 
     /**
      * 계산 요청시 사용
@@ -58,9 +67,11 @@ object Calculator {
 
         checkError(splitFormulaList)
 
-        val numberList = splitFormulaList.filterIndexed { index, _ -> index % 2 == 0 }.map { it.toInt() }
-        val signList = splitFormulaList.filterIndexed { index, _ -> index % 2 == 1 }.map { sign -> CalculatorSign.values().first { sign == it.sign } }
+        val splitFormulaPair = splitFormulaList.partition { it.toIntOrNull() != null }
 
-        return signList.zip(numberList.drop(1)).fold(numberList.first()) { acc, pair -> pair.first.calculate(acc, pair.second) }
+        return splitFormulaPair.second.zip(splitFormulaPair.first.drop(1))
+            .fold(splitFormulaPair.first.first().toInt()) { acc, pair ->
+                CalculatorSign.values().first { sign -> pair.first == sign.sign }.calculate(acc, pair.second.toInt())
+            }
     }
 }

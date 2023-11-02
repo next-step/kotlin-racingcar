@@ -12,7 +12,7 @@ fun main() {
     val roundCnt = readln()
 
     ResultView.drawRacingResultMsg()
-    RacingGame.run(numberCars, roundCnt) { carList ->
+    RacingGame.run(Triple(numberCars, roundCnt) { carList ->
         ResultView.drawCarPosition(carList)
-    }
+    })
 }

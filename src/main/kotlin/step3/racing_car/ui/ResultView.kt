@@ -1,6 +1,6 @@
 package step3.racing_car.ui
 
-import step3.racing_car.Car
+import step3.racing_car.interfaces.Movable
 import kotlin.text.StringBuilder
 
 private const val PLAY_RESULT_MSG = "실행 결과\n"
@@ -23,21 +23,22 @@ object ResultView {
     /**
      * 자동차 경주의 현재 자동차 위치를 그림
      * */
-    fun drawCarPosition(carList: List<Car>) {
-        val sb = StringBuilder()
-        carList.forEach { car ->
-            sb.append(drawPositionOfCar(car))
-            sb.append(NEXT_STEP_VIEW)
+    fun drawCarPosition(movableList: List<Movable>) {
+        buildString {
+            repeat(movableList.size) {
+                append(drawPositionOfCar(movableList[it]))
+                append(NEXT_STEP_VIEW)
+            }
+            append(NEXT_ROUND_VIEW)
+            print(this)
         }
-        sb.append(NEXT_ROUND_VIEW)
-        print(sb)
     }
 
-    private fun drawPositionOfCar(car: Car): StringBuilder {
-        val sb = StringBuilder()
-        repeat(car.position) {
-            sb.append(MOVE_VIEW)
+    private fun drawPositionOfCar(movable: Movable): String {
+        return buildString {
+            repeat(movable.getCurrentPosition()) {
+                append(MOVE_VIEW)
+            }
         }
-        return sb
     }
 }
