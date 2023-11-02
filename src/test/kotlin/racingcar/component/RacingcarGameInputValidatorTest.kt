@@ -29,4 +29,22 @@ class RacingcarGameInputValidatorTest : FunSpec({
             }
         }
     }
+
+    context("게임 횟수 입력 테스트") {
+        test("게임 횟수 문자열이 null 인 경우") {
+            shouldThrow<IllegalArgumentException> {
+                val roundNumberString = null
+
+                RacingcarGameInputValidator.validateRoundNumberString(roundNumberString)
+            }
+        }
+
+        test("게임 횟수 문자열이 자연수가 아닌 경우") {
+            shouldThrow<IllegalArgumentException> {
+                val roundNumberString = "0"
+
+                RacingcarGameInputValidator.validateRoundNumberString(roundNumberString)
+            }
+        }
+    }
 })
