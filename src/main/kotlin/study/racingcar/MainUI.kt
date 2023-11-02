@@ -1,7 +1,6 @@
 package study.racingcar
 
 import study.racingcar.application.InputView
-import study.racingcar.application.OutputView
 import study.racingcar.application.StdinReader
 import study.racingcar.domain.RacingGame
 
@@ -11,6 +10,6 @@ import study.racingcar.domain.RacingGame
 class MainUI
 
 fun main() {
-    val racingGame = RacingGame(InputView(StdinReader()), OutputView())
+    val racingGame = RacingGame(InputView(StdinReader())) // 테스트 하기 어려운 StdinReader 를 객체 그래프의 상단으로 배치한다.
     racingGame.run()
 }
