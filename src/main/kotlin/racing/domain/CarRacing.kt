@@ -2,6 +2,7 @@ package racing.domain
 
 class CarRacing {
     private val recorder = CarRacingRecorder
+    
     fun race(carNames: List<String>, tryCount: Int): CarRacingResult {
         val cars = carNames.map { Car(it) }
         val results = raceWithRecordResult(cars, tryCount)
