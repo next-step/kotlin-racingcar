@@ -9,27 +9,22 @@ class CarRacingGame private constructor(
     private val roundCount: RoundCount,
     private val cars: List<Car>,
     private val carMover: CarMover,
-    private val result: MutableList<CarRacingResult> = mutableListOf(),
 ) {
 
-    fun run(): List<CarRacingResult> {
-        repeat(roundCount.value) {
-            runRound()
-            record()
+    fun run(): List<CarRacingResult> =
+        buildList {
+            repeat(roundCount.value) {
+                runRound()
+                add(record())
+            }
         }
-        return result.toList()
-    }
 
     private fun runRound() {
         carMover.move(cars)
     }
 
-    private fun record() =
-        result.add(
-            CarRacingResult(
-                cars = cars.map { it.capture() }
-            )
-        )
+    private fun record(): CarRacingResult =
+        CarRacingResult(cars.map { it.capture() })
 
     companion object {
         fun set(
