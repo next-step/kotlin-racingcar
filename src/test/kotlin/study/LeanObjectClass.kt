@@ -33,6 +33,6 @@ val helloWorld = object {
 
 object CarFactory {
     fun makeCar(name: String): Car {
-        return Car("1", 0)
+        return Car(name, 0)
     }
 }
