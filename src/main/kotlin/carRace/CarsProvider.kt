@@ -2,22 +2,22 @@ package carRace
 
 sealed interface CarsProvider {
 
-    fun provide(): CarSpecs
+    fun provide(carMovingStrategy: CarMovingStrategy): List<Car>
 
-    class Manual(private val carNames: List<String>, private val iterationCount: Int) : CarsProvider {
-        override fun provide(): CarSpecs = CarSpecs(carNames, iterationCount)
+    class Manual(private val carNames: List<String>) : CarsProvider {
+        override fun provide(carMovingStrategy: CarMovingStrategy): List<Car> =
+            carNames.map { Car(it, 0, carMovingStrategy) }
     }
 
     object UserInput : CarsProvider {
-        override fun provide(): CarSpecs {
-            val carList = println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).").run {
+        override fun provide(carMovingStrategy: CarMovingStrategy): List<Car> {
+            val carNames = println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).").run {
                 readln()
                     .trim()
                     .split(",")
                     .map { it.trim() }
             }
-            val iterationCount = println("시도할 횟수는 몇 회인가요?").run { readln().trim().toInt() }
-            return CarSpecs(carList, iterationCount)
+            return carNames.map { Car(it, 0, carMovingStrategy) }
         }
     }
 }
