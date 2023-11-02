@@ -6,9 +6,7 @@ data class Cars(private val cars: List<Car>) {
 
     fun moveAll(randomValueGenerator: () -> Int): Cars {
         return Cars(
-            cars.map { car ->
-                Car(car.position).apply { move(randomValueGenerator()) }
-            },
+            cars.map { car -> car.move(randomValueGenerator()) },
         )
     }
 }
