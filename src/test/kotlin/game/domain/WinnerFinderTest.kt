@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
-class DefaultWinnerFinderTest {
+class WinnerFinderTest {
     @ParameterizedTest
     @MethodSource("winner")
     fun `자동차들에서 우승자를 찾는다`(pobiCount: Int, crongCount: Int, honuxCount: Int, expected: List<String>) {
@@ -15,7 +15,7 @@ class DefaultWinnerFinderTest {
         val crong = Car.of("crong", crongCount)
         val honux = Car.of("honux", honuxCount)
         val cars = listOf(pobi, crong, honux)
-        val winnerFinder = DefaultWinnerFinder()
+        val winnerFinder = WinnerFinder()
 
         // when
         val actual = winnerFinder.findWinner(cars)

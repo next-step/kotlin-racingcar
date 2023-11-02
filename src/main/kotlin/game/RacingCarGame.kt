@@ -5,7 +5,6 @@ import game.domain.CarFleet
 import game.domain.CarNameParser
 import game.domain.CarNameValidator
 import game.domain.Cars
-import game.domain.DefaultWinnerFinder
 import game.domain.GameController
 import game.domain.GameResult
 import game.domain.InputValidator
@@ -21,21 +20,26 @@ class RacingCarGame(
     private val userInputHandler: UserInputHandler = ConsoleInputHandler(),
     private val userOutputHandler: UserOutputHandler = UserMessageDisplay(),
     private val moveConditionGenerator: MoveConditionGenerator = RandomMoveConditionGenerator(),
-    private val winnerFinder: WinnerFinder = DefaultWinnerFinder(),
+    private val winnerFinder: WinnerFinder = WinnerFinder(),
     private val gameController: GameController = GameController(),
     private val carNameValidator: CarNameValidator = CarNameValidator(),
 ) {
 
     fun start() {
         val carNames = getCarNames()
-        val carList = carNames.let { carNameValidator.validate(it); Car.from(it) }
         val retryCount = getRetryCount()
-        val cars = Cars(carList)
-        val carFleet = CarFleet(cars, moveConditionGenerator)
+        val carFleet = getCarFleet(carNames)
         val history = gameController.playGame(retryCount, carFleet)
         val winners = winnerFinder.findWinner(history.rounds.last())
         userOutputHandler.displayResult(GameResult(history, winners))
     }
+
+    private fun getCarFleet(carNames: List<String>) =
+        CarFleet(getCars(carNames), moveConditionGenerator)
+
+    private fun getCars(carNames: List<String>) = Cars(getCarList(carNames))
+
+    private fun getCarList(carNames: List<String>) = Car.from(carNames.let { carNameValidator.validate(it); it })
 
     private fun getRetryCount(): Int =
         userInputHandler.askForRetryCount().let { InputValidator.validateCount(it); it.toInt() }
