@@ -1,10 +1,8 @@
 package racing.model
 
 class RacingHistory(
-    val roundHistories: ArrayDeque<RoundHistory>,
+    val roundHistories: ArrayDeque<RoundHistory> = ArrayDeque(),
 ) {
-
-    constructor() : this(ArrayDeque())
 
     fun winners(): Set<Car> {
         val largestPosition = requireNotNull(
