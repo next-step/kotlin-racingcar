@@ -1,10 +1,10 @@
 package carRacing.testcontroller
 
 import carRacing.domain.Car
-import carRacing.service.CarController
+import carRacing.service.CarFactory
 import carRacing.service.MovementController
 
-class TestCarController : CarController {
+class TestCarFactory : CarFactory {
     override fun createCars(carCount: Int): List<Car> {
         TODO("Not yet implemented")
     }

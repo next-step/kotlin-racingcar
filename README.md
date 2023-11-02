@@ -355,3 +355,25 @@ class StringCalculatorTest {
 * 모든 로직에 단위 테스트를 구현한다. 단, UI(System.out, System.in) 로직은 제외
     * 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 구분한다.
     * UI 로직을 InputView, ResultView와 같은 클래스를 추가해 분리한다.
+
+### 💻 Step 3, Feedback
+
+* [X] 1.CarFactory.kt
+* [ ] 2.MovementController.kt
+* [ ] 3.SimpleCarFactory.kt
+* [ ] 4.InputView.kt
+* [ ] 5.OperatorTest.kt
+* [ ] 6.CarTest.kt
+* [ ] 7.RacingTest.kt
+
+
+#### 1. CarFactory.kt
+
+##### Problem
+- CarController 이름은 포괄적임. = 이름이 적절하지 못함.
+
+##### Solution
+- CarFactory로 변경.
+
+##### effect
+- 역할이 명확해짐.

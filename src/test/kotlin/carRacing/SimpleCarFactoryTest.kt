@@ -1,15 +1,15 @@
 package carRacing
 
 import carRacing.domain.Car
-import carRacing.serviceimpl.SimpleCarController
+import carRacing.serviceimpl.SimpleCarFactory
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
-class SimpleCarControllerTest {
+class SimpleCarFactoryTest {
 
-    private val simpleCarController: SimpleCarController = SimpleCarController()
+    private val simpleCarController: SimpleCarFactory = SimpleCarFactory()
 
     @ParameterizedTest
     @CsvSource("1", "2", "3")
