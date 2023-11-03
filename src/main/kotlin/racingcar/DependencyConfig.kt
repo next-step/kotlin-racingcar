@@ -1,7 +1,7 @@
 package racingcar
 
 object DependencyConfig {
-    val inputProvider: InputProvider = ConsoleInputView()
+    val carInputProvider: CarInputProvider = ConsoleCarInputView()
 
     val outputProvider: CarResultProvider = ConsoleCarResultView()
 

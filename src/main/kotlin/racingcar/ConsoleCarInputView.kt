@@ -1,6 +1,6 @@
 package racingcar
 
-class ConsoleInputView : InputProvider {
+class ConsoleCarInputView : CarInputProvider {
     override fun getIntInput(prompt: String): Int {
         println(prompt)
         return readln().toInt()
