@@ -6,12 +6,14 @@ import carRacing.view.OutputView
 
 class Racing(private val carFactory: CarFactory) {
 
-    fun getRaceResult(carCount: Int, tryCount: Int, carInfoList: List<CarInfo> = listOf()): List<Car> {
-        val carList: List<Car> = if (carInfoList.isEmpty()) {
-            carFactory.createCars(carCount)
-        } else {
-            carFactory.createCars(carInfoList)
-        }
+    fun getRaceResult(carCount: Int, tryCount: Int): List<Car> {
+        val carList: List<Car> = carFactory.createCars(carCount)
+
+        return start(carList, tryCount)
+    }
+
+    fun getRaceResult(carInfoList: List<CarInfo>, tryCount: Int): List<Car> {
+        val carList: List<Car> = carFactory.createCars(carInfoList)
 
         return start(carList, tryCount)
     }
@@ -28,7 +30,7 @@ class Racing(private val carFactory: CarFactory) {
 
         for (i in 0 until tryCount) {
             copyCarList = process(carList)
-            OutputView().printMessages(*copyCarList.map { it.getPosition() }.toTypedArray())
+            OutputView().printMessages(*copyCarList.map { "${it.name} : ${it.getPosition()}" }.toTypedArray())
         }
 
         return copyCarList
