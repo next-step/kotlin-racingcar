@@ -1,6 +1,6 @@
 package racingCarWinner
 
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertIterableEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import racingCarWinner.domain.Car
@@ -27,7 +27,7 @@ class RacingTest {
 
         // then
         assertTrue(winners.isNotEmpty())
-        Assertions.assertIterableEquals(
+        assertIterableEquals(
             listOf("winner1", "winner2"),
             winners
         )
