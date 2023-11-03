@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 class RaceGameTest {
     @Test
     fun `객체생성 테스트`() {
-        val raceGame = RaceGame.of(carCount = 2, carNames = listOf("name", "name2"), totalRound = 2)
+        val raceGame = RaceGame.of(carNames = listOf("name", "name2"), totalRound = 2)
         assertThat(raceGame).isEqualTo(RaceGame(listOf(RaceCar("name"), RaceCar("name2")), 2))
     }
 

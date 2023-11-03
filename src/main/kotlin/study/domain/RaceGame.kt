@@ -44,8 +44,8 @@ class RaceGame internal constructor(
     }
 
     companion object {
-        fun of(carCount: Int, totalRound: Int, carNames: List<String>): RaceGame {
-            val raceCars = List(carCount) { index -> RaceCar(carNames[index]) }
+        fun of(totalRound: Int, carNames: List<String>): RaceGame {
+            val raceCars = List(carNames.size) { index -> RaceCar(carNames[index]) }
             return RaceGame(raceCars, totalRound)
         }
     }
