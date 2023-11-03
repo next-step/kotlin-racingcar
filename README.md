@@ -54,5 +54,6 @@ pobi, honux가 최종 우승했습니다.
 
 - [x] `Car` 객체의 함수명 변경, 제약 조건 상수화
 - [x] `RacingCarRoad`에 해당하는 에러 메세지는 `RacingCarRoad`가 관리한다.
-- [ ] `List<Car>`를 일급 컬렉션으로 변경하여 사용
-- [ ] 사용하지 않는 함수는 삭제
+- [x] `List<Car>`를 래핑한 일급 컬렉션을 사용한다.
+  - [x] `RacingCarRoad`의 함수명에서 getXXX 형식을 버린다.
+- [x] 사용하지 않는 함수는 삭제

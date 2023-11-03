@@ -9,8 +9,7 @@ internal class SingleWinnerOnlyImpl(
 ) : RankingPolicy.SingleWinnerOnly {
 
     override fun determineWinner(racingCarRoad: RacingCarRoad): RacingCarWinner.SingleWinner {
-        val maxPosition = racingCarRoad.cars.maxBy { it.position.xPos }.position.xPos
-        val tiedWinners = racingCarRoad.cars.filter { it.position.xPos == maxPosition }
+        val tiedWinners = racingCarRoad.findCarsWentFurthest()
 
         val winner = tiebreaker.breakTie(tiedWinners)
         return RacingCarWinner.SingleWinner(winner)

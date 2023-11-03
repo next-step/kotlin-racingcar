@@ -1,5 +1,7 @@
 package org.bmsk.racingcar.domain.model
 
+import org.bmsk.racingcar.model.Position
+
 data class RacingCarRoad(
     val cars: List<Car>,
 ) {
@@ -7,10 +9,19 @@ data class RacingCarRoad(
         require(cars.isNotEmpty()) { LIST_OF_CARS_CANNOT_BE_EMPTY }
     }
 
-    fun getMovedRacingCarRoad(): RacingCarRoad {
+    fun makeAllCarsMove(): RacingCarRoad {
         return RacingCarRoad(
             cars = cars.map { it.move() },
         )
+    }
+
+    fun findCarsWentFurthest(): Cars {
+        val furthestCars = cars.filter { it.position == findFurthestPosition() }
+        return Cars(furthestCars)
+    }
+
+    private fun findFurthestPosition(): Position {
+        return cars.maxBy { it.position.xPos }.position
     }
 
     companion object {

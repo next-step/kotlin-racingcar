@@ -1,25 +1,14 @@
 package org.bmsk.racingcar.domain.policy.tie
 
 import org.bmsk.racingcar.domain.model.Car
+import org.bmsk.racingcar.domain.model.Cars
 
 sealed interface RacingCarTiebreakerPolicy {
-    fun breakTie(tiedCars: List<Car>): Car
+    fun breakTie(tiedCars: Cars): Car
 
     object FirstCarWins : RacingCarTiebreakerPolicy {
-        override fun breakTie(tiedCars: List<Car>): Car {
-            return tiedCars.first()
-        }
-    }
-
-    object RandomCarWins : RacingCarTiebreakerPolicy {
-        override fun breakTie(tiedCars: List<Car>): Car {
-            return tiedCars.random()
-        }
-    }
-
-    object NameOrderWins : RacingCarTiebreakerPolicy {
-        override fun breakTie(tiedCars: List<Car>): Car {
-            return tiedCars.minBy { it.name }
+        override fun breakTie(tiedCars: Cars): Car {
+            return tiedCars.first
         }
     }
 }

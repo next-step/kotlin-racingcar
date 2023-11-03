@@ -48,8 +48,8 @@ class RacingCarView(
     }
 
     private fun displayWinners(racingCarRoad: RacingCarRoad) {
-        val winners = resultView.getCarRacingResultWinners(racingCarRoad)
-        println(winners.joinToString(separator = ", ") { it.name } + WINNING_MESSAGE)
+        val winners = resultView.getCarRacingResultWinners(racingCarRoad).winnerNames
+        println("${winners.joinToString(separator = ", ")}$WINNING_MESSAGE")
     }
 
     companion object {
