@@ -1,4 +1,6 @@
-package racing
+package racing.v1
+
+import kotlin.random.Random
 
 fun main() {
     val (carCountStr: String?, tryCountStr: String?) = InputView.getInput()
@@ -14,7 +16,7 @@ private fun createCars(carCount: Int) = List(carCount) { Car() }
 
 private fun executeOneTry(cars: List<Car>) {
     cars.forEach {
-        it.moveForward(RandomNumberGenerator.generate(0, 9))
+        it.moveForward(Random.nextInt(10))
         ResultView.printPosition(it.position)
     }
     println()
