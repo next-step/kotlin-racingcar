@@ -1,9 +1,9 @@
 package racing.domain
 
-object CarRacingRecorder {
-    fun recordRacingResultPerRound(cars: List<Car>): List<Car> = cars.map { it.copy() }
+object CarRacingRecorder : CarRacingRecordStrategy {
+    override fun recordRacingResultPerRound(cars: List<Car>): List<Car> = cars.map { it.copy() }
 
-    fun findWinners(cars: List<Car>): List<String> {
+    override fun findWinners(cars: List<Car>): List<String> {
         val maxPosition = cars.maxBy { it.position }
             .position
         return cars.filter { car -> car.position == maxPosition }

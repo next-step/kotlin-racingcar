@@ -1,6 +1,7 @@
 package racing
 
 import racing.domain.CarRacing
+import racing.domain.CarRacingRecorder
 import racing.view.InputView
 import racing.view.ResultView
 
@@ -9,7 +10,7 @@ class CarRacingApplication {
         @JvmStatic
         fun main(args: Array<String>) {
             val (carNames, tryCount) = InputView.inputForRacing()
-            val result = CarRacing().race(carNames, tryCount)
+            val result = CarRacing(CarRacingRecorder).race(carNames, tryCount)
             ResultView.printRacingResult(result)
         }
     }
