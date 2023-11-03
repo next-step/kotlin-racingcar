@@ -7,16 +7,17 @@ import racingCarWinner.view.ResultView
 class Racing private constructor(
     private val racingGame: RacingGame
 ) {
-    fun racing() {
+    fun start(numOfAttempts: Int): List<String> {
         ResultView.printResultText()
 
-        repeat(racingGame.numOfAttempts) {
-            val racingCars = racingGame.start()
+        repeat(numOfAttempts) {
+            val racingCars = racingGame.racing()
             ResultView.printResultState(racingCars)
         }
 
         val winners = racingGame.selectWinner()
         ResultView.printWinners(winners)
+        return winners
     }
 
     companion object {
@@ -29,8 +30,7 @@ class Racing private constructor(
 fun main() {
     val inputs = InputView.gatherUserInput()
     val racingGame = RacingGame.of(
-        carNames = inputs.carNames,
-        numOfAttempts = inputs.numOfAttempts
+        carNames = inputs.carNames
     )
-    Racing.of(racingGame).racing()
+    Racing.of(racingGame).start(inputs.numOfAttempts)
 }

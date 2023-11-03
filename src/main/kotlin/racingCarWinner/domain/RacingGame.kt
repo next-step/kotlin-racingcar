@@ -1,10 +1,9 @@
 package racingCarWinner.domain
 
 class RacingGame private constructor(
-    val numOfAttempts: Int,
     val racingCars: List<Car>,
 ) {
-    fun start(): List<Car> {
+    fun racing(): List<Car> {
         racingCars.forEach { it.move() }
         return racingCars
     }
@@ -16,12 +15,19 @@ class RacingGame private constructor(
     }
 
     companion object {
-        fun of(carNames: List<String>, numOfAttempts: Int): RacingGame {
+        @JvmName("ofCarNames")
+        fun of(carNames: List<String>): RacingGame {
             return RacingGame(
                 racingCars = carNames.map {
                     Car.of(name = it)
-                },
-                numOfAttempts = numOfAttempts
+                }
+            )
+        }
+
+        @JvmName("ofCars")
+        fun of(cars: List<Car>): RacingGame {
+            return RacingGame(
+                racingCars = cars
             )
         }
     }
