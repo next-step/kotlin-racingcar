@@ -10,6 +10,6 @@ object InputView {
         ConsolePrinter.printMsg("시도할 횟수는 몇 회인가요?")
         val numOfAttempts = ConsoleReader.readInput()
 
-        return UserInput.from(carNames, numOfAttempts)
+        return UserInput.of(carNames, numOfAttempts)
     }
 }
