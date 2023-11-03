@@ -27,6 +27,22 @@ class InputView(private val maxTryCount: Int = 3) {
         return inputResult.getOrThrow()
     }
 
+    fun readLineList(question: String?, count: Int = 0, separator: String = ","): List<String> {
+        val inputResult: Result<List<String>> = runCatching {
+            val input: String = readLine(question, count)
+
+            return input.split(separator)
+        }.onFailure {
+            println(it.message)
+
+            if (it is IllegalArgumentException) {
+                return this.readLineList(question, count + 1, separator)
+            }
+        }
+
+        return inputResult.getOrThrow()
+    }
+
     private fun readLine(question: String?, count: Int = 0): String {
         val inputResult: Result<String> = runCatching {
             if (count >= this.maxTryCount) {
