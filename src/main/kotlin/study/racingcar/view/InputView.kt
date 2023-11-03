@@ -24,9 +24,7 @@ class InputView(
         val carNames: CarNames = inputString("자동차 이름을 입력하세요: ")
         val tryCount: Int = inputNumber("시도할 횟수를 입력하세요: ")
 
-        val inputValue = InputValue(carNames, tryCount)
-
-        return inputValue
+        return InputValue(carNames, tryCount)
     }
 
     /**
@@ -38,7 +36,7 @@ class InputView(
         while (true) {
             try {
                 print(prompt)
-                val input: String = reader.read() ?: throw IllegalArgumentException("입력 값이 null 입니다.")
+                val input: String = reader.readString() ?: throw IllegalArgumentException("입력 값이 null 입니다.")
                 return CarNameParser(input).getCarNames()
             } catch (e: Exception) {
                 println("[$e] 입력 문자열을 확인해주세요.")
@@ -55,7 +53,7 @@ class InputView(
         while (true) {
             try {
                 print(prompt)
-                val input: String = reader.read() ?: throw IllegalArgumentException("입력 값이 null 입니다.")
+                val input: String = reader.readInt() ?: throw IllegalArgumentException("입력 값이 null 입니다.")
                 return Number(input).toInt()
             } catch (e: Exception) {
                 println("[$e] 입력 숫자를 확인해주세요.")

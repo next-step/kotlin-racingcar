@@ -10,17 +10,14 @@ import study.racingcar.view.OutputView
  * */
 class RacingGame(
     private val inputView: InputView,
+    private val gameRule: GameRule
 ) {
 
-    // TODO-review: RacingGame 이 만들어짐과 동시에 프로퍼티로 생성되는 멤버들입니다.
-    private val input: InputValue = inputView.getInput()
-    private val carNames: CarNames = input.carNames
-    private val tryCount: Int = input.tryCount
-
     fun run() {
-        // TODO-review : 테스트 하기 어려운 객체를 객체 그래프의 최상단으로 끌어올렸습니다.
-        //  (racingCar 에게 gamerule 을 주입하는 형태로 테스트를 하기 위해.)
-        val gameRule = FourOrMoreGameRule()
+        // 0. inputView 에게 메시지 (input 수행 요청) 던진다.
+        val input: InputValue = inputView.getInput()
+        val carNames: CarNames = input.carNames
+        val tryCount: Int = input.tryCount
 
         // 1. carNames 에게 메시지 (RacingCars 를 생성 요청) 던진다.
         val racingCars = carNames.prepareForRace()
