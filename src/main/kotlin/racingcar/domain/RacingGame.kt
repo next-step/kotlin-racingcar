@@ -1,13 +1,13 @@
 package racingcar.domain
 
 class RacingGame(
-    randomGenerator: RandomGenerator,
+    numberGenerator: NumberGenerator,
     names: List<String>,
 ) {
     private val cars: Cars
 
     init {
-        cars = Cars(randomGenerator, names)
+        cars = Cars(numberGenerator, names)
     }
 
     fun start(tryCount: Int): GameResults {

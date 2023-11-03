@@ -13,7 +13,7 @@ data class GameResults(val positions: List<Positions>) {
     }
 
     companion object {
-        fun create(vararg  positions: Positions): GameResults {
+        fun create(vararg positions: Positions): GameResults {
             return GameResults(positions.toList())
         }
     }
