@@ -1,9 +1,12 @@
-package racingcar
+package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+
+private const val MOVE = 4
+private const val STOP = 3
 
 class CarTest {
 
@@ -12,9 +15,9 @@ class CarTest {
     fun `4 미만인 경우 정지한다`(value: Int) {
         val car = Car()
 
-        car.move(value)
+        val newCar = car.move(value)
 
-        assertThat(car.position).isEqualTo(0)
+        assertThat(newCar.position).isEqualTo(0)
     }
 
     @ParameterizedTest
@@ -22,46 +25,40 @@ class CarTest {
     fun `4 이상인 경우 이동한다`(value: Int) {
         val car = Car()
 
-        car.move(value)
+        val newCar = car.move(value)
 
-        assertThat(car.position).isEqualTo(1)
+        assertThat(newCar.position).isEqualTo(1)
     }
 
     @Test
     fun `자동차 여러번 이동`() {
         val car = Car()
 
-        car.move(4)
-        car.move(5)
-        car.move(6)
-        car.move(7)
+        val newCar = car.move(MOVE).move(MOVE).move(MOVE).move(MOVE)
 
-        assertThat(car.position).isEqualTo(4)
+        assertThat(newCar.position).isEqualTo(4)
     }
 
     @Test
     fun `자동차 여러번 정지`() {
         val car = Car()
 
-        car.move(0)
-        car.move(1)
-        car.move(2)
-        car.move(3)
+        val newCar = car.move(STOP).move(STOP).move(STOP).move(STOP)
 
-        assertThat(car.position).isEqualTo(0)
+        assertThat(newCar.position).isEqualTo(0)
     }
 
     @Test
     fun `자동차 여러번 이동 및 정지`() {
         val car = Car()
 
-        car.move(0)
-        car.move(4)
-        car.move(5)
-        car.move(1)
-        car.move(6)
-        car.move(2)
+        val newCar = car.move(STOP)
+            .move(MOVE)
+            .move(MOVE)
+            .move(STOP)
+            .move(MOVE)
+            .move(STOP)
 
-        assertThat(car.position).isEqualTo(3)
+        assertThat(newCar.position).isEqualTo(3)
     }
 }

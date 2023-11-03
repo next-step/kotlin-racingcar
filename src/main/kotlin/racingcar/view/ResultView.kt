@@ -1,13 +1,17 @@
-package racingcar
+package racingcar.view
 
-object ResultView : RacingGameEventListener {
+import racingcar.domain.GameResults
+import racingcar.domain.Position
+import racingcar.domain.Positions
 
-    override fun notify(event: RacingGameEvent, racingGame: RacingGame) {
-        when (event) {
-            RacingGameEvent.STARTED -> printPositionsHeader()
-            RacingGameEvent.MOVED -> printPositions(racingGame.positions())
-            RacingGameEvent.FINISHED -> printWinners(racingGame.winners())
-        }
+object ResultView {
+
+    fun printGameResults(gameResults: GameResults) {
+        printPositionsHeader()
+        gameResults.positions
+            .map(Positions::values)
+            .forEach(ResultView::printPositions)
+        printWinners(gameResults.winners)
     }
 
     private fun printPositionsHeader() {
