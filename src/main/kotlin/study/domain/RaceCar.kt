@@ -1,9 +1,12 @@
 package study.domain
 
-class RaceCar(
-    val name: String,
-    position: Int = 0
-) {
+class RaceCar(val name: String, position: Int = 0) {
+    init {
+        if (name.length > 5) {
+            throw IllegalArgumentException("자동차 이름은 5자를 초과할 수 없습니다.")
+        }
+    }
+
     var position: Int = position
         private set
 
