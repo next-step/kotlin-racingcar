@@ -2,14 +2,15 @@ package racingcar.view
 
 import racingcar.domain.GameResults
 import racingcar.domain.Position
+import racingcar.domain.Positions
 
 object ResultView {
 
     fun printGameResults(gameResults: GameResults) {
         printPositionsHeader()
-        for (position in gameResults.positions) {
-            printPositions(position.values)
-        }
+        gameResults.positions
+            .map(Positions::values)
+            .forEach(ResultView::printPositions)
         printWinners(gameResults.winners)
     }
 
