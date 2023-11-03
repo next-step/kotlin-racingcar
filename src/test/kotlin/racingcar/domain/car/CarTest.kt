@@ -18,16 +18,4 @@ class CarTest : FunSpec({
             car.position shouldBe initialPosition + moveDistance
         }
     }
-
-    context("현재 상태 캡쳐") {
-        test("현재 상태를 캡쳐해서 반환한다") {
-            val position = 1
-            val car = Car(CarName("test"), position)
-
-            val result = car.capture()
-
-            result.name shouldBe car.name
-            result.position shouldBe position
-        }
-    }
 })

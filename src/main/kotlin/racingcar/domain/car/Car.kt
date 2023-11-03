@@ -11,8 +11,7 @@ class Car(
         position += distance
     }
 
-    fun capture(): Car = Car(
-        name = name,
-        position = position,
-    )
+    fun isWin(other: Car): Boolean = position > other.position
+
+    fun isDraw(other: Car): Boolean = position == other.position
 }
