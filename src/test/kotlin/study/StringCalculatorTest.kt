@@ -1,7 +1,7 @@
 package study
 
-import calculator.StringCalculator
 import calculator.ArithmeticOperation
+import calculator.StringCalculator
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import org.assertj.core.api.Assertions.assertThatThrownBy

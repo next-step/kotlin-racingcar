@@ -4,16 +4,18 @@ class CarRaceSimulator(
     private val inputView: InputView,
     private val resultView: ResultView = ResultView()
 ) {
-    fun simulate(carMovingStrategy: CarMovingStrategy = RandomMovingStrategy()): CarList {
-        val (carCount, iterationCount) = inputView.raceRegulationProvider.provide()
+    fun simulate(carMovingStrategy: CarMovingStrategy = RandomMovingStrategy()): CarRaceResult {
+        val carList = inputView.carsProvider.provide(carMovingStrategy)
+        val iterationCount = inputView.iterationProvider.provide()
 
-        val carList = CarList(MutableList(carCount) { Car(0, carMovingStrategy) })
+        val carRaceResult = CarRaceResult(carList)
 
-        for (i in 0 until iterationCount) {
-            carList.driveCars()
+        repeat(iterationCount) {
+            carRaceResult.driveCars(it + 1)
         }
-        resultView.printCars(carList.cars)
-        return carList
+
+        resultView.printResult(carRaceResult)
+        return carRaceResult
     }
 }
 

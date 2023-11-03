@@ -8,9 +8,10 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
 class CarRaceSimulatorTest : StringSpec({
+    val drivers = listOf("aaa", "bbb", "ccc", "ddd", "eee")
     "carDriveTest" {
         val originalPosition = 1
-        val car = Car(originalPosition, AlwaysMovingStrategy)
+        val car = Car("anonymous", originalPosition, AlwaysMovingStrategy)
 
         val driveCount = 1
 
@@ -26,20 +27,20 @@ class CarRaceSimulatorTest : StringSpec({
 
     "carRaceSimulatorAlwaysMovingTest" {
         val iterationCount = 5
-        val simulator = CarRaceSimulator(ManualInputView(5, iterationCount))
+        val simulator = CarRaceSimulator(ManualInputView(drivers, iterationCount))
         val result = simulator.simulate(AlwaysMovingStrategy)
 
-        result.cars.forEach {
+        result.currentCars.forEach {
             it.traveled.shouldBe(iterationCount)
         }
     }
 
     "carRaceSimulatorAlwaysNotMovingTest" {
         val iterationCount = 5
-        val simulator = CarRaceSimulator(ManualInputView(5, iterationCount))
+        val simulator = CarRaceSimulator(ManualInputView(drivers, iterationCount))
         val result = simulator.simulate(AlwaysNotMovingStrategy)
 
-        result.cars.forEach {
+        result.currentCars.forEach {
             it.traveled.shouldBe(0)
         }
     }
