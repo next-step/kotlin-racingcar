@@ -1,6 +1,6 @@
 package week1.racingcar
 
-class ResultView {
+object ResultView {
 
     fun showResult(cars: List<Car>) {
         println("실행 결과")
