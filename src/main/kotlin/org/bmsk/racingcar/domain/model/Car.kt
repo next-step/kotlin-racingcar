@@ -9,11 +9,15 @@ data class Car(
     val position: Position = Position(xPos = 0),
 ) {
     init {
-        require(name.length <= 5) { "이름은 5글자 이내이어야 합니다." }
+        require(name.length <= CAR_NAME_LENGTH_CONSTRAINTS) { "이름은 5글자 이내이어야 합니다." }
     }
 
-    fun getMovedCar(): Car = this.copy(
+    fun move(): Car = copy(
         name = name,
         position = movementPolicy.move(position),
     )
+
+    companion object {
+        const val CAR_NAME_LENGTH_CONSTRAINTS = 5
+    }
 }

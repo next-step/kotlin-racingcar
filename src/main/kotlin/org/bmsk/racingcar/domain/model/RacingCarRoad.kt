@@ -11,7 +11,7 @@ data class RacingCarRoad(
 
     fun getMovedRacingCarRoad(): RacingCarRoad {
         return RacingCarRoad(
-            cars = cars.map { it.getMovedCar() },
+            cars = cars.map { it.move() },
         )
     }
 }
