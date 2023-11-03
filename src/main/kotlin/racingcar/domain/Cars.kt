@@ -1,6 +1,11 @@
 package racingcar.domain
 
 class Cars(val cars: List<Car>) {
+    val size: Int
+        get() {
+            return cars.size
+        }
+
     fun driveCars() {
         cars.forEach { it.drive() }
     }
@@ -13,7 +18,7 @@ class Cars(val cars: List<Car>) {
     companion object {
         fun createTo(carNames: CarNames): Cars {
             return Cars(
-                List(carNames.getSize()) {
+                List(carNames.size) {
                     Car(carNames.findNameByIndex(it), DriveConditionImpl())
                 }
             )
