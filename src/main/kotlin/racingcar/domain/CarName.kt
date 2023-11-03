@@ -1,20 +1,12 @@
 package racingcar.domain
 
-class CarName(name: String) {
-    val value: String
-
+class CarName(val name: String) {
     init {
-        if (name.length > 5) {
-            throw IllegalArgumentException(ERROR_MESSAGE)
-        }
-        this.value = name
-    }
-
-    override fun toString(): String {
-        return value
+        require(name.length <= VALID_NUMBER) { ERROR_MESSAGE }
     }
 
     companion object {
         const val ERROR_MESSAGE = "자동차 이름은 5자를 초과할 수 없습니다."
+        const val VALID_NUMBER = 5
     }
 }

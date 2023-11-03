@@ -36,7 +36,7 @@ class RacingCarManager(
     private fun getWinners(cars: List<Car>): String {
         val maxPosition = cars.maxOf { it.distance }
         val winners = cars.filter { it.distance == maxPosition }
-        return winners.joinToString(",") { it.name.value }
+        return winners.joinToString(",") { it.name.name }
     }
 }
 

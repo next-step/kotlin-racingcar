@@ -6,7 +6,7 @@ class OutPutManager {
 
     fun printCars(cars: List<Car>) {
         cars.forEach {
-            println(it.name.value + ":" + "-".repeat(it.distance))
+            println("${it.name} : ${"-".repeat(it.distance)}")
         }
         println()
     }
