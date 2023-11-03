@@ -1,11 +1,15 @@
 package study.racingcar
 
 class Race(
-    numberOfCars: Int,
+    carNames: List<String>,
     private var rounds: Int,
     private val randomValueGenerator: () -> Int = { (0..9).random() }
 ) {
-    var cars: Cars = Cars(List(numberOfCars) { Car() })
+    init {
+        require(rounds > 0) { "Number of rounds must be positive" }
+    }
+
+    var cars: Cars = Cars(carNames.map { Car(it) })
         private set
 
     fun run(onRoundFinished: (Cars) -> Unit) {

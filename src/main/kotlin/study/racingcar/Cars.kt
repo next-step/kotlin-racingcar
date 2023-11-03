@@ -9,4 +9,9 @@ data class Cars(private val cars: List<Car>) {
             cars.map { car -> car.move(randomValueGenerator()) },
         )
     }
+
+    fun getWinners(): Cars {
+        val maxPosition = cars.maxByOrNull { it.position }?.position ?: 0
+        return Cars(cars.filter { it.position == maxPosition })
+    }
 }

@@ -18,8 +18,16 @@ class ResultViewTest {
     @Test
     fun `display cars positions`() {
         val resultView = ResultView(outputReceiver)
-        val cars = Cars(listOf(Car(3), Car(1), Car(2)))
+        val cars = Cars(listOf(Car("hong", 3), Car("lee", 1), Car("kim", 2)))
         resultView.displayRound(cars)
-        verify(outputReceiver).receive("---\n-\n--\n")
+        verify(outputReceiver).receive("hong : ---\nlee : -\nkim : --\n")
+    }
+
+    @Test
+    fun `display winners`() {
+        val resultView = ResultView(outputReceiver)
+        val cars = Cars(listOf(Car("hong", 3), Car("lee", 3), Car("kim", 3)))
+        resultView.displayWinners(cars)
+        verify(outputReceiver).receive("hong, lee, kim 가 최종 우승했습니다.")
     }
 }
