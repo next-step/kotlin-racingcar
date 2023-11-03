@@ -1,11 +1,11 @@
 package study.racingcar.application
 
-class MockReader(private val inputString: String, private val inputInt: String) : Reader {
+class MockReader(private val inputCarNames: String, private val inputNumber: String) : Reader {
     override fun readString(): String? {
-        return inputString
+        return inputCarNames
     }
 
     override fun readInt(): String? {
-        return inputInt
+        return inputNumber
     }
 }

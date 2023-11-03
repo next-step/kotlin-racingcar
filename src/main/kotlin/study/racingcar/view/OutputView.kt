@@ -15,7 +15,7 @@ object OutputView {
     }
 
     fun showWinners(racingCars: RacingCars) {
-        val winner = racingCars.curWinners
+        val winner = racingCars.currentWinners
         println("최종 우승자는 $winner 입니다.")
     }
 }
