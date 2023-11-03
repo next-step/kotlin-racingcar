@@ -2,18 +2,11 @@ package race.domain
 
 import race.view.Output
 
-class RaceManager(cars: String, private val moves: Int) {
+class RaceManager(cars: List<String>, private val moves: Int) {
     val carList: List<SimpleCar>
 
     init {
-        carList = parseCarList(cars).map { SimpleCar(it) }
-    }
-
-    private fun parseCarList(cars: String): List<String> {
-        return cars
-            .split(',')
-            .map { it.trim() }
-            .filter { it.isNotBlank() }
+        carList = cars.map { SimpleCar(it) }
     }
 
     fun start() {
