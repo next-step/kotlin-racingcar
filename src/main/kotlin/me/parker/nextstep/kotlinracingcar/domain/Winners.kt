@@ -1,4 +1,4 @@
-package me.parker.nextstep.kotlinracingcar
+package me.parker.nextstep.kotlinracingcar.domain
 
 class Winners(racingCars: List<RacingCar>) {
     val racingCars: List<RacingCar>

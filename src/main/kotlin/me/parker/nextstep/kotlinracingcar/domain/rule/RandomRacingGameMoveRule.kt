@@ -1,4 +1,4 @@
-package me.parker.nextstep.kotlinracingcar.rule
+package me.parker.nextstep.kotlinracingcar.domain.rule
 
 import me.parker.nextstep.kotlinracingcar.utils.RandomNumberGenerator
 

@@ -1,6 +1,8 @@
-package me.parker.nextstep.kotlinracingcar
+package me.parker.nextstep.kotlinracingcar.domain
 
-import me.parker.nextstep.kotlinracingcar.rule.RandomRacingGameMoveRule
+import me.parker.nextstep.kotlinracingcar.domain.RacingCar
+import me.parker.nextstep.kotlinracingcar.domain.RacingCarGameRound
+import me.parker.nextstep.kotlinracingcar.domain.rule.RandomRacingGameMoveRule
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -11,7 +13,8 @@ class RacingCarGameRoundTest {
         val racingCarGameRound = RacingCarGameRound(1, listOf(
             RacingCar("park1", RandomRacingGameMoveRule()),
             RacingCar("park2", RandomRacingGameMoveRule()),
-            RacingCar("park3", RandomRacingGameMoveRule())))
+            RacingCar("park3", RandomRacingGameMoveRule())
+        ))
 
         assertThat(racingCarGameRound).isNotNull()
         assertThat(racingCarGameRound.roundNumber).isEqualTo(1)

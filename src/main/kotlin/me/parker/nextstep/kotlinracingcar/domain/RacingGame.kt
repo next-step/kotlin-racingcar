@@ -1,6 +1,6 @@
-package me.parker.nextstep.kotlinracingcar
+package me.parker.nextstep.kotlinracingcar.domain
 
-import me.parker.nextstep.kotlinracingcar.rule.RacingGameMoveRule
+import me.parker.nextstep.kotlinracingcar.domain.rule.RacingGameMoveRule
 
 class RacingGame(
     private val namesOfRacingCar: List<String>, private val numOfAttempts: Int,
