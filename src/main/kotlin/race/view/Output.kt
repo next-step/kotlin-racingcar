@@ -9,7 +9,7 @@ class Output {
     }
 
     fun visualizeLocation(car: SimpleCar): String {
-        return "-".repeat(car.getLocation())
+        return "-".repeat(car.location)
     }
 
     fun printResult(cars: List<SimpleCar>) {

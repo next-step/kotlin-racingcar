@@ -26,8 +26,8 @@ class RaceManager(cars: String, private val moves: Int) {
     }
 
     fun findWinners(): List<SimpleCar> {
-        val max = carList.maxBy { it.getLocation() }
+        val max = carList.maxBy { it.location }
 
-        return carList.filter { it.getLocation() == max.getLocation() }
+        return carList.filter { it.location == max.location }
     }
 }

@@ -29,10 +29,10 @@ class SimpleCarTest {
 
         (0..3).forEach {
             car.move(it)
-            assertThat(car.getLocation()).isEqualTo(0)
+            assertThat(car.location).isEqualTo(0)
         }
 
         car.move(SimpleCar.MOVE_THRESHOLD)
-        assertThat(car.getLocation()).isEqualTo(1)
+        assertThat(car.location).isEqualTo(1)
     }
 }
