@@ -8,14 +8,14 @@ import org.junit.jupiter.params.provider.ValueSource
 class RaceManagerTest {
     @ParameterizedTest
     @ValueSource(strings = ["car1,car2", "car1,car2,", "car1,  car2", "car1, ,car2"])
-    fun `자동차 목록 csv 파싱테스트`(input: String) {
+    fun `csv 포멧으로 입력된 자동차 목록을 list로 저장한다`(input: String) {
         val moves = 1
         val manager = RaceManager(input, moves)
         assertThat(manager.carList.size).isEqualTo(2)
     }
 
     @Test
-    fun `우승자 판별 테스트`() {
+    fun `가장 멀리 이동한 자동차들이 공동우승한다`() {
         val manager = RaceManager("t1, t2, t3", 0)
 
         assertThat(manager.findWinners()).isEqualTo(manager.carList)
