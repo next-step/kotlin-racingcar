@@ -4,8 +4,8 @@ class Players(val players: List<Car>) {
 
     val winners: List<Car>
         get() {
-            val maxLocation = players.maxOf { it.location.location }
-            return players.filter { it.location.location == maxLocation }
+            val winner = players.maxOf { it }
+            return players.filter { it.isDraw(winner) }
         }
 
     constructor(players: String) : this(createPlayerList(players))
@@ -15,7 +15,7 @@ class Players(val players: List<Car>) {
 
         private fun createPlayerList(players: String): List<Car> {
             val split = players.split(PLAYER_SEPARATOR)
-            return split.fold(ArrayList()) { acc, s -> acc.add(Car(CarName(s))); acc }
+            return split.map { name -> Car(CarName(name)) }.toList()
         }
     }
 
