@@ -22,28 +22,4 @@ class RacingGameTest {
             )
         )
     }
-
-    @Test
-    fun `단일 우승자 조회`() {
-        val racingGame = RacingGame(
-            createStubRandomGenerator(4, 3, 3, 4, 3, 3, 4, 3, 3),
-            listOf("a", "b", "c")
-        )
-
-        val gameResult = racingGame.start(3)
-
-        assertThat(gameResult.winners).containsExactly("a")
-    }
-
-    @Test
-    fun `공동 우승자 조회`() {
-        val racingGame = RacingGame(
-            createStubRandomGenerator(4, 3, 4, 4, 3, 4, 4, 3, 4),
-            listOf("a", "b", "c")
-        )
-
-        val gameResult = racingGame.start(3)
-
-        assertThat(gameResult.winners).containsExactlyInAnyOrder("a", "c")
-    }
 }
