@@ -1,6 +1,8 @@
-package race
+package race.view
 
-class ResultView {
+import race.domain.SimpleCar
+
+class Output {
     fun printStatus(cars: List<SimpleCar>) {
         cars.forEach { println("${it.name} : ${visualizeLocation(it)}") }
         println("######################")

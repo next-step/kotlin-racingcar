@@ -1,4 +1,6 @@
-package race
+package race.domain
+
+import race.view.Output
 
 class RaceManager(cars: String, private val moves: Int) {
     val carList: List<SimpleCar>
@@ -17,10 +19,10 @@ class RaceManager(cars: String, private val moves: Int) {
     fun start() {
         repeat(moves) {
             carList.forEach { it.move((0..9).random()) }
-            ResultView().printStatus(carList)
+            Output().printStatus(carList)
         }
 
-        ResultView().printResult(findWinners())
+        Output().printResult(findWinners())
     }
 
     fun findWinners(): List<SimpleCar> {

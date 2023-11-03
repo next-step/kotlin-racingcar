@@ -1,12 +1,12 @@
 package main
 
-import race.InputView
-import race.RaceManager
+import race.domain.RaceManager
+import race.view.Input
 
 class SimpleCarRace {
     fun main() {
-        val cars = InputView().askCarList()
-        val moves = InputView().askMoveNum()
+        val cars = Input().askCarList()
+        val moves = Input().askMoveNum()
 
         RaceManager(cars, moves).start()
     }

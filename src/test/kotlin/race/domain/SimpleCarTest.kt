@@ -1,4 +1,4 @@
-package race
+package race.domain
 
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
