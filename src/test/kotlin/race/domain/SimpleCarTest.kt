@@ -10,11 +10,17 @@ import java.lang.IllegalArgumentException
 
 class SimpleCarTest {
     @ParameterizedTest
-    @ValueSource(strings = ["orange"])
+    @ValueSource(strings = ["orange", "pineapple"])
     fun `name 최대길이 정책위반시 exception throw`(name: String) {
         Assertions.assertThatThrownBy { SimpleCar(name) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageContaining("자동차 이름은 ${NAME_MAX_LENGTH}자를 초과할 수 없습니다")
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["apple", "melon", "kiwi"])
+    fun `name 최대길이 정책 준수`(name: String) {
+        Assertions.assertThatNoException().isThrownBy { SimpleCar(name) }
     }
 
     @Test
