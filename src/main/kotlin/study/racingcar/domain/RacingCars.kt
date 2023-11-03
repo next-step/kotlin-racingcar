@@ -9,9 +9,10 @@ data class RacingCars(private val _racingCars: List<RacingCar>) {
     val racingCars: List<RacingCar>
         get() = _racingCars
 
-    val curWinners: String
+    val currentWinners: String
         get() {
-            val winner = _racingCars.maxBy { it.currentPosition }!!
+            val winner = _racingCars.maxByOrNull { it.currentPosition }
+            require(winner != null) { "RacingCar 리스트가 비었습니다. " }
             return _racingCars
                 .filter { it.currentPosition == winner.currentPosition }
                 .joinToString(",") { it.name.toString() }
