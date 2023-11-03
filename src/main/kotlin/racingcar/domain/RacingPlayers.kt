@@ -1,7 +1,19 @@
 package racingcar.domain
 
-data class RacingPlayers(
-    private val nameOfCars: String,
+import racingcar.util.Message
+
+class RacingPlayers(
+    nameOfCars: String,
     val numberOfTrials: Int,
-    val names: List<String> = nameOfCars.split(",")
-)
+    validation: RacingPlayersValidation
+) {
+
+    val names: List<String>
+
+    init {
+        this.names = nameOfCars.split(",")
+        require(validation.validate(this)) {
+            Message.CAR_NAME_LENGTH_EXCEPTION.message
+        }
+    }
+}
