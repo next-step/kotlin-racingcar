@@ -1,6 +1,7 @@
 package calculator.view
 
 object InputView {
+
     fun input(readln: () -> String): String {
         println("수식을 입력해주세요.")
         val input = readln().let {
