@@ -22,5 +22,6 @@ class CarController(
             cars.move()
             OutputView.printResult(cars.cars)
         }
+        OutputView.printWinners(cars)
     }
 }

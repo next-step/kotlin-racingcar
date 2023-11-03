@@ -20,8 +20,10 @@ object OutputView {
         println("시도할 회수는 몇회인가요?")
     }
 
-    fun printResultTitle(cars: Cars) {
-        println("실행 결과")
+    fun printWinners(cars: Cars) {
+        val winners = cars.findWinners()
+        val winnerNames = winners.joinToString(", ") { it.carName.name }
+        println("${winnerNames}가 최종 우승했습니다.")
     }
 
     fun printResult(result: List<Car>) {

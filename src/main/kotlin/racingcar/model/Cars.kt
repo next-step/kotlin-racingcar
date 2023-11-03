@@ -10,4 +10,9 @@ class Cars {
     fun move() {
         cars.forEach { it.move() }
     }
+
+    fun findWinners(): List<Car> {
+        val maxPosition = cars.maxOf { it.position }
+        return cars.filter { it.position == maxPosition }
+    }
 }
