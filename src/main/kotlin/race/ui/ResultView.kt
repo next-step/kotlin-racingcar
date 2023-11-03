@@ -1,30 +1,33 @@
 package race.ui
 
 import race.domain.RacingCar
+import race.domain.RacingResult
 
-class ResultView {
-    fun showStart() {
+class ResultView() {
+    fun showResult(result: RacingResult) {
+        showStart()
+        showRounds(result.rounds)
+        showWinner(result.getWinners())
+    }
+
+    private fun showStart() {
         println("실행 결과")
     }
 
-    fun showResult(
-        currentRacing: List<RacingCar>,
-        isLast: Boolean = false,
-    ) {
-        currentRacing.forEach { showSpace(car = it) }
-
-        if (!isLast) {
-            showNewLine()
-        }
+    private fun showRounds(result: List<List<RacingCar>>) {
+        result.forEach { showRound(it) }
     }
 
-    fun showWinner(
-        winningCars: List<RacingCar>,
-    ) {
-        println("${winningCars.joinToString(",") { it.name }}가 최종 우승했습니다.")
+    private fun showRound(round: List<RacingCar>) {
+        round.forEach { showSpace(car = it) }
+        showNewLine()
+    }
+
+    private fun showWinner(winners: List<RacingCar>) {
+        println("${winners.joinToString(",") { it.name }}가 최종 우승했습니다.")
     }
 
     private fun showNewLine() = println("")
 
-    private fun showSpace(car: RacingCar) = println("${car.name} : " + "-".repeat(car.space))
+    private fun showSpace(car: RacingCar) = println("${car.name} : ${"-".repeat(car.space)}")
 }
