@@ -29,8 +29,7 @@ class StringCalculator(private val calculatorString: String?) {
 }
 
 fun main() {
-    val test = StringCalculator("2 + 3 + 4 + 6")
-    println("${test.calculating()}")
-    println("${test.calculating()}")
-    println("${test.calculating()}")
+    StringCalculator("2 + 3 * 4 / 2").apply {
+        println("result = ${calculating()}")
+    }
 }
