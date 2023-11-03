@@ -15,7 +15,7 @@ class RacingGameTest {
         val results = racingGame.start(3)
 
         assertThat(results).isEqualTo(
-            GameResults(
+            GameResults.create(
                 Positions(Position("a", 1), Position("b", 0), Position("c", 1)),
                 Positions(Position("a", 1), Position("b", 0), Position("c", 2)),
                 Positions(Position("a", 2), Position("b", 1), Position("c", 3)),
