@@ -1,13 +1,14 @@
 package scenario.steps
 
-import game.Car
-import game.ConsoleInputHandler
-import game.FixedMoveConditionGenerator
-import game.MoveConditionGenerator
 import game.RacingCarGame
-import game.UserInputHandler
-import game.UserMessageDisplay
-import game.UserOutputHandler
+import game.domain.FixedMoveConditionGenerator
+import game.domain.GameResult
+import game.domain.History
+import game.domain.MoveConditionGenerator
+import game.view.ConsoleInputHandler
+import game.view.UserInputHandler
+import game.view.UserMessageDisplay
+import game.view.UserOutputHandler
 import io.cucumber.java.en.And
 import io.cucumber.java.en.Given
 import io.cucumber.java.en.Then
@@ -23,8 +24,7 @@ class RacingCarSteps {
     private var moveConditionGenerator: MoveConditionGenerator = FixedMoveConditionGenerator(0)
     private var userInputHandler: UserInputHandler = ConsoleInputHandler()
     private var userOutputHandler: UserOutputHandler = UserMessageDisplay()
-    private var result: String = ""
-    private var advanceCount: Int = 0
+    private var gameResult: GameResult = GameResult(History(), emptyList())
 
     @Given("자동차 이름 {string},{string},{string}를 입력하고")
     fun `자동차 이름 {CarName1},{CarName2},{CarName3}를 입력하고`(
@@ -51,32 +51,20 @@ class RacingCarSteps {
         }
     }
 
-    @And("모든 자동차가 전진조건이 고정 {int}라고 가정하고")
-    fun `모든 자동차가 전진조건이 고정 {조건}라고 가정하고`(moveCondition: Int) {
-        moveConditionGenerator = FixedMoveConditionGenerator(moveCondition)
-    }
-
     @And("우승자를 저장한다면")
     fun `우승자를 저장한다면`() {
-        userOutputHandler = object : UserOutputHandler {
-            override fun display(cars: List<Car>) {
-                advanceCount += 1
-            }
-
-            override fun displayWinners(winners: List<String>) {
-                result = winners.joinToString()
-            }
+        userOutputHandler = UserOutputHandler { gameResult ->
+            this.gameResult = gameResult
         }
     }
 
-    // <CarName1>는 전진조건이 <조건1>이고 <CarName2>는 전진조건이 <조건2>이며 <CarName3>는 전진조건이 <조건3>라고 가정하고
     @And("{string}는 전진조건이 {int}이고 {string}는 전진조건이 {int}이며 {string}는 전진조건이 {int}라고 가정하고")
     fun `{CarName1}는 전진조건이 {조건1}이고 {CarName2}는 전진조건이 {조건2}이며 {CarName3}는 전진조건이 {조건3}라고 가정하고`(
-        carName1: String,
+        inputCarName1: String,
         condition1: Int,
-        carName2: String,
+        inputCarName2: String,
         condition2: Int,
-        carName3: String,
+        inputCarName3: String,
         condition3: Int
     ) {
         class CyclingMoveConditionGenerator : MoveConditionGenerator {
@@ -94,24 +82,14 @@ class RacingCarSteps {
 
     @When("게임을 진행한다")
     fun `게임을 진행한다`() {
-        RacingCarGame(userInputHandler, userOutputHandler, moveConditionGenerator).let {
-            it.start()
-        }
-    }
-
-    @Then("모든 자동차는 우승자이며 {int}만큼 전진한다")
-    fun `모든 자동차는 우승자이며 {이동거리}만큼 전진한다`(moveCondition: Int) {
-        Assertions.assertAll(
-            { assertThat(result).contains(inputCarName1, inputCarName2, inputCarName3) },
-            { assertThat(advanceCount).isEqualTo(retryCount) }
-        )
+        RacingCarGame(userInputHandler, userOutputHandler, moveConditionGenerator).start()
     }
 
     @Then("우승자는 {string}이며 {int}만큼 전진한다")
-    fun `우승자는 {우승자}"이며 {이동거리}만큼 전진한다`(winner: String, moveCondition: Int) {
+    fun `우승자는 {우승자}"이며 {이동거리}만큼 전진한다`(winner: String, retryCount: Int) {
         Assertions.assertAll(
-            { assertThat(result).contains(winner.split(",")) },
-            { assertThat(advanceCount).isEqualTo(retryCount) }
+            { assertThat(gameResult.winners.joinToString()).contains(winner.split(",")) },
+            { assertThat(gameResult.history.rounds.size).isEqualTo(retryCount) }
         )
     }
 }

@@ -1,4 +1,4 @@
-package game
+package game.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
@@ -16,7 +16,7 @@ class CarTest {
         var car = Car.of("honux")
 
         // when
-        car.move(moveCondition)
+        car = car.move(moveCondition)
 
         // then
         assertThat(car.isSamePosition(1)).isTrue()
@@ -36,28 +36,11 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = ["pobi,3,pobi : ---", "crong,2,crong : --", "honux,1,honux : -"])
-    fun `자동차 이름과 이동거리를 그린다`(name: String, retryCount: Int, expected: String) {
-        // given
-        var car = Car.of(name)
-        for (i in 1..retryCount) {
-
-            car.move(advanceCount)
-        }
-
-        // when
-        val actual = car.draw()
-
-        // then
-        assertThat(actual).contains(expected)
-    }
-
-    @ParameterizedTest
     @CsvSource(value = ["0:false", "1:true", "2:false"], delimiter = ':')
     fun `자동차 위치와 비교하여 같으면 true를 반환하고 다르면 false를 반환한다`(position: Int, expected: Boolean) {
         // given
         var car = Car.of("honux")
-        car.move(advanceCount)
+        car = car.move(advanceCount)
 
         // when
         val actual = car.isSamePosition(position)

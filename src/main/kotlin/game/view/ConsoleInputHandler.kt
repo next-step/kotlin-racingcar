@@ -1,6 +1,8 @@
-package game
+package game.view
 
-class ConsoleInputHandler : UserInputHandler {
+import game.domain.ErrorMessage
+
+class ConsoleInputHandler(private val inputWrapper: InputWrapper = ConsoleInputWrapper()) : UserInputHandler {
 
     override fun askForCarNames(): String {
         println(CAR_NAMES_QUESTION)
@@ -13,7 +15,8 @@ class ConsoleInputHandler : UserInputHandler {
     }
 
     private fun readInput(): String {
-        return readlnOrNull() ?: throw IllegalArgumentException(ErrorMessage.INVALID_INPUT_ERROR_MSG.message)
+        return inputWrapper.readlnOrNull()
+            ?: throw IllegalArgumentException(ErrorMessage.INVALID_INPUT_ERROR_MSG.message)
     }
 
     companion object {
