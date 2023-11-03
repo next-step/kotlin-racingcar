@@ -21,7 +21,7 @@ class CarFactoryTest : StringSpec({
         val createdCars = carFactory.createsCars(carNames)
 
         createdCars.getCars().forEachIndexed { index, car ->
-              car.name shouldBe carNames[index]
+            car.name shouldBe carNames[index]
         }
     }
 })
