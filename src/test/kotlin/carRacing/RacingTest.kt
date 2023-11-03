@@ -7,6 +7,7 @@ import carRacing.testcontroller.TestFalseMovementController
 import carRacing.testcontroller.TestTrueMovementController
 import carRacing.view.CarInfo
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
@@ -35,5 +36,19 @@ class RacingTest {
         val result: List<Car> = moveRacing.getRaceResult(carInfoList, tryCount)
 
         assertThat(result[0].position).isGreaterThan(result[1].position)
+    }
+
+    @Test
+    fun `Position 값을 비교하여 우승자의 이름을 반환한다`() {
+        val moveRacing = Racing(RandomMovementCarFactory())
+
+        val carInfoList: List<CarInfo> = listOf(
+            CarInfo("a", TestTrueMovementController()),
+            CarInfo("b", TestFalseMovementController())
+        )
+
+        val result: List<Car> = moveRacing.getRaceResult(carInfoList, 1)
+
+        assertThat(moveRacing.getWinnerNames(result)).isEqualTo(listOf("a"))
     }
 }

@@ -18,12 +18,13 @@ class Racing(private val carFactory: CarFactory) {
         return start(carList, tryCount)
     }
 
-    // 사용하지는 않으나 미리 구현, 테스트는 X
-    fun getWinners(carList: List<Car>): List<Car> {
+    private fun getWinners(carList: List<Car>): List<Car> {
         val maxPosition: Int = carList.maxBy { it.position }.position
 
         return carList.filter { it.position == maxPosition }
     }
+
+    fun getWinnerNames(carList: List<Car>): List<String> = getWinners(carList).mapIndexed { index, car -> car.name ?: "Unknown $index" }
 
     private fun start(carList: List<Car>, tryCount: Int): List<Car> {
         var copyCarList = carList.map { it }
