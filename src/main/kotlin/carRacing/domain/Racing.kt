@@ -6,8 +6,12 @@ import carRacing.view.OutputView
 
 class Racing(private val carFactory: CarFactory) {
 
-    fun getRaceResult(carCount: Int, tryCount: Int, carInfoList: List<CarInfo>): List<Car> {
-        val carList: List<Car> = carFactory.createCars(carInfoList)
+    fun getRaceResult(carCount: Int, tryCount: Int, carInfoList: List<CarInfo> = listOf()): List<Car> {
+        val carList: List<Car> = if (carInfoList.isEmpty()) {
+            carFactory.createCars(carCount)
+        } else {
+            carFactory.createCars(carInfoList)
+        }
 
         return start(carList, tryCount)
     }

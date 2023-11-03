@@ -3,6 +3,9 @@ package carRacing.serviceimpl
 import carRacing.domain.Car
 import carRacing.view.CarInfo
 
+/*
+* RandomMovementController를 주입하는 CarFactory
+* */
 class RandomMovementCarFactory : DefaultCarFactory() {
     override fun createCars(carCount: Int): List<Car> =
         List(carCount) { Car(movementController = RandomMovementController()) }

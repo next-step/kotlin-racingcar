@@ -5,6 +5,7 @@ import carRacing.serviceimpl.DefaultCarFactory
 import carRacing.serviceimpl.RandomMovementController
 import carRacing.testcontroller.TestFalseMovementController
 import carRacing.testcontroller.TestTrueMovementController
+import carRacing.view.CarInfo
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
@@ -23,10 +24,10 @@ class DefaultCarFactoryTest {
 
     @Test
     fun `순서대로 주어진 MovementController 를 주입한 Car 객체를 순서대로 생성한다`() {
-        val carInfoList: List<Map<String, Any>> = listOf(
-            mapOf("movementController" to RandomMovementController()),
-            mapOf("movementController" to TestTrueMovementController()),
-            mapOf("movementController" to TestFalseMovementController())
+        val carInfoList: List<CarInfo> = listOf(
+            CarInfo("a", RandomMovementController()),
+            CarInfo("b", TestTrueMovementController()),
+            CarInfo("c", TestFalseMovementController())
         )
 
         val result: List<Car> = defaultCarFactory.createCars(carInfoList)
