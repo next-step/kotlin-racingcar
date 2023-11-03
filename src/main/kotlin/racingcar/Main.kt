@@ -1,9 +1,11 @@
 package racingcar
 
+import racingcar.domain.MovingCondition
 import racingcar.domain.RacingPlayers
 import racingcar.domain.RacingPlayersValidation
-import racingcar.domain.RacingProperty
 import racingcar.domain.RacingRule
+import racingcar.domain.RacingStadium
+import racingcar.domain.RandomRacingRule
 import racingcar.util.Message
 import racingcar.view.ResultView
 import racingcar.view.View
@@ -25,9 +27,9 @@ fun main() {
     )
 
     val intRandomGenerator = { start: Int, end: Int -> IntRange(start, end).random() }
-    val property = RacingProperty(Racing.RANDOM_START, Racing.RANDOM_END, Racing.MOVE_FORWARD_CONDITION)
-    val racingRule = RacingRule(intRandomGenerator, property)
+    val property = MovingCondition(Racing.RANDOM_START, Racing.RANDOM_END, Racing.MOVE_FORWARD_CONDITION)
+    val randomRacingRule: RacingRule = RandomRacingRule(intRandomGenerator, property)
 
-    val result = RacingController(players).start(racingRule)
+    val result = RacingStadium(players, randomRacingRule).gameStart()
     ResultView.racingResultPrint(result)
 }
