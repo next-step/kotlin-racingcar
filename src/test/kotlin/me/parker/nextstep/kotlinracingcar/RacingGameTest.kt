@@ -5,10 +5,12 @@ import me.parker.nextstep.kotlinracingcar.rule.TestRacingGameMoveRule
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class RacingGameTest {
 
-    private val testNamesOfRacingCar = "pobi,crong,honux"
+    private val testNamesOfRacingCar = listOf("pobi", "crong", "honux")
 
     @Test
     fun `자동차 이름 리스트와 시도할 횟수를 가지고 자동차 게임 생성`() {
@@ -22,9 +24,17 @@ class RacingGameTest {
 
     @Test
     fun `공백의 자동차 이름 리스트 입력시 자동차 게임 생성 에러`() {
-        assertThatThrownBy { RacingGame("", 5, RandomRacingGameMoveRule()) }
+        assertThatThrownBy { RacingGame(listOf(), 5, RandomRacingGameMoveRule()) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("자동차 이름 입력은 공백일 수 없습니다.")
+            .hasMessage("자동차 이름은 1개 이상 존재해야 합니다.")
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [0, -1, -2, -3, -4, -5])
+    fun `1 미만 시도 횟수 입력시 자동차 게임 생성 에러`(input: Int) {
+        assertThatThrownBy { RacingGame(listOf("park"), input, RandomRacingGameMoveRule()) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("시도 횟수는 1 이상이어야 합니다.")
     }
 
     @Test

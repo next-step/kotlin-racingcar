@@ -9,7 +9,8 @@ fun main(args: Array<String>) {
     val namesOfRacingCar: String = ConsoleInput.inputNamesOfRacingCar()
     val numOfAttempts: Int = ConsoleInput.inputNumOfAttempts()
 
-    val racingGame = RacingGame(namesOfRacingCar, numOfAttempts, RandomRacingGameMoveRule())
+    val racingGame = RacingGame(namesOfRacingCar.split(ConsoleInput.NAME_DELIMITER),
+        numOfAttempts, RandomRacingGameMoveRule())
     val racingGameResult = racingGame.start()
 
     ConsoleResult.outputGameResult(racingGameResult)
