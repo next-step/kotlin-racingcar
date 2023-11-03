@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingCar.domain
 
 private const val TRY_MIN_COUNT = 1
 

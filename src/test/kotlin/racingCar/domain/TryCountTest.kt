@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingCar.domain
 
 import io.kotest.assertions.throwables.shouldNotThrowAnyUnit
 import io.kotest.assertions.throwables.shouldThrowWithMessage
@@ -16,7 +16,7 @@ class TryCountTest : StringSpec({
 
     "시도 횟수가 1 이상이면 예외가 발생하지 않는다." {
         shouldNotThrowAnyUnit {
-            CarCount(1)
+            TryCount(1)
         }
     }
 })

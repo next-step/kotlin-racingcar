@@ -30,14 +30,6 @@ class CalculatorTest : DescribeSpec({
             }
         }
 
-        context("수식의 개수가 3개라면") {
-            val expressions = listOf("10", "+", "5")
-
-            it("계산 결과를 반환한다.") {
-                Calculator.calculate(expressions) shouldBe Operand.of(15.0)
-            }
-        }
-
         makeSampleExpressions().forEach { (expressions, result) ->
             context("수식이 주어지면 (수식: $expressions)") {
                 it("계산 결과를 반환한다.") {
