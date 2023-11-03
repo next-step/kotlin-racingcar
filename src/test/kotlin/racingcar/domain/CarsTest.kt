@@ -10,7 +10,7 @@ class CarsTest {
 
     @Test
     fun `차량은 생성 시 위치를 0으로 초기화한다`() {
-        val cars = Cars(createStubRandomGenerator(), listOf("a", "b", "c", "d", "e"))
+        val cars = Cars.create(createStubRandomGenerator(), listOf("a", "b", "c", "d", "e"))
 
         Assertions.assertThat(cars.positions)
             .isEqualTo(
@@ -26,11 +26,11 @@ class CarsTest {
 
     @Test
     fun `여러 차량 생성 후 이동 및 정지`() {
-        val cars = Cars(createStubRandomGenerator(MOVE, STOP, MOVE), listOf("a", "b", "c"))
+        val cars = Cars.create(createStubRandomGenerator(MOVE, STOP, MOVE), listOf("a", "b", "c"))
 
-        cars.move()
+        val newCars = cars.move()
 
-        Assertions.assertThat(cars.positions)
+        Assertions.assertThat(newCars.positions)
             .isEqualTo(
                 Positions(
                     Position("a", 1),
@@ -47,13 +47,11 @@ class CarsTest {
             "b" to listOf(STOP, STOP, MOVE),
             "c" to listOf(MOVE, MOVE, MOVE),
         ).flatMap { it.second }
-        val cars = Cars(createStubRandomGenerator(numbers), listOf("a", "b", "c"))
+        val cars = Cars.create(createStubRandomGenerator(numbers), listOf("a", "b", "c"))
 
-        cars.move()
-        cars.move()
-        cars.move()
+        val newCars = cars.move().move().move()
 
-        Assertions.assertThat(cars.positions)
+        Assertions.assertThat(newCars.positions)
             .isEqualTo(
                 Positions(
                     Position("a", 2),

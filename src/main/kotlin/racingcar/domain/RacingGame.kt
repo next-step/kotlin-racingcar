@@ -4,16 +4,16 @@ class RacingGame(
     numberGenerator: NumberGenerator,
     names: List<String>,
 ) {
-    private val cars: Cars
+    private var cars: Cars
 
     init {
-        cars = Cars(numberGenerator, names)
+        cars = Cars.create(numberGenerator, names)
     }
 
     fun start(tryCount: Int): GameResults {
         val positions = mutableListOf<Positions>()
         repeat(tryCount) {
-            cars.move()
+            cars = cars.move()
             positions.add(cars.positions)
         }
         return GameResults(positions)

@@ -1,7 +1,7 @@
 package racingcar
 
-import racingcar.domain.RacingGame
 import racingcar.domain.NumberGenerator
+import racingcar.domain.RacingGame
 import racingcar.view.InputView
 import racingcar.view.ResultView
 

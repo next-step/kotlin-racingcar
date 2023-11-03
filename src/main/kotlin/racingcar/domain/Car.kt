@@ -1,13 +1,12 @@
 package racingcar.domain
 
-class Car(val name: String = "") {
-    var position: Int = 0
-        private set
+class Car(val name: String = "", val position: Int = 0) {
 
-    fun move(value: Int) {
+    fun move(value: Int): Car {
         if (value >= MOVING_THRESHOLD) {
-            position++
+            return Car(name, position + 1)
         }
+        return this
     }
 
     companion object {
