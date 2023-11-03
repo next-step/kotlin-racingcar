@@ -19,7 +19,8 @@ class CarRacingApplication {
         @JvmStatic
         fun main(args: Array<String>) {
             val (carNames, tryCount) = InputView.inputForRacing()
-            val result = CarRacing(repository, numberStrategy, recorder).race(carNames, tryCount)
+            val cars = repository.createCars(carNames)
+            val result = CarRacing(numberStrategy, recorder, cars).race(tryCount)
             ResultView.printRacingResult(result)
         }
     }

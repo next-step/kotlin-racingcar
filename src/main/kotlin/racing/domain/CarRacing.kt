@@ -1,16 +1,15 @@
 package racing.domain
 
 class CarRacing(
-    private val repository: CarRepository,
     private val numberStrategy: NumberStrategy,
-    private val recorder: CarRacingRecordStrategy
+    private val recorder: CarRacingRecordStrategy,
+    private val cars: List<Car>,
 ) {
 
-    fun race(carNames: List<String>, tryCount: Int): CarRacingResult {
-        val cars = repository.createCars(carNames)
+    fun race(tryCount: Int): CarRacingResult {
         val results = raceWithRecordResult(cars, tryCount)
         val winners = recorder.findWinners(cars)
-        return CarRacingResult(cars, results, winners)
+        return CarRacingResult(results, winners)
     }
 
     private fun raceWithRecordResult(cars: List<Car>, tryCount: Int): List<List<Car>> {
