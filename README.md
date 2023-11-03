@@ -53,6 +53,6 @@ pobi, honux가 최종 우승했습니다.
 
 
 - [x] `Car` 객체의 함수명 변경, 제약 조건 상수화
-- [ ] `RacingCarErrorMessage`를 `RacingCarRoad`의 내부로 이동하여 의존도 낮추기
+- [x] `RacingCarRoad`에 해당하는 에러 메세지는 `RacingCarRoad`가 관리한다.
 - [ ] `List<Car>`를 일급 컬렉션으로 변경하여 사용
 - [ ] 사용하지 않는 함수는 삭제
