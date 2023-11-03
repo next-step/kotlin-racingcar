@@ -1,11 +1,19 @@
 package racingcar.presentation
 
 import racingcar.domain.Car
+import racingcar.domain.Cars
 
 class OutPutManager {
 
     fun printCars(cars: List<Car>) {
         cars.forEach {
+            println("${it.name} : ${"-".repeat(it.distance)}")
+        }
+        println()
+    }
+
+    fun printCars(cars: Cars) {
+        cars.cars.forEach {
             println("${it.name} : ${"-".repeat(it.distance)}")
         }
         println()
