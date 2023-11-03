@@ -1,8 +1,9 @@
-package racingcar
+package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import racingcar.OnlyTrueMoveCondition
 
 class RacingGameRecorderTest {
     @Test

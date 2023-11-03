@@ -1,9 +1,11 @@
-package racingcar
+package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import racingcar.OnlyFalseMoveCondition
+import racingcar.OnlyTrueMoveCondition
 
 class RacingGameTest {
     @ParameterizedTest
@@ -62,7 +64,7 @@ class RacingGameTest {
 
         RacingGame().play(cars, tryMoveCount, gameRecorder)
 
-        val winnersName = gameRecorder.gameResultRecord.winners?.names
+        val winnersName = gameRecorder.gameResultRecord.winners.names
 
         assertThat(winnersName).isEqualTo(listOf("winner"))
     }
