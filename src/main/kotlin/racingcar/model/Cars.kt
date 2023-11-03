@@ -3,21 +3,18 @@ package racingcar.model
 data class Cars(
     val cars: List<Car>,
 ) {
-    fun move(moveCondition: MoveCondition): List<Car> {
-        this.cars.forEach { if (moveCondition.isMovable()) { it.move() } }
-        return this.cars
+    fun move() {
+        this.cars.forEach { it.move() }
     }
 
     fun getWinner(): List<Car> {
-        val maxPosition = cars.maxBy { it.position }.position
+        val maxPosition = cars.maxOf { it.position }
         return cars.filter { it.position == maxPosition }
     }
 
     companion object {
-        fun from(carList: String): Cars {
-            return Cars(carList.split(SEPARATOR).map { Car(it) })
+        fun from(carList: List<String>): Cars {
+            return Cars(carList.map { Car(it) })
         }
-
-        private const val SEPARATOR = ","
     }
 }
