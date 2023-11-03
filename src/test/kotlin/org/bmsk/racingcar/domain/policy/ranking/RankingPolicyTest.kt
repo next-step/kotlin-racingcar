@@ -23,7 +23,7 @@ class RankingPolicyTest : BehaviorSpec({
         `when`("다수의 우승자를 허락하는 정책이다.") {
             val rankingPolicy = MultipleWinnersAllowedImpl()
             then("우승자는 하나이다.") {
-                rankingPolicy.determineWinner(racingCarRoad).cars.size shouldBe 1
+                rankingPolicy.determineWinner(racingCarRoad).winnerNames.size shouldBe 1
             }
         }
     }
@@ -48,7 +48,7 @@ class RankingPolicyTest : BehaviorSpec({
             `when`("다수의 우승자를 허락하는 정책이다.") {
                 val rankingPolicy = MultipleWinnersAllowedImpl()
                 then("우승자는 ${numberOfWinners}명이다.") {
-                    rankingPolicy.determineWinner(racingCarRoad).cars.size shouldBe numberOfWinners
+                    rankingPolicy.determineWinner(racingCarRoad).winnerNames.size shouldBe numberOfWinners
                 }
             }
             `when`("하나의 우승자만 허락하는 정책이다.") {
