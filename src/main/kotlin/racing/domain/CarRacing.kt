@@ -2,6 +2,7 @@ package racing.domain
 
 class CarRacing(
     private val repository: CarRepository,
+    private val numberStrategy: NumberStrategy,
     private val recorder: CarRacingRecordStrategy
 ) {
 
@@ -21,11 +22,7 @@ class CarRacing(
 
     private fun List<Car>.racePerRound() {
         forEach { car ->
-            car.moveOrStop(movableRange.random())
+            car.moveOrStop(numberStrategy.getNumber())
         }
-    }
-
-    companion object {
-        private val movableRange = 0..9
     }
 }
