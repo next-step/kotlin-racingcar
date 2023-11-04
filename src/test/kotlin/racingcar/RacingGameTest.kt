@@ -38,4 +38,36 @@ class RacingGameTest {
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("음수는 입력할 수 없습니다.")
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = [4, 5, 6, 7, 8, 9])
+    fun `무작위 수 4 이상이면 자동차 전진`(num : Int) {
+
+        val car = Car(moveCondition = RandomNumberHolderImpl()).apply {
+            moveCondition = object : RandomNumberHolder {
+                override fun getRandomNumber(): Int {
+                    return num
+                }
+            }
+        }
+
+        car.move()
+        car.position shouldBe 1
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [1, 2, 3])
+    fun `무작위 수 4 이하면 정지`(num : Int) {
+
+        val car = Car(moveCondition = RandomNumberHolderImpl()).apply {
+            moveCondition = object : RandomNumberHolder {
+                override fun getRandomNumber(): Int {
+                    return num
+                }
+            }
+        }
+
+        car.move()
+        car.position shouldBe 0
+    }
 }

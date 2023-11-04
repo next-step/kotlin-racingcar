@@ -4,7 +4,7 @@ data class InputView(
     var gameCount: Int = 0,
     var cars: List<Car> = listOf()
 ) {
-    fun inputGameCount(): Unit {
+    fun inputGameCount() {
         println("시도할 회수는 몇회인가요?")
         val input = readln().toInt()
         validate(input)

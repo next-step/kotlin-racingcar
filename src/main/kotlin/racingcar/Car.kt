@@ -1,8 +1,8 @@
 package racingcar
 
 class Car(
-    private var position: Int = 0,
-    private val moveCondition: RandomNumberHolder
+    var position: Int = 0,
+    var moveCondition: RandomNumberHolder
 ) {
     fun move() {
         if (moveCondition.getRandomNumber() >= 4) {
