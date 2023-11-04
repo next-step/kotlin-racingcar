@@ -4,7 +4,9 @@ import racingcar.component.Cars
 import racingcar.model.RacingcarGameInput
 import racingcar.view.RacingcarGameResultView
 
-class RacingcarGame {
+class RacingcarGame(
+    private val resultView: RacingcarGameResultView
+) {
     fun play(input: RacingcarGameInput) {
         val cars = Cars.create(input.carNames)
 
@@ -12,13 +14,13 @@ class RacingcarGame {
     }
 
     private fun startGame(cars: Cars, round: Int) {
-        RacingcarGameResultView.printGameStart()
+        resultView.printGameStart()
 
         repeat(round) {
             cars.moveCars()
-            RacingcarGameResultView.printCarsDistance(cars)
+            resultView.printCarsDistance(cars)
         }
 
-        RacingcarGameResultView.printGameWinners(cars)
+        resultView.printGameWinners(cars)
     }
 }

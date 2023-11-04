@@ -3,10 +3,7 @@ package racingcar.view
 import racingcar.component.Cars
 import racingcar.model.Car
 
-object RacingcarGameResultView {
-    private const val CAR_DISTANCE_CHARACTER = "-"
-    private const val WINNER_DISPLAY_SEPARATOR = ", "
-
+class RacingcarGameResultView {
     fun printGameStart() {
         println("실행 결과")
     }
@@ -29,5 +26,10 @@ object RacingcarGameResultView {
             .joinToString(WINNER_DISPLAY_SEPARATOR) { it.name }
 
         println("${winnersNameString}가 최종 우승했습니다.\n")
+    }
+
+    companion object {
+        private const val CAR_DISTANCE_CHARACTER = "-"
+        private const val WINNER_DISPLAY_SEPARATOR = ", "
     }
 }
