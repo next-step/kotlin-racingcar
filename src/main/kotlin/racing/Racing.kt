@@ -1,14 +1,15 @@
 package racing
 
-import racing.car.CarManager
+import racing.car.Car
+import racing.car.CarOperation
 
-class Racing() {
+class Racing(private val carOperations: CarOperation) {
 
-    private val racingResultList = mutableListOf<List<Int>>()
+    private val racingResultList = mutableListOf<List<Car>>()
 
     fun startRacing(racingCnt: Int) {
         for (i in 0 until racingCnt) {
-            CarManager().moveCar()
+            carOperations.moveCar()
             saveRacingResult()
         }
     }
@@ -16,7 +17,7 @@ class Racing() {
     fun getRacingResultList() = racingResultList.toList()
 
     private fun saveRacingResult() {
-        racingResultList.add(CarManager().getCarPositionList())
+        racingResultList.add(carOperations.getCarList())
     }
 
     fun validateInputData(inputDAta: String) {

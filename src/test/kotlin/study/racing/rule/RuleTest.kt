@@ -7,7 +7,7 @@ class RuleTest {
     @Test
     fun `항상 움직이는 규칙이 등록되고, 움직임 판단 여부를 요청했을 때, 결과는 항상 참이다`() {
         // given: 항상 움직이는 규칙이 등록되한다
-        val rule = TestRuleMove()
+        val rule = FakeRule()
 
         // when: 움직임 판단 여부를 요청한다.
         val actual = rule.isMove()
