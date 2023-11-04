@@ -1,12 +1,11 @@
 package racingcar
 
 import racingcar.component.Cars
-import racingcar.view.RacingcarGameInputView
+import racingcar.model.RacingcarGameInput
 import racingcar.view.RacingcarGameResultView
 
 class RacingcarGame {
-    fun play() {
-        val input = RacingcarGameInputView.getInput()
+    fun play(input: RacingcarGameInput) {
         val cars = Cars.create(input.carNames)
 
         startGame(cars, input.roundNumber)

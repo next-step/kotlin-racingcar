@@ -3,9 +3,9 @@ package racingcar.view
 import racingcar.component.RacingcarGameInputValidator
 import racingcar.model.RacingcarGameInput
 
-object RacingcarGameInputView {
-    private val racingcarGameInputValidator = RacingcarGameInputValidator()
-
+class RacingcarGameInputView(
+    private val racingcarGameInputValidator: RacingcarGameInputValidator = RacingcarGameInputValidator()
+) {
     fun getInput(): RacingcarGameInput {
         val carNames = getCarNames()
         val roundNumber = getRoundNumber()
