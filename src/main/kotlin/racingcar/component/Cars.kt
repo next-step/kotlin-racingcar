@@ -1,6 +1,7 @@
 package racingcar.component
 
 import racingcar.model.Car
+import kotlin.random.Random
 
 class Cars(
     private val cars: List<Car>
@@ -19,7 +20,16 @@ class Cars(
         }
     }
 
+    fun moveCars(condition: () -> Boolean = DEFAULT_MOVEMENT_CONDITION) {
+        cars.filter { condition() }
+            .forEach {
+                it.move()
+            }
+    }
+
     companion object {
+        val DEFAULT_MOVEMENT_CONDITION = { Random.nextInt(0, 10) >= 4 }
+
         fun create(carNames: List<String>): Cars {
             val cars = carNames.map {
                 Car(it)
