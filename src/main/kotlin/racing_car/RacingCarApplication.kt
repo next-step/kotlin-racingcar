@@ -8,7 +8,7 @@ fun main() {
 
     val racingGame = RacingGame(
         _cars = InputView.inputCars(),
-        _racingRound = InputView.inputRacingRound(),
+        racingRound = InputView.inputRacingRound(),
     )
 
     ResultView.printResultTitle()
