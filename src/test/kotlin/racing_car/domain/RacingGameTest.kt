@@ -3,7 +3,6 @@ package racing_car.domain
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.datatest.withData
-import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldBe
 
 class RacingGameTest : FunSpec({
@@ -15,9 +14,9 @@ class RacingGameTest : FunSpec({
         ) { numberOfCars ->
 
             val cars = List(numberOfCars) { Car(name = "name") }
-            val racingGame = RacingGame(_cars = cars, racingRound = 10)
+            val racingGame = RacingGame(cars = cars, racingRound = 10)
 
-            racingGame.cars.size shouldBe numberOfCars
+            racingGame.carInfos.size shouldBe numberOfCars
         }
     }
 
@@ -27,7 +26,7 @@ class RacingGameTest : FunSpec({
             0, 1,
         ) { numberOfCars ->
             val cars = List(numberOfCars) { Car(name = "name") }
-            shouldThrow<IllegalArgumentException> { RacingGame(_cars = cars, racingRound = 10) }
+            shouldThrow<IllegalArgumentException> { RacingGame(cars = cars, racingRound = 10) }
         }
     }
 
@@ -38,7 +37,7 @@ class RacingGameTest : FunSpec({
         ) { racingRound ->
 
             val cars = List(racingRound) { Car(name = "name") }
-            val racingGame = RacingGame(_cars = cars, racingRound = racingRound)
+            val racingGame = RacingGame(cars = cars, racingRound = racingRound)
 
             var actualRacingRound = 0
             while (racingGame.isContinuable) {
@@ -58,7 +57,7 @@ class RacingGameTest : FunSpec({
         ) { actualRound ->
 
             val cars = List(10) { Car(name = "name") }
-            val racingGame = RacingGame(_cars = cars, racingRound = racingRound)
+            val racingGame = RacingGame(cars = cars, racingRound = racingRound)
 
             shouldThrow<IllegalStateException> {
                 for (i in 1..actualRound) {
@@ -75,7 +74,7 @@ class RacingGameTest : FunSpec({
         ) { racingRound ->
             shouldThrow<IllegalArgumentException> {
                 val cars = List(10) { Car(name = "name") }
-                RacingGame(_cars = cars, racingRound = racingRound)
+                RacingGame(cars = cars, racingRound = racingRound)
             }
         }
     }
@@ -84,34 +83,13 @@ class RacingGameTest : FunSpec({
 
         val racingRound = 10
         val cars = List(10) { Car(name = "name", moveStrategy = alwaysMoveStrategy) }
-        val racingGame = RacingGame(_cars = cars, racingRound = racingRound)
+        val racingGame = RacingGame(cars = cars, racingRound = racingRound)
 
         for (i in 1..racingRound) {
             racingGame.move()
-            racingGame.cars.forEach {
+            racingGame.carInfos.forEach {
                 it.position shouldBe i
             }
-        }
-    }
-
-    context("부정행위가 통하지 않는다.(racingGame 외부에서 자동차를 변경시키지 못한다.") {
-        val actualRound = 5
-        val racingGame = RacingGame(
-            _cars = List(10) { Car(name = "name", moveStrategy = alwaysMoveStrategy) },
-            racingRound = 10
-        )
-        for (i in 1..actualRound) {
-            racingGame.move()
-        }
-
-        // 부정행위!!!
-        racingGame.cars.forEach {
-            it.move()
-            it.move()
-        }
-
-        racingGame.cars.forAll {
-            it.position shouldBe actualRound
         }
     }
 
@@ -124,7 +102,7 @@ class RacingGameTest : FunSpec({
             Car(name = "l3", moveStrategy = neverMoveStrategy),
         )
         val racingGame = RacingGame(
-            _cars = cars,
+            cars = cars,
             racingRound = 10,
         )
 
@@ -133,7 +111,7 @@ class RacingGameTest : FunSpec({
         }
 
         val winners = racingGame.judgeWinners()
-        winners.map { it.name } shouldBe listOf("w1", "w2")
+        winners shouldBe listOf("w1", "w2")
     }
 
     context("자동차 경주가 끝나기 전에 우승자를 확인하는 경우 IllegalStateException throw") {
@@ -145,7 +123,7 @@ class RacingGameTest : FunSpec({
             Car(name = "l3", moveStrategy = neverMoveStrategy),
         )
         val racingGame = RacingGame(
-            _cars = cars,
+            cars = cars,
             racingRound = 10,
         )
 
