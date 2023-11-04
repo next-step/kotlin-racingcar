@@ -1,13 +1,39 @@
 package racing_car.domain
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
 
 class CarTest : FunSpec({
 
+    context("자동차 생성 테스트") {
+        withData(
+            nameFn = { "name : ${it.first}, position : ${it.second}" },
+            "a" to 0,
+            "ab" to 10,
+            "abc" to 1,
+            "abcd" to 10,
+            "abcde" to 100,
+        ) { (name, position) ->
+            val car = Car(name = name, position = position)
+            car.name shouldBe name
+            car.position shouldBe position
+        }
+    }
+
+    context("자동차 이름이 5자 초과인 경우 IllegalArgumentException throw") {
+        withData(
+            nameFn = { "name : $it" },
+            "abcdef",
+            "abcdeaaaaa"
+        ) { name ->
+            shouldThrow<IllegalArgumentException> { Car(name = name) }
+        }
+    }
+
     context("자동차의 초기 위치는 0이다.") {
-        val car = Car()
+        val car = Car(name = "name")
         car.position shouldBe 0
     }
 
@@ -17,7 +43,7 @@ class CarTest : FunSpec({
             1, 5, 12,
         ) { numberOfMove ->
 
-            val car = Car(moveStrategy = alwaysMoveStrategy)
+            val car = Car(name = "name", moveStrategy = alwaysMoveStrategy)
             repeat(numberOfMove) {
                 car.move()
             }
@@ -31,7 +57,7 @@ class CarTest : FunSpec({
             1, 5, 12,
         ) { numberOfMove ->
 
-            val car = Car(moveStrategy = neverMoveStrategy)
+            val car = Car(name = "name", moveStrategy = neverMoveStrategy)
             repeat(numberOfMove) {
                 car.move()
             }

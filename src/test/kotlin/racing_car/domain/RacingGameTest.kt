@@ -14,7 +14,7 @@ class RacingGameTest : FunSpec({
             2, 13, 12, 1000,
         ) { numberOfCars ->
 
-            val cars = List(numberOfCars) { Car() }
+            val cars = List(numberOfCars) { Car(name = "name") }
             val racingGame = RacingGame(_cars = cars, racingRound = 10)
 
             racingGame.cars.size shouldBe numberOfCars
@@ -26,7 +26,7 @@ class RacingGameTest : FunSpec({
             nameFn = { "numberOfCars : $it" },
             0, 1,
         ) { numberOfCars ->
-            val cars = List(numberOfCars) { Car() }
+            val cars = List(numberOfCars) { Car(name = "name") }
             shouldThrow<IllegalArgumentException> { RacingGame(_cars = cars, racingRound = 10) }
         }
     }
@@ -37,7 +37,7 @@ class RacingGameTest : FunSpec({
             2, 13, 12, 30,
         ) { racingRound ->
 
-            val cars = List(racingRound) { Car() }
+            val cars = List(racingRound) { Car(name = "name") }
             val racingGame = RacingGame(_cars = cars, racingRound = racingRound)
 
             var actualRacingRound = 0
@@ -57,7 +57,7 @@ class RacingGameTest : FunSpec({
             6, 10,
         ) { actualMove ->
 
-            val cars = List(10) { Car() }
+            val cars = List(10) { Car(name = "name") }
             val racingGame = RacingGame(_cars = cars, racingRound = racingRound)
 
             shouldThrow<IllegalStateException> {
@@ -74,7 +74,7 @@ class RacingGameTest : FunSpec({
             0, -1, -13, -30,
         ) { racingRound ->
             shouldThrow<IllegalArgumentException> {
-                val cars = List(10) { Car() }
+                val cars = List(10) { Car(name = "name") }
                 RacingGame(_cars = cars, racingRound = racingRound)
             }
         }
@@ -83,7 +83,7 @@ class RacingGameTest : FunSpec({
     context("자동차 경주에 포함된 자동차들이 올바르게 이동한다.") {
 
         val racingRound = 10
-        val cars = List(10) { Car(moveStrategy = alwaysMoveStrategy) }
+        val cars = List(10) { Car(name = "name", moveStrategy = alwaysMoveStrategy) }
         val racingGame = RacingGame(_cars = cars, racingRound = racingRound)
 
         for (i in 1..racingRound) {
@@ -97,7 +97,7 @@ class RacingGameTest : FunSpec({
     context("부정행위가 통하지 않는다.(racingGame 외부에서 자동차를 변경시키지 못한다.") {
         val actualMove = 5
         val racingGame = RacingGame(
-            _cars = List(10) { Car(moveStrategy = alwaysMoveStrategy) },
+            _cars = List(10) { Car(name = "name", moveStrategy = alwaysMoveStrategy) },
             racingRound = 10
         )
         for (i in 1..actualMove) {

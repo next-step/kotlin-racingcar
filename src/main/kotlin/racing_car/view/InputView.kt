@@ -5,12 +5,15 @@ import racing_car.domain.Car
 object InputView {
 
     fun inputCars(): List<Car> {
-        println("자동차 대수는 몇 대인가요?")
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
 
-        val numberOfCars = readlnOrNull()?.toIntOrNull()
-        require(numberOfCars != null && numberOfCars > 0) { "자동차 대수는 자연수값입니다." }
+        val carNames = readlnOrNull()
+            ?.split(",")
+            ?.map(String::trim)
 
-        return List(numberOfCars) { Car() }
+        requireNotNull(carNames) { "경주할 자동차 이름이 잘못 입력되었습니다." }
+
+        return carNames.map { Car(name = it) }
     }
 
     fun inputRacingRound(): Int {
