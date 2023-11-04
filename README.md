@@ -42,15 +42,18 @@ pobi, honux가 최종 우승했습니다.
 
 ## 사전 구현 계획
 
-- 위치 클래스 `Position`
-    - 프로퍼티: `xPos`,
+- [x] 위치 - `Position`
+- [x] 자동차 - `Car`
+- [x] 자동차의 이동 정책 - `MovementPolicy`
+- [x] 자동차들의 상태들을 관리 - `RacingCarRoad`
+- [x] 우승자를 결정하는 정책 - `RankingPolicy`
+- [x] 자동차에 이름을 부여할 수 있고 이름은 5자를 초과할 수 없다.
+- [x] UI 로직: 자동차 이름은 쉼표로 구분한다.
+- [x] 들여쓰기가 3 이상인 경우가 있다면 리펙토링한다.
 
-- 자동차 클래스 `Car`
-    - 프로퍼티: `Name`, `Position`,
 
-- 자동차들 위치를 알고 순위를 관리하는 `Road` 클래스
-    - 프로퍼티: `Cars`,
-
-- UI 로직 구현
-    - `InputView class`, `ResultView class`
-
+- [x] `Car` 객체의 함수명 변경, 제약 조건 상수화
+- [x] `RacingCarRoad`에 해당하는 에러 메세지는 `RacingCarRoad`가 관리한다.
+- [x] `List<Car>`를 래핑한 일급 컬렉션을 사용한다.
+  - [x] `RacingCarRoad`의 함수명에서 getXXX 형식을 버린다.
+- [x] 사용하지 않는 함수는 삭제

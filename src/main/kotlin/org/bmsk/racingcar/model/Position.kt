@@ -1,5 +1,5 @@
 package org.bmsk.racingcar.model
 
-class Position(
+data class Position(
     val xPos: Int,
 )
