@@ -1,4 +1,4 @@
-package study.racingcar
+package study.racingcar.view
 
 import org.assertj.core.api.Java6Assertions.assertThat
 import org.junit.jupiter.api.Test

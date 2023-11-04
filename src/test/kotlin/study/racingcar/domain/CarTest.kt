@@ -1,4 +1,4 @@
-package study.racingcar
+package study.racingcar.domain
 
 import org.assertj.core.api.AssertionsForInterfaceTypes.assertThat
 import org.junit.jupiter.api.Test

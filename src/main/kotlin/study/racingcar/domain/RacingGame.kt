@@ -1,16 +1,16 @@
-package study.racingcar
+package study.racingcar.domain
 
-class Race {
+class RacingGame {
     private var rounds: Int
-    private val randomValueGenerator: () -> Int
+    private val randomValueGenerator: RandomValueGenerator
 
     constructor(
         carNames: List<String>,
         rounds: Int,
-        randomValueGenerator: () -> Int = { (0..9).random() }
+        randomValueGenerator: RandomValueGenerator = DefaultRandomValueGenerator()
     ) : this(Cars(carNames.map { Car(it) }), rounds, randomValueGenerator)
 
-    constructor(cars: Cars, rounds: Int, randomValueGenerator: () -> Int) {
+    constructor(cars: Cars, rounds: Int, randomValueGenerator: RandomValueGenerator) {
         this.rounds = rounds
         this.randomValueGenerator = randomValueGenerator
         require(rounds > 0) { "Number of rounds must be positive" }
@@ -33,7 +33,7 @@ class Race {
         car
     }
 
-    fun moveAll(cars: Cars, randomValueGenerator: () -> Int): Cars = Cars(
+    fun moveAll(cars: Cars, randomValueGenerator: RandomValueGenerator): Cars = Cars(
         cars.list.map { move(it, randomValueGenerator()) }
     )
 
