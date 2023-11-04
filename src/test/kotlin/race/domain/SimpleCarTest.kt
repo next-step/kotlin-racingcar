@@ -2,8 +2,8 @@ package race.domain
 
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 import race.domain.SimpleCar.Companion.NAME_MAX_LENGTH
 import java.lang.IllegalArgumentException
@@ -23,16 +23,12 @@ class SimpleCarTest {
         Assertions.assertThatNoException().isThrownBy { SimpleCar(name) }
     }
 
-    @Test
-    fun `지정된 수치 이상이 전달 되었을 때만 자동차 이동`() {
+    @ParameterizedTest
+    @CsvSource(value = ["0,0", "1,0", "2,0", "3,0", "4,1", "5,1", "6,1"])
+    fun `지정된 수치 이상이 전달 되었을 때만 자동차 이동`(value: Int, expected: Int) {
         val car = SimpleCar("test")
 
-        (0..3).forEach {
-            car.move(it)
-            assertThat(car.location).isEqualTo(0)
-        }
-
-        car.move(SimpleCar.MOVE_THRESHOLD)
-        assertThat(car.location).isEqualTo(1)
+        car.move(value)
+        assertThat(car.location).isEqualTo(expected)
     }
 }
