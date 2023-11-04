@@ -9,7 +9,7 @@ class CarMovementManagerTest : FunSpec({
         val carMovementManager = CarMovementManager { true }
         val round = 1
         val car = Car("dummy")
-        val cars = listOf(car)
+        val cars = Cars(listOf(car))
 
         repeat(round) {
             carMovementManager.moveCarsWithCondition(cars)

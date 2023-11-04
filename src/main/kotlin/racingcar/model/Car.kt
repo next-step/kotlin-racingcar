@@ -11,12 +11,4 @@ class Car(
     fun getDistance(): Int {
         return distance
     }
-
-    companion object {
-        fun create(carNames: List<String>): List<Car> {
-            return carNames.map {
-                Car(it)
-            }
-        }
-    }
 }

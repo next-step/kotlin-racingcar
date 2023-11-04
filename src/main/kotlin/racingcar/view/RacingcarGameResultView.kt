@@ -1,5 +1,6 @@
 package racingcar.view
 
+import racingcar.component.Cars
 import racingcar.model.Car
 
 object RacingcarGameResultView {
@@ -10,8 +11,10 @@ object RacingcarGameResultView {
         println("실행 결과")
     }
 
-    fun printCarsDistance(cars: List<Car>) {
-        cars.forEach { printCarDistance(it) }
+    fun printCarsDistance(cars: Cars) {
+        cars
+            .getCars()
+            .forEach { printCarDistance(it) }
         println()
     }
 

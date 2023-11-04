@@ -1,13 +1,12 @@
 package racingcar.component
 
-import racingcar.model.Car
 import kotlin.random.Random.Default.nextInt
 
 class CarMovementManager(
     private val condition: () -> Boolean = DEFAULT_MOVEMENT_CONDITION
 ) {
-    fun moveCarsWithCondition(cars: List<Car>) {
-        cars
+    fun moveCarsWithCondition(cars: Cars) {
+        cars.getCars()
             .filter { condition() }
             .forEach {
                 it.move()
