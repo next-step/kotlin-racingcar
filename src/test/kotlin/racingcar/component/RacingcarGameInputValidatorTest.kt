@@ -4,12 +4,14 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 
 class RacingcarGameInputValidatorTest : FunSpec({
+    val racingcarGameInputValidator = RacingcarGameInputValidator()
+
     context("자동차 이름 입력 예외 테스트") {
         test("자동차 이름 문자열이 null인 경우 IllegalArgumentException 예외가 발생한다.") {
             shouldThrow<IllegalArgumentException> {
                 val carNamesString = null
 
-                RacingcarGameInputValidator.validateCarNamesString(carNamesString)
+                racingcarGameInputValidator.validateCarNamesString(carNamesString)
             }
         }
 
@@ -17,7 +19,7 @@ class RacingcarGameInputValidatorTest : FunSpec({
             shouldThrow<IllegalArgumentException> {
                 val carName = ""
 
-                RacingcarGameInputValidator.validateCarName(carName)
+                racingcarGameInputValidator.validateCarName(carName)
             }
         }
 
@@ -25,7 +27,7 @@ class RacingcarGameInputValidatorTest : FunSpec({
             shouldThrow<IllegalArgumentException> {
                 val carName = "testNameLengthMoreThan5"
 
-                RacingcarGameInputValidator.validateCarName(carName)
+                racingcarGameInputValidator.validateCarName(carName)
             }
         }
     }
@@ -35,7 +37,7 @@ class RacingcarGameInputValidatorTest : FunSpec({
             shouldThrow<IllegalArgumentException> {
                 val roundNumberString = null
 
-                RacingcarGameInputValidator.validateRoundNumberString(roundNumberString)
+                racingcarGameInputValidator.validateRoundNumberString(roundNumberString)
             }
         }
 
@@ -43,7 +45,7 @@ class RacingcarGameInputValidatorTest : FunSpec({
             shouldThrow<IllegalArgumentException> {
                 val roundNumberString = "0"
 
-                RacingcarGameInputValidator.validateRoundNumberString(roundNumberString)
+                racingcarGameInputValidator.validateRoundNumberString(roundNumberString)
             }
         }
 
@@ -51,7 +53,7 @@ class RacingcarGameInputValidatorTest : FunSpec({
             shouldThrow<IllegalArgumentException> {
                 val roundNumberString = "-1"
 
-                RacingcarGameInputValidator.validateRoundNumberString(roundNumberString)
+                racingcarGameInputValidator.validateRoundNumberString(roundNumberString)
             }
         }
     }

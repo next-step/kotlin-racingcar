@@ -1,6 +1,6 @@
 package racingcar.component
 
-object RacingcarGameInputValidator {
+class RacingcarGameInputValidator {
     fun validateCarNamesString(carNamesString: String?): String {
         require(carNamesString != null) {
             "자동차 이름은 null이거나 공백일 수 없습니다."
