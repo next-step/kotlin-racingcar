@@ -1,9 +1,8 @@
 package racingcar.view
 
-import racingcar.domain.RacingHistories
-import racingcar.domain.RacingHistories.*
+import racingcar.domain.RacingResult
+import racingcar.domain.RacingResult.RacingHistory
 import racingcar.util.Message
-import racingcar.util.Message.*
 import java.lang.IllegalArgumentException
 
 object View {
@@ -35,27 +34,26 @@ object ResultView {
         println(message)
     }
 
-    fun racingResultPrint(racingHistories: RacingHistories) {
-        val result = buildString {
-            this.append(RACE_RESULT_FIRST_LINE.message).append("\n")
-            racingHistories.getRacingHistories().forEach { it ->
-                this.append(getNameAndSymbol(it, CAR_RACING_MOVING_SYMBOL.message))
-                    .append("\n\n")
-            }
-            this.append(getWinner(racingHistories.getRacingHistories().last()))
-        }
+    fun racingResultPrint(racingResult: RacingResult) {
+        val result =
+            """
+            |${Message.RACE_RESULT_FIRST_LINE.message}
+            |${getRacingHistoryPrintFormat(racingResult, Message.CAR_RACING_MOVING_SYMBOL.message)}
+            |
+            |${getRacingWinnerPrintFormat(racingResult)}
+            """.trimMargin()
         println(result)
     }
 
+    private fun getRacingHistoryPrintFormat(racingResult: RacingResult, symbol: String) =
+        racingResult.allRounds
+            .joinToString("\n\n") { getNameAndSymbol(it, symbol) }
+
     private fun getNameAndSymbol(histories: List<RacingHistory>, symbol: String) =
-        histories.joinToString("\n") { "${it.name} : ${CAR_RACING_MOVING_SYMBOL.message.repeat(it.move)}" }
+        histories.joinToString("\n") { "${it.name} : ${symbol.repeat(it.move)}" }
 
-    private fun getWinner(histories: List<RacingHistory>): String {
-        val max = histories.maxBy(RacingHistory::move)
-        return histories.filter { max.move == it.move }
-            .toList()
+    private fun getRacingWinnerPrintFormat(result: RacingResult): String =
+        result.getRacingWinners()
             .joinToString(", ") { it.name }
-            .plus(WINNER.message)
-    }
-
+            .plus(Message.WINNER_LINE.message)
 }

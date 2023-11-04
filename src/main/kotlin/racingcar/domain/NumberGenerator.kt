@@ -1,6 +1,6 @@
 package racingcar.domain
 
-fun interface RandomGenerator<TYPE> {
+fun interface NumberGenerator<TYPE : Number> {
 
     fun apply(start: TYPE, end: TYPE): TYPE
 }

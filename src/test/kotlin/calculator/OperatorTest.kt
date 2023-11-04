@@ -3,7 +3,7 @@ package calculator
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 
-class OperationTest: BehaviorSpec({
+class OperatorTest : BehaviorSpec({
 
     Given("정수인 두 개의 피연산자를") {
         val operand1 = 10

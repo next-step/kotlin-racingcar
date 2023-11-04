@@ -9,5 +9,6 @@ enum class Message(
     INPUT_EXCEPTION("이름을 입력하여 주세요."),
     INPUT_NUMBER_EXCEPTION("정수를 입력하여 주세요."),
     RACE_RESULT_FIRST_LINE("실행 결과"),
-    WINNER("가 최종 우승했습니다.")
+    WINNER_LINE("가 최종 우승했습니다."),
+    CAR_NAME_LENGTH_EXCEPTION("자동차의 이름은 5글자까지 입력 가능합니다.")
 }
