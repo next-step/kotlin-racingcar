@@ -5,8 +5,8 @@ import carracing.dto.RacingRound
 class ResultView {
     fun printResult(racingResult: List<RacingRound>) {
         println(INIT_RESULT)
-        racingResult.forEach { racing ->
-            racing.result.forEach {
+        racingResult.forEach { round ->
+            round.roundResult.forEach {
                 println(DASH.repeat(it.position))
             }
             println()
