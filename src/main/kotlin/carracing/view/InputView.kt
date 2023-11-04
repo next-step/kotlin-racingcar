@@ -5,4 +5,9 @@ class InputView {
         println(inputType.question)
         return readln().toInt()
     }
+
+    fun inputString(inputType: InputType): String {
+        println(inputType.question)
+        return readln()
+    }
 }
