@@ -3,8 +3,12 @@ package racinggame
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.data.forAll
 import io.kotest.data.row
-import io.kotest.matchers.collections.shouldContainAll
+import io.kotest.matchers.collections.shouldContain
+import io.kotest.matchers.collections.shouldNotContain
 import io.kotest.matchers.shouldBe
+import racinggame.domain.Car
+import racinggame.domain.ForwardDice
+import racinggame.domain.RacingGame
 
 class RacingGameTest : BehaviorSpec({
 
@@ -60,9 +64,10 @@ class RacingGameTest : BehaviorSpec({
                 tryCount,
                 ForwardDice()
             )
-            val winners = game.getWinners()
+            val result = game.play()
             Then("더 많이간 자동차가 우승자가 되어야 한다") {
-                winners.winners.map { it.name } shouldContainAll listOf("name2")
+                result.winners.map { it.name } shouldContain "name2"
+                result.winners.map { it.name } shouldNotContain "name1"
             }
         }
     }

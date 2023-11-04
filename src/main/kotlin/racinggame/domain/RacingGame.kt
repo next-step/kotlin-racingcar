@@ -1,4 +1,4 @@
-package racinggame
+package racinggame.domain
 
 class RacingGame(
     private val cars: List<Car>,
@@ -6,12 +6,13 @@ class RacingGame(
     private val dice: Dice
 ) {
 
-    fun play() = (1..tryCount).map {
-        roundPlay(cars)
-    }.map { round ->
-        RoundResult(round)
-    }.let {
-        RacingGameResult(it)
+    fun play(): RacingGameResult {
+        val result = (1..tryCount).map {
+            roundPlay(cars)
+        }.map { round ->
+            RoundResult(round)
+        }
+        return RacingGameResult(getWinners(), result)
     }
 
     private fun roundPlay(cars: List<Car>) = cars.map { car ->
@@ -20,12 +21,10 @@ class RacingGame(
         Car(car.name, car.position)
     }
 
-    fun getWinners() = cars.sortedByDescending { car ->
+    private fun getWinners() = cars.sortedByDescending { car ->
         car.position
-    }.also { sortedCars ->
+    }.let { sortedCars ->
         getJointWinner(sortedCars)
-    }.let {
-        PlayWinners(it)
     }
 
     private fun getJointWinner(winners: List<Car>) = winners.filter { car ->
