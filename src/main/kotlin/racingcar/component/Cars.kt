@@ -7,10 +7,6 @@ import kotlin.random.Random
 class Cars(
     private val cars: List<Car>
 ) {
-    fun getCars(): List<Car> {
-        return cars
-    }
-
     fun getWinners(): List<Car> {
         val winnerCar = cars.maxBy {
             it.getDistance()
