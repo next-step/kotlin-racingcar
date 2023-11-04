@@ -27,24 +27,23 @@ class Race {
         }
     }
 
-    fun move(car: Car, randomValue: Int): Car {
-        return if (randomValue >= MOVABLE_BASE_NUMBER) {
-            car.copy(position = car.position + 1)
-        } else {
-            car
+    fun move(car: Car, randomValue: Int): Car = if (randomValue >= MOVABLE_BASE_NUMBER) {
+        car.copy(position = car.position + 1)
+    } else {
+        car
+    }
+
+    fun moveAll(cars: Cars, randomValueGenerator: () -> Int): Cars = Cars(
+        cars.list.map { move(it, randomValueGenerator()) }
+    )
+
+    private fun isWin(car1: Car, other: Car) = car1.position > other.position
+
+    fun getWinners(): Cars = Cars(
+        cars.list.filter { car ->
+            cars.list.none { other -> car != other && isWin(other, car) }
         }
-    }
-
-    fun moveAll(cars: Cars, randomValueGenerator: () -> Int): Cars {
-        return Cars(
-            cars.list.map { move(it, randomValueGenerator()) }
-        )
-    }
-
-    fun getWinners(): Cars {
-        val maxPosition = cars.list.maxByOrNull { it.position }?.position ?: 0
-        return Cars(cars.list.filter { it.position == maxPosition })
-    }
+    )
 
     private companion object {
         const val MOVABLE_BASE_NUMBER = 4
