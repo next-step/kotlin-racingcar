@@ -35,25 +35,25 @@ class RacingcarGameInputValidatorTest : FunSpec({
     context("게임 횟수 입력 테스트") {
         test("게임 횟수 문자열이 null 인 경우 IllegalArgumentException 예외가 발생한다.") {
             shouldThrow<IllegalArgumentException> {
-                val roundNumberString = null
+                val roundsString = null
 
-                racingcarGameInputValidator.validateRoundNumberString(roundNumberString)
+                racingcarGameInputValidator.validateRoundNumberString(roundsString)
             }
         }
 
         test("게임 횟수 문자열이 0인 경우 IllegalArgumentException 예외가 발생한다.") {
             shouldThrow<IllegalArgumentException> {
-                val roundNumberString = "0"
+                val roundsString = "0"
 
-                racingcarGameInputValidator.validateRoundNumberString(roundNumberString)
+                racingcarGameInputValidator.validateRoundNumberString(roundsString)
             }
         }
 
         test("게임 횟수 문자열이 음수인 경우 IllegalArgumentException 예외가 발생한다.") {
             shouldThrow<IllegalArgumentException> {
-                val roundNumberString = "-1"
+                val roundsString = "-1"
 
-                racingcarGameInputValidator.validateRoundNumberString(roundNumberString)
+                racingcarGameInputValidator.validateRoundNumberString(roundsString)
             }
         }
     }

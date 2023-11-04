@@ -8,11 +8,11 @@ class RacingcarGameInputView(
 ) {
     fun getInput(): RacingcarGameInput {
         val carNames = getCarNames()
-        val roundNumber = getRoundNumber()
+        val rounds = getRounds()
 
         return RacingcarGameInput(
             carNames = carNames,
-            roundNumber = roundNumber
+            rounds = rounds
         )
     }
 
@@ -25,10 +25,10 @@ class RacingcarGameInputView(
             .map { racingcarGameInputValidator.validateCarName(it) }
     }
 
-    private fun getRoundNumber(): Int {
-        val roundNumberString = getInput("시도할 횟수는 몇 회인가요?")
+    private fun getRounds(): Int {
+        val roundsString = getInput("시도할 횟수는 몇 회인가요?")
         return racingcarGameInputValidator
-            .validateRoundNumberString(roundNumberString)
+            .validateRoundNumberString(roundsString)
             .toInt()
     }
 

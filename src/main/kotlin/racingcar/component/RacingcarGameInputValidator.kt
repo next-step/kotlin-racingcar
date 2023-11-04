@@ -17,11 +17,11 @@ class RacingcarGameInputValidator {
         return carName
     }
 
-    fun validateRoundNumberString(roundNumberString: String?): String {
-        require(!roundNumberString.isNullOrBlank() && roundNumberString.toInt() > 0) {
+    fun validateRoundNumberString(roundsString: String?): String {
+        require(!roundsString.isNullOrBlank() && roundsString.toInt() > 0) {
             "시도 횟수는 null 또는 공백일 수 없습니다."
         }
 
-        return roundNumberString
+        return roundsString
     }
 }

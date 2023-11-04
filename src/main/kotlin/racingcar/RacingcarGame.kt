@@ -10,7 +10,7 @@ class RacingcarGame(
     fun play(input: RacingcarGameInput) {
         val cars = Cars.create(input.carNames)
 
-        startGame(cars, input.roundNumber)
+        startGame(cars, input.rounds)
     }
 
     private fun startGame(cars: Cars, round: Int) {
