@@ -1,15 +1,15 @@
 package racingcar.view
 
 import racingcar.model.Car
-import racingcar.model.RacingHistory
+import racingcar.model.GameResult
 
 object ResultView {
     fun printInitial() {
         println("실행 결과")
     }
 
-    fun printResult(racingHistories: List<RacingHistory>) {
-        for (racingHistory in racingHistories) {
+    fun printResult(gameResult: GameResult) {
+        for (racingHistory in gameResult.histories) {
             racingHistory.cars.forEach { printResult(it.name, it.position) }
             println()
         }
