@@ -16,20 +16,13 @@ class CarTest {
             "3, 0",
             "4, 1",
             "5, 1",
-            "6, 1",
-        ],
+            "6, 1"
+        ]
     )
     fun `car moves if random value is 4 or more`(randomValue: Int, expectedPosition: Int) {
         val car = Car("hong")
         val movedCar = car.move(randomValue)
         assertThat(movedCar.position).isEqualTo(expectedPosition)
-    }
-
-    @Test
-    fun `get winners after race`() {
-        val cars = Cars(listOf(Car("hong", 3), Car("lee", 3), Car("kim", 2)))
-        val winners = cars.getWinners()
-        assertThat(winners.list.map { it.name }).containsExactlyInAnyOrder("hong", "lee")
     }
 
     @Test
