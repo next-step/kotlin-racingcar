@@ -10,7 +10,7 @@ class CarName(val name: String) {
     }
 
     companion object {
-        const val ERROR_MESSAGE = "자동차 이름은 5자를 초과할 수 없습니다."
-        const val VALID_NUMBER = 5
+        private const val ERROR_MESSAGE = "자동차 이름은 5자를 초과할 수 없습니다."
+        private const val VALID_NUMBER = 5
     }
 }

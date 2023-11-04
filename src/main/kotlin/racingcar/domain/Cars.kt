@@ -10,11 +10,12 @@ class Cars(val cars: List<Car>) {
         cars.forEach { it.drive() }
     }
 
-    fun getWinners(): String {
+    fun getWinners(): Cars {
         val maxPosition = cars.maxOf { it.distance }
         val winners = cars.filter { it.distance == maxPosition }
-        return winners.joinToString(",") { it.name.name }
+        return Cars(winners)
     }
+
     companion object {
         fun createTo(carNames: CarNames): Cars {
             return Cars(

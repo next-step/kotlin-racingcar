@@ -18,10 +18,8 @@ class OutPutManager {
         }
         println()
     }
-
-    fun printWinner(winner: String) {
-
-        println("$winner 가 최종 우승했습니다.")
+    fun printWinner(winner: Cars) {
+        println("${winner.cars.map { it.name }.joinToString(",")} 가 최종 우승했습니다.")
     }
 
     fun printBeginResultMessage() {
