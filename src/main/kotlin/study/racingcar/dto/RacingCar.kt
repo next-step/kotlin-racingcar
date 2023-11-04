@@ -1,6 +1,6 @@
-package study.racingcar.domain
+package study.racingcar.dto
 
-import study.racingcar.application.CarName
+import study.racingcar.domain.GameRule
 
 /**
  * 기능
@@ -11,14 +11,14 @@ import study.racingcar.application.CarName
 
 data class RacingCar(
     val name: CarName,
-    private var _position: Int = DEFAULT_POSITION
+    val gameRule: GameRule
 ) {
-    val currentPosition: Int
-        get() = _position
+    var position: Int = DEFAULT_POSITION
+        private set
 
-    fun moveForward(gameRule: GameRule, randomNumber: Int) {
-        if (gameRule.getResult(randomNumber)) {
-            _position += 1
+    fun moveForward(gameRule: GameRule) {
+        if (gameRule.getResult()) {
+            position += 1
         }
     }
 
