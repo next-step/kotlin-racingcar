@@ -1,7 +1,7 @@
 package me.parker.nextstep.kotlinracingcar.view
 
-import me.parker.nextstep.kotlinracingcar.RacingCarGameRound
-import me.parker.nextstep.kotlinracingcar.RacingGameResult
+import me.parker.nextstep.kotlinracingcar.domain.RacingCarGameRound
+import me.parker.nextstep.kotlinracingcar.domain.RacingGameResult
 
 object ConsoleResult {
     fun outputGameResult(racingGameResult: RacingGameResult) {

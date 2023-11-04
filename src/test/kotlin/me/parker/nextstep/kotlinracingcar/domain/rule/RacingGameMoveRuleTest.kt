@@ -1,4 +1,4 @@
-package me.parker.nextstep.kotlinracingcar.rule
+package me.parker.nextstep.kotlinracingcar.domain.rule
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test

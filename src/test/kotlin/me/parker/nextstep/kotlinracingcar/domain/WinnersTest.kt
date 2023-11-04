@@ -1,7 +1,9 @@
-package me.parker.nextstep.kotlinracingcar
+package me.parker.nextstep.kotlinracingcar.domain
 
-import me.parker.nextstep.kotlinracingcar.rule.RandomRacingGameMoveRule
-import me.parker.nextstep.kotlinracingcar.rule.TestRacingGameMoveRule
+import me.parker.nextstep.kotlinracingcar.domain.RacingCar
+import me.parker.nextstep.kotlinracingcar.domain.Winners
+import me.parker.nextstep.kotlinracingcar.domain.rule.RandomRacingGameMoveRule
+import me.parker.nextstep.kotlinracingcar.domain.rule.TestRacingGameMoveRule
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
