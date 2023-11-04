@@ -6,12 +6,16 @@ import carracing.view.ResultView
 
 fun main() {
     val inputView = InputView()
-    val carCount = inputView.inputCount(InputType.CAR_COUNT)
+    val racingCarNames = inputView.inputString(InputType.RACING_NAMES)
     val racingCount = inputView.inputCount(InputType.RACING_COUNT)
 
-    val racingGame = RacingGame(carCount, racingCount, RandomGame())
+    val carNames = racingCarNames.split(",")
+    CarRacingValidator().validateCarNames(carNames)
+
+    val racingGame = RacingGame(carNames, racingCount, RandomGame())
     val racingResult = racingGame.start()
 
     val resultView = ResultView()
     resultView.printResult(racingResult)
+    resultView.printWinners(racingResult.last().roundResult)
 }
