@@ -4,12 +4,12 @@ import carracing.dto.Car
 import carracing.dto.RacingRound
 
 class RacingGame(
-    private val carCount: Int,
+    private val carNames: List<String>,
     private val racingCount: Int,
     private val racingGameRule: RacingGameRule,
 ) {
     fun start(): List<RacingRound> {
-        val cars = List(carCount) { Car() }
+        val cars = carNames.map { Car(it) }
         return mutableListOf<RacingRound>().apply {
             repeat(racingCount) { round ->
                 racingGameRule.execute(cars)
