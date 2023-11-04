@@ -14,7 +14,7 @@ data class UserInput(
     }
 
     companion object {
-        fun from(carNames: String, numOfAttempts: String): UserInput {
+        fun of(carNames: String, numOfAttempts: String): UserInput {
             require(numOfAttempts.toIntOrNull() != null) {
                 "시도 횟수는 숫자여야 합니다."
             }

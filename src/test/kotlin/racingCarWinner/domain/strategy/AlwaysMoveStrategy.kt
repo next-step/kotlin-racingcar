@@ -1,4 +1,6 @@
-package racingCarWinner.domain
+package racingCarWinner.domain.strategy
+
+import racingCarWinner.domain.MoveStrategy
 
 object AlwaysMoveStrategy : MoveStrategy {
     override fun isMovable(): Boolean {

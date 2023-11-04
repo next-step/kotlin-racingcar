@@ -1,8 +1,8 @@
 package racingCarWinner.domain
 
 class Car private constructor(
-    private val strategy: MoveStrategy,
-    val name: String
+    val name: String,
+    private val strategy: MoveStrategy
 ) {
     var location: Int = 0
         private set
@@ -18,8 +18,8 @@ class Car private constructor(
     }
 
     companion object {
-        fun of(strategy: MoveStrategy, name: String): Car {
-            return Car(strategy, name)
+        fun of(name: String, strategy: MoveStrategy = RandomMoveStrategy): Car {
+            return Car(name, strategy)
         }
 
         private const val MOVE_CNT = 1
