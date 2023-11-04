@@ -2,7 +2,7 @@ package racingcar.component
 
 import racingcar.model.Car
 
-class RacingcarGameManager {
+class Cars {
     fun getWinners(cars: List<Car>): List<Car> {
         val winnerCar = cars.maxBy {
             it.getDistance()
