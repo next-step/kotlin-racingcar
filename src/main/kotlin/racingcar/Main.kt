@@ -2,8 +2,9 @@ package racingcar
 
 fun main() {
     val racingCarService = RacingCarService(
-        DependencyConfig.inputProvider,
+        DependencyConfig.carInputProvider,
         DependencyConfig.outputProvider,
+        DependencyConfig.carFactory,
     )
 
     racingCarService.run()

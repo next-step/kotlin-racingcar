@@ -1,11 +1,9 @@
 package racingcar
 
 object DependencyConfig {
-    val inputProvider: InputProvider by lazy {
-        ConsoleInputView
-    }
+    val carInputProvider: CarInputProvider = ConsoleCarInputView()
 
-    val outputProvider: ResultProvider by lazy {
-        ConsoleResultView
-    }
+    val outputProvider: CarResultProvider = ConsoleCarResultView()
+
+    val carFactory : CarFactory = CarFactory()
 }

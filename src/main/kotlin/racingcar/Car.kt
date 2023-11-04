@@ -1,25 +1,26 @@
 package racingcar
 
-import kotlin.random.Random
-
 class Car(
-    private var moveCount: Int = 0,
-) : Displayable {
-    fun move() {
-        if (Random.nextInt(RANDOM_RANGE) >= MOVE_THRESHOLD) {
+    val name: String,
+    moveCount: Int = 0
+) {
+    var moveCount = moveCount
+        private set
+
+    init {
+        require(name.length <= NAME_MAX_LENGTH) {
+            throw IllegalArgumentException("{$name}의 길이는 ${NAME_MAX_LENGTH}를 초과할 수 없습니다.")
+        }
+    }
+
+    fun move(condition: Int) {
+        if (condition >= MOVE_THRESHOLD) {
             moveCount++
         }
     }
 
-    override fun display(): String = "-".repeat(moveCount)
-
     companion object {
-        private const val MOVE_THRESHOLD = 4
-        private const val RANDOM_RANGE = 10
-
-        fun create(): Car = Car()
-
-        fun getMoveThreshold() = MOVE_THRESHOLD
-        fun getRandomRange() = RANDOM_RANGE
+        const val MOVE_THRESHOLD = 4
+        const val NAME_MAX_LENGTH = 5
     }
 }
