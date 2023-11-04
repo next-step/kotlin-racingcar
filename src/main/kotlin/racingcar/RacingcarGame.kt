@@ -1,8 +1,8 @@
 package racingcar
 
 import racingcar.component.Cars
-import racingcar.model.RacingcarGameResult
 import racingcar.model.RacingcarGameInput
+import racingcar.model.RacingcarGameResult
 import racingcar.model.log.CarLog
 import racingcar.model.log.RoundLog
 
