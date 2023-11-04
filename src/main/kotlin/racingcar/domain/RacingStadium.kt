@@ -7,21 +7,20 @@ class RacingStadium(
     private val racingRule: RacingRule
 ) {
 
-    private val cars: List<Car> = racingPlayers.names.map(::Car)
-
-    fun gameStart(): RacingResult {
+    fun gameStart(numberOfTrials: Int): RacingResult {
         val result = mutableListOf<List<RacingHistory>>()
-        repeat(racingPlayers.numberOfTrials) {
-            moving()
-            result.add(racingResult())
+        val cars: List<Car> = racingPlayers.names.map(::Car)
+        repeat(numberOfTrials) {
+            moving(cars)
+            result.add(racingResult(cars))
         }
         return RacingResult(result)
     }
 
-    private fun moving() {
+    private fun moving(cars: List<Car>) {
         cars.filter { racingRule.canMoveForward() }
             .forEach(Car::moveForward)
     }
 
-    private fun racingResult(): List<RacingHistory> = cars.map { RacingHistory(it.name, it.position) }
+    private fun racingResult(cars: List<Car>): List<RacingHistory> = cars.map { RacingHistory(it.name, it.position) }
 }

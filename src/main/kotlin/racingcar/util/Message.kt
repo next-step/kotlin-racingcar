@@ -1,7 +1,5 @@
 package racingcar.util
 
-import racingcar.domain.RacingPlayersValidation
-
 enum class Message(
     val message: String
 ) {
@@ -12,5 +10,5 @@ enum class Message(
     INPUT_NUMBER_EXCEPTION("정수를 입력하여 주세요."),
     RACE_RESULT_FIRST_LINE("실행 결과"),
     WINNER_LINE("가 최종 우승했습니다."),
-    CAR_NAME_LENGTH_EXCEPTION("자동차의 이름은 ${RacingPlayersValidation.NAME_MAX_LENGTH - 1}글자까지 입력 가능합니다.")
+    CAR_NAME_LENGTH_EXCEPTION("자동차의 이름은 5글자까지 입력 가능합니다.")
 }

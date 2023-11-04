@@ -3,17 +3,18 @@ package racingcar.domain
 import racingcar.util.Message
 
 class RacingPlayers(
-    nameOfCars: String,
-    val numberOfTrials: Int,
-    validation: RacingPlayersValidation
-) {
-
     val names: List<String>
-
+) {
     init {
-        this.names = nameOfCars.split(",")
-        require(validation.validate(this)) {
+        require(nameLengthIsLessOrEqualThan()) {
             Message.CAR_NAME_LENGTH_EXCEPTION.message
         }
+    }
+
+    private fun nameLengthIsLessOrEqualThan() = this.names.all { NAME_MAX_LENGTH >= it.length }
+    companion object {
+        private const val NAME_MAX_LENGTH = 5
+        fun of(nameOfCars: String) =
+            RacingPlayers(nameOfCars.split(","))
     }
 }
