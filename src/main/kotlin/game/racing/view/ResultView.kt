@@ -11,9 +11,6 @@ object ResultView {
     }
 
     private fun printCarPosition(car: Car) {
-        if (car.position == Car.MIN_POSITION) {
-            return
-        }
         println(POSITION_DELIMITER.repeat(car.position))
     }
 
