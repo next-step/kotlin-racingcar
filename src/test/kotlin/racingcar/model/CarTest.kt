@@ -3,7 +3,6 @@ package racingcar.model
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import java.lang.IllegalArgumentException
 
 class CarTest {
 
@@ -17,5 +16,11 @@ class CarTest {
     @Test
     fun `Car 생성 시 이름이 5자 이상이면 실패한다`() {
         assertThrows<IllegalArgumentException> { Car("NameName") }
+    }
+
+    @Test
+    fun `Car 생성`() {
+        val cars = createCars(listOf("pobi", "crong"))
+        assertThat(cars.size).isEqualTo(2)
     }
 }

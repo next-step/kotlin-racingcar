@@ -15,12 +15,4 @@ class RacingCarGame(
             it.copy()
         }
     }
-
-    companion object {
-        fun getWinners(racingHistories: List<RacingHistory>): List<Car> {
-            val cars = racingHistories.last().cars
-            val maxPosition = cars.maxByOrNull { it.position }?.position
-            return cars.filter { it.position == maxPosition }
-        }
-    }
 }
