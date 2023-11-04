@@ -1,6 +1,6 @@
 package racing.car
 
-data class Car(var position: Int = INIT_POSITION) {
+data class Car(val name: String, var position: Int = INIT_POSITION) {
 
     fun move() {
         position += ADD_POSITION
