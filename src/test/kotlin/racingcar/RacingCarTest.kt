@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import racingcar.domain.Car
+import racingcar.domain.RacingGame
 
 class RacingCarTest {
 
@@ -28,5 +29,21 @@ class RacingCarTest {
         val car = Car()
         car.move(condition)
         assertThat(car.position).isEqualTo(0)
+    }
+
+    @Test
+    fun `RacingGame 의 초기 curAttemptNum 은 0 이다`() {
+        val racingGame = RacingGame(3, 3)
+        assertThat(racingGame.curAttemptNum).isEqualTo(0)
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [1, 2, 3, 4, 5, 6, 7, 8, 9])
+    fun `RacingGame 의 history size 는 시도 횟수와 같다`(attemptSize: Int) {
+        val racingGame = RacingGame(3, 10)
+        repeat(attemptSize) {
+            racingGame.attempt()
+        }
+        assertThat(racingGame.history.size).isEqualTo(attemptSize)
     }
 }

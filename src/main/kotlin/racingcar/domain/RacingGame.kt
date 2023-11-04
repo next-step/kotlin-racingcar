@@ -7,7 +7,8 @@ class RacingGame(
     val attemptSize: Int
 ) {
     private val cars = List(carSize) { Car() }
-    private var curAttemptNum: Int = 0
+    var curAttemptNum: Int = 0
+        private set
     private val _history: MutableList<List<Int>> = mutableListOf()
     val history: List<List<Int>>
         get() = _history
