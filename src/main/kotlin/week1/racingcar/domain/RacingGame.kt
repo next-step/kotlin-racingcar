@@ -4,7 +4,7 @@ class RacingGame(
     private val cars: List<Car>,
     val timesToRace: Int,
 ) {
-    fun drive(): List<Car> {
+    fun driveOneTurn(): List<Car> {
         cars.forEach {
             it.moveOrNot()
         }

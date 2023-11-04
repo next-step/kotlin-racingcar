@@ -12,7 +12,7 @@ class RaceController {
         val racingGame = RacingGame(raceInfo.cars.map { Car(it) }, raceInfo.timesToRace)
 
         repeat(racingGame.timesToRace) {
-            val carsAfterDriving = racingGame.drive()
+            val carsAfterDriving = racingGame.driveOneTurn()
             ResultView.showResult(carsAfterDriving)
         }
         ResultView.showWinner(racingGame.getWinners())
