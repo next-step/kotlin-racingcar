@@ -11,7 +11,7 @@ class CarsTest : FunSpec({
         val cars = Cars(listOf(car))
 
         repeat(round) {
-            cars.moveCars()
+            cars.moveCars { true }
         }
 
         car.getDistance() shouldBe 1
