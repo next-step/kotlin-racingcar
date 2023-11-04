@@ -1,15 +1,13 @@
 package race.domain
 
 class RaceManager(cars: List<String>, val moves: Int) {
-    val carList: List<SimpleCar>
+    val cars: SimpleCars
 
     init {
-        carList = cars.map { SimpleCar(it) }
+        this.cars = SimpleCars(cars)
     }
 
-    fun findWinners(): List<SimpleCar> {
-        val max = carList.maxBy { it.location }
-
-        return carList.filter { it.location == max.location }
+    fun move() {
+        cars.moveAll()
     }
 }

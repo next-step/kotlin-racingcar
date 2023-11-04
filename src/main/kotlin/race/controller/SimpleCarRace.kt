@@ -11,10 +11,10 @@ class SimpleCarRace {
         val manager = RaceManager(cars, moves)
 
         repeat(manager.moves) {
-            manager.carList.forEach { it.move((0..9).random()) }
-            Output().printStatus(manager.carList)
+            manager.move()
+            Output().printStatus(manager.cars)
         }
 
-        Output().printResult(manager.findWinners())
+        Output().printResult(manager.cars.findWinners())
     }
 }
