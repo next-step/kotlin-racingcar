@@ -12,5 +12,5 @@ fun main() {
     race.run { cars ->
         resultView.displayRound(cars)
     }
-    resultView.displayWinners(race.cars.getWinners())
+    resultView.displayWinners(race.getWinners())
 }
