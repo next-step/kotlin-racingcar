@@ -1,24 +1,26 @@
 package racingcar
 
-import racingcar.component.CarMovementManager
-import racingcar.component.RacingcarGameManager
-import racingcar.model.Car
-import racingcar.view.RacingcarGameInputView
+import racingcar.component.Cars
+import racingcar.model.RacingcarGameInput
 import racingcar.view.RacingcarGameResultView
 
 class RacingcarGame(
-    private val racingcarGameManager: RacingcarGameManager,
-    private val carMovementManager: CarMovementManager
+    private val resultView: RacingcarGameResultView
 ) {
-    fun play() {
-        val input = RacingcarGameInputView.getInput()
-        val cars = Car.create(input.carNumber)
+    fun play(input: RacingcarGameInput) {
+        val cars = Cars.create(input.carNames)
 
-        RacingcarGameResultView.printGameStart()
+        startGame(cars, input.rounds)
+    }
 
-        repeat(input.roundNumber) {
-            carMovementManager.moveCarsWithCondition(cars)
-            RacingcarGameResultView.printCarsDistance(cars)
+    private fun startGame(cars: Cars, round: Int) {
+        resultView.printGameStart()
+
+        repeat(round) {
+            cars.moveCars()
+            resultView.printCarsDistance(cars)
         }
+
+        resultView.printGameWinners(cars)
     }
 }

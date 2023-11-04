@@ -1,16 +1,14 @@
 package racingcar
 
-import racingcar.component.CarMovementManager
-import racingcar.component.RacingcarGameManager
+import racingcar.view.RacingcarGameInputView
+import racingcar.view.RacingcarGameResultView
 
 fun main() {
-    val racingcarGameManager = RacingcarGameManager()
-    val carMovementManager = CarMovementManager()
+    val inputView = RacingcarGameInputView()
+    val resultView = RacingcarGameResultView()
+    val application = RacingcarGame(resultView)
 
-    val application = RacingcarGame(
-        racingcarGameManager = racingcarGameManager,
-        carMovementManager = carMovementManager
-    )
+    val input = inputView.getInput()
 
-    application.play()
+    application.play(input)
 }

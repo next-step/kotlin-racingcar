@@ -1,6 +1,6 @@
 package racingcar.model
 
 data class RacingcarGameInput(
-    val carNumber: Int,
-    val roundNumber: Int
+    val carNames: List<String>,
+    val rounds: Int
 )
