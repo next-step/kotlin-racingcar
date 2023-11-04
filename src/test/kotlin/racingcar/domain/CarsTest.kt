@@ -1,0 +1,44 @@
+package racingcar.domain
+
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+
+class CarsTest {
+
+    @Test
+    fun `자동차 이름들로 자동차들을 생성한다`() {
+        val input = listOf("일", "이", "삼", "사", "오")
+        val carNames = CarNames(input)
+        val cars = Cars.createTo(carNames)
+
+        assertThat(cars.size).isEqualTo(carNames.size)
+    }
+
+    @Test
+    fun `자동차들은 우승자를 정할 수 있다`() {
+        val firstCar = createCar("test1", true)
+        val secondCar = createCar("test2", false)
+        val cars = Cars(listOf(firstCar, secondCar))
+
+        cars.driveCars()
+
+        assertThat(cars.getWinners()).isEqualTo(firstCar.name.toString())
+    }
+
+    @Test
+    fun `우승자는 한명 이상일 수 있다`() {
+        val firstCar = createCar("test1", true)
+        val secondCar = createCar("test2", true)
+        val cars = Cars(listOf(firstCar, secondCar))
+
+        cars.driveCars()
+
+        assertThat(cars.getWinners()).isEqualTo("${firstCar.name},${secondCar.name}")
+    }
+
+
+    private fun createCar(name: String, condition: Boolean): Car {
+        val carName = CarName(name)
+        return Car(carName) { condition }
+    }
+}
