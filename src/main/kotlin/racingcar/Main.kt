@@ -15,5 +15,9 @@ fun main() {
     val cars = Cars(carList)
 
     // Move and print result
-    ResultView.moveAndPrintResult(cars, tryCount)
+    ResultView.printResultStart()
+    for (i in 1..tryCount) {
+        cars.move()
+        ResultView.printResult(cars)
+    }
 }
