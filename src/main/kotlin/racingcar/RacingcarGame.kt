@@ -1,20 +1,20 @@
 package racingcar
 
 import racingcar.component.Cars
-import racingcar.model.RacingGameResult
+import racingcar.model.RacingcarGameResult
 import racingcar.model.RacingcarGameInput
 import racingcar.model.log.CarLog
 import racingcar.model.log.RoundLog
 
 class RacingcarGame {
-    fun play(input: RacingcarGameInput): RacingGameResult {
+    fun play(input: RacingcarGameInput): RacingcarGameResult {
         val cars = Cars.create(input.carNames)
         val rounds = input.rounds
 
         return play(cars, rounds)
     }
 
-    private fun play(cars: Cars, rounds: Int): RacingGameResult {
+    private fun play(cars: Cars, rounds: Int): RacingcarGameResult {
         val roundLogs = mutableListOf<RoundLog>()
 
         repeat(rounds) {
@@ -24,7 +24,7 @@ class RacingcarGame {
 
         val winners = cars.getWinners()
 
-        return RacingGameResult(
+        return RacingcarGameResult(
             winners,
             roundLogs.toList()
         )

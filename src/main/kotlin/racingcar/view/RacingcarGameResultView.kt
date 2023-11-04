@@ -1,13 +1,13 @@
 package racingcar.view
 
 import racingcar.model.Car
-import racingcar.model.RacingGameResult
+import racingcar.model.RacingcarGameResult
 import racingcar.model.log.CarLog
 import racingcar.model.log.RoundLog
 
 class RacingcarGameResultView {
 
-    fun printGameResult(result: RacingGameResult) {
+    fun printGameResult(result: RacingcarGameResult) {
         val winners = result.winners
         val roundLogs = result.roundLogs
 
