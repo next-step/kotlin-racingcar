@@ -1,5 +1,8 @@
 package study.racingcar.application
 
+import study.racingcar.dto.CarName
+import study.racingcar.dto.CarNames
+
 /**
  * 문자열 프로퍼티를 받고, 게임에 참여하는 자동차 이름을 입력받는 객체이다.
  * */

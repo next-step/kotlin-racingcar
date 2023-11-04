@@ -1,8 +1,8 @@
 package study.racingcar.view
 
 import study.racingcar.application.CarNameParser
-import study.racingcar.application.CarNames
-import study.racingcar.application.Number
+import study.racingcar.dto.CarNames
+import study.racingcar.dto.Number
 import study.racingcar.application.Reader
 
 /**

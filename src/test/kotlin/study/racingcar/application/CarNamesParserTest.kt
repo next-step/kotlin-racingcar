@@ -3,6 +3,8 @@ package study.racingcar.application
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import study.racingcar.dto.CarName
+import study.racingcar.dto.CarNames
 
 class CarNamesParserTest {
 

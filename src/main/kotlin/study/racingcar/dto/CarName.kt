@@ -1,4 +1,4 @@
-package study.racingcar.application
+package study.racingcar.dto
 
 /**
  * 게임에 참여하는 자동차 이름 객체이다.

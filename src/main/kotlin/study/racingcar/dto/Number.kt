@@ -1,4 +1,4 @@
-package study.racingcar.application
+package study.racingcar.dto
 
 /**
  * 게임 반복 횟수를 나타내는 숫자를 입력받는 객체이다.
