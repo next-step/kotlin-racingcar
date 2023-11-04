@@ -30,6 +30,12 @@ class CarTest {
         assert(car1.mileage <= MAX_TEST_TIMES)
     }
 
+    @Test
+    fun `주행거리 비교`() {
+        val car = Car("EV6")
+        car.isSameMileage(0)
+    }
+
     companion object {
         private const val DEFAULT_TEST_TIMES = 1
         private const val MAX_TEST_TIMES = 5

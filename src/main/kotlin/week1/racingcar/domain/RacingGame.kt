@@ -2,7 +2,7 @@ package week1.racingcar.domain
 
 class RacingGame(
     private val cars: List<Car>,
-    val timesToRace: Int,
+    val timesToRace: Int = 0,
 ) {
     fun driveOneTurn(): List<Car> {
         cars.forEach {
