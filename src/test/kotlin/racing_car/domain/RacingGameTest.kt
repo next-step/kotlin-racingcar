@@ -53,15 +53,15 @@ class RacingGameTest : FunSpec({
     context("주어진 시도횟수보다 더 많이 시도하는 경우 IllegalStateException throw") {
         val racingRound = 5
         withData(
-            nameFn = { "racingRound : $racingRound, actualMove : $it" },
+            nameFn = { "racingRound : $racingRound, actualRound : $it" },
             6, 10,
-        ) { actualMove ->
+        ) { actualRound ->
 
             val cars = List(10) { Car(name = "name") }
             val racingGame = RacingGame(_cars = cars, racingRound = racingRound)
 
             shouldThrow<IllegalStateException> {
-                for (i in 1..actualMove) {
+                for (i in 1..actualRound) {
                     racingGame.move()
                 }
             }
@@ -95,12 +95,12 @@ class RacingGameTest : FunSpec({
     }
 
     context("부정행위가 통하지 않는다.(racingGame 외부에서 자동차를 변경시키지 못한다.") {
-        val actualMove = 5
+        val actualRound = 5
         val racingGame = RacingGame(
             _cars = List(10) { Car(name = "name", moveStrategy = alwaysMoveStrategy) },
             racingRound = 10
         )
-        for (i in 1..actualMove) {
+        for (i in 1..actualRound) {
             racingGame.move()
         }
 
@@ -111,11 +111,51 @@ class RacingGameTest : FunSpec({
         }
 
         racingGame.cars.forAll {
-            it.position shouldBe actualMove
+            it.position shouldBe actualRound
         }
+    }
+
+    context("자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다. 우승자는 한 명 이상일 수 있다.") {
+        val cars = listOf(
+            Car(name = "w1", moveStrategy = alwaysMoveStrategy),
+            Car(name = "w2", moveStrategy = alwaysMoveStrategy),
+            Car(name = "l1", moveStrategy = neverMoveStrategy),
+            Car(name = "l2", moveStrategy = neverMoveStrategy),
+            Car(name = "l3", moveStrategy = neverMoveStrategy),
+        )
+        val racingGame = RacingGame(
+            _cars = cars,
+            racingRound = 10,
+        )
+
+        while (racingGame.isContinuable) {
+            racingGame.move()
+        }
+
+        val winners = racingGame.judgeWinners()
+        winners.map { it.name } shouldBe listOf("w1", "w2")
+    }
+
+    context("자동차 경주가 끝나기 전에 우승자를 확인하는 경우 IllegalStateException throw") {
+        val cars = listOf(
+            Car(name = "w1", moveStrategy = alwaysMoveStrategy),
+            Car(name = "w2", moveStrategy = alwaysMoveStrategy),
+            Car(name = "l1", moveStrategy = neverMoveStrategy),
+            Car(name = "l2", moveStrategy = neverMoveStrategy),
+            Car(name = "l3", moveStrategy = neverMoveStrategy),
+        )
+        val racingGame = RacingGame(
+            _cars = cars,
+            racingRound = 10,
+        )
+
+        racingGame.move()
+
+        shouldThrow<IllegalStateException> { racingGame.judgeWinners() }
     }
 }) {
     companion object {
         val alwaysMoveStrategy = MoveStrategy { true }
+        val neverMoveStrategy = MoveStrategy { false }
     }
 }

@@ -16,4 +16,9 @@ object ResultView {
         }
         println()
     }
+
+    fun printWinners(winners: List<Car>) {
+        val namesOfWinners = winners.joinToString { it.name }
+        println("$namesOfWinners (이)가 최종 우승했습니다.")
+    }
 }

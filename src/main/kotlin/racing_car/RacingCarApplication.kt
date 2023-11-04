@@ -16,4 +16,7 @@ fun main() {
         racingGame.move()
         ResultView.printPosition(racingGame.cars)
     }
+
+    val winners = racingGame.judgeWinners()
+    ResultView.printWinners(winners)
 }
