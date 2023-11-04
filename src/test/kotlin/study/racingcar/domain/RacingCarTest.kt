@@ -1,22 +1,38 @@
 package study.racingcar.domain
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
+import study.racingcar.dto.CarName
+import study.racingcar.dto.RacingCar
 
 class RacingCarTest {
 
-    @Test
-    @DisplayName("position 1 인 RacingCar 객체를 선언하고 / moveForward() 호출 시 / 2가 반환되는지 확인")
-    fun moveForward() {
+    @ValueSource(ints = [4, 5, 6, 7, 8, 9])
+    @ParameterizedTest
+    fun `RacingCar 는 무작위 값이 4 이상일 경우, 한칸 전진한다`(num: Int) {
         // given
-        val racingCar = RacingCar("test", 1)
-        val fourOrMoreGameRule = FourOrMoreGameRule()
+        val winGameRule = WinGameRule()
+        val racingCar = RacingCar(CarName("test"), winGameRule)
 
         // when
-        racingCar.moveForward(fourOrMoreGameRule)
+        racingCar.moveForward(winGameRule)
 
         // then
-        assertEquals(2, racingCar.currentPosition)
+        assertEquals(1, racingCar.position)
+    }
+
+    @ValueSource(ints = [0, 1, 2, 3])
+    @ParameterizedTest
+    fun `RacingCar 는 무작위 값이 3이하일 경우 정지한다`(num: Int) {
+        // given
+        val loseGame = LoseGameRule()
+        val racingCar = RacingCar(CarName("test"), loseGame)
+
+        // when
+        racingCar.moveForward(loseGame)
+
+        // then
+        assertEquals(0, racingCar.position)
     }
 }

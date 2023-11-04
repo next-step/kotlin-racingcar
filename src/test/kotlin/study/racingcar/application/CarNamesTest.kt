@@ -1,47 +1,26 @@
 package study.racingcar.application
 
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.DisplayName
+import study.racingcar.domain.WinGameRule
+import study.racingcar.dto.CarName
+import study.racingcar.dto.CarNames
+import study.racingcar.dto.RacingCars
 
 class CarNamesTest {
 
+    // TODO : 이게 요구사항에 있는 테스트 일까? ... TDD 에 맞는 접근일까? ... 단지 객체가 변환하는걸 테스트하기 위함인데, 이게 맞는걸까?
     @Test
-    @DisplayName("자동차 이름의 문자열을 입력 받았을때 / 유효한 문자열인지 검증하고 / 자동차 이름으로 된 배열을 반환한다.")
-    fun getProperFormatCarNames() {
+    fun `CarNames 로 RacingCars 를 생성했을때, 현재 승자를 구해보면, 모두 같은 position 을 갖고 있다`() {
         // given
-        val input = "car1,car2,car3"
-        val carNames = CarNames(input)
+        val carNames = CarNames(listOf(CarName("car1"), CarName("car2"), CarName("car3")))
+        val winGameRule = WinGameRule()
 
         // when
-        val actual = carNames.getProperFormatCarNames()
+        val actual = carNames.prepareForRace(winGameRule)
+        val currentWinners = actual.currentWinners
 
         // then
-        assertEquals(listOf("car1", "car2", "car3"), actual)
-    }
-
-    @Test
-    @DisplayName("5자가 넘어가는 자동차 이름의 문자열을 입력 받았을때 / 예외를 반환한다.")
-    fun `getProperFormatCarNames exception case1`() {
-        // given
-        val input = "car1,car2,          car3"
-        val carNames = CarNames(input)
-
-        // when
-        // then
-        assertThrows(IllegalArgumentException::class.java) { carNames.getProperFormatCarNames() }
-    }
-
-    @Test
-    @DisplayName("중복이 있는 자동차 이름을 입력받았을때 / 예외를 반환한다.")
-    fun `getProperFormatCarNames exception case2`() {
-        // given
-        val input = "car1,car1"
-        val carNames = CarNames(input)
-
-        // when
-        // then
-        assertThrows(IllegalArgumentException::class.java) { carNames.getProperFormatCarNames() }
+        assertEquals(RacingCars(currentWinners), actual)
     }
 }

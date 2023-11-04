@@ -1,7 +1,11 @@
 package study.racingcar.application
 
 class StdinReader : Reader {
-    override fun read(): String? {
+    override fun readString(): String? {
+        return readlnOrNull()
+    }
+
+    override fun readInt(): String? {
         return readlnOrNull()
     }
 }

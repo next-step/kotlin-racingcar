@@ -2,7 +2,8 @@ package study.calculator
 
 enum class Operator(
     val symbol: String,
-    val calcFunc: (Int, Int) -> Int) {
+    val calcFunc: (Int, Int) -> Int
+) {
     PLUS("+", { a, b -> a + b }),
     MINUS("-", { a, b -> a - b }),
     MULTIPLY("*", { a, b -> a * b }),

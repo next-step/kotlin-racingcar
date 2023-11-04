@@ -1,40 +1,32 @@
 package study.racingcar.domain
 
-import study.racingcar.application.InputView
-import study.racingcar.application.OutputView
+import study.racingcar.dto.CarNames
+import study.racingcar.dto.RacingCar
+import study.racingcar.view.InputValue
+import study.racingcar.view.InputView
+import study.racingcar.view.OutputView
 
 /**
  * view 를 통해 입력받은 데이터를 가지고 게임을 진행한다.
  * */
 class RacingGame(
     private val inputView: InputView,
-    private val outputView: OutputView
+    private val gameRule: GameRule
 ) {
-    // TODO-review : RacingGaem 에서 run 을 많은 일을 수행하는 것으로 보이지만,
-    // InputView / RacingCar / OutputView 에게 메시지를 던져서 오케스트레이션 하는 것으로 설계를 했습니다.
-    // 적합한 설계인지 코멘트 부탁드립니다!
-    fun run() {
-        val input = inputView.getInput()
-        val carNames = input.carNames
-        val tryCount = input.tryCount
 
-        val gameRule = FourOrMoreGameRule()
+    fun run(): List<RacingCar> {
+        // 0. inputView 에게 메시지 (input 수행 요청) 던진다.
+        val input: InputValue = inputView.getInput()
+        val carNames: CarNames = input.carNames
+        val tryCount: Int = input.tryCount
 
-        // carTotalNum 만큼 RacingCar 를 생성하고, 초기 포지션 설정 후, 자료구조에 넣어 둔다.
-        val racingCars: List<RacingCar> = carNames.map { name ->
-            RacingCar(name, 1)
-        }
+        // 1. carNames 에게 메시지 (RacingCars 를 생성 요청) 던진다.
+        val racingCars = carNames.prepareForRace(gameRule)
 
-        // tryCount 만큼 게임을 수행한다.
-        (1..tryCount).map { _ ->
-            racingCars.forEach { racingCar ->
-                racingCar.moveForward(gameRule)
-            }
+        // 2. racingCars 에게 메시지 (game 수행 요청) 던진다.
+        racingCars.playGame(tryCount, gameRule)
 
-            outputView.showResult(racingCars)
-        }
-
-        // 최종 결과 출력
-        outputView.showWinners(racingCars)
+        // 3. outputView 에게 메시지 (우승자 출력 요청) 던진다.
+        return OutputView.showWinners(racingCars)
     }
 }
