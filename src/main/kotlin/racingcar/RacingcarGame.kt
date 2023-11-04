@@ -20,8 +20,6 @@ class RacingcarGame {
             RacingcarGameResultView.printCarsDistance(cars)
         }
 
-        val winners = cars.getWinners()
-
-        RacingcarGameResultView.printGameWinners(winners)
+        RacingcarGameResultView.printGameWinners(cars)
     }
 }
