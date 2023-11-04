@@ -5,7 +5,7 @@ import io.kotest.core.spec.style.FunSpec
 
 class RacingcarGameInputValidatorTest : FunSpec({
     context("자동차 이름 입력 예외 테스트") {
-        test("자동차 이름 문자열이 null인 경우") {
+        test("자동차 이름 문자열이 null인 경우 IllegalArgumentException 예외가 발생한다.") {
             shouldThrow<IllegalArgumentException> {
                 val carNamesString = null
 
@@ -13,7 +13,7 @@ class RacingcarGameInputValidatorTest : FunSpec({
             }
         }
 
-        test("자동차 이름이 공백인 경우") {
+        test("자동차 이름이 공백인 경우 IllegalArgumentException 예외가 발생한다.") {
             shouldThrow<IllegalArgumentException> {
                 val carName = ""
 
@@ -21,7 +21,7 @@ class RacingcarGameInputValidatorTest : FunSpec({
             }
         }
 
-        test("자동차 이름이 5글자를 초과하는 경우") {
+        test("자동차 이름이 5글자를 초과하는 경우 IllegalArgumentException 예외가 발생한다.") {
             shouldThrow<IllegalArgumentException> {
                 val carName = "testNameLengthMoreThan5"
 
@@ -31,7 +31,7 @@ class RacingcarGameInputValidatorTest : FunSpec({
     }
 
     context("게임 횟수 입력 테스트") {
-        test("게임 횟수 문자열이 null 인 경우") {
+        test("게임 횟수 문자열이 null 인 경우 IllegalArgumentException 예외가 발생한다.") {
             shouldThrow<IllegalArgumentException> {
                 val roundNumberString = null
 
@@ -39,7 +39,7 @@ class RacingcarGameInputValidatorTest : FunSpec({
             }
         }
 
-        test("게임 횟수 문자열이 0인 경우") {
+        test("게임 횟수 문자열이 0인 경우 IllegalArgumentException 예외가 발생한다.") {
             shouldThrow<IllegalArgumentException> {
                 val roundNumberString = "0"
 
@@ -47,7 +47,7 @@ class RacingcarGameInputValidatorTest : FunSpec({
             }
         }
 
-        test("게임 횟수 문자열이 음수인 경우") {
+        test("게임 횟수 문자열이 음수인 경우 IllegalArgumentException 예외가 발생한다.") {
             shouldThrow<IllegalArgumentException> {
                 val roundNumberString = "-1"
 
