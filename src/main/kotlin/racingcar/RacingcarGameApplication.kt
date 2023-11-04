@@ -9,6 +9,7 @@ fun main() {
     val application = RacingcarGame()
 
     val input = inputView.getInput()
+    val result = application.play(input)
 
-    application.play(input)
+    resultView.printGameResult(result)
 }
