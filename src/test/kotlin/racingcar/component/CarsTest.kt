@@ -4,7 +4,7 @@ import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import racingcar.model.Car
 
-class RacingcarGameManagerTest : FunSpec({
+class CarsTest : FunSpec({
     test("1회 자동차를 이동시켰을 때 1만큼 자동차의 거리가 증가했는지 테스트") {
         val round = 1
         val car = Car("dummy")
