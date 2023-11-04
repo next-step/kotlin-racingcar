@@ -11,10 +11,7 @@ fun main() {
 
     // Create cars
     val strategy = RandomMovingStrategy()
-    val carList = mutableListOf<Car>()
-    for (i in 1..quantity) {
-        carList.add(Car(strategy))
-    }
+    val carList = List(quantity) { Car(strategy) }
     val cars = Cars(carList)
 
     // Move and print result
