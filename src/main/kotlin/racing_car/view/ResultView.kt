@@ -9,7 +9,11 @@ object ResultView {
     }
 
     fun printPosition(cars: List<Car>) {
-        cars.forEach { println("-".repeat(it.position)) }
+        cars.forEach {
+            val name = it.name
+            val positionBar = "-".repeat(it.position)
+            println("$name : $positionBar")
+        }
         println()
     }
 }
