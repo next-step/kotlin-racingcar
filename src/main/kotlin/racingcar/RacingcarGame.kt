@@ -1,26 +1,38 @@
 package racingcar
 
 import racingcar.component.Cars
+import racingcar.model.RacingGameResult
 import racingcar.model.RacingcarGameInput
-import racingcar.view.RacingcarGameResultView
+import racingcar.model.log.CarLog
+import racingcar.model.log.RoundLog
 
-class RacingcarGame(
-    private val resultView: RacingcarGameResultView
-) {
-    fun play(input: RacingcarGameInput) {
+class RacingcarGame {
+    fun play(input: RacingcarGameInput): RacingGameResult {
         val cars = Cars.create(input.carNames)
+        val rounds = input.rounds
 
-        startGame(cars, input.rounds)
+        return play(cars, rounds)
     }
 
-    private fun startGame(cars: Cars, round: Int) {
-        resultView.printGameStart()
+    private fun play(cars: Cars, rounds: Int): RacingGameResult {
+        val roundLogs = mutableListOf<RoundLog>()
 
-        repeat(round) {
+        repeat(rounds) {
             cars.moveCars()
-            resultView.printCarsDistance(cars)
+            appendRoundLogs(roundLogs, cars.getCarLogs())
         }
 
-        resultView.printGameWinners(cars)
+        val winners = cars.getWinners()
+
+        return RacingGameResult(
+            winners,
+            roundLogs.toList()
+        )
+    }
+
+    private fun appendRoundLogs(roundLogs: MutableList<RoundLog>, carLogs: List<CarLog>) {
+        val roundLog = RoundLog(carLogs)
+
+        roundLogs.add(roundLog)
     }
 }

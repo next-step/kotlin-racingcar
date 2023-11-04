@@ -1,6 +1,7 @@
 package racingcar.component
 
 import racingcar.model.Car
+import racingcar.model.log.CarLog
 import kotlin.random.Random
 
 class Cars(
@@ -25,6 +26,15 @@ class Cars(
             .forEach {
                 it.move()
             }
+    }
+
+    fun getCarLogs(): List<CarLog> {
+        return cars.map {
+            CarLog(
+                it.name,
+                it.getDistance()
+            )
+        }
     }
 
     companion object {
