@@ -2,12 +2,15 @@ package racingcar.ui
 
 class ResultView {
 
-    fun printCarPositions(carPositions: List<Int>) {
+    fun printRacingGameHistory(history: List<List<Int>>) {
         buildString {
-            repeat(carPositions.size) { carIdx ->
-                append("Car${carIdx}: ")
-                repeat(carPositions[carIdx]) {
-                    append('-')
+            appendLine("실행 결과")
+            history.forEach { positions ->
+                positions.forEach { position ->
+                    repeat(position) {
+                        append('-')
+                    }
+                    appendLine()
                 }
                 appendLine()
             }

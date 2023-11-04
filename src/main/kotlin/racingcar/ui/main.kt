@@ -12,8 +12,8 @@ fun main() {
     )
     val resultView = ResultView()
 
-    repeat(inputView.carSize) {
+    repeat(inputView.attemptSize) {
         racingGame.attempt()
-        resultView.printCarPositions(racingGame.getCarPositions())
     }
+    resultView.printRacingGameHistory(racingGame.history)
 }
