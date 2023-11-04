@@ -1,10 +1,11 @@
 package racingcar.domain
 
-class Cars(val cars: List<Car>) {
-    val size: Int
-        get() {
-            return cars.size
-        }
+class Cars(private val cars: List<Car>) {
+    val size: Int = cars.size
+
+    fun getCars(): List<Car> {
+        return cars
+    }
 
     fun driveCars() {
         cars.forEach { it.drive() }

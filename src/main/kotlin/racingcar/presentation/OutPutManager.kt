@@ -13,13 +13,13 @@ class OutPutManager {
     }
 
     fun printCars(cars: Cars) {
-        cars.cars.forEach {
+        cars.getCars().forEach {
             println("${it.getName()} : ${"-".repeat(it.distance)}")
         }
         println()
     }
     fun printWinner(winner: Cars) {
-        println("${winner.cars.map { it.getName() }.joinToString(",")} 가 최종 우승했습니다.")
+        println("${winner.getCars().map { it.getName() }.joinToString(",")} 가 최종 우승했습니다.")
     }
 
     fun printBeginResultMessage() {
