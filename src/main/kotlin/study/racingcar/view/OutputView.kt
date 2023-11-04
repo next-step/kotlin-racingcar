@@ -1,6 +1,5 @@
 package study.racingcar.view
 
-import study.racingcar.domain.RacingGame
 import study.racingcar.dto.RacingCar
 import study.racingcar.dto.RacingCars
 

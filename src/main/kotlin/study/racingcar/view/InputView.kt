@@ -1,9 +1,9 @@
 package study.racingcar.view
 
 import study.racingcar.application.CarNameParser
+import study.racingcar.application.Reader
 import study.racingcar.dto.CarNames
 import study.racingcar.dto.Number
-import study.racingcar.application.Reader
 
 /**
  * 값을 입력 받는다.

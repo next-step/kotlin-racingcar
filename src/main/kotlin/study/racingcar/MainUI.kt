@@ -1,9 +1,9 @@
 package study.racingcar
 
-import study.racingcar.view.InputView
 import study.racingcar.application.StdinReader
 import study.racingcar.domain.FourOrMoreGameRule
 import study.racingcar.domain.RacingGame
+import study.racingcar.view.InputView
 
 /**
  * entrance point

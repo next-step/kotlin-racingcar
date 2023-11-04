@@ -2,10 +2,8 @@ package study.racingcar.application
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import study.racingcar.domain.FourOrMoreGameRule
 import study.racingcar.domain.WinGameRule
 import study.racingcar.dto.CarName
-import study.racingcar.dto.RacingCar.Companion.DEFAULT_POSITION
 import study.racingcar.dto.CarNames
 import study.racingcar.dto.RacingCars
 
