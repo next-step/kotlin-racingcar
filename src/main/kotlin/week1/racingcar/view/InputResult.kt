@@ -1,4 +1,4 @@
-package week1.racingcar
+package week1.racingcar.view
 
 data class InputResult(
     val cars: List<String>,

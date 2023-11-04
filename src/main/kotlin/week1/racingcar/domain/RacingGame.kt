@@ -1,4 +1,7 @@
-package week1.racingcar
+package week1.racingcar.domain
+
+import week1.racingcar.view.InputView
+import week1.racingcar.view.ResultView
 
 class RacingGame {
 
@@ -22,6 +25,7 @@ class RacingGame {
             drive(cars)
             showResult(cars)
         }
+        ResultView.showWinner(getWinners(cars))
     }
 
     private fun drive(cars: List<Car>) {
@@ -31,20 +35,13 @@ class RacingGame {
     }
 
     private fun showResult(cars: List<Car>) {
-        ResultView.run {
-            showResult(cars)
-            showWinner(getWinners(cars))
-        }
+        ResultView.showResult(cars)
     }
 
-    private fun getWinners(cars: List<Car>): List<String> {
+    fun getWinners(cars: List<Car>): List<String> {
         val farthestMileage = cars.map { it.mileage }
             .maxOf { it }
         return cars.filter { it.isSameMileage(farthestMileage) }
             .map { it.name }
     }
-}
-
-fun main() {
-    RacingGame().startGame()
 }
