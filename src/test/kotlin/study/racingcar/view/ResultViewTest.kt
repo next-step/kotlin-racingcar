@@ -1,4 +1,4 @@
-package study.racingcar
+package study.racingcar.view
 
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.mock
@@ -18,16 +18,20 @@ class ResultViewTest {
     @Test
     fun `display cars positions`() {
         val resultView = ResultView(outputReceiver)
-        val cars = Cars(listOf(Car("hong", 3), Car("lee", 1), Car("kim", 2)))
-        resultView.displayRound(cars)
+        val carPositions = listOf(
+            "hong" to 3,
+            "lee" to 1,
+            "kim" to 2
+        )
+        resultView.displayRound(carPositions)
         verify(outputReceiver).receive("hong : ---\nlee : -\nkim : --\n")
     }
 
     @Test
     fun `display winners`() {
         val resultView = ResultView(outputReceiver)
-        val cars = Cars(listOf(Car("hong", 3), Car("lee", 3), Car("kim", 3)))
-        resultView.displayWinners(cars)
+        val winnerNames = listOf("hong", "lee", "kim")
+        resultView.displayWinners(winnerNames)
         verify(outputReceiver).receive("hong, lee, kim 가 최종 우승했습니다.")
     }
 }

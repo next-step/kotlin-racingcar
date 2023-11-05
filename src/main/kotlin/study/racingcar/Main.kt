@@ -1,16 +1,8 @@
 package study.racingcar
 
+import study.racingcar.controller.RacingController
+
 fun main() {
-    val inputView = InputView(DefaultInputProvider())
-    val carNames = inputView.getCarNames()
-    val numberOfRounds = inputView.getNumberOfRounds()
-
-    val race = Race(carNames, numberOfRounds)
-    val resultView = ResultView(DefaultOutputReceiver())
-
-    resultView.startDisplayResult()
-    race.run { cars ->
-        resultView.displayRound(cars)
-    }
-    resultView.displayWinners(race.cars.getWinners())
+    val controller = RacingController()
+    controller.startRacing()
 }
