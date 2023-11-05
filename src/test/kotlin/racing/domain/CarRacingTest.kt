@@ -8,7 +8,7 @@ import io.kotest.matchers.collections.shouldHaveAtLeastSize
 import io.kotest.matchers.shouldBe
 
 class CarRacingTest : BehaviorSpec({
-    val repository: CarRepository = CarRepositoryImpl
+    val carFactory: CarFactory = CarFactoryImpl
     val numberStrategy: NumberStrategy = RandomNumberStrategy
     val recorder: CarRacingRecordStrategy = CarRacingRecorder
 
@@ -18,7 +18,7 @@ class CarRacingTest : BehaviorSpec({
             row(listOf("pobi", "crong", "honux"), 7),
             row(listOf("pobi", "crong", "honux"), 10)
         ) { carNames, tryCount ->
-            val cars: List<Car> = repository.createCars(carNames)
+            val cars: List<Car> = carFactory.createCars(carNames)
             `when`("자동차 게임을 하면") {
                 val (results, winners) = CarRacing(numberStrategy, recorder, cars).race(tryCount)
                 then("몇 대의 자동차로 몇 번의 이동한 결과를 반환한다") {

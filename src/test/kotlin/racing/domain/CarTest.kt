@@ -15,7 +15,7 @@ class CarTest : BehaviorSpec({
                 row("honux", 10)
             ) { name, position ->
                 then("가진다") {
-                    val car = Car(name, position)
+                    val car = Car.of(name, position)
                     car.name shouldBe name
                     car.position shouldBe position
                 }
@@ -25,14 +25,14 @@ class CarTest : BehaviorSpec({
         `when`("이름이 5자를 초과하면") {
             then("예외가 발생한다") {
                 shouldThrowWithMessage<IllegalArgumentException>("자동차 이름은 5자를 초과할 수 없습니다.") {
-                    Car("pobicronghonux")
+                    Car.of(name = "pobicronghonux")
                 }
             }
         }
 
         `when`("초기 위치는") {
             then("1이다") {
-                val car = Car("pobi")
+                val car = Car.of(name = "pobi")
                 car.position shouldBe 1
             }
         }
@@ -46,7 +46,7 @@ class CarTest : BehaviorSpec({
                 row(8),
                 row(9),
             ) { condition ->
-                val car = Car("pobi")
+                val car = Car.of("pobi")
                 car.moveOrStop(condition)
                 then("움직인다") {
                     car.position shouldBe 2
@@ -61,12 +61,22 @@ class CarTest : BehaviorSpec({
                 row(2),
                 row(3)
             ) { condition ->
-                val car = Car("pobi")
+                val car = Car.of(name = "pobi")
                 car.moveOrStop(condition)
                 then("정지한다") {
                     car.position shouldBe 1
                 }
             }
+        }
+    }
+
+    val carFactory: CarFactory = CarFactoryImpl
+
+    given("자동차의 이름은") {
+        val carNames = "pobi,crong,honux"
+        then("쉼표로 구분한다") {
+            val cars = carFactory.createCars(carNames.split(","))
+            cars.map { it.name } shouldBe carNames.split(",")
         }
     }
 })
