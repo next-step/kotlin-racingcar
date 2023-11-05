@@ -15,7 +15,6 @@ class CalculatorTest {
         "4 + 4 + 10 - 4,14"
     )
     fun `계산 테스트`(input: String, result: Int) {
-        val calculator = Calculator.from(input)
-        assertThat(calculator.calculate()).isEqualTo(result)
+        assertThat(Calculator.calculate(input)).isEqualTo(result)
     }
 }

@@ -1,53 +1,44 @@
 package calculate
 
-class Calculator(
-    private val numbers: List<Int>,
-    private val operators: List<Operator>
-) {
+object Calculator {
 
-    fun calculate(): Int {
-        validateCalculate()
-        return accumulativeOperation(numbers, operators)
+    fun calculate(input: String): Int {
+        val inputs = input.split(" ")
+        return accumulativeOperation(numbersBy(inputs), operatorsBy(inputs))
     }
 
-    private fun validateCalculate() {
-        require(numbers.isNotEmpty()) { "숫자가 없습니다." }
-        require(operators.size == numbers.size - 1) { "연산자와 숫자의 수가 일치하지 않습니다." }
+    private fun numbersBy(strings: List<String>): List<Int> {
+        try {
+            return strings.filterIndexed { index, _ -> index % 2 == 0 }.map { it.toInt() }
+        } catch (e: NumberFormatException) {
+            throw NumberFormatException("유효한 정수 형식이 아닙니다.")
+        }
+    }
+
+    private fun operatorsBy(strings: List<String>): List<Operator> {
+        try {
+            return strings.filterIndexed { index, _ -> index % 2 != 0 }.map { Operator.from(it) }
+        } catch (e: IllegalArgumentException) {
+            throw IllegalArgumentException("올바른 사칙연산자 형식이 아닙니다.")
+        }
     }
 
     private fun accumulativeOperation(numbers: List<Int>, operators: List<Operator>): Int {
+        validateCalculate(numbers, operators)
         return pairsOf(numbers, operators).fold(numbers.first()) { acc, (number, operator) ->
             operator.operate(acc, number)
         }
+    }
+
+    private fun validateCalculate(numbers: List<Int>, operators: List<Operator>) {
+        require(numbers.isNotEmpty()) { "숫자가 없습니다." }
+        require(operators.size == numbers.size - 1) { "연산자와 숫자의 수가 일치하지 않습니다." }
     }
 
     private fun pairsOf(numbers: List<Int>, operators: List<Operator>): List<Pair<Int, Operator>> {
         val sliceNumbers = numbers.toMutableList()
         sliceNumbers.removeFirst()
         return sliceNumbers.zip(operators)
-    }
-
-    companion object {
-        fun from(input: String): Calculator {
-            val inputs = input.split(" ")
-            return Calculator(numbers = numbersBy(inputs), operators = operatorsBy(inputs))
-        }
-
-        private fun numbersBy(strings: List<String>): List<Int> {
-            try {
-                return strings.filterIndexed { index, _ -> index % 2 == 0 }.map { it.toInt() }
-            } catch (e: NumberFormatException) {
-                throw IllegalArgumentException("유효한 정수 형식이 아닙니다.")
-            }
-        }
-
-        private fun operatorsBy(strings: List<String>): List<Operator> {
-            try {
-                return strings.filterIndexed { index, _ -> index % 2 != 0 }.map { Operator.from(it) }
-            } catch (e: IllegalArgumentException) {
-                throw IllegalArgumentException("올바른 사칙연산자 형식이 아닙니다.")
-            }
-        }
     }
 }
 
