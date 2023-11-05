@@ -1,16 +1,14 @@
 package racingcar.model
 
 class Car(
-    private val engine: Engine
+    private val engine: Engine,
+    val carName: CarName
 ) {
-    private var position: Long = 0L
+    var position: Long = 0L
+        private set
 
     fun move(): Long {
         if (engine.canMove()) position++
-        return position
-    }
-
-    fun getPosition(): Long {
         return position
     }
 }
