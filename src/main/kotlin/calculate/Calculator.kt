@@ -6,27 +6,7 @@ object Calculator {
 
     fun calculate(input: String): Int {
         val inputs = input.split(DELIMITER)
-        return accumulativeOperation(numbersBy(inputs), operatorsBy(inputs))
-    }
-
-    private fun numbersBy(strings: List<String>): List<Int> {
-        return runCatching {
-            strings.filterIndexed { index, _ -> index % 2 == 0 }.map { it.toInt() }
-        }.onFailure { e ->
-            if (e is NumberFormatException) {
-                throw NumberFormatException("유효한 정수 형식이 아닙니다.")
-            }
-        }.getOrThrow()
-    }
-
-    private fun operatorsBy(strings: List<String>): List<Operator> {
-        return runCatching {
-            strings.filterIndexed { index, _ -> index % 2 != 0 }.map { Operator.from(it) }
-        }.onFailure { e ->
-            if (e is IllegalArgumentException) {
-                throw IllegalArgumentException("올바른 사칙연산자 형식이 아닙니다.")
-            }
-        }.getOrThrow()
+        return accumulativeOperation(Numbers.parse(inputs), Operator.parse(inputs))
     }
 
     private fun accumulativeOperation(numbers: List<Int>, operators: List<Operator>): Int {
@@ -47,6 +27,18 @@ object Calculator {
     }
 }
 
+object Numbers {
+    fun parse(strings: List<String>): List<Int> {
+        return runCatching {
+            strings.filterIndexed { index, _ -> index % 2 == 0 }.map { it.toInt() }
+        }.onFailure { e ->
+            if (e is NumberFormatException) {
+                throw NumberFormatException("유효한 정수 형식이 아닙니다.")
+            }
+        }.getOrThrow()
+    }
+}
+
 enum class Operator(
     val symbol: String,
     val operate: (Int, Int) -> Int
@@ -57,10 +49,21 @@ enum class Operator(
     DIVIDE("/", { a, b -> a / b });
 
     companion object {
+        fun parse(strings: List<String>): List<Operator> {
+            return runCatching {
+                strings.filterIndexed { index, _ -> index % 2 != 0 }.map { Operator.from(it) }
+            }.onFailure { e ->
+                if (e is IllegalArgumentException) {
+                    throw IllegalArgumentException("올바른 사칙연산자 형식이 아닙니다.")
+                }
+            }.getOrThrow()
+        }
+
         private val stores by lazy {
             values().associateBy { it.symbol }
         }
-        fun from(input: String): Operator {
+
+        private fun from(input: String): Operator {
             return stores[input] ?: throw IllegalArgumentException()
         }
     }
