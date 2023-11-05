@@ -1,9 +1,11 @@
 package racing.v2.domain
 
-object CarDrivingPolicy : DrivingPolicy {
-    private const val FORWARD_THRESHOLD = 4
-    
-    override fun canForward(number: Int): Boolean {
+class CarDrivingPolicy(val number: Int) : DrivingPolicy {
+    override fun canForward(): Boolean {
         return number >= FORWARD_THRESHOLD
+    }
+
+    companion object {
+        private const val FORWARD_THRESHOLD = 4
     }
 }

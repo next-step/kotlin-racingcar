@@ -32,7 +32,7 @@ class `자동차 전진 테스트` : BehaviorSpec({
             listOf(4, 5, 6, 7, 8, 9).forEach { number ->
                 Then("자동차 위치는 1 증가한다.") {
                     val originPosition = 알렉스_자동차.position
-                    알렉스_자동차.moveForward(CarDrivingPolicy, number)
+                    알렉스_자동차.moveForward(CarDrivingPolicy(number))
                     알렉스_자동차.position shouldBe originPosition + 1
                 }
             }
@@ -42,7 +42,7 @@ class `자동차 전진 테스트` : BehaviorSpec({
             listOf(1, 2, 3).forEach { number ->
                 Then("자동차 위치는 기존과 동일하다") {
                     val originPosition = 알렉스_자동차.position
-                    알렉스_자동차.moveForward(CarDrivingPolicy, number)
+                    알렉스_자동차.moveForward(CarDrivingPolicy(number))
                     알렉스_자동차.position shouldBe originPosition
                 }
             }

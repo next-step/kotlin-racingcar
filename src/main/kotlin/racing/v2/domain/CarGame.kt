@@ -13,7 +13,7 @@ class CarGame(
 
     private fun moveAllCarsOnce() {
         cars.forEach {
-            it.moveForward(CarDrivingPolicy, randomGenerator.nextInt(10))
+            it.moveForward(CarDrivingPolicy(randomGenerator.nextInt(10)))
         }
     }
 

@@ -12,8 +12,8 @@ class Car(val name: String = "이름없음") {
         this.position = position
     }
 
-    fun moveForward(policy: DrivingPolicy, number: Int) {
-        if (policy.canForward(number)) {
+    fun moveForward(policy: DrivingPolicy) {
+        if (policy.canForward()) {
             position++
         }
     }
