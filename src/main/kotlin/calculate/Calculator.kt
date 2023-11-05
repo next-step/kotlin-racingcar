@@ -35,10 +35,9 @@ object Calculator {
         require(operators.size == numbers.size - 1) { "연산자와 숫자의 수가 일치하지 않습니다." }
     }
 
-    private fun pairsOf(numbers: List<Int>, operators: List<Operator>): List<Pair<Int, Operator>> {
-        val sliceNumbers = numbers.toMutableList()
-        sliceNumbers.removeFirst()
-        return sliceNumbers.zip(operators)
+    private fun pairsOf(numbers: List<Int>, operators: List<Operator>): ArrayDeque<Pair<Int, Operator>> {
+        val sliceNumbers = ArrayDeque(numbers.drop(1))
+        return sliceNumbers.zip(operators).toCollection(ArrayDeque())
     }
 }
 
