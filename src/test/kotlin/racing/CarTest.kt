@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class CarTest {
-    
+
     @Test
     fun `랜덤 결과 움직이는 경우`() {
         val car = object : Car() {

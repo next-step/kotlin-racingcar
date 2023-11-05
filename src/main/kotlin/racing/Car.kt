@@ -9,7 +9,7 @@ open class Car(
     open fun moveOrNot(): Boolean {
         return Random.nextInt(10) > 4
     }
-    
+
     fun move() {
         if (moveOrNot()) {
             position += 1

@@ -4,7 +4,7 @@ fun main() {
     val inputView = InputView()
     val numberOfCars = inputView.get("자동차 대수는 몇 대인가요?")
     val tryCount = inputView.get("시도할 횟수는 몇 회인가요?")
-    
+
     Game(numberOfCars, tryCount).start()
 }
 
@@ -34,29 +34,28 @@ class ResultView {
     }
 }
 
-
 class Game(
     private val numberOfCar: Int,
     private val tryCount: Int
 ) {
     private val carList = mutableListOf<Car>()
     private val resultView = ResultView()
-    
+
     fun start() {
         repeat(numberOfCar) {
             carList.add(Car())
         }
-        
+
         repeat(tryCount) {
             run()
         }
     }
-    
+
     private fun run() {
-        carList.forEach { 
+        carList.forEach {
             it.move()
         }
-        
+
         resultView.view(carList)
     }
 }
