@@ -7,13 +7,16 @@ import racing_car.view.ResultView
 fun main() {
 
     val racingGame = RacingGame(
-        _cars = InputView.inputCars(),
-        _racingRound = InputView.inputRacingRound(),
+        cars = InputView.inputCars(),
+        racingRound = InputView.inputRacingRound(),
     )
 
     ResultView.printResultTitle()
     while (racingGame.isContinuable) {
         racingGame.move()
-        ResultView.printPosition(racingGame.cars)
+        ResultView.printPosition(racingGame.carInfos)
     }
+
+    val winners = racingGame.judgeWinners()
+    ResultView.printWinners(winners)
 }
