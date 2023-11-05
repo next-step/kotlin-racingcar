@@ -22,7 +22,7 @@ class CarTest {
         car.move()
 
         // then
-        assertThat(car.getPosition()).isEqualTo(1)
+        assertThat(car.getPosition().getPosition()).isEqualTo(1)
     }
 
     @Test
@@ -35,12 +35,16 @@ class CarTest {
         car.move()
 
         // then
-        assertThat(car.getPosition()).isEqualTo(0)
+        assertThat(car.getPosition().getPosition()).isEqualTo(0)
     }
 
     @BeforeEach
     fun setUp() {
         strategy = StubRandomMovingStrategy()
-        car = Car(movingStrategy = strategy)
+        car = Car(
+            movingStrategy = strategy,
+            position = Position(),
+            name = Name("test")
+        )
     }
 }
