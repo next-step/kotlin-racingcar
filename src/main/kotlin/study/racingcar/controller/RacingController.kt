@@ -20,7 +20,7 @@ class RacingController {
         val racingGame = RacingGame(carNames, numberOfRounds, randomValueGenerator)
 
         resultView.startDisplayResult()
-        racingGame.run { cars ->
+        racingGame.raceStart { cars ->
             resultView.displayRound(convertCarsToList(cars))
         }
         resultView.displayWinners(racingGame.getWinners().list.map { it.name })

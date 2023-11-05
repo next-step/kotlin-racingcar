@@ -3,6 +3,8 @@ package study.racingcar.domain
 class RacingGame {
     private var rounds: Int
     private val randomValueGenerator: RandomValueGenerator
+    var cars: Cars
+        private set
 
     constructor(
         carNames: List<String>,
@@ -17,35 +19,16 @@ class RacingGame {
         this.cars = cars
     }
 
-    var cars: Cars
-        private set
-
-    fun run(onRoundFinished: (Cars) -> Unit) {
+    fun raceStart(onRoundFinished: (Cars) -> Unit) {
         repeat(rounds) {
-            cars = moveAll(cars, randomValueGenerator)
+            cars = cars.moveAll(randomValueGenerator)
             onRoundFinished(cars)
         }
     }
 
-    fun move(car: Car, randomValue: Int): Car = if (randomValue >= MOVABLE_BASE_NUMBER) {
-        car.copy(position = car.position + 1)
-    } else {
-        car
-    }
-
-    fun moveAll(cars: Cars, randomValueGenerator: RandomValueGenerator): Cars = Cars(
-        cars.list.map { move(it, randomValueGenerator()) }
-    )
-
-    private fun isWin(car1: Car, other: Car) = car1.position > other.position
-
     fun getWinners(): Cars = Cars(
         cars.list.filter { car ->
-            cars.list.none { other -> car != other && isWin(other, car) }
+            cars.list.none { other -> car != other && other.isWin(car) }
         }
     )
-
-    private companion object {
-        const val MOVABLE_BASE_NUMBER = 4
-    }
 }
