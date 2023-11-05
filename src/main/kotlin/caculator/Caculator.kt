@@ -15,14 +15,14 @@ object Caculator {
         val expression = input.toExpression()
 
         var result = 0.0
-        var curSymbol: Token.Symbol? = null
+        var curSymbol: Symbol? = null
         while (expression.peek() != null) {
             when (val curToken = expression.poll()) {
-                is Token.Number -> {
-                    result = calculateDouble(result, curSymbol, curToken.value)
+                is Number -> {
+                    result = curSymbol?.operate(result, curToken.value) ?: curToken.value
                     curSymbol = null
                 }
-                is Token.Symbol -> {
+                is Symbol -> {
                     curSymbol = curToken
                 }
             }
@@ -39,7 +39,7 @@ object Caculator {
             it.isNotEmpty()
         }.mapIndexed { i, s ->
             s.toTokenOrNull()?.let {
-                require(i % 2 == 0 && it is Token.Number || i % 2 == 1 && it is Token.Symbol)
+                require(i % 2 == 0 && it is Number || i % 2 == 1 && it is Symbol)
                 it
             } ?: throw IllegalArgumentException("잘못된 계산식입니다.")
         }.let {
@@ -49,32 +49,34 @@ object Caculator {
 
     private fun String.toTokenOrNull(): Token? {
         return this.toDoubleOrNull()?.let {
-            Token.Number(it)
+            Number(it)
         } ?: when (this) {
-            Token.Symbol.PLUS.strValue -> Token.Symbol.PLUS
-            Token.Symbol.MINUS.strValue -> Token.Symbol.MINUS
-            Token.Symbol.TIMES.strValue -> Token.Symbol.TIMES
-            Token.Symbol.DIVISION.strValue -> Token.Symbol.DIVISION
+            Symbol.PLUS.strValue -> Symbol.PLUS
+            Symbol.MINUS.strValue -> Symbol.MINUS
+            Symbol.TIMES.strValue -> Symbol.TIMES
+            Symbol.DIVISION.strValue -> Symbol.DIVISION
             else -> null
         }
     }
 
-    private fun calculateDouble(num1: Double, symbol: Token.Symbol?, num2: Double): Double {
-        return when (symbol) {
-            Token.Symbol.PLUS -> num1 + num2
-            Token.Symbol.MINUS -> num1 - num2
-            Token.Symbol.TIMES -> num1 * num2
-            Token.Symbol.DIVISION -> num1 / num2
-            null -> num2
-        }.also {
-            require(it.isFinite())
-        }
-    }
+    private sealed interface Token
 
-    private sealed interface Token {
-        class Number(val value: Double) : Token
-        enum class Symbol(val strValue: String) : Token {
-            PLUS("+"), MINUS("-"), TIMES("*"), DIVISION("/")
-        }
+    class Number(val value: Double) : Token
+
+    enum class Symbol(val strValue: String) : Token {
+        PLUS("+") {
+            override fun operate(num1: Double, num2: Double): Double = (num1 + num2).also { require(it.isFinite()) }
+        },
+        MINUS("-") {
+            override fun operate(num1: Double, num2: Double): Double = num1 - num2.also { require(it.isFinite()) }
+        },
+        TIMES("*") {
+            override fun operate(num1: Double, num2: Double): Double = num1 * num2.also { require(it.isFinite()) }
+        },
+        DIVISION("/") {
+            override fun operate(num1: Double, num2: Double): Double = num1 / num2.also { require(it.isFinite()) }
+        };
+
+        abstract fun operate(num1: Double, num2: Double): Double
     }
 }
