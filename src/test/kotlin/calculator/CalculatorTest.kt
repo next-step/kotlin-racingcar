@@ -10,7 +10,7 @@ class CalculatorTest {
         val input = "2 + 3 * 4 / 2"
         val expect = 10
         val calculator = Calculator()
-        val actual = calculator.calculate(input)
+        val actual = calculator.run(input)
         assertThat(actual).isEqualTo(expect)
     }
 
@@ -18,13 +18,13 @@ class CalculatorTest {
     fun `입력값이 공백인 경우`() {
         val input = " "
         val calculator = Calculator()
-        assertThrows<IllegalArgumentException> ("입력값이 null이거나 빈 공백 문자입니다.") { calculator.calculate(input) }
+        assertThrows<IllegalArgumentException> ("입력값이 null이거나 빈 공백 문자입니다.") { calculator.run(input) }
     }
 
     @Test
     fun `사칙연산 기호가 아닌 경우`() {
         val input = "4 5 3 * 2"
         val calculator = Calculator()
-        assertThrows<IllegalArgumentException> ("사칙연산 기호가 아닙니다.") { calculator.calculate(input) }
+        assertThrows<IllegalArgumentException> ("사칙연산 기호가 아닙니다.") { calculator.run(input) }
     }
 }
