@@ -21,12 +21,12 @@ class RacingController {
 
         resultView.startDisplayResult()
         racingGame.raceStart { cars ->
-            resultView.displayRound(convertCarsToList(cars))
+            resultView.displayRound(convertCarsToMap(cars))
         }
         resultView.displayWinners(racingGame.getWinners().list.map { it.name })
     }
 
-    private fun convertCarsToList(cars: Cars): List<Pair<String, Int>> {
-        return cars.list.map { car -> Pair(car.name, car.position) }
+    private fun convertCarsToMap(cars: Cars): Map<String, Int> {
+        return cars.list.associate { car -> car.name to car.position }
     }
 }

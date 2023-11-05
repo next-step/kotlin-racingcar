@@ -6,8 +6,8 @@ class ResultView(private val outputReceiver: OutputReceiver) {
         outputReceiver.receive("실행 결과")
     }
 
-    fun displayRound(carList: List<Pair<String, Int>>) {
-        val result = carList.joinToString("\n") { (name, position) ->
+    fun displayRound(carMap: Map<String, Int>) {
+        val result = carMap.entries.joinToString("\n") { (name, position) ->
             "$name : " + "-".repeat(position)
         } + "\n"
         outputReceiver.receive(result)
