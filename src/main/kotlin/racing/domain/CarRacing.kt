@@ -6,6 +6,12 @@ class CarRacing(
     private val cars: List<Car>,
 ) {
 
+    init {
+        require(cars.isNotEmpty()) {
+            "자동차가 0대이면 자동차 경주를 할 수 없습니다."
+        }
+    }
+
     fun race(tryCount: Int): CarRacingResult {
         val results = raceWithRecordResult(cars, tryCount)
         val winners = recorder.findWinners(cars)

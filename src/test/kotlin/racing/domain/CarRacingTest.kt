@@ -1,5 +1,6 @@
 package racing.domain
 
+import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.data.forAll
 import io.kotest.data.row
@@ -11,6 +12,17 @@ class CarRacingTest : BehaviorSpec({
     val carFactory: CarFactory = CarFactoryImpl
     val numberStrategy: NumberStrategy = RandomNumberStrategy
     val recorder: CarRacingRecordStrategy = CarRacingRecorder
+
+    given("자동차 0대로") {
+        val cars = emptyList<Car>()
+        `when`("자동차 경주를 하면") {
+            then("예외가 발생한다") {
+                shouldThrowWithMessage<IllegalArgumentException>("자동차가 0대이면 자동차 경주를 할 수 없습니다.") {
+                    CarRacing(numberStrategy, recorder, cars)
+                }
+            }
+        }
+    }
 
     given("몇 대의 자동차로 몇 번의 이동을 할 것인가 주어지고") {
         forAll(
