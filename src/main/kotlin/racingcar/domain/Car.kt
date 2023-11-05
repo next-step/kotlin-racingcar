@@ -1,7 +1,7 @@
 package racingcar.domain
 
-class Car(
-    private var position: Int = 0,
+data class Car(
+    var position: Int = 0,
 ) {
 
     companion object {
