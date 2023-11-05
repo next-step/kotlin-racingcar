@@ -3,7 +3,9 @@
 ## 미션 피드백 링크
 
 - Step 1 : [https://github.com/next-step/kotlin-racingcar/pull/1257](https://github.com/next-step/kotlin-racingcar/pull/1257)
-- Step 2: [https://github.com/next-step/kotlin-racingcar/pull/1320](https://github.com/next-step/kotlin-racingcar/pull/1320)
+- Step 2 : [https://github.com/next-step/kotlin-racingcar/pull/1320](https://github.com/next-step/kotlin-racingcar/pull/1320)
+- Step 3 : [https://github.com/next-step/kotlin-racingcar/pull/1434](https://github.com/next-step/kotlin-racingcar/pull/1434)
+- Step 4 : [https://github.com/next-step/kotlin-racingcar/pull/1504](https://github.com/next-step/kotlin-racingcar/pull/1504)
 
 <br>
 
@@ -88,6 +90,12 @@
 
 ### STEP 4
 
+
+<details>
+<summary>접기/펼치기</summary>
+<div markdown="1">
+
+
 #### [요구 사항 분석]
 
 - 자동차에 이름 부여 (5글자 초과 X -> 5글자까지 가능)
@@ -104,7 +112,7 @@
 - 누락된 중요한 도메인 관련 기능과 테스트 추가
   - 도메인은? : 자동차(Car) 객체 내부에 있는 로직(함수)인 것으로 추정
 - 랜덤 수 생성 기능 리팩터링
-  - 랜덤 기능은 코틀린 자체에서 지원해주는 것이 있음 
+  - 랜덤 기능은 코틀린 자체에서 지원해주는 것이 있음
   - 코틀린 자체에서 내부적으로 많이 사용하고, 많은 테스트로 기능이 검증되어 있으므로 대체하는 것이 좋을 듯함
   - `kotlin.random.*`
 - 정적 메서드만 사용하는 객체는 object로 선언
@@ -115,7 +123,7 @@
   - `Pair<?, ?>` 사용보다 InputView가 필요한 입력값을 명확하게 정의 (생성자)
 - 프로퍼티 변경자는 접근 제어
   - private
-
+  
 #### [Todo List]
 
 - [x] 피드백을 반영한다.
@@ -133,3 +141,21 @@
 - [x] 린트를 체크한다.
 
 
+</div>
+</details>
+
+## STEP 5
+
+#### [요구 사항 분석]
+
+- 핵심 비즈니스 로직을 가진 객체 : domain 패키지
+- UI 관련 객체 : view 패키지
+- view 패키지는 domain 패키지를 의존 <-> domain 패키지는 view 패키지에 의존하면 안됨 (의존 역류 주의)
+- 테스트 가능한 부분은 최대한 단위 테스트 진행 (테스트 불가 영역을 잘 분리하기)
+
+#### [Todo List]
+
+- [ ] 피드백 반영
+- [ ] domain 패키지와 view 패키지로 각각 분리하고, 의존성을 제한한다.
+- [ ] 테스트 불가능한 영역을 분리한다.
+- [ ] 테스트 가능한 모든 영역에 단위 테스트를 진행한다.
