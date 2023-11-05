@@ -2,8 +2,6 @@ package racing
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import io.mockk.every
-import io.mockk.mockkObject
 
 class RaceExecutorTest : BehaviorSpec({
     given("입력받은 자동차 대수만큼 자동차 생성") {
@@ -15,20 +13,14 @@ class RaceExecutorTest : BehaviorSpec({
         `when`("랜덤값이 4이상이면 자동차가 전진") {
             val carMap = RaceExecutor.prepareCar(3)
 
-            mockkObject(RaceExecutor)
-            every { RaceExecutor.getRandomValueBetween0to9() } returns 5
-
-            RaceExecutor.racingCarRandomly(carMap, 5)
+            RaceExecutor.racingCarRandomly(carMap, 5) { 5 }
             carMap[1] shouldBe "------"
         }
 
         `when`("랜덤값이 4미만이면 자동차는 멈춤") {
             val carMap = RaceExecutor.prepareCar(3)
 
-            mockkObject(RaceExecutor)
-            every { RaceExecutor.getRandomValueBetween0to9() } returns 3
-
-            RaceExecutor.racingCarRandomly(carMap, 5)
+            RaceExecutor.racingCarRandomly(carMap, 5) { 1 }
             carMap[1] shouldBe "-"
         }
     }
