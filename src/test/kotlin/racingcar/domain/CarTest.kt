@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CarTest {
@@ -36,6 +38,21 @@ class CarTest {
 
         // then
         assertThat(car.getPosition().getPosition()).isEqualTo(0)
+    }
+
+    @ParameterizedTest
+    @DisplayName("우승자의 위치를 통해 우승자를 판단한다")
+    @CsvSource(value = ["0:false", "1:true", "2:false"], delimiter = ':')
+    fun isWinner(winnerPosition: Int, expected: Boolean) {
+        // given
+        strategy.setCondition(4)
+        car.move()
+
+        // when
+        val actual = car.isWinner(Position(winnerPosition))
+
+        // then
+        assertThat(actual).isEqualTo(expected)
     }
 
     @BeforeEach
