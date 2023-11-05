@@ -2,18 +2,16 @@ package racing
 
 import kotlin.random.Random
 
-data class Car(
-    var position: Int
+open class Car(
+    var position: Int = 0
 ) {
-    fun printPosition() {
-        repeat(position) {
-            print("-")
-        }
-        println("")
+
+    open fun moveOrNot(): Boolean {
+        return Random.nextInt(10) > 4
     }
     
     fun move() {
-        if (Random.nextInt(10) > 4) {
+        if (moveOrNot()) {
             position += 1
         }
     }
