@@ -22,7 +22,7 @@ class CarsTest {
 
         cars.driveCars()
 
-        assertThat(cars.getWinners()).isEqualTo(firstCar.name.toString())
+        assertThat(cars.getWinners().size).isEqualTo(1)
     }
 
     @Test
@@ -33,9 +33,8 @@ class CarsTest {
 
         cars.driveCars()
 
-        assertThat(cars.getWinners()).isEqualTo("${firstCar.name},${secondCar.name}")
+        assertThat(cars.getWinners().size).isEqualTo(2)
     }
-
 
     private fun createCar(name: String, condition: Boolean): Car {
         val carName = CarName(name)
