@@ -1,14 +1,41 @@
 package racing.v2
 
 import racing.v2.console.InputView
+import racing.v2.console.ResultView
+import racing.v2.domain.Car
+import racing.v2.domain.CarGame
 
 fun main() {
+    val cars: List<Car> = requestCars()
+    val tryCount: Int = requestTryCount()
+
+    ResultView.printResultStart()
+    val carGame = playGame(cars, tryCount)
+    ResultView.printWinner(carGame.findWinners())
+}
+
+private fun requestCars(): List<Car> {
     InputView.printCarNamesPrompt()
     val carsStr = InputView.getUserInput()
+    return InputView.validateCars(carsStr)
+}
 
+private fun requestTryCount(): Int {
     InputView.printTryCountPrompt()
     val tryCountStr = InputView.getUserInput()
+    return InputView.validateTryCount(tryCountStr)
+}
 
-    val carGame = InputView.createCarGame(carsStr, tryCountStr)
-    carGame.start()
+private fun playGame(
+    cars: List<Car>,
+    tryCount: Int
+): CarGame {
+    val carGame = CarGame(cars, tryCount)
+
+    while (carGame.hasMoreRounds()) {
+        carGame.startRound()
+        ResultView.printCarPosition(cars)
+    }
+
+    return carGame
 }
