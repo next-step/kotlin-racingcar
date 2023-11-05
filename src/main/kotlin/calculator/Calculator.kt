@@ -2,10 +2,9 @@ package calculator
 
 class Calculator {
     fun run(input: String?): Int {
-        if (input.isNullOrBlank()) {
-            throw IllegalArgumentException("입력값이 null이거나 빈 공백 문자입니다.")
+        require(input.isNullOrBlank()) {
+            "입력값이 null이거나 빈 공백 문자입니다."
         }
-
 
         val inputs = input?.split(" ")
 
