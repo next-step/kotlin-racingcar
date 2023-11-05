@@ -4,6 +4,7 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import racing.v2.domain.Car
+import racing.v2.view.InputView
 
 class InputViewTest : StringSpec({
     "자동차 이름들은 쉽표(,)를 기준으로 구분된다." {

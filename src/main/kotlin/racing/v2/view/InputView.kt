@@ -1,4 +1,4 @@
-package racing.v2.console
+package racing.v2.view
 
 import racing.v2.domain.Car
 

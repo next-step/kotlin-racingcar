@@ -1,10 +1,10 @@
 package racing.v2
 
-import racing.v2.console.InputView
-import racing.v2.console.ResultView
 import racing.v2.domain.Car
 import racing.v2.domain.CarGame
 import racing.v2.domain.CarGameRandomGenerator
+import racing.v2.view.InputView
+import racing.v2.view.ResultView
 
 fun main() {
     val cars: List<Car> = requestCars()
