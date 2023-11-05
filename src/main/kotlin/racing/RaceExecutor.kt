@@ -4,7 +4,7 @@ object RaceExecutor {
     fun prepareCar(carCount: Int): MutableMap<Int, String> {
         val carMap = mutableMapOf<Int, String>()
         for (i in 1..carCount) {
-            carMap[i] = "-"
+            carMap[i] = ""
         }
         return carMap
     }
