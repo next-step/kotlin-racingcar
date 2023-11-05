@@ -1,17 +1,16 @@
 import racingcar.domain.Car
 import racingcar.domain.Cars
-import racingcar.domain.RandomMovingStrategy
+import racingcar.domain.Name
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
 fun main() {
     // Input
-    val quantity = InputView.inputCarQuantity()
+    val carNameList = InputView.inputCarNameList()
     val tryCount = InputView.inputTryCount()
 
     // Create cars
-    val strategy = RandomMovingStrategy()
-    val carList = List(quantity) { Car(strategy) }
+    val carList = carNameList.map { Car(name = Name(it)) }
     val cars = Cars(carList)
 
     // Move and print result
@@ -20,4 +19,5 @@ fun main() {
         cars.move()
         ResultView.printResult(cars)
     }
+    ResultView.printWinners(cars)
 }
