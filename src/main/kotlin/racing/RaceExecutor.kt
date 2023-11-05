@@ -1,23 +1,26 @@
 package racing
 
 object RaceExecutor {
-    fun prepareCar(carCount: Int): MutableMap<Int, String> {
-        val carMap = mutableMapOf<Int, String>()
+    fun prepareCar(carCount: Int): List<Car> {
+        val carList: MutableList<Car> = mutableListOf()
         for (i in 1..carCount) {
-            carMap[i] = ""
+            carList.add(Car(""))
         }
-        return carMap
+        return carList
     }
 
-    fun racingCarRandomly(carMap: MutableMap<Int, String>, tryCount: Int, randomValue: () -> Int = { RandomGenerator.getRandomValue() }) {
+    fun raceCarRandomly(
+        carList: List<Car>,
+        tryCount: Int,
+        randomValue: () -> Int = { RandomGenerator.getRandomValue() }
+    ) {
         for (i in 1..tryCount) {
-            // map을 순회하면서 랜덤값이 4이상이면 "-"을 추가
-            for ((carNumber, value) in carMap) {
+            for (car in carList) {
                 if (randomValue() >= 4) {
-                    carMap[carNumber] = "$value-"
+                    car.move()
                 }
             }
-            PrintResultExecutor.execute(carMap).also { println() }
+            PrintResultExecutor.execute(carList).also { println() }
         }
     }
 }
