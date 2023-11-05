@@ -12,21 +12,23 @@ object OutputView {
         println(RESULT_MESSAGE)
     }
 
-    fun printQuestionCarNumber() {
-        println("자동차 대수는 몇 대 인가요?")
+    fun printQuestionCarName() {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)")
     }
 
     fun printQuestionTryCount() {
         println("시도할 회수는 몇회인가요?")
     }
 
-    fun printResultTitle(cars: Cars) {
-        println("실행 결과")
+    fun printWinners(cars: Cars) {
+        val winners = cars.findWinners()
+        val winnerNames = winners.joinToString(", ") { it.carName.name }
+        println("${winnerNames}가 최종 우승했습니다.")
     }
 
     fun printResult(result: List<Car>) {
         result.forEach {
-            println(CAR_TRACK.repeat(it.getPosition().toInt()))
+            println(CAR_TRACK.repeat(it.position.toInt()))
         }
         println()
     }

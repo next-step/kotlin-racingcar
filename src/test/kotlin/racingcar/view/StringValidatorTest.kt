@@ -3,7 +3,7 @@ package racingcar.view
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 
-class StringValidatorTest{
+class StringValidatorTest {
     @Test
     fun `입력값이 없으면 예외를 발생시킨다`() {
         assertThrows(IllegalArgumentException::class.java) {
