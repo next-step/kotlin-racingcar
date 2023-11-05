@@ -2,9 +2,10 @@ package racingcar
 
 fun main() {
     val numberOfCars = InputView.inputNumberOfCars()
-    val numberOfMoves = InputView.inputNumberOfMoves()
+    val namesOfCars = InputView.inputNameOfCars()
+    val cars = Cars.initialize(numberOfCars, namesOfCars, RandomPowerGenerator)
 
-    val cars = Cars.initializeWithNumberOfCars(numberOfCars, RandomPowerGenerator)
+    val numberOfMoves = InputView.inputNumberOfMoves()
 
     OutputView.printResultTitle()
 

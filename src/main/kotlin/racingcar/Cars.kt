@@ -8,10 +8,10 @@ class Cars(val cars: List<Car>, private val powerGenerator: PowerGenerator) {
     }
 
     companion object {
-        fun initializeWithNumberOfCars(numberOfCars: Int, powerGenerator: PowerGenerator): Cars {
+        fun initialize(numberOfCars: Int, names: List<String>, powerGenerator: PowerGenerator): Cars {
             val cars = mutableListOf<Car>()
             repeat(numberOfCars) {
-                cars.add(Car())
+                cars.add(Car(names[it]))
             }
             return Cars(cars, powerGenerator)
         }
