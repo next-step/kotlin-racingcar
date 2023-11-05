@@ -1,8 +1,8 @@
 package racing
 
 object PrintResultExecutor {
-    fun execute(carList: List<Car>) {
-        for (car in carList) {
+    fun execute(cars: List<Car>) {
+        for (car in cars) {
             print(car.position)
             println()
         }

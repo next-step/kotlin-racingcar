@@ -4,20 +4,20 @@ object RaceExecutor {
     private const val CAR_RACE_FORWARD_CONDITION = 4
 
     fun prepareCar(carCount: Int): List<Car> {
-        val carList: MutableList<Car> = mutableListOf()
+        val cars: MutableList<Car> = mutableListOf()
         for (i in 1..carCount) {
-            carList.add(Car(""))
+            cars.add(Car(""))
         }
-        return carList
+        return cars
     }
 
     fun raceCarRandomly(
-        carList: List<Car>,
+        cars: List<Car>,
         tryCount: Int,
         randomValue: () -> Int = { RandomGenerator.getRandomValue() }
     ) {
         for (i in 1..tryCount) {
-            for (car in carList) {
+            for (car in cars) {
                 if (movable(randomValue)) {
                     car.move()
                 }

@@ -7,7 +7,7 @@ fun main() {
     println("시도할 횟수는 몇 회인가요?")
     val tryCount = readln().toInt()
 
-    val carList = RaceExecutor.prepareCar(carCount)
-    RaceExecutor.raceCarRandomly(carList, tryCount)
-    PrintResultExecutor.execute(carList)
+    val cars = RaceExecutor.prepareCar(carCount)
+    RaceExecutor.raceCarRandomly(cars, tryCount)
+    PrintResultExecutor.execute(cars)
 }
