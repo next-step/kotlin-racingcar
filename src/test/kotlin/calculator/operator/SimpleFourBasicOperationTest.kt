@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test
 
 internal class SimpleFourBasicOperationTest {
     private val operation = SimpleFourBasicOperation
+
     @Test
     fun addTest() {
         assertThat(operation.add(3.0, 4.0)).isEqualTo(7.0)
