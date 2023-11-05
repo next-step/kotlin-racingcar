@@ -4,6 +4,7 @@ import racing.v2.console.InputView
 import racing.v2.console.ResultView
 import racing.v2.domain.Car
 import racing.v2.domain.CarGame
+import racing.v2.domain.CarGameRandomGenerator
 
 fun main() {
     val cars: List<Car> = requestCars()
@@ -30,7 +31,7 @@ private fun playGame(
     cars: List<Car>,
     tryCount: Int
 ): CarGame {
-    val carGame = CarGame(cars, tryCount)
+    val carGame = CarGame(cars, tryCount, CarGameRandomGenerator)
 
     while (carGame.hasMoreRounds()) {
         carGame.startRound()

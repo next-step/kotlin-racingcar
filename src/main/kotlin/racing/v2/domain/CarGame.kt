@@ -1,8 +1,10 @@
 package racing.v2.domain
 
-import kotlin.random.Random
-
-class CarGame(private val cars: List<Car>, private var tryCount: Int) {
+class CarGame(
+    private val cars: List<Car>,
+    private var tryCount: Int,
+    private val randomGenerator: RandomGenerator
+) {
 
     fun startRound() {
         moveAllCarsOnce()
@@ -11,7 +13,7 @@ class CarGame(private val cars: List<Car>, private var tryCount: Int) {
 
     private fun moveAllCarsOnce() {
         cars.forEach {
-            it.moveForward(CarDrivingPolicy, Random.nextInt(10))
+            it.moveForward(CarDrivingPolicy, randomGenerator.nextInt(10))
         }
     }
 
