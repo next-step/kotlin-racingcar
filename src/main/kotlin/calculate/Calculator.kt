@@ -2,25 +2,31 @@ package calculate
 
 object Calculator {
 
+    private const val DELIMITER = " "
+
     fun calculate(input: String): Int {
-        val inputs = input.split(" ")
+        val inputs = input.split(DELIMITER)
         return accumulativeOperation(numbersBy(inputs), operatorsBy(inputs))
     }
 
     private fun numbersBy(strings: List<String>): List<Int> {
-        try {
-            return strings.filterIndexed { index, _ -> index % 2 == 0 }.map { it.toInt() }
-        } catch (e: NumberFormatException) {
-            throw NumberFormatException("유효한 정수 형식이 아닙니다.")
-        }
+        return runCatching {
+            strings.filterIndexed { index, _ -> index % 2 == 0 }.map { it.toInt() }
+        }.onFailure { e ->
+            if (e is NumberFormatException) {
+                throw NumberFormatException("유효한 정수 형식이 아닙니다.")
+            }
+        }.getOrThrow()
     }
 
     private fun operatorsBy(strings: List<String>): List<Operator> {
-        try {
-            return strings.filterIndexed { index, _ -> index % 2 != 0 }.map { Operator.from(it) }
-        } catch (e: IllegalArgumentException) {
-            throw IllegalArgumentException("올바른 사칙연산자 형식이 아닙니다.")
-        }
+        return runCatching {
+            strings.filterIndexed { index, _ -> index % 2 != 0 }.map { Operator.from(it) }
+        }.onFailure { e ->
+            if (e is IllegalArgumentException) {
+                throw IllegalArgumentException("올바른 사칙연산자 형식이 아닙니다.")
+            }
+        }.getOrThrow()
     }
 
     private fun accumulativeOperation(numbers: List<Int>, operators: List<Operator>): Int {
@@ -51,8 +57,11 @@ enum class Operator(
     DIVIDE("/", { a, b -> a / b });
 
     companion object {
+        private val stores by lazy {
+            values().associateBy { it.symbol }
+        }
         fun from(input: String): Operator {
-            return values().find { it.symbol == input } ?: throw IllegalArgumentException()
+            return stores[input] ?: throw IllegalArgumentException()
         }
     }
 }
