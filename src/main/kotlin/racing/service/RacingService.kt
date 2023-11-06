@@ -22,7 +22,7 @@ class RacingService {
 
     private fun ready(participates: ArrayDeque<String>): RoundHistory {
         return RoundHistory(
-            participates.map { Car(Name(it), 0) }
+            participates.map { Car(Name(it)) }
         )
     }
 

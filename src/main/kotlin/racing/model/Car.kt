@@ -4,7 +4,7 @@ import racing.model.move.MoveStrategy
 
 data class Car(
     val name: Name,
-    val position: Int,
+    val position: Int = 0,
 ) {
 
     fun move(moveStrategy: MoveStrategy): Car {
