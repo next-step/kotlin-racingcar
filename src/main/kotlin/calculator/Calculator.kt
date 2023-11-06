@@ -6,10 +6,10 @@ class Calculator {
             "입력값이 null이거나 빈 공백 문자입니다."
         }
 
-        val inputs = input?.split(" ")
+        val inputs = input?.split(" ") ?: emptyList()
 
-        val operand = inputs?.filterIndexed { index, s -> index % 2 == 0 }?.map { it.toInt() } ?: emptyList()
-        val op = inputs?.filterIndexed { index, s -> index % 2 == 1 }?.map { Operator.from(it) } ?: emptyList()
+        val operand = inputs.filterIndexed { index, s -> index % 2 == 0 }?.map { it.toInt() } ?: emptyList()
+        val op = inputs.filterIndexed { index, s -> index % 2 == 1 }?.map { Operator.from(it) } ?: emptyList()
 
         return op.foldIndexed(operand[0]) { index, acc, o ->
             val value = operand[index + 1]
