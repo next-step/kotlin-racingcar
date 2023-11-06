@@ -1,6 +1,6 @@
 package racing.view
 
-import racing.car.Car
+import racing.domain.car.Car
 
 object ResultView {
     private const val FIXED_INDEX = 1

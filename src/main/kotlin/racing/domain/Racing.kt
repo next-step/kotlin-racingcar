@@ -1,7 +1,7 @@
-package racing
+package racing.domain
 
-import racing.car.Car
-import racing.car.CarManager
+import racing.domain.car.Car
+import racing.domain.car.CarManager
 
 class Racing(private val carManager: CarManager) {
 

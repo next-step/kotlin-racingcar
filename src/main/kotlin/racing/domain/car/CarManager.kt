@@ -1,6 +1,6 @@
-package racing.car
+package racing.domain.car
 
-import racing.rule.RuleInterface
+import racing.domain.rule.RuleInterface
 
 class CarManager(private val rule: RuleInterface) {
     private val carList = mutableListOf<Car>()

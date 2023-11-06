@@ -4,8 +4,8 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
-import racing.car.Car
-import racing.car.CarManager
+import racing.domain.car.Car
+import racing.domain.car.CarManager
 import study.racing.rule.FakeRule
 
 class CarManagerTest {

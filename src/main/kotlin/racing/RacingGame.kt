@@ -1,7 +1,8 @@
 package racing
 
-import racing.car.CarManager
-import racing.rule.Rule
+import racing.domain.car.CarManager
+import racing.domain.Racing
+import racing.domain.rule.Rule
 import racing.view.InputView
 import racing.view.ResultView
 

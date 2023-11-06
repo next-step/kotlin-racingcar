@@ -1,4 +1,4 @@
-package racing.car
+package racing.domain.car
 
 data class Car(val name: String, var position: Int = INIT_POSITION) {
 
