@@ -1,7 +1,7 @@
 package racing
 
 class Game(
-    private val numberOfCar: Int,
+    numberOfCar: Int,
     private val tryCount: Int
 ) {
     private val carList = List(numberOfCar) { Car() }
