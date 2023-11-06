@@ -8,6 +8,6 @@ enum class Operator(val value: String) {
     DIVIDE("/");
 
     companion object {
-        fun of(op: String) = values().find { it.value == op }
+        fun from(op: String) = values().find { it.value == op }
     }
 }
