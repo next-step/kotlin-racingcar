@@ -4,9 +4,7 @@ import racingCar.domain.strategy.MoveStrategy
 import racingCar.domain.strategyImpl.RandomStrategy
 import racingCar.error.ErrorMessage
 
-class Cars(private val moveStrategy: MoveStrategy = RandomStrategy()) {
-
-    private var carList: List<Car> = emptyList()
+class Cars(private val moveStrategy: MoveStrategy = RandomStrategy(), private var carList: List<Car> = emptyList()) {
 
     fun getCarList(): List<Car> {
         return carList
@@ -20,7 +18,7 @@ class Cars(private val moveStrategy: MoveStrategy = RandomStrategy()) {
         carList = carsNames.map { Car(name = it, moveStrategy = moveStrategy) }
     }
 
-    fun getWinners(carList: List<Car>): List<Car> {
+    fun getWinners(): List<Car> {
         val maxMoveCount = carList.maxByOrNull { it.moveCount }?.moveCount
         return carList.filter { it.moveCount == maxMoveCount }
     }

@@ -2,7 +2,6 @@ package racingCar.view
 
 import racingCar.domain.Car
 import racingCar.domain.Cars
-import racingCar.domain.strategyImpl.RandomStrategy
 
 object OutputView {
 
@@ -17,15 +16,13 @@ object OutputView {
     fun printTryCount() = println(ASK_TRY_COUNT)
     fun printExecuteResult() = println(EXECUTE_RESULT)
 
-    fun printCar(carList: List<Car>) {
-        carList.forEach { car: Car -> println(car.name + COLON + CAR.repeat(car.moveCount)) }
+    fun printCar(cars: Cars) {
+        cars.getCarList().forEach { car: Car -> println(car.name + COLON + CAR.repeat(car.moveCount)) }
         println()
     }
 
-    fun printWinner(carList: List<Car>) {
-        val moveStrategy = RandomStrategy()
-        val cars = Cars(moveStrategy)
-        val winners = cars.getWinners(carList)
+    fun printWinner(cars: Cars) {
+        val winners = cars.getWinners()
         val formatWinner = winners.joinToString { it.name }
         println(formatWinner + WINNER_MESSAGE)
     }

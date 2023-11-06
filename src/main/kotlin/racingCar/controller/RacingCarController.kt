@@ -15,7 +15,7 @@ fun main() {
     cars.initCars(inputCars)
     repeat(tryCount) {
         cars.getCarList().forEach { it.move() }
-        OutputView.printCar(cars.getCarList())
+        OutputView.printCar(cars)
     }
-    OutputView.printWinner(cars.getCarList())
+    OutputView.printWinner(cars)
 }

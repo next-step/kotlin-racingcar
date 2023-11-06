@@ -38,7 +38,8 @@ class CarsTest {
         val car3 = Car("car3", 3, moveStrategy)
 
         val carList = listOf(car1, car2, car3)
-        val winners = cars.getWinners(carList)
+        val winners = Cars(moveStrategy, carList).getWinners()
+
         assertThat(winners).containsExactly(car1, car3)
     }
 
