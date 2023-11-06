@@ -17,8 +17,8 @@ data class RacingCar(
 
     fun moveOrStop(checkNum: Int): RacingCar {
         if (checkNum >= MOVE_FORWARD_START_NUM) {
-            return RacingCar(name = this.name, position = this.position + MOVE_FORWARD_COUNT)
+            return copy(position = this.position + MOVE_FORWARD_COUNT)
         }
-        return RacingCar(name = this.name, position = position)
+        return copy(position = position)
     }
 }
