@@ -2,18 +2,9 @@ package carracing.model.model
 
 import kotlin.random.Random
 
-typealias CarTrace = String
-
-private const val MOVEMENT = "-"
-
-data class Car(val carNumber: Int) {
-    private var countOfMovementInRacing = 0
-
-    fun move() {
-        if (Random.nextInt(10) > 4) {
-            countOfMovementInRacing++
-        }
+data class Car(val number: Int) {
+    fun move(rule: Rule): Int = when(rule.isMoveAllowed()) {
+        true -> 1
+        false -> 0
     }
-
-    fun getTrace(): CarTrace = MOVEMENT.repeat(countOfMovementInRacing)
 }

@@ -1,11 +1,22 @@
 package carracing.model.model
 
-class Racing(numberOfCar: Int) {
-    val cars: List<Car> = List(numberOfCar) { index -> Car(index) }
+typealias Location = Int
 
-    fun progress() {
-        cars.forEach { it.move() }
+class Racing(
+    numberOfCar: Int,
+    val rule: Rule = Rule.RandomRule()
+) {
+    val cars: List<Car> = List(numberOfCar) { index -> Car(index) }
+    val locations: LinkedHashMap<Car, Location> = linkedMapOf<Car, Location>().apply {
+        cars.forEach { this[it] = 0 }
     }
 
-    fun takeSnapshot() = Snapshot(cars.map { it.getTrace() })
+    fun progress() {
+        cars.forEach {
+            locations[it] = locations[it]?.plus(it.move(rule))
+                ?: throw IllegalArgumentException("car that didn't participate in racing")
+        }
+    }
+
+    fun takeSnapshot() = Snapshot(LinkedHashMap(locations))
 }

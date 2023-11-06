@@ -3,38 +3,29 @@ package carracing.model.model
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.RepeatedTest
+import org.junit.jupiter.api.Test
 import kotlin.random.Random
 
 class RacingTest {
 
-    companion object {
-        private fun getDummyCar(): Car {
-            val car = mockk<Car>()
-            every { car.move() } returns Unit
-            return car
-        }
 
-        private fun getRacingWithDummyCars(cars: List<Car>): Racing {
-            val racing = Racing(cars.size)
-            val racingFieldCars = racing::class.java.getDeclaredField("cars")
-            racingFieldCars.trySetAccessible()
-            racingFieldCars.set(racing, cars)
-            return racing
-        }
+    companion object {
+        private val alwaysMoveRule = Rule.AlwaysMoveRule()
+        private val noMoveRule = Rule.NoMoveRule()
     }
 
-    @RepeatedTest(10)
+    @Test
     fun `progress - every car move once`() {
-        val numberOfCar = Random.nextInt(1, 10)
-        val cars = List<Car>(numberOfCar) { getDummyCar() }
-        val racing = getRacingWithDummyCars(cars)
+        val numberOfCar = 4
+        val racing = Racing(numberOfCar, alwaysMoveRule)
 
         racing.progress()
 
-        cars.forEach {
-            verify(exactly = 1) { it.move() }
+        racing.cars.forEach {
+            assertEquals(1, racing.locations[it])
         }
     }
 
