@@ -6,9 +6,9 @@ import racing.model.RoundHistory
 object ConsoleRender {
 
     fun roundRendering(roundHistory: RoundHistory): String {
-        return roundHistory.results
-            .map { carRendering(it) }
-            .joinToString(separator = "\n")
+        return roundHistory
+            .results
+            .joinToString(separator = "\n") { carRendering(it) }
     }
 
     private fun carRendering(car: Car): String {
