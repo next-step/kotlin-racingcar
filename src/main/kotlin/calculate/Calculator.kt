@@ -1,53 +1,41 @@
 package calculate
 
-class Calculator(
-    private val numbers: List<Int>,
-    private val operators: List<Operator>
-) {
+object Calculator {
 
-    fun calculate(): Int {
-        validateCalculate()
-        return accumulativeOperation(numbers, operators)
-    }
+    private const val DELIMITER = " "
 
-    private fun validateCalculate() {
-        require(numbers.isNotEmpty()) { "숫자가 없습니다." }
-        require(operators.size == numbers.size - 1) { "연산자와 숫자의 수가 일치하지 않습니다." }
+    fun calculate(input: String): Int {
+        val inputs = input.split(DELIMITER)
+        return accumulativeOperation(Numbers.parse(inputs), Operator.parse(inputs))
     }
 
     private fun accumulativeOperation(numbers: List<Int>, operators: List<Operator>): Int {
+        validateCalculate(numbers, operators)
         return pairsOf(numbers, operators).fold(numbers.first()) { acc, (number, operator) ->
             operator.operate(acc, number)
         }
     }
 
-    private fun pairsOf(numbers: List<Int>, operators: List<Operator>): List<Pair<Int, Operator>> {
-        val sliceNumbers = numbers.toMutableList()
-        sliceNumbers.removeFirst()
-        return sliceNumbers.zip(operators)
+    private fun validateCalculate(numbers: List<Int>, operators: List<Operator>) {
+        require(numbers.isNotEmpty()) { "숫자가 없습니다." }
+        require(operators.size == numbers.size - 1) { "연산자와 숫자의 수가 일치하지 않습니다." }
     }
 
-    companion object {
-        fun from(input: String): Calculator {
-            val inputs = input.split(" ")
-            return Calculator(numbers = numbersBy(inputs), operators = operatorsBy(inputs))
-        }
+    private fun pairsOf(numbers: List<Int>, operators: List<Operator>): ArrayDeque<Pair<Int, Operator>> {
+        val sliceNumbers = ArrayDeque(numbers.drop(1))
+        return sliceNumbers.zip(operators).toCollection(ArrayDeque())
+    }
+}
 
-        private fun numbersBy(strings: List<String>): List<Int> {
-            try {
-                return strings.filterIndexed { index, _ -> index % 2 == 0 }.map { it.toInt() }
-            } catch (e: NumberFormatException) {
-                throw IllegalArgumentException("유효한 정수 형식이 아닙니다.")
+object Numbers {
+    fun parse(strings: List<String>): List<Int> {
+        return runCatching {
+            strings.filterIndexed { index, _ -> index % 2 == 0 }.map { it.toInt() }
+        }.onFailure { e ->
+            if (e is NumberFormatException) {
+                throw NumberFormatException("유효한 정수 형식이 아닙니다.")
             }
-        }
-
-        private fun operatorsBy(strings: List<String>): List<Operator> {
-            try {
-                return strings.filterIndexed { index, _ -> index % 2 != 0 }.map { Operator.from(it) }
-            } catch (e: IllegalArgumentException) {
-                throw IllegalArgumentException("올바른 사칙연산자 형식이 아닙니다.")
-            }
-        }
+        }.getOrThrow()
     }
 }
 
@@ -61,8 +49,22 @@ enum class Operator(
     DIVIDE("/", { a, b -> a / b });
 
     companion object {
-        fun from(input: String): Operator {
-            return values().find { it.symbol == input } ?: throw IllegalArgumentException()
+        fun parse(strings: List<String>): List<Operator> {
+            return runCatching {
+                strings.filterIndexed { index, _ -> index % 2 != 0 }.map { Operator.from(it) }
+            }.onFailure { e ->
+                if (e is IllegalArgumentException) {
+                    throw IllegalArgumentException("올바른 사칙연산자 형식이 아닙니다.")
+                }
+            }.getOrThrow()
+        }
+
+        private val stores by lazy {
+            values().associateBy { it.symbol }
+        }
+
+        private fun from(input: String): Operator {
+            return stores[input] ?: throw IllegalArgumentException()
         }
     }
 }
