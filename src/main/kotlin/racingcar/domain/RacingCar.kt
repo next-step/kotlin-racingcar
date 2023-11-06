@@ -21,4 +21,8 @@ data class RacingCar(
         }
         return copy(position = position)
     }
+
+    fun isSamePosition(position: Int): Boolean {
+        return this.position == position
+    }
 }

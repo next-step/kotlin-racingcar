@@ -45,4 +45,21 @@ class RacingCarTest : BehaviorSpec({
             }
         }
     }
+
+    Given("위치가 주어지면") {
+        When("레이싱카는") {
+            val racingCar = RacingCar("pobi", 3)
+            Then("자신의 위치와 같은지를 판단한다.") {
+                forAll(
+                    row(0, false),
+                    row(1, false),
+                    row(2, false),
+                    row(3, true),
+                    row(4, false),
+                ) { position, expected ->
+                    racingCar.isSamePosition(position) shouldBe expected
+                }
+            }
+        }
+    }
 })
