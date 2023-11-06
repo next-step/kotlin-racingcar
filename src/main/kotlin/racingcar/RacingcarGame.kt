@@ -11,10 +11,15 @@ class RacingcarGame {
         val cars = Cars.create(input.carNames)
         val rounds = input.rounds
 
-        return play(cars, rounds)
+        val roundLogs = doRounds(cars, rounds)
+
+        return RacingcarGameResult(
+            winners = cars.getWinners(),
+            roundLogs = roundLogs
+        )
     }
 
-    private fun play(cars: Cars, rounds: Int): RacingcarGameResult {
+    private fun doRounds(cars: Cars, rounds: Int): List<RoundLog> {
         val roundLogs = mutableListOf<RoundLog>()
 
         repeat(rounds) {
@@ -22,12 +27,7 @@ class RacingcarGame {
             appendRoundLogs(roundLogs, cars.getCarLogs())
         }
 
-        val winners = cars.getWinners()
-
-        return RacingcarGameResult(
-            winners,
-            roundLogs.toList()
-        )
+        return roundLogs.toList()
     }
 
     private fun appendRoundLogs(roundLogs: MutableList<RoundLog>, carLogs: List<CarLog>) {
