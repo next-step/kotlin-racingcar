@@ -11,4 +11,8 @@ data class Name(
     companion object {
         private const val MAX_NAME_LENGTH = 5
     }
+
+    override fun toString(): String {
+        return value
+    }
 }

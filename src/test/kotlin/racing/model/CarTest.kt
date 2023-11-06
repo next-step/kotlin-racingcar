@@ -35,11 +35,11 @@ class CarTest : StringSpec({
 
         shouldThrow<IllegalArgumentException> {
             Car(Name("자동차자동차"), 101)
-        }.shouldHaveMessage("자동차 이름은 5자를 초과할 수 없다 : [자동차자동차] 은 [6] 자 입니다")
+        }.shouldHaveMessage("자동차 이름은 5자를 초과할 수 없다 : [자동차자동차] 은 [6] 자리 글자 입니다")
 
         shouldThrow<IllegalArgumentException> {
             Car(Name("힘이세고강한친구"), 101)
-        }.shouldHaveMessage("자동차 이름은 5자를 초과할 수 없다 : [힘이세고강한친구] 은 [8] 자 입니다")
+        }.shouldHaveMessage("자동차 이름은 5자를 초과할 수 없다 : [힘이세고강한친구] 은 [8] 자리 글자 입니다")
     }
 
     "자동차 이름이 공백 인경우 IllegalArgumentException throw" {

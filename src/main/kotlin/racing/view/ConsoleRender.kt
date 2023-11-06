@@ -12,7 +12,7 @@ object ConsoleRender {
     }
 
     private fun carRendering(car: Car): String {
-        return String.format("%s : %s", car.name, distanceRendering(car))
+        return String.format("%s : %s", car.name.value, distanceRendering(car))
     }
 
     private fun distanceRendering(car: Car): String {
