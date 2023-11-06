@@ -1,15 +1,9 @@
 package carRacing.domain
 
-import carRacing.service.CarFactory
-import carRacing.view.CarInfo
 import carRacing.view.OutputView
 
-class Racing(private val carFactory: CarFactory) {
-    fun getRaceResult(carInfoList: List<CarInfo>, tryCount: Int): List<Car> {
-        val carList: List<Car> = carFactory.createCars(carInfoList)
-
-        return start(carList, tryCount)
-    }
+class Racing(private val carList: List<Car>) {
+    fun getRaceResult(tryCount: Int): List<Car> = start(this.carList, tryCount)
 
     private fun getWinners(carList: List<Car>): List<Car> {
         val maxPosition: Int = carList.maxBy { it.position }.position

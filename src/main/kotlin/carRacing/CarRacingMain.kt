@@ -18,9 +18,11 @@ fun main() {
     println()
     println(messageGenerator.getMessage(Message.RESULT))
 
-    val racing = Racing(RandomMovementCarFactory())
     val carInfoList = carNameList.map { CarInfo(it) }
-    val racingResult: List<Car> = racing.getRaceResult(carInfoList, tryCount)
+    val carList: List<Car> = RandomMovementCarFactory().createCars(carInfoList)
+
+    val racing = Racing(carList)
+    val racingResult: List<Car> = racing.getRaceResult(tryCount)
     val winnerNameList: List<String> = racing.getWinnerNames(racingResult)
 
     println()

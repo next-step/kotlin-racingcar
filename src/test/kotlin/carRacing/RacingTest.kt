@@ -16,28 +16,32 @@ class RacingTest {
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3])
     fun `무조건 움직이는 전략과 무조건 멈추는 전략을 사용하는 자동차가 경주를 완료하면 무조건 움직이는 전략을 사용하는 자동차가 더 먼거리를 이동한다`(tryCount: Int) {
-        val moveRacing = Racing(RandomMovementCarFactory())
-
         val carInfoList: List<CarInfo> = listOf(
             CarInfo("a", TestTrueMovementController()),
             CarInfo("b", TestFalseMovementController())
         )
 
-        val result: List<Car> = moveRacing.getRaceResult(carInfoList, tryCount)
+        val carList: List<Car> = RandomMovementCarFactory().createCars(carInfoList)
+
+        val moveRacing = Racing(carList)
+
+        val result: List<Car> = moveRacing.getRaceResult(tryCount)
 
         assertThat(result[0].position).isGreaterThan(result[1].position)
     }
 
     @Test
     fun `Position 값을 비교하여 우승자의 이름을 반환한다`() {
-        val moveRacing = Racing(RandomMovementCarFactory())
-
         val carInfoList: List<CarInfo> = listOf(
             CarInfo("a", TestTrueMovementController()),
             CarInfo("b", TestFalseMovementController())
         )
 
-        val result: List<Car> = moveRacing.getRaceResult(carInfoList, 1)
+        val carList: List<Car> = RandomMovementCarFactory().createCars(carInfoList)
+
+        val moveRacing = Racing(carList)
+
+        val result: List<Car> = moveRacing.getRaceResult(1)
 
         assertThat(moveRacing.getWinnerNames(result)).isEqualTo(listOf("a"))
     }
