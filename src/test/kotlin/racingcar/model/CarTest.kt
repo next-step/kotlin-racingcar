@@ -17,10 +17,4 @@ class CarTest {
     fun `Car 생성 시 이름이 5자 이상이면 실패한다`() {
         assertThrows<IllegalArgumentException> { Car("NameName") }
     }
-
-    @Test
-    fun `Car 생성`() {
-        val cars = createCars(listOf("pobi", "crong"))
-        assertThat(cars.size).isEqualTo(2)
-    }
 }

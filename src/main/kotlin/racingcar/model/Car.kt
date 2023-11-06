@@ -16,5 +16,3 @@ data class Car(val name: String, private var _position: Int = 0) {
         private const val CAR_NAME_MAX_BOUND = 5
     }
 }
-
-fun createCars(namesOfCars: List<String>): List<Car> = namesOfCars.map { Car(name = it) }
