@@ -14,14 +14,6 @@ class Car(val name: String) {
         }
     }
 
-    fun isMovePossible(value: Int): Boolean {
-        return value >= MIN_MOVE_THRESHOLD
-    }
-
-    fun getRandomValue(): Int {
-        return (MIN_RANDOM_VALUE..MAX_RANDOM_VALUE).random()
-    }
-
     companion object {
         const val MIN_RANDOM_VALUE = 0
         const val MAX_RANDOM_VALUE = 9
