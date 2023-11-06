@@ -1,15 +1,16 @@
-package racing
+package racing.view
 
 import racing.car.Car
 
-class RacingResult {
+object ResultView {
+    private const val FIXED_INDEX = 1
+
     fun showRacingResult(racingRoundResults: List<List<Car>>) {
         racingRoundResults.forEachIndexed { index, racingResult ->
             println("${index + FIXED_INDEX}회차 경주")
             printRacingResult(racingResult)
             println()
         }
-        // car, cat이 우승하였습니다.
         printRacingCar(getWinnerList(racingRoundResults.last()))
     }
 
@@ -33,9 +34,5 @@ class RacingResult {
     private fun getWinnerList(lastRacingRoundResult: List<Car>): List<Car> {
         val maxPosition = lastRacingRoundResult.maxOf { it.position }
         return lastRacingRoundResult.filter { it.position == maxPosition }
-    }
-
-    companion object {
-        const val FIXED_INDEX = 1
     }
 }

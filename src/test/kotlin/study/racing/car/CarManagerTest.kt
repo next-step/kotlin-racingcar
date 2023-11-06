@@ -18,11 +18,12 @@ class CarManagerTest {
     // - 출전 차량 0대
     @ParameterizedTest
     @MethodSource("validateInputTestData")
-    fun `, 검증 로직에 잘못된 입력값을 넣었을 때, 오류를 발생시킨다`(carCnt: String, expected: Exception) {
-        // given:
+    fun `잘못된 이름으로 차량을 생성하고, 검증 로직을 동작할 때, 오류를 발생시킨다`(carNames: String, expected: Exception) {
+        // given: 잘못된 이름으로 차량을 생성한다.
+        carManager.createCarList(carNames)
 
-        // when : 검증로직에 잘못된 입력값을 넣는다.
-        val actual = runCatching { carManager.validateInputData(carCnt) }.exceptionOrNull()
+        // when : 검증 로직은 실행한다.
+        val actual = runCatching { carManager.validateCarList() }.exceptionOrNull()
 
         // then : 오류가 발생한다
         assertThat(actual).isInstanceOf(expected::class.java)
@@ -43,7 +44,6 @@ class CarManagerTest {
         assertThat(actual).isEqualTo(carList)
     }
 
-
     // 차 이동(규칙: 모든 차 이동)
     @Test
     fun `사용자가 자동차를 생성하고, isMove()를 호출한다면, 차량의 포지션이 1 증가한다`() {
@@ -60,11 +60,9 @@ class CarManagerTest {
         }
     }
 
-
     companion object {
         @JvmStatic
         fun validateInputTestData() = listOf(
-            arrayOf("", IllegalArgumentException()),
             arrayOf("lightSpeed, light, bush", IllegalArgumentException()),
             arrayOf("  , light, bush", IllegalArgumentException())
         )

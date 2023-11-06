@@ -15,4 +15,16 @@ class RuleTest {
         // then: 결과는 참이다.
         assertThat(actual).isTrue()
     }
+
+    @Test
+    fun splitTest() {
+        val inputData = " , , ,"
+
+        val nameList = inputData.split(',')
+            .map { it.trim() }
+            .filter { it.isNotBlank() }
+
+        println(nameList.size)
+        nameList.forEach { println(it) }
+    }
 }
