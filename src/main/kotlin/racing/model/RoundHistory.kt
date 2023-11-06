@@ -11,11 +11,11 @@ data class RoundHistory(
 
     private fun requireDistinct() {
         require(
-            isExisited()
+            isExisted()
         ) { "자동차 name 은 중복이 허용되지 않습니다" }
     }
 
-    private fun isExisited(): Boolean {
+    private fun isExisted(): Boolean {
         return results
             .map { it.name }
             .distinct().size == results.size
