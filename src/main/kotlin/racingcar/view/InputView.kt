@@ -1,4 +1,4 @@
-package racing_car.ui
+package racingcar.view
 
 private const val INPUT_CAR_NAME_LIST_VIEW = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n"
 private const val INPUT_ROUND_DESCRIPTION_VIEW = "시도할 횟수는 몇 회인가요?\n"
@@ -13,9 +13,16 @@ object InputView {
     }
 
     /**
-     * input 타입에 따라 다른 뷰를 그림
+     * 자동차 경주에 필요한 정보를 얻음
      * */
-    fun draw(inputType: InputType) {
+    fun getGameInfo(inputType: InputType): String {
+        draw(inputType)
+        return readln()
+    }
+
+    private fun draw(inputType: InputType) {
         print(inputType.descriptionView)
     }
+
+
 }

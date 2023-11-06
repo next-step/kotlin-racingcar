@@ -1,10 +1,12 @@
-package racing_car.parser
+package racingcar.domain.parser
 
-import racing_car.CAR_NAME_DELIMITER
-import racing_car.interfaces.Movable
-import racing_car.model.Car
+import racingcar.domain.CAR_NAME_DELIMITER
+import racingcar.domain.interfaces.Raceable
+import racingcar.domain.model.Car
 
 private const val MOVABLE_NAME_DELIMITER = ','
+private const val CAR_NAME_MAX_LENGTH = 5
+private const val DEFAULT_ROUND_COUNT = 1
 
 /**
  * 자동차 경주 관련 Parser 오브젝트
@@ -18,20 +20,22 @@ object RacingParser {
         require(roundCntText?.isNotEmpty() == true && Int.MAX_VALUE.toString().length >= roundCntText.length && roundCntText.toIntOrNull() != null && roundCntText.toInt() > 0) {
             "Invalid Expression: $roundCntText"
         }
-        return roundCntText?.toIntOrNull() ?: 0
+        return roundCntText?.toIntOrNull() ?: DEFAULT_ROUND_COUNT
     }
 
     /**
      * 텍스트 -> 자동차 리스트 변환
      * */
-    fun convertTextToCarList(carNameListText: String?): List<Movable> {
-        require(!carNameListText.isNullOrBlank() && carNameListText.last() != MOVABLE_NAME_DELIMITER && carNameListText.length < 6) {
+    fun convertTextToCarList(carNameListText: String?): List<Raceable> {
+        require(!carNameListText.isNullOrBlank() && carNameListText.last() != MOVABLE_NAME_DELIMITER) {
             "Invalid Expression: $carNameListText"
         }
 
         val carNameList = carNameListText.split(CAR_NAME_DELIMITER)
 
-        require(carNameList.all { it.isNotBlank() })
+        require(carNameList.all { carName -> carName.isNotBlank() && carName.length <= CAR_NAME_MAX_LENGTH }) {
+            "Invalid Expression: $carNameListText"
+        }
 
         return carNameList.map { Car(it) }
     }

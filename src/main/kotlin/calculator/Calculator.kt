@@ -7,28 +7,20 @@ private const val DELIMITER = " "
  * */
 object Calculator {
 
-    enum class CalculatorSign(val sign: String) {
-        PLUS("+") {
-            override fun calculate(num1: Int, num2: Int): Int = num1 + num2
-        },
-        MINUS("-") {
-            override fun calculate(num1: Int, num2: Int): Int = num1 - num2
-        },
-        MULTIPLY("*") {
-            override fun calculate(num1: Int, num2: Int): Int = num1 * num2
-        },
-        DIVIDE("/") {
-            override fun calculate(num1: Int, num2: Int): Int = num1 / num2
-        };
+    enum class CalculatorSign(val sign: String, val calculate: (Int, Int) -> Int) {
+        PLUS("+", { num1, num2 -> num1 + num2 }),
+        MINUS("-", { num1, num2 -> num1 - num2 }),
+        MULTIPLY("*", { num1, num2 -> num1 * num2 }),
+        DIVIDE("/", { num1, num2 -> num1 / num2 });
 
-        /**
-         * 숫자 두개와 부호로 계산한 값을 반환
-         *
-         * @param num1 입력 값1
-         * @param num2 입력 값2
-         * @return 계산된 값
-         * */
-        abstract fun calculate(num1: Int, num2: Int): Int
+        companion object {
+            /**
+             * 텍스트 CalculatorSign 변환
+             * */
+            fun from(signText: String): CalculatorSign {
+                return CalculatorSign.values().first { sign -> signText == sign.sign }
+            }
+        }
     }
 
     private fun checkError(splitFormulaList: List<String>) {
@@ -58,20 +50,27 @@ object Calculator {
     /**
      * 계산 요청시 사용
      *
-     * @param inputStr 계산에 사용할 문자열
+     * @param formulaText 텍스트 계산식
      * @return 계산식을 이용해 얻은 결과 값
      * */
-    fun calculate(inputStr: String?): Int {
+    fun calculate(formulaText: String?): Int {
 
-        val splitFormulaList: List<String> = inputStr?.split(DELIMITER) ?: emptyList()
+        val splitFormulaList: List<String> = formulaText?.split(DELIMITER) ?: emptyList()
 
         checkError(splitFormulaList)
 
-        val splitFormulaPair = splitFormulaList.partition { it.toIntOrNull() != null }
-
-        return splitFormulaPair.second.zip(splitFormulaPair.first.drop(1))
-            .fold(splitFormulaPair.first.first().toInt()) { acc, pair ->
-                CalculatorSign.values().first { sign -> pair.first == sign.sign }.calculate(acc, pair.second.toInt())
+        val (operandsDeque, operatorsDeque) =
+            splitFormulaList.foldIndexed(ArrayDeque<String>() to ArrayDeque<String>()) { index, (operands, operators), item ->
+                if (index % 2 == 0) {
+                    operands.add(item)
+                } else {
+                    operators.add(item)
+                }
+                operands to operators
             }
+
+        return operatorsDeque.foldIndexed(operandsDeque.first().toInt()) { index, sum, operator ->
+            CalculatorSign.from(operator).calculate(sum, operandsDeque[index + 1].toInt())
+        }
     }
 }
