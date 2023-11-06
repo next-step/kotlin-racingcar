@@ -1,15 +1,15 @@
 package racingcar
 
+import racingcar.controller.RacingcarGameController
 import racingcar.view.RacingcarGameInputView
 import racingcar.view.RacingcarGameResultView
 
 fun main() {
-    val inputView = RacingcarGameInputView()
-    val resultView = RacingcarGameResultView()
-    val application = RacingcarGame()
+    val controller = RacingcarGameController(
+        RacingcarGameInputView(),
+        RacingcarGameResultView(),
+        RacingcarGame()
+    )
 
-    val input = inputView.getInput()
-    val result = application.play(input)
-
-    resultView.printGameResult(result)
+    controller.startGame()
 }
