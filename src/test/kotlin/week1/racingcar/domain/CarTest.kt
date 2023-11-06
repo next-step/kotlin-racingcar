@@ -1,8 +1,11 @@
 package week1.racingcar.domain
 
 import io.kotest.matchers.shouldBe
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
+import week1.racingcar.domain.Car.Companion.MIN_NUM_TO_GO
+import week1.racingcar.domain.Car.Companion.RANDOM_NUM_RANGE
 
 class CarTest {
     @Test
@@ -17,27 +20,17 @@ class CarTest {
 
     @Test
     fun `한 턴 진행`() {
-        val car1 = Car("K5")
-        repeat(DEFAULT_TEST_TIMES) {
-            car1.moveOrNot()
+        (0 until RANDOM_NUM_RANGE).forEach {
+            val car = Car("K5")
+            car.moveOrNotByNum(it)
+            val expectedMileage = if (it < MIN_NUM_TO_GO) 0 else 1
+            assertThat(car.currentMileage()).isEqualTo(expectedMileage)
         }
-        assert(car1.mileage <= DEFAULT_TEST_TIMES)
-
-        val car2 = Car("G80")
-        repeat(MAX_TEST_TIMES) {
-            car2.moveOrNot()
-        }
-        assert(car1.mileage <= MAX_TEST_TIMES)
     }
 
     @Test
     fun `주행거리 비교`() {
         val car = Car("EV6")
         car.isSameMileage(0)
-    }
-
-    companion object {
-        private const val DEFAULT_TEST_TIMES = 1
-        private const val MAX_TEST_TIMES = 5
     }
 }

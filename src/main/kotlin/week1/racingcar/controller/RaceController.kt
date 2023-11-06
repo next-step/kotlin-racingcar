@@ -9,14 +9,16 @@ class RaceController {
 
     fun startRacing() {
         val raceInfo = InputView.getValidateRaceInfo()
-        val racingGame = RacingGame(raceInfo.cars.map { Car(it) }, raceInfo.timesToRace)
+        val racingGame = RacingGame(createCars(raceInfo.cars), raceInfo.timesToRace)
 
-        repeat(racingGame.timesToRace) {
-            val carsAfterDriving = racingGame.driveOneTurn()
-            ResultView.showResult(carsAfterDriving)
+        while (racingGame.isPlaying()) {
+            val resultCarListAfterDriving = racingGame.driveOneTurn()
+            ResultView.showResult(resultCarListAfterDriving)
         }
-        ResultView.showWinner(racingGame.getWinners())
+        ResultView.showWinner(racingGame.filterWinners())
     }
+
+    private fun createCars(carNames: List<String>) = carNames.map { Car(it) }
 }
 
 fun main() {

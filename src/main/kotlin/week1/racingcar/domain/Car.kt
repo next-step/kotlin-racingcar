@@ -1,16 +1,15 @@
 package week1.racingcar.domain
 
-import kotlin.random.Random
-
 class Car(
     val name: String,
+    private var mileage: Int = DEFAULT_MILEAGE,
 ) {
-    var mileage = DEFAULT_MILEAGE
-        private set
 
     init {
         validateCarInfo()
     }
+
+    fun currentMileage() = mileage
 
     private fun validateCarInfo() {
         require(name.isNotBlank()) {
@@ -21,17 +20,17 @@ class Car(
         }
     }
 
-    fun moveOrNot() {
-        if (isPossibleToDrive()) mileage++
+    fun moveOrNotByNum(randomNum: Int) {
+        if (isPossibleToDrive(randomNum)) mileage++
     }
 
-    private fun isPossibleToDrive() = Random.nextInt(RANDOM_NUM_RANGE) >= MIN_NUM_TO_GO
+    private fun isPossibleToDrive(randomNum: Int) = randomNum >= MIN_NUM_TO_GO
 
     fun isSameMileage(mileageToCompare: Int) = mileage == mileageToCompare
 
     companion object {
         private const val DEFAULT_MILEAGE = 0
-        private const val MIN_NUM_TO_GO = 5
-        private const val RANDOM_NUM_RANGE = 10
+        const val MIN_NUM_TO_GO = 5
+        const val RANDOM_NUM_RANGE = 10
     }
 }
