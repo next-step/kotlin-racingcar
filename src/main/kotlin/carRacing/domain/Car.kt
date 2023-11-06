@@ -2,7 +2,7 @@ package carRacing.domain
 
 import carRacing.service.MovementController
 
-class Car(val name: String? = null, val movementController: MovementController, position: Int = 1) {
+class Car(val name: String, val movementController: MovementController, position: Int = 1) {
     var position: Int = position
         private set
 
