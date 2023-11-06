@@ -7,10 +7,8 @@ import carRacing.view.CarInfo
 * RandomMovementController를 주입하는 CarFactory
 * */
 class RandomMovementCarFactory : DefaultCarFactory() {
-
-    override fun createCars(carInfoList: List<CarInfo>): List<Car> {
-        carInfoList.filter { it.isChangeableMovementController() }
-            .forEach { it.movementController = RandomMovementController() }
+    fun createCarList(carNameList: List<String>): List<Car> {
+        val carInfoList: List<CarInfo> = carNameList.map { CarInfo(it, RandomMovementController()) }
 
         return super.createCars(carInfoList)
     }

@@ -10,6 +10,6 @@ open class DefaultCarFactory : CarFactory {
     * Ex) RandomMovementCarFactory
      */
     override fun createCars(carInfoList: List<CarInfo>): List<Car> {
-        return carInfoList.map { info -> Car(info.name, info.movementController!!) }
+        return carInfoList.map { info -> Car(info.name, info.movementController) }
     }
 }

@@ -14,23 +14,20 @@ class Racing(private val carList: List<Car>) {
     fun getWinnerNames(carList: List<Car>): List<String> = getWinners(carList).map { it.name }
 
     private fun start(carList: List<Car>, tryCount: Int): List<Car> {
-        var copyCarList = carList.map { it.copy() }
-
+        var resultCarList: List<Car> = listOf()
         for (i in 0 until tryCount) {
-            copyCarList = process(carList)
-            OutputView().printMessages(*copyCarList.map { "${it.name} : ${it.getPosition()}" }.toTypedArray())
+            resultCarList = process(carList)
+            OutputView().printMessages(*carList.map { "${it.name} : ${it.getPosition()}" }.toTypedArray())
         }
 
-        return copyCarList
+        return resultCarList
     }
 
     private fun process(carList: List<Car>): List<Car> {
-        val copyCarList = carList.map { it.copy() }
-
-        for (car in copyCarList) {
+        for (car in carList) {
             car.move()
         }
 
-        return copyCarList
+        return carList
     }
 }

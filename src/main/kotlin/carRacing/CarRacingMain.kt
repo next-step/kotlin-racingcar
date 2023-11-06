@@ -4,7 +4,6 @@ import carRacing.domain.Car
 import carRacing.domain.Racing
 import carRacing.enum.Message
 import carRacing.serviceimpl.RandomMovementCarFactory
-import carRacing.view.CarInfo
 import carRacing.view.InputView
 import carRacing.view.MessageGenerator
 
@@ -18,8 +17,7 @@ fun main() {
     println()
     println(messageGenerator.getMessage(Message.RESULT))
 
-    val carInfoList = carNameList.map { CarInfo(it) }
-    val carList: List<Car> = RandomMovementCarFactory().createCars(carInfoList)
+    val carList: List<Car> = RandomMovementCarFactory().createCarList(carNameList)
 
     val racing = Racing(carList)
     val racingResult: List<Car> = racing.getRaceResult(tryCount)

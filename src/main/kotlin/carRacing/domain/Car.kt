@@ -13,6 +13,4 @@ class Car(val name: String, val movementController: MovementController, position
     }
 
     fun getPosition(): String = "-".repeat(position)
-
-    fun copy(): Car = Car(name, movementController, position)
 }
