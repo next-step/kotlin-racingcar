@@ -14,7 +14,7 @@ class RacingService {
     fun racing(participates: ArrayDeque<String>, roundCount: Int): RacingHistory {
         val racingHistory = RacingHistory()
         racingHistory.appendRound(ready(participates))
-        (1 until roundCount).forEach { _ ->
+        repeat(roundCount - 1) {
             racingHistory.appendRound(nextRound(racingHistory.lastRound()))
         }
         return racingHistory
