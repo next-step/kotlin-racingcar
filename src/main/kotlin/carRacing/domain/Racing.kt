@@ -17,10 +17,10 @@ class Racing(private val carFactory: CarFactory) {
         return carList.filter { it.position == maxPosition }
     }
 
-    fun getWinnerNames(carList: List<Car>): List<String> = getWinners(carList).mapIndexed { index, car -> car.name ?: "Unknown $index" }
+    fun getWinnerNames(carList: List<Car>): List<String> = getWinners(carList).map { it.name }
 
     private fun start(carList: List<Car>, tryCount: Int): List<Car> {
-        var copyCarList = carList.map { it }
+        var copyCarList = carList.map { it.copy() }
 
         for (i in 0 until tryCount) {
             copyCarList = process(carList)
@@ -31,7 +31,7 @@ class Racing(private val carFactory: CarFactory) {
     }
 
     private fun process(carList: List<Car>): List<Car> {
-        val copyCarList = carList.toList()
+        val copyCarList = carList.map { it.copy() }
 
         for (car in copyCarList) {
             car.move()
