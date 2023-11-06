@@ -6,12 +6,18 @@ import racingCar.error.ErrorMessage
 
 class Cars(private val moveStrategy: MoveStrategy = RandomStrategy()) {
 
-    fun getCars(inputCars: String, delimiter: String = ","): List<Car> {
+    private var carList: List<Car> = emptyList()
+
+    fun getCarList(): List<Car> {
+        return carList
+    }
+
+    fun initCars(inputCars: String, delimiter: String = ",") {
         val split = inputCars.split(delimiter)
         split.forEach { require(it.length <= LIMIT_CAR_NAME) { ErrorMessage.NAME_TOO_LONG } }
 
         val carsNames: List<String> = split
-        return carsNames.map { Car(name = it, moveStrategy = moveStrategy) }
+        carList = carsNames.map { Car(name = it, moveStrategy = moveStrategy) }
     }
 
     fun getWinners(carList: List<Car>): List<Car> {

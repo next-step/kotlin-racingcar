@@ -19,15 +19,15 @@ class CarsTest {
 
     @Test
     fun `각 자동차 Name 이 ","를 기준으로 List 에 반환된다`() {
-        val carList = cars.getCars(CARS)
+        cars.initCars(CARS)
         val expectedNames = listOf("pobi", "crong", "honux")
-        assertThat(carList.map { it.name }).containsExactlyElementsOf(expectedNames)
+        assertThat(cars.getCarList().map { it.name }).containsExactlyElementsOf(expectedNames)
     }
 
     @Test
     fun `자동차 Name 의 길이는 5 초과가 되어선 안된다`() {
         assertThrows<IllegalArgumentException> {
-            cars.getCars(LENGTH_OVER_CARS)
+            cars.initCars(LENGTH_OVER_CARS)
         }
     }
 

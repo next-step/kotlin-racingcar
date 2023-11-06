@@ -1,6 +1,5 @@
 package racingCar.controller
 
-import racingCar.domain.Car
 import racingCar.domain.Cars
 import racingCar.view.InputView
 import racingCar.view.OutputView
@@ -13,10 +12,10 @@ fun main() {
     OutputView.printExecuteResult()
 
     val cars = Cars()
-    val carList: List<Car> = cars.getCars(inputCars)
+    cars.initCars(inputCars)
     repeat(tryCount) {
-        carList.forEach { it.move() }
-        OutputView.printCar(carList)
+        cars.getCarList().forEach { it.move() }
+        OutputView.printCar(cars.getCarList())
     }
-    OutputView.printWinner(carList)
+    OutputView.printWinner(cars.getCarList())
 }
