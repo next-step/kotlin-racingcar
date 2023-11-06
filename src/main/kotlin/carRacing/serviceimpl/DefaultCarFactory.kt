@@ -13,14 +13,6 @@ open class DefaultCarFactory : CarFactory {
     * Ex) RandomMovementCarFactory
      */
     override fun createCars(carInfoList: List<CarInfo>): List<Car> {
-        val carList = mutableListOf<Car>()
-        for (carInfo in carInfoList) {
-            val name: String = carInfo.name
-            val movementController: MovementController = carInfo.movementController!!
-
-            carList.add(Car(name, movementController))
-        }
-
-        return carList
+        return carInfoList.map { info -> Car(info.name, info.movementController!!) }
     }
 }
