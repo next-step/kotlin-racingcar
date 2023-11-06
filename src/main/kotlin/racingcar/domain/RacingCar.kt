@@ -11,14 +11,8 @@ data class RacingCar(
 ) {
 
     init {
-        if (name.length > NAME_LENGTH_LIMIT) {
-            println("$name : 자동차 이름은 ${NAME_LENGTH_LIMIT}글자를 초과하여 입력할 수 없습니다.")
-            throw IllegalArgumentException()
-        }
-        if (name.isBlank()) {
-            println("$name : 자동차 이름은 공백을 입력할 수 없습니다.")
-            throw IllegalArgumentException()
-        }
+        require(name.length <= NAME_LENGTH_LIMIT) { "$name : 자동차 이름은 ${NAME_LENGTH_LIMIT}글자를 초과하여 입력할 수 없습니다." }
+        require(name.isNotBlank()) { "$name : 자동차 이름은 공백을 입력할 수 없습니다." }
     }
 
     fun moveOrStop(checkNum: Int): RacingCar {
