@@ -1,4 +1,4 @@
-package carRacing.domain
+package carRacing.view
 
 import carRacing.enum.ErrorCode
 import carRacing.enum.Message

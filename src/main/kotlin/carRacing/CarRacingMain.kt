@@ -1,22 +1,28 @@
 package carRacing
 
-import carRacing.domain.MessageGenerator
+import carRacing.domain.Car
 import carRacing.domain.Racing
 import carRacing.enum.Message
-import carRacing.serviceimpl.SimpleCarController
+import carRacing.serviceimpl.RandomMovementCarFactory
 import carRacing.view.InputView
+import carRacing.view.MessageGenerator
 
 fun main() {
-    val inputView = InputView()
     val messageGenerator: MessageGenerator = MessageGenerator()
 
-    val carCount: Int = inputView.readLineNumber(messageGenerator.getMessage(Message.CAR_COUNT_QUESTION))
-
+    val inputView = InputView()
+    val carNameList: List<String> = inputView.readLineList(messageGenerator.getMessage(Message.CAR_NAME_QUESTION))
     val tryCount: Int = inputView.readLineNumber(messageGenerator.getMessage(Message.TRY_COUNT_QUESTION))
 
     println()
     println(messageGenerator.getMessage(Message.RESULT))
 
-    val racing = Racing(SimpleCarController())
-    racing.getRaceResult(carCount, tryCount)
+    val carList: List<Car> = RandomMovementCarFactory().createCarList(carNameList)
+
+    val racing = Racing(carList)
+    val racingResult: List<Car> = racing.getRaceResult(tryCount)
+    val winnerNameList: List<String> = racing.getWinnerNames(racingResult)
+
+    println()
+    println(messageGenerator.getMessage(Message.WINNER, winnerNameList.joinToString(", ")))
 }

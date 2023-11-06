@@ -1,41 +1,33 @@
 package carRacing.domain
 
-import carRacing.service.CarController
 import carRacing.view.OutputView
 
-class Racing(private val carController: CarController) {
+class Racing(private val carList: List<Car>) {
+    fun getRaceResult(tryCount: Int): List<Car> = start(this.carList, tryCount)
 
-    fun getRaceResult(carCount: Int, tryCount: Int): List<Car> {
-        val carList: List<Car> = carController.createCars(carCount)
-
-        return start(carList, tryCount)
-    }
-
-    // 사용하지는 않으나 미리 구현, 테스트는 X
-    fun getWinners(carList: List<Car>): List<Car> {
+    private fun getWinners(carList: List<Car>): List<Car> {
         val maxPosition: Int = carList.maxBy { it.position }.position
 
         return carList.filter { it.position == maxPosition }
     }
 
-    private fun start(carList: List<Car>, tryCount: Int): List<Car> {
-        var copyCarList = carList.toList()
+    fun getWinnerNames(carList: List<Car>): List<String> = getWinners(carList).map { it.name }
 
+    private fun start(carList: List<Car>, tryCount: Int): List<Car> {
+        var resultCarList: List<Car> = listOf()
         for (i in 0 until tryCount) {
-            copyCarList = process(carList)
-            OutputView().printMessages(*copyCarList.map { it.getPosition() }.toTypedArray())
+            resultCarList = process(carList)
+            OutputView().printMessages(*carList.map { "${it.name} : ${it.getPosition()}" }.toTypedArray())
         }
 
-        return copyCarList
+        return resultCarList
     }
 
     private fun process(carList: List<Car>): List<Car> {
-        val copyCarList = carList.toList()
-
-        for (car in copyCarList) {
+        for (car in carList) {
             car.move()
         }
 
-        return copyCarList
+        return carList
     }
 }

@@ -355,3 +355,156 @@ class StringCalculatorTest {
 * 모든 로직에 단위 테스트를 구현한다. 단, UI(System.out, System.in) 로직은 제외
     * 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 구분한다.
     * UI 로직을 InputView, ResultView와 같은 클래스를 추가해 분리한다.
+
+### 💻 Step 3, Feedback
+
+* [X] 1.CarFactory.kt
+* [X] 2.MovementController.kt
+* [X] 3.RandomMovementCarFactory.kt
+* [X] 4.InputView.kt
+* [X] 5.OperatorTest.kt
+* [X] 6.CarTest.kt
+* [X] 7.RacingTest.kt
+
+
+#### 1. CarFactory.kt
+
+##### Problem
+- CarController 이름은 포괄적임. = 이름이 적절하지 못함.
+
+##### Solution
+- CarFactory로 변경.
+
+##### effect
+- 역할이 명확해짐.
+
+#### 2. MovementController.kt
+
+##### Problem
+- getMoveCount 메서드는 아직 사용하지 않는 메서드임. = 불필요한 메서드임.
+
+##### Solution
+- getMoveCount 메서드 제거.
+
+##### effect
+- 불필요한 구현 제거 및 오버 엔지니어링 방지.
+
+#### 3. RandomMovementCarFactory.kt
+
+##### Problem
+- 다른 움직임 전략을 자동차에게 전달하고자 더 유연하게 만들어야 함.
+
+##### Solution
+- DefaultCarFactory를 생성하여, 자동차에게 움직임 전략을 전달할 수 있는 함수 생성.
+
+##### effect
+- 다른 움직임 전략을 자동차에게 전달할 수 있음.
+
+#### 4. InputView.kt
+
+##### Problem
+- if -> require()로 변경.
+- try-catch -> runCatching()으로 변경.
+
+##### Solution
+- if -> require()로 변경.
+- try-catch -> runCatching()으로 변경.
+
+##### effect
+- Kotlin 문법 활용 가능.
+
+#### 5. OperatorTest.kt
+
+##### Problem
+- ParameterizedTest에서 사용 가능한 CsvSource를 활용 못함.
+
+##### Solution
+- ParameterizedTest에서 사용 가능한 CsvSource를 활용하여 operator와 expected를 파라미터로 받아 테스트 코드 작성.
+
+##### effect
+- 테스트 코드의 가독성이 향상됨.
+- 테스트 코드의 중복이 제거됨.
+
+#### 6. CarTest.kt
+
+##### Problem
+- CarTest에서 사용한 ParameterizedTest는 불필요한 사용임. = 다회 시도할 필요가 없는 테스트만 수행하기 때문.
+- 같이 사용한 CsvSource 또한 쉼표로 구분된 데이터를 사용하겠단 뜻이지만, 해당 테스트에서는 단순 숫자만 사용하고 있음.
+
+##### Solution
+- ParameterizedTest 제거.
+
+##### effect
+- 테스트 코드의 가독성이 향상됨.
+- 불필요한 테스트를 줄일 수 있음.
+
+#### 7. RacingTest.kt
+
+##### Problem
+- 레이싱 결과에 대한 테스트가 존재 X.
+
+##### Solution
+- RacingTest에 레이싱 결과에 대한 테스트 코드 작성.
+
+##### effect
+- 레이싱 결과에 대한 테스트 코드가 추가됨.
+
+# 4 단계 - 자동차 경주(우승자)
+
+## 🎯 기능 요구사항
+
+* 각 자동차에 이름을 부여할 수 있다. 자동차 이름은 5자를 초과할 수 없다.
+* 전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다.
+* 자동차 이름은 쉼표(,)를 기준으로 구분한다.
+* 자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다. 우승자는 한 명 이상일 수 있다.
+
+### Result
+```
+경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).
+pobi,crong,honux
+시도할 횟수는 몇 회인가요?
+5
+
+실행 결과
+pobi : -
+crong : -
+honux : -
+
+pobi : --
+crong : -
+honux : --
+
+pobi : ---
+crong : --
+honux : ---
+
+pobi : ----
+crong : ---
+honux : ----
+
+pobi : -----
+crong : ----
+honux : -----
+
+pobi, honux가 최종 우승했습니다.
+```
+
+### ✨ Challenge
+
+- indent(들여쓰기) depth를 2를 넘지 않도록 구현한다. 1까지만 허용
+  - 예를 들어 while문 안에 if문이 있으면 들여쓰기는 2이다.
+  - Hint: indent depth를 줄이기 위해서는 함수(또는 메서드)가 길어지면 안 된다.
+- 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
+  - 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
+- 기능을 구현하기 전에 README.md 파일에 구현할 기능 목록을 정리해 추가한다.
+- git의 commit 단위는 앞 단계에서 README.md 파일에 정리한 기능 목록 단위로 추가한다.
+
+### 🛠️ 기능 목록
+
+- [X] 쉼표로 구분된 문자열 입력받기
+- [X] 자동차는 이름을 가진다.
+- [X] 자동차는 이름을 5자 이하로 가진다.
+- [X] 전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다. 
+- [X] 레이싱 게임을 완료한 후 우승자를 알려준다.
+- [X] 우승자는 한 명 이상일 수 있다.
+- [X] 우승자를 찾아 반환한다.
