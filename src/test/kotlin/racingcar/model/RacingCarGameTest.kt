@@ -28,10 +28,10 @@ class RacingCarGameTest {
         val racingCarGame = RacingCarGame(cars, strategy)
         val numbersOfTry = 5
         // when
-        val racingHistories = racingCarGame.run(numbersOfTry)
+        val gameResult: GameResult = racingCarGame.run(numbersOfTry)
         // then
-        assertThat(racingHistories.size).isEqualTo(numbersOfTry)
-        assertThat(racingHistories.first().round).isEqualTo(0)
-        assertThat(racingHistories.last().round).isEqualTo(numbersOfTry - 1)
+        assertThat(gameResult.histories.size).isEqualTo(numbersOfTry)
+        assertThat(gameResult.histories.first().round).isEqualTo(0)
+        assertThat(gameResult.histories.last().round).isEqualTo(numbersOfTry - 1)
     }
 }

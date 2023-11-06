@@ -6,8 +6,8 @@ class RacingCarGame(
     val cars: List<Car>,
     private val strategy: MovingStrategy,
 ) {
-    fun run(numbersOfTry: Int): List<RacingHistory> =
-        List(numbersOfTry) { index -> RacingHistory(index, processOneStep()) }
+    fun run(numbersOfTry: Int): GameResult =
+        GameResult(List(numbersOfTry) { index -> RacingHistory(index, processOneStep()) })
 
     private fun processOneStep(): List<Car> {
         return cars.map {
