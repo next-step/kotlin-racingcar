@@ -25,9 +25,9 @@ class CarTest : StringSpec({
         val namedLength4Car = Car(Name("강한친구"), 101)
         val namedLength5Car = Car(Name("강한자동차"), 707)
 
-        namedLength4Car.name shouldBe "강한친구"
+        namedLength4Car.name.value shouldBe "강한친구"
         namedLength4Car.name.value.length shouldBe 4
-        namedLength5Car.name shouldBe "강한자동차"
+        namedLength5Car.name.value shouldBe "강한자동차"
         namedLength5Car.name.value.length shouldBe 5
     }
 
