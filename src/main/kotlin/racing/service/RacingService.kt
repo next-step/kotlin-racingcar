@@ -27,7 +27,7 @@ class RacingService {
 
     private fun nextRound(preRoundHistory: RoundHistory): RoundHistory {
         return RoundHistory(
-            preRoundHistory.results.map { it.move(strategy).copy() }
+            preRoundHistory.map { it.move(strategy).copy() }
         )
     }
 }
