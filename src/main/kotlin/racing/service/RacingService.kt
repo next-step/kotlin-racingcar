@@ -1,6 +1,7 @@
 package racing.service
 
 import racing.model.Car
+import racing.model.Name
 import racing.model.RacingHistory
 import racing.model.RoundHistory
 import racing.model.generator.RandomGenerator
@@ -21,7 +22,7 @@ class RacingService {
 
     private fun ready(participates: ArrayDeque<String>): RoundHistory {
         return RoundHistory(
-            participates.map { Car(it, 0) }
+            participates.map { Car(Name(it), 0) }
         )
     }
 

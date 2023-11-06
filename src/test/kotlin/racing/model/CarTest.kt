@@ -9,7 +9,7 @@ import racing.model.move.MoveNeverStrategy
 
 class CarTest : StringSpec({
     "자동차는 전진 또는 멈출 수 있다" {
-        val car = Car("77", 77)
+        val car = Car(Name("77"), 77)
 
         val stopCar = car.move(MoveNeverStrategy())
         stopCar.name shouldBe car.name
@@ -22,29 +22,29 @@ class CarTest : StringSpec({
 
     "각 자동차에 이름을 부여할 수 있다" {
 
-        val namedLength4Car = Car("강한친구", 101)
-        val namedLength5Car = Car("강한자동차", 707)
+        val namedLength4Car = Car(Name("강한친구"), 101)
+        val namedLength5Car = Car(Name("강한자동차"), 707)
 
         namedLength4Car.name shouldBe "강한친구"
-        namedLength4Car.name.length shouldBe 4
+        namedLength4Car.name.value.length shouldBe 4
         namedLength5Car.name shouldBe "강한자동차"
-        namedLength5Car.name.length shouldBe 5
+        namedLength5Car.name.value.length shouldBe 5
     }
 
     "자동차 이름은 5자를 초과할 수 없다 초과시 IllegalArgumentException throw" {
 
         shouldThrow<IllegalArgumentException> {
-            Car("자동차자동차", 101)
+            Car(Name("자동차자동차"), 101)
         }.shouldHaveMessage("자동차 이름은 5자를 초과할 수 없다 : [자동차자동차] 은 [6] 자 입니다")
 
         shouldThrow<IllegalArgumentException> {
-            Car("힘이세고강한친구", 101)
+            Car(Name("힘이세고강한친구"), 101)
         }.shouldHaveMessage("자동차 이름은 5자를 초과할 수 없다 : [힘이세고강한친구] 은 [8] 자 입니다")
     }
 
     "자동차 이름이 공백 인경우 IllegalArgumentException throw" {
         shouldThrow<IllegalArgumentException> {
-            Car("", 101)
+            Car(Name(""), 101)
         }.shouldHaveMessage("자동차의 이름은 빈 문자열이 허용되지 않는다")
     }
 

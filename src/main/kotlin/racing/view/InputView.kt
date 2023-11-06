@@ -2,6 +2,7 @@ package racing.view
 
 import calculator.model.Tokenizer
 import racing.model.Car
+import racing.model.Name
 import racing.model.RoundHistory
 
 class InputView {
@@ -15,7 +16,7 @@ class InputView {
     private fun assertValidParticipateNames(requireNotNull: String) {
         RoundHistory(
             Tokenizer.toTokens(requireNotNull)
-                .map { Car(it, 0) }
+                .map { Car(Name(it), 0) }
         )
     }
 

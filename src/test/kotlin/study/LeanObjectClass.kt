@@ -2,6 +2,7 @@ package study
 
 import io.kotest.core.spec.style.StringSpec
 import racing.model.Car
+import racing.model.Name
 
 class LeanObjectClass : StringSpec({
 
@@ -33,6 +34,6 @@ val helloWorld = object {
 
 object CarFactory {
     fun makeCar(name: String): Car {
-        return Car(name, 0)
+        return Car(Name(name), 0)
     }
 }
