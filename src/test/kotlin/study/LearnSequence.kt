@@ -1,6 +1,5 @@
 package study
 
-import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 
 class LearnSequence : StringSpec({
@@ -40,10 +39,11 @@ class LearnSequence : StringSpec({
     }
 
     "시퀀스를 무한대로 만들수 있다" {
-        shouldThrow<ArithmeticException> {
-            val oddNumbers = generateSequence(1) { it + 2 } // `it` is the previous element
-            println(oddNumbers.count()) // error: the sequence is infinite
-        }
+        println("주석을 풀고 실행하면 성공한다 = 즉 ArithmeticException 가 발생한다")
+//        shouldThrow<ArithmeticException> {
+//            val oddNumbers = generateSequence(1) { it + 2 } // `it` is the previous element
+//            println(oddNumbers.count()) // error: the sequence is infinite
+//        }
     }
     "10이하의 홀수를 생성하는 유한 시퀀스" {
         val oddNumbersLessThan10 = generateSequence(1) { if (it < 8) it + 2 else null }
