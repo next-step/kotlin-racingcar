@@ -10,7 +10,7 @@ class Cars(private val moveStrategy: MoveStrategy = RandomStrategy(), private va
         return carList
     }
 
-    fun initCars(inputCars: String, delimiter: String = ",") {
+    fun initCars(inputCars: String, delimiter: String = COMMA) {
         val split = inputCars.split(delimiter)
         split.forEach { require(it.length <= LIMIT_CAR_NAME) { ErrorMessage.NAME_TOO_LONG } }
 
@@ -25,5 +25,6 @@ class Cars(private val moveStrategy: MoveStrategy = RandomStrategy(), private va
 
     companion object {
         private const val LIMIT_CAR_NAME = 5
+        private const val COMMA = ","
     }
 }
