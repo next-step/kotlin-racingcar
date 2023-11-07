@@ -24,7 +24,7 @@ class CarTest {
         car.move()
 
         // then
-        assertThat(car.getPosition().position).isEqualTo(1)
+        assertThat(car.position.position).isEqualTo(1)
     }
 
     @Test
@@ -37,7 +37,7 @@ class CarTest {
         car.move()
 
         // then
-        assertThat(car.getPosition().position).isEqualTo(0)
+        assertThat(car.position.position).isEqualTo(0)
     }
 
     @ParameterizedTest

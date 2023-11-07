@@ -21,14 +21,14 @@ class ResultView {
 
         private fun concatCarNameAndPosition(car: Car): String {
             val msg = StringBuilder()
-            msg.append(car.getName().name)
+            msg.append(car.name.name)
             msg.append(" : ")
-            msg.append(POSITION_SYMBOL.repeat(car.getPosition().position))
+            msg.append(POSITION_SYMBOL.repeat(car.position.position))
             return msg.toString()
         }
 
         fun printWinners(car: Cars) {
-            val winnerNames = car.getWinners().map { it.getName().name }
+            val winnerNames = car.getWinners().map { it.name.name }
             println("${winnerNames.joinToString()}가 최종 우승했습니다.")
         }
     }

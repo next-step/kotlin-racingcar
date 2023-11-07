@@ -1,6 +1,6 @@
 package racingcar.domain
 
-class Position(position: Int = DEFAULT_POSITION){
+class Position(position: Int = DEFAULT_POSITION) {
     var position: Int = position
         private set
 
