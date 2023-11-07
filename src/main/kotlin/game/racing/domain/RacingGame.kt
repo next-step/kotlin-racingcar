@@ -7,9 +7,9 @@ class RacingGame(private val racingManager: RacingManager, private val tryNumber
     fun start() {
         ResultView.printResultIntroduction()
         repeat(tryNumber) {
-            racingManager.moveCars(List(racingManager.cars.size) { getRandomValue() })
+            racingManager.moveCars { getRandomValue() }
             ResultView.printResult(racingManager.cars)
         }
-        ResultView.printWinner(racingManager.getWinners())
+        ResultView.printWinner(racingManager.determineWinner())
     }
 }
