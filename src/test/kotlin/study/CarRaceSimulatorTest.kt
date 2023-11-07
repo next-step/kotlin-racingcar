@@ -6,6 +6,7 @@ import carRace.domain.CarMovingStrategy
 import carRace.domain.CarRaceResult
 import carRace.view.ManualInputView
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.collections.shouldBeSorted
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import org.assertj.core.api.Assertions.assertThatThrownBy
@@ -34,7 +35,7 @@ class CarRaceSimulatorTest : StringSpec({
         val expectedDistance = originalPosition + driveCount
         val actualDistance = car.traveled
 
-        expectedDistance.shouldBe(actualDistance)
+        expectedDistance shouldBe actualDistance
     }
 
     "carRaceSimulatorAlwaysMovingTest" {
@@ -43,7 +44,7 @@ class CarRaceSimulatorTest : StringSpec({
         val result = simulator.simulate(AlwaysMovingStrategy)
 
         result.currentCars.forEach {
-            it.traveled.shouldBe(iterationCount)
+            it.traveled shouldBe iterationCount
         }
     }
 
@@ -53,8 +54,30 @@ class CarRaceSimulatorTest : StringSpec({
         val result = simulator.simulate(AlwaysNotMovingStrategy)
 
         result.currentCars.forEach {
-            it.traveled.shouldBe(0)
+            it.traveled shouldBe 0
         }
+    }
+
+    "carRaceResultHistoryUpdateTest" {
+        val iterationCount = 5
+        val simulator = CarRaceSimulator(ManualInputView(drivers, iterationCount))
+        val raceResult = simulator.simulate(AlwaysNotMovingStrategy)
+
+        raceResult.history shouldHaveSize 5
+        raceResult.updateHistory(iterationCount + 1)
+        raceResult.history shouldHaveSize 6
+    }
+
+    "carRaceResultHistoryValueUpdateTest" {
+        val iterationCount = 5
+        val simulator = CarRaceSimulator(ManualInputView(drivers, iterationCount))
+        val raceResult = simulator.simulate(AlwaysMovingStrategy)
+
+        val sortedLapRecord = raceResult.history.map { carLapResult ->
+            Pair(carLapResult.lap, carLapResult.cars.sumOf { it.traveled })
+        }.sortedBy { it.first }.map { it.second }
+
+        sortedLapRecord.shouldBeSorted()
     }
 
     "carRaceWinnerTest" {
@@ -68,8 +91,8 @@ class CarRaceSimulatorTest : StringSpec({
         raceResult.updateHistory(1)
         val winners = raceResult.getWinners()
 
-        winners.shouldHaveSize(1)
-        winners[0].driverName.shouldBe("win")
+        winners shouldHaveSize 1
+        winners[0].driverName shouldBe "win"
     }
 })
 
