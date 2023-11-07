@@ -41,7 +41,6 @@ class RacingCarTest : BehaviorSpec({
                         RacingCar(name)
                     }
                 }
-
             }
         }
     }
