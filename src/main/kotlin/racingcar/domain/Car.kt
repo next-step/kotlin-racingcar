@@ -1,26 +1,14 @@
 package racingcar.domain
 
 class Car(
-    private val movingStrategy: MovingStrategy,
-    private var position: Position,
-    private var name: Name,
+    val name: Name,
+    val position: Position = Position(),
+    private val movingStrategy: MovingStrategy = RandomMovingStrategy(),
 ) {
-    constructor(name: Name) : this(RandomMovingStrategy(), Position(), name)
-
-    constructor(name: Name, movingStrategy: MovingStrategy) : this(movingStrategy, Position(), name)
-
     fun move() {
         if (movingStrategy.isMovable()) {
             position.forward()
         }
-    }
-
-    fun getPosition(): Position {
-        return position
-    }
-
-    fun getName(): Name {
-        return name
     }
 
     fun isWinner(winnerPosition: Position): Boolean {

@@ -18,9 +18,9 @@ class CarsTest {
         cars.move()
 
         // then
-        assertThat(cars.getCars()[0].getPosition().getPosition()).isEqualTo(1)
-        assertThat(cars.getCars()[1].getPosition().getPosition()).isEqualTo(1)
-        assertThat(cars.getCars()[2].getPosition().getPosition()).isEqualTo(0)
+        assertThat(cars.getCars()[0].position.position).isEqualTo(1)
+        assertThat(cars.getCars()[1].position.position).isEqualTo(1)
+        assertThat(cars.getCars()[2].position.position).isEqualTo(0)
     }
 
     @Test
@@ -31,9 +31,9 @@ class CarsTest {
         cars.move(3)
 
         // then
-        assertThat(cars.getCars()[0].getPosition().getPosition()).isEqualTo(3)
-        assertThat(cars.getCars()[1].getPosition().getPosition()).isEqualTo(3)
-        assertThat(cars.getCars()[2].getPosition().getPosition()).isEqualTo(0)
+        assertThat(cars.getCars()[0].position.position).isEqualTo(3)
+        assertThat(cars.getCars()[1].position.position).isEqualTo(3)
+        assertThat(cars.getCars()[2].position.position).isEqualTo(0)
     }
 
     @Test
@@ -46,7 +46,7 @@ class CarsTest {
         val maxPosition = cars.getMaxPosition()
 
         // then
-        assertThat(maxPosition.getPosition()).isEqualTo(1)
+        assertThat(maxPosition.position).isEqualTo(1)
     }
 
     @Test
@@ -57,7 +57,7 @@ class CarsTest {
 
         // when & then
         assertThatThrownBy { emptyCars.getMaxPosition() }
-            .isInstanceOf(IllegalArgumentException::class.java)
+            .isInstanceOf(IllegalStateException::class.java)
             .hasMessage("자동차가 없습니다")
     }
 

@@ -11,7 +11,7 @@ class PositionTest {
         val position = Position()
 
         // when
-        val actual = position.getPosition()
+        val actual = position.position
 
         // then
         assert(actual == 0)
@@ -25,7 +25,7 @@ class PositionTest {
 
         // when
         position.forward()
-        val actual = position.getPosition()
+        val actual = position.position
 
         // then
         assert(actual == 1)
