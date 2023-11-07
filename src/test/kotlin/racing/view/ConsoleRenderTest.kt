@@ -4,6 +4,7 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import racing.model.Car
+import racing.model.Name
 import racing.model.RoundHistory
 
 class ConsoleRenderTest : StringSpec({
@@ -12,10 +13,10 @@ class ConsoleRenderTest : StringSpec({
         val roundHistory = RoundHistory(
             ArrayDeque(
                 listOf(
-                    Car("1", 3),
-                    Car("2", 2),
-                    Car("3", 1),
-                    Car("4", 5)
+                    Car(Name("1"), 3),
+                    Car(Name("2"), 2),
+                    Car(Name("3"), 1),
+                    Car(Name("4"), 5)
                 ),
             )
         )
@@ -27,10 +28,10 @@ class ConsoleRenderTest : StringSpec({
         val roundHistory = RoundHistory(
             ArrayDeque(
                 listOf(
-                    Car("코틀린", 0),
-                    Car("자바", 0),
-                    Car("고랭", 0),
-                    Car("TS", 0),
+                    Car(Name("코틀린"), 0),
+                    Car(Name("자바"), 0),
+                    Car(Name("고랭"), 0),
+                    Car(Name("TS"), 0),
                 ),
             )
         )

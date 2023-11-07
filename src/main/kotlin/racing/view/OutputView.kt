@@ -17,6 +17,6 @@ class OutputView {
     }
 
     private fun joinWinners(winners: Set<Car>): String {
-        return winners.joinToString(separator = ", ") { it.name }
+        return winners.joinToString(separator = ", ") { it.name.value }
     }
 }

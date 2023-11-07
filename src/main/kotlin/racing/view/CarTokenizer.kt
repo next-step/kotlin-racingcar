@@ -1,14 +1,12 @@
 package racing.view
 
-class CarTokenizer {
+object CarTokenizer {
 
-    companion object {
-        private const val DELIMITER = ","
+    private const val DELIMITER = ","
 
-        fun tokenize(input: String): ArrayDeque<String> {
-            return ArrayDeque(
-                input.split(DELIMITER)
-            )
-        }
+    fun tokenize(input: String): ArrayDeque<String> {
+        return ArrayDeque(
+            input.split(DELIMITER)
+        )
     }
 }

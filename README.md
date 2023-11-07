@@ -70,3 +70,25 @@
 ```
 
 <br><br><br><br>
+
+
+## step5 자동차 경주(리팩터링)
+
+## 요구사항 정리
+```markdown
+- 비 기능적 요구사항
+    - 핵심 비지니스 로직을 가지는 객체를 domain 패키지에 구현해야한다
+    - UI 관련한 객체를 view 패키지에 구현해야한다
+    - (MVC 패턴 기반으로 리팩토링) view 패키지의 객체가 domain 패키지 객체에 의존할 수 있다
+    - (MVC 패턴 기반으로 리팩토링) domain 패키지의 객체는 view 패키지 객체에 의존하지 않도록 해야한다
+    - 테스트 가능한 부분과 테스트하기 힘든 부분을 분리해 테스트 가능한 부분에 대해서만 단위 테스트를 진행한다.
+
+- 기능적 요구사항(추가&피드백)
+    - 자동차 이름이 공백인 경우 IllegalArgumentException throw
+    - 자동차 이름이 null인 경우 IllegalArgumentException throw
+    - 자동차 이름은 중복되선 안된다, 중복시 IllegalArgumentException throw 
+
+- 이외
+    - kotlin의 Delegation 을 학습하고 활용하자 (RoundHistory.kt)
+    - kotlin의 object 클래스를 학습하고 활용하자 (ConsoleRender.kt, CarTokenizer.kt)
+```
