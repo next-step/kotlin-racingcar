@@ -15,8 +15,10 @@ class InputView {
 
     private fun assertValidParticipateNames(requireNotNull: String) {
         RoundHistory(
-            Tokenizer.toTokens(requireNotNull)
-                .map { Car(Name(it), 0) }
+            ArrayDeque(
+                Tokenizer.toTokens(requireNotNull)
+                    .map { Car(Name(it), 0) }
+            )
         )
     }
 
