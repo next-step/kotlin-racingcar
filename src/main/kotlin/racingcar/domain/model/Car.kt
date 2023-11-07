@@ -5,16 +5,20 @@ import racingcar.domain.interfaces.Raceable
 /**
  * 자동차 객체
  * */
-class Car(override val name: String, override var position: Int = DEFAULT_POSITION): Raceable {
+class Car(override val name: String, override var position: Int = DEFAULT_POSITION) : Raceable {
 
     /**
      * 위치 변경
      * */
     override fun move(condition: Int) {
-        require(condition in (MIN_MOVE_VALUE..MAX_MOVE_VALUE))
-        if (condition >= ADVANCE_MIN_VALUE) {
+        if (isMove(condition)) {
             position++
         }
+    }
+
+    override fun isMove(condition: Int): Boolean {
+        require(condition in (MIN_MOVE_VALUE..MAX_MOVE_VALUE))
+        return condition >= ADVANCE_MIN_VALUE
     }
 
     companion object {

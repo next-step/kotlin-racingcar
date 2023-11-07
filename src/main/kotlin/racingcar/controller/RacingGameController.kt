@@ -1,6 +1,7 @@
 package racingcar.controller
 
 import racingcar.domain.RacingGame
+import racingcar.domain.interfaces.Moveable
 import racingcar.domain.interfaces.Raceable
 import racingcar.domain.parser.RacingParser
 import racingcar.view.InputView
