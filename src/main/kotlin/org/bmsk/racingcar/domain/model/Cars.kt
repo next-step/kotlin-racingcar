@@ -1,7 +1,7 @@
 package org.bmsk.racingcar.domain.model
 
 data class Cars(
-    private val cars: List<Car>
+    private val cars: List<Car>,
 ) {
     val first: Car
         get() = cars.first()
