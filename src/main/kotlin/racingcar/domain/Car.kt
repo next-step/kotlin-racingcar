@@ -1,14 +1,10 @@
 package racingcar.domain
 
 class Car(
-    private val movingStrategy: MovingStrategy,
-    private var position: Position,
     private var name: Name,
+    private val movingStrategy: MovingStrategy = RandomMovingStrategy(),
+    private var position: Position = Position(),
 ) {
-    constructor(name: Name) : this(RandomMovingStrategy(), Position(), name)
-
-    constructor(name: Name, movingStrategy: MovingStrategy) : this(movingStrategy, Position(), name)
-
     fun move() {
         if (movingStrategy.isMovable()) {
             position.forward()
