@@ -1,37 +1,37 @@
 package racingcar.view
 
-import racingcar.domain.RacingResult
+import racingcar.domain.RacingSituation
 
 class ResultView {
 
     companion object {
         fun printInit() {
-            println("실행 결과")
+            println("\n실행 결과")
         }
 
-        fun printResult(result: List<List<RacingResult>>) {
-            result.forEach { cars: List<RacingResult> ->
-                printRacingResult(cars)
+        fun printAllRacingSituations(allRacingSituations: List<List<RacingSituation>>) {
+            allRacingSituations.forEach { racingSituations: List<RacingSituation> ->
+                printRacingSituations(racingSituations)
             }
         }
 
-        private fun printRacingResult(cars: List<RacingResult>) {
-            cars.forEach { racingResult: RacingResult ->
-                printPosition(racingResult)
+        private fun printRacingSituations(racingSituations: List<RacingSituation>) {
+            racingSituations.forEach { racingSituation: RacingSituation ->
+                printPosition(racingSituation)
             }
             println()
         }
 
-        private fun printPosition(result: RacingResult) {
+        private fun printPosition(result: RacingSituation) {
             print("${result.carName} : ")
-            List(result.resultPosition) {
+            List(result.currentPosition) {
                 print("-")
             }
             println()
         }
 
-        fun printWinners(result: List<RacingResult>) {
-            println("${result.joinToString(separator = ", ", postfix = "") { it.carName }}가 최종 우승했습니다.")
+        fun printWinners(winners: List<RacingSituation>) {
+            println("${winners.joinToString(separator = ", ", postfix = "") { it.carName }}가 최종 우승했습니다.")
         }
     }
 }

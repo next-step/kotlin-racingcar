@@ -6,10 +6,10 @@ class RacingGame(
     private val cars: List<Car>,
 ) {
 
-    fun race(): List<RacingResult> {
+    fun race(): List<RacingSituation> {
         return cars.map { car: Car ->
             car.move(random.nextInt(RANDOM_MAX_VALUE))
-            RacingResult(car.carName, car.currentPosition)
+            RacingSituation(car.carName, car.currentPosition)
         }
     }
 
