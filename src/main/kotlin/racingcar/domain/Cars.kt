@@ -18,9 +18,7 @@ class Cars(
     }
 
     fun getMaxPosition(): Position {
-        if (cars.isEmpty()) {
-            throw IllegalArgumentException("자동차가 없습니다")
-        }
+        check(cars.isNotEmpty()) { "자동차가 없습니다" }
 
         return cars.maxOfOrNull { it.getPosition().getPosition() }
             ?.let { Position(it) }

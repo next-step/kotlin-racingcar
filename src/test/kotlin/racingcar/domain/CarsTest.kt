@@ -57,7 +57,7 @@ class CarsTest {
 
         // when & then
         assertThatThrownBy { emptyCars.getMaxPosition() }
-            .isInstanceOf(IllegalArgumentException::class.java)
+            .isInstanceOf(IllegalStateException::class.java)
             .hasMessage("자동차가 없습니다")
     }
 
