@@ -1,23 +1,25 @@
 package racingcar
 
-import racingcar.controller.CarController
+import racingcar.controller.RacingCarController
 import racingcar.domain.Car
+import racingcar.domain.RacingGame
+import racingcar.domain.Winner
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
 fun main() {
-    val countOfCars = InputView.inputCountOfCars()
+    val carNames = InputView.inputCarNames()
     val countOfTry = InputView.inputCountOfTry()
 
-    val cars = mutableListOf<Car>()
-
-    for (i in 0 until countOfCars step 1) {
-        cars.add(Car())
+    val cars = carNames.map {
+        Car(it)
     }
 
-    ResultView.printResultInit()
-    for (i in 0 until countOfTry step 1) {
-        CarController(cars).race()
-        ResultView.printResult(cars)
-    }
+    val racingCarController = RacingCarController(countOfTry, RacingGame(cars))
+    val allRacingSituations = racingCarController.start()
+    val winners = racingCarController.evaluate(Winner(allRacingSituations.last()))
+
+    ResultView.printInit()
+    ResultView.printAllRacingSituations(allRacingSituations)
+    ResultView.printWinners(winners)
 }

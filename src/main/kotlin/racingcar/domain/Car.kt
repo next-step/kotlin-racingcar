@@ -1,20 +1,23 @@
 package racingcar.domain
 
 data class Car(
-    var position: Int = 0,
+    private val name: String,
+    private var position: Int = 0,
 ) {
 
-    companion object {
-        private const val FORWARD_CONDITION = 4
-    }
+    val carName: String
+        get() = this.name
+
+    val currentPosition: Int
+        get() = this.position
 
     fun move(value: Int) {
         if (value >= FORWARD_CONDITION) {
-            this.position += 1
+            this.position++
         }
     }
 
-    fun isPosition(position: Int): Boolean {
-        return this.position == position
+    companion object {
+        private const val FORWARD_CONDITION = 4
     }
 }
