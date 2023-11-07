@@ -1,6 +1,6 @@
 package calculator
 
-import calculator.Calculator
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 
@@ -10,51 +10,75 @@ import io.kotest.matchers.shouldBe
 
 class CalculatorTest : FunSpec({
     test("null 입력시 오류가 발생한다.") {
-        Calculator.calculate(null)
+        shouldThrow<IllegalArgumentException> {
+            Calculator.calculate(null)
+        }
     }
 
     test("빈 문자열만 입력시 오류가 발생한다.") {
-        Calculator.calculate("")
+        shouldThrow<IllegalArgumentException> {
+            Calculator.calculate("")
+        }
     }
 
     test("공백 문자만 입력시 오류가 발생한다.") {
-        Calculator.calculate(" ")
+        shouldThrow<IllegalArgumentException> {
+            Calculator.calculate(" ")
+        }
     }
 
     test("탭 문자 입력시 오류가 발생한다.") {
-        Calculator.calculate("\t")
+        shouldThrow<IllegalArgumentException> {
+            Calculator.calculate("\t")
+        }
     }
 
     test("줄바꿈 문자 입력시 오류가 발생한다.") {
-        Calculator.calculate("\n")
+        shouldThrow<IllegalArgumentException> {
+            Calculator.calculate("\n")
+        }
     }
 
     test("숫자 사이에 공백문자가 없을 경우 오류가 발생한다.") {
-        Calculator.calculate("2 +3")
+        shouldThrow<IllegalArgumentException> {
+            Calculator.calculate("2 +3")
+        }
     }
 
     test("공백 문자가 두번 이상 겹쳐 입력시 오류가 발생한다.") {
-        Calculator.calculate("2 +  3")
+        shouldThrow<IllegalArgumentException> {
+            Calculator.calculate("2 +  3")
+        }
     }
 
     test("숫자 사이에 공백 문자를 같이 입력시 오류가 발생한다.") {
-        Calculator.calculate("2 3 + 3")
+        shouldThrow<IllegalArgumentException> {
+            Calculator.calculate("2 3 + 3")
+        }
     }
 
     test("부호 먼저 입력시 오류가 발생한다.") {
-        Calculator.calculate("+ 3 + 3")
+        shouldThrow<IllegalArgumentException> {
+            Calculator.calculate("+ 3 + 3")
+        }
     }
 
     test("계산식 마지막에 부호를 입력시 오류가 발생한다.") {
-        Calculator.calculate("2 3 + 3")
+        shouldThrow<IllegalArgumentException> {
+            Calculator.calculate("2 3 + 3")
+        }
     }
 
     test("부호를 연속해서 입력시 오류가 발생한다.") {
-        Calculator.calculate("2 + + 3")
+        shouldThrow<IllegalArgumentException> {
+            Calculator.calculate("2 + + 3")
+        }
     }
 
     test("잘못된 기호를 입력시 오류가 발생한다.") {
-        Calculator.calculate("2 % 3 - 9")
+        shouldThrow<IllegalArgumentException> {
+            Calculator.calculate("2 % 3 - 9")
+        }
     }
 
     test("\"2 + 3 * 4 / 2\" 입력시 결과값 10을 반환한다.") {
