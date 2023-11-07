@@ -11,20 +11,16 @@ fun main() {
     val countOfRacing = InputView.inputCount()
 
     ResultView.printInitMessage()
+    val racingCarGame = RacingCarGame.init(initRacingCars(racingCarNames))
     val randomNumGenerator = RandomNumGenerator()
-    var currentRacingCarGame = RacingCarGame.init(initRacingCars(racingCarNames))
     repeat(countOfRacing) {
-        currentRacingCarGame = currentRacingCarGame.race(randomNumGenerator)
-        ResultView.printResult(currentRacingCarGame)
+        racingCarGame.race(randomNumGenerator)
+        ResultView.printResult(racingCarGame)
     }
-    val winners = currentRacingCarGame.calculateWinners()
+    val winners = racingCarGame.findWinners()
     ResultView.printWinners(winners)
 }
 
 private fun initRacingCars(racingCarNames: List<String>): List<RacingCar> {
-    val initRacingCars = mutableListOf<RacingCar>()
-    for (racingCarName in racingCarNames) {
-        initRacingCars.add(RacingCar(name = racingCarName))
-    }
-    return initRacingCars
+    return racingCarNames.map { RacingCar(name = it) }
 }

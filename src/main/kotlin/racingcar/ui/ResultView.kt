@@ -13,18 +13,12 @@ object ResultView {
     }
 
     fun printResult(racingCarGame: RacingCarGame) {
-        for (racingCar in racingCarGame.racingCars) {
-            printEachResult(racingCar)
-            println()
-        }
+        racingCarGame.racingCars.forEach { printEachResult(it) }
         println()
     }
 
     private fun printEachResult(racingCar: RacingCar) {
-        print(racingCar.name + RACING_CAR_RESULT_DELIMITER)
-        repeat(racingCar.count) {
-            print("-")
-        }
+        println("${racingCar.name}${RACING_CAR_RESULT_DELIMITER}${"-".repeat(racingCar.position)}")
     }
 
     fun printWinners(winners: List<RacingCar>) {

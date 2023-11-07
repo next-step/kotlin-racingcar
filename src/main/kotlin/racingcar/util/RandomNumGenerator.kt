@@ -2,9 +2,12 @@ package racingcar.util
 
 import java.util.Random
 
+private const val RANDOM_NUM_BOUND = 10
+
 class RandomNumGenerator : NumGenerator {
-    override fun getNextInt(bound: Int): Int {
-        val random = Random()
-        return random.nextInt(bound)
+    private val random = Random()
+
+    override fun getNextInt(): Int {
+        return random.nextInt(RANDOM_NUM_BOUND)
     }
 }
