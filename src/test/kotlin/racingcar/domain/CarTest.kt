@@ -1,6 +1,6 @@
 package racingcar.domain
 
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -11,7 +11,7 @@ class CarTest {
     fun `전진한다`(input: Int) {
         val car = Car()
         car.move(input)
-        assertTrue(car.isPosition(1))
+        assertEquals(car, Car(1))
     }
 
     @ValueSource(ints = [0, 1, 2, 3])
@@ -19,6 +19,6 @@ class CarTest {
     fun `멈춘다`(input: Int) {
         val car = Car()
         car.move(input)
-        assertTrue(car.isPosition(0))
+        assertEquals(car, Car(0))
     }
 }

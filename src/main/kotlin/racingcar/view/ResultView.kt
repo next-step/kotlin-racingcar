@@ -1,26 +1,32 @@
 package racingcar.view
 
-import racingcar.domain.Car
+import racingcar.domain.RacingResult
 
 class ResultView {
 
     companion object {
-        fun printResultInit() {
+        fun printInit() {
             println("실행 결과")
         }
 
-        fun printResult(cars: List<Car>) {
-            cars.forEach { car: Car ->
-                printPosition(car)
-                println()
+        fun printResult(result: List<List<RacingResult>>) {
+            result.forEach { cars: List<RacingResult> ->
+                printRacingResult(cars)
+            }
+        }
+
+        private fun printRacingResult(cars: List<RacingResult>) {
+            cars.forEach { racingResult: RacingResult ->
+                printPosition(racingResult)
             }
             println()
         }
 
-        private fun printPosition(car: Car) {
-            for (j in 0 until car.position step 1) {
+        private fun printPosition(result: RacingResult) {
+            List(result.resultPosition) {
                 print("-")
             }
+            println()
         }
     }
 }

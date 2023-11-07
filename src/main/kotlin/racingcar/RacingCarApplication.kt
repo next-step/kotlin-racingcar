@@ -1,6 +1,7 @@
 package racingcar
 
-import racingcar.controller.CarController
+import racingcar.controller.RacingCarController
+import racingcar.domain.RacingGame
 import racingcar.domain.Car
 import racingcar.view.InputView
 import racingcar.view.ResultView
@@ -9,15 +10,10 @@ fun main() {
     val countOfCars = InputView.inputCountOfCars()
     val countOfTry = InputView.inputCountOfTry()
 
-    val cars = mutableListOf<Car>()
-
-    for (i in 0 until countOfCars step 1) {
-        cars.add(Car())
+    val cars = List(countOfCars) {
+        Car()
     }
 
-    ResultView.printResultInit()
-    for (i in 0 until countOfTry step 1) {
-        CarController(cars).race()
-        ResultView.printResult(cars)
-    }
+    ResultView.printInit()
+    ResultView.printResult(RacingCarController(countOfTry, RacingGame(cars)).start())
 }
