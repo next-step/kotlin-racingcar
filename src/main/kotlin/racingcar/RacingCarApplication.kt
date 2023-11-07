@@ -15,9 +15,11 @@ fun main() {
         Car(it)
     }
 
-    val allRacingSituations = RacingCarController(countOfTry, RacingGame(cars)).start()
+    val racingCarController = RacingCarController(countOfTry, RacingGame(cars))
+    val allRacingSituations = racingCarController.start()
+    val winners = racingCarController.evaluate(Winner(allRacingSituations.last()))
 
     ResultView.printInit()
     ResultView.printAllRacingSituations(allRacingSituations)
-    ResultView.printWinners(Winner(allRacingSituations.last()).evaluate())
+    ResultView.printWinners(winners)
 }

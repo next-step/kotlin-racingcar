@@ -2,6 +2,7 @@ package racingcar.controller
 
 import racingcar.domain.RacingGame
 import racingcar.domain.RacingSituation
+import racingcar.domain.Winner
 
 class RacingCarController(
     private val countOfTry: Int,
@@ -9,10 +10,12 @@ class RacingCarController(
 ) {
 
     fun start(): List<List<RacingSituation>> {
-        val result = List(countOfTry) {
+        return List(countOfTry) {
             racingGame.race()
         }
+    }
 
-        return result
+    fun evaluate(winner: Winner): List<RacingSituation> {
+        return winner.evaluate()
     }
 }
