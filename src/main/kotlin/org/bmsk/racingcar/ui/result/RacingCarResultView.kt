@@ -1,12 +1,12 @@
 package org.bmsk.racingcar.ui.result
 
-import org.bmsk.racingcar.domain.model.Car
-import org.bmsk.racingcar.domain.model.RacingCarRoad
-import org.bmsk.racingcar.domain.model.RacingCarWinner
-import org.bmsk.racingcar.domain.policy.movement.MovementPolicy
-import org.bmsk.racingcar.domain.policy.movement.RandomMovementImpl
-import org.bmsk.racingcar.domain.policy.ranking.MultipleWinnersAllowedImpl
-import org.bmsk.racingcar.domain.policy.ranking.RankingPolicy
+import org.bmsk.effectivekotlin.domain.model.Car
+import org.bmsk.effectivekotlin.domain.model.RacingCarRoad
+import org.bmsk.effectivekotlin.domain.model.RacingCarWinner
+import org.bmsk.effectivekotlin.domain.policy.movement.MovementPolicy
+import org.bmsk.effectivekotlin.domain.policy.movement.RandomMovementImpl
+import org.bmsk.effectivekotlin.domain.policy.ranking.MultipleWinnersAllowedImpl
+import org.bmsk.effectivekotlin.domain.policy.ranking.RankingPolicy
 
 class RacingCarResultView(
     private val movementPolicy: MovementPolicy = RandomMovementImpl(),

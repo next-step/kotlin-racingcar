@@ -1,7 +1,7 @@
 package org.bmsk.racingcar.ui
 
-import org.bmsk.racingcar.domain.model.RacingCarRoad
-import org.bmsk.racingcar.model.CarShape.BAR_SHAPE
+import org.bmsk.effectivekotlin.domain.model.RacingCarRoad
+import org.bmsk.effectivekotlin.model.CarShape
 import org.bmsk.racingcar.ui.input.RacingCarInputView
 import org.bmsk.racingcar.ui.result.RacingCarResultView
 import kotlin.properties.Delegates
@@ -41,7 +41,7 @@ class RacingCarView(
     private fun displayRacingRoads(racingResult: List<RacingCarRoad>) {
         racingResult.forEach { road ->
             road.cars.forEach { car ->
-                println("${car.name} : ${BAR_SHAPE.symbol.repeat(car.position.xPos)}")
+                println("${car.name} : ${CarShape.BAR_SHAPE.symbol.repeat(car.position.xPos)}")
             }
             println()
         }

@@ -1,0 +1,22 @@
+[versions]
+junitJupiter = "5.8.2"
+assertjCore = "3.22.0"
+
+detekt = "1.23.0"
+kotlin = "1.8.10"
+kotestRunnerJunit5 = "5.5.0"
+
+[libraries]
+junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junitJupiter" }
+assertj-core = { group = "org.assertj", name = "assertj-core", version.ref = "assertjCore" }
+
+verify-detektPlugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotest-runner-junit5 = { group = "io.kotest", name = "kotest-runner-junit5", version.ref = "kotestRunnerJunit5" }
+
+[plugins]
+verify-detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+
+[bundles]
+
