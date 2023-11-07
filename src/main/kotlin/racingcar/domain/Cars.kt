@@ -20,7 +20,7 @@ class Cars(
     fun getMaxPosition(): Position {
         check(cars.isNotEmpty()) { "자동차가 없습니다" }
 
-        return cars.maxOfOrNull { it.getPosition().getPosition() }
+        return cars.maxOfOrNull { it.getPosition().position }
             ?.let { Position(it) }
             ?: throw IllegalArgumentException("최대 위치를 찾을 수 없습니다")
     }

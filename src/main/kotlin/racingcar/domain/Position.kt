@@ -1,8 +1,9 @@
 package racingcar.domain
 
-class Position(
-    private var position: Int = DEFAULT_POSITION,
-) {
+class Position(position: Int = DEFAULT_POSITION){
+    var position: Int = position
+        private set
+
     fun forward() {
         position++
     }
@@ -11,11 +12,7 @@ class Position(
         const val DEFAULT_POSITION = 0
     }
 
-    fun getPosition(): Int {
-        return position
-    }
-
     fun equal(other: Position): Boolean {
-        return position == other.getPosition()
+        return position == other.position
     }
 }

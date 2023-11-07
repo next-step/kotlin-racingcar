@@ -16,7 +16,7 @@ class NameTest {
         val actual = Name("test")
 
         // then
-        assertThat(actual.getName()).isEqualTo(name)
+        assertThat(actual.name).isEqualTo(name)
     }
 
     @Test
