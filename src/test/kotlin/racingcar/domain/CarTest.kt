@@ -9,16 +9,16 @@ class CarTest {
     @ValueSource(ints = [4, 5, 6, 7, 8, 9])
     @ParameterizedTest
     fun `전진한다`(input: Int) {
-        val car = Car()
+        val car = Car("pobi")
         car.move(input)
-        assertEquals(car, Car(1))
+        assertEquals(car, Car("pobi", 1))
     }
 
     @ValueSource(ints = [0, 1, 2, 3])
     @ParameterizedTest
     fun `멈춘다`(input: Int) {
-        val car = Car()
+        val car = Car("pobi")
         car.move(input)
-        assertEquals(car, Car(0))
+        assertEquals(car, Car("pobi", 0))
     }
 }
