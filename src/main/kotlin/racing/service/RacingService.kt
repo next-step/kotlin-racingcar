@@ -22,13 +22,13 @@ class RacingService {
 
     private fun ready(participates: ArrayDeque<String>): RoundHistory {
         return RoundHistory(
-            participates.map { Car(Name(it)) }
+            ArrayDeque(
+                participates.map { Car(Name(it)) }
+            )
         )
     }
 
     private fun nextRound(preRoundHistory: RoundHistory): RoundHistory {
-        return RoundHistory(
-            preRoundHistory.results.map { it.move(strategy).copy() }
-        )
+        return RoundHistory(ArrayDeque(preRoundHistory.results.map { it.move(strategy).copy() }))
     }
 }
