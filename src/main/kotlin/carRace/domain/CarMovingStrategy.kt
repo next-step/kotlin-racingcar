@@ -1,4 +1,4 @@
-package carRace
+package carRace.domain
 
 interface CarMovingStrategy {
     fun shouldMove(): Boolean

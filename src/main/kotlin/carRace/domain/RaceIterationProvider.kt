@@ -1,4 +1,4 @@
-package carRace
+package carRace.domain
 
 interface RaceIterationProvider {
     fun provide(): Int

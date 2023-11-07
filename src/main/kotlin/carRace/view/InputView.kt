@@ -1,4 +1,7 @@
-package carRace
+package carRace.view
+
+import carRace.domain.CarsProvider
+import carRace.domain.RaceIterationProvider
 
 sealed class InputView(
     val carsProvider: CarsProvider,

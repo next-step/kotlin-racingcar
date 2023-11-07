@@ -1,5 +1,12 @@
 package carRace
 
+import carRace.domain.CarMovingStrategy
+import carRace.domain.CarRaceResult
+import carRace.domain.RandomMovingStrategy
+import carRace.view.InputView
+import carRace.view.ResultView
+import carRace.view.UserInputView
+
 class CarRaceSimulator(
     private val inputView: InputView,
     private val resultView: ResultView = ResultView()

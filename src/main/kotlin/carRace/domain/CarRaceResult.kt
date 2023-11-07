@@ -1,4 +1,4 @@
-package carRace
+package carRace.domain
 
 class CarRaceResult(val currentCars: List<Car>) {
     private val _history = mutableListOf<CarLapResult>()

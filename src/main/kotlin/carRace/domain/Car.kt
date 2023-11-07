@@ -1,4 +1,4 @@
-package carRace
+package carRace.domain
 
 import java.lang.IllegalArgumentException
 

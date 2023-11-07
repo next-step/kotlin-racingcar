@@ -1,4 +1,7 @@
-package carRace
+package carRace.view
+
+import carRace.domain.Car
+import carRace.domain.CarRaceResult
 
 class ResultView {
     private fun printCars(cars: List<Car>) {

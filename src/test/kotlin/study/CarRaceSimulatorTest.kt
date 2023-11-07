@@ -1,10 +1,10 @@
 package study
 
-import carRace.Car
-import carRace.CarMovingStrategy
-import carRace.CarRaceResult
 import carRace.CarRaceSimulator
-import carRace.ManualInputView
+import carRace.domain.Car
+import carRace.domain.CarMovingStrategy
+import carRace.domain.CarRaceResult
+import carRace.view.ManualInputView
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
