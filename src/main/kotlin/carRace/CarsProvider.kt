@@ -6,7 +6,7 @@ sealed interface CarsProvider {
 
     class Manual(private val carNames: List<String>) : CarsProvider {
         override fun provide(carMovingStrategy: CarMovingStrategy): List<Car> =
-            carNames.map { Car(it, 0, carMovingStrategy) }
+            carNames.map { Car(driverName = it, _traveled = 0, carMovingStrategy = carMovingStrategy) }
     }
 
     object UserInput : CarsProvider {

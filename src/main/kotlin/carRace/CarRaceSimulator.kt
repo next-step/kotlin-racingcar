@@ -11,7 +11,10 @@ class CarRaceSimulator(
         val carRaceResult = CarRaceResult(carList)
 
         repeat(iterationCount) {
-            carRaceResult.driveCars(it + 1)
+            carRaceResult.currentCars.forEach { car ->
+                car.drive()
+            }
+            carRaceResult.updateHistory(it + 1)
         }
 
         resultView.printResult(carRaceResult)

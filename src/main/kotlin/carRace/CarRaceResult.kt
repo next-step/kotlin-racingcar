@@ -1,13 +1,11 @@
 package carRace
 
 class CarRaceResult(val currentCars: List<Car>) {
-    val history = mutableListOf<CarLapResult>()
+    private val _history = mutableListOf<CarLapResult>()
+    val history get() = _history.toList()
 
-    fun driveCars(lap: Int) {
-        currentCars.forEach {
-            it.drive()
-        }
-        history.add(
+    fun updateHistory(lap: Int) {
+        _history.add(
             CarLapResult(
                 lap,
                 currentCars.map { it.copy() }
@@ -15,9 +13,9 @@ class CarRaceResult(val currentCars: List<Car>) {
         )
     }
 
-    private fun getFinalLapCarList() = history
+    private fun getFinalLapCarList() = _history
         .first { carLapHistory ->
-            carLapHistory.lap == history.maxOf { lapResult -> lapResult.lap }
+            carLapHistory.lap == _history.maxOf { lapResult -> lapResult.lap }
         }.cars
 
     private fun getFinalLapDistance() = getFinalLapCarList().maxOf { it.traveled }
