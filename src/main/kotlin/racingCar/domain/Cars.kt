@@ -4,11 +4,10 @@ import racingCar.domain.strategy.MoveStrategy
 import racingCar.domain.strategyImpl.RandomStrategy
 import racingCar.error.ErrorMessage
 
-class Cars(private val moveStrategy: MoveStrategy = RandomStrategy(), private var carList: List<Car> = emptyList()) {
+class Cars(private val moveStrategy: MoveStrategy = RandomStrategy(), carList: List<Car> = emptyList()) {
 
-    fun getCarList(): List<Car> {
-        return carList
-    }
+    var carList: List<Car> = carList
+        private set
 
     fun initCars(inputCars: String, delimiter: String = COMMA) {
         val split = inputCars.split(delimiter)

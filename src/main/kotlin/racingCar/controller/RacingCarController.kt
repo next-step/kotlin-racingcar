@@ -14,7 +14,7 @@ fun main() {
     val cars = Cars()
     cars.initCars(inputCars)
     repeat(tryCount) {
-        cars.getCarList().forEach { it.move() }
+        cars.carList.forEach { it.move() }
         OutputView.printCar(cars)
     }
     OutputView.printWinner(cars)

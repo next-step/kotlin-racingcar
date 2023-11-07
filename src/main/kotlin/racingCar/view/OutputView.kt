@@ -17,7 +17,7 @@ object OutputView {
     fun printExecuteResult() = println(EXECUTE_RESULT)
 
     fun printCar(cars: Cars) {
-        cars.getCarList().forEach { car: Car -> println(car.name + COLON + CAR.repeat(car.moveCount)) }
+        cars.carList.forEach { car: Car -> println(car.name + COLON + CAR.repeat(car.moveCount)) }
         println()
     }
 

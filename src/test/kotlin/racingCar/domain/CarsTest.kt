@@ -21,7 +21,7 @@ class CarsTest {
     fun `각 자동차 Name 이 ","를 기준으로 List 에 반환된다`() {
         cars.initCars(CARS)
         val expectedNames = listOf("pobi", "crong", "honux")
-        assertThat(cars.getCarList().map { it.name }).containsExactlyElementsOf(expectedNames)
+        assertThat(cars.carList.map { it.name }).containsExactlyElementsOf(expectedNames)
     }
 
     @Test
