@@ -6,9 +6,7 @@ sealed class Rule {
     abstract fun isMoveAllowed(): Boolean
 
     class RandomRule : Rule() {
-        override fun isMoveAllowed(): Boolean {
-            return Random.nextInt(10) >= 4
-        }
+        override fun isMoveAllowed(): Boolean = Random.nextInt(10) >= 4
     }
 
     class AlwaysMoveRule: Rule() {

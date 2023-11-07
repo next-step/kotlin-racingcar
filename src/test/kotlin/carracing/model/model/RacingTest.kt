@@ -3,16 +3,16 @@ package carracing.model.model
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
-import org.junit.jupiter.api.RepeatedTest
 import org.junit.jupiter.api.Test
-import kotlin.random.Random
 
 class RacingTest {
 
-
     companion object {
+        private fun getMockedCar() = mockk<Car>().apply {
+            every { move(any()) } returns Unit
+        }
+
         private val alwaysMoveRule = Rule.AlwaysMoveRule()
         private val noMoveRule = Rule.NoMoveRule()
     }
@@ -20,18 +20,22 @@ class RacingTest {
     @Test
     fun `progress - every car move once`() {
         val numberOfCar = 4
-        val racing = Racing(numberOfCar, alwaysMoveRule)
+        val randomRule = Rule.RandomRule()
+        val racing = Racing(numberOfCar, randomRule)
+        val racingFieldCars = Racing::class.java.getDeclaredField("cars")
+        racingFieldCars.trySetAccessible()
+        racingFieldCars.set(racing, List<Car>(4) { getMockedCar() })
 
         racing.progress()
 
         racing.cars.forEach {
-            assertEquals(1, racing.locations[it])
+            verify(exactly = 1) { it.move(randomRule) }
         }
     }
 
-    @RepeatedTest(10)
+    @Test
     fun `takeSnapshot - create a snapshot object`() {
-        val numberOfCar = Random.nextInt(1, 10)
+        val numberOfCar = 4
         val racing = Racing(numberOfCar)
 
         val snapshot = racing.takeSnapshot()

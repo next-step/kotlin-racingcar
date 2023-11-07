@@ -11,9 +11,7 @@ object OutputView {
     }
 
     fun printSnapshot(snapshot: Snapshot) {
-        snapshot.locations.forEach { car, location ->
-            println(MOVEMENT.repeat(location))
-        }
+        snapshot.forEach { println(MOVEMENT.repeat(it)) }
         println()
     }
 }

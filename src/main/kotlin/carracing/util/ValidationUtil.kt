@@ -6,9 +6,7 @@ fun <T : Any> T.requireAndPass(predicate: (T) -> Boolean, lazyMessage: () -> Any
 }
 
 fun String?.requireNotNullOrBlank(lazyMessage: () -> Any): String {
-    if (isNullOrBlank()) {
-        throw IllegalArgumentException(lazyMessage().toString())
-    }
+    require(!isNullOrBlank()) { lazyMessage }
     return this
 }
 

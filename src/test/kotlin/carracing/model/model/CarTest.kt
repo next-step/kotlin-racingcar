@@ -1,6 +1,6 @@
 package carracing.model.model
 
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class CarTest {
@@ -12,8 +12,17 @@ class CarTest {
 
     @Test
     fun `move - if isMoveAllowed in the rule is true, move once`() {
-        val car = Car(0)
-        assertEquals(1, car.move(alwaysMoveRule))
-        assertEquals(0, car.move(noMoveRule))
+        val car = Car()
+        car.move(alwaysMoveRule)
+
+        assertEquals(1, car.moveCountInRacing)
+    }
+
+    @Test
+    fun `move - if isMoveAllowed in the rule is false, do not move`() {
+        val car = Car()
+        car.move(noMoveRule)
+
+        assertEquals(0, car.moveCountInRacing)
     }
 }
