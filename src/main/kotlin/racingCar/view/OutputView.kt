@@ -16,8 +16,8 @@ object OutputView {
     fun printTryCount() = println(ASK_TRY_COUNT)
     fun printExecuteResult() = println(EXECUTE_RESULT)
 
-    fun printCar(cars: Cars) {
-        cars.carList.forEach { car: Car -> println(car.name + COLON + CAR.repeat(car.moveCount)) }
+    fun printCar(carList: List<Car>) {
+        carList.forEach { car: Car -> println(car.name + COLON + CAR.repeat(car.moveCount)) }
         println()
     }
 

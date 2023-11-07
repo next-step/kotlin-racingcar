@@ -9,12 +9,28 @@ class Cars(private val moveStrategy: MoveStrategy = RandomStrategy(), carList: L
     var carList: List<Car> = carList
         private set
 
+    var carHisList: MutableList<Car> = mutableListOf()
+        private set
+
     fun initCars(inputCars: String, delimiter: String = COMMA) {
         val split = inputCars.split(delimiter)
         split.forEach { require(it.length <= LIMIT_CAR_NAME) { ErrorMessage.NAME_TOO_LONG } }
 
         val carsNames: List<String> = split
         carList = carsNames.map { Car(name = it, moveStrategy = moveStrategy) }
+    }
+
+    fun carsMove(tryCount: Int) {
+        repeat(tryCount) {
+            carList.forEach {
+                it.move()
+                saveCarLog(it.copy())
+            }
+        }
+    }
+
+    private fun saveCarLog(car: Car) {
+        carHisList.add(car)
     }
 
     fun getWinners(): List<Car> {
