@@ -29,5 +29,9 @@ class ResultView {
             }
             println()
         }
+
+        fun printWinners(result: List<RacingResult>) {
+            println("${result.joinToString(separator = ", ", postfix = "") { it.carName }}가 최종 우승했습니다.")
+        }
     }
 }
