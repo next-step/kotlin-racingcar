@@ -1,8 +1,12 @@
 package racingcar.domain
 
 data class Car(
-    private var position: Int = 0
+    private val name: String,
+    private var position: Int = 0,
 ) {
+
+    val carName: String
+        get() = this.name
 
     val currentPosition: Int
         get() = this.position

@@ -9,7 +9,7 @@ class RacingGame(
     fun race(): List<RacingResult> {
         return cars.map { car: Car ->
             car.move(random.nextInt(RANDOM_MAX_VALUE))
-            RacingResult(car.currentPosition)
+            RacingResult(car.carName, car.currentPosition)
         }
     }
 

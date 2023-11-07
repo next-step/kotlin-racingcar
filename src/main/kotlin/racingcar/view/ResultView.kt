@@ -23,6 +23,7 @@ class ResultView {
         }
 
         private fun printPosition(result: RacingResult) {
+            print("${result.carName} : ")
             List(result.resultPosition) {
                 print("-")
             }

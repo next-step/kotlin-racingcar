@@ -1,17 +1,17 @@
 package racingcar
 
 import racingcar.controller.RacingCarController
-import racingcar.domain.RacingGame
 import racingcar.domain.Car
+import racingcar.domain.RacingGame
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
 fun main() {
-    val countOfCars = InputView.inputCountOfCars()
+    val carNames = InputView.inputCarNames()
     val countOfTry = InputView.inputCountOfTry()
 
-    val cars = List(countOfCars) {
-        Car()
+    val cars = carNames.map {
+        Car(it)
     }
 
     ResultView.printInit()
