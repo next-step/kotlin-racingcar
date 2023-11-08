@@ -11,11 +11,6 @@ class Cars(val cars: List<Car>, private val powerGenerator: PowerGenerator) {
         return Cars(movedCars, powerGenerator)
     }
 
-    fun findWinner(): List<Car> {
-        val maxPosition = cars.maxBy { it.position }.position
-        return cars.filter { it.position == maxPosition }
-    }
-
     companion object {
         fun initialize(numberOfCars: Int, names: List<String>, powerGenerator: PowerGenerator): Cars {
             val cars = mutableListOf<Car>()

@@ -4,7 +4,7 @@ fun main() {
     val cars = initializeCars()
 
     val movedCars = moveCars(cars)
-    val winners = movedCars.findWinner()
+    val winners = RacingRule.findWinners(movedCars)
     OutputView.printWinners(winners)
 }
 
