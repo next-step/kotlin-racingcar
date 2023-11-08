@@ -11,7 +11,7 @@ class RandomMovementCarFactory : CarFactory {
 
     override fun createCars(carInfoList: List<CarInfo>): List<Car> = carInfoList.map { info -> Car(info.name, info.movementController) }
 
-    fun createCarList(carNameList: List<String>): List<Car> {
+    override fun createCarsWithNameList(carNameList: List<String>): List<Car> {
         val carInfoList: List<CarInfo> = carNameList.map { CarInfo(it, RandomMovementController()) }
 
         return createCars(carInfoList)

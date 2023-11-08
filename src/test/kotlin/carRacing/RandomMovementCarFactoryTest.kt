@@ -16,7 +16,7 @@ class RandomMovementCarFactoryTest {
 
     @Test
     fun `createCarList로 생성된 모든 Car List는 RandomMovementController를 할당한다`() {
-        val car: Car = randomMovementCarFactory.createCarList(listOf("testC")).first()
+        val car: Car = randomMovementCarFactory.createCarsWithNameList(listOf("testC")).first()
 
         assertThat(car.movementController).isInstanceOf(RandomMovementController::class.java)
     }

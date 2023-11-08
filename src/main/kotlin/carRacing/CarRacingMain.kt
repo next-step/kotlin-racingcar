@@ -20,7 +20,7 @@ fun main() {
     println()
     outputView.printWithMessage(Message.RESULT)
 
-    val carList: List<Car> = RandomMovementCarFactory().createCarList(carNameList)
+    val carList: List<Car> = RandomMovementCarFactory().createCarsWithNameList(carNameList)
 
     val racing = Racing(carList)
     val racingResult: RacingResult = racing.getRaceResult(tryCount)
