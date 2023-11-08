@@ -24,9 +24,7 @@ class Racing(private val carList: List<Car>) {
     }
 
     private fun process(carList: List<Car>): List<Car> {
-        for (car in carList) {
-            car.move()
-        }
+        carList.forEach(Car::move)
 
         return carList
     }
